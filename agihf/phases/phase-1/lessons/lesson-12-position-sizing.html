@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson 12 — Position Sizing · AG&HF</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F4829A; --pink2:#F9B8C6; --pink3:#FDE8ED;
+  --teal:#7ECEC4; --teal2:#B2E4DF; --teal3:#E8F8F6;
+  --peach:#F5A857; --peach2:#FAD09A; --peach3:#FEF3E4;
+  --cream:#FDF8F5; --warm:#FFFBF9; --dark:#2C1810; --text:#3D2B20; --muted:#7A5C50;
+  --red:#D95C75; --green:#4FAE9E;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.app{display:flex;min-height:100vh}
+.sidebar{width:220px;background:#fff;border-right:1px solid rgba(244,130,154,.12);position:fixed;top:0;bottom:0;left:0;display:flex;flex-direction:column}
+.logo{padding:20px 22px 16px;border-bottom:1px solid rgba(244,130,154,.1);font-family:"Playfair Display",serif;font-style:italic;color:var(--pink)}
+.logo span{color:var(--teal)}
+.user{padding:13px 18px;border-bottom:1px solid rgba(244,130,154,.1)}
+.user strong{display:block;font-size:.82rem;color:var(--dark)}
+.user span{font-size:.68rem;color:var(--muted)}
+.sec{padding:10px 18px 5px;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.item{padding:10px 18px;font-size:.85rem;color:var(--muted);border-left:3px solid transparent}
+.item.on{background:var(--pink3);color:var(--pink);border-left-color:var(--pink);font-weight:700}
+.main{margin-left:220px;flex:1}
+.top{height:60px;background:#fff;border-bottom:1px solid rgba(244,130,154,.1);display:flex;justify-content:space-between;align-items:center;padding:0 30px;position:sticky;top:0;z-index:20}
+.top small{color:var(--muted)}
+.xp{font-size:.77rem;color:var(--peach);background:var(--peach3);border:1px solid var(--peach2);padding:4px 12px;border-radius:999px;font-weight:700}
+.progress{height:6px;background:var(--pink3);position:sticky;top:60px;z-index:19}
+.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--peach));transition:.3s ease}
+.wrap{padding:34px 24px 110px;display:flex;justify-content:center}
+.slide{max-width:920px;width:100%;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.card{background:#fff;border:1px solid rgba(244,130,154,.1);box-shadow:0 4px 20px rgba(244,130,154,.05);border-radius:22px;padding:26px 30px}
+.intro{background:var(--dark);color:#fff;padding:40px 38px 42px;border-radius:32px;box-shadow:0 10px 40px rgba(44,24,16,.25)}
+.eyebrow{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink2);margin-bottom:12px}
+.intro h1{font-family:"Playfair Display",serif;font-size:2.15rem;line-height:1.1;color:#fff;margin-bottom:14px}
+.intro h1 span{color:var(--pink)}
+.intro p{line-height:1.78;color:rgba(255,255,255,.62);margin-bottom:22px;max-width:730px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-size:.7rem;padding:5px 12px;border-radius:999px;border:1px solid}
+.pk{background:rgba(244,130,154,.15);border-color:rgba(244,130,154,.3);color:var(--pink2)}
+.tl{background:rgba(126,206,196,.15);border-color:rgba(126,206,196,.3);color:var(--teal2)}
+.pc{background:rgba(245,168,87,.15);border-color:rgba(245,168,87,.3);color:var(--peach2)}
+.head{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);font-weight:700;margin-bottom:10px}
+.card h2{font-family:"Playfair Display",serif;font-size:1.25rem;line-height:1.3;color:var(--dark);margin-bottom:12px}
+.card p{font-size:.93rem;line-height:1.82;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.tap{border-radius:18px;padding:18px;border:2px solid transparent;background:var(--warm);cursor:pointer;transition:.15s ease}
+.tap:hover{transform:translateY(-2px)}
+.tap.selected{box-shadow:0 10px 24px rgba(44,24,16,.08)}
+.goodbg{background:var(--peach3);border-color:var(--peach2)}
+.badbg{background:#f7f2ff;border-color:#ddd5ff}
+.tealbg{background:var(--teal3);border-color:var(--teal2)}
+.pinkbg{background:var(--pink3);border-color:var(--pink2)}
+.tap h3{font-family:"Playfair Display",serif;font-size:1.06rem;color:var(--dark);margin-bottom:6px}
+.tap p{font-size:.84rem;line-height:1.65}
+.feedback{display:none;padding:14px 16px;border-radius:14px;font-size:.86rem;line-height:1.65}
+.feedback.show{display:block}
+.feedback.good{background:var(--teal3);border:1px solid var(--teal2);color:#1a6b63}
+.feedback.bad{background:var(--pink3);border:1px solid var(--pink2);color:#a84060}
+.feedback.mid{background:var(--peach3);border:1px solid var(--peach2);color:#7a4a0a}
+.chartbox{background:var(--warm);border:1px solid rgba(244,130,154,.1);border-radius:18px;padding:18px}
+.chartwrap{position:relative}
+.chart{display:block;width:100%;height:auto;background:#fff;border-radius:16px;border:1px solid rgba(244,130,154,.08)}
+.note{position:absolute;top:12px;right:12px;background:rgba(44,24,16,.9);color:#fff;padding:8px 12px;border-radius:12px;font-size:.76rem;opacity:0;transform:translateY(-6px);transition:.25s}
+.note.show{opacity:1;transform:translateY(0)}
+.btnrow,.opts{display:flex;gap:10px;flex-wrap:wrap}
+.btnrow{justify-content:center;margin-top:14px}
+button{font-family:"DM Sans",sans-serif;background:#fff;border:1.5px solid rgba(244,130,154,.16);border-radius:11px;padding:12px 16px;font-size:.87rem;color:var(--text);cursor:pointer}
+button.primary{background:linear-gradient(135deg,var(--pink),var(--peach));border:none;color:#fff;font-weight:700}
+button.alt{background:var(--teal3);border-color:var(--teal2)}
+.opts{flex-direction:column}
+.opts button.good,.qopt.correct{background:var(--teal3);border-color:var(--teal);color:#1a6b63}
+.opts button.bad,.qopt.wrong{background:var(--pink3);border-color:var(--pink);color:#a84060}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px}
+.kpi{background:var(--warm);border:1.5px solid rgba(244,130,154,.12);border-radius:16px;padding:16px}
+.kpi small{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
+.kpi strong{font-family:"Playfair Display",serif;font-size:1.1rem;color:var(--dark)}
+.reinforce{background:linear-gradient(135deg,rgba(126,206,196,.12),rgba(245,168,87,.08));border:1px solid var(--teal2)}
+.reinforce b{display:block;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.reinforce div{font-size:.95rem;line-height:1.75;color:var(--dark);font-style:italic}
+.pathline{height:14px;background:var(--pink3);border-radius:999px;overflow:hidden;margin-top:10px}
+.pathline>div{height:100%;background:linear-gradient(90deg,var(--teal),var(--peach));width:0;transition:.4s}
+.qc{background:linear-gradient(135deg,var(--peach3),var(--pink3));border:1px solid var(--peach2)}
+.qc .label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);font-weight:700;margin-bottom:8px}
+.qc .q{font-size:.96rem;color:var(--dark);font-weight:700;line-height:1.5;margin-bottom:13px}
+.recap-list{display:flex;flex-direction:column;gap:8px}
+.recap{display:flex;gap:12px;padding:13px 16px;border-radius:12px}
+.recap:nth-child(odd){background:var(--teal3);border:1px solid var(--teal2)}
+.recap:nth-child(even){background:var(--pink3);border:1px solid var(--pink2)}
+.recap .ico{font-size:1rem;margin-top:2px}
+.recap .txt{font-size:.87rem;line-height:1.62}
+.dayli{background:var(--dark);color:#fff}
+.dayli .head{color:var(--pink)}
+.dayli .quote{font-family:"Playfair Display",serif;font-size:1rem;line-height:1.75;font-style:italic}
+.dayli .at{margin-top:8px;color:rgba(255,255,255,.32);font-size:.72rem}
+.question{margin-bottom:22px}
+.question .lbl{font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:7px}
+.question .q{font-size:.96rem;color:var(--dark);font-weight:700;line-height:1.5;margin-bottom:12px}
+.qfb{display:none;margin-top:9px;padding:11px 15px;border-radius:10px;font-size:.83rem;line-height:1.6}
+.qfb.show{display:block}
+.complete{background:linear-gradient(135deg,var(--dark),#3d2420);text-align:center;color:#fff;display:none}
+.complete.show{display:block}
+.complete h2{font-family:"Playfair Display",serif;font-size:1.9rem;color:#fff;margin-bottom:8px}
+.complete h2 span{color:var(--pink)}
+.complete p{color:rgba(255,255,255,.58);max-width:430px;margin:0 auto 20px;line-height:1.65}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(126,206,196,.15);border:1px solid rgba(126,206,196,.3);border-radius:999px;padding:9px 20px;font-size:.88rem;color:var(--teal2);font-weight:700;margin-bottom:22px}
+.cc-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.cc-btns button{padding:13px 26px;border-radius:999px;font-size:.9rem;cursor:pointer}
+.cc-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.cc-hub{background:transparent;color:rgba(255,255,255,.45);border:1.5px solid rgba(255,255,255,.18)}
+.bottom{position:fixed;left:220px;right:0;bottom:0;background:rgba(253,248,245,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(244,130,154,.12);padding:13px 40px;display:flex;justify-content:space-between;align-items:center}
+.dots{display:flex;gap:5px}
+.dot{width:8px;height:8px;border-radius:50%;cursor:pointer}
+.done{background:var(--teal)}
+.active-dot{background:var(--pink);transform:scale(1.45)}
+.todo{background:var(--pink3);border:1.5px solid var(--pink2)}
+.stepname{font-size:.74rem;color:var(--muted);font-weight:700}
+.prev,.next{padding:10px 22px;border-radius:999px;font-size:.85rem;font-weight:700;cursor:pointer}
+.prev{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted)}
+.next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.prev:disabled,.next:disabled{opacity:.4;cursor:default}
+.toast,.streak{position:fixed;background:var(--dark);color:#fff;border-radius:14px;box-shadow:0 16px 48px rgba(44,24,16,.32);z-index:999}
+.toast{bottom:84px;right:26px;padding:13px 18px;display:flex;gap:11px;align-items:center;transform:translateY(18px);opacity:0;transition:.35s}
+.toast.show{transform:translateY(0);opacity:1}
+.streak{top:80px;left:50%;transform:translateX(-50%) translateY(-20px);padding:12px 22px;display:flex;gap:10px;align-items:center;opacity:0;transition:.35s;pointer-events:none}
+.streak.show{transform:translateX(-50%) translateY(0);opacity:1}
+.confetti{position:fixed;border-radius:2px;pointer-events:none;z-index:1000}
+@media (max-width:900px){.sidebar{display:none}.main{margin-left:0}.bottom{left:0}}
+@media (max-width:760px){.grid2,.grid3,.kpi-grid{grid-template-columns:1fr}.top{padding:0 18px}.wrap{padding:22px 14px 110px}.intro{padding:30px 22px 32px}.intro h1{font-size:1.8rem}.bottom{padding:13px 18px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo"><span>A Girl &</span> Her Futures™</div>
+    <div class="user"><strong>Dayli</strong><span>Section 2 · Platform + Execution Basics</span></div>
+    <div class="sec">Learn</div>
+    <div class="item on">✦ Lessons</div>
+    <div class="item">◈ Games</div>
+    <div class="sec">Community</div>
+    <div class="item">↑ Leaderboard</div>
+    <div class="item">◇ Drip Store</div>
+    <div class="sec">Account</div>
+    <div class="item">○ My Profile</div>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <small>Lessons › Section 2 › <span id="crumb">Introduction</span></small>
+      <div><span class="xp">+105 XP</span> <small id="count">1 / 8</small></div>
+    </div>
+    <div class="progress"><div id="bar"></div></div>
+
+    <div class="wrap">
+      <section class="slide active" id="s0">
+        <div class="intro">
+          <div class="eyebrow">✦ Section 2 · Lesson 12</div>
+          <h1>Position <span>Sizing</span></h1>
+          <p>Position sizing is how much you choose to trade. Same setup, same chart, same stop loss — but the size you choose changes the money risk completely. This lesson teaches you to control size before size controls you.</p>
+          <div class="pills"><span class="pill pk">~17 min</span><span class="pill tl">Risk control lesson</span><span class="pill pc">+105 XP</span></div>
+        </div>
+        <div class="card">
+          <div class="head">Core idea</div>
+          <h2>Contracts change the money, not the structure.</h2>
+          <p>Your entry can be clean and your stop loss can be correct, but if your size is too big, the trade becomes emotionally heavy. Position sizing is what makes the same setup feel manageable or reckless.</p>
+        </div>
+      </section>
+
+      <section class="slide" id="s1">
+        <div class="card">
+          <div class="head">Teach → Experience</div>
+          <h2>Choose a contract size</h2>
+          <p>Pick a contract size and watch the same trade risk change. The chart idea stays the same. The money exposure does not.</p>
+          <div class="chartbox">
+            <div class="chartwrap">
+              <canvas id="sizeCanvas" class="chart" width="780" height="320"></canvas>
+              <div class="note" id="sizeNote">Size changes the pressure</div>
+            </div>
+            <div class="btnrow">
+              <button onclick="pickSize(1,this)">1 Contract</button>
+              <button onclick="pickSize(3,this)">3 Contracts</button>
+              <button onclick="pickSize(5,this)">5 Contracts</button>
+              <button onclick="pickSize(10,this)">10 Contracts</button>
+            </div>
+            <div class="kpi-grid">
+              <div class="kpi"><small>Contracts</small><strong id="contractsOut">1</strong></div>
+              <div class="kpi"><small>Estimated risk</small><strong id="riskOut">$50</strong></div>
+              <div class="kpi"><small>Pressure</small><strong id="pressureOut">Low</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="feedback" id="sizeFb"></div>
+      </section>
+
+      <section class="slide" id="s2">
+        <div class="card">
+          <div class="head">Money feel</div>
+          <h2>Same move. Different outcome.</h2>
+          <p>Run the same exact move with different sizing. This is the whole point: the chart can be identical while the emotional weight becomes completely different.</p>
+          <div class="grid2" style="margin-top:16px">
+            <div class="tap tealbg" onclick="runOutcome('small', this)">
+              <h3>Small size</h3>
+              <p>Controlled loss or profit. Easier to stay calm.</p>
+            </div>
+            <div class="tap badbg" onclick="runOutcome('big', this)">
+              <h3>Oversized</h3>
+              <p>Same setup, but now every candle feels too emotional.</p>
+            </div>
+          </div>
+        </div>
+        <div class="feedback" id="outcomeFb"></div>
+      </section>
+
+      <section class="slide" id="s3">
+        <div class="card">
+          <div class="head">Scenario check</div>
+          <h2>You want to make more money fast</h2>
+          <p>What is the cleanest response?</p>
+          <div class="grid3" style="margin-top:16px">
+            <div class="tap badbg" onclick="pickEmotion('sizeup', this)">
+              <h3>Increase size today</h3>
+              <p>More contracts means more money faster.</p>
+            </div>
+            <div class="tap tealbg" onclick="pickEmotion('consistent', this)">
+              <h3>Keep size consistent</h3>
+              <p>Protect your risk and build skill first.</p>
+            </div>
+            <div class="tap badbg" onclick="pickEmotion('revenge', this)">
+              <h3>Double after a loss</h3>
+              <p>Try to make it back in one trade.</p>
+            </div>
+          </div>
+        </div>
+        <div class="feedback" id="emotionFb"></div>
+        <div class="card reinforce"><b>Reinforce</b><div>More contracts do not create a better trader. They only magnify whatever discipline you already have or do not have.</div></div>
+      </section>
+
+      <section class="slide" id="s4">
+        <div class="card">
+          <div class="head">Dayli teaching moment</div>
+          <h2>You feel good after two wins</h2>
+          <p>Now you’re thinking: “Maybe I should size up heavy on the next one.” What do you do?</p>
+          <div class="opts">
+            <button onclick="dayliMoment('pause', this)">Pause and keep your size the same</button>
+            <button onclick="dayliMoment('heavy', this)">Go heavier because confidence is high</button>
+          </div>
+          <div class="feedback" id="dayliFb"></div>
+        </div>
+      </section>
+
+      <section class="slide" id="s5">
+        <div class="card">
+          <div class="head">Build the trade</div>
+          <h2>Build a disciplined position size flow</h2>
+          <p>Tap the steps in the order that matches clean risk management.</p>
+          <div class="grid3" style="margin-top:16px">
+            <div class="tap pinkbg" onclick="pickBuild('know risk', this)">
+              <h3>Know your risk</h3>
+              <p>Decide what you’re willing to lose first.</p>
+            </div>
+            <div class="tap tealbg" onclick="pickBuild('match size', this)">
+              <h3>Match the contracts</h3>
+              <p>Choose a size that fits the stop loss and risk.</p>
+            </div>
+            <div class="tap goodbg" onclick="pickBuild('stay same', this)">
+              <h3>Stay consistent</h3>
+              <p>Do not size up emotionally.</p>
+            </div>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi"><small>Build status</small><strong id="buildStatus">Waiting</strong></div>
+            <div class="kpi"><small>Discipline</small><strong id="buildDisc">Low</strong></div>
+            <div class="kpi"><small>Trade quality</small><strong id="buildQuality">Unbuilt</strong></div>
+          </div>
+          <div class="pathline"><div id="buildMeter"></div></div>
+        </div>
+        <div class="feedback" id="buildFb"></div>
+      </section>
+
+      <section class="slide" id="s6">
+        <div class="card">
+          <h2 style="margin-bottom:16px">What you know now</h2>
+          <div class="recap-list">
+            <div class="recap"><div class="ico">📏</div><div class="txt"><strong>Position sizing is how much you trade.</strong> It changes the money risk without changing the chart structure.</div></div>
+            <div class="recap"><div class="ico">🧠</div><div class="txt"><strong>Oversizing creates pressure.</strong> Same setup, different emotional weight.</div></div>
+            <div class="recap"><div class="ico">🛡️</div><div class="txt"><strong>Consistent size protects discipline.</strong> Emotional sizing breaks good trading faster than most people realize.</div></div>
+            <div class="recap"><div class="ico">🎯</div><div class="txt"><strong>Contracts should match the risk plan.</strong> Not your mood, not your greed, not your last trade.</div></div>
+          </div>
+        </div>
+        <div class="card dayli">
+          <div class="head">✦ Dayli note</div>
+          <div class="quote">"A lot of people don’t have a strategy problem. They have a sizing problem. The trade was fine. The size made it emotional."</div>
+          <div class="at">— Dayli Scott · A Girl & Her Futures™</div>
+        </div>
+      </section>
+
+      <section class="slide" id="s7">
+        <div class="card">
+          <div class="head">Final quiz</div>
+          <h2>Lock in position sizing</h2>
+
+          <div class="question">
+            <div class="lbl">Question 1 of 4</div>
+            <div class="q">What does position sizing change?</div>
+            <div class="opts">
+              <button class="qopt" onclick="quizAns(this,true,'q1fb','Correct. Position sizing changes the money risk and pressure.')">The money risk</button>
+              <button class="qopt" onclick="quizAns(this,false,'q1fb','No. Structure can stay the same.')">The market structure itself</button>
+              <button class="qopt" onclick="quizAns(this,false,'q1fb','No. It is more specific than that.')">Everything about the trade setup</button>
+            </div>
+            <div class="qfb feedback" id="q1fb"></div>
+          </div>
+
+          <div class="question">
+            <div class="lbl">Question 2 of 4</div>
+            <div class="q">What usually happens when size gets too big?</div>
+            <div class="opts">
+              <button class="qopt" onclick="quizAns(this,true,'q2fb','Exactly. Oversizing makes the trade emotionally heavier.')">The trade becomes emotional</button>
+              <button class="qopt" onclick="quizAns(this,false,'q2fb','No. Bigger size does not automatically improve skill.')">You become a better trader instantly</button>
+              <button class="qopt" onclick="quizAns(this,false,'q2fb','No. The chart itself does not care.')">The candles move differently</button>
+            </div>
+            <div class="qfb feedback" id="q2fb"></div>
+          </div>
+
+          <div class="question">
+            <div class="lbl">Question 3 of 4</div>
+            <div class="q">What is the cleaner decision after a couple of wins?</div>
+            <div class="opts">
+              <button class="qopt" onclick="quizAns(this,true,'q3fb','Yes. Consistency protects discipline.')">Keep your size consistent</button>
+              <button class="qopt" onclick="quizAns(this,false,'q3fb','No. That is emotion talking.')">Go heavier because confidence is high</button>
+              <button class="qopt" onclick="quizAns(this,false,'q3fb','No. Revenge sizing is not discipline.')">Double size after a loss</button>
+            </div>
+            <div class="qfb feedback" id="q3fb"></div>
+          </div>
+
+          <div class="question">
+            <div class="lbl">Question 4 of 4</div>
+            <div class="q">What should contracts be based on?</div>
+            <div class="opts">
+              <button class="qopt" onclick="quizAns(this,true,'q4fb','Exactly. Contracts should match the risk plan.')">Your risk plan</button>
+              <button class="qopt" onclick="quizAns(this,false,'q4fb','No. Mood is not a risk model.')">How confident you feel</button>
+              <button class="qopt" onclick="quizAns(this,false,'q4fb','No. Greed is not a position sizing rule.')">How much you want to make today</button>
+            </div>
+            <div class="qfb feedback" id="q4fb"></div>
+          </div>
+        </div>
+
+        <div class="card complete" id="completeCard">
+          <h2>Lesson 12 <span>complete.</span></h2>
+          <p>You now understand one of the biggest hidden trading truths: the setup can be fine, but bad size can still ruin the trade.</p>
+          <div class="badge">+105 XP · Position sizing unlocked</div>
+          <div class="cc-btns">
+            <button class="cc-next">Lesson 13 → Entry Timing</button>
+            <button class="cc-hub">Back to lessons</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="bottom">
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="dots" id="dots"></div>
+    <div class="stepname" id="stepname">Introduction</div>
+  </div>
+  <div style="display:flex;gap:9px">
+    <button class="prev" id="prev" onclick="go(-1)" disabled>← Back</button>
+    <button class="next" id="next" onclick="go(1)">Next →</button>
+  </div>
+</div>
+
+<div class="streak" id="streak"><span id="streakIcon">🔥</span><span id="streakText">you’re locked in 🔥</span></div>
+<div class="toast" id="toast"><span>✦</span><div><div style="font-size:.85rem;font-weight:700">+105 XP earned!</div><div style="font-size:.7rem;color:rgba(255,255,255,.42)">Lesson 12 complete 🫧✨</div></div></div>
+
+<script>
+const STEPS=['Introduction','Choose size','Same move different outcome','Scenario check','Dayli moment','Build the trade','Recap','Final quiz'];
+let cur=0, streak=0, sizeDone=false, outcomeDone=false, emotionDone=false, dayliDone=false, buildDone=false, quizDone=false;
+const quizState={};
+let buildOrder=[];
+let currentContracts=1;
+
+function buildDots(){
+  const el=document.getElementById('dots'); el.innerHTML='';
+  STEPS.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='dot '+(i<cur?'done':i===cur?'active-dot':'todo');
+    if(i<=cur) d.onclick=()=>goTo(i);
+    el.appendChild(d);
+  });
+}
+function goTo(n){
+  document.getElementById('s'+cur).classList.remove('active');
+  cur=n;
+  document.getElementById('s'+cur).classList.add('active');
+  document.getElementById('crumb').textContent=STEPS[cur];
+  document.getElementById('count').textContent=(cur+1)+' / '+STEPS.length;
+  document.getElementById('stepname').textContent=STEPS[cur];
+  document.getElementById('bar').style.width=(cur/(STEPS.length-1)*100)+'%';
+  document.getElementById('prev').disabled=cur===0;
+  updateNext();
+  buildDots();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(d){goTo(cur+d);}
+function updateNext(){
+  const btn=document.getElementById('next');
+  btn.disabled=false; btn.onclick=()=>go(1);
+  if(cur===1 && !sizeDone){btn.disabled=true; btn.textContent='Choose a size'; btn.onclick=null;}
+  else if(cur===2 && !outcomeDone){btn.disabled=true; btn.textContent='Run an outcome'; btn.onclick=null;}
+  else if(cur===3 && !emotionDone){btn.disabled=true; btn.textContent='Choose a response'; btn.onclick=null;}
+  else if(cur===4 && !dayliDone){btn.disabled=true; btn.textContent='Choose a response'; btn.onclick=null;}
+  else if(cur===5 && !buildDone){btn.disabled=true; btn.textContent='Build the trade'; btn.onclick=null;}
+  else if(cur===7){btn.textContent=quizDone?'Finish lesson ✦':'Answer all questions'; btn.disabled=!quizDone; btn.onclick=quizDone?showComplete:null;}
+  else{btn.textContent=cur===6?'Take the final quiz →':'Next →';}
+}
+function setFb(id,type,html){
+  const el=document.getElementById(id);
+  el.className='feedback show '+type;
+  el.innerHTML=html;
+}
+function burst(){
+  const cols=['#F4829A','#7ECEC4','#F5A857','#F9B8C6','#B2E4DF','#FAD09A'];
+  for(let i=0;i<32;i++){
+    const p=document.createElement('div');
+    p.className='confetti';
+    const sz=6+Math.random()*8;
+    p.style.cssText='left:'+(10+Math.random()*80)+'vw;top:-10px;width:'+sz+'px;height:'+sz+'px;background:'+cols[Math.floor(Math.random()*cols.length)]+';';
+    document.body.appendChild(p);
+    p.animate([{opacity:1,transform:'translateY(0) rotate(0deg)'},{opacity:0,transform:'translateY(100vh) rotate(720deg)'}],{duration:1200+Math.random()*900,delay:Math.random()*300,fill:'forwards'});
+    setTimeout(()=>p.remove(),2500);
+  }
+}
+function showStreak(icon,text){
+  const s=document.getElementById('streak');
+  document.getElementById('streakIcon').textContent=icon;
+  document.getElementById('streakText').textContent=text;
+  s.classList.add('show');
+  setTimeout(()=>s.classList.remove('show'),2200);
+}
+function handleStreak(correct){
+  if(correct){
+    streak++;
+    if(streak===2) showStreak('👀','okayyy I see you 👀');
+    if(streak===3) showStreak('🔥','you’re locked in 🔥');
+    if(streak===5) showStreak('🎯','sniper energy activated 🎯');
+  } else streak=0;
+}
+function showToast(){
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2300);
+}
+function flashNote(id,text){
+  const n=document.getElementById(id);
+  n.textContent=text;
+  n.classList.add('show');
+  clearTimeout(n._t);
+  n._t=setTimeout(()=>n.classList.remove('show'),1300);
+}
+function drawFrame(ctx,w,h){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,w,h);
+  for(let i=1;i<5;i++){
+    ctx.strokeStyle='rgba(244,130,154,.08)';
+    ctx.beginPath(); ctx.moveTo(0,(h/5)*i); ctx.lineTo(w,(h/5)*i); ctx.stroke();
+  }
+}
+function priceTag(ctx,w,y,text,color){
+  ctx.fillStyle=color;
+  ctx.fillRect(w-118,y-10,86,20);
+  ctx.fillStyle='#fff';
+  ctx.font='bold 12px DM Sans';
+  ctx.fillText(text,w-108,y+4);
+}
+function drawSizeChart(){
+  const c=document.getElementById('sizeCanvas'), ctx=c.getContext('2d'), w=c.width, h=c.height;
+  drawFrame(ctx,w,h);
+  const candles=[
+    {x:80,open:228,close:210,high:202,low:236,bull:true},
+    {x:150,open:212,close:194,high:186,low:220,bull:true},
+    {x:220,open:196,close:180,high:172,low:204,bull:true},
+    {x:290,open:182,close:190,high:174,low:198,bull:false},
+    {x:360,open:192,close:176,high:168,low:200,bull:true},
+    {x:430,open:178,close:162,high:154,low:188,bull:true},
+    {x:500,open:164,close:150,high:142,low:174,bull:true}
+  ];
+  candles.forEach(ca=>{
+    ctx.strokeStyle=ca.bull?'#7ECEC4':'#F4829A'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(ca.x,ca.high); ctx.lineTo(ca.x,ca.low); ctx.stroke();
+    ctx.fillStyle=ca.bull?'#7ECEC4':'#F4829A';
+    ctx.fillRect(ca.x-10,Math.min(ca.open,ca.close),20,Math.abs(ca.close-ca.open));
+  });
+  const entryY=176, slY=196;
+  ctx.strokeStyle='#2C1810'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(40,entryY); ctx.lineTo(w-126,entryY); ctx.stroke();
+  priceTag(ctx,w,entryY,'Entry','#2C1810');
+  ctx.strokeStyle='#F5A857';
+  ctx.beginPath(); ctx.moveTo(40,slY); ctx.lineTo(w-126,slY); ctx.stroke();
+  priceTag(ctx,w,slY,'SL','#F5A857');
+
+  const risk = currentContracts*50
+  ctx.fillStyle='#2C1810';
+  ctx.font='bold 14px DM Sans';
+  ctx.fillText('Same structure. Different money risk.', 60, 44);
+  ctx.fillStyle = risk <= 150 ? '#4FAE9E' : risk <= 250 ? '#F5A857' : '#D95C75';
+  ctx.fillRect(58,54,Math.min(240, currentContracts*20),10);
+  ctx.fillStyle='#2C1810';
+  ctx.fillText('Estimated loss at SL: $'+risk, 60, 82);
+}
+function pickSize(n, btn){
+  document.querySelectorAll('#s1 .btnrow button').forEach(b=>b.classList.remove('primary','alt'));
+  if(n===1){ btn.classList.add('alt'); } else { btn.classList.add('primary'); }
+  currentContracts=n;
+  drawSizeChart();
+  const risk=n*50;
+  document.getElementById('contractsOut').textContent=String(n);
+  document.getElementById('riskOut').textContent='$'+risk;
+  const pressure = risk<=150 ? 'Low' : risk<=250 ? 'Medium' : 'High';
+  document.getElementById('pressureOut').textContent=pressure;
+  if(n<=3){
+    setFb('sizeFb','good','<strong>Controlled.</strong> You kept the same trade idea from turning into too much emotional weight.');
+    handleStreak(true);
+  } else {
+    setFb('sizeFb','bad','<strong>Notice the pressure shift.</strong> The chart did not change. The emotional weight did.');
+    handleStreak(false);
+  }
+  flashNote('sizeNote','Size changes the pressure');
+  sizeDone=true;
+  updateNext();
+}
+function runOutcome(which, card){
+  document.querySelectorAll('#s2 .tap').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  outcomeDone=true;
+  if(which==='small'){
+    setFb('outcomeFb','good','<strong>Yes.</strong> With smaller size, the same pullback feels manageable. You can still think clearly.');
+    handleStreak(true);
+  } else {
+    setFb('outcomeFb','bad','<strong>This is the trap.</strong> Oversizing makes normal price movement feel emotionally dramatic, even when the setup itself is still valid.');
+    handleStreak(false);
+  }
+  updateNext();
+}
+function pickEmotion(which, card){
+  document.querySelectorAll('#s3 .tap').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  emotionDone=true;
+  if(which==='consistent'){
+    setFb('emotionFb','good','<strong>Exactly.</strong> Keep your size consistent with the risk plan. Skill first, scaling later.');
+    handleStreak(true);
+  } else if(which==='sizeup'){
+    setFb('emotionFb','bad','<strong>That is greed talking.</strong> Wanting more money faster is not a position sizing rule.');
+    handleStreak(false);
+  } else {
+    setFb('emotionFb','bad','<strong>That is revenge sizing.</strong> Doubling after a loss is emotional, not disciplined.');
+    handleStreak(false);
+  }
+  updateNext();
+}
+function dayliMoment(choice, btn){
+  btn.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);
+  dayliDone=true;
+  if(choice==='pause'){
+    btn.classList.add('good');
+    setFb('dayliFb','good','<strong>This is discipline.</strong><br><br>You kept the size aligned with the plan instead of letting recent wins make you reckless.<br><br>That is how traders stay consistent.');
+    handleStreak(true);
+  } else {
+    btn.classList.add('bad');
+    setFb('dayliFb','bad','<strong>This is how good trading gets ruined.</strong><br><br>Confidence without control turns size into pressure.<br><br>The setup may be clean, but the oversized decision makes it emotional.');
+    handleStreak(false);
+  }
+  updateNext();
+}
+function pickBuild(which, card){
+  if(buildDone || buildOrder.includes(which)) return;
+  card.classList.add('selected');
+  buildOrder.push(which);
+  const expected=['know risk','match size','stay same'];
+  const idx=buildOrder.length-1;
+  const ok=expected[idx]===which;
+  if(ok) handleStreak(true); else handleStreak(false);
+  document.getElementById('buildStatus').textContent=buildOrder.length+'/3 built';
+  document.getElementById('buildDisc').textContent=buildOrder.length>=2?'Rising':'Low';
+  document.getElementById('buildQuality').textContent=buildOrder.length>=2?'Building':'Unbuilt';
+  document.getElementById('buildMeter').style.width=(buildOrder.length/3*100)+'%';
+  if(buildOrder.length===3){
+    buildDone=true;
+    const success=buildOrder.join('|')===expected.join('|');
+    if(success){
+      setFb('buildFb','good','<strong>Clean build.</strong> First you know the risk, then match the contracts, then stay consistent. That is disciplined position sizing.');
+      document.getElementById('buildStatus').textContent='Complete';
+      document.getElementById('buildDisc').textContent='High';
+      document.getElementById('buildQuality').textContent='Clean';
+      burst();
+    } else {
+      setFb('buildFb','bad','<strong>Almost.</strong> The strongest flow is risk first, then size, then consistency.');
+    }
+    updateNext();
+  }
+}
+function quizAns(btn, correct, id, msg){
+  btn.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);
+  btn.classList.add(correct?'good':'bad');
+  const fb=document.getElementById(id);
+  fb.className='qfb show feedback '+(correct?'good':'bad');
+  fb.innerHTML=msg;
+  quizState[id]=true;
+  handleStreak(correct);
+  if(Object.keys(quizState).length===4){ quizDone=true; updateNext(); }
+}
+function showComplete(){
+  document.getElementById('completeCard').classList.add('show');
+  showToast();
+  burst();
+}
+
+buildDots();
+updateNext();
+drawSizeChart();
+</script>
+</body>
+</html>

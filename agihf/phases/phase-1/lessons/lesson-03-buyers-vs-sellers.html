@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson 3 — Buyers vs Sellers · AG&HF</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F4829A;--pl:#F9B8C6;--pp:#FDE8ED;
+  --teal:#7ECEC4;--tl:#B2E4DF;--tp:#E8F8F6;
+  --peach:#F5A857;--cl:#FAD09A;--cp:#FEF3E4;
+  --cream:#FDF8F5;--warm:#FFFBF9;
+  --dark:#2C1810;--text:#3D2B20;--muted:#7A5C50;
+  --purple:#7F77DD;--upl:#CECBF6;--upp:#EEEDFE;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+.app{display:flex;min-height:100vh}
+.sidebar{width:230px;flex-shrink:0;background:#fff;border-right:1px solid rgba(244,130,154,.12);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50;overflow-y:auto}
+.sb-logo{padding:20px 22px 16px;font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(244,130,154,.1);cursor:pointer;text-decoration:none}
+.sb-logo span{color:var(--teal)}
+.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(244,130,154,.1);margin-bottom:6px}
+.sb-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pp),var(--cp));border:2px solid var(--pl);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink);flex-shrink:0}
+.sb-nm{font-size:.82rem;font-weight:600;color:var(--dark)}
+.sb-lv{font-size:.68rem;color:var(--muted)}
+.sb-sec{font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 18px 5px}
+.sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:.85rem;color:var(--muted);cursor:pointer;transition:all .2s;border-left:3px solid transparent}
+.sb-item:hover{color:var(--dark);background:var(--cream)}
+.sb-item.on{color:var(--pink);background:var(--pp);border-left-color:var(--pink);font-weight:500}
+.sb-bot{margin-top:auto;padding:12px 18px}
+.xpb{background:var(--cream);border-radius:10px;padding:11px 13px}
+.xpb-top{display:flex;justify-content:space-between;margin-bottom:6px}
+.xpb-l{font-size:.68rem;color:var(--muted);font-weight:500}
+.xpb-v{font-size:.72rem;color:var(--peach);font-weight:600}
+.xpb-track{height:4px;background:var(--pp);border-radius:100px;overflow:hidden}
+.xpb-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;width:46%}
+.main{margin-left:230px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+.tbar{background:#fff;border-bottom:1px solid rgba(244,130,154,.1);padding:0 36px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tbar-bc{font-size:.79rem;color:var(--muted)}
+.tbar-bc a{color:var(--muted);text-decoration:none}
+.tbar-bc a:hover{color:var(--pink)}
+.tbar-cur{color:var(--dark);font-weight:500}
+.tbar-r{display:flex;align-items:center;gap:11px}
+.tbar-xp{font-size:.77rem;font-weight:600;color:var(--peach);background:var(--cp);border:1px solid var(--cl);padding:4px 12px;border-radius:100px}
+.tbar-st{font-size:.77rem;color:var(--muted)}
+.prog-track{height:6px;background:var(--pp);position:sticky;top:60px;z-index:39}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));transition:width .45s ease;width:0%}
+.lv-cards{flex:1;display:flex;flex-direction:column;align-items:center;padding:36px 24px 110px}
+.slide{width:100%;max-width:700px;display:none;animation:sIn .4s cubic-bezier(.34,1.08,.64,1) both}
+.slide.active{display:flex;flex-direction:column;gap:14px}
+@keyframes sIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes fUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+@keyframes shk{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+@keyframes cfF{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+@keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+.intro-card,.teach-card,.reinforce-card,.quiz-card,.recap-card,.battle-wrap,.market-wrap,.chart-wrap,.compare-wrap,.checkpoint-wrap,.complete-card,.dayli-card{
+  border-radius:22px
+}
+.intro-card{background:var(--dark);padding:34px;position:relative;overflow:hidden}
+.intro-card::after{content:"✦";position:absolute;top:-30px;right:8px;font-size:130px;color:var(--pink);opacity:.05;font-family:"Playfair Display",serif}
+.ic-eye{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--pl);margin-bottom:12px}
+.ic-title{font-family:"Playfair Display",serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:10px}
+.ic-acc{color:var(--pink)}
+.ic-sub{font-size:.94rem;color:rgba(255,255,255,.58);line-height:1.72;margin-bottom:22px}
+.ic-pills{display:flex;gap:8px;flex-wrap:wrap}
+.ic-pill{font-size:.7rem;font-weight:500;padding:5px 12px;border-radius:100px;border:1px solid}
+.ip-pk{background:rgba(244,130,154,.15);border-color:rgba(244,130,154,.3);color:var(--pl)}
+.ip-tl{background:rgba(126,206,196,.15);border-color:rgba(126,206,196,.3);color:var(--tl)}
+.ip-pc{background:rgba(245,168,87,.15);border-color:rgba(245,168,87,.3);color:var(--cl)}
+
+.teach-card,.recap-card,.quiz-card,.battle-wrap,.market-wrap,.chart-wrap,.compare-wrap,.checkpoint-wrap{background:#fff;padding:26px 30px;border:1px solid rgba(244,130,154,.1);box-shadow:0 4px 20px rgba(244,130,154,.05)}
+.teach-eye,.card-eye{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.teach-eye::after,.card-eye::after{content:'';flex:1;height:1px;background:rgba(245,168,87,.2)}
+.teach-title,.card-title{font-family:"Playfair Display",serif;font-size:1.25rem;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.3}
+.teach-body,.card-body{font-size:.93rem;line-height:1.82;color:var(--muted)}
+.teach-body strong,.card-body strong{color:var(--dark)}
+.teach-body em{color:var(--pink);font-style:normal;font-weight:600}
+
+.reinforce-card{background:linear-gradient(135deg,rgba(126,206,196,.12),rgba(245,168,87,.08));border:1px solid var(--tl);padding:22px 26px;position:relative;overflow:hidden}
+.reinforce-card::before{content:"💡";position:absolute;top:16px;right:18px;font-size:1.2rem;opacity:.6}
+.rc-label{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.rc-text{font-size:.95rem;line-height:1.75;color:var(--dark);font-style:italic}
+.rc-text strong{font-style:normal}
+
+.dayli-card{background:var(--dark);padding:24px 28px;position:relative;overflow:hidden}
+.dayli-card::before{content:'✦';position:absolute;bottom:-25px;right:8px;font-size:90px;color:var(--pink);opacity:.06;font-family:'Playfair Display',serif}
+.dc-lbl{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.dc-lbl::after{content:'';flex:1;height:1px;background:rgba(244,130,154,.2)}
+.dc-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--pp),var(--cp));border:2px solid var(--pink);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink);margin-bottom:10px}
+.dc-q{font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:#fff;line-height:1.75;margin-bottom:8px}
+.dc-at{font-size:.72rem;color:rgba(255,255,255,.3)}
+
+.battle-grid,.market-grid,.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.choice-card{border-radius:16px;padding:18px;border:2px solid transparent;cursor:pointer;transition:all .22s;text-align:left}
+.choice-card:hover{transform:translateY(-2px)}
+.choice-buy{background:var(--tp);border-color:var(--tl)}
+.choice-sell{background:var(--pp);border-color:var(--pl)}
+.choice-in{background:var(--cp);border-color:var(--cl)}
+.choice-out{background:var(--upp);border-color:var(--upl)}
+.choice-card.selected{box-shadow:0 10px 24px rgba(44,24,16,.08);transform:translateY(-1px)}
+.choice-icon{font-size:1.5rem;margin-bottom:7px}
+.choice-title{font-family:"Playfair Display",serif;font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:5px}
+.choice-body{font-size:.82rem;color:var(--muted);line-height:1.6}
+.feedback{display:none;margin-top:12px;padding:14px 16px;border-radius:14px;font-size:.86rem;line-height:1.65}
+.feedback.show{display:block;animation:fUp .25s ease both}
+.fb-good{background:var(--tp);border:1px solid var(--tl);color:#1a6b63}
+.fb-bad{background:var(--pp);border:1px solid var(--pl);color:#a84060}
+.fb-mid{background:var(--cp);border:1px solid var(--cl);color:#7a4a0a}
+
+.market-track{height:16px;background:linear-gradient(90deg,var(--pp),var(--tp));border-radius:999px;overflow:hidden;position:relative;margin:12px 0 16px}
+.market-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--teal));width:50%;transition:width .35s ease}
+.market-labels{display:flex;justify-content:space-between;font-size:.73rem;color:var(--muted)}
+.market-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.market-btn{border:none;border-radius:14px;padding:14px 16px;font-family:"DM Sans",sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .2s}
+.market-btn.buy{background:var(--tp);color:var(--teal);border:2px solid var(--tl)}
+.market-btn.sell{background:var(--pp);color:var(--pink);border:2px solid var(--pl)}
+.market-btn:hover{transform:translateY(-1px)}
+.market-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.market-stat{background:var(--warm);border-radius:14px;padding:12px;text-align:center}
+.market-stat-l{font-size:.63rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.market-stat-v{font-family:"Playfair Display",serif;font-size:1.08rem;font-weight:900;color:var(--dark)}
+
+.chart-wrap canvas,.checkpoint-chart canvas{display:block;width:100%;height:150px;background:var(--warm);border-radius:16px}
+.chart-prompt{font-family:"Playfair Display",serif;font-size:1.08rem;font-weight:700;color:var(--dark);margin:4px 0 12px}
+.chart-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.chart-btn{border:2px solid rgba(244,130,154,.18);background:#fff;border-radius:14px;padding:14px;font-size:.84rem;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s}
+.chart-btn:hover{border-color:var(--pink);background:var(--pp);color:var(--pink)}
+.chart-btn.correct{background:var(--tp);border-color:var(--teal);color:var(--teal)}
+.chart-btn.wrong{background:var(--pp);border-color:var(--pink);color:var(--pink);animation:shk .35s ease}
+
+.quick-check{background:linear-gradient(135deg,var(--cp),var(--pp));border-radius:18px;padding:22px 26px;border:1px solid var(--cl)}
+.qc-lbl{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-bottom:8px}
+.qc-q{font-size:.96rem;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:13px}
+.qc-opts{display:flex;flex-direction:column;gap:7px}
+.qc-opt{background:#fff;border:1.5px solid rgba(244,130,154,.18);border-radius:11px;padding:12px 16px;font-family:"DM Sans",sans-serif;font-size:.87rem;color:var(--text);cursor:pointer;transition:all .22s;text-align:left}
+.qc-opt:hover:not(:disabled){border-color:var(--pl);background:var(--pp)}
+.qc-opt.good{background:var(--tp);border-color:var(--teal);color:#1a6b63}
+.qc-opt.bad{background:var(--pp);border-color:var(--pink);color:#a84060}
+
+.recap-list{display:flex;flex-direction:column;gap:8px}
+.recap-item{display:flex;gap:12px;padding:13px 16px;border-radius:12px}
+.recap-item:nth-child(odd){background:var(--tp);border:1px solid var(--tl)}
+.recap-item:nth-child(even){background:var(--pp);border:1px solid var(--pl)}
+.recap-ico{font-size:1rem;margin-top:2px}
+.recap-text{font-size:.87rem;line-height:1.62;color:var(--text)}
+
+.quiz-card .question{margin-bottom:22px}
+.q-lbl{font-size:.66rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.q-text{font-size:.96rem;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:12px}
+.q-opts{display:flex;flex-direction:column;gap:7px}
+.q-opt{background:var(--warm);border:1.5px solid rgba(244,130,154,.14);border-radius:11px;padding:11px 15px;font-family:"DM Sans",sans-serif;font-size:.87rem;color:var(--text);cursor:pointer;transition:all .2s;text-align:left}
+.q-opt:hover:not(:disabled){border-color:var(--pl);background:var(--pp)}
+.q-opt.correct{background:var(--tp);border-color:var(--teal);color:#1a6b63}
+.q-opt.wrong{background:var(--pp);border-color:var(--pink);color:#a84060}
+.q-fb{margin-top:9px;padding:11px 15px;border-radius:10px;font-size:.83rem;line-height:1.6;display:none}
+.q-fb.show{display:block;animation:fUp .3s ease both}
+
+.complete-card{background:linear-gradient(135deg,var(--dark),#3d2420);padding:34px;text-align:center;position:relative;overflow:hidden;display:none}
+.complete-card.show{display:block;animation:fUp .4s ease both}
+.complete-card::before{content:'✦';position:absolute;top:-30px;left:50%;transform:translateX(-50%);font-size:150px;color:var(--pink);opacity:.04;font-family:'Playfair Display',serif}
+.cc-spark{font-size:2.2rem;margin-bottom:12px;animation:flt 2s ease-in-out infinite;display:block}
+.cc-title{font-family:"Playfair Display",serif;font-size:1.9rem;font-weight:900;color:#fff;margin-bottom:8px}
+.cc-acc{color:var(--pink)}
+.cc-sub{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:20px;max-width:360px;margin-left:auto;margin-right:auto}
+.cc-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(126,206,196,.15);border:1px solid rgba(126,206,196,.3);border-radius:100px;padding:9px 20px;font-size:.88rem;font-weight:600;color:var(--tl);margin-bottom:22px}
+.cc-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cc-next,.cc-hub{padding:13px 26px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.9rem;cursor:pointer;border:none}
+.cc-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff}
+.cc-hub{background:transparent;color:rgba(255,255,255,.42);border:1.5px solid rgba(255,255,255,.18)}
+
+.bnav{position:fixed;bottom:0;left:230px;right:0;background:rgba(253,248,245,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(244,130,154,.12);padding:13px 40px;display:flex;align-items:center;justify-content:space-between;z-index:40}
+.bn-left{display:flex;align-items:center;gap:12px}
+.bn-dots{display:flex;gap:5px;align-items:center}
+.bn-dot{width:8px;height:8px;border-radius:50%;cursor:pointer;transition:all .25s}
+.bd-done{background:var(--teal)}
+.bd-active{background:var(--pink);transform:scale(1.45)}
+.bd-todo{background:var(--pp);border:1.5px solid var(--pl)}
+.bn-sname{font-size:.74rem;color:var(--muted);font-weight:500}
+.btn-prev,.btn-next{padding:10px 22px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.85rem;font-weight:600;cursor:pointer}
+.btn-prev{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted)}
+.btn-prev:disabled{opacity:.35;cursor:default}
+.btn-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.btn-next:disabled{opacity:.4;cursor:default}
+
+.toast{position:fixed;bottom:84px;right:26px;background:var(--dark);color:#fff;border-radius:14px;padding:13px 18px;display:flex;align-items:center;gap:11px;box-shadow:0 16px 48px rgba(44,24,16,.32);z-index:200;transform:translateY(18px);opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1)}
+.toast.show{transform:translateY(0);opacity:1}
+.streak-toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--dark);color:#fff;border-radius:14px;padding:12px 22px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 40px rgba(44,24,16,.3);z-index:300;opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
+.streak-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.cfp{position:fixed;border-radius:2px;pointer-events:none;z-index:9998;animation:cfF linear both}
+
+@media (max-width: 900px){
+  .sidebar{display:none}
+  .main{margin-left:0}
+  .bnav{left:0}
+}
+@media (max-width: 700px){
+  .battle-grid,.market-grid,.compare-grid,.chart-choices{grid-template-columns:1fr}
+  .market-stats{grid-template-columns:1fr}
+  .tbar{padding:0 18px}
+  .lv-cards{padding:22px 14px 110px}
+  .teach-card,.battle-wrap,.market-wrap,.chart-wrap,.compare-wrap,.quick-check,.checkpoint-wrap,.recap-card,.quiz-card{padding:20px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="sidebar">
+    <a class="sb-logo" href="#"><span>A Girl &</span> Her Futures™</a>
+    <div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · Trading Foundations</div></div></div>
+    <div class="sb-sec">Learn</div>
+    <div class="sb-item on">✦ Lessons</div>
+    <div class="sb-item">◈ Games</div>
+    <div class="sb-sec">Community</div>
+    <div class="sb-item">↑ Leaderboard</div>
+    <div class="sb-item">◇ Drip Store</div>
+    <div class="sb-sec">Account</div>
+    <div class="sb-item">○ My Profile</div>
+    <div class="sb-bot"><div class="xpb"><div class="xpb-top"><span class="xpb-l">XP</span><span class="xpb-v">430 / 1000</span></div><div class="xpb-track"><div class="xpb-fill"></div></div></div></div>
+  </div>
+
+  <div class="main">
+    <div class="tbar">
+      <div class="tbar-bc"><a href="#">Lessons</a> › <a href="#">Phase 1</a> › <span class="tbar-cur" id="tbarCur">Introduction</span></div>
+      <div class="tbar-r"><span class="tbar-xp">+55 XP</span><span class="tbar-st" id="tbarSt">1 / 10</span></div>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+
+    <div class="lv-cards">
+      <div class="slide active" id="s0">
+        <div class="intro-card">
+          <div class="ic-eye">✦ Phase 1 · Section 1 · Lesson 3</div>
+          <div class="ic-title">Buyers vs <span class="ic-acc">Sellers</span></div>
+          <div class="ic-sub">This is the lesson where it clicks. Every single candle is a battle. Your job is not to guess. Your job is to see who is in control and stop overcomplicating what the chart is saying.</div>
+          <div class="ic-pills">
+            <span class="ic-pill ip-pk">~12 min</span>
+            <span class="ic-pill ip-tl">Highly interactive</span>
+            <span class="ic-pill ip-pc">+55 XP</span>
+          </div>
+        </div>
+        <div class="teach-card">
+          <div class="teach-eye">Core idea</div>
+          <div class="teach-title">Price moves because buyers and sellers are fighting for control.</div>
+          <div class="teach-body">Buyers think price should go <strong>higher</strong>. Sellers think price should go <strong>lower</strong>.<br><br>When buyers are stronger, price lifts. When sellers are stronger, price drops. That’s what candles are showing you in real time — <em>who won that moment.</em></div>
+        </div>
+      </div>
+
+      
+<div class="slide" id="s1">
+  <div class="battle-wrap">
+    <div class="card-eye">Teach → Experience</div>
+    <div class="card-title">What do buyers and sellers actually do?</div>
+    <div class="card-body">Before you can identify <strong>who is in control</strong>, you first need to understand what each side does to price.<br><br><strong>Buyers push price higher.</strong> <strong>Sellers push price lower.</strong> Your job is to stop seeing candles as random and start seeing them as pressure.</div>
+
+    <div class="battle-grid" style="margin-top:16px">
+      <div class="choice-card choice-buy" onclick="battlePick('buyers', this)">
+        <div class="choice-icon">🟢</div>
+        <div class="choice-title">Buyers</div>
+        <div class="choice-body">They are willing to step in and pay more. When buyers are stronger, price tends to lift.</div>
+      </div>
+      <div class="choice-card choice-sell" onclick="battlePick('sellers', this)">
+        <div class="choice-icon">🔴</div>
+        <div class="choice-title">Sellers</div>
+        <div class="choice-body">They are willing to accept less to get out. When sellers are stronger, price tends to drop.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <div class="market-track">
+        <div class="market-fill" id="battleMeter"></div>
+      </div>
+      <div class="market-labels">
+        <span>Sellers push down</span>
+        <span>Pressure</span>
+        <span>Buyers push up</span>
+      </div>
+    </div>
+
+    <div class="chart-wrap" style="padding:16px;margin-top:14px">
+      <div class="chart-prompt" style="font-size:1rem;margin-bottom:10px">Tap a side and watch what it does to price.</div>
+      <canvas id="battleCanvas" style="height:120px"></canvas>
+    </div>
+
+    <div class="feedback" id="battleFb"></div>
+  </div>
+
+  <div class="reinforce-card">
+    <div class="rc-label">Why this matters</div>
+    <div class="rc-text">You are not being asked to guess control yet. First, you are learning the basic language: <strong>buyers create upward pressure, sellers create downward pressure.</strong> Once that is clear, then chart reading starts making sense.</div>
+  </div>
+</div>
+
+<div class="slide" id="s2">
+        <div class="market-wrap">
+          <div class="card-eye">Experience</div>
+          <div class="card-title">Push the market meter</div>
+          <div class="card-body">Tap buyers or sellers to see what happens when one side starts getting stronger than the other. This is a simple feel exercise — not theory.</div>
+          <div class="market-track"><div class="market-fill" id="marketFill"></div></div>
+          <div class="market-labels"><span>Sellers stronger</span><span>Balance</span><span>Buyers stronger</span></div>
+          <div class="market-controls">
+            <button class="market-btn buy" onclick="moveMeter('buy')">Tap buyers in</button>
+            <button class="market-btn sell" onclick="moveMeter('sell')">Tap sellers in</button>
+          </div>
+          <div class="market-stats">
+            <div class="market-stat"><div class="market-stat-l">Buyers</div><div class="market-stat-v" id="buyersCount">5</div></div>
+            <div class="market-stat"><div class="market-stat-l">Sellers</div><div class="market-stat-v" id="sellersCount">5</div></div>
+            <div class="market-stat"><div class="market-stat-l">Control</div><div class="market-stat-v" id="controlText">Balanced</div></div>
+          </div>
+          <div class="feedback show fb-mid" id="meterFb">Notice how the side with more pressure starts taking control? That’s the candle story.</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s3">
+        <div class="reinforce-card">
+          <div class="rc-label">Reinforce</div>
+          <div class="rc-text">When more buyers keep stepping in, price doesn’t rise because it feels like it. It rises because buyers are literally overpowering sellers. Same thing the other way around.</div>
+        </div>
+        <div class="dayli-card">
+          <div class="dc-lbl">✦ Dayli note</div>
+          <div class="dc-av">D</div>
+          <div class="dc-q">"When I look at a chart, I’m not asking what I hope happens. I’m asking who is clearly talking louder right now. The market will tell you if you stop trying to force your own voice in it."</div>
+          <div class="dc-at">— Dayli Scott · A Girl & Her Futures™</div>
+        </div>
+        <div class="quick-check">
+          <div class="qc-lbl">Quick check</div>
+          <div class="qc-q">If green candles keep stacking higher with strong bodies, what is the chart most likely telling you?</div>
+          <div class="qc-opts">
+            <button class="qc-opt" onclick="quickCheck(this,true,'qc1fb','Exactly. Strong green candles usually mean buyers are clearly in control right now.')">Buyers are in control</button>
+            <button class="qc-opt" onclick="quickCheck(this,false,'qc1fb','Not here. Strong green bodies stacking higher usually point to buyer control, not indecision.')">Nobody is in control</button>
+            <button class="qc-opt" onclick="quickCheck(this,false,'qc1fb','That would show more clearly in red candles pushing lower, not strong green candles climbing.')">Sellers are taking over</button>
+          </div>
+          <div class="feedback" id="qc1fb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s4">
+        <div class="chart-wrap">
+          <div class="card-eye">Experience</div>
+          <div class="card-title">Read the chart, not your feelings</div>
+          <div class="chart-prompt">Below is a mini price story. Based on the candles, who is in control?</div>
+          <canvas id="storyCanvas"></canvas>
+          <div class="chart-choices" style="margin-top:14px">
+            <button class="chart-btn" onclick="storyAnswer(this,'buyers')">Buyers</button>
+            <button class="chart-btn" onclick="storyAnswer(this,'sellers')">Sellers</button>
+            <button class="chart-btn" onclick="storyAnswer(this,'mixed')">Mixed / no control</button>
+          </div>
+          <div class="feedback" id="storyFb"></div>
+        </div>
+        <div class="teach-card">
+          <div class="teach-eye">Teaching moment</div>
+          <div class="teach-title">The body matters more than the drama.</div>
+          <div class="teach-body">Long wicks can look dramatic, but the <strong>body</strong> tells you where price actually settled. That’s why later in ICC, close beats wick. You’re training your eyes for that right now.</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s5">
+        <div class="compare-wrap">
+          <div class="card-eye">Correct a misconception</div>
+          <div class="card-title">Control vs prediction</div>
+          <div class="card-body">A lot of beginners think “buyers are in control” means “price can never pull back.” That’s not true. Control tells you who currently has the upper hand — not that price will move in a straight line forever.</div>
+          <div class="compare-grid" style="margin-top:16px">
+            <div class="choice-card choice-in" onclick="comparePick('good', this)">
+              <div class="choice-icon">✅</div>
+              <div class="choice-title">Better understanding</div>
+              <div class="choice-body">Buyers are in control right now, so I want to look for opportunities on their side unless that control clearly changes.</div>
+            </div>
+            <div class="choice-card choice-out" onclick="comparePick('bad', this)">
+              <div class="choice-icon">❌</div>
+              <div class="choice-title">Bad assumption</div>
+              <div class="choice-body">Buyers are in control, so price will never dip and I should just chase anything green immediately.</div>
+            </div>
+          </div>
+          <div class="feedback" id="compareFb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s6">
+        <div class="checkpoint-wrap">
+          <div class="card-eye">Checkpoint</div>
+          <div class="card-title">Build the idea</div>
+          <div class="card-body">Now use what you learned. Pick the side, then decide what that should make you do as a trader.</div>
+          <div style="display:flex;flex-direction:column;gap:14px;margin-top:16px">
+            <div style="background:var(--pp);border:1px solid var(--pl);border-radius:16px;padding:18px">
+              <div style="font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);margin-bottom:8px">Step 1</div>
+              <div style="font-size:.92rem;font-weight:600;color:var(--dark);margin-bottom:10px">The last 6 candles are strong green bodies closing near their highs. Who is in control?</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap" id="cpStep1">
+                <button class="chart-btn" onclick="cpSelect(1,'buyers',this)">Buyers</button>
+                <button class="chart-btn" onclick="cpSelect(1,'sellers',this)">Sellers</button>
+                <button class="chart-btn" onclick="cpSelect(1,'nobody',this)">Nobody</button>
+              </div>
+            </div>
+            <div style="background:var(--tp);border:1px solid var(--tl);border-radius:16px;padding:18px">
+              <div style="font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px">Step 2</div>
+              <div style="font-size:.92rem;font-weight:600;color:var(--dark);margin-bottom:10px">If buyers are in control, what should your mindset be?</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap" id="cpStep2">
+                <button class="chart-btn" onclick="cpSelect(2,'with',this)">Look for setups with buyers</button>
+                <button class="chart-btn" onclick="cpSelect(2,'against',this)">Fight the move immediately</button>
+                <button class="chart-btn" onclick="cpSelect(2,'guess',this)">Ignore the candles and guess</button>
+              </div>
+            </div>
+          </div>
+          <div class="checkpoint-chart" style="margin-top:14px">
+            <canvas id="cpCanvas"></canvas>
+          </div>
+          <div class="feedback" id="cpFb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s7">
+        <div class="recap-card">
+          <div class="card-title" style="margin-bottom:16px">What you know now</div>
+          <div class="recap-list">
+            <div class="recap-item"><div class="recap-ico">📈</div><div class="recap-text"><strong>Buyers push price up.</strong> If they are stronger, candles tend to close higher.</div></div>
+            <div class="recap-item"><div class="recap-ico">📉</div><div class="recap-text"><strong>Sellers push price down.</strong> If they are stronger, candles tend to close lower.</div></div>
+            <div class="recap-item"><div class="recap-ico">🕯️</div><div class="recap-text"><strong>Candles are behavior.</strong> They are showing you who won that period.</div></div>
+            <div class="recap-item"><div class="recap-ico">🎯</div><div class="recap-text"><strong>Control matters more than opinions.</strong> You trade with the side that is clearly showing strength.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" id="s8">
+        <div class="quiz-card">
+          <div class="card-eye">Final quiz</div>
+          <div class="card-title">Lock in buyers vs sellers</div>
+
+          <div class="question">
+            <div class="q-lbl">Question 1 of 4</div>
+            <div class="q-text">If green candles keep closing higher, what does that usually tell you?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q1fb','Correct. That usually points to buyers having more control in that moment.')">Buyers are in control</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q1fb','Not here. Strong green closes usually point to buyers being stronger, not sellers.')">Sellers are stronger</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q1fb','There can be nuance, but stacked green closes are not random noise. They mean something.')">Nothing at all</button>
+            </div>
+            <div class="q-fb" id="q1fb"></div>
+          </div>
+
+          <div class="question">
+            <div class="q-lbl">Question 2 of 4</div>
+            <div class="q-text">What is the chart mainly showing you?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,false,'q2fb','Not exactly. The chart is not mainly there for prediction. It is showing current behavior first.')">A guaranteed future outcome</button>
+              <button class="q-opt" onclick="quizAns(this,true,'q2fb','Yes. The chart is showing the buyers vs sellers battle playing out over time.')">The battle between buyers and sellers</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q2fb','Indicators can help later, but the foundation is still buyer and seller behavior.')">Mostly indicator signals</button>
+            </div>
+            <div class="q-fb" id="q2fb"></div>
+          </div>
+
+          <div class="question">
+            <div class="q-lbl">Question 3 of 4</div>
+            <div class="q-text">If buyers are in control, what should that do to your bias?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q3fb','Exactly. You want to be looking with the side that is showing control, not fighting it for no reason.')">Look for opportunities with buyers</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q3fb','That is the bad beginner habit. You do not randomly fight obvious strength.')">Try to short anyway because it feels high</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q3fb','Ignoring the chart is not discipline. Reading it properly is.')">Ignore the candles completely</button>
+            </div>
+            <div class="q-fb" id="q3fb"></div>
+          </div>
+
+          <div class="question">
+            <div class="q-lbl">Question 4 of 4</div>
+            <div class="q-text">What is the simplest way to describe a candle?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,false,'q4fb','Not enough. Candles are more than decoration or color. They are behavior.')">A shape on the chart</button>
+              <button class="q-opt" onclick="quizAns(this,true,'q4fb','Yes. A candle is a small record of who won that period and how price behaved.')">A record of buyer and seller behavior in that period</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q4fb','Candles can help you infer movement, but they are not mainly random emotion bars.')">A random emotion signal</button>
+            </div>
+            <div class="q-fb" id="q4fb"></div>
+          </div>
+        </div>
+        <div class="complete-card" id="completeCard">
+          <span class="cc-spark">✦</span>
+          <div class="cc-title">Lesson 3 <span class="cc-acc">complete.</span></div>
+          <div class="cc-sub">You now understand that candles are not random. They are the visible story of buyer and seller control, and that is exactly the lens you need before structure starts getting deeper.</div>
+          <div class="cc-badge">+55 XP · Buyer vs Seller Vision unlocked</div>
+          <div class="cc-btns">
+            <button class="cc-next">Lesson 4 → Contracts & Instruments</button>
+            <button class="cc-hub">Back to lessons</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bnav">
+  <div class="bn-left">
+    <div class="bn-dots" id="bnDots"></div>
+    <div class="bn-sname"><span id="bnStepName">Introduction</span></div>
+  </div>
+  <div style="display:flex;gap:9px">
+    <button class="btn-prev" id="prevBtn" onclick="go(-1)" disabled>← Back</button>
+    <button class="btn-next" id="nextBtn" onclick="go(1)">Next →</button>
+  </div>
+</div>
+
+<div class="streak-toast" id="streakToast"><span id="stkIcon">🔥</span><span id="stkText">you’re locked in 🔥</span></div>
+<div class="toast" id="xpToast"><span>✦</span><div><div style="font-size:.85rem;font-weight:700">+55 XP earned!</div><div style="font-size:.7rem;color:rgba(255,255,255,.42)">Lesson 3 complete 🫧✨</div></div></div>
+
+<script>
+const STEPS = ['Introduction','Who’s in control','Market meter','Reinforce','Read the chart','Misconception check','Checkpoint','Recap','Final quiz'];
+let cur = 0;
+let streak = 0;
+let battleDone=false, storyDone=false, compareDone=false, checkpointDone=false, quizDone=false;
+const cpAns = {1:null,2:null};
+const quizState = {};
+let buyers=5, sellers=5;
+
+function buildDots(){
+  const el=document.getElementById('bnDots'); el.innerHTML='';
+  STEPS.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='bn-dot '+(i<cur?'bd-done':i===cur?'bd-active':'bd-todo');
+    if(i<=cur) d.onclick=()=>goTo(i);
+    el.appendChild(d);
+  });
+}
+function goTo(n){
+  document.getElementById('s'+cur)?.classList.remove('active');
+  cur=n;
+  document.getElementById('s'+cur)?.classList.add('active');
+  document.getElementById('tbarCur').textContent=STEPS[cur];
+  document.getElementById('tbarSt').textContent=(cur+1)+' / '+STEPS.length;
+  document.getElementById('bnStepName').textContent=STEPS[cur];
+  document.getElementById('progFill').style.width=(cur/(STEPS.length-1)*100)+'%';
+  document.getElementById('prevBtn').disabled=cur===0;
+  updateNext();
+  buildDots();
+  if(cur===1) drawBattleCanvas();
+  if(cur===4) drawStory();
+  if(cur===6) drawCheckpointChart();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(d){ goTo(cur+d); }
+function updateNext(){
+  const btn=document.getElementById('nextBtn');
+  btn.disabled=false; btn.onclick=()=>go(1);
+  if(cur===1 && !battleDone){ btn.disabled=true; btn.textContent='Choose a side first'; btn.onclick=null; }
+  else if(cur===4 && !storyDone){ btn.disabled=true; btn.textContent='Read the chart first'; btn.onclick=null; }
+  else if(cur===5 && !compareDone){ btn.disabled=true; btn.textContent='Pick the better understanding'; btn.onclick=null; }
+  else if(cur===6 && !checkpointDone){ btn.disabled=true; btn.textContent='Finish the checkpoint'; btn.onclick=null; }
+  else if(cur===8){
+    btn.textContent=quizDone?'Finish lesson ✦':'Answer all questions';
+    btn.disabled=!quizDone;
+    btn.onclick=quizDone?showComplete:null;
+  } else {
+    btn.textContent=cur===7?'Take the final quiz →':'Next →';
+  }
+}
+function showToast(){
+  const t=document.getElementById('xpToast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2300);
+}
+function showStreak(icon,text){
+  document.getElementById('stkIcon').textContent=icon;
+  document.getElementById('stkText').textContent=text;
+  const t=document.getElementById('streakToast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+function handleStreak(correct){
+  if(correct){
+    streak++;
+    if(streak===2) showStreak('👀','okayyy I see you 👀');
+    if(streak===3) showStreak('🔥','you’re locked in 🔥');
+    if(streak===5) showStreak('🎯','sniper energy activated 🎯');
+  } else streak=0;
+}
+function confetti(){
+  const cols=['#F4829A','#7ECEC4','#F5A857','#F9B8C6','#B2E4DF','#FAD09A'];
+  for(let i=0;i<34;i++){
+    const p=document.createElement('div');
+    p.className='cfp';
+    const sz=6+Math.random()*8;
+    p.style.cssText=`left:${10+Math.random()*80}vw;top:-10px;width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation:cfF ${.8+Math.random()}s ${Math.random()*.5}s linear both;`;
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),2500);
+  }
+}
+
+
+function drawBattleCanvas(direction='neutral'){
+  const canvas=document.getElementById('battleCanvas');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.offsetWidth||620, H=120;
+  canvas.width=W; canvas.height=H;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#FFFBF9'; ctx.fillRect(0,0,W,H);
+
+  for(let i=1;i<4;i++){
+    ctx.strokeStyle='rgba(244,130,154,.08)';
+    ctx.beginPath();
+    ctx.moveTo(0,H*i/4);
+    ctx.lineTo(W,H*i/4);
+    ctx.stroke();
+  }
+
+  ctx.lineWidth=2.5;
+  let points=[];
+  const n=10;
+  for(let i=0;i<n;i++){
+    const x=30+i*((W-60)/(n-1));
+    let y=H*0.62;
+    if(direction==='buyers') y -= i*5.5 + Math.sin(i*.9)*2;
+    else if(direction==='sellers') y += i*5.5 + Math.sin(i*.9)*2;
+    else y += Math.sin(i*.8)*3;
+    points.push([x,y]);
+  }
+
+  ctx.beginPath();
+  points.forEach((p,i)=> i===0 ? ctx.moveTo(p[0],p[1]) : ctx.lineTo(p[0],p[1]));
+  ctx.strokeStyle = direction==='buyers' ? '#7ECEC4' : direction==='sellers' ? '#F4829A' : '#7A5C50';
+  ctx.stroke();
+
+  // Draw mini candles/dots
+  points.forEach((p,i)=>{
+    ctx.beginPath();
+    ctx.arc(p[0], p[1], 3.5, 0, Math.PI*2);
+    ctx.fillStyle = direction==='buyers' ? '#7ECEC4' : direction==='sellers' ? '#F4829A' : '#7A5C50';
+    ctx.fill();
+  });
+
+  ctx.font='12px DM Sans';
+  ctx.fillStyle='#7A5C50';
+  if(direction==='neutral') ctx.fillText('Neutral until you choose a side', 18, 18);
+  if(direction==='buyers') ctx.fillText('Buyers stepping in → price lifts', 18, 18);
+  if(direction==='sellers') ctx.fillText('Sellers stepping in → price drops', 18, 18);
+}
+
+function battlePick(side, el){
+  document.querySelectorAll('#s1 .choice-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+
+  const fb=document.getElementById('battleFb');
+  const meter=document.getElementById('battleMeter');
+
+  battleDone=true;
+
+  if(side==='buyers'){
+    meter.style.width='82%';
+    drawBattleCanvas('buyers');
+    fb.className='feedback show fb-good';
+    fb.innerHTML='<strong>Exactly.</strong> Buyers are the side that push price <strong>higher</strong>. When they step in with more force, price tends to lift. This is the first piece of chart language you need.';
+    handleStreak(true);
+  } else {
+    meter.style.width='18%';
+    drawBattleCanvas('sellers');
+    fb.className='feedback show fb-good';
+    fb.innerHTML='<strong>Exactly.</strong> Sellers are the side that push price <strong>lower</strong>. When they take control, price tends to drop. That downward pressure is what later shows up in bearish candles.';
+    handleStreak(true);
+  }
+
+  updateNext();
+}
+
+function moveMeter(type){
+  if(type==='buy') buyers=Math.min(10,buyers+1); else sellers=Math.min(10,sellers+1);
+  if(type==='buy' && sellers>0) sellers=Math.max(0,sellers-0);
+  if(type==='sell' && buyers>0) buyers=Math.max(0,buyers-0);
+  const total=buyers+sellers;
+  const pct=(buyers/Math.max(1,total))*100;
+  document.getElementById('marketFill').style.width=pct+'%';
+  document.getElementById('buyersCount').textContent=Math.round(buyers);
+  document.getElementById('sellersCount').textContent=Math.round(sellers);
+  let text='Balanced';
+  if(pct>58) text='Buyers';
+  if(pct<42) text='Sellers';
+  document.getElementById('controlText').textContent=text;
+  const fb=document.getElementById('meterFb');
+  if(text==='Buyers') fb.textContent='Buyers are stepping in with more force. That pressure tends to push candles higher.';
+  else if(text==='Sellers') fb.textContent='Sellers are taking control. More selling pressure tends to print weaker, lower candles.';
+  else fb.textContent='When neither side is clearly stronger, the chart can look choppy and indecisive.';
+}
+
+function drawStory(){
+  const canvas=document.getElementById('storyCanvas');
+  const ctx=canvas.getContext('2d');
+  const W=canvas.offsetWidth||620, H=150;
+  canvas.width=W; canvas.height=H;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#FFFBF9'; ctx.fillRect(0,0,W,H);
+  for(let i=1;i<5;i++){ ctx.strokeStyle='rgba(244,130,154,.08)'; ctx.beginPath(); ctx.moveTo(0,H*i/5); ctx.lineTo(W,H*i/5); ctx.stroke(); }
+  // draw 8 rising candles
+  let x=38, base=108;
+  const candles=[
+    [16,6,true],[18,7,true],[20,8,true],[18,7,true],[22,9,true],[17,8,true],[24,10,true],[20,8,true]
+  ];
+  candles.forEach((c,i)=>{
+    const [body,wick,bull]=c;
+    const open=base-i*5;
+    const close=open-body;
+    ctx.strokeStyle='#B2E4DF';
+    ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(x+10, close-wick); ctx.lineTo(x+10, open+wick); ctx.stroke();
+    ctx.fillStyle='#7ECEC4';
+    ctx.fillRect(x, close, 20, body);
+    x+=34;
+  });
+  ctx.fillStyle='#7A5C50'; ctx.font='12px DM Sans';
+  ctx.fillText('Stacked strong green bodies closing higher', 18, 22);
+}
+function storyAnswer(btn, ans){
+  if(storyDone) return;
+  document.querySelectorAll('#s4 .chart-btn').forEach(b=>b.disabled=true);
+  const fb=document.getElementById('storyFb');
+  storyDone=true;
+  if(ans==='buyers'){
+    btn.classList.add('correct');
+    fb.className='feedback show fb-good';
+    fb.innerHTML='<strong>Yes.</strong> The bodies are strong, green, and closing higher. That is clear buyer control. You are reading behavior — not trying to be psychic.';
+    handleStreak(true); confetti();
+  } else {
+    btn.classList.add('wrong');
+    fb.className='feedback show fb-bad';
+    fb.innerHTML='<strong>Not here.</strong> This chart is not mixed. It is showing obvious upward pressure. The whole point is to stop ignoring what the candles are clearly saying.';
+    handleStreak(false);
+  }
+  updateNext();
+}
+
+function comparePick(type, el){
+  if(compareDone) return;
+  document.querySelectorAll('#s5 .choice-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const fb=document.getElementById('compareFb');
+  compareDone=true;
+  if(type==='good'){
+    fb.className='feedback show fb-good';
+    fb.innerHTML='<strong>That’s the right mindset.</strong> Control does not mean “price never pulls back.” It means you respect the side showing strength and stop fighting it emotionally.';
+    handleStreak(true);
+  } else {
+    fb.className='feedback show fb-bad';
+    fb.innerHTML='<strong>That’s the trap.</strong> Seeing buyer control and then chasing anything green is still emotional trading. Observation comes first, then structure, then execution.';
+    handleStreak(false);
+  }
+  updateNext();
+}
+
+function drawCheckpointChart(){
+  const canvas=document.getElementById('cpCanvas');
+  const ctx=canvas.getContext('2d');
+  const W=canvas.offsetWidth||620, H=150;
+  canvas.width=W; canvas.height=H;
+  ctx.fillStyle='#FFFBF9'; ctx.fillRect(0,0,W,H);
+  let x=44, y=112;
+  for(let i=0;i<7;i++){
+    const body=16+Math.random()*8;
+    const close=y-body;
+    ctx.strokeStyle='#B2E4DF'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(x+10, close-6); ctx.lineTo(x+10, y+6); ctx.stroke();
+    ctx.fillStyle='#7ECEC4'; ctx.fillRect(x, close, 20, body);
+    y-=5; x+=36;
+  }
+}
+function cpSelect(step, val, btn){
+  document.querySelectorAll('#cpStep'+step+' .chart-btn').forEach(b=>b.classList.remove('correct','wrong'));
+  btn.classList.add('correct');
+  cpAns[step]=val;
+  if(cpAns[1] && cpAns[2]){
+    const fb=document.getElementById('cpFb');
+    checkpointDone=true;
+    const good = cpAns[1]==='buyers' && cpAns[2]==='with';
+    if(good){
+      fb.className='feedback show fb-good';
+      fb.innerHTML='<strong>Clean read.</strong> Strong green candles point to buyer control, so your job is to stay mentally aligned with buyers instead of fighting obvious strength.';
+      handleStreak(true); confetti();
+    } else {
+      fb.className='feedback show fb-bad';
+      fb.innerHTML='<strong>Almost.</strong> The first step is reading control correctly. The second step is aligning with it. This lesson is training your eyes before structure gets deeper.';
+      handleStreak(false);
+    }
+    updateNext();
+  }
+}
+
+function quickCheck(btn, correct, fbId, msg){
+  const opts=btn.parentElement.querySelectorAll('.qc-opt');
+  opts.forEach(o=>o.disabled=true);
+  btn.classList.add(correct?'good':'bad');
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show '+(correct?'fb-good':'fb-bad');
+  fb.innerHTML=msg;
+  handleStreak(correct);
+}
+
+function quizAns(btn, correct, fbId, msg){
+  const wrap=btn.closest('.question');
+  wrap.querySelectorAll('.q-opt').forEach(o=>o.disabled=true);
+  btn.classList.add(correct?'correct':'wrong');
+  const fb=document.getElementById(fbId);
+  fb.className='q-fb show '+(correct?'fb-good':'fb-bad');
+  fb.innerHTML=msg;
+  quizState[fbId]=true;
+  handleStreak(correct);
+  if(Object.keys(quizState).length===4){ quizDone=true; updateNext(); }
+}
+function showComplete(){
+  document.getElementById('completeCard').classList.add('show');
+  showToast();
+  confetti();
+}
+buildDots();
+updateNext();
+</script>
+</body>
+</html>

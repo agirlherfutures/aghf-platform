@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson 10 — Orders · AG&HF</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F4829A; --pink2:#F9B8C6; --pink3:#FDE8ED;
+  --teal:#7ECEC4; --teal2:#B2E4DF; --teal3:#E8F8F6;
+  --peach:#F5A857; --peach2:#FAD09A; --peach3:#FEF3E4;
+  --cream:#FDF8F5; --warm:#FFFBF9; --dark:#2C1810; --text:#3D2B20; --muted:#7A5C50;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.app{display:flex;min-height:100vh}
+.sidebar{width:220px;background:#fff;border-right:1px solid rgba(244,130,154,.12);position:fixed;top:0;bottom:0;left:0;display:flex;flex-direction:column}
+.logo{padding:20px 22px 16px;border-bottom:1px solid rgba(244,130,154,.1);font-family:"Playfair Display",serif;font-style:italic;color:var(--pink)}
+.logo span{color:var(--teal)}
+.user{padding:13px 18px;border-bottom:1px solid rgba(244,130,154,.1)}
+.user strong{display:block;font-size:.82rem;color:var(--dark)}
+.user span{font-size:.68rem;color:var(--muted)}
+.sec{padding:10px 18px 5px;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.item{padding:10px 18px;font-size:.85rem;color:var(--muted);border-left:3px solid transparent}
+.item.on{background:var(--pink3);color:var(--pink);border-left-color:var(--pink);font-weight:700}
+.main{margin-left:220px;flex:1}
+.top{height:60px;background:#fff;border-bottom:1px solid rgba(244,130,154,.1);display:flex;justify-content:space-between;align-items:center;padding:0 30px;position:sticky;top:0;z-index:20}
+.top small{color:var(--muted)}
+.xp{font-size:.77rem;color:var(--peach);background:var(--peach3);border:1px solid var(--peach2);padding:4px 12px;border-radius:999px;font-weight:700}
+.progress{height:6px;background:var(--pink3);position:sticky;top:60px;z-index:19}
+.progress > div{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--peach));transition:.3s ease}
+.wrap{padding:34px 24px 110px;display:flex;justify-content:center}
+.slide{max-width:900px;width:100%;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.card{background:#fff;border:1px solid rgba(244,130,154,.1);box-shadow:0 4px 20px rgba(244,130,154,.05);border-radius:22px;padding:26px 30px}
+.intro{background:var(--dark);color:#fff;padding:40px 38px 42px;border-radius:32px;box-shadow:0 10px 40px rgba(44,24,16,.25)}
+.eyebrow{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink2);margin-bottom:12px}
+.intro h1{font-family:"Playfair Display",serif;font-size:2.15rem;line-height:1.1;color:#fff;margin-bottom:14px}
+.intro h1 span{color:var(--pink)}
+.intro p{line-height:1.78;color:rgba(255,255,255,.62);margin-bottom:22px;max-width:720px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-size:.7rem;padding:5px 12px;border-radius:999px;border:1px solid}
+.pk{background:rgba(244,130,154,.15);border-color:rgba(244,130,154,.3);color:var(--pink2)}
+.tl{background:rgba(126,206,196,.15);border-color:rgba(126,206,196,.3);color:var(--teal2)}
+.pc{background:rgba(245,168,87,.15);border-color:rgba(245,168,87,.3);color:var(--peach2)}
+.head{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);font-weight:700;margin-bottom:10px}
+.card h2{font-family:"Playfair Display",serif;font-size:1.25rem;line-height:1.3;color:var(--dark);margin-bottom:12px}
+.card p{font-size:.93rem;line-height:1.82;color:var(--muted)}
+.feedback{display:none;padding:14px 16px;border-radius:14px;font-size:.86rem;line-height:1.65}
+.feedback.show{display:block}
+.feedback.good{background:var(--teal3);border:1px solid var(--teal2);color:#1a6b63}
+.feedback.bad{background:var(--pink3);border:1px solid var(--pink2);color:#a84060}
+.feedback.mid{background:var(--peach3);border:1px solid var(--peach2);color:#7a4a0a}
+.chartbox{background:var(--warm);border:1px solid rgba(244,130,154,.1);border-radius:18px;padding:18px}
+.chartwrap{position:relative}
+.chart{display:block;width:100%;height:auto;background:#fff;border-radius:16px;border:1px solid rgba(244,130,154,.08)}
+.note{position:absolute;top:12px;right:12px;background:rgba(44,24,16,.9);color:#fff;padding:8px 12px;border-radius:12px;font-size:.76rem;opacity:0;transform:translateY(-6px);transition:.25s}
+.note.show{opacity:1;transform:translateY(0)}
+.order-buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+button{font-family:"DM Sans",sans-serif}
+.order-buttons button,.opts button,.navbtn{background:#fff;border:1.5px solid rgba(244,130,154,.16);border-radius:11px;padding:12px 16px;font-size:.87rem;color:var(--text);cursor:pointer}
+.order-buttons .primary{background:linear-gradient(135deg,var(--pink),var(--peach));border:none;color:#fff;font-weight:700}
+.order-buttons .alt{background:var(--teal3);border-color:var(--teal2)}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px}
+.kpi{background:var(--warm);border:1.5px solid rgba(244,130,154,.12);border-radius:16px;padding:16px}
+.kpi small{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
+.kpi strong{font-family:"Playfair Display",serif;font-size:1.1rem;color:var(--dark)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tap{border-radius:18px;padding:18px;border:2px solid transparent;background:var(--warm);cursor:pointer;transition:.15s ease}
+.tap:hover{transform:translateY(-2px)}
+.tap.selected{box-shadow:0 10px 24px rgba(44,24,16,.08)}
+.goodbg{background:var(--peach3);border-color:var(--peach2)}
+.badbg{background:#f7f2ff;border-color:#ddd5ff}
+.tealbg{background:var(--teal3);border-color:var(--teal2)}
+.pinkbg{background:var(--pink3);border-color:var(--pink2)}
+.tap h3{font-family:"Playfair Display",serif;font-size:1.06rem;color:var(--dark);margin-bottom:6px}
+.tap p{font-size:.84rem;line-height:1.65}
+.reinforce{background:linear-gradient(135deg,rgba(126,206,196,.12),rgba(245,168,87,.08));border:1px solid var(--teal2)}
+.reinforce b{display:block;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.reinforce div{font-size:.95rem;line-height:1.75;color:var(--dark);font-style:italic}
+.pathline{height:14px;background:var(--pink3);border-radius:999px;overflow:hidden;margin-top:10px}
+.pathline > div{height:100%;background:linear-gradient(90deg,var(--teal),var(--peach));width:0;transition:.4s}
+.qc{background:linear-gradient(135deg,var(--peach3),var(--pink3));border:1px solid var(--peach2)}
+.qc .label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);font-weight:700;margin-bottom:8px}
+.qc .q{font-size:.96rem;color:var(--dark);font-weight:700;line-height:1.5;margin-bottom:13px}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opts button.good,.qopt.correct{background:var(--teal3);border-color:var(--teal);color:#1a6b63}
+.opts button.bad,.qopt.wrong{background:var(--pink3);border-color:var(--pink);color:#a84060}
+.recap-list{display:flex;flex-direction:column;gap:8px}
+.recap{display:flex;gap:12px;padding:13px 16px;border-radius:12px}
+.recap:nth-child(odd){background:var(--teal3);border:1px solid var(--teal2)}
+.recap:nth-child(even){background:var(--pink3);border:1px solid var(--pink2)}
+.recap .ico{font-size:1rem;margin-top:2px}
+.recap .txt{font-size:.87rem;line-height:1.62}
+.dayli{background:var(--dark);color:#fff}
+.dayli .head{color:var(--pink)}
+.dayli .quote{font-family:"Playfair Display",serif;font-size:1rem;line-height:1.75;font-style:italic}
+.dayli .at{margin-top:8px;color:rgba(255,255,255,.32);font-size:.72rem}
+.question{margin-bottom:22px}
+.question .lbl{font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:7px}
+.question .q{font-size:.96rem;color:var(--dark);font-weight:700;line-height:1.5;margin-bottom:12px}
+.qfb{display:none;margin-top:9px;padding:11px 15px;border-radius:10px;font-size:.83rem;line-height:1.6}
+.qfb.show{display:block}
+.complete{background:linear-gradient(135deg,var(--dark),#3d2420);text-align:center;color:#fff;display:none}
+.complete.show{display:block}
+.complete h2{font-family:"Playfair Display",serif;font-size:1.9rem;color:#fff;margin-bottom:8px}
+.complete h2 span{color:var(--pink)}
+.complete p{color:rgba(255,255,255,.58);max-width:410px;margin:0 auto 20px;line-height:1.65}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(126,206,196,.15);border:1px solid rgba(126,206,196,.3);border-radius:999px;padding:9px 20px;font-size:.88rem;color:var(--teal2);font-weight:700;margin-bottom:22px}
+.cc-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.cc-btns button{padding:13px 26px;border-radius:999px;font-size:.9rem;cursor:pointer}
+.cc-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.cc-hub{background:transparent;color:rgba(255,255,255,.45);border:1.5px solid rgba(255,255,255,.18)}
+.bottom{position:fixed;left:220px;right:0;bottom:0;background:rgba(253,248,245,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(244,130,154,.12);padding:13px 40px;display:flex;justify-content:space-between;align-items:center}
+.dots{display:flex;gap:5px}
+.dot{width:8px;height:8px;border-radius:50%;cursor:pointer}
+.done{background:var(--teal)}
+.active-dot{background:var(--pink);transform:scale(1.45)}
+.todo{background:var(--pink3);border:1.5px solid var(--pink2)}
+.stepname{font-size:.74rem;color:var(--muted);font-weight:700}
+.prev,.next{padding:10px 22px;border-radius:999px;font-size:.85rem;font-weight:700;cursor:pointer}
+.prev{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted)}
+.next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.prev:disabled,.next:disabled{opacity:.4;cursor:default}
+.toast,.streak{position:fixed;background:var(--dark);color:#fff;border-radius:14px;box-shadow:0 16px 48px rgba(44,24,16,.32);z-index:999}
+.toast{bottom:84px;right:26px;padding:13px 18px;display:flex;gap:11px;align-items:center;transform:translateY(18px);opacity:0;transition:.35s}
+.toast.show{transform:translateY(0);opacity:1}
+.streak{top:80px;left:50%;transform:translateX(-50%) translateY(-20px);padding:12px 22px;display:flex;gap:10px;align-items:center;opacity:0;transition:.35s;pointer-events:none}
+.streak.show{transform:translateX(-50%) translateY(0);opacity:1}
+.confetti{position:fixed;border-radius:2px;pointer-events:none;z-index:1000}
+@media (max-width:900px){.sidebar{display:none}.main{margin-left:0}.bottom{left:0}}
+@media (max-width:760px){.grid2,.kpi-grid{grid-template-columns:1fr}.top{padding:0 18px}.wrap{padding:22px 14px 110px}.intro{padding:30px 22px 32px}.intro h1{font-size:1.8rem}.bottom{padding:13px 18px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo"><span>A Girl &</span> Her Futures™</div>
+    <div class="user"><strong>Dayli</strong><span>Section 2 · Platform + Execution Basics</span></div>
+    <div class="sec">Learn</div>
+    <div class="item on">✦ Lessons</div>
+    <div class="item">◈ Games</div>
+    <div class="sec">Community</div>
+    <div class="item">↑ Leaderboard</div>
+    <div class="item">◇ Drip Store</div>
+    <div class="sec">Account</div>
+    <div class="item">○ My Profile</div>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <small>Lessons › Section 2 › <span id="crumb">Introduction</span></small>
+      <div><span class="xp">+95 XP</span> <small id="count">1 / 8</small></div>
+    </div>
+    <div class="progress"><div id="bar"></div></div>
+
+    <div class="wrap">
+      <section class="slide active" id="s0">
+        <div class="intro">
+          <div class="eyebrow">✦ Section 2 · Lesson 10</div>
+          <h1>Orders = <span>How You Enter</span></h1>
+          <p>You don’t just “enter trades.” You choose how you enter them. This lesson is about feeling the difference between jumping in immediately and letting price come to you.</p>
+          <div class="pills"><span class="pill pk">~16 min</span><span class="pill tl">Execution lesson</span><span class="pill pc">+95 XP</span></div>
+        </div>
+        <div class="card">
+          <div class="head">Core idea</div>
+          <h2>Market orders move now. Limit orders wait.</h2>
+          <p>A <strong>market order</strong> enters immediately at the current price. A <strong>limit order</strong> waits for price to come to a specific level. Since your style is mostly limit-based, this lesson makes patience feel like an execution edge, not hesitation.</p>
+        </div>
+      </section>
+
+      <section class="slide" id="s1">
+        <div class="card">
+          <div class="head">Teach → Experience</div>
+          <h2>Market order = right now</h2>
+          <p>Press the market order button and watch what happens. The entry fills exactly where price is trading now. No waiting. No pullback. Just immediate execution.</p>
+          <div class="chartbox">
+            <div class="chartwrap">
+              <canvas id="marketCanvas" class="chart" width="780" height="320"></canvas>
+              <div class="note" id="marketNote">Filled now at current price</div>
+            </div>
+            <div class="order-buttons">
+              <button class="primary" onclick="runMarket()">Buy now · market</button>
+              <button onclick="resetMarket()">Reset</button>
+            </div>
+            <div class="kpi-grid">
+              <div class="kpi"><small>Order type</small><strong id="marketType">Market</strong></div>
+              <div class="kpi"><small>Behavior</small><strong id="marketBehavior">Immediate</strong></div>
+              <div class="kpi"><small>Fill</small><strong id="marketFill">Current price</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="feedback" id="marketFb"></div>
+      </section>
+
+      <section class="slide" id="s2">
+        <div class="card">
+          <div class="head">Your edge</div>
+          <h2>Limit order = resting below price first</h2>
+          <p>This is closer to how you teach and trade. The limit sits below current price first. Then price pulls back into your level, tags the order, and only after that continues.</p>
+          <div class="chartbox">
+            <div class="chartwrap">
+              <canvas id="limitCanvas" class="chart" width="780" height="320"></canvas>
+              <div class="note" id="limitNote">Filled on the retest</div>
+            </div>
+            <div class="order-buttons">
+              <button class="alt" onclick="placeLimit()">Place buy limit</button>
+              <button onclick="resetLimit()">Reset</button>
+            </div>
+            <div class="kpi-grid">
+              <div class="kpi"><small>Order type</small><strong id="limitType">Limit</strong></div>
+              <div class="kpi"><small>Behavior</small><strong id="limitBehavior">Wait first</strong></div>
+              <div class="kpi"><small>Fill</small><strong id="limitFill">On tag</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="feedback" id="limitFb"></div>
+        <div class="card reinforce"><b>Reinforce</b><div>Patience does not mean doing nothing. It means choosing your price instead of emotionally accepting whatever price is available right now.</div></div>
+      </section>
+
+      <section class="slide" id="s3">
+        <div class="card">
+          <div class="head">Comparison game</div>
+          <h2>Price is running fast. What do you do?</h2>
+          <p>Choose the response that best fits the execution style this platform is anchoring.</p>
+          <div class="grid2" style="margin-top:16px">
+            <div class="tap badbg" onclick="pickChase('market', this)">
+              <h3>Enter now</h3>
+              <p>Use a market order and accept the current price immediately.</p>
+            </div>
+            <div class="tap goodbg" onclick="pickChase('limit', this)">
+              <h3>Wait for pullback</h3>
+              <p>Use a limit order and let price come back into a cleaner entry.</p>
+            </div>
+          </div>
+        </div>
+        <div class="feedback" id="chaseFb"></div>
+      </section>
+
+      <section class="slide" id="s4">
+        <div class="card">
+          <div class="head">Real trader decision</div>
+          <h2>Price just broke a level and is flying</h2>
+          <p>Which response is more aligned with confirmation, patience, and the way you mostly trade?</p>
+          <div class="grid2" style="margin-top:16px">
+            <div class="tap badbg" onclick="pickRetest('jump', this)">
+              <h3>Jump in</h3>
+              <p>Chase the move because it is already running.</p>
+            </div>
+            <div class="tap tealbg" onclick="pickRetest('retest', this)">
+              <h3>Wait for retest</h3>
+              <p>Let price come back into a cleaner area first.</p>
+            </div>
+          </div>
+        </div>
+        <div class="feedback" id="retestFb"></div>
+      </section>
+
+      <section class="slide" id="s5">
+        <div class="card">
+          <div class="head">Build the flow</div>
+          <h2>How does your entry logic flow?</h2>
+          <p>Tap the steps in the order that best fits your mostly-limit style.</p>
+          <div class="grid2" style="margin-top:16px">
+            <div class="tap pinkbg" onclick="pickFlow('see move', this)"><h3>See move</h3><p>Price begins moving away from the level.</p></div>
+            <div class="tap tealbg" onclick="pickFlow('pick level', this)"><h3>Pick level</h3><p>Choose the area where you actually want price.</p></div>
+            <div class="tap goodbg" onclick="pickFlow('place limit', this)"><h3>Place limit</h3><p>Set the order at that level.</p></div>
+            <div class="tap tealbg" onclick="pickFlow('wait fill', this)"><h3>Wait for fill</h3><p>Let price come to you instead of chasing.</p></div>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi"><small>Flow status</small><strong id="flowStatus">Waiting</strong></div>
+            <div class="kpi"><small>Patience</small><strong id="flowPatience">Low</strong></div>
+            <div class="kpi"><small>Execution</small><strong id="flowQuality">Unbuilt</strong></div>
+          </div>
+          <div class="pathline"><div id="flowMeter"></div></div>
+        </div>
+        <div class="feedback" id="flowFb"></div>
+        <div class="card qc">
+          <div class="label">Dayli teaching moment</div>
+          <div class="q">
+            Price just broke out… and it’s moving fast.<br><br>
+            You feel that urge like:<br>
+            “I need to get in before I miss it.”<br><br>
+            What do you do?
+          </div>
+          <div class="opts">
+            <button onclick="dayliMoment('chase', this)">
+              Enter immediately so you don’t miss the move
+            </button>
+            <button onclick="dayliMoment('pause', this)">
+              Pause… let price come back to your level first
+            </button>
+          </div>
+          <div class="feedback" id="dayliFb"></div>
+        </div>
+      </section>
+
+      <section class="slide" id="s6">
+        <div class="card">
+          <h2 style="margin-bottom:16px">What you know now</h2>
+          <div class="recap-list">
+            <div class="recap"><div class="ico">⚡</div><div class="txt"><strong>Market orders enter immediately.</strong> You accept the current price now.</div></div>
+            <div class="recap"><div class="ico">🎯</div><div class="txt"><strong>Limit orders rest first.</strong> Price has to come to your chosen level before the entry fills.</div></div>
+            <div class="recap"><div class="ico">🫧</div><div class="txt"><strong>Your style is mostly limit-based.</strong> That means patience is part of your execution, not a delay.</div></div>
+            <div class="recap"><div class="ico">🧠</div><div class="txt"><strong>Good entries are not about being first.</strong> They are about being intentional.</div></div>
+          </div>
+        </div>
+        <div class="card dayli">
+          <div class="head">✦ Dayli note</div>
+          <div class="quote">"If price has already run and you still feel like you have to catch it, that is not discipline. That is pressure. Let price come back to where you actually want it."</div>
+          <div class="at">— Dayli Scott · A Girl & Her Futures™</div>
+        </div>
+      </section>
+
+      <section class="slide" id="s7">
+        <div class="card">
+          <div class="head">Final quiz</div>
+          <h2>Lock in orders</h2>
+
+          <div class="question">
+            <div class="lbl">Question 1 of 4</div>
+            <div class="q">Which order enters immediately at the current price?</div>
+            <div class="opts">
+              <button class="qopt" onclick="quizAns(this,true,'q1fb','Correct. Market orders enter immediately.')">Market order</button>
+              <button class="qopt" onclick="quizAns(this,false,'q1fb','No. Limit orders wait.')">Limit order</button>
+              <button class="qopt" onclick="quizAns(this,false,'q1fb','Not here.')">Neither</button>
+            </div>
+            <div class="qfb feedback" id="q1fb"></div>
+          </div>
+
+          <div class="question">
+            <div class="lbl">Question 2 of 4</div>
+            <div class="q">Which order waits for price to come to your level first?</div>
+            <div class="opts">
+              <button class="qopt" onclick="quizAns(this,false,'q2fb','No. Market orders do not wait.')">Market order</button>
+              <button class="qopt" onclick="quizAns(this,true,'q2fb','Exactly. Limit orders rest first and wait for a tag.')">Limit order</button>
+              <button class="qopt" onclick="quizAns(this,false,'q2fb','No. This lesson is comparing the two clearly.')">Both</button>
+            </div>
+            <div class="qfb feedback" id="q2fb"></div>
+          </div>
+
+          <div class="question">
+            <div class="lbl">Question 3 of 4</div>
+            <div class="q">Which choice better aligns with your mostly-limit style?</div>
+            <div class="opts">
+              <button class="qopt" onclick="quizAns(this,true,'q3fb','Yes. Letting price come to you is the heart of this lesson.')">Wait for pullback and let price come to you</button>
+              <button class="qopt" onclick="quizAns(this,false,'q3fb','That is closer to chasing behavior here.')">Enter instantly because price is moving</button>
+              <button class="qopt" onclick="quizAns(this,false,'q3fb','No. Randomness is not the edge.')">Guess and hope</button>
+            </div>
+            <div class="qfb feedback" id="q3fb"></div>
+          </div>
+
+          <div class="question">
+            <div class="lbl">Question 4 of 4</div>
+            <div class="q">What is the cleaner summary?</div>
+            <div class="opts">
+              <button class="qopt" onclick="quizAns(this,true,'q4fb','Exactly. Market = now. Limit = rest first, then fill.')">Market = now, limit = wait for your price</button>
+              <button class="qopt" onclick="quizAns(this,false,'q4fb','No. They are not the same behavior.')">They are basically the same</button>
+              <button class="qopt" onclick="quizAns(this,false,'q4fb','No. This lesson is not anti-orders. It is about using them intentionally.')">Limit orders are always slow and bad</button>
+            </div>
+            <div class="qfb feedback" id="q4fb"></div>
+          </div>
+        </div>
+
+        <div class="card complete" id="completeCard">
+          <h2>Lesson 10 <span>complete.</span></h2>
+          <p>You now understand how traders actually enter the market, and more importantly, why patience can create cleaner execution than emotional urgency.</p>
+          <div class="badge">+95 XP · Order clarity unlocked</div>
+          <div class="cc-btns">
+            <button class="cc-next">Lesson 11 → Stop Loss & Take Profit</button>
+            <button class="cc-hub">Back to lessons</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="bottom">
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="dots" id="dots"></div>
+    <div class="stepname" id="stepname">Introduction</div>
+  </div>
+  <div style="display:flex;gap:9px">
+    <button class="prev" id="prev" onclick="go(-1)" disabled>← Back</button>
+    <button class="next" id="next" onclick="go(1)">Next →</button>
+  </div>
+</div>
+
+<div class="streak" id="streak"><span id="streakIcon">🔥</span><span id="streakText">you’re locked in 🔥</span></div>
+<div class="toast" id="toast"><span>✦</span><div><div style="font-size:.85rem;font-weight:700">+95 XP earned!</div><div style="font-size:.7rem;color:rgba(255,255,255,.42)">Lesson 10 complete 🫧✨</div></div></div>
+
+<script>
+const STEPS=['Introduction','Market order','Limit order','Comparison game','Retest decision','Build the flow','Recap','Final quiz'];
+let cur=0, streak=0, marketDone=false, limitDone=false, chaseDone=false, retestDone=false, flowDone=false, quizDone=false;
+const quizState={};
+let flowOrder=[];
+
+function buildDots(){
+  const el=document.getElementById('dots'); el.innerHTML='';
+  STEPS.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='dot '+(i<cur?'done':i===cur?'active-dot':'todo');
+    if(i<=cur) d.onclick=()=>goTo(i);
+    el.appendChild(d);
+  });
+}
+function goTo(n){
+  document.getElementById('s'+cur).classList.remove('active');
+  cur=n;
+  document.getElementById('s'+cur).classList.add('active');
+  document.getElementById('crumb').textContent=STEPS[cur];
+  document.getElementById('count').textContent=(cur+1)+' / '+STEPS.length;
+  document.getElementById('stepname').textContent=STEPS[cur];
+  document.getElementById('bar').style.width=(cur/(STEPS.length-1)*100)+'%';
+  document.getElementById('prev').disabled=cur===0;
+  updateNext();
+  buildDots();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(d){goTo(cur+d);}
+function updateNext(){
+  const btn=document.getElementById('next');
+  btn.disabled=false; btn.onclick=()=>go(1);
+  if(cur===1 && !marketDone){btn.disabled=true; btn.textContent='Try the market order'; btn.onclick=null;}
+  else if(cur===2 && !limitDone){btn.disabled=true; btn.textContent='Place the limit first'; btn.onclick=null;}
+  else if(cur===3 && !chaseDone){btn.disabled=true; btn.textContent='Choose a response'; btn.onclick=null;}
+  else if(cur===4 && !retestDone){btn.disabled=true; btn.textContent='Choose a response'; btn.onclick=null;}
+  else if(cur===5 && !flowDone){btn.disabled=true; btn.textContent='Build the flow'; btn.onclick=null;}
+  else if(cur===7){btn.textContent=quizDone?'Finish lesson ✦':'Answer all questions'; btn.disabled=!quizDone; btn.onclick=quizDone?showComplete:null;}
+  else{btn.textContent=cur===6?'Take the final quiz →':'Next →';}
+}
+function setFb(id,type,html){
+  const el=document.getElementById(id);
+  el.className='feedback show '+type;
+  el.innerHTML=html;
+}
+function burst(){
+  const cols=['#F4829A','#7ECEC4','#F5A857','#F9B8C6','#B2E4DF','#FAD09A'];
+  for(let i=0;i<32;i++){
+    const p=document.createElement('div');
+    p.className='confetti';
+    const sz=6+Math.random()*8;
+    p.style.cssText='left:'+(10+Math.random()*80)+'vw;top:-10px;width:'+sz+'px;height:'+sz+'px;background:'+cols[Math.floor(Math.random()*cols.length)]+';';
+    document.body.appendChild(p);
+    p.animate([{opacity:1,transform:'translateY(0) rotate(0deg)'},{opacity:0,transform:'translateY(100vh) rotate(720deg)'}],{duration:1200+Math.random()*900,delay:Math.random()*300,fill:'forwards'});
+    setTimeout(()=>p.remove(),2500);
+  }
+}
+function showStreak(icon,text){
+  const s=document.getElementById('streak');
+  document.getElementById('streakIcon').textContent=icon;
+  document.getElementById('streakText').textContent=text;
+  s.classList.add('show');
+  setTimeout(()=>s.classList.remove('show'),2200);
+}
+function handleStreak(correct){
+  if(correct){
+    streak++;
+    if(streak===2) showStreak('👀','okayyy I see you 👀');
+    if(streak===3) showStreak('🔥','you’re locked in 🔥');
+    if(streak===5) showStreak('🎯','sniper energy activated 🎯');
+  } else streak=0;
+}
+function showToast(){
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2300);
+}
+
+function drawFrame(ctx,w,h){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,w,h);
+  for(let i=1;i<5;i++){
+    ctx.strokeStyle='rgba(244,130,154,.08)';
+    ctx.beginPath(); ctx.moveTo(0,(h/5)*i); ctx.lineTo(w,(h/5)*i); ctx.stroke();
+  }
+}
+function priceTag(ctx,w,y,text,color){
+  ctx.fillStyle=color;
+  ctx.fillRect(w-118,y-10,86,20);
+  ctx.fillStyle='#fff';
+  ctx.font='bold 12px DM Sans';
+  ctx.fillText(text,w-108,y+4);
+}
+function drawCandles(ctx, candles){
+  candles.forEach(c=>{
+    ctx.strokeStyle=c.bull?'#7ECEC4':'#F4829A';
+    ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(c.x,c.high); ctx.lineTo(c.x,c.low); ctx.stroke();
+    ctx.fillStyle=c.bull?'#7ECEC4':'#F4829A';
+    ctx.fillRect(c.x-10, Math.min(c.open,c.close), 20, Math.abs(c.close-c.open));
+  });
+}
+function marketCandles(){
+  return [
+    {x:70, open:230, close:212, high:204, low:238, bull:true},
+    {x:140, open:214, close:196, high:188, low:222, bull:true},
+    {x:210, open:198, close:182, high:174, low:206, bull:true},
+    {x:280, open:184, close:168, high:160, low:192, bull:true},
+    {x:350, open:170, close:176, high:162, low:188, bull:false},
+    {x:420, open:178, close:158, high:150, low:186, bull:true},
+    {x:490, open:160, close:148, high:140, low:170, bull:true}
+  ];
+}
+function limitCandles(){
+  return [
+    {x:70, open:226, close:206, high:198, low:236, bull:true},
+    {x:140, open:208, close:188, high:180, low:218, bull:true},
+    {x:210, open:190, close:172, high:164, low:198, bull:true},
+    {x:280, open:174, close:160, high:152, low:184, bull:true},
+    {x:350, open:162, close:170, high:154, low:180, bull:false},
+    {x:420, open:172, close:188, high:196, low:164, bull:false}
+  ];
+}
+function drawMarket(mode){
+  const c=document.getElementById('marketCanvas'), ctx=c.getContext('2d'), w=c.width, h=c.height;
+  drawFrame(ctx,w,h);
+  drawCandles(ctx, marketCandles());
+  const currentY=158;
+  ctx.setLineDash([6,6]);
+  ctx.strokeStyle='rgba(44,24,16,.18)';
+  ctx.beginPath(); ctx.moveTo(24,currentY); ctx.lineTo(w-126,currentY); ctx.stroke();
+  ctx.setLineDash([]);
+  priceTag(ctx,w,currentY,'Current','#2C1810');
+  if(mode==='base'){
+    ctx.fillStyle='#2C1810';
+    ctx.font='bold 13px DM Sans';
+    ctx.fillText('Price is trading here right now', 66, currentY-16);
+  } else {
+    ctx.strokeStyle='#F4829A';
+    ctx.lineWidth=3;
+    ctx.beginPath(); ctx.moveTo(28,currentY); ctx.lineTo(w-126,currentY); ctx.stroke();
+    ctx.fillStyle='#F4829A';
+    ctx.beginPath(); ctx.arc(470,currentY,7,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#2C1810';
+    ctx.font='bold 13px DM Sans';
+    ctx.fillText('Market order filled here immediately', 250, currentY-18);
+    ctx.strokeStyle='#7ECEC4';
+    ctx.lineWidth=3;
+    ctx.beginPath(); ctx.moveTo(478,currentY); ctx.lineTo(560,142); ctx.lineTo(640,126); ctx.stroke();
+    ctx.fillStyle='#7ECEC4';
+    ctx.fillRect(640,122,56,4);
+    ctx.fillStyle='#2C1810';
+    ctx.fillText('Price keeps moving', 600, 114);
+  }
+}
+function drawLimit(mode){
+  const c=document.getElementById('limitCanvas'), ctx=c.getContext('2d'), w=c.width, h=c.height;
+  drawFrame(ctx,w,h);
+  drawCandles(ctx, limitCandles());
+  const currentY=160, limitY=205;
+  ctx.setLineDash([6,6]);
+  ctx.strokeStyle='rgba(44,24,16,.18)';
+  ctx.beginPath(); ctx.moveTo(24,currentY); ctx.lineTo(w-126,currentY); ctx.stroke();
+  ctx.setLineDash([]);
+  priceTag(ctx,w,currentY,'Current','#2C1810');
+  ctx.setLineDash([10,6]);
+  ctx.strokeStyle='#F5A857';
+  ctx.lineWidth=3;
+  ctx.beginPath(); ctx.moveTo(28,limitY); ctx.lineTo(w-126,limitY); ctx.stroke();
+  ctx.setLineDash([]);
+  priceTag(ctx,w,limitY,'Buy limit','#F5A857');
+  if(mode==='base'){
+    ctx.fillStyle='#2C1810';
+    ctx.font='bold 13px DM Sans';
+    ctx.fillText('Your order is resting below current price', 70, limitY-16);
+  } else {
+    ctx.strokeStyle='#F4829A';
+    ctx.lineWidth=3;
+    ctx.beginPath(); ctx.moveTo(430,160); ctx.lineTo(500,182); ctx.lineTo(560,205); ctx.stroke();
+    ctx.fillStyle='#F5A857';
+    ctx.beginPath(); ctx.arc(560,205,7,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#2C1810';
+    ctx.font='bold 13px DM Sans';
+    ctx.fillText('Limit fills on the pullback', 468, 186);
+    ctx.strokeStyle='#7ECEC4';
+    ctx.lineWidth=3;
+    ctx.beginPath(); ctx.moveTo(560,205); ctx.lineTo(640,178); ctx.lineTo(712,156); ctx.stroke();
+    ctx.fillStyle='#7ECEC4';
+    ctx.fillRect(712,152,42,4);
+    ctx.fillStyle='#2C1810';
+    ctx.fillText('Then it continues', 648, 148);
+  }
+}
+function flashNote(id,text){
+  const n=document.getElementById(id);
+  n.textContent=text;
+  n.classList.add('show');
+  clearTimeout(n._t);
+  n._t=setTimeout(()=>n.classList.remove('show'),1300);
+}
+function runMarket(){
+  drawMarket('filled');
+  flashNote('marketNote','Filled now at current price');
+  setFb('marketFb','bad','<strong>That entered at the current price immediately.</strong> On the chart, the entry filled exactly where price was trading right then. No waiting. No pullback. Just immediate execution.');
+  document.getElementById('marketType').textContent='Market';
+  document.getElementById('marketBehavior').textContent='Immediate';
+  document.getElementById('marketFill').textContent='Filled now';
+  marketDone=true; handleStreak(true); updateNext();
+}
+function resetMarket(){
+  drawMarket('base');
+  document.getElementById('marketType').textContent='Market';
+  document.getElementById('marketBehavior').textContent='Immediate';
+  document.getElementById('marketFill').textContent='Current price';
+}
+function placeLimit(){
+  drawLimit('filled');
+  flashNote('limitNote','Filled on the retest');
+  setFb('limitFb','good','<strong>Exactly.</strong> On the chart, the buy limit sat below current price first. Then price pulled back into your level, tagged the order, and only after that continued. That is what “let price come to you” looks like.');
+  document.getElementById('limitType').textContent='Limit';
+  document.getElementById('limitBehavior').textContent='Patient';
+  document.getElementById('limitFill').textContent='Tagged later';
+  limitDone=true; handleStreak(true); updateNext();
+}
+function resetLimit(){
+  drawLimit('base');
+  document.getElementById('limitType').textContent='Limit';
+  document.getElementById('limitBehavior').textContent='Wait first';
+  document.getElementById('limitFill').textContent='On tag';
+}
+function pickChase(which, card){
+  document.querySelectorAll('#s3 .tap').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  chaseDone=true;
+  if(which==='limit'){ setFb('chaseFb','good','<strong>Yes.</strong> Waiting for pullback better matches the patient, cleaner execution style this platform is anchoring.'); handleStreak(true);}
+  else { setFb('chaseFb','bad','<strong>That is usually how traders get emotionally trapped.</strong> Fast price movement can create urgency, but urgency is not the same thing as a good entry.'); handleStreak(false);}
+  updateNext();
+}
+function pickRetest(which, card){
+  document.querySelectorAll('#s4 .tap').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  retestDone=true;
+  if(which==='retest'){ setFb('retestFb','good','<strong>Exactly.</strong> Waiting for retest respects patience, confirmation, and the cleaner price area you actually want.'); handleStreak(true);}
+  else { setFb('retestFb','bad','<strong>That is pressure, not discipline.</strong> Just because price is moving does not mean it is offering a clean entry.'); handleStreak(false);}
+  updateNext();
+}
+function pickFlow(step, card){
+  if(flowDone || flowOrder.includes(step)) return;
+  card.classList.add('selected');
+  flowOrder.push(step);
+  const expected=['see move','pick level','place limit','wait fill'];
+  const idx=flowOrder.length-1;
+  const ok=expected[idx]===step;
+  if(!ok){ handleStreak(false); } else { handleStreak(true); }
+  document.getElementById('flowStatus').textContent=flowOrder.length+'/4 built';
+  document.getElementById('flowPatience').textContent=flowOrder.length>=3?'Rising':'Low';
+  document.getElementById('flowQuality').textContent=flowOrder.length>=2?'Building':'Unbuilt';
+  document.getElementById('flowMeter').style.width=(flowOrder.length/4*100)+'%';
+  if(flowOrder.length===4){
+    flowDone=true;
+    const success=flowOrder.join('|')===expected.join('|');
+    if(success){
+      setFb('flowFb','good','<strong>Clean flow.</strong> First you see the move, then choose the level, place the limit, and wait for the fill. That is patient execution.');
+      document.getElementById('flowStatus').textContent='Complete';
+      document.getElementById('flowPatience').textContent='High';
+      document.getElementById('flowQuality').textContent='Clean';
+      burst();
+    } else {
+      setFb('flowFb','bad','<strong>Almost.</strong> The clean flow is not “panic then order.” It is observe, choose, place, and wait.');
+    }
+    updateNext();
+  }
+}
+function dayliMoment(choice, btn){
+  btn.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);
+  if(choice==='pause'){
+    btn.classList.add('good');
+    setFb('dayliFb','good',
+      '<strong>This is discipline.</strong><br><br>' +
+      'You didn’t react to pressure.<br>' +
+      'You stayed in control and waited for your price.<br><br>' +
+      'That’s how consistency is built.'
+    );
+    handleStreak(true);
+  } else {
+    btn.classList.add('bad');
+    setFb('dayliFb','bad',
+      '<strong>This is how traders get trapped.</strong><br><br>' +
+      'You didn’t enter based on structure…<br>' +
+      'you entered based on emotion.<br><br>' +
+      'Fast moves create urgency — but urgency is not confirmation.'
+    );
+    handleStreak(false);
+  }
+}
+function quickCheck(btn, correct, id, msg){
+  btn.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);
+  btn.classList.add(correct?'good':'bad');
+  setFb(id,correct?'good':'bad',msg);
+  handleStreak(correct);
+}
+function quizAns(btn, correct, id, msg){
+  btn.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);
+  btn.classList.add(correct?'correct':'wrong');
+  const fb=document.getElementById(id);
+  fb.className='qfb show feedback '+(correct?'good':'bad');
+  fb.innerHTML=msg;
+  quizState[id]=true;
+  handleStreak(correct);
+  if(Object.keys(quizState).length===4){quizDone=true; updateNext();}
+}
+function showComplete(){
+  document.getElementById('completeCard').classList.add('show');
+  showToast();
+  burst();
+}
+buildDots();
+updateNext();
+drawMarket('base');
+drawLimit('base');
+</script>
+</body>
+</html>

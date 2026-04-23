@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Girl & Her Futures™ — Full Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#F4829A;--pink-light:#F9B8C6;--pink-pale:#FDE8ED;--teal:#7ECEC4;--teal-light:#B2E4DF;--teal-pale:#E8F8F6;--peach:#F5A857;--peach-light:#FAD09A;--peach-pale:#FEF3E4;--cream:#FDF8F5;--warm:#FFFBF9;--dark:#2C1810;--text:#3D2B20;--muted:#7A5C50;--purple:#7F77DD;--purple-pale:#EEEDFE;--purple-light:#CECBF6;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);}
+
+/* SCREEN SYSTEM */
+.scr{display:none;min-height:100vh;}
+.scr.on{display:block;}
+.plt{display:none;min-height:100vh;}
+.plt.on{display:flex;}
+
+/* SIDEBAR */
+.sb{width:230px;flex-shrink:0;background:white;border-right:1px solid rgba(244,130,154,.12);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50;overflow-y:auto;}
+.sb-logo{padding:20px 22px 16px;font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(244,130,154,.1);cursor:pointer;display:block;}
+.sb-logo span{color:var(--teal);}
+.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(244,130,154,.1);margin-bottom:6px;}
+.sb-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pink-pale),var(--peach-pale));border:2px solid var(--pink-light);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink);flex-shrink:0;}
+.sb-nm{font-size:.82rem;font-weight:600;color:var(--dark);}
+.sb-lv{font-size:.68rem;color:var(--muted);}
+.sb-sec{font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 18px 5px;}
+.sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:.85rem;color:var(--muted);cursor:pointer;transition:all .2s;border-left:3px solid transparent;}
+.sb-item:hover{color:var(--dark);background:var(--cream);}
+.sb-item.active{color:var(--pink);background:var(--pink-pale);border-left-color:var(--pink);font-weight:500;}
+.sb-ico{width:16px;text-align:center;font-size:12px;flex-shrink:0;}
+.sb-bot{margin-top:auto;padding:12px 18px;}
+.xp-box{background:var(--cream);border-radius:10px;padding:11px 13px;}
+.xp-top{display:flex;justify-content:space-between;margin-bottom:6px;}
+.xp-lbl{font-size:.68rem;color:var(--muted);font-weight:500;}
+.xp-val{font-size:.72rem;color:var(--peach);font-weight:600;}
+.xp-track{height:4px;background:var(--pink-pale);border-radius:100px;overflow:hidden;}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;width:38%;}
+
+/* MAIN */
+.main{margin-left:230px;flex:1;padding:36px 44px 80px;min-height:100vh;background:var(--cream);}
+
+/* TOP NAV (public) */
+.tnav{position:fixed;top:0;width:100%;z-index:100;padding:0 60px;height:70px;display:flex;align-items:center;justify-content:space-between;background:rgba(253,248,245,.94);backdrop-filter:blur(24px);border-bottom:1px solid rgba(244,130,154,.12);}
+.tlogo{font-family:"Playfair Display",serif;font-style:italic;font-size:1.15rem;color:var(--pink);cursor:pointer;}
+.tlogo span{color:var(--teal);}
+.tlinks{display:flex;align-items:center;gap:24px;}
+.tlink{font-size:.85rem;color:var(--muted);cursor:pointer;}
+.tlink:hover{color:var(--dark);}
+.tlogin{font-size:.85rem;color:var(--muted);cursor:pointer;margin-right:4px;}
+.tlogin:hover{color:var(--pink);}
+.tcta{background:var(--dark);color:white;border:none;padding:10px 22px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;}
+.tcta:hover{background:var(--pink);}
+
+/* BLOBS */
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;pointer-events:none;}
+
+/* BUTTONS */
+.btn-pri{background:linear-gradient(135deg,var(--pink),var(--peach));color:white;border:none;padding:14px 32px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;box-shadow:0 12px 32px rgba(244,130,154,.32);}
+.btn-pri:hover{transform:translateY(-2px);}
+.btn-sec{background:transparent;color:var(--teal);border:2px solid var(--teal);padding:13px 28px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;}
+.btn-sec:hover{background:var(--teal);color:white;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 24px 80px;position:relative;overflow:hidden;}
+.hero-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;}
+.hero-eye{display:inline-flex;align-items:center;gap:8px;background:var(--pink-pale);border:1px solid var(--pink-light);border-radius:100px;padding:8px 20px;font-size:.76rem;font-weight:500;color:var(--pink);letter-spacing:.09em;text-transform:uppercase;margin-bottom:28px;}
+.hero-dot{width:6px;height:6px;background:var(--pink);border-radius:50%;}
+.hero-brand{font-family:"Playfair Display",serif;font-style:italic;font-size:1.1rem;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;}
+.hero-title{font-family:"Playfair Display",serif;font-size:clamp(2.8rem,8vw,6rem);font-weight:900;line-height:.96;color:var(--dark);margin-bottom:10px;}
+.hero-title .hp{color:var(--pink);}
+.hero-title .ht{color:var(--teal);}
+.hero-tag{font-family:"Playfair Display",serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.5rem);color:var(--peach);margin-bottom:24px;}
+.hero-desc{font-size:1rem;line-height:1.8;color:var(--muted);max-width:500px;margin:0 auto 38px;}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.cdls{display:flex;justify-content:center;align-items:flex-end;gap:10px;margin-top:48px;}
+
+/* PROOF */
+.proof{background:var(--cream);border-top:1px solid rgba(244,130,154,.1);border-bottom:1px solid rgba(244,130,154,.1);padding:18px 60px;display:flex;align-items:center;justify-content:center;gap:44px;flex-wrap:wrap;}
+.pi{display:flex;align-items:center;gap:10px;}
+.pi-n{font-family:"Playfair Display",serif;font-size:1.4rem;font-weight:900;color:var(--dark);}
+.pi-l{font-size:.8rem;color:var(--muted);line-height:1.3;}
+.pi-sep{width:1px;height:28px;background:rgba(244,130,154,.2);}
+
+/* SECTIONS */
+.hs{padding:80px 60px;}
+.hs-c{background:var(--cream);}
+.hs-w{background:white;}
+.cont{max-width:1000px;margin:0 auto;}
+.s-eye{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;}
+.s-eye::before,.s-eye::after{content:"";display:block;width:20px;height:1px;}
+.ey-p{color:var(--pink)}.ey-p::before,.ey-p::after{background:var(--pink);}
+.ey-t{color:var(--teal)}.ey-t::before,.ey-t::after{background:var(--teal);}
+.ey-c{color:var(--peach)}.ey-c::before,.ey-c::after{background:var(--peach);}
+.s-title{font-family:"Playfair Display",serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;line-height:1.1;color:var(--dark);margin-bottom:12px;}
+.s-body{font-size:.97rem;line-height:1.8;color:var(--muted);}
+
+.icc-g{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;}
+.icc-c{background:white;border-radius:20px;padding:28px;transition:all .3s;}
+.icc-c:hover{transform:translateY(-4px);}
+.icc-I{border:1px solid rgba(244,130,154,.2);box-shadow:0 4px 20px rgba(244,130,154,.06);}
+.icc-C{border:1px solid rgba(126,206,196,.2);box-shadow:0 4px 20px rgba(126,206,196,.06);}
+.icc-C2{border:1px solid rgba(245,168,87,.2);box-shadow:0 4px 20px rgba(245,168,87,.06);}
+.icc-let{font-family:"Playfair Display",serif;font-size:3.5rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.il-p{color:var(--pink)}.il-t{color:var(--teal)}.il-c{color:var(--peach)}
+.icc-word{font-family:"Playfair Display",serif;font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:9px;}
+.icc-desc{font-size:.86rem;line-height:1.75;color:var(--muted);}
+
+.lv-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:42px;}
+.lv-c{border-radius:14px;padding:15px 10px;text-align:center;border:1px solid transparent;}
+.lv1,.lv2{background:var(--pink-pale);border-color:var(--pink-light);}
+.lv3{background:var(--teal-pale);border-color:var(--teal-light);}
+.lv4{background:var(--peach-pale);border-color:var(--peach-light);}
+.lv5{background:var(--purple-pale);border-color:var(--purple-light);}
+.lv-n{font-size:.7rem;font-weight:500;color:var(--muted);margin-bottom:4px;}
+.lv-nm{font-size:.8rem;font-weight:600;color:var(--dark);line-height:1.3;margin-bottom:3px;}
+.lv-tg{font-size:.7rem;color:var(--muted);}
+
+.price-card{max-width:440px;margin:42px auto 0;background:white;border-radius:26px;padding:38px;border:1px solid rgba(244,130,154,.15);box-shadow:0 20px 60px rgba(244,130,154,.09);text-align:center;}
+.pr-badge{display:inline-block;background:var(--pink-pale);border:1px solid var(--pink-light);border-radius:100px;padding:5px 15px;font-size:.72rem;font-weight:500;color:var(--pink);margin-bottom:18px;}
+.pr-amt{font-family:"Playfair Display",serif;font-size:3.8rem;font-weight:900;color:var(--dark);line-height:1;margin-bottom:4px;}
+.pr-amt sup{font-size:1.4rem;vertical-align:top;margin-top:8px;}
+.pr-amt sub{font-size:.9rem;color:var(--muted);font-family:"DM Sans",sans-serif;font-weight:400;}
+.pr-sub{font-size:.83rem;color:var(--muted);margin-bottom:22px;}
+.pr-list{display:flex;flex-direction:column;gap:9px;margin-bottom:26px;text-align:left;}
+.pr-item{display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--text);}
+.pr-chk{width:18px;height:18px;border-radius:50%;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--teal);font-weight:700;flex-shrink:0;}
+.pr-btn{width:100%;padding:14px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--pink),var(--peach));color:white;font-family:"DM Sans",sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;box-shadow:0 10px 26px rgba(244,130,154,.26);}
+
+.cta-sec{background:var(--dark);padding:80px 60px;text-align:center;position:relative;overflow:hidden;}
+.cta-inner{position:relative;z-index:1;}
+.cta-title{font-family:"Playfair Display",serif;font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:white;line-height:1.05;margin-bottom:14px;}
+.cta-p{color:var(--pink);}
+.cta-t{color:var(--teal);}
+.cta-sub{font-size:.97rem;color:rgba(255,255,255,.5);max-width:440px;margin:0 auto 34px;line-height:1.75;}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding:30px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.ft-logo{font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);}
+.ft-logo span{color:var(--teal);}
+.ft-links{display:flex;gap:20px;}
+.ft-link{font-size:.78rem;color:rgba(255,255,255,.3);cursor:pointer;}
+.ft-link:hover{color:var(--pink);}
+.ft-copy{font-size:.72rem;color:rgba(255,255,255,.2);}
+
+/* AUTH */
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 24px 60px;position:relative;overflow:hidden;}
+.auth-card{background:white;border-radius:26px;padding:38px;border:1px solid rgba(244,130,154,.15);box-shadow:0 20px 60px rgba(244,130,154,.08);width:100%;max-width:450px;position:relative;z-index:1;}
+.a-eye{display:inline-flex;align-items:center;gap:7px;background:var(--pink-pale);border:1px solid var(--pink-light);border-radius:100px;padding:5px 14px;font-size:.7rem;font-weight:500;color:var(--pink);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;}
+.a-title{font-family:"Playfair Display",serif;font-size:1.9rem;font-weight:900;color:var(--dark);margin-bottom:5px;}
+.a-acc{color:var(--pink);}
+.a-sub{font-size:.88rem;color:var(--muted);line-height:1.65;margin-bottom:22px;}
+.step-row{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:22px;}
+.st{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
+.st-on{background:var(--pink);color:white;}
+.st-dn{background:var(--teal);color:white;}
+.st-td{background:var(--pink-pale);color:var(--pink);}
+.st-lbl{font-size:.72rem;color:var(--muted);}
+.st-lbl.on{color:var(--dark);font-weight:500;}
+.st-line{width:22px;height:1px;background:rgba(244,130,154,.2);}
+.f-grp{margin-bottom:13px;}
+.f-lbl{display:block;font-size:.8rem;font-weight:500;color:var(--text);margin-bottom:6px;}
+.f-inp{width:100%;padding:12px 14px;border-radius:11px;border:1.5px solid rgba(244,130,154,.2);font-family:"DM Sans",sans-serif;font-size:.92rem;color:var(--text);background:var(--warm);outline:none;}
+.f-inp:focus{border-color:var(--pink);}
+.f-btn{width:100%;padding:14px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--pink),var(--peach));color:white;font-family:"DM Sans",sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;box-shadow:0 10px 26px rgba(244,130,154,.26);margin-top:5px;}
+.f-btn:hover{transform:translateY(-1px);}
+.a-switch{text-align:center;margin-top:14px;font-size:.83rem;color:var(--muted);}
+.a-switch span{color:var(--pink);cursor:pointer;font-weight:500;}
+
+/* PAYMENT */
+.pay-strip{display:flex;align-items:center;justify-content:space-between;background:var(--peach-pale);border:1px solid var(--peach-light);border-radius:13px;padding:13px 17px;margin-bottom:20px;}
+.ps-l strong{display:block;font-size:.92rem;color:var(--dark);font-weight:600;margin-bottom:1px;}
+.ps-l span{font-size:.78rem;color:var(--muted);}
+.ps-price{font-family:"Playfair Display",serif;font-size:1.4rem;font-weight:900;color:var(--peach);}
+.inc-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.inc-item{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--text);}
+.inc-chk{width:17px;height:17px;border-radius:50%;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--teal);font-weight:700;flex-shrink:0;}
+.card-fields{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.c-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.c-inp{padding:11px 13px;border-radius:10px;border:1.5px solid rgba(244,130,154,.2);font-family:"DM Sans",sans-serif;font-size:.88rem;color:var(--text);background:var(--warm);outline:none;width:100%;}
+.pay-btn{width:100%;padding:14px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--pink),var(--peach));color:white;font-family:"DM Sans",sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;box-shadow:0 10px 26px rgba(244,130,154,.26);}
+.pay-btn:hover{transform:translateY(-1px);}
+.pay-note{font-size:.73rem;color:var(--muted);text-align:center;margin-top:10px;}
+
+/* SUCCESS */
+.succ-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:60px 24px;position:relative;overflow:hidden;}
+.succ-card{background:white;border-radius:26px;padding:46px 38px;border:1px solid rgba(126,206,196,.2);box-shadow:0 20px 60px rgba(126,206,196,.1);width:100%;max-width:460px;text-align:center;position:relative;z-index:1;}
+.sc-icon{font-size:2.8rem;margin-bottom:14px;}
+.sc-title{font-family:"Playfair Display",serif;font-size:2rem;font-weight:900;color:var(--dark);margin-bottom:7px;}
+.sc-acc{color:var(--teal);}
+.sc-sub{font-size:.92rem;color:var(--muted);line-height:1.7;margin-bottom:22px;}
+.sc-badge{display:inline-flex;align-items:center;gap:8px;background:var(--teal-pale);border:1px solid var(--teal-light);border-radius:100px;padding:9px 20px;font-size:.86rem;font-weight:600;color:var(--teal);margin-bottom:22px;}
+.sc-btn{background:linear-gradient(135deg,var(--pink),var(--peach));color:white;border:none;padding:14px 32px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;width:100%;box-shadow:0 10px 26px rgba(244,130,154,.26);}
+
+/* DASHBOARD STYLES */
+.pg-eye{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-bottom:5px;}
+.pg-title{font-family:"Playfair Display",serif;font-size:2rem;font-weight:900;color:var(--dark);margin-bottom:24px;}
+.pg-acc{color:var(--pink);}
+.stats-g{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;}
+.stat-c{background:white;border-radius:15px;padding:16px 18px;border:1px solid rgba(244,130,154,.1);box-shadow:0 2px 10px rgba(244,130,154,.05);}
+.stat-l{font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+.stat-v{font-family:"Playfair Display",serif;font-size:1.6rem;font-weight:900;}
+.sv-p{color:var(--pink);}.sv-t{color:var(--teal);}.sv-c{color:var(--peach);}.sv-d{color:var(--dark);}
+.stat-s{font-size:.7rem;color:var(--muted);margin-top:2px;}
+.cont-banner{background:white;border-radius:17px;padding:19px 23px;border:1px solid rgba(244,130,154,.12);box-shadow:0 3px 16px rgba(244,130,154,.07);margin-bottom:20px;display:flex;align-items:center;gap:15px;}
+.cb-ico{width:44px;height:44px;border-radius:12px;background:var(--pink-pale);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.cb-inf{flex:1;}
+.cb-ey{font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.cb-ttl{font-family:"Playfair Display",serif;font-size:.96rem;font-weight:700;color:var(--dark);margin-bottom:2px;}
+.cb-sub{font-size:.79rem;color:var(--muted);}
+.cb-go{background:linear-gradient(135deg,var(--pink),var(--peach));color:white;border:none;padding:9px 20px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;white-space:nowrap;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:20px;}
+.panel{background:white;border-radius:16px;padding:19px;border:1px solid rgba(244,130,154,.1);}
+.pn-t{font-family:"Playfair Display",serif;font-size:.94rem;font-weight:700;color:var(--dark);margin-bottom:2px;}
+.pn-s{font-size:.74rem;color:var(--muted);margin-bottom:13px;}
+.ch-row{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid rgba(244,130,154,.07);cursor:pointer;}
+.ch-row:last-child{border-bottom:none;}
+.ch-c{width:19px;height:19px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;}
+.ch-td{background:var(--pink-pale);border:1.5px solid var(--pink-light);}
+.ch-dn{background:var(--teal);color:white;}
+.ch-tx{flex:1;font-size:.8rem;color:var(--text);}
+.ch-xp{font-size:.7rem;color:var(--peach);font-weight:600;}
+.lb-r{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid rgba(244,130,154,.07);}
+.lb-r:last-child{border-bottom:none;}
+.lb-rk{width:17px;font-size:.75rem;font-weight:700;color:var(--muted);text-align:center;flex-shrink:0;}
+.lb-rk.gld{color:var(--peach);}
+.lb-av{width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;}
+.av-t{background:var(--teal-pale);color:var(--teal);}
+.av-p{background:var(--pink-pale);color:var(--pink);}
+.av-c{background:var(--peach-pale);color:var(--peach);}
+.av-d{background:var(--cream);color:var(--muted);}
+.lb-nm{flex:1;font-size:.8rem;color:var(--dark);font-weight:500;}
+.lb-lv{font-size:.67rem;color:var(--muted);}
+.lb-xp{font-size:.78rem;color:var(--peach);font-weight:600;}
+.jmap{background:white;border-radius:16px;padding:19px;border:1px solid rgba(244,130,154,.1);}
+.jm-lvs{display:flex;flex-direction:column;gap:7px;margin-top:11px;}
+.jm-lv{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:all .2s;}
+.jm-lv.jh{background:var(--pink-pale);border:1px solid var(--pink-light);}
+.jm-lv.jlk{opacity:.42;}
+.jm-b{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.jb1{background:var(--pink-pale);color:var(--pink);}
+.jb2{background:var(--peach-pale);color:var(--peach);}
+.jb3{background:var(--teal-pale);color:var(--teal);}
+.jb4{background:var(--purple-pale);color:var(--purple);}
+.jm-nm{font-size:.84rem;font-weight:600;color:var(--dark);}
+.jm-ds{font-size:.7rem;color:var(--muted);}
+.here-tg{font-size:.63rem;font-weight:600;padding:2px 9px;border-radius:20px;background:var(--pink-pale);color:var(--pink);border:1px solid var(--pink-light);white-space:nowrap;margin-left:auto;}
+.lk-ic{margin-left:auto;font-size:.72rem;color:var(--muted);}
+
+/* LESSONS HUB */
+.po-g{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:26px;}
+.po-c{background:white;border-radius:13px;padding:14px 16px;border:1px solid rgba(244,130,154,.1);}
+.po-l{font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+.po-v{font-family:"Playfair Display",serif;font-size:1.5rem;font-weight:900;}
+.pov-p{color:var(--pink);}.pov-t{color:var(--teal);}.pov-c{color:var(--peach);}.pov-d{color:var(--dark);}
+.po-s{font-size:.68rem;color:var(--muted);margin-top:2px;}
+.lvl-blk{margin-bottom:26px;}
+.lvl-hdr{display:flex;align-items:center;gap:11px;margin-bottom:13px;padding-bottom:11px;border-bottom:1px solid rgba(244,130,154,.1);}
+.lb-bdg{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;}
+.lbd-p{background:var(--pink-pale);color:var(--pink);border:1px solid var(--pink-light);}
+.lbd-c{background:var(--peach-pale);color:var(--peach);border:1px solid var(--peach-light);}
+.lbd-t{background:var(--teal-pale);color:var(--teal);border:1px solid var(--teal-light);}
+.lbd-u{background:var(--purple-pale);color:var(--purple);border:1px solid var(--purple-light);}
+.lvl-ttl{font-family:"Playfair Display",serif;font-size:1.2rem;font-weight:900;color:var(--dark);}
+.lvl-cnt{font-size:.79rem;color:var(--muted);margin-left:auto;}
+.ll{display:flex;flex-direction:column;gap:7px;}
+
+/* LESSON CARD - all visible, locked ones dimmed */
+.lc{background:white;border-radius:13px;padding:15px 17px;border:1px solid rgba(244,130,154,.1);display:flex;align-items:center;gap:13px;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(244,130,154,.04);}
+.lc:hover:not(.lc-lk){transform:translateX(3px);border-color:var(--pink-light);}
+.lc.lc-lk{opacity:.52;cursor:default;}
+.lc.lc-lk:hover{transform:none !important;border-color:rgba(244,130,154,.1) !important;}
+.lc-n{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.77rem;font-weight:700;flex-shrink:0;}
+.n-act{background:linear-gradient(135deg,var(--pink),var(--peach));color:white;}
+.n-dn{background:var(--teal-pale);color:var(--teal);}
+.n-lk{background:var(--cream);color:var(--muted);}
+.n-p{background:var(--pink-pale);color:var(--pink);}
+.n-c{background:var(--peach-pale);color:var(--peach);}
+.n-t{background:var(--teal-pale);color:var(--teal);}
+.n-u{background:var(--purple-pale);color:var(--purple);}
+.lc-inf{flex:1;}
+.lc-ttl{font-size:.89rem;font-weight:600;color:var(--dark);margin-bottom:2px;}
+.lc-qt{font-size:.75rem;color:var(--muted);font-style:italic;line-height:1.5;margin-bottom:4px;}
+.lc-tags{display:flex;gap:5px;}
+.t-ls{background:var(--pink-pale);color:var(--pink);font-size:.61rem;font-weight:500;padding:2px 7px;border-radius:20px;}
+.t-gm{background:var(--teal-pale);color:var(--teal);font-size:.61rem;font-weight:500;padding:2px 7px;border-radius:20px;}
+.t-xp{background:var(--peach-pale);color:var(--peach);font-size:.61rem;font-weight:500;padding:2px 7px;border-radius:20px;}
+.lc-st{font-size:.73rem;font-weight:500;flex-shrink:0;}
+.st-go{color:var(--pink);}
+.st-lk{color:var(--muted);}
+.st-dn{color:var(--teal);}
+.gate{background:var(--peach-pale);border:1px solid var(--peach-light);border-radius:11px;padding:11px 15px;margin-top:9px;font-size:.79rem;color:var(--muted);line-height:1.6;}
+.gate strong{color:var(--dark);}
+
+/* LESSON PLAYER */
+.lp-bc{font-size:.76rem;color:var(--muted);margin-bottom:20px;cursor:pointer;}
+.lp-bc:hover{color:var(--pink);}
+.lp-card{background:white;border-radius:18px;padding:24px 28px;border:1px solid rgba(244,130,154,.1);box-shadow:0 4px 16px rgba(244,130,154,.06);max-width:640px;}
+.lp-eye{font-size:.66rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-bottom:9px;}
+.lp-ttl{font-family:"Playfair Display",serif;font-size:1.65rem;font-weight:900;color:var(--dark);margin-bottom:8px;line-height:1.15;}
+.lp-acc{color:var(--pink);}
+.lp-intro{font-size:.9rem;line-height:1.8;color:var(--muted);margin-bottom:18px;}
+.lp-pills{display:flex;gap:7px;margin-bottom:20px;}
+.lpp{font-size:.7rem;font-weight:500;padding:4px 11px;border-radius:100px;}
+.lpp-p{background:var(--pink-pale);color:var(--pink);border:1px solid var(--pink-light);}
+.lpp-t{background:var(--teal-pale);color:var(--teal);border:1px solid var(--teal-light);}
+.lpp-c{background:var(--peach-pale);color:var(--peach);border:1px solid var(--peach-light);}
+.lp-sec{margin-bottom:18px;}
+.lp-sl{font-size:.63rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-bottom:8px;display:flex;align-items:center;gap:7px;}
+.lp-sl::after{content:"";flex:1;height:1px;background:rgba(245,168,87,.2);}
+.lp-st{font-family:"Playfair Display",serif;font-size:1.04rem;font-weight:700;color:var(--dark);margin-bottom:7px;}
+.lp-bd{font-size:.88rem;line-height:1.82;color:var(--muted);}
+.lp-bd strong{color:var(--dark);font-weight:600;}
+.cl-t{background:var(--teal-pale);border-left:3px solid var(--teal);border-radius:0 11px 11px 0;padding:12px 16px;margin:11px 0;font-size:.85rem;line-height:1.7;color:var(--text);}
+.cl-p{background:var(--pink-pale);border-left:3px solid var(--pink);border-radius:0 11px 11px 0;padding:12px 16px;margin:11px 0;font-size:.85rem;line-height:1.7;color:var(--text);}
+.dn{background:var(--dark);border-radius:15px;padding:18px 22px;margin:14px 0;position:relative;overflow:hidden;}
+.dn::before{content:"✦";position:absolute;bottom:-16px;right:6px;font-size:80px;color:var(--pink);opacity:.06;font-family:"Playfair Display",serif;pointer-events:none;}
+.dn-l{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);margin-bottom:7px;}
+.dn-q{font-family:"Playfair Display",serif;font-style:italic;font-size:.95rem;color:white;line-height:1.75;margin-bottom:6px;}
+.dn-a{font-size:.7rem;color:rgba(255,255,255,.3);}
+.lp-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px;max-width:640px;}
+.lp-prev{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted);padding:10px 19px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;}
+.lp-prev:hover{border-color:var(--pink);color:var(--pink);}
+.lp-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:white;border:none;padding:11px 25px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.9rem;font-weight:500;cursor:pointer;box-shadow:0 6px 18px rgba(244,130,154,.26);}
+.lp-next:hover{transform:translateY(-1px);}
+
+/* GAMES */
+.g-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.g-card{background:white;border-radius:17px;overflow:hidden;border:1px solid rgba(244,130,154,.12);cursor:pointer;transition:all .22s;box-shadow:0 3px 12px rgba(244,130,154,.06);}
+.g-card:hover:not(.g-lk){transform:translateY(-3px);}
+.g-card.g-lk{opacity:.5;cursor:default;}
+.g-thumb{height:90px;display:flex;align-items:center;justify-content:center;}
+.gt-p{background:var(--pink-pale);}
+.gt-t{background:var(--teal-pale);}
+.gt-c{background:var(--peach-pale);}
+.gt-u{background:var(--purple-pale);}
+.g-inf{padding:12px 14px 14px;}
+.g-tags{display:flex;gap:5px;margin-bottom:3px;}
+.g-tag{font-size:.61rem;font-weight:500;padding:2px 7px;border-radius:20px;}
+.gt-av{background:var(--teal-pale);color:var(--teal);}
+.gt-lk{background:var(--cream);color:var(--muted);}
+.gt-nw{background:var(--pink-pale);color:var(--pink);}
+.g-ttl{font-family:"Playfair Display",serif;font-size:.96rem;font-weight:700;color:var(--dark);margin-bottom:3px;}
+.g-desc{font-size:.76rem;color:var(--muted);line-height:1.6;margin-bottom:8px;}
+.g-foot{display:flex;align-items:center;justify-content:space-between;}
+.g-xp{font-size:.72rem;color:var(--peach);font-weight:600;}
+.g-lv2{font-size:.68rem;color:var(--muted);}
+.g-btn{font-size:.77rem;font-weight:500;padding:6px 14px;border-radius:20px;border:none;cursor:pointer;}
+.gb-p{background:var(--pink);color:white;}
+.gb-t{background:var(--teal);color:white;}
+.gb-lk{background:var(--cream);color:var(--muted);cursor:default;}
+.day-strip{background:white;border-radius:16px;padding:17px 19px;border:1px solid rgba(244,130,154,.1);margin-bottom:16px;}
+.ds-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;}
+.ds-ttl{font-family:"Playfair Display",serif;font-size:.93rem;font-weight:700;color:var(--dark);}
+.ds-tm{font-size:.73rem;color:var(--muted);}
+.ds-tm span{color:var(--pink);font-weight:600;}
+
+/* LEADERBOARD */
+.lb-full{background:white;border-radius:17px;padding:21px;border:1px solid rgba(244,130,154,.1);margin-bottom:13px;}
+.lbf-r{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(244,130,154,.07);}
+.lbf-r:last-child{border-bottom:none;}
+.lbf-rk{width:24px;font-family:"Playfair Display",serif;font-size:.94rem;font-weight:700;color:var(--muted);text-align:center;flex-shrink:0;}
+.lbf-rk.gld{color:var(--peach);}
+.lbf-rk.slv{color:#B4B2A9;}
+.lbf-rk.brz{color:#F0997B;}
+.lbf-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.lbf-nm{flex:1;}
+.lbf-hd{font-size:.85rem;font-weight:600;color:var(--dark);}
+.lbf-lv{font-size:.7rem;color:var(--muted);}
+.lbf-xp{font-family:"Playfair Display",serif;font-size:.97rem;font-weight:700;color:var(--peach);}
+.lb-you{background:var(--pink-pale);border-radius:9px;padding:9px 8px;margin-top:6px;}
+
+/* DRIP */
+.drip-g{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.drip-c{background:white;border-radius:15px;padding:16px;border:1px solid rgba(244,130,154,.1);text-align:center;cursor:pointer;transition:all .22s;}
+.drip-c:hover{transform:translateY(-3px);border-color:var(--pink-light);}
+.drip-ico{font-size:2.2rem;margin-bottom:8px;}
+.drip-nm{font-size:.87rem;font-weight:600;color:var(--dark);margin-bottom:3px;}
+.drip-ds{font-size:.74rem;color:var(--muted);line-height:1.5;margin-bottom:9px;}
+.drip-cost{display:inline-flex;align-items:center;gap:4px;background:var(--peach-pale);border:1px solid var(--peach-light);border-radius:20px;padding:3px 10px;font-size:.75rem;font-weight:600;color:var(--peach);margin-bottom:8px;}
+.drip-btn{background:linear-gradient(135deg,var(--pink),var(--peach));color:white;border:none;padding:7px 16px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.77rem;font-weight:500;cursor:pointer;width:100%;}
+.xp-avail{background:var(--cream);border-radius:13px;padding:15px 17px;margin-bottom:17px;display:flex;align-items:center;gap:13px;}
+.xa-inf{flex:1;}
+.xa-ttl{font-size:.82rem;font-weight:600;color:var(--dark);margin-bottom:2px;}
+.xa-sub{font-size:.73rem;color:var(--muted);}
+.xa-val{font-family:"Playfair Display",serif;font-size:1.35rem;font-weight:900;color:var(--peach);}
+
+/* PROFILE */
+.prof-card{background:white;border-radius:18px;padding:24px;border:1px solid rgba(244,130,154,.1);margin-bottom:13px;}
+.prof-hdr{display:flex;align-items:center;gap:15px;margin-bottom:18px;}
+.prof-av{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--pink-pale),var(--peach-pale));border:3px solid var(--pink-light);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:1.4rem;font-weight:700;color:var(--pink);}
+.prof-nm{font-family:"Playfair Display",serif;font-size:1.2rem;font-weight:700;color:var(--dark);margin-bottom:2px;}
+.prof-lv{font-size:.79rem;color:var(--muted);}
+.prof-bdg{display:inline-flex;align-items:center;gap:5px;background:var(--pink-pale);border:1px solid var(--pink-light);border-radius:20px;padding:3px 10px;font-size:.71rem;font-weight:600;color:var(--pink);margin-top:4px;}
+.prof-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:16px;}
+.ps-c{background:var(--cream);border-radius:11px;padding:12px;text-align:center;}
+.ps-l{font-size:.65rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.ps-v{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:900;}
+.bill-card{background:white;border-radius:17px;padding:21px;border:1px solid rgba(245,168,87,.15);}
+.bill-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;}
+.bill-ttl{font-size:.87rem;font-weight:600;color:var(--dark);}
+.bill-st{font-size:.71rem;font-weight:600;padding:3px 10px;border-radius:20px;background:var(--teal-pale);color:var(--teal);border:1px solid var(--teal-light);}
+.bill-pr{font-family:"Playfair Display",serif;font-size:1.7rem;font-weight:900;color:var(--dark);margin-bottom:3px;}
+.bill-pr span{font-size:.71rem;font-family:"DM Sans",sans-serif;color:var(--muted);font-weight:400;}
+.bill-ren{font-size:.77rem;color:var(--muted);margin-bottom:13px;}
+.bill-btn{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted);padding:8px 17px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.79rem;cursor:pointer;}
+.bill-btn:hover{border-color:var(--pink);color:var(--pink);}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--dark);color:white;border-radius:13px;padding:11px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 14px 44px rgba(44,24,16,.3);z-index:9999;transform:translateY(18px);opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1);}
+.toast.show{transform:translateY(0);opacity:1;}
+.t-ico{font-size:.94rem;}
+.t-ttl{font-size:.82rem;font-weight:600;}
+.t-sub{font-size:.67rem;color:rgba(255,255,255,.42);}
+
+/* CONFETTI */
+.cfp{position:fixed;border-radius:2px;pointer-events:none;z-index:9998;}
+@keyframes cf{0%{opacity:1;transform:translateY(0) rotate(0deg);}100%{opacity:0;transform:translateY(100vh) rotate(720deg);}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+</style>
+</head>
+<body>
+<div class="toast" id="toast">
+  <div class="t-ico">✦</div>
+  <div><div class="t-ttl" id="tttl">Nice!</div><div class="t-sub" id="tsub">Keep going</div></div>
+</div>
+
+<div class="scr on" id="s-home">
+<nav class="tnav">
+  <div class="tlogo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div>
+  <div class="tlinks">
+    <span class="tlink">The ICC Method</span>
+    <span class="tlink">How it works</span>
+    <span class="tlink">Pricing</span>
+    <span class="tlogin" onclick="go('s-login')">Log in</span>
+    <button class="tcta" onclick="go('s-signup')">Start for free →</button>
+  </div>
+</nav>
+<div class="hero">
+  <div class="blob" style="width:600px;height:600px;background:var(--pink-light);top:-200px;right:-200px;"></div>
+  <div class="blob" style="width:500px;height:500px;background:var(--teal-light);bottom:-150px;left:-200px;"></div>
+  <div class="blob" style="width:350px;height:350px;background:var(--peach-light);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="hero-inner">
+    <div class="hero-eye"><span class="hero-dot"></span> ICC-based · gamified · beginner to elite</div>
+    <div class="hero-brand">A Girl &amp; Her Futures™</div>
+    <h1 class="hero-title"><span class="hp">Learn to trade</span><br><span class="ht">with structure.</span></h1>
+    <div class="hero-tag">The ICC framework. Taught the right way.</div>
+    <p class="hero-desc">No signals. No guesswork. Just a proven method taught through games, levels, and lessons — before you risk a single dollar.</p>
+    <div class="hero-btns">
+      <button class="btn-pri" onclick="go('s-signup')">✦ Start for free — $14.99/mo</button>
+      <button class="btn-sec">See how it works</button>
+    </div>
+    <div class="cdls">
+      <svg width="14" height="52" style="animation:float 3s ease-in-out infinite;" viewBox="0 0 14 52"><line x1="7" y1="0" x2="7" y2="12" stroke="#F9B8C6" stroke-width="2" stroke-linecap="round"/><rect x="1" y="12" width="12" height="28" rx="2" fill="#F4829A"/><line x1="7" y1="40" x2="7" y2="52" stroke="#F9B8C6" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg width="14" height="68" style="animation:float 2.8s .4s ease-in-out infinite;" viewBox="0 0 14 68"><line x1="7" y1="0" x2="7" y2="14" stroke="#B2E4DF" stroke-width="2" stroke-linecap="round"/><rect x="1" y="14" width="12" height="44" rx="2" fill="#7ECEC4"/><line x1="7" y1="58" x2="7" y2="68" stroke="#B2E4DF" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg width="14" height="44" style="animation:float 3.2s .8s ease-in-out infinite;" viewBox="0 0 14 44"><line x1="7" y1="0" x2="7" y2="10" stroke="#F9B8C6" stroke-width="2" stroke-linecap="round"/><rect x="1" y="10" width="12" height="24" rx="2" fill="#F4829A"/><line x1="7" y1="34" x2="7" y2="44" stroke="#F9B8C6" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg width="14" height="72" style="animation:float 2.6s .2s ease-in-out infinite;" viewBox="0 0 14 72"><line x1="7" y1="0" x2="7" y2="16" stroke="#B2E4DF" stroke-width="2" stroke-linecap="round"/><rect x="1" y="16" width="12" height="48" rx="2" fill="#7ECEC4"/><line x1="7" y1="64" x2="7" y2="72" stroke="#B2E4DF" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg width="14" height="58" style="animation:float 3s .6s ease-in-out infinite;" viewBox="0 0 14 58"><line x1="7" y1="0" x2="7" y2="12" stroke="#FAD09A" stroke-width="2" stroke-linecap="round"/><rect x="1" y="12" width="12" height="36" rx="2" fill="#F5A857"/><line x1="7" y1="48" x2="7" y2="58" stroke="#FAD09A" stroke-width="2" stroke-linecap="round"/></svg>
+    </div>
+  </div>
+</div>
+<div class="proof">
+  <div class="pi"><div class="pi-n">500+</div><div class="pi-l">traders in<br>the community</div></div>
+  <div class="pi-sep"></div>
+  <div class="pi"><div class="pi-n">27</div><div class="pi-l">lessons across<br>4 levels</div></div>
+  <div class="pi-sep"></div>
+  <div class="pi"><div class="pi-n">ICC</div><div class="pi-l">the only method<br>taught here</div></div>
+  <div class="pi-sep"></div>
+  <div class="pi"><div class="pi-n">$14.99</div><div class="pi-l">per month,<br>cancel anytime</div></div>
+</div>
+<section class="hs hs-c"><div class="cont" style="text-align:center;">
+  <div class="s-eye ey-t">The Framework</div>
+  <h2 class="s-title">The ICC Method™</h2>
+  <p class="s-body" style="max-width:500px;margin:0 auto;">Three words. One method. Every trade you will ever learn here lives inside this framework.</p>
+  <div class="icc-g">
+    <div class="icc-c icc-I"><div class="icc-let il-p">I</div><div class="icc-word">Indication</div><p class="icc-desc">The 1M candle that closes past the pre-indication level. Not a wick — a close. Price is proving where it wants to go.</p></div>
+    <div class="icc-c icc-C"><div class="icc-let il-t">C</div><div class="icc-word">Correction</div><p class="icc-desc">Price pulls back to sweep liquidity. Not a reversal — it's the fuel. Corrections are normal. Patient traders wait here.</p></div>
+    <div class="icc-c icc-C2"><div class="icc-let il-c">C</div><div class="icc-word">Continuation</div><p class="icc-desc">Price continues in direction. Take 1:1 partial. Move SL to break even. Let the runner go to 1:2 or structure.</p></div>
+  </div>
+</div></section>
+<section class="hs hs-w"><div class="cont" style="text-align:center;">
+  <div class="s-eye ey-p">Your journey</div>
+  <h2 class="s-title">4 levels. Real understanding required.</h2>
+  <p class="s-body" style="max-width:500px;margin:0 auto;">You can't skip. The quiz doesn't budge. That's how we build real traders — not just players.</p>
+  <div class="lv-row">
+    <div class="lv-c lv1"><div class="lv-n">Level 1</div><div class="lv-nm">She's Brand New</div><div class="lv-tg">What even is futures?</div></div>
+    <div class="lv-c lv2"><div class="lv-n">Level 1.5</div><div class="lv-nm">Before the Chart</div><div class="lv-tg">MNQ, MGC, sessions</div></div>
+    <div class="lv-c lv3"><div class="lv-n">Level 2</div><div class="lv-nm">Structure Student</div><div class="lv-tg">Trends, swings, BOS</div></div>
+    <div class="lv-c lv4"><div class="lv-n">Level 3</div><div class="lv-nm">She's In Structure</div><div class="lv-tg">ICC confirmed ✦</div></div>
+    <div class="lv-c lv5"><div class="lv-n">Beyond</div><div class="lv-nm">The Continuation</div><div class="lv-tg">She stayed the course</div></div>
+  </div>
+</div></section>
+<section class="hs hs-c"><div class="cont" style="text-align:center;">
+  <div class="s-eye ey-c">Pricing</div>
+  <h2 class="s-title">One price. Everything included.</h2>
+  <div class="price-card">
+    <div class="pr-badge">Monthly membership</div>
+    <div class="pr-amt"><sup>$</sup>14<sub>.99/mo</sub></div>
+    <p class="pr-sub">Cancel anytime. No contracts. No surprises.</p>
+    <div class="pr-list">
+      <div class="pr-item"><div class="pr-chk">✓</div>Full ICC method curriculum (27 lessons)</div>
+      <div class="pr-item"><div class="pr-chk">✓</div>Futures basics from absolute zero</div>
+      <div class="pr-item"><div class="pr-chk">✓</div>All interactive games</div>
+      <div class="pr-item"><div class="pr-chk">✓</div>XP system, levels, drip store</div>
+      <div class="pr-item"><div class="pr-chk">✓</div>Weekly leaderboard + daily challenges</div>
+      <div class="pr-item"><div class="pr-chk">✓</div>Discord role syncs with your level</div>
+    </div>
+    <button class="pr-btn" onclick="go('s-signup')">✦ Start for $14.99/mo</button>
+  </div>
+</div></section>
+<section class="cta-sec"><div class="blob" style="width:500px;height:500px;background:var(--pink);top:-200px;left:-100px;opacity:.1;border-radius:50%;filter:blur(90px);position:absolute;"></div><div class="blob" style="width:400px;height:400px;background:var(--teal);bottom:-150px;right:-100px;opacity:.1;border-radius:50%;filter:blur(90px);position:absolute;"></div>
+  <div class="cta-inner">
+    <div style="font-size:.74rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);margin-bottom:14px;">✦ She's brand new. That's exactly where we start.</div>
+    <h2 class="cta-title">Learn it.<br><span class="cta-p">Play it.</span><br><span class="cta-t">Trade with structure.</span></h2>
+    <p class="cta-sub">No experience required. No judgment. Just ICC, the games, and a community that's been exactly where you are.</p>
+    <div class="cta-btns">
+      <button class="btn-pri" onclick="go('s-signup')">✦ Start for $14.99/mo</button>
+      <button class="btn-sec" style="color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2);" onclick="go('s-login')">Already a member? Log in</button>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="ft-logo">A Girl &amp; <span>Her Futures</span>™</div>
+  <div class="ft-links"><span class="ft-link">Discord</span><span class="ft-link">ICC Structure Lab</span><span class="ft-link">@dayliscott</span><span class="ft-link">Terms</span></div>
+  <div class="ft-copy">© 2026 A Girl & Her Futures™ · Trading involves risk</div>
+</footer>
+</div>
+
+<div class="scr" id="s-signup">
+<nav class="tnav"><div class="tlogo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div><span class="tlogin" onclick="go('s-login')">Already a member? Log in →</span></nav>
+<div class="blob" style="width:500px;height:500px;background:var(--pink-light);top:-150px;right:-150px;position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;"></div>
+<div class="blob" style="width:400px;height:400px;background:var(--teal-light);bottom:-100px;left:-100px;position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;"></div>
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="a-eye">$14.99 / month · Cancel anytime</div>
+    <h1 class="a-title">Start your <span class="a-acc">journey.</span></h1>
+    <p class="a-sub">Learn to trade futures from zero — the ICC way. Games, lessons, and a community that gets it.</p>
+    <div class="step-row">
+      <div class="st st-on">1</div><div class="st-lbl on">Your account</div>
+      <div class="st-line"></div>
+      <div class="st st-td">2</div><div class="st-lbl">Payment</div>
+      <div class="st-line"></div>
+      <div class="st st-td">3</div><div class="st-lbl">Start learning</div>
+    </div>
+    <div class="f-grp"><label class="f-lbl">Your first name</label><input class="f-inp" type="text" placeholder="What should we call you?"></div>
+    <div class="f-grp"><label class="f-lbl">Email address</label><input class="f-inp" type="email" placeholder="you@email.com"></div>
+    <div class="f-grp"><label class="f-lbl">Password</label><input class="f-inp" type="password" placeholder="At least 8 characters"></div>
+    <button class="f-btn" onclick="go('s-payment')">Continue to payment →</button>
+    <div class="a-switch">Already have an account? <span onclick="go('s-login')">Log in here</span></div>
+  </div>
+</div>
+</div>
+
+<div class="scr" id="s-login">
+<nav class="tnav"><div class="tlogo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div><span class="tlogin" onclick="go('s-signup')">New here? Join for $14.99/mo →</span></nav>
+<div class="blob" style="width:500px;height:500px;background:var(--teal-light);top:-150px;left:-100px;position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;"></div>
+<div class="auth-wrap">
+  <div class="auth-card" style="border-color:rgba(126,206,196,.2);box-shadow:0 20px 60px rgba(126,206,196,.08);">
+    <div class="a-eye" style="background:var(--teal-pale);border-color:var(--teal-light);color:var(--teal);">Welcome back</div>
+    <h1 class="a-title">She's <span style="color:var(--teal)">back.</span></h1>
+    <p class="a-sub">Log in and pick up where you left off. Your streak is waiting.</p>
+    <div class="f-grp"><label class="f-lbl">Email address</label><input class="f-inp" type="email" placeholder="you@email.com"></div>
+    <div class="f-grp"><label class="f-lbl">Password</label><input class="f-inp" type="password" placeholder="Your password"></div>
+    <button class="f-btn" style="background:linear-gradient(135deg,var(--teal),#5BB5AA);box-shadow:0 10px 26px rgba(126,206,196,.26);" onclick="go('s-dashboard')">Log in →</button>
+    <div class="a-switch">Don't have an account? <span onclick="go('s-signup')">Join AG&amp;HF for $14.99/mo ✦</span></div>
+  </div>
+</div>
+</div>
+
+<div class="scr" id="s-payment">
+<nav class="tnav"><div class="tlogo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div><div style="font-size:.8rem;color:var(--muted);">Secure checkout · Cancel anytime</div></nav>
+<div class="blob" style="width:500px;height:500px;background:var(--peach-light);top:-150px;right:-150px;position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;"></div>
+<div class="auth-wrap">
+  <div class="auth-card" style="border-color:rgba(245,168,87,.2);max-width:470px;">
+    <div class="a-eye" style="background:var(--peach-pale);border-color:var(--peach-light);color:var(--peach);">Step 2 of 2 — Payment</div>
+    <h1 class="a-title">Almost <span style="color:var(--peach)">there.</span></h1>
+    <div class="pay-strip">
+      <div class="ps-l"><strong>AG&amp;HF Trading Academy</strong><span>Monthly membership</span></div>
+      <div class="ps-price">$14.99<span style="font-size:.6rem;font-family:DM Sans;color:var(--muted);font-weight:400;">/mo</span></div>
+    </div>
+    <div class="inc-list">
+      <div class="inc-item"><div class="inc-chk">✓</div>Full ICC method curriculum (27 lessons)</div>
+      <div class="inc-item"><div class="inc-chk">✓</div>All interactive games + drip store</div>
+      <div class="inc-item"><div class="inc-chk">✓</div>XP system, levels, weekly leaderboard</div>
+      <div class="inc-item"><div class="inc-chk">✓</div>Cancel anytime — no contracts</div>
+    </div>
+    <div class="card-fields">
+      <input class="c-inp" placeholder="Card number" value="4242 4242 4242 4242" readonly>
+      <div class="c-row">
+        <input class="c-inp" placeholder="MM / YY" value="12 / 27" readonly>
+        <input class="c-inp" placeholder="CVC" value="•••" readonly>
+      </div>
+      <input class="c-inp" placeholder="Name on card" value="Dayli Scott" readonly>
+    </div>
+    <button class="pay-btn" onclick="payOk()">✦ Start membership — $14.99/mo</button>
+    <p class="pay-note">Secured by Stripe · You'll be charged $14.99 today</p>
+  </div>
+</div>
+</div>
+
+<div class="scr" id="s-success">
+<div class="blob" style="width:500px;height:500px;background:var(--teal-light);top:-150px;left:-100px;position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;"></div>
+<div class="succ-wrap">
+  <div class="succ-card">
+    <div class="sc-icon" style="animation:float 2s ease-in-out infinite;">✦</div>
+    <h1 class="sc-title">Welcome to <span class="sc-acc">the club.</span></h1>
+    <p class="sc-sub">Your membership is active. You're officially part of A Girl & Her Futures. Let's get you in structure.</p>
+    <div class="sc-badge">✦ Level 1 unlocked — She's Brand New</div>
+    <button class="sc-btn" onclick="go('s-dashboard')">Go to my dashboard →</button>
+  </div>
+</div>
+</div>
+
+<div class="plt" id="s-dashboard">
+  <div class="sb"><div class="sb-logo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div><div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · She's Brand New</div></div></div><div class="sb-sec">Learn</div><div class="sb-item active" onclick="go('s-dashboard')"><span class="sb-ico">⌂</span> Dashboard</div><div class="sb-item" onclick="go('s-lessons')"><span class="sb-ico">✦</span> Lessons</div><div class="sb-item" onclick="go('s-games')"><span class="sb-ico">◈</span> Games</div><div class="sb-sec">Community</div><div class="sb-item" onclick="go('s-leaderboard')"><span class="sb-ico">↑</span> Leaderboard</div><div class="sb-item" onclick="go('s-store')"><span class="sb-ico">◇</span> Drip Store</div><div class="sb-sec">Account</div><div class="sb-item" onclick="go('s-profile')"><span class="sb-ico">○</span> My Profile</div><div class="sb-bot"><div class="xp-box"><div class="xp-top"><span class="xp-lbl">XP</span><span class="xp-val">380 / 1000</span></div><div class="xp-track"><div class="xp-fill"></div></div></div></div></div>
+  <div class="main">
+    <div class="pg-eye">Good morning ✦</div>
+    <div class="pg-title">Welcome back, <span class="pg-acc">Dayli.</span></div>
+    <div class="stats-g">
+      <div class="stat-c"><div class="stat-l">Current level</div><div class="stat-v sv-p">1</div><div class="stat-s">She's Brand New</div></div>
+      <div class="stat-c"><div class="stat-l">Total XP</div><div class="stat-v sv-c">380</div><div class="stat-s">points earned</div></div>
+      <div class="stat-c"><div class="stat-l">Day streak</div><div class="stat-v sv-t">3</div><div class="stat-s">days in a row 🔥</div></div>
+      <div class="stat-c"><div class="stat-l">Lessons done</div><div class="stat-v sv-d">1</div><div class="stat-s">of 27 total</div></div>
+    </div>
+    <div class="cont-banner">
+      <div class="cb-ico">✦</div>
+      <div class="cb-inf">
+        <div class="cb-ey">Up next · Level 1 · Lesson 2</div>
+        <div class="cb-ttl">What is a chart actually showing you?</div>
+        <div class="cb-sub">Green = buyers. Red = sellers. Wicks = rejection. Bodies = acceptance.</div>
+      </div>
+      <button class="cb-go" onclick="go('s-lesson')">Continue →</button>
+    </div>
+    <div class="two-col">
+      <div class="panel">
+        <div class="pn-t">Today's challenges</div>
+        <div class="pn-s">Resets in 8h 42m</div>
+        <div class="ch-row"><div class="ch-c ch-dn">✓</div><div class="ch-tx">Complete 1 round of Pattern Recognition</div><div class="ch-xp">+25 XP done</div></div>
+        <div class="ch-row" onclick="go('s-games')"><div class="ch-c ch-td"></div><div class="ch-tx">Score 80%+ on Stress Meter</div><div class="ch-xp">+40 XP</div></div>
+        <div class="ch-row" onclick="go('s-lesson')"><div class="ch-c ch-td"></div><div class="ch-tx">Finish one lesson</div><div class="ch-xp">+30 XP</div></div>
+      </div>
+      <div class="panel">
+        <div class="pn-t">Leaderboard</div>
+        <div class="pn-s">This week's top traders</div>
+        <div class="lb-r"><div class="lb-rk gld">1</div><div class="lb-av av-t">SK</div><div style="flex:1"><div class="lb-nm">@skye.trades</div><div class="lb-lv">Level 3</div></div><div class="lb-xp">2,840</div></div>
+        <div class="lb-r"><div class="lb-rk" style="color:#B4B2A9">2</div><div class="lb-av av-p">MR</div><div style="flex:1"><div class="lb-nm">@mia.in.structure</div><div class="lb-lv">Level 3</div></div><div class="lb-xp">2,210</div></div>
+        <div class="lb-r"><div class="lb-rk" style="color:#F0997B">3</div><div class="lb-av av-c">JL</div><div style="flex:1"><div class="lb-nm">@justine.l</div><div class="lb-lv">Level 3</div></div><div class="lb-xp">1,980</div></div>
+        <div class="lb-r" style="background:var(--pink-pale);border-radius:8px;padding:7px 5px;margin-top:3px;"><div class="lb-rk" style="color:var(--pink)">—</div><div class="lb-av av-p">D</div><div style="flex:1"><div class="lb-nm">@dayli (you)</div><div class="lb-lv">Level 1</div></div><div class="lb-xp">380</div></div>
+      </div>
+    </div>
+    <div class="jmap">
+      <div class="pn-t">Your journey</div>
+      <div class="jm-lvs">
+        <div class="jm-lv jh"><div class="jm-b jb1">1</div><div><div class="jm-nm">Welcome to the Market</div><div class="jm-ds">Lessons 1-5 · In progress</div></div><div class="here-tg">Here ✦</div></div>
+        <div class="jm-lv jlk"><div class="jm-b jb2">1.5</div><div><div class="jm-nm">Before You Touch a Chart</div><div class="jm-ds">Lessons 6-10</div></div><div class="lk-ic">🔒</div></div>
+        <div class="jm-lv jlk"><div class="jm-b jb3">2</div><div><div class="jm-nm">Understanding Structure</div><div class="jm-ds">Lessons 11-20</div></div><div class="lk-ic">🔒</div></div>
+        <div class="jm-lv jlk"><div class="jm-b jb4">3</div><div><div class="jm-nm">Enter ICC — The Dayli Way ✦</div><div class="jm-ds">Lessons 21-27</div></div><div class="lk-ic">🔒</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="plt" id="s-lessons">
+  <div class="sb"><div class="sb-logo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div><div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · She's Brand New</div></div></div><div class="sb-sec">Learn</div><div class="sb-item" onclick="go('s-dashboard')"><span class="sb-ico">⌂</span> Dashboard</div><div class="sb-item active" onclick="go('s-lessons')"><span class="sb-ico">✦</span> Lessons</div><div class="sb-item" onclick="go('s-games')"><span class="sb-ico">◈</span> Games</div><div class="sb-sec">Community</div><div class="sb-item" onclick="go('s-leaderboard')"><span class="sb-ico">↑</span> Leaderboard</div><div class="sb-item" onclick="go('s-store')"><span class="sb-ico">◇</span> Drip Store</div><div class="sb-sec">Account</div><div class="sb-item" onclick="go('s-profile')"><span class="sb-ico">○</span> My Profile</div><div class="sb-bot"><div class="xp-box"><div class="xp-top"><span class="xp-lbl">XP</span><span class="xp-val">380 / 1000</span></div><div class="xp-track"><div class="xp-fill"></div></div></div></div></div>
+  <div class="main">
+    <div class="pg-eye">✦ Your curriculum</div>
+    <div class="pg-title" style="margin-bottom:6px;">Learn it. <span class="pg-acc">Really.</span></div>
+    <p style="font-size:.91rem;color:var(--muted);margin-bottom:24px;">27 lessons across 4 levels. You can't skip. The quiz doesn't budge. That's how we build real traders.</p>
+    <div class="po-g">
+      <div class="po-c"><div class="po-l">Lessons done</div><div class="po-v pov-p">1</div><div class="po-s">of 27 total</div></div>
+      <div class="po-c"><div class="po-l">Current level</div><div class="po-v pov-t">1</div><div class="po-s">She's Brand New</div></div>
+      <div class="po-c"><div class="po-l">XP from lessons</div><div class="po-v pov-c">50</div><div class="po-s">points earned</div></div>
+      <div class="po-c"><div class="po-l">Next gate</div><div class="po-v pov-d">L1</div><div class="po-s">Quiz after lesson 5</div></div>
+    </div>
+
+    <div class="lvl-blk">
+      <div class="lvl-hdr"><span class="lb-bdg lbd-p">Level 1</span><div class="lvl-ttl">Welcome to the Market</div><div class="lvl-cnt">5 lessons + 1 game</div></div>
+      <div class="ll">
+        <div class="lc" onclick="go('s-lesson')"><div class="lc-n n-dn">✓</div><div class="lc-inf"><div class="lc-ttl">Lesson 1 — What even is trading?</div><div class="lc-qt">Candles are just storytelling — they're showing you who's winning right now.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 XP</span></div></div><div class="lc-st st-dn">Complete ✓</div></div>
+        <div class="lc" onclick="go('s-lesson')"><div class="lc-n n-act">2</div><div class="lc-inf"><div class="lc-ttl">Lesson 2 — What is a chart actually showing you?</div><div class="lc-qt">Green = buyers. Red = sellers. Wicks = rejection. Bodies = acceptance. Close beats wick — always.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 XP</span></div></div><div class="lc-st st-go">Start →</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-lk">3</div><div class="lc-inf"><div class="lc-ttl">Lesson 3 — Timeframes — don't overcomplicate this</div><div class="lc-qt">Higher timeframes tell the story. Lower timeframes let you step inside it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 XP</span></div></div><div class="lc-st st-lk">🔒 Complete L2 first</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-lk">4</div><div class="lc-inf"><div class="lc-ttl">Lesson 4 — Buyers vs Sellers — where it clicks</div><div class="lc-qt">Price moves based on who's stronger. Read it like a story, not a guess.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 XP</span></div></div><div class="lc-st st-lk">🔒 Complete L3 first</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-lk">5</div><div class="lc-inf"><div class="lc-ttl">Lesson 5 — What is movement?</div><div class="lc-qt">Price doesn't move randomly. From level to level. From liquidity to liquidity.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 XP</span></div></div><div class="lc-st st-lk">🔒 Complete L4 first</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">▶</div><div class="lc-inf"><div class="lc-ttl">Pattern Recognition Game</div><div class="lc-qt">Candles flash. You call it. Lock in what you learned before the gate.</div><div class="lc-tags"><span class="t-gm">Game</span><span class="t-xp">+75 XP</span></div></div><div class="lc-st st-lk">🔒 Complete lessons 1-5</div></div>
+      </div>
+      <div class="gate">🎯 <strong>Level 1 Gate:</strong> Complete all 5 lessons + Pattern Recognition, then score 80% on the quiz to unlock Level 1.5.</div>
+    </div>
+
+    <div class="lvl-blk">
+      <div class="lvl-hdr"><span class="lb-bdg lbd-c">Level 1.5</span><div class="lvl-ttl">Before You Touch a Chart</div><div class="lvl-cnt">5 lessons 🔒</div></div>
+      <div class="ll">
+        <div class="lc lc-lk"><div class="lc-n n-c">6</div><div class="lc-inf"><div class="lc-ttl">Lesson 6 — Meet your instruments: MNQ & MGC</div><div class="lc-qt">MNQ = $2 per point. MGC = $10 per point. Know your numbers before you trade.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 XP</span></div></div><div class="lc-st st-lk">🔒 Complete Level 1</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-c">7</div><div class="lc-inf"><div class="lc-ttl">Lesson 7 — Contracts & position sizing</div><div class="lc-qt">Start with 1-2 contracts. Paper trade until you know the strategy. Then prop firm.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-c">8</div><div class="lc-inf"><div class="lc-ttl">Lesson 8 — Sim trading — start here, not with real money</div><div class="lc-qt">Paper trading is not for wimps. It's for smart traders. Here's how to set it up.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-c">9</div><div class="lc-inf"><div class="lc-ttl">Lesson 9 — Sessions — when is MNQ worth trading?</div><div class="lc-qt">"9:30 AM to 1 PM, New York session. That's where I get my best moves." — Dayli</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-c">10</div><div class="lc-inf"><div class="lc-ttl">Lesson 10 — Platform basics</div><div class="lc-qt">TradingView setup, marking levels, order types. Know the tools before the trades.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+      </div>
+      <div class="gate" style="background:var(--peach-pale);border-color:var(--peach-light);">🎯 <strong>Level 1.5 Gate:</strong> Complete all 5 lessons and pass the quiz to unlock Level 2 — Understanding Structure.</div>
+    </div>
+
+    <div class="lvl-blk">
+      <div class="lvl-hdr"><span class="lb-bdg lbd-t">Level 2</span><div class="lvl-ttl">Understanding Structure</div><div class="lvl-cnt">10 lessons + 1 game 🔒</div></div>
+      <div class="ll">
+        <div class="lc lc-lk"><div class="lc-n n-t">11</div><div class="lc-inf"><div class="lc-ttl">Lesson 11 — Uptrend — walking up stairs</div><div class="lc-qt">Uptrend: higher highs and higher lows. Like walking UP stairs. Simple.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 XP</span></div></div><div class="lc-st st-lk">🔒 Complete Level 1.5</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">12</div><div class="lc-inf"><div class="lc-ttl">Lesson 12 — Downtrend — walking down stairs</div><div class="lc-qt">Downtrend: lower lows and lower highs. Walking DOWN stairs. If it's not doing this, don't trade it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">13</div><div class="lc-inf"><div class="lc-ttl">Lesson 13 — Consolidation — the no-trade zone</div><div class="lc-qt">This is where most of y'all lose money… cause you're trying to force trades.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">14</div><div class="lc-inf"><div class="lc-ttl">Lesson 14 — Liquidity — what drives the markets</div><div class="lc-qt">Buy stops above highs. Sell stops below lows. The market grabs them to fuel direction.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">15</div><div class="lc-inf"><div class="lc-ttl">Lesson 15 — Swing highs & lows — heels and valleys</div><div class="lc-qt">A swing high is a heel. A swing low is a valley. These become your pre-indication levels.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">16</div><div class="lc-inf"><div class="lc-ttl">Lesson 16 — Trends — tradable vs not tradable</div><div class="lc-qt">Higher highs and higher lows. Either the market is trending or it's not. Keep it simple.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">17</div><div class="lc-inf"><div class="lc-ttl">Lesson 17 — Break of structure</div><div class="lc-qt">BOS = trend continuing. Market structure shift = trend changing. Know the difference.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">18</div><div class="lc-inf"><div class="lc-ttl">Lesson 18 — Retracement vs reversal</div><div class="lc-qt">External structure = where price should get to. Internal structure = how it gets there.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">19</div><div class="lc-inf"><div class="lc-ttl">Lesson 19 — Higher timeframe context</div><div class="lc-qt">4H tells the story. 1H shows what price is doing. 1M is where you execute. All must align.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">20</div><div class="lc-inf"><div class="lc-ttl">Lesson 20 — Support & resistance</div><div class="lc-qt">Mark levels only where there's a strong push. Read the market left to right.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">▶</div><div class="lc-inf"><div class="lc-ttl">OG Line Spotter Game</div><div class="lc-qt">A chart loads. Tap where the pre-indication level is. Miss it and see exactly why.</div><div class="lc-tags"><span class="t-gm">Game</span><span class="t-xp">+80 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+      </div>
+      <div class="gate" style="background:var(--teal-pale);border-color:var(--teal-light);">🎯 <strong>Level 2 Gate:</strong> 80% quiz score + OG Line Spotter game to unlock Level 3 — Enter ICC, The Dayli Way.</div>
+    </div>
+
+    <div class="lvl-blk">
+      <div class="lvl-hdr"><span class="lb-bdg lbd-u">Level 3</span><div class="lvl-ttl">Enter ICC — The Dayli Way ✦</div><div class="lvl-cnt">7 lessons + 1 game 🔒</div></div>
+      <div class="ll">
+        <div class="lc lc-lk"><div class="lc-n n-u">21</div><div class="lc-inf"><div class="lc-ttl">Lesson 21 — What is ICC?</div><div class="lc-qt">It's not a strategy. It's a behavior pattern. The market does this. Every time.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 XP</span></div></div><div class="lc-st st-lk">🔒 Complete Level 2</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">22</div><div class="lc-inf"><div class="lc-ttl">Lesson 22 — The pre-indication level</div><div class="lc-qt">Before price can indicate, it has to break something. That something is the pre-indication level.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">23</div><div class="lc-inf"><div class="lc-ttl">Lesson 23 — Indication</div><div class="lc-qt">I don't care about wicks. Prove it to me. I need that 1M candle to CLOSE past the level.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">24</div><div class="lc-inf"><div class="lc-ttl">Lesson 24 — Correction</div><div class="lc-qt">Corrections are normal. If it doesn't correct, it's not healthy. Don't panic.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">25</div><div class="lc-inf"><div class="lc-ttl">Lesson 25 — The Reclaim</div><div class="lc-qt">Price comes back in direction. Shows strength again. This builds confidence in the move.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">26</div><div class="lc-inf"><div class="lc-ttl">Lesson 26 — Entry — your sniper moment</div><div class="lc-qt">Wait for: Close + Pullback + Level. Then enter. Limit order only. Never chase.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">27</div><div class="lc-inf"><div class="lc-ttl">Lesson 27 — Risk model — your signature</div><div class="lc-qt">Take 1:1 partial. Move stop to break even. Let the runner ride to 1:2 or structure.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+100 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">▶</div><div class="lc-inf"><div class="lc-ttl">ICC Sequence Game</div><div class="lc-qt">A real chart. Identify Indication, Correction, Continuation in order. All three or no XP.</div><div class="lc-tags"><span class="t-gm">Game</span><span class="t-xp">+100 XP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+      </div>
+      <div class="gate" style="background:var(--purple-pale);border-color:var(--purple-light);"><strong style="color:var(--purple);">✦ Final Gate:</strong> Complete all ICC lessons + ICC Sequence game + 80% quiz = "She's In Structure" unlocked on the platform and in Discord.</div>
+    </div>
+  </div>
+</div>
+
+<div class="plt" id="s-lesson">
+  <div class="sb"><div class="sb-logo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div><div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · She's Brand New</div></div></div><div class="sb-sec">Learn</div><div class="sb-item" onclick="go('s-dashboard')"><span class="sb-ico">⌂</span> Dashboard</div><div class="sb-item active" onclick="go('s-lessons')"><span class="sb-ico">✦</span> Lessons</div><div class="sb-item" onclick="go('s-games')"><span class="sb-ico">◈</span> Games</div><div class="sb-sec">Community</div><div class="sb-item" onclick="go('s-leaderboard')"><span class="sb-ico">↑</span> Leaderboard</div><div class="sb-item" onclick="go('s-store')"><span class="sb-ico">◇</span> Drip Store</div><div class="sb-sec">Account</div><div class="sb-item" onclick="go('s-profile')"><span class="sb-ico">○</span> My Profile</div><div class="sb-bot"><div class="xp-box"><div class="xp-top"><span class="xp-lbl">XP</span><span class="xp-val">380 / 1000</span></div><div class="xp-track"><div class="xp-fill"></div></div></div></div></div>
+  <div class="main">
+    <div class="lp-bc" onclick="go('s-lessons')">← Back to all lessons</div>
+    <div class="lp-card">
+      <div class="lp-eye">Level 1 · Lesson 2 · +50 XP</div>
+      <h1 class="lp-ttl">What is a chart <span class="lp-acc">actually</span> showing you?</h1>
+      <p class="lp-intro">Now that you know you're trading contracts and the market is just buyers vs sellers — let's talk about what you're looking at when you open a chart. It's not lines. It's a story.</p>
+      <div class="lp-pills">
+        <span class="lpp lpp-p">~8 min</span>
+        <span class="lpp lpp-t">Interactive</span>
+        <span class="lpp lpp-c">3 quiz questions</span>
+      </div>
+      <div class="lp-sec">
+        <div class="lp-sl">Every candle is a battle</div>
+        <div class="lp-st">Green = buyers winning. Red = sellers winning.</div>
+        <div class="lp-bd">A chart is a visual record of the buyers vs sellers battle playing out over time. Every single candle represents one time period.<br><br><strong>Green (bullish) candle:</strong> Buyers pushed price higher. They won that period.<br><strong>Red (bearish) candle:</strong> Sellers pushed price lower. They won that period.</div>
+      </div>
+      <div class="cl-t"><strong>The body of the candle</strong> shows where price opened and closed — where price actually settled. This is the most important part of any candle.</div>
+      <div class="lp-sec">
+        <div class="lp-sl">Wicks — the rejected moves</div>
+        <div class="lp-st">Wicks show where price tried to go — and failed.</div>
+        <div class="lp-bd">A long wick shows price testing a level and getting pushed back. <strong>Wick = rejection. Body = acceptance.</strong> Remember this — it's the foundation of every ICC trade.</div>
+      </div>
+      <div class="cl-p"><strong>Close beats wick. Always.</strong> A wick through a level means price tested it. A candle close past a level means price committed. This is why ICC works.</div>
+      <div class="dn">
+        <div class="dn-l">✦ Dayli's Trader Note</div>
+        <div class="dn-q">"When I look at a chart I'm not looking at lines. I'm looking at a conversation between buyers and sellers. Who's talking louder right now? The candles tell me. I just have to listen."</div>
+        <div class="dn-a">— Dayli Scott · A Girl & Her Futures™</div>
+      </div>
+    </div>
+    <div class="lp-nav">
+      <button class="lp-prev" onclick="go('s-lessons')">← Back to lessons</button>
+      <button class="lp-next" onclick="completeLsn()">Complete lesson +50 XP →</button>
+    </div>
+  </div>
+</div>
+
+<div class="plt" id="s-games">
+  <div class="sb"><div class="sb-logo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div><div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · She's Brand New</div></div></div><div class="sb-sec">Learn</div><div class="sb-item" onclick="go('s-dashboard')"><span class="sb-ico">⌂</span> Dashboard</div><div class="sb-item" onclick="go('s-lessons')"><span class="sb-ico">✦</span> Lessons</div><div class="sb-item active" onclick="go('s-games')"><span class="sb-ico">◈</span> Games</div><div class="sb-sec">Community</div><div class="sb-item" onclick="go('s-leaderboard')"><span class="sb-ico">↑</span> Leaderboard</div><div class="sb-item" onclick="go('s-store')"><span class="sb-ico">◇</span> Drip Store</div><div class="sb-sec">Account</div><div class="sb-item" onclick="go('s-profile')"><span class="sb-ico">○</span> My Profile</div><div class="sb-bot"><div class="xp-box"><div class="xp-top"><span class="xp-lbl">XP</span><span class="xp-val">380 / 1000</span></div><div class="xp-track"><div class="xp-fill"></div></div></div></div></div>
+  <div class="main">
+    <div class="pg-eye">✦ Games + Challenges</div>
+    <div class="pg-title" style="margin-bottom:5px;">Learn it. <span class="pg-acc">Play it.</span></div>
+    <p style="font-size:.91rem;color:var(--muted);margin-bottom:22px;">Games aren't extra credit. They're how ICC gets from your head to your instincts.</p>
+    <div class="g-grid">
+      <div class="g-card" onclick="toast('Pattern Recognition','Game launching — +50 XP per round ✦')">
+        <div class="g-thumb gt-p">
+          <svg width="110" height="75" viewBox="0 0 110 75"><rect x="8" y="28" width="9" height="28" rx="2" fill="#F4829A"/><line x1="12.5" y1="16" x2="12.5" y2="28" stroke="#F9B8C6" stroke-width="2"/><line x1="12.5" y1="56" x2="12.5" y2="66" stroke="#F9B8C6" stroke-width="2"/><rect x="26" y="16" width="9" height="40" rx="2" fill="#7ECEC4"/><line x1="30.5" y1="7" x2="30.5" y2="16" stroke="#B2E4DF" stroke-width="2"/><line x1="30.5" y1="56" x2="30.5" y2="65" stroke="#B2E4DF" stroke-width="2"/><rect x="44" y="22" width="9" height="26" rx="2" fill="#F4829A"/><rect x="62" y="10" width="9" height="42" rx="2" fill="#7ECEC4"/><rect x="80" y="6" width="9" height="36" rx="2" fill="#F5A857"/></svg>
+        </div>
+        <div class="g-inf">
+          <div class="g-tags"><span class="g-tag gt-av">Available</span><span class="g-tag gt-nw">Level 1+</span></div>
+          <div class="g-ttl">Pattern Recognition</div>
+          <div class="g-desc">Candles flash. You call it. Speed round. The faster your eye learns, the more XP you earn.</div>
+          <div class="g-foot"><div><div class="g-xp">+50 XP per round</div><div class="g-lv2">Unlocked at Level 1</div></div><button class="g-btn gb-p">Play now</button></div>
+        </div>
+      </div>
+      <div class="g-card" onclick="toast('Stress Meter','Game launching — +75 XP per round ✦')">
+        <div class="g-thumb gt-t"><svg width="110" height="75" viewBox="0 0 110 75"><rect x="46" y="8" width="18" height="58" rx="9" fill="#E8F8F6" stroke="#9FE1CB" stroke-width="1.5"/><rect x="49" y="28" width="12" height="34" rx="6" fill="#7ECEC4"/><circle cx="55" cy="28" r="8" fill="#7ECEC4"/></svg></div>
+        <div class="g-inf">
+          <div class="g-tags"><span class="g-tag gt-av">Available</span><span class="g-tag gt-nw">Level 2+</span></div>
+          <div class="g-ttl">Stress Meter</div>
+          <div class="g-desc">Price moves fast. Your stress rises. Stay green, make the right call. Emotional discipline is the skill.</div>
+          <div class="g-foot"><div><div class="g-xp">+75 XP per round</div><div class="g-lv2">Unlocked at Level 2</div></div><button class="g-btn gb-t">Play now</button></div>
+        </div>
+      </div>
+      <div class="g-card" onclick="toast('OG Line Spotter','Game launching — +60 XP per round ✦')">
+        <div class="g-thumb gt-t"><svg width="110" height="75" viewBox="0 0 110 75"><line x1="8" y1="42" x2="102" y2="42" stroke="#F4829A" stroke-width="1.5" stroke-dasharray="5 3"/><rect x="20" y="48" width="8" height="16" rx="2" fill="#9FE1CB"/><rect x="36" y="44" width="8" height="12" rx="2" fill="#9FE1CB"/><rect x="52" y="28" width="10" height="42" rx="2" fill="#0F6E56"/><circle cx="57" cy="42" r="5" fill="none" stroke="#F5A857" stroke-width="1.5"/><rect x="70" y="22" width="8" height="28" rx="2" fill="#0F6E56"/></svg></div>
+        <div class="g-inf">
+          <div class="g-tags"><span class="g-tag gt-av">Available</span><span class="g-tag gt-nw">Level 2+</span></div>
+          <div class="g-ttl">OG Line Spotter</div>
+          <div class="g-desc">A chart loads. Tap where the pre-indication level is. Miss it and it shows you exactly why.</div>
+          <div class="g-foot"><div><div class="g-xp">+60 XP per round</div><div class="g-lv2">Unlocked at Level 2</div></div><button class="g-btn gb-t">Play now</button></div>
+        </div>
+      </div>
+      <div class="g-card g-lk">
+        <div class="g-thumb gt-u"><svg width="110" height="75" viewBox="0 0 110 75"><rect x="43" y="26" width="24" height="18" rx="4" fill="#EEEDFE" stroke="#CECBF6" stroke-width="1"/><path d="M47 26 v-6 a8 8 0 0 1 16 0 v6" stroke="#AFA9EC" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="51" y="34" width="8" height="6" rx="2" fill="#AFA9EC"/></svg></div>
+        <div class="g-inf">
+          <div class="g-tags"><span class="g-tag gt-lk">Locked</span><span class="g-tag gt-lk">Level 3+</span></div>
+          <div class="g-ttl">ICC Sequence</div>
+          <div class="g-desc">A real chart. Identify Indication, Correction, Continuation in order. All three or no XP.</div>
+          <div class="g-foot"><div><div class="g-xp">+100 XP per round</div><div class="g-lv2">Reach Level 3 to unlock</div></div><button class="g-btn gb-lk" disabled>Locked</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="day-strip">
+      <div class="ds-hd"><div class="ds-ttl">Today's challenges</div><div class="ds-tm">Resets in <span>8h 42m</span></div></div>
+      <div class="ch-row"><div class="ch-c ch-dn">✓</div><div class="ch-tx">Complete 1 round of Pattern Recognition</div><div class="ch-xp">+25 XP done</div></div>
+      <div class="ch-row" onclick="toast('Challenge started!','Score 80%+ to earn +40 XP')"><div class="ch-c ch-td"></div><div class="ch-tx">Score 80%+ on Stress Meter</div><div class="ch-xp">+40 XP</div></div>
+      <div class="ch-row" onclick="go('s-lesson')"><div class="ch-c ch-td"></div><div class="ch-tx">Finish one lesson</div><div class="ch-xp">+30 XP</div></div>
+      <div class="ch-row" onclick="toast('Challenge started!','Spot 3 OG Lines correctly')"><div class="ch-c ch-td"></div><div class="ch-tx">Spot 3 OG Lines correctly in a row</div><div class="ch-xp">+50 XP</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="plt" id="s-leaderboard">
+  <div class="sb"><div class="sb-logo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div><div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · She's Brand New</div></div></div><div class="sb-sec">Learn</div><div class="sb-item" onclick="go('s-dashboard')"><span class="sb-ico">⌂</span> Dashboard</div><div class="sb-item" onclick="go('s-lessons')"><span class="sb-ico">✦</span> Lessons</div><div class="sb-item" onclick="go('s-games')"><span class="sb-ico">◈</span> Games</div><div class="sb-sec">Community</div><div class="sb-item active" onclick="go('s-leaderboard')"><span class="sb-ico">↑</span> Leaderboard</div><div class="sb-item" onclick="go('s-store')"><span class="sb-ico">◇</span> Drip Store</div><div class="sb-sec">Account</div><div class="sb-item" onclick="go('s-profile')"><span class="sb-ico">○</span> My Profile</div><div class="sb-bot"><div class="xp-box"><div class="xp-top"><span class="xp-lbl">XP</span><span class="xp-val">380 / 1000</span></div><div class="xp-track"><div class="xp-fill"></div></div></div></div></div>
+  <div class="main">
+    <div class="pg-eye">✦ Weekly Rankings</div>
+    <div class="pg-title" style="margin-bottom:5px;">Leaderboard</div>
+    <p style="font-size:.91rem;color:var(--muted);margin-bottom:22px;">Top traders this week. Show up, stack XP, climb.</p>
+    <div class="lb-full">
+      <div style="font-family:'Playfair Display',serif;font-size:.94rem;font-weight:700;color:var(--dark);margin-bottom:13px;">This week's top traders</div>
+      <div class="lbf-r"><div class="lbf-rk gld">1</div><div class="lbf-av av-t">SK</div><div class="lbf-nm"><div class="lbf-hd">@skye.trades</div><div class="lbf-lv">Level 3 · She's In Structure</div></div><div class="lbf-xp">2,840 XP</div></div>
+      <div class="lbf-r"><div class="lbf-rk slv">2</div><div class="lbf-av av-p">MR</div><div class="lbf-nm"><div class="lbf-hd">@mia.in.structure</div><div class="lbf-lv">Level 3 · She's In Structure</div></div><div class="lbf-xp">2,210 XP</div></div>
+      <div class="lbf-r"><div class="lbf-rk brz">3</div><div class="lbf-av av-c">JL</div><div class="lbf-nm"><div class="lbf-hd">@justine.l</div><div class="lbf-lv">Level 3 · She's In Structure</div></div><div class="lbf-xp">1,980 XP</div></div>
+      <div class="lbf-r"><div class="lbf-rk">4</div><div class="lbf-av av-t">AK</div><div class="lbf-nm"><div class="lbf-hd">@ash.khadra</div><div class="lbf-lv">Level 2 · Structure Student</div></div><div class="lbf-xp">1,640 XP</div></div>
+      <div class="lbf-r"><div class="lbf-rk">5</div><div class="lbf-av av-p">NB</div><div class="lbf-nm"><div class="lbf-hd">@naya.b</div><div class="lbf-lv">Level 2 · Structure Student</div></div><div class="lbf-xp">1,420 XP</div></div>
+      <div class="lbf-r"><div class="lbf-rk">6</div><div class="lbf-av av-c">CW</div><div class="lbf-nm"><div class="lbf-hd">@cam.wins</div><div class="lbf-lv">Level 2 · Structure Student</div></div><div class="lbf-xp">1,180 XP</div></div>
+      <div class="lbf-r"><div class="lbf-rk">7</div><div class="lbf-av">TR</div><div class="lbf-nm"><div class="lbf-hd">@trin.r</div><div class="lbf-lv">Level 1 · She's Brand New</div></div><div class="lbf-xp">920 XP</div></div>
+      <div class="lbf-r"><div class="lbf-rk">8</div><div class="lbf-av av-t">SL</div><div class="lbf-nm"><div class="lbf-hd">@sara.learns</div><div class="lbf-lv">Level 1 · She's Brand New</div></div><div class="lbf-xp">710 XP</div></div>
+      <div class="lbf-r"><div class="lbf-rk">9</div><div class="lbf-av av-c">KM</div><div class="lbf-nm"><div class="lbf-hd">@k.mack</div><div class="lbf-lv">Level 1 · She's Brand New</div></div><div class="lbf-xp">580 XP</div></div>
+      <div class="lbf-r"><div class="lbf-rk">10</div><div class="lbf-av">PP</div><div class="lbf-nm"><div class="lbf-hd">@priya.p</div><div class="lbf-lv">Level 1 · She's Brand New</div></div><div class="lbf-xp">440 XP</div></div>
+      <div class="lb-you lbf-r"><div class="lbf-rk" style="color:var(--pink)">11</div><div class="lbf-av av-p">D</div><div class="lbf-nm"><div class="lbf-hd">@dayli (you)</div><div class="lbf-lv">Level 1 · She's Brand New</div></div><div class="lbf-xp">380 XP</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="plt" id="s-store">
+  <div class="sb"><div class="sb-logo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div><div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · She's Brand New</div></div></div><div class="sb-sec">Learn</div><div class="sb-item" onclick="go('s-dashboard')"><span class="sb-ico">⌂</span> Dashboard</div><div class="sb-item" onclick="go('s-lessons')"><span class="sb-ico">✦</span> Lessons</div><div class="sb-item" onclick="go('s-games')"><span class="sb-ico">◈</span> Games</div><div class="sb-sec">Community</div><div class="sb-item" onclick="go('s-leaderboard')"><span class="sb-ico">↑</span> Leaderboard</div><div class="sb-item active" onclick="go('s-store')"><span class="sb-ico">◇</span> Drip Store</div><div class="sb-sec">Account</div><div class="sb-item" onclick="go('s-profile')"><span class="sb-ico">○</span> My Profile</div><div class="sb-bot"><div class="xp-box"><div class="xp-top"><span class="xp-lbl">XP</span><span class="xp-val">380 / 1000</span></div><div class="xp-track"><div class="xp-fill"></div></div></div></div></div>
+  <div class="main">
+    <div class="pg-eye">✦ Spend your XP</div>
+    <div class="pg-title" style="margin-bottom:5px;">Drip Store</div>
+    <p style="font-size:.91rem;color:var(--muted);margin-bottom:18px;">The more you learn, the more drip you unlock. Knowledge is the flex.</p>
+    <div class="xp-avail">
+      <div class="xa-inf"><div class="xa-ttl">Your available XP</div><div class="xa-sub">Earned from lessons, games, and daily challenges</div></div>
+      <div class="xa-val">380 XP</div>
+    </div>
+    <div class="drip-g">
+      <div class="drip-c" onclick="toast('Dayli Pink Frame unlocked!','Equipped to your profile ✦')"><div class="drip-ico">🌸</div><div class="drip-nm">Dayli Pink Frame</div><div class="drip-ds">A soft pink border for your avatar. Classic AG&amp;HF energy.</div><div class="drip-cost">✦ 200 XP</div><button class="drip-btn">Unlock</button></div>
+      <div class="drip-c" onclick="toast('Structure Badge added!','Showing on leaderboard ✦')"><div class="drip-ico">📊</div><div class="drip-nm">Structure Badge</div><div class="drip-ds">Display your structure knowledge on the leaderboard.</div><div class="drip-cost">✦ 150 XP</div><button class="drip-btn">Unlock</button></div>
+      <div class="drip-c" onclick="toast('OG Line Golden equipped!','Looking gold on the sim ✦')"><div class="drip-ico">✦</div><div class="drip-nm">OG Line Golden</div><div class="drip-ds">Gold accents for your pre-indication levels in the sim.</div><div class="drip-cost">✦ 300 XP</div><button class="drip-btn">Unlock</button></div>
+      <div class="drip-c" onclick="toast('ICC Title added!','Custom title on leaderboard ✦')"><div class="drip-ico">🎯</div><div class="drip-nm">ICC Sequence Title</div><div class="drip-ds">Custom title showing your ICC knowledge on the leaderboard.</div><div class="drip-cost">✦ 500 XP</div><button class="drip-btn">Unlock</button></div>
+      <div class="drip-c" onclick="toast('Teal Candle Theme!','Charts now in AG&amp;HF teal ✦')"><div class="drip-ico">🕯️</div><div class="drip-nm">Teal Candle Theme</div><div class="drip-ds">Customize your chart candle colors to AG&amp;HF teal and pink.</div><div class="drip-cost">✦ 400 XP</div><button class="drip-btn">Unlock</button></div>
+      <div class="drip-c" onclick="toast('She's In Structure Trophy!','Rare. Earned not bought ✦')"><div class="drip-ico">🏆</div><div class="drip-nm">She's In Structure Trophy</div><div class="drip-ds">Exclusive to Level 3 graduates. Rare. Earned — not bought.</div><div class="drip-cost">✦ 1000 XP</div><button class="drip-btn">Unlock</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="plt" id="s-profile">
+  <div class="sb"><div class="sb-logo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div><div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · She's Brand New</div></div></div><div class="sb-sec">Learn</div><div class="sb-item" onclick="go('s-dashboard')"><span class="sb-ico">⌂</span> Dashboard</div><div class="sb-item" onclick="go('s-lessons')"><span class="sb-ico">✦</span> Lessons</div><div class="sb-item" onclick="go('s-games')"><span class="sb-ico">◈</span> Games</div><div class="sb-sec">Community</div><div class="sb-item" onclick="go('s-leaderboard')"><span class="sb-ico">↑</span> Leaderboard</div><div class="sb-item" onclick="go('s-store')"><span class="sb-ico">◇</span> Drip Store</div><div class="sb-sec">Account</div><div class="sb-item active" onclick="go('s-profile')"><span class="sb-ico">○</span> My Profile</div><div class="sb-bot"><div class="xp-box"><div class="xp-top"><span class="xp-lbl">XP</span><span class="xp-val">380 / 1000</span></div><div class="xp-track"><div class="xp-fill"></div></div></div></div></div>
+  <div class="main">
+    <div class="pg-eye">✦ Your account</div>
+    <div class="pg-title">My Profile</div>
+    <div class="prof-card">
+      <div class="prof-hdr">
+        <div class="prof-av">D</div>
+        <div>
+          <div class="prof-nm">Dayli</div>
+          <div class="prof-lv">Level 1 · She's Brand New</div>
+          <div class="prof-bdg">✦ She's Brand New</div>
+        </div>
+      </div>
+      <div class="prof-stats">
+        <div class="ps-c"><div class="ps-l">Total XP</div><div class="ps-v" style="color:var(--peach)">380</div></div>
+        <div class="ps-c"><div class="ps-l">Lessons</div><div class="ps-v" style="color:var(--pink)">1</div></div>
+        <div class="ps-c"><div class="ps-l">Streak</div><div class="ps-v" style="color:var(--teal)">3 🔥</div></div>
+      </div>
+      <div style="background:var(--cream);border-radius:11px;padding:13px 16px;">
+        <div style="font-size:.8rem;font-weight:600;color:var(--dark);margin-bottom:5px;">Level progress</div>
+        <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom:7px;"><span>380 XP earned</span><span>1,000 XP to Level 1.5</span></div>
+        <div style="height:7px;background:var(--pink-pale);border-radius:100px;overflow:hidden;"><div style="height:100%;width:38%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;"></div></div>
+      </div>
+    </div>
+    <div class="bill-card">
+      <div class="bill-top"><div class="bill-ttl">AG&amp;HF Trading Academy</div><div class="bill-st">Active ✓</div></div>
+      <div class="bill-pr">$14.99<span>/month</span></div>
+      <div class="bill-ren">Next billing date: May 8, 2026</div>
+      <button class="bill-btn" onclick="toast('Billing portal','Opening subscription management...')">Manage subscription</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function go(id) {
+  document.querySelectorAll(".scr").forEach(s => s.classList.remove("on"));
+  document.querySelectorAll(".plt").forEach(s => s.classList.remove("on"));
+  const el = document.getElementById(id);
+  if (el) { el.classList.add("on"); window.scrollTo(0,0); }
+}
+
+function toast(ttl, sub) {
+  document.getElementById("tttl").textContent = ttl;
+  document.getElementById("tsub").textContent = sub;
+  const t = document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 3200);
+}
+
+function payOk() {
+  confetti();
+  setTimeout(() => go("s-success"), 500);
+}
+
+function completeLsn() {
+  toast("+50 XP earned!", "Lesson 2 complete ✦");
+  setTimeout(() => go("s-lessons"), 1800);
+}
+
+function confetti() {
+  const cols = ["#F4829A","#7ECEC4","#F5A857","#F9B8C6","#B2E4DF"];
+  for (let i = 0; i < 45; i++) {
+    const p = document.createElement("div");
+    p.className = "cfp";
+    const size = 6 + Math.random() * 8;
+    p.style.cssText = `left:${10+Math.random()*80}vw;top:-10px;width:${size}px;height:${size}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${Math.random()>.5?"50%":"2px"};animation:cf ${.8+Math.random()}s ${Math.random()*.5}s linear both;`;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 2500);
+  }
+}
+</script>
+</body></html>

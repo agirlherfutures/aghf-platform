@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AG&HF Phase 1 Lessons</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F4829A;--pl:#F9B8C6;--pp:#FDE8ED;
+  --teal:#7ECEC4;--tl:#B2E4DF;--tp:#E8F8F6;
+  --peach:#F5A857;--cl:#FAD09A;--cp:#FEF3E4;
+  --cream:#FDF8F5;--warm:#FFFBF9;--dark:#2C1810;--text:#3D2B20;--muted:#7A5C50;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text)}
+.page{display:grid;grid-template-columns:300px 1fr;min-height:100vh}
+.side{background:#fff;border-right:1px solid rgba(244,130,154,.12);padding:24px 20px;position:sticky;top:0;height:100vh;overflow:auto}
+.logo{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:var(--pink);margin-bottom:18px}
+.logo span{color:var(--teal)}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--pp);border:1px solid var(--pl);color:var(--pink);padding:8px 14px;border-radius:999px;font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+.side h1{font-family:'Playfair Display',serif;font-size:1.75rem;line-height:1.05;color:var(--dark);margin-bottom:10px}
+.side p{font-size:.88rem;line-height:1.7;color:var(--muted);margin-bottom:18px}
+.rule{background:var(--dark);color:#fff;border-radius:18px;padding:18px;margin-bottom:18px}
+.rule h3{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pl);margin-bottom:10px}
+.rule ul{list-style:none;display:grid;gap:8px}
+.rule li{font-size:.84rem;line-height:1.55;color:rgba(255,255,255,.82)}
+.section-nav{display:grid;gap:10px;margin-top:14px}
+.nav-btn{background:var(--warm);border:1px solid rgba(244,130,154,.14);border-radius:14px;padding:12px 14px;cursor:pointer;text-align:left;transition:.2s}
+.nav-btn:hover,.nav-btn.active{border-color:var(--pink);background:var(--pp)}
+.nav-btn small{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
+.nav-btn strong{display:block;font-size:.9rem;color:var(--dark)}
+.main{padding:34px 38px 48px}
+.hero{background:#fff;border:1px solid rgba(244,130,154,.12);border-radius:24px;padding:28px 30px;margin-bottom:22px;box-shadow:0 8px 30px rgba(244,130,154,.05)}
+.hero .ey{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-bottom:8px}
+.hero h2{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.05;color:var(--dark);margin-bottom:10px}
+.hero p{font-size:.94rem;line-height:1.8;color:var(--muted);max-width:900px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.metric{background:var(--cream);border:1px solid rgba(244,130,154,.08);border-radius:16px;padding:16px}
+.metric .l{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.metric .v{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--dark);font-weight:900}
+.metric .s{font-size:.76rem;color:var(--muted);margin-top:4px}
+.cards{display:grid;gap:16px}
+.sec-block{display:none}
+.sec-block.active{display:grid;gap:16px}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:20px}
+.sec-head h3{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--dark)}
+.sec-head p{font-size:.88rem;line-height:1.7;color:var(--muted);max-width:780px}
+.lesson-card{background:#fff;border:1px solid rgba(244,130,154,.12);border-radius:22px;padding:20px 22px;box-shadow:0 4px 18px rgba(244,130,154,.05)}
+.lesson-top{display:flex;justify-content:space-between;gap:18px;align-items:start;margin-bottom:14px}
+.lesson-num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;font-weight:700;flex-shrink:0}
+.lesson-title-wrap{flex:1}
+.lesson-kicker{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.lesson-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--dark);margin-bottom:6px}
+.lesson-desc{font-size:.87rem;line-height:1.7;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-size:.68rem;font-weight:700;padding:5px 10px;border-radius:999px;letter-spacing:.04em}
+.t1{background:var(--pp);color:var(--pink)}.t2{background:var(--tp);color:var(--teal)}.t3{background:var(--cp);color:var(--peach)}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px}
+.box{border-radius:18px;padding:16px 16px 18px}
+.box h4{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.box p{font-size:.84rem;line-height:1.65}
+.teach{background:#fff7f9;border:1px solid var(--pl)}
+.teach h4{color:var(--pink)}
+.exp{background:#f5fcfb;border:1px solid var(--tl)}
+.exp h4{color:var(--teal)}
+.rein{background:#fffaf3;border:1px solid var(--cl)}
+.rein h4{color:var(--peach)}
+.dayli{margin-top:12px;background:var(--dark);border-radius:16px;padding:15px 16px;color:#fff;position:relative;overflow:hidden}
+.dayli:after{content:'✦';position:absolute;right:12px;bottom:-18px;font-size:72px;color:rgba(244,130,154,.08);font-family:'Playfair Display',serif}
+.dayli small{display:block;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pl);margin-bottom:8px}
+.dayli p{font-family:'Playfair Display',serif;font-style:italic;font-size:.92rem;line-height:1.7;color:rgba(255,255,255,.88)}
+.core{margin-top:12px;background:linear-gradient(135deg,rgba(126,206,196,.12),rgba(245,168,87,.10));border:1px solid rgba(126,206,196,.25);border-radius:16px;padding:14px 16px}
+.core strong{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:7px}
+.core ul{list-style:none;display:grid;gap:7px}
+.core li{font-size:.83rem;line-height:1.6;color:var(--text)}
+.footer-note{margin-top:20px;background:#fff;border:1px dashed rgba(244,130,154,.28);border-radius:18px;padding:18px;font-size:.88rem;line-height:1.7;color:var(--muted)}
+@media (max-width:1100px){.page{grid-template-columns:1fr}.side{position:relative;height:auto}.metrics,.flow{grid-template-columns:1fr}.main{padding:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <aside class="side">
+    <div class="logo">A Girl &amp; <span>Her Futures</span>™</div>
+    <div class="badge">✦ Phase 1 coded</div>
+    <h1>Foundation lessons<br>ready for the site</h1>
+    <p>This is the Phase 1 lesson system built in your teaching format so each lesson follows the same teaching rhythm before we move into structure.</p>
+    <div class="rule">
+      <h3>Core rule</h3>
+      <ul>
+        <li>Teach quick and clear</li>
+        <li>Let them interact</li>
+        <li>Reinforce what just happened</li>
+        <li>Keep every interaction tied to understanding, correction, confidence, or dopamine</li>
+      </ul>
+    </div>
+    <div class="section-nav" id="nav"></div>
+  </aside>
+
+  <main class="main">
+    <section class="hero">
+      <div class="ey">🫧 Phase 1 · Foundation</div>
+      <h2>Beginner clarity before structure.</h2>
+      <p>This phase takes a complete beginner from “what is trading?” to “I understand what I’m looking at, how money moves, and how charts communicate behavior.” Every lesson is broken into <strong>teach → experience → reinforce</strong> so nothing feels bloated or random.</p>
+      <div class="metrics">
+        <div class="metric"><div class="l">Sections</div><div class="v">3</div><div class="s">Trading foundations, platform basics, chart fundamentals</div></div>
+        <div class="metric"><div class="l">Lessons</div><div class="v">16</div><div class="s">All mapped for direct site integration</div></div>
+        <div class="metric"><div class="l">Method</div><div class="v">T → E → R</div><div class="s">Teach, experience, reinforce</div></div>
+        <div class="metric"><div class="l">Goal</div><div class="v">ICC-ready</div><div class="s">Quietly prepares users for the Dayli ICC method</div></div>
+      </div>
+    </section>
+
+    <div class="cards" id="cards"></div>
+    <div class="footer-note">
+      This file is structured so you can now build each lesson as its own interactive page using the same AG&amp;HF lesson shell you already approved. Phase 1 is now locked at the curriculum level. The next move is Phase 2, where we make the structure explanations fully Dayli-coded.
+    </div>
+  </main>
+</div>
+
+<script>
+const sections = [
+  {
+    id:'s1',
+    label:'Section 1',
+    title:'Trading Foundations',
+    summary:'Teach what trading actually is before the student ever tries to understand structure or entries.',
+    lessons:[
+      {
+        no:1,
+        title:'What is trading?',
+        desc:'The first click. Trading is buyers and sellers disagreeing on price, not magic and not guessing.',
+        tags:['Foundation','Core concept','Phase opener'],
+        teach:'Trading is simply buyers and sellers disagreeing on price. Buyers think price will go up. Sellers think price will go down. That disagreement is what creates movement.',
+        experience:'Long or Short animation. The learner chooses a side, watches price play out, and sees live P&L update so they feel what directional participation actually means.',
+        reinforce:'Price did not move randomly. One side won. The lesson is not “be right.” The lesson is “price moves because control shifts.”',
+        note:'Every beginner needs this first because if they don’t understand that price is just disagreement being printed, the chart will always feel like chaos.',
+        core:['Reinforces understanding','Builds confidence','Creates dopamine hit when read correctly']
+      },
+      {
+        no:2,
+        title:'Why markets exist',
+        desc:'Explain why we even have a market in the first place so trading feels grounded, not abstract.',
+        tags:['Foundation','Context'],
+        teach:'Markets exist because people need somewhere to exchange value, risk, and opportunity. One side wants in. One side wants out. Without exchange, there is no movement.',
+        experience:'Scenario sort. Users match who needs the market and why: hedger, speculator, institution, retail trader. Short explanations reveal after each choice.',
+        reinforce:'The market is not random entertainment. It exists because participants need a place to transact. That transaction is what gives price life.',
+        note:'This is where you calm the beginner down. They stop thinking the market is some mysterious thing and start seeing it as a system of exchange.',
+        core:['Reinforces understanding','Corrects misconception']
+      },
+      {
+        no:3,
+        title:'Buyers vs sellers',
+        desc:'The cleanest explanation of what every candle is really showing.',
+        tags:['Foundation','Behavior'],
+        teach:'Buyers push price up. Sellers push price down. Every candle is evidence of which side had more power during that time period.',
+        experience:'Who’s in control micro-checks. Show a candle or short burst of candles and ask whether buyers or sellers had control. Instant feedback only.',
+        reinforce:'You are not predicting. You are observing control. Trading gets simpler the moment you stop trying to be psychic and start reading behavior.',
+        note:'This is one of your biggest simplifiers. The chart becomes a conversation, not a puzzle.',
+        core:['Reinforces understanding','Builds confidence']
+      },
+      {
+        no:4,
+        title:'Contracts and instruments',
+        desc:'Break down what they are actually trading so they stop thinking they are “buying candles.”',
+        tags:['Foundation','Mechanics'],
+        teach:'In futures you are trading contracts, not owning the asset. Instruments like MNQ, ES, MES, and MGC each have their own behavior and dollar value per move.',
+        experience:'Contract match game. Users pair instrument names with simple descriptions, point values, and beginner friendliness.',
+        reinforce:'Futures equals movement. Stocks equals ownership. If they miss that difference, everything after this gets muddy.',
+        note:'Keep this beginner-clean. We don’t need a huge lecture. We just need enough for them to understand what they’re touching.',
+        core:['Reinforces understanding','Corrects misconception']
+      },
+      {
+        no:5,
+        title:'Futures vs stocks',
+        desc:'Show why futures traders focus on movement and behavior instead of ownership and attachment.',
+        tags:['Foundation','Comparison'],
+        teach:'Stocks are about ownership. Futures are about movement. In futures, you care about direction, contract size, and risk — not “holding the company.”',
+        experience:'Ownership or movement challenge. Learners identify whether a scenario is stock thinking or futures thinking.',
+        reinforce:'This is why futures traders can profit on red days and green days. They are reading direction, not emotionally attaching to an asset.',
+        note:'This lesson quietly sets up the “shorting is normal” mindset early so the learner doesn’t fear downside movement later.',
+        core:['Reinforces understanding','Corrects misconception','Builds confidence']
+      },
+      {
+        no:6,
+        title:'Points, ticks, and P&L',
+        desc:'Make money movement tangible before they ever place a trade.',
+        tags:['Foundation','Money'],
+        teach:'Price movement is measured. Points and ticks convert directly into money. The move may be the same, but contract size changes the result fast.',
+        experience:'Live tick and P&L lab. User changes instrument, points, and contract size while the P&L counter updates in real time.',
+        reinforce:'Same move, different contract size, different outcome. That is why risk is not optional. Risk is math before emotion.',
+        note:'This is the lesson that starts making beginners respect size. It keeps them from romanticizing big contracts too early.',
+        core:['Reinforces understanding','Builds confidence','Creates dopamine hit']
+      }
+    ]
+  },
+  {
+    id:'s2',
+    label:'Section 2',
+    title:'Platform + Execution Basics',
+    summary:'Give the learner just enough platform literacy and order understanding to keep them from pressing buttons blindly.',
+    lessons:[
+      {
+        no:7,
+        title:'What is TradingView?',
+        desc:'Introduce charting as a workspace, not just an app.',
+        tags:['Platform','Setup'],
+        teach:'TradingView is the workspace where you read price, switch timeframes, and mark levels. It is where your charting decisions live.',
+        experience:'Click-to-label chart layout. Users identify candles, watchlist, timeframe row, and drawing tools.',
+        reinforce:'The learner should leave feeling like the chart platform is familiar, not intimidating. It is a workspace for reading behavior.',
+        note:'The point here is comfort. The cleaner their workspace feels, the easier it is for your teaching to land.',
+        core:['Builds confidence','Corrects misconception']
+      },
+      {
+        no:8,
+        title:'Brokers and prop firms',
+        desc:'Clarify the environment they are trading inside.',
+        tags:['Platform','Environment'],
+        teach:'A broker gives you direct market access. A prop firm gives you a rules-based environment with funded capital if you qualify. Both matter, but they are not the same.',
+        experience:'Sort the statement game. Users drag facts into “broker” or “prop firm” columns.',
+        reinforce:'Where you trade changes the rules you must follow. That means environment matters just as much as strategy.',
+        note:'Keep this practical and non-intimidating. The goal is awareness, not deep industry education.',
+        core:['Reinforces understanding','Corrects misconception']
+      },
+      {
+        no:9,
+        title:'Market orders vs limit orders',
+        desc:'Teach order types with discipline in mind.',
+        tags:['Execution','Orders'],
+        teach:'A market order enters right now at the best available price. A limit order waits for your chosen price. One is immediate. One is intentional.',
+        experience:'Scenario tap. Learner chooses which order type fits a pullback entry, a chase, or a clean retest setup.',
+        reinforce:'Order type is not just mechanics. It reflects discipline. The more structured the setup, the more intentional the order should be.',
+        note:'This is where your style starts peeking through because your method rewards structure and patience, not random pressing.',
+        core:['Reinforces understanding','Corrects misconception']
+      },
+      {
+        no:10,
+        title:'Stop loss and take profit',
+        desc:'Make risk control normal before trading ever becomes emotional.',
+        tags:['Execution','Risk'],
+        teach:'A stop loss defines what you are willing to lose if price proves you wrong. A take profit defines where you plan to realize reward. Every trade needs structure before entry.',
+        experience:'Place the stop and target activity. Users set a stop too tight, too loose, or structure-based and see the result.',
+        reinforce:'Risk is decided before the trade, not during the panic. Your stop and target are part of the setup, not afterthoughts.',
+        note:'Keep emphasizing that a stop loss is not weakness. It is professionalism.',
+        core:['Reinforces understanding','Corrects misconception']
+      },
+      {
+        no:11,
+        title:'Position sizing',
+        desc:'Show that size controls pressure, not just profit.',
+        tags:['Execution','Money'],
+        teach:'Position size determines how heavy a trade feels emotionally. Too much size turns a good setup into bad decision-making.',
+        experience:'Size slider with stress meter. As position size rises, emotional pressure and risk indicators rise too.',
+        reinforce:'Being right is not enough. You need position sizing that lets you stay calm enough to follow your rules.',
+        note:'This lesson helps protect the beginner version of them from the future reckless version of them.',
+        core:['Corrects misconception','Builds confidence']
+      }
+    ]
+  },
+  {
+    id:'s3',
+    label:'Section 3',
+    title:'Chart Fundamentals',
+    summary:'Turn the chart from a pretty visual into a readable language the student can actually understand.',
+    lessons:[
+      {
+        no:12,
+        title:'What is a candlestick?',
+        desc:'Introduce the candle as a time-based record of behavior.',
+        tags:['Charts','Foundation'],
+        teach:'Each candlestick records what price did during one time period. It is a visual record of the battle between buyers and sellers.',
+        experience:'Candle labeling game. Users identify bullish, bearish, doji, hammer, and rejection-based candles.',
+        reinforce:'Candles are not decoration. They are behavior recorded. When you read them correctly, the chart stops feeling random.',
+        note:'This lesson should feel like the chart opening up for the first time.',
+        core:['Reinforces understanding','Builds confidence','Creates dopamine hit']
+      },
+      {
+        no:13,
+        title:'Candle anatomy',
+        desc:'Make every part of a candle mean something.',
+        tags:['Charts','Core language'],
+        teach:'Every candle has an open, high, low, and close. The body shows where price settled. The wick shows where price went and got rejected.',
+        experience:'Drag-and-label candle anatomy interaction. Users place open, high, low, close, body, and wick correctly.',
+        reinforce:'If they know anatomy, they can start reading intent. Anatomy is what makes later structure lessons easier to understand.',
+        note:'This is foundational to your close-vs-wick logic later.',
+        core:['Reinforces understanding','Corrects misconception']
+      },
+      {
+        no:14,
+        title:'Candle psychology',
+        desc:'Teach what candles imply, not just what they are called.',
+        tags:['Charts','Behavior'],
+        teach:'A strong body shows commitment. A long wick shows rejection. The candle tells you not only what happened, but how conviction showed up during that time.',
+        experience:'Acceptance vs rejection micro-checks. Learners identify which candle shows commitment and which one only tested a level.',
+        reinforce:'This is where “close beats wick” starts becoming real. A wick can test. A close commits. That difference matters later in ICC.',
+        note:'This lesson is one of your bridges into Phase 2 and Phase 5 because it starts training them to care about closes.',
+        core:['Reinforces understanding','Corrects misconception']
+      },
+      {
+        no:15,
+        title:'Timeframes',
+        desc:'Explain why one chart is not enough and why not every timeframe is used for the same reason.',
+        tags:['Charts','Framework'],
+        teach:'A timeframe changes how much of the story you are seeing at once. Higher timeframes show broader structure. Lower timeframes show finer detail.',
+        experience:'Match the timeframe use case. Learners choose which timeframe fits broad story, structure, or detail.',
+        reinforce:'Not all timeframes are used for the same reason. A mismatch in timeframe purpose creates confusion fast.',
+        note:'Keep it simple. The goal is understanding role, not overwhelming them with every timeframe on the platform.',
+        core:['Reinforces understanding','Builds confidence']
+      },
+      {
+        no:16,
+        title:'Multi-timeframe concept',
+        desc:'Introduce the hierarchy that later feeds straight into the Dayli ICC method.',
+        tags:['Charts','ICC bridge'],
+        teach:'The higher timeframe tells the larger story. The middle timeframe gives structure. The lower timeframe gives detail and later execution. They should work together, not compete.',
+        experience:'Timeframe stack builder. Users assign 4H, 1H, and 1M roles based on what they are trying to understand.',
+        reinforce:'This is the first quiet handoff into your method. They do not need full ICC yet. They just need to understand that timeframes have jobs.',
+        note:'This is the lesson that prepares them for your “4H bias, 1H structure, 1M execution” logic without dumping it too early.',
+        core:['Reinforces understanding','Builds confidence','Corrects misconception']
+      }
+    ]
+  }
+];
+
+const cards = document.getElementById('cards');
+const nav = document.getElementById('nav');
+
+function tagClass(i){ return ['t1','t2','t3'][i%3]; }
+
+sections.forEach((section, idx)=>{
+  const btn = document.createElement('button');
+  btn.className = 'nav-btn' + (idx===0?' active':'');
+  btn.innerHTML = `<small>${section.label}</small><strong>${section.title}</strong>`;
+  btn.onclick = ()=>showSection(section.id, btn);
+  nav.appendChild(btn);
+
+  const wrap = document.createElement('section');
+  wrap.className = 'sec-block' + (idx===0?' active':'');
+  wrap.id = section.id;
+  wrap.innerHTML = `
+    <div class="sec-head">
+      <div>
+        <div class="badge" style="margin-bottom:10px">${section.label}</div>
+        <h3>${section.title}</h3>
+      </div>
+      <p>${section.summary}</p>
+    </div>
+  `;
+
+  section.lessons.forEach(lesson=>{
+    const tags = lesson.tags.map((t,i)=>`<span class="tag ${tagClass(i)}">${t}</span>`).join('');
+    const core = lesson.core.map(c=>`<li>• ${c}</li>`).join('');
+    const card = document.createElement('article');
+    card.className = 'lesson-card';
+    card.innerHTML = `
+      <div class="lesson-top">
+        <div class="lesson-num">${lesson.no}</div>
+        <div class="lesson-title-wrap">
+          <div class="lesson-kicker">${section.title} · Lesson ${lesson.no}</div>
+          <div class="lesson-title">${lesson.title}</div>
+          <div class="lesson-desc">${lesson.desc}</div>
+        </div>
+        <div class="tags">${tags}</div>
+      </div>
+      <div class="flow">
+        <div class="box teach">
+          <h4>Teach</h4>
+          <p>${lesson.teach}</p>
+        </div>
+        <div class="box exp">
+          <h4>Experience</h4>
+          <p>${lesson.experience}</p>
+        </div>
+        <div class="box rein">
+          <h4>Reinforce</h4>
+          <p>${lesson.reinforce}</p>
+        </div>
+      </div>
+      <div class="dayli">
+        <small>✦ Dayli teaching note</small>
+        <p>${lesson.note}</p>
+      </div>
+      <div class="core">
+        <strong>Interaction must do one of these</strong>
+        <ul>${core}</ul>
+      </div>
+    `;
+    wrap.appendChild(card);
+  });
+
+  cards.appendChild(wrap);
+});
+
+function showSection(id, btn){
+  document.querySelectorAll('.sec-block').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(el=>el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
