@@ -1,1 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pattern Recognition Game — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #F4829A;
+    --pink-light: #F9B8C6;
+    --pink-pale: #FDE8ED;
+    --teal: #7ECEC4;
+    --teal-light: #B2E4DF;
+    --teal-pale: #E8F8F6;
+    --peach: #F5A857;
+    --peach-light: #FAD09A;
+    --peach-pale: #FEF3E4;
+    --cream: #FDF8F5;
+    --warm-white: #FFFBF9;
+    --dark: #2C1810;
+    --text: #3D2B20;
+    --text-muted: #7A5C50;
+  }
 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* BLOBS */
+  .blob { position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.3; pointer-events: none; z-index: 0; }
+  .blob-1 { width: 500px; height: 500px; background: var(--pink-light); top: -150px; right: -150px; }
+  .blob-2 { width: 400px; height: 400px; background: var(--teal-light); bottom: -100px; left: -100px; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 16px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(253,248,245,0.88);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(244,130,154,0.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1.1rem;
+    color: var(--pink);
+  }
+  .nav-logo span { color: var(--teal); }
+  .nav-back {
+    font-size: 0.85rem; color: var(--text-muted);
+    cursor: pointer; display: flex; align-items: center; gap: 6px;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--pink); }
+
+  /* MAIN */
+  .main {
+    position: relative; z-index: 1;
+    max-width: 720px; margin: 0 auto;
+    padding: 110px 24px 80px;
+  }
+
+  /* HEADER */
+  .game-header { text-align: center; margin-bottom: 48px; }
+  .game-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--pink-pale); border: 1px solid var(--pink-light);
+    border-radius: 100px; padding: 8px 20px;
+    font-size: 0.75rem; font-weight: 500;
+    color: var(--pink); letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .game-eyebrow .dot { width: 6px; height: 6px; background: var(--pink); border-radius: 50%; }
+  .game-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    font-weight: 900; color: var(--dark); line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .game-title .accent-pink { color: var(--pink); }
+  .game-desc {
+    font-size: 1rem; color: var(--text-muted);
+    line-height: 1.7; max-width: 480px; margin: 0 auto;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-bottom: 32px;
+  }
+  .stat-card {
+    background: white; border-radius: 16px;
+    border: 1px solid rgba(244,130,154,0.12);
+    padding: 16px; text-align: center;
+    box-shadow: 0 2px 16px rgba(244,130,154,0.06);
+  }
+  .stat-label {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 6px;
+  }
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 900; color: var(--dark);
+  }
+  .stat-value.pink { color: var(--pink); }
+  .stat-value.teal { color: var(--teal); }
+  .stat-value.peach { color: var(--peach); }
+
+  /* TIMER BAR */
+  .timer-wrap { margin-bottom: 24px; }
+  .timer-track {
+    height: 6px; background: var(--pink-pale);
+    border-radius: 100px; overflow: hidden;
+  }
+  .timer-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--pink), var(--peach));
+    border-radius: 100px;
+    transition: width 0.1s linear;
+  }
+  .timer-label {
+    font-size: 0.78rem; color: var(--text-muted);
+    text-align: right; margin-top: 6px;
+    font-weight: 500;
+  }
+
+  /* CHART CARD */
+  .chart-card {
+    background: white; border-radius: 24px;
+    border: 1px solid rgba(244,130,154,0.12);
+    box-shadow: 0 8px 40px rgba(244,130,154,0.08);
+    padding: 28px; margin-bottom: 24px;
+    position: relative; overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .chart-card.correct {
+    border-color: var(--teal);
+    box-shadow: 0 8px 40px rgba(126,206,196,0.2);
+  }
+  .chart-card.wrong {
+    border-color: var(--pink);
+    box-shadow: 0 8px 40px rgba(244,130,154,0.25);
+  }
+  .chart-watermark {
+    position: absolute; bottom: 12px; right: 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem; font-style: italic;
+    color: var(--pink); opacity: 0.3; letter-spacing: 0.06em;
+  }
+  .chart-top {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .chart-instrument {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; color: var(--dark);
+  }
+  .chart-tf {
+    font-size: 0.75rem; color: var(--text-muted);
+    background: var(--cream); padding: 4px 12px;
+    border-radius: 100px; font-weight: 500;
+  }
+  canvas#chartCanvas {
+    width: 100%; height: 200px; display: block;
+  }
+
+  /* QUESTION */
+  .question-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--dark); text-align: center;
+    margin-bottom: 20px; line-height: 1.4;
+  }
+
+  /* ANSWER GRID */
+  .answers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
+  .answer-btn {
+    background: white; border: 1.5px solid rgba(244,130,154,0.2);
+    border-radius: 16px; padding: 18px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 500;
+    color: var(--text); cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+    box-shadow: 0 2px 12px rgba(244,130,154,0.04);
+  }
+  .answer-btn:hover:not(:disabled) {
+    border-color: var(--pink-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(244,130,154,0.12);
+  }
+  .answer-btn.selected-correct {
+    background: var(--teal-pale);
+    border-color: var(--teal);
+    color: #1a6b63;
+  }
+  .answer-btn.selected-wrong {
+    background: var(--pink-pale);
+    border-color: var(--pink);
+    color: #a84060;
+  }
+  .answer-btn.reveal-correct {
+    background: var(--teal-pale);
+    border-color: var(--teal);
+    color: #1a6b63;
+  }
+  .answer-btn:disabled { cursor: default; transform: none; }
+  .answer-icon { font-size: 1.1rem; margin-right: 8px; }
+  .answer-label { display: block; font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; font-weight: 400; }
+
+  /* FEEDBACK */
+  .feedback {
+    border-radius: 16px; padding: 18px 22px;
+    margin-bottom: 20px; display: none;
+    animation: fadeUp 0.4s ease both;
+  }
+  .feedback.show { display: flex; align-items: flex-start; gap: 14px; }
+  .feedback.correct-fb { background: var(--teal-pale); border: 1px solid var(--teal-light); }
+  .feedback.wrong-fb { background: var(--pink-pale); border: 1px solid var(--pink-light); }
+  .fb-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+  .fb-title { font-weight: 600; font-size: 0.95rem; color: var(--dark); margin-bottom: 4px; }
+  .fb-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* NEXT BTN */
+  .next-btn {
+    background: linear-gradient(135deg, var(--pink), var(--peach));
+    color: white; border: none;
+    padding: 16px 40px; border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500;
+    cursor: pointer; letter-spacing: 0.02em;
+    display: block; width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 12px 32px rgba(244,130,154,0.3);
+    display: none;
+  }
+  .next-btn.show { display: block; }
+  .next-btn:hover { transform: translateY(-2px); box-shadow: 0 20px 48px rgba(244,130,154,0.4); }
+
+  /* ROUND COUNTER */
+  .round-dots {
+    display: flex; justify-content: center; gap: 8px;
+    margin-bottom: 28px;
+  }
+  .round-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--pink-pale); border: 1.5px solid var(--pink-light);
+    transition: all 0.3s ease;
+  }
+  .round-dot.done { background: var(--teal); border-color: var(--teal); }
+  .round-dot.active { background: var(--pink); border-color: var(--pink); transform: scale(1.3); }
+  .round-dot.wrong-dot { background: var(--pink-pale); border-color: var(--pink); }
+
+  /* RESULTS SCREEN */
+  .results-screen {
+    display: none; text-align: center;
+    animation: fadeUp 0.6s ease both;
+  }
+  .results-screen.show { display: block; }
+  .results-trophy {
+    font-size: 4rem; margin-bottom: 16px;
+  }
+  .results-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 900; color: var(--dark); margin-bottom: 8px;
+  }
+  .results-sub {
+    font-size: 1rem; color: var(--text-muted);
+    margin-bottom: 36px; line-height: 1.7;
+  }
+  .results-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-bottom: 36px;
+  }
+  .results-stat {
+    background: white; border-radius: 16px;
+    border: 1px solid rgba(244,130,154,0.15);
+    padding: 20px 16px;
+    box-shadow: 0 2px 16px rgba(244,130,154,0.06);
+  }
+  .rs-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .rs-value { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; }
+  .rs-value.pink { color: var(--pink); }
+  .rs-value.teal { color: var(--teal); }
+  .rs-value.peach { color: var(--peach); }
+
+  .xp-earned {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, var(--peach-pale), var(--pink-pale));
+    border: 1px solid var(--pink-light);
+    border-radius: 100px; padding: 12px 28px;
+    font-size: 1rem; font-weight: 600; color: var(--dark);
+    margin-bottom: 32px;
+  }
+  .xp-spark { color: var(--peach); font-size: 1.1rem; }
+
+  .play-again {
+    background: linear-gradient(135deg, var(--pink), var(--peach));
+    color: white; border: none;
+    padding: 18px 48px; border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500;
+    cursor: pointer; letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    box-shadow: 0 12px 32px rgba(244,130,154,0.3);
+    margin-right: 12px;
+  }
+  .play-again:hover { transform: translateY(-2px); box-shadow: 0 20px 48px rgba(244,130,154,0.4); }
+
+  /* START SCREEN */
+  .start-screen { text-align: center; }
+  .start-screen.hidden { display: none; }
+  .how-to {
+    background: white; border-radius: 20px;
+    border: 1px solid rgba(244,130,154,0.12);
+    padding: 32px; margin: 32px 0;
+    box-shadow: 0 4px 24px rgba(244,130,154,0.07);
+    text-align: left;
+  }
+  .how-to-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--dark);
+    margin-bottom: 16px; text-align: center;
+  }
+  .how-step {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(244,130,154,0.08);
+  }
+  .how-step:last-child { border-bottom: none; }
+  .how-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--pink-pale); color: var(--pink);
+    font-size: 0.8rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .how-text { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
+  .how-text strong { color: var(--dark); font-weight: 600; }
+
+  .start-btn {
+    background: linear-gradient(135deg, var(--pink), var(--peach));
+    color: white; border: none;
+    padding: 18px 56px; border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem; font-weight: 500;
+    cursor: pointer; letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    box-shadow: 0 12px 32px rgba(244,130,154,0.3);
+  }
+  .start-btn:hover { transform: translateY(-2px); box-shadow: 0 20px 48px rgba(244,130,154,0.4); }
+
+  /* GAME SCREEN */
+  .game-screen { display: none; }
+  .game-screen.show { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+  }
+  .shake { animation: shake 0.4s ease; }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+  .ornament {
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px; margin: 40px 0 0;
+  }
+  .ornament-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--pink-light)); }
+  .ornament-line.right { background: linear-gradient(90deg, var(--pink-light), transparent); }
+  .ornament-gem { color: var(--peach); font-size: 1rem; }
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<nav>
+  <div class="nav-logo">A Girl &amp; <span>Her Futures</span>™</div>
+  <div class="nav-back" onclick="window.location='../../index.html#s-games'">← Back to Games</div>
+</nav>
+
+<div class="main">
+
+  <div class="game-header">
+    <div class="game-eyebrow"><span class="dot"></span> Level 1+ · +50 XP per round</div>
+    <h1 class="game-title">Pattern <span class="accent-pink">Recognition</span></h1>
+    <p class="game-desc">Candles flash. You call it. The faster your eye learns, the faster your instincts build — before you ever risk a dollar on a real chart.</p>
+  </div>
+
+  <!-- START SCREEN -->
+  <div class="start-screen" id="startScreen">
+    <div class="how-to">
+      <div class="how-to-title">✦ How to play</div>
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <div class="how-text">A candlestick pattern appears on the 1M MNQ chart. Study it carefully.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <div class="how-text"><strong>Choose the correct pattern</strong> from four options before the timer runs out.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <div class="how-text">Each correct answer earns XP and builds your streak. 10 rounds per game.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">4</div>
+        <div class="how-text">After each answer you'll see <strong>exactly why</strong> it's right or wrong — that's where the learning happens.</div>
+      </div>
+    </div>
+    <button class="start-btn" onclick="startGame()">✦ Start the game</button>
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-gem">✦</div>
+      <div class="ornament-line right"></div>
+    </div>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div class="game-screen" id="gameScreen">
+
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-label">Round</div>
+        <div class="stat-value pink" id="roundNum">1</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Score</div>
+        <div class="stat-value teal" id="scoreNum">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Streak</div>
+        <div class="stat-value peach" id="streakNum">0 🔥</div>
+      </div>
+    </div>
+
+    <div class="round-dots" id="roundDots"></div>
+
+    <div class="timer-wrap">
+      <div class="timer-track"><div class="timer-fill" id="timerFill"></div></div>
+      <div class="timer-label" id="timerLabel">12s</div>
+    </div>
+
+    <div class="chart-card" id="chartCard">
+      <div class="chart-top">
+        <div class="chart-instrument">MNQ / 1M</div>
+        <div class="chart-tf" id="chartContext">Loading...</div>
+      </div>
+      <canvas id="chartCanvas" width="660" height="200"></canvas>
+      <div class="chart-watermark">AG&HF™</div>
+    </div>
+
+    <div class="question-text" id="questionText">What pattern do you see?</div>
+
+    <div class="answers" id="answersGrid"></div>
+
+    <div class="feedback" id="feedback">
+      <div class="fb-icon" id="fbIcon"></div>
+      <div>
+        <div class="fb-title" id="fbTitle"></div>
+        <div class="fb-body" id="fbBody"></div>
+      </div>
+    </div>
+
+    <button class="next-btn" id="nextBtn" onclick="nextRound()">Next candle →</button>
+
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div class="results-screen" id="resultsScreen">
+    <div class="results-trophy" id="resultsTrophy">✦</div>
+    <h2 class="results-title" id="resultsTitle">Round complete.</h2>
+    <p class="results-sub" id="resultsSub">Here's how you did.</p>
+    <div class="results-stats">
+      <div class="results-stat">
+        <div class="rs-label">Correct</div>
+        <div class="rs-value teal" id="resCorrect">0</div>
+      </div>
+      <div class="results-stat">
+        <div class="rs-label">Accuracy</div>
+        <div class="rs-value pink" id="resAccuracy">0%</div>
+      </div>
+      <div class="results-stat">
+        <div class="rs-label">Best streak</div>
+        <div class="rs-value peach" id="resStreak">0</div>
+      </div>
+    </div>
+    <div class="xp-earned"><span class="xp-spark">✦</span> <span id="xpEarned">+50 XP earned</span></div>
+    <br>
+    <button class="play-again" onclick="restartGame()">✦ Play again</button>
+  </div>
+
+</div>
+
+<script>
+const TOTAL_ROUNDS = 10;
+const TIMER_SECONDS = 12;
+
+const patterns = [
+  {
+    id: 'bullish-engulf',
+    name: 'Bullish engulfing',
+    label: 'Bullish structure',
+    icon: '↑',
+    color: '#7ECEC4',
+    desc: 'A large bullish candle fully engulfs the previous bearish candle. Price showed strong buying pressure — potential reversal or continuation up.',
+    wrongHint: 'Look at the second candle: it fully covers the first bearish one. That\'s engulfing. Bullish because the close is above the open.',
+    candles: [
+      { o:0.55, h:0.65, l:0.45, c:0.50, bull:false },
+      { o:0.42, h:0.75, l:0.38, c:0.72, bull:true }
+    ]
+  },
+  {
+    id: 'bearish-engulf',
+    name: 'Bearish engulfing',
+    label: 'Bearish structure',
+    icon: '↓',
+    color: '#F4829A',
+    desc: 'A large bearish candle fully engulfs the previous bullish one. Strong selling pressure — potential reversal or continuation down.',
+    wrongHint: 'The second candle is bearish and wraps the entire first candle. When a bearish candle engulfs a bullish one, that\'s a bearish engulfing.',
+    candles: [
+      { o:0.45, h:0.68, l:0.42, c:0.62, bull:true },
+      { o:0.70, h:0.74, l:0.38, c:0.40, bull:false }
+    ]
+  },
+  {
+    id: 'doji',
+    name: 'Doji',
+    label: 'Indecision candle',
+    icon: '⟺',
+    color: '#F5A857',
+    desc: 'Open and close are nearly equal — long wicks on both sides. The market is undecided. In ICC, a doji near your OG Line deserves attention.',
+    wrongHint: 'When open and close are basically the same price with wicks above and below, that\'s a doji. Neither side won — pure indecision.',
+    candles: [
+      { o:0.50, h:0.72, l:0.30, c:0.51, bull:true, doji:true }
+    ]
+  },
+  {
+    id: 'hammer',
+    name: 'Hammer',
+    label: 'Bullish reversal signal',
+    icon: '🔨',
+    color: '#7ECEC4',
+    desc: 'Small body at the top, long lower wick. Buyers stepped in hard after a push down. Often appears at a support level — including your Defended Swing.',
+    wrongHint: 'A hammer has a small body near the top of the candle and a long wick below. It shows sellers tried to push price down but buyers pushed back.',
+    candles: [
+      { o:0.65, h:0.70, l:0.25, c:0.68, bull:true, hammer:true }
+    ]
+  },
+  {
+    id: 'shooting-star',
+    name: 'Shooting star',
+    label: 'Bearish reversal signal',
+    icon: '★',
+    color: '#F4829A',
+    desc: 'Small body at the bottom, long upper wick. Buyers pushed price up but sellers slammed it back. Bearish signal — especially at a resistance level.',
+    wrongHint: 'Long wick above, small body near the bottom. Buyers pushed high but got rejected hard. That\'s a shooting star — bearish signal.',
+    candles: [
+      { o:0.35, h:0.78, l:0.28, c:0.32, bull:false, shootingStar:true }
+    ]
+  },
+  {
+    id: 'bullish-inside',
+    name: 'Inside bar (bullish)',
+    label: 'Consolidation before continuation',
+    icon: '↑',
+    color: '#7ECEC4',
+    desc: 'Second candle is completely inside the range of the first. Low volatility moment. In ICC, this often appears during Correction before continuation up.',
+    wrongHint: 'When the second candle\'s high and low are both inside the first candle\'s range, that\'s an inside bar. This one closes bullish — price is compressing.',
+    candles: [
+      { o:0.35, h:0.78, l:0.25, c:0.72, bull:true },
+      { o:0.55, h:0.70, l:0.45, c:0.65, bull:true }
+    ]
+  },
+  {
+    id: 'three-bull',
+    name: 'Three green soldiers',
+    label: 'Strong bullish momentum',
+    icon: '↑↑↑',
+    color: '#7ECEC4',
+    desc: 'Three consecutive bullish candles, each closing higher. Strong upward momentum. Could be the Continuation phase in ICC — confirm with structure.',
+    wrongHint: 'Three bullish candles in a row, each closing higher than the last. That\'s called three white soldiers — momentum is clearly up.',
+    candles: [
+      { o:0.40, h:0.58, l:0.36, c:0.55, bull:true },
+      { o:0.54, h:0.68, l:0.50, c:0.65, bull:true },
+      { o:0.64, h:0.80, l:0.60, c:0.78, bull:true }
+    ]
+  },
+  {
+    id: 'bear-rejection',
+    name: 'Bearish rejection wick',
+    label: 'Price rejected at resistance',
+    icon: '↓',
+    color: '#F4829A',
+    desc: 'Long upper wick, bearish close. Price pushed into a resistance level and was rejected. In ICC, this is NOT an Indication — it\'s a wick, not a close.',
+    wrongHint: 'The long wick above with a bearish close shows rejection at a resistance level. Remember: in ICC, a wick through the OG Line is NOT an Indication.',
+    candles: [
+      { o:0.55, h:0.88, l:0.48, c:0.50, bull:false, rejectionWick: true }
+    ]
+  },
+  {
+    id: 'pin-bar-bull',
+    name: 'Bullish pin bar',
+    label: 'Support rejection',
+    icon: '↑',
+    color: '#7ECEC4',
+    desc: 'Long wick below, small body near the top, bullish close. Price found strong support. This is what happens when buyers defend a level hard.',
+    wrongHint: 'Long lower wick, small body near the top, closes bullish. Price was pushed down, then aggressively bought back up. That\'s a bullish pin bar.',
+    candles: [
+      { o:0.60, h:0.68, l:0.15, c:0.64, bull:true, pinBull:true }
+    ]
+  },
+  {
+    id: 'marubozu',
+    name: 'Bullish marubozu',
+    label: 'Pure buying pressure',
+    icon: '↑',
+    color: '#7ECEC4',
+    desc: 'A full bullish candle with no wicks. Open at the low, close at the high. Pure conviction — buyers were in control the entire time. Strong Indication candle type.',
+    wrongHint: 'No wicks at all, opens at the low and closes at the high. That\'s a bullish marubozu — 100% bullish from open to close.',
+    candles: [
+      { o:0.25, h:0.25, l:0.25, c:0.78, bull:true, marubozu:true }
+    ]
+  }
+];
+
+const wrongAnswers = [
+  { name: 'Doji', label: 'Indecision candle', icon: '⟺' },
+  { name: 'Hammer', label: 'Bullish reversal signal', icon: '🔨' },
+  { name: 'Shooting star', label: 'Bearish reversal signal', icon: '★' },
+  { name: 'Bearish engulfing', label: 'Bearish structure', icon: '↓' },
+  { name: 'Bullish engulfing', label: 'Bullish structure', icon: '↑' },
+  { name: 'Inside bar', label: 'Consolidation', icon: '⟺' },
+  { name: 'Bullish pin bar', label: 'Support rejection', icon: '↑' },
+  { name: 'Bearish rejection wick', label: 'Resistance rejection', icon: '↓' },
+  { name: 'Three green soldiers', label: 'Strong momentum', icon: '↑↑↑' },
+  { name: 'Bullish marubozu', label: 'Pure buying pressure', icon: '↑' },
+];
+
+let currentRound = 0;
+let score = 0;
+let streak = 0;
+let bestStreak = 0;
+let answered = false;
+let timerInterval = null;
+let timeLeft = TIMER_SECONDS;
+let roundResults = [];
+let shuffledPatterns = [];
+let currentPattern = null;
+
+function shuffle(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function startGame() {
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('gameScreen').classList.add('show');
+  shuffledPatterns = shuffle(patterns).slice(0, TOTAL_ROUNDS);
+  currentRound = 0; score = 0; streak = 0; bestStreak = 0; roundResults = [];
+  buildRoundDots();
+  loadRound();
+}
+
+function buildRoundDots() {
+  const el = document.getElementById('roundDots');
+  el.innerHTML = '';
+  for (let i = 0; i < TOTAL_ROUNDS; i++) {
+    const d = document.createElement('div');
+    d.className = 'round-dot' + (i === 0 ? ' active' : '');
+    d.id = 'dot-' + i;
+    el.appendChild(d);
+  }
+}
+
+function updateDots(result) {
+  const d = document.getElementById('dot-' + currentRound);
+  if (d) {
+    d.classList.remove('active');
+    d.classList.add(result === 'correct' ? 'done' : 'wrong-dot');
+  }
+  if (currentRound + 1 < TOTAL_ROUNDS) {
+    const next = document.getElementById('dot-' + (currentRound + 1));
+    if (next) next.classList.add('active');
+  }
+}
+
+function loadRound() {
+  answered = false;
+  currentPattern = shuffledPatterns[currentRound];
+
+  document.getElementById('roundNum').textContent = currentRound + 1;
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak > 0 ? streak + ' 🔥' : streak;
+  document.getElementById('chartCard').className = 'chart-card';
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('nextBtn').className = 'next-btn';
+  document.getElementById('questionText').textContent = 'What pattern do you see on this 1M candle?';
+
+  const contexts = ['Price approaching OG Line', 'Post-Indication candle', 'Correction phase', 'At the Defended Swing', 'HTF structure zone'];
+  document.getElementById('chartContext').textContent = contexts[Math.floor(Math.random() * contexts.length)];
+
+  drawChart(currentPattern);
+  buildAnswers(currentPattern);
+  startTimer();
+}
+
+function drawChart(pattern) {
+  const canvas = document.getElementById('chartCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const bg = '#FFFBF9';
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.strokeStyle = 'rgba(244,130,154,0.08)';
+  ctx.lineWidth = 1;
+  for (let i = 1; i < 5; i++) {
+    ctx.beginPath();
+    ctx.moveTo(0, H * i / 5);
+    ctx.lineTo(W, H * i / 5);
+    ctx.stroke();
+  }
+
+  const candles = pattern.candles;
+  const n = candles.length;
+  const pad = 80;
+  const totalW = W - pad * 2;
+  const spacing = n === 1 ? 0 : totalW / (n - 1);
+  const candleW = Math.min(48, spacing * 0.55 || 48);
+
+  candles.forEach((c, i) => {
+    const cx = n === 1 ? W / 2 : pad + i * spacing;
+    const isBull = c.bull;
+
+    const openY = H * 0.1 + (1 - c.o) * H * 0.8;
+    const closeY = H * 0.1 + (1 - c.c) * H * 0.8;
+    const highY = H * 0.1 + (1 - c.h) * H * 0.8;
+    const lowY = H * 0.1 + (1 - c.l) * H * 0.8;
+
+    const bodyTop = Math.min(openY, closeY);
+    const bodyBot = Math.max(openY, closeY);
+    const bodyH = Math.max(bodyBot - bodyTop, 3);
+
+    if (isBull) {
+      ctx.fillStyle = '#7ECEC4';
+      ctx.strokeStyle = '#5BB5AA';
+    } else {
+      ctx.fillStyle = '#F4829A';
+      ctx.strokeStyle = '#D4607A';
+    }
+
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(cx, highY);
+    ctx.lineTo(cx, bodyTop);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(cx, bodyBot);
+    ctx.lineTo(cx, lowY);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.roundRect(cx - candleW / 2, bodyTop, candleW, bodyH, 3);
+    ctx.fill();
+    ctx.stroke();
+  });
+}
+
+function buildAnswers(pattern) {
+  const grid = document.getElementById('answersGrid');
+  grid.innerHTML = '';
+
+  let distractors = wrongAnswers.filter(w => w.name !== pattern.name);
+  distractors = shuffle(distractors).slice(0, 3);
+
+  const correct = { name: pattern.name, label: pattern.label, icon: pattern.icon, isCorrect: true };
+  const options = shuffle([correct, ...distractors.map(d => ({ ...d, isCorrect: false }))]);
+
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'answer-btn';
+    btn.innerHTML = `<span class="answer-icon">${opt.icon}</span> ${opt.name}<span class="answer-label">${opt.label}</span>`;
+    btn.onclick = () => handleAnswer(btn, opt.isCorrect, pattern);
+    grid.appendChild(btn);
+  });
+}
+
+function handleAnswer(btn, isCorrect, pattern) {
+  if (answered) return;
+  answered = true;
+  clearInterval(timerInterval);
+
+  const allBtns = document.querySelectorAll('.answer-btn');
+  allBtns.forEach(b => {
+    b.disabled = true;
+    if (b.innerHTML.includes(pattern.name)) b.classList.add('reveal-correct');
+  });
+
+  if (isCorrect) {
+    btn.classList.add('selected-correct');
+    document.getElementById('chartCard').classList.add('correct');
+    score++;
+    streak++;
+    if (streak > bestStreak) bestStreak = streak;
+    roundResults.push('correct');
+    updateDots('correct');
+    showFeedback(true, '✓ That\'s right!', pattern.desc);
+  } else {
+    btn.classList.add('selected-wrong');
+    document.getElementById('chartCard').classList.add('wrong');
+    document.getElementById('chartCard').classList.add('shake');
+    streak = 0;
+    roundResults.push('wrong');
+    updateDots('wrong');
+    showFeedback(false, '✕ Not quite.', pattern.wrongHint);
+  }
+
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('streakNum').textContent = streak > 0 ? streak + ' 🔥' : streak;
+  document.getElementById('nextBtn').classList.add('show');
+  document.getElementById('nextBtn').textContent = currentRound === TOTAL_ROUNDS - 1 ? 'See results ✦' : 'Next candle →';
+}
+
+function showFeedback(correct, title, body) {
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback show ' + (correct ? 'correct-fb' : 'wrong-fb');
+  document.getElementById('fbIcon').textContent = correct ? '✦' : '✕';
+  document.getElementById('fbTitle').textContent = title;
+  document.getElementById('fbBody').textContent = body;
+}
+
+function startTimer() {
+  timeLeft = TIMER_SECONDS;
+  document.getElementById('timerFill').style.width = '100%';
+  document.getElementById('timerLabel').textContent = TIMER_SECONDS + 's';
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    timeLeft -= 0.1;
+    const pct = (timeLeft / TIMER_SECONDS) * 100;
+    document.getElementById('timerFill').style.width = Math.max(pct, 0) + '%';
+    document.getElementById('timerLabel').textContent = Math.ceil(timeLeft) + 's';
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      if (!answered) {
+        answered = true;
+        const allBtns = document.querySelectorAll('.answer-btn');
+        allBtns.forEach(b => { b.disabled = true; });
+        const pattern = currentPattern;
+        allBtns.forEach(b => { if (b.innerHTML.includes(pattern.name)) b.classList.add('reveal-correct'); });
+        streak = 0;
+        roundResults.push('timeout');
+        updateDots('wrong');
+        showFeedback(false, 'Time\'s up!', 'That was ' + pattern.name + '. ' + pattern.wrongHint);
+        document.getElementById('nextBtn').classList.add('show');
+        document.getElementById('nextBtn').textContent = currentRound === TOTAL_ROUNDS - 1 ? 'See results ✦' : 'Next candle →';
+      }
+    }
+  }, 100);
+}
+
+function nextRound() {
+  currentRound++;
+  if (currentRound >= TOTAL_ROUNDS) {
+    showResults();
+  } else {
+    loadRound();
+  }
+}
+
+function showResults() {
+  document.getElementById('gameScreen').classList.remove('show');
+  const res = document.getElementById('resultsScreen');
+  res.classList.add('show');
+
+  const accuracy = Math.round((score / TOTAL_ROUNDS) * 100);
+  const xp = Math.round(score * 5 + bestStreak * 10);
+
+  document.getElementById('resCorrect').textContent = score + '/' + TOTAL_ROUNDS;
+  document.getElementById('resAccuracy').textContent = accuracy + '%';
+  document.getElementById('resStreak').textContent = bestStreak;
+  document.getElementById('xpEarned').textContent = '+' + xp + ' XP earned';
+
+  if (accuracy >= 90) {
+    document.getElementById('resultsTrophy').textContent = '✦';
+    document.getElementById('resultsTitle').textContent = 'She\'s in structure.';
+    document.getElementById('resultsSub').textContent = accuracy + '% accuracy. Your eye is sharp. The chart is starting to speak to you.';
+  } else if (accuracy >= 70) {
+    document.getElementById('resultsTrophy').textContent = '✦';
+    document.getElementById('resultsTitle').textContent = 'Getting there, girl.';
+    document.getElementById('resultsSub').textContent = accuracy + '% accuracy. You\'re building the instinct. Play again and watch your score climb.';
+  } else {
+    document.getElementById('resultsTrophy').textContent = '✦';
+    document.getElementById('resultsTitle').textContent = 'The chart is teaching you.';
+    document.getElementById('resultsSub').textContent = accuracy + '% accuracy. Every wrong answer was a lesson. That\'s how this works. Play again.';
+  }
+}
+
+function restartGame() {
+  document.getElementById('resultsScreen').classList.remove('show');
+  document.getElementById('gameScreen').classList.add('show');
+  shuffledPatterns = shuffle(patterns).slice(0, TOTAL_ROUNDS);
+  currentRound = 0; score = 0; streak = 0; bestStreak = 0; roundResults = [];
+  buildRoundDots();
+  loadRound();
+}
+</script>
+</body>
+</html>
