@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson 14 — Candle Anatomy · AG&HF</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#F4829A;--pink2:#F9B8C6;--pink3:#FDE8ED;--teal:#7ECEC4;--teal2:#B2E4DF;--teal3:#E8F8F6;--peach:#F5A857;--peach2:#FAD09A;--peach3:#FEF3E4;--cream:#FDF8F5;--warm:#FFFBF9;--dark:#2C1810;--text:#3D2B20;--muted:#7A5C50}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.app{display:flex;min-height:100vh}
+.sidebar{width:220px;background:#fff;border-right:1px solid rgba(244,130,154,.12);position:fixed;top:0;bottom:0;left:0;display:flex;flex-direction:column}
+.logo{padding:20px 22px 16px;border-bottom:1px solid rgba(244,130,154,.1);font-family:"Playfair Display",serif;font-style:italic;color:var(--pink)}
+.logo span{color:var(--teal)}
+.user{padding:13px 18px;border-bottom:1px solid rgba(244,130,154,.1)}
+.user strong{display:block;font-size:.82rem;color:var(--dark)}
+.user span{font-size:.68rem;color:var(--muted)}
+.sec{padding:10px 18px 5px;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.item{padding:10px 18px;font-size:.85rem;color:var(--muted);border-left:3px solid transparent}
+.item.on{background:var(--pink3);color:var(--pink);border-left-color:var(--pink);font-weight:700}
+.main{margin-left:220px;flex:1}
+.top{height:60px;background:#fff;border-bottom:1px solid rgba(244,130,154,.1);display:flex;justify-content:space-between;align-items:center;padding:0 30px;position:sticky;top:0;z-index:20}
+.top small{color:var(--muted)}
+.xp{font-size:.77rem;color:var(--peach);background:var(--peach3);border:1px solid var(--peach2);padding:4px 12px;border-radius:999px;font-weight:700}
+.progress{height:6px;background:var(--pink3);position:sticky;top:60px;z-index:19}
+.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--peach));transition:.3s}
+.wrap{padding:34px 24px 110px;display:flex;justify-content:center}
+.slide{max-width:920px;width:100%;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.card{background:#fff;border:1px solid rgba(244,130,154,.1);box-shadow:0 4px 20px rgba(244,130,154,.05);border-radius:22px;padding:26px 30px}
+.intro{background:var(--dark);color:#fff;padding:40px 38px 42px;border-radius:32px;box-shadow:0 10px 40px rgba(44,24,16,.25)}
+.eyebrow{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink2);margin-bottom:12px}
+.intro h1{font-family:"Playfair Display",serif;font-size:2.15rem;line-height:1.1;color:#fff;margin-bottom:14px}
+.intro h1 span{color:var(--pink)}
+.intro p{line-height:1.78;color:rgba(255,255,255,.62);margin-bottom:22px;max-width:730px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-size:.7rem;padding:5px 12px;border-radius:999px;border:1px solid}
+.pk{background:rgba(244,130,154,.15);border-color:rgba(244,130,154,.3);color:var(--pink2)}
+.tl{background:rgba(126,206,196,.15);border-color:rgba(126,206,196,.3);color:var(--teal2)}
+.pc{background:rgba(245,168,87,.15);border-color:rgba(245,168,87,.3);color:var(--peach2)}
+.head{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);font-weight:700;margin-bottom:10px}
+.card h2{font-family:"Playfair Display",serif;font-size:1.25rem;line-height:1.3;color:var(--dark);margin-bottom:12px}
+.card p{font-size:.93rem;line-height:1.82;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.tap{border-radius:18px;padding:18px;border:2px solid transparent;background:var(--warm);cursor:pointer;transition:.15s}
+.tap:hover{transform:translateY(-2px)}
+.tap.selected{box-shadow:0 10px 24px rgba(44,24,16,.08)}
+.goodbg{background:var(--peach3);border-color:var(--peach2)}
+.badbg{background:#f7f2ff;border-color:#ddd5ff}
+.tealbg{background:var(--teal3);border-color:var(--teal2)}
+.pinkbg{background:var(--pink3);border-color:var(--pink2)}
+.tap h3{font-family:"Playfair Display",serif;font-size:1.06rem;color:var(--dark);margin-bottom:6px}
+.tap p{font-size:.84rem;line-height:1.65}
+.feedback{display:none;padding:14px 16px;border-radius:14px;font-size:.86rem;line-height:1.65}
+.feedback.show{display:block}
+.feedback.good{background:var(--teal3);border:1px solid var(--teal2);color:#1a6b63}
+.feedback.bad{background:var(--pink3);border:1px solid var(--pink2);color:#a84060}
+.feedback.mid{background:var(--peach3);border:1px solid var(--peach2);color:#7a4a0a}
+.chartbox{background:var(--warm);border:1px solid rgba(244,130,154,.1);border-radius:18px;padding:18px}
+.chartwrap{position:relative}
+.chart{display:block;width:100%;height:auto;background:#fff;border-radius:16px;border:1px solid rgba(244,130,154,.08)}
+.note{position:absolute;top:12px;right:12px;background:rgba(44,24,16,.9);color:#fff;padding:8px 12px;border-radius:12px;font-size:.76rem;opacity:0;transform:translateY(-6px);transition:.25s}
+.note.show{opacity:1;transform:translateY(0)}
+.btnrow,.opts{display:flex;gap:10px;flex-wrap:wrap}
+.btnrow{justify-content:center;margin-top:14px}
+button{font-family:"DM Sans",sans-serif;background:#fff;border:1.5px solid rgba(244,130,154,.16);border-radius:11px;padding:12px 16px;font-size:.87rem;color:var(--text);cursor:pointer}
+button.primary{background:linear-gradient(135deg,var(--pink),var(--peach));border:none;color:#fff;font-weight:700}
+button.alt{background:var(--teal3);border-color:var(--teal2)}
+.opts{flex-direction:column}
+.opts button.good,.qopt.correct{background:var(--teal3);border-color:var(--teal);color:#1a6b63}
+.opts button.bad,.qopt.wrong{background:var(--pink3);border-color:var(--pink);color:#a84060}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px}
+.kpi{background:var(--warm);border:1.5px solid rgba(244,130,154,.12);border-radius:16px;padding:16px}
+.kpi small{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
+.kpi strong{font-family:"Playfair Display",serif;font-size:1.1rem;color:var(--dark)}
+.reinforce{background:linear-gradient(135deg,rgba(126,206,196,.12),rgba(245,168,87,.08));border:1px solid var(--teal2)}
+.reinforce b{display:block;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.reinforce div{font-size:.95rem;line-height:1.75;color:var(--dark);font-style:italic}
+.pathline{height:14px;background:var(--pink3);border-radius:999px;overflow:hidden;margin-top:10px}
+.pathline>div{height:100%;background:linear-gradient(90deg,var(--teal),var(--peach));width:0;transition:.4s}
+.recap-list{display:flex;flex-direction:column;gap:8px}
+.recap{display:flex;gap:12px;padding:13px 16px;border-radius:12px}
+.recap:nth-child(odd){background:var(--teal3);border:1px solid var(--teal2)}
+.recap:nth-child(even){background:var(--pink3);border:1px solid var(--pink2)}
+.recap .ico{font-size:1rem;margin-top:2px}
+.recap .txt{font-size:.87rem;line-height:1.62}
+.dayli{background:var(--dark);color:#fff}
+.dayli .head{color:var(--pink)}
+.dayli .quote{font-family:"Playfair Display",serif;font-size:1rem;line-height:1.75;font-style:italic}
+.dayli .at{margin-top:8px;color:rgba(255,255,255,.32);font-size:.72rem}
+.question{margin-bottom:22px}
+.question .lbl{font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:7px}
+.question .q{font-size:.96rem;color:var(--dark);font-weight:700;line-height:1.5;margin-bottom:12px}
+.qfb{display:none;margin-top:9px;padding:11px 15px;border-radius:10px;font-size:.83rem;line-height:1.6}
+.qfb.show{display:block}
+.complete{background:linear-gradient(135deg,var(--dark),#3d2420);text-align:center;color:#fff;display:none}
+.complete.show{display:block}
+.complete h2{font-family:"Playfair Display",serif;font-size:1.9rem;color:#fff;margin-bottom:8px}
+.complete h2 span{color:var(--pink)}
+.complete p{color:rgba(255,255,255,.58);max-width:430px;margin:0 auto 20px;line-height:1.65}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(126,206,196,.15);border:1px solid rgba(126,206,196,.3);border-radius:999px;padding:9px 20px;font-size:.88rem;color:var(--teal2);font-weight:700;margin-bottom:22px}
+.cc-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.cc-btns button{padding:13px 26px;border-radius:999px;font-size:.9rem}
+.cc-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.cc-hub{background:transparent;color:rgba(255,255,255,.45);border:1.5px solid rgba(255,255,255,.18)}
+.bottom{position:fixed;left:220px;right:0;bottom:0;background:rgba(253,248,245,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(244,130,154,.12);padding:13px 40px;display:flex;justify-content:space-between;align-items:center}
+.dots{display:flex;gap:5px}
+.dot{width:8px;height:8px;border-radius:50%;cursor:pointer}
+.done{background:var(--teal)}
+.active-dot{background:var(--pink);transform:scale(1.45)}
+.todo{background:var(--pink3);border:1.5px solid var(--pink2)}
+.stepname{font-size:.74rem;color:var(--muted);font-weight:700}
+.prev,.next{padding:10px 22px;border-radius:999px;font-size:.85rem;font-weight:700;cursor:pointer}
+.prev{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted)}
+.next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.prev:disabled,.next:disabled{opacity:.4;cursor:default}
+.toast,.streak{position:fixed;background:var(--dark);color:#fff;border-radius:14px;box-shadow:0 16px 48px rgba(44,24,16,.32);z-index:999}
+.toast{bottom:84px;right:26px;padding:13px 18px;display:flex;gap:11px;align-items:center;transform:translateY(18px);opacity:0;transition:.35s}
+.toast.show{transform:translateY(0);opacity:1}
+.streak{top:80px;left:50%;transform:translateX(-50%) translateY(-20px);padding:12px 22px;display:flex;gap:10px;align-items:center;opacity:0;transition:.35s;pointer-events:none}
+.streak.show{transform:translateX(-50%) translateY(0);opacity:1}
+.confetti{position:fixed;border-radius:2px;pointer-events:none;z-index:1000}
+@media(max-width:900px){.sidebar{display:none}.main{margin-left:0}.bottom{left:0}}
+@media(max-width:760px){.grid2,.grid3,.kpi-grid{grid-template-columns:1fr}.top{padding:0 18px}.wrap{padding:22px 14px 110px}.intro{padding:30px 22px 32px}.intro h1{font-size:1.8rem}.bottom{padding:13px 18px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar"><div class="logo"><span>A Girl &</span> Her Futures™</div><div class="user"><strong>Dayli</strong><span>Section 3 · Chart Fundamentals</span></div><div class="sec">Learn</div><div class="item on">✦ Lessons</div><div class="item">◈ Games</div><div class="sec">Community</div><div class="item">↑ Leaderboard</div><div class="item">◇ Drip Store</div><div class="sec">Account</div><div class="item">○ My Profile</div></aside>
+<main class="main">
+<div class="top"><small>Lessons › Section 3 › <span id="crumb">Introduction</span></small><div><span class="xp">+95 XP</span> <small id="count">1 / 8</small></div></div><div class="progress"><div id="bar"></div></div>
+<div class="wrap">
+<section class="slide active" id="s0"><div class="intro"><div class="eyebrow">✦ Section 3 · Lesson 14</div><h1>Candle <span>Anatomy</span></h1><p>Now that you know candles tell a story, we need to break down the body parts: open, high, low, close, body, and wick. These pieces show how price moved and where buyers or sellers reacted.</p><div class="pills"><span class="pill pk">~16 min</span><span class="pill tl">Anatomy lesson</span><span class="pill pc">+95 XP</span></div></div><div class="card"><div class="head">Core idea</div><h2>Every candle has body parts.</h2><p>The candle body shows the distance between the open and close. The wick shows where price traveled but did not fully hold. The high and low show the full range of that candle.</p></div></section>
+<section class="slide" id="s1"><div class="card"><div class="head">Teach → Experience</div><h2>Label the candle anatomy</h2><p>Tap each button to reveal one part of the candle.</p><div class="chartbox"><div class="chartwrap"><canvas id="anatomyCanvas" class="chart" width="780" height="320"></canvas><div class="note" id="anatomyNote">Tap each body part</div></div><div class="btnrow"><button onclick="showPart('open', this)">Open</button><button onclick="showPart('high', this)">High</button><button onclick="showPart('low', this)">Low</button><button onclick="showPart('close', this)">Close</button><button onclick="showPart('body', this)">Body</button><button onclick="showPart('wick', this)">Wick</button></div><div class="kpi-grid"><div class="kpi"><small>Parts found</small><strong id="partsOut">0 / 6</strong></div><div class="kpi"><small>Main clue</small><strong id="partClue">Start here</strong></div><div class="kpi"><small>Skill</small><strong id="partSkill">Building</strong></div></div></div></div><div class="feedback" id="anatomyFb"></div></section>
+<section class="slide" id="s2"><div class="card"><div class="head">Body vs wick</div><h2>What is the body showing you?</h2><p>The body is the thick part of the candle. It shows the distance between where price opened and where price closed.</p><div class="grid3" style="margin-top:16px"><div class="tap badbg" onclick="pickBody('wick', this)"><h3>The full wick range</h3><p>The highest and lowest price only.</p></div><div class="tap tealbg" onclick="pickBody('body', this)"><h3>Open to close</h3><p>The real body of the candle.</p></div><div class="tap badbg" onclick="pickBody('color', this)"><h3>Only the color</h3><p>Green or red is the whole story.</p></div></div></div><div class="feedback" id="bodyFb"></div></section>
+<section class="slide" id="s3"><div class="card"><div class="head">Wick behavior</div><h2>What does a wick show?</h2><p>A wick shows where price traveled but did not fully hold.</p><div class="chartbox"><div class="chartwrap"><canvas id="wickCanvas" class="chart" width="780" height="320"></canvas><div class="note" id="wickNote">Wick = traveled but not held</div></div><div class="btnrow"><button class="alt" onclick="runWick()">Show wick rejection</button><button onclick="resetWick()">Reset</button></div></div></div><div class="feedback" id="wickFb"></div><div class="card reinforce"><b>Reinforce</b><div>A wick does not automatically mean reversal. It means price reached that area and did not close there. Context tells you what that rejection means.</div></div></section>
+<section class="slide" id="s4"><div class="card"><div class="head">Anatomy check</div><h2>Which candle shows the stronger close?</h2><p>Both candles pushed up, but one held more of the move into the close.</p><div class="grid2" style="margin-top:16px"><div class="tap badbg" onclick="pickCloseStrength('wicky', this)"><h3>Long upper wick</h3><p>Price pushed up but closed much lower.</p></div><div class="tap tealbg" onclick="pickCloseStrength('clean', this)"><h3>Strong body close</h3><p>Price pushed up and closed near the high.</p></div></div></div><div class="feedback" id="closeStrengthFb"></div></section>
+<section class="slide" id="s5"><div class="card"><div class="head">Dayli teaching moment</div><h2>Do not just say “the candle has a wick.” Ask what it means.</h2><p>Price wicks above resistance but closes back below it. What should you think first?</p><div class="opts"><button onclick="dayliMoment('breakout', this)">It broke resistance because the wick went above it</button><button onclick="dayliMoment('rejection', this)">It reached above resistance but did not close above it</button></div><div class="feedback" id="dayliFb"></div></div><div class="card"><div class="head">Build the anatomy read</div><h2>Put the candle reading steps in order</h2><p>Tap the steps in the clean order.</p><div class="grid3" style="margin-top:16px"><div class="tap pinkbg" onclick="pickBuild('body', this)"><h3>Find the body</h3><p>Open to close.</p></div><div class="tap tealbg" onclick="pickBuild('wicks', this)"><h3>Check the wicks</h3><p>Where did price travel but not hold?</p></div><div class="tap goodbg" onclick="pickBuild('close', this)"><h3>Respect the close</h3><p>Where did price actually finish?</p></div></div><div class="kpi-grid"><div class="kpi"><small>Build status</small><strong id="buildStatus">Waiting</strong></div><div class="kpi"><small>Reading skill</small><strong id="buildSkill">Low</strong></div><div class="kpi"><small>Clarity</small><strong id="buildQuality">Unbuilt</strong></div></div><div class="pathline"><div id="buildMeter"></div></div></div><div class="feedback" id="buildFb"></div></section>
+<section class="slide" id="s6"><div class="card"><h2 style="margin-bottom:16px">What you know now</h2><div class="recap-list"><div class="recap"><div class="ico">📍</div><div class="txt"><strong>Open and close create the candle body.</strong> The body shows where price started and finished.</div></div><div class="recap"><div class="ico">📈</div><div class="txt"><strong>High and low show the full range.</strong> They tell you how far price traveled during that candle.</div></div><div class="recap"><div class="ico">🕯️</div><div class="txt"><strong>Wicks show travel without full acceptance.</strong> Price reached there, but did not close there.</div></div><div class="recap"><div class="ico">🧠</div><div class="txt"><strong>The close matters.</strong> A wick is not the same thing as a candle closure.</div></div></div></div><div class="card dayli"><div class="head">✦ Dayli note</div><div class="quote">"A wick shows me where price went. A close shows me where price accepted. That difference matters."</div><div class="at">— Dayli Scott · A Girl & Her Futures™</div></div></section>
+<section class="slide" id="s7"><div class="card"><div class="head">Final quiz</div><h2>Lock in candle anatomy</h2><div class="question"><div class="lbl">Question 1 of 4</div><div class="q">What creates the candle body?</div><div class="opts"><button class="qopt" onclick="quizAns(this,true,'q1fb','Correct. The body is created by the open and close.')">Open and close</button><button class="qopt" onclick="quizAns(this,false,'q1fb','No. The wick shows the high and low range.')">High and low only</button></div><div class="qfb feedback" id="q1fb"></div></div><div class="question"><div class="lbl">Question 2 of 4</div><div class="q">What does a wick show?</div><div class="opts"><button class="qopt" onclick="quizAns(this,true,'q2fb','Exactly. A wick shows where price traveled but did not hold into the close.')">Where price traveled but did not fully hold</button><button class="qopt" onclick="quizAns(this,false,'q2fb','No. The wick is not the same thing as the close.')">Where price closed</button></div><div class="qfb feedback" id="q2fb"></div></div><div class="question"><div class="lbl">Question 3 of 4</div><div class="q">Why does candle close matter?</div><div class="opts"><button class="qopt" onclick="quizAns(this,true,'q3fb','Yes. The close shows where price finished and accepted for that candle.')">It shows where price finished</button><button class="qopt" onclick="quizAns(this,false,'q3fb','No. Wicks and closes are different.')">It is always the wick</button></div><div class="qfb feedback" id="q3fb"></div></div><div class="question"><div class="lbl">Question 4 of 4</div><div class="q">Price wicks above resistance but closes below it. What happened?</div><div class="opts"><button class="qopt" onclick="quizAns(this,true,'q4fb','Exactly. Price reached above resistance but did not close above it.')">It reached above but did not close above</button><button class="qopt" onclick="quizAns(this,false,'q4fb','No. A wick above is not the same as a candle close above.')">It definitely broke and accepted above</button></div><div class="qfb feedback" id="q4fb"></div></div></div><div class="card complete" id="completeCard"><h2>Lesson 14 <span>complete.</span></h2><p>You now understand the body parts of a candle and why the close tells a different story than the wick.</p><div class="badge">+95 XP · Candle anatomy unlocked</div><div class="cc-btns"><button class="cc-next">Lesson 15 → Candle Psychology</button><button class="cc-hub">Back to lessons</button></div></div></section>
+</div></main></div>
+<div class="bottom"><div style="display:flex;align-items:center;gap:12px"><div class="dots" id="dots"></div><div class="stepname" id="stepname">Introduction</div></div><div style="display:flex;gap:9px"><button class="prev" id="prev" onclick="go(-1)" disabled>← Back</button><button class="next" id="next" onclick="go(1)">Next →</button></div></div>
+<div class="streak" id="streak"><span id="streakIcon">🔥</span><span id="streakText">you’re locked in 🔥</span></div><div class="toast" id="toast"><span>✦</span><div><div style="font-size:.85rem;font-weight:700">+95 XP earned!</div><div style="font-size:.7rem;color:rgba(255,255,255,.42)">Lesson 14 complete 🫧✨</div></div></div>
+<script>
+const STEPS=['Introduction','Label anatomy','Body vs wick','Wick behavior','Strong close','Dayli moment','Recap','Final quiz'];
+let cur=0,streak=0,anatomyDone=false,bodyDone=false,wickDone=false,closeStrengthDone=false,dayliDone=false,buildDone=false,quizDone=false;const quizState={};let buildOrder=[];let partsFound=new Set();
+function buildDots(){const el=document.getElementById('dots');el.innerHTML='';STEPS.forEach((_,i)=>{const d=document.createElement('div');d.className='dot '+(i<cur?'done':i===cur?'active-dot':'todo');if(i<=cur)d.onclick=()=>goTo(i);el.appendChild(d);});}
+function goTo(n){document.getElementById('s'+cur).classList.remove('active');cur=n;document.getElementById('s'+cur).classList.add('active');document.getElementById('crumb').textContent=STEPS[cur];document.getElementById('count').textContent=(cur+1)+' / '+STEPS.length;document.getElementById('stepname').textContent=STEPS[cur];document.getElementById('bar').style.width=(cur/(STEPS.length-1)*100)+'%';document.getElementById('prev').disabled=cur===0;updateNext();buildDots();window.scrollTo({top:0,behavior:'smooth'});}
+function go(d){goTo(cur+d);}
+function updateNext(){const btn=document.getElementById('next');btn.disabled=false;btn.onclick=()=>go(1);if(cur===1&&!anatomyDone){btn.disabled=true;btn.textContent='Label the anatomy';btn.onclick=null;}else if(cur===2&&!bodyDone){btn.disabled=true;btn.textContent='Choose body meaning';btn.onclick=null;}else if(cur===3&&!wickDone){btn.disabled=true;btn.textContent='Run wick example';btn.onclick=null;}else if(cur===4&&!closeStrengthDone){btn.disabled=true;btn.textContent='Choose stronger close';btn.onclick=null;}else if(cur===5&&(!dayliDone||!buildDone)){btn.disabled=true;btn.textContent='Finish the moment';btn.onclick=null;}else if(cur===7){btn.textContent=quizDone?'Finish lesson ✦':'Answer all questions';btn.disabled=!quizDone;btn.onclick=quizDone?showComplete:null;}else{btn.textContent=cur===6?'Take the final quiz →':'Next →';}}
+function setFb(id,type,html){const el=document.getElementById(id);el.className='feedback show '+type;el.innerHTML=html;}
+function burst(){const cols=['#F4829A','#7ECEC4','#F5A857','#F9B8C6','#B2E4DF','#FAD09A'];for(let i=0;i<32;i++){const p=document.createElement('div');p.className='confetti';const sz=6+Math.random()*8;p.style.cssText='left:'+(10+Math.random()*80)+'vw;top:-10px;width:'+sz+'px;height:'+sz+'px;background:'+cols[Math.floor(Math.random()*cols.length)]+';';document.body.appendChild(p);p.animate([{opacity:1,transform:'translateY(0) rotate(0deg)'},{opacity:0,transform:'translateY(100vh) rotate(720deg)'}],{duration:1200+Math.random()*900,delay:Math.random()*300,fill:'forwards'});setTimeout(()=>p.remove(),2500);}}
+function showStreak(icon,text){const s=document.getElementById('streak');document.getElementById('streakIcon').textContent=icon;document.getElementById('streakText').textContent=text;s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2200);}
+function handleStreak(correct){if(correct){streak++;if(streak===2)showStreak('👀','okayyy I see you 👀');if(streak===3)showStreak('🔥','you’re locked in 🔥');if(streak===5)showStreak('🎯','sniper energy activated 🎯');}else streak=0;}
+function showToast(){const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300);}
+function flashNote(id,text){const n=document.getElementById(id);n.textContent=text;n.classList.add('show');clearTimeout(n._t);n._t=setTimeout(()=>n.classList.remove('show'),1300);}
+function drawFrame(ctx,w,h){ctx.clearRect(0,0,w,h);ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);for(let i=1;i<5;i++){ctx.strokeStyle='rgba(244,130,154,.08)';ctx.beginPath();ctx.moveTo(0,(h/5)*i);ctx.lineTo(w,(h/5)*i);ctx.stroke();}}
+function drawCandle(ctx,x,open,close,high,low,bull,label){ctx.strokeStyle=bull?'#7ECEC4':'#F4829A';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x,high);ctx.lineTo(x,low);ctx.stroke();ctx.fillStyle=bull?'#7ECEC4':'#F4829A';ctx.fillRect(x-28,Math.min(open,close),56,Math.abs(close-open));ctx.fillStyle='#2C1810';ctx.font='bold 13px DM Sans';if(label)ctx.fillText(label,x-38,low+24);}
+function drawAnatomy(part){const c=document.getElementById('anatomyCanvas'),ctx=c.getContext('2d'),w=c.width,h=c.height;drawFrame(ctx,w,h);const x=390,open=225,close=145,high=120,low=245;drawCandle(ctx,x,open,close,high,low,true,'Bullish candle');ctx.fillStyle='#2C1810';ctx.font='bold 14px DM Sans';ctx.fillText('Tap labels to reveal each part',60,55);ctx.strokeStyle='#2C1810';ctx.lineWidth=2;ctx.setLineDash([5,5]);if(part==='open'||part==='all'){ctx.beginPath();ctx.moveTo(x+30,open);ctx.lineTo(x+120,open);ctx.stroke();ctx.fillText('Open: where price began',x+126,open+4);}if(part==='close'||part==='all'){ctx.beginPath();ctx.moveTo(x+30,close);ctx.lineTo(x+120,close);ctx.stroke();ctx.fillText('Close: where price ended',x+126,close+4);}if(part==='high'||part==='all'){ctx.beginPath();ctx.moveTo(x,high);ctx.lineTo(x+120,high);ctx.stroke();ctx.fillText('High: top of range',x+126,high+4);}if(part==='low'||part==='all'){ctx.beginPath();ctx.moveTo(x,low);ctx.lineTo(x+120,low);ctx.stroke();ctx.fillText('Low: bottom of range',x+126,low+4);}ctx.setLineDash([]);if(part==='body'||part==='all'){ctx.strokeStyle='#F5A857';ctx.lineWidth=4;ctx.strokeRect(x-32,close-4,64,Math.abs(close-open)+8);ctx.fillStyle='#2C1810';ctx.fillText('Body: open to close',150,176);}if(part==='wick'||part==='all'){ctx.strokeStyle='#F4829A';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(x,high);ctx.lineTo(x,close);ctx.stroke();ctx.beginPath();ctx.moveTo(x,open);ctx.lineTo(x,low);ctx.stroke();ctx.fillStyle='#2C1810';ctx.fillText('Wick: price traveled but did not close there',86,280);}}
+function showPart(part,btn){partsFound.add(part);btn.classList.add('alt');drawAnatomy(part);document.getElementById('partsOut').textContent=partsFound.size+' / 6';document.getElementById('partClue').textContent=part.charAt(0).toUpperCase()+part.slice(1);document.getElementById('partSkill').textContent=partsFound.size>=4?'Rising':'Building';flashNote('anatomyNote',part+' revealed');setFb('anatomyFb','mid','<strong>'+part.toUpperCase()+'</strong> is one piece of the candle story. Keep revealing each body part until the anatomy clicks.');if(partsFound.size===6){anatomyDone=true;drawAnatomy('all');setFb('anatomyFb','good','<strong>Full anatomy unlocked.</strong> You found the open, high, low, close, body, and wick.');handleStreak(true);burst();updateNext();}}
+function pickBody(which,card){document.querySelectorAll('#s2 .tap').forEach(c=>c.classList.remove('selected'));card.classList.add('selected');bodyDone=true;if(which==='body'){setFb('bodyFb','good','<strong>Correct.</strong> The body is the space between the open and close.');handleStreak(true);}else{setFb('bodyFb','bad','<strong>Not quite.</strong> The body is specifically the open-to-close section of the candle.');handleStreak(false);}updateNext();}
+function resetWick(){const c=document.getElementById('wickCanvas'),ctx=c.getContext('2d'),w=c.width,h=c.height;drawFrame(ctx,w,h);drawCandle(ctx,390,220,150,90,238,true,'Long upper wick');ctx.fillStyle='#2C1810';ctx.font='bold 14px DM Sans';ctx.fillText('Tap “Show wick rejection” to highlight what price did not hold.',80,55);}
+function runWick(){resetWick();const c=document.getElementById('wickCanvas'),ctx=c.getContext('2d');ctx.strokeStyle='#F4829A';ctx.lineWidth=6;ctx.beginPath();ctx.moveTo(390,90);ctx.lineTo(390,150);ctx.stroke();ctx.fillStyle='#2C1810';ctx.font='bold 14px DM Sans';ctx.fillText('Price reached here but closed lower',430,116);flashNote('wickNote','Traveled but did not hold');setFb('wickFb','good','<strong>Yes.</strong> The wick shows price pushed into an area but did not close there. That difference matters.');wickDone=true;handleStreak(true);updateNext();}
+function pickCloseStrength(which,card){document.querySelectorAll('#s4 .tap').forEach(c=>c.classList.remove('selected'));card.classList.add('selected');closeStrengthDone=true;if(which==='clean'){setFb('closeStrengthFb','good','<strong>Exactly.</strong> A stronger close shows price held more of the move into the candle close.');handleStreak(true);}else{setFb('closeStrengthFb','bad','<strong>Not the stronger close.</strong> A long upper wick means price pushed up but did not hold that higher area.');handleStreak(false);}updateNext();}
+function dayliMoment(choice,btn){btn.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);dayliDone=true;if(choice==='rejection'){btn.classList.add('good');setFb('dayliFb','good','<strong>This is the correct read.</strong><br><br>The wick went above resistance, but the candle did not close above it. That is not the same as acceptance above resistance.');handleStreak(true);}else{btn.classList.add('bad');setFb('dayliFb','bad','<strong>Careful.</strong><br><br>A wick above resistance is not the same thing as a candle close above resistance. This is why candle close matters.');handleStreak(false);}updateNext();}
+function pickBuild(which,card){if(buildDone||buildOrder.includes(which))return;card.classList.add('selected');buildOrder.push(which);const expected=['body','wicks','close'];const ok=expected[buildOrder.length-1]===which;if(ok)handleStreak(true);else handleStreak(false);document.getElementById('buildStatus').textContent=buildOrder.length+'/3 built';document.getElementById('buildSkill').textContent=buildOrder.length>=2?'Rising':'Low';document.getElementById('buildQuality').textContent=buildOrder.length>=2?'Building':'Unbuilt';document.getElementById('buildMeter').style.width=(buildOrder.length/3*100)+'%';if(buildOrder.length===3){buildDone=true;const success=buildOrder.join('|')===expected.join('|');if(success){setFb('buildFb','good','<strong>Clean anatomy read.</strong> Body, wicks, then close. That helps you separate movement from acceptance.');document.getElementById('buildStatus').textContent='Complete';document.getElementById('buildSkill').textContent='High';document.getElementById('buildQuality').textContent='Clean';burst();}else{setFb('buildFb','bad','<strong>Almost.</strong> Read the body, check the wicks, then respect where price actually closed.');}updateNext();}}
+function quizAns(btn,correct,id,msg){btn.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);btn.classList.add(correct?'good':'bad');const fb=document.getElementById(id);fb.className='qfb show feedback '+(correct?'good':'bad');fb.innerHTML=msg;quizState[id]=true;handleStreak(correct);if(Object.keys(quizState).length===4){quizDone=true;updateNext();}}
+function showComplete(){document.getElementById('completeCard').classList.add('show');showToast();burst();}
+buildDots();updateNext();drawAnatomy();resetWick();
+</script>
+</body>
+</html>

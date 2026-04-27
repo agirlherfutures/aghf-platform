@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson 17 — Multi-Timeframe Execution Mode · AG&HF</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F4829A;--pink2:#F9B8C6;--pink3:#FDE8ED;
+  --teal:#7ECEC4;--teal2:#B2E4DF;--teal3:#E8F8F6;
+  --peach:#F5A857;--peach2:#FAD09A;--peach3:#FEF3E4;
+  --cream:#FDF8F5;--warm:#FFFBF9;--dark:#2C1810;--text:#3D2B20;--muted:#7A5C50;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.app{display:flex;min-height:100vh}
+.sidebar{width:220px;background:#fff;border-right:1px solid rgba(244,130,154,.12);position:fixed;top:0;bottom:0;left:0;display:flex;flex-direction:column}
+.logo{padding:20px 22px 16px;border-bottom:1px solid rgba(244,130,154,.1);font-family:"Playfair Display",serif;font-style:italic;color:var(--pink)}
+.logo span{color:var(--teal)}
+.user{padding:13px 18px;border-bottom:1px solid rgba(244,130,154,.1)}
+.user strong{display:block;font-size:.82rem;color:var(--dark)}
+.user span{font-size:.68rem;color:var(--muted)}
+.sec{padding:10px 18px 5px;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.item{padding:10px 18px;font-size:.85rem;color:var(--muted);border-left:3px solid transparent}
+.item.on{background:var(--pink3);color:var(--pink);border-left-color:var(--pink);font-weight:700}
+.main{margin-left:220px;flex:1}
+.top{height:60px;background:#fff;border-bottom:1px solid rgba(244,130,154,.1);display:flex;justify-content:space-between;align-items:center;padding:0 30px;position:sticky;top:0;z-index:20}
+.top small{color:var(--muted)}
+.xp{font-size:.77rem;color:var(--peach);background:var(--peach3);border:1px solid var(--peach2);padding:4px 12px;border-radius:999px;font-weight:700}
+.progress{height:6px;background:var(--pink3);position:sticky;top:60px;z-index:19}
+.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--peach));transition:.3s}
+.wrap{padding:34px 24px 110px;display:flex;justify-content:center}
+.slide{max-width:920px;width:100%;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.card{background:#fff;border:1px solid rgba(244,130,154,.1);box-shadow:0 4px 20px rgba(244,130,154,.05);border-radius:22px;padding:26px 30px}
+.intro{background:var(--dark);color:#fff;padding:40px 38px 42px;border-radius:32px;box-shadow:0 10px 40px rgba(44,24,16,.25)}
+.eyebrow{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink2);margin-bottom:12px}
+.intro h1{font-family:"Playfair Display",serif;font-size:2.15rem;line-height:1.1;color:#fff;margin-bottom:14px}
+.intro h1 span{color:var(--pink)}
+.intro p{line-height:1.78;color:rgba(255,255,255,.62);margin-bottom:22px;max-width:730px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-size:.7rem;padding:5px 12px;border-radius:999px;border:1px solid}
+.pk{background:rgba(244,130,154,.15);border-color:rgba(244,130,154,.3);color:var(--pink2)}
+.tl{background:rgba(126,206,196,.15);border-color:rgba(126,206,196,.3);color:var(--teal2)}
+.pc{background:rgba(245,168,87,.15);border-color:rgba(245,168,87,.3);color:var(--peach2)}
+.head{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);font-weight:700;margin-bottom:10px}
+.card h2{font-family:"Playfair Display",serif;font-size:1.25rem;line-height:1.3;color:var(--dark);margin-bottom:12px}
+.card p{font-size:.93rem;line-height:1.82;color:var(--muted)}
+.feedback{display:none;padding:14px 16px;border-radius:14px;font-size:.86rem;line-height:1.65}
+.feedback.show{display:block}
+.feedback.good{background:var(--teal3);border:1px solid var(--teal2);color:#1a6b63}
+.feedback.bad{background:var(--pink3);border:1px solid var(--pink2);color:#a84060}
+.feedback.mid{background:var(--peach3);border:1px solid var(--peach2);color:#7a4a0a}
+.chartbox{background:var(--warm);border:1px solid rgba(244,130,154,.1);border-radius:18px;padding:18px}
+.chartwrap{position:relative}
+.chart{display:block;width:100%;height:auto;background:#fff;border-radius:16px;border:1px solid rgba(244,130,154,.08)}
+.note{position:absolute;top:12px;right:12px;background:rgba(44,24,16,.9);color:#fff;padding:8px 12px;border-radius:12px;font-size:.76rem;opacity:0;transform:translateY(-6px);transition:.25s}
+.note.show{opacity:1;transform:translateY(0)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.tap{border-radius:18px;padding:18px;border:2px solid transparent;background:var(--warm);cursor:pointer;transition:.15s}
+.tap:hover{transform:translateY(-2px)}
+.tap.selected{box-shadow:0 10px 24px rgba(44,24,16,.08)}
+.tap.correct{background:var(--teal3);border-color:var(--teal2)}
+.tap.wrong{background:var(--pink3);border-color:var(--pink2)}
+.tap.locked{opacity:.45;cursor:not-allowed;pointer-events:none}
+.tap h3{font-family:"Playfair Display",serif;font-size:1.06rem;color:var(--dark);margin-bottom:6px}
+.tap p{font-size:.84rem;line-height:1.65}
+.btnrow,.opts{display:flex;gap:10px;flex-wrap:wrap}
+.btnrow{justify-content:center;margin-top:14px}
+button{font-family:"DM Sans",sans-serif;background:#fff;border:1.5px solid rgba(244,130,154,.16);border-radius:11px;padding:12px 16px;font-size:.87rem;color:var(--text);cursor:pointer}
+button.primary{background:linear-gradient(135deg,var(--pink),var(--peach));border:none;color:#fff;font-weight:700}
+button.alt{background:var(--teal3);border-color:var(--teal2)}
+button.correct{background:var(--teal3);border-color:var(--teal);color:#1a6b63}
+button.wrong{background:var(--pink3);border-color:var(--pink);color:#a84060}
+button:disabled{opacity:.55;cursor:not-allowed}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px}
+.kpi{background:var(--warm);border:1.5px solid rgba(244,130,154,.12);border-radius:16px;padding:16px}
+.kpi small{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
+.kpi strong{font-family:"Playfair Display",serif;font-size:1.1rem;color:var(--dark)}
+.reinforce{background:linear-gradient(135deg,rgba(126,206,196,.12),rgba(245,168,87,.08));border:1px solid var(--teal2)}
+.reinforce b{display:block;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.reinforce div{font-size:.95rem;line-height:1.75;color:var(--dark);font-style:italic}
+.pathline{height:14px;background:var(--pink3);border-radius:999px;overflow:hidden;margin-top:10px}
+.pathline>div{height:100%;background:linear-gradient(90deg,var(--teal),var(--peach));width:0;transition:.4s}
+.recap-list{display:flex;flex-direction:column;gap:8px}
+.recap{display:flex;gap:12px;padding:13px 16px;border-radius:12px}
+.recap:nth-child(odd){background:var(--teal3);border:1px solid var(--teal2)}
+.recap:nth-child(even){background:var(--pink3);border:1px solid var(--pink2)}
+.recap .ico{font-size:1rem;margin-top:2px}
+.recap .txt{font-size:.87rem;line-height:1.62}
+.dayli{background:var(--dark);color:#fff}
+.dayli .head{color:var(--pink)}
+.dayli .quote{font-family:"Playfair Display",serif;font-size:1rem;line-height:1.75;font-style:italic}
+.dayli .at{margin-top:8px;color:rgba(255,255,255,.32);font-size:.72rem}
+.question{margin-bottom:22px}
+.question .lbl{font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:7px}
+.question .q{font-size:.96rem;color:var(--dark);font-weight:700;line-height:1.5;margin-bottom:12px}
+.qfb{display:none;margin-top:9px;padding:11px 15px;border-radius:10px;font-size:.83rem;line-height:1.6}
+.qfb.show{display:block}
+.complete{background:linear-gradient(135deg,var(--dark),#3d2420);text-align:center;color:#fff;display:none}
+.complete.show{display:block}
+.complete h2{font-family:"Playfair Display",serif;font-size:1.9rem;color:#fff;margin-bottom:8px}
+.complete h2 span{color:var(--pink)}
+.complete p{color:rgba(255,255,255,.58);max-width:430px;margin:0 auto 20px;line-height:1.65}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(126,206,196,.15);border:1px solid rgba(126,206,196,.3);border-radius:999px;padding:9px 20px;font-size:.88rem;color:var(--teal2);font-weight:700;margin-bottom:22px}
+.cc-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.cc-btns button{padding:13px 26px;border-radius:999px;font-size:.9rem}
+.cc-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.cc-hub{background:transparent;color:rgba(255,255,255,.45);border:1.5px solid rgba(255,255,255,.18)}
+.bottom{position:fixed;left:220px;right:0;bottom:0;background:rgba(253,248,245,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(244,130,154,.12);padding:13px 40px;display:flex;justify-content:space-between;align-items:center}
+.dots{display:flex;gap:5px}
+.dot{width:8px;height:8px;border-radius:50%;cursor:pointer}
+.done{background:var(--teal)}
+.active-dot{background:var(--pink);transform:scale(1.45)}
+.todo{background:var(--pink3);border:1.5px solid var(--pink2)}
+.stepname{font-size:.74rem;color:var(--muted);font-weight:700}
+.prev,.next{padding:10px 22px;border-radius:999px;font-size:.85rem;font-weight:700;cursor:pointer}
+.prev{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted)}
+.next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.prev:disabled,.next:disabled{opacity:.4;cursor:default}
+.toast,.streak{position:fixed;background:var(--dark);color:#fff;border-radius:14px;box-shadow:0 16px 48px rgba(44,24,16,.32);z-index:999}
+.toast{bottom:84px;right:26px;padding:13px 18px;display:flex;gap:11px;align-items:center;transform:translateY(18px);opacity:0;transition:.35s}
+.toast.show{transform:translateY(0);opacity:1}
+.streak{top:80px;left:50%;transform:translateX(-50%) translateY(-20px);padding:12px 22px;display:flex;gap:10px;align-items:center;opacity:0;transition:.35s;pointer-events:none}
+.streak.show{transform:translateX(-50%) translateY(0);opacity:1}
+.confetti{position:fixed;border-radius:2px;pointer-events:none;z-index:1000}
+.shake{animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}50%{transform:translateX(4px)}75%{transform:translateX(-3px)}}
+@media(max-width:900px){.sidebar{display:none}.main{margin-left:0}.bottom{left:0}}
+@media(max-width:760px){.grid2,.grid3,.kpi-grid{grid-template-columns:1fr}.top{padding:0 18px}.wrap{padding:22px 14px 110px}.intro{padding:30px 22px 32px}.intro h1{font-size:1.8rem}.bottom{padding:13px 18px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar"><div class="logo"><span>A Girl &</span> Her Futures™</div><div class="user"><strong>Dayli</strong><span>Section 3 · Chart Fundamentals</span></div><div class="sec">Learn</div><div class="item on">✦ Lessons</div><div class="item">◈ Games</div><div class="sec">Community</div><div class="item">↑ Leaderboard</div><div class="item">◇ Drip Store</div><div class="sec">Account</div><div class="item">○ My Profile</div></aside>
+<main class="main">
+<div class="top"><small>Lessons › Section 3 › <span id="crumb">Introduction</span></small><div><span class="xp">+120 XP</span> <small id="count">1 / 8</small></div></div><div class="progress"><div id="bar"></div></div>
+<div class="wrap">
+
+<section class="slide active" id="s0">
+  <div class="intro">
+    <div class="eyebrow">✦ Section 3 · Lesson 17</div>
+    <h1>MTF <span>Execution Mode</span></h1>
+    <p>This is not another “what is a timeframe” lesson. This is where you build the trade from top to bottom: 4H bias → 1H structure → 1M entry. You cannot skip steps because skipping context is how traders get bullied by the small timeframe.</p>
+    <div class="pills"><span class="pill pk">~22 min</span><span class="pill tl">Execution lab</span><span class="pill pc">+120 XP</span></div>
+  </div>
+  <div class="card">
+    <div class="head">Core idea</div>
+    <h2>You do not guess entries. You build them.</h2>
+    <p>The 4H gives the bias, the 1H gives the structure and levels, and the 1M gives the entry detail. Each layer unlocks the next one.</p>
+  </div>
+</section>
+
+<section class="slide" id="s1">
+  <div class="card">
+    <div class="head">Step 1 · 4H Bias</div>
+    <h2>Start with the bigger picture</h2>
+    <p>Look at the 4H chart. What is the bias?</p>
+    <div class="chartbox">
+      <div class="chartwrap">
+        <canvas id="biasCanvas" class="chart" width="780" height="320"></canvas>
+        <div class="note" id="biasNote">Read the 4H first</div>
+      </div>
+      <div class="btnrow">
+        <button onclick="chooseBias('bearish', this)">Bearish bias</button>
+        <button onclick="chooseBias('bullish', this)">Bullish bias</button>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi"><small>Layer</small><strong>4H</strong></div>
+        <div class="kpi"><small>Job</small><strong>Bias</strong></div>
+        <div class="kpi"><small>Unlocks</small><strong id="unlock1">1H locked</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="feedback" id="biasFb"></div>
+</section>
+
+<section class="slide" id="s2">
+  <div class="card">
+    <div class="head">Step 2 · 1H Structure</div>
+    <h2>Now map the structure</h2>
+    <p>The 4H bias is bullish. Now use the 1H to find the swing/level that matters before you ever think about entry.</p>
+    <div class="chartbox">
+      <div class="chartwrap">
+        <canvas id="structureCanvas" class="chart" width="780" height="320"></canvas>
+        <div class="note" id="structureNote">Find structure</div>
+      </div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="tap" onclick="chooseStructure('guess', this)"><h3>Guess the entry</h3><p>Jump straight to a trade without mapping the level.</p></div>
+        <div class="tap" onclick="chooseStructure('level', this)"><h3>Mark the structure level</h3><p>Use the 1H to find the swing and key area.</p></div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi"><small>Layer</small><strong>1H</strong></div>
+        <div class="kpi"><small>Job</small><strong>Structure</strong></div>
+        <div class="kpi"><small>Unlocks</small><strong id="unlock2">1M locked</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="feedback" id="structureFb"></div>
+</section>
+
+<section class="slide" id="s3">
+  <div class="card">
+    <div class="head">Step 3 · 1M Entry</div>
+    <h2>Now zoom in for entry detail</h2>
+    <p>The 4H gave the bias. The 1H gave the level. Now the 1M is only here for the entry decision.</p>
+    <div class="chartbox">
+      <div class="chartwrap">
+        <canvas id="entryCanvas" class="chart" width="780" height="320"></canvas>
+        <div class="note" id="entryNote">Wait for confirmation</div>
+      </div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="tap" onclick="chooseEntry('early', this)"><h3>Enter early</h3><p>Click before confirmation because price is moving.</p></div>
+        <div class="tap" onclick="chooseEntry('confirm', this)"><h3>Wait for confirmation</h3><p>Let the 1M confirm the entry at the level.</p></div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi"><small>Layer</small><strong>1M</strong></div>
+        <div class="kpi"><small>Job</small><strong>Entry</strong></div>
+        <div class="kpi"><small>Trade status</small><strong id="tradeStatus">Waiting</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="feedback" id="entryFb"></div>
+</section>
+
+<section class="slide" id="s4">
+  <div class="card">
+    <div class="head">Execution playback</div>
+    <h2>Watch the trade play out</h2>
+    <p>This playback shows the difference between building the trade with context and rushing the entry without confirmation.</p>
+    <div class="chartbox">
+      <div class="chartwrap">
+        <canvas id="playbackCanvas" class="chart" width="780" height="320"></canvas>
+        <div class="note" id="playbackNote">Playback ready</div>
+      </div>
+      <div class="btnrow">
+        <button class="primary" onclick="playTrade()">Play trade</button>
+        <button onclick="resetPlayback()">Reset</button>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi"><small>Bias</small><strong id="pbBias">Bullish</strong></div>
+        <div class="kpi"><small>Entry quality</small><strong id="pbQuality">Waiting</strong></div>
+        <div class="kpi"><small>P&L feel</small><strong id="pbPnl">$0</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="feedback" id="playbackFb"></div>
+  <div class="card reinforce"><b>Reinforce</b><div>You did not enter because the 1M moved. You entered because the 4H, 1H, and 1M were working together.</div></div>
+</section>
+
+<section class="slide" id="s5">
+  <div class="card">
+    <div class="head">Dayli teaching moment</div>
+    <h2>The 1M is loud, but it is not the boss.</h2>
+    <p>The 1M pulls back, but the 4H is still bullish and the 1H structure has not broken. What do you do?</p>
+    <div class="opts">
+      <button onclick="dayliMoment('flip', this)">Flip bearish immediately because the 1M pulled back</button>
+      <button onclick="dayliMoment('context', this)">Respect the higher-timeframe context and wait</button>
+    </div>
+    <div class="feedback" id="dayliFb"></div>
+  </div>
+
+  <div class="card">
+    <div class="head">Build the execution flow</div>
+    <h2>Put the execution model in order</h2>
+    <p>Tap the steps in the clean order.</p>
+    <div class="grid3" style="margin-top:16px">
+      <div class="tap" onclick="pickBuild('4H', this)"><h3>4H Bias</h3><p>What is the bigger picture?</p></div>
+      <div class="tap" onclick="pickBuild('1H', this)"><h3>1H Structure</h3><p>Where is the key level?</p></div>
+      <div class="tap" onclick="pickBuild('1M', this)"><h3>1M Entry</h3><p>Where is the confirmation?</p></div>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi"><small>Build status</small><strong id="buildStatus">Waiting</strong></div>
+      <div class="kpi"><small>MTF clarity</small><strong id="buildSkill">Low</strong></div>
+      <div class="kpi"><small>Flow</small><strong id="buildQuality">Unbuilt</strong></div>
+    </div>
+    <div class="pathline"><div id="buildMeter"></div></div>
+  </div>
+  <div class="feedback" id="buildFb"></div>
+</section>
+
+<section class="slide" id="s6">
+  <div class="card">
+    <h2 style="margin-bottom:16px">What you know now</h2>
+    <div class="recap-list">
+      <div class="recap"><div class="ico">🖼️</div><div class="txt"><strong>4H = bias.</strong> It tells you the bigger-picture direction.</div></div>
+      <div class="recap"><div class="ico">📍</div><div class="txt"><strong>1H = structure.</strong> It gives the swings, levels, and map.</div></div>
+      <div class="recap"><div class="ico">🎯</div><div class="txt"><strong>1M = entry.</strong> It gives precise confirmation after context is clear.</div></div>
+      <div class="recap"><div class="ico">🧠</div><div class="txt"><strong>Execution is built.</strong> You do not let the smallest timeframe make the biggest decision.</div></div>
+    </div>
+  </div>
+  <div class="card dayli">
+    <div class="head">✦ Dayli note</div>
+    <div class="quote">"I don’t let the 1M bully me. The 4H gives me bias, the 1H gives me structure, and the 1M only gives me the entry."</div>
+    <div class="at">— Dayli Scott · A Girl & Her Futures™</div>
+  </div>
+</section>
+
+<section class="slide" id="s7">
+  <div class="card">
+    <div class="head">Final quiz</div>
+    <h2>Lock in MTF execution</h2>
+    <div class="question"><div class="lbl">Question 1 of 4</div><div class="q">What is the 4H used for?</div><div class="opts"><button class="qopt" onclick="quizAns(this,true,'q1fb','Correct. 4H gives the bias.')">Bias</button><button class="qopt" onclick="quizAns(this,false,'q1fb','No. Entries come later.')">Exact entry</button></div><div class="qfb feedback" id="q1fb"></div></div>
+    <div class="question"><div class="lbl">Question 2 of 4</div><div class="q">What is the 1H used for?</div><div class="opts"><button class="qopt" onclick="quizAns(this,true,'q2fb','Exactly. 1H gives structure and levels.')">Structure and levels</button><button class="qopt" onclick="quizAns(this,false,'q2fb','No. Do not skip the 1H map.')">Skipping context</button></div><div class="qfb feedback" id="q2fb"></div></div>
+    <div class="question"><div class="lbl">Question 3 of 4</div><div class="q">What is the 1M used for?</div><div class="opts"><button class="qopt" onclick="quizAns(this,true,'q3fb','Yes. 1M is for entry detail after context is clear.')">Entry detail</button><button class="qopt" onclick="quizAns(this,false,'q3fb','No. The 1M should not decide the full bias by itself.')">Full market bias</button></div><div class="qfb feedback" id="q3fb"></div></div>
+    <div class="question"><div class="lbl">Question 4 of 4</div><div class="q">What is the clean execution order?</div><div class="opts"><button class="qopt" onclick="quizAns(this,true,'q4fb','Exactly. 4H → 1H → 1M.')">4H → 1H → 1M</button><button class="qopt" onclick="quizAns(this,false,'q4fb','No. Starting with 1M can make you react to noise.')">1M → 4H → 1H</button></div><div class="qfb feedback" id="q4fb"></div></div>
+  </div>
+  <div class="card complete" id="completeCard">
+    <h2>Lesson 17 <span>complete.</span></h2>
+    <p>You now understand MTF execution mode: bias first, structure second, entry last.</p>
+    <div class="badge">+120 XP · MTF execution unlocked</div>
+    <div class="cc-btns"><button class="cc-next">Section 4 → Market Structure</button><button class="cc-hub">Back to lessons</button></div>
+  </div>
+</section>
+
+</div></main></div>
+
+<div class="bottom"><div style="display:flex;align-items:center;gap:12px"><div class="dots" id="dots"></div><div class="stepname" id="stepname">Introduction</div></div><div style="display:flex;gap:9px"><button class="prev" id="prev" onclick="go(-1)" disabled>← Back</button><button class="next" id="next" onclick="go(1)">Next →</button></div></div>
+<div class="streak" id="streak"><span id="streakIcon">🔥</span><span id="streakText">you’re locked in 🔥</span></div>
+<div class="toast" id="toast"><span>✦</span><div><div style="font-size:.85rem;font-weight:700">+120 XP earned!</div><div style="font-size:.7rem;color:rgba(255,255,255,.42)">Lesson 17 complete 🫧✨</div></div></div>
+
+<script>
+const STEPS=['Introduction','4H bias','1H structure','1M entry','Playback','Dayli moment','Recap','Final quiz'];
+let cur=0,streak=0,biasDone=false,structureDone=false,entryDone=false,playbackDone=false,dayliDone=false,buildDone=false,quizDone=false;
+let entryChoice=null; const quizState={}; let buildOrder=[];
+function buildDots(){const el=document.getElementById('dots');el.innerHTML='';STEPS.forEach((_,i)=>{const d=document.createElement('div');d.className='dot '+(i<cur?'done':i===cur?'active-dot':'todo');if(i<=cur)d.onclick=()=>goTo(i);el.appendChild(d);});}
+function goTo(n){document.getElementById('s'+cur).classList.remove('active');cur=n;document.getElementById('s'+cur).classList.add('active');document.getElementById('crumb').textContent=STEPS[cur];document.getElementById('count').textContent=(cur+1)+' / '+STEPS.length;document.getElementById('stepname').textContent=STEPS[cur];document.getElementById('bar').style.width=(cur/(STEPS.length-1)*100)+'%';document.getElementById('prev').disabled=cur===0;updateNext();buildDots();window.scrollTo({top:0,behavior:'smooth'});}
+function go(d){goTo(cur+d);}
+function updateNext(){const btn=document.getElementById('next');btn.disabled=false;btn.onclick=()=>go(1);if(cur===1&&!biasDone){btn.disabled=true;btn.textContent='Set 4H bias';btn.onclick=null;}else if(cur===2&&!structureDone){btn.disabled=true;btn.textContent='Map 1H structure';btn.onclick=null;}else if(cur===3&&!entryDone){btn.disabled=true;btn.textContent='Choose 1M entry';btn.onclick=null;}else if(cur===4&&!playbackDone){btn.disabled=true;btn.textContent='Play the trade';btn.onclick=null;}else if(cur===5&&(!dayliDone||!buildDone)){btn.disabled=true;btn.textContent='Finish the flow';btn.onclick=null;}else if(cur===7){btn.textContent=quizDone?'Finish lesson ✦':'Answer all questions';btn.disabled=!quizDone;btn.onclick=quizDone?showComplete:null;}else{btn.textContent=cur===6?'Take the final quiz →':'Next →';}}
+function setFb(id,type,html){const el=document.getElementById(id);el.className='feedback show '+type;el.innerHTML=html;}
+function burst(){const cols=['#F4829A','#7ECEC4','#F5A857','#F9B8C6','#B2E4DF','#FAD09A'];for(let i=0;i<32;i++){const p=document.createElement('div');p.className='confetti';const sz=6+Math.random()*8;p.style.cssText='left:'+(10+Math.random()*80)+'vw;top:-10px;width:'+sz+'px;height:'+sz+'px;background:'+cols[Math.floor(Math.random()*cols.length)]+';';document.body.appendChild(p);p.animate([{opacity:1,transform:'translateY(0) rotate(0deg)'},{opacity:0,transform:'translateY(100vh) rotate(720deg)'}],{duration:1200+Math.random()*900,delay:Math.random()*300,fill:'forwards'});setTimeout(()=>p.remove(),2500);}}
+function showStreak(icon,text){const s=document.getElementById('streak');document.getElementById('streakIcon').textContent=icon;document.getElementById('streakText').textContent=text;s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2200);}
+function handleStreak(correct){if(correct){streak++;if(streak===2)showStreak('👀','okayyy I see you 👀');if(streak===3)showStreak('🔥','you’re locked in 🔥');if(streak===5)showStreak('🎯','sniper energy activated 🎯');}else streak=0;}
+function showToast(){const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300);}
+function flashNote(id,text){const n=document.getElementById(id);n.textContent=text;n.classList.add('show');clearTimeout(n._t);n._t=setTimeout(()=>n.classList.remove('show'),1300);}
+function drawFrame(ctx,w,h){ctx.clearRect(0,0,w,h);ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);for(let i=1;i<5;i++){ctx.strokeStyle='rgba(244,130,154,.08)';ctx.beginPath();ctx.moveTo(0,(h/5)*i);ctx.lineTo(w,(h/5)*i);ctx.stroke();}}
+function candle(ctx,x,open,close,high,low,bull){ctx.strokeStyle=bull?'#7ECEC4':'#F4829A';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,high);ctx.lineTo(x,low);ctx.stroke();ctx.fillStyle=bull?'#7ECEC4':'#F4829A';ctx.fillRect(x-8,Math.min(open,close),16,Math.abs(close-open));}
+function drawBias(){const c=document.getElementById('biasCanvas'),ctx=c.getContext('2d'),w=c.width,h=c.height;drawFrame(ctx,w,h);ctx.fillStyle='#2C1810';ctx.font='bold 15px DM Sans';ctx.fillText('4H: Higher highs and higher lows',60,48);let pts=[[90,230],[170,185],[250,208],[335,160],[430,185],[520,135],[625,160],[705,112]];ctx.strokeStyle='#7ECEC4';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);pts.forEach(p=>ctx.lineTo(p[0],p[1]));ctx.stroke();pts.forEach((p,i)=>{ctx.fillStyle=i%2===0?'#F5A857':'#7ECEC4';ctx.beginPath();ctx.arc(p[0],p[1],6,0,Math.PI*2);ctx.fill();});}
+function drawStructure(marked=false){const c=document.getElementById('structureCanvas'),ctx=c.getContext('2d'),w=c.width,h=c.height;drawFrame(ctx,w,h);ctx.fillStyle='#2C1810';ctx.font='bold 15px DM Sans';ctx.fillText('1H: Mark the structure level before entry',60,48);let pts=[[80,225],[150,185],[230,205],[310,158],[390,182],[470,135],[555,166],[650,125],[720,150]];ctx.strokeStyle='#7ECEC4';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);pts.forEach(p=>ctx.lineTo(p[0],p[1]));ctx.stroke();if(marked){ctx.strokeStyle='#F5A857';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(65,166);ctx.lineTo(725,166);ctx.stroke();ctx.fillStyle='#2C1810';ctx.fillText('1H key structure level',80,154);}}
+function drawEntry(confirmed=false, early=false){const c=document.getElementById('entryCanvas'),ctx=c.getContext('2d'),w=c.width,h=c.height;drawFrame(ctx,w,h);ctx.fillStyle='#2C1810';ctx.font='bold 15px DM Sans';ctx.fillText('1M: Entry detail at the 1H level',60,48);ctx.strokeStyle='#F5A857';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(60,178);ctx.lineTo(720,178);ctx.stroke();ctx.fillText('1H level',65,166);let x=90;for(let i=0;i<24;i++){let base=180+Math.sin(i/2)*18-(i>12?(i-12)*3:0);let bull=i>11;let open=base+(bull?12:0),close=base+(bull?0:12);candle(ctx,x,open,close,Math.min(open,close)-8,Math.max(open,close)+8,bull);x+=26;}if(early){ctx.strokeStyle='#F4829A';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(210,178);ctx.lineTo(210,138);ctx.stroke();ctx.fillStyle='#2C1810';ctx.fillText('Early entry',230,142);}if(confirmed){ctx.strokeStyle='#7ECEC4';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(430,178);ctx.lineTo(430,130);ctx.stroke();ctx.fillStyle='#2C1810';ctx.fillText('Confirmed entry',450,134);}}
+function resetPlayback(){const c=document.getElementById('playbackCanvas'),ctx=c.getContext('2d'),w=c.width,h=c.height;drawFrame(ctx,w,h);ctx.fillStyle='#2C1810';ctx.font='bold 15px DM Sans';ctx.fillText('Press play to watch the trade outcome.',60,50);document.getElementById('pbQuality').textContent='Waiting';document.getElementById('pbPnl').textContent='$0';}
+function drawPlayback(success){const c=document.getElementById('playbackCanvas'),ctx=c.getContext('2d'),w=c.width,h=c.height;drawFrame(ctx,w,h);ctx.strokeStyle='#F5A857';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(60,190);ctx.lineTo(720,190);ctx.stroke();ctx.fillStyle='#2C1810';ctx.font='bold 14px DM Sans';ctx.fillText('1H level',65,178);let pts=success?[[90,200],[160,190],[230,198],[300,186],[370,170],[445,150],[520,130],[610,116],[700,96]]:[[90,170],[150,150],[220,142],[290,180],[360,205],[455,225],[560,240],[680,250]];ctx.strokeStyle=success?'#7ECEC4':'#F4829A';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);pts.forEach(p=>ctx.lineTo(p[0],p[1]));ctx.stroke();pts.forEach((p,i)=>{ctx.fillStyle=success?'#7ECEC4':'#F4829A';ctx.beginPath();ctx.arc(p[0],p[1],5,0,Math.PI*2);ctx.fill();});ctx.fillStyle='#2C1810';ctx.fillText(success?'Clean continuation after confirmation':'Early entry gets punished by the pullback',360,70);}
+function chooseBias(choice,btn){document.querySelectorAll('#s1 .btnrow button').forEach(b=>b.disabled=true);biasDone=true;if(choice==='bullish'){btn.classList.add('correct');document.getElementById('unlock1').textContent='1H unlocked';flashNote('biasNote','Bullish 4H bias');setFb('biasFb','good','<strong>Correct.</strong> The 4H is showing higher highs and higher lows. Bias first.');handleStreak(true);}else{btn.classList.add('wrong');setFb('biasFb','bad','<strong>Not this read.</strong> This 4H example is showing bullish structure. Bias first, then structure.');handleStreak(false);}updateNext();}
+function chooseStructure(choice,card){document.querySelectorAll('#s2 .tap').forEach(c=>c.style.pointerEvents='none');card.classList.add('selected');structureDone=true;if(choice==='level'){card.classList.add('correct');document.getElementById('unlock2').textContent='1M unlocked';drawStructure(true);flashNote('structureNote','Structure marked');setFb('structureFb','good','<strong>Exactly.</strong> The 1H gives you the structure level before you ever zoom in for entry.');handleStreak(true);}else{card.classList.add('wrong');drawStructure(false);setFb('structureFb','bad','<strong>You skipped the map.</strong> Guessing entry before structure is how the 1M gets messy.');handleStreak(false);}updateNext();}
+function chooseEntry(choice,card){document.querySelectorAll('#s3 .tap').forEach(c=>c.style.pointerEvents='none');card.classList.add('selected');entryDone=true;entryChoice=choice;if(choice==='confirm'){card.classList.add('correct');drawEntry(true,false);document.getElementById('tradeStatus').textContent='Clean';flashNote('entryNote','Confirmed entry');setFb('entryFb','good','<strong>Clean.</strong> You waited for confirmation at the level after bias and structure were clear.');handleStreak(true);}else{card.classList.add('wrong');drawEntry(false,true);document.getElementById('tradeStatus').textContent='Early';setFb('entryFb','bad','<strong>Too early.</strong> The 1M entry is not for panic clicking. It is for confirmation after context.');handleStreak(false);}updateNext();}
+function playTrade(){playbackDone=true;const success=entryChoice==='confirm';drawPlayback(success);document.getElementById('pbQuality').textContent=success?'Clean entry':'Early entry';document.getElementById('pbPnl').textContent=success?'+$240':'-$180';flashNote('playbackNote',success?'Clean continuation':'Rushed entry');if(success){setFb('playbackFb','good','<strong>You built the trade.</strong> 4H bias, 1H level, 1M confirmation. This is execution mode.');handleStreak(true);burst();}else{document.querySelector('#s4 .card').classList.add('shake');setTimeout(()=>document.querySelector('#s4 .card').classList.remove('shake'),400);setFb('playbackFb','bad','<strong>This is why we do not rush.</strong> You had context, but the entry was early. Confirmation matters.');handleStreak(false);}updateNext();}
+function dayliMoment(choice,btn){btn.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);dayliDone=true;if(choice==='context'){btn.classList.add('correct');setFb('dayliFb','good','<strong>This is the clean read.</strong><br><br>The 1M can pull back while the higher-timeframe story is still bullish. You respect context and wait for confirmation.');handleStreak(true);}else{btn.classList.add('wrong');setFb('dayliFb','bad','<strong>That is letting the 1M bully you.</strong><br><br>A small timeframe pullback does not automatically flip the whole market story.');handleStreak(false);}updateNext();}
+function pickBuild(which,card){if(buildDone||buildOrder.includes(which))return;card.classList.add('selected');buildOrder.push(which);const expected=['4H','1H','1M'];const ok=expected[buildOrder.length-1]===which;if(ok){card.classList.add('correct');handleStreak(true);}else{card.classList.add('wrong');handleStreak(false);}document.getElementById('buildStatus').textContent=buildOrder.length+'/3 built';document.getElementById('buildSkill').textContent=buildOrder.length>=2?'Rising':'Low';document.getElementById('buildQuality').textContent=buildOrder.length>=2?'Building':'Unbuilt';document.getElementById('buildMeter').style.width=(buildOrder.length/3*100)+'%';if(buildOrder.length===3){buildDone=true;document.querySelectorAll('#s5 .tap').forEach(c=>c.style.pointerEvents='none');const success=buildOrder.join('|')===expected.join('|');if(success){setFb('buildFb','good','<strong>Clean execution flow.</strong> 4H bias, 1H structure, 1M entry. You built it in the right order.');document.getElementById('buildStatus').textContent='Complete';document.getElementById('buildSkill').textContent='High';document.getElementById('buildQuality').textContent='Clean';burst();}else{setFb('buildFb','bad','<strong>Almost.</strong> The clean order is 4H bias, 1H structure, then 1M entry.');}updateNext();}}
+function quizAns(btn,correct,id,msg){btn.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);btn.classList.add(correct?'correct':'wrong');const fb=document.getElementById(id);fb.className='qfb show feedback '+(correct?'good':'bad');fb.innerHTML=msg;quizState[id]=true;handleStreak(correct);if(Object.keys(quizState).length===4){quizDone=true;updateNext();}}
+function showComplete(){document.getElementById('completeCard').classList.add('show');showToast();burst();}
+buildDots();updateNext();drawBias();drawStructure();drawEntry();resetPlayback();
+</script>
+</body>
+</html>
