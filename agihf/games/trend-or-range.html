@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trend or Range? — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{--pink:#F4829A;--pink-light:#F9B8C6;--pink-pale:#FDE8ED;--teal:#7ECEC4;--teal-light:#B2E4DF;--teal-pale:#E8F8F6;--peach:#F5A857;--peach-light:#FAD09A;--peach-pale:#FEF3E4;--cream:#FDF8F5;--warm-white:#FFFBF9;--dark:#2C1810;--text:#3D2B20;--text-muted:#7A5C50;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--warm-white);color:var(--text);min-height:100vh;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:999;}
+  .blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.3;pointer-events:none;z-index:0;}
+  .blob-1{width:500px;height:500px;background:var(--peach-light);top:-150px;right:-150px;}
+  .blob-2{width:400px;height:400px;background:var(--teal-light);bottom:-100px;left:-100px;}
+  nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(253,248,245,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(244,130,154,.15);}
+  .nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--pink);}
+  .nav-logo span{color:var(--teal);}
+  .nav-back{font-size:.85rem;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;gap:6px;}
+  .nav-back:hover{color:var(--pink);}
+  .main{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:110px 24px 80px;}
+  .game-header{text-align:center;margin-bottom:40px;}
+  .game-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--peach-pale);border:1px solid var(--peach-light);border-radius:100px;padding:8px 20px;font-size:.75rem;font-weight:500;color:var(--peach);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px;}
+  .game-eyebrow .dot{width:6px;height:6px;background:var(--peach);border-radius:50%;}
+  .game-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.2rem);font-weight:900;color:var(--dark);line-height:1.1;margin-bottom:12px;}
+  .game-title .accent{color:var(--peach);}
+  .game-desc{font-size:1rem;color:var(--text-muted);line-height:1.7;max-width:480px;margin:0 auto;}
+  .stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+  .stat-card{background:white;border-radius:16px;border:1px solid rgba(244,130,154,.12);padding:16px;text-align:center;}
+  .stat-label{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;}
+  .stat-value{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;}
+  .round-dots{display:flex;justify-content:center;gap:8px;margin-bottom:28px;}
+  .round-dot{width:10px;height:10px;border-radius:50%;background:var(--peach-pale);border:1.5px solid var(--peach-light);transition:all .3s;}
+  .round-dot.done{background:var(--teal);border-color:var(--teal);}
+  .round-dot.active{background:var(--peach);border-color:var(--peach);transform:scale(1.3);}
+  .round-dot.wrong-dot{background:var(--pink-pale);border-color:var(--pink);}
+  .chart-card{background:white;border-radius:24px;border:1px solid rgba(244,130,154,.12);box-shadow:0 8px 40px rgba(244,130,154,.08);padding:24px;margin-bottom:20px;transition:all .3s;}
+  .chart-card.correct{border-color:var(--teal);box-shadow:0 8px 40px rgba(126,206,196,.2);}
+  .chart-card.wrong{border-color:var(--pink);box-shadow:0 8px 40px rgba(244,130,154,.25);}
+  .chart-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+  .chart-instrument{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--dark);}
+  .chart-tf{font-size:.72rem;color:var(--text-muted);background:var(--cream);padding:4px 10px;border-radius:100px;}
+  canvas#trCanvas{width:100%;height:320px;display:block;}
+  .call-btns{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+  .call-btn{border:2px solid transparent;border-radius:20px;padding:22px;font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:700;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:10px;}
+  .btn-trend{background:var(--teal-pale);border-color:var(--teal-light);color:var(--teal);}
+  .btn-trend:hover:not(:disabled){background:var(--teal);color:white;transform:translateY(-3px);box-shadow:0 12px 32px rgba(126,206,196,.3);}
+  .btn-range{background:var(--peach-pale);border-color:var(--peach-light);color:var(--peach);}
+  .btn-range:hover:not(:disabled){background:var(--peach);color:white;transform:translateY(-3px);box-shadow:0 12px 32px rgba(245,168,87,.3);}
+  .call-btn.selected-correct{background:var(--teal);border-color:var(--teal);color:white;}
+  .call-btn.selected-wrong{background:var(--pink);border-color:var(--pink);color:white;}
+  .call-btn.reveal{background:var(--teal);border-color:var(--teal);color:white;}
+  .call-btn:disabled{cursor:default;transform:none!important;}
+  .feedback{display:none;border-radius:14px;padding:16px 20px;margin-bottom:20px;}
+  .feedback.show{display:flex;align-items:flex-start;gap:12px;}
+  .feedback.correct-fb{background:var(--teal-pale);border:1px solid var(--teal-light);}
+  .feedback.wrong-fb{background:var(--pink-pale);border:1px solid var(--pink-light);}
+  .fb-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px;}
+  .fb-title{font-weight:700;color:var(--dark);font-size:.92rem;margin-bottom:3px;}
+  .fb-body{font-size:.84rem;color:var(--text-muted);line-height:1.6;}
+  .next-btn{display:none;width:100%;padding:16px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--peach),#E09040);color:white;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;box-shadow:0 10px 30px rgba(245,168,87,.3);margin-bottom:16px;}
+  .next-btn.show{display:block;}
+  .screen{display:none;}.screen.show{display:block;}
+  .start-card,.results-card{background:white;border-radius:24px;border:1px solid rgba(245,168,87,.2);padding:40px;text-align:center;}
+  .start-icon,.results-trophy{font-size:3rem;margin-bottom:20px;}
+  .start-title,.results-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--dark);margin-bottom:10px;}
+  .start-body,.results-sub{font-size:.95rem;color:var(--text-muted);line-height:1.75;margin-bottom:28px;}
+  .start-rules{background:var(--cream);border-radius:14px;padding:18px 22px;text-align:left;margin-bottom:28px;}
+  .rule{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:.88rem;color:var(--text);line-height:1.5;}
+  .rule:last-child{margin-bottom:0;}
+  .rule-dot{width:6px;height:6px;border-radius:50%;background:var(--peach);flex-shrink:0;margin-top:7px;}
+  .start-btn,.btn-primary{background:linear-gradient(135deg,var(--peach),#E09040);color:white;border:none;padding:16px 40px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;}
+  .results-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+  .rs-card{background:var(--cream);border-radius:14px;padding:16px;}
+  .rs-label{font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;}
+  .rs-val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;}
+  .xp-badge{display:inline-flex;align-items:center;gap:8px;background:var(--peach-pale);border:1px solid var(--peach-light);border-radius:100px;padding:10px 22px;font-size:.92rem;font-weight:600;color:var(--peach);margin-bottom:24px;}
+  .results-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn-secondary{background:transparent;color:var(--text-muted);border:1.5px solid rgba(244,130,154,.2);padding:13px 26px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.95rem;cursor:pointer;}
+  .btn-secondary:hover{border-color:var(--pink);color:var(--pink);}
+</style>
+</head>
+<body>
+<div class="blob blob-1"></div><div class="blob blob-2"></div>
+<nav>
+  <div class="nav-logo">A Girl &amp; <span>Her Futures</span>™</div>
+  <div class="nav-back" onclick="window.location='../../index.html'">← Back to Games</div>
+</nav>
+<div class="main">
+
+  <div class="screen show" id="startScreen">
+    <div class="game-header">
+      <div class="game-eyebrow"><span class="dot"></span> Structure · Level 1+</div>
+      <h1 class="game-title">Trend or <span class="accent">Range?</span></h1>
+      <p class="game-desc">A chart loads. You call it — is price trending or ranging? This is how you find the no-trade zones before you ever waste a dollar.</p>
+    </div>
+    <div class="start-card">
+      <div class="start-icon">📊</div>
+      <div class="start-title">Know before you trade.</div>
+      <p class="start-body">Most new traders lose money in ranges because they try to force trades that aren't there. The first skill is knowing when to trade and when to sit on your hands.</p>
+      <div class="start-rules">
+        <div class="rule"><div class="rule-dot"></div>A chart loads with recent price action</div>
+        <div class="rule"><div class="rule-dot"></div>Trending = higher highs & higher lows (up) OR lower lows & lower highs (down)</div>
+        <div class="rule"><div class="rule-dot"></div>Range = price bouncing between two levels — no real direction</div>
+        <div class="rule"><div class="rule-dot"></div>Ranging markets = no trade zone. Wait for the breakout.</div>
+      </div>
+      <button class="start-btn" onclick="startGame()">✦ Read the market</button>
+    </div>
+  </div>
+
+  <div class="screen" id="gameScreen">
+    <div class="stats-bar">
+      <div class="stat-card"><div class="stat-label">Round</div><div class="stat-value" style="color:var(--peach)" id="roundNum">1</div></div>
+      <div class="stat-card"><div class="stat-label">Score</div><div class="stat-value" style="color:var(--teal)" id="scoreNum">0</div></div>
+      <div class="stat-card"><div class="stat-label">Streak</div><div class="stat-value" style="color:var(--pink)" id="streakNum">0</div></div>
+    </div>
+    <div class="round-dots" id="roundDots"></div>
+    <div class="chart-card" id="chartCard">
+      <div class="chart-top">
+        <div class="chart-instrument" id="chartInstrument">MNQ · 1H</div>
+        <div class="chart-tf" id="chartContext">What do you see?</div>
+      </div>
+      <canvas id="trCanvas" width="660" height="320"></canvas>
+    </div>
+    <div class="call-btns">
+      <button class="call-btn btn-trend" onclick="handleCall('trend')">📈 Trending</button>
+      <button class="call-btn btn-range" onclick="handleCall('range')">↔️ Ranging</button>
+    </div>
+    <div class="feedback" id="feedback">
+      <div class="fb-icon" id="fbIcon">✦</div>
+      <div><div class="fb-title" id="fbTitle"></div><div class="fb-body" id="fbBody"></div></div>
+    </div>
+    <button class="next-btn" id="nextBtn" onclick="nextRound()">Next chart →</button>
+  </div>
+
+  <div class="screen" id="resultsScreen">
+    <div class="results-card">
+      <div class="results-trophy">✦</div>
+      <div class="results-title" id="resultsTitle">You read the market.</div>
+      <p class="results-sub" id="resultsSub"></p>
+      <div class="xp-badge">✦ <span id="xpEarned">+65 GP earned</span></div>
+      <div class="results-stats">
+        <div class="rs-card"><div class="rs-label">Correct</div><div class="rs-val" style="color:var(--teal)" id="resCorrect">0/8</div></div>
+        <div class="rs-card"><div class="rs-label">Best Streak</div><div class="rs-val" style="color:var(--peach)" id="resStreak">0</div></div>
+        <div class="rs-card"><div class="rs-label">Accuracy</div><div class="rs-val" style="color:var(--pink)" id="resAccuracy">0%</div></div>
+      </div>
+      <div class="results-btns">
+        <button class="btn-primary" onclick="restartGame()">Play again ✦</button>
+        <button class="btn-secondary" onclick="window.location='../../index.html'">Back to games</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const TOTAL=8;
+let round=0,score=0,streak=0,best=0,answered=false;
+const scenarios=[
+  {type:'trend',direction:'up',instrument:'MNQ · 1H',context:'Higher highs forming',hint:'This is a clear uptrend — higher highs and higher lows. ICC loves this environment. Look for a bullish pre-indication level.'},
+  {type:'range',instrument:'MNQ · 1H',context:'Sideways chop',hint:'This is a range — price bouncing between two levels with no real direction. This is the no-trade zone. Wait for a breakout.'},
+  {type:'trend',direction:'down',instrument:'ES · 1H',context:'Lower lows printing',hint:'Downtrend — lower lows and lower highs. Bearish structure. Look for a bearish ICC setup on the 1M.'},
+  {type:'range',instrument:'MNQ · 4H',context:'Consolidation zone',hint:'Consolidation range. Neither buyers nor sellers are winning. No trade until price breaks out of this zone with structure.'},
+  {type:'trend',direction:'up',instrument:'MGC · 1H',context:'Bullish structure',hint:'Clear uptrend with strong bullish candles. Buyers are in full control. Great environment for a bullish ICC trade.'},
+  {type:'trend',direction:'down',instrument:'NQ · 1H',context:'Breakdown in progress',hint:'Price is making consistent lower lows. Sellers are in control. This is a tradeable bearish trend on the right timeframe.'},
+  {type:'range',instrument:'MNQ · 1H',context:'Back and forth',hint:'This is chop — price going nowhere. The worst thing you can do here is try to trade it. Mark the boundaries and wait.'},
+  {type:'trend',direction:'up',instrument:'MNQ · 1H',context:'Post-range breakout',hint:'Price just broke out of a range and is now trending up with higher highs. This is where ICC setups start forming.'},
+];
+function shuffle(a){return[...a].sort(()=>Math.random()-.5);}
+let sh;
+
+function startGame(){
+  document.getElementById('startScreen').classList.remove('show');
+  document.getElementById('gameScreen').classList.add('show');
+  sh=shuffle(scenarios);round=0;score=0;streak=0;best=0;
+  buildDots();loadRound();
+}
+function buildDots(){
+  const c=document.getElementById('roundDots');c.innerHTML='';
+  for(let i=0;i<TOTAL;i++){const d=document.createElement('div');d.className='round-dot'+(i===0?' active':'');d.id='dot-'+i;c.appendChild(d);}
+}
+function updateDots(r){
+  const d=document.getElementById('dot-'+round);if(d){d.classList.remove('active');d.classList.add(r==='correct'?'done':'wrong-dot');}
+  if(round+1<TOTAL){const n=document.getElementById('dot-'+(round+1));if(n)n.classList.add('active');}
+}
+function loadRound(){
+  answered=false;
+  const s=sh[round];
+  document.getElementById('roundNum').textContent=round+1;
+  document.getElementById('scoreNum').textContent=score;
+  document.getElementById('streakNum').textContent=streak>0?streak+' 🔥':streak;
+  document.getElementById('chartInstrument').textContent=s.instrument;
+  document.getElementById('chartContext').textContent=s.context;
+  document.getElementById('chartCard').className='chart-card';
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('nextBtn').className='next-btn';
+  document.querySelectorAll('.call-btn').forEach(b=>{b.disabled=false;b.className=b.className.replace(/selected-correct|selected-wrong|reveal/g,'').trim();});
+  drawChart(s);
+}
+function handleCall(call){
+  if(answered)return;answered=true;
+  const s=sh[round];const correct=call===s.type;
+  document.querySelectorAll('.call-btn').forEach(b=>b.disabled=true);
+  const tBtn=document.querySelector('.btn-trend'),rBtn=document.querySelector('.btn-range');
+  if(s.type==='trend')tBtn.classList.add('reveal');else rBtn.classList.add('reveal');
+  if(correct){
+    (call==='trend'?tBtn:rBtn).classList.add('selected-correct');
+    document.getElementById('chartCard').classList.add('correct');
+    score++;streak++;if(streak>best)best=streak;updateDots('correct');
+    showFeedback(true,'✓ '+(s.type==='trend'?'Trending!':'Ranging!')+ ' You saw it.',s.hint);
+  }else{
+    (call==='trend'?tBtn:rBtn).classList.add('selected-wrong');
+    document.getElementById('chartCard').classList.add('wrong');
+    streak=0;updateDots('wrong');
+    showFeedback(false,'✕ This was '+(s.type==='trend'?'Trending.':'Ranging.'),s.hint);
+  }
+  document.getElementById('scoreNum').textContent=score;
+  document.getElementById('streakNum').textContent=streak>0?streak+' 🔥':streak;
+  document.getElementById('nextBtn').classList.add('show');
+  document.getElementById('nextBtn').textContent=round===TOTAL-1?'See results ✦':'Next chart →';
+}
+function showFeedback(ok,title,body){
+  const fb=document.getElementById('feedback');fb.className='feedback show '+(ok?'correct-fb':'wrong-fb');
+  document.getElementById('fbIcon').textContent=ok?'✦':'✕';
+  document.getElementById('fbTitle').textContent=title;document.getElementById('fbBody').textContent=body;
+}
+function drawChart(s){
+  const canvas=document.getElementById('trCanvas');
+  const ctx=canvas.getContext('2d');const W=canvas.width,H=canvas.height;
+  ctx.clearRect(0,0,W,H);ctx.fillStyle='#FFFBF9';ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='rgba(244,130,154,.07)';ctx.lineWidth=1;
+  for(let i=1;i<6;i++){ctx.beginPath();ctx.moveTo(0,H*i/6);ctx.lineTo(W,H*i/6);ctx.stroke();}
+
+  let waypoints;
+  if(s.type==='range'){
+    const mid=H*.50, amp=H*.28;
+    const top=mid-amp, bot=mid+amp;
+    waypoints=[
+      {x:0.00,y:mid},
+      {x:0.10,y:top},{x:0.20,y:bot},
+      {x:0.30,y:top},{x:0.40,y:bot},
+      {x:0.50,y:mid},{x:0.60,y:top},
+      {x:0.70,y:bot},{x:0.80,y:top},
+      {x:0.90,y:bot},{x:1.00,y:mid},
+    ];
+    // Resistance zone
+    ctx.fillStyle='rgba(244,130,154,.10)';ctx.fillRect(0,top-14,W,28);
+    ctx.strokeStyle='rgba(244,130,154,.55)';ctx.lineWidth=1.5;ctx.setLineDash([6,4]);
+    ctx.beginPath();ctx.moveTo(0,top);ctx.lineTo(W,top);ctx.stroke();
+    // Support zone
+    ctx.fillStyle='rgba(126,206,196,.10)';ctx.fillRect(0,bot-14,W,28);
+    ctx.strokeStyle='rgba(126,206,196,.55)';
+    ctx.beginPath();ctx.moveTo(0,bot);ctx.lineTo(W,bot);ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle='rgba(244,130,154,.9)';ctx.font='bold 10px DM Sans';ctx.textAlign='right';
+    ctx.fillText('Resistance',W-8,top-18);
+    ctx.fillStyle='rgba(126,206,196,.9)';
+    ctx.fillText('Support',W-8,bot+22);
+    ctx.textAlign='left';
+  }else if(s.direction==='up'){
+    // Uptrend: big dramatic staircase — wide vertical swings
+    waypoints=[
+      {x:0.00,y:H*.92},
+      {x:0.10,y:H*.65},  // SH1 — big first swing high
+      {x:0.20,y:H*.78},  // SL1 — higher low (deep valley)
+      {x:0.33,y:H*.46},  // SH2 — higher high (tall peak)
+      {x:0.44,y:H*.62},  // SL2 — higher low
+      {x:0.57,y:H*.26},  // SH3 — higher high
+      {x:0.68,y:H*.42},  // SL3 — higher low
+      {x:0.82,y:H*.12},  // SH4 — highest peak
+      {x:1.00,y:H*.24},  // slight pullback at end
+    ];
+  }else{
+    // Downtrend: big dramatic staircase descending
+    waypoints=[
+      {x:0.00,y:H*.08},
+      {x:0.10,y:H*.35},  // SL1 — big first swing low
+      {x:0.20,y:H*.22},  // SH1 — lower high (short peak)
+      {x:0.33,y:H*.54},  // SL2 — lower low (deep valley)
+      {x:0.44,y:H*.38},  // SH2 — lower high
+      {x:0.57,y:H*.74},  // SL3 — lower low
+      {x:0.68,y:H*.58},  // SH3 — lower high
+      {x:0.82,y:H*.88},  // SL4 — lowest valley
+      {x:1.00,y:H*.76},  // slight bounce at end
+    ];
+  }
+
+  function getY(normX){
+    for(let i=0;i<waypoints.length-1;i++){
+      const a=waypoints[i],b=waypoints[i+1];
+      if(normX>=a.x&&normX<=b.x){
+        const t=(normX-a.x)/(b.x-a.x);
+        // Range: use linear so bounces are sharp and tight. Trend: use smoothstep for rounded peaks
+        const interp=s.type==='range'?t:t*t*(3-2*t);
+        return a.y+(b.y-a.y)*interp;
+      }
+    }
+    return waypoints[waypoints.length-1].y;
+  }
+
+  const n=s.type==='range'?36:28,sp=(W-40)/n,cw=sp*.58;
+  for(let i=0;i<n;i++){
+    const normX=i/(n-1);
+    const normXnext=Math.min(1,(i+0.5)/(n-1));
+    const noise=s.type==='range'?(Math.random()-.5)*6:(Math.random()-.5)*3;
+    const midY=Math.max(H*.08,Math.min(H*.92,getY(normX)+noise));
+    const nextMidY=getY(normXnext)+noise*.3;
+    const bh=s.type==='range'?5+Math.random()*8:8+Math.random()*12;
+    const isBull=nextMidY<midY;
+    const cx=20+i*sp+sp/2;
+    const topY=midY-bh/2,botY=midY+bh/2;
+    ctx.strokeStyle=isBull?'#5BB5AA':'#D4607A';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(cx,Math.max(H*.04,topY-3-Math.random()*7));ctx.lineTo(cx,topY);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx,botY);ctx.lineTo(cx,Math.min(H*.96,botY+3+Math.random()*7));ctx.stroke();
+    ctx.fillStyle=isBull?'#7ECEC4':'#F4829A';
+    ctx.beginPath();ctx.roundRect(cx-cw/2,topY,cw,bh,2);ctx.fill();ctx.stroke();
+  }
+
+  // Draw SH/SL markers on trend charts so swing points are unmistakable
+  if(s.type!=='range'){
+    const swings=s.direction==='up'?[
+      {x:W*.10,y:H*.65,label:'SH',color:'#7ECEC4'},
+      {x:W*.20,y:H*.78,label:'SL',color:'#F4829A'},
+      {x:W*.33,y:H*.46,label:'SH',color:'#7ECEC4'},
+      {x:W*.44,y:H*.62,label:'SL',color:'#F4829A'},
+      {x:W*.57,y:H*.26,label:'SH',color:'#7ECEC4'},
+      {x:W*.68,y:H*.42,label:'SL',color:'#F4829A'},
+      {x:W*.82,y:H*.12,label:'SH',color:'#7ECEC4'},
+    ]:[
+      {x:W*.10,y:H*.35,label:'SL',color:'#F4829A'},
+      {x:W*.20,y:H*.22,label:'SH',color:'#7ECEC4'},
+      {x:W*.33,y:H*.54,label:'SL',color:'#F4829A'},
+      {x:W*.44,y:H*.38,label:'SH',color:'#7ECEC4'},
+      {x:W*.57,y:H*.74,label:'SL',color:'#F4829A'},
+      {x:W*.68,y:H*.58,label:'SH',color:'#7ECEC4'},
+      {x:W*.82,y:H*.88,label:'SL',color:'#F4829A'},
+    ];
+    swings.forEach(sw=>{
+      const isSH=sw.label==='SH';
+      // Triangle marker
+      ctx.fillStyle=sw.color+'BB';
+      ctx.beginPath();
+      if(isSH){ctx.moveTo(sw.x,sw.y-5);ctx.lineTo(sw.x-7,sw.y-17);ctx.lineTo(sw.x+7,sw.y-17);}
+      else{ctx.moveTo(sw.x,sw.y+5);ctx.lineTo(sw.x-7,sw.y+17);ctx.lineTo(sw.x+7,sw.y+17);}
+      ctx.closePath();ctx.fill();
+      // Label
+      ctx.fillStyle=sw.color;ctx.font='bold 9px DM Sans';ctx.textAlign='center';
+      ctx.fillText(sw.label,sw.x,isSH?sw.y-20:sw.y+26);
+    });
+    ctx.textAlign='left';
+  }
+
+  ctx.fillStyle='rgba(244,130,154,.2)';ctx.font='italic 11px Playfair Display';ctx.textAlign='right';
+  ctx.fillText('A Girl & Her Futures™',W-10,H-8);ctx.textAlign='left';
+}
+function nextRound(){round++;if(round>=TOTAL)showResults();else loadRound();}
+function showResults(){
+  document.getElementById('gameScreen').classList.remove('show');
+  document.getElementById('resultsScreen').classList.add('show');
+  const acc=Math.round(score/TOTAL*100),xp=Math.round(score*7+best*10);
+  document.getElementById('resCorrect').textContent=score+'/'+TOTAL;
+  document.getElementById('resStreak').textContent=best;
+  document.getElementById('resAccuracy').textContent=acc+'%';
+  document.getElementById('xpEarned').textContent='+'+xp+' GP earned';
+  document.getElementById('resultsTitle').textContent=acc>=80?'You read the market.':acc>=60?'Getting sharper.':'Keep training.';
+  document.getElementById('resultsSub').textContent=acc>=80?acc+'% accuracy. You know the difference between trend and range. That knowledge alone saves money.':acc>=60?acc+'% accuracy. Your eye is developing. The difference between trend and range will get clearer with every chart you see.':'Every range you mistake for a trend is a trade you didn\'t need to take. Keep going — this skill builds fast.';
+}
+function restartGame(){
+  document.getElementById('resultsScreen').classList.remove('show');
+  document.getElementById('gameScreen').classList.add('show');
+  sh=shuffle(scenarios);round=0;score=0;streak=0;best=0;buildDots();loadRound();
+}
+</script>
+</body>
+</html>

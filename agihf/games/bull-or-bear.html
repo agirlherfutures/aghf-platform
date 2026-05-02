@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bull or Bear? — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink:#F4829A;--pink-light:#F9B8C6;--pink-pale:#FDE8ED;
+    --teal:#7ECEC4;--teal-light:#B2E4DF;--teal-pale:#E8F8F6;
+    --peach:#F5A857;--peach-light:#FAD09A;--peach-pale:#FEF3E4;
+    --cream:#FDF8F5;--warm-white:#FFFBF9;
+    --dark:#2C1810;--text:#3D2B20;--text-muted:#7A5C50;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--warm-white);color:var(--text);min-height:100vh;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:999;}
+  .blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.3;pointer-events:none;z-index:0;}
+  .blob-1{width:500px;height:500px;background:var(--teal-light);top:-150px;right:-150px;}
+  .blob-2{width:400px;height:400px;background:var(--pink-light);bottom:-100px;left:-100px;}
+  nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(253,248,245,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(244,130,154,.15);}
+  .nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--pink);}
+  .nav-logo span{color:var(--teal);}
+  .nav-back{font-size:.85rem;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;gap:6px;transition:color .2s;}
+  .nav-back:hover{color:var(--pink);}
+  .main{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:110px 24px 80px;}
+  .game-header{text-align:center;margin-bottom:40px;}
+  .game-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--teal-pale);border:1px solid var(--teal-light);border-radius:100px;padding:8px 20px;font-size:.75rem;font-weight:500;color:var(--teal);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px;}
+  .game-eyebrow .dot{width:6px;height:6px;background:var(--teal);border-radius:50%;}
+  .game-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.2rem);font-weight:900;color:var(--dark);line-height:1.1;margin-bottom:12px;}
+  .game-title .accent{color:var(--teal);}
+  .game-desc{font-size:1rem;color:var(--text-muted);line-height:1.7;max-width:480px;margin:0 auto;}
+  .stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+  .stat-card{background:white;border-radius:16px;border:1px solid rgba(244,130,154,.12);padding:16px;text-align:center;}
+  .stat-label{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;}
+  .stat-value{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;}
+  .sv-t{color:var(--teal);}.sv-p{color:var(--pink);}.sv-c{color:var(--peach);}
+  .round-dots{display:flex;justify-content:center;gap:8px;margin-bottom:28px;}
+  .round-dot{width:10px;height:10px;border-radius:50%;background:var(--teal-pale);border:1.5px solid var(--teal-light);transition:all .3s;}
+  .round-dot.done{background:var(--teal);border-color:var(--teal);}
+  .round-dot.active{background:var(--pink);border-color:var(--pink);transform:scale(1.3);}
+  .round-dot.wrong-dot{background:var(--pink-pale);border-color:var(--pink);}
+  /* COUNTDOWN */
+  .countdown-wrap{text-align:center;margin-bottom:16px;}
+  .countdown-label{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
+  .countdown-bar{height:8px;background:var(--cream);border-radius:100px;overflow:hidden;border:1px solid rgba(244,130,154,.1);}
+  .countdown-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--pink));border-radius:100px;transition:width .1s linear;}
+  /* CHART */
+  .chart-card{background:white;border-radius:24px;border:1px solid rgba(244,130,154,.12);box-shadow:0 8px 40px rgba(244,130,154,.08);padding:24px;margin-bottom:20px;transition:all .3s;}
+  .chart-card.reveal-bull{border-color:var(--teal);box-shadow:0 8px 40px rgba(126,206,196,.2);}
+  .chart-card.reveal-bear{border-color:var(--pink);box-shadow:0 8px 40px rgba(244,130,154,.25);}
+  .chart-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+  .chart-instrument{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--dark);}
+  .chart-tf{font-size:.72rem;color:var(--text-muted);background:var(--cream);padding:4px 10px;border-radius:100px;}
+  canvas#bbCanvas{width:100%;height:220px;display:block;}
+  /* BIAS BUTTONS */
+  .bias-btns{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+  .bias-btn{border:2px solid transparent;border-radius:20px;padding:22px;font-family:'DM Sans',sans-serif;font-size:1.1rem;font-weight:700;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:10px;letter-spacing:.04em;}
+  .bias-bull{background:var(--teal-pale);border-color:var(--teal-light);color:var(--teal);}
+  .bias-bull:hover:not(:disabled){background:var(--teal);color:white;transform:translateY(-3px);box-shadow:0 12px 32px rgba(126,206,196,.3);}
+  .bias-bear{background:var(--pink-pale);border-color:var(--pink-light);color:var(--pink);}
+  .bias-bear:hover:not(:disabled){background:var(--pink);color:white;transform:translateY(-3px);box-shadow:0 12px 32px rgba(244,130,154,.3);}
+  .bias-btn.selected-correct{background:var(--teal);border-color:var(--teal);color:white;}
+  .bias-btn.selected-wrong{background:var(--pink);border-color:var(--pink);color:white;}
+  .bias-btn.reveal-answer{background:var(--teal);border-color:var(--teal);color:white;}
+  .bias-btn:disabled{cursor:default;transform:none!important;}
+  .feedback{display:none;border-radius:14px;padding:16px 20px;margin-bottom:20px;}
+  .feedback.show{display:flex;align-items:flex-start;gap:12px;}
+  .feedback.correct-fb{background:var(--teal-pale);border:1px solid var(--teal-light);}
+  .feedback.wrong-fb{background:var(--pink-pale);border:1px solid var(--pink-light);}
+  .fb-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px;}
+  .fb-title{font-weight:700;color:var(--dark);font-size:.92rem;margin-bottom:3px;}
+  .fb-body{font-size:.84rem;color:var(--text-muted);line-height:1.6;}
+  .next-btn{display:none;width:100%;padding:16px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--teal),#5BB5AA);color:white;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;box-shadow:0 10px 30px rgba(126,206,196,.3);margin-bottom:16px;}
+  .next-btn.show{display:block;}
+  .next-btn:hover{transform:translateY(-2px);}
+  .screen{display:none;}.screen.show{display:block;}
+  .start-card{background:white;border-radius:24px;border:1px solid rgba(126,206,196,.2);padding:40px;text-align:center;}
+  .start-icon{font-size:3rem;margin-bottom:20px;}
+  .start-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--dark);margin-bottom:10px;}
+  .start-body{font-size:.95rem;color:var(--text-muted);line-height:1.75;margin-bottom:28px;}
+  .start-rules{background:var(--cream);border-radius:14px;padding:18px 22px;text-align:left;margin-bottom:28px;}
+  .rule{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:.88rem;color:var(--text);line-height:1.5;}
+  .rule:last-child{margin-bottom:0;}
+  .rule-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:7px;}
+  .start-btn{background:linear-gradient(135deg,var(--teal),#5BB5AA);color:white;border:none;padding:16px 40px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;box-shadow:0 10px 30px rgba(126,206,196,.3);}
+  .results-card{background:white;border-radius:24px;border:1px solid rgba(126,206,196,.2);padding:40px;text-align:center;}
+  .results-trophy{font-size:3rem;margin-bottom:16px;}
+  .results-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--dark);margin-bottom:8px;}
+  .results-sub{font-size:.95rem;color:var(--text-muted);line-height:1.7;margin-bottom:24px;}
+  .results-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+  .rs-card{background:var(--cream);border-radius:14px;padding:16px;}
+  .rs-label{font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;}
+  .rs-val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;}
+  .xp-badge{display:inline-flex;align-items:center;gap:8px;background:var(--peach-pale);border:1px solid var(--peach-light);border-radius:100px;padding:10px 22px;font-size:.92rem;font-weight:600;color:var(--peach);margin-bottom:24px;}
+  .results-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn-primary{background:linear-gradient(135deg,var(--teal),#5BB5AA);color:white;border:none;padding:14px 30px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;}
+  .btn-secondary{background:transparent;color:var(--text-muted);border:1.5px solid rgba(244,130,154,.2);padding:13px 26px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.95rem;cursor:pointer;}
+  .btn-secondary:hover{border-color:var(--pink);color:var(--pink);}
+  @keyframes flash{0%,100%{opacity:1;}50%{opacity:.4;}}
+  .flashing{animation:flash .4s ease 3;}
+</style>
+</head>
+<body>
+<div class="blob blob-1"></div><div class="blob blob-2"></div>
+<nav>
+  <div class="nav-logo">A Girl &amp; <span>Her Futures</span>™</div>
+  <div class="nav-back" onclick="window.location='../../index.html'">← Back to Games</div>
+</nav>
+<div class="main">
+
+  <div class="screen show" id="startScreen">
+    <div class="game-header">
+      <div class="game-eyebrow"><span class="dot"></span> Bias Training · Level 1+</div>
+      <h1 class="game-title">Bull or <span class="accent">Bear?</span></h1>
+      <p class="game-desc">Price action plays for 3 seconds. You call the bias. Simple. Fast. Builds your instinct before your brain can overthink it.</p>
+    </div>
+    <div class="start-card">
+      <div class="start-icon">🐂</div>
+      <div class="start-title">Trust your eye.</div>
+      <p class="start-body">The market gives you information every second. The faster you can read bias, the better your setups will be. This game trains the gut feeling that separates experienced traders from beginners.</p>
+      <div class="start-rules">
+        <div class="rule"><div class="rule-dot"></div>A chart plays for 3 seconds — watch the candles form</div>
+        <div class="rule"><div class="rule-dot"></div>After 3 seconds, call it: Bullish or Bearish bias?</div>
+        <div class="rule"><div class="rule-dot"></div>Bullish = buyers in control, price making higher highs</div>
+        <div class="rule"><div class="rule-dot"></div>Bearish = sellers in control, price making lower lows</div>
+        <div class="rule"><div class="rule-dot"></div>Speed round — 10 charts, quick calls only</div>
+      </div>
+      <button class="start-btn" onclick="startGame()">✦ Call it</button>
+    </div>
+  </div>
+
+  <div class="screen" id="gameScreen">
+    <div class="stats-bar">
+      <div class="stat-card"><div class="stat-label">Round</div><div class="stat-value sv-t" id="roundNum">1</div></div>
+      <div class="stat-card"><div class="stat-label">Score</div><div class="stat-value sv-c" id="scoreNum">0</div></div>
+      <div class="stat-card"><div class="stat-label">Streak</div><div class="stat-value sv-p" id="streakNum">0</div></div>
+    </div>
+    <div class="round-dots" id="roundDots"></div>
+    <div class="countdown-wrap">
+      <div class="countdown-label" id="countdownLabel">Watch the price action...</div>
+      <div class="countdown-bar"><div class="countdown-fill" id="countdownFill" style="width:100%"></div></div>
+    </div>
+    <div class="chart-card" id="chartCard">
+      <div class="chart-top">
+        <div class="chart-instrument" id="chartInstrument">MNQ · 1M</div>
+        <div class="chart-tf" id="chartContext">Price action</div>
+      </div>
+      <canvas id="bbCanvas" width="660" height="220"></canvas>
+    </div>
+    <div class="bias-btns" id="biasBtns">
+      <button class="bias-btn bias-bull" id="btnBull" onclick="handleBias('bull')" disabled>🐂 Bullish</button>
+      <button class="bias-btn bias-bear" id="btnBear" onclick="handleBias('bear')" disabled>🐻 Bearish</button>
+    </div>
+    <div class="feedback" id="feedback">
+      <div class="fb-icon" id="fbIcon">✦</div>
+      <div><div class="fb-title" id="fbTitle"></div><div class="fb-body" id="fbBody"></div></div>
+    </div>
+    <button class="next-btn" id="nextBtn" onclick="nextRound()">Next chart →</button>
+  </div>
+
+  <div class="screen" id="resultsScreen">
+    <div class="results-card">
+      <div class="results-trophy" id="resultsTrophy">✦</div>
+      <div class="results-title" id="resultsTitle">Sharp instinct.</div>
+      <p class="results-sub" id="resultsSub"></p>
+      <div class="xp-badge">✦ <span id="xpEarned">+50 GP earned</span></div>
+      <div class="results-stats">
+        <div class="rs-card"><div class="rs-label">Correct</div><div class="rs-val" style="color:var(--teal)" id="resCorrect">0/10</div></div>
+        <div class="rs-card"><div class="rs-label">Best Streak</div><div class="rs-val" style="color:var(--peach)" id="resStreak">0</div></div>
+        <div class="rs-card"><div class="rs-label">Accuracy</div><div class="rs-val" style="color:var(--pink)" id="resAccuracy">0%</div></div>
+      </div>
+      <div class="results-btns">
+        <button class="btn-primary" onclick="restartGame()">Play again ✦</button>
+        <button class="btn-secondary" onclick="window.location='../../index.html'">Back to games</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const TOTAL_ROUNDS=10, VIEW_TIME=3000;
+let currentRound=0,score=0,streak=0,bestStreak=0,answered=false;
+let countdownInterval,currentBias;
+
+const scenarios=[
+  {bias:'bull',context:'Higher highs forming',instrument:'MNQ · 1M',hint:'Higher highs and higher lows — classic bullish structure. Buyers are in control.'},
+  {bias:'bear',context:'Lower lows printing',instrument:'MNQ · 1M',hint:'Lower lows and lower highs — sellers are pushing price down consistently.'},
+  {bias:'bull',context:'Breaking resistance',instrument:'ES · 1M',hint:'Price closed above the recent swing high. That\'s a bullish break of structure.'},
+  {bias:'bear',context:'Failing at highs',instrument:'MNQ · 1M',hint:'Price keeps getting rejected at the highs with long upper wicks. Bears defending that level.'},
+  {bias:'bull',context:'Post-correction push',instrument:'MGC · 1M',hint:'After a healthy pullback, buyers stepped in and price is making new highs. Bullish continuation.'},
+  {bias:'bear',context:'Breaking support',instrument:'MNQ · 1M',hint:'Price closed below a key swing low — bearish break of structure. Sellers in control.'},
+  {bias:'bull',context:'Strong body candles',instrument:'NQ · 1M',hint:'Big bullish body candles with small wicks — buyers are dominant, not much seller resistance.'},
+  {bias:'bear',context:'Distribution pattern',instrument:'MNQ · 1M',hint:'Price made a high, came back, failed to make a new high. That\'s a lower high — bearish signal.'},
+  {bias:'bull',context:'Reclaiming the level',instrument:'MNQ · 5M',hint:'Price dipped below a level but came back and closed above it. Reclaim = bullish.'},
+  {bias:'bear',context:'Rejection at structure',instrument:'ES · 1M',hint:'Price hit a major resistance zone and got heavily rejected with a large bearish candle. Bears win this one.'},
+];
+
+function shuffle(a){return[...a].sort(()=>Math.random()-.5);}
+let shuffled;
+
+function startGame(){
+  document.getElementById('startScreen').classList.remove('show');
+  document.getElementById('gameScreen').classList.add('show');
+  shuffled=shuffle(scenarios);
+  currentRound=0;score=0;streak=0;bestStreak=0;
+  buildDots();loadRound();
+}
+
+function buildDots(){
+  const c=document.getElementById('roundDots');c.innerHTML='';
+  for(let i=0;i<TOTAL_ROUNDS;i++){
+    const d=document.createElement('div');
+    d.className='round-dot'+(i===0?' active':'');d.id='dot-'+i;c.appendChild(d);
+  }
+}
+
+function updateDots(r){
+  const d=document.getElementById('dot-'+currentRound);
+  if(d){d.classList.remove('active');d.classList.add(r==='correct'?'done':'wrong-dot');}
+  if(currentRound+1<TOTAL_ROUNDS){const n=document.getElementById('dot-'+(currentRound+1));if(n)n.classList.add('active');}
+}
+
+function loadRound(){
+  answered=false;
+  const s=shuffled[currentRound];
+  currentBias=s.bias;
+  document.getElementById('roundNum').textContent=currentRound+1;
+  document.getElementById('scoreNum').textContent=score;
+  document.getElementById('streakNum').textContent=streak>0?streak+' 🔥':streak;
+  document.getElementById('chartInstrument').textContent=s.instrument;
+  document.getElementById('chartContext').textContent=s.context;
+  document.getElementById('chartCard').className='chart-card';
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('nextBtn').className='next-btn';
+  document.getElementById('countdownLabel').textContent='Watch the price action...';
+  document.getElementById('btnBull').disabled=true;
+  document.getElementById('btnBull').className='bias-btn bias-bull';
+  document.getElementById('btnBear').disabled=true;
+  document.getElementById('btnBear').className='bias-btn bias-bear';
+  drawChart(s.bias);
+  startCountdown();
+}
+
+function startCountdown(){
+  let elapsed=0;
+  document.getElementById('countdownFill').style.width='100%';
+  countdownInterval=setInterval(()=>{
+    elapsed+=50;
+    const pct=Math.max(0,100-(elapsed/VIEW_TIME*100));
+    document.getElementById('countdownFill').style.width=pct+'%';
+    if(elapsed>=VIEW_TIME){
+      clearInterval(countdownInterval);
+      document.getElementById('countdownLabel').textContent='Bull or Bear?';
+      document.getElementById('btnBull').disabled=false;
+      document.getElementById('btnBear').disabled=false;
+      document.getElementById('btnBull').classList.add('flashing');
+      document.getElementById('btnBear').classList.add('flashing');
+    }
+  },50);
+}
+
+function handleBias(bias){
+  if(answered)return;
+  answered=true;
+  clearInterval(countdownInterval);
+  document.getElementById('btnBull').disabled=true;
+  document.getElementById('btnBear').disabled=true;
+  document.getElementById('btnBull').classList.remove('flashing');
+  document.getElementById('btnBear').classList.remove('flashing');
+  const s=shuffled[currentRound];
+  const correct=bias===currentBias;
+  const bullBtn=document.getElementById('btnBull');
+  const bearBtn=document.getElementById('btnBear');
+  if(currentBias==='bull')bullBtn.classList.add('reveal-answer');
+  else bearBtn.classList.add('reveal-answer');
+  if(correct){
+    document.getElementById('btn'+bias.charAt(0).toUpperCase()+bias.slice(1)).classList.add('selected-correct');
+    document.getElementById('chartCard').classList.add(bias==='bull'?'reveal-bull':'reveal-bear');
+    score++;streak++;if(streak>bestStreak)bestStreak=streak;
+    updateDots('correct');
+    showFeedback(true,'✓ '+(bias==='bull'?'Bullish':'Bearish')+'! You read it right.',s.hint);
+  }else{
+    document.getElementById('btn'+bias.charAt(0).toUpperCase()+bias.slice(1)).classList.add('selected-wrong');
+    streak=0;updateDots('wrong');
+    showFeedback(false,'✕ '+(currentBias==='bull'?'This was Bullish.':'This was Bearish.'),s.hint);
+  }
+  document.getElementById('scoreNum').textContent=score;
+  document.getElementById('streakNum').textContent=streak>0?streak+' 🔥':streak;
+  document.getElementById('nextBtn').classList.add('show');
+  document.getElementById('nextBtn').textContent=currentRound===TOTAL_ROUNDS-1?'See results ✦':'Next chart →';
+}
+
+function showFeedback(ok,title,body){
+  const fb=document.getElementById('feedback');
+  fb.className='feedback show '+(ok?'correct-fb':'wrong-fb');
+  document.getElementById('fbIcon').textContent=ok?'✦':'✕';
+  document.getElementById('fbTitle').textContent=title;
+  document.getElementById('fbBody').textContent=body;
+}
+
+function drawChart(bias){
+  const canvas=document.getElementById('bbCanvas');
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#FFFBF9';ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='rgba(244,130,154,.07)';ctx.lineWidth=1;
+  for(let i=1;i<6;i++){ctx.beginPath();ctx.moveTo(0,H*i/6);ctx.lineTo(W,H*i/6);ctx.stroke();}
+
+  // Explicit waypoints for clear, prominent swing highs and lows
+  let waypoints;
+  if(bias==='bull'){
+    waypoints=[
+      {x:0.00,y:H*.88},  // SL0 — start low
+      {x:0.12,y:H*.62},  // SH1 — big swing high
+      {x:0.22,y:H*.76},  // SL1 — higher low (clear valley)
+      {x:0.36,y:H*.44},  // SH2 — higher high (clear peak)
+      {x:0.48,y:H*.60},  // SL2 — higher low
+      {x:0.62,y:H*.28},  // SH3 — higher high (clear peak)
+      {x:0.74,y:H*.44},  // SL3 — higher low
+      {x:0.88,y:H*.18},  // SH4 — highest peak
+      {x:1.00,y:H*.30},  // slight pullback at end
+    ];
+  }else{
+    waypoints=[
+      {x:0.00,y:H*.12},  // SH0 — start high
+      {x:0.12,y:H*.38},  // SL1 — big swing low
+      {x:0.22,y:H*.24},  // SH1 — lower high (clear peak)
+      {x:0.36,y:H*.56},  // SL2 — lower low (clear valley)
+      {x:0.48,y:H*.40},  // SH2 — lower high
+      {x:0.62,y:H*.72},  // SL3 — lower low (clear valley)
+      {x:0.74,y:H*.56},  // SH3 — lower high
+      {x:0.88,y:H*.82},  // SL4 — lowest valley
+      {x:1.00,y:H*.70},  // slight bounce at end
+    ];
+  }
+
+  function getY(normX){
+    for(let i=0;i<waypoints.length-1;i++){
+      const a=waypoints[i],b=waypoints[i+1];
+      if(normX>=a.x&&normX<=b.x){
+        const t=(normX-a.x)/(b.x-a.x);
+        const s=t*t*(3-2*t); // smoothstep for rounded peaks
+        return a.y+(b.y-a.y)*s;
+      }
+    }
+    return waypoints[waypoints.length-1].y;
+  }
+
+  const n=22,spacing=(W-40)/n,cw=spacing*.52;
+  for(let i=0;i<n;i++){
+    const normX=i/(n-1);
+    const normXnext=Math.min(1,(i+0.5)/(n-1));
+    const midY=getY(normX)+(Math.random()-.5)*3;
+    const nextMidY=getY(normXnext);
+    const bh=8+Math.random()*14;
+    const isBull=nextMidY<midY; // lower canvas Y = higher price = green
+    const cx=20+i*spacing+spacing/2;
+    const topY=midY-bh/2,botY=midY+bh/2;
+    ctx.strokeStyle=isBull?'#5BB5AA':'#D4607A';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(cx,topY-3-Math.random()*8);ctx.lineTo(cx,topY);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx,botY);ctx.lineTo(cx,botY+3+Math.random()*8);ctx.stroke();
+    ctx.fillStyle=isBull?'#7ECEC4':'#F4829A';
+    ctx.beginPath();ctx.roundRect(cx-cw/2,topY,cw,bh,2);ctx.fill();ctx.stroke();
+  }
+  ctx.fillStyle='rgba(244,130,154,.2)';ctx.font='italic 11px Playfair Display';ctx.textAlign='right';
+  ctx.fillText('A Girl & Her Futures™',W-10,H-8);ctx.textAlign='left';
+}
+
+function nextRound(){
+  currentRound++;
+  if(currentRound>=TOTAL_ROUNDS)showResults();
+  else loadRound();
+}
+
+function showResults(){
+  document.getElementById('gameScreen').classList.remove('show');
+  document.getElementById('resultsScreen').classList.add('show');
+  const acc=Math.round(score/TOTAL_ROUNDS*100);
+  const xp=Math.round(score*5+bestStreak*8);
+  document.getElementById('resCorrect').textContent=score+'/'+TOTAL_ROUNDS;
+  document.getElementById('resStreak').textContent=bestStreak;
+  document.getElementById('resAccuracy').textContent=acc+'%';
+  document.getElementById('xpEarned').textContent='+'+xp+' GP earned';
+  if(acc>=80){document.getElementById('resultsTitle').textContent='Sharp instinct.';document.getElementById('resultsSub').textContent=acc+'% accuracy. Your eye reads bias fast. That\'s the foundation of every good ICC trade.';}
+  else if(acc>=60){document.getElementById('resultsTitle').textContent='Getting there.';document.getElementById('resultsSub').textContent=acc+'% accuracy. Keep training. The more charts you see, the faster the bias jumps out at you.';}
+  else{document.getElementById('resultsTitle').textContent='The market is teaching you.';document.getElementById('resultsSub').textContent='Every wrong call is a pattern you\'re learning. Play again and watch your accuracy climb.';}
+}
+
+function restartGame(){
+  document.getElementById('resultsScreen').classList.remove('show');
+  document.getElementById('gameScreen').classList.add('show');
+  shuffled=shuffle(scenarios);currentRound=0;score=0;streak=0;bestStreak=0;
+  buildDots();loadRound();
+}
+</script>
+</body>
+</html>

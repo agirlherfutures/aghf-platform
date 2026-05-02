@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pressure vs Precision — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F4829A;--pink-light:#F9B8C6;--pink-pale:#FDE8ED;
+  --teal:#7ECEC4;--teal-light:#B2E4DF;--teal-pale:#E8F8F6;
+  --peach:#F5A857;--peach-light:#FAD09A;--peach-pale:#FEF3E4;
+  --cream:#FDF8F5;--warm:#FFFBF9;
+  --dark:#2C1810;--text:#3D2B20;--muted:#7A5C50;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--warm);color:var(--text);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:999;}
+.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.28;pointer-events:none;z-index:0;}
+.blob-1{width:500px;height:500px;background:var(--teal-light);top:-150px;right:-150px;}
+.blob-2{width:400px;height:400px;background:var(--pink-light);bottom:-100px;left:-100px;}
+nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(253,248,245,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(244,130,154,.12);}
+.nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--pink);}
+.nav-logo span{color:var(--teal);}
+.nav-back{font-size:.85rem;color:var(--muted);cursor:pointer;transition:color .2s;}
+.nav-back:hover{color:var(--pink);}
+.main{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:100px 24px 80px;}
+.screen{display:none;}.screen.show{display:block;}
+
+/* ── START ── */
+.start-eye{display:inline-flex;align-items:center;gap:8px;background:var(--pink-pale);border:1px solid var(--pink-light);border-radius:100px;padding:8px 20px;font-size:.74rem;font-weight:500;color:var(--pink);letter-spacing:.09em;text-transform:uppercase;margin-bottom:24px;}
+.start-eye .dot{width:6px;height:6px;background:var(--pink);border-radius:50%;}
+.start-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,7vw,4rem);font-weight:900;color:var(--dark);line-height:1.0;margin-bottom:10px;}
+.start-title .acc{color:var(--pink);}
+.start-tag{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--teal);margin-bottom:18px;}
+.start-desc{font-size:.97rem;color:var(--muted);line-height:1.8;max-width:460px;margin-bottom:32px;}
+.what-card{background:white;border-radius:20px;border:1px solid rgba(244,130,154,.12);padding:24px;margin-bottom:28px;}
+.what-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:14px;}
+.what-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;font-size:.88rem;color:var(--text);line-height:1.55;}
+.what-row:last-child{margin-bottom:0;}
+.what-dot{width:6px;height:6px;border-radius:50%;background:var(--pink);flex-shrink:0;margin-top:7px;}
+.start-btn{background:linear-gradient(135deg,var(--pink),var(--peach));color:white;border:none;padding:17px 48px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;box-shadow:0 12px 32px rgba(244,130,154,.3);display:block;width:100%;}
+.start-btn:hover{transform:translateY(-2px);}
+
+/* ── GAME ── */
+.game-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.round-pill{display:inline-flex;align-items:center;gap:6px;background:var(--pink-pale);border:1px solid var(--pink-light);border-radius:100px;padding:5px 14px;font-size:.72rem;font-weight:600;color:var(--pink);}
+.round-name{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--dark);}
+
+/* PROGRESS DOTS */
+.progress-dots{display:flex;gap:8px;justify-content:center;margin-bottom:20px;}
+.pdot{width:38px;height:6px;border-radius:100px;background:var(--cream);border:1px solid rgba(244,130,154,.15);transition:all .3s;}
+.pdot.active{background:var(--pink);border-color:var(--pink);}
+.pdot.done-correct{background:var(--teal);border-color:var(--teal);}
+.pdot.done-wrong{background:var(--pink-light);border-color:var(--pink);}
+
+/* PRESSURE */
+.pressure-card{background:white;border-radius:16px;border:1px solid rgba(244,130,154,.1);padding:15px 20px;margin-bottom:16px;}
+.press-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.press-lbl{font-size:.68rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);}
+.press-pct{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;}
+.press-bar{height:10px;background:var(--cream);border-radius:100px;overflow:hidden;}
+.press-fill{height:100%;border-radius:100px;transition:width .15s linear,background .3s;}
+.press-zones{display:flex;justify-content:space-between;font-size:.6rem;color:var(--muted);margin-top:4px;}
+
+/* CHART */
+.chart-wrap{background:white;border-radius:20px;border:1px solid rgba(244,130,154,.1);padding:18px 20px;margin-bottom:16px;}
+.chart-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.chart-id{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;color:var(--dark);}
+.chart-ctx{display:flex;gap:6px;}
+.ctx-pill{font-size:.68rem;color:var(--muted);background:var(--cream);padding:3px 9px;border-radius:100px;}
+canvas{width:100%;height:200px;display:block;}
+
+/* SCENARIO */
+.scenario{background:var(--dark);border-radius:14px;padding:18px 22px;margin-bottom:16px;position:relative;overflow:hidden;}
+.scenario::after{content:'🫧';position:absolute;bottom:-10px;right:12px;font-size:56px;opacity:.14;}
+.sc-tag{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-bottom:8px;}
+.sc-text{font-family:'Playfair Display',serif;font-style:italic;font-size:.98rem;color:white;line-height:1.75;}
+
+/* CHOICES */
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.ch{background:white;border:1.5px solid rgba(244,130,154,.18);border-radius:14px;padding:15px 17px;font-family:'DM Sans',sans-serif;font-size:.87rem;font-weight:500;color:var(--text);cursor:pointer;transition:all .22s;text-align:left;line-height:1.45;}
+.ch:hover:not(:disabled){border-color:var(--pink-light);transform:translateY(-2px);}
+.ch.correct{background:var(--teal-pale);border-color:var(--teal);color:#1a6b63;}
+.ch.wrong{background:var(--pink-pale);border-color:var(--pink);color:#a84060;}
+.ch.reveal{background:var(--teal-pale);border-color:var(--teal);}
+.ch:disabled{cursor:default;transform:none!important;}
+.ch-sub{display:block;font-size:.71rem;color:var(--muted);margin-top:3px;font-weight:400;}
+
+/* FEEDBACK */
+.feedback{display:none;border-radius:14px;padding:16px 20px;margin-bottom:14px;}
+.feedback.show{display:block;}
+.fb-correct{background:var(--teal-pale);border:1px solid var(--teal-light);}
+.fb-wrong{background:var(--pink-pale);border:1px solid var(--pink-light);}
+.fb-head{font-family:'Playfair Display',serif;font-weight:700;color:var(--dark);font-size:1rem;margin-bottom:5px;}
+.fb-body{font-size:.84rem;color:var(--muted);line-height:1.65;}
+
+/* COMPARISON TABLE */
+.compare{background:white;border-radius:14px;border:1px solid rgba(244,130,154,.1);overflow:hidden;margin-bottom:16px;display:none;}
+.compare.show{display:block;}
+.compare-head{display:grid;grid-template-columns:1fr 1fr;background:var(--cream);}
+.chead{padding:10px 16px;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.compare-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(244,130,154,.08);}
+.cval{padding:11px 16px;font-size:.84rem;color:var(--text);line-height:1.4;}
+.cval.you{color:var(--pink);}
+.cval.icc{color:var(--teal);font-weight:500;}
+
+.next-btn{display:none;width:100%;padding:14px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--pink),var(--peach));color:white;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;box-shadow:0 10px 28px rgba(244,130,154,.28);margin-bottom:8px;}
+.next-btn.show{display:block;}
+
+/* ── RESULTS ── */
+.results-top{text-align:center;margin-bottom:32px;}
+.res-q{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--muted);margin-bottom:6px;}
+.res-title{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;color:var(--dark);line-height:1.1;margin-bottom:8px;}
+.res-verdict{display:inline-block;border-radius:100px;padding:8px 22px;font-size:.88rem;font-weight:600;margin-bottom:16px;}
+.verdict-calm{background:var(--teal-pale);border:1px solid var(--teal-light);color:var(--teal);}
+.verdict-mid{background:var(--peach-pale);border:1px solid var(--peach-light);color:var(--peach);}
+.verdict-triggered{background:var(--pink-pale);border:1px solid var(--pink-light);color:var(--pink);}
+.res-dayli{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:var(--dark);line-height:1.7;max-width:440px;margin:0 auto 28px;}
+.res-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+.rs{background:white;border-radius:14px;border:1px solid rgba(244,130,154,.1);padding:16px;text-align:center;}
+.rs-l{font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+.rs-v{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;}
+.xp-pill{display:inline-flex;align-items:center;gap:8px;background:var(--peach-pale);border:1px solid var(--peach-light);border-radius:100px;padding:10px 24px;font-size:.92rem;font-weight:600;color:var(--peach);margin-bottom:28px;}
+
+/* RECAP TABLE */
+.recap{background:white;border-radius:16px;border:1px solid rgba(244,130,154,.1);overflow:hidden;margin-bottom:28px;}
+.recap-head{display:grid;grid-template-columns:2fr 1fr 1fr;background:var(--cream);padding:10px 16px;}
+.rh{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.recap-row{display:grid;grid-template-columns:2fr 1fr 1fr;padding:11px 16px;border-top:1px solid rgba(244,130,154,.07);align-items:center;}
+.rr-round{font-size:.84rem;color:var(--dark);font-weight:500;}
+.rr-you{font-size:.8rem;}
+.rr-correct{color:var(--teal);}
+.rr-wrong{color:var(--pink);}
+.rr-icc{font-size:.8rem;color:var(--teal);font-weight:500;}
+
+.res-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-main{background:linear-gradient(135deg,var(--pink),var(--peach));color:white;border:none;padding:14px 30px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;}
+.btn-ghost{background:transparent;color:var(--muted);border:1.5px solid rgba(244,130,154,.2);padding:13px 26px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.95rem;cursor:pointer;}
+.btn-ghost:hover{border-color:var(--pink);color:var(--pink);}
+
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);}}
+.shake{animation:shake .3s ease;}
+</style>
+</head>
+<body>
+<div class="blob blob-1"></div><div class="blob blob-2"></div>
+<nav>
+  <div class="nav-logo">A Girl &amp; <span>Her Futures</span>™</div>
+  <div class="nav-back" onclick="window.location='../../index.html'">← Back to Games</div>
+</nav>
+<div class="main">
+
+<!-- START -->
+<div class="screen show" id="startScreen">
+  <div class="start-eye"><span class="dot"></span> Decision Under Pressure</div>
+  <h1 class="start-title">Pressure vs<br><span class="acc">Precision.</span></h1>
+  <div class="start-tag">Can you trade like you… when it counts?</div>
+  <p class="start-desc">5 rounds. Real ICC scenarios. Your pressure is rising. This is where you find out if you follow your model — or fold under pressure.</p>
+  <div class="what-card">
+    <div class="what-title">What to expect</div>
+    <div class="what-row"><div class="what-dot"></div>A real chart loads — with structure, levels, and context marked</div>
+    <div class="what-row"><div class="what-dot"></div>Read the scenario — it tells you exactly what's happening</div>
+    <div class="what-row"><div class="what-dot"></div>Choose your action — four ICC-specific options</div>
+    <div class="what-row"><div class="what-dot"></div>See what you did vs what your model says to do</div>
+    <div class="what-row"><div class="what-dot"></div>Find out: are you calm and structured… or triggered and trading?</div>
+  </div>
+  <button class="start-btn" onclick="startGame()">✦ Enter the pressure test</button>
+</div>
+
+<!-- GAME -->
+<div class="screen" id="gameScreen">
+  <div class="game-header">
+    <div class="round-pill">✦ Round <span id="roundNum">1</span> of 5</div>
+    <div class="round-name" id="roundName">The Impatient Entry</div>
+  </div>
+  <div class="progress-dots" id="progressDots"></div>
+
+  <div class="pressure-card">
+    <div class="press-top">
+      <div class="press-lbl">Pressure Level</div>
+      <div class="press-pct" id="pressPct" style="color:var(--teal)">0%</div>
+    </div>
+    <div class="press-bar"><div class="press-fill" id="pressFill" style="width:0%;background:var(--teal)"></div></div>
+    <div class="press-zones"><span>😌 Controlled</span><span>😬 Building</span><span>😤 High</span><span>🚨 Danger</span></div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-meta">
+      <div class="chart-id" id="chartId">MNQ · 1M</div>
+      <div class="chart-ctx">
+        <div class="ctx-pill" id="ctx1">1H Bullish</div>
+        <div class="ctx-pill" id="ctx2">New York Session</div>
+      </div>
+    </div>
+    <canvas id="pvpCanvas" width="660" height="200"></canvas>
+  </div>
+
+  <div class="scenario">
+    <div class="sc-tag">✦ What's happening right now</div>
+    <div class="sc-text" id="scText">Loading...</div>
+  </div>
+
+  <div class="choices" id="choicesWrap"></div>
+
+  <div class="feedback" id="feedback">
+    <div class="fb-head" id="fbHead"></div>
+    <div class="fb-body" id="fbBody"></div>
+  </div>
+
+  <div class="compare" id="compare">
+    <div class="compare-head">
+      <div class="chead">Your Choice</div>
+      <div class="chead">ICC Choice</div>
+    </div>
+    <div class="compare-row">
+      <div class="cval you" id="cmpYou">—</div>
+      <div class="cval icc" id="cmpICC">—</div>
+    </div>
+  </div>
+
+  <button class="next-btn" id="nextBtn" onclick="nextRound()">Next round →</button>
+</div>
+
+<!-- RESULTS -->
+<div class="screen" id="resultsScreen">
+  <div class="results-top">
+    <div class="res-q">Be honest… would you take this live? 👀</div>
+    <div class="res-title" id="resTitle">Calm &amp; Structured</div>
+    <div class="res-verdict" id="resVerdict">✅ Calm &amp; Structured</div>
+    <p class="res-dayli" id="resDayli"></p>
+    <div class="xp-pill">✦ <span id="xpText">+75 GP earned</span></div>
+  </div>
+  <div class="res-stats">
+    <div class="rs"><div class="rs-l">Correct</div><div class="rs-v" style="color:var(--teal)" id="resCorrect">0/5</div></div>
+    <div class="rs"><div class="rs-l">Accuracy</div><div class="rs-v" style="color:var(--peach)" id="resAcc">0%</div></div>
+    <div class="rs"><div class="rs-l">Final Pressure</div><div class="rs-v" style="color:var(--pink)" id="resPress">0%</div></div>
+  </div>
+
+  <div class="recap" id="recapTable">
+    <div class="recap-head">
+      <div class="rh">Round</div>
+      <div class="rh">Your Call</div>
+      <div class="rh">ICC Call</div>
+    </div>
+    <div id="recapRows"></div>
+  </div>
+
+  <div class="res-btns">
+    <button class="btn-main" onclick="restartGame()">Run it again ✦</button>
+    <button class="btn-ghost" onclick="window.location='../../index.html'">Back to games</button>
+  </div>
+</div>
+
+</div>
+<script>
+let round=0,score=0,pressure=0,answered=false,pressInt;
+const roundHistory=[];
+
+const rounds=[
+  {
+    name:'The Impatient Entry',
+    chartType:'wick_at_level',
+    chartId:'MNQ · 1M',ctx1:'1H Bullish',ctx2:'New York Session',
+    scenario:'Price just tapped your pre-indication level. You\'ve been waiting all morning. It looks like it\'s about to go… but the 1M candle is still open. That wick just went above the level.',
+    choices:[
+      {text:'Enter now',sub:'It\'s at the level — go',correct:false,icc:false},
+      {text:'Wait for candle close',sub:'Need confirmation first',correct:true,icc:true},
+      {text:'Wait for correction',sub:'Let it come back down',correct:false,icc:false},
+      {text:'Skip the trade',sub:'Too risky right now',correct:false,icc:false},
+    ],
+    iccChoice:'Wait for candle close',
+    cf:'"That was a wick… not acceptance.\nWe don\'t trade excitement. We trade confirmation."',
+    wf:{
+      'Enter now':'"You just chased a wick.\nThat\'s how people get trapped at the high."',
+      'Wait for correction':'"Close — but the correction comes AFTER the close.\nFirst we need that candle to close past the level."',
+      'Skip the trade':'"This could be valid — but only after a close.\nDon\'t skip before you even have confirmation."',
+    },
+  },
+  {
+    name:'The Clean Continuation',
+    chartType:'clean_continuation',
+    chartId:'MNQ · 1M',ctx1:'1H Bullish',ctx2:'Strong Structure',
+    scenario:'Price broke above your pre-indication level with a strong bullish candle close. Now it\'s pulling back. The structure is clean. Your limit order is sitting right at the level.',
+    choices:[
+      {text:'Enter on the breakout',sub:'The candle already closed — go now',correct:false,icc:false},
+      {text:'Wait for correction to level',sub:'Let it come back to you',correct:true,icc:true},
+      {text:'Enter after one more candle',sub:'Extra confirmation needed',correct:false,icc:false},
+      {text:'Skip — too late now',sub:'Move missed',correct:false,icc:false},
+    ],
+    iccChoice:'Wait for correction to level',
+    cf:'"Clean. Break → close → pullback.\nThat\'s your model. That\'s discipline."',
+    wf:{
+      'Enter on the breakout':'"You entered too early.\nLet the market come back to you. Your limit is there for a reason."',
+      'Enter after one more candle':'"One clean close is enough. Waiting for more confirmation means missing the entry.\nTrust the model."',
+      'Skip — too late now':'"It\'s not too late. The correction is your entry.\nThe move started. Your limit at the level is exactly right."',
+    },
+  },
+  {
+    name:'The Fakeout',
+    chartType:'fakeout_scenario',
+    chartId:'MNQ · 1M',ctx1:'4H Bullish',ctx2:'1H Pullback',
+    scenario:'Price broke below a swing low… then instantly snapped back above it. It looked bearish. Everyone shorted. But the 4H is still bullish and the 1M closed back up. Something feels off.',
+    choices:[
+      {text:'Take the short',sub:'Bearish break — go with it',correct:false,icc:false},
+      {text:'Wait for confirmation',sub:'Not clean enough yet',correct:true,icc:true},
+      {text:'Look for a long entry',sub:'4H is still bullish',correct:false,icc:false},
+      {text:'Skip the trade',sub:'Too confusing right now',correct:false,icc:false},
+    ],
+    iccChoice:'Wait for confirmation',
+    cf:'"Good. That break wasn\'t clean.\nNot every move is a shift… some are traps.\nYou waited. That\'s your edge."',
+    wf:{
+      'Take the short':'"You just sold into higher timeframe buyers.\nThat\'s not structure… that\'s emotion.\nThe 4H was telling you everything."',
+      'Look for a long entry':'"Close — the 4H bias is right. But we need\na valid 1M bullish indication before entering long.\nWait for the setup."',
+      'Skip the trade':'"Understandable — but this was a fakeout.\nRecognizing fakeouts IS the skill. Come back when it confirms."',
+    },
+  },
+  {
+    name:'The Emotional Trap',
+    chartType:'extended_no_pullback',
+    chartId:'MNQ · 1M',ctx1:'Price Extended',ctx2:'No Correction',
+    scenario:'You missed the last move. Price ran 40 points without you. Now it\'s still running. No pullback. No correction. This feels like your last chance to get in.',
+    choices:[
+      {text:'Enter now — before it\'s too late',sub:'Jump in, it\'s still moving',correct:false,icc:false},
+      {text:'Wait for correction',sub:'Let price come back to structure',correct:true,icc:true},
+      {text:'Skip this trade',sub:'Move is over — walk away',correct:true,icc:true},
+      {text:'Mark a new pre-indication level',sub:'Find the next setup',correct:true,icc:true},
+    ],
+    iccChoice:'Wait for correction / Skip / Mark new level',
+    cf:'"Missing a trade is fine.\nForcing one is not.\nYou didn\'t follow emotion — you followed structure."',
+    wf:{
+      'Enter now — before it\'s too late':'"You didn\'t follow structure… you followed fear.\nChasing a 40-point extended move is how you buy the top."',
+    },
+  },
+  {
+    name:'Advanced ICC — The Real Level',
+    chartType:'multiple_swings',
+    chartId:'MNQ · 1M',ctx1:'4H Bullish',ctx2:'1H Multiple Levels',
+    scenario:'Price is approaching a level zone. There are two nearby swing highs — one older internal level close by, and one external swing high further up. Which level do you use as your pre-indication level?',
+    choices:[
+      {text:'Use the closest level',sub:'It\'s right there — easier to hit',correct:false,icc:false},
+      {text:'Wait for the external swing high',sub:'The real, meaningful level',correct:true,icc:true},
+      {text:'Enter early — before either level',sub:'Get ahead of the move',correct:false,icc:false},
+      {text:'Skip — too many levels, too confusing',sub:'Walk away when unclear',correct:false,icc:false},
+    ],
+    iccChoice:'Wait for the external swing high',
+    cf:'"We target the real level.\nNot the closest one… the meaningful one.\nExternal structure is where the liquidity lives."',
+    wf:{
+      'Use the closest level':'"That\'s internal noise.\nYou\'re thinking small when the market is thinking big.\nThe external level is where the real move happens."',
+      'Enter early — before either level':'"No level, no trade. You need a close past structure.\nPatience is the edge here."',
+      'Skip — too many levels, too confusing':'"When in doubt, zoom out. The external swing high is always\nthe more significant level. Don\'t let internal structure confuse you."',
+    },
+  },
+];
+
+function startGame(){
+  document.getElementById('startScreen').classList.remove('show');
+  document.getElementById('gameScreen').classList.add('show');
+  round=0;score=0;pressure=0;roundHistory.length=0;
+  buildDots();loadRound();
+}
+
+function buildDots(){
+  const c=document.getElementById('progressDots');c.innerHTML='';
+  rounds.forEach((_,i)=>{const d=document.createElement('div');d.className='pdot'+(i===0?' active':'');d.id='pdot-'+i;c.appendChild(d);});
+}
+
+function loadRound(){
+  answered=false;pressure=0;clearInterval(pressInt);
+  const r=rounds[round];
+  document.getElementById('roundNum').textContent=round+1;
+  document.getElementById('roundName').textContent=r.name;
+  document.getElementById('chartId').textContent=r.chartId;
+  document.getElementById('ctx1').textContent=r.ctx1;
+  document.getElementById('ctx2').textContent=r.ctx2;
+  document.getElementById('scText').textContent=r.scenario;
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('compare').className='compare';
+  document.getElementById('nextBtn').className='next-btn';
+  updatePressure();
+  drawChart(r.chartType);
+  buildChoices(r);
+  pressInt=setInterval(()=>{if(!answered&&pressure<95){pressure=Math.min(pressure+.28,95);updatePressure();}},100);
+}
+
+function updatePressure(){
+  const p=Math.round(pressure);
+  const color=p<30?'var(--teal)':p<65?'var(--peach)':'var(--pink)';
+  document.getElementById('pressFill').style.width=p+'%';
+  document.getElementById('pressFill').style.background=color;
+  document.getElementById('pressPct').textContent=p+'%';
+  document.getElementById('pressPct').style.color=color;
+}
+
+function buildChoices(r){
+  const wrap=document.getElementById('choicesWrap');wrap.innerHTML='';
+  const choices=[...r.choices].sort(()=>Math.random()-.5);
+  choices.forEach(c=>{
+    const b=document.createElement('button');b.className='ch';
+    b.innerHTML=`${c.text}<span class="ch-sub">${c.sub}</span>`;
+    b.onclick=()=>handleChoice(b,c,r,choices);
+    wrap.appendChild(b);
+  });
+}
+
+function handleChoice(btn,choice,r,allChoices){
+  if(answered)return;answered=true;clearInterval(pressInt);
+  const isCorrect=choice.correct;
+
+  // Reveal all correct answers
+  document.querySelectorAll('.ch').forEach(b=>{
+    b.disabled=true;
+    const matchText=allChoices.find(c=>c.correct&&b.innerHTML.includes(c.text));
+    if(matchText)b.classList.add('reveal');
+  });
+  btn.classList.add(isCorrect?'correct':'wrong');
+
+  if(isCorrect){
+    score++;pressure=Math.max(pressure-15,0);updatePressure();
+    const dot=document.getElementById('pdot-'+round);if(dot){dot.classList.remove('active');dot.classList.add('done-correct');}
+  }else{
+    pressure=Math.min(pressure+28,100);updatePressure();
+    document.querySelector('.chart-wrap').classList.add('shake');
+    setTimeout(()=>document.querySelector('.chart-wrap').classList.remove('shake'),400);
+    const dot=document.getElementById('pdot-'+round);if(dot){dot.classList.remove('active');dot.classList.add('done-wrong');}
+  }
+
+  // Get feedback text
+  let fbHead,fbBody;
+  if(isCorrect){
+    const lines=r.cf.split('\n');fbHead=lines[0].replace(/"/g,'');fbBody=lines.slice(1).join('\n').replace(/"/g,'');
+  }else{
+    const wfText=r.wf[choice.text]||Object.values(r.wf)[0];
+    const lines=wfText.split('\n');fbHead=lines[0].replace(/"/g,'');fbBody=lines.slice(1).join('\n').replace(/"/g,'');
+  }
+
+  // Show feedback
+  const fb=document.getElementById('feedback');
+  fb.className='feedback show '+(isCorrect?'fb-correct':'fb-wrong');
+  document.getElementById('fbHead').textContent=fbHead;
+  document.getElementById('fbBody').textContent=fbBody;
+
+  // Show comparison table
+  document.getElementById('cmpYou').textContent=choice.text;
+  document.getElementById('cmpICC').textContent=r.iccChoice;
+  document.getElementById('compare').className='compare show';
+
+  // Store history
+  roundHistory.push({name:r.name,yourChoice:choice.text,iccChoice:r.iccChoice,correct:isCorrect});
+
+  // Next button
+  document.getElementById('nextBtn').classList.add('show');
+  document.getElementById('nextBtn').textContent=round===rounds.length-1?'See results ✦':'Next round →';
+
+  // Mark next dot active
+  if(round+1<rounds.length){const nd=document.getElementById('pdot-'+(round+1));if(nd)nd.classList.add('active');}
+}
+
+function nextRound(){
+  round++;
+  if(round>=rounds.length)showResults();
+  else loadRound();
+}
+
+function showResults(){
+  clearInterval(pressInt);
+  document.getElementById('gameScreen').classList.remove('show');
+  document.getElementById('resultsScreen').classList.add('show');
+  const acc=Math.round(score/rounds.length*100);
+  const fp=Math.round(pressure);
+  const xp=Math.round(score*14+(100-fp)/10*6);
+  document.getElementById('resCorrect').textContent=score+'/'+rounds.length;
+  document.getElementById('resAcc').textContent=acc+'%';
+  document.getElementById('resPress').textContent=fp+'%';
+  document.getElementById('xpText').textContent='+'+xp+' GP earned';
+
+  let title,verdict,vClass,dayli;
+  if(acc>=80){
+    title='Calm &amp; Structured ✅';verdict='✅ Calm &amp; Structured';vClass='verdict-calm';
+    dayli='"That\'s discipline. That\'s how we trade. You didn\'t follow the pressure — you followed the model. That\'s the difference between a trader and a gambler."';
+  }else if(acc>=60){
+    title='Slightly Emotional ⚠️';verdict='⚠️ Slightly Emotional';vClass='verdict-mid';
+    dayli='"You\'re close. The model is in your head — but the emotion got through a couple times. That\'s normal. That\'s why we practice here and not with real money."';
+  }else{
+    title='Triggered &amp; Trading 😭';verdict='😭 Triggered &amp; Trading';vClass='verdict-triggered';
+    dayli='"Be honest with yourself — you let the pressure decide. That\'s okay. That\'s what this game is for. Come back. Run it again. Your model is right. Trust it."';
+  }
+
+  document.getElementById('resTitle').innerHTML=title;
+  document.getElementById('resVerdict').textContent=verdict;
+  document.getElementById('resVerdict').className='res-verdict '+vClass;
+  document.getElementById('resDayli').textContent=dayli.replace(/"/g,'');
+
+  // Build recap table
+  const rows=document.getElementById('recapRows');rows.innerHTML='';
+  roundHistory.forEach(h=>{
+    const div=document.createElement('div');div.className='recap-row';
+    div.innerHTML=`<div class="rr-round">${h.name}</div><div class="rr-you ${h.correct?'rr-correct':'rr-wrong'}">${h.yourChoice}</div><div class="rr-icc">${h.iccChoice}</div>`;
+    rows.appendChild(div);
+  });
+}
+
+function restartGame(){
+  document.getElementById('resultsScreen').classList.remove('show');
+  document.getElementById('startScreen').classList.add('show');
+}
+
+// ── CHART DRAWING ──────────────────────────────────────────────
+function drawChart(type){
+  const cv=document.getElementById('pvpCanvas');
+  const ctx=cv.getContext('2d');const W=cv.width,H=cv.height;
+  ctx.clearRect(0,0,W,H);ctx.fillStyle='#FFFBF9';ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='rgba(244,130,154,.07)';ctx.lineWidth=1;
+  for(let i=1;i<5;i++){ctx.beginPath();ctx.moveTo(0,H*i/5);ctx.lineTo(W,H*i/5);ctx.stroke();}
+  ({wick_at_level:drawWickAtLevel,clean_continuation:drawCleanContinuation,fakeout_scenario:drawFakeoutScenario,extended_no_pullback:drawExtendedNoCallback,multiple_swings:drawMultipleSwings}[type]||function(){})(ctx,W,H);
+  ctx.fillStyle='rgba(244,130,154,.18)';ctx.font='italic 10px Playfair Display';ctx.textAlign='right';
+  ctx.fillText('A Girl & Her Futures™',W-8,H-6);ctx.textAlign='left';
+}
+function getY(wps,nx){for(let i=0;i<wps.length-1;i++){const a=wps[i],b=wps[i+1];if(nx>=a.x&&nx<=b.x){const t=(nx-a.x)/(b.x-a.x),s=t*t*(3-2*t);return a.y+(b.y-a.y)*s;}}return wps[wps.length-1].y;}
+function candles(ctx,wps,W,H,n){
+  const sp=(W-30)/n,cw=sp*.54;
+  for(let i=0;i<n;i++){
+    const nx=i/(n-1),ny=Math.min(1,(i+.5)/(n-1));
+    const my=getY(wps,nx)+(Math.random()-.5)*2;const ney=getY(wps,ny);
+    const bh=7+Math.random()*10,bull=ney<my,cx=15+i*sp+sp/2,ty=my-bh/2,by=my+bh/2;
+    ctx.strokeStyle=bull?'#5BB5AA':'#D4607A';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(cx,ty-3-Math.random()*5);ctx.lineTo(cx,ty);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx,by);ctx.lineTo(cx,by+3+Math.random()*5);ctx.stroke();
+    ctx.fillStyle=bull?'#7ECEC4':'#F4829A';
+    ctx.beginPath();ctx.roundRect(cx-cw/2,ty,cw,bh,2);ctx.fill();ctx.stroke();
+  }
+}
+function lvl(ctx,W,y,label,color,alignRight){
+  ctx.strokeStyle=color;ctx.lineWidth=2;ctx.setLineDash([8,5]);
+  ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();ctx.setLineDash([]);
+  ctx.font='bold 10px DM Sans';
+  const tw=ctx.measureText(label).width+16;
+  const x=alignRight?W-tw-6:6;
+  ctx.fillStyle=color;ctx.beginPath();ctx.roundRect(x,y-12,tw,23,4);ctx.fill();
+  ctx.fillStyle='white';ctx.fillText(label,x+8,y+4);
+}
+function sm(ctx,x,y,label,color){
+  const sh=label==='SH';
+  ctx.fillStyle=color+'BB';ctx.beginPath();
+  if(sh){ctx.moveTo(x,y-5);ctx.lineTo(x-6,y-14);ctx.lineTo(x+6,y-14);}
+  else{ctx.moveTo(x,y+5);ctx.lineTo(x-6,y+14);ctx.lineTo(x+6,y+14);}
+  ctx.closePath();ctx.fill();
+  ctx.fillStyle=color;ctx.font='bold 8px DM Sans';ctx.textAlign='center';
+  ctx.fillText(label,x,sh?y-17:y+21);ctx.textAlign='left';
+}
+
+// Round 1 — wick above level, candle body below
+function drawWickAtLevel(ctx,W,H){
+  const pil=H*.40;
+  lvl(ctx,W,pil,'Pre-Indication Level','#F5A857');
+  const wps=[{x:0,y:H*.88},{x:.10,y:H*.68},{x:.20,y:H*.78},{x:.34,y:H*.56},{x:.46,y:H*.68},{x:.60,y:H*.48},{x:.72,y:H*.60},{x:.82,y:pil+H*.04},{x:1,y:pil+H*.05}];
+  candles(ctx,wps,W,H,20);
+  sm(ctx,W*.10,H*.68,'SH','#7ECEC4');sm(ctx,W*.20,H*.78,'SL','#F4829A');
+  sm(ctx,W*.34,H*.56,'SH','#7ECEC4');sm(ctx,W*.46,H*.68,'SL','#F4829A');
+  sm(ctx,W*.60,H*.48,'SH','#7ECEC4');sm(ctx,W*.72,H*.60,'SL','#F4829A');
+  // The key wick candle at the right
+  const wickX=W*.90;
+  ctx.strokeStyle='#5BB5AA';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(wickX,pil-H*.07);ctx.lineTo(wickX,pil+H*.01);ctx.stroke(); // long wick above PIL
+  ctx.beginPath();ctx.moveTo(wickX,pil+H*.055);ctx.lineTo(wickX,pil+H*.075);ctx.stroke();
+  ctx.fillStyle='#7ECEC4';ctx.beginPath();ctx.roundRect(wickX-8,pil+H*.01,16,H*.045,2);ctx.fill();ctx.stroke();
+  ctx.fillStyle='rgba(244,130,154,.9)';ctx.font='bold 9px DM Sans';ctx.textAlign='center';
+  ctx.fillText('Wick above — body below level',wickX,pil-H*.10);ctx.textAlign='left';
+}
+
+// Round 2 — clean close above PIL, now correcting
+function drawCleanContinuation(ctx,W,H){
+  const pil=H*.44;
+  lvl(ctx,W,pil,'Pre-Indication Level — Your Limit Here','#F5A857');
+  const wps=[{x:0,y:H*.86},{x:.10,y:H*.64},{x:.20,y:H*.74},{x:.34,y:H*.52},{x:.46,y:H*.64},{x:.56,y:pil-H*.02},{x:.64,y:pil-H*.12},{x:.72,y:pil+H*.01},{x:.82,y:pil+H*.005},{x:1,y:pil}];
+  candles(ctx,wps,W,H,22);
+  sm(ctx,W*.10,H*.64,'SH','#7ECEC4');sm(ctx,W*.20,H*.74,'SL','#F4829A');
+  sm(ctx,W*.34,H*.52,'SH','#7ECEC4');sm(ctx,W*.46,H*.64,'SL','#F4829A');
+  ctx.fillStyle='rgba(126,206,196,.9)';ctx.font='bold 9px DM Sans';ctx.textAlign='center';
+  ctx.fillText('Strong close ↑',W*.59,pil-H*.16);
+  ctx.fillStyle='rgba(245,168,87,.9)';
+  ctx.fillText('Correcting back to level',W*.82,pil-H*.03);ctx.textAlign='left';
+}
+
+// Round 3 — fakeout: price breaks below level then snaps back up
+function drawFakeoutScenario(ctx,W,H){
+  const pil=H*.52;
+  lvl(ctx,W,pil,'Swing Low — Pre-Indication Level','#F5A857');
+  const wps=[{x:0,y:H*.18},{x:.12,y:H*.38},{x:.22,y:H*.26},{x:.36,y:H*.46},{x:.48,y:H*.34},{x:.58,y:pil+H*.04},{x:.65,y:pil+H*.12},{x:.72,y:pil+H*.06},{x:.80,y:pil-H*.04},{x:1,y:pil-H*.08}];
+  candles(ctx,wps,W,H,22);
+  sm(ctx,W*.12,H*.38,'SL','#F4829A');sm(ctx,W*.22,H*.26,'SH','#7ECEC4');
+  sm(ctx,W*.36,H*.46,'SL','#F4829A');sm(ctx,W*.48,H*.34,'SH','#7ECEC4');
+  ctx.fillStyle='rgba(244,130,154,.8)';ctx.font='bold 9px DM Sans';ctx.textAlign='center';
+  ctx.fillText('Broke below ↓',W*.64,pil+H*.16);
+  ctx.fillStyle='rgba(126,206,196,.9)';
+  ctx.fillText('Snapped back above! 👀',W*.82,pil-H*.12);ctx.textAlign='left';
+  ctx.fillStyle='rgba(126,206,196,.5)';ctx.fillRect(0,H*.08,W,H*.08);
+  ctx.fillStyle='rgba(126,206,196,.7)';ctx.font='bold 9px DM Sans';
+  ctx.fillText('4H still bullish ↑',12,H*.14);
+}
+
+// Round 4 — price extended, far from level, no pullback
+function drawExtendedNoCallback(ctx,W,H){
+  const pil=H*.68;
+  lvl(ctx,W,pil,'Pre-Indication Level (where move started)','#F5A857',true);
+  const wps=[{x:0,y:H*.84},{x:.12,y:H*.66},{x:.20,y:H*.74},{x:.30,y:pil+H*.01},{x:.38,y:pil-H*.02},{x:.46,y:H*.42},{x:.58,y:H*.28},{x:.70,y:H*.18},{x:.82,y:H*.12},{x:1,y:H*.08}];
+  candles(ctx,wps,W,H,22);
+  sm(ctx,W*.12,H*.66,'SH','#7ECEC4');sm(ctx,W*.20,H*.74,'SL','#F4829A');
+  ctx.fillStyle='rgba(126,206,196,.9)';ctx.font='bold 14px DM Sans';ctx.textAlign='center';
+  ctx.fillText('↑↑↑',W*.88,H*.06);ctx.textAlign='left';
+  ctx.fillStyle='rgba(244,130,154,.85)';ctx.font='bold 9px DM Sans';
+  ctx.fillText('40+ points from level — no pullback',W*.40,H*.05);
+  ctx.strokeStyle='rgba(244,130,154,.3)';ctx.lineWidth=1.5;ctx.setLineDash([4,4]);
+  ctx.beginPath();ctx.moveTo(W*.40,H*.10);ctx.lineTo(W*.40,pil);ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle='rgba(244,130,154,.6)';ctx.font='bold 8px DM Sans';ctx.textAlign='center';
+  ctx.fillText('Extended',W*.40,pil+14);ctx.textAlign='left';
+}
+
+// Round 5 — multiple swing highs, internal vs external
+function drawMultipleSwings(ctx,W,H){
+  const internal=H*.42,external=H*.28;
+  lvl(ctx,W,internal,'Internal Swing High (closer)','rgba(245,168,87,.5)');
+  lvl(ctx,W,external,'External Swing High — The Real Level','#F5A857',true);
+  const wps=[{x:0,y:H*.86},{x:.08,y:H*.62},{x:.16,y:H*.72},{x:.26,y:internal+2},{x:.34,y:internal+H*.10},{x:.44,y:internal-H*.02},{x:.54,y:internal+H*.08},{x:.66,y:internal+H*.04},{x:.78,y:internal+H*.02},{x:1,y:internal+H*.01}];
+  candles(ctx,wps,W,H,22);
+  sm(ctx,W*.08,H*.62,'SH','#7ECEC4');sm(ctx,W*.16,H*.72,'SL','#F4829A');
+  sm(ctx,W*.26,internal,'SH','rgba(245,168,87,.8)');
+  sm(ctx,W*.34,internal+H*.10,'SL','#F4829A');
+  sm(ctx,W*.44,internal,'SH','rgba(245,168,87,.8)');
+  ctx.fillStyle='rgba(245,168,87,.8)';ctx.font='bold 9px DM Sans';
+  ctx.fillText('Internal levels (noise)',W*.24,internal-22);
+  ctx.fillStyle='rgba(245,168,87,.9)';ctx.font='bold 9px DM Sans';ctx.textAlign='right';
+  ctx.fillText('External level — where liquidity lives',W-10,external-14);ctx.textAlign='left';
+  // Arrow pointing to external level
+  ctx.strokeStyle='rgba(126,206,196,.6)';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(W*.80,internal);ctx.lineTo(W*.80,external+20);ctx.stroke();
+  ctx.fillStyle='rgba(126,206,196,.6)';ctx.font='bold 12px DM Sans';ctx.textAlign='center';
+  ctx.fillText('↑',W*.80,external+14);ctx.textAlign='left';
+}
+</script>
+</body>
+</html>

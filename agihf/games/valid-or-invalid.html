@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valid or Invalid? — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{--pink:#F4829A;--pink-light:#F9B8C6;--pink-pale:#FDE8ED;--teal:#7ECEC4;--teal-light:#B2E4DF;--teal-pale:#E8F8F6;--peach:#F5A857;--peach-light:#FAD09A;--peach-pale:#FEF3E4;--purple:#7F77DD;--purple-pale:#EEEDFE;--purple-light:#CECBF6;--cream:#FDF8F5;--warm-white:#FFFBF9;--dark:#2C1810;--text:#3D2B20;--text-muted:#7A5C50;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--warm-white);color:var(--text);min-height:100vh;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:999;}
+  .blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.3;pointer-events:none;z-index:0;}
+  .blob-1{width:500px;height:500px;background:var(--purple-light);top:-150px;right:-150px;}
+  .blob-2{width:400px;height:400px;background:var(--pink-light);bottom:-100px;left:-100px;}
+  nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(253,248,245,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(244,130,154,.15);}
+  .nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--pink);}
+  .nav-logo span{color:var(--teal);}
+  .nav-back{font-size:.85rem;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;gap:6px;}
+  .nav-back:hover{color:var(--pink);}
+  .main{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:110px 24px 80px;}
+  .game-header{text-align:center;margin-bottom:40px;}
+  .game-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--purple-pale);border:1px solid var(--purple-light);border-radius:100px;padding:8px 20px;font-size:.75rem;font-weight:500;color:var(--purple);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px;}
+  .game-eyebrow .dot{width:6px;height:6px;background:var(--purple);border-radius:50%;}
+  .game-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.2rem);font-weight:900;color:var(--dark);line-height:1.1;margin-bottom:12px;}
+  .game-title .accent{color:var(--purple);}
+  .game-desc{font-size:1rem;color:var(--text-muted);line-height:1.7;max-width:480px;margin:0 auto;}
+  .stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+  .stat-card{background:white;border-radius:16px;border:1px solid rgba(127,119,221,.12);padding:16px;text-align:center;}
+  .stat-label{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;}
+  .stat-value{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;}
+  .round-dots{display:flex;justify-content:center;gap:8px;margin-bottom:28px;}
+  .round-dot{width:10px;height:10px;border-radius:50%;background:var(--purple-pale);border:1.5px solid var(--purple-light);transition:all .3s;}
+  .round-dot.done{background:var(--teal);border-color:var(--teal);}
+  .round-dot.active{background:var(--purple);border-color:var(--purple);transform:scale(1.3);}
+  .round-dot.wrong-dot{background:var(--pink-pale);border-color:var(--pink);}
+  /* SETUP CARD */
+  .setup-card{background:white;border-radius:24px;border:1px solid rgba(127,119,221,.12);box-shadow:0 8px 40px rgba(127,119,221,.08);padding:24px;margin-bottom:16px;transition:all .3s;}
+  .setup-card.valid{border-color:var(--teal);box-shadow:0 8px 40px rgba(126,206,196,.2);}
+  .setup-card.invalid{border-color:var(--pink);box-shadow:0 8px 40px rgba(244,130,154,.25);}
+  .setup-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+  .setup-instrument{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--dark);}
+  .setup-tf{font-size:.72rem;color:var(--text-muted);background:var(--cream);padding:4px 10px;border-radius:100px;}
+  canvas#viCanvas{width:100%;height:200px;display:block;}
+  /* SETUP DESCRIPTION */
+  .setup-desc{background:var(--dark);border-radius:14px;padding:16px 20px;margin-bottom:16px;position:relative;overflow:hidden;}
+  .setup-desc::before{content:'✦';position:absolute;bottom:-16px;right:8px;font-size:70px;color:var(--purple);opacity:.07;font-family:'Playfair Display',serif;}
+  .sd-tag{font-size:.63rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:7px;}
+  .sd-text{font-family:'Playfair Display',serif;font-style:italic;font-size:.92rem;color:white;line-height:1.7;}
+  /* CALL BUTTONS */
+  .verdict-btns{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+  .verdict-btn{border:2px solid transparent;border-radius:20px;padding:20px;font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:700;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:10px;}
+  .btn-valid{background:var(--teal-pale);border-color:var(--teal-light);color:var(--teal);}
+  .btn-valid:hover:not(:disabled){background:var(--teal);color:white;transform:translateY(-3px);box-shadow:0 12px 32px rgba(126,206,196,.3);}
+  .btn-invalid{background:var(--pink-pale);border-color:var(--pink-light);color:var(--pink);}
+  .btn-invalid:hover:not(:disabled){background:var(--pink);color:white;transform:translateY(-3px);box-shadow:0 12px 32px rgba(244,130,154,.3);}
+  .verdict-btn.selected-correct{background:var(--teal);border-color:var(--teal);color:white;}
+  .verdict-btn.selected-wrong{background:var(--pink);border-color:var(--pink);color:white;}
+  .verdict-btn.reveal{background:var(--teal);border-color:var(--teal);color:white;}
+  .verdict-btn:disabled{cursor:default;transform:none!important;}
+  .feedback{display:none;border-radius:14px;padding:16px 20px;margin-bottom:20px;}
+  .feedback.show{display:flex;align-items:flex-start;gap:12px;}
+  .feedback.correct-fb{background:var(--teal-pale);border:1px solid var(--teal-light);}
+  .feedback.wrong-fb{background:var(--pink-pale);border:1px solid var(--pink-light);}
+  .fb-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px;}
+  .fb-title{font-weight:700;color:var(--dark);font-size:.92rem;margin-bottom:3px;}
+  .fb-body{font-size:.84rem;color:var(--text-muted);line-height:1.6;}
+  .next-btn{display:none;width:100%;padding:16px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--purple),#5F57C4);color:white;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;box-shadow:0 10px 30px rgba(127,119,221,.3);margin-bottom:16px;}
+  .next-btn.show{display:block;}
+  .screen{display:none;}.screen.show{display:block;}
+  .start-card,.results-card{background:white;border-radius:24px;border:1px solid rgba(127,119,221,.2);padding:40px;text-align:center;}
+  .start-icon,.results-trophy{font-size:3rem;margin-bottom:20px;}
+  .start-title,.results-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--dark);margin-bottom:10px;}
+  .start-body,.results-sub{font-size:.95rem;color:var(--text-muted);line-height:1.75;margin-bottom:28px;}
+  .start-rules{background:var(--cream);border-radius:14px;padding:18px 22px;text-align:left;margin-bottom:28px;}
+  .rule{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:.88rem;color:var(--text);line-height:1.5;}
+  .rule:last-child{margin-bottom:0;}
+  .rule-dot{width:6px;height:6px;border-radius:50%;background:var(--purple);flex-shrink:0;margin-top:7px;}
+  .start-btn,.btn-primary{background:linear-gradient(135deg,var(--purple),#5F57C4);color:white;border:none;padding:16px 40px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;}
+  .results-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+  .rs-card{background:var(--cream);border-radius:14px;padding:16px;}
+  .rs-label{font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;}
+  .rs-val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;}
+  .xp-badge{display:inline-flex;align-items:center;gap:8px;background:var(--purple-pale);border:1px solid var(--purple-light);border-radius:100px;padding:10px 22px;font-size:.92rem;font-weight:600;color:var(--purple);margin-bottom:24px;}
+  .results-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn-secondary{background:transparent;color:var(--text-muted);border:1.5px solid rgba(244,130,154,.2);padding:13px 26px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.95rem;cursor:pointer;}
+  .btn-secondary:hover{border-color:var(--pink);color:var(--pink);}
+</style>
+</head>
+<body>
+<div class="blob blob-1"></div><div class="blob blob-2"></div>
+<nav>
+  <div class="nav-logo">A Girl &amp; <span>Her Futures</span>™</div>
+  <div class="nav-back" onclick="window.location='../../index.html'">← Back to Games</div>
+</nav>
+<div class="main">
+
+  <div class="screen show" id="startScreen">
+    <div class="game-header">
+      <div class="game-eyebrow"><span class="dot"></span> ICC Judgment · Level 3</div>
+      <h1 class="game-title">Valid or <span class="accent">Invalid?</span></h1>
+      <p class="game-desc">An ICC-like setup appears. You judge it. Some are real. Some are traps. Can you tell the difference?</p>
+    </div>
+    <div class="start-card">
+      <div class="start-icon">⚖️</div>
+      <div class="start-title">Not every setup is a trade.</div>
+      <p class="start-body">The most important skill in ICC isn't finding setups — it's filtering them. A wick is not an indication. A bounce is not a correction. This game trains your filter.</p>
+      <div class="start-rules">
+        <div class="rule"><div class="rule-dot"></div>A chart and setup description appear</div>
+        <div class="rule"><div class="rule-dot"></div>Judge it: is this a valid ICC trade or not?</div>
+        <div class="rule"><div class="rule-dot"></div>Valid = Indication candle CLOSED past the level, correction was clean, structure is there</div>
+        <div class="rule"><div class="rule-dot"></div>Invalid = wick only, no real correction, wrong candle, structure missing</div>
+        <div class="rule"><div class="rule-dot"></div>When in doubt — it's probably invalid. ICC has strict rules.</div>
+      </div>
+      <button class="start-btn" onclick="startGame()">✦ Judge the setups</button>
+    </div>
+  </div>
+
+  <div class="screen" id="gameScreen">
+    <div class="stats-bar">
+      <div class="stat-card"><div class="stat-label">Round</div><div class="stat-value" style="color:var(--purple)" id="roundNum">1</div></div>
+      <div class="stat-card"><div class="stat-label">Score</div><div class="stat-value" style="color:var(--teal)" id="scoreNum">0</div></div>
+      <div class="stat-card"><div class="stat-label">Streak</div><div class="stat-value" style="color:var(--pink)" id="streakNum">0</div></div>
+    </div>
+    <div class="round-dots" id="roundDots"></div>
+    <div class="setup-card" id="setupCard">
+      <div class="setup-top">
+        <div class="setup-instrument" id="setupInstrument">MNQ · 1M</div>
+        <div class="setup-tf" id="setupTF">Evaluate this setup</div>
+      </div>
+      <canvas id="viCanvas" width="660" height="200"></canvas>
+    </div>
+    <div class="setup-desc">
+      <div class="sd-tag">✦ What happened</div>
+      <div class="sd-text" id="sdText">Loading setup...</div>
+    </div>
+    <div class="verdict-btns">
+      <button class="verdict-btn btn-valid" onclick="handleVerdict('valid')">✓ Valid Trade</button>
+      <button class="verdict-btn btn-invalid" onclick="handleVerdict('invalid')">✕ Invalid — Skip it</button>
+    </div>
+    <div class="feedback" id="feedback">
+      <div class="fb-icon" id="fbIcon">✦</div>
+      <div><div class="fb-title" id="fbTitle"></div><div class="fb-body" id="fbBody"></div></div>
+    </div>
+    <button class="next-btn" id="nextBtn" onclick="nextRound()">Next setup →</button>
+  </div>
+
+  <div class="screen" id="resultsScreen">
+    <div class="results-card">
+      <div class="results-trophy">✦</div>
+      <div class="results-title" id="resultsTitle">Your filter is sharp.</div>
+      <p class="results-sub" id="resultsSub"></p>
+      <div class="xp-badge">✦ <span id="xpEarned">+80 GP earned</span></div>
+      <div class="results-stats">
+        <div class="rs-card"><div class="rs-label">Correct</div><div class="rs-val" style="color:var(--teal)" id="resCorrect">0/8</div></div>
+        <div class="rs-card"><div class="rs-label">Best Streak</div><div class="rs-val" style="color:var(--purple)" id="resStreak">0</div></div>
+        <div class="rs-card"><div class="rs-label">Accuracy</div><div class="rs-val" style="color:var(--pink)" id="resAccuracy">0%</div></div>
+      </div>
+      <div class="results-btns">
+        <button class="btn-primary" onclick="restartGame()">Play again ✦</button>
+        <button class="btn-secondary" onclick="window.location='../../index.html'">Back to games</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const TOTAL=8;
+let round=0,score=0,streak=0,best=0,answered=false;
+const setups=[
+  {verdict:'valid',instrument:'MNQ · 1M',context:'Bullish ICC',desc:'Price broke above the swing high with a clean 1M candle close. Then corrected back to the level. Then showed a bullish reclaim. Limit order was placed at the broken swing high.',correctFeedback:'Valid trade. Indication = candle close above swing high. Correction = clean pullback to the level. Entry = limit at the level. This is textbook ICC.',wrongFeedback:'This was valid. The candle CLOSED above the pre-indication level, price corrected cleanly, and the entry zone was clear. All three phases present.'},
+  {verdict:'invalid',instrument:'MNQ · 1M',context:'Wick trap',desc:'Price sent a long wick above the swing high but the 1M candle CLOSED below it. Someone tried to enter thinking that was an indication.',correctFeedback:'Invalid — and you caught it. A wick through a level is NOT an indication. ICC requires a full candle CLOSE past the level. Wicks lie.',wrongFeedback:'This was invalid. The wick went above the level but the candle didn\'t close above it. ICC rule #1: Close beats wick. Always.'},
+  {verdict:'valid',instrument:'ES · 1M',context:'Bearish ICC',desc:'On a downtrend, price closed below the swing low with a clear bearish 1M candle. Corrected back up to the broken low. Showed weakness. Short entry at the level.',correctFeedback:'Valid bearish ICC. Indication = close below swing low. Correction = bounce back to the broken level. Entry = limit at the level from above. Clean setup.',wrongFeedback:'This was valid. The bearish indication was clear, the correction was a clean bounce to the level, and the entry zone was at the broken swing low.'},
+  {verdict:'invalid',instrument:'MNQ · 1M',context:'No correction',desc:'Price closed above the swing high (valid indication). Then immediately kept running without any pullback. Someone entered at market chasing the move.',correctFeedback:'Invalid entry. The indication was real but there was no correction. ICC = Indication → CORRECTION → Continuation. No correction = no entry. Wait.',wrongFeedback:'This was invalid. Even with a clean indication, without a correction you have no entry. Chasing the move after a strong indication is not ICC.'},
+  {verdict:'invalid',instrument:'NQ · 1M',context:'Wrong candle type',desc:'A doji candle formed at the swing high — closing barely above it. Someone called this an indication and entered.',correctFeedback:'Invalid. A doji at a level shows indecision, not commitment. ICC needs a STRONG candle close past the level — not hesitation. No conviction = no indication.',wrongFeedback:'This was invalid. A doji barely closing past the level doesn\'t show buyer conviction. You need a candle that commits, not one that hesitates.'},
+  {verdict:'valid',instrument:'MNQ · 1M',context:'Clean ICC setup',desc:'Strong bullish candle closed above the 1H swing high. Price pulled back for 3-4 candles to the level. Held the level with a bullish candle. Limit order triggered at the pre-indication level.',correctFeedback:'Valid trade. Strong indication candle, clean multi-candle correction to the exact level, and a hold. This is the setup you wait for.',wrongFeedback:'This was valid. Strong indication, clean correction, held the level. This is what a real ICC setup looks like.'},
+  {verdict:'invalid',instrument:'MNQ · 1M',context:'Correction went too deep',desc:'Price indicated above the swing high. Then corrected — but went all the way back below the pre-indication level and closed under it.',correctFeedback:'Invalid. When price corrects BELOW the pre-indication level, the setup is invalidated. The buyers didn\'t defend the level. Skip it.',wrongFeedback:'This was invalid. The correction broke back below the pre-indication level — that means the buyers couldn\'t hold it. Invalid setup, no trade.'},
+  {verdict:'invalid',instrument:'MGC · 1M',context:'Ranging market',desc:'Price has been ranging for the last hour. A candle closed above what looks like the top of the range. Someone called it an indication.',correctFeedback:'Invalid. In a range, the closes at the boundaries are not ICC indications — they\'re just the range playing out. Wait for a clean breakout of the entire range structure first.',wrongFeedback:'This was invalid. You can\'t call ICC inside a range. The pre-indication level needs to be a real swing high/low in a trending context, not a range boundary.'},
+];
+function shuffle(a){return[...a].sort(()=>Math.random()-.5);}
+let sh;
+function startGame(){
+  document.getElementById('startScreen').classList.remove('show');
+  document.getElementById('gameScreen').classList.add('show');
+  sh=shuffle(setups);round=0;score=0;streak=0;best=0;buildDots();loadRound();
+}
+function buildDots(){
+  const c=document.getElementById('roundDots');c.innerHTML='';
+  for(let i=0;i<TOTAL;i++){const d=document.createElement('div');d.className='round-dot'+(i===0?' active':'');d.id='dot-'+i;c.appendChild(d);}
+}
+function updateDots(r){
+  const d=document.getElementById('dot-'+round);if(d){d.classList.remove('active');d.classList.add(r==='correct'?'done':'wrong-dot');}
+  if(round+1<TOTAL){const n=document.getElementById('dot-'+(round+1));if(n)n.classList.add('active');}
+}
+function loadRound(){
+  answered=false;
+  const s=sh[round];
+  document.getElementById('roundNum').textContent=round+1;
+  document.getElementById('scoreNum').textContent=score;
+  document.getElementById('streakNum').textContent=streak>0?streak+' 🔥':streak;
+  document.getElementById('setupInstrument').textContent=s.instrument;
+  document.getElementById('setupTF').textContent=s.context;
+  document.getElementById('sdText').textContent=s.desc;
+  document.getElementById('setupCard').className='setup-card';
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('nextBtn').className='next-btn';
+  document.querySelectorAll('.verdict-btn').forEach(b=>{b.disabled=false;b.className=b.className.replace(/selected-correct|selected-wrong|reveal/g,'').trim();});
+  drawSetupChart(s);
+}
+function handleVerdict(verdict){
+  if(answered)return;answered=true;
+  const s=sh[round];const correct=verdict===s.verdict;
+  document.querySelectorAll('.verdict-btn').forEach(b=>b.disabled=true);
+  const vBtn=document.querySelector('.btn-valid'),iBtn=document.querySelector('.btn-invalid');
+  if(s.verdict==='valid')vBtn.classList.add('reveal');else iBtn.classList.add('reveal');
+  if(correct){
+    (verdict==='valid'?vBtn:iBtn).classList.add('selected-correct');
+    document.getElementById('setupCard').classList.add(s.verdict==='valid'?'valid':'invalid');
+    score++;streak++;if(streak>best)best=streak;updateDots('correct');
+    showFeedback(true,'✓ Correct call.',s.correctFeedback);
+  }else{
+    (verdict==='valid'?vBtn:iBtn).classList.add('selected-wrong');
+    streak=0;updateDots('wrong');
+    showFeedback(false,'✕ That was '+(s.verdict==='valid'?'valid.':'invalid.'),s.wrongFeedback);
+  }
+  document.getElementById('scoreNum').textContent=score;
+  document.getElementById('streakNum').textContent=streak>0?streak+' 🔥':streak;
+  document.getElementById('nextBtn').classList.add('show');
+  document.getElementById('nextBtn').textContent=round===TOTAL-1?'See results ✦':'Next setup →';
+}
+function showFeedback(ok,title,body){
+  const fb=document.getElementById('feedback');fb.className='feedback show '+(ok?'correct-fb':'wrong-fb');
+  document.getElementById('fbIcon').textContent=ok?'✦':'✕';
+  document.getElementById('fbTitle').textContent=title;document.getElementById('fbBody').textContent=body;
+}
+function drawSetupChart(s){
+  const canvas=document.getElementById('viCanvas');
+  const ctx=canvas.getContext('2d');const W=canvas.width,H=canvas.height;
+  ctx.clearRect(0,0,W,H);ctx.fillStyle='#FFFBF9';ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='rgba(127,119,221,.07)';ctx.lineWidth=1;
+  for(let i=1;i<5;i++){ctx.beginPath();ctx.moveTo(0,H*i/5);ctx.lineTo(W,H*i/5);ctx.stroke();}
+  const isValid=s.verdict==='valid';
+  const levelY=H*.35;
+
+  // Pre-indication level line — always visible
+  ctx.strokeStyle='rgba(127,119,221,.5)';ctx.lineWidth=1.5;ctx.setLineDash([5,4]);
+  ctx.beginPath();ctx.moveTo(0,levelY);ctx.lineTo(W,levelY);ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle='rgba(127,119,221,.18)';ctx.beginPath();ctx.roundRect(8,levelY-10,90,20,3);ctx.fill();
+  ctx.fillStyle='var(--purple)';ctx.font='600 9px DM Sans';ctx.fillText('Pre-Ind. Level',12,levelY+4);
+
+  // Build waypoints based on valid vs invalid scenario
+  // VALID: clear uptrend → strong candle CLOSES above level (indication) → clean pullback TO level (correction) → price pushes up (continuation)
+  // INVALID: price approaches level, only a wick above it (no close), then falls back — or correction goes too deep below level
+  let waypoints;
+  if(isValid){
+    waypoints=[
+      {x:0.00,y:H*.88},          // start low
+      {x:0.10,y:H*.68},          // SH1
+      {x:0.18,y:H*.78},          // SL1 — higher low
+      {x:0.30,y:H*.52},          // SH2 — higher high
+      {x:0.40,y:H*.64},          // SL2 — higher low
+      {x:0.50,y:levelY-8},       // INDICATION — strong close above the level
+      {x:0.62,y:levelY+H*.14},   // CORRECTION — clean pullback TO the level (not below)
+      {x:0.72,y:levelY-H*.01},   // CONTINUATION — first close back above the level
+      {x:0.84,y:levelY-H*.18},   // price continues up after continuation
+      {x:1.00,y:levelY-H*.28},   // continuation running
+    ];
+  }else{
+    // Invalid: price approaches, wick pokes above but CLOSES below, then falls
+    waypoints=[
+      {x:0.00,y:H*.88},          // start low
+      {x:0.10,y:H*.68},          // SH1
+      {x:0.18,y:H*.78},          // SL1
+      {x:0.30,y:H*.54},          // SH2
+      {x:0.40,y:H*.66},          // SL2
+      {x:0.50,y:levelY+H*.04},   // price approaches level — wick goes above but CLOSES BELOW it
+      {x:0.62,y:levelY+H*.22},   // price falls back — no real indication
+      {x:0.74,y:levelY+H*.14},   // weak bounce — no structure
+      {x:0.88,y:levelY+H*.30},   // price dropping further — invalid
+      {x:1.00,y:levelY+H*.38},   // continues lower — setup failed
+    ];
+  }
+
+  function getY(normX){
+    for(let i=0;i<waypoints.length-1;i++){
+      const a=waypoints[i],b=waypoints[i+1];
+      if(normX>=a.x&&normX<=b.x){
+        const t=(normX-a.x)/(b.x-a.x);
+        const smooth=t*t*(3-2*t);
+        return a.y+(b.y-a.y)*smooth;
+      }
+    }
+    return waypoints[waypoints.length-1].y;
+  }
+
+  const n=24,sp=(W-40)/n,cw=sp*.52;
+  for(let i=0;i<n;i++){
+    const normX=i/(n-1);
+    const normXnext=Math.min(1,(i+0.5)/(n-1));
+    const midY=getY(normX)+(Math.random()-.5)*3;
+    const nextMidY=getY(normXnext);
+    const bh=7+Math.random()*14;
+    const isBull=nextMidY<midY;
+    const cx=20+i*sp+sp/2;
+    const topY=midY-bh/2,botY=midY+bh/2;
+
+    // For invalid setup, draw a prominent wick above level at indication zone but body stays below
+    let wickUp=topY-3-Math.random()*7;
+    if(!isValid && normX>0.46 && normX<0.54){
+      wickUp=levelY-H*.08; // wick pokes above the level
+    }
+
+    ctx.strokeStyle=isBull?'#5BB5AA':'#D4607A';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(cx,wickUp);ctx.lineTo(cx,topY);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx,botY);ctx.lineTo(cx,botY+3+Math.random()*7);ctx.stroke();
+    ctx.fillStyle=isBull?'#7ECEC4':'#F4829A';
+    ctx.beginPath();ctx.roundRect(cx-cw/2,topY,cw,bh,2);ctx.fill();ctx.stroke();
+  }
+
+  // Label the ICC phases on valid setups — float them ABOVE or BELOW candles so they're clearly visible
+  if(isValid){
+    const labels=[
+      {x:W*0.50, y:levelY-H*0.22, text:'I', color:'#F4829A'},  // I — floats well ABOVE the indication candle
+      {x:W*0.64, y:levelY+H*0.32, text:'C', color:'#7ECEC4'},  // C correction — floats well BELOW the pullback
+      {x:W*0.74, y:levelY-H*0.22, text:'C', color:'#F5A857'},  // C continuation — floats well ABOVE the continuation candle
+    ];
+    labels.forEach(l=>{
+      // Draw a line connecting label to the price zone
+      ctx.strokeStyle=l.color+'66';ctx.lineWidth=1;ctx.setLineDash([3,3]);
+      const lineEndY=l.text==='C'&&l.color==='#7ECEC4'?l.y-22:l.y+22;
+      ctx.beginPath();ctx.moveTo(l.x,l.y);ctx.lineTo(l.x,lineEndY);ctx.stroke();
+      ctx.setLineDash([]);
+      // Draw circle label
+      ctx.fillStyle=l.color+'44';
+      ctx.beginPath();ctx.arc(l.x,l.y,18,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle=l.color;ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.arc(l.x,l.y,18,0,Math.PI*2);ctx.stroke();
+      ctx.fillStyle=l.color;ctx.font='bold 14px Playfair Display';ctx.textAlign='center';
+      ctx.fillText(l.text,l.x,l.y+5);
+    });
+    ctx.textAlign='left';
+  }else{
+    ctx.fillStyle='rgba(244,130,154,.8)';ctx.font='bold 9px DM Sans';ctx.textAlign='center';
+    ctx.fillText('wick only — no close',W*.5,levelY-H*.12);
+    ctx.textAlign='left';
+  }
+
+  ctx.fillStyle='rgba(244,130,154,.2)';ctx.font='italic 11px Playfair Display';ctx.textAlign='right';
+  ctx.fillText('A Girl & Her Futures™',W-10,H-8);ctx.textAlign='left';
+}
+function nextRound(){round++;if(round>=TOTAL)showResults();else loadRound();}
+function showResults(){
+  document.getElementById('gameScreen').classList.remove('show');
+  document.getElementById('resultsScreen').classList.add('show');
+  const acc=Math.round(score/TOTAL*100),xp=Math.round(score*9+best*12);
+  document.getElementById('resCorrect').textContent=score+'/'+TOTAL;
+  document.getElementById('resStreak').textContent=best;
+  document.getElementById('resAccuracy').textContent=acc+'%';
+  document.getElementById('xpEarned').textContent='+'+xp+' GP earned';
+  document.getElementById('resultsTitle').textContent=acc>=80?'Your filter is sharp.':acc>=60?'The filter is forming.':'Keep training the filter.';
+  document.getElementById('resultsSub').textContent=acc>=80?acc+'% accuracy. You know what a real ICC setup looks like — and more importantly, what it doesn\'t. That filter saves accounts.':acc>=60?acc+'% accuracy. You\'re building the judgment. Review the ICC rules and come back — this score goes up fast with practice.':'Every invalid setup you call valid is a trade you didn\'t need to take. Go back through the ICC lessons and train the rules until they\'re automatic.';
+}
+function restartGame(){
+  document.getElementById('resultsScreen').classList.remove('show');
+  document.getElementById('gameScreen').classList.add('show');
+  sh=shuffle(setups);round=0;score=0;streak=0;best=0;buildDots();loadRound();
+}
+</script>
+</body>
+</html>
