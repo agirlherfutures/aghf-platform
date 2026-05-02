@@ -412,7 +412,7 @@
 <div class="main">
 
   <div class="game-header">
-    <div class="game-eyebrow"><span class="dot"></span> Level 1+ · +50 XP per round</div>
+    <div class="game-eyebrow"><span class="dot"></span> Level 1+ · +50 GP per round</div>
     <h1 class="game-title">Pattern <span class="accent-pink">Recognition</span></h1>
     <p class="game-desc">Candles flash. You call it. The faster your eye learns, the faster your instincts build — before you ever risk a dollar on a real chart.</p>
   </div>
@@ -431,7 +431,7 @@
       </div>
       <div class="how-step">
         <div class="how-num">3</div>
-        <div class="how-text">Each correct answer earns XP and builds your streak. 10 rounds per game.</div>
+        <div class="how-text">Each correct answer earns GP and builds your streak. 10 rounds per game.</div>
       </div>
       <div class="how-step">
         <div class="how-num">4</div>
@@ -515,7 +515,7 @@
         <div class="rs-value peach" id="resStreak">0</div>
       </div>
     </div>
-    <div class="xp-earned"><span class="xp-spark">✦</span> <span id="xpEarned">+50 XP earned</span></div>
+    <div class="xp-earned"><span class="xp-spark">✦</span> <span id="xpEarned">+50 GP earned</span></div>
     <br>
     <button class="play-again" onclick="restartGame()">✦ Play again</button>
   </div>
@@ -910,7 +910,7 @@ function showResults() {
   document.getElementById('resCorrect').textContent = score + '/' + TOTAL_ROUNDS;
   document.getElementById('resAccuracy').textContent = accuracy + '%';
   document.getElementById('resStreak').textContent = bestStreak;
-  document.getElementById('xpEarned').textContent = '+' + xp + ' XP earned';
+  document.getElementById('xpEarned').textContent = '+' + xp + ' GP earned';
 
   if (accuracy >= 90) {
     document.getElementById('resultsTrophy').textContent = '✦';
