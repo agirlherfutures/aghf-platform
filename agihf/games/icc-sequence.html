@@ -6,543 +6,795 @@
 <title>ICC Sequence — A Girl & Her Futures</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --pink: #F4829A; --pink-light: #F9B8C6; --pink-pale: #FDE8ED;
-    --teal: #7ECEC4; --teal-light: #B2E4DF; --teal-pale: #E8F8F6;
-    --peach: #F5A857; --peach-light: #FAD09A; --peach-pale: #FEF3E4;
-    --purple: #7F77DD; --purple-pale: #EEEDFE; --purple-light: #CECBF6;
-    --cream: #FDF8F5; --warm-white: #FFFBF9;
-    --dark: #2C1810; --text: #3D2B20; --text-muted: #7A5C50;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); min-height: 100vh; overflow-x: hidden; }
-  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 999; }
-  .blob { position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.3; pointer-events: none; z-index: 0; }
-  .blob-1 { width: 500px; height: 500px; background: var(--purple-light); top: -150px; right: -150px; }
-  .blob-2 { width: 400px; height: 400px; background: var(--pink-light); bottom: -100px; left: -100px; }
-  nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 16px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(253,248,245,0.88); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(244,130,154,0.15); }
-  .nav-logo { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; color: var(--pink); }
-  .nav-logo span { color: var(--teal); }
-  .nav-back { font-size: 0.85rem; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
-  .nav-back:hover { color: var(--pink); }
-  .main { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 110px 24px 80px; }
+:root{
+  --pink:#F4829A;--pink-light:#F9B8C6;--pink-pale:#FDE8ED;
+  --teal:#7ECEC4;--teal-light:#B2E4DF;--teal-pale:#E8F8F6;
+  --peach:#F5A857;--peach-light:#FAD09A;--peach-pale:#FEF3E4;
+  --purple:#7F77DD;--purple-pale:#EEEDFE;--purple-light:#CECBF6;
+  --cream:#FDF8F5;--warm:#FFFBF9;
+  --dark:#2C1810;--text:#3D2B20;--muted:#7A5C50;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--warm);color:var(--text);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:999;}
+.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.28;pointer-events:none;z-index:0;}
+.blob-1{width:500px;height:500px;background:var(--purple-light);top:-150px;right:-150px;}
+.blob-2{width:400px;height:400px;background:var(--pink-light);bottom:-100px;left:-100px;}
+nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(253,248,245,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(127,119,221,.12);}
+.nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--pink);}
+.nav-logo span{color:var(--teal);}
+.nav-back{font-size:.85rem;color:var(--muted);cursor:pointer;transition:color .2s;}
+.nav-back:hover{color:var(--pink);}
+.main{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:100px 24px 80px;}
+.screen{display:none;}.screen.show{display:block;}
 
-  .game-header { text-align: center; margin-bottom: 40px; }
-  .game-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--purple-pale); border: 1px solid var(--purple-light); border-radius: 100px; padding: 8px 20px; font-size: 0.75rem; font-weight: 500; color: var(--purple); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
-  .game-eyebrow .dot { width: 6px; height: 6px; background: var(--purple); border-radius: 50%; }
-  .game-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 900; color: var(--dark); line-height: 1.1; margin-bottom: 12px; }
-  .game-title .accent { color: var(--purple); }
-  .game-desc { font-size: 1rem; color: var(--text-muted); line-height: 1.7; max-width: 480px; margin: 0 auto; }
+/* START */
+.start-eye{display:inline-flex;align-items:center;gap:8px;background:var(--purple-pale);border:1px solid var(--purple-light);border-radius:100px;padding:8px 20px;font-size:.74rem;font-weight:500;color:var(--purple);letter-spacing:.09em;text-transform:uppercase;margin-bottom:24px;}
+.start-eye .dot{width:6px;height:6px;background:var(--purple);border-radius:50%;}
+.start-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,3.5rem);font-weight:900;color:var(--dark);line-height:1.05;margin-bottom:10px;}
+.start-acc{color:var(--purple);}
+.start-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--teal);margin-bottom:16px;}
+.start-desc{font-size:.97rem;color:var(--muted);line-height:1.8;margin-bottom:28px;}
+.icc-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+.ip{border-radius:16px;padding:18px 14px;text-align:center;}
+.ip-i{background:var(--pink-pale);border:1px solid var(--pink-light);}
+.ip-c{background:var(--teal-pale);border:1px solid var(--teal-light);}
+.ip-c2{background:var(--peach-pale);border:1px solid var(--peach-light);}
+.ip-letter{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;line-height:1;margin-bottom:6px;}
+.ip-word{font-size:.85rem;font-weight:700;color:var(--dark);margin-bottom:5px;}
+.ip-rule{font-size:.74rem;color:var(--muted);line-height:1.55;}
+.start-btn{background:linear-gradient(135deg,var(--purple),#5F57C4);color:white;border:none;padding:16px 40px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;box-shadow:0 12px 32px rgba(127,119,221,.3);display:block;width:100%;}
+.start-btn:hover{transform:translateY(-2px);}
 
-  .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
-  .stat-card { background: white; border-radius: 16px; border: 1px solid rgba(127,119,221,0.12); padding: 16px; text-align: center; }
-  .stat-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
-  .stat-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; }
-  .stat-value.purple { color: var(--purple); } .stat-value.teal { color: var(--teal); } .stat-value.peach { color: var(--peach); }
+/* GAME */
+.game-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.round-badge{display:inline-flex;align-items:center;gap:6px;background:var(--purple-pale);border:1px solid var(--purple-light);border-radius:100px;padding:5px 14px;font-size:.72rem;font-weight:600;color:var(--purple);}
+.round-focus{font-size:.82rem;color:var(--muted);font-style:italic;}
+.round-focus span{color:var(--dark);font-weight:600;font-style:normal;}
 
-  .round-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 28px; }
-  .round-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--purple-pale); border: 1.5px solid var(--purple-light); transition: all 0.3s; }
-  .round-dot.done { background: var(--teal); border-color: var(--teal); }
-  .round-dot.active { background: var(--purple); border-color: var(--purple); transform: scale(1.3); }
-  .round-dot.wrong-dot { background: var(--pink-pale); border-color: var(--pink); }
+/* PROGRESS */
+.progress-row{display:flex;gap:8px;margin-bottom:20px;}
+.prog-seg{flex:1;height:6px;border-radius:100px;background:var(--purple-pale);border:1px solid var(--purple-light);transition:all .3s;}
+.prog-seg.active{background:var(--purple);border-color:var(--purple);}
+.prog-seg.correct{background:var(--teal);border-color:var(--teal);}
+.prog-seg.wrong{background:var(--pink-light);border-color:var(--pink);}
 
-  /* ICC PROGRESS TRACKER */
-  .icc-tracker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
-  .icc-step { background: white; border-radius: 14px; padding: 14px 16px; border: 1.5px solid rgba(127,119,221,0.15); text-align: center; transition: all 0.3s; }
-  .icc-step.active-step { border-color: var(--purple); box-shadow: 0 4px 20px rgba(127,119,221,0.2); background: var(--purple-pale); }
-  .icc-step.done-step { border-color: var(--teal); background: var(--teal-pale); }
-  .icc-step.wrong-step { border-color: var(--pink); background: var(--pink-pale); }
-  .icc-letter { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; line-height: 1; margin-bottom: 4px; }
-  .il-i { color: var(--pink); } .il-c { color: var(--teal); } .il-c2 { color: var(--peach); }
-  .icc-word { font-size: 0.78rem; font-weight: 600; color: var(--dark); margin-bottom: 2px; }
-  .icc-status { font-size: 0.68rem; color: var(--text-muted); }
-  .icc-step.active-step .icc-status { color: var(--purple); font-weight: 600; }
-  .icc-step.done-step .icc-status { color: var(--teal); font-weight: 600; }
+/* PHASE TRACKER */
+.phase-track{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;}
+.phase-card{background:white;border-radius:14px;padding:14px 16px;border:1.5px solid rgba(127,119,221,.12);text-align:center;transition:all .3s;}
+.phase-card.active-phase{border-color:var(--purple);background:var(--purple-pale);box-shadow:0 4px 20px rgba(127,119,221,.18);}
+.phase-card.done-phase{border-color:var(--teal);background:var(--teal-pale);}
+.phase-card.wrong-phase{border-color:var(--pink);background:var(--pink-pale);}
+.phase-letter{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;line-height:1;margin-bottom:3px;}
+.pl-i{color:var(--pink);}.pl-c{color:var(--teal);}.pl-c2{color:var(--peach);}
+.phase-name{font-size:.75rem;font-weight:600;color:var(--dark);margin-bottom:2px;}
+.phase-rule{font-size:.65rem;color:var(--muted);line-height:1.4;}
+.phase-card.active-phase .phase-rule{color:var(--purple);font-weight:500;}
+.phase-card.done-phase .phase-rule{color:var(--teal);font-weight:500;}
 
-  /* CHART */
-  .chart-card { background: white; border-radius: 24px; border: 1px solid rgba(127,119,221,0.12); box-shadow: 0 8px 40px rgba(127,119,221,0.08); padding: 24px; margin-bottom: 20px; }
-  .chart-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-  .chart-instrument { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--dark); }
-  .chart-tf { font-size: 0.72rem; color: var(--text-muted); background: var(--cream); padding: 4px 10px; border-radius: 100px; }
-  canvas#iccCanvas { width: 100%; height: 220px; display: block; }
+/* CHART */
+.chart-card{background:white;border-radius:20px;border:1px solid rgba(127,119,221,.1);padding:18px 20px;margin-bottom:16px;}
+.chart-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.chart-pair{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;color:var(--dark);}
+.chart-tfs{display:flex;gap:6px;}
+.tf-pill{font-size:.68rem;color:var(--muted);background:var(--cream);padding:3px 9px;border-radius:100px;}
+canvas#iccCanvas{width:100%;height:210px;display:block;}
 
-  /* QUESTION */
-  .question-card { background: var(--dark); border-radius: 16px; padding: 20px 24px; margin-bottom: 20px; position: relative; overflow: hidden; }
-  .question-card::before { content: '✦'; position: absolute; bottom: -16px; right: 8px; font-size: 80px; color: var(--purple); opacity: 0.08; font-family: 'Playfair Display', serif; }
-  .q-step-tag { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-  .q-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: white; line-height: 1.65; }
+/* TEACH BOX — teaching content per phase */
+.teach-box{border-radius:14px;padding:16px 20px;margin-bottom:16px;}
+.teach-box.phase-i{background:var(--pink-pale);border:1px solid var(--pink-light);}
+.teach-box.phase-c{background:var(--teal-pale);border:1px solid var(--teal-light);}
+.teach-box.phase-c2{background:var(--peach-pale);border:1px solid var(--peach-light);}
+.teach-tag{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.ti-tag{color:var(--pink);}.tc-tag{color:var(--teal);}.tc2-tag{color:var(--peach);}
+.teach-q{font-family:'Playfair Display',serif;font-style:italic;font-size:.98rem;color:var(--dark);line-height:1.7;}
 
-  /* ANSWER ZONES */
-  .zones { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
-  .zone-btn { background: white; border: 1.5px solid rgba(127,119,221,0.2); border-radius: 16px; padding: 18px 20px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 500; color: var(--text); cursor: pointer; transition: all 0.25s; text-align: left; }
-  .zone-btn:hover:not(:disabled) { border-color: var(--purple-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(127,119,221,0.12); }
-  .zone-btn.correct { background: var(--teal-pale); border-color: var(--teal); color: #1a6b63; }
-  .zone-btn.wrong { background: var(--pink-pale); border-color: var(--pink); color: #a84060; }
-  .zone-btn.reveal { background: var(--teal-pale); border-color: var(--teal); }
-  .zone-btn:disabled { cursor: default; transform: none; }
-  .zone-icon { font-size: 1.1rem; margin-right: 8px; }
-  .zone-sub { display: block; font-size: 0.74rem; color: var(--text-muted); margin-top: 3px; font-weight: 400; }
+/* CHOICES */
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.ch{background:white;border:1.5px solid rgba(127,119,221,.18);border-radius:14px;padding:15px 17px;font-family:'DM Sans',sans-serif;font-size:.87rem;font-weight:500;color:var(--text);cursor:pointer;transition:all .22s;text-align:left;line-height:1.45;}
+.ch:hover:not(:disabled){border-color:var(--purple-light);transform:translateY(-2px);}
+.ch.correct{background:var(--teal-pale);border-color:var(--teal);color:#1a6b63;}
+.ch.wrong{background:var(--pink-pale);border-color:var(--pink);color:#a84060;}
+.ch.reveal{background:var(--teal-pale);border-color:var(--teal);}
+.ch:disabled{cursor:default;transform:none!important;}
+.ch-sub{display:block;font-size:.71rem;color:var(--muted);margin-top:3px;font-weight:400;}
 
-  .feedback { display: none; border-radius: 14px; padding: 16px 20px; margin-bottom: 20px; }
-  .feedback.show { display: flex; align-items: flex-start; gap: 12px; }
-  .feedback.correct-fb { background: var(--teal-pale); border: 1px solid var(--teal-light); }
-  .feedback.wrong-fb { background: var(--pink-pale); border: 1px solid var(--pink-light); }
-  .fb-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
-  .fb-title { font-weight: 700; color: var(--dark); font-size: 0.92rem; margin-bottom: 3px; }
-  .fb-body { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; }
+/* FEEDBACK */
+.feedback{display:none;border-radius:14px;padding:16px 20px;margin-bottom:14px;}
+.feedback.show{display:flex;align-items:flex-start;gap:12px;}
+.fb-correct{background:var(--teal-pale);border:1px solid var(--teal-light);}
+.fb-wrong{background:var(--pink-pale);border:1px solid var(--pink-light);}
+.fb-ico{font-size:1.2rem;flex-shrink:0;margin-top:2px;}
+.fb-head{font-family:'Playfair Display',serif;font-weight:700;color:var(--dark);font-size:.96rem;margin-bottom:4px;}
+.fb-body{font-size:.83rem;color:var(--muted);line-height:1.65;}
 
-  .next-btn { display: none; width: 100%; padding: 16px; border-radius: 100px; border: none; background: linear-gradient(135deg, var(--purple), #5F57C4); color: white; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; box-shadow: 0 10px 30px rgba(127,119,221,0.3); margin-bottom: 16px; }
-  .next-btn.show { display: block; }
-  .next-btn:hover { transform: translateY(-2px); }
+/* DAYLI NOTE */
+.dayli-note{background:var(--dark);border-radius:14px;padding:16px 20px;margin-bottom:16px;display:none;}
+.dayli-note.show{display:block;}
+.dn-tag{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);margin-bottom:7px;}
+.dn-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:.94rem;color:white;line-height:1.75;}
+.dn-attr{font-size:.7rem;color:rgba(255,255,255,.3);margin-top:6px;}
 
-  .screen { display: none; }
-  .screen.show { display: block; }
+.next-btn{display:none;width:100%;padding:14px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--purple),#5F57C4);color:white;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;box-shadow:0 10px 28px rgba(127,119,221,.28);margin-bottom:8px;}
+.next-btn.show{display:block;}
 
-  .start-card { background: white; border-radius: 24px; border: 1px solid rgba(127,119,221,0.2); box-shadow: 0 8px 40px rgba(127,119,221,0.1); padding: 40px; text-align: center; }
-  .start-icon { font-size: 3rem; margin-bottom: 20px; }
-  .start-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--dark); margin-bottom: 10px; }
-  .start-body { font-size: 0.95rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 28px; }
-  .icc-preview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 28px; }
-  .ip-card { border-radius: 14px; padding: 16px 12px; text-align: center; }
-  .ip-i { background: var(--pink-pale); border: 1px solid var(--pink-light); }
-  .ip-c { background: var(--teal-pale); border: 1px solid var(--teal-light); }
-  .ip-c2 { background: var(--peach-pale); border: 1px solid var(--peach-light); }
-  .ip-letter { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; line-height: 1; margin-bottom: 4px; }
-  .ip-word { font-size: 0.82rem; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
-  .ip-desc { font-size: 0.72rem; color: var(--text-muted); line-height: 1.5; }
-  .start-btn { background: linear-gradient(135deg, var(--purple), #5F57C4); color: white; border: none; padding: 16px 40px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; box-shadow: 0 10px 30px rgba(127,119,221,0.3); }
+/* RESULTS */
+.results-wrap{text-align:center;}
+.res-icon{font-size:3rem;margin-bottom:16px;}
+.res-title{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--dark);margin-bottom:8px;}
+.res-sub{font-size:.97rem;color:var(--muted);line-height:1.75;margin-bottom:24px;max-width:440px;margin-left:auto;margin-right:auto;}
+.gp-pill{display:inline-flex;align-items:center;gap:8px;background:var(--peach-pale);border:1px solid var(--peach-light);border-radius:100px;padding:10px 24px;font-size:.92rem;font-weight:600;color:var(--peach);margin-bottom:28px;}
+.res-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+.rs{background:white;border-radius:14px;border:1px solid rgba(127,119,221,.1);padding:16px;text-align:center;}
+.rs-l{font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+.rs-v{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;}
 
-  .results-card { background: white; border-radius: 24px; border: 1px solid rgba(127,119,221,0.2); padding: 40px; text-align: center; }
-  .results-trophy { font-size: 3rem; margin-bottom: 16px; }
-  .results-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--dark); margin-bottom: 8px; }
-  .results-sub { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; }
-  .results-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
-  .rs-card { background: var(--cream); border-radius: 14px; padding: 16px; }
-  .rs-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
-  .rs-val { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; }
-  .xp-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--purple-pale); border: 1px solid var(--purple-light); border-radius: 100px; padding: 10px 22px; font-size: 0.92rem; font-weight: 600; color: var(--purple); margin-bottom: 24px; }
-  .results-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn-primary { background: linear-gradient(135deg, var(--purple), #5F57C4); color: white; border: none; padding: 14px 30px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; cursor: pointer; }
-  .btn-secondary { background: transparent; color: var(--text-muted); border: 1.5px solid rgba(244,130,154,0.2); padding: 13px 26px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; cursor: pointer; }
-  .btn-secondary:hover { border-color: var(--pink); color: var(--pink); }
+/* PHASE SUMMARY */
+.phase-summary{background:white;border-radius:16px;border:1px solid rgba(127,119,221,.1);overflow:hidden;margin-bottom:28px;}
+.ps-head{display:grid;grid-template-columns:1fr 2fr 1fr;background:var(--purple-pale);padding:10px 16px;}
+.psh{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);}
+.ps-row{display:grid;grid-template-columns:1fr 2fr 1fr;padding:12px 16px;border-top:1px solid rgba(127,119,221,.08);align-items:center;}
+.ps-phase{font-size:.82rem;font-weight:600;color:var(--dark);}
+.ps-key{font-size:.8rem;color:var(--muted);line-height:1.4;}
+.ps-result{font-size:.8rem;text-align:right;}
+.ps-correct{color:var(--teal);}
+.ps-wrong{color:var(--pink);}
+
+.res-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-main{background:linear-gradient(135deg,var(--purple),#5F57C4);color:white;border:none;padding:14px 30px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;}
+.btn-ghost{background:transparent;color:var(--muted);border:1.5px solid rgba(127,119,221,.2);padding:13px 26px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.95rem;cursor:pointer;}
+.btn-ghost:hover{border-color:var(--purple);color:var(--purple);}
 </style>
 </head>
 <body>
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
+<div class="blob blob-1"></div><div class="blob blob-2"></div>
 <nav>
   <div class="nav-logo">A Girl &amp; <span>Her Futures</span>™</div>
   <div class="nav-back" onclick="window.location='../../index.html'">← Back to Games</div>
 </nav>
 <div class="main">
 
-  <!-- START -->
-  <div class="screen show" id="startScreen">
-    <div class="game-header">
-      <div class="game-eyebrow"><span class="dot"></span> ICC Framework · Level 3</div>
-      <h1 class="game-title">ICC <span class="accent">Sequence</span></h1>
-      <p class="game-desc">A real chart. Identify Indication, Correction, and Continuation in order. All three or no GP.</p>
+<!-- START -->
+<div class="screen show" id="startScreen">
+  <div class="start-eye"><span class="dot"></span> ICC Framework · Level 3</div>
+  <h1 class="start-title">ICC <span class="start-acc">Sequence.</span></h1>
+  <div class="start-sub">Three phases. One trade. Every time.</div>
+  <p class="start-desc">6 unique scenarios — each one teaches you a different reason WHY ICC works. Not just what to click. What it means, why it matters, and how to execute it for real.</p>
+  <div class="icc-preview">
+    <div class="ip ip-i">
+      <div class="ip-letter" style="color:var(--pink)">I</div>
+      <div class="ip-word">Indication</div>
+      <div class="ip-rule">A 1M candle CLOSES past the pre-indication level. Not a wick — a close.</div>
     </div>
-    <div class="start-card">
-      <div class="start-icon">✦</div>
-      <div class="start-title">Three phases. One trade.</div>
-      <p class="start-body">This is the whole ICC method in one game. You'll identify each phase of the sequence on real chart setups. Miss one and the sequence resets. Get all three and you're in structure.</p>
-      <div class="icc-preview">
-        <div class="ip-card ip-i"><div class="ip-letter" style="color:var(--pink)">I</div><div class="ip-word">Indication</div><div class="ip-desc">1M candle closes past the pre-indication level</div></div>
-        <div class="ip-card ip-c"><div class="ip-letter" style="color:var(--teal)">C</div><div class="ip-word">Correction</div><div class="ip-desc">Price pulls back to retest the broken level</div></div>
-        <div class="ip-card ip-c2"><div class="ip-letter" style="color:var(--peach)">C</div><div class="ip-word">Continuation</div><div class="ip-desc">Price continues in the original direction</div></div>
-      </div>
-      <button class="start-btn" onclick="startGame()">✦ I know the sequence</button>
+    <div class="ip ip-c">
+      <div class="ip-letter" style="color:var(--teal)">C</div>
+      <div class="ip-word">Correction</div>
+      <div class="ip-rule">Price pulls back to the broken level. This is your entry zone. Limit order only.</div>
+    </div>
+    <div class="ip ip-c2">
+      <div class="ip-letter" style="color:var(--peach)">C</div>
+      <div class="ip-word">Continuation</div>
+      <div class="ip-rule">Price resumes direction. Take 1:1 partial, move stop to BE, let the runner go.</div>
+    </div>
+  </div>
+  <button class="start-btn" onclick="startGame()">✦ I know the sequence. Let's go.</button>
+</div>
+
+<!-- GAME -->
+<div class="screen" id="gameScreen">
+  <div class="game-top">
+    <div class="round-badge">✦ Round <span id="roundNum">1</span> of 6</div>
+    <div class="round-focus">Focus: <span id="roundFocus">The Indication</span></div>
+  </div>
+  <div class="progress-row" id="progressRow"></div>
+
+  <div class="phase-track">
+    <div class="phase-card" id="phaseI">
+      <div class="phase-letter pl-i">I</div>
+      <div class="phase-name">Indication</div>
+      <div class="phase-rule" id="ruleI">Candle CLOSES past the level</div>
+    </div>
+    <div class="phase-card" id="phaseC">
+      <div class="phase-letter pl-c">C</div>
+      <div class="phase-name">Correction</div>
+      <div class="phase-rule" id="ruleC">Pullback to the broken level</div>
+    </div>
+    <div class="phase-card" id="phaseC2">
+      <div class="phase-letter pl-c2">C</div>
+      <div class="phase-name">Continuation</div>
+      <div class="phase-rule" id="ruleC2">Price resumes — your entry fills</div>
     </div>
   </div>
 
-  <!-- GAME -->
-  <div class="screen" id="gameScreen">
-    <div class="stats-bar">
-      <div class="stat-card"><div class="stat-label">Chart</div><div class="stat-value purple" id="roundNum">1</div></div>
-      <div class="stat-card"><div class="stat-label">Score</div><div class="stat-value teal" id="scoreNum">0</div></div>
-      <div class="stat-card"><div class="stat-label">Streak</div><div class="stat-value peach" id="streakNum">0</div></div>
-    </div>
-
-    <div class="round-dots" id="roundDots"></div>
-
-    <!-- ICC TRACKER -->
-    <div class="icc-tracker">
-      <div class="icc-step" id="step-I">
-        <div class="icc-letter il-i">I</div>
-        <div class="icc-word">Indication</div>
-        <div class="icc-status" id="status-I">Identify first</div>
-      </div>
-      <div class="icc-step" id="step-C">
-        <div class="icc-letter il-c">C</div>
-        <div class="icc-word">Correction</div>
-        <div class="icc-status" id="status-C">After Indication</div>
-      </div>
-      <div class="icc-step" id="step-C2">
-        <div class="icc-letter il-c2">C</div>
-        <div class="icc-word">Continuation</div>
-        <div class="icc-status" id="status-C2">After Correction</div>
+  <div class="chart-card">
+    <div class="chart-top">
+      <div class="chart-pair" id="chartPair">MNQ · 1M</div>
+      <div class="chart-tfs">
+        <div class="tf-pill" id="tf1">4H Bullish</div>
+        <div class="tf-pill" id="tf2">1H Structure</div>
       </div>
     </div>
-
-    <!-- CHART -->
-    <div class="chart-card">
-      <div class="chart-top">
-        <div class="chart-instrument" id="chartInstrument">MNQ · 1M</div>
-        <div class="chart-tf" id="chartContext">Bullish setup</div>
-      </div>
-      <canvas id="iccCanvas" width="660" height="220"></canvas>
-    </div>
-
-    <!-- QUESTION -->
-    <div class="question-card">
-      <div class="q-step-tag" id="qStepTag" style="color: var(--pink)">Step 1 of 3 — Indication</div>
-      <div class="q-text" id="qText">Look at the chart. Which zone shows the Indication — the 1M candle that CLOSED past the pre-indication level?</div>
-    </div>
-
-    <!-- ZONES -->
-    <div class="zones" id="zonesGrid"></div>
-
-    <div class="feedback" id="feedback">
-      <div class="fb-icon" id="fbIcon">✦</div>
-      <div><div class="fb-title" id="fbTitle"></div><div class="fb-body" id="fbBody"></div></div>
-    </div>
-
-    <button class="next-btn" id="nextBtn" onclick="handleNext()">Next →</button>
+    <canvas id="iccCanvas" width="660" height="210"></canvas>
   </div>
 
-  <!-- RESULTS -->
-  <div class="screen" id="resultsScreen">
-    <div class="results-card">
-      <div class="results-trophy" id="resultsTrophy">✦</div>
-      <div class="results-title" id="resultsTitle">She's in structure.</div>
-      <p class="results-sub" id="resultsSub"></p>
-      <div class="xp-badge">✦ <span id="xpEarned">+100 GP earned</span></div>
-      <div class="results-stats">
-        <div class="rs-card"><div class="rs-label">Complete Sets</div><div class="rs-val" style="color:var(--purple)" id="resCorrect">0/5</div></div>
-        <div class="rs-card"><div class="rs-label">Best Streak</div><div class="rs-val" style="color:var(--teal)" id="resStreak">0</div></div>
-        <div class="rs-card"><div class="rs-label">Accuracy</div><div class="rs-val" style="color:var(--peach)" id="resAccuracy">0%</div></div>
+  <div class="teach-box" id="teachBox">
+    <div class="teach-tag" id="teachTag">✦ Indication</div>
+    <div class="teach-q" id="teachQ">Loading...</div>
+  </div>
+
+  <div class="choices" id="choicesGrid"></div>
+
+  <div class="feedback" id="feedback">
+    <div class="fb-ico" id="fbIco">✦</div>
+    <div><div class="fb-head" id="fbHead"></div><div class="fb-body" id="fbBody"></div></div>
+  </div>
+
+  <div class="dayli-note" id="dayliNote">
+    <div class="dn-tag">✦ Dayli's Note</div>
+    <div class="dn-quote" id="dayliQuote"></div>
+    <div class="dn-attr">— Dayli Scott · A Girl & Her Futures™</div>
+  </div>
+
+  <button class="next-btn" id="nextBtn" onclick="nextRound()">Next round →</button>
+</div>
+
+<!-- RESULTS -->
+<div class="screen" id="resultsScreen">
+  <div class="results-wrap">
+    <div class="res-icon" id="resIcon">✦</div>
+    <div class="res-title" id="resTitle">She's in structure.</div>
+    <p class="res-sub" id="resSub"></p>
+    <div class="gp-pill">✦ <span id="gpText">+100 GP earned</span></div>
+    <div class="res-stats">
+      <div class="rs"><div class="rs-l">Correct</div><div class="rs-v" style="color:var(--teal)" id="resCorrect">0/6</div></div>
+      <div class="rs"><div class="rs-l">Accuracy</div><div class="rs-v" style="color:var(--peach)" id="resAcc">0%</div></div>
+      <div class="rs"><div class="rs-l">Phase Mastery</div><div class="rs-v" style="color:var(--purple)" id="resMastery">—</div></div>
+    </div>
+    <div class="phase-summary">
+      <div class="ps-head">
+        <div class="psh">Phase</div>
+        <div class="psh">Key Rule</div>
+        <div class="psh" style="text-align:right">Result</div>
       </div>
-      <div class="results-btns">
-        <button class="btn-primary" onclick="restartGame()">Play again ✦</button>
-        <button class="btn-secondary" onclick="window.location='../../index.html'">Back to games</button>
-      </div>
+      <div id="summaryRows"></div>
+    </div>
+    <div class="res-btns">
+      <button class="btn-main" onclick="restartGame()">Play again ✦</button>
+      <button class="btn-ghost" onclick="window.location='../../index.html'">Back to games</button>
     </div>
   </div>
+</div>
 
 </div>
 <script>
-const TOTAL_ROUNDS = 5;
-let currentRound = 0, score = 0, streak = 0, bestStreak = 0;
-let currentStep = 0; // 0=Indication, 1=Correction, 2=Continuation
-let roundScore = 0; // how many steps correct this round
-let stepAnswered = false;
+let round=0,score=0,answered=false;
+const history=[];
+const TOTAL=6;
 
-const ICC_STEPS = [
+// 6 unique rounds — each focuses on a different aspect of ICC entry
+const rounds=[
   {
-    key: 'I', label: 'Indication', color: 'var(--pink)',
-    question: 'Look at the chart. Which zone shows the Indication — the 1M candle that CLOSED past the pre-indication level?',
-    tag: 'Step 1 of 3 — Indication',
-    correctAnswer: { icon: '📍', text: 'Zone A — Candle closes past the level', sub: 'Strong bullish close above swing high' },
-    wrongAnswers: [
-      { icon: '🕯️', text: 'Zone B — Wick pokes above level', sub: 'Price tested it but didn\'t close' },
-      { icon: '⬇️', text: 'Zone C — Price pulling back', sub: 'This is the correction phase' },
-      { icon: '🚀', text: 'Zone D — Price running up', sub: 'This is after the continuation entry' },
+    id:'indication-basics',
+    focus:'The Indication',
+    chartType:'bull_indication',
+    pair:'MNQ · 1M',tf1:'4H Bullish',tf2:'New York Session',
+    phase:'I',
+    phaseClass:'phase-i',teachClass:'teach-box phase-i',
+    teachTag:'✦ Phase 1 — Indication',
+    teachQ:'Look at the chart. Price just did something at the pre-indication level. Which candle is the valid Indication?',
+    phaseRuleI:'Which candle is the indication?',
+    choices:[
+      {text:'The wick that went above the level',sub:'Price tested it',correct:false},
+      {text:'The 1M candle that CLOSED above the level',sub:'Body committed past the line',correct:true},
+      {text:'The candle approaching the level',sub:'Getting close',correct:false},
+      {text:'Any candle near the level',sub:'Proximity counts',correct:false},
     ],
-    correctFeedback: 'That\'s the Indication. A 1M candle CLOSED past the pre-indication level. Wicks don\'t count — we need the close.',
-    wrongFeedback: 'The Indication is specifically the candle that CLOSES past the pre-indication level. Not a wick. Not a later move. The close.'
+    correctHead:'✦ That\'s the Indication.',
+    correctBody:'A candle CLOSE past the pre-indication level is the only valid indication. Wicks are noise. Bodies are commitment. The market is saying: I accept this new price.',
+    wrongHead:'Not quite.',
+    wrongBody:'Only a full candle CLOSE past the pre-indication level counts as an indication. A wick going above it means price tested the level and got rejected — that\'s not acceptance.',
+    dayliQuote:'"I don\'t care about wicks. Prove it to me. I need that 1M candle to close past the level — body and all. Wicks lie. Closes don\'t."',
+    phaseSummary:'Candle must CLOSE past the pre-indication level — not just wick through it',
   },
   {
-    key: 'C', label: 'Correction', color: 'var(--teal)',
-    question: 'Good. Now find the Correction — where did price pull back after the Indication?',
-    tag: 'Step 2 of 3 — Correction',
-    correctAnswer: { icon: '↩️', text: 'Zone B — Price retraces to the level', sub: 'Healthy pullback to the broken level' },
-    wrongAnswers: [
-      { icon: '📍', text: 'Zone A — The initial close', sub: 'That was the Indication, not Correction' },
-      { icon: '🚀', text: 'Zone C — Price running higher', sub: 'That\'s the Continuation phase' },
-      { icon: '⬇️', text: 'Zone D — Deeper pullback below level', sub: 'Too deep — this would invalidate the setup' },
+    id:'what-is-correction',
+    focus:'Why Corrections Happen',
+    chartType:'correction_forming',
+    pair:'MNQ · 1M',tf1:'4H Bullish',tf2:'Post-Indication',
+    phase:'C',
+    phaseClass:'phase-c',teachClass:'teach-box phase-c',
+    teachTag:'✦ Phase 2 — Correction',
+    teachQ:'Price indicated bullish and is now pulling back. Someone in your Discord is panicking — "it\'s reversing!" What is actually happening?',
+    phaseRuleC:'What does the correction mean?',
+    choices:[
+      {text:'The setup is failing — close the trade',sub:'Panic exit',correct:false},
+      {text:'It\'s a healthy pullback — this is normal',sub:'Price breathes before continuing',correct:true},
+      {text:'Price is reversing bearish',sub:'Structure change',correct:false},
+      {text:'Wait for the 4H to confirm again',sub:'Over-confirmation',correct:false},
     ],
-    correctFeedback: 'Correct! The Correction is the pullback after Indication. Price comes back to retest the broken level. This is normal. This is healthy. This is where you enter.',
-    wrongFeedback: 'The Correction is the pullback AFTER the Indication candle. Price comes back to retest — that\'s your entry zone. It should not go below the pre-indication level.'
+    correctHead:'Exactly right. Corrections are healthy.',
+    correctBody:'A correction after indication is not a reversal — it\'s fuel. Price is pulling back to gather liquidity before the continuation. This is WHERE you enter. Patient traders live here.',
+    wrongHead:'That\'s the emotion talking.',
+    wrongBody:'A pullback after a bullish indication is completely normal and expected. It\'s not a reversal — it\'s the Correction phase. This is where your limit order fills. Do not close the trade.',
+    dayliQuote:'"If it doesn\'t correct, it\'s not healthy. Corrections are normal. They\'re not scary — they\'re your entry. That pullback is the market handing you your seat."',
+    phaseSummary:'Correction = price pulling back to the broken level. This is WHERE your limit order lives',
   },
   {
-    key: 'C2', label: 'Continuation', color: 'var(--peach)',
-    question: 'Last step. Where does the Continuation happen — where does price resume in the original direction?',
-    tag: 'Step 3 of 3 — Continuation',
-    correctAnswer: { icon: '🚀', text: 'Zone C — Price resumes upward', sub: 'Your entry filled, TP1 hit, runner active' },
-    wrongAnswers: [
-      { icon: '📍', text: 'Zone A — The Indication candle', sub: 'That started the sequence' },
-      { icon: '↩️', text: 'Zone B — The pullback zone', sub: 'That was the Correction phase' },
-      { icon: '🛑', text: 'Zone D — Stop loss zone', sub: 'Price should not go here in a valid ICC' },
+    id:'entry-placement',
+    focus:'Where Your Limit Goes',
+    chartType:'limit_at_level',
+    pair:'MNQ · 1M',tf1:'1H Bullish',tf2:'Correction Active',
+    phase:'C',
+    phaseClass:'phase-c',teachClass:'teach-box phase-c',
+    teachTag:'✦ Phase 2 — Entry Placement',
+    teachQ:'Your limit order is placed AT the pre-indication level during the Correction. Price pulls back to it. But when exactly does the limit FILL?',
+    phaseRuleC:'When does the limit fill?',
+    choices:[
+      {text:'When price touches the level during correction',sub:'As soon as price gets there',correct:false},
+      {text:'When the continuation candle closes back above the level',sub:'Close confirms buyers defended it',correct:true},
+      {text:'The moment you set the limit order',sub:'Before anything happens',correct:false},
+      {text:'When price is 5 points above the level',sub:'Arbitrary distance',correct:false},
     ],
-    correctFeedback: 'That\'s the full ICC sequence. Indication → Correction → Continuation. Take your 1:1 partial. Move stop to break even. Let the runner go.',
-    wrongFeedback: 'Continuation is when price resumes in the original direction AFTER the correction. This is where your limit order gets filled and the trade plays out.'
-  }
+    correctHead:'Exactly. The close is what triggers it.',
+    correctBody:'Your limit sits at the pre-indication level during the correction — but it fills when the continuation candle closes back above that level. The close confirms buyers defended the level. That close is your entry signal. Not the touch.',
+    wrongHead:'Watch the close, not the touch.',
+    wrongBody:'Your limit is placed during the correction — but it fills on the continuation candle close back above the level. Price touching the level alone is not enough. The candle must CLOSE above it. That close is your fill.',
+    dayliQuote:'"Limit orders only. At the defended swing level. That\'s it. You set it before the correction happens, then let price come to you. Never chase the move."',
+    phaseSummary:'Limit order sits AT the pre-indication level — the broken swing. Price returns to it during correction',
+  },
+  {
+    id:'stop-placement',
+    focus:'Protecting the Trade',
+    chartType:'stop_and_entry',
+    pair:'MNQ · 1M',tf1:'4H Bullish',tf2:'Entry Filled',
+    phase:'C',
+    phaseClass:'phase-c',teachClass:'teach-box phase-c',
+    teachTag:'✦ Phase 2 — Stop Loss Placement',
+    teachQ:'Your limit filled at the pre-indication level during the correction. Price made a higher low during the pullback. Where does your stop loss go?',
+    phaseRuleC:'Where is the stop loss?',
+    choices:[
+      {text:'Below the higher low (correction low)',sub:'Below where buyers showed up',correct:true},
+      {text:'Below the pre-indication level',sub:'Too far from entry',correct:false},
+      {text:'10 points below entry — fixed amount',sub:'Not based on structure',correct:false},
+      {text:'At break even immediately',sub:'Too tight — trade needs room',correct:false},
+    ],
+    correctHead:'Below the higher low. Every time.',
+    correctBody:'Your stop goes below the correction low — the higher low that formed during the pullback. If price breaks below it, buyers failed to defend the level and the setup is invalid. That\'s your line in the sand.',
+    wrongHead:'That stop isn\'t aligned with structure.',
+    wrongBody:'The stop goes below the correction low — the higher low from the pullback. That\'s where buyers showed up. If price breaks below it, the bullish ICC thesis is invalidated.',
+    dayliQuote:'"Stop loss below the higher low. Always. That\'s the last place buyers showed up. If price goes below it — they lost. And that means we\'re out."',
+    phaseSummary:'Stop loss goes BELOW the correction low (higher low). Below it = setup invalidated',
+  },
+  {
+    id:'continuation-entry',
+    focus:'Reading the Continuation',
+    chartType:'continuation_starting',
+    pair:'MNQ · 1M',tf1:'4H Bullish',tf2:'Continuation Active',
+    phase:'C2',
+    phaseClass:'phase-c2',teachClass:'teach-box phase-c2',
+    teachTag:'✦ Phase 3 — Continuation',
+    teachQ:'Your limit filled at the pre-indication level. Price has now started moving back in the bullish direction. What confirms the Continuation phase has begun?',
+    phaseRuleC2:'What signals continuation?',
+    choices:[
+      {text:'Price moves 5 points in my direction',sub:'Small move',correct:false},
+      {text:'Price closes back above the pre-indication level',sub:'Buyers defended and reclaimed',correct:true},
+      {text:'The 4H candle closes bullish',sub:'Wrong timeframe for confirmation',correct:false},
+      {text:'Price hits TP1 automatically',sub:'That\'s the result, not the signal',correct:false},
+    ],
+    correctHead:'The reclaim is the confirmation.',
+    correctBody:'When price closes back above the pre-indication level after the correction, buyers have defended the level and reclaimed it. That\'s the Continuation — strength showing through. Now manage the trade.',
+    wrongHead:'That\'s not what we\'re looking for.',
+    wrongBody:'Continuation is confirmed when price closes back above the pre-indication level — showing buyers defended the zone and are pushing in direction again. Watch the 1M close, not just price movement.',
+    dayliQuote:'"Continuation is price saying: \'okay, I\'m serious now.\' It reclaims the level, shows strength, and starts moving. That\'s when you know your trade is working."',
+    phaseSummary:'Continuation = price closes back above the level, showing buyers defended and resumed direction',
+  },
+  {
+    id:'trade-management',
+    focus:'Managing the Trade',
+    chartType:'trade_at_tp1',
+    pair:'MNQ · 1M',tf1:'4H Bullish',tf2:'Trade Running',
+    phase:'C2',
+    phaseClass:'phase-c2',teachClass:'teach-box phase-c2',
+    teachTag:'✦ Phase 3 — Trade Management',
+    teachQ:'Your trade is in Continuation. Price is running toward TP1 at 1:1. What does the ICC risk model say you do when price reaches TP1?',
+    phaseRuleC2:'What happens at TP1?',
+    choices:[
+      {text:'Take the full profit and close',sub:'Lock everything in',correct:false},
+      {text:'Take a partial at 1:1, move stop to break even',sub:'Lock profit, keep the runner free',correct:true},
+      {text:'Hold everything — let it run to 1:3',sub:'Skip TP1 entirely',correct:false},
+      {text:'Add more contracts at TP1',sub:'Scale in at target',correct:false},
+    ],
+    correctHead:'That\'s the ICC execution model.',
+    correctBody:'Take a partial at 1:1. Move your stop to break even. Now you have a free runner — the trade can\'t lose. Let it go to 1:2 or structure. This is how you protect profit AND keep upside.',
+    wrongHead:'That\'s not the model.',
+    wrongBody:'At TP1 (1:1): take a partial, move stop to break even. You now have a free runner. Closing everything leaves money on the table. Holding without taking partials is just hope. The model is partial + move stop.',
+    dayliQuote:'"TP1 partial. Stop to break even. Free runner. That\'s the model. Every. Single. Time. You\'re not being greedy — you\'re being smart. Protect profit AND keep the upside."',
+    phaseSummary:'At TP1: take partial profit, move stop to break even, let runner go to 1:2 minimum',
+  },
 ];
 
-const chartVariants = [
-  { instrument: 'MNQ', tf: '1M', context: 'Bullish breakout', direction: 'bull' },
-  { instrument: 'MNQ', tf: '1M', context: 'Bearish breakdown', direction: 'bear' },
-  { instrument: 'ES', tf: '1M', context: 'Bullish structure', direction: 'bull' },
-  { instrument: 'MNQ', tf: '1M', context: 'After HTF pullback', direction: 'bull' },
-  { instrument: 'MGC', tf: '1M', context: 'Bearish ICC setup', direction: 'bear' },
-];
-
-let shuffledVariants;
-function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
-
-function startGame() {
+function startGame(){
   document.getElementById('startScreen').classList.remove('show');
   document.getElementById('gameScreen').classList.add('show');
-  shuffledVariants = shuffle(chartVariants);
-  currentRound = 0; score = 0; streak = 0; bestStreak = 0;
-  buildRoundDots();
-  loadRound();
+  round=0;score=0;history.length=0;
+  buildProgress();loadRound();
 }
 
-function buildRoundDots() {
-  const c = document.getElementById('roundDots'); c.innerHTML = '';
-  for (let i = 0; i < TOTAL_ROUNDS; i++) {
-    const d = document.createElement('div');
-    d.className = 'round-dot' + (i === 0 ? ' active' : '');
-    d.id = 'dot-' + i; c.appendChild(d);
+function buildProgress(){
+  const row=document.getElementById('progressRow');row.innerHTML='';
+  for(let i=0;i<TOTAL;i++){
+    const s=document.createElement('div');s.className='prog-seg';s.id='seg-'+i;
+    row.appendChild(s);
   }
+  document.getElementById('seg-0').classList.add('active');
 }
 
-function loadRound() {
-  currentStep = 0; roundScore = 0; stepAnswered = false;
-  const variant = shuffledVariants[currentRound];
-  document.getElementById('roundNum').textContent = currentRound + 1;
-  document.getElementById('scoreNum').textContent = score;
-  document.getElementById('chartInstrument').textContent = variant.instrument + ' · ' + variant.tf;
-  document.getElementById('chartContext').textContent = variant.context;
-  document.getElementById('feedback').className = 'feedback';
-  document.getElementById('nextBtn').className = 'next-btn';
-  resetStepUI();
-  drawICCChart(variant);
-  loadStep();
+function loadRound(){
+  answered=false;
+  const r=rounds[round];
+  document.getElementById('roundNum').textContent=round+1;
+  document.getElementById('roundFocus').textContent=r.focus;
+  document.getElementById('chartPair').textContent=r.pair;
+  document.getElementById('tf1').textContent=r.tf1;
+  document.getElementById('tf2').textContent=r.tf2;
+
+  // Teach box
+  const tb=document.getElementById('teachBox');
+  tb.className=r.teachClass;
+  document.getElementById('teachTag').textContent=r.teachTag;
+  document.getElementById('teachQ').textContent=r.teachQ;
+  document.getElementById('teachTag').className='teach-tag '+(r.phase==='I'?'ti-tag':r.phase==='C'?'tc-tag':'tc2-tag');
+
+  // Phase tracker highlights
+  ['phaseI','phaseC','phaseC2'].forEach(id=>document.getElementById(id).className='phase-card');
+  document.getElementById('phase'+r.phase.replace('2','')).className='phase-card active-phase';
+  // Phase rule updates
+  if(r.phaseRuleI)document.getElementById('ruleI').textContent=r.phaseRuleI;
+  if(r.phaseRuleC)document.getElementById('ruleC').textContent=r.phaseRuleC;
+  if(r.phaseRuleC2)document.getElementById('ruleC2').textContent=r.phaseRuleC2;
+
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('dayliNote').className='dayli-note';
+  document.getElementById('nextBtn').className='next-btn';
+
+  drawChart(r.chartType);
+  buildChoices(r);
 }
 
-function resetStepUI() {
-  ['I','C','C2'].forEach(k => {
-    const el = document.getElementById('step-' + k);
-    el.className = 'icc-step';
-  });
-  document.getElementById('status-I').textContent = 'Identify first';
-  document.getElementById('status-C').textContent = 'After Indication';
-  document.getElementById('status-C2').textContent = 'After Correction';
-  document.getElementById('step-I').classList.add('active-step');
-}
-
-function loadStep() {
-  stepAnswered = false;
-  const step = ICC_STEPS[currentStep];
-  document.getElementById('qStepTag').textContent = step.tag;
-  document.getElementById('qStepTag').style.color = step.color;
-  document.getElementById('qText').textContent = step.question;
-  document.getElementById('feedback').className = 'feedback';
-  document.getElementById('nextBtn').className = 'next-btn';
-  buildZones(step);
-}
-
-function buildZones(step) {
-  const grid = document.getElementById('zonesGrid');
-  grid.innerHTML = '';
-  const options = shuffle([step.correctAnswer, ...step.wrongAnswers.slice(0, 3)].map((o, idx) => ({ ...o, isCorrect: o === step.correctAnswer || (idx === 0) })));
-  // rebuild with proper correct flag
-  const withCorrect = [
-    { ...step.correctAnswer, isCorrect: true },
-    ...shuffle(step.wrongAnswers.slice(0, 3)).map(o => ({ ...o, isCorrect: false }))
-  ];
-  const shuffledOptions = shuffle(withCorrect);
-  shuffledOptions.forEach(opt => {
-    const btn = document.createElement('button');
-    btn.className = 'zone-btn';
-    btn.innerHTML = `<span class="zone-icon">${opt.icon}</span> ${opt.text}<span class="zone-sub">${opt.sub}</span>`;
-    btn.onclick = () => handleZoneAnswer(btn, opt, step, shuffledOptions);
-    grid.appendChild(btn);
+function buildChoices(r){
+  const g=document.getElementById('choicesGrid');g.innerHTML='';
+  [...r.choices].sort(()=>Math.random()-.5).forEach(c=>{
+    const b=document.createElement('button');b.className='ch';
+    b.innerHTML=`${c.text}<span class="ch-sub">${c.sub}</span>`;
+    b.onclick=()=>handleChoice(b,c,r);
+    g.appendChild(b);
   });
 }
 
-function handleZoneAnswer(btn, choice, step, allOptions) {
-  if (stepAnswered) return;
-  stepAnswered = true;
+function handleChoice(btn,choice,r){
+  if(answered)return;answered=true;
+  const correct=choice.correct;
 
-  const allBtns = document.querySelectorAll('.zone-btn');
-  allBtns.forEach(b => {
-    b.disabled = true;
-    if (b.innerHTML.includes(step.correctAnswer.text)) b.classList.add('reveal');
+  document.querySelectorAll('.ch').forEach(b=>{
+    b.disabled=true;
+    if(b.innerHTML.includes(r.choices.find(c=>c.correct).text))b.classList.add('reveal');
   });
+  btn.classList.add(correct?'correct':'wrong');
 
-  if (choice.isCorrect) {
-    btn.classList.add('correct');
-    roundScore++;
-    updateStepUI(step.key, 'done');
-    showFeedback(true, '✓ ' + step.label + ' identified!', step.correctFeedback);
+  // Update phase tracker
+  const phaseEl=document.getElementById('phase'+(r.phase==='C2'?'C2':''+r.phase).replace('2',''));
+  if(r.phase==='C2'){
+    document.getElementById('phaseC2').className='phase-card '+(correct?'done-phase':'wrong-phase');
   } else {
-    btn.classList.add('wrong');
-    updateStepUI(step.key, 'wrong');
-    showFeedback(false, '✕ Not quite.', step.wrongFeedback);
+    document.getElementById('phase'+r.phase).className='phase-card '+(correct?'done-phase':'wrong-phase');
   }
+
+  // Update progress
+  const seg=document.getElementById('seg-'+round);
+  if(seg){seg.classList.remove('active');seg.classList.add(correct?'correct':'wrong');}
+  if(round+1<TOTAL){const ns=document.getElementById('seg-'+(round+1));if(ns)ns.classList.add('active');}
+
+  if(correct)score++;
+
+  // Feedback
+  const fb=document.getElementById('feedback');
+  fb.className='feedback show '+(correct?'fb-correct':'fb-wrong');
+  document.getElementById('fbIco').textContent=correct?'✦':'✕';
+  document.getElementById('fbHead').textContent=correct?r.correctHead:r.wrongHead;
+  document.getElementById('fbBody').textContent=correct?r.correctBody:r.wrongBody;
+
+  // Dayli note always shows
+  document.getElementById('dayliNote').className='dayli-note show';
+  document.getElementById('dayliQuote').textContent=r.dayliQuote.replace(/"/g,'');
+
+  history.push({phase:r.focus,key:r.phaseSummary,correct});
 
   document.getElementById('nextBtn').classList.add('show');
-  const isLastStep = currentStep === 2;
-  if (isLastStep) {
-    document.getElementById('nextBtn').textContent = currentRound === TOTAL_ROUNDS - 1 ? 'See results ✦' : 'Next chart →';
-  } else {
-    document.getElementById('nextBtn').textContent = choice.isCorrect ? 'Find the ' + ICC_STEPS[currentStep + 1].label + ' →' : 'Try next phase →';
-  }
+  document.getElementById('nextBtn').textContent=round===TOTAL-1?'See results ✦':'Next round →';
 }
 
-function updateStepUI(key, status) {
-  const el = document.getElementById('step-' + key);
-  const statusEl = document.getElementById('status-' + key);
-  el.classList.remove('active-step');
-  if (status === 'done') { el.classList.add('done-step'); statusEl.textContent = '✓ Found it'; }
-  else { el.classList.add('wrong-step'); statusEl.textContent = '✕ Missed'; }
+function nextRound(){round++;if(round>=TOTAL)showResults();else loadRound();}
 
-  if (currentStep < 2) {
-    const nextKey = ['I','C','C2'][currentStep + 1];
-    document.getElementById('step-' + nextKey).classList.add('active-step');
-    const nextStatuses = { C: 'Identify now', C2: 'Identify now' };
-    document.getElementById('status-' + nextKey).textContent = nextStatuses[nextKey] || 'Identify now';
-  }
-}
-
-function handleNext() {
-  currentStep++;
-  if (currentStep >= 3) {
-    // End of this round
-    if (roundScore === 3) {
-      score++;
-      streak++;
-      if (streak > bestStreak) bestStreak = streak;
-    } else {
-      streak = 0;
-    }
-    document.getElementById('scoreNum').textContent = score;
-    document.getElementById('streakNum').textContent = streak > 0 ? streak + ' 🔥' : streak;
-    const dot = document.getElementById('dot-' + currentRound);
-    if (dot) { dot.classList.remove('active'); dot.classList.add(roundScore === 3 ? 'done' : 'wrong-dot'); }
-    currentRound++;
-    if (currentRound >= TOTAL_ROUNDS) { showResults(); return; }
-    const nextDot = document.getElementById('dot-' + currentRound);
-    if (nextDot) nextDot.classList.add('active');
-    loadRound();
-  } else {
-    loadStep();
-  }
-}
-
-function showFeedback(correct, title, body) {
-  const fb = document.getElementById('feedback');
-  fb.className = 'feedback show ' + (correct ? 'correct-fb' : 'wrong-fb');
-  document.getElementById('fbIcon').textContent = correct ? '✦' : '✕';
-  document.getElementById('fbTitle').textContent = title;
-  document.getElementById('fbBody').textContent = body;
-}
-
-function drawICCChart(variant) {
-  const canvas = document.getElementById('iccCanvas');
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-  ctx.clearRect(0, 0, W, H);
-  ctx.fillStyle = '#FFFBF9'; ctx.fillRect(0, 0, W, H);
-  ctx.strokeStyle = 'rgba(127,119,221,0.07)'; ctx.lineWidth = 1;
-  for (let i = 1; i < 6; i++) { ctx.beginPath(); ctx.moveTo(0, H * i / 6); ctx.lineTo(W, H * i / 6); ctx.stroke(); }
-
-  const isBull = variant.direction === 'bull';
-  const numCandles = 26;
-  const spacing = (W - 40) / numCandles;
-  const candleW = spacing * 0.48;
-  const levelY = isBull ? H * 0.38 : H * 0.62;
-
-  // Draw pre-indication level
-  ctx.strokeStyle = 'rgba(127,119,221,0.4)'; ctx.lineWidth = 1.5; ctx.setLineDash([6, 4]);
-  ctx.beginPath(); ctx.moveTo(0, levelY); ctx.lineTo(W, levelY); ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.fillStyle = 'rgba(127,119,221,0.15)';
-  ctx.beginPath(); ctx.roundRect(8, levelY - 10, 80, 20, 4); ctx.fill();
-  ctx.fillStyle = 'var(--purple)'; ctx.font = '600 10px DM Sans'; ctx.fillText('Pre-Ind. Level', 13, levelY + 4);
-
-  // Generate ICC pattern candles
-  let priceY = isBull ? H * 0.75 : H * 0.25;
-  for (let i = 0; i < numCandles; i++) {
-    const progress = i / numCandles;
-    let targetY, isCandleBull;
-
-    if (isBull) {
-      if (progress < 0.35) { targetY = H * 0.7 - progress * H * 0.7; isCandleBull = Math.random() > 0.35; } // approach
-      else if (progress < 0.45) { targetY = levelY - 12; isCandleBull = true; } // INDICATION zone
-      else if (progress < 0.65) { targetY = levelY + 10 + (progress - 0.45) * H * 0.4; isCandleBull = Math.random() > 0.65; } // CORRECTION
-      else { targetY = levelY - (progress - 0.65) * H * 1.1; isCandleBull = Math.random() > 0.3; } // CONTINUATION
-    } else {
-      if (progress < 0.35) { targetY = H * 0.3 + progress * H * 0.7; isCandleBull = Math.random() > 0.65; }
-      else if (progress < 0.45) { targetY = levelY + 12; isCandleBull = false; }
-      else if (progress < 0.65) { targetY = levelY - 10 - (progress - 0.45) * H * 0.4; isCandleBull = Math.random() > 0.35; }
-      else { targetY = levelY + (progress - 0.65) * H * 1.1; isCandleBull = Math.random() > 0.7; }
-    }
-
-    priceY += (targetY - priceY) * 0.4 + (Math.random() - 0.5) * 6;
-    const bodyH = 5 + Math.random() * 18;
-    const cx = 20 + i * spacing + spacing / 2;
-
-    ctx.strokeStyle = isCandleBull ? '#5BB5AA' : '#D4607A'; ctx.lineWidth = 1.5;
-    ctx.beginPath(); ctx.moveTo(cx, priceY - bodyH / 2 - Math.random() * 8); ctx.lineTo(cx, priceY - bodyH / 2); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(cx, priceY + bodyH / 2); ctx.lineTo(cx, priceY + bodyH / 2 + Math.random() * 8); ctx.stroke();
-    ctx.fillStyle = isCandleBull ? '#7ECEC4' : '#F4829A';
-    ctx.beginPath(); ctx.roundRect(cx - candleW / 2, priceY - bodyH / 2, candleW, bodyH, 2); ctx.fill(); ctx.stroke();
-  }
-
-  // Label the ICC zones
-  const zoneLabels = isBull
-    ? [{ x: W * 0.42, y: levelY - 28, text: 'I', color: '#F4829A' }, { x: W * 0.58, y: levelY + 35, text: 'C', color: '#7ECEC4' }, { x: W * 0.78, y: levelY - 40, text: 'C', color: '#F5A857' }]
-    : [{ x: W * 0.42, y: levelY + 28, text: 'I', color: '#F4829A' }, { x: W * 0.58, y: levelY - 35, text: 'C', color: '#7ECEC4' }, { x: W * 0.78, y: levelY + 40, text: 'C', color: '#F5A857' }];
-
-  zoneLabels.forEach(z => {
-    ctx.fillStyle = z.color + '22';
-    ctx.beginPath(); ctx.arc(z.x, z.y, 14, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = z.color; ctx.font = 'bold 13px Playfair Display'; ctx.textAlign = 'center';
-    ctx.fillText(z.text, z.x, z.y + 5);
-  });
-
-  ctx.textAlign = 'left';
-  ctx.fillStyle = 'rgba(244,130,154,0.2)'; ctx.font = 'italic 11px Playfair Display'; ctx.textAlign = 'right';
-  ctx.fillText('A Girl & Her Futures™', W - 10, H - 8);
-  ctx.textAlign = 'left';
-}
-
-function showResults() {
+function showResults(){
   document.getElementById('gameScreen').classList.remove('show');
   document.getElementById('resultsScreen').classList.add('show');
-  const accuracy = Math.round((score / TOTAL_ROUNDS) * 100);
-  const xp = Math.round(score * 18 + bestStreak * 15);
-  document.getElementById('resCorrect').textContent = score + '/' + TOTAL_ROUNDS;
-  document.getElementById('resStreak').textContent = bestStreak;
-  document.getElementById('resAccuracy').textContent = accuracy + '%';
-  document.getElementById('xpEarned').textContent = '+' + xp + ' GP earned';
-  if (accuracy >= 80) {
-    document.getElementById('resultsTrophy').textContent = '✦';
-    document.getElementById('resultsTitle').textContent = 'She\'s in structure.';
-    document.getElementById('resultsSub').textContent = accuracy + '% complete sequences. You know ICC. Now you need to see it live. Keep going.';
-  } else if (accuracy >= 60) {
-    document.getElementById('resultsTrophy').textContent = '✦';
-    document.getElementById('resultsTitle').textContent = 'The sequence is clicking.';
-    document.getElementById('resultsSub').textContent = accuracy + '% complete sets. The pattern is building in your mind. Review the ICC lessons and play again — it compounds fast.';
-  } else {
-    document.getElementById('resultsTrophy').textContent = '✦';
-    document.getElementById('resultsTitle').textContent = 'Keep running the sequence.';
-    document.getElementById('resultsSub').textContent = 'ICC takes repetition. Go back through the Phase 3 lessons, then come back here. Every run trains your eye a little more.';
-  }
+  const acc=Math.round(score/TOTAL*100);
+  const gp=Math.round(score*15+acc/10*5);
+  document.getElementById('resCorrect').textContent=score+'/'+TOTAL;
+  document.getElementById('resAcc').textContent=acc+'%';
+  document.getElementById('gpText').textContent='+'+gp+' GP earned';
+
+  let mastery;
+  if(acc>=100)mastery='Full structure ✦';
+  else if(acc>=80)mastery='Strong';
+  else if(acc>=60)mastery='Building';
+  else mastery='Keep going';
+  document.getElementById('resMastery').textContent=mastery;
+
+  if(acc>=85){document.getElementById('resIcon').textContent='✦';document.getElementById('resTitle').textContent='She\'s in structure.';document.getElementById('resSub').textContent=acc+'% accuracy. You understand ICC — not just the letters, but the WHY behind each phase. That\'s what separates a real trader.';}
+  else if(acc>=65){document.getElementById('resIcon').textContent='✦';document.getElementById('resTitle').textContent='The sequence is clicking.';document.getElementById('resSub').textContent=acc+'% accuracy. The phases are building in your mind. Review the Dayli notes and run it again — it compounds fast.';}
+  else{document.getElementById('resIcon').textContent='✦';document.getElementById('resTitle').textContent='Keep running the sequence.';document.getElementById('resSub').textContent='ICC takes repetition before it becomes instinct. Go back through the phase lessons, then come back. Every run teaches your eye a little more.';}
+
+  // Build summary
+  const rows=document.getElementById('summaryRows');rows.innerHTML='';
+  history.forEach(h=>{
+    const d=document.createElement('div');d.className='ps-row';
+    d.innerHTML=`<div class="ps-phase">${h.phase}</div><div class="ps-key">${h.key}</div><div class="ps-result ${h.correct?'ps-correct':'ps-wrong'}">${h.correct?'✓ Got it':'✕ Review'}</div>`;
+    rows.appendChild(d);
+  });
 }
 
-function restartGame() {
+function restartGame(){
   document.getElementById('resultsScreen').classList.remove('show');
   document.getElementById('gameScreen').classList.add('show');
-  shuffledVariants = shuffle(chartVariants);
-  currentRound = 0; score = 0; streak = 0; bestStreak = 0;
-  buildRoundDots();
-  loadRound();
+  round=0;score=0;history.length=0;
+  buildProgress();loadRound();
+}
+
+// ── CHART DRAWING ──────────────────────────────────────────
+function drawChart(type){
+  const cv=document.getElementById('iccCanvas');
+  const ctx=cv.getContext('2d');const W=cv.width,H=cv.height;
+  ctx.clearRect(0,0,W,H);ctx.fillStyle='#FFFBF9';ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='rgba(127,119,221,.07)';ctx.lineWidth=1;
+  for(let i=1;i<5;i++){ctx.beginPath();ctx.moveTo(0,H*i/5);ctx.lineTo(W,H*i/5);ctx.stroke();}
+  ({
+    bull_indication:drawBullIndication,
+    correction_forming:drawCorrectionForming,
+    limit_at_level:drawLimitAtLevel,
+    stop_and_entry:drawStopAndEntry,
+    continuation_starting:drawContinuationStarting,
+    trade_at_tp1:drawTradeAtTP1,
+  }[type]||function(){})(ctx,W,H);
+  ctx.fillStyle='rgba(127,119,221,.18)';ctx.font='italic 10px Playfair Display';ctx.textAlign='right';
+  ctx.fillText('A Girl & Her Futures™',W-8,H-6);ctx.textAlign='left';
+}
+function getY(wps,nx){for(let i=0;i<wps.length-1;i++){const a=wps[i],b=wps[i+1];if(nx>=a.x&&nx<=b.x){const t=(nx-a.x)/(b.x-a.x),s=t*t*(3-2*t);return a.y+(b.y-a.y)*s;}}return wps[wps.length-1].y;}
+function candles(ctx,wps,W,H,n){
+  const sp=(W-30)/n,cw=sp*.54;
+  for(let i=0;i<n;i++){
+    const nx=i/(n-1),ny=Math.min(1,(i+.5)/(n-1));
+    const my=getY(wps,nx)+(Math.random()-.5)*2;const ney=getY(wps,ny);
+    const bh=7+Math.random()*10,bull=ney<my,cx=15+i*sp+sp/2,ty=my-bh/2,by=my+bh/2;
+    ctx.strokeStyle=bull?'#5BB5AA':'#D4607A';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(cx,ty-2-Math.random()*6);ctx.lineTo(cx,ty);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx,by);ctx.lineTo(cx,by+2+Math.random()*6);ctx.stroke();
+    ctx.fillStyle=bull?'#7ECEC4':'#F4829A';
+    ctx.beginPath();ctx.roundRect(cx-cw/2,ty,cw,bh,2);ctx.fill();ctx.stroke();
+  }
+}
+function lvl(ctx,W,y,label,color,right){
+  ctx.strokeStyle=color;ctx.lineWidth=2;ctx.setLineDash([8,5]);
+  ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();ctx.setLineDash([]);
+  ctx.font='bold 10px DM Sans';const tw=ctx.measureText(label).width+16;
+  const x=right?W-tw-6:6;
+  ctx.fillStyle=color;ctx.beginPath();ctx.roundRect(x,y-12,tw,23,4);ctx.fill();
+  ctx.fillStyle='white';ctx.fillText(label,x+8,y+4);
+}
+function sm(ctx,x,y,label,color){
+  const sh=label==='SH';
+  ctx.fillStyle=color+'BB';ctx.beginPath();
+  if(sh){ctx.moveTo(x,y-5);ctx.lineTo(x-6,y-14);ctx.lineTo(x+6,y-14);}
+  else{ctx.moveTo(x,y+5);ctx.lineTo(x-6,y+14);ctx.lineTo(x+6,y+14);}
+  ctx.closePath();ctx.fill();
+  ctx.fillStyle=color;ctx.font='bold 8px DM Sans';ctx.textAlign='center';
+  ctx.fillText(label,x,sh?y-17:y+21);ctx.textAlign='left';
+}
+function annotate(ctx,x,y,text,color){
+  ctx.fillStyle=color;ctx.font='bold 9px DM Sans';ctx.textAlign='center';
+  ctx.fillText(text,x,y);ctx.textAlign='left';
+}
+
+// ONE MASTER ICC CHART — all 6 rounds use this same base chart
+// 3 KEY candles are always clearly shown:
+//   Indication  = big GREEN body opens below PIL, closes ABOVE PIL
+//   Correction  = RED body opens above PIL, closes BELOW PIL  
+//   Continuation= big GREEN body opens below PIL, closes ABOVE PIL again
+// Each round highlights the relevant phase with a bright outline box
+
+function drawICCChart(ctx, W, H, highlightPhase) {
+  const pil = H * 0.45;
+
+  // Background trend candles — uptrend building toward PIL from below
+  const trendY = [
+    H*.90,H*.84,H*.88,H*.80,H*.86,
+    H*.76,H*.82,H*.72,H*.78,H*.68,
+    H*.74,H*.64,H*.70,H*.60,H*.66,
+    H*.57, // last trend candle sitting just below PIL
+  ];
+  const totalSlots = 19;
+  const sp = (W - 20) / totalSlots;
+  const cw = sp * 0.56;
+
+  for (let i = 0; i < 16; i++) {
+    const cx = 10 + i * sp + sp / 2;
+    const midY = trendY[i];
+    const nextY = trendY[Math.min(i + 1, 15)];
+    const isBull = nextY < midY;
+    const bh = 8 + Math.random() * 8;
+    const ty = midY - bh/2, by = midY + bh/2;
+    ctx.strokeStyle = isBull ? '#5BB5AA' : '#D4607A'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(cx, ty - 2 - Math.random()*5); ctx.lineTo(cx, ty); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, by); ctx.lineTo(cx, by + 2 + Math.random()*5); ctx.stroke();
+    ctx.fillStyle = isBull ? '#7ECEC4' : '#F4829A';
+    ctx.beginPath(); ctx.roundRect(cx - cw/2, ty, cw, bh, 2); ctx.fill(); ctx.stroke();
+  }
+
+  // SH/SL swing labels on background trend
+  const swingData = [
+    {i:1,y:H*.84,l:'SH',c:'#7ECEC4'},{i:3,y:H*.88,l:'SL',c:'#F4829A'},
+    {i:5,y:H*.76,l:'SH',c:'#7ECEC4'},{i:7,y:H*.82,l:'SL',c:'#F4829A'},
+    {i:9,y:H*.68,l:'SH',c:'#7ECEC4'},{i:11,y:H*.74,l:'SL',c:'#F4829A'},
+  ];
+  swingData.forEach(s => sm(ctx, 10 + s.i * sp + sp/2, s.y, s.l, s.c));
+
+  // PIL line (drawn after candles so it shows clearly)
+  lvl(ctx, W, pil, 'Pre-Indication Level', '#F5A857');
+
+  // ── INDICATION CANDLE (slot 16) ──
+  // Opens just BELOW PIL, body closes WELL ABOVE PIL
+  const iX = 10 + 16 * sp + sp / 2;
+  const iBodyBot = pil + H * 0.02; // open below PIL
+  const iBodyTop = pil - H * 0.10; // close above PIL
+  const iWickTop = iBodyTop - H * 0.02;
+  const iWickBot = iBodyBot + H * 0.015;
+  const iHighlight = highlightPhase === 'I';
+  ctx.strokeStyle = iHighlight ? '#1A8A80' : '#5BB5AA'; ctx.lineWidth = iHighlight ? 2.5 : 1.5;
+  ctx.beginPath(); ctx.moveTo(iX, iWickTop); ctx.lineTo(iX, iBodyTop); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(iX, iBodyBot); ctx.lineTo(iX, iWickBot); ctx.stroke();
+  ctx.fillStyle = iHighlight ? '#1DB8A8' : '#7ECEC4';
+  ctx.beginPath(); ctx.roundRect(iX - cw/2, iBodyTop, cw, iBodyBot - iBodyTop, 2); ctx.fill(); ctx.stroke();
+
+  // ── CORRECTION CANDLE (slot 17) ──
+  // Opens ABOVE PIL, body closes BELOW PIL
+  const cX = 10 + 17 * sp + sp / 2;
+  const cBodyTop = pil - H * 0.06; // open above PIL
+  const cBodyBot = pil + H * 0.06; // close below PIL
+  const cWickTop = cBodyTop - H * 0.015;
+  const cWickBot = cBodyBot + H * 0.01;
+  const cHighlight = highlightPhase === 'C';
+  ctx.strokeStyle = cHighlight ? '#A03050' : '#D4607A'; ctx.lineWidth = cHighlight ? 2.5 : 1.5;
+  ctx.beginPath(); ctx.moveTo(cX, cWickTop); ctx.lineTo(cX, cBodyTop); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cX, cBodyBot); ctx.lineTo(cX, cWickBot); ctx.stroke();
+  ctx.fillStyle = cHighlight ? '#E0405A' : '#F4829A';
+  ctx.beginPath(); ctx.roundRect(cX - cw/2, cBodyTop, cw, cBodyBot - cBodyTop, 2); ctx.fill(); ctx.stroke();
+
+  // ── CONTINUATION CANDLE (slot 18) ──
+  // Opens near/at PIL, body closes STRONGLY ABOVE PIL
+  const c2X = 10 + 18 * sp + sp / 2;
+  const c2BodyBot = pil + H * 0.025; // open near PIL
+  const c2BodyTop = pil - H * 0.12;  // close well above PIL
+  const c2WickTop = c2BodyTop - H * 0.02;
+  const c2WickBot = c2BodyBot + H * 0.01;
+  const c2Highlight = highlightPhase === 'C2';
+  ctx.strokeStyle = c2Highlight ? '#1A8A80' : '#5BB5AA'; ctx.lineWidth = c2Highlight ? 2.5 : 1.5;
+  ctx.beginPath(); ctx.moveTo(c2X, c2WickTop); ctx.lineTo(c2X, c2BodyTop); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(c2X, c2BodyBot); ctx.lineTo(c2X, c2WickBot); ctx.stroke();
+  ctx.fillStyle = c2Highlight ? '#1DB8A8' : '#7ECEC4';
+  ctx.beginPath(); ctx.roundRect(c2X - cw/2, c2BodyTop, cw, c2BodyBot - c2BodyTop, 2); ctx.fill(); ctx.stroke();
+
+  // ── Highlight box around active phase candle ──
+  let hlX, hlTop, hlBot, hlColor;
+  if (highlightPhase === 'I') {
+    hlX = iX; hlTop = iWickTop - 5; hlBot = iWickBot + 5; hlColor = '#7ECEC4';
+  } else if (highlightPhase === 'C') {
+    hlX = cX; hlTop = cWickTop - 5; hlBot = cWickBot + 5; hlColor = '#F4829A';
+  } else {
+    hlX = c2X; hlTop = c2WickTop - 5; hlBot = c2WickBot + 5; hlColor = '#7ECEC4';
+  }
+  ctx.strokeStyle = hlColor; ctx.lineWidth = 2.5; ctx.setLineDash([0]);
+  ctx.beginPath(); ctx.roundRect(hlX - cw/2 - 7, hlTop, cw + 14, hlBot - hlTop, 5); ctx.stroke();
+
+  // ── Phase labels above/below each key candle ──
+  ctx.font = 'bold 9px DM Sans'; ctx.textAlign = 'center';
+  const iLabelColor = highlightPhase === 'I' ? '#1DB8A8' : 'rgba(126,206,196,.65)';
+  const cLabelColor = highlightPhase === 'C' ? '#E0405A' : 'rgba(244,130,154,.65)';
+  const c2LabelColor = highlightPhase === 'C2' ? '#1DB8A8' : 'rgba(126,206,196,.65)';
+  ctx.fillStyle = iLabelColor;
+  ctx.fillText('I', iX, iBodyTop - H*.04);
+  ctx.fillText('Indication', iX, iBodyTop - H*.09);
+  ctx.fillStyle = cLabelColor;
+  ctx.fillText('C', cX, cWickBot + H*.05);
+  ctx.fillText('Correction', cX, cWickBot + H*.10);
+  ctx.fillStyle = c2LabelColor;
+  ctx.fillText('C', c2X, c2BodyTop - H*.04);
+  ctx.fillText('Continuation', c2X, c2BodyTop - H*.09);
+  ctx.textAlign = 'left';
+}
+
+function drawBullIndication(ctx,W,H){ drawICCChart(ctx,W,H,'I'); }
+function drawCorrectionForming(ctx,W,H){ drawICCChart(ctx,W,H,'C'); }
+function drawLimitAtLevel(ctx,W,H){
+  drawICCChart(ctx,W,H,'C');
+  const pil=H*.45,sp=(W-20)/19;
+  const cX=10+17*sp+sp/2;
+  const c2X=10+18*sp+sp/2;
+  const c2BodyTop=pil-H*.12;
+
+  // Simple callout box LEFT side of chart — no overlap with candles
+  // Box 1: "Limit placed during correction"
+  ctx.fillStyle='rgba(127,119,221,.12)';
+  ctx.beginPath();ctx.roundRect(W*.04,H*.06,W*.38,H*.14,6);ctx.fill();
+  ctx.strokeStyle='rgba(127,119,221,.4)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.roundRect(W*.04,H*.06,W*.38,H*.14,6);ctx.stroke();
+  ctx.fillStyle='rgba(127,119,221,.9)';ctx.font='bold 9px DM Sans';
+  ctx.fillText('1. Limit placed AT the level',W*.06,H*.12);
+  ctx.fillStyle='rgba(127,119,221,.65)';ctx.font='9px DM Sans';
+  ctx.fillText('during the Correction phase',W*.06,H*.17);
+
+  // Box 2: "Fills when continuation closes above"
+  ctx.fillStyle='rgba(126,206,196,.12)';
+  ctx.beginPath();ctx.roundRect(W*.04,H*.23,W*.42,H*.14,6);ctx.fill();
+  ctx.strokeStyle='rgba(126,206,196,.4)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.roundRect(W*.04,H*.23,W*.42,H*.14,6);ctx.stroke();
+  ctx.fillStyle='rgba(45,168,152,.9)';ctx.font='bold 9px DM Sans';
+  ctx.fillText('2. Fills when continuation candle',W*.06,H*.29);
+  ctx.fillStyle='rgba(45,168,152,.7)';ctx.font='9px DM Sans';
+  ctx.fillText('closes back ABOVE the level ✦',W*.06,H*.34);
+}
+
+function drawStopAndEntry(ctx,W,H){
+  drawICCChart(ctx,W,H,'C');
+  // White space is ABOVE PIL (H*0.45) and LEFT of the ICC candles (left 50% of chart)
+  ctx.fillStyle='rgba(244,130,154,.1)';
+  ctx.beginPath();ctx.roundRect(10,8,W*.48,H*.30,8);ctx.fill();
+  ctx.strokeStyle='rgba(244,130,154,.3)';ctx.lineWidth=1.2;
+  ctx.beginPath();ctx.roundRect(10,8,W*.48,H*.30,8);ctx.stroke();
+  ctx.fillStyle='rgba(244,130,154,.95)';ctx.font='bold 10px DM Sans';
+  ctx.fillText('Stop Loss Rule',20,26);
+  ctx.fillStyle='rgba(61,43,32,.85)';ctx.font='9px DM Sans';
+  ctx.fillText('Goes BELOW the correction low',20,42);
+  ctx.fillText('(the higher low that formed during',20,56);
+  ctx.fillText('the pullback back to the PIL)',20,70);
+}
+
+function drawContinuationStarting(ctx,W,H){ drawICCChart(ctx,W,H,'C2'); }
+
+function drawTradeAtTP1(ctx,W,H){
+  drawICCChart(ctx,W,H,'C2');
+  // White space is ABOVE PIL (H*0.45) and LEFT of the ICC candles (left 50% of chart)
+  // Left panel
+  ctx.fillStyle='rgba(126,206,196,.1)';
+  ctx.beginPath();ctx.roundRect(10,8,W*.26,H*.30,8);ctx.fill();
+  ctx.strokeStyle='rgba(126,206,196,.3)';ctx.lineWidth=1.2;
+  ctx.beginPath();ctx.roundRect(10,8,W*.26,H*.30,8);ctx.stroke();
+  ctx.fillStyle='rgba(45,168,152,.95)';ctx.font='bold 10px DM Sans';
+  ctx.fillText('At TP1:',20,26);
+  ctx.fillStyle='rgba(61,43,32,.85)';ctx.font='9px DM Sans';
+  ctx.fillText('1. Take partial',20,42);
+  ctx.fillText('2. Stop to BE',20,56);
+  ctx.fillText('3. Run to 1:2+',20,70);
+  // Right panel
+  ctx.fillStyle='rgba(245,168,87,.1)';
+  ctx.beginPath();ctx.roundRect(W*.28,8,W*.22,H*.30,8);ctx.fill();
+  ctx.strokeStyle='rgba(245,168,87,.3)';ctx.lineWidth=1.2;
+  ctx.beginPath();ctx.roundRect(W*.28,8,W*.22,H*.30,8);ctx.stroke();
+  ctx.fillStyle='rgba(200,130,40,.95)';ctx.font='bold 10px DM Sans';
+  ctx.fillText('Model:',W*.30,26);
+  ctx.fillStyle='rgba(61,43,32,.85)';ctx.font='9px DM Sans';
+  ctx.fillText('Entry = PIL',W*.30,42);
+  ctx.fillText('Stop = below HL',W*.30,56);
+  ctx.fillText('TP1 → runner',W*.30,70);
 }
 </script>
 </body>
