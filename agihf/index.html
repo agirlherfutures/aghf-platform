@@ -447,7 +447,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
     <p class="hero-desc">No signals. No guesswork. Just a proven method taught through games, levels, and lessons — before you risk a single dollar.</p>
     <div class="hero-btns">
       <button class="btn-pri" onclick="go('s-signup')">✦ Start for free — $14.99/mo</button>
-      <button class="btn-sec">See how it works</button>
+      <button class="btn-sec" onclick="go('s-lessons')">See how it works</button>
     </div>
     <div class="cdls">
       <svg width="14" height="52" style="animation:float 3s ease-in-out infinite;" viewBox="0 0 14 52"><line x1="7" y1="0" x2="7" y2="12" stroke="#F9B8C6" stroke-width="2" stroke-linecap="round"/><rect x="1" y="12" width="12" height="28" rx="2" fill="#F4829A"/><line x1="7" y1="40" x2="7" y2="52" stroke="#F9B8C6" stroke-width="2" stroke-linecap="round"/></svg>
@@ -628,15 +628,15 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
         <div class="cb-ttl">What is a chart actually showing you?</div>
         <div class="cb-sub">Green = buyers. Red = sellers. Wicks = rejection. Bodies = acceptance.</div>
       </div>
-      <button class="cb-go" onclick="go('s-lesson')">Continue →</button>
+      <button class="cb-go" onclick="window.location='phases/phase-1/lessons/lesson-01-what-is-trading.html'">Continue →</button>
     </div>
     <div class="two-col">
       <div class="panel">
         <div class="pn-t">Today's challenges</div>
         <div class="pn-s">Resets in 8h 42m</div>
         <div class="ch-row"><div class="ch-c ch-dn">✓</div><div class="ch-tx">Complete 1 round of Pattern Recognition</div><div class="ch-xp">+25 GP done</div></div>
-        <div class="ch-row" onclick="go('s-games')"><div class="ch-c ch-td"></div><div class="ch-tx">Score 80%+ on Stress Meter</div><div class="ch-xp">+40 GP</div></div>
-        <div class="ch-row" onclick="go('s-lesson')"><div class="ch-c ch-td"></div><div class="ch-tx">Finish one lesson</div><div class="ch-xp">+30 GP</div></div>
+        <div class="ch-row" onclick="window.location='games/pressure-vs-precision.html'"><div class="ch-c ch-td"></div><div class="ch-tx">Complete a round of Pressure vs Precision</div><div class="ch-xp">+40 GP</div></div>
+        <div class="ch-row" onclick="window.location='phases/phase-1/lessons/lesson-01-what-is-trading.html'"><div class="ch-c ch-td"></div><div class="ch-tx">Finish one lesson</div><div class="ch-xp">+30 GP</div></div>
       </div>
       <div class="panel">
         <div class="pn-t">Leaderboard</div>
@@ -650,7 +650,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
     <div class="jmap">
       <div class="pn-t">Your journey</div>
       <div class="jm-lvs">
-        <div class="jm-lv jh"><div class="jm-b jb1">1</div><div><div class="jm-nm">Welcome to the Market</div><div class="jm-ds">Lessons 1-5 · In progress</div></div><div class="here-tg">Here ✦</div></div>
+        <div class="jm-lv jh" onclick="go('s-lessons')" style="cursor:pointer"><div class="jm-b jb1">1</div><div><div class="jm-nm">Welcome to the Market</div><div class="jm-ds">Lessons 1-5 · In progress</div></div><div class="here-tg">Here ✦</div></div>
         <div class="jm-lv jlk"><div class="jm-b jb2">1.5</div><div><div class="jm-nm">Before You Touch a Chart</div><div class="jm-ds">Lessons 6-10</div></div><div class="lk-ic">🔒</div></div>
         <div class="jm-lv jlk"><div class="jm-b jb3">2</div><div><div class="jm-nm">Understanding Structure</div><div class="jm-ds">Lessons 11-20</div></div><div class="lk-ic">🔒</div></div>
         <div class="jm-lv jlk"><div class="jm-b jb4">3</div><div><div class="jm-nm">Enter ICC — The Dayli Way ✦</div><div class="jm-ds">Lessons 21-27</div></div><div class="lk-ic">🔒</div></div>
@@ -826,9 +826,9 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
     <div class="day-strip">
       <div class="ds-hd"><div class="ds-ttl">Today's challenges</div><div class="ds-tm">Resets in <span>8h 42m</span></div></div>
       <div class="ch-row"><div class="ch-c ch-dn">✓</div><div class="ch-tx">Complete 1 round of Pattern Recognition</div><div class="ch-xp">+25 GP done</div></div>
-      <div class="ch-row" onclick="toast('Challenge started!','Score 80%+ to earn +40 GP')"><div class="ch-c ch-td"></div><div class="ch-tx">Score 80%+ on Stress Meter</div><div class="ch-xp">+40 GP</div></div>
-      <div class="ch-row" onclick="go('s-lesson')"><div class="ch-c ch-td"></div><div class="ch-tx">Finish one lesson</div><div class="ch-xp">+30 GP</div></div>
-      <div class="ch-row" onclick="toast('Challenge started!','Spot 3 OG Lines correctly')"><div class="ch-c ch-td"></div><div class="ch-tx">Spot 3 OG Lines correctly in a row</div><div class="ch-xp">+50 GP</div></div>
+      <div class="ch-row" onclick="window.location='games/pressure-vs-precision.html'"><div class="ch-c ch-td"></div><div class="ch-tx">Complete a round of Pressure vs Precision</div><div class="ch-xp">+40 GP</div></div>
+      <div class="ch-row" onclick="window.location='phases/phase-1/lessons/lesson-01-what-is-trading.html'"><div class="ch-c ch-td"></div><div class="ch-tx">Finish one lesson</div><div class="ch-xp">+30 GP</div></div>
+      <div class="ch-row" onclick="window.location='games/pre-indication-spotter.html'"><div class="ch-c ch-td"></div><div class="ch-tx">Spot 3 Pre-Indication Levels correctly</div><div class="ch-xp">+50 GP</div></div>
     </div>
   </div>
 </div>
