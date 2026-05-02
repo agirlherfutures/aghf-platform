@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -255,6 +256,40 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
 .po-s{font-size:.68rem;color:var(--muted);margin-top:2px;}
 .lvl-blk{margin-bottom:26px;}
 .lvl-hdr{display:flex;align-items:center;gap:11px;margin-bottom:13px;padding-bottom:11px;border-bottom:1px solid rgba(244,130,154,.1);}
+.phase-blk{background:white;border-radius:20px;border:1px solid rgba(244,130,154,.12);margin-bottom:16px;overflow:hidden;}
+.phase-hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;cursor:pointer;transition:background .2s;}
+.phase-hdr:hover{background:var(--cream);}
+.phase-hdr-left{display:flex;align-items:center;gap:14px;}
+.phase-hdr-right{display:flex;align-items:center;gap:10px;}
+.phase-badge{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;}
+.pb-p{background:var(--pink-pale);color:var(--pink);border:1px solid var(--pink-light);}
+.pb-t{background:var(--teal-pale);color:var(--teal);border:1px solid var(--teal-light);}
+.pb-u{background:var(--purple-pale);color:var(--purple);border:1px solid var(--purple-light);}
+.pb-d{background:var(--cream);color:var(--muted);border:1px solid rgba(244,130,154,.15);}
+.phase-title{font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;font-weight:900;color:var(--dark);}
+.phase-sub{font-size:.75rem;color:var(--muted);margin-top:2px;}
+.phase-count{font-size:.75rem;color:var(--muted);}
+.phase-chevron{font-size:.7rem;color:var(--muted);transition:transform .25s;}
+.phase-body{border-top:1px solid rgba(244,130,154,.08);padding:12px 16px 16px;}
+.phase-closed{display:none;}
+.phase-locked-msg{text-align:center;padding:20px;background:var(--cream);border-radius:12px;margin-bottom:12px;}
+.plm-icon{font-size:1.6rem;margin-bottom:6px;}
+.plm-title{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:4px;}
+.plm-sub{font-size:.8rem;color:var(--muted);line-height:1.6;}
+.sec-blk{border-radius:12px;border:1px solid rgba(244,130,154,.1);overflow:hidden;margin-bottom:10px;}
+.sec-hdr{display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;background:var(--cream);transition:background .2s;}
+.sec-hdr:hover{background:rgba(244,130,154,.05);}
+.sec-hdr-lk{cursor:default;opacity:.5;}
+.sec-badge{font-size:.65rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 10px;border-radius:100px;flex-shrink:0;}
+.sb-p{background:var(--pink-pale);color:var(--pink);border:1px solid var(--pink-light);}
+.sb-t{background:var(--teal-pale);color:var(--teal);border:1px solid var(--teal-light);}
+.sb-c{background:var(--peach-pale);color:var(--peach);border:1px solid var(--peach-light);}
+.sb-u{background:var(--purple-pale);color:var(--purple);border:1px solid var(--purple-light);}
+.sec-title{font-size:.88rem;font-weight:600;color:var(--dark);flex:1;}
+.sec-cnt{font-size:.75rem;color:var(--muted);flex-shrink:0;}
+.sec-chev{font-size:.65rem;color:var(--muted);flex-shrink:0;transition:transform .25s;}
+.sec-body{padding:10px;}
+.sec-closed{display:none;}
 .lb-bdg{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;}
 .lbd-p{background:var(--pink-pale);color:var(--pink);border:1px solid var(--pink-light);}
 .lbd-c{background:var(--peach-pale);color:var(--peach);border:1px solid var(--peach-light);}
@@ -664,84 +699,346 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
   <div class="main">
     <div class="pg-eye">✦ Your curriculum</div>
     <div class="pg-title" style="margin-bottom:6px;">Learn it. <span class="pg-acc">Really.</span></div>
-    <p style="font-size:.91rem;color:var(--muted);margin-bottom:24px;">27 lessons across 4 levels. You can't skip. The quiz doesn't budge. That's how we build real traders.</p>
+    <p style="font-size:.91rem;color:var(--muted);margin-bottom:24px;">8 phases. 22 sections. You can't skip. The quiz doesn't budge. That's how we build real traders.</p>
     <div class="po-g">
-      <div class="po-c"><div class="po-l">Lessons done</div><div class="po-v pov-p">1</div><div class="po-s">of 27 total</div></div>
-      <div class="po-c"><div class="po-l">Current level</div><div class="po-v pov-t">1</div><div class="po-s">She's Brand New</div></div>
+      <div class="po-c"><div class="po-l">Lessons done</div><div class="po-v pov-p">1</div><div class="po-s">of 50+ total</div></div>
+      <div class="po-c"><div class="po-l">Current phase</div><div class="po-v pov-t">1</div><div class="po-s">Foundation</div></div>
       <div class="po-c"><div class="po-l">GP from lessons</div><div class="po-v pov-c">50</div><div class="po-s">points earned</div></div>
-      <div class="po-c"><div class="po-l">Next gate</div><div class="po-v pov-d">L1</div><div class="po-s">Quiz after lesson 5</div></div>
+      <div class="po-c"><div class="po-l">Next gate</div><div class="po-v pov-d">Ph1</div><div class="po-s">Quiz after Section 3</div></div>
     </div>
 
-    <div class="lvl-blk">
-      <div class="lvl-hdr"><span class="lb-bdg lbd-p">Level 1</span><div class="lvl-ttl">Welcome to the Market</div><div class="lvl-cnt">5 lessons + 1 game</div></div>
-      <div class="ll">
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-01-what-is-trading.html'"><div class="lc-n n-dn">✓</div><div class="lc-inf"><div class="lc-ttl">Lesson 1 — What even is trading?</div><div class="lc-qt">Candles are just storytelling — they're showing you who's winning right now.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-dn">Complete ✓</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-02-why-markets-exist.html'"><div class="lc-n n-act">2</div><div class="lc-inf"><div class="lc-ttl">Lesson 2 — Why do markets exist?</div><div class="lc-qt">Markets exist because buyers and sellers need each other. That's it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-03-buyers-vs-sellers.html'"><div class="lc-n n-p">3</div><div class="lc-inf"><div class="lc-ttl">Lesson 3 — Buyers vs Sellers</div><div class="lc-qt">Price moves based on who's stronger. Read it like a story, not a guess.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-04-contracts-instruments.html'"><div class="lc-n n-p">4</div><div class="lc-inf"><div class="lc-ttl">Lesson 4 — Contracts & Instruments</div><div class="lc-qt">MNQ. MGC. Know what you're trading before you trade it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-05-futures-vs-stocks.html'"><div class="lc-n n-p">5</div><div class="lc-inf"><div class="lc-ttl">Lesson 5 — Futures vs Stocks</div><div class="lc-qt">Futures aren't stocks. The rules are different. Let's break it down.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-lk">▶</div><div class="lc-inf"><div class="lc-ttl">Pattern Recognition Game</div><div class="lc-qt">Candles flash. You call it. Lock in what you learned before the gate.</div><div class="lc-tags"><span class="t-gm">Game</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒 Complete lessons 1-5</div></div>
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PHASE 1: FOUNDATION -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="phase-blk">
+      <div class="phase-hdr" onclick="togglePhase('ph1')">
+        <div class="phase-hdr-left"><span class="phase-badge pb-p">Phase 1</span><div><div class="phase-title">Welcome to the Market</div><div class="phase-sub">Sections 1–3 · In progress</div></div></div>
+        <div class="phase-hdr-right"><span class="phase-count">17 lessons</span><span class="phase-chevron" id="ph1-chev">▲</span></div>
       </div>
-      <div class="gate">🎯 <strong>Level 1 Gate:</strong> Complete all 5 lessons + Pattern Recognition, then score 80% on the quiz to unlock Level 1.5.</div>
-    </div>
+      <div class="phase-body" id="ph1">
 
-    <div class="lvl-blk">
-      <div class="lvl-hdr"><span class="lb-bdg lbd-c">Level 1.5</span><div class="lvl-ttl">Before You Touch a Chart</div><div class="lvl-cnt">5 lessons 🔒</div></div>
-      <div class="ll">
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-06-how-traders-get-paid.html'"><div class="lc-n n-c">6</div><div class="lc-inf"><div class="lc-ttl">Lesson 6 — How Traders Get Paid</div><div class="lc-qt">MNQ = $2 per point. MGC = $10 per point. Know your numbers before you trade.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-07-tradingview-basics.html'"><div class="lc-n n-c">7</div><div class="lc-inf"><div class="lc-ttl">Lesson 7 — TradingView Basics</div><div class="lc-qt">Start with 1-2 contracts. Paper trade until you know the strategy. Then prop firm.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-08-timeframes-perspective.html'"><div class="lc-n n-c">8</div><div class="lc-inf"><div class="lc-ttl">Lesson 8 — Timeframes & Perspective</div><div class="lc-qt">Higher timeframes tell the story. Lower timeframes let you step inside it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-09-brokers-prop-firms.html'"><div class="lc-n n-c">9</div><div class="lc-inf"><div class="lc-ttl">Lesson 9 — Brokers & Prop Firms</div><div class="lc-qt">"9:30 AM to 1 PM, New York session. That's where I get my best moves." — Dayli</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-10-orders-how-you-enter.html'"><div class="lc-n n-c">10</div><div class="lc-inf"><div class="lc-ttl">Lesson 10 — Orders: How You Enter</div><div class="lc-qt">Limit orders only. Know the difference before you touch a chart.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-11-stop-loss-take-profit.html'"><div class="lc-n n-c">11</div><div class="lc-inf"><div class="lc-ttl">Lesson 11 — Stop Loss & Take Profit</div><div class="lc-qt">Protect your capital first. Always know your exit before your entry.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-12-position-sizing.html'"><div class="lc-n n-c">12</div><div class="lc-inf"><div class="lc-ttl">Lesson 12 — Position Sizing</div><div class="lc-qt">Risk only what you can afford to lose. Size your position, not your ego.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+        <!-- Section 1: Trading Foundations -->
+        <div class="sec-blk">
+          <div class="sec-hdr" onclick="toggleSec('s1')">
+            <span class="sec-badge sb-p">Section 1</span><div class="sec-title">Introduction to Trading</div><span class="sec-cnt">6 lessons</span><span class="sec-chev" id="s1-chev">▲</span>
+          </div>
+          <div class="sec-body" id="s1">
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-01-what-is-trading.html'"><div class="lc-n n-dn">✓</div><div class="lc-inf"><div class="lc-ttl">Lesson 1 — What even is trading?</div><div class="lc-qt">Candles are just storytelling — they're showing you who's winning right now.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-dn">Complete ✓</div></div>
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-02-why-markets-exist.html'"><div class="lc-n n-act">2</div><div class="lc-inf"><div class="lc-ttl">Lesson 2 — Why do markets exist?</div><div class="lc-qt">Markets exist because buyers and sellers need each other. That's it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-03-buyers-vs-sellers.html'"><div class="lc-n n-p">3</div><div class="lc-inf"><div class="lc-ttl">Lesson 3 — Buyers vs Sellers</div><div class="lc-qt">Price moves based on who's stronger. Read it like a story, not a guess.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-04-contracts-instruments.html'"><div class="lc-n n-p">4</div><div class="lc-inf"><div class="lc-ttl">Lesson 4 — Contracts &amp; Instruments</div><div class="lc-qt">MNQ. MGC. Know what you're trading before you trade it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-05-futures-vs-stocks.html'"><div class="lc-n n-p">5</div><div class="lc-inf"><div class="lc-ttl">Lesson 5 — Futures vs Stocks</div><div class="lc-qt">Futures aren't stocks. The rules are different. Let's break it down.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="lc lc-lk"><div class="lc-n n-c">6</div><div class="lc-inf"><div class="lc-ttl">Lesson 6 — Points, Ticks &amp; P&amp;L</div><div class="lc-qt">MNQ = $2 per point. MGC = $10 per point. Know your numbers before you trade.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="gate">🎯 <strong>Section 1 Gate:</strong> Complete all 6 lessons to unlock Section 2.</div>
+          </div>
+        </div>
+
+        <!-- Section 2: Platform + Execution Basics -->
+        <div class="sec-blk">
+          <div class="sec-hdr" onclick="toggleSec('s2')">
+            <span class="sec-badge sb-t">Section 2</span><div class="sec-title">Before You Touch a Chart</div><span class="sec-cnt">5 lessons</span><span class="sec-chev" id="s2-chev">▼</span>
+          </div>
+          <div class="sec-body sec-closed" id="s2">
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-07-tradingview-basics.html'"><div class="lc-n n-c">7</div><div class="lc-inf"><div class="lc-ttl">Lesson 7 — TradingView Basics</div><div class="lc-qt">Your chart is your workspace. Learn it before you try to read it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-09-brokers-prop-firms.html'"><div class="lc-n n-c">8</div><div class="lc-inf"><div class="lc-ttl">Lesson 8 — Brokers &amp; Prop Firms</div><div class="lc-qt">"9:30 AM to 1 PM, New York session. That's where I get my best moves." — Dayli</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-10-orders-how-you-enter.html'"><div class="lc-n n-c">9</div><div class="lc-inf"><div class="lc-ttl">Lesson 9 — Market vs Limit Orders</div><div class="lc-qt">Limit orders only. Know the difference before you touch a chart.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-11-stop-loss-take-profit.html'"><div class="lc-n n-c">10</div><div class="lc-inf"><div class="lc-ttl">Lesson 10 — Stop Loss &amp; Take Profit</div><div class="lc-qt">Protect your capital first. Always know your exit before your entry.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-12-position-sizing.html'"><div class="lc-n n-c">11</div><div class="lc-inf"><div class="lc-ttl">Lesson 11 — Position Sizing</div><div class="lc-qt">Risk only what you can afford to lose. Size your position, not your ego.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="gate" style="background:var(--peach-pale);border-color:var(--peach-light);">🎯 <strong>Section 2 Gate:</strong> Complete all lessons to unlock Section 3.</div>
+          </div>
+        </div>
+
+        <!-- Section 3: Chart Fundamentals -->
+        <div class="sec-blk">
+          <div class="sec-hdr" onclick="toggleSec('s3')">
+            <span class="sec-badge sb-c">Section 3</span><div class="sec-title">Candles &amp; Timeframes</div><span class="sec-cnt">6 lessons</span><span class="sec-chev" id="s3-chev">▼</span>
+          </div>
+          <div class="sec-body sec-closed" id="s3">
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-13-candle-psychology.html'"><div class="lc-n n-c">12</div><div class="lc-inf"><div class="lc-ttl">Lesson 12 — Candlesticks</div><div class="lc-qt">Every candle is a decision. Green means buyers won. Red means sellers won.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-14-candle-anatomy.html'"><div class="lc-n n-c">13</div><div class="lc-inf"><div class="lc-ttl">Lesson 13 — Candle Anatomy</div><div class="lc-qt">Body, wicks, open, close. Know every part before you read a single chart.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-15-candle-psychology-2.html'"><div class="lc-n n-c">14</div><div class="lc-inf"><div class="lc-ttl">Lesson 14 — Candle Psychology</div><div class="lc-qt">Going deeper. What specific candle patterns mean for your next move.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-08-timeframes-perspective.html'"><div class="lc-n n-c">15</div><div class="lc-inf"><div class="lc-ttl">Lesson 15 — Timeframes</div><div class="lc-qt">Higher timeframes tell the story. Lower timeframes let you step inside it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-16-timeframes.html'"><div class="lc-n n-c">16</div><div class="lc-inf"><div class="lc-ttl">Lesson 16 — Multi-Timeframe Concept</div><div class="lc-qt">4H for direction. 1H for levels. 1M for entry. They all have to agree.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+            <div class="lc lc-lk"><div class="lc-n n-t">▶</div><div class="lc-inf"><div class="lc-ttl">Pattern Recognition Game</div><div class="lc-qt">Candles flash. You call it. Lock in what you learned before the gate.</div><div class="lc-tags"><span class="t-gm">Game</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒 Complete lessons first</div></div>
+            <div class="gate" style="background:var(--peach-pale);border-color:var(--peach-light);">🎯 <strong>Phase 1 Gate:</strong> Complete all 3 sections + 80% quiz score to unlock Phase 2.</div>
+          </div>
+        </div>
+
       </div>
-      <div class="gate" style="background:var(--peach-pale);border-color:var(--peach-light);">🎯 <strong>Level 1.5 Gate:</strong> Complete all 5 lessons and pass the quiz to unlock Level 2 — Understanding Structure.</div>
     </div>
 
-    <div class="lvl-blk">
-      <div class="lvl-hdr"><span class="lb-bdg lbd-p" style="background:var(--peach-pale);color:var(--peach);border-color:var(--peach-light);">Section 3</span><div class="lvl-ttl">Candles & Timeframes</div><div class="lvl-cnt">5 lessons</div></div>
-      <div class="ll">
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-13-candle-psychology.html'"><div class="lc-n n-c">13</div><div class="lc-inf"><div class="lc-ttl">Lesson 13 — Candle Psychology</div><div class="lc-qt">Every candle is a decision. Learn to read what price is actually saying.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-14-candle-anatomy.html'"><div class="lc-n n-c">14</div><div class="lc-inf"><div class="lc-ttl">Lesson 14 — Candle Anatomy</div><div class="lc-qt">Body, wicks, open, close. Know every part before you read a single chart.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-15-candle-psychology-2.html'"><div class="lc-n n-c">15</div><div class="lc-inf"><div class="lc-ttl">Lesson 15 — Candle Psychology Part 2</div><div class="lc-qt">Going deeper. What specific candle patterns mean for your next move.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-16-timeframes.html'"><div class="lc-n n-c">16</div><div class="lc-inf"><div class="lc-ttl">Lesson 16 — Timeframes</div><div class="lc-qt">Higher timeframes tell the story. Lower timeframes let you step inside it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
-        <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-17-multi-timeframes.html'"><div class="lc-n n-c">17</div><div class="lc-inf"><div class="lc-ttl">Lesson 17 — Multi-Timeframe Analysis</div><div class="lc-qt">4H tells the story. 1H shows what price is doing. 1M is where you execute.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+60 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PHASE 2: STRUCTURE -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="phase-blk">
+      <div class="phase-hdr" onclick="togglePhase('ph2')">
+        <div class="phase-hdr-left"><span class="phase-badge pb-t">Phase 2</span><div><div class="phase-title">Understanding Structure</div><div class="phase-sub">🔒 Complete Phase 1 to unlock</div></div></div>
+        <div class="phase-hdr-right"><span class="phase-count">Sections 4–6</span><span class="phase-chevron" id="ph2-chev">▼</span></div>
+      </div>
+      <div class="phase-body phase-closed" id="ph2">
+
+        <!-- Section 4: Market Structure -->
+        <div class="sec-blk">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-t">Section 4</span><div class="sec-title">How Markets Move</div><span class="sec-cnt">5 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-t">1</div><div class="lc-inf"><div class="lc-ttl">Uptrend — walking up stairs</div><div class="lc-qt">Higher highs and higher lows. Like walking UP stairs. Simple.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">2</div><div class="lc-inf"><div class="lc-ttl">Downtrend — walking down stairs</div><div class="lc-qt">Lower lows and lower highs. If it's not doing this, don't trade it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">3</div><div class="lc-inf"><div class="lc-ttl">HH, HL, LH, LL — the four pillars</div><div class="lc-qt">Higher High. Higher Low. Lower High. Lower Low. This is the language of trend.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">4</div><div class="lc-inf"><div class="lc-ttl">Swing highs &amp; lows — heels and valleys</div><div class="lc-qt">A swing high is a heel. A swing low is a valley. These become your pre-indication levels.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">5</div><div class="lc-inf"><div class="lc-ttl">Consolidation — the no-trade zone</div><div class="lc-qt">This is where most people lose money. They're forcing trades in dead zones.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <!-- Section 5: Breaks & Shifts -->
+        <div class="sec-blk" style="margin-top:12px;">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-p">Section 5</span><div class="sec-title">Breaks, Shifts &amp; Fakeouts</div><span class="sec-cnt">4 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-t">6</div><div class="lc-inf"><div class="lc-ttl">Break of Structure &amp; Market Structure Shift</div><div class="lc-qt">BOS = trend continuing. MSS = trend changing. Know the difference.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">7</div><div class="lc-inf"><div class="lc-ttl">Continuation vs Reversal</div><div class="lc-qt">Is price continuing or reversing? That question changes everything about your trade.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">8</div><div class="lc-inf"><div class="lc-ttl">False Breaks — the trap</div><div class="lc-qt">Price breaks a level then snaps back. That's a fakeout. Learn to spot it before it costs you.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">9</div><div class="lc-inf"><div class="lc-ttl">Retracement vs Reversal</div><div class="lc-qt">External structure = where price should get to. Internal structure = how it gets there.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <!-- Section 6: Key Levels -->
+        <div class="sec-blk" style="margin-top:12px;">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-c">Section 6</span><div class="sec-title">Reading Key Levels</div><span class="sec-cnt">4 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-t">10</div><div class="lc-inf"><div class="lc-ttl">Support &amp; Resistance</div><div class="lc-qt">Mark levels only where there's a strong push. Read the market left to right.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">11</div><div class="lc-inf"><div class="lc-ttl">Zones vs Lines</div><div class="lc-qt">Price doesn't hit a line. It enters a zone. Give your levels room to breathe.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">12</div><div class="lc-inf"><div class="lc-ttl">Acceptance vs Rejection</div><div class="lc-qt">Did price accept the level or reject it? The body of the candle tells you everything.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">13</div><div class="lc-inf"><div class="lc-ttl">Level Strength</div><div class="lc-qt">Not all levels are created equal. Learn what makes one stronger than another.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <div class="gate" style="background:var(--teal-pale);border-color:var(--teal-light);">🎯 <strong>Phase 2 Gate:</strong> Complete all 3 sections + 80% quiz to unlock Phase 3 — Price Behavior.</div>
       </div>
     </div>
 
-    <div class="lvl-blk">
-      <div class="lvl-hdr"><span class="lb-bdg lbd-t">Level 2</span><div class="lvl-ttl">Understanding Structure</div><div class="lvl-cnt">10 lessons + 1 game 🔒</div></div>
-      <div class="ll">
-        <div class="lc lc-lk"><div class="lc-n n-t">11</div><div class="lc-inf"><div class="lc-ttl">Lesson 11 — Uptrend — walking up stairs</div><div class="lc-qt">Uptrend: higher highs and higher lows. Like walking UP stairs. Simple.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒 Complete Level 1.5</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-t">12</div><div class="lc-inf"><div class="lc-ttl">Lesson 12 — Downtrend — walking down stairs</div><div class="lc-qt">Downtrend: lower lows and lower highs. Walking DOWN stairs. If it's not doing this, don't trade it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-t">13</div><div class="lc-inf"><div class="lc-ttl">Lesson 13 — Consolidation — the no-trade zone</div><div class="lc-qt">This is where most of y'all lose money… cause you're trying to force trades.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-t">14</div><div class="lc-inf"><div class="lc-ttl">Lesson 14 — Liquidity — what drives the markets</div><div class="lc-qt">Buy stops above highs. Sell stops below lows. The market grabs them to fuel direction.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-t">15</div><div class="lc-inf"><div class="lc-ttl">Lesson 15 — Swing highs & lows — heels and valleys</div><div class="lc-qt">A swing high is a heel. A swing low is a valley. These become your pre-indication levels.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-t">16</div><div class="lc-inf"><div class="lc-ttl">Lesson 16 — Trends — tradable vs not tradable</div><div class="lc-qt">Higher highs and higher lows. Either the market is trending or it's not. Keep it simple.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-t">17</div><div class="lc-inf"><div class="lc-ttl">Lesson 17 — Break of structure</div><div class="lc-qt">BOS = trend continuing. Market structure shift = trend changing. Know the difference.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-t">18</div><div class="lc-inf"><div class="lc-ttl">Lesson 18 — Retracement vs reversal</div><div class="lc-qt">External structure = where price should get to. Internal structure = how it gets there.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-t">19</div><div class="lc-inf"><div class="lc-ttl">Lesson 19 — Higher timeframe context</div><div class="lc-qt">4H tells the story. 1H shows what price is doing. 1M is where you execute. All must align.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-t">20</div><div class="lc-inf"><div class="lc-ttl">Lesson 20 — Support & resistance</div><div class="lc-qt">Mark levels only where there's a strong push. Read the market left to right.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+65 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-t">▶</div><div class="lc-inf"><div class="lc-ttl">OG Line Spotter Game</div><div class="lc-qt">A chart loads. Tap where the pre-indication level is. Miss it and see exactly why.</div><div class="lc-tags"><span class="t-gm">Game</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PHASE 3: PRICE BEHAVIOR -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="phase-blk">
+      <div class="phase-hdr" onclick="togglePhase('ph3')">
+        <div class="phase-hdr-left"><span class="phase-badge pb-u">Phase 3</span><div><div class="phase-title">Reading Price Like a Pro</div><div class="phase-sub">🔒 Complete Phase 2 to unlock</div></div></div>
+        <div class="phase-hdr-right"><span class="phase-count">Sections 7–9</span><span class="phase-chevron" id="ph3-chev">▼</span></div>
       </div>
-      <div class="gate" style="background:var(--teal-pale);border-color:var(--teal-light);">🎯 <strong>Level 2 Gate:</strong> 80% quiz score + OG Line Spotter game to unlock Level 3 — Enter ICC, The Dayli Way.</div>
+      <div class="phase-body phase-closed" id="ph3">
+
+        <!-- Section 7: Liquidity -->
+        <div class="sec-blk">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-u">Section 7</span><div class="sec-title">What is Liquidity?</div><span class="sec-cnt">6 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-u">1</div><div class="lc-inf"><div class="lc-ttl">Buy Stops &amp; Sell Stops</div><div class="lc-qt">Buy stops live above highs. Sell stops live below lows. The market hunts them.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">2</div><div class="lc-inf"><div class="lc-ttl">Liquidity Pools</div><div class="lc-qt">Where does everyone have their stops? That's a liquidity pool. Price is drawn to it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">3</div><div class="lc-inf"><div class="lc-ttl">Equal Highs &amp; Lows</div><div class="lc-qt">When price stacks at the same level twice — that's a magnet. Liquidity sitting right there.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">4</div><div class="lc-inf"><div class="lc-ttl">Liquidity Sweeps</div><div class="lc-qt">Price grabs the liquidity then reverses. If you know this, you don't get trapped in it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">5</div><div class="lc-inf"><div class="lc-ttl">Internal vs External Liquidity</div><div class="lc-qt">Internal is inside the range. External is beyond the highs and lows. Know which you're targeting.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">6</div><div class="lc-inf"><div class="lc-ttl">Why Traders Get Trapped</div><div class="lc-qt">Retail entries are predictable. The market knows where they're at. Now you do too.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <!-- Section 8: Imbalance -->
+        <div class="sec-blk" style="margin-top:12px;">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-p">Section 8</span><div class="sec-title">Gaps &amp; Imbalances</div><span class="sec-cnt">4 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-u">7</div><div class="lc-inf"><div class="lc-ttl">What is Imbalance?</div><div class="lc-qt">When price moves so fast one side doesn't get filled. That gap wants to be filled.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">8</div><div class="lc-inf"><div class="lc-ttl">Fair Value Gaps</div><div class="lc-qt">Three candle pattern. Middle candle leaves a gap. Price often returns to fill it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">9</div><div class="lc-inf"><div class="lc-ttl">Efficient vs Inefficient Delivery</div><div class="lc-qt">Efficient = clean move with no gaps. Inefficient = price left holes it needs to come back for.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">10</div><div class="lc-inf"><div class="lc-ttl">When FVGs Matter</div><div class="lc-qt">Not every FVG is worth trading. Context is everything. Here's how to know the difference.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <!-- Section 9: Order Flow Concepts -->
+        <div class="sec-blk" style="margin-top:12px;">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-c">Section 9</span><div class="sec-title">How Big Money Moves</div><span class="sec-cnt">3 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-u">11</div><div class="lc-inf"><div class="lc-ttl">Supply &amp; Demand Basics</div><div class="lc-qt">Supply = sellers in control. Demand = buyers in control. Simple. Don't overcomplicate it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">12</div><div class="lc-inf"><div class="lc-ttl">Institutional Movement</div><div class="lc-qt">Big money doesn't buy all at once. They accumulate, distribute, and hunt liquidity to do it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">13</div><div class="lc-inf"><div class="lc-ttl">Order Flow Intuition</div><div class="lc-qt">You don't need to over-engineer this. Understand who's in control and trade with them.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <div class="gate" style="background:var(--purple-pale);border-color:var(--purple-light);">🎯 <strong>Phase 3 Gate:</strong> Complete all 3 sections + 80% quiz to unlock Phase 4 — Direction.</div>
+      </div>
     </div>
 
-    <div class="lvl-blk">
-      <div class="lvl-hdr"><span class="lb-bdg lbd-u">Level 3</span><div class="lvl-ttl">Enter ICC — The Dayli Way ✦</div><div class="lvl-cnt">7 lessons + 1 game 🔒</div></div>
-      <div class="ll">
-        <div class="lc lc-lk"><div class="lc-n n-u">21</div><div class="lc-inf"><div class="lc-ttl">Lesson 21 — What is ICC?</div><div class="lc-qt">It's not a strategy. It's a behavior pattern. The market does this. Every time.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒 Complete Level 2</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-u">22</div><div class="lc-inf"><div class="lc-ttl">Lesson 22 — The pre-indication level</div><div class="lc-qt">Before price can indicate, it has to break something. That something is the pre-indication level.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-u">23</div><div class="lc-inf"><div class="lc-ttl">Lesson 23 — Indication</div><div class="lc-qt">I don't care about wicks. Prove it to me. I need that 1M candle to CLOSE past the level.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-u">24</div><div class="lc-inf"><div class="lc-ttl">Lesson 24 — Correction</div><div class="lc-qt">Corrections are normal. If it doesn't correct, it's not healthy. Don't panic.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-u">25</div><div class="lc-inf"><div class="lc-ttl">Lesson 25 — The Reclaim</div><div class="lc-qt">Price comes back in direction. Shows strength again. This builds confidence in the move.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-u">26</div><div class="lc-inf"><div class="lc-ttl">Lesson 26 — Entry — your sniper moment</div><div class="lc-qt">Wait for: Close + Pullback + Level. Then enter. Limit order only. Never chase.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
-        <div class="lc lc-lk"><div class="lc-n n-u">27</div><div class="lc-inf"><div class="lc-ttl">Lesson 27 — Risk model — your signature</div><div class="lc-qt">Take 1:1 partial. Move stop to break even. Let the runner ride to 1:2 or structure.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+100 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PHASE 4: DIRECTION -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="phase-blk">
+      <div class="phase-hdr" onclick="togglePhase('ph4')">
+        <div class="phase-hdr-left"><span class="phase-badge pb-d">Phase 4</span><div><div class="phase-title">Finding Direction</div><div class="phase-sub">🔒 Complete Phase 3 to unlock</div></div></div>
+        <div class="phase-hdr-right"><span class="phase-count">Sections 10–11</span><span class="phase-chevron" id="ph4-chev">▼</span></div>
+      </div>
+      <div class="phase-body phase-closed" id="ph4">
+
+        <!-- Section 10: Bias -->
+        <div class="sec-blk">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-p">Section 10</span><div class="sec-title">Finding Your Bias</div><span class="sec-cnt">5 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-t">1</div><div class="lc-inf"><div class="lc-ttl">Building Your 4H Bias</div><div class="lc-qt">The 4H tells you what direction the market wants to go. Everything else follows from here.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">2</div><div class="lc-inf"><div class="lc-ttl">1H Structure — Reading the Map</div><div class="lc-qt">Once you have bias, the 1H shows you where the setups are forming.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">3</div><div class="lc-inf"><div class="lc-ttl">External vs Internal Structure</div><div class="lc-qt">External is where price is going. Internal is how it gets there. Don't confuse the two.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">4</div><div class="lc-inf"><div class="lc-ttl">Targeting Liquidity</div><div class="lc-qt">Where is price most likely heading next? Follow the liquidity. It's always telling you something.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">5</div><div class="lc-inf"><div class="lc-ttl">Bias Invalidation</div><div class="lc-qt">When does your bias flip? When structure says so — not when you feel like it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <!-- Section 11: Premium vs Discount -->
+        <div class="sec-blk" style="margin-top:12px;">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-t">Section 11</span><div class="sec-title">Buy Low, Sell High</div><span class="sec-cnt">3 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-t">6</div><div class="lc-inf"><div class="lc-ttl">Range Equilibrium</div><div class="lc-qt">Find the middle of a range. Above it is premium. Below it is discount. Buy low, sell high.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">7</div><div class="lc-inf"><div class="lc-ttl">Buying Low / Selling High</div><div class="lc-qt">You want to be in premium when selling and discount when buying. Simple positioning.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">8</div><div class="lc-inf"><div class="lc-ttl">Positioning Within a Range</div><div class="lc-qt">Don't buy in premium. Don't sell in discount. Wait for price to come to you.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+70 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <div class="gate" style="background:var(--teal-pale);border-color:var(--teal-light);">🎯 <strong>Phase 4 Gate:</strong> Complete all sections + 80% quiz to unlock Phase 5 — The Dayli ICC Method.</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PHASE 5: THE DAYLI ICC METHOD -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="phase-blk">
+      <div class="phase-hdr" onclick="togglePhase('ph5')">
+        <div class="phase-hdr-left"><span class="phase-badge pb-u">Phase 5</span><div><div class="phase-title">Enter ICC — The Dayli Way ✦</div><div class="phase-sub">🔒 Complete Phase 4 to unlock</div></div></div>
+        <div class="phase-hdr-right"><span class="phase-count">Sections 12–14</span><span class="phase-chevron" id="ph5-chev">▼</span></div>
+      </div>
+      <div class="phase-body phase-closed" id="ph5">
+
+        <!-- Section 12: ICC Framework -->
+        <div class="sec-blk">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-u">Section 12</span><div class="sec-title">The ICC Framework</div><span class="sec-cnt">8 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-u">1</div><div class="lc-inf"><div class="lc-ttl">What is ICC?</div><div class="lc-qt">It's not a strategy. It's a behavior pattern. The market does this. Every time.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒 Complete Phase 4</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">2</div><div class="lc-inf"><div class="lc-ttl">The Pre-Indication Level</div><div class="lc-qt">Before price can indicate, it has to break something. That something is the pre-indication level.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">3</div><div class="lc-inf"><div class="lc-ttl">Indication</div><div class="lc-qt">I don't care about wicks. Prove it to me. I need that 1M candle to CLOSE past the level.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">4</div><div class="lc-inf"><div class="lc-ttl">Correction</div><div class="lc-qt">Corrections are normal. If it doesn't correct, it's not healthy. Don't panic.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">5</div><div class="lc-inf"><div class="lc-ttl">Continuation</div><div class="lc-qt">Price closes back above the level. Buyers defended it. Your limit fills. This is the moment.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">6</div><div class="lc-inf"><div class="lc-ttl">The Reclaim / Retest</div><div class="lc-qt">Price comes back in direction. Shows strength again. This builds confidence in the move.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">7</div><div class="lc-inf"><div class="lc-ttl">Entry — Your Sniper Moment</div><div class="lc-qt">Wait for: Close + Pullback + Level. Then enter. Limit order only. Never chase.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+75 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">8</div><div class="lc-inf"><div class="lc-ttl">Risk Model — Your Signature</div><div class="lc-qt">Take 1:1 partial. Move stop to break even. Let the runner ride to 1:2 or structure.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+100 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <!-- Section 13: Entry Model -->
+        <div class="sec-blk" style="margin-top:12px;">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-p">Section 13</span><div class="sec-title">Your Entry Model</div><span class="sec-cnt">4 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-u">9</div><div class="lc-inf"><div class="lc-ttl">The Full Model</div><div class="lc-qt">Every piece of the model together. Step by step. This is how you execute a real trade.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">10</div><div class="lc-inf"><div class="lc-ttl">Confirmation Rules</div><div class="lc-qt">What has to be true before you enter? These are non-negotiable. No exceptions.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">11</div><div class="lc-inf"><div class="lc-ttl">Confluence</div><div class="lc-qt">When multiple things align — structure, liquidity, ICC — that's confluence. That's your A+ setup.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">12</div><div class="lc-inf"><div class="lc-ttl">Clean vs Messy Setups</div><div class="lc-qt">A clean setup is obvious. A messy one makes you work for it. We only take clean ones.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <!-- Section 14: Multi-Timeframe Alignment -->
+        <div class="sec-blk" style="margin-top:12px;">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-t">Section 14</span><div class="sec-title">Making All Timeframes Agree</div><span class="sec-cnt">3 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-u">13</div><div class="lc-inf"><div class="lc-ttl">4H → 1H → 1M Flow</div><div class="lc-qt">Each timeframe has a job. 4H = story. 1H = levels. 1M = entry. They must align.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">14</div><div class="lc-inf"><div class="lc-ttl">How Timeframes Connect</div><div class="lc-qt">What shows up on the 4H shapes what you look for on the 1H. It's not random.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">15</div><div class="lc-inf"><div class="lc-ttl">Conflict Resolution</div><div class="lc-qt">When timeframes disagree, the higher one wins. Always. No exceptions.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
         <div class="lc lc-lk"><div class="lc-n n-u">▶</div><div class="lc-inf"><div class="lc-ttl">ICC Sequence Game</div><div class="lc-qt">A real chart. Identify Indication, Correction, Continuation in order. All three or no GP.</div><div class="lc-tags"><span class="t-gm">Game</span><span class="t-xp">+100 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="gate" style="background:var(--purple-pale);border-color:var(--purple-light);">✦ <strong>Phase 5 Gate:</strong> Complete all ICC sections + ICC Sequence game + 80% quiz = "She's In Structure" unlocked.</div>
       </div>
-      <div class="gate" style="background:var(--purple-pale);border-color:var(--purple-light);"><strong style="color:var(--purple);">✦ Final Gate:</strong> Complete all ICC lessons + ICC Sequence game + 80% quiz = "She's In Structure" unlocked on the platform and in Discord.</div>
     </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PHASE 6: EXECUTION -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="phase-blk">
+      <div class="phase-hdr" onclick="togglePhase('ph6')">
+        <div class="phase-hdr-left"><span class="phase-badge pb-t">Phase 6</span><div><div class="phase-title">Pulling the Trigger</div><div class="phase-sub">🔒 Complete Phase 5 to unlock</div></div></div>
+        <div class="phase-hdr-right"><span class="phase-count">Sections 15–17</span><span class="phase-chevron" id="ph6-chev">▼</span></div>
+      </div>
+      <div class="phase-body phase-closed" id="ph6">
+
+        <!-- Section 15: Entry Execution -->
+        <div class="sec-blk">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-p">Section 15</span><div class="sec-title">How to Actually Enter</div><span class="sec-cnt">3 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-t">1</div><div class="lc-inf"><div class="lc-ttl">1M Entries</div><div class="lc-qt">The 1M is where you pull the trigger. Everything else is preparation. This is the moment.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">2</div><div class="lc-inf"><div class="lc-ttl">Timing Your Entry</div><div class="lc-qt">Being right about direction is only half of it. Timing matters. Here's how to nail it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">3</div><div class="lc-inf"><div class="lc-ttl">Confirmation vs Anticipation</div><div class="lc-qt">Anticipating gets you trapped. Confirming gets you in at the right time. Wait for the close.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <!-- Section 16: Trade Management -->
+        <div class="sec-blk" style="margin-top:12px;">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-t">Section 16</span><div class="sec-title">Managing the Trade</div><span class="sec-cnt">4 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-t">4</div><div class="lc-inf"><div class="lc-ttl">Taking Partials</div><div class="lc-qt">TP1 at 1:1. Take the partial. Lock in profit. Remove the pressure. Run the rest.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">5</div><div class="lc-inf"><div class="lc-ttl">Running Runners</div><div class="lc-qt">After TP1 your runner is free. Let structure tell you when to exit — not your emotions.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">6</div><div class="lc-inf"><div class="lc-ttl">Moving Your Stop Loss</div><div class="lc-qt">When to move to break even. When to trail. When to leave it alone. Rules for all three.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">7</div><div class="lc-inf"><div class="lc-ttl">Managing Open Trades</div><div class="lc-qt">Once you're in — stay out of your head. Your pre-trade plan is smarter than your emotions.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <!-- Section 17: Risk Management -->
+        <div class="sec-blk" style="margin-top:12px;">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-c">Section 17</span><div class="sec-title">Protecting Your Account</div><span class="sec-cnt">4 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-t">8</div><div class="lc-inf"><div class="lc-ttl">Risk Per Trade</div><div class="lc-qt">Never risk more than you're willing to lose on a single trade. Define it before you enter.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">9</div><div class="lc-inf"><div class="lc-ttl">1:1 vs 1:2 — Knowing Your Target</div><div class="lc-qt">Minimum is 1:1. Aim for 1:2. Let structure decide when to go further.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">10</div><div class="lc-inf"><div class="lc-ttl">Stop Loss Placement</div><div class="lc-qt">Structure-based stops only. Below the higher low. Above the lower high. Not arbitrary.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">11</div><div class="lc-inf"><div class="lc-ttl">Consistency Over Everything</div><div class="lc-qt">One good trade a day beats five random ones. Consistency is the edge, not frequency.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+80 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <div class="gate" style="background:var(--teal-pale);border-color:var(--teal-light);">🎯 <strong>Phase 6 Gate:</strong> Complete all execution sections + 80% quiz to unlock Phase 7 — Discipline.</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PHASE 7: DISCIPLINE -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="phase-blk">
+      <div class="phase-hdr" onclick="togglePhase('ph7')">
+        <div class="phase-hdr-left"><span class="phase-badge pb-p">Phase 7</span><div><div class="phase-title">The Mindset Behind the Model</div><div class="phase-sub">🔒 Complete Phase 6 to unlock</div></div></div>
+        <div class="phase-hdr-right"><span class="phase-count">Sections 18–20</span><span class="phase-chevron" id="ph7-chev">▼</span></div>
+      </div>
+      <div class="phase-body phase-closed" id="ph7">
+
+        <!-- Section 18: Trading Psychology -->
+        <div class="sec-blk">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-p">Section 18</span><div class="sec-title">Your Mind Is the Market</div><span class="sec-cnt">4 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-t">1</div><div class="lc-inf"><div class="lc-ttl">Emotional Control</div><div class="lc-qt">Your feelings are real. Your feelings about the market are often wrong. Learn the difference.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+85 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">2</div><div class="lc-inf"><div class="lc-ttl">Fear &amp; Greed</div><div class="lc-qt">Fear makes you exit too early. Greed makes you hold too long. Structure fixes both.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+85 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">3</div><div class="lc-inf"><div class="lc-ttl">Overtrading</div><div class="lc-qt">More trades does not mean more money. Less trades with more quality is always the answer.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+85 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">4</div><div class="lc-inf"><div class="lc-ttl">Patience — The Real Edge</div><div class="lc-qt">The best traders are the most patient. Waiting for the setup IS the trade.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+85 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <!-- Section 19: Trading Rules -->
+        <div class="sec-blk" style="margin-top:12px;">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-t">Section 19</span><div class="sec-title">Rules That Protect You</div><span class="sec-cnt">4 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-t">5</div><div class="lc-inf"><div class="lc-ttl">No News Trading</div><div class="lc-qt">News creates volatility. Volatility creates traps. Stay out when news is dropping.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+85 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">6</div><div class="lc-inf"><div class="lc-ttl">No Consolidation Trading</div><div class="lc-qt">Chop is a trap. If it's not trending, it's not your trade. Close the chart.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+85 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">7</div><div class="lc-inf"><div class="lc-ttl">No Chasing</div><div class="lc-qt">If you missed it, you missed it. The next ICC setup is always coming. Wait for it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+85 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">8</div><div class="lc-inf"><div class="lc-ttl">Rule-Based Trading</div><div class="lc-qt">Your rules exist for one reason: to protect you from yourself. Follow them.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+85 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <!-- Section 20: Market Conditions -->
+        <div class="sec-blk" style="margin-top:12px;">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-c">Section 20</span><div class="sec-title">Reading the Room</div><span class="sec-cnt">3 lessons 🔒</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-t">9</div><div class="lc-inf"><div class="lc-ttl">Trending vs Ranging</div><div class="lc-qt">Two market conditions. Two different approaches. Know which one you're in before you trade.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+85 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">10</div><div class="lc-inf"><div class="lc-ttl">Volatility</div><div class="lc-qt">High volatility = bigger moves and bigger risk. Adjust your sizing accordingly.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+85 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-t">11</div><div class="lc-inf"><div class="lc-ttl">News Impact</div><div class="lc-qt">Economic events move markets. Know the calendar. Protect your open trades around it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+85 GP</span></div></div><div class="lc-st st-lk">🔒</div></div>
+
+        <div class="gate" style="background:var(--pink-pale);border-color:var(--pink-light);">🎯 <strong>Phase 7 Gate:</strong> Complete all discipline sections + 80% quiz to unlock Phase 8 — Application.</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PHASE 8: APPLICATION -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="phase-blk">
+      <div class="phase-hdr" onclick="togglePhase('ph8')">
+        <div class="phase-hdr-left"><span class="phase-badge pb-d">Phase 8</span><div><div class="phase-title">She's In Structure ✦</div><div class="phase-sub">🔒 Complete Phase 7 to unlock · Coming soon</div></div></div>
+        <div class="phase-hdr-right"><span class="phase-count">Sections 21–22</span><span class="phase-chevron" id="ph8-chev">▼</span></div>
+      </div>
+      <div class="phase-body phase-closed" id="ph8">
+
+        <!-- Section 21: Trade Breakdown Lab -->
+        <div class="sec-blk">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-u">Section 21</span><div class="sec-title">Real Trade Breakdowns</div><span class="sec-cnt">3 lessons 🔒 Coming soon</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-u">1</div><div class="lc-inf"><div class="lc-ttl">Real Trade Reviews</div><div class="lc-qt">We walk through real trades. What worked. What didn't. What structure said.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+100 GP</span></div></div><div class="lc-st st-lk">🔒 Coming soon</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">2</div><div class="lc-inf"><div class="lc-ttl">Good vs Bad Setups</div><div class="lc-qt">Side by side. Clean vs messy. Valid vs invalid. Train your eye to know the difference.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+100 GP</span></div></div><div class="lc-st st-lk">🔒 Coming soon</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">3</div><div class="lc-inf"><div class="lc-ttl">Step-by-Step Execution Walkthrough</div><div class="lc-qt">From bias to entry to exit. Every decision documented. Every step explained.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+100 GP</span></div></div><div class="lc-st st-lk">🔒 Coming soon</div></div>
+
+        <!-- Section 22: Backtesting + Journaling -->
+        <div class="sec-blk" style="margin-top:12px;">
+          <div class="sec-hdr sec-hdr-lk"><span class="sec-badge sb-p">Section 22</span><div class="sec-title">Practice Like a Pro</div><span class="sec-cnt">4 lessons 🔒 Coming soon</span></div>
+        </div>
+        <div class="lc lc-lk"><div class="lc-n n-u">4</div><div class="lc-inf"><div class="lc-ttl">How to Practice</div><div class="lc-qt">Practice is how strategies become instincts. Here's how to practice the right way.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+100 GP</span></div></div><div class="lc-st st-lk">🔒 Coming soon</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">5</div><div class="lc-inf"><div class="lc-ttl">Replay Trading</div><div class="lc-qt">TradingView replay mode. Practice entries on historical data. Build screen time without risk.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+100 GP</span></div></div><div class="lc-st st-lk">🔒 Coming soon</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">6</div><div class="lc-inf"><div class="lc-ttl">Journaling System</div><div class="lc-qt">What to track, how to track it, and why it's the most important habit you can build.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+100 GP</span></div></div><div class="lc-st st-lk">🔒 Coming soon</div></div>
+        <div class="lc lc-lk"><div class="lc-n n-u">7</div><div class="lc-inf"><div class="lc-ttl">Performance Tracking</div><div class="lc-qt">Win rate. R:R average. Max drawdown. Know your numbers. Improve what the numbers show.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+100 GP</span></div></div><div class="lc-st st-lk">🔒 Coming soon</div></div>
+
+        <div class="gate" style="background:var(--cream);border-color:rgba(244,130,154,.2);">✦ <strong>Phase 8 lessons are being built.</strong> Complete Phases 1–7 and they'll be waiting for you when they drop.</div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -932,6 +1229,19 @@ function payOk() {
   setTimeout(() => go("s-success"), 500);
 }
 
+function togglePhase(id){
+  const body=document.getElementById(id);
+  const chev=document.getElementById(id+'-chev');
+  if(!body||!chev)return;
+  const closed=body.classList.toggle('phase-closed');
+  chev.textContent=closed?'▼':'▲';
+}
+function toggleSec(id){
+  const body=document.getElementById(id);
+  const chev=document.getElementById(id+'-chev');
+  const closed=body.classList.toggle('sec-closed');
+  chev.textContent=closed?'▼':'▲';
+}
 function completeLsn() {
   toast("+50 GP earned!", "Lesson 2 complete ✦");
   setTimeout(() => go("s-lessons"), 1800);
