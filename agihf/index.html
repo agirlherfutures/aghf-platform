@@ -179,6 +179,13 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
 .c-inp{padding:11px 13px;border-radius:10px;border:1.5px solid rgba(244,130,154,.2);font-family:"DM Sans",sans-serif;font-size:.88rem;color:var(--text);background:var(--warm);outline:none;width:100%;}
 .pay-btn{width:100%;padding:14px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--pink),var(--peach));color:white;font-family:"DM Sans",sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;box-shadow:0 10px 26px rgba(244,130,154,.26);}
 .pay-btn:hover{transform:translateY(-1px);}
+.discount-wrap{margin-bottom:16px;}
+.disc-row{display:flex;gap:8px;align-items:center;}
+.disc-btn{flex-shrink:0;padding:11px 18px;border-radius:10px;border:1.5px solid rgba(244,130,154,.3);background:white;color:var(--pink);font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.disc-btn:hover{background:var(--pink-pale);border-color:var(--pink);}
+.disc-msg{font-size:.8rem;margin-top:7px;padding:8px 12px;border-radius:8px;display:none;}
+.disc-msg.success{display:block;background:var(--teal-pale);color:var(--teal);border:1px solid var(--teal-light);}
+.disc-msg.error{display:block;background:var(--pink-pale);color:var(--pink);border:1px solid var(--pink-light);}
 .pay-note{font-size:.73rem;color:var(--muted);text-align:center;margin-top:10px;}
 
 /* SUCCESS */
@@ -605,8 +612,8 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
 
 <div class="scr" id="s-payment">
 <nav class="tnav"><div class="tlogo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div><div style="font-size:.8rem;color:var(--muted);">Secure checkout · Cancel anytime</div></nav>
-<div class="blob" style="width:500px;height:500px;background:var(--peach-light);top:-150px;right:-150px;position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;"></div>
-<div class="auth-wrap">
+<div class="blob" style="width:500px;height:500px;background:var(--peach-light);top:-150px;right:-150px;position:fixed;border-radius:50%;filter:blur(90px);opacity:.28;pointer-events:none;z-index:0;"></div>
+<div class="auth-wrap" style="position:relative;z-index:1;">
   <div class="auth-card" style="border-color:rgba(245,168,87,.2);max-width:470px;">
     <div class="a-eye" style="background:var(--peach-pale);border-color:var(--peach-light);color:var(--peach);">Step 2 of 2 Payment</div>
     <h1 class="a-title">Almost <span style="color:var(--peach)">there.</span></h1>
@@ -621,12 +628,19 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
       <div class="inc-item"><div class="inc-chk">✓</div>Cancel anytime no contracts</div>
     </div>
     <div class="card-fields">
-      <input class="c-inp" placeholder="Card number" value="4242 4242 4242 4242" readonly>
+      <input class="c-inp" placeholder="Card number">
       <div class="c-row">
-        <input class="c-inp" placeholder="MM / YY" value="12 / 27" readonly>
-        <input class="c-inp" placeholder="CVC" value="•••" readonly>
+        <input class="c-inp" placeholder="MM / YY">
+        <input class="c-inp" placeholder="CVC">
       </div>
-      <input class="c-inp" placeholder="Name on card" value="Dayli Scott" readonly>
+      <input class="c-inp" placeholder="Name on card">
+    </div>
+    <div class="discount-wrap">
+      <div class="disc-row">
+        <input class="c-inp" id="discInp" placeholder="Discount code" style="margin-bottom:0;">
+        <button class="disc-btn" onclick="applyDiscount()">Apply</button>
+      </div>
+      <div class="disc-msg" id="discMsg"></div>
     </div>
     <button class="pay-btn" onclick="payOk()">✦ Start membership $14.99/mo</button>
     <p class="pay-note">Secured by Stripe · You'll be charged $14.99 today</p>
@@ -1229,6 +1243,21 @@ function toast(ttl, sub) {
   const t = document.getElementById("toast");
   t.classList.add("show");
   setTimeout(() => t.classList.remove("show"), 3200);
+}
+
+function applyDiscount() {
+  const code = document.getElementById('discInp').value.trim().toUpperCase();
+  const msg = document.getElementById('discMsg');
+  const validCodes = {
+    'DAYLI': 'First month free! Code applied.',
+    'BETA': '50% off your first month! Code applied.',
+    'AGHF': '20% off applied. Welcome to the community!',
+    'STRUCTURE': 'First month on us. Let\'s get to work.',
+  };
+  msg.className = 'disc-msg';
+  if (!code) { msg.className = 'disc-msg error'; msg.textContent = 'Enter a discount code first.'; return; }
+  if (validCodes[code]) { msg.className = 'disc-msg success'; msg.textContent = '✦ ' + validCodes[code]; }
+  else { msg.className = 'disc-msg error'; msg.textContent = 'That code isn\'t valid. Check the spelling and try again.'; }
 }
 
 function payOk() {
