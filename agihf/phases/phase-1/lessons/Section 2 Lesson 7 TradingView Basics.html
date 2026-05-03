@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson 7 — TradingView Basics · AG&HF</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F4829A;--pl:#F9B8C6;--pp:#FDE8ED;--teal:#7ECEC4;--tl:#B2E4DF;--tp:#E8F8F6;
+  --peach:#F5A857;--cl:#FAD09A;--cp:#FEF3E4;--cream:#FDF8F5;--warm:#FFFBF9;
+  --dark:#2C1810;--text:#3D2B20;--muted:#7A5C50;--purple:#7F77DD;--upl:#CECBF6;--upp:#EEEDFE;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden}
+.app{display:flex;min-height:100vh}
+.sidebar{width:230px;flex-shrink:0;background:#fff;border-right:1px solid rgba(244,130,154,.12);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50;overflow-y:auto}
+.sb-logo{padding:20px 22px 16px;font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(244,130,154,.1);text-decoration:none}
+.sb-logo span{color:var(--teal)}
+.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(244,130,154,.1);margin-bottom:6px}
+.sb-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pp),var(--cp));border:2px solid var(--pl);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink)}
+.sb-nm{font-size:.82rem;font-weight:600;color:var(--dark)}
+.sb-lv{font-size:.68rem;color:var(--muted)}
+.sb-sec{font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 18px 5px}
+.sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:.85rem;color:var(--muted);border-left:3px solid transparent}
+.sb-item.on{color:var(--pink);background:var(--pp);border-left-color:var(--pink);font-weight:500}
+.sb-bot{margin-top:auto;padding:12px 18px}
+.xpb{background:var(--cream);border-radius:10px;padding:11px 13px}
+.xpb-top{display:flex;justify-content:space-between;margin-bottom:6px}
+.xpb-l{font-size:.68rem;color:var(--muted);font-weight:500}
+.xpb-v{font-size:.72rem;color:var(--peach);font-weight:600}
+.xpb-track{height:4px;background:var(--pp);border-radius:100px;overflow:hidden}
+.xpb-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));width:80%}
+.main{margin-left:230px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+.tbar{background:#fff;border-bottom:1px solid rgba(244,130,154,.1);padding:0 36px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tbar-bc{font-size:.79rem;color:var(--muted)}
+.tbar-cur{color:var(--dark);font-weight:500}
+.tbar-r{display:flex;align-items:center;gap:11px}
+.tbar-xp{font-size:.77rem;font-weight:600;color:var(--peach);background:var(--cp);border:1px solid var(--cl);padding:4px 12px;border-radius:100px}
+.tbar-st{font-size:.77rem;color:var(--muted)}
+.prog-track{height:6px;background:var(--pp);position:sticky;top:60px;z-index:39}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));transition:width .45s ease;width:0%}
+.lv-cards{flex:1;display:flex;flex-direction:column;align-items:center;padding:36px 24px 110px}
+.slide{width:100%;max-width:780px;display:none}
+.slide.active{display:flex;flex-direction:column;gap:14px}
+.intro-card,.teach-card,.reinforce-card,.quiz-card,.recap-card,.sim-wrap,.checkpoint-wrap,.complete-card,.dayli-card,.quick-check,.deep-card,.decision-wrap{border-radius:22px}
+.intro-card{background:var(--dark);padding:34px;position:relative;overflow:hidden}
+.ic-eye{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--pl);margin-bottom:12px}
+.ic-title{font-family:"Playfair Display",serif;font-size:2.2rem;font-weight:900;color:#fff;line-height:1.1;margin-bottom:10px}
+.ic-acc{color:var(--pink)}
+.ic-sub{font-size:.94rem;color:rgba(255,255,255,.58);line-height:1.72;margin-bottom:22px}
+.ic-pills{display:flex;gap:8px;flex-wrap:wrap}
+.ic-pill{font-size:.7rem;font-weight:500;padding:5px 12px;border-radius:100px;border:1px solid}
+.ip-pk{background:rgba(244,130,154,.15);border-color:rgba(244,130,154,.3);color:var(--pl)}
+.ip-tl{background:rgba(126,206,196,.15);border-color:rgba(126,206,196,.3);color:var(--tl)}
+.ip-pc{background:rgba(245,168,87,.15);border-color:rgba(245,168,87,.3);color:var(--cl)}
+.teach-card,.recap-card,.quiz-card,.sim-wrap,.checkpoint-wrap,.deep-card,.decision-wrap{background:#fff;padding:26px 30px;border:1px solid rgba(244,130,154,.1);box-shadow:0 4px 20px rgba(244,130,154,.05)}
+.teach-eye,.card-eye{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);margin-bottom:10px}
+.teach-title,.card-title{font-family:"Playfair Display",serif;font-size:1.25rem;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.3}
+.teach-body,.card-body{font-size:.93rem;line-height:1.82;color:var(--muted)}
+.reinforce-card{background:linear-gradient(135deg,rgba(126,206,196,.12),rgba(245,168,87,.08));border:1px solid var(--tl);padding:22px 26px}
+.rc-label{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.rc-text{font-size:.95rem;line-height:1.75;color:var(--dark);font-style:italic}
+.dayli-card{background:var(--dark);padding:24px 28px;color:#fff}
+.dc-lbl{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
+.dc-q{font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;line-height:1.75;margin-bottom:8px}
+.dc-at{font-size:.72rem;color:rgba(255,255,255,.3)}
+.workspace{background:var(--warm);border-radius:18px;border:1px solid rgba(244,130,154,.1);overflow:hidden}
+.workspace-top{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#fff;border-bottom:1px solid rgba(244,130,154,.08)}
+.tool-pills{display:flex;gap:8px;flex-wrap:wrap}
+.tool-pill{padding:7px 12px;border-radius:999px;border:1.5px solid rgba(244,130,154,.15);background:var(--warm);font-size:.76rem;cursor:pointer}
+.tool-pill.on{background:var(--pp);border-color:var(--pink);color:var(--pink);font-weight:700}
+.workspace-main{display:grid;grid-template-columns:66px 1fr;min-height:320px}
+.left-tools{border-right:1px solid rgba(244,130,154,.08);padding:12px;display:flex;flex-direction:column;gap:10px;background:#fff}
+.left-tool{width:40px;height:40px;border-radius:12px;border:1.5px solid rgba(244,130,154,.12);display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;background:var(--warm)}
+.left-tool.on{background:var(--pp);border-color:var(--pink)}
+.chart-zone{position:relative;padding:14px}
+.chart-canvas{display:block;width:100%;height:290px;background:#fff;border-radius:16px;border:1px solid rgba(244,130,154,.08)}
+
+.chart-note{position:absolute;top:20px;right:26px;background:rgba(44,24,16,.88);color:#fff;padding:8px 12px;border-radius:12px;font-size:.76rem;pointer-events:none;opacity:0;transform:translateY(-6px);transition:.25s}
+.chart-note.show{opacity:1;transform:translateY(0)}
+
+.feedback{display:none;margin-top:12px;padding:14px 16px;border-radius:14px;font-size:.86rem;line-height:1.65}
+.feedback.show{display:block}
+.fb-good{background:var(--tp);border:1px solid var(--tl);color:#1a6b63}
+.fb-bad{background:var(--pp);border:1px solid var(--pl);color:#a84060}
+.fb-mid{background:var(--cp);border:1px solid var(--cl);color:#7a4a0a}
+.choice-grid,.control-grid,.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.control-grid{grid-template-columns:1fr 1fr 1fr}
+.control-card{background:var(--warm);border:1.5px solid rgba(244,130,154,.12);border-radius:16px;padding:16px}
+.control-label{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.control-value{font-family:"Playfair Display",serif;font-size:1.2rem;color:var(--dark);font-weight:900}
+.choice-card{border-radius:16px;padding:18px;border:2px solid transparent;cursor:pointer;background:var(--warm)}
+.choice-card.selected{box-shadow:0 10px 24px rgba(44,24,16,.08)}
+.good{background:var(--cp);border-color:var(--cl)}
+.bad{background:var(--upp);border-color:var(--upl)}
+.choice-title{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:6px}
+.quick-check{background:linear-gradient(135deg,var(--cp),var(--pp));padding:22px 26px;border:1px solid var(--cl)}
+.qc-lbl{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-bottom:8px}
+.qc-q{font-size:.96rem;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:13px}
+.qc-opts{display:flex;flex-direction:column;gap:7px}
+.qc-opt{background:#fff;border:1.5px solid rgba(244,130,154,.18);border-radius:11px;padding:12px 16px;font-family:"DM Sans",sans-serif;font-size:.87rem;color:var(--text);cursor:pointer;text-align:left}
+.qc-opt.good{background:var(--tp);border-color:var(--teal);color:#1a6b63}
+.qc-opt.bad{background:var(--pp);border-color:var(--pink);color:#a84060}
+.recap-list{display:flex;flex-direction:column;gap:8px}
+.recap-item{display:flex;gap:12px;padding:13px 16px;border-radius:12px}
+.recap-item:nth-child(odd){background:var(--tp);border:1px solid var(--tl)}
+.recap-item:nth-child(even){background:var(--pp);border:1px solid var(--pl)}
+.recap-ico{font-size:1rem;margin-top:2px}
+.recap-text{font-size:.87rem;line-height:1.62;color:var(--text)}
+.quiz-card .question{margin-bottom:22px}
+.q-lbl{font-size:.66rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.q-text{font-size:.96rem;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:12px}
+.q-opts{display:flex;flex-direction:column;gap:7px}
+.q-opt{background:var(--warm);border:1.5px solid rgba(244,130,154,.14);border-radius:11px;padding:11px 15px;font-family:"DM Sans",sans-serif;font-size:.87rem;color:var(--text);cursor:pointer;text-align:left}
+.q-opt.correct{background:var(--tp);border-color:var(--teal);color:#1a6b63}
+.q-opt.wrong{background:var(--pp);border-color:var(--pink);color:#a84060}
+.q-fb{margin-top:9px;padding:11px 15px;border-radius:10px;font-size:.83rem;line-height:1.6;display:none}
+.q-fb.show{display:block}
+.complete-card{background:linear-gradient(135deg,var(--dark),#3d2420);padding:34px;text-align:center;color:#fff;display:none}
+.complete-card.show{display:block}
+.cc-title{font-family:"Playfair Display",serif;font-size:1.9rem;font-weight:900;margin-bottom:8px}
+.cc-acc{color:var(--pink)}
+.cc-sub{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:20px;max-width:390px;margin-left:auto;margin-right:auto}
+.cc-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(126,206,196,.15);border:1px solid rgba(126,206,196,.3);border-radius:100px;padding:9px 20px;font-size:.88rem;font-weight:600;color:var(--tl);margin-bottom:22px}
+.cc-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cc-next,.cc-hub{padding:13px 26px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.9rem;cursor:pointer;border:none}
+.cc-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff}
+.cc-hub{background:transparent;color:rgba(255,255,255,.42);border:1.5px solid rgba(255,255,255,.18)}
+.bnav{position:fixed;bottom:0;left:230px;right:0;background:rgba(253,248,245,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(244,130,154,.12);padding:13px 40px;display:flex;align-items:center;justify-content:space-between;z-index:40}
+.bn-left{display:flex;align-items:center;gap:12px}
+.bn-dots{display:flex;gap:5px;align-items:center}
+.bn-dot{width:8px;height:8px;border-radius:50%;cursor:pointer;transition:all .25s}
+.bd-done{background:var(--teal)}
+.bd-active{background:var(--pink);transform:scale(1.45)}
+.bd-todo{background:var(--pp);border:1.5px solid var(--pl)}
+.bn-sname{font-size:.74rem;color:var(--muted);font-weight:500}
+.btn-prev,.btn-next{padding:10px 22px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.85rem;font-weight:600;cursor:pointer}
+.btn-prev{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted)}
+.btn-prev:disabled{opacity:.35;cursor:default}
+.btn-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.btn-next:disabled{opacity:.4;cursor:default}
+.toast{position:fixed;bottom:84px;right:26px;background:var(--dark);color:#fff;border-radius:14px;padding:13px 18px;display:flex;align-items:center;gap:11px;box-shadow:0 16px 48px rgba(44,24,16,.32);z-index:200;transform:translateY(18px);opacity:0;transition:all .5s ease}
+.toast.show{transform:translateY(0);opacity:1}
+.streak-toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--dark);color:#fff;border-radius:14px;padding:12px 22px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 40px rgba(44,24,16,.3);z-index:300;opacity:0;transition:all .5s ease;pointer-events:none}
+.streak-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.cfp{position:fixed;border-radius:2px;pointer-events:none;z-index:9998;animation:cfF linear both}
+@media (max-width: 900px){ .sidebar{display:none}.main{margin-left:0}.bnav{left:0}}
+@media (max-width: 760px){
+  .sim-grid,.lab-grid,.choice-grid,.control-grid{grid-template-columns:1fr}
+  .workspace-main{grid-template-columns:1fr}
+  .left-tools{flex-direction:row;border-right:none;border-bottom:1px solid rgba(244,130,154,.08)}
+  .tbar{padding:0 18px}
+  .lv-cards{padding:22px 14px 110px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="sidebar">
+    <a class="sb-logo" href="#"><span>A Girl &</span> Her Futures™</a>
+    <div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Section 2 · Platform + Execution Basics</div></div></div>
+    <div class="sb-sec">Learn</div>
+    <div class="sb-item on">✦ Lessons</div>
+    <div class="sb-item">◈ Games</div>
+    <div class="sb-sec">Community</div>
+    <div class="sb-item">↑ Leaderboard</div>
+    <div class="sb-item">◇ Drip Store</div>
+    <div class="sb-sec">Account</div>
+    <div class="sb-item">○ My Profile</div>
+    <div class="sb-bot"><div class="xpb"><div class="xpb-top"><span class="xpb-l">XP</span><span class="xpb-v">700 / 1000</span></div><div class="xpb-track"><div class="xpb-fill"></div></div></div></div>
+  </div>
+
+  <div class="main">
+    <div class="tbar">
+      <div class="tbar-bc">Lessons › Section 2 › <span class="tbar-cur" id="tbarCur">Introduction</span></div>
+      <div class="tbar-r"><span class="tbar-xp">+80 XP</span><span class="tbar-st" id="tbarSt">1 / 8</span></div>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+
+    <div class="lv-cards">
+      <div class="slide active" id="s0">
+        <div class="intro-card">
+          <div class="ic-eye">✦ Section 2 · Lesson 7</div>
+          <div class="ic-title">TradingView <span class="ic-acc">Basics</span></div>
+          <div class="ic-sub">This is your workspace lesson. The goal is not to learn every button TradingView has. The goal is to know how to use it like a trader: open the chart, switch timeframes, and mark what matters.</div>
+          <div class="ic-pills"><span class="ic-pill ip-pk">~16 min</span><span class="ic-pill ip-tl">Hands-on chart lesson</span><span class="ic-pill ip-pc">+80 XP</span></div>
+        </div>
+        <div class="teach-card">
+          <div class="teach-eye">Core idea</div>
+          <div class="teach-title">TradingView is your workspace, not just a pretty chart.</div>
+          <div class="teach-body">You are using it to <strong>read price</strong>, <strong>change perspective with timeframes</strong>, and <strong>mark behavior</strong> so your eyes stop feeling lost.</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s1">
+        <div class="sim-wrap">
+          <div class="card-eye">Teach → Experience</div>
+          <div class="card-title">Meet the workspace</div>
+          <div class="card-body">Tap the tool pills and chart tools. This lesson keeps it simple: chart, timeframe, line tool, and horizontal level.</div>
+          <div class="workspace">
+            <div class="workspace-top">
+              <div class="tool-pills">
+                <button class="tool-pill on" id="pillChart" onclick="pickTop('chart')">Chart</button>
+                <button class="tool-pill" id="pillTime" onclick="pickTop('timeframe')">Timeframe</button>
+                <button class="tool-pill" id="pillLine" onclick="pickTop('line')">Line tool</button>
+                <button class="tool-pill" id="pillLevel" onclick="pickTop('level')">Horizontal level</button>
+              </div>
+              <div style="font-size:.76rem;color:var(--muted)">Simplified workspace</div>
+            </div>
+            <div class="workspace-main">
+              <div class="left-tools">
+                <div class="left-tool on" id="ltPointer" onclick="pickLeft('pointer')">↖</div>
+                <div class="left-tool" id="ltLine" onclick="pickLeft('line')">／</div>
+                <div class="left-tool" id="ltHLine" onclick="pickLeft('hline')">━</div>
+              </div>
+              <div class="chart-zone">
+                <canvas id="workspaceCanvas" class="chart-canvas" width="640" height="290"></canvas>
+                <div class="chart-note" id="workspaceNote">This is where price lives</div>
+              </div>
+            </div>
+          </div>
+          <div class="feedback show fb-mid" id="workspaceFb">Start by tapping the tools. The point is not to memorize icons. The point is to understand what each one lets you do on the chart.</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s2">
+        <div class="deep-card">
+          <div class="card-eye">Detailed breakdown</div>
+          <div class="card-title">The only TradingView tools beginners actually need first</div>
+          <div class="card-body"><strong>Chart</strong> = where price lives.<br><strong>Timeframe</strong> = how zoomed in or out you are.<br><strong>Line tool</strong> = helps you connect structure or draw simple guides.<br><strong>Horizontal level</strong> = helps you mark where price clearly reacted.<br><br>That’s enough to start reading the market like a real person instead of just scrolling and hoping.</div>
+        </div>
+        <div class="dayli-card">
+          <div class="dc-lbl">✦ Dayli note</div>
+          <div class="dc-q">"Beginners get overwhelmed because they think they need every tool on TradingView. You don’t. You need the ones that help you see what price is actually doing."</div>
+          <div class="dc-at">— Dayli Scott · A Girl & Her Futures™</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s3">
+        <div class="sim-wrap">
+          <div class="card-eye">Experience</div>
+          <div class="card-title">Switch the timeframe and feel the perspective change</div>
+          <div class="card-body">Same market. Different zoom. Tap the timeframe buttons and watch the chart change.</div>
+          <div class="workspace" style="padding:18px">
+            <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+              <button class="tool-pill on" id="tf1m" onclick="setTimeframe('1m')">1M</button>
+              <button class="tool-pill" id="tf5m" onclick="setTimeframe('5m')">5M</button>
+              <button class="tool-pill" id="tf1h" onclick="setTimeframe('1h')">1H</button>
+              <button class="tool-pill" id="tf4h" onclick="setTimeframe('4h')">4H</button>
+            </div>
+            <canvas id="tfCanvas" class="chart-canvas" width="640" height="250"></canvas>
+            <div class="control-grid" style="margin-top:12px">
+              <div class="control-card"><div class="control-label">Current timeframe</div><div class="control-value" id="tfLabel">1M</div></div>
+              <div class="control-card"><div class="control-label">What you notice</div><div class="control-value" id="tfFocus">Detail</div></div>
+              <div class="control-card"><div class="control-label">Best use</div><div class="control-value" id="tfUse">Micro view</div></div>
+            </div>
+          </div>
+          <div class="feedback show fb-mid" id="tfFb">Same market. Different perspective. This is why timeframes work together instead of competing.</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s4">
+        <div class="sim-wrap">
+          <div class="card-eye">Hands-on marking</div>
+          <div class="card-title">Mark what matters</div>
+          <div class="card-body">Pick a tool, then click the chart to place it. Your goal is getting comfortable interacting with the chart instead of just staring at it.</div>
+          <div class="workspace">
+            <div class="workspace-top">
+              <div class="tool-pills">
+                <button class="tool-pill on" id="markLevelBtn" onclick="setMarkTool('level')">Mark horizontal level</button>
+                <button class="tool-pill" id="markLineBtn" onclick="setMarkTool('line')">Mark guide line</button>
+                <button class="tool-pill" onclick="clearMarks()">Clear</button>
+              </div>
+              <div style="font-size:.76rem;color:var(--muted)">Click on the chart area</div>
+            </div>
+            <div class="chart-zone">
+              <canvas id="markCanvas" class="chart-canvas" width="640" height="290"></canvas>
+            </div>
+          </div>
+          <div class="feedback show fb-mid" id="markFb">Horizontal levels help you mark where price respected. Lines help you map what your eye is following.</div>
+        </div>
+        <div class="quick-check">
+          <div class="qc-lbl">Quick check</div>
+          <div class="qc-q">Which tool makes the most sense if you want to mark where price clearly reacted across the chart?</div>
+          <div class="qc-opts">
+            <button class="qc-opt" onclick="quickCheck(this,true,'qc1fb','Exactly. A horizontal level is the cleanest way to mark where price clearly reacted across the chart.')">Horizontal level</button>
+            <button class="qc-opt" onclick="quickCheck(this,false,'qc1fb','A guide line can help, but a horizontal level is cleaner for repeated price reaction areas.')">Guide line only</button>
+            <button class="qc-opt" onclick="quickCheck(this,false,'qc1fb','Not here. Pointer is just navigation, not a mark.')">Pointer</button>
+          </div>
+          <div class="feedback" id="qc1fb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s5">
+        <div class="decision-wrap">
+          <div class="card-eye">Correct a misconception</div>
+          <div class="card-title">“I need every TradingView feature to trade.”</div>
+          <div class="card-body">What you need first is a clean workspace and a few tools you actually understand.</div>
+          <div class="choice-grid" style="margin-top:16px">
+            <div class="choice-card good" onclick="pickMisconception('good', this)">
+              <div class="choice-title">Better understanding</div>
+              <div class="card-body">I need a chart, timeframes, and a few simple marking tools I actually know how to use.</div>
+            </div>
+            <div class="choice-card bad" onclick="pickMisconception('bad', this)">
+              <div class="choice-title">Bad understanding</div>
+              <div class="card-body">I should learn every feature on TradingView first or I won’t be able to trade correctly.</div>
+            </div>
+          </div>
+          <div class="feedback" id="misFb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s6">
+        <div class="checkpoint-wrap">
+          <div class="card-eye">Checkpoint</div>
+          <div class="card-title">Build the workspace idea</div>
+          <div class="card-body">Let’s make sure the logic is clean.</div>
+          <div class="lab-grid">
+            <div class="choice-card good" onclick="cpPick(1,'timeframe', this)">
+              <div class="choice-title">Step 1</div>
+              <div class="card-body">What helps you change perspective on the same market?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">Timeframes</div>
+            </div>
+            <div class="choice-card bad" onclick="cpPick(1,'random', this)">
+              <div class="choice-title">Step 1</div>
+              <div class="card-body">What helps you change perspective on the same market?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">Random indicators</div>
+            </div>
+          </div>
+          <div class="lab-grid" style="margin-top:12px">
+            <div class="choice-card good" onclick="cpPick(2,'level', this)">
+              <div class="choice-title">Step 2</div>
+              <div class="card-body">What helps you mark where price clearly reacted?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">Horizontal level</div>
+            </div>
+            <div class="choice-card bad" onclick="cpPick(2,'alltools', this)">
+              <div class="choice-title">Step 2</div>
+              <div class="card-body">What helps you mark where price clearly reacted?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">Every tool at once</div>
+            </div>
+          </div>
+          <div class="feedback" id="cpFb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s7">
+        <div class="recap-card">
+          <div class="card-title" style="margin-bottom:16px">What you know now</div>
+          <div class="recap-list">
+            <div class="recap-item"><div class="recap-ico">🖥️</div><div class="recap-text"><strong>TradingView is your workspace.</strong> You use it to read and mark behavior.</div></div>
+            <div class="recap-item"><div class="recap-ico">🔍</div><div class="recap-text"><strong>Timeframes change perspective.</strong> Same market, different zoom.</div></div>
+            <div class="recap-item"><div class="recap-ico">📍</div><div class="recap-text"><strong>Horizontal levels mark reaction areas.</strong> This is one of the cleanest beginner tools.</div></div>
+            <div class="recap-item"><div class="recap-ico">✍️</div><div class="recap-text"><strong>You do not need every feature.</strong> A few tools used clearly is better than a messy chart.</div></div>
+          </div>
+        </div>
+
+        <div class="quiz-card">
+          <div class="card-eye">Final quiz</div>
+          <div class="card-title">Lock in TradingView basics</div>
+          <div class="question">
+            <div class="q-lbl">Question 1 of 4</div>
+            <div class="q-text">What is TradingView mainly being used for in this lesson?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q1fb','Correct. TradingView is your workspace for reading and marking price.')">A workspace to read and mark price</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q1fb','Not the main focus here.')">A place to buy a company</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q1fb','No. The goal is not guessing.')">A random prediction machine</button>
+            </div>
+            <div class="q-fb" id="q1fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 2 of 4</div>
+            <div class="q-text">What do timeframes help you do?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q2fb','Exactly. Timeframes change your perspective on the same market.')">Change perspective on the same market</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q2fb','No. Timeframes do not change the market itself.')">Change the market itself</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q2fb','Not the purpose here.')">Eliminate all uncertainty</button>
+            </div>
+            <div class="q-fb" id="q2fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 3 of 4</div>
+            <div class="q-text">Which tool is cleanest for marking where price clearly reacted?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q3fb','Yes. A horizontal level is the cleanest beginner choice for repeated reaction areas.')">Horizontal level</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q3fb','A pointer is not a mark.')">Pointer</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q3fb','Not every tool at once.')">Every tool together</button>
+            </div>
+            <div class="q-fb" id="q3fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 4 of 4</div>
+            <div class="q-text">What is the better beginner mindset for TradingView?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q4fb','Exactly. Keep it simple and useful.')">Use a few tools clearly instead of everything at once</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q4fb','That usually overwhelms beginners.')">Learn every feature before doing anything</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q4fb','That is not enough.')">Just watch the chart without marking anything</button>
+            </div>
+            <div class="q-fb" id="q4fb"></div>
+          </div>
+        </div>
+
+        <div class="complete-card" id="completeCard">
+          <div class="cc-title">Lesson 7 <span class="cc-acc">complete.</span></div>
+          <div class="cc-sub">Now the chart should feel less intimidating. You know how to use TradingView as a workspace, switch perspective with timeframes, and mark what matters without overcomplicating it.</div>
+          <div class="cc-badge">+80 XP · Workspace confidence unlocked</div>
+          <div class="cc-btns">
+            <button class="cc-next">Lesson 8 → Timeframes</button>
+            <button class="cc-hub">Back to lessons</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bnav">
+  <div class="bn-left"><div class="bn-dots" id="bnDots"></div><div class="bn-sname"><span id="bnStepName">Introduction</span></div></div>
+  <div style="display:flex;gap:9px"><button class="btn-prev" id="prevBtn" onclick="go(-1)" disabled>← Back</button><button class="btn-next" id="nextBtn" onclick="go(1)">Next →</button></div>
+</div>
+
+<div class="streak-toast" id="streakToast"><span id="stkIcon">🔥</span><span id="stkText">you’re locked in 🔥</span></div>
+<div class="toast" id="xpToast"><span>✦</span><div><div style="font-size:.85rem;font-weight:700">+80 XP earned!</div><div style="font-size:.7rem;color:rgba(255,255,255,.42)">Lesson 7 complete 🫧✨</div></div></div>
+
+<script>
+const STEPS=['Introduction','Meet the workspace','Detailed breakdown','Timeframe perspective','Mark the chart','Misconception check','Checkpoint','Recap + final quiz'];
+let cur=0, streak=0, misDone=false, checkpointDone=false, quizDone=false;
+const cpAns={1:null,2:null}, quizState={};
+let tf='1m', markTool='level';
+const marks=[];
+function buildDots(){const el=document.getElementById('bnDots');el.innerHTML='';STEPS.forEach((_,i)=>{const d=document.createElement('div');d.className='bn-dot '+(i<cur?'bd-done':i===cur?'bd-active':'bd-todo');if(i<=cur)d.onclick=()=>goTo(i);el.appendChild(d);});}
+function goTo(n){document.getElementById('s'+cur)?.classList.remove('active');cur=n;document.getElementById('s'+cur)?.classList.add('active');document.getElementById('tbarCur').textContent=STEPS[cur];document.getElementById('tbarSt').textContent=(cur+1)+' / '+STEPS.length;document.getElementById('bnStepName').textContent=STEPS[cur];document.getElementById('progFill').style.width=(cur/(STEPS.length-1)*100)+'%';document.getElementById('prevBtn').disabled=cur===0;updateNext();buildDots();if(cur===1)drawWorkspace();if(cur===3)drawTF();if(cur===4)drawMarkChart();window.scrollTo({top:0,behavior:'smooth'});}
+function go(d){goTo(cur+d);}
+function updateNext(){const btn=document.getElementById('nextBtn');btn.disabled=false;btn.onclick=()=>go(1);if(cur===5&&!misDone){btn.disabled=true;btn.textContent='Pick the better understanding';btn.onclick=null;}else if(cur===6&&!checkpointDone){btn.disabled=true;btn.textContent='Finish the checkpoint';btn.onclick=null;}else if(cur===7){btn.textContent=quizDone?'Finish lesson ✦':'Answer all questions';btn.disabled=!quizDone;btn.onclick=quizDone?showComplete:null;}else{btn.textContent=cur===6?'Take the final quiz →':'Next →';}}
+function showToast(){const t=document.getElementById('xpToast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300);}
+function showStreak(icon,text){document.getElementById('stkIcon').textContent=icon;document.getElementById('stkText').textContent=text;const t=document.getElementById('streakToast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+function handleStreak(correct){if(correct){streak++;if(streak===2)showStreak('👀','okayyy I see you 👀');if(streak===3)showStreak('🔥','you’re locked in 🔥');if(streak===5)showStreak('🎯','sniper energy activated 🎯');}else streak=0;}
+function confetti(){const cols=['#F4829A','#7ECEC4','#F5A857','#F9B8C6','#B2E4DF','#FAD09A'];for(let i=0;i<34;i++){const p=document.createElement('div');p.className='cfp';const sz=6+Math.random()*8;p.style.cssText=`left:${10+Math.random()*80}vw;top:-10px;width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation:cfF ${.8+Math.random()}s ${Math.random()*.5}s linear both;`;document.body.appendChild(p);setTimeout(()=>p.remove(),2500);}}
+
+function drawBaseChart(canvas, variant, overlay='none'){
+  const ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,w,h);
+
+  for(let i=1;i<5;i++){
+    ctx.strokeStyle='rgba(244,130,154,.08)';
+    ctx.beginPath(); ctx.moveTo(0,(h/5)*i); ctx.lineTo(w,(h/5)*i); ctx.stroke();
+  }
+
+  let x=35,y=200;
+  const bodies=variant==='1m'?[8,6,10,4,9,6,8,5,7,6,9,5]:variant==='5m'?[12,10,14,11,13,12,15,12]:variant==='1h'?[24,18,28,20,30,22]:[40,30,48,34];
+  const candleCenters = [];
+  bodies.forEach((b,i)=>{
+    const bull=i%3!==1,open=y,close=bull?y-b:y+b,wickTop=bull?close-8:open-8,wickBot=bull?open+8:close+8;
+    ctx.strokeStyle=bull?'#7ECEC4':'#F4829A'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(x+9,wickTop); ctx.lineTo(x+9,wickBot); ctx.stroke();
+    ctx.fillStyle=bull?'#7ECEC4':'#F4829A';
+    ctx.fillRect(x,Math.min(open,close),18,Math.abs(close-open));
+    candleCenters.push({x:x+9,y:(open+close)/2});
+    x+=variant==='4h'?90:variant==='1h'?60:34;
+    y+=bull?-4:5;
+  });
+
+  if(overlay==='chart'){
+    ctx.fillStyle='rgba(244,130,154,.08)';
+    ctx.fillRect(18,18,w-36,h-36);
+    ctx.strokeStyle='rgba(244,130,154,.35)';
+    ctx.lineWidth=2;
+    ctx.strokeRect(18,18,w-36,h-36);
+  }
+
+  if(overlay==='timeframe'){
+    ctx.strokeStyle='rgba(126,206,196,.45)';
+    ctx.lineWidth=3;
+    ctx.beginPath();
+    ctx.moveTo(30,36); ctx.lineTo(w-30,36);
+    ctx.stroke();
+    for(let i=0;i<5;i++){
+      const px=60+i*((w-120)/4);
+      ctx.beginPath(); ctx.moveTo(px,28); ctx.lineTo(px,44); ctx.stroke();
+    }
+  }
+
+  if(overlay==='line'){
+    ctx.strokeStyle='#7ECEC4';
+    ctx.lineWidth=3;
+    ctx.beginPath();
+    ctx.moveTo(70,h-90);
+    ctx.lineTo(w-80,70);
+    ctx.stroke();
+  }
+
+  if(overlay==='level'){
+    const ly = 132;
+    ctx.strokeStyle='#F4829A';
+    ctx.lineWidth=3;
+    ctx.beginPath();
+    ctx.moveTo(26,ly); ctx.lineTo(w-26,ly); ctx.stroke();
+    [160,250,340,430].forEach(px=>{
+      ctx.fillStyle='rgba(244,130,154,.18)';
+      ctx.beginPath(); ctx.arc(px,ly,16,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle='rgba(244,130,154,.55)';
+      ctx.beginPath(); ctx.arc(px,ly,6,0,Math.PI*2); ctx.fill();
+    });
+  }
+}
+function showWorkspaceNote(text){
+  const note = document.getElementById('workspaceNote');
+  if(!note) return;
+  note.textContent = text;
+  note.classList.add('show');
+  clearTimeout(window._workspaceNoteTimer);
+  window._workspaceNoteTimer = setTimeout(()=>note.classList.remove('show'), 1200);
+}
+
+function drawWorkspace(overlay='none'){
+  const c=document.getElementById('workspaceCanvas');
+  if(c) drawBaseChart(c,'1h',overlay);
+}
+
+function pickTop(which){
+  document.getElementById('pillChart').classList.remove('on');
+  document.getElementById('pillTime').classList.remove('on');
+  document.getElementById('pillLine').classList.remove('on');
+  document.getElementById('pillLevel').classList.remove('on');
+
+  if(which==='chart') document.getElementById('pillChart').classList.add('on');
+  if(which==='timeframe') document.getElementById('pillTime').classList.add('on');
+  if(which==='line') document.getElementById('pillLine').classList.add('on');
+  if(which==='level') document.getElementById('pillLevel').classList.add('on');
+
+  const msg={
+    chart:'This is the actual price chart. This is where candles and behavior live.',
+    timeframe:'Timeframes change your perspective on the same market.',
+    line:'A line tool helps you guide your eye or map simple structure.',
+    level:'A horizontal level helps you mark where price clearly reacted.'
+  };
+  const note={
+    chart:'This is where price lives',
+    timeframe:'Same market, different zoom',
+    line:'Guide your eye',
+    level:'Price respected here'
+  };
+  drawWorkspace(which);
+  showWorkspaceNote(note[which]);
+  document.getElementById('workspaceFb').className='feedback show fb-good';
+  document.getElementById('workspaceFb').textContent=msg[which];
+  handleStreak(true);
+}
+
+function pickLeft(which){
+  document.getElementById('ltPointer').classList.remove('on');
+  document.getElementById('ltLine').classList.remove('on');
+  document.getElementById('ltHLine').classList.remove('on');
+
+  if(which==='pointer') document.getElementById('ltPointer').classList.add('on');
+  if(which==='line') document.getElementById('ltLine').classList.add('on');
+  if(which==='hline') document.getElementById('ltHLine').classList.add('on');
+
+  const msg={
+    pointer:'Pointer = navigate, inspect, move around.',
+    line:'Line tool = mark a guide or connect what your eye is following.',
+    hline:'Horizontal level = mark a repeated reaction area cleanly.'
+  };
+  const overlay = which==='pointer' ? 'chart' : which==='line' ? 'line' : 'level';
+  drawWorkspace(overlay);
+  showWorkspaceNote(which==='pointer' ? 'Inspect the chart' : which==='line' ? 'Guide line added' : 'Level added');
+  document.getElementById('workspaceFb').className='feedback show fb-good';
+  document.getElementById('workspaceFb').textContent=msg[which];
+  handleStreak(true);
+}
+function drawTF(){const c=document.getElementById('tfCanvas');if(!c)return;drawBaseChart(c,tf);const focus={ '1m':'Detail','5m':'Building structure','1h':'Cleaner structure','4h':'Bias view'};const use={ '1m':'Micro view','5m':'Shorter structure','1h':'Structure','4h':'Bias'};document.getElementById('tfLabel').textContent=tf.toUpperCase();document.getElementById('tfFocus').textContent=focus[tf];document.getElementById('tfUse').textContent=use[tf];document.getElementById('tfFb').textContent=`On ${tf.toUpperCase()}, you are seeing ${focus[tf].toLowerCase()}. Same market. Different zoom.`;}
+function setTimeframe(next){tf=next;['1m','5m','1h','4h'].forEach(k=>document.getElementById('tf'+k).classList.remove('on'));document.getElementById('tf'+next).classList.add('on');drawTF();handleStreak(true);}
+function setMarkTool(which){markTool=which;document.getElementById('markLevelBtn').classList.toggle('on',which==='level');document.getElementById('markLineBtn').classList.toggle('on',which==='line');document.getElementById('markFb').className='feedback show fb-mid';document.getElementById('markFb').textContent=which==='level'?'Now click where you think price clearly reacted. A horizontal level will mark across the chart.':'Now click to place a simple guide line across the chart.';}
+function drawMarkChart(){const c=document.getElementById('markCanvas');if(!c)return;const ctx=c.getContext('2d');drawBaseChart(c,'1h');marks.forEach(m=>{if(m.type==='level'){ctx.strokeStyle='#F4829A';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(20,m.y);ctx.lineTo(c.width-20,m.y);ctx.stroke();}else{ctx.strokeStyle='#7ECEC4';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(30,m.y-30);ctx.lineTo(c.width-30,m.y+30);ctx.stroke();}});if(!c.dataset.bound){c.addEventListener('click',e=>{const rect=c.getBoundingClientRect();const y=(e.clientY-rect.top)*(c.height/rect.height);marks.push({type:markTool,y});drawMarkChart();document.getElementById('markFb').className='feedback show fb-good';document.getElementById('markFb').textContent=markTool==='level'?'Nice. You placed a horizontal level. This is how you start marking where price respected.':'Nice. You placed a guide line. This can help your eye follow simple structure or direction.';handleStreak(true);});c.dataset.bound='1';}}
+function clearMarks(){marks.length=0;drawMarkChart();document.getElementById('markFb').className='feedback show fb-mid';document.getElementById('markFb').textContent='Marks cleared. Try again and keep it simple.';}
+function pickMisconception(type, el){if(misDone)return;document.querySelectorAll('#s5 .choice-card').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');const fb=document.getElementById('misFb');misDone=true;if(type==='good'){fb.className='feedback show fb-good';fb.innerHTML='<strong>Exactly.</strong> Beginners do better when they use a few tools clearly instead of drowning in features they do not understand yet.';handleStreak(true);}else{fb.className='feedback show fb-bad';fb.innerHTML='<strong>Not this one.</strong> That mindset creates overwhelm. Clarity comes from simplicity first, not feature overload.';handleStreak(false);}updateNext();}
+function quickCheck(btn, correct, fbId, msg){const opts=btn.parentElement.querySelectorAll('.qc-opt');opts.forEach(o=>o.disabled=true);btn.classList.add(correct?'good':'bad');const fb=document.getElementById(fbId);fb.className='feedback show '+(correct?'fb-good':'fb-bad');fb.innerHTML=msg;handleStreak(correct);}
+function cpPick(step, val, el){const groups=document.querySelectorAll('#s6 .lab-grid');const group=step===1?groups[0].querySelectorAll('.choice-card'):groups[1].querySelectorAll('.choice-card');group.forEach(c=>c.classList.remove('selected'));el.classList.add('selected');cpAns[step]=val;if(cpAns[1]&&cpAns[2]){const fb=document.getElementById('cpFb');checkpointDone=true;const good=cpAns[1]==='timeframe'&&cpAns[2]==='level';if(good){fb.className='feedback show fb-good';fb.innerHTML='<strong>Clean logic.</strong> Timeframes help you change perspective, and horizontal levels help you mark where price clearly reacted. That is a strong beginner foundation.';handleStreak(true);confetti();}else{fb.className='feedback show fb-bad';fb.innerHTML='<strong>Almost.</strong> The goal here is a clean workspace: change perspective with timeframes, mark reaction with simple levels.';handleStreak(false);}updateNext();}}
+function quizAns(btn, correct, fbId, msg){const wrap=btn.closest('.question');wrap.querySelectorAll('.q-opt').forEach(o=>o.disabled=true);btn.classList.add(correct?'correct':'wrong');const fb=document.getElementById(fbId);fb.className='q-fb show '+(correct?'fb-good':'fb-bad');fb.innerHTML=msg;quizState[fbId]=true;handleStreak(correct);if(Object.keys(quizState).length===4){quizDone=true;updateNext();}}
+function showComplete(){document.getElementById('completeCard').classList.add('show');showToast();confetti();}
+buildDots();updateNext();setTimeout(()=>{drawWorkspace();drawTF();drawMarkChart();},50);
+</script>
+</body>
+</html>

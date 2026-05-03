@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson 4 — Contracts & Instruments · AG&HF</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F4829A;--pl:#F9B8C6;--pp:#FDE8ED;
+  --teal:#7ECEC4;--tl:#B2E4DF;--tp:#E8F8F6;
+  --peach:#F5A857;--cl:#FAD09A;--cp:#FEF3E4;
+  --cream:#FDF8F5;--warm:#FFFBF9;
+  --dark:#2C1810;--text:#3D2B20;--muted:#7A5C50;
+  --purple:#7F77DD;--upl:#CECBF6;--upp:#EEEDFE;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+.app{display:flex;min-height:100vh}
+.sidebar{width:230px;flex-shrink:0;background:#fff;border-right:1px solid rgba(244,130,154,.12);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50;overflow-y:auto}
+.sb-logo{padding:20px 22px 16px;font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(244,130,154,.1);cursor:pointer;text-decoration:none}
+.sb-logo span{color:var(--teal)}
+.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(244,130,154,.1);margin-bottom:6px}
+.sb-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pp),var(--cp));border:2px solid var(--pl);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink);flex-shrink:0}
+.sb-nm{font-size:.82rem;font-weight:600;color:var(--dark)}
+.sb-lv{font-size:.68rem;color:var(--muted)}
+.sb-sec{font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 18px 5px}
+.sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:.85rem;color:var(--muted);cursor:pointer;transition:all .2s;border-left:3px solid transparent}
+.sb-item:hover{color:var(--dark);background:var(--cream)}
+.sb-item.on{color:var(--pink);background:var(--pp);border-left-color:var(--pink);font-weight:500}
+.sb-bot{margin-top:auto;padding:12px 18px}
+.xpb{background:var(--cream);border-radius:10px;padding:11px 13px}
+.xpb-top{display:flex;justify-content:space-between;margin-bottom:6px}
+.xpb-l{font-size:.68rem;color:var(--muted);font-weight:500}
+.xpb-v{font-size:.72rem;color:var(--peach);font-weight:600}
+.xpb-track{height:4px;background:var(--pp);border-radius:100px;overflow:hidden}
+.xpb-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;width:58%}
+.main{margin-left:230px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+.tbar{background:#fff;border-bottom:1px solid rgba(244,130,154,.1);padding:0 36px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tbar-bc{font-size:.79rem;color:var(--muted)}
+.tbar-bc a{color:var(--muted);text-decoration:none}
+.tbar-bc a:hover{color:var(--pink)}
+.tbar-cur{color:var(--dark);font-weight:500}
+.tbar-r{display:flex;align-items:center;gap:11px}
+.tbar-xp{font-size:.77rem;font-weight:600;color:var(--peach);background:var(--cp);border:1px solid var(--cl);padding:4px 12px;border-radius:100px}
+.tbar-st{font-size:.77rem;color:var(--muted)}
+.prog-track{height:6px;background:var(--pp);position:sticky;top:60px;z-index:39}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));transition:width .45s ease;width:0%}
+.lv-cards{flex:1;display:flex;flex-direction:column;align-items:center;padding:36px 24px 110px}
+.slide{width:100%;max-width:760px;display:none;animation:sIn .4s cubic-bezier(.34,1.08,.64,1) both}
+.slide.active{display:flex;flex-direction:column;gap:14px}
+@keyframes sIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes fUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cfF{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+@keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.intro-card,.teach-card,.reinforce-card,.quiz-card,.recap-card,.instrument-wrap,.lab-wrap,.compare-wrap,.checkpoint-wrap,.complete-card,.dayli-card,.quick-check,.deep-card{border-radius:22px}
+.intro-card{background:var(--dark);padding:34px;position:relative;overflow:hidden}
+.intro-card::after{content:"✦";position:absolute;top:-30px;right:8px;font-size:130px;color:var(--pink);opacity:.05;font-family:"Playfair Display",serif}
+.ic-eye{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--pl);margin-bottom:12px}
+.ic-title{font-family:"Playfair Display",serif;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:10px}
+.ic-acc{color:var(--pink)}
+.ic-sub{font-size:.94rem;color:rgba(255,255,255,.58);line-height:1.72;margin-bottom:22px}
+.ic-pills{display:flex;gap:8px;flex-wrap:wrap}
+.ic-pill{font-size:.7rem;font-weight:500;padding:5px 12px;border-radius:100px;border:1px solid}
+.ip-pk{background:rgba(244,130,154,.15);border-color:rgba(244,130,154,.3);color:var(--pl)}
+.ip-tl{background:rgba(126,206,196,.15);border-color:rgba(126,206,196,.3);color:var(--tl)}
+.ip-pc{background:rgba(245,168,87,.15);border-color:rgba(245,168,87,.3);color:var(--cl)}
+.teach-card,.recap-card,.quiz-card,.instrument-wrap,.lab-wrap,.compare-wrap,.checkpoint-wrap,.deep-card{background:#fff;padding:26px 30px;border:1px solid rgba(244,130,154,.1);box-shadow:0 4px 20px rgba(244,130,154,.05)}
+.teach-eye,.card-eye{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.teach-eye::after,.card-eye::after{content:'';flex:1;height:1px;background:rgba(245,168,87,.2)}
+.teach-title,.card-title{font-family:"Playfair Display",serif;font-size:1.25rem;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.3}
+.teach-body,.card-body{font-size:.93rem;line-height:1.82;color:var(--muted)}
+.teach-body strong,.card-body strong{color:var(--dark)}
+.teach-body em{color:var(--pink);font-style:normal;font-weight:600}
+.reinforce-card{background:linear-gradient(135deg,rgba(126,206,196,.12),rgba(245,168,87,.08));border:1px solid var(--tl);padding:22px 26px;position:relative;overflow:hidden}
+.reinforce-card::before{content:"💡";position:absolute;top:16px;right:18px;font-size:1.2rem;opacity:.6}
+.rc-label{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.rc-text{font-size:.95rem;line-height:1.75;color:var(--dark);font-style:italic}
+.rc-text strong{font-style:normal}
+.dayli-card{background:var(--dark);padding:24px 28px;position:relative;overflow:hidden}
+.dayli-card::before{content:'✦';position:absolute;bottom:-25px;right:8px;font-size:90px;color:var(--pink);opacity:.06;font-family:'Playfair Display',serif}
+.dc-lbl{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.dc-lbl::after{content:'';flex:1;height:1px;background:rgba(244,130,154,.2)}
+.dc-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--pp),var(--cp));border:2px solid var(--pink);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink);margin-bottom:10px}
+.dc-q{font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:#fff;line-height:1.75;margin-bottom:8px}
+.dc-at{font-size:.72rem;color:rgba(255,255,255,.3)}
+.inst-grid,.compare-grid,.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.inst-card,.compare-card,.lab-card{border-radius:16px;padding:18px;border:2px solid transparent;cursor:pointer;transition:all .22s}
+.inst-card:hover,.compare-card:hover,.lab-card:hover{transform:translateY(-2px)}
+.inst-card.selected,.compare-card.selected,.lab-card.selected{box-shadow:0 10px 24px rgba(44,24,16,.08)}
+.mnq{background:var(--tp);border-color:var(--tl)}
+.mgc{background:var(--cp);border-color:var(--cl)}
+.es{background:var(--pp);border-color:var(--pl)}
+.nq{background:var(--upp);border-color:var(--upl)}
+.inst-name{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:4px}
+.inst-sub{font-size:.74rem;color:var(--muted);margin-bottom:12px}
+.inst-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(244,130,154,.08)}
+.inst-row:last-child{border-bottom:none}
+.inst-l{font-size:.76rem;color:var(--muted)}
+.inst-v{font-size:.8rem;font-weight:700;color:var(--dark)}
+.feedback{display:none;margin-top:12px;padding:14px 16px;border-radius:14px;font-size:.86rem;line-height:1.65}
+.feedback.show{display:block;animation:fUp .25s ease both}
+.fb-good{background:var(--tp);border:1px solid var(--tl);color:#1a6b63}
+.fb-bad{background:var(--pp);border:1px solid var(--pl);color:#a84060}
+.fb-mid{background:var(--cp);border:1px solid var(--cl);color:#7a4a0a}
+.table-wrap{overflow:auto;border-radius:16px;border:1px solid rgba(244,130,154,.12);margin-top:12px}
+.compare-table{width:100%;border-collapse:collapse;background:var(--warm);min-width:620px}
+.compare-table th,.compare-table td{padding:12px 14px;border-bottom:1px solid rgba(244,130,154,.08);font-size:.82rem;text-align:left}
+.compare-table th{background:#fff;color:var(--dark);font-weight:700}
+.compare-table td strong{color:var(--dark)}
+.compare-table tr:last-child td{border-bottom:none}
+.pnl-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin-top:12px}
+.pnl-panel{background:var(--warm);border-radius:16px;padding:18px}
+.pnl-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.pnl-label{width:120px;flex-shrink:0;font-size:.8rem;color:var(--muted)}
+.pnl-input,.pnl-select{flex:1;padding:10px 12px;border-radius:10px;border:1.5px solid rgba(244,130,154,.18);background:#fff;font-family:"DM Sans",sans-serif;font-size:.9rem;color:var(--text)}
+.pnl-output{font-family:"Playfair Display",serif;font-size:2.1rem;font-weight:900;text-align:center;color:var(--dark);margin:8px 0}
+.pnl-formula{text-align:center;font-size:.8rem;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.stat-box{background:#fff;border-radius:12px;padding:12px;text-align:center;border:1px solid rgba(244,130,154,.08)}
+.stat-lbl{font-size:.63rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.stat-val{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:900;color:var(--dark)}
+.quick-check{background:linear-gradient(135deg,var(--cp),var(--pp));padding:22px 26px;border:1px solid var(--cl)}
+.qc-lbl{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-bottom:8px}
+.qc-q{font-size:.96rem;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:13px}
+.qc-opts{display:flex;flex-direction:column;gap:7px}
+.qc-opt{background:#fff;border:1.5px solid rgba(244,130,154,.18);border-radius:11px;padding:12px 16px;font-family:"DM Sans",sans-serif;font-size:.87rem;color:var(--text);cursor:pointer;transition:all .22s;text-align:left}
+.qc-opt:hover:not(:disabled){border-color:var(--pl);background:var(--pp)}
+.qc-opt.good{background:var(--tp);border-color:var(--teal);color:#1a6b63}
+.qc-opt.bad{background:var(--pp);border-color:var(--pink);color:#a84060}
+.recap-list{display:flex;flex-direction:column;gap:8px}
+.recap-item{display:flex;gap:12px;padding:13px 16px;border-radius:12px}
+.recap-item:nth-child(odd){background:var(--tp);border:1px solid var(--tl)}
+.recap-item:nth-child(even){background:var(--pp);border:1px solid var(--pl)}
+.recap-ico{font-size:1rem;margin-top:2px}
+.recap-text{font-size:.87rem;line-height:1.62;color:var(--text)}
+.quiz-card .question{margin-bottom:22px}
+.q-lbl{font-size:.66rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.q-text{font-size:.96rem;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:12px}
+.q-opts{display:flex;flex-direction:column;gap:7px}
+.q-opt{background:var(--warm);border:1.5px solid rgba(244,130,154,.14);border-radius:11px;padding:11px 15px;font-family:"DM Sans",sans-serif;font-size:.87rem;color:var(--text);cursor:pointer;transition:all .2s;text-align:left}
+.q-opt:hover:not(:disabled){border-color:var(--pl);background:var(--pp)}
+.q-opt.correct{background:var(--tp);border-color:var(--teal);color:#1a6b63}
+.q-opt.wrong{background:var(--pp);border-color:var(--pink);color:#a84060}
+.q-fb{margin-top:9px;padding:11px 15px;border-radius:10px;font-size:.83rem;line-height:1.6;display:none}
+.q-fb.show{display:block;animation:fUp .3s ease both}
+.complete-card{background:linear-gradient(135deg,var(--dark),#3d2420);padding:34px;text-align:center;position:relative;overflow:hidden;display:none}
+.complete-card.show{display:block;animation:fUp .4s ease both}
+.complete-card::before{content:'✦';position:absolute;top:-30px;left:50%;transform:translateX(-50%);font-size:150px;color:var(--pink);opacity:.04;font-family:'Playfair Display',serif}
+.cc-spark{font-size:2.2rem;margin-bottom:12px;animation:flt 2s ease-in-out infinite;display:block}
+.cc-title{font-family:"Playfair Display",serif;font-size:1.9rem;font-weight:900;color:#fff;margin-bottom:8px}
+.cc-acc{color:var(--pink)}
+.cc-sub{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:20px;max-width:360px;margin-left:auto;margin-right:auto}
+.cc-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(126,206,196,.15);border:1px solid rgba(126,206,196,.3);border-radius:100px;padding:9px 20px;font-size:.88rem;font-weight:600;color:var(--tl);margin-bottom:22px}
+.cc-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cc-next,.cc-hub{padding:13px 26px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.9rem;cursor:pointer;border:none}
+.cc-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff}
+.cc-hub{background:transparent;color:rgba(255,255,255,.42);border:1.5px solid rgba(255,255,255,.18)}
+.bnav{position:fixed;bottom:0;left:230px;right:0;background:rgba(253,248,245,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(244,130,154,.12);padding:13px 40px;display:flex;align-items:center;justify-content:space-between;z-index:40}
+.bn-left{display:flex;align-items:center;gap:12px}
+.bn-dots{display:flex;gap:5px;align-items:center}
+.bn-dot{width:8px;height:8px;border-radius:50%;cursor:pointer;transition:all .25s}
+.bd-done{background:var(--teal)}
+.bd-active{background:var(--pink);transform:scale(1.45)}
+.bd-todo{background:var(--pp);border:1.5px solid var(--pl)}
+.bn-sname{font-size:.74rem;color:var(--muted);font-weight:500}
+.btn-prev,.btn-next{padding:10px 22px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.85rem;font-weight:600;cursor:pointer}
+.btn-prev{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted)}
+.btn-prev:disabled{opacity:.35;cursor:default}
+.btn-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.btn-next:disabled{opacity:.4;cursor:default}
+.toast{position:fixed;bottom:84px;right:26px;background:var(--dark);color:#fff;border-radius:14px;padding:13px 18px;display:flex;align-items:center;gap:11px;box-shadow:0 16px 48px rgba(44,24,16,.32);z-index:200;transform:translateY(18px);opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1)}
+.toast.show{transform:translateY(0);opacity:1}
+.streak-toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--dark);color:#fff;border-radius:14px;padding:12px 22px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 40px rgba(44,24,16,.3);z-index:300;opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
+.streak-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.cfp{position:fixed;border-radius:2px;pointer-events:none;z-index:9998;animation:cfF linear both}
+@media (max-width: 900px){ .sidebar{display:none}.main{margin-left:0}.bnav{left:0}}
+@media (max-width: 760px){
+  .inst-grid,.compare-grid,.lab-grid,.pnl-grid{grid-template-columns:1fr}
+  .tbar{padding:0 18px}
+  .lv-cards{padding:22px 14px 110px}
+  .teach-card,.instrument-wrap,.lab-wrap,.compare-wrap,.quick-check,.checkpoint-wrap,.recap-card,.quiz-card,.deep-card{padding:20px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="sidebar">
+    <a class="sb-logo" href="#"><span>A Girl &</span> Her Futures™</a>
+    <div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · Trading Foundations</div></div></div>
+    <div class="sb-sec">Learn</div>
+    <div class="sb-item on">✦ Lessons</div>
+    <div class="sb-item">◈ Games</div>
+    <div class="sb-sec">Community</div>
+    <div class="sb-item">↑ Leaderboard</div>
+    <div class="sb-item">◇ Drip Store</div>
+    <div class="sb-sec">Account</div>
+    <div class="sb-item">○ My Profile</div>
+    <div class="sb-bot"><div class="xpb"><div class="xpb-top"><span class="xpb-l">XP</span><span class="xpb-v">485 / 1000</span></div><div class="xpb-track"><div class="xpb-fill"></div></div></div></div>
+  </div>
+
+  <div class="main">
+    <div class="tbar">
+      <div class="tbar-bc"><a href="#">Lessons</a> › <a href="#">Phase 1</a> › <span class="tbar-cur" id="tbarCur">Introduction</span></div>
+      <div class="tbar-r"><span class="tbar-xp">+65 XP</span><span class="tbar-st" id="tbarSt">1 / 8</span></div>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+
+    <div class="lv-cards">
+      <div class="slide active" id="s0">
+        <div class="intro-card">
+          <div class="ic-eye">✦ Phase 1 · Section 1 · Lesson 4</div>
+          <div class="ic-title">Contracts & <span class="ic-acc">Instruments</span></div>
+          <div class="ic-sub">This version goes deeper on purpose. I want you to actually see the differences between contracts, instruments, and the dollar amounts attached so this stops feeling abstract.</div>
+          <div class="ic-pills">
+            <span class="ic-pill ip-pk">~16 min</span>
+            <span class="ic-pill ip-tl">Deeper detail</span>
+            <span class="ic-pill ip-pc">+65 XP</span>
+          </div>
+        </div>
+        <div class="teach-card">
+          <div class="teach-eye">Core idea</div>
+          <div class="teach-title">The instrument is the market. The contract count is your size inside that market.</div>
+          <div class="teach-body">That distinction has to be crystal clear.<br><br><strong>MNQ, NQ, MGC, ES</strong> are instruments. They tell you <em>what market you are trading.</em><br><br><strong>1 contract, 2 contracts, 5 contracts</strong> tells you how much exposure you have to that instrument’s move. Same market. Different emotional and dollar weight.</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s1">
+        <div class="instrument-wrap">
+          <div class="card-eye">Teach → Experience</div>
+          <div class="card-title">Meet the instruments with the real numbers</div>
+          <div class="card-body">Tap an instrument first. Then compare the exact dollar amounts attached to one point, one tick, and multiple contracts. This is where it starts feeling real.</div>
+          <div class="inst-grid" style="margin-top:16px">
+            <div class="inst-card mnq" onclick="pickInstrument('mnq', this)">
+              <div class="inst-name">MNQ</div>
+              <div class="inst-sub">Micro Nasdaq 100</div>
+              <div class="inst-row"><span class="inst-l">Per point</span><span class="inst-v">$2.00</span></div>
+              <div class="inst-row"><span class="inst-l">Per tick</span><span class="inst-v">$0.50</span></div>
+              <div class="inst-row"><span class="inst-l">Use case</span><span class="inst-v">Beginner-friendly Nasdaq</span></div>
+            </div>
+            <div class="inst-card nq" onclick="pickInstrument('nq', this)">
+              <div class="inst-name">NQ</div>
+              <div class="inst-sub">Nasdaq futures</div>
+              <div class="inst-row"><span class="inst-l">Per point</span><span class="inst-v">$20.00</span></div>
+              <div class="inst-row"><span class="inst-l">Per tick</span><span class="inst-v">$5.00</span></div>
+              <div class="inst-row"><span class="inst-l">Use case</span><span class="inst-v">Much heavier Nasdaq</span></div>
+            </div>
+            <div class="inst-card mgc" onclick="pickInstrument('mgc', this)">
+              <div class="inst-name">MGC</div>
+              <div class="inst-sub">Micro Gold</div>
+              <div class="inst-row"><span class="inst-l">Per point</span><span class="inst-v">$10.00</span></div>
+              <div class="inst-row"><span class="inst-l">Per tick</span><span class="inst-v">$1.00</span></div>
+              <div class="inst-row"><span class="inst-l">Use case</span><span class="inst-v">Micro gold exposure</span></div>
+            </div>
+            <div class="inst-card es" onclick="pickInstrument('es', this)">
+              <div class="inst-name">ES</div>
+              <div class="inst-sub">E-mini S&P 500</div>
+              <div class="inst-row"><span class="inst-l">Per point</span><span class="inst-v">$50.00</span></div>
+              <div class="inst-row"><span class="inst-l">Per tick</span><span class="inst-v">$12.50</span></div>
+              <div class="inst-row"><span class="inst-l">Use case</span><span class="inst-v">Heavy S&P contract</span></div>
+            </div>
+          </div>
+          <div class="feedback" id="instFb"></div>
+          <div class="table-wrap">
+            <table class="compare-table">
+              <thead>
+                <tr>
+                  <th>Instrument</th>
+                  <th>What it is</th>
+                  <th>1 Point</th>
+                  <th>1 Tick</th>
+                  <th>2 Contracts</th>
+                  <th>5 Contracts</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>MNQ</strong></td><td>Micro Nasdaq</td><td>$2.00</td><td>$0.50</td><td>$4.00/point</td><td>$10.00/point</td></tr>
+                <tr><td><strong>NQ</strong></td><td>Nasdaq</td><td>$20.00</td><td>$5.00</td><td>$40.00/point</td><td>$100.00/point</td></tr>
+                <tr><td><strong>MGC</strong></td><td>Micro Gold</td><td>$10.00</td><td>$1.00</td><td>$20.00/point</td><td>$50.00/point</td></tr>
+                <tr><td><strong>ES</strong></td><td>E-mini S&P</td><td>$50.00</td><td>$12.50</td><td>$100.00/point</td><td>$250.00/point</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" id="s2">
+        <div class="deep-card">
+          <div class="card-eye">Detailed breakdown</div>
+          <div class="card-title">How the amounts actually attach</div>
+          <div class="card-body">Here’s the simplest way to think about it:<br><br><strong>Instrument = the vehicle</strong><br><strong>Contract count = how many of that vehicle you are driving</strong><br><br>If price moves 10 points on <strong>MNQ</strong>, one contract gives you <strong>$20</strong>. If that same 10-point move happens on <strong>NQ</strong>, one contract gives you <strong>$200</strong>.<br><br>That’s why people blow themselves up. They understand the chart a little, but they do not understand the weight attached to the instrument they picked.</div>
+        </div>
+        <div class="reinforce-card">
+          <div class="rc-label">Reinforce</div>
+          <div class="rc-text">Same chart logic. Very different dollar consequence. <strong>This is why size and instrument selection matter just as much as the setup.</strong></div>
+        </div>
+        <div class="dayli-card">
+          <div class="dc-lbl">✦ Dayli note</div>
+          <div class="dc-av">D</div>
+          <div class="dc-q">"A lot of people don’t have a strategy problem first. They have a size problem first. They’re trying to learn on instruments that hit too hard for where they are mentally."</div>
+          <div class="dc-at">— Dayli Scott · A Girl & Her Futures™</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s3">
+        <div class="lab-wrap">
+          <div class="card-eye">Experience</div>
+          <div class="card-title">Contracts lab — see the dollars attached</div>
+          <div class="card-body">Use this like a live sandbox. Pick the instrument. Pick the number of points. Pick the contract count. Watch how fast the amount changes.</div>
+          <div class="pnl-grid">
+            <div class="pnl-panel">
+              <div class="pnl-row">
+                <div class="pnl-label">Instrument</div>
+                <select id="pnlInstrument" class="pnl-select" onchange="updateCalculator()">
+                  <option value="mnq">MNQ</option>
+                  <option value="nq">NQ</option>
+                  <option value="mgc">MGC</option>
+                  <option value="es">ES</option>
+                </select>
+              </div>
+              <div class="pnl-row">
+                <div class="pnl-label">Points moved</div>
+                <input id="pnlPoints" class="pnl-input" type="number" value="15" min="1" max="500" oninput="updateCalculator()">
+              </div>
+              <div class="pnl-row">
+                <div class="pnl-label">Contracts</div>
+                <select id="pnlContracts" class="pnl-select" onchange="updateCalculator()">
+                  <option value="1">1 contract</option>
+                  <option value="2">2 contracts</option>
+                  <option value="3">3 contracts</option>
+                  <option value="5">5 contracts</option>
+                </select>
+              </div>
+            </div>
+            <div class="pnl-panel">
+              <div class="pnl-output" id="pnlOutput">$30.00</div>
+              <div class="pnl-formula" id="pnlFormula">15 points × $2.00 × 1 contract</div>
+              <div class="stat-grid">
+                <div class="stat-box"><div class="stat-lbl">Per Point</div><div class="stat-val" id="perPointStat">$2.00</div></div>
+                <div class="stat-box"><div class="stat-lbl">Per Tick</div><div class="stat-val" id="perTickStat">$0.50</div></div>
+                <div class="stat-box"><div class="stat-lbl">Exposure</div><div class="stat-val" id="exposureStat">Light</div></div>
+                <div class="stat-box"><div class="stat-lbl">Feeling</div><div class="stat-val" id="feelingStat">Teachable</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="feedback show fb-mid" id="calcFb">Notice how a normal move can feel completely different depending on the instrument and contracts attached to it.</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s4">
+        <div class="compare-wrap">
+          <div class="card-eye">Correct a misconception</div>
+          <div class="card-title">Contract vs instrument</div>
+          <div class="card-body">Beginners blur these together all the time. We’re not doing that here.</div>
+          <div class="compare-grid" style="margin-top:16px">
+            <div class="compare-card mnq" onclick="comparePick('good', this)">
+              <div class="inst-name">Better understanding</div>
+              <div class="card-body">MNQ is the instrument. If I take 3 MNQ contracts, the market is still MNQ. What changed is my size.</div>
+            </div>
+            <div class="compare-card es" onclick="comparePick('bad', this)">
+              <div class="inst-name">Bad understanding</div>
+              <div class="card-body">A contract and an instrument are basically the same thing, so I don’t need to separate them.</div>
+            </div>
+          </div>
+          <div class="feedback" id="compareFb"></div>
+        </div>
+        <div class="quick-check">
+          <div class="qc-lbl">Quick check</div>
+          <div class="qc-q">If you go from 1 NQ contract to 2 NQ contracts, what changed?</div>
+          <div class="qc-opts">
+            <button class="qc-opt" onclick="quickCheck(this,true,'qc1fb','Exactly. It is still NQ. What changed is your size and the dollar weight of the move.')">Your size changed, not the instrument</button>
+            <button class="qc-opt" onclick="quickCheck(this,false,'qc1fb','Not quite. NQ stayed NQ. You just increased how much NQ exposure you took.')">The instrument changed</button>
+            <button class="qc-opt" onclick="quickCheck(this,false,'qc1fb','No. The amount attached to the move absolutely changed.')">Nothing really changed</button>
+          </div>
+          <div class="feedback" id="qc1fb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s5">
+        <div class="checkpoint-wrap">
+          <div class="card-eye">Checkpoint</div>
+          <div class="card-title">Build the idea</div>
+          <div class="card-body">Let’s make sure this is really clicking.</div>
+          <div class="lab-grid" style="margin-top:16px">
+            <div class="lab-card mnq" onclick="cpPick(1,'mnq', this)">
+              <div class="inst-name">Step 1</div>
+              <div class="card-body">A newer trader wants Nasdaq exposure with smaller dollar weight. Best fit?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">MNQ</div>
+            </div>
+            <div class="lab-card nq" onclick="cpPick(1,'nq', this)">
+              <div class="inst-name">Step 1</div>
+              <div class="card-body">A newer trader wants Nasdaq exposure with smaller dollar weight. Best fit?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">NQ</div>
+            </div>
+          </div>
+          <div class="lab-grid" style="margin-top:12px">
+            <div class="lab-card mgc" onclick="cpPick(2,'small', this)">
+              <div class="inst-name">Step 2</div>
+              <div class="card-body">What helps someone stay more teachable while still learning?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">Smaller contract count</div>
+            </div>
+            <div class="lab-card es" onclick="cpPick(2,'big', this)">
+              <div class="inst-name">Step 2</div>
+              <div class="card-body">What helps someone stay more teachable while still learning?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">Big size for faster money</div>
+            </div>
+          </div>
+          <div class="feedback" id="cpFb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s6">
+        <div class="recap-card">
+          <div class="card-title" style="margin-bottom:16px">What you know now</div>
+          <div class="recap-list">
+            <div class="recap-item"><div class="recap-ico">📌</div><div class="recap-text"><strong>The instrument is the market.</strong> MNQ, NQ, MGC, ES tell you what you are trading.</div></div>
+            <div class="recap-item"><div class="recap-ico">📄</div><div class="recap-text"><strong>The contract count is your size.</strong> 1 contract and 5 contracts in the same instrument are not emotionally the same trade.</div></div>
+            <div class="recap-item"><div class="recap-ico">💵</div><div class="recap-text"><strong>Dollar amounts attach fast.</strong> One point means something very different on MNQ than it does on ES or NQ.</div></div>
+            <div class="recap-item"><div class="recap-ico">🧠</div><div class="recap-text"><strong>Micros keep you teachable.</strong> Smaller exposure gives you room to actually learn before your emotions hijack the lesson.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" id="s7">
+        <div class="quiz-card">
+          <div class="card-eye">Final quiz</div>
+          <div class="card-title">Lock in contracts & instruments</div>
+          <div class="question">
+            <div class="q-lbl">Question 1 of 4</div>
+            <div class="q-text">What is an instrument?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q1fb','Correct. The instrument is the market itself, like MNQ or ES.')">The market you are trading, like MNQ or ES</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q1fb','That is more about your size, not the instrument.')">The number of contracts you choose</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q1fb','No. Stop placement is separate from instrument selection.')">Your stop loss placement</button>
+            </div>
+            <div class="q-fb" id="q1fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 2 of 4</div>
+            <div class="q-text">If NQ moves 10 points, about how much is that on 1 contract?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,false,'q2fb','That would match MNQ, not NQ.')">$20</button>
+              <button class="q-opt" onclick="quizAns(this,true,'q2fb','Exactly. NQ is about $20 per point, so a 10-point move is about $200 on 1 contract.')">$200</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q2fb','That is too heavy for NQ here. 10 points on NQ is not $500.')">$500</button>
+            </div>
+            <div class="q-fb" id="q2fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 3 of 4</div>
+            <div class="q-text">What changed if you go from 1 MNQ contract to 3 MNQ contracts?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q3fb','Yes. Same instrument, different contract count, meaning different exposure.')">Your size changed, not the instrument</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q3fb','No. MNQ stayed MNQ.')">The instrument changed</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q3fb','No. Contract count changes how much that move matters to your money.')">Nothing meaningful changed</button>
+            </div>
+            <div class="q-fb" id="q3fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 4 of 4</div>
+            <div class="q-text">Why do newer traders often start with micros?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q4fb','Exactly. Micros help them stay calmer and more teachable while they are still learning.')">Because smaller size helps them stay teachable</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q4fb','Usually the opposite. Bigger size creates more pressure too early.')">Because bigger size helps them learn faster</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q4fb','No. Micros are still real instruments with real money attached.')">Because micros are fake markets</button>
+            </div>
+            <div class="q-fb" id="q4fb"></div>
+          </div>
+        </div>
+        <div class="complete-card" id="completeCard">
+          <span class="cc-spark">✦</span>
+          <div class="cc-title">Lesson 4 <span class="cc-acc">complete.</span></div>
+          <div class="cc-sub">Now the symbols should feel way less random. You know the market, the contract count, and the dollar weight attached — which means you’re starting to think like a trader instead of just pressing buttons.</div>
+          <div class="cc-badge">+65 XP · Contracts & Instruments deep-dive unlocked</div>
+          <div class="cc-btns">
+            <button class="cc-next">Lesson 5 → Futures vs Stocks</button>
+            <button class="cc-hub">Back to lessons</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bnav">
+  <div class="bn-left">
+    <div class="bn-dots" id="bnDots"></div>
+    <div class="bn-sname"><span id="bnStepName">Introduction</span></div>
+  </div>
+  <div style="display:flex;gap:9px">
+    <button class="btn-prev" id="prevBtn" onclick="go(-1)" disabled>← Back</button>
+    <button class="btn-next" id="nextBtn" onclick="go(1)">Next →</button>
+  </div>
+</div>
+
+<div class="streak-toast" id="streakToast"><span id="stkIcon">🔥</span><span id="stkText">you’re locked in 🔥</span></div>
+<div class="toast" id="xpToast"><span>✦</span><div><div style="font-size:.85rem;font-weight:700">+65 XP earned!</div><div style="font-size:.7rem;color:rgba(255,255,255,.42)">Lesson 4 complete 🫧✨</div></div></div>
+
+<script>
+const STEPS=['Introduction','Meet the instruments','Detailed breakdown','Contracts lab','Misconception check','Checkpoint','Recap','Final quiz'];
+let cur=0, streak=0;
+let instDone=false, compareDone=false, checkpointDone=false, quizDone=false;
+const cpAns={1:null,2:null};
+const quizState={};
+const instruments = {
+  mnq:{name:'MNQ', perPoint:2, perTick:0.5, tone:'Lighter Nasdaq exposure. Great for learning.', exposure:['Light','Teachable']},
+  nq:{name:'NQ', perPoint:20, perTick:5, tone:'This hits 10x harder than MNQ per point.', exposure:['Heavy','Emotional faster']},
+  mgc:{name:'MGC', perPoint:10, perTick:1, tone:'Gold exposure with micro sizing.', exposure:['Medium','More manageable']},
+  es:{name:'ES', perPoint:50, perTick:12.5, tone:'Very heavy point value. Not casual.', exposure:['Very heavy','Needs respect']}
+};
+function buildDots(){
+  const el=document.getElementById('bnDots'); el.innerHTML='';
+  STEPS.forEach((_,i)=>{ const d=document.createElement('div'); d.className='bn-dot '+(i<cur?'bd-done':i===cur?'bd-active':'bd-todo'); if(i<=cur) d.onclick=()=>goTo(i); el.appendChild(d);});
+}
+function goTo(n){
+  document.getElementById('s'+cur)?.classList.remove('active');
+  cur=n;
+  document.getElementById('s'+cur)?.classList.add('active');
+  document.getElementById('tbarCur').textContent=STEPS[cur];
+  document.getElementById('tbarSt').textContent=(cur+1)+' / '+STEPS.length;
+  document.getElementById('bnStepName').textContent=STEPS[cur];
+  document.getElementById('progFill').style.width=(cur/(STEPS.length-1)*100)+'%';
+  document.getElementById('prevBtn').disabled=cur===0;
+  updateNext();
+  buildDots();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(d){ goTo(cur+d); }
+function updateNext(){
+  const btn=document.getElementById('nextBtn');
+  btn.disabled=false; btn.onclick=()=>go(1);
+  if(cur===1 && !instDone){ btn.disabled=true; btn.textContent='Pick an instrument first'; btn.onclick=null; }
+  else if(cur===4 && !compareDone){ btn.disabled=true; btn.textContent='Pick the better understanding'; btn.onclick=null; }
+  else if(cur===5 && !checkpointDone){ btn.disabled=true; btn.textContent='Finish the checkpoint'; btn.onclick=null; }
+  else if(cur===7){ btn.textContent=quizDone?'Finish lesson ✦':'Answer all questions'; btn.disabled=!quizDone; btn.onclick=quizDone?showComplete:null; }
+  else { btn.textContent=cur===6?'Take the final quiz →':'Next →'; }
+}
+function showToast(){ const t=document.getElementById('xpToast'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2300); }
+function showStreak(icon,text){ document.getElementById('stkIcon').textContent=icon; document.getElementById('stkText').textContent=text; const t=document.getElementById('streakToast'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
+function handleStreak(correct){ if(correct){ streak++; if(streak===2) showStreak('👀','okayyy I see you 👀'); if(streak===3) showStreak('🔥','you’re locked in 🔥'); if(streak===5) showStreak('🎯','sniper energy activated 🎯'); } else streak=0; }
+function confetti(){ const cols=['#F4829A','#7ECEC4','#F5A857','#F9B8C6','#B2E4DF','#FAD09A']; for(let i=0;i<34;i++){ const p=document.createElement('div'); p.className='cfp'; const sz=6+Math.random()*8; p.style.cssText=`left:${10+Math.random()*80}vw;top:-10px;width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation:cfF ${.8+Math.random()}s ${Math.random()*.5}s linear both;`; document.body.appendChild(p); setTimeout(()=>p.remove(),2500);} }
+function pickInstrument(key, el){
+  document.querySelectorAll('#s1 .inst-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const info = instruments[key];
+  const fb=document.getElementById('instFb');
+  instDone=true;
+  fb.className='feedback show fb-good';
+  fb.innerHTML=`<strong>${info.name}</strong>: ${info.tone}<br><br><strong>1 point = $${info.perPoint.toFixed(2)}</strong><br><strong>1 tick = $${info.perTick.toFixed(2)}</strong><br><br>This is what I mean when I say the chart is not the whole story. The dollars attached matter too.`;
+  document.getElementById('pnlInstrument').value=key;
+  updateCalculator();
+  handleStreak(true);
+  updateNext();
+}
+function updateCalculator(){
+  const key=document.getElementById('pnlInstrument').value;
+  const pts=Math.max(1, Number(document.getElementById('pnlPoints').value||1));
+  const contracts=Math.max(1, Number(document.getElementById('pnlContracts').value||1));
+  const info=instruments[key];
+  const pnl=pts*info.perPoint*contracts;
+  document.getElementById('pnlOutput').textContent=`$${pnl.toFixed(2)}`;
+  document.getElementById('pnlFormula').textContent=`${pts} points × $${info.perPoint.toFixed(2)} × ${contracts} ${contracts===1?'contract':'contracts'}`;
+  document.getElementById('perPointStat').textContent=`$${info.perPoint.toFixed(2)}`;
+  document.getElementById('perTickStat').textContent=`$${info.perTick.toFixed(2)}`;
+  document.getElementById('exposureStat').textContent=info.exposure[0];
+  document.getElementById('feelingStat').textContent=contracts >= 5 ? 'Loud' : contracts >= 3 ? 'Heavier' : info.exposure[1];
+  document.getElementById('calcFb').textContent = `A ${pts}-point move on ${info.name} with ${contracts} ${contracts===1?'contract':'contracts'} = $${pnl.toFixed(2)}. This is exactly why instrument and size both matter.`;
+}
+function comparePick(type, el){
+  if(compareDone) return;
+  document.querySelectorAll('#s4 .compare-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const fb=document.getElementById('compareFb');
+  compareDone=true;
+  if(type==='good'){
+    fb.className='feedback show fb-good';
+    fb.innerHTML='<strong>Exactly.</strong> The instrument is the market. The contract count is your size inside that market. Those are connected, but not interchangeable.';
+    handleStreak(true);
+  } else {
+    fb.className='feedback show fb-bad';
+    fb.innerHTML='<strong>Not this one.</strong> When you mix those up, you stop respecting the actual dollar weight attached to what you chose.';
+    handleStreak(false);
+  }
+  updateNext();
+}
+function quickCheck(btn, correct, fbId, msg){
+  const opts=btn.parentElement.querySelectorAll('.qc-opt');
+  opts.forEach(o=>o.disabled=true);
+  btn.classList.add(correct?'good':'bad');
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show '+(correct?'fb-good':'fb-bad');
+  fb.innerHTML=msg;
+  handleStreak(correct);
+}
+function cpPick(step, val, el){
+  const groups=document.querySelectorAll('#s5 .lab-grid');
+  const group = step===1 ? groups[0].querySelectorAll('.lab-card') : groups[1].querySelectorAll('.lab-card');
+  group.forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  cpAns[step]=val;
+  if(cpAns[1] && cpAns[2]){
+    const fb=document.getElementById('cpFb');
+    checkpointDone=true;
+    const good=cpAns[1]==='mnq' && cpAns[2]==='small';
+    if(good){
+      fb.className='feedback show fb-good';
+      fb.innerHTML='<strong>Clean logic.</strong> MNQ gives Nasdaq exposure with lighter point value, and smaller contract count keeps the trader more teachable while they are still learning.';
+      handleStreak(true); confetti();
+    } else {
+      fb.className='feedback show fb-bad';
+      fb.innerHTML='<strong>Almost.</strong> The deeper point here is choosing a lighter instrument or lighter size when you are still learning to read the market.';
+      handleStreak(false);
+    }
+    updateNext();
+  }
+}
+function quizAns(btn, correct, fbId, msg){
+  const wrap=btn.closest('.question');
+  wrap.querySelectorAll('.q-opt').forEach(o=>o.disabled=true);
+  btn.classList.add(correct?'correct':'wrong');
+  const fb=document.getElementById(fbId);
+  fb.className='q-fb show '+(correct?'fb-good':'fb-bad');
+  fb.innerHTML=msg;
+  quizState[fbId]=true;
+  handleStreak(correct);
+  if(Object.keys(quizState).length===4){ quizDone=true; updateNext(); }
+}
+function showComplete(){ document.getElementById('completeCard').classList.add('show'); showToast(); confetti(); }
+buildDots();
+updateNext();
+updateCalculator();
+</script>
+</body>
+</html>

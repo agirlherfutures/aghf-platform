@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson 6 — How Traders Get Paid · AG&HF</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F4829A;--pl:#F9B8C6;--pp:#FDE8ED;
+  --teal:#7ECEC4;--tl:#B2E4DF;--tp:#E8F8F6;
+  --peach:#F5A857;--cl:#FAD09A;--cp:#FEF3E4;
+  --cream:#FDF8F5;--warm:#FFFBF9;
+  --dark:#2C1810;--text:#3D2B20;--muted:#7A5C50;
+  --purple:#7F77DD;--upl:#CECBF6;--upp:#EEEDFE;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+.app{display:flex;min-height:100vh}
+.sidebar{width:230px;flex-shrink:0;background:#fff;border-right:1px solid rgba(244,130,154,.12);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50;overflow-y:auto}
+.sb-logo{padding:20px 22px 16px;font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(244,130,154,.1);cursor:pointer;text-decoration:none}
+.sb-logo span{color:var(--teal)}
+.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(244,130,154,.1);margin-bottom:6px}
+.sb-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pp),var(--cp));border:2px solid var(--pl);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink);flex-shrink:0}
+.sb-nm{font-size:.82rem;font-weight:600;color:var(--dark)}
+.sb-lv{font-size:.68rem;color:var(--muted)}
+.sb-sec{font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 18px 5px}
+.sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:.85rem;color:var(--muted);cursor:pointer;transition:all .2s;border-left:3px solid transparent}
+.sb-item:hover{color:var(--dark);background:var(--cream)}
+.sb-item.on{color:var(--pink);background:var(--pp);border-left-color:var(--pink);font-weight:500}
+.sb-bot{margin-top:auto;padding:12px 18px}
+.xpb{background:var(--cream);border-radius:10px;padding:11px 13px}
+.xpb-top{display:flex;justify-content:space-between;margin-bottom:6px}
+.xpb-l{font-size:.68rem;color:var(--muted);font-weight:500}
+.xpb-v{font-size:.72rem;color:var(--peach);font-weight:600}
+.xpb-track{height:4px;background:var(--pp);border-radius:100px;overflow:hidden}
+.xpb-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;width:72%}
+.main{margin-left:230px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+.tbar{background:#fff;border-bottom:1px solid rgba(244,130,154,.1);padding:0 36px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tbar-bc{font-size:.79rem;color:var(--muted)}
+.tbar-bc a{color:var(--muted);text-decoration:none}
+.tbar-cur{color:var(--dark);font-weight:500}
+.tbar-r{display:flex;align-items:center;gap:11px}
+.tbar-xp{font-size:.77rem;font-weight:600;color:var(--peach);background:var(--cp);border:1px solid var(--cl);padding:4px 12px;border-radius:100px}
+.tbar-st{font-size:.77rem;color:var(--muted)}
+.prog-track{height:6px;background:var(--pp);position:sticky;top:60px;z-index:39}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));transition:width .45s ease;width:0%}
+.lv-cards{flex:1;display:flex;flex-direction:column;align-items:center;padding:36px 24px 110px}
+.slide{width:100%;max-width:760px;display:none;animation:sIn .4s cubic-bezier(.34,1.08,.64,1) both}
+.slide.active{display:flex;flex-direction:column;gap:14px}
+@keyframes sIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes fUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cfF{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+@keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.intro-card,.teach-card,.reinforce-card,.quiz-card,.recap-card,.sim-wrap,.checkpoint-wrap,.complete-card,.dayli-card,.quick-check,.deep-card,.decision-wrap{border-radius:22px}
+.intro-card{background:var(--dark);padding:34px;position:relative;overflow:hidden}
+.intro-card::after{content:"✦";position:absolute;top:-30px;right:8px;font-size:130px;color:var(--pink);opacity:.05;font-family:"Playfair Display",serif}
+.ic-eye{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--pl);margin-bottom:12px}
+.ic-title{font-family:"Playfair Display",serif;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:10px}
+.ic-acc{color:var(--pink)}
+.ic-sub{font-size:.94rem;color:rgba(255,255,255,.58);line-height:1.72;margin-bottom:22px}
+.ic-pills{display:flex;gap:8px;flex-wrap:wrap}
+.ic-pill{font-size:.7rem;font-weight:500;padding:5px 12px;border-radius:100px;border:1px solid}
+.ip-pk{background:rgba(244,130,154,.15);border-color:rgba(244,130,154,.3);color:var(--pl)}
+.ip-tl{background:rgba(126,206,196,.15);border-color:rgba(126,206,196,.3);color:var(--tl)}
+.ip-pc{background:rgba(245,168,87,.15);border-color:rgba(245,168,87,.3);color:var(--cl)}
+.teach-card,.recap-card,.quiz-card,.sim-wrap,.checkpoint-wrap,.deep-card,.decision-wrap{background:#fff;padding:26px 30px;border:1px solid rgba(244,130,154,.1);box-shadow:0 4px 20px rgba(244,130,154,.05)}
+.teach-eye,.card-eye{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.teach-eye::after,.card-eye::after{content:'';flex:1;height:1px;background:rgba(245,168,87,.2)}
+.teach-title,.card-title{font-family:"Playfair Display",serif;font-size:1.25rem;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.3}
+.teach-body,.card-body{font-size:.93rem;line-height:1.82;color:var(--muted)}
+.teach-body strong,.card-body strong{color:var(--dark)}
+.reinforce-card{background:linear-gradient(135deg,rgba(126,206,196,.12),rgba(245,168,87,.08));border:1px solid var(--tl);padding:22px 26px;position:relative;overflow:hidden}
+.reinforce-card::before{content:"💡";position:absolute;top:16px;right:18px;font-size:1.2rem;opacity:.6}
+.rc-label{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.rc-text{font-size:.95rem;line-height:1.75;color:var(--dark);font-style:italic}
+.dayli-card{background:var(--dark);padding:24px 28px;position:relative;overflow:hidden}
+.dayli-card::before{content:'✦';position:absolute;bottom:-25px;right:8px;font-size:90px;color:var(--pink);opacity:.06;font-family:'Playfair Display',serif}
+.dc-lbl{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.dc-lbl::after{content:'';flex:1;height:1px;background:rgba(244,130,154,.2)}
+.dc-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--pp),var(--cp));border:2px solid var(--pink);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink);margin-bottom:10px}
+.dc-q{font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:#fff;line-height:1.75;margin-bottom:8px}
+.dc-at{font-size:.72rem;color:rgba(255,255,255,.3)}
+.table-wrap{overflow:auto;border-radius:16px;border:1px solid rgba(244,130,154,.12);margin-top:12px}
+.compare-table{width:100%;border-collapse:collapse;background:var(--warm);min-width:620px}
+.compare-table th,.compare-table td{padding:12px 14px;border-bottom:1px solid rgba(244,130,154,.08);font-size:.82rem;text-align:left;vertical-align:top}
+.compare-table th{background:#fff;color:var(--dark);font-weight:700}
+.compare-table tr:last-child td{border-bottom:none}
+.sim-grid,.lab-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.panel{background:var(--warm);border-radius:16px;padding:18px}
+.input-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.input-label{width:120px;flex-shrink:0;font-size:.8rem;color:var(--muted)}
+.input-field,.input-select{flex:1;padding:10px 12px;border-radius:10px;border:1.5px solid rgba(244,130,154,.18);background:#fff;font-family:"DM Sans",sans-serif;font-size:.9rem;color:var(--text)}
+.big-output{font-family:"Playfair Display",serif;font-size:2.2rem;font-weight:900;text-align:center;color:var(--dark);margin:8px 0}
+.formula{text-align:center;font-size:.8rem;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.stat-box{background:#fff;border-radius:12px;padding:12px;text-align:center;border:1px solid rgba(244,130,154,.08)}
+.stat-lbl{font-size:.63rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.stat-val{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:900;color:var(--dark)}
+.tick-bar{display:flex;gap:8px;justify-content:center;margin:14px 0}
+.tick{width:52px;height:18px;border-radius:999px;background:var(--pp);border:1px solid var(--pl);transition:.2s}
+.tick.on{background:var(--teal);border-color:var(--teal)}
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.choice-card{border-radius:16px;padding:18px;border:2px solid transparent;cursor:pointer;transition:.22s}
+.choice-card:hover{transform:translateY(-2px)}
+.choice-card.selected{box-shadow:0 10px 24px rgba(44,24,16,.08)}
+.good{background:var(--cp);border-color:var(--cl)}
+.bad{background:var(--upp);border-color:var(--upl)}
+.choice-title{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:6px}
+.feedback{display:none;margin-top:12px;padding:14px 16px;border-radius:14px;font-size:.86rem;line-height:1.65}
+.feedback.show{display:block;animation:fUp .25s ease both}
+.fb-good{background:var(--tp);border:1px solid var(--tl);color:#1a6b63}
+.fb-bad{background:var(--pp);border:1px solid var(--pl);color:#a84060}
+.fb-mid{background:var(--cp);border:1px solid var(--cl);color:#7a4a0a}
+.quick-check{background:linear-gradient(135deg,var(--cp),var(--pp));padding:22px 26px;border:1px solid var(--cl)}
+.qc-lbl{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-bottom:8px}
+.qc-q{font-size:.96rem;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:13px}
+.qc-opts{display:flex;flex-direction:column;gap:7px}
+.qc-opt{background:#fff;border:1.5px solid rgba(244,130,154,.18);border-radius:11px;padding:12px 16px;font-family:"DM Sans",sans-serif;font-size:.87rem;color:var(--text);cursor:pointer;transition:all .22s;text-align:left}
+.qc-opt:hover:not(:disabled){border-color:var(--pl);background:var(--pp)}
+.qc-opt.good{background:var(--tp);border-color:var(--teal);color:#1a6b63}
+.qc-opt.bad{background:var(--pp);border-color:var(--pink);color:#a84060}
+.recap-list{display:flex;flex-direction:column;gap:8px}
+.recap-item{display:flex;gap:12px;padding:13px 16px;border-radius:12px}
+.recap-item:nth-child(odd){background:var(--tp);border:1px solid var(--tl)}
+.recap-item:nth-child(even){background:var(--pp);border:1px solid var(--pl)}
+.recap-ico{font-size:1rem;margin-top:2px}
+.recap-text{font-size:.87rem;line-height:1.62;color:var(--text)}
+.quiz-card .question{margin-bottom:22px}
+.q-lbl{font-size:.66rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.q-text{font-size:.96rem;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:12px}
+.q-opts{display:flex;flex-direction:column;gap:7px}
+.q-opt{background:var(--warm);border:1.5px solid rgba(244,130,154,.14);border-radius:11px;padding:11px 15px;font-family:"DM Sans",sans-serif;font-size:.87rem;color:var(--text);cursor:pointer;transition:all .2s;text-align:left}
+.q-opt:hover:not(:disabled){border-color:var(--pl);background:var(--pp)}
+.q-opt.correct{background:var(--tp);border-color:var(--teal);color:#1a6b63}
+.q-opt.wrong{background:var(--pp);border-color:var(--pink);color:#a84060}
+.q-fb{margin-top:9px;padding:11px 15px;border-radius:10px;font-size:.83rem;line-height:1.6;display:none}
+.q-fb.show{display:block;animation:fUp .3s ease both}
+.complete-card{background:linear-gradient(135deg,var(--dark),#3d2420);padding:34px;text-align:center;position:relative;overflow:hidden;display:none}
+.complete-card.show{display:block;animation:fUp .4s ease both}
+.complete-card::before{content:'✦';position:absolute;top:-30px;left:50%;transform:translateX(-50%);font-size:150px;color:var(--pink);opacity:.04;font-family:'Playfair Display',serif}
+.cc-spark{font-size:2.2rem;margin-bottom:12px;animation:flt 2s ease-in-out infinite;display:block}
+.cc-title{font-family:"Playfair Display",serif;font-size:1.9rem;font-weight:900;color:#fff;margin-bottom:8px}
+.cc-acc{color:var(--pink)}
+.cc-sub{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:20px;max-width:390px;margin-left:auto;margin-right:auto}
+.cc-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(126,206,196,.15);border:1px solid rgba(126,206,196,.3);border-radius:100px;padding:9px 20px;font-size:.88rem;font-weight:600;color:var(--tl);margin-bottom:22px}
+.cc-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cc-next,.cc-hub{padding:13px 26px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.9rem;cursor:pointer;border:none}
+.cc-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff}
+.cc-hub{background:transparent;color:rgba(255,255,255,.42);border:1.5px solid rgba(255,255,255,.18)}
+.bnav{position:fixed;bottom:0;left:230px;right:0;background:rgba(253,248,245,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(244,130,154,.12);padding:13px 40px;display:flex;align-items:center;justify-content:space-between;z-index:40}
+.bn-left{display:flex;align-items:center;gap:12px}
+.bn-dots{display:flex;gap:5px;align-items:center}
+.bn-dot{width:8px;height:8px;border-radius:50%;cursor:pointer;transition:all .25s}
+.bd-done{background:var(--teal)}
+.bd-active{background:var(--pink);transform:scale(1.45)}
+.bd-todo{background:var(--pp);border:1.5px solid var(--pl)}
+.bn-sname{font-size:.74rem;color:var(--muted);font-weight:500}
+.btn-prev,.btn-next{padding:10px 22px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.85rem;font-weight:600;cursor:pointer}
+.btn-prev{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted)}
+.btn-prev:disabled{opacity:.35;cursor:default}
+.btn-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.btn-next:disabled{opacity:.4;cursor:default}
+.toast{position:fixed;bottom:84px;right:26px;background:var(--dark);color:#fff;border-radius:14px;padding:13px 18px;display:flex;align-items:center;gap:11px;box-shadow:0 16px 48px rgba(44,24,16,.32);z-index:200;transform:translateY(18px);opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1)}
+.toast.show{transform:translateY(0);opacity:1}
+.streak-toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--dark);color:#fff;border-radius:14px;padding:12px 22px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 40px rgba(44,24,16,.3);z-index:300;opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
+.streak-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.cfp{position:fixed;border-radius:2px;pointer-events:none;z-index:9998;animation:cfF linear both}
+@media (max-width: 900px){ .sidebar{display:none}.main{margin-left:0}.bnav{left:0}}
+@media (max-width: 760px){
+  .sim-grid,.lab-grid,.choice-grid{grid-template-columns:1fr}
+  .tbar{padding:0 18px}
+  .lv-cards{padding:22px 14px 110px}
+  .teach-card,.sim-wrap,.checkpoint-wrap,.quick-check,.recap-card,.quiz-card,.deep-card,.decision-wrap{padding:20px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="sidebar">
+    <a class="sb-logo" href="#"><span>A Girl &</span> Her Futures™</a>
+    <div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · Trading Foundations</div></div></div>
+    <div class="sb-sec">Learn</div>
+    <div class="sb-item on">✦ Lessons</div>
+    <div class="sb-item">◈ Games</div>
+    <div class="sb-sec">Community</div>
+    <div class="sb-item">↑ Leaderboard</div>
+    <div class="sb-item">◇ Drip Store</div>
+    <div class="sb-sec">Account</div>
+    <div class="sb-item">○ My Profile</div>
+    <div class="sb-bot"><div class="xpb"><div class="xpb-top"><span class="xpb-l">XP</span><span class="xpb-v">620 / 1000</span></div><div class="xpb-track"><div class="xpb-fill"></div></div></div></div>
+  </div>
+
+  <div class="main">
+    <div class="tbar">
+      <div class="tbar-bc"><a href="#">Lessons</a> › <a href="#">Phase 1</a> › <span class="tbar-cur" id="tbarCur">Introduction</span></div>
+      <div class="tbar-r"><span class="tbar-xp">+75 XP</span><span class="tbar-st" id="tbarSt">1 / 8</span></div>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+
+    <div class="lv-cards">
+      <div class="slide active" id="s0">
+        <div class="intro-card">
+          <div class="ic-eye">✦ Phase 1 · Section 1 · Lesson 6</div>
+          <div class="ic-title">How Traders Get <span class="ic-acc">Paid</span></div>
+          <div class="ic-sub">We already introduced contracts and instrument values. Now we’re going deeper into how price movement turns into money, and more importantly, how that starts feeling different depending on your size.</div>
+          <div class="ic-pills">
+            <span class="ic-pill ip-pk">~16 min</span>
+            <span class="ic-pill ip-tl">Feeling-based lesson</span>
+            <span class="ic-pill ip-pc">+75 XP</span>
+          </div>
+        </div>
+        <div class="teach-card">
+          <div class="teach-eye">Core idea</div>
+          <div class="teach-title">Points and ticks are how the market moves. P&L is what that movement means to you.</div>
+          <div class="teach-body"><strong>Points</strong> are larger units of movement.<br><strong>Ticks</strong> are smaller pieces inside those points.<br><strong>P&L</strong> is the money attached to that movement once you add your instrument and contract count.<br><br>This is the lesson where it stops being just chart language and starts becoming real.</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s1">
+        <div class="sim-wrap">
+          <div class="card-eye">Teach → Experience</div>
+          <div class="card-title">What is a point? What is a tick?</div>
+          <div class="card-body">Use MNQ as the example first. One full point on MNQ is made up of four smaller steps called ticks. Watch the ticks fill up, then answer the question.</div>
+          <div class="panel">
+            <div class="big-output" id="tickOutput">0.00 points</div>
+            <div class="formula">MNQ example: 4 ticks = 1 full point</div>
+            <div class="tick-bar" id="tickBar">
+              <div class="tick"></div><div class="tick"></div><div class="tick"></div><div class="tick"></div>
+            </div>
+            <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap">
+              <button class="btn-next" style="padding:10px 16px" onclick="addTick()">Add tick</button>
+              <button class="btn-prev" style="padding:10px 16px" onclick="resetTicks()">Reset</button>
+            </div>
+          </div>
+          <div class="quick-check" style="margin-top:14px">
+            <div class="qc-lbl">Quick check</div>
+            <div class="qc-q">If 4 ticks make 1 point, how many ticks make 2 points?</div>
+            <div class="qc-opts">
+              <button class="qc-opt" onclick="quickCheck(this,false,'tickFb','Not quite. 4 ticks = 1 point, so 2 points would be 8 ticks.')">4 ticks</button>
+              <button class="qc-opt" onclick="quickCheck(this,true,'tickFb','Exactly. 2 full points would be 8 ticks.')">8 ticks</button>
+              <button class="qc-opt" onclick="quickCheck(this,false,'tickFb','Too high here. 2 points would be 8 ticks on this example.')">12 ticks</button>
+            </div>
+            <div class="feedback" id="tickFb"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" id="s2">
+        <div class="deep-card">
+          <div class="card-eye">Detailed breakdown</div>
+          <div class="card-title">How points become money</div>
+          <div class="card-body">This is the formula you need in your bones:<br><br><strong>Points moved × point value × contracts = P&amp;L</strong><br><br>So if MNQ moves 10 points and MNQ is worth $2 per point, then:<br><strong>10 × $2 = $20 on 1 contract</strong><br><br>If you use 5 contracts, that same move becomes:<br><strong>10 × $2 × 5 = $100</strong><br><br>Same move. Different emotional pressure. That is the part people underestimate.</div>
+        </div>
+        <div class="reinforce-card">
+          <div class="rc-label">Reinforce</div>
+          <div class="rc-text">The market is doing what it’s doing. <strong>Your size determines how loud that move feels to you.</strong></div>
+        </div>
+        <div class="dayli-card">
+          <div class="dc-lbl">✦ Dayli note</div>
+          <div class="dc-av">D</div>
+          <div class="dc-q">"A move can be completely normal on the chart and still feel terrifying if your size is too big. That’s why learning how traders get paid is really also learning how traders panic."</div>
+          <div class="dc-at">— Dayli Scott · A Girl & Her Futures™</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s3">
+        <div class="sim-wrap">
+          <div class="card-eye">Experience</div>
+          <div class="card-title">Feel the P&amp;L lab</div>
+          <div class="card-body">Now let’s make it real. Pick the instrument, the move, and the contracts. Then look at the P&amp;L and the emotional “feel” attached to it.</div>
+          <div class="sim-grid">
+            <div class="panel">
+              <div class="input-row">
+                <div class="input-label">Instrument</div>
+                <select id="instrumentSelect" class="input-select" onchange="updatePNL()">
+                  <option value="mnq">MNQ</option>
+                  <option value="nq">NQ</option>
+                  <option value="mgc">MGC</option>
+                  <option value="es">ES</option>
+                </select>
+              </div>
+              <div class="input-row">
+                <div class="input-label">Move (points)</div>
+                <input id="pointsInput" class="input-field" type="number" value="12" min="-200" max="200" oninput="updatePNL()">
+              </div>
+              <div class="input-row">
+                <div class="input-label">Contracts</div>
+                <select id="contractsSelect" class="input-select" onchange="updatePNL()">
+                  <option value="1">1 contract</option>
+                  <option value="2">2 contracts</option>
+                  <option value="3">3 contracts</option>
+                  <option value="5">5 contracts</option>
+                  <option value="10">10 contracts</option>
+                </select>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="big-output" id="pnlOutput">$24.00</div>
+              <div class="formula" id="pnlFormula">12 points × $2.00 × 1 contract</div>
+              <div class="stat-grid">
+                <div class="stat-box"><div class="stat-lbl">Per Point</div><div class="stat-val" id="perPointStat">$2.00</div></div>
+                <div class="stat-box"><div class="stat-lbl">Per Tick</div><div class="stat-val" id="perTickStat">$0.50</div></div>
+                <div class="stat-box"><div class="stat-lbl">P&amp;L Feel</div><div class="stat-val" id="feelStat">Manageable</div></div>
+                <div class="stat-box"><div class="stat-lbl">Risk Volume</div><div class="stat-val" id="riskStat">Low</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="feedback show fb-mid" id="pnlFb">A regular move can feel calm, loud, or reckless depending on what you attached to it.</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s4">
+        <div class="decision-wrap">
+          <div class="card-eye">Correct a misconception</div>
+          <div class="card-title">“More contracts just means more money.”</div>
+          <div class="card-body">That’s incomplete. More contracts means more money <strong>and</strong> more risk, more emotional noise, and less room to think clearly if you are not ready.</div>
+          <div class="choice-grid" style="margin-top:16px">
+            <div class="choice-card good" onclick="pickMisconception('good', this)">
+              <div class="choice-title">Better understanding</div>
+              <div class="card-body">More contracts means more reward potential and more risk. I need size that still lets me think clearly.</div>
+            </div>
+            <div class="choice-card bad" onclick="pickMisconception('bad', this)">
+              <div class="choice-title">Bad understanding</div>
+              <div class="card-body">If I want to make money faster, I should just use more contracts even if I’m still learning.</div>
+            </div>
+          </div>
+          <div class="feedback" id="misFb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s5">
+        <div class="checkpoint-wrap">
+          <div class="card-eye">Checkpoint</div>
+          <div class="card-title">Build the idea</div>
+          <div class="card-body">Use the logic from the lesson, not your emotions.</div>
+          <div class="lab-grid">
+            <div class="choice-card good" onclick="cpPick(1,'money', this)">
+              <div class="choice-title">Step 1</div>
+              <div class="card-body">What changes P&amp;L the fastest: the market move itself or the contracts attached to it?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">Contracts can magnify the same move fast</div>
+            </div>
+            <div class="choice-card bad" onclick="cpPick(1,'same', this)">
+              <div class="choice-title">Step 1</div>
+              <div class="card-body">What changes P&amp;L the fastest: the market move itself or the contracts attached to it?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">Contracts don’t change much</div>
+            </div>
+          </div>
+          <div class="lab-grid" style="margin-top:12px">
+            <div class="choice-card good" onclick="cpPick(2,'small', this)">
+              <div class="choice-title">Step 2</div>
+              <div class="card-body">What helps a newer trader stay more teachable?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">Smaller size with clearer thinking</div>
+            </div>
+            <div class="choice-card bad" onclick="cpPick(2,'big', this)">
+              <div class="choice-title">Step 2</div>
+              <div class="card-body">What helps a newer trader stay more teachable?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">Bigger size for pressure and speed</div>
+            </div>
+          </div>
+          <div class="feedback" id="cpFb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s6">
+        <div class="recap-card">
+          <div class="card-title" style="margin-bottom:16px">What you know now</div>
+          <div class="recap-list">
+            <div class="recap-item"><div class="recap-ico">📏</div><div class="recap-text"><strong>Points are larger movement units.</strong> Ticks are smaller pieces inside those points.</div></div>
+            <div class="recap-item"><div class="recap-ico">💵</div><div class="recap-text"><strong>P&amp;L comes from the move plus the value attached.</strong> Instrument value and contracts decide what that move means to you.</div></div>
+            <div class="recap-item"><div class="recap-ico">📣</div><div class="recap-text"><strong>Bigger size makes the same move louder.</strong> The chart may be normal while your emotions are not.</div></div>
+            <div class="recap-item"><div class="recap-ico">🧠</div><div class="recap-text"><strong>Staying teachable matters.</strong> Small enough size keeps you learning instead of panicking.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" id="s7">
+        <div class="quiz-card">
+          <div class="card-eye">Final quiz</div>
+          <div class="card-title">Lock in points, ticks & P&amp;L</div>
+          <div class="question">
+            <div class="q-lbl">Question 1 of 4</div>
+            <div class="q-text">If 4 ticks make 1 point, how many ticks make 2 points?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,false,'q1fb','Not enough. 4 ticks is only 1 point.')">4 ticks</button>
+              <button class="q-opt" onclick="quizAns(this,true,'q1fb','Exactly. 2 points would be 8 ticks.')">8 ticks</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q1fb','Too many for 2 points here.')">12 ticks</button>
+            </div>
+            <div class="q-fb" id="q1fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 2 of 4</div>
+            <div class="q-text">What makes the same market move feel bigger emotionally?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q2fb','Yes. More contracts make the same move louder.')">More contracts attached to the move</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q2fb','Not by itself. The move matters, but size magnifies the feeling.')">Just looking at the chart longer</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q2fb','No. The instrument and size still matter.')">Nothing really changes the feeling</button>
+            </div>
+            <div class="q-fb" id="q2fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 3 of 4</div>
+            <div class="q-text">What is the cleanest formula for P&amp;L here?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q3fb','Correct. Points moved × point value × contracts is the logic.')">Points moved × point value × contracts</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q3fb','That leaves out the contracts and does not give the full picture.')">Points moved × chart color</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q3fb','That is not how P&amp;L is being framed here.')">Ticks only, no contracts</button>
+            </div>
+            <div class="q-fb" id="q3fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 4 of 4</div>
+            <div class="q-text">Why do newer traders often stay smaller?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q4fb','Exactly. Smaller size keeps them more teachable and less emotional.')">Because smaller size helps them stay teachable</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q4fb','Usually the opposite. More size creates more emotional noise.')">Because bigger size teaches faster</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q4fb','No. They still need to learn how money moves.')">Because P&amp;L does not matter yet</button>
+            </div>
+            <div class="q-fb" id="q4fb"></div>
+          </div>
+        </div>
+        <div class="complete-card" id="completeCard">
+          <span class="cc-spark">✦</span>
+          <div class="cc-title">Lesson 6 <span class="cc-acc">complete.</span></div>
+          <div class="cc-sub">Now you understand how traders actually get paid — and why the same move can feel calm or chaotic depending on what size you attach to it.</div>
+          <div class="cc-badge">+75 XP · P&amp;L awareness unlocked</div>
+          <div class="cc-btns">
+            <button class="cc-next">Next section → Platform & Execution Basics</button>
+            <button class="cc-hub">Back to lessons</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bnav">
+  <div class="bn-left">
+    <div class="bn-dots" id="bnDots"></div>
+    <div class="bn-sname"><span id="bnStepName">Introduction</span></div>
+  </div>
+  <div style="display:flex;gap:9px">
+    <button class="btn-prev" id="prevBtn" onclick="go(-1)" disabled>← Back</button>
+    <button class="btn-next" id="nextBtn" onclick="go(1)">Next →</button>
+  </div>
+</div>
+
+<div class="streak-toast" id="streakToast"><span id="stkIcon">🔥</span><span id="stkText">you’re locked in 🔥</span></div>
+<div class="toast" id="xpToast"><span>✦</span><div><div style="font-size:.85rem;font-weight:700">+75 XP earned!</div><div style="font-size:.7rem;color:rgba(255,255,255,.42)">Lesson 6 complete 🫧✨</div></div></div>
+
+<script>
+const STEPS=['Introduction','Points & ticks','Detailed breakdown','Feel the P&L lab','Misconception check','Checkpoint','Recap','Final quiz'];
+let cur=0, streak=0, misDone=false, checkpointDone=false, quizDone=false;
+const cpAns={1:null,2:null};
+const quizState={};
+let tickCount=0;
+const instruments = {
+  mnq:{name:'MNQ', perPoint:2, perTick:.5},
+  nq:{name:'NQ', perPoint:20, perTick:5},
+  mgc:{name:'MGC', perPoint:10, perTick:1},
+  es:{name:'ES', perPoint:50, perTick:12.5}
+};
+function buildDots(){
+  const el=document.getElementById('bnDots'); el.innerHTML='';
+  STEPS.forEach((_,i)=>{ const d=document.createElement('div'); d.className='bn-dot '+(i<cur?'bd-done':i===cur?'bd-active':'bd-todo'); if(i<=cur) d.onclick=()=>goTo(i); el.appendChild(d);});
+}
+function goTo(n){
+  document.getElementById('s'+cur)?.classList.remove('active');
+  cur=n;
+  document.getElementById('s'+cur)?.classList.add('active');
+  document.getElementById('tbarCur').textContent=STEPS[cur];
+  document.getElementById('tbarSt').textContent=(cur+1)+' / '+STEPS.length;
+  document.getElementById('bnStepName').textContent=STEPS[cur];
+  document.getElementById('progFill').style.width=(cur/(STEPS.length-1)*100)+'%';
+  document.getElementById('prevBtn').disabled=cur===0;
+  updateNext();
+  buildDots();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(d){ goTo(cur+d); }
+function updateNext(){
+  const btn=document.getElementById('nextBtn');
+  btn.disabled=false; btn.onclick=()=>go(1);
+  if(cur===4 && !misDone){ btn.disabled=true; btn.textContent='Pick the better understanding'; btn.onclick=null; }
+  else if(cur===5 && !checkpointDone){ btn.disabled=true; btn.textContent='Finish the checkpoint'; btn.onclick=null; }
+  else if(cur===7){ btn.textContent=quizDone?'Finish lesson ✦':'Answer all questions'; btn.disabled=!quizDone; btn.onclick=quizDone?showComplete:null; }
+  else { btn.textContent=cur===6?'Take the final quiz →':'Next →'; }
+}
+function showToast(){ const t=document.getElementById('xpToast'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2300); }
+function showStreak(icon,text){ document.getElementById('stkIcon').textContent=icon; document.getElementById('stkText').textContent=text; const t=document.getElementById('streakToast'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
+function handleStreak(correct){ if(correct){ streak++; if(streak===2) showStreak('👀','okayyy I see you 👀'); if(streak===3) showStreak('🔥','you’re locked in 🔥'); if(streak===5) showStreak('🎯','sniper energy activated 🎯'); } else streak=0; }
+function confetti(){ const cols=['#F4829A','#7ECEC4','#F5A857','#F9B8C6','#B2E4DF','#FAD09A']; for(let i=0;i<34;i++){ const p=document.createElement('div'); p.className='cfp'; const sz=6+Math.random()*8; p.style.cssText=`left:${10+Math.random()*80}vw;top:-10px;width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation:cfF ${.8+Math.random()}s ${Math.random()*.5}s linear both;`; document.body.appendChild(p); setTimeout(()=>p.remove(),2500);} }
+function addTick(){
+  tickCount = Math.min(4, tickCount + 1);
+  renderTicks();
+}
+function resetTicks(){
+  tickCount = 0;
+  renderTicks();
+}
+function renderTicks(){
+  const ticks=document.querySelectorAll('#tickBar .tick');
+  ticks.forEach((t,i)=> t.classList.toggle('on', i < tickCount));
+  document.getElementById('tickOutput').textContent = `${(tickCount/4).toFixed(2)} points`;
+}
+function updatePNL(){
+  const key=document.getElementById('instrumentSelect').value;
+  const pts=Number(document.getElementById('pointsInput').value || 0);
+  const contracts=Number(document.getElementById('contractsSelect').value || 1);
+  const info=instruments[key];
+  const pnl=pts * info.perPoint * contracts;
+  document.getElementById('pnlOutput').textContent = `${pnl < 0 ? '-' : ''}$${Math.abs(pnl).toFixed(2)}`;
+  document.getElementById('pnlOutput').style.color = pnl < 0 ? '#F4829A' : '#2C1810';
+  document.getElementById('pnlFormula').textContent = `${pts} points × $${info.perPoint.toFixed(2)} × ${contracts} ${contracts===1?'contract':'contracts'}`;
+  document.getElementById('perPointStat').textContent = `$${info.perPoint.toFixed(2)}`;
+  document.getElementById('perTickStat').textContent = `$${info.perTick.toFixed(2)}`;
+  let feel='Manageable', risk='Low';
+  const abs=Math.abs(pnl);
+  if(abs >= 50) { feel='Noticeable'; risk='Medium'; }
+  if(abs >= 150) { feel='Loud'; risk='High'; }
+  if(abs >= 400) { feel='Very loud'; risk='Heavy'; }
+  document.getElementById('feelStat').textContent = feel;
+  document.getElementById('riskStat').textContent = risk;
+  document.getElementById('pnlFb').textContent = `A ${pts}-point move on ${info.name} with ${contracts} ${contracts===1?'contract':'contracts'} = ${pnl < 0 ? '-' : ''}$${Math.abs(pnl).toFixed(2)}. Same move, different emotional pressure depending on what you attach to it.`;
+}
+function pickMisconception(type, el){
+  if(misDone) return;
+  document.querySelectorAll('#s4 .choice-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const fb=document.getElementById('misFb');
+  misDone=true;
+  if(type==='good'){
+    fb.className='feedback show fb-good';
+    fb.innerHTML='<strong>Exactly.</strong> More contracts means more reward potential and more risk. You need size that still lets you think clearly.';
+    handleStreak(true);
+  } else {
+    fb.className='feedback show fb-bad';
+    fb.innerHTML='<strong>Not this one.</strong> More contracts can make money faster, but they can also make panic faster if you are not ready for that size.';
+    handleStreak(false);
+  }
+  updateNext();
+}
+function quickCheck(btn, correct, fbId, msg){
+  const opts=btn.parentElement.querySelectorAll('.qc-opt');
+  opts.forEach(o=>o.disabled=true);
+  btn.classList.add(correct?'good':'bad');
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show '+(correct?'fb-good':'fb-bad');
+  fb.innerHTML=msg;
+  handleStreak(correct);
+}
+function cpPick(step, val, el){
+  const groups=document.querySelectorAll('#s5 .lab-grid');
+  const group = step===1 ? groups[0].querySelectorAll('.choice-card') : groups[1].querySelectorAll('.choice-card');
+  group.forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  cpAns[step]=val;
+  if(cpAns[1] && cpAns[2]){
+    const fb=document.getElementById('cpFb');
+    checkpointDone=true;
+    const good = cpAns[1]==='money' && cpAns[2]==='small';
+    if(good){
+      fb.className='feedback show fb-good';
+      fb.innerHTML='<strong>Clean logic.</strong> Contracts can magnify the same move fast, which is why smaller size often keeps a newer trader more teachable.';
+      handleStreak(true); confetti();
+    } else {
+      fb.className='feedback show fb-bad';
+      fb.innerHTML='<strong>Almost.</strong> This lesson is about respecting how size changes the feel of the move, not just the math of the move.';
+      handleStreak(false);
+    }
+    updateNext();
+  }
+}
+function quizAns(btn, correct, fbId, msg){
+  const wrap=btn.closest('.question');
+  wrap.querySelectorAll('.q-opt').forEach(o=>o.disabled=true);
+  btn.classList.add(correct?'correct':'wrong');
+  const fb=document.getElementById(fbId);
+  fb.className='q-fb show '+(correct?'fb-good':'fb-bad');
+  fb.innerHTML=msg;
+  quizState[fbId]=true;
+  handleStreak(correct);
+  if(Object.keys(quizState).length===4){ quizDone=true; updateNext(); }
+}
+function showComplete(){ document.getElementById('completeCard').classList.add('show'); showToast(); confetti(); }
+buildDots();
+updateNext();
+renderTicks();
+updatePNL();
+</script>
+</body>
+</html>

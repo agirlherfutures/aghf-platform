@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 9 — Brokers & Prop Firms</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F4829A; --pink2:#F9B8C6; --pink3:#FDE8ED;
+  --teal:#7ECEC4; --teal2:#B2E4DF; --teal3:#E8F8F6;
+  --peach:#F5A857; --peach2:#FAD09A; --peach3:#FEF3E4;
+  --cream:#FDF8F5; --warm:#FFFBF9; --dark:#2C1810; --text:#3D2B20; --muted:#7A5C50;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.app{display:flex;min-height:100vh}
+.sidebar{width:220px;background:#fff;border-right:1px solid rgba(244,130,154,.12);position:fixed;top:0;bottom:0;left:0;display:flex;flex-direction:column}
+.logo{padding:20px 22px 16px;border-bottom:1px solid rgba(244,130,154,.1);font-family:"Playfair Display",serif;font-style:italic;color:var(--pink)}
+.logo span{color:var(--teal)}
+.user{padding:13px 18px;border-bottom:1px solid rgba(244,130,154,.1)}
+.user strong{display:block;font-size:.82rem;color:var(--dark)}
+.user span{font-size:.68rem;color:var(--muted)}
+.sec{padding:10px 18px 5px;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.item{padding:10px 18px;font-size:.85rem;color:var(--muted);border-left:3px solid transparent}
+.item.on{background:var(--pink3);color:var(--pink);border-left-color:var(--pink);font-weight:700}
+.main{margin-left:220px;flex:1}
+.top{height:60px;background:#fff;border-bottom:1px solid rgba(244,130,154,.1);display:flex;justify-content:space-between;align-items:center;padding:0 30px;position:sticky;top:0;z-index:20}
+.top small{color:var(--muted)}
+.xp{font-size:.77rem;color:var(--peach);background:var(--peach3);border:1px solid var(--peach2);padding:4px 12px;border-radius:999px;font-weight:700}
+.progress{height:6px;background:var(--pink3);position:sticky;top:60px;z-index:19}
+.progress > div{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--peach));transition:.3s ease}
+.wrap{padding:34px 24px 110px;display:flex;justify-content:center}
+.slide{max-width:820px;width:100%;display:none;flex-direction:column;gap:14px}
+.slide.active{display:flex}
+.card{background:#fff;border:1px solid rgba(244,130,154,.1);box-shadow:0 4px 20px rgba(244,130,154,.05);border-radius:22px;padding:26px 30px}
+.intro{background:var(--dark);color:#fff;padding:40px 38px 42px;overflow:visible;min-height:auto;border-radius:32px;box-shadow:0 10px 40px rgba(44,24,16,.25)}
+.eyebrow{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink2);margin-bottom:12px}
+h1,h2,.title{font-family:"Playfair Display",serif;color:var(--dark)}
+.intro h1{font-size:2.15rem;line-height:1.12;color:#fff;margin-bottom:14px;max-width:680px}
+.intro h1 span{color:var(--pink)}
+.intro p{line-height:1.78;color:rgba(255,255,255,.62);margin-bottom:22px;max-width:680px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pill{font-size:.7rem;padding:5px 12px;border-radius:999px;border:1px solid}
+.pk{background:rgba(244,130,154,.15);border-color:rgba(244,130,154,.3);color:var(--pink2)}
+.tl{background:rgba(126,206,196,.15);border-color:rgba(126,206,196,.3);color:var(--teal2)}
+.pc{background:rgba(245,168,87,.15);border-color:rgba(245,168,87,.3);color:var(--peach2)}
+.head{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);font-weight:700;margin-bottom:10px}
+.card h2{font-size:1.25rem;line-height:1.3;margin-bottom:12px}
+.card p{font-size:.93rem;line-height:1.82;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tap{border-radius:18px;padding:18px;border:2px solid transparent;background:var(--warm);cursor:pointer;transition:.15s ease}
+.tap:hover{transform:translateY(-2px)}
+.tap.selected{box-shadow:0 10px 24px rgba(44,24,16,.08)}
+.broker{background:var(--pink3);border-color:var(--pink2)}
+.prop{background:var(--teal3);border-color:var(--teal2)}
+.goodbg{background:var(--peach3);border-color:var(--peach2)}
+.badbg{background:#f7f2ff;border-color:#ddd5ff}
+.tap h3{font-family:"Playfair Display",serif;font-size:1.06rem;color:var(--dark);margin-bottom:6px}
+.tap p{font-size:.84rem;line-height:1.65}
+.row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid rgba(244,130,154,.08)}
+.row:last-child{border-bottom:none}
+.row .l{font-size:.76rem;color:var(--muted)}
+.row .r{font-size:.82rem;color:var(--dark);font-weight:700;text-align:right}
+.feedback{display:none;padding:14px 16px;border-radius:14px;font-size:.86rem;line-height:1.65}
+.feedback.show{display:block}
+.feedback.good{background:var(--teal3);border:1px solid var(--teal2);color:#1a6b63}
+.feedback.bad{background:var(--pink3);border:1px solid var(--pink2);color:#a84060}
+.feedback.mid{background:var(--peach3);border:1px solid var(--peach2);color:#7a4a0a}
+.reinforce{background:linear-gradient(135deg,rgba(126,206,196,.12),rgba(245,168,87,.08));border:1px solid var(--teal2)}
+.reinforce b{display:block;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.reinforce div{font-size:.95rem;line-height:1.75;color:var(--dark);font-style:italic}
+.money-panels{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.panel{background:var(--warm);border-radius:18px;padding:18px}
+.big{font-family:"Playfair Display",serif;font-size:2rem;font-weight:900;color:var(--dark);text-align:center;margin-bottom:8px}
+.meter{height:12px;background:var(--pink3);border-radius:999px;overflow:hidden;margin:10px 0}
+.meter > div{height:100%}
+.qc{background:linear-gradient(135deg,var(--peach3),var(--pink3));border:1px solid var(--peach2)}
+.qc .label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);font-weight:700;margin-bottom:8px}
+.qc .q{font-size:.96rem;color:var(--dark);font-weight:700;line-height:1.5;margin-bottom:13px}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opts button{background:#fff;border:1.5px solid rgba(244,130,154,.16);border-radius:11px;padding:12px 16px;text-align:left;font-family:"DM Sans",sans-serif;font-size:.87rem;color:var(--text);cursor:pointer}
+.opts button.good{background:var(--teal3);border-color:var(--teal);color:#1a6b63}
+.opts button.bad{background:var(--pink3);border-color:var(--pink);color:#a84060}
+.recap-list{display:flex;flex-direction:column;gap:8px}
+.recap{display:flex;gap:12px;padding:13px 16px;border-radius:12px}
+.recap:nth-child(odd){background:var(--teal3);border:1px solid var(--teal2)}
+.recap:nth-child(even){background:var(--pink3);border:1px solid var(--pink2)}
+.recap .ico{font-size:1rem;margin-top:2px}
+.recap .txt{font-size:.87rem;line-height:1.62}
+.dayli{background:var(--dark);color:#fff}
+.dayli .head{color:var(--pink)}
+.dayli .quote{font-family:"Playfair Display",serif;font-size:1rem;line-height:1.75;font-style:italic}
+.dayli .at{margin-top:8px;color:rgba(255,255,255,.32);font-size:.72rem}
+.question{margin-bottom:22px}
+.question .lbl{font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:7px}
+.question .q{font-size:.96rem;color:var(--dark);font-weight:700;line-height:1.5;margin-bottom:12px}
+.qfb{display:none;margin-top:9px;padding:11px 15px;border-radius:10px;font-size:.83rem;line-height:1.6}
+.qfb.show{display:block}
+.complete{background:linear-gradient(135deg,var(--dark),#3d2420);text-align:center;color:#fff;display:none}
+.complete.show{display:block}
+.complete h2{font-family:"Playfair Display",serif;font-size:1.9rem;color:#fff;margin-bottom:8px}
+.complete h2 span{color:var(--pink)}
+.complete p{color:rgba(255,255,255,.58);max-width:410px;margin:0 auto 20px;line-height:1.65}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(126,206,196,.15);border:1px solid rgba(126,206,196,.3);border-radius:999px;padding:9px 20px;font-size:.88rem;color:var(--teal2);font-weight:700;margin-bottom:22px}
+.cc-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.cc-btns button{padding:13px 26px;border-radius:999px;font-family:"DM Sans",sans-serif;font-size:.9rem;cursor:pointer}
+.cc-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.cc-hub{background:transparent;color:rgba(255,255,255,.45);border:1.5px solid rgba(255,255,255,.18)}
+.bottom{position:fixed;left:220px;right:0;bottom:0;background:rgba(253,248,245,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(244,130,154,.12);padding:13px 40px;display:flex;justify-content:space-between;align-items:center}
+.dots{display:flex;gap:5px}
+.dot{width:8px;height:8px;border-radius:50%;cursor:pointer}
+.done{background:var(--teal)}
+.active-dot{background:var(--pink);transform:scale(1.45)}
+.todo{background:var(--pink3);border:1.5px solid var(--pink2)}
+.stepname{font-size:.74rem;color:var(--muted);font-weight:700}
+.prev,.next{padding:10px 22px;border-radius:999px;font-family:"DM Sans",sans-serif;font-size:.85rem;font-weight:700;cursor:pointer}
+.prev{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted)}
+.next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.prev:disabled,.next:disabled{opacity:.4;cursor:default}
+.toast,.streak{position:fixed;background:var(--dark);color:#fff;border-radius:14px;box-shadow:0 16px 48px rgba(44,24,16,.32);z-index:999}
+.toast{bottom:84px;right:26px;padding:13px 18px;display:flex;gap:11px;align-items:center;transform:translateY(18px);opacity:0;transition:.35s}
+.toast.show{transform:translateY(0);opacity:1}
+.streak{top:80px;left:50%;transform:translateX(-50%) translateY(-20px);padding:12px 22px;display:flex;gap:10px;align-items:center;opacity:0;transition:.35s;pointer-events:none}
+.streak.show{transform:translateX(-50%) translateY(0);opacity:1}
+.confetti{position:fixed;border-radius:2px;pointer-events:none;z-index:1000}
+@media (max-width:900px){.sidebar{display:none}.main{margin-left:0}.bottom{left:0}}
+@media (max-width:760px){.grid2,.split-grid,.choice-grid,.lab-grid,.money-panels{grid-template-columns:1fr}.top{padding:0 18px}.wrap{padding:22px 14px 110px}.intro{padding:30px 22px 32px}.intro h1{font-size:1.8rem;line-height:1.14}.intro p{margin-bottom:18px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo"><span>A Girl &</span> Her Futures™</div>
+    <div class="user"><strong>Dayli</strong><span>Section 2 · Platform + Execution Basics</span></div>
+    <div class="sec">Learn</div>
+    <div class="item on">✦ Lessons</div>
+    <div class="item">◈ Games</div>
+    <div class="sec">Community</div>
+    <div class="item">↑ Leaderboard</div>
+    <div class="item">◇ Drip Store</div>
+    <div class="sec">Account</div>
+    <div class="item">○ My Profile</div>
+    <div style="margin-top:auto;padding:12px 18px"><div class="xpb"><div class="xpb-top"><span>XP</span><span>860 / 1000</span></div><div class="xpb-track"><div class="xpb-fill"></div></div></div></div>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <small>Lessons › Section 2 › <span id="crumb" class="tbar-cur">Introduction</span></small>
+      <div><span class="xp">+90 XP</span> <small id="count">1 / 8</small></div>
+    </div>
+    <div class="progress"><div id="bar"></div></div>
+
+    <div class="wrap">
+      <section class="slide active" id="s0">
+        <div class="intro">
+          <div class="eyebrow">✦ Section 2 · Lesson 9</div>
+          <h1>Brokers & <span>Prop Firms</span></h1>
+          <p>You don’t just open a chart and magically trade. There is always a middle step: you either trade with your own money through a broker, or you trade with someone else’s capital through a prop firm.</p>
+          <div class="pills"><span class="pill pk">~15 min</span><span class="pill tl">Real-world lesson</span><span class="pill pc">+90 XP</span></div>
+        </div>
+        <div class="card">
+          <div class="head">Core idea</div>
+          <h2>You either trade your money… or someone else’s.</h2>
+          <p>With a <strong>broker</strong>, you use your own money, keep your profits, and take your own losses. With a <strong>prop firm</strong>, you trade under rules using access to their capital, and profits are usually split.</p>
+        </div>
+      </section>
+
+      <section class="slide" id="s1">
+        <div class="card">
+          <div class="head">Teach → Experience</div>
+          <h2>Broker vs prop firm side by side</h2>
+          <p>Tap each card to understand how they differ. This is not about which one is universally better. It is about knowing what kind of path you are choosing.</p>
+          <div class="grid2" style="margin-top:16px">
+            <div class="tap broker" onclick="pickPath('broker', this)">
+              <h3>Broker</h3>
+              <div class="row"><span class="l">Whose money?</span><span class="r">Your money</span></div>
+              <div class="row"><span class="l">Profits</span><span class="r">You keep them</span></div>
+              <div class="row"><span class="l">Losses</span><span class="r">You take them</span></div>
+              <div class="row"><span class="l">Trade freedom</span><span class="r">More direct control</span></div>
+            </div>
+            <div class="tap prop" onclick="pickPath('prop', this)">
+              <h3>Prop Firm</h3>
+              <div class="row"><span class="l">Whose money?</span><span class="r">Their capital access</span></div>
+              <div class="row"><span class="l">Profits</span><span class="r">Usually split</span></div>
+              <div class="row"><span class="l">Losses</span><span class="r">Rule-based limits</span></div>
+              <div class="row"><span class="l">Trade freedom</span><span class="r">Must follow firm rules</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="feedback" id="pathFb"></div>
+        <div class="card reinforce"><b>Reinforce</b><div>Brokers give you direct ownership. Prop firms give you structured access. Both matter. They just ask different things from you.</div></div>
+      </section>
+
+      <section class="slide" id="s2">
+        <div class="card">
+          <div class="head">Scenario</div>
+          <h2>You only have $300</h2>
+          <p>You want to start trading, but you only have $300. Which path makes more sense for many beginners who want access to more capital without funding everything themselves?</p>
+          <div class="grid2" style="margin-top:16px">
+            <div class="tap broker" onclick="pick300('broker', this)">
+              <h3>Use a broker</h3>
+              <p>Trade only with the $300 directly.</p>
+            </div>
+            <div class="tap prop" onclick="pick300('prop', this)">
+              <h3>Use a prop firm</h3>
+              <p>Try to qualify under rules for larger capital access.</p>
+            </div>
+          </div>
+        </div>
+        <div class="feedback" id="caseFb"></div>
+      </section>
+
+      <section class="slide" id="s3">
+        <div class="card">
+          <div class="head">Money feel</div>
+          <h2>Compare the starting path</h2>
+          <p>Tap each option and feel the difference between a small self-funded account and a larger prop account with rules. More capital does not automatically mean more freedom.</p>
+          <div class="grid2" style="margin-top:16px">
+            <div class="tap broker" onclick="pickMoney('300', this)">
+              <h3>$300 self-funded</h3>
+              <p>Smaller room for mistakes, direct ownership of results.</p>
+            </div>
+            <div class="tap prop" onclick="pickMoney('50k', this)">
+              <h3>$50K prop account</h3>
+              <p>Much more capital access, but strict rules matter.</p>
+            </div>
+          </div>
+          <div class="money-panels" style="margin-top:14px">
+            <div class="panel">
+              <div class="big" id="capLabel">$300</div>
+              <div class="meter"><div id="roomMeter" style="width:18%;background:linear-gradient(90deg,var(--pink),var(--peach))"></div></div>
+              <p id="capBody">Smaller account size means smaller room for error.</p>
+            </div>
+            <div class="panel">
+              <div class="big" id="ruleLabel">High pressure</div>
+              <div class="meter"><div id="ruleMeter" style="width:72%;background:linear-gradient(90deg,var(--teal),var(--peach))"></div></div>
+              <p id="ruleBody">With more capital access often comes more rule sensitivity.</p>
+            </div>
+          </div>
+        </div>
+        <div class="feedback show mid" id="moneyFb">More capital is powerful, but it does not remove discipline. It often makes discipline matter even more.</div>
+      </section>
+
+      <section class="slide" id="s4">
+        <div class="card">
+          <div class="head">Rule reality</div>
+          <h2>You made money… but broke a rule</h2>
+          <p>Scenario: you made $1,000 in a prop account, but you violated one of the firm’s rules. Do you still automatically keep the money?</p>
+          <div class="grid2" style="margin-top:16px">
+            <div class="tap badbg" onclick="pickRule('yes', this)">
+              <h3>Yes</h3>
+              <p>Money is money, so profit should still count.</p>
+            </div>
+            <div class="tap goodbg" onclick="pickRule('no', this)">
+              <h3>No</h3>
+              <p>Rules matter more than the raw profit if you are trading under a prop model.</p>
+            </div>
+          </div>
+        </div>
+        <div class="feedback" id="ruleFb"></div>
+      </section>
+
+      <section class="slide" id="s5">
+        <div class="card">
+          <div class="head">Build your path</div>
+          <h2>How would you want to start?</h2>
+          <p>There is no wrong answer here unless you are choosing randomly. This is about clarity, not pressure.</p>
+          <div class="grid2" style="margin-top:16px">
+            <div class="tap goodbg" onclick="pickStart('small', this)">
+              <h3>Learn with smaller money</h3>
+              <p>Keep it simple and direct.</p>
+            </div>
+            <div class="tap goodbg" onclick="pickStart('prop', this)">
+              <h3>Try a prop firm path</h3>
+              <p>Use rules and structure to access more capital.</p>
+            </div>
+          </div>
+          <div class="grid2" style="margin-top:12px">
+            <div class="tap goodbg" onclick="pickStart('unsure', this)">
+              <h3>Not sure yet</h3>
+              <p>Still learning the landscape before choosing.</p>
+            </div>
+            <div class="tap badbg" onclick="pickStart('random', this)">
+              <h3>Just click anything</h3>
+              <p>No real understanding, just vibes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="feedback" id="startFb"></div>
+        <div class="card qc">
+          <div class="label">Reinforce</div>
+          <div class="q">Most beginners do not fail first because of strategy. They fail because they do not understand how they are entering the market.</div>
+          <div class="opts">
+            <button onclick="quickCheck(this,true,'qc1fb','Exactly. Understanding the path matters before execution even starts.')">That makes sense</button>
+            <button onclick="quickCheck(this,false,'qc1fb','Not here. This lesson is about clearing up that confusion early.')">That does not really matter</button>
+          </div>
+          <div class="feedback" id="qc1fb"></div>
+        </div>
+      </section>
+
+      <section class="slide" id="s6">
+        <div class="card">
+          <h2 style="margin-bottom:16px">What you know now</h2>
+          <div class="recap-list">
+            <div class="recap"><div class="ico">💰</div><div class="txt"><strong>Brokers use your money.</strong> You own the gains and the losses directly.</div></div>
+            <div class="recap"><div class="ico">🏢</div><div class="txt"><strong>Prop firms use rules plus capital access.</strong> You do not get to ignore rules just because you made money.</div></div>
+            <div class="recap"><div class="ico">⚖️</div><div class="txt"><strong>More capital does not mean more freedom.</strong> It often means more responsibility and tighter discipline.</div></div>
+            <div class="recap"><div class="ico">🧠</div><div class="txt"><strong>Your entry path matters.</strong> Beginners need to understand how they are trading, not just what setup they want.</div></div>
+          </div>
+        </div>
+        <div class="card dayli">
+          <div class="head">✦ Dayli note</div>
+          <div class="quote">"A lot of beginners think trading starts at the entry. It doesn’t. It starts with understanding the structure you’re trading under."</div>
+          <div class="at">— Dayli Scott · A Girl & Her Futures™</div>
+        </div>
+      </section>
+
+      <section class="slide" id="s7">
+        <div class="card">
+          <div class="head">Final quiz</div>
+          <h2>Lock in brokers & prop firms</h2>
+
+          <div class="question">
+            <div class="lbl">Question 1 of 4</div>
+            <div class="q">Whose money are you using in a broker account?</div>
+            <div class="opts">
+              <button class="qopt" onclick="quizAns(this,true,'q1fb','Correct. A broker account uses your own capital.')">Your own money</button>
+              <button class="qopt" onclick="quizAns(this,false,'q1fb','No. That sounds more like the prop route.')">A prop firm’s capital access</button>
+              <button class="qopt" onclick="quizAns(this,false,'q1fb','Not the point here.')">Nobody’s money</button>
+            </div>
+            <div class="qfb feedback" id="q1fb"></div>
+          </div>
+
+          <div class="question">
+            <div class="lbl">Question 2 of 4</div>
+            <div class="q">What matters most in a prop firm if you want to keep the opportunity alive?</div>
+            <div class="opts">
+              <button class="qopt" onclick="quizAns(this,false,'q2fb','Profit matters, but rules still come first in that structure.')">Profit only</button>
+              <button class="qopt" onclick="quizAns(this,true,'q2fb','Exactly. Rules matter, not just the money made.')">Following the rules</button>
+              <button class="qopt" onclick="quizAns(this,false,'q2fb','No. Randomness is not the system.')">Getting lucky once</button>
+            </div>
+            <div class="qfb feedback" id="q2fb"></div>
+          </div>
+
+          <div class="question">
+            <div class="lbl">Question 3 of 4</div>
+            <div class="q">Which path often appeals to beginners who want access to more capital than they personally have?</div>
+            <div class="opts">
+              <button class="qopt" onclick="quizAns(this,false,'q3fb','Not necessarily. That keeps them limited to their own capital only.')">Broker only</button>
+              <button class="qopt" onclick="quizAns(this,true,'q3fb','Yes. That is one reason many beginners consider prop firms.')">Prop firm</button>
+              <button class="qopt" onclick="quizAns(this,false,'q3fb','That is not a trading path.')">Guessing randomly</button>
+            </div>
+            <div class="qfb feedback" id="q3fb"></div>
+          </div>
+
+          <div class="question">
+            <div class="lbl">Question 4 of 4</div>
+            <div class="q">What is the cleanest summary?</div>
+            <div class="opts">
+              <button class="qopt" onclick="quizAns(this,true,'q4fb','Exactly. Broker = your money. Prop firm = capital access with rules.')">Broker = your money, prop firm = capital access with rules</button>
+              <button class="qopt" onclick="quizAns(this,false,'q4fb','No. They are not the same thing.')">They are basically the same</button>
+              <button class="qopt" onclick="quizAns(this,false,'q4fb','No. That ignores risk and structure completely.')">Only profits matter</button>
+            </div>
+            <div class="qfb feedback" id="q4fb"></div>
+          </div>
+        </div>
+
+        <div class="card complete" id="completeCard">
+          <h2>Lesson 9 <span>complete.</span></h2>
+          <p>Now you understand how traders actually enter the market, and that clears up a huge layer of beginner confusion before execution even starts.</p>
+          <div class="badge">+90 XP · Market entry clarity unlocked</div>
+          <div class="cc-btns">
+            <button class="cc-next">Lesson 10 → Orders</button>
+            <button class="cc-hub">Back to lessons</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="bottom">
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="dots" id="dots"></div>
+    <div class="stepname" id="stepname">Introduction</div>
+  </div>
+  <div style="display:flex;gap:9px">
+    <button class="prev" id="prev" onclick="go(-1)" disabled>← Back</button>
+    <button class="next" id="next" onclick="go(1)">Next →</button>
+  </div>
+</div>
+
+<div class="streak" id="streak"><span id="streakIcon">🔥</span><span id="streakText">you’re locked in 🔥</span></div>
+<div class="toast" id="toast"><span>✦</span><div><div style="font-size:.85rem;font-weight:700">+90 XP earned!</div><div style="font-size:.7rem;color:rgba(255,255,255,.42)">Lesson 9 complete 🫧✨</div></div></div>
+
+<script>
+const STEPS=['Introduction','Broker vs prop','The $300 scenario','Money feel','Rule reality','Build your path','Recap','Final quiz'];
+let cur=0, streak=0, pathDone=false, caseDone=false, ruleDone=false, checkpointDone=false, quizDone=false;
+const quizState={};
+
+function buildDots(){
+  const el=document.getElementById('dots'); el.innerHTML='';
+  STEPS.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='dot '+(i<cur?'done':i===cur?'active-dot':'todo');
+    if(i<=cur) d.onclick=()=>goTo(i);
+    el.appendChild(d);
+  });
+}
+function goTo(n){
+  document.getElementById('s'+cur).classList.remove('active');
+  cur=n;
+  document.getElementById('s'+cur).classList.add('active');
+  document.getElementById('crumb').textContent=STEPS[cur];
+  document.getElementById('count').textContent=(cur+1)+' / '+STEPS.length;
+  document.getElementById('stepname').textContent=STEPS[cur];
+  document.getElementById('bar').style.width=(cur/(STEPS.length-1)*100)+'%';
+  document.getElementById('prev').disabled=cur===0;
+  updateNext();
+  buildDots();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(d){goTo(cur+d);}
+function updateNext(){
+  const btn=document.getElementById('next');
+  btn.disabled=false; btn.onclick=()=>go(1);
+  if(cur===1 && !pathDone){btn.disabled=true; btn.textContent='Tap a card first'; btn.onclick=null;}
+  else if(cur===2 && !caseDone){btn.disabled=true; btn.textContent='Choose a path'; btn.onclick=null;}
+  else if(cur===4 && !ruleDone){btn.disabled=true; btn.textContent='Choose an answer'; btn.onclick=null;}
+  else if(cur===5 && !checkpointDone){btn.disabled=true; btn.textContent='Choose your path'; btn.onclick=null;}
+  else if(cur===7){btn.textContent=quizDone?'Finish lesson ✦':'Answer all questions'; btn.disabled=!quizDone; btn.onclick=quizDone?showComplete:null;}
+  else{btn.textContent=cur===6?'Take the final quiz →':'Next →';}
+}
+function setFb(id,type,html){
+  const el=document.getElementById(id);
+  el.className='feedback show '+type;
+  el.innerHTML=html;
+}
+function burst(){
+  const cols=['#F4829A','#7ECEC4','#F5A857','#F9B8C6','#B2E4DF','#FAD09A'];
+  for(let i=0;i<32;i++){
+    const p=document.createElement('div');
+    p.className='confetti';
+    const sz=6+Math.random()*8;
+    p.style.cssText=`left:${10+Math.random()*80}vw;top:-10px;width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random()*cols.length)]};`;
+    document.body.appendChild(p);
+    p.animate([{opacity:1,transform:'translateY(0) rotate(0deg)'},{opacity:0,transform:'translateY(100vh) rotate(720deg)'}],{duration:1200+Math.random()*900,delay:Math.random()*300,fill:'forwards'});
+    setTimeout(()=>p.remove(),2500);
+  }
+}
+function showStreak(icon,text){
+  const s=document.getElementById('streak');
+  document.getElementById('streakIcon').textContent=icon;
+  document.getElementById('streakText').textContent=text;
+  s.classList.add('show');
+  setTimeout(()=>s.classList.remove('show'),2200);
+}
+function handleStreak(correct){
+  if(correct){
+    streak++;
+    if(streak===2) showStreak('👀','okayyy I see you 👀');
+    if(streak===3) showStreak('🔥','you’re locked in 🔥');
+    if(streak===5) showStreak('🎯','sniper energy activated 🎯');
+  } else streak=0;
+}
+function showToast(){
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2300);
+}
+
+function pickPath(which, card){
+  document.querySelectorAll('#s1 .tap').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  pathDone=true;
+  if(which==='broker'){
+    setFb('pathFb','good','<strong>Yes.</strong> Broker means your money is in the game directly. You control the account, and you take the wins and losses yourself.');
+  } else {
+    setFb('pathFb','good','<strong>Yes.</strong> Prop firms can give access to larger capital, but that access comes with rules, structure, and usually profit-sharing.');
+  }
+  handleStreak(true);
+  updateNext();
+}
+function pick300(which, card){
+  document.querySelectorAll('#s2 .tap').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  caseDone=true;
+  if(which==='prop'){
+    setFb('caseFb','good','<strong>Exactly.</strong> This is one reason many beginners look at prop firms: they may want access to more capital than they personally have, as long as they can follow the rules.');
+    handleStreak(true);
+  } else {
+    setFb('caseFb','bad','<strong>Not impossible, but less forgiving.</strong> Trading only a $300 self-funded account can leave very little room for mistakes or learning.');
+    handleStreak(false);
+  }
+  updateNext();
+}
+function pickMoney(which, card){
+  document.querySelectorAll('#s3 .tap').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  if(which==='300'){
+    document.getElementById('capLabel').textContent='$300';
+    document.getElementById('roomMeter').style.width='18%';
+    document.getElementById('capBody').textContent='Smaller account size means smaller room for error.';
+    document.getElementById('ruleLabel').textContent='Direct ownership';
+    document.getElementById('ruleMeter').style.width='38%';
+    document.getElementById('ruleBody').textContent='Less outside rules, but your own money is fully exposed.';
+    document.getElementById('moneyFb').textContent='Smaller self-funded accounts can teach a lot, but the room to make mistakes is tight.';
+  } else {
+    document.getElementById('capLabel').textContent='$50K';
+    document.getElementById('roomMeter').style.width='82%';
+    document.getElementById('capBody').textContent='Larger capital access can create more opportunity.';
+    document.getElementById('ruleLabel').textContent='Rule pressure';
+    document.getElementById('ruleMeter').style.width='84%';
+    document.getElementById('ruleBody').textContent='Bigger capital access comes with more rule sensitivity.';
+    document.getElementById('moneyFb').textContent='More capital does not automatically mean more freedom. It often means rules matter even more.';
+  }
+  handleStreak(true);
+}
+function pickRule(which, card){
+  document.querySelectorAll('#s4 .tap').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  ruleDone=true;
+  if(which==='no'){
+    setFb('ruleFb','good','<strong>Correct.</strong> In a prop structure, breaking the rules can matter more than the profit. The structure only works if the rules are respected.');
+    handleStreak(true);
+  } else {
+    setFb('ruleFb','bad','<strong>Not here.</strong> Rule violations can override the raw profit. In prop trading, discipline is part of the agreement.');
+    handleStreak(false);
+  }
+  updateNext();
+}
+function pickStart(which, card){
+  document.querySelectorAll('#s5 .tap').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  checkpointDone=true;
+  if(which==='random'){
+    setFb('startFb','bad','<strong>Not this one.</strong> This lesson is about choosing with clarity, not randomness.');
+    handleStreak(false);
+  } else {
+    const msg={
+      small:'<strong>That works.</strong> Starting smaller can help build skill and personal responsibility clearly.',
+      prop:'<strong>That works.</strong> A prop path can make sense if you understand the rules and want structured access to more capital.',
+      unsure:'<strong>That also works.</strong> Clarity is better than rushing. It is okay to still be learning what fits you best.'
+    };
+    setFb('startFb','good',msg[which]);
+    handleStreak(true);
+    burst();
+  }
+  updateNext();
+}
+function quickCheck(btn, correct, id, msg){
+  btn.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);
+  btn.classList.add(correct?'good':'bad');
+  setFb(id,correct?'good':'bad',msg);
+  handleStreak(correct);
+}
+function quizAns(btn, correct, id, msg){
+  btn.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);
+  btn.classList.add(correct?'correct':'wrong');
+  const fb=document.getElementById(id);
+  fb.className='qfb show feedback '+(correct?'good':'bad');
+  fb.innerHTML=msg;
+  quizState[id]=true;
+  handleStreak(correct);
+  if(Object.keys(quizState).length===4){quizDone=true;updateNext();}
+}
+function showComplete(){
+  document.getElementById('completeCard').classList.add('show');
+  showToast();
+  burst();
+}
+buildDots();
+updateNext();
+</script>
+</body>
+</html>

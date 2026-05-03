@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson 5 — Futures vs Stocks · AG&HF</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F4829A;--pl:#F9B8C6;--pp:#FDE8ED;
+  --teal:#7ECEC4;--tl:#B2E4DF;--tp:#E8F8F6;
+  --peach:#F5A857;--cl:#FAD09A;--cp:#FEF3E4;
+  --cream:#FDF8F5;--warm:#FFFBF9;
+  --dark:#2C1810;--text:#3D2B20;--muted:#7A5C50;
+  --purple:#7F77DD;--upl:#CECBF6;--upp:#EEEDFE;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+.app{display:flex;min-height:100vh}
+.sidebar{width:230px;flex-shrink:0;background:#fff;border-right:1px solid rgba(244,130,154,.12);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50;overflow-y:auto}
+.sb-logo{padding:20px 22px 16px;font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(244,130,154,.1);cursor:pointer;text-decoration:none}
+.sb-logo span{color:var(--teal)}
+.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(244,130,154,.1);margin-bottom:6px}
+.sb-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pp),var(--cp));border:2px solid var(--pl);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink);flex-shrink:0}
+.sb-nm{font-size:.82rem;font-weight:600;color:var(--dark)}
+.sb-lv{font-size:.68rem;color:var(--muted)}
+.sb-sec{font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 18px 5px}
+.sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:.85rem;color:var(--muted);cursor:pointer;transition:all .2s;border-left:3px solid transparent}
+.sb-item:hover{color:var(--dark);background:var(--cream)}
+.sb-item.on{color:var(--pink);background:var(--pp);border-left-color:var(--pink);font-weight:500}
+.sb-bot{margin-top:auto;padding:12px 18px}
+.xpb{background:var(--cream);border-radius:10px;padding:11px 13px}
+.xpb-top{display:flex;justify-content:space-between;margin-bottom:6px}
+.xpb-l{font-size:.68rem;color:var(--muted);font-weight:500}
+.xpb-v{font-size:.72rem;color:var(--peach);font-weight:600}
+.xpb-track{height:4px;background:var(--pp);border-radius:100px;overflow:hidden}
+.xpb-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;width:64%}
+.main{margin-left:230px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+.tbar{background:#fff;border-bottom:1px solid rgba(244,130,154,.1);padding:0 36px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tbar-bc{font-size:.79rem;color:var(--muted)}
+.tbar-bc a{color:var(--muted);text-decoration:none}
+.tbar-bc a:hover{color:var(--pink)}
+.tbar-cur{color:var(--dark);font-weight:500}
+.tbar-r{display:flex;align-items:center;gap:11px}
+.tbar-xp{font-size:.77rem;font-weight:600;color:var(--peach);background:var(--cp);border:1px solid var(--cl);padding:4px 12px;border-radius:100px}
+.tbar-st{font-size:.77rem;color:var(--muted)}
+.prog-track{height:6px;background:var(--pp);position:sticky;top:60px;z-index:39}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));transition:width .45s ease;width:0%}
+.lv-cards{flex:1;display:flex;flex-direction:column;align-items:center;padding:36px 24px 110px}
+.slide{width:100%;max-width:760px;display:none;animation:sIn .4s cubic-bezier(.34,1.08,.64,1) both}
+.slide.active{display:flex;flex-direction:column;gap:14px}
+@keyframes sIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes fUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cfF{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+@keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.intro-card,.teach-card,.reinforce-card,.quiz-card,.recap-card,.compare-wrap,.sim-wrap,.checkpoint-wrap,.complete-card,.dayli-card,.quick-check,.deep-card,.decision-wrap{border-radius:22px}
+.intro-card{background:var(--dark);padding:34px;position:relative;overflow:hidden}
+.intro-card::after{content:"✦";position:absolute;top:-30px;right:8px;font-size:130px;color:var(--pink);opacity:.05;font-family:"Playfair Display",serif}
+.ic-eye{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--pl);margin-bottom:12px}
+.ic-title{font-family:"Playfair Display",serif;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:10px}
+.ic-acc{color:var(--pink)}
+.ic-sub{font-size:.94rem;color:rgba(255,255,255,.58);line-height:1.72;margin-bottom:22px}
+.ic-pills{display:flex;gap:8px;flex-wrap:wrap}
+.ic-pill{font-size:.7rem;font-weight:500;padding:5px 12px;border-radius:100px;border:1px solid}
+.ip-pk{background:rgba(244,130,154,.15);border-color:rgba(244,130,154,.3);color:var(--pl)}
+.ip-tl{background:rgba(126,206,196,.15);border-color:rgba(126,206,196,.3);color:var(--tl)}
+.ip-pc{background:rgba(245,168,87,.15);border-color:rgba(245,168,87,.3);color:var(--cl)}
+.teach-card,.recap-card,.quiz-card,.compare-wrap,.sim-wrap,.checkpoint-wrap,.deep-card,.decision-wrap{background:#fff;padding:26px 30px;border:1px solid rgba(244,130,154,.1);box-shadow:0 4px 20px rgba(244,130,154,.05)}
+.teach-eye,.card-eye{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.teach-eye::after,.card-eye::after{content:'';flex:1;height:1px;background:rgba(245,168,87,.2)}
+.teach-title,.card-title{font-family:"Playfair Display",serif;font-size:1.25rem;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.3}
+.teach-body,.card-body{font-size:.93rem;line-height:1.82;color:var(--muted)}
+.teach-body strong,.card-body strong{color:var(--dark)}
+.teach-body em{color:var(--pink);font-style:normal;font-weight:600}
+.reinforce-card{background:linear-gradient(135deg,rgba(126,206,196,.12),rgba(245,168,87,.08));border:1px solid var(--tl);padding:22px 26px;position:relative;overflow:hidden}
+.reinforce-card::before{content:"💡";position:absolute;top:16px;right:18px;font-size:1.2rem;opacity:.6}
+.rc-label{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.rc-text{font-size:.95rem;line-height:1.75;color:var(--dark);font-style:italic}
+.rc-text strong{font-style:normal}
+.dayli-card{background:var(--dark);padding:24px 28px;position:relative;overflow:hidden}
+.dayli-card::before{content:'✦';position:absolute;bottom:-25px;right:8px;font-size:90px;color:var(--pink);opacity:.06;font-family:'Playfair Display',serif}
+.dc-lbl{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.dc-lbl::after{content:'';flex:1;height:1px;background:rgba(244,130,154,.2)}
+.dc-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--pp),var(--cp));border:2px solid var(--pink);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink);margin-bottom:10px}
+.dc-q{font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:#fff;line-height:1.75;margin-bottom:8px}
+.dc-at{font-size:.72rem;color:rgba(255,255,255,.3)}
+.dual-grid,.decision-grid,.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.choice-card{border-radius:16px;padding:18px;border:2px solid transparent;cursor:pointer;transition:all .22s}
+.choice-card:hover{transform:translateY(-2px)}
+.choice-card.selected{box-shadow:0 10px 24px rgba(44,24,16,.08)}
+.futures{background:var(--tp);border-color:var(--tl)}
+.stocks{background:var(--pp);border-color:var(--pl)}
+.good{background:var(--cp);border-color:var(--cl)}
+.bad{background:var(--upp);border-color:var(--upl)}
+.choice-title{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:6px}
+.choice-sub{font-size:.76rem;color:var(--muted);margin-bottom:10px}
+.choice-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(244,130,154,.08)}
+.choice-row:last-child{border-bottom:none}
+.choice-l{font-size:.76rem;color:var(--muted)}
+.choice-v{font-size:.82rem;font-weight:700;color:var(--dark)}
+.feedback{display:none;margin-top:12px;padding:14px 16px;border-radius:14px;font-size:.86rem;line-height:1.65}
+.feedback.show{display:block;animation:fUp .25s ease both}
+.fb-good{background:var(--tp);border:1px solid var(--tl);color:#1a6b63}
+.fb-bad{background:var(--pp);border:1px solid var(--pl);color:#a84060}
+.fb-mid{background:var(--cp);border:1px solid var(--cl);color:#7a4a0a}
+.table-wrap{overflow:auto;border-radius:16px;border:1px solid rgba(244,130,154,.12);margin-top:12px}
+.compare-table{width:100%;border-collapse:collapse;background:var(--warm);min-width:620px}
+.compare-table th,.compare-table td{padding:12px 14px;border-bottom:1px solid rgba(244,130,154,.08);font-size:.82rem;text-align:left;vertical-align:top}
+.compare-table th{background:#fff;color:var(--dark);font-weight:700}
+.compare-table tr:last-child td{border-bottom:none}
+.slider-wrap{background:var(--warm);border-radius:16px;padding:18px}
+.slider-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.slider-label{width:120px;flex-shrink:0;font-size:.8rem;color:var(--muted)}
+.slider-input,.slider-select{flex:1}
+.slider-output{font-family:"Playfair Display",serif;font-size:2.1rem;font-weight:900;text-align:center;color:var(--dark);margin:8px 0}
+.slider-formula{text-align:center;font-size:.8rem;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.stat-box{background:#fff;border-radius:12px;padding:12px;text-align:center;border:1px solid rgba(244,130,154,.08)}
+.stat-lbl{font-size:.63rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.stat-val{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:900;color:var(--dark)}
+.quick-check{background:linear-gradient(135deg,var(--cp),var(--pp));padding:22px 26px;border:1px solid var(--cl)}
+.qc-lbl{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-bottom:8px}
+.qc-q{font-size:.96rem;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:13px}
+.qc-opts{display:flex;flex-direction:column;gap:7px}
+.qc-opt{background:#fff;border:1.5px solid rgba(244,130,154,.18);border-radius:11px;padding:12px 16px;font-family:"DM Sans",sans-serif;font-size:.87rem;color:var(--text);cursor:pointer;transition:all .22s;text-align:left}
+.qc-opt:hover:not(:disabled){border-color:var(--pl);background:var(--pp)}
+.qc-opt.good{background:var(--tp);border-color:var(--teal);color:#1a6b63}
+.qc-opt.bad{background:var(--pp);border-color:var(--pink);color:#a84060}
+.recap-list{display:flex;flex-direction:column;gap:8px}
+.recap-item{display:flex;gap:12px;padding:13px 16px;border-radius:12px}
+.recap-item:nth-child(odd){background:var(--tp);border:1px solid var(--tl)}
+.recap-item:nth-child(even){background:var(--pp);border:1px solid var(--pl)}
+.recap-ico{font-size:1rem;margin-top:2px}
+.recap-text{font-size:.87rem;line-height:1.62;color:var(--text)}
+.quiz-card .question{margin-bottom:22px}
+.q-lbl{font-size:.66rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.q-text{font-size:.96rem;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:12px}
+.q-opts{display:flex;flex-direction:column;gap:7px}
+.q-opt{background:var(--warm);border:1.5px solid rgba(244,130,154,.14);border-radius:11px;padding:11px 15px;font-family:"DM Sans",sans-serif;font-size:.87rem;color:var(--text);cursor:pointer;transition:all .2s;text-align:left}
+.q-opt:hover:not(:disabled){border-color:var(--pl);background:var(--pp)}
+.q-opt.correct{background:var(--tp);border-color:var(--teal);color:#1a6b63}
+.q-opt.wrong{background:var(--pp);border-color:var(--pink);color:#a84060}
+.q-fb{margin-top:9px;padding:11px 15px;border-radius:10px;font-size:.83rem;line-height:1.6;display:none}
+.q-fb.show{display:block;animation:fUp .3s ease both}
+.complete-card{background:linear-gradient(135deg,var(--dark),#3d2420);padding:34px;text-align:center;position:relative;overflow:hidden;display:none}
+.complete-card.show{display:block;animation:fUp .4s ease both}
+.complete-card::before{content:'✦';position:absolute;top:-30px;left:50%;transform:translateX(-50%);font-size:150px;color:var(--pink);opacity:.04;font-family:'Playfair Display',serif}
+.cc-spark{font-size:2.2rem;margin-bottom:12px;animation:flt 2s ease-in-out infinite;display:block}
+.cc-title{font-family:"Playfair Display",serif;font-size:1.9rem;font-weight:900;color:#fff;margin-bottom:8px}
+.cc-acc{color:var(--pink)}
+.cc-sub{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:20px;max-width:380px;margin-left:auto;margin-right:auto}
+.cc-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(126,206,196,.15);border:1px solid rgba(126,206,196,.3);border-radius:100px;padding:9px 20px;font-size:.88rem;font-weight:600;color:var(--tl);margin-bottom:22px}
+.cc-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cc-next,.cc-hub{padding:13px 26px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.9rem;cursor:pointer;border:none}
+.cc-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff}
+.cc-hub{background:transparent;color:rgba(255,255,255,.42);border:1.5px solid rgba(255,255,255,.18)}
+.bnav{position:fixed;bottom:0;left:230px;right:0;background:rgba(253,248,245,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(244,130,154,.12);padding:13px 40px;display:flex;align-items:center;justify-content:space-between;z-index:40}
+.bn-left{display:flex;align-items:center;gap:12px}
+.bn-dots{display:flex;gap:5px;align-items:center}
+.bn-dot{width:8px;height:8px;border-radius:50%;cursor:pointer;transition:all .25s}
+.bd-done{background:var(--teal)}
+.bd-active{background:var(--pink);transform:scale(1.45)}
+.bd-todo{background:var(--pp);border:1.5px solid var(--pl)}
+.bn-sname{font-size:.74rem;color:var(--muted);font-weight:500}
+.btn-prev,.btn-next{padding:10px 22px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.85rem;font-weight:600;cursor:pointer}
+.btn-prev{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted)}
+.btn-prev:disabled{opacity:.35;cursor:default}
+.btn-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.btn-next:disabled{opacity:.4;cursor:default}
+.toast{position:fixed;bottom:84px;right:26px;background:var(--dark);color:#fff;border-radius:14px;padding:13px 18px;display:flex;align-items:center;gap:11px;box-shadow:0 16px 48px rgba(44,24,16,.32);z-index:200;transform:translateY(18px);opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1)}
+.toast.show{transform:translateY(0);opacity:1}
+.streak-toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--dark);color:#fff;border-radius:14px;padding:12px 22px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 40px rgba(44,24,16,.3);z-index:300;opacity:0;transition:all .5s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
+.streak-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.cfp{position:fixed;border-radius:2px;pointer-events:none;z-index:9998;animation:cfF linear both}
+@media (max-width: 900px){ .sidebar{display:none}.main{margin-left:0}.bnav{left:0}}
+@media (max-width: 760px){
+  .dual-grid,.decision-grid,.lab-grid{grid-template-columns:1fr}
+  .tbar{padding:0 18px}
+  .lv-cards{padding:22px 14px 110px}
+  .teach-card,.compare-wrap,.sim-wrap,.checkpoint-wrap,.quick-check,.recap-card,.quiz-card,.deep-card,.decision-wrap{padding:20px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="sidebar">
+    <a class="sb-logo" href="#"><span>A Girl &</span> Her Futures™</a>
+    <div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · Trading Foundations</div></div></div>
+    <div class="sb-sec">Learn</div>
+    <div class="sb-item on">✦ Lessons</div>
+    <div class="sb-item">◈ Games</div>
+    <div class="sb-sec">Community</div>
+    <div class="sb-item">↑ Leaderboard</div>
+    <div class="sb-item">◇ Drip Store</div>
+    <div class="sb-sec">Account</div>
+    <div class="sb-item">○ My Profile</div>
+    <div class="sb-bot"><div class="xpb"><div class="xpb-top"><span class="xpb-l">XP</span><span class="xpb-v">550 / 1000</span></div><div class="xpb-track"><div class="xpb-fill"></div></div></div></div>
+  </div>
+
+  <div class="main">
+    <div class="tbar">
+      <div class="tbar-bc"><a href="#">Lessons</a> › <a href="#">Phase 1</a> › <span class="tbar-cur" id="tbarCur">Introduction</span></div>
+      <div class="tbar-r"><span class="tbar-xp">+70 XP</span><span class="tbar-st" id="tbarSt">1 / 8</span></div>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+
+    <div class="lv-cards">
+      <div class="slide active" id="s0">
+        <div class="intro-card">
+          <div class="ic-eye">✦ Phase 1 · Section 1 · Lesson 5</div>
+          <div class="ic-title">Futures vs <span class="ic-acc">Stocks</span></div>
+          <div class="ic-sub">This is where a lot of confusion clears up. Futures and stocks are not the same experience, and once you understand the difference, the way you think about trading starts getting cleaner.</div>
+          <div class="ic-pills">
+            <span class="ic-pill ip-pk">~15 min</span>
+            <span class="ic-pill ip-tl">Comparison lesson</span>
+            <span class="ic-pill ip-pc">+70 XP</span>
+          </div>
+        </div>
+        <div class="teach-card">
+          <div class="teach-eye">Core idea</div>
+          <div class="teach-title">Stocks are about ownership. Futures are about movement.</div>
+          <div class="teach-body">That is the cleanest way to separate them.<br><br>With <strong>stocks</strong>, you are buying ownership in a company.<br>With <strong>futures</strong>, you are trading a contract based on price movement.<br><br>That difference changes how you think about direction, risk, flexibility, and why the Dayli ICC method makes more sense in futures.</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s1">
+        <div class="compare-wrap">
+          <div class="card-eye">Teach → Experience</div>
+          <div class="card-title">See the difference side by side</div>
+          <div class="card-body">Tap each card. Read what changes between owning something and trading its movement. This slide is not here to say one is “good” and one is “bad.” It’s here to make the difference obvious.</div>
+          <div class="dual-grid" style="margin-top:16px">
+            <div class="choice-card stocks" onclick="pickType('stocks', this)">
+              <div class="choice-title">Stocks</div>
+              <div class="choice-sub">Ownership first</div>
+              <div class="choice-row"><span class="choice-l">Main idea</span><span class="choice-v">You own shares</span></div>
+              <div class="choice-row"><span class="choice-l">Mindset</span><span class="choice-v">Investment / ownership</span></div>
+              <div class="choice-row"><span class="choice-l">Profit focus</span><span class="choice-v">Usually up moves</span></div>
+            </div>
+            <div class="choice-card futures" onclick="pickType('futures', this)">
+              <div class="choice-title">Futures</div>
+              <div class="choice-sub">Movement first</div>
+              <div class="choice-row"><span class="choice-l">Main idea</span><span class="choice-v">You trade contracts</span></div>
+              <div class="choice-row"><span class="choice-l">Mindset</span><span class="choice-v">Direction / movement</span></div>
+              <div class="choice-row"><span class="choice-l">Profit focus</span><span class="choice-v">Up or down</span></div>
+            </div>
+          </div>
+          <div class="feedback" id="typeFb"></div>
+          <div class="table-wrap">
+            <table class="compare-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Stocks</th>
+                  <th>Futures</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>What you’re doing</strong></td><td>Buying ownership in a company</td><td>Trading a contract tied to movement</td></tr>
+                <tr><td><strong>Main thought</strong></td><td>“Do I want to own this?”</td><td>“Which direction is price likely to move?”</td></tr>
+                <tr><td><strong>Can you profit down?</strong></td><td>Not naturally in the same simple way</td><td>Yes, long or short is built in</td></tr>
+                <tr><td><strong>Why this matters here</strong></td><td>Ownership mindset can make people attached</td><td>Movement mindset fits ICC better</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" id="s2">
+        <div class="deep-card">
+          <div class="card-eye">Detailed breakdown</div>
+          <div class="card-title">Why futures fit the way you trade</div>
+          <div class="card-body">This is important because the Dayli ICC method is built around reading price behavior and structure, not getting emotionally attached to an asset.<br><br>Futures naturally support that because:<br><br><strong>1.</strong> You can go long or short cleanly.<br><strong>2.</strong> You are focused on movement, not ownership.<br><strong>3.</strong> You are reading behavior and timing, not hoping a company “does well” someday.<br><br>That does not make stocks useless. It just means futures line up better with the way you are being trained to think here.</div>
+        </div>
+        <div class="dayli-card">
+          <div class="dc-lbl">✦ Dayli note</div>
+          <div class="dc-av">D</div>
+          <div class="dc-q">"I like futures because I’m not trying to marry the move. I’m reading who’s in control and participating in the direction. That’s a very different mindset than ownership."</div>
+          <div class="dc-at">— Dayli Scott · A Girl & Her Futures™</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s3">
+        <div class="sim-wrap">
+          <div class="card-eye">Experience</div>
+          <div class="card-title">Ownership vs movement lab</div>
+          <div class="card-body">Use this slider to feel the mental difference. Same price movement, different mindset. In stocks, the default thought is often “I own this.” In futures, the thought is “How much did price move, and did I read it correctly?”</div>
+          <div class="slider-wrap">
+            <div class="slider-row">
+              <div class="slider-label">Mode</div>
+              <select id="modeSelect" class="pnl-select slider-select" onchange="updateLab()">
+                <option value="stocks">Stocks</option>
+                <option value="futures">Futures</option>
+              </select>
+            </div>
+            <div class="slider-row">
+              <div class="slider-label">Price move</div>
+              <input id="moveInput" class="pnl-input slider-input" type="range" min="-20" max="20" value="10" oninput="updateLab()">
+            </div>
+            <div class="slider-output" id="labOutput">Up 10</div>
+            <div class="slider-formula" id="labFormula">Stocks mindset: “I own this, so I want it to go up.”</div>
+            <div class="stat-grid">
+              <div class="stat-box"><div class="stat-lbl">Focus</div><div class="stat-val" id="focusStat">Ownership</div></div>
+              <div class="stat-box"><div class="stat-lbl">Attachment Risk</div><div class="stat-val" id="attachStat">Higher</div></div>
+              <div class="stat-box"><div class="stat-lbl">Direction Flexibility</div><div class="stat-val" id="dirStat">Lower</div></div>
+              <div class="stat-box"><div class="stat-lbl">Best Fit Here</div><div class="stat-val" id="fitStat">Futures</div></div>
+            </div>
+          </div>
+          <div class="feedback show fb-mid" id="labFb">The deeper point is not just what moves. It’s how your brain relates to the move.</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s4">
+        <div class="decision-wrap">
+          <div class="card-eye">Correct a misconception</div>
+          <div class="card-title">“Stocks and futures are basically the same.”</div>
+          <div class="card-body">Not really. They can both involve charts and price, but the mindset is different enough that beginners can confuse themselves if they treat them like one thing.</div>
+          <div class="decision-grid" style="margin-top:16px">
+            <div class="choice-card good" onclick="pickMisconception('good', this)">
+              <div class="choice-title">Better understanding</div>
+              <div class="card-body">Both use charts, but stocks are ownership-centered and futures are movement-centered.</div>
+            </div>
+            <div class="choice-card bad" onclick="pickMisconception('bad', this)">
+              <div class="choice-title">Bad understanding</div>
+              <div class="card-body">They are basically the same, so I can think about them the exact same way.</div>
+            </div>
+          </div>
+          <div class="feedback" id="misFb"></div>
+        </div>
+        <div class="quick-check">
+          <div class="qc-lbl">Quick check</div>
+          <div class="qc-q">Which statement sounds more like futures thinking?</div>
+          <div class="qc-opts">
+            <button class="qc-opt" onclick="quickCheck(this,false,'qc1fb','That sounds more like ownership language.')">I want to own this company because I believe in it</button>
+            <button class="qc-opt" onclick="quickCheck(this,true,'qc1fb','Exactly. That is movement language. You are focused on direction, not ownership.')">I think price is likely to move lower, so I want to participate in that move</button>
+            <button class="qc-opt" onclick="quickCheck(this,false,'qc1fb','That is not the mindset we are trying to build here.')">I just want anything that goes up eventually</button>
+          </div>
+          <div class="feedback" id="qc1fb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s5">
+        <div class="checkpoint-wrap">
+          <div class="card-eye">Checkpoint</div>
+          <div class="card-title">Build the idea</div>
+          <div class="card-body">Let’s make sure you can separate the two clearly.</div>
+          <div class="lab-grid" style="margin-top:16px">
+            <div class="choice-card futures" onclick="cpPick(1,'futures', this)">
+              <div class="choice-title">Step 1</div>
+              <div class="card-body">Which one fits a movement-first, long-or-short mindset better?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">Futures</div>
+            </div>
+            <div class="choice-card stocks" onclick="cpPick(1,'stocks', this)">
+              <div class="choice-title">Step 1</div>
+              <div class="card-body">Which one fits a movement-first, long-or-short mindset better?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">Stocks</div>
+            </div>
+          </div>
+          <div class="lab-grid" style="margin-top:12px">
+            <div class="choice-card good" onclick="cpPick(2,'movement', this)">
+              <div class="choice-title">Step 2</div>
+              <div class="card-body">Which thought process lines up better with the Dayli ICC method?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">“Where is price likely to move?”</div>
+            </div>
+            <div class="choice-card bad" onclick="cpPick(2,'ownership', this)">
+              <div class="choice-title">Step 2</div>
+              <div class="card-body">Which thought process lines up better with the Dayli ICC method?</div>
+              <div style="margin-top:10px;font-weight:700;color:var(--dark)">“Do I want to own this forever?”</div>
+            </div>
+          </div>
+          <div class="feedback" id="cpFb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s6">
+        <div class="recap-card">
+          <div class="card-title" style="margin-bottom:16px">What you know now</div>
+          <div class="recap-list">
+            <div class="recap-item"><div class="recap-ico">🏢</div><div class="recap-text"><strong>Stocks are ownership-centered.</strong> You are buying shares in a company.</div></div>
+            <div class="recap-item"><div class="recap-ico">📈</div><div class="recap-text"><strong>Futures are movement-centered.</strong> You are trading a contract based on direction and price movement.</div></div>
+            <div class="recap-item"><div class="recap-ico">↕️</div><div class="recap-text"><strong>Futures naturally fit long and short thinking.</strong> That flexibility fits the way you are being trained here.</div></div>
+            <div class="recap-item"><div class="recap-ico">🧠</div><div class="recap-text"><strong>The Dayli ICC method fits futures logic better.</strong> It is built around reading behavior and participating in movement, not ownership.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" id="s7">
+        <div class="quiz-card">
+          <div class="card-eye">Final quiz</div>
+          <div class="card-title">Lock in futures vs stocks</div>
+          <div class="question">
+            <div class="q-lbl">Question 1 of 4</div>
+            <div class="q-text">Which statement best describes stocks?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q1fb','Correct. Stocks are ownership-centered.')">You are buying ownership in a company</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q1fb','That sounds more like futures logic.')">You are trading a contract based on movement</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q1fb','No. That is too vague and misses the ownership piece.')">You are just watching price go up or down</button>
+            </div>
+            <div class="q-fb" id="q1fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 2 of 4</div>
+            <div class="q-text">Which statement best describes futures?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,false,'q2fb','That sounds like stocks, not futures.')">You are buying shares in a company</button>
+              <button class="q-opt" onclick="quizAns(this,true,'q2fb','Exactly. Futures are contracts tied to price movement.')">You are trading a contract tied to price movement</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q2fb','Not necessarily. Futures are not about ownership in that way.')">You are becoming a partial business owner</button>
+            </div>
+            <div class="q-fb" id="q2fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 3 of 4</div>
+            <div class="q-text">Why do futures fit the Dayli ICC method better?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q3fb','Yes. The method is movement-based, structure-based, and direction-aware.')">Because the mindset is movement-based, not ownership-based</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q3fb','Not the main reason here.')">Because futures never go down</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q3fb','That is not the core reason.')">Because futures are less emotional for everyone automatically</button>
+            </div>
+            <div class="q-fb" id="q3fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 4 of 4</div>
+            <div class="q-text">Which thought sounds more like futures trading?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,false,'q4fb','That sounds more like ownership language.')">I want to own this company for years</button>
+              <button class="q-opt" onclick="quizAns(this,true,'q4fb','Exactly. Futures thinking is about direction and movement.')">I think price is likely to move down, so I want to participate in that move</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q4fb','That is too vague and not what we are anchoring here.')">I just want something that might eventually work out</button>
+            </div>
+            <div class="q-fb" id="q4fb"></div>
+          </div>
+        </div>
+        <div class="complete-card" id="completeCard">
+          <span class="cc-spark">✦</span>
+          <div class="cc-title">Lesson 5 <span class="cc-acc">complete.</span></div>
+          <div class="cc-sub">Now you can clearly separate ownership thinking from movement thinking, and that’s a huge mental shift for becoming the kind of trader this platform is building.</div>
+          <div class="cc-badge">+70 XP · Futures mindset unlocked</div>
+          <div class="cc-btns">
+            <button class="cc-next">Lesson 6 → Points, Ticks & P&L</button>
+            <button class="cc-hub">Back to lessons</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bnav">
+  <div class="bn-left">
+    <div class="bn-dots" id="bnDots"></div>
+    <div class="bn-sname"><span id="bnStepName">Introduction</span></div>
+  </div>
+  <div style="display:flex;gap:9px">
+    <button class="btn-prev" id="prevBtn" onclick="go(-1)" disabled>← Back</button>
+    <button class="btn-next" id="nextBtn" onclick="go(1)">Next →</button>
+  </div>
+</div>
+
+<div class="streak-toast" id="streakToast"><span id="stkIcon">🔥</span><span id="stkText">you’re locked in 🔥</span></div>
+<div class="toast" id="xpToast"><span>✦</span><div><div style="font-size:.85rem;font-weight:700">+70 XP earned!</div><div style="font-size:.7rem;color:rgba(255,255,255,.42)">Lesson 5 complete 🫧✨</div></div></div>
+
+<script>
+const STEPS=['Introduction','See the difference','Detailed breakdown','Ownership vs movement lab','Misconception check','Checkpoint','Recap','Final quiz'];
+let cur=0, streak=0;
+let typeDone=false, misDone=false, checkpointDone=false, quizDone=false;
+const cpAns={1:null,2:null};
+const quizState={};
+
+function buildDots(){
+  const el=document.getElementById('bnDots'); el.innerHTML='';
+  STEPS.forEach((_,i)=>{ const d=document.createElement('div'); d.className='bn-dot '+(i<cur?'bd-done':i===cur?'bd-active':'bd-todo'); if(i<=cur) d.onclick=()=>goTo(i); el.appendChild(d);});
+}
+function goTo(n){
+  document.getElementById('s'+cur)?.classList.remove('active');
+  cur=n;
+  document.getElementById('s'+cur)?.classList.add('active');
+  document.getElementById('tbarCur').textContent=STEPS[cur];
+  document.getElementById('tbarSt').textContent=(cur+1)+' / '+STEPS.length;
+  document.getElementById('bnStepName').textContent=STEPS[cur];
+  document.getElementById('progFill').style.width=(cur/(STEPS.length-1)*100)+'%';
+  document.getElementById('prevBtn').disabled=cur===0;
+  updateNext();
+  buildDots();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function go(d){ goTo(cur+d); }
+function updateNext(){
+  const btn=document.getElementById('nextBtn');
+  btn.disabled=false; btn.onclick=()=>go(1);
+  if(cur===1 && !typeDone){ btn.disabled=true; btn.textContent='Tap a card first'; btn.onclick=null; }
+  else if(cur===4 && !misDone){ btn.disabled=true; btn.textContent='Pick the better understanding'; btn.onclick=null; }
+  else if(cur===5 && !checkpointDone){ btn.disabled=true; btn.textContent='Finish the checkpoint'; btn.onclick=null; }
+  else if(cur===7){ btn.textContent=quizDone?'Finish lesson ✦':'Answer all questions'; btn.disabled=!quizDone; btn.onclick=quizDone?showComplete:null; }
+  else { btn.textContent=cur===6?'Take the final quiz →':'Next →'; }
+}
+function showToast(){ const t=document.getElementById('xpToast'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2300); }
+function showStreak(icon,text){ document.getElementById('stkIcon').textContent=icon; document.getElementById('stkText').textContent=text; const t=document.getElementById('streakToast'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
+function handleStreak(correct){ if(correct){ streak++; if(streak===2) showStreak('👀','okayyy I see you 👀'); if(streak===3) showStreak('🔥','you’re locked in 🔥'); if(streak===5) showStreak('🎯','sniper energy activated 🎯'); } else streak=0; }
+function confetti(){ const cols=['#F4829A','#7ECEC4','#F5A857','#F9B8C6','#B2E4DF','#FAD09A']; for(let i=0;i<34;i++){ const p=document.createElement('div'); p.className='cfp'; const sz=6+Math.random()*8; p.style.cssText=`left:${10+Math.random()*80}vw;top:-10px;width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation:cfF ${.8+Math.random()}s ${Math.random()*.5}s linear both;`; document.body.appendChild(p); setTimeout(()=>p.remove(),2500);} }
+
+function pickType(type, el){
+  document.querySelectorAll('#s1 .choice-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const fb=document.getElementById('typeFb');
+  typeDone=true;
+  if(type==='stocks'){
+    fb.className='feedback show fb-good';
+    fb.innerHTML='<strong>Yes.</strong> Stocks are ownership-centered. You are buying shares in a company, which usually brings a more ownership-based mindset with it.';
+  } else {
+    fb.className='feedback show fb-good';
+    fb.innerHTML='<strong>Yes.</strong> Futures are movement-centered. You are trading a contract tied to direction and price movement, which fits this platform’s style of thinking much better.';
+  }
+  handleStreak(true);
+  updateNext();
+}
+
+function updateLab(){
+  const mode=document.getElementById('modeSelect').value;
+  const move=Number(document.getElementById('moveInput').value);
+  const direction = move >= 0 ? `Up ${move}` : `Down ${Math.abs(move)}`;
+  document.getElementById('labOutput').textContent=direction;
+
+  if(mode==='stocks'){
+    document.getElementById('labFormula').textContent = move >= 0
+      ? 'Stocks mindset: “I own this, so I want it to go up.”'
+      : 'Stocks mindset: “I own this, so a drop can feel personal.”';
+    document.getElementById('focusStat').textContent='Ownership';
+    document.getElementById('attachStat').textContent='Higher';
+    document.getElementById('dirStat').textContent='Lower';
+    document.getElementById('fitStat').textContent='Less direct';
+    document.getElementById('labFb').textContent='Stocks can still be traded, but the natural mindset leans more toward owning than simply reading movement.';
+  } else {
+    document.getElementById('labFormula').textContent = move >= 0
+      ? 'Futures mindset: “Price is moving up. Could I participate long?”'
+      : 'Futures mindset: “Price is moving down. Could I participate short?”';
+    document.getElementById('focusStat').textContent='Movement';
+    document.getElementById('attachStat').textContent='Lower';
+    document.getElementById('dirStat').textContent='Higher';
+    document.getElementById('fitStat').textContent='Strong';
+    document.getElementById('labFb').textContent='This is why futures fit this platform so well. The mindset is cleaner: read behavior, choose direction, participate.';
+  }
+}
+
+function pickMisconception(type, el){
+  if(misDone) return;
+  document.querySelectorAll('#s4 .choice-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const fb=document.getElementById('misFb');
+  misDone=true;
+  if(type==='good'){
+    fb.className='feedback show fb-good';
+    fb.innerHTML='<strong>Exactly.</strong> They can both use charts, but the mental framework is different enough that beginners need to separate them clearly.';
+    handleStreak(true);
+  } else {
+    fb.className='feedback show fb-bad';
+    fb.innerHTML='<strong>Not this one.</strong> Treating them like the exact same thing blurs ownership thinking and movement thinking, and that confusion shows up in execution.';
+    handleStreak(false);
+  }
+  updateNext();
+}
+
+function quickCheck(btn, correct, fbId, msg){
+  const opts=btn.parentElement.querySelectorAll('.qc-opt');
+  opts.forEach(o=>o.disabled=true);
+  btn.classList.add(correct?'good':'bad');
+  const fb=document.getElementById(fbId);
+  fb.className='feedback show '+(correct?'fb-good':'fb-bad');
+  fb.innerHTML=msg;
+  handleStreak(correct);
+}
+
+function cpPick(step, val, el){
+  const groups=document.querySelectorAll('#s5 .lab-grid');
+  const group = step===1 ? groups[0].querySelectorAll('.choice-card') : groups[1].querySelectorAll('.choice-card');
+  group.forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  cpAns[step]=val;
+  if(cpAns[1] && cpAns[2]){
+    const fb=document.getElementById('cpFb');
+    checkpointDone=true;
+    const good = cpAns[1]==='futures' && cpAns[2]==='movement';
+    if(good){
+      fb.className='feedback show fb-good';
+      fb.innerHTML='<strong>Clean logic.</strong> Futures match a movement-first, direction-aware mindset, which is why they fit the Dayli ICC method better than ownership-first thinking.';
+      handleStreak(true); confetti();
+    } else {
+      fb.className='feedback show fb-bad';
+      fb.innerHTML='<strong>Almost.</strong> This lesson is about building a cleaner mental model: stocks lean ownership, futures lean movement.';
+      handleStreak(false);
+    }
+    updateNext();
+  }
+}
+
+function quizAns(btn, correct, fbId, msg){
+  const wrap=btn.closest('.question');
+  wrap.querySelectorAll('.q-opt').forEach(o=>o.disabled=true);
+  btn.classList.add(correct?'correct':'wrong');
+  const fb=document.getElementById(fbId);
+  fb.className='q-fb show '+(correct?'fb-good':'fb-bad');
+  fb.innerHTML=msg;
+  quizState[fbId]=true;
+  handleStreak(correct);
+  if(Object.keys(quizState).length===4){ quizDone=true; updateNext(); }
+}
+function showComplete(){ document.getElementById('completeCard').classList.add('show'); showToast(); confetti(); }
+
+buildDots();
+updateNext();
+updateLab();
+</script>
+</body>
+</html>

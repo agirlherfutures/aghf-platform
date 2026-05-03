@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesson 8 — Timeframes · AG&HF</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#F4829A;--pl:#F9B8C6;--pp:#FDE8ED;--teal:#7ECEC4;--tl:#B2E4DF;--tp:#E8F8F6;
+  --peach:#F5A857;--cl:#FAD09A;--cp:#FEF3E4;--cream:#FDF8F5;--warm:#FFFBF9;
+  --dark:#2C1810;--text:#3D2B20;--muted:#7A5C50;--upl:#CECBF6;--upp:#EEEDFE;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden}
+.app{display:flex;min-height:100vh}
+.sidebar{width:230px;flex-shrink:0;background:#fff;border-right:1px solid rgba(244,130,154,.12);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;overflow-y:auto}
+.sb-logo{padding:20px 22px 16px;font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(244,130,154,.1);text-decoration:none}
+.sb-logo span{color:var(--teal)}
+.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(244,130,154,.1);margin-bottom:6px}
+.sb-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pp),var(--cp));border:2px solid var(--pl);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink)}
+.sb-nm{font-size:.82rem;font-weight:600;color:var(--dark)}
+.sb-lv{font-size:.68rem;color:var(--muted)}
+.sb-sec{font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 18px 5px}
+.sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:.85rem;color:var(--muted);border-left:3px solid transparent}
+.sb-item.on{color:var(--pink);background:var(--pp);border-left-color:var(--pink);font-weight:500}
+.sb-bot{margin-top:auto;padding:12px 18px}
+.xpb{background:var(--cream);border-radius:10px;padding:11px 13px}
+.xpb-top{display:flex;justify-content:space-between;margin-bottom:6px}
+.xpb-l{font-size:.68rem;color:var(--muted);font-weight:500}
+.xpb-v{font-size:.72rem;color:var(--peach);font-weight:600}
+.xpb-track{height:4px;background:var(--pp);border-radius:100px;overflow:hidden}
+.xpb-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));width:88%}
+.main{margin-left:230px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+.tbar{background:#fff;border-bottom:1px solid rgba(244,130,154,.1);padding:0 36px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tbar-bc{font-size:.79rem;color:var(--muted)}
+.tbar-cur{color:var(--dark);font-weight:500}
+.tbar-r{display:flex;align-items:center;gap:11px}
+.tbar-xp{font-size:.77rem;font-weight:600;color:var(--peach);background:var(--cp);border:1px solid var(--cl);padding:4px 12px;border-radius:100px}
+.tbar-st{font-size:.77rem;color:var(--muted)}
+.prog-track{height:6px;background:var(--pp);position:sticky;top:60px;z-index:39}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));transition:width .45s ease;width:0%}
+.lv-cards{flex:1;display:flex;flex-direction:column;align-items:center;padding:36px 24px 110px}
+.slide{width:100%;max-width:790px;display:none}
+.slide.active{display:flex;flex-direction:column;gap:14px}
+.intro-card,.teach-card,.sim-wrap,.deep-card,.decision-wrap,.checkpoint-wrap,.quick-check,.recap-card,.quiz-card,.complete-card,.dayli-card,.reinforce-card{border-radius:22px}
+.intro-card{background:var(--dark);padding:34px;color:#fff}
+.ic-eye{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--pl);margin-bottom:12px}
+.ic-title{font-family:"Playfair Display",serif;font-size:2.2rem;font-weight:900;line-height:1.1;margin-bottom:10px}
+.ic-acc{color:var(--pink)}
+.ic-sub{font-size:.94rem;color:rgba(255,255,255,.58);line-height:1.72;margin-bottom:22px}
+.ic-pills{display:flex;gap:8px;flex-wrap:wrap}
+.ic-pill{font-size:.7rem;font-weight:500;padding:5px 12px;border-radius:100px;border:1px solid}
+.ip-pk{background:rgba(244,130,154,.15);border-color:rgba(244,130,154,.3);color:var(--pl)}
+.ip-tl{background:rgba(126,206,196,.15);border-color:rgba(126,206,196,.3);color:var(--tl)}
+.ip-pc{background:rgba(245,168,87,.15);border-color:rgba(245,168,87,.3);color:var(--cl)}
+.teach-card,.sim-wrap,.deep-card,.decision-wrap,.checkpoint-wrap,.quick-check,.recap-card,.quiz-card{background:#fff;padding:26px 30px;border:1px solid rgba(244,130,154,.1);box-shadow:0 4px 20px rgba(244,130,154,.05)}
+.teach-eye,.card-eye{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--peach);margin-bottom:10px}
+.teach-title,.card-title{font-family:"Playfair Display",serif;font-size:1.25rem;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.3}
+.teach-body,.card-body{font-size:.93rem;line-height:1.82;color:var(--muted)}
+.reinforce-card{background:linear-gradient(135deg,rgba(126,206,196,.12),rgba(245,168,87,.08));border:1px solid var(--tl);padding:22px 26px}
+.rc-label{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.rc-text{font-size:.95rem;line-height:1.75;color:var(--dark);font-style:italic}
+.dayli-card{background:var(--dark);padding:24px 28px;color:#fff}
+.dc-lbl{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
+.dc-q{font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;line-height:1.75;margin-bottom:8px}
+.dc-at{font-size:.72rem;color:rgba(255,255,255,.3)}
+.tf-switch{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+.tf-btn{padding:9px 14px;border-radius:999px;border:1.5px solid rgba(244,130,154,.15);background:var(--warm);font-size:.78rem;cursor:pointer}
+.tf-btn.on{background:var(--pp);border-color:var(--pink);color:var(--pink);font-weight:700}
+.chart-wrap{position:relative}
+.chart-canvas{display:block;width:100%;height:290px;background:#fff;border-radius:16px;border:1px solid rgba(244,130,154,.08)}
+.chart-note{position:absolute;top:14px;right:16px;background:rgba(44,24,16,.88);color:#fff;padding:8px 12px;border-radius:12px;font-size:.76rem;opacity:0;transform:translateY(-6px);transition:.25s}
+.chart-note.show{opacity:1;transform:translateY(0)}
+.control-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px}
+.control-card{background:var(--warm);border:1.5px solid rgba(244,130,154,.12);border-radius:16px;padding:16px}
+.control-label{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.control-value{font-family:"Playfair Display",serif;font-size:1.2rem;color:var(--dark);font-weight:900}
+.side-grid,.choice-grid,.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.side-card,.choice-card{border-radius:16px;padding:18px;border:2px solid transparent;background:var(--warm);cursor:pointer}
+.side-card.selected,.choice-card.selected{box-shadow:0 10px 24px rgba(44,24,16,.08)}
+.clean{background:var(--tp);border-color:var(--tl)}
+.choppy{background:var(--pp);border-color:var(--pl)}
+.good{background:var(--cp);border-color:var(--cl)}
+.bad{background:var(--upp);border-color:var(--upl)}
+.choice-title{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:6px}
+.mini-canvas{display:block;width:100%;height:180px;background:#fff;border-radius:12px;border:1px solid rgba(244,130,154,.08);margin-bottom:10px}
+.feedback{display:none;margin-top:12px;padding:14px 16px;border-radius:14px;font-size:.86rem;line-height:1.65}
+.feedback.show{display:block}
+.fb-good{background:var(--tp);border:1px solid var(--tl);color:#1a6b63}
+.fb-bad{background:var(--pp);border:1px solid var(--pl);color:#a84060}
+.fb-mid{background:var(--cp);border:1px solid var(--cl);color:#7a4a0a}
+.order-pills{display:flex;gap:10px;flex-wrap:wrap}
+.order-pill{padding:12px 18px;border-radius:999px;border:1.5px solid rgba(244,130,154,.16);background:#fff;cursor:pointer;font-weight:700;color:var(--muted)}
+.order-pill.correct{background:var(--tp);border-color:var(--teal);color:#1a6b63}
+.order-pill.wrong{background:var(--pp);border-color:var(--pink);color:#a84060}
+.quick-check{background:linear-gradient(135deg,var(--cp),var(--pp));border:1px solid var(--cl)}
+.qc-lbl{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-bottom:8px}
+.qc-q{font-size:.96rem;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:13px}
+.qc-opts{display:flex;flex-direction:column;gap:7px}
+.qc-opt{background:#fff;border:1.5px solid rgba(244,130,154,.18);border-radius:11px;padding:12px 16px;font-family:"DM Sans",sans-serif;font-size:.87rem;color:var(--text);cursor:pointer;text-align:left}
+.qc-opt.good{background:var(--tp);border-color:var(--teal);color:#1a6b63}
+.qc-opt.bad{background:var(--pp);border-color:var(--pink);color:#a84060}
+.recap-list{display:flex;flex-direction:column;gap:8px}
+.recap-item{display:flex;gap:12px;padding:13px 16px;border-radius:12px}
+.recap-item:nth-child(odd){background:var(--tp);border:1px solid var(--tl)}
+.recap-item:nth-child(even){background:var(--pp);border:1px solid var(--pl)}
+.recap-ico{font-size:1rem;margin-top:2px}
+.recap-text{font-size:.87rem;line-height:1.62;color:var(--text)}
+.quiz-card .question{margin-bottom:22px}
+.q-lbl{font-size:.66rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.q-text{font-size:.96rem;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:12px}
+.q-opts{display:flex;flex-direction:column;gap:7px}
+.q-opt{background:var(--warm);border:1.5px solid rgba(244,130,154,.14);border-radius:11px;padding:11px 15px;font-family:"DM Sans",sans-serif;font-size:.87rem;color:var(--text);cursor:pointer;text-align:left}
+.q-opt.correct{background:var(--tp);border-color:var(--teal);color:#1a6b63}
+.q-opt.wrong{background:var(--pp);border-color:var(--pink);color:#a84060}
+.q-fb{margin-top:9px;padding:11px 15px;border-radius:10px;font-size:.83rem;line-height:1.6;display:none}
+.q-fb.show{display:block}
+.complete-card{background:linear-gradient(135deg,var(--dark),#3d2420);padding:34px;text-align:center;color:#fff;display:none}
+.complete-card.show{display:block}
+.cc-title{font-family:"Playfair Display",serif;font-size:1.9rem;font-weight:900;margin-bottom:8px}
+.cc-acc{color:var(--pink)}
+.cc-sub{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:20px;max-width:390px;margin-left:auto;margin-right:auto}
+.cc-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(126,206,196,.15);border:1px solid rgba(126,206,196,.3);border-radius:100px;padding:9px 20px;font-size:.88rem;font-weight:600;color:var(--tl);margin-bottom:22px}
+.cc-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cc-next,.cc-hub{padding:13px 26px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.9rem;cursor:pointer;border:none}
+.cc-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff}
+.cc-hub{background:transparent;color:rgba(255,255,255,.42);border:1.5px solid rgba(255,255,255,.18)}
+.bnav{position:fixed;bottom:0;left:230px;right:0;background:rgba(253,248,245,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(244,130,154,.12);padding:13px 40px;display:flex;align-items:center;justify-content:space-between;z-index:40}
+.bn-left{display:flex;align-items:center;gap:12px}
+.bn-dots{display:flex;gap:5px;align-items:center}
+.bn-dot{width:8px;height:8px;border-radius:50%;cursor:pointer}
+.bd-done{background:var(--teal)}
+.bd-active{background:var(--pink);transform:scale(1.45)}
+.bd-todo{background:var(--pp);border:1.5px solid var(--pl)}
+.bn-sname{font-size:.74rem;color:var(--muted);font-weight:500}
+.btn-prev,.btn-next{padding:10px 22px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.85rem;font-weight:600;cursor:pointer}
+.btn-prev{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted)}
+.btn-prev:disabled{opacity:.35;cursor:default}
+.btn-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none}
+.btn-next:disabled{opacity:.4;cursor:default}
+.toast{position:fixed;bottom:84px;right:26px;background:var(--dark);color:#fff;border-radius:14px;padding:13px 18px;display:flex;align-items:center;gap:11px;box-shadow:0 16px 48px rgba(44,24,16,.32);z-index:200;transform:translateY(18px);opacity:0;transition:all .5s ease}
+.toast.show{transform:translateY(0);opacity:1}
+.streak-toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--dark);color:#fff;border-radius:14px;padding:12px 22px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 40px rgba(44,24,16,.3);z-index:300;opacity:0;transition:all .5s ease;pointer-events:none}
+.streak-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.cfp{position:fixed;border-radius:2px;pointer-events:none;z-index:9998;animation:cfF linear both}
+@keyframes cfF{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+@media (max-width:900px){.sidebar{display:none}.main{margin-left:0}.bnav{left:0}}
+@media (max-width:760px){.control-grid,.side-grid,.choice-grid,.lab-grid{grid-template-columns:1fr}.tbar{padding:0 18px}.lv-cards{padding:22px 14px 110px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="sidebar">
+    <a class="sb-logo" href="#"><span>A Girl &</span> Her Futures™</a>
+    <div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Section 2 · Platform + Execution Basics</div></div></div>
+    <div class="sb-sec">Learn</div>
+    <div class="sb-item on">✦ Lessons</div>
+    <div class="sb-item">◈ Games</div>
+    <div class="sb-sec">Community</div>
+    <div class="sb-item">↑ Leaderboard</div>
+    <div class="sb-item">◇ Drip Store</div>
+    <div class="sb-sec">Account</div>
+    <div class="sb-item">○ My Profile</div>
+    <div class="sb-bot"><div class="xpb"><div class="xpb-top"><span class="xpb-l">XP</span><span class="xpb-v">780 / 1000</span></div><div class="xpb-track"><div class="xpb-fill"></div></div></div></div>
+  </div>
+
+  <div class="main">
+    <div class="tbar">
+      <div class="tbar-bc">Lessons › Section 2 › <span class="tbar-cur" id="tbarCur">Introduction</span></div>
+      <div class="tbar-r"><span class="tbar-xp">+85 XP</span><span class="tbar-st" id="tbarSt">1 / 8</span></div>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+
+    <div class="lv-cards">
+      <div class="slide active" id="s0">
+        <div class="intro-card">
+          <div class="ic-eye">✦ Section 2 · Lesson 8</div>
+          <div class="ic-title">Timeframes = <span class="ic-acc">Perspective</span></div>
+          <div class="ic-sub">The market isn’t changing. Your view of it is. This lesson helps beginners stop getting lost by learning how the same market can look messy or clear depending on the zoom level.</div>
+          <div class="ic-pills"><span class="ic-pill ip-pk">~15 min</span><span class="ic-pill ip-tl">Perspective lesson</span><span class="ic-pill ip-pc">+85 XP</span></div>
+        </div>
+        <div class="teach-card">
+          <div class="teach-eye">Core idea</div>
+          <div class="teach-title">Same market. Different zoom levels.</div>
+          <div class="teach-body">The 1 minute, 5 minute, 1 hour, and 4 hour are not different markets. They are different views of the same price story. Lower timeframes show more detail. Higher timeframes show more direction.</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s1">
+        <div class="sim-wrap">
+          <div class="card-eye">Teach → Experience</div>
+          <div class="card-title">Switch the timeframe</div>
+          <div class="card-body">Tap each timeframe button and watch the same market redraw. This is the point of the whole lesson: the chart changes because your perspective changes.</div>
+          <div class="tf-switch">
+            <button class="tf-btn on" id="b1m" onclick="setTF('1m')">1M</button>
+            <button class="tf-btn" id="b5m" onclick="setTF('5m')">5M</button>
+            <button class="tf-btn" id="b1h" onclick="setTF('1h')">1H</button>
+            <button class="tf-btn" id="b4h" onclick="setTF('4h')">4H</button>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="tfCanvas" class="chart-canvas" width="700" height="290"></canvas>
+            <div class="chart-note" id="tfNote">Too zoomed in... easy to get lost</div>
+          </div>
+          <div class="control-grid">
+            <div class="control-card"><div class="control-label">Current view</div><div class="control-value" id="tfLabel">1M</div></div>
+            <div class="control-card"><div class="control-label">What it shows</div><div class="control-value" id="tfFocus">Detail</div></div>
+            <div class="control-card"><div class="control-label">Best use</div><div class="control-value" id="tfUse">Entry detail</div></div>
+          </div>
+          <div class="feedback show fb-mid" id="tfFb">Beginners often get confused because they are trying to get direction from a timeframe that is better for detail.</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s2">
+        <div class="deep-card">
+          <div class="card-eye">Detailed breakdown</div>
+          <div class="card-title">What each timeframe is actually helping you see</div>
+          <div class="card-body"><strong>1M</strong> helps you see detail, but it can feel noisy fast.<br><strong>5M</strong> starts showing short-term structure more clearly.<br><strong>1H</strong> gives cleaner structure and better context.<br><strong>4H</strong> helps you see the broader direction or bias.<br><br>That is why the same market can look chaotic on one timeframe and obvious on another.</div>
+        </div>
+        <div class="reinforce-card">
+          <div class="rc-label">Reinforce</div>
+          <div class="rc-text">Higher timeframes tell you <strong>where price is going</strong>. Lower timeframes help you decide <strong>when to engage</strong>.</div>
+        </div>
+        <div class="dayli-card">
+          <div class="dc-lbl">✦ Dayli note</div>
+          <div class="dc-q">"A lot of chart confusion disappears the moment you zoom out. The market was not messy. Your perspective was."</div>
+          <div class="dc-at">— Dayli Scott · A Girl & Her Futures™</div>
+        </div>
+      </div>
+
+      <div class="slide" id="s3">
+        <div class="sim-wrap">
+          <div class="card-eye">What do you see?</div>
+          <div class="card-title">Which chart is easier to understand?</div>
+          <div class="card-body">Look at the two charts below. One is choppy and noisy. One is cleaner and easier to read. Choose the one that gives better directional clarity.</div>
+          <div class="side-grid">
+            <div class="side-card choppy" onclick="pickChartRead('choppy', this)">
+              <canvas id="choppyCanvas" class="mini-canvas" width="320" height="180"></canvas>
+              <div class="choice-title">Chart A</div>
+              <div class="card-body">Fast, noisy, lots of back and forth.</div>
+            </div>
+            <div class="side-card clean" onclick="pickChartRead('clean', this)">
+              <canvas id="cleanCanvas" class="mini-canvas" width="320" height="180"></canvas>
+              <div class="choice-title">Chart B</div>
+              <div class="card-body">Cleaner push, easier direction.</div>
+            </div>
+          </div>
+          <div class="feedback" id="chartReadFb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s4">
+        <div class="decision-wrap">
+          <div class="card-eye">Big mistake</div>
+          <div class="card-title">Which timeframe matters more for direction?</div>
+          <div class="card-body">Scenario: the 1M looks bullish right now, but the 4H looks clearly bearish overall. Which timeframe should matter more for your directional understanding?</div>
+          <div class="choice-grid">
+            <div class="choice-card bad" onclick="pickMistake('1m', this)">
+              <div class="choice-title">1M matters more</div>
+              <div class="card-body">Because it is moving right now.</div>
+            </div>
+            <div class="choice-card good" onclick="pickMistake('4h', this)">
+              <div class="choice-title">4H matters more</div>
+              <div class="card-body">Because higher timeframes give the broader directional context.</div>
+            </div>
+          </div>
+          <div class="feedback" id="mistakeFb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s5">
+        <div class="checkpoint-wrap">
+          <div class="card-eye">Build the flow</div>
+          <div class="card-title">Tap the correct order</div>
+          <div class="card-body">This is the workflow this platform is training: start high, refine lower. Tap the order you would use.</div>
+          <div class="order-pills" id="orderPills">
+            <button class="order-pill" onclick="pickOrder('1M', this)">1M</button>
+            <button class="order-pill" onclick="pickOrder('4H', this)">4H</button>
+            <button class="order-pill" onclick="pickOrder('1H', this)">1H</button>
+          </div>
+          <div class="feedback" id="orderFb"></div>
+        </div>
+        <div class="quick-check">
+          <div class="qc-lbl">Checkpoint question</div>
+          <div class="qc-q">You see a clean uptrend on the 4H. What should you do next?</div>
+          <div class="qc-opts">
+            <button class="qc-opt" onclick="quickCheck(this,false,'qc1fb','Not yet. Higher timeframe direction helps, but you still need to refine lower.')">Enter immediately</button>
+            <button class="qc-opt" onclick="quickCheck(this,true,'qc1fb','Exactly. Drop lower to refine the structure and entry timing.')">Drop to a lower timeframe</button>
+            <button class="qc-opt" onclick="quickCheck(this,false,'qc1fb','That is not the next best step here.')">Wait for unrelated news</button>
+          </div>
+          <div class="feedback" id="qc1fb"></div>
+        </div>
+      </div>
+
+      <div class="slide" id="s6">
+        <div class="recap-card">
+          <div class="card-title" style="margin-bottom:16px">What you know now</div>
+          <div class="recap-list">
+            <div class="recap-item"><div class="recap-ico">🔎</div><div class="recap-text"><strong>Timeframes are perspective.</strong> Same market, different zoom.</div></div>
+            <div class="recap-item"><div class="recap-ico">🧩</div><div class="recap-text"><strong>Lower timeframes show detail.</strong> They can also feel noisy if you rely on them for everything.</div></div>
+            <div class="recap-item"><div class="recap-ico">🧭</div><div class="recap-text"><strong>Higher timeframes show direction.</strong> They matter more for overall bias.</div></div>
+            <div class="recap-item"><div class="recap-ico">🪜</div><div class="recap-text"><strong>The clean flow is 4H → 1H → 1M.</strong> Higher first, lower after.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" id="s7">
+        <div class="quiz-card">
+          <div class="card-eye">Final quiz</div>
+          <div class="card-title">Lock in timeframes</div>
+          <div class="question">
+            <div class="q-lbl">Question 1 of 4</div>
+            <div class="q-text">What are timeframes really changing?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q1fb','Correct. Timeframes change your perspective, not the market itself.')">Your perspective on the same market</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q1fb','No. The market itself is not changing because you switched the chart view.')">The market itself</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q1fb','Not enough. It is more specific than that.')">Everything at once</button>
+            </div>
+            <div class="q-fb" id="q1fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 2 of 4</div>
+            <div class="q-text">Which timeframe is more useful for broader direction?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,false,'q2fb','That is more detail-oriented here.')">1M</button>
+              <button class="q-opt" onclick="quizAns(this,true,'q2fb','Yes. The higher timeframe gives stronger directional context.')">4H</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q2fb','Not the broadest choice here.')">5M</button>
+            </div>
+            <div class="q-fb" id="q2fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 3 of 4</div>
+            <div class="q-text">Which order fits the framework taught in this lesson?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q3fb','Exactly. Higher to lower is the clean workflow.')">4H → 1H → 1M</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q3fb','That reverses the clean flow.')">1M → 5M → 4H</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q3fb','Not the workflow we are anchoring.')">5M only</button>
+            </div>
+            <div class="q-fb" id="q3fb"></div>
+          </div>
+          <div class="question">
+            <div class="q-lbl">Question 4 of 4</div>
+            <div class="q-text">Why do beginners often get confused?</div>
+            <div class="q-opts">
+              <button class="q-opt" onclick="quizAns(this,true,'q4fb','Yes. They often rely on a timeframe that gives detail for a job that needs broader context.')">They try to get direction from a timeframe that is too zoomed in</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q4fb','Not the main reason here.')">Because every chart is random</button>
+              <button class="q-opt" onclick="quizAns(this,false,'q4fb','That is not the core lesson.')">Because higher timeframes do not matter</button>
+            </div>
+            <div class="q-fb" id="q4fb"></div>
+          </div>
+        </div>
+
+        <div class="complete-card" id="completeCard">
+          <div class="cc-title">Lesson 8 <span class="cc-acc">complete.</span></div>
+          <div class="cc-sub">Now you’re not just looking at charts. You’re choosing the right perspective first, and that changes everything about how the market feels.</div>
+          <div class="cc-badge">+85 XP · Timeframe vision unlocked</div>
+          <div class="cc-btns">
+            <button class="cc-next">Lesson 9 → Brokers & Prop Firms</button>
+            <button class="cc-hub">Back to lessons</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bnav">
+  <div class="bn-left"><div class="bn-dots" id="bnDots"></div><div class="bn-sname"><span id="bnStepName">Introduction</span></div></div>
+  <div style="display:flex;gap:9px"><button class="btn-prev" id="prevBtn" onclick="go(-1)" disabled>← Back</button><button class="btn-next" id="nextBtn" onclick="go(1)">Next →</button></div>
+</div>
+
+<div class="streak-toast" id="streakToast"><span id="stkIcon">🔥</span><span id="stkText">you’re locked in 🔥</span></div>
+<div class="toast" id="xpToast"><span>✦</span><div><div style="font-size:.85rem;font-weight:700">+85 XP earned!</div><div style="font-size:.7rem;color:rgba(255,255,255,.42)">Lesson 8 complete 🫧✨</div></div></div>
+
+<script>
+const STEPS=['Introduction','Switch the timeframe','Detailed breakdown','What do you see?','Big mistake','Build the flow','Recap','Final quiz'];
+let cur=0, streak=0, chartReadDone=false, mistakeDone=false, checkpointDone=false, quizDone=false;
+const cpAns={order:[]}, quizState={};
+let tf='1m';
+
+function buildDots(){const el=document.getElementById('bnDots');el.innerHTML='';STEPS.forEach((_,i)=>{const d=document.createElement('div');d.className='bn-dot '+(i<cur?'bd-done':i===cur?'bd-active':'bd-todo');if(i<=cur)d.onclick=()=>goTo(i);el.appendChild(d);});}
+function goTo(n){document.getElementById('s'+cur)?.classList.remove('active');cur=n;document.getElementById('s'+cur)?.classList.add('active');document.getElementById('tbarCur').textContent=STEPS[cur];document.getElementById('tbarSt').textContent=(cur+1)+' / '+STEPS.length;document.getElementById('bnStepName').textContent=STEPS[cur];document.getElementById('progFill').style.width=(cur/(STEPS.length-1)*100)+'%';document.getElementById('prevBtn').disabled=cur===0;updateNext();buildDots();if(cur===1)drawTF();if(cur===3)drawMiniCharts();window.scrollTo({top:0,behavior:'smooth'});}
+function go(d){goTo(cur+d);}
+function updateNext(){const btn=document.getElementById('nextBtn');btn.disabled=false;btn.onclick=()=>go(1);if(cur===3&&!chartReadDone){btn.disabled=true;btn.textContent='Choose a chart first';btn.onclick=null;}else if(cur===4&&!mistakeDone){btn.disabled=true;btn.textContent='Choose a timeframe first';btn.onclick=null;}else if(cur===5&&!checkpointDone){btn.disabled=true;btn.textContent='Finish the flow';btn.onclick=null;}else if(cur===7){btn.textContent=quizDone?'Finish lesson ✦':'Answer all questions';btn.disabled=!quizDone;btn.onclick=quizDone?showComplete:null;}else{btn.textContent=cur===6?'Take the final quiz →':'Next →';}}
+function showToast(){const t=document.getElementById('xpToast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300);}
+function showStreak(icon,text){document.getElementById('stkIcon').textContent=icon;document.getElementById('stkText').textContent=text;const t=document.getElementById('streakToast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+function handleStreak(correct){if(correct){streak++;if(streak===2)showStreak('👀','okayyy I see you 👀');if(streak===3)showStreak('🔥','you’re locked in 🔥');if(streak===5)showStreak('🎯','sniper energy activated 🎯');}else streak=0;}
+function confetti(){const cols=['#F4829A','#7ECEC4','#F5A857','#F9B8C6','#B2E4DF','#FAD09A'];for(let i=0;i<34;i++){const p=document.createElement('div');p.className='cfp';const sz=6+Math.random()*8;p.style.cssText=`left:${10+Math.random()*80}vw;top:-10px;width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${Math.random()>.5?'50%':'2px'};`;p.animate([{opacity:1,transform:'translateY(0) rotate(0deg)'},{opacity:0,transform:'translateY(100vh) rotate(720deg)'}],{duration:1200+Math.random()*900,delay:Math.random()*300,fill:'forwards'});document.body.appendChild(p);setTimeout(()=>p.remove(),2500);}}
+function drawChart(canvas, variant){
+  const ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;
+  ctx.clearRect(0,0,w,h);ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);
+  for(let i=1;i<5;i++){ctx.strokeStyle='rgba(244,130,154,.08)';ctx.beginPath();ctx.moveTo(0,(h/5)*i);ctx.lineTo(w,(h/5)*i);ctx.stroke();}
+  let x=30,y=200;
+  const sets={ '1m':[7,5,9,4,8,6,10,4,7,5,8,6,9,4], '5m':[12,10,14,11,13,12,15,12,11], '1h':[24,18,28,20,30,22], '4h':[42,34,48,38] };
+  const bodies=sets[variant];
+  bodies.forEach((b,i)=>{
+    const bull = variant==='1m' ? (i%2===0) : (i%4!==1);
+    const open=y, close=bull?y-b:y+b, wickTop=(bull?close:open)-8, wickBot=(bull?open:close)+8;
+    ctx.strokeStyle=bull?'#7ECEC4':'#F4829A'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(x+9,wickTop); ctx.lineTo(x+9,wickBot); ctx.stroke();
+    ctx.fillStyle=bull?'#7ECEC4':'#F4829A';
+    ctx.fillRect(x, Math.min(open,close), 18, Math.abs(close-open));
+    x += variant==='4h' ? 110 : variant==='1h' ? 62 : variant==='5m' ? 42 : 30;
+    y += bull ? -3 : 4;
+  });
+}
+function showTFNote(text){const note=document.getElementById('tfNote');note.textContent=text;note.classList.add('show');clearTimeout(window._tfTimer);window._tfTimer=setTimeout(()=>note.classList.remove('show'),1300);}
+function drawTF(){
+  const c=document.getElementById('tfCanvas'); if(!c) return;
+  drawChart(c,tf);
+  const focus={'1m':'Detail','5m':'Short structure','1h':'Cleaner structure','4h':'Bias'};
+  const use={'1m':'Entry detail','5m':'Short-term context','1h':'Structure','4h':'Direction'};
+  const note={'1m':'Too zoomed in... easy to get lost','5m':'More structure is forming','1h':'Now the story is clearer','4h':'Now you can actually see direction'};
+  document.getElementById('tfLabel').textContent=tf.toUpperCase();
+  document.getElementById('tfFocus').textContent=focus[tf];
+  document.getElementById('tfUse').textContent=use[tf];
+  document.getElementById('tfFb').textContent=`On ${tf.toUpperCase()}, the same market feels different because the zoom changed.`;
+  showTFNote(note[tf]);
+}
+function setTF(next){tf=next;['1m','5m','1h','4h'].forEach(k=>document.getElementById('b'+k).classList.remove('on'));document.getElementById('b'+next).classList.add('on');drawTF();handleStreak(true);}
+function drawMiniCharts(){drawMini('choppyCanvas','choppy');drawMini('cleanCanvas','clean');}
+function drawMini(id, type){
+  const c=document.getElementById(id), ctx=c.getContext('2d'), w=c.width, h=c.height;
+  ctx.clearRect(0,0,w,h); ctx.fillStyle='#fff'; ctx.fillRect(0,0,w,h);
+  let x=20,y=120;
+  const bodies= type==='choppy' ? [8,7,9,6,8,7,9,6,8] : [14,10,16,12,18,14];
+  bodies.forEach((b,i)=>{
+    const bull = type==='clean' ? i!==2 : i%2===0;
+    const open=y, close=bull?y-b:y+b;
+    ctx.strokeStyle=bull?'#7ECEC4':'#F4829A'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(x+8, Math.min(open,close)-8); ctx.lineTo(x+8, Math.max(open,close)+8); ctx.stroke();
+    ctx.fillStyle=bull?'#7ECEC4':'#F4829A'; ctx.fillRect(x,Math.min(open,close),16,Math.abs(close-open));
+    x += type==='clean' ? 45 : 28;
+    y += type==='clean' ? -4 : (i%2===0?-2:3);
+  });
+}
+function pickChartRead(which, el){
+  if(chartReadDone) return;
+  document.querySelectorAll('#s3 .side-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const fb=document.getElementById('chartReadFb');
+  chartReadDone=true;
+  if(which==='clean'){fb.className='feedback show fb-good';fb.innerHTML='<strong>Exactly.</strong> The cleaner chart is easier to understand because zooming out reduces noise and shows direction better.';handleStreak(true);}
+  else{fb.className='feedback show fb-bad';fb.innerHTML='<strong>Not this one.</strong> The choppier chart has more detail, but that does not automatically mean more clarity.';handleStreak(false);}
+  updateNext();
+}
+function pickMistake(which, el){
+  if(mistakeDone) return;
+  document.querySelectorAll('#s4 .choice-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const fb=document.getElementById('mistakeFb');
+  mistakeDone=true;
+  if(which==='4h'){fb.className='feedback show fb-good';fb.innerHTML='<strong>Yes.</strong> Lower timeframes do not override higher-timeframe direction. The 4H matters more for your broader read.';handleStreak(true);}
+  else{fb.className='feedback show fb-bad';fb.innerHTML='<strong>Not here.</strong> The 1M can show what is happening right now, but it should not outrank the broader 4H picture for direction.';handleStreak(false);}
+  updateNext();
+}
+function pickOrder(label, btn){
+  if(cpAns.order.includes(label)) return;
+  cpAns.order.push(label);
+  const expected = cpAns.order.length===1?'4H':cpAns.order.length===2?'1H':'1M';
+  btn.classList.add(label===expected?'correct':'wrong');
+  if(cpAns.order.length===3){
+    const good = cpAns.order.join('>')==='4H>1H>1M';
+    checkpointDone=true;
+    const fb=document.getElementById('orderFb');
+    if(good){fb.className='feedback show fb-good';fb.innerHTML='<strong>Clean flow.</strong> 4H for bias, 1H for structure, 1M for detail. That is the hierarchy.';handleStreak(true);confetti();}
+    else{fb.className='feedback show fb-bad';fb.innerHTML='<strong>Almost.</strong> The flow starts higher, then steps lower. Think broad direction first, detail second.';handleStreak(false);}
+    updateNext();
+  }
+}
+function quickCheck(btn, correct, fbId, msg){
+  const opts=btn.parentElement.querySelectorAll('.qc-opt'); opts.forEach(o=>o.disabled=true);
+  btn.classList.add(correct?'good':'bad');
+  const fb=document.getElementById(fbId); fb.className='feedback show '+(correct?'fb-good':'fb-bad'); fb.innerHTML=msg;
+  handleStreak(correct);
+}
+function quizAns(btn, correct, fbId, msg){
+  const wrap=btn.closest('.question'); wrap.querySelectorAll('.q-opt').forEach(o=>o.disabled=true);
+  btn.classList.add(correct?'correct':'wrong');
+  const fb=document.getElementById(fbId); fb.className='q-fb show '+(correct?'fb-good':'fb-bad'); fb.innerHTML=msg;
+  quizState[fbId]=true; handleStreak(correct);
+  if(Object.keys(quizState).length===4){quizDone=true; updateNext();}
+}
+function showComplete(){document.getElementById('completeCard').classList.add('show'); showToast(); confetti();}
+buildDots(); updateNext(); setTimeout(()=>{drawTF(); drawMiniCharts();},50);
+</script>
+</body>
+</html>
