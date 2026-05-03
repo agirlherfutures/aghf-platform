@@ -17,25 +17,25 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);
 .plt.on{display:flex;}
 
 /* SIDEBAR */
-.sb{width:230px;flex-shrink:0;background:white;border-right:1px solid rgba(244,130,154,.12);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50;overflow-y:auto;}
-.sb-logo{padding:20px 22px 16px;font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(244,130,154,.1);cursor:pointer;display:block;}
+.sb{width:230px;flex-shrink:0;background:var(--dark);border-right:none;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50;overflow-y:auto;}
+.sb-logo{padding:22px 22px 16px;font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer;display:block;}
 .sb-logo span{color:var(--teal);}
-.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(244,130,154,.1);margin-bottom:6px;}
-.sb-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pink-pale),var(--peach-pale));border:2px solid var(--pink-light);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink);flex-shrink:0;}
-.sb-nm{font-size:.82rem;font-weight:600;color:var(--dark);}
-.sb-lv{font-size:.68rem;color:var(--muted);}
-.sb-sec{font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 18px 5px;}
-.sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:.85rem;color:var(--muted);cursor:pointer;transition:all .2s;border-left:3px solid transparent;}
-.sb-item:hover{color:var(--dark);background:var(--cream);}
-.sb-item.active{color:var(--pink);background:var(--pink-pale);border-left-color:var(--pink);font-weight:500;}
+.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:6px;}
+.sb-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--peach));border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.85rem;font-weight:700;color:white;flex-shrink:0;}
+.sb-nm{font-size:.84rem;font-weight:600;color:white;}
+.sb-lv{font-size:.68rem;color:rgba(255,255,255,.45);}
+.sb-sec{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:12px 18px 5px;}
+.sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:.85rem;color:rgba(255,255,255,.55);cursor:pointer;transition:all .2s;border-left:3px solid transparent;border-radius:0;}
+.sb-item:hover{color:white;background:rgba(255,255,255,.07);}
+.sb-item.active{color:var(--pink);background:rgba(244,130,154,.12);border-left-color:var(--pink);font-weight:500;}
 .sb-ico{width:16px;text-align:center;font-size:12px;flex-shrink:0;}
-.sb-bot{margin-top:auto;padding:12px 18px;}
-.xp-box{background:var(--cream);border-radius:10px;padding:11px 13px;}
-.xp-top{display:flex;justify-content:space-between;margin-bottom:6px;}
-.xp-lbl{font-size:.68rem;color:var(--muted);font-weight:500;}
+.sb-bot{margin-top:auto;padding:14px 18px;border-top:1px solid rgba(255,255,255,.08);}
+.xp-box{background:rgba(255,255,255,.06);border-radius:12px;padding:12px 14px;}
+.xp-top{display:flex;justify-content:space-between;margin-bottom:7px;}
+.xp-lbl{font-size:.68rem;color:rgba(255,255,255,.4);font-weight:500;}
 .xp-val{font-size:.72rem;color:var(--peach);font-weight:600;}
-.xp-track{height:4px;background:var(--pink-pale);border-radius:100px;overflow:hidden;}
-.xp-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;width:38%;}
+.xp-track{height:5px;background:rgba(255,255,255,.1);border-radius:100px;overflow:hidden;}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;width:0%;transition:width .6s ease;}
 
 /* MAIN */
 .main{margin-left:230px;flex:1;padding:36px 44px 80px;min-height:100vh;background:var(--cream);}
@@ -200,8 +200,19 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
 
 /* DASHBOARD STYLES */
 .pg-eye{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-bottom:5px;}
-.pg-title{font-family:"Playfair Display",serif;font-size:2rem;font-weight:900;color:var(--dark);margin-bottom:24px;}
+.pg-title{font-family:"Playfair Display",serif;font-size:2rem;font-weight:900;color:var(--dark);margin-bottom:20px;}
 .pg-acc{color:var(--pink);}
+.dayli-quote-card{background:var(--dark);border-radius:16px;padding:18px 22px;margin-bottom:18px;position:relative;overflow:hidden;}
+.dayli-quote-card::after{content:'🫧';position:absolute;right:12px;bottom:-8px;font-size:52px;opacity:.12;}
+.dq-tag{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);margin-bottom:7px;}
+.dq-text{font-family:"Playfair Display",serif;font-style:italic;font-size:.96rem;color:white;line-height:1.7;}
+.gp-progress-card{background:white;border-radius:16px;border:1px solid rgba(244,130,154,.1);padding:16px 20px;margin-bottom:20px;}
+.gp-prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.gp-prog-label{font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+.gp-prog-val{font-size:.8rem;font-weight:600;color:var(--peach);}
+.gp-prog-track{height:10px;background:var(--cream);border-radius:100px;overflow:hidden;margin-bottom:8px;}
+.gp-prog-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;transition:width .8s ease;}
+.gp-prog-sub{font-size:.75rem;color:var(--muted);}
 .stats-g{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;}
 .stat-c{background:white;border-radius:15px;padding:16px 18px;border:1px solid rgba(244,130,154,.1);box-shadow:0 2px 10px rgba(244,130,154,.05);}
 .stat-l{font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
@@ -673,7 +684,23 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
   <div class="sb"><div class="sb-logo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div><div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · She's Brand New</div></div></div><div class="sb-sec">Learn</div><div class="sb-item active" onclick="go('s-dashboard')"><span class="sb-ico">⌂</span> Dashboard</div><div class="sb-item" onclick="go('s-lessons')"><span class="sb-ico">✦</span> Lessons</div><div class="sb-item" onclick="go('s-games')"><span class="sb-ico">◈</span> Games</div><div class="sb-sec">Community</div><div class="sb-item" onclick="go('s-leaderboard')"><span class="sb-ico">↑</span> Leaderboard</div><div class="sb-item" onclick="go('s-store')"><span class="sb-ico">◇</span> Drip Store</div><div class="sb-sec">Account</div><div class="sb-item" onclick="go('s-profile')"><span class="sb-ico">○</span> My Profile</div><div class="sb-bot"><div class="xp-box"><div class="xp-top"><span class="xp-lbl">GP</span><span class="xp-val">380 / 1000</span></div><div class="xp-track"><div class="xp-fill"></div></div></div></div></div>
   <div class="main">
     <div class="pg-eye">Good morning ✦</div>
-    <div class="pg-title">Welcome back, <span class="pg-acc">Dayli.</span></div>
+    <div class="pg-title">Welcome back, <span class="pg-acc" id="dashName">Trader.</span></div>
+
+    <!-- Dayli rotating quote -->
+    <div class="dayli-quote-card">
+      <div class="dq-tag">✦ Dayli's note</div>
+      <div class="dq-text" id="dayliQuoteText"></div>
+    </div>
+
+    <!-- GP progress toward next level -->
+    <div class="gp-progress-card">
+      <div class="gp-prog-top">
+        <div class="gp-prog-label">Progress to next level</div>
+        <div class="gp-prog-val"><span id="gpProgCurrent">0</span> / <span id="gpProgNext">1000</span> GP</div>
+      </div>
+      <div class="gp-prog-track"><div class="gp-prog-fill" id="gpProgFill" style="width:0%"></div></div>
+      <div class="gp-prog-sub" id="gpProgSub">Keep going — every lesson earns GP ✦</div>
+    </div>
     <div class="stats-g">
       <div class="stat-c"><div class="stat-l">Current level</div><div class="stat-v sv-p" id="statLevel">1</div><div class="stat-s" id="statLevelName">She's Brand New</div></div>
       <div class="stat-c"><div class="stat-l">Total GP</div><div class="stat-v sv-c" id="statGP">0</div><div class="stat-s">points earned</div></div>
@@ -1381,7 +1408,32 @@ function confetti() {
     setTimeout(() => p.remove(), 2500);
   }
 }
-// ── SUPABASE + STRIPE INTEGRATION ────────────────────────────
+// ── DAYLI ROTATING QUOTES ────────────────────────────────────
+const dayliQuotes = [
+  "Patience is a position. The market will always give you another setup.",
+  "You don't trade to feel something. You trade when the structure says so.",
+  "A wick is not a signal. A close is. Don't let excitement make your decisions.",
+  "The correction is not the enemy. It's your entry. Wait for it.",
+  "Missing a move costs you nothing. Chasing it costs you real money.",
+  "One clean trade a day beats five random ones. Quality over frequency.",
+  "Structure doesn't lie. Your emotions do. Follow structure.",
+  "If it's not a clean ICC setup, it's not a trade. Full stop.",
+  "The best traders are the most patient. Waiting IS the work.",
+  "Candles are just storytelling. Learn to read the story before you trade it.",
+  "Risk only what you're willing to lose. That's not weakness — that's discipline.",
+  "You don't need to trade every day. You need to trade right.",
+];
+
+function initDayliQuote() {
+  const today = new Date().getDay();
+  const quote = dayliQuotes[today % dayliQuotes.length];
+  const el = document.getElementById('dayliQuoteText');
+  if (el) el.textContent = quote;
+}
+
+window.addEventListener('DOMContentLoaded', initDayliQuote);
+
+
 const SUPABASE_URL = 'https://otxfzalcujhtfwprmptr.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90eGZ6YWxjdWpodGZ3cHJtcHRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NTYyOTMsImV4cCI6MjA5MzMzMjI5M30.iRxaKgD6ut9urNK67dyvj_6K2lfyw8peBpfJx3oU9A4';
 
@@ -1420,9 +1472,20 @@ function updateDashboard(data) {
   setText('statLessons', data.lessons_count || 0);
   document.querySelectorAll('.sb-nm').forEach(el => el.textContent = p.full_name || p.email?.split('@')[0] || 'Trader');
   document.querySelectorAll('.sb-lv').forEach(el => el.textContent = `Level ${p.level || 1} · ${p.level_name || "She's Brand New"}`);
+  setText('dashName', (p.full_name?.split(' ')[0] || p.email?.split('@')[0] || 'Trader') + '.');
   const nextLevel = (p.level || 1) * 1000;
-  document.querySelectorAll('.xp-fill').forEach(el => el.style.width = Math.min(((p.gp||0) / nextLevel) * 100, 100) + '%');
-  document.querySelectorAll('.xp-val').forEach(el => el.textContent = `${p.gp || 0} / ${nextLevel}`);
+  const gp = p.gp || 0;
+  document.querySelectorAll('.xp-fill').forEach(el => el.style.width = Math.min((gp / nextLevel) * 100, 100) + '%');
+  document.querySelectorAll('.xp-val').forEach(el => el.textContent = `${gp} / ${nextLevel}`);
+  // GP progress bar
+  setText('gpProgCurrent', gp);
+  setText('gpProgNext', nextLevel);
+  const pct = Math.min((gp / nextLevel) * 100, 100);
+  const fill = document.getElementById('gpProgFill');
+  if (fill) fill.style.width = pct + '%';
+  const remaining = nextLevel - gp;
+  const sub = document.getElementById('gpProgSub');
+  if (sub) sub.textContent = gp === 0 ? 'Start your first lesson to earn GP ✦' : remaining <= 0 ? 'Level up unlocked! ✦' : `${remaining} GP to next level — keep going ✦`;
 
   // Update continue banner based on lessons completed
   const count = data.lessons_count || 0;
