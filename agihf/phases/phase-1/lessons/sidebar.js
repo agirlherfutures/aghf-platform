@@ -198,13 +198,13 @@
     `;
 
     // Wire up clicks
-    document.getElementById('sbnav-dashboard').onclick  = () => { window.location.href = ROOT + 'index.html'; };
-    document.getElementById('sbnav-lessons').onclick    = () => { window.location.href = ROOT + 'index.html'; };
-    document.getElementById('sbnav-games').onclick      = () => { window.location.href = ROOT + 'index.html'; };
-    document.getElementById('sbnav-leaderboard').onclick= () => { window.location.href = ROOT + 'index.html'; };
-    document.getElementById('sbnav-discord').onclick    = () => { window.location.href = ROOT + 'index.html'; };
-    document.getElementById('sbnav-profile').onclick    = () => { window.location.href = ROOT + 'index.html'; };
-    document.getElementById('sbnav-logout').onclick     = () => { window.location.href = ROOT + 'index.html'; };
+    document.getElementById('sbnav-dashboard').onclick  = () => { sessionStorage.setItem('aghf_goto','s-dashboard'); window.location.href = ROOT + 'index.html'; };
+    document.getElementById('sbnav-lessons').onclick    = () => { sessionStorage.setItem('aghf_goto','s-lessons');  window.location.href = ROOT + 'index.html'; };
+    document.getElementById('sbnav-games').onclick      = () => { sessionStorage.setItem('aghf_goto','s-games');    window.location.href = ROOT + 'index.html'; };
+    document.getElementById('sbnav-leaderboard').onclick= () => { sessionStorage.setItem('aghf_goto','s-leaderboard'); window.location.href = ROOT + 'index.html'; };
+    document.getElementById('sbnav-discord').onclick    = () => { sessionStorage.setItem('aghf_goto','s-store');    window.location.href = ROOT + 'index.html'; };
+    document.getElementById('sbnav-profile').onclick    = () => { sessionStorage.setItem('aghf_goto','s-profile');  window.location.href = ROOT + 'index.html'; };
+    document.getElementById('sbnav-logout').onclick     = () => { sessionStorage.setItem('aghf_goto','s-home');     window.location.href = ROOT + 'index.html'; };
 
     // Breadcrumb links
     document.querySelectorAll('.tbar-bc a, .crumb a').forEach(el => {
