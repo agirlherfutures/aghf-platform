@@ -642,7 +642,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
       </div>
       <div class="disc-msg" id="discMsg"></div>
     </div>
-    <button class="pay-btn" onclick="payOk()">✦ Start membership $14.99/mo</button>
+    <button class="pay-btn" id="payBtn" onclick="handlePayment()">✦ Start membership $14.99/mo</button>
     <p class="pay-note">Secured by Stripe · You'll be charged $14.99 today</p>
   </div>
 </div>
@@ -1257,6 +1257,27 @@ function applyDiscount() {
   else { msg.className = 'disc-msg error'; msg.textContent = 'That code isn\'t valid. Check the spelling and try again.'; }
 }
 
+async function handlePayment() {
+  const btn = document.getElementById('payBtn');
+  if (btn) { btn.textContent = 'Taking you to secure checkout...'; btn.disabled = true; }
+  try {
+    const email = currentUser?.email;
+    const userId = currentUser?.id;
+    if (!email || !userId) throw new Error('Please sign up first.');
+    const res = await fetch('/api/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, userId })
+    });
+    const checkout = await res.json();
+    if (checkout.url) window.location.href = checkout.url;
+    else throw new Error('Could not start checkout');
+  } catch (err) {
+    toast('Oops!', err.message);
+    if (btn) { btn.textContent = '✦ Start membership $14.99/mo'; btn.disabled = false; }
+  }
+}
+
 function payOk() {
   confetti();
   setTimeout(() => go("s-success"), 500);
@@ -1348,10 +1369,10 @@ async function handleSignup() {
   try {
     const { data, error } = await supabase.auth.signUp({ email, password, options: { data: { full_name: name } } });
     if (error) throw error;
-    const res = await fetch('/api/create-checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, userId: data.user.id }) });
-    const checkout = await res.json();
-    if (checkout.url) window.location.href = checkout.url;
-    else throw new Error('Could not start checkout');
+    currentUser = data.user;
+    // Go to branded checkout page first
+    go('s-payment');
+    if (btn) { btn.textContent = '✦ Start here — $14.99/mo'; btn.disabled = false; }
   } catch (err) {
     toast('Oops!', err.message);
     if (btn) { btn.textContent = '✦ Start here — $14.99/mo'; btn.disabled = false; }
