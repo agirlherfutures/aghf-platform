@@ -19,19 +19,19 @@ html{scroll-behavior:smooth}
 body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
 .app{display:flex;min-height:100vh}
-.sidebar{width:230px;flex-shrink:0;background:#fff;border-right:1px solid rgba(244,130,154,.12);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50;overflow-y:auto}
-.sb-logo{padding:20px 22px 16px;font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(244,130,154,.1);cursor:pointer;text-decoration:none}
+.sidebar{width:230px;background:#2C1810;position:fixed;top:0;left:0;bottom:0;background:#2C1810;display:flex;flex-direction:column;z-index:100;overflow-y:auto}
+.sb-logo{cursor:pointer;padding:22px 22px 16px;font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(244,130,154,.1);cursor:pointer;text-decoration:none}
 .sb-logo span{color:var(--teal)}
 .sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(244,130,154,.1);margin-bottom:6px}
-.sb-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pp),var(--cp));border:2px solid var(--pl);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink);flex-shrink:0}
-.sb-nm{font-size:.82rem;font-weight:600;color:var(--dark)}
-.sb-lv{font-size:.68rem;color:var(--muted)}
-.sb-sec{font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 18px 5px}
+.sb-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--peach));border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:var(--pink);flex-shrink:0}
+.sb-nm{font-size:.82rem;font-weight:600;color:white}
+.sb-lv{font-size:.68rem;color:rgba(255,255,255,.45)}
+.sb-sec{font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:10px 18px 5px}
 .sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:.85rem;color:var(--muted);cursor:pointer;transition:all .2s;border-left:3px solid transparent}
-.sb-item:hover{color:var(--dark);background:var(--cream)}
-.sb-item.on{color:var(--pink);background:var(--pp);border-left-color:var(--pink);font-weight:500}
+.sb-item:hover{color:white;background:rgba(255,255,255,.07)}
+.sb-item.on{color:var(--pink);background:rgba(244,130,154,.12);border-left-color:var(--pink);font-weight:500}
 .sb-bot{margin-top:auto;padding:12px 18px}
-.xpb{background:var(--cream);border-radius:10px;padding:11px 13px}
+.xpb{background:rgba(255,255,255,.06);border-radius:10px;padding:11px 13px}
 .xpb-top{display:flex;justify-content:space-between;margin-bottom:6px}
 .xpb-l{font-size:.68rem;color:var(--muted);font-weight:500}
 .xpb-v{font-size:.72rem;color:var(--peach);font-weight:600}
@@ -71,7 +71,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .teach-eye::after,.card-eye::after{content:'';flex:1;height:1px;background:rgba(245,168,87,.2)}
 .teach-title,.card-title{font-family:"Playfair Display",serif;font-size:1.25rem;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.3}
 .teach-body,.card-body{font-size:.93rem;line-height:1.82;color:var(--muted)}
-.teach-body strong,.card-body strong{color:var(--dark)}
+.teach-body strong,.card-body strong{color:white}
 .reinforce-card{background:linear-gradient(135deg,rgba(126,206,196,.12),rgba(245,168,87,.08));border:1px solid var(--tl);padding:22px 26px;position:relative;overflow:hidden}
 .reinforce-card::before{content:"💡";position:absolute;top:16px;right:18px;font-size:1.2rem;opacity:.6}
 .rc-label{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
@@ -179,9 +179,23 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </head>
 <body>
 <div class="app">
-  <div class="sidebar">
-    <a class="sb-logo" href="#"><span>A Girl &</span> Her Futures™</a>
-    <div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · Trading Foundations</div></div></div>
+    <div class="sidebar">
+    <div class="sb-logo" onclick="window.location='../../../index.html'" style="cursor:pointer;font-family:'Playfair Display',serif;font-style:italic;color:#F4829A;">A Girl &amp; <span style="color:#7ECEC4">Her Futures</span>™</div>
+    <div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · She's Brand New</div></div></div>
+    <div class="sb-sec">Learn</div>
+    <div class="sb-item" onclick="window.location='../../../index.html'">⌂ Dashboard</div>
+    <div class="sb-item on">✦ Lessons</div>
+    <div class="sb-item" onclick="window.location='../../../index.html#s-games'">◈ Games</div>
+    <div class="sb-sec">Community</div>
+    <div class="sb-item" onclick="window.location='../../../index.html#s-leaderboard'">↑ Leaderboard</div>
+    <div class="sb-item" onclick="window.location='../../../index.html#s-store'">◈ Join Discord</div>
+    <div class="sb-sec">Account</div>
+    <div class="sb-item" onclick="window.location='../../../index.html#s-profile'">○ My Profile</div>
+    <div class="sb-bot"><div class="xpb"><div class="xpb-top"><span class="xpb-l">GP</span><span class="xpb-v">0 / 1000</span></div><div class="xpb-track"><div class="xpb-fill"></div></div></div>
+    <button onclick="window.location='../../../index.html'" style="width:100%;margin-top:10px;padding:9px;border-radius:100px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.4);font-family:DM Sans,sans-serif;font-size:.78rem;cursor:pointer;">← Log out</button>
+    </div>
+  </div>
+
     <div class="sb-sec">Learn</div>
     <div class="sb-item on">✦ Lessons</div>
     <div class="sb-item">◈ Games</div>
@@ -589,6 +603,67 @@ buildDots();
 updateNext();
 renderTicks();
 updatePNL();
+</script>
+<script src="../../../sidebar.js"></script>
+<script type="module">
+const SUPABASE_URL = 'https://otxfzalcujhtfwprmptr.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90eGZ6YWxjdWpodGZ3cHJtcHRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NTYyOTMsImV4cCI6MjA5MzMzMjI5M30.iRxaKgD6ut9urNK67dyvj_6K2lfyw8peBpfJx3oU9A4';
+const PLATFORM_URL = '../../../index.html';
+
+let _supabase, _user;
+
+async function initLessonAuth() {
+  try {
+    const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
+    _supabase = createClient(SUPABASE_URL, SUPABASE_ANON);
+    const { data: { session } } = await _supabase.auth.getSession();
+    if (!session?.user) { window.location = PLATFORM_URL; return; }
+    _user = session.user;
+    loadLessonProfile();
+  } catch(e) { console.error('Auth error:', e); }
+}
+
+async function loadLessonProfile() {
+  try {
+    const res = await fetch(`/api/get-profile?userId=${_user.id}`);
+    const data = await res.json();
+    const p = data.profile;
+    if (!p) return;
+    const initials = (p.full_name || p.email || 'T').charAt(0).toUpperCase();
+    const name = p.full_name || p.email?.split('@')[0] || 'Trader';
+    const levelNames = {1:"She's Brand New",2:'Before the Chart',3:'Reading Structure',4:'Finding Direction',5:'The ICC Method',6:'Pulling the Trigger',7:'The Mindset',8:"She's In Structure ✦"};
+    if(document.getElementById('sbAv')) document.getElementById('sbAv').textContent = initials;
+    if(document.getElementById('sbNm')) document.getElementById('sbNm').textContent = name;
+    if(document.getElementById('sbLv')) document.getElementById('sbLv').textContent = `Level ${p.level||1} · ${levelNames[p.level||1]}`;
+    const gp = p.gp || 0;
+    const next = (p.level||1) * 1000;
+    if(document.getElementById('sbGP')) document.getElementById('sbGP').textContent = `${gp} / ${next}`;
+    if(document.getElementById('sbFill')) document.getElementById('sbFill').style.width = Math.min((gp/next)*100,100) + '%';
+  } catch(e) { console.error('Profile error:', e); }
+}
+
+function goToPlatform(screen) {
+  sessionStorage.setItem('aghf_goto', screen);
+  window.location = PLATFORM_URL;
+}
+
+async function handleLessonLogout() {
+  if (_supabase) await _supabase.auth.signOut();
+  window.location = PLATFORM_URL;
+}
+
+async function markLessonComplete(lessonId, gpEarned) {
+  if (!_user) return;
+  try {
+    await fetch('/api/complete-lesson', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId: _user.id, lessonId, gpEarned })
+    });
+  } catch(e) { console.error('Complete lesson error:', e); }
+}
+
+window.addEventListener('DOMContentLoaded', initLessonAuth);
 </script>
 </body>
 </html>
