@@ -174,6 +174,10 @@
 
   // ── INJECT ───────────────────────────────────────────────────
   function inject() {
+    // Hide any existing sidebar elements
+    document.querySelectorAll('aside.sidebar, nav.sidebar, .sidebar').forEach(el => {
+      el.style.cssText = 'display:none!important';
+    });
     // Add font if not already loaded
     if (!document.querySelector('link[href*="fonts.googleapis"]')) {
       const link = document.createElement('link');
@@ -200,10 +204,12 @@
     document.body.insertBefore(sidebar.firstElementChild, document.body.firstChild);
 
     // Add margin to existing content so it doesn't hide behind sidebar
-    const mainEl = document.querySelector('.main, .app > main, #main, .content');
-    if (mainEl && !mainEl.style.marginLeft) {
+    const mainEl = document.querySelector('.main, main, .app > main, #main, .content');
+    if (mainEl) {
       mainEl.style.marginLeft = '230px';
     }
+    // Also fix body margin if needed
+    document.body.style.paddingLeft = '0';
 
     // Load user data from Supabase if available
     loadUserData();
