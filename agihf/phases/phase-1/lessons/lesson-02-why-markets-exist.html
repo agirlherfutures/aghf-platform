@@ -250,27 +250,55 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .xp-top strong{color:#F5A857}
 .track{height:5px;background:rgba(255,255,255,.1);border-radius:100px;overflow:hidden}
 .fill{height:100%;width:0%;background:linear-gradient(90deg,#F4829A,#F5A857);transition:width .6s ease}
+
+  .loading-screen{position:fixed;inset:0;background:#FFFBF9;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;transition:opacity 0.3s ease;}
+  .loading-screen.fade{opacity:0;pointer-events:none;}
+  .loading-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;color:#F4829A;margin-bottom:20px;}
+  .loading-logo span{color:#7ECEC4;}
+  .loading-dots{display:flex;gap:6px;}
+  .loading-dot{width:8px;height:8px;border-radius:50%;background:#F9B8C6;animation:pulse 1.2s ease-in-out infinite;}
+  .loading-dot:nth-child(2){animation-delay:0.2s;background:#B2E4DF;}
+  .loading-dot:nth-child(3){animation-delay:0.4s;background:#FAD09A;}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:0.5}50%{transform:scale(1.4);opacity:1}}
 </style>
 <body>
+<div class="loading-screen" id="loadingScreen">
+  <div class="loading-logo">A Girl &amp; <span>Her Futures</span>™</div>
+  <div class="loading-dots">
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+  </div>
+</div>
+<script>
+function navTo(screen) {
+  // Show loading screen
+  var ls = document.getElementById('loadingScreen');
+  if (ls) ls.style.display = 'flex';
+  // Set destination and navigate
+  sessionStorage.setItem('aghf_goto', screen);
+  setTimeout(function(){ window.location = '/'; }, 300);
+}
+</script>
 <script>
 function goToPlatform(screen){sessionStorage.setItem('aghf_goto',screen);window.location='/';}
 function handleLessonLogout(){window.location='/';}
 </script>
 <div class="app">
     <aside class="sidebar">
-    <div class="sb-logo" onclick="sessionStorage.setItem('aghf_goto','s-dashboard');window.location='/'">A Girl &amp; <span>Her Futures</span>™</div>
+    <div class="sb-logo" onclick="navTo('s-dashboard')">A Girl &amp; <span>Her Futures</span>™</div>
     <div class="sb-user"><div class="sb-av" id="sbAv">D</div><div><div class="sb-nm" id="sbNm">Trader</div><div class="sb-lv" id="sbLv">Level 1 · She's Brand New</div></div></div>
     <div class="sb-sec">Learn</div>
-    <div class="sb-item" onclick="sessionStorage.setItem('aghf_goto','s-dashboard');window.location='/'">⌂ Dashboard</div>
+    <div class="sb-item" onclick="navTo('s-dashboard')">⌂ Dashboard</div>
     <div class="sb-item on">✦ Lessons</div>
-    <div class="sb-item" onclick="sessionStorage.setItem('aghf_goto','s-games');window.location='/'">◈ Games</div>
+    <div class="sb-item" onclick="navTo('s-games')">◈ Games</div>
     <div class="sb-sec">Community</div>
-    <div class="sb-item" onclick="sessionStorage.setItem('aghf_goto','s-leaderboard');window.location='/'">↑ Leaderboard</div>
-    <div class="sb-item" onclick="sessionStorage.setItem('aghf_goto','s-store');window.location='/'">◈ Join Discord</div>
+    <div class="sb-item" onclick="navTo('s-leaderboard')">↑ Leaderboard</div>
+    <div class="sb-item" onclick="navTo('s-store')">◈ Join Discord</div>
     <div class="sb-sec">Account</div>
-    <div class="sb-item" onclick="sessionStorage.setItem('aghf_goto','s-profile');window.location='/'">○ My Profile</div>
+    <div class="sb-item" onclick="navTo('s-profile')">○ My Profile</div>
     <div class="xpbox"><div class="xpb"><div class="xp-top"><span>GP</span><strong id="sbGP">0 / 1000</strong></div><div class="track"><div class="fill" id="sbFill"></div></div></div>
-    <button onclick="sessionStorage.setItem('aghf_goto','s-dashboard');window.location='/'" style="width:100%;margin-top:10px;padding:9px;border-radius:100px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s;" onmouseover="this.style.color='#F4829A';this.style.borderColor='#F4829A'" onmouseout="this.style.color='rgba(255,255,255,.4)';this.style.borderColor='rgba(255,255,255,.15)'">← Log out</button>
+    <button onclick="navTo('s-dashboard')" style="width:100%;margin-top:10px;padding:9px;border-radius:100px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s;" onmouseover="this.style.color='#F4829A';this.style.borderColor='#F4829A'" onmouseout="this.style.color='rgba(255,255,255,.4)';this.style.borderColor='rgba(255,255,255,.15)'">← Log out</button>
     </div>
   </aside>
   <div class="main">
