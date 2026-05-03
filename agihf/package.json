@@ -1,9 +1,0 @@
-{
-  "name": "aghf-platform",
-  "version": "1.0.0",
-  "description": "A Girl & Her Futures Trading Academy",
-  "dependencies": {
-    "@supabase/supabase-js": "^2.39.0",
-    "stripe": "^14.14.0"
-  }
-}
