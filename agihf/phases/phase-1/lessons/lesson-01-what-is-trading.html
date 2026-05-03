@@ -8,9 +8,9 @@
 <style>
 :root{--pink:#F4829A;--pl:#F9B8C6;--pp:#FDE8ED;--teal:#7ECEC4;--tl:#B2E4DF;--tp:#E8F8F6;--peach:#F5A857;--cl:#FAD09A;--cp:#FEF3E4;--cream:#FDF8F5;--warm:#FFFBF9;--dark:#2C1810;--text:#3D2B20;--muted:#7A5C50;--purple:#8776e5;--up:#6fb6ae;}
 *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth} body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text)}
-.app{display:flex;min-height:100vh}.sidebar{width:230px;position:fixed;inset:0 auto 0 0;background:#fff;border-right:1px solid rgba(244,130,154,.12);display:flex;flex-direction:column;z-index:20}.main{margin-left:230px;flex:1;min-height:100vh;padding-bottom:90px}
-.sb-logo{padding:20px 22px 16px;font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(244,130,154,.1)}.sb-logo span{color:var(--teal)}.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(244,130,154,.1)}.sb-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pp),var(--cp));border:2px solid var(--pl);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--pink)}.sb-nm{font-size:.82rem;font-weight:600;color:var(--dark)}.sb-lv{font-size:.68rem;color:var(--muted)}.sb-sec{font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 18px 5px}.sb-item{padding:10px 18px;color:var(--muted);font-size:.85rem;border-left:3px solid transparent}.sb-item.on{color:var(--pink);background:var(--pp);border-left-color:var(--pink);font-weight:500}.xpbox{margin-top:auto;padding:12px 18px}.xpb{background:var(--cream);border-radius:10px;padding:11px 13px}.xp-top{display:flex;justify-content:space-between;margin-bottom:6px;font-size:.68rem}.xp-top strong{color:var(--peach)}.track{height:4px;background:var(--pp);border-radius:100px;overflow:hidden}.fill{height:100%;width:38%;background:linear-gradient(90deg,var(--pink),var(--peach))}
-.topbar{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(18px);border-bottom:1px solid rgba(244,130,154,.1);z-index:15;padding:0 36px;height:60px;display:flex;justify-content:space-between;align-items:center}.crumb{font-size:.79rem;color:var(--muted)}.crumb strong{color:var(--dark)}.pill{display:inline-flex;padding:4px 12px;border-radius:999px;border:1px solid var(--cl);background:var(--cp);color:var(--peach);font-weight:600;font-size:.77rem}.progwrap{padding:16px 36px 6px;background:white;border-bottom:1px solid rgba(244,130,154,.08)}.proghead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.proglabel{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.progcopy{font-size:.78rem;color:var(--muted)}.progtrack{height:6px;background:var(--pp);border-radius:999px;overflow:hidden;margin-bottom:10px}.progfill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));width:0;transition:width .35s ease}.pips,.bottom-dots{display:flex;gap:6px;flex-wrap:wrap}.pip,.dot{width:18px;height:6px;border-radius:999px;background:var(--pp);transition:all .25s ease}.pip.done,.dot.done{background:var(--teal)}.pip.active,.dot.active{background:var(--pink);width:28px}
+.app{display:flex;min-height:100vh}.main{margin-left:230px;flex:1;min-height:100vh;padding-bottom:90px;position:relative;z-index:1;}
+
+.topbar{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(18px);border-bottom:1px solid rgba(244,130,154,.1);z-index:50;padding:0 36px;height:60px;display:flex;justify-content:space-between;align-items:center}.crumb{font-size:.79rem;color:var(--muted)}.crumb strong{color:var(--dark)}.pill{display:inline-flex;padding:4px 12px;border-radius:999px;border:1px solid var(--cl);background:var(--cp);color:var(--peach);font-weight:600;font-size:.77rem}.progwrap{padding:16px 36px 6px;background:white;border-bottom:1px solid rgba(244,130,154,.08)}.proghead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.proglabel{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.progcopy{font-size:.78rem;color:var(--muted)}.progtrack{height:6px;background:var(--pp);border-radius:999px;overflow:hidden;margin-bottom:10px}.progfill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));width:0;transition:width .35s ease}.pips,.bottom-dots{display:flex;gap:6px;flex-wrap:wrap}.pip,.dot{width:18px;height:6px;border-radius:999px;background:var(--pp);transition:all .25s ease}.pip.done,.dot.done{background:var(--teal)}.pip.active,.dot.active{background:var(--pink);width:28px}
 .lesson{padding:28px 24px 0}.slide-wrap{max-width:720px;margin:0 auto}.slide{display:none;flex-direction:column;gap:14px;animation:up .35s ease both}.slide.active{display:flex}@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .card{background:white;border:1px solid rgba(244,130,154,.1);box-shadow:0 4px 20px rgba(244,130,154,.05);border-radius:20px;padding:24px 28px}.intro{background:var(--dark);color:white;position:relative;overflow:hidden}.intro:after{content:'✦';position:absolute;top:-18px;right:8px;font-size:120px;color:var(--pink);opacity:.05;font-family:'Playfair Display',serif}.eyebrow,.teach-eye,.reinforce-eye{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.eyebrow{color:var(--pl);margin-bottom:10px}.title,.teach-title,.sim-title,.build-title,.complete-title{font-family:'Playfair Display',serif;font-weight:900;line-height:1.1}.title{font-size:2rem;margin-bottom:10px}.title .acc,.complete-title .acc{color:var(--pink)}.sub{font-size:.94rem;line-height:1.7;color:rgba(255,255,255,.56);margin-bottom:18px}.pillrow{display:flex;gap:8px;flex-wrap:wrap}.pillrow .tag{font-size:.7rem;font-weight:500;padding:5px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.18)}.tag.pink{background:rgba(244,130,154,.15);color:var(--pl)}.tag.teal{background:rgba(126,206,196,.15);color:var(--tl)}.tag.peach{background:rgba(245,168,87,.15);color:var(--cl)}
 .teach-eye{color:var(--peach);margin-bottom:10px;display:flex;align-items:center;gap:8px}.teach-eye:after{content:'';flex:1;height:1px;background:rgba(245,168,87,.18)}.teach-title{font-size:1.24rem;color:var(--dark);margin-bottom:12px}.teach-body{font-size:.94rem;line-height:1.8;color:var(--muted)}.teach-body strong{color:var(--dark)}
@@ -24,22 +24,43 @@
 .sim-box,.build{overflow:hidden;padding:0}.sim-head,.build-head{background:var(--dark);padding:22px 26px}.sim-head .eyebrow,.build-head .eyebrow{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.sim-title,.build-title{font-size:1.24rem;color:white;margin-bottom:4px}.sim-sub,.build-sub{font-size:.82rem;color:rgba(255,255,255,.5)}.sim-scenario{padding:18px 20px;background:var(--warm);border-bottom:1px solid rgba(244,130,154,.08);font-size:.9rem;line-height:1.7}.sim-choices{padding:16px 20px}.build-steps{padding:18px 20px;display:flex;flex-direction:column;gap:14px}.stepbox{padding:16px;border-radius:14px}.step-lbl{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}.step-q{font-size:.9rem;font-weight:600;color:var(--dark);margin-bottom:10px}.step-opts{display:flex;gap:8px;flex-wrap:wrap}.step-opt{padding:9px 18px;border-radius:999px;border:1.5px solid rgba(244,130,154,.2);background:white;font-size:.82rem;color:var(--muted);cursor:pointer}.step-opt.selected{background:linear-gradient(135deg,var(--pink),var(--peach));color:white;border-color:transparent}.build-result{padding:0 20px 20px}
 .recap-list{display:flex;flex-direction:column;gap:8px}.recap-item{padding:13px 16px;border-radius:12px;font-size:.87rem;line-height:1.62}.recap-item.t{background:var(--tp);border:1px solid var(--tl)}.recap-item.p{background:var(--pp);border:1px solid var(--pl)}.recap-item.c{background:var(--cp);border:1px solid var(--cl)}.complete{background:linear-gradient(135deg,var(--dark),#3d2420);text-align:center;color:white;position:relative;overflow:hidden}.complete:before{content:'✦';position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:150px;color:var(--pink);opacity:.05;font-family:'Playfair Display',serif}.complete-spark{font-size:2.3rem;margin-bottom:10px;display:block}.complete-title{font-size:1.95rem;margin-bottom:8px}.complete-copy{max-width:420px;margin:0 auto 18px;font-size:.92rem;line-height:1.72;color:rgba(255,255,255,.6)}.badge{display:inline-flex;padding:9px 20px;border-radius:999px;background:rgba(126,206,196,.15);border:1px solid rgba(126,206,196,.3);color:var(--tl);font-weight:600;margin-bottom:20px}.complete-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.btn{padding:12px 22px;border-radius:999px;border:none;cursor:pointer;font-weight:600}.btn.primary{background:linear-gradient(135deg,var(--pink),var(--peach));color:white}.btn.ghost{background:transparent;color:rgba(255,255,255,.55);border:1.5px solid rgba(255,255,255,.18)}
 .bottom-nav{position:fixed;left:230px;right:0;bottom:0;background:rgba(253,248,245,.96);backdrop-filter:blur(18px);border-top:1px solid rgba(244,130,154,.12);padding:13px 40px;display:flex;justify-content:space-between;align-items:center}.bottom-left{display:flex;align-items:center;gap:12px}.bottom-copy{font-size:.74rem;color:var(--muted)}.bottom-copy strong{color:var(--dark)}.bottom-right{display:flex;gap:9px}.nav-btn{padding:9px 18px;border-radius:999px;font-weight:600;cursor:pointer}.nav-btn.prev{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted)}.nav-btn.next{border:none;background:linear-gradient(135deg,var(--pink),var(--peach));color:white}.nav-btn:disabled{opacity:.4;cursor:default}.streak,.xptoast{position:fixed;z-index:40;opacity:0;pointer-events:none;transition:.35s ease}.streak.show,.xptoast.show{opacity:1;transform:none}.streak{top:84px;left:50%;transform:translateX(-50%) translateY(-14px);background:var(--dark);color:white;padding:12px 20px;border-radius:14px;box-shadow:0 12px 40px rgba(44,24,16,.3)}.xptoast{right:26px;bottom:84px;transform:translateY(18px);background:var(--dark);color:white;border-radius:14px;padding:13px 18px;box-shadow:0 16px 48px rgba(44,24,16,.32)}.confetti{position:fixed;top:-10px;border-radius:2px;pointer-events:none;animation:fall linear both}@keyframes fall{to{opacity:0;transform:translateY(100vh) rotate(720deg)}}
-@media (max-width:900px){.sidebar{display:none}.main,.bottom-nav{margin-left:0;left:0}.topbar,.progwrap{padding-left:20px;padding-right:20px}.lesson{padding:20px 14px 0}.choice-row,.instrument-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.bottom-nav{padding:12px 16px}.bottom-copy{display:none}}
+@media (max-width:900px){.main,.bottom-nav{margin-left:0;left:0}.topbar,.progwrap{padding-left:20px;padding-right:20px}.lesson{padding:20px 14px 0}.choice-row,.instrument-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.bottom-nav{padding:12px 16px}.bottom-copy{display:none}}
+.sidebar{width:230px;position:fixed;inset:0 auto 0 0;background:#2C1810;display:flex;flex-direction:column;z-index:9999;overflow-y:auto}
+.sb-logo{padding:22px 22px 16px;font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:#F4829A;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer}
+.sb-logo span{color:#7ECEC4}
+.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sb-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#F4829A,#F5A857);border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:white;font-size:.85rem}
+.sb-nm{font-size:.84rem;font-weight:600;color:white}
+.sb-lv{font-size:.68rem;color:rgba(255,255,255,.45)}
+.sb-sec{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:12px 18px 5px}
+.sb-item{padding:10px 18px;color:rgba(255,255,255,.55);font-size:.85rem;border-left:3px solid transparent;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:9px}
+.sb-item:hover{color:white;background:rgba(255,255,255,.07)}
+.sb-item.on{color:#F4829A;background:rgba(244,130,154,.12);border-left-color:#F4829A;font-weight:500}
+.xpbox{margin-top:auto;padding:14px 18px;border-top:1px solid rgba(255,255,255,.08)}
+.xpb{background:rgba(255,255,255,.06);border-radius:12px;padding:12px 14px}
+.xp-top{display:flex;justify-content:space-between;margin-bottom:7px;font-size:.68rem;color:rgba(255,255,255,.4)}
+.xp-top strong{color:#F5A857}
+.track{height:5px;background:rgba(255,255,255,.1);border-radius:100px;overflow:hidden}
+.fill{height:100%;width:0%;background:linear-gradient(90deg,#F4829A,#F5A857);transition:width .6s ease}
 </style>
 </head>
 <body>
-<script>
-function navTo(screen) {
-  sessionStorage.setItem('aghf_goto', screen);
-  window.location = '/';
-}
-</script>
 <div class="app">
-  <aside class="sidebar">
-    <div class="sb-logo">A Girl &amp; <span>Her Futures</span>™</div>
-    <div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Phase 1 · Lesson 1</div></div></div>
-    <div class="sb-sec">Learn</div><div class="sb-item on">✦ Lessons</div><div class="sb-item">◈ Games</div><div class="sb-sec">Community</div><div class="sb-item">↑ Leaderboard</div><div class="sb-item">◇ Drip Store</div><div class="sb-sec">Account</div><div class="sb-item">○ My Profile</div>
-    <div class="xpbox"><div class="xpb"><div class="xp-top"><span>XP</span><strong>380 / 1000</strong></div><div class="track"><div class="fill"></div></div></div></div>
+    <aside class="sidebar">
+    <div class="sb-logo" onclick="goToPlatform('s-dashboard')">A Girl &amp; <span>Her Futures</span>™</div>
+    <div class="sb-user"><div class="sb-av" id="sbAv">D</div><div><div class="sb-nm" id="sbNm">Trader</div><div class="sb-lv" id="sbLv">Level 1 · She's Brand New</div></div></div>
+    <div class="sb-sec">Learn</div>
+    <div class="sb-item" onclick="goToPlatform('s-dashboard')">⌂ Dashboard</div>
+    <div class="sb-item on">✦ Lessons</div>
+    <div class="sb-item" onclick="goToPlatform('s-games')">◈ Games</div>
+    <div class="sb-sec">Community</div>
+    <div class="sb-item" onclick="goToPlatform('s-leaderboard')">↑ Leaderboard</div>
+    <div class="sb-item" onclick="goToPlatform('s-store')">◈ Join Discord</div>
+    <div class="sb-sec">Account</div>
+    <div class="sb-item" onclick="goToPlatform('s-profile')">○ My Profile</div>
+    <div class="xpbox"><div class="xpb"><div class="xp-top"><span>GP</span><strong id="sbGP">0 / 1000</strong></div><div class="track"><div class="fill" id="sbFill"></div></div></div>
+    <button onclick="handleLessonLogout()" style="width:100%;margin-top:10px;padding:9px;border-radius:100px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s;" onmouseover="this.style.color='#F4829A';this.style.borderColor='#F4829A'" onmouseout="this.style.color='rgba(255,255,255,.4)';this.style.borderColor='rgba(255,255,255,.15)'">← Log out</button>
+    </div>
   </aside>
   <main class="main">
     <div class="topbar"><div class="crumb">Lessons › Phase 1 › <strong id="topTitle">Introduction</strong></div><div class="pill" id="stepCounter">1 / 13</div></div>
@@ -141,6 +162,36 @@ function updateCalc(){const points=Number(document.getElementById('pointsInput')
 let lastSimChoice=null; function runMarketSim(choice, redraw=false){lastSimChoice=choice; if(marketDone&&!redraw) return; marketDone=true; document.querySelectorAll('#marketChoices .sim-choice').forEach(b=>b.disabled=true); const res=document.getElementById('marketResult'); res.classList.add('show'); const canvas=document.getElementById('simCanvas'),ctx=canvas.getContext('2d'); const w=canvas.width=canvas.parentElement.clientWidth-28,h=canvas.height=120; ctx.clearRect(0,0,w,h); ctx.fillStyle='#FFFBF9'; ctx.fillRect(0,0,w,h); ctx.beginPath(); const n=46; for(let i=0;i<n;i++){const x=(i/(n-1))*w; let y; if(choice==='pullback'){y=h*.65-(Math.min(i,20)*1.2)+(i>20?(i-20)*.7:0)+Math.sin(i*.85)*4} else if(choice==='continue'){y=h*.72-i*1.15+Math.sin(i*.7)*3} else {y=h*.42+i*.85+Math.sin(i*.8)*4} if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y)} ctx.strokeStyle=choice==='pullback'?'#7ECEC4':'#F4829A'; ctx.lineWidth=2.5; ctx.stroke(); const msg=document.getElementById('simMsg'); if(choice==='pullback'){msg.className='result-msg good'; msg.innerHTML='<strong>Clean read.</strong><br>Sellers stepping in at a level usually creates a reaction first. That does not automatically mean full reversal — it means the level matters.'; handleStreak(true)} else {msg.className='result-msg bad'; msg.innerHTML='<strong>Too extreme.</strong><br>Markets usually react before they reveal full intention. We read the reaction first, not fantasy outcomes.'; handleStreak(false)} updateUI()}
 function pickBuild(step,val,el){buildState[step]=val; document.querySelectorAll('#build'+step+' .step-opt').forEach(b=>b.classList.remove('selected')); el.classList.add('selected'); if(buildState[1]&&buildState[2]&&buildState[3]){buildDone=true; const right=buildState[1]==='long'&&buildState[2]==='behavior'&&buildState[3]==='size'; const r=document.getElementById('buildResult'); r.classList.add('show'); const msg=document.getElementById('buildMsg'); msg.className='result-msg '+(right?'good':'bad'); msg.innerHTML=right?'<strong>Clean read. This is how it starts.</strong><br>You chose direction based on control, recognized the chart as behavior, and remembered that risk changes with size.':'<strong>You moved too fast.</strong><br>The foundation is: read control, understand behavior, then respect size and exposure.'; if(right) fireConfetti(); handleStreak(right); updateUI()}}
 init();
+</script>
+<script type="module">
+const SUPABASE_URL='https://otxfzalcujhtfwprmptr.supabase.co';
+const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90eGZ6YWxjdWpodGZ3cHJtcHRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NTYyOTMsImV4cCI6MjA5MzMzMjI5M30.iRxaKgD6ut9urNK67dyvj_6K2lfyw8peBpfJx3oU9A4';
+let _sb,_user;
+async function init(){
+  try{
+    const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
+    _sb=createClient(SUPABASE_URL,SUPABASE_ANON);
+    const {data:{session}}=await _sb.auth.getSession();
+    if(!session?.user){window.location='/agihf/index.html';return;}
+    _user=session.user;
+    const res=await fetch('/api/get-profile?userId='+_user.id);
+    const data=await res.json();
+    const p=data.profile;
+    if(!p)return;
+    const lvNames={1:"She's Brand New",2:'Before the Chart',3:'Reading Structure',4:'Finding Direction',5:'The ICC Method',6:'Pulling the Trigger',7:'The Mindset',8:"She's In Structure ✦"};
+    const el=id=>document.getElementById(id);
+    if(el('sbAv'))el('sbAv').textContent=(p.full_name||p.email||'T').charAt(0).toUpperCase();
+    if(el('sbNm'))el('sbNm').textContent=p.full_name||p.email?.split('@')[0]||'Trader';
+    if(el('sbLv'))el('sbLv').textContent='Level '+(p.level||1)+' · '+lvNames[p.level||1];
+    const gp=p.gp||0,next=(p.level||1)*1000;
+    if(el('sbGP'))el('sbGP').textContent=gp+' / '+next;
+    if(el('sbFill'))el('sbFill').style.width=Math.min((gp/next)*100,100)+'%';
+  }catch(e){console.error(e);}
+}
+window.goToPlatform=function(screen){sessionStorage.setItem('aghf_goto',screen);window.location='/agihf/index.html';}
+window.handleLessonLogout=async function(){if(_sb)await _sb.auth.signOut();window.location='/agihf/index.html';}
+window.markLessonComplete=async function(lessonId,gpEarned){if(!_user)return;try{await fetch('/api/complete-lesson',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:_user.id,lessonId,gpEarned})});}catch(e){}}
+window.addEventListener('DOMContentLoaded',init);
 </script>
 </body>
 </html>
