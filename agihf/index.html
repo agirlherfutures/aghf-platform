@@ -1240,6 +1240,7 @@ function go(id) {
   document.querySelectorAll(".plt").forEach(s => s.classList.remove("on"));
   const el = document.getElementById(id);
   if (el) { el.classList.add("on"); window.scrollTo(0,0); }
+  if (id === 's-payment') setTimeout(initStripeElements, 100);
 }
 
 function toast(ttl, sub) {
@@ -1335,11 +1336,7 @@ async function handlePayment() {
 }
 
 // Initialize Stripe Elements when payment page is shown
-const _origGo = go;
-function go(id) {
-  _origGo(id);
-  if (id === 's-payment') setTimeout(initStripeElements, 100);
-}
+// Stripe Elements initializes when payment screen loads
 
 function loadScript(src) {
   return new Promise((res, rej) => {
