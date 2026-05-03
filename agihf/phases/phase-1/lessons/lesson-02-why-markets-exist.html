@@ -258,19 +258,19 @@ function handleLessonLogout(){window.location='/';}
 </script>
 <div class="app">
     <aside class="sidebar">
-    <div class="sb-logo" onclick="window.location='/'">A Girl &amp; <span>Her Futures</span>™</div>
+    <div class="sb-logo" onclick="sessionStorage.setItem('aghf_goto','s-dashboard');window.location='/'">A Girl &amp; <span>Her Futures</span>™</div>
     <div class="sb-user"><div class="sb-av" id="sbAv">D</div><div><div class="sb-nm" id="sbNm">Trader</div><div class="sb-lv" id="sbLv">Level 1 · She's Brand New</div></div></div>
     <div class="sb-sec">Learn</div>
-    <div class="sb-item" onclick="window.location='/'">⌂ Dashboard</div>
+    <div class="sb-item" onclick="sessionStorage.setItem('aghf_goto','s-dashboard');window.location='/'">⌂ Dashboard</div>
     <div class="sb-item on">✦ Lessons</div>
-    <div class="sb-item" onclick="window.location='/'">◈ Games</div>
+    <div class="sb-item" onclick="sessionStorage.setItem('aghf_goto','s-games');window.location='/'">◈ Games</div>
     <div class="sb-sec">Community</div>
-    <div class="sb-item" onclick="window.location='/'">↑ Leaderboard</div>
-    <div class="sb-item" onclick="window.location='/'">◈ Join Discord</div>
+    <div class="sb-item" onclick="sessionStorage.setItem('aghf_goto','s-leaderboard');window.location='/'">↑ Leaderboard</div>
+    <div class="sb-item" onclick="sessionStorage.setItem('aghf_goto','s-store');window.location='/'">◈ Join Discord</div>
     <div class="sb-sec">Account</div>
-    <div class="sb-item" onclick="window.location='/'">○ My Profile</div>
+    <div class="sb-item" onclick="sessionStorage.setItem('aghf_goto','s-profile');window.location='/'">○ My Profile</div>
     <div class="xpbox"><div class="xpb"><div class="xp-top"><span>GP</span><strong id="sbGP">0 / 1000</strong></div><div class="track"><div class="fill" id="sbFill"></div></div></div>
-    <button onclick="window.location='/'" style="width:100%;margin-top:10px;padding:9px;border-radius:100px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s;" onmouseover="this.style.color='#F4829A';this.style.borderColor='#F4829A'" onmouseout="this.style.color='rgba(255,255,255,.4)';this.style.borderColor='rgba(255,255,255,.15)'">← Log out</button>
+    <button onclick="sessionStorage.setItem('aghf_goto','s-dashboard');window.location='/'" style="width:100%;margin-top:10px;padding:9px;border-radius:100px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s;" onmouseover="this.style.color='#F4829A';this.style.borderColor='#F4829A'" onmouseout="this.style.color='rgba(255,255,255,.4)';this.style.borderColor='rgba(255,255,255,.15)'">← Log out</button>
     </div>
   </aside>
   <div class="main">
