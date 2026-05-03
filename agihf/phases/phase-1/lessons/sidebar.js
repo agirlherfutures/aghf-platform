@@ -9,7 +9,7 @@
 (function () {
 
   /* ── Path helpers ─────────────────────────────────────────── */
-  const ROOT     = '../../../';          // → agihf/ (where index.html lives)
+  const ROOT     = '../../../../';       // → repo root (where index.html lives)
   const LESSONS  = './';                 // → agihf/phases/phase-1/lessons/
 
   /* ── Lesson manifest (Phase 1 only — extend as phases grow) ── */
