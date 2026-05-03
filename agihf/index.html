@@ -683,11 +683,11 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
     <div class="cont-banner">
       <div class="cb-ico">✦</div>
       <div class="cb-inf">
-        <div class="cb-ey">Up next · Level 1 · Lesson 2</div>
-        <div class="cb-ttl">What is a chart actually showing you?</div>
-        <div class="cb-sub">Green = buyers. Red = sellers. Wicks = rejection. Bodies = acceptance.</div>
+        <div class="cb-ey" id="continueEyebrow">Up next · Phase 1 · Lesson 1</div>
+        <div class="cb-ttl" id="continueTitle">What even is trading?</div>
+        <div class="cb-sub" id="continueSub">Candles are just storytelling — they're showing you who's winning right now.</div>
       </div>
-      <button class="cb-go" onclick="window.location='phases/phase-1/lessons/lesson-01-what-is-trading.html'">Continue →</button>
+      <button class="cb-go" id="continueBtn" onclick="window.location='phases/phase-1/lessons/lesson-01-what-is-trading.html'">Start →</button>
     </div>
     <div class="two-col">
       <div class="panel">
@@ -744,7 +744,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
             <span class="sec-badge sb-p">Section 1</span><div class="sec-title">Introduction to Trading</div><span class="sec-cnt">6 lessons</span><span class="sec-chev" id="s1-chev">▲</span>
           </div>
           <div class="sec-body" id="s1">
-            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-01-what-is-trading.html'"><div class="lc-n n-dn">✓</div><div class="lc-inf"><div class="lc-ttl">Lesson 1 What even is trading?</div><div class="lc-qt">Candles are just storytelling they're showing you who's winning right now.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-dn">Complete ✓</div></div>
+            <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-01-what-is-trading.html'"><div class="lc-n n-act">1</div><div class="lc-inf"><div class="lc-ttl">Lesson 1 What even is trading?</div><div class="lc-qt">Candles are just storytelling they're showing you who's winning right now.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
             <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-02-why-markets-exist.html'"><div class="lc-n n-act">2</div><div class="lc-inf"><div class="lc-ttl">Lesson 2 Why do markets exist?</div><div class="lc-qt">Markets exist because buyers and sellers need each other. That's it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
             <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-03-buyers-vs-sellers.html'"><div class="lc-n n-p">3</div><div class="lc-inf"><div class="lc-ttl">Lesson 3 Buyers vs Sellers</div><div class="lc-qt">Price moves based on who's stronger. Read it like a story, not a guess.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
             <div class="lc" onclick="window.location='phases/phase-1/lessons/lesson-04-contracts-instruments.html'"><div class="lc-n n-p">4</div><div class="lc-inf"><div class="lc-ttl">Lesson 4 Contracts &amp; Instruments</div><div class="lc-qt">MNQ. MGC. Know what you're trading before you trade it.</div><div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+50 GP</span></div></div><div class="lc-st st-go">Start →</div></div>
@@ -1423,6 +1423,36 @@ function updateDashboard(data) {
   const nextLevel = (p.level || 1) * 1000;
   document.querySelectorAll('.xp-fill').forEach(el => el.style.width = Math.min(((p.gp||0) / nextLevel) * 100, 100) + '%');
   document.querySelectorAll('.xp-val').forEach(el => el.textContent = `${p.gp || 0} / ${nextLevel}`);
+
+  // Update continue banner based on lessons completed
+  const count = data.lessons_count || 0;
+  const lessons = [
+    {num:1,title:'What even is trading?',sub:'Candles are just storytelling — they\'re showing you who\'s winning right now.',url:'phases/phase-1/lessons/lesson-01-what-is-trading.html'},
+    {num:2,title:'Why do markets exist?',sub:'Markets exist because buyers and sellers need each other. That\'s it.',url:'phases/phase-1/lessons/lesson-02-why-markets-exist.html'},
+    {num:3,title:'Buyers vs Sellers',sub:'Price moves based on who\'s stronger. Read it like a story, not a guess.',url:'phases/phase-1/lessons/lesson-03-buyers-vs-sellers.html'},
+    {num:4,title:'Contracts & Instruments',sub:'MNQ. MGC. Know what you\'re trading before you trade it.',url:'phases/phase-1/lessons/lesson-04-contracts-instruments.html'},
+    {num:5,title:'Futures vs Stocks',sub:'Futures aren\'t stocks. The rules are different. Let\'s break it down.',url:'phases/phase-1/lessons/lesson-05-futures-vs-stocks.html'},
+    {num:6,title:'Points, Ticks & P&L',sub:'MNQ = $2 per point. MGC = $10 per point. Know your numbers.',url:'phases/phase-1/lessons/lesson-06-how-traders-get-paid.html'},
+    {num:7,title:'TradingView Basics',sub:'Your chart is your workspace. Learn it before you try to read it.',url:'phases/phase-1/lessons/lesson-07-tradingview-basics.html'},
+  ];
+  const next = lessons[Math.min(count, lessons.length - 1)];
+  if (next) {
+    setText('continueEyebrow', `Up next · Phase 1 · Lesson ${next.num}`);
+    setText('continueTitle', next.title);
+    setText('continueSub', next.sub);
+    const btn = document.getElementById('continueBtn');
+    if (btn) { btn.onclick = () => window.location = next.url; btn.textContent = count === 0 ? 'Start →' : 'Continue →'; }
+  }
+
+  // Mark completed lessons in the UI
+  if (data.lessons_completed) {
+    data.lessons_completed.forEach(l => {
+      const els = document.querySelectorAll(`[onclick*="${l.lesson_id}"] .lc-n`);
+      els.forEach(el => { el.className = 'lc-n n-dn'; el.textContent = '✓'; });
+      const sts = document.querySelectorAll(`[onclick*="${l.lesson_id}"] .lc-st`);
+      sts.forEach(el => { el.className = 'lc-st st-dn'; el.textContent = 'Complete ✓'; });
+    });
+  }
 }
 
 function setText(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; }
@@ -1437,10 +1467,21 @@ async function handleSignup() {
   if (btn) { btn.textContent = 'Creating account...'; btn.disabled = true; }
   try {
     const { data, error } = await supabase.auth.signUp({ email, password, options: { data: { full_name: name } } });
-    if (error) throw error;
-    currentUser = data.user;
-    // Go to branded checkout page first
-    go('s-payment');
+    // If error is only about email rate limit but user was created, proceed anyway
+    if (error && !error.message.includes('rate limit') && !error.message.includes('email')) {
+      throw error;
+    }
+    // If we have a user, proceed to checkout
+    if (data?.user) {
+      currentUser = data.user;
+      go('s-payment');
+    } else {
+      // Try signing in instead (user may already exist)
+      const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+      if (signInError) throw new Error('Account may already exist. Try logging in instead.');
+      currentUser = signInData.user;
+      go('s-payment');
+    }
     if (btn) { btn.textContent = '✦ Start here — $14.99/mo'; btn.disabled = false; }
   } catch (err) {
     toast('Oops!', err.message);
