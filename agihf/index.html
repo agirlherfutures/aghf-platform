@@ -469,24 +469,6 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
 @keyframes cf{0%{opacity:1;transform:translateY(0) rotate(0deg);}100%{opacity:0;transform:translateY(100vh) rotate(720deg);}}
 @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
 </style>
-<script>
-// Runs before DOM renders — hides homepage instantly if coming from a lesson
-(function(){
-  var goto = sessionStorage.getItem('aghf_goto');
-  if(!goto) return;
-  sessionStorage.removeItem('aghf_goto');
-  // Hide home screen before it flashes
-  var s = document.createElement('style');
-  s.textContent = '#s-home{display:none!important}';
-  document.head.appendChild(s);
-  // Switch to correct screen after DOM ready
-  document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('.scr,.plt').forEach(function(el){el.classList.remove('on');});
-    var target = document.getElementById(goto);
-    if(target) target.classList.add('on');
-  });
-})();
-</script>
 </head>
 <body>
 <div class="toast" id="toast">
