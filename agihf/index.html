@@ -1645,9 +1645,16 @@ async function completeLessonInDB(lessonId, gpEarned) {
 window.addEventListener('DOMContentLoaded', () => {
   initDayliQuote();
   initSupabase();
-  // Handle navigation back from lesson pages
+  // Handle navigation back from lesson pages — hide everything instantly to prevent flash
   const goto = sessionStorage.getItem('aghf_goto');
-  if (goto) { sessionStorage.removeItem('aghf_goto'); setTimeout(() => go(goto), 100); }
+  if (goto) {
+    sessionStorage.removeItem('aghf_goto');
+    document.querySelectorAll('.scr').forEach(s => { s.style.display = 'none'; });
+    setTimeout(() => {
+      document.querySelectorAll('.scr').forEach(s => { s.style.display = ''; });
+      go(goto);
+    }, 150);
+  }
 });
 </script>
 </body></html>
