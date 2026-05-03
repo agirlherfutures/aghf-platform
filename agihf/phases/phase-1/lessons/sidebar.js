@@ -151,34 +151,60 @@
   const currentFile = window.location.pathname.split('/').pop();
   const currentIdx  = LESSON_URLS.indexOf(currentFile);
 
-  /* ── Wire sidebar nav items ──────────────────────────────── */
+  /* ── Rebuild sidebar HTML to exactly match the dashboard ─── */
   function wireNav() {
-    document.querySelectorAll('.sb-logo').forEach(el => {
-      el.style.cursor = 'pointer';
-      el.addEventListener('click', () => { window.location.href = ROOT + 'index.html'; });
-    });
+    const sidebar = document.querySelector('.sidebar');
+    if (!sidebar) return;
 
-    document.querySelectorAll('.sb-item').forEach(el => {
-      const text = el.textContent.trim();
-      if (text.includes('Lessons')) {
-        el.addEventListener('click', () => { window.location.href = ROOT + 'index.html'; });
-      }
-      if (text.includes('Games')) {
-        el.addEventListener('click', () => showComingSoon('Games are coming soon! ✦'));
-      }
-      if (text.includes('Leaderboard')) {
-        el.addEventListener('click', () => showComingSoon('Leaderboard is coming soon! ✦'));
-      }
-      if (text.includes('Drip Store')) {
-        el.addEventListener('click', () => showComingSoon('Drip Store is coming soon! ✦'));
-      }
-      if (text.includes('Profile')) {
-        el.addEventListener('click', () => { window.location.href = ROOT + 'index.html'; });
-      }
-      if (text.includes('Discord')) {
-        el.addEventListener('click', () => { window.open('https://discord.gg/agirlherfutures', '_blank'); });
-      }
-    });
+    // Preserve the existing user info if present
+    const existingUser = sidebar.querySelector('.sb-user');
+    const userName = existingUser?.querySelector('.sb-nm')?.textContent || 'Trader';
+    const userLevel = existingUser?.querySelector('.sb-lv')?.textContent || 'Level 1 · She\'s Brand New';
+    const userInitial = userName.charAt(0).toUpperCase();
+
+    sidebar.innerHTML = `
+      <div class="sb-logo" style="cursor:pointer">A Girl &amp; <span>Her Futures</span>™</div>
+      <div class="sb-user">
+        <div class="sb-av">${userInitial}</div>
+        <div>
+          <div class="sb-nm">${userName}</div>
+          <div class="sb-lv">${userLevel}</div>
+        </div>
+      </div>
+      <div class="sb-sec">Learn</div>
+      <div class="sb-item" id="sbnav-dashboard"><span class="sb-ico">⌂</span> Dashboard</div>
+      <div class="sb-item on" id="sbnav-lessons"><span class="sb-ico">✦</span> Lessons</div>
+      <div class="sb-item" id="sbnav-games"><span class="sb-ico">◈</span> Games</div>
+      <div class="sb-sec">Community</div>
+      <div class="sb-item" id="sbnav-leaderboard"><span class="sb-ico">↑</span> Leaderboard</div>
+      <div class="sb-item" id="sbnav-discord"><span class="sb-ico">◈</span> Join Discord</div>
+      <div class="sb-sec">Account</div>
+      <div class="sb-item" id="sbnav-profile"><span class="sb-ico">○</span> My Profile</div>
+      <div class="sb-bot">
+        <div class="xp-box">
+          <div class="xp-top">
+            <span class="xp-lbl">GP</span>
+            <span class="xp-val">0 / 1000</span>
+          </div>
+          <div class="xp-track"><div class="xp-fill"></div></div>
+        </div>
+        <button id="sbnav-logout"
+          style="width:100%;margin-top:10px;padding:9px;border-radius:100px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s;"
+          onmouseover="this.style.background='rgba(244,130,154,.15)';this.style.color='var(--pink)';this.style.borderColor='var(--pink)'"
+          onmouseout="this.style.background='transparent';this.style.color='rgba(255,255,255,.4)';this.style.borderColor='rgba(255,255,255,.15)'">
+          ← Log out
+        </button>
+      </div>
+    `;
+
+    // Wire up clicks
+    document.getElementById('sbnav-dashboard').onclick  = () => { window.location.href = ROOT + 'index.html'; };
+    document.getElementById('sbnav-lessons').onclick    = () => { window.location.href = ROOT + 'index.html'; };
+    document.getElementById('sbnav-games').onclick      = () => { window.location.href = ROOT + 'index.html'; };
+    document.getElementById('sbnav-leaderboard').onclick= () => { window.location.href = ROOT + 'index.html'; };
+    document.getElementById('sbnav-discord').onclick    = () => { window.location.href = ROOT + 'index.html'; };
+    document.getElementById('sbnav-profile').onclick    = () => { window.location.href = ROOT + 'index.html'; };
+    document.getElementById('sbnav-logout').onclick     = () => { window.location.href = ROOT + 'index.html'; };
 
     // Breadcrumb links
     document.querySelectorAll('.tbar-bc a, .crumb a').forEach(el => {
@@ -227,52 +253,11 @@
     });
   }
 
-  /* ── Mark Lessons nav item as active ─────────────────────── */
-  function setActiveLesson() {
-    document.querySelectorAll('.sb-item').forEach(el => {
-      el.classList.remove('on', 'active');
-      if (el.textContent.trim().includes('Lessons')) {
-        el.classList.add('on');
-      }
-    });
-  }
-
-  /* ── Coming soon toast ───────────────────────────────────── */
-  function showComingSoon(msg) {
-    let toast = document.getElementById('_sb_toast');
-    if (!toast) {
-      toast = document.createElement('div');
-      toast.id = '_sb_toast';
-      toast.style.cssText = `
-        position:fixed;bottom:90px;left:50%;
-        transform:translateX(-50%) translateY(20px);
-        background:#2C1810;color:#fff;padding:12px 22px;
-        border-radius:14px;font-family:'DM Sans',sans-serif;
-        font-size:.83rem;font-weight:500;
-        box-shadow:0 12px 40px rgba(44,24,16,.35);
-        z-index:9999;opacity:0;transition:all .35s ease;
-        pointer-events:none;white-space:nowrap;
-      `;
-      document.body.appendChild(toast);
-    }
-    toast.textContent = msg;
-    requestAnimationFrame(() => {
-      toast.style.opacity = '1';
-      toast.style.transform = 'translateX(-50%) translateY(0)';
-    });
-    clearTimeout(toast._t);
-    toast._t = setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.transform = 'translateX(-50%) translateY(20px)';
-    }, 2200);
-  }
-
   /* ── Boot ────────────────────────────────────────────────── */
   function init() {
     injectStyles();
     wireNav();
     wireCompletionButtons();
-    setActiveLesson();
   }
 
   if (document.readyState === 'loading') {
