@@ -1642,6 +1642,12 @@ async function completeLessonInDB(lessonId, gpEarned) {
   } catch (err) { console.error('Lesson complete error:', err); }
 }
 
-window.addEventListener('DOMContentLoaded', initSupabase);
+window.addEventListener('DOMContentLoaded', () => {
+  initDayliQuote();
+  initSupabase();
+  // Handle navigation back from lesson pages
+  const goto = sessionStorage.getItem('aghf_goto');
+  if (goto) { sessionStorage.removeItem('aghf_goto'); setTimeout(() => go(goto), 100); }
+});
 </script>
 </body></html>
