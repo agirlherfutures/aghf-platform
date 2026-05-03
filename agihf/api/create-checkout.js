@@ -13,7 +13,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    import Stripe from 'stripe';
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
     // Check if customer already exists
     const existing = await stripe.customers.list({ email, limit: 1 });
