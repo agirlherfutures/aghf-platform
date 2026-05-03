@@ -252,6 +252,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .fill{height:100%;width:0%;background:linear-gradient(90deg,#F4829A,#F5A857);transition:width .6s ease}
 </style>
 <body>
+<script>
+function goToPlatform(screen){sessionStorage.setItem('aghf_goto',screen);window.location='/agihf/index.html';}
+function handleLessonLogout(){window.location='/agihf/index.html';}
+</script>
 <div class="app">
     <aside class="sidebar">
     <div class="sb-logo" onclick="goToPlatform('s-dashboard')">A Girl &amp; <span>Her Futures</span>™</div>
