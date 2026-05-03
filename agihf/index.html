@@ -615,7 +615,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
 <div class="blob" style="width:500px;height:500px;background:var(--peach-light);top:-150px;right:-150px;position:fixed;border-radius:50%;filter:blur(90px);opacity:.28;pointer-events:none;z-index:0;"></div>
 <div class="auth-wrap" style="position:relative;z-index:1;">
   <div class="auth-card" style="border-color:rgba(245,168,87,.2);max-width:470px;">
-    <div class="a-eye" style="background:var(--peach-pale);border-color:var(--peach-light);color:var(--peach);">Step 2 of 2 Payment</div>
+    <div class="a-eye" style="background:var(--peach-pale);border-color:var(--peach-light);color:var(--peach);">Step 2 of 2 · Payment</div>
     <h1 class="a-title">Almost <span style="color:var(--peach)">there.</span></h1>
     <div class="pay-strip">
       <div class="ps-l"><strong>AG&amp;HF Trading Academy</strong><span>Monthly membership</span></div>
@@ -627,14 +627,21 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
       <div class="inc-item"><div class="inc-chk">✓</div>GP system, levels, weekly leaderboard</div>
       <div class="inc-item"><div class="inc-chk">✓</div>Cancel anytime no contracts</div>
     </div>
-    <div class="card-fields">
-      <input class="c-inp" placeholder="Card number">
-      <div class="c-row">
-        <input class="c-inp" placeholder="MM / YY">
-        <input class="c-inp" placeholder="CVC">
-      </div>
-      <input class="c-inp" placeholder="Name on card">
+
+    <!-- Name on card -->
+    <div class="f-grp" style="margin-bottom:10px;">
+      <label class="f-lbl">Name on card</label>
+      <input class="c-inp" id="cardName" placeholder="Dayli Scott" type="text">
     </div>
+
+    <!-- Stripe Elements card field -->
+    <div class="f-grp" style="margin-bottom:10px;">
+      <label class="f-lbl">Card details</label>
+      <div id="stripe-card-element" style="padding:12px 14px;border-radius:10px;border:1.5px solid rgba(244,130,154,.2);background:var(--warm);transition:border-color .2s;"></div>
+      <div id="stripe-card-errors" style="color:var(--pink);font-size:.78rem;margin-top:6px;display:none;"></div>
+    </div>
+
+    <!-- Discount code -->
     <div class="discount-wrap">
       <div class="disc-row">
         <input class="c-inp" id="discInp" placeholder="Discount code" style="margin-bottom:0;">
@@ -642,8 +649,9 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
       </div>
       <div class="disc-msg" id="discMsg"></div>
     </div>
+
     <button class="pay-btn" id="payBtn" onclick="handlePayment()">✦ Start membership $14.99/mo</button>
-    <p class="pay-note">Secured by Stripe · You'll be charged $14.99 today</p>
+    <p class="pay-note">🔒 Secured by Stripe · $14.99 charged today · Cancel anytime</p>
   </div>
 </div>
 </div>
@@ -1257,28 +1265,92 @@ function applyDiscount() {
   else { msg.className = 'disc-msg error'; msg.textContent = 'That code isn\'t valid. Check the spelling and try again.'; }
 }
 
+// ── STRIPE ELEMENTS ──────────────────────────────────────────
+const STRIPE_PK = 'pk_live_51K7NUEJopwcWHUw9H2kMOkTNPkAIT1ECTo8A00BCYc9qxI34jkq8fB7zHVohiLP9iWqI9aDCrfB9XN4OIgDFpYZ200B0zD7Osk';
+let stripeInstance, stripeElements, cardElement;
+
+async function initStripeElements() {
+  if (stripeInstance) return;
+  await loadScript('https://js.stripe.com/v3/');
+  stripeInstance = Stripe(STRIPE_PK);
+  stripeElements = stripeInstance.elements();
+  cardElement = stripeElements.create('card', {
+    style: {
+      base: {
+        fontFamily: '"DM Sans", sans-serif',
+        fontSize: '15px',
+        color: '#3D2B20',
+        '::placeholder': { color: '#B0998F' },
+      },
+      invalid: { color: '#F4829A' },
+    },
+    hidePostalCode: false,
+  });
+  cardElement.mount('#stripe-card-element');
+  cardElement.on('change', e => {
+    const err = document.getElementById('stripe-card-errors');
+    if (e.error) { err.textContent = e.error.message; err.style.display = 'block'; }
+    else { err.style.display = 'none'; }
+  });
+}
+
 async function handlePayment() {
+  if (!stripeInstance || !cardElement) { toast('Loading...', 'Please wait a moment.'); return; }
+  const name = document.getElementById('cardName')?.value?.trim();
+  if (!name) { toast('Missing info', 'Please enter the name on your card.'); return; }
   const btn = document.getElementById('payBtn');
-  if (btn) { btn.textContent = 'Taking you to secure checkout...'; btn.disabled = true; }
+  if (btn) { btn.textContent = 'Processing...'; btn.disabled = true; }
   try {
     const email = currentUser?.email;
     const userId = currentUser?.id;
     if (!email || !userId) throw new Error('Please sign up first.');
-    const res = await fetch('/api/create-checkout', {
+
+    // Create subscription on server
+    const res = await fetch('/api/create-subscription', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, userId })
+      body: JSON.stringify({ email, userId, name })
     });
-    const checkout = await res.json();
-    if (checkout.url) window.location.href = checkout.url;
-    else throw new Error('Could not start checkout');
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+
+    // Confirm card payment with Stripe Elements
+    const { error, paymentIntent } = await stripeInstance.confirmCardPayment(data.clientSecret, {
+      payment_method: {
+        card: cardElement,
+        billing_details: { name, email },
+      }
+    });
+
+    if (error) throw new Error(error.message);
+
+    // Success
+    toast('Welcome to AG&HF! ✦', "Your membership is active. Let's get to work.");
+    await loadUserProfile();
+    go('s-dashboard');
   } catch (err) {
-    toast('Oops!', err.message);
+    toast('Payment failed', err.message);
     if (btn) { btn.textContent = '✦ Start membership $14.99/mo'; btn.disabled = false; }
   }
 }
 
-function payOk() {
+// Initialize Stripe Elements when payment page is shown
+const _origGo = go;
+function go(id) {
+  _origGo(id);
+  if (id === 's-payment') setTimeout(initStripeElements, 100);
+}
+
+function loadScript(src) {
+  return new Promise((res, rej) => {
+    if (document.querySelector(`script[src="${src}"]`)) { res(); return; }
+    const s = document.createElement('script');
+    s.src = src; s.onload = res; s.onerror = rej;
+    document.head.appendChild(s);
+  });
+}
+
+async function handlePayment_OLD() {
   confetti();
   setTimeout(() => go("s-success"), 500);
 }
