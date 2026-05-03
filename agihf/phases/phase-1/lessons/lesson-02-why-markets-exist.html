@@ -272,13 +272,16 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 <script>
 function navTo(screen) {
-  // Show loading screen
   var ls = document.getElementById('loadingScreen');
   if (ls) ls.style.display = 'flex';
-  // Set destination and navigate
   sessionStorage.setItem('aghf_goto', screen);
   setTimeout(function(){ window.location = '/'; }, 300);
 }
+// Hide loading screen when lesson page is ready
+window.addEventListener('DOMContentLoaded', function() {
+  var ls = document.getElementById('loadingScreen');
+  if (ls) { ls.classList.add('fade'); setTimeout(function(){ ls.style.display='none'; }, 400); }
+});
 </script>
 <script>
 function goToPlatform(screen){sessionStorage.setItem('aghf_goto',screen);window.location='/';}
