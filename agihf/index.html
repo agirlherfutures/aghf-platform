@@ -1205,38 +1205,46 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
   <div class="sb"><div class="sb-logo" onclick="go('s-home')">A Girl &amp; <span>Her Futures</span>™</div><div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · She's Brand New</div></div></div><div class="sb-sec">Learn</div><div class="sb-item" onclick="go('s-dashboard')"><span class="sb-ico">⌂</span> Dashboard</div><div class="sb-item" onclick="go('s-lessons')"><span class="sb-ico">✦</span> Lessons</div><div class="sb-item" onclick="go('s-games')"><span class="sb-ico">◈</span> Games</div><div class="sb-sec">Community</div><div class="sb-item" onclick="go('s-leaderboard')"><span class="sb-ico">↑</span> Leaderboard</div><div class="sb-item active" onclick="window.open('https://discord.gg/agirlherfutures','_blank')"><span class="sb-ico">◈</span> Join Discord</div><div class="sb-sec">Account</div><div class="sb-item" onclick="go('s-profile')"><span class="sb-ico">○</span> My Profile</div><div class="sb-bot"><div class="xp-box"><div class="xp-top"><span class="xp-lbl">GP</span><span class="xp-val">380 / 1000</span></div><div class="xp-track"><div class="xp-fill"></div></div></div></div></div>
   <div class="main">
     <div class="pg-eye">✦ Community</div>
-    <div class="pg-title" style="margin-bottom:5px;">Join the Discord ✦</div>
-    <p style="font-size:.91rem;color:var(--muted);margin-bottom:28px;">300+ traders learning, growing, and staying in structure together. This is where the real learning happens.</p>
+    <div class="pg-title" style="margin-bottom:5px;">Join the Community ✦</div>
+    <p style="font-size:.91rem;color:var(--muted);margin-bottom:28px;">300+ traders learning, growing, and staying in structure together. Pick the plan that works for you.</p>
 
-    <div style="background:var(--dark);border-radius:20px;padding:32px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden;">
-      <div style="position:absolute;bottom:-10px;right:16px;font-size:80px;opacity:.08;">🫧</div>
-      <div style="font-size:2.5rem;margin-bottom:12px;">🎙️</div>
-      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;font-weight:700;color:white;margin-bottom:8px;">A Girl & Her Futures™</div>
-      <div style="font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:24px;">@agirlherfutures · 300+ members</div>
-      <button onclick="window.open('https://discord.gg/agirlherfutures','_blank')" style="background:linear-gradient(135deg,var(--teal),#5BB5AA);color:white;border:none;padding:14px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;box-shadow:0 10px 28px rgba(126,206,196,.3);">✦ Join the Discord</button>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+
+      <!-- Free tier -->
+      <div style="background:white;border-radius:20px;border:1px solid rgba(244,130,154,.15);padding:28px;display:flex;flex-direction:column;">
+        <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Free Access</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--dark);margin-bottom:4px;">AG&HF Discord</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--teal);margin-bottom:16px;">Free</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;flex:1;">
+          <div style="display:flex;gap:8px;font-size:.82rem;color:var(--muted);"><span style="color:var(--teal);font-weight:700;">✓</span>Community chat access</div>
+          <div style="display:flex;gap:8px;font-size:.82rem;color:var(--muted);"><span style="color:var(--teal);font-weight:700;">✓</span>Market discussions</div>
+          <div style="display:flex;gap:8px;font-size:.82rem;color:var(--muted);"><span style="color:var(--teal);font-weight:700;">✓</span>Trading resources</div>
+          <div style="display:flex;gap:8px;font-size:.82rem;color:var(--muted);"><span style="color:var(--teal);font-weight:700;">✓</span>AG&HF community vibes</div>
+        </div>
+        <button onclick="window.open('https://whop.com/a-girl-her-futures/ag-hf-free-discord-access/','_blank')" style="width:100%;padding:13px;border-radius:100px;border:2px solid var(--teal);background:transparent;color:var(--teal);font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='var(--teal)';this.style.color='white'" onmouseout="this.style.background='transparent';this.style.color='var(--teal)'">Join for free →</button>
+      </div>
+
+      <!-- Paid tier -->
+      <div style="background:var(--dark);border-radius:20px;padding:28px;display:flex;flex-direction:column;position:relative;overflow:hidden;">
+        <div style="position:absolute;bottom:-12px;right:10px;font-size:70px;opacity:.08;">✦</div>
+        <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);margin-bottom:10px;">Full Access</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:white;margin-bottom:4px;">ICC Structure Lab</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--pink);margin-bottom:16px;">$24.99<span style="font-size:.9rem;color:rgba(255,255,255,.4);font-weight:400;">/mo</span></div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;flex:1;">
+          <div style="display:flex;gap:8px;font-size:.82rem;color:rgba(255,255,255,.6);"><span style="color:var(--pink);font-weight:700;">✓</span>Everything in free</div>
+          <div style="display:flex;gap:8px;font-size:.82rem;color:rgba(255,255,255,.6);"><span style="color:var(--pink);font-weight:700;">✓</span>ICC Structure Lab access</div>
+          <div style="display:flex;gap:8px;font-size:.82rem;color:rgba(255,255,255,.6);"><span style="color:var(--pink);font-weight:700;">✓</span>Live trade reviews with Dayli</div>
+          <div style="display:flex;gap:8px;font-size:.82rem;color:rgba(255,255,255,.6);"><span style="color:var(--pink);font-weight:700;">✓</span>Exclusive ICC channels</div>
+          <div style="display:flex;gap:8px;font-size:.82rem;color:rgba(255,255,255,.6);"><span style="color:var(--pink);font-weight:700;">✓</span>Weekly Dayli Live sessions</div>
+        </div>
+        <button onclick="window.open('https://whop.com/a-girl-her-futures/a-girl-her-futures-discord/','_blank')" style="width:100%;padding:13px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--pink),var(--peach));color:white;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;box-shadow:0 8px 24px rgba(244,130,154,.3);">✦ Join Structure Lab</button>
+      </div>
+
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      <div style="background:white;border-radius:16px;border:1px solid rgba(244,130,154,.1);padding:20px;">
-        <div style="font-size:1.4rem;margin-bottom:8px;">📊</div>
-        <div style="font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;color:var(--dark);margin-bottom:5px;">Trade Reviews</div>
-        <div style="font-size:.8rem;color:var(--muted);line-height:1.6;">Real ICC setups broken down live. Learn from what the market actually did.</div>
-      </div>
-      <div style="background:white;border-radius:16px;border:1px solid rgba(244,130,154,.1);padding:20px;">
-        <div style="font-size:1.4rem;margin-bottom:8px;">💬</div>
-        <div style="font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;color:var(--dark);margin-bottom:5px;">Daily Chat</div>
-        <div style="font-size:.8rem;color:var(--muted);line-height:1.6;">A community of women learning to trade. Ask questions. Share wins. Stay accountable.</div>
-      </div>
-      <div style="background:white;border-radius:16px;border:1px solid rgba(244,130,154,.1);padding:20px;">
-        <div style="font-size:1.4rem;margin-bottom:8px;">🎯</div>
-        <div style="font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;color:var(--dark);margin-bottom:5px;">Level Roles</div>
-        <div style="font-size:.8rem;color:var(--muted);line-height:1.6;">Your platform level syncs to your Discord role. The more you learn, the more you unlock.</div>
-      </div>
-      <div style="background:white;border-radius:16px;border:1px solid rgba(244,130,154,.1);padding:20px;">
-        <div style="font-size:1.4rem;margin-bottom:8px;">✦</div>
-        <div style="font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;color:var(--dark);margin-bottom:5px;">Dayli Live</div>
-        <div style="font-size:.8rem;color:var(--muted);line-height:1.6;">Weekly sessions with Dayli. Market analysis, Q&A, and ICC in real time.</div>
-      </div>
+    <!-- Bottom note -->
+    <div style="background:var(--cream);border-radius:14px;padding:16px 20px;text-align:center;">
+      <div style="font-size:.85rem;color:var(--muted);line-height:1.7;">Already a Whop member? Your Discord access is included. Just click your tier above to get the invite link. 🖤</div>
     </div>
   </div>
 </div>
