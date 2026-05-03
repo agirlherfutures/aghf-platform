@@ -15,18 +15,18 @@
 html{scroll-behavior:smooth}
 body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden}
 .app{display:flex;min-height:100vh}
-.sidebar{width:230px;background:#2C1810;position:fixed;top:0;left:0;bottom:0;background:#2C1810;display:flex;flex-direction:column;z-index:100;overflow-y:auto}
-.sb-logo{cursor:pointer;padding:22px 22px 16px;font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(244,130,154,.1);text-decoration:none}
-.sb-logo span{color:var(--teal)}
-.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(244,130,154,.1);margin-bottom:6px}
-.sb-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--peach));border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.82rem;font-weight:700;color:white}
-.sb-nm{font-size:.82rem;font-weight:600;color:white}
-.sb-lv{font-size:.68rem;color:rgba(255,255,255,.45)}
-.sb-sec{font-size:.64rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:10px 18px 5px}
-.sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:.85rem;color:var(--muted);border-left:3px solid transparent}
-.sb-item.on{color:var(--pink);background:rgba(244,130,154,.12);border-left-color:var(--pink);font-weight:500}
+
+
+
+
+
+
+
+
+
+
 .sb-bot{margin-top:auto;padding:12px 18px}
-.xpb{background:rgba(255,255,255,.06);border-radius:10px;padding:11px 13px}
+
 .xpb-top{display:flex;justify-content:space-between;margin-bottom:6px}
 .xpb-l{font-size:.68rem;color:var(--muted);font-weight:500}
 .xpb-v{font-size:.72rem;color:var(--peach);font-weight:600}
@@ -146,29 +146,32 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);
 .streak-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 .cfp{position:fixed;border-radius:2px;pointer-events:none;z-index:9998;animation:cfF linear both}
 @keyframes cfF{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
-@media (max-width:900px){.sidebar{width:230px;background:#2C1810;position:fixed;top:0;left:0;bottom:0;background:#2C1810;display:flex;flex-direction:column;z-index:100;overflow-y:auto}.main{margin-left:0}.bnav{left:0}}
+@media (max-width:900px){.main{margin-left:0}.bnav{left:0}}
 @media (max-width:760px){.control-grid,.side-grid,.choice-grid,.lab-grid{grid-template-columns:1fr}.tbar{padding:0 18px}.lv-cards{padding:22px 14px 110px}}
+.sidebar{width:230px;position:fixed;inset:0 auto 0 0;background:#2C1810;display:flex;flex-direction:column;z-index:100;overflow-y:auto}
+.sb-logo{padding:22px 22px 16px;font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:#F4829A;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer}
+.sb-logo span{color:#7ECEC4}
+.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sb-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#F4829A,#F5A857);border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:white;font-size:.85rem}
+.sb-nm{font-size:.84rem;font-weight:600;color:white}
+.sb-lv{font-size:.68rem;color:rgba(255,255,255,.45)}
+.sb-sec{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:12px 18px 5px}
+.sb-item{padding:10px 18px;color:rgba(255,255,255,.55);font-size:.85rem;border-left:3px solid transparent;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:9px}
+.sb-item:hover{color:white;background:rgba(255,255,255,.07)}
+.sb-item.on{color:#F4829A;background:rgba(244,130,154,.12);border-left-color:#F4829A;font-weight:500}
+.xpbox{margin-top:auto;padding:14px 18px;border-top:1px solid rgba(255,255,255,.08)}
+.xpb{background:rgba(255,255,255,.06);border-radius:12px;padding:12px 14px}
+.xp-top{display:flex;justify-content:space-between;margin-bottom:7px;font-size:.68rem;color:rgba(255,255,255,.4)}
+.xp-top strong{color:#F5A857}
+.track{height:5px;background:rgba(255,255,255,.1);border-radius:100px;overflow:hidden}
+.fill{height:100%;width:0%;background:linear-gradient(90deg,#F4829A,#F5A857);transition:width .6s ease}
 </style>
 </head>
 <body>
 <div class="app">
-    <div class="sidebar">
-    <div class="sb-logo" onclick="window.location='../../../index.html'" style="cursor:pointer;font-family:'Playfair Display',serif;font-style:italic;color:#F4829A;">A Girl &amp; <span style="color:#7ECEC4">Her Futures</span>™</div>
-    <div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Level 1 · She's Brand New</div></div></div>
-    <div class="sb-sec">Learn</div>
-    <div class="sb-item" onclick="window.location='../../../index.html'">⌂ Dashboard</div>
-    <div class="sb-item on">✦ Lessons</div>
-    <div class="sb-item" onclick="window.location='../../../index.html#s-games'">◈ Games</div>
-    <div class="sb-sec">Community</div>
-    <div class="sb-item" onclick="window.location='../../../index.html#s-leaderboard'">↑ Leaderboard</div>
-    <div class="sb-item" onclick="window.location='../../../index.html#s-store'">◈ Join Discord</div>
-    <div class="sb-sec">Account</div>
-    <div class="sb-item" onclick="window.location='../../../index.html#s-profile'">○ My Profile</div>
-    <div class="sb-bot"><div class="xpb"><div class="xpb-top"><span class="xpb-l">GP</span><span class="xpb-v">0 / 1000</span></div><div class="xpb-track"><div class="xpb-fill"></div></div></div>
-    <button onclick="window.location='../../../index.html'" style="width:100%;margin-top:10px;padding:9px;border-radius:100px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.4);font-family:DM Sans,sans-serif;font-size:.78rem;cursor:pointer;">← Log out</button>
-    </div>
-  </div>
-
+  <div class="sidebar">
+    <a class="sb-logo" href="#"><span>A Girl &</span> Her Futures™</a>
+    <div class="sb-user"><div class="sb-av">D</div><div><div class="sb-nm">Dayli</div><div class="sb-lv">Section 2 · Platform + Execution Basics</div></div></div>
     <div class="sb-sec">Learn</div>
     <div class="sb-item on">✦ Lessons</div>
     <div class="sb-item">◈ Games</div>
@@ -499,66 +502,35 @@ function quizAns(btn, correct, fbId, msg){
 function showComplete(){document.getElementById('completeCard').classList.add('show'); showToast(); confetti();}
 buildDots(); updateNext(); setTimeout(()=>{drawTF(); drawMiniCharts();},50);
 </script>
-<script src="../../../sidebar.js"></script>
 <script type="module">
-const SUPABASE_URL = 'https://otxfzalcujhtfwprmptr.supabase.co';
-const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90eGZ6YWxjdWpodGZ3cHJtcHRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NTYyOTMsImV4cCI6MjA5MzMzMjI5M30.iRxaKgD6ut9urNK67dyvj_6K2lfyw8peBpfJx3oU9A4';
-const PLATFORM_URL = '../../../index.html';
-
-let _supabase, _user;
-
-async function initLessonAuth() {
-  try {
-    const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
-    _supabase = createClient(SUPABASE_URL, SUPABASE_ANON);
-    const { data: { session } } = await _supabase.auth.getSession();
-    if (!session?.user) { window.location = PLATFORM_URL; return; }
-    _user = session.user;
-    loadLessonProfile();
-  } catch(e) { console.error('Auth error:', e); }
+const SUPABASE_URL='https://otxfzalcujhtfwprmptr.supabase.co';
+const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90eGZ6YWxjdWpodGZ3cHJtcHRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NTYyOTMsImV4cCI6MjA5MzMzMjI5M30.iRxaKgD6ut9urNK67dyvj_6K2lfyw8peBpfJx3oU9A4';
+let _sb,_user;
+async function init(){
+  try{
+    const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
+    _sb=createClient(SUPABASE_URL,SUPABASE_ANON);
+    const {data:{session}}=await _sb.auth.getSession();
+    if(!session?.user){window.location='/agihf/index.html';return;}
+    _user=session.user;
+    const res=await fetch('/api/get-profile?userId='+_user.id);
+    const data=await res.json();
+    const p=data.profile;
+    if(!p)return;
+    const lvNames={1:"She's Brand New",2:'Before the Chart',3:'Reading Structure',4:'Finding Direction',5:'The ICC Method',6:'Pulling the Trigger',7:'The Mindset',8:"She's In Structure ✦"};
+    const el=id=>document.getElementById(id);
+    if(el('sbAv'))el('sbAv').textContent=(p.full_name||p.email||'T').charAt(0).toUpperCase();
+    if(el('sbNm'))el('sbNm').textContent=p.full_name||p.email?.split('@')[0]||'Trader';
+    if(el('sbLv'))el('sbLv').textContent='Level '+(p.level||1)+' · '+lvNames[p.level||1];
+    const gp=p.gp||0,next=(p.level||1)*1000;
+    if(el('sbGP'))el('sbGP').textContent=gp+' / '+next;
+    if(el('sbFill'))el('sbFill').style.width=Math.min((gp/next)*100,100)+'%';
+  }catch(e){console.error(e);}
 }
-
-async function loadLessonProfile() {
-  try {
-    const res = await fetch(`/api/get-profile?userId=${_user.id}`);
-    const data = await res.json();
-    const p = data.profile;
-    if (!p) return;
-    const initials = (p.full_name || p.email || 'T').charAt(0).toUpperCase();
-    const name = p.full_name || p.email?.split('@')[0] || 'Trader';
-    const levelNames = {1:"She's Brand New",2:'Before the Chart',3:'Reading Structure',4:'Finding Direction',5:'The ICC Method',6:'Pulling the Trigger',7:'The Mindset',8:"She's In Structure ✦"};
-    if(document.getElementById('sbAv')) document.getElementById('sbAv').textContent = initials;
-    if(document.getElementById('sbNm')) document.getElementById('sbNm').textContent = name;
-    if(document.getElementById('sbLv')) document.getElementById('sbLv').textContent = `Level ${p.level||1} · ${levelNames[p.level||1]}`;
-    const gp = p.gp || 0;
-    const next = (p.level||1) * 1000;
-    if(document.getElementById('sbGP')) document.getElementById('sbGP').textContent = `${gp} / ${next}`;
-    if(document.getElementById('sbFill')) document.getElementById('sbFill').style.width = Math.min((gp/next)*100,100) + '%';
-  } catch(e) { console.error('Profile error:', e); }
-}
-
-function goToPlatform(screen) {
-  sessionStorage.setItem('aghf_goto', screen);
-  window.location = PLATFORM_URL;
-}
-
-async function handleLessonLogout() {
-  if (_supabase) await _supabase.auth.signOut();
-  window.location = PLATFORM_URL;
-}
-
-async function markLessonComplete(lessonId, gpEarned) {
-  if (!_user) return;
-  try {
-    await fetch('/api/complete-lesson', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId: _user.id, lessonId, gpEarned })
-    });
-  } catch(e) { console.error('Complete lesson error:', e); }
-}
-
-window.addEventListener('DOMContentLoaded', initLessonAuth);
+window.goToPlatform=function(screen){sessionStorage.setItem('aghf_goto',screen);window.location='/agihf/index.html';}
+window.handleLessonLogout=async function(){if(_sb)await _sb.auth.signOut();window.location='/agihf/index.html';}
+window.markLessonComplete=async function(lessonId,gpEarned){if(!_user)return;try{await fetch('/api/complete-lesson',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:_user.id,lessonId,gpEarned})});}catch(e){}}
+window.addEventListener('DOMContentLoaded',init);
 </script>
 </body>
 </html>
