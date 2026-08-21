@@ -1506,20 +1506,40 @@ let supabase, currentUser, userProfile;
 async function initSupabase() {
   const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
   supabase = createClient(SUPABASE_URL, SUPABASE_ANON);
+  const params = new URLSearchParams(window.location.search);
+  // Lesson/game pages bounce unauthenticated visitors here with these params
+  // (see agihf/shared/auth-guard.js) so we can send them straight back after login.
+  const redirectTo = params.get('redirect');
+
   const { data: { session } } = await supabase.auth.getSession();
-  if (session?.user) { currentUser = session.user; await loadUserProfile(); }
+  if (session?.user) {
+    currentUser = session.user;
+    await loadUserProfile();
+    if (redirectTo) { window.location.href = redirectTo; return; }
+  } else if (params.get('screen') === 'login') {
+    go('s-login');
+  }
   supabase.auth.onAuthStateChange(async (event, session) => {
-    if (event === 'SIGNED_IN' && session?.user) { currentUser = session.user; await loadUserProfile(); go('s-dashboard'); }
+    if (event === 'SIGNED_IN' && session?.user) {
+      currentUser = session.user;
+      await loadUserProfile();
+      if (redirectTo) { window.location.href = redirectTo; return; }
+      go('s-dashboard');
+    }
     else if (event === 'SIGNED_OUT') { currentUser = null; userProfile = null; go('s-home'); }
   });
-  const params = new URLSearchParams(window.location.search);
   if (params.get('success') === 'true') { toast('Welcome to AG&HF! ✦', "Your membership is active. Let's get to work."); if (currentUser) go('s-dashboard'); }
 }
 
 async function loadUserProfile() {
   if (!currentUser) return;
   try {
-    const res = await fetch(`/api/get-profile?userId=${currentUser.id}`);
+    const { data: { session } } = await supabase.auth.getSession();
+    const token = session?.access_token;
+    if (!token) return;
+    const res = await fetch('/api/get-profile', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
     const data = await res.json();
     userProfile = data;
     updateDashboard(data);
@@ -1636,7 +1656,14 @@ async function handleLogout() { if (supabase) await supabase.auth.signOut(); }
 async function completeLessonInDB(lessonId, gpEarned) {
   if (!currentUser) return;
   try {
-    const res = await fetch('/api/complete-lesson', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: currentUser.id, lessonId, gpEarned }) });
+    const { data: { session } } = await supabase.auth.getSession();
+    const token = session?.access_token;
+    if (!token) return;
+    const res = await fetch('/api/complete-lesson', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({ lessonId, gpEarned })
+    });
     const data = await res.json();
     if (data.success) { await loadUserProfile(); }
   } catch (err) { console.error('Lesson complete error:', err); }
