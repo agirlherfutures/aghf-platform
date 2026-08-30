@@ -1,0 +1,35 @@
+{
+  "grade": "1",
+  "lessonNumber": 4,
+  "title": "Stop Loss & Take Profit",
+  "videoUrl": null,
+  "videoDuration": "13 min",
+  "xpValue": 60,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "Your stop loss belongs where the setup is proven wrong.",
+    "body": "In an uptrend, that's below the swing low — not some random number of points away, and not just wherever feels comfortable. A take profit is a planned exit, not something you decide in the moment based on fear or greed.",
+    "dayliNote": "Your stop loss protects your account and your structure logic — it isn't punishment, and it isn't about ego."
+  },
+  "experience": {
+    "prompt": "You're looking at a bullish structure with your entry marked. Where should the stop loss go if this is a genuine uptrend?",
+    "chartConfig": { "type": "chart-click-placeholder", "target": "below swing low" }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "In an uptrend, where should your stop loss usually go?",
+      "options": ["Below the swing low", "A random number of points away", "Above current price"],
+      "correctIndex": 0
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the level where the stop loss should go for this uptrend."
+    },
+    {
+      "type": "fill_blank",
+      "question": "After entry, discipline means you ___ to the plan instead of moving your stop out of fear.",
+      "keywords": ["stick", "commit"]
+    }
+  ]
+}

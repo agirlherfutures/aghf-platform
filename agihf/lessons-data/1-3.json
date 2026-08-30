@@ -1,0 +1,35 @@
+{
+  "grade": "1",
+  "lessonNumber": 3,
+  "title": "Orders: How You Enter",
+  "videoUrl": null,
+  "videoDuration": "12 min",
+  "xpValue": 60,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "Market orders move now. Limit orders wait.",
+    "body": "You don't just \"enter trades\" — you choose how you enter them. A market order fills immediately at the current price. A limit order rests below (or above) price first and waits for a tag. This lesson is about feeling the difference between jumping in immediately and letting price come to you.",
+    "dayliNote": "Letting price come to you is the heart of this lesson — market orders chase, limit orders wait."
+  },
+  "experience": {
+    "prompt": "Price just broke a level and is flying. Do you chase it with a market order, or place a limit order and wait for a pullback?",
+    "chartConfig": { "type": "scenario-choice", "options": ["market order", "limit order"] }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "Which order type enters immediately at the current price?",
+      "options": ["Market order", "Limit order", "Neither"],
+      "correctIndex": 0
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap where a limit order would rest, waiting for price to pull back to it."
+    },
+    {
+      "type": "fill_blank",
+      "question": "A distant target only matters once ___ supports getting there — letting price come to you is the disciplined move.",
+      "keywords": ["structure", "pullback", "price action"]
+    }
+  ]
+}

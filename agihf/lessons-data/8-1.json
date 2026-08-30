@@ -1,0 +1,35 @@
+{
+  "grade": "8",
+  "lessonNumber": 1,
+  "title": "Timeframes & Perspective",
+  "videoUrl": null,
+  "videoDuration": "12 min",
+  "xpValue": 70,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "Same market. Different zoom levels.",
+    "body": "The 1 minute, 5 minute, 1 hour, and 4 hour are not different markets — they are different views of the same price story. Lower timeframes show more detail. Higher timeframes show more direction.",
+    "dayliNote": "Timeframes change your perspective on the same market. The market itself never changes just because you switched the chart view."
+  },
+  "experience": {
+    "prompt": "Which timeframe would you check first to understand the bigger picture: 4H or 1M?",
+    "chartConfig": { "type": "scenario-choice", "options": ["4H", "1M"] }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "What actually changes when you switch timeframes?",
+      "options": ["Your perspective on the same market", "The market itself", "Everything at once"],
+      "correctIndex": 0
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the timeframe that gives the strongest directional context for overall bias."
+    },
+    {
+      "type": "fill_blank",
+      "question": "The clean workflow is higher timeframe first, then ___, then the lowest timeframe for entry detail.",
+      "keywords": ["1h", "structure", "lower timeframe"]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "grade": "2",
+  "lessonNumber": 3,
+  "title": "Candle Psychology",
+  "videoUrl": null,
+  "videoDuration": "18 min",
+  "xpValue": 100,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "Every candle is a buyer and seller battle.",
+    "body": "Buyers push price up. Sellers push price down. The candle close shows who held control by the end of that candle. The wick shows where price went but did not fully accept. A wick through a level is not the same as a candle closing beyond it — the close gives the stronger clue of acceptance.",
+    "dayliNote": "\"I'm not just asking if the candle is green or red. I'm asking where it reacted, where it rejected, and where it closed.\" — Dayli Scott"
+  },
+  "experience": {
+    "prompt": "Price comes into support, wicks down, then closes back above support. What does that show about who's defending the level?",
+    "chartConfig": { "type": "scenario-choice", "options": ["buyer defense", "clean breakdown"] }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "What does a candle close help you read?",
+      "options": ["Acceptance and control", "Nothing important", "Only the color"],
+      "correctIndex": 0
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the candle that shows stronger acceptance above resistance — the one that closed above it, not just wicked above it."
+    },
+    {
+      "type": "fill_blank",
+      "question": "Before calling acceptance above a level, wait for the candle ___.",
+      "keywords": ["close", "closure"]
+    }
+  ]
+}

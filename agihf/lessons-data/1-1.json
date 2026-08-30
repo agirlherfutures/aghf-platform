@@ -1,0 +1,35 @@
+{
+  "grade": "1",
+  "lessonNumber": 1,
+  "title": "TradingView Basics",
+  "videoUrl": null,
+  "videoDuration": "10 min",
+  "xpValue": 60,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "TradingView is your workspace, not just a pretty chart.",
+    "body": "You are using it to read price, change perspective with timeframes, and mark behavior so your eyes stop feeling lost. A horizontal level marking a repeated reaction area is one of the cleanest beginner tools — you don't need every feature, just a few used clearly.",
+    "dayliNote": "You do not need every feature. A few tools used clearly is better than a messy chart."
+  },
+  "experience": {
+    "prompt": "Pick which tool you'd reach for first to mark a level price keeps reacting to.",
+    "chartConfig": { "type": "tool-choice", "options": ["horizontal level", "every drawing tool at once"] }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "What is TradingView, functionally, for a new trader?",
+      "options": ["A workspace to read and mark price", "A place to buy a company", "A random prediction machine"],
+      "correctIndex": 0
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the cleanest horizontal level on the chart — the one price has reacted to more than once."
+    },
+    {
+      "type": "fill_blank",
+      "question": "Switching timeframes changes your ___ on the same market, not the market itself.",
+      "keywords": ["perspective", "view", "zoom"]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "grade": "1",
+  "lessonNumber": 5,
+  "title": "Position Sizing",
+  "videoUrl": null,
+  "videoDuration": "11 min",
+  "xpValue": 60,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "Contracts change the money, not the structure.",
+    "body": "Your entry can be clean and your stop loss can be correct, but if your size is too big, the trade becomes emotionally heavy. Position sizing is what makes the same setup feel manageable or reckless — the chart doesn't care how many contracts you're in, but you will.",
+    "dayliNote": "Keep your size consistent. Going heavier because confidence is high, or doubling size after a loss, is emotion talking — not a risk plan."
+  },
+  "experience": {
+    "prompt": "You feel good after two wins in a row. Do you keep your size consistent, or go heavier because confidence is high?",
+    "chartConfig": { "type": "scenario-choice", "options": ["keep size consistent", "go heavier"] }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "What does position sizing mainly change?",
+      "options": ["The money risk", "The market structure itself", "Everything about the trade setup"],
+      "correctIndex": 0
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the position size that best matches a disciplined, consistent risk plan."
+    },
+    {
+      "type": "fill_blank",
+      "question": "Your contract size should be decided by your ___, not by how confident or excited you feel today.",
+      "keywords": ["risk plan", "risk", "plan"]
+    }
+  ]
+}

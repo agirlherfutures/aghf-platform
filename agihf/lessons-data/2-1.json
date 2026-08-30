@@ -1,0 +1,35 @@
+{
+  "grade": "2",
+  "lessonNumber": 1,
+  "title": "Candlesticks Tell the Story",
+  "videoUrl": null,
+  "videoDuration": "15 min",
+  "xpValue": 90,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "Candles show price behavior during a period of time.",
+    "body": "A candlestick is not just a colored block on the chart — it's a tiny story of what buyers and sellers did during that timeframe. Every candle has a beginning (open), an ending (close), a high point, and a low point. When you read candles correctly, you stop seeing random shapes and start seeing pressure, control, and movement.",
+    "dayliNote": "\"Candles are not just green and red. They show who pushed, who rejected, who held, and where price accepted.\" — Dayli Scott"
+  },
+  "experience": {
+    "prompt": "Watch a candle form from open to close — where does it start, where does it travel, and where does it end?",
+    "chartConfig": { "type": "candle-build" }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "What does a candlestick show?",
+      "options": ["Price movement during a timeframe", "A random shape", "A guaranteed prediction"],
+      "correctIndex": 0
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the candle with the stronger buyer close — large body, closed near the high."
+    },
+    {
+      "type": "fill_blank",
+      "question": "A bullish candle closes ___ where it opened.",
+      "keywords": ["above", "higher"]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "grade": "1",
+  "lessonNumber": 2,
+  "title": "Brokers & Prop Firms",
+  "videoUrl": null,
+  "videoDuration": "15 min",
+  "xpValue": 90,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "You either trade your money… or someone else's.",
+    "body": "With a broker, you use your own money, keep your profits, and take your own losses. With a prop firm, you trade under rules using access to their capital, and profits are usually split. Neither is universally better — it's about knowing what kind of path you're choosing.",
+    "dayliNote": "Brokers give you direct ownership. Prop firms give you structured access. Both matter — they just ask different things from you."
+  },
+  "experience": {
+    "prompt": "You only have $300. Would you trade it directly through a broker, or try to access more capital through a prop firm?",
+    "chartConfig": { "type": "scenario-choice", "options": ["broker", "prop firm"] }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "A broker account uses whose money?",
+      "options": ["Your own money", "A prop firm's capital access", "Nobody's money"],
+      "correctIndex": 0
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the path that comes with firm rules attached to using their capital."
+    },
+    {
+      "type": "fill_blank",
+      "question": "Broker = your money, prop firm = capital access with ___.",
+      "keywords": ["rules", "structure"]
+    }
+  ]
+}

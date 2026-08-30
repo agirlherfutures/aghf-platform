@@ -1,0 +1,35 @@
+{
+  "grade": "8",
+  "lessonNumber": 2,
+  "title": "Timeframes Change the Lens",
+  "videoUrl": null,
+  "videoDuration": "17 min",
+  "xpValue": 95,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "Same market. Different lens.",
+    "body": "A higher timeframe shows the bigger picture. A lower timeframe shows the smaller details. Beginners get confused when they treat every timeframe like it has the same job. Lower timeframes are not bad — they're just more detailed. The problem is using detail before you understand the bigger picture.",
+    "dayliNote": "\"The 1M can show me the entry, but it does not decide my whole bias. I need the bigger picture first.\" — Dayli Scott"
+  },
+  "experience": {
+    "prompt": "You open the 1M first and price looks messy. Do you stay on 1M and keep reacting, or zoom out to understand the bigger picture first?",
+    "chartConfig": { "type": "scenario-choice", "options": ["stay on 1M", "zoom out first"] }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "Which timeframe is better suited for bigger-picture direction?",
+      "options": ["Higher timeframe", "Lower timeframe only", "It doesn't matter"],
+      "correctIndex": 0
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the 4H lens — the one showing fewer candles and a clearer overall direction."
+    },
+    {
+      "type": "fill_blank",
+      "question": "The clean beginner flow is bigger picture, then structure, then ___ detail last.",
+      "keywords": ["entry"]
+    }
+  ]
+}
