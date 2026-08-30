@@ -7,60 +7,64 @@
   "videoDuration": "13 min",
   "xpValue": 60,
   "passThreshold": 0.6,
-  "teach": {
+  "intro": {
     "heading": "Your stop loss belongs where the setup is proven wrong.",
     "body": "In an uptrend, that's below the swing low — not some random number of points away, and not just wherever feels comfortable. A take profit is a planned exit, not something you decide in the moment based on fear or greed.",
     "dayliNote": "Your stop loss protects your account and your structure logic — it isn't punishment, and it isn't about ego."
   },
-  "experience": {
-    "intro": "Walk one trade from entry through a scare at the stop.",
-    "steps": [
-      {
-        "prompt": "You're in a genuine uptrend with your entry marked. Where should the stop loss go?",
-        "options": [
-          { "label": "Below the most recent swing low", "correct": true, "feedback": "Right — that's the point where the uptrend would actually be proven wrong." },
-          { "label": "A random number of points below entry", "correct": false, "feedback": "An arbitrary distance doesn't reflect where the setup is actually invalidated." }
-        ]
-      },
-      {
-        "prompt": "Price pulls back and gets close to your stop, but hasn't closed below the swing low yet. Fear kicks in — do you move your stop closer to reduce the \"risk\"?",
-        "options": [
-          { "label": "No — moving it early abandons the actual invalidation point for an emotional one", "correct": true, "feedback": "Right — your stop protects the plan; moving it out of fear defeats its purpose." },
-          { "label": "Yes — tightening it feels safer", "correct": false, "feedback": "Tightening a stop based on fear, not structure, usually just gets you stopped out of a trade that was still valid." }
-        ]
-      },
-      {
-        "prompt": "Price closes below the swing low. What should happen to the trade?",
-        "options": [
-          { "label": "It's stopped out — the setup has been proven wrong", "correct": true, "feedback": "Exactly. That's exactly what the stop was there to do." },
-          { "label": "Hold anyway and hope it comes back", "correct": false, "feedback": "Holding past a proven invalidation point is exactly the discipline break a stop loss exists to prevent." }
-        ]
-      }
-    ]
-  },
-  "reinforce": [
+  "tapCards": [
     {
-      "type": "multiple_choice",
+      "prompt": "You're in a genuine uptrend with your entry marked. Where should the stop loss go?",
+      "options": [
+        { "label": "Below the most recent swing low", "correct": true, "feedback": "Right — that's the point where the uptrend would actually be proven wrong." },
+        { "label": "A random number of points below entry", "correct": false, "feedback": "An arbitrary distance doesn't reflect where the setup is actually invalidated." }
+      ]
+    },
+    {
+      "prompt": "Price pulls back and gets close to your stop, but hasn't closed below the swing low yet. Fear kicks in — do you move your stop closer?",
+      "options": [
+        { "label": "No — moving it early abandons the actual invalidation point", "correct": true, "feedback": "Right — your stop protects the plan; moving it out of fear defeats its purpose." },
+        { "label": "Yes — tightening it feels safer", "correct": false, "feedback": "Tightening a stop based on fear usually gets you stopped out of a trade that was still valid." }
+      ]
+    },
+    {
+      "prompt": "Price closes below the swing low. What should happen to the trade?",
+      "options": [
+        { "label": "It's stopped out — the setup has been proven wrong", "correct": true, "feedback": "Exactly. That's exactly what the stop was there to do." },
+        { "label": "Hold anyway and hope it comes back", "correct": false, "feedback": "Holding past a proven invalidation point is exactly the discipline break a stop loss prevents." }
+      ]
+    }
+  ],
+  "quiz": [
+    {
       "question": "In an uptrend, where should your stop loss usually go?",
       "options": [
         "Below the swing low",
         "A random number of points away",
         "Above current price"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "explanation": "That's the point where the uptrend idea is actually proven wrong."
     },
     {
-      "type": "typed_explanation",
-      "question": "A trader places her stop loss \"a comfortable distance\" below her entry rather than below the actual swing low. What's the risk in that approach?",
-      "modelAnswer": "A stop placed by comfort rather than structure doesn't actually correspond to the point where the trade idea is proven wrong. It might get hit by normal noise before the setup fails, or it might not protect her at all if it's placed too far away — either way, it's disconnected from what the trade is actually betting on."
+      "question": "A trader places her stop loss \"a comfortable distance\" below her entry rather than below the actual swing low. What's the risk?",
+      "options": [
+        "It's disconnected from the point where the trade idea is actually proven wrong",
+        "There's no risk — comfort is a valid distance",
+        "It guarantees a smaller loss than a structure-based stop"
+      ],
+      "correctIndex": 0,
+      "explanation": "A comfort-based stop might get hit by normal noise, or fail to protect her at all."
     },
     {
-      "type": "fill_blank",
       "question": "After entry, discipline means you ___ to the plan instead of moving your stop out of fear.",
-      "keywords": [
-        "stick",
-        "commit"
-      ]
+      "options": [
+        "Stick",
+        "React",
+        "Guess"
+      ],
+      "correctIndex": 0,
+      "explanation": "Committing to the plan is what makes a stop loss actually work."
     }
   ]
 }

@@ -7,60 +7,64 @@
   "videoDuration": "10 min",
   "xpValue": 50,
   "passThreshold": 0.6,
-  "teach": {
+  "intro": {
     "heading": "Markets exist because people need somewhere to exchange value, risk, and opportunity.",
     "body": "One side wants in. One side wants out. One side wants protection. One side wants profit. No exchange = no market. And no market = no movement. This is why price moves at all.",
     "dayliNote": "A market is just a meeting place for decisions. Buyers say \"I'll pay this,\" sellers say \"I want that,\" and price moves until both sides meet — that negotiation is what prints the chart."
   },
-  "experience": {
-    "intro": "Watch how participation itself changes the story, not just price.",
-    "steps": [
-      {
-        "prompt": "A quiet overnight session has almost no orders coming in. What do you expect price to do?",
-        "options": [
-          { "label": "Stay muted — with fewer buyers and sellers meeting, there's less to print onto the chart", "correct": true, "feedback": "Right — no exchange happening means no real negotiation to move price." },
-          { "label": "Move just as much as any busy session", "correct": false, "feedback": "Participation and movement are linked — fewer participants generally means less real price discovery." }
-        ]
-      },
-      {
-        "prompt": "Then New York opens and volume floods in. What changes?",
-        "options": [
-          { "label": "Far more negotiation is happening — price has more real information to print", "correct": true, "feedback": "Exactly — more buyers and sellers meeting means more genuine disagreement getting resolved into price." },
-          { "label": "Nothing — volume doesn't affect how meaningful a move is", "correct": false, "feedback": "Volume is a real signal — a move on heavy participation reflects more real agreement/disagreement than a thin move." }
-        ]
-      },
-      {
-        "prompt": "A level gets tested twice — once overnight on thin volume, once at the New York open on heavy volume. Which test tells you more?",
-        "options": [
-          { "label": "The New York open test — more participants means more real information in that reaction", "correct": true, "feedback": "Right — not all tests of a level are equal. The one with more real participation carries more weight." },
-          { "label": "They're identical — a test is a test", "correct": false, "feedback": "They're not identical. Who showed up to make that test happen matters." }
-        ]
-      }
-    ]
-  },
-  "reinforce": [
+  "tapCards": [
     {
-      "type": "multiple_choice",
+      "prompt": "A quiet overnight session has almost no orders coming in. What do you expect price to do?",
+      "options": [
+        { "label": "Stay muted — fewer buyers and sellers means less to print onto the chart", "correct": true, "feedback": "Right — no exchange happening means no real negotiation to move price." },
+        { "label": "Move just as much as any busy session", "correct": false, "feedback": "Participation and movement are linked — fewer participants means less real price discovery." }
+      ]
+    },
+    {
+      "prompt": "Then New York opens and volume floods in. What changes?",
+      "options": [
+        { "label": "Far more negotiation is happening — price has more real information to print", "correct": true, "feedback": "Exactly — more buyers and sellers meeting means more genuine disagreement getting resolved." },
+        { "label": "Nothing — volume doesn't affect how meaningful a move is", "correct": false, "feedback": "Volume is a real signal — a move on heavy participation reflects more real agreement/disagreement." }
+      ]
+    },
+    {
+      "prompt": "A level gets tested twice — once overnight on thin volume, once at the New York open on heavy volume. Which test tells you more?",
+      "options": [
+        { "label": "The New York open test — more participants means more real information", "correct": true, "feedback": "Right — not all tests of a level are equal. The one with more real participation carries more weight." },
+        { "label": "They're identical — a test is a test", "correct": false, "feedback": "They're not identical. Who showed up to make that test happen matters." }
+      ]
+    }
+  ],
+  "quiz": [
+    {
       "question": "A slow, quiet holiday session has almost no participants placing orders. What would you expect to happen to price movement, and why?",
       "options": [
         "It would likely stay muted — with fewer buyers and sellers meeting, there's less negotiation to print onto the chart",
         "It would move just as much as any other session — participation doesn't affect movement",
         "It would move randomly, unrelated to how many people are trading"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "explanation": "Fewer participants means less real negotiation happening, so there's less to push price anywhere."
     },
     {
-      "type": "typed_explanation",
-      "question": "Explain, in your own words, why price can't move at all if literally no one wants to buy or sell.",
-      "modelAnswer": "Price only moves because buyers and sellers are actively negotiating — someone has to want in and someone has to want out for a trade (and a new print) to happen. With zero participants, there's no disagreement to resolve, so there's nothing to push price anywhere."
+      "question": "Why can't price move at all if literally no one wants to buy or sell?",
+      "options": [
+        "Because someone has to want in and someone has to want out for a trade — and a new print — to happen",
+        "Price always moves regardless of participation",
+        "Price only moves when the exchange forces it to"
+      ],
+      "correctIndex": 0,
+      "explanation": "Price only moves because buyers and sellers are actively negotiating. Zero participants means zero disagreement to resolve into price."
     },
     {
-      "type": "fill_blank",
-      "question": "If nobody wants to buy or sell, price has no reason to ___.",
-      "keywords": [
-        "move",
-        "change"
-      ]
+      "question": "If nobody wants to buy or sell, price has no reason to:",
+      "options": [
+        "Move",
+        "Exist",
+        "Chart"
+      ],
+      "correctIndex": 0,
+      "explanation": "No exchange happening means nothing is pushing price in any direction."
     }
   ]
 }

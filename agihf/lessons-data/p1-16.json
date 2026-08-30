@@ -7,60 +7,70 @@
   "videoDuration": "18 min",
   "xpValue": 100,
   "passThreshold": 0.6,
-  "teach": {
+  "intro": {
     "heading": "Every candle is a buyer and seller battle.",
     "body": "Buyers push price up. Sellers push price down. The candle close shows who held control by the end of that candle. The wick shows where price went but did not fully accept. A wick through a level is not the same as a candle closing beyond it — the close gives the stronger clue of acceptance.",
     "dayliNote": "\"I'm not just asking if the candle is green or red. I'm asking where it reacted, where it rejected, and where it closed.\" — Dayli Scott"
   },
-  "experience": {
-    "intro": "Same level, two different candles — spot what actually decides the story.",
-    "steps": [
-      {
-        "prompt": "Price comes into support, wicks down, then closes back above support. Who's defending the level?",
-        "options": [
-          { "label": "Buyer defense", "correct": true, "feedback": "Right — the close back above support shows buyers successfully defended it." },
-          { "label": "Clean breakdown", "correct": false, "feedback": "A breakdown would need a close below support, not a reclaim back above it." }
-        ]
-      },
-      {
-        "prompt": "Now a different candle: price comes into the same support, wicks down, and closes below it. What changed?",
-        "options": [
-          { "label": "Sellers won this time — the close shows the level actually failed", "correct": true, "feedback": "Right — same shape of wick, but a different close tells a completely different story." },
-          { "label": "Nothing — a wick down at support always means the same thing", "correct": false, "feedback": "The close is what separates \"defended\" from \"failed\" — it's not the same story every time." }
-        ]
-      },
-      {
-        "prompt": "You see two candles at the same level with similar wicks but opposite closes. What's the one thing that actually decided which story is true?",
-        "options": [
-          { "label": "Where each candle closed", "correct": true, "feedback": "Exactly — the close is the deciding vote, every time." },
-          { "label": "How long the wick was", "correct": false, "feedback": "Wick length alone doesn't decide the outcome — the close does." }
-        ]
-      }
-    ]
+  "chart": {
+    "mode": "wick_close_demo",
+    "heading": "Same support level, different outcomes",
+    "prompt": "Price comes into support, wicks down — see whether it holds or fails by watching the close.",
+    "config": { "caption": "Tap \"Show the rejection\" to see buyers defending the level" }
   },
-  "reinforce": [
+  "tapCards": [
     {
-      "type": "multiple_choice",
+      "prompt": "Price comes into support, wicks down, then closes back above support. Who's defending the level?",
+      "options": [
+        { "label": "Buyer defense", "correct": true, "feedback": "Right — the close back above support shows buyers successfully defended it." },
+        { "label": "Clean breakdown", "correct": false, "feedback": "A breakdown would need a close below support, not a reclaim back above it." }
+      ]
+    },
+    {
+      "prompt": "Now a different candle: price comes into the same support, wicks down, and closes below it. What changed?",
+      "options": [
+        { "label": "Sellers won this time — the close shows the level actually failed", "correct": true, "feedback": "Right — same shape of wick, but a different close tells a completely different story." },
+        { "label": "Nothing — a wick down at support always means the same thing", "correct": false, "feedback": "The close is what separates \"defended\" from \"failed.\"" }
+      ]
+    },
+    {
+      "prompt": "You see two candles at the same level with similar wicks but opposite closes. What actually decided which story is true?",
+      "options": [
+        { "label": "Where each candle closed", "correct": true, "feedback": "Exactly — the close is the deciding vote, every time." },
+        { "label": "How long the wick was", "correct": false, "feedback": "Wick length alone doesn't decide the outcome." }
+      ]
+    }
+  ],
+  "quiz": [
+    {
       "question": "What does a candle close help you read?",
       "options": [
         "Acceptance and control",
         "Nothing important",
         "Only the color"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "explanation": "The close is the scoreboard for who actually won that candle."
     },
     {
-      "type": "typed_explanation",
-      "question": "Two candles form at the same support level with nearly identical wicks, but one closes above support and the other closes below it. Are they telling the same story? Explain.",
-      "modelAnswer": "No. Even with similar wicks, the close is what actually decides the outcome — one shows buyers successfully defending the level (close above), the other shows sellers actually breaking it (close below). Reading only the wick would make these look like the same event when they aren't."
+      "question": "Two candles form at the same support level with nearly identical wicks, but one closes above support and the other closes below it. Are they telling the same story?",
+      "options": [
+        "No — one shows buyers defending the level, the other shows sellers actually breaking it",
+        "Yes — similar wicks always mean the same outcome",
+        "Only the color of the candle matters"
+      ],
+      "correctIndex": 0,
+      "explanation": "Reading only the wick would make two very different events look the same."
     },
     {
-      "type": "fill_blank",
       "question": "Before calling acceptance above a level, wait for the candle ___.",
-      "keywords": [
-        "close",
-        "closure"
-      ]
+      "options": [
+        "Close",
+        "Color",
+        "Volume spike"
+      ],
+      "correctIndex": 0,
+      "explanation": "The close is what confirms acceptance, not the wick or the color."
     }
   ]
 }

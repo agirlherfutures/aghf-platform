@@ -7,71 +7,74 @@
   "videoDuration": "14 min",
   "xpValue": 60,
   "passThreshold": 0.6,
-  "teach": {
+  "intro": {
     "heading": "Every account is either your money, someone else's money, or practice money.",
     "body": "A brokerage account trades your own personal capital — you keep every dollar of profit and absorb every dollar of loss yourself. A prop firm evaluation gives you access to their capital if you can prove you can trade within their rules first; once funded, profits are usually split between you and the firm. A simulated (paper/demo) account uses no real money at all — it exists purely to practice execution without financial risk. None of these routes is universally \"better.\" They ask different things of you: a broker account demands your own capital and full risk ownership, a prop evaluation demands rule-discipline before it demands capital, and a simulated account demands nothing except honesty with yourself about how you'd actually behave with real money on the line.",
     "dayliNote": "\"I'm not telling you which account type to start with. I'm telling you to know exactly which one you're in, and what that account expects from you, before you place a single trade.\" — Dayli Scott"
   },
-  "experience": {
-    "intro": "Walk one trader through all three account types.",
-    "steps": [
-      {
-        "prompt": "A trader has $300 of her own money and no funded account yet. Which account type actually matches her situation right now?",
-        "options": [
-          { "label": "Personal brokerage account — she's trading her own capital directly", "correct": true, "feedback": "Right — until she's funded by a prop firm, her own capital is what's actually at risk." },
-          { "label": "Prop firm evaluation — she should act like she's already funded", "correct": false, "feedback": "Not yet — an evaluation isn't funded capital. She's still trading (or about to trade) her own $300." }
-        ]
-      },
-      {
-        "prompt": "She passes a prop firm evaluation and gets funded. Whose capital is now on the line?",
-        "options": [
-          { "label": "The firm's capital — her personal $300 isn't directly at risk anymore, but she now trades under their rules", "correct": true, "feedback": "Exactly — funded status changes whose money is at risk, but it adds rule constraints in exchange." },
-          { "label": "Still her own $300", "correct": false, "feedback": "Once funded, she's trading the firm's capital, not her original personal money." }
-        ]
-      },
-      {
-        "prompt": "She wants to test whether her execution is actually consistent before risking either her own money or a prop evaluation fee. What should she use?",
-        "options": [
-          { "label": "A simulated (demo) account", "correct": true, "feedback": "Right — simulated accounts exist exactly for this: proving consistency with zero financial risk." },
-          { "label": "Jump straight to a funded account", "correct": false, "feedback": "Skipping straight to funded capital without proving consistency first is exactly the risk a simulated account helps avoid." }
-        ]
-      }
-    ]
-  },
-  "reinforce": [
+  "tapCards": [
     {
-      "type": "multiple_choice",
+      "prompt": "A trader has $300 of her own money and no funded account yet. Which account type actually matches her situation right now?",
+      "options": [
+        { "label": "Personal brokerage account — she's trading her own capital directly", "correct": true, "feedback": "Right — until she's funded by a prop firm, her own capital is what's actually at risk." },
+        { "label": "Prop firm evaluation — she should act like she's already funded", "correct": false, "feedback": "Not yet — an evaluation isn't funded capital." }
+      ]
+    },
+    {
+      "prompt": "She passes a prop firm evaluation and gets funded. Whose capital is now on the line?",
+      "options": [
+        { "label": "The firm's capital — her personal $300 isn't directly at risk, but she now trades under their rules", "correct": true, "feedback": "Exactly — funded status changes whose money is at risk, but adds rule constraints." },
+        { "label": "Still her own $300", "correct": false, "feedback": "Once funded, she's trading the firm's capital, not her original money." }
+      ]
+    },
+    {
+      "prompt": "She wants to test whether her execution is consistent before risking real money or an evaluation fee. What should she use?",
+      "options": [
+        { "label": "A simulated (demo) account", "correct": true, "feedback": "Right — simulated accounts exist to prove consistency with zero financial risk." },
+        { "label": "Jump straight to a funded account", "correct": false, "feedback": "Skipping straight to funded capital without proving consistency first is a real risk." }
+      ]
+    }
+  ],
+  "quiz": [
+    {
       "question": "A trader passes a prop firm's evaluation and gets funded. Whose capital is she now trading, and what does that change about her risk?",
       "options": [
         "The firm's capital — her personal money isn't directly at risk, but she now trades inside the firm's rules",
         "Her own capital — the evaluation was just a formality",
         "Nobody's capital — funded accounts are simulated"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "explanation": "Funded status shifts whose money is at risk but adds real rule constraints in exchange."
     },
     {
-      "type": "multiple_choice",
       "question": "A trader keeps blowing her personal account, but never checks whether her execution is actually consistent first. What would a simulated account tell her that a live broker account can't?",
       "options": [
         "Whether her execution is repeatable before real money is on the line",
         "Nothing — simulated accounts are pointless",
         "Exactly how much profit she'll make live"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "explanation": "Simulated accounts exist specifically to test consistency with zero financial risk."
     },
     {
-      "type": "typed_explanation",
-      "question": "A trader argues that a prop firm evaluation is \"basically the same\" as a personal brokerage account since both involve trading. Is she right? Explain the key difference.",
-      "modelAnswer": "Not quite. In a personal brokerage account, she's trading — and fully risking — her own capital from the first trade. A prop firm evaluation isn't funded capital yet; she's proving she can follow the firm's rules first, and only afterward does she get access to their capital (with a profit split and rule constraints attached). The capital at risk and what's being tested are different in each."
+      "question": "Is a prop firm evaluation \"basically the same\" as a personal brokerage account since both involve trading?",
+      "options": [
+        "No — in a broker account she risks her own capital from trade one; an evaluation tests rule-discipline before any capital access is granted",
+        "Yes — they're functionally identical",
+        "Yes, but only for micro contracts"
+      ],
+      "correctIndex": 0,
+      "explanation": "The capital at risk and what's being tested are genuinely different between the two."
     },
     {
-      "type": "fill_blank",
-      "question": "A prop firm's evaluation exists to test whether a trader can follow ___  before the firm gives her access to its capital.",
-      "keywords": [
-        "rules",
-        "the rules",
-        "discipline"
-      ]
+      "question": "A prop firm's evaluation exists to test whether a trader can follow ___ before the firm gives her access to its capital.",
+      "options": [
+        "The rules",
+        "The market",
+        "Her instincts"
+      ],
+      "correctIndex": 0,
+      "explanation": "Rule-discipline is proven first — capital access comes after."
     }
   ]
 }

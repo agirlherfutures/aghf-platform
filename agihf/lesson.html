@@ -15,76 +15,41 @@
 <script src="shared/sidebar.js" data-active="lessons"></script>
 
 <main class="main">
-<div class="detail-nav">
-  <a class="detail-nav-back" id="backLink" href="lessons.html">← Back</a>
-  <span>·</span>
-  <span id="lessonPosition">Lesson</span>
-</div>
-
-<div class="video-block">
-  <div class="video-bg"></div>
-  <div class="video-play">▶</div>
-  <div class="video-soon-label" id="videoSoonLabel" style="display:none">Video coming soon</div>
-  <div class="video-duration" id="videoDuration"></div>
-</div>
-<div class="video-caption">
-  <span>Watch before you continue</span>
-  <span id="videoCaptionDuration"></span>
-</div>
-
-<div class="detail-title-block">
-  <div class="detail-eyebrow" id="detailEyebrow"></div>
-  <div class="detail-title" id="detailTitle"></div>
-</div>
-
-<div class="stage-tabs">
-  <button class="stage-tab active">1. Teach</button>
-  <button class="stage-tab">2. Experience</button>
-  <button class="stage-tab">3. Reinforce</button>
-</div>
-
-<div class="stage-content">
-  <div class="stage-panel visible" id="stage-1">
-    <div class="teach-card">
-      <div class="teach-heading" id="teachHeading"></div>
-      <div class="teach-body" id="teachBody"></div>
-      <div class="dayli-note" id="dayliNote"></div>
+  <div class="lw-top">
+    <div class="lw-crumb" id="lwCrumb">Lessons</div>
+    <div class="lw-top-right">
+      <span class="lw-xp-pill" id="lwXp">+0 XP</span>
+      <span class="lw-count" id="lwCount">1 / 1</span>
     </div>
   </div>
+  <div class="lw-progress"><div class="lw-progress-fill" id="lwBar"></div></div>
 
-  <div class="stage-panel" id="stage-2">
-    <div class="experience-card">
-      <div class="experience-label">Interactive · try it yourself</div>
-      <div class="experience-prompt" id="experiencePrompt"></div>
-      <div class="interactive-chart" id="interactiveChart"></div>
-      <div class="interactive-hint">Tap an option above</div>
-    </div>
-  </div>
-
-  <div class="stage-panel" id="stage-3">
-    <div class="reinforce-intro">
-      <div class="reinforce-intro-label" id="reinforceIntroLabel">Reinforce · pass at 60%+ to complete this lesson</div>
-    </div>
-
-    <div id="reinforceQuestions"></div>
-
-    <div class="reinforce-result">
-      <div class="reinforce-result-score" id="reinforceScore">0 / 0 correct</div>
-      <div class="reinforce-result-msg" id="reinforceMsg">Answer all questions above, then check your score.</div>
-    </div>
-    <button class="quiz-check-btn" id="checkReinforceBtn">Check my answers</button>
-  </div>
-</div>
-
-<div class="complete-bar">
-  <button class="complete-btn locked-btn" id="completeBtn" disabled>Complete lesson &amp; continue</button>
-  <div class="complete-xp" id="completeXpLabel">Score 60%+ on Reinforce to unlock</div>
-</div>
+  <div class="lw-wrap" id="lwWrap"></div>
 </main>
+
+<div class="lw-bottom">
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="lw-dots" id="lwDots"></div>
+    <div class="lw-stepname" id="lwStepname"></div>
+  </div>
+  <div style="display:flex;gap:9px">
+    <button type="button" class="lw-prev" id="lwPrev">← Back</button>
+    <button type="button" class="lw-next" id="lwNext">Next →</button>
+  </div>
+</div>
+
+<div class="lw-streak" id="lwStreak"><span id="lwStreakIcon">🔥</span><span id="lwStreakText"></span></div>
+<div class="lw-toast" id="lwToast">
+  <span>✦</span>
+  <div>
+    <div style="font-size:.85rem;font-weight:700" id="lwToastTitle"></div>
+    <div style="font-size:.7rem;color:rgba(255,255,255,.5)" id="lwToastSub"></div>
+  </div>
+</div>
 
 <script type="module">
   import { PHASES, phaseByKey } from './shared/curriculum-data.js';
-  import { renderLesson } from './shared/lesson-engine.js';
+  import { renderLessonWizard } from './shared/lesson-engine.js';
 
   const params = new URLSearchParams(window.location.search);
   const phaseKey = params.get('phase') || 'p1';
@@ -94,9 +59,6 @@
   const total = allLessons.length;
   const current = allLessons.find((l) => l.n === n);
 
-  document.getElementById('backLink').href = 'lessons.html';
-  document.getElementById('backLink').textContent = `← ${phase.title}`;
-
   async function loadLesson() {
     let data;
     try {
@@ -104,37 +66,28 @@
       if (!res.ok) throw new Error('not found');
       data = await res.json();
     } catch (err) {
-      document.querySelector('.stage-content').innerHTML = '<p style="padding:20px;color:var(--muted)">This lesson isn\'t available yet.</p>';
+      document.getElementById('lwWrap').innerHTML = '<p style="padding:20px;color:var(--muted)">This lesson isn\'t available yet.</p>';
       return;
     }
 
-    document.getElementById('lessonPosition').textContent = `Lesson ${n} of ${total}`;
-    document.getElementById('detailEyebrow').textContent = `Phase ${phase.n} · ${current.section.title}`;
-    document.getElementById('detailTitle').textContent = data.title;
-    document.getElementById('reinforceIntroLabel').textContent =
-      `Reinforce · pass at ${Math.round(data.passThreshold * 100)}%+ to complete this lesson`;
-    document.getElementById('completeXpLabel').textContent =
-      `Score ${Math.round(data.passThreshold * 100)}%+ on Reinforce to unlock · +${data.xpValue} XP on completion`;
+    const nextLesson = n < total ? n + 1 : null;
+    const nextHref = nextLesson ? `lesson.html?phase=${phaseKey}&n=${nextLesson}` : null;
+    const backHref = nextLesson ? 'lessons.html' : 'dashboard.html';
 
-    renderLesson(data, {
-      onComplete: async () => {
-        if (!window.AGHF_DEMO) {
-          try {
-            const res = await fetch('/api/complete-lesson', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${window.AGHF_SESSION_TOKEN}` },
-              body: JSON.stringify({ lessonId: `${phaseKey}-${n}`, gpEarned: data.xpValue }),
-            });
-            await res.json();
-          } catch (err) {
-            console.error('Complete lesson error:', err);
-          }
-        }
-        const nextLesson = n < total ? n + 1 : null;
-        if (nextLesson) {
-          window.location.href = `lesson.html?phase=${phaseKey}&n=${nextLesson}`;
-        } else {
-          window.location.href = `dashboard.html`;
+    renderLessonWizard(data, {
+      nextHref,
+      backHref,
+      onAward: async () => {
+        if (window.AGHF_DEMO) return;
+        try {
+          const res = await fetch('/api/complete-lesson', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${window.AGHF_SESSION_TOKEN}` },
+            body: JSON.stringify({ lessonId: `${phaseKey}-${n}`, gpEarned: data.xpValue }),
+          });
+          await res.json();
+        } catch (err) {
+          console.error('Complete lesson error:', err);
         }
       },
     });

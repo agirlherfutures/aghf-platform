@@ -7,59 +7,64 @@
   "videoDuration": "17 min",
   "xpValue": 95,
   "passThreshold": 0.6,
-  "teach": {
+  "intro": {
     "heading": "Every timeframe has a job. You just don't know what it is yet.",
     "body": "Higher timeframes give you context — the bigger picture of what price is doing. Lower timeframes reveal detail — the smaller moves inside that picture. Beginners get confused when they treat every timeframe like it has the same job, or jump straight to the smallest one because it feels the most active. Later in the Academy, you'll learn exactly how AGHF assigns a specific job to each timeframe — for now, just get comfortable with the idea that zooming in changes what you can see, not what's actually happening.",
     "dayliNote": "\"I'm not going to hand you the whole framework in one lesson. Right now, just notice that a higher timeframe and a lower timeframe are telling you different parts of the same story.\" — Dayli Scott"
   },
-  "experience": {
-    "intro": "Practice the habit of zooming out before reacting.",
-    "steps": [
-      {
-        "prompt": "You open the 1M first and price looks messy. Do you stay on 1M and keep reacting, or zoom out to understand the bigger picture first?",
-        "options": [
-          { "label": "Zoom out first", "correct": true, "feedback": "Right — context before detail keeps you from reacting to noise." },
-          { "label": "Stay on 1M and keep reacting", "correct": false, "feedback": "Reacting to a messy detail view without context is exactly how beginners get whipsawed." }
-        ]
-      },
-      {
-        "prompt": "After zooming out to the 4H, the picture becomes much clearer. What does that tell you about the job each timeframe does?",
-        "options": [
-          { "label": "Higher timeframes are built to reveal the bigger picture; lower ones show detail inside it", "correct": true, "feedback": "Right — that's exactly the distinction. Different zoom, different job." },
-          { "label": "It means the 1M was wrong and should be ignored completely", "correct": false, "feedback": "The 1M isn't \"wrong\" — it's just answering a more detailed, narrower question than the 4H." }
-        ]
-      },
-      {
-        "prompt": "A trader treats every timeframe as if it should give her the same kind of answer. What's the risk in thinking that way?",
-        "options": [
-          { "label": "She'll get confused when a detailed view and a big-picture view naturally look different", "correct": true, "feedback": "Exactly — expecting every timeframe to answer the same question leads to unnecessary confusion." },
-          { "label": "There's no risk — all timeframes should always agree perfectly", "correct": false, "feedback": "Timeframes don't have to agree perfectly at every moment — that's part of what you'll learn to work with later." }
-        ]
-      }
-    ]
-  },
-  "reinforce": [
+  "tapCards": [
     {
-      "type": "multiple_choice",
+      "prompt": "You open the 1M first and price looks messy. Do you stay on 1M and keep reacting, or zoom out to understand the bigger picture first?",
+      "options": [
+        { "label": "Zoom out first", "correct": true, "feedback": "Right — context before detail keeps you from reacting to noise." },
+        { "label": "Stay on 1M and keep reacting", "correct": false, "feedback": "Reacting to a messy detail view without context is exactly how beginners get whipsawed." }
+      ]
+    },
+    {
+      "prompt": "After zooming out to the 4H, the picture becomes much clearer. What does that tell you about the job each timeframe does?",
+      "options": [
+        { "label": "Higher timeframes are built to reveal the bigger picture; lower ones show detail inside it", "correct": true, "feedback": "Right — different zoom, different job." },
+        { "label": "It means the 1M was wrong and should be ignored completely", "correct": false, "feedback": "The 1M isn't \"wrong\" — it's answering a narrower question than the 4H." }
+      ]
+    },
+    {
+      "prompt": "A trader treats every timeframe as if it should give her the same kind of answer. What's the risk in thinking that way?",
+      "options": [
+        { "label": "She'll get confused when a detailed view and a big-picture view naturally look different", "correct": true, "feedback": "Exactly — expecting every timeframe to answer the same question leads to unnecessary confusion." },
+        { "label": "There's no risk — all timeframes should always agree perfectly", "correct": false, "feedback": "Timeframes don't have to agree perfectly at every moment." }
+      ]
+    }
+  ],
+  "quiz": [
+    {
       "question": "A trader forms her entire directional bias off the 1-minute chart alone, ignoring the 4H. What's the risk in doing that?",
       "options": [
         "She's using a detailed, zoomed-in view to make a bigger-picture decision it wasn't built to answer",
         "There's no risk — every timeframe shows the same picture",
         "The 1-minute chart is always more reliable than higher timeframes"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "explanation": "The 1M is built for detail, not for establishing the overall directional story."
     },
     {
-      "type": "typed_explanation",
-      "question": "Explain what it means to say \"higher timeframes give context, lower timeframes reveal detail\" — in your own words, using an example.",
-      "modelAnswer": "It means the 4H shows the overall direction and structure price is working within, while the 1M shows exactly what's happening in a small slice of that bigger move. For example, the 4H might show a clear uptrend, while the 1M inside a single pullback looks choppy and directionless — that messiness doesn't cancel the uptrend, it's just a zoomed-in detail inside it."
+      "question": "What does it mean to say \"higher timeframes give context, lower timeframes reveal detail\"?",
+      "options": [
+        "The 4H shows the overall direction while the 1M shows what's happening in a small slice of that move",
+        "It means only the 4H matters and the 1M should be ignored",
+        "It means all timeframes always show the exact same thing"
+      ],
+      "correctIndex": 0,
+      "explanation": "A messy 1M inside a pullback doesn't cancel a clear 4H uptrend — it's just a zoomed-in detail inside it."
     },
     {
-      "type": "fill_blank",
       "question": "The clean beginner flow is bigger picture, then structure, then ___ detail last.",
-      "keywords": [
-        "entry"
-      ]
+      "options": [
+        "Entry",
+        "News",
+        "Guesswork"
+      ],
+      "correctIndex": 0,
+      "explanation": "Entry detail comes last, after the bigger picture and structure are established."
     }
   ]
 }
