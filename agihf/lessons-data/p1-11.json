@@ -13,14 +13,30 @@
     "dayliNote": "Keep your size consistent. Going heavier because confidence is high, or doubling size after a loss, is emotion talking — not a risk plan."
   },
   "experience": {
-    "prompt": "You feel good after two wins in a row. Do you keep your size consistent, or go heavier because confidence is high?",
-    "chartConfig": {
-      "type": "scenario-choice",
-      "options": [
-        "keep size consistent",
-        "go heavier"
-      ]
-    }
+    "intro": "Walk the same setup through a streak of wins, then a loss.",
+    "steps": [
+      {
+        "prompt": "Two traders take the identical setup — same entry, same stop, same target — but one uses 1 contract and the other uses 10. Is one trade objectively better structured?",
+        "options": [
+          { "label": "No — the structure is identical; only the dollar risk and emotional weight differ", "correct": true, "feedback": "Right — sizing changes the weight of the trade, not its quality." },
+          { "label": "Yes — more contracts always means a better trade", "correct": false, "feedback": "More contracts doesn't make a setup better — it only makes it bigger." }
+        ]
+      },
+      {
+        "prompt": "You just had two wins in a row and feel great. Do you increase your size because confidence is high?",
+        "options": [
+          { "label": "No — size should come from your risk plan, not your mood", "correct": true, "feedback": "Right — confidence isn't a risk management input." },
+          { "label": "Yes — you've earned bigger size", "correct": false, "feedback": "Sizing up because of a feeling, not a plan, is exactly how good runs turn into big losses." }
+        ]
+      },
+      {
+        "prompt": "After a loss, a trader doubles her next position size to \"win it back faster.\" What's actually happening here?",
+        "options": [
+          { "label": "Emotion is driving her sizing decision, not her risk plan", "correct": true, "feedback": "Exactly — that's revenge sizing, and it compounds risk right when discipline matters most." },
+          { "label": "That's a smart way to recover losses quickly", "correct": false, "feedback": "Increasing size to chase back a loss usually increases risk at the worst possible moment." }
+        ]
+      }
+    ]
   },
   "reinforce": [
     {
@@ -34,8 +50,9 @@
       "correctIndex": 0
     },
     {
-      "type": "chart_click",
-      "question": "Tap the position size that best matches a disciplined, consistent risk plan."
+      "type": "typed_explanation",
+      "question": "Explain why the same chart setup can be a smart trade for one trader and a reckless trade for another.",
+      "modelAnswer": "The setup itself — entry, stop, target — is identical for both, but position size determines how much dollar risk and emotional weight is actually attached to it. The same structurally sound setup can be reasonable at a small size and reckless at an oversized position, because sizing decides how much is actually on the line, not the chart."
     },
     {
       "type": "fill_blank",

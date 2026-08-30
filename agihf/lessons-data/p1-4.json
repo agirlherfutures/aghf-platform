@@ -13,14 +13,30 @@
     "dayliNote": "Micros keep you teachable — smaller exposure gives you room to actually learn before your emotions hijack the lesson."
   },
   "experience": {
-    "prompt": "Compare MNQ ($2/point) and MGC ($10/point). If both move 10 points, which trade feels bigger?",
-    "chartConfig": {
-      "type": "instrument-compare",
-      "options": [
-        "mnq",
-        "mgc"
-      ]
-    }
+    "intro": "Same two instruments, now walked through a few decisions.",
+    "steps": [
+      {
+        "prompt": "MNQ moves $2/point, MGC moves $10/point. Both move 10 points in your favor while you hold 1 contract each. Which trade made more money?",
+        "options": [
+          { "label": "The MGC trade — $10/point beats $2/point on the same 10-point move", "correct": true, "feedback": "Right — same move size, bigger per-point value, bigger dollar result." },
+          { "label": "They made the same amount", "correct": false, "feedback": "Same points moved, but very different dollar values per point — not the same result." }
+        ]
+      },
+      {
+        "prompt": "Now you take 5 contracts of MNQ instead of 1, same 10-point move. Did you switch instruments?",
+        "options": [
+          { "label": "No — still MNQ, just more size and more dollar exposure", "correct": true, "feedback": "Exactly — the instrument didn't change, only your exposure to its movement did." },
+          { "label": "Yes — more contracts makes it a different instrument", "correct": false, "feedback": "Contract count changes size, not identity. It's still the same instrument." }
+        ]
+      },
+      {
+        "prompt": "A trader with a small account keeps taking 10 MNQ contracts on every setup because \"it's just MNQ.\" What's the risk in that thinking?",
+        "options": [
+          { "label": "She's ignoring that size changes her dollar risk even though the instrument stays the same", "correct": true, "feedback": "Right — \"just MNQ\" can still be a big risk if the size is large enough." },
+          { "label": "There's no risk — MNQ is a micro, so any size is safe", "correct": false, "feedback": "Being a micro contract doesn't make any size automatically safe — size always matters." }
+        ]
+      }
+    ]
   },
   "reinforce": [
     {
@@ -34,8 +50,9 @@
       "correctIndex": 0
     },
     {
-      "type": "chart_click",
-      "question": "Tap the instrument card with the larger per-point value."
+      "type": "typed_explanation",
+      "question": "Two traders both say they're \"trading MNQ.\" One holds 1 contract, the other holds 20. Are they taking the same risk? Explain.",
+      "modelAnswer": "No. They're trading the same instrument, but contract count changes dollar exposure directly — 20 contracts moves 20x the money on the same point move as 1 contract. Same instrument, very different risk."
     },
     {
       "type": "fill_blank",

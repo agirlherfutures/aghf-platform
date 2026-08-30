@@ -13,14 +13,30 @@
     "dayliNote": "\"I'll show you later which order types I personally lean on for entries. But you need to actually understand all three first — market, limit, and stop — before that preference means anything to you.\" — Dayli Scott"
   },
   "experience": {
-    "prompt": "Price just broke a level and is moving fast. You want in, but you also don't want to chase — which order type lets you wait for a pullback to a specific price instead of jumping in now?",
-    "chartConfig": {
-      "type": "scenario-choice",
-      "options": [
-        "limit order",
-        "market order"
-      ]
-    }
+    "intro": "Same three order types, matched to real situations.",
+    "steps": [
+      {
+        "prompt": "Price just broke a level and is moving fast. You want in, but don't want to chase. Which order type lets you wait for a pullback to a specific price?",
+        "options": [
+          { "label": "A limit order", "correct": true, "feedback": "Right — a limit order rests and waits; it doesn't chase." },
+          { "label": "A market order", "correct": false, "feedback": "A market order fills immediately at whatever price is available right now — that's chasing, not waiting." }
+        ]
+      },
+      {
+        "prompt": "You're already in a long position and want to automatically get out if price falls to a specific level below your entry. Which order type does that job?",
+        "options": [
+          { "label": "A stop order", "correct": true, "feedback": "Right — a stop order sits inactive until triggered, exactly what a protective exit needs." },
+          { "label": "A limit order", "correct": false, "feedback": "A limit order is about entering at a specific price, not automatically protecting an open position." }
+        ]
+      },
+      {
+        "prompt": "Price is at 100. You place a limit order to buy at 98, and price never trades down to 98. What happens to your order?",
+        "options": [
+          { "label": "It never fills", "correct": true, "feedback": "Right — a limit order only fills if price actually reaches it." },
+          { "label": "It fills anyway at 100", "correct": false, "feedback": "That would be a market order's behavior, not a limit order's." }
+        ]
+      }
+    ]
   },
   "reinforce": [
     {
@@ -42,6 +58,11 @@
         "It automatically converts to a market order after a few minutes"
       ],
       "correctIndex": 0
+    },
+    {
+      "type": "typed_explanation",
+      "question": "A trader says market orders and limit orders are basically interchangeable since both \"get you into a trade.\" Explain what's wrong with that statement.",
+      "modelAnswer": "They solve different problems. A market order prioritizes speed — it fills immediately at whatever price is available, which can mean chasing a worse price. A limit order prioritizes price control — it only fills at your chosen price or better, but there's no guarantee it fills at all. Treating them as interchangeable ignores that trade-off."
     },
     {
       "type": "fill_blank",

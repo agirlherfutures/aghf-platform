@@ -13,14 +13,30 @@
     "dayliNote": "Timeframes change your perspective on the same market. The market itself never changes just because you switched the chart view."
   },
   "experience": {
-    "prompt": "Which timeframe would you check first to understand the bigger picture: 4H or 1M?",
-    "chartConfig": {
-      "type": "scenario-choice",
-      "options": [
-        "4H",
-        "1M"
-      ]
-    }
+    "intro": "Zoom from the big picture down to detail, one step at a time.",
+    "steps": [
+      {
+        "prompt": "Which timeframe would you check first to understand the bigger picture: 4H or 1M?",
+        "options": [
+          { "label": "4H", "correct": true, "feedback": "Right — higher timeframes are built to show the bigger directional story first." },
+          { "label": "1M", "correct": false, "feedback": "The 1M is far too zoomed-in to establish the bigger picture on its own." }
+        ]
+      },
+      {
+        "prompt": "You've read the 4H and have a directional bias. What's the next zoom level down usually used for?",
+        "options": [
+          { "label": "Narrowing down to more specific structure and levels within that bigger picture", "correct": true, "feedback": "Right — each zoom level narrows the picture, it doesn't replace the one before it." },
+          { "label": "Throwing out the 4H read entirely and starting over", "correct": false, "feedback": "Lower timeframes build on the higher-timeframe read, they don't erase it." }
+        ]
+      },
+      {
+        "prompt": "You open the 1M and it looks messy and directionless, contradicting nothing you saw on the 4H. Should the 1M's messiness change your 4H bias?",
+        "options": [
+          { "label": "No — the 1M is a detail view; a messy lower timeframe doesn't erase a clear higher-timeframe read", "correct": true, "feedback": "Right — each timeframe answers a different question; the 1M being noisy doesn't undo the 4H's story." },
+          { "label": "Yes — always trust whichever timeframe you're looking at right now", "correct": false, "feedback": "That would mean discarding useful context every time you zoom in — not a reliable approach." }
+        ]
+      }
+    ]
   },
   "reinforce": [
     {
@@ -34,8 +50,9 @@
       "correctIndex": 0
     },
     {
-      "type": "chart_click",
-      "question": "Tap the timeframe that gives the strongest directional context for overall bias."
+      "type": "typed_explanation",
+      "question": "A trader checks the 1M chart first, decides it looks bullish, and takes a long without ever looking at the 4H. What is she missing by skipping the higher timeframe?",
+      "modelAnswer": "She's missing the bigger-picture context the 4H would have given her — where price sits within the larger structure and what direction it's actually favoring. The 1M can look convincing in isolation while actually running counter to the larger story, which the higher timeframe is what's built to reveal."
     },
     {
       "type": "fill_blank",

@@ -13,14 +13,30 @@
     "dayliNote": "\"I don't care about the wick. I need the candle to close through the level. Say that back to yourself every time you're tempted to react to a wick.\" — Dayli Scott"
   },
   "experience": {
-    "prompt": "A candle wicks above a key high but closes back below it. Has that level been broken?",
-    "chartConfig": {
-      "type": "scenario-choice",
-      "options": [
-        "no — it wicked through but didn't close through",
-        "yes — price touched above it"
-      ]
-    }
+    "intro": "Compare a wick-only test against a real close-based break.",
+    "steps": [
+      {
+        "prompt": "A candle wicks above a key high but closes back below it. Has that level been broken?",
+        "options": [
+          { "label": "No — it wicked through but didn't close through", "correct": true, "feedback": "Right — a wick is a visit, not a break." },
+          { "label": "Yes — price touched above it", "correct": false, "feedback": "Touching a level isn't the same claim as closing past it." }
+        ]
+      },
+      {
+        "prompt": "Later, a candle both wicks above that same high AND closes above it. What's different this time?",
+        "options": [
+          { "label": "This time price actually accepted above the level — that's a real close-based break", "correct": true, "feedback": "Right — a close through the level is a genuinely different claim than a wick through it." },
+          { "label": "Nothing's different — wick or close, both count the same", "correct": false, "feedback": "They don't count the same — only the close shows acceptance." }
+        ]
+      },
+      {
+        "prompt": "Later in the Academy, an entire entry model requires a candle to close past a level before anything else matters. Why do you think the close matters that much?",
+        "options": [
+          { "label": "Because a close is the only thing that shows price genuinely accepted that area, not just visited it", "correct": true, "feedback": "Exactly — that's the whole reason close-based confirmation becomes the rule, not the wick." },
+          { "label": "Because wicks are too hard to see on a chart", "correct": false, "feedback": "It's not about visibility — it's about what a close actually proves versus what a wick proves." }
+        ]
+      }
+    ]
   },
   "reinforce": [
     {
@@ -34,8 +50,9 @@
       "correctIndex": 0
     },
     {
-      "type": "chart_click",
-      "question": "Tap the candle that closed through the level — not just the one with the longest wick above it."
+      "type": "typed_explanation",
+      "question": "A trader gets excited every time she sees a wick poke through a key level, treating it as confirmation. What is she misunderstanding?",
+      "modelAnswer": "She's treating a wick (where price traveled) as if it were a close (where price accepted). A wick through a level only shows price reached that area — it doesn't show the level was actually broken. Confirmation should come from a candle closing past the level, not from a wick poking through it."
     },
     {
       "type": "fill_blank",

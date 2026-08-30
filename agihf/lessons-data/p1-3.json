@@ -13,14 +13,30 @@
     "dayliNote": "The body matters more than the drama. Long wicks can look dramatic, but the body tells you where price actually settled — later in ICC, close beats wick."
   },
   "experience": {
-    "prompt": "Look at a series of candles closing higher and higher with shallow pullbacks — who's in control?",
-    "chartConfig": {
-      "type": "direction-choice",
-      "options": [
-        "buyers",
-        "sellers"
-      ]
-    }
+    "intro": "Walk the same idea forward — control can change mid-story.",
+    "steps": [
+      {
+        "prompt": "A string of strong green closes with only shallow pullbacks is playing out. Who's in control?",
+        "options": [
+          { "label": "Buyers", "correct": true, "feedback": "Right — repeated strong closes with shallow pullbacks is buyers winning again and again." },
+          { "label": "Sellers", "correct": false, "feedback": "Sellers haven't managed a real pullback here — buyers are still winning this stretch." }
+        ]
+      },
+      {
+        "prompt": "One candle wicks down sharply intraday but closes back near its high. Did sellers actually take control of that candle?",
+        "options": [
+          { "label": "No — the wick shows sellers tried, but the close shows buyers still won that candle", "correct": true, "feedback": "Right — the close is the scoreboard. A deep wick that gets reclaimed is buyers defending, not losing." },
+          { "label": "Yes — any deep wick down means sellers won", "correct": false, "feedback": "A wick alone doesn't decide the winner — where the candle actually closed does." }
+        ]
+      },
+      {
+        "prompt": "Then a candle closes below the most recent higher low, with only a small wick below it — mostly real body below the level. What does that tell you?",
+        "options": [
+          { "label": "Sellers just won a real battle — a close-based loss of the level, not just a wick", "correct": true, "feedback": "Exactly. A clean close below a level that had been holding is a genuine change of control." },
+          { "label": "It's meaningless without more candles", "correct": false, "feedback": "One candle can absolutely be meaningful if it closes cleanly through a level that mattered." }
+        ]
+      }
+    ]
   },
   "reinforce": [
     {
@@ -34,8 +50,9 @@
       "correctIndex": 0
     },
     {
-      "type": "chart_click",
-      "question": "Tap the candle where sellers briefly took control."
+      "type": "typed_explanation",
+      "question": "A candle wicks below a key higher low intraday but closes back above it by the end of the period. Did sellers take control of that candle? Explain why or why not.",
+      "modelAnswer": "No — the wick shows sellers pushed and tested the level, but the close shows buyers reclaimed it before the period ended. The close is what decides who actually won that candle; the wick just shows how far the fight went."
     },
     {
       "type": "fill_blank",

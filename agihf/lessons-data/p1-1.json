@@ -13,14 +13,37 @@
     "dayliNote": "\"If I can tell who has control, I already have a reason to be interested. I'm not trying to be psychic. I'm watching behavior.\" — Dayli Scott"
   },
   "experience": {
-    "prompt": "Look at the chart. Price has been stepping higher and defending pullbacks — do you think buyers stay in control, or do sellers take over here?",
-    "chartConfig": {
-      "type": "direction-choice",
-      "options": [
-        "long",
-        "short"
-      ]
-    }
+    "intro": "Same idea from the lesson — now walk it forward candle by candle.",
+    "steps": [
+      {
+        "prompt": "Price has been stepping higher — each pullback gets bought before the next push. Who looks like they're in control right now?",
+        "options": [
+          { "label": "Buyers", "correct": true, "feedback": "Right — repeated pushes with shallow pullbacks is buyers repeatedly winning the disagreement." },
+          { "label": "Sellers", "correct": false, "feedback": "Not yet — sellers haven't been able to push a low below the prior low. Buyers are still winning here." }
+        ]
+      },
+      {
+        "prompt": "Now price stalls at a level and starts printing smaller candles with long upper wicks. What does that usually suggest?",
+        "options": [
+          { "label": "Buyers are struggling to push higher — sellers are starting to contest the level", "correct": true, "feedback": "Exactly — long upper wicks mean price reached higher but couldn't hold it. That's sellers showing up." },
+          { "label": "Nothing — wicks don't mean anything", "correct": false, "feedback": "Wicks aren't nothing — they show price reaching an area and getting rejected from it, which is real information." }
+        ]
+      },
+      {
+        "prompt": "A strong red candle closes below the most recent higher low. What just happened to the story?",
+        "options": [
+          { "label": "The story changed — sellers just won a battle buyers had been winning all along", "correct": true, "feedback": "Right. A close below the prior higher low is a real shift, not a wick — buyers just lost control of that level." },
+          { "label": "Nothing changed — it's just one red candle", "correct": false, "feedback": "One red candle isn't automatically dramatic, but a close below the prior low is a specific, meaningful loss of control." }
+        ]
+      },
+      {
+        "prompt": "Given all of that, would you now expect the next push to be more likely up or down, based only on what you just watched?",
+        "options": [
+          { "label": "More likely down — sellers just took control of the most recent battle", "correct": true, "feedback": "That's the read. You're not predicting the future — you're reading who's winning right now, and right now it's sellers." },
+          { "label": "Still up — buyers were in control a few candles ago", "correct": false, "feedback": "What happened a few candles ago matters less than what just happened. Control can and does change hands." }
+        ]
+      }
+    ]
   },
   "reinforce": [
     {
@@ -34,8 +57,9 @@
       "correctIndex": 0
     },
     {
-      "type": "chart_click",
-      "question": "Tap the point on the chart where buyers clearly took control."
+      "type": "typed_explanation",
+      "question": "A trader watches price step higher for ten candles, then print one long-wicked red candle that closes back above the prior low. Has control actually shifted to sellers? Explain your reasoning.",
+      "modelAnswer": "Not yet. A long wick shows sellers pushed price down and tested control, but the candle still closed back above the prior low — meaning buyers reclaimed it before the close. Reading control means watching where price closes, not just where it traveled during the candle."
     },
     {
       "type": "fill_blank",

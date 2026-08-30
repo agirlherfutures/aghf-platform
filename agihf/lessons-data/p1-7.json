@@ -13,14 +13,30 @@
     "dayliNote": "You do not need every feature. A few tools used clearly is better than a messy chart."
   },
   "experience": {
-    "prompt": "Pick which tool you'd reach for first to mark a level price keeps reacting to.",
-    "chartConfig": {
-      "type": "tool-choice",
-      "options": [
-        "horizontal level",
-        "every drawing tool at once"
-      ]
-    }
+    "intro": "Same workspace, tested against a few habits.",
+    "steps": [
+      {
+        "prompt": "You want to mark a level price keeps reacting to. Which tool fits best?",
+        "options": [
+          { "label": "A single horizontal level", "correct": true, "feedback": "Right — one clean level beats a cluttered chart every time." },
+          { "label": "Every drawing tool at once", "correct": false, "feedback": "Piling on tools usually makes the chart harder to read, not easier." }
+        ]
+      },
+      {
+        "prompt": "Your chart now has 12 different lines, boxes, and indicators layered on top of price. What's the actual effect on your read?",
+        "options": [
+          { "label": "It gets harder to see what price is actually doing", "correct": true, "feedback": "Exactly — clutter competes with price for your attention." },
+          { "label": "It gets easier — more markings means more information", "correct": false, "feedback": "More markings isn't automatically more useful information — often it's just noise." }
+        ]
+      },
+      {
+        "prompt": "You switch from the 4H to the 1M chart. What actually changed?",
+        "options": [
+          { "label": "Your zoomed-in view of the same market — not the market itself", "correct": true, "feedback": "Right — timeframe changes your perspective, not the underlying price story." },
+          { "label": "You're now looking at a completely different market", "correct": false, "feedback": "It's still the same instrument and the same price — just a different zoom level." }
+        ]
+      }
+    ]
   },
   "reinforce": [
     {
@@ -34,8 +50,9 @@
       "correctIndex": 0
     },
     {
-      "type": "chart_click",
-      "question": "Tap the cleanest horizontal level on the chart — the one price has reacted to more than once."
+      "type": "typed_explanation",
+      "question": "A trader believes that adding more drawing tools to her chart will automatically make her analysis more accurate. Is that true? Explain.",
+      "modelAnswer": "No — more tools doesn't mean more accuracy. A cluttered chart makes it harder to see what price is actually doing. A few clearly-used tools (like one clean horizontal level) usually produce a clearer read than a chart covered in every available drawing tool."
     },
     {
       "type": "fill_blank",

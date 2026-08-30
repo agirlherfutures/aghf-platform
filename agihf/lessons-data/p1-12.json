@@ -13,14 +13,30 @@
     "dayliNote": "\"I'm not telling you to only trade one session. I'm telling you to know which session you're looking at, because a level in London and a level at the New York open don't carry the same weight.\" — Dayli Scott"
   },
   "experience": {
-    "prompt": "A setup forms during a quiet overnight session with low volume. Should you weight it the same as an identical setup forming at the New York open?",
-    "chartConfig": {
-      "type": "scenario-choice",
-      "options": [
-        "no — session context changes the read",
-        "yes — a setup is a setup regardless of time"
-      ]
-    }
+    "intro": "Walk the same level through two different sessions.",
+    "steps": [
+      {
+        "prompt": "A setup forms during the quiet overnight session with low volume. Should you weight it the same as an identical setup at the New York open?",
+        "options": [
+          { "label": "No — session context changes how much weight the read deserves", "correct": true, "feedback": "Right — the same-looking setup isn't equally meaningful in every session." },
+          { "label": "Yes — a setup is a setup regardless of time", "correct": false, "feedback": "Ignoring session context throws away real information about how much participation backed that move." }
+        ]
+      },
+      {
+        "prompt": "The exact same level gets tested overnight, then retested at the New York open with much higher volume. Which test carries more information?",
+        "options": [
+          { "label": "The New York open retest — more participation, more real signal", "correct": true, "feedback": "Right — more real participants means the reaction reflects more genuine agreement/disagreement." },
+          { "label": "They're equal", "correct": false, "feedback": "Volume differences between sessions are real information, not noise to ignore." }
+        ]
+      },
+      {
+        "prompt": "A trader ignores session entirely and trades every setup identically regardless of the clock. What is she missing?",
+        "options": [
+          { "label": "Context about how much real participation is behind any given move", "correct": true, "feedback": "Exactly — the clock is free context she's throwing away." },
+          { "label": "Nothing — session doesn't actually matter", "correct": false, "feedback": "Session behavior differences are real and worth reading, not irrelevant." }
+        ]
+      }
+    ]
   },
   "reinforce": [
     {
@@ -32,6 +48,11 @@
         "The overnight break is more reliable because it happened first"
       ],
       "correctIndex": 0
+    },
+    {
+      "type": "typed_explanation",
+      "question": "Explain why a break of structure during the thin overnight session might deserve less confidence than the same-looking break during the New York open.",
+      "modelAnswer": "The overnight session typically has fewer participants and lower volume, so a break there can happen without much real conviction behind it. The New York open brings far more volume and participation, so a break at that time reflects a much larger, more genuine disagreement between buyers and sellers getting resolved — it's simply backed by more real information."
     },
     {
       "type": "fill_blank",

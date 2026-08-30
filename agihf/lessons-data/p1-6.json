@@ -13,12 +13,30 @@
     "dayliNote": "Bigger size makes the same move louder — the chart may be normal while your emotions are not. Staying small enough to stay teachable matters."
   },
   "experience": {
-    "prompt": "If MNQ moves 30 points and you're in 1 contract at $2 per point, what's the dollar result?",
-    "chartConfig": {
-      "type": "pnl-calc",
-      "instrument": "MNQ",
-      "pointValue": 2
-    }
+    "intro": "Same numbers, worked through step by step.",
+    "steps": [
+      {
+        "prompt": "MNQ moves 30 points and you hold 1 contract at $2/point. What's your P&L?",
+        "options": [
+          { "label": "$60", "correct": true, "feedback": "Right — 30 points × $2 × 1 contract = $60." },
+          { "label": "$30", "correct": false, "feedback": "That's just the points, not multiplied by the point value." }
+        ]
+      },
+      {
+        "prompt": "Same 30-point move, but now you're in 3 contracts instead of 1. What's the new P&L?",
+        "options": [
+          { "label": "$180", "correct": true, "feedback": "Right — 30 × $2 × 3 = $180. Same move, bigger size, bigger result." },
+          { "label": "$60, same as before", "correct": false, "feedback": "Contract count multiplies the result — 3 contracts isn't the same dollar outcome as 1." }
+        ]
+      },
+      {
+        "prompt": "If 1 point = 4 ticks, and price moves 2 points against you on 1 MNQ contract, how many ticks did you lose?",
+        "options": [
+          { "label": "8 ticks", "correct": true, "feedback": "Right — 2 points × 4 ticks per point = 8 ticks." },
+          { "label": "2 ticks", "correct": false, "feedback": "That's points, not ticks — each point contains 4 ticks here." }
+        ]
+      }
+    ]
   },
   "reinforce": [
     {
@@ -32,8 +50,9 @@
       "correctIndex": 1
     },
     {
-      "type": "chart_click",
-      "question": "Tap the P&L value that matches a 30-point move on MNQ at $2 per point."
+      "type": "typed_explanation",
+      "question": "A trader says \"I made 30 points today\" without mentioning contracts or instrument. Why is that statement incomplete?",
+      "modelAnswer": "Points alone don't tell you the dollar result — you also need the instrument's point value and how many contracts were held. 30 points on MNQ at 1 contract is a very different dollar outcome than 30 points on MGC at 5 contracts."
     },
     {
       "type": "fill_blank",

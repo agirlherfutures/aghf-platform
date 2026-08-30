@@ -13,18 +13,30 @@
     "dayliNote": "\"A wick shows me where price went. A close shows me where price accepted. That difference matters.\" — Dayli Scott"
   },
   "experience": {
-    "prompt": "Label a candle's parts: open, high, low, close, body, and wick. Which part tells you where price actually accepted?",
-    "chartConfig": {
-      "type": "label-parts",
-      "options": [
-        "open",
-        "high",
-        "low",
-        "close",
-        "body",
-        "wick"
-      ]
-    }
+    "intro": "Practice separating what a wick shows from what a close shows.",
+    "steps": [
+      {
+        "prompt": "A candle has a huge high-to-low range but its open and close are nearly identical. Large body or small body?",
+        "options": [
+          { "label": "Small body — despite the wide range, price didn't settle far from where it started", "correct": true, "feedback": "Right — body size comes from open-to-close distance, not the full range." },
+          { "label": "Large body — a wide range always means a large body", "correct": false, "feedback": "Range and body size are different measurements — a wide range can still have a tiny body." }
+        ]
+      },
+      {
+        "prompt": "Price wicks above resistance but the candle closes back below it. Did price \"break\" resistance?",
+        "options": [
+          { "label": "No — it reached above but didn't close above, so it didn't accept the break", "correct": true, "feedback": "Right — reaching isn't the same as accepting." },
+          { "label": "Yes — any candle touching above resistance counts as a break", "correct": false, "feedback": "Touching a level and closing through it are different claims — only the close shows acceptance." }
+        ]
+      },
+      {
+        "prompt": "You're trying to decide whether price \"held\" a level. Should you look at the wick or the close?",
+        "options": [
+          { "label": "The close — it shows where price actually settled", "correct": true, "feedback": "Exactly. The wick shows travel, the close shows acceptance." },
+          { "label": "The wick — it shows the full extreme reached", "correct": false, "feedback": "The wick shows how far price traveled, not whether it actually held there." }
+        ]
+      }
+    ]
   },
   "reinforce": [
     {
@@ -38,8 +50,9 @@
       "correctIndex": 0
     },
     {
-      "type": "chart_click",
-      "question": "Tap the wick — the part of the candle that traveled but did not hold into the close."
+      "type": "typed_explanation",
+      "question": "Explain the difference between what a candle's wick tells you and what its close tells you.",
+      "modelAnswer": "The wick shows the full extent of where price traveled during that candle — the extreme it reached but didn't hold. The close shows where price actually settled by the end of the period — what buyers and sellers ultimately agreed on. A wick shows reach; a close shows acceptance, and they can point in different directions on the same candle."
     },
     {
       "type": "fill_blank",

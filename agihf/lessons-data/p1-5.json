@@ -13,14 +13,30 @@
     "dayliNote": "Futures naturally fit long and short thinking — that flexibility is exactly why this training is built around futures, not stocks."
   },
   "experience": {
-    "prompt": "Which statement sounds like futures thinking: \"I want to own this for 10 years\" or \"I think price is about to move\"?",
-    "chartConfig": {
-      "type": "scenario-choice",
-      "options": [
-        "ownership",
-        "movement"
-      ]
-    }
+    "intro": "Same distinction, tested against a few real habits.",
+    "steps": [
+      {
+        "prompt": "\"I want to own this for 10 years\" vs \"I think price is about to move\" — which mindset fits futures trading?",
+        "options": [
+          { "label": "\"I think price is about to move\"", "correct": true, "feedback": "Right — futures are about the movement itself, not indefinite ownership." },
+          { "label": "\"I want to own this for 10 years\"", "correct": false, "feedback": "That's an ownership mindset — it fits stocks, not futures contracts." }
+        ]
+      },
+      {
+        "prompt": "A futures trader closes every position by the contract's expiration, regardless of her long-term opinion on the underlying. Why does that make sense for futures but not for stock ownership?",
+        "options": [
+          { "label": "Because a futures contract is about price movement over a defined period, not permanent ownership", "correct": true, "feedback": "Right — futures contracts have expirations built in because they're not ownership positions." },
+          { "label": "It doesn't make sense — futures should be held forever too", "correct": false, "feedback": "Futures contracts are structurally built around movement within a period, not indefinite holding." }
+        ]
+      },
+      {
+        "prompt": "A new trader says \"I'm going to hold this futures contract for 10 years, like a stock.\" What's wrong with that plan?",
+        "options": [
+          { "label": "Futures contracts expire — they aren't built for indefinite holding the way stock ownership is", "correct": true, "feedback": "Exactly — that plan misunderstands what a futures contract actually is." },
+          { "label": "Nothing's wrong with it", "correct": false, "feedback": "Futures contracts have expiration dates and aren't designed as long-term ownership vehicles." }
+        ]
+      }
+    ]
   },
   "reinforce": [
     {
@@ -34,8 +50,9 @@
       "correctIndex": 0
     },
     {
-      "type": "chart_click",
-      "question": "Tap the chart pattern that represents a movement-based trade, not an ownership position."
+      "type": "typed_explanation",
+      "question": "Explain the core difference between what you own when you buy a stock versus what you hold when you trade a futures contract.",
+      "modelAnswer": "Buying a stock means owning a small piece of a company — a claim on its future value. A futures contract isn't ownership at all; it's an agreement based purely on where price goes over a defined period, with no company stake involved."
     },
     {
       "type": "fill_blank",
