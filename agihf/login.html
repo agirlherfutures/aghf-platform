@@ -67,6 +67,9 @@
 
   .form-error{font-size:12px;color:var(--pink);margin:-8px 0 14px;display:none;}
   .form-error.show{display:block;}
+
+  .demo-link-row{text-align:center;margin-top:18px;}
+  .demo-link{font-size:12px;color:var(--teal);font-weight:700;text-decoration:underline;cursor:pointer;background:none;border:none;font-family:var(--font-body);}
 </style>
 </head>
 <body>
@@ -164,6 +167,10 @@
       </div>
     </div>
 
+    <div class="demo-link-row">
+      <button class="demo-link" id="demoLink">Just want to look around? Preview the site →</button>
+    </div>
+
   </div>
 </div>
 
@@ -236,6 +243,11 @@
       btn.disabled = false; btn.textContent = 'Create my account';
     }
   };
+
+  document.getElementById('demoLink').addEventListener('click', () => {
+    sessionStorage.setItem('aghf_demo', '1');
+    window.location.href = redirectTo || 'dashboard.html';
+  });
 
   if (params.get('tab') === 'signup') setTab('signup');
 

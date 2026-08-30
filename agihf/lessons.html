@@ -83,11 +83,9 @@
   }
 
   async function load() {
-    const token = window.AGHF_SESSION_TOKEN;
     let completedIds = new Set();
     try {
-      const res = await fetch('/api/get-profile', { headers: { Authorization: `Bearer ${token}` } });
-      const data = await res.json();
+      const data = await window.AGHF_FETCH_PROFILE();
       completedIds = new Set((data.lessons_completed || []).map((l) => l.lesson_id));
     } catch (err) {
       console.error('Profile load error:', err);

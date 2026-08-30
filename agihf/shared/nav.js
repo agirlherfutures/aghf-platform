@@ -30,7 +30,12 @@
     return user.email.trim().charAt(0).toUpperCase();
   }
 
+  const demoBanner = window.AGHF_DEMO
+    ? '<div class="demo-banner">👀 Preview Mode — sample data only, nothing here is a real account or saved</div>'
+    : '';
+
   const html = `
+    ${demoBanner}
     <header class="site-header">
       <a class="site-logo" href="${ROOT}dashboard.html">
         <div class="site-logo-mark">GF</div>

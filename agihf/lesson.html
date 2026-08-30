@@ -114,16 +114,17 @@
 
     renderLesson(data, {
       onComplete: async () => {
-        const token = window.AGHF_SESSION_TOKEN;
-        try {
-          const res = await fetch('/api/complete-lesson', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-            body: JSON.stringify({ lessonId: `${gradeKey}-${n}`, gpEarned: data.xpValue }),
-          });
-          await res.json();
-        } catch (err) {
-          console.error('Complete lesson error:', err);
+        if (!window.AGHF_DEMO) {
+          try {
+            const res = await fetch('/api/complete-lesson', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${window.AGHF_SESSION_TOKEN}` },
+              body: JSON.stringify({ lessonId: `${gradeKey}-${n}`, gpEarned: data.xpValue }),
+            });
+            await res.json();
+          } catch (err) {
+            console.error('Complete lesson error:', err);
+          }
         }
         const nextLesson = n < total ? n + 1 : null;
         if (nextLesson) {

@@ -63,11 +63,9 @@
 
 <script type="module">
   async function load() {
-    const token = window.AGHF_SESSION_TOKEN;
     let data;
     try {
-      const res = await fetch('/api/get-profile', { headers: { Authorization: `Bearer ${token}` } });
-      data = await res.json();
+      data = await window.AGHF_FETCH_PROFILE();
     } catch (err) {
       console.error('Profile load error:', err);
       return;
@@ -98,7 +96,11 @@
   }
 
   document.getElementById('logoutBtn').addEventListener('click', async () => {
-    if (window.AGHF_SUPABASE) await window.AGHF_SUPABASE.auth.signOut();
+    if (window.AGHF_DEMO) {
+      sessionStorage.removeItem('aghf_demo');
+    } else if (window.AGHF_SUPABASE) {
+      await window.AGHF_SUPABASE.auth.signOut();
+    }
     window.location.href = 'login.html';
   });
 

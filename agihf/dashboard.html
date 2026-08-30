@@ -267,12 +267,9 @@
   };
 
   async function loadDashboard() {
-    const token = window.AGHF_SESSION_TOKEN;
-    if (!token) return;
     let data;
     try {
-      const res = await fetch('/api/get-profile', { headers: { Authorization: `Bearer ${token}` } });
-      data = await res.json();
+      data = await window.AGHF_FETCH_PROFILE();
     } catch (err) {
       console.error('Profile load error:', err);
       return;
