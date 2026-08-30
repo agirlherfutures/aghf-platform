@@ -237,6 +237,8 @@
     }
   };
 
+  if (params.get('tab') === 'signup') setTab('signup');
+
   // Already signed in? Skip straight through instead of showing the form.
   const { data: { session } } = await supabase.auth.getSession();
   if (session?.user) goPostLogin();
