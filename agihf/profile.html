@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/components.css">
+<style>
+  .profile-progress{background:var(--cream);border-radius:11px;padding:13px 16px;}
+  .profile-progress-label{font-size:.8rem;font-weight:600;color:var(--dark);margin-bottom:5px;}
+  .profile-progress-row{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom:7px;}
+  .profile-progress-track{height:7px;background:var(--pink-pale);border-radius:100px;overflow:hidden;}
+  .profile-progress-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;}
+  .logout-row{max-width:640px;margin:0 auto;padding:0 20px 40px;text-align:center;}
+  .logout-btn{padding:10px 24px;border-radius:100px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-family:var(--font-body);font-size:.82rem;font-weight:600;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/nav.js" data-active="profile"></script>
+
+<div class="page-title-block">
+  <div class="page-eyebrow">Your account</div>
+  <div class="page-title">My Profile</div>
+</div>
+
+<div class="page-shell" style="max-width:640px;">
+  <div class="profile-card">
+    <div class="profile-hdr">
+      <div class="profile-avatar" id="profAvatar">D</div>
+      <div>
+        <div class="profile-name" id="profName">Trader</div>
+        <div class="profile-level" id="profLevel">Level 1 · She's Brand New</div>
+        <div class="profile-badge" id="profBadge">✦ She's Brand New</div>
+      </div>
+    </div>
+    <div class="profile-stats">
+      <div class="profile-stat"><div class="profile-stat-label">Total GP</div><div class="profile-stat-val" style="color:var(--peach)" id="statGp">0</div></div>
+      <div class="profile-stat"><div class="profile-stat-label">Lessons</div><div class="profile-stat-val" style="color:var(--pink)" id="statLessons">0</div></div>
+      <div class="profile-stat"><div class="profile-stat-label">Streak</div><div class="profile-stat-val" style="color:var(--teal)" id="statStreak">0 🔥</div></div>
+    </div>
+    <div class="profile-progress">
+      <div class="profile-progress-label">Level progress</div>
+      <div class="profile-progress-row"><span id="progCurrent">0 GP earned</span><span id="progNext">1,000 GP to next level</span></div>
+      <div class="profile-progress-track"><div class="profile-progress-fill" id="progFill" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="billing-card">
+    <div class="billing-top"><div class="billing-title">AG&amp;HF Trading Academy</div><div class="billing-status" id="billingStatus">Active ✓</div></div>
+    <div class="billing-price">$14.99<span>/month</span></div>
+    <div class="billing-renew" id="billingRenew">Manage your subscription anytime.</div>
+    <button class="billing-btn" onclick="alert('Opening subscription management...')">Manage subscription</button>
+  </div>
+</div>
+
+<div class="logout-row">
+  <button class="logout-btn" id="logoutBtn">← Log out</button>
+</div>
+
+<script type="module">
+  async function load() {
+    const token = window.AGHF_SESSION_TOKEN;
+    let data;
+    try {
+      const res = await fetch('/api/get-profile', { headers: { Authorization: `Bearer ${token}` } });
+      data = await res.json();
+    } catch (err) {
+      console.error('Profile load error:', err);
+      return;
+    }
+    const p = data.profile || {};
+    const name = p.full_name || window.AGHF_USER?.email?.split('@')[0] || 'Trader';
+    const level = p.level || 1;
+    const levelName = p.level_name || "She's Brand New";
+    const gp = p.gp || 0;
+    const nextLevelGp = level * 1000;
+
+    document.getElementById('profAvatar').textContent = name.trim().charAt(0).toUpperCase();
+    document.getElementById('profName').textContent = name;
+    document.getElementById('profLevel').textContent = `Level ${level} · ${levelName}`;
+    document.getElementById('profBadge').textContent = `✦ ${levelName}`;
+    document.getElementById('statGp').textContent = gp;
+    document.getElementById('statLessons').textContent = data.lessons_count || 0;
+    document.getElementById('statStreak').textContent = `${p.day_streak || 0} 🔥`;
+    document.getElementById('progCurrent').textContent = `${gp} GP earned`;
+    document.getElementById('progNext').textContent = `${nextLevelGp} GP to next level`;
+    document.getElementById('progFill').style.width = Math.min((gp / nextLevelGp) * 100, 100) + '%';
+
+    const sub = data.subscription || {};
+    document.getElementById('billingStatus').textContent = sub.status === 'active' ? 'Active ✓' : (sub.status || 'inactive');
+    if (sub.current_period_end) {
+      document.getElementById('billingRenew').textContent = `Next billing date: ${new Date(sub.current_period_end).toLocaleDateString()}`;
+    }
+  }
+
+  document.getElementById('logoutBtn').addEventListener('click', async () => {
+    if (window.AGHF_SUPABASE) await window.AGHF_SUPABASE.auth.signOut();
+    window.location.href = 'login.html';
+  });
+
+  document.addEventListener('aghf-auth-ready', load);
+</script>
+
+</body>
+</html>
