@@ -1,7 +1,8 @@
 {
-  "grade": "2",
-  "lessonNumber": 1,
-  "title": "Candlesticks Tell the Story",
+  "phase": "p1",
+  "section": "s3",
+  "lessonNumber": 12,
+  "title": "Candlesticks",
   "videoUrl": null,
   "videoDuration": "15 min",
   "xpValue": 90,
@@ -13,13 +14,19 @@
   },
   "experience": {
     "prompt": "Watch a candle form from open to close — where does it start, where does it travel, and where does it end?",
-    "chartConfig": { "type": "candle-build" }
+    "chartConfig": {
+      "type": "candle-build"
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "What does a candlestick show?",
-      "options": ["Price movement during a timeframe", "A random shape", "A guaranteed prediction"],
+      "options": [
+        "Price movement during a timeframe",
+        "A random shape",
+        "A guaranteed prediction"
+      ],
       "correctIndex": 0
     },
     {
@@ -29,7 +36,10 @@
     {
       "type": "fill_blank",
       "question": "A bullish candle closes ___ where it opened.",
-      "keywords": ["above", "higher"]
+      "keywords": [
+        "above",
+        "higher"
+      ]
     }
   ]
 }

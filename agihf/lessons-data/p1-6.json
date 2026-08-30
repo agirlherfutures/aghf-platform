@@ -1,5 +1,6 @@
 {
-  "grade": "k",
+  "phase": "p1",
+  "section": "s1",
   "lessonNumber": 6,
   "title": "Points, Ticks & P&L",
   "videoUrl": null,
@@ -13,13 +14,21 @@
   },
   "experience": {
     "prompt": "If MNQ moves 30 points and you're in 1 contract at $2 per point, what's the dollar result?",
-    "chartConfig": { "type": "pnl-calc", "instrument": "MNQ", "pointValue": 2 }
+    "chartConfig": {
+      "type": "pnl-calc",
+      "instrument": "MNQ",
+      "pointValue": 2
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "If 1 point = 4 ticks, how many ticks are in 2 points?",
-      "options": ["4 ticks", "8 ticks", "12 ticks"],
+      "options": [
+        "4 ticks",
+        "8 ticks",
+        "12 ticks"
+      ],
       "correctIndex": 1
     },
     {
@@ -29,7 +38,10 @@
     {
       "type": "fill_blank",
       "question": "P&L is calculated as points moved × point value × ___.",
-      "keywords": ["contracts", "contract count"]
+      "keywords": [
+        "contracts",
+        "contract count"
+      ]
     }
   ]
 }

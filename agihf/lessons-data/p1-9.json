@@ -1,7 +1,8 @@
 {
-  "grade": "1",
-  "lessonNumber": 3,
-  "title": "Orders: How You Enter",
+  "phase": "p1",
+  "section": "s2",
+  "lessonNumber": 9,
+  "title": "Market vs Limit Orders",
   "videoUrl": null,
   "videoDuration": "12 min",
   "xpValue": 60,
@@ -13,13 +14,23 @@
   },
   "experience": {
     "prompt": "Price just broke a level and is flying. Do you chase it with a market order, or place a limit order and wait for a pullback?",
-    "chartConfig": { "type": "scenario-choice", "options": ["market order", "limit order"] }
+    "chartConfig": {
+      "type": "scenario-choice",
+      "options": [
+        "market order",
+        "limit order"
+      ]
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "Which order type enters immediately at the current price?",
-      "options": ["Market order", "Limit order", "Neither"],
+      "options": [
+        "Market order",
+        "Limit order",
+        "Neither"
+      ],
       "correctIndex": 0
     },
     {
@@ -29,7 +40,11 @@
     {
       "type": "fill_blank",
       "question": "A distant target only matters once ___ supports getting there — letting price come to you is the disciplined move.",
-      "keywords": ["structure", "pullback", "price action"]
+      "keywords": [
+        "structure",
+        "pullback",
+        "price action"
+      ]
     }
   ]
 }

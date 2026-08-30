@@ -6,13 +6,15 @@
 <title>Yearbook — A Girl & Her Futures</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/components.css">
 </head>
 <body>
 
 <script src="shared/auth-guard.js"></script>
-<script src="shared/nav.js" data-active="yearbook"></script>
+<script src="shared/sidebar.js" data-active="yearbook"></script>
 
+<main class="main">
 <div class="header">
   <div class="header-eyebrow">Your journey so far</div>
   <div class="header-title">My AGHF Yearbook</div>
@@ -24,9 +26,10 @@
 <div class="grad-callout" id="gradCallout">
   <div class="grad-callout-icon">🎓</div>
   <div class="grad-callout-title">Your graduation reflection is waiting</div>
-  <div class="grad-callout-sub">"If you could talk to the trader who started Kindergarten, what would you tell her now?"</div>
+  <div class="grad-callout-sub">"If you could talk to the trader who started Phase 1, what would you tell her now?"</div>
   <div class="grad-callout-tag">Preview the capstone moment</div>
 </div>
+</main>
 
 <!-- ENTRY DETAIL MODAL -->
 <div class="modal-overlay" id="modalOverlay">
@@ -84,7 +87,7 @@
       <div class="cap-sub">Your portfolio, your live read, every report card — it all led here.</div>
       <div class="cap-prompt-card">
         <div class="cap-prompt-label">Final reflection</div>
-        <div class="cap-prompt-question">If you could talk to the trader who started Kindergarten, what would you tell her now?</div>
+        <div class="cap-prompt-question">If you could talk to the trader who started Phase 1, what would you tell her now?</div>
         <textarea class="cap-input" rows="4" placeholder="Type your response..." id="capAnswer"></textarea>
         <div class="cap-error" id="capError">Take a moment to answer before continuing — this one's worth it.</div>
       </div>
@@ -95,7 +98,7 @@
       <div class="cap-grad-icon">🏆</div>
       <div class="cap-eyebrow">Congratulations</div>
       <div class="cap-headline">You graduated from<br>A Girl &amp; Her Futures.</div>
-      <div class="cap-sub">Your full journey, from Kindergarten to 12th grade, is saved in your Yearbook forever.</div>
+      <div class="cap-sub">Your full journey, from Phase 1 to Phase 8, is saved in your Yearbook forever.</div>
 
       <div class="cert-card" id="certCard">
         <div class="cert-mark">GF</div>
@@ -125,48 +128,43 @@
   import { PHASES } from './shared/curriculum-data.js';
   import { ENTRY_DATA, PORTFOLIO_ITEMS } from './shared/yearbook-mock-data.js';
 
-  const PHASE_DOT = { elementary: 'elementary', middle: 'middle', high: 'high' };
-  const PHASE_TITLE = { elementary: 'Phase I — Elementary School', middle: 'Phase II — Middle School', high: 'Phase III — High School' };
-
   function starString(n) {
     let s = '';
     for (let i = 0; i < 5; i++) s += i < n ? '★' : '☆';
     return s;
   }
 
-  function entryCardHtml(g) {
-    const d = ENTRY_DATA[g];
+  function entryCardHtml(phase) {
+    const d = ENTRY_DATA[phase.key];
+    const label = `Phase ${phase.n}`;
     if (d.status === 'locked') {
       return `<div class="entry-card locked">
-        <div class="entry-top"><span class="entry-grade">${d.label}</span></div>
-        <div class="entry-title">${d.title}</div>
-        <div class="entry-locked-label">Locked</div>
+        <div class="entry-top"><span class="entry-grade">${label}</span></div>
+        <div class="entry-title">${phase.title}</div>
+        <div class="entry-locked-label">${phase.comingSoon ? 'Coming soon' : 'Locked'}</div>
       </div>`;
     }
-    const gradeLabel = d.status === 'current' ? `${d.label} — current` : d.label;
-    return `<div class="entry-card ${d.status === 'current' ? 'current' : ''}" data-grade="${g}">
+    const gradeLabel = d.status === 'current' ? `${label} — current` : label;
+    return `<div class="entry-card ${d.status === 'current' ? 'current' : ''}" data-phase="${phase.key}">
       <div class="entry-top"><span class="entry-grade">${gradeLabel}</span><span class="entry-stars">${starString(d.stars)}</span></div>
-      <div class="entry-title">${d.title}</div>
+      <div class="entry-title">${phase.title}</div>
       <div class="entry-quote">"${d.answer}"</div>
     </div>`;
   }
 
   function render() {
-    const html = PHASES.map((phase) => {
-      const doneCount = phase.grades.filter((g) => ENTRY_DATA[g].status === 'done').length;
-      return `<div class="phase-section">
-        <div class="phase-head">
-          <span class="phase-dot ${PHASE_DOT[phase.key]}"></span>
-          <span class="phase-title">${PHASE_TITLE[phase.key]}</span>
-          <span class="phase-count">${doneCount} of ${phase.grades.length} complete</span>
-        </div>
-        <div class="grade-scroll">${phase.grades.map(entryCardHtml).join('')}</div>
-      </div>`;
-    }).join('');
-    document.getElementById('phaseSections').innerHTML = html;
+    const doneCount = PHASES.filter((p) => ENTRY_DATA[p.key].status === 'done').length;
+    document.getElementById('phaseSections').innerHTML = `<div class="phase-section">
+      <div class="phase-head">
+        <span class="phase-dot elementary"></span>
+        <span class="phase-title">Your Phases</span>
+        <span class="phase-count">${doneCount} of ${PHASES.length} complete</span>
+      </div>
+      <div class="grade-scroll">${PHASES.map(entryCardHtml).join('')}</div>
+    </div>`;
 
-    document.querySelectorAll('.entry-card[data-grade]').forEach((card) => {
-      card.addEventListener('click', () => openEntry(card.dataset.grade));
+    document.querySelectorAll('.entry-card[data-phase]').forEach((card) => {
+      card.addEventListener('click', () => openEntry(card.dataset.phase));
     });
 
     document.getElementById('portfolioList').innerHTML = PORTFOLIO_ITEMS.map((item) => `
@@ -185,9 +183,10 @@
 
   window.openEntry = function (key) {
     const d = ENTRY_DATA[key];
+    const phase = PHASES.find((p) => p.key === key);
     if (!d || d.status === 'locked') return;
-    document.getElementById('modalEyebrow').textContent = `${d.label.toLowerCase()} report card`;
-    document.getElementById('modalTitle').textContent = d.title;
+    document.getElementById('modalEyebrow').textContent = `phase ${phase.n} report card`;
+    document.getElementById('modalTitle').textContent = phase.title;
     document.getElementById('modalStars').textContent = starString(d.stars);
     document.getElementById('modalAnswer').textContent = d.answer;
     document.getElementById('modalOverlay').classList.add('open');

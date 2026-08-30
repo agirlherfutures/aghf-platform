@@ -1,5 +1,6 @@
 {
-  "grade": "k",
+  "phase": "p1",
+  "section": "s1",
   "lessonNumber": 4,
   "title": "Contracts & Instruments",
   "videoUrl": null,
@@ -13,13 +14,23 @@
   },
   "experience": {
     "prompt": "Compare MNQ ($2/point) and MGC ($10/point). If both move 10 points, which trade feels bigger?",
-    "chartConfig": { "type": "instrument-compare", "options": ["mnq", "mgc"] }
+    "chartConfig": {
+      "type": "instrument-compare",
+      "options": [
+        "mnq",
+        "mgc"
+      ]
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "What is an \"instrument\" in trading?",
-      "options": ["The market you are trading, like MNQ or ES", "The number of contracts you choose", "Your stop loss placement"],
+      "options": [
+        "The market you are trading, like MNQ or ES",
+        "The number of contracts you choose",
+        "Your stop loss placement"
+      ],
       "correctIndex": 0
     },
     {
@@ -29,7 +40,10 @@
     {
       "type": "fill_blank",
       "question": "Trading more contracts of the same instrument changes your ___, not the instrument itself.",
-      "keywords": ["size", "exposure"]
+      "keywords": [
+        "size",
+        "exposure"
+      ]
     }
   ]
 }

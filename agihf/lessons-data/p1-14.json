@@ -1,6 +1,7 @@
 {
-  "grade": "2",
-  "lessonNumber": 3,
+  "phase": "p1",
+  "section": "s3",
+  "lessonNumber": 14,
   "title": "Candle Psychology",
   "videoUrl": null,
   "videoDuration": "18 min",
@@ -13,13 +14,23 @@
   },
   "experience": {
     "prompt": "Price comes into support, wicks down, then closes back above support. What does that show about who's defending the level?",
-    "chartConfig": { "type": "scenario-choice", "options": ["buyer defense", "clean breakdown"] }
+    "chartConfig": {
+      "type": "scenario-choice",
+      "options": [
+        "buyer defense",
+        "clean breakdown"
+      ]
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "What does a candle close help you read?",
-      "options": ["Acceptance and control", "Nothing important", "Only the color"],
+      "options": [
+        "Acceptance and control",
+        "Nothing important",
+        "Only the color"
+      ],
       "correctIndex": 0
     },
     {
@@ -29,7 +40,10 @@
     {
       "type": "fill_blank",
       "question": "Before calling acceptance above a level, wait for the candle ___.",
-      "keywords": ["close", "closure"]
+      "keywords": [
+        "close",
+        "closure"
+      ]
     }
   ]
 }

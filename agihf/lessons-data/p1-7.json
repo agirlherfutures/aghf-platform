@@ -1,6 +1,7 @@
 {
-  "grade": "1",
-  "lessonNumber": 1,
+  "phase": "p1",
+  "section": "s2",
+  "lessonNumber": 7,
   "title": "TradingView Basics",
   "videoUrl": null,
   "videoDuration": "10 min",
@@ -13,13 +14,23 @@
   },
   "experience": {
     "prompt": "Pick which tool you'd reach for first to mark a level price keeps reacting to.",
-    "chartConfig": { "type": "tool-choice", "options": ["horizontal level", "every drawing tool at once"] }
+    "chartConfig": {
+      "type": "tool-choice",
+      "options": [
+        "horizontal level",
+        "every drawing tool at once"
+      ]
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "What is TradingView, functionally, for a new trader?",
-      "options": ["A workspace to read and mark price", "A place to buy a company", "A random prediction machine"],
+      "options": [
+        "A workspace to read and mark price",
+        "A place to buy a company",
+        "A random prediction machine"
+      ],
       "correctIndex": 0
     },
     {
@@ -29,7 +40,11 @@
     {
       "type": "fill_blank",
       "question": "Switching timeframes changes your ___ on the same market, not the market itself.",
-      "keywords": ["perspective", "view", "zoom"]
+      "keywords": [
+        "perspective",
+        "view",
+        "zoom"
+      ]
     }
   ]
 }

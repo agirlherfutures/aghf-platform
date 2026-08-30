@@ -1,6 +1,7 @@
 {
-  "grade": "2",
-  "lessonNumber": 2,
+  "phase": "p1",
+  "section": "s3",
+  "lessonNumber": 13,
   "title": "Candle Anatomy",
   "videoUrl": null,
   "videoDuration": "16 min",
@@ -13,13 +14,27 @@
   },
   "experience": {
     "prompt": "Label a candle's parts: open, high, low, close, body, and wick. Which part tells you where price actually accepted?",
-    "chartConfig": { "type": "label-parts", "options": ["open", "high", "low", "close", "body", "wick"] }
+    "chartConfig": {
+      "type": "label-parts",
+      "options": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "body",
+        "wick"
+      ]
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "What creates the candle body?",
-      "options": ["Open and close", "High and low only", "The wick alone"],
+      "options": [
+        "Open and close",
+        "High and low only",
+        "The wick alone"
+      ],
       "correctIndex": 0
     },
     {
@@ -29,7 +44,11 @@
     {
       "type": "fill_blank",
       "question": "Price wicks above resistance but closes below it — that means it reached above but did not ___ above.",
-      "keywords": ["close", "accept", "hold"]
+      "keywords": [
+        "close",
+        "accept",
+        "hold"
+      ]
     }
   ]
 }

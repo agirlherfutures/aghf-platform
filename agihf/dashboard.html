@@ -4,267 +4,120 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard — A Girl & Her Futures</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/tokens.css">
-<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/sidebar.css">
 </head>
 <body>
 
 <script src="shared/auth-guard.js"></script>
-<script src="shared/nav.js" data-active="dashboard"></script>
+<script src="shared/sidebar.js" data-active="dashboard"></script>
 
-<div class="page-shell">
-  <div class="body-layout">
-    <div class="col-main">
-      <div class="greeting">
-        <div class="greeting-eyebrow">Welcome back</div>
-        <div class="greeting-title" id="greetingTitle">Ready for class, trader?</div>
-      </div>
+<main class="main">
+  <div class="pg-eye" id="pgEye">Good morning ✦</div>
+  <div class="pg-title">Welcome back, <span class="pg-acc" id="dashName">Trader.</span></div>
 
-      <div class="level-card">
-        <div class="level-row">
-          <div class="level-badge" id="levelBadge">LEVEL 1</div>
-          <div>
-            <div class="xp-count" id="xpCount">0 XP</div>
-            <div class="xp-label">total earned</div>
-          </div>
-        </div>
-        <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-        <div class="progress-caption">
-          <span id="progressPhaseLabel">Phase I</span>
-          <span><strong id="progressPct">0%</strong> <span id="progressNextLabel">through this phase</span></span>
-        </div>
-      </div>
+  <div class="dayli-quote-card">
+    <div class="dq-tag">✦ Dayli's note</div>
+    <div class="dq-text" id="dayliQuoteText"></div>
+  </div>
 
-      <a class="continue-card" id="continueCard" href="lessons.html" style="text-decoration:none;color:inherit;">
-        <div class="continue-icon">📘</div>
-        <div>
-          <div class="continue-eyebrow" id="continueEyebrow">Continue learning</div>
-          <div class="continue-title" id="continueTitle">Loading…</div>
-          <div class="continue-sub" id="continueSub"></div>
-        </div>
-        <div class="continue-arrow">→</div>
-      </a>
+  <div class="gp-progress-card">
+    <div class="gp-prog-top">
+      <div class="gp-prog-label">Progress to next level</div>
+      <div class="gp-prog-val"><span id="gpProgCurrent">0</span> / <span id="gpProgNext">1000</span> GP</div>
     </div>
+    <div class="gp-prog-track"><div class="gp-prog-fill" id="gpProgFill" style="width:0%"></div></div>
+    <div class="gp-prog-sub" id="gpProgSub">Keep going — every lesson earns GP ✦</div>
+  </div>
 
-    <div class="col-side">
-      <div class="section-label">Your roadmap · tap to jump in</div>
-      <div class="roadmap-scroll" id="roadmapScroll"></div>
-      <div class="roadmap-hint" id="roadmapHint">Unlocked grades are always one tap away — jump ahead or revisit anytime.</div>
+  <div class="stats-g">
+    <div class="stat-c"><div class="stat-l">Current level</div><div class="stat-v sv-p" id="statLevel">1</div><div class="stat-s" id="statLevelName">She's Brand New</div></div>
+    <div class="stat-c"><div class="stat-l">Total GP</div><div class="stat-v sv-c" id="statGP">0</div><div class="stat-s">points earned</div></div>
+    <div class="stat-c"><div class="stat-l">Day streak</div><div class="stat-v sv-t" id="statStreak">0</div><div class="stat-s">days in a row 🔥</div></div>
+    <div class="stat-c"><div class="stat-l">Lessons done</div><div class="stat-v sv-d" id="statLessons">0</div><div class="stat-s" id="statLessonsSub">of 16 total</div></div>
+  </div>
 
-      <div class="unlock-preview" id="unlockPreview">
-        <button class="unlock-preview-close" onclick="hidePreview()">✕</button>
-        <div class="unlock-preview-eyebrow">🔒 here's what you'll unlock</div>
-        <div class="unlock-preview-title">Phase IV: Graduation</div>
-        <div class="unlock-preview-sub">Complete High School to unlock the Capstone.</div>
-        <div class="unlock-preview-list">
-          <div class="unlock-preview-item"><span class="unlock-dot"></span>The AGHF Capstone — unmarked chart final exam</div>
-          <div class="unlock-preview-item"><span class="unlock-dot"></span>Official AGHF Trader Certification</div>
-          <div class="unlock-preview-item"><span class="unlock-dot"></span>🏆 AGHF Graduate badge</div>
-          <div class="unlock-preview-item"><span class="unlock-dot"></span>Access to AGHF Grad School</div>
-        </div>
-      </div>
-
-      <div class="section-label">Badge case</div>
-      <div class="badge-grid" id="badgeGrid"></div>
-
-      <div class="resource-card">
-        <div class="resource-title">Student Resource Center</div>
-        <div class="resource-row"><div class="resource-row-label"><span class="resource-dot"></span>Top-Down Analysis Card</div><div class="resource-arrow">→</div></div>
-        <div class="resource-row"><div class="resource-row-label"><span class="resource-dot teal"></span>Dayli ICC glossary</div><div class="resource-arrow">→</div></div>
-        <div class="resource-row"><div class="resource-row-label"><span class="resource-dot peach"></span>Backtesting journal</div><div class="resource-arrow">→</div></div>
-      </div>
+  <a class="cont-banner" id="contBanner" href="lessons.html">
+    <div class="cb-ico">✦</div>
+    <div class="cb-inf">
+      <div class="cb-ey" id="continueEyebrow">Up next · Phase 1 · Lesson 1</div>
+      <div class="cb-ttl" id="continueTitle">What even is trading?</div>
+      <div class="cb-sub" id="continueSub">Candles are just storytelling — they're showing you who's winning right now.</div>
     </div>
+    <div class="cb-go">Start →</div>
+  </a>
 
-    <div class="demo-trigger-wrap">
-      <button class="demo-trigger" id="reportCardTrigger" onclick="openModal()">See my Report Card &amp; badge unlock →</button>
+  <div class="two-col">
+    <div class="panel">
+      <div class="pn-t">Today's challenges</div>
+      <div class="pn-s">A little each day beats a lot all at once</div>
+      <div class="ch-row" id="challengeGame"><div class="ch-c ch-td"></div><div class="ch-tx">Play a round of Bull or Bear</div><div class="ch-xp">+50 GP</div></div>
+      <div class="ch-row" id="challengeLesson"><div class="ch-c ch-td"></div><div class="ch-tx">Finish one lesson</div><div class="ch-xp">+50 GP</div></div>
+    </div>
+    <div class="panel">
+      <div class="pn-t">Leaderboard</div>
+      <div class="pn-s">This week's top traders</div>
+      <div class="lb-r" style="justify-content:center;padding:20px 0;"><div style="text-align:center;color:var(--muted);font-size:.85rem;line-height:1.7;">✦ Leaderboard fills as more traders join.<br><a href="leaderboard.html" style="color:var(--pink);font-weight:600;text-decoration:none;">View full leaderboard →</a></div></div>
     </div>
   </div>
-</div>
 
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal-card">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-
-    <div class="modal-step visible" id="step1">
-      <div class="rc-eyebrow" id="rcEyebrow">My report card</div>
-      <div class="rc-title" id="rcTitle">Grade Title</div>
-      <div class="rc-sub">Take a second to reflect before moving on.</div>
-
-      <div class="rc-question">🎵 What was your biggest takeaway from this grade?</div>
-      <textarea class="rc-input" rows="2" placeholder="Type your response..." id="q1"></textarea>
-
-      <div class="rc-question">📈 How confident do you feel with this material?</div>
-      <div class="rc-stars" id="starRow">
-        <span class="rc-star" data-val="1">★</span>
-        <span class="rc-star" data-val="2">★</span>
-        <span class="rc-star" data-val="3">★</span>
-        <span class="rc-star" data-val="4">★</span>
-        <span class="rc-star" data-val="5">★</span>
-      </div>
-      <div class="rc-error" id="rcError">Give yourself a star rating before submitting.</div>
-
-      <button class="rc-submit" onclick="submitReportCard()">Submit my report card</button>
-    </div>
-
-    <div class="modal-step" id="step2">
-      <div class="promo-badge-burst">🏆</div>
-      <div class="promo-headline">Promoted!</div>
-      <div class="promo-sub" id="promoSub">Congratulations!</div>
-
-      <div class="promo-rewards">
-        <div class="promo-reward-card">
-          <div class="promo-reward-icon">✨</div>
-          <div class="promo-reward-val" id="promoXp">+0</div>
-          <div class="promo-reward-label">XP earned</div>
-        </div>
-        <div class="promo-reward-card">
-          <div class="promo-reward-icon">🎖️</div>
-          <div class="promo-reward-val" id="promoBadge">Badge</div>
-          <div class="promo-reward-label">badge unlocked</div>
-        </div>
-      </div>
-
-      <div class="promo-next-card" id="promoNextCard">
-        <div class="promo-next-eyebrow">Up next</div>
-        <div class="promo-next-title" id="promoNextTitle"></div>
-        <div class="promo-next-sub" id="promoNextSub"></div>
-      </div>
-
-      <button class="rc-submit" onclick="closeModal()">Continue</button>
-    </div>
+  <div class="jmap">
+    <div class="pn-t">Your journey</div>
+    <div class="jm-lvs" id="journeyMap"></div>
   </div>
-</div>
+</main>
 
 <script type="module">
-  import { GRADES, PHASES, gradeByKey, phaseForGrade, nextGrade } from './shared/curriculum-data.js';
+  import { PHASES, LEVEL_NAMES } from './shared/curriculum-data.js';
 
-  const PHASE_ORDER = ['elementary', 'middle', 'high'];
-  const PHASE_LABELS = { elementary: 'Phase I — Elementary', middle: 'Phase II — Middle School', high: 'Phase III — High School' };
+  const p1 = PHASES[0];
+  const allP1Lessons = p1.sections.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s })));
+  const totalLessonsAllPhases = PHASES.reduce((sum, p) => sum + p.sections.reduce((s, sec) => s + sec.lessons.length, 0), 0);
 
-  function lessonId(grade, n) { return `${grade.key}-${n}`; }
-
-  function allDefinedLessons() {
-    return GRADES.flatMap((g) => g.lessons.map((l) => ({ grade: g, n: l.n, id: lessonId(g, l.n) })));
+  function greetingWord() {
+    const h = new Date().getHours();
+    return h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening';
   }
 
-  function currentGradeFor(completedIds) {
-    const withLessons = GRADES.filter((g) => g.lessons.length);
-    for (const g of withLessons) {
-      const done = g.lessons.every((l) => completedIds.has(lessonId(g, l.n)));
-      if (!done) return g;
-    }
-    return withLessons[withLessons.length - 1] || GRADES[0];
-  }
+  const dayliQuotes = [
+    "Patience is a position. The market will always give you another setup.",
+    "You don't trade to feel something. You trade when the structure says so.",
+    "A wick is not a signal. A close is. Don't let excitement make your decisions.",
+    "The correction is not the enemy. It's your entry. Wait for it.",
+    "Missing a move costs you nothing. Chasing it costs you real money.",
+    "One clean trade a day beats five random ones. Quality over frequency.",
+    "Structure doesn't lie. Your emotions do. Follow structure.",
+    "If it's not a clean ICC setup, it's not a trade. Full stop.",
+    "The best traders are the most patient. Waiting IS the work.",
+    "Candles are just storytelling. Learn to read the story before you trade it.",
+    "Risk only what you're willing to lose. That's not weakness — that's discipline.",
+    "You don't need to trade every day. You need to trade right.",
+  ];
+  document.getElementById('dayliQuoteText').textContent = dayliQuotes[new Date().getDay() % dayliQuotes.length];
+  document.getElementById('pgEye').textContent = `${greetingWord()} ✦`;
 
   function nextIncompleteLesson(completedIds) {
-    for (const g of GRADES) {
-      for (const l of g.lessons) {
-        if (!completedIds.has(lessonId(g, l.n))) return { grade: g, n: l.n };
-      }
-    }
-    return null;
+    return allP1Lessons.find((l) => !completedIds.has(`p1-${l.n}`)) || null;
   }
 
-  function phaseProgress(currentGrade, completedIds) {
-    const phase = phaseForGrade(currentGrade.key);
-    const gradesWithLessons = phase.grades.map(gradeByKey).filter((g) => g.lessons.length);
-    const total = gradesWithLessons.reduce((sum, g) => sum + g.lessons.length, 0);
-    const done = gradesWithLessons.reduce((sum, g) => sum + g.lessons.filter((l) => completedIds.has(lessonId(g, l.n))).length, 0);
-    return { phase, pct: total ? Math.round((done / total) * 100) : 0 };
-  }
-
-  function renderRoadmap(currentGrade) {
-    const currentPhaseIdx = PHASE_ORDER.indexOf(phaseForGrade(currentGrade.key).key);
-    const scroll = document.getElementById('roadmapScroll');
-    const chips = PHASES.map((phase, idx) => {
-      const state = idx < currentPhaseIdx ? 'done' : idx === currentPhaseIdx ? 'active' : 'locked';
-      const roman = ['I', 'II', 'III'][idx];
-      const status = state === 'done' ? '<div class="roadmap-check">✓ complete</div>'
-        : state === 'active' ? '<div class="roadmap-check">you are here</div>' : '';
-      return `<button class="roadmap-chip ${state}" data-phase="${phase.key}">
-        <div class="roadmap-chip-phase">Phase ${roman}</div>
-        <div class="roadmap-chip-name">${phase.label.split('· ')[1] || phase.label}</div>
-        ${status}
-      </button>`;
-    }).join('') + `<button class="roadmap-chip locked" data-phase="graduation">
-        <div class="roadmap-chip-phase">Phase IV</div>
-        <div class="roadmap-chip-name">Graduation</div>
-        <div class="roadmap-lock">🔒 locked</div>
-      </button>`;
-    scroll.innerHTML = chips;
-    scroll.querySelectorAll('.roadmap-chip').forEach((chip) => {
-      chip.addEventListener('click', () => {
-        if (chip.classList.contains('locked')) { window.showPreview(); return; }
-        window.location.href = `lessons.html?phase=${chip.dataset.phase}`;
-      });
-    });
-  }
-
-  function renderBadges(completedIds) {
-    const badges = [
-      { name: 'First Day', icon: '🌱', cls: '', unlocked: completedIds.size >= 1 },
-      { name: 'Chart Reader', icon: '📖', cls: '', unlocked: gradeByKey('k').lessons.every((l) => completedIds.has(lessonId(gradeByKey('k'), l.n))) },
-      { name: 'Structure Scholar', icon: '📈', cls: 'teal', unlocked: gradeByKey('2').lessons.every((l) => completedIds.has(lessonId(gradeByKey('2'), l.n))) },
-      { name: 'Liquidity Detective', icon: '💧', cls: 'purple', unlocked: gradeByKey('6').lessons.length > 0 && gradeByKey('6').lessons.every((l) => completedIds.has(lessonId(gradeByKey('6'), l.n))) },
+  function renderJourney(p1Done) {
+    const groups = [
+      { label: PHASES[0].title, sub: p1Done ? 'Phase 1 · Complete' : 'Phase 1 · In progress', badge: 1, here: !p1Done, done: p1Done, href: 'lessons.html' },
+      { label: PHASES[1].title, sub: 'Phase 2 · 🔒', badge: 2, locked: true },
+      { label: 'Price, Direction & the ICC Method', sub: 'Phases 3–5 · 🔒', badge: 3, locked: true },
+      { label: 'Execution, Discipline & Application', sub: 'Phases 6–8 · 🔒', badge: 4, locked: true },
     ];
-    document.getElementById('badgeGrid').innerHTML = badges.map((b) => `
-      <div class="badge ${b.unlocked ? '' : 'locked'}">
-        <div class="badge-icon ${b.cls}">${b.icon}</div>
-        <div class="badge-name">${b.name}</div>
+    document.getElementById('journeyMap').innerHTML = groups.map((g) => `
+      <div class="jm-lv ${g.locked ? 'jlk' : g.here ? 'jh' : ''}" data-href="${g.href || ''}">
+        <div class="jm-b jb${g.badge}">${g.badge}</div>
+        <div><div class="jm-nm">${g.label}</div><div class="jm-ds">${g.sub}</div></div>
+        ${g.here ? '<div class="here-tg">Here ✦</div>' : g.locked ? '<div class="lk-ic">🔒</div>' : ''}
       </div>`).join('');
-  }
-
-  window.hidePreview = () => document.getElementById('unlockPreview').classList.remove('visible');
-  window.showPreview = () => document.getElementById('unlockPreview').classList.add('visible');
-
-  let reportCardCtx = null;
-  let selectedStar = 0;
-
-  function openReportCardFor(grade) {
-    reportCardCtx = grade;
-    selectedStar = 0;
-    document.querySelectorAll('.rc-star').forEach((s) => s.classList.remove('filled'));
-    document.getElementById('rcError').classList.remove('visible');
-    document.getElementById('q1').value = '';
-    document.getElementById('rcTitle').textContent = grade.title;
-    document.getElementById('rcEyebrow').textContent = `My ${grade.label.toLowerCase()} report card`;
-    document.getElementById('step1').classList.add('visible');
-    document.getElementById('step2').classList.remove('visible');
-  }
-
-  window.openModal = function () {
-    const completedIds = window.__aghfCompletedIds || new Set();
-    openReportCardFor(currentGradeFor(completedIds));
-    document.getElementById('modalOverlay').classList.add('open');
-  };
-  window.closeModal = function () { document.getElementById('modalOverlay').classList.remove('open'); };
-
-  document.querySelectorAll('.rc-star').forEach((star) => {
-    star.addEventListener('click', () => {
-      selectedStar = parseInt(star.getAttribute('data-val'));
-      document.querySelectorAll('.rc-star').forEach((s) => s.classList.toggle('filled', parseInt(s.getAttribute('data-val')) <= selectedStar));
-      document.getElementById('rcError').classList.remove('visible');
+    document.querySelectorAll('.jm-lv[data-href]').forEach((el) => {
+      if (el.dataset.href) el.addEventListener('click', () => { window.location.href = el.dataset.href; });
     });
-  });
-
-  window.submitReportCard = function () {
-    if (selectedStar === 0) { document.getElementById('rcError').classList.add('visible'); return; }
-    const grade = reportCardCtx;
-    const next = nextGrade(grade.key);
-    document.getElementById('promoSub').innerHTML = `Congratulations — you've officially completed <strong>${grade.label}</strong>.<br>Your next chapter is waiting.`;
-    document.getElementById('promoXp').textContent = `+${grade.lessons.length * 50}`;
-    document.getElementById('promoBadge').textContent = grade.title;
-    if (next) {
-      document.getElementById('promoNextTitle').textContent = `${next.label}: ${next.title}`;
-      document.getElementById('promoNextSub').textContent = next.lessons.length ? 'Your next lessons are ready.' : 'Coming soon — check back for new lessons.';
-      document.getElementById('promoNextCard').style.display = '';
-    } else {
-      document.getElementById('promoNextCard').style.display = 'none';
-    }
-    document.getElementById('step1').classList.remove('visible');
-    document.getElementById('step2').classList.add('visible');
-  };
+  }
 
   async function loadDashboard() {
     let data;
@@ -276,40 +129,53 @@
     }
     const p = data.profile || {};
     const completedIds = new Set((data.lessons_completed || []).map((l) => l.lesson_id));
-    window.__aghfCompletedIds = completedIds;
 
     const firstName = (p.full_name?.split(' ')[0] || window.AGHF_USER?.email?.split('@')[0] || 'Trader');
-    document.getElementById('greetingTitle').textContent = `Ready for class, ${firstName}?`;
+    document.getElementById('dashName').textContent = `${firstName}.`;
 
-    const currentGrade = currentGradeFor(completedIds);
+    const level = p.level || 1;
+    const levelName = p.level_name || LEVEL_NAMES[level] || "She's Brand New";
     const gp = p.gp || 0;
-    document.getElementById('levelBadge').textContent = `LEVEL ${p.level || 1} · ${currentGrade.label.toUpperCase()}`;
-    document.getElementById('xpCount').textContent = `${gp} XP`;
+    const nextLevelGp = level * 1000;
+    const doneCount = allP1Lessons.filter((l) => completedIds.has(`p1-${l.n}`)).length;
+    const p1Done = doneCount === allP1Lessons.length;
 
-    const { phase, pct } = phaseProgress(currentGrade, completedIds);
-    document.getElementById('progressFill').style.width = pct + '%';
-    document.getElementById('progressPhaseLabel').textContent = PHASE_LABELS[phase.key];
-    document.getElementById('progressPct').textContent = pct + '%';
-    const phaseIdx = PHASE_ORDER.indexOf(phase.key);
-    const nextPhaseName = phaseIdx < PHASE_ORDER.length - 1 ? PHASE_LABELS[PHASE_ORDER[phaseIdx + 1]].split('— ')[1] : 'Graduation';
-    document.getElementById('progressNextLabel').textContent = `to ${nextPhaseName}`;
+    document.getElementById('statLevel').textContent = level;
+    document.getElementById('statLevelName').textContent = levelName;
+    document.getElementById('statGP').textContent = gp;
+    document.getElementById('statStreak').textContent = p.day_streak || 0;
+    document.getElementById('statLessons').textContent = doneCount;
+    document.getElementById('statLessonsSub').textContent = `of ${totalLessonsAllPhases} total`;
 
-    renderRoadmap(currentGrade);
-    renderBadges(completedIds);
+    document.getElementById('gpProgCurrent').textContent = gp;
+    document.getElementById('gpProgNext').textContent = nextLevelGp;
+    const pct = Math.min((gp / nextLevelGp) * 100, 100);
+    document.getElementById('gpProgFill').style.width = pct + '%';
+    const remaining = nextLevelGp - gp;
+    document.getElementById('gpProgSub').textContent = gp === 0
+      ? 'Start your first lesson to earn GP ✦'
+      : remaining <= 0 ? 'Level up unlocked! ✦' : `${remaining} GP to next level — keep going ✦`;
 
     const next = nextIncompleteLesson(completedIds);
+    const banner = document.getElementById('contBanner');
     if (next) {
-      const total = next.grade.lessons.length;
-      document.getElementById('continueEyebrow').textContent = `Up next · ${next.grade.label}`;
-      document.getElementById('continueTitle').textContent = next.grade.title;
-      document.getElementById('continueSub').textContent = `${next.grade.label} · Lesson ${next.n} of ${total}`;
-      document.getElementById('continueCard').href = `lesson.html?grade=${next.grade.key}&n=${next.n}`;
+      document.getElementById('continueEyebrow').textContent = `Up next · Phase 1 · Lesson ${next.n}`;
+      document.getElementById('continueTitle').textContent = next.title;
+      document.getElementById('continueSub').textContent = next.quote;
+      banner.href = `lesson.html?phase=p1&n=${next.n}`;
+      banner.querySelector('.cb-go').textContent = doneCount === 0 ? 'Start →' : 'Continue →';
     } else {
-      document.getElementById('continueEyebrow').textContent = 'All caught up';
-      document.getElementById('continueTitle').textContent = 'New grades are coming soon';
-      document.getElementById('continueSub').textContent = 'Check back as more of the K-12 Academy unlocks.';
-      document.getElementById('continueCard').href = 'lessons.html';
+      document.getElementById('continueEyebrow').textContent = 'Phase 1 complete ✦';
+      document.getElementById('continueTitle').textContent = 'Phase 2 is being built';
+      document.getElementById('continueSub').textContent = "You've finished everything available right now — check back soon.";
+      banner.href = 'lessons.html';
+      banner.querySelector('.cb-go').textContent = 'View lessons →';
     }
+
+    document.getElementById('challengeLesson').addEventListener('click', () => { window.location.href = banner.href; });
+    document.getElementById('challengeGame').addEventListener('click', () => { window.location.href = 'games.html'; });
+
+    renderJourney(p1Done);
   }
 
   document.addEventListener('aghf-auth-ready', loadDashboard);

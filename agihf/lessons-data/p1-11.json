@@ -1,6 +1,7 @@
 {
-  "grade": "1",
-  "lessonNumber": 5,
+  "phase": "p1",
+  "section": "s2",
+  "lessonNumber": 11,
   "title": "Position Sizing",
   "videoUrl": null,
   "videoDuration": "11 min",
@@ -13,13 +14,23 @@
   },
   "experience": {
     "prompt": "You feel good after two wins in a row. Do you keep your size consistent, or go heavier because confidence is high?",
-    "chartConfig": { "type": "scenario-choice", "options": ["keep size consistent", "go heavier"] }
+    "chartConfig": {
+      "type": "scenario-choice",
+      "options": [
+        "keep size consistent",
+        "go heavier"
+      ]
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "What does position sizing mainly change?",
-      "options": ["The money risk", "The market structure itself", "Everything about the trade setup"],
+      "options": [
+        "The money risk",
+        "The market structure itself",
+        "Everything about the trade setup"
+      ],
       "correctIndex": 0
     },
     {
@@ -29,7 +40,11 @@
     {
       "type": "fill_blank",
       "question": "Your contract size should be decided by your ___, not by how confident or excited you feel today.",
-      "keywords": ["risk plan", "risk", "plan"]
+      "keywords": [
+        "risk plan",
+        "risk",
+        "plan"
+      ]
     }
   ]
 }

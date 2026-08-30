@@ -4,62 +4,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Profile — A Girl & Her Futures</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/tokens.css">
-<link rel="stylesheet" href="shared/components.css">
-<style>
-  .profile-progress{background:var(--cream);border-radius:11px;padding:13px 16px;}
-  .profile-progress-label{font-size:.8rem;font-weight:600;color:var(--dark);margin-bottom:5px;}
-  .profile-progress-row{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom:7px;}
-  .profile-progress-track{height:7px;background:var(--pink-pale);border-radius:100px;overflow:hidden;}
-  .profile-progress-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;}
-  .logout-row{max-width:640px;margin:0 auto;padding:0 20px 40px;text-align:center;}
-  .logout-btn{padding:10px 24px;border-radius:100px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-family:var(--font-body);font-size:.82rem;font-weight:600;cursor:pointer;}
-</style>
+<link rel="stylesheet" href="shared/sidebar.css">
 </head>
 <body>
 
 <script src="shared/auth-guard.js"></script>
-<script src="shared/nav.js" data-active="profile"></script>
+<script src="shared/sidebar.js" data-active="profile"></script>
 
-<div class="page-title-block">
-  <div class="page-eyebrow">Your account</div>
-  <div class="page-title">My Profile</div>
-</div>
+<main class="main">
+  <div class="pg-eye">✦ Your account</div>
+  <div class="pg-title">My Profile</div>
 
-<div class="page-shell" style="max-width:640px;">
-  <div class="profile-card">
-    <div class="profile-hdr">
-      <div class="profile-avatar" id="profAvatar">D</div>
+  <div class="prof-card">
+    <div class="prof-hdr">
+      <div class="prof-av" id="profAvatar">D</div>
       <div>
-        <div class="profile-name" id="profName">Trader</div>
-        <div class="profile-level" id="profLevel">Level 1 · She's Brand New</div>
-        <div class="profile-badge" id="profBadge">✦ She's Brand New</div>
+        <div class="prof-nm" id="profName">Trader</div>
+        <div class="prof-lv" id="profLevel">Level 1 · She's Brand New</div>
+        <div class="prof-bdg" id="profBadge">✦ She's Brand New</div>
       </div>
     </div>
-    <div class="profile-stats">
-      <div class="profile-stat"><div class="profile-stat-label">Total GP</div><div class="profile-stat-val" style="color:var(--peach)" id="statGp">0</div></div>
-      <div class="profile-stat"><div class="profile-stat-label">Lessons</div><div class="profile-stat-val" style="color:var(--pink)" id="statLessons">0</div></div>
-      <div class="profile-stat"><div class="profile-stat-label">Streak</div><div class="profile-stat-val" style="color:var(--teal)" id="statStreak">0 🔥</div></div>
+    <div class="prof-stats">
+      <div class="ps-c"><div class="ps-l">Total GP</div><div class="ps-v" style="color:var(--peach)" id="statGp">0</div></div>
+      <div class="ps-c"><div class="ps-l">Lessons</div><div class="ps-v" style="color:var(--pink)" id="statLessons">0</div></div>
+      <div class="ps-c"><div class="ps-l">Streak</div><div class="ps-v" style="color:var(--teal)" id="statStreak">0 🔥</div></div>
     </div>
-    <div class="profile-progress">
-      <div class="profile-progress-label">Level progress</div>
-      <div class="profile-progress-row"><span id="progCurrent">0 GP earned</span><span id="progNext">1,000 GP to next level</span></div>
-      <div class="profile-progress-track"><div class="profile-progress-fill" id="progFill" style="width:0%"></div></div>
+    <div style="background:var(--cream);border-radius:11px;padding:13px 16px;">
+      <div style="font-size:.8rem;font-weight:600;color:var(--dark);margin-bottom:5px;">Level progress</div>
+      <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom:7px;"><span id="progCurrent">0 GP earned</span><span id="progNext">1,000 GP to next level</span></div>
+      <div style="height:7px;background:var(--pink-pale);border-radius:100px;overflow:hidden;"><div id="progFill" style="height:100%;width:0%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;"></div></div>
     </div>
   </div>
 
-  <div class="billing-card">
-    <div class="billing-top"><div class="billing-title">AG&amp;HF Trading Academy</div><div class="billing-status" id="billingStatus">Active ✓</div></div>
-    <div class="billing-price">$14.99<span>/month</span></div>
-    <div class="billing-renew" id="billingRenew">Manage your subscription anytime.</div>
-    <button class="billing-btn" onclick="alert('Opening subscription management...')">Manage subscription</button>
+  <div class="bill-card">
+    <div class="bill-top"><div class="bill-ttl">AG&amp;HF Trading Academy</div><div class="bill-st" id="billingStatus">Active ✓</div></div>
+    <div class="bill-pr">$14.99<span>/month</span></div>
+    <div class="bill-ren" id="billingRenew">Manage your subscription anytime.</div>
+    <button class="bill-btn" onclick="alert('Opening subscription management...')">Manage subscription</button>
   </div>
-</div>
-
-<div class="logout-row">
-  <button class="logout-btn" id="logoutBtn">← Log out</button>
-</div>
+</main>
 
 <script type="module">
   async function load() {
@@ -94,15 +79,6 @@
       document.getElementById('billingRenew').textContent = `Next billing date: ${new Date(sub.current_period_end).toLocaleDateString()}`;
     }
   }
-
-  document.getElementById('logoutBtn').addEventListener('click', async () => {
-    if (window.AGHF_DEMO) {
-      sessionStorage.removeItem('aghf_demo');
-    } else if (window.AGHF_SUPABASE) {
-      await window.AGHF_SUPABASE.auth.signOut();
-    }
-    window.location.href = 'login.html';
-  });
 
   document.addEventListener('aghf-auth-ready', load);
 </script>

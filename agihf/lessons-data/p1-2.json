@@ -1,7 +1,8 @@
 {
-  "grade": "k",
+  "phase": "p1",
+  "section": "s1",
   "lessonNumber": 2,
-  "title": "Why Markets Exist",
+  "title": "Why do markets exist?",
   "videoUrl": null,
   "videoDuration": "10 min",
   "xpValue": 50,
@@ -13,13 +14,23 @@
   },
   "experience": {
     "prompt": "Imagine nobody wanted to buy or sell today. What happens to price?",
-    "chartConfig": { "type": "scenario-choice", "options": ["it moves anyway", "it stays flat"] }
+    "chartConfig": {
+      "type": "scenario-choice",
+      "options": [
+        "it moves anyway",
+        "it stays flat"
+      ]
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "Why does the market exist?",
-      "options": ["To create charts for traders", "To give participants a place to exchange", "To make price move randomly"],
+      "options": [
+        "To create charts for traders",
+        "To give participants a place to exchange",
+        "To make price move randomly"
+      ],
       "correctIndex": 1
     },
     {
@@ -29,7 +40,10 @@
     {
       "type": "fill_blank",
       "question": "If nobody wants to buy or sell, price has no reason to ___.",
-      "keywords": ["move", "change"]
+      "keywords": [
+        "move",
+        "change"
+      ]
     }
   ]
 }

@@ -1,7 +1,8 @@
 {
-  "grade": "8",
-  "lessonNumber": 2,
-  "title": "Timeframes Change the Lens",
+  "phase": "p1",
+  "section": "s3",
+  "lessonNumber": 16,
+  "title": "Multi-Timeframe Concept",
   "videoUrl": null,
   "videoDuration": "17 min",
   "xpValue": 95,
@@ -13,13 +14,23 @@
   },
   "experience": {
     "prompt": "You open the 1M first and price looks messy. Do you stay on 1M and keep reacting, or zoom out to understand the bigger picture first?",
-    "chartConfig": { "type": "scenario-choice", "options": ["stay on 1M", "zoom out first"] }
+    "chartConfig": {
+      "type": "scenario-choice",
+      "options": [
+        "stay on 1M",
+        "zoom out first"
+      ]
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "Which timeframe is better suited for bigger-picture direction?",
-      "options": ["Higher timeframe", "Lower timeframe only", "It doesn't matter"],
+      "options": [
+        "Higher timeframe",
+        "Lower timeframe only",
+        "It doesn't matter"
+      ],
       "correctIndex": 0
     },
     {
@@ -29,7 +40,9 @@
     {
       "type": "fill_blank",
       "question": "The clean beginner flow is bigger picture, then structure, then ___ detail last.",
-      "keywords": ["entry"]
+      "keywords": [
+        "entry"
+      ]
     }
   ]
 }

@@ -1,7 +1,8 @@
 {
-  "grade": "8",
-  "lessonNumber": 1,
-  "title": "Timeframes & Perspective",
+  "phase": "p1",
+  "section": "s3",
+  "lessonNumber": 15,
+  "title": "Timeframes",
   "videoUrl": null,
   "videoDuration": "12 min",
   "xpValue": 70,
@@ -13,13 +14,23 @@
   },
   "experience": {
     "prompt": "Which timeframe would you check first to understand the bigger picture: 4H or 1M?",
-    "chartConfig": { "type": "scenario-choice", "options": ["4H", "1M"] }
+    "chartConfig": {
+      "type": "scenario-choice",
+      "options": [
+        "4H",
+        "1M"
+      ]
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "What actually changes when you switch timeframes?",
-      "options": ["Your perspective on the same market", "The market itself", "Everything at once"],
+      "options": [
+        "Your perspective on the same market",
+        "The market itself",
+        "Everything at once"
+      ],
       "correctIndex": 0
     },
     {
@@ -29,7 +40,11 @@
     {
       "type": "fill_blank",
       "question": "The clean workflow is higher timeframe first, then ___, then the lowest timeframe for entry detail.",
-      "keywords": ["1h", "structure", "lower timeframe"]
+      "keywords": [
+        "1h",
+        "structure",
+        "lower timeframe"
+      ]
     }
   ]
 }

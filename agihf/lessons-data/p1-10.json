@@ -1,6 +1,7 @@
 {
-  "grade": "1",
-  "lessonNumber": 4,
+  "phase": "p1",
+  "section": "s2",
+  "lessonNumber": 10,
   "title": "Stop Loss & Take Profit",
   "videoUrl": null,
   "videoDuration": "13 min",
@@ -13,13 +14,20 @@
   },
   "experience": {
     "prompt": "You're looking at a bullish structure with your entry marked. Where should the stop loss go if this is a genuine uptrend?",
-    "chartConfig": { "type": "chart-click-placeholder", "target": "below swing low" }
+    "chartConfig": {
+      "type": "chart-click-placeholder",
+      "target": "below swing low"
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "In an uptrend, where should your stop loss usually go?",
-      "options": ["Below the swing low", "A random number of points away", "Above current price"],
+      "options": [
+        "Below the swing low",
+        "A random number of points away",
+        "Above current price"
+      ],
       "correctIndex": 0
     },
     {
@@ -29,7 +37,10 @@
     {
       "type": "fill_blank",
       "question": "After entry, discipline means you ___ to the plan instead of moving your stop out of fear.",
-      "keywords": ["stick", "commit"]
+      "keywords": [
+        "stick",
+        "commit"
+      ]
     }
   ]
 }

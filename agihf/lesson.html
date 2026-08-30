@@ -6,14 +6,15 @@
 <title>Lesson — A Girl & Her Futures</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/tokens.css">
-<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/lesson-engine.css">
 </head>
 <body>
 
 <script src="shared/auth-guard.js"></script>
-<script src="shared/nav.js" data-active="lessons"></script>
+<script src="shared/sidebar.js" data-active="lessons"></script>
 
+<main class="main">
 <div class="detail-nav">
   <a class="detail-nav-back" id="backLink" href="lessons.html">← Back</a>
   <span>·</span>
@@ -79,23 +80,27 @@
   <button class="complete-btn locked-btn" id="completeBtn" disabled>Complete lesson &amp; continue</button>
   <div class="complete-xp" id="completeXpLabel">Score 60%+ on Reinforce to unlock</div>
 </div>
+</main>
 
 <script type="module">
-  import { GRADES, gradeByKey } from './shared/curriculum-data.js';
+  import { PHASES, phaseByKey } from './shared/curriculum-data.js';
   import { renderLesson } from './shared/lesson-engine.js';
 
   const params = new URLSearchParams(window.location.search);
-  const gradeKey = params.get('grade');
+  const phaseKey = params.get('phase') || 'p1';
   const n = parseInt(params.get('n'), 10);
-  const grade = gradeByKey(gradeKey);
+  const phase = phaseByKey(phaseKey);
+  const allLessons = phase.sections.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s })));
+  const total = allLessons.length;
+  const current = allLessons.find((l) => l.n === n);
 
-  document.getElementById('backLink').href = `lessons.html?grade=${gradeKey}`;
-  document.getElementById('backLink').textContent = `← ${grade ? grade.label : 'Lessons'}`;
+  document.getElementById('backLink').href = 'lessons.html';
+  document.getElementById('backLink').textContent = `← ${phase.title}`;
 
   async function loadLesson() {
     let data;
     try {
-      const res = await fetch(`lessons-data/${gradeKey}-${n}.json`);
+      const res = await fetch(`lessons-data/${phaseKey}-${n}.json`);
       if (!res.ok) throw new Error('not found');
       data = await res.json();
     } catch (err) {
@@ -103,9 +108,8 @@
       return;
     }
 
-    const total = grade.lessons.length;
     document.getElementById('lessonPosition').textContent = `Lesson ${n} of ${total}`;
-    document.getElementById('detailEyebrow').textContent = `${grade.label} · ${grade.title}`;
+    document.getElementById('detailEyebrow').textContent = `Phase ${phase.n} · ${current.section.title}`;
     document.getElementById('detailTitle').textContent = data.title;
     document.getElementById('reinforceIntroLabel').textContent =
       `Reinforce · pass at ${Math.round(data.passThreshold * 100)}%+ to complete this lesson`;
@@ -119,7 +123,7 @@
             const res = await fetch('/api/complete-lesson', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${window.AGHF_SESSION_TOKEN}` },
-              body: JSON.stringify({ lessonId: `${gradeKey}-${n}`, gpEarned: data.xpValue }),
+              body: JSON.stringify({ lessonId: `${phaseKey}-${n}`, gpEarned: data.xpValue }),
             });
             await res.json();
           } catch (err) {
@@ -128,7 +132,7 @@
         }
         const nextLesson = n < total ? n + 1 : null;
         if (nextLesson) {
-          window.location.href = `lesson.html?grade=${gradeKey}&n=${nextLesson}`;
+          window.location.href = `lesson.html?phase=${phaseKey}&n=${nextLesson}`;
         } else {
           window.location.href = `dashboard.html`;
         }

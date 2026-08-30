@@ -1,7 +1,8 @@
 {
-  "grade": "k",
+  "phase": "p1",
+  "section": "s1",
   "lessonNumber": 1,
-  "title": "What is Trading?",
+  "title": "What even is trading?",
   "videoUrl": null,
   "videoDuration": "12 min",
   "xpValue": 50,
@@ -13,13 +14,23 @@
   },
   "experience": {
     "prompt": "Look at the chart. Price has been stepping higher and defending pullbacks — do you think buyers stay in control, or do sellers take over here?",
-    "chartConfig": { "type": "direction-choice", "options": ["long", "short"] }
+    "chartConfig": {
+      "type": "direction-choice",
+      "options": [
+        "long",
+        "short"
+      ]
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "What is trading, really?",
-      "options": ["Predicting the future", "Buyers and sellers disagreeing on price", "Owning a company"],
+      "options": [
+        "Predicting the future",
+        "Buyers and sellers disagreeing on price",
+        "Owning a company"
+      ],
       "correctIndex": 1
     },
     {
@@ -29,7 +40,11 @@
     {
       "type": "fill_blank",
       "question": "In futures, your profit comes from ___ in the direction you chose, not ownership.",
-      "keywords": ["movement", "price movement", "direction"]
+      "keywords": [
+        "movement",
+        "price movement",
+        "direction"
+      ]
     }
   ]
 }

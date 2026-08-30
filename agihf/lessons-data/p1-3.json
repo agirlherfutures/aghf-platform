@@ -1,5 +1,6 @@
 {
-  "grade": "k",
+  "phase": "p1",
+  "section": "s1",
   "lessonNumber": 3,
   "title": "Buyers vs Sellers",
   "videoUrl": null,
@@ -13,13 +14,23 @@
   },
   "experience": {
     "prompt": "Look at a series of candles closing higher and higher with shallow pullbacks — who's in control?",
-    "chartConfig": { "type": "direction-choice", "options": ["buyers", "sellers"] }
+    "chartConfig": {
+      "type": "direction-choice",
+      "options": [
+        "buyers",
+        "sellers"
+      ]
+    }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
       "question": "A string of strong green closes with small pullbacks usually means:",
-      "options": ["Buyers are in control", "Sellers are stronger", "Nothing at all"],
+      "options": [
+        "Buyers are in control",
+        "Sellers are stronger",
+        "Nothing at all"
+      ],
       "correctIndex": 0
     },
     {
@@ -29,7 +40,10 @@
     {
       "type": "fill_blank",
       "question": "A candle is a small record of who won that period and how price ___.",
-      "keywords": ["behaved", "moved"]
+      "keywords": [
+        "behaved",
+        "moved"
+      ]
     }
   ]
 }

@@ -4,94 +4,169 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lessons — A Girl & Her Futures</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/tokens.css">
-<link rel="stylesheet" href="shared/components.css">
-<link rel="stylesheet" href="shared/lesson-engine.css">
+<link rel="stylesheet" href="shared/sidebar.css">
 </head>
 <body>
 
 <script src="shared/auth-guard.js"></script>
-<script src="shared/nav.js" data-active="lessons"></script>
+<script src="shared/sidebar.js" data-active="lessons"></script>
 
-<div class="list-header">
-  <div class="list-eyebrow" id="listEyebrow">Phase</div>
-  <div class="list-title" id="listTitle">Lessons</div>
-  <div class="list-sub" id="listSub"></div>
-</div>
+<main class="main">
+  <div class="pg-eye">✦ Your curriculum</div>
+  <div class="pg-title" style="margin-bottom:6px;">Learn it. <span class="pg-acc">Really.</span></div>
+  <p style="font-size:.91rem;color:var(--muted);margin-bottom:24px;">8 phases. 22 sections. You can't skip. The quiz doesn't budge. That's how we build real traders.</p>
 
-<div class="list-progress-card">
-  <div class="list-progress-row">
-    <span id="progressText"><strong>0</strong> of 0 lessons complete</span>
-    <span id="progressPct">0%</span>
+  <div class="po-g">
+    <div class="po-c"><div class="po-l">Lessons done</div><div class="po-v pov-p" id="poLessonsDone">0</div><div class="po-s" id="poLessonsTotal">of 16 total</div></div>
+    <div class="po-c"><div class="po-l">Current phase</div><div class="po-v pov-t" id="poPhase">1</div><div class="po-s" id="poPhaseName">Foundation</div></div>
+    <div class="po-c"><div class="po-l">GP from lessons</div><div class="po-v pov-c" id="poGp">0</div><div class="po-s">points earned</div></div>
+    <div class="po-c"><div class="po-l">Next gate</div><div class="po-v pov-d">Ph1</div><div class="po-s">Quiz after Section 3</div></div>
   </div>
-  <div class="list-progress-track"><div class="list-progress-fill" id="progressFill" style="width:0%"></div></div>
-</div>
 
-<div class="lesson-grid" id="lessonGrid"></div>
+  <div id="phaseList"></div>
+</main>
 
 <script type="module">
-  import { GRADES, gradeByKey, phaseForGrade } from './shared/curriculum-data.js';
+  import { PHASES } from './shared/curriculum-data.js';
 
-  const params = new URLSearchParams(window.location.search);
-  const requestedGrade = params.get('grade');
+  const BADGE_PHASE_CLASS = { p: 'pb-p', t: 'pb-t', u: 'pb-u', d: 'pb-d' };
+  const BADGE_SECTION_CLASS = { p: 'sb-badge-p', t: 'sb-badge-t', c: 'sb-badge-c', u: 'sb-badge-u' };
 
-  function lessonId(grade, n) { return `${grade.key}-${n}`; }
-
-  function currentGradeFor(completedIds) {
-    const withLessons = GRADES.filter((g) => g.lessons.length);
-    for (const g of withLessons) {
-      const done = g.lessons.every((l) => completedIds.has(lessonId(g, l.n)));
-      if (!done) return g;
-    }
-    return withLessons[withLessons.length - 1] || GRADES[0];
+  function lessonRowHtml(phase, section, lesson, state) {
+    const numClass = state === 'done' ? 'n-dn' : state === 'active' ? 'n-act' : 'n-lk';
+    const numContent = state === 'done' ? '✓' : lesson.n || '•';
+    const rowClass = state === 'locked' ? 'lc lc-lk' : 'lc';
+    const statusHtml = state === 'done' ? '<div class="lc-st st-dn">Complete ✓</div>'
+      : state === 'active' ? '<div class="lc-st st-go">Start →</div>'
+      : '<div class="lc-st st-lk">🔒</div>';
+    const inner = `
+      <div class="lc-n ${numClass}">${numContent}</div>
+      <div class="lc-inf">
+        <div class="lc-ttl">${lesson.n ? `Lesson ${lesson.n} ` : ''}${lesson.title}</div>
+        <div class="lc-qt">${lesson.quote || ''}</div>
+        <div class="lc-tags"><span class="t-ls">Lesson</span><span class="t-xp">+${lesson.xp} GP</span></div>
+      </div>
+      ${statusHtml}`;
+    if (state === 'locked') return `<div class="${rowClass}">${inner}</div>`;
+    return `<a class="${rowClass}" href="lesson.html?phase=${phase.key}&n=${lesson.n}">${inner}</a>`;
   }
 
-  function render(grade, completedIds) {
-    const phase = phaseForGrade(grade.key);
-    const doneCount = grade.lessons.filter((l) => completedIds.has(lessonId(grade, l.n))).length;
-    const total = grade.lessons.length;
-    const pct = total ? Math.round((doneCount / total) * 100) : 0;
-    const firstIncompleteIdx = grade.lessons.findIndex((l) => !completedIds.has(lessonId(grade, l.n)));
+  function gameRowHtml(game, locked) {
+    return `<div class="lc lc-lk">
+      <div class="lc-n n-lk">▶</div>
+      <div class="lc-inf">
+        <div class="lc-ttl">${game.title}</div>
+        <div class="lc-qt">${game.quote}</div>
+        <div class="lc-tags"><span class="t-gm">Game</span><span class="t-xp">+${game.xp} GP</span></div>
+      </div>
+      <div class="lc-st st-lk">🔒 ${locked ? 'Complete lessons first' : ''}</div>
+    </div>`;
+  }
 
-    document.getElementById('listEyebrow').textContent = phase ? phase.label : '';
-    document.getElementById('listTitle').textContent = `${grade.label}: ${grade.title}`;
-    document.getElementById('listSub').textContent = total ? `${total} lessons` : 'Lessons for this grade are coming soon.';
-    document.getElementById('progressText').innerHTML = `<strong>${doneCount}</strong> of ${total} lessons complete`;
-    document.getElementById('progressPct').textContent = pct + '%';
-    document.getElementById('progressFill').style.width = pct + '%';
+  function sectionHtml(phase, section, completedIds, phaseUnlocked, sectionIdx) {
+    const lessonsHtml = section.lessons.map((lesson) => {
+      if (!phaseUnlocked || !lesson.n) return lessonRowHtml(phase, section, lesson, 'locked');
+      const id = `p1-${lesson.n}`;
+      if (completedIds.has(id)) return lessonRowHtml(phase, section, lesson, 'done');
+      const firstIncomplete = !phase.sections.some((s) =>
+        s.lessons.some((l) => l.n < lesson.n && l.n && !completedIds.has(`p1-${l.n}`)));
+      return lessonRowHtml(phase, section, lesson, firstIncomplete ? 'active' : 'locked');
+    }).join('');
+    const gameHtml = section.game ? gameRowHtml(section.game, true) : '';
+    const badgeClass = BADGE_SECTION_CLASS[section.badge] || 'sb-badge-p';
+    const closed = sectionIdx > 0 ? ' sec-closed' : '';
+    const chev = sectionIdx > 0 ? '▼' : '▲';
+    return `<div class="sec-blk">
+      <div class="sec-hdr${phaseUnlocked ? '' : ' sec-hdr-lk'}" data-toggle-sec="${phase.key}-${section.key}">
+        <span class="sec-badge ${badgeClass}">Section ${section.n}</span>
+        <div class="sec-title">${section.title}</div>
+        <span class="sec-cnt">${section.lessons.length} lesson${section.lessons.length === 1 ? '' : 's'}${phaseUnlocked ? '' : ' 🔒'}</span>
+        ${phaseUnlocked ? `<span class="sec-chev" id="chev-${phase.key}-${section.key}">${chev}</span>` : ''}
+      </div>
+      <div class="sec-body${closed}" id="body-${phase.key}-${section.key}">
+        ${lessonsHtml}${gameHtml}
+      </div>
+    </div>`;
+  }
 
-    document.getElementById('lessonGrid').innerHTML = grade.lessons.map((l, idx) => {
-      const id = lessonId(grade, l.n);
-      const done = completedIds.has(id);
-      const isCurrent = idx === firstIncompleteIdx;
-      const locked = !done && idx > firstIncompleteIdx && firstIncompleteIdx !== -1;
-      const cardClass = locked ? 'locked' : isCurrent ? 'current' : '';
-      const thumb = done ? '<div class="lesson-thumb done">✅</div>' : locked ? '<div class="lesson-thumb">🔒</div>' : '<div class="lesson-thumb">▶️</div>';
-      const status = isCurrent ? '<div class="lesson-status">👉</div>' : '';
-      const inner = `${thumb}
-        <div>
-          <div class="lesson-num">LESSON ${l.n}</div>
-          <div class="lesson-title">${l.slug.replace(/-/g, ' ')}</div>
-          <div class="lesson-meta"><span>📺 lesson</span></div>
-        </div>
-        ${status}`;
-      return locked
-        ? `<div class="lesson-card ${cardClass}">${inner}</div>`
-        : `<a class="lesson-card ${cardClass}" href="lesson.html?grade=${grade.key}&n=${l.n}">${inner}</a>`;
-    }).join('') || '<p style="color:var(--muted);font-size:13px;padding:8px 0;">Check back soon — this grade\'s lessons haven\'t been built yet.</p>';
+  function phaseHtml(phase, phaseIdx, completedIds) {
+    const totalLessons = phase.sections.reduce((sum, s) => sum + s.lessons.length, 0);
+    const doneInPhase = phase.locked ? 0 : phase.sections.reduce((sum, s) =>
+      sum + s.lessons.filter((l) => l.n && completedIds.has(`p1-${l.n}`)).length, 0);
+    const phaseUnlocked = !phase.locked;
+    const badgeClass = BADGE_PHASE_CLASS[phase.badge] || 'pb-p';
+    const sub = phaseUnlocked
+      ? `Sections ${phase.sections[0].n}–${phase.sections[phase.sections.length - 1].n} · ${doneInPhase === totalLessons ? 'Complete' : 'In progress'}`
+      : `🔒 Complete Phase ${phase.n - 1} to unlock${phase.comingSoon ? ' · Coming soon' : ''}`;
+    const sectionsHtml = phase.sections.map((s, i) => sectionHtml(phase, s, completedIds, phaseUnlocked, i)).join('');
+    const gateText = phase.comingSoon
+      ? `✦ <strong>Phase ${phase.n} lessons are being built.</strong> Complete the phases before it and they'll be waiting for you when they drop.`
+      : phaseUnlocked
+        ? `🎯 <strong>Phase ${phase.n} Gate:</strong> Complete all sections + 80% quiz to unlock Phase ${phase.n + 1}.`
+        : '';
+    const bodyClosed = phaseIdx > 0 ? ' phase-closed' : '';
+    const chev = phaseIdx > 0 ? '▼' : '▲';
+    return `<div class="phase-blk">
+      <div class="phase-hdr" data-toggle-phase="${phase.key}">
+        <div class="phase-hdr-left"><span class="phase-badge ${badgeClass}">Phase ${phase.n}</span><div><div class="phase-title">${phase.title}</div><div class="phase-sub">${sub}</div></div></div>
+        <div class="phase-hdr-right"><span class="phase-count">${totalLessons} lessons</span><span class="phase-chevron" id="chev-phase-${phase.key}">${chev}</span></div>
+      </div>
+      <div class="phase-body${bodyClosed}" id="body-phase-${phase.key}">
+        ${sectionsHtml}
+        ${gateText ? `<div class="gate">${gateText}</div>` : ''}
+      </div>
+    </div>`;
+  }
+
+  function wireToggles() {
+    document.querySelectorAll('[data-toggle-phase]').forEach((hdr) => {
+      hdr.addEventListener('click', () => {
+        const key = hdr.dataset.togglePhase;
+        const body = document.getElementById(`body-phase-${key}`);
+        const chev = document.getElementById(`chev-phase-${key}`);
+        const closed = body.classList.toggle('phase-closed');
+        if (chev) chev.textContent = closed ? '▼' : '▲';
+      });
+    });
+    document.querySelectorAll('[data-toggle-sec]').forEach((hdr) => {
+      hdr.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const key = hdr.dataset.toggleSec;
+        const body = document.getElementById(`body-${key}`);
+        const chev = document.getElementById(`chev-${key}`);
+        if (!body) return;
+        const closed = body.classList.toggle('sec-closed');
+        if (chev) chev.textContent = closed ? '▼' : '▲';
+      });
+    });
   }
 
   async function load() {
     let completedIds = new Set();
+    let gpFromLessons = 0;
     try {
       const data = await window.AGHF_FETCH_PROFILE();
       completedIds = new Set((data.lessons_completed || []).map((l) => l.lesson_id));
+      gpFromLessons = (data.lessons_completed || []).reduce((sum, l) => sum + (l.gp_earned || 0), 0);
     } catch (err) {
       console.error('Profile load error:', err);
     }
-    const grade = requestedGrade ? gradeByKey(requestedGrade) : currentGradeFor(completedIds);
-    render(grade || GRADES[0], completedIds);
+
+    const p1 = PHASES[0];
+    const p1Total = p1.sections.reduce((sum, s) => sum + s.lessons.length, 0);
+    const p1Done = p1.sections.reduce((sum, s) => sum + s.lessons.filter((l) => l.n && completedIds.has(`p1-${l.n}`)).length, 0);
+    const totalAll = PHASES.reduce((sum, p) => sum + p.sections.reduce((s, sec) => s + sec.lessons.length, 0), 0);
+
+    document.getElementById('poLessonsDone').textContent = p1Done;
+    document.getElementById('poLessonsTotal').textContent = `of ${totalAll} total`;
+    document.getElementById('poPhase').textContent = '1';
+    document.getElementById('poPhaseName').textContent = p1Done === p1Total ? 'Complete' : 'Foundation';
+    document.getElementById('poGp').textContent = gpFromLessons;
+
+    document.getElementById('phaseList').innerHTML = PHASES.map((phase, i) => phaseHtml(phase, i, completedIds)).join('');
+    wireToggles();
   }
 
   document.addEventListener('aghf-auth-ready', load);
