@@ -3,10 +3,9 @@
  *
  * Include as the FIRST script tag in <body>, before any lesson/game
  * content, on every protected page. Verifies there is a live Supabase
- * session; if not, redirects to the SPA login screen (index.html has no
- * separate login.html — login lives inside the SPA as the #s-login screen)
- * with a `redirect` param so the learner lands back on this exact page
- * after logging in.
+ * session; if not, redirects to the standalone login.html with a
+ * `redirect` param so the learner lands back on this exact page after
+ * logging in.
  *
  * On success, exposes:
  *   window.AGHF_USER          -> { id, email }
@@ -30,7 +29,7 @@
 
   function bounceToLogin() {
     const redirect = encodeURIComponent(window.location.pathname + window.location.search);
-    window.location.href = `${ROOT}index.html?redirect=${redirect}&screen=login`;
+    window.location.href = `${ROOT}login.html?redirect=${redirect}`;
   }
 
   async function run() {

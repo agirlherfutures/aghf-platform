@@ -1,0 +1,59 @@
+/* components.css — A Girl & Her Futures™
+ * Shared component classes used across dashboard/games/lessons/yearbook.
+ * Requires tokens.css to be included first. Built mobile-first; desktop
+ * layout comes from real @media rules (no .frame/.frame.desktop preview
+ * scaffolding — that was mockup-only).
+ */
+
+/* ── Site header / nav (injected by shared/nav.js) ─────────────────── */
+.site-header{padding:20px 20px 14px;display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1100px;margin:0 auto;}
+.site-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.site-logo-mark{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,var(--peach),var(--pink) 55%,var(--teal));display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-display);font-weight:700;font-size:13px;box-shadow:0 8px 18px rgba(244,130,154,.3);flex-shrink:0;}
+.site-logo-text{font-family:var(--font-display);font-style:italic;font-weight:700;font-size:15px;color:var(--dark);line-height:1.1;}
+.site-logo-sub{font-size:10px;color:var(--muted);font-weight:500;}
+.site-nav{display:none;gap:28px;font-size:13px;font-weight:500;color:var(--muted);}
+.site-nav a{color:inherit;text-decoration:none;}
+.site-nav a.current{color:var(--pink);font-weight:700;}
+.site-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--pink-light),var(--peach-light));border:2px solid #fff;box-shadow:0 6px 14px rgba(44,24,16,.1);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:.85rem;color:var(--dark);}
+@media(min-width:760px){.site-nav{display:flex;}.site-header{padding:28px 40px 16px;}}
+
+/* ── Page title block ───────────────────────────────────────────── */
+.page-title-block{padding:6px 20px 4px;text-align:center;max-width:1100px;margin:0 auto;}
+.page-eyebrow{font-size:11px;color:var(--pink);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;}
+.page-title{font-family:var(--font-display);font-style:italic;font-weight:700;font-size:24px;color:var(--dark);}
+.page-sub{font-size:12px;color:var(--muted);margin-top:6px;}
+@media(min-width:760px){.page-title{font-size:30px;}.page-title-block{padding:8px 40px 6px;}}
+
+/* ── Phase sections (games hub, yearbook) ──────────────────────────── */
+.phase-section{padding:22px 20px 4px;max-width:1100px;margin:0 auto;}
+.phase-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.phase-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.phase-dot.elementary{background:var(--teal);}
+.phase-dot.middle{background:var(--peach);}
+.phase-dot.high{background:var(--pink);}
+.phase-title{font-weight:700;font-size:14px;color:var(--dark);}
+.phase-count{font-size:11px;color:var(--placeholder);margin-left:auto;}
+@media(min-width:760px){.phase-section{padding:24px 40px 4px;}}
+
+/* ── Shared locked / coming-soon state (games, lessons, badges, roadmap) ── */
+.state-gated{opacity:.6;cursor:default;}
+.state-gated.is-locked{opacity:.42;}
+.state-gated.is-coming-soon{border:1.5px dashed var(--pink-light);box-shadow:none;}
+.gated-label{font-size:10.5px;}
+.gated-label.is-locked-label{color:var(--placeholder);font-style:italic;}
+.gated-label.is-soon-label{color:var(--pink);font-weight:700;}
+
+/* ── Game cards (games hub) ─────────────────────────────────────── */
+.game-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:22px;-webkit-overflow-scrolling:touch;}
+.game-card{flex-shrink:0;width:190px;background:#fff;border-radius:20px;padding:18px 18px 16px;box-shadow:0 12px 30px rgba(44,24,16,.08);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;text-decoration:none;display:block;color:inherit;}
+.game-card:hover:not(.locked):not(.coming-soon){transform:translateY(-3px);box-shadow:0 16px 36px rgba(44,24,16,.12);}
+.game-card.locked{opacity:.42;cursor:default;}
+.game-card.coming-soon{opacity:.6;cursor:default;border:1.5px dashed var(--pink-light);box-shadow:none;}
+.game-icon{width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px;}
+.game-grade{font-size:10px;font-weight:700;color:var(--pink);letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px;}
+.game-title{font-weight:700;font-size:13.5px;color:var(--dark);margin-bottom:5px;line-height:1.25;}
+.game-desc{font-size:11px;color:var(--muted);line-height:1.45;margin-bottom:8px;}
+.game-xp{font-size:10px;font-weight:700;color:var(--peach);}
+.game-locked-label{font-size:10.5px;color:var(--placeholder);font-style:italic;}
+.game-soon-label{font-size:10.5px;color:var(--pink);font-weight:700;}
+@media(min-width:760px){.game-scroll{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));overflow-x:visible;}.game-card{width:auto;}}
