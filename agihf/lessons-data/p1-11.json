@@ -25,11 +25,11 @@
   "reinforce": [
     {
       "type": "multiple_choice",
-      "question": "What does position sizing mainly change?",
+      "question": "Two traders take the identical setup — same entry, same stop, same target — but one uses 1 contract and the other uses 10. Is one trade objectively better structured than the other?",
       "options": [
-        "The money risk",
-        "The market structure itself",
-        "Everything about the trade setup"
+        "No — the structure is identical; only the dollar risk and emotional weight differ between them",
+        "Yes — more contracts always means a better trade",
+        "Yes — fewer contracts always means a safer, more valid setup"
       ],
       "correctIndex": 0
     },

@@ -25,11 +25,11 @@
   "reinforce": [
     {
       "type": "multiple_choice",
-      "question": "What best describes stock ownership?",
+      "question": "A trader wants to profit from a short-term price move without caring at all about long-term company ownership. Which instrument type is built for that goal, and why?",
       "options": [
-        "You are buying ownership in a company",
-        "You are trading a contract based on movement",
-        "You are just watching price go up or down"
+        "Futures — a futures contract is based purely on price movement, not ownership",
+        "Stocks — stock ownership was always designed for short-term moves",
+        "Neither — instrument choice has nothing to do with that goal"
       ],
       "correctIndex": 0
     },

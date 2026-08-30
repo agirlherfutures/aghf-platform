@@ -2,47 +2,52 @@
   "phase": "p1",
   "section": "s3",
   "lessonNumber": 14,
-  "title": "Candle Psychology",
+  "title": "Candle Anatomy",
   "videoUrl": null,
-  "videoDuration": "18 min",
-  "xpValue": 100,
+  "videoDuration": "16 min",
+  "xpValue": 95,
   "passThreshold": 0.6,
   "teach": {
-    "heading": "Every candle is a buyer and seller battle.",
-    "body": "Buyers push price up. Sellers push price down. The candle close shows who held control by the end of that candle. The wick shows where price went but did not fully accept. A wick through a level is not the same as a candle closing beyond it — the close gives the stronger clue of acceptance.",
-    "dayliNote": "\"I'm not just asking if the candle is green or red. I'm asking where it reacted, where it rejected, and where it closed.\" — Dayli Scott"
+    "heading": "Every candle has body parts.",
+    "body": "The candle body shows the distance between the open and close. The wick shows where price traveled but did not fully hold. The high and low show the full range of that candle. A wick does not automatically mean reversal — it means price reached that area and did not close there. Context tells you what that rejection means.",
+    "dayliNote": "\"A wick shows me where price went. A close shows me where price accepted. That difference matters.\" — Dayli Scott"
   },
   "experience": {
-    "prompt": "Price comes into support, wicks down, then closes back above support. What does that show about who's defending the level?",
+    "prompt": "Label a candle's parts: open, high, low, close, body, and wick. Which part tells you where price actually accepted?",
     "chartConfig": {
-      "type": "scenario-choice",
+      "type": "label-parts",
       "options": [
-        "buyer defense",
-        "clean breakdown"
+        "open",
+        "high",
+        "low",
+        "close",
+        "body",
+        "wick"
       ]
     }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
-      "question": "What does a candle close help you read?",
+      "question": "A candle has a huge range from high to low, but its open and close are almost identical. Is that a large-bodied candle or a small-bodied one — and what does that tell you?",
       "options": [
-        "Acceptance and control",
-        "Nothing important",
-        "Only the color"
+        "Small-bodied — despite the wide range, price didn't settle far from where it started, showing indecision inside the candle",
+        "Large-bodied — a wide high-to-low range always means a large body",
+        "It's impossible to know the body size without the color"
       ],
       "correctIndex": 0
     },
     {
       "type": "chart_click",
-      "question": "Tap the candle that shows stronger acceptance above resistance — the one that closed above it, not just wicked above it."
+      "question": "Tap the wick — the part of the candle that traveled but did not hold into the close."
     },
     {
       "type": "fill_blank",
-      "question": "Before calling acceptance above a level, wait for the candle ___.",
+      "question": "Price wicks above resistance but closes below it — that means it reached above but did not ___ above.",
       "keywords": [
         "close",
-        "closure"
+        "accept",
+        "hold"
       ]
     }
   ]

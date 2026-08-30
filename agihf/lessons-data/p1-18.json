@@ -1,0 +1,48 @@
+{
+  "phase": "p1",
+  "section": "s3",
+  "lessonNumber": 18,
+  "title": "Multi-Timeframe Thinking",
+  "videoUrl": null,
+  "videoDuration": "17 min",
+  "xpValue": 95,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "Every timeframe has a job. You just don't know what it is yet.",
+    "body": "Higher timeframes give you context — the bigger picture of what price is doing. Lower timeframes reveal detail — the smaller moves inside that picture. Beginners get confused when they treat every timeframe like it has the same job, or jump straight to the smallest one because it feels the most active. Later in the Academy, you'll learn exactly how AGHF assigns a specific job to each timeframe — for now, just get comfortable with the idea that zooming in changes what you can see, not what's actually happening.",
+    "dayliNote": "\"I'm not going to hand you the whole framework in one lesson. Right now, just notice that a higher timeframe and a lower timeframe are telling you different parts of the same story.\" — Dayli Scott"
+  },
+  "experience": {
+    "prompt": "You open the 1M first and price looks messy. Do you stay on 1M and keep reacting, or zoom out to understand the bigger picture first?",
+    "chartConfig": {
+      "type": "scenario-choice",
+      "options": [
+        "stay on 1M",
+        "zoom out first"
+      ]
+    }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "A trader forms her entire directional bias off the 1-minute chart alone, ignoring the 4H. What's the risk in doing that?",
+      "options": [
+        "She's using a detailed, zoomed-in view to make a bigger-picture decision it wasn't built to answer",
+        "There's no risk — every timeframe shows the same picture",
+        "The 1-minute chart is always more reliable than higher timeframes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the 4H lens — the one showing fewer candles and a clearer overall direction."
+    },
+    {
+      "type": "fill_blank",
+      "question": "The clean beginner flow is bigger picture, then structure, then ___ detail last.",
+      "keywords": [
+        "entry"
+      ]
+    }
+  ]
+}

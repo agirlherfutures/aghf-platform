@@ -25,11 +25,11 @@
   "reinforce": [
     {
       "type": "multiple_choice",
-      "question": "What is an \"instrument\" in trading?",
+      "question": "A trader switches from trading 1 contract of MNQ to 5 contracts of MNQ. Has she changed instruments, and what actually changed about her trade?",
       "options": [
-        "The market you are trading, like MNQ or ES",
-        "The number of contracts you choose",
-        "Your stop loss placement"
+        "No — she's still trading the same instrument (MNQ); only her size and dollar exposure changed",
+        "Yes — 5 contracts makes it a different instrument entirely",
+        "It's impossible to tell without knowing the price"
       ],
       "correctIndex": 0
     },

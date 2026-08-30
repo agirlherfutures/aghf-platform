@@ -2,48 +2,48 @@
   "phase": "p1",
   "section": "s3",
   "lessonNumber": 15,
-  "title": "Timeframes",
+  "title": "Wicks, Bodies & Closes",
   "videoUrl": null,
   "videoDuration": "12 min",
-  "xpValue": 70,
+  "xpValue": 60,
   "passThreshold": 0.6,
   "teach": {
-    "heading": "Same market. Different zoom levels.",
-    "body": "The 1 minute, 5 minute, 1 hour, and 4 hour are not different markets — they are different views of the same price story. Lower timeframes show more detail. Higher timeframes show more direction.",
-    "dayliNote": "Timeframes change your perspective on the same market. The market itself never changes just because you switched the chart view."
+    "heading": "Where price traveled and where price actually closed are two different pieces of information.",
+    "body": "A wick shows you that price reached an area. A close shows you that price accepted (or rejected) that area. Those are not the same claim, and mixing them up is one of the most common beginner mistakes on a chart. Price can wick well above a level and still close back below it — that's not the same as price closing above the level. This distinction matters far beyond this lesson: later in the Academy, an entire entry model is built around the rule that a candle has to close past a level, not just poke a wick through it.",
+    "dayliNote": "\"I don't care about the wick. I need the candle to close through the level. Say that back to yourself every time you're tempted to react to a wick.\" — Dayli Scott"
   },
   "experience": {
-    "prompt": "Which timeframe would you check first to understand the bigger picture: 4H or 1M?",
+    "prompt": "A candle wicks above a key high but closes back below it. Has that level been broken?",
     "chartConfig": {
       "type": "scenario-choice",
       "options": [
-        "4H",
-        "1M"
+        "no — it wicked through but didn't close through",
+        "yes — price touched above it"
       ]
     }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
-      "question": "What actually changes when you switch timeframes?",
+      "question": "Price takes a previous high with a wick but closes back below it. Has bullish structure necessarily been confirmed? ",
       "options": [
-        "Your perspective on the same market",
-        "The market itself",
-        "Everything at once"
+        "No — a wick shows price reached the level, but only a close through it shows acceptance",
+        "Yes — any candle touching above the high confirms the break",
+        "It depends only on the candle's color, not where it closed"
       ],
       "correctIndex": 0
     },
     {
       "type": "chart_click",
-      "question": "Tap the timeframe that gives the strongest directional context for overall bias."
+      "question": "Tap the candle that closed through the level — not just the one with the longest wick above it."
     },
     {
       "type": "fill_blank",
-      "question": "The clean workflow is higher timeframe first, then ___, then the lowest timeframe for entry detail.",
+      "question": "A wick tells you where price ___. A close tells you where price accepted.",
       "keywords": [
-        "1h",
-        "structure",
-        "lower timeframe"
+        "traveled",
+        "went",
+        "reached"
       ]
     }
   ]

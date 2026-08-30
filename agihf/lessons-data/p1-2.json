@@ -2,7 +2,7 @@
   "phase": "p1",
   "section": "s1",
   "lessonNumber": 2,
-  "title": "Why do markets exist?",
+  "title": "Why Do Markets Exist?",
   "videoUrl": null,
   "videoDuration": "10 min",
   "xpValue": 50,
@@ -25,13 +25,13 @@
   "reinforce": [
     {
       "type": "multiple_choice",
-      "question": "Why does the market exist?",
+      "question": "A slow, quiet holiday session has almost no participants placing orders. What would you expect to happen to price movement, and why?",
       "options": [
-        "To create charts for traders",
-        "To give participants a place to exchange",
-        "To make price move randomly"
+        "It would likely stay muted — with fewer buyers and sellers meeting, there's less negotiation to print onto the chart",
+        "It would move just as much as any other session — participation doesn't affect movement",
+        "It would move randomly, unrelated to how many people are trading"
       ],
-      "correctIndex": 1
+      "correctIndex": 0
     },
     {
       "type": "chart_click",

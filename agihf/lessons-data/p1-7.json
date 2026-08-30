@@ -25,11 +25,11 @@
   "reinforce": [
     {
       "type": "multiple_choice",
-      "question": "What is TradingView, functionally, for a new trader?",
+      "question": "A new trader adds ten different drawing tools to her chart at once, hoping more markings will make her read clearer. What's the better approach, and why?",
       "options": [
-        "A workspace to read and mark price",
-        "A place to buy a company",
-        "A random prediction machine"
+        "A few tools used clearly — an overloaded chart makes price harder to read, not easier",
+        "More tools always means a better read",
+        "It doesn't matter how many tools she uses"
       ],
       "correctIndex": 0
     },

@@ -2,48 +2,53 @@
   "phase": "p1",
   "section": "s2",
   "lessonNumber": 9,
-  "title": "Market vs Limit Orders",
+  "title": "Order Types",
   "videoUrl": null,
-  "videoDuration": "12 min",
+  "videoDuration": "13 min",
   "xpValue": 60,
   "passThreshold": 0.6,
   "teach": {
-    "heading": "Market orders move now. Limit orders wait.",
-    "body": "You don't just \"enter trades\" — you choose how you enter them. A market order fills immediately at the current price. A limit order rests below (or above) price first and waits for a tag. This lesson is about feeling the difference between jumping in immediately and letting price come to you.",
-    "dayliNote": "Letting price come to you is the heart of this lesson — market orders chase, limit orders wait."
+    "heading": "Market, limit, and stop orders each answer a different question: now, at a price, or if price gets there.",
+    "body": "A market order fills immediately at whatever price is currently available — you're choosing speed over price control. A limit order rests at a specific price and only fills if price actually reaches it — you're choosing price control over speed. A stop order sits inactive until price reaches a trigger level, then becomes a market order — used to protect against further loss (a stop loss) or to enter once price confirms a level, not before. All three exist in every trader's toolkit; which one you reach for depends on whether you need to be in right now, whether you're willing to wait for your price, or whether you need something to activate only if price proves a level.",
+    "dayliNote": "\"I'll show you later which order types I personally lean on for entries. But you need to actually understand all three first — market, limit, and stop — before that preference means anything to you.\" — Dayli Scott"
   },
   "experience": {
-    "prompt": "Price just broke a level and is flying. Do you chase it with a market order, or place a limit order and wait for a pullback?",
+    "prompt": "Price just broke a level and is moving fast. You want in, but you also don't want to chase — which order type lets you wait for a pullback to a specific price instead of jumping in now?",
     "chartConfig": {
       "type": "scenario-choice",
       "options": [
-        "market order",
-        "limit order"
+        "limit order",
+        "market order"
       ]
     }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
-      "question": "Which order type enters immediately at the current price?",
+      "question": "A trader wants to protect an open long position by automatically exiting if price falls to a specific level below her entry. Which order type does that?",
       "options": [
-        "Market order",
-        "Limit order",
-        "Neither"
+        "A stop order",
+        "A limit order",
+        "A market order"
       ],
       "correctIndex": 0
     },
     {
-      "type": "chart_click",
-      "question": "Tap where a limit order would rest, waiting for price to pull back to it."
+      "type": "multiple_choice",
+      "question": "Price is at 100 and a trader places a limit order to buy at 98. If price never trades down to 98, what happens?",
+      "options": [
+        "The order never fills — it only fills if price actually reaches 98",
+        "It fills instantly at 100 anyway",
+        "It automatically converts to a market order after a few minutes"
+      ],
+      "correctIndex": 0
     },
     {
       "type": "fill_blank",
-      "question": "A distant target only matters once ___ supports getting there — letting price come to you is the disciplined move.",
+      "question": "A market order prioritizes ___ over price. A limit order prioritizes price over speed.",
       "keywords": [
-        "structure",
-        "pullback",
-        "price action"
+        "speed",
+        "immediacy"
       ]
     }
   ]

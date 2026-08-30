@@ -2,46 +2,47 @@
   "phase": "p1",
   "section": "s3",
   "lessonNumber": 16,
-  "title": "Multi-Timeframe Concept",
+  "title": "Candle Psychology",
   "videoUrl": null,
-  "videoDuration": "17 min",
-  "xpValue": 95,
+  "videoDuration": "18 min",
+  "xpValue": 100,
   "passThreshold": 0.6,
   "teach": {
-    "heading": "Same market. Different lens.",
-    "body": "A higher timeframe shows the bigger picture. A lower timeframe shows the smaller details. Beginners get confused when they treat every timeframe like it has the same job. Lower timeframes are not bad — they're just more detailed. The problem is using detail before you understand the bigger picture.",
-    "dayliNote": "\"The 1M can show me the entry, but it does not decide my whole bias. I need the bigger picture first.\" — Dayli Scott"
+    "heading": "Every candle is a buyer and seller battle.",
+    "body": "Buyers push price up. Sellers push price down. The candle close shows who held control by the end of that candle. The wick shows where price went but did not fully accept. A wick through a level is not the same as a candle closing beyond it — the close gives the stronger clue of acceptance.",
+    "dayliNote": "\"I'm not just asking if the candle is green or red. I'm asking where it reacted, where it rejected, and where it closed.\" — Dayli Scott"
   },
   "experience": {
-    "prompt": "You open the 1M first and price looks messy. Do you stay on 1M and keep reacting, or zoom out to understand the bigger picture first?",
+    "prompt": "Price comes into support, wicks down, then closes back above support. What does that show about who's defending the level?",
     "chartConfig": {
       "type": "scenario-choice",
       "options": [
-        "stay on 1M",
-        "zoom out first"
+        "buyer defense",
+        "clean breakdown"
       ]
     }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
-      "question": "Which timeframe is better suited for bigger-picture direction?",
+      "question": "What does a candle close help you read?",
       "options": [
-        "Higher timeframe",
-        "Lower timeframe only",
-        "It doesn't matter"
+        "Acceptance and control",
+        "Nothing important",
+        "Only the color"
       ],
       "correctIndex": 0
     },
     {
       "type": "chart_click",
-      "question": "Tap the 4H lens — the one showing fewer candles and a clearer overall direction."
+      "question": "Tap the candle that shows stronger acceptance above resistance — the one that closed above it, not just wicked above it."
     },
     {
       "type": "fill_blank",
-      "question": "The clean beginner flow is bigger picture, then structure, then ___ detail last.",
+      "question": "Before calling acceptance above a level, wait for the candle ___.",
       "keywords": [
-        "entry"
+        "close",
+        "closure"
       ]
     }
   ]

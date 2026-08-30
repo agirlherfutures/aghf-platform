@@ -78,6 +78,7 @@
     const badgeClass = BADGE_SECTION_CLASS[section.badge] || 'sb-badge-p';
     const closed = sectionIdx > 0 ? ' sec-closed' : '';
     const chev = sectionIdx > 0 ? '▼' : '▲';
+    const dayliNoteHtml = section.dayliNote ? `<div class="sec-dayli-note">🎀 <strong>Dayli Note:</strong> ${section.dayliNote}</div>` : '';
     return `<div class="sec-blk">
       <div class="sec-hdr${phaseUnlocked ? '' : ' sec-hdr-lk'}" data-toggle-sec="${phase.key}-${section.key}">
         <span class="sec-badge ${badgeClass}">Section ${section.n}</span>
@@ -86,7 +87,7 @@
         ${phaseUnlocked ? `<span class="sec-chev" id="chev-${phase.key}-${section.key}">${chev}</span>` : ''}
       </div>
       <div class="sec-body${closed}" id="body-${phase.key}-${section.key}">
-        ${lessonsHtml}${gameHtml}
+        ${dayliNoteHtml}${lessonsHtml}${gameHtml}
       </div>
     </div>`;
   }
@@ -101,6 +102,8 @@
       ? `Sections ${phase.sections[0].n}–${phase.sections[phase.sections.length - 1].n} · ${doneInPhase === totalLessons ? 'Complete' : 'In progress'}`
       : `🔒 Complete Phase ${phase.n - 1} to unlock${phase.comingSoon ? ' · Coming soon' : ''}`;
     const sectionsHtml = phase.sections.map((s, i) => sectionHtml(phase, s, completedIds, phaseUnlocked, i)).join('');
+    const introHtml = phase.sections[0] && phase.sections[0].intro
+      ? `<div class="phase-intro-note">✦ <strong>Before you start:</strong> ${phase.sections[0].intro}</div>` : '';
     const gateText = phase.comingSoon
       ? `✦ <strong>Phase ${phase.n} lessons are being built.</strong> Complete the phases before it and they'll be waiting for you when they drop.`
       : phaseUnlocked
@@ -114,6 +117,7 @@
         <div class="phase-hdr-right"><span class="phase-count">${totalLessons} lessons</span><span class="phase-chevron" id="chev-phase-${phase.key}">${chev}</span></div>
       </div>
       <div class="phase-body${bodyClosed}" id="body-phase-${phase.key}">
+        ${introHtml}
         ${sectionsHtml}
         ${gateText ? `<div class="gate">${gateText}</div>` : ''}
       </div>

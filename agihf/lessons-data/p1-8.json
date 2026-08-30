@@ -2,47 +2,54 @@
   "phase": "p1",
   "section": "s2",
   "lessonNumber": 8,
-  "title": "Brokers & Prop Firms",
+  "title": "Brokers, Prop Firms & Accounts",
   "videoUrl": null,
-  "videoDuration": "15 min",
-  "xpValue": 90,
+  "videoDuration": "14 min",
+  "xpValue": 60,
   "passThreshold": 0.6,
   "teach": {
-    "heading": "You either trade your money… or someone else's.",
-    "body": "With a broker, you use your own money, keep your profits, and take your own losses. With a prop firm, you trade under rules using access to their capital, and profits are usually split. Neither is universally better — it's about knowing what kind of path you're choosing.",
-    "dayliNote": "Brokers give you direct ownership. Prop firms give you structured access. Both matter — they just ask different things from you."
+    "heading": "Every account is either your money, someone else's money, or practice money.",
+    "body": "A brokerage account trades your own personal capital — you keep every dollar of profit and absorb every dollar of loss yourself. A prop firm evaluation gives you access to their capital if you can prove you can trade within their rules first; once funded, profits are usually split between you and the firm. A simulated (paper/demo) account uses no real money at all — it exists purely to practice execution without financial risk. None of these routes is universally \"better.\" They ask different things of you: a broker account demands your own capital and full risk ownership, a prop evaluation demands rule-discipline before it demands capital, and a simulated account demands nothing except honesty with yourself about how you'd actually behave with real money on the line.",
+    "dayliNote": "\"I'm not telling you which account type to start with. I'm telling you to know exactly which one you're in, and what that account expects from you, before you place a single trade.\" — Dayli Scott"
   },
   "experience": {
-    "prompt": "You only have $300. Would you trade it directly through a broker, or try to access more capital through a prop firm?",
+    "prompt": "A trader has $300 of her own money and no funded account yet. Which account type actually matches her situation right now?",
     "chartConfig": {
       "type": "scenario-choice",
       "options": [
-        "broker",
-        "prop firm"
+        "personal brokerage account",
+        "prop firm evaluation"
       ]
     }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
-      "question": "A broker account uses whose money?",
+      "question": "A trader passes a prop firm's evaluation and gets funded. Whose capital is she now trading, and what does that change about her risk?",
       "options": [
-        "Your own money",
-        "A prop firm's capital access",
-        "Nobody's money"
+        "The firm's capital — her personal money isn't directly at risk, but she now trades inside the firm's rules",
+        "Her own capital — the evaluation was just a formality",
+        "Nobody's capital — funded accounts are simulated"
       ],
       "correctIndex": 0
     },
     {
-      "type": "chart_click",
-      "question": "Tap the path that comes with firm rules attached to using their capital."
+      "type": "multiple_choice",
+      "question": "A trader keeps blowing her personal account, but never checks whether her execution is actually consistent first. What would a simulated account tell her that a live broker account can't?",
+      "options": [
+        "Whether her execution is repeatable before real money is on the line",
+        "Nothing — simulated accounts are pointless",
+        "Exactly how much profit she'll make live"
+      ],
+      "correctIndex": 0
     },
     {
       "type": "fill_blank",
-      "question": "Broker = your money, prop firm = capital access with ___.",
+      "question": "A prop firm's evaluation exists to test whether a trader can follow ___  before the firm gives her access to its capital.",
       "keywords": [
         "rules",
-        "structure"
+        "the rules",
+        "discipline"
       ]
     }
   ]

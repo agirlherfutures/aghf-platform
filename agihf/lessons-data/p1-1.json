@@ -2,7 +2,7 @@
   "phase": "p1",
   "section": "s1",
   "lessonNumber": 1,
-  "title": "What even is trading?",
+  "title": "What Even Is Trading?",
   "videoUrl": null,
   "videoDuration": "12 min",
   "xpValue": 50,
@@ -25,13 +25,13 @@
   "reinforce": [
     {
       "type": "multiple_choice",
-      "question": "What is trading, really?",
+      "question": "A trader says she's \"predicting the future\" every time she takes a trade. Is that an accurate way to describe what she's actually doing?",
       "options": [
-        "Predicting the future",
-        "Buyers and sellers disagreeing on price",
-        "Owning a company"
+        "Not quite — she's reading current disagreement between buyers and sellers, not seeing the future",
+        "Yes — that's exactly what trading is",
+        "No — trading has nothing to do with price movement at all"
       ],
-      "correctIndex": 1
+      "correctIndex": 0
     },
     {
       "type": "chart_click",

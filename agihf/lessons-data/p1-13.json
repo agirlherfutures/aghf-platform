@@ -2,52 +2,43 @@
   "phase": "p1",
   "section": "s3",
   "lessonNumber": 13,
-  "title": "Candle Anatomy",
+  "title": "Candlesticks",
   "videoUrl": null,
-  "videoDuration": "16 min",
-  "xpValue": 95,
+  "videoDuration": "15 min",
+  "xpValue": 90,
   "passThreshold": 0.6,
   "teach": {
-    "heading": "Every candle has body parts.",
-    "body": "The candle body shows the distance between the open and close. The wick shows where price traveled but did not fully hold. The high and low show the full range of that candle. A wick does not automatically mean reversal — it means price reached that area and did not close there. Context tells you what that rejection means.",
-    "dayliNote": "\"A wick shows me where price went. A close shows me where price accepted. That difference matters.\" — Dayli Scott"
+    "heading": "Candles show price behavior during a period of time.",
+    "body": "A candlestick is not just a colored block on the chart — it's a tiny story of what buyers and sellers did during that timeframe. Every candle has a beginning (open), an ending (close), a high point, and a low point. When you read candles correctly, you stop seeing random shapes and start seeing pressure, control, and movement.",
+    "dayliNote": "\"Candles are not just green and red. They show who pushed, who rejected, who held, and where price accepted.\" — Dayli Scott"
   },
   "experience": {
-    "prompt": "Label a candle's parts: open, high, low, close, body, and wick. Which part tells you where price actually accepted?",
+    "prompt": "Watch a candle form from open to close — where does it start, where does it travel, and where does it end?",
     "chartConfig": {
-      "type": "label-parts",
-      "options": [
-        "open",
-        "high",
-        "low",
-        "close",
-        "body",
-        "wick"
-      ]
+      "type": "candle-build"
     }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
-      "question": "What creates the candle body?",
+      "question": "Two candles on the same chart have completely different shapes — one is a large green body, the other is a small red body with long wicks. What does the difference actually represent?",
       "options": [
-        "Open and close",
-        "High and low only",
-        "The wick alone"
+        "Different buyer/seller behavior during each candle's timeframe — not randomness, not a guarantee of what's next",
+        "Nothing meaningful — candle shape is decorative",
+        "A guaranteed signal of exactly where price goes next"
       ],
       "correctIndex": 0
     },
     {
       "type": "chart_click",
-      "question": "Tap the wick — the part of the candle that traveled but did not hold into the close."
+      "question": "Tap the candle with the stronger buyer close — large body, closed near the high."
     },
     {
       "type": "fill_blank",
-      "question": "Price wicks above resistance but closes below it — that means it reached above but did not ___ above.",
+      "question": "A bullish candle closes ___ where it opened.",
       "keywords": [
-        "close",
-        "accept",
-        "hold"
+        "above",
+        "higher"
       ]
     }
   ]

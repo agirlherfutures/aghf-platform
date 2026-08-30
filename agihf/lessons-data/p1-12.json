@@ -1,44 +1,44 @@
 {
   "phase": "p1",
-  "section": "s3",
+  "section": "s2",
   "lessonNumber": 12,
-  "title": "Candlesticks",
+  "title": "Trading Sessions & Market Hours",
   "videoUrl": null,
-  "videoDuration": "15 min",
-  "xpValue": 90,
+  "videoDuration": "11 min",
+  "xpValue": 60,
   "passThreshold": 0.6,
   "teach": {
-    "heading": "Candles show price behavior during a period of time.",
-    "body": "A candlestick is not just a colored block on the chart — it's a tiny story of what buyers and sellers did during that timeframe. Every candle has a beginning (open), an ending (close), a high point, and a low point. When you read candles correctly, you stop seeing random shapes and start seeing pressure, control, and movement.",
-    "dayliNote": "\"Candles are not just green and red. They show who pushed, who rejected, who held, and where price accepted.\" — Dayli Scott"
+    "heading": "The same chart behaves differently depending on what time it is.",
+    "body": "Futures trade nearly around the clock, but not every hour behaves the same way. The Asia session tends to be quieter and range-bound. The London session often brings the first real expansion of the day. The New York session — especially the Regular Trading Hours (RTH) open — usually brings the highest volume and the sharpest moves, since it overlaps with US stock market hours and news releases. The overnight session (after New York closes, before Asia picks up) is typically thinner and choppier, with less reliable structure. None of this means one session is \"better\" — it means the same setup can look completely different depending on which session it's forming in, and a trader who ignores the clock is trading blind to context she could easily have.",
+    "dayliNote": "\"I'm not telling you to only trade one session. I'm telling you to know which session you're looking at, because a level in London and a level at the New York open don't carry the same weight.\" — Dayli Scott"
   },
   "experience": {
-    "prompt": "Watch a candle form from open to close — where does it start, where does it travel, and where does it end?",
+    "prompt": "A setup forms during a quiet overnight session with low volume. Should you weight it the same as an identical setup forming at the New York open?",
     "chartConfig": {
-      "type": "candle-build"
+      "type": "scenario-choice",
+      "options": [
+        "no — session context changes the read",
+        "yes — a setup is a setup regardless of time"
+      ]
     }
   },
   "reinforce": [
     {
       "type": "multiple_choice",
-      "question": "What does a candlestick show?",
+      "question": "A trader sees a clean-looking break of structure during the thin overnight session, then the exact same level gets retested with much higher volume at the New York open. What does session context tell her about which read to trust more?",
       "options": [
-        "Price movement during a timeframe",
-        "A random shape",
-        "A guaranteed prediction"
+        "The New York retest carries more weight — higher volume and participation make the reaction more meaningful",
+        "They're identical — session doesn't change how a break should be read",
+        "The overnight break is more reliable because it happened first"
       ],
       "correctIndex": 0
     },
     {
-      "type": "chart_click",
-      "question": "Tap the candle with the stronger buyer close — large body, closed near the high."
-    },
-    {
       "type": "fill_blank",
-      "question": "A bullish candle closes ___ where it opened.",
+      "question": "The New York session (RTH open) typically brings the highest ___ and sharpest moves, since it overlaps with US stock market hours and major news.",
       "keywords": [
-        "above",
-        "higher"
+        "volume",
+        "participation"
       ]
     }
   ]
