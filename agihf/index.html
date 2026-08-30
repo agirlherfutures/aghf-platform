@@ -1516,8 +1516,9 @@ async function initSupabase() {
     currentUser = session.user;
     await loadUserProfile();
     if (redirectTo) { window.location.href = redirectTo; return; }
-  } else if (params.get('screen') === 'login') {
-    go('s-login');
+    // login.html sends new signups here (?screen=payment) to run Stripe
+    // checkout, since payment still lives only in this file.
+    if (params.get('screen') === 'payment') { go('s-payment'); }
   }
   supabase.auth.onAuthStateChange(async (event, session) => {
     if (event === 'SIGNED_IN' && session?.user) {
