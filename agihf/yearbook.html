@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yearbook — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/components.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/nav.js" data-active="yearbook"></script>
+
+<div class="header">
+  <div class="header-eyebrow">Your journey so far</div>
+  <div class="header-title">My AGHF Yearbook</div>
+  <div class="header-sub">Every report card, saved — see how far you've come.</div>
+</div>
+
+<div id="phaseSections"></div>
+
+<div class="grad-callout" id="gradCallout">
+  <div class="grad-callout-icon">🎓</div>
+  <div class="grad-callout-title">Your graduation reflection is waiting</div>
+  <div class="grad-callout-sub">"If you could talk to the trader who started Kindergarten, what would you tell her now?"</div>
+  <div class="grad-callout-tag">Preview the capstone moment</div>
+</div>
+
+<!-- ENTRY DETAIL MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeEntry()">✕</button>
+    <div class="modal-eyebrow" id="modalEyebrow"></div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-stars-row">
+      <span class="modal-stars-label">Confidence</span>
+      <span id="modalStars"></span>
+    </div>
+    <div class="modal-qa">
+      <div class="modal-q">🎵 Biggest takeaway</div>
+      <div class="modal-a" id="modalAnswer"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CAPSTONE MOMENT -->
+<div class="capstone-overlay" id="capstoneOverlay">
+  <div class="capstone-card">
+    <button class="modal-close" onclick="closeCapstone()" style="z-index:5">✕</button>
+
+    <div class="cap-step visible" id="capStep1">
+      <div class="cap-grad-icon">🎓</div>
+      <div class="cap-eyebrow">The AGHF capstone</div>
+      <div class="cap-headline">Your capstone portfolio.</div>
+      <div class="cap-sub">This isn't new work — it's everything you've already proven, grade by grade. Review it before your final live read.</div>
+      <div class="cap-prompt-card">
+        <div class="cap-prompt-label">On file</div>
+        <div class="portfolio-list" id="portfolioList"></div>
+      </div>
+      <button class="cap-submit" onclick="goToStep(2)">Continue to my live read</button>
+    </div>
+
+    <div class="cap-step" id="capStep2">
+      <div class="cap-grad-icon">📈</div>
+      <div class="cap-eyebrow">The one part you can't prepare for</div>
+      <div class="cap-headline">Read this chart.<br>No indicator. No answers.</div>
+      <div class="cap-sub">A fresh chart you've never seen. This is what proves the portfolio is really yours.</div>
+      <div class="cap-prompt-card">
+        <div class="cap-prompt-label">Live chart — unseen</div>
+        <div class="live-chart-placeholder"><span>Unmarked chart renders here</span></div>
+        <div class="cap-prompt-question" style="margin-top:16px">Explain your entry, invalidation, and risk based on what you see.</div>
+        <textarea class="cap-input" rows="4" placeholder="Type your response..." id="capLiveAnswer"></textarea>
+        <div class="cap-error" id="capLiveError">Give your read before continuing — this is the one that counts.</div>
+      </div>
+      <button class="cap-submit" onclick="submitLiveRead()">Submit my live read</button>
+    </div>
+
+    <div class="cap-step" id="capStep3">
+      <div class="cap-grad-icon">🎓</div>
+      <div class="cap-eyebrow">One last thing</div>
+      <div class="cap-headline">Look at the trader<br>you became.</div>
+      <div class="cap-sub">Your portfolio, your live read, every report card — it all led here.</div>
+      <div class="cap-prompt-card">
+        <div class="cap-prompt-label">Final reflection</div>
+        <div class="cap-prompt-question">If you could talk to the trader who started Kindergarten, what would you tell her now?</div>
+        <textarea class="cap-input" rows="4" placeholder="Type your response..." id="capAnswer"></textarea>
+        <div class="cap-error" id="capError">Take a moment to answer before continuing — this one's worth it.</div>
+      </div>
+      <button class="cap-submit" onclick="submitCapstone()">Complete my capstone</button>
+    </div>
+
+    <div class="cap-step" id="capStep4">
+      <div class="cap-grad-icon">🏆</div>
+      <div class="cap-eyebrow">Congratulations</div>
+      <div class="cap-headline">You graduated from<br>A Girl &amp; Her Futures.</div>
+      <div class="cap-sub">Your full journey, from Kindergarten to 12th grade, is saved in your Yearbook forever.</div>
+
+      <div class="cert-card" id="certCard">
+        <div class="cert-mark">GF</div>
+        <div class="cert-eyebrow">Official certification</div>
+        <div class="cert-name" id="certName">AGHF Trader Certification</div>
+        <div class="cert-line">Awarded for completing the full K&ndash;12 curriculum,<br>the top-down analysis framework, and the<br>Dayli ICC Method&trade; capstone examination.</div>
+        <div class="cert-divider"></div>
+        <div class="cert-badge-row">
+          <div class="cert-badge-pill">🏆 AGHF Graduate</div>
+          <div class="cert-badge-pill">💎 Grad School unlocked</div>
+        </div>
+      </div>
+
+      <div class="cert-action-row">
+        <button class="cert-action-btn primary" onclick="downloadCertificate()"><span id="downloadLabel">Download certificate</span></button>
+        <button class="cert-action-btn" onclick="shareCertificate()">Share</button>
+      </div>
+      <div class="cap-close-row" style="margin-top:16px">
+        <button class="cap-secondary-link" onclick="closeCapstone()">Exit — I'll come back later</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script type="module">
+  import { PHASES } from './shared/curriculum-data.js';
+  import { ENTRY_DATA, PORTFOLIO_ITEMS } from './shared/yearbook-mock-data.js';
+
+  const PHASE_DOT = { elementary: 'elementary', middle: 'middle', high: 'high' };
+  const PHASE_TITLE = { elementary: 'Phase I — Elementary School', middle: 'Phase II — Middle School', high: 'Phase III — High School' };
+
+  function starString(n) {
+    let s = '';
+    for (let i = 0; i < 5; i++) s += i < n ? '★' : '☆';
+    return s;
+  }
+
+  function entryCardHtml(g) {
+    const d = ENTRY_DATA[g];
+    if (d.status === 'locked') {
+      return `<div class="entry-card locked">
+        <div class="entry-top"><span class="entry-grade">${d.label}</span></div>
+        <div class="entry-title">${d.title}</div>
+        <div class="entry-locked-label">Locked</div>
+      </div>`;
+    }
+    const gradeLabel = d.status === 'current' ? `${d.label} — current` : d.label;
+    return `<div class="entry-card ${d.status === 'current' ? 'current' : ''}" data-grade="${g}">
+      <div class="entry-top"><span class="entry-grade">${gradeLabel}</span><span class="entry-stars">${starString(d.stars)}</span></div>
+      <div class="entry-title">${d.title}</div>
+      <div class="entry-quote">"${d.answer}"</div>
+    </div>`;
+  }
+
+  function render() {
+    const html = PHASES.map((phase) => {
+      const doneCount = phase.grades.filter((g) => ENTRY_DATA[g].status === 'done').length;
+      return `<div class="phase-section">
+        <div class="phase-head">
+          <span class="phase-dot ${PHASE_DOT[phase.key]}"></span>
+          <span class="phase-title">${PHASE_TITLE[phase.key]}</span>
+          <span class="phase-count">${doneCount} of ${phase.grades.length} complete</span>
+        </div>
+        <div class="grade-scroll">${phase.grades.map(entryCardHtml).join('')}</div>
+      </div>`;
+    }).join('');
+    document.getElementById('phaseSections').innerHTML = html;
+
+    document.querySelectorAll('.entry-card[data-grade]').forEach((card) => {
+      card.addEventListener('click', () => openEntry(card.dataset.grade));
+    });
+
+    document.getElementById('portfolioList').innerHTML = PORTFOLIO_ITEMS.map((item) => `
+      <div class="portfolio-item">
+        <div class="portfolio-check">✓</div>
+        <div class="portfolio-body">
+          <div class="portfolio-grade">${item.grade}</div>
+          <div class="portfolio-desc">${item.desc}</div>
+        </div>
+        <button class="portfolio-view" data-label="${item.grade}">View</button>
+      </div>`).join('');
+    document.querySelectorAll('.portfolio-view').forEach((btn) => {
+      btn.addEventListener('click', () => alert('Opens the saved submission for: ' + btn.dataset.label));
+    });
+  }
+
+  window.openEntry = function (key) {
+    const d = ENTRY_DATA[key];
+    if (!d || d.status === 'locked') return;
+    document.getElementById('modalEyebrow').textContent = `${d.label.toLowerCase()} report card`;
+    document.getElementById('modalTitle').textContent = d.title;
+    document.getElementById('modalStars').textContent = starString(d.stars);
+    document.getElementById('modalAnswer').textContent = d.answer;
+    document.getElementById('modalOverlay').classList.add('open');
+  };
+  window.closeEntry = () => document.getElementById('modalOverlay').classList.remove('open');
+
+  window.goToStep = function (n) {
+    for (let i = 1; i <= 4; i++) {
+      document.getElementById('capStep' + i).classList.toggle('visible', i === n);
+    }
+  };
+  window.openCapstone = function () {
+    document.getElementById('capstoneOverlay').classList.add('open');
+    goToStep(1);
+  };
+  window.closeCapstone = () => document.getElementById('capstoneOverlay').classList.remove('open');
+
+  window.submitLiveRead = function () {
+    const val = document.getElementById('capLiveAnswer').value.trim();
+    if (!val) { document.getElementById('capLiveError').classList.add('visible'); return; }
+    document.getElementById('capLiveError').classList.remove('visible');
+    goToStep(3);
+  };
+  window.submitCapstone = function () {
+    const val = document.getElementById('capAnswer').value.trim();
+    if (!val) { document.getElementById('capError').classList.add('visible'); return; }
+    document.getElementById('capError').classList.remove('visible');
+    goToStep(4);
+  };
+
+  window.downloadCertificate = function () {
+    const label = document.getElementById('downloadLabel');
+    label.textContent = 'Preparing...';
+    html2canvas(document.getElementById('certCard'), { backgroundColor: '#FDF8F5', scale: 3 }).then((canvas) => {
+      const link = document.createElement('a');
+      link.download = 'aghf-trader-certification.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      label.textContent = 'Download certificate';
+    }).catch(() => { label.textContent = 'Download certificate'; });
+  };
+
+  window.shareCertificate = function () {
+    html2canvas(document.getElementById('certCard'), { backgroundColor: '#FDF8F5', scale: 3 }).then((canvas) => {
+      canvas.toBlob((blob) => {
+        const file = new File([blob], 'aghf-trader-certification.png', { type: 'image/png' });
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          navigator.share({ files: [file], title: 'AGHF Trader Certification', text: 'I just graduated from A Girl & Her Futures!' }).catch(() => {});
+        } else {
+          const link = document.createElement('a');
+          link.download = 'aghf-trader-certification.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        }
+      });
+    });
+  };
+
+  document.getElementById('gradCallout').addEventListener('click', () => window.openCapstone());
+
+  render();
+</script>
+
+</body>
+</html>
