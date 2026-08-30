@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lessons — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/lesson-engine.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/nav.js" data-active="lessons"></script>
+
+<div class="list-header">
+  <div class="list-eyebrow" id="listEyebrow">Phase</div>
+  <div class="list-title" id="listTitle">Lessons</div>
+  <div class="list-sub" id="listSub"></div>
+</div>
+
+<div class="list-progress-card">
+  <div class="list-progress-row">
+    <span id="progressText"><strong>0</strong> of 0 lessons complete</span>
+    <span id="progressPct">0%</span>
+  </div>
+  <div class="list-progress-track"><div class="list-progress-fill" id="progressFill" style="width:0%"></div></div>
+</div>
+
+<div class="lesson-grid" id="lessonGrid"></div>
+
+<script type="module">
+  import { GRADES, gradeByKey, phaseForGrade } from './shared/curriculum-data.js';
+
+  const params = new URLSearchParams(window.location.search);
+  const requestedGrade = params.get('grade');
+
+  function lessonId(grade, n) { return `${grade.key}-${n}`; }
+
+  function currentGradeFor(completedIds) {
+    const withLessons = GRADES.filter((g) => g.lessons.length);
+    for (const g of withLessons) {
+      const done = g.lessons.every((l) => completedIds.has(lessonId(g, l.n)));
+      if (!done) return g;
+    }
+    return withLessons[withLessons.length - 1] || GRADES[0];
+  }
+
+  function render(grade, completedIds) {
+    const phase = phaseForGrade(grade.key);
+    const doneCount = grade.lessons.filter((l) => completedIds.has(lessonId(grade, l.n))).length;
+    const total = grade.lessons.length;
+    const pct = total ? Math.round((doneCount / total) * 100) : 0;
+    const firstIncompleteIdx = grade.lessons.findIndex((l) => !completedIds.has(lessonId(grade, l.n)));
+
+    document.getElementById('listEyebrow').textContent = phase ? phase.label : '';
+    document.getElementById('listTitle').textContent = `${grade.label}: ${grade.title}`;
+    document.getElementById('listSub').textContent = total ? `${total} lessons` : 'Lessons for this grade are coming soon.';
+    document.getElementById('progressText').innerHTML = `<strong>${doneCount}</strong> of ${total} lessons complete`;
+    document.getElementById('progressPct').textContent = pct + '%';
+    document.getElementById('progressFill').style.width = pct + '%';
+
+    document.getElementById('lessonGrid').innerHTML = grade.lessons.map((l, idx) => {
+      const id = lessonId(grade, l.n);
+      const done = completedIds.has(id);
+      const isCurrent = idx === firstIncompleteIdx;
+      const locked = !done && idx > firstIncompleteIdx && firstIncompleteIdx !== -1;
+      const cardClass = locked ? 'locked' : isCurrent ? 'current' : '';
+      const thumb = done ? '<div class="lesson-thumb done">✅</div>' : locked ? '<div class="lesson-thumb">🔒</div>' : '<div class="lesson-thumb">▶️</div>';
+      const status = isCurrent ? '<div class="lesson-status">👉</div>' : '';
+      const inner = `${thumb}
+        <div>
+          <div class="lesson-num">LESSON ${l.n}</div>
+          <div class="lesson-title">${l.slug.replace(/-/g, ' ')}</div>
+          <div class="lesson-meta"><span>📺 lesson</span></div>
+        </div>
+        ${status}`;
+      return locked
+        ? `<div class="lesson-card ${cardClass}">${inner}</div>`
+        : `<a class="lesson-card ${cardClass}" href="lesson.html?grade=${grade.key}&n=${l.n}">${inner}</a>`;
+    }).join('') || '<p style="color:var(--muted);font-size:13px;padding:8px 0;">Check back soon — this grade\'s lessons haven\'t been built yet.</p>';
+  }
+
+  async function load() {
+    const token = window.AGHF_SESSION_TOKEN;
+    let completedIds = new Set();
+    try {
+      const res = await fetch('/api/get-profile', { headers: { Authorization: `Bearer ${token}` } });
+      const data = await res.json();
+      completedIds = new Set((data.lessons_completed || []).map((l) => l.lesson_id));
+    } catch (err) {
+      console.error('Profile load error:', err);
+    }
+    const grade = requestedGrade ? gradeByKey(requestedGrade) : currentGradeFor(completedIds);
+    render(grade || GRADES[0], completedIds);
+  }
+
+  document.addEventListener('aghf-auth-ready', load);
+</script>
+
+</body>
+</html>

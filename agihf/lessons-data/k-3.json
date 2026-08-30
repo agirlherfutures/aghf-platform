@@ -1,0 +1,35 @@
+{
+  "grade": "k",
+  "lessonNumber": 3,
+  "title": "Buyers vs Sellers",
+  "videoUrl": null,
+  "videoDuration": "11 min",
+  "xpValue": 50,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "Price moves because buyers and sellers are fighting for control.",
+    "body": "Buyers think price should go higher. Sellers think price should go lower. When buyers are stronger, price lifts. When sellers are stronger, price drops. That's what candles are showing you in real time — who won that moment.",
+    "dayliNote": "The body matters more than the drama. Long wicks can look dramatic, but the body tells you where price actually settled — later in ICC, close beats wick."
+  },
+  "experience": {
+    "prompt": "Look at a series of candles closing higher and higher with shallow pullbacks — who's in control?",
+    "chartConfig": { "type": "direction-choice", "options": ["buyers", "sellers"] }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "A string of strong green closes with small pullbacks usually means:",
+      "options": ["Buyers are in control", "Sellers are stronger", "Nothing at all"],
+      "correctIndex": 0
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the candle where sellers briefly took control."
+    },
+    {
+      "type": "fill_blank",
+      "question": "A candle is a small record of who won that period and how price ___.",
+      "keywords": ["behaved", "moved"]
+    }
+  ]
+}

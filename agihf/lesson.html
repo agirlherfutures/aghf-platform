@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/lesson-engine.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/nav.js" data-active="lessons"></script>
+
+<div class="detail-nav">
+  <a class="detail-nav-back" id="backLink" href="lessons.html">← Back</a>
+  <span>·</span>
+  <span id="lessonPosition">Lesson</span>
+</div>
+
+<div class="video-block">
+  <div class="video-bg"></div>
+  <div class="video-play">▶</div>
+  <div class="video-soon-label" id="videoSoonLabel" style="display:none">Video coming soon</div>
+  <div class="video-duration" id="videoDuration"></div>
+</div>
+<div class="video-caption">
+  <span>Watch before you continue</span>
+  <span id="videoCaptionDuration"></span>
+</div>
+
+<div class="detail-title-block">
+  <div class="detail-eyebrow" id="detailEyebrow"></div>
+  <div class="detail-title" id="detailTitle"></div>
+</div>
+
+<div class="stage-tabs">
+  <button class="stage-tab active">1. Teach</button>
+  <button class="stage-tab">2. Experience</button>
+  <button class="stage-tab">3. Reinforce</button>
+</div>
+
+<div class="stage-content">
+  <div class="stage-panel visible" id="stage-1">
+    <div class="teach-card">
+      <div class="teach-heading" id="teachHeading"></div>
+      <div class="teach-body" id="teachBody"></div>
+      <div class="dayli-note" id="dayliNote"></div>
+    </div>
+  </div>
+
+  <div class="stage-panel" id="stage-2">
+    <div class="experience-card">
+      <div class="experience-label">Interactive · try it yourself</div>
+      <div class="experience-prompt" id="experiencePrompt"></div>
+      <div class="interactive-chart" id="interactiveChart"></div>
+      <div class="interactive-hint">Tap an option above</div>
+    </div>
+  </div>
+
+  <div class="stage-panel" id="stage-3">
+    <div class="reinforce-intro">
+      <div class="reinforce-intro-label" id="reinforceIntroLabel">Reinforce · pass at 60%+ to complete this lesson</div>
+    </div>
+
+    <div id="reinforceQuestions"></div>
+
+    <div class="reinforce-result">
+      <div class="reinforce-result-score" id="reinforceScore">0 / 0 correct</div>
+      <div class="reinforce-result-msg" id="reinforceMsg">Answer all questions above, then check your score.</div>
+    </div>
+    <button class="quiz-check-btn" id="checkReinforceBtn">Check my answers</button>
+  </div>
+</div>
+
+<div class="complete-bar">
+  <button class="complete-btn locked-btn" id="completeBtn" disabled>Complete lesson &amp; continue</button>
+  <div class="complete-xp" id="completeXpLabel">Score 60%+ on Reinforce to unlock</div>
+</div>
+
+<script type="module">
+  import { GRADES, gradeByKey } from './shared/curriculum-data.js';
+  import { renderLesson } from './shared/lesson-engine.js';
+
+  const params = new URLSearchParams(window.location.search);
+  const gradeKey = params.get('grade');
+  const n = parseInt(params.get('n'), 10);
+  const grade = gradeByKey(gradeKey);
+
+  document.getElementById('backLink').href = `lessons.html?grade=${gradeKey}`;
+  document.getElementById('backLink').textContent = `← ${grade ? grade.label : 'Lessons'}`;
+
+  async function loadLesson() {
+    let data;
+    try {
+      const res = await fetch(`lessons-data/${gradeKey}-${n}.json`);
+      if (!res.ok) throw new Error('not found');
+      data = await res.json();
+    } catch (err) {
+      document.querySelector('.stage-content').innerHTML = '<p style="padding:20px;color:var(--muted)">This lesson isn\'t available yet.</p>';
+      return;
+    }
+
+    const total = grade.lessons.length;
+    document.getElementById('lessonPosition').textContent = `Lesson ${n} of ${total}`;
+    document.getElementById('detailEyebrow').textContent = `${grade.label} · ${grade.title}`;
+    document.getElementById('detailTitle').textContent = data.title;
+    document.getElementById('reinforceIntroLabel').textContent =
+      `Reinforce · pass at ${Math.round(data.passThreshold * 100)}%+ to complete this lesson`;
+    document.getElementById('completeXpLabel').textContent =
+      `Score ${Math.round(data.passThreshold * 100)}%+ on Reinforce to unlock · +${data.xpValue} XP on completion`;
+
+    renderLesson(data, {
+      onComplete: async () => {
+        const token = window.AGHF_SESSION_TOKEN;
+        try {
+          const res = await fetch('/api/complete-lesson', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({ lessonId: `${gradeKey}-${n}`, gpEarned: data.xpValue }),
+          });
+          await res.json();
+        } catch (err) {
+          console.error('Complete lesson error:', err);
+        }
+        const nextLesson = n < total ? n + 1 : null;
+        if (nextLesson) {
+          window.location.href = `lesson.html?grade=${gradeKey}&n=${nextLesson}`;
+        } else {
+          window.location.href = `dashboard.html`;
+        }
+      },
+    });
+  }
+
+  document.addEventListener('aghf-auth-ready', loadLesson);
+</script>
+
+</body>
+</html>

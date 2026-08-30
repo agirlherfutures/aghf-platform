@@ -1,0 +1,35 @@
+{
+  "grade": "k",
+  "lessonNumber": 1,
+  "title": "What is Trading?",
+  "videoUrl": null,
+  "videoDuration": "12 min",
+  "xpValue": 50,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "Trading is buyers and sellers disagreeing on price.",
+    "body": "Buyers think price should go higher. Sellers think price should go lower. That disagreement creates movement. That's it — everything else you see on a chart is just that battle being printed in real time.",
+    "dayliNote": "\"If I can tell who has control, I already have a reason to be interested. I'm not trying to be psychic. I'm watching behavior.\" — Dayli Scott"
+  },
+  "experience": {
+    "prompt": "Look at the chart. Price has been stepping higher and defending pullbacks — do you think buyers stay in control, or do sellers take over here?",
+    "chartConfig": { "type": "direction-choice", "options": ["long", "short"] }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "What is trading, really?",
+      "options": ["Predicting the future", "Buyers and sellers disagreeing on price", "Owning a company"],
+      "correctIndex": 1
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the point on the chart where buyers clearly took control."
+    },
+    {
+      "type": "fill_blank",
+      "question": "In futures, your profit comes from ___ in the direction you chose, not ownership.",
+      "keywords": ["movement", "price movement", "direction"]
+    }
+  ]
+}

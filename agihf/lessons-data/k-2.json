@@ -1,0 +1,35 @@
+{
+  "grade": "k",
+  "lessonNumber": 2,
+  "title": "Why Markets Exist",
+  "videoUrl": null,
+  "videoDuration": "10 min",
+  "xpValue": 50,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "Markets exist because people need somewhere to exchange value, risk, and opportunity.",
+    "body": "One side wants in. One side wants out. One side wants protection. One side wants profit. No exchange = no market. And no market = no movement. This is why price moves at all.",
+    "dayliNote": "A market is just a meeting place for decisions. Buyers say \"I'll pay this,\" sellers say \"I want that,\" and price moves until both sides meet — that negotiation is what prints the chart."
+  },
+  "experience": {
+    "prompt": "Imagine nobody wanted to buy or sell today. What happens to price?",
+    "chartConfig": { "type": "scenario-choice", "options": ["it moves anyway", "it stays flat"] }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "Why does the market exist?",
+      "options": ["To create charts for traders", "To give participants a place to exchange", "To make price move randomly"],
+      "correctIndex": 1
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the moment on the chart where participation clearly picked up."
+    },
+    {
+      "type": "fill_blank",
+      "question": "If nobody wants to buy or sell, price has no reason to ___.",
+      "keywords": ["move", "change"]
+    }
+  ]
+}

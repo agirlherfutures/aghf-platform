@@ -1,0 +1,35 @@
+{
+  "grade": "k",
+  "lessonNumber": 5,
+  "title": "Futures vs Stocks",
+  "videoUrl": null,
+  "videoDuration": "9 min",
+  "xpValue": 50,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "Stocks are about ownership. Futures are about movement.",
+    "body": "That is the cleanest way to separate them. With stocks, you are buying ownership in a company. With futures, you are trading a contract based on price movement. That difference changes how you think about direction, risk, flexibility, and why the Dayli ICC method makes more sense in futures.",
+    "dayliNote": "Futures naturally fit long and short thinking — that flexibility is exactly why this training is built around futures, not stocks."
+  },
+  "experience": {
+    "prompt": "Which statement sounds like futures thinking: \"I want to own this for 10 years\" or \"I think price is about to move\"?",
+    "chartConfig": { "type": "scenario-choice", "options": ["ownership", "movement"] }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "What best describes stock ownership?",
+      "options": ["You are buying ownership in a company", "You are trading a contract based on movement", "You are just watching price go up or down"],
+      "correctIndex": 0
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the chart pattern that represents a movement-based trade, not an ownership position."
+    },
+    {
+      "type": "fill_blank",
+      "question": "Futures thinking focuses on direction and ___, not ownership.",
+      "keywords": ["movement", "price movement"]
+    }
+  ]
+}

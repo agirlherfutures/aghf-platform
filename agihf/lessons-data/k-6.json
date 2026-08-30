@@ -1,0 +1,35 @@
+{
+  "grade": "k",
+  "lessonNumber": 6,
+  "title": "Points, Ticks & P&L",
+  "videoUrl": null,
+  "videoDuration": "10 min",
+  "xpValue": 50,
+  "passThreshold": 0.6,
+  "teach": {
+    "heading": "Points and ticks are how the market moves. P&L is what that movement means to you.",
+    "body": "Points are larger units of movement. Ticks are smaller pieces inside those points. P&L is the money attached to that movement once you add your instrument and contract count. This is the lesson where it stops being just chart language and starts becoming real.",
+    "dayliNote": "Bigger size makes the same move louder — the chart may be normal while your emotions are not. Staying small enough to stay teachable matters."
+  },
+  "experience": {
+    "prompt": "If MNQ moves 30 points and you're in 1 contract at $2 per point, what's the dollar result?",
+    "chartConfig": { "type": "pnl-calc", "instrument": "MNQ", "pointValue": 2 }
+  },
+  "reinforce": [
+    {
+      "type": "multiple_choice",
+      "question": "If 1 point = 4 ticks, how many ticks are in 2 points?",
+      "options": ["4 ticks", "8 ticks", "12 ticks"],
+      "correctIndex": 1
+    },
+    {
+      "type": "chart_click",
+      "question": "Tap the P&L value that matches a 30-point move on MNQ at $2 per point."
+    },
+    {
+      "type": "fill_blank",
+      "question": "P&L is calculated as points moved × point value × ___.",
+      "keywords": ["contracts", "contract count"]
+    }
+  ]
+}
