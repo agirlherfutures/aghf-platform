@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/components.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/nav.js" data-active="dashboard"></script>
+
+<div class="page-shell">
+  <div class="body-layout">
+    <div class="col-main">
+      <div class="greeting">
+        <div class="greeting-eyebrow">Welcome back</div>
+        <div class="greeting-title" id="greetingTitle">Ready for class, trader?</div>
+      </div>
+
+      <div class="level-card">
+        <div class="level-row">
+          <div class="level-badge" id="levelBadge">LEVEL 1</div>
+          <div>
+            <div class="xp-count" id="xpCount">0 XP</div>
+            <div class="xp-label">total earned</div>
+          </div>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+        <div class="progress-caption">
+          <span id="progressPhaseLabel">Phase I</span>
+          <span><strong id="progressPct">0%</strong> <span id="progressNextLabel">through this phase</span></span>
+        </div>
+      </div>
+
+      <a class="continue-card" id="continueCard" href="lessons.html" style="text-decoration:none;color:inherit;">
+        <div class="continue-icon">📘</div>
+        <div>
+          <div class="continue-eyebrow" id="continueEyebrow">Continue learning</div>
+          <div class="continue-title" id="continueTitle">Loading…</div>
+          <div class="continue-sub" id="continueSub"></div>
+        </div>
+        <div class="continue-arrow">→</div>
+      </a>
+    </div>
+
+    <div class="col-side">
+      <div class="section-label">Your roadmap · tap to jump in</div>
+      <div class="roadmap-scroll" id="roadmapScroll"></div>
+      <div class="roadmap-hint" id="roadmapHint">Unlocked grades are always one tap away — jump ahead or revisit anytime.</div>
+
+      <div class="unlock-preview" id="unlockPreview">
+        <button class="unlock-preview-close" onclick="hidePreview()">✕</button>
+        <div class="unlock-preview-eyebrow">🔒 here's what you'll unlock</div>
+        <div class="unlock-preview-title">Phase IV: Graduation</div>
+        <div class="unlock-preview-sub">Complete High School to unlock the Capstone.</div>
+        <div class="unlock-preview-list">
+          <div class="unlock-preview-item"><span class="unlock-dot"></span>The AGHF Capstone — unmarked chart final exam</div>
+          <div class="unlock-preview-item"><span class="unlock-dot"></span>Official AGHF Trader Certification</div>
+          <div class="unlock-preview-item"><span class="unlock-dot"></span>🏆 AGHF Graduate badge</div>
+          <div class="unlock-preview-item"><span class="unlock-dot"></span>Access to AGHF Grad School</div>
+        </div>
+      </div>
+
+      <div class="section-label">Badge case</div>
+      <div class="badge-grid" id="badgeGrid"></div>
+
+      <div class="resource-card">
+        <div class="resource-title">Student Resource Center</div>
+        <div class="resource-row"><div class="resource-row-label"><span class="resource-dot"></span>Top-Down Analysis Card</div><div class="resource-arrow">→</div></div>
+        <div class="resource-row"><div class="resource-row-label"><span class="resource-dot teal"></span>Dayli ICC glossary</div><div class="resource-arrow">→</div></div>
+        <div class="resource-row"><div class="resource-row-label"><span class="resource-dot peach"></span>Backtesting journal</div><div class="resource-arrow">→</div></div>
+      </div>
+    </div>
+
+    <div class="demo-trigger-wrap">
+      <button class="demo-trigger" id="reportCardTrigger" onclick="openModal()">See my Report Card &amp; badge unlock →</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <div class="modal-step visible" id="step1">
+      <div class="rc-eyebrow" id="rcEyebrow">My report card</div>
+      <div class="rc-title" id="rcTitle">Grade Title</div>
+      <div class="rc-sub">Take a second to reflect before moving on.</div>
+
+      <div class="rc-question">🎵 What was your biggest takeaway from this grade?</div>
+      <textarea class="rc-input" rows="2" placeholder="Type your response..." id="q1"></textarea>
+
+      <div class="rc-question">📈 How confident do you feel with this material?</div>
+      <div class="rc-stars" id="starRow">
+        <span class="rc-star" data-val="1">★</span>
+        <span class="rc-star" data-val="2">★</span>
+        <span class="rc-star" data-val="3">★</span>
+        <span class="rc-star" data-val="4">★</span>
+        <span class="rc-star" data-val="5">★</span>
+      </div>
+      <div class="rc-error" id="rcError">Give yourself a star rating before submitting.</div>
+
+      <button class="rc-submit" onclick="submitReportCard()">Submit my report card</button>
+    </div>
+
+    <div class="modal-step" id="step2">
+      <div class="promo-badge-burst">🏆</div>
+      <div class="promo-headline">Promoted!</div>
+      <div class="promo-sub" id="promoSub">Congratulations!</div>
+
+      <div class="promo-rewards">
+        <div class="promo-reward-card">
+          <div class="promo-reward-icon">✨</div>
+          <div class="promo-reward-val" id="promoXp">+0</div>
+          <div class="promo-reward-label">XP earned</div>
+        </div>
+        <div class="promo-reward-card">
+          <div class="promo-reward-icon">🎖️</div>
+          <div class="promo-reward-val" id="promoBadge">Badge</div>
+          <div class="promo-reward-label">badge unlocked</div>
+        </div>
+      </div>
+
+      <div class="promo-next-card" id="promoNextCard">
+        <div class="promo-next-eyebrow">Up next</div>
+        <div class="promo-next-title" id="promoNextTitle"></div>
+        <div class="promo-next-sub" id="promoNextSub"></div>
+      </div>
+
+      <button class="rc-submit" onclick="closeModal()">Continue</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { GRADES, PHASES, gradeByKey, phaseForGrade, nextGrade } from './shared/curriculum-data.js';
+
+  const PHASE_ORDER = ['elementary', 'middle', 'high'];
+  const PHASE_LABELS = { elementary: 'Phase I — Elementary', middle: 'Phase II — Middle School', high: 'Phase III — High School' };
+
+  function lessonId(grade, n) { return `${grade.key}-${n}`; }
+
+  function allDefinedLessons() {
+    return GRADES.flatMap((g) => g.lessons.map((l) => ({ grade: g, n: l.n, id: lessonId(g, l.n) })));
+  }
+
+  function currentGradeFor(completedIds) {
+    const withLessons = GRADES.filter((g) => g.lessons.length);
+    for (const g of withLessons) {
+      const done = g.lessons.every((l) => completedIds.has(lessonId(g, l.n)));
+      if (!done) return g;
+    }
+    return withLessons[withLessons.length - 1] || GRADES[0];
+  }
+
+  function nextIncompleteLesson(completedIds) {
+    for (const g of GRADES) {
+      for (const l of g.lessons) {
+        if (!completedIds.has(lessonId(g, l.n))) return { grade: g, n: l.n };
+      }
+    }
+    return null;
+  }
+
+  function phaseProgress(currentGrade, completedIds) {
+    const phase = phaseForGrade(currentGrade.key);
+    const gradesWithLessons = phase.grades.map(gradeByKey).filter((g) => g.lessons.length);
+    const total = gradesWithLessons.reduce((sum, g) => sum + g.lessons.length, 0);
+    const done = gradesWithLessons.reduce((sum, g) => sum + g.lessons.filter((l) => completedIds.has(lessonId(g, l.n))).length, 0);
+    return { phase, pct: total ? Math.round((done / total) * 100) : 0 };
+  }
+
+  function renderRoadmap(currentGrade) {
+    const currentPhaseIdx = PHASE_ORDER.indexOf(phaseForGrade(currentGrade.key).key);
+    const scroll = document.getElementById('roadmapScroll');
+    const chips = PHASES.map((phase, idx) => {
+      const state = idx < currentPhaseIdx ? 'done' : idx === currentPhaseIdx ? 'active' : 'locked';
+      const roman = ['I', 'II', 'III'][idx];
+      const status = state === 'done' ? '<div class="roadmap-check">✓ complete</div>'
+        : state === 'active' ? '<div class="roadmap-check">you are here</div>' : '';
+      return `<button class="roadmap-chip ${state}" data-phase="${phase.key}">
+        <div class="roadmap-chip-phase">Phase ${roman}</div>
+        <div class="roadmap-chip-name">${phase.label.split('· ')[1] || phase.label}</div>
+        ${status}
+      </button>`;
+    }).join('') + `<button class="roadmap-chip locked" data-phase="graduation">
+        <div class="roadmap-chip-phase">Phase IV</div>
+        <div class="roadmap-chip-name">Graduation</div>
+        <div class="roadmap-lock">🔒 locked</div>
+      </button>`;
+    scroll.innerHTML = chips;
+    scroll.querySelectorAll('.roadmap-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        if (chip.classList.contains('locked')) { window.showPreview(); return; }
+        window.location.href = `lessons.html?phase=${chip.dataset.phase}`;
+      });
+    });
+  }
+
+  function renderBadges(completedIds) {
+    const badges = [
+      { name: 'First Day', icon: '🌱', cls: '', unlocked: completedIds.size >= 1 },
+      { name: 'Chart Reader', icon: '📖', cls: '', unlocked: gradeByKey('k').lessons.every((l) => completedIds.has(lessonId(gradeByKey('k'), l.n))) },
+      { name: 'Structure Scholar', icon: '📈', cls: 'teal', unlocked: gradeByKey('2').lessons.every((l) => completedIds.has(lessonId(gradeByKey('2'), l.n))) },
+      { name: 'Liquidity Detective', icon: '💧', cls: 'purple', unlocked: gradeByKey('6').lessons.length > 0 && gradeByKey('6').lessons.every((l) => completedIds.has(lessonId(gradeByKey('6'), l.n))) },
+    ];
+    document.getElementById('badgeGrid').innerHTML = badges.map((b) => `
+      <div class="badge ${b.unlocked ? '' : 'locked'}">
+        <div class="badge-icon ${b.cls}">${b.icon}</div>
+        <div class="badge-name">${b.name}</div>
+      </div>`).join('');
+  }
+
+  window.hidePreview = () => document.getElementById('unlockPreview').classList.remove('visible');
+  window.showPreview = () => document.getElementById('unlockPreview').classList.add('visible');
+
+  let reportCardCtx = null;
+  let selectedStar = 0;
+
+  function openReportCardFor(grade) {
+    reportCardCtx = grade;
+    selectedStar = 0;
+    document.querySelectorAll('.rc-star').forEach((s) => s.classList.remove('filled'));
+    document.getElementById('rcError').classList.remove('visible');
+    document.getElementById('q1').value = '';
+    document.getElementById('rcTitle').textContent = grade.title;
+    document.getElementById('rcEyebrow').textContent = `My ${grade.label.toLowerCase()} report card`;
+    document.getElementById('step1').classList.add('visible');
+    document.getElementById('step2').classList.remove('visible');
+  }
+
+  window.openModal = function () {
+    const completedIds = window.__aghfCompletedIds || new Set();
+    openReportCardFor(currentGradeFor(completedIds));
+    document.getElementById('modalOverlay').classList.add('open');
+  };
+  window.closeModal = function () { document.getElementById('modalOverlay').classList.remove('open'); };
+
+  document.querySelectorAll('.rc-star').forEach((star) => {
+    star.addEventListener('click', () => {
+      selectedStar = parseInt(star.getAttribute('data-val'));
+      document.querySelectorAll('.rc-star').forEach((s) => s.classList.toggle('filled', parseInt(s.getAttribute('data-val')) <= selectedStar));
+      document.getElementById('rcError').classList.remove('visible');
+    });
+  });
+
+  window.submitReportCard = function () {
+    if (selectedStar === 0) { document.getElementById('rcError').classList.add('visible'); return; }
+    const grade = reportCardCtx;
+    const next = nextGrade(grade.key);
+    document.getElementById('promoSub').innerHTML = `Congratulations — you've officially completed <strong>${grade.label}</strong>.<br>Your next chapter is waiting.`;
+    document.getElementById('promoXp').textContent = `+${grade.lessons.length * 50}`;
+    document.getElementById('promoBadge').textContent = grade.title;
+    if (next) {
+      document.getElementById('promoNextTitle').textContent = `${next.label}: ${next.title}`;
+      document.getElementById('promoNextSub').textContent = next.lessons.length ? 'Your next lessons are ready.' : 'Coming soon — check back for new lessons.';
+      document.getElementById('promoNextCard').style.display = '';
+    } else {
+      document.getElementById('promoNextCard').style.display = 'none';
+    }
+    document.getElementById('step1').classList.remove('visible');
+    document.getElementById('step2').classList.add('visible');
+  };
+
+  async function loadDashboard() {
+    const token = window.AGHF_SESSION_TOKEN;
+    if (!token) return;
+    let data;
+    try {
+      const res = await fetch('/api/get-profile', { headers: { Authorization: `Bearer ${token}` } });
+      data = await res.json();
+    } catch (err) {
+      console.error('Profile load error:', err);
+      return;
+    }
+    const p = data.profile || {};
+    const completedIds = new Set((data.lessons_completed || []).map((l) => l.lesson_id));
+    window.__aghfCompletedIds = completedIds;
+
+    const firstName = (p.full_name?.split(' ')[0] || window.AGHF_USER?.email?.split('@')[0] || 'Trader');
+    document.getElementById('greetingTitle').textContent = `Ready for class, ${firstName}?`;
+
+    const currentGrade = currentGradeFor(completedIds);
+    const gp = p.gp || 0;
+    document.getElementById('levelBadge').textContent = `LEVEL ${p.level || 1} · ${currentGrade.label.toUpperCase()}`;
+    document.getElementById('xpCount').textContent = `${gp} XP`;
+
+    const { phase, pct } = phaseProgress(currentGrade, completedIds);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPhaseLabel').textContent = PHASE_LABELS[phase.key];
+    document.getElementById('progressPct').textContent = pct + '%';
+    const phaseIdx = PHASE_ORDER.indexOf(phase.key);
+    const nextPhaseName = phaseIdx < PHASE_ORDER.length - 1 ? PHASE_LABELS[PHASE_ORDER[phaseIdx + 1]].split('— ')[1] : 'Graduation';
+    document.getElementById('progressNextLabel').textContent = `to ${nextPhaseName}`;
+
+    renderRoadmap(currentGrade);
+    renderBadges(completedIds);
+
+    const next = nextIncompleteLesson(completedIds);
+    if (next) {
+      const total = next.grade.lessons.length;
+      document.getElementById('continueEyebrow').textContent = `Up next · ${next.grade.label}`;
+      document.getElementById('continueTitle').textContent = next.grade.title;
+      document.getElementById('continueSub').textContent = `${next.grade.label} · Lesson ${next.n} of ${total}`;
+      document.getElementById('continueCard').href = `lesson.html?grade=${next.grade.key}&n=${next.n}`;
+    } else {
+      document.getElementById('continueEyebrow').textContent = 'All caught up';
+      document.getElementById('continueTitle').textContent = 'New grades are coming soon';
+      document.getElementById('continueSub').textContent = 'Check back as more of the K-12 Academy unlocks.';
+      document.getElementById('continueCard').href = 'lessons.html';
+    }
+  }
+
+  document.addEventListener('aghf-auth-ready', loadDashboard);
+</script>
+
+</body>
+</html>
