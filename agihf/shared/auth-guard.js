@@ -47,13 +47,33 @@
     window.location.href = `${ROOT}login.html?redirect=${redirect}`;
   }
 
+  // This script is a classic (non-module) tag, so it runs synchronously
+  // while the document is still parsing. Consuming pages listen for
+  // `aghf-auth-ready` from a type="module" script, and module scripts are
+  // deferred by spec — they don't run until *after* parsing finishes. If
+  // we dispatched the event immediately here (as the demo-mode branch used
+  // to), it would fire before any page's module script had registered its
+  // listener, so `load()` would simply never run. Waiting for
+  // DOMContentLoaded guarantees every deferred/module script (including
+  // the listener registration) has already executed by the time we fire.
+  function fireAuthReady() {
+    document.documentElement.style.visibility = '';
+    document.dispatchEvent(new Event('aghf-auth-ready'));
+  }
+  function fireAuthReadySafely() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fireAuthReady);
+    } else {
+      fireAuthReady();
+    }
+  }
+
   if (sessionStorage.getItem('aghf_demo') === '1') {
     window.AGHF_DEMO = true;
     window.AGHF_USER = { id: 'demo', email: 'demo@preview.local' };
     window.AGHF_SESSION_TOKEN = null;
     window.AGHF_FETCH_PROFILE = async () => DEMO_PROFILE;
-    document.documentElement.style.visibility = '';
-    document.dispatchEvent(new Event('aghf-auth-ready'));
+    fireAuthReadySafely();
     return;
   }
 
@@ -88,8 +108,7 @@
         window.AGHF_SESSION_TOKEN = newSession.access_token;
       });
 
-      document.documentElement.style.visibility = '';
-      document.dispatchEvent(new Event('aghf-auth-ready'));
+      fireAuthReadySafely();
     } catch (err) {
       console.error('Auth guard error:', err);
       bounceToLogin();
