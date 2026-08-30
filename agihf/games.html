@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Games — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/components.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/nav.js" data-active="games"></script>
+
+<div class="page-title-block">
+  <div class="page-eyebrow">Practice &amp; play</div>
+  <div class="page-title">Games</div>
+  <div class="page-sub">Every game unlocks as you reach that grade — sharpen the instinct, not just the memory.</div>
+</div>
+
+<div id="phaseSections"></div>
+
+<script type="module">
+  import { PHASES, gradeByKey } from './shared/curriculum-data.js';
+  import { GAMES } from './shared/games-data.js';
+
+  const PHASE_DOT = { elementary: 'elementary', middle: 'middle', high: 'high' };
+  const PHASE_TITLE = { elementary: 'Phase I — Elementary School', middle: 'Phase II — Middle School', high: 'Phase III — High School' };
+
+  function gameCardHtml(game) {
+    const stateClass = game.state === 'locked' ? 'locked' : game.state === 'coming-soon' ? 'coming-soon' : '';
+    const label = game.state === 'locked'
+      ? '<div class="game-locked-label">Not yet built</div>'
+      : game.state === 'coming-soon'
+      ? '<div class="game-soon-label">Integrating soon</div>'
+      : `<div class="game-xp">${game.xp}</div>`;
+    const clickable = game.state === 'playable' && game.href;
+    const tag = clickable ? 'a' : 'div';
+    const hrefAttr = clickable ? ` href="${game.href}"` : '';
+    return `<${tag} class="game-card ${stateClass}"${hrefAttr}>
+      <div class="game-icon" style="background:${game.iconBg}">${game.icon}</div>
+      <div class="game-grade">${gradeByKey(game.grade).label}</div>
+      <div class="game-title">${game.title}</div>
+      <div class="game-desc">${game.desc}</div>
+      ${label}
+    </${tag}>`;
+  }
+
+  function render() {
+    const html = PHASES.map((phase) => {
+      const gamesInPhase = GAMES.filter((g) => phase.grades.includes(g.grade));
+      if (!gamesInPhase.length) return '';
+      const coveredGrades = new Set(gamesInPhase.filter((g) => g.state === 'playable').map((g) => g.grade)).size;
+      return `<div class="phase-section">
+        <div class="phase-head">
+          <span class="phase-dot ${PHASE_DOT[phase.key]}"></span>
+          <span class="phase-title">${PHASE_TITLE[phase.key]}</span>
+          <span class="phase-count">${coveredGrades} of ${phase.grades.length} grades covered</span>
+        </div>
+        <div class="game-scroll">
+          ${gamesInPhase.map(gameCardHtml).join('')}
+        </div>
+      </div>`;
+    }).join('');
+    document.getElementById('phaseSections').innerHTML = html;
+  }
+
+  render();
+</script>
+
+</body>
+</html>
