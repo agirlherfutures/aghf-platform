@@ -4,76 +4,58 @@
   "lessonNumber": 4,
   "title": "Contracts & Instruments",
   "videoUrl": null,
-  "videoDuration": "10 min",
+  "videoDuration": "6 min",
   "xpValue": 50,
   "passThreshold": 0.6,
-  "intro": {
-    "heading": "The instrument is the market. The contract count is your size inside that market.",
-    "body": "That distinction has to be crystal clear. MNQ, NQ, MGC, ES are instruments — they tell you what market you are trading. 1 contract, 2 contracts, 5 contracts tells you how much exposure you have to that instrument's move. Same market. Different emotional and dollar weight.",
-    "dayliNote": "Micros keep you teachable — smaller exposure gives you room to actually learn before your emotions hijack the lesson."
-  },
-  "chart": {
-    "mode": "comparison",
-    "heading": "MNQ vs MGC — same 10-point move, different dollars",
-    "prompt": "Tap each instrument to see its per-point value.",
-    "config": {
-      "left": { "label": "MNQ", "value": 2, "desc": "MNQ moves $2 for every point. A 10-point move = $20." },
-      "right": { "label": "MGC", "value": 10, "desc": "MGC moves $10 for every point — 5x MNQ's weight on the same 10-point move." }
-    }
-  },
-  "tapCards": [
+  "hook": "MNQ. MGC. Know what you're trading before you trade it.",
+  "mission": "By the end of this lesson, you should be able to explain the difference between the instrument you trade and the size you trade it at.",
+  "blocks": [
     {
-      "prompt": "MNQ moves $2/point, MGC moves $10/point. Both move 10 points in your favor while you hold 1 contract each. Which trade made more money?",
-      "options": [
-        { "label": "The MGC trade — $10/point beats $2/point", "correct": true, "feedback": "Right — same move size, bigger per-point value, bigger dollar result." },
-        { "label": "They made the same amount", "correct": false, "feedback": "Same points moved, but very different dollar values per point." }
+      "type": "breakdown",
+      "heading": "The instrument is the market. The contract count is your size inside it.",
+      "beats": [
+        { "heading": "Same market, different weight", "body": "MNQ, NQ, MGC, ES are instruments — they tell you what market you're trading. 1 contract, 2 contracts, 5 contracts tells you how much exposure you have to that instrument's move." },
+        { "heading": "Micros keep you teachable", "body": "Smaller exposure gives you room to actually learn before your emotions hijack the lesson." }
       ]
     },
     {
-      "prompt": "Now you take 5 contracts of MNQ instead of 1, same 10-point move. Did you switch instruments?",
-      "options": [
-        { "label": "No — still MNQ, just more size and more dollar exposure", "correct": true, "feedback": "Exactly — the instrument didn't change, only your exposure to its movement did." },
-        { "label": "Yes — more contracts makes it a different instrument", "correct": false, "feedback": "Contract count changes size, not identity." }
-      ]
+      "type": "chart_practice",
+      "mode": "comparison",
+      "heading": "MNQ vs MGC — same 10-point move, different dollars",
+      "prompt": "Tap each instrument to see its per-point value.",
+      "config": {
+        "left": { "label": "MNQ", "value": 2, "desc": "MNQ moves $2 for every point. A 10-point move = $20." },
+        "right": { "label": "MGC", "value": 10, "desc": "MGC moves $10 for every point — 5x MNQ's weight on the same 10-point move." }
+      }
     },
     {
-      "prompt": "A trader with a small account keeps taking 10 MNQ contracts on every setup because \"it's just MNQ.\" What's the risk?",
-      "options": [
-        { "label": "She's ignoring that size changes her dollar risk even with the same instrument", "correct": true, "feedback": "Right — \"just MNQ\" can still be a big risk if the size is large enough." },
-        { "label": "There's no risk — MNQ is a micro, so any size is safe", "correct": false, "feedback": "Being a micro contract doesn't make any size automatically safe." }
+      "type": "confusion",
+      "heading": "Instrument ≠ Size",
+      "left": { "label": "Instrument", "points": ["What market you're trading (MNQ, MGC, ES)", "Determines dollars per point", "Doesn't change no matter how many contracts you hold"] },
+      "right": { "label": "Contract count", "points": ["How much exposure you have to that instrument", "Multiplies the dollar result", "Can change every single trade"] }
+    },
+    {
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "A trader switches from trading 1 contract of MNQ to 5 contracts of MNQ. Has she changed instruments?",
+          "options": ["No — she's still trading MNQ; only her size and dollar exposure changed", "Yes — 5 contracts makes it a different instrument", "It's impossible to tell without knowing the price"],
+          "correctIndex": 0,
+          "why": "The instrument stays MNQ — contract count only changes exposure."
+        },
+        {
+          "question": "Two traders both say they're \"trading MNQ.\" One holds 1 contract, the other holds 20. Are they taking the same risk?",
+          "options": ["No — 20 contracts moves 20x the money on the same point move as 1 contract", "Yes — same instrument means same risk", "It depends only on which broker they use"],
+          "correctIndex": 0,
+          "why": "Same instrument, very different dollar risk — contract count is what changes exposure."
+        }
       ]
     }
   ],
-  "quiz": [
-    {
-      "question": "A trader switches from trading 1 contract of MNQ to 5 contracts of MNQ. Has she changed instruments, and what actually changed about her trade?",
-      "options": [
-        "No — she's still trading the same instrument (MNQ); only her size and dollar exposure changed",
-        "Yes — 5 contracts makes it a different instrument entirely",
-        "It's impossible to tell without knowing the price"
-      ],
-      "correctIndex": 0,
-      "explanation": "The instrument stays MNQ — contract count only changes exposure."
-    },
-    {
-      "question": "Two traders both say they're \"trading MNQ.\" One holds 1 contract, the other holds 20. Are they taking the same risk?",
-      "options": [
-        "No — 20 contracts moves 20x the money on the same point move as 1 contract",
-        "Yes — same instrument means same risk",
-        "It depends only on which broker they use"
-      ],
-      "correctIndex": 0,
-      "explanation": "Same instrument, very different dollar risk — contract count is what changes exposure."
-    },
-    {
-      "question": "Trading more contracts of the same instrument changes your:",
-      "options": [
-        "Size and exposure",
-        "The instrument itself",
-        "Nothing at all"
-      ],
-      "correctIndex": 0,
-      "explanation": "More contracts means more dollars per point moved — not a different market."
-    }
-  ]
+  "takeaways": [
+    "The instrument tells you what market you're trading — not how much you're risking.",
+    "Contract count is the multiplier that turns a point move into real dollars.",
+    "A small instrument can still carry big risk if the size is large enough."
+  ],
+  "remember": "Same market. Different emotional and dollar weight."
 }

@@ -4,67 +4,55 @@
   "lessonNumber": 7,
   "title": "TradingView Basics",
   "videoUrl": null,
-  "videoDuration": "10 min",
+  "videoDuration": "6 min",
   "xpValue": 60,
   "passThreshold": 0.6,
-  "intro": {
-    "heading": "TradingView is your workspace, not just a pretty chart.",
-    "body": "You are using it to read price, change perspective with timeframes, and mark behavior so your eyes stop feeling lost. A horizontal level marking a repeated reaction area is one of the cleanest beginner tools — you don't need every feature, just a few used clearly.",
-    "dayliNote": "You do not need every feature. A few tools used clearly is better than a messy chart."
-  },
-  "tapCards": [
+  "hook": "Your chart is your workspace. Learn it before you try to read it.",
+  "mission": "By the end of this lesson, you should be able to set up a clean, readable chart instead of a cluttered one.",
+  "blocks": [
     {
-      "prompt": "You want to mark a level price keeps reacting to. Which tool fits best?",
-      "options": [
-        { "label": "A single horizontal level", "correct": true, "feedback": "Right — one clean level beats a cluttered chart every time." },
-        { "label": "Every drawing tool at once", "correct": false, "feedback": "Piling on tools usually makes the chart harder to read, not easier." }
+      "type": "breakdown",
+      "heading": "TradingView is your workspace, not just a pretty chart",
+      "beats": [
+        { "heading": "Read, zoom, mark", "body": "You're using it to read price, change perspective with timeframes, and mark behavior so your eyes stop feeling lost." },
+        { "heading": "A few tools, used clearly", "body": "A horizontal level marking a repeated reaction area is one of the cleanest beginner tools — you don't need every feature." }
       ]
     },
     {
-      "prompt": "Your chart now has 12 different lines, boxes, and indicators layered on top of price. What's the actual effect on your read?",
+      "type": "catch_mistake",
+      "heading": "What did she get wrong?",
+      "scenario": "A new trader adds ten different drawing tools to her chart at once, hoping more markings will make her read clearer.",
       "options": [
-        { "label": "It gets harder to see what price is actually doing", "correct": true, "feedback": "Exactly — clutter competes with price for your attention." },
-        { "label": "It gets easier — more markings means more information", "correct": false, "feedback": "More markings isn't automatically more useful information." }
+        { "label": "An overloaded chart makes price harder to read, not easier", "correct": true, "feedback": "Right — clutter competes with price for your attention." },
+        { "label": "Nothing — more tools always means a better read", "correct": false, "feedback": "More markings isn't automatically more useful information." }
       ]
     },
     {
-      "prompt": "You switch from the 4H to the 1M chart. What actually changed?",
-      "options": [
-        { "label": "Your zoomed-in view of the same market — not the market itself", "correct": true, "feedback": "Right — timeframe changes your perspective, not the underlying price story." },
-        { "label": "You're now looking at a completely different market", "correct": false, "feedback": "It's still the same instrument and price — just a different zoom level." }
+      "type": "dayli_says",
+      "quote": "You do not need every feature. A few tools used clearly is better than a messy chart."
+    },
+    {
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "Does adding more drawing tools to a chart automatically make analysis more accurate?",
+          "options": ["No — a cluttered chart makes it harder to see what price is actually doing", "Yes — more tools always means more accuracy", "Only if the tools are different colors"],
+          "correctIndex": 0,
+          "why": "A few clearly-used tools usually beat a chart covered in every available drawing tool."
+        },
+        {
+          "question": "Switching timeframes changes your ___ on the same market, not the market itself.",
+          "options": ["Perspective", "Instrument", "Broker"],
+          "correctIndex": 0,
+          "why": "Zooming in or out just changes what detail you can see, not the underlying price story."
+        }
       ]
     }
   ],
-  "quiz": [
-    {
-      "question": "A new trader adds ten different drawing tools to her chart at once, hoping more markings will make her read clearer. What's the better approach, and why?",
-      "options": [
-        "A few tools used clearly — an overloaded chart makes price harder to read, not easier",
-        "More tools always means a better read",
-        "It doesn't matter how many tools she uses"
-      ],
-      "correctIndex": 0,
-      "explanation": "A cluttered chart competes with price for your attention instead of clarifying it."
-    },
-    {
-      "question": "Does adding more drawing tools to a chart automatically make analysis more accurate?",
-      "options": [
-        "No — a cluttered chart makes it harder to see what price is actually doing",
-        "Yes — more tools always means more accuracy",
-        "Only if the tools are different colors"
-      ],
-      "correctIndex": 0,
-      "explanation": "A few clearly-used tools usually beat a chart covered in every available drawing tool."
-    },
-    {
-      "question": "Switching timeframes changes your ___ on the same market, not the market itself.",
-      "options": [
-        "Perspective",
-        "Instrument",
-        "Broker"
-      ],
-      "correctIndex": 0,
-      "explanation": "Zooming in or out just changes what detail you can see, not the underlying price story."
-    }
-  ]
+  "takeaways": [
+    "TradingView is a workspace for reading price, not a decoration contest.",
+    "A cluttered chart makes price harder to read, not easier.",
+    "Switching timeframes changes your view — not the market itself."
+  ],
+  "remember": "A few tools used clearly beats a messy chart."
 }

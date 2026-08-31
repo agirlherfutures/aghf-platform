@@ -1,55 +1,60 @@
 /**
  * lesson-engine.js — A Girl & Her Futures™
  *
- * Renders a lesson as a one-screen-at-a-time step wizard, restored from
- * the original pre-rebuild lesson design (git ref 9fc8de7, branch
- * backup-before-k12-rebuild) and generalized to run off JSON data
- * instead of bespoke per-lesson HTML/JS.
+ * Renders the AGHF signature lesson experience: Watch It → Break It
+ * Down → Lock It In → Tell Me What You Know. Not a fixed sequence of
+ * screens — a lesson's `blocks[]` array picks freely from 9 block
+ * types (breakdown, dayli_says, confusion, chart_practice,
+ * catch_mistake, what_happens_next, build_sequence, lock_it_in,
+ * reflection) so lessons vary in shape instead of repeating the same
+ * video→read→quiz loop.
  *
- * Step sequence built from the lesson JSON: video+intro → chart
- * (optional) → one slide per tapCards[] entry → a single quiz slide
- * (all questions together) → a completion slide. Progress dots + a
- * gated bottom Prev/Next bar drive navigation; Next stays disabled
- * until the current step's required interaction is done. Confetti,
- * streak toasts, and a completion celebration are restored gamification
- * lifted directly from the original.
+ * Top-level wizard steps: Watch (gated on a Watched click) → Learn It
+ * (every non-reflection block, revealed one at a time in a single
+ * scroll as each is satisfied) → Reflect (only if a `reflection`
+ * block exists) → Complete. The header/breadcrumb/section-progress/
+ * Academy Map chrome lives in agihf/lesson.html, not here — this file
+ * owns only the body of the experience plus the bottom dots/Prev/Next
+ * bar.
  *
- * Chart step "modes" are small reusable canvas renderers (not bespoke
- * per lesson): candle_anatomy, wick_close_demo, timeframe_lens,
- * pnl_calculator, comparison. Adding a 6th mode later is additive.
+ * Feedback philosophy: every interactive block is retry-until-correct.
+ * A wrong pick shows a teaching hint and stays selectable — it never
+ * just reveals the answer and locks. Chart interactions are 6 small
+ * reusable canvas "modes" (not bespoke per lesson): candle_anatomy,
+ * wick_close_demo, timeframe_lens, pnl_calculator, comparison,
+ * spot_it.
  */
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
+let uidCounter = 0;
 
 export function renderLessonWizard(data, opts) {
-  const { onAward, nextHref, backHref } = opts;
+  const { onAward, nextHref, backHref, nextTitle, nextHook } = opts;
+  const lessonId = `${data.phase}-${data.lessonNumber}`;
 
-  const steps = buildSteps(data);
+  const allBlocks = data.blocks || [];
+  const bodyBlocks = allBlocks.filter((b) => b.type !== 'reflection');
+  const reflectionBlock = allBlocks.find((b) => b.type === 'reflection');
+
+  const steps = [
+    { type: 'watch', label: 'Watch' },
+    { type: 'body', label: 'Learn It' },
+    ...(reflectionBlock ? [{ type: 'reflection', label: 'Reflect' }] : []),
+    { type: 'complete', label: 'Complete' },
+  ];
+
   let cur = 0;
   let streak = 0;
   let awarded = false;
-  const done = steps.map((s) => s.type === 'video_intro');
+  const done = steps.map(() => false);
 
   const wrap = document.getElementById('lwWrap');
-  const crumb = document.getElementById('lwCrumb');
-  const count = document.getElementById('lwCount');
-  const xpPill = document.getElementById('lwXp');
-  const bar = document.getElementById('lwBar');
   const dotsEl = document.getElementById('lwDots');
   const stepnameEl = document.getElementById('lwStepname');
   const prevBtn = document.getElementById('lwPrev');
   const nextBtn = document.getElementById('lwNext');
 
-  xpPill.textContent = `+${data.xpValue} XP`;
-
-  function buildSteps(data) {
-    const list = [{ type: 'video_intro', label: 'Introduction' }];
-    if (data.chart) list.push({ type: 'chart', label: 'Explore' });
-    (data.tapCards || []).forEach((tc, i) => list.push({ type: 'tapcard', data: tc, label: `Quick check ${i + 1}` }));
-    list.push({ type: 'quiz', label: 'Final quiz' });
-    list.push({ type: 'complete', label: 'Complete' });
-    return list;
-  }
+  const helpers = { handleStreak, burst };
 
   function markDone(i) {
     if (done[i]) return;
@@ -68,10 +73,7 @@ export function renderLessonWizard(data, opts) {
   }
 
   function updateChrome() {
-    crumb.innerHTML = `Lessons › ${data.title} › <strong>${steps[cur].label}</strong>`;
-    count.textContent = `${cur + 1} / ${steps.length}`;
     stepnameEl.textContent = steps[cur].label;
-    bar.style.width = `${(cur / (steps.length - 1)) * 100}%`;
     prevBtn.disabled = cur === 0;
     nextBtn.disabled = !done[cur];
     nextBtn.textContent = cur === steps.length - 1 ? 'Done ✦' : done[cur] ? 'Next →' : stepPrompt(cur);
@@ -80,9 +82,9 @@ export function renderLessonWizard(data, opts) {
 
   function stepPrompt(i) {
     const s = steps[i];
-    if (s.type === 'chart') return 'Explore the chart';
-    if (s.type === 'tapcard') return 'Pick an answer';
-    if (s.type === 'quiz') return 'Answer all questions';
+    if (s.type === 'watch') return 'Watch first';
+    if (s.type === 'body') return 'Work through it';
+    if (s.type === 'reflection') return 'Save your answer';
     return 'Continue';
   }
 
@@ -143,11 +145,10 @@ export function renderLessonWizard(data, opts) {
     slide.className = 'lw-slide active';
     wrap.appendChild(slide);
 
-    if (step.type === 'video_intro') renderVideoIntro(slide, data, () => markDone(i));
-    else if (step.type === 'chart') renderChart(slide, data.chart, () => markDone(i), handleStreak);
-    else if (step.type === 'tapcard') renderTapCard(slide, step.data, () => markDone(i), handleStreak);
-    else if (step.type === 'quiz') renderQuiz(slide, data.quiz || [], () => markDone(i), handleStreak);
-    else if (step.type === 'complete') renderComplete(slide, data, { nextHref, backHref });
+    if (step.type === 'watch') renderWatch(slide, data, () => markDone(i));
+    else if (step.type === 'body') renderBody(slide, bodyBlocks, () => markDone(i), helpers);
+    else if (step.type === 'reflection') renderReflection(slide, reflectionBlock, lessonId, () => markDone(i));
+    else if (step.type === 'complete') renderComplete(slide, data, { nextHref, backHref, nextTitle, nextHook });
   }
 
   prevBtn.addEventListener('click', () => goTo(cur - 1));
@@ -159,7 +160,7 @@ export function renderLessonWizard(data, opts) {
     if (wasLastBeforeComplete && !awarded) {
       awarded = true;
       burst();
-      showToast(`+${data.xpValue} XP earned!`, `${data.title} complete 🫧✨`);
+      showToast(`+${data.xpValue} GP earned!`, `${data.title} complete 🫧✨`);
       onAward();
     }
   });
@@ -167,10 +168,9 @@ export function renderLessonWizard(data, opts) {
   goTo(0);
 }
 
-/* ── Step renderers ─────────────────────────────────────────────── */
+/* ── Watch ───────────────────────────────────────────────────────── */
 
-function renderVideoIntro(slide, data, markDone) {
-  const intro = data.intro || {};
+function renderWatch(slide, data, satisfy) {
   slide.innerHTML = `
     <div class="lw-video-block">
       <div class="lw-video-bg"></div>
@@ -178,42 +178,153 @@ function renderVideoIntro(slide, data, markDone) {
       ${!data.videoUrl ? '<div class="lw-video-soon">Video coming soon</div>' : ''}
       <div class="lw-video-duration">${data.videoDuration || ''}</div>
     </div>
-    <div class="lw-intro-hero">
-      <div class="lw-eyebrow" style="color:var(--pink-light)">✦ ${data.title}</div>
-      <h1>${intro.heading || ''}</h1>
-      <p>${intro.body || ''}</p>
-      <div class="lw-pills">
-        <span class="lw-pill pk">${data.videoDuration || ''}</span>
-        <span class="lw-pill pc">+${data.xpValue} XP</span>
-      </div>
+    <div class="lw-eyebrow" style="margin:14px 0 0">🎥 Watch With Dayli</div>
+    <div class="lw-card lw-mission-card">
+      <div class="lw-eyebrow">Today's mission</div>
+      <p>${data.mission || ''}</p>
     </div>
-    ${intro.dayliNote ? `<div class="lw-card"><div class="lw-dayli-note">${intro.dayliNote}</div></div>` : ''}
+    <button type="button" class="lw-continue-btn lw-watched-btn" id="lwWatchedBtn">✓ Watched — Continue</button>
   `;
-  markDone();
+  document.getElementById('lwWatchedBtn').addEventListener('click', satisfy);
 }
 
-function renderChart(slide, chart, markDone, handleStreak) {
-  slide.innerHTML = `
-    <div class="lw-card">
-      <div class="lw-eyebrow">Teach → Experience</div>
-      <h2>${chart.heading || 'See it on the chart'}</h2>
-      <p>${chart.prompt || 'Tap through the chart below.'}</p>
-      <div class="lw-chartbox">
-        <div class="lw-chartwrap">
-          <canvas id="lwChartCanvas" class="lw-chart" width="780" height="320"></canvas>
-          <div class="lw-chart-note" id="lwChartNote"></div>
-        </div>
-        <div class="lw-btnrow" id="lwChartBtns"></div>
-        <div class="lw-kpi-grid" id="lwChartKpis"></div>
+/* ── Body: progressive block reveal ─────────────────────────────── */
+
+function renderBody(slide, blocks, onAllDone, helpers) {
+  const container = document.createElement('div');
+  container.className = 'lw-body-stream';
+  slide.appendChild(container);
+
+  if (!blocks.length) { onAllDone(); return; }
+
+  let idx = 0;
+  function renderNext() {
+    if (idx >= blocks.length) { onAllDone(); return; }
+    const block = blocks[idx];
+    const blockEl = document.createElement('div');
+    blockEl.className = 'lw-block-in';
+    container.appendChild(blockEl);
+    const satisfy = () => {
+      idx += 1;
+      renderNext();
+      requestAnimationFrame(() => blockEl.nextElementSibling?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    };
+    const renderer = BLOCK_RENDERERS[block.type];
+    if (renderer) renderer(blockEl, block, satisfy, helpers);
+    else { blockEl.innerHTML = ''; satisfy(); }
+  }
+  renderNext();
+}
+
+function appendContinue(el, satisfy, label = 'Continue →') {
+  if (el.querySelector('.lw-continue-btn')) return;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'lw-continue-btn';
+  btn.textContent = label;
+  btn.addEventListener('click', satisfy);
+  el.appendChild(btn);
+}
+
+/** Shared retry-until-correct wiring for any group of option buttons. */
+function wireRetryOptions(buttons, options, feedbackEl, onSolved, handleStreak) {
+  let solved = false;
+  buttons.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      if (solved) return;
+      const opt = options[i];
+      buttons.forEach((b) => b.classList.remove('wrong'));
+      if (opt.correct) {
+        solved = true;
+        btn.classList.add('correct');
+        buttons.forEach((b) => { if (b !== btn) b.disabled = true; });
+        feedbackEl.innerHTML = opt.why ? `<strong>✦ Why?</strong> ${opt.why}` : (opt.feedback || 'Exactly!');
+        feedbackEl.className = 'lw-feedback show good';
+        handleStreak(true);
+        onSolved();
+      } else {
+        btn.classList.add('wrong');
+        feedbackEl.textContent = opt.feedback || 'Not quite — look again.';
+        feedbackEl.className = 'lw-feedback show bad';
+        handleStreak(false);
+      }
+    });
+  });
+}
+
+/* ── Block renderers ─────────────────────────────────────────────── */
+
+function renderBreakdown(el, block, satisfy) {
+  el.innerHTML = `
+    <div class="lw-card lw-breakdown-card">
+      <div class="lw-eyebrow">📖 Break It Down</div>
+      ${block.heading ? `<h2>${block.heading}</h2>` : ''}
+      <div class="lw-beats">
+        ${(block.beats || []).map((b) => `<div class="lw-beat"><h3>${b.heading || ''}</h3><p>${b.body}</p></div>`).join('')}
       </div>
     </div>
-    <div class="lw-feedback show good" id="lwChartFb"></div>
   `;
-  const ctx = document.getElementById('lwChartCanvas').getContext('2d');
-  const btnRow = document.getElementById('lwChartBtns');
-  const kpiGrid = document.getElementById('lwChartKpis');
-  const noteEl = document.getElementById('lwChartNote');
-  const fbEl = document.getElementById('lwChartFb');
+  appendContinue(el, satisfy);
+}
+
+function renderDayliSays(el, block, satisfy) {
+  el.innerHTML = `
+    <div class="lw-card lw-dayli-card">
+      <div class="lw-dayli-avatar">🎀</div>
+      <div class="lw-dayli-body">
+        <div class="lw-dayli-label">Dayli says</div>
+        <div class="lw-dayli-quote">${block.quote}</div>
+      </div>
+    </div>
+  `;
+  appendContinue(el, satisfy);
+}
+
+function renderConfusion(el, block, satisfy) {
+  el.innerHTML = `
+    <div class="lw-card lw-confusion-card">
+      <div class="lw-eyebrow">⚠️ Don't Get This Confused</div>
+      <h2>${block.heading}</h2>
+      <div class="lw-confusion-grid">
+        <div class="lw-confusion-col left">
+          <div class="lw-confusion-label">${block.left.label}</div>
+          <ul>${block.left.points.map((p) => `<li>${p}</li>`).join('')}</ul>
+        </div>
+        <div class="lw-confusion-col right">
+          <div class="lw-confusion-label">${block.right.label}</div>
+          <ul>${block.right.points.map((p) => `<li>${p}</li>`).join('')}</ul>
+        </div>
+      </div>
+    </div>
+  `;
+  appendContinue(el, satisfy);
+}
+
+function renderChartPractice(el, block, satisfy, helpers) {
+  const uid = `cp${uidCounter++}`;
+  el.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">📊 See It on the Chart</div>
+      <h2>${block.heading || 'Now find it'}</h2>
+      <p>${block.prompt || ''}</p>
+      <div class="lw-chartbox">
+        <div class="lw-chartwrap">
+          <canvas id="lwCanvas_${uid}" class="lw-chart" width="780" height="320"></canvas>
+          <div class="lw-chart-note" id="lwNote_${uid}"></div>
+        </div>
+        <div class="lw-btnrow" id="lwBtns_${uid}"></div>
+        <div class="lw-kpi-grid" id="lwKpi_${uid}"></div>
+      </div>
+    </div>
+    <div class="lw-feedback show good" id="lwFb_${uid}"></div>
+    <div class="lw-continue-wrap" id="lwContWrap_${uid}"></div>
+  `;
+  const ctx = document.getElementById(`lwCanvas_${uid}`).getContext('2d');
+  const btnRow = document.getElementById(`lwBtns_${uid}`);
+  const kpiGrid = document.getElementById(`lwKpi_${uid}`);
+  const noteEl = document.getElementById(`lwNote_${uid}`);
+  const fbEl = document.getElementById(`lwFb_${uid}`);
+  const contWrap = document.getElementById(`lwContWrap_${uid}`);
 
   function flashNote(text) {
     noteEl.textContent = text;
@@ -221,99 +332,195 @@ function renderChart(slide, chart, markDone, handleStreak) {
     clearTimeout(noteEl._t);
     noteEl._t = setTimeout(() => noteEl.classList.remove('show'), 1300);
   }
-  function setFb(text) {
-    fbEl.textContent = text;
-  }
+  function setFb(text) { fbEl.textContent = text; }
   function setKpis(items) {
     kpiGrid.innerHTML = items.map((k) => `<div class="lw-kpi"><small>${k.label}</small><strong>${k.value}</strong></div>`).join('');
   }
+  function showContinue() {
+    if (contWrap.childElementCount) return;
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'lw-continue-btn'; btn.textContent = 'Continue →';
+    btn.addEventListener('click', satisfy);
+    contWrap.appendChild(btn);
+  }
 
-  const mode = CHART_MODES[chart.mode] || CHART_MODES.comparison;
-  mode.init({ ctx, btnRow, kpiGrid, flashNote, setFb, setKpis, config: chart.config || {}, markDone, handleStreak });
+  const mode = CHART_MODES[block.mode] || CHART_MODES.comparison;
+  mode.init({ ctx, btnRow, kpiGrid, flashNote, setFb, setKpis, config: block.config || {}, markDone: showContinue, handleStreak: helpers.handleStreak });
 }
 
-function renderTapCard(slide, tc, markDone, handleStreak) {
-  const gridClass = (tc.options || []).length >= 3 ? 'lw-grid3' : 'lw-grid2';
-  slide.innerHTML = `
+function renderCatchMistake(el, block, satisfy, helpers) {
+  el.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">Quick check</div>
-      <h2>${tc.prompt}</h2>
-      <div class="${gridClass}" id="lwTapGrid">
-        ${(tc.options || []).map((opt, i) => `<button type="button" class="lw-tap" data-idx="${i}"><h3>${opt.label}</h3></button>`).join('')}
+      <div class="lw-eyebrow">🚩 Catch the Mistake</div>
+      <h2>${block.heading || 'What did she get wrong?'}</h2>
+      <p class="lw-scenario">${block.scenario}</p>
+      <div class="${(block.options || []).length >= 3 ? 'lw-grid3' : 'lw-grid2'}" id="lwCmOpts">
+        ${block.options.map((o, i) => `<button type="button" class="lw-tap" data-i="${i}"><h3>${o.label}</h3></button>`).join('')}
       </div>
     </div>
-    <div class="lw-feedback" id="lwTapFb"></div>
+    <div class="lw-feedback" id="lwCmFb"></div>
   `;
-  const fbEl = document.getElementById('lwTapFb');
-  const buttons = slide.querySelectorAll('.lw-tap');
+  const buttons = el.querySelectorAll('.lw-tap');
+  const fb = el.querySelector('#lwCmFb');
+  wireRetryOptions(buttons, block.options, fb, () => appendContinue(el, satisfy), helpers.handleStreak);
+}
+
+function renderWhatHappensNext(el, block, satisfy, helpers) {
+  const seqIdx = block.sequence.indexOf(block.askAfter);
+  const shown = seqIdx >= 0 ? block.sequence.slice(0, seqIdx + 1) : block.sequence;
+  el.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">🫧 What Happens Next?</div>
+      <h2>${block.heading || 'Continue the sequence'}</h2>
+      <div class="lw-seq-strip">
+        ${shown.map((s) => `<span class="lw-seq-step done">${s}</span><span class="lw-seq-arrow">→</span>`).join('')}<span class="lw-seq-step next">?</span>
+      </div>
+      <p>${block.prompt || "What comes next — not where price goes, what's next in the framework?"}</p>
+      <div class="lw-opts" id="lwWhnOpts">
+        ${block.options.map((o, i) => `<button type="button" class="lw-qopt" data-i="${i}">${o.label}</button>`).join('')}
+      </div>
+    </div>
+    <div class="lw-feedback" id="lwWhnFb"></div>
+  `;
+  const buttons = el.querySelectorAll('.lw-qopt');
+  const fb = el.querySelector('#lwWhnFb');
+  wireRetryOptions(buttons, block.options, fb, () => appendContinue(el, satisfy), helpers.handleStreak);
+}
+
+function renderBuildSequence(el, block, satisfy, helpers) {
+  el.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">🎯 Build the Setup</div>
+      <h2>${block.heading || 'Tap the steps in order'}</h2>
+      <p>${block.prompt || ''}</p>
+      <div class="lw-grid3" id="lwBsItems">
+        ${block.items.map((it) => `<button type="button" class="lw-tap" data-key="${it.key}"><h3>${it.label}</h3>${it.desc ? `<p>${it.desc}</p>` : ''}</button>`).join('')}
+      </div>
+      <div class="lw-kpi-grid">
+        <div class="lw-kpi"><small>Built</small><strong id="lwBsCount">0 / ${block.items.length}</strong></div>
+        <div class="lw-kpi"><small>Status</small><strong id="lwBsStatus">Waiting</strong></div>
+      </div>
+    </div>
+    <div class="lw-feedback" id="lwBsFb"></div>
+  `;
+  const order = [];
+  const buttons = el.querySelectorAll('.lw-tap');
+  const fb = el.querySelector('#lwBsFb');
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const opt = tc.options[Number(btn.dataset.idx)];
-      buttons.forEach((b) => { b.classList.remove('correct', 'incorrect'); b.disabled = true; });
-      btn.classList.add(opt.correct ? 'correct' : 'incorrect');
-      fbEl.textContent = opt.feedback || '';
-      fbEl.className = `lw-feedback show ${opt.correct ? 'good' : 'bad'}`;
-      handleStreak(!!opt.correct);
-      markDone();
+      if (order.includes(btn.dataset.key)) return;
+      order.push(btn.dataset.key);
+      btn.classList.add('selected');
+      btn.disabled = true;
+      document.getElementById('lwBsCount').textContent = `${order.length} / ${block.items.length}`;
+      if (order.length === block.items.length) {
+        const success = order.join('|') === block.correctOrder.join('|');
+        document.getElementById('lwBsStatus').textContent = success ? 'Correct order!' : 'Review below';
+        fb.textContent = success ? (block.successFeedback || 'Clean sequence — nice work.') : (block.failFeedback || "That order isn't quite right yet — review the pieces before the next lesson.");
+        fb.className = `lw-feedback show ${success ? 'good' : 'bad'}`;
+        helpers.handleStreak(success);
+        if (success) helpers.burst();
+        appendContinue(el, satisfy);
+      }
     });
   });
 }
 
-function renderQuiz(slide, questions, markDone, handleStreak) {
-  slide.innerHTML = `
+function renderLockItIn(el, block, satisfy, helpers) {
+  el.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">Final quiz</div>
-      <h2>Lock it in</h2>
-      <div id="lwQuizQuestions">
-        ${questions.map((q, qi) => `
-          <div class="lw-question" data-qidx="${qi}">
-            <div class="lw-q-label">Question ${qi + 1} of ${questions.length}</div>
+      <div class="lw-eyebrow">🧠 Lock It In</div>
+      <h2>Before we move on, show me you can use it.</h2>
+      <div id="lwLiiQuestions">
+        ${block.questions.map((q, qi) => `
+          <div class="lw-question" data-qi="${qi}">
+            <div class="lw-q-label">Question ${qi + 1} of ${block.questions.length}</div>
             <div class="lw-q-text">${q.question}</div>
-            <div class="lw-opts">
-              ${q.options.map((opt, oi) => `<button type="button" class="lw-qopt" data-oidx="${oi}">${opt}</button>`).join('')}
-            </div>
-            <div class="lw-qfb" id="lwQfb${qi}"></div>
-          </div>
-        `).join('')}
+            <div class="lw-opts">${q.options.map((opt, oi) => `<button type="button" class="lw-qopt" data-oi="${oi}">${opt}</button>`).join('')}</div>
+            <div class="lw-qfb" id="lwLiiFb${qi}"></div>
+          </div>`).join('')}
       </div>
     </div>
   `;
-  const answered = new Set();
-  questions.forEach((q, qi) => {
-    const qBlock = slide.querySelector(`[data-qidx="${qi}"]`);
-    const optBtns = qBlock.querySelectorAll('.lw-qopt');
-    const fb = document.getElementById(`lwQfb${qi}`);
-    optBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const oi = Number(btn.dataset.oidx);
-        const correct = oi === q.correctIndex;
-        optBtns.forEach((b) => { b.disabled = true; });
-        btn.classList.add(correct ? 'correct' : 'wrong');
-        if (!correct) optBtns[q.correctIndex].classList.add('correct');
-        fb.textContent = q.explanation || (correct ? 'Correct.' : 'Not quite.');
-        fb.className = `lw-qfb show ${correct ? 'good' : 'bad'}`;
-        handleStreak(correct);
-        answered.add(qi);
-        if (answered.size === questions.length) markDone();
-      });
-    });
+  let solvedCount = 0;
+  block.questions.forEach((q, qi) => {
+    const qEl = el.querySelector(`[data-qi="${qi}"]`);
+    const buttons = qEl.querySelectorAll('.lw-qopt');
+    const fb = document.getElementById(`lwLiiFb${qi}`);
+    const options = q.options.map((label, oi) => ({ label, correct: oi === q.correctIndex, why: q.why, feedback: (q.hints && q.hints[oi]) || 'Not quite — look again.' }));
+    wireRetryOptions(buttons, options, fb, () => {
+      solvedCount += 1;
+      if (solvedCount === block.questions.length) appendContinue(el, satisfy);
+    }, helpers.handleStreak);
   });
 }
 
-function renderComplete(slide, data, { nextHref, backHref }) {
+const BLOCK_RENDERERS = {
+  breakdown: renderBreakdown,
+  dayli_says: renderDayliSays,
+  confusion: renderConfusion,
+  chart_practice: renderChartPractice,
+  catch_mistake: renderCatchMistake,
+  what_happens_next: renderWhatHappensNext,
+  build_sequence: renderBuildSequence,
+  lock_it_in: renderLockItIn,
+};
+
+/* ── Reflection (own step) ───────────────────────────────────────── */
+
+function renderReflection(slide, block, lessonId, markDone) {
+  slide.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">💭 Tell Me What You Know</div>
+      <h2>In your own words</h2>
+      <p>${block.prompt}</p>
+      <textarea class="lw-reflect-textarea" id="lwReflectInput" rows="5" placeholder="Type it how YOU understand it..."></textarea>
+      <button type="button" class="lw-continue-btn" id="lwSaveNoteBtn" disabled>Save to My Notes →</button>
+      <div class="lw-reflect-saved" id="lwReflectSaved" style="display:none">✓ Saved to My Notes</div>
+    </div>
+  `;
+  const input = slide.querySelector('#lwReflectInput');
+  const saveBtn = slide.querySelector('#lwSaveNoteBtn');
+  input.addEventListener('input', () => { saveBtn.disabled = input.value.trim().length < 5; });
+  saveBtn.addEventListener('click', () => {
+    try {
+      const key = 'aghf_notes';
+      const notes = JSON.parse(localStorage.getItem(key) || '[]');
+      notes.push({ lessonId, prompt: block.prompt, text: input.value.trim(), savedAt: Date.now() });
+      localStorage.setItem(key, JSON.stringify(notes));
+    } catch (err) { console.error('Note save error:', err); }
+    slide.querySelector('#lwReflectSaved').style.display = '';
+    saveBtn.disabled = true;
+    input.disabled = true;
+    markDone();
+  });
+}
+
+/* ── Complete ─────────────────────────────────────────────────────── */
+
+function renderComplete(slide, data, { nextHref, backHref, nextTitle, nextHook }) {
   slide.innerHTML = `
     <div class="lw-card lw-complete">
       <h2>${data.title} <span>complete.</span></h2>
-      <p>Nice work — you watched, explored, and locked it in.</p>
-      <div class="lw-badge">+${data.xpValue} XP · Lesson unlocked</div>
-      <div class="lw-cc-btns">
-        <button type="button" class="lw-cc-next" id="lwNextLessonBtn">${nextHref ? 'Next lesson →' : 'Back to lessons →'}</button>
-        <button type="button" class="lw-cc-hub" id="lwBackHubBtn">Back to lessons</button>
+      <div class="lw-badge">+${data.xpValue} GP</div>
+      <div class="lw-takeaways">
+        ${(data.takeaways || []).map((t) => `<div class="lw-takeaway">✓ ${t}</div>`).join('')}
       </div>
+      ${data.remember ? `<div class="lw-remember"><div class="lw-remember-label">🎀 One Thing to Remember</div><div class="lw-remember-text">${data.remember}</div></div>` : ''}
     </div>
+    ${nextTitle ? `
+    <div class="lw-card lw-next-up">
+      <div class="lw-eyebrow">Next up</div>
+      <h2>${nextTitle}</h2>
+      ${nextHook ? `<p class="lw-hook-text">"${nextHook}"</p>` : ''}
+      <button type="button" class="lw-cc-next" id="lwNextLessonBtn">Start Next Lesson →</button>
+    </div>` : `
+    <div class="lw-card" style="text-align:center">
+      <button type="button" class="lw-cc-next" id="lwNextLessonBtn">Back to Lessons →</button>
+    </div>`}
+    <div class="lw-back-link"><a href="${backHref}">← Back to all lessons</a></div>
   `;
   document.getElementById('lwNextLessonBtn').addEventListener('click', () => { window.location.href = nextHref || backHref; });
-  document.getElementById('lwBackHubBtn').addEventListener('click', () => { window.location.href = backHref; });
 }
 
 /* ── Shared canvas primitives ────────────────────────────────────── */
@@ -490,13 +697,12 @@ const CHART_MODES = {
   },
 
   pnl_calculator: {
-    init({ ctx, btnRow, kpiGrid, setFb, setKpis, markDone, handleStreak, config }) {
+    init({ ctx, btnRow, setFb, setKpis, markDone, handleStreak, config }) {
       const w = ctx.canvas.width, h = ctx.canvas.height;
       const instrument = config.instrument || 'MNQ';
       const pointValue = config.pointValue || 2;
       const points = config.points || 30;
       const contractOptions = config.contracts || [1, 3, 5];
-      let picked = null;
 
       function draw(contracts) {
         drawFrame(ctx, w, h);
@@ -518,7 +724,7 @@ const CHART_MODES = {
       draw(null);
       btnRow.querySelectorAll('button').forEach((btn) => {
         btn.addEventListener('click', () => {
-          picked = Number(btn.dataset.n);
+          const picked = Number(btn.dataset.n);
           btnRow.querySelectorAll('button').forEach((b) => b.classList.remove('active'));
           btn.classList.add('active');
           draw(picked);
@@ -563,6 +769,47 @@ const CHART_MODES = {
           handleStreak(true);
           tapped += 1;
           if (tapped >= 2) markDone();
+        });
+      });
+    },
+  },
+
+  spot_it: {
+    init({ ctx, btnRow, setFb, setKpis, markDone, handleStreak, config }) {
+      const w = ctx.canvas.width, h = ctx.canvas.height;
+      const path = config.path || [[60, 220], [160, 140], [260, 180], [360, 90], [460, 150], [560, 60], [660, 110]];
+      const points = config.points || [];
+
+      function draw(selectedKey) {
+        drawFrame(ctx, w, h);
+        ctx.strokeStyle = '#2C1810'; ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        path.forEach(([x, y], i) => (i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)));
+        ctx.stroke();
+        points.forEach((p) => {
+          const [x, y] = path[p.idx];
+          const isSel = p.key === selectedKey;
+          ctx.beginPath(); ctx.arc(x, y, 9, 0, Math.PI * 2);
+          ctx.fillStyle = isSel ? (p.correct ? '#7ECEC4' : '#F4829A') : '#F5A857';
+          ctx.fill();
+          ctx.fillStyle = '#2C1810'; ctx.font = 'bold 13px DM Sans';
+          ctx.fillText(p.key, x - 4, y - 16);
+        });
+      }
+
+      btnRow.innerHTML = points.map((p) => `<button type="button" data-key="${p.key}">${p.key}</button>`).join('');
+      setKpis([{ label: 'Structure', value: config.structureLabel || '—' }, { label: 'Points', value: points.length }, { label: 'Tap to explore', value: points.map((p) => p.key).join(' / ') }]);
+      setFb(config.prompt2 || 'Tap the point you think is correct.');
+      draw(null);
+      let solved = false;
+      btnRow.querySelectorAll('button').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          if (solved) return;
+          const p = points.find((pt) => pt.key === btn.dataset.key);
+          draw(p.key);
+          setFb(p.feedback || (p.correct ? 'Exactly!' : 'Not quite — look again.'));
+          if (p.correct) { solved = true; handleStreak(true); markDone(); }
+          else handleStreak(false);
         });
       });
     },

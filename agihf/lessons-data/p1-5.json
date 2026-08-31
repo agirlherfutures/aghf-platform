@@ -4,67 +4,61 @@
   "lessonNumber": 5,
   "title": "Futures vs Stocks",
   "videoUrl": null,
-  "videoDuration": "9 min",
+  "videoDuration": "5 min",
   "xpValue": 50,
   "passThreshold": 0.6,
-  "intro": {
-    "heading": "Stocks are about ownership. Futures are about movement.",
-    "body": "That is the cleanest way to separate them. With stocks, you are buying ownership in a company. With futures, you are trading a contract based on price movement. That difference changes how you think about direction, risk, flexibility, and why the Dayli ICC method makes more sense in futures.",
-    "dayliNote": "Futures naturally fit long and short thinking — that flexibility is exactly why this training is built around futures, not stocks."
-  },
-  "tapCards": [
+  "hook": "Futures aren't stocks. The rules are different. Let's break it down.",
+  "mission": "By the end of this lesson, you should be able to explain why futures fit a movement-based framework better than stock ownership does.",
+  "blocks": [
     {
-      "prompt": "\"I want to own this for 10 years\" vs \"I think price is about to move\" — which mindset fits futures trading?",
-      "options": [
-        { "label": "\"I think price is about to move\"", "correct": true, "feedback": "Right — futures are about the movement itself, not indefinite ownership." },
-        { "label": "\"I want to own this for 10 years\"", "correct": false, "feedback": "That's an ownership mindset — it fits stocks, not futures contracts." }
+      "type": "breakdown",
+      "heading": "Stocks are about ownership. Futures are about movement.",
+      "beats": [
+        { "heading": "The cleanest way to separate them", "body": "With stocks, you're buying ownership in a company. With futures, you're trading a contract based on price movement — no company stake involved." },
+        { "heading": "Why it matters here", "body": "That difference changes how you think about direction, risk, and flexibility — and it's why Dayli ICC makes more sense in futures." }
       ]
     },
     {
-      "prompt": "A futures trader closes every position by the contract's expiration, regardless of her long-term opinion. Why does that make sense for futures but not stock ownership?",
+      "type": "catch_mistake",
+      "heading": "What's wrong with her plan?",
+      "scenario": "A new trader says: \"I'm going to hold this futures contract for 10 years, like a stock.\"",
       "options": [
-        { "label": "A futures contract is about price movement over a defined period, not permanent ownership", "correct": true, "feedback": "Right — futures contracts have expirations built in because they're not ownership positions." },
-        { "label": "It doesn't make sense — futures should be held forever too", "correct": false, "feedback": "Futures contracts are structurally built around movement within a period." }
-      ]
-    },
-    {
-      "prompt": "A new trader says \"I'm going to hold this futures contract for 10 years, like a stock.\" What's wrong with that plan?",
-      "options": [
-        { "label": "Futures contracts expire — they aren't built for indefinite holding", "correct": true, "feedback": "Exactly — that plan misunderstands what a futures contract actually is." },
+        { "label": "Futures contracts expire — they aren't built for indefinite holding the way stock ownership is", "correct": true, "feedback": "Exactly — that plan misunderstands what a futures contract actually is." },
         { "label": "Nothing's wrong with it", "correct": false, "feedback": "Futures contracts have expiration dates and aren't long-term ownership vehicles." }
+      ]
+    },
+    {
+      "type": "confusion",
+      "heading": "Stocks ≠ Futures",
+      "left": { "label": "Stocks", "points": ["You own a piece of a company", "No expiration", "Value tied to company performance"] },
+      "right": { "label": "Futures", "points": ["A contract based on price movement", "Has an expiration date", "No ownership stake at all"] }
+    },
+    {
+      "type": "dayli_says",
+      "quote": "Futures naturally fit long and short thinking — that flexibility is exactly why this training is built around futures, not stocks."
+    },
+    {
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "A trader wants to profit from a short-term price move without caring about long-term company ownership. Which instrument type is built for that, and why?",
+          "options": ["Futures — a futures contract is based purely on price movement, not ownership", "Stocks — stock ownership was always designed for short-term moves", "Neither — instrument choice has nothing to do with that goal"],
+          "correctIndex": 0,
+          "why": "Futures contracts are built purely around price movement, with no ownership stake."
+        },
+        {
+          "question": "Futures thinking focuses on direction and:",
+          "options": ["Movement", "Dividends", "Voting rights"],
+          "correctIndex": 0,
+          "why": "Futures are built around price movement, not the ownership perks that come with stock."
+        }
       ]
     }
   ],
-  "quiz": [
-    {
-      "question": "A trader wants to profit from a short-term price move without caring at all about long-term company ownership. Which instrument type is built for that goal, and why?",
-      "options": [
-        "Futures — a futures contract is based purely on price movement, not ownership",
-        "Stocks — stock ownership was always designed for short-term moves",
-        "Neither — instrument choice has nothing to do with that goal"
-      ],
-      "correctIndex": 0,
-      "explanation": "Futures contracts are built purely around price movement, with no ownership stake involved."
-    },
-    {
-      "question": "What's the core difference between what you own when you buy a stock versus what you hold in a futures contract?",
-      "options": [
-        "A stock is a claim on company ownership; a futures contract is an agreement based on price movement",
-        "They're the same thing with different names",
-        "A futures contract is a type of stock"
-      ],
-      "correctIndex": 0,
-      "explanation": "Buying a stock means owning a piece of a company. A futures contract carries no ownership stake at all."
-    },
-    {
-      "question": "Futures thinking focuses on direction and:",
-      "options": [
-        "Movement",
-        "Dividends",
-        "Voting rights"
-      ],
-      "correctIndex": 0,
-      "explanation": "Futures are built around price movement, not the ownership perks that come with stock."
-    }
-  ]
+  "takeaways": [
+    "Stocks are ownership. Futures are a contract on movement.",
+    "Futures contracts expire — they aren't a buy-and-hold-forever vehicle.",
+    "Movement-based thinking is exactly why futures fit this framework."
+  ],
+  "remember": "You're not buying a piece of a company. You're trading movement."
 }

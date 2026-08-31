@@ -4,73 +4,53 @@
   "lessonNumber": 17,
   "title": "Timeframes",
   "videoUrl": null,
-  "videoDuration": "12 min",
+  "videoDuration": "6 min",
   "xpValue": 70,
   "passThreshold": 0.6,
-  "intro": {
-    "heading": "Same market. Different zoom levels.",
-    "body": "The 1 minute, 5 minute, 1 hour, and 4 hour are not different markets — they are different views of the same price story. Lower timeframes show more detail. Higher timeframes show more direction.",
-    "dayliNote": "Timeframes change your perspective on the same market. The market itself never changes just because you switched the chart view."
-  },
-  "chart": {
-    "mode": "timeframe_lens",
-    "heading": "Zoom through the timeframes",
-    "prompt": "Tap each lens to see how candle density changes at different zoom levels.",
-    "config": {}
-  },
-  "tapCards": [
+  "hook": "Higher timeframes tell the story. Lower timeframes let you step inside it.",
+  "mission": "By the end of this lesson, you should be able to explain what actually changes when you switch timeframes — and what doesn't.",
+  "blocks": [
     {
-      "prompt": "Which timeframe would you check first to understand the bigger picture: 4H or 1M?",
-      "options": [
-        { "label": "4H", "correct": true, "feedback": "Right — higher timeframes are built to show the bigger directional story first." },
-        { "label": "1M", "correct": false, "feedback": "The 1M is far too zoomed-in to establish the bigger picture on its own." }
+      "type": "breakdown",
+      "heading": "Same market. Different zoom levels.",
+      "beats": [
+        { "heading": "Views, not different markets", "body": "The 1 minute, 5 minute, 1 hour, and 4 hour are not different markets — they are different views of the same price story." },
+        { "heading": "Detail vs direction", "body": "Lower timeframes show more detail. Higher timeframes show more direction." }
       ]
     },
     {
-      "prompt": "You've read the 4H and have a directional bias. What's the next zoom level down usually used for?",
-      "options": [
-        { "label": "Narrowing down to more specific structure and levels within that bigger picture", "correct": true, "feedback": "Right — each zoom level narrows the picture, it doesn't replace the one before it." },
-        { "label": "Throwing out the 4H read entirely and starting over", "correct": false, "feedback": "Lower timeframes build on the higher-timeframe read." }
-      ]
+      "type": "chart_practice",
+      "mode": "timeframe_lens",
+      "heading": "Zoom through the timeframes",
+      "prompt": "Tap each lens to see how candle density changes at different zoom levels.",
+      "config": {}
     },
     {
-      "prompt": "You open the 1M and it looks messy, contradicting nothing you saw on the 4H. Should the 1M's messiness change your 4H bias?",
-      "options": [
-        { "label": "No — the 1M is a detail view; messiness there doesn't erase a clear higher-timeframe read", "correct": true, "feedback": "Right — each timeframe answers a different question." },
-        { "label": "Yes — always trust whichever timeframe you're looking at right now", "correct": false, "feedback": "That would mean discarding useful context every time you zoom in." }
+      "type": "dayli_says",
+      "quote": "Timeframes change your perspective on the same market. The market itself never changes just because you switched the chart view."
+    },
+    {
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "What actually changes when you switch timeframes?",
+          "options": ["Your perspective on the same market", "The market itself", "Everything at once"],
+          "correctIndex": 0,
+          "why": "Timeframe changes your view — the underlying price story stays the same."
+        },
+        {
+          "question": "A trader checks the 1M chart first, decides it looks bullish, and takes a long without ever looking at the 4H. What is she missing?",
+          "options": ["The bigger-picture context the 4H would have given her", "Nothing — the 1M is always sufficient on its own", "The 1M is more reliable than any higher timeframe"],
+          "correctIndex": 0,
+          "why": "The 1M can look convincing while running counter to the larger story the 4H reveals."
+        }
       ]
     }
   ],
-  "quiz": [
-    {
-      "question": "What actually changes when you switch timeframes?",
-      "options": [
-        "Your perspective on the same market",
-        "The market itself",
-        "Everything at once"
-      ],
-      "correctIndex": 0,
-      "explanation": "Timeframe changes your view — the underlying price story stays the same."
-    },
-    {
-      "question": "A trader checks the 1M chart first, decides it looks bullish, and takes a long without ever looking at the 4H. What is she missing?",
-      "options": [
-        "The bigger-picture context the 4H would have given her about the larger direction",
-        "Nothing — the 1M is always sufficient on its own",
-        "The 1M is more reliable than any higher timeframe"
-      ],
-      "correctIndex": 0,
-      "explanation": "The 1M can look convincing while running counter to the larger story the 4H reveals."
-    },
-    {
-      "question": "The clean workflow is higher timeframe first, then ___, then the lowest timeframe for entry detail.",
-      "options": [
-        "Structure",
-        "News",
-        "Random guessing"
-      ],
-      "correctIndex": 0,
-      "explanation": "Structure narrows the picture between the big-picture read and the entry detail."
-    }
-  ]
+  "takeaways": [
+    "Every timeframe is a different zoom on the same price story.",
+    "Higher timeframes show direction; lower timeframes show detail.",
+    "Skipping the higher timeframe means trading without the bigger picture."
+  ],
+  "remember": "The market doesn't change when you switch the chart view — your perspective does."
 }

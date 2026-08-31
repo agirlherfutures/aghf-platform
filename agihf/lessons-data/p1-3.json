@@ -4,67 +4,66 @@
   "lessonNumber": 3,
   "title": "Buyers vs Sellers",
   "videoUrl": null,
-  "videoDuration": "11 min",
+  "videoDuration": "6 min",
   "xpValue": 50,
   "passThreshold": 0.6,
-  "intro": {
-    "heading": "Price moves because buyers and sellers are fighting for control.",
-    "body": "Buyers think price should go higher. Sellers think price should go lower. When buyers are stronger, price lifts. When sellers are stronger, price drops. That's what candles are showing you in real time — who won that moment.",
-    "dayliNote": "The body matters more than the drama. Long wicks can look dramatic, but the body tells you where price actually settled — later in ICC, close beats wick."
-  },
-  "tapCards": [
+  "hook": "Price moves based on who's stronger. Read it like a story, not a guess.",
+  "mission": "By the end of this lesson, you should be able to point to the exact moment control changed hands in a series of candles.",
+  "blocks": [
     {
-      "prompt": "A string of strong green closes with only shallow pullbacks is playing out. Who's in control?",
-      "options": [
-        { "label": "Buyers", "correct": true, "feedback": "Right — repeated strong closes with shallow pullbacks is buyers winning again and again." },
-        { "label": "Sellers", "correct": false, "feedback": "Sellers haven't managed a real pullback here — buyers are still winning this stretch." }
+      "type": "breakdown",
+      "heading": "Price moves because buyers and sellers are fighting for control",
+      "beats": [
+        { "heading": "Who's winning right now", "body": "Buyers think price should go higher. Sellers think price should go lower. When buyers are stronger, price lifts. When sellers are stronger, price drops." },
+        { "heading": "The body matters more than the drama", "body": "Long wicks can look dramatic, but the body tells you where price actually settled. Later in ICC, close beats wick." }
       ]
     },
     {
-      "prompt": "One candle wicks down sharply intraday but closes back near its high. Did sellers actually take control of that candle?",
-      "options": [
-        { "label": "No — the wick shows sellers tried, but the close shows buyers still won", "correct": true, "feedback": "Right — the close is the scoreboard. A deep wick that gets reclaimed is buyers defending, not losing." },
-        { "label": "Yes — any deep wick down means sellers won", "correct": false, "feedback": "A wick alone doesn't decide the winner — where the candle actually closed does." }
+      "type": "chart_practice",
+      "mode": "spot_it",
+      "heading": "Find where control changed",
+      "prompt": "This price path steps higher with a couple of small pullbacks, then something changes. Tap the point where sellers actually took control.",
+      "config": {
+        "structureLabel": "Uptrend, then a shift",
+        "prompt2": "Tap A, B, or C.",
+        "path": [[60, 220], [150, 160], [240, 190], [330, 120], [420, 150], [510, 90], [600, 180]],
+        "points": [
+          { "key": "A", "idx": 2, "correct": false, "feedback": "That's a small pullback inside an uptrend that's still holding — not a real change of control." },
+          { "key": "B", "idx": 6, "correct": true, "feedback": "Exactly. That's the point where price actually closed lower and broke the pattern — a real shift, not just a wick." },
+          { "key": "C", "idx": 4, "correct": false, "feedback": "Another shallow pullback — buyers were still winning through this point." }
+        ]
+      }
+    },
+    {
+      "type": "dayli_says",
+      "quote": "The body matters more than the drama. Long wicks can look dramatic, but the body tells you where price actually settled — later in ICC, close beats wick."
+    },
+    {
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "A string of strong green closes with small pullbacks usually means:",
+          "options": ["Buyers are in control", "Sellers are stronger", "Nothing at all"],
+          "correctIndex": 0,
+          "why": "Repeated strong closes with shallow pullbacks is buyers repeatedly winning the disagreement."
+        },
+        {
+          "question": "A candle wicks below a key higher low intraday but closes back above it by the end of the period. Did sellers take control of that candle?",
+          "options": ["No — the close shows buyers reclaimed it before the period ended", "Yes — any wick below a level means sellers won", "It depends only on the candle's color"],
+          "correctIndex": 0,
+          "why": "The close is what decides who actually won that candle; the wick just shows how far the fight went."
+        }
       ]
     },
     {
-      "prompt": "Then a candle closes below the most recent higher low, with only a small wick below it. What does that tell you?",
-      "options": [
-        { "label": "Sellers just won a real battle — a close-based loss, not just a wick", "correct": true, "feedback": "Exactly. A clean close below a level that had been holding is a genuine change of control." },
-        { "label": "It's meaningless without more candles", "correct": false, "feedback": "One candle can be meaningful if it closes cleanly through a level that mattered." }
-      ]
+      "type": "reflection",
+      "prompt": "Imagine another AGHF girl asks: \"How do you tell who's winning on a chart?\" How would you explain it to her, in your own words?"
     }
   ],
-  "quiz": [
-    {
-      "question": "A string of strong green closes with small pullbacks usually means:",
-      "options": [
-        "Buyers are in control",
-        "Sellers are stronger",
-        "Nothing at all"
-      ],
-      "correctIndex": 0,
-      "explanation": "Repeated strong closes with shallow pullbacks is buyers repeatedly winning the disagreement."
-    },
-    {
-      "question": "A candle wicks below a key higher low intraday but closes back above it by the end of the period. Did sellers take control of that candle?",
-      "options": [
-        "No — the close shows buyers reclaimed it before the period ended",
-        "Yes — any wick below a level means sellers won",
-        "It depends only on the candle's color"
-      ],
-      "correctIndex": 0,
-      "explanation": "The close is what decides who actually won that candle; the wick just shows how far the fight went."
-    },
-    {
-      "question": "A candle is a small record of who won that period and how price:",
-      "options": [
-        "Behaved",
-        "Will behave tomorrow",
-        "Was predicted to move"
-      ],
-      "correctIndex": 0,
-      "explanation": "Each candle only tells you what already happened — not a forecast."
-    }
-  ]
+  "takeaways": [
+    "Buyers push price up, sellers push price down — candles show who won each round.",
+    "A wick shows a fight happened; the close shows who actually won it.",
+    "Control can shift mid-story — keep reading, don't assume it stays the same."
+  ],
+  "remember": "The close is the scoreboard. The wick is just the fight."
 }

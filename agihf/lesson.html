@@ -15,14 +15,31 @@
 <script src="shared/sidebar.js" data-active="lessons"></script>
 
 <main class="main">
-  <div class="lw-top">
-    <div class="lw-crumb" id="lwCrumb">Lessons</div>
-    <div class="lw-top-right">
-      <span class="lw-xp-pill" id="lwXp">+0 XP</span>
-      <span class="lw-count" id="lwCount">1 / 1</span>
+  <div class="lh-header">
+    <div class="lh-crumb-row">
+      <div class="lh-crumb" id="lhCrumb">Phase · Section</div>
+      <button type="button" class="lh-map-toggle" id="lhMapToggle">☰ Academy Map</button>
+    </div>
+    <h1 class="lh-title" id="lhTitle">Lesson title</h1>
+    <div class="lh-meta-row">
+      <span class="lh-count" id="lhCount">Lesson 1 of 18</span>
+      <span class="lh-pill gp" id="lhGp">+0 GP</span>
+      <span class="lh-pill dur" id="lhDur">— min</span>
+    </div>
+    <p class="lh-hook" id="lhHook"></p>
+
+    <div class="lh-map" id="lhMap"></div>
+
+    <div class="lh-section-progress">
+      <div class="lh-sp-row"><strong id="lhSectionName">Section</strong><span id="lhSectionPct">0%</span></div>
+      <div class="lh-sp-track"><div class="lh-sp-fill" id="lhSectionFill"></div></div>
+    </div>
+
+    <div class="lh-nav-row">
+      <a class="lh-nav-link" id="lhPrevLink">← Previous Lesson</a>
+      <a class="lh-nav-link" id="lhNextLink">Next Lesson →</a>
     </div>
   </div>
-  <div class="lw-progress"><div class="lw-progress-fill" id="lwBar"></div></div>
 
   <div class="lw-wrap" id="lwWrap"></div>
 </main>
@@ -59,6 +76,55 @@
   const total = allLessons.length;
   const current = allLessons.find((l) => l.n === n);
 
+  function renderHeader(completedIds) {
+    const isDone = (l) => l.n && completedIds.has(`${phaseKey}-${l.n}`);
+    document.getElementById('lhCrumb').textContent = `Phase ${phase.n} · ${phase.title}`;
+    document.getElementById('lhTitle').textContent = current.title;
+    document.getElementById('lhCount').textContent = `Lesson ${n} of ${total}`;
+    document.getElementById('lhGp').textContent = `+${current.xp} GP`;
+
+    const sectionLessons = current.section.lessons.filter((l) => l.n);
+    const sectionDone = sectionLessons.filter(isDone).length;
+    document.getElementById('lhSectionName').textContent = current.section.title;
+    document.getElementById('lhSectionPct').textContent = `${Math.round((sectionDone / sectionLessons.length) * 100)}%`;
+    document.getElementById('lhSectionFill').style.width = `${(sectionDone / sectionLessons.length) * 100}%`;
+
+    const prevLink = document.getElementById('lhPrevLink');
+    const nextLink = document.getElementById('lhNextLink');
+    if (n > 1) {
+      prevLink.href = `lesson.html?phase=${phaseKey}&n=${n - 1}`;
+    } else {
+      prevLink.classList.add('disabled');
+      prevLink.removeAttribute('href');
+    }
+    const thisDone = isDone(current);
+    if (n < total && (thisDone || isDone(allLessons[n - 2]) || n === 1)) {
+      nextLink.href = `lesson.html?phase=${phaseKey}&n=${n + 1}`;
+      if (!thisDone) { nextLink.textContent = 'Next Lesson 🔒'; nextLink.classList.add('locked'); }
+    } else {
+      nextLink.classList.add('disabled');
+      nextLink.removeAttribute('href');
+      nextLink.textContent = 'Next Lesson 🔒';
+    }
+
+    const mapEl = document.getElementById('lhMap');
+    mapEl.innerHTML = phase.sections.map((sec) => `
+      <div class="lh-map-sec">
+        <div class="lh-map-sec-title">${sec.title}</div>
+        ${sec.lessons.filter((l) => l.n).map((l) => {
+          const state = l.n === n ? 'current' : isDone(l) ? 'done' : 'locked';
+          const icon = state === 'done' ? '✓' : state === 'current' ? '●' : '🔒';
+          return l.n === n
+            ? `<div class="lh-map-lesson ${state}"><span class="lh-map-ico">${icon}</span>${l.title}</div>`
+            : `<a class="lh-map-lesson ${state}" ${state !== 'locked' ? `href="lesson.html?phase=${phaseKey}&n=${l.n}"` : ''}><span class="lh-map-ico">${icon}</span>${l.title}</a>`;
+        }).join('')}
+      </div>`).join('');
+  }
+
+  document.getElementById('lhMapToggle').addEventListener('click', () => {
+    document.getElementById('lhMap').classList.toggle('open');
+  });
+
   async function loadLesson() {
     let data;
     try {
@@ -70,13 +136,25 @@
       return;
     }
 
+    let completedIds = new Set();
+    try {
+      const profile = await window.AGHF_FETCH_PROFILE();
+      completedIds = new Set((profile.lessons_completed || []).map((l) => l.lesson_id));
+    } catch (err) {
+      console.error('Profile load error:', err);
+    }
+    renderHeader(completedIds);
+
     const nextLesson = n < total ? n + 1 : null;
     const nextHref = nextLesson ? `lesson.html?phase=${phaseKey}&n=${nextLesson}` : null;
     const backHref = nextLesson ? 'lessons.html' : 'dashboard.html';
+    const nextData = nextLesson ? allLessons[nextLesson - 1] : null;
 
     renderLessonWizard(data, {
       nextHref,
       backHref,
+      nextTitle: nextData ? nextData.title : null,
+      nextHook: nextData ? nextData.quote : null,
       onAward: async () => {
         if (window.AGHF_DEMO) return;
         try {

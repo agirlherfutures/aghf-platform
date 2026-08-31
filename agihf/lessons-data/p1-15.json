@@ -4,73 +4,63 @@
   "lessonNumber": 15,
   "title": "Wicks, Bodies & Closes",
   "videoUrl": null,
-  "videoDuration": "12 min",
+  "videoDuration": "6 min",
   "xpValue": 60,
   "passThreshold": 0.6,
-  "intro": {
-    "heading": "Where price traveled and where price actually closed are two different pieces of information.",
-    "body": "A wick shows you that price reached an area. A close shows you that price accepted (or rejected) that area. Those are not the same claim, and mixing them up is one of the most common beginner mistakes on a chart. Price can wick well above a level and still close back below it — that's not the same as price closing above the level. This distinction matters far beyond this lesson: later in the Academy, an entire entry model is built around the rule that a candle has to close past a level, not just poke a wick through it.",
-    "dayliNote": "\"I don't care about the wick. I need the candle to close through the level. Say that back to yourself every time you're tempted to react to a wick.\" — Dayli Scott"
-  },
-  "chart": {
-    "mode": "wick_close_demo",
-    "heading": "Wick vs close, side by side",
-    "prompt": "A candle wicks above a key high but closes back below it. See what the wick did NOT hold.",
-    "config": { "caption": "Tap \"Show the rejection\" to see what the wick did not hold" }
-  },
-  "tapCards": [
+  "hook": "I don't care about the wick. I need the candle to close through the level.",
+  "mission": "By the end of this lesson, you should be able to tell the difference between price reaching a level and price accepting it.",
+  "blocks": [
     {
-      "prompt": "A candle wicks above a key high but closes back below it. Has that level been broken?",
-      "options": [
-        { "label": "No — it wicked through but didn't close through", "correct": true, "feedback": "Right — a wick is a visit, not a break." },
-        { "label": "Yes — price touched above it", "correct": false, "feedback": "Touching a level isn't the same claim as closing past it." }
+      "type": "breakdown",
+      "heading": "Where price traveled and where price actually closed are two different pieces of information",
+      "beats": [
+        { "heading": "Reached ≠ accepted", "body": "A wick shows price reached an area. A close shows price accepted (or rejected) it. Those are not the same claim." },
+        { "heading": "This matters far beyond this lesson", "body": "Later in the Academy, an entire entry model is built around the rule that a candle has to close past a level, not just poke a wick through it." }
       ]
     },
     {
-      "prompt": "Later, a candle both wicks above that same high AND closes above it. What's different this time?",
-      "options": [
-        { "label": "This time price actually accepted above the level — a real close-based break", "correct": true, "feedback": "Right — a close through the level is a genuinely different claim than a wick through it." },
-        { "label": "Nothing's different — wick or close, both count the same", "correct": false, "feedback": "They don't count the same — only the close shows acceptance." }
+      "type": "confusion",
+      "heading": "Wick ≠ Close",
+      "left": { "label": "Wick", "points": ["Shows price reached an area", "A visit, not a decision", "Can be misleading on its own"] },
+      "right": { "label": "Close", "points": ["Shows price actually accepted", "The scoreboard for that candle", "What later entry rules are built on"] }
+    },
+    {
+      "type": "chart_practice",
+      "mode": "wick_close_demo",
+      "heading": "Wick vs close, side by side",
+      "prompt": "A candle wicks above a key high but closes back below it. See what the wick did NOT hold.",
+      "config": { "caption": "Tap \"Show the rejection\" to see what the wick did not hold" }
+    },
+    {
+      "type": "dayli_says",
+      "quote": "I don't care about the wick. I need the candle to close through the level. Say that back to yourself every time you're tempted to react to a wick."
+    },
+    {
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "Price takes a previous high with a wick but closes back below it. Has bullish structure necessarily been confirmed?",
+          "options": ["No — a wick shows price reached the level, but only a close through it shows acceptance", "Yes — any candle touching above the high confirms the break", "It depends only on the candle's color"],
+          "correctIndex": 0,
+          "why": "Reaching a level and accepting past it are two different claims."
+        },
+        {
+          "question": "A wick tells you where price ___. A close tells you where price accepted.",
+          "options": ["Traveled", "Will go next", "Was manipulated"],
+          "correctIndex": 0,
+          "why": "The wick is just the extreme reached — not proof of acceptance."
+        }
       ]
     },
     {
-      "prompt": "Later in the Academy, an entire entry model requires a candle to close past a level before anything else matters. Why does the close matter that much?",
-      "options": [
-        { "label": "Because a close is the only thing that shows price genuinely accepted that area", "correct": true, "feedback": "Exactly — that's the whole reason close-based confirmation becomes the rule." },
-        { "label": "Because wicks are too hard to see on a chart", "correct": false, "feedback": "It's not about visibility — it's about what a close actually proves." }
-      ]
+      "type": "reflection",
+      "prompt": "Imagine another AGHF girl asks: \"Why doesn't a wick above a level count as a break?\" How would you explain it to her?"
     }
   ],
-  "quiz": [
-    {
-      "question": "Price takes a previous high with a wick but closes back below it. Has bullish structure necessarily been confirmed?",
-      "options": [
-        "No — a wick shows price reached the level, but only a close through it shows acceptance",
-        "Yes — any candle touching above the high confirms the break",
-        "It depends only on the candle's color, not where it closed"
-      ],
-      "correctIndex": 0,
-      "explanation": "Reaching a level and accepting past it are two different claims."
-    },
-    {
-      "question": "A trader gets excited every time she sees a wick poke through a key level, treating it as confirmation. What is she misunderstanding?",
-      "options": [
-        "She's treating a wick (where price traveled) as if it were a close (where price accepted)",
-        "Nothing — wicks are always confirmation",
-        "She should be looking at volume instead"
-      ],
-      "correctIndex": 0,
-      "explanation": "Confirmation should come from a close past the level, not a wick poking through it."
-    },
-    {
-      "question": "A wick tells you where price ___. A close tells you where price accepted.",
-      "options": [
-        "Traveled",
-        "Will go next",
-        "Was manipulated"
-      ],
-      "correctIndex": 0,
-      "explanation": "The wick is just the extreme reached — not proof of acceptance."
-    }
-  ]
+  "takeaways": [
+    "A wick shows reach; a close shows acceptance.",
+    "Price can wick past a level and still close back below it — that's not a break.",
+    "Close-based confirmation is the rule you'll build entries around later."
+  ],
+  "remember": "I don't care about the wick. I need the close."
 }

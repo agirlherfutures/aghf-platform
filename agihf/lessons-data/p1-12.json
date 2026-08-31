@@ -4,67 +4,57 @@
   "lessonNumber": 12,
   "title": "Trading Sessions & Market Hours",
   "videoUrl": null,
-  "videoDuration": "11 min",
+  "videoDuration": "6 min",
   "xpValue": 60,
   "passThreshold": 0.6,
-  "intro": {
-    "heading": "The same chart behaves differently depending on what time it is.",
-    "body": "Futures trade nearly around the clock, but not every hour behaves the same way. The Asia session tends to be quieter and range-bound. The London session often brings the first real expansion of the day. The New York session — especially the Regular Trading Hours (RTH) open — usually brings the highest volume and the sharpest moves, since it overlaps with US stock market hours and news releases. The overnight session (after New York closes, before Asia picks up) is typically thinner and choppier, with less reliable structure. None of this means one session is \"better\" — it means the same setup can look completely different depending on which session it's forming in, and a trader who ignores the clock is trading blind to context she could easily have.",
-    "dayliNote": "\"I'm not telling you to only trade one session. I'm telling you to know which session you're looking at, because a level in London and a level at the New York open don't carry the same weight.\" — Dayli Scott"
-  },
-  "tapCards": [
+  "hook": "Different sessions, different behavior. Know which one you're looking at.",
+  "mission": "By the end of this lesson, you should be able to weigh a chart move differently depending on which session it formed in.",
+  "blocks": [
     {
-      "prompt": "A setup forms during the quiet overnight session with low volume. Should you weight it the same as an identical setup at the New York open?",
-      "options": [
-        { "label": "No — session context changes how much weight the read deserves", "correct": true, "feedback": "Right — the same-looking setup isn't equally meaningful in every session." },
-        { "label": "Yes — a setup is a setup regardless of time", "correct": false, "feedback": "Ignoring session context throws away real information about how much participation backed that move." }
+      "type": "breakdown",
+      "heading": "The same chart behaves differently depending on what time it is",
+      "beats": [
+        { "heading": "Three sessions, three personalities", "body": "Asia tends to be quiet and range-bound. London often brings the first real expansion. New York — especially the RTH open — usually brings the highest volume and sharpest moves." },
+        { "heading": "Not \"better,\" just different", "body": "None of this means one session is better. It means the same setup can look completely different depending on which session it's forming in." }
       ]
     },
     {
-      "prompt": "The exact same level gets tested overnight, then retested at the New York open with much higher volume. Which test carries more information?",
+      "type": "what_happens_next",
+      "heading": "Weigh the test",
+      "sequence": ["A level gets tested overnight on thin volume"],
+      "askAfter": "A level gets tested overnight on thin volume",
+      "prompt": "That same level gets retested at the New York open with much higher volume. Which test carries more information?",
       "options": [
-        { "label": "The New York open retest — more participation, more real signal", "correct": true, "feedback": "Right — more real participants means the reaction reflects more genuine agreement/disagreement." },
+        { "label": "The New York open retest — more participation, more real signal", "correct": true, "feedback": "Right — more real participants means the reaction reflects more genuine agreement or disagreement." },
         { "label": "They're equal", "correct": false, "feedback": "Volume differences between sessions are real information, not noise to ignore." }
       ]
     },
     {
-      "prompt": "A trader ignores session entirely and trades every setup identically regardless of the clock. What is she missing?",
-      "options": [
-        { "label": "Context about how much real participation is behind any given move", "correct": true, "feedback": "Exactly — the clock is free context she's throwing away." },
-        { "label": "Nothing — session doesn't actually matter", "correct": false, "feedback": "Session behavior differences are real and worth reading." }
+      "type": "dayli_says",
+      "quote": "I'm not telling you to only trade one session. I'm telling you to know which session you're looking at, because a level in London and a level at the New York open don't carry the same weight."
+    },
+    {
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "A trader sees a clean-looking break of structure during the thin overnight session, then the exact same level gets retested with much higher volume at the New York open. Which read should she trust more?",
+          "options": ["The New York retest — higher volume and participation make the reaction more meaningful", "They're identical — session doesn't change how a break should be read", "The overnight break is more reliable because it happened first"],
+          "correctIndex": 0,
+          "why": "More volume and participation means the reaction reflects more real conviction."
+        },
+        {
+          "question": "The New York session (RTH open) typically brings the highest ___ and sharpest moves.",
+          "options": ["Volume", "Spread", "Fees"],
+          "correctIndex": 0,
+          "why": "It overlaps with US stock market hours and major news, driving the most participation."
+        }
       ]
     }
   ],
-  "quiz": [
-    {
-      "question": "A trader sees a clean-looking break of structure during the thin overnight session, then the exact same level gets retested with much higher volume at the New York open. What does session context tell her about which read to trust more?",
-      "options": [
-        "The New York retest carries more weight — higher volume and participation make the reaction more meaningful",
-        "They're identical — session doesn't change how a break should be read",
-        "The overnight break is more reliable because it happened first"
-      ],
-      "correctIndex": 0,
-      "explanation": "More volume and participation means the reaction reflects more real conviction."
-    },
-    {
-      "question": "Why might a break of structure during the thin overnight session deserve less confidence than the same-looking break during the New York open?",
-      "options": [
-        "The overnight session has fewer participants, so a break there can happen without much real conviction",
-        "Overnight breaks are always fake",
-        "There's no real difference between the two"
-      ],
-      "correctIndex": 0,
-      "explanation": "New York's higher volume reflects a much larger, more genuine disagreement getting resolved."
-    },
-    {
-      "question": "The New York session (RTH open) typically brings the highest ___ and sharpest moves.",
-      "options": [
-        "Volume",
-        "Spread",
-        "Fees"
-      ],
-      "correctIndex": 0,
-      "explanation": "It overlaps with US stock market hours and major news, driving the most participation."
-    }
-  ]
+  "takeaways": [
+    "Asia, London, and New York each behave differently — none is \"better,\" just different.",
+    "A move on heavy volume carries more real information than the same-looking move on thin volume.",
+    "Ignoring session context throws away free, useful information."
+  ],
+  "remember": "A level in London and a level at the New York open don't carry the same weight."
 }

@@ -4,74 +4,70 @@
   "lessonNumber": 1,
   "title": "What Even Is Trading?",
   "videoUrl": null,
-  "videoDuration": "12 min",
+  "videoDuration": "6 min",
   "xpValue": 50,
   "passThreshold": 0.6,
-  "intro": {
-    "heading": "Trading is buyers and sellers disagreeing on price.",
-    "body": "Buyers think price should go higher. Sellers think price should go lower. That disagreement creates movement. That's it — everything else you see on a chart is just that battle being printed in real time.",
-    "dayliNote": "\"If I can tell who has control, I already have a reason to be interested. I'm not trying to be psychic. I'm watching behavior.\" — Dayli Scott"
-  },
-  "tapCards": [
+  "hook": "Candles are just storytelling — they're showing you who's winning right now.",
+  "mission": "By the end of this lesson, you should be able to look at a stretch of price and say who's currently in control — buyers or sellers — without guessing.",
+  "blocks": [
     {
-      "prompt": "Price has been stepping higher — each pullback gets bought before the next push. Who looks like they're in control right now?",
-      "options": [
-        { "label": "Buyers", "correct": true, "feedback": "Right — repeated pushes with shallow pullbacks is buyers repeatedly winning the disagreement." },
-        { "label": "Sellers", "correct": false, "feedback": "Not yet — sellers haven't been able to push a low below the prior low. Buyers are still winning here." }
+      "type": "breakdown",
+      "heading": "What is trading, really?",
+      "beats": [
+        { "heading": "It's a disagreement", "body": "Buyers think price should go higher. Sellers think price should go lower. That disagreement creates movement — that's it." },
+        { "heading": "Not a prediction", "body": "Everything you see on a chart is just that battle being printed in real time. You're reading current behavior, not seeing the future." }
       ]
     },
     {
-      "prompt": "Now price stalls at a level and starts printing smaller candles with long upper wicks. What does that usually suggest?",
+      "type": "dayli_says",
+      "quote": "If I can tell who has control, I already have a reason to be interested. I'm not trying to be psychic. I'm watching behavior."
+    },
+    {
+      "type": "catch_mistake",
+      "heading": "What did she get wrong?",
+      "scenario": "A trader says she's \"predicting the future\" every time she takes a trade.",
       "options": [
-        { "label": "Buyers are struggling — sellers are starting to contest the level", "correct": true, "feedback": "Exactly — long upper wicks mean price reached higher but couldn't hold it. That's sellers showing up." },
-        { "label": "Nothing — wicks don't mean anything", "correct": false, "feedback": "Wicks aren't nothing — they show price getting rejected from an area, which is real information." }
+        { "label": "She's not predicting anything — she's reading current disagreement between buyers and sellers", "correct": true, "feedback": "Exactly. Trading reads present behavior — who's currently winning the disagreement — not a crystal ball." },
+        { "label": "Nothing — that's exactly what trading is", "correct": false, "feedback": "Not quite. Calling it \"predicting the future\" overstates what's actually happening on the chart." }
       ]
     },
     {
-      "prompt": "A strong red candle closes below the most recent higher low. What just happened to the story?",
+      "type": "what_happens_next",
+      "heading": "Read the story forward",
+      "sequence": ["Price steps higher, shallow pullbacks", "Stalls — long upper wicks appear"],
+      "askAfter": "Stalls — long upper wicks appear",
+      "prompt": "What's the next logical read in this story — not where price goes, what does the behavior suggest?",
       "options": [
-        { "label": "The story changed — sellers just won a battle buyers had been winning", "correct": true, "feedback": "Right. A close below the prior higher low is a real shift, not a wick — buyers just lost control." },
-        { "label": "Nothing changed — it's just one red candle", "correct": false, "feedback": "A close below a level that had been holding is a specific, meaningful loss of control." }
+        { "label": "Sellers are starting to contest the level buyers have been winning", "correct": true, "feedback": "Right — long upper wicks mean price reached higher but couldn't hold it. That's sellers showing up." },
+        { "label": "Nothing has changed — wicks don't mean anything", "correct": false, "feedback": "Wicks aren't nothing — they show price getting rejected from an area, which is real information." }
       ]
     },
     {
-      "prompt": "Given all of that, would you now expect the next push to be more likely up or down?",
-      "options": [
-        { "label": "More likely down — sellers just took control", "correct": true, "feedback": "That's the read. You're not predicting the future — you're reading who's winning right now." },
-        { "label": "Still up — buyers were in control a few candles ago", "correct": false, "feedback": "What happened a few candles ago matters less than what just happened. Control can change hands." }
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "Price steps higher for ten candles, then prints one long-wicked red candle that closes back above the prior low. Has control actually shifted to sellers?",
+          "options": ["No — the close shows buyers reclaimed it before the candle ended", "Yes — any long red wick means sellers won", "It's impossible to tell from one candle"],
+          "correctIndex": 0,
+          "why": "Reading control means watching where price closes, not just where it traveled during the candle."
+        },
+        {
+          "question": "In futures, your profit comes mainly from:",
+          "options": ["Price movement in the direction you chose", "Owning a share of a company", "Collecting dividends over time"],
+          "correctIndex": 0,
+          "why": "Futures profit is based on movement, not ownership — there's no company stake involved."
+        }
       ]
+    },
+    {
+      "type": "reflection",
+      "prompt": "Imagine another AGHF girl asks: \"Isn't trading just guessing?\" How would you explain what's actually happening when you trade?"
     }
   ],
-  "quiz": [
-    {
-      "question": "A trader says she's \"predicting the future\" every time she takes a trade. Is that an accurate way to describe what she's actually doing?",
-      "options": [
-        "Not quite — she's reading current disagreement between buyers and sellers, not seeing the future",
-        "Yes — that's exactly what trading is",
-        "No — trading has nothing to do with price movement at all"
-      ],
-      "correctIndex": 0,
-      "explanation": "Trading reads present behavior — who's currently winning the disagreement — not a crystal ball."
-    },
-    {
-      "question": "Price steps higher for ten candles, then prints one long-wicked red candle that closes back above the prior low. Has control actually shifted to sellers?",
-      "options": [
-        "No — the wick shows sellers tested control, but the close shows buyers reclaimed it",
-        "Yes — any long red wick means sellers won",
-        "It's impossible to tell from one candle"
-      ],
-      "correctIndex": 0,
-      "explanation": "The candle closed back above the prior low — buyers reclaimed it. Reading control means watching where price closes, not just where it traveled."
-    },
-    {
-      "question": "In futures, your profit comes mainly from:",
-      "options": [
-        "Price movement in the direction you chose",
-        "Owning a share of a company",
-        "Collecting dividends over time"
-      ],
-      "correctIndex": 0,
-      "explanation": "Futures profit is based on movement, not ownership — there's no company stake involved."
-    }
-  ]
+  "takeaways": [
+    "Trading is buyers and sellers disagreeing on price — not fortune-telling.",
+    "A candle's close tells you who actually won that period, not just the wick.",
+    "Futures profit comes from movement, not ownership."
+  ],
+  "remember": "You're not trying to be psychic. You're watching behavior."
 }

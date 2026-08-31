@@ -4,76 +4,69 @@
   "lessonNumber": 13,
   "title": "Candlesticks",
   "videoUrl": null,
-  "videoDuration": "15 min",
+  "videoDuration": "7 min",
   "xpValue": 90,
   "passThreshold": 0.6,
-  "intro": {
-    "heading": "Candles show price behavior during a period of time.",
-    "body": "A candlestick is not just a colored block on the chart — it's a tiny story of what buyers and sellers did during that timeframe. Every candle has a beginning (open), an ending (close), a high point, and a low point. When you read candles correctly, you stop seeing random shapes and start seeing pressure, control, and movement.",
-    "dayliNote": "\"Candles are not just green and red. They show who pushed, who rejected, who held, and where price accepted.\" — Dayli Scott"
-  },
-  "chart": {
-    "mode": "comparison",
-    "heading": "Two candles, two very different stories",
-    "prompt": "Tap each candle to see what its shape actually represents.",
-    "config": {
-      "left": { "label": "Large green body", "value": 80, "desc": "A large body means price traveled far from open to close in one direction — a decisive win for buyers that period." },
-      "right": { "label": "Small red body, long wicks", "value": 20, "desc": "A small body with long wicks means a real fight happened, but neither side settled far from where it started — indecision." }
-    }
-  },
-  "tapCards": [
+  "hook": "Every candle is a decision. Green means buyers won. Red means sellers won.",
+  "mission": "By the end of this lesson, you should be able to read what a candle's shape actually represents, not just its color.",
+  "blocks": [
     {
-      "prompt": "Two candles on the same chart: one large green body, the other a small red body with long wicks. What does the difference represent?",
-      "options": [
-        { "label": "Different buyer/seller behavior during each candle's timeframe", "correct": true, "feedback": "Right — shape reflects real behavior, not decoration." },
-        { "label": "Nothing meaningful — candle shape is decorative", "correct": false, "feedback": "Shape isn't decoration — it's the record of who pushed and who held." }
+      "type": "breakdown",
+      "heading": "Candles show price behavior during a period of time",
+      "beats": [
+        { "heading": "A tiny story, not a colored block", "body": "Every candle has a beginning (open), an ending (close), a high point, and a low point. It's a record of what buyers and sellers did during that timeframe." },
+        { "heading": "Pressure, control, movement", "body": "When you read candles correctly, you stop seeing random shapes and start seeing pressure, control, and movement." }
       ]
     },
     {
-      "prompt": "A candle opens, pushes strongly higher, then gives almost all of it back and closes near its open. What does that shape tell you?",
+      "type": "chart_practice",
+      "mode": "comparison",
+      "heading": "Two candles, two very different stories",
+      "prompt": "Tap each candle to see what its shape actually represents.",
+      "config": {
+        "left": { "label": "Large green body", "value": 80, "desc": "A large body means price traveled far from open to close in one direction — a decisive win for buyers that period." },
+        "right": { "label": "Small red body, long wicks", "value": 20, "desc": "A small body with long wicks means a real fight happened, but neither side settled far from where it started — indecision." }
+      }
+    },
+    {
+      "type": "catch_mistake",
+      "heading": "Is that a safe assumption?",
+      "scenario": "A trader sees a candle with a long lower wick and assumes it automatically means the market is about to reverse upward.",
       "options": [
-        { "label": "Buyers pushed but ultimately lost that battle by the close", "correct": true, "feedback": "Right — a big upper wick with a small body near the open shows a rejected push, not a win." },
-        { "label": "Buyers clearly won that candle", "correct": false, "feedback": "The close is what decides the winner, and this close is back near the open." }
+        { "label": "Not on its own — it needs to be read in context, not treated as an automatic signal", "correct": true, "feedback": "Right — a wick shows buyers rejected a push down during that candle, not proof of what happens next." },
+        { "label": "Yes — a long lower wick always means a reversal", "correct": false, "feedback": "No single wick is an automatic signal on its own." }
       ]
     },
     {
-      "prompt": "A tiny-bodied candle with wicks on both sides forms right after a strong trend. What does that usually suggest?",
-      "options": [
-        { "label": "Indecision — neither side is clearly winning that period", "correct": true, "feedback": "Right — small bodies with wicks both directions usually mean a real tug-of-war." },
-        { "label": "The trend is definitely continuing", "correct": false, "feedback": "A small, indecisive candle doesn't confirm continuation." }
+      "type": "dayli_says",
+      "quote": "Candles are not just green and red. They show who pushed, who rejected, who held, and where price accepted."
+    },
+    {
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "Two candles on the same chart have completely different shapes — one is a large green body, the other is a small red body with long wicks. What does the difference actually represent?",
+          "options": ["Different buyer/seller behavior during each candle's timeframe", "Nothing meaningful — candle shape is decorative", "A guaranteed signal of exactly where price goes next"],
+          "correctIndex": 0,
+          "why": "Candle shape is a record of real behavior, read in context — not a prediction on its own."
+        },
+        {
+          "question": "A bullish candle closes ___ where it opened.",
+          "options": ["Above", "Below", "Exactly at"],
+          "correctIndex": 0,
+          "why": "A bullish close settles higher than the open — that's what makes it bullish."
+        }
       ]
+    },
+    {
+      "type": "reflection",
+      "prompt": "Imagine another AGHF girl asks: \"Isn't a candle just green or red?\" How would you explain what it's actually showing her?"
     }
   ],
-  "quiz": [
-    {
-      "question": "Two candles on the same chart have completely different shapes — one is a large green body, the other is a small red body with long wicks. What does the difference actually represent?",
-      "options": [
-        "Different buyer/seller behavior during each candle's timeframe — not randomness, not a guarantee of what's next",
-        "Nothing meaningful — candle shape is decorative",
-        "A guaranteed signal of exactly where price goes next"
-      ],
-      "correctIndex": 0,
-      "explanation": "Candle shape is a record of real behavior, read in context — not a prediction on its own."
-    },
-    {
-      "question": "A trader sees a candle with a long lower wick and assumes it automatically means the market is about to reverse upward. Is that a safe assumption?",
-      "options": [
-        "Not on its own — it needs to be read in context, not treated as an automatic signal",
-        "Yes — a long lower wick always means a reversal",
-        "Only if the candle is green"
-      ],
-      "correctIndex": 0,
-      "explanation": "A wick shows buyers rejected a push down during that candle — not proof of what happens next."
-    },
-    {
-      "question": "A bullish candle closes ___ where it opened.",
-      "options": [
-        "Above",
-        "Below",
-        "Exactly at"
-      ],
-      "correctIndex": 0,
-      "explanation": "A bullish close settles higher than the open — that's what makes it bullish."
-    }
-  ]
+  "takeaways": [
+    "A candle is a tiny record of a fight between buyers and sellers, not decoration.",
+    "Body size and wick length both carry information, read together.",
+    "No single candle is an automatic signal — context decides what it means."
+  ],
+  "remember": "Every candle is a decision. Read the whole shape, not just the color."
 }

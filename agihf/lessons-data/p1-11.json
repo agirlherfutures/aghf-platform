@@ -4,76 +4,65 @@
   "lessonNumber": 11,
   "title": "Position Sizing",
   "videoUrl": null,
-  "videoDuration": "11 min",
+  "videoDuration": "6 min",
   "xpValue": 60,
   "passThreshold": 0.6,
-  "intro": {
-    "heading": "Contracts change the money, not the structure.",
-    "body": "Your entry can be clean and your stop loss can be correct, but if your size is too big, the trade becomes emotionally heavy. Position sizing is what makes the same setup feel manageable or reckless — the chart doesn't care how many contracts you're in, but you will.",
-    "dayliNote": "Keep your size consistent. Going heavier because confidence is high, or doubling size after a loss, is emotion talking — not a risk plan."
-  },
-  "chart": {
-    "mode": "comparison",
-    "heading": "Same setup, two different sizes",
-    "prompt": "Tap each size to see how the same 10-point stop changes weight.",
-    "config": {
-      "left": { "label": "1 contract", "value": 20, "desc": "1 MNQ contract on a 10-point stop risks $20. Small, manageable, easy to think clearly through." },
-      "right": { "label": "10 contracts", "value": 200, "desc": "10 MNQ contracts on the exact same 10-point stop risks $200 — the setup didn't change, the weight did." }
-    }
-  },
-  "tapCards": [
+  "hook": "Risk only what you can afford to lose. Size your position, not your ego.",
+  "mission": "By the end of this lesson, you should be able to explain why the same setup can be smart at one size and reckless at another.",
+  "blocks": [
     {
-      "prompt": "Two traders take the identical setup — same entry, same stop, same target — but one uses 1 contract and the other uses 10. Is one trade objectively better structured?",
-      "options": [
-        { "label": "No — the structure is identical; only the dollar risk and emotional weight differ", "correct": true, "feedback": "Right — sizing changes the weight of the trade, not its quality." },
-        { "label": "Yes — more contracts always means a better trade", "correct": false, "feedback": "More contracts doesn't make a setup better — it only makes it bigger." }
+      "type": "breakdown",
+      "heading": "Contracts change the money, not the structure",
+      "beats": [
+        { "heading": "Weight, not quality", "body": "Your entry can be clean and your stop loss can be correct, but if your size is too big, the trade becomes emotionally heavy." },
+        { "heading": "The chart doesn't care", "body": "Position sizing is what makes the same setup feel manageable or reckless — the chart doesn't know how many contracts you're in, but you will." }
       ]
     },
     {
-      "prompt": "You just had two wins in a row and feel great. Do you increase your size because confidence is high?",
-      "options": [
-        { "label": "No — size should come from your risk plan, not your mood", "correct": true, "feedback": "Right — confidence isn't a risk management input." },
-        { "label": "Yes — you've earned bigger size", "correct": false, "feedback": "Sizing up because of a feeling is exactly how good runs turn into big losses." }
-      ]
+      "type": "chart_practice",
+      "mode": "comparison",
+      "heading": "Same setup, two different sizes",
+      "prompt": "Tap each size to see how the same 10-point stop changes weight.",
+      "config": {
+        "left": { "label": "1 contract", "value": 20, "desc": "1 MNQ contract on a 10-point stop risks $20. Small, manageable, easy to think clearly through." },
+        "right": { "label": "10 contracts", "value": 200, "desc": "10 MNQ contracts on the exact same 10-point stop risks $200 — the setup didn't change, the weight did." }
+      }
     },
     {
-      "prompt": "After a loss, a trader doubles her next position size to \"win it back faster.\" What's actually happening?",
+      "type": "catch_mistake",
+      "heading": "What's actually happening here?",
+      "scenario": "After a loss, a trader doubles her next position size to \"win it back faster.\"",
       "options": [
         { "label": "Emotion is driving her sizing decision, not her risk plan", "correct": true, "feedback": "Exactly — that's revenge sizing, and it compounds risk right when discipline matters most." },
         { "label": "That's a smart way to recover losses quickly", "correct": false, "feedback": "Increasing size to chase back a loss usually increases risk at the worst possible moment." }
       ]
+    },
+    {
+      "type": "dayli_says",
+      "quote": "Keep your size consistent. Going heavier because confidence is high, or doubling size after a loss, is emotion talking — not a risk plan."
+    },
+    {
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "Two traders take the identical setup — same entry, same stop, same target — but one uses 1 contract and the other uses 10. Is one trade objectively better structured?",
+          "options": ["No — the structure is identical; only the dollar risk and emotional weight differ", "Yes — more contracts always means a better trade", "Yes — fewer contracts always means a safer, more valid setup"],
+          "correctIndex": 0,
+          "why": "Sizing decides how much is on the line — it doesn't change whether the setup itself is good."
+        },
+        {
+          "question": "Your contract size should be decided by your ___, not by how confident or excited you feel today.",
+          "options": ["Risk plan", "Mood", "Win streak"],
+          "correctIndex": 0,
+          "why": "A risk plan stays consistent regardless of how a trader feels in the moment."
+        }
+      ]
     }
   ],
-  "quiz": [
-    {
-      "question": "Two traders take the identical setup — same entry, same stop, same target — but one uses 1 contract and the other uses 10. Is one trade objectively better structured than the other?",
-      "options": [
-        "No — the structure is identical; only the dollar risk and emotional weight differ between them",
-        "Yes — more contracts always means a better trade",
-        "Yes — fewer contracts always means a safer, more valid setup"
-      ],
-      "correctIndex": 0,
-      "explanation": "Sizing decides how much is on the line — it doesn't change whether the setup itself is good."
-    },
-    {
-      "question": "Why can the same chart setup be a smart trade for one trader and a reckless trade for another?",
-      "options": [
-        "Position size determines how much dollar risk and emotional weight is actually attached to it",
-        "Because charts are different for every trader",
-        "Because only the entry price matters, not the size"
-      ],
-      "correctIndex": 0,
-      "explanation": "The same structurally sound setup can be reasonable at a small size and reckless at an oversized one."
-    },
-    {
-      "question": "Your contract size should be decided by your ___, not by how confident or excited you feel today.",
-      "options": [
-        "Risk plan",
-        "Mood",
-        "Win streak"
-      ],
-      "correctIndex": 0,
-      "explanation": "A risk plan stays consistent regardless of how a trader feels in the moment."
-    }
-  ]
+  "takeaways": [
+    "Position size decides how much dollar risk and emotional weight a trade carries.",
+    "The same setup can be reasonable at a small size and reckless at an oversized one.",
+    "Sizing should come from your risk plan, never from mood or a win/loss streak."
+  ],
+  "remember": "Size your position, not your ego."
 }
