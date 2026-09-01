@@ -32,6 +32,13 @@
 .lw-slide.dl-focus-active .lw-watched-btn{display:none;}
 .lw-slide.dl-focus-active .dl-watch-block{max-width:640px;margin:0 auto;}
 
+/* ── See It: cards mode (non-canvas staged reveal) ────────────────── */
+.dl-concept-card{background:var(--warm);border:1px solid rgba(244,130,154,.1);border-radius:14px;padding:14px 16px;margin-top:10px;opacity:0;transform:translateY(8px);transition:.35s;}
+.dl-concept-card.show{opacity:1;transform:translateY(0);}
+.dl-concept-card:first-child{margin-top:4px;}
+.dl-concept-label{font-family:var(--font-display);font-weight:700;font-size:.95rem;color:var(--dark);margin-bottom:4px;}
+.dl-concept-text{font-size:.85rem;line-height:1.65;color:var(--text);}
+
 /* ── See It: guided reveal ──────────────────────────────────────── */
 .dl-canvas.dl-canvas-fade{animation:dlCanvasFade .45s ease;}
 @keyframes dlCanvasFade{from{opacity:.15;transform:scale(.97);}to{opacity:1;transform:scale(1);}}

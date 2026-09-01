@@ -12,7 +12,7 @@
  * drawFrame, drawCandle.
  */
 
-import { burst, showStreak, showToast, drawFrame, drawCandle } from './lesson-engine.js';
+import { burst, showStreak, showToast, drawFrame, drawCandle, wireRetryOptions } from './lesson-engine.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 let uidCounter = 0;
@@ -178,8 +178,14 @@ function renderLoopWatch(slide, data, satisfy) {
 
 /* ── See It: guided, staged canvas reveal ───────────────────────────── */
 
+// Each drawer takes (ctx, w, h, stage, config): `stage` is the current See It
+// stage or Try It round object (e.g. { part } for the candle/timeframe shapes,
+// { path, highlight } for price_path, { show } for pnl_reveal); `config` is
+// the parent seeIt.config/tryIt.config, for lesson-wide data (a shared path,
+// P&L inputs) that doesn't vary per stage.
 const GUIDED_DRAWERS = {
-  candle_anatomy(ctx, w, h, part) {
+  candle_anatomy(ctx, w, h, stage) {
+    const part = (stage && stage.part) || 'raw';
     const x = 390, open = 225, close = 145, high = 120, low = 245;
     drawFrame(ctx, w, h);
     drawCandle(ctx, x, open, close, high, low, true);
@@ -213,7 +219,8 @@ const GUIDED_DRAWERS = {
       ctx.fillText('Here is one candle, unlabeled.', 60, 55);
     }
   },
-  timeframe_lens(ctx, w, h, part) {
+  timeframe_lens(ctx, w, h, stage) {
+    const part = (stage && stage.part) || '4H';
     const counts = { '4H': 5, '1H': 10, '15M': 18, '1M': 34 };
     const n = counts[part] || 5;
     drawFrame(ctx, w, h);
@@ -232,9 +239,63 @@ const GUIDED_DRAWERS = {
     ctx.font = 'bold 13px DM Sans';
     ctx.fillText(`${part} — ${n} candles shown`, 20, 24);
   },
+
+  // A data-driven price path (no hardcoded coordinates) with an optional
+  // single highlighted point — used for "where did control shift" lessons.
+  // A stage/round can supply its own `path`, or fall back to config.path
+  // when the whole See It sequence shares one continuous chart.
+  price_path(ctx, w, h, stage, config) {
+    const path = (stage && stage.path) || (config && config.path) || [[60, 220], [160, 140], [260, 180], [360, 90], [460, 150], [560, 60], [660, 110]];
+    drawFrame(ctx, w, h);
+    ctx.strokeStyle = '#2C1810';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    path.forEach(([x, y], i) => (i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)));
+    ctx.stroke();
+    const highlight = stage && stage.highlight;
+    if (highlight) {
+      ctx.beginPath();
+      ctx.arc(highlight.x, highlight.y, 9, 0, Math.PI * 2);
+      ctx.fillStyle = highlight.color || '#F4829A';
+      ctx.fill();
+      if (highlight.label) {
+        ctx.fillStyle = '#2C1810';
+        ctx.font = 'bold 13px DM Sans';
+        ctx.fillText(highlight.label, highlight.x + 14, highlight.y - 12);
+      }
+    }
+  },
+
+  // Builds the P&L formula on-canvas one piece at a time. `config` carries
+  // the fixed inputs for the whole lesson (points/pointValue/contracts);
+  // each stage's `show` array says which lines are visible yet.
+  pnl_reveal(ctx, w, h, stage, config) {
+    const points = (config && config.points) || 30;
+    const pointValue = (config && config.pointValue) || 2;
+    const contracts = (config && config.contracts) || 3;
+    const show = (stage && stage.show) || [];
+    drawFrame(ctx, w, h);
+    ctx.fillStyle = '#2C1810';
+    ctx.font = 'bold 17px DM Sans';
+    let y = 60;
+    if (show.includes('points')) { ctx.fillText(`${points} points moved`, 40, y); y += 42; }
+    if (show.includes('value')) { ctx.fillText(`× $${pointValue} per point`, 40, y); y += 42; }
+    if (show.includes('contracts')) { ctx.fillText(`× ${contracts} contracts`, 40, y); y += 42; }
+    if (show.includes('total')) {
+      const total = points * pointValue * contracts;
+      ctx.font = 'bold 36px DM Sans';
+      ctx.fillStyle = '#1a6b63';
+      ctx.fillText(`= $${total.toLocaleString()}`, 40, y + 22);
+    }
+  },
 };
 
 function renderSeeIt(slide, seeIt, satisfy, helpers) {
+  if (seeIt.mode === 'cards') renderCardsSeeIt(slide, seeIt, satisfy, helpers);
+  else renderGuidedReveal(slide, seeIt, satisfy, helpers);
+}
+
+function renderGuidedReveal(slide, seeIt, satisfy, helpers) {
   const stages = (seeIt.config && seeIt.config.stages) || [];
   if (!stages.length) { satisfy(); return; }
 
@@ -267,7 +328,7 @@ function renderSeeIt(slide, seeIt, satisfy, helpers) {
 
   function showStage() {
     const stage = stages[idx];
-    drawFn(ctx, canvas.width, canvas.height, stage.part);
+    drawFn(ctx, canvas.width, canvas.height, stage, seeIt.config);
     canvas.classList.remove('dl-canvas-fade');
     void canvas.offsetWidth;
     canvas.classList.add('dl-canvas-fade');
@@ -292,10 +353,66 @@ function renderSeeIt(slide, seeIt, satisfy, helpers) {
   showStage();
 }
 
-/* ── Try It: click-on-chart OR one-decision-at-a-time path ──────────── */
+// See It, non-canvas variant: a staged reveal of simple labeled concept
+// cards, stacking up as each is revealed — the better fit for prose-heavy
+// ideas (a comparison, a list, a build-up of concepts) than a canvas.
+function renderCardsSeeIt(slide, seeIt, satisfy, helpers) {
+  const cards = (seeIt.config && seeIt.config.cards) || [];
+  if (!cards.length) { satisfy(); return; }
+
+  slide.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">👁️ See It</div>
+      <h2>${seeIt.heading || 'Watch it happen'}</h2>
+      ${seeIt.prompt ? `<p>${seeIt.prompt}</p>` : ''}
+      <div id="dlCardStack"></div>
+      <div class="dl-reveal-dots" id="dlCardDots"></div>
+    </div>
+    <div class="lw-continue-wrap" id="dlCardCont"></div>
+  `;
+  const stackEl = document.getElementById('dlCardStack');
+  const dotsEl = document.getElementById('dlCardDots');
+  const contWrap = document.getElementById('dlCardCont');
+
+  let idx = 0;
+
+  function renderDots() {
+    dotsEl.innerHTML = cards.map((_, i) => `<span class="dl-reveal-dot ${i === idx ? 'active' : i < idx ? 'done' : ''}"></span>`).join('');
+  }
+
+  function showCard() {
+    const card = cards[idx];
+    const el = document.createElement('div');
+    el.className = 'dl-concept-card';
+    el.innerHTML = `
+      ${card.label ? `<div class="dl-concept-label">${card.label}</div>` : ''}
+      <div class="dl-concept-text">${card.text}</div>
+    `;
+    stackEl.appendChild(el);
+    requestAnimationFrame(() => el.classList.add('show'));
+    renderDots();
+
+    contWrap.innerHTML = '';
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'lw-continue-btn';
+    btn.textContent = idx === cards.length - 1 ? 'Continue →' : 'Next →';
+    btn.addEventListener('click', () => {
+      idx += 1;
+      if (idx >= cards.length) { helpers.handleStreak(true); satisfy(); return; }
+      showCard();
+    });
+    contWrap.appendChild(btn);
+  }
+
+  showCard();
+}
+
+/* ── Try It: click-on-chart, one-decision-at-a-time path, or MC rounds ── */
 
 function renderTryIt(slide, tryIt, satisfy, helpers) {
   if (tryIt.mode === 'decision_path') renderDecisionPath(slide, tryIt, satisfy, helpers);
+  else if (tryIt.mode === 'choice_rounds') renderChoiceRounds(slide, tryIt, satisfy, helpers);
   else renderClickChart(slide, tryIt, satisfy, helpers);
 }
 
@@ -347,7 +464,7 @@ function renderClickChart(slide, tryIt, satisfy, helpers) {
     fb.textContent = '';
     promptEl.textContent = round.prompt || '';
     renderDots();
-    drawFn(ctx, canvas.width, canvas.height, round.part || cfg.part || 'raw');
+    drawFn(ctx, canvas.width, canvas.height, { ...round, part: round.part || cfg.part || 'raw' }, cfg);
     optsEl.innerHTML = currentPoints.map((p, i) => `<button type="button" class="lw-qopt" data-i="${i}">${p.label}</button>`).join('');
     optsEl.querySelectorAll('.lw-qopt').forEach((btn, i) => {
       btn.addEventListener('click', () => attempt(currentPoints[i], btn));
@@ -463,6 +580,64 @@ function renderDecisionPath(slide, tryIt, satisfy, helpers) {
   }
 
   renderNode();
+}
+
+// Try It, no-chart variant: sequential multiple-choice rounds via buttons —
+// the fit for lessons whose questions are reasoning-based rather than
+// chart-identification. Reuses wireRetryOptions (retry-until-correct with
+// per-option "why"/feedback) round by round instead of one flat quiz.
+function renderChoiceRounds(slide, tryIt, satisfy, helpers) {
+  const rounds = tryIt.rounds || [];
+  if (!rounds.length) { satisfy(); return; }
+
+  let idx = 0;
+
+  slide.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">🎯 Try It</div>
+      <h2>${tryIt.heading || 'What would you say?'}</h2>
+      ${rounds.length > 1 ? '<div class="dl-reveal-dots" id="dlCrDots"></div>' : ''}
+      <div id="dlCrBody"></div>
+    </div>
+  `;
+  const body = document.getElementById('dlCrBody');
+  const dotsEl = document.getElementById('dlCrDots');
+
+  function renderDots() {
+    if (!dotsEl) return;
+    dotsEl.innerHTML = rounds.map((_, i) => `<span class="dl-reveal-dot ${i === idx ? 'active' : i < idx ? 'done' : ''}"></span>`).join('');
+  }
+
+  function loadRound() {
+    const round = rounds[idx];
+    renderDots();
+    body.innerHTML = `
+      ${round.scenario ? `<p class="lw-scenario">${round.scenario}</p>` : ''}
+      <div class="lw-q-text">${round.question}</div>
+      <div class="lw-opts" id="dlCrOpts">
+        ${round.options.map((o, i) => `<button type="button" class="lw-qopt" data-i="${i}">${o.label}</button>`).join('')}
+      </div>
+      <div class="lw-feedback" id="dlCrFb"></div>
+    `;
+    const fb = document.getElementById('dlCrFb');
+    const buttons = body.querySelectorAll('.lw-qopt');
+    wireRetryOptions(buttons, round.options, fb, () => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'lw-continue-btn';
+      if (idx < rounds.length - 1) {
+        btn.textContent = 'Next →';
+        btn.addEventListener('click', () => { idx += 1; loadRound(); });
+      } else {
+        helpers.burst();
+        btn.textContent = 'Continue →';
+        btn.addEventListener('click', satisfy);
+      }
+      body.appendChild(btn);
+    }, helpers.handleStreak);
+  }
+
+  loadRound();
 }
 
 /* ── Say It Back: teach-it-back + self-compare against a model answer ── */
