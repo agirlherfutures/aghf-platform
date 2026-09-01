@@ -41,16 +41,37 @@
     }
   },
   "tryIt": {
-    "heading": "Tap the wick",
-    "prompt": "Same candle, unlabeled this time. Tap the part that shows price traveled somewhere but did NOT close there.",
+    "heading": "Find the parts",
+    "prompt": "Same candle, unlabeled this time. Let's test what you just saw — one part at a time.",
     "mode": "click_chart",
     "config": {
       "shape": "candle_anatomy",
       "part": "raw",
-      "points": [
-        { "label": "The wick", "x": 390, "y": 132, "r": 35, "correct": true, "feedback": "Exactly — that thin line above the body is the wick. Price reached up there but closed lower — it didn't hold." },
-        { "label": "The body", "x": 390, "y": 185, "r": 30, "correct": false, "feedback": "The body is the open-to-close range — that's what price DID hold, not what it reached and gave back." },
-        { "label": "The close", "x": 390, "y": 148, "r": 20, "correct": false, "feedback": "That's right at the edge where price settled — the close. We're looking for the part that reached but didn't stay." }
+      "rounds": [
+        {
+          "prompt": "Tap the part that shows price traveled somewhere but did NOT close there.",
+          "points": [
+            { "label": "The wick", "x": 390, "y": 132, "r": 35, "correct": true, "feedback": "Exactly — that thin line above the body is the wick. Price reached up there but closed lower — it didn't hold." },
+            { "label": "The body", "x": 390, "y": 185, "r": 30, "correct": false, "feedback": "The body is the open-to-close range — that's what price DID hold, not what it reached and gave back." },
+            { "label": "The close", "x": 390, "y": 148, "r": 20, "correct": false, "feedback": "That's right at the edge where price settled — the close. We're looking for the part that reached but didn't stay." }
+          ]
+        },
+        {
+          "prompt": "Now tap the part that shows the distance between open and close.",
+          "points": [
+            { "label": "The body", "x": 390, "y": 185, "r": 35, "correct": true, "feedback": "Exactly — the wide filled rectangle is the body, the open-to-close range." },
+            { "label": "The top wick", "x": 390, "y": 132, "r": 30, "correct": false, "feedback": "That thin line above is the wick, not the body — the body is the wider rectangle in the middle." },
+            { "label": "The bottom wick", "x": 390, "y": 235, "r": 15, "correct": false, "feedback": "That's the wick below the body — travel, not the body itself." }
+          ]
+        },
+        {
+          "prompt": "Last one — tap the highest price this candle reached.",
+          "points": [
+            { "label": "The high", "x": 390, "y": 122, "r": 20, "correct": true, "feedback": "Right — that's the very top of the candle, the highest price reached this candle." },
+            { "label": "The low", "x": 390, "y": 243, "r": 20, "correct": false, "feedback": "That's the low — the bottom of the range, not the top." },
+            { "label": "The body", "x": 390, "y": 185, "r": 30, "correct": false, "feedback": "That's the body — we're looking for the highest point reached, at the very top of the wick." }
+          ]
+        }
       ]
     }
   },

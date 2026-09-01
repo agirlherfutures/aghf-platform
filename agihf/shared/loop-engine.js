@@ -300,40 +300,80 @@ function renderTryIt(slide, tryIt, satisfy, helpers) {
 }
 
 function renderClickChart(slide, tryIt, satisfy, helpers) {
-  const points = (tryIt.config && tryIt.config.points) || [];
-  const shape = (tryIt.config && tryIt.config.shape) || 'candle_anatomy';
-  const part = (tryIt.config && tryIt.config.part) || 'all';
+  const cfg = tryIt.config || {};
+  const shape = cfg.shape || 'candle_anatomy';
+  // Multi-round: config.rounds[] = [{ prompt, part, points: [...] }, ...]. Falls back to
+  // the old flat points/tryIt.prompt shape as a single round for backward compatibility.
+  const rounds = cfg.rounds && cfg.rounds.length ? cfg.rounds : [{ prompt: tryIt.prompt, part: cfg.part, points: cfg.points || [] }];
+
+  let idx = 0;
+  let solved = false;
+  let currentPoints = [];
+
   slide.innerHTML = `
     <div class="lw-card">
       <div class="lw-eyebrow">🎯 Try It</div>
       <h2>${tryIt.heading || 'Tap it on the chart'}</h2>
-      ${tryIt.prompt ? `<p>${tryIt.prompt}</p>` : ''}
+      <p id="dlTryPrompt"></p>
+      ${rounds.length > 1 ? '<div class="dl-reveal-dots" id="dlTryDots"></div>' : ''}
       <div class="lw-chartbox">
         <canvas id="dlTryCanvas" class="lw-chart" width="780" height="320" style="cursor:pointer"></canvas>
       </div>
-      <div class="lw-opts" id="dlTryOpts">
-        ${points.map((p, i) => `<button type="button" class="lw-qopt" data-i="${i}">${p.label}</button>`).join('')}
-      </div>
+      <div class="lw-opts" id="dlTryOpts"></div>
+      <div class="lw-continue-wrap" id="dlTryNav"></div>
     </div>
     <div class="lw-feedback" id="dlTryFb"></div>
   `;
   const canvas = document.getElementById('dlTryCanvas');
   const ctx = canvas.getContext('2d');
   const fb = document.getElementById('dlTryFb');
+  const promptEl = document.getElementById('dlTryPrompt');
+  const dotsEl = document.getElementById('dlTryDots');
+  const optsEl = document.getElementById('dlTryOpts');
+  const navEl = document.getElementById('dlTryNav');
   const drawFn = GUIDED_DRAWERS[shape] || GUIDED_DRAWERS.candle_anatomy;
-  drawFn(ctx, canvas.width, canvas.height, part);
 
-  let solved = false;
+  function renderDots() {
+    if (!dotsEl) return;
+    dotsEl.innerHTML = rounds.map((_, i) => `<span class="dl-reveal-dot ${i === idx ? 'active' : i < idx ? 'done' : ''}"></span>`).join('');
+  }
+
+  function loadRound() {
+    const round = rounds[idx];
+    currentPoints = round.points || [];
+    solved = false;
+    navEl.innerHTML = '';
+    fb.className = 'lw-feedback';
+    fb.textContent = '';
+    promptEl.textContent = round.prompt || '';
+    renderDots();
+    drawFn(ctx, canvas.width, canvas.height, round.part || cfg.part || 'raw');
+    optsEl.innerHTML = currentPoints.map((p, i) => `<button type="button" class="lw-qopt" data-i="${i}">${p.label}</button>`).join('');
+    optsEl.querySelectorAll('.lw-qopt').forEach((btn, i) => {
+      btn.addEventListener('click', () => attempt(currentPoints[i], btn));
+    });
+  }
+
   function attempt(point, el) {
-    if (solved) return;
+    if (solved || !point) return;
     if (point.correct) {
       solved = true;
       if (el) el.classList.add('correct');
       fb.innerHTML = `<strong>✦ Why?</strong> ${point.feedback || 'Exactly!'}`;
       fb.className = 'lw-feedback show good';
       helpers.handleStreak(true);
-      helpers.burst();
-      appendLoopContinue(slide, satisfy);
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'lw-continue-btn';
+      if (idx < rounds.length - 1) {
+        btn.textContent = 'Next part →';
+        btn.addEventListener('click', () => { idx += 1; loadRound(); });
+      } else {
+        helpers.burst();
+        btn.textContent = 'Continue →';
+        btn.addEventListener('click', satisfy);
+      }
+      navEl.appendChild(btn);
     } else {
       if (el) el.classList.add('wrong');
       fb.textContent = point.feedback || 'Not quite — look again.';
@@ -343,20 +383,19 @@ function renderClickChart(slide, tryIt, satisfy, helpers) {
   }
 
   canvas.addEventListener('click', (e) => {
+    if (solved) return;
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width, scaleY = canvas.height / rect.height;
     const x = (e.clientX - rect.left) * scaleX, y = (e.clientY - rect.top) * scaleY;
     let nearest = null, nearestDist = Infinity;
-    points.forEach((p) => {
+    currentPoints.forEach((p) => {
       const d = Math.hypot(p.x - x, p.y - y);
       if (d < (p.r || 40) && d < nearestDist) { nearest = p; nearestDist = d; }
     });
     if (nearest) attempt(nearest, null);
   });
 
-  slide.querySelectorAll('#dlTryOpts .lw-qopt').forEach((btn, i) => {
-    btn.addEventListener('click', () => attempt(points[i], btn));
-  });
+  loadRound();
 }
 
 function renderDecisionPath(slide, tryIt, satisfy, helpers) {
