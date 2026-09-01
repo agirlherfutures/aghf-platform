@@ -116,7 +116,7 @@
       nextLink.href = `section.html?phase=${phaseKey}&section=${current.section.key}&step=welcome`;
       nextLink.textContent = 'Section Checkpoint →';
       nextLink.classList.remove('locked');
-    } else if (n < total && (thisDone || isDone(allLessons[n - 2]) || n === 1) && !isLessonGated(allLessons[n])) {
+    } else if (n < total && (thisDone || n === 1 || (n > 1 && isDone(allLessons[n - 2]))) && !isLessonGated(allLessons[n])) {
       nextLink.href = `lesson.html?phase=${phaseKey}&n=${n + 1}`;
       if (!thisDone) { nextLink.textContent = 'Next Lesson 🔒'; nextLink.classList.add('locked'); }
     } else {
