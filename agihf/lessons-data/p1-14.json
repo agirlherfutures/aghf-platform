@@ -8,62 +8,64 @@
   "xpValue": 95,
   "passThreshold": 0.6,
   "hook": "Body, wicks, open, close. Know every part before you read a single chart.",
-  "mission": "By the end of this lesson, you should be able to name every part of a candle and know which one shows acceptance.",
-  "blocks": [
-    {
-      "type": "breakdown",
-      "heading": "Every candle has body parts",
-      "beats": [
-        { "heading": "Body, wick, high, low", "body": "The body shows the distance between open and close. The wick shows where price traveled but did not fully hold. High and low show the full range." },
-        { "heading": "A wick isn't automatically a reversal", "body": "It means price reached that area and did not close there. Context tells you what that rejection means." }
+  "loop": true,
+  "launchpad": {
+    "outcome": "Name every part of a candle and know which one shows acceptance.",
+    "missionQuestion": "Which part of a candle actually shows what price accepted — the wick, or the close?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": [
+      { "t": "00:00", "label": "What we're finding" },
+      { "t": "01:10", "label": "Open, high, low, close" },
+      { "t": "02:45", "label": "Body vs. wick" },
+      { "t": "04:30", "label": "Why the close matters most" },
+      { "t": "06:00", "label": "Try it yourself" }
+    ]
+  },
+  "seeIt": {
+    "heading": "Watch the anatomy reveal itself",
+    "prompt": "One candle. Watch each piece appear, one at a time.",
+    "config": {
+      "shape": "candle_anatomy",
+      "stages": [
+        { "part": "raw", "caption": "Here's one candle. Before we label anything — what do you already notice?" },
+        { "part": "open", "caption": "Open: this is where price started this candle." },
+        { "part": "close", "caption": "Close: this is where price ended. This is the one that matters most." },
+        { "part": "high", "caption": "High: the top of the full range this candle reached." },
+        { "part": "low", "caption": "Low: the bottom of the full range this candle reached." },
+        { "part": "body", "caption": "Body: the distance between open and close. A bigger body means a more decisive move." },
+        { "part": "wick", "caption": "Wick: price reached here, but didn't close here. Reached is not the same as accepted." },
+        { "part": "all", "caption": "Put it all together — this is the full story one candle can tell." }
       ]
-    },
-    {
-      "type": "chart_practice",
-      "mode": "candle_anatomy",
-      "heading": "Label the candle anatomy",
-      "prompt": "Tap each button to reveal one part of the candle.",
-      "config": {}
-    },
-    {
-      "type": "build_sequence",
-      "heading": "Build the anatomy read",
-      "prompt": "Tap the steps in the clean order for reading a candle.",
-      "items": [
-        { "key": "body", "label": "Find the body", "desc": "Open to close" },
-        { "key": "wicks", "label": "Check the wicks", "desc": "Where did price travel but not hold?" },
-        { "key": "close", "label": "Respect the close", "desc": "Where did price actually finish?" }
-      ],
-      "correctOrder": ["body", "wicks", "close"],
-      "successFeedback": "Clean anatomy read. Body, wicks, then close — that helps you separate movement from acceptance.",
-      "failFeedback": "Almost — read the body, check the wicks, then respect where price actually closed."
-    },
-    {
-      "type": "dayli_says",
-      "quote": "A wick shows me where price went. A close shows me where price accepted. That difference matters."
-    },
-    {
-      "type": "lock_it_in",
-      "questions": [
-        {
-          "question": "A candle has a huge range from high to low, but its open and close are almost identical. Is that a large-bodied candle or a small-bodied one?",
-          "options": ["Small-bodied — despite the wide range, price didn't settle far from where it started", "Large-bodied — a wide high-to-low range always means a large body", "It's impossible to know without the color"],
-          "correctIndex": 0,
-          "why": "Body size comes from the open-to-close distance, not the full high-to-low range."
-        },
-        {
-          "question": "Price wicks above resistance but closes below it — that means it reached above but did not ___ above.",
-          "options": ["Close", "Touch", "Print"],
-          "correctIndex": 0,
-          "why": "Without a close above the level, there's no acceptance above it."
-        }
-      ]
-    },
-    {
-      "type": "reflection",
-      "prompt": "Imagine another AGHF girl asks: \"What's the difference between a wick and a close?\" How would you explain it to her?"
     }
-  ],
+  },
+  "tryIt": {
+    "heading": "Tap the wick",
+    "prompt": "Same candle, unlabeled this time. Tap the part that shows price traveled somewhere but did NOT close there.",
+    "mode": "click_chart",
+    "config": {
+      "shape": "candle_anatomy",
+      "part": "raw",
+      "points": [
+        { "label": "The wick", "x": 390, "y": 132, "r": 35, "correct": true, "feedback": "Exactly — that thin line above the body is the wick. Price reached up there but closed lower — it didn't hold." },
+        { "label": "The body", "x": 390, "y": 185, "r": 30, "correct": false, "feedback": "The body is the open-to-close range — that's what price DID hold, not what it reached and gave back." },
+        { "label": "The close", "x": 390, "y": 148, "r": 20, "correct": false, "feedback": "That's right at the edge where price settled — the close. We're looking for the part that reached but didn't stay." }
+      ]
+    }
+  },
+  "sayItBack": {
+    "prompt": "Imagine another AGHF girl asks: \"What's the difference between a wick and a close?\" How would you explain it to her?",
+    "modelAnswer": "A wick shows me where price traveled but didn't stay — it's the reach. A close shows me where price actually settled, what the market accepted by the end of that candle. If I only look at the wick, I only know where price visited. The close tells me what actually held."
+  },
+  "saveIt": {
+    "checklist": [
+      "Body = open to close. The distance shows how decisive the move was.",
+      "Wick = reached but did not hold. Travel, not acceptance.",
+      "Close = what the market actually accepted by the end of the candle.",
+      "Read a candle in this order: body, then wicks, then respect the close."
+    ]
+  },
   "takeaways": [
     "The body is open-to-close distance; the wick is the reach that didn't hold.",
     "A wick shows where price traveled; a close shows where price accepted.",

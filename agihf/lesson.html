@@ -8,11 +8,13 @@
 <link rel="stylesheet" href="shared/tokens.css">
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/lesson-engine.css">
+<link rel="stylesheet" href="shared/loop-engine.css">
 </head>
 <body>
 
 <script src="shared/auth-guard.js"></script>
 <script src="shared/sidebar.js" data-active="lessons"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <main class="main">
   <div class="lh-header">
@@ -67,6 +69,7 @@
 <script type="module">
   import { PHASES, phaseByKey, isSectionCleared } from './shared/curriculum-data.js';
   import { renderLessonWizard } from './shared/lesson-engine.js';
+  import { renderLoopWizard } from './shared/loop-engine.js';
 
   const params = new URLSearchParams(window.location.search);
   const phaseKey = params.get('phase') || 'p1';
@@ -185,7 +188,7 @@
       backHref = nextLesson ? 'lessons.html' : 'dashboard.html';
     }
 
-    renderLessonWizard(data, {
+    const wizardOpts = {
       nextHref,
       backHref,
       nextTitle,
@@ -204,7 +207,10 @@
           console.error('Complete lesson error:', err);
         }
       },
-    });
+    };
+
+    if (data.loop) renderLoopWizard(data, wizardOpts);
+    else renderLessonWizard(data, wizardOpts);
   }
 
   document.addEventListener('aghf-auth-ready', loadLesson);
