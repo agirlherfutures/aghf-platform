@@ -23,15 +23,20 @@
     ]
   },
   "seeIt": {
-    "heading": "Meet the instrument pairs",
-    "mode": "cards",
-    "prompt": "Each of these has a mini and a micro version. Watch them build up.",
+    "heading": "Watch the size difference, live",
+    "prompt": "Each of these has a mini and a micro version. Watch the bars grow to scale.",
     "config": {
-      "cards": [
-        { "label": "MNQ ↔ NQ", "text": "Micro E-mini Nasdaq-100 and E-mini Nasdaq-100. Same underlying index family — MNQ is 1/10 the contract multiplier of NQ." },
-        { "label": "MES ↔ ES", "text": "Micro E-mini S&P 500 and E-mini S&P 500. Same relationship — the micro is the smaller-dollar-risk version." },
-        { "label": "MGC ↔ GC", "text": "Micro Gold and Gold. Metals work the same way — a micro and a mini version of the same underlying market." },
-        { "label": "The takeaway", "text": "A futures contract's value moves with its underlying market — it isn't ownership. Contract specs differ by instrument, so always verify current exchange specs before trading." }
+      "shape": "instrument_compare",
+      "pairs": [
+        { "key": "mnq", "small": "MNQ", "big": "NQ", "ratio": 10 },
+        { "key": "mes", "small": "MES", "big": "ES", "ratio": 10 },
+        { "key": "mgc", "small": "MGC", "big": "GC", "ratio": 10 }
+      ],
+      "stages": [
+        { "layer": "mnq", "caption": "MNQ ↔ NQ: Micro E-mini Nasdaq-100 and E-mini Nasdaq-100. Same underlying index family — MNQ is 1/10 the contract multiplier of NQ." },
+        { "layer": "mes", "caption": "MES ↔ ES: Micro E-mini S&P 500 and E-mini S&P 500. Same relationship — the micro is the smaller-dollar-risk version." },
+        { "layer": "mgc", "caption": "MGC ↔ GC: Micro Gold and Gold. Metals work the same way — a micro and a mini version of the same underlying market." },
+        { "layer": "summary", "caption": "A futures contract's value moves with its underlying market — it isn't ownership. Contract specs differ by instrument, so always verify current exchange specs before trading." }
       ]
     }
   },

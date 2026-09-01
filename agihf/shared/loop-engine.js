@@ -178,13 +178,18 @@ function renderLoopWatch(slide, data, satisfy) {
 
 /* ── See It: guided, staged canvas reveal ───────────────────────────── */
 
-// Each drawer takes (ctx, w, h, stage, config): `stage` is the current See It
-// stage or Try It round object (e.g. { part } for the candle/timeframe shapes,
-// { path, highlight } for price_path, { show } for pnl_reveal); `config` is
-// the parent seeIt.config/tryIt.config, for lesson-wide data (a shared path,
-// P&L inputs) that doesn't vary per stage.
+// Each drawer takes (ctx, w, h, stage, config, onDone): `stage` is the current
+// See It stage or Try It round object (e.g. { part } for the candle/timeframe
+// shapes, { path, highlight } for price_path, { show } for pnl_reveal,
+// { layer } for the animated shapes below); `config` is the parent
+// seeIt.config/tryIt.config, for lesson-wide data (a shared path, P&L
+// inputs) that doesn't vary per stage. Most shapes draw synchronously and
+// call onDone() immediately; the animated shapes run their own
+// requestAnimationFrame loop and call onDone() once it settles. onDone is
+// optional — Try It's click_chart doesn't pass one, since it doesn't gate
+// on the draw finishing.
 const GUIDED_DRAWERS = {
-  candle_anatomy(ctx, w, h, stage) {
+  candle_anatomy(ctx, w, h, stage, config, onDone) {
     const part = (stage && stage.part) || 'raw';
     const x = 390, open = 225, close = 145, high = 120, low = 245;
     drawFrame(ctx, w, h);
@@ -218,8 +223,9 @@ const GUIDED_DRAWERS = {
       ctx.fillStyle = '#2C1810'; ctx.font = 'bold 13px DM Sans';
       ctx.fillText('Here is one candle, unlabeled.', 60, 55);
     }
+    if (onDone) onDone();
   },
-  timeframe_lens(ctx, w, h, stage) {
+  timeframe_lens(ctx, w, h, stage, config, onDone) {
     const part = (stage && stage.part) || '4H';
     const counts = { '4H': 5, '1H': 10, '15M': 18, '1M': 34 };
     const n = counts[part] || 5;
@@ -238,13 +244,14 @@ const GUIDED_DRAWERS = {
     ctx.fillStyle = '#2C1810';
     ctx.font = 'bold 13px DM Sans';
     ctx.fillText(`${part} — ${n} candles shown`, 20, 24);
+    if (onDone) onDone();
   },
 
   // A data-driven price path (no hardcoded coordinates) with an optional
   // single highlighted point — used for "where did control shift" lessons.
   // A stage/round can supply its own `path`, or fall back to config.path
   // when the whole See It sequence shares one continuous chart.
-  price_path(ctx, w, h, stage, config) {
+  price_path(ctx, w, h, stage, config, onDone) {
     const path = (stage && stage.path) || (config && config.path) || [[60, 220], [160, 140], [260, 180], [360, 90], [460, 150], [560, 60], [660, 110]];
     drawFrame(ctx, w, h);
     ctx.strokeStyle = '#2C1810';
@@ -264,12 +271,13 @@ const GUIDED_DRAWERS = {
         ctx.fillText(highlight.label, highlight.x + 14, highlight.y - 12);
       }
     }
+    if (onDone) onDone();
   },
 
   // Builds the P&L formula on-canvas one piece at a time. `config` carries
   // the fixed inputs for the whole lesson (points/pointValue/contracts);
   // each stage's `show` array says which lines are visible yet.
-  pnl_reveal(ctx, w, h, stage, config) {
+  pnl_reveal(ctx, w, h, stage, config, onDone) {
     const points = (config && config.points) || 30;
     const pointValue = (config && config.pointValue) || 2;
     const contracts = (config && config.contracts) || 3;
@@ -287,6 +295,256 @@ const GUIDED_DRAWERS = {
       ctx.fillStyle = '#1a6b63';
       ctx.fillText(`= $${total.toLocaleString()}`, 40, y + 22);
     }
+    if (onDone) onDone();
+  },
+
+  // Animated: one evolving price line built up across 4 stages via
+  // stage.layer = 'market' | 'direction' | 'risk' | 'outcome'. Earlier
+  // layers redraw instantly (settled); the current layer animates in via
+  // requestAnimationFrame — a progressive line draw, or a live-counting
+  // "+$" number for the outcome layer.
+  trade_anatomy(ctx, w, h, stage, config, onDone) {
+    const cfg = config || {};
+    const path = cfg.path || [[40, 210], [120, 200], [200, 205], [280, 185], [360, 190], [440, 160]];
+    const ext = cfg.extension || [[440, 160], [520, 120], [600, 100], [680, 70]];
+    const riskY = cfg.riskY != null ? cfg.riskY : path[path.length - 1][1] + 55;
+    const outcomeValue = cfg.outcomeValue != null ? cfg.outcomeValue : 120;
+    const layer = (stage && stage.layer) || 'market';
+    const duration = 700;
+    const start = performance.now();
+    const entry = path[path.length - 1];
+    const outcomePoint = ext[ext.length - 1];
+
+    function lerpPath(points, t) {
+      const segCount = points.length - 1;
+      const totalT = Math.max(0, Math.min(1, t)) * segCount;
+      const segIdx = Math.min(segCount - 1, Math.floor(totalT));
+      const segT = totalT - segIdx;
+      const out = points.slice(0, segIdx + 1);
+      const [x0, y0] = points[segIdx];
+      const [x1, y1] = points[segIdx + 1] || points[segIdx];
+      out.push([x0 + (x1 - x0) * segT, y0 + (y1 - y0) * segT]);
+      return out;
+    }
+    function drawLine(points, color, width) {
+      if (points.length < 2) return;
+      ctx.strokeStyle = color; ctx.lineWidth = width || 2.5;
+      ctx.beginPath();
+      points.forEach(([x, y], i) => (i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)));
+      ctx.stroke();
+    }
+
+    function frame(now) {
+      const t = Math.min(1, (now - start) / duration);
+      drawFrame(ctx, w, h);
+
+      const marketT = layer === 'market' ? t : 1;
+      drawLine(lerpPath(path, marketT), '#2C1810');
+      if (layer === 'market') {
+        if (t < 1) { requestAnimationFrame(frame); return; }
+        if (onDone) onDone();
+        return;
+      }
+
+      const dirT = layer === 'direction' ? t : 1;
+      drawLine(lerpPath(ext, dirT), '#7ECEC4');
+      if (layer === 'direction') {
+        if (t >= 1) {
+          ctx.fillStyle = '#7ECEC4'; ctx.font = 'bold 13px DM Sans';
+          ctx.fillText('↑ LONG', outcomePoint[0] - 22, outcomePoint[1] - 14);
+        }
+        if (t < 1) { requestAnimationFrame(frame); return; }
+        if (onDone) onDone();
+        return;
+      }
+
+      const riskT = layer === 'risk' ? t : 1;
+      if (riskT > 0) {
+        const curX = entry[0] + (outcomePoint[0] - entry[0]) * riskT;
+        ctx.fillStyle = 'rgba(244,130,154,.08)';
+        ctx.fillRect(entry[0], entry[1], curX - entry[0], riskY - entry[1]);
+        ctx.strokeStyle = '#F4829A'; ctx.lineWidth = 2; ctx.setLineDash([5, 5]);
+        ctx.beginPath(); ctx.moveTo(entry[0], riskY); ctx.lineTo(curX, riskY); ctx.stroke();
+        ctx.setLineDash([]);
+        if (riskT >= 1) {
+          ctx.fillStyle = '#a84060'; ctx.font = 'bold 12px DM Sans';
+          ctx.fillText('Risk / invalidation', entry[0], riskY + 18);
+        }
+      }
+      if (layer === 'risk') {
+        if (t < 1) { requestAnimationFrame(frame); return; }
+        if (onDone) onDone();
+        return;
+      }
+
+      if (layer === 'outcome') {
+        const val = Math.round(outcomeValue * t);
+        ctx.beginPath(); ctx.arc(outcomePoint[0], outcomePoint[1], 5, 0, Math.PI * 2);
+        ctx.fillStyle = '#7ECEC4'; ctx.fill();
+        ctx.font = 'bold 22px DM Sans'; ctx.fillStyle = '#1a6b63';
+        ctx.fillText(`+$${val}`, outcomePoint[0] - 26, outcomePoint[1] - 18);
+        if (t < 1) { requestAnimationFrame(frame); return; }
+        if (onDone) onDone();
+        return;
+      }
+
+      if (onDone) onDone();
+    }
+    requestAnimationFrame(frame);
+  },
+
+  // Animated: a buyer bubble and a seller bubble slide in from opposite
+  // edges, then slide toward each other and meet with a burst — visualizing
+  // "disagreement creates a transaction" instead of describing it. Layers:
+  // 'buyer' | 'seller' | 'meet' | 'transaction'.
+  market_disagreement(ctx, w, h, stage, config, onDone) {
+    const midY = h / 2;
+    const buyerStart = 60, buyerSettled = w * 0.32;
+    const sellerStart = w - 60, sellerSettled = w * 0.68;
+    const meetX = w / 2;
+    const layer = (stage && stage.layer) || 'buyer';
+    const duration = 650;
+    const start = performance.now();
+
+    function drawBubble(x, y, r, color, label, sublabel) {
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fillStyle = color; ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.font = 'bold 13px DM Sans'; ctx.textAlign = 'center';
+      ctx.fillText(label, x, y + 5);
+      if (sublabel) {
+        ctx.fillStyle = '#2C1810'; ctx.font = '12px DM Sans';
+        ctx.fillText(sublabel, x, y + r + 22);
+      }
+      ctx.textAlign = 'left';
+    }
+
+    function frame(now) {
+      const t = Math.min(1, (now - start) / duration);
+      drawFrame(ctx, w, h);
+      ctx.strokeStyle = 'rgba(44,24,16,.15)'; ctx.setLineDash([4, 4]);
+      ctx.beginPath(); ctx.moveTo(0, midY); ctx.lineTo(w, midY); ctx.stroke(); ctx.setLineDash([]);
+
+      let buyerX = buyerSettled, sellerX = sellerSettled;
+      if (layer === 'buyer') buyerX = buyerStart + (buyerSettled - buyerStart) * t;
+      if (layer === 'meet') buyerX = buyerSettled + (meetX - 42 - buyerSettled) * t;
+      if (layer === 'transaction') buyerX = meetX - 42;
+      if (layer === 'seller') sellerX = sellerStart + (sellerSettled - sellerStart) * t;
+      if (layer === 'meet') sellerX = sellerSettled + (meetX + 42 - sellerSettled) * t;
+      if (layer === 'transaction') sellerX = meetX + 42;
+
+      const buyerVisible = layer !== 'buyer' || t >= 0;
+      if (buyerVisible) drawBubble(buyerX, midY, 34, '#7ECEC4', 'BUYER', layer === 'buyer' && t >= 1 ? '"I want in here"' : null);
+      if (layer !== 'buyer') drawBubble(sellerX, midY, 34, '#F4829A', 'SELLER', layer === 'seller' && t >= 1 ? '"I\'m willing to sell"' : null);
+
+      if (layer === 'transaction') {
+        const burstR = 10 + 34 * t;
+        ctx.beginPath(); ctx.arc(meetX, midY, burstR, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(245,168,87,${1 - t})`; ctx.lineWidth = 3; ctx.stroke();
+        if (t >= 1) {
+          ctx.fillStyle = '#F5A857'; ctx.font = 'bold 14px DM Sans'; ctx.textAlign = 'center';
+          ctx.fillText('✦ TRANSACTION', meetX, midY - 56);
+          ctx.textAlign = 'left';
+        }
+      }
+
+      if (t < 1) { requestAnimationFrame(frame); return; }
+      if (onDone) onDone();
+    }
+    requestAnimationFrame(frame);
+  },
+
+  // Animated: bar-growth comparison, one instrument pair per stage — the
+  // micro bar stays constant while the mini bar visibly grows to scale.
+  // config.pairs = [{ small, big, ratio }, ...]. Layers match pair keys
+  // ('mnq'/'mes'/'mgc' by default) plus a closing 'summary' layer.
+  instrument_compare(ctx, w, h, stage, config, onDone) {
+    const pairs = (config && config.pairs) || [
+      { key: 'mnq', small: 'MNQ', big: 'NQ', ratio: 10 },
+      { key: 'mes', small: 'MES', big: 'ES', ratio: 10 },
+      { key: 'mgc', small: 'MGC', big: 'GC', ratio: 10 },
+    ];
+    const layer = (stage && stage.layer) || pairs[0].key;
+    const duration = 650;
+    const start = performance.now();
+    const barBaseY = h - 60, unitH = 16, barW = 64;
+
+    function drawPair(cx, p, growT) {
+      const smallH = unitH;
+      ctx.fillStyle = '#B2E4DF';
+      ctx.fillRect(cx - barW - 12, barBaseY - smallH, barW, smallH);
+      ctx.fillStyle = '#2C1810'; ctx.font = 'bold 12px DM Sans'; ctx.textAlign = 'center';
+      ctx.fillText(p.small, cx - barW / 2 - 12, barBaseY + 18);
+
+      const grownH = unitH * (1 + (p.ratio - 1) * growT);
+      ctx.fillStyle = '#F9B8C6';
+      ctx.fillRect(cx + 12, barBaseY - grownH, barW, grownH);
+      ctx.fillText(p.big, cx + barW / 2 + 12, barBaseY + 18);
+      ctx.textAlign = 'left';
+    }
+
+    function frame(now) {
+      const t = Math.min(1, (now - start) / duration);
+      drawFrame(ctx, w, h);
+
+      if (layer === 'summary') {
+        const slotW = (w - 80) / pairs.length;
+        pairs.forEach((p, i) => drawPair(60 + slotW * i + slotW / 2, p, 1));
+        ctx.fillStyle = '#2C1810'; ctx.font = 'bold 13px DM Sans'; ctx.textAlign = 'center';
+        ctx.fillText('Micro contracts are a fraction of their mini counterparts', w / 2, 30);
+        ctx.textAlign = 'left';
+        if (onDone) onDone();
+        return;
+      }
+
+      const p = pairs.find((x) => x.key === layer) || pairs[0];
+      drawPair(w / 2, p, t);
+      ctx.fillStyle = '#2C1810'; ctx.font = 'bold 13px DM Sans'; ctx.textAlign = 'center';
+      ctx.fillText(`${p.small} is 1/${p.ratio} the size of ${p.big}`, w / 2, 30);
+      ctx.textAlign = 'left';
+
+      if (t < 1) { requestAnimationFrame(frame); return; }
+      if (onDone) onDone();
+    }
+    requestAnimationFrame(frame);
+  },
+
+  // Animated: a two-column canvas (a stocks side and a futures side) whose
+  // bullet points animate in line by line — stocks column first, then
+  // futures. Layers: 'stocks' | 'futures' | 'terms' | 'matters' (the last
+  // two keep both columns settled and let the caption carry the point).
+  stocks_vs_futures(ctx, w, h, stage, config, onDone) {
+    const cfg = config || {};
+    const stockPoints = cfg.stockPoints || ['Shares / equity', 'No expiration', 'Regular + extended hours'];
+    const futuresPoints = cfg.futuresPoints || ['Standardized contracts', 'Contracts expire — rollover', 'Nearly 24hr weekday trading'];
+    const layer = (stage && stage.layer) || 'stocks';
+    const duration = 600;
+    const start = performance.now();
+
+    function drawColumn(x, title, points, color, revealCount) {
+      ctx.fillStyle = color; ctx.font = 'bold 15px DM Sans';
+      ctx.fillText(title, x, 34);
+      for (let i = 0; i < revealCount; i++) {
+        ctx.fillStyle = '#3D2B20'; ctx.font = '12px DM Sans';
+        ctx.fillText('• ' + points[i], x, 66 + i * 28);
+      }
+    }
+
+    function frame(now) {
+      const t = Math.min(1, (now - start) / duration);
+      drawFrame(ctx, w, h);
+      ctx.strokeStyle = 'rgba(44,24,16,.12)';
+      ctx.beginPath(); ctx.moveTo(w / 2, 10); ctx.lineTo(w / 2, h - 10); ctx.stroke();
+
+      const stockReveal = layer === 'stocks' ? Math.ceil(stockPoints.length * t) : (layer === 'futures' || layer === 'terms' || layer === 'matters' ? stockPoints.length : 0);
+      drawColumn(24, 'STOCKS', stockPoints, '#F4829A', stockReveal);
+
+      const futuresReveal = layer === 'futures' ? Math.ceil(futuresPoints.length * t) : (layer === 'terms' || layer === 'matters' ? futuresPoints.length : 0);
+      drawColumn(w / 2 + 24, 'FUTURES', futuresPoints, '#7ECEC4', futuresReveal);
+
+      if ((layer === 'stocks' || layer === 'futures') && t < 1) { requestAnimationFrame(frame); return; }
+      if (onDone) onDone();
+    }
+    requestAnimationFrame(frame);
   },
 };
 
@@ -328,26 +586,32 @@ function renderGuidedReveal(slide, seeIt, satisfy, helpers) {
 
   function showStage() {
     const stage = stages[idx];
-    drawFn(ctx, canvas.width, canvas.height, stage, seeIt.config);
+    renderDots();
+    contWrap.innerHTML = '';
+    captionEl.classList.remove('show');
+    captionEl.textContent = '';
     canvas.classList.remove('dl-canvas-fade');
     void canvas.offsetWidth;
     canvas.classList.add('dl-canvas-fade');
-    captionEl.classList.remove('show');
-    captionEl.textContent = stage.caption || '';
-    requestAnimationFrame(() => captionEl.classList.add('show'));
-    renderDots();
 
-    contWrap.innerHTML = '';
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'lw-continue-btn';
-    btn.textContent = idx === stages.length - 1 ? 'Continue →' : 'Next →';
-    btn.addEventListener('click', () => {
-      idx += 1;
-      if (idx >= stages.length) { helpers.handleStreak(true); satisfy(); return; }
-      showStage();
+    // Non-animated shapes call onDone() synchronously (no visible delay);
+    // animated shapes run their own requestAnimationFrame loop first — the
+    // caption and Continue button only appear once the reveal settles.
+    drawFn(ctx, canvas.width, canvas.height, stage, seeIt.config, () => {
+      captionEl.textContent = stage.caption || '';
+      requestAnimationFrame(() => captionEl.classList.add('show'));
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'lw-continue-btn';
+      btn.textContent = idx === stages.length - 1 ? 'Continue →' : 'Next →';
+      btn.addEventListener('click', () => {
+        idx += 1;
+        if (idx >= stages.length) { helpers.handleStreak(true); satisfy(); return; }
+        showStage();
+      });
+      contWrap.appendChild(btn);
     });
-    contWrap.appendChild(btn);
   }
 
   showStage();

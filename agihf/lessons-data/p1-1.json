@@ -24,15 +24,19 @@
     ]
   },
   "seeIt": {
-    "heading": "Build the anatomy of a trade",
-    "mode": "cards",
-    "prompt": "Every trade is made of the same four pieces. Watch them stack up.",
+    "heading": "Watch a trade build itself",
+    "prompt": "Every trade is made of the same four pieces. Watch them build on one chart, live.",
     "config": {
-      "cards": [
-        { "label": "Market", "text": "What are you trading? Every trade starts with a specific market — MNQ, MES, whatever it is." },
-        { "label": "Direction", "text": "Do you expect price to rise or fall? This is going long or going short." },
-        { "label": "Risk", "text": "Where are you wrong, and how much are you willing to lose? Defined before the trade, not decided emotionally after." },
-        { "label": "Outcome", "text": "Price moves. Your position gains or loses value — based on the first three pieces, not on hope." }
+      "shape": "trade_anatomy",
+      "path": [[40, 220], [130, 210], [220, 215], [310, 195], [400, 200], [490, 170]],
+      "extension": [[490, 170], [570, 130], [650, 110], [730, 80]],
+      "riskY": 235,
+      "outcomeValue": 120,
+      "stages": [
+        { "layer": "market", "caption": "Market: what are you trading? Every trade starts with a specific market — MNQ, MES, whatever it is." },
+        { "layer": "direction", "caption": "Direction: do you expect price to rise or fall? This is going long or going short." },
+        { "layer": "risk", "caption": "Risk: where are you wrong, and how much are you willing to lose? Defined before the trade, not decided emotionally after." },
+        { "layer": "outcome", "caption": "Outcome: price moves. Your position gains or loses value — based on the first three pieces, not on hope." }
       ]
     }
   },

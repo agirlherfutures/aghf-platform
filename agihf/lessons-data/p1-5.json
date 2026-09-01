@@ -24,14 +24,16 @@
   },
   "seeIt": {
     "heading": "Stocks ≠ Futures",
-    "mode": "cards",
-    "prompt": "Same-looking charts. Very different structures underneath.",
+    "prompt": "Same-looking charts. Watch the structures build up side by side.",
     "config": {
-      "cards": [
-        { "label": "Stocks", "text": "You're trading shares — equity ownership. No contract expiration. Trading hours: regular session, plus some extended hours." },
-        { "label": "Futures", "text": "You're trading standardized contracts — no ownership stake. Contracts expire, so rollover applies. Nearly 24-hour weekday trading for many contracts." },
-        { "label": "The terms you'll hear", "text": "Contract month, expiration, rollover, margin. Futures use a margin structure different from a typical stock account — you don't need to master all of it today." },
-        { "label": "What actually matters", "text": "Position size only means something when you understand what one unit of your instrument is worth — and stocks and futures are not the same unit." }
+      "shape": "stocks_vs_futures",
+      "stockPoints": ["Shares / equity ownership", "No contract expiration", "Regular + some extended hours"],
+      "futuresPoints": ["Standardized contracts", "Contracts expire — rollover applies", "Nearly 24hr weekday trading"],
+      "stages": [
+        { "layer": "stocks", "caption": "Stocks: you're trading shares — equity ownership. No contract expiration. Trading hours: regular session, plus some extended hours." },
+        { "layer": "futures", "caption": "Futures: you're trading standardized contracts — no ownership stake. Contracts expire, so rollover applies. Nearly 24-hour weekday trading for many contracts." },
+        { "layer": "terms", "caption": "The terms you'll hear: contract month, expiration, rollover, margin. Futures use a margin structure different from a typical stock account — you don't need to master all of it today." },
+        { "layer": "matters", "caption": "What actually matters: position size only means something when you understand what one unit of your instrument is worth — and stocks and futures are not the same unit." }
       ]
     }
   },

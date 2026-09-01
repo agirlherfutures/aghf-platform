@@ -24,14 +24,14 @@
   },
   "seeIt": {
     "heading": "Watch a transaction form",
-    "mode": "cards",
-    "prompt": "Same price. Two different opinions. Watch what happens.",
+    "prompt": "Same price. Two different opinions. Watch what happens between them.",
     "config": {
-      "cards": [
-        { "label": "A buyer thinks...", "text": "\"That's attractive — I want exposure here.\" She's ready to buy at this price." },
-        { "label": "A seller thinks...", "text": "\"I'm willing to sell here.\" Maybe she's hedging, maybe she expects price to fall — it doesn't matter why." },
-        { "label": "Neither is wrong", "text": "They just want different things at the same price. That's not a glitch in the market — it's the whole mechanism." },
-        { "label": "That disagreement is the transaction", "text": "Price only moves because buyers and sellers keep negotiating. Zero disagreement means zero trades." }
+      "shape": "market_disagreement",
+      "stages": [
+        { "layer": "buyer", "caption": "A buyer shows up: \"That's attractive — I want exposure here.\" She's ready to buy at this price." },
+        { "layer": "seller", "caption": "A seller shows up: \"I'm willing to sell here.\" Maybe she's hedging, maybe she expects price to fall — it doesn't matter why." },
+        { "layer": "meet", "caption": "Neither is wrong. They just want different things at the same price. That's not a glitch in the market — it's the whole mechanism." },
+        { "layer": "transaction", "caption": "That disagreement is the transaction. Price only moves because buyers and sellers keep negotiating. Zero disagreement means zero trades." }
       ]
     }
   },
