@@ -7,55 +7,63 @@
   "videoDuration": "6 min",
   "xpValue": 50,
   "passThreshold": 0.6,
-  "hook": "MNQ. MGC. Know what you're trading before you trade it.",
-  "mission": "By the end of this lesson, you should be able to explain the difference between the instrument you trade and the size you trade it at.",
+  "hook": "MNQ isn't just a ticker on your screen. Know what you're actually trading.",
+  "mission": "By the end of this lesson, you should be able to name the common futures instruments and explain the difference between a mini and a micro contract.",
   "blocks": [
     {
       "type": "breakdown",
-      "heading": "The instrument is the market. The contract count is your size inside it.",
+      "heading": "What is a futures contract?",
       "beats": [
-        { "heading": "Same market, different weight", "body": "MNQ, NQ, MGC, ES are instruments — they tell you what market you're trading. 1 contract, 2 contracts, 5 contracts tells you how much exposure you have to that instrument's move." },
-        { "heading": "Micros keep you teachable", "body": "Smaller exposure gives you room to actually learn before your emotions hijack the lesson." }
+        { "heading": "A standardized agreement", "body": "A futures contract is a standardized agreement associated with buying or selling an underlying asset or financial benchmark, under specifications set by the exchange. When you trade futures, you're trading contracts whose values move with their underlying market — not buying shares of a company." },
+        { "heading": "The instrument is the specific market", "body": "Equity index futures include ES (E-mini S&P 500), MES (Micro E-mini S&P 500), NQ (E-mini Nasdaq-100), and MNQ (Micro E-mini Nasdaq-100). Metals include GC (Gold) and MGC (Micro Gold). Contract specifications differ — always verify current exchange specs before trading." },
+        { "heading": "The pairs to know", "body": "MNQ → Micro E-mini Nasdaq-100. NQ → E-mini Nasdaq-100. MES → Micro E-mini S&P 500. ES → E-mini S&P 500. MGC → Micro Gold. GC → Gold." }
       ]
     },
     {
       "type": "chart_practice",
       "mode": "comparison",
-      "heading": "MNQ vs MGC — same 10-point move, different dollars",
-      "prompt": "Tap each instrument to see its per-point value.",
+      "heading": "NQ vs. MNQ — same family, different size",
+      "prompt": "Tap each instrument to compare its contract multiplier.",
       "config": {
-        "left": { "label": "MNQ", "value": 2, "desc": "MNQ moves $2 for every point. A 10-point move = $20." },
-        "right": { "label": "MGC", "value": 10, "desc": "MGC moves $10 for every point — 5x MNQ's weight on the same 10-point move." }
+        "left": { "label": "MNQ", "value": 1, "desc": "Micro E-mini Nasdaq-100 — 1/10 the contract multiplier of NQ. Same underlying index exposure family, much smaller dollar risk." },
+        "right": { "label": "NQ", "value": 10, "desc": "E-mini Nasdaq-100 — larger dollar exposure per point. 10x the contract multiplier of MNQ." }
       }
     },
     {
-      "type": "confusion",
-      "heading": "Instrument ≠ Size",
-      "left": { "label": "Instrument", "points": ["What market you're trading (MNQ, MGC, ES)", "Determines dollars per point", "Doesn't change no matter how many contracts you hold"] },
-      "right": { "label": "Contract count", "points": ["How much exposure you have to that instrument", "Multiplies the dollar result", "Can change every single trade"] }
+      "type": "catch_mistake",
+      "heading": "What's wrong with this reasoning?",
+      "scenario": "A trader moves from MNQ to NQ but keeps the same number of contracts because \"the chart looks the same.\"",
+      "options": [
+        { "label": "The contract multiplier is different, so the same price move produces very different P&L and risk", "correct": true, "feedback": "Exactly — the chart shape being similar doesn't mean the dollar exposure is similar." },
+        { "label": "Nothing — NQ and MNQ are the same size, just different tickers", "correct": false, "feedback": "They're not the same size — MNQ is 1/10 the contract multiplier of NQ." }
+      ]
+    },
+    {
+      "type": "dayli_says",
+      "quote": "Never choose your number of contracts because someone else trades that size. Know the instrument. Know its value. Know your risk."
     },
     {
       "type": "lock_it_in",
       "questions": [
         {
+          "question": "Which pair correctly matches the instrument to its name?",
+          "options": ["MGC → Micro Gold", "ES → Micro E-mini S&P 500", "MNQ → E-mini Nasdaq-100"],
+          "correctIndex": 0,
+          "why": "MGC is Micro Gold. ES is the full-size E-mini S&P 500 (MES is the micro), and MNQ is the micro version of NQ."
+        },
+        {
           "question": "A trader switches from trading 1 contract of MNQ to 5 contracts of MNQ. Has she changed instruments?",
           "options": ["No — she's still trading MNQ; only her size and dollar exposure changed", "Yes — 5 contracts makes it a different instrument", "It's impossible to tell without knowing the price"],
           "correctIndex": 0,
           "why": "The instrument stays MNQ — contract count only changes exposure."
-        },
-        {
-          "question": "Two traders both say they're \"trading MNQ.\" One holds 1 contract, the other holds 20. Are they taking the same risk?",
-          "options": ["No — 20 contracts moves 20x the money on the same point move as 1 contract", "Yes — same instrument means same risk", "It depends only on which broker they use"],
-          "correctIndex": 0,
-          "why": "Same instrument, very different dollar risk — contract count is what changes exposure."
         }
       ]
     }
   ],
   "takeaways": [
-    "The instrument tells you what market you're trading — not how much you're risking.",
-    "Contract count is the multiplier that turns a point move into real dollars.",
-    "A small instrument can still carry big risk if the size is large enough."
+    "A futures contract's value moves with its underlying market — it isn't ownership.",
+    "Micro contracts (MNQ, MES, MGC) are a fraction of their mini counterparts (NQ, ES, GC).",
+    "Contract count changes your exposure, not the instrument itself."
   ],
-  "remember": "Same market. Different emotional and dollar weight."
+  "remember": "Know the instrument. Know its value. Know your risk."
 }

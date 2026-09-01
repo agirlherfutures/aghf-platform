@@ -4,57 +4,61 @@
   "lessonNumber": 2,
   "title": "Why Do Markets Exist?",
   "videoUrl": null,
-  "videoDuration": "5 min",
+  "videoDuration": "4 min",
   "xpValue": 50,
   "passThreshold": 0.6,
-  "hook": "Markets exist because buyers and sellers need each other. That's it.",
-  "mission": "By the end of this lesson, you should be able to explain why price can't move without participation — and use that to weigh how much a move actually means.",
+  "hook": "Before you try to beat the market, understand what the market is doing.",
+  "mission": "By the end of this lesson, you should understand markets as a place where participants with different objectives transact — and why that disagreement is what creates price.",
   "blocks": [
     {
       "type": "breakdown",
-      "heading": "Markets exist because people need to exchange something",
+      "heading": "Markets are participants transacting for different reasons",
       "beats": [
-        { "heading": "In, out, protect, profit", "body": "One side wants in. One side wants out. One side wants protection. One side wants profit. No exchange = no market, and no market = no movement." },
-        { "heading": "A meeting place for decisions", "body": "Buyers say \"I'll pay this,\" sellers say \"I want that,\" and price moves until both sides meet. That negotiation is what prints the chart." }
+        { "heading": "Buyers need sellers, sellers need buyers", "body": "Participants enter markets for different reasons. Some speculate. Some hedge risk. Some invest or manage portfolios. Different opinions and needs create transactions." },
+        { "heading": "Price finds agreement", "body": "Price helps buyers and sellers find where they're willing to transact. As willingness to buy and sell changes, price changes too." },
+        { "heading": "Same market, different objective", "body": "A producer may use futures to manage exposure to changing prices — that's hedging. A trader may participate because she expects the contract's price to change. Same market, different objective." },
+        { "heading": "MNQ at 20,000", "body": "Some participants think \"that's attractive, I want exposure here.\" Others think \"I'm willing to sell here.\" Their interaction creates a market." }
       ]
     },
     {
-      "type": "what_happens_next",
-      "heading": "Follow the participation",
-      "sequence": ["Quiet overnight session, almost no orders"],
-      "askAfter": "Quiet overnight session, almost no orders",
-      "prompt": "What happens to price with barely any participation?",
+      "type": "catch_mistake",
+      "heading": "What did she assume wrong?",
+      "scenario": "A new trader assumes every single person in the futures market is trying to speculate on which way price will go.",
       "options": [
-        { "label": "It stays muted — fewer buyers and sellers means less to print onto the chart", "correct": true, "feedback": "Right — no exchange happening means no real negotiation to move price." },
-        { "label": "It moves just as much as any busy session", "correct": false, "feedback": "Participation and movement are linked — fewer participants means less real price discovery." }
+        { "label": "Not necessarily — some participants, like producers, use futures to hedge and manage risk, not to speculate", "correct": true, "feedback": "Right — same market, different objective. Hedgers and speculators can both be on the other side of your trade." },
+        { "label": "That's true — everyone in the market is speculating on direction", "correct": false, "feedback": "Not quite — plenty of participants are managing risk exposure, not betting on direction." }
       ]
     },
     {
       "type": "dayli_says",
-      "quote": "A market is just a meeting place for decisions. Buyers say \"I'll pay this,\" sellers say \"I want that,\" and price moves until both sides meet — that negotiation is what prints the chart."
+      "quote": "The chart you're eventually going to analyze is simply the visual record of all that buying and selling activity. That's why we're going to spend so much time learning how to read price."
     },
     {
       "type": "lock_it_in",
       "questions": [
         {
-          "question": "Why can't price move at all if literally no one wants to buy or sell?",
-          "options": ["Someone has to want in and someone has to want out for a trade — and a new print — to happen", "Price always moves regardless of participation", "Price only moves when the exchange forces it to"],
+          "question": "Trader A believes the current price offers an attractive buying opportunity. Trader B believes price is likely to fall and wants to sell — at the exact same price. Can they both participate in the same market at the same time?",
+          "options": ["Yes — their disagreement is exactly what creates the transaction", "No — only one of them can be right, so only one can trade", "No — the market would reject one of their orders"],
           "correctIndex": 0,
-          "why": "Zero participants means zero disagreement to resolve into price."
+          "why": "Disagreement between participants isn't a glitch — it's the entire reason a transaction can happen at all."
         },
         {
-          "question": "A level gets tested once overnight on thin volume, then again at the New York open on heavy volume. Which test tells you more?",
-          "options": ["The New York open test — more participants means more real information", "They're identical — a test is a test", "The overnight test, because it happened first"],
+          "question": "Why can't price move at all if literally no one wants to buy or sell?",
+          "options": ["There's no disagreement to resolve, so there's nothing to push price anywhere", "Price always moves on a timer regardless of participation", "The exchange sets price manually when volume is low"],
           "correctIndex": 0,
-          "why": "Not all tests of a level are equal — the one with more real participation carries more weight."
+          "why": "Price only moves because buyers and sellers are actively negotiating — zero participants means zero negotiation."
         }
       ]
+    },
+    {
+      "type": "reflection",
+      "prompt": "Why is disagreement between market participants necessary for trading to occur? Explain it in your own words."
     }
   ],
   "takeaways": [
-    "No exchange happening means nothing is pushing price anywhere.",
-    "More real participation means a move reflects more genuine agreement or disagreement.",
-    "Thin, quiet sessions deserve less weight than heavy-volume ones."
+    "Markets exist because participants with different needs transact.",
+    "Some participants speculate, others hedge risk — same market, different objective.",
+    "Disagreement between buyers and sellers is what creates a transaction, not a problem with the market."
   ],
-  "remember": "Price only moves because someone wants in and someone wants out."
+  "remember": "The chart is just the visual record of buyers and sellers disagreeing."
 }

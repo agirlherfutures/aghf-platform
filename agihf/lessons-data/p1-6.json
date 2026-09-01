@@ -4,18 +4,19 @@
   "lessonNumber": 6,
   "title": "Points, Ticks & P&L",
   "videoUrl": null,
-  "videoDuration": "6 min",
+  "videoDuration": "8 min",
   "xpValue": 50,
   "passThreshold": 0.6,
-  "hook": "MNQ = $2 per point. MGC = $10 per point. Know your numbers before you trade.",
-  "mission": "By the end of this lesson, you should be able to calculate a trade's dollar P&L from points, point value, and contract count.",
+  "hook": "Before you worry about making money, you need to understand how the numbers work.",
+  "mission": "By the end of this lesson, you should be able to calculate a trade's dollar P&L from points, tick value, and contract count — for wins and losses.",
   "blocks": [
     {
       "type": "breakdown",
-      "heading": "Points and ticks are how the market moves. P&L is what that movement means to you.",
+      "heading": "Point, tick, P&L",
       "beats": [
-        { "heading": "Two units of movement", "body": "Points are larger units of movement. Ticks are smaller pieces inside those points." },
-        { "heading": "Where it becomes real money", "body": "P&L is the money attached to that movement once you add your instrument and contract count. This is where it stops being chart language and starts being real." }
+        { "heading": "Point", "body": "A whole-number movement in price. On MNQ: 20,000 → 20,001 is 1 point." },
+        { "heading": "Tick", "body": "The minimum price increment defined for a contract. MNQ's minimum tick is 0.25 index points, worth $0.50 per contract — so a full index point is $2.00 per contract. Tick size and value differ by contract, so don't assume every product works like MNQ." },
+        { "heading": "P&L", "body": "Price movement × contract value × number of contracts. Same chart, same move, different position size — different P&L." }
       ]
     },
     {
@@ -39,31 +40,52 @@
       "failFeedback": "Close — the order is points moved, then point value, then contract count."
     },
     {
+      "type": "catch_mistake",
+      "heading": "What information is missing?",
+      "scenario": "A trader says: \"I only have a 30-point stop, so I can't lose that much.\"",
+      "options": [
+        { "label": "The number of contracts and the contract's point value — points alone don't tell you the dollar risk", "correct": true, "feedback": "Bingo. 30 points means very different things at 1 contract versus 10." },
+        { "label": "Nothing — 30 points is 30 points, the risk is already clear", "correct": false, "feedback": "Points alone don't tell you the dollar risk — you need the point value and contract count too." }
+      ]
+    },
+    {
       "type": "dayli_says",
-      "quote": "Bigger size makes the same move louder — the chart may be normal while your emotions are not. Staying small enough to stay teachable matters."
+      "quote": "Points describe price movement. Contracts determine how much exposure you have to that movement. Never discuss risk in points alone without understanding what those points mean in dollars for your position."
     },
     {
       "type": "lock_it_in",
       "questions": [
         {
+          "question": "You buy 1 MNQ at 20,000. Price rises to 20,010 — that's 10 points. What's the P&L before fees?",
+          "options": ["+$20", "+$10", "+$200"],
+          "correctIndex": 0,
+          "why": "10 points × $2 × 1 contract = $20."
+        },
+        {
+          "question": "You short 2 MNQ at 20,000. Price falls to 19,985 — a 15-point favorable move. What's the P&L before fees?",
+          "options": ["+$60", "+$30", "+$15"],
+          "correctIndex": 0,
+          "why": "15 points × $2 × 2 contracts = $60."
+        },
+        {
+          "question": "You buy 3 MNQ. Price moves 10 points against you. What's the P&L before fees?",
+          "options": ["−$60", "−$20", "−$30"],
+          "correctIndex": 0,
+          "why": "10 points × $2 × 3 contracts = $60 lost — and not every example is about profit."
+        },
+        {
           "question": "If 1 point = 4 ticks, how many ticks are in 2 points?",
           "options": ["8 ticks", "4 ticks", "12 ticks"],
           "correctIndex": 0,
           "why": "2 points × 4 ticks per point = 8 ticks."
-        },
-        {
-          "question": "A trader says \"I made 30 points today\" without mentioning contracts or instrument. Why is that statement incomplete?",
-          "options": ["Points alone don't tell you the dollar result — you also need the point value and contract count", "It's a complete statement — points are all that matter", "Points and dollars are always the same number"],
-          "correctIndex": 0,
-          "why": "30 points on MNQ at 1 contract is a very different dollar outcome than 30 points on MGC at 5 contracts."
         }
       ]
     }
   ],
   "takeaways": [
-    "Points are big units of movement, ticks are the smaller pieces inside them.",
-    "P&L = points moved × point value × contract count.",
-    "Bigger size makes the same chart move feel louder emotionally."
+    "A point is a whole-number move; a tick is the smallest increment inside it.",
+    "P&L = points moved × point value × contract count — for wins and losses alike.",
+    "Points alone never tell you the real dollar risk — contracts and point value do."
   ],
-  "remember": "The chart may be normal while your emotions are not — size is why."
+  "remember": "Never discuss risk in points alone."
 }

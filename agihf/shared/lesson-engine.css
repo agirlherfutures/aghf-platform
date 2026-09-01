@@ -218,6 +218,52 @@
 .lw-next{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none;}
 .lw-prev:disabled,.lw-next:disabled{opacity:.4;cursor:default;}
 
+/* ── Section wizard (agihf/section.html) ─────────────────────────── */
+.sw-hero{background:linear-gradient(135deg,var(--dark),#3d2420);color:#fff;text-align:center;overflow:hidden;position:relative;}
+.sw-hero::after{content:'✦';position:absolute;right:14px;bottom:-16px;font-size:70px;opacity:.08;}
+.sw-hero .lw-eyebrow{color:var(--pink-light);}
+.sw-hero h2{font-family:var(--font-display);font-size:1.5rem;color:#fff;margin-bottom:12px;}
+.sw-hero p{color:rgba(255,255,255,.78);font-size:.9rem;line-height:1.75;max-width:520px;margin:0 auto;}
+.sw-mission{margin-top:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:14px 18px;max-width:440px;margin-left:auto;margin-right:auto;}
+.sw-mission-label{font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink-light);font-weight:700;margin-bottom:6px;}
+.sw-mission-text{font-family:var(--font-display);font-style:italic;font-size:.96rem;color:#fff;}
+
+.sw-multi-grid{display:flex;flex-direction:column;gap:9px;margin:14px 0;}
+.sw-multi-item{display:flex;align-items:center;gap:12px;border-radius:14px;padding:13px 15px;border:2px solid transparent;background:var(--warm);cursor:pointer;text-align:left;font-family:var(--font-body);}
+.sw-multi-check{width:20px;height:20px;border-radius:6px;border:2px solid rgba(244,130,154,.3);background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff;}
+.sw-multi-item.on .sw-multi-check{background:var(--pink);border-color:var(--pink);}
+.sw-multi-item.on .sw-multi-check::after{content:'✓';}
+.sw-multi-item span{font-size:.88rem;color:var(--text);}
+.sw-multi-item.correct{background:var(--teal-pale);border-color:var(--teal);}
+.sw-multi-item.wrong{background:var(--pink-pale);border-color:var(--pink);}
+.sw-check-btn{margin-top:4px;}
+
+.sw-round-label{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px;}
+
+.sw-progress-row{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:var(--muted);font-weight:600;margin-bottom:12px;}
+.sw-progress-track{height:7px;background:var(--pink-pale);border-radius:100px;overflow:hidden;margin-bottom:16px;}
+.sw-progress-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;transition:width .35s;}
+
+.sw-result-card{text-align:center;}
+.sw-result-pct{font-family:var(--font-display);font-size:3rem;color:var(--dark);margin:6px 0;}
+.sw-result-pct.pass{color:#1a6b63;}
+.sw-result-pct.fail{color:var(--pink);}
+.sw-result-sub{font-size:.86rem;color:var(--muted);margin-bottom:16px;}
+
+.sw-field{margin-bottom:18px;}
+.sw-field label{display:block;font-size:.8rem;font-weight:700;color:var(--dark);margin-bottom:8px;}
+.sw-input,.sw-textarea{width:100%;font-family:var(--font-body);font-size:.87rem;color:var(--dark);padding:12px 14px;border-radius:12px;border:1px solid rgba(244,130,154,.18);background:var(--warm);}
+.sw-textarea{resize:vertical;line-height:1.6;}
+.sw-radio-group{display:flex;flex-direction:column;gap:7px;}
+.sw-radio-opt{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:12px;border:1.5px solid rgba(244,130,154,.16);background:#fff;cursor:pointer;font-size:.85rem;color:var(--text);}
+.sw-radio-opt .sw-dot{width:15px;height:15px;border-radius:50%;border:2px solid rgba(244,130,154,.3);flex-shrink:0;}
+.sw-radio-opt.on{border-color:var(--pink);background:var(--pink-pale);}
+.sw-radio-opt.on .sw-dot{background:var(--pink);border-color:var(--pink);}
+
+.sw-stats{display:flex;flex-direction:column;gap:10px;text-align:left;max-width:420px;margin:0 auto 18px;}
+.sw-stat-row{display:flex;justify-content:space-between;align-items:center;font-size:.86rem;color:rgba(255,255,255,.85);border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:9px;}
+.sw-stat-row strong{color:#fff;}
+
 /* ── Streak toast + completion toast + confetti ──────────────────── */
 .lw-toast,.lw-streak{position:fixed;background:var(--dark);color:#fff;border-radius:14px;box-shadow:0 16px 46px rgba(44,24,16,.3);z-index:999;}
 .lw-toast{bottom:84px;right:26px;padding:13px 18px;display:flex;gap:11px;align-items:center;transform:translateY(18px);opacity:0;transition:.35s;}

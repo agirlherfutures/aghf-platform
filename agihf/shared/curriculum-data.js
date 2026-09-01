@@ -14,10 +14,16 @@
  * ready to fill in as content is built.
  *
  * Optional fields:
- *   - section.intro     — a disclaimer/framing note shown above a section
- *                          (used once, on Phase 3's first section).
- *   - section.dayliNote — a short Dayli Note callout shown under a
- *                          section header (used once, on Section 8).
+ *   - section.intro      — a disclaimer/framing note shown above a section
+ *                           (used once, on Phase 3's first section).
+ *   - section.dayliNote  — a short Dayli Note callout shown under a
+ *                           section header (used once, on Section 8).
+ *   - section.checkpoint — a section-level completion flow (Challenge +
+ *                           Knowledge Check + Check-In, see section.html/
+ *                           shared/section-engine.js). Once a section with
+ *                           a checkpoint is fully cleared, isSectionCleared()
+ *                           below reports true and the next section unlocks
+ *                           (used today on Section 1 only).
  *
  * Usage: <script type="module"> import { PHASES, phaseByKey, lessonId } from '../shared/curriculum-data.js'; </script>
  */
@@ -33,7 +39,7 @@ export const PHASES = [
         { n: 4, title: 'Contracts & Instruments', quote: "MNQ. MGC. Know what you're trading before you trade it.", xp: 50 },
         { n: 5, title: 'Futures vs Stocks', quote: "Futures aren't stocks. The rules are different. Let's break it down.", xp: 50 },
         { n: 6, title: 'Points, Ticks & P&L', quote: 'MNQ = $2 per point. MGC = $10 per point. Know your numbers before you trade.', xp: 50 },
-      ] },
+      ], checkpoint: { title: "Know What You're Trading", xp: 30 } },
       { key: 's2', n: 2, badge: 't', title: 'Before You Touch a Chart', lessons: [
         { n: 7, title: 'TradingView Basics', quote: 'Your chart is your workspace. Learn it before you try to read it.', xp: 60 },
         { n: 8, title: 'Brokers, Prop Firms & Accounts', quote: 'Funded, personal, simulated, live — know the account before you know the strategy.', xp: 60 },
@@ -328,4 +334,19 @@ export function lessonId(n) {
 
 export function totalLessonCount() {
   return PHASES.reduce((sum, p) => sum + p.sections.reduce((s, sec) => s + sec.lessons.length, 0), 0);
+}
+
+/**
+ * Has this section's checkpoint (Challenge + Knowledge Check + Check-In)
+ * been cleared? A section with no `checkpoint` field is always considered
+ * cleared — the hard gate only applies where a checkpoint exists.
+ */
+export function isSectionCleared(phaseKey, sectionKey) {
+  const found = sectionByKey(sectionKey);
+  if (!found || found.phase.key !== phaseKey || !found.section.checkpoint) return true;
+  try {
+    return localStorage.getItem(`aghf_section_clear:${phaseKey}-${sectionKey}`) === 'true';
+  } catch (err) {
+    return false;
+  }
 }

@@ -29,7 +29,7 @@ const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you
 let uidCounter = 0;
 
 export function renderLessonWizard(data, opts) {
-  const { onAward, nextHref, backHref, nextTitle, nextHook } = opts;
+  const { onAward, nextHref, backHref, nextTitle, nextHook, nextCtaLabel } = opts;
   const lessonId = `${data.phase}-${data.lessonNumber}`;
 
   const allBlocks = data.blocks || [];
@@ -106,38 +106,6 @@ export function renderLessonWizard(data, opts) {
     }
   }
 
-  function showStreak(icon, text) {
-    const el = document.getElementById('lwStreak');
-    document.getElementById('lwStreakIcon').textContent = icon;
-    document.getElementById('lwStreakText').textContent = text;
-    el.classList.add('show');
-    setTimeout(() => el.classList.remove('show'), 2200);
-  }
-
-  function showToast(title, sub) {
-    const el = document.getElementById('lwToast');
-    document.getElementById('lwToastTitle').textContent = title;
-    document.getElementById('lwToastSub').textContent = sub;
-    el.classList.add('show');
-    setTimeout(() => el.classList.remove('show'), 2400);
-  }
-
-  function burst() {
-    const cols = ['#F4829A', '#7ECEC4', '#F5A857', '#F9B8C6', '#B2E4DF', '#FAD09A'];
-    for (let i = 0; i < 32; i++) {
-      const p = document.createElement('div');
-      p.className = 'lw-confetti';
-      const sz = 6 + Math.random() * 8;
-      p.style.cssText = `left:${10 + Math.random() * 80}vw;top:-10px;width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random() * cols.length)]};`;
-      document.body.appendChild(p);
-      p.animate(
-        [{ opacity: 1, transform: 'translateY(0) rotate(0deg)' }, { opacity: 0, transform: 'translateY(100vh) rotate(720deg)' }],
-        { duration: 1200 + Math.random() * 900, delay: Math.random() * 300, fill: 'forwards' }
-      );
-      setTimeout(() => p.remove(), 2500);
-    }
-  }
-
   function renderStep(i) {
     const step = steps[i];
     wrap.innerHTML = '';
@@ -148,7 +116,7 @@ export function renderLessonWizard(data, opts) {
     if (step.type === 'watch') renderWatch(slide, data, () => markDone(i));
     else if (step.type === 'body') renderBody(slide, bodyBlocks, () => markDone(i), helpers);
     else if (step.type === 'reflection') renderReflection(slide, reflectionBlock, lessonId, () => markDone(i));
-    else if (step.type === 'complete') renderComplete(slide, data, { nextHref, backHref, nextTitle, nextHook });
+    else if (step.type === 'complete') renderComplete(slide, data, { nextHref, backHref, nextTitle, nextHook, nextCtaLabel });
   }
 
   prevBtn.addEventListener('click', () => goTo(cur - 1));
@@ -166,6 +134,38 @@ export function renderLessonWizard(data, opts) {
   });
 
   goTo(0);
+}
+
+export function showStreak(icon, text) {
+  const el = document.getElementById('lwStreak');
+  document.getElementById('lwStreakIcon').textContent = icon;
+  document.getElementById('lwStreakText').textContent = text;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+export function showToast(title, sub) {
+  const el = document.getElementById('lwToast');
+  document.getElementById('lwToastTitle').textContent = title;
+  document.getElementById('lwToastSub').textContent = sub;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2400);
+}
+
+export function burst() {
+  const cols = ['#F4829A', '#7ECEC4', '#F5A857', '#F9B8C6', '#B2E4DF', '#FAD09A'];
+  for (let i = 0; i < 32; i++) {
+    const p = document.createElement('div');
+    p.className = 'lw-confetti';
+    const sz = 6 + Math.random() * 8;
+    p.style.cssText = `left:${10 + Math.random() * 80}vw;top:-10px;width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random() * cols.length)]};`;
+    document.body.appendChild(p);
+    p.animate(
+      [{ opacity: 1, transform: 'translateY(0) rotate(0deg)' }, { opacity: 0, transform: 'translateY(100vh) rotate(720deg)' }],
+      { duration: 1200 + Math.random() * 900, delay: Math.random() * 300, fill: 'forwards' }
+    );
+    setTimeout(() => p.remove(), 2500);
+  }
 }
 
 /* ── Watch ───────────────────────────────────────────────────────── */
@@ -227,7 +227,7 @@ function appendContinue(el, satisfy, label = 'Continue →') {
 }
 
 /** Shared retry-until-correct wiring for any group of option buttons. */
-function wireRetryOptions(buttons, options, feedbackEl, onSolved, handleStreak) {
+export function wireRetryOptions(buttons, options, feedbackEl, onSolved, handleStreak) {
   let solved = false;
   buttons.forEach((btn, i) => {
     btn.addEventListener('click', () => {
@@ -498,7 +498,7 @@ function renderReflection(slide, block, lessonId, markDone) {
 
 /* ── Complete ─────────────────────────────────────────────────────── */
 
-function renderComplete(slide, data, { nextHref, backHref, nextTitle, nextHook }) {
+function renderComplete(slide, data, { nextHref, backHref, nextTitle, nextHook, nextCtaLabel }) {
   slide.innerHTML = `
     <div class="lw-card lw-complete">
       <h2>${data.title} <span>complete.</span></h2>
@@ -513,7 +513,7 @@ function renderComplete(slide, data, { nextHref, backHref, nextTitle, nextHook }
       <div class="lw-eyebrow">Next up</div>
       <h2>${nextTitle}</h2>
       ${nextHook ? `<p class="lw-hook-text">"${nextHook}"</p>` : ''}
-      <button type="button" class="lw-cc-next" id="lwNextLessonBtn">Start Next Lesson →</button>
+      <button type="button" class="lw-cc-next" id="lwNextLessonBtn">${nextCtaLabel || 'Start Next Lesson →'}</button>
     </div>` : `
     <div class="lw-card" style="text-align:center">
       <button type="button" class="lw-cc-next" id="lwNextLessonBtn">Back to Lessons →</button>
@@ -525,7 +525,7 @@ function renderComplete(slide, data, { nextHref, backHref, nextTitle, nextHook }
 
 /* ── Shared canvas primitives ────────────────────────────────────── */
 
-function drawFrame(ctx, w, h) {
+export function drawFrame(ctx, w, h) {
   ctx.clearRect(0, 0, w, h);
   ctx.fillStyle = '#fff';
   ctx.fillRect(0, 0, w, h);
@@ -538,7 +538,7 @@ function drawFrame(ctx, w, h) {
   }
 }
 
-function drawCandle(ctx, x, open, close, high, low, bull, width = 56) {
+export function drawCandle(ctx, x, open, close, high, low, bull, width = 56) {
   ctx.strokeStyle = bull ? '#7ECEC4' : '#F4829A';
   ctx.lineWidth = width > 20 ? 3 : 2;
   ctx.beginPath();

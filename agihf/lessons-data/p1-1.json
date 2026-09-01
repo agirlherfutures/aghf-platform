@@ -4,70 +4,66 @@
   "lessonNumber": 1,
   "title": "What Even Is Trading?",
   "videoUrl": null,
-  "videoDuration": "6 min",
+  "videoDuration": "5 min",
   "xpValue": 50,
   "passThreshold": 0.6,
-  "hook": "Candles are just storytelling — they're showing you who's winning right now.",
-  "mission": "By the end of this lesson, you should be able to look at a stretch of price and say who's currently in control — buyers or sellers — without guessing.",
+  "hook": "Trading isn't predicting the future. You're participating in price movement.",
+  "mission": "By the end of this lesson, you should understand what a trade actually is — before strategies, charts, or indicators enter the conversation.",
   "blocks": [
     {
       "type": "breakdown",
-      "heading": "What is trading, really?",
+      "heading": "What trading is",
       "beats": [
-        { "heading": "It's a disagreement", "body": "Buyers think price should go higher. Sellers think price should go lower. That disagreement creates movement — that's it." },
-        { "heading": "Not a prediction", "body": "Everything you see on a chart is just that battle being printed in real time. You're reading current behavior, not seeing the future." }
+        { "heading": "Buy, sell, or short", "body": "Trading is participating in a financial market by taking a position based on the expectation that price will move. Buy and price rises, or sell/short and price falls — either way there's potential profit. But if price moves against the position, there can be a loss." },
+        { "heading": "Long vs. short", "body": "Going long means you're positioned to benefit if price rises. Going short means you're positioned to benefit if price falls. Futures let you do either from the start — you don't have to \"buy first\" like traditional investing." },
+        { "heading": "Trading vs. investing", "body": "Investing generally focuses on owning an asset and participating in its longer-term growth. Trading generally focuses on profiting from price movement over a defined period. Neither is inherently better — they're different activities." },
+        { "heading": "Trading isn't prediction", "body": "Our job isn't to know exactly what the market will do next. Our job is to interpret the information price gives us and make rule-based decisions." }
       ]
+    },
+    {
+      "type": "build_sequence",
+      "heading": "The four pieces of every trade",
+      "prompt": "Tap the four pieces in order.",
+      "items": [
+        { "key": "market", "label": "Market", "desc": "What are you trading?" },
+        { "key": "direction", "label": "Direction", "desc": "Do you expect price to rise or fall?" },
+        { "key": "risk", "label": "Risk", "desc": "Where are you wrong, and how much are you willing to lose?" },
+        { "key": "outcome", "label": "Outcome", "desc": "Price moves. Your position gains or loses value." }
+      ],
+      "correctOrder": ["market", "direction", "risk", "outcome"],
+      "successFeedback": "That's the full shape of a trade — market, direction, risk, outcome.",
+      "failFeedback": "Close — think about what you'd decide first: what you're trading, then which way, then your risk, then the outcome plays out."
     },
     {
       "type": "dayli_says",
-      "quote": "If I can tell who has control, I already have a reason to be interested. I'm not trying to be psychic. I'm watching behavior."
-    },
-    {
-      "type": "catch_mistake",
-      "heading": "What did she get wrong?",
-      "scenario": "A trader says she's \"predicting the future\" every time she takes a trade.",
-      "options": [
-        { "label": "She's not predicting anything — she's reading current disagreement between buyers and sellers", "correct": true, "feedback": "Exactly. Trading reads present behavior — who's currently winning the disagreement — not a crystal ball." },
-        { "label": "Nothing — that's exactly what trading is", "correct": false, "feedback": "Not quite. Calling it \"predicting the future\" overstates what's actually happening on the chart." }
-      ]
-    },
-    {
-      "type": "what_happens_next",
-      "heading": "Read the story forward",
-      "sequence": ["Price steps higher, shallow pullbacks", "Stalls — long upper wicks appear"],
-      "askAfter": "Stalls — long upper wicks appear",
-      "prompt": "What's the next logical read in this story — not where price goes, what does the behavior suggest?",
-      "options": [
-        { "label": "Sellers are starting to contest the level buyers have been winning", "correct": true, "feedback": "Right — long upper wicks mean price reached higher but couldn't hold it. That's sellers showing up." },
-        { "label": "Nothing has changed — wicks don't mean anything", "correct": false, "feedback": "Wicks aren't nothing — they show price getting rejected from an area, which is real information." }
-      ]
+      "quote": "You don't need to know what happens next with certainty to trade. Later, you'll learn to build a thesis, wait for confirmation, and define exactly what would make that thesis invalid."
     },
     {
       "type": "lock_it_in",
       "questions": [
         {
-          "question": "Price steps higher for ten candles, then prints one long-wicked red candle that closes back above the prior low. Has control actually shifted to sellers?",
-          "options": ["No — the close shows buyers reclaimed it before the candle ended", "Yes — any long red wick means sellers won", "It's impossible to tell from one candle"],
+          "question": "A trader believes MNQ is likely to decline and takes a position designed to profit from falling prices. What kind of position did she take?",
+          "options": ["Short", "Long", "Investment", "Limit"],
           "correctIndex": 0,
-          "why": "Reading control means watching where price closes, not just where it traveled during the candle."
+          "why": "A position designed to profit from falling prices is a short — you're positioned to benefit when price falls."
         },
         {
-          "question": "In futures, your profit comes mainly from:",
-          "options": ["Price movement in the direction you chose", "Owning a share of a company", "Collecting dividends over time"],
+          "question": "A trader's analysis supports higher prices, but price moves against the position. Which statement best represents the AGHF mindset?",
+          "options": ["A thesis can be reasonable and still be wrong; risk defines what happens next", "The analysis must eventually become correct", "Add another position to improve the entry", "Wait until price returns to entry"],
           "correctIndex": 0,
-          "why": "Futures profit is based on movement, not ownership — there's no company stake involved."
+          "why": "Being reasonable and being right aren't the same thing — that's exactly why risk is defined before the trade, not decided emotionally after."
         }
       ]
     },
     {
       "type": "reflection",
-      "prompt": "Imagine another AGHF girl asks: \"Isn't trading just guessing?\" How would you explain what's actually happening when you trade?"
+      "prompt": "Think about it: Why is \"I think price is going up\" not a complete trading plan? What's missing from that statement?"
     }
   ],
   "takeaways": [
-    "Trading is buyers and sellers disagreeing on price — not fortune-telling.",
-    "A candle's close tells you who actually won that period, not just the wick.",
-    "Futures profit comes from movement, not ownership."
+    "Trading is participating in price movement, not predicting the future.",
+    "Going long profits from price rising; going short profits from price falling.",
+    "Every trade has four pieces: market, direction, risk, and outcome."
   ],
-  "remember": "You're not trying to be psychic. You're watching behavior."
+  "remember": "Trading isn't about being certain. It's about making structured decisions under uncertainty."
 }

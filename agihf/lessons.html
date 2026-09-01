@@ -29,7 +29,7 @@
 </main>
 
 <script type="module">
-  import { PHASES } from './shared/curriculum-data.js';
+  import { PHASES, isSectionCleared } from './shared/curriculum-data.js';
 
   const BADGE_PHASE_CLASS = { p: 'pb-p', t: 'pb-t', u: 'pb-u', d: 'pb-d' };
   const BADGE_SECTION_CLASS = { p: 'sb-badge-p', t: 'sb-badge-t', c: 'sb-badge-c', u: 'sb-badge-u' };
@@ -65,15 +65,42 @@
     </div>`;
   }
 
+  function checkpointRowHtml(phase, section, state) {
+    const cp = section.checkpoint;
+    const numClass = state === 'done' ? 'n-dn' : state === 'active' ? 'n-act' : 'n-lk';
+    const numContent = state === 'done' ? '✓' : '★';
+    const statusHtml = state === 'done' ? '<div class="lc-st st-dn">Complete ✓</div>'
+      : state === 'active' ? '<div class="lc-st st-go">Start →</div>'
+      : '<div class="lc-st st-lk">🔒 Complete all lessons first</div>';
+    const inner = `
+      <div class="lc-n ${numClass}">${numContent}</div>
+      <div class="lc-inf">
+        <div class="lc-ttl">Section Checkpoint: ${cp.title}</div>
+        <div class="lc-qt">Challenge + Knowledge Check + Check-In — clear this to unlock the next section.</div>
+        <div class="lc-tags"><span class="t-gm">Checkpoint</span><span class="t-xp">+${cp.xp}+ GP</span></div>
+      </div>
+      ${statusHtml}`;
+    if (state === 'locked') return `<div class="lc lc-lk">${inner}</div>`;
+    return `<a class="lc" href="section.html?phase=${phase.key}&section=${section.key}&step=welcome">${inner}</a>`;
+  }
+
   function sectionHtml(phase, section, completedIds, phaseUnlocked, sectionIdx) {
+    const prevSection = phase.sections[sectionIdx - 1];
+    const sectionGateOk = !prevSection || !prevSection.checkpoint || isSectionCleared(phase.key, prevSection.key);
     const lessonsHtml = section.lessons.map((lesson) => {
-      if (!phaseUnlocked || !lesson.n) return lessonRowHtml(phase, section, lesson, 'locked');
+      if (!phaseUnlocked || !lesson.n || !sectionGateOk) return lessonRowHtml(phase, section, lesson, 'locked');
       const id = `p1-${lesson.n}`;
       if (completedIds.has(id)) return lessonRowHtml(phase, section, lesson, 'done');
       const firstIncomplete = !phase.sections.some((s) =>
         s.lessons.some((l) => l.n < lesson.n && l.n && !completedIds.has(`p1-${l.n}`)));
       return lessonRowHtml(phase, section, lesson, firstIncomplete ? 'active' : 'locked');
     }).join('');
+    let checkpointHtml = '';
+    if (section.checkpoint) {
+      const allLessonsDone = phaseUnlocked && sectionGateOk && section.lessons.every((l) => !l.n || completedIds.has(`p1-${l.n}`));
+      const cleared = phaseUnlocked && isSectionCleared(phase.key, section.key);
+      checkpointHtml = checkpointRowHtml(phase, section, cleared ? 'done' : allLessonsDone ? 'active' : 'locked');
+    }
     const gameHtml = section.game ? gameRowHtml(section.game, true) : '';
     const badgeClass = BADGE_SECTION_CLASS[section.badge] || 'sb-badge-p';
     const closed = sectionIdx > 0 ? ' sec-closed' : '';
@@ -87,7 +114,7 @@
         ${phaseUnlocked ? `<span class="sec-chev" id="chev-${phase.key}-${section.key}">${chev}</span>` : ''}
       </div>
       <div class="sec-body${closed}" id="body-${phase.key}-${section.key}">
-        ${dayliNoteHtml}${lessonsHtml}${gameHtml}
+        ${dayliNoteHtml}${lessonsHtml}${checkpointHtml}${gameHtml}
       </div>
     </div>`;
   }

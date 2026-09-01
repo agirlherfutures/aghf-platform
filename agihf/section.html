@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Section Complete — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/lesson-engine.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="lessons"></script>
+
+<main class="main">
+  <div class="lh-header">
+    <div class="lh-crumb-row">
+      <div class="lh-crumb" id="lhCrumb">Phase · Section</div>
+    </div>
+    <h1 class="lh-title" id="lhTitle">Section Complete</h1>
+    <p class="lh-hook" id="lhHook">You've finished all the lessons — now let's lock it in.</p>
+  </div>
+
+  <div class="lw-wrap" id="lwWrap"></div>
+</main>
+
+<div class="lw-bottom">
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="lw-dots" id="lwDots"></div>
+    <div class="lw-stepname" id="lwStepname"></div>
+  </div>
+  <div style="display:flex;gap:9px">
+    <button type="button" class="lw-prev" id="lwPrev">← Back</button>
+    <button type="button" class="lw-next" id="lwNext">Next →</button>
+  </div>
+</div>
+
+<div class="lw-streak" id="lwStreak"><span id="lwStreakIcon">🔥</span><span id="lwStreakText"></span></div>
+<div class="lw-toast" id="lwToast">
+  <span>✦</span>
+  <div>
+    <div style="font-size:.85rem;font-weight:700" id="lwToastTitle"></div>
+    <div style="font-size:.7rem;color:rgba(255,255,255,.5)" id="lwToastSub"></div>
+  </div>
+</div>
+
+<script type="module">
+  import { phaseByKey } from './shared/curriculum-data.js';
+  import { renderSectionWizard } from './shared/section-engine.js';
+
+  const params = new URLSearchParams(window.location.search);
+  const phaseKey = params.get('phase') || 'p1';
+  const sectionKey = params.get('section') || 's1';
+  const step = params.get('step') || 'welcome';
+
+  const phase = phaseByKey(phaseKey);
+  const secIdx = phase.sections.findIndex((s) => s.key === sectionKey);
+  const section = phase.sections[secIdx];
+  const nextSection = phase.sections[secIdx + 1];
+
+  async function load() {
+    let data;
+    try {
+      const res = await fetch(`lessons-data/${phaseKey}-${sectionKey}-section.json`);
+      if (!res.ok) throw new Error('not found');
+      data = await res.json();
+    } catch (err) {
+      document.getElementById('lwWrap').innerHTML = '<p style="padding:20px;color:var(--muted)">This section\'s completion flow isn\'t available yet.</p>';
+      return;
+    }
+
+    document.getElementById('lhCrumb').textContent = `Phase ${phase.n} · ${section.title}`;
+    document.getElementById('lhTitle').textContent = `${section.title} — Section Complete`;
+    document.getElementById('lhHook').textContent = 'Complete the Challenge, Knowledge Check, and Check-In to unlock what\'s next.';
+
+    const lessonCount = section.lessons.filter((l) => l.n).length;
+    const lessonGpTotal = section.lessons.filter((l) => l.n).reduce((sum, l) => sum + l.xp, 0);
+
+    const nextLesson = nextSection ? nextSection.lessons.find((l) => l.n) : null;
+    const nextSectionHref = nextLesson ? `lesson.html?phase=${phaseKey}&n=${nextLesson.n}` : null;
+
+    renderSectionWizard(data, {
+      phaseKey,
+      sectionKey,
+      backHref: 'lessons.html',
+      nextSectionHref,
+      nextSectionLabel: nextSection ? nextSection.title : null,
+      lessonsLabel: `${lessonCount}/${lessonCount}`,
+      lessonGpTotal,
+      initialStep: step,
+    });
+  }
+
+  document.addEventListener('aghf-auth-ready', load);
+</script>
+
+</body>
+</html>

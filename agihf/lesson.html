@@ -65,7 +65,7 @@
 </div>
 
 <script type="module">
-  import { PHASES, phaseByKey } from './shared/curriculum-data.js';
+  import { PHASES, phaseByKey, isSectionCleared } from './shared/curriculum-data.js';
   import { renderLessonWizard } from './shared/lesson-engine.js';
 
   const params = new URLSearchParams(window.location.search);
@@ -75,6 +75,19 @@
   const allLessons = phase.sections.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s })));
   const total = allLessons.length;
   const current = allLessons.find((l) => l.n === n);
+
+  /** Is `lesson`'s section still locked behind an earlier section's uncleared checkpoint? */
+  function isLessonGated(lesson) {
+    const idx = phase.sections.findIndex((s) => s.key === lesson.section.key);
+    const prevSection = phase.sections[idx - 1];
+    return !!(prevSection && prevSection.checkpoint && !isSectionCleared(phaseKey, prevSection.key));
+  }
+
+  /** Is `lesson` the last lesson in its section? */
+  function isLastInSection(lesson) {
+    const sectionLessons = lesson.section.lessons.filter((l) => l.n);
+    return sectionLessons[sectionLessons.length - 1]?.n === lesson.n;
+  }
 
   function renderHeader(completedIds) {
     const isDone = (l) => l.n && completedIds.has(`${phaseKey}-${l.n}`);
@@ -98,7 +111,12 @@
       prevLink.removeAttribute('href');
     }
     const thisDone = isDone(current);
-    if (n < total && (thisDone || isDone(allLessons[n - 2]) || n === 1)) {
+    const lastInSection = isLastInSection(current);
+    if (thisDone && lastInSection && current.section.checkpoint) {
+      nextLink.href = `section.html?phase=${phaseKey}&section=${current.section.key}&step=welcome`;
+      nextLink.textContent = 'Section Checkpoint →';
+      nextLink.classList.remove('locked');
+    } else if (n < total && (thisDone || isDone(allLessons[n - 2]) || n === 1) && !isLessonGated(allLessons[n])) {
       nextLink.href = `lesson.html?phase=${phaseKey}&n=${n + 1}`;
       if (!thisDone) { nextLink.textContent = 'Next Lesson 🔒'; nextLink.classList.add('locked'); }
     } else {
@@ -126,6 +144,11 @@
   });
 
   async function loadLesson() {
+    if (!current || isLessonGated(current)) {
+      window.location.href = 'lessons.html';
+      return;
+    }
+
     let data;
     try {
       const res = await fetch(`lessons-data/${phaseKey}-${n}.json`);
@@ -145,16 +168,29 @@
     }
     renderHeader(completedIds);
 
-    const nextLesson = n < total ? n + 1 : null;
-    const nextHref = nextLesson ? `lesson.html?phase=${phaseKey}&n=${nextLesson}` : null;
-    const backHref = nextLesson ? 'lessons.html' : 'dashboard.html';
-    const nextData = nextLesson ? allLessons[nextLesson - 1] : null;
+    const lastInSection = isLastInSection(current);
+    let nextHref, nextTitle, nextHook, nextCtaLabel, backHref;
+    if (lastInSection && current.section.checkpoint) {
+      nextHref = `section.html?phase=${phaseKey}&section=${current.section.key}&step=welcome`;
+      nextTitle = `Section Checkpoint: ${current.section.checkpoint.title}`;
+      nextHook = null;
+      nextCtaLabel = 'Start Section Checkpoint →';
+      backHref = 'lessons.html';
+    } else {
+      const nextLesson = n < total ? n + 1 : null;
+      const nextData = nextLesson ? allLessons[nextLesson - 1] : null;
+      nextHref = nextLesson ? `lesson.html?phase=${phaseKey}&n=${nextLesson}` : null;
+      nextTitle = nextData ? nextData.title : null;
+      nextHook = nextData ? nextData.quote : null;
+      backHref = nextLesson ? 'lessons.html' : 'dashboard.html';
+    }
 
     renderLessonWizard(data, {
       nextHref,
       backHref,
-      nextTitle: nextData ? nextData.title : null,
-      nextHook: nextData ? nextData.quote : null,
+      nextTitle,
+      nextHook,
+      nextCtaLabel,
       onAward: async () => {
         if (window.AGHF_DEMO) return;
         try {

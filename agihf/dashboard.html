@@ -69,7 +69,7 @@
 </main>
 
 <script type="module">
-  import { PHASES, LEVEL_NAMES } from './shared/curriculum-data.js';
+  import { PHASES, LEVEL_NAMES, isSectionCleared } from './shared/curriculum-data.js';
 
   const p1 = PHASES[0];
   const allP1Lessons = p1.sections.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s })));
@@ -97,8 +97,20 @@
   document.getElementById('dayliQuoteText').textContent = dayliQuotes[new Date().getDay() % dayliQuotes.length];
   document.getElementById('pgEye').textContent = `${greetingWord()} ✦`;
 
-  function nextIncompleteLesson(completedIds) {
-    return allP1Lessons.find((l) => !completedIds.has(`p1-${l.n}`)) || null;
+  /**
+   * Next thing to do in Phase 1, section-checkpoint gate included: the
+   * first incomplete lesson in the first not-fully-cleared section, or —
+   * if every lesson in a section is done but its checkpoint isn't cleared
+   * yet — the checkpoint itself (never a lesson in the next, still-gated
+   * section).
+   */
+  function nextAction(completedIds) {
+    for (const section of p1.sections) {
+      const lesson = section.lessons.find((l) => l.n && !completedIds.has(`p1-${l.n}`));
+      if (lesson) return { type: 'lesson', lesson };
+      if (section.checkpoint && !isSectionCleared('p1', section.key)) return { type: 'checkpoint', section };
+    }
+    return null;
   }
 
   function renderJourney(p1Done) {
@@ -156,14 +168,20 @@
       ? 'Start your first lesson to earn GP ✦'
       : remaining <= 0 ? 'Level up unlocked! ✦' : `${remaining} GP to next level — keep going ✦`;
 
-    const next = nextIncompleteLesson(completedIds);
+    const next = nextAction(completedIds);
     const banner = document.getElementById('contBanner');
-    if (next) {
-      document.getElementById('continueEyebrow').textContent = `Up next · Phase 1 · Lesson ${next.n}`;
-      document.getElementById('continueTitle').textContent = next.title;
-      document.getElementById('continueSub').textContent = next.quote;
-      banner.href = `lesson.html?phase=p1&n=${next.n}`;
+    if (next && next.type === 'lesson') {
+      document.getElementById('continueEyebrow').textContent = `Up next · Phase 1 · Lesson ${next.lesson.n}`;
+      document.getElementById('continueTitle').textContent = next.lesson.title;
+      document.getElementById('continueSub').textContent = next.lesson.quote;
+      banner.href = `lesson.html?phase=p1&n=${next.lesson.n}`;
       banner.querySelector('.cb-go').textContent = doneCount === 0 ? 'Start →' : 'Continue →';
+    } else if (next && next.type === 'checkpoint') {
+      document.getElementById('continueEyebrow').textContent = `Up next · Section Checkpoint`;
+      document.getElementById('continueTitle').textContent = next.section.checkpoint.title;
+      document.getElementById('continueSub').textContent = 'Challenge + Knowledge Check + Check-In — clear this to unlock the next section.';
+      banner.href = `section.html?phase=p1&section=${next.section.key}&step=welcome`;
+      banner.querySelector('.cb-go').textContent = 'Start →';
     } else {
       document.getElementById('continueEyebrow').textContent = 'Phase 1 complete ✦';
       document.getElementById('continueTitle').textContent = 'Phase 2 is being built';
