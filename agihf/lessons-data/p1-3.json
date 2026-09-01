@@ -22,6 +22,32 @@
       { "t": "03:30", "label": "Try it yourself" }
     ]
   },
+  "learnIt": {
+    "blocks": [
+      {
+        "type": "breakdown",
+        "heading": "What buyers and sellers actually do",
+        "beats": [
+          { "heading": "Buyers showing aggression", "body": "Participants willing to transact at increasingly higher available prices — that's what pushes price up." },
+          { "heading": "Sellers showing aggression", "body": "Participants willing to transact at increasingly lower available prices — that's what pushes price down." },
+          { "heading": "One candle isn't the whole story", "body": "One green candle does NOT establish a bullish market. One red candle does NOT establish a bearish market. This prepares you for reading structure later." }
+        ]
+      },
+      {
+        "type": "catch_mistake",
+        "heading": "Is she right?",
+        "scenario": "Price prints a small green candle, then a large green candle, then a small red candle. A trader says the red candle means sellers now control the entire market.",
+        "options": [
+          { "label": "No — one candle without context doesn't tell us the larger structural story", "correct": true, "feedback": "Right. We need more than one candle to know whether the bigger story actually changed." },
+          { "label": "Yes — any red candle after green ones means sellers have taken over", "correct": false, "feedback": "One candle isn't enough evidence to declare a full change of control." }
+        ]
+      },
+      {
+        "type": "dayli_says",
+        "quote": "Stop asking what one candle means by itself. Eventually, we'll learn to ask what that candle is doing within structure."
+      }
+    ]
+  },
   "seeIt": {
     "heading": "Watch control shift on a real path",
     "mode": "guided_reveal",

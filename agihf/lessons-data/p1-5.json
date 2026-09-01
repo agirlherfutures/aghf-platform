@@ -22,6 +22,36 @@
       { "t": "04:10", "label": "Try it yourself" }
     ]
   },
+  "learnIt": {
+    "blocks": [
+      {
+        "type": "breakdown",
+        "heading": "The differences that actually matter",
+        "beats": [
+          { "heading": "Contract month, expiration, rollover, margin", "body": "You'll hear these terms a lot. For now: futures contracts have a defined contract month and expiration, can require a rollover into the next contract, and use a margin structure different from a typical stock account. You don't need to master all of it today." }
+        ]
+      },
+      {
+        "type": "confusion",
+        "heading": "Stocks ≠ Futures",
+        "left": { "label": "Stocks", "points": ["You're trading shares/equity", "No contract expiration", "Trading hours: regular + extended sessions"] },
+        "right": { "label": "Futures", "points": ["You're trading standardized contracts", "Contracts expire — rollover applies", "Nearly 24-hour weekday trading for many contracts"] }
+      },
+      {
+        "type": "catch_mistake",
+        "heading": "What's wrong with Maya's reasoning?",
+        "scenario": "Maya normally trades 10 shares of a stock. She decides she'll trade 10 MNQ contracts because \"10 is my normal size.\"",
+        "options": [
+          { "label": "Share quantity and futures contract quantity aren't economically equivalent units of risk", "correct": true, "feedback": "Right — 10 shares and 10 contracts can carry wildly different dollar risk. The number alone means nothing without knowing what a unit is worth." },
+          { "label": "Nothing — 10 is 10, no matter what she's trading", "correct": false, "feedback": "The unit matters. 10 shares of a stock and 10 futures contracts are not comparable sizes." }
+        ]
+      },
+      {
+        "type": "dayli_says",
+        "quote": "Position size only means something when you understand what one unit of your instrument is worth."
+      }
+    ]
+  },
   "seeIt": {
     "heading": "Stocks ≠ Futures",
     "prompt": "Same-looking charts. Watch the structures build up side by side.",
@@ -55,14 +85,6 @@
           { "label": "A stock is a claim on company ownership; a futures contract is an agreement based on price movement", "correct": true, "why": "Buying a stock means owning a piece of a company. A futures contract carries no ownership stake at all." },
           { "label": "They're the same thing with different names", "correct": false, "feedback": "They're structurally different — one is ownership, one isn't." },
           { "label": "A futures contract is a type of stock", "correct": false, "feedback": "A futures contract isn't a stock at all — no ownership stake." }
-        ]
-      },
-      {
-        "scenario": "Maya normally trades 10 shares of a stock. She decides she'll trade 10 MNQ contracts because \"10 is my normal size.\"",
-        "question": "What's wrong with her reasoning?",
-        "options": [
-          { "label": "Share quantity and futures contract quantity aren't economically equivalent units of risk", "correct": true, "why": "10 shares and 10 contracts can carry wildly different dollar risk. The number alone means nothing without knowing what a unit is worth." },
-          { "label": "Nothing — 10 is 10, no matter what she's trading", "correct": false, "feedback": "The unit matters. 10 shares of a stock and 10 futures contracts are not comparable sizes." }
         ]
       }
     ]

@@ -22,6 +22,33 @@
       { "t": "03:00", "label": "Try it yourself" }
     ]
   },
+  "learnIt": {
+    "blocks": [
+      {
+        "type": "breakdown",
+        "heading": "Markets are participants transacting for different reasons",
+        "beats": [
+          { "heading": "Buyers need sellers, sellers need buyers", "body": "Participants enter markets for different reasons. Some speculate. Some hedge risk. Some invest or manage portfolios. Different opinions and needs create transactions." },
+          { "heading": "Price finds agreement", "body": "Price helps buyers and sellers find where they're willing to transact. As willingness to buy and sell changes, price changes too." },
+          { "heading": "Same market, different objective", "body": "A producer may use futures to manage exposure to changing prices — that's hedging. A trader may participate because she expects the contract's price to change. Same market, different objective." },
+          { "heading": "MNQ at 20,000", "body": "Some participants think \"that's attractive, I want exposure here.\" Others think \"I'm willing to sell here.\" Their interaction creates a market." }
+        ]
+      },
+      {
+        "type": "catch_mistake",
+        "heading": "What did she assume wrong?",
+        "scenario": "A new trader assumes every single person in the futures market is trying to speculate on which way price will go.",
+        "options": [
+          { "label": "Not necessarily — some participants, like producers, use futures to hedge and manage risk, not to speculate", "correct": true, "feedback": "Right — same market, different objective. Hedgers and speculators can both be on the other side of your trade." },
+          { "label": "That's true — everyone in the market is speculating on direction", "correct": false, "feedback": "Not quite — plenty of participants are managing risk exposure, not betting on direction." }
+        ]
+      },
+      {
+        "type": "dayli_says",
+        "quote": "The chart you're eventually going to analyze is simply the visual record of all that buying and selling activity. That's why we're going to spend so much time learning how to read price."
+      }
+    ]
+  },
   "seeIt": {
     "heading": "Watch a transaction form",
     "prompt": "Same price. Two different opinions. Watch what happens between them.",
@@ -39,14 +66,6 @@
     "heading": "Make the call",
     "mode": "choice_rounds",
     "rounds": [
-      {
-        "scenario": "A new trader assumes everyone in the futures market is trying to speculate on which way price will go.",
-        "question": "Is she right?",
-        "options": [
-          { "label": "Not necessarily — some participants, like producers, use futures to hedge and manage risk, not to speculate", "correct": true, "why": "Right — same market, different objective. Hedgers and speculators can both be on the other side of your trade." },
-          { "label": "Yes — everyone in the market is speculating on direction", "correct": false, "feedback": "Not quite — plenty of participants are managing risk exposure, not betting on direction." }
-        ]
-      },
       {
         "scenario": "Trader A believes the current price offers an attractive buying opportunity. Trader B believes price is likely to fall and wants to sell — at the exact same price.",
         "question": "Can they both participate in the same market at the same time?",

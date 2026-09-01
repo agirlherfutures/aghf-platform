@@ -22,6 +22,32 @@
       { "t": "04:00", "label": "Try it yourself" }
     ]
   },
+  "learnIt": {
+    "blocks": [
+      {
+        "type": "breakdown",
+        "heading": "What is a futures contract?",
+        "beats": [
+          { "heading": "A standardized agreement", "body": "A futures contract is a standardized agreement associated with buying or selling an underlying asset or financial benchmark, under specifications set by the exchange. When you trade futures, you're trading contracts whose values move with their underlying market — not buying shares of a company." },
+          { "heading": "The instrument is the specific market", "body": "Equity index futures include ES (E-mini S&P 500), MES (Micro E-mini S&P 500), NQ (E-mini Nasdaq-100), and MNQ (Micro E-mini Nasdaq-100). Metals include GC (Gold) and MGC (Micro Gold). Contract specifications differ — always verify current exchange specs before trading." },
+          { "heading": "The pairs to know", "body": "MNQ → Micro E-mini Nasdaq-100. NQ → E-mini Nasdaq-100. MES → Micro E-mini S&P 500. ES → E-mini S&P 500. MGC → Micro Gold. GC → Gold." }
+        ]
+      },
+      {
+        "type": "catch_mistake",
+        "heading": "What's wrong with this reasoning?",
+        "scenario": "A trader moves from MNQ to NQ but keeps the same number of contracts because \"the chart looks the same.\"",
+        "options": [
+          { "label": "The contract multiplier is different, so the same price move produces very different P&L and risk", "correct": true, "feedback": "Exactly — the chart shape being similar doesn't mean the dollar exposure is similar." },
+          { "label": "Nothing — NQ and MNQ are the same size, just different tickers", "correct": false, "feedback": "They're not the same size — MNQ is 1/10 the contract multiplier of NQ." }
+        ]
+      },
+      {
+        "type": "dayli_says",
+        "quote": "Never choose your number of contracts because someone else trades that size. Know the instrument. Know its value. Know your risk."
+      }
+    ]
+  },
   "seeIt": {
     "heading": "Watch the size difference, live",
     "prompt": "Each of these has a mini and a micro version. Watch the bars grow to scale.",
@@ -58,14 +84,6 @@
           { "label": "No — she's still trading MNQ; only her size and dollar exposure changed", "correct": true, "why": "The instrument stays MNQ — contract count only changes exposure." },
           { "label": "Yes — 5 contracts makes it a different instrument", "correct": false, "feedback": "Contract count never changes what instrument you're trading." },
           { "label": "It's impossible to tell without knowing the price", "correct": false, "feedback": "Price doesn't determine the instrument either — she's still trading MNQ either way." }
-        ]
-      },
-      {
-        "scenario": "A trader moves from MNQ to NQ but keeps the same number of contracts because \"the chart looks the same.\"",
-        "question": "What's wrong with that reasoning?",
-        "options": [
-          { "label": "The contract multiplier is different, so the same price move produces very different P&L and risk", "correct": true, "why": "Exactly — the chart shape being similar doesn't mean the dollar exposure is similar." },
-          { "label": "Nothing — NQ and MNQ are the same size, just different tickers", "correct": false, "feedback": "They're not the same size — MNQ is 1/10 the contract multiplier of NQ." }
         ]
       }
     ]

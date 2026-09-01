@@ -23,6 +23,24 @@
       { "t": "04:30", "label": "Try it yourself" }
     ]
   },
+  "learnIt": {
+    "blocks": [
+      {
+        "type": "breakdown",
+        "heading": "What trading is",
+        "beats": [
+          { "heading": "Buy, sell, or short", "body": "Trading is participating in a financial market by taking a position based on the expectation that price will move. Buy and price rises, or sell/short and price falls — either way there's potential profit. But if price moves against the position, there can be a loss." },
+          { "heading": "Long vs. short", "body": "Going long means you're positioned to benefit if price rises. Going short means you're positioned to benefit if price falls. Futures let you do either from the start — you don't have to \"buy first\" like traditional investing." },
+          { "heading": "Trading vs. investing", "body": "Investing generally focuses on owning an asset and participating in its longer-term growth. Trading generally focuses on profiting from price movement over a defined period. Neither is inherently better — they're different activities." },
+          { "heading": "Trading isn't prediction", "body": "Our job isn't to know exactly what the market will do next. Our job is to interpret the information price gives us and make rule-based decisions." }
+        ]
+      },
+      {
+        "type": "dayli_says",
+        "quote": "You don't need to know what happens next with certainty to trade. Later, you'll learn to build a thesis, wait for confirmation, and define exactly what would make that thesis invalid."
+      }
+    ]
+  },
   "seeIt": {
     "heading": "Watch a trade build itself",
     "prompt": "Every trade is made of the same four pieces. Watch them build on one chart, live.",

@@ -22,6 +22,32 @@
       { "t": "05:00", "label": "Try it yourself" }
     ]
   },
+  "learnIt": {
+    "blocks": [
+      {
+        "type": "breakdown",
+        "heading": "Point, tick, P&L",
+        "beats": [
+          { "heading": "Point", "body": "A whole-number movement in price. On MNQ: 20,000 → 20,001 is 1 point." },
+          { "heading": "Tick", "body": "The minimum price increment defined for a contract. MNQ's minimum tick is 0.25 index points, worth $0.50 per contract — so a full index point is $2.00 per contract. Tick size and value differ by contract, so don't assume every product works like MNQ." },
+          { "heading": "P&L", "body": "Price movement × contract value × number of contracts. Same chart, same move, different position size — different P&L." }
+        ]
+      },
+      {
+        "type": "catch_mistake",
+        "heading": "What information is missing?",
+        "scenario": "A trader says: \"I only have a 30-point stop, so I can't lose that much.\"",
+        "options": [
+          { "label": "The number of contracts and the contract's point value — points alone don't tell you the dollar risk", "correct": true, "feedback": "Bingo. 30 points means very different things at 1 contract versus 10." },
+          { "label": "Nothing — 30 points is 30 points, the risk is already clear", "correct": false, "feedback": "Points alone don't tell you the dollar risk — you need the point value and contract count too." }
+        ]
+      },
+      {
+        "type": "dayli_says",
+        "quote": "Points describe price movement. Contracts determine how much exposure you have to that movement. Never discuss risk in points alone without understanding what those points mean in dollars for your position."
+      }
+    ]
+  },
   "seeIt": {
     "heading": "Build the P&L formula",
     "mode": "guided_reveal",

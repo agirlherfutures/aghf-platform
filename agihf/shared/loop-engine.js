@@ -1,18 +1,27 @@
 /**
  * loop-engine.js — A Girl & Her Futures™
  *
- * The Dayli Learning Loop — a prototype 5-stage lesson experience:
- * Watch → See It → Try It → Say It Back → Save It, one stage visible
- * at a time. Opt-in via a lesson's `loop: true` flag (see agihf/lesson.html);
- * the existing blocks[]-driven renderLessonWizard in lesson-engine.js is
+ * The Dayli Learning Loop — a 6-stage lesson experience: Watch → Learn It →
+ * See It → Try It → Say It Back → Save It, one stage visible at a time.
+ * Opt-in via a lesson's `loop: true` flag (see agihf/lesson.html); the
+ * existing blocks[]-driven renderLessonWizard in lesson-engine.js is
  * completely untouched and keeps driving every other lesson.
+ *
+ * Learn It carries the actual teaching content (breakdown/dayli_says/
+ * confusion/catch_mistake) — See It and Try It are the visual/interactive
+ * layer built on top of what Learn It just explained, not a substitute for
+ * explaining it.
  *
  * Reuses the shared primitives lesson-engine.js already exports instead
  * of duplicating them: burst, showStreak, showToast, wireRetryOptions,
- * drawFrame, drawCandle.
+ * drawFrame, drawCandle, and the Learn It block renderers renderBreakdown/
+ * renderDayliSays/renderConfusion/renderCatchMistake.
  */
 
-import { burst, showStreak, showToast, drawFrame, drawCandle, wireRetryOptions } from './lesson-engine.js';
+import {
+  burst, showStreak, showToast, drawFrame, drawCandle, wireRetryOptions,
+  renderBreakdown, renderDayliSays, renderConfusion, renderCatchMistake,
+} from './lesson-engine.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 let uidCounter = 0;
@@ -23,6 +32,7 @@ export function renderLoopWizard(data, opts) {
 
   const steps = [
     { type: 'watch', label: 'Watch' },
+    { type: 'learn_it', label: 'Learn It' },
     { type: 'see_it', label: 'See It' },
     { type: 'try_it', label: 'Try It' },
     { type: 'say_it_back', label: 'Say It Back' },
@@ -79,6 +89,7 @@ export function renderLoopWizard(data, opts) {
   function stepPrompt(i) {
     const type = steps[i].type;
     if (type === 'watch') return 'Watch first';
+    if (type === 'learn_it') return 'Keep reading';
     if (type === 'see_it') return 'Work through it';
     if (type === 'try_it') return 'Make your call';
     if (type === 'say_it_back') return 'Say it back';
@@ -101,6 +112,7 @@ export function renderLoopWizard(data, opts) {
     wrap.appendChild(slide);
 
     if (step.type === 'watch') renderLoopWatch(slide, data, () => markDone(i));
+    else if (step.type === 'learn_it') renderLearnIt(slide, data.learnIt || {}, () => markDone(i), helpers);
     else if (step.type === 'see_it') renderSeeIt(slide, data.seeIt || {}, () => markDone(i), helpers);
     else if (step.type === 'try_it') renderTryIt(slide, data.tryIt || {}, () => markDone(i), helpers);
     else if (step.type === 'say_it_back') renderSayItBack(slide, data.sayItBack || {}, lessonId, () => markDone(i));
@@ -174,6 +186,44 @@ function renderLoopWatch(slide, data, satisfy) {
       showToast('Video coming soon', 'Markers will jump here once the video is live ✦');
     });
   });
+}
+
+/* ── Learn It: the actual teaching content ──────────────────────────── */
+
+// Restored, not invented — breakdown/dayli_says/confusion/catch_mistake
+// blocks, pulled verbatim from the pre-loop lesson schema, so concepts get
+// explained here before See It/Try It test or visualize them.
+function renderLearnIt(slide, learnIt, satisfy, helpers) {
+  const blocks = learnIt.blocks || [];
+  if (!blocks.length) { satisfy(); return; }
+
+  slide.innerHTML = `<div class="lw-eyebrow">📖 Learn It</div>`;
+  const container = document.createElement('div');
+  container.className = 'lw-body-stream';
+  slide.appendChild(container);
+
+  let idx = 0;
+  function renderNext() {
+    if (idx >= blocks.length) { satisfy(); return; }
+    const block = blocks[idx];
+    const blockEl = document.createElement('div');
+    blockEl.className = 'lw-block-in';
+    container.appendChild(blockEl);
+    const advance = () => {
+      idx += 1;
+      renderNext();
+      requestAnimationFrame(() => {
+        const added = container.lastElementChild;
+        if (added) added.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    };
+    if (block.type === 'breakdown') renderBreakdown(blockEl, block, advance);
+    else if (block.type === 'dayli_says') renderDayliSays(blockEl, block, advance);
+    else if (block.type === 'confusion') renderConfusion(blockEl, block, advance);
+    else if (block.type === 'catch_mistake') renderCatchMistake(blockEl, block, advance, helpers);
+    else advance();
+  }
+  renderNext();
 }
 
 /* ── See It: guided, staged canvas reveal ───────────────────────────── */

@@ -254,7 +254,7 @@ export function wireRetryOptions(buttons, options, feedbackEl, onSolved, handleS
 
 /* ── Block renderers ─────────────────────────────────────────────── */
 
-function renderBreakdown(el, block, satisfy) {
+export function renderBreakdown(el, block, satisfy) {
   el.innerHTML = `
     <div class="lw-card lw-breakdown-card">
       <div class="lw-eyebrow">📖 Break It Down</div>
@@ -267,7 +267,7 @@ function renderBreakdown(el, block, satisfy) {
   appendContinue(el, satisfy);
 }
 
-function renderDayliSays(el, block, satisfy) {
+export function renderDayliSays(el, block, satisfy) {
   el.innerHTML = `
     <div class="lw-card lw-dayli-card">
       <div class="lw-dayli-avatar">🎀</div>
@@ -280,7 +280,7 @@ function renderDayliSays(el, block, satisfy) {
   appendContinue(el, satisfy);
 }
 
-function renderConfusion(el, block, satisfy) {
+export function renderConfusion(el, block, satisfy) {
   el.innerHTML = `
     <div class="lw-card lw-confusion-card">
       <div class="lw-eyebrow">⚠️ Don't Get This Confused</div>
@@ -348,7 +348,7 @@ function renderChartPractice(el, block, satisfy, helpers) {
   mode.init({ ctx, btnRow, kpiGrid, flashNote, setFb, setKpis, config: block.config || {}, markDone: showContinue, handleStreak: helpers.handleStreak });
 }
 
-function renderCatchMistake(el, block, satisfy, helpers) {
+export function renderCatchMistake(el, block, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
       <div class="lw-eyebrow">🚩 Catch the Mistake</div>
