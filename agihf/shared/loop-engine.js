@@ -151,6 +151,7 @@ function appendLoopContinue(el, satisfy, label = 'Continue →') {
 function renderLoopWatch(slide, data, satisfy) {
   const lp = data.launchpad || {};
   const markers = (data.watch && data.watch.markers) || [];
+  const preview = data.watch && data.watch.preview;
   slide.innerHTML = `
     <div class="dl-launchpad">
       <div class="lw-eyebrow">✦ Lesson Launchpad</div>
@@ -165,9 +166,15 @@ function renderLoopWatch(slide, data, satisfy) {
     <div class="dl-watch-block" id="dlWatchBlock">
       <button type="button" class="dl-focus-toggle" id="dlFocusToggle">⛶ Focus Mode</button>
       <div class="lw-video-block">
-        <div class="lw-video-bg"></div>
-        <div class="lw-video-play">▶</div>
-        ${!data.videoUrl ? '<div class="lw-video-soon">Video coming soon</div>' : ''}
+        ${preview ? `
+          <canvas class="dl-watch-preview-canvas" id="dlWatchPreview" width="780" height="320"></canvas>
+          <div class="dl-watch-preview-caption" id="dlWatchPreviewCaption"></div>
+          <div class="lw-video-soon">Preview — full video coming soon</div>
+        ` : `
+          <div class="lw-video-bg"></div>
+          <div class="lw-video-play">▶</div>
+          ${!data.videoUrl ? '<div class="lw-video-soon">Video coming soon</div>' : ''}
+        `}
         <div class="lw-video-duration">${data.videoDuration || ''}</div>
       </div>
       ${markers.length ? `
@@ -186,6 +193,38 @@ function renderLoopWatch(slide, data, satisfy) {
       showToast('Video coming soon', 'Markers will jump here once the video is live ✦');
     });
   });
+  if (preview) renderWatchPreview(slide, preview);
+}
+
+// Silent, ambient placeholder for the video slot: loops the lesson's
+// GUIDED_DRAWERS shape through its stages continuously with the same
+// captions See It uses, instead of a static "video coming soon" card.
+// Stops on its own once `slide` is no longer in the document (the next
+// renderStep() call replaces #lwWrap's contents).
+function renderWatchPreview(slide, preview) {
+  const canvas = document.getElementById('dlWatchPreview');
+  const captionEl = document.getElementById('dlWatchPreviewCaption');
+  if (!canvas || !captionEl) return;
+  const ctx = canvas.getContext('2d');
+  const stages = preview.stages || [];
+  if (!stages.length) return;
+  const drawFn = GUIDED_DRAWERS[preview.shape] || GUIDED_DRAWERS.candle_anatomy;
+  let idx = 0;
+
+  function playStage() {
+    if (!document.body.contains(canvas)) return;
+    const stage = stages[idx];
+    captionEl.textContent = stage.caption || '';
+    drawFn(ctx, canvas.width, canvas.height, stage, preview, () => {
+      if (!document.body.contains(canvas)) return;
+      setTimeout(() => {
+        if (!document.body.contains(canvas)) return;
+        idx = (idx + 1) % stages.length;
+        playStage();
+      }, idx === stages.length - 1 ? 1400 : 550);
+    });
+  }
+  playStage();
 }
 
 /* ── Learn It: the actual teaching content ──────────────────────────── */
