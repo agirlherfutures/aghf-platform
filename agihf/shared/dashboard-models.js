@@ -51,38 +51,26 @@
  * @typedef {'long'|'short'} TradeDirection
  * @typedef {'followed_plan'|'a_plus_setup'|'entered_early'|'against_bias'|'during_consolidation'|'news_proximity'|'overtraded'} MethodQualityTag
  *
+ * LEGACY shapes below (Trade, JournalEntry, PreMarketPlanState) describe the
+ * localStorage-only records written before the checklist/journal rebuild.
+ * They're kept here only because journal-migration.js reads them once (see
+ * that file) to carry existing member data into the new server-backed
+ * tables — nothing new should be written in these shapes.
+ *
  * @typedef {Object} Trade
  * @property {string} id
- * @property {string} userId
- * @property {string} [accountId]
- * @property {string} [propFirm]
- * @property {string} [platform]
  * @property {string} symbol
  * @property {TradeDirection} direction
  * @property {number} [entryPrice]
  * @property {number} [exitPrice]
- * @property {string} entryTime         ISO timestamp
- * @property {string} [exitTime]        ISO timestamp
+ * @property {string} entryTime
+ * @property {string} [exitTime]
  * @property {number} [contracts]
- * @property {number} [grossPnl]
- * @property {number} [fees]
  * @property {number} netPnl
- * @property {number} [stopLoss]
- * @property {number} [takeProfit]
- * @property {number} [plannedRisk]
- * @property {number} [actualRisk]
- * @property {Bias4h} [bias4h]
- * @property {Structure1h} [structure1h]
- * @property {string} [pil]
- * @property {IccPhase} [iccPhase]
- * @property {string} [setupQuality]
  * @property {MethodQualityTag[]} [ruleViolations]
- * @property {string} [emotionBefore]
- * @property {string} [emotionAfter]
- * @property {string} [notes]
- * @property {string} [screenshot]      data URL or hosted URL
- * @property {'manual'|'csv'|'tradovate'|'ninjatrader'|'rithmic'} importSource
- * @property {string} savedAt           ISO timestamp
+ * @property {string} [screenshot]
+ * @property {'manual'|'csv'} importSource
+ * @property {string} savedAt
  */
 
 /**
@@ -91,27 +79,123 @@
  * @typedef {Object} JournalEntry
  * @property {string} id
  * @property {JournalEntryType} type
- * @property {string} [lessonId]        present on 'lesson' entries (existing aghf_notes writers)
- * @property {string} [sectionId]       present on 'checkin' entries (existing aghf_notes writers)
+ * @property {string} [lessonId]
+ * @property {string} [sectionId]
  * @property {string} prompt
  * @property {string} text
  * @property {'match'|'revise'} [selfMark]
- * @property {string} savedAt           ISO timestamp or epoch ms (existing writers use Date.now())
+ * @property {string} savedAt
+ *
+ * @typedef {Object} PreMarketPlanState
+ * @property {string} date
+ * @property {{key: string, label: string, checked: boolean}[]} items
+ * @property {string} entryCondition
+ * @property {number|null} maxRisk
+ * @property {number|null} maxTrades
+ * @property {string|null} completedAt
  */
 
 /**
- * @typedef {Object} PreMarketChecklistItem
+ * CURRENT server-backed shapes (agihf/api/journal-entries.js, checklists.js).
+ *
+ * @typedef {'trade'|'premarket_reflection'|'postmarket_reflection'} JournalEntryRecordType
+ * @typedef {'win'|'loss'|'breakeven'} TradeOutcome
+ *
+ * @typedef {Object} ScaleOutExit
+ * @property {number} contracts
+ * @property {number} exitPrice
+ * @property {string} [exitedAt]        ISO timestamp
+ *
+ * @typedef {Object} EmotionStage
+ * @property {string} [primary]
+ * @property {string[]} [secondary]
+ *
+ * @typedef {Object} JournalEntryRecord
+ * @property {string} id
+ * @property {string} userId
+ * @property {string} [checklistId]     links back to a TradeChecklist, if this trade came from one
+ * @property {JournalEntryRecordType} entryType
+ * @property {string} [prompt]          the rotating prompt shown for reflection-type entries
+ * @property {string} [accountId]
+ * @property {number} [tradeNumber]     assigned server-side on first save
+ * @property {string} tradeDate         YYYY-MM-DD
+ * @property {string} [session]
+ * @property {string} [instrument]      symbol key into instrument-data.js
+ * @property {TradeDirection|null} direction   null until the member actually picks one — never defaults
+ * @property {number} [contracts]
+ * @property {string} [executionTimeframe]     fixed '1m' per the Dayli ICC method
+ * @property {string} [setupType]
+ * @property {number} [setupQualityScore]      1-5
+ * @property {number} [entryPrice]
+ * @property {string} [entryTime]       ISO timestamp
+ * @property {number} [stopLoss]
+ * @property {number} [takeProfit]
+ * @property {number} [plannedRisk]
+ * @property {number} [actualRisk]
+ * @property {number} [fees]
+ * @property {ScaleOutExit[]} exits
+ * @property {number} [grossPnl]
+ * @property {number} [netPnl]
+ * @property {number} [rMultiple]
+ * @property {TradeOutcome|null} outcome        computed from netPnl
+ * @property {TradeOutcome|null} [outcomeOverride]  stored separately from the computed value
+ * @property {Bias4h} [bias4h]
+ * @property {Structure1h} [structure1h]
+ * @property {string} [pil]
+ * @property {IccPhase} [iccPhase]
+ * @property {MethodQualityTag[]} methodQualityTags
+ * @property {MethodQualityTag[]} ruleViolations
+ * @property {{path: string, uploadedAt: string}[]} screenshots   storage paths, never public URLs
+ * @property {string} [entryReasoning]
+ * @property {string} [exitReasoning]
+ * @property {string} [lessons]
+ * @property {{entering?: EmotionStage, during?: EmotionStage, exiting?: EmotionStage}} emotions
+ * @property {number} [executionRating]  1-5 stars
+ * @property {string} [structureInsight]
+ * @property {string} [oneSentenceTakeaway]
+ * @property {string} [finalReflection]
+ * @property {boolean} isDraft
+ * @property {string} createdAt
+ * @property {string} updatedAt
+ */
+
+/**
+ * @typedef {Object} ChecklistItemState
  * @property {string} key
+ * @property {string} phase
  * @property {string} label
  * @property {boolean} checked
  *
- * @typedef {Object} PreMarketPlanState
- * @property {string} date              YYYY-MM-DD
- * @property {PreMarketChecklistItem[]} items
- * @property {string} entryCondition    "what price must show before entry"
- * @property {number|null} maxRisk
- * @property {number|null} maxTrades
- * @property {string|null} completedAt  ISO timestamp once every item is checked, else null
+ * @typedef {Object} ChecklistMarketContext
+ * @property {Bias4h} [bias4h]
+ * @property {Structure1h} [structure1h]
+ * @property {string} [swing4h]
+ * @property {string} [structureLevels1h]
+ * @property {string} [pil]
+ * @property {string} [targetDol]
+ * @property {boolean} [newsReviewed]
+ * @property {boolean} [consolidating]
+ * @property {number|null} [maxRisk]
+ * @property {number|null} [maxTrades]
+ *
+ * @typedef {Object} ChecklistState
+ * @property {string} id
+ * @property {string} userId
+ * @property {string} [accountId]
+ * @property {string} tradingDate       YYYY-MM-DD
+ * @property {string} [session]
+ * @property {string} instrument
+ * @property {number} templateVersion
+ * @property {ChecklistMarketContext} marketContext
+ * @property {ChecklistItemState[]} items
+ * @property {string} currentPhase      one of CHECKLIST_PHASES[].key from checklist-template.js
+ * @property {number} completionPct
+ * @property {string} readinessStatus
+ * @property {'clean'|'wait'|'pass'|null} finalDecision
+ * @property {string|null} linkedJournalEntryId
+ * @property {string} createdAt
+ * @property {string} updatedAt
+ * @property {string|null} completedAt
  */
 
 /**

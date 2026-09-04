@@ -10,7 +10,7 @@
  * already available. Replaces nav.js.
  *
  * Usage: <script src="../shared/sidebar.js" data-active="dashboard"></script>
- * data-active must match one of: dashboard, market-outlook, trade-tracker,
+ * data-active must match one of: dashboard, market-outlook, checklist,
  * journal, lessons, games, chart-lab, playbook, leaderboard, store,
  * profile, performance
  */
@@ -22,7 +22,7 @@
   const items = [
     { section: 'Trade', key: 'dashboard', icon: '⌂', label: 'Dayli Desk', href: 'dashboard.html', mobileIcon: '⌂', mobileLabel: 'Desk' },
     { section: 'Trade', key: 'market-outlook', icon: '◐', label: 'Market Outlook', href: 'market-outlook.html' },
-    { section: 'Trade', key: 'trade-tracker', icon: '▤', label: 'Trade Tracker', href: 'trade-tracker.html', mobileIcon: '▤', mobileLabel: 'Trades' },
+    { section: 'Trade', key: 'checklist', icon: '▤', label: 'ICC Checklist', href: 'checklist.html', mobileIcon: '▤', mobileLabel: 'Checklist' },
     { section: 'Trade', key: 'journal', icon: '✎', label: 'Journal', href: 'journal.html', mobileIcon: '✎', mobileLabel: 'Journal' },
     { section: 'Learn', key: 'lessons', icon: '✦', label: 'Academy', href: 'lessons.html', mobileIcon: '✦', mobileLabel: 'Academy' },
     { section: 'Learn', key: 'games', icon: '◈', label: 'Games', href: 'games.html' },
@@ -37,7 +37,7 @@
   // The 4 items shown directly in the mobile bottom bar; everything else
   // (including the 4 above, for reachability when the bar isn't handy)
   // lives in the "More" sheet.
-  const MOBILE_PRIMARY_KEYS = ['dashboard', 'lessons', 'trade-tracker', 'journal'];
+  const MOBILE_PRIMARY_KEYS = ['dashboard', 'lessons', 'checklist', 'journal'];
 
   let sectionsHtml = '';
   let lastSection = null;

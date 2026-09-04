@@ -3,159 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trade Tracker — A Girl & Her Futures</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared/tokens.css">
-<link rel="stylesheet" href="shared/sidebar.css">
-<link rel="stylesheet" href="shared/components.css">
-<link rel="stylesheet" href="shared/dayli-desk.css">
+<title>Redirecting to Journal — A Girl & Her Futures</title>
+<meta http-equiv="refresh" content="0; url=journal-entry.html">
 </head>
 <body>
-
-<script src="shared/auth-guard.js"></script>
-<script src="shared/sidebar.js" data-active="trade-tracker"></script>
-
-<main class="main">
-  <div class="pg-eye">▤ Your trades, your record</div>
-  <div class="pg-title">Trade Tracker</div>
-
-  <div class="dd-section">
-    <div class="dd-section-head"><div class="dd-section-title">Log a Trade</div></div>
-    <div class="dd-card">
-      <form id="ddTradeForm">
-        <div class="dd-form-grid">
-          <div class="dd-form-field"><label for="fSymbol">Symbol</label><input id="fSymbol" required placeholder="MNQ"></div>
-          <div class="dd-form-field"><label for="fDirection">Direction</label>
-            <select id="fDirection"><option value="long">Long</option><option value="short">Short</option></select>
-          </div>
-          <div class="dd-form-field"><label for="fEntryTime">Entry time</label><input id="fEntryTime" type="datetime-local" required></div>
-          <div class="dd-form-field"><label for="fExitTime">Exit time</label><input id="fExitTime" type="datetime-local"></div>
-          <div class="dd-form-field"><label for="fContracts">Contracts</label><input id="fContracts" type="number" min="1" value="1"></div>
-          <div class="dd-form-field"><label for="fNetPnl">Net P&amp;L ($)</label><input id="fNetPnl" type="number" step="0.01" required></div>
-        </div>
-
-        <button type="button" class="dd-tab" id="ddMoreToggle" style="margin-top:14px;">+ Add ICC &amp; risk details</button>
-
-        <div class="dd-form-grid" id="ddMoreFields" hidden style="margin-top:12px;">
-          <div class="dd-form-field"><label for="fEntryPrice">Entry price</label><input id="fEntryPrice" type="number" step="0.01"></div>
-          <div class="dd-form-field"><label for="fExitPrice">Exit price</label><input id="fExitPrice" type="number" step="0.01"></div>
-          <div class="dd-form-field"><label for="fStopLoss">Stop loss</label><input id="fStopLoss" type="number" step="0.01"></div>
-          <div class="dd-form-field"><label for="fTakeProfit">Take profit</label><input id="fTakeProfit" type="number" step="0.01"></div>
-          <div class="dd-form-field"><label for="fPlannedRisk">Planned risk ($)</label><input id="fPlannedRisk" type="number" step="0.01"></div>
-          <div class="dd-form-field"><label for="fActualRisk">Actual risk ($)</label><input id="fActualRisk" type="number" step="0.01"></div>
-          <div class="dd-form-field"><label for="fBias4h">4H bias</label>
-            <select id="fBias4h"><option value="">—</option><option value="bullish">Bullish</option><option value="bearish">Bearish</option><option value="neutral">Neutral</option></select>
-          </div>
-          <div class="dd-form-field"><label for="fStructure1h">1H structure</label>
-            <select id="fStructure1h"><option value="">—</option><option value="bullish">Bullish</option><option value="bearish">Bearish</option><option value="mixed">Mixed</option><option value="unconfirmed">Unconfirmed</option></select>
-          </div>
-          <div class="dd-form-field"><label for="fPil">Nearest PIL</label><input id="fPil" placeholder="20,415"></div>
-          <div class="dd-form-field"><label for="fIccPhase">Dayli ICC phase</label>
-            <select id="fIccPhase"><option value="">—</option><option value="indication">Indication</option><option value="correction">Correction</option><option value="continuation">Continuation</option><option value="retest">Retest</option><option value="consolidation">Consolidation</option><option value="waiting">Waiting</option></select>
-          </div>
-          <div class="dd-form-field"><label for="fEmotionBefore">Emotion before</label><input id="fEmotionBefore" placeholder="Calm, confident..."></div>
-          <div class="dd-form-field"><label for="fEmotionAfter">Emotion after</label><input id="fEmotionAfter" placeholder="Steady, frustrated..."></div>
-          <div class="dd-form-field span2"><label>Rule violations (if any)</label>
-            <div class="dd-tabs" id="ddViolations">
-              <button type="button" class="dd-tab" data-tag="entered_early">Entered Early</button>
-              <button type="button" class="dd-tab" data-tag="against_bias">Against Bias</button>
-              <button type="button" class="dd-tab" data-tag="during_consolidation">During Consolidation</button>
-              <button type="button" class="dd-tab" data-tag="news_proximity">News Proximity</button>
-              <button type="button" class="dd-tab" data-tag="overtraded">Overtraded</button>
-            </div>
-          </div>
-          <div class="dd-form-field span2"><label for="fNotes">Notes</label><textarea id="fNotes" rows="3"></textarea></div>
-        </div>
-
-        <button type="submit" class="dd-primary-btn" style="margin-top:16px;">Save Trade</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="dd-section" id="import">
-    <div class="dd-section-head"><div class="dd-section-title">Import Trades</div></div>
-    <div class="dd-card">
-      <p style="font-size:.82rem;color:var(--muted);margin-bottom:12px;line-height:1.6;">Upload a CSV with at minimum <code>symbol</code>, <code>direction</code>, <code>entryTime</code>, and <code>netPnl</code> columns.</p>
-      <input type="file" id="ddCsvInput" accept=".csv,text/csv">
-      <div id="ddImportResult" style="margin-top:10px;font-size:.8rem;color:var(--muted);"></div>
-    </div>
-  </div>
-
-  <div class="dd-section">
-    <div class="dd-section-head"><div class="dd-section-title">Connect Trading Account</div></div>
-    <div class="dd-soon-card">
-      <div class="dd-soon-title">Coming Soon</div>
-      <div class="dd-soon-sub">Read-only connections through an authorized data provider (e.g. Tradovate, NinjaTrader, or Rithmic) are planned so trades can sync automatically. We'll never ask for your prop-firm username or password, and there's no direct connection to prop firms themselves.</div>
-    </div>
-  </div>
-
-  <div class="dd-section">
-    <div class="dd-section-head"><div class="dd-section-title">All Trades</div></div>
-    <div class="dd-card" id="ddAllTrades"></div>
-  </div>
-</main>
-
-<script type="module">
-  import { addTrade, getTrades, importTradesFromCsv } from './shared/trades-service.js';
-  import { renderRecentTrades, showDeskToast } from './shared/dayli-desk-engine.js';
-
-  const violations = new Set();
-  document.querySelectorAll('#ddViolations .dd-tab').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      btn.classList.toggle('active');
-      if (btn.classList.contains('active')) violations.add(btn.dataset.tag); else violations.delete(btn.dataset.tag);
-    });
-  });
-
-  document.getElementById('ddMoreToggle').addEventListener('click', () => {
-    const el = document.getElementById('ddMoreFields');
-    el.hidden = !el.hidden;
-  });
-
-  function renderAll() {
-    renderRecentTrades(document.getElementById('ddAllTrades'), getTrades(), { tradeTrackerHref: 'trade-tracker.html' });
-  }
-
-  document.getElementById('ddTradeForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const val = (id) => document.getElementById(id).value;
-    const num = (id) => (val(id) === '' ? undefined : Number(val(id)));
-    addTrade({
-      symbol: val('fSymbol').toUpperCase(),
-      direction: val('fDirection'),
-      entryTime: val('fEntryTime') ? new Date(val('fEntryTime')).toISOString() : new Date().toISOString(),
-      exitTime: val('fExitTime') ? new Date(val('fExitTime')).toISOString() : undefined,
-      contracts: num('fContracts') || 1,
-      netPnl: num('fNetPnl') || 0,
-      entryPrice: num('fEntryPrice'), exitPrice: num('fExitPrice'),
-      stopLoss: num('fStopLoss'), takeProfit: num('fTakeProfit'),
-      plannedRisk: num('fPlannedRisk'), actualRisk: num('fActualRisk'),
-      bias4h: val('fBias4h') || undefined, structure1h: val('fStructure1h') || undefined,
-      pil: val('fPil') || undefined, iccPhase: val('fIccPhase') || undefined,
-      emotionBefore: val('fEmotionBefore') || undefined, emotionAfter: val('fEmotionAfter') || undefined,
-      ruleViolations: Array.from(violations),
-      notes: val('fNotes') || undefined,
-      importSource: 'manual',
-    });
-    showDeskToast('Trade saved ✦');
-    e.target.reset();
-    violations.clear();
-    document.querySelectorAll('#ddViolations .dd-tab.active').forEach((b) => b.classList.remove('active'));
-    renderAll();
-  });
-
-  document.getElementById('ddCsvInput').addEventListener('change', async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const text = await file.text();
-    const result = importTradesFromCsv(text);
-    document.getElementById('ddImportResult').textContent = `Imported ${result.imported} trade${result.imported === 1 ? '' : 's'}${result.skipped ? `, skipped ${result.skipped} row(s) missing required columns` : ''}.`;
-    if (result.imported) showDeskToast(`${result.imported} trade${result.imported === 1 ? '' : 's'} imported ✦`);
-    renderAll();
-  });
-
-  renderAll();
-</script>
-
+<!--
+  Trade Tracker was merged into the Trade Journal — "Log a Trade" is now
+  a journal entry, since a trade is really just a journal entry with the
+  trade-detail fields filled in. This redirect exists only so any old
+  bookmark or link still lands somewhere useful.
+-->
+<script>window.location.replace('journal-entry.html' + window.location.search);</script>
+<p>Trade Tracker has moved — redirecting to the <a href="journal-entry.html">Trade Journal</a>.</p>
 </body>
 </html>

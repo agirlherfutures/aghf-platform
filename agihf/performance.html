@@ -37,12 +37,21 @@
 
 <script type="module">
   import { PHASES } from './shared/curriculum-data.js';
-  import { getRecentTrades } from './shared/trades-service.js';
-  import { getEntries } from './shared/journal-service.js';
+  import { listEntries } from './shared/journal-service.js';
+  import { listChecklists } from './shared/checklist-service.js';
   import { computeConsistencyScore } from './shared/consistency-service.js';
-  import { renderConsistencyScore, renderJourneySummary } from './shared/dayli-desk-engine.js';
+  import { renderConsistencyScore, renderJourneySummary, renderErrorState } from './shared/dayli-desk-engine.js';
 
-  renderConsistencyScore(document.getElementById('ddConsistencyFull'), computeConsistencyScore());
+  async function loadConsistency() {
+    const el = document.getElementById('ddConsistencyFull');
+    try {
+      renderConsistencyScore(el, await computeConsistencyScore());
+    } catch (err) {
+      console.error('Consistency score load error:', err);
+      renderErrorState(el, "Couldn't load your consistency score.", loadConsistency);
+    }
+  }
+  loadConsistency();
 
   async function loadJourney() {
     let profile = {};
@@ -56,16 +65,20 @@
     const p1 = PHASES[0];
     const allP1Lessons = p1.sections.flatMap((s) => s.lessons);
     const doneCount = allP1Lessons.filter((l) => l.n && completedIds.has(`p1-${l.n}`)).length;
-    const premarketPlansCompleted = Object.keys(localStorage).filter((k) => k.startsWith('aghf_premarket_plan:'))
-      .filter((k) => { try { return !!JSON.parse(localStorage.getItem(k)).completedAt; } catch { return false; } }).length;
+    const [checklists, { total: journalCount }, { total: tradesJournaled }] = await Promise.all([
+      listChecklists(200).catch(() => []),
+      listEntries({ limit: 1 }).catch(() => ({ total: 0 })),
+      listEntries({ entryType: 'trade', limit: 1 }).catch(() => ({ total: 0 })),
+    ]);
+    const checklistsCompleted = checklists.filter((c) => c.completedAt).length;
 
     renderJourneySummary(document.getElementById('ddJourneyFull'), [
       { value: doneCount, label: 'Lessons Completed' },
-      { value: premarketPlansCompleted, label: 'Pre-Market Plans' },
-      { value: getEntries().length, label: 'Journal Entries' },
+      { value: checklistsCompleted, label: 'Checklists Completed' },
+      { value: journalCount, label: 'Journal Entries' },
       { value: `${profile.level || 1} · ${profile.gp || 0}GP`, label: 'Level & GP' },
       { value: p1.title, label: 'Current Phase' },
-      { value: getRecentTrades(999).length, label: 'Trades Journaled' },
+      { value: tradesJournaled, label: 'Trades Journaled' },
     ]);
   }
   document.addEventListener('aghf-auth-ready', loadJourney);

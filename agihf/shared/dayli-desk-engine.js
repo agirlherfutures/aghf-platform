@@ -6,12 +6,13 @@
  * proven in loop-engine.js (per-stage render functions importing shared
  * primitives rather than duplicating them). This file is presentation
  * only — every card's data comes from the service files
- * (market-outlook-service.js, trades-service.js, etc.); nothing here
+ * (market-outlook-service.js, journal-service.js, etc.); nothing here
  * touches localStorage or fetch directly except the small toast/modal
  * DOM helpers.
  */
 
 import { METHOD_QUALITY_LABELS, BIAS_LABELS, STRUCTURE_LABELS, PHASE_LABELS } from './dashboard-models.js';
+import { CHECKLIST_PHASES } from './checklist-template.js';
 
 /* ── Small shared DOM helpers ───────────────────────────────────── */
 
@@ -160,7 +161,7 @@ function fmtPnl(n) {
 }
 
 /**
- * @param {ReturnType<import('./trades-service.js').getTodaysSnapshot>} snapshot
+ * @param {ReturnType<import('./journal-service.js').getTodaysSnapshot>} snapshot
  * @param {{ tradeTrackerHref: string }} opts
  */
 export function renderTradingSnapshot(container, snapshot, opts) {
@@ -207,59 +208,36 @@ export function renderTradingSnapshot(container, snapshot, opts) {
   });
 }
 
-/* ── Pre-Market Plan checklist ──────────────────────────────────── */
+/* ── Checklist summary card (dashboard) ─────────────────────────── */
+// The full phase-by-phase checklist experience lives on checklist.html
+// (checklist-engine.js) — this is just the compact dashboard entry point,
+// per "don't place the complete checklist form directly on the dashboard."
 
 /**
- * @param {import('./dashboard-models.js').PreMarketPlanState} plan
- * @param {{ onSave: (state: import('./dashboard-models.js').PreMarketPlanState) => void }} opts
+ * @param {import('./dashboard-models.js').ChecklistState} state
+ * @param {{ checklistHref: string }} opts
  */
-export function renderPreMarketChecklist(container, plan, opts) {
-  const doneCount = plan.items.filter((i) => i.checked).length;
-  const pct = Math.round((doneCount / plan.items.length) * 100);
+export function renderChecklistSummaryCard(container, state, opts) {
+  const phase = CHECKLIST_PHASES.find((p) => p.key === state.currentPhase) || CHECKLIST_PHASES[0];
+  const lastSaved = state.updatedAt ? new Date(state.updatedAt).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) : null;
   container.innerHTML = `
-    <div class="dd-checklist-progress">${doneCount} of ${plan.items.length} steps done</div>
-    <div class="dd-checklist-track"><div class="dd-checklist-fill" style="width:${pct}%"></div></div>
-    ${plan.items.map((item) => `
-      <button type="button" class="dd-checklist-item ${item.checked ? 'on' : ''}" data-key="${item.key}">
-        <span class="dd-checklist-check">${item.checked ? '✓' : ''}</span>
-        <span class="dd-checklist-label">${item.label}</span>
-      </button>`).join('')}
-    <div class="dd-checklist-field-row">
-      <div class="dd-checklist-field-label">What must price show before you're allowed to enter?</div>
-      <textarea class="dd-checklist-textarea" id="ddEntryCondition" placeholder="e.g. A confirmed 1M candle close through the PIL...">${plan.entryCondition || ''}</textarea>
-      <div class="dd-checklist-numrow">
-        <div class="dd-checklist-num"><div class="dd-checklist-field-label">Max risk ($)</div><input class="dd-checklist-input" type="number" min="0" id="ddMaxRisk" value="${plan.maxRisk ?? ''}"></div>
-        <div class="dd-checklist-num"><div class="dd-checklist-field-label">Max trades</div><input class="dd-checklist-input" type="number" min="0" id="ddMaxTrades" value="${plan.maxTrades ?? ''}"></div>
+    <div class="dd-outlook-top">
+      <div>
+        <div class="dd-mini-stat-l">Completion</div>
+        <div class="dd-snapshot-pnl dd-pnl-flat" style="font-size:1.5rem;">${state.completionPct}%</div>
       </div>
+      <span class="dd-badge ${state.completionPct === 100 ? 'dd-badge-bull' : 'dd-badge-neutral'}">${state.readinessStatus}</span>
     </div>
-    ${plan.completedAt ? '<div class="dd-checklist-complete">✓ Pre-Market Plan Complete</div>' : ''}
-  `;
-
-  function persist(next) {
-    const saved = opts.onSave(next);
-    renderPreMarketChecklist(container, saved, opts);
-  }
-
-  container.querySelectorAll('.dd-checklist-item').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const items = plan.items.map((i) => (i.key === btn.dataset.key ? { ...i, checked: !i.checked } : i));
-      persist({ ...plan, items });
-    });
-  });
-  const commit = () => {
-    const entryCondition = container.querySelector('#ddEntryCondition').value;
-    const maxRisk = container.querySelector('#ddMaxRisk').value;
-    const maxTrades = container.querySelector('#ddMaxTrades').value;
-    opts.onSave({
-      ...plan,
-      entryCondition,
-      maxRisk: maxRisk === '' ? null : Number(maxRisk),
-      maxTrades: maxTrades === '' ? null : Number(maxTrades),
-    });
-  };
-  container.querySelector('#ddEntryCondition').addEventListener('blur', commit);
-  container.querySelector('#ddMaxRisk').addEventListener('blur', commit);
-  container.querySelector('#ddMaxTrades').addEventListener('blur', commit);
+    <div class="dd-outlook-rows" style="margin-top:10px;">
+      <div class="dd-outlook-row"><span class="dd-outlook-row-label">Current phase</span><span>${phase.title}</span></div>
+      ${lastSaved ? `<div class="dd-outlook-row"><span class="dd-outlook-row-label">Last saved</span><span>${lastSaved}</span></div>` : ''}
+      ${state.finalDecision ? `<div class="dd-outlook-row"><span class="dd-outlook-row-label">Decision</span><span>${state.finalDecision === 'clean' ? 'Trade Is Clean' : state.finalDecision === 'wait' ? 'Wait' : 'Pass'}</span></div>` : ''}
+    </div>
+    <div class="dd-snapshot-actions" style="margin-top:14px;">
+      ${state.completedAt
+        ? `<a class="dd-secondary-btn" href="${opts.checklistHref}?id=${state.id}">Review Completed Plan</a>`
+        : `<a class="dd-primary-btn" href="${opts.checklistHref}">${state.completionPct > 0 ? 'Resume Checklist →' : 'Start Checklist →'}</a>`}
+    </div>`;
 }
 
 /* ── Quick Journal ──────────────────────────────────────────────── */
@@ -319,23 +297,21 @@ export function renderRecentTrades(container, trades, opts) {
     return;
   }
   container.innerHTML = trades.map((t) => {
-    const date = new Date(t.entryTime);
+    const date = new Date(t.entryTime || t.tradeDate);
     const pnlClass = t.netPnl > 0 ? 'dd-pnl-pos' : t.netPnl < 0 ? 'dd-pnl-neg' : 'dd-pnl-flat';
     const tags = (t.ruleViolations || []).slice(0, 2).map((tag) => `<span class="dd-trade-tag warn">${METHOD_QUALITY_LABELS[tag] || tag}</span>`).join('');
     const cleanTag = !t.ruleViolations?.length ? '<span class="dd-trade-tag">Followed Plan</span>' : '';
-    return `<div class="dd-trade-row" data-id="${t.id}">
-      <div class="dd-trade-thumb">${t.screenshot ? `<img src="${t.screenshot}" alt="">` : '📈'}</div>
+    const direction = t.direction === 'long' ? 'Long' : t.direction === 'short' ? 'Short' : 'Unselected';
+    return `<a class="dd-trade-row" data-id="${t.id}" href="${opts.tradeTrackerHref}?id=${t.id}">
+      <div class="dd-trade-thumb">${t.screenshots?.length ? '📷' : '📈'}</div>
       <div class="dd-trade-mid">
-        <div class="dd-trade-symbol">${t.symbol} <span class="dir">${t.direction === 'long' ? 'Long' : 'Short'}</span></div>
-        <div class="dd-trade-sub">${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}${t.iccPhase ? ' · ' + (PHASE_LABELS[t.iccPhase] || t.iccPhase) : ''}</div>
+        <div class="dd-trade-symbol">${t.instrument || t.symbol || '—'} <span class="dir">${direction}</span></div>
+        <div class="dd-trade-sub">${Number.isNaN(date.getTime()) ? '' : date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}${t.iccPhase ? ' · ' + (PHASE_LABELS[t.iccPhase] || t.iccPhase) : ''}</div>
         <div class="dd-trade-tags">${cleanTag}${tags}</div>
       </div>
       <div class="dd-trade-pnl ${pnlClass}">${fmtPnl(t.netPnl)}</div>
-    </div>`;
+    </a>`;
   }).join('');
-  container.querySelectorAll('.dd-trade-row').forEach((row) => {
-    row.addEventListener('click', () => { window.location.href = `${opts.tradeTrackerHref}?trade=${row.dataset.id}`; });
-  });
 }
 
 /* ── Current Focus (default-rule recommendation, structured to swap later) ── */

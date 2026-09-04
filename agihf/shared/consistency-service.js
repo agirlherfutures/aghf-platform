@@ -2,38 +2,41 @@
  * consistency-service.js — A Girl & Her Futures™
  *
  * Computes today's private Execution Consistency score from existing
- * data (pre-market plan, today's trades, today's journal entries) — never
- * from profit alone. Pure function: no storage of its own, no side
- * effects, so it's easy to later swap for a server-computed or rules-
- * engine version without touching callers.
+ * data (today's checklist, today's trades, today's journal reflections) —
+ * never from profit alone. No storage of its own, so it's easy to later
+ * swap for a server-computed or rules-engine version without touching
+ * callers. Now async since its inputs are server-backed (checklist-
+ * service.js, journal-service.js) rather than localStorage.
  */
 
-import { getTodayPlan } from './premarket-plan-service.js';
-import { getTodaysSnapshot } from './trades-service.js';
-import { getEntries } from './journal-service.js';
+import { getTodayChecklist } from './checklist-service.js';
+import { getTodaysSnapshot, listEntries } from './journal-service.js';
 import { todayKey } from './dashboard-models.js';
 
-function hasTodayEntry(type) {
+async function hasTodayEntry(entryType) {
   const today = todayKey();
-  return getEntries({ type }).some((e) => {
-    const savedAt = typeof e.savedAt === 'number' ? new Date(e.savedAt) : new Date(e.savedAt);
-    return !Number.isNaN(savedAt.getTime()) && savedAt.toISOString().slice(0, 10) === today;
-  });
+  const { entries } = await listEntries({ entryType, from: today, to: today, limit: 1 });
+  return entries.length > 0;
 }
 
-/** @returns {import('./dashboard-models.js').ConsistencyScoreResult} */
-export function computeConsistencyScore() {
-  const plan = getTodayPlan();
-  const snapshot = getTodaysSnapshot({ maxTrades: plan.maxTrades ?? undefined });
+/** @returns {Promise<import('./dashboard-models.js').ConsistencyScoreResult>} */
+export async function computeConsistencyScore() {
+  const plan = await getTodayChecklist();
+  const maxTrades = plan.marketContext?.maxTrades;
+  const snapshot = await getTodaysSnapshot({ maxTrades: maxTrades ?? undefined });
   const tradedToday = snapshot.tradeCount > 0;
   const violationTags = snapshot.trades.flatMap((t) => t.ruleViolations || []);
+
+  const [journalPremarket, journalPostmarket] = await Promise.all([
+    hasTodayEntry('premarket_reflection'), hasTodayEntry('postmarket_reflection'),
+  ]);
 
   const rules = [
     { key: 'premarket_plan', label: 'Completed pre-market plan', passed: !!plan.completedAt, applicable: true },
     {
       key: 'trade_limit', label: 'Respected max trade limit',
-      passed: !plan.maxTrades || snapshot.tradeCount <= plan.maxTrades,
-      applicable: !!plan.maxTrades,
+      passed: !maxTrades || snapshot.tradeCount <= maxTrades,
+      applicable: !!maxTrades,
     },
     {
       key: 'waited_for_confirmation', label: 'Waited for confirmation before entering',
@@ -51,8 +54,8 @@ export function computeConsistencyScore() {
       key: 'avoided_news', label: 'Avoided high-impact news windows',
       passed: !violationTags.includes('news_proximity'), applicable: tradedToday,
     },
-    { key: 'journal_premarket', label: 'Completed pre-market reflection', passed: hasTodayEntry('premarket'), applicable: true },
-    { key: 'journal_postmarket', label: 'Completed post-market review', passed: hasTodayEntry('postmarket'), applicable: true },
+    { key: 'journal_premarket', label: 'Completed pre-market reflection', passed: journalPremarket, applicable: true },
+    { key: 'journal_postmarket', label: 'Completed post-market review', passed: journalPostmarket, applicable: true },
   ];
 
   const applicableRules = rules.filter((r) => r.applicable);

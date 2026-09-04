@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dayli ICC Checklist — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="checklist"></script>
+
+<main class="main">
+  <div id="clRoot"></div>
+</main>
+
+<script type="module">
+  import { getTodayChecklist, getChecklistById, saveChecklist, createAutosaver } from './shared/checklist-service.js';
+  import { renderChecklistPage } from './shared/checklist-engine.js';
+  import { saveEntry } from './shared/journal-service.js';
+  import { migrateLegacyDataIfNeeded } from './shared/journal-migration.js';
+  import { renderErrorState, renderSkeleton } from './shared/dayli-desk-engine.js';
+
+  const root = document.getElementById('clRoot');
+  const params = new URLSearchParams(window.location.search);
+  const viewOnlyId = params.get('id');
+
+  async function boot() {
+    renderSkeleton(root, 4);
+    try {
+      await migrateLegacyDataIfNeeded();
+      const state = viewOnlyId ? await getChecklistById(viewOnlyId) : await getTodayChecklist();
+      if (viewOnlyId && !state) {
+        root.innerHTML = `<div class="dd-card dd-empty"><div class="dd-empty-icon">🔍</div><div class="dd-empty-text">That checklist record couldn't be found.</div><a class="dd-primary-btn" href="checklist.html">Start Today's Checklist</a></div>`;
+        return;
+      }
+      startPage(state);
+    } catch (err) {
+      console.error('Checklist load error:', err);
+      renderErrorState(root, err.setupRequired ? err.message : "Couldn't load your checklist.", boot);
+    }
+  }
+
+  function startPage(state) {
+    if (viewOnlyId) {
+      const banner = document.createElement('div');
+      banner.className = 'dd-soon-card';
+      banner.style.marginBottom = '16px';
+      banner.innerHTML = `<div class="dd-soon-title">Viewing a past checklist</div><div class="dd-soon-sub">From ${state.tradingDate} — this is a read-only history record. Changes here won't be saved. <a href="checklist.html" style="color:var(--pink);font-weight:700;">Start today's checklist →</a></div>`;
+      root.before(banner);
+    }
+    let saveStatus = 'saved';
+    const autosave = createAutosaver((status, resultOrErr) => {
+      saveStatus = status;
+      if (status === 'saved') {
+        handle.setState(resultOrErr); // pick up the server-assigned id on first save
+        handle.setSaveStatus('saved', resultOrErr.updatedAt);
+      } else {
+        handle.setSaveStatus(status);
+      }
+    });
+
+    const handle = renderChecklistPage(root, state, {
+      saveStatus,
+      onChange: (next) => { if (!viewOnlyId) autosave(next); },
+      onCreateJournalEntry: async (checklistState) => {
+        try {
+          const entry = await saveEntry({
+            checklistId: checklistState.id,
+            entryType: 'trade',
+            instrument: checklistState.instrument,
+            bias4h: checklistState.marketContext.bias4h,
+            structure1h: checklistState.marketContext.structure1h,
+            pil: checklistState.marketContext.pil,
+            plannedRisk: checklistState.marketContext.maxRisk,
+            tradeDate: checklistState.tradingDate,
+            isDraft: true,
+          });
+          const linked = await saveChecklist({ ...checklistState, linkedJournalEntryId: entry.id });
+          handle.setState(linked);
+          window.location.href = `journal-entry.html?id=${entry.id}`;
+        } catch (err) {
+          console.error('Create journal entry error:', err);
+          alert("Couldn't create the linked journal entry — try again in a moment.");
+        }
+      },
+    });
+  }
+
+  document.addEventListener('aghf-auth-ready', boot);
+</script>
+
+</body>
+</html>

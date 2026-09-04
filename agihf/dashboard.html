@@ -59,9 +59,12 @@
     <div class="dd-card" id="ddSnapshot"></div>
   </div>
 
-  <!-- 5. Pre-Market Plan -->
+  <!-- 5. Dayli ICC Checklist -->
   <div class="dd-section dd-order-3" id="ddPlanSection">
-    <div class="dd-section-head"><div class="dd-section-title">Dayli ICC Pre-Market Plan</div></div>
+    <div class="dd-section-head">
+      <div class="dd-section-title">Dayli ICC Checklist</div>
+      <a class="dd-section-link" href="checklist.html">Open Checklist →</a>
+    </div>
     <div class="dd-card" id="ddChecklist"></div>
   </div>
 
@@ -89,7 +92,7 @@
   <div class="dd-section dd-order-8">
     <div class="dd-section-head">
       <div class="dd-section-title">Recent Trades</div>
-      <a class="dd-section-link" href="trade-tracker.html">View All →</a>
+      <a class="dd-section-link" href="journal-history.html">View All →</a>
     </div>
     <div class="dd-card" id="ddTrades"></div>
   </div>
@@ -109,15 +112,15 @@
   import { PHASES, LEVEL_NAMES, isSectionCleared } from './shared/curriculum-data.js';
   import { getMarketOutlook } from './shared/market-outlook-service.js';
   import { getTodaysEvents } from './shared/economic-calendar-service.js';
-  import { getTodaysSnapshot, getRecentTrades } from './shared/trades-service.js';
-  import { getTodayPlan, savePlanProgress } from './shared/premarket-plan-service.js';
-  import { addEntry, QUICK_JOURNAL_PROMPTS, getEntries } from './shared/journal-service.js';
+  import { getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS, listEntries } from './shared/journal-service.js';
+  import { getTodayChecklist, listChecklists } from './shared/checklist-service.js';
+  import { migrateLegacyDataIfNeeded } from './shared/journal-migration.js';
   import { computeConsistencyScore } from './shared/consistency-service.js';
   import {
     renderSessionBadge, renderMarketOutlookCard, renderEconomicCalendarCard, renderTradingSnapshot,
-    renderPreMarketChecklist, renderQuickJournalCard, renderRecentTrades, computeCurrentFocus,
+    renderChecklistSummaryCard, renderQuickJournalCard, renderRecentTrades, computeCurrentFocus,
     renderCurrentFocusCard, renderContinueLearningCard, renderConsistencyScore, renderJourneySummary,
-    renderSkeleton, renderErrorState, showDeskToast,
+    renderSkeleton, renderErrorState,
   } from './shared/dayli-desk-engine.js';
 
   const p1 = PHASES[0];
@@ -168,38 +171,60 @@
     return null;
   }
 
-  function loadPreMarketChecklist() {
+  async function loadChecklistSummary() {
     const container = document.getElementById('ddChecklist');
-    renderPreMarketChecklist(container, getTodayPlan(), {
-      onSave: (state) => {
-        const saved = savePlanProgress(state);
-        if (saved.completedAt && !state.completedAt) showDeskToast('Pre-Market Plan Complete ✦');
-        loadConsistency();
-        return saved;
-      },
-    });
+    renderSkeleton(container, 2);
+    try {
+      renderChecklistSummaryCard(container, await getTodayChecklist(), { checklistHref: 'checklist.html' });
+    } catch (err) {
+      console.error('Checklist summary load error:', err);
+      renderErrorState(container, err.setupRequired ? err.message : "Couldn't load your checklist.", loadChecklistSummary);
+    }
   }
 
   function loadQuickJournal() {
     renderQuickJournalCard(document.getElementById('ddJournal'), {
       prompts: QUICK_JOURNAL_PROMPTS,
-      tradeTrackerHref: 'trade-tracker.html',
-      onSave: (entry) => { addEntry(entry); loadConsistency(); },
+      tradeTrackerHref: 'journal-entry.html',
+      onSave: async (entry) => {
+        await saveReflection(entry.type === 'premarket' ? 'premarket_reflection' : 'postmarket_reflection', entry.prompt, entry.text);
+        loadConsistency();
+      },
     });
   }
 
-  function loadTradingSnapshot() {
-    const plan = getTodayPlan();
-    const snapshot = getTodaysSnapshot({ maxTrades: plan.maxTrades ?? undefined });
-    renderTradingSnapshot(document.getElementById('ddSnapshot'), snapshot, { tradeTrackerHref: 'trade-tracker.html' });
+  async function loadTradingSnapshot() {
+    const container = document.getElementById('ddSnapshot');
+    renderSkeleton(container, 2);
+    try {
+      const plan = await getTodayChecklist();
+      const snapshot = await getTodaysSnapshot({ maxTrades: plan.marketContext?.maxTrades ?? undefined });
+      renderTradingSnapshot(container, snapshot, { tradeTrackerHref: 'journal-entry.html' });
+    } catch (err) {
+      console.error('Trading snapshot load error:', err);
+      renderErrorState(container, err.setupRequired ? err.message : "Couldn't load today's snapshot.", loadTradingSnapshot);
+    }
   }
 
-  function loadRecentTrades() {
-    renderRecentTrades(document.getElementById('ddTrades'), getRecentTrades(3), { tradeTrackerHref: 'trade-tracker.html' });
+  async function loadRecentTrades() {
+    const container = document.getElementById('ddTrades');
+    renderSkeleton(container, 2);
+    try {
+      renderRecentTrades(container, await getRecentEntries(3), { tradeTrackerHref: 'journal-entry.html' });
+    } catch (err) {
+      console.error('Recent trades load error:', err);
+      renderErrorState(container, err.setupRequired ? err.message : "Couldn't load recent trades.", loadRecentTrades);
+    }
   }
 
-  function loadConsistency() {
-    renderConsistencyScore(document.getElementById('ddConsistency'), computeConsistencyScore());
+  async function loadConsistency() {
+    const container = document.getElementById('ddConsistency');
+    try {
+      renderConsistencyScore(container, await computeConsistencyScore());
+    } catch (err) {
+      console.error('Consistency score load error:', err);
+      renderErrorState(container, "Couldn't load your consistency score.", loadConsistency);
+    }
   }
 
   async function loadMarketOutlook() {
@@ -225,18 +250,22 @@
     }
   }
 
-  function loadJourney(completedIds, profile, doneCount, journalCount) {
+  async function loadJourney(profile, doneCount) {
     const level = profile.level || 1;
     const gp = profile.gp || 0;
-    const premarketPlansCompleted = Object.keys(localStorage).filter((k) => k.startsWith('aghf_premarket_plan:'))
-      .filter((k) => { try { return !!JSON.parse(localStorage.getItem(k)).completedAt; } catch { return false; } }).length;
+    const [checklists, { total: journalCount }, { total: tradesJournaled }] = await Promise.all([
+      listChecklists(200).catch(() => []),
+      listEntries({ limit: 1 }).catch(() => ({ total: 0 })),
+      listEntries({ entryType: 'trade', limit: 1 }).catch(() => ({ total: 0 })),
+    ]);
+    const checklistsCompleted = checklists.filter((c) => c.completedAt).length;
     renderJourneySummary(document.getElementById('ddJourney'), [
       { value: doneCount, label: 'Lessons Completed' },
-      { value: premarketPlansCompleted, label: 'Pre-Market Plans' },
+      { value: checklistsCompleted, label: 'Checklists Completed' },
       { value: journalCount, label: 'Journal Entries' },
       { value: `${level} · ${gp}GP`, label: 'Level & GP' },
       { value: p1.title, label: 'Current Phase' },
-      { value: getRecentTrades(999).length, label: 'Trades Journaled' },
+      { value: tradesJournaled, label: 'Trades Journaled' },
     ]);
   }
 
@@ -287,23 +316,31 @@
     }
     renderContinueLearningCard(document.getElementById('ddLearning'), learningData);
 
-    loadPreMarketChecklist();
+    loadChecklistSummary();
     loadQuickJournal();
     loadTradingSnapshot();
     loadRecentTrades();
     loadConsistency();
 
-    const consistency = computeConsistencyScore();
-    renderCurrentFocusCard(document.getElementById('ddFocus'), computeCurrentFocus(consistency), {
-      lessonHref: next && next.type === 'lesson' ? `lesson.html?phase=p1&n=${next.lesson.n}` : null,
-      chartLabHref: 'chart-lab.html',
-      journalHref: 'journal.html',
-    });
+    try {
+      const consistency = await computeConsistencyScore();
+      renderCurrentFocusCard(document.getElementById('ddFocus'), computeCurrentFocus(consistency), {
+        lessonHref: next && next.type === 'lesson' ? `lesson.html?phase=p1&n=${next.lesson.n}` : null,
+        chartLabHref: 'chart-lab.html',
+        journalHref: 'journal.html',
+      });
+    } catch (err) {
+      console.error('Current focus load error:', err);
+      renderErrorState(document.getElementById('ddFocus'), "Couldn't load your current focus.", loadDashboard);
+    }
 
-    loadJourney(completedIds, p, doneCount, getEntries().length);
+    loadJourney(p, doneCount);
   }
 
-  document.addEventListener('aghf-auth-ready', loadDashboard);
+  document.addEventListener('aghf-auth-ready', async () => {
+    await migrateLegacyDataIfNeeded();
+    loadDashboard();
+  });
   loadMarketOutlook();
   loadCalendar();
 </script>

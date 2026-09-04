@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal History — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="journal"></script>
+
+<main class="main">
+  <div class="pg-eye">✦ Every trade, in one place</div>
+  <div class="pg-title">Journal History</div>
+
+  <div class="dd-card" style="margin-bottom:16px;">
+    <div class="field-row cols-4">
+      <div class="field-group"><label class="field-label">From</label><input class="field-input" type="date" id="fFrom"></div>
+      <div class="field-group"><label class="field-label">To</label><input class="field-input" type="date" id="fTo"></div>
+      <div class="field-group"><label class="field-label">Instrument</label><select class="field-input" id="fInstrument"><option value="">All</option></select></div>
+      <div class="field-group"><label class="field-label">Direction</label><select class="field-input" id="fDirection"><option value="">All</option><option value="long">Long</option><option value="short">Short</option></select></div>
+    </div>
+    <div class="field-row cols-4">
+      <div class="field-group"><label class="field-label">Outcome</label><select class="field-input" id="fOutcome"><option value="">All</option><option value="win">Win</option><option value="loss">Loss</option><option value="breakeven">Breakeven</option></select></div>
+      <div class="field-group"><label class="field-label">Session</label><select class="field-input" id="fSession"><option value="">All</option><option>Asia</option><option>London</option><option>NY AM</option><option>NY Lunch</option><option>NY PM</option></select></div>
+      <div class="field-group"><label class="field-label">Followed plan?</label><select class="field-input" id="fFollowed"><option value="">All</option><option value="yes">Followed Plan</option><option value="no">Did Not Follow Plan</option></select></div>
+      <div class="field-group" style="justify-content:flex-end;"><button type="button" class="dd-secondary-btn" id="fClear">Clear filters</button></div>
+    </div>
+  </div>
+
+  <div id="jhList"></div>
+</main>
+
+<script type="module">
+  import { listEntries } from './shared/journal-service.js';
+  import { INSTRUMENT_SYMBOLS } from './shared/instrument-data.js';
+  import { METHOD_QUALITY_LABELS, PHASE_LABELS } from './shared/dashboard-models.js';
+  import { renderSkeleton, renderErrorState } from './shared/dayli-desk-engine.js';
+
+  document.getElementById('fInstrument').insertAdjacentHTML('beforeend', INSTRUMENT_SYMBOLS.map((s) => `<option value="${s}">${s}</option>`).join(''));
+
+  const listEl = document.getElementById('jhList');
+  const filterIds = ['fFrom', 'fTo', 'fInstrument', 'fDirection', 'fOutcome', 'fSession', 'fFollowed'];
+  filterIds.forEach((id) => document.getElementById(id).addEventListener('change', load));
+  document.getElementById('fClear').addEventListener('click', () => {
+    filterIds.forEach((id) => { document.getElementById(id).value = ''; });
+    load();
+  });
+
+  function fmtPnl(n) {
+    if (n == null) return '—';
+    const sign = n > 0 ? '+' : n < 0 ? '−' : '';
+    return `${sign}$${Math.abs(Math.round(n))}`;
+  }
+
+  function entryRowHtml(e) {
+    const pnlClass = e.netPnl > 0 ? 'dd-pnl-pos' : e.netPnl < 0 ? 'dd-pnl-neg' : 'dd-pnl-flat';
+    const outcome = e.outcomeOverride || e.outcome;
+    const tags = (e.ruleViolations || []).length
+      ? e.ruleViolations.slice(0, 2).map((t) => `<span class="dd-trade-tag warn">${METHOD_QUALITY_LABELS[t] || t}</span>`).join('')
+      : '<span class="dd-trade-tag">Followed Plan</span>';
+    return `<a class="dd-trade-row" href="journal-entry.html?id=${e.id}" style="align-items:flex-start;">
+      <div class="dd-trade-thumb">${e.screenshots?.[0] ? '📷' : '📈'}</div>
+      <div class="dd-trade-mid">
+        <div class="dd-trade-symbol">${e.instrument || '—'} <span class="dir">${e.direction ? (e.direction === 'long' ? 'Long' : 'Short') : 'Unselected'}</span></div>
+        <div class="dd-trade-sub">${e.tradeDate}${e.session ? ' · ' + e.session : ''}${outcome ? ' · ' + outcome[0].toUpperCase() + outcome.slice(1) : ''}${e.setupQualityScore ? ' · ' + '★'.repeat(e.setupQualityScore) : ''}</div>
+        <div class="dd-trade-tags">${tags}</div>
+        ${e.oneSentenceTakeaway ? `<div class="small-help" style="margin-top:5px;">${e.oneSentenceTakeaway}</div>` : ''}
+      </div>
+      <div class="dd-trade-pnl ${pnlClass}">${fmtPnl(e.netPnl)}</div>
+    </a>`;
+  }
+
+  async function load() {
+    renderSkeleton(listEl, 4);
+    try {
+      const filters = {
+        entryType: 'trade',
+        from: document.getElementById('fFrom').value || undefined,
+        to: document.getElementById('fTo').value || undefined,
+        instrument: document.getElementById('fInstrument').value || undefined,
+        direction: document.getElementById('fDirection').value || undefined,
+        outcome: document.getElementById('fOutcome').value || undefined,
+        session: document.getElementById('fSession').value || undefined,
+        limit: 100,
+      };
+      const { entries } = await listEntries(filters);
+      const followed = document.getElementById('fFollowed').value;
+      const filtered = followed
+        ? entries.filter((e) => (followed === 'yes' ? !e.ruleViolations?.length : e.ruleViolations?.length))
+        : entries;
+
+      if (!filtered.length) {
+        listEl.innerHTML = `<div class="dd-card dd-empty"><div class="dd-empty-icon">🗂️</div><div class="dd-empty-text">${entries.length ? 'No entries match these filters.' : 'No trades journaled yet.'}</div><a class="dd-primary-btn" href="journal-entry.html">Log Your First Trade</a></div>`;
+        return;
+      }
+      listEl.innerHTML = `<div class="dd-card">${filtered.map(entryRowHtml).join('')}</div>`;
+    } catch (err) {
+      console.error('Journal history load error:', err);
+      renderErrorState(listEl, err.message || "Couldn't load your journal history.", load);
+    }
+  }
+
+  document.addEventListener('aghf-auth-ready', load);
+</script>
+
+</body>
+</html>
