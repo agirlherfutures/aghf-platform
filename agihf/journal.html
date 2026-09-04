@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="journal"></script>
+
+<main class="main">
+  <div class="pg-eye">✦ My Notes</div>
+  <div class="pg-title">Your Journal</div>
+
+  <div class="dd-header-top" style="margin-bottom:16px;">
+    <div class="dd-tabs" id="ddJournalTabs"></div>
+    <div class="dd-journal-actions" style="width:auto;">
+      <button type="button" class="dd-secondary-btn" id="ddNewPre">📝 Pre-Market Reflection</button>
+      <button type="button" class="dd-secondary-btn" id="ddNewPost">🌙 Post-Market Review</button>
+    </div>
+  </div>
+
+  <div id="ddEntryList"></div>
+</main>
+
+<script type="module">
+  import { getEntries, addEntry, QUICK_JOURNAL_PROMPTS } from './shared/journal-service.js';
+  import { openJournalModal } from './shared/dayli-desk-engine.js';
+
+  const TYPE_LABELS = {
+    premarket: 'Pre-Market Reflection', postmarket: 'Post-Market Review',
+    lesson: 'Lesson Reflection', checkin: 'Section Check-In', trade: 'Trade Note',
+  };
+  const TABS = [
+    { key: 'all', label: 'All' },
+    { key: 'premarket', label: 'Pre-Market' },
+    { key: 'postmarket', label: 'Post-Market' },
+    { key: 'lesson', label: 'Lesson Reflections' },
+    { key: 'checkin', label: 'Check-Ins' },
+  ];
+  let activeTab = 'all';
+
+  function renderTabs() {
+    document.getElementById('ddJournalTabs').innerHTML = TABS.map((t) =>
+      `<button type="button" class="dd-tab${t.key === activeTab ? ' active' : ''}" data-key="${t.key}">${t.label}</button>`).join('');
+    document.querySelectorAll('.dd-tab').forEach((btn) => {
+      btn.addEventListener('click', () => { activeTab = btn.dataset.key; renderTabs(); renderList(); });
+    });
+  }
+
+  function renderList() {
+    const entries = activeTab === 'all' ? getEntries() : getEntries({ type: activeTab });
+    const el = document.getElementById('ddEntryList');
+    if (!entries.length) {
+      el.innerHTML = `<div class="dd-card dd-empty"><div class="dd-empty-icon">🫧</div><div class="dd-empty-text">No entries yet — reflections from lessons, check-ins, and your pre/post-market notes will show up here.</div></div>`;
+      return;
+    }
+    el.innerHTML = entries.map((e) => {
+      const d = new Date(typeof e.savedAt === 'number' ? e.savedAt : Date.parse(e.savedAt));
+      return `<div class="dd-journal-entry">
+        <div class="dd-journal-entry-top">
+          <span class="dd-journal-entry-type">${TYPE_LABELS[e.type] || e.type}</span>
+          <span class="dd-journal-entry-date">${Number.isNaN(d.getTime()) ? '' : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+        </div>
+        ${e.prompt ? `<div class="dd-journal-entry-prompt">“${e.prompt}”</div>` : ''}
+        <div class="dd-journal-entry-text">${e.text}</div>
+      </div>`;
+    }).join('');
+  }
+
+  document.getElementById('ddNewPre').addEventListener('click', () => {
+    const p = QUICK_JOURNAL_PROMPTS.premarket[Math.floor(Math.random() * QUICK_JOURNAL_PROMPTS.premarket.length)];
+    openJournalModal('premarket', p, (entry) => { addEntry(entry); renderList(); });
+  });
+  document.getElementById('ddNewPost').addEventListener('click', () => {
+    const p = QUICK_JOURNAL_PROMPTS.postmarket[Math.floor(Math.random() * QUICK_JOURNAL_PROMPTS.postmarket.length)];
+    openJournalModal('postmarket', p, (entry) => { addEntry(entry); renderList(); });
+  });
+
+  renderTabs();
+  renderList();
+</script>
+
+</body>
+</html>

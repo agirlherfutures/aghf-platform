@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Performance — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="performance"></script>
+
+<main class="main">
+  <div class="pg-eye">◔ How you're actually doing</div>
+  <div class="pg-title">Performance</div>
+
+  <div class="dd-section">
+    <div class="dd-section-head"><div class="dd-section-title">Today's Consistency</div></div>
+    <div class="dd-card" id="ddConsistencyFull"></div>
+  </div>
+
+  <div class="dd-section">
+    <div class="dd-section-head"><div class="dd-section-title">Your Journey</div></div>
+    <div class="dd-card" id="ddJourneyFull"></div>
+  </div>
+
+  <div class="dd-soon-card">
+    <div class="dd-soon-title">Deeper trend analytics coming soon</div>
+    <div class="dd-soon-sub">Win-rate trends, consistency-over-time charts, and method-adherence breakdowns by week/month will live here once enough trades and journal entries have been logged.</div>
+  </div>
+</main>
+
+<script type="module">
+  import { PHASES } from './shared/curriculum-data.js';
+  import { getRecentTrades } from './shared/trades-service.js';
+  import { getEntries } from './shared/journal-service.js';
+  import { computeConsistencyScore } from './shared/consistency-service.js';
+  import { renderConsistencyScore, renderJourneySummary } from './shared/dayli-desk-engine.js';
+
+  renderConsistencyScore(document.getElementById('ddConsistencyFull'), computeConsistencyScore());
+
+  async function loadJourney() {
+    let profile = {};
+    let completedIds = new Set();
+    try {
+      const data = await window.AGHF_FETCH_PROFILE();
+      profile = data.profile || {};
+      completedIds = new Set((data.lessons_completed || []).map((l) => l.lesson_id));
+    } catch (err) { console.error('Profile load error:', err); }
+
+    const p1 = PHASES[0];
+    const allP1Lessons = p1.sections.flatMap((s) => s.lessons);
+    const doneCount = allP1Lessons.filter((l) => l.n && completedIds.has(`p1-${l.n}`)).length;
+    const premarketPlansCompleted = Object.keys(localStorage).filter((k) => k.startsWith('aghf_premarket_plan:'))
+      .filter((k) => { try { return !!JSON.parse(localStorage.getItem(k)).completedAt; } catch { return false; } }).length;
+
+    renderJourneySummary(document.getElementById('ddJourneyFull'), [
+      { value: doneCount, label: 'Lessons Completed' },
+      { value: premarketPlansCompleted, label: 'Pre-Market Plans' },
+      { value: getEntries().length, label: 'Journal Entries' },
+      { value: `${profile.level || 1} · ${profile.gp || 0}GP`, label: 'Level & GP' },
+      { value: p1.title, label: 'Current Phase' },
+      { value: getRecentTrades(999).length, label: 'Trades Journaled' },
+    ]);
+  }
+  document.addEventListener('aghf-auth-ready', loadJourney);
+</script>
+
+</body>
+</html>

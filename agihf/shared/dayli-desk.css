@@ -1,0 +1,256 @@
+/* dayli-desk.css — A Girl & Her Futures™
+ * The redesigned "Dayli Desk" dashboard. Kept separate from sidebar.css
+ * (same rationale as loop-engine.css/lesson-engine.css: easy to iterate
+ * without touching proven shared chrome) but built on the same tokens and
+ * white-card-on-warm-background language sidebar.css already established
+ * for dashboard.html — .panel/.stat-c/progress-bar patterns are reused
+ * as-is, not duplicated. Requires tokens.css + sidebar.css + components.css
+ * loaded first.
+ *
+ * Class prefix `dd-` throughout to avoid collisions with sidebar.css's
+ * unprefixed dashboard classes (.panel, .stat-c, etc. are still used
+ * directly where they fit unchanged).
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  .dd-checklist-item, .dd-trade-row, .dd-outlook-card, .dd-badge, .dd-toast { transition: none !important; animation: none !important; }
+}
+
+/* ── Header ─────────────────────────────────────────────────────── */
+.dd-header-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
+.dd-meta-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:.78rem;color:var(--muted);}
+.dd-date{font-weight:500;}
+.dd-session-badge{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:100px;white-space:nowrap;}
+.dd-session-badge .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.dd-session-pre{background:var(--peach-pale);color:#a9660f;}
+.dd-session-pre .dot{background:var(--peach);}
+.dd-session-ny{background:var(--teal-pale);color:#1a6b63;}
+.dd-session-ny .dot{background:var(--teal);}
+.dd-session-mid{background:var(--purple-pale);color:#4b43a8;}
+.dd-session-mid .dot{background:var(--purple);}
+.dd-session-after{background:var(--pink-pale);color:#c14868;}
+.dd-session-after .dot{background:var(--pink);}
+.dd-session-closed{background:var(--cream);color:var(--muted);}
+.dd-session-closed .dot{background:var(--placeholder);}
+.dd-primary-btn{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none;padding:11px 22px;border-radius:100px;font-family:var(--font-body);font-size:.85rem;font-weight:600;cursor:pointer;white-space:nowrap;box-shadow:0 10px 24px rgba(244,130,154,.25);text-decoration:none;display:inline-block;text-align:center;}
+.dd-primary-btn:hover{filter:brightness(1.04);}
+.dd-primary-btn:focus-visible, .dd-secondary-btn:focus-visible, .dd-icon-btn:focus-visible, .dd-checklist-item:focus-visible, .dd-tab:focus-visible{outline:2.5px solid var(--pink);outline-offset:2px;}
+
+/* ── Section shell shared by every dashboard card ──────────────── */
+.dd-section{margin-bottom:20px;}
+.dd-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:11px;}
+.dd-section-title{font-family:var(--font-display);font-size:1.02rem;font-weight:700;color:var(--dark);}
+.dd-section-link{font-size:.78rem;color:var(--pink);font-weight:600;text-decoration:none;white-space:nowrap;}
+.dd-section-link:hover{text-decoration:underline;}
+.dd-card{background:#fff;border-radius:18px;padding:19px 21px;border:1px solid rgba(244,130,154,.1);box-shadow:0 3px 14px rgba(244,130,154,.05);}
+
+/* ── Market Outlook ─────────────────────────────────────────────── */
+.dd-outlook-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+@media(max-width:700px){.dd-outlook-grid{grid-template-columns:1fr;}}
+.dd-outlook-card{background:#fff;border-radius:19px;padding:18px 20px;border:1px solid rgba(244,130,154,.12);box-shadow:0 4px 18px rgba(244,130,154,.06);position:relative;}
+.dd-outlook-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.dd-outlook-symbol{font-family:var(--font-display);font-size:1.05rem;font-weight:800;color:var(--dark);}
+.dd-outlook-label{font-size:.72rem;color:var(--muted);}
+.dd-demo-tag{font-size:.62rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:100px;background:var(--peach-pale);color:#a9660f;border:1px solid var(--peach-light);white-space:nowrap;}
+.dd-outlook-rows{display:flex;flex-direction:column;gap:8px;}
+.dd-outlook-row{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:.79rem;}
+.dd-outlook-row-label{color:var(--muted);display:flex;align-items:center;gap:5px;}
+.dd-help-dot{width:14px;height:14px;border-radius:50%;background:var(--cream);color:var(--muted);font-size:9px;display:inline-flex;align-items:center;justify-content:center;cursor:help;flex-shrink:0;}
+.dd-badge{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap;}
+.dd-badge::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.dd-badge-bull{background:var(--teal-pale);color:#1a6b63;}
+.dd-badge-bull::before{background:var(--teal);}
+.dd-badge-bear{background:var(--pink-pale);color:#c14868;}
+.dd-badge-bear::before{background:var(--pink);}
+.dd-badge-neutral{background:var(--peach-pale);color:#a9660f;}
+.dd-badge-neutral::before{background:var(--peach);}
+.dd-badge-muted{background:var(--cream);color:var(--muted);}
+.dd-badge-muted::before{background:var(--placeholder);}
+.dd-outlook-context{font-size:.78rem;color:var(--text);line-height:1.5;background:var(--cream);border-radius:10px;padding:9px 12px;margin-top:10px;}
+.dd-outlook-updated{font-size:.66rem;color:var(--placeholder);margin-top:10px;}
+
+/* ── Economic Calendar ──────────────────────────────────────────── */
+.dd-calendar-row{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid rgba(244,130,154,.07);}
+.dd-calendar-row:last-child{border-bottom:none;}
+.dd-calendar-time{font-size:.76rem;font-weight:700;color:var(--dark);width:78px;flex-shrink:0;}
+.dd-calendar-mid{flex:1;min-width:0;}
+.dd-calendar-event{font-size:.82rem;font-weight:600;color:var(--dark);}
+.dd-calendar-sub{font-size:.71rem;color:var(--muted);margin-top:1px;}
+.dd-impact{font-size:.65rem;font-weight:700;padding:3px 9px;border-radius:100px;white-space:nowrap;flex-shrink:0;}
+.dd-impact-high{background:var(--pink-pale);color:#c14868;}
+.dd-impact-medium{background:var(--peach-pale);color:#a9660f;}
+.dd-impact-low{background:var(--cream);color:var(--muted);}
+.dd-calendar-countdown{font-size:.7rem;color:var(--pink);font-weight:600;margin-top:6px;}
+
+/* ── Trading Snapshot ───────────────────────────────────────────── */
+.dd-snapshot-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
+.dd-snapshot-pnl{font-family:var(--font-display);font-size:1.9rem;font-weight:900;}
+.dd-pnl-pos{color:var(--teal);}
+.dd-pnl-neg{color:var(--pink);}
+.dd-pnl-flat{color:var(--dark);}
+.dd-snapshot-pnl-sub{font-size:.74rem;color:var(--muted);margin-top:1px;}
+.dd-icon-btn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(244,130,154,.15);background:var(--cream);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.dd-icon-btn:hover{border-color:var(--pink);color:var(--pink);}
+.dd-blurred{filter:blur(7px);user-select:none;}
+.dd-snapshot-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+@media(max-width:520px){.dd-snapshot-stats{grid-template-columns:repeat(2,1fr);}}
+.dd-mini-stat{background:var(--cream);border-radius:11px;padding:9px 10px;}
+.dd-mini-stat-l{font-size:.63rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
+.dd-mini-stat-v{font-size:.92rem;font-weight:700;color:var(--dark);}
+.dd-limit-track{height:6px;background:var(--cream);border-radius:100px;overflow:hidden;margin-top:5px;}
+.dd-limit-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--pink));border-radius:100px;transition:width .5s ease;}
+.dd-snapshot-actions{display:flex;gap:9px;flex-wrap:wrap;}
+.dd-secondary-btn{background:#fff;border:1.5px solid rgba(244,130,154,.25);color:var(--pink);padding:9px 16px;border-radius:100px;font-family:var(--font-body);font-size:.79rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px;}
+.dd-secondary-btn:hover{border-color:var(--pink);background:var(--pink-pale);}
+
+/* ── Empty state (shared) ───────────────────────────────────────── */
+.dd-empty{text-align:center;padding:22px 10px;}
+.dd-empty-icon{font-size:26px;margin-bottom:8px;}
+.dd-empty-text{font-size:.83rem;color:var(--muted);margin-bottom:14px;line-height:1.6;}
+
+/* ── Skeleton loading ────────────────────────────────────────────── */
+.dd-skel{background:linear-gradient(90deg,var(--cream) 25%,var(--warm) 37%,var(--cream) 63%);background-size:400% 100%;border-radius:9px;animation:ddSkelShine 1.4s ease infinite;}
+@keyframes ddSkelShine{0%{background-position:100% 50%;}100%{background-position:0 50%;}}
+@media (prefers-reduced-motion: reduce){.dd-skel{animation:none;background:var(--cream);}}
+.dd-skel-line{height:12px;margin-bottom:8px;}
+.dd-skel-line.w60{width:60%;}
+.dd-skel-line.w40{width:40%;}
+.dd-skel-block{height:70px;border-radius:14px;}
+
+/* ── Error state (shared) ───────────────────────────────────────── */
+.dd-error{background:var(--pink-pale);border:1px solid var(--pink-light);border-radius:12px;padding:12px 15px;font-size:.79rem;color:#a03a54;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.dd-error button{background:#fff;border:1px solid var(--pink-light);color:var(--pink);padding:6px 13px;border-radius:100px;font-size:.75rem;font-weight:600;cursor:pointer;white-space:nowrap;}
+
+/* ── Pre-Market Plan checklist ──────────────────────────────────── */
+.dd-checklist-progress{font-size:.75rem;color:var(--muted);margin-bottom:12px;}
+.dd-checklist-track{height:6px;background:var(--cream);border-radius:100px;overflow:hidden;margin-bottom:14px;}
+.dd-checklist-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;transition:width .5s ease;}
+.dd-checklist-item{display:flex;align-items:center;gap:11px;padding:10px 4px;border-bottom:1px solid rgba(244,130,154,.06);cursor:pointer;background:none;border-left:none;border-right:none;border-top:none;width:100%;text-align:left;font-family:var(--font-body);}
+.dd-checklist-item:last-of-type{border-bottom:none;}
+.dd-checklist-check{width:21px;height:21px;border-radius:7px;border:1.5px solid var(--pink-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;background:#fff;}
+.dd-checklist-item.on .dd-checklist-check{background:var(--teal);border-color:var(--teal);}
+.dd-checklist-label{font-size:.85rem;color:var(--text);}
+.dd-checklist-item.on .dd-checklist-label{color:var(--muted);text-decoration:line-through;}
+.dd-checklist-field-row{margin-top:14px;padding-top:14px;border-top:1px solid rgba(244,130,154,.08);}
+.dd-checklist-field-label{font-size:.76rem;font-weight:600;color:var(--dark);margin-bottom:6px;}
+.dd-checklist-textarea{width:100%;min-height:56px;border:1.5px solid rgba(244,130,154,.15);border-radius:11px;padding:9px 12px;font-family:var(--font-body);font-size:.83rem;color:var(--text);resize:vertical;}
+.dd-checklist-textarea:focus{outline:none;border-color:var(--pink);}
+.dd-checklist-numrow{display:flex;gap:10px;margin-top:10px;}
+.dd-checklist-num{flex:1;}
+.dd-checklist-input{width:100%;border:1.5px solid rgba(244,130,154,.15);border-radius:11px;padding:8px 12px;font-family:var(--font-body);font-size:.83rem;color:var(--text);}
+.dd-checklist-input:focus{outline:none;border-color:var(--pink);}
+.dd-checklist-complete{margin-top:14px;background:var(--teal-pale);border:1px solid var(--teal-light);border-radius:12px;padding:11px 15px;font-size:.82rem;font-weight:700;color:#1a6b63;text-align:center;}
+
+/* ── Quick Journal ──────────────────────────────────────────────── */
+.dd-journal-prompt{font-family:var(--font-display);font-style:italic;font-size:.88rem;color:var(--text);line-height:1.6;background:var(--cream);border-radius:12px;padding:12px 15px;margin-bottom:14px;}
+.dd-journal-actions{display:flex;gap:9px;flex-wrap:wrap;}
+.dd-journal-actions .dd-secondary-btn{flex:1;justify-content:center;min-width:130px;}
+
+/* Modal drawer content (reuses .modal-overlay/.modal-card from components.css) */
+.dd-modal-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--pink);margin-bottom:6px;}
+.dd-modal-title{font-family:var(--font-display);font-size:1.15rem;font-weight:800;color:var(--dark);margin-bottom:14px;}
+.dd-modal-saved{background:var(--teal-pale);border:1px solid var(--teal-light);border-radius:11px;padding:11px 14px;font-size:.8rem;color:#1a6b63;font-weight:600;text-align:center;margin-top:10px;}
+
+/* ── Recent Trades ──────────────────────────────────────────────── */
+.dd-trade-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(244,130,154,.07);cursor:pointer;text-decoration:none;color:inherit;}
+.dd-trade-row:last-child{border-bottom:none;}
+.dd-trade-thumb{width:40px;height:40px;border-radius:10px;background:var(--cream);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;overflow:hidden;}
+.dd-trade-thumb img{width:100%;height:100%;object-fit:cover;}
+.dd-trade-mid{flex:1;min-width:0;}
+.dd-trade-symbol{font-size:.85rem;font-weight:700;color:var(--dark);}
+.dd-trade-symbol .dir{font-weight:500;color:var(--muted);}
+.dd-trade-sub{font-size:.7rem;color:var(--muted);margin-top:1px;}
+.dd-trade-tags{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap;}
+.dd-trade-tag{font-size:.62rem;font-weight:600;padding:2px 8px;border-radius:100px;background:var(--purple-pale);color:#4b43a8;}
+.dd-trade-tag.warn{background:var(--peach-pale);color:#a9660f;}
+.dd-trade-pnl{font-family:var(--font-display);font-size:.95rem;font-weight:800;flex-shrink:0;}
+
+/* ── Current Focus ──────────────────────────────────────────────── */
+.dd-focus-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--pink);margin-bottom:5px;}
+.dd-focus-title{font-family:var(--font-display);font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:7px;}
+.dd-focus-body{font-size:.82rem;color:var(--text);line-height:1.6;margin-bottom:13px;}
+.dd-focus-links{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.dd-focus-link{font-size:.78rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px;}
+.dd-focus-link:hover{color:var(--pink);}
+
+/* ── Continue Learning ──────────────────────────────────────────── */
+.dd-learning-card{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.dd-learning-ring{width:52px;height:52px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:var(--pink);background:conic-gradient(var(--pink) calc(var(--pct,0)*1%),var(--cream) 0);position:relative;}
+.dd-learning-ring::after{content:'';position:absolute;inset:5px;border-radius:50%;background:#fff;}
+.dd-learning-ring span{position:relative;z-index:1;}
+.dd-learning-mid{flex:1;min-width:180px;}
+.dd-learning-eyebrow{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
+.dd-learning-title{font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--dark);}
+.dd-learning-actions{display:flex;gap:8px;flex-wrap:wrap;}
+
+/* ── Consistency Score ───────────────────────────────────────────── */
+.dd-consistency-top{display:flex;align-items:center;gap:16px;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:var(--font-body);padding:0;}
+.dd-consistency-ring{width:58px;height:58px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:conic-gradient(var(--teal) calc(var(--pct,0)*1%),var(--cream) 0);position:relative;}
+.dd-consistency-ring::after{content:'';position:absolute;inset:6px;border-radius:50%;background:#fff;}
+.dd-consistency-ring span{position:relative;z-index:1;font-family:var(--font-display);font-size:.95rem;font-weight:800;color:var(--dark);}
+.dd-consistency-mid{flex:1;}
+.dd-consistency-title{font-size:.86rem;font-weight:700;color:var(--dark);margin-bottom:2px;}
+.dd-consistency-sub{font-size:.75rem;color:var(--muted);}
+.dd-consistency-chevron{font-size:.75rem;color:var(--muted);flex-shrink:0;}
+.dd-rule-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(244,130,154,.07);font-size:.82rem;}
+.dd-rule-row:last-child{border-bottom:none;}
+.dd-rule-mark{width:20px;height:20px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;}
+.dd-rule-pass{background:var(--teal);}
+.dd-rule-fail{background:var(--pink);}
+.dd-rule-na{background:var(--placeholder);}
+.dd-rule-label{flex:1;color:var(--text);}
+.dd-rule-label.na{color:var(--placeholder);font-style:italic;}
+
+/* ── Journey Summary ─────────────────────────────────────────────── */
+.dd-journey-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+@media(max-width:520px){.dd-journey-grid{grid-template-columns:repeat(2,1fr);}}
+.dd-journey-stat{background:var(--cream);border-radius:12px;padding:12px 13px;}
+.dd-journey-v{font-family:var(--font-display);font-size:1.25rem;font-weight:900;color:var(--dark);}
+.dd-journey-l{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:2px;}
+
+/* ── Tabs (journal/trade-tracker filters) ───────────────────────── */
+.dd-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;}
+.dd-tab{background:#fff;border:1.5px solid rgba(244,130,154,.15);color:var(--muted);padding:7px 14px;border-radius:100px;font-family:var(--font-body);font-size:.78rem;font-weight:600;cursor:pointer;}
+.dd-tab.active{background:var(--pink);border-color:var(--pink);color:#fff;}
+
+/* ── Journal entry list (journal.html) ──────────────────────────── */
+.dd-journal-entry{background:#fff;border-radius:16px;padding:15px 18px;border:1px solid rgba(244,130,154,.1);margin-bottom:11px;}
+.dd-journal-entry-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px;}
+.dd-journal-entry-type{font-size:.65rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--pink);}
+.dd-journal-entry-date{font-size:.7rem;color:var(--placeholder);}
+.dd-journal-entry-prompt{font-family:var(--font-display);font-style:italic;font-size:.83rem;color:var(--muted);margin-bottom:6px;line-height:1.5;}
+.dd-journal-entry-text{font-size:.85rem;color:var(--text);line-height:1.6;}
+
+/* ── Playbook cards (playbook.html) ─────────────────────────────── */
+.dd-playbook-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+@media(max-width:700px){.dd-playbook-grid{grid-template-columns:1fr;}}
+.dd-playbook-card{background:#fff;border-radius:18px;padding:18px 20px;border:1px solid rgba(244,130,154,.1);box-shadow:0 3px 14px rgba(244,130,154,.05);}
+.dd-playbook-title{font-family:var(--font-display);font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:8px;}
+.dd-playbook-checklist{list-style:none;margin:0 0 10px;padding:0;}
+.dd-playbook-checklist li{font-size:.8rem;color:var(--text);padding:4px 0 4px 20px;position:relative;line-height:1.5;}
+.dd-playbook-checklist li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:700;}
+.dd-playbook-remember{font-size:.78rem;font-style:italic;color:var(--muted);background:var(--cream);border-radius:10px;padding:9px 12px;}
+
+/* ── Manual trade entry form (trade-tracker.html) ───────────────── */
+.dd-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:560px){.dd-form-grid{grid-template-columns:1fr;}}
+.dd-form-field label{display:block;font-size:.74rem;font-weight:600;color:var(--dark);margin-bottom:5px;}
+.dd-form-field select, .dd-form-field input, .dd-form-field textarea{width:100%;border:1.5px solid rgba(244,130,154,.15);border-radius:11px;padding:9px 12px;font-family:var(--font-body);font-size:.83rem;color:var(--text);background:#fff;}
+.dd-form-field select:focus, .dd-form-field input:focus, .dd-form-field textarea:focus{outline:none;border-color:var(--pink);}
+.dd-form-field.span2{grid-column:1/-1;}
+
+/* ── Coming-soon inline card (Trade Tracker connect, scaffold pages) ── */
+.dd-soon-card{border:1.5px dashed var(--pink-light);border-radius:16px;padding:16px 18px;background:var(--cream);}
+.dd-soon-title{font-size:.85rem;font-weight:700;color:var(--dark);margin-bottom:4px;}
+.dd-soon-sub{font-size:.78rem;color:var(--muted);line-height:1.6;}
+
+/* ── Toast (lightweight confirmation, own — not lesson-engine's) ──── */
+.dd-toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);background:var(--dark);color:#fff;padding:12px 20px;border-radius:14px;font-size:.82rem;font-weight:600;box-shadow:0 14px 34px rgba(44,24,16,.3);opacity:0;pointer-events:none;transition:.3s ease;z-index:500;}
+.dd-toast.show{opacity:1;transform:translate(-50%,0);}
+
+/* ── Section reorder for mobile priority ─────────────────────────── */
+@media(max-width:900px){
+  .dd-desktop-order{display:flex;flex-direction:column;}
+  .dd-order-1{order:1;} .dd-order-2{order:2;} .dd-order-3{order:3;} .dd-order-4{order:4;}
+  .dd-order-5{order:5;} .dd-order-6{order:6;} .dd-order-7{order:7;} .dd-order-8{order:8;} .dd-order-9{order:9;}
+}
