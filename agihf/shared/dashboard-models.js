@@ -126,6 +126,9 @@
  * @property {string} [executionTimeframe]     fixed '1m' per the Dayli ICC method
  * @property {string} [setupType]
  * @property {number} [setupQualityScore]      1-5
+ * @property {string} [tradeStyle]      free-text, matches preview.html's "Trade Style" field
+ * @property {string} [sniperScore]     free-text, matches preview.html's "Sniper Score" field (not a 1-5 rating)
+ * @property {string} [screenshotNotes] "Chart items to include" free-text notes for this trade's screenshots
  * @property {number} [entryPrice]
  * @property {string} [entryTime]       ISO timestamp
  * @property {number} [stopLoss]
@@ -149,7 +152,7 @@
  * @property {string} [entryReasoning]
  * @property {string} [exitReasoning]
  * @property {string} [lessons]
- * @property {{entering?: EmotionStage, during?: EmotionStage, exiting?: EmotionStage}} emotions
+ * @property {{entering?: EmotionStage, during?: EmotionStage, exiting?: EmotionStage, reflectionQuote?: string}} emotions   reflectionQuote matches preview.html's "How did this trade feel overall?" field
  * @property {number} [executionRating]  1-5 stars
  * @property {string} [structureInsight]
  * @property {string} [oneSentenceTakeaway]

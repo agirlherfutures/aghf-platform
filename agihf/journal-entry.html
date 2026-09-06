@@ -112,6 +112,11 @@
           alert("Couldn't delete this entry — try again in a moment.");
         }
       },
+      onSaveFinal: async () => {
+        await saveEntry({ ...handle.getState(), isDraft: false });
+        showDeskToast('Entry saved ✦');
+        window.location.href = 'journal-history.html';
+      },
     });
   }
 

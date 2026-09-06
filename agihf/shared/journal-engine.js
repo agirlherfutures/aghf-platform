@@ -5,13 +5,19 @@
  * visible stages (Trade → Execution → Mindset → Reflection) switched by
  * tabs, matching the ADHD-friendly "one stage at a time, progress always
  * visible" requirement — every stage's answers persist when you switch
- * away, nothing resets.
+ * away, nothing resets. Field content per stage is trimmed to exactly
+ * what preview.html's Trade Journal showed; navigation is a wizard —
+ * "Next →" advances through the stages, ending in one explicit "✦ Save
+ * Entry" button on the last stage (Reflection), instead of a save action
+ * repeated identically on every stage.
  *
  * This is also where the P&L math preview.html got wrong is fixed:
  * `computeTradeTotals()` uses direction-aware points (long = exit -
  * entry, short = entry - exit), a real per-instrument point value from
- * instrument-data.js instead of a hidden $2 default, and validates scale-
- * out contracts never exceed the original position size.
+ * instrument-data.js (user-overridable via "Point Value Per Contract",
+ * matching preview.html's editable default-2 field) instead of a hidden
+ * $2 default, and validates scale-out contracts never exceed the
+ * original position size.
  */
 
 import { getInstrument, INSTRUMENT_SYMBOLS } from './instrument-data.js';
@@ -26,18 +32,22 @@ const EMOTION_OPTIONS = {
   exiting: ['Satisfied', 'Clear', 'Encouraged', 'Frustrated', 'Unsure'],
 };
 
-const SETUP_TYPES = ['ICC Continuation', 'Retest', 'Liquidity Sweep', 'Range Reversal', 'Other'];
 const SESSIONS = ['Asia', 'London', 'NY AM', 'NY Lunch', 'NY PM'];
 
 /**
  * Corrected long/short scale-out math — the concrete bug fix from
  * preview.html, which computed `exit - entry` for every trade regardless
- * of direction (wrong for profitable shorts).
+ * of direction (wrong for profitable shorts). Point value prefers an
+ * explicit manual override (preview.html's editable "Point Value Per
+ * Contract" field) over the selected instrument's default, so a member
+ * can still correct it the same way preview.html allowed.
  * @param {import('./dashboard-models.js').JournalEntryRecord} entry
  */
 export function computeTradeTotals(entry) {
   const instrument = getInstrument(entry.instrument);
-  const pointValue = instrument ? instrument.pointValue : (entry.manualPointValue ?? null);
+  const pointValue = entry.manualPointValue != null && entry.manualPointValue !== ''
+    ? Number(entry.manualPointValue)
+    : (instrument ? instrument.pointValue : null);
   const entryPrice = entry.entryPrice;
   const direction = entry.direction;
   const exits = entry.exits || [];
@@ -45,7 +55,6 @@ export function computeTradeTotals(entry) {
   let totalContracts = 0;
   let weightedPoints = 0;
   let grossPnl = 0;
-  let weightedExitSum = 0;
   const computedExits = exits.map((ex) => {
     const contracts = Number(ex.contracts) || 0;
     const exitPrice = ex.exitPrice != null ? Number(ex.exitPrice) : null;
@@ -56,21 +65,14 @@ export function computeTradeTotals(entry) {
     const dollars = points * pointValue * contracts;
     totalContracts += contracts;
     weightedPoints += points * contracts;
-    weightedExitSum += exitPrice * contracts;
     grossPnl += dollars;
     return { ...ex, points, dollars };
   });
 
-  const remainingContracts = entry.contracts != null ? entry.contracts - totalContracts : null;
   const exceedsPosition = entry.contracts != null && totalContracts > entry.contracts;
-  const weightedAvgExit = totalContracts ? weightedExitSum / totalContracts : null;
   const netPnl = grossPnl - (Number(entry.fees) || 0);
-  const rMultiple = entry.plannedRisk ? netPnl / entry.plannedRisk : null;
 
-  return {
-    computedExits, totalContracts, remainingContracts, exceedsPosition,
-    weightedPoints, weightedAvgExit, grossPnl, netPnl, rMultiple, pointValue,
-  };
+  return { computedExits, totalContracts, exceedsPosition, weightedPoints, grossPnl, netPnl, pointValue };
 }
 
 export function computeOutcome(netPnl) {
@@ -83,7 +85,7 @@ export function computeOutcome(netPnl) {
 function fmt(n) { return Number.isFinite(n) ? n.toFixed(2) : ''; }
 function fmtMoney(n) { return Number.isFinite(n) ? `${n < 0 ? '−' : ''}$${Math.abs(n).toFixed(2)}` : ''; }
 
-/** TradeDetailsForm */
+/** TradeDetailsForm — matches preview.html's Trade Details section exactly. */
 function renderTradeDetailsForm(entry) {
   return `
     <div class="section-card">
@@ -101,20 +103,16 @@ function renderTradeDetailsForm(entry) {
           <div class="field-group"><label class="field-label">Instrument</label>
             <select class="field-input" data-field="instrument"><option value="">—</option>${INSTRUMENT_SYMBOLS.map((s) => `<option value="${s}" ${entry.instrument === s ? 'selected' : ''}>${s} — ${getInstrument(s).label}</option>`).join('')}</select>
           </div>
-          <div class="field-group"><label class="field-label">Setup type</label>
-            <select class="field-input" data-field="setupType"><option value="">—</option>${SETUP_TYPES.map((s) => `<option ${entry.setupType === s ? 'selected' : ''}>${s}</option>`).join('')}</select>
-          </div>
-          <div class="field-group"><label class="field-label">Account</label><input class="field-input" data-field="accountId" value="${entry.accountId || ''}" placeholder="e.g. Sim 50K"></div>
+          <div class="field-group"><label class="field-label">Trade Type</label><input class="field-input" data-field="setupType" value="${entry.setupType || ''}" placeholder="Enter here..."></div>
+          <div class="field-group"><label class="field-label">Account Type</label><input class="field-input" data-field="accountId" value="${entry.accountId || ''}" placeholder="e.g. Sim 50K"></div>
           <div class="field-group"><label class="field-label">Contracts</label><input class="field-input" type="number" min="1" data-field="contracts" value="${entry.contracts ?? ''}"></div>
         </div>
         <div class="field-row cols-2">
-          <div class="field-group"><label class="field-label">Execution timeframe</label><input class="field-input" value="1M (Dayli ICC)" readonly></div>
-          <div class="field-group"><label class="field-label">Setup-quality score</label>
-            <div class="stars" data-star-field="setupQualityScore">${[1, 2, 3, 4, 5].map((n) => `<div class="star ${entry.setupQualityScore >= n ? 'active' : ''}" data-star="${n}">★</div>`).join('')}</div>
-          </div>
+          <div class="field-group"><label class="field-label">Trade Style</label><input class="field-input" data-field="tradeStyle" value="${entry.tradeStyle || ''}" placeholder="Enter here..."></div>
+          <div class="field-group"><label class="field-label">Sniper Score</label><input class="field-input" data-field="sniperScore" value="${entry.sniperScore || ''}" placeholder="Enter here..."></div>
         </div>
         <div class="field-row">
-          <div class="field-group"><label class="field-label">Position</label>
+          <div class="field-group"><label class="field-label">Position Type</label>
             <div class="position-toggle">
               <button type="button" class="position-btn long ${entry.direction === 'long' ? 'active' : ''}" data-direction="long">📈 Long (Bullish)</button>
               <button type="button" class="position-btn short ${entry.direction === 'short' ? 'active' : ''}" data-direction="short">📉 Short (Bearish)</button>
@@ -126,88 +124,88 @@ function renderTradeDetailsForm(entry) {
     </div>`;
 }
 
-/** ChartScreenshotUploader */
+/** ChartScreenshotUploader — preview.html's "Chart items to include" note plus a real (not decorative) upload zone. */
 function renderScreenshotUploader(entry) {
   return `
     <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-teal">📸</div><div><div class="section-title">Chart Screenshots</div><div class="section-sub">Upload the marked chart(s) for this trade</div></div></div>
+      <div class="section-header"><div class="section-icon icon-teal">📸</div><div><div class="section-title">Screenshots to Save</div><div class="section-sub">Unique notes for every trade</div></div></div>
       <div class="section-body">
-        <div class="cl-shot-grid" id="clShotGrid">
-          ${(entry.screenshots || []).map((s, i) => `
-            <div class="cl-shot-thumb" data-shot-index="${i}">
-              <img data-shot-path="${s.path}" alt="Chart screenshot ${i + 1}" src="">
-              <button type="button" class="cl-shot-remove" data-remove-shot="${i}" aria-label="Remove screenshot ${i + 1}">✕</button>
-            </div>`).join('')}
-          <label class="cl-shot-upload">
-            <input type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple id="clShotInput" style="display:none;">
-            <span class="upload-icon">📊</span><span class="upload-text">Add screenshot</span><span class="upload-sub">JPEG, PNG, WEBP, or GIF — up to 5MB</span>
-          </label>
+        <div class="field-row cols-2">
+          <div class="field-group">
+            <label class="field-label">Chart items to include</label>
+            <textarea class="field-textarea large" data-field="screenshotNotes" placeholder="List what your screenshots need to show for THIS trade.
+
+Examples:
+• 1H context
+• sweep
+• support flip
+• imbalance
+• exit levels">${entry.screenshotNotes || ''}</textarea>
+          </div>
+          <div class="cl-shot-grid" id="clShotGrid">
+            ${(entry.screenshots || []).map((s, i) => `
+              <div class="cl-shot-thumb" data-shot-index="${i}">
+                <img data-shot-path="${s.path}" alt="Chart screenshot ${i + 1}" src="">
+                <button type="button" class="cl-shot-remove" data-remove-shot="${i}" aria-label="Remove screenshot ${i + 1}">✕</button>
+              </div>`).join('')}
+            <label class="cl-shot-upload">
+              <input type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple id="clShotInput" style="display:none;">
+              <span class="upload-icon">📊</span><span class="upload-text">Add screenshot</span><span class="upload-sub">JPEG, PNG, WEBP, or GIF — up to 5MB</span>
+            </label>
+          </div>
         </div>
-        <div id="clUploadStatus" class="small-help" style="margin-top:8px;" role="status" aria-live="polite"></div>
+        <div id="clUploadStatus" class="small-help" role="status" aria-live="polite"></div>
       </div>
     </div>`;
 }
 
-/** ScaleOutEditor — the corrected long/short calculator. */
+/** ScaleOutEditor — the corrected long/short calculator, fields trimmed to preview.html's fixed 3-partial layout. */
 function renderScaleOutEditor(entry) {
   const totals = computeTradeTotals(entry);
-  const exits = entry.exits && entry.exits.length ? entry.exits : [{ contracts: '', exitPrice: '' }];
+  const exits = [0, 1, 2].map((i) => (entry.exits && entry.exits[i]) || { contracts: '', exitPrice: '' });
   const instrument = getInstrument(entry.instrument);
+  const defaultPointValue = entry.manualPointValue ?? (instrument ? instrument.pointValue : '');
   return `
     <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-teal">💸</div><div><div class="section-title">Entry &amp; Scale-Out Exits</div><div class="section-sub">${instrument ? `${entry.instrument} — $${instrument.pointValue}/point/contract` : 'Select an instrument in Trade Details first'}</div></div></div>
+      <div class="section-header"><div class="section-icon icon-teal">💸</div><div><div class="section-title">Entry &amp; Scale-Out Exits</div><div class="section-sub">Auto-calc for scale-outs</div></div></div>
       <div class="section-body">
         <div class="field-row cols-2">
-          <div class="field-group"><label class="field-label">Entry price</label><input class="field-input" type="number" step="0.01" data-field="entryPrice" value="${entry.entryPrice ?? ''}"></div>
-          <div class="field-group"><label class="field-label">Stop-loss / Take-profit</label>
-            <div style="display:flex;gap:8px;">
-              <input class="field-input" type="number" step="0.01" data-field="stopLoss" placeholder="Stop" value="${entry.stopLoss ?? ''}">
-              <input class="field-input" type="number" step="0.01" data-field="takeProfit" placeholder="Target" value="${entry.takeProfit ?? ''}">
-            </div>
-          </div>
+          <div class="field-group"><label class="field-label">Entry Price</label><input class="field-input" type="number" step="0.01" data-field="entryPrice" value="${entry.entryPrice ?? ''}"></div>
+          <div class="field-group"><label class="field-label">Total Profit</label><input class="field-input" value="${totals.netPnl != null && totals.totalContracts ? fmtMoney(totals.netPnl) : ''}" placeholder="auto" readonly></div>
         </div>
         <table class="trade-table" id="clScaleTable">
-          <thead><tr><th>Scale Out</th><th>Contracts</th><th>Exit Price</th><th>Points</th><th>Dollar Result</th><th></th></tr></thead>
+          <thead><tr><th>Scale Out</th><th>Contracts</th><th>Exit Price</th><th>Points</th><th>Dollar Result</th></tr></thead>
           <tbody>
             ${exits.map((ex, i) => {
               const computed = totals.computedExits[i] || {};
               return `<tr data-exit-row="${i}">
                 <td>Partial ${i + 1}</td>
-                <td><input class="field-input" type="number" min="0" step="1" data-exit-field="contracts" data-exit-index="${i}" value="${ex.contracts ?? ''}"></td>
-                <td><input class="field-input" type="number" step="0.01" data-exit-field="exitPrice" data-exit-index="${i}" value="${ex.exitPrice ?? ''}"></td>
-                <td><input class="field-input" value="${computed.points != null ? fmt(computed.points) : ''}" readonly></td>
-                <td><input class="field-input" value="${computed.dollars != null ? fmtMoney(computed.dollars) : ''}" readonly></td>
-                <td>${exits.length > 1 ? `<button type="button" class="cl-remove-exit" data-remove-exit="${i}">✕</button>` : ''}</td>
+                <td><input class="field-input" type="number" min="0" step="1" data-exit-field="contracts" data-exit-index="${i}" value="${ex.contracts ?? ''}" placeholder="0"></td>
+                <td><input class="field-input" type="number" step="0.01" data-exit-field="exitPrice" data-exit-index="${i}" value="${ex.exitPrice ?? ''}" placeholder="0.00"></td>
+                <td><input class="field-input" value="${computed.points != null ? fmt(computed.points) : ''}" placeholder="auto" readonly></td>
+                <td><input class="field-input" value="${computed.dollars != null ? fmtMoney(computed.dollars) : ''}" placeholder="auto" readonly></td>
               </tr>`;
             }).join('')}
           </tbody>
         </table>
-        <button type="button" class="dd-tab" id="clAddExit" style="margin-top:10px;">+ Add partial exit</button>
+        <div class="small-help" style="margin-top:10px">${instrument
+          ? `Uses ${instrument.label} math by default at $${instrument.pointValue} per point per contract. Change the point value below if needed.`
+          : 'Select an instrument in Trade Details, or set a point value below.'}</div>
         ${totals.exceedsPosition ? `<div class="cl-warn-inline">⚠ Scale-out contracts (${totals.totalContracts}) exceed your position size (${entry.contracts}).</div>` : ''}
-        <div class="field-row cols-4" style="margin-top:16px">
-          <div class="field-group"><label class="field-label">Weighted points captured</label><input class="field-input" value="${totals.weightedPoints ? fmt(totals.weightedPoints) + ' pts' : ''}" readonly></div>
-          <div class="field-group"><label class="field-label">Weighted avg exit</label><input class="field-input" value="${totals.weightedAvgExit != null ? fmt(totals.weightedAvgExit) : ''}" readonly></div>
-          <div class="field-group"><label class="field-label">Remaining contracts</label><input class="field-input" value="${totals.remainingContracts ?? ''}" readonly></div>
-          <div class="field-group"><label class="field-label">Fees</label><input class="field-input" type="number" step="0.01" data-field="fees" value="${entry.fees ?? ''}"></div>
-        </div>
-        <div class="field-row cols-3" style="margin-top:10px">
-          <div class="field-group"><label class="field-label">Net P&amp;L</label><input class="field-input" value="${totals.netPnl != null ? fmtMoney(totals.netPnl) : ''}" readonly></div>
-          <div class="field-group"><label class="field-label">Planned risk ($)</label><input class="field-input" type="number" step="0.01" data-field="plannedRisk" value="${entry.plannedRisk ?? ''}"></div>
-          <div class="field-group"><label class="field-label">R multiple</label><input class="field-input" value="${totals.rMultiple != null ? totals.rMultiple.toFixed(2) + 'R' : ''}" readonly></div>
-        </div>
-        <div class="field-row" style="margin-top:10px">
+        <div class="field-row cols-3" style="margin-top:16px">
+          <div class="field-group"><label class="field-label">Weighted Points Captured</label><input class="field-input" value="${totals.weightedPoints ? fmt(totals.weightedPoints) + ' pts' : ''}" placeholder="auto" readonly></div>
+          <div class="field-group"><label class="field-label">Point Value Per Contract</label><input class="field-input" type="number" step="0.01" data-field="manualPointValue" value="${defaultPointValue}"></div>
           <div class="field-group"><label class="field-label">Outcome</label>
             <div class="outcome-toggle">
               ${['win', 'loss', 'breakeven'].map((o) => `<button type="button" class="outcome-btn outcome-${o === 'breakeven' ? 'be' : o} ${(entry.outcomeOverride || computeOutcome(totals.netPnl)) === o ? 'active' : ''}" data-outcome="${o}">${o === 'win' ? '✓ Win' : o === 'loss' ? '✕ Loss' : '≈ Breakeven'}</button>`).join('')}
             </div>
-            ${entry.outcomeOverride ? '<div class="small-help" style="margin-top:6px;">Manually overridden — computed outcome was ' + (computeOutcome(totals.netPnl) || '—') + '.</div>' : ''}
           </div>
         </div>
       </div>
     </div>`;
 }
 
-/** TradeReasoning */
+/** TradeReasoning — matches preview.html's Why I Entered / Why I Exited / Lessons Logged. */
 function renderTradeReasoning(entry) {
   return `
     <div class="section-card">
@@ -224,7 +222,7 @@ function renderTradeReasoning(entry) {
     </div>`;
 }
 
-/** EmotionCheckIn */
+/** EmotionCheckIn — matches preview.html's Emotional Check-In section, including the reflection quote and inline stars. */
 function renderEmotionCheckIn(entry) {
   const emotions = entry.emotions || {};
   return `
@@ -240,53 +238,84 @@ function renderEmotionCheckIn(entry) {
               </div>
             </div>`).join('')}
         </div>
+        <div class="field-group" style="margin-top:20px"><label class="field-label">Reflection quote</label><textarea class="field-textarea" data-emotion-reflection placeholder="How did this trade feel overall?">${emotions.reflectionQuote || ''}</textarea></div>
+        <div style="margin-top:20px"><label class="field-label" style="display:block;margin-bottom:10px">Execution Quality</label><div class="stars" data-star-field="executionRating">${[1, 2, 3, 4, 5].map((n) => `<div class="star ${entry.executionRating >= n ? 'active' : ''}" data-star="${n}">★</div>`).join('')}</div></div>
       </div>
     </div>`;
 }
 
-/** ExecutionRating */
-function renderExecutionRating(entry) {
-  return `
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-peach">⭐</div><div><div class="section-title">Execution Rating</div></div></div>
-      <div class="section-body">
-        <div class="stars" data-star-field="executionRating">${[1, 2, 3, 4, 5].map((n) => `<div class="star ${entry.executionRating >= n ? 'active' : ''}" data-star="${n}">★</div>`).join('')}</div>
-      </div>
-    </div>`;
-}
-
-/** StructureReflection */
+/** StructureReflection — matches preview.html's Structure Insight + Final Reflection (with mindset pills). */
 function renderStructureReflection(entry) {
   return `
     <div class="section-card">
       <div class="section-header"><div class="section-icon icon-teal">🧭</div><div><div class="section-title">Structure Insight</div></div></div>
       <div class="section-body">
         <textarea class="field-textarea large" data-field="structureInsight" placeholder="What did this trade teach you about structure?">${entry.structureInsight || ''}</textarea>
-        <div class="field-group" style="margin-top:14px"><label class="field-label">One-sentence takeaway</label><textarea class="field-textarea" data-field="oneSentenceTakeaway">${entry.oneSentenceTakeaway || ''}</textarea></div>
+        <div class="field-group" style="margin-top:14px"><label class="field-label">What this means</label><textarea class="field-textarea" data-field="oneSentenceTakeaway">${entry.oneSentenceTakeaway || ''}</textarea></div>
       </div>
     </div>
     <div class="section-card">
       <div class="section-header"><div class="section-icon icon-dark">🪞</div><div><div class="section-title">Final Reflection</div></div></div>
-      <div class="section-body"><textarea class="field-textarea xl" data-field="finalReflection" placeholder="What does this trade say about where you are right now as a trader?">${entry.finalReflection || ''}</textarea></div>
-    </div>`;
-}
-
-/** JournalSaveBar */
-export function renderJournalSaveBar(container, status, onDelete) {
-  const statusText = status === 'saving' ? 'Saving…' : status === 'error' ? '⚠ Couldn’t save — retrying' : 'Saved ✓';
-  container.innerHTML = `
-    <div class="save-bar">
-      <span class="save-quote">“Trade what you see, not what you think.” — Dayli</span>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <span class="cl-save-status cl-save-${status}" role="status" aria-live="polite">${statusText}</span>
-        <button type="button" class="dd-secondary-btn" id="clDeleteBtn">Delete Entry</button>
+      <div class="section-body">
+        <textarea class="field-textarea xl" data-field="finalReflection" placeholder="What does this trade say about where you are right now as a trader?">${entry.finalReflection || ''}</textarea>
+        <div class="mindset-pills">
+          <div class="mindset-pill mp-green">🌱 Still growing</div>
+          <div class="mindset-pill mp-pink">✨ Refining my lens</div>
+          <div class="mindset-pill mp-teal">🎯 One clean setup at a time</div>
+        </div>
       </div>
     </div>`;
-  container.querySelector('#clDeleteBtn').addEventListener('click', onDelete);
 }
 
-function stagePillsHtml(active) {
-  return `<div class="cl-stage-pills">${STAGES.map((s) => `<button type="button" class="dd-tab ${s === active ? 'active' : ''}" data-stage="${s}">${STAGE_LABELS[s]}</button>`).join('')}</div>`;
+function stageTopBarHtml(active) {
+  return `
+    <div class="cl-stage-topbar">
+      <div class="cl-stage-pills">${STAGES.map((s) => `<button type="button" class="dd-tab ${s === active ? 'active' : ''}" data-stage="${s}">${STAGE_LABELS[s]}</button>`).join('')}</div>
+      <button type="button" class="cl-delete-link" id="clDeleteBtn">Delete Entry</button>
+    </div>`;
+}
+
+/** Bottom wizard nav: Back/Next on the first 3 stages, Back/Save Entry on the last. */
+function renderWizardNav(container, { activeStage, status, onBack, onNext, onSaveFinal }) {
+  const idx = STAGES.indexOf(activeStage);
+  const isFirst = idx === 0;
+  const isLast = idx === STAGES.length - 1;
+  const statusText = status === 'saving' ? 'Saving…' : status === 'error' ? '⚠ Couldn’t save — retrying' : 'Saved ✓';
+
+  container.innerHTML = isLast ? `
+    <div class="cl-wizard-nav">
+      <span class="save-quote">“Trade what you see, not what you think.” — Dayli</span>
+      <div style="display:flex;align-items:center;gap:10px;">
+        ${!isFirst ? '<button type="button" class="dd-secondary-btn" id="clBackBtn">← Back</button>' : ''}
+        <button type="button" class="dd-primary-btn" id="clSaveEntryBtn">✦ Save Entry</button>
+      </div>
+    </div>` : `
+    <div class="cl-wizard-nav">
+      <span class="cl-nav-status">${statusText}</span>
+      <div style="display:flex;align-items:center;gap:10px;">
+        ${!isFirst ? '<button type="button" class="dd-secondary-btn" id="clBackBtn">← Back</button>' : ''}
+        <button type="button" class="dd-primary-btn" id="clNextBtn">Next →</button>
+      </div>
+    </div>`;
+
+  if (!isFirst) container.querySelector('#clBackBtn').addEventListener('click', onBack);
+  if (isLast) {
+    const btn = container.querySelector('#clSaveEntryBtn');
+    btn.addEventListener('click', async () => {
+      btn.disabled = true;
+      btn.textContent = 'Saving…';
+      try {
+        await onSaveFinal();
+      } catch (err) {
+        console.error('Save entry error:', err);
+        btn.disabled = false;
+        btn.textContent = '✦ Save Entry';
+        alert("Couldn't save this entry — try again in a moment.");
+      }
+    });
+  } else {
+    container.querySelector('#clNextBtn').addEventListener('click', onNext);
+  }
 }
 
 async function hydrateScreenshotThumbs(container, apiFetch) {
@@ -304,7 +333,7 @@ async function hydrateScreenshotThumbs(container, apiFetch) {
 
 /**
  * Orchestrates the whole entry page across its 4 stages.
- * `helpers`: { onChange(nextEntry), onDelete(), apiFetch(path, opts), uploadScreenshot(file, entryId) }
+ * `helpers`: { onChange(nextEntry), onDelete(), onSaveFinal(), apiFetch(path, opts), uploadScreenshot(file, entryId) }
  */
 export function renderJournalEntryPage(container, entry, helpers) {
   let activeStage = 'trade';
@@ -317,9 +346,9 @@ export function renderJournalEntryPage(container, entry, helpers) {
 
   function paint() {
     container.innerHTML = `
-      ${stagePillsHtml(activeStage)}
+      ${stageTopBarHtml(activeStage)}
       <div id="clStageBody"></div>
-      <div id="clSaveBar"></div>
+      <div id="clNavBar"></div>
     `;
     const body = container.querySelector('#clStageBody');
     if (activeStage === 'trade') {
@@ -328,13 +357,21 @@ export function renderJournalEntryPage(container, entry, helpers) {
     } else if (activeStage === 'execution') {
       body.innerHTML = renderScaleOutEditor(entry);
     } else if (activeStage === 'mindset') {
-      body.innerHTML = renderEmotionCheckIn(entry) + renderExecutionRating(entry);
+      body.innerHTML = renderEmotionCheckIn(entry);
     } else {
       body.innerHTML = renderTradeReasoning(entry) + renderStructureReflection(entry);
     }
-    renderJournalSaveBar(container.querySelector('#clSaveBar'), helpers.saveStatus || 'saved', helpers.onDelete);
     wireStage(body);
 
+    renderWizardNav(container.querySelector('#clNavBar'), {
+      activeStage,
+      status: helpers.saveStatus || 'saved',
+      onBack: () => { activeStage = STAGES[STAGES.indexOf(activeStage) - 1]; paint(); },
+      onNext: () => { activeStage = STAGES[STAGES.indexOf(activeStage) + 1]; paint(); },
+      onSaveFinal: helpers.onSaveFinal,
+    });
+
+    container.querySelector('#clDeleteBtn').addEventListener('click', helpers.onDelete);
     container.querySelectorAll('[data-stage]').forEach((btn) => {
       btn.addEventListener('click', () => { activeStage = btn.dataset.stage; paint(); });
     });
@@ -345,7 +382,7 @@ export function renderJournalEntryPage(container, entry, helpers) {
       const commit = () => {
         const field = el.dataset.field;
         let value = el.value;
-        if (field === 'contracts' || field === 'entryPrice' || field === 'stopLoss' || field === 'takeProfit' || field === 'fees' || field === 'plannedRisk') {
+        if (field === 'contracts' || field === 'entryPrice' || field === 'manualPointValue') {
           value = value === '' ? null : Number(value);
         }
         if (field === 'entryTimeOnly') {
@@ -355,6 +392,11 @@ export function renderJournalEntryPage(container, entry, helpers) {
         update({ ...entry, [field]: value });
       };
       el.addEventListener(el.tagName === 'SELECT' ? 'change' : el.tagName === 'TEXTAREA' ? 'input' : 'blur', commit);
+    });
+
+    const reflectionQuote = body.querySelector('[data-emotion-reflection]');
+    if (reflectionQuote) reflectionQuote.addEventListener('input', () => {
+      update({ ...entry, emotions: { ...entry.emotions, reflectionQuote: reflectionQuote.value } });
     });
 
     body.querySelectorAll('.position-btn').forEach((btn) => {
@@ -372,20 +414,8 @@ export function renderJournalEntryPage(container, entry, helpers) {
       input.addEventListener('blur', () => {
         const idx = Number(input.dataset.exitIndex);
         const field = input.dataset.exitField;
-        const exits = (entry.exits && entry.exits.length ? entry.exits : [{}]).slice();
+        const exits = [0, 1, 2].map((i) => (entry.exits && entry.exits[i]) || { contracts: '', exitPrice: '' });
         exits[idx] = { ...exits[idx], [field]: input.value === '' ? '' : Number(input.value) };
-        update({ ...entry, exits });
-      });
-    });
-    const addExitBtn = body.querySelector('#clAddExit');
-    if (addExitBtn) addExitBtn.addEventListener('click', () => {
-      const exits = (entry.exits || []).concat([{ contracts: '', exitPrice: '' }]);
-      update({ ...entry, exits });
-    });
-    body.querySelectorAll('[data-remove-exit]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const idx = Number(btn.dataset.removeExit);
-        const exits = entry.exits.filter((_, i) => i !== idx);
         update({ ...entry, exits });
       });
     });
@@ -438,5 +468,17 @@ export function renderJournalEntryPage(container, entry, helpers) {
   }
 
   paint();
-  return { getState: () => entry, setSaveStatus: (status) => { helpers.saveStatus = status; renderJournalSaveBar(container.querySelector('#clSaveBar'), status, helpers.onDelete); } };
+  return {
+    getState: () => entry,
+    setSaveStatus: (status) => {
+      helpers.saveStatus = status;
+      renderWizardNav(container.querySelector('#clNavBar'), {
+        activeStage,
+        status,
+        onBack: () => { activeStage = STAGES[STAGES.indexOf(activeStage) - 1]; paint(); },
+        onNext: () => { activeStage = STAGES[STAGES.indexOf(activeStage) + 1]; paint(); },
+        onSaveFinal: helpers.onSaveFinal,
+      });
+    },
+  };
 }

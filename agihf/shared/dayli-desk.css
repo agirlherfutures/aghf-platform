@@ -400,6 +400,20 @@
 .star{width:32px;height:32px;border-radius:8px;border:1.5px solid rgba(245,168,87,.3);background:var(--peach-pale);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--peach-light);cursor:pointer;}
 .star.active{background:var(--peach);border-color:var(--peach);color:#fff;}
 
+.mindset-pills{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px;}
+.mindset-pill{padding:8px 16px;border-radius:100px;border:1.5px solid;font-size:.8rem;font-weight:500;}
+.mp-green{border-color:rgba(109,191,138,.3);background:#E8F7EE;color:#2E7D4F;}
+.mp-pink{border-color:rgba(244,130,154,.3);background:var(--pink-pale);color:var(--pink);}
+.mp-teal{border-color:rgba(126,206,196,.3);background:var(--teal-pale);color:#2A8A80;}
+
+/* Journal wizard nav: stage-pills top row (with Delete tucked in) + Back/Next bottom bar */
+.cl-stage-topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.cl-stage-topbar .cl-stage-pills{margin-bottom:0;}
+.cl-delete-link{background:none;border:none;color:var(--muted);font-size:.78rem;font-weight:600;cursor:pointer;padding:6px 4px;text-decoration:underline;text-underline-offset:2px;}
+.cl-delete-link:hover{color:var(--pink);}
+.cl-wizard-nav{position:sticky;bottom:0;background:rgba(253,248,245,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(244,130,154,.15);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:14px;border-radius:18px;margin-top:8px;flex-wrap:wrap;}
+.cl-nav-status{font-size:.78rem;color:var(--muted);}
+
 /* ── Section reorder for mobile priority ─────────────────────────── */
 @media(max-width:900px){
   .dd-desktop-order{display:flex;flex-direction:column;}
