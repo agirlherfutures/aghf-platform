@@ -123,9 +123,10 @@
     renderSessionBadge, renderMarketOutlookCard, renderEconomicCalendarCard, renderTradingSnapshot,
     renderChecklistSummaryCard, renderQuickJournalCard, renderRecentTrades, computeCurrentFocus,
     renderCurrentFocusCard, renderContinueLearningCard, renderConsistencyScore, renderJourneySummary,
-    renderInnerEdgeCard, renderSkeleton, renderErrorState,
+    renderAskAgentCard, renderSkeleton, renderErrorState,
   } from './shared/dayli-desk-engine.js';
-  import { getPsychologyProfile, listPsychologySessions } from './shared/psychology-service.js';
+  import { getPsychologyProfile } from './shared/psychology-service.js';
+  import { listConversations } from './shared/agent-service.js';
 
   const p1 = PHASES[0];
   const allP1Lessons = p1.sections.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s })));
@@ -221,17 +222,17 @@
     }
   }
 
-  async function loadInnerEdge() {
+  async function loadAskAgentCard() {
     const container = document.getElementById('ddInnerEdge');
     try {
-      const [profile, sessions] = await Promise.all([
+      const [profile, conversations] = await Promise.all([
         getPsychologyProfile().catch(() => null),
-        listPsychologySessions().catch(() => []),
+        listConversations().catch(() => []),
       ]);
-      renderInnerEdgeCard(container, { profile, sessionCount: sessions.length }, { coachHref: 'psychology.html' });
+      renderAskAgentCard(container, { profile, conversationCount: conversations.length }, { agentHref: 'psychology.html' });
     } catch (err) {
-      console.error('Inner Edge card load error:', err);
-      renderErrorState(container, "Couldn't load your Inner Edge focus.", loadInnerEdge);
+      console.error('Ask the AGHF Agent card load error:', err);
+      renderErrorState(container, "Couldn't load the AGHF Agent card.", loadAskAgentCard);
     }
   }
 
@@ -339,7 +340,7 @@
     loadTradingSnapshot();
     loadRecentTrades();
     loadConsistency();
-    loadInnerEdge();
+    loadAskAgentCard();
 
     try {
       const consistency = await computeConsistencyScore();

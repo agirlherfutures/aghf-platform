@@ -10,7 +10,7 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_KEY
 );
 
-function toClientShape(row) {
+export function toClientShape(row) {
   if (!row) return null;
   return {
     id: row.id,

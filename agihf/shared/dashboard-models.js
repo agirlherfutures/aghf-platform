@@ -407,9 +407,97 @@ export const PLAYBOOK_CATEGORIES = [
   { key: 'behaviors_replacing', label: 'Behaviors I Am Replacing' },
   { key: 'weekly_focus', label: 'Current Weekly Focus' },
   { key: 'psychology_wins', label: 'Completed Psychology Wins' },
+  { key: 'practice_plan', label: 'My Practice Plans' },
 ];
 
 export const READINESS_LABELS = ['Clear', 'Slightly Activated', 'Emotionally Influenced', 'Pause Recommended', 'Walk-Away Condition Reached'];
+
+/**
+ * The AGHF Agent — conversational-AI data shapes (agihf/api/agent-*.js).
+ * See supabase/migrations/0004_aghf_agent.sql for the proposed column-level
+ * schema these map onto (not yet applied to any live DB). The 6
+ * psychology_* tables/typedefs above are unchanged and back the agent's
+ * contextually-launched tools (Pre-Trade Check, Post-Loss Reset, Cooldown
+ * Timer, Scenario Lab, Playbook) — this is an addition, not a replacement.
+ */
+
+/**
+ * @typedef {'quick_answer'|'coach_me'|'analyze_data'|'challenge_me'|'teach_me'|'build_plan'} AgentResponseMode
+ *
+ * @typedef {Object} AgentConversation
+ * @property {string} id
+ * @property {string} userId
+ * @property {string|null} title
+ * @property {AgentResponseMode} responseMode
+ * @property {'saved'|'one_time'} saveStatus
+ * @property {string} createdAt
+ * @property {string} updatedAt
+ * @property {string} [archivedAt]
+ */
+
+/**
+ * @typedef {'user'|'assistant'|'system'} AgentMessageRole
+ * @typedef {Object} AgentAttachedRecordRef
+ * @property {'trade'|'journal'|'checklist'|'screenshot'|'week'|'date_range'} type
+ * @property {string} [id]
+ *
+ * @typedef {Object} AgentMessage
+ * @property {string} id
+ * @property {string} conversationId
+ * @property {string} userId
+ * @property {AgentMessageRole} role
+ * @property {string} content
+ * @property {Object} [structuredComponentData]   belief_check/urge_check/etc. payload + the member's saved answer
+ * @property {AgentAttachedRecordRef[]} attachedRecordRefs
+ * @property {Object[]} toolCalls
+ * @property {Object[]} toolResults
+ * @property {{type:string, id:string, title:string}[]} sources
+ * @property {'up'|'down'} [feedback]
+ * @property {string} createdAt
+ */
+
+/**
+ * @typedef {Object} AgentAttachment
+ * @property {string} id
+ * @property {string} userId
+ * @property {string} [conversationId]
+ * @property {string} [messageId]
+ * @property {'trade'|'journal'|'checklist'|'screenshot'|'week'|'date_range'} type
+ * @property {string} [tradeId]
+ * @property {string} [journalId]
+ * @property {string} [checklistId]
+ * @property {string} [secureFileRef]   storage path (screenshot only) — never a public URL
+ * @property {Object} metadata
+ * @property {string} createdAt
+ */
+
+/**
+ * @typedef {'coaching_style'|'current_focus'|'confirmed_trigger'|'walk_away_rule'|'if_then_rule'|'reset_routine'|'playbook_reference'|'confirmed_pattern'|'goal'} AgentMemoryCategory
+ * @typedef {Object} AgentMemory
+ * @property {string} id
+ * @property {string} userId
+ * @property {AgentMemoryCategory} category
+ * @property {string} content
+ * @property {string} [sourceConversationId]
+ * @property {boolean} memberApproved
+ * @property {boolean} active
+ * @property {string} createdAt
+ * @property {string} updatedAt
+ */
+
+/**
+ * @typedef {'create_if_then_rule'|'add_playbook_insight'|'update_current_focus'|'create_practice_plan'|'save_conversation_summary'} AgentActionType
+ * @typedef {Object} AgentAction
+ * @property {string} id
+ * @property {string} userId
+ * @property {string} [conversationId]
+ * @property {AgentActionType} actionType
+ * @property {Object} previewPayload
+ * @property {'preview'|'approved'|'declined'|'executed'|'expired'} approvalStatus
+ * @property {Object} [executionResult]
+ * @property {string} createdAt
+ * @property {string} [executedAt]
+ */
 
 export const COOLDOWN_DURATIONS = [
   { key: '60s', label: '60 seconds', seconds: 60 },

@@ -3,52 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Inner Edge — A Girl & Her Futures</title>
+<title>AGHF Agent — A Girl & Her Futures</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/tokens.css">
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/components.css">
 <link rel="stylesheet" href="shared/dayli-desk.css">
+<link rel="stylesheet" href="shared/agent.css">
 </head>
 <body>
 
 <script src="shared/auth-guard.js"></script>
-<script src="shared/sidebar.js" data-active="psychology"></script>
+<script src="shared/sidebar.js" data-active="agent"></script>
 
-<main class="main">
-  <div class="dd-header-top">
-    <div>
-      <div class="pg-eye">✦ The Inner Edge</div>
-      <div class="pg-title">Your personalized trading psychology and execution coach.</div>
-    </div>
-    <a class="dd-secondary-btn" href="psychology-consent.html">Privacy &amp; Settings</a>
-  </div>
-
-  <div class="dd-section">
-    <div class="dd-section-head">
-      <div class="dd-section-title">What do you need right now?</div>
-      <a class="dd-section-link" href="psychology-history.html">History →</a>
-    </div>
-    <div id="psyHome"></div>
-  </div>
+<main class="main" style="padding:12px;">
+  <div id="agcRoot"></div>
 </main>
 
 <script type="module">
-  import { renderCoachHome } from './shared/psychology-engine.js';
-  import { TALK_TRIGGERS } from './shared/psychology-rules-engine.js';
+  import { renderAgentWorkspace } from './shared/agent-engine.js';
 
-  function labelToTriggerKey(label) {
-    const t = TALK_TRIGGERS.find((t) => t.label.toLowerCase() === label.toLowerCase());
-    return t ? t.key : null;
+  function boot() {
+    renderAgentWorkspace(document.getElementById('agcRoot'), {});
   }
 
-  renderCoachHome(document.getElementById('psyHome'), {
-    onUrgentChip: (label) => {
-      const key = labelToTriggerKey(label);
-      const qs = key ? `?mode=talk_me_through&trigger=${encodeURIComponent(key)}` : '?mode=talk_me_through';
-      window.location.href = `psychology-coach.html${qs}`;
-    },
-  });
+  document.addEventListener('aghf-auth-ready', boot);
 </script>
 
 </body>

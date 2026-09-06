@@ -18,7 +18,7 @@ function readinessLabel(pct) {
   return 'Not ready';
 }
 
-function toClientShape(row) {
+export function toClientShape(row) {
   if (!row) return null;
   return {
     id: row.id,
