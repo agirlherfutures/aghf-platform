@@ -61,10 +61,12 @@ function bestSetupInsight(entries) {
 
 /** "You exit early most often when you mark yourself as Anxious." */
 function earlyExitEmotionInsight(entries) {
-  const earlyExits = entries.filter((e) => (e.exitTags || []).includes('Took Profit Early') && e.emotions?.during?.primary);
+  const earlyExits = entries.filter((e) => (e.exitTags || []).includes('Took Profit Early') && (e.emotions?.during || []).length);
   if (earlyExits.length < MIN_SAMPLE) return null;
   const counts = {};
-  for (const e of earlyExits) counts[e.emotions.during.primary] = (counts[e.emotions.during.primary] || 0) + 1;
+  for (const e of earlyExits) {
+    for (const emotion of e.emotions.during) counts[emotion] = (counts[emotion] || 0) + 1;
+  }
   const [emotion] = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
   return {
     id: 'early-exit-emotion',

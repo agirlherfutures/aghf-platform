@@ -112,12 +112,12 @@ function scoreRiskManagement(entry, totals) {
 }
 
 function scoreEmotionalDiscipline(entry) {
-  const during = entry.emotions?.during?.primary;
-  const after = entry.emotions?.exiting?.primary;
-  if (!during && !after) return null;
+  const during = entry.emotions?.during || [];
+  const after = entry.emotions?.exiting || [];
+  if (!during.length && !after.length) return null;
   let flags = 0;
-  if (during && NEGATIVE_DURING.includes(during)) flags += 1;
-  if (after && NEGATIVE_AFTER.includes(after)) flags += 1;
+  if (during.some((e) => NEGATIVE_DURING.includes(e))) flags += 1;
+  if (after.some((e) => NEGATIVE_AFTER.includes(e))) flags += 1;
   return flags === 0 ? 20 : flags === 1 ? 10 : 0;
 }
 
@@ -163,7 +163,7 @@ function firstIncompleteStage(entry) {
   if (entry.entryPrice == null) return 'execution';
   if (!(entry.entryTags && entry.entryTags.length)) return 'entered';
   if (!(entry.exitTags && entry.exitTags.length)) return 'exited';
-  if (!entry.emotions || !entry.emotions.entering) return 'mindset';
+  if (!entry.emotions || !entry.emotions.entering?.length) return 'mindset';
   if (!(entry.lessons && entry.lessons.length)) return 'lesson';
   return 'review';
 }
@@ -360,7 +360,7 @@ function renderMindsetStep(entry) {
             <div class="jl-mindset-heading">${heading}</div>
             <div class="field-label" style="margin:6px 0 8px;">${question}</div>
             <div class="chip-group" data-emotion-stage="${stage}">
-              ${EMOTION_OPTIONS_V2[stage].map((o) => `<button type="button" class="chip ${emotions[stage]?.primary === o ? 'active' : ''}" data-chip-value="${o}">${o}</button>`).join('')}
+              ${EMOTION_OPTIONS_V2[stage].map((o) => `<button type="button" class="chip ${(emotions[stage] || []).includes(o) ? 'active' : ''}" data-chip-value="${o}">${o}</button>`).join('')}
             </div>
           </div>`).join('')}
       </div>
@@ -484,6 +484,8 @@ async function hydrateScreenshotThumbs(container, apiFetch) {
       img.src = url;
     } catch (err) {
       console.error('Screenshot load error:', err);
+      img.closest('.cl-shot-thumb')?.classList.add('cl-shot-error');
+      img.alt = `Couldn't load this screenshot — ${err.message}`;
     }
   }
 }
@@ -497,6 +499,8 @@ export async function hydrateTscShots(container, apiFetch) {
       el.style.backgroundImage = `url(${url})`;
     } catch (err) {
       console.error('Summary card screenshot load error:', err);
+      el.classList.add('tsc-hero-shot-error');
+      el.textContent = "Couldn't load screenshot";
     }
   }
 }
@@ -509,7 +513,19 @@ export function renderJournalEntryPage(container, entry, helpers) {
   let activeStage = firstIncompleteStage(entry);
 
   function update(next) {
-    entry = next;
+    // Every field commit flows through here — fold in the freshly computed
+    // totals so what's actually persisted (and scored) matches what the
+    // readonly fields show, instead of leaving netPnl/outcome permanently
+    // null because nothing ever wrote them onto the entry itself.
+    const totals = computeTradeTotals(next);
+    const hasPnl = totals.computedExits.some((ex) => ex.dollars != null);
+    entry = {
+      ...next,
+      ...(hasPnl ? { netPnl: totals.netPnl, grossPnl: totals.grossPnl, rMultiple: totals.rMultiple, outcome: next.outcomeOverride || computeOutcome(totals.netPnl) } : {}),
+      ...(totals.plannedRisk != null ? { plannedRisk: totals.plannedRisk } : {}),
+      ...(totals.plannedReward != null ? { plannedReward: totals.plannedReward } : {}),
+      ...(totals.riskRewardRatio != null ? { riskRewardRatio: totals.riskRewardRatio } : {}),
+    };
     helpers.onChange(entry);
     paint();
   }
@@ -558,7 +574,7 @@ export function renderJournalEntryPage(container, entry, helpers) {
         }
         update({ ...entry, [field]: value });
       };
-      el.addEventListener(el.tagName === 'SELECT' ? 'change' : el.tagName === 'TEXTAREA' ? 'input' : 'blur', commit);
+      el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'blur', commit);
     });
 
     body.querySelectorAll('.position-btn').forEach((btn) => {
@@ -618,8 +634,10 @@ export function renderJournalEntryPage(container, entry, helpers) {
       const stage = group.dataset.emotionStage;
       group.querySelectorAll('.chip').forEach((btn) => {
         btn.addEventListener('click', () => {
-          const emotions = { ...entry.emotions, [stage]: { ...(entry.emotions?.[stage] || {}), primary: btn.dataset.chipValue } };
-          update({ ...entry, emotions });
+          const current = entry.emotions?.[stage] || [];
+          const value = btn.dataset.chipValue;
+          const next = current.includes(value) ? current.filter((v) => v !== value) : [...current, value];
+          update({ ...entry, emotions: { ...entry.emotions, [stage]: next } });
         });
       });
     });
@@ -678,6 +696,12 @@ export function renderJournalEntryPage(container, entry, helpers) {
   paint();
   return {
     getState: () => entry,
+    // Silently folds server-assigned fields (id, tradeNumber, ...) into the
+    // closure without repainting — a save completing mid-edit must never
+    // yank focus away from whatever the member is currently typing into.
+    applySavedFields: (saved) => {
+      entry = { ...entry, id: saved.id, tradeNumber: saved.tradeNumber, gpAwardedAt: saved.gpAwardedAt };
+    },
     setSaveStatus: (status) => {
       helpers.saveStatus = status;
       const navBar = container.querySelector('#clNavBar');
@@ -743,9 +767,9 @@ export function renderTradeCaseFile(container, entry, { onEdit, apiFetch }) {
     <div class="section-card">
       <div class="section-header"><div class="section-icon icon-pink">🧠</div><div><div class="section-title">Emotional Check-In</div></div></div>
       <div class="section-body">
-        ${caseFieldRow('Before', entry.emotions?.entering?.primary)}
-        ${caseFieldRow('During', entry.emotions?.during?.primary)}
-        ${caseFieldRow('After', entry.emotions?.exiting?.primary)}
+        ${caseFieldRow('Before', (entry.emotions?.entering || []).join(', '))}
+        ${caseFieldRow('During', (entry.emotions?.during || []).join(', '))}
+        ${caseFieldRow('After', (entry.emotions?.exiting || []).join(', '))}
       </div>
     </div>
     <div class="section-card">
@@ -794,7 +818,7 @@ export function renderTradeSummaryCard(props, opts = {}) {
   const pnlClass = props.netPnl > 0 ? 'dd-pnl-pos' : props.netPnl < 0 ? 'dd-pnl-neg' : 'dd-pnl-flat';
   const setupFlow = props.entryTags.filter((t) => t !== 'Other').join(' → ');
   const ruleIcon = props.ruleCheck === 'yes' ? '✅' : props.ruleCheck === 'mostly' ? '➰' : props.ruleCheck === 'no' ? '⚠️' : '';
-  const emotionChips = ['entering', 'during', 'exiting'].map((s) => props.emotions?.[s]?.primary).filter(Boolean).join(' • ');
+  const emotionChips = ['entering', 'during', 'exiting'].flatMap((s) => props.emotions?.[s] || []).join(' • ');
   const Tag = isCelebration ? 'div' : 'a';
   return `
     <${Tag} class="tsc-card tsc-card-${variant}" ${isCelebration ? '' : `href="journal-entry.html?id=${props.id}"`}>

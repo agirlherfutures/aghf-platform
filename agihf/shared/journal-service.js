@@ -174,7 +174,7 @@ export async function getJournalStats(filters = {}) {
 export function createAutosaver(onStatus) {
   let timer = null;
   let latest = null;
-  return function scheduleSave(entry) {
+  function scheduleSave(entry) {
     latest = entry;
     onStatus('saving');
     clearTimeout(timer);
@@ -187,7 +187,11 @@ export function createAutosaver(onStatus) {
         onStatus('error', err);
       }
     }, 700);
-  };
+  }
+  // Lets a final/draft save pre-empt a still-pending debounced autosave so
+  // a stale snapshot can't race in and overwrite the just-completed save.
+  scheduleSave.cancel = () => clearTimeout(timer);
+  return scheduleSave;
 }
 
 /** Quick reflection save (Pre-Market / Post-Market Journal card actions). */

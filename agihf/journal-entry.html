@@ -96,8 +96,12 @@
     let handle;
     const autosave = createAutosaver((status, resultOrErr) => {
       if (status === 'saved') {
+        // Check "is this the first-ever save" BEFORE merging — once merged,
+        // entry.id is always present, so this is the one moment we can tell.
+        const wasNew = !handle.getState().id;
+        handle.applySavedFields(resultOrErr);
         handle.setSaveStatus('saved');
-        if (!entryId && resultOrErr.id) {
+        if (wasNew && resultOrErr.id) {
           // First save of a brand-new entry — swap the URL so a refresh edits, not duplicates.
           window.history.replaceState({}, '', `journal-entry.html?id=${resultOrErr.id}`);
           document.getElementById('jePageTitle').textContent = resultOrErr.tradeNumber ? `Trade #${resultOrErr.tradeNumber}` : 'Edit Trade';
@@ -125,8 +129,10 @@
         }
       },
       onSaveDraft: async () => {
+        autosave.cancel();
         try {
-          await saveEntry({ ...handle.getState(), isDraft: true });
+          const saved = await saveEntry({ ...handle.getState(), isDraft: true });
+          handle.applySavedFields(saved);
           showDeskToast('Saved as draft — pick up where you left off ✦');
           window.location.href = 'journal-history.html';
         } catch (err) {
@@ -135,7 +141,9 @@
         }
       },
       onSaveFinal: async () => {
+        autosave.cancel();
         const saved = await saveEntry({ ...handle.getState(), isDraft: false });
+        handle.applySavedFields(saved);
         if (saved.gpAwarded > 0) {
           burst();
           showDeskToast(`+${saved.gpAwarded} GP · Entry saved ✦`);

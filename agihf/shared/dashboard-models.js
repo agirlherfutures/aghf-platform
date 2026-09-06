@@ -106,10 +106,6 @@
  * @property {number} exitPrice
  * @property {string} [exitedAt]        ISO timestamp
  *
- * @typedef {Object} EmotionStage
- * @property {string} [primary]
- * @property {string[]} [secondary]
- *
  * @typedef {'yes'|'no'|'still_running'|'not_sure'} TargetHitStatus
  * @typedef {'yes'|'no'|'unsure'} AgreementAnswer
  * @typedef {'yes'|'no'|'mixed'|'unsure'} BiasAccuracyAnswer
@@ -181,7 +177,7 @@
  * @property {string} [entryReasoning]  short (not essay) reasoning
  * @property {string} [exitReasoning]   short (not essay) reasoning
  * @property {string[]} lessons         bullet list ("Lesson Logged," never called "Notes")
- * @property {{entering?: EmotionStage, during?: EmotionStage, exiting?: EmotionStage}} emotions   .secondary on EmotionStage is documented but unused/unwired this pass
+ * @property {{entering?: string[], during?: string[], exiting?: string[]}} emotions   each stage is a multi-select list of chip labels
  * @property {BiasAccuracyAnswer} [biasAccuracy]
  * @property {RuleCheckAnswer} [ruleCheck]
  * @property {ExecutionGrade} [executionGrade]      grades execution quality, never P&L
