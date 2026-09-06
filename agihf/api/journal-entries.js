@@ -27,16 +27,14 @@ function toClientShape(row) {
     contracts: row.contracts,
     executionTimeframe: row.execution_timeframe,
     setupType: row.setup_type,
-    setupQualityScore: row.setup_quality_score,
-    tradeStyle: row.trade_style,
-    sniperScore: row.sniper_score,
-    screenshotNotes: row.screenshot_notes,
     entryPrice: row.entry_price,
     entryTime: row.entry_time,
     stopLoss: row.stop_loss,
     takeProfit: row.take_profit,
     plannedRisk: row.planned_risk,
-    actualRisk: row.actual_risk,
+    plannedReward: row.planned_reward,
+    riskRewardRatio: row.risk_reward_ratio,
+    targetHit: row.target_hit,
     fees: row.fees,
     exits: row.exits || [],
     grossPnl: row.gross_pnl,
@@ -48,18 +46,25 @@ function toClientShape(row) {
     structure1h: row.structure_1h,
     pil: row.pil,
     iccPhase: row.icc_phase,
+    entryTags: row.entry_tags || [],
+    iccChecklist: row.icc_checklist,
+    exitTags: row.exit_tags || [],
+    agreeWithEarlyExit: row.agree_with_early_exit,
     methodQualityTags: row.method_quality_tags || [],
     ruleViolations: row.rule_violations || [],
     screenshots: row.screenshots || [],
     entryReasoning: row.entry_reasoning,
     exitReasoning: row.exit_reasoning,
-    lessons: row.lessons,
+    lessons: row.lessons || [],
     emotions: row.emotions || {},
-    executionRating: row.execution_rating,
-    structureInsight: row.structure_insight,
-    oneSentenceTakeaway: row.one_sentence_takeaway,
-    finalReflection: row.final_reflection,
+    biasAccuracy: row.bias_accuracy,
+    ruleCheck: row.rule_check,
+    executionGrade: row.execution_grade,
+    executionScore: row.execution_score,
+    wentWell: row.went_well,
+    wouldImprove: row.would_improve,
     isDraft: row.is_draft,
+    gpAwardedAt: row.gp_awarded_at,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
@@ -83,7 +88,7 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'GET') {
-      const { id, entryType, instrument, direction, outcome, session, setupType, methodQualityTag, from, to, limit, offset } = req.query;
+      const { id, entryType, instrument, direction, outcome, session, setupType, methodQualityTag, executionGrade, ruleCheck, hasIccSetup, from, to, limit, offset } = req.query;
 
       if (id) {
         const { data, error } = await supabase
@@ -100,6 +105,9 @@ export default async function handler(req, res) {
       if (session) query = query.eq('session', session);
       if (setupType) query = query.eq('setup_type', setupType);
       if (methodQualityTag) query = query.contains('method_quality_tags', [methodQualityTag]);
+      if (executionGrade) query = query.eq('execution_grade', executionGrade);
+      if (ruleCheck) query = query.eq('rule_check', ruleCheck);
+      if (hasIccSetup === 'true') query = query.not('icc_checklist', 'is', null);
       if (from) query = query.gte('trade_date', from);
       if (to) query = query.lte('trade_date', to);
 
@@ -116,6 +124,7 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
       const body = req.body || {};
       const netPnl = body.netPnl != null ? Number(body.netPnl) : null;
+      const isDraft = body.isDraft !== false;
 
       const row = {
         user_id: userId,
@@ -130,16 +139,14 @@ export default async function handler(req, res) {
         contracts: body.contracts ?? null,
         execution_timeframe: body.executionTimeframe || '1m',
         setup_type: body.setupType || null,
-        setup_quality_score: body.setupQualityScore ?? null,
-        trade_style: body.tradeStyle || null,
-        sniper_score: body.sniperScore || null,
-        screenshot_notes: body.screenshotNotes || null,
         entry_price: body.entryPrice ?? null,
         entry_time: body.entryTime || null,
         stop_loss: body.stopLoss ?? null,
         take_profit: body.takeProfit ?? null,
         planned_risk: body.plannedRisk ?? null,
-        actual_risk: body.actualRisk ?? null,
+        planned_reward: body.plannedReward ?? null,
+        risk_reward_ratio: body.riskRewardRatio ?? null,
+        target_hit: body.targetHit || null,
         fees: body.fees ?? null,
         exits: Array.isArray(body.exits) ? body.exits : [],
         gross_pnl: body.grossPnl ?? null,
@@ -151,20 +158,46 @@ export default async function handler(req, res) {
         structure_1h: body.structure1h || null,
         pil: body.pil || null,
         icc_phase: body.iccPhase || null,
+        entry_tags: Array.isArray(body.entryTags) ? body.entryTags : [],
+        icc_checklist: body.iccChecklist ?? null,
+        exit_tags: Array.isArray(body.exitTags) ? body.exitTags : [],
+        agree_with_early_exit: body.agreeWithEarlyExit || null,
         method_quality_tags: Array.isArray(body.methodQualityTags) ? body.methodQualityTags : [],
         rule_violations: Array.isArray(body.ruleViolations) ? body.ruleViolations : [],
         screenshots: Array.isArray(body.screenshots) ? body.screenshots : [],
         entry_reasoning: body.entryReasoning || null,
         exit_reasoning: body.exitReasoning || null,
-        lessons: body.lessons || null,
+        lessons: Array.isArray(body.lessons) ? body.lessons : [],
         emotions: body.emotions || {},
-        execution_rating: body.executionRating ?? null,
-        structure_insight: body.structureInsight || null,
-        one_sentence_takeaway: body.oneSentenceTakeaway || null,
-        final_reflection: body.finalReflection || null,
-        is_draft: body.isDraft !== false,
+        bias_accuracy: body.biasAccuracy || null,
+        rule_check: body.ruleCheck || null,
+        execution_grade: body.executionGrade || null,
+        execution_score: body.executionScore ?? null,
+        went_well: body.wentWell || null,
+        would_improve: body.wouldImprove || null,
+        is_draft: isDraft,
         updated_at: new Date().toISOString(),
       };
+
+      // GP/streak award: a one-time side effect the first time a trade entry
+      // goes from draft to final. Eligibility is checked against the row's
+      // *current* gp_awarded_at (fetched below for an update; always eligible
+      // for a fresh insert), then stamped onto this same write — so a later
+      // edit of an already-final entry, or any of the autosaves that always
+      // send isDraft:true along the way, never re-award.
+      let existingGpAwardedAt = null;
+      if (body.id) {
+        const { data: existing } = await supabase
+          .from('journal_entries').select('gp_awarded_at').eq('id', body.id).eq('user_id', userId).single();
+        existingGpAwardedAt = existing?.gp_awarded_at ?? null;
+      }
+      const shouldAward = row.entry_type === 'trade' && !isDraft && existingGpAwardedAt == null;
+      let gpAwarded = 0;
+      if (shouldAward) {
+        gpAwarded = 5; // logging a trade
+        if (row.went_well && row.would_improve && row.lessons.length) gpAwarded += 5; // complete full reflection
+        row.gp_awarded_at = new Date().toISOString();
+      }
 
       let result;
       if (body.id) {
@@ -185,7 +218,27 @@ export default async function handler(req, res) {
         if (error) throw error;
         result = data;
       }
-      return res.status(200).json({ entry: toClientShape(result) });
+
+      let newJournalStreak = null;
+      if (shouldAward) {
+        const { data: profile } = await supabase
+          .from('profiles').select('gp, journal_streak, journal_last_entry_date')
+          .eq('id', userId).single();
+
+        const today = new Date().toISOString().split('T')[0];
+        const lastEntry = profile?.journal_last_entry_date;
+        const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+        newJournalStreak = lastEntry === yesterday ? (profile?.journal_streak || 0) + 1 : lastEntry === today ? (profile?.journal_streak || 0) : 1;
+        if (newJournalStreak > 0 && newJournalStreak % 3 === 0) gpAwarded += 10; // "journal 3 trades in a row" bonus
+
+        await supabase.from('profiles').update({
+          gp: (profile?.gp || 0) + gpAwarded,
+          journal_streak: newJournalStreak,
+          journal_last_entry_date: today,
+        }).eq('id', userId);
+      }
+
+      return res.status(200).json({ entry: toClientShape(result), gpAwarded, newJournalStreak });
     }
 
     if (req.method === 'DELETE') {

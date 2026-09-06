@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/components.css">
 <link rel="stylesheet" href="shared/dayli-desk.css">
+<link rel="stylesheet" href="shared/lesson-engine.css">
 </head>
 <body>
 
@@ -23,8 +24,9 @@
 
 <script type="module">
   import { getEntry, saveEntry, deleteEntry, createAutosaver } from './shared/journal-service.js';
-  import { renderJournalEntryPage } from './shared/journal-engine.js';
-  import { renderErrorState, renderSkeleton, showDeskToast } from './shared/dayli-desk-engine.js';
+  import { renderJournalEntryPage, renderTradeCaseFile, entryToSummaryCardProps, renderTradeSummaryCard, hydrateTscShots } from './shared/journal-engine.js';
+  import { renderErrorState, renderSkeleton, showDeskToast, openModal, closeModal } from './shared/dayli-desk-engine.js';
+  import { burst } from './shared/lesson-engine.js';
 
   const root = document.getElementById('jeRoot');
   const params = new URLSearchParams(window.location.search);
@@ -60,7 +62,8 @@
   function freshEntry() {
     return {
       entryType: 'trade', tradeDate: new Date().toISOString().slice(0, 10), direction: null,
-      exits: [], methodQualityTags: [], ruleViolations: [], screenshots: [], emotions: {}, isDraft: true,
+      exits: [], methodQualityTags: [], ruleViolations: [], screenshots: [], emotions: {},
+      entryTags: [], exitTags: [], lessons: [], iccChecklist: null, isDraft: true,
     };
   }
 
@@ -82,6 +85,15 @@
   function startPage(entry) {
     document.getElementById('jePageTitle').textContent = entry.tradeNumber ? `Trade #${entry.tradeNumber}` : entryId ? 'Edit Trade' : 'New Trade';
 
+    if (entry.isDraft === false && entry.id) {
+      renderTradeCaseFile(root, entry, { apiFetch, onEdit: () => startWizard(entry) });
+      return;
+    }
+    startWizard(entry);
+  }
+
+  function startWizard(entry) {
+    let handle;
     const autosave = createAutosaver((status, resultOrErr) => {
       if (status === 'saved') {
         handle.setSaveStatus('saved');
@@ -95,7 +107,7 @@
       }
     });
 
-    const handle = renderJournalEntryPage(root, entry, {
+    handle = renderJournalEntryPage(root, entry, {
       apiFetch,
       uploadScreenshot,
       onChange: (next) => autosave(next),
@@ -112,10 +124,32 @@
           alert("Couldn't delete this entry — try again in a moment.");
         }
       },
+      onSaveDraft: async () => {
+        try {
+          await saveEntry({ ...handle.getState(), isDraft: true });
+          showDeskToast('Saved as draft — pick up where you left off ✦');
+          window.location.href = 'journal-history.html';
+        } catch (err) {
+          console.error('Save draft error:', err);
+          alert("Couldn't save this draft — try again in a moment.");
+        }
+      },
       onSaveFinal: async () => {
-        await saveEntry({ ...handle.getState(), isDraft: false });
-        showDeskToast('Entry saved ✦');
-        window.location.href = 'journal-history.html';
+        const saved = await saveEntry({ ...handle.getState(), isDraft: false });
+        if (saved.gpAwarded > 0) {
+          burst();
+          showDeskToast(`+${saved.gpAwarded} GP · Entry saved ✦`);
+          const body = openModal(renderTradeSummaryCard(entryToSummaryCardProps(saved), { variant: 'celebration' }) + `
+            <div style="margin-top:16px;text-align:center;"><button type="button" class="dd-primary-btn" id="tscCloseBtn">Nice ✦</button></div>`);
+          if (saved.screenshots?.length) hydrateTscShots(body, apiFetch);
+          body.querySelector('#tscCloseBtn').addEventListener('click', () => {
+            closeModal();
+            window.location.href = 'journal-history.html';
+          });
+        } else {
+          showDeskToast('Entry saved ✦');
+          window.location.href = 'journal-history.html';
+        }
       },
     });
   }

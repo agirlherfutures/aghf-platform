@@ -77,22 +77,33 @@ export async function getRecentEntries(n = 3) {
 export async function saveEntry(entry) {
   if (window.AGHF_DEMO) {
     const now = new Date().toISOString();
+    let record;
+    let priorGpAwardedAt = null;
     if (entry.id) {
       const idx = demoEntries.findIndex((e) => e.id === entry.id);
-      const merged = { ...demoEntries[idx], ...entry, updatedAt: now };
-      demoEntries[idx] = merged;
-      return merged;
+      priorGpAwardedAt = demoEntries[idx]?.gpAwardedAt || null;
+      record = { ...demoEntries[idx], ...entry, updatedAt: now };
+      demoEntries[idx] = record;
+    } else {
+      record = {
+        id: `demo_${Date.now()}`, tradeNumber: demoEntries.filter((e) => e.entryType === 'trade').length + 1,
+        createdAt: now, updatedAt: now, exits: [], methodQualityTags: [], ruleViolations: [], screenshots: [], emotions: {},
+        entryTags: [], exitTags: [], lessons: [],
+        ...entry,
+      };
+      demoEntries.unshift(record);
     }
-    const created = {
-      id: `demo_${Date.now()}`, tradeNumber: demoEntries.filter((e) => e.entryType === 'trade').length + 1,
-      createdAt: now, updatedAt: now, exits: [], methodQualityTags: [], ruleViolations: [], screenshots: [], emotions: {},
-      ...entry,
-    };
-    demoEntries.unshift(created);
-    return created;
+    let gpAwarded = 0;
+    let newJournalStreak = null;
+    if (record.entryType === 'trade' && record.isDraft === false && !priorGpAwardedAt) {
+      gpAwarded = 5 + (record.wentWell && record.wouldImprove && record.lessons?.length ? 5 : 0);
+      record.gpAwardedAt = now;
+      newJournalStreak = 1; // demo mode has no persisted profile streak to build on
+    }
+    return { ...record, gpAwarded, newJournalStreak };
   }
-  const { entry: saved } = await apiFetch('/api/journal-entries', { method: 'POST', body: JSON.stringify(entry) });
-  return saved;
+  const { entry: saved, gpAwarded, newJournalStreak } = await apiFetch('/api/journal-entries', { method: 'POST', body: JSON.stringify(entry) });
+  return { ...saved, gpAwarded, newJournalStreak };
 }
 
 export async function deleteEntry(id) {
@@ -123,6 +134,40 @@ export async function getTodaysSnapshot(opts = {}) {
 }
 
 /**
+ * All-time (or filtered-range) journal stats for the Journal History page.
+ * Unlike getTodaysSnapshot() (today only, used by the dashboard card), this
+ * pulls the member's full trade history (bounded at 500 rows — a practical
+ * cap, not a paged view, fine at this app's scale) and computes discipline
+ * metrics that are meant to read as equal-or-more-prominent than raw P&L.
+ * @returns {Promise<{tradesLogged:number, winRate:number|null, avgWinner:number|null, avgLoser:number|null, avgR:number|null, ruleFollowRate:number|null, biasAccuracyRate:number|null, journalingStreak:number}>}
+ */
+export async function getJournalStats(filters = {}) {
+  const { entries } = await listEntries({ entryType: 'trade', ...filters, limit: 500 });
+  const winners = entries.filter((t) => t.netPnl > 0);
+  const losers = entries.filter((t) => t.netPnl < 0);
+  const rrTrades = entries.filter((t) => t.plannedRisk && t.netPnl != null && t.plannedRisk > 0);
+  const ruleAnswered = entries.filter((t) => t.ruleCheck);
+  const biasAnswered = entries.filter((t) => t.biasAccuracy && t.biasAccuracy !== 'unsure');
+
+  let journalingStreak = 0;
+  try {
+    const profile = await window.AGHF_FETCH_PROFILE?.();
+    journalingStreak = profile?.profile?.journal_streak || 0;
+  } catch { /* streak just shows 0 if the profile fetch fails */ }
+
+  return {
+    tradesLogged: entries.length,
+    winRate: entries.length ? Math.round((winners.length / entries.length) * 100) : null,
+    avgWinner: winners.length ? winners.reduce((sum, t) => sum + t.netPnl, 0) / winners.length : null,
+    avgLoser: losers.length ? losers.reduce((sum, t) => sum + t.netPnl, 0) / losers.length : null,
+    avgR: rrTrades.length ? rrTrades.reduce((sum, t) => sum + t.netPnl / t.plannedRisk, 0) / rrTrades.length : null,
+    ruleFollowRate: ruleAnswered.length ? Math.round((ruleAnswered.filter((t) => t.ruleCheck === 'yes').length / ruleAnswered.length) * 100) : null,
+    biasAccuracyRate: biasAnswered.length ? Math.round((biasAnswered.filter((t) => t.biasAccuracy === 'yes').length / biasAnswered.length) * 100) : null,
+    journalingStreak,
+  };
+}
+
+/**
  * Debounced autosave wrapper, same shape as checklist-service.js's
  * createAutosaver — `onStatus('saving'|'saved'|'error', savedEntryOrErr)`.
  */
@@ -148,7 +193,7 @@ export function createAutosaver(onStatus) {
 /** Quick reflection save (Pre-Market / Post-Market Journal card actions). */
 export async function saveReflection(type, prompt, text) {
   return saveEntry({
-    entryType: type, prompt, finalReflection: text,
+    entryType: type, prompt, entryReasoning: text,
     tradeDate: new Date().toISOString().slice(0, 10), isDraft: false,
   });
 }

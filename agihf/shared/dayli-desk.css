@@ -414,6 +414,81 @@
 .cl-wizard-nav{position:sticky;bottom:0;background:rgba(253,248,245,.96);backdrop-filter:blur(16px);border-top:1px solid rgba(244,130,154,.15);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:14px;border-radius:18px;margin-top:8px;flex-wrap:wrap;}
 .cl-nav-status{font-size:.78rem;color:var(--muted);}
 
+/* ── Chip system — generalized selectable-pill component used throughout the 7-step journal ── */
+.chip-group{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{padding:8px 15px;border-radius:100px;border:1.5px solid rgba(244,130,154,.18);background:var(--cream);font-size:.8rem;color:var(--text);cursor:pointer;font-family:var(--font-body);transition:transform .12s ease;}
+.chip:active{transform:scale(.96);}
+.chip.active{background:var(--pink-pale);border-color:var(--pink);color:var(--pink);font-weight:700;}
+.field-textarea.short{min-height:70px;}
+
+/* ── Journal wizard extras: completion bar, mindset groups, lesson list, execution score ── */
+.jl-completion-row{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.jl-completion-row .progress-shell{flex:1;}
+.jl-completion-text{font-size:.76rem;font-weight:700;color:var(--muted);white-space:nowrap;}
+.jl-mindset-group{margin-bottom:20px;}
+.jl-mindset-group:last-child{margin-bottom:0;}
+.jl-mindset-heading{font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--peach);margin-bottom:4px;}
+.jl-lesson-list{display:flex;flex-direction:column;gap:10px;}
+.jl-lesson-row{display:flex;align-items:center;gap:8px;}
+.jl-lesson-arrow{color:var(--pink);font-weight:700;flex-shrink:0;}
+.jl-lesson-row .field-input{flex:1;}
+.jl-lesson-readlist{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;}
+.jl-lesson-readlist li{font-size:.88rem;color:var(--text);}
+.jl-exec-score{margin-top:18px;background:var(--peach-pale);border-radius:14px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;}
+.jl-exec-score-label{font-size:.76rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+.jl-exec-score-value{font-family:var(--font-display);font-size:1.2rem;color:var(--dark);font-weight:700;}
+
+/* ── Trade Case File (read-only view) ────────────────────────────── */
+.tsc-case-heading{font-family:var(--font-display);font-size:1.05rem;color:var(--dark);}
+.jl-case-sub{display:block;font-family:var(--font-body);font-size:.76rem;color:var(--muted);font-weight:500;margin-top:2px;}
+.jl-case-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(244,130,154,.07);font-size:.88rem;}
+.jl-case-row:last-child{border-bottom:none;}
+.jl-case-label{color:var(--muted);font-weight:600;}
+.jl-case-value{color:var(--dark);font-weight:600;text-align:right;}
+
+/* ── Trade Summary Card — shared celebration + Journal History grid card ── */
+.tsc-card{display:block;background:#fff;border:1px solid rgba(244,130,154,.1);border-radius:20px;overflow:hidden;box-shadow:0 4px 18px rgba(244,130,154,.05);text-decoration:none;color:inherit;}
+.tsc-hero-shot{width:100%;aspect-ratio:16/9;background:var(--cream) center/cover no-repeat;}
+.tsc-card-celebration .tsc-hero-shot{aspect-ratio:4/3;}
+.tsc-body{padding:18px 20px;}
+.tsc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.tsc-trade-num{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pink);}
+.tsc-rule-icon{font-size:.9rem;}
+.tsc-ticker{font-family:var(--font-display);font-size:1.1rem;color:var(--dark);}
+.tsc-date{font-size:.76rem;color:var(--muted);margin-bottom:8px;}
+.tsc-pnl{font-family:var(--font-display);font-size:1.6rem;font-weight:700;}
+.tsc-card-celebration .tsc-pnl{font-size:2.2rem;}
+.tsc-points{font-size:.82rem;color:var(--muted);}
+.tsc-grade{display:inline-block;margin-top:6px;padding:3px 10px;border-radius:100px;background:var(--peach-pale);color:#a9660f;font-size:.72rem;font-weight:700;}
+.tsc-setup-flow{margin-top:10px;font-size:.78rem;color:var(--muted);font-style:italic;}
+.tsc-section{margin-top:12px;}
+.tsc-section strong{display:block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.tsc-section p{font-size:.84rem;color:var(--text);margin:0;}
+.tsc-emotions{margin-top:10px;font-size:.78rem;color:var(--muted);}
+.tsc-lesson{margin-top:10px;font-size:.84rem;color:var(--dark);background:var(--pink-pale);border-radius:10px;padding:8px 12px;}
+
+/* ── Journal History: stats row, badges strip, insight cards, card grid ── */
+.jh-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px;}
+@media(max-width:900px){.jh-stats-row{grid-template-columns:repeat(2,1fr);}}
+.jh-stat-tile{background:#fff;border:1px solid rgba(244,130,154,.1);border-radius:16px;padding:14px 16px;}
+.jh-stat-label{font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.jh-stat-value{font-family:var(--font-display);font-size:1.3rem;color:var(--dark);font-weight:700;}
+.jh-stat-tile.hero{background:linear-gradient(135deg,var(--pink-pale),var(--peach-pale));border-color:transparent;}
+.jh-stat-tile.hero .jh-stat-value{font-size:1.5rem;color:var(--pink);}
+.jh-stat-tile.muted .jh-stat-value{font-size:1.05rem;color:var(--muted);}
+.jh-badges-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.jh-badge-tile{display:flex;flex-direction:column;align-items:center;gap:4px;background:#fff;border:1.5px dashed rgba(122,92,80,.2);border-radius:14px;padding:12px 14px;min-width:100px;}
+.jh-badge-tile.locked{opacity:.55;}
+.jh-badge-icon{font-size:1.3rem;}
+.jh-badge-label{font-size:.68rem;font-weight:600;color:var(--muted);text-align:center;}
+.jh-insights-col{display:flex;flex-direction:column;gap:8px;}
+.jh-insight-card{display:flex;align-items:center;gap:10px;background:#fff;border-left:4px solid var(--muted);border-radius:12px;padding:10px 16px;font-size:.85rem;color:var(--text);}
+.jh-insight-card.positive{border-left-color:var(--teal);}
+.jh-insight-card.watch{border-left-color:var(--pink);}
+.jh-insight-card.neutral{border-left-color:var(--peach);}
+.jh-insight-icon{font-size:1.1rem;}
+.jh-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+
 /* ── Section reorder for mobile priority ─────────────────────────── */
 @media(max-width:900px){
   .dd-desktop-order{display:flex;flex-direction:column;}

@@ -49,7 +49,6 @@ async function migrateTrades() {
       stopLoss: t.stopLoss,
       takeProfit: t.takeProfit,
       plannedRisk: t.plannedRisk,
-      actualRisk: t.actualRisk,
       bias4h: t.bias4h,
       structure1h: t.structure1h,
       pil: t.pil,
@@ -95,7 +94,7 @@ async function migrateReflections() {
     await saveEntry({
       entryType: n.type === 'premarket' ? 'premarket_reflection' : 'postmarket_reflection',
       prompt: n.prompt,
-      finalReflection: n.text,
+      entryReasoning: n.text,
       tradeDate: new Date(n.savedAt || Date.now()).toISOString().slice(0, 10),
       isDraft: false,
     });

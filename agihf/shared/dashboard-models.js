@@ -110,6 +110,33 @@
  * @property {string} [primary]
  * @property {string[]} [secondary]
  *
+ * @typedef {'yes'|'no'|'still_running'|'not_sure'} TargetHitStatus
+ * @typedef {'yes'|'no'|'unsure'} AgreementAnswer
+ * @typedef {'yes'|'no'|'mixed'|'unsure'} BiasAccuracyAnswer
+ * @typedef {'yes'|'mostly'|'no'} RuleCheckAnswer
+ * @typedef {'A+'|'A'|'A-'|'B'|'C'|'D'} ExecutionGrade
+ *
+ * @typedef {Object} IccMiniChecklistState
+ * A 7-item self-report shown only when "Dayli ICC Setup" is tagged in Step 3
+ * (Why I Entered). Deliberately a separate, simpler vocabulary from
+ * ChecklistItemState/the 21-item Dayli ICC Trade Checklist tool below — it's
+ * a quick in-journal self-assessment, not the same tree, just inspired by
+ * the same phase language. Never auto-derived from a linked checklist_id.
+ * @property {boolean} validPil
+ * @property {boolean} indication
+ * @property {boolean} correction
+ * @property {boolean} continuation
+ * @property {boolean} firstRetest
+ * @property {boolean} bias4hAligned
+ * @property {boolean} structure1hAligned
+ *
+ * @typedef {'positive'|'neutral'|'watch'} PatternInsightKind
+ * @typedef {Object} PatternInsight
+ * @property {string} id
+ * @property {string} icon
+ * @property {string} text
+ * @property {PatternInsightKind} kind
+ *
  * @typedef {Object} JournalEntryRecord
  * @property {string} id
  * @property {string} userId
@@ -124,17 +151,15 @@
  * @property {TradeDirection|null} direction   null until the member actually picks one — never defaults
  * @property {number} [contracts]
  * @property {string} [executionTimeframe]     fixed '1m' per the Dayli ICC method
- * @property {string} [setupType]
- * @property {number} [setupQualityScore]      1-5
- * @property {string} [tradeStyle]      free-text, matches preview.html's "Trade Style" field
- * @property {string} [sniperScore]     free-text, matches preview.html's "Sniper Score" field (not a 1-5 rating)
- * @property {string} [screenshotNotes] "Chart items to include" free-text notes for this trade's screenshots
+ * @property {string} [setupType]       doubles as the "Trade Setup / Trade Style" free-text field
  * @property {number} [entryPrice]
  * @property {string} [entryTime]       ISO timestamp
  * @property {number} [stopLoss]
  * @property {number} [takeProfit]
  * @property {number} [plannedRisk]
- * @property {number} [actualRisk]
+ * @property {number} [plannedReward]
+ * @property {number} [riskRewardRatio]
+ * @property {TargetHitStatus} [targetHit]   tracked separately from win/loss outcome
  * @property {number} [fees]
  * @property {ScaleOutExit[]} exits
  * @property {number} [grossPnl]
@@ -142,22 +167,29 @@
  * @property {number} [rMultiple]
  * @property {TradeOutcome|null} outcome        computed from netPnl
  * @property {TradeOutcome|null} [outcomeOverride]  stored separately from the computed value
- * @property {Bias4h} [bias4h]
- * @property {Structure1h} [structure1h]
- * @property {string} [pil]
+ * @property {Bias4h} [bias4h]          checklist-linkage context only, not a journal input field
+ * @property {Structure1h} [structure1h]        checklist-linkage context only, not a journal input field
+ * @property {string} [pil]             checklist-linkage context only, not a journal input field
  * @property {IccPhase} [iccPhase]
+ * @property {string[]} entryTags       "what did you see" chips — see JOURNAL_ENTRY_TAGS
+ * @property {IccMiniChecklistState|null} [iccChecklist]   null = not shown this trade (see typedef above)
+ * @property {string[]} exitTags        "why did you exit" chips — see EXIT_TAGS
+ * @property {AgreementAnswer} [agreeWithEarlyExit]   only meaningful when exitTags includes 'Took Profit Early'
  * @property {MethodQualityTag[]} methodQualityTags
- * @property {MethodQualityTag[]} ruleViolations
+ * @property {string[]} ruleViolations  "what rule did you break" chips — see RULE_BREAK_TAGS; only meaningful when ruleCheck is 'mostly'|'no'
  * @property {{path: string, uploadedAt: string}[]} screenshots   storage paths, never public URLs
- * @property {string} [entryReasoning]
- * @property {string} [exitReasoning]
- * @property {string} [lessons]
- * @property {{entering?: EmotionStage, during?: EmotionStage, exiting?: EmotionStage, reflectionQuote?: string}} emotions   reflectionQuote matches preview.html's "How did this trade feel overall?" field
- * @property {number} [executionRating]  1-5 stars
- * @property {string} [structureInsight]
- * @property {string} [oneSentenceTakeaway]
- * @property {string} [finalReflection]
+ * @property {string} [entryReasoning]  short (not essay) reasoning
+ * @property {string} [exitReasoning]   short (not essay) reasoning
+ * @property {string[]} lessons         bullet list ("Lesson Logged," never called "Notes")
+ * @property {{entering?: EmotionStage, during?: EmotionStage, exiting?: EmotionStage}} emotions   .secondary on EmotionStage is documented but unused/unwired this pass
+ * @property {BiasAccuracyAnswer} [biasAccuracy]
+ * @property {RuleCheckAnswer} [ruleCheck]
+ * @property {ExecutionGrade} [executionGrade]      grades execution quality, never P&L
+ * @property {number} [executionScore]  0-100 composite, independent of P&L — see computeExecutionScore() in journal-engine.js
+ * @property {string} [wentWell]
+ * @property {string} [wouldImprove]
  * @property {boolean} isDraft
+ * @property {string} [gpAwardedAt]     ISO timestamp; set once, on first non-draft save — the GP/streak dedupe guard
  * @property {string} createdAt
  * @property {string} updatedAt
  */
@@ -225,6 +257,38 @@ export const METHOD_QUALITY_LABELS = {
   news_proximity: 'News Proximity',
   overtraded: 'Overtraded',
 };
+
+export const JOURNAL_ENTRY_TAGS = [
+  'Higher High', 'Higher Low', 'Lower High', 'Lower Low', 'Consolidation',
+  'Support / Resistance', 'Liquidity', 'Sweep', 'Market Structure Shift',
+  'Breakout', 'Retest', 'Indication', 'Correction', 'Continuation',
+  'Dayli ICC Setup', 'Other',
+];
+
+export const EXIT_TAGS = [
+  'Take Profit Hit', 'Stop Loss Hit', 'Structure Changed', 'Took Profit Early',
+  'Protected Account / Buffer', 'Trailing Stop', 'Rule-Based Exit',
+  'Emotional Exit', 'Manual Close', 'Trade Invalidated', 'Other',
+];
+
+export const RULE_BREAK_TAGS = [
+  'Entered early', 'Entered late', 'Chased price', 'Ignored bias', 'Ignored structure',
+  'Moved stop', 'Oversized', 'Took an unnecessary extra trade', 'Revenge traded',
+  'Exited emotionally', 'Broke daily loss rule', 'Other',
+];
+
+/** Larger, spec-specific option sets per mindset stage — distinct from the smaller set used before this rebuild. */
+export const EMOTION_OPTIONS_V2 = {
+  entering: ['Calm', 'Prepared', 'Confident', 'Aligned', 'Nervous', 'Excited', 'Impatient', 'FOMO', 'Unsure'],
+  during: ['Focused', 'Calm', 'At Ease', 'Anxious', 'Watching Every Tick', 'Second Guessing', 'Tempted to Exit', 'Tempted to Move Stop', 'Overconfident'],
+  exiting: ['Proud', 'Grateful', 'Calm', 'Protective', 'Relieved', 'Frustrated', 'Nervous', 'Regretful', 'Disappointed', 'Neutral'],
+};
+
+export const ICC_MINI_CHECKLIST_ITEMS = [
+  ['validPil', 'Valid PIL'], ['indication', 'Indication'], ['correction', 'Correction'],
+  ['continuation', 'Continuation'], ['firstRetest', 'First Retest'],
+  ['bias4hAligned', '4H Bias Aligned'], ['structure1hAligned', '1H Structure Aligned'],
+];
 
 export const BIAS_LABELS = { bullish: 'Bullish', bearish: 'Bearish', neutral: 'Neutral' };
 export const STRUCTURE_LABELS = { bullish: 'Bullish', bearish: 'Bearish', mixed: 'Mixed', unconfirmed: 'Unconfirmed' };
