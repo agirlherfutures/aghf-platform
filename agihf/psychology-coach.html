@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psychology Coach — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="psychology"></script>
+
+<main class="main">
+  <div class="dd-header-top">
+    <div>
+      <div class="pg-eye" id="psyModeEyebrow">✦ The Inner Edge</div>
+      <div class="pg-title" id="psyModeTitle">Coach</div>
+    </div>
+    <a class="dd-secondary-btn" href="psychology.html">← Coach Home</a>
+  </div>
+
+  <div class="dd-section">
+    <label class="psy-toggle-row psy-onetime-toggle">
+      <input type="checkbox" id="psyOneTime"> Use this session without saving it to my Psychology History
+    </label>
+    <div class="dd-card" id="psyFlowCard"></div>
+  </div>
+</main>
+
+<script type="module">
+  import { getTodayChecklist } from './shared/checklist-service.js';
+  import { getTodaysSnapshot } from './shared/journal-service.js';
+  import { savePsychologySession, savePsychologyProfile, getPsychologyProfile } from './shared/psychology-service.js';
+  import { checkDailyLimits } from './shared/psychology-rules-engine.js';
+  import { renderTalkMeThrough, renderPreTradeCheck, renderPostLossReset, renderCooldownTimer } from './shared/psychology-engine.js';
+  import { showDeskToast } from './shared/dayli-desk-engine.js';
+
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get('mode') || 'talk_me_through';
+  const initialTriggerKey = params.get('trigger');
+  const flowCard = document.getElementById('psyFlowCard');
+
+  const MODE_META = {
+    talk_me_through: { eyebrow: '✦ Talk Me Through This', title: 'What is happening right now?' },
+    pre_trade_check: { eyebrow: '✦ Pre-Trade Mental Check', title: 'A fast check before you place an order.' },
+    post_loss_reset: { eyebrow: '✦ Post-Loss Reset', title: 'A guided reset after a trade that didn’t go your way.' },
+  };
+  const meta = MODE_META[mode] || MODE_META.talk_me_through;
+  document.getElementById('psyModeEyebrow').textContent = meta.eyebrow;
+  document.getElementById('psyModeTitle').textContent = meta.title;
+
+  async function getLimits() {
+    try {
+      const [checklist, snapshot] = await Promise.all([getTodayChecklist(), getTodaysSnapshot()]);
+      const riskUsedToday = snapshot.trades.filter((t) => t.netPnl < 0).reduce((s, t) => s + Math.abs(t.netPnl), 0);
+      return checkDailyLimits({
+        maxTrades: checklist.marketContext?.maxTrades ?? null,
+        maxRisk: checklist.marketContext?.maxRisk ?? null,
+        tradesTakenToday: snapshot.tradeCount,
+        riskUsedToday,
+      });
+    } catch (err) {
+      console.error('Could not check today’s limits:', err);
+      return { reachedTradeLimit: false, reachedRiskLimit: false };
+    }
+  }
+
+  function walkAwayRuleText() {
+    return 'Pressure is not confirmation — if you feel rushed or uncertain, that is itself a walk-away condition.';
+  }
+
+  function showCooldown() {
+    renderCooldownTimer(flowCard, {
+      walkAwayRule: walkAwayRuleText(),
+      onDone: () => { window.location.href = 'psychology.html'; },
+    });
+  }
+
+  async function onComplete(sessionData) {
+    const isOneTime = document.getElementById('psyOneTime').checked;
+    try {
+      await savePsychologySession({ ...sessionData, savePreference: isOneTime ? 'one_time' : 'save' });
+      showDeskToast(isOneTime ? 'Session complete — not saved to history' : 'Saved to your Psychology History ✦');
+    } catch (err) {
+      console.error('Could not save psychology session:', err);
+      showDeskToast('Couldn’t save that session — you can still continue.');
+    }
+  }
+
+  async function start() {
+    if (mode === 'pre_trade_check') {
+      renderPreTradeCheck(flowCard, { onComplete, onCooldown: showCooldown });
+    } else if (mode === 'post_loss_reset') {
+      renderPostLossReset(flowCard, { onComplete, getLimits, onCooldown: showCooldown });
+    } else {
+      renderTalkMeThrough(flowCard, { onComplete, onCooldown: showCooldown, initialTriggerKey });
+    }
+  }
+
+  document.addEventListener('aghf-auth-ready', start);
+</script>
+
+</body>
+</html>

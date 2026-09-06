@@ -11,8 +11,8 @@
  *
  * Usage: <script src="../shared/sidebar.js" data-active="dashboard"></script>
  * data-active must match one of: dashboard, market-outlook, checklist,
- * journal, lessons, games, chart-lab, playbook, leaderboard, store,
- * profile, performance
+ * journal, psychology, lessons, games, chart-lab, playbook, leaderboard,
+ * store, profile, performance
  */
 (function () {
   const script = document.currentScript;
@@ -24,6 +24,7 @@
     { section: 'Trade', key: 'market-outlook', icon: '◐', label: 'Market Outlook', href: 'market-outlook.html' },
     { section: 'Trade', key: 'checklist', icon: '▤', label: 'ICC Checklist', href: 'checklist.html', mobileIcon: '▤', mobileLabel: 'Checklist' },
     { section: 'Trade', key: 'journal', icon: '✎', label: 'Journal', href: 'journal.html', mobileIcon: '✎', mobileLabel: 'Journal' },
+    { section: 'Mindset', key: 'psychology', icon: '♡', label: 'Psychology Coach', href: 'psychology.html' },
     { section: 'Learn', key: 'lessons', icon: '✦', label: 'Academy', href: 'lessons.html', mobileIcon: '✦', mobileLabel: 'Academy' },
     { section: 'Learn', key: 'games', icon: '◈', label: 'Games', href: 'games.html' },
     { section: 'Learn', key: 'chart-lab', icon: '◧', label: 'Chart Lab', href: 'chart-lab.html' },

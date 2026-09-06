@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Trading Psychology Playbook — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="psychology"></script>
+
+<main class="main">
+  <div class="dd-header-top">
+    <div>
+      <div class="pg-eye">✦ My Trading Psychology Playbook</div>
+      <div class="pg-title">What you’re learning about how you actually trade.</div>
+    </div>
+    <a class="dd-secondary-btn" href="psychology.html">← Coach Home</a>
+  </div>
+  <div class="dd-section" id="psyPlaybookArea"></div>
+</main>
+
+<script type="module">
+  import { listPlaybookItems, savePlaybookItem, deletePlaybookItem } from './shared/psychology-service.js';
+  import { renderPlaybook } from './shared/psychology-engine.js';
+  import { renderSkeleton, renderErrorState, showDeskToast } from './shared/dayli-desk-engine.js';
+
+  const area = document.getElementById('psyPlaybookArea');
+
+  async function load() {
+    renderSkeleton(area, 3);
+    try {
+      const items = await listPlaybookItems();
+      renderPlaybook(area, items, {
+        onAdd: async (data) => { await savePlaybookItem(data); showDeskToast('Saved to your Playbook ✦'); load(); },
+        onUpdate: async (data) => { await savePlaybookItem(data); load(); },
+        onDelete: async (id) => { await deletePlaybookItem(id); load(); },
+      });
+    } catch (err) {
+      console.error('Playbook load error:', err);
+      renderErrorState(area, err.setupRequired ? err.message : 'Couldn’t load your Playbook.', load);
+    }
+  }
+
+  document.addEventListener('aghf-auth-ready', load);
+</script>
+
+</body>
+</html>

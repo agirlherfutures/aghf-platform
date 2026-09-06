@@ -13,6 +13,7 @@
 
 import { METHOD_QUALITY_LABELS, BIAS_LABELS, STRUCTURE_LABELS, PHASE_LABELS } from './dashboard-models.js';
 import { CHECKLIST_PHASES } from './checklist-template.js';
+import { EMPTY_STATES } from './psychology-copy.js';
 
 /* ── Small shared DOM helpers ───────────────────────────────────── */
 
@@ -350,6 +351,37 @@ export function renderCurrentFocusCard(container, focus, opts) {
     </div>
     <a class="dd-primary-btn" href="${opts.lessonHref || opts.chartLabHref}">Practice This</a>
   `;
+}
+
+/* ── Inner Edge (Psychology Coach) dashboard card ────────────────── */
+
+/**
+ * Deliberately conservative: only shows a focus when one actually exists
+ * (member-set, or previously computed by a rules pass) or the member has
+ * at least one saved session to summarize — never fabricates a pattern.
+ * @param {{profile: import('./dashboard-models.js').PsychologyProfile, sessionCount: number}} data
+ */
+export function renderInnerEdgeCard(container, data, opts = {}) {
+  const { profile, sessionCount } = data;
+  if (!profile?.currentFocus && !sessionCount) {
+    container.innerHTML = `
+      <div class="dd-section-head"><div class="dd-section-title">Your Inner Edge</div></div>
+      <div class="dd-card">
+        <p class="dd-focus-body">${EMPTY_STATES.dashboardCard}</p>
+        <a class="dd-secondary-btn" href="${opts.coachHref}">Open Psychology Coach</a>
+      </div>`;
+    return;
+  }
+  const title = profile.currentFocus || 'Getting to know your patterns';
+  const body = profile.currentFocusBody || `You’ve saved ${sessionCount} psychology ${sessionCount === 1 ? 'session' : 'sessions'} so far. Keep going and The Inner Edge will start surfacing evidence-based patterns here.`;
+  container.innerHTML = `
+    <div class="dd-section-head"><div class="dd-section-title">Your Inner Edge</div></div>
+    <div class="dd-card">
+      <div class="dd-focus-eyebrow">✦ Current focus</div>
+      <div class="dd-focus-title">${title}</div>
+      <div class="dd-focus-body">${body}</div>
+      <a class="dd-primary-btn" href="${opts.coachHref}">Open Psychology Coach</a>
+    </div>`;
 }
 
 /* ── Continue Learning ───────────────────────────────────────────── */

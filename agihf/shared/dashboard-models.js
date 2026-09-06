@@ -296,3 +296,125 @@ export const PHASE_LABELS = {
 export function todayKey(d = new Date()) {
   return d.toISOString().slice(0, 10);
 }
+
+/**
+ * The Inner Edge — Psychology Coach data shapes (agihf/api/psychology-*.js).
+ * See supabase/migrations/0003_psychology_coach.sql for the proposed
+ * column-level schema these map onto (not yet applied to any live DB).
+ */
+
+/**
+ * @typedef {'gentle'|'direct'|'accountability'|'teach_me'|'reset_me'} CoachingTone
+ *
+ * @typedef {Object} PsychologyConsent
+ * @property {boolean} tradeData
+ * @property {boolean} checklistAnswers
+ * @property {boolean} journalStructured
+ * @property {boolean} journalFreetext
+ * @property {boolean} emotions
+ * @property {boolean} sessionHistory
+ * @property {boolean} playbook
+ * @property {boolean} academyProgress
+ *
+ * @typedef {Object} PsychologyProfile
+ * @property {string} userId
+ * @property {CoachingTone} coachingTone
+ * @property {boolean} personalizationEnabled
+ * @property {PsychologyConsent} consent
+ * @property {string|null} currentFocus         short title, e.g. "Waiting without anticipating"
+ * @property {string|null} currentFocusBody
+ * @property {'rules'|'member'|null} currentFocusSource   never 'ai' until Phase 3 ships
+ * @property {string} createdAt
+ * @property {string} updatedAt
+ */
+
+/**
+ * @typedef {'talk_me_through'|'pre_trade_check'|'post_loss_reset'|'scenario'|'weekly_review'|'ask_question'} PsychologyMode
+ *
+ * @typedef {Object} PsychologySession
+ * @property {string} id
+ * @property {string} userId
+ * @property {PsychologyMode} mode
+ * @property {'in_progress'|'completed'|'abandoned'} status
+ * @property {'save'|'one_time'} savePreference
+ * @property {string} [triggerCategory]     e.g. "I want to chase" — see URGENT_SHORTCUTS
+ * @property {string} [linkedTradeId]
+ * @property {string} [linkedChecklistId]
+ * @property {Object} structuredResponses   the answers collected during this session, mode-specific shape
+ * @property {string} [readinessResult]     Pre-Trade Check only — see READINESS_LABELS
+ * @property {string[]} rulesTriggered      which deterministic rules fired (see psychology-rules-engine.js)
+ * @property {string} [recommendedAction]
+ * @property {string} [memberSelectedAction]
+ * @property {string} createdAt
+ * @property {string} updatedAt
+ * @property {string} [completedAt]
+ */
+
+/**
+ * @typedef {Object} PsychologyPlaybookItem
+ * @property {string} id
+ * @property {string} userId
+ * @property {string} category          one of PLAYBOOK_CATEGORIES[].key
+ * @property {string} title
+ * @property {string} content
+ * @property {'manual'|'session'|'pattern_mirror'} sourceType
+ * @property {string} [sourceRecordId]
+ * @property {boolean} pinned
+ * @property {boolean} isArchived
+ * @property {number} sortOrder
+ * @property {string} createdAt
+ * @property {string} updatedAt
+ */
+
+/**
+ * @typedef {Object} PsychologyScenarioAttempt
+ * @property {string} id
+ * @property {string} userId
+ * @property {string} scenarioId        references PSYCHOLOGY_SCENARIOS[].id (static content, not a DB row)
+ * @property {string} selectedResponseId
+ * @property {string} [writtenReasoning]
+ * @property {number} processScore      0-100, rewards process over profitable-hypothetical-outcome
+ * @property {string} completedAt
+ */
+
+export const COACHING_TONES = [
+  { key: 'gentle', label: 'Gentle', desc: 'Calm, reassuring, reflective.' },
+  { key: 'direct', label: 'Direct', desc: 'Clear, concise, honest, firm.' },
+  { key: 'accountability', label: 'Accountability', desc: 'Challenges rationalizations, redirects to your saved rules.' },
+  { key: 'teach_me', label: 'Teach Me', desc: 'Explains the psychology or behavioral principle at play.' },
+  { key: 'reset_me', label: 'Reset Me', desc: 'Minimal wording, immediate step-by-step regulation.' },
+];
+
+export const URGENT_SHORTCUTS = [
+  'I want to chase', "I'm afraid to enter", 'I just lost', 'I want another trade',
+  "I'm panicking in a trade", 'I want to move my stop', 'I exited too early',
+  'I broke my rules', "I don't trust my strategy", "I'm feeling overconfident",
+];
+
+export const PLAYBOOK_CATEGORIES = [
+  { key: 'common_triggers', label: 'My Common Triggers' },
+  { key: 'fomo_feels_like', label: 'What FOMO Feels Like for Me' },
+  { key: 'post_loss_pattern', label: 'My Post-Loss Pattern' },
+  { key: 'overconfidence_signals', label: 'My Overconfidence Signals' },
+  { key: 'fear_signals', label: 'My Fear Signals' },
+  { key: 'walk_away_conditions', label: 'My Walk-Away Conditions' },
+  { key: 'reset_routine', label: 'My Reset Routine' },
+  { key: 'best_trading_state', label: 'My Best Trading State' },
+  { key: 'trust_my_process', label: 'What Helps Me Trust My Process' },
+  { key: 'evidence_i_follow_rules', label: 'Evidence That I Can Follow My Rules' },
+  { key: 'if_then_rules', label: 'My Personal If-Then Rules' },
+  { key: 'behaviors_to_repeat', label: 'Behaviors I Want to Repeat' },
+  { key: 'behaviors_replacing', label: 'Behaviors I Am Replacing' },
+  { key: 'weekly_focus', label: 'Current Weekly Focus' },
+  { key: 'psychology_wins', label: 'Completed Psychology Wins' },
+];
+
+export const READINESS_LABELS = ['Clear', 'Slightly Activated', 'Emotionally Influenced', 'Pause Recommended', 'Walk-Away Condition Reached'];
+
+export const COOLDOWN_DURATIONS = [
+  { key: '60s', label: '60 seconds', seconds: 60 },
+  { key: '2min', label: '2 minutes', seconds: 120 },
+  { key: '5min', label: '5 minutes', seconds: 300 },
+  { key: '15min', label: '15 minutes', seconds: 900 },
+  { key: 'session', label: 'End of session', seconds: null },
+];

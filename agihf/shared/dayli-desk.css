@@ -499,3 +499,79 @@
   .dd-order-1{order:1;} .dd-order-2{order:2;} .dd-order-3{order:3;} .dd-order-4{order:4;}
   .dd-order-5{order:5;} .dd-order-6{order:6;} .dd-order-7{order:7;} .dd-order-8{order:8;} .dd-order-9{order:9;}
 }
+
+/* ── The Inner Edge (Psychology Coach) ───────────────────────────── */
+
+.psy-urgent-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.psy-urgent-chip{padding:9px 16px;border-radius:100px;border:1.5px dashed var(--pink-light);background:var(--pink-pale);color:var(--text);font:500 .78rem var(--font-body);cursor:pointer;transition:transform .12s ease;}
+.psy-urgent-chip:hover{transform:translateY(-1px);border-style:solid;}
+
+.psy-mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.psy-mode-card{display:block;text-align:left;background:var(--warm);border:1.5px solid var(--border);border-radius:18px;padding:20px;text-decoration:none;color:var(--text);box-shadow:0 8px 22px rgba(44,24,16,.05);transition:transform .15s ease,box-shadow .15s ease;}
+.psy-mode-card:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(44,24,16,.09);}
+.psy-mode-icon{font-size:1.4rem;}
+.psy-mode-title{font:700 1rem var(--font-display);margin:8px 0 4px;}
+.psy-mode-desc{font-size:.82rem;color:var(--muted);line-height:1.5;}
+
+.psy-flow-progress{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.psy-flow-heading{font:700 1.15rem var(--font-display);margin-bottom:6px;}
+.psy-flow-sub{font-size:.85rem;color:var(--muted);margin-bottom:16px;}
+.psy-flow-nav{margin-top:16px;}
+.psy-trigger-list{gap:10px;}
+
+.psy-result-card{text-align:left;}
+.psy-result-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
+.psy-result-action{font:700 1.3rem var(--font-display);margin-bottom:8px;}
+.psy-result-message{color:var(--muted);line-height:1.6;margin-bottom:18px;}
+.psy-result-actions{display:flex;gap:10px;flex-wrap:wrap;}
+
+.psy-readiness-badge{display:inline-block;padding:8px 18px;border-radius:100px;font:700 .82rem var(--font-body);margin-bottom:14px;}
+.psy-readiness-clear{background:var(--teal-pale);color:var(--teal);}
+.psy-readiness-slightly_activated{background:var(--peach-pale);color:var(--peach);}
+.psy-readiness-emotionally_influenced,.psy-readiness-pause_recommended{background:var(--pink-pale);color:var(--pink);}
+.psy-readiness-walk_away{background:var(--dark);color:var(--warm);}
+
+.psy-inline-note{background:var(--cream);border-left:3px solid var(--pink-light);padding:14px 16px;font-size:.85rem;line-height:1.6;color:var(--text);}
+.psy-note-good{border-left-color:var(--teal);}
+
+.psy-cooldown-ring{width:150px;height:150px;border-radius:50%;border:6px solid var(--pink-pale);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font:700 1.5rem var(--font-display);color:var(--text);}
+.psy-cooldown-note{text-align:center;color:var(--muted);max-width:340px;margin:0 auto 18px;line-height:1.6;}
+
+.psy-scenario-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;}
+.psy-scenario-card{text-align:left;background:var(--warm);border:1.5px solid var(--border);border-radius:16px;padding:18px;cursor:pointer;transition:transform .15s ease;}
+.psy-scenario-card:hover{transform:translateY(-2px);}
+.psy-scenario-category{font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--pink);}
+.psy-scenario-title{font:700 1rem var(--font-display);margin:6px 0;}
+.psy-scenario-difficulty{font-size:.72rem;color:var(--muted);text-transform:capitalize;}
+.psy-scenario-situation{line-height:1.6;margin:10px 0;}
+.psy-scenario-trigger{font-size:.8rem;color:var(--muted);font-style:italic;margin:10px 0;}
+.psy-scenario-options{margin-bottom:14px;}
+.psy-scenario-principle{margin:14px 0;font-size:.88rem;}
+.psy-scenario-reflection{font-style:italic;color:var(--muted);margin-bottom:16px;}
+
+.psy-playbook-section{margin-bottom:22px;}
+.psy-playbook-section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font:700 .92rem var(--font-display);}
+.psy-playbook-items{display:grid;gap:10px;}
+.psy-playbook-item{background:var(--warm);border:1.5px solid var(--border);border-radius:14px;padding:14px 16px;}
+.psy-playbook-item.pinned{border-color:var(--peach);}
+.psy-playbook-item-title{font-weight:700;margin-bottom:4px;}
+.psy-playbook-item-content{color:var(--muted);font-size:.85rem;line-height:1.5;}
+.psy-playbook-item-actions{display:flex;gap:14px;margin-top:8px;}
+.psy-playbook-item-actions button{background:none;border:none;color:var(--pink);font-size:.75rem;font-weight:700;cursor:pointer;padding:0;}
+.psy-playbook-empty{color:var(--placeholder);font-size:.82rem;font-style:italic;}
+.psy-playbook-form{display:grid;gap:8px;margin-top:10px;}
+
+.psy-history-list{display:grid;gap:10px;}
+.psy-history-row{display:flex;justify-content:space-between;align-items:center;background:var(--warm);border:1.5px solid var(--border);border-radius:14px;padding:14px 16px;}
+.psy-history-mode{font-weight:700;}
+.psy-history-meta{font-size:.78rem;color:var(--muted);}
+.psy-history-row button{background:none;border:none;color:var(--pink);font-size:.75rem;font-weight:700;cursor:pointer;}
+
+.psy-toggle-row{display:flex;align-items:center;gap:10px;font-size:.85rem;padding:8px 0;cursor:pointer;}
+.psy-onetime-toggle{margin-bottom:14px;color:var(--muted);}
+
+.psy-safety-card{border:1.5px solid var(--pink);}
+.psy-safety-heading{font:700 1.2rem var(--font-display);margin-bottom:10px;}
+.psy-safety-body{line-height:1.6;margin-bottom:14px;}
+.psy-safety-actions{margin:0 0 14px;padding-left:18px;line-height:1.8;}
+.psy-safety-footer{font-size:.8rem;color:var(--muted);font-style:italic;}
