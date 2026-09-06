@@ -16,6 +16,12 @@ import { showDeskToast } from './dayli-desk-engine.js';
 
 const MIGRATION_FLAG = 'aghf_migrated_v1';
 
+/** Legacy `aghf_trades` records stored stop/target as absolute price levels; converts to an unsigned points distance from entry. */
+function priceToPoints(entryPrice, priceLevel, direction) {
+  if (entryPrice == null || priceLevel == null) return null;
+  return Math.abs(direction === 'long' ? entryPrice - priceLevel : priceLevel - entryPrice);
+}
+
 export async function migrateLegacyDataIfNeeded() {
   if (window.AGHF_DEMO) return; // nothing to migrate for a preview-only session
   if (localStorage.getItem(MIGRATION_FLAG) === '1') return;
@@ -46,8 +52,10 @@ async function migrateTrades() {
       entryTime: t.entryTime,
       exits: t.exitPrice != null ? [{ contracts: t.contracts || 1, exitPrice: t.exitPrice, exitedAt: t.exitTime || t.entryTime }] : [],
       netPnl: t.netPnl,
-      stopLoss: t.stopLoss,
-      takeProfit: t.takeProfit,
+      // Legacy records stored stopLoss/takeProfit as absolute price levels;
+      // the current schema wants a points distance from entry, so convert.
+      stopLossPoints: priceToPoints(t.entryPrice, t.stopLoss, t.direction),
+      takeProfitPoints: priceToPoints(t.entryPrice, t.takeProfit, t.direction),
       plannedRisk: t.plannedRisk,
       bias4h: t.bias4h,
       structure1h: t.structure1h,

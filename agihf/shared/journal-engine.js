@@ -84,14 +84,12 @@ export function computeTradeTotals(entry) {
 
   let plannedRisk = null;
   let plannedReward = null;
-  if (entryPrice != null && pointValue != null && entry.contracts) {
-    if (entry.stopLoss != null) {
-      const riskPoints = direction === 'long' ? entryPrice - entry.stopLoss : entry.stopLoss - entryPrice;
-      plannedRisk = Math.abs(riskPoints) * pointValue * entry.contracts;
+  if (pointValue != null && entry.contracts) {
+    if (entry.stopLossPoints != null) {
+      plannedRisk = Math.abs(entry.stopLossPoints) * pointValue * entry.contracts;
     }
-    if (entry.takeProfit != null) {
-      const rewardPoints = direction === 'long' ? entry.takeProfit - entryPrice : entryPrice - entry.takeProfit;
-      plannedReward = Math.abs(rewardPoints) * pointValue * entry.contracts;
+    if (entry.takeProfitPoints != null) {
+      plannedReward = Math.abs(entry.takeProfitPoints) * pointValue * entry.contracts;
     }
   }
   const riskRewardRatio = plannedRisk && plannedReward ? plannedReward / plannedRisk : null;
@@ -105,7 +103,7 @@ export function computeTradeTotals(entry) {
 
 function scoreRiskManagement(entry, totals) {
   if (entry.entryPrice == null) return null;
-  if (entry.stopLoss == null) return 0;
+  if (entry.stopLossPoints == null) return 0;
   if (!entry.outcome || entry.outcome !== 'loss' || totals.plannedRisk == null) return 20;
   const realizedLoss = Math.abs(totals.netPnl || 0);
   return realizedLoss <= totals.plannedRisk * 1.1 ? 20 : 10;
@@ -251,9 +249,10 @@ function renderExecutionStep(entry) {
       <div class="section-body">
         <div class="field-row cols-3">
           <div class="field-group"><label class="field-label">Entry Price</label><input class="field-input" type="number" step="0.01" data-field="entryPrice" value="${entry.entryPrice ?? ''}"></div>
-          <div class="field-group"><label class="field-label">Stop Loss</label><input class="field-input" type="number" step="0.01" data-field="stopLoss" value="${entry.stopLoss ?? ''}"></div>
-          <div class="field-group"><label class="field-label">Take Profit</label><input class="field-input" type="number" step="0.01" data-field="takeProfit" value="${entry.takeProfit ?? ''}"></div>
+          <div class="field-group"><label class="field-label">Stop Loss (points)</label><input class="field-input" type="number" min="0" step="0.01" data-field="stopLossPoints" value="${entry.stopLossPoints ?? ''}"></div>
+          <div class="field-group"><label class="field-label">Take Profit (points)</label><input class="field-input" type="number" min="0" step="0.01" data-field="takeProfitPoints" value="${entry.takeProfitPoints ?? ''}"></div>
         </div>
+        <div class="small-help" style="margin:-6px 0 6px;">Enter Stop Loss and Take Profit as points away from your entry, not the price level (e.g. 20, not 19980).</div>
         <div class="field-row cols-3">
           <div class="field-group"><label class="field-label">Exit Price</label><input class="field-input" type="number" step="0.01" data-exit-field="exitPrice" data-exit-index="0" value="${exit.exitPrice ?? ''}"></div>
           <div class="field-group"><label class="field-label">Exit Contracts</label><input class="field-input" type="number" min="0" step="1" data-exit-field="contracts" data-exit-index="0" value="${exit.contracts ?? entry.contracts ?? ''}"></div>
@@ -565,7 +564,7 @@ export function renderJournalEntryPage(container, entry, helpers) {
       const commit = () => {
         const field = el.dataset.field;
         let value = el.value;
-        if (['contracts', 'entryPrice', 'stopLoss', 'takeProfit', 'manualPointValue'].includes(field)) {
+        if (['contracts', 'entryPrice', 'stopLossPoints', 'takeProfitPoints', 'manualPointValue'].includes(field)) {
           value = value === '' ? null : Number(value);
         }
         if (field === 'entryTimeOnly') {
@@ -744,8 +743,8 @@ export function renderTradeCaseFile(container, entry, { onEdit, apiFetch }) {
       <div class="section-body">
         ${caseFieldRow('Entry', entry.entryPrice)}
         ${caseFieldRow('Exit', lastExit?.exitPrice)}
-        ${caseFieldRow('Stop Loss', entry.stopLoss)}
-        ${caseFieldRow('Take Profit', entry.takeProfit)}
+        ${caseFieldRow('Stop Loss (pts)', entry.stopLossPoints)}
+        ${caseFieldRow('Take Profit (pts)', entry.takeProfitPoints)}
         ${caseFieldRow('Points', totals.weightedPoints ? fmt(totals.weightedPoints) : null)}
         ${caseFieldRow('P&L', entry.netPnl != null ? fmtMoney(entry.netPnl) : null)}
         ${caseFieldRow('Risk-to-Reward', totals.riskRewardRatio != null ? '1 : ' + totals.riskRewardRatio.toFixed(2) : null)}

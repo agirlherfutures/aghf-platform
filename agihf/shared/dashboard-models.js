@@ -150,8 +150,8 @@
  * @property {string} [setupType]       doubles as the "Trade Setup / Trade Style" free-text field
  * @property {number} [entryPrice]
  * @property {string} [entryTime]       ISO timestamp
- * @property {number} [stopLoss]
- * @property {number} [takeProfit]
+ * @property {number} [stopLossPoints]    points away from entry, not a price level
+ * @property {number} [takeProfitPoints]  points away from entry, not a price level
  * @property {number} [plannedRisk]
  * @property {number} [plannedReward]
  * @property {number} [riskRewardRatio]

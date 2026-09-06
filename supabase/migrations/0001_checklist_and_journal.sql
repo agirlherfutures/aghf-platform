@@ -37,8 +37,8 @@ create table if not exists journal_entries (
   setup_type text,        -- doubles as the free-text "Trade Setup / Trade Style" field
   entry_price numeric,
   entry_time timestamptz,
-  stop_loss numeric,
-  take_profit numeric,
+  stop_loss_points numeric,    -- points away from entry, not a price level
+  take_profit_points numeric,  -- points away from entry, not a price level
   planned_risk numeric,
   planned_reward numeric,
   risk_reward_ratio numeric,
