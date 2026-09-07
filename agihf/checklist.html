@@ -20,17 +20,39 @@
 </main>
 
 <script type="module">
-  import { getTodayChecklist, getChecklistById, saveChecklist, createAutosaver } from './shared/checklist-service.js';
-  import { renderChecklistPage } from './shared/checklist-engine.js';
-  import { saveEntry } from './shared/journal-service.js';
-  import { migrateLegacyDataIfNeeded } from './shared/journal-migration.js';
-  import { renderErrorState, renderSkeleton } from './shared/dayli-desk-engine.js';
-
   const root = document.getElementById('clRoot');
   const params = new URLSearchParams(window.location.search);
   const viewOnlyId = params.get('id');
 
+  // Loaded dynamically, not as static top-level imports, so a failure in
+  // any one of these (a bad path, a stale deployment missing a file, a
+  // syntax error anywhere in their own import graph) is catchable here
+  // instead of silently killing this entire script before it ever runs —
+  // which previously left this page completely blank with no error shown,
+  // since a failed top-level `import` never reaches any try/catch below it.
+  let getTodayChecklist, getChecklistById, saveChecklist, createAutosaver, renderChecklistPage, saveEntry, migrateLegacyDataIfNeeded, renderErrorState, renderSkeleton;
+
+  function renderFallbackError(err) {
+    console.error('Checklist module load error:', err);
+    root.innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading the checklist</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
+
   async function boot() {
+    try {
+      ({ getTodayChecklist, getChecklistById, saveChecklist, createAutosaver } = await import('./shared/checklist-service.js'));
+      ({ renderChecklistPage } = await import('./shared/checklist-engine.js'));
+      ({ saveEntry } = await import('./shared/journal-service.js'));
+      ({ migrateLegacyDataIfNeeded } = await import('./shared/journal-migration.js'));
+      ({ renderErrorState, renderSkeleton } = await import('./shared/dayli-desk-engine.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
     renderSkeleton(root, 4);
     try {
       await migrateLegacyDataIfNeeded();

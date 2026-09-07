@@ -21,8 +21,6 @@
 </main>
 
 <script type="module">
-  import { renderAgentWorkspace } from './shared/agent-engine.js';
-
   function renderLoadError(container, err) {
     console.error('AGHF Agent failed to load:', err);
     container.innerHTML = `
@@ -33,9 +31,16 @@
       </div>`;
   }
 
-  function boot() {
+  async function boot() {
     const root = document.getElementById('agcRoot');
     try {
+      // Loaded dynamically rather than as a static top-level import — a
+      // static import failure (bad path, stale deployment, a syntax error
+      // anywhere in agent-engine.js's own import graph) would previously
+      // kill this whole script before boot() was ever even defined, so the
+      // try/catch below it never got a chance to run and #agcRoot stayed
+      // silently empty forever.
+      const { renderAgentWorkspace } = await import('./shared/agent-engine.js');
       renderAgentWorkspace(root, {});
     } catch (err) {
       renderLoadError(root, err);
