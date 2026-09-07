@@ -48,28 +48,32 @@
 </main>
 
 <script type="module">
-  import { listEntries, getJournalStats } from './shared/journal-service.js';
-  import { INSTRUMENT_SYMBOLS } from './shared/instrument-data.js';
-  import { EMOTION_OPTIONS_V2 } from './shared/dashboard-models.js';
-  import { renderTradeSummaryCard, entryToSummaryCardProps, hydrateTscShots, renderJournalStatsRow, renderBadgesStrip, renderInsightCards } from './shared/journal-engine.js';
-  import { computeInsights } from './shared/journal-insights.js';
-  import { renderSkeleton, renderErrorState } from './shared/dayli-desk-engine.js';
+  // Loaded dynamically rather than as static top-level imports — see the
+  // same fix already applied on this page's sibling pages this session:
+  // a failure in any one of these would previously kill this entire
+  // script before it ever ran, leaving the page permanently empty.
+  let listEntries, getJournalStats;
+  let INSTRUMENT_SYMBOLS;
+  let EMOTION_OPTIONS_V2;
+  let renderTradeSummaryCard, entryToSummaryCardProps, hydrateTscShots, renderJournalStatsRow, renderBadgesStrip, renderInsightCards;
+  let computeInsights;
+  let renderSkeleton, renderErrorState;
 
-  document.getElementById('fInstrument').insertAdjacentHTML('beforeend', INSTRUMENT_SYMBOLS.map((s) => `<option value="${s}">${s}</option>`).join(''));
-  const allEmotions = [...new Set([...EMOTION_OPTIONS_V2.entering, ...EMOTION_OPTIONS_V2.during, ...EMOTION_OPTIONS_V2.exiting])].sort();
-  document.getElementById('fEmotion').insertAdjacentHTML('beforeend', allEmotions.map((e) => `<option value="${e}">${e}</option>`).join(''));
+  function renderFallbackError(err) {
+    console.error('Journal history failed to load:', err);
+    document.querySelector('.main').innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading your journal history</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
 
   const cardsEl = document.getElementById('jhCards');
   const statsEl = document.getElementById('jhStats');
   const badgesEl = document.getElementById('jhBadges');
   const insightsEl = document.getElementById('jhInsights');
   const filterIds = ['fSearch', 'fFrom', 'fTo', 'fInstrument', 'fDirection', 'fOutcome', 'fSetup', 'fIcc', 'fGrade', 'fRuleCheck', 'fEmotion'];
-  filterIds.forEach((id) => document.getElementById(id).addEventListener('change', load));
-  document.getElementById('fSearch').addEventListener('input', debounce(load, 300));
-  document.getElementById('fClear').addEventListener('click', () => {
-    filterIds.forEach((id) => { document.getElementById(id).value = ''; });
-    load();
-  });
 
   function debounce(fn, ms) {
     let t;
@@ -136,7 +140,34 @@
     return body;
   }
 
-  document.addEventListener('aghf-auth-ready', load);
+  document.addEventListener('aghf-auth-ready', boot);
+
+  async function boot() {
+    try {
+      ({ listEntries, getJournalStats } = await import('./shared/journal-service.js'));
+      ({ INSTRUMENT_SYMBOLS } = await import('./shared/instrument-data.js'));
+      ({ EMOTION_OPTIONS_V2 } = await import('./shared/dashboard-models.js'));
+      ({ renderTradeSummaryCard, entryToSummaryCardProps, hydrateTscShots, renderJournalStatsRow, renderBadgesStrip, renderInsightCards } = await import('./shared/journal-engine.js'));
+      ({ computeInsights } = await import('./shared/journal-insights.js'));
+      ({ renderSkeleton, renderErrorState } = await import('./shared/dayli-desk-engine.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+
+    document.getElementById('fInstrument').insertAdjacentHTML('beforeend', INSTRUMENT_SYMBOLS.map((s) => `<option value="${s}">${s}</option>`).join(''));
+    const allEmotions = [...new Set([...EMOTION_OPTIONS_V2.entering, ...EMOTION_OPTIONS_V2.during, ...EMOTION_OPTIONS_V2.exiting])].sort();
+    document.getElementById('fEmotion').insertAdjacentHTML('beforeend', allEmotions.map((e) => `<option value="${e}">${e}</option>`).join(''));
+
+    filterIds.forEach((id) => document.getElementById(id).addEventListener('change', load));
+    document.getElementById('fSearch').addEventListener('input', debounce(load, 300));
+    document.getElementById('fClear').addEventListener('click', () => {
+      filterIds.forEach((id) => { document.getElementById(id).value = ''; });
+      load();
+    });
+
+    load();
+  }
 </script>
 
 </body>

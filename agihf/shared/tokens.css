@@ -25,5 +25,6 @@
 @view-transition { navigation: auto; }
 
 *{margin:0;padding:0;box-sizing:border-box;}
+html{background:var(--bg);}
 body{font-family:var(--font-body);background:var(--bg);color:var(--dark);}
 img{max-width:100%;}

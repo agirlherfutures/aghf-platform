@@ -125,8 +125,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script type="module">
-  import { PHASES } from './shared/curriculum-data.js';
-  import { ENTRY_DATA, PORTFOLIO_ITEMS } from './shared/yearbook-mock-data.js';
+  let PHASES;
+  let ENTRY_DATA, PORTFOLIO_ITEMS;
 
   function starString(n) {
     let s = '';
@@ -247,7 +247,22 @@
 
   document.getElementById('gradCallout').addEventListener('click', () => window.openCapstone());
 
-  render();
+  (async function boot() {
+    try {
+      ({ PHASES } = await import('./shared/curriculum-data.js'));
+      ({ ENTRY_DATA, PORTFOLIO_ITEMS } = await import('./shared/yearbook-mock-data.js'));
+    } catch (err) {
+      console.error('Yearbook failed to load:', err);
+      document.querySelector('.main').innerHTML = `
+        <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+          <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading your yearbook</div>
+          <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+          <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+        </div>`;
+      return;
+    }
+    render();
+  })();
 </script>
 
 </body>

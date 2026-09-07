@@ -933,6 +933,9 @@ export function renderAgentWorkspace(container, helpers = {}) {
         }
       } else {
         console.error('Chat stream error:', err);
+        if (!fullText) {
+          contentEl.innerHTML = renderRichText("Something went wrong sending that — try again in a moment.");
+        }
       }
     }
     clearTimeout(timeoutId);

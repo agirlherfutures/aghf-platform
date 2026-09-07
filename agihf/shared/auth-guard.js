@@ -44,8 +44,19 @@
   // smoothness on the way back in — visibility itself still does the real
   // work of keeping protected content unreadable/non-interactive while
   // hidden; opacity is what makes the reveal not look like a jarring pop.
-  document.documentElement.style.visibility = 'hidden';
-  document.documentElement.style.opacity = '0';
+  //
+  // Hides <body>, deliberately NOT <html> — opacity/visibility on an
+  // element makes its entire rendered subtree transparent, including any
+  // background-color the subtree would otherwise paint. <html> has no
+  // background of its own (only <body> does, via tokens.css), so hiding
+  // <html> let the browser's own default canvas show through underneath
+  // — plain white — for the whole duration of the auth check, on every
+  // single navigation. Hiding <body> instead leaves <html>'s own
+  // background (tokens.css: `html { background: var(--bg) }`) visible and
+  // opaque the whole time, so the hidden window reads as the site's own
+  // cream color instead of a jarring white flash.
+  document.body.style.visibility = 'hidden';
+  document.body.style.opacity = '0';
 
   // TEMPORARY DIAGNOSTIC — a member's real account is going blank in a way
   // that's been hard to pin down over chat (blank forever vs. a redirect,
@@ -110,9 +121,9 @@
   // DOMContentLoaded guarantees every deferred/module script (including
   // the listener registration) has already executed by the time we fire.
   function fireAuthReady() {
-    document.documentElement.style.visibility = '';
-    document.documentElement.style.transition = 'opacity .15s ease';
-    document.documentElement.style.opacity = '1';
+    document.body.style.visibility = '';
+    document.body.style.transition = 'opacity .15s ease';
+    document.body.style.opacity = '1';
     document.dispatchEvent(new Event('aghf-auth-ready'));
   }
   function fireAuthReadySafely() {
