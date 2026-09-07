@@ -30,7 +30,15 @@ const DEFAULT_CONSENT = {
   emotions: true, sessionHistory: true, playbook: true, academyProgress: true,
 };
 
+// Generous but real — coarse cost control, not a hard product limit.
+const AGENT_DAILY_REQUEST_LIMIT = 60;
+
 const ACTION_BLOCK_RE = /```action\s*([\s\S]*?)```/;
+const COMPONENT_BLOCK_RE = /```component\s*([\s\S]*?)```/;
+const LAUNCH_BLOCK_RE = /```launch\s*([\s\S]*?)```/;
+const FOLLOWUPS_BLOCK_RE = /```followups\s*([\s\S]*?)```/;
+const VALID_COMPONENTS = new Set(['belief_check', 'urge_check', 'execution_check', 'evidence_comparison', 'action_plan']);
+const VALID_LAUNCH_TYPES = new Set(['scenario_lab', 'cooldown_timer', 'post_loss_reset', 'pre_trade_check']);
 
 function write(res, event) {
   res.write(JSON.stringify(event) + '\n');
@@ -41,21 +49,58 @@ function safetyResponseText(copy) {
 }
 
 /**
- * Extracts a member-visible answer plus an optional proposed write action
- * from one model response, per the single fenced-block convention
- * described in agent-system-prompt.js — no tool-use API needed for this.
+ * Extracts a member-visible answer plus up to one write-action, one
+ * interactive-component, one launch, and one suggested-followups block
+ * from a single model response, per the fenced-block conventions
+ * described in agent-system-prompt.js — no tool-use API needed for any
+ * of this, since it's all parsed out of the one already-received turn.
  */
-function extractActionBlock(fullText) {
-  const match = ACTION_BLOCK_RE.exec(fullText);
-  if (!match) return { visibleText: fullText, action: null };
-  const visibleText = fullText.replace(ACTION_BLOCK_RE, '').trim();
-  try {
-    const parsed = JSON.parse(match[1]);
-    if (parsed && typeof parsed.actionType === 'string' && TOOL_REGISTRY[parsed.actionType]) {
-      return { visibleText, action: { actionType: parsed.actionType, previewPayload: parsed.payload || {} } };
-    }
-  } catch { /* malformed block — just drop it, still show the visible text */ }
-  return { visibleText, action: null };
+function extractResponseBlocks(fullText) {
+  let visibleText = fullText;
+  let action = null;
+  let component = null;
+  let launch = null;
+  let followups = null;
+
+  const actionMatch = ACTION_BLOCK_RE.exec(visibleText);
+  if (actionMatch) {
+    visibleText = visibleText.replace(ACTION_BLOCK_RE, '');
+    try {
+      const parsed = JSON.parse(actionMatch[1]);
+      if (parsed && typeof parsed.actionType === 'string' && TOOL_REGISTRY[parsed.actionType]) {
+        action = { actionType: parsed.actionType, previewPayload: parsed.payload || {} };
+      }
+    } catch { /* malformed block — just drop it, still show the visible text */ }
+  }
+
+  const componentMatch = COMPONENT_BLOCK_RE.exec(visibleText);
+  if (componentMatch) {
+    visibleText = visibleText.replace(COMPONENT_BLOCK_RE, '');
+    try {
+      const parsed = JSON.parse(componentMatch[1]);
+      if (parsed && VALID_COMPONENTS.has(parsed.component)) component = parsed;
+    } catch { /* malformed block — just drop it */ }
+  }
+
+  const launchMatch = LAUNCH_BLOCK_RE.exec(visibleText);
+  if (launchMatch) {
+    visibleText = visibleText.replace(LAUNCH_BLOCK_RE, '');
+    try {
+      const parsed = JSON.parse(launchMatch[1]);
+      if (parsed && VALID_LAUNCH_TYPES.has(parsed.launchType)) launch = parsed;
+    } catch { /* malformed block — just drop it */ }
+  }
+
+  const followupsMatch = FOLLOWUPS_BLOCK_RE.exec(visibleText);
+  if (followupsMatch) {
+    visibleText = visibleText.replace(FOLLOWUPS_BLOCK_RE, '');
+    try {
+      const parsed = JSON.parse(followupsMatch[1]);
+      if (Array.isArray(parsed)) followups = parsed.filter((s) => typeof s === 'string' && s.trim()).slice(0, 3);
+    } catch { /* malformed block — just drop it */ }
+  }
+
+  return { visibleText: visibleText.trim(), action, component, launch, followups };
 }
 
 /**
@@ -162,13 +207,32 @@ export default async function handler(req, res) {
     const { data: memoryRows } = await supabase.from('agent_memory').select('category, content')
       .eq('user_id', userId).eq('active', true).eq('member_approved', true);
 
+    // ── Per-user daily rate limit on AI-invoking turns — deterministic, ──
+    // checked before the one model call this endpoint ever makes. Counted
+    // optimistically (a turn that later hits "unavailable" still uses a
+    // slot) since the goal is coarse cost control, not exact accounting.
+    const nowTs = new Date();
+    const resetAt = profile?.agent_requests_reset_at ? new Date(profile.agent_requests_reset_at) : null;
+    const isFreshWindow = !resetAt || resetAt <= nowTs;
+    const requestsSoFar = isFreshWindow ? 0 : (profile?.agent_requests_today || 0);
+    if (requestsSoFar >= AGENT_DAILY_REQUEST_LIMIT) {
+      write(res, { type: 'rate_limited' });
+      write(res, { type: 'text_delta', text: "You've reached today's AGHF Agent limit — it resets tomorrow. Your saved conversations, Playbook, resets, and Scenario Labs are still available." });
+      write(res, { type: 'done', conversationId, stopReason: 'rate_limited' });
+      return res.end();
+    }
+    await supabase.from('psychology_profiles').upsert({
+      user_id: userId, agent_requests_today: requestsSoFar + 1,
+      agent_requests_reset_at: isFreshWindow ? new Date(nowTs.getTime() + 24 * 60 * 60 * 1000).toISOString() : profile.agent_requests_reset_at,
+    }, { onConflict: 'user_id' });
+
     // ── Build deterministic context — this is the ONLY data-gathering step; ──
     // there is no live tool-use round trip after this point.
-    const turnContext = await buildTurnContext({ supabase, userId, consent, personalizationEnabled, attachments });
-    const { observedDataBlock, memberDataBlock } = renderContextBlocks(turnContext);
+    const turnContext = await buildTurnContext({ supabase, userId, consent, personalizationEnabled, attachments, message });
+    const { observedDataBlock, memberDataBlock, approvedSourcesBlock } = renderContextBlocks(turnContext);
 
     const systemPrompt = buildSystemPrompt({
-      responseMode, coachingTone, observedDataBlock, memberDataBlock,
+      responseMode, coachingTone, observedDataBlock, memberDataBlock, approvedSourcesBlock,
       noDataAccess: turnContext.noDataAccess, memories: memoryRows || [],
     });
 
@@ -201,7 +265,7 @@ export default async function handler(req, res) {
       return res.end();
     }
 
-    const { visibleText, action } = extractActionBlock(fullText);
+    const { visibleText, action, component, launch, followups } = extractResponseBlocks(fullText);
     write(res, { type: 'text_delta', text: visibleText });
 
     let toolResults = [];
@@ -214,6 +278,18 @@ export default async function handler(req, res) {
         write(res, { type: 'tool_result', result: outcome.forClient });
         toolResults = [outcome.forClient];
       }
+    } else if (component) {
+      const result = { kind: 'interactive_component', component: component.component, data: component };
+      write(res, { type: 'tool_result', result });
+      toolResults = [result];
+    } else if (launch) {
+      const result = { kind: 'launch', launchType: launch.launchType, scenarioId: launch.scenarioId || null };
+      write(res, { type: 'tool_result', result });
+      toolResults = [result];
+    }
+
+    if (followups && followups.length) {
+      write(res, { type: 'suggested_followups', followups });
     }
 
     if (isSaving && conversationId) {

@@ -106,6 +106,16 @@ export async function saveEntry(entry) {
   return { ...saved, gpAwarded, newJournalStreak };
 }
 
+/** Toggles "exclude from AGHF Agent analysis" without touching any other field on the row. */
+export async function setExcludedFromAgent(id, excluded) {
+  if (window.AGHF_DEMO) {
+    const idx = demoEntries.findIndex((e) => e.id === id);
+    if (idx >= 0) demoEntries[idx].excludedFromAgent = excluded;
+    return { success: true };
+  }
+  return apiFetch('/api/journal-entries', { method: 'PATCH', body: JSON.stringify({ id, excludedFromAgent: excluded }) });
+}
+
 export async function deleteEntry(id) {
   if (window.AGHF_DEMO) {
     const idx = demoEntries.findIndex((e) => e.id === id);

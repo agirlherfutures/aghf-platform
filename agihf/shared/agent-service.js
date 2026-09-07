@@ -140,21 +140,28 @@ export async function getScreenshotUrl(path) {
 
 /* ── Memory ───────────────────────────────────────────────────────── */
 
-export async function listMemory() {
+export async function listMemory({ includeInactive } = {}) {
   if (window.AGHF_DEMO) return demoMemory.slice();
-  const { memories } = await apiFetch('/api/agent-memory');
+  const { memories } = await apiFetch(`/api/agent-memory${includeInactive ? '?includeInactive=true' : ''}`);
   return memories || [];
 }
 
 export async function saveMemory(memory) {
   if (window.AGHF_DEMO) {
-    const saved = { id: memory.id || `demo_${Date.now()}`, active: true, memberApproved: true, ...memory };
-    const idx = demoMemory.findIndex((m) => m.id === saved.id);
+    const idx = memory.id ? demoMemory.findIndex((m) => m.id === memory.id) : -1;
+    // Merge onto the existing row (a narrow edit/active-toggle call only
+    // sends the field it's changing) rather than replacing it outright.
+    const saved = idx >= 0 ? { ...demoMemory[idx], ...memory } : { id: `demo_${Date.now()}`, active: true, memberApproved: true, ...memory };
     if (idx >= 0) demoMemory[idx] = saved; else demoMemory.push(saved);
     return saved;
   }
   const { memory: saved } = await apiFetch('/api/agent-memory', { method: 'POST', body: JSON.stringify(memory) });
   return saved;
+}
+
+/** "Save an insight" message action — a plain agent_memory row, its own category so the sidebar/memory panel can group it separately from "what the agent remembers about me." */
+export async function saveInsight(content, conversationId) {
+  return saveMemory({ category: 'saved_insight', content, sourceConversationId: conversationId || null });
 }
 
 export async function deleteMemory(id) {

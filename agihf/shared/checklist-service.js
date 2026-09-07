@@ -95,6 +95,15 @@ export async function saveChecklist(state) {
   return checklist;
 }
 
+/** Toggles "exclude from AGHF Agent analysis" without touching any other field on the row. */
+export async function setChecklistExcludedFromAgent(id, excluded) {
+  if (window.AGHF_DEMO) {
+    for (const c of demoStore.values()) if (c.id === id) c.excludedFromAgent = excluded;
+    return { success: true };
+  }
+  return apiFetch('/api/checklists', { method: 'PATCH', body: JSON.stringify({ id, excludedFromAgent: excluded }) });
+}
+
 /**
  * Debounced autosave wrapper — calls `onStatus('saving'|'saved'|'error')`
  * so the UI can show a save-state indicator without every caller

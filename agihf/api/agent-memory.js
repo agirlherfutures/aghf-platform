@@ -38,17 +38,26 @@ export default async function handler(req, res) {
 
     if (req.method === 'POST') {
       const body = req.body || {};
-      const row = {
-        user_id: userId, category: body.category, content: body.content,
-        source_conversation_id: body.sourceConversationId || null,
-        member_approved: true, active: body.active !== false, updated_at: new Date().toISOString(),
-      };
       let result;
       if (body.id) {
-        const { data, error } = await supabase.from('agent_memory').update(row).eq('id', body.id).eq('user_id', userId).select('*').single();
+        // Partial update — only ever touches fields actually present in
+        // the request, so a narrow call (e.g. just toggling `active`, or
+        // just editing `content`) can never blank out an unrelated field
+        // like source_conversation_id.
+        const patch = { updated_at: new Date().toISOString() };
+        if (body.category !== undefined) patch.category = body.category;
+        if (body.content !== undefined) patch.content = body.content;
+        if (body.sourceConversationId !== undefined) patch.source_conversation_id = body.sourceConversationId;
+        if (body.active !== undefined) patch.active = body.active;
+        const { data, error } = await supabase.from('agent_memory').update(patch).eq('id', body.id).eq('user_id', userId).select('*').single();
         if (error) throw error;
         result = data;
       } else {
+        const row = {
+          user_id: userId, category: body.category, content: body.content,
+          source_conversation_id: body.sourceConversationId || null,
+          member_approved: true, active: body.active !== false, updated_at: new Date().toISOString(),
+        };
         const { data, error } = await supabase.from('agent_memory').insert(row).select('*').single();
         if (error) throw error;
         result = data;

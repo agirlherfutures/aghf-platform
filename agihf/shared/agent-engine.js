@@ -18,14 +18,14 @@
  * slide-over when the agent suggests launching one.
  */
 
-import { RESPONSE_MODES, SUGGESTED_PROMPTS, ATTACHMENT_ACTIONS, EMPTY_STATES, IMAGE_CAVEAT, VOICE_DISCLOSURE } from './agent-copy.js';
+import { RESPONSE_MODES, SUGGESTED_PROMPTS, ATTACHMENT_ACTIONS, EMPTY_STATES, IMAGE_CAVEAT, VOICE_DISCLOSURE, DESCRIPTION, SUPPORTING_COPY } from './agent-copy.js';
 import * as agentService from './agent-service.js';
 import { scanForSafetyConcern } from './psychology-safety.js';
 import { openModal, closeModal, showDeskToast } from './dayli-desk-engine.js';
 import { renderCooldownTimer, renderPreTradeCheck, renderPostLossReset, renderScenarioAttempt } from './psychology-engine.js';
 import { getScenarioById, PSYCHOLOGY_SCENARIOS } from './psychology-scenarios-data.js';
-import { listEntries } from './journal-service.js';
-import { listChecklists } from './checklist-service.js';
+import { listEntries, setExcludedFromAgent } from './journal-service.js';
+import { listChecklists, setChecklistExcludedFromAgent } from './checklist-service.js';
 import { savePlaybookItem } from './psychology-service.js';
 import { classifyIntent } from './agent-intent-classifier.js';
 import { TALK_TRIGGERS, QUESTION_BANK, resolveTalkMeThrough } from './psychology-rules-engine.js';
@@ -168,7 +168,17 @@ function renderToolResultCard(result, helpers) {
 
 /* ── Message bubble ───────────────────────────────────────────────── */
 
-function renderMessageBubble(msg, helpers) {
+function messageActionsHtml(isLastAssistant) {
+  return `<div class="agc-msg-actions">
+      <button type="button" class="agc-icon-btn" data-act="copy" aria-label="Copy response">⧉</button>
+      <button type="button" class="agc-icon-btn" data-act="up" aria-label="Good response">👍</button>
+      <button type="button" class="agc-icon-btn" data-act="down" aria-label="Poor response">👎</button>
+      <button type="button" class="agc-icon-btn" data-act="save" aria-label="Save insight">✦ Save</button>
+      ${isLastAssistant ? '<button type="button" class="agc-icon-btn" data-act="regenerate" aria-label="Regenerate response">↻</button>' : ''}
+    </div>`;
+}
+
+function renderMessageBubble(msg, helpers, isLastAssistant) {
   const el = document.createElement('div');
   el.className = `agc-msg agc-msg-${msg.role}`;
   const attachmentsHtml = (msg.attachedRecordRefs || []).length
@@ -183,12 +193,7 @@ function renderMessageBubble(msg, helpers) {
       ${componentHtml}
       ${cardsHtml}
     </div>
-    ${msg.role === 'assistant' ? `<div class="agc-msg-actions">
-      <button type="button" class="agc-icon-btn" data-act="copy" aria-label="Copy response">⧉</button>
-      <button type="button" class="agc-icon-btn" data-act="up" aria-label="Good response">👍</button>
-      <button type="button" class="agc-icon-btn" data-act="down" aria-label="Poor response">👎</button>
-      <button type="button" class="agc-icon-btn" data-act="save" aria-label="Save insight">✦ Save</button>
-    </div>` : ''}
+    ${msg.role === 'assistant' ? messageActionsHtml(isLastAssistant) : ''}
   `;
   el._msg = msg; // read back directly on click — safer than positional DOM indexing now that free ephemeral bubbles (guided questions, concept cards) can sit between real messages
   return el;
@@ -209,6 +214,10 @@ export function renderAgentWorkspace(container, helpers = {}) {
         <button type="button" class="dd-primary-btn agc-new-btn" id="agcNewBtn">+ New Conversation</button>
         <label class="agc-onetime-toggle"><input type="checkbox" id="agcOneTime"> Don't save this session</label>
         <div class="agc-sidebar-list" id="agcConvoList"></div>
+        <div class="agc-sidebar-section">
+          <div class="agc-sidebar-heading">✦ Saved Insights</div>
+          <div class="agc-sidebar-list agc-insights-list" id="agcInsightsList"></div>
+        </div>
         <div class="agc-sidebar-foot">
           <button type="button" class="agc-sidebar-link" id="agcMemoryBtn">🧠 What I remember</button>
           <a class="agc-sidebar-link" href="psychology-consent.html">🔒 Privacy &amp; Settings</a>
@@ -232,6 +241,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
     convoList: container.querySelector('#agcConvoList'),
     thread: container.querySelector('#agcThread'),
     composer: container.querySelector('#agcComposer'),
+    insightsList: container.querySelector('#agcInsightsList'),
     panelHost: container.querySelector('#agcPanelHost'),
   };
 
@@ -254,6 +264,18 @@ export function renderAgentWorkspace(container, helpers = {}) {
       });
     } catch (err) {
       console.error('Sidebar load error:', err);
+    }
+  }
+
+  async function loadInsights() {
+    try {
+      const memories = await agentService.listMemory();
+      const insights = memories.filter((m) => m.category === 'saved_insight');
+      els.insightsList.innerHTML = insights.length
+        ? insights.slice(0, 8).map((m) => `<div class="agc-sidebar-insight" title="${escapeHtml(m.content)}">${escapeHtml(m.content.slice(0, 60))}${m.content.length > 60 ? '…' : ''}</div>`).join('')
+        : '<div class="agc-sidebar-empty">Nothing saved yet.</div>';
+    } catch (err) {
+      console.error('Insights load error:', err);
     }
   }
 
@@ -304,8 +326,9 @@ export function renderAgentWorkspace(container, helpers = {}) {
     els.thread.innerHTML = `
       <div class="agc-welcome">
         <div class="agc-welcome-title">Meet the AGHF Agent</div>
+        <div class="agc-welcome-description">${escapeHtml(DESCRIPTION)}</div>
         <div class="agc-welcome-prompt">What's happening with your trading right now?</div>
-        <p class="agc-welcome-sub">Ask a question, unpack a trading pattern, analyze your execution, or build a plan for what to do differently next time.</p>
+        <p class="agc-welcome-sub">${escapeHtml(SUPPORTING_COPY)}</p>
         <div class="agc-suggested-grid">${SUGGESTED_PROMPTS.slice(0, 6).map((p) => `<button type="button" class="agc-suggested-chip">${escapeHtml(p)}</button>`).join('')}</div>
       </div>`;
     els.thread.querySelectorAll('.agc-suggested-chip').forEach((btn) => {
@@ -316,7 +339,9 @@ export function renderAgentWorkspace(container, helpers = {}) {
   function paintThread() {
     if (!state.messages.length) return paintWelcome();
     els.thread.innerHTML = '';
-    state.messages.forEach((m) => els.thread.appendChild(renderMessageBubble(m, helpers)));
+    let lastAssistantIdx = -1;
+    state.messages.forEach((m, i) => { if (m.role === 'assistant') lastAssistantIdx = i; });
+    state.messages.forEach((m, i) => els.thread.appendChild(renderMessageBubble(m, helpers, i === lastAssistantIdx)));
     wireMessageActions();
     wireInteractiveComponentsIn(els.thread);
     els.thread.scrollTop = els.thread.scrollHeight;
@@ -379,7 +404,19 @@ export function renderAgentWorkspace(container, helpers = {}) {
           if (msg.id) await agentService.setMessageFeedback(msg.id, btn.dataset.act);
           showDeskToast('Thanks for the feedback');
         } else if (btn.dataset.act === 'save') {
-          showDeskToast('Saved as an insight ✦');
+          btn.disabled = true;
+          try {
+            await agentService.saveInsight(msg.content, state.conversationId);
+            btn.textContent = '✓ Saved';
+            showDeskToast('Saved as an insight ✦');
+            loadInsights();
+          } catch (err) {
+            console.error('Save insight error:', err);
+            btn.disabled = false;
+            showDeskToast('Couldn’t save that insight.');
+          }
+        } else if (btn.dataset.act === 'regenerate') {
+          regenerateLastResponse();
         }
       });
     });
@@ -421,19 +458,72 @@ export function renderAgentWorkspace(container, helpers = {}) {
   function closePanel() { els.panelHost.hidden = true; els.panelHost.innerHTML = ''; }
 
   /* ── Memory panel ── */
+  function memoryRowHtml(m) {
+    return `<div class="agc-memory-row${m.active === false ? ' agc-memory-inactive' : ''}" data-id="${m.id}">
+      <div class="agc-memory-row-text" data-view>[${escapeHtml(m.category)}] ${escapeHtml(m.content)}</div>
+      <textarea class="agc-memory-edit" hidden>${escapeHtml(m.content)}</textarea>
+      <div class="agc-memory-row-actions">
+        <button type="button" data-edit="${m.id}" title="Edit">✎</button>
+        <button type="button" data-save-edit="${m.id}" hidden>Save</button>
+        <button type="button" data-toggle-active="${m.id}" data-active="${m.active !== false}" title="${m.active === false ? 'Re-enable' : 'Disable without deleting'}">${m.active === false ? '◯ Off' : '● On'}</button>
+        <button type="button" data-del="${m.id}" title="Remove">✕</button>
+      </div>
+    </div>`;
+  }
+
   async function openMemoryPanel() {
     els.panelHost.hidden = false;
-    els.panelHost.innerHTML = `<div class="agc-panel"><button type="button" class="agc-panel-close" id="agcPanelClose">✕</button><div class="agc-panel-body"><div class="agc-panel-title">What the AGHF Agent remembers about me</div><div id="agcMemoryList">Loading…</div><button type="button" class="dd-secondary-btn" id="agcClearMemory">Clear all memory</button></div></div>`;
+    els.panelHost.innerHTML = `<div class="agc-panel"><button type="button" class="agc-panel-close" id="agcPanelClose">✕</button><div class="agc-panel-body">
+      <div class="agc-panel-title">✦ Saved Insights</div>
+      <div id="agcInsightMemoryList">Loading…</div>
+      <div class="agc-panel-title">What the AGHF Agent remembers about me</div>
+      <div id="agcMemoryList">Loading…</div>
+      <button type="button" class="dd-secondary-btn" id="agcClearMemory">Clear all memory</button>
+    </div></div>`;
     els.panelHost.querySelector('#agcPanelClose').addEventListener('click', closePanel);
     els.panelHost.querySelector('#agcClearMemory').addEventListener('click', async () => {
-      if (window.confirm('Clear everything the agent remembers about you?')) { await agentService.clearAllMemory(); openMemoryPanel(); }
+      if (window.confirm('Clear everything the agent remembers about you, including saved insights?')) { await agentService.clearAllMemory(); openMemoryPanel(); loadInsights(); }
     });
-    const memories = await agentService.listMemory();
+    const memories = await agentService.listMemory({ includeInactive: true });
+    const insights = memories.filter((m) => m.category === 'saved_insight');
+    const remembered = memories.filter((m) => m.category !== 'saved_insight');
+
+    const insightList = els.panelHost.querySelector('#agcInsightMemoryList');
+    insightList.innerHTML = insights.length ? insights.map(memoryRowHtml).join('') : '<p class="agc-flow-sub">Nothing saved yet — use ✦ Save on a response.</p>';
     const list = els.panelHost.querySelector('#agcMemoryList');
-    list.innerHTML = memories.length
-      ? memories.map((m) => `<div class="agc-memory-row" data-id="${m.id}"><span>[${m.category}] ${escapeHtml(m.content)}</span><button type="button" data-del="${m.id}">Remove</button></div>`).join('')
-      : '<p class="agc-flow-sub">Nothing saved yet — approve a memory suggestion during a conversation, or it will show up here.</p>';
-    list.querySelectorAll('[data-del]').forEach((btn) => btn.addEventListener('click', async () => { await agentService.deleteMemory(btn.dataset.del); openMemoryPanel(); }));
+    list.innerHTML = remembered.length ? remembered.map(memoryRowHtml).join('') : '<p class="agc-flow-sub">Nothing saved yet — approve a memory suggestion during a conversation, or it will show up here.</p>';
+
+    [insightList, list].forEach((root) => wireMemoryRows(root));
+  }
+
+  function wireMemoryRows(root) {
+    root.querySelectorAll('[data-del]').forEach((btn) => btn.addEventListener('click', async () => {
+      await agentService.deleteMemory(btn.dataset.del);
+      openMemoryPanel(); loadInsights();
+    }));
+    root.querySelectorAll('[data-toggle-active]').forEach((btn) => btn.addEventListener('click', async () => {
+      const row = btn.closest('.agc-memory-row');
+      const nowActive = btn.dataset.active !== 'true';
+      await agentService.saveMemory({ id: btn.dataset.toggleActive, active: nowActive });
+      row.classList.toggle('agc-memory-inactive', !nowActive);
+      btn.dataset.active = String(nowActive);
+      btn.textContent = nowActive ? '● On' : '◯ Off';
+      btn.title = nowActive ? 'Disable without deleting' : 'Re-enable';
+    }));
+    root.querySelectorAll('[data-edit]').forEach((btn) => btn.addEventListener('click', () => {
+      const row = btn.closest('.agc-memory-row');
+      row.querySelector('[data-view]').hidden = true;
+      row.querySelector('.agc-memory-edit').hidden = false;
+      btn.hidden = true;
+      row.querySelector('[data-save-edit]').hidden = false;
+    }));
+    root.querySelectorAll('[data-save-edit]').forEach((btn) => btn.addEventListener('click', async () => {
+      const row = btn.closest('.agc-memory-row');
+      const content = row.querySelector('.agc-memory-edit').value.trim();
+      if (!content) return;
+      await agentService.saveMemory({ id: btn.dataset.saveEdit, content });
+      openMemoryPanel(); loadInsights();
+    }));
   }
 
   /* ── Composer ── */
@@ -472,7 +562,14 @@ export function renderAgentWorkspace(container, helpers = {}) {
   function paintAttachChips() {
     const row = els.composer.querySelector('#agcAttachChips');
     if (!row) return;
-    row.innerHTML = state.attachments.map((a, i) => `<span class="agc-attach-chip removable">${escapeHtml(a.label)} <button type="button" data-remove="${i}">✕</button></span>`).join('');
+    row.innerHTML = state.attachments.map((a, i) => a.type === 'screenshot'
+      ? `<span class="agc-attach-chip agc-attach-chip-shot removable">
+          <img class="agc-attach-thumb" src="${a.dataUrl}" alt="">
+          ${a.uploading ? '<span class="agc-attach-uploading">Uploading…</span>' : ''}
+          <button type="button" data-remove="${i}">✕</button>
+        </span>`
+      : `<span class="agc-attach-chip removable">${escapeHtml(a.label)} <button type="button" data-remove="${i}">✕</button></span>`
+    ).join('');
     row.querySelectorAll('[data-remove]').forEach((btn) => btn.addEventListener('click', () => {
       state.attachments.splice(Number(btn.dataset.remove), 1);
       paintAttachChips();
@@ -513,40 +610,85 @@ export function renderAgentWorkspace(container, helpers = {}) {
     }
     if (type === 'trade') {
       const { entries } = await listEntries({ entryType: 'trade', limit: 8 });
-      picker.innerHTML = entries.length
-        ? entries.map((t) => `<button type="button" class="agc-pick-row" data-id="${t.id}">${t.tradeDate} · ${t.instrument || ''} · ${t.direction || ''}</button>`).join('')
-        : '<div class="agc-flow-sub">No trades logged yet.</div>';
-      picker.querySelectorAll('.agc-pick-row').forEach((btn) => btn.addEventListener('click', () => {
-        const t = entries.find((e) => e.id === btn.dataset.id);
-        state.attachments.push({ type: 'trade', id: t.id, label: `Trade ${t.tradeDate}` });
-        paintAttachChips(); toggleAttachPopover();
-      }));
+      renderPickList(picker, entries, {
+        attachType: 'trade', getId: (t) => t.id, getLabel: (t) => `Trade ${t.tradeDate}`,
+        rowText: (t) => `${t.tradeDate} · ${t.instrument || ''} · ${t.direction || ''}`,
+        emptyText: 'No trades logged yet.', excludeFn: setExcludedFromAgent,
+      });
       return;
     }
     if (type === 'journal') {
       const { entries } = await listEntries({ limit: 20 });
       const reflections = entries.filter((e) => e.entryType !== 'trade').slice(0, 8);
-      picker.innerHTML = reflections.length
-        ? reflections.map((j) => `<button type="button" class="agc-pick-row" data-id="${j.id}">${j.tradeDate} · ${j.entryType}</button>`).join('')
-        : '<div class="agc-flow-sub">No journal reflections yet.</div>';
-      picker.querySelectorAll('.agc-pick-row').forEach((btn) => btn.addEventListener('click', () => {
-        const j = reflections.find((e) => e.id === btn.dataset.id);
-        state.attachments.push({ type: 'journal', id: j.id, label: `Journal ${j.tradeDate}` });
-        paintAttachChips(); toggleAttachPopover();
-      }));
+      renderPickList(picker, reflections, {
+        attachType: 'journal', getId: (j) => j.id, getLabel: (j) => `Journal ${j.tradeDate}`,
+        rowText: (j) => `${j.tradeDate} · ${j.entryType}`,
+        emptyText: 'No journal reflections yet.', excludeFn: setExcludedFromAgent,
+      });
       return;
     }
     if (type === 'checklist') {
       const checklists = await listChecklists(8);
-      picker.innerHTML = checklists.length
-        ? checklists.map((c) => `<button type="button" class="agc-pick-row" data-id="${c.id}">${c.tradingDate} · ${c.completionPct}% complete</button>`).join('')
-        : '<div class="agc-flow-sub">No checklists yet.</div>';
-      picker.querySelectorAll('.agc-pick-row').forEach((btn) => btn.addEventListener('click', () => {
-        const c = checklists.find((x) => x.id === btn.dataset.id);
-        state.attachments.push({ type: 'checklist', id: c.id, label: `Checklist ${c.tradingDate}` });
-        paintAttachChips(); toggleAttachPopover();
-      }));
+      renderPickList(picker, checklists, {
+        attachType: 'checklist', getId: (c) => c.id, getLabel: (c) => `Checklist ${c.tradingDate}`,
+        rowText: (c) => `${c.tradingDate} · ${c.completionPct}% complete`,
+        emptyText: 'No checklists yet.', excludeFn: setChecklistExcludedFromAgent,
+      });
     }
+  }
+
+  /**
+   * Shared multi-select record picker for the trade/journal/checklist
+   * attach actions — a checkbox per row + one "Add" confirm, replacing
+   * the old close-on-first-pick single-select so several records can be
+   * attached in one pass. Each row also carries a small "exclude from
+   * AGHF Agent" toggle (a member-set opt-out distinct from the coarser
+   * category-level consent settings) that persists immediately via the
+   * given `excludeFn`, independent of whether the row is attached.
+   */
+  function renderPickList(picker, items, { attachType, getId, getLabel, rowText, emptyText, excludeFn }) {
+    if (!items.length) { picker.innerHTML = `<div class="agc-flow-sub">${emptyText}</div>`; return; }
+    picker.innerHTML = `<div class="agc-pick-list">${items.map((item) => `
+      <div class="agc-pick-row" data-id="${getId(item)}">
+        <label><input type="checkbox"> ${escapeHtml(rowText(item))}</label>
+        <button type="button" class="agc-pick-exclude" data-exclude title="Exclude this record from AGHF Agent analysis">🚫 <span class="agc-pick-exclude-label">Exclude</span></button>
+      </div>`).join('')}</div>
+      <button type="button" class="dd-secondary-btn" id="agcPickConfirm" disabled>Add</button>`;
+
+    const selected = new Set();
+    const confirmBtn = picker.querySelector('#agcPickConfirm');
+    picker.querySelectorAll('.agc-pick-row').forEach((row) => {
+      const id = row.dataset.id;
+      const checkbox = row.querySelector('input[type="checkbox"]');
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) selected.add(id); else selected.delete(id);
+        confirmBtn.disabled = selected.size === 0;
+      });
+      row.querySelector('[data-exclude]').addEventListener('click', async (e) => {
+        const btn = e.currentTarget;
+        btn.disabled = true;
+        try {
+          await excludeFn(id, true);
+          row.classList.add('agc-pick-excluded');
+          btn.querySelector('.agc-pick-exclude-label').textContent = 'Excluded';
+          checkbox.checked = false; checkbox.disabled = true;
+          selected.delete(id);
+          confirmBtn.disabled = selected.size === 0;
+          showDeskToast('Excluded from AGHF Agent analysis');
+        } catch (err) {
+          console.error('Exclude-from-agent error:', err);
+          btn.disabled = false;
+        }
+      });
+    });
+    confirmBtn.addEventListener('click', () => {
+      selected.forEach((id) => {
+        const item = items.find((x) => String(getId(x)) === id);
+        if (item) state.attachments.push({ type: attachType, id: getId(item), label: getLabel(item) });
+      });
+      paintAttachChips();
+      toggleAttachPopover();
+    });
   }
 
   function handleScreenshotFile(file) {
@@ -561,9 +703,12 @@ export function renderAgentWorkspace(container, helpers = {}) {
         const uploaded = await agentService.uploadScreenshot(dataUrl, file.name, state.conversationId);
         state.attachments[chipIndex].metadata = { path: uploaded.path };
         state.attachments[chipIndex].uploading = false;
+        paintAttachChips();
         showDeskToast(`${IMAGE_CAVEAT}`);
       } catch (err) {
         console.error('Screenshot upload error:', err);
+        state.attachments.splice(chipIndex, 1);
+        paintAttachChips();
         showDeskToast('Couldn’t upload that screenshot.');
       }
     };
@@ -710,6 +855,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
     state.isStreaming = true;
     els.composer.querySelector('#agcSendBtn').hidden = true;
     els.composer.querySelector('#agcStopBtn').hidden = false;
+    els.thread.querySelectorAll('[data-act="regenerate"]').forEach((b) => b.remove());
 
     const assistantEl = document.createElement('div');
     assistantEl.className = 'agc-msg agc-msg-assistant';
@@ -756,6 +902,13 @@ export function renderAgentWorkspace(container, helpers = {}) {
           cardsEl.insertAdjacentHTML('beforeend', renderToolResultCard(event.result, helpers));
           wireCardsIn(cardsEl);
         }
+        if (event.type === 'suggested_followups' && event.followups?.length) {
+          cardsEl.insertAdjacentHTML('beforeend', `<div class="agc-followups">${event.followups.map((f) => `<button type="button" class="agc-suggested-chip">${escapeHtml(f)}</button>`).join('')}</div>`);
+          cardsEl.querySelectorAll('.agc-followups:last-child .agc-suggested-chip').forEach((btn) => {
+            btn.addEventListener('click', () => submitSyntheticMessage(btn.textContent));
+          });
+        }
+        if (event.type === 'rate_limited') { thinkingEl.remove(); }
         if (event.type === 'error') {
           thinkingEl.remove();
           contentEl.innerHTML += `<p class="agc-error-text">${escapeHtml(event.message)}</p>`;
@@ -775,13 +928,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
     state.clientHistory.push({ role: 'assistant', content: fullText });
     assistantEl.querySelector('.agc-msg-content').outerHTML = `<div class="agc-msg-content">${renderRichText(fullText)}</div>`;
     if (fullText) {
-      const actionsHtml = `<div class="agc-msg-actions">
-        <button type="button" class="agc-icon-btn" data-act="copy" aria-label="Copy response">⧉</button>
-        <button type="button" class="agc-icon-btn" data-act="up" aria-label="Good response">👍</button>
-        <button type="button" class="agc-icon-btn" data-act="down" aria-label="Poor response">👎</button>
-        <button type="button" class="agc-icon-btn" data-act="save" aria-label="Save insight">✦ Save</button>
-      </div>`;
-      assistantEl.insertAdjacentHTML('beforeend', actionsHtml);
+      assistantEl.insertAdjacentHTML('beforeend', messageActionsHtml(true));
       wireMessageActions();
     }
 
@@ -805,6 +952,29 @@ export function renderAgentWorkspace(container, helpers = {}) {
         card.innerHTML = `<div class="agc-card-eyebrow">${approve ? 'Added to your dashboard ✦' : 'Not saved'}</div>`;
       });
     });
+  }
+
+  /**
+   * Drops the last assistant reply and asks the same preceding question
+   * again. Calls runSingleAICall directly (not sendMessage) so the
+   * member's question isn't duplicated in the thread — only the answer
+   * changes. Known limitation for SAVED conversations: the original
+   * reply and this turn's user message were already persisted
+   * server-side by the first call, so the model's next-turn history
+   * (fetched fresh from agent_messages) still includes the old reply
+   * and a regenerate adds one extra duplicate user row — an accepted
+   * trade-off rather than adding a new delete-then-resend endpoint.
+   */
+  function regenerateLastResponse() {
+    if (state.isStreaming || state.guidedFlow) return;
+    const lastAssistant = state.messages[state.messages.length - 1];
+    const lastUser = state.messages[state.messages.length - 2];
+    if (!lastAssistant || lastAssistant.role !== 'assistant' || !lastUser || lastUser.role !== 'user') return;
+    state.messages.pop();
+    state.clientHistory.pop();
+    const bubbles = els.thread.querySelectorAll('.agc-msg');
+    bubbles[bubbles.length - 1]?.remove();
+    runSingleAICall(lastUser.content, [], null);
   }
 
   function stopGenerating() {
@@ -831,6 +1001,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
   paintComposer();
   paintThread();
   loadSidebar();
+  loadInsights();
 
   return { getState: () => state };
 }

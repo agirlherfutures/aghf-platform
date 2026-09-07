@@ -16,7 +16,9 @@
  * this file's shape (title/sourceType/content/topicTags/accessTier/
  * approvalStatus/version/relatedLessonId/relatedChartLabId/dates) is
  * meant to survive a swap to a real retrieval backend without the
- * calling code (agent-tools.js's retrieve_lesson_or_concept) changing.
+ * calling code (agent-context-builder.js's deterministic per-turn lookup,
+ * which appends a match as the system prompt's <approved_sources> block)
+ * changing.
  */
 
 export const CONTENT_VERSION = 1;

@@ -249,6 +249,18 @@ export default async function handler(req, res) {
       return res.status(200).json({ success: true });
     }
 
+    // Narrow, single-field update — deliberately separate from the POST
+    // upsert above (which rebuilds the whole row) so toggling "exclude
+    // from AGHF Agent analysis" can never blank out any other field.
+    if (req.method === 'PATCH') {
+      const body = req.body || {};
+      if (!body.id) return res.status(400).json({ error: 'Missing id' });
+      const { error } = await supabase.from('journal_entries')
+        .update({ excluded_from_agent: !!body.excludedFromAgent }).eq('id', body.id).eq('user_id', userId);
+      if (error) throw error;
+      return res.status(200).json({ success: true });
+    }
+
     return res.status(405).json({ error: 'Method not allowed' });
   } catch (err) {
     console.error('Journal entries API error:', err);

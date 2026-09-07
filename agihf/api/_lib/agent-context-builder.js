@@ -5,14 +5,17 @@
  * assembles it into a small, explicitly-labeled block — never a raw
  * history dump. Two deliberate ways this stays "minimum necessary data":
  *
- * 1. Only two things ever trigger a proactive fetch: (a) the member
- *    explicitly attaching a record/date-range to this message, or
- *    (b) selecting "Analyze My Data" mode with the matching consent
- *    flags on — every other mode fetches nothing up front and instead
- *    relies on the model calling a read-only tool mid-conversation
- *    (agent-tools.js) if it decides it actually needs evidence. That's
- *    the "ask a follow-up question first, investigate second" behavior
- *    the product spec requires, not just a UI nicety.
+ * 1. Only two things ever trigger a proactive fetch of the member's own
+ *    records: (a) the member explicitly attaching a record/date-range to
+ *    this message, or (b) selecting "Analyze My Data" mode with the
+ *    matching consent flags on. There is no live tool-calling loop in
+ *    this single-call-per-turn architecture (see agent-chat.js) — every
+ *    other mode fetches nothing up front, and the "ask a follow-up
+ *    question first, investigate second" behavior the product spec
+ *    requires happens across HTTP turns instead: conversation history is
+ *    passed back on the next call, so the model can ask a question here
+ *    and reason over her answer once it arrives, without needing to
+ *    fetch anything mid-turn.
  * 2. Whatever IS fetched is immediately reduced to a deterministic
  *    summary (agent-pattern-engine.js) — the model is handed metrics and
  *    detected patterns, never the raw row set, and every summary is
@@ -20,6 +23,7 @@
  */
 
 import { computeObservedMetrics, detectPatterns } from './agent-pattern-engine.js';
+import { findKnowledgeEntries } from '../../shared/psychology-knowledge-data.js';
 
 const MAX_TRADES_PER_TURN = 25;
 const MAX_MEMBER_TEXT_CHARS = 2000;
@@ -41,7 +45,7 @@ function checklistRowToShape(row) {
 }
 
 export async function fetchTradesInRange(supabase, userId, { from, to, ids, limit = MAX_TRADES_PER_TURN }) {
-  let query = supabase.from('journal_entries').select('*').eq('user_id', userId).eq('entry_type', 'trade').eq('is_draft', false);
+  let query = supabase.from('journal_entries').select('*').eq('user_id', userId).eq('entry_type', 'trade').eq('is_draft', false).eq('excluded_from_agent', false);
   if (ids?.length) query = query.in('id', ids);
   if (from) query = query.gte('trade_date', from);
   if (to) query = query.lte('trade_date', to);
@@ -52,7 +56,7 @@ export async function fetchTradesInRange(supabase, userId, { from, to, ids, limi
 
 export async function fetchChecklistsFor(supabase, userId, checklistIds) {
   if (!checklistIds.length) return [];
-  const { data, error } = await supabase.from('trade_checklists').select('*').eq('user_id', userId).in('id', checklistIds);
+  const { data, error } = await supabase.from('trade_checklists').select('*').eq('user_id', userId).eq('excluded_from_agent', false).in('id', checklistIds);
   if (error) throw error;
   return (data || []).map(checklistRowToShape);
 }
@@ -64,9 +68,9 @@ function weekRange() {
 }
 
 /**
- * @param {{supabase: any, userId: string, consent: Object, personalizationEnabled: boolean, responseMode: string, attachments: Array}} opts
+ * @param {{supabase: any, userId: string, consent: Object, personalizationEnabled: boolean, responseMode: string, attachments: Array, message: string}} opts
  */
-export async function buildTurnContext({ supabase, userId, consent = {}, personalizationEnabled, attachments = [] }) {
+export async function buildTurnContext({ supabase, userId, consent = {}, personalizationEnabled, attachments = [], message = '' }) {
   const tradeIds = attachments.filter((a) => a.type === 'trade' && a.id).map((a) => a.id);
   const weekAttachment = attachments.find((a) => a.type === 'week');
   const rangeAttachment = attachments.find((a) => a.type === 'date_range');
@@ -88,7 +92,7 @@ export async function buildTurnContext({ supabase, userId, consent = {}, persona
   const journalAttachmentIds = attachments.filter((a) => a.type === 'journal' && a.id).map((a) => a.id);
   let journalEntries = [];
   if (journalAttachmentIds.length && (consent.journalStructured || consent.journalFreetext)) {
-    const { data } = await supabase.from('journal_entries').select('*').eq('user_id', userId).in('id', journalAttachmentIds);
+    const { data } = await supabase.from('journal_entries').select('*').eq('user_id', userId).eq('excluded_from_agent', false).in('id', journalAttachmentIds);
     journalEntries = data || [];
     attachmentSummaries.push({ type: 'journal', count: journalEntries.length });
   }
@@ -108,6 +112,10 @@ export async function buildTurnContext({ supabase, userId, consent = {}, persona
   }
 
   const hasAnyData = trades.length > 0 || journalEntries.length > 0 || checklists.length > 0;
+
+  // Approved-knowledge grounding is never member data — no consent gate,
+  // works even when nothing else was attached/authorized this turn.
+  const matchedConcepts = findKnowledgeEntries(message, 2);
 
   const observedMetrics = consent.tradeData && trades.length ? computeObservedMetrics(trades, checklists) : null;
   const patterns = consent.tradeData && trades.length >= 3 ? detectPatterns(trades, checklists) : [];
@@ -135,12 +143,17 @@ export async function buildTurnContext({ supabase, userId, consent = {}, persona
     dateRange: trades.length ? { from: trades[trades.length - 1].tradeDate, to: trades[0].tradeDate } : null,
     memberDataBlock: memberDataBlock || null,
     resolvedTradeIds: trades.map((t) => t.id),
+    matchedConcepts,
   };
 }
 
-/** Renders the context object into the two labeled prompt blocks the system prompt references by name. */
+/** Renders the context object into the labeled prompt blocks the system prompt references by name. */
 export function renderContextBlocks(ctx) {
-  if (ctx.noDataAccess) return { observedDataBlock: null, memberDataBlock: null };
+  const approvedSourcesBlock = ctx.matchedConcepts?.length
+    ? JSON.stringify(ctx.matchedConcepts.map((c) => ({ title: c.title, content: c.content, sourceType: c.sourceType })), null, 2)
+    : null;
+
+  if (ctx.noDataAccess) return { observedDataBlock: null, memberDataBlock: null, approvedSourcesBlock };
   const observed = {
     recordsReviewed: ctx.tradeCount,
     dateRange: ctx.dateRange,
@@ -154,5 +167,6 @@ export function renderContextBlocks(ctx) {
   return {
     observedDataBlock: JSON.stringify(observed, null, 2),
     memberDataBlock: ctx.memberDataBlock,
+    approvedSourcesBlock,
   };
 }
