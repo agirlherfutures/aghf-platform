@@ -116,9 +116,23 @@ export async function* streamChatCompletion({ systemPrompt, messages, maxTokens 
       yield { type: 'error', message: 'The AGHF Agent ran into a problem generating a response.' };
       return;
     }
+    let yieldedAnyText = false;
+    let lastChunk = null;
     for await (const chunk of readSseChunks(res.body)) {
+      lastChunk = chunk;
       const text = extractText(chunk);
-      if (text) yield { type: 'text_delta', text };
+      if (text) { yieldedAnyText = true; yield { type: 'text_delta', text }; }
+    }
+    // Gemini can complete a stream with zero text — e.g. a safety-filter
+    // block (promptFeedback.blockReason) or a candidate with no parts
+    // (finishReason 'SAFETY'/'RECITATION'/etc). Without this check the
+    // generator just ends having yielded nothing, which agent-chat.js
+    // can't tell apart from a genuinely empty success — the member sees
+    // no response and no error either. Trading-psychology/loss language
+    // is exactly the kind of content that can trip a safety filter.
+    if (!yieldedAnyText) {
+      console.error('Gemini stream ended with no text:', JSON.stringify(lastChunk?.promptFeedback || lastChunk?.candidates?.[0]?.finishReason || lastChunk));
+      yield { type: 'error', message: "The AGHF Agent couldn't generate a response to that — try rephrasing." };
     }
   } catch (err) {
     if (err?.name === 'AbortError') return; // member clicked Stop Generating — not an error
