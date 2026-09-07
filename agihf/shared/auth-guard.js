@@ -104,11 +104,33 @@
     return res.json();
   };
 
+  function withTimeout(promise, ms, message) {
+    return Promise.race([
+      promise,
+      new Promise((_, reject) => setTimeout(() => reject(new Error(message)), ms)),
+    ]);
+  }
+
   async function run() {
     try {
-      const { createClient } = await loadSupabaseLib();
-      const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON);
-      const { data: { session }, error } = await supabaseClient.auth.getSession();
+      const { createClient, processLock } = await loadSupabaseLib();
+      // The default auth lock uses navigator.locks to serialize auth calls
+      // across tabs of the same origin. Every page on this site is a fresh
+      // full navigation (no SPA routing), each creating its own client — if
+      // a prior page navigated away mid-refresh without cleanly releasing
+      // its Web Lock (browsers don't always guarantee this on unload), the
+      // next page's getSession() call hangs forever waiting on a lock
+      // nothing will ever release: no error, no network request, just a
+      // permanently blank page (this script hides the whole document until
+      // run() succeeds or fails). processLock is Supabase's own in-memory,
+      // single-tab lock — this app never needs cross-tab coordination, so
+      // it removes the hang entirely instead of working around it.
+      const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: processLock } });
+      const { data: { session }, error } = await withTimeout(
+        supabaseClient.auth.getSession(),
+        10000,
+        'Timed out checking your session'
+      );
 
       if (error || !session) {
         bounceToLogin();
