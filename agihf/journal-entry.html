@@ -29,7 +29,7 @@
   // this entire script before it ever ran, leaving #jeRoot permanently
   // empty with no error shown at all — the exact bug already fixed on this
   // page's sibling pages this session.
-  let getEntry, saveEntry, deleteEntry, createAutosaver, renderJournalEntryPage, renderTradeCaseFile, entryToSummaryCardProps, renderTradeSummaryCard, hydrateTscShots, renderErrorState, renderSkeleton, showDeskToast, openModal, closeModal, burst;
+  let getEntry, saveEntry, deleteEntry, createAutosaver, renderJournalEntryPage, renderTradeCaseFile, entryToSummaryCardProps, renderTradeSummaryCard, hydrateTscShots, renderErrorState, renderSkeleton, showDeskToast, openModal, closeModal, burst, todayKey;
 
   const root = document.getElementById('jeRoot');
   const params = new URLSearchParams(window.location.search);
@@ -74,7 +74,7 @@
 
   function freshEntry() {
     return {
-      entryType: 'trade', tradeDate: new Date().toISOString().slice(0, 10), direction: null,
+      entryType: 'trade', tradeDate: todayKey(), direction: null,
       exits: [], methodQualityTags: [], ruleViolations: [], screenshots: [], emotions: {},
       entryTags: [], exitTags: [], lessons: [], iccChecklist: null, isDraft: true,
     };
@@ -86,6 +86,7 @@
       ({ renderJournalEntryPage, renderTradeCaseFile, entryToSummaryCardProps, renderTradeSummaryCard, hydrateTscShots } = await import('./shared/journal-engine.js'));
       ({ renderErrorState, renderSkeleton, showDeskToast, openModal, closeModal } = await import('./shared/dayli-desk-engine.js'));
       ({ burst } = await import('./shared/lesson-engine.js'));
+      ({ todayKey } = await import('./shared/dashboard-models.js'));
     } catch (err) {
       renderFallbackError(err);
       return;
