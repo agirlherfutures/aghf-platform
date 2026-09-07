@@ -174,6 +174,17 @@
     });
   }
 
+  function renderLoadError(err) {
+    console.error('Lessons page failed to load:', err);
+    const container = document.getElementById('phaseList');
+    container.innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid var(--border,#F1E7E1);text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:var(--text,#3D2B20);margin-bottom:8px;">Something went wrong loading your lessons</div>
+        <div style="font-size:.88rem;color:var(--muted,#7A5C50);margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:var(--pink,#F4829A);color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
+
   async function load() {
     let completedIds = new Set();
     let gpFromLessons = 0;
@@ -185,19 +196,23 @@
       console.error('Profile load error:', err);
     }
 
-    const p1 = PHASES[0];
-    const p1Total = p1.sections.reduce((sum, s) => sum + s.lessons.length, 0);
-    const p1Done = p1.sections.reduce((sum, s) => sum + s.lessons.filter((l) => l.n && completedIds.has(`p1-${l.n}`)).length, 0);
-    const totalAll = PHASES.reduce((sum, p) => sum + p.sections.reduce((s, sec) => s + sec.lessons.length, 0), 0);
+    try {
+      const p1 = PHASES[0];
+      const p1Total = p1.sections.reduce((sum, s) => sum + s.lessons.length, 0);
+      const p1Done = p1.sections.reduce((sum, s) => sum + s.lessons.filter((l) => l.n && completedIds.has(`p1-${l.n}`)).length, 0);
+      const totalAll = PHASES.reduce((sum, p) => sum + p.sections.reduce((s, sec) => s + sec.lessons.length, 0), 0);
 
-    document.getElementById('poLessonsDone').textContent = p1Done;
-    document.getElementById('poLessonsTotal').textContent = `of ${totalAll} total`;
-    document.getElementById('poPhase').textContent = '1';
-    document.getElementById('poPhaseName').textContent = p1Done === p1Total ? 'Complete' : 'Foundation';
-    document.getElementById('poGp').textContent = gpFromLessons;
+      document.getElementById('poLessonsDone').textContent = p1Done;
+      document.getElementById('poLessonsTotal').textContent = `of ${totalAll} total`;
+      document.getElementById('poPhase').textContent = '1';
+      document.getElementById('poPhaseName').textContent = p1Done === p1Total ? 'Complete' : 'Foundation';
+      document.getElementById('poGp').textContent = gpFromLessons;
 
-    document.getElementById('phaseList').innerHTML = PHASES.map((phase, i) => phaseHtml(phase, i, completedIds)).join('');
-    wireToggles();
+      document.getElementById('phaseList').innerHTML = PHASES.map((phase, i) => phaseHtml(phase, i, completedIds)).join('');
+      wireToggles();
+    } catch (err) {
+      renderLoadError(err);
+    }
   }
 
   document.addEventListener('aghf-auth-ready', load);

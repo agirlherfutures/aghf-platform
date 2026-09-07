@@ -23,8 +23,23 @@
 <script type="module">
   import { renderAgentWorkspace } from './shared/agent-engine.js';
 
+  function renderLoadError(container, err) {
+    console.error('AGHF Agent failed to load:', err);
+    container.innerHTML = `
+      <div style="max-width:520px;margin:60px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid var(--border,#F1E7E1);text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:var(--text,#3D2B20);margin-bottom:8px;">Something went wrong loading the AGHF Agent</div>
+        <div style="font-size:.88rem;color:var(--muted,#7A5C50);margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:var(--pink,#F4829A);color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
+
   function boot() {
-    renderAgentWorkspace(document.getElementById('agcRoot'), {});
+    const root = document.getElementById('agcRoot');
+    try {
+      renderAgentWorkspace(root, {});
+    } catch (err) {
+      renderLoadError(root, err);
+    }
   }
 
   document.addEventListener('aghf-auth-ready', boot);
