@@ -869,6 +869,14 @@ export function renderAgentWorkspace(container, helpers = {}) {
     const toolResults = [];
 
     state.abortController = new AbortController();
+    // A silent connection death (a platform-level function timeout, a
+    // network stall — see agent-chat.js's own maxDuration comment) would
+    // otherwise wait forever with no visible feedback: streamChat's promise
+    // never resolves or rejects, and the thinking indicator spins on
+    // screen indefinitely. Racing it against a bounded client-side timeout,
+    // aborting via the same AbortController the manual Stop button uses,
+    // turns that into a real, visible failure instead.
+    const timeoutId = setTimeout(() => state.abortController.abort('timeout'), 45000);
     try {
       await agentService.streamChat({
         conversationId: state.conversationId, savePreference: state.savePreference,
@@ -919,8 +927,20 @@ export function renderAgentWorkspace(container, helpers = {}) {
         }
       }, { signal: state.abortController.signal });
     } catch (err) {
-      if (err.name !== 'AbortError') console.error('Chat stream error:', err);
+      if (err.name === 'AbortError') {
+        if (state.abortController.signal.reason === 'timeout' && !fullText) {
+          contentEl.innerHTML = renderRichText("This is taking longer than expected — try again in a moment.");
+        }
+      } else {
+        console.error('Chat stream error:', err);
+      }
     }
+    clearTimeout(timeoutId);
+    // Belt-and-suspenders: every event branch above already removes the
+    // thinking indicator on its own exit path, but a truly silent
+    // connection death (no event ever arrives) would otherwise leave it
+    // spinning forever — .remove() on an already-detached node is a no-op.
+    thinkingEl.remove();
 
     const assistantMsg = { role: 'assistant', content: fullText, toolResults, id: null };
     assistantEl._msg = assistantMsg;

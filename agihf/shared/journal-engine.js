@@ -24,7 +24,7 @@
 
 import { getInstrument, INSTRUMENT_SYMBOLS } from './instrument-data.js';
 import { showDeskToast } from './dayli-desk-engine.js';
-import { JOURNAL_ENTRY_TAGS, EXIT_TAGS, RULE_BREAK_TAGS, EMOTION_OPTIONS_V2, ICC_MINI_CHECKLIST_ITEMS } from './dashboard-models.js';
+import { JOURNAL_ENTRY_TAGS, EXIT_TAGS, RULE_BREAK_TAGS, EMOTION_OPTIONS_V2, ICC_MINI_CHECKLIST_ITEMS, todayKey } from './dashboard-models.js';
 
 const STAGES = ['trade', 'execution', 'entered', 'exited', 'mindset', 'lesson', 'review'];
 const STAGE_LABELS = { trade: 'Trade', execution: 'Execution', entered: 'Entered', exited: 'Exited', mindset: 'Mindset', lesson: 'Lesson', review: 'Review' };
@@ -568,7 +568,7 @@ export function renderJournalEntryPage(container, entry, helpers) {
           value = value === '' ? null : Number(value);
         }
         if (field === 'entryTimeOnly') {
-          update({ ...entry, entryTime: `${entry.tradeDate || new Date().toISOString().slice(0, 10)}T${value}:00` });
+          update({ ...entry, entryTime: `${entry.tradeDate || todayKey()}T${value}:00` });
           return;
         }
         update({ ...entry, [field]: value });

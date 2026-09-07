@@ -13,6 +13,7 @@
  */
 
 import { CHECKLIST_PHASES, TEMPLATE_VERSION, readinessLabel } from './checklist-template.js';
+import { todayKey } from './dashboard-models.js';
 
 function freshItems() {
   return CHECKLIST_PHASES.flatMap((phase) =>
@@ -25,7 +26,7 @@ function freshChecklist(instrument = 'MNQ') {
     id: null,
     userId: window.AGHF_USER?.id || 'demo',
     accountId: null,
-    tradingDate: now.slice(0, 10),
+    tradingDate: todayKey(),
     session: null,
     instrument,
     templateVersion: TEMPLATE_VERSION,
@@ -61,7 +62,7 @@ function recompute(state) {
 
 /** @returns {Promise<import('./dashboard-models.js').ChecklistState>} */
 export async function getTodayChecklist(instrument = 'MNQ') {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = todayKey();
   if (window.AGHF_DEMO) {
     return demoStore.get(`${today}:${instrument}`) || freshChecklist(instrument);
   }

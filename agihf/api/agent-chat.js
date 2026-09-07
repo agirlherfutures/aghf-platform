@@ -25,6 +25,12 @@ import { CRISIS_RESPONSE, TRADING_HARM_RESPONSE } from '../shared/psychology-saf
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
+// Safe to request regardless of the account's actual plan ceiling — Vercel
+// clamps to whatever the plan allows rather than erroring. Gives the Gemini
+// call more headroom before any platform-level function timeout kills the
+// connection mid-generation with zero bytes ever having reached the client.
+export const config = { maxDuration: 60 };
+
 const DEFAULT_CONSENT = {
   tradeData: true, checklistAnswers: true, journalStructured: true, journalFreetext: true,
   emotions: true, sessionHistory: true, playbook: true, academyProgress: true,

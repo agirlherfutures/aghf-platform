@@ -293,8 +293,16 @@ export const PHASE_LABELS = {
   retest: 'Retest', consolidation: 'Consolidation', waiting: 'Waiting',
 };
 
+// Deliberately NOT d.toISOString().slice(0,10) — that renders in UTC, which
+// silently rolls "today" over to the next calendar day for anyone west of
+// UTC (all of the Americas) trading in the evening. This uses the browser's
+// own local calendar date instead, matching what the member actually sees
+// on her clock.
 export function todayKey(d = new Date()) {
-  return d.toISOString().slice(0, 10);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
 }
 
 /**

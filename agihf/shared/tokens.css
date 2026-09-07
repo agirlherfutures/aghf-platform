@@ -17,6 +17,13 @@
   --font-body:'DM Sans',sans-serif;
 }
 
+/* Crossfades full-page navigations in supporting (Chromium-based) browsers
+ * instead of a hard cut to blank between one page unloading and the next's
+ * first paint — this site has no SPA routing, every nav is a real browser
+ * navigation. Silently ignored elsewhere (Safari/Firefox as of today), so
+ * it can only help, never regress. */
+@view-transition { navigation: auto; }
+
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:var(--font-body);background:var(--bg);color:var(--dark);}
 img{max-width:100%;}

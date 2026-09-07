@@ -20,6 +20,8 @@
  * API with, and no pretending demo data is actually saved.
  */
 
+import { todayKey } from './dashboard-models.js';
+
 export const QUICK_JOURNAL_PROMPTS = {
   premarket: [
     'What must price confirm before you are allowed to enter today?',
@@ -127,7 +129,7 @@ export async function deleteEntry(id) {
 
 /** Today's private performance snapshot, from trade-type entries only. */
 export async function getTodaysSnapshot(opts = {}) {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = todayKey();
   const { entries } = await listEntries({ entryType: 'trade', from: today, to: today, limit: 200 });
   const wins = entries.filter((t) => t.netPnl > 0).length;
   const losses = entries.filter((t) => t.netPnl < 0).length;
@@ -208,7 +210,7 @@ export function createAutosaver(onStatus) {
 export async function saveReflection(type, prompt, text) {
   return saveEntry({
     entryType: type, prompt, entryReasoning: text,
-    tradeDate: new Date().toISOString().slice(0, 10), isDraft: false,
+    tradeDate: todayKey(), isDraft: false,
   });
 }
 
