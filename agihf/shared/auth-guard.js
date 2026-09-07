@@ -42,9 +42,35 @@
   // protected content never flashes before a redirect.
   document.documentElement.style.visibility = 'hidden';
 
-  function bounceToLogin() {
+  // TEMPORARY DIAGNOSTIC — a member's real account is going blank in a way
+  // that's been hard to pin down over chat (blank forever vs. a redirect,
+  // and why, all look the same from the outside). This narrates every real
+  // step of the auth check directly on the page in plain text, so the
+  // actual failure point is readable at a glance instead of guessed at.
+  // Skipped entirely in demo mode — there's nothing to diagnose there, and
+  // it would just be visual noise on an already-working path. Remove this
+  // whole block (and its call sites below) once the real root cause is
+  // confirmed and fixed.
+  const isDemo = sessionStorage.getItem('aghf_demo') === '1';
+  let diagBox = null;
+  if (!isDemo) {
+    diagBox = document.createElement('div');
+    diagBox.style.cssText = 'position:fixed;bottom:8px;right:8px;background:#000;color:#0f0;font:11px/1.4 monospace;padding:8px 10px;z-index:2147483647;max-width:92vw;max-height:60vh;overflow:auto;white-space:pre-wrap;border-radius:6px;visibility:visible;';
+    diagBox.textContent = 'Auth check starting…';
+    document.body.appendChild(diagBox);
+  }
+  function logStep(msg) {
+    if (!diagBox) return;
+    const line = `[${new Date().toISOString().slice(11, 19)}] ${msg}`;
+    diagBox.textContent += '\n' + line;
+    console.log('AuthGuard:', line);
+  }
+
+  function bounceToLogin(reason) {
+    logStep('Bouncing to login. Reason: ' + (reason || 'unknown'));
     const redirect = encodeURIComponent(window.location.pathname + window.location.search);
-    window.location.href = `${ROOT}login.html?redirect=${redirect}`;
+    const reasonParam = reason ? `&reason=${encodeURIComponent(reason)}` : '';
+    window.location.href = `${ROOT}login.html?redirect=${redirect}${reasonParam}`;
   }
 
   // Loads the Supabase client from a same-origin vendored file rather than
@@ -90,7 +116,7 @@
     }
   }
 
-  if (sessionStorage.getItem('aghf_demo') === '1') {
+  if (isDemo) {
     window.AGHF_DEMO = true;
     window.AGHF_USER = { id: 'demo', email: 'demo@preview.local' };
     window.AGHF_SESSION_TOKEN = null;
@@ -113,7 +139,9 @@
 
   async function run() {
     try {
+      logStep('Loading Supabase library…');
       const { createClient, processLock } = await loadSupabaseLib();
+      logStep('Library loaded');
       // The default auth lock uses navigator.locks to serialize auth calls
       // across tabs of the same origin. Every page on this site is a fresh
       // full navigation (no SPA routing), each creating its own client — if
@@ -126,14 +154,16 @@
       // single-tab lock — this app never needs cross-tab coordination, so
       // it removes the hang entirely instead of working around it.
       const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: processLock } });
+      logStep('Calling getSession()…');
       const { data: { session }, error } = await withTimeout(
         supabaseClient.auth.getSession(),
         10000,
         'Timed out checking your session'
       );
+      logStep(`getSession() returned: session=${session ? 'yes (user ' + session.user.email + ')' : 'no'} error=${error ? error.message : 'none'}`);
 
       if (error || !session) {
-        bounceToLogin();
+        bounceToLogin('no session or getSession error: ' + (error ? error.message : 'no session'));
         return;
       }
 
@@ -153,16 +183,18 @@
       // then redirecting straight back to login.
       supabaseClient.auth.onAuthStateChange((event, newSession) => {
         if (event === 'SIGNED_OUT') {
-          bounceToLogin();
+          bounceToLogin('onAuthStateChange fired SIGNED_OUT');
           return;
         }
         if (newSession) window.AGHF_SESSION_TOKEN = newSession.access_token;
       });
 
+      logStep('Auth OK — showing page');
+      if (diagBox) setTimeout(() => diagBox.remove(), 4000);
       fireAuthReadySafely();
     } catch (err) {
       console.error('Auth guard error:', err);
-      bounceToLogin();
+      bounceToLogin('threw: ' + err.message);
     }
   }
 
