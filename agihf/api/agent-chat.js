@@ -105,10 +105,10 @@ function extractResponseBlocks(fullText) {
 
 /**
  * A screenshot attachment carries its base64 data inline for this one
- * call (never a signed URL — nothing member-scoped ever reaches
- * Anthropic's infrastructure via a link). The image itself is persisted
- * separately via agent-attachment.js; only a path reference, never the
- * bytes, is ever written into agent_messages.
+ * call (never a signed URL — nothing member-scoped ever reaches the AI
+ * provider's infrastructure via a link). The image itself is persisted
+ * separately via agent-data.js's attachment resource; only a path
+ * reference, never the bytes, is ever written into agent_messages.
  */
 function buildUserContent(message, attachments) {
   const shot = attachments.find((a) => a.type === 'screenshot' && a.dataUrl);

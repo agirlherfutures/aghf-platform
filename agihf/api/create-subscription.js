@@ -1,13 +1,14 @@
 // api/create-subscription.js
 // Creates a Stripe subscription using Elements (card entered on your page)
 
+import Stripe from 'stripe';
+import { createClient } from '@supabase/supabase-js';
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
-
-  import Stripe from 'stripe';
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-  import { createClient } from '@supabase/supabase-js';
-  const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
   const { email, userId, name } = req.body;
   if (!email || !userId) return res.status(400).json({ error: 'Email and userId required' });
