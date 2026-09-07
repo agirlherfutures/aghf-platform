@@ -47,6 +47,28 @@
     window.location.href = `${ROOT}login.html?redirect=${redirect}`;
   }
 
+  // Loads the Supabase client from a same-origin vendored file rather than
+  // a third-party CDN. This used to be a dynamic `import()` of
+  // https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm — reasonable
+  // in isolation, but real-world testing found it silently never
+  // resolving in some browsers' stricter privacy modes (Safari, Brave
+  // Shields), with no console error and no visible failed network
+  // request — the page just stayed hidden forever (see the `visibility:
+  // hidden` line above). A same-origin script tag removes that entire
+  // class of third-party-script-blocking failure, matching how every
+  // other script on this site is already served from the app's own
+  // origin. The UMD build attaches `window.supabase.createClient`.
+  function loadSupabaseLib() {
+    return new Promise((resolve, reject) => {
+      if (window.supabase?.createClient) { resolve(window.supabase); return; }
+      const script = document.createElement('script');
+      script.src = new URL('vendor/supabase-js.umd.js', scriptSrc).href;
+      script.onload = () => resolve(window.supabase);
+      script.onerror = () => reject(new Error('Could not load the Supabase client library'));
+      document.head.appendChild(script);
+    });
+  }
+
   // This script is a classic (non-module) tag, so it runs synchronously
   // while the document is still parsing. Consuming pages listen for
   // `aghf-auth-ready` from a type="module" script, and module scripts are
@@ -84,7 +106,7 @@
 
   async function run() {
     try {
-      const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
+      const { createClient } = await loadSupabaseLib();
       const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON);
       const { data: { session }, error } = await supabaseClient.auth.getSession();
 
