@@ -1,0 +1,71 @@
+{
+  "phase": "p1",
+  "section": "s2",
+  "lessonNumber": 8,
+  "title": "Brokers, Prop Firms & Accounts",
+  "videoUrl": null,
+  "videoDuration": "7 min",
+  "xpValue": 60,
+  "passThreshold": 0.6,
+  "hook": "Know the difference before you fund an account.",
+  "mission": "By the end of this lesson, you should be able to explain what a broker account, a prop firm evaluation, and a simulated account each actually test.",
+  "blocks": [
+    {
+      "type": "breakdown",
+      "heading": "Every account is either your money, someone else's money, or practice money",
+      "beats": [
+        { "heading": "A broker account", "body": "Trades your own personal capital — you keep every dollar of profit and absorb every dollar of loss yourself." },
+        { "heading": "A prop firm evaluation", "body": "Gives you access to their capital if you can prove you can trade within their rules first; once funded, profits are usually split." },
+        { "heading": "A simulated account", "body": "Uses no real money at all — it exists purely to practice execution without financial risk." }
+      ]
+    },
+    {
+      "type": "confusion",
+      "heading": "Broker ≠ Prop Firm ≠ Simulated",
+      "left": { "label": "Broker account", "points": ["Your own capital, full risk", "You keep 100% of profit", "No evaluation required"] },
+      "right": { "label": "Prop firm eval → funded", "points": ["Tests rule-discipline first", "Firm's capital once funded", "Profits usually split"] }
+    },
+    {
+      "type": "what_happens_next",
+      "heading": "Match the account to the goal",
+      "sequence": ["A trader wants to test whether her execution is consistent before risking real money"],
+      "askAfter": "A trader wants to test whether her execution is consistent before risking real money",
+      "prompt": "Which account type actually answers that question?",
+      "options": [
+        { "label": "A simulated (demo) account", "correct": true, "feedback": "Right — simulated accounts exist to prove consistency with zero financial risk." },
+        { "label": "Jump straight to a funded account", "correct": false, "feedback": "Skipping straight to funded capital without proving consistency first is a real risk." }
+      ]
+    },
+    {
+      "type": "dayli_says",
+      "quote": "I'm not telling you which account type to start with. I'm telling you to know exactly which one you're in, and what that account expects from you, before you place a single trade."
+    },
+    {
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "A trader passes a prop firm's evaluation and gets funded. Whose capital is she now trading, and what does that change about her risk?",
+          "options": ["The firm's capital — her personal money isn't directly at risk, but she now trades inside the firm's rules", "Her own capital — the evaluation was just a formality", "Nobody's capital — funded accounts are simulated"],
+          "correctIndex": 0,
+          "why": "Funded status shifts whose money is at risk but adds real rule constraints in exchange."
+        },
+        {
+          "question": "A prop firm's evaluation exists to test whether a trader can follow ___ before the firm gives her access to its capital.",
+          "options": ["The rules", "The market", "Her instincts"],
+          "correctIndex": 0,
+          "why": "Rule-discipline is proven first — capital access comes after."
+        }
+      ]
+    },
+    {
+      "type": "reflection",
+      "prompt": "Imagine another AGHF girl asks: \"Should I just go straight for a funded prop account?\" How would you explain the trade-offs to her?"
+    }
+  ],
+  "takeaways": [
+    "A broker account risks your own capital from trade one.",
+    "A prop evaluation tests rule-discipline before granting capital access.",
+    "A simulated account proves consistency with zero financial risk."
+  ],
+  "remember": "Know exactly which account you're in, and what it expects from you."
+}

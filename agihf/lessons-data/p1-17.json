@@ -1,0 +1,89 @@
+{
+  "phase": "p1",
+  "section": "s3",
+  "lessonNumber": 17,
+  "title": "Timeframes",
+  "videoUrl": null,
+  "videoDuration": "6 min",
+  "xpValue": 70,
+  "passThreshold": 0.6,
+  "hook": "Higher timeframes tell the story. Lower timeframes let you step inside it.",
+  "loop": true,
+  "launchpad": {
+    "outcome": "Explain what actually changes when you switch chart timeframes — and what doesn't.",
+    "missionQuestion": "If the 1M looks messy and confusing, what should you actually do first?",
+    "estMinutes": 6
+  },
+  "watch": {
+    "markers": [
+      { "t": "00:00", "label": "What is a timeframe" },
+      { "t": "01:20", "label": "4H — the big picture" },
+      { "t": "03:00", "label": "1M — the detail trap" },
+      { "t": "04:40", "label": "Giving each timeframe a job" },
+      { "t": "05:30", "label": "Try it yourself" }
+    ]
+  },
+  "seeIt": {
+    "heading": "Watch the same market, four different zooms",
+    "prompt": "Same price story. Watch how the level of detail changes as we zoom in.",
+    "config": {
+      "shape": "timeframe_lens",
+      "stages": [
+        { "part": "4H", "caption": "This is the 4H. Only 5 candles shown — the least detail, but the clearest big-picture direction." },
+        { "part": "1H", "caption": "Same market, zoomed in. More candles, more detail starting to show." },
+        { "part": "15M", "caption": "Even more candles. You start to see the small moves inside the bigger picture." },
+        { "part": "1M", "caption": "The 1M. The most detail — and the most noise. Every tiny wiggle can look urgent here." }
+      ]
+    }
+  },
+  "tryIt": {
+    "heading": "The 1M looks messy. What now?",
+    "prompt": "You open your chart straight to the 1M. It's choppy and confusing — every candle looks like a signal.",
+    "mode": "decision_path",
+    "startNode": "start",
+    "nodes": [
+      {
+        "id": "start",
+        "prompt": "What's your first move?",
+        "options": [
+          { "label": "Stay on the 1M and react to what I see", "good": false, "feedback": "This is how beginners get pulled around by noise — every candle starts to feel urgent.", "next": "stuck" },
+          { "label": "Zoom out to the 4H first", "good": true, "feedback": "Yes — get the bigger picture before the small candles get to decide your mood.", "next": "zoomed" }
+        ]
+      },
+      {
+        "id": "stuck",
+        "prompt": "You keep reacting to the 1M. Ten minutes later, you're not even sure if you're bullish or bearish anymore. What now?",
+        "options": [
+          { "label": "Keep watching the 1M — the answer has to be in here somewhere", "good": false, "feedback": "It isn't — the 1M was never built to answer that question by itself.", "outcomeText": "Still stuck. The bigger picture only lives on the bigger timeframe. No amount of staring at the 1M will produce it." },
+          { "label": "Stop, and zoom out to the 4H", "good": true, "next": "zoomed" }
+        ]
+      },
+      {
+        "id": "zoomed",
+        "prompt": "On the 4H, the bigger picture is actually pretty clear — a clean move in one direction. Now what?",
+        "options": [
+          { "label": "Go back to the 1M with that context in mind", "good": true, "outcomeText": "This is the clean flow. The 4H gives you the big picture, then the 1M makes sense INSIDE that picture instead of trying to explain everything by itself." },
+          { "label": "Ignore the 4H and go back to just reacting on the 1M", "good": false, "outcomeText": "Right back where you started. Context doesn't help if you don't carry it with you." }
+        ]
+      }
+    ]
+  },
+  "sayItBack": {
+    "prompt": "Imagine another AGHF girl asks: \"Why does it matter which timeframe I look at first?\" How would you explain it to her?",
+    "modelAnswer": "Every timeframe shows the same market, just zoomed to a different level of detail. The 4H shows the big picture with the least noise, so I check that first to know the overall direction. The 1M shows way more detail, but without the 4H's context, every small move on the 1M can feel like a signal when it's really just noise. Checking the bigger timeframe first gives the smaller one a job to do, instead of asking it to explain everything alone."
+  },
+  "saveIt": {
+    "checklist": [
+      "A timeframe is a lens, not a different market — the same price story, more or less zoomed in.",
+      "Higher timeframes (4H) show fewer candles and a clearer overall direction.",
+      "Lower timeframes (1M) show more detail — and more noise.",
+      "Always zoom out before you zoom in. Context first, detail second."
+    ]
+  },
+  "takeaways": [
+    "Every timeframe is a different zoom on the same price story.",
+    "Higher timeframes show direction; lower timeframes show detail.",
+    "Zoom out before you zoom in — context first, detail second."
+  ],
+  "remember": "The market doesn't change when you switch the chart view — your perspective does."
+}

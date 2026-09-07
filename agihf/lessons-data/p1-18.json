@@ -1,0 +1,76 @@
+{
+  "phase": "p1",
+  "section": "s3",
+  "lessonNumber": 18,
+  "title": "Multi-Timeframe Thinking",
+  "videoUrl": null,
+  "videoDuration": "8 min",
+  "xpValue": 95,
+  "passThreshold": 0.6,
+  "hook": "Higher timeframes give context. Lower timeframes reveal detail.",
+  "mission": "By the end of this lesson, you should be able to explain why zooming in changes what you can see, not what's actually happening.",
+  "blocks": [
+    {
+      "type": "breakdown",
+      "heading": "Every timeframe has a job. You just don't know what it is yet.",
+      "beats": [
+        { "heading": "Context, then detail", "body": "Higher timeframes give you context — the bigger picture of what price is doing. Lower timeframes reveal detail — the smaller moves inside that picture." },
+        { "heading": "One lesson at a time", "body": "Later in the Academy, you'll learn exactly how AGHF assigns a specific job to each timeframe. For now, just get comfortable with the idea that they're telling different parts of the same story." }
+      ]
+    },
+    {
+      "type": "build_sequence",
+      "heading": "Build the zoom order",
+      "prompt": "Tap the timeframes in the order you'd generally check them — biggest picture first.",
+      "items": [
+        { "key": "4h", "label": "4H", "desc": "Biggest picture" },
+        { "key": "1h", "label": "1H", "desc": "Narrower structure" },
+        { "key": "15m", "label": "15M", "desc": "Finer detail" },
+        { "key": "1m", "label": "1M", "desc": "Most zoomed in" }
+      ],
+      "correctOrder": ["4h", "1h", "15m", "1m"],
+      "successFeedback": "That's the general zoom order — biggest picture first, most detail last. You'll learn the exact job each one does later in the Academy.",
+      "failFeedback": "Not quite the order — think biggest picture first, most zoomed-in last."
+    },
+    {
+      "type": "catch_mistake",
+      "heading": "What's the risk in her thinking?",
+      "scenario": "A trader treats every timeframe as if it should give her the same kind of answer.",
+      "options": [
+        { "label": "She'll get confused when a detailed view and a big-picture view naturally look different", "correct": true, "feedback": "Exactly — expecting every timeframe to answer the same question leads to unnecessary confusion." },
+        { "label": "There's no risk — all timeframes should always agree perfectly", "correct": false, "feedback": "Timeframes don't have to agree perfectly at every moment." }
+      ]
+    },
+    {
+      "type": "dayli_says",
+      "quote": "I'm not going to hand you the whole framework in one lesson. Right now, just notice that a higher timeframe and a lower timeframe are telling you different parts of the same story."
+    },
+    {
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "A trader forms her entire directional bias off the 1-minute chart alone, ignoring the 4H. What's the risk in doing that?",
+          "options": ["She's using a detailed, zoomed-in view to make a bigger-picture decision it wasn't built to answer", "There's no risk — every timeframe shows the same picture", "The 1-minute chart is always more reliable than higher timeframes"],
+          "correctIndex": 0,
+          "why": "The 1M is built for detail, not for establishing the overall directional story."
+        },
+        {
+          "question": "The clean beginner flow is bigger picture, then structure, then ___ detail last.",
+          "options": ["Entry", "News", "Guesswork"],
+          "correctIndex": 0,
+          "why": "Entry detail comes last, after the bigger picture and structure are established."
+        }
+      ]
+    },
+    {
+      "type": "reflection",
+      "prompt": "Imagine another AGHF girl asks: \"Why not just trade off the 1-minute chart the whole time?\" How would you explain it to her?"
+    }
+  ],
+  "takeaways": [
+    "Higher timeframes give context; lower timeframes reveal detail.",
+    "Zooming in changes what you can see — not what's actually happening.",
+    "A messy lower timeframe doesn't erase a clear higher-timeframe read."
+  ],
+  "remember": "Different timeframes, different parts of the same story."
+}

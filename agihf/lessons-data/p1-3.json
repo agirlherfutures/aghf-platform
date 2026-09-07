@@ -1,0 +1,112 @@
+{
+  "phase": "p1",
+  "section": "s1",
+  "lessonNumber": 3,
+  "title": "Buyers vs Sellers",
+  "videoUrl": null,
+  "videoDuration": "5 min",
+  "xpValue": 50,
+  "passThreshold": 0.6,
+  "hook": "Price isn't moving because your candle turned green. The candle turned green because price moved.",
+  "loop": true,
+  "launchpad": {
+    "outcome": "Explain what buyer and seller aggression means — without treating any single candle as the whole story.",
+    "missionQuestion": "Does one red candle after a string of green candles automatically mean sellers are in control?",
+    "estMinutes": 5
+  },
+  "watch": {
+    "markers": [
+      { "t": "00:00", "label": "What buyer aggression looks like" },
+      { "t": "01:10", "label": "What seller aggression looks like" },
+      { "t": "02:20", "label": "Why one candle isn't the whole story" },
+      { "t": "03:30", "label": "Try it yourself" }
+    ]
+  },
+  "learnIt": {
+    "blocks": [
+      {
+        "type": "breakdown",
+        "heading": "What buyers and sellers actually do",
+        "beats": [
+          { "heading": "Buyers showing aggression", "body": "Participants willing to transact at increasingly higher available prices — that's what pushes price up." },
+          { "heading": "Sellers showing aggression", "body": "Participants willing to transact at increasingly lower available prices — that's what pushes price down." },
+          { "heading": "One candle isn't the whole story", "body": "One green candle does NOT establish a bullish market. One red candle does NOT establish a bearish market. This prepares you for reading structure later." }
+        ]
+      },
+      {
+        "type": "catch_mistake",
+        "heading": "Is she right?",
+        "scenario": "Price prints a small green candle, then a large green candle, then a small red candle. A trader says the red candle means sellers now control the entire market.",
+        "options": [
+          { "label": "No — one candle without context doesn't tell us the larger structural story", "correct": true, "feedback": "Right. We need more than one candle to know whether the bigger story actually changed." },
+          { "label": "Yes — any red candle after green ones means sellers have taken over", "correct": false, "feedback": "One candle isn't enough evidence to declare a full change of control." }
+        ]
+      },
+      {
+        "type": "dayli_says",
+        "quote": "Stop asking what one candle means by itself. Eventually, we'll learn to ask what that candle is doing within structure."
+      }
+    ]
+  },
+  "seeIt": {
+    "heading": "Watch control shift on a real path",
+    "mode": "guided_reveal",
+    "prompt": "This path steps higher with a couple of small pullbacks, then something changes.",
+    "config": {
+      "shape": "price_path",
+      "path": [[60, 220], [150, 160], [240, 190], [330, 120], [420, 150], [510, 90], [600, 180]],
+      "stages": [
+        { "caption": "This price path has been stepping higher, with a couple of small pullbacks along the way." },
+        { "highlight": { "x": 240, "y": 190, "label": "Still an uptrend — just a shallow pullback" }, "caption": "Buyers are still winning here. A small pullback inside an uptrend isn't a change of control." },
+        { "highlight": { "x": 420, "y": 150, "label": "Another shallow pullback" }, "caption": "Same story — buyers are still in control through this point." },
+        { "highlight": { "x": 600, "y": 180, "label": "This is where it actually broke" }, "caption": "Here's where price actually closed lower and broke the pattern — a real shift, not just a wick." }
+      ]
+    }
+  },
+  "tryIt": {
+    "heading": "Find the shift",
+    "prompt": "Same skill, new chart each time. Tap the point where control actually changed.",
+    "mode": "click_chart",
+    "config": {
+      "shape": "price_path",
+      "rounds": [
+        {
+          "prompt": "This path steps higher with a couple of small pullbacks. Tap the point where sellers actually took control.",
+          "path": [[60, 220], [150, 160], [240, 190], [330, 120], [420, 150], [510, 90], [600, 180]],
+          "points": [
+            { "label": "Point A", "x": 240, "y": 190, "r": 35, "correct": false, "feedback": "That's a small pullback inside an uptrend that's still holding — not a real change of control." },
+            { "label": "Point B", "x": 600, "y": 180, "r": 35, "correct": true, "feedback": "Exactly. That's the point where price actually closed lower and broke the pattern — a real shift, not just a wick." },
+            { "label": "Point C", "x": 420, "y": 150, "r": 35, "correct": false, "feedback": "Another shallow pullback — buyers were still winning through this point." }
+          ]
+        },
+        {
+          "prompt": "Different chart, same question. This path steps lower with a couple of small bounces. Tap the point where buyers actually took control.",
+          "path": [[60, 90], [150, 150], [240, 110], [330, 190], [420, 150], [510, 220], [600, 130]],
+          "points": [
+            { "label": "Point A", "x": 240, "y": 110, "r": 35, "correct": false, "feedback": "That's a small bounce inside a downtrend that's still holding — not a real change of control." },
+            { "label": "Point B", "x": 600, "y": 130, "r": 35, "correct": true, "feedback": "Exactly — that's where price broke the pattern of lower lows and actually turned. A real shift, not just a bounce." },
+            { "label": "Point C", "x": 420, "y": 150, "r": 35, "correct": false, "feedback": "Another shallow bounce — sellers were still winning through this point." }
+          ]
+        }
+      ]
+    }
+  },
+  "sayItBack": {
+    "prompt": "Imagine another AGHF girl asks: \"How do you know when buyers actually lost control, and not just a normal pullback?\" How would you explain it to her?",
+    "modelAnswer": "A normal pullback still respects the overall pattern — price dips a little but keeps making higher highs and higher lows overall. A real shift is when price actually breaks that pattern — closes lower than the recent structure was allowing, not just wicks into it. One candle never tells you that on its own; you need to see the pattern actually break, not just wiggle."
+  },
+  "saveIt": {
+    "checklist": [
+      "Buyer aggression pushes price up; seller aggression pushes price down.",
+      "One candle doesn't establish a trend or a reversal on its own.",
+      "A real shift breaks the pattern — a normal pullback doesn't.",
+      "Later, you'll learn to read what a candle is doing within structure — not just by itself."
+    ]
+  },
+  "takeaways": [
+    "Buyer aggression pushes price up; seller aggression pushes price down.",
+    "One candle doesn't establish a trend or a reversal on its own.",
+    "Later, you'll learn to read what a candle is doing within structure — not just by itself."
+  ],
+  "remember": "Don't ask what one candle means by itself."
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Outlook — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="market-outlook"></script>
+
+<main class="main">
+  <div class="pg-eye">◐ Dayli ICC</div>
+  <div class="pg-title">Market Outlook</div>
+
+  <div class="dd-soon-card" style="margin-bottom:20px;">
+    <div class="dd-soon-title">This is sample data</div>
+    <div class="dd-soon-sub">A live TradingView/market-data connection isn't wired up yet — everything below is clearly-labeled Demo Data so it's never mistaken for a real feed. This is educational market context based on the Dayli ICC Method, not a trade signal.</div>
+  </div>
+
+  <div class="dd-section">
+    <div class="dd-section-head"><div class="dd-section-title">Instruments</div></div>
+    <div id="ddOutlookFull"></div>
+  </div>
+
+  <div class="dd-section" id="calendar">
+    <div class="dd-section-head"><div class="dd-section-title">Today's News</div></div>
+    <div class="dd-card" id="ddCalendarFull"></div>
+  </div>
+</main>
+
+<script type="module">
+  import { getMarketOutlook } from './shared/market-outlook-service.js';
+  import { getTodaysEvents } from './shared/economic-calendar-service.js';
+  import { renderMarketOutlookCard, renderEconomicCalendarCard, renderSkeleton } from './shared/dayli-desk-engine.js';
+
+  const outlookEl = document.getElementById('ddOutlookFull');
+  const calEl = document.getElementById('ddCalendarFull');
+  renderSkeleton(outlookEl, 2);
+  renderSkeleton(calEl, 2);
+  getMarketOutlook().then((instruments) => renderMarketOutlookCard(outlookEl, instruments));
+  getTodaysEvents().then((events) => renderEconomicCalendarCard(calEl, events));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<style>
+  .yt-section{padding:0 20px 40px;max-width:1100px;margin:0 auto;}
+  .yt-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px;}
+  .yt-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);margin-bottom:4px;}
+  .yt-title{font-family:var(--font-display);font-size:1.1rem;font-weight:900;color:var(--dark);}
+  .yt-link-btn{padding:9px 18px;border-radius:100px;border:1.5px solid var(--pink-light);background:transparent;color:var(--pink);font-family:var(--font-body);font-size:.8rem;font-weight:600;cursor:pointer;white-space:nowrap;}
+  .yt-video-card{background:#fff;border-radius:20px;border:1px solid var(--pink-pale);overflow:hidden;margin-bottom:14px;}
+  .yt-embed{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}
+  .yt-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+  .yt-video-body{padding:16px 20px;}
+  .yt-video-title{font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:4px;}
+  .yt-video-desc{font-size:.82rem;color:var(--muted);line-height:1.6;}
+  .yt-cta{background:linear-gradient(135deg,var(--pink-pale),var(--peach-pale));border-radius:16px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .yt-cta-title{font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:4px;}
+  .yt-cta-sub{font-size:.8rem;color:var(--muted);}
+  .yt-cta-btn{flex-shrink:0;padding:11px 22px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;font-family:var(--font-body);font-size:.82rem;font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(244,130,154,.25);}
+  .store-note{max-width:1100px;margin:0 auto 28px;padding:0 20px;}
+  .store-note-inner{background:var(--cream);border-radius:14px;padding:16px 20px;text-align:center;font-size:.85rem;color:var(--muted);line-height:1.7;}
+</style>
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="store"></script>
+
+<main class="main">
+<div class="page-title-block">
+  <div class="page-eyebrow">Community</div>
+  <div class="page-title">Join the Community ✦</div>
+  <div class="page-sub">300+ traders learning, growing, and staying in structure together. Pick the plan that works for you.</div>
+</div>
+
+<div class="page-shell">
+  <div class="pricing-grid">
+    <div class="pricing-card free">
+      <div class="pricing-eyebrow">Free Access</div>
+      <div class="pricing-name">AG&amp;HF Discord</div>
+      <div class="pricing-price">Free</div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><span class="pricing-feature-check">✓</span>Community chat access</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✓</span>Market discussions</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✓</span>Trading resources</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✓</span>AG&amp;HF community vibes</div>
+      </div>
+      <button class="pricing-btn free-btn" onclick="window.open('https://whop.com/a-girl-her-futures/ag-hf-free-discord-access/','_blank')">Join for free →</button>
+    </div>
+
+    <div class="pricing-card paid">
+      <div class="pricing-eyebrow">Full Access</div>
+      <div class="pricing-name">ICC Structure Lab</div>
+      <div class="pricing-price">$24.99<span>/mo</span></div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><span class="pricing-feature-check">✓</span>Everything in free</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✓</span>ICC Structure Lab access</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✓</span>Live trade reviews with Dayli</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✓</span>Exclusive ICC channels</div>
+        <div class="pricing-feature"><span class="pricing-feature-check">✓</span>Weekly Dayli Live sessions</div>
+      </div>
+      <button class="pricing-btn paid-btn" onclick="window.open('https://whop.com/a-girl-her-futures/a-girl-her-futures-discord/','_blank')">✦ Join Structure Lab</button>
+    </div>
+  </div>
+</div>
+
+<div class="store-note">
+  <div class="store-note-inner">Already a Whop member? Your Discord access is included. Just click your tier above to get the invite link. 🖤</div>
+</div>
+
+<div class="yt-section">
+  <div class="yt-head">
+    <div>
+      <div class="yt-eyebrow">✦ Watch &amp; Learn</div>
+      <div class="yt-title">From the YouTube</div>
+    </div>
+    <button class="yt-link-btn" onclick="window.open('https://www.youtube.com/@Agirlherfutures','_blank')">View channel →</button>
+  </div>
+
+  <div class="yt-video-card">
+    <div class="yt-embed">
+      <iframe src="https://www.youtube.com/embed/SRbzVbL8Wio" title="A Girl & Her Futures — ICC Method" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="yt-video-body">
+      <div class="yt-video-title">Watch: The ICC Method Explained</div>
+      <div class="yt-video-desc">Dayli breaks down Indication, Correction, and Continuation — the full framework behind everything you're learning on this platform.</div>
+    </div>
+  </div>
+
+  <div class="yt-cta">
+    <div>
+      <div class="yt-cta-title">More videos on the channel ✦</div>
+      <div class="yt-cta-sub">Trade breakdowns, ICC setups, market analysis and more.</div>
+    </div>
+    <button class="yt-cta-btn" onclick="window.open('https://www.youtube.com/@Agirlherfutures','_blank')">Subscribe →</button>
+  </div>
+</div>
+</main>
+
+</body>
+</html>

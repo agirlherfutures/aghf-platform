@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal History — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700,900;1,400,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="journal"></script>
+
+<main class="main">
+  <div class="pg-eye">✦ Your Trading Journal</div>
+  <div class="pg-title">Study your patterns. Refine your edge.</div>
+
+  <div class="jh-stats-row" id="jhStats"></div>
+  <div class="jh-badges-row" id="jhBadges"></div>
+  <div id="jhInsights" class="jh-insights-col" style="margin-bottom:16px;"></div>
+
+  <div class="dd-card" style="margin-bottom:16px;">
+    <div class="field-row cols-4">
+      <div class="field-group"><label class="field-label">Search</label><input class="field-input" type="text" id="fSearch" placeholder="Search reasoning &amp; lessons…"></div>
+      <div class="field-group"><label class="field-label">From</label><input class="field-input" type="date" id="fFrom"></div>
+      <div class="field-group"><label class="field-label">To</label><input class="field-input" type="date" id="fTo"></div>
+      <div class="field-group"><label class="field-label">Instrument</label><select class="field-input" id="fInstrument"><option value="">All</option></select></div>
+    </div>
+    <div class="field-row cols-4">
+      <div class="field-group"><label class="field-label">Direction</label><select class="field-input" id="fDirection"><option value="">All</option><option value="long">Long</option><option value="short">Short</option></select></div>
+      <div class="field-group"><label class="field-label">Outcome</label><select class="field-input" id="fOutcome"><option value="">All</option><option value="win">Win</option><option value="loss">Loss</option><option value="breakeven">Breakeven</option></select></div>
+      <div class="field-group"><label class="field-label">Setup</label><select class="field-input" id="fSetup"><option value="">All</option></select></div>
+      <div class="field-group"><label class="field-label">Dayli ICC</label><select class="field-input" id="fIcc"><option value="">All</option><option value="true">Has ICC Setup</option></select></div>
+    </div>
+    <div class="field-row cols-4">
+      <div class="field-group"><label class="field-label">Execution Grade</label><select class="field-input" id="fGrade"><option value="">All</option><option>A+</option><option>A</option><option>A-</option><option>B</option><option>C</option><option>D</option></select></div>
+      <div class="field-group"><label class="field-label">Rule Check</label><select class="field-input" id="fRuleCheck"><option value="">All</option><option value="yes">Yes</option><option value="mostly">Mostly</option><option value="no">No</option></select></div>
+      <div class="field-group"><label class="field-label">Emotion</label><select class="field-input" id="fEmotion"><option value="">All</option></select></div>
+      <div class="field-group" style="justify-content:flex-end;"><button type="button" class="dd-secondary-btn" id="fClear">Clear filters</button></div>
+    </div>
+  </div>
+
+  <div id="jhCards" class="jh-cards-grid"></div>
+</main>
+
+<script type="module">
+  import { listEntries, getJournalStats } from './shared/journal-service.js';
+  import { INSTRUMENT_SYMBOLS } from './shared/instrument-data.js';
+  import { EMOTION_OPTIONS_V2 } from './shared/dashboard-models.js';
+  import { renderTradeSummaryCard, entryToSummaryCardProps, hydrateTscShots, renderJournalStatsRow, renderBadgesStrip, renderInsightCards } from './shared/journal-engine.js';
+  import { computeInsights } from './shared/journal-insights.js';
+  import { renderSkeleton, renderErrorState } from './shared/dayli-desk-engine.js';
+
+  document.getElementById('fInstrument').insertAdjacentHTML('beforeend', INSTRUMENT_SYMBOLS.map((s) => `<option value="${s}">${s}</option>`).join(''));
+  const allEmotions = [...new Set([...EMOTION_OPTIONS_V2.entering, ...EMOTION_OPTIONS_V2.during, ...EMOTION_OPTIONS_V2.exiting])].sort();
+  document.getElementById('fEmotion').insertAdjacentHTML('beforeend', allEmotions.map((e) => `<option value="${e}">${e}</option>`).join(''));
+
+  const cardsEl = document.getElementById('jhCards');
+  const statsEl = document.getElementById('jhStats');
+  const badgesEl = document.getElementById('jhBadges');
+  const insightsEl = document.getElementById('jhInsights');
+  const filterIds = ['fSearch', 'fFrom', 'fTo', 'fInstrument', 'fDirection', 'fOutcome', 'fSetup', 'fIcc', 'fGrade', 'fRuleCheck', 'fEmotion'];
+  filterIds.forEach((id) => document.getElementById(id).addEventListener('change', load));
+  document.getElementById('fSearch').addEventListener('input', debounce(load, 300));
+  document.getElementById('fClear').addEventListener('click', () => {
+    filterIds.forEach((id) => { document.getElementById(id).value = ''; });
+    load();
+  });
+
+  function debounce(fn, ms) {
+    let t;
+    return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+  }
+
+  function populateSetupOptions(entries) {
+    const select = document.getElementById('fSetup');
+    const current = select.value;
+    const setups = [...new Set(entries.map((e) => e.setupType).filter(Boolean))].sort();
+    select.innerHTML = `<option value="">All</option>${setups.map((s) => `<option ${s === current ? 'selected' : ''}>${s}</option>`).join('')}`;
+  }
+
+  async function load() {
+    renderSkeleton(cardsEl, 4);
+    try {
+      const filters = {
+        entryType: 'trade',
+        from: document.getElementById('fFrom').value || undefined,
+        to: document.getElementById('fTo').value || undefined,
+        instrument: document.getElementById('fInstrument').value || undefined,
+        direction: document.getElementById('fDirection').value || undefined,
+        outcome: document.getElementById('fOutcome').value || undefined,
+        setupType: document.getElementById('fSetup').value || undefined,
+        executionGrade: document.getElementById('fGrade').value || undefined,
+        ruleCheck: document.getElementById('fRuleCheck').value || undefined,
+        hasIccSetup: document.getElementById('fIcc').value || undefined,
+        limit: 100,
+      };
+      const [{ entries }, stats] = await Promise.all([listEntries(filters), getJournalStats()]);
+      populateSetupOptions(entries);
+      renderJournalStatsRow(statsEl, stats);
+      renderBadgesStrip(badgesEl);
+      renderInsightCards(insightsEl, computeInsights(entries));
+
+      const emotion = document.getElementById('fEmotion').value;
+      const search = document.getElementById('fSearch').value.trim().toLowerCase();
+      let filtered = entries;
+      if (emotion) {
+        filtered = filtered.filter((e) => ['entering', 'during', 'exiting'].some((s) => e.emotions?.[s]?.primary === emotion));
+      }
+      if (search) {
+        filtered = filtered.filter((e) => `${e.entryReasoning || ''} ${e.exitReasoning || ''} ${(e.lessons || []).join(' ')}`.toLowerCase().includes(search));
+      }
+
+      if (!filtered.length) {
+        cardsEl.innerHTML = `<div class="dd-card dd-empty"><div class="dd-empty-icon">🗂️</div><div class="dd-empty-text">${entries.length ? 'No entries match these filters.' : 'No trades journaled yet.'}</div><a class="dd-primary-btn" href="journal-entry.html">Log Your First Trade</a></div>`;
+        return;
+      }
+      cardsEl.innerHTML = filtered.map((e) => renderTradeSummaryCard(entryToSummaryCardProps(e), { variant: 'list' })).join('');
+      hydrateTscShots(cardsEl, apiFetch);
+    } catch (err) {
+      console.error('Journal history load error:', err);
+      renderErrorState(cardsEl, err.message || "Couldn't load your journal history.", load);
+    }
+  }
+
+  async function apiFetch(path, opts = {}) {
+    const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
+    if (window.AGHF_SESSION_TOKEN) headers.Authorization = `Bearer ${window.AGHF_SESSION_TOKEN}`;
+    const res = await fetch(path, { ...opts, headers });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(body.error || `Request failed (${res.status})`);
+    return body;
+  }
+
+  document.addEventListener('aghf-auth-ready', load);
+</script>
+
+</body>
+</html>

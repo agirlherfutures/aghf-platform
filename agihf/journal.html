@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="journal"></script>
+
+<main class="main">
+  <div class="pg-eye">✦ AG&amp;HF Trade Log</div>
+  <div class="pg-title">Journal</div>
+
+  <div class="dd-card" style="margin-bottom:16px;">
+    <div class="dd-journal-actions">
+      <a class="dd-secondary-btn" href="journal-entry.html">📊 Log a Trade</a>
+      <button type="button" class="dd-secondary-btn" id="ddNewPre">📝 Pre-Market Reflection</button>
+      <button type="button" class="dd-secondary-btn" id="ddNewPost">🌙 Post-Market Reflection</button>
+    </div>
+  </div>
+
+  <div class="dd-snapshot-stats" style="margin-bottom:16px;" id="jhStats"></div>
+
+  <div class="dd-section-head">
+    <div class="dd-section-title">Recent Entries</div>
+    <a class="dd-section-link" href="journal-history.html">View Journal History →</a>
+  </div>
+  <div class="dd-card" id="jhRecent"></div>
+</main>
+
+<script type="module">
+  import { getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS } from './shared/journal-service.js';
+  import { openJournalModal, renderRecentTrades, renderSkeleton, renderErrorState } from './shared/dayli-desk-engine.js';
+
+  async function load() {
+    const statsEl = document.getElementById('jhStats');
+    const recentEl = document.getElementById('jhRecent');
+    renderSkeleton(statsEl, 1);
+    renderSkeleton(recentEl, 2);
+    try {
+      const [snapshot, recent] = await Promise.all([getTodaysSnapshot(), getRecentEntries(3)]);
+      const pnlClass = snapshot.netPnl > 0 ? 'dd-pnl-pos' : snapshot.netPnl < 0 ? 'dd-pnl-neg' : 'dd-pnl-flat';
+      statsEl.innerHTML = `
+        <div class="dd-mini-stat"><div class="dd-mini-stat-l">Trades Today</div><div class="dd-mini-stat-v">${snapshot.tradeCount}</div></div>
+        <div class="dd-mini-stat"><div class="dd-mini-stat-l">Net P&amp;L Today</div><div class="dd-mini-stat-v ${pnlClass}">${snapshot.tradeCount ? (snapshot.netPnl > 0 ? '+' : snapshot.netPnl < 0 ? '−' : '') + '$' + Math.abs(Math.round(snapshot.netPnl)) : '—'}</div></div>
+        <div class="dd-mini-stat"><div class="dd-mini-stat-l">Win Rate</div><div class="dd-mini-stat-v">${snapshot.winRate != null ? snapshot.winRate + '%' : '—'}</div></div>
+        <div class="dd-mini-stat"><div class="dd-mini-stat-l">Most Recent</div><div class="dd-mini-stat-v" style="font-size:.85rem;">${recent[0] ? recent[0].tradeDate : 'None yet'}</div></div>`;
+      renderRecentTrades(recentEl, recent, { tradeTrackerHref: 'journal-entry.html' });
+    } catch (err) {
+      console.error('Journal hub load error:', err);
+      renderErrorState(recentEl, err.message || "Couldn't load your journal.", load);
+    }
+  }
+
+  document.getElementById('ddNewPre').addEventListener('click', () => {
+    const p = QUICK_JOURNAL_PROMPTS.premarket[Math.floor(Math.random() * QUICK_JOURNAL_PROMPTS.premarket.length)];
+    openJournalModal('premarket', p, async (entry) => { await saveReflection('premarket_reflection', entry.prompt, entry.text); load(); });
+  });
+  document.getElementById('ddNewPost').addEventListener('click', () => {
+    const p = QUICK_JOURNAL_PROMPTS.postmarket[Math.floor(Math.random() * QUICK_JOURNAL_PROMPTS.postmarket.length)];
+    openJournalModal('postmarket', p, async (entry) => { await saveReflection('postmarket_reflection', entry.prompt, entry.text); load(); });
+  });
+
+  document.addEventListener('aghf-auth-ready', load);
+</script>
+
+</body>
+</html>

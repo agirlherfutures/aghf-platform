@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psychology Coach Privacy — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="agent"></script>
+
+<main class="main">
+  <div class="dd-header-top">
+    <div>
+      <div class="pg-eye">✦ Privacy &amp; Coaching Settings</div>
+      <div class="pg-title">What the AGHF Agent can see, and how it talks to you.</div>
+    </div>
+    <a class="dd-secondary-btn" href="psychology.html">← AGHF Agent</a>
+  </div>
+  <div class="dd-section" id="psyConsentArea"></div>
+</main>
+
+<script type="module">
+  import { getPsychologyProfile, savePsychologyProfile, deleteAllPsychologyHistory } from './shared/psychology-service.js';
+  import { renderConsentSettings } from './shared/psychology-engine.js';
+  import { renderSkeleton, renderErrorState, showDeskToast } from './shared/dayli-desk-engine.js';
+
+  const area = document.getElementById('psyConsentArea');
+
+  async function load() {
+    renderSkeleton(area, 4);
+    try {
+      const profile = await getPsychologyProfile();
+      renderConsentSettings(area, profile, {
+        onSave: async (patch) => {
+          await savePsychologyProfile(patch);
+          showDeskToast('Settings saved ✦');
+        },
+        onDeleteHistory: async () => {
+          if (!window.confirm('This removes every saved Psychology Coach session. Your Playbook stays. Continue?')) return;
+          await deleteAllPsychologyHistory();
+          showDeskToast('Psychology History deleted.');
+        },
+      });
+    } catch (err) {
+      console.error('Consent settings load error:', err);
+      renderErrorState(area, err.setupRequired ? err.message : 'Couldn’t load your settings.', load);
+    }
+  }
+
+  document.addEventListener('aghf-auth-ready', load);
+</script>
+
+</body>
+</html>

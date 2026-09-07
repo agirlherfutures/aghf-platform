@@ -1,0 +1,98 @@
+{
+  "phase": "p1",
+  "section": "s1",
+  "lessonNumber": 2,
+  "title": "Why Do Markets Exist?",
+  "videoUrl": null,
+  "videoDuration": "4 min",
+  "xpValue": 50,
+  "passThreshold": 0.6,
+  "hook": "Before you try to beat the market, understand what the market is doing.",
+  "loop": true,
+  "launchpad": {
+    "outcome": "Explain why markets exist — and why disagreement between buyers and sellers is what creates a transaction, not a problem.",
+    "missionQuestion": "If two traders disagree about where price is headed, can they still both trade at the same price?",
+    "estMinutes": 4
+  },
+  "watch": {
+    "markers": [
+      { "t": "00:00", "label": "Why markets exist" },
+      { "t": "01:00", "label": "Buyers need sellers" },
+      { "t": "02:00", "label": "Hedging vs. speculating" },
+      { "t": "03:00", "label": "Try it yourself" }
+    ]
+  },
+  "learnIt": {
+    "blocks": [
+      {
+        "type": "breakdown",
+        "heading": "Markets are participants transacting for different reasons",
+        "beats": [
+          { "heading": "Buyers need sellers, sellers need buyers", "body": "Participants enter markets for different reasons. Some speculate. Some hedge risk. Some invest or manage portfolios. Different opinions and needs create transactions." },
+          { "heading": "Price finds agreement", "body": "Price helps buyers and sellers find where they're willing to transact. As willingness to buy and sell changes, price changes too." },
+          { "heading": "Same market, different objective", "body": "A producer may use futures to manage exposure to changing prices — that's hedging. A trader may participate because she expects the contract's price to change. Same market, different objective." },
+          { "heading": "MNQ at 20,000", "body": "Some participants think \"that's attractive, I want exposure here.\" Others think \"I'm willing to sell here.\" Their interaction creates a market." }
+        ]
+      },
+      {
+        "type": "catch_mistake",
+        "heading": "What did she assume wrong?",
+        "scenario": "A new trader assumes every single person in the futures market is trying to speculate on which way price will go.",
+        "options": [
+          { "label": "Not necessarily — some participants, like producers, use futures to hedge and manage risk, not to speculate", "correct": true, "feedback": "Right — same market, different objective. Hedgers and speculators can both be on the other side of your trade." },
+          { "label": "That's true — everyone in the market is speculating on direction", "correct": false, "feedback": "Not quite — plenty of participants are managing risk exposure, not betting on direction." }
+        ]
+      },
+      {
+        "type": "dayli_says",
+        "quote": "The chart you're eventually going to analyze is simply the visual record of all that buying and selling activity. That's why we're going to spend so much time learning how to read price."
+      }
+    ]
+  },
+  "seeIt": {
+    "heading": "Watch a transaction form",
+    "prompt": "Same price. Two different opinions. Watch what happens between them.",
+    "config": {
+      "shape": "market_disagreement",
+      "stages": [
+        { "layer": "buyer", "caption": "A buyer shows up: \"That's attractive — I want exposure here.\" She's ready to buy at this price." },
+        { "layer": "seller", "caption": "A seller shows up: \"I'm willing to sell here.\" Maybe she's hedging, maybe she expects price to fall — it doesn't matter why." },
+        { "layer": "meet", "caption": "Neither is wrong. They just want different things at the same price. That's not a glitch in the market — it's the whole mechanism." },
+        { "layer": "transaction", "caption": "That disagreement is the transaction. Price only moves because buyers and sellers keep negotiating. Zero disagreement means zero trades." }
+      ]
+    }
+  },
+  "tryIt": {
+    "heading": "Make the call",
+    "mode": "choice_rounds",
+    "rounds": [
+      {
+        "scenario": "Trader A believes the current price offers an attractive buying opportunity. Trader B believes price is likely to fall and wants to sell — at the exact same price.",
+        "question": "Can they both participate in the same market at the same time?",
+        "options": [
+          { "label": "Yes — their disagreement is exactly what creates the transaction", "correct": true, "why": "Disagreement between participants isn't a glitch — it's the entire reason a transaction can happen at all." },
+          { "label": "No — only one of them can be right, so only one can trade", "correct": false, "feedback": "Being \"right\" isn't a requirement to trade — willingness to transact is." },
+          { "label": "No — the market would reject one of their orders", "correct": false, "feedback": "Markets don't reject orders based on who turns out to be right later." }
+        ]
+      }
+    ]
+  },
+  "sayItBack": {
+    "prompt": "Why is disagreement between market participants necessary for trading to occur? Explain it in your own words.",
+    "modelAnswer": "If everyone agreed on where price should be, no one would want to trade with anyone else — a buyer needs someone willing to sell, and a seller needs someone willing to buy. That disagreement — one person thinking a price is attractive, another thinking it's time to sell — is literally what creates a transaction. No disagreement means no trade."
+  },
+  "saveIt": {
+    "checklist": [
+      "Markets exist because participants with different needs transact.",
+      "Some participants speculate, others hedge risk — same market, different objective.",
+      "Disagreement between buyers and sellers is what creates a transaction, not a problem with the market.",
+      "The chart is just the visual record of buyers and sellers disagreeing."
+    ]
+  },
+  "takeaways": [
+    "Markets exist because participants with different needs transact.",
+    "Some participants speculate, others hedge risk — same market, different objective.",
+    "Disagreement between buyers and sellers is what creates a transaction, not a problem with the market."
+  ],
+  "remember": "The chart is just the visual record of buyers and sellers disagreeing."
+}

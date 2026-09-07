@@ -1,0 +1,22 @@
+/* tokens.css — A Girl & Her Futures™
+ * Design tokens shared by every page. Include once per page, before
+ * components.css and any page-specific stylesheet.
+ *
+ * Also include the shared font link in every page's <head>:
+ * <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+ */
+:root{
+  --pink:#F4829A;--pink-light:#F9B8C6;--pink-pale:#FDE8ED;
+  --teal:#7ECEC4;--teal-light:#B2E4DF;--teal-pale:#E8F8F6;
+  --peach:#F5A857;--peach-light:#FAD09A;--peach-pale:#FEF3E4;
+  --purple:#7F77DD;--purple-light:#CECBF6;--purple-pale:#EEEDFE;
+  --cream:#FDF8F5;--warm:#FFFBF9;--bg:#EDE7E2;
+  --dark:#2C1810;--text:#3D2B20;--muted:#7A5C50;
+  --border:#F1E7E1;--placeholder:#C9B9AE;
+  --font-display:'Playfair Display',serif;
+  --font-body:'DM Sans',sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font-body);background:var(--bg);color:var(--dark);}
+img{max-width:100%;}

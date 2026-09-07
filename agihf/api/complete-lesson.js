@@ -1,20 +1,29 @@
 // api/complete-lesson.js
 // Marks a lesson complete and awards GP to the user
 
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_KEY
+);
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  import { createClient } from '@supabase/supabase-js';
-  const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_KEY
-  );
+  const authHeader = req.headers.authorization || '';
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+  if (!token) return res.status(401).json({ error: 'Missing bearer token' });
 
-  const { userId, lessonId, gpEarned } = req.body;
-  if (!userId || !lessonId) {
-    return res.status(400).json({ error: 'userId and lessonId required' });
+  const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+  if (authError || !user) return res.status(401).json({ error: 'Invalid or expired token' });
+  const userId = user.id;
+
+  const { lessonId, gpEarned } = req.body;
+  if (!lessonId) {
+    return res.status(400).json({ error: 'lessonId required' });
   }
 
   try {

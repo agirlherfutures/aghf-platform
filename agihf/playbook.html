@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Playbook — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="playbook"></script>
+
+<main class="main">
+  <div class="pg-eye">❦ Saved from your lessons</div>
+  <div class="pg-title">My Playbook</div>
+  <div id="ddPlaybookList"></div>
+</main>
+
+<script type="module">
+  import { getPlaybookCards } from './shared/playbook-service.js';
+
+  const cards = getPlaybookCards();
+  const el = document.getElementById('ddPlaybookList');
+  if (!cards.length) {
+    el.innerHTML = `<div class="dd-card dd-empty"><div class="dd-empty-icon">❦</div><div class="dd-empty-text">Nothing saved yet — finish a lesson and tap "Save to My Playbook" to build your reference set here.</div><a class="dd-primary-btn" href="lessons.html">Go to Academy</a></div>`;
+  } else {
+    el.innerHTML = `<div class="dd-playbook-grid">${cards.map((c) => `
+      <div class="dd-playbook-card">
+        <div class="dd-playbook-title">${c.title}</div>
+        <ul class="dd-playbook-checklist">${(c.checklist || []).map((i) => `<li>${i}</li>`).join('')}</ul>
+        ${c.remember ? `<div class="dd-playbook-remember">🎀 ${c.remember}</div>` : ''}
+      </div>`).join('')}</div>`;
+  }
+</script>
+
+</body>
+</html>

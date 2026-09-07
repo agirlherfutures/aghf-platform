@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dayli Desk — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="dashboard"></script>
+
+<main class="main dd-desktop-order">
+
+  <!-- 1. Personalized header -->
+  <div class="dd-header-top">
+    <div>
+      <div class="pg-eye" id="pgEye">Good morning ✦</div>
+      <div class="pg-title">Welcome back, <span class="pg-acc" id="dashName">Trader.</span></div>
+      <div class="dd-meta-row">
+        <span class="dd-date" id="ddDate"></span>
+        <span id="ddSessionBadge"></span>
+      </div>
+    </div>
+    <button type="button" class="dd-primary-btn" id="ddStartPlanBtn">Start My Pre-Market Plan</button>
+  </div>
+
+  <div class="dayli-quote-card">
+    <div class="dq-tag">✦ Dayli's note</div>
+    <div class="dq-text" id="dayliQuoteText"></div>
+  </div>
+
+  <!-- 2. Dayli ICC Market Outlook -->
+  <div class="dd-section dd-order-1">
+    <div class="dd-section-head">
+      <div class="dd-section-title">Dayli ICC Market Outlook</div>
+      <a class="dd-section-link" href="market-outlook.html">View Full Outlook →</a>
+    </div>
+    <div id="ddOutlook"></div>
+  </div>
+
+  <!-- 3. Economic Calendar -->
+  <div class="dd-section dd-order-2">
+    <div class="dd-section-head">
+      <div class="dd-section-title">Today's News</div>
+      <a class="dd-section-link" href="market-outlook.html#calendar">View Full Calendar →</a>
+    </div>
+    <div class="dd-card" id="ddCalendar"></div>
+  </div>
+
+  <!-- 4. Trading Snapshot -->
+  <div class="dd-section dd-order-4">
+    <div class="dd-section-head"><div class="dd-section-title">Today's Trading Snapshot</div></div>
+    <div class="dd-card" id="ddSnapshot"></div>
+  </div>
+
+  <!-- 5. Dayli ICC Checklist -->
+  <div class="dd-section dd-order-3" id="ddPlanSection">
+    <div class="dd-section-head">
+      <div class="dd-section-title">Dayli ICC Checklist</div>
+      <a class="dd-section-link" href="checklist.html">Open Checklist →</a>
+    </div>
+    <div class="dd-card" id="ddChecklist"></div>
+  </div>
+
+  <!-- 6. Quick Journal -->
+  <div class="dd-section dd-order-5">
+    <div class="dd-section-head">
+      <div class="dd-section-title">Quick Journal</div>
+      <a class="dd-section-link" href="journal.html">Open Journal →</a>
+    </div>
+    <div class="dd-card" id="ddJournal"></div>
+  </div>
+
+  <!-- 7. Current Focus -->
+  <div class="dd-section dd-order-6">
+    <div class="dd-card" id="ddFocus"></div>
+  </div>
+
+  <!-- 7b. Inner Edge (Psychology Coach) -->
+  <div class="dd-section dd-order-6" id="ddInnerEdge"></div>
+
+  <!-- 8. Continue Learning -->
+  <div class="dd-section dd-order-7">
+    <div class="dd-section-head"><div class="dd-section-title">Continue Learning</div></div>
+    <div class="dd-card dd-learning-card" id="ddLearning"></div>
+  </div>
+
+  <!-- 9. Recent Trades -->
+  <div class="dd-section dd-order-8">
+    <div class="dd-section-head">
+      <div class="dd-section-title">Recent Trades</div>
+      <a class="dd-section-link" href="journal-history.html">View All →</a>
+    </div>
+    <div class="dd-card" id="ddTrades"></div>
+  </div>
+
+  <!-- 10. Consistency + Journey -->
+  <div class="dd-section dd-order-9">
+    <div class="dd-card" id="ddConsistency"></div>
+  </div>
+  <div class="dd-section dd-order-9">
+    <div class="dd-section-head"><div class="dd-section-title">Your Journey</div></div>
+    <div class="dd-card" id="ddJourney"></div>
+  </div>
+
+</main>
+
+<script type="module">
+  import { PHASES, LEVEL_NAMES, isSectionCleared } from './shared/curriculum-data.js';
+  import { getMarketOutlook } from './shared/market-outlook-service.js';
+  import { getTodaysEvents } from './shared/economic-calendar-service.js';
+  import { getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS, listEntries } from './shared/journal-service.js';
+  import { getTodayChecklist, listChecklists } from './shared/checklist-service.js';
+  import { migrateLegacyDataIfNeeded } from './shared/journal-migration.js';
+  import { computeConsistencyScore } from './shared/consistency-service.js';
+  import {
+    renderSessionBadge, renderMarketOutlookCard, renderEconomicCalendarCard, renderTradingSnapshot,
+    renderChecklistSummaryCard, renderQuickJournalCard, renderRecentTrades, computeCurrentFocus,
+    renderCurrentFocusCard, renderContinueLearningCard, renderConsistencyScore, renderJourneySummary,
+    renderAskAgentCard, renderSkeleton, renderErrorState,
+  } from './shared/dayli-desk-engine.js';
+  import { getPsychologyProfile } from './shared/psychology-service.js';
+  import { listConversations } from './shared/agent-service.js';
+
+  const p1 = PHASES[0];
+  const allP1Lessons = p1.sections.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s })));
+  const totalLessonsAllPhases = PHASES.reduce((sum, p) => sum + p.sections.reduce((s, sec) => s + sec.lessons.length, 0), 0);
+
+  function greetingWord() {
+    const h = new Date().getHours();
+    return h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening';
+  }
+
+  const dayliQuotes = [
+    "Patience is a position. The market will always give you another setup.",
+    "You don't trade to feel something. You trade when the structure says so.",
+    "A wick is not a signal. A close is. Don't let excitement make your decisions.",
+    "The correction is not the enemy. It's your entry. Wait for it.",
+    "Missing a move costs you nothing. Chasing it costs you real money.",
+    "One clean trade a day beats five random ones. Quality over frequency.",
+    "Structure doesn't lie. Your emotions do. Follow structure.",
+    "If it's not a clean ICC setup, it's not a trade. Full stop.",
+    "The best traders are the most patient. Waiting IS the work.",
+    "Candles are just storytelling. Learn to read the story before you trade it.",
+    "Risk only what you're willing to lose. That's not weakness — that's discipline.",
+    "You don't need to trade every day. You need to trade right.",
+  ];
+  document.getElementById('dayliQuoteText').textContent = dayliQuotes[new Date().getDay() % dayliQuotes.length];
+  document.getElementById('pgEye').textContent = `${greetingWord()} ✦`;
+  document.getElementById('ddDate').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  renderSessionBadge(document.getElementById('ddSessionBadge'));
+
+  document.getElementById('ddStartPlanBtn').addEventListener('click', () => {
+    document.getElementById('ddPlanSection').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  });
+
+  /**
+   * Next thing to do in Phase 1, section-checkpoint gate included: the
+   * first incomplete lesson in the first not-fully-cleared section, or —
+   * if every lesson in a section is done but its checkpoint isn't cleared
+   * yet — the checkpoint itself (never a lesson in the next, still-gated
+   * section).
+   */
+  function nextAction(completedIds) {
+    for (const section of p1.sections) {
+      const lesson = section.lessons.find((l) => l.n && !completedIds.has(`p1-${l.n}`));
+      if (lesson) return { type: 'lesson', lesson, section };
+      if (section.checkpoint && !isSectionCleared('p1', section.key)) return { type: 'checkpoint', section };
+    }
+    return null;
+  }
+
+  async function loadChecklistSummary() {
+    const container = document.getElementById('ddChecklist');
+    renderSkeleton(container, 2);
+    try {
+      renderChecklistSummaryCard(container, await getTodayChecklist(), { checklistHref: 'checklist.html' });
+    } catch (err) {
+      console.error('Checklist summary load error:', err);
+      renderErrorState(container, err.setupRequired ? err.message : "Couldn't load your checklist.", loadChecklistSummary);
+    }
+  }
+
+  function loadQuickJournal() {
+    renderQuickJournalCard(document.getElementById('ddJournal'), {
+      prompts: QUICK_JOURNAL_PROMPTS,
+      tradeTrackerHref: 'journal-entry.html',
+      onSave: async (entry) => {
+        await saveReflection(entry.type === 'premarket' ? 'premarket_reflection' : 'postmarket_reflection', entry.prompt, entry.text);
+        loadConsistency();
+      },
+    });
+  }
+
+  async function loadTradingSnapshot() {
+    const container = document.getElementById('ddSnapshot');
+    renderSkeleton(container, 2);
+    try {
+      const plan = await getTodayChecklist();
+      const snapshot = await getTodaysSnapshot({ maxTrades: plan.marketContext?.maxTrades ?? undefined });
+      renderTradingSnapshot(container, snapshot, { tradeTrackerHref: 'journal-entry.html' });
+    } catch (err) {
+      console.error('Trading snapshot load error:', err);
+      renderErrorState(container, err.setupRequired ? err.message : "Couldn't load today's snapshot.", loadTradingSnapshot);
+    }
+  }
+
+  async function loadRecentTrades() {
+    const container = document.getElementById('ddTrades');
+    renderSkeleton(container, 2);
+    try {
+      renderRecentTrades(container, await getRecentEntries(3), { tradeTrackerHref: 'journal-entry.html' });
+    } catch (err) {
+      console.error('Recent trades load error:', err);
+      renderErrorState(container, err.setupRequired ? err.message : "Couldn't load recent trades.", loadRecentTrades);
+    }
+  }
+
+  async function loadAskAgentCard() {
+    const container = document.getElementById('ddInnerEdge');
+    try {
+      const [profile, conversations] = await Promise.all([
+        getPsychologyProfile().catch(() => null),
+        listConversations().catch(() => []),
+      ]);
+      renderAskAgentCard(container, { profile, conversationCount: conversations.length }, { agentHref: 'psychology.html' });
+    } catch (err) {
+      console.error('Ask the AGHF Agent card load error:', err);
+      renderErrorState(container, "Couldn't load the AGHF Agent card.", loadAskAgentCard);
+    }
+  }
+
+  async function loadConsistency() {
+    const container = document.getElementById('ddConsistency');
+    try {
+      renderConsistencyScore(container, await computeConsistencyScore());
+    } catch (err) {
+      console.error('Consistency score load error:', err);
+      renderErrorState(container, "Couldn't load your consistency score.", loadConsistency);
+    }
+  }
+
+  async function loadMarketOutlook() {
+    const el = document.getElementById('ddOutlook');
+    renderSkeleton(el, 2);
+    try {
+      const instruments = await getMarketOutlook();
+      renderMarketOutlookCard(el, instruments);
+    } catch (err) {
+      console.error('Market outlook load error:', err);
+      renderErrorState(el, "Couldn't load the market outlook.", loadMarketOutlook);
+    }
+  }
+
+  async function loadCalendar() {
+    const el = document.getElementById('ddCalendar');
+    renderSkeleton(el, 2);
+    try {
+      renderEconomicCalendarCard(el, await getTodaysEvents());
+    } catch (err) {
+      console.error('Calendar load error:', err);
+      renderErrorState(el, "Couldn't load today's calendar.", loadCalendar);
+    }
+  }
+
+  async function loadJourney(profile, doneCount) {
+    const level = profile.level || 1;
+    const gp = profile.gp || 0;
+    const [checklists, { total: journalCount }, { total: tradesJournaled }] = await Promise.all([
+      listChecklists(200).catch(() => []),
+      listEntries({ limit: 1 }).catch(() => ({ total: 0 })),
+      listEntries({ entryType: 'trade', limit: 1 }).catch(() => ({ total: 0 })),
+    ]);
+    const checklistsCompleted = checklists.filter((c) => c.completedAt).length;
+    renderJourneySummary(document.getElementById('ddJourney'), [
+      { value: doneCount, label: 'Lessons Completed' },
+      { value: checklistsCompleted, label: 'Checklists Completed' },
+      { value: journalCount, label: 'Journal Entries' },
+      { value: `${level} · ${gp}GP`, label: 'Level & GP' },
+      { value: p1.title, label: 'Current Phase' },
+      { value: tradesJournaled, label: 'Trades Journaled' },
+    ]);
+  }
+
+  async function loadDashboard() {
+    let data;
+    try {
+      data = await window.AGHF_FETCH_PROFILE();
+    } catch (err) {
+      console.error('Profile load error:', err);
+      renderErrorState(document.getElementById('ddLearning'), "Couldn't load your profile.", loadDashboard);
+      return;
+    }
+    const p = data.profile || {};
+    const completedIds = new Set((data.lessons_completed || []).map((l) => l.lesson_id));
+
+    const firstName = (p.full_name?.split(' ')[0] || window.AGHF_USER?.email?.split('@')[0] || 'Trader');
+    document.getElementById('dashName').textContent = `${firstName}.`;
+
+    const doneCount = allP1Lessons.filter((l) => completedIds.has(`p1-${l.n}`)).length;
+
+    const next = nextAction(completedIds);
+    let learningData;
+    if (next && next.type === 'lesson') {
+      learningData = {
+        pct: Math.round((doneCount / allP1Lessons.length) * 100),
+        eyebrow: `${next.section.title}`,
+        title: next.lesson.title,
+        continueHref: `lesson.html?phase=p1&n=${next.lesson.n}`,
+        continueLabel: doneCount === 0 ? 'Start →' : 'Continue →',
+        notesHref: 'journal.html',
+        practiceHref: 'chart-lab.html',
+      };
+    } else if (next && next.type === 'checkpoint') {
+      learningData = {
+        pct: Math.round((doneCount / allP1Lessons.length) * 100),
+        eyebrow: 'Section Checkpoint',
+        title: next.section.checkpoint.title,
+        continueHref: `section.html?phase=p1&section=${next.section.key}&step=welcome`,
+        continueLabel: 'Start →',
+        notesHref: 'journal.html',
+        practiceHref: null,
+      };
+    } else {
+      learningData = {
+        pct: 100, eyebrow: 'Phase 1 complete ✦', title: 'Phase 2 is being built',
+        continueHref: 'lessons.html', continueLabel: 'View lessons →', notesHref: 'journal.html', practiceHref: null,
+      };
+    }
+    renderContinueLearningCard(document.getElementById('ddLearning'), learningData);
+
+    loadChecklistSummary();
+    loadQuickJournal();
+    loadTradingSnapshot();
+    loadRecentTrades();
+    loadConsistency();
+    loadAskAgentCard();
+
+    try {
+      const consistency = await computeConsistencyScore();
+      renderCurrentFocusCard(document.getElementById('ddFocus'), computeCurrentFocus(consistency), {
+        lessonHref: next && next.type === 'lesson' ? `lesson.html?phase=p1&n=${next.lesson.n}` : null,
+        chartLabHref: 'chart-lab.html',
+        journalHref: 'journal.html',
+      });
+    } catch (err) {
+      console.error('Current focus load error:', err);
+      renderErrorState(document.getElementById('ddFocus'), "Couldn't load your current focus.", loadDashboard);
+    }
+
+    loadJourney(p, doneCount);
+  }
+
+  document.addEventListener('aghf-auth-ready', async () => {
+    await migrateLegacyDataIfNeeded();
+    loadDashboard();
+  });
+  loadMarketOutlook();
+  loadCalendar();
+</script>
+
+</body>
+</html>

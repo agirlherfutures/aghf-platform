@@ -1,0 +1,68 @@
+{
+  "phase": "p1",
+  "section": "s2",
+  "lessonNumber": 9,
+  "title": "Order Types",
+  "videoUrl": null,
+  "videoDuration": "6 min",
+  "xpValue": 60,
+  "passThreshold": 0.6,
+  "hook": "Know the difference before you touch a chart.",
+  "mission": "By the end of this lesson, you should be able to pick the right order type for the situation — not just recognize the names.",
+  "blocks": [
+    {
+      "type": "breakdown",
+      "heading": "Market, limit, and stop orders each answer a different question",
+      "beats": [
+        { "heading": "Now, at a price, or if price gets there", "body": "A market order fills immediately at whatever price is available — speed over price control. A limit order rests and only fills at your price. A stop order sits inactive until triggered, then acts like a market order." },
+        { "heading": "All three belong in your toolkit", "body": "Which one you reach for depends on whether you need to be in right now, whether you'll wait for your price, or whether you need something to activate only if price proves a level." }
+      ]
+    },
+    {
+      "type": "confusion",
+      "heading": "Market ≠ Limit ≠ Stop",
+      "left": { "label": "Market order", "points": ["Fills immediately", "No price control", "Chases whatever price is available"] },
+      "right": { "label": "Limit order", "points": ["Rests at your chosen price", "May never fill", "Waits for price to come to you"] }
+    },
+    {
+      "type": "catch_mistake",
+      "heading": "What's wrong with her thinking?",
+      "scenario": "A trader says market orders and limit orders are basically interchangeable since both \"get you into a trade.\"",
+      "options": [
+        { "label": "A market order prioritizes speed, a limit order prioritizes price control — that's a real trade-off, not interchangeable", "correct": true, "feedback": "Right — treating them as interchangeable ignores a real trade-off between speed and price." },
+        { "label": "Nothing — they always produce the same result", "correct": false, "feedback": "They don't — one chases price, the other waits for it." }
+      ]
+    },
+    {
+      "type": "dayli_says",
+      "quote": "I'll show you later which order types I personally lean on for entries. But you need to actually understand all three first — market, limit, and stop — before that preference means anything to you."
+    },
+    {
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "A trader wants to protect an open long position by automatically exiting if price falls to a specific level below her entry. Which order type does that?",
+          "options": ["A stop order", "A limit order", "A market order"],
+          "correctIndex": 0,
+          "why": "Stop orders sit inactive until triggered — exactly what a protective exit needs."
+        },
+        {
+          "question": "Price is at 100 and a trader places a limit order to buy at 98. If price never trades down to 98, what happens?",
+          "options": ["The order never fills — it only fills if price actually reaches 98", "It fills instantly at 100 anyway", "It automatically converts to a market order after a few minutes"],
+          "correctIndex": 0,
+          "why": "A limit order only fills at your chosen price or better — no guarantee it fills at all."
+        }
+      ]
+    },
+    {
+      "type": "reflection",
+      "prompt": "Imagine another AGHF girl asks: \"When would you actually use a stop order instead of a limit order?\" How would you explain it to her?"
+    }
+  ],
+  "takeaways": [
+    "Market orders trade speed for price control.",
+    "Limit orders trade price control for a guaranteed fill.",
+    "Stop orders sit inactive until price proves a level, then act like a market order."
+  ],
+  "remember": "Every order type is a trade-off between speed and control."
+}

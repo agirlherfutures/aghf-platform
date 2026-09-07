@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="leaderboard"></script>
+
+<main class="main">
+  <div class="pg-eye">✦ Weekly Rankings</div>
+  <div class="pg-title" style="margin-bottom:5px;">Leaderboard</div>
+  <p style="font-size:.91rem;color:var(--muted);margin-bottom:22px;">Top traders this week. Show up, stack GP, climb.</p>
+
+  <div class="lb-full">
+    <div style="font-family:'Playfair Display',serif;font-size:.94rem;font-weight:700;color:var(--dark);margin-bottom:13px;">This week's top traders</div>
+    <div id="lbRows"></div>
+  </div>
+</main>
+
+<script type="module">
+  const RANKS = [
+    { rank: 1, initials: 'SK', handle: '@skye.trades', level: "Level 3 · She's In Structure", gp: 2840, cls: 'gld' },
+    { rank: 2, initials: 'MR', handle: '@mia.in.structure', level: "Level 3 · She's In Structure", gp: 2210, cls: 'slv' },
+    { rank: 3, initials: 'JL', handle: '@justine.l', level: "Level 3 · She's In Structure", gp: 1980, cls: 'brz' },
+    { rank: 4, initials: 'AK', handle: '@ash.khadra', level: 'Level 2 · Structure Student', gp: 1640, av: 'av-t' },
+    { rank: 5, initials: 'NB', handle: '@naya.b', level: 'Level 2 · Structure Student', gp: 1420, av: 'av-p' },
+    { rank: 6, initials: 'CW', handle: '@cam.wins', level: 'Level 2 · Structure Student', gp: 1180, av: 'av-c' },
+    { rank: 7, initials: 'TR', handle: '@trin.r', level: "Level 1 · She's Brand New", gp: 920 },
+    { rank: 8, initials: 'SL', handle: '@sara.learns', level: "Level 1 · She's Brand New", gp: 710, av: 'av-t' },
+    { rank: 9, initials: 'KM', handle: '@k.mack', level: "Level 1 · She's Brand New", gp: 580, av: 'av-c' },
+    { rank: 10, initials: 'PP', handle: '@priya.p', level: "Level 1 · She's Brand New", gp: 440 },
+  ];
+
+  function rowHtml(r, isYou) {
+    return `<div class="lbf-r${isYou ? ' lb-you' : ''}">
+      <div class="lbf-rk ${r.cls || ''}">${r.rank}</div>
+      <div class="lbf-av ${r.av || 'av-p'}">${r.initials}</div>
+      <div class="lbf-nm"><div class="lbf-hd">${r.handle}</div><div class="lbf-lv">${r.level}</div></div>
+      <div class="lbf-xp">${r.gp.toLocaleString()} GP</div>
+    </div>`;
+  }
+
+  async function render() {
+    let youRow = { rank: 11, initials: 'D', handle: '@you', level: "Level 1 · She's Brand New", gp: 0, av: 'av-p' };
+    try {
+      const data = await window.AGHF_FETCH_PROFILE();
+      const p = data.profile || {};
+      const name = (p.full_name || window.AGHF_USER?.email || 'You');
+      youRow.handle = '@' + name.split(' ')[0].toLowerCase() + ' (you)';
+      youRow.initials = name.trim().charAt(0).toUpperCase();
+      youRow.level = `Level ${p.level || 1} · ${p.level_name || "She's Brand New"}`;
+      youRow.gp = p.gp || 0;
+    } catch (err) {
+      console.error('Profile load error:', err);
+    }
+    document.getElementById('lbRows').innerHTML = RANKS.map((r) => rowHtml(r, false)).join('') + rowHtml(youRow, true);
+  }
+
+  document.addEventListener('aghf-auth-ready', render);
+</script>
+
+</body>
+</html>

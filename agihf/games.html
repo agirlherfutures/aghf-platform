@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Games — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="games"></script>
+
+<main class="main">
+  <div class="pg-eye">✦ Games + Challenges</div>
+  <div class="pg-title" style="margin-bottom:5px;">Learn it. <span class="pg-acc">Play it.</span></div>
+  <p style="font-size:.91rem;color:var(--muted);margin-bottom:22px;">Games aren't extra credit. They're how ICC gets from your head to your instincts.</p>
+
+  <div class="g-grid" id="gameGrid"></div>
+
+  <div class="day-strip">
+    <div class="ds-hd"><div class="ds-ttl">Today's challenges</div><div class="ds-tm">Resets in <span>8h 42m</span></div></div>
+    <div class="ch-row" id="chGame1"><div class="ch-c ch-td"></div><div class="ch-tx">Play a round of Pattern Recognition</div><div class="ch-xp">+25 GP</div></div>
+    <div class="ch-row" id="chGame2"><div class="ch-c ch-td"></div><div class="ch-tx">Play a round of Pressure vs Precision</div><div class="ch-xp">+40 GP</div></div>
+    <div class="ch-row" id="chLesson"><div class="ch-c ch-td"></div><div class="ch-tx">Finish one lesson</div><div class="ch-xp">+30 GP</div></div>
+  </div>
+</main>
+
+<script type="module">
+  import { GAMES } from './shared/games-data.js';
+
+  document.getElementById('gameGrid').innerHTML = GAMES.map((g) => `
+    <div class="g-card" data-href="${g.href}">
+      <div class="g-thumb ${g.thumbClass}" style="font-size:32px;">${g.icon}</div>
+      <div class="g-inf">
+        <div class="g-tags"><span class="g-tag gt-av">Available</span><span class="g-tag gt-nw">Level ${g.level}+</span></div>
+        <div class="g-ttl">${g.title}</div>
+        <div class="g-desc">${g.desc}</div>
+        <div class="g-foot">
+          <div><div class="g-xp">${g.xp}</div><div class="g-lv2">Unlocked at Level ${g.level}</div></div>
+          <button class="g-btn ${g.btnClass}">Play now</button>
+        </div>
+      </div>
+    </div>`).join('');
+
+  document.querySelectorAll('.g-card').forEach((card) => {
+    card.addEventListener('click', () => { window.location.href = card.dataset.href; });
+  });
+
+  document.getElementById('chGame1').addEventListener('click', () => { window.location.href = 'games/pattern-recognition.html'; });
+  document.getElementById('chGame2').addEventListener('click', () => { window.location.href = 'games/pressure-vs-precision.html'; });
+  document.getElementById('chLesson').addEventListener('click', () => { window.location.href = 'lessons.html'; });
+</script>
+
+</body>
+</html>

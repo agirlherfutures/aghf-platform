@@ -1,0 +1,65 @@
+{
+  "phase": "p1",
+  "section": "s3",
+  "lessonNumber": 16,
+  "title": "Candle Psychology",
+  "videoUrl": null,
+  "videoDuration": "8 min",
+  "xpValue": 100,
+  "passThreshold": 0.6,
+  "hook": "Going deeper. What specific candle behavior means for your next read.",
+  "mission": "By the end of this lesson, you should be able to explain why two similar-looking candles at the same level can tell opposite stories.",
+  "blocks": [
+    {
+      "type": "breakdown",
+      "heading": "Every candle is a buyer and seller battle",
+      "beats": [
+        { "heading": "The close shows who held control", "body": "Buyers push price up. Sellers push price down. The candle close shows who held control by the end of that candle." },
+        { "heading": "Not just green or red", "body": "I'm not just asking if the candle is green or red. I'm asking where it reacted, where it rejected, and where it closed." }
+      ]
+    },
+    {
+      "type": "chart_practice",
+      "mode": "wick_close_demo",
+      "heading": "Same support level, different outcomes",
+      "prompt": "Price comes into support, wicks down — see whether it holds or fails by watching the close.",
+      "config": { "caption": "Tap \"Show the rejection\" to see buyers defending the level" }
+    },
+    {
+      "type": "catch_mistake",
+      "heading": "Are they telling the same story?",
+      "scenario": "Two candles form at the same support level with nearly identical wicks, but one closes above support and the other closes below it.",
+      "options": [
+        { "label": "No — one shows buyers defending the level, the other shows sellers actually breaking it", "correct": true, "feedback": "Right — reading only the wick would make two very different events look the same." },
+        { "label": "Yes — similar wicks always mean the same outcome", "correct": false, "feedback": "The close is what separates \"defended\" from \"failed.\"" }
+      ]
+    },
+    {
+      "type": "dayli_says",
+      "quote": "I'm not just asking if the candle is green or red. I'm asking where it reacted, where it rejected, and where it closed."
+    },
+    {
+      "type": "lock_it_in",
+      "questions": [
+        {
+          "question": "What does a candle close help you read?",
+          "options": ["Acceptance and control", "Nothing important", "Only the color"],
+          "correctIndex": 0,
+          "why": "The close is the scoreboard for who actually won that candle."
+        },
+        {
+          "question": "Before calling acceptance above a level, wait for the candle ___.",
+          "options": ["Close", "Color", "Volume spike"],
+          "correctIndex": 0,
+          "why": "The close is what confirms acceptance, not the wick or the color."
+        }
+      ]
+    }
+  ],
+  "takeaways": [
+    "Buyers and sellers fight inside every candle — the close shows who won.",
+    "Similar wicks can hide opposite outcomes — the close is the tiebreaker.",
+    "Read where price reacted, rejected, and closed — not just its color."
+  ],
+  "remember": "It's not green or red. It's where it closed."
+}

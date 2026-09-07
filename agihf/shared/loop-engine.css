@@ -1,0 +1,82 @@
+/* loop-engine.css — A Girl & Her Futures™
+ * The Dayli Learning Loop prototype (Watch → See It → Try It →
+ * Say It Back → Save It). Kept separate from lesson-engine.css so this
+ * can be iterated on/ripped out without touching the proven 16-lesson
+ * styles. Reuses tokens.css custom properties and the `.lw-*` chrome
+ * classes already loaded by lesson-engine.css (card, eyebrow, pills,
+ * feedback, opts, continue-btn, etc.) — only genuinely new classes live
+ * here.
+ */
+
+/* ── Launchpad ──────────────────────────────────────────────────── */
+.dl-launchpad{background:var(--dark);color:#fff;border-radius:26px;padding:28px 30px;box-shadow:0 14px 40px rgba(44,24,16,.2);position:relative;overflow:hidden;}
+.dl-launchpad::after{content:'✦';position:absolute;right:14px;bottom:-14px;font-size:64px;opacity:.08;}
+.dl-launchpad h2{font-family:var(--font-display);font-size:1.4rem;color:#fff;margin:2px 0 10px;}
+.dl-outcome{color:rgba(255,255,255,.72);font-size:.9rem;line-height:1.7;margin-bottom:14px;}
+.dl-outcome strong{color:#fff;}
+.dl-launchpad-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.dl-mission-q{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:14px 16px;}
+.dl-mission-q-label{font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink-light);font-weight:700;margin-bottom:6px;}
+.dl-mission-q-text{font-family:var(--font-display);font-style:italic;font-size:.95rem;color:#fff;line-height:1.6;}
+
+/* ── Watch: markers + Focus Mode ───────────────────────────────── */
+.dl-watch-block{position:relative;transition:.3s;}
+.dl-focus-toggle{position:absolute;top:12px;right:12px;z-index:2;font-family:var(--font-body);background:rgba(44,24,16,.55);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:100px;padding:6px 13px;font-size:.72rem;font-weight:600;cursor:pointer;}
+.dl-focus-toggle:hover{background:rgba(44,24,16,.75);}
+.dl-marker-rail{display:flex;flex-direction:column;gap:6px;margin-top:12px;}
+.dl-marker{display:flex;align-items:center;gap:10px;font-family:var(--font-body);background:#fff;border:1px solid rgba(244,130,154,.14);border-radius:12px;padding:9px 13px;cursor:pointer;text-align:left;}
+.dl-marker:hover{border-color:var(--pink-light);}
+.dl-marker-t{font-size:.72rem;font-weight:700;color:var(--pink);min-width:38px;}
+.dl-marker-label{font-size:.82rem;color:var(--text);}
+.lw-slide.dl-focus-active .dl-launchpad,
+.lw-slide.dl-focus-active .lw-watched-btn{display:none;}
+.lw-slide.dl-focus-active .dl-watch-block{max-width:640px;margin:0 auto;}
+.dl-watch-preview-canvas{position:absolute;inset:0;width:100%;height:100%;}
+.dl-watch-preview-caption{position:absolute;left:0;right:0;bottom:0;padding:14px 16px 12px;background:linear-gradient(transparent,rgba(44,24,16,.72));color:#fff;font-size:.8rem;font-weight:600;line-height:1.5;z-index:1;min-height:1.4em;}
+
+/* ── See It: cards mode (non-canvas staged reveal) ────────────────── */
+.dl-concept-card{background:var(--warm);border:1px solid rgba(244,130,154,.1);border-radius:14px;padding:14px 16px;margin-top:10px;opacity:0;transform:translateY(8px);transition:.35s;}
+.dl-concept-card.show{opacity:1;transform:translateY(0);}
+.dl-concept-card:first-child{margin-top:4px;}
+.dl-concept-label{font-family:var(--font-display);font-weight:700;font-size:.95rem;color:var(--dark);margin-bottom:4px;}
+.dl-concept-text{font-size:.85rem;line-height:1.65;color:var(--text);}
+
+/* ── See It: guided reveal ──────────────────────────────────────── */
+.dl-canvas.dl-canvas-fade{animation:dlCanvasFade .45s ease;}
+@keyframes dlCanvasFade{from{opacity:.15;transform:scale(.97);}to{opacity:1;transform:scale(1);}}
+.dl-reveal-caption{min-height:1.6em;margin-top:12px;font-size:.92rem;color:var(--dark);font-weight:600;line-height:1.6;opacity:0;transform:translateY(6px);transition:.35s;}
+.dl-reveal-caption.show{opacity:1;transform:translateY(0);}
+.dl-reveal-dots{display:flex;gap:6px;margin-top:12px;}
+.dl-reveal-dot{width:7px;height:7px;border-radius:50%;background:var(--pink-pale);border:1.5px solid var(--pink-light);}
+.dl-reveal-dot.done{background:var(--teal);border-color:var(--teal);}
+.dl-reveal-dot.active{background:var(--pink);border-color:var(--pink);transform:scale(1.3);}
+
+/* ── Try It: decision path ──────────────────────────────────────── */
+.dl-decision-card{background:var(--warm);border-radius:16px;padding:16px 18px;}
+.dl-decision-q{font-family:var(--font-display);font-size:1rem;color:var(--dark);line-height:1.5;margin-bottom:12px;}
+.dl-decision-outcome{background:var(--teal-pale);border:1px solid var(--teal-light);border-radius:16px;padding:16px 18px;}
+.dl-decision-outcome p{color:var(--dark);}
+
+/* ── Say It Back ─────────────────────────────────────────────────── */
+.dl-say-compare{margin-top:14px;display:flex;flex-direction:column;gap:12px;}
+.dl-model-answer{background:var(--peach-pale);border:1px solid var(--peach-light);border-radius:14px;padding:14px 16px;}
+.dl-model-answer p{color:var(--dark);font-size:.88rem;line-height:1.7;margin-top:4px;}
+.dl-say-selfmark{display:flex;gap:9px;flex-wrap:wrap;}
+.dl-say-selfmark .lw-qopt{flex:1;text-align:center;min-width:180px;}
+
+/* ── Save It: playbook card ─────────────────────────────────────── */
+.dl-playbook-card{background:linear-gradient(135deg,#fff,var(--cream));}
+.dl-playbook-checklist{display:flex;flex-direction:column;gap:9px;margin:6px 0 16px;}
+.dl-playbook-item{color:var(--dark);font-size:.88rem;}
+.dl-playbook-remember{background:var(--warm);border:1px solid rgba(244,130,154,.14);}
+.dl-playbook-remember .lw-remember-label{color:var(--pink);}
+.dl-playbook-remember-text{color:var(--dark);}
+.dl-playbook-badge{margin-top:14px;}
+.dl-playbook-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.dl-playbook-actions .lw-continue-btn{flex:1;min-width:200px;text-align:center;justify-content:center;display:flex;}
+.dl-download-btn{background:transparent!important;border:1.5px solid rgba(244,130,154,.22);color:var(--muted)!important;box-shadow:none!important;}
+
+@media(max-width:760px){
+  .dl-launchpad{padding:22px;}
+  .dl-focus-toggle{position:static;margin-bottom:10px;display:inline-block;}
+}

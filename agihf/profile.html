@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="profile"></script>
+
+<main class="main">
+  <div class="pg-eye">✦ Your account</div>
+  <div class="pg-title">My Profile</div>
+
+  <div class="prof-card">
+    <div class="prof-hdr">
+      <div class="prof-av" id="profAvatar">D</div>
+      <div>
+        <div class="prof-nm" id="profName">Trader</div>
+        <div class="prof-lv" id="profLevel">Level 1 · She's Brand New</div>
+        <div class="prof-bdg" id="profBadge">✦ She's Brand New</div>
+      </div>
+    </div>
+    <div class="prof-stats">
+      <div class="ps-c"><div class="ps-l">Total GP</div><div class="ps-v" style="color:var(--peach)" id="statGp">0</div></div>
+      <div class="ps-c"><div class="ps-l">Lessons</div><div class="ps-v" style="color:var(--pink)" id="statLessons">0</div></div>
+      <div class="ps-c"><div class="ps-l">Streak</div><div class="ps-v" style="color:var(--teal)" id="statStreak">0 🔥</div></div>
+    </div>
+    <div style="background:var(--cream);border-radius:11px;padding:13px 16px;">
+      <div style="font-size:.8rem;font-weight:600;color:var(--dark);margin-bottom:5px;">Level progress</div>
+      <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-bottom:7px;"><span id="progCurrent">0 GP earned</span><span id="progNext">1,000 GP to next level</span></div>
+      <div style="height:7px;background:var(--pink-pale);border-radius:100px;overflow:hidden;"><div id="progFill" style="height:100%;width:0%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;"></div></div>
+    </div>
+  </div>
+
+  <div class="bill-card">
+    <div class="bill-top"><div class="bill-ttl">AG&amp;HF Trading Academy</div><div class="bill-st" id="billingStatus">Active ✓</div></div>
+    <div class="bill-pr">$14.99<span>/month</span></div>
+    <div class="bill-ren" id="billingRenew">Manage your subscription anytime.</div>
+    <button class="bill-btn" onclick="alert('Opening subscription management...')">Manage subscription</button>
+  </div>
+</main>
+
+<script type="module">
+  async function load() {
+    let data;
+    try {
+      data = await window.AGHF_FETCH_PROFILE();
+    } catch (err) {
+      console.error('Profile load error:', err);
+      return;
+    }
+    const p = data.profile || {};
+    const name = p.full_name || window.AGHF_USER?.email?.split('@')[0] || 'Trader';
+    const level = p.level || 1;
+    const levelName = p.level_name || "She's Brand New";
+    const gp = p.gp || 0;
+    const nextLevelGp = level * 1000;
+
+    document.getElementById('profAvatar').textContent = name.trim().charAt(0).toUpperCase();
+    document.getElementById('profName').textContent = name;
+    document.getElementById('profLevel').textContent = `Level ${level} · ${levelName}`;
+    document.getElementById('profBadge').textContent = `✦ ${levelName}`;
+    document.getElementById('statGp').textContent = gp;
+    document.getElementById('statLessons').textContent = data.lessons_count || 0;
+    document.getElementById('statStreak').textContent = `${p.day_streak || 0} 🔥`;
+    document.getElementById('progCurrent').textContent = `${gp} GP earned`;
+    document.getElementById('progNext').textContent = `${nextLevelGp} GP to next level`;
+    document.getElementById('progFill').style.width = Math.min((gp / nextLevelGp) * 100, 100) + '%';
+
+    const sub = data.subscription || {};
+    document.getElementById('billingStatus').textContent = sub.status === 'active' ? 'Active ✓' : (sub.status || 'inactive');
+    if (sub.current_period_end) {
+      document.getElementById('billingRenew').textContent = `Next billing date: ${new Date(sub.current_period_end).toLocaleDateString()}`;
+    }
+  }
+
+  document.addEventListener('aghf-auth-ready', load);
+</script>
+
+</body>
+</html>

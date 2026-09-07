@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    { "source": "/api/agent-conversations", "destination": "/api/agent-data?resource=conversations" },
+    { "source": "/api/agent-messages", "destination": "/api/agent-data?resource=messages" },
+    { "source": "/api/agent-memory", "destination": "/api/agent-data?resource=memory" },
+    { "source": "/api/agent-actions", "destination": "/api/agent-data?resource=actions" },
+    { "source": "/api/agent-attachment", "destination": "/api/agent-data?resource=attachment" },
+    { "source": "/api/psychology-profile", "destination": "/api/psychology-data?resource=profile" },
+    { "source": "/api/psychology-sessions", "destination": "/api/psychology-data?resource=sessions" },
+    { "source": "/api/psychology-playbook", "destination": "/api/psychology-data?resource=playbook" },
+    { "source": "/api/psychology-scenario-attempts", "destination": "/api/psychology-data?resource=scenario-attempts" }
+  ]
+}

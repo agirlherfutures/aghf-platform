@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/lesson-engine.css">
+<link rel="stylesheet" href="shared/loop-engine.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="lessons"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<main class="main">
+  <div class="lh-header">
+    <div class="lh-crumb-row">
+      <div class="lh-crumb" id="lhCrumb">Phase · Section</div>
+      <button type="button" class="lh-map-toggle" id="lhMapToggle">☰ Academy Map</button>
+    </div>
+    <h1 class="lh-title" id="lhTitle">Lesson title</h1>
+    <div class="lh-meta-row">
+      <span class="lh-count" id="lhCount">Lesson 1 of 18</span>
+      <span class="lh-pill gp" id="lhGp">+0 GP</span>
+      <span class="lh-pill dur" id="lhDur">— min</span>
+    </div>
+    <p class="lh-hook" id="lhHook"></p>
+
+    <div class="lh-map" id="lhMap"></div>
+
+    <div class="lh-section-progress">
+      <div class="lh-sp-row"><strong id="lhSectionName">Section</strong><span id="lhSectionPct">0%</span></div>
+      <div class="lh-sp-track"><div class="lh-sp-fill" id="lhSectionFill"></div></div>
+    </div>
+
+    <div class="lh-nav-row">
+      <a class="lh-nav-link" id="lhPrevLink">← Previous Lesson</a>
+      <a class="lh-nav-link" id="lhNextLink">Next Lesson →</a>
+    </div>
+  </div>
+
+  <div class="lw-wrap" id="lwWrap"></div>
+</main>
+
+<div class="lw-bottom">
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="lw-dots" id="lwDots"></div>
+    <div class="lw-stepname" id="lwStepname"></div>
+  </div>
+  <div style="display:flex;gap:9px">
+    <button type="button" class="lw-prev" id="lwPrev">← Back</button>
+    <button type="button" class="lw-next" id="lwNext">Next →</button>
+  </div>
+</div>
+
+<div class="lw-streak" id="lwStreak"><span id="lwStreakIcon">🔥</span><span id="lwStreakText"></span></div>
+<div class="lw-toast" id="lwToast">
+  <span>✦</span>
+  <div>
+    <div style="font-size:.85rem;font-weight:700" id="lwToastTitle"></div>
+    <div style="font-size:.7rem;color:rgba(255,255,255,.5)" id="lwToastSub"></div>
+  </div>
+</div>
+
+<script type="module">
+  import { PHASES, phaseByKey, isSectionCleared } from './shared/curriculum-data.js';
+  import { renderLessonWizard } from './shared/lesson-engine.js';
+  import { renderLoopWizard } from './shared/loop-engine.js';
+
+  const params = new URLSearchParams(window.location.search);
+  const phaseKey = params.get('phase') || 'p1';
+  const n = parseInt(params.get('n'), 10);
+  const phase = phaseByKey(phaseKey);
+  const allLessons = phase.sections.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s })));
+  const total = allLessons.length;
+  const current = allLessons.find((l) => l.n === n);
+
+  /** Is `lesson`'s section still locked behind an earlier section's uncleared checkpoint? */
+  function isLessonGated(lesson) {
+    const idx = phase.sections.findIndex((s) => s.key === lesson.section.key);
+    const prevSection = phase.sections[idx - 1];
+    return !!(prevSection && prevSection.checkpoint && !isSectionCleared(phaseKey, prevSection.key));
+  }
+
+  /** Is `lesson` the last lesson in its section? */
+  function isLastInSection(lesson) {
+    const sectionLessons = lesson.section.lessons.filter((l) => l.n);
+    return sectionLessons[sectionLessons.length - 1]?.n === lesson.n;
+  }
+
+  function renderHeader(completedIds) {
+    const isDone = (l) => l.n && completedIds.has(`${phaseKey}-${l.n}`);
+    document.getElementById('lhCrumb').textContent = `Phase ${phase.n} · ${phase.title}`;
+    document.getElementById('lhTitle').textContent = current.title;
+    document.getElementById('lhCount').textContent = `Lesson ${n} of ${total}`;
+    document.getElementById('lhGp').textContent = `+${current.xp} GP`;
+
+    const sectionLessons = current.section.lessons.filter((l) => l.n);
+    const sectionDone = sectionLessons.filter(isDone).length;
+    document.getElementById('lhSectionName').textContent = current.section.title;
+    document.getElementById('lhSectionPct').textContent = `${Math.round((sectionDone / sectionLessons.length) * 100)}%`;
+    document.getElementById('lhSectionFill').style.width = `${(sectionDone / sectionLessons.length) * 100}%`;
+
+    const prevLink = document.getElementById('lhPrevLink');
+    const nextLink = document.getElementById('lhNextLink');
+    if (n > 1) {
+      prevLink.href = `lesson.html?phase=${phaseKey}&n=${n - 1}`;
+    } else {
+      prevLink.classList.add('disabled');
+      prevLink.removeAttribute('href');
+    }
+    const thisDone = isDone(current);
+    const lastInSection = isLastInSection(current);
+    if (thisDone && lastInSection && current.section.checkpoint) {
+      nextLink.href = `section.html?phase=${phaseKey}&section=${current.section.key}&step=welcome`;
+      nextLink.textContent = 'Section Checkpoint →';
+      nextLink.classList.remove('locked');
+    } else if (n < total && (thisDone || n === 1 || (n > 1 && isDone(allLessons[n - 2]))) && !isLessonGated(allLessons[n])) {
+      nextLink.href = `lesson.html?phase=${phaseKey}&n=${n + 1}`;
+      if (!thisDone) { nextLink.textContent = 'Next Lesson 🔒'; nextLink.classList.add('locked'); }
+    } else {
+      nextLink.classList.add('disabled');
+      nextLink.removeAttribute('href');
+      nextLink.textContent = 'Next Lesson 🔒';
+    }
+
+    const mapEl = document.getElementById('lhMap');
+    mapEl.innerHTML = phase.sections.map((sec) => `
+      <div class="lh-map-sec">
+        <div class="lh-map-sec-title">${sec.title}</div>
+        ${sec.lessons.filter((l) => l.n).map((l) => {
+          const state = l.n === n ? 'current' : isDone(l) ? 'done' : 'locked';
+          const icon = state === 'done' ? '✓' : state === 'current' ? '●' : '🔒';
+          return l.n === n
+            ? `<div class="lh-map-lesson ${state}"><span class="lh-map-ico">${icon}</span>${l.title}</div>`
+            : `<a class="lh-map-lesson ${state}" ${state !== 'locked' ? `href="lesson.html?phase=${phaseKey}&n=${l.n}"` : ''}><span class="lh-map-ico">${icon}</span>${l.title}</a>`;
+        }).join('')}
+      </div>`).join('');
+  }
+
+  document.getElementById('lhMapToggle').addEventListener('click', () => {
+    document.getElementById('lhMap').classList.toggle('open');
+  });
+
+  async function loadLesson() {
+    if (!current || isLessonGated(current)) {
+      window.location.href = 'lessons.html';
+      return;
+    }
+
+    let data;
+    try {
+      const res = await fetch(`lessons-data/${phaseKey}-${n}.json`);
+      if (!res.ok) throw new Error('not found');
+      data = await res.json();
+    } catch (err) {
+      document.getElementById('lwWrap').innerHTML = '<p style="padding:20px;color:var(--muted)">This lesson isn\'t available yet.</p>';
+      return;
+    }
+
+    let completedIds = new Set();
+    try {
+      const profile = await window.AGHF_FETCH_PROFILE();
+      completedIds = new Set((profile.lessons_completed || []).map((l) => l.lesson_id));
+    } catch (err) {
+      console.error('Profile load error:', err);
+    }
+    renderHeader(completedIds);
+
+    const lastInSection = isLastInSection(current);
+    let nextHref, nextTitle, nextHook, nextCtaLabel, backHref;
+    if (lastInSection && current.section.checkpoint) {
+      nextHref = `section.html?phase=${phaseKey}&section=${current.section.key}&step=welcome`;
+      nextTitle = `Section Checkpoint: ${current.section.checkpoint.title}`;
+      nextHook = null;
+      nextCtaLabel = 'Start Section Checkpoint →';
+      backHref = 'lessons.html';
+    } else {
+      const nextLesson = n < total ? n + 1 : null;
+      const nextData = nextLesson ? allLessons[nextLesson - 1] : null;
+      nextHref = nextLesson ? `lesson.html?phase=${phaseKey}&n=${nextLesson}` : null;
+      nextTitle = nextData ? nextData.title : null;
+      nextHook = nextData ? nextData.quote : null;
+      backHref = nextLesson ? 'lessons.html' : 'dashboard.html';
+    }
+
+    const wizardOpts = {
+      nextHref,
+      backHref,
+      nextTitle,
+      nextHook,
+      nextCtaLabel,
+      onAward: async () => {
+        if (window.AGHF_DEMO) return;
+        try {
+          const res = await fetch('/api/complete-lesson', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${window.AGHF_SESSION_TOKEN}` },
+            body: JSON.stringify({ lessonId: `${phaseKey}-${n}`, gpEarned: data.xpValue }),
+          });
+          await res.json();
+        } catch (err) {
+          console.error('Complete lesson error:', err);
+        }
+      },
+    };
+
+    if (data.loop) renderLoopWizard(data, wizardOpts);
+    else renderLessonWizard(data, wizardOpts);
+  }
+
+  document.addEventListener('aghf-auth-ready', loadLesson);
+</script>
+
+</body>
+</html>

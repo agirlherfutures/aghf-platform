@@ -1,0 +1,113 @@
+{
+  "phase": "p1",
+  "section": "s1",
+  "title": "Introduction to Trading",
+  "welcome": {
+    "eyebrow": "✦ Section 1",
+    "heading": "Welcome to the Market",
+    "body": "Before charts. Before setups. Before Dayli ICC. You need to understand the world you're stepping into. In this section, we're breaking trading down from the ground up — what you're actually buying and selling, why price moves, what a futures contract is, and how movement on your chart translates into real dollars. No strategy yet. No entries yet. First, we're learning the language.",
+    "mission": "Don't memorize trading terms. Understand what they mean."
+  },
+  "challenge": {
+    "title": "Know What You're Trading",
+    "subtitle": "This isn't the Knowledge Check. It's a quick, interactive competency check.",
+    "xp": 30,
+    "rounds": [
+      {
+        "type": "mc",
+        "heading": "Round 1 — What are you doing?",
+        "prompt": "You expect price to decline and want to participate in that move.",
+        "question": "Long or short?",
+        "options": [
+          { "label": "Short", "correct": true, "feedback": "Right — short is the position that benefits when price falls." },
+          { "label": "Long", "correct": false, "feedback": "Long benefits from price rising — not what you want if you expect a decline." }
+        ]
+      },
+      {
+        "type": "mc",
+        "heading": "Round 2 — What are you trading?",
+        "prompt": "What does MNQ represent?",
+        "question": "Pick the correct instrument.",
+        "options": [
+          { "label": "Micro E-mini Nasdaq-100", "correct": true, "feedback": "Exactly — MNQ is the micro version of the Nasdaq-100 futures contract." },
+          { "label": "Micro E-mini S&P 500", "correct": false, "feedback": "That's MES, not MNQ." },
+          { "label": "E-mini Nasdaq-100", "correct": false, "feedback": "That's NQ — the full-size version. MNQ is the micro." },
+          { "label": "Micro Gold", "correct": false, "feedback": "That's MGC, a different market entirely." }
+        ]
+      },
+      {
+        "type": "mc",
+        "heading": "Round 3 — Spot the problem",
+        "prompt": "A friend tells you she made \"50 points today.\"",
+        "question": "Do you know how much money she made?",
+        "options": [
+          { "label": "No — you don't know the instrument or contract count", "correct": true, "feedback": "Right — points alone don't tell you anything about dollars without the instrument and size." },
+          { "label": "Yes — 50 points is 50 points", "correct": false, "feedback": "Points alone can't tell you a dollar amount." },
+          { "label": "Yes, if she's trading MNQ", "correct": false, "feedback": "Even on MNQ, you'd still need to know her contract count." }
+        ]
+      },
+      {
+        "type": "mc",
+        "heading": "Round 4 — Calculate it",
+        "prompt": "MNQ · 2 contracts · 25-point favorable move.",
+        "question": "What's the P&L before fees?",
+        "options": [
+          { "label": "$100", "correct": true, "feedback": "Right — 25 × $2 × 2 = $100." },
+          { "label": "$50", "correct": false, "feedback": "That's only 1 contract's worth — you have 2." },
+          { "label": "$25", "correct": false, "feedback": "That's just the points, not multiplied by point value or contracts." }
+        ]
+      },
+      {
+        "type": "multiselect",
+        "heading": "Round 5 — Think like a trader",
+        "prompt": "A trader says: \"I'm bullish, so I'm entering.\"",
+        "question": "What's missing from that decision? Select everything that applies.",
+        "items": [
+          { "label": "Entry criteria", "correct": true },
+          { "label": "Risk", "correct": true },
+          { "label": "Invalidation", "correct": true },
+          { "label": "Target", "correct": true },
+          { "label": "Confirmation/context", "correct": true },
+          { "label": "Nothing — direction alone is enough", "correct": false }
+        ],
+        "successFeedback": "Exactly. Direction alone isn't a trading plan."
+      }
+    ]
+  },
+  "knowledgeCheck": {
+    "xp": 20,
+    "passPct": 0.8,
+    "questionCount": 10,
+    "questionBank": [
+      { "question": "What is trading, at its core?", "options": ["Participating in a market by taking a position based on the expectation that price will move", "Predicting the future with certainty", "Owning a company"], "correctIndex": 0, "why": "Trading is participation based on expectation — not certainty." },
+      { "question": "A trader takes a position designed to profit if price falls. What is that called?", "options": ["Short", "Long", "Hedge"], "correctIndex": 0, "why": "Short positions benefit when price falls." },
+      { "question": "What creates a market?", "options": ["Buyers and sellers with different opinions transacting", "The exchange setting a price", "One trader deciding the price"], "correctIndex": 0, "why": "Disagreement between participants is what creates a transaction." },
+      { "question": "A producer uses futures to manage exposure to changing prices. What is that called?", "options": ["Hedging", "Speculating", "Investing"], "correctIndex": 0, "why": "Hedging is using futures to manage risk, not to speculate on direction." },
+      { "question": "Does a single green candle prove buyers control the whole market?", "options": ["No — one candle doesn't tell the larger structural story", "Yes — green always means bullish control", "Only if it's a large candle"], "correctIndex": 0, "why": "Context matters more than any single candle." },
+      { "question": "What is a futures contract?", "options": ["A standardized agreement whose value moves with an underlying asset or benchmark", "A share of ownership in a company", "A savings account"], "correctIndex": 0, "why": "Futures contracts track price movement, not ownership." },
+      { "question": "What does MNQ represent?", "options": ["Micro E-mini Nasdaq-100", "E-mini Nasdaq-100", "Micro Gold"], "correctIndex": 0, "why": "MNQ is the micro version of the Nasdaq-100 futures contract." },
+      { "question": "What's the relationship between NQ and MNQ?", "options": ["MNQ is 1/10th the contract multiplier of NQ", "They're the exact same contract size", "NQ is the micro version of MNQ"], "correctIndex": 0, "why": "MNQ is the smaller, micro version of NQ." },
+      { "question": "Which is true about futures contracts, unlike stocks?", "options": ["Futures contracts expire and can require a rollover", "Futures never expire", "Futures are a form of company ownership"], "correctIndex": 0, "why": "Futures have expiration and rollover — stocks don't." },
+      { "question": "Maya trades 10 shares of a stock, then decides to trade 10 MNQ contracts because \"10 is her normal size.\" What's wrong?", "options": ["Share count and contract count aren't equivalent units of risk", "Nothing — 10 is always 10", "MNQ contracts are always smaller risk than shares"], "correctIndex": 0, "why": "The same number can carry very different dollar risk depending on the instrument." },
+      { "question": "On MNQ, what is one point worth per contract?", "options": ["$2", "$10", "$0.25"], "correctIndex": 0, "why": "MNQ's minimum tick is 0.25 points worth $0.50, so a full point is $2 per contract." },
+      { "question": "You buy 1 MNQ at 20,000 and price rises to 20,010. What's the P&L before fees?", "options": ["+$20", "+$10", "+$200"], "correctIndex": 0, "why": "10 points × $2 × 1 contract = $20." },
+      { "question": "A trader says \"I only have a 30-point stop, so I can't lose much.\" What's missing from that statement?", "options": ["The number of contracts and the contract's point value", "Nothing — the statement is complete", "Her broker's name"], "correctIndex": 0, "why": "Points alone don't establish dollar risk without contract count and point value." },
+      { "question": "Why is \"I think price is going up\" not a complete trading plan?", "options": ["It doesn't define entry, risk, invalidation, target, or confirmation", "It's actually a complete plan on its own", "Because direction can never be known"], "correctIndex": 0, "why": "A real plan needs more than a directional opinion." },
+      { "question": "What is the P&L formula?", "options": ["Points moved × point value × contract count", "Points moved ÷ contract count", "Entry price × exit price"], "correctIndex": 0, "why": "All three pieces are needed to turn a point move into a real dollar result." },
+      { "question": "A trader's thesis supports higher prices, but price moves against her. What's the AGHF mindset?", "options": ["A thesis can be reasonable and still be wrong — risk defines what happens next", "The analysis must eventually become correct", "She should add to the position to average in"], "correctIndex": 0, "why": "Being reasonable and being right aren't the same — that's exactly why risk is defined in advance." }
+    ]
+  },
+  "checkin": {
+    "prompts": {
+      "whatClicked": "In your own words, what is trading?",
+      "didntKnow": "One thing I didn't know before this section:",
+      "topicLabel": "Which topic needs another look?",
+      "topics": ["Trading basics", "Buyers & sellers", "Futures contracts", "Instruments", "Futures vs. stocks", "Points/ticks/P&L", "I'm good ✨"],
+      "explainToFriend": "Your friend asks: \"Okay...but what exactly am I buying when I trade MNQ?\" Explain it to her in your own words."
+    }
+  },
+  "complete": {
+    "heading": "You know what you're trading.",
+    "badge": "Section 1 Complete"
+  }
+}
