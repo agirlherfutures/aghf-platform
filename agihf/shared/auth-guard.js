@@ -97,15 +97,22 @@
       window.AGHF_SESSION_TOKEN = session.access_token;
       window.AGHF_SUPABASE = supabaseClient;
 
-      // If the session drops mid-lesson (sign out in another tab, token
-      // expiry with no refresh), bounce back to login rather than leaving
-      // stale content on screen.
+      // If the session drops mid-lesson (sign out in another tab), bounce
+      // back to login rather than leaving stale content on screen. Only
+      // an explicit SIGNED_OUT event counts as that — a merely-falsy
+      // newSession on some other event (e.g. the INITIAL_SESSION event
+      // Supabase fires right after subscribing here, which can carry no
+      // session for a moment even on a genuinely valid login, especially
+      // right after the project itself was paused/restored) must never
+      // bounce a member who just successfully passed the getSession()
+      // check above — that was the exact cause of pages flashing content
+      // then redirecting straight back to login.
       supabaseClient.auth.onAuthStateChange((event, newSession) => {
-        if (event === 'SIGNED_OUT' || !newSession) {
+        if (event === 'SIGNED_OUT') {
           bounceToLogin();
           return;
         }
-        window.AGHF_SESSION_TOKEN = newSession.access_token;
+        if (newSession) window.AGHF_SESSION_TOKEN = newSession.access_token;
       });
 
       fireAuthReadySafely();
