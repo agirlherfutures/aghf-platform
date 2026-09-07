@@ -178,8 +178,24 @@
   const SUPABASE_URL = 'https://otxfzalcujhtfwprmptr.supabase.co';
   const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90eGZ6YWxjdWpodGZ3cHJtcHRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NTYyOTMsImV4cCI6MjA5MzMzMjI5M30.iRxaKgD6ut9urNK67dyvj_6K2lfyw8peBpfJx3oU9A4';
 
-  const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
-  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON);
+  // Loads from a same-origin vendored file rather than a third-party CDN —
+  // the dynamic import() of jsdelivr's ESM build used to live here, but it
+  // can silently never resolve on some networks/browsers with no console
+  // error and no failed network request, which left this page's whole
+  // script (including handleSignIn/handleSignUp) unwired forever. This is
+  // the exact same fix already applied to shared/auth-guard.js.
+  function loadSupabaseLib() {
+    return new Promise((resolve, reject) => {
+      if (window.supabase?.createClient) { resolve(window.supabase); return; }
+      const script = document.createElement('script');
+      script.src = 'shared/vendor/supabase-js.umd.js';
+      script.onload = () => resolve(window.supabase);
+      script.onerror = () => reject(new Error('Could not load the Supabase client library'));
+      document.head.appendChild(script);
+    });
+  }
+  const { createClient, processLock } = await loadSupabaseLib();
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: processLock } });
 
   const params = new URLSearchParams(window.location.search);
   const redirectTo = params.get('redirect');
