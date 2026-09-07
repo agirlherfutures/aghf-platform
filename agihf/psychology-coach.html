@@ -33,12 +33,22 @@
 </main>
 
 <script type="module">
-  import { getTodayChecklist } from './shared/checklist-service.js';
-  import { getTodaysSnapshot } from './shared/journal-service.js';
-  import { savePsychologySession, savePsychologyProfile, getPsychologyProfile } from './shared/psychology-service.js';
-  import { checkDailyLimits } from './shared/psychology-rules-engine.js';
-  import { renderTalkMeThrough, renderPreTradeCheck, renderPostLossReset, renderCooldownTimer } from './shared/psychology-engine.js';
-  import { showDeskToast } from './shared/dayli-desk-engine.js';
+  let getTodayChecklist;
+  let getTodaysSnapshot;
+  let savePsychologySession, savePsychologyProfile, getPsychologyProfile;
+  let checkDailyLimits;
+  let renderTalkMeThrough, renderPreTradeCheck, renderPostLossReset, renderCooldownTimer;
+  let showDeskToast;
+
+  function renderFallbackError(err) {
+    console.error('Psychology Coach page failed to load:', err);
+    document.querySelector('.main').innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading this page</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
 
   const params = new URLSearchParams(window.location.search);
   const mode = params.get('mode') || 'talk_me_through';
@@ -102,7 +112,22 @@
     }
   }
 
-  document.addEventListener('aghf-auth-ready', start);
+  document.addEventListener('aghf-auth-ready', boot);
+
+  async function boot() {
+    try {
+      ({ getTodayChecklist } = await import('./shared/checklist-service.js'));
+      ({ getTodaysSnapshot } = await import('./shared/journal-service.js'));
+      ({ savePsychologySession, savePsychologyProfile, getPsychologyProfile } = await import('./shared/psychology-service.js'));
+      ({ checkDailyLimits } = await import('./shared/psychology-rules-engine.js'));
+      ({ renderTalkMeThrough, renderPreTradeCheck, renderPostLossReset, renderCooldownTimer } = await import('./shared/psychology-engine.js'));
+      ({ showDeskToast } = await import('./shared/dayli-desk-engine.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+    start();
+  }
 </script>
 
 </body>

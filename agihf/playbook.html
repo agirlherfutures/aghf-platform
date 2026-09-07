@@ -22,20 +22,35 @@
 </main>
 
 <script type="module">
-  import { getPlaybookCards } from './shared/playbook-service.js';
-
-  const cards = getPlaybookCards();
   const el = document.getElementById('ddPlaybookList');
-  if (!cards.length) {
-    el.innerHTML = `<div class="dd-card dd-empty"><div class="dd-empty-icon">❦</div><div class="dd-empty-text">Nothing saved yet — finish a lesson and tap "Save to My Playbook" to build your reference set here.</div><a class="dd-primary-btn" href="lessons.html">Go to Academy</a></div>`;
-  } else {
-    el.innerHTML = `<div class="dd-playbook-grid">${cards.map((c) => `
-      <div class="dd-playbook-card">
-        <div class="dd-playbook-title">${c.title}</div>
-        <ul class="dd-playbook-checklist">${(c.checklist || []).map((i) => `<li>${i}</li>`).join('')}</ul>
-        ${c.remember ? `<div class="dd-playbook-remember">🎀 ${c.remember}</div>` : ''}
-      </div>`).join('')}</div>`;
-  }
+
+  (async function boot() {
+    let getPlaybookCards;
+    try {
+      ({ getPlaybookCards } = await import('./shared/playbook-service.js'));
+    } catch (err) {
+      console.error('Playbook failed to load:', err);
+      el.innerHTML = `
+        <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+          <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading your playbook</div>
+          <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+          <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+        </div>`;
+      return;
+    }
+
+    const cards = getPlaybookCards();
+    if (!cards.length) {
+      el.innerHTML = `<div class="dd-card dd-empty"><div class="dd-empty-icon">❦</div><div class="dd-empty-text">Nothing saved yet — finish a lesson and tap "Save to My Playbook" to build your reference set here.</div><a class="dd-primary-btn" href="lessons.html">Go to Academy</a></div>`;
+    } else {
+      el.innerHTML = `<div class="dd-playbook-grid">${cards.map((c) => `
+        <div class="dd-playbook-card">
+          <div class="dd-playbook-title">${c.title}</div>
+          <ul class="dd-playbook-checklist">${(c.checklist || []).map((i) => `<li>${i}</li>`).join('')}</ul>
+          ${c.remember ? `<div class="dd-playbook-remember">🎀 ${c.remember}</div>` : ''}
+        </div>`).join('')}</div>`;
+    }
+  })();
 </script>
 
 </body>

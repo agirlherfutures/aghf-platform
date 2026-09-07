@@ -29,10 +29,10 @@
 </main>
 
 <script type="module">
-  import { PSYCHOLOGY_SCENARIOS, getScenarioById } from './shared/psychology-scenarios-data.js';
-  import { renderScenarioList, renderScenarioAttempt } from './shared/psychology-engine.js';
-  import { saveScenarioAttempt } from './shared/psychology-service.js';
-  import { showDeskToast } from './shared/dayli-desk-engine.js';
+  let PSYCHOLOGY_SCENARIOS, getScenarioById;
+  let renderScenarioList, renderScenarioAttempt;
+  let saveScenarioAttempt;
+  let showDeskToast;
 
   const area = document.getElementById('psyScenarioArea');
 
@@ -58,8 +58,26 @@
     });
   }
 
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('id')) showAttempt(params.get('id')); else showList();
+  (async function boot() {
+    try {
+      ({ PSYCHOLOGY_SCENARIOS, getScenarioById } = await import('./shared/psychology-scenarios-data.js'));
+      ({ renderScenarioList, renderScenarioAttempt } = await import('./shared/psychology-engine.js'));
+      ({ saveScenarioAttempt } = await import('./shared/psychology-service.js'));
+      ({ showDeskToast } = await import('./shared/dayli-desk-engine.js'));
+    } catch (err) {
+      console.error('Scenario Lab failed to load:', err);
+      area.innerHTML = `
+        <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+          <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading the Scenario Lab</div>
+          <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+          <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+        </div>`;
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('id')) showAttempt(params.get('id')); else showList();
+  })();
 </script>
 
 </body>

@@ -47,18 +47,25 @@
 </div>
 
 <script type="module">
-  import { phaseByKey } from './shared/curriculum-data.js';
-  import { renderSectionWizard } from './shared/section-engine.js';
+  let phaseByKey;
+  let renderSectionWizard;
 
   const params = new URLSearchParams(window.location.search);
   const phaseKey = params.get('phase') || 'p1';
   const sectionKey = params.get('section') || 's1';
   const step = params.get('step') || 'welcome';
 
-  const phase = phaseByKey(phaseKey);
-  const secIdx = phase.sections.findIndex((s) => s.key === sectionKey);
-  const section = phase.sections[secIdx];
-  const nextSection = phase.sections[secIdx + 1];
+  let phase, secIdx, section, nextSection;
+
+  function renderFallbackError(err) {
+    console.error('Section page failed to load:', err);
+    document.getElementById('lwWrap').innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading this section</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
 
   async function load() {
     let data;
@@ -93,7 +100,24 @@
     });
   }
 
-  document.addEventListener('aghf-auth-ready', load);
+  document.addEventListener('aghf-auth-ready', boot);
+
+  async function boot() {
+    try {
+      ({ phaseByKey } = await import('./shared/curriculum-data.js'));
+      ({ renderSectionWizard } = await import('./shared/section-engine.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+
+    phase = phaseByKey(phaseKey);
+    secIdx = phase.sections.findIndex((s) => s.key === sectionKey);
+    section = phase.sections[secIdx];
+    nextSection = phase.sections[secIdx + 1];
+
+    load();
+  }
 </script>
 
 </body>

@@ -112,25 +112,36 @@
 </main>
 
 <script type="module">
-  import { PHASES, LEVEL_NAMES, isSectionCleared } from './shared/curriculum-data.js';
-  import { getMarketOutlook } from './shared/market-outlook-service.js';
-  import { getTodaysEvents } from './shared/economic-calendar-service.js';
-  import { getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS, listEntries } from './shared/journal-service.js';
-  import { getTodayChecklist, listChecklists } from './shared/checklist-service.js';
-  import { migrateLegacyDataIfNeeded } from './shared/journal-migration.js';
-  import { computeConsistencyScore } from './shared/consistency-service.js';
-  import {
-    renderSessionBadge, renderMarketOutlookCard, renderEconomicCalendarCard, renderTradingSnapshot,
+  // Loaded dynamically rather than as static top-level imports — a failure
+  // in any one of these ten (a transient network hiccup on the live
+  // deployment, a stale/partial CDN cache, a syntax error anywhere in its
+  // own import graph) would previously kill this entire script before it
+  // ever ran, leaving every card below permanently empty with no error
+  // shown — the same bug already fixed on this page's sibling pages.
+  let PHASES, LEVEL_NAMES, isSectionCleared;
+  let getMarketOutlook;
+  let getTodaysEvents;
+  let getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS, listEntries;
+  let getTodayChecklist, listChecklists;
+  let migrateLegacyDataIfNeeded;
+  let computeConsistencyScore;
+  let renderSessionBadge, renderMarketOutlookCard, renderEconomicCalendarCard, renderTradingSnapshot,
     renderChecklistSummaryCard, renderQuickJournalCard, renderRecentTrades, computeCurrentFocus,
     renderCurrentFocusCard, renderContinueLearningCard, renderConsistencyScore, renderJourneySummary,
-    renderAskAgentCard, renderSkeleton, renderErrorState,
-  } from './shared/dayli-desk-engine.js';
-  import { getPsychologyProfile } from './shared/psychology-service.js';
-  import { listConversations } from './shared/agent-service.js';
+    renderAskAgentCard, renderSkeleton, renderErrorState;
+  let getPsychologyProfile;
+  let listConversations;
+  let p1, allP1Lessons, totalLessonsAllPhases;
 
-  const p1 = PHASES[0];
-  const allP1Lessons = p1.sections.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s })));
-  const totalLessonsAllPhases = PHASES.reduce((sum, p) => sum + p.sections.reduce((s, sec) => s + sec.lessons.length, 0), 0);
+  function renderFallbackError(err) {
+    console.error('Dashboard failed to load:', err);
+    document.querySelector('.main').innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading your dashboard</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
 
   function greetingWord() {
     const h = new Date().getHours();
@@ -151,10 +162,6 @@
     "Risk only what you're willing to lose. That's not weakness — that's discipline.",
     "You don't need to trade every day. You need to trade right.",
   ];
-  document.getElementById('dayliQuoteText').textContent = dayliQuotes[new Date().getDay() % dayliQuotes.length];
-  document.getElementById('pgEye').textContent = `${greetingWord()} ✦`;
-  document.getElementById('ddDate').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-  renderSessionBadge(document.getElementById('ddSessionBadge'));
 
   document.getElementById('ddStartPlanBtn').addEventListener('click', () => {
     document.getElementById('ddPlanSection').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
@@ -357,12 +364,44 @@
     loadJourney(p, doneCount);
   }
 
-  document.addEventListener('aghf-auth-ready', async () => {
+  document.addEventListener('aghf-auth-ready', boot);
+
+  async function boot() {
+    try {
+      ({ PHASES, LEVEL_NAMES, isSectionCleared } = await import('./shared/curriculum-data.js'));
+      ({ getMarketOutlook } = await import('./shared/market-outlook-service.js'));
+      ({ getTodaysEvents } = await import('./shared/economic-calendar-service.js'));
+      ({ getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS, listEntries } = await import('./shared/journal-service.js'));
+      ({ getTodayChecklist, listChecklists } = await import('./shared/checklist-service.js'));
+      ({ migrateLegacyDataIfNeeded } = await import('./shared/journal-migration.js'));
+      ({ computeConsistencyScore } = await import('./shared/consistency-service.js'));
+      ({
+        renderSessionBadge, renderMarketOutlookCard, renderEconomicCalendarCard, renderTradingSnapshot,
+        renderChecklistSummaryCard, renderQuickJournalCard, renderRecentTrades, computeCurrentFocus,
+        renderCurrentFocusCard, renderContinueLearningCard, renderConsistencyScore, renderJourneySummary,
+        renderAskAgentCard, renderSkeleton, renderErrorState,
+      } = await import('./shared/dayli-desk-engine.js'));
+      ({ getPsychologyProfile } = await import('./shared/psychology-service.js'));
+      ({ listConversations } = await import('./shared/agent-service.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+
+    p1 = PHASES[0];
+    allP1Lessons = p1.sections.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s })));
+    totalLessonsAllPhases = PHASES.reduce((sum, p) => sum + p.sections.reduce((s, sec) => s + sec.lessons.length, 0), 0);
+
+    document.getElementById('dayliQuoteText').textContent = dayliQuotes[new Date().getDay() % dayliQuotes.length];
+    document.getElementById('pgEye').textContent = `${greetingWord()} ✦`;
+    document.getElementById('ddDate').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    renderSessionBadge(document.getElementById('ddSessionBadge'));
+
     await migrateLegacyDataIfNeeded();
     loadDashboard();
-  });
-  loadMarketOutlook();
-  loadCalendar();
+    loadMarketOutlook();
+    loadCalendar();
+  }
 </script>
 
 </body>

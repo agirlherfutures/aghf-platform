@@ -36,11 +36,21 @@
 </main>
 
 <script type="module">
-  import { PHASES } from './shared/curriculum-data.js';
-  import { listEntries } from './shared/journal-service.js';
-  import { listChecklists } from './shared/checklist-service.js';
-  import { computeConsistencyScore } from './shared/consistency-service.js';
-  import { renderConsistencyScore, renderJourneySummary, renderErrorState } from './shared/dayli-desk-engine.js';
+  let PHASES;
+  let listEntries;
+  let listChecklists;
+  let computeConsistencyScore;
+  let renderConsistencyScore, renderJourneySummary, renderErrorState;
+
+  function renderFallbackError(err) {
+    console.error('Performance page failed to load:', err);
+    document.querySelector('.main').innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading your performance</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
 
   async function loadConsistency() {
     const el = document.getElementById('ddConsistencyFull');
@@ -51,7 +61,6 @@
       renderErrorState(el, "Couldn't load your consistency score.", loadConsistency);
     }
   }
-  loadConsistency();
 
   async function loadJourney() {
     let profile = {};
@@ -81,7 +90,23 @@
       { value: tradesJournaled, label: 'Trades Journaled' },
     ]);
   }
-  document.addEventListener('aghf-auth-ready', loadJourney);
+
+  document.addEventListener('aghf-auth-ready', boot);
+
+  async function boot() {
+    try {
+      ({ PHASES } = await import('./shared/curriculum-data.js'));
+      ({ listEntries } = await import('./shared/journal-service.js'));
+      ({ listChecklists } = await import('./shared/checklist-service.js'));
+      ({ computeConsistencyScore } = await import('./shared/consistency-service.js'));
+      ({ renderConsistencyScore, renderJourneySummary, renderErrorState } = await import('./shared/dayli-desk-engine.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+    loadConsistency();
+    loadJourney();
+  }
 </script>
 
 </body>

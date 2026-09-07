@@ -27,9 +27,19 @@
 </main>
 
 <script type="module">
-  import { getPsychologyProfile, savePsychologyProfile, deleteAllPsychologyHistory } from './shared/psychology-service.js';
-  import { renderConsentSettings } from './shared/psychology-engine.js';
-  import { renderSkeleton, renderErrorState, showDeskToast } from './shared/dayli-desk-engine.js';
+  let getPsychologyProfile, savePsychologyProfile, deleteAllPsychologyHistory;
+  let renderConsentSettings;
+  let renderSkeleton, renderErrorState, showDeskToast;
+
+  function renderFallbackError(err) {
+    console.error('Consent settings page failed to load:', err);
+    document.querySelector('.main').innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading this page</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
 
   const area = document.getElementById('psyConsentArea');
 
@@ -54,7 +64,19 @@
     }
   }
 
-  document.addEventListener('aghf-auth-ready', load);
+  document.addEventListener('aghf-auth-ready', boot);
+
+  async function boot() {
+    try {
+      ({ getPsychologyProfile, savePsychologyProfile, deleteAllPsychologyHistory } = await import('./shared/psychology-service.js'));
+      ({ renderConsentSettings } = await import('./shared/psychology-engine.js'));
+      ({ renderSkeleton, renderErrorState, showDeskToast } = await import('./shared/dayli-desk-engine.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+    load();
+  }
 </script>
 
 </body>

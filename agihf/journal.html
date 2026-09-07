@@ -37,8 +37,18 @@
 </main>
 
 <script type="module">
-  import { getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS } from './shared/journal-service.js';
-  import { openJournalModal, renderRecentTrades, renderSkeleton, renderErrorState } from './shared/dayli-desk-engine.js';
+  let getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS;
+  let openJournalModal, renderRecentTrades, renderSkeleton, renderErrorState;
+
+  function renderFallbackError(err) {
+    console.error('Journal hub failed to load:', err);
+    document.querySelector('.main').innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading your journal</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
 
   async function load() {
     const statsEl = document.getElementById('jhStats');
@@ -60,16 +70,28 @@
     }
   }
 
-  document.getElementById('ddNewPre').addEventListener('click', () => {
-    const p = QUICK_JOURNAL_PROMPTS.premarket[Math.floor(Math.random() * QUICK_JOURNAL_PROMPTS.premarket.length)];
-    openJournalModal('premarket', p, async (entry) => { await saveReflection('premarket_reflection', entry.prompt, entry.text); load(); });
-  });
-  document.getElementById('ddNewPost').addEventListener('click', () => {
-    const p = QUICK_JOURNAL_PROMPTS.postmarket[Math.floor(Math.random() * QUICK_JOURNAL_PROMPTS.postmarket.length)];
-    openJournalModal('postmarket', p, async (entry) => { await saveReflection('postmarket_reflection', entry.prompt, entry.text); load(); });
-  });
+  document.addEventListener('aghf-auth-ready', boot);
 
-  document.addEventListener('aghf-auth-ready', load);
+  async function boot() {
+    try {
+      ({ getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS } = await import('./shared/journal-service.js'));
+      ({ openJournalModal, renderRecentTrades, renderSkeleton, renderErrorState } = await import('./shared/dayli-desk-engine.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+
+    document.getElementById('ddNewPre').addEventListener('click', () => {
+      const p = QUICK_JOURNAL_PROMPTS.premarket[Math.floor(Math.random() * QUICK_JOURNAL_PROMPTS.premarket.length)];
+      openJournalModal('premarket', p, async (entry) => { await saveReflection('premarket_reflection', entry.prompt, entry.text); load(); });
+    });
+    document.getElementById('ddNewPost').addEventListener('click', () => {
+      const p = QUICK_JOURNAL_PROMPTS.postmarket[Math.floor(Math.random() * QUICK_JOURNAL_PROMPTS.postmarket.length)];
+      openJournalModal('postmarket', p, async (entry) => { await saveReflection('postmarket_reflection', entry.prompt, entry.text); load(); });
+    });
+
+    load();
+  }
 </script>
 
 </body>
