@@ -29,7 +29,12 @@
 </main>
 
 <script type="module">
-  import { PHASES, isSectionCleared } from './shared/curriculum-data.js';
+  // PHASES/isSectionCleared are assigned inside load() via a dynamic
+  // import, not a static top-level import — a failed static import here
+  // would silently kill this entire script before any of it (including
+  // this file's own error-handling code) ever ran, exactly the bug
+  // already fixed on this page's sibling pages this session.
+  let PHASES, isSectionCleared;
 
   const BADGE_PHASE_CLASS = { p: 'pb-p', t: 'pb-t', u: 'pb-u', d: 'pb-d' };
   const BADGE_SECTION_CLASS = { p: 'sb-badge-p', t: 'sb-badge-t', c: 'sb-badge-c', u: 'sb-badge-u' };
@@ -186,6 +191,13 @@
   }
 
   async function load() {
+    try {
+      ({ PHASES, isSectionCleared } = await import('./shared/curriculum-data.js'));
+    } catch (err) {
+      renderLoadError(err);
+      return;
+    }
+
     let completedIds = new Set();
     let gpFromLessons = 0;
     try {

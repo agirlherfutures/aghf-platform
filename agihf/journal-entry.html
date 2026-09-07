@@ -23,14 +23,27 @@
 </main>
 
 <script type="module">
-  import { getEntry, saveEntry, deleteEntry, createAutosaver } from './shared/journal-service.js';
-  import { renderJournalEntryPage, renderTradeCaseFile, entryToSummaryCardProps, renderTradeSummaryCard, hydrateTscShots } from './shared/journal-engine.js';
-  import { renderErrorState, renderSkeleton, showDeskToast, openModal, closeModal } from './shared/dayli-desk-engine.js';
-  import { burst } from './shared/lesson-engine.js';
+  // Loaded dynamically rather than as static top-level imports — a failure
+  // in any one of these (a bad path, a stale deployment missing a file, a
+  // syntax error anywhere in their own import graph) would previously kill
+  // this entire script before it ever ran, leaving #jeRoot permanently
+  // empty with no error shown at all — the exact bug already fixed on this
+  // page's sibling pages this session.
+  let getEntry, saveEntry, deleteEntry, createAutosaver, renderJournalEntryPage, renderTradeCaseFile, entryToSummaryCardProps, renderTradeSummaryCard, hydrateTscShots, renderErrorState, renderSkeleton, showDeskToast, openModal, closeModal, burst;
 
   const root = document.getElementById('jeRoot');
   const params = new URLSearchParams(window.location.search);
   const entryId = params.get('id');
+
+  function renderFallbackError(err) {
+    console.error('Journal entry page failed to load:', err);
+    root.innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading this journal entry</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
 
   async function apiFetch(path, opts = {}) {
     const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
@@ -68,6 +81,16 @@
   }
 
   async function boot() {
+    try {
+      ({ getEntry, saveEntry, deleteEntry, createAutosaver } = await import('./shared/journal-service.js'));
+      ({ renderJournalEntryPage, renderTradeCaseFile, entryToSummaryCardProps, renderTradeSummaryCard, hydrateTscShots } = await import('./shared/journal-engine.js'));
+      ({ renderErrorState, renderSkeleton, showDeskToast, openModal, closeModal } = await import('./shared/dayli-desk-engine.js'));
+      ({ burst } = await import('./shared/lesson-engine.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+
     renderSkeleton(root, 5);
     try {
       const entry = entryId ? await getEntry(entryId) : freshEntry();

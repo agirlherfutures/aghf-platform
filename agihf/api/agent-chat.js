@@ -252,16 +252,26 @@ export default async function handler(req, res) {
     const messages = [...priorMessages, { role: 'user', content: buildUserContent(effectiveMessage, attachments) }];
     let fullText = '';
     let sawUnavailable = false;
+    let sawError = false;
 
     for await (const event of streamChatCompletion({ systemPrompt, messages, signal: controller.signal })) {
       if (event.type === 'unavailable') { sawUnavailable = true; break; }
+      if (event.type === 'error') { sawError = true; write(res, event); break; }
       if (event.type === 'text_delta') { fullText += event.text; }
-      else if (event.type === 'error') { write(res, event); }
     }
 
     if (sawUnavailable) {
       write(res, { type: 'unavailable' });
       write(res, { type: 'done', conversationId, stopReason: 'unavailable' });
+      return res.end();
+    }
+
+    // An AI-provider error was already written to the client above — do not
+    // fall through to the empty text_delta below, which would silently wipe
+    // that error message out of the chat bubble before the member ever
+    // sees it (this was the actual cause of "message sent, no response").
+    if (sawError) {
+      write(res, { type: 'done', conversationId, stopReason: 'error' });
       return res.end();
     }
 

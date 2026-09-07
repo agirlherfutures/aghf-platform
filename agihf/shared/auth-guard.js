@@ -39,8 +39,13 @@
   const ROOT = new URL('../', scriptSrc).href;
 
   // Hide the page until we know whether the visitor is authenticated, so
-  // protected content never flashes before a redirect.
+  // protected content never flashes before a redirect. Paired with a
+  // opacity fade (rather than an instant visibility snap) purely for
+  // smoothness on the way back in — visibility itself still does the real
+  // work of keeping protected content unreadable/non-interactive while
+  // hidden; opacity is what makes the reveal not look like a jarring pop.
   document.documentElement.style.visibility = 'hidden';
+  document.documentElement.style.opacity = '0';
 
   // TEMPORARY DIAGNOSTIC — a member's real account is going blank in a way
   // that's been hard to pin down over chat (blank forever vs. a redirect,
@@ -106,6 +111,8 @@
   // the listener registration) has already executed by the time we fire.
   function fireAuthReady() {
     document.documentElement.style.visibility = '';
+    document.documentElement.style.transition = 'opacity .15s ease';
+    document.documentElement.style.opacity = '1';
     document.dispatchEvent(new Event('aghf-auth-ready'));
   }
   function fireAuthReadySafely() {
