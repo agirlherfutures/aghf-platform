@@ -1,13 +1,25 @@
-// api/agent-chat.js — the AGHF Agent's streaming conversation endpoint.
+// api/agent-chat.js — the AGHF Agent's conversation endpoint.
 // Same JWT-verification pattern as every other endpoint in this project.
+//
+// COST-REDESIGNED (see agent-intent-classifier.js): this endpoint makes
+// AT MOST ONE model call per request, and only ever runs for a message
+// the client's free deterministic classifier could not resolve into an
+// existing guided flow — most member messages never reach this file at
+// all. There is no live tool-calling loop: any data the model needs is
+// pre-fetched deterministically by agent-context-builder.js BEFORE the
+// single call, and any proposed write action is expressed as a trailing
+// ```action {...}``` fenced block in the model's own text response,
+// parsed here and turned into an agent_actions preview row — never a
+// second model round trip.
+//
 // Streams newline-delimited JSON events; see agihf/shared/agent-service.js
 // for the client-side consumer and the wire-protocol event list.
 
 import { createClient } from '@supabase/supabase-js';
 import { streamChatCompletion, generateShortCompletion } from './_lib/ai-provider.js';
-import { TOOL_SCHEMAS, executeTool } from './_lib/agent-tools.js';
 import { buildTurnContext, renderContextBlocks } from './_lib/agent-context-builder.js';
 import { buildSystemPrompt } from './_lib/agent-system-prompt.js';
+import { TOOL_REGISTRY } from './_lib/agent-tools.js';
 import { scanForSafetyConcern } from '../shared/psychology-safety.js';
 import { CRISIS_RESPONSE, TRADING_HARM_RESPONSE } from '../shared/psychology-safety-copy.js';
 
@@ -18,10 +30,32 @@ const DEFAULT_CONSENT = {
   emotions: true, sessionHistory: true, playbook: true, academyProgress: true,
 };
 
-const MAX_TOOL_LOOPS = 4;
+const ACTION_BLOCK_RE = /```action\s*([\s\S]*?)```/;
 
 function write(res, event) {
   res.write(JSON.stringify(event) + '\n');
+}
+
+function safetyResponseText(copy) {
+  return `${copy.heading}\n\n${copy.body}\n\n${copy.actions.map((a) => `• ${a.label}`).join('\n')}\n\n${copy.footer}`;
+}
+
+/**
+ * Extracts a member-visible answer plus an optional proposed write action
+ * from one model response, per the single fenced-block convention
+ * described in agent-system-prompt.js — no tool-use API needed for this.
+ */
+function extractActionBlock(fullText) {
+  const match = ACTION_BLOCK_RE.exec(fullText);
+  if (!match) return { visibleText: fullText, action: null };
+  const visibleText = fullText.replace(ACTION_BLOCK_RE, '').trim();
+  try {
+    const parsed = JSON.parse(match[1]);
+    if (parsed && typeof parsed.actionType === 'string' && TOOL_REGISTRY[parsed.actionType]) {
+      return { visibleText, action: { actionType: parsed.actionType, previewPayload: parsed.payload || {} } };
+    }
+  } catch { /* malformed block — just drop it, still show the visible text */ }
+  return { visibleText, action: null };
 }
 
 /**
@@ -43,10 +77,6 @@ function buildUserContent(message, attachments) {
   ];
 }
 
-function safetyResponseText(copy) {
-  return `${copy.heading}\n\n${copy.body}\n\n${copy.actions.map((a) => `• ${a.label}`).join('\n')}\n\n${copy.footer}`;
-}
-
 export default async function handler(req, res) {
   const authHeader = req.headers.authorization || '';
   const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
@@ -65,6 +95,10 @@ export default async function handler(req, res) {
   const savePreference = body.savePreference || 'save';
   let conversationId = body.conversationId || null;
   const clientHistory = Array.isArray(body.clientHistory) ? body.clientHistory : [];
+  // Set only when a free guided flow (Talk Me Through, etc.) already ran
+  // client-side with zero AI calls — its rules-based result is folded
+  // into context so this one call can build on it instead of re-deriving it.
+  const guidedSummary = body.guidedSummary || null;
 
   res.writeHead(200, {
     'Content-Type': 'application/x-ndjson; charset=utf-8',
@@ -86,8 +120,8 @@ export default async function handler(req, res) {
       if (convoErr || !convo) { write(res, { type: 'error', message: 'Conversation not found.' }); return res.end(); }
       isSaving = convo.save_status === 'saved';
       if (isSaving) {
-        const { data: rows } = await supabase.from('agent_messages').select('role, content, tool_calls, tool_results')
-          .eq('conversation_id', conversationId).order('created_at', { ascending: true }).limit(40);
+        const { data: rows } = await supabase.from('agent_messages').select('role, content')
+          .eq('conversation_id', conversationId).order('created_at', { ascending: true }).limit(20);
         priorMessages = (rows || []).map((r) => ({ role: r.role, content: r.content }));
       }
     } else if (isSaving) {
@@ -112,7 +146,7 @@ export default async function handler(req, res) {
       if (isSaving && conversationId) {
         await supabase.from('agent_messages').insert([
           { conversation_id: conversationId, user_id: userId, role: 'user', content: message, attached_record_refs: attachments },
-          { conversation_id: conversationId, user_id: userId, role: 'assistant', content: text, tool_calls: [], tool_results: [{ safetyBlock: safetyHit.category }] },
+          { conversation_id: conversationId, user_id: userId, role: 'assistant', content: text, tool_results: [{ safetyBlock: safetyHit.category }] },
         ]);
       }
       write(res, { type: 'done', conversationId, stopReason: 'safety_block' });
@@ -128,7 +162,8 @@ export default async function handler(req, res) {
     const { data: memoryRows } = await supabase.from('agent_memory').select('category, content')
       .eq('user_id', userId).eq('active', true).eq('member_approved', true);
 
-    // ── Build deterministic context ─────────────────────────────────
+    // ── Build deterministic context — this is the ONLY data-gathering step; ──
+    // there is no live tool-use round trip after this point.
     const turnContext = await buildTurnContext({ supabase, userId, consent, personalizationEnabled, attachments });
     const { observedDataBlock, memberDataBlock } = renderContextBlocks(turnContext);
 
@@ -138,58 +173,26 @@ export default async function handler(req, res) {
     });
 
     if (turnContext.patterns?.length) {
-      turnContext.patterns.forEach((p) => write(res, { type: 'tool_result', toolCallId: null, result: { kind: 'pattern', patterns: [p] } }));
+      turnContext.patterns.forEach((p) => write(res, { type: 'tool_result', result: { kind: 'pattern', patterns: [p] } }));
     }
 
+    const effectiveMessage = guidedSummary ? `${message}\n\n[Guided check-in already completed, rules-based result below — build on this, don't repeat it]\n${guidedSummary}` : message;
+
     // ── Persist the member's message now (assistant message persisted at the end) ──
-    // Note: attachments are stored as reference metadata only — any
-    // screenshot's base64 dataUrl is stripped before it ever reaches the DB.
     if (isSaving && conversationId) {
       const persistedRefs = attachments.map(({ dataUrl, ...rest }) => rest);
       await supabase.from('agent_messages').insert({ conversation_id: conversationId, user_id: userId, role: 'user', content: message, attached_record_refs: persistedRefs });
     }
 
-    // ── Tool-calling loop against the model ─────────────────────────
-    let messages = [...priorMessages, { role: 'user', content: buildUserContent(message, attachments) }];
-    let finalText = '';
-    const allToolCalls = [];
-    const allToolResults = [];
-    const allSources = [];
+    // ── Exactly ONE model call ──────────────────────────────────────
+    const messages = [...priorMessages, { role: 'user', content: buildUserContent(effectiveMessage, attachments) }];
+    let fullText = '';
     let sawUnavailable = false;
 
-    for (let loop = 0; loop < MAX_TOOL_LOOPS; loop++) {
-      let finalMessage = null;
-      for await (const event of streamChatCompletion({ systemPrompt, messages, tools: TOOL_SCHEMAS, signal: controller.signal })) {
-        if (event.type === 'unavailable') { sawUnavailable = true; break; }
-        if (event.type === 'text_delta') { finalText += event.text; write(res, event); }
-        else if (event.type === 'tool_use_start') { write(res, { type: 'tool_use', toolCallId: event.toolCallId, toolName: event.toolName }); }
-        else if (event.type === 'error') { write(res, event); }
-        else if (event.type === 'final_message') { finalMessage = event.message; }
-      }
-      if (sawUnavailable) break;
-      if (!finalMessage) break;
-
-      const toolUseBlocks = (finalMessage.content || []).filter((b) => b.type === 'tool_use');
-      if (finalMessage.stop_reason !== 'tool_use' || !toolUseBlocks.length) {
-        break;
-      }
-
-      messages.push({ role: 'assistant', content: finalMessage.content });
-      const toolResultBlocks = [];
-      for (const tu of toolUseBlocks) {
-        const result = await executeTool(
-          { supabase, userId, conversationId, consent, personalizationEnabled },
-          tu.name, tu.input || {}
-        );
-        allToolCalls.push({ name: tu.name, input: tu.input });
-        allToolResults.push(result.forModel);
-        if (result.forClient) {
-          write(res, { type: 'tool_result', toolCallId: tu.id, result: result.forClient });
-          if (result.forClient.kind === 'sources') allSources.push(result.forClient);
-        }
-        toolResultBlocks.push({ type: 'tool_result', tool_use_id: tu.id, content: JSON.stringify(result.forModel) });
-      }
-      messages.push({ role: 'user', content: toolResultBlocks });
+    for await (const event of streamChatCompletion({ systemPrompt, messages, signal: controller.signal })) {
+      if (event.type === 'unavailable') { sawUnavailable = true; break; }
+      if (event.type === 'text_delta') { fullText += event.text; }
+      else if (event.type === 'error') { write(res, event); }
     }
 
     if (sawUnavailable) {
@@ -198,10 +201,24 @@ export default async function handler(req, res) {
       return res.end();
     }
 
+    const { visibleText, action } = extractActionBlock(fullText);
+    write(res, { type: 'text_delta', text: visibleText });
+
+    let toolResults = [];
+    if (action) {
+      // Reuses the exact same preview-only insert (previewWrite, inside
+      // agent-tools.js) the old tool-calling loop used — the write path
+      // itself is unchanged, only how the model requests it is simpler now.
+      const outcome = await TOOL_REGISTRY[action.actionType].run({ supabase, userId, conversationId }, action.previewPayload);
+      if (outcome.forClient) {
+        write(res, { type: 'tool_result', result: outcome.forClient });
+        toolResults = [outcome.forClient];
+      }
+    }
+
     if (isSaving && conversationId) {
       await supabase.from('agent_messages').insert({
-        conversation_id: conversationId, user_id: userId, role: 'assistant', content: finalText,
-        tool_calls: allToolCalls, tool_results: allToolResults, sources: allSources,
+        conversation_id: conversationId, user_id: userId, role: 'assistant', content: visibleText, tool_results: toolResults,
       });
       await supabase.from('agent_conversations').update({ updated_at: new Date().toISOString() }).eq('id', conversationId);
 

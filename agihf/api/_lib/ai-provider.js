@@ -17,7 +17,7 @@
 
 import Anthropic from '@anthropic-ai/sdk';
 
-const DEFAULT_MODEL = 'claude-sonnet-4-5';
+const DEFAULT_MODEL = 'claude-sonnet-5'; // override via ANTHROPIC_MODEL env var, e.g. to 'claude-haiku-4-5' for lower cost
 
 export function isAIConfigured() {
   return !!process.env.ANTHROPIC_API_KEY;

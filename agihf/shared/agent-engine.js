@@ -27,6 +27,8 @@ import { getScenarioById, PSYCHOLOGY_SCENARIOS } from './psychology-scenarios-da
 import { listEntries } from './journal-service.js';
 import { listChecklists } from './checklist-service.js';
 import { savePlaybookItem } from './psychology-service.js';
+import { classifyIntent } from './agent-intent-classifier.js';
+import { TALK_TRIGGERS, QUESTION_BANK, resolveTalkMeThrough } from './psychology-rules-engine.js';
 
 /* ── Tiny safe text rendering (escape first, then a minimal markdown-lite) ── */
 
@@ -188,6 +190,7 @@ function renderMessageBubble(msg, helpers) {
       <button type="button" class="agc-icon-btn" data-act="save" aria-label="Save insight">✦ Save</button>
     </div>` : ''}
   `;
+  el._msg = msg; // read back directly on click — safer than positional DOM indexing now that free ephemeral bubbles (guided questions, concept cards) can sit between real messages
   return el;
 }
 
@@ -197,7 +200,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
   const state = {
     conversationId: null, savePreference: 'save', responseMode: 'coach_me',
     messages: [], clientHistory: [], attachments: [], isStreaming: false, abortController: null,
-    sidebarOpen: window.innerWidth > 900, focusMode: false, panel: null,
+    sidebarOpen: window.innerWidth > 900, focusMode: false, panel: null, guidedFlow: null,
   };
 
   container.innerHTML = `
@@ -368,8 +371,8 @@ export function renderAgentWorkspace(container, helpers = {}) {
     els.thread.querySelectorAll('.agc-msg-actions [data-act]').forEach((btn) => {
       btn.addEventListener('click', async () => {
         const bubble = btn.closest('.agc-msg');
-        const idx = Array.from(els.thread.children).indexOf(bubble);
-        const msg = state.messages[idx];
+        const msg = bubble._msg;
+        if (!msg) return;
         if (btn.dataset.act === 'copy') {
           navigator.clipboard?.writeText(msg.content).then(() => showDeskToast('Copied ✦'));
         } else if (btn.dataset.act === 'up' || btn.dataset.act === 'down') {
@@ -586,12 +589,21 @@ export function renderAgentWorkspace(container, helpers = {}) {
     });
   }
 
-  /* ── Sending + streaming ── */
+  /* ── Sending + streaming ──────────────────────────────────────────
+   * Cost design: sendMessage() never calls the AI directly. It first
+   * runs the free classifyIntent() check. A matched trigger runs an
+   * entirely free, client-side guided Q&A (reusing the same rules engine
+   * Talk Me Through already uses) and only makes ONE model call at the
+   * very end, to synthesize on top of the already-computed rules-based
+   * result. A matched concept shows the free knowledge-library answer
+   * immediately, with an opt-in button for the one AI call that connects
+   * it to her own trading. Only a genuinely unmatched ("open") question
+   * calls the model right away — and still only once, since agent-chat.js
+   * no longer runs a multi-turn tool loop. */
   async function sendMessage() {
     const ta = getTextarea();
     const text = ta.value.trim();
-    if (!text || state.isStreaming) return;
-    if (scanForSafetyConcern(text)) { /* server-side scan still runs; client just doesn't block the redundant local case specially here */ }
+    if (!text || state.isStreaming || state.guidedFlow) return;
 
     const attachmentsForSend = state.attachments.map(({ dataUrl, uploading, label, ...rest }) => rest);
     const userMsg = { role: 'user', content: text, attachedRecordRefs: attachmentsForSend };
@@ -604,6 +616,97 @@ export function renderAgentWorkspace(container, helpers = {}) {
     const sentAttachments = state.attachments.slice();
     state.attachments = []; paintAttachChips();
 
+    // Attachments or an explicit non-Coach-Me mode mean the member wants
+    // real analysis/action, not a scripted trigger match — go straight
+    // to the single AI call so attachments/mode are actually honored.
+    if (sentAttachments.length || state.responseMode !== 'coach_me') {
+      return runSingleAICall(text, sentAttachments, null);
+    }
+
+    const intent = classifyIntent(text);
+    if (intent.type === 'talk_trigger') return startGuidedFlowInChat(intent, text);
+    if (intent.type === 'concept') return appendConceptCard(intent.entry, text);
+    return runSingleAICall(text, sentAttachments, null);
+  }
+
+  /* ── Free guided flow, rendered directly in the chat thread ── */
+  function startGuidedFlowInChat(intent, originalText) {
+    const trigger = TALK_TRIGGERS.find((t) => t.key === intent.key);
+    state.guidedFlow = { trigger, qIndex: 0, answers: {}, originalText };
+    askNextGuidedQuestion();
+  }
+
+  function askNextGuidedQuestion() {
+    const flow = state.guidedFlow;
+    const qId = flow.trigger.questions[flow.qIndex];
+    const q = QUESTION_BANK[qId];
+    const options = q.type === 'yesno' ? [{ key: true, label: 'Yes' }, { key: false, label: 'No' }] : q.options;
+
+    const el = document.createElement('div');
+    el.className = 'agc-msg agc-msg-assistant';
+    el.dataset.free = 'true'; // marks a zero-AI-call bubble — see verify_cost_redesign.js
+    el.innerHTML = `<div class="agc-msg-bubble">
+      <div class="agc-tool-status">Free guided check-in — no AI used yet</div>
+      <div class="agc-msg-content"><p>${escapeHtml(q.prompt)}</p></div>
+      <div class="chip-group agc-guided-options">${options.map((o) => `<button type="button" class="chip" data-v="${String(o.key)}">${escapeHtml(o.label)}</button>`).join('')}</div>
+    </div>`;
+    els.thread.appendChild(el);
+    els.thread.scrollTop = els.thread.scrollHeight;
+
+    el.querySelectorAll('.agc-guided-options .chip').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        el.querySelectorAll('.chip').forEach((b) => b.disabled = true);
+        btn.classList.add('active');
+        const raw = btn.dataset.v;
+        flow.answers[qId] = raw === 'true' ? true : raw === 'false' ? false : raw;
+        flow.qIndex += 1;
+        if (flow.qIndex < flow.trigger.questions.length) askNextGuidedQuestion();
+        else finishGuidedFlow();
+      });
+    });
+  }
+
+  function finishGuidedFlow() {
+    const flow = state.guidedFlow;
+    const result = resolveTalkMeThrough(flow.answers);
+
+    const el = document.createElement('div');
+    el.className = 'agc-msg agc-msg-assistant';
+    el.dataset.free = 'true';
+    el.innerHTML = `<div class="agc-msg-bubble agc-note-good">
+      <div class="agc-card-eyebrow">✦ Based on your saved rules — no AI needed for this part</div>
+      <div class="agc-msg-content"><p><strong>${escapeHtml(result.actionLabel)}</strong></p><p>${escapeHtml(result.message)}</p></div>
+    </div>`;
+    els.thread.appendChild(el);
+    els.thread.scrollTop = els.thread.scrollHeight;
+
+    const answerLines = flow.trigger.questions.map((qId) => `${QUESTION_BANK[qId].prompt} → ${flow.answers[qId]}`).join('; ');
+    const guidedSummary = `Trigger: "${flow.trigger.label}". Answers: ${answerLines}. Rules-based result: ${result.actionLabel} — ${result.message}`;
+
+    state.guidedFlow = null;
+    runSingleAICall(flow.originalText, [], guidedSummary);
+  }
+
+  /* ── Free concept answer, with an opt-in single AI call to personalize ── */
+  function appendConceptCard(entry, originalText) {
+    const el = document.createElement('div');
+    el.className = 'agc-msg agc-msg-assistant';
+    el.dataset.free = 'true';
+    el.innerHTML = `<div class="agc-msg-bubble">
+      <div class="agc-card-eyebrow">From the AGHF knowledge library — no AI used yet</div>
+      <div class="agc-msg-content"><p><strong>${escapeHtml(entry.title)}</strong></p><p>${escapeHtml(entry.content)}</p></div>
+      <button type="button" class="dd-secondary-btn" id="agcConnectBtn">Connect this to my trading →</button>
+    </div>`;
+    els.thread.appendChild(el);
+    els.thread.scrollTop = els.thread.scrollHeight;
+    el.querySelector('#agcConnectBtn').addEventListener('click', (e) => {
+      e.target.remove();
+      runSingleAICall(originalText, [], `Concept already explained for free from the knowledge library: "${entry.title}" — ${entry.content}. Connect this specifically to what she described, don't re-explain the concept from scratch.`);
+    });
+  }
+
+  /* ── The one place that actually calls the model — at most once per invocation ── */
+  async function runSingleAICall(text, sentAttachments, guidedSummary) {
     state.isStreaming = true;
     els.composer.querySelector('#agcSendBtn').hidden = true;
     els.composer.querySelector('#agcStopBtn').hidden = false;
@@ -623,7 +726,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
     try {
       await agentService.streamChat({
         conversationId: state.conversationId, savePreference: state.savePreference,
-        responseMode: state.responseMode, message: text, attachments: sentAttachments,
+        responseMode: state.responseMode, message: text, attachments: sentAttachments || [], guidedSummary,
         clientHistory: state.savePreference === 'one_time' ? state.clientHistory.slice(0, -1) : undefined,
       }, (event) => {
         if (event.type === 'message_start' && event.conversationId && event.conversationId !== 'demo') {
@@ -667,6 +770,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
     }
 
     const assistantMsg = { role: 'assistant', content: fullText, toolResults, id: null };
+    assistantEl._msg = assistantMsg;
     state.messages.push(assistantMsg);
     state.clientHistory.push({ role: 'assistant', content: fullText });
     assistantEl.querySelector('.agc-msg-content').outerHTML = `<div class="agc-msg-content">${renderRichText(fullText)}</div>`;
