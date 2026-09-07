@@ -11,46 +11,75 @@
  * key never reaches the client by construction, not just by promise.
  *
  * Only this file (and callers that never re-export it) may reference
- * process.env.ANTHROPIC_API_KEY. Never import this from agihf/shared/ or
+ * process.env.GEMINI_API_KEY. Never import this from agihf/shared/ or
  * any file the browser loads.
+ *
+ * Uses Google Gemini's free tier (no credit card required at
+ * aistudio.google.com) rather than a paid provider — a deliberate cost
+ * choice, not a technical limitation. Talks to Gemini's REST API with a
+ * plain fetch() rather than an SDK, matching every other service file in
+ * this codebase (agihf/shared/*-service.js) and avoiding a new npm
+ * dependency for what's a handful of HTTP calls.
  */
 
-import Anthropic from '@anthropic-ai/sdk';
-
-const DEFAULT_MODEL = 'claude-sonnet-5'; // override via ANTHROPIC_MODEL env var, e.g. to 'claude-haiku-4-5' for lower cost
+const DEFAULT_MODEL = 'gemini-2.0-flash'; // override via GEMINI_MODEL env var
+const API_ROOT = 'https://generativelanguage.googleapis.com/v1beta/models';
 
 export function isAIConfigured() {
-  return !!process.env.ANTHROPIC_API_KEY;
+  return !!process.env.GEMINI_API_KEY;
 }
 
-// Constructed lazily, only when actually invoked and the key is present —
-// never at module load time, so importing this file never throws even
-// when the key is absent (the "not configured" state is a normal,
-// expected runtime condition, not an error).
-function getClient() {
-  return new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+function currentModel() {
+  return process.env.GEMINI_MODEL || DEFAULT_MODEL;
 }
 
 /**
- * Maps one Anthropic streaming SDK event to this app's small wire
- * protocol (see agihf/api/agent-chat.js). Keeping this mapping in one
- * place means the rest of the codebase never touches Anthropic's raw
- * event shape directly — swapping providers later only touches this file.
+ * Translates this app's Anthropic-shaped message content (a plain string,
+ * or an array of {type:'text',text} / {type:'image',source:{type:'base64',
+ * media_type,data}} blocks — exactly what agent-chat.js's buildUserContent
+ * already builds) into Gemini's `parts` shape. This is the one piece of
+ * real provider-specific translation in the file, kept here so a future
+ * provider swap again only touches this module, not agent-chat.js.
  */
-function mapAnthropicEvent(event) {
-  if (event.type === 'content_block_delta' && event.delta?.type === 'text_delta') {
-    return { type: 'text_delta', text: event.delta.text };
+function toGeminiParts(content) {
+  if (typeof content === 'string') return [{ text: content }];
+  if (Array.isArray(content)) {
+    return content.map((block) => {
+      if (block.type === 'image') return { inlineData: { mimeType: block.source.media_type, data: block.source.data } };
+      return { text: block.text || '' };
+    });
   }
-  if (event.type === 'content_block_start' && event.content_block?.type === 'tool_use') {
-    return { type: 'tool_use_start', toolCallId: event.content_block.id, toolName: event.content_block.name };
+  return [{ text: String(content ?? '') }];
+}
+
+/** Anthropic's 'assistant' role becomes Gemini's 'model' role — 'user' is the same in both. */
+function toGeminiContents(messages) {
+  return messages.map((m) => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: toGeminiParts(m.content) }));
+}
+
+function extractText(candidateResponse) {
+  return (candidateResponse?.candidates?.[0]?.content?.parts || []).map((p) => p.text || '').join('');
+}
+
+/** Buffers a fetch() SSE body into parsed `data:` JSON chunks, one per yield. */
+async function* readSseChunks(body) {
+  const reader = body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = '';
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    let idx;
+    while ((idx = buffer.indexOf('\n')) >= 0) {
+      const line = buffer.slice(0, idx).trim();
+      buffer = buffer.slice(idx + 1);
+      if (!line.startsWith('data:')) continue;
+      const jsonStr = line.slice(5).trim();
+      if (!jsonStr) continue;
+      try { yield JSON.parse(jsonStr); } catch { /* ignore a malformed chunk rather than breaking the whole stream */ }
+    }
   }
-  if (event.type === 'content_block_delta' && event.delta?.type === 'input_json_delta') {
-    return { type: 'tool_use_delta', partialJson: event.delta.partial_json };
-  }
-  if (event.type === 'message_delta' && event.delta?.stop_reason) {
-    return { type: 'message_delta', stopReason: event.delta.stop_reason };
-  }
-  return { type: 'noop' };
 }
 
 /**
@@ -60,31 +89,37 @@ function mapAnthropicEvent(event) {
  * this without a surrounding try/catch that could leak an unhandled
  * rejection mid-stream into the serverless function.
  *
- * @param {{systemPrompt: string, messages: Array, tools?: Array, maxTokens?: number, signal?: AbortSignal}} opts
+ * Only `text_delta`/`unavailable`/`error` are emitted — agent-chat.js
+ * (the only caller) never reads anything else; the old Anthropic
+ * tool-use event types are dropped rather than reimplemented, since
+ * there is no live tool-calling loop in this single-call-per-turn
+ * architecture (see agent-chat.js's own docblock).
+ *
+ * @param {{systemPrompt: string, messages: Array, maxTokens?: number, signal?: AbortSignal}} opts
  */
-export async function* streamChatCompletion({ systemPrompt, messages, tools, maxTokens = 1200, signal }) {
+export async function* streamChatCompletion({ systemPrompt, messages, maxTokens = 1200, signal }) {
   if (!isAIConfigured()) {
     yield { type: 'unavailable' };
     return;
   }
   try {
-    const client = getClient();
-    const stream = client.messages.stream(
-      {
-        model: process.env.ANTHROPIC_MODEL || DEFAULT_MODEL,
-        system: systemPrompt,
-        messages,
-        max_tokens: maxTokens,
-        ...(tools && tools.length ? { tools } : {}),
-      },
-      { signal }
-    );
-    for await (const event of stream) {
-      const mapped = mapAnthropicEvent(event);
-      if (mapped.type !== 'noop') yield mapped;
+    const url = `${API_ROOT}/${currentModel()}:streamGenerateContent?alt=sse&key=${process.env.GEMINI_API_KEY}`;
+    const body = {
+      systemInstruction: { parts: [{ text: systemPrompt }] },
+      contents: toGeminiContents(messages),
+      generationConfig: { maxOutputTokens: maxTokens },
+    };
+    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal });
+    if (!res.ok || !res.body) {
+      const errBody = await res.json().catch(() => ({}));
+      console.error('Gemini streaming error:', res.status, errBody?.error?.message || errBody);
+      yield { type: 'error', message: 'The AGHF Agent ran into a problem generating a response.' };
+      return;
     }
-    const finalMessage = await stream.finalMessage();
-    yield { type: 'final_message', message: finalMessage };
+    for await (const chunk of readSseChunks(res.body)) {
+      const text = extractText(chunk);
+      if (text) yield { type: 'text_delta', text };
+    }
   } catch (err) {
     if (err?.name === 'AbortError') return; // member clicked Stop Generating — not an error
     console.error('AI provider streaming error:', err);
@@ -100,14 +135,20 @@ export async function* streamChatCompletion({ systemPrompt, messages, tools, max
 export async function generateShortCompletion({ systemPrompt, userMessage, maxTokens = 60 }) {
   if (!isAIConfigured()) return null;
   try {
-    const client = getClient();
-    const message = await client.messages.create({
-      model: process.env.ANTHROPIC_MODEL || DEFAULT_MODEL,
-      system: systemPrompt,
-      max_tokens: maxTokens,
-      messages: [{ role: 'user', content: userMessage }],
-    });
-    return message.content.find((b) => b.type === 'text')?.text?.trim() || null;
+    const url = `${API_ROOT}/${currentModel()}:generateContent?key=${process.env.GEMINI_API_KEY}`;
+    const body = {
+      systemInstruction: { parts: [{ text: systemPrompt }] },
+      contents: [{ role: 'user', parts: [{ text: userMessage }] }],
+      generationConfig: { maxOutputTokens: maxTokens },
+    };
+    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    if (!res.ok) {
+      const errBody = await res.json().catch(() => ({}));
+      console.error('Gemini short-completion error:', res.status, errBody?.error?.message || errBody);
+      return null;
+    }
+    const data = await res.json();
+    return extractText(data).trim() || null;
   } catch (err) {
     console.error('AI provider short-completion error:', err);
     return null;
