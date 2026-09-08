@@ -867,6 +867,17 @@ export function renderAgentWorkspace(container, helpers = {}) {
     const thinkingEl = assistantEl.querySelector('.agc-thinking');
     let fullText = '';
     const toolResults = [];
+    // Holds pre-rendered HTML for a terminal non-text outcome (unavailable,
+    // an error event, a timeout, a caught exception, or a stream that
+    // ended with nothing to show) — set alongside the immediate contentEl
+    // update in each such branch below. The final re-render further down
+    // rebuilds .agc-msg-content from scratch; without capturing the
+    // message here too, that rebuild — which only ever knew about
+    // `fullText` — silently overwrote every one of these messages with
+    // blank content the instant they were shown, which is the actual
+    // reason none of them were ever visible across every previous attempt
+    // to fix this.
+    let finalOverrideHtml = null;
     // Tracks whether the stream ever produced something the member can
     // actually see (text, or a recognized failure event). Without this, a
     // connection killed mid-generation before writing anything — a real,
@@ -897,7 +908,8 @@ export function renderAgentWorkspace(container, helpers = {}) {
         if (event.type === 'unavailable') {
           sawMeaningfulEvent = true;
           thinkingEl.remove();
-          contentEl.innerHTML = renderRichText(EMPTY_STATES.aiUnavailable);
+          finalOverrideHtml = renderRichText(EMPTY_STATES.aiUnavailable);
+          contentEl.innerHTML = finalOverrideHtml;
         }
         if (event.type === 'safety_block') { sawMeaningfulEvent = true; thinkingEl.remove(); }
         if (event.type === 'text_delta') {
@@ -930,7 +942,9 @@ export function renderAgentWorkspace(container, helpers = {}) {
         if (event.type === 'error') {
           sawMeaningfulEvent = true;
           thinkingEl.remove();
-          contentEl.innerHTML += `<p class="agc-error-text">${escapeHtml(event.message)}</p>`;
+          const errorParagraph = `<p class="agc-error-text">${escapeHtml(event.message)}</p>`;
+          finalOverrideHtml = (fullText ? renderRichText(fullText) : '') + errorParagraph;
+          contentEl.innerHTML += errorParagraph;
         }
         if (event.type === 'done') {
           const statusEl = assistantEl.querySelector('.agc-tool-status');
@@ -940,12 +954,14 @@ export function renderAgentWorkspace(container, helpers = {}) {
     } catch (err) {
       if (err.name === 'AbortError') {
         if (state.abortController.signal.reason === 'timeout' && !fullText) {
-          contentEl.innerHTML = renderRichText("This is taking longer than expected — try again in a moment.");
+          finalOverrideHtml = renderRichText("This is taking longer than expected — try again in a moment.");
+          contentEl.innerHTML = finalOverrideHtml;
         }
       } else {
         console.error('Chat stream error:', err);
         if (!fullText) {
-          contentEl.innerHTML = renderRichText("Something went wrong sending that — try again in a moment.");
+          finalOverrideHtml = renderRichText("Something went wrong sending that — try again in a moment.");
+          contentEl.innerHTML = finalOverrideHtml;
         }
       }
     }
@@ -963,14 +979,15 @@ export function renderAgentWorkspace(container, helpers = {}) {
     // otherwise look exactly like a normal, silent, empty success. Treat
     // it as the failure it is.
     if (!fullText && !sawMeaningfulEvent) {
-      contentEl.innerHTML = renderRichText("The AGHF Agent didn't respond — this can happen when a response takes too long to generate. Try again, or ask something shorter.");
+      finalOverrideHtml = renderRichText("The AGHF Agent didn't respond — this can happen when a response takes too long to generate. Try again, or ask something shorter.");
+      contentEl.innerHTML = finalOverrideHtml;
     }
 
     const assistantMsg = { role: 'assistant', content: fullText, toolResults, id: null };
     assistantEl._msg = assistantMsg;
     state.messages.push(assistantMsg);
     state.clientHistory.push({ role: 'assistant', content: fullText });
-    assistantEl.querySelector('.agc-msg-content').outerHTML = `<div class="agc-msg-content">${renderRichText(fullText)}</div>`;
+    assistantEl.querySelector('.agc-msg-content').outerHTML = `<div class="agc-msg-content">${finalOverrideHtml != null ? finalOverrideHtml : renderRichText(fullText)}</div>`;
     if (fullText) {
       assistantEl.insertAdjacentHTML('beforeend', messageActionsHtml(true));
       wireMessageActions();

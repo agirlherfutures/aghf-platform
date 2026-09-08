@@ -25,6 +25,16 @@
 @view-transition { navigation: auto; }
 
 *{margin:0;padding:0;box-sizing:border-box;}
+/* The browser's own [hidden]{display:none} UA-stylesheet rule has the same
+ * specificity as any class selector — so a later-loaded rule that sets
+ * `display` on the same element (e.g. .dd-primary-btn{display:inline-block},
+ * .dd-secondary-btn{display:inline-flex}) silently wins the cascade and the
+ * `hidden` attribute stops doing anything at all. Confirmed live: toggling
+ * `.hidden = true/false` on the AGHF Agent's Send/Stop buttons (which carry
+ * exactly those classes) had zero visual effect, leaving both permanently
+ * visible together. `!important` here restores `hidden` as an unconditional
+ * override, matching what every other site assumes it already does. */
+[hidden]{display:none!important;}
 html{background:var(--bg);}
 body{font-family:var(--font-body);background:var(--bg);color:var(--dark);}
 img{max-width:100%;}
