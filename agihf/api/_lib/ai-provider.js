@@ -22,7 +22,12 @@
  * dependency for what's a handful of HTTP calls.
  */
 
-const DEFAULT_MODEL = 'gemini-2.0-flash'; // override via GEMINI_MODEL env var
+// gemini-2.0-flash was retired/unavailable on this key's model list (confirmed
+// live: GET /v1beta/models?key=... listed gemini-2.5-flash/gemini-2.5-pro but
+// no gemini-2.0-flash at all) — every request was failing with a non-OK
+// response before Gemini ever got a chance to generate anything, which is
+// the actual root cause behind every "AGHF Agent ran into a problem" report.
+const DEFAULT_MODEL = 'gemini-2.5-flash'; // override via GEMINI_MODEL env var
 const API_ROOT = 'https://generativelanguage.googleapis.com/v1beta/models';
 
 export function isAIConfigured() {
