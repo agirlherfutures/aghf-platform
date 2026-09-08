@@ -15,7 +15,7 @@ export const SUPPORTING_COPY = 'Ask a question, unpack a trading pattern, analyz
 
 export const RESPONSE_MODES = [
   { key: 'quick_answer', label: 'Quick Answer', desc: 'The clearest useful answer, no long session.' },
-  { key: 'coach_me', label: 'Coach Me', desc: 'One thoughtful question at a time.' },
+  { key: 'coach_me', label: 'Coach Me', desc: 'Warm, practical guidance, tailored to you.' },
   { key: 'analyze_data', label: 'Analyze My Data', desc: 'Trades, checklists, journal, emotions.' },
   { key: 'challenge_me', label: 'Challenge Me', desc: 'Surface contradictions, kindly.' },
   { key: 'teach_me', label: 'Teach Me', desc: 'Explain the concept, deeply.' },
