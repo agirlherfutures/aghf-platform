@@ -90,9 +90,16 @@ function renderStructuredComponent(component, data) {
 
 /* ── Tool-result cards ────────────────────────────────────────────── */
 
+/** Builds a real lesson.html URL from a curriculum lesson id like "p1-14" — only Phase 1 ("p1-N") ever resolves, since Phases 2-8 are locked placeholders with no real content to link to. */
+function lessonHrefFromId(id) {
+  const match = /^p1-(\d+)$/.exec(id || '');
+  return match ? `lesson.html?phase=p1&n=${match[1]}` : null;
+}
+
 function renderPatternCard(pattern, helpers) {
   const strength = EVIDENCE_STRENGTH_LABELS[pattern.evidenceStrength] || pattern.evidenceStrength;
   const range = pattern.evidenceWindow ? `${pattern.evidenceWindow.from || ''} – ${pattern.evidenceWindow.to || ''}` : '';
+  const lessonHref = lessonHrefFromId(pattern.recommendedLessonId);
   return `<div class="agc-card agc-pattern-card">
     <div class="agc-card-eyebrow">Pattern detected</div>
     <div class="agc-card-title">${escapeHtml((pattern.patternType || '').replace(/_/g, ' '))}</div>
@@ -100,6 +107,7 @@ function renderPatternCard(pattern, helpers) {
     <div class="agc-strength-pill agc-strength-${pattern.evidenceStrength}">${strength}</div>
     <p class="agc-observed">${escapeHtml(pattern.observedFacts)}</p>
     <p class="agc-inference"><em>Possible interpretation:</em> ${escapeHtml(pattern.possibleInterpretation)}</p>
+    ${lessonHref ? `<a class="agc-source-chip" href="${lessonHref}">Open the recommended lesson →</a>` : ''}
     <div class="agc-card-actions">
       <button type="button" class="dd-secondary-btn" data-pattern-action="accurate">This feels accurate</button>
       <button type="button" class="dd-secondary-btn" data-pattern-action="not_accurate">Not accurate</button>
@@ -221,6 +229,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
     conversationId: null, savePreference: 'save',
     messages: [], clientHistory: [], attachments: [], isStreaming: false, abortController: null,
     sidebarOpen: window.innerWidth > 900, focusMode: false, panel: null, guidedFlow: null,
+    lastRecommendedLessonId: null,
   };
 
   container.innerHTML = `
@@ -386,7 +395,8 @@ export function renderAgentWorkspace(container, helpers = {}) {
     } else if (action.behavior === 'save') {
       saveLastAssistantInsight();
     } else if (action.behavior === 'link') {
-      window.location.href = action.href;
+      const resolvedLessonHref = key === 'open_recommended_lesson' ? lessonHrefFromId(state.lastRecommendedLessonId) : null;
+      window.location.href = resolvedLessonHref || action.href;
     }
   }
 
@@ -984,6 +994,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
           });
         }
         if (event.type === 'contextual_actions' && event.actions?.length) {
+          state.lastRecommendedLessonId = event.recommendedLessonId || null;
           const items = event.actions.map((key) => ({ key, action: CONTEXTUAL_ACTIONS[key] })).filter((x) => x.action);
           if (items.length) {
             cardsEl.insertAdjacentHTML('beforeend', `<div class="agc-contextual-actions">${items.map(({ key, action }) => `<button type="button" class="agc-suggested-chip" data-ca-key="${key}">${escapeHtml(action.label)}</button>`).join('')}</div>`);

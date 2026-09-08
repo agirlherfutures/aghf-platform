@@ -14,7 +14,7 @@
 
 export const MIN_SAMPLE = 3;
 
-const STRENGTH_THRESHOLDS = [
+export const STRENGTH_THRESHOLDS = [
   ['strong', 12],
   ['repeating', 8],
   ['emerging', 5],
@@ -169,7 +169,7 @@ function detectMovingStops(trades) {
     observedFacts: `${flagged.length} trades recorded "Moved stop" as a rule violation.`,
     possibleInterpretation: 'The stop placed before entry may not be holding once the trade is live — worth separating a genuinely new invalidation signal from discomfort with the open position.',
     evidenceStrength: evidenceStrengthForCount(flagged.length),
-    recommendedLessonId: null,
+    recommendedLessonId: 'p1-10',
     recommendedPromptKey: 'moving_stops',
   };
 }
@@ -192,8 +192,68 @@ function detectOversizingAfterWins(trades) {
     observedFacts: `${flagged.length} trades increased position size immediately after a winning trade.`,
     possibleInterpretation: 'A recent win may be read as permission to take more risk, even though the win itself doesn’t change what a safe position size actually is.',
     evidenceStrength: evidenceStrengthForCount(flagged.length),
-    recommendedLessonId: null,
+    recommendedLessonId: 'p1-11',
     recommendedPromptKey: 'oversizing_after_wins',
+  };
+}
+
+/** Shared factory for detectors gated on a single self-tagged methodQualityTags value. */
+function detectMethodQualityTag(trades, tag, patternType, promptKey, recommendedLessonId, interpretation) {
+  const flagged = trades.filter((t) => (t.methodQualityTags || []).includes(tag));
+  if (flagged.length < MIN_SAMPLE) return null;
+  return {
+    patternType, evidenceCount: flagged.length, supportingRecordIds: flagged.map((t) => t.id),
+    evidenceWindow: dateRangeOf(trades),
+    observedFacts: `${flagged.length} trades were self-tagged "${tag.replace(/_/g, ' ')}".`,
+    possibleInterpretation: interpretation, evidenceStrength: evidenceStrengthForCount(flagged.length),
+    recommendedLessonId: recommendedLessonId || null, recommendedPromptKey: promptKey,
+  };
+}
+
+/** Pattern: entering against the saved 4H/1H bias. */
+function detectEntriesAgainstSavedBias(trades) {
+  return detectMethodQualityTag(trades, 'against_bias', 'entries_against_saved_bias', 'against_bias', 'p1-3',
+    'Entering against the saved 4H/1H bias may reflect a genuinely mixed chart being forced into a directional read — worth separating a real structure shift from a bias that was never confirmed in the first place.');
+}
+
+/** Pattern: entering while the market was self-tagged as consolidating. */
+function detectEntriesDuringConsolidation(trades) {
+  return detectMethodQualityTag(trades, 'during_consolidation', 'entries_during_consolidation', 'during_consolidation', null,
+    'Consolidation changes how much a setup can be trusted — entering during it repeatedly may be a sign of forcing a trade when the saved plan actually calls for waiting.');
+}
+
+/** Pattern: a trade broke a saved rule but still made money — the outcome-bias mirror case (a rule-following loss is not automatically a mistake; a rule-breaking win is not automatically good execution). */
+function detectProfitableRuleViolations(trades) {
+  const flagged = trades.filter((t) => (t.ruleViolations || []).length && isWin(t));
+  if (flagged.length < MIN_SAMPLE) return null;
+  return {
+    patternType: 'profitable_rule_violation', evidenceCount: flagged.length, supportingRecordIds: flagged.map((t) => t.id),
+    evidenceWindow: dateRangeOf(trades),
+    observedFacts: `${flagged.length} trades recorded a rule violation and still closed as a win.`,
+    possibleInterpretation: 'A profitable outcome doesn’t mean the rule violation was good execution — outcome and process are two different questions, and this is exactly the case where it’s easy to mistake one for the other.',
+    evidenceStrength: evidenceStrengthForCount(flagged.length), recommendedLessonId: null, recommendedPromptKey: 'profitable_rule_violation',
+  };
+}
+
+/**
+ * Pattern: the daily-loss-limit rule specifically was broken more than once
+ * — this is how "repeatedly bypassing trading limits" (a spec safety
+ * category) surfaces without a new pre-AI regex category: a behavioral
+ * frequency pattern can't be read from one message's text, but this
+ * detector's output reaches the model via <observed_data>.detectedPatterns
+ * exactly like every other pattern, and the routing block's existing
+ * intent enum (risk_management_issue / safety_escalation) already covers
+ * how the model should treat it.
+ */
+function detectRepeatedLimitBypass(trades) {
+  const flagged = trades.filter((t) => (t.ruleViolations || []).includes('Broke daily loss rule'));
+  if (flagged.length < MIN_SAMPLE) return null;
+  return {
+    patternType: 'repeated_limit_bypass', evidenceCount: flagged.length, supportingRecordIds: flagged.map((t) => t.id),
+    evidenceWindow: dateRangeOf(trades),
+    observedFacts: `${flagged.length} trades recorded "Broke daily loss rule" as a rule violation.`,
+    possibleInterpretation: 'A saved daily loss limit exists specifically to remove a decision from the moment it’s hardest to make well — repeatedly bypassing it is worth naming directly rather than treating as a one-off.',
+    evidenceStrength: evidenceStrengthForCount(flagged.length), recommendedLessonId: null, recommendedPromptKey: 'repeated_limit_bypass',
   };
 }
 
@@ -222,7 +282,10 @@ function detectChecklistCompletionEffect(trades, checklists) {
   };
 }
 
-const DETECTORS = [detectPostLossLowerStandards, detectCuttingWinnersEarly, detectMovingStops, detectOversizingAfterWins];
+const DETECTORS = [
+  detectPostLossLowerStandards, detectCuttingWinnersEarly, detectMovingStops, detectOversizingAfterWins,
+  detectEntriesAgainstSavedBias, detectEntriesDuringConsolidation, detectProfitableRuleViolations, detectRepeatedLimitBypass,
+];
 
 /**
  * Runs every detector and returns only the patterns that cleared their

@@ -116,6 +116,13 @@ export const CHECKLIST_PHASES = [
   },
 ];
 
+export const TIMEFRAME_ROLES = [
+  { timeframe: '4H', role: 'Sets directional bias.' },
+  { timeframe: '1H', role: 'Confirms structure and the active Pre-Indication Level (PIL).' },
+  { timeframe: '15M', role: 'Observation and context only — never the primary execution trigger.' },
+  { timeframe: '1M', role: 'The only timeframe used for Indication and Continuation entry confirmation.' },
+];
+
 export const WALK_AWAY_CONDITIONS = [
   { title: 'No clear 1H or 4H bias', text: 'Do not force direction when structure is unclear.' },
   { title: 'Wick through the level', text: 'Not a candle close, so it does not count.' },
