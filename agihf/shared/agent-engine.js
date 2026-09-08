@@ -1027,7 +1027,13 @@ export function renderAgentWorkspace(container, helpers = {}) {
         } catch (err) {
           console.error('Agent action decision error:', err);
           card.querySelectorAll('button').forEach((b) => { b.disabled = false; });
-          showDeskToast(err.setupRequired ? err.message : "Couldn't save that — try again.");
+          // Surface whatever the server actually said rather than a generic
+          // fallback — the missing-table case was the only one this used to
+          // show specifically, but any other failure (bad request, RLS,
+          // an unrecognized action type) has a real, useful message too and
+          // there's no way to see server logs from here to diagnose it
+          // otherwise.
+          showDeskToast(err.message || "Couldn't save that — try again.");
         }
       });
     });
