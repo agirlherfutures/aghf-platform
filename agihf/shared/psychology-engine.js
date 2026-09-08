@@ -417,7 +417,17 @@ export function renderScenarioAttempt(container, scenario, opts = {}) {
 /* ── Mode 7: Playbook ─────────────────────────────────────────────── */
 
 export function renderPlaybook(container, items, opts = {}) {
-  container.innerHTML = PLAYBOOK_CATEGORIES.map((cat) => {
+  // Populated categories first — with 16 sections and most members only
+  // ever filling in a handful, a freshly-saved item (e.g. from an AGHF
+  // Agent action) landing in whichever category happens to sit last in
+  // PLAYBOOK_CATEGORIES's fixed order is easy to miss without scrolling
+  // past a wall of "Nothing here yet." sections above it.
+  const sortedCategories = [...PLAYBOOK_CATEGORIES].sort((a, b) => {
+    const aHas = items.some((i) => i.category === a.key) ? 0 : 1;
+    const bHas = items.some((i) => i.category === b.key) ? 0 : 1;
+    return aHas - bHas;
+  });
+  container.innerHTML = sortedCategories.map((cat) => {
     const catItems = items.filter((i) => i.category === cat.key);
     return `
       <div class="psy-playbook-section">
