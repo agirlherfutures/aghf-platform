@@ -16,6 +16,7 @@
 // dispatch and the shared Supabase client construction are new.
 
 import { createClient } from '@supabase/supabase-js';
+import { containsDeniedTraitLabel, DENIED_TRAIT_MESSAGE } from '../shared/agent-memory-safety.js';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
@@ -143,6 +144,9 @@ async function handleMemory(req, res, userId) {
     }
     if (req.method === 'POST') {
       const body = req.body || {};
+      if (body.content && containsDeniedTraitLabel(body.content)) {
+        return res.status(400).json({ error: DENIED_TRAIT_MESSAGE });
+      }
       let result;
       if (body.id) {
         // Partial update — only touches fields actually present in the
@@ -263,6 +267,10 @@ async function handleActions(req, res, userId) {
       if (fetchErr) throw fetchErr;
       if (!action) return res.status(404).json({ error: 'Action not found' });
       if (action.approval_status !== 'preview') return res.status(409).json({ error: `This action is already ${action.approval_status}.` });
+
+      if (approve && Object.values(action.preview_payload || {}).some((v) => typeof v === 'string' && containsDeniedTraitLabel(v))) {
+        return res.status(400).json({ error: DENIED_TRAIT_MESSAGE });
+      }
 
       if (!approve) {
         const { data: updated, error } = await supabase.from('agent_actions')

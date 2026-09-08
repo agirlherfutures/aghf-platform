@@ -24,6 +24,7 @@
 
 import { computeObservedMetrics, detectPatterns } from './agent-pattern-engine.js';
 import { findKnowledgeEntries } from '../../shared/psychology-knowledge-data.js';
+import { allPhase1Lessons, lessonId, totalLessonCount } from '../../shared/curriculum-data.js';
 
 const MAX_TRADES_PER_TURN = 25;
 const MAX_MEMBER_TEXT_CHARS = 2000;
@@ -35,9 +36,45 @@ function tradeRowToShape(row) {
     outcome: row.outcome, outcomeOverride: row.outcome_override, entryTags: row.entry_tags || [],
     exitTags: row.exit_tags || [], ruleViolations: row.rule_violations || [], iccChecklist: row.icc_checklist,
     checklistId: row.checklist_id, executionScore: row.execution_score, ruleCheck: row.rule_check,
+    methodQualityTags: row.method_quality_tags || [],
     emotions: row.emotions || {}, entryReasoning: row.entry_reasoning, exitReasoning: row.exit_reasoning,
     createdAt: row.created_at,
   };
+}
+
+/**
+ * Academy progress, only fetched when consent.academyProgress is true —
+ * closes the gap between "the agent can recommend a lesson" and "the
+ * recommendation is grounded in real progress," used by the
+ * open_recommended_lesson contextual action and pattern-card lesson links.
+ * Only ever resolves to a real Phase 1 lesson id — Phases 2-8 are locked
+ * placeholders with no real content, never recommended.
+ */
+export async function fetchAcademyProgress(supabase, userId) {
+  const { data, error } = await supabase.from('lessons_completed').select('lesson_id').eq('user_id', userId);
+  if (error) throw error;
+  const completedIds = new Set((data || []).map((r) => r.lesson_id));
+  const allLessons = allPhase1Lessons();
+  const nextLesson = allLessons.find((l) => !completedIds.has(lessonId(l.n))) || null;
+  return {
+    totalLessons: totalLessonCount(),
+    completedCount: allLessons.filter((l) => completedIds.has(lessonId(l.n))).length,
+    nextLesson: nextLesson ? { id: lessonId(nextLesson.n), title: nextLesson.title } : null,
+  };
+}
+
+/**
+ * A small number of the member's own Playbook items, only fetched when
+ * consent.playbook is true AND the item's own ai_access_permission is
+ * true — a member can exclude one Playbook item from agent context
+ * without disabling the whole category.
+ */
+export async function fetchPlaybookContext(supabase, userId, limit = 3) {
+  const { data, error } = await supabase.from('psychology_playbook_items').select('id, category, title, content')
+    .eq('user_id', userId).eq('is_archived', false).eq('ai_access_permission', true)
+    .order('sort_order', { ascending: true }).limit(limit);
+  if (error) throw error;
+  return data || [];
 }
 
 function checklistRowToShape(row) {
@@ -120,6 +157,9 @@ export async function buildTurnContext({ supabase, userId, consent = {}, persona
   const observedMetrics = consent.tradeData && trades.length ? computeObservedMetrics(trades, checklists) : null;
   const patterns = consent.tradeData && trades.length >= 3 ? detectPatterns(trades, checklists) : [];
 
+  const academyProgress = consent.academyProgress ? await fetchAcademyProgress(supabase, userId) : null;
+  const playbookItems = consent.playbook ? await fetchPlaybookContext(supabase, userId) : [];
+
   const memberDataParts = [];
   if (consent.journalFreetext) {
     journalEntries.forEach((j) => {
@@ -130,14 +170,18 @@ export async function buildTurnContext({ supabase, userId, consent = {}, persona
       if (t.exitReasoning) memberDataParts.push(`Trade exit reasoning (${t.tradeDate}): ${t.exitReasoning}`);
     });
   }
+  playbookItems.forEach((p) => memberDataParts.push(`Playbook (${p.category}) — ${p.title}: ${p.content}`));
   let memberDataBlock = memberDataParts.join('\n').slice(0, MAX_MEMBER_TEXT_CHARS);
   if (memberDataParts.join('\n').length > MAX_MEMBER_TEXT_CHARS) memberDataBlock += '\n[additional entries omitted — ask to narrow the range]';
 
+  const hasAnyDataOrContext = hasAnyData || !!academyProgress || playbookItems.length > 0;
+
   return {
-    hasAnyData,
-    noDataAccess: !hasAnyData,
+    hasAnyData: hasAnyDataOrContext,
+    noDataAccess: !hasAnyDataOrContext,
     observedMetrics,
     patterns,
+    academyProgress,
     attachmentSummaries,
     tradeCount: trades.length,
     dateRange: trades.length ? { from: trades[trades.length - 1].tradeDate, to: trades[0].tradeDate } : null,
@@ -162,6 +206,7 @@ export function renderContextBlocks(ctx) {
       patternType: p.patternType, evidenceCount: p.evidenceCount, evidenceStrength: p.evidenceStrength,
       observedFacts: p.observedFacts, possibleInterpretation: p.possibleInterpretation,
     })) : undefined,
+    academyProgress: ctx.academyProgress || undefined,
     attachments: ctx.attachmentSummaries.length ? ctx.attachmentSummaries : undefined,
   };
   return {

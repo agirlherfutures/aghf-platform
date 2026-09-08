@@ -63,7 +63,7 @@ const VALID_INTENTS = new Set([
   'general_psychology_question', 'personal_behavior_question', 'immediate_emotional_intervention',
   'data_analysis_request', 'technical_vs_psychological_uncertainty', 'risk_management_issue',
   'dayli_icc_knowledge_issue', 'pattern_analysis_request', 'reflection_request', 'action_plan_request',
-  'safety_escalation',
+  'academy_resource_request', 'safety_escalation',
 ]);
 // Matches CONTEXTUAL_ACTIONS's keys in agihf/shared/agent-copy.js — kept
 // as its own whitelist here (rather than importing the client module)
@@ -369,7 +369,8 @@ export default async function handler(req, res) {
     // never shown as raw text, rendered client-side as 2-4 small chips
     // instead of the removed fixed response-mode picker.
     if (routing?.suggestedActions?.length) {
-      write(res, { type: 'contextual_actions', actions: routing.suggestedActions });
+      const recommendedLessonId = turnContext.patterns?.find((p) => p.recommendedLessonId)?.recommendedLessonId || null;
+      write(res, { type: 'contextual_actions', actions: routing.suggestedActions, recommendedLessonId });
     }
 
     if (isSaving && conversationId) {
