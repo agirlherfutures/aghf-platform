@@ -782,7 +782,25 @@ export function renderAgentWorkspace(container, helpers = {}) {
       recognizer.onstart = () => { recognizing = true; micBtn.classList.add('active'); };
       recognizer.onend = () => { recognizing = false; micBtn.classList.remove('active'); };
       recognizer.onresult = (e) => { getTextarea().value += (getTextarea().value ? ' ' : '') + e.results[0][0].transcript; };
-      recognizer.start();
+      // Without this, a permission/network failure just silently does
+      // nothing — the mic button un-activates with no feedback at all,
+      // which is exactly what "voice input isn't working" looks like from
+      // the outside. Surface what actually went wrong instead.
+      recognizer.onerror = (e) => {
+        recognizing = false; micBtn.classList.remove('active');
+        const messages = {
+          'not-allowed': 'Microphone access was blocked — check your browser’s site permissions and try again.',
+          'no-speech': 'Didn’t catch that — try again.',
+          'audio-capture': 'No microphone was found.',
+          'network': 'Voice input needs an internet connection — try again in a moment.',
+        };
+        showDeskToast(messages[e.error] || 'Voice input ran into a problem — try typing instead.');
+      };
+      try {
+        recognizer.start();
+      } catch {
+        showDeskToast('Voice input couldn’t start — try typing instead.');
+      }
     });
   }
 
@@ -797,15 +815,34 @@ export function renderAgentWorkspace(container, helpers = {}) {
    * it to her own trading. Only a genuinely unmatched ("open") question
    * calls the model right away — and still only once, since agent-chat.js
    * no longer runs a multi-turn tool loop. */
+  /** A member attaching a trade/journal/checklist/week/date-range has already said what she wants looked at — she shouldn't also have to type a message just to make Send clickable. */
+  function defaultAttachmentMessage(attachments) {
+    const types = new Set(attachments.map((a) => a.type));
+    if (types.size === 1) {
+      const count = attachments.length;
+      const labels = {
+        trade: count > 1 ? 'Can you take a look at these trades?' : 'Can you take a look at this trade?',
+        journal: count > 1 ? 'Can you take a look at these journal entries?' : 'Can you take a look at this journal entry?',
+        checklist: 'Can you take a look at this checklist?',
+        week: 'Can you take a look at this week?',
+        date_range: 'Can you take a look at this date range?',
+        screenshot: 'What do you notice about this chart?',
+      };
+      if (labels[[...types][0]]) return labels[[...types][0]];
+    }
+    return 'Can you take a look at what I attached?';
+  }
+
   async function sendMessage() {
     const ta = getTextarea();
     const text = ta.value.trim();
-    if (!text || state.isStreaming || state.guidedFlow) return;
+    if ((!text && !state.attachments.length) || state.isStreaming || state.guidedFlow) return;
+    const effectiveText = text || defaultAttachmentMessage(state.attachments);
 
     const attachmentsForSend = state.attachments.map(({ dataUrl, uploading, label, ...rest }) => rest);
-    const userMsg = { role: 'user', content: text, attachedRecordRefs: attachmentsForSend };
+    const userMsg = { role: 'user', content: effectiveText, attachedRecordRefs: attachmentsForSend };
     state.messages.push(userMsg);
-    state.clientHistory.push({ role: 'user', content: text });
+    state.clientHistory.push({ role: 'user', content: effectiveText });
     if (!els.thread.querySelector('.agc-msg')) paintThread(); else els.thread.appendChild(renderMessageBubble(userMsg, helpers));
     els.thread.scrollTop = els.thread.scrollHeight;
 
@@ -820,13 +857,13 @@ export function renderAgentWorkspace(container, helpers = {}) {
     // paths below first (previously this only happened when Coach Me was
     // the selected mode) — a real cost improvement, not a regression.
     if (sentAttachments.length) {
-      return runSingleAICall(text, sentAttachments, null);
+      return runSingleAICall(effectiveText, sentAttachments, null);
     }
 
-    const intent = classifyIntent(text);
-    if (intent.type === 'talk_trigger') return startGuidedFlowInChat(intent, text);
-    if (intent.type === 'concept') return appendConceptCard(intent.entry, text);
-    return runSingleAICall(text, sentAttachments, null);
+    const intent = classifyIntent(effectiveText);
+    if (intent.type === 'talk_trigger') return startGuidedFlowInChat(intent, effectiveText);
+    if (intent.type === 'concept') return appendConceptCard(intent.entry, effectiveText);
+    return runSingleAICall(effectiveText, sentAttachments, null);
   }
 
   /* ── Free guided flow, rendered directly in the chat thread ── */
