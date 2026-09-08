@@ -120,14 +120,29 @@ function renderDataCard(result) {
   </div>`;
 }
 
+// Every write-action lands in a different place — a practice plan or an
+// if/then rule saves to My Playbook, only update_current_focus actually
+// shows up on the Dayli Desk dashboard — so the button copy and the
+// post-save confirmation both need to match the real destination per
+// actionType, not a single generic "Add to Dashboard" that was only ever
+// true for one of the five action types.
+const ACTION_DESTINATIONS = {
+  create_if_then_rule: { cta: 'Save to My Playbook', saved: 'Saved to your Playbook ✦' },
+  add_playbook_insight: { cta: 'Save to My Playbook', saved: 'Saved to your Playbook ✦' },
+  create_practice_plan: { cta: 'Save to My Playbook', saved: 'Saved to your Playbook ✦' },
+  update_current_focus: { cta: 'Add to Dashboard', saved: 'Added to your Dayli Desk dashboard ✦' },
+  save_conversation_summary: { cta: 'Save This', saved: 'Saved ✦' },
+};
+
 function renderWritePreviewCard(result, helpers) {
   const p = result.previewPayload;
-  return `<div class="agc-card agc-preview-card" data-action-id="${result.actionId}">
+  const dest = ACTION_DESTINATIONS[result.actionType] || { cta: 'Save', saved: 'Saved ✦' };
+  return `<div class="agc-card agc-preview-card" data-action-id="${result.actionId}" data-saved-label="${escapeHtml(dest.saved)}">
     <div class="agc-card-eyebrow">Proposed — nothing saved yet</div>
     <div class="agc-card-title">${escapeHtml(p.title || p.focusTitle || 'Proposed update')}</div>
     <p class="agc-card-body">${escapeHtml(p.content || p.focusBody || p.memoryContent || '')}</p>
     <div class="agc-card-actions">
-      <button type="button" class="dd-primary-btn" data-approve="true">Add to Dashboard</button>
+      <button type="button" class="dd-primary-btn" data-approve="true">${escapeHtml(dest.cta)}</button>
       <button type="button" class="dd-secondary-btn" data-approve="false">Not Now</button>
     </div>
   </div>`;
@@ -423,19 +438,15 @@ export function renderAgentWorkspace(container, helpers = {}) {
     els.thread.querySelectorAll('.agc-pattern-card [data-pattern-action]').forEach((btn) => {
       btn.addEventListener('click', () => showDeskToast('Noted — thank you for confirming.'));
     });
-    els.thread.querySelectorAll('.agc-preview-card [data-approve]').forEach((btn) => {
-      btn.addEventListener('click', async () => {
-        const card = btn.closest('.agc-preview-card');
-        const approve = btn.dataset.approve === 'true';
-        try {
-          await agentService.decideAction(card.dataset.actionId, approve);
-          card.innerHTML = `<div class="agc-card-eyebrow">${approve ? 'Added to your dashboard ✦' : 'Not saved'}</div>`;
-        } catch (err) { console.error(err); }
-      });
-    });
-    els.thread.querySelectorAll('.agc-launch-card [data-launch]').forEach((btn) => {
-      btn.addEventListener('click', () => openLaunchPanel(btn.dataset.launch, btn.dataset.scenarioId));
-    });
+    // Preview-card approve/decline buttons are wired exclusively by
+    // wireCardsIn (below) — it carries a per-button _wired guard that this
+    // function doesn't. Wiring them here too used to double-bind a second,
+    // unguarded click handler onto every card rendered from a freshly
+    // streamed response (wireCardsIn already ran once when the card first
+    // appeared), so a single click fired two concurrent decideAction calls
+    // racing each other — the loser got a 409 from the server and its
+    // silent catch left the button looking like it had done nothing.
+    wireCardsIn(els.thread);
   }
 
   /* ── Contextual tool launch (slide-over reusing psychology-engine.js) ── */
@@ -1009,8 +1020,15 @@ export function renderAgentWorkspace(container, helpers = {}) {
       btn.addEventListener('click', async () => {
         const card = btn.closest('.agc-preview-card');
         const approve = btn.dataset.approve === 'true';
-        await agentService.decideAction(card.dataset.actionId, approve);
-        card.innerHTML = `<div class="agc-card-eyebrow">${approve ? 'Added to your dashboard ✦' : 'Not saved'}</div>`;
+        card.querySelectorAll('button').forEach((b) => { b.disabled = true; });
+        try {
+          await agentService.decideAction(card.dataset.actionId, approve);
+          card.innerHTML = `<div class="agc-card-eyebrow">${approve ? (card.dataset.savedLabel || 'Saved ✦') : 'Not saved'}</div>`;
+        } catch (err) {
+          console.error('Agent action decision error:', err);
+          card.querySelectorAll('button').forEach((b) => { b.disabled = false; });
+          showDeskToast(err.setupRequired ? err.message : "Couldn't save that — try again.");
+        }
       });
     });
   }
