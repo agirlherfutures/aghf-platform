@@ -9,11 +9,24 @@
  * .dd-card/.modal-overlay classes rather than re-declaring them.
  */
 
+/* Overrides .main's default page padding (36px/44px/80px, or 24px/20px/84px
+ * below 900px — that bottom value is what keeps ordinary page content clear
+ * of the fixed mobile bottom nav) so the chat workspace can sit closer to
+ * the edges. Sized as a flex column filling the true remaining viewport
+ * height (not a second, independently-guessed 100vh-minus-a-constant calc
+ * on .agc-workspace itself) so the two can never drift out of sync — that
+ * drift previously left the composer tucked under the fixed mobile bottom
+ * nav with no way to scroll to it, since .agc-workspace's own overflow is
+ * intentionally hidden (everything scrolls internally, in .agc-thread/
+ * .agc-sidebar instead). */
+.agc-page { height: 100vh; box-sizing: border-box; padding: 12px; display: flex; flex-direction: column; }
+.agc-page #agcRoot { flex: 1; min-height: 0; display: flex; }
+
 .agc-workspace {
   display: grid;
   grid-template-columns: 260px 1fr;
-  height: calc(100vh - 24px);
-  min-height: 560px;
+  flex: 1;
+  min-height: 0;
   background: var(--warm);
   border-radius: 24px;
   overflow: hidden;
@@ -30,6 +43,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-height: 0;
   overflow-y: auto;
 }
 .agc-new-btn { width: 100%; }
@@ -52,8 +66,16 @@
 .agc-sidebar-toggle { display: none; position: absolute; top: 14px; left: 14px; z-index: 5; background: var(--warm); border: 1px solid var(--border); border-radius: 10px; width: 38px; height: 38px; cursor: pointer; }
 
 /* ── Main canvas ── */
-.agc-main { display: flex; flex-direction: column; min-width: 0; background: radial-gradient(circle at 15% 0%, var(--peach-pale) 0%, transparent 45%), radial-gradient(circle at 90% 10%, var(--teal-pale) 0%, transparent 40%), var(--cream); }
-.agc-thread { flex: 1; overflow-y: auto; padding: 32px clamp(16px, 6vw, 64px); display: flex; flex-direction: column; gap: 20px; }
+/* min-height: 0 on both .agc-main (a grid item here, inside .agc-workspace)
+ * and .agc-thread (a flex item inside .agc-main) — without it, each
+ * defaults to min-height:auto, which lets its content's natural height win
+ * over the actual space the grid/flex parent has available. That let a
+ * tall composer (mode chips + textarea + buttons, especially with an open
+ * attach popover) silently grow .agc-main past .agc-workspace's own
+ * height, with the overflow clipped — not scrollable — by
+ * .agc-workspace's overflow:hidden. */
+.agc-main { display: flex; flex-direction: column; min-width: 0; min-height: 0; background: radial-gradient(circle at 15% 0%, var(--peach-pale) 0%, transparent 45%), radial-gradient(circle at 90% 10%, var(--teal-pale) 0%, transparent 40%), var(--cream); }
+.agc-thread { flex: 1; min-height: 0; overflow-y: auto; padding: 32px clamp(16px, 6vw, 64px); display: flex; flex-direction: column; gap: 20px; }
 
 .agc-welcome { max-width: 640px; margin: 6vh auto 0; text-align: center; }
 .agc-welcome-title { font: 900 clamp(1.8rem, 4vw, 2.6rem) var(--font-display); color: var(--dark); }
@@ -175,7 +197,12 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .agc-workspace { grid-template-columns: 1fr; height: calc(100vh - 90px); border-radius: 18px; }
+  /* .mb-bar (sidebar.css) is a fixed-position bottom nav below 900px —
+   * reserve room for it here (same value .main's own default mobile
+   * bottom padding already uses elsewhere) instead of guessing a
+   * separate height for .agc-workspace that could drift out of sync. */
+  .agc-page { padding: 12px 12px calc(12px + 84px + env(safe-area-inset-bottom)); }
+  .agc-workspace { grid-template-columns: 1fr; border-radius: 18px; }
   .agc-sidebar { position: absolute; inset: 0 20% 0 0; z-index: 7; transform: translateX(-105%); transition: transform .2s ease; }
   .agc-sidebar.open { transform: translateX(0); }
   .agc-sidebar-toggle { display: block; }
