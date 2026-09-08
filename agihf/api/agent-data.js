@@ -284,7 +284,13 @@ async function handleActions(req, res, userId) {
         return res.status(200).json({ action: actionShape(executed) });
       } catch (execErr) {
         console.error('Agent action execution error:', execErr);
-        return res.status(500).json({ error: 'This was approved but couldn’t be saved — please try again.' });
+        // A missing psychology_playbook_items/psychology_profiles table
+        // (0003_psychology_coach.sql not yet applied) surfaces here as a
+        // Postgres "relation does not exist" error — give the same
+        // specific, actionable message every other endpoint in this file
+        // gives for that case, instead of a generic "couldn't be saved"
+        // that leaves the member with no idea what to check.
+        return notSetUpError(res, execErr, '0003_psychology_coach.sql');
       }
     }
     return res.status(405).json({ error: 'Method not allowed' });
