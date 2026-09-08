@@ -13,14 +13,45 @@ export const DESCRIPTION = 'Your intelligent trading psychology and execution co
 export const MAIN_PROMPT = 'What’s happening with your trading right now?';
 export const SUPPORTING_COPY = 'Ask a question, unpack a trading pattern, analyze your execution, or build a plan for what to do differently next time.';
 
-export const RESPONSE_MODES = [
-  { key: 'quick_answer', label: 'Quick Answer', desc: 'The clearest useful answer, no long session.' },
-  { key: 'coach_me', label: 'Coach Me', desc: 'Warm, practical guidance, tailored to you.' },
-  { key: 'analyze_data', label: 'Analyze My Data', desc: 'Trades, checklists, journal, emotions.' },
-  { key: 'challenge_me', label: 'Challenge Me', desc: 'Surface contradictions, kindly.' },
-  { key: 'teach_me', label: 'Teach Me', desc: 'Explain the concept, deeply.' },
-  { key: 'build_plan', label: 'Build Me a Plan', desc: 'Turn this into a practice plan or rule.' },
-];
+/**
+ * Contextual action chips — what used to be 6 always-visible response-mode
+ * buttons is now 2-4 chips the AGHF Agent suggests per turn (its own
+ * `routing.suggestedActions`, validated server-side in agent-chat.js
+ * against this exact same key set). Each entry is one of:
+ *   - 'attach'    → opens the existing attach popover, optionally
+ *                   pre-selecting `attachType` (matches ATTACHMENT_ACTIONS
+ *                   below).
+ *   - 'launch'    → opens an existing inline tool panel directly,
+ *                   client-side, no round trip to the model — `launchType`
+ *                   matches the launch block's launchType values.
+ *   - 'synthetic' → sends `prompt` as a normal chat message.
+ *   - 'save'      → invokes an existing per-message action (Save an
+ *                   Insight) directly on the last assistant reply.
+ *   - 'link'      → navigates to another page.
+ */
+export const CONTEXTUAL_ACTIONS = {
+  review_trade: { label: 'Review the Trade', behavior: 'attach', attachType: 'trade' },
+  attach_trade: { label: 'Attach a Trade', behavior: 'attach', attachType: 'trade' },
+  compare_recent_trades: { label: 'Compare Recent Trades', behavior: 'attach', attachType: 'trade' },
+  review_this_week: { label: 'Review This Week', behavior: 'attach', attachType: 'week' },
+  attach_checklist: { label: 'Attach My Checklist', behavior: 'attach', attachType: 'checklist' },
+  attach_journal: { label: 'Attach My Journal', behavior: 'attach', attachType: 'journal' },
+  find_the_trigger: { label: 'Find the Trigger', behavior: 'synthetic', prompt: 'Help me find the trigger behind this.' },
+  explain_concept: { label: 'Explain This Concept', behavior: 'synthetic', prompt: 'Can you explain that concept in a bit more depth?' },
+  show_example: { label: 'Show Me an Example', behavior: 'synthetic', prompt: 'Can you show me a concrete trading example of that?' },
+  challenge_belief: { label: 'Challenge This Belief', behavior: 'synthetic', prompt: 'I want you to challenge my thinking on this.' },
+  build_rule: { label: 'Build a Rule for Next Time', behavior: 'synthetic', prompt: 'Help me build a rule for next time this comes up.' },
+  create_practice_plan: { label: 'Create a Practice Plan', behavior: 'synthetic', prompt: 'Can you build me a short practice plan for this?' },
+  start_post_loss_reset: { label: 'Start a Post-Loss Reset', behavior: 'launch', launchType: 'post_loss_reset' },
+  start_cooldown: { label: 'Start a Cooldown', behavior: 'launch', launchType: 'cooldown_timer' },
+  practice_scenario: { label: 'Practice This Scenario', behavior: 'launch', launchType: 'scenario_lab' },
+  save_insight: { label: 'Save This Insight', behavior: 'save' },
+  add_to_playbook: { label: 'Add to My Playbook', behavior: 'synthetic', prompt: 'Add that to my Playbook.' },
+  make_weekly_focus: { label: 'Make This My Weekly Focus', behavior: 'synthetic', prompt: 'Make this my weekly focus.' },
+  open_recommended_lesson: { label: 'Open the Recommended Lesson', behavior: 'link', href: 'lessons.html' },
+  continue_without_data: { label: 'Continue Without My Data', behavior: 'synthetic', prompt: 'Continue without attaching anything.' },
+  go_deeper: { label: 'Go Deeper', behavior: 'synthetic', prompt: 'Can you go deeper on that?' },
+};
 
 export const SUGGESTED_PROMPTS = [
   'Why do I keep moving my stop even though I know better?',

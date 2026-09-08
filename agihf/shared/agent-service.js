@@ -47,7 +47,7 @@ function demoStreamReply(onEvent) {
 /* ── Streaming chat ───────────────────────────────────────────────── */
 
 /**
- * @param {{conversationId: string|null, savePreference: 'save'|'one_time', responseMode: string, message: string, attachments: Array, clientHistory?: Array}} payload
+ * @param {{conversationId: string|null, savePreference: 'save'|'one_time', message: string, attachments: Array, clientHistory?: Array}} payload
  * @param {(event: object) => void} onEvent
  * @param {{signal?: AbortSignal}} [opts]
  */

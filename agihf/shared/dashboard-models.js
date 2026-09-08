@@ -436,7 +436,7 @@ export const READINESS_LABELS = ['Clear', 'Slightly Activated', 'Emotionally Inf
  * @property {string} id
  * @property {string} userId
  * @property {string|null} title
- * @property {AgentResponseMode} responseMode
+ * @property {AgentResponseMode} responseMode server/historical field only — there is no member-facing mode picker any more; the model chooses its own approach per turn (see agent-system-prompt.js's ADAPTIVE RESPONSE STRATEGY). Kept for backward compatibility with rows created before this change.
  * @property {'saved'|'one_time'} saveStatus
  * @property {string} createdAt
  * @property {string} updatedAt

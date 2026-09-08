@@ -104,6 +104,7 @@
 .agc-attach-thumb { width: 26px; height: 26px; border-radius: 6px; object-fit: cover; }
 .agc-attach-uploading { font-size: .68rem; font-style: italic; opacity: .8; }
 .agc-followups { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.agc-contextual-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 
 .agc-thinking { display: flex; gap: 5px; padding: 4px 0; }
 .agc-thinking span { width: 7px; height: 7px; border-radius: 50%; background: var(--pink-light); animation: agcPulse 1s infinite ease-in-out; }
@@ -153,8 +154,6 @@
 
 /* ── Composer ── */
 .agc-composer { border-top: 1px solid var(--border); background: var(--warm); padding: 14px clamp(16px, 6vw, 40px) 18px; position: relative; }
-.agc-mode-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
-.agc-mode-chip { font-size: .74rem; padding: 6px 12px; }
 .agc-input-row { display: flex; align-items: flex-end; gap: 8px; }
 .agc-textarea { flex: 1; resize: none; border: 1.5px solid var(--border); border-radius: 16px; padding: 12px 14px; font: 400 .9rem var(--font-body); background: var(--cream); max-height: 160px; outline: none; }
 .agc-textarea:focus { border-color: var(--pink); }

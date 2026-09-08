@@ -12,6 +12,14 @@
 // parsed here and turned into an agent_actions preview row — never a
 // second model round trip.
 //
+// There is no client-selected response mode any more — the model picks
+// its own approach per turn (see agent-system-prompt.js's ADAPTIVE
+// RESPONSE STRATEGY section) and reports that choice back as one more
+// fenced ```routing {...}``` block in the SAME response, parsed and
+// validated here exactly like the action/component/launch/followups
+// blocks. This is how "automatic server-side routing" is implemented
+// without a second model call.
+//
 // Streams newline-delimited JSON events; see agihf/shared/agent-service.js
 // for the client-side consumer and the wire-protocol event list.
 
@@ -48,8 +56,26 @@ const ACTION_BLOCK_RE = /```action\s*([\s\S]*?)```/;
 const COMPONENT_BLOCK_RE = /```component\s*([\s\S]*?)```/;
 const LAUNCH_BLOCK_RE = /```launch\s*([\s\S]*?)```/;
 const FOLLOWUPS_BLOCK_RE = /```followups\s*([\s\S]*?)```/;
+const ROUTING_BLOCK_RE = /```routing\s*([\s\S]*?)```/;
 const VALID_COMPONENTS = new Set(['belief_check', 'urge_check', 'execution_check', 'evidence_comparison', 'action_plan']);
 const VALID_LAUNCH_TYPES = new Set(['scenario_lab', 'cooldown_timer', 'post_loss_reset', 'pre_trade_check']);
+const VALID_INTENTS = new Set([
+  'general_psychology_question', 'personal_behavior_question', 'immediate_emotional_intervention',
+  'data_analysis_request', 'technical_vs_psychological_uncertainty', 'risk_management_issue',
+  'dayli_icc_knowledge_issue', 'pattern_analysis_request', 'reflection_request', 'action_plan_request',
+  'safety_escalation',
+]);
+// Matches CONTEXTUAL_ACTIONS's keys in agihf/shared/agent-copy.js — kept
+// as its own whitelist here (rather than importing the client module)
+// since this is a server-only validation boundary; the model's own
+// suggestedActions output is never trusted without this check.
+const VALID_CONTEXTUAL_ACTIONS = new Set([
+  'review_trade', 'attach_trade', 'compare_recent_trades', 'review_this_week', 'attach_checklist',
+  'attach_journal', 'find_the_trigger', 'explain_concept', 'show_example', 'challenge_belief',
+  'build_rule', 'create_practice_plan', 'start_post_loss_reset', 'start_cooldown', 'practice_scenario',
+  'save_insight', 'add_to_playbook', 'make_weekly_focus', 'open_recommended_lesson',
+  'continue_without_data', 'go_deeper',
+]);
 
 function write(res, event) {
   res.write(JSON.stringify(event) + '\n');
@@ -61,10 +87,11 @@ function safetyResponseText(copy) {
 
 /**
  * Extracts a member-visible answer plus up to one write-action, one
- * interactive-component, one launch, and one suggested-followups block
- * from a single model response, per the fenced-block conventions
- * described in agent-system-prompt.js — no tool-use API needed for any
- * of this, since it's all parsed out of the one already-received turn.
+ * interactive-component, one launch, one suggested-followups block, and
+ * the always-required internal routing block from a single model
+ * response, per the fenced-block conventions described in
+ * agent-system-prompt.js — no tool-use API needed for any of this, since
+ * it's all parsed out of the one already-received turn.
  */
 function extractResponseBlocks(fullText) {
   let visibleText = fullText;
@@ -72,6 +99,7 @@ function extractResponseBlocks(fullText) {
   let component = null;
   let launch = null;
   let followups = null;
+  let routing = null;
 
   const actionMatch = ACTION_BLOCK_RE.exec(visibleText);
   if (actionMatch) {
@@ -111,7 +139,28 @@ function extractResponseBlocks(fullText) {
     } catch { /* malformed block — just drop it */ }
   }
 
-  return { visibleText: visibleText.trim(), action, component, launch, followups };
+  const routingMatch = ROUTING_BLOCK_RE.exec(visibleText);
+  if (routingMatch) {
+    visibleText = visibleText.replace(ROUTING_BLOCK_RE, '');
+    try {
+      const parsed = JSON.parse(routingMatch[1]);
+      if (parsed && typeof parsed === 'object') {
+        const intent = VALID_INTENTS.has(parsed.intent) ? parsed.intent : null;
+        const suggestedActions = Array.isArray(parsed.suggestedActions)
+          ? parsed.suggestedActions.filter((a) => VALID_CONTEXTUAL_ACTIONS.has(a)).slice(0, 4)
+          : [];
+        routing = {
+          intent,
+          clarificationNeeded: parsed.clarificationNeeded === true,
+          dataWouldHelp: parsed.dataWouldHelp === true,
+          permissionRequired: parsed.permissionRequired === true,
+          suggestedActions,
+        };
+      }
+    } catch { /* malformed block — just drop it, still show the visible text */ }
+  }
+
+  return { visibleText: visibleText.trim(), action, component, launch, followups, routing };
 }
 
 /**
@@ -146,7 +195,6 @@ export default async function handler(req, res) {
 
   const body = req.body || {};
   const message = (body.message || '').toString();
-  const responseMode = body.responseMode || 'coach_me';
   const attachments = Array.isArray(body.attachments) ? body.attachments : [];
   const savePreference = body.savePreference || 'save';
   let conversationId = body.conversationId || null;
@@ -181,8 +229,12 @@ export default async function handler(req, res) {
         priorMessages = (rows || []).map((r) => ({ role: r.role, content: r.content }));
       }
     } else if (isSaving) {
+      // response_mode is intentionally omitted here — there's no more
+      // client-selected mode to record, so the column's own
+      // NOT NULL DEFAULT 'coach_me' applies. Kept as a historical/
+      // backward-compatible column, never read for routing any more.
       const { data: convo, error: createErr } = await supabase
-        .from('agent_conversations').insert({ user_id: userId, response_mode: responseMode, save_status: 'saved' })
+        .from('agent_conversations').insert({ user_id: userId, save_status: 'saved' })
         .select('*').single();
       if (createErr) throw createErr;
       conversationId = convo.id;
@@ -243,7 +295,7 @@ export default async function handler(req, res) {
     const { observedDataBlock, memberDataBlock, approvedSourcesBlock } = renderContextBlocks(turnContext);
 
     const systemPrompt = buildSystemPrompt({
-      responseMode, coachingTone, observedDataBlock, memberDataBlock, approvedSourcesBlock,
+      coachingTone, observedDataBlock, memberDataBlock, approvedSourcesBlock,
       noDataAccess: turnContext.noDataAccess, memories: memoryRows || [],
     });
 
@@ -286,7 +338,7 @@ export default async function handler(req, res) {
       return res.end();
     }
 
-    const { visibleText, action, component, launch, followups } = extractResponseBlocks(fullText);
+    const { visibleText, action, component, launch, followups, routing } = extractResponseBlocks(fullText);
     write(res, { type: 'text_delta', text: visibleText });
 
     let toolResults = [];
@@ -311,6 +363,13 @@ export default async function handler(req, res) {
 
     if (followups && followups.length) {
       write(res, { type: 'suggested_followups', followups });
+    }
+
+    // Contextual action chips — the model's own internal routing decision,
+    // never shown as raw text, rendered client-side as 2-4 small chips
+    // instead of the removed fixed response-mode picker.
+    if (routing?.suggestedActions?.length) {
+      write(res, { type: 'contextual_actions', actions: routing.suggestedActions });
     }
 
     if (isSaving && conversationId) {
