@@ -18,7 +18,7 @@
  * slide-over when the agent suggests launching one.
  */
 
-import { RESPONSE_MODES, SUGGESTED_PROMPTS, ATTACHMENT_ACTIONS, EMPTY_STATES, IMAGE_CAVEAT, VOICE_DISCLOSURE, DESCRIPTION, SUPPORTING_COPY } from './agent-copy.js';
+import { CONTEXTUAL_ACTIONS, SUGGESTED_PROMPTS, ATTACHMENT_ACTIONS, EMPTY_STATES, IMAGE_CAVEAT, VOICE_DISCLOSURE, DESCRIPTION, SUPPORTING_COPY } from './agent-copy.js';
 import * as agentService from './agent-service.js';
 import { scanForSafetyConcern } from './psychology-safety.js';
 import { openModal, closeModal, showDeskToast } from './dayli-desk-engine.js';
@@ -218,7 +218,7 @@ function renderMessageBubble(msg, helpers, isLastAssistant) {
 
 export function renderAgentWorkspace(container, helpers = {}) {
   const state = {
-    conversationId: null, savePreference: 'save', responseMode: 'coach_me',
+    conversationId: null, savePreference: 'save',
     messages: [], clientHistory: [], attachments: [], isStreaming: false, abortController: null,
     sidebarOpen: window.innerWidth > 900, focusMode: false, panel: null, guidedFlow: null,
   };
@@ -365,6 +365,42 @@ export function renderAgentWorkspace(container, helpers = {}) {
   function submitSyntheticMessage(text) {
     getTextarea().value = text;
     sendMessage();
+  }
+
+  /**
+   * Dispatches one contextual-action chip click per CONTEXTUAL_ACTIONS'
+   * `behavior` field (agent-copy.js) — reusing every existing mechanism
+   * (attach popover, launch panel, synthetic message, Save an Insight)
+   * rather than building a parallel interaction system.
+   */
+  function runContextualAction(key) {
+    const action = CONTEXTUAL_ACTIONS[key];
+    if (!action) return;
+    if (action.behavior === 'attach') {
+      toggleAttachPopover();
+      handleAttachAction(action.attachType);
+    } else if (action.behavior === 'launch') {
+      openLaunchPanel(action.launchType, null);
+    } else if (action.behavior === 'synthetic') {
+      submitSyntheticMessage(action.prompt || action.label);
+    } else if (action.behavior === 'save') {
+      saveLastAssistantInsight();
+    } else if (action.behavior === 'link') {
+      window.location.href = action.href;
+    }
+  }
+
+  async function saveLastAssistantInsight() {
+    const lastAssistant = [...state.messages].reverse().find((m) => m.role === 'assistant');
+    if (!lastAssistant) return;
+    try {
+      await agentService.saveInsight(lastAssistant.content, state.conversationId);
+      showDeskToast('Saved as an insight ✦');
+      loadInsights();
+    } catch (err) {
+      console.error('Save insight error:', err);
+      showDeskToast('Couldn’t save that insight.');
+    }
   }
 
   function wireInteractiveComponent(el) {
@@ -541,7 +577,6 @@ export function renderAgentWorkspace(container, helpers = {}) {
   function paintComposer() {
     els.composer.innerHTML = `
       <div class="agc-attach-chips" id="agcAttachChips"></div>
-      <div class="agc-mode-row">${RESPONSE_MODES.map((m) => `<button type="button" class="chip agc-mode-chip${m.key === state.responseMode ? ' active' : ''}" data-mode="${m.key}" title="${m.desc}">${m.label}</button>`).join('')}</div>
       <div class="agc-input-row">
         <button type="button" class="agc-icon-btn" id="agcAttachBtn" aria-label="Add attachment">📎</button>
         <button type="button" class="agc-icon-btn" id="agcMicBtn" aria-label="Voice input" hidden>🎙</button>
@@ -551,10 +586,6 @@ export function renderAgentWorkspace(container, helpers = {}) {
       </div>
       <div class="agc-attach-popover" id="agcAttachPopover" hidden></div>
     `;
-    els.composer.querySelectorAll('[data-mode]').forEach((btn) => btn.addEventListener('click', () => {
-      state.responseMode = btn.dataset.mode;
-      els.composer.querySelectorAll('[data-mode]').forEach((b) => b.classList.toggle('active', b === btn));
-    }));
     els.composer.querySelector('#agcSendBtn').addEventListener('click', sendMessage);
     els.composer.querySelector('#agcStopBtn').addEventListener('click', stopGenerating);
     els.composer.querySelector('#agcAttachBtn').addEventListener('click', toggleAttachPopover);
@@ -772,10 +803,13 @@ export function renderAgentWorkspace(container, helpers = {}) {
     const sentAttachments = state.attachments.slice();
     state.attachments = []; paintAttachChips();
 
-    // Attachments or an explicit non-Coach-Me mode mean the member wants
-    // real analysis/action, not a scripted trigger match — go straight
-    // to the single AI call so attachments/mode are actually honored.
-    if (sentAttachments.length || state.responseMode !== 'coach_me') {
+    // An attachment means the member wants real analysis, not a scripted
+    // trigger match — go straight to the single AI call so it's actually
+    // honored. There's no manual mode any more to gate this on; every
+    // attachment-free message now gets a shot at the free deterministic
+    // paths below first (previously this only happened when Coach Me was
+    // the selected mode) — a real cost improvement, not a regression.
+    if (sentAttachments.length) {
       return runSingleAICall(text, sentAttachments, null);
     }
 
@@ -910,7 +944,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
     try {
       await agentService.streamChat({
         conversationId: state.conversationId, savePreference: state.savePreference,
-        responseMode: state.responseMode, message: text, attachments: sentAttachments || [], guidedSummary,
+        message: text, attachments: sentAttachments || [], guidedSummary,
         clientHistory: state.savePreference === 'one_time' ? state.clientHistory.slice(0, -1) : undefined,
       }, (event) => {
         if (event.type === 'message_start' && event.conversationId && event.conversationId !== 'demo') {
@@ -948,6 +982,15 @@ export function renderAgentWorkspace(container, helpers = {}) {
           cardsEl.querySelectorAll('.agc-followups:last-child .agc-suggested-chip').forEach((btn) => {
             btn.addEventListener('click', () => submitSyntheticMessage(btn.textContent));
           });
+        }
+        if (event.type === 'contextual_actions' && event.actions?.length) {
+          const items = event.actions.map((key) => ({ key, action: CONTEXTUAL_ACTIONS[key] })).filter((x) => x.action);
+          if (items.length) {
+            cardsEl.insertAdjacentHTML('beforeend', `<div class="agc-contextual-actions">${items.map(({ key, action }) => `<button type="button" class="agc-suggested-chip" data-ca-key="${key}">${escapeHtml(action.label)}</button>`).join('')}</div>`);
+            cardsEl.querySelectorAll('.agc-contextual-actions:last-child [data-ca-key]').forEach((btn) => {
+              btn.addEventListener('click', () => runContextualAction(btn.dataset.caKey));
+            });
+          }
         }
         if (event.type === 'rate_limited') { sawMeaningfulEvent = true; thinkingEl.remove(); }
         if (event.type === 'error') {
