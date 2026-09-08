@@ -867,6 +867,14 @@ export function renderAgentWorkspace(container, helpers = {}) {
     const thinkingEl = assistantEl.querySelector('.agc-thinking');
     let fullText = '';
     const toolResults = [];
+    // Tracks whether the stream ever produced something the member can
+    // actually see (text, or a recognized failure event). Without this, a
+    // connection killed mid-generation before writing anything — a real,
+    // confirmed risk given agent-chat.js buffers Gemini's whole response
+    // before sending any of it — resolves the stream normally (no
+    // exception thrown) with zero events past `message_start`, which
+    // otherwise looks identical to a clean, silent success.
+    let sawMeaningfulEvent = false;
 
     state.abortController = new AbortController();
     // A silent connection death (a platform-level function timeout, a
@@ -887,11 +895,13 @@ export function renderAgentWorkspace(container, helpers = {}) {
           if (!state.conversationId) { state.conversationId = event.conversationId; loadSidebar(); }
         }
         if (event.type === 'unavailable') {
+          sawMeaningfulEvent = true;
           thinkingEl.remove();
           contentEl.innerHTML = renderRichText(EMPTY_STATES.aiUnavailable);
         }
-        if (event.type === 'safety_block') { thinkingEl.remove(); }
+        if (event.type === 'safety_block') { sawMeaningfulEvent = true; thinkingEl.remove(); }
         if (event.type === 'text_delta') {
+          sawMeaningfulEvent = true;
           thinkingEl.remove();
           fullText += event.text;
           contentEl.innerHTML = renderRichText(fullText);
@@ -916,8 +926,9 @@ export function renderAgentWorkspace(container, helpers = {}) {
             btn.addEventListener('click', () => submitSyntheticMessage(btn.textContent));
           });
         }
-        if (event.type === 'rate_limited') { thinkingEl.remove(); }
+        if (event.type === 'rate_limited') { sawMeaningfulEvent = true; thinkingEl.remove(); }
         if (event.type === 'error') {
+          sawMeaningfulEvent = true;
           thinkingEl.remove();
           contentEl.innerHTML += `<p class="agc-error-text">${escapeHtml(event.message)}</p>`;
         }
@@ -944,6 +955,16 @@ export function renderAgentWorkspace(container, helpers = {}) {
     // connection death (no event ever arrives) would otherwise leave it
     // spinning forever — .remove() on an already-detached node is a no-op.
     thinkingEl.remove();
+    // The stream can resolve with no exception at all (a connection closed
+    // cleanly from the browser's point of view) while never having sent
+    // anything past the initial message_start — e.g. the serverless
+    // function got killed by a platform timeout mid-generation, before
+    // agent-chat.js had written any of its buffered response. That would
+    // otherwise look exactly like a normal, silent, empty success. Treat
+    // it as the failure it is.
+    if (!fullText && !sawMeaningfulEvent) {
+      contentEl.innerHTML = renderRichText("The AGHF Agent didn't respond — this can happen when a response takes too long to generate. Try again, or ask something shorter.");
+    }
 
     const assistantMsg = { role: 'assistant', content: fullText, toolResults, id: null };
     assistantEl._msg = assistantMsg;
