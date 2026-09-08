@@ -1,4 +1,7 @@
 {
+  "functions": {
+    "api/agent-chat.js": { "maxDuration": 60 }
+  },
   "rewrites": [
     { "source": "/api/agent-conversations", "destination": "/api/agent-data?resource=conversations" },
     { "source": "/api/agent-messages", "destination": "/api/agent-data?resource=messages" },

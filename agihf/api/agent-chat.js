@@ -25,11 +25,16 @@ import { CRISIS_RESPONSE, TRADING_HARM_RESPONSE } from '../shared/psychology-saf
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
-// Safe to request regardless of the account's actual plan ceiling — Vercel
-// clamps to whatever the plan allows rather than erroring. Gives the Gemini
-// call more headroom before any platform-level function timeout kills the
-// connection mid-generation with zero bytes ever having reached the client.
-export const config = { maxDuration: 60 };
+// maxDuration is configured in vercel.json's `functions` field, NOT via an
+// exported `config` object here — that convention is Next.js-specific and
+// silently does nothing for a plain (non-Next.js) Vercel serverless
+// function like this one. An earlier attempt to raise the timeout via
+// `export const config = { maxDuration: 60 }` shipped here was therefore a
+// no-op — the function kept running under the platform's default (10s on
+// Hobby), which is almost certainly why a real Gemini call (which can
+// easily take longer) got killed mid-generation with zero bytes ever
+// reaching the client, since this endpoint buffers the whole response
+// before writing any of it (see the loop below).
 
 const DEFAULT_CONSENT = {
   tradeData: true, checklistAnswers: true, journalStructured: true, journalFreetext: true,
