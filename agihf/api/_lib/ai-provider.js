@@ -22,12 +22,14 @@
  * dependency for what's a handful of HTTP calls.
  */
 
-// gemini-2.0-flash was retired/unavailable on this key's model list (confirmed
-// live: GET /v1beta/models?key=... listed gemini-2.5-flash/gemini-2.5-pro but
-// no gemini-2.0-flash at all) — every request was failing with a non-OK
-// response before Gemini ever got a chance to generate anything, which is
-// the actual root cause behind every "AGHF Agent ran into a problem" report.
-const DEFAULT_MODEL = 'gemini-2.5-flash'; // override via GEMINI_MODEL env var
+// Model availability has moved fast here — gemini-2.0-flash was already
+// retired by the time this was first checked, and gemini-2.5-flash (the
+// first fix) turned out to be on its way out too. Confirmed live against
+// this key's actual GET /v1beta/models listing: gemini-3.5-flash-lite is
+// the current fast/cheap tier, with "generateContent" in its
+// supportedGenerationMethods. If this drifts again, re-check that same
+// endpoint rather than guessing a version number.
+const DEFAULT_MODEL = 'gemini-3.5-flash-lite'; // override via GEMINI_MODEL env var
 const API_ROOT = 'https://generativelanguage.googleapis.com/v1beta/models';
 
 export function isAIConfigured() {
@@ -62,8 +64,17 @@ function toGeminiContents(messages) {
   return messages.map((m) => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: toGeminiParts(m.content) }));
 }
 
+// gemini-3.5-flash-lite is a "thinking" model (see DEFAULT_MODEL comment) —
+// Gemini marks its internal reasoning-summary parts with `thought: true`,
+// distinct from the actual answer text. We never request thought summaries
+// (no thinkingConfig.includeThoughts set below), so none should come back
+// by default, but skipping any part with `thought: true` here is a cheap,
+// safe guard against the model's internal reasoning ever leaking into what
+// the member sees, regardless of that default.
 function extractText(candidateResponse) {
-  return (candidateResponse?.candidates?.[0]?.content?.parts || []).map((p) => p.text || '').join('');
+  return (candidateResponse?.candidates?.[0]?.content?.parts || [])
+    .filter((p) => !p.thought)
+    .map((p) => p.text || '').join('');
 }
 
 /** Buffers a fetch() SSE body into parsed `data:` JSON chunks, one per yield. */
