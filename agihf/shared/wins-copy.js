@@ -9,13 +9,36 @@
  */
 
 export const HERO_COPY = {
-  eyebrow: '✦ Share My Win',
+  eyebrow: '✦ Ready to share your win?',
   title: 'Share My Win',
   tagline: 'Every win counts—not just profit.',
   supporting: 'Whether you passed an evaluation, followed your plan, finally understood market structure, or walked away from a bad setup—we want to celebrate it.',
   primaryCta: 'Share My Win',
   secondaryCta: 'See Recent Wins',
 };
+
+export const STAR_BANNER_COPY = {
+  stars: '⭐️⭐️⭐️⭐️⭐️',
+  label: 'AGHF 5 STAR ACADEMY',
+};
+
+/**
+ * SAMPLE_REVIEWS — placeholder testimonial-carousel content only.
+ * Not real member reviews, not backed by any table, and never claimed to
+ * be verified — swap this array for real, member-submitted, consented
+ * reviews (e.g. approved win_submissions with a rating + testimonialText)
+ * as soon as there are enough to feature. Keep every entry generic/
+ * non-specific (no invented dollar amounts, pass claims, or names tied to
+ * real members) for exactly as long as this stays placeholder content.
+ */
+export const SAMPLE_REVIEWS = [
+  { quote: 'This program changed how I actually see the market.', name: 'Sarah M.' },
+  { quote: 'I finally understand structure instead of guessing.', name: 'Jamie T.' },
+  { quote: 'The Dayli ICC Checklist alone was worth joining for.', name: 'Alex R.' },
+  { quote: 'I trade with a plan now, not my emotions.', name: 'Morgan K.' },
+  { quote: 'The community here genuinely wants you to win.', name: 'Taylor B.' },
+  { quote: 'AGHF made the market make sense for the first time.', name: 'Casey L.' },
+];
 
 export const WIN_CATEGORIES = [
   { key: 'passed_evaluation', label: 'I Passed My Evaluation', icon: '🎯' },

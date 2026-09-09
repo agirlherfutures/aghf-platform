@@ -17,6 +17,8 @@
 <script src="shared/sidebar.js" data-active="leaderboard"></script>
 
 <main class="main">
+  <div id="winStars"></div>
+  <div id="winReviews"></div>
   <div id="winHero"></div>
   <div id="winFeatured" style="margin-bottom:28px;"></div>
   <div class="dd-section-head">
@@ -30,9 +32,11 @@
 
 <script type="module">
   let listPublicWins, getWin, getReactions, toggleReaction;
-  let renderFeaturedWinsStrip, renderWinFilters, renderCommunityWinWall, renderWinDetailDrawer, closeWinDetailDrawer;
+  let renderFiveStarBanner, renderReviewsScroll, renderFeaturedWinsStrip, renderWinFilters, renderCommunityWinWall, renderWinDetailDrawer, closeWinDetailDrawer;
   let HERO_COPY;
 
+  const starsEl = document.getElementById('winStars');
+  const reviewsEl = document.getElementById('winReviews');
   const heroEl = document.getElementById('winHero');
   const featuredEl = document.getElementById('winFeatured');
   const filtersEl = document.getElementById('winFilters');
@@ -105,12 +109,14 @@
   async function boot() {
     try {
       ({ listPublicWins, getWin, getReactions, toggleReaction } = await import('./shared/wins-service.js'));
-      ({ renderFeaturedWinsStrip, renderWinFilters, renderCommunityWinWall, renderWinDetailDrawer, closeWinDetailDrawer } = await import('./shared/wins-engine.js'));
+      ({ renderFiveStarBanner, renderReviewsScroll, renderFeaturedWinsStrip, renderWinFilters, renderCommunityWinWall, renderWinDetailDrawer, closeWinDetailDrawer } = await import('./shared/wins-engine.js'));
       ({ HERO_COPY } = await import('./shared/wins-copy.js'));
     } catch (err) {
       renderFallbackError(err);
       return;
     }
+    starsEl.innerHTML = renderFiveStarBanner();
+    renderReviewsScroll(reviewsEl);
     paintHero();
     loadWall();
   }

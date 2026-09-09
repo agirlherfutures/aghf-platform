@@ -17,7 +17,7 @@
 import { showDeskToast } from './dayli-desk-engine.js';
 import { getWinMediaUrl } from './wins-service.js';
 import {
-  HERO_COPY, WIN_CATEGORIES, WIN_FILTERS, categoryLabel, HEADLINE_EXAMPLES, STORY_PROMPTS,
+  HERO_COPY, STAR_BANNER_COPY, SAMPLE_REVIEWS, WIN_CATEGORIES, WIN_FILTERS, categoryLabel, HEADLINE_EXAMPLES, STORY_PROMPTS,
   WHAT_HELPED_OPTIONS, TESTIMONIAL_PROMPT, MEDIA_TYPES, SENSITIVE_INFO_WARNING, SENSITIVE_INFO_CONFIRM_LABEL,
   REVIEW_PROMPTS, DISPLAY_NAME_OPTIONS, CONSENT_OPTIONS, CONSENT_REMOVAL_NOTE, STATUS_LABELS, SUBMIT_SUCCESS,
   EMPTY_STATE_COPY, RISK_DISCLOSURE_TEXT, REACTION_TYPES, MODERATION_ACTION_LABELS,
@@ -111,6 +111,36 @@ export function renderWinCard(props, opts = {}) {
         ${props.showsMoney ? renderRiskDisclosure() : ''}
       </div>
     </button>`;
+}
+
+/* ── Star banner + reviews scroll (top-of-page, above the hero) ──────── */
+
+export function renderFiveStarBanner() {
+  return `
+    <div class="win-star-banner">
+      <div class="win-star-row" aria-hidden="true">${STAR_BANNER_COPY.stars}</div>
+      <div class="win-star-label">${STAR_BANNER_COPY.label}</div>
+    </div>`;
+}
+
+/** Auto-scrolling review carousel. SAMPLE_REVIEWS is placeholder content
+ * (see wins-copy.js) — swap for real, consented member reviews once
+ * there are enough approved ones to feature. */
+export function renderReviewsScroll(container, reviews = SAMPLE_REVIEWS) {
+  const cardsHtml = reviews.map((r) => `
+    <div class="win-review-card">
+      <div class="win-review-stars" aria-hidden="true">★★★★★</div>
+      <p class="win-review-quote">“${escapeHtml(r.quote)}”</p>
+      <div class="win-review-name">${escapeHtml(r.name)}</div>
+    </div>`).join('');
+  // Duplicated once so the CSS marquee can loop seamlessly at -50% — skipped
+  // for prefers-reduced-motion, where the track never animates and a
+  // manual horizontal scroll should only show each review once.
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  container.innerHTML = `
+    <div class="win-reviews-scroll">
+      <div class="win-reviews-track">${cardsHtml}${reduceMotion ? '' : cardsHtml}</div>
+    </div>`;
 }
 
 /* ── Featured strip + Win Wall + filters + empty state ───────────────── */
