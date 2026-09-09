@@ -23,28 +23,51 @@
   <div class="jh-badges-row" id="jhBadges"></div>
   <div id="jhInsights" class="jh-insights-col" style="margin-bottom:16px;"></div>
 
-  <div class="dd-card" style="margin-bottom:16px;">
-    <div class="field-row cols-4">
-      <div class="field-group"><label class="field-label">Search</label><input class="field-input" type="text" id="fSearch" placeholder="Search reasoning &amp; lessons…"></div>
-      <div class="field-group"><label class="field-label">From</label><input class="field-input" type="date" id="fFrom"></div>
-      <div class="field-group"><label class="field-label">To</label><input class="field-input" type="date" id="fTo"></div>
-      <div class="field-group"><label class="field-label">Instrument</label><select class="field-input" id="fInstrument"><option value="">All</option></select></div>
+  <div id="jhViewSwitch" style="margin-bottom:16px;"></div>
+
+  <div id="jhListView">
+    <div class="dd-card" style="margin-bottom:16px;">
+      <div class="field-row cols-4">
+        <div class="field-group"><label class="field-label">Search</label><input class="field-input" type="text" id="fSearch" placeholder="Search reasoning &amp; lessons…"></div>
+        <div class="field-group"><label class="field-label">From</label><input class="field-input" type="date" id="fFrom"></div>
+        <div class="field-group"><label class="field-label">To</label><input class="field-input" type="date" id="fTo"></div>
+        <div class="field-group"><label class="field-label">Instrument</label><select class="field-input" id="fInstrument"><option value="">All</option></select></div>
+      </div>
+      <div class="field-row cols-4">
+        <div class="field-group"><label class="field-label">Direction</label><select class="field-input" id="fDirection"><option value="">All</option><option value="long">Long</option><option value="short">Short</option></select></div>
+        <div class="field-group"><label class="field-label">Outcome</label><select class="field-input" id="fOutcome"><option value="">All</option><option value="win">Win</option><option value="loss">Loss</option><option value="breakeven">Breakeven</option></select></div>
+        <div class="field-group"><label class="field-label">Setup</label><select class="field-input" id="fSetup"><option value="">All</option></select></div>
+        <div class="field-group"><label class="field-label">Dayli ICC</label><select class="field-input" id="fIcc"><option value="">All</option><option value="true">Has ICC Setup</option></select></div>
+      </div>
+      <div class="field-row cols-4">
+        <div class="field-group"><label class="field-label">Execution Grade</label><select class="field-input" id="fGrade"><option value="">All</option><option>A+</option><option>A</option><option>A-</option><option>B</option><option>C</option><option>D</option></select></div>
+        <div class="field-group"><label class="field-label">Rule Check</label><select class="field-input" id="fRuleCheck"><option value="">All</option><option value="yes">Yes</option><option value="mostly">Mostly</option><option value="no">No</option></select></div>
+        <div class="field-group"><label class="field-label">Emotion</label><select class="field-input" id="fEmotion"><option value="">All</option></select></div>
+        <div class="field-group" style="justify-content:flex-end;"><button type="button" class="dd-secondary-btn" id="fClear">Clear filters</button></div>
+      </div>
     </div>
-    <div class="field-row cols-4">
-      <div class="field-group"><label class="field-label">Direction</label><select class="field-input" id="fDirection"><option value="">All</option><option value="long">Long</option><option value="short">Short</option></select></div>
-      <div class="field-group"><label class="field-label">Outcome</label><select class="field-input" id="fOutcome"><option value="">All</option><option value="win">Win</option><option value="loss">Loss</option><option value="breakeven">Breakeven</option></select></div>
-      <div class="field-group"><label class="field-label">Setup</label><select class="field-input" id="fSetup"><option value="">All</option></select></div>
-      <div class="field-group"><label class="field-label">Dayli ICC</label><select class="field-input" id="fIcc"><option value="">All</option><option value="true">Has ICC Setup</option></select></div>
-    </div>
-    <div class="field-row cols-4">
-      <div class="field-group"><label class="field-label">Execution Grade</label><select class="field-input" id="fGrade"><option value="">All</option><option>A+</option><option>A</option><option>A-</option><option>B</option><option>C</option><option>D</option></select></div>
-      <div class="field-group"><label class="field-label">Rule Check</label><select class="field-input" id="fRuleCheck"><option value="">All</option><option value="yes">Yes</option><option value="mostly">Mostly</option><option value="no">No</option></select></div>
-      <div class="field-group"><label class="field-label">Emotion</label><select class="field-input" id="fEmotion"><option value="">All</option></select></div>
-      <div class="field-group" style="justify-content:flex-end;"><button type="button" class="dd-secondary-btn" id="fClear">Clear filters</button></div>
-    </div>
+
+    <div id="jhCards" class="jh-cards-grid"></div>
   </div>
 
-  <div id="jhCards" class="jh-cards-grid"></div>
+  <div id="jhCalendarView" hidden>
+    <div class="dd-card" style="margin-bottom:16px;">
+      <div class="field-row cols-4">
+        <div class="field-group"><label class="field-label">Instrument</label><select class="field-input" id="cInstrument"><option value="">All</option></select></div>
+        <div class="field-group"><label class="field-label">Account</label><select class="field-input" id="cAccount"><option value="">All</option></select></div>
+        <div class="field-group"><label class="field-label">Hide $ values</label><button type="button" class="dd-secondary-btn" id="cPrivacyToggle" style="width:100%;">👁️ Toggle</button></div>
+        <div class="field-group" style="justify-content:flex-end;"><button type="button" class="dd-secondary-btn" id="cClear">Reset Filters</button></div>
+      </div>
+      <div class="small-help" id="cFilterStatus"></div>
+    </div>
+    <div id="jhCalendarBody"></div>
+  </div>
+
+  <div id="jhSummaryView" hidden>
+    <div id="jhSummaryBody"></div>
+  </div>
+
+  <div id="jhDrawerRoot"></div>
 </main>
 
 <script type="module">
@@ -53,11 +76,14 @@
   // a failure in any one of these would previously kill this entire
   // script before it ever ran, leaving the page permanently empty.
   let listEntries, getJournalStats;
+  let listChecklists;
   let INSTRUMENT_SYMBOLS;
   let EMOTION_OPTIONS_V2;
   let renderTradeSummaryCard, entryToSummaryCardProps, hydrateTscShots, renderJournalStatsRow, renderBadgesStrip, renderInsightCards;
   let computeInsights;
   let renderSkeleton, renderErrorState;
+  let groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid, computeMonthSummary, filterByAccount;
+  let renderViewSwitcher, renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer, renderPerformanceSummaryView, isPnlHidden;
 
   function renderFallbackError(err) {
     console.error('Journal history failed to load:', err);
@@ -142,18 +168,122 @@
 
   document.addEventListener('aghf-auth-ready', boot);
 
+  /* ── Calendar / Summary views (independent of the List view's own filters) ── */
+
+  let activeView = 'list';
+  let calYear, calMonth; // 0-indexed month
+  let calInstrument = '', calAccount = '';
+  let calAllEntries = null; // lazy-loaded once, shared by Calendar + Summary
+  let calAllChecklists = null;
+
+  async function ensureCalendarData() {
+    if (calAllEntries && calAllChecklists) return;
+    const [{ entries }, checklists] = await Promise.all([
+      listEntries({ entryType: 'trade', limit: 500 }),
+      listChecklists(500),
+    ]);
+    calAllEntries = entries;
+    calAllChecklists = checklists;
+    const accSelect = document.getElementById('cAccount');
+    const accounts = [...new Set(entries.map((e) => e.accountId).filter(Boolean))].sort();
+    accSelect.innerHTML = `<option value="">All</option>${accounts.map((a) => `<option value="${a}">${a}</option>`).join('')}`;
+    document.getElementById('cInstrument').insertAdjacentHTML('beforeend', INSTRUMENT_SYMBOLS.map((s) => `<option value="${s}">${s}</option>`).join(''));
+  }
+
+  function filteredCalendarEntries() {
+    let rows = filterByAccount(calAllEntries, calAccount || null);
+    if (calInstrument) rows = rows.filter((e) => e.instrument === calInstrument);
+    return rows;
+  }
+  function filteredCalendarChecklists() {
+    return calAccount ? calAllChecklists.filter((c) => c.accountId === calAccount) : calAllChecklists;
+  }
+
+  function monthAggregates(year, month) {
+    const entries = filteredCalendarEntries();
+    const checklists = filteredCalendarChecklists();
+    const byDay = groupEntriesByDay(entries);
+    const checklistsByDay = groupChecklistsByDay(checklists);
+    const prefix = `${year}-${String(month + 1).padStart(2, '0')}`;
+    const aggregatesByDate = new Map();
+    for (const [date, trades] of byDay.entries()) {
+      if (!date.startsWith(prefix)) continue;
+      aggregatesByDate.set(date, computeDayAggregate(date, trades, checklistsByDay.get(date) || []));
+    }
+    for (const [date, checklistsForDay] of checklistsByDay.entries()) {
+      if (!date.startsWith(prefix) || aggregatesByDate.has(date)) continue;
+      aggregatesByDate.set(date, computeDayAggregate(date, [], checklistsForDay));
+    }
+    return aggregatesByDate;
+  }
+
+  async function paintCalendarView() {
+    await ensureCalendarData();
+    document.getElementById('cFilterStatus').textContent = (calInstrument || calAccount)
+      ? `Showing filtered results${calInstrument ? ` — ${calInstrument}` : ''}${calAccount ? ` — ${calAccount}` : ''}`
+      : '';
+    const aggregatesByDate = monthAggregates(calYear, calMonth);
+    const grid = computeMonthGrid(calYear, calMonth, aggregatesByDate);
+    const monthLabel = new Date(calYear, calMonth, 1).toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+    renderCalendarView(document.getElementById('jhCalendarBody'), { year: calYear, month: calMonth, grid, monthLabel }, {
+      onPrev: () => { calMonth -= 1; if (calMonth < 0) { calMonth = 11; calYear -= 1; } paintCalendarView(); },
+      onNext: () => { calMonth += 1; if (calMonth > 11) { calMonth = 0; calYear += 1; } paintCalendarView(); },
+      onToday: () => { const t = new Date(); calYear = t.getFullYear(); calMonth = t.getMonth(); paintCalendarView(); },
+      onSelectDay: (date) => openDayDrawer(date, aggregatesByDate),
+      onCreateEntryForDate: () => {},
+    });
+  }
+
+  function openDayDrawer(date, aggregatesByDate) {
+    const aggregate = aggregatesByDate.get(date) || { date, tradeCount: 0, netPnl: null, wins: 0, losses: 0, breakeven: 0, cleanExecution: null, journalComplete: null, missedSetup: false };
+    const trades = filteredCalendarEntries().filter((e) => e.tradeDate === date);
+    renderTradeDayDrawer(document.getElementById('jhDrawerRoot'), { date, aggregate, trades }, {
+      onClose: () => closeTradeDayDrawer(document.getElementById('jhDrawerRoot')),
+      apiFetch,
+    });
+    hydrateTscShots(document.getElementById('jhDrawerRoot'), apiFetch);
+  }
+
+  async function paintSummaryView() {
+    await ensureCalendarData();
+    const aggregatesByDate = monthAggregates(calYear, calMonth);
+    const summary = computeMonthSummary([...aggregatesByDate.values()]);
+    const monthLabel = new Date(calYear, calMonth, 1).toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+    let journalingStreak = null;
+    try { journalingStreak = (await window.AGHF_FETCH_PROFILE?.())?.profile?.journal_streak ?? null; } catch { /* streak just omitted if unavailable */ }
+    renderPerformanceSummaryView(document.getElementById('jhSummaryBody'), { ...summary, journalingStreak }, { monthLabel });
+  }
+
+  function switchView(view) {
+    activeView = view;
+    document.getElementById('jhListView').hidden = view !== 'list';
+    document.getElementById('jhCalendarView').hidden = view !== 'calendar';
+    document.getElementById('jhSummaryView').hidden = view !== 'summary';
+    closeTradeDayDrawer(document.getElementById('jhDrawerRoot'));
+    renderViewSwitcher(document.getElementById('jhViewSwitch'), activeView, switchView);
+    if (view === 'calendar') paintCalendarView();
+    else if (view === 'summary') paintSummaryView();
+  }
+
   async function boot() {
     try {
       ({ listEntries, getJournalStats } = await import('./shared/journal-service.js'));
+      ({ listChecklists } = await import('./shared/checklist-service.js'));
       ({ INSTRUMENT_SYMBOLS } = await import('./shared/instrument-data.js'));
       ({ EMOTION_OPTIONS_V2 } = await import('./shared/dashboard-models.js'));
       ({ renderTradeSummaryCard, entryToSummaryCardProps, hydrateTscShots, renderJournalStatsRow, renderBadgesStrip, renderInsightCards } = await import('./shared/journal-engine.js'));
       ({ computeInsights } = await import('./shared/journal-insights.js'));
       ({ renderSkeleton, renderErrorState } = await import('./shared/dayli-desk-engine.js'));
+      ({ groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid, computeMonthSummary, filterByAccount } = await import('./shared/journal-calendar-math.js'));
+      ({ renderViewSwitcher, renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer, renderPerformanceSummaryView, isPnlHidden } = await import('./shared/journal-calendar-engine.js'));
     } catch (err) {
       renderFallbackError(err);
       return;
     }
+
+    const today = new Date();
+    calYear = today.getFullYear();
+    calMonth = today.getMonth();
 
     document.getElementById('fInstrument').insertAdjacentHTML('beforeend', INSTRUMENT_SYMBOLS.map((s) => `<option value="${s}">${s}</option>`).join(''));
     const allEmotions = [...new Set([...EMOTION_OPTIONS_V2.entering, ...EMOTION_OPTIONS_V2.during, ...EMOTION_OPTIONS_V2.exiting])].sort();
@@ -165,6 +295,20 @@
       filterIds.forEach((id) => { document.getElementById(id).value = ''; });
       load();
     });
+
+    document.getElementById('cInstrument').addEventListener('change', (e) => { calInstrument = e.target.value; paintCalendarView(); });
+    document.getElementById('cAccount').addEventListener('change', (e) => { calAccount = e.target.value; paintCalendarView(); });
+    document.getElementById('cClear').addEventListener('click', () => {
+      calInstrument = ''; calAccount = '';
+      document.getElementById('cInstrument').value = ''; document.getElementById('cAccount').value = '';
+      paintCalendarView();
+    });
+    document.getElementById('cPrivacyToggle').addEventListener('click', () => {
+      localStorage.setItem('aghf_snapshot_private', isPnlHidden() ? '0' : '1');
+      if (activeView === 'calendar') paintCalendarView(); else if (activeView === 'summary') paintSummaryView();
+    });
+
+    renderViewSwitcher(document.getElementById('jhViewSwitch'), activeView, switchView);
 
     load();
   }
