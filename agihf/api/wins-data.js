@@ -18,6 +18,8 @@
 //   real gate. There is no other admin/role concept anywhere in this app.
 
 import { createClient } from '@supabase/supabase-js';
+import { resolveDisplayName } from './_lib/display-name.js';
+import { creditChallengeActivity } from './_lib/challenge-credit.js';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
@@ -74,16 +76,6 @@ function submissionShape(row, { includePrivate = false } = {}) {
     base.reviewedAt = row.reviewed_at;
   }
   return base;
-}
-
-function resolveDisplayName(preference, profile, userEmail) {
-  if (preference === 'anonymous') return 'Anonymous AGHF Member';
-  if (preference === 'username') return profile?.full_name ? profile.full_name.split(' ')[0] : (userEmail || '').split('@')[0];
-  const full = (profile?.full_name || '').trim();
-  if (!full) return preference === 'full_name' ? 'An AGHF Member' : 'An AGHF Member';
-  if (preference === 'full_name') return full;
-  const parts = full.split(/\s+/);
-  return parts.length > 1 ? `${parts[0]} ${parts[parts.length - 1][0]}.` : full;
 }
 
 /* ── resource=submissions ────────────────────────────────────────────── */
@@ -195,6 +187,16 @@ async function handleSubmissions(req, res, userId) {
         if (gpAwarded > 0) {
           const { data: p } = await supabase.from('profiles').select('gp').eq('id', userId).maybeSingle();
           await supabase.from('profiles').update({ gp: (p?.gp || 0) + gpAwarded }).eq('id', userId);
+
+          try {
+            await creditChallengeActivity(supabase, {
+              userId,
+              sourceTable: 'win_submissions',
+              sourceRecordId: result.id,
+              activityType: 'win_shared',
+              occurredAt: result.submitted_at || undefined,
+            });
+          } catch { /* a missing/unmigrated challenge table must never block a win submission */ }
         }
       }
 

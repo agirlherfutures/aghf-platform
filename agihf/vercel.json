@@ -15,6 +15,15 @@
     { "source": "/api/wins-submissions", "destination": "/api/wins-data?resource=submissions" },
     { "source": "/api/wins-media", "destination": "/api/wins-data?resource=media" },
     { "source": "/api/wins-reactions", "destination": "/api/wins-data?resource=reactions" },
-    { "source": "/api/wins-moderation", "destination": "/api/wins-data?resource=moderation" }
+    { "source": "/api/wins-moderation", "destination": "/api/wins-data?resource=moderation" },
+    { "source": "/api/journal-screenshot", "destination": "/api/journal-entries?resource=screenshot" },
+    { "source": "/api/challenge-current", "destination": "/api/challenge-data?resource=current" },
+    { "source": "/api/challenge-progress", "destination": "/api/challenge-data?resource=progress" },
+    { "source": "/api/challenge-entries", "destination": "/api/challenge-data?resource=entries" },
+    { "source": "/api/challenge-leaderboard", "destination": "/api/challenge-data?resource=leaderboard" },
+    { "source": "/api/challenge-winners", "destination": "/api/challenge-data?resource=winners" },
+    { "source": "/api/challenge-prefs", "destination": "/api/challenge-data?resource=prefs" },
+    { "source": "/api/notifications", "destination": "/api/challenge-data?resource=notifications" },
+    { "source": "/api/challenge-admin", "destination": "/api/challenge-data?resource=admin" }
   ]
 }

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGHF Monthly Challenge — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+<link rel="stylesheet" href="shared/challenge.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="monthly-challenge"></script>
+
+<main class="main">
+  <div id="chalHero"></div>
+
+  <div class="dd-section-head" style="margin-top:24px;">
+    <div class="dd-section-title">Your Challenge Progress</div>
+  </div>
+  <div id="chalProgress"></div>
+
+  <div class="dd-section-head" style="margin-top:24px;">
+    <div class="dd-section-title">Ways to Earn</div>
+  </div>
+  <div id="chalWays"></div>
+
+  <div class="dd-section-head" style="margin-top:24px;">
+    <div class="dd-section-title">Weekly Momentum</div>
+  </div>
+  <div id="chalWeekly"></div>
+
+  <div class="dd-section-head" style="margin-top:24px;">
+    <div class="dd-section-title">Achievement Rankings</div>
+    <a class="dd-section-link" href="#" id="chalPrefsLink">Privacy Settings →</a>
+  </div>
+  <div id="chalLbTabs"></div>
+  <div id="chalLbTable"></div>
+  <div id="chalPrefsPanel" hidden style="margin-top:14px;"></div>
+
+  <div class="dd-section-head" style="margin-top:24px;">
+    <div class="dd-section-title">Your Entries</div>
+  </div>
+  <div id="chalLedger"></div>
+
+  <div class="dd-section-head" style="margin-top:24px;">
+    <div class="dd-section-title">Previous Winners</div>
+  </div>
+  <div id="chalWinners"></div>
+</main>
+
+<script type="module">
+  let getCurrentChallenge, getProgress, getEntries, getLeaderboard, getWinners, getPrefs, savePrefs;
+  let renderCountdownHero, renderYourProgressCard, renderWaysToEarnList, renderWeeklyProgressStrip,
+      renderLeaderboardTabs, renderLeaderboardTable, renderPreviousWinnersGrid, renderEntryLedger, renderPrefsPanel;
+
+  const heroEl = document.getElementById('chalHero');
+  const progressEl = document.getElementById('chalProgress');
+  const waysEl = document.getElementById('chalWays');
+  const weeklyEl = document.getElementById('chalWeekly');
+  const lbTabsEl = document.getElementById('chalLbTabs');
+  const lbTableEl = document.getElementById('chalLbTable');
+  const prefsPanelEl = document.getElementById('chalPrefsPanel');
+  const prefsLinkEl = document.getElementById('chalPrefsLink');
+  const ledgerEl = document.getElementById('chalLedger');
+  const winnersEl = document.getElementById('chalWinners');
+
+  function renderFallbackError(err) {
+    console.error('Monthly Challenge page failed to load:', err);
+    heroEl.innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading the Monthly Challenge</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
+
+  let currentChallenge = null;
+  let activeCategory = 'overall';
+
+  async function loadLeaderboard() {
+    renderLeaderboardTabs(lbTabsEl, activeCategory, async (key) => { activeCategory = key; await loadLeaderboard(); });
+    if (!currentChallenge) { lbTableEl.innerHTML = ''; return; }
+    try {
+      const result = await getLeaderboard(currentChallenge.id, activeCategory);
+      renderLeaderboardTable(lbTableEl, result);
+      lbTableEl.querySelector('[data-open-prefs]')?.addEventListener('click', (e) => { e.preventDefault(); togglePrefs(); });
+    } catch (err) { console.error('Leaderboard load error:', err); }
+  }
+
+  async function togglePrefs() {
+    prefsPanelEl.hidden = !prefsPanelEl.hidden;
+    if (prefsPanelEl.hidden || !currentChallenge) return;
+    const { prefs } = await getPrefs(currentChallenge.id);
+    renderPrefsPanel(prefsPanelEl, prefs, {
+      onSave: async (next) => {
+        await savePrefs(currentChallenge.id, next);
+        prefsPanelEl.hidden = true;
+        await loadLeaderboard();
+      },
+    });
+  }
+
+  async function boot() {
+    try {
+      ({ getCurrentChallenge, getProgress, getEntries, getLeaderboard, getWinners, getPrefs, savePrefs } = await import('./shared/challenge-service.js'));
+      ({
+        renderCountdownHero, renderYourProgressCard, renderWaysToEarnList, renderWeeklyProgressStrip,
+        renderLeaderboardTabs, renderLeaderboardTable, renderPreviousWinnersGrid, renderEntryLedger, renderPrefsPanel,
+      } = await import('./shared/challenge-engine.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+
+    prefsLinkEl.addEventListener('click', (e) => { e.preventDefault(); togglePrefs(); });
+
+    try {
+      const { challenge, rules } = await getCurrentChallenge();
+      currentChallenge = challenge;
+      renderCountdownHero(heroEl, challenge);
+      renderWaysToEarnList(waysEl, rules);
+
+      if (!challenge) {
+        progressEl.innerHTML = '';
+        weeklyEl.innerHTML = '';
+        ledgerEl.innerHTML = '';
+        await loadLeaderboard();
+      } else {
+        const [progress, entriesResult] = await Promise.all([
+          getProgress(challenge.id).catch(() => null),
+          getEntries(challenge.id).catch(() => ({ entries: [] })),
+        ]);
+        renderYourProgressCard(progressEl, progress);
+        renderEntryLedger(ledgerEl, entriesResult.entries, entriesResult.totalConfirmed);
+        // Weekly momentum: derived from the entry ledger's own timestamps —
+        // a lightweight client-side bucket, not a second server round trip.
+        renderWeeklyProgressStrip(weeklyEl, bucketEntriesByWeek(entriesResult.entries, challenge.startsAt));
+        await loadLeaderboard();
+      }
+
+      const { winners } = await getWinners();
+      renderPreviousWinnersGrid(winnersEl, winners);
+    } catch (err) {
+      renderFallbackError(err);
+    }
+  }
+
+  function bucketEntriesByWeek(entries, startsAt) {
+    if (!startsAt) return [];
+    const start = new Date(startsAt).getTime();
+    const weekMs = 7 * 24 * 60 * 60 * 1000;
+    const buckets = [0, 0, 0, 0, 0];
+    for (const e of entries || []) {
+      const idx = Math.floor((new Date(e.createdAt).getTime() - start) / weekMs);
+      if (idx >= 0 && idx < 5) buckets[idx] += e.entryAmount;
+    }
+    return buckets.map((v, i) => (i === 0 || v > 0 || buckets.slice(0, i).some((x) => x > 0)) ? v : null);
+  }
+
+  document.addEventListener('aghf-auth-ready', boot);
+</script>
+
+</body>
+</html>

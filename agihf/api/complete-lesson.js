@@ -2,6 +2,7 @@
 // Marks a lesson complete and awards GP to the user
 
 import { createClient } from '@supabase/supabase-js';
+import { creditChallengeActivity } from './_lib/challenge-credit.js';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -40,11 +41,22 @@ export default async function handler(req, res) {
     }
 
     // Record completion
-    await supabase.from('lessons_completed').insert({
+    const { data: insertedLesson } = await supabase.from('lessons_completed').insert({
       user_id: userId,
       lesson_id: lessonId,
       gp_earned: gpEarned || 50,
-    });
+    }).select('id').single();
+
+    if (insertedLesson) {
+      try {
+        await creditChallengeActivity(supabase, {
+          userId,
+          sourceTable: 'lessons_completed',
+          sourceRecordId: insertedLesson.id,
+          activityType: 'lesson_completed',
+        });
+      } catch { /* a missing/unmigrated challenge table must never block a lesson save */ }
+    }
 
     // Add GP to profile
     const { data: profile } = await supabase
