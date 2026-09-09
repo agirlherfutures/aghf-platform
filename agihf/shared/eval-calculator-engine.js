@@ -223,6 +223,7 @@ function renderCalculatedMetricsSection(plan) {
           ${statTile('Est. Trading Days — Expected', daysRange.expected ?? '—', { hero: true })}
           ${statTile('Est. Trading Days — Strong', daysRange.strong ?? '—', { muted: true })}
         </div>
+        ${netPerDay != null ? `<div class="small-help" style="margin-top:8px;">Estimated Net / Trading Day is a probability-weighted average across your assumed winning and losing days — not what a single day nets you. See Expected Value / Trade above for the per-trade math.</div>` : ''}
         ${daysRange.spreadNote ? `<div class="small-help" style="margin-top:8px;">${daysRange.spreadNote}</div>` : ''}
         <div class="small-help" style="margin-top:10px;">${DISCLAIMER.full} Max-losses-remaining doesn't model slippage beyond the fee you entered.</div>
       </div>
