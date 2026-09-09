@@ -223,6 +223,7 @@ function renderCalculatedMetricsSection(plan) {
           ${statTile('Est. Trading Days — Expected', daysRange.expected ?? '—', { hero: true })}
           ${statTile('Est. Trading Days — Strong', daysRange.strong ?? '—', { muted: true })}
         </div>
+        ${daysRange.spreadNote ? `<div class="small-help" style="margin-top:8px;">${daysRange.spreadNote}</div>` : ''}
         <div class="small-help" style="margin-top:10px;">${DISCLAIMER.full} Max-losses-remaining doesn't model slippage beyond the fee you entered.</div>
       </div>
     </div>`;

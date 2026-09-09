@@ -138,11 +138,33 @@ export function computeExpectedValuePerTrade(plan) {
 }
 
 /**
+ * Exact expectation of the day's remaining net $, computed recursively over
+ * the same real branching logic simulateEvalPath() walks trade-by-trade
+ * (tradesToday/lossesToday/wonToday) — never an approximation that could
+ * disagree with the seeded simulator. A day's stopping conditions
+ * (stopAfterWin, hitting maxLossesPerDay) are mutually exclusive branches
+ * of one decision tree, not independent probabilities to multiply.
+ */
+function expectedDayNetFrom(plan, risk, reward, winRate, fees, maxTrades, maxLosses, tradesToday, lossesToday, wonToday) {
+  if (tradesToday >= maxTrades || lossesToday >= maxLosses || (plan.stopAfterWin && wonToday)) return 0;
+  const useReducedSize = plan.reduceSizeAfterLoss && tradesToday === 1 && lossesToday > 0;
+  let tradeRisk = risk;
+  let tradeReward = reward;
+  if (useReducedSize && plan.secondTradeContractSize && plan.contractsPlanned) {
+    const scale = plan.secondTradeContractSize / plan.contractsPlanned;
+    tradeRisk = risk * scale;
+    tradeReward = reward * scale;
+  }
+  const winEv = tradeReward - fees + expectedDayNetFrom(plan, risk, reward, winRate, fees, maxTrades, maxLosses, tradesToday + 1, lossesToday, true);
+  const loseEv = -tradeRisk - fees + expectedDayNetFrom(plan, risk, reward, winRate, fees, maxTrades, maxLosses, tradesToday + 1, lossesToday + 1, wonToday);
+  return winRate * winEv + (1 - winRate) * loseEv;
+}
+
+/**
  * Estimated net $ per trading day — models the member's own conditional
  * rules (stop-after-win, reduce-size-after-loss, a second-trade contract
- * size) as an actual expectation over the day's trade sequence, not a
- * naive EV-per-trade × maxTradesPerDay. Walks trade slots one at a time,
- * tracking the probability of "still trading" at each slot.
+ * size) as an exact expectation over the day's decision tree, matching
+ * simulateEvalPath()'s real branching logic exactly.
  */
 export function computeEstimatedNetPerDay(plan) {
   const risk = computeRiskPerTrade(plan);
@@ -152,43 +174,16 @@ export function computeEstimatedNetPerDay(plan) {
   const fees = plan.feesPerTrade || 0;
   const maxTrades = plan.maxTradesPerDay || 1;
   const maxLosses = plan.maxLossesPerDay || maxTrades;
-
-  let expectedNet = 0;
-  let pStillTrading = 1; // probability the day hasn't already stopped
-  let lossesSoFar = 0;
-
-  for (let slot = 0; slot < maxTrades; slot += 1) {
-    if (pStillTrading <= 0) break;
-    // Reduce-size-after-loss only ever affects the *second* trade slot in
-    // this model (matches the plan's "second trade contract size" field —
-    // a simple, honest approximation, not a full per-slot size schedule).
-    const useReducedSize = plan.reduceSizeAfterLoss && slot === 1 && lossesSoFar > 0;
-    let slotRisk = risk;
-    let slotReward = reward;
-    if (useReducedSize && plan.secondTradeContractSize && plan.contractsPlanned) {
-      const scale = plan.secondTradeContractSize / plan.contractsPlanned;
-      slotRisk = risk * scale;
-      slotReward = reward * scale;
-    }
-    const slotEv = winRate * slotReward - (1 - winRate) * slotRisk - fees;
-    expectedNet += pStillTrading * slotEv;
-
-    // Update the probability the day continues into the next slot.
-    if (plan.stopAfterWin) pStillTrading *= (1 - winRate); // a win this slot ends the day
-    const wouldHitLossLimit = lossesSoFar + 1 >= maxLosses;
-    if (wouldHitLossLimit) pStillTrading *= winRate; // a loss this slot ends the day at the daily loss cap
-    lossesSoFar += 1 - winRate; // expected losses accrued, for the next slot's cap check
-  }
-  return expectedNet;
+  return expectedDayNetFrom(plan, risk, reward, winRate, fees, maxTrades, maxLosses, 0, 0, false);
 }
 
 /** A 3-tier range (conservative/expected/strong), never a single fake-precise number. */
 export function computeEstimatedTradingDaysRange(plan) {
   const remainingTarget = computeRemainingProfitTarget(plan);
-  if (remainingTarget == null || remainingTarget <= 0) return { conservative: null, expected: null, strong: null };
+  if (remainingTarget == null || remainingTarget <= 0) return { conservative: null, expected: null, strong: null, spreadNote: null };
 
   const baseWinRate = plan.assumedWinRatePct;
-  if (baseWinRate == null) return { conservative: null, expected: null, strong: null };
+  if (baseWinRate == null) return { conservative: null, expected: null, strong: null, spreadNote: null };
 
   function daysAt(winRateDelta) {
     const adjusted = { ...plan, assumedWinRatePct: Math.max(0, Math.min(100, baseWinRate + winRateDelta)) };
@@ -197,11 +192,15 @@ export function computeEstimatedTradingDaysRange(plan) {
     return Math.ceil(remainingTarget / perDay);
   }
 
-  return {
-    conservative: daysAt(-10),
-    expected: daysAt(0),
-    strong: daysAt(10),
-  };
+  const conservative = daysAt(-10);
+  const expected = daysAt(0);
+  const strong = daysAt(10);
+
+  const spreadNote = (conservative != null && expected != null && conservative >= expected * 3)
+    ? "Your estimate swings a lot here because your plan's edge is thin at a slightly lower win rate — small changes have an outsized effect on a plan this close to breakeven."
+    : null;
+
+  return { conservative, expected, strong, spreadNote };
 }
 
 /* ── consistency rule ─────────────────────────────────────────────── */
