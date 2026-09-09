@@ -126,6 +126,17 @@ export async function withdrawWin(id) {
   return apiFetch('/api/wins-submissions', { method: 'PATCH', body: JSON.stringify({ id, action: 'withdraw' }) });
 }
 
+/** Hard-deletes a pure draft only — never a submitted/reviewed win, which
+ * always goes through withdrawWin() (archive) instead. */
+export async function deleteDraftWin(id) {
+  if (window.AGHF_DEMO) {
+    const idx = demoWins.findIndex((w) => w.id === id);
+    if (idx >= 0) demoWins.splice(idx, 1);
+    return { success: true };
+  }
+  return apiFetch(`/api/wins-submissions?id=${id}`, { method: 'DELETE' });
+}
+
 export async function updateConsent(id, consent) {
   if (window.AGHF_DEMO) {
     const idx = demoWins.findIndex((w) => w.id === id);

@@ -565,6 +565,7 @@ export function renderMyWinsList(container, wins, handlers) {
       ${w.memberVisibleFeedback ? `<div class="win-feedback-box">${escapeHtml(w.memberVisibleFeedback)}</div>` : ''}
       <div class="win-my-row-actions">
         ${['draft', 'needs_changes'].includes(w.status) ? `<a class="dd-secondary-btn" href="share-win-flow.html?id=${w.id}">${w.status === 'needs_changes' ? 'Respond' : 'Continue Editing'}</a>` : ''}
+        ${w.status === 'draft' ? `<button type="button" class="cl-delete-link" data-delete-draft="${w.id}">Delete Draft</button>` : ''}
         ${['submitted', 'under_review', 'approved', 'featured', 'privately_received'].includes(w.status) ? `<button type="button" class="cl-delete-link" data-withdraw="${w.id}">Withdraw</button>` : ''}
         ${['approved', 'featured', 'submitted', 'under_review', 'privately_received'].includes(w.status) ? `<button type="button" class="cl-delete-link" data-edit-consent="${w.id}">Sharing Permissions</button>` : ''}
       </div>
@@ -572,6 +573,11 @@ export function renderMyWinsList(container, wins, handlers) {
     </div>`;
   }).join('');
 
+  container.querySelectorAll('[data-delete-draft]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (confirm('Delete this draft? This can’t be undone.')) handlers.onDeleteDraft(btn.dataset.deleteDraft);
+    });
+  });
   container.querySelectorAll('[data-withdraw]').forEach((btn) => {
     btn.addEventListener('click', () => {
       if (confirm('Withdraw this win? It will no longer be visible anywhere.')) handlers.onWithdraw(btn.dataset.withdraw);

@@ -225,6 +225,23 @@ async function handleSubmissions(req, res, userId) {
       return res.status(400).json({ error: 'Unknown or missing action' });
     }
 
+    if (req.method === 'DELETE') {
+      // Only a true draft (never submitted, no moderation history) can ever
+      // be hard-deleted — anything that was actually submitted always
+      // archives instead (see the withdraw branch above), never removed.
+      const { id } = req.query;
+      if (!id) return res.status(400).json({ error: 'Missing id' });
+      const { data: existing, error: fetchErr } = await supabase.from('win_submissions').select('id,status').eq('id', id).eq('user_id', userId).maybeSingle();
+      if (fetchErr) throw fetchErr;
+      if (!existing) return res.status(404).json({ error: 'Win not found' });
+      if (existing.status !== 'draft') {
+        return res.status(409).json({ error: 'Only a draft that hasn’t been submitted yet can be deleted — try Withdraw instead.' });
+      }
+      const { error } = await supabase.from('win_submissions').delete().eq('id', id);
+      if (error) throw error;
+      return res.status(200).json({ success: true });
+    }
+
     return res.status(405).json({ error: 'Method not allowed' });
   } catch (err) {
     console.error('Wins submissions API error:', err);
