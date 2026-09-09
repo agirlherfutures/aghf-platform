@@ -173,7 +173,14 @@
           if (saved.gpAwarded > 0) {
             burst();
             showDeskToast(`+${saved.gpAwarded} GP · Entry saved ✦`);
+            // A real "Clean Execution" moment — followed the plan and won, or
+            // exited/avoided per-rule rather than emotionally — is exactly
+            // the kind of thing worth inviting a member to share, never a
+            // requirement to do so.
+            const isShareableWin = (saved.ruleCheck === 'yes' && saved.outcome === 'win')
+              || (saved.exitTags || []).some((t) => ['Trade Invalidated', 'Rule-Based Exit'].includes(t));
             const body = openModal(renderTradeSummaryCard(entryToSummaryCardProps(saved), { variant: 'celebration' }) + `
+              ${isShareableWin ? `<div style="margin-top:14px;text-align:center;"><a class="dd-secondary-btn" href="share-win-flow.html?fromJournalEntryId=${saved.id}">✦ Share This Win</a></div>` : ''}
               <div style="margin-top:16px;text-align:center;"><button type="button" class="dd-primary-btn" id="tscCloseBtn">Nice ✦</button></div>`);
             if (saved.screenshots?.length) hydrateTscShots(body, apiFetch);
             body.querySelector('#tscCloseBtn').addEventListener('click', () => {

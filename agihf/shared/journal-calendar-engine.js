@@ -200,6 +200,7 @@ export function renderTradeDayDrawer(container, data, handlers) {
         <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
           <a class="dd-primary-btn" href="journal-entry.html?tradeDate=${date}">Add Entry for This Day</a>
           <button type="button" class="dd-secondary-btn" id="jhDrawerAskAgent">Ask AGHF Agent About This Day</button>
+          ${aggregate.cleanExecution === true ? `<a class="dd-secondary-btn" href="share-win-flow.html?fromDate=${date}">✦ Share This Day as a Win</a>` : ''}
         </div>
       </div>
     </div>`;

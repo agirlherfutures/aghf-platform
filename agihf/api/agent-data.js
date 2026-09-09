@@ -240,6 +240,22 @@ async function executeAction(userId, actionType, payload) {
     }
     return result;
   }
+  if (actionType === 'propose_win_share') {
+    // Creates a private DRAFT only — every consent flag stays at the
+    // win_submissions table default (false). The Agent structurally
+    // cannot grant sharing/marketing consent here: this branch never
+    // writes the consent column at all, so it can only ever be turned on
+    // later by the member herself, inside the normal Share My Win flow.
+    const { data, error } = await supabase.from('win_submissions').insert({
+      user_id: userId,
+      primary_category: payload.category || 'other',
+      headline: payload.title || null,
+      story: payload.storyDraft || payload.content || null,
+      status: 'draft',
+    }).select('id').single();
+    if (error) throw error;
+    return { winDraftId: data.id };
+  }
   throw new Error(`Unknown action type: ${actionType}`);
 }
 

@@ -1,0 +1,154 @@
+/* wins.css — A Girl & Her Futures™
+ * Share My Win: hero, featured strip, win wall, card variants, reaction
+ * bar, wizard visuals, moderation console, empty state. Linked after
+ * tokens.css/components.css/dayli-desk.css on every wins page — reuses
+ * their primitives (.dd-card, .chip, .dd-primary-btn, .field-*,
+ * .eval-wizard-shell/.eval-step-*, .cl-toggle-btn) rather than
+ * duplicating them.
+ */
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+
+.win-hero{
+  position:relative;overflow:hidden;border-radius:26px;padding:44px 32px;text-align:center;margin-bottom:28px;
+  background:radial-gradient(circle at 15% 15%,var(--pink-pale),transparent 55%),radial-gradient(circle at 85% 10%,var(--peach-pale),transparent 50%),radial-gradient(circle at 50% 100%,var(--teal-pale),transparent 45%),var(--warm);
+  border:1px solid rgba(244,130,154,.12);
+}
+.win-hero-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pink);margin-bottom:10px;}
+.win-hero-title{font-family:var(--font-display);font-style:italic;font-size:2.1rem;color:var(--dark);margin-bottom:6px;}
+.win-hero-tagline{font-family:var(--font-display);font-size:1.15rem;color:var(--pink);margin-bottom:14px;}
+.win-hero-supporting{max-width:520px;margin:0 auto 22px;color:var(--muted);font-size:.92rem;line-height:1.6;}
+.win-hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.win-hero-sparkle{position:absolute;font-size:1.4rem;opacity:.5;color:var(--peach);}
+.win-hero-sparkle.s1{top:18px;left:8%;} .win-hero-sparkle.s2{bottom:24px;right:10%;} .win-hero-sparkle.s3{top:40%;right:6%;}
+
+/* ── Featured strip ───────────────────────────────────────────────────── */
+
+.win-featured-strip{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:28px;}
+@media(max-width:820px){.win-featured-strip{grid-template-columns:1fr;}}
+.win-featured-hero .win-card{height:100%;}
+.win-featured-support{display:flex;flex-direction:column;gap:12px;}
+
+/* ── Filters ──────────────────────────────────────────────────────────── */
+
+.win-filter-row{margin-bottom:20px;}
+
+/* ── Win Wall grid ────────────────────────────────────────────────────── */
+
+.win-wall-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+
+/* ── Win card ─────────────────────────────────────────────────────────── */
+
+.win-card{
+  display:block;width:100%;text-align:left;background:#fff;border-radius:18px;border:1px solid rgba(244,130,154,.1);
+  box-shadow:0 3px 14px rgba(244,130,154,.06);cursor:pointer;padding:0;overflow:hidden;font-family:var(--font-body);
+  transition:transform .15s ease,box-shadow .15s ease;position:relative;
+}
+.win-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(244,130,154,.14);}
+.win-card:focus-visible{outline:2px solid var(--pink);outline-offset:2px;}
+.win-card-featured-badge{position:absolute;top:12px;right:12px;background:linear-gradient(135deg,var(--peach),var(--pink));color:#fff;font-size:.66rem;font-weight:700;padding:4px 10px;border-radius:100px;z-index:1;}
+.win-card-shot{height:150px;background-size:cover;background-position:center;background-color:var(--bg);}
+.win-card-shot.win-shot-unavailable{background:linear-gradient(135deg,var(--pink-pale),var(--peach-pale));}
+.win-card-video-mark{padding:14px 18px 0;font-size:.75rem;font-weight:700;color:var(--pink);}
+.win-card-body{padding:16px 18px 18px;}
+.win-card-category{font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.win-card-headline{font-family:var(--font-display);font-size:1.05rem;color:var(--dark);margin-bottom:6px;line-height:1.3;}
+.win-card-quote{font-family:var(--font-script,var(--font-display));font-size:1.2rem;color:var(--pink);line-height:1.4;margin:8px 0;}
+.win-card-story{font-size:.85rem;color:var(--text);line-height:1.55;margin:6px 0;}
+.win-card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:.75rem;color:var(--muted);}
+.win-card-name{font-weight:600;color:var(--text);}
+.win-card-verified{color:var(--teal);font-weight:700;}
+.win-risk-disclosure{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:.68rem;}
+
+.win-card-short .win-card-shot,.win-card-short .win-card-video-mark{display:none;}
+
+/* ── Empty state ──────────────────────────────────────────────────────── */
+
+.win-empty-state{text-align:center;padding:56px 24px;border-radius:22px;background:radial-gradient(circle at 30% 20%,var(--peach-pale),transparent 55%),var(--warm);border:1.5px dashed var(--pink-light);}
+.win-empty-icon{font-size:2rem;color:var(--pink);margin-bottom:10px;}
+.win-empty-heading{font-family:var(--font-display);font-size:1.3rem;color:var(--dark);margin-bottom:8px;}
+.win-empty-body{max-width:420px;margin:0 auto 20px;color:var(--muted);font-size:.88rem;line-height:1.6;}
+
+/* ── Reaction bar ─────────────────────────────────────────────────────── */
+
+.win-reaction-bar{display:flex;gap:8px;flex-wrap:wrap;}
+.win-reaction-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:100px;border:1.5px solid rgba(244,130,154,.18);background:var(--cream);font-size:.78rem;color:var(--text);cursor:pointer;font-family:var(--font-body);}
+.win-reaction-btn.active{background:var(--pink-pale);border-color:var(--pink);color:var(--pink);font-weight:700;}
+.win-reaction-btn:focus-visible{outline:2px solid var(--pink);outline-offset:2px;}
+.win-reaction-emoji{font-size:.95rem;}
+.win-reaction-count{font-weight:700;}
+
+/* ── Win detail drawer — same shape as journal-calendar-engine.js's .jh-day-drawer ── */
+
+.win-drawer-host{position:fixed;inset:0;background:rgba(44,24,16,.5);z-index:998;display:flex;justify-content:flex-end;}
+.win-drawer{width:min(480px,100%);height:100%;background:var(--cream);padding:28px 24px;overflow-y:auto;position:relative;}
+.win-drawer-close{position:absolute;top:16px;right:16px;width:30px;height:30px;border-radius:50%;background:#fff;border:none;cursor:pointer;font-size:14px;}
+.win-drawer-category{font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--pink);margin-top:8px;}
+.win-drawer-headline{font-family:var(--font-display);font-size:1.4rem;color:var(--dark);margin:6px 0;}
+.win-drawer-meta{font-size:.78rem;color:var(--muted);margin-bottom:14px;}
+.win-drawer-shot{width:100%;height:220px;border-radius:14px;background-size:cover;background-position:center;background-color:var(--bg);margin-bottom:14px;}
+.win-drawer-story{font-size:.9rem;line-height:1.6;color:var(--text);}
+.win-drawer-quote{font-family:var(--font-script,var(--font-display));font-size:1.3rem;color:var(--pink);line-height:1.5;margin:14px 0;}
+.win-drawer-helped{font-size:.82rem;color:var(--muted);margin-top:10px;}
+
+/* ── Wizard ───────────────────────────────────────────────────────────── */
+
+.win-wizard-panel{padding-top:4px;}
+.win-sensitive-warning{background:var(--peach-pale);border-radius:12px;padding:10px 14px;margin-top:6px;}
+.win-media-upload-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:100px;border:1.5px dashed var(--pink-light);background:var(--cream);font-size:.82rem;color:var(--pink);cursor:pointer;}
+.win-media-upload-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.win-media-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.win-media-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:100px;background:var(--pink-pale);font-size:.76rem;color:var(--text);}
+.win-media-chip button{border:none;background:none;cursor:pointer;color:var(--pink);font-weight:700;}
+.win-star-rating{display:flex;gap:6px;margin-top:10px;}
+.win-star{font-size:1.7rem;color:var(--border);background:none;border:none;cursor:pointer;line-height:1;}
+.win-star.filled{color:var(--peach);}
+.win-consent-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+.win-consent-row:last-child{border-bottom:none;}
+.win-consent-row input{margin-top:3px;}
+.win-preview-frame{max-width:360px;margin:16px auto 0;}
+
+/* ── Status badges ────────────────────────────────────────────────────── */
+
+.win-status-badge{display:inline-flex;padding:4px 12px;border-radius:100px;font-size:.68rem;font-weight:700;letter-spacing:.02em;}
+.win-status-draft{background:var(--bg);color:var(--muted);}
+.win-status-submitted,.win-status-under_review{background:var(--purple-pale);color:var(--purple);}
+.win-status-approved,.win-status-featured{background:var(--teal-pale);color:#1f8574;}
+.win-status-needs_changes{background:var(--peach-pale);color:#a9660f;}
+.win-status-privately_received{background:var(--pink-pale);color:var(--pink);}
+.win-status-rejected,.win-status-archived{background:var(--bg);color:var(--muted);}
+
+/* ── My Wins ──────────────────────────────────────────────────────────── */
+
+.win-my-row{margin-bottom:14px;}
+.win-my-row-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.win-my-row-headline{font-family:var(--font-display);font-size:1.05rem;color:var(--dark);margin:4px 0;}
+.win-my-row-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;}
+.win-feedback-box{background:var(--peach-pale);border-radius:12px;padding:10px 14px;margin:8px 0;font-size:.82rem;color:var(--text);}
+.win-consent-editor:not([hidden]){margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+
+/* ── Admin moderation console ─────────────────────────────────────────── */
+
+.win-mod-layout{display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:start;}
+@media(max-width:900px){.win-mod-layout{grid-template-columns:1fr;}}
+.win-mod-queue{max-height:75vh;overflow-y:auto;border-radius:16px;background:#fff;border:1px solid var(--border);}
+.win-mod-queue-row{display:flex;flex-direction:column;gap:4px;width:100%;text-align:left;padding:12px 16px;border:none;background:none;border-bottom:1px solid var(--border);cursor:pointer;}
+.win-mod-queue-row.active{background:var(--pink-pale);}
+.win-mod-queue-headline{font-size:.85rem;font-weight:600;color:var(--text);}
+.win-mod-headline{font-family:var(--font-display);font-size:1.2rem;color:var(--dark);margin:8px 0;}
+.win-mod-story{font-size:.85rem;line-height:1.55;color:var(--text);}
+.win-mod-actions{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;}
+.win-mod-subsection{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);}
+.win-private-feedback,.win-admin-notes{margin-top:10px;padding:10px 14px;border-radius:12px;background:var(--bg);}
+
+/* ── Dashboard card ───────────────────────────────────────────────────── */
+
+.dd-share-win-card{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+.dd-share-win-preview{max-width:220px;flex-shrink:0;}
+.dd-share-win-preview .win-card{pointer-events:none;}
+
+/* ── Reduced motion ───────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce){
+  .win-card,.win-reaction-btn,.win-star,.win-card-enter,.win-hero-shimmer{transition:none!important;animation:none!important;}
+}

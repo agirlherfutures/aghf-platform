@@ -55,4 +55,17 @@ export const TOOL_REGISTRY = {
   save_conversation_summary: {
     run: (ctx, input) => previewWrite(ctx, 'save_conversation_summary', input),
   },
+  // Proposes a WIN, never publishes one — approving this preview only ever
+  // creates a private draft (see agent-data.js's executeAction) that the
+  // member still has to open in Share My Win, write in her own words if
+  // she wants to change anything, and explicitly consent to before any of
+  // it can ever become public.
+  propose_win_share: {
+    run: (ctx, input) => previewWrite(ctx, 'propose_win_share', {
+      title: input.headline || 'A win worth sharing',
+      content: input.storyDraft || '',
+      category: input.category,
+      linkedRecordIds: input.linkedRecordIds || [],
+    }),
+  },
 };

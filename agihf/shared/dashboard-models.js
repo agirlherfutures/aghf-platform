@@ -494,7 +494,7 @@ export const READINESS_LABELS = ['Clear', 'Slightly Activated', 'Emotionally Inf
  */
 
 /**
- * @typedef {'create_if_then_rule'|'add_playbook_insight'|'update_current_focus'|'create_practice_plan'|'save_conversation_summary'} AgentActionType
+ * @typedef {'create_if_then_rule'|'add_playbook_insight'|'update_current_focus'|'create_practice_plan'|'save_conversation_summary'|'propose_win_share'} AgentActionType
  * @typedef {Object} AgentAction
  * @property {string} id
  * @property {string} userId
@@ -505,6 +505,68 @@ export const READINESS_LABELS = ['Clear', 'Slightly Activated', 'Emotionally Inf
  * @property {Object} [executionResult]
  * @property {string} createdAt
  * @property {string} [executedAt]
+ */
+
+/**
+ * @typedef {'passed_evaluation'|'funded_milestone'|'clean_execution_day'|'walked_away_discipline'|'mindset_breakthrough'|'consistency_streak'|'lesson_applied'|'other'} WinCategory
+ * @typedef {'draft'|'submitted'|'under_review'|'approved'|'featured'|'needs_changes'|'privately_received'|'rejected'|'archived'} WinStatus
+ * @typedef {Object} WinSharingConsent
+ * @property {boolean} winWall
+ * @property {boolean} communityFeature
+ * @property {boolean} socialMedia
+ * @property {boolean} websitePromo
+ * @property {boolean} privateOnly
+ * @typedef {Object} WinSubmissionRecord
+ * @property {string} id
+ * @property {string} userId
+ * @property {WinCategory} primaryCategory
+ * @property {WinCategory} [secondaryCategory]
+ * @property {string} [headline]
+ * @property {string} [story]
+ * @property {string} [whatHelped]
+ * @property {string} [favoriteFeature]
+ * @property {{path:string, filename:string, mimeType:string, bytes:number, uploadedAt:string}[]} media
+ * @property {string} [videoUrl] — a pasted link (YouTube/Loom/etc.), never a binary upload
+ * @property {boolean} sensitiveInfoConfirmed
+ * @property {1|2|3|4|5} [rating]
+ * @property {string} [testimonialText]
+ * @property {string} [testimonialOriginalText] — preserved verbatim on the first admin wording edit only, never public unless returned to the owner/admin
+ * @property {boolean} testimonialEditedByAdmin
+ * @property {string} [improvementFeedback] — private always, never returned by a public/non-owner read
+ * @property {boolean} exactPnlOptIn
+ * @property {number|null} [exactPnl] — only ever non-null when exactPnlOptIn is true
+ * @property {string} [outcomeSummary]
+ * @property {string} [linkedEvalPlanId]
+ * @property {string} [linkedJournalEntryId]
+ * @property {string} [linkedChecklistId]
+ * @property {'full_name'|'first_name_last_initial'|'username'|'anonymous'} displayNamePreference
+ * @property {string} [displayNameSnapshot] — resolved once at submission, immune to a later profile rename
+ * @property {boolean} isAnonymous
+ * @property {WinSharingConsent} consent
+ * @property {string} [consentUpdatedAt]
+ * @property {WinStatus} status
+ * @property {string} [memberVisibleFeedback]
+ * @property {string} [adminNotes] — internal only, owner/admin reads only
+ * @property {boolean} isVerified
+ * @property {string} [submittedAt]
+ * @property {string} [approvedAt]
+ * @property {string} [featuredAt]
+ * @property {string} [publishedAt]
+ * @property {string} [withdrawnAt]
+ * @property {string} [archivedAt]
+ * @property {string} [gpAwardedAt]
+ * @property {string} createdAt
+ * @property {string} updatedAt
+ */
+
+/**
+ * @typedef {'love_this'|'proud_of_you'|'helped_me'|'inspired'|'same_breakthrough'} WinReactionType
+ * @typedef {Object} WinReactionRecord
+ * @property {string} id
+ * @property {string} winId
+ * @property {string} userId
+ * @property {WinReactionType} reactionType
+ * @property {string} createdAt
  */
 
 export const COOLDOWN_DURATIONS = [
