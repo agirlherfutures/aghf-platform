@@ -14,6 +14,7 @@
 
 import { CHECKLIST_PHASES, TEMPLATE_VERSION, readinessLabel } from './checklist-template.js';
 import { todayKey } from './dashboard-models.js';
+import { authFetch as apiFetch } from './auth-fetch.js';
 
 function freshItems() {
   return CHECKLIST_PHASES.flatMap((phase) =>
@@ -44,15 +45,6 @@ function freshChecklist(instrument = 'MNQ') {
 }
 
 const demoStore = new Map(); // key: `${date}:${instrument}` -> checklist, only used in demo mode
-
-async function apiFetch(path, opts = {}) {
-  const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
-  if (window.AGHF_SESSION_TOKEN) headers.Authorization = `Bearer ${window.AGHF_SESSION_TOKEN}`;
-  const res = await fetch(path, { ...opts, headers });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw Object.assign(new Error(body.error || `Request failed (${res.status})`), { setupRequired: body.setupRequired });
-  return body;
-}
 
 function recompute(state) {
   const checkedCount = state.items.filter((i) => i.checked).length;

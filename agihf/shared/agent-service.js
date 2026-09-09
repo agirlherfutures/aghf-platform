@@ -8,44 +8,7 @@
  * the workspace is fully clickable in a preview session.
  */
 
-/**
- * Proactively refreshes window.AGHF_SESSION_TOKEN from the live Supabase
- * client's own session before an authenticated call. This page is not an
- * SPA — a member can sit on it for a long time — and auth-guard.js only
- * updates the token via its own onAuthStateChange listener, which a
- * backgrounded/throttled tab can miss past actual JWT expiry, leaving a
- * stale token in memory (the confirmed cause of a real "Invalid or
- * expired token" report). Never throws — any failure here just falls
- * through to the request itself, which will surface its own real error.
- */
-async function ensureFreshToken() {
-  if (window.AGHF_DEMO || !window.AGHF_SUPABASE) return;
-  try {
-    const { data: { session } } = await window.AGHF_SUPABASE.auth.getSession();
-    if (session?.access_token) window.AGHF_SESSION_TOKEN = session.access_token;
-  } catch { /* let the request itself surface any real failure */ }
-}
-
-/** One silent refresh attempt after a 401 — the actual second line of defense if the token was already stale before ensureFreshToken() even ran. */
-async function refreshTokenOnce() {
-  if (window.AGHF_DEMO || !window.AGHF_SUPABASE) return false;
-  try {
-    const { data: { session } } = await window.AGHF_SUPABASE.auth.refreshSession();
-    if (session?.access_token) { window.AGHF_SESSION_TOKEN = session.access_token; return true; }
-  } catch { /* fall through — the caller's existing error path handles it */ }
-  return false;
-}
-
-async function apiFetch(path, opts = {}, _retried = false) {
-  await ensureFreshToken();
-  const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
-  if (window.AGHF_SESSION_TOKEN) headers.Authorization = `Bearer ${window.AGHF_SESSION_TOKEN}`;
-  const res = await fetch(path, { ...opts, headers });
-  if (res.status === 401 && !_retried && await refreshTokenOnce()) return apiFetch(path, opts, true);
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw Object.assign(new Error(body.error || `Request failed (${res.status})`), { setupRequired: body.setupRequired });
-  return body;
-}
+import { authFetch as apiFetch, ensureFreshToken, refreshTokenOnce } from './auth-fetch.js';
 
 /* ── Demo-mode in-memory store ────────────────────────────────────── */
 

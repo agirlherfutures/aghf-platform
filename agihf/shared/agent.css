@@ -135,6 +135,7 @@
 .agc-observed { margin: 4px 0; }
 .agc-inference { color: var(--muted); font-style: italic; margin: 4px 0 0; }
 .agc-note-card { color: var(--muted); font-style: italic; }
+.agc-attach-error { color: var(--pink); font-size: .82rem; padding: 8px 4px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .agc-metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; margin-top: 6px; }
 .agc-metrics-grid div { display: flex; flex-direction: column; }
 .agc-metrics-grid span { font-size: .68rem; color: var(--muted); text-transform: capitalize; }

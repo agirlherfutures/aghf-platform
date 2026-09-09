@@ -21,6 +21,7 @@
  */
 
 import { todayKey } from './dashboard-models.js';
+import { authFetch as apiFetch } from './auth-fetch.js';
 
 export const QUICK_JOURNAL_PROMPTS = {
   premarket: [
@@ -34,15 +35,6 @@ export const QUICK_JOURNAL_PROMPTS = {
 };
 
 const demoEntries = [];
-
-async function apiFetch(path, opts = {}) {
-  const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
-  if (window.AGHF_SESSION_TOKEN) headers.Authorization = `Bearer ${window.AGHF_SESSION_TOKEN}`;
-  const res = await fetch(path, { ...opts, headers });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw Object.assign(new Error(body.error || `Request failed (${res.status})`), { setupRequired: body.setupRequired });
-  return body;
-}
 
 /** @returns {Promise<import('./dashboard-models.js').JournalEntryRecord|null>} */
 export async function getEntry(id) {
