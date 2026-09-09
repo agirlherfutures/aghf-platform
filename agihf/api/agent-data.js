@@ -17,6 +17,7 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { containsDeniedTraitLabel, DENIED_TRAIT_MESSAGE } from '../shared/agent-memory-safety.js';
+import { isDbNotSetUp } from './_lib/db-error.js';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
@@ -26,12 +27,12 @@ export const config = { api: { bodyParser: { sizeLimit: '8mb' } } };
 
 function notSetUpError(res, err, migrationFile, extraNoBucketCheck) {
   const noBucket = extraNoBucketCheck && /bucket not found/i.test(err.message || '');
-  const notSetUp = noBucket || /relation .* does not exist/i.test(err.message || '');
+  const notSetUp = noBucket || isDbNotSetUp(err);
   return res.status(notSetUp ? 503 : 500).json({
     error: noBucket
       ? 'The screenshot storage bucket hasn’t been created yet — see supabase/migrations/0001_checklist_and_journal.sql.'
       : notSetUp
-        ? `The AGHF Agent database tables haven’t been set up yet — see supabase/migrations/${migrationFile}.`
+        ? `The AGHF Agent database tables haven’t been set up yet — see supabase/migrations/${migrationFile}. If you just ran this migration, Supabase’s API can take a minute to notice — reloading the page usually fixes it, or reload the schema cache manually under Project Settings → API.`
         : err.message,
     setupRequired: notSetUp,
   });

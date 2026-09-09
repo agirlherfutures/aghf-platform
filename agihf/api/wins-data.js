@@ -20,16 +20,17 @@
 import { createClient } from '@supabase/supabase-js';
 import { resolveDisplayName } from './_lib/display-name.js';
 import { creditChallengeActivity } from './_lib/challenge-credit.js';
+import { isDbNotSetUp } from './_lib/db-error.js';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
 export const config = { api: { bodyParser: { sizeLimit: '8mb' } } };
 
 function notSetUpError(res, err) {
-  const notSetUp = /relation .* does not exist/i.test(err.message || '');
+  const notSetUp = isDbNotSetUp(err);
   return res.status(notSetUp ? 503 : 500).json({
     error: notSetUp
-      ? 'The Share My Win database tables haven’t been set up yet — see supabase/migrations/0007_share_my_win.sql.'
+      ? 'The Share My Win database tables haven’t been set up yet — see supabase/migrations/0007_share_my_win.sql. If you just ran this migration, Supabase’s API can take a minute to notice — reloading the page usually fixes it, or reload the schema cache manually under Project Settings → API.'
       : err.message,
     setupRequired: notSetUp,
   });
