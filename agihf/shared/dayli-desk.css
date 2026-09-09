@@ -626,3 +626,66 @@
 .psy-safety-body{line-height:1.6;margin-bottom:14px;}
 .psy-safety-actions{margin:0 0 14px;padding-left:18px;line-height:1.8;}
 .psy-safety-footer{font-size:.8rem;color:var(--muted);font-style:italic;}
+
+/* ── Eval Calculator Wizard ──────────────────────────────────────────
+ * Centered single-panel 3-step wizard (My Evaluation / My Trade Plan /
+ * My Plan) replacing the old always-visible dashboard. Reuses
+ * .section-card/.field-row/.chip-group/.jh-stat-tile/.progress-shell/
+ * .dd-card/.cl-toggle-btn/.cl-stage-pills/.dd-tab/.cl-wizard-nav
+ * throughout rather than inventing a parallel visual language — only
+ * the pieces unique to this redesign (preset cards, live calc strip,
+ * result hero, 3-card result grid, math-item formula toggle) get new
+ * classes below. */
+
+.eval-wizard-shell{max-width:640px;margin:0 auto;}
+.eval-step-heading{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--dark);margin-top:4px;}
+.eval-step-topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+
+.eval-preset-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+@media(max-width:640px){.eval-preset-grid{grid-template-columns:repeat(2,1fr);}}
+.eval-preset-card{background:#fff;border:1.5px solid rgba(244,130,154,.18);border-radius:16px;padding:18px 10px;text-align:center;font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--dark);cursor:pointer;transition:transform .12s ease;}
+.eval-preset-card:hover{transform:translateY(-1px);}
+.eval-preset-card.active{background:linear-gradient(135deg,var(--pink-pale),var(--peach-pale));border-color:var(--pink);color:var(--pink);}
+
+.eval-calc-strip{display:flex;gap:18px;flex-wrap:wrap;background:linear-gradient(135deg,var(--teal-pale),var(--peach-pale));border-radius:16px;padding:14px 18px;}
+.eval-calc-strip-item{display:flex;flex-direction:column;gap:2px;}
+.eval-calc-strip-label{font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+.eval-calc-strip-value{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--dark);}
+
+.eval-accordion-header{display:flex;justify-content:space-between;align-items:center;padding:2px;}
+.eval-accordion-label{font-size:.85rem;font-weight:700;color:var(--dark);}
+
+.eval-step-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:24px;padding-top:18px;border-top:1px solid rgba(244,130,154,.1);}
+
+.eval-result-hero{border-radius:20px;padding:26px 24px;margin-top:18px;border-left:5px solid var(--placeholder);background:#fff;box-shadow:0 4px 18px rgba(244,130,154,.05);}
+.eval-result-hero.tone-good{border-left-color:var(--teal);background:linear-gradient(135deg,#fff,var(--teal-pale));}
+.eval-result-hero.tone-watch{border-left-color:var(--peach);background:linear-gradient(135deg,#fff,var(--peach-pale));}
+.eval-result-hero.tone-warn{border-left-color:var(--pink);background:linear-gradient(135deg,#fff,var(--pink-pale));}
+.eval-result-headline{font-family:var(--font-display);font-size:1.4rem;font-weight:700;color:var(--dark);margin-bottom:8px;}
+.eval-result-summary{font-size:.9rem;line-height:1.6;color:var(--text);}
+.eval-result-why{font-size:.8rem;color:var(--muted);margin-top:10px;font-style:italic;}
+
+.eval-result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px;}
+@media(max-width:700px){.eval-result-grid{grid-template-columns:1fr;}}
+.eval-result-card-label{font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.eval-result-card-value{font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--dark);margin-bottom:6px;}
+
+.eval-math-item{padding:10px 0;border-bottom:1px solid rgba(244,130,154,.08);}
+.eval-math-item:last-of-type{border-bottom:none;}
+.eval-math-item-row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+.eval-math-item-label{font-weight:700;color:var(--dark);font-size:.85rem;}
+.eval-math-item-value{color:var(--text);font-size:.85rem;}
+.eval-formula-toggle{background:none;border:none;color:var(--pink);font-size:.72rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+.eval-formula-text{margin-top:6px;font-size:.78rem;color:var(--muted);line-height:1.5;background:var(--cream);border-radius:10px;padding:8px 12px;}
+
+.eval-step3-actions{margin-top:24px;padding-top:18px;border-top:1px solid rgba(244,130,154,.1);text-align:center;}
+.eval-step3-secondary{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:12px;}
+
+.eval-planbar-toggle{background:none;border:none;color:var(--muted);font-size:.78rem;font-weight:600;cursor:pointer;padding:4px 0;text-decoration:underline;text-underline-offset:2px;}
+.eval-planbar-toggle:hover{color:var(--pink);}
+.eval-planbar-panel{margin-top:10px;padding:14px 16px;background:#fff;border:1px solid rgba(244,130,154,.1);border-radius:14px;}
+
+@media(max-width:520px){
+  .eval-step-actions{flex-direction:column-reverse;align-items:stretch;}
+  .eval-step-actions .dd-primary-btn,.eval-step-actions .dd-secondary-btn{width:100%;text-align:center;justify-content:center;}
+}

@@ -20,7 +20,7 @@
   <div class="pg-title">Pass Your Eval Calculator</div>
   <div class="small-help" style="margin:-8px 0 18px;max-width:640px;">Educational planning tool only — not financial advice, not a guarantee of results, a pass date, or profit. Your actual results will vary.</div>
 
-  <div id="evalPlanBar" style="margin-bottom:18px;"></div>
+  <div id="evalPlanBar" style="margin-bottom:14px;"></div>
   <div id="evalRoot"></div>
 </main>
 
@@ -29,9 +29,10 @@
   // (bad path, stale deployment, a syntax error anywhere in their import
   // graph) shows a visible error instead of leaving #evalRoot permanently
   // empty, matching every other page in this project.
-  let listEvalPlans, getEvalPlan, saveEvalPlan, duplicateEvalPlan, archiveEvalPlan, setActiveEvalPlan, deleteEvalPlan;
+  let listEvalPlans, getEvalPlan, saveEvalPlan, duplicateEvalPlan, archiveEvalPlan, setActiveEvalPlan, deleteEvalPlan, syncEvalPlanProgress;
   let renderEvalCalculatorPage;
   let renderErrorState, renderSkeleton, showDeskToast;
+  let validatePlanInputs;
 
   const root = document.getElementById('evalRoot');
   const planBar = document.getElementById('evalPlanBar');
@@ -50,7 +51,7 @@
     return {
       name: 'New Eval Plan', status: 'draft', isActive: false,
       accountSize: 50000, isCustomAccount: false, startingBalance: 50000,
-      drawdownType: 'unknown', riskMode: 'points',
+      profitTargetType: 'fixed_amount', drawdownType: 'static', riskMode: 'points',
       stopAfterWin: false, reduceSizeAfterLoss: false, tradingDaysElapsed: 0,
     };
   }
@@ -69,9 +70,10 @@
 
   async function boot() {
     try {
-      ({ listEvalPlans, getEvalPlan, saveEvalPlan, duplicateEvalPlan, archiveEvalPlan, setActiveEvalPlan, deleteEvalPlan } = await import('./shared/eval-service.js'));
-      ({ renderEvalCalculatorPage } = await import('./shared/eval-calculator-engine.js'));
+      ({ listEvalPlans, getEvalPlan, saveEvalPlan, duplicateEvalPlan, archiveEvalPlan, setActiveEvalPlan, deleteEvalPlan, syncEvalPlanProgress } = await import('./shared/eval-service.js'));
+      ({ renderEvalCalculatorPage } = await import('./shared/eval-calculator-wizard-engine.js'));
       ({ renderErrorState, renderSkeleton, showDeskToast } = await import('./shared/dayli-desk-engine.js'));
+      ({ validatePlanInputs } = await import('./shared/eval-calculator-math.js'));
     } catch (err) {
       renderFallbackError(err);
       return;
@@ -92,17 +94,36 @@
     }
   }
 
+  /** A returning member with a complete, already-active plan lands on the
+   * calm "welcome back" summary instead of being forced through setup
+   * again; everyone else (a brand-new or still-incomplete plan) goes
+   * straight into the wizard. */
+  function resolveInitialViewMode() {
+    return (currentPlan.isActive && validatePlanInputs(currentPlan).valid) ? 'welcome-back' : 'wizard';
+  }
+
+  let plansPanelOpen = false;
+
   function paintPlanBar() {
     planBar.innerHTML = `
-      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-        <select class="field-input" id="evalPlanSelect" style="max-width:280px;">
-          ${plans.map((p) => `<option value="${p.id}" ${p.id === currentPlan.id ? 'selected' : ''}>${p.name}${p.isActive ? ' (Active)' : ''}</option>`).join('')}
-        </select>
-        <button type="button" class="dd-secondary-btn" id="evalNewPlanBtn">+ New Plan</button>
-        ${currentPlan.isActive
-          ? `<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:var(--teal-pale);color:var(--dark);font-size:.8rem;font-weight:600;">★ Active Plan</span>`
-          : `<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:var(--bg);color:var(--muted);font-size:.8rem;font-weight:600;">Not your active plan</span>`}
+      <button type="button" class="eval-planbar-toggle" id="evalPlansToggle">My Eval Plans ▾</button>
+      <div class="eval-planbar-panel" id="evalPlansPanel" ${plansPanelOpen ? '' : 'hidden'}>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+          <select class="field-input" id="evalPlanSelect" style="max-width:280px;">
+            ${plans.map((p) => `<option value="${p.id}" ${p.id === currentPlan.id ? 'selected' : ''}>${p.name}${p.isActive ? ' (Active)' : ''}</option>`).join('')}
+          </select>
+          <button type="button" class="dd-secondary-btn" id="evalNewPlanBtn">+ New Plan</button>
+          ${currentPlan.isActive
+            ? `<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:var(--teal-pale);color:var(--dark);font-size:.8rem;font-weight:600;">★ Active Plan</span>`
+            : `<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:var(--bg);color:var(--muted);font-size:.8rem;font-weight:600;">Not your active plan</span>`}
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;">
+          <button type="button" class="cl-delete-link" id="evalDuplicateBtn">Duplicate</button>
+          <button type="button" class="cl-delete-link" id="evalArchiveBtn">Archive</button>
+          <button type="button" class="cl-delete-link" id="evalDeleteBtn">Delete Plan</button>
+        </div>
       </div>`;
+    planBar.querySelector('#evalPlansToggle').addEventListener('click', () => { plansPanelOpen = !plansPanelOpen; paintPlanBar(); });
     planBar.querySelector('#evalPlanSelect').addEventListener('change', async (e) => {
       currentPlan = await getEvalPlan(e.target.value);
       startPage();
@@ -113,50 +134,53 @@
       currentPlan = created;
       startPage();
     });
+    planBar.querySelector('#evalDuplicateBtn').addEventListener('click', async () => {
+      try {
+        const copy = await duplicateEvalPlan(currentPlan.id);
+        plans.push(copy);
+        currentPlan = copy;
+        showDeskToast('Plan duplicated ✦');
+        startPage();
+      } catch (err) {
+        console.error('Duplicate plan error:', err);
+        alert("Couldn't duplicate this plan — try again in a moment.");
+      }
+    });
+    planBar.querySelector('#evalArchiveBtn').addEventListener('click', async () => {
+      if (!confirm(`Archive "${currentPlan.name}"? You can still view it, but it won't show in your active list.`)) return;
+      try {
+        await archiveEvalPlan(currentPlan.id, true);
+        plans = plans.filter((p) => p.id !== currentPlan.id);
+        currentPlan = plans[0] || await saveEvalPlan(freshPlan());
+        if (!plans.length) plans = [currentPlan];
+        showDeskToast('Plan archived');
+        startPage();
+      } catch (err) {
+        console.error('Archive plan error:', err);
+        alert("Couldn't archive this plan — try again in a moment.");
+      }
+    });
+    planBar.querySelector('#evalDeleteBtn').addEventListener('click', async () => {
+      if (!confirm(`Permanently delete "${currentPlan.name}"? This can't be undone.`)) return;
+      try {
+        await deleteEvalPlan(currentPlan.id);
+        plans = plans.filter((p) => p.id !== currentPlan.id);
+        currentPlan = plans[0] || await saveEvalPlan(freshPlan());
+        if (!plans.length) plans = [currentPlan];
+        showDeskToast('Plan deleted');
+        startPage();
+      } catch (err) {
+        console.error('Delete plan error:', err);
+        alert("Couldn't delete this plan — try again in a moment.");
+      }
+    });
   }
 
   function startPage() {
+    plansPanelOpen = false;
     paintPlanBar();
     handle = renderEvalCalculatorPage(root, currentPlan, {
       onChange: (next) => { currentPlan = next; autosave(next); },
-      onDuplicate: async () => {
-        try {
-          const copy = await duplicateEvalPlan(currentPlan.id);
-          plans.push(copy);
-          currentPlan = copy;
-          showDeskToast('Plan duplicated ✦');
-          startPage();
-        } catch (err) {
-          console.error('Duplicate plan error:', err);
-          alert("Couldn't duplicate this plan — try again in a moment.");
-        }
-      },
-      onArchive: async () => {
-        if (!confirm(`Archive "${currentPlan.name}"? You can still view it, but it won't show in your active list.`)) return;
-        try {
-          await archiveEvalPlan(currentPlan.id, true);
-          plans = plans.filter((p) => p.id !== currentPlan.id);
-          currentPlan = plans[0] || await saveEvalPlan(freshPlan());
-          if (!plans.length) plans = [currentPlan];
-          showDeskToast('Plan archived');
-          startPage();
-        } catch (err) {
-          console.error('Archive plan error:', err);
-          alert("Couldn't archive this plan — try again in a moment.");
-        }
-      },
-      onSetActive: async () => {
-        try {
-          await setActiveEvalPlan(currentPlan.id);
-          plans = plans.map((p) => ({ ...p, isActive: p.id === currentPlan.id }));
-          currentPlan.isActive = true;
-          showDeskToast(`"${currentPlan.name}" is now your active plan ✦`);
-          startPage();
-        } catch (err) {
-          console.error('Set active plan error:', err);
-          alert("Couldn't set this plan active — try again in a moment.");
-        }
-      },
       onReset: async () => {
         if (!confirm(`Reset all fields on "${currentPlan.name}"? This clears your inputs back to blank — it won't delete this plan or create a new one.`)) return;
         try {
@@ -171,20 +195,33 @@
           alert("Couldn't reset this plan — try again in a moment.");
         }
       },
-      onDelete: async () => {
-        if (!confirm(`Permanently delete "${currentPlan.name}"? This can't be undone.`)) return;
-        try {
-          await deleteEvalPlan(currentPlan.id);
-          plans = plans.filter((p) => p.id !== currentPlan.id);
-          currentPlan = plans[0] || await saveEvalPlan(freshPlan());
-          if (!plans.length) plans = [currentPlan];
-          showDeskToast('Plan deleted');
-          startPage();
-        } catch (err) {
-          console.error('Delete plan error:', err);
-          alert("Couldn't delete this plan — try again in a moment.");
+      onSaveExplicit: async (plan) => {
+        clearTimeout(saveTimer);
+        const saved = await saveEvalPlan(plan);
+        let finalPlan = saved;
+        if (!saved.isActive) {
+          finalPlan = await setActiveEvalPlan(saved.id);
+          plans = plans.map((p) => ({ ...p, isActive: p.id === saved.id }));
         }
+        currentPlan = finalPlan;
+        const idx = plans.findIndex((p) => p.id === finalPlan.id);
+        if (idx >= 0) plans[idx] = finalPlan;
+        return finalPlan;
       },
+      onUpdateProgress: async (currentBalance, tradingDaysElapsed) => {
+        const updated = await syncEvalPlanProgress(currentPlan.id, { currentBalance, tradingDaysElapsed });
+        currentPlan = updated;
+        const idx = plans.findIndex((p) => p.id === updated.id);
+        if (idx >= 0) plans[idx] = updated;
+        return updated;
+      },
+      onCreateAnother: async () => {
+        const created = await saveEvalPlan(freshPlan());
+        plans.push(created);
+        currentPlan = created;
+        startPage();
+      },
+      initialViewMode: resolveInitialViewMode(),
     });
     loadActualVsPlanned();
   }
