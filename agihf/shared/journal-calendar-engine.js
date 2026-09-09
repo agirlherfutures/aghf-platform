@@ -217,7 +217,15 @@ export function renderDayVsPlanNote(aggregate, plan) {
  * assumptions.
  */
 export function renderEvalPlanProgressStrip(container, plan, dayAggregates) {
-  if (!plan) { container.innerHTML = ''; return; }
+  if (!plan) {
+    container.innerHTML = `
+      <div class="dd-card" style="margin-bottom:16px;">
+        <div class="section-title" style="margin-bottom:6px;">Your Eval Plan</div>
+        <div class="small-help" style="margin-bottom:14px;">No active plan yet — set one as active in the Pass Your Eval Calculator to track your progress here.</div>
+        <a class="dd-primary-btn" href="eval-calculator.html">Open Eval Calculator</a>
+      </div>`;
+    return;
+  }
   const target = computeProfitTargetDollar(plan);
   const remainingTarget = computeRemainingProfitTarget(plan);
   const ddLimit = computeDrawdownLimitDollar(plan);
