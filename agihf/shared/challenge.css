@@ -125,6 +125,20 @@
 .chal-admin-status-pill{font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:100px;background:var(--purple-pale);color:var(--purple);text-transform:capitalize;}
 .chal-audit-row{font-size:.78rem;color:var(--muted);padding:8px 0;border-bottom:1px solid var(--border);}
 
+/* ── Admin: layout + Quick Setup + inline rule picker ────────────────── */
+
+.chal-admin-layout{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start;}
+@media(max-width:800px){.chal-admin-layout{grid-template-columns:1fr;}}
+.chal-quick-callout{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:var(--pink-pale);border:1px solid rgba(244,130,154,.25);border-radius:14px;padding:12px 16px;margin-bottom:16px;font-size:.85rem;color:var(--dark);}
+.chal-quick-checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px;}
+@media(max-width:700px){.chal-quick-checklist{grid-template-columns:1fr;}}
+.chal-quick-check-row{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text);cursor:pointer;}
+.chal-add-rule-form{background:var(--cream);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-top:10px;}
+.chal-admin-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:700px){.chal-admin-2col{grid-template-columns:1fr;}}
+.chal-admin-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;}
+@media(max-width:700px){.chal-admin-3col{grid-template-columns:1fr;}}
+
 /* ── Real-person avatars (agihf/shared/avatar.js) — byte-identical to
    wins.css's own copy, since both features emit the same win-avatar
    markup and each stylesheet only loads on its own pages. ────────────── */

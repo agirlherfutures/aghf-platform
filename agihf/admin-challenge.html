@@ -34,6 +34,7 @@
   let activeId = null;
   let winnersForActive = [];
   let auditLog = [];
+  let showingQuickSetup = false;
 
   function escapeHtml(s) {
     return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -61,7 +62,7 @@
 
   function paint() {
     const c = active();
-    root.innerHTML = `<div class="chal-admin-layout" style="display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start;">
+    root.innerHTML = `<div class="chal-admin-layout">
       <div class="chal-admin-list">
         <button type="button" class="dd-primary-btn" id="chalNewBtn" style="width:100%;margin-bottom:8px;">+ New Challenge</button>
         ${challenges.map((ch) => `<div class="chal-admin-row" data-select-id="${ch.id}" style="cursor:pointer;${ch.id === activeId ? 'border-color:var(--pink);' : ''}">
@@ -69,23 +70,132 @@
           <span class="chal-admin-status-pill">${ch.status}</span>
         </div>`).join('')}
       </div>
-      <div id="chalDetail">${c ? renderDetail(c) : '<p class="small-help">Select or create a challenge to manage it.</p>'}</div>
+      <div id="chalDetail">${showingQuickSetup ? renderQuickSetup() : (c ? renderDetail(c) : '<p class="small-help">Select or create a challenge to manage it.</p>')}</div>
     </div>`;
 
     root.querySelector('#chalNewBtn').addEventListener('click', onCreate);
     root.querySelectorAll('[data-select-id]').forEach((row) => {
-      row.addEventListener('click', () => { activeId = row.dataset.selectId; loadDetailData(); });
+      row.addEventListener('click', () => { showingQuickSetup = false; activeId = row.dataset.selectId; loadDetailData(); });
     });
-    if (c) wireDetail(c);
+    if (showingQuickSetup) wireQuickSetup();
+    else if (c) wireDetail(c);
+  }
+
+  function renderQuickSetup() {
+    const activityEntries = Object.entries(ACTIVITY_TYPE_LABELS || {});
+    return `
+      <div class="dd-card">
+        <div class="chal-progress-heading">Quick Setup — New Challenge</div>
+        <div class="field-group"><label class="field-label">Name</label><input class="field-input" id="qsName" placeholder="e.g. October Discipline Challenge"></div>
+
+        <div class="field-group">
+          <label class="field-label">Duration</label>
+          <div class="chip-group" id="qsDurationChips">
+            <button type="button" class="chip" data-duration="14">2 weeks</button>
+            <button type="button" class="chip active" data-duration="30">30 days</button>
+            <button type="button" class="chip" data-duration="42">6 weeks</button>
+            <button type="button" class="chip" data-duration="custom">Custom dates</button>
+          </div>
+        </div>
+        <div id="qsCustomDates" hidden class="chal-admin-3col">
+          <div class="field-group"><label class="field-label">Starts At</label><input type="datetime-local" class="field-input" id="qsStartsAt"></div>
+          <div class="field-group"><label class="field-label">Ends At</label><input type="datetime-local" class="field-input" id="qsEndsAt"></div>
+          <div class="field-group"><label class="field-label">Drawing At</label><input type="datetime-local" class="field-input" id="qsDrawingAt"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Ways to Earn — pick what should count</label>
+          <div class="chal-quick-checklist">
+            ${activityEntries.map(([key, meta]) => `
+              <label class="chal-quick-check-row">
+                <input type="checkbox" data-activity-key="${key}">
+                <span>${meta.icon || ''} ${escapeHtml(meta.label || key)}</span>
+              </label>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Prize (optional — you can add this later)</label>
+          <div class="chal-admin-2col">
+            <input class="field-input" id="qsPrizeName" placeholder="Prize name">
+            <input class="field-input" id="qsPrizeValue" placeholder="Estimated value">
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+          <button type="button" class="dd-primary-btn" id="qsSubmit">Create Challenge</button>
+          <button type="button" class="dd-secondary-btn" id="qsCancel">Cancel</button>
+        </div>
+        <p class="small-help" style="margin-top:10px;">Created as a Draft — review the Official Rules field before activating it.</p>
+      </div>
+    `;
+  }
+
+  function wireQuickSetup() {
+    const chipRow = document.getElementById('qsDurationChips');
+    const customDates = document.getElementById('qsCustomDates');
+    chipRow.querySelectorAll('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        chipRow.querySelectorAll('.chip').forEach((c2) => c2.classList.remove('active'));
+        chip.classList.add('active');
+        customDates.hidden = chip.dataset.duration !== 'custom';
+      });
+    });
+    document.getElementById('qsCancel').addEventListener('click', () => { showingQuickSetup = false; paint(); });
+    document.getElementById('qsSubmit').addEventListener('click', async () => {
+      const name = document.getElementById('qsName').value.trim();
+      if (!name) { alert('Give the challenge a name first.'); return; }
+      const activeDuration = chipRow.querySelector('.chip.active')?.dataset.duration;
+      let startsAt, endsAt, drawingAt;
+      if (activeDuration === 'custom') {
+        const s = document.getElementById('qsStartsAt').value;
+        const e = document.getElementById('qsEndsAt').value;
+        const d = document.getElementById('qsDrawingAt').value;
+        if (!s || !e || !d) { alert('Fill in all three custom dates.'); return; }
+        startsAt = new Date(s).toISOString();
+        endsAt = new Date(e).toISOString();
+        drawingAt = new Date(d).toISOString();
+      } else {
+        const days = Number(activeDuration) || 30;
+        const now = new Date();
+        startsAt = now.toISOString();
+        endsAt = new Date(now.getTime() + days * 86400000).toISOString();
+        drawingAt = new Date(now.getTime() + (days + 1) * 86400000).toISOString();
+      }
+      const checkedActivities = Array.from(document.querySelectorAll('[data-activity-key]:checked')).map((el) => el.dataset.activityKey);
+      const prizeName = document.getElementById('qsPrizeName').value.trim();
+      const prizeValue = document.getElementById('qsPrizeValue').value.trim();
+
+      try {
+        const { challenge } = await adminCreateChallenge({ name, startsAt, endsAt, drawingAt });
+        for (const key of checkedActivities) {
+          const meta = ACTIVITY_TYPE_LABELS[key] || { label: key };
+          await adminUpsertRule({ challengeId: challenge.id, label: meta.label || key, activityType: key, requiredQuantity: 1, pointsAwarded: 5, entriesAwarded: 1 });
+        }
+        if (prizeName) {
+          await adminUpsertPrize({ challengeId: challenge.id, name: prizeName, estimatedValue: prizeValue });
+        }
+        showingQuickSetup = false;
+        activeId = challenge.id;
+        await loadAll();
+      } catch (err) { alert("Couldn't create the challenge — " + err.message); }
+    });
   }
 
   function renderDetail(c) {
     return `
       <div class="dd-card" style="margin-bottom:16px;">
         <div class="chal-progress-heading">Challenge Details</div>
+        ${c.status === 'draft' && (c.rules || []).length > 0 ? `
+          <div class="chal-quick-callout">
+            <span>This challenge is still a Draft — members can't see it yet.</span>
+            <button type="button" class="dd-primary-btn" id="fActivate">✦ Activate This Challenge</button>
+          </div>
+        ` : ''}
         <div class="field-group"><label class="field-label">Name</label><input class="field-input" id="fName" value="${escapeHtml(c.name || '')}"></div>
         <div class="field-group"><label class="field-label">Description</label><textarea class="field-textarea" id="fDescription">${escapeHtml(c.description || '')}</textarea></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="chal-admin-2col">
           <div class="field-group"><label class="field-label">Starts At</label><input type="datetime-local" class="field-input" id="fStartsAt" value="${toLocalInput(c.startsAt)}"></div>
           <div class="field-group"><label class="field-label">Ends At</label><input type="datetime-local" class="field-input" id="fEndsAt" value="${toLocalInput(c.endsAt)}"></div>
           <div class="field-group"><label class="field-label">Drawing At</label><input type="datetime-local" class="field-input" id="fDrawingAt" value="${toLocalInput(c.drawingAt)}"></div>
@@ -103,6 +213,21 @@
       <div class="dd-card" style="margin-bottom:16px;">
         <div class="chal-progress-heading">Entry Rules</div>
         <div id="rulesList">${(c.rules || []).map((r) => renderRuleRow(r)).join('') || '<p class="small-help">No rules yet.</p>'}</div>
+        <div id="addRuleForm" hidden class="chal-add-rule-form">
+          <div class="field-group">
+            <label class="field-label">Activity</label>
+            <select class="field-input" id="fRuleActivity">${Object.entries(ACTIVITY_TYPE_LABELS || {}).map(([key, meta]) => `<option value="${key}">${meta.icon || ''} ${escapeHtml(meta.label || key)}</option>`).join('')}</select>
+          </div>
+          <div class="field-group"><label class="field-label">Label shown to members</label><input class="field-input" id="fRuleLabel"></div>
+          <div class="chal-admin-2col">
+            <div class="field-group"><label class="field-label">Points</label><input type="number" min="0" class="field-input" id="fRulePoints" value="5"></div>
+            <div class="field-group"><label class="field-label">Entries</label><input type="number" min="0" class="field-input" id="fRuleEntries" value="1"></div>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button type="button" class="dd-primary-btn" id="fRuleSave">Save Rule</button>
+            <button type="button" class="dd-secondary-btn" id="fRuleCancel">Cancel</button>
+          </div>
+        </div>
         <button type="button" class="dd-secondary-btn" id="fAddRule" style="margin-top:8px;">+ Add Rule</button>
       </div>
 
@@ -122,7 +247,7 @@
 
       <div class="dd-card" style="margin-bottom:16px;">
         <div class="chal-progress-heading">Manual Entry Adjustment</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="chal-admin-2col">
           <div class="field-group"><label class="field-label">Member User ID</label><input class="field-input" id="fAdjUserId"></div>
           <div class="field-group"><label class="field-label">Entry Amount (±)</label><input type="number" class="field-input" id="fAdjAmount"></div>
         </div>
@@ -217,11 +342,31 @@
       try { await adminSetStatus(c.id, document.getElementById('fStatus').value); await loadAll(); }
       catch (err) { alert("Couldn't change status — " + err.message); }
     });
-    document.getElementById('fAddRule').addEventListener('click', async () => {
-      const label = prompt('Rule label (what a member sees):'); if (!label) return;
-      const activityType = prompt('Activity type key (e.g. lesson_completed):'); if (!activityType) return;
+    document.getElementById('fActivate')?.addEventListener('click', async () => {
+      try { await adminSetStatus(c.id, 'active'); await loadAll(); }
+      catch (err) { alert("Couldn't activate — " + err.message); }
+    });
+    const ruleForm = document.getElementById('addRuleForm');
+    const ruleActivitySelect = document.getElementById('fRuleActivity');
+    const ruleLabelInput = document.getElementById('fRuleLabel');
+    function syncRuleLabelPlaceholder() {
+      const meta = ACTIVITY_TYPE_LABELS[ruleActivitySelect.value];
+      if (meta?.label && !ruleLabelInput.dataset.userEdited) ruleLabelInput.value = meta.label;
+    }
+    ruleActivitySelect.addEventListener('change', syncRuleLabelPlaceholder);
+    ruleLabelInput.addEventListener('input', () => { ruleLabelInput.dataset.userEdited = 'true'; });
+    syncRuleLabelPlaceholder();
+    document.getElementById('fAddRule').addEventListener('click', () => {
+      ruleForm.hidden = !ruleForm.hidden;
+    });
+    document.getElementById('fRuleCancel').addEventListener('click', () => { ruleForm.hidden = true; });
+    document.getElementById('fRuleSave').addEventListener('click', async () => {
+      const activityType = ruleActivitySelect.value;
+      const label = ruleLabelInput.value.trim() || (ACTIVITY_TYPE_LABELS[activityType]?.label || activityType);
+      const pointsAwarded = Number(document.getElementById('fRulePoints').value) || 0;
+      const entriesAwarded = Number(document.getElementById('fRuleEntries').value) || 0;
       try {
-        await adminUpsertRule({ challengeId: c.id, label, activityType, requiredQuantity: 1, pointsAwarded: 5, entriesAwarded: 1 });
+        await adminUpsertRule({ challengeId: c.id, label, activityType, requiredQuantity: 1, pointsAwarded, entriesAwarded });
         await loadAll();
       } catch (err) { alert("Couldn't save rule — " + err.message); }
     });
@@ -253,18 +398,10 @@
     renderWinnersList();
   }
 
-  async function onCreate() {
-    const name = prompt('Challenge name:'); if (!name) return;
-    try {
-      const now = new Date();
-      const starts = now.toISOString();
-      const ends = new Date(now.getTime() + 30 * 86400000).toISOString();
-      const drawing = new Date(now.getTime() + 31 * 86400000).toISOString();
-      const { challenge } = await adminCreateChallenge({ name, startsAt: starts, endsAt: ends, drawingAt: drawing });
-      await loadAll();
-      activeId = challenge.id;
-      await loadDetailData();
-    } catch (err) { alert("Couldn't create the challenge — " + err.message); }
+  function onCreate() {
+    showingQuickSetup = true;
+    activeId = null;
+    paint();
   }
 
   async function loadDetailData() {
