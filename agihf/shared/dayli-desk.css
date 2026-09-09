@@ -521,6 +521,9 @@
 .jh-day-cell.jh-day-missed{background:var(--cream);border-style:dashed;}
 .jh-day-cell.jh-day-empty{background:#fff;}
 
+.jh-week-total{grid-column:1 / -1;text-align:right;font-size:.72rem;font-weight:600;color:var(--muted);padding:2px 6px 10px;}
+.jh-cal-month-total{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:.95rem;font-weight:700;color:var(--dark);text-align:right;}
+
 .jh-cal-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:.72rem;color:var(--muted);align-items:center;}
 .jh-legend-swatch{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:4px;vertical-align:middle;}
 
@@ -530,7 +533,7 @@
 .jh-agenda-pnl{font-weight:700;}
 /* Below 900px, the 7-column month grid gets squeezed and unreadable — swap to a single-column agenda list instead, matching .jh-stats-row's existing breakpoint convention. */
 @media(max-width:900px){
-  .jh-cal-grid.jh-cal-days,.jh-cal-grid.jh-cal-weekdays,.jh-cal-legend{display:none;}
+  .jh-cal-grid.jh-cal-days,.jh-cal-grid.jh-cal-weekdays,.jh-cal-legend,.jh-cal-month-total-grid{display:none;}
   .jh-cal-agenda{display:flex;}
 }
 
