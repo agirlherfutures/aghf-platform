@@ -16,6 +16,7 @@
 
 import { showDeskToast } from './dayli-desk-engine.js';
 import { getWinMediaUrl } from './wins-service.js';
+import { renderAvatar } from './avatar.js';
 import {
   HERO_COPY, STAR_BANNER_COPY, SAMPLE_REVIEWS, WIN_CATEGORIES, WIN_FILTERS, categoryLabel, HEADLINE_EXAMPLES, STORY_PROMPTS,
   WHAT_HELPED_OPTIONS, TESTIMONIAL_PROMPT, MEDIA_TYPES, SENSITIVE_INFO_WARNING, SENSITIVE_INFO_CONFIRM_LABEL,
@@ -58,17 +59,6 @@ function toggleBtn(key, isOpen, labelOpen = 'Hide', labelClosed = 'Show') {
   return `<button type="button" class="cl-toggle-btn" data-toggle-section="${key}">${isOpen ? labelOpen : labelClosed} ${isOpen ? '▴' : '▾'}</button>`;
 }
 
-const AVATAR_PALETTE = ['pink', 'peach', 'teal', 'purple'];
-/** Deterministic initial-letter avatar — no photo asset required, gives
- * every card/review the same warm "real person" visual language. */
-function renderAvatar(name) {
-  const clean = String(name ?? '').trim();
-  const letter = clean ? clean[0].toUpperCase() : '✦';
-  let hash = 0;
-  for (let i = 0; i < clean.length; i += 1) hash = (hash * 31 + clean.charCodeAt(i)) >>> 0;
-  const color = AVATAR_PALETTE[hash % AVATAR_PALETTE.length];
-  return `<span class="win-avatar win-avatar-${color}" aria-hidden="true">${escapeHtml(letter)}</span>`;
-}
 
 /* ── Win card — one function, 6 variants, exactly mirroring
    journal-engine.js's entryToSummaryCardProps()/renderTradeSummaryCard() ── */
