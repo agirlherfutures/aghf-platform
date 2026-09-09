@@ -58,6 +58,18 @@ function toggleBtn(key, isOpen, labelOpen = 'Hide', labelClosed = 'Show') {
   return `<button type="button" class="cl-toggle-btn" data-toggle-section="${key}">${isOpen ? labelOpen : labelClosed} ${isOpen ? '▴' : '▾'}</button>`;
 }
 
+const AVATAR_PALETTE = ['pink', 'peach', 'teal', 'purple'];
+/** Deterministic initial-letter avatar — no photo asset required, gives
+ * every card/review the same warm "real person" visual language. */
+function renderAvatar(name) {
+  const clean = String(name ?? '').trim();
+  const letter = clean ? clean[0].toUpperCase() : '✦';
+  let hash = 0;
+  for (let i = 0; i < clean.length; i += 1) hash = (hash * 31 + clean.charCodeAt(i)) >>> 0;
+  const color = AVATAR_PALETTE[hash % AVATAR_PALETTE.length];
+  return `<span class="win-avatar win-avatar-${color}" aria-hidden="true">${escapeHtml(letter)}</span>`;
+}
+
 /* ── Win card — one function, 6 variants, exactly mirroring
    journal-engine.js's entryToSummaryCardProps()/renderTradeSummaryCard() ── */
 
@@ -105,7 +117,7 @@ export function renderWinCard(props, opts = {}) {
           ? `<div class="win-card-quote">“${escapeHtml(props.testimonial || props.storyShort)}”</div>`
           : props.storyShort ? `<p class="win-card-story">${escapeHtml(props.storyShort)}${props.storyShort.length >= 220 ? '…' : ''}</p>` : ''}
         <div class="win-card-footer">
-          <span class="win-card-name">${escapeHtml(props.displayName)}${props.isVerified ? ' <span class="win-card-verified" title="Verified by AGHF">✓</span>' : ''}</span>
+          <span class="win-card-name">${renderAvatar(props.displayName)}${escapeHtml(props.displayName)}${props.isVerified ? ' <span class="win-card-verified" title="Verified by AGHF">✓</span>' : ''}</span>
           <span class="win-card-date">${props.date}</span>
         </div>
         ${props.showsMoney ? renderRiskDisclosure() : ''}
@@ -129,9 +141,14 @@ export function renderFiveStarBanner() {
 export function renderReviewsScroll(container, reviews = SAMPLE_REVIEWS) {
   const cardsHtml = reviews.map((r) => `
     <div class="win-review-card">
-      <div class="win-review-stars" aria-hidden="true">★★★★★</div>
+      <div class="win-review-top">
+        ${renderAvatar(r.name)}
+        <div>
+          <div class="win-review-name">${escapeHtml(r.name)}</div>
+          <div class="win-review-stars" aria-hidden="true">★★★★★</div>
+        </div>
+      </div>
       <p class="win-review-quote">“${escapeHtml(r.quote)}”</p>
-      <div class="win-review-name">${escapeHtml(r.name)}</div>
     </div>`).join('');
   // Duplicated once so the CSS marquee can loop seamlessly at -50% — skipped
   // for prefers-reduced-motion, where the track never animates and a
@@ -222,7 +239,7 @@ export function renderWinDetailDrawer(container, win, reactionData, handlers) {
         <button type="button" class="win-drawer-close" id="winDrawerClose" aria-label="Close">✕</button>
         <div class="win-drawer-category">${props.categoryLabel}</div>
         <div class="win-drawer-headline">${escapeHtml(props.headline)}</div>
-        <div class="win-drawer-meta">${escapeHtml(props.displayName)}${props.isVerified ? ' · Verified ✓' : ''} · ${props.date}</div>
+        <div class="win-drawer-meta"><span class="win-card-name">${renderAvatar(props.displayName)}${escapeHtml(props.displayName)}</span>${props.isVerified ? ' · Verified ✓' : ''} · ${props.date}</div>
         ${props.screenshotPath ? `<div class="win-drawer-shot" data-win-shot-path="${props.screenshotPath}"></div>` : ''}
         ${props.hasVideo ? `<a class="dd-secondary-btn" href="${escapeHtml(props.videoUrl)}" target="_blank" rel="noopener">▶ Watch the video</a>` : ''}
         ${win.story ? `<p class="win-drawer-story">${escapeHtml(win.story)}</p>` : ''}
@@ -597,7 +614,7 @@ export function renderModerationQueue(container, wins, activeId, onSelect) {
 export function renderModerationDetailPanel(container, win, handlers) {
   if (!win) { container.innerHTML = '<div class="small-help" style="padding:20px;">Select a submission to review.</div>'; return; }
   container.innerHTML = `
-    <div class="dd-card">
+    <div class="dd-card win-mod-detail-card">
       <div class="win-status-badge win-status-${win.status}">${STATUS_LABELS[win.status]?.label || win.status}</div>
       <div class="win-mod-headline">${escapeHtml(win.headline || categoryLabel(win.primaryCategory))}</div>
       <div class="small-help">${categoryLabel(win.primaryCategory)}${win.secondaryCategory ? ` · ${categoryLabel(win.secondaryCategory)}` : ''} · ${escapeHtml(win.displayNameSnapshot || '')}</div>

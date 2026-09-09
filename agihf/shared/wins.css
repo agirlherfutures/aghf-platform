@@ -7,28 +7,60 @@
  * duplicating them.
  */
 
+/* ── Page backdrop (scoped to body.wins-page, never leaks to dashboard.html
+   even though it also links this stylesheet for the embedded win card) ── */
+
+body.wins-page .main{
+  background:
+    radial-gradient(circle at 8% 0%,rgba(244,130,154,.12),transparent 42%),
+    radial-gradient(circle at 92% 8%,rgba(245,168,90,.12),transparent 40%),
+    radial-gradient(circle at 50% 100%,rgba(126,206,196,.09),transparent 42%),
+    var(--bg);
+}
+
+/* ── Shared floating-card look: soft warm gradient fill + two-layer
+   diffused shadow, reused by every card in this section ─────────────── */
+
+.win-avatar{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-family:var(--font-display);font-weight:700;font-size:.8rem;flex-shrink:0;line-height:1;}
+.win-avatar-pink{background:var(--pink-pale);color:var(--pink);}
+.win-avatar-peach{background:var(--peach-pale);color:#a9660f;}
+.win-avatar-teal{background:var(--teal-pale);color:#1f8574;}
+.win-avatar-purple{background:var(--purple-pale);color:var(--purple);}
+
 /* ── Star banner + reviews scroll ─────────────────────────────────────── */
 
-.win-star-banner{text-align:center;padding:22px 16px 6px;}
-.win-star-row{font-size:1.9rem;letter-spacing:.12em;line-height:1;margin-bottom:8px;}
+.win-star-banner{position:relative;text-align:center;padding:26px 16px 10px;}
+.win-star-banner::before{content:'';position:absolute;top:-6px;left:22%;right:22%;height:86px;background:radial-gradient(circle,rgba(245,168,90,.28),transparent 70%);filter:blur(4px);z-index:0;}
+.win-star-row,.win-star-label{position:relative;z-index:1;}
+.win-star-row{font-size:2rem;letter-spacing:.12em;line-height:1;margin-bottom:8px;filter:drop-shadow(0 4px 10px rgba(245,168,90,.35));}
 .win-star-label{font-family:var(--font-display);font-weight:700;font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dark);}
 
-.win-reviews-scroll{overflow:hidden;margin:14px 0 28px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
-.win-reviews-track{display:flex;gap:16px;width:max-content;animation:win-reviews-marquee 32s linear infinite;}
+.win-reviews-scroll{overflow:hidden;margin:14px 0 30px;padding:14px 0 22px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+.win-reviews-track{display:flex;align-items:flex-start;gap:18px;width:max-content;animation:win-reviews-marquee 32s linear infinite;}
 .win-reviews-scroll:hover .win-reviews-track{animation-play-state:paused;}
-.win-review-card{flex:0 0 auto;width:260px;background:var(--warm);border:1px solid rgba(244,130,154,.14);border-radius:18px;padding:18px 20px;box-shadow:0 6px 18px rgba(61,43,32,.06);}
-.win-review-stars{color:var(--peach);font-size:.85rem;letter-spacing:.1em;margin-bottom:8px;}
-.win-review-quote{font-family:var(--font-script,var(--font-display));font-size:1.05rem;color:var(--dark);line-height:1.45;margin:0 0 10px;}
-.win-review-name{font-size:.78rem;font-weight:700;color:var(--muted);}
+.win-review-card{
+  flex:0 0 auto;width:260px;padding:18px 20px;
+  background:linear-gradient(180deg,#fff,var(--warm));
+  border:1px solid rgba(244,130,154,.12);border-radius:22px 22px 22px 6px;
+  box-shadow:0 1px 2px rgba(61,43,32,.04),0 16px 30px -10px rgba(244,130,154,.22);
+}
+.win-review-card:nth-child(3n+1){transform:translateY(-6px);}
+.win-review-card:nth-child(3n+2){transform:translateY(4px);}
+.win-review-card:nth-child(3n+3){transform:translateY(-2px);}
+.win-review-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.win-review-stars{color:var(--peach);font-size:.78rem;letter-spacing:.1em;}
+.win-review-quote{font-family:var(--font-script,var(--font-display));font-size:1.05rem;color:var(--dark);line-height:1.45;margin:0;}
+.win-review-name{font-size:.78rem;font-weight:700;color:var(--text);}
 
 @keyframes win-reviews-marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
 /* ── Hero ─────────────────────────────────────────────────────────────── */
 
 .win-hero{
-  position:relative;overflow:hidden;border-radius:26px;padding:44px 32px;text-align:center;margin-bottom:28px;
+  position:relative;overflow:hidden;border-radius:28px;padding:44px 32px;text-align:center;margin-bottom:28px;
   background:radial-gradient(circle at 15% 15%,var(--pink-pale),transparent 55%),radial-gradient(circle at 85% 10%,var(--peach-pale),transparent 50%),radial-gradient(circle at 50% 100%,var(--teal-pale),transparent 45%),var(--warm);
   border:1px solid rgba(244,130,154,.12);
+  box-shadow:0 1px 2px rgba(61,43,32,.04),0 24px 48px -18px rgba(244,130,154,.22);
 }
 .win-hero-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pink);margin-bottom:10px;}
 .win-hero-title{font-family:var(--font-display);font-style:italic;font-size:2.1rem;color:var(--dark);margin-bottom:6px;}
@@ -42,7 +74,13 @@
 
 .win-featured-strip{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:28px;}
 @media(max-width:820px){.win-featured-strip{grid-template-columns:1fr;}}
-.win-featured-hero .win-card{height:100%;}
+.win-featured-hero{position:relative;padding:0 14px 14px 0;}
+.win-featured-hero::before{
+  content:'';position:absolute;top:10px;left:18px;right:0;bottom:0;
+  background:linear-gradient(135deg,var(--peach-pale),var(--pink-pale));
+  border-radius:22px;transform:rotate(-2deg);z-index:0;
+}
+.win-featured-hero .win-card{position:relative;z-index:1;height:100%;}
 .win-featured-support{display:flex;flex-direction:column;gap:12px;}
 
 /* ── Filters ──────────────────────────────────────────────────────────── */
@@ -56,11 +94,11 @@
 /* ── Win card ─────────────────────────────────────────────────────────── */
 
 .win-card{
-  display:block;width:100%;text-align:left;background:#fff;border-radius:18px;border:1px solid rgba(244,130,154,.1);
-  box-shadow:0 3px 14px rgba(244,130,154,.06);cursor:pointer;padding:0;overflow:hidden;font-family:var(--font-body);
+  display:block;width:100%;text-align:left;background:linear-gradient(180deg,#fff,var(--warm));border-radius:22px;border:1px solid rgba(244,130,154,.1);
+  box-shadow:0 1px 2px rgba(61,43,32,.04),0 14px 30px -10px rgba(244,130,154,.16);cursor:pointer;padding:0;overflow:hidden;font-family:var(--font-body);
   transition:transform .15s ease,box-shadow .15s ease;position:relative;
 }
-.win-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(244,130,154,.14);}
+.win-card:hover{transform:translateY(-3px);box-shadow:0 1px 2px rgba(61,43,32,.05),0 22px 40px -12px rgba(244,130,154,.24);}
 .win-card:focus-visible{outline:2px solid var(--pink);outline-offset:2px;}
 .win-card-featured-badge{position:absolute;top:12px;right:12px;background:linear-gradient(135deg,var(--peach),var(--pink));color:#fff;font-size:.66rem;font-weight:700;padding:4px 10px;border-radius:100px;z-index:1;}
 .win-card-shot{height:150px;background-size:cover;background-position:center;background-color:var(--bg);}
@@ -72,7 +110,7 @@
 .win-card-quote{font-family:var(--font-script,var(--font-display));font-size:1.2rem;color:var(--pink);line-height:1.4;margin:8px 0;}
 .win-card-story{font-size:.85rem;color:var(--text);line-height:1.55;margin:6px 0;}
 .win-card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:.75rem;color:var(--muted);}
-.win-card-name{font-weight:600;color:var(--text);}
+.win-card-name{display:inline-flex;align-items:center;gap:7px;font-weight:600;color:var(--text);}
 .win-card-verified{color:var(--teal);font-weight:700;}
 .win-risk-disclosure{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:.68rem;}
 
@@ -80,7 +118,7 @@
 
 /* ── Empty state ──────────────────────────────────────────────────────── */
 
-.win-empty-state{text-align:center;padding:56px 24px;border-radius:22px;background:radial-gradient(circle at 30% 20%,var(--peach-pale),transparent 55%),var(--warm);border:1.5px dashed var(--pink-light);}
+.win-empty-state{text-align:center;padding:56px 24px;border-radius:26px;background:radial-gradient(circle at 30% 20%,var(--peach-pale),transparent 55%),var(--warm);border:1.5px dashed var(--pink-light);box-shadow:0 1px 2px rgba(61,43,32,.04),0 20px 40px -16px rgba(244,130,154,.16);}
 .win-empty-icon{font-size:2rem;color:var(--pink);margin-bottom:10px;}
 .win-empty-heading{font-family:var(--font-display);font-size:1.3rem;color:var(--dark);margin-bottom:8px;}
 .win-empty-body{max-width:420px;margin:0 auto 20px;color:var(--muted);font-size:.88rem;line-height:1.6;}
@@ -97,7 +135,7 @@
 /* ── Win detail drawer — same shape as journal-calendar-engine.js's .jh-day-drawer ── */
 
 .win-drawer-host{position:fixed;inset:0;background:rgba(44,24,16,.5);z-index:998;display:flex;justify-content:flex-end;}
-.win-drawer{width:min(480px,100%);height:100%;background:var(--cream);padding:28px 24px;overflow-y:auto;position:relative;}
+.win-drawer{width:min(480px,100%);height:100%;background:var(--cream);padding:28px 24px;overflow-y:auto;position:relative;border-radius:28px 0 0 28px;box-shadow:-18px 0 48px -18px rgba(61,43,32,.28);}
 .win-drawer-close{position:absolute;top:16px;right:16px;width:30px;height:30px;border-radius:50%;background:#fff;border:none;cursor:pointer;font-size:14px;}
 .win-drawer-category{font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--pink);margin-top:8px;}
 .win-drawer-headline{font-family:var(--font-display);font-size:1.4rem;color:var(--dark);margin:6px 0;}
@@ -109,6 +147,11 @@
 
 /* ── Wizard ───────────────────────────────────────────────────────────── */
 
+.win-wizard-shell{
+  background:linear-gradient(180deg,#fff,var(--warm));border-radius:26px;
+  box-shadow:0 1px 2px rgba(61,43,32,.04),0 20px 44px -16px rgba(244,130,154,.2);
+  padding:26px 28px;border:1px solid rgba(244,130,154,.1);
+}
 .win-wizard-panel{padding-top:4px;}
 .win-sensitive-warning{background:var(--peach-pale);border-radius:12px;padding:10px 14px;margin-top:6px;}
 .win-media-upload-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:100px;border:1.5px dashed var(--pink-light);background:var(--cream);font-size:.82rem;color:var(--pink);cursor:pointer;}
@@ -136,7 +179,10 @@
 
 /* ── My Wins ──────────────────────────────────────────────────────────── */
 
-.win-my-row{margin-bottom:14px;}
+.dd-card.win-my-row{
+  margin-bottom:14px;background:linear-gradient(180deg,#fff,var(--warm));border-radius:22px;
+  box-shadow:0 1px 2px rgba(61,43,32,.04),0 14px 30px -12px rgba(244,130,154,.16);border:1px solid rgba(244,130,154,.1);
+}
 .win-my-row-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
 .win-my-row-headline{font-family:var(--font-display);font-size:1.05rem;color:var(--dark);margin:4px 0;}
 .win-my-row-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;}
@@ -147,7 +193,14 @@
 
 .win-mod-layout{display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:start;}
 @media(max-width:900px){.win-mod-layout{grid-template-columns:1fr;}}
-.win-mod-queue{max-height:75vh;overflow-y:auto;border-radius:16px;background:#fff;border:1px solid var(--border);}
+.win-mod-queue{
+  max-height:75vh;overflow-y:auto;border-radius:20px;background:linear-gradient(180deg,#fff,var(--warm));
+  border:1px solid rgba(244,130,154,.1);box-shadow:0 1px 2px rgba(61,43,32,.04),0 14px 30px -12px rgba(244,130,154,.14);
+}
+.dd-card.win-mod-detail-card{
+  background:linear-gradient(180deg,#fff,var(--warm));border-radius:22px;border:1px solid rgba(244,130,154,.1);
+  box-shadow:0 1px 2px rgba(61,43,32,.04),0 18px 36px -14px rgba(244,130,154,.18);
+}
 .win-mod-queue-row{display:flex;flex-direction:column;gap:4px;width:100%;text-align:left;padding:12px 16px;border:none;background:none;border-bottom:1px solid var(--border);cursor:pointer;}
 .win-mod-queue-row.active{background:var(--pink-pale);}
 .win-mod-queue-headline{font-size:.85rem;font-weight:600;color:var(--text);}
