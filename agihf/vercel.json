@@ -11,6 +11,10 @@
     { "source": "/api/psychology-profile", "destination": "/api/psychology-data?resource=profile" },
     { "source": "/api/psychology-sessions", "destination": "/api/psychology-data?resource=sessions" },
     { "source": "/api/psychology-playbook", "destination": "/api/psychology-data?resource=playbook" },
-    { "source": "/api/psychology-scenario-attempts", "destination": "/api/psychology-data?resource=scenario-attempts" }
+    { "source": "/api/psychology-scenario-attempts", "destination": "/api/psychology-data?resource=scenario-attempts" },
+    { "source": "/api/wins-submissions", "destination": "/api/wins-data?resource=submissions" },
+    { "source": "/api/wins-media", "destination": "/api/wins-data?resource=media" },
+    { "source": "/api/wins-reactions", "destination": "/api/wins-data?resource=reactions" },
+    { "source": "/api/wins-moderation", "destination": "/api/wins-data?resource=moderation" }
   ]
 }

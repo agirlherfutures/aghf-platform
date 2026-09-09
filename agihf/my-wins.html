@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Wins — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+<link rel="stylesheet" href="shared/wins.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="leaderboard"></script>
+
+<main class="main">
+  <div class="pg-eye">✦ My Wins</div>
+  <div class="pg-title">My Wins</div>
+  <div class="small-help" style="margin:-8px 0 18px;">Every win you’ve shared, and where it stands. Nothing appears publicly until the AGHF team reviews it.</div>
+  <div style="margin-bottom:18px;"><a class="dd-primary-btn" href="share-win-flow.html">Share My Win</a> <a class="dd-secondary-btn" href="share-win.html">Explore Community Wins</a></div>
+  <div id="myWinsRoot"></div>
+</main>
+
+<script type="module">
+  let listMyWins, withdrawWin, updateConsent;
+  let renderMyWinsList;
+
+  const root = document.getElementById('myWinsRoot');
+
+  function renderFallbackError(err) {
+    console.error('My Wins page failed to load:', err);
+    root.innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading your wins</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
+
+  async function load() {
+    try {
+      const wins = await listMyWins();
+      renderMyWinsList(root, wins, {
+        onWithdraw: async (id) => { await withdrawWin(id); load(); },
+        onUpdateConsent: async (id, consent) => { await updateConsent(id, consent); load(); },
+      });
+    } catch (err) {
+      console.error('My Wins load error:', err);
+      renderFallbackError(err);
+    }
+  }
+
+  async function boot() {
+    try {
+      ({ listMyWins, withdrawWin, updateConsent } = await import('./shared/wins-service.js'));
+      ({ renderMyWinsList } = await import('./shared/wins-engine.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+    load();
+  }
+
+  document.addEventListener('aghf-auth-ready', boot);
+</script>
+
+</body>
+</html>

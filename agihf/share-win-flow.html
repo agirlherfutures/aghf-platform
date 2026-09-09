@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share My Win — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+<link rel="stylesheet" href="shared/wins.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="leaderboard"></script>
+
+<main class="main">
+  <div id="winFlowRoot"></div>
+</main>
+
+<script type="module">
+  let getWin, saveDraft, submitWin, uploadWinMedia;
+  let renderShareWinWizard;
+  let burst;
+
+  const root = document.getElementById('winFlowRoot');
+  const params = new URLSearchParams(window.location.search);
+
+  function renderFallbackError(err) {
+    console.error('Share My Win flow failed to load:', err);
+    root.innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading this page</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
+
+  function freshDraft() {
+    const draft = {
+      primaryCategory: null, secondaryCategory: null, headline: '', story: '',
+      whatHelped: [], favoriteFeature: '', testimonialText: '',
+      media: [], videoUrl: '', sensitiveInfoConfirmed: false,
+      rating: null, reviewText: '', loveMost: '', improvementFeedback: '',
+      displayNamePreference: 'first_name_last_initial',
+      consent: { winWall: false, communityFeature: false, socialMedia: false, websitePromo: false, privateOnly: false },
+    };
+    if (params.get('fromJournalEntryId')) { draft.linkedJournalEntryId = params.get('fromJournalEntryId'); draft.primaryCategory = 'clean_execution_day'; }
+    if (params.get('fromDate')) { draft.primaryCategory = 'clean_execution_day'; }
+    if (params.get('fromEvalPlanId')) { draft.linkedEvalPlanId = params.get('fromEvalPlanId'); draft.primaryCategory = 'passed_evaluation'; }
+    return draft;
+  }
+
+  let handle = null;
+  let saveTimer = null;
+
+  function autosave(draft) {
+    handle.setSaveStatus('saving');
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(async () => {
+      try {
+        const saved = await saveDraft(draft);
+        handle.setSaveStatus('saved');
+        if (saved?.id && !params.get('id')) params.set('id', saved.id); // so a mid-flow reload resumes the same draft
+      } catch (err) {
+        console.error('Win draft autosave error:', err);
+        handle.setSaveStatus('error');
+      }
+    }, 700);
+  }
+
+  async function startPage(draft) {
+    handle = renderShareWinWizard(root, draft, {
+      onChange: (next) => { draft = next; autosave(next); },
+      onSaveDraft: (d) => saveDraft(d),
+      onSubmit: (d) => submitWin(d),
+      onUploadMedia: (file) => uploadWinMedia(file, draft.id || null),
+      onSubmitted: (result) => {
+        clearTimeout(saveTimer);
+        if (result?.gpAwarded > 0) burst();
+        setTimeout(() => { window.location.href = 'my-wins.html'; }, 900);
+      },
+      saveStatus: 'saved',
+    });
+  }
+
+  async function boot() {
+    try {
+      ({ getWin, saveDraft, submitWin, uploadWinMedia } = await import('./shared/wins-service.js'));
+      ({ renderShareWinWizard } = await import('./shared/wins-engine.js'));
+      ({ burst } = await import('./shared/lesson-engine.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+
+    const id = params.get('id');
+    let draft = freshDraft();
+    if (id) {
+      try {
+        const existing = await getWin(id);
+        if (existing) draft = { ...draft, ...existing };
+      } catch (err) {
+        console.error('Load win draft error:', err);
+      }
+    }
+    startPage(draft);
+  }
+
+  document.addEventListener('aghf-auth-ready', boot);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Win Moderation — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+<link rel="stylesheet" href="shared/wins.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="leaderboard"></script>
+
+<main class="main">
+  <div class="pg-eye">✦ Admin</div>
+  <div class="pg-title">Win Moderation</div>
+  <div class="small-help" style="margin:-8px 0 18px;">Only visible to AGHF administrators. Every action here is checked again on the server — this page's own gate is a convenience, not the real one.</div>
+  <div id="adminWinsRoot"></div>
+</main>
+
+<script type="module">
+  let listModerationQueue, moderationAction;
+  let renderModerationQueue, renderModerationDetailPanel;
+
+  const root = document.getElementById('adminWinsRoot');
+  let queue = [];
+  let activeId = null;
+
+  function renderFallbackError(err) {
+    console.error('Win Moderation page failed to load:', err);
+    root.innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading the moderation console</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
+
+  function renderNotAuthorized() {
+    root.innerHTML = `
+      <div style="max-width:480px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Not authorized</div>
+        <div style="font-size:.88rem;color:#7A5C50;">This page is for AGHF administrators only.</div>
+      </div>`;
+  }
+
+  function paint() {
+    root.innerHTML = `<div class="win-mod-layout">
+      <div class="win-mod-queue" id="modQueue"></div>
+      <div id="modDetail"></div>
+    </div>`;
+    renderModerationQueue(root.querySelector('#modQueue'), queue, activeId, (id) => { activeId = id; paint(); });
+    renderModerationDetailPanel(root.querySelector('#modDetail'), queue.find((w) => w.id === activeId) || null, { onAction });
+  }
+
+  async function onAction(id, action, payload) {
+    try {
+      await moderationAction(id, action, payload);
+      await loadQueue();
+    } catch (err) {
+      console.error('Moderation action error:', err);
+      alert("Couldn't complete that action — try again in a moment.");
+    }
+  }
+
+  async function loadQueue() {
+    queue = await listModerationQueue();
+    if (!queue.find((w) => w.id === activeId)) activeId = queue[0]?.id || null;
+    paint();
+  }
+
+  async function boot() {
+    try {
+      ({ listModerationQueue, moderationAction } = await import('./shared/wins-service.js'));
+      ({ renderModerationQueue, renderModerationDetailPanel } = await import('./shared/wins-engine.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+
+    try {
+      if (window.AGHF_DEMO) {
+        // Demo mode has no real profile/admin concept — treat every demo
+        // session as an admin so the console can be clicked through.
+        await loadQueue();
+        return;
+      }
+      const { profile } = await window.AGHF_FETCH_PROFILE();
+      if (!profile?.is_admin) { renderNotAuthorized(); return; }
+      await loadQueue();
+    } catch (err) {
+      console.error('Win Moderation profile check error:', err);
+      renderFallbackError(err);
+    }
+  }
+
+  document.addEventListener('aghf-auth-ready', boot);
+</script>
+
+</body>
+</html>

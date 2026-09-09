@@ -140,6 +140,7 @@ const ACTION_DESTINATIONS = {
   create_practice_plan: { cta: 'Save to My Playbook', saved: 'Saved to your Playbook ✦' },
   update_current_focus: { cta: 'Add to Dashboard', saved: 'Added to your Dayli Desk dashboard ✦' },
   save_conversation_summary: { cta: 'Save This', saved: 'Saved ✦' },
+  propose_win_share: { cta: 'Draft This as a Win', saved: 'Saved as a private draft — finish it anytime in My Wins ✦' },
 };
 
 function renderWritePreviewCard(result, helpers) {

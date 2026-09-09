@@ -282,9 +282,37 @@ function detectChecklistCompletionEffect(trades, checklists) {
   };
 }
 
+/**
+ * Pattern: walking away from — or exiting per-rule out of — a setup rather
+ * than forcing it. This is a genuine discipline win, not a risk to flag;
+ * it's the one detector this file feeds to Share My Win (via
+ * agent-tools.js's propose_win_share action) rather than to a coaching
+ * concern. Same MIN_SAMPLE gate as every other detector — never proposed
+ * below real evidence.
+ */
+function detectWalkedAwayStreak(trades) {
+  const flagged = trades.filter((t) =>
+    (t.exitTags || []).includes('Trade Invalidated')
+    || (t.exitTags || []).includes('Rule-Based Exit')
+    || (t.ruleCheck === 'yes' && isLoss(t)));
+  if (flagged.length < MIN_SAMPLE) return null;
+  return {
+    patternType: 'walked_away_discipline_streak',
+    evidenceCount: flagged.length,
+    supportingRecordIds: flagged.map((t) => t.id),
+    evidenceWindow: dateRangeOf(trades),
+    observedFacts: `${flagged.length} trades showed a rule-based or invalidation-driven exit rather than forcing the outcome.`,
+    possibleInterpretation: 'This looks like a real discipline pattern worth naming — sticking to the plan even when it meant walking away.',
+    evidenceStrength: evidenceStrengthForCount(flagged.length),
+    recommendedLessonId: null,
+    recommendedPromptKey: 'walked_away_win',
+  };
+}
+
 const DETECTORS = [
   detectPostLossLowerStandards, detectCuttingWinnersEarly, detectMovingStops, detectOversizingAfterWins,
   detectEntriesAgainstSavedBias, detectEntriesDuringConsolidation, detectProfitableRuleViolations, detectRepeatedLimitBypass,
+  detectWalkedAwayStreak,
 ];
 
 /**

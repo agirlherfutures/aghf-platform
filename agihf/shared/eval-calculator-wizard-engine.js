@@ -459,6 +459,10 @@ function renderWelcomeBackCard(plan) {
     <div class="eval-wizard-panel">
       <div class="pg-eye">✦ ${WELCOME_BACK.heading}</div>
       <div class="eval-step-heading">${WELCOME_BACK.sub}</div>
+      ${plan.status === 'passed' ? `<div class="dd-card" style="margin-top:14px;background:var(--teal-pale);border-color:var(--teal);">
+        <strong>You passed! ✦</strong> That’s a real win worth celebrating.
+        <a class="dd-secondary-btn" style="margin-left:10px;" href="share-win-flow.html?fromEvalPlanId=${plan.id}">Share Your Win</a>
+      </div>` : ''}
       <div class="dd-card eval-welcome-card" style="margin-top:18px;">
         <div class="jh-stats-row">
           ${statTile('Account Size', fmtMoney(plan.accountSize))}

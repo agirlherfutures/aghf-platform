@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/components.css">
 <link rel="stylesheet" href="shared/dayli-desk.css">
+<link rel="stylesheet" href="shared/wins.css">
 </head>
 <body>
 
@@ -100,6 +101,11 @@
     <div class="dd-card" id="ddTrades"></div>
   </div>
 
+  <!-- 9b. Share My Win -->
+  <div class="dd-section dd-order-9">
+    <div class="dd-card" id="ddShareWin"></div>
+  </div>
+
   <!-- 10. Consistency + Journey -->
   <div class="dd-section dd-order-9">
     <div class="dd-card" id="ddConsistency"></div>
@@ -131,6 +137,8 @@
     renderAskAgentCard, renderSkeleton, renderErrorState;
   let getPsychologyProfile;
   let listConversations;
+  let listPublicWins;
+  let renderShareWinCard;
   let p1, allP1Lessons, totalLessonsAllPhases;
 
   function renderFallbackError(err) {
@@ -243,6 +251,17 @@
     }
   }
 
+  async function loadShareWinCard() {
+    const container = document.getElementById('ddShareWin');
+    try {
+      const featured = await listPublicWins({ sort: 'featured', limit: 1 });
+      renderShareWinCard(container, featured.find((w) => w.status === 'featured') || null);
+    } catch (err) {
+      console.error('Share My Win card load error:', err);
+      renderShareWinCard(container, null); // an invite, not a critical card — degrade quietly rather than showing an error state
+    }
+  }
+
   async function loadConsistency() {
     const container = document.getElementById('ddConsistency');
     try {
@@ -348,6 +367,7 @@
     loadRecentTrades();
     loadConsistency();
     loadAskAgentCard();
+    loadShareWinCard();
 
     try {
       const consistency = await computeConsistencyScore();
@@ -383,6 +403,8 @@
       } = await import('./shared/dayli-desk-engine.js'));
       ({ getPsychologyProfile } = await import('./shared/psychology-service.js'));
       ({ listConversations } = await import('./shared/agent-service.js'));
+      ({ listPublicWins } = await import('./shared/wins-service.js'));
+      ({ renderShareWinCard } = await import('./shared/wins-engine.js'));
     } catch (err) {
       renderFallbackError(err);
       return;

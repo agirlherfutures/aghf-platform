@@ -79,7 +79,7 @@ create table if not exists agent_actions (
   user_id uuid not null references auth.users(id) on delete cascade,
   conversation_id uuid references agent_conversations(id) on delete cascade,
   action_type text not null check (action_type in
-    ('create_if_then_rule', 'add_playbook_insight', 'update_current_focus', 'create_practice_plan', 'save_conversation_summary')),
+    ('create_if_then_rule', 'add_playbook_insight', 'update_current_focus', 'create_practice_plan', 'save_conversation_summary', 'propose_win_share')),
   preview_payload jsonb not null default '{}',
   approval_status text not null default 'preview'
     check (approval_status in ('preview', 'approved', 'declined', 'executed', 'expired')),

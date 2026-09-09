@@ -153,6 +153,7 @@ export function showToast(title, sub) {
 }
 
 export function burst() {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const cols = ['#F4829A', '#7ECEC4', '#F5A857', '#F9B8C6', '#B2E4DF', '#FAD09A'];
   for (let i = 0; i < 32; i++) {
     const p = document.createElement('div');

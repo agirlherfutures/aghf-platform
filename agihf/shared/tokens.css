@@ -15,6 +15,11 @@
   --border:#F1E7E1;--placeholder:#C9B9AE;
   --font-display:'Playfair Display',serif;
   --font-body:'DM Sans',sans-serif;
+  /* Used only by the Share My Win quote-card variant. Its Google Fonts
+   * <link> (family=Caveat:wght@600) is added only to the wins pages that
+   * render that variant — not loaded globally — so it never affects any
+   * other page's font-loading cost. */
+  --font-script:'Caveat',cursive;
 }
 
 /* Crossfades full-page navigations in supporting (Chromium-based) browsers
