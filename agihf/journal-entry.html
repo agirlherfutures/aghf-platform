@@ -34,6 +34,7 @@
   const root = document.getElementById('jeRoot');
   const params = new URLSearchParams(window.location.search);
   const entryId = params.get('id');
+  const prefillTradeDate = params.get('tradeDate');
 
   function renderFallbackError(err) {
     console.error('Journal entry page failed to load:', err);
@@ -74,7 +75,7 @@
 
   function freshEntry() {
     return {
-      entryType: 'trade', tradeDate: todayKey(), direction: null,
+      entryType: 'trade', tradeDate: prefillTradeDate || todayKey(), direction: null,
       exits: [], methodQualityTags: [], ruleViolations: [], screenshots: [], emotions: {},
       entryTags: [], exitTags: [], lessons: [], iccChecklist: null, isDraft: true,
     };
