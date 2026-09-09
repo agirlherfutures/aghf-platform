@@ -48,12 +48,17 @@
     if (!cards.length) {
       el.innerHTML = `<div class="dd-card dd-empty"><div class="dd-empty-icon">❦</div><div class="dd-empty-text">Nothing saved yet — finish a lesson and tap "Save to My Playbook" to build your reference set here.</div><a class="dd-primary-btn" href="lessons.html">Go to Academy</a></div>`;
     } else {
-      el.innerHTML = `<div class="dd-playbook-grid">${cards.map((c) => `
+      el.innerHTML = `<div class="dd-playbook-grid">${cards.map((c) => {
+        const [phase, n] = String(c.lessonId || '').split('-');
+        const lessonHref = phase && n ? `lesson.html?phase=${encodeURIComponent(phase)}&n=${encodeURIComponent(n)}` : null;
+        return `
         <div class="dd-playbook-card">
           <div class="dd-playbook-title">${c.title}</div>
           <ul class="dd-playbook-checklist">${(c.checklist || []).map((i) => `<li>${i}</li>`).join('')}</ul>
           ${c.remember ? `<div class="dd-playbook-remember">🎀 ${c.remember}</div>` : ''}
-        </div>`).join('')}</div>`;
+          ${lessonHref ? `<a class="dd-section-link" style="display:inline-block;margin-top:10px;" href="${lessonHref}">View This Lesson →</a>` : ''}
+        </div>`;
+      }).join('')}</div>`;
     }
   })();
 </script>
