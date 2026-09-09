@@ -29,16 +29,23 @@
 
   <div class="dd-snapshot-stats" style="margin-bottom:16px;" id="jhStats"></div>
 
+  <div id="jhCalCard" style="margin-bottom:16px;"></div>
+
   <div class="dd-section-head">
     <div class="dd-section-title">Recent Entries</div>
     <a class="dd-section-link" href="journal-history.html">View Journal History →</a>
   </div>
   <div class="dd-card" id="jhRecent"></div>
+
+  <div id="jhDrawerRoot"></div>
 </main>
 
 <script type="module">
   let getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS;
   let openJournalModal, renderRecentTrades, renderSkeleton, renderErrorState;
+  let listEntries, listChecklists, listEvalPlans, hydrateTscShots;
+  let groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid;
+  let renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer;
 
   function renderFallbackError(err) {
     console.error('Journal hub failed to load:', err);
@@ -74,8 +81,13 @@
 
   async function boot() {
     try {
-      ({ getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS } = await import('./shared/journal-service.js'));
+      ({ getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS, listEntries } = await import('./shared/journal-service.js'));
       ({ openJournalModal, renderRecentTrades, renderSkeleton, renderErrorState } = await import('./shared/dayli-desk-engine.js'));
+      ({ listChecklists } = await import('./shared/checklist-service.js'));
+      ({ listEvalPlans } = await import('./shared/eval-service.js'));
+      ({ hydrateTscShots } = await import('./shared/journal-engine.js'));
+      ({ groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid } = await import('./shared/journal-calendar-math.js'));
+      ({ renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer } = await import('./shared/journal-calendar-engine.js'));
     } catch (err) {
       renderFallbackError(err);
       return;
@@ -91,6 +103,88 @@
     });
 
     load();
+    paintCalCard(); // independent — a slower fetch (500 entries/checklists/plans) shouldn't hold up the rest of the hub
+  }
+
+  /* ── Compact current-month calendar, above Recent Entries ──────────
+   * Reuses the exact same aggregation/render functions as journal-history.html's
+   * full Calendar view — no account/instrument filters or eval-plan strip here,
+   * just a quick-glance month grid; "View Journal History" is still the way to
+   * reach the full filterable version. */
+  const today = new Date();
+  let calYear = today.getFullYear();
+  let calMonth = today.getMonth();
+  let calAllEntries = null;
+  let calAllChecklists = null;
+  let calActivePlan = null;
+
+  async function apiFetch(path, opts = {}) {
+    const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
+    if (window.AGHF_SESSION_TOKEN) headers.Authorization = `Bearer ${window.AGHF_SESSION_TOKEN}`;
+    const res = await fetch(path, { ...opts, headers });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(body.error || `Request failed (${res.status})`);
+    return body;
+  }
+
+  async function ensureCalData() {
+    if (calAllEntries && calAllChecklists) return;
+    const [{ entries }, checklists, plans] = await Promise.all([
+      listEntries({ entryType: 'trade', limit: 500 }),
+      listChecklists(500),
+      listEvalPlans().catch(() => []),
+    ]);
+    calAllEntries = entries;
+    calAllChecklists = checklists;
+    calActivePlan = plans.find((p) => p.isActive) || null;
+  }
+
+  function monthAggregates(year, month) {
+    const byDay = groupEntriesByDay(calAllEntries);
+    const checklistsByDay = groupChecklistsByDay(calAllChecklists);
+    const prefix = `${year}-${String(month + 1).padStart(2, '0')}`;
+    const aggregatesByDate = new Map();
+    for (const [date, trades] of byDay.entries()) {
+      if (!date.startsWith(prefix)) continue;
+      aggregatesByDate.set(date, computeDayAggregate(date, trades, checklistsByDay.get(date) || []));
+    }
+    for (const [date, checklistsForDay] of checklistsByDay.entries()) {
+      if (!date.startsWith(prefix) || aggregatesByDate.has(date)) continue;
+      aggregatesByDate.set(date, computeDayAggregate(date, [], checklistsForDay));
+    }
+    return aggregatesByDate;
+  }
+
+  async function paintCalCard() {
+    const calEl = document.getElementById('jhCalCard');
+    renderSkeleton(calEl, 1);
+    try {
+      await ensureCalData();
+      const aggregatesByDate = monthAggregates(calYear, calMonth);
+      const grid = computeMonthGrid(calYear, calMonth, aggregatesByDate);
+      const monthLabel = new Date(calYear, calMonth, 1).toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+      renderCalendarView(calEl, { year: calYear, month: calMonth, grid, monthLabel }, {
+        onPrev: () => { calMonth -= 1; if (calMonth < 0) { calMonth = 11; calYear -= 1; } paintCalCard(); },
+        onNext: () => { calMonth += 1; if (calMonth > 11) { calMonth = 0; calYear += 1; } paintCalCard(); },
+        onToday: () => { const t = new Date(); calYear = t.getFullYear(); calMonth = t.getMonth(); paintCalCard(); },
+        onSelectDay: (date) => openDayDrawer(date, aggregatesByDate),
+        onCreateEntryForDate: () => {},
+      });
+    } catch (err) {
+      console.error('Journal hub calendar load error:', err);
+      renderErrorState(calEl, err.message || "Couldn't load your calendar.", paintCalCard);
+    }
+  }
+
+  function openDayDrawer(date, aggregatesByDate) {
+    const aggregate = aggregatesByDate.get(date) || { date, tradeCount: 0, netPnl: null, wins: 0, losses: 0, breakeven: 0, cleanExecution: null, journalComplete: null, missedSetup: false };
+    const trades = calAllEntries.filter((e) => e.tradeDate === date);
+    const drawerRoot = document.getElementById('jhDrawerRoot');
+    renderTradeDayDrawer(drawerRoot, { date, aggregate, trades, plan: calActivePlan }, {
+      onClose: () => closeTradeDayDrawer(drawerRoot),
+      apiFetch,
+    });
+    hydrateTscShots(drawerRoot, apiFetch);
   }
 </script>
 
