@@ -19,6 +19,11 @@
   <div class="pg-eye">◔ How you're actually doing</div>
   <div class="pg-title">Performance</div>
 
+  <div class="jh-stats-row" style="margin-bottom:22px;">
+    <div class="dd-card" id="ddEvalPlanCard" style="grid-column:span 2;"></div>
+    <div class="dd-card" id="ddCalendarLinkCard" style="grid-column:span 2;"></div>
+  </div>
+
   <div class="dd-section">
     <div class="dd-section-head"><div class="dd-section-title">Today's Consistency</div></div>
     <div class="dd-card" id="ddConsistencyFull"></div>
@@ -41,6 +46,8 @@
   let listChecklists;
   let computeConsistencyScore;
   let renderConsistencyScore, renderJourneySummary, renderErrorState;
+  let listEvalPlans;
+  let computeProfitTargetDollar, computeRemainingProfitTarget, computeDrawdownLimitDollar, computeRemainingDrawdown;
 
   function renderFallbackError(err) {
     console.error('Performance page failed to load:', err);
@@ -91,6 +98,43 @@
     ]);
   }
 
+  async function loadEvalPlanCard() {
+    const el = document.getElementById('ddEvalPlanCard');
+    try {
+      const plans = await listEvalPlans();
+      const active = plans.find((p) => p.isActive);
+      if (!active) {
+        el.innerHTML = `
+          <div class="section-title" style="margin-bottom:6px;">Your Eval Plan</div>
+          <div class="small-help" style="margin-bottom:14px;">No active plan yet — build one to track your progress toward passing.</div>
+          <a class="dd-primary-btn" href="eval-calculator.html">Open Eval Calculator</a>`;
+        return;
+      }
+      const target = computeProfitTargetDollar(active);
+      const remainingTarget = computeRemainingProfitTarget(active);
+      const ddLimit = computeDrawdownLimitDollar(active);
+      const remainingDd = computeRemainingDrawdown(active);
+      el.innerHTML = `
+        <div class="section-title" style="margin-bottom:10px;">Your Eval Plan: ${active.name}</div>
+        <div class="jh-stats-row">
+          <div class="jh-stat-tile hero"><div class="jh-stat-label">Remaining Target</div><div class="jh-stat-value">${target != null ? '$' + Math.round(remainingTarget).toLocaleString() : '—'}</div></div>
+          <div class="jh-stat-tile"><div class="jh-stat-label">Remaining Drawdown</div><div class="jh-stat-value">${ddLimit != null ? '$' + Math.round(remainingDd).toLocaleString() : 'Not Sure'}</div></div>
+        </div>
+        <a class="dd-secondary-btn" href="eval-calculator.html" style="margin-top:12px;display:inline-block;">View Full Calculator</a>`;
+    } catch (err) {
+      console.error('Eval plan card load error:', err);
+      el.innerHTML = `<div class="section-title" style="margin-bottom:6px;">Your Eval Plan</div><div class="small-help">Couldn't load your plan right now.</div>`;
+    }
+  }
+
+  function loadCalendarLinkCard() {
+    const el = document.getElementById('ddCalendarLinkCard');
+    el.innerHTML = `
+      <div class="section-title" style="margin-bottom:6px;">Trade Journal Calendar</div>
+      <div class="small-help" style="margin-bottom:14px;">See your trading days at a glance — profit, loss, and Clean Execution, month by month.</div>
+      <a class="dd-primary-btn" href="journal-history.html?view=calendar">View Full Calendar</a>`;
+  }
+
   document.addEventListener('aghf-auth-ready', boot);
 
   async function boot() {
@@ -100,12 +144,16 @@
       ({ listChecklists } = await import('./shared/checklist-service.js'));
       ({ computeConsistencyScore } = await import('./shared/consistency-service.js'));
       ({ renderConsistencyScore, renderJourneySummary, renderErrorState } = await import('./shared/dayli-desk-engine.js'));
+      ({ listEvalPlans } = await import('./shared/eval-service.js'));
+      ({ computeProfitTargetDollar, computeRemainingProfitTarget, computeDrawdownLimitDollar, computeRemainingDrawdown } = await import('./shared/eval-calculator-math.js'));
     } catch (err) {
       renderFallbackError(err);
       return;
     }
     loadConsistency();
     loadJourney();
+    loadEvalPlanCard();
+    loadCalendarLinkCard();
   }
 </script>
 

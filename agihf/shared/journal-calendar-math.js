@@ -171,3 +171,19 @@ export function computeMonthSummary(dayAggregates, opts = {}) {
     journalingStreak: opts.journalingStreak ?? null,
   };
 }
+
+/**
+ * Calm, non-shaming comparison of one day's actuals against an active eval
+ * plan's own daily rules — never derived for a day with zero trades (an
+ * empty day is never "within plan" or "exceeded," it's just empty).
+ * @returns {{riskStatus:'within_plan'|'risk_exceeded', tradeCountStatus:'within_plan'|'trade_limit_exceeded', journalStatus:'complete'|'incomplete'|'not_enough_data'}|null}
+ */
+export function classifyDayVsPlan(aggregate, plan) {
+  if (!plan || !aggregate || !aggregate.tradeCount) return null;
+  const riskStatus = plan.dailyLossLimit != null && aggregate.netPnl < 0 && Math.abs(aggregate.netPnl) > plan.dailyLossLimit
+    ? 'risk_exceeded' : 'within_plan';
+  const tradeCountStatus = plan.maxTradesPerDay != null && aggregate.tradeCount > plan.maxTradesPerDay
+    ? 'trade_limit_exceeded' : 'within_plan';
+  const journalStatus = aggregate.journalComplete == null ? 'not_enough_data' : aggregate.journalComplete ? 'complete' : 'incomplete';
+  return { riskStatus, tradeCountStatus, journalStatus };
+}
