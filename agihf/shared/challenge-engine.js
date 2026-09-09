@@ -25,9 +25,28 @@ import {
   ENTRY_STATUS_LABELS, PROGRESS_COPY, ENTRY_LEDGER_EMPTY_STATE,
   PREVIOUS_WINNERS_EMPTY_STATE, WEEKLY_MOMENTUM_LABELS, NOTIFICATION_TYPE_META,
 } from './challenge-copy.js';
+import { renderAvatar } from './avatar.js';
 
 function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+/** A small colored-circle bubble around an emoji, mirroring renderAvatar's
+ * markup shape but for an icon instead of an initial letter. */
+function renderIconBubble(icon) {
+  return `<span class="chal-way-icon-bubble" aria-hidden="true">${icon}</span>`;
+}
+
+/** Reusable warm empty-state card (dashed border + radial glow, matching
+ * wins.css's .win-empty-state) — used everywhere Monthly Challenge has
+ * genuinely nothing real to show yet. Never fabricates a row; only
+ * upgrades how "nothing yet" is presented. */
+function renderChalEmptyState(icon, heading, body) {
+  return `<div class="chal-empty-state">
+    <div class="chal-empty-icon" aria-hidden="true">${icon}</div>
+    <div class="chal-empty-heading">${heading}</div>
+    <p class="chal-empty-body">${body}</p>
+  </div>`;
 }
 
 function fmtDate(iso) {
@@ -102,6 +121,7 @@ export function renderCountdownHero(container, challenge) {
   }
 
   container.innerHTML = `<div class="chal-hero chal-hero-${stateKey || 'default'}">
+    <span class="chal-hero-sparkle s1" aria-hidden="true">✦</span><span class="chal-hero-sparkle s2" aria-hidden="true">✦</span><span class="chal-hero-sparkle s3" aria-hidden="true">✧</span>
     <div class="chal-hero-eyebrow">${HERO_COPY.eyebrow}</div>
     <h1 class="chal-hero-title">${escapeHtml(challenge.name)}</h1>
     <p class="chal-hero-tagline">${HERO_COPY.tagline}</p>
@@ -151,7 +171,7 @@ export function renderWaysToEarnList(container, rules) {
       const meta = ACTIVITY_TYPE_LABELS[r.activityType] || { label: r.label, icon: '✦' };
       const qty = r.requiredQuantity > 1 ? ` × ${r.requiredQuantity}` : '';
       return `<div class="chal-way-row">
-        <span class="chal-way-icon">${meta.icon}</span>
+        ${renderIconBubble(meta.icon)}
         <span class="chal-way-label">${escapeHtml(r.label || meta.label)}${qty}</span>
         <span class="chal-way-reward">+${r.entriesAwarded} ${r.entriesAwarded === 1 ? 'entry' : 'entries'}</span>
       </div>`;
@@ -189,7 +209,7 @@ export function renderLeaderboardTable(container, result) {
   const { category, rows, yourPosition, optedIn } = result || {};
   const rowHtml = (r, isSelf) => `<div class="chal-lb-row ${isSelf ? 'is-self' : ''}">
     <span class="chal-lb-rank">${r.rank ?? '—'}</span>
-    <span class="chal-lb-name">${r.showAvatar === false ? '' : '✦ '}${escapeHtml(r.displayName || 'A Member')}${r.level ? ` <span class="chal-lb-level">${escapeHtml(r.level)}</span>` : ''}</span>
+    <span class="chal-lb-name">${r.showAvatar === false ? '' : renderAvatar(r.displayName)}${escapeHtml(r.displayName || 'A Member')}${r.level ? ` <span class="chal-lb-level">${escapeHtml(r.level)}</span>` : ''}</span>
     <span class="chal-lb-points">${r.points}</span>
   </div>`;
 
@@ -197,12 +217,12 @@ export function renderLeaderboardTable(container, result) {
     ? `<div class="chal-lb-your-position chal-lb-private"><span>Your ranking is private.</span> <a href="#" data-open-prefs>Show it publicly →</a></div>`
     : (yourPosition
       ? `<div class="chal-lb-your-position">${rowHtml(yourPosition, true)}</div>`
-      : `<div class="chal-lb-your-position"><span class="small-help">Complete a qualifying activity to appear here.</span></div>`);
+      : renderChalEmptyState('✦', 'Not ranked yet', 'Complete a qualifying activity to appear here.'));
 
   container.innerHTML = `<div class="chal-leaderboard-table" data-category="${category}">
     ${(rows || []).length
       ? (rows || []).map((r) => rowHtml(r, r.userId === yourPosition?.userId)).join('')
-      : `<p class="small-help">No one has opted into ${leaderboardCategoryLabel(category)} yet — be the first.</p>`}
+      : renderChalEmptyState('✦', 'No rankings yet', `No one has opted into ${leaderboardCategoryLabel(category)} yet — be the first.`)}
     <div class="chal-lb-your-position-wrap">${yourRowHtml}</div>
   </div>`;
 }
@@ -226,7 +246,7 @@ export function winnerToCardProps(winner) {
 export function renderWinnerCard(props) {
   return `<div class="chal-winner-card">
     <div class="chal-winner-badge">${props.achievementBadge ? escapeHtml(props.achievementBadge) : '🏆 Winner'}</div>
-    <div class="chal-winner-name">${props.showAvatar ? '✦ ' : ''}${escapeHtml(props.displayName)}</div>
+    <div class="chal-winner-name">${props.showAvatar ? renderAvatar(props.displayName) : ''}${escapeHtml(props.displayName)}</div>
     <div class="chal-winner-challenge">${escapeHtml(props.challengeName || 'AGHF Monthly Challenge')}</div>
     ${props.winnerMessage ? `<p class="chal-winner-message">“${escapeHtml(props.winnerMessage)}”</p>` : ''}
     <div class="chal-winner-date small-help">${fmtDate(props.publishedAt)}</div>
@@ -235,10 +255,7 @@ export function renderWinnerCard(props) {
 
 export function renderPreviousWinnersGrid(container, winners) {
   if (!winners?.length) {
-    container.innerHTML = `<div class="chal-empty-state">
-      <div class="chal-empty-heading">${PREVIOUS_WINNERS_EMPTY_STATE.heading}</div>
-      <p class="chal-empty-body">${PREVIOUS_WINNERS_EMPTY_STATE.body}</p>
-    </div>`;
+    container.innerHTML = renderChalEmptyState('🏆', PREVIOUS_WINNERS_EMPTY_STATE.heading, PREVIOUS_WINNERS_EMPTY_STATE.body);
     return;
   }
   container.innerHTML = `<div class="chal-winners-grid">${winners.map((w) => renderWinnerCard(winnerToCardProps(w))).join('')}</div>`;
@@ -248,10 +265,7 @@ export function renderPreviousWinnersGrid(container, winners) {
 
 export function renderEntryLedger(container, entries, totalConfirmed) {
   if (!entries?.length) {
-    container.innerHTML = `<div class="chal-empty-state">
-      <div class="chal-empty-heading">${ENTRY_LEDGER_EMPTY_STATE.heading}</div>
-      <p class="chal-empty-body">${ENTRY_LEDGER_EMPTY_STATE.body}</p>
-    </div>`;
+    container.innerHTML = renderChalEmptyState('🎟️', ENTRY_LEDGER_EMPTY_STATE.heading, ENTRY_LEDGER_EMPTY_STATE.body);
     return;
   }
   container.innerHTML = `<div class="chal-ledger">
