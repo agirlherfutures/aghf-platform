@@ -9,14 +9,15 @@
 // uses).
 
 import { createClient } from '@supabase/supabase-js';
+import { isDbNotSetUp } from './_lib/db-error.js';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
 function notSetUpError(res, err) {
-  const notSetUp = /relation .* does not exist/i.test(err.message || '');
+  const notSetUp = isDbNotSetUp(err);
   return res.status(notSetUp ? 503 : 500).json({
     error: notSetUp
-      ? 'The Eval Calculator database tables haven’t been set up yet — see supabase/migrations/0006_eval_calculator_and_accounts.sql.'
+      ? 'The Eval Calculator database tables haven’t been set up yet — see supabase/migrations/0006_eval_calculator_and_accounts.sql. If you just ran this migration, Supabase’s API can take a minute to notice — reloading the page usually fixes it, or reload the schema cache manually under Project Settings → API.'
       : err.message,
     setupRequired: notSetUp,
   });
