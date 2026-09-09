@@ -29,7 +29,7 @@
   // (bad path, stale deployment, a syntax error anywhere in their import
   // graph) shows a visible error instead of leaving #evalRoot permanently
   // empty, matching every other page in this project.
-  let listEvalPlans, getEvalPlan, saveEvalPlan, duplicateEvalPlan, archiveEvalPlan, setActiveEvalPlan;
+  let listEvalPlans, getEvalPlan, saveEvalPlan, duplicateEvalPlan, archiveEvalPlan, setActiveEvalPlan, deleteEvalPlan;
   let renderEvalCalculatorPage;
   let renderErrorState, renderSkeleton, showDeskToast;
 
@@ -55,13 +55,21 @@
     };
   }
 
+  /** A brand-new blank plan carrying only this plan's identity (id/name)
+   * and active-status flag — every other field (account size, drawdown,
+   * risk/reward, rules, current balance/days-elapsed progress) genuinely
+   * goes back to blank rather than lingering from the old object. */
+  function buildResetPlan(plan) {
+    return { ...freshPlan(), id: plan.id, name: plan.name, isActive: plan.isActive };
+  }
+
   let plans = [];
   let currentPlan = null;
   let handle = null;
 
   async function boot() {
     try {
-      ({ listEvalPlans, getEvalPlan, saveEvalPlan, duplicateEvalPlan, archiveEvalPlan, setActiveEvalPlan } = await import('./shared/eval-service.js'));
+      ({ listEvalPlans, getEvalPlan, saveEvalPlan, duplicateEvalPlan, archiveEvalPlan, setActiveEvalPlan, deleteEvalPlan } = await import('./shared/eval-service.js'));
       ({ renderEvalCalculatorPage } = await import('./shared/eval-calculator-engine.js'));
       ({ renderErrorState, renderSkeleton, showDeskToast } = await import('./shared/dayli-desk-engine.js'));
     } catch (err) {
@@ -91,6 +99,9 @@
           ${plans.map((p) => `<option value="${p.id}" ${p.id === currentPlan.id ? 'selected' : ''}>${p.name}${p.isActive ? ' (Active)' : ''}</option>`).join('')}
         </select>
         <button type="button" class="dd-secondary-btn" id="evalNewPlanBtn">+ New Plan</button>
+        ${currentPlan.isActive
+          ? `<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:var(--teal-pale);color:var(--dark);font-size:.8rem;font-weight:600;">★ Active Plan</span>`
+          : `<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:var(--bg);color:var(--muted);font-size:.8rem;font-weight:600;">Not your active plan</span>`}
       </div>`;
     planBar.querySelector('#evalPlanSelect').addEventListener('change', async (e) => {
       currentPlan = await getEvalPlan(e.target.value);
@@ -144,6 +155,34 @@
         } catch (err) {
           console.error('Set active plan error:', err);
           alert("Couldn't set this plan active — try again in a moment.");
+        }
+      },
+      onReset: async () => {
+        if (!confirm(`Reset all fields on "${currentPlan.name}"? This clears your inputs back to blank — it won't delete this plan or create a new one.`)) return;
+        try {
+          const saved = await saveEvalPlan(buildResetPlan(currentPlan));
+          currentPlan = saved;
+          const idx = plans.findIndex((p) => p.id === saved.id);
+          if (idx >= 0) plans[idx] = saved;
+          showDeskToast('Plan reset ✦');
+          startPage();
+        } catch (err) {
+          console.error('Reset plan error:', err);
+          alert("Couldn't reset this plan — try again in a moment.");
+        }
+      },
+      onDelete: async () => {
+        if (!confirm(`Permanently delete "${currentPlan.name}"? This can't be undone.`)) return;
+        try {
+          await deleteEvalPlan(currentPlan.id);
+          plans = plans.filter((p) => p.id !== currentPlan.id);
+          currentPlan = plans[0] || await saveEvalPlan(freshPlan());
+          if (!plans.length) plans = [currentPlan];
+          showDeskToast('Plan deleted');
+          startPage();
+        } catch (err) {
+          console.error('Delete plan error:', err);
+          alert("Couldn't delete this plan — try again in a moment.");
         }
       },
     });
