@@ -11,8 +11,8 @@
  *
  * Usage: <script src="../shared/sidebar.js" data-active="dashboard"></script>
  * data-active must match one of: dashboard, market-outlook, checklist,
- * journal, agent, lessons, games, chart-lab, playbook, leaderboard,
- * store, profile, performance
+ * journal, eval-calculator, agent, lessons, games, chart-lab, playbook,
+ * leaderboard, store, profile, performance
  */
 (function () {
   const script = document.currentScript;
@@ -24,6 +24,7 @@
     { section: 'Trade', key: 'market-outlook', icon: '◐', label: 'Market Outlook', href: 'market-outlook.html' },
     { section: 'Trade', key: 'checklist', icon: '▤', label: 'ICC Checklist', href: 'checklist.html', mobileIcon: '▤', mobileLabel: 'Checklist' },
     { section: 'Trade', key: 'journal', icon: '✎', label: 'Journal', href: 'journal.html', mobileIcon: '✎', mobileLabel: 'Journal' },
+    { section: 'Trade', key: 'eval-calculator', icon: '✓', label: 'Pass Your Eval', href: 'eval-calculator.html' },
     { section: 'Mindset', key: 'agent', icon: '♡', label: 'AGHF Agent', href: 'psychology.html' },
     { section: 'Learn', key: 'lessons', icon: '✦', label: 'Academy', href: 'lessons.html', mobileIcon: '✦', mobileLabel: 'Academy' },
     { section: 'Learn', key: 'games', icon: '◈', label: 'Games', href: 'games.html' },

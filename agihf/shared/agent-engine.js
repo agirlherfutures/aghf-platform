@@ -661,32 +661,56 @@ export function renderAgentWorkspace(container, helpers = {}) {
       return;
     }
     if (type === 'trade') {
-      const { entries } = await listEntries({ entryType: 'trade', limit: 8 });
-      renderPickList(picker, entries, {
-        attachType: 'trade', getId: (t) => t.id, getLabel: (t) => `Trade ${t.tradeDate}`,
-        rowText: (t) => `${t.tradeDate} · ${t.instrument || ''} · ${t.direction || ''}`,
-        emptyText: 'No trades logged yet.', excludeFn: setExcludedFromAgent,
-      });
+      try {
+        const { entries } = await listEntries({ entryType: 'trade', limit: 8 });
+        renderPickList(picker, entries, {
+          attachType: 'trade', getId: (t) => t.id, getLabel: (t) => `Trade ${t.tradeDate}`,
+          rowText: (t) => `${t.tradeDate} · ${t.instrument || ''} · ${t.direction || ''}`,
+          emptyText: 'No trades logged yet.', excludeFn: setExcludedFromAgent,
+        });
+      } catch (err) {
+        console.error('Load trades for attach error:', err);
+        renderAttachError(picker, err, 'Couldn’t load your trades.', type);
+        showDeskToast('Couldn’t load your trades — try again.');
+      }
       return;
     }
     if (type === 'journal') {
-      const { entries } = await listEntries({ limit: 20 });
-      const reflections = entries.filter((e) => e.entryType !== 'trade').slice(0, 8);
-      renderPickList(picker, reflections, {
-        attachType: 'journal', getId: (j) => j.id, getLabel: (j) => `Journal ${j.tradeDate}`,
-        rowText: (j) => `${j.tradeDate} · ${j.entryType}`,
-        emptyText: 'No journal reflections yet.', excludeFn: setExcludedFromAgent,
-      });
+      try {
+        const { entries } = await listEntries({ limit: 20 });
+        const reflections = entries.filter((e) => e.entryType !== 'trade').slice(0, 8);
+        renderPickList(picker, reflections, {
+          attachType: 'journal', getId: (j) => j.id, getLabel: (j) => `Journal ${j.tradeDate}`,
+          rowText: (j) => `${j.tradeDate} · ${j.entryType}`,
+          emptyText: 'No journal reflections yet.', excludeFn: setExcludedFromAgent,
+        });
+      } catch (err) {
+        console.error('Load journal for attach error:', err);
+        renderAttachError(picker, err, 'Couldn’t load your journal.', type);
+        showDeskToast('Couldn’t load your journal — try again.');
+      }
       return;
     }
     if (type === 'checklist') {
-      const checklists = await listChecklists(8);
-      renderPickList(picker, checklists, {
-        attachType: 'checklist', getId: (c) => c.id, getLabel: (c) => `Checklist ${c.tradingDate}`,
-        rowText: (c) => `${c.tradingDate} · ${c.completionPct}% complete`,
-        emptyText: 'No checklists yet.', excludeFn: setChecklistExcludedFromAgent,
-      });
+      try {
+        const checklists = await listChecklists(8);
+        renderPickList(picker, checklists, {
+          attachType: 'checklist', getId: (c) => c.id, getLabel: (c) => `Checklist ${c.tradingDate}`,
+          rowText: (c) => `${c.tradingDate} · ${c.completionPct}% complete`,
+          emptyText: 'No checklists yet.', excludeFn: setChecklistExcludedFromAgent,
+        });
+      } catch (err) {
+        console.error('Load checklists for attach error:', err);
+        renderAttachError(picker, err, 'Couldn’t load your checklists.', type);
+        showDeskToast('Couldn’t load your checklists — try again.');
+      }
     }
+  }
+
+  /** Shows a visible, retryable error in the attach popover instead of leaving it silently blank — the exact gap that made a real failure (a stale session token, a network blip, an unapplied migration) look identical to "clicking attach does nothing." */
+  function renderAttachError(picker, err, fallbackMessage, type) {
+    picker.innerHTML = `<p class="agc-attach-error">${escapeHtml(err?.message || fallbackMessage)} <button type="button" class="dd-secondary-btn" data-retry-attach="${type}">Try Again</button></p>`;
+    picker.querySelector('[data-retry-attach]').addEventListener('click', () => handleAttachAction(type));
   }
 
   /**
@@ -792,7 +816,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
           'not-allowed': 'Microphone access was blocked — check your browser’s site permissions and try again.',
           'no-speech': 'Didn’t catch that — try again.',
           'audio-capture': 'No microphone was found.',
-          'network': 'Voice input needs an internet connection — try again in a moment.',
+          'network': 'Voice input couldn’t reach the speech service — this usually means a work/school network, VPN, or browser privacy setting is blocking it, not your internet connection. Try a different network, or type instead.',
         };
         showDeskToast(messages[e.error] || 'Voice input ran into a problem — try typing instead.');
       };

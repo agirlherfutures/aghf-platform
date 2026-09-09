@@ -10,15 +10,7 @@
  */
 
 import { PLAYBOOK_CATEGORIES } from './dashboard-models.js';
-
-async function apiFetch(path, opts = {}) {
-  const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
-  if (window.AGHF_SESSION_TOKEN) headers.Authorization = `Bearer ${window.AGHF_SESSION_TOKEN}`;
-  const res = await fetch(path, { ...opts, headers });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw Object.assign(new Error(body.error || `Request failed (${res.status})`), { setupRequired: body.setupRequired });
-  return body;
-}
+import { authFetch as apiFetch } from './auth-fetch.js';
 
 /* ── Demo-mode in-memory store ───────────────────────────────────── */
 
