@@ -298,22 +298,26 @@ function renderPlanRiskStatusSection(plan) {
 
 /* ── Actions bar ──────────────────────────────────────────────────── */
 
-function renderActionsBar(status) {
+function renderActionsBar(status, plan) {
   const statusText = status === 'saving' ? 'Saving…' : status === 'error' ? '⚠ Couldn’t save — retrying' : 'Saved ✓';
   return `
     <div class="cl-wizard-nav">
       <span class="cl-nav-status">${statusText}</span>
-      <div style="display:flex;align-items:center;gap:10px;">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <button type="button" class="cl-delete-link" id="evalDeleteBtn">Delete Plan</button>
+        <button type="button" class="dd-secondary-btn" id="evalResetBtn">Reset This Plan</button>
         <button type="button" class="dd-secondary-btn" id="evalDuplicateBtn">Duplicate</button>
         <button type="button" class="dd-secondary-btn" id="evalArchiveBtn">Archive</button>
-        <button type="button" class="dd-primary-btn" id="evalSetActiveBtn">Set as Active Plan</button>
+        ${plan?.isActive
+          ? `<span class="small-help" style="margin:0;font-weight:600;">✓ This is your active plan</span>`
+          : `<button type="button" class="dd-primary-btn" id="evalSetActiveBtn">Set as Active Plan</button>`}
       </div>
     </div>`;
 }
 
 /**
  * Orchestrates the whole eval plan editor. `helpers`:
- * { onChange(nextPlan), onDuplicate(), onArchive(), onSetActive(), saveStatus }
+ * { onChange(nextPlan), onDuplicate(), onArchive(), onSetActive(), onReset(), onDelete(), saveStatus }
  */
 export function renderEvalCalculatorPage(container, plan, helpers) {
   let activeScenarioKey = null;
@@ -337,10 +341,13 @@ export function renderEvalCalculatorPage(container, plan, helpers) {
       <div id="evalActionsBar"></div>`;
     wireFields();
     const actionsBar = container.querySelector('#evalActionsBar');
-    actionsBar.innerHTML = renderActionsBar(helpers.saveStatus || 'saved');
+    actionsBar.innerHTML = renderActionsBar(helpers.saveStatus || 'saved', plan);
     actionsBar.querySelector('#evalDuplicateBtn').addEventListener('click', helpers.onDuplicate);
     actionsBar.querySelector('#evalArchiveBtn').addEventListener('click', helpers.onArchive);
-    actionsBar.querySelector('#evalSetActiveBtn').addEventListener('click', helpers.onSetActive);
+    actionsBar.querySelector('#evalResetBtn').addEventListener('click', helpers.onReset);
+    actionsBar.querySelector('#evalDeleteBtn').addEventListener('click', helpers.onDelete);
+    const setActiveBtn = actionsBar.querySelector('#evalSetActiveBtn');
+    if (setActiveBtn) setActiveBtn.addEventListener('click', helpers.onSetActive);
   }
 
   function wireFields() {
