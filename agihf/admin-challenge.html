@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Challenge Manager — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/components.css">
+<link rel="stylesheet" href="shared/dayli-desk.css">
+<link rel="stylesheet" href="shared/challenge.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="monthly-challenge"></script>
+
+<main class="main">
+  <div class="pg-eye">✦ Admin</div>
+  <div class="pg-title">Challenge Manager</div>
+  <div class="small-help" style="margin:-8px 0 18px;">Only visible to AGHF administrators. Every action here is checked again on the server — this page's own gate is a convenience, not the real one.</div>
+  <div id="adminChalRoot"></div>
+</main>
+
+<script type="module">
+  let adminListChallenges, adminCreateChallenge, adminUpdateChallenge, adminDuplicateChallenge, adminSetStatus,
+      adminUpsertRule, adminDeleteRule, adminUpsertPrize, adminRunDrawing, adminVerifyWinner, adminPublishWinner,
+      adminManualEntryAdjustment, adminListAuditLog, adminGetChallengeDetail;
+  let ACTIVITY_TYPE_LABELS, WINNER_VERIFY_SUBACTION_LABELS, WINNER_VERIFICATION_STATUS_LABELS, CHALLENGE_STATUS_ORDER, ADMIN_ACTION_LABELS;
+
+  const root = document.getElementById('adminChalRoot');
+  let challenges = [];
+  let activeId = null;
+  let winnersForActive = [];
+  let auditLog = [];
+
+  function escapeHtml(s) {
+    return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  function renderFallbackError(err) {
+    console.error('Challenge Manager page failed to load:', err);
+    root.innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading the Challenge Manager</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
+
+  function renderNotAuthorized() {
+    root.innerHTML = `
+      <div style="max-width:480px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Not authorized</div>
+        <div style="font-size:.88rem;color:#7A5C50;">This page is for AGHF administrators only.</div>
+      </div>`;
+  }
+
+  function active() { return challenges.find((c) => c.id === activeId) || null; }
+
+  function paint() {
+    const c = active();
+    root.innerHTML = `<div class="chal-admin-layout" style="display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start;">
+      <div class="chal-admin-list">
+        <button type="button" class="dd-primary-btn" id="chalNewBtn" style="width:100%;margin-bottom:8px;">+ New Challenge</button>
+        ${challenges.map((ch) => `<div class="chal-admin-row" data-select-id="${ch.id}" style="cursor:pointer;${ch.id === activeId ? 'border-color:var(--pink);' : ''}">
+          <span>${escapeHtml(ch.name || 'Untitled')}</span>
+          <span class="chal-admin-status-pill">${ch.status}</span>
+        </div>`).join('')}
+      </div>
+      <div id="chalDetail">${c ? renderDetail(c) : '<p class="small-help">Select or create a challenge to manage it.</p>'}</div>
+    </div>`;
+
+    root.querySelector('#chalNewBtn').addEventListener('click', onCreate);
+    root.querySelectorAll('[data-select-id]').forEach((row) => {
+      row.addEventListener('click', () => { activeId = row.dataset.selectId; loadDetailData(); });
+    });
+    if (c) wireDetail(c);
+  }
+
+  function renderDetail(c) {
+    return `
+      <div class="dd-card" style="margin-bottom:16px;">
+        <div class="chal-progress-heading">Challenge Details</div>
+        <div class="field-group"><label class="field-label">Name</label><input class="field-input" id="fName" value="${escapeHtml(c.name || '')}"></div>
+        <div class="field-group"><label class="field-label">Description</label><textarea class="field-textarea" id="fDescription">${escapeHtml(c.description || '')}</textarea></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="field-group"><label class="field-label">Starts At</label><input type="datetime-local" class="field-input" id="fStartsAt" value="${toLocalInput(c.startsAt)}"></div>
+          <div class="field-group"><label class="field-label">Ends At</label><input type="datetime-local" class="field-input" id="fEndsAt" value="${toLocalInput(c.endsAt)}"></div>
+          <div class="field-group"><label class="field-label">Drawing At</label><input type="datetime-local" class="field-input" id="fDrawingAt" value="${toLocalInput(c.drawingAt)}"></div>
+          <div class="field-group"><label class="field-label">Winner Count</label><input type="number" min="1" class="field-input" id="fWinnerCount" value="${c.winnerCount ?? 1}"></div>
+        </div>
+        <div class="field-group"><label class="field-label">Official Rules / Legal Text (leave blank until reviewed — never invented here)</label><textarea class="field-textarea" id="fOfficialRules">${escapeHtml(c.officialRules || '')}</textarea></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+          <button type="button" class="dd-primary-btn" id="fSave">Save Changes</button>
+          <button type="button" class="dd-secondary-btn" id="fDuplicate">Duplicate</button>
+          <select class="field-input" id="fStatus" style="width:auto;">${CHALLENGE_STATUS_ORDER.map((s) => `<option value="${s}" ${s === c.status ? 'selected' : ''}>${s}</option>`).join('')}</select>
+          <button type="button" class="dd-secondary-btn" id="fSetStatus">Change Status</button>
+        </div>
+      </div>
+
+      <div class="dd-card" style="margin-bottom:16px;">
+        <div class="chal-progress-heading">Entry Rules</div>
+        <div id="rulesList">${(c.rules || []).map((r) => renderRuleRow(r)).join('') || '<p class="small-help">No rules yet.</p>'}</div>
+        <button type="button" class="dd-secondary-btn" id="fAddRule" style="margin-top:8px;">+ Add Rule</button>
+      </div>
+
+      <div class="dd-card" style="margin-bottom:16px;">
+        <div class="chal-progress-heading">Prize</div>
+        <div class="field-group"><label class="field-label">Name</label><input class="field-input" id="fPrizeName" value="${escapeHtml(c.prize?.name || '')}"></div>
+        <div class="field-group"><label class="field-label">Estimated Value</label><input class="field-input" id="fPrizeValue" value="${escapeHtml(c.prize?.estimatedValue || '')}"></div>
+        <button type="button" class="dd-primary-btn" id="fSavePrize">Save Prize</button>
+      </div>
+
+      <div class="dd-card" style="margin-bottom:16px;">
+        <div class="chal-progress-heading">Drawing</div>
+        <p class="small-help">Only runnable once this challenge's status is "drawing_ready." No cron exists — this is the only way a drawing ever runs.</p>
+        <button type="button" class="dd-primary-btn" id="fRunDrawing" ${c.status !== 'drawing_ready' ? 'disabled' : ''}>Run Monthly Drawing</button>
+        <div id="winnersList" style="margin-top:14px;"></div>
+      </div>
+
+      <div class="dd-card" style="margin-bottom:16px;">
+        <div class="chal-progress-heading">Manual Entry Adjustment</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div class="field-group"><label class="field-label">Member User ID</label><input class="field-input" id="fAdjUserId"></div>
+          <div class="field-group"><label class="field-label">Entry Amount (±)</label><input type="number" class="field-input" id="fAdjAmount"></div>
+        </div>
+        <div class="field-group"><label class="field-label">Reason (required)</label><input class="field-input" id="fAdjReason"></div>
+        <button type="button" class="dd-secondary-btn" id="fAdjSubmit">Apply Adjustment</button>
+      </div>
+
+      <div class="dd-card">
+        <div class="chal-progress-heading">Audit Log</div>
+        <div id="auditLogList">${renderAuditLog()}</div>
+      </div>
+    `;
+  }
+
+  function renderRuleRow(r) {
+    const meta = ACTIVITY_TYPE_LABELS[r.activityType] || { label: r.activityType };
+    return `<div class="chal-admin-row" data-rule-id="${r.id}">
+      <span>${meta.icon || ''} ${escapeHtml(r.label)} — ${r.entriesAwarded} entr${r.entriesAwarded === 1 ? 'y' : 'ies'}, ${r.pointsAwarded} pts</span>
+      <span><button type="button" class="cl-toggle-btn" data-delete-rule="${r.id}">Delete</button></span>
+    </div>`;
+  }
+
+  function renderAuditLog() {
+    if (!auditLog.length) return '<p class="small-help">No actions logged yet.</p>';
+    return auditLog.map((a) => `<div class="chal-audit-row">${new Date(a.created_at).toLocaleString()} — <strong>${escapeHtml(a.action)}</strong>${a.reason ? `: ${escapeHtml(a.reason)}` : ''}</div>`).join('');
+  }
+
+  function renderWinnersList() {
+    const listEl = document.getElementById('winnersList');
+    if (!listEl) return;
+    if (!winnersForActive.length) { listEl.innerHTML = '<p class="small-help">No drawing has run yet.</p>'; return; }
+    listEl.innerHTML = winnersForActive.map((w) => `<div class="chal-admin-row" data-winner-id="${w.id}" style="flex-direction:column;align-items:stretch;gap:8px;">
+      <div style="display:flex;justify-content:space-between;">
+        <span>${w.isAlternate || w.alternateOrder != null ? `Alternate #${w.alternateOrder}` : `Winner #${w.winnerOrder}`} — user ${escapeHtml(w.userId)}</span>
+        <span class="chal-admin-status-pill">${WINNER_VERIFICATION_STATUS_LABELS[w.verificationStatus] || w.verificationStatus}</span>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        ${w.verificationStatus === 'awaiting_verification' ? `
+          <button type="button" class="cl-toggle-btn" data-verify="${w.id}:confirm">${WINNER_VERIFY_SUBACTION_LABELS.confirm}</button>
+          <button type="button" class="cl-toggle-btn" data-verify="${w.id}:disqualify">${WINNER_VERIFY_SUBACTION_LABELS.disqualify}</button>
+        ` : ''}
+        <button type="button" class="cl-toggle-btn" data-verify="${w.id}:contact">${WINNER_VERIFY_SUBACTION_LABELS.contact}</button>
+        ${w.verificationStatus === 'confirmed' && !w.publishedAt ? `<button type="button" class="cl-toggle-btn" data-publish="${w.id}">Publish Winner</button>` : ''}
+        ${w.verificationStatus === 'disqualified' ? `<button type="button" class="cl-toggle-btn" data-verify="${w.id}:promote_alternate">${WINNER_VERIFY_SUBACTION_LABELS.promote_alternate}</button>` : ''}
+      </div>
+    </div>`).join('');
+
+    listEl.querySelectorAll('[data-verify]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const [winnerId, subAction] = btn.dataset.verify.split(':');
+        let reason = null;
+        if (subAction === 'disqualify') { reason = prompt('Reason for disqualifying this winner (required):'); if (!reason) return; }
+        try {
+          await adminVerifyWinner(winnerId, subAction, reason ? { reason } : {});
+          await loadDetailData();
+        } catch (err) { alert("Couldn't complete that action — " + err.message); }
+      });
+    });
+    listEl.querySelectorAll('[data-publish]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        try { await adminPublishWinner(btn.dataset.publish); await loadDetailData(); }
+        catch (err) { alert("Couldn't publish — " + err.message); }
+      });
+    });
+  }
+
+  function toLocalInput(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+  }
+
+  function wireDetail(c) {
+    document.getElementById('fSave').addEventListener('click', async () => {
+      try {
+        await adminUpdateChallenge(c.id, {
+          name: document.getElementById('fName').value,
+          description: document.getElementById('fDescription').value,
+          startsAt: new Date(document.getElementById('fStartsAt').value).toISOString(),
+          endsAt: new Date(document.getElementById('fEndsAt').value).toISOString(),
+          drawingAt: new Date(document.getElementById('fDrawingAt').value).toISOString(),
+          winnerCount: Number(document.getElementById('fWinnerCount').value) || 1,
+          officialRules: document.getElementById('fOfficialRules').value,
+        });
+        await loadAll();
+      } catch (err) { alert("Couldn't save — " + err.message); }
+    });
+    document.getElementById('fDuplicate').addEventListener('click', async () => {
+      try { await adminDuplicateChallenge(c.id); await loadAll(); } catch (err) { alert("Couldn't duplicate — " + err.message); }
+    });
+    document.getElementById('fSetStatus').addEventListener('click', async () => {
+      try { await adminSetStatus(c.id, document.getElementById('fStatus').value); await loadAll(); }
+      catch (err) { alert("Couldn't change status — " + err.message); }
+    });
+    document.getElementById('fAddRule').addEventListener('click', async () => {
+      const label = prompt('Rule label (what a member sees):'); if (!label) return;
+      const activityType = prompt('Activity type key (e.g. lesson_completed):'); if (!activityType) return;
+      try {
+        await adminUpsertRule({ challengeId: c.id, label, activityType, requiredQuantity: 1, pointsAwarded: 5, entriesAwarded: 1 });
+        await loadAll();
+      } catch (err) { alert("Couldn't save rule — " + err.message); }
+    });
+    document.querySelectorAll('[data-delete-rule]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        try { await adminDeleteRule(btn.dataset.deleteRule); await loadAll(); } catch (err) { alert("Couldn't delete rule — " + err.message); }
+      });
+    });
+    document.getElementById('fSavePrize').addEventListener('click', async () => {
+      try {
+        await adminUpsertPrize({ id: c.prize?.id, challengeId: c.id, name: document.getElementById('fPrizeName').value, estimatedValue: document.getElementById('fPrizeValue').value });
+        await loadAll();
+      } catch (err) { alert("Couldn't save prize — " + err.message); }
+    });
+    document.getElementById('fRunDrawing').addEventListener('click', async () => {
+      if (!confirm('Run the monthly drawing now? This cannot be undone or run twice for this challenge.')) return;
+      try { await adminRunDrawing(c.id); await loadDetailData(); } catch (err) { alert("Couldn't run the drawing — " + err.message); }
+    });
+    document.getElementById('fAdjSubmit').addEventListener('click', async () => {
+      const targetUserId = document.getElementById('fAdjUserId').value.trim();
+      const entryAmount = Number(document.getElementById('fAdjAmount').value);
+      const reason = document.getElementById('fAdjReason').value.trim();
+      if (!targetUserId || !entryAmount || !reason) { alert('Member user ID, a non-zero amount, and a reason are all required.'); return; }
+      try {
+        await adminManualEntryAdjustment(c.id, targetUserId, entryAmount, reason, null);
+        await loadDetailData();
+      } catch (err) { alert("Couldn't apply the adjustment — " + err.message); }
+    });
+    renderWinnersList();
+  }
+
+  async function onCreate() {
+    const name = prompt('Challenge name:'); if (!name) return;
+    try {
+      const now = new Date();
+      const starts = now.toISOString();
+      const ends = new Date(now.getTime() + 30 * 86400000).toISOString();
+      const drawing = new Date(now.getTime() + 31 * 86400000).toISOString();
+      const { challenge } = await adminCreateChallenge({ name, startsAt: starts, endsAt: ends, drawingAt: drawing });
+      await loadAll();
+      activeId = challenge.id;
+      await loadDetailData();
+    } catch (err) { alert("Couldn't create the challenge — " + err.message); }
+  }
+
+  async function loadDetailData() {
+    const c = active();
+    if (!c) { paint(); return; }
+    try {
+      const [{ log }, detail] = await Promise.all([adminListAuditLog(c.id), adminGetChallengeDetail(c.id)]);
+      auditLog = log || [];
+      c.rules = detail.rules || [];
+      c.prize = detail.prize || null;
+      winnersForActive = detail.winners || [];
+    } catch (err) {
+      auditLog = [];
+      winnersForActive = [];
+      console.error('Challenge detail load error:', err);
+    }
+    paint();
+  }
+
+  async function loadAll() {
+    const { challenges: rows } = await adminListChallenges();
+    challenges = rows || [];
+    if (!challenges.find((c) => c.id === activeId)) activeId = challenges[0]?.id || null;
+    await loadDetailData();
+  }
+
+  async function boot() {
+    try {
+      ({
+        adminListChallenges, adminCreateChallenge, adminUpdateChallenge, adminDuplicateChallenge, adminSetStatus,
+        adminUpsertRule, adminDeleteRule, adminUpsertPrize, adminRunDrawing, adminVerifyWinner, adminPublishWinner,
+        adminManualEntryAdjustment, adminListAuditLog, adminGetChallengeDetail,
+      } = await import('./shared/challenge-service.js'));
+      ({ ACTIVITY_TYPE_LABELS, WINNER_VERIFY_SUBACTION_LABELS, WINNER_VERIFICATION_STATUS_LABELS, CHALLENGE_STATUS_ORDER, ADMIN_ACTION_LABELS } = await import('./shared/challenge-copy.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+
+    try {
+      if (window.AGHF_DEMO) { await loadAll(); return; }
+      const { profile } = await window.AGHF_FETCH_PROFILE();
+      if (!profile?.is_admin) { renderNotAuthorized(); return; }
+      await loadAll();
+    } catch (err) {
+      console.error('Challenge Manager profile check error:', err);
+      renderFallbackError(err);
+    }
+  }
+
+  document.addEventListener('aghf-auth-ready', boot);
+</script>
+
+</body>
+</html>

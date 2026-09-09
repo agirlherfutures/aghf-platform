@@ -1,0 +1,111 @@
+/* challenge.css — A Girl & Her Futures™
+ * Feature-scoped stylesheet for the AGHF Monthly Challenge, matching the
+ * project's established per-feature-CSS-file convention (wins.css,
+ * agent.css, loop-engine.css). Reuses only existing tokens.css custom
+ * properties and existing shared classes (.chip/.chip-group, .dd-card,
+ * .dd-primary-btn, .field-group, .small-help, .cl-toggle-btn) — zero new
+ * hex values, zero duplicated primitives. Only chal-* classes are new.
+ */
+
+/* ── Countdown hero ──────────────────────────────────────────────────── */
+
+.chal-hero{background:linear-gradient(135deg,var(--pink-pale),var(--peach-pale));border-radius:22px;padding:28px 26px;box-shadow:0 4px 20px rgba(244,130,154,.08);position:relative;overflow:hidden;}
+.chal-hero-empty{background:var(--cream);}
+.chal-hero-eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.04em;color:var(--pink);text-transform:uppercase;margin-bottom:6px;}
+.chal-hero-title{font-family:var(--font-display);font-size:1.7rem;color:var(--dark);margin-bottom:6px;}
+.chal-hero-tagline{font-size:.95rem;color:var(--muted);font-style:italic;margin-bottom:14px;}
+.chal-hero-status{display:inline-block;font-weight:700;font-size:.85rem;color:var(--dark);background:rgba(255,255,255,.7);border-radius:100px;padding:6px 14px;margin-bottom:8px;}
+.chal-hero-body{font-size:.85rem;color:var(--muted);margin-bottom:10px;}
+.chal-countdown{font-family:var(--font-display);font-size:1.1rem;color:var(--dark);font-weight:700;}
+.chal-countdown-num{color:var(--pink);}
+
+/* ── Your Challenge Progress ─────────────────────────────────────────── */
+
+.chal-progress-card{background:#fff;border-radius:18px;padding:20px 22px;border:1px solid rgba(244,130,154,.1);box-shadow:0 3px 14px rgba(244,130,154,.05);}
+.chal-progress-heading{font-family:var(--font-display);font-size:1.05rem;color:var(--dark);margin-bottom:14px;}
+.chal-progress-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;}
+@media(max-width:700px){.chal-progress-stats{grid-template-columns:repeat(2,1fr);}}
+.chal-progress-stat{text-align:center;background:var(--cream);border-radius:14px;padding:12px 6px;}
+.chal-progress-num{display:block;font-family:var(--font-display);font-size:1.4rem;font-weight:800;color:var(--pink);}
+.chal-progress-label{font-size:.7rem;color:var(--muted);}
+.chal-progress-milestone{font-size:.88rem;color:var(--text);font-weight:600;margin-bottom:4px;}
+.chal-progress-momentum{margin:0;}
+
+/* ── Ways to Earn ────────────────────────────────────────────────────── */
+
+.chal-ways-list{display:flex;flex-direction:column;gap:8px;}
+.chal-way-row{display:flex;align-items:center;gap:10px;background:var(--cream);border-radius:14px;padding:11px 14px;}
+.chal-way-icon{font-size:1.1rem;}
+.chal-way-label{flex:1;font-size:.85rem;color:var(--text);}
+.chal-way-reward{font-size:.78rem;font-weight:700;color:var(--teal);white-space:nowrap;}
+
+/* ── Weekly momentum strip ───────────────────────────────────────────── */
+
+.chal-weekly-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+@media(max-width:700px){.chal-weekly-strip{grid-template-columns:repeat(5,1fr);gap:6px;}}
+.chal-week-tile{text-align:center;background:var(--cream);border-radius:12px;padding:10px 4px;}
+.chal-week-tile.is-empty{opacity:.5;}
+.chal-week-label{font-size:.68rem;color:var(--muted);}
+.chal-week-value{font-family:var(--font-display);font-weight:800;color:var(--purple);font-size:1.1rem;}
+
+/* ── Achievement Rankings ────────────────────────────────────────────── */
+
+.chal-leaderboard-tabs{margin-bottom:14px;flex-wrap:wrap;}
+.chal-leaderboard-table{background:#fff;border-radius:18px;border:1px solid rgba(244,130,154,.1);overflow:hidden;}
+.chal-lb-row{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--border);}
+.chal-lb-row:last-child{border-bottom:none;}
+.chal-lb-rank{font-family:var(--font-display);font-weight:800;color:var(--muted);}
+.chal-lb-name{font-size:.86rem;color:var(--text);}
+.chal-lb-level{font-size:.7rem;color:var(--muted);}
+.chal-lb-points{font-weight:700;color:var(--pink);}
+.chal-lb-your-position-wrap{border-top:2px solid var(--pink-pale);}
+.chal-lb-your-position .chal-lb-row{background:var(--pink-pale);}
+.chal-lb-private{padding:14px 16px;font-size:.82rem;color:var(--muted);}
+.chal-lb-private a{color:var(--pink);font-weight:700;}
+
+/* ── Winner cards + Previous Winners archive ─────────────────────────── */
+
+.chal-winners-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.chal-winner-card{background:linear-gradient(160deg,#fff,var(--peach-pale));border-radius:18px;padding:18px;text-align:center;border:1px solid rgba(245,168,87,.15);box-shadow:0 3px 14px rgba(245,168,87,.08);}
+.chal-winner-badge{font-size:.78rem;font-weight:700;color:var(--peach);margin-bottom:8px;}
+.chal-winner-name{font-family:var(--font-display);font-size:1.1rem;color:var(--dark);margin-bottom:4px;}
+.chal-winner-challenge{font-size:.75rem;color:var(--muted);margin-bottom:8px;}
+.chal-winner-message{font-size:.82rem;font-style:italic;color:var(--text);margin-bottom:8px;}
+
+.chal-empty-state{text-align:center;padding:32px 20px;background:var(--cream);border-radius:18px;}
+.chal-empty-heading{font-family:var(--font-display);font-size:1.05rem;color:var(--dark);margin-bottom:6px;}
+.chal-empty-body{font-size:.85rem;color:var(--muted);margin:0;}
+
+/* ── Private entry ledger ────────────────────────────────────────────── */
+
+.chal-ledger{display:flex;flex-direction:column;gap:8px;}
+.chal-ledger-total{font-weight:700;color:var(--dark);margin-bottom:4px;}
+.chal-ledger-row{display:grid;grid-template-columns:24px 1fr auto auto auto;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:10px 14px;font-size:.82rem;}
+.chal-ledger-status-reversed,.chal-ledger-status-disqualified{opacity:.55;text-decoration:line-through;}
+.chal-ledger-amount{font-weight:700;color:var(--teal);}
+.chal-ledger-status{font-size:.7rem;color:var(--muted);}
+.chal-ledger-reason{grid-column:1/-1;}
+
+/* ── Prefs panel ─────────────────────────────────────────────────────── */
+
+.chal-prefs-panel{display:flex;flex-direction:column;gap:12px;}
+.chal-prefs-toggle-row{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text);}
+
+/* ── Notification bell ───────────────────────────────────────────────── */
+
+.chal-notif-bell-wrap{position:relative;}
+.chal-notif-bell{position:relative;background:none;border:none;font-size:1.15rem;cursor:pointer;padding:4px;}
+.chal-notif-badge{position:absolute;top:-2px;right:-2px;background:var(--pink);color:#fff;font-size:.62rem;font-weight:800;border-radius:100px;min-width:16px;height:16px;display:flex;align-items:center;justify-content:center;padding:0 3px;}
+.chal-notif-panel{position:absolute;top:calc(100% + 8px);right:0;width:320px;max-width:90vw;max-height:420px;overflow-y:auto;background:#fff;border-radius:16px;box-shadow:0 10px 34px rgba(44,24,16,.16);z-index:60;}
+.chal-notif-panel-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);font-weight:700;color:var(--dark);}
+.chal-notif-row{display:grid;grid-template-columns:20px 1fr auto;gap:8px;padding:10px 14px;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;align-items:start;}
+.chal-notif-row:last-child{border-bottom:none;}
+.chal-notif-row.is-unread{background:var(--pink-pale);}
+.chal-notif-text{font-size:.8rem;line-height:1.35;}
+
+/* ── Admin Challenge Manager ─────────────────────────────────────────── */
+
+.chal-admin-list{display:flex;flex-direction:column;gap:10px;}
+.chal-admin-row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:12px 16px;}
+.chal-admin-status-pill{font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:100px;background:var(--purple-pale);color:var(--purple);text-transform:capitalize;}
+.chal-audit-row{font-size:.78rem;color:var(--muted);padding:8px 0;border-bottom:1px solid var(--border);}

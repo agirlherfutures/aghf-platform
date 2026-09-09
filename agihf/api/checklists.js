@@ -4,6 +4,7 @@
 // checklists are never reachable through another member's session.
 
 import { createClient } from '@supabase/supabase-js';
+import { creditChallengeActivity } from './_lib/challenge-credit.js';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -115,6 +116,19 @@ export default async function handler(req, res) {
         if (error) throw error;
         result = data;
       }
+
+      if (result && completionPct === 100) {
+        try {
+          await creditChallengeActivity(supabase, {
+            userId,
+            sourceTable: 'trade_checklists',
+            sourceRecordId: result.id,
+            activityType: 'checklist_completed',
+            occurredAt: result.completed_at || undefined,
+          });
+        } catch { /* a missing/unmigrated challenge table must never block a checklist save */ }
+      }
+
       return res.status(200).json({ checklist: toClientShape(result) });
     }
 

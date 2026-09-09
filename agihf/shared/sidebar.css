@@ -262,3 +262,18 @@
 .bill-ren{font-size:.77rem;color:var(--muted);margin-bottom:13px;}
 .bill-btn{background:transparent;border:1.5px solid rgba(244,130,154,.22);color:var(--muted);padding:8px 17px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.79rem;cursor:pointer;}
 .bill-btn:hover{border-color:var(--pink);color:var(--pink);}
+
+/* ── Monthly Challenge notification bell — rendered by sidebar.js on
+   every page, so its styles live here (loaded everywhere) rather than in
+   challenge.css (only loaded on the challenge pages themselves). Kept
+   byte-identical to challenge.css's copy where both load on the same page. */
+.sb-notif-wrap{margin-left:auto;position:relative;}
+.chal-notif-bell-wrap{position:relative;}
+.chal-notif-bell{position:relative;background:none;border:none;font-size:1.05rem;cursor:pointer;padding:4px;color:inherit;}
+.chal-notif-badge{position:absolute;top:-2px;right:-2px;background:var(--pink);color:#fff;font-size:.6rem;font-weight:800;border-radius:100px;min-width:15px;height:15px;display:flex;align-items:center;justify-content:center;padding:0 3px;}
+.chal-notif-panel{position:absolute;top:calc(100% + 8px);right:-8px;width:300px;max-width:80vw;max-height:400px;overflow-y:auto;background:#fff;border-radius:16px;box-shadow:0 10px 34px rgba(44,24,16,.22);z-index:200;}
+.chal-notif-panel-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);font-weight:700;color:var(--dark);font-size:.82rem;}
+.chal-notif-row{display:grid;grid-template-columns:20px 1fr auto;gap:8px;padding:10px 14px;border-bottom:1px solid var(--border);text-decoration:none;color:var(--text);align-items:start;}
+.chal-notif-row:last-child{border-bottom:none;}
+.chal-notif-row.is-unread{background:var(--pink-pale);}
+.chal-notif-text{font-size:.78rem;line-height:1.35;}

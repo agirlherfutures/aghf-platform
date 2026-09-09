@@ -1,14 +1,26 @@
-// api/journal-entries.js — AG&HF Trade Journal persistence.
+// api/journal-entries.js — AG&HF Trade Journal persistence, plus (as of
+// the Monthly Challenge pass) chart-screenshot storage folded in as a
+// second `?resource=` case to stay under Vercel Hobby's 12-function
+// ceiling — this freed the one slot agihf/api/challenge-data.js needed.
+// vercel.json rewrites /api/journal-screenshot -> here with
+// resource=screenshot appended, so every existing client call site
+// (journal-entry.html, journal-engine.js) needed zero changes; bare
+// /api/journal-entries calls (journal-service.js) still hit the default
+// `entries` handler, also with zero client changes.
+//
 // Same JWT-verification pattern as get-profile.js: every query is scoped
-// to the verified user.id, so one member's journal is never reachable
-// through another member's session.
+// to the verified user.id, so one member's journal/screenshots are never
+// reachable through another member's session.
 
 import { createClient } from '@supabase/supabase-js';
+import { creditChallengeActivity } from './_lib/challenge-credit.js';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_KEY
 );
+
+export const config = { api: { bodyParser: { sizeLimit: '8mb' } } }; // screenshot uploads need headroom for a base64-encoded 5MB image
 
 export function toClientShape(row) {
   if (!row) return null;
@@ -77,15 +89,7 @@ function computeOutcome(netPnl) {
   return 'breakeven';
 }
 
-export default async function handler(req, res) {
-  const authHeader = req.headers.authorization || '';
-  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
-  if (!token) return res.status(401).json({ error: 'Missing bearer token' });
-
-  const { data: { user }, error: authError } = await supabase.auth.getUser(token);
-  if (authError || !user) return res.status(401).json({ error: 'Invalid or expired token' });
-  const userId = user.id;
-
+async function handleEntries(req, res, userId) {
   try {
     if (req.method === 'GET') {
       const { id, entryType, instrument, direction, outcome, session, setupType, methodQualityTag, executionGrade, ruleCheck, hasIccSetup, from, to, limit, offset } = req.query;
@@ -219,6 +223,18 @@ export default async function handler(req, res) {
         result = data;
       }
 
+      if (shouldAward) {
+        try {
+          await creditChallengeActivity(supabase, {
+            userId,
+            sourceTable: 'journal_entries',
+            sourceRecordId: result.id,
+            activityType: 'journal_entry_completed',
+            occurredAt: result.trade_date ? new Date(result.trade_date).toISOString() : undefined,
+          });
+        } catch { /* a missing/unmigrated challenge table must never block a journal save */ }
+      }
+
       let newJournalStreak = null;
       if (shouldAward) {
         const { data: profile } = await supabase
@@ -272,4 +288,89 @@ export default async function handler(req, res) {
       setupRequired: notSetUp,
     });
   }
+}
+
+/* ── resource=screenshot — folded in verbatim from the former
+   api/journal-screenshot.js, same private "journal-screenshots" bucket,
+   same path-prefix ownership check on every read/delete. ──────────────── */
+
+const SCREENSHOT_BUCKET = 'journal-screenshots';
+const SCREENSHOT_MAX_BYTES = 5 * 1024 * 1024;
+const SCREENSHOT_ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+
+function sanitizeScreenshotFilename(name) {
+  return (name || 'screenshot').replace(/[^a-zA-Z0-9._-]/g, '_').slice(-80);
+}
+
+async function handleScreenshot(req, res, userId) {
+  try {
+    if (req.method === 'POST') {
+      const { dataUrl, filename, entryId } = req.body || {};
+      if (!dataUrl || typeof dataUrl !== 'string') return res.status(400).json({ error: 'Missing image data' });
+
+      const match = /^data:([^;]+);base64,(.+)$/.exec(dataUrl);
+      if (!match) return res.status(400).json({ error: 'Expected a base64 data URL' });
+      const [, mimeType, base64] = match;
+      if (!SCREENSHOT_ALLOWED_TYPES.includes(mimeType)) {
+        return res.status(400).json({ error: `Unsupported image type: ${mimeType}. Use JPEG, PNG, WEBP, or GIF.` });
+      }
+      const buffer = Buffer.from(base64, 'base64');
+      if (buffer.length > SCREENSHOT_MAX_BYTES) {
+        return res.status(400).json({ error: `Image is too large (${(buffer.length / 1024 / 1024).toFixed(1)}MB) — max 5MB.` });
+      }
+
+      const ext = mimeType.split('/')[1] || 'jpg';
+      const path = `${userId}/${entryId || 'unfiled'}/${Date.now()}-${sanitizeScreenshotFilename(filename)}.${ext}`;
+
+      const { error: uploadError } = await supabase.storage.from(SCREENSHOT_BUCKET)
+        .upload(path, buffer, { contentType: mimeType, upsert: false });
+      if (uploadError) throw uploadError;
+
+      return res.status(200).json({ path, uploadedAt: new Date().toISOString() });
+    }
+
+    if (req.method === 'GET') {
+      const { path } = req.query;
+      if (!path || !path.startsWith(`${userId}/`)) return res.status(403).json({ error: 'Not your screenshot' });
+      const { data, error } = await supabase.storage.from(SCREENSHOT_BUCKET).createSignedUrl(path, 3600);
+      if (error) throw error;
+      return res.status(200).json({ url: data.signedUrl });
+    }
+
+    if (req.method === 'DELETE') {
+      const path = req.query.path || (req.body && req.body.path);
+      if (!path || !path.startsWith(`${userId}/`)) return res.status(403).json({ error: 'Not your screenshot' });
+      const { error } = await supabase.storage.from(SCREENSHOT_BUCKET).remove([path]);
+      if (error) throw error;
+      return res.status(200).json({ success: true });
+    }
+
+    return res.status(405).json({ error: 'Method not allowed' });
+  } catch (err) {
+    console.error('Journal screenshot API error:', err);
+    const noBucket = /bucket not found/i.test(err.message || '');
+    return res.status(noBucket ? 503 : 500).json({
+      error: noBucket
+        ? 'The screenshot storage bucket hasn’t been created yet — see supabase/migrations/0001_checklist_and_journal.sql.'
+        : err.message,
+      setupRequired: noBucket,
+    });
+  }
+}
+
+/* ── dispatch ─────────────────────────────────────────────────────────── */
+
+const RESOURCE_HANDLERS = { entries: handleEntries, screenshot: handleScreenshot };
+
+export default async function handler(req, res) {
+  const authHeader = req.headers.authorization || '';
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+  if (!token) return res.status(401).json({ error: 'Missing bearer token' });
+
+  const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+  if (authError || !user) return res.status(401).json({ error: 'Invalid or expired token' });
+
+  const resourceHandler = RESOURCE_HANDLERS[req.query.resource || 'entries'];
+  if (!resourceHandler) return res.status(400).json({ error: `Unknown resource: ${req.query.resource}` });
+  return resourceHandler(req, res, user.id);
 }

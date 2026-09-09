@@ -12,7 +12,7 @@
  * Usage: <script src="../shared/sidebar.js" data-active="dashboard"></script>
  * data-active must match one of: dashboard, market-outlook, checklist,
  * journal, eval-calculator, agent, lessons, games, chart-lab, playbook,
- * leaderboard, store, profile, performance
+ * leaderboard, monthly-challenge, store, profile, performance
  */
 (function () {
   const script = document.currentScript;
@@ -31,6 +31,7 @@
     { section: 'Learn', key: 'chart-lab', icon: '◧', label: 'Chart Lab', href: 'chart-lab.html' },
     { section: 'Learn', key: 'playbook', icon: '❦', label: 'Lesson Notes', href: 'playbook.html' },
     { section: 'Community', key: 'leaderboard', icon: '✦', label: 'Share My Win', href: 'share-win.html' },
+    { section: 'Community', key: 'monthly-challenge', icon: '🏆', label: 'Monthly Challenge', href: 'monthly-challenge.html' },
     { section: 'Community', key: 'store', icon: '◈', label: 'Join Discord', href: 'store.html' },
     { section: 'Account', key: 'performance', icon: '◔', label: 'Performance', href: 'performance.html' },
     { section: 'Account', key: 'profile', icon: '○', label: 'My Profile', href: 'profile.html' },
@@ -82,6 +83,7 @@
           <div class="sb-nm" id="sbName">Trader</div>
           <div class="sb-lv" id="sbLevel">Level 1 · She's Brand New</div>
         </div>
+        <div class="sb-notif-wrap" id="sbNotifWrap"></div>
       </div>
       ${sectionsHtml}
       <div class="sb-bot">
@@ -147,5 +149,33 @@
     }
   }
 
-  document.addEventListener('aghf-auth-ready', updateSidebar);
+  // Notification bell — dynamically imported so a missing/unmigrated
+  // Monthly Challenge table can never break the sidebar itself (this
+  // script runs on every page). Silently renders nothing on failure.
+  async function loadNotifBell() {
+    const wrap = document.getElementById('sbNotifWrap');
+    if (!wrap) return;
+    try {
+      const [{ getNotifications, markNotificationRead, markAllNotificationsRead }, { renderNotificationBell }] = await Promise.all([
+        import(`${ROOT}shared/challenge-service.js`),
+        import(`${ROOT}shared/challenge-engine.js`),
+      ]);
+      const paintBell = async () => {
+        const data = await getNotifications();
+        renderNotificationBell(wrap, data, {
+          onOpen: () => {},
+          onMarkAllRead: async () => { await markAllNotificationsRead(); paintBell(); },
+          onOpenNotification: async (id) => { await markNotificationRead(id); paintBell(); },
+        });
+      };
+      await paintBell();
+    } catch (err) {
+      console.error('Notification bell load error:', err);
+    }
+  }
+
+  document.addEventListener('aghf-auth-ready', () => {
+    updateSidebar();
+    loadNotifBell();
+  });
 })();

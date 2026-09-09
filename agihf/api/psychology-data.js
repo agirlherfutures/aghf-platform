@@ -16,6 +16,7 @@
 // only the dispatch and the shared Supabase client construction are new.
 
 import { createClient } from '@supabase/supabase-js';
+import { creditChallengeActivity } from './_lib/challenge-credit.js';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
@@ -130,6 +131,21 @@ async function handleSessions(req, res, userId) {
         const { data, error } = await supabase.from('psychology_sessions').insert(row).select('*').single();
         if (error) throw error;
         result = data;
+      }
+
+      // A one_time session leaves nothing behind by design — never credit
+      // a challenge activity from it, since even a bare activity row would
+      // be a trace of a session the member asked to leave none.
+      if (row.status === 'completed' && row.save_preference !== 'one_time') {
+        try {
+          await creditChallengeActivity(supabase, {
+            userId,
+            sourceTable: 'psychology_sessions',
+            sourceRecordId: result.id,
+            activityType: 'psychology_session_completed',
+            occurredAt: result.completed_at || undefined,
+          });
+        } catch { /* a missing/unmigrated challenge table must never block a session save */ }
       }
 
       if (row.save_preference === 'one_time') {
