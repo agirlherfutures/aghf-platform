@@ -88,11 +88,40 @@ function renderDayCell(cell) {
 
 const WEEKDAY_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+/** Sums a week's 7 cells — filler cells from an adjacent month always carry
+ * a null aggregate (never computed outside the displayed month, matching
+ * how every other month-level stat here already excludes them), so this
+ * only ever tallies the current month's days that fall in that week. */
+function weekNetPnl(weekCells) {
+  return weekCells.reduce((s, c) => s + (c.aggregate?.netPnl || 0), 0);
+}
+
+function pnlClass(n) {
+  return n > 0 ? 'dd-pnl-pos' : n < 0 ? 'dd-pnl-neg' : 'dd-pnl-flat';
+}
+
+/** Null (never a misleading $0) when nothing has been logged this month yet. */
+function monthNetPnl(grid) {
+  const currentMonthCells = grid.filter((c) => c.isCurrentMonth);
+  if (!currentMonthCells.some((c) => c.aggregate?.tradeCount)) return null;
+  return currentMonthCells.reduce((s, c) => s + (c.aggregate?.netPnl || 0), 0);
+}
+
 /**
  * @param {{year:number, month:number, grid:object[], monthLabel:string}} data
  * @param {{onPrev:Function, onNext:Function, onToday:Function, onSelectDay:Function, onCreateEntryForDate:Function}} handlers
  */
 export function renderCalendarView(container, data, handlers) {
+  const weeks = [];
+  for (let i = 0; i < data.grid.length; i += 7) weeks.push(data.grid.slice(i, i + 7));
+  const daysHtml = weeks.map((week) => {
+    const hasTrades = week.some((c) => c.aggregate?.tradeCount);
+    const total = weekNetPnl(week);
+    return week.map(renderDayCell).join('')
+      + `<div class="jh-week-total">Week total: ${hasTrades ? pnlSpan(total, pnlClass(total)) : '—'}</div>`;
+  }).join('');
+  const monthTotal = monthNetPnl(data.grid);
+
   container.innerHTML = `
     <div class="dd-card">
       <div class="jh-cal-nav">
@@ -102,7 +131,8 @@ export function renderCalendarView(container, data, handlers) {
         <button type="button" class="dd-secondary-btn" id="jhCalToday" style="margin-left:auto;">Today</button>
       </div>
       <div class="jh-cal-grid jh-cal-weekdays">${WEEKDAY_LABELS.map((d) => `<div class="jh-cal-weekday">${d}</div>`).join('')}</div>
-      <div class="jh-cal-grid jh-cal-days">${data.grid.map(renderDayCell).join('')}</div>
+      <div class="jh-cal-grid jh-cal-days">${daysHtml}</div>
+      <div class="jh-cal-month-total jh-cal-month-total-grid">Month total: ${monthTotal == null ? 'No trades logged this month yet' : pnlSpan(monthTotal, pnlClass(monthTotal))}</div>
       <div class="jh-cal-legend">
         <span><span class="jh-legend-swatch jh-day-profit"></span> Profit</span>
         <span><span class="jh-legend-swatch jh-day-loss"></span> Loss</span>
@@ -123,6 +153,7 @@ export function renderCalendarView(container, data, handlers) {
           ${c.aggregate.cleanExecution === true ? '<span class="jh-day-marker jh-day-marker-clean">★</span>' : ''}
         </button>`;
       }).join('') || '<div class="small-help">Nothing logged this month yet.</div>'}
+      <div class="jh-cal-month-total">Month total: ${monthTotal == null ? 'No trades logged this month yet' : pnlSpan(monthTotal, pnlClass(monthTotal))}</div>
     </div>`;
 
   container.querySelector('#jhCalPrev').addEventListener('click', handlers.onPrev);
