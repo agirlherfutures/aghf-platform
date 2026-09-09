@@ -60,6 +60,7 @@
       </div>
       <div class="small-help" id="cFilterStatus"></div>
     </div>
+    <div id="jhEvalPlanStrip"></div>
     <div id="jhCalendarBody"></div>
   </div>
 
@@ -83,7 +84,8 @@
   let computeInsights;
   let renderSkeleton, renderErrorState;
   let groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid, computeMonthSummary, filterByAccount;
-  let renderViewSwitcher, renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer, renderPerformanceSummaryView, isPnlHidden;
+  let renderViewSwitcher, renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer, renderPerformanceSummaryView, isPnlHidden, renderEvalPlanProgressStrip;
+  let listEvalPlans;
 
   function renderFallbackError(err) {
     console.error('Journal history failed to load:', err);
@@ -175,15 +177,18 @@
   let calInstrument = '', calAccount = '';
   let calAllEntries = null; // lazy-loaded once, shared by Calendar + Summary
   let calAllChecklists = null;
+  let calActivePlan = null;
 
   async function ensureCalendarData() {
     if (calAllEntries && calAllChecklists) return;
-    const [{ entries }, checklists] = await Promise.all([
+    const [{ entries }, checklists, plans] = await Promise.all([
       listEntries({ entryType: 'trade', limit: 500 }),
       listChecklists(500),
+      listEvalPlans().catch(() => []), // eval plans are optional context here — never blocks the calendar from loading
     ]);
     calAllEntries = entries;
     calAllChecklists = checklists;
+    calActivePlan = plans.find((p) => p.isActive) || null;
     const accSelect = document.getElementById('cAccount');
     const accounts = [...new Set(entries.map((e) => e.accountId).filter(Boolean))].sort();
     accSelect.innerHTML = `<option value="">All</option>${accounts.map((a) => `<option value="${a}">${a}</option>`).join('')}`;
@@ -225,6 +230,7 @@
     const aggregatesByDate = monthAggregates(calYear, calMonth);
     const grid = computeMonthGrid(calYear, calMonth, aggregatesByDate);
     const monthLabel = new Date(calYear, calMonth, 1).toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+    renderEvalPlanProgressStrip(document.getElementById('jhEvalPlanStrip'), calActivePlan, [...aggregatesByDate.values()]);
     renderCalendarView(document.getElementById('jhCalendarBody'), { year: calYear, month: calMonth, grid, monthLabel }, {
       onPrev: () => { calMonth -= 1; if (calMonth < 0) { calMonth = 11; calYear -= 1; } paintCalendarView(); },
       onNext: () => { calMonth += 1; if (calMonth > 11) { calMonth = 0; calYear += 1; } paintCalendarView(); },
@@ -237,7 +243,7 @@
   function openDayDrawer(date, aggregatesByDate) {
     const aggregate = aggregatesByDate.get(date) || { date, tradeCount: 0, netPnl: null, wins: 0, losses: 0, breakeven: 0, cleanExecution: null, journalComplete: null, missedSetup: false };
     const trades = filteredCalendarEntries().filter((e) => e.tradeDate === date);
-    renderTradeDayDrawer(document.getElementById('jhDrawerRoot'), { date, aggregate, trades }, {
+    renderTradeDayDrawer(document.getElementById('jhDrawerRoot'), { date, aggregate, trades, plan: calActivePlan }, {
       onClose: () => closeTradeDayDrawer(document.getElementById('jhDrawerRoot')),
       apiFetch,
     });
@@ -275,7 +281,8 @@
       ({ computeInsights } = await import('./shared/journal-insights.js'));
       ({ renderSkeleton, renderErrorState } = await import('./shared/dayli-desk-engine.js'));
       ({ groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid, computeMonthSummary, filterByAccount } = await import('./shared/journal-calendar-math.js'));
-      ({ renderViewSwitcher, renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer, renderPerformanceSummaryView, isPnlHidden } = await import('./shared/journal-calendar-engine.js'));
+      ({ renderViewSwitcher, renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer, renderPerformanceSummaryView, isPnlHidden, renderEvalPlanProgressStrip } = await import('./shared/journal-calendar-engine.js'));
+      ({ listEvalPlans } = await import('./shared/eval-service.js'));
     } catch (err) {
       renderFallbackError(err);
       return;
@@ -309,6 +316,10 @@
     });
 
     renderViewSwitcher(document.getElementById('jhViewSwitch'), activeView, switchView);
+
+    // Deep-link support for "View Full Calendar"-style cards elsewhere (e.g. performance.html).
+    const initialView = new URLSearchParams(window.location.search).get('view');
+    if (initialView === 'calendar' || initialView === 'summary') switchView(initialView);
 
     load();
   }

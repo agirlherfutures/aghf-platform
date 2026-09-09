@@ -13,8 +13,13 @@
  * execution star; a winning, rule-breaking day never does).
  */
 
-import { classifyDayBadge } from './journal-calendar-math.js';
+import { classifyDayBadge, classifyDayVsPlan } from './journal-calendar-math.js';
 import { renderTradeSummaryCard, entryToSummaryCardProps } from './journal-engine.js';
+import {
+  computeProfitTargetDollar, computeRemainingProfitTarget, computeDrawdownLimitDollar,
+  computeRemainingDrawdown, computeConsistencyRuleStatus, classifyPlanRiskStatus,
+} from './eval-calculator-math.js';
+import { PLAN_RISK_STATUS_COPY } from './eval-copy.js';
 
 const BADGE_META = {
   profit: { label: 'Profit', icon: '↗', cellClass: 'jh-day-profit' },
@@ -138,7 +143,7 @@ export function renderCalendarView(container, data, handlers) {
  * @param {{onClose:Function, apiFetch:Function}} handlers
  */
 export function renderTradeDayDrawer(container, data, handlers) {
-  const { date, aggregate, trades } = data;
+  const { date, aggregate, trades, plan } = data;
   const badge = classifyDayBadge(aggregate);
   const meta = BADGE_META[badge];
 
@@ -157,14 +162,21 @@ export function renderTradeDayDrawer(container, data, handlers) {
           <div class="jh-stat-tile muted"><div class="jh-stat-label">Journal Complete</div><div class="jh-stat-value" style="font-size:1rem;">${aggregate.journalComplete == null ? '—' : aggregate.journalComplete ? 'Yes' : 'Incomplete'}</div></div>
         </div>
         ${aggregate.missedSetup ? `<div class="small-help" style="margin-bottom:14px;">A setup was reviewed and passed on this day — tracked separately, not counted as a trade.</div>` : ''}
+        ${plan ? renderDayVsPlanNote(aggregate, plan) : ''}
         <div id="jhDrawerTrades">
           ${trades.length ? trades.map((t) => renderTradeSummaryCard(entryToSummaryCardProps(t), { variant: 'list' })).join('') : '<div class="small-help">No trades logged this day.</div>'}
         </div>
-        <div style="margin-top:16px;">
+        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
           <a class="dd-primary-btn" href="journal-entry.html?tradeDate=${date}">Add Entry for This Day</a>
+          <button type="button" class="dd-secondary-btn" id="jhDrawerAskAgent">Ask AGHF Agent About This Day</button>
         </div>
       </div>
     </div>`;
+
+  container.querySelector('#jhDrawerAskAgent').addEventListener('click', () => {
+    sessionStorage.setItem('aghf_pending_agent_attachment', JSON.stringify({ type: 'day', metadata: { date }, label: `Day: ${date}` }));
+    window.location.href = 'psychology.html';
+  });
 
   const close = () => handlers.onClose();
   container.querySelector('#jhDrawerClose').addEventListener('click', close);
@@ -176,6 +188,58 @@ export function renderTradeDayDrawer(container, data, handlers) {
 
 export function closeTradeDayDrawer(container) {
   container.innerHTML = '';
+}
+
+/* ── Evaluation Plan Integration ──────────────────────────────────── */
+
+const DAY_VS_PLAN_COPY = {
+  risk_exceeded: 'Risk Exceeded',
+  trade_limit_exceeded: 'Trade Limit Exceeded',
+  within_plan: 'Within Plan',
+};
+
+/** A calm, factual line for the day drawer — never worded as a failure or scolding. */
+export function renderDayVsPlanNote(aggregate, plan) {
+  const status = classifyDayVsPlan(aggregate, plan);
+  if (!status) return '';
+  const notes = [];
+  if (status.riskStatus === 'risk_exceeded') notes.push('This day\'s loss was larger than your plan\'s daily loss limit.');
+  if (status.tradeCountStatus === 'trade_limit_exceeded') notes.push('More trades were taken than your plan\'s daily max.');
+  if (status.journalStatus === 'incomplete') notes.push('Journal reflection wasn\'t completed for every trade this day.');
+  if (!notes.length) return `<div class="small-help" style="margin-top:10px;">✓ Within Plan — this day matched your active plan's daily rules.</div>`;
+  return `<div class="small-help" style="margin-top:10px;">${notes.join(' ')}</div>`;
+}
+
+/**
+ * Shown only when an active plan exists. Target progress, drawdown
+ * remaining, days completed/remaining, consistency status, and a plan
+ * risk status — all read-only, never overwriting the plan's own saved
+ * assumptions.
+ */
+export function renderEvalPlanProgressStrip(container, plan, dayAggregates) {
+  if (!plan) { container.innerHTML = ''; return; }
+  const target = computeProfitTargetDollar(plan);
+  const remainingTarget = computeRemainingProfitTarget(plan);
+  const ddLimit = computeDrawdownLimitDollar(plan);
+  const remainingDd = computeRemainingDrawdown(plan);
+  const daysElapsed = plan.tradingDaysElapsed || 0;
+  const minDays = plan.minTradingDays;
+  const tradingDays = (dayAggregates || []).filter((d) => d.tradeCount > 0);
+  const consistency = computeConsistencyRuleStatus(plan, tradingDays);
+  const { status: riskStatusKey } = classifyPlanRiskStatus(plan);
+  const riskCopy = PLAN_RISK_STATUS_COPY[riskStatusKey];
+
+  container.innerHTML = `
+    <div class="dd-card" style="margin-bottom:16px;">
+      <div class="section-title" style="margin-bottom:10px;">Active Plan: ${plan.name}</div>
+      <div class="jh-stats-row">
+        <div class="jh-stat-tile hero"><div class="jh-stat-label">Remaining Target</div><div class="jh-stat-value">${target != null ? pnlSpan(remainingTarget) : '—'}</div></div>
+        <div class="jh-stat-tile ${ddLimit != null ? '' : 'muted'}"><div class="jh-stat-label">Remaining Drawdown</div><div class="jh-stat-value">${ddLimit != null ? pnlSpan(remainingDd) : 'Not Sure'}</div></div>
+        <div class="jh-stat-tile"><div class="jh-stat-label">Trading Days</div><div class="jh-stat-value">${daysElapsed}${minDays ? ` / ${minDays} min` : ''}</div></div>
+        <div class="jh-stat-tile"><div class="jh-stat-label">Plan Risk Status</div><div class="jh-stat-value" style="font-size:1rem;">${riskCopy.label}</div></div>
+      </div>
+      ${consistency.applicable && consistency.status !== 'not_enough_data' ? `<div class="small-help" style="margin-top:10px;">Consistency rule: ${consistency.status === 'violated' ? `your best day was ${consistency.bestDayPct.toFixed(0)}% of total profit, above your ${plan.consistencyRulePct}% rule.` : 'within your consistency rule so far.'}</div>` : ''}
+    </div>`;
 }
 
 /* ── Performance Summary view ─────────────────────────────────────── */

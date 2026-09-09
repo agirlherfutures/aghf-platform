@@ -147,6 +147,18 @@
         }
       },
     });
+    loadActualVsPlanned();
+  }
+
+  async function loadActualVsPlanned() {
+    try {
+      const { listEntries } = await import('./shared/journal-service.js');
+      const { computeActualVsPlanned } = await import('./shared/eval-calculator-math.js');
+      const { entries } = await listEntries({ entryType: 'trade', limit: 500 });
+      handle.setActualVsPlanned(computeActualVsPlanned(currentPlan, entries));
+    } catch (err) {
+      console.error('Actual-vs-planned load error:', err); // non-critical — the calculator still works without it
+    }
   }
 
   let saveTimer = null;

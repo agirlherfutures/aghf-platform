@@ -345,6 +345,24 @@ export function renderAgentWorkspace(container, helpers = {}) {
     loadSidebar();
   }
 
+  /**
+   * "Ask AGHF Agent About This Day" (journal-calendar-engine.js's Trade Day
+   * Drawer) writes this handoff to sessionStorage and navigates here, the
+   * same sessionStorage cross-page pattern already used elsewhere in this
+   * app — consumed once, then cleared, so a later reload doesn't re-attach it.
+   */
+  function consumePendingDayAttachment() {
+    try {
+      const raw = sessionStorage.getItem('aghf_pending_agent_attachment');
+      if (!raw) return;
+      sessionStorage.removeItem('aghf_pending_agent_attachment');
+      const pending = JSON.parse(raw);
+      if (pending?.type === 'day' && pending.metadata?.date) {
+        state.attachments.push({ type: 'day', label: pending.label || `Day: ${pending.metadata.date}`, metadata: pending.metadata });
+      }
+    } catch { /* a malformed handoff payload is silently ignored, never breaks the workspace */ }
+  }
+
   /* ── Thread ── */
   function paintWelcome() {
     els.thread.innerHTML = `
@@ -850,6 +868,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
         checklist: 'Can you take a look at this checklist?',
         week: 'Can you take a look at this week?',
         date_range: 'Can you take a look at this date range?',
+        day: 'Can you take a look at this day?',
         screenshot: 'What do you notice about this chart?',
       };
       if (labels[[...types][0]]) return labels[[...types][0]];
@@ -1198,6 +1217,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
   });
 
   els.sidebar.classList.toggle('open', state.sidebarOpen);
+  consumePendingDayAttachment();
   paintComposer();
   paintThread();
   loadSidebar();

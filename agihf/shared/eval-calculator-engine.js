@@ -21,7 +21,7 @@ import {
   computeDrawdownLimitDollar, computeRemainingDrawdown, computeDrawdownUsagePerLoss,
   computeMaxLossesRemaining, computeExpectedValuePerTrade, computeEstimatedNetPerDay,
   computeEstimatedTradingDaysRange, classifyPlanRiskStatus, WHAT_IF_SCENARIOS,
-  runScenarioBatch, validatePlanInputs,
+  runScenarioBatch, validatePlanInputs, computeActualVsPlanned,
 } from './eval-calculator-math.js';
 
 function fmtMoney(n) {
@@ -228,6 +228,26 @@ function renderCalculatedMetricsSection(plan) {
     </div>`;
 }
 
+/* ── Actual vs. Planned (read-only, never overwrites the plan) ──────── */
+
+function renderActualVsPlannedSection(actualVsPlanned) {
+  if (!actualVsPlanned?.hasData) return '';
+  const delta = actualVsPlanned.winRateDelta;
+  return `
+    <div class="section-card">
+      <div class="section-header"><div class="section-icon icon-peach">📊</div><div><div class="section-title">Your Actual Results So Far</div><div class="section-sub">From your journaled trades — read-only, never overwrites your plan's assumptions.</div></div></div>
+      <div class="section-body">
+        <div class="jh-stats-row">
+          ${statTile('Trades Journaled', actualVsPlanned.actualTradeCount)}
+          ${statTile('Actual Net P&amp;L', fmtMoney(actualVsPlanned.actualNetPnl), { hero: true })}
+          ${statTile('Actual Win Rate', `${actualVsPlanned.actualWinRate.toFixed(0)}%`)}
+          ${statTile('Planned Win Rate', actualVsPlanned.plannedWinRate != null ? `${actualVsPlanned.plannedWinRate}%` : '—', { muted: true })}
+        </div>
+        ${delta != null ? `<div class="small-help" style="margin-top:6px;">Your actual win rate is ${Math.abs(delta).toFixed(0)} points ${delta >= 0 ? 'above' : 'below'} what your plan assumed.</div>` : ''}
+      </div>
+    </div>`;
+}
+
 /* ── Section 5: What If? scenarios ─────────────────────────────────── */
 
 function renderWhatIfSection(plan, activeScenarioKey, batchResult) {
@@ -309,6 +329,7 @@ export function renderEvalCalculatorPage(container, plan, helpers) {
       ${renderEvalRulesSection(plan)}
       ${renderTradingPlanSection(plan)}
       ${renderCalculatedMetricsSection(plan)}
+      ${renderActualVsPlannedSection(helpers.actualVsPlanned)}
       ${renderWhatIfSection(plan, activeScenarioKey, batchResult)}
       ${renderPlanRiskStatusSection(plan)}
       <div id="evalActionsBar"></div>`;
@@ -377,5 +398,6 @@ export function renderEvalCalculatorPage(container, plan, helpers) {
     getState: () => plan,
     setSaveStatus: (status) => { helpers.saveStatus = status; const bar = container.querySelector('#evalActionsBar'); if (bar) bar.querySelector('.cl-nav-status').textContent = status === 'saving' ? 'Saving…' : status === 'error' ? '⚠ Couldn’t save — retrying' : 'Saved ✓'; },
     applySavedFields: (saved) => { plan = { ...plan, id: saved.id, status: saved.status, createdAt: saved.createdAt }; },
+    setActualVsPlanned: (avp) => { helpers.actualVsPlanned = avp; paint(); },
   };
 }

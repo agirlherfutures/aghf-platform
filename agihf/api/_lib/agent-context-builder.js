@@ -111,6 +111,7 @@ export async function buildTurnContext({ supabase, userId, consent = {}, persona
   const tradeIds = attachments.filter((a) => a.type === 'trade' && a.id).map((a) => a.id);
   const weekAttachment = attachments.find((a) => a.type === 'week');
   const rangeAttachment = attachments.find((a) => a.type === 'date_range');
+  const dayAttachment = attachments.find((a) => a.type === 'day');
 
   let trades = [];
   let attachmentSummaries = [];
@@ -124,6 +125,10 @@ export async function buildTurnContext({ supabase, userId, consent = {}, persona
   } else if (rangeAttachment) {
     trades = await fetchTradesInRange(supabase, userId, { from: rangeAttachment.metadata?.from, to: rangeAttachment.metadata?.to });
     attachmentSummaries.push({ type: 'date_range', count: trades.length, from: rangeAttachment.metadata?.from, to: rangeAttachment.metadata?.to });
+  } else if (dayAttachment) {
+    // fetchTradesInRange already handles from===to correctly (a single day) with zero code changes.
+    trades = await fetchTradesInRange(supabase, userId, { from: dayAttachment.metadata?.date, to: dayAttachment.metadata?.date });
+    attachmentSummaries.push({ type: 'day', count: trades.length, date: dayAttachment.metadata?.date });
   }
 
   const journalAttachmentIds = attachments.filter((a) => a.type === 'journal' && a.id).map((a) => a.id);
