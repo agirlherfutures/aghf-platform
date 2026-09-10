@@ -360,6 +360,8 @@ export function renderAgentWorkspace(container, helpers = {}) {
       const pending = JSON.parse(raw);
       if (pending?.type === 'day' && pending.metadata?.date) {
         state.attachments.push({ type: 'day', label: pending.label || `Day: ${pending.metadata.date}`, metadata: pending.metadata });
+      } else if (pending?.type === 'chart_lab_question' && pending.metadata) {
+        state.attachments.push({ type: 'chart_lab_question', label: pending.label || 'Chart Lab question', metadata: pending.metadata });
       }
     } catch { /* a malformed handoff payload is silently ignored, never breaks the workspace */ }
   }

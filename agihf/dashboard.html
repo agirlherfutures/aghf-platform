@@ -391,9 +391,11 @@
 
     try {
       const consistency = await computeConsistencyScore();
-      renderCurrentFocusCard(document.getElementById('ddFocus'), computeCurrentFocus(consistency), {
+      const focus = computeCurrentFocus(consistency);
+      const { chartLabHrefForFocus } = await import('./shared/chartlab-copy.js');
+      renderCurrentFocusCard(document.getElementById('ddFocus'), focus, {
         lessonHref: next && next.type === 'lesson' ? `lesson.html?phase=p1&n=${next.lesson.n}` : null,
-        chartLabHref: 'chart-lab.html',
+        chartLabHref: chartLabHrefForFocus(focus.key),
         journalHref: 'journal.html',
       });
     } catch (err) {

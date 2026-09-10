@@ -9,22 +9,137 @@
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/components.css">
 <link rel="stylesheet" href="shared/dayli-desk.css">
+<link rel="stylesheet" href="shared/chartlab.css">
 </head>
-<body>
+<body class="chartlab-page">
 
 <script src="shared/auth-guard.js"></script>
 <script src="shared/sidebar.js" data-active="chart-lab"></script>
 
 <main class="main">
-  <div class="pg-eye">◧ Practice drills</div>
-  <div class="pg-title">Chart Lab</div>
+  <div class="pg-eye">✦ Academy</div>
+  <div class="pg-title">AGHF Chart Lab</div>
+  <p class="small-help" style="margin:-8px 0 18px;">Train your eyes. Read the chart. Build confidence before risking money.</p>
 
-  <div class="dd-card dd-empty">
-    <div class="dd-empty-icon">📊</div>
-    <div class="dd-empty-text">Chart Lab is coming soon — bite-sized drills for spotting bias, structure, and Dayli ICC phases on real chart examples, tied to your Current Focus recommendations.</div>
-    <a class="dd-primary-btn" href="dashboard.html">Back to Dayli Desk</a>
+  <div id="clTodays"></div>
+  <div id="clContinue" style="margin-top:16px;"></div>
+
+  <div class="dd-section-head" style="margin-top:24px;">
+    <div class="dd-section-title">Browse by Skill</div>
   </div>
+  <div id="clBrowse"></div>
+
+  <div class="dd-section-head" style="margin-top:24px;">
+    <div class="dd-section-title">Start a Session</div>
+  </div>
+  <div id="clSessionPicker"></div>
+
+  <div class="dd-section-head" style="margin-top:24px;">
+    <div class="dd-section-title">Progress Snapshot</div>
+  </div>
+  <div id="clSnapshot"></div>
+
+  <div class="dd-section-head" style="margin-top:24px;">
+    <div class="dd-section-title">Mistake Review</div>
+  </div>
+  <div id="clMistakes"></div>
 </main>
+
+<script type="module">
+  let listDrills, getCurrentSession, startSession, getMastery, getMistakes;
+  let renderTodaysDrillCard, renderContinuePracticingCard, renderBrowseBySkill, renderSessionPicker, renderProgressSnapshot, renderMistakeReview;
+  let FOCUS_TO_SKILL, skillLabel;
+
+  const todaysEl = document.getElementById('clTodays');
+  const continueEl = document.getElementById('clContinue');
+  const browseEl = document.getElementById('clBrowse');
+  const sessionEl = document.getElementById('clSessionPicker');
+  const snapshotEl = document.getElementById('clSnapshot');
+  const mistakesEl = document.getElementById('clMistakes');
+
+  function renderFallbackError(err) {
+    console.error('Chart Lab page failed to load:', err);
+    todaysEl.innerHTML = `
+      <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading Chart Lab</div>
+        <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
+        <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
+      </div>`;
+  }
+
+  async function pickTodaysDrill(drills, mastery) {
+    const focusParam = new URLSearchParams(location.search).get('focus');
+    if (focusParam) {
+      const byFocus = drills.find((d) => d.skillCategory === focusParam);
+      if (byFocus) return { drill: byFocus, reason: FOCUS_TO_SKILL[Object.keys(FOCUS_TO_SKILL).find((k) => FOCUS_TO_SKILL[k].skillCategory === focusParam)]?.reason || `Recommended because it practices ${skillLabel(focusParam)}.` };
+    }
+    // Frequently-missed concept: the skill with the lowest recent_accuracy among practiced skills.
+    const practiced = mastery.filter((m) => m.attempts > 0);
+    if (practiced.length) {
+      const weakest = [...practiced].sort((a, b) => (a.recent_accuracy ?? 100) - (b.recent_accuracy ?? 100))[0];
+      if (weakest.recent_accuracy < 75) {
+        const drill = drills.find((d) => d.skillCategory === weakest.skill_category);
+        if (drill) return { drill, reason: `Recommended because your recent accuracy in ${skillLabel(weakest.skill_category)} is ${weakest.recent_accuracy}%.` };
+      }
+    }
+    // Otherwise: next skill in Academy progression order with no attempts yet.
+    const untried = drills.find((d) => !mastery.some((m) => m.skill_category === d.skillCategory));
+    if (untried) return { drill: untried, reason: null };
+    return { drill: drills[0] || null, reason: null };
+  }
+
+  async function loadHome() {
+    try {
+      const [{ drills }, { session }, { mastery, totalGpAwarded, drillsCompleted }, { mistakes }] = await Promise.all([
+        listDrills(), getCurrentSession(), getMastery(), getMistakes(),
+      ]);
+
+      const { drill: todaysDrill, reason } = await pickTodaysDrill(drills, mastery);
+      renderTodaysDrillCard(todaysEl, todaysDrill, reason);
+      document.getElementById('cl2StartTodays')?.addEventListener('click', () => {
+        location.href = `chart-lab-drill.html?drillId=${encodeURIComponent(todaysDrill.id)}`;
+      });
+
+      renderContinuePracticingCard(continueEl, session);
+      document.getElementById('cl2Continue')?.addEventListener('click', () => {
+        location.href = `chart-lab-drill.html?sessionId=${encodeURIComponent(session.id)}`;
+      });
+
+      renderBrowseBySkill(browseEl, async (skillKey) => {
+        const { session: newSession, empty } = await startSession({ sessionType: 'focus', skillCategory: skillKey, currentFocusSource: 'member_selected' });
+        if (empty || !newSession) { alert("No published drills for this skill yet — check back soon."); return; }
+        location.href = `chart-lab-drill.html?sessionId=${encodeURIComponent(newSession.id)}`;
+      });
+
+      renderSessionPicker(sessionEl, async (sessionType) => {
+        const { session: newSession, empty } = await startSession({ sessionType, currentFocusSource: sessionType === 'daily' ? 'academy_progression' : null });
+        if (empty || !newSession) { alert("Nothing to practice yet — check back once more drills are published."); return; }
+        location.href = `chart-lab-drill.html?sessionId=${encodeURIComponent(newSession.id)}`;
+      });
+
+      const accuracyTrend = mastery.length ? Math.round(mastery.reduce((s, m) => s + (m.recent_accuracy || 0), 0) / mastery.length) : null;
+      renderProgressSnapshot(snapshotEl, { mastery, drillsCompleted: drillsCompleted || 0, gpEarned: totalGpAwarded || 0, accuracyTrend });
+
+      renderMistakeReview(mistakesEl, mistakes, (drillId) => { location.href = `chart-lab-drill.html?drillId=${encodeURIComponent(drillId)}`; });
+    } catch (err) {
+      renderFallbackError(err);
+    }
+  }
+
+  async function boot() {
+    try {
+      ({ listDrills, getCurrentSession, startSession, getMastery, getMistakes } = await import('./shared/chartlab-service.js'));
+      ({ renderTodaysDrillCard, renderContinuePracticingCard, renderBrowseBySkill, renderSessionPicker, renderProgressSnapshot, renderMistakeReview } = await import('./shared/chartlab-engine.js'));
+      ({ FOCUS_TO_SKILL, skillLabel } = await import('./shared/chartlab-copy.js'));
+    } catch (err) {
+      renderFallbackError(err);
+      return;
+    }
+    await loadHome();
+  }
+
+  document.addEventListener('aghf-auth-ready', boot);
+</script>
 
 </body>
 </html>

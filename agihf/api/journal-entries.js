@@ -1,16 +1,18 @@
 // api/journal-entries.js — AG&HF Trade Journal persistence, plus (as of
-// the Monthly Challenge pass) chart-screenshot storage folded in as a
-// second `?resource=` case to stay under Vercel Hobby's 12-function
-// ceiling — this freed the one slot agihf/api/challenge-data.js needed.
-// vercel.json rewrites /api/journal-screenshot -> here with
-// resource=screenshot appended, so every existing client call site
-// (journal-entry.html, journal-engine.js) needed zero changes; bare
-// /api/journal-entries calls (journal-service.js) still hit the default
+// the Monthly Challenge pass) chart-screenshot storage, plus (as of the
+// Chart Lab pass) the Dayli ICC Trade Checklist — all folded into one
+// `?resource=`-dispatched file to stay under Vercel Hobby's 12-function
+// ceiling. Screenshot folded in to free the slot challenge-data.js
+// needed; checklists.js folded in (verbatim, as resource=checklist) to
+// free the slot chartlab-data.js needed. vercel.json rewrites
+// /api/journal-screenshot and /api/checklists to here with the matching
+// resource appended, so every existing client call site needed zero
+// changes; bare /api/journal-entries calls still hit the default
 // `entries` handler, also with zero client changes.
 //
 // Same JWT-verification pattern as get-profile.js: every query is scoped
-// to the verified user.id, so one member's journal/screenshots are never
-// reachable through another member's session.
+// to the verified user.id, so one member's journal/screenshots/checklists
+// are never reachable through another member's session.
 
 import { createClient } from '@supabase/supabase-js';
 import { creditChallengeActivity } from './_lib/challenge-credit.js';
@@ -359,9 +361,122 @@ async function handleScreenshot(req, res, userId) {
   }
 }
 
+/* ── resource=checklist — folded in verbatim from the former
+   api/checklists.js, same JWT/ownership-scoping pattern. ─────────────── */
+
+function checklistToClientShape(row) {
+  if (!row) return null;
+  return {
+    id: row.id,
+    userId: row.user_id,
+    accountId: row.account_id,
+    tradingDate: row.trading_date,
+    session: row.session,
+    instrument: row.instrument,
+    templateVersion: row.template_version,
+    marketContext: row.market_context || {},
+    items: row.items || [],
+    currentPhase: row.current_phase,
+    completionPct: row.completion_pct,
+    readinessStatus: row.readiness_status,
+    finalDecision: row.final_decision,
+    linkedJournalEntryId: row.linked_journal_entry_id,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+    completedAt: row.completed_at,
+  };
+}
+
+function checklistReadinessLabel(pct) {
+  if (pct === 100) return 'Locked in';
+  if (pct >= 75) return 'Almost ready';
+  if (pct >= 50) return 'Building';
+  if (pct >= 25) return 'Getting there';
+  return 'Not ready';
+}
+
+async function handleChecklist(req, res, userId) {
+  if (req.method === 'GET') {
+    const { id, date, instrument, limit } = req.query;
+
+    if (id) {
+      const { data, error } = await supabase.from('trade_checklists').select('*').eq('user_id', userId).eq('id', id).single();
+      if (error && error.code !== 'PGRST116') throw error;
+      return res.status(200).json({ checklist: checklistToClientShape(data) });
+    }
+
+    if (date) {
+      let query = supabase.from('trade_checklists').select('*').eq('user_id', userId).eq('trading_date', date);
+      if (instrument) query = query.eq('instrument', instrument);
+      const { data, error } = await query.order('created_at', { ascending: false }).limit(1).maybeSingle();
+      if (error) throw error;
+      return res.status(200).json({ checklist: checklistToClientShape(data) });
+    }
+
+    const { data, error } = await supabase.from('trade_checklists').select('*').eq('user_id', userId)
+      .order('trading_date', { ascending: false }).limit(Number(limit) || 50);
+    if (error) throw error;
+    return res.status(200).json({ checklists: (data || []).map(checklistToClientShape) });
+  }
+
+  if (req.method === 'POST') {
+    const body = req.body || {};
+    const items = Array.isArray(body.items) ? body.items : [];
+    const checkedCount = items.filter((i) => i.checked).length;
+    const completionPct = items.length ? Math.round((checkedCount / items.length) * 100) : 0;
+
+    const row = {
+      user_id: userId,
+      account_id: body.accountId || null,
+      trading_date: body.tradingDate || new Date().toISOString().slice(0, 10),
+      session: body.session || null,
+      instrument: body.instrument || 'MNQ',
+      template_version: body.templateVersion || 1,
+      market_context: body.marketContext || {},
+      items,
+      current_phase: body.currentPhase || 'market_context',
+      completion_pct: completionPct,
+      readiness_status: checklistReadinessLabel(completionPct),
+      final_decision: body.finalDecision || null,
+      linked_journal_entry_id: body.linkedJournalEntryId || null,
+      updated_at: new Date().toISOString(),
+      completed_at: completionPct === 100 ? (body.completedAt || new Date().toISOString()) : null,
+    };
+
+    let result;
+    if (body.id) {
+      const { data, error } = await supabase.from('trade_checklists').update(row).eq('id', body.id).eq('user_id', userId).select('*').single();
+      if (error) throw error;
+      result = data;
+    } else {
+      const { data, error } = await supabase.from('trade_checklists').insert(row).select('*').single();
+      if (error) throw error;
+      result = data;
+    }
+
+    if (result && completionPct === 100) {
+      try {
+        await creditChallengeActivity(supabase, { userId, sourceTable: 'trade_checklists', sourceRecordId: result.id, activityType: 'checklist_completed', occurredAt: result.completed_at || undefined });
+      } catch { /* a missing/unmigrated challenge table must never block a checklist save */ }
+    }
+
+    return res.status(200).json({ checklist: checklistToClientShape(result) });
+  }
+
+  if (req.method === 'PATCH') {
+    const body = req.body || {};
+    if (!body.id) return res.status(400).json({ error: 'Missing id' });
+    const { error } = await supabase.from('trade_checklists').update({ excluded_from_agent: !!body.excludedFromAgent }).eq('id', body.id).eq('user_id', userId);
+    if (error) throw error;
+    return res.status(200).json({ success: true });
+  }
+
+  return res.status(405).json({ error: 'Method not allowed' });
+}
+
 /* ── dispatch ─────────────────────────────────────────────────────────── */
 
-const RESOURCE_HANDLERS = { entries: handleEntries, screenshot: handleScreenshot };
+const RESOURCE_HANDLERS = { entries: handleEntries, screenshot: handleScreenshot, checklist: handleChecklist };
 
 export default async function handler(req, res) {
   const authHeader = req.headers.authorization || '';

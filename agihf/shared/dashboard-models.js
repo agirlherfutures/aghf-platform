@@ -416,6 +416,7 @@ export const PLAYBOOK_CATEGORIES = [
   { key: 'weekly_focus', label: 'Current Weekly Focus' },
   { key: 'psychology_wins', label: 'Completed Psychology Wins' },
   { key: 'practice_plan', label: 'My Practice Plans' },
+  { key: 'chart_lab_example', label: 'Chart Lab Examples' },
 ];
 
 export const READINESS_LABELS = ['Clear', 'Slightly Activated', 'Emotionally Influenced', 'Pause Recommended', 'Walk-Away Condition Reached'];
