@@ -139,6 +139,16 @@ export async function buildTurnContext({ supabase, userId, consent = {}, persona
     attachmentSummaries.push({ type: 'journal', count: journalEntries.length });
   }
 
+  // Chart Lab question attachment: recorded here (for attachmentSummaries)
+  // but folded into memberDataParts below, once that array exists — no DB
+  // fetch needed, and no consent gate, matching the "explicit attachments
+  // always allowed" rule already used for trade/journal/checklist
+  // attaches. The model may explain the mistake but must never override
+  // the already-scored result or invent a new Dayli ICC rule — enforced
+  // by system-prompt instruction, not by withholding data here.
+  const chartLabAttachment = attachments.find((a) => a.type === 'chart_lab_question');
+  if (chartLabAttachment?.metadata) attachmentSummaries.push({ type: 'chart_lab_question', drillTitle: chartLabAttachment.metadata.drillTitle });
+
   const checklistAttachmentIds = attachments.filter((a) => a.type === 'checklist' && a.id).map((a) => a.id);
   let checklists = [];
   if (checklistAttachmentIds.length && consent.checklistAnswers) {
@@ -176,10 +186,18 @@ export async function buildTurnContext({ supabase, userId, consent = {}, persona
     });
   }
   playbookItems.forEach((p) => memberDataParts.push(`Playbook (${p.category}) — ${p.title}: ${p.content}`));
+  if (chartLabAttachment?.metadata) {
+    const m = chartLabAttachment.metadata;
+    memberDataParts.push(
+      `Chart Lab drill "${m.drillTitle}" (${m.skillCategory}) — Question: ${m.question} — Member's result: ${m.memberResult} — Approved explanation: ${m.explanation}` +
+      (m.commonMistake ? ` — Common mistake: ${m.commonMistake}` : '') +
+      (m.relatedRule ? ` — Related rule: ${m.relatedRule}` : '')
+    );
+  }
   let memberDataBlock = memberDataParts.join('\n').slice(0, MAX_MEMBER_TEXT_CHARS);
   if (memberDataParts.join('\n').length > MAX_MEMBER_TEXT_CHARS) memberDataBlock += '\n[additional entries omitted — ask to narrow the range]';
 
-  const hasAnyDataOrContext = hasAnyData || !!academyProgress || playbookItems.length > 0;
+  const hasAnyDataOrContext = hasAnyData || !!academyProgress || playbookItems.length > 0 || !!chartLabAttachment;
 
   return {
     hasAnyData: hasAnyDataOrContext,
