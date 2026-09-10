@@ -160,6 +160,15 @@ export async function adminDuplicateChallenge(id) {
   return apiFetch('/api/challenge-admin', { method: 'POST', body: JSON.stringify({ action: 'duplicate_challenge', id }) });
 }
 
+export async function adminDeleteChallenge(id) {
+  if (window.AGHF_DEMO) {
+    const idx = demoAdminChallenges.findIndex((c) => c.id === id);
+    if (idx >= 0) demoAdminChallenges.splice(idx, 1);
+    return { success: true };
+  }
+  return apiFetch('/api/challenge-admin', { method: 'POST', body: JSON.stringify({ action: 'delete_challenge', id }) });
+}
+
 export async function adminSetStatus(id, status, reason) {
   if (window.AGHF_DEMO) {
     const c = demoAdminChallenges.find((x) => x.id === id);
