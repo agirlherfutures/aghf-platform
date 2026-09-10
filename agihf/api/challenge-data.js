@@ -570,6 +570,19 @@ async function handleAdmin(req, res, userId) {
         return res.status(200).json({ challenge: challengeShape(created) });
       }
 
+      case 'delete_challenge': {
+        if (!body.id) return res.status(400).json({ error: 'Missing id' });
+        const { data: existing } = await supabase.from('challenges').select('*').eq('id', body.id).single();
+        if (!existing) return res.status(404).json({ error: 'Challenge not found' });
+        // Audit row is written before the delete so there's a permanent record even
+        // though every child table (rules/entries/draws/winners/prefs) cascades away —
+        // challenge_audit_log.challenge_id itself is ON DELETE SET NULL, so this row survives.
+        await writeAudit({ challengeId: body.id, adminId: userId, action: 'delete_challenge', targetTable: 'challenges', targetId: body.id, previousValue: existing });
+        const { error } = await supabase.from('challenges').delete().eq('id', body.id);
+        if (error) throw error;
+        return res.status(200).json({ success: true });
+      }
+
       case 'archive_challenge':
         return handleSetStatus(res, { challengeId: body.id, nextStatus: 'cancelled', adminId: userId, reason: body.reason });
 

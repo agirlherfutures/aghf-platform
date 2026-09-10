@@ -24,7 +24,7 @@
 </main>
 
 <script type="module">
-  let adminListChallenges, adminCreateChallenge, adminUpdateChallenge, adminDuplicateChallenge, adminSetStatus,
+  let adminListChallenges, adminCreateChallenge, adminUpdateChallenge, adminDuplicateChallenge, adminDeleteChallenge, adminSetStatus,
       adminUpsertRule, adminDeleteRule, adminUpsertPrize, adminRunDrawing, adminVerifyWinner, adminPublishWinner,
       adminManualEntryAdjustment, adminListAuditLog, adminGetChallengeDetail;
   let ACTIVITY_TYPE_LABELS, WINNER_VERIFY_SUBACTION_LABELS, WINNER_VERIFICATION_STATUS_LABELS, CHALLENGE_STATUS_ORDER, ADMIN_ACTION_LABELS;
@@ -207,6 +207,7 @@
           <button type="button" class="dd-secondary-btn" id="fDuplicate">Duplicate</button>
           <select class="field-input" id="fStatus" style="width:auto;">${CHALLENGE_STATUS_ORDER.map((s) => `<option value="${s}" ${s === c.status ? 'selected' : ''}>${s}</option>`).join('')}</select>
           <button type="button" class="dd-secondary-btn" id="fSetStatus">Change Status</button>
+          <button type="button" class="cl-delete-link" id="fDeleteChallenge" style="margin-left:auto;">Delete Challenge</button>
         </div>
       </div>
 
@@ -343,8 +344,22 @@
       catch (err) { alert("Couldn't change status — " + err.message); }
     });
     document.getElementById('fActivate')?.addEventListener('click', async () => {
-      try { await adminSetStatus(c.id, 'active'); await loadAll(); }
-      catch (err) { alert("Couldn't activate — " + err.message); }
+      // The server's status state machine never allows draft -> active directly
+      // (only draft -> scheduled -> active) — chain both transitions so this
+      // stays a single click for the admin.
+      try {
+        await adminSetStatus(c.id, 'scheduled');
+        await adminSetStatus(c.id, 'active');
+        await loadAll();
+      } catch (err) { alert("Couldn't activate — " + err.message); }
+    });
+    document.getElementById('fDeleteChallenge')?.addEventListener('click', async () => {
+      if (!confirm(`Permanently delete "${c.name || 'this challenge'}"? This removes its rules, entries, and any drawing/winner records. This can't be undone.`)) return;
+      try {
+        await adminDeleteChallenge(c.id);
+        activeId = null;
+        await loadAll();
+      } catch (err) { alert("Couldn't delete — " + err.message); }
     });
     const ruleForm = document.getElementById('addRuleForm');
     const ruleActivitySelect = document.getElementById('fRuleActivity');
@@ -431,7 +446,7 @@
   async function boot() {
     try {
       ({
-        adminListChallenges, adminCreateChallenge, adminUpdateChallenge, adminDuplicateChallenge, adminSetStatus,
+        adminListChallenges, adminCreateChallenge, adminUpdateChallenge, adminDuplicateChallenge, adminDeleteChallenge, adminSetStatus,
         adminUpsertRule, adminDeleteRule, adminUpsertPrize, adminRunDrawing, adminVerifyWinner, adminPublishWinner,
         adminManualEntryAdjustment, adminListAuditLog, adminGetChallengeDetail,
       } = await import('./shared/challenge-service.js'));
