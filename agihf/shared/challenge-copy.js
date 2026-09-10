@@ -164,6 +164,11 @@ export const PREVIOUS_WINNERS_EMPTY_STATE = {
   body: 'Once a challenge wraps up and its winner is verified, they’ll be celebrated here.',
 };
 
+export const PRIZE_EMPTY_STATE = {
+  heading: 'Prize details coming soon',
+  body: 'The AGHF team is finalizing this month’s prize — check back soon.',
+};
+
 export const WEEKLY_MOMENTUM_LABELS = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'];
 
 /** Admin Challenge Manager action labels — one per `action` value handled

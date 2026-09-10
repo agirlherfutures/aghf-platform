@@ -23,7 +23,7 @@ import {
   HERO_COPY, CHALLENGE_STATUS_COPY, COUNTDOWN_STATES, countdownStateFor,
   ACTIVITY_TYPE_LABELS, LEADERBOARD_CATEGORIES, leaderboardCategoryLabel,
   ENTRY_STATUS_LABELS, PROGRESS_COPY, ENTRY_LEDGER_EMPTY_STATE,
-  PREVIOUS_WINNERS_EMPTY_STATE, WEEKLY_MOMENTUM_LABELS, NOTIFICATION_TYPE_META,
+  PREVIOUS_WINNERS_EMPTY_STATE, PRIZE_EMPTY_STATE, WEEKLY_MOMENTUM_LABELS, NOTIFICATION_TYPE_META,
 } from './challenge-copy.js';
 import { renderAvatar } from './avatar.js';
 
@@ -128,6 +128,23 @@ export function renderCountdownHero(container, challenge) {
     <div class="chal-hero-status">${state ? `${state.icon} ${state.label}` : statusCopy.heading}</div>
     <p class="chal-hero-body">${statusCopy.body}</p>
     ${countdownHtml}
+  </div>`;
+}
+
+/* ── This month's prize — the "why" behind earning entries. Text only:
+   prize.imagePath points into a private bucket with no member-facing
+   signed-URL resolution today, so no image is rendered here yet. ──────── */
+
+export function renderPrizeCard(container, prize) {
+  if (!prize) {
+    container.innerHTML = renderChalEmptyState('🎁', PRIZE_EMPTY_STATE.heading, PRIZE_EMPTY_STATE.body);
+    return;
+  }
+  container.innerHTML = `<div class="chal-prize-card">
+    <div class="chal-prize-eyebrow">🎁 This Month's Prize</div>
+    <div class="chal-prize-name">${escapeHtml(prize.name)}</div>
+    ${prize.estimatedValue ? `<span class="chal-prize-value">${escapeHtml(String(prize.estimatedValue))}</span>` : ''}
+    ${prize.description ? `<p class="chal-prize-body">${escapeHtml(prize.description)}</p>` : ''}
   </div>`;
 }
 

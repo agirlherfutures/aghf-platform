@@ -18,6 +18,7 @@
 
 <main class="main">
   <div id="chalHero"></div>
+  <div id="chalPrize"></div>
 
   <div class="dd-section-head" style="margin-top:24px;">
     <div class="dd-section-title">Your Challenge Progress</div>
@@ -55,10 +56,11 @@
 
 <script type="module">
   let getCurrentChallenge, getProgress, getEntries, getLeaderboard, getWinners, getPrefs, savePrefs;
-  let renderCountdownHero, renderYourProgressCard, renderWaysToEarnList, renderWeeklyProgressStrip,
+  let renderCountdownHero, renderPrizeCard, renderYourProgressCard, renderWaysToEarnList, renderWeeklyProgressStrip,
       renderLeaderboardTabs, renderLeaderboardTable, renderPreviousWinnersGrid, renderEntryLedger, renderPrefsPanel;
 
   const heroEl = document.getElementById('chalHero');
+  const prizeEl = document.getElementById('chalPrize');
   const progressEl = document.getElementById('chalProgress');
   const waysEl = document.getElementById('chalWays');
   const weeklyEl = document.getElementById('chalWeekly');
@@ -109,7 +111,7 @@
     try {
       ({ getCurrentChallenge, getProgress, getEntries, getLeaderboard, getWinners, getPrefs, savePrefs } = await import('./shared/challenge-service.js'));
       ({
-        renderCountdownHero, renderYourProgressCard, renderWaysToEarnList, renderWeeklyProgressStrip,
+        renderCountdownHero, renderPrizeCard, renderYourProgressCard, renderWaysToEarnList, renderWeeklyProgressStrip,
         renderLeaderboardTabs, renderLeaderboardTable, renderPreviousWinnersGrid, renderEntryLedger, renderPrefsPanel,
       } = await import('./shared/challenge-engine.js'));
     } catch (err) {
@@ -120,17 +122,19 @@
     prefsLinkEl.addEventListener('click', (e) => { e.preventDefault(); togglePrefs(); });
 
     try {
-      const { challenge, rules } = await getCurrentChallenge();
+      const { challenge, rules, prize } = await getCurrentChallenge();
       currentChallenge = challenge;
       renderCountdownHero(heroEl, challenge);
       renderWaysToEarnList(waysEl, rules);
 
       if (!challenge) {
+        prizeEl.innerHTML = '';
         progressEl.innerHTML = '';
         weeklyEl.innerHTML = '';
         ledgerEl.innerHTML = '';
         await loadLeaderboard();
       } else {
+        renderPrizeCard(prizeEl, prize);
         const [progress, entriesResult] = await Promise.all([
           getProgress(challenge.id).catch(() => null),
           getEntries(challenge.id).catch(() => ({ entries: [] })),
