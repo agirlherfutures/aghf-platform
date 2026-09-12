@@ -11,6 +11,14 @@
  * AGHF-owned chart screenshots must be uploaded through the Admin Chart
  * Lab Builder before this feature is genuinely production-ready. See the
  * completion report for the full list still needing real charts.
+ *
+ * Each chart below is a deliberately-authored schematic diagram genuinely
+ * depicting its drill's concept (a real swing high, a real range, a real
+ * wick-rejection candle, a real Indication→Correction→Continuation→Retest
+ * sequence, real sideways consolidation) — not a generic reused shape.
+ * Every point/zone answer is DERIVED from the actual candle data via
+ * featureToZone(), never a hand-guessed coordinate, so a zone can never
+ * drift out of sync with what the chart actually shows.
  */
 
 import { authFetch as apiFetch } from './auth-fetch.js';
@@ -18,19 +26,35 @@ import { authFetch as apiFetch } from './auth-fetch.js';
 /* ── Demo-mode placeholder chart generator ───────────────────────────────
    A small deterministic SVG candlestick renderer (780x320 viewBox, same
    proportions as lesson-engine.js's canvas charts) so demo drills don't
-   need any uploaded image or Storage access. Zones below are expressed as
-   fractions of this exact viewBox. */
-function svgChart(candles, { width = 780, height = 320 } = {}) {
+   need any uploaded image or Storage access. The price→pixel mapping is
+   normalized to the actual min/max of the candles (and any reference
+   levels) being drawn, with padding, so nothing can ever render outside
+   the viewBox regardless of the path's shape or length. Returns both the
+   image and the exact mapping metadata used to draw it, so zones can be
+   derived from real chart geometry instead of guessed. */
+function escapeXml(s) { return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+function svgChart(candles, { width = 780, height = 320, padding = 24, levels = [] } = {}) {
   const n = candles.length;
   const slot = width / (n + 1);
-  const mid = height / 2;
-  const scale = 90;
+  const allPrices = candles.flatMap((c) => [c.high, c.low]).concat(levels.map((l) => l.price));
+  const minPrice = Math.min(...allPrices);
+  const maxPrice = Math.max(...allPrices);
+  const span = Math.max(maxPrice - minPrice, 0.01);
+  const toY = (price) => height - padding - ((price - minPrice) / span) * (height - 2 * padding);
+
+  const levelLines = levels.map((l) => {
+    const y = toY(l.price);
+    return `<line x1="0" y1="${y}" x2="${width}" y2="${y}" stroke="${l.color || '#7A5C50'}" stroke-width="1.5" stroke-dasharray="6,5"/>` +
+      (l.label ? `<text x="10" y="${y - 5}" font-size="11" font-family="sans-serif" fill="${l.color || '#7A5C50'}">${escapeXml(l.label)}</text>` : '');
+  }).join('');
+
   const bars = candles.map((c, i) => {
     const x = slot * (i + 1);
-    const openY = mid - c.open * scale;
-    const closeY = mid - c.close * scale;
-    const highY = mid - c.high * scale;
-    const lowY = mid - c.low * scale;
+    const openY = toY(c.open);
+    const closeY = toY(c.close);
+    const highY = toY(c.high);
+    const lowY = toY(c.low);
     const bull = c.close >= c.open;
     const color = bull ? '#7ECEC4' : '#F4829A';
     const top = Math.min(openY, closeY);
@@ -38,32 +62,113 @@ function svgChart(candles, { width = 780, height = 320 } = {}) {
     return `<line x1="${x}" y1="${highY}" x2="${x}" y2="${lowY}" stroke="${color}" stroke-width="2"/>` +
       `<rect x="${x - 12}" y="${top}" width="24" height="${bodyH}" fill="${color}"/>`;
   }).join('');
+
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">` +
     `<rect width="${width}" height="${height}" fill="#FFFBF9"/>` +
     [0, 1, 2, 3, 4].map((i) => `<line x1="0" y1="${(height / 5) * i}" x2="${width}" y2="${(height / 5) * i}" stroke="#F1E7E1" stroke-width="1"/>`).join('') +
-    bars + `</svg>`;
-  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+    levelLines + bars + `</svg>`;
+  return { url: 'data:image/svg+xml;utf8,' + encodeURIComponent(svg), meta: { width, height, padding, slot, minPrice, span } };
 }
 
-function uptrendCandles(n = 9) {
-  const out = []; let base = 0;
-  for (let i = 0; i < n; i++) {
-    const up = i % 4 !== 2;
-    const open = base; const close = base + (up ? 0.6 : -0.3);
-    out.push({ open, close, high: Math.max(open, close) + 0.15, low: Math.min(open, close) - 0.15 });
-    base = close;
+/** Converts a real candle-index + price into the same normalized 0-1
+ * x/y fraction space svgChart() itself draws in, so a tap zone always
+ * sits exactly on the visual feature it claims to mark. */
+function featureToZone(meta, candleIndex, price, radius = 0.06, credit = 'full') {
+  const xPixel = meta.slot * (candleIndex + 1);
+  const yPixel = meta.height - meta.padding - ((price - meta.minPrice) / meta.span) * (meta.height - 2 * meta.padding);
+  return { x: xPixel / meta.width, y: yPixel / meta.height, radius, credit };
+}
+
+/** Builds a continuous candle path from an authored sequence of closing
+ * prices — each candle's open is the prior candle's close (real,
+ * gap-free price action), with a small symmetric wick pad. This is the
+ * one primitive every concept-specific chart below is built from, so a
+ * drill's chart is always a deliberately-authored pattern, never a
+ * formula with no real structural features. */
+function pathToCandles(closes, wickPad = 0.12) {
+  const out = [];
+  for (let i = 0; i < closes.length; i++) {
+    const open = i === 0 ? closes[0] - (closes[1] - closes[0]) * 0.3 : closes[i - 1];
+    const close = closes[i];
+    out.push({ open, close, high: Math.max(open, close) + wickPad, low: Math.min(open, close) - wickPad });
   }
   return out;
 }
 
-const DEMO_CHART_A = svgChart(uptrendCandles(9));
-const DEMO_CHART_B = svgChart(uptrendCandles(11));
+// 4H Bias — a genuine bullish structure: every swing high (candles 2,4,6,8)
+// and every swing low (candles 1,3,5,7) is strictly higher than the last.
+const biasCandles = pathToCandles([0.6, 0.3, 1.0, 0.7, 1.5, 1.2, 2.1, 1.9, 2.8]);
+const biasChart = svgChart(biasCandles);
+
+// Swing High or Swing Low — one unambiguous peak at candle 3, confirmed by
+// the lower high at candle 4; candle 2's smaller high is the plausible
+// "not quite there yet" near-miss used as the partial-credit zone.
+const swingCandles = pathToCandles([0.5, 1.0, 1.6, 2.3, 1.8, 1.2, 0.7]);
+const swingChart = svgChart(swingCandles);
+
+// External Range — a real oscillating range whose single highest point
+// (candle 6) is the outermost boundary being asked for.
+const rangeCandles = pathToCandles([0.5, 1.3, 0.8, 1.6, 1.0, 1.8, 2.4, 1.7, 2.0, 1.4, 1.9]);
+const rangeChart = svgChart(rangeCandles);
+
+// Valid PIL — two real candidate levels: candle 3's high is later broken
+// by a candle-body close above it (invalidated), candle 6's high is never
+// closed back through by the end of the chart (still the active PIL).
+const pilCandles = pathToCandles([0.4, 1.1, 0.6, 1.4, 0.9, 1.7, 2.3, 1.9]);
+const pilOldLevel = pilCandles[3].high;
+const pilActiveLevel = pilCandles[6].high;
+const pilChart = svgChart(pilCandles, {
+  levels: [
+    { price: pilOldLevel, color: '#C9B9AE', label: 'Old level (already closed through)' },
+    { price: pilActiveLevel, color: '#7A5C50', label: 'Active level' },
+  ],
+});
+
+// Indication or Just a Wick — one hand-authored candle (index 2) whose
+// wick pokes above the drawn level but whose body closes back below it: a
+// real, visually legible wick-rejection, not implied text.
+const indicationLevel = 1.0;
+const indicationCandles = [
+  { open: 0.2, close: 0.5, high: 0.62, low: 0.1 },
+  { open: 0.5, close: 0.72, high: 0.84, low: 0.4 },
+  { open: 0.72, close: 0.65, high: 1.15, low: 0.55 },
+  { open: 0.65, close: 0.4, high: 0.75, low: 0.3 },
+];
+const indicationChart = svgChart(indicationCandles, { levels: [{ price: indicationLevel, color: '#7A5C50', label: 'PIL' }] });
+
+// Shared Indication → Correction → Continuation → Retest path: candle 1's
+// high is the Indication leg's peak; candle 4 hasn't resumed above it yet
+// (Correction); candle 5's close breaks back above it with a real
+// candle-body close (Continuation); candle 7 returns to retest that same
+// zone. Correction/Continuation/Retest drills each show only as much of
+// this real sequence as their question asks about.
+const iccMasterCandles = pathToCandles([0.5, 1.6, 1.1, 0.9, 1.0, 1.8, 2.1, 1.6, 2.3]);
+const correctionChart = svgChart(iccMasterCandles.slice(0, 5));
+const continuationChart = svgChart(iccMasterCandles.slice(0, 6));
+const retestChart = svgChart(iccMasterCandles.slice(0, 7));
+const sequenceChart = svgChart(iccMasterCandles);
+
+// Is This Consolidation — genuinely flat, overlapping, non-directional
+// candles (first close 0.5, last close 0.53, oscillating the whole way
+// between them) so the correct "yes, consolidating" answer is honestly
+// depicted instead of contradicted by a visible uptrend.
+const consolidationCandles = pathToCandles([0.5, 0.35, 0.55, 0.4, 0.58, 0.42, 0.52, 0.38, 0.5, 0.45, 0.53]);
+const consolidationChart = svgChart(consolidationCandles);
+
+// Wait or Pass — choppy, non-directional candles (no clear bias) followed
+// by one hand-authored wick-only cross of the drawn level with no body
+// close beyond it, matching both halves of the drill's premise at once.
+const waitLevel = 0.6;
+const waitChopCandles = pathToCandles([0.5, 0.28, 0.52, 0.3, 0.48, 0.28]);
+const waitLastClose = waitChopCandles[waitChopCandles.length - 1].close;
+const waitCandles = [...waitChopCandles, { open: waitLastClose, close: waitLastClose + 0.03, high: 0.85, low: waitLastClose - 0.08 }];
+const waitChart = svgChart(waitCandles, { levels: [{ price: waitLevel, color: '#7A5C50', label: 'PIL' }] });
 
 const demoDrills = [
   {
     id: 'demo-bias-1', title: '4H Bias: Higher Highs or Not?', drillType: 'valid_invalid', skillCategory: 'market_bias',
     difficulty: 'foundation', accessTier: 'free', practiceMode: 'open_practice', lessonKey: 'p1-3', instrument: 'MNQ', timeframe: '4H',
-    chartFormat: 'static_image', chartImagePath: null, chartAssetUrl: DEMO_CHART_A, chartAltText: 'A price chart showing a series of higher highs and higher lows.',
+    chartFormat: 'static_image', chartImagePath: null, chartAssetUrl: biasChart.url, chartAltText: 'A price chart showing a series of higher highs and higher lows.',
     question: 'Based on this structure, what is the 4H bias?', estimatedSeconds: 45, isSeedPlaceholder: true, version: 1,
     answerKeyPreview: { answerType: 'choice', choices: [{ key: 'bullish', label: 'Bullish' }, { key: 'bearish', label: 'Bearish' }, { key: 'unclear', label: 'Unclear' }] },
     _correctChoice: 'bullish',
@@ -75,10 +180,13 @@ const demoDrills = [
   {
     id: 'demo-swing-1', title: 'Swing High or Swing Low?', drillType: 'spot_it', skillCategory: 'swing_points',
     difficulty: 'foundation', accessTier: 'free', practiceMode: 'open_practice', lessonKey: null, instrument: 'MNQ', timeframe: '1H',
-    chartFormat: 'static_image', chartAssetUrl: DEMO_CHART_A, chartAltText: 'A price chart with one clear swing high.',
+    chartFormat: 'static_image', chartAssetUrl: swingChart.url, chartAltText: 'A price chart with one clear swing high.',
     question: 'Tap the swing high.', estimatedSeconds: 30, isSeedPlaceholder: true, version: 1,
     answerKeyPreview: { answerType: 'point', choices: [] },
-    _zones: [{ x: 0.42, y: 0.32, radius: 0.07, credit: 'full' }, { x: 0.65, y: 0.55, radius: 0.06, credit: 'partial' }],
+    _zones: [
+      featureToZone(swingChart.meta, 3, swingCandles[3].high, 0.06, 'full'),
+      featureToZone(swingChart.meta, 2, swingCandles[2].high, 0.06, 'partial'),
+    ],
     _explanation: 'The swing high is the candle where price stopped making higher highs and reversed — confirmed one candle later.',
     _commonMistake: 'Marking the highest wick instead of the candle that actually broke the up-sequence.',
     _hints: ['A swing high needs a lower high after it to be confirmed.', 'Look for where bullish delivery transitions to bearish delivery.'],
@@ -87,10 +195,10 @@ const demoDrills = [
   {
     id: 'demo-range-1', title: 'Mark the External Range', drillType: 'spot_it', skillCategory: 'external_range',
     difficulty: 'developing', accessTier: 'free', practiceMode: 'open_practice', lessonKey: null, instrument: 'MNQ', timeframe: '1H',
-    chartFormat: 'static_image', chartAssetUrl: DEMO_CHART_B, chartAltText: 'A price chart with a defined external range.',
+    chartFormat: 'static_image', chartAssetUrl: rangeChart.url, chartAltText: 'A price chart with a defined external range.',
     question: 'Tap the level marking the top of the current external range.', estimatedSeconds: 40, isSeedPlaceholder: true, version: 1,
     answerKeyPreview: { answerType: 'point', choices: [] },
-    _zones: [{ x: 0.78, y: 0.22, radius: 0.08, credit: 'full' }],
+    _zones: [featureToZone(rangeChart.meta, 6, rangeCandles[6].high, 0.08, 'full')],
     _explanation: 'The external range is bounded by the most recent significant swing high and low — this candle set that boundary.',
     _commonMistake: 'Using an internal swing instead of the range-defining swing.',
     _hints: ['The external range is the outermost boundary, not every small swing.'],
@@ -99,10 +207,10 @@ const demoDrills = [
   {
     id: 'demo-pil-1', title: 'Select the Valid PIL', drillType: 'spot_it', skillCategory: 'pil_selection',
     difficulty: 'developing', accessTier: 'free', practiceMode: 'recommended_practice', lessonKey: 'p1-3', instrument: 'MNQ', timeframe: '1H',
-    chartFormat: 'static_image', chartAssetUrl: DEMO_CHART_A, chartAltText: 'A price chart with a candidate Pre-Indication Level.',
+    chartFormat: 'static_image', chartAssetUrl: pilChart.url, chartAltText: 'A price chart with two candidate levels, one already broken and one still active.',
     question: 'Tap the 1H PIL that price is currently reacting to.', estimatedSeconds: 45, isSeedPlaceholder: true, version: 1,
     answerKeyPreview: { answerType: 'point', choices: [] },
-    _zones: [{ x: 0.55, y: 0.4, radius: 0.07, credit: 'full' }],
+    _zones: [featureToZone(pilChart.meta, 6, pilActiveLevel, 0.09, 'full')],
     _explanation: 'This level is the most recent 1H structure point price hasn’t yet closed through — the active PIL.',
     _commonMistake: 'Picking an older level that price already closed through and invalidated.',
     _hints: ['The PIL must still be unbroken — check for a candle-body close through it first.'],
@@ -111,7 +219,7 @@ const demoDrills = [
   {
     id: 'demo-indication-1', title: 'Indication or Just a Wick?', drillType: 'candle_close_wick', skillCategory: 'indication',
     difficulty: 'foundation', accessTier: 'free', practiceMode: 'open_practice', lessonKey: 'p1-1', instrument: 'MNQ', timeframe: '1M',
-    chartFormat: 'static_image', chartAssetUrl: DEMO_CHART_B, chartAltText: 'A candle wicking through a level without a body close.',
+    chartFormat: 'static_image', chartAssetUrl: indicationChart.url, chartAltText: 'A candle wicking through a level without a body close.',
     question: 'Price traded above the PIL, but the next candle closed back below it. Was this Indication confirmed?', estimatedSeconds: 30, isSeedPlaceholder: true, version: 1,
     answerKeyPreview: { answerType: 'choice', choices: [{ key: 'valid_close', label: 'Valid candle-body close' }, { key: 'wick_only', label: 'Wick only' }, { key: 'unclear', label: 'Unclear' }, { key: 'not_yet_confirmed', label: 'Not yet confirmed' }] },
     _correctChoice: 'wick_only',
@@ -123,7 +231,7 @@ const demoDrills = [
   {
     id: 'demo-correction-1', title: 'What Phase Is Price In?', drillType: 'phase_id', skillCategory: 'correction',
     difficulty: 'foundation', accessTier: 'free', practiceMode: 'open_practice', lessonKey: null, instrument: 'MNQ', timeframe: '1M',
-    chartFormat: 'static_image', chartAssetUrl: DEMO_CHART_A, chartAltText: 'A chart showing a pullback after an indication move.',
+    chartFormat: 'static_image', chartAssetUrl: correctionChart.url, chartAltText: 'A chart showing a pullback after an indication move.',
     question: 'Indication just completed and price is pulling back. What phase is this?', estimatedSeconds: 30, isSeedPlaceholder: true, version: 1,
     answerKeyPreview: { answerType: 'choice', choices: [{ key: 'pre_indication', label: 'Pre-Indication' }, { key: 'indication', label: 'Indication' }, { key: 'correction', label: 'Correction' }, { key: 'continuation', label: 'Continuation' }] },
     _correctChoice: 'correction',
@@ -135,7 +243,7 @@ const demoDrills = [
   {
     id: 'demo-continuation-1', title: 'Has Continuation Confirmed?', drillType: 'valid_invalid', skillCategory: 'continuation',
     difficulty: 'developing', accessTier: 'free', practiceMode: 'open_practice', lessonKey: null, instrument: 'MNQ', timeframe: '1M',
-    chartFormat: 'static_image', chartAssetUrl: DEMO_CHART_B, chartAltText: 'A chart showing price resuming direction after a correction.',
+    chartFormat: 'static_image', chartAssetUrl: continuationChart.url, chartAltText: 'A chart showing price resuming direction after a correction.',
     question: 'Price pulled back, then closed a candle body back in the original direction. Is Continuation confirmed?', estimatedSeconds: 35, isSeedPlaceholder: true, version: 1,
     answerKeyPreview: { answerType: 'choice', choices: [{ key: 'valid', label: 'Valid' }, { key: 'invalid', label: 'Invalid' }, { key: 'not_enough_confirmation', label: 'Not Enough Confirmation' }, { key: 'wait', label: 'Wait' }] },
     _correctChoice: 'valid',
@@ -147,7 +255,7 @@ const demoDrills = [
   {
     id: 'demo-retest-1', title: 'Retest and Entry: Best Decision', drillType: 'best_decision', skillCategory: 'retest_entry',
     difficulty: 'applied', accessTier: 'free', practiceMode: 'open_practice', lessonKey: null, instrument: 'MNQ', timeframe: '1M',
-    chartFormat: 'static_image', chartAssetUrl: DEMO_CHART_A, chartAltText: 'A chart showing Continuation confirmed but no retest yet.',
+    chartFormat: 'static_image', chartAssetUrl: retestChart.url, chartAltText: 'A chart showing Continuation confirmed but no retest yet.',
     question: 'Continuation just confirmed, but price hasn’t retested the breakout level yet. What is the best decision?', estimatedSeconds: 40, isSeedPlaceholder: true, version: 1,
     answerKeyPreview: { answerType: 'choice', choices: [{ key: 'enter_now', label: 'Enter now' }, { key: 'wait_for_continuation', label: 'Wait for the first retest' }, { key: 'chase_current_candle', label: 'Chase the current candle' }, { key: 'move_to_lower_timeframe', label: 'Move to a lower timeframe' }] },
     _correctChoice: 'wait_for_continuation',
@@ -159,7 +267,7 @@ const demoDrills = [
   {
     id: 'demo-consolidation-1', title: 'Is This Consolidation?', drillType: 'valid_invalid', skillCategory: 'consolidation',
     difficulty: 'foundation', accessTier: 'free', practiceMode: 'open_practice', lessonKey: null, instrument: 'MNQ', timeframe: '1H',
-    chartFormat: 'static_image', chartAssetUrl: DEMO_CHART_B, chartAltText: 'A chart showing sideways price movement.',
+    chartFormat: 'static_image', chartAssetUrl: consolidationChart.url, chartAltText: 'A chart showing sideways price movement.',
     question: 'Price has been moving sideways in a tight range for several candles. Is this consolidation?', estimatedSeconds: 30, isSeedPlaceholder: true, version: 1,
     answerKeyPreview: { answerType: 'choice', choices: [{ key: 'valid', label: 'Yes — consolidating' }, { key: 'invalid', label: 'No — trending' }, { key: 'not_enough_confirmation', label: 'Not enough data' }] },
     _correctChoice: 'valid',
@@ -171,7 +279,7 @@ const demoDrills = [
   {
     id: 'demo-wait-1', title: 'Wait or Pass?', drillType: 'best_decision', skillCategory: 'wait_or_pass',
     difficulty: 'developing', accessTier: 'free', practiceMode: 'open_practice', lessonKey: null, instrument: 'MNQ', timeframe: '1M',
-    chartFormat: 'static_image', chartAssetUrl: DEMO_CHART_A, chartAltText: 'A chart with an unclear setup and no confirmed bias.',
+    chartFormat: 'static_image', chartAssetUrl: waitChart.url, chartAltText: 'A chart with an unclear setup and no confirmed bias.',
     question: 'There is no clear 4H bias and price just wicked through the PIL without closing. What is the best decision?', estimatedSeconds: 35, isSeedPlaceholder: true, version: 1,
     answerKeyPreview: { answerType: 'choice', choices: [{ key: 'enter_now', label: 'Enter now' }, { key: 'wait_for_continuation', label: 'Wait' }, { key: 'pass', label: 'Pass completely' }] },
     _correctChoice: 'wait_for_continuation',
@@ -183,7 +291,7 @@ const demoDrills = [
   {
     id: 'demo-sequence-1', title: 'Build the Complete ICC Sequence', drillType: 'sequence_builder', skillCategory: 'icc_sequence',
     difficulty: 'applied', accessTier: 'free', practiceMode: 'open_practice', lessonKey: 'p1-3', instrument: 'MNQ', timeframe: '1M',
-    chartFormat: 'static_image', chartAssetUrl: DEMO_CHART_B, chartAltText: 'A chart showing a complete Indication-Correction-Continuation-Retest sequence.',
+    chartFormat: 'static_image', chartAssetUrl: sequenceChart.url, chartAltText: 'A chart showing a complete Indication-Correction-Continuation-Retest sequence.',
     question: 'Arrange these events in the correct Dayli ICC order.', estimatedSeconds: 60, isSeedPlaceholder: true, version: 1,
     answerKeyPreview: { answerType: 'sequence', choices: [{ key: 'indication', label: 'Indication' }, { key: 'correction', label: 'Correction' }, { key: 'continuation', label: 'Continuation' }, { key: 'retest', label: 'Retest' }] },
     _correctSequence: ['indication', 'correction', 'continuation', 'retest'],
