@@ -268,11 +268,15 @@ export async function getDrill(id) {
 }
 
 /** Resolves a drill's chart image into something an <img>/canvas can load:
- * demo drills already carry a ready-to-use data-URI in chartAssetUrl; real
- * drills store a private win-media storage path and need a signed URL. */
+ * demo drills already carry a ready-to-use data-URI in chartAssetUrl; a
+ * seeded/placeholder drill's chartImagePath can itself be an inline
+ * data: URI (see 0010_chart_lab_seed_drills.sql) needing no network call;
+ * a real admin-uploaded drill stores a private win-media storage path and
+ * needs a signed URL. */
 export async function resolveChartImageUrl(drill) {
   if (window.AGHF_DEMO || drill.chartAssetUrl) return drill.chartAssetUrl || null;
   if (!drill.chartImagePath) return null;
+  if (drill.chartImagePath.startsWith('data:')) return drill.chartImagePath;
   const { url } = await apiFetch(`/api/chartlab-image?path=${encodeURIComponent(drill.chartImagePath)}`);
   return url;
 }
