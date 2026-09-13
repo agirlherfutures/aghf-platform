@@ -263,15 +263,14 @@
 
   /* standalone options: banner + downgrade modal */
   .alt{ padding:0 24px 80px; }
-  .alt-banner{ max-width:640px; margin:0 auto; background:#fff; border:1.5px solid #EEE0D8; border-radius:20px; padding:30px 32px; text-align:center; box-shadow:0 8px 26px rgba(44,24,16,.05); }
-  .alt-banner h3{ font-size:1.05rem; margin-bottom:6px; }
-  .alt-banner p{ font-size:.88rem; color:var(--muted); margin-bottom:18px; }
+  .alt-banner{ max-width:520px; margin:0 auto; text-align:center; }
+  .alt-banner h3{ font-family:'DM Sans',sans-serif; font-style:normal; font-size:.95rem; font-weight:600; color:var(--text); margin-bottom:6px; }
+  .alt-banner p{ font-size:.85rem; color:var(--muted); margin-bottom:16px; }
   .alt-banner-btn{
-    display:inline-flex; align-items:center; gap:8px; background:#fff; border:2px solid var(--teal);
-    color:var(--dark); font-weight:700; font-size:.85rem; padding:12px 26px; border-radius:100px;
-    cursor:pointer; font-family:'DM Sans',sans-serif;
+    display:inline-flex; align-items:center; gap:6px; background:none; border:none;
+    color:var(--dark); font-weight:700; font-size:.88rem; padding:8px 4px;
+    border-bottom:1.5px dashed var(--muted); cursor:pointer; font-family:'DM Sans',sans-serif;
   }
-  .alt-banner-btn:hover{ background:var(--teal); color:var(--dark); }
 
   .modal-overlay{
     position:fixed; inset:0; background:rgba(44,24,16,.55); display:flex; align-items:center; justify-content:center;
