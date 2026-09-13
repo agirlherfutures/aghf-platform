@@ -144,16 +144,6 @@
   .module-card.teal ul li::before{ color:var(--teal); }
   .module-card.purple ul li::before{ color:var(--purple); }
 
-  /* discord highlight panel */
-  .discord-panel{ background:var(--dark); border-radius:24px; padding:32px 28px; display:grid; grid-template-columns:1.2fr .8fr; gap:36px; align-items:center; }
-  .discord-panel h3{ font-style:italic; color:var(--pink-light); font-size:clamp(1.25rem,3vw,1.6rem); margin-bottom:14px; }
-  .discord-panel p{ color:rgba(253,248,245,.72); font-size:.92rem; line-height:1.8; margin-bottom:18px; }
-  .discord-panel ul{ list-style:none; display:flex; flex-direction:column; gap:10px; padding:0; }
-  .discord-panel ul li{ display:flex; gap:10px; color:rgba(253,248,245,.85); font-size:.88rem; line-height:1.5; }
-  .discord-panel ul li::before{ content:'✦'; color:var(--teal-light); flex-shrink:0; }
-  .discord-orb{ width:170px; height:170px; border-radius:50%; margin:0 auto; background:radial-gradient(circle at 40% 35%, rgba(244,130,154,.35), rgba(126,206,196,.25) 55%, transparent 75%); border:1.5px solid rgba(245,168,87,.4); display:flex; align-items:center; justify-content:center; font-size:3.4rem; }
-  @media (max-width:720px){ .discord-panel{ grid-template-columns:1fr; padding:36px 26px; } .discord-orb{ display:none; } }
-
   /* who it's for — symmetric two-column yes/no */
   .for{ padding:40px 24px 30px; background:linear-gradient(180deg,var(--warm),var(--cream)); }
   .for-cols{ display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:800px; margin:0 auto; }
@@ -473,20 +463,6 @@
         <h3>AG&amp;HF Academy <span class="soon-tag">Coming soon</span></h3>
         <p>Gamified, grade-by-grade course platform, included the moment it launches.</p>
       </div>
-    </div>
-
-    <div class="discord-panel reveal">
-      <div>
-        <h3>+ Your Private Discord Community 💬</h3>
-        <p>Not just a course. A community of real people working through the same setups, every day.</p>
-        <ul>
-          <li>Daily setups & market commentary</li>
-          <li>Direct feedback on your charts</li>
-          <li>A supportive, women-first space</li>
-          <li>Weekly live Chart Clarity Call</li>
-        </ul>
-      </div>
-      <div class="discord-orb" aria-hidden="true">💬</div>
     </div>
   </div>
 </section>
