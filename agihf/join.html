@@ -211,11 +211,15 @@
   .value-total{ display:flex; justify-content:space-between; align-items:center; padding:14px 0 0; font-size:1rem; }
   .value-total .val-name{ font-weight:700; color:var(--dark); }
   .value-total .val-price{ color:var(--muted); font-weight:700; font-size:1.15rem; text-decoration:line-through; opacity:.6; }
-  .value-total.win{ margin-top:6px; padding-top:16px; border-top:2px solid var(--dark); }
-  .value-total.win .val-name{ font-size:1.05rem; }
-  .value-total.win .val-price{ color:var(--peach); font-size:1.5rem; text-decoration:none; opacity:1; }
+  .value-total.win{
+    margin-top:16px; padding:14px 22px; border-top:none; border-radius:100px;
+    background:linear-gradient(100deg, var(--pink), var(--peach));
+    box-shadow:0 10px 26px rgba(244,130,154,.35);
+  }
+  .value-total.win .val-name{ font-size:1rem; font-weight:700; color:#fff; }
+  .value-total.win .val-price{ color:#fff; font-size:1.4rem; text-decoration:none; opacity:1; }
 
-  .microcopy{ margin-top:14px; font-size:.82rem; color:var(--muted); text-align:center; }
+  .microcopy{ margin:14px auto 0; max-width:440px; font-size:.82rem; color:var(--muted); text-align:center; }
   .trust-row{ display:flex; align-items:center; justify-content:center; gap:22px; flex-wrap:wrap; margin-top:14px; }
   .trust-item{ display:flex; align-items:center; gap:7px; font-size:.78rem; font-weight:600; color:var(--muted); }
   .trust-item svg{ width:17px; height:17px; flex-shrink:0; color:var(--teal); }
