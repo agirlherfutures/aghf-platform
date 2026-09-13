@@ -242,6 +242,17 @@
   .t-name{ font-weight:700; font-size:.84rem; color:var(--dark); }
   .t-handle{ font-size:.76rem; color:var(--muted); }
 
+  /* about the founder */
+  .about-founder{ background:var(--cream); padding:56px 24px; }
+  .about-founder-inner{ max-width:740px; margin:0 auto; display:flex; align-items:center; gap:34px; }
+  .about-founder-photo{ width:120px; height:120px; border-radius:50%; object-fit:cover; flex-shrink:0; border:3px solid #fff; box-shadow:0 12px 28px rgba(44,24,16,.14); }
+  .about-founder-kicker{ font-weight:700; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--peach); margin:0 0 8px; }
+  .about-founder-bio{ font-size:1rem; color:var(--text); line-height:1.65; margin:0 0 8px; }
+  .about-founder-handle{ font-size:.82rem; color:var(--muted); margin:0; }
+  @media (max-width:600px){
+    .about-founder-inner{ flex-direction:column; text-align:center; gap:18px; }
+  }
+
   /* comparison */
   .compare{ padding:20px 24px 70px; }
   .section-head{ text-align:center; margin-bottom:36px; }
@@ -327,7 +338,7 @@
 
   /* founder + footer */
   .founder{ display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:20px; flex-wrap:wrap; }
-  .founder-avatar{ width:54px; height:54px; border-radius:50%; background:linear-gradient(135deg,var(--pink),var(--peach)); display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Playfair Display',serif; font-style:italic; font-weight:700; font-size:1.2rem; flex-shrink:0; }
+  .founder-avatar{ width:54px; height:54px; border-radius:50%; object-fit:cover; flex-shrink:0; }
   .founder-text{ text-align:left; }
   .founder-name{ font-weight:700; color:var(--dark); font-size:.9rem; }
   .founder-role{ font-size:.78rem; color:var(--muted); }
@@ -586,6 +597,18 @@
   </div>
 </section>
 
+<!-- ═══════════════════ ABOUT THE FOUNDER ═══════════════════ -->
+<section class="about-founder">
+  <div class="about-founder-inner">
+    <img src="proof/dayli-scott.jpg" alt="Dayli Scott, founder of A Girl & Her Futures" class="about-founder-photo reveal">
+    <div class="reveal">
+      <p class="about-founder-kicker">✦ Who's behind this ✦</p>
+      <p class="about-founder-bio"><strong>I'm Dayli</strong>, the trader behind the ICC method and everything inside AGHF. I built this because I wish someone had handed me one clear system instead of a thousand free videos. Everything in the Bundle is exactly what I use and teach, every single week.</p>
+      <p class="about-founder-handle">@dayliscott · @agirlherfutures</p>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════ PRICING + DOWNGRADE + COMPARE (shared warm tint) ═══════════════════ -->
 <div class="buy-zone">
 <section class="spotlight" id="bundle">
@@ -809,7 +832,7 @@
   <footer>
     <div class="wrap">
       <div class="founder">
-        <div class="founder-avatar">DS</div>
+        <img src="proof/dayli-scott.jpg" alt="Dayli Scott" class="founder-avatar">
         <div class="founder-text">
           <div class="founder-name">Dayli Scott</div>
           <div class="founder-role">Founder, A Girl &amp; Her Futures</div>
