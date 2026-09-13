@@ -340,13 +340,6 @@
   .founder-role{ font-size:.78rem; color:var(--muted); }
 
   footer{ text-align:center; padding:50px 24px 70px; }
-  footer.mesh{
-    background:
-      radial-gradient(60% 50% at 15% 10%, var(--pink-pale) 0%, transparent 70%),
-      radial-gradient(50% 45% at 90% 20%, var(--teal-pale) 0%, transparent 70%),
-      radial-gradient(55% 50% at 50% 100%, var(--peach-pale) 0%, transparent 70%),
-      var(--cream);
-  }
   footer p{ color:var(--muted); font-size:.85rem; }
   footer .legal{ font-size:.74rem; color:#B8A69A; margin-top:8px; max-width:480px; margin-left:auto; margin-right:auto; }
 
@@ -831,31 +824,33 @@
   </div>
 </section>
 
-<!-- ═══════════════════ FINAL CTA ═══════════════════ -->
-<section class="final-cta mesh">
-  <div class="wrap fc-inner">
-    <h2 class="reveal">Your <em>futures</em> start right here. ✦</h2>
-    <p class="reveal">Stop trading alone. Stop piecing it together one video at a time. Get the Discord, the Indicator, and University Premium today, with Academy included the moment it launches.</p>
-    <div class="cta-buttons reveal">
-      <a href="#checkout-bundle" class="btn-primary">Get the Bundle · $64.99/mo</a>
-      <a href="#included" class="btn-ghost">See what's inside</a>
-    </div>
-  </div>
-</section>
-
-<footer class="mesh">
-  <div class="wrap">
-    <div class="founder">
-      <div class="founder-avatar">DS</div>
-      <div class="founder-text">
-        <div class="founder-name">Dayli Scott</div>
-        <div class="founder-role">Founder, A Girl &amp; Her Futures</div>
+<!-- ═══════════════════ FINAL CTA + FOOTER (shared background, no seam) ═══════════════════ -->
+<div class="mesh">
+  <section class="final-cta">
+    <div class="wrap fc-inner">
+      <h2 class="reveal">Your <em>futures</em> start right here. ✦</h2>
+      <p class="reveal">Stop trading alone. Stop piecing it together one video at a time. Get the Discord, the Indicator, and University Premium today, with Academy included the moment it launches.</p>
+      <div class="cta-buttons reveal">
+        <a href="#checkout-bundle" class="btn-primary">Get the Bundle · $64.99/mo</a>
+        <a href="#included" class="btn-ghost">See what's inside</a>
       </div>
     </div>
-    <p>a girl & her futures · @dayliscott · @agirlherfutures</p>
-    <p class="legal">Trading involves risk. Results are not guaranteed. Educational purposes only.</p>
-  </div>
-</footer>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="founder">
+        <div class="founder-avatar">DS</div>
+        <div class="founder-text">
+          <div class="founder-name">Dayli Scott</div>
+          <div class="founder-role">Founder, A Girl &amp; Her Futures</div>
+        </div>
+      </div>
+      <p>a girl & her futures · @dayliscott · @agirlherfutures</p>
+      <p class="legal">Trading involves risk. Results are not guaranteed. Educational purposes only.</p>
+    </div>
+  </footer>
+</div>
 
 <div class="sticky-cta" id="stickyCta">
   <span class="sticky-cta-price">The Bundle · <strong>$64.99/mo</strong></span>
