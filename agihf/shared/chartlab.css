@@ -53,6 +53,9 @@ body.chartlab-page .main{
 .cl2-skill-tile:hover{transform:translateY(-2px);box-shadow:0 10px 20px -12px rgba(244,130,154,.3);}
 .cl2-skill-icon{font-size:1.4rem;}
 .cl2-skill-label{font-size:.78rem;color:var(--text);text-align:center;}
+.cl2-skill-tile-locked{cursor:not-allowed;opacity:.55;background:linear-gradient(180deg,#fff,var(--bg));}
+.cl2-skill-tile-locked:hover{transform:none;box-shadow:none;}
+.cl2-skill-soon{font-size:.65rem;font-weight:600;letter-spacing:.02em;color:var(--muted);text-transform:uppercase;}
 
 /* ── Progress snapshot ────────────────────────────────────────────────── */
 

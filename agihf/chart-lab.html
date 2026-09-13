@@ -65,6 +65,12 @@
         <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
         <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
       </div>`;
+    // A single Promise.all rejection means every section below Today's
+    // Drill never got data either — leave them visibly explained instead
+    // of silently blank (which reads as "this section is broken" on its
+    // own, e.g. "Browse by Skill isn't working").
+    const note = `<p class="small-help" style="padding:12px 0;">Couldn't load — see the message above and try reloading.</p>`;
+    [browseEl, sessionEl, snapshotEl, mistakesEl].forEach((el) => { if (el) el.innerHTML = note; });
   }
 
   async function pickTodaysDrill(drills, mastery) {
@@ -73,8 +79,17 @@
       const byFocus = drills.find((d) => d.skillCategory === focusParam);
       if (byFocus) return { drill: byFocus, reason: FOCUS_TO_SKILL[Object.keys(FOCUS_TO_SKILL).find((k) => FOCUS_TO_SKILL[k].skillCategory === focusParam)]?.reason || `Recommended because it practices ${skillLabel(focusParam)}.` };
     }
-    // Frequently-missed concept: the skill with the lowest recent_accuracy among practiced skills.
-    const practiced = mastery.filter((m) => m.attempts > 0);
+    // Frequently-missed concept: the skill with the lowest recent_accuracy
+    // among practiced skills — but only once there's real signal (3+
+    // attempts). Without this gate, a single wrong answer on a skill that
+    // has exactly one drill (true for every seeded skill today) instantly
+    // flags it "weakest" and re-serves that same drill as Today's Drill —
+    // a hard repeat-lock the member can only escape with several correct
+    // answers in a row. Gating on sample size lets one miss fall through
+    // to an untried skill instead, and only calls a skill "weakest" once
+    // there's enough attempts to justify it.
+    const MIN_SAMPLE_FOR_WEAKEST = 3;
+    const practiced = mastery.filter((m) => m.attempts >= MIN_SAMPLE_FOR_WEAKEST);
     if (practiced.length) {
       const weakest = [...practiced].sort((a, b) => (a.recent_accuracy ?? 100) - (b.recent_accuracy ?? 100))[0];
       if (weakest.recent_accuracy < 75) {
@@ -105,7 +120,8 @@
         location.href = `chart-lab-drill.html?sessionId=${encodeURIComponent(session.id)}`;
       });
 
-      renderBrowseBySkill(browseEl, async (skillKey) => {
+      const availableSkills = new Set(drills.map((d) => d.skillCategory));
+      renderBrowseBySkill(browseEl, availableSkills, async (skillKey) => {
         const { session: newSession, empty } = await startSession({ sessionType: 'focus', skillCategory: skillKey, currentFocusSource: 'member_selected' });
         if (empty || !newSession) { alert("No published drills for this skill yet — check back soon."); return; }
         location.href = `chart-lab-drill.html?sessionId=${encodeURIComponent(newSession.id)}`;
