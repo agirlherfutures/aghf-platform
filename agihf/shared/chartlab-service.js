@@ -396,7 +396,11 @@ export async function submitAttempt({ drillId, memberAnswer, hintsUsed, sessionI
     const { score, result } = demoScore(drill, memberAnswer);
     const priorAttempts = demoAttempts.filter((a) => a.drillId === drillId);
     const attemptNumber = priorAttempts.length + 1;
-    const gpAwarded = attemptNumber === 1 && result !== 'review_needed' ? (result === 'correct' ? 5 : 3) : 0;
+    // GP dedupe: first genuine (non-review-needed) pass, not attempt #1 —
+    // mirrors the real handleAttempt() fix, so a drill re-served after a
+    // wrong answer still awards GP once the member finally gets it right.
+    const isFirstGenuinePass = !priorAttempts.some((a) => a.result !== 'review_needed');
+    const gpAwarded = isFirstGenuinePass && result !== 'review_needed' ? (result === 'correct' ? 5 : 3) : 0;
     const mastery = demoMastery[drill.skillCategory] || { mastery_state: 'new', attempts: 0, recent_accuracy: 0 };
     const nextAttempts = mastery.attempts + 1;
     const nextAccuracy = Math.round((mastery.recent_accuracy * Math.max(mastery.attempts, 1) + score) / (mastery.attempts + 1));

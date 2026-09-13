@@ -73,14 +73,26 @@ export function renderContinuePracticingCard(container, session) {
   </div>`;
 }
 
-export function renderBrowseBySkill(container, onSelect) {
+/** `availableSkills` is a Set of skill_category keys that have at least
+ * one published drill right now. A category with zero drills renders as a
+ * non-clickable, visibly locked "Coming Soon" tile instead of a live-
+ * looking button that silently does nothing (or just alerts) on click —
+ * 4 of the 15 defined categories have no drill yet. Pass `null`/omit to
+ * render every category as available (back-compat, not used by
+ * chart-lab.html itself anymore). */
+export function renderBrowseBySkill(container, availableSkills, onSelect) {
+  const isAvailable = (key) => !availableSkills || availableSkills.has(key);
   container.innerHTML = `<div class="cl2-skill-grid">
-    ${SKILL_CATEGORIES.map((s) => `<button type="button" class="cl2-skill-tile" data-skill="${s.key}">
-      <span class="cl2-skill-icon" aria-hidden="true">${s.icon}</span>
-      <span class="cl2-skill-label">${escapeHtml(s.label)}</span>
-    </button>`).join('')}
+    ${SKILL_CATEGORIES.map((s) => {
+      const available = isAvailable(s.key);
+      return `<button type="button" class="cl2-skill-tile${available ? '' : ' cl2-skill-tile-locked'}" data-skill="${s.key}" ${available ? '' : 'disabled aria-disabled="true"'}>
+        <span class="cl2-skill-icon" aria-hidden="true">${s.icon}</span>
+        <span class="cl2-skill-label">${escapeHtml(s.label)}</span>
+        ${available ? '' : '<span class="cl2-skill-soon">Coming Soon</span>'}
+      </button>`;
+    }).join('')}
   </div>`;
-  container.querySelectorAll('[data-skill]').forEach((btn) => btn.addEventListener('click', () => onSelect(btn.dataset.skill)));
+  container.querySelectorAll('[data-skill]:not([disabled])').forEach((btn) => btn.addEventListener('click', () => onSelect(btn.dataset.skill)));
 }
 
 export function renderProgressSnapshot(container, { mastery = [], drillsCompleted = 0, gpEarned = 0, accuracyTrend = null }) {

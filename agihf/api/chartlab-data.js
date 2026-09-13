@@ -137,12 +137,18 @@ async function handleAttempt(req, res, userId) {
     .select('id', { count: 'exact', head: true }).eq('user_id', userId).eq('drill_id', drill.id).eq('drill_version', drill.version);
   const attemptNumber = (priorCount || 0) + 1;
 
-  // GP dedupe: only the FIRST attempt at this exact (user, drill, version)
-  // can ever award GP, and only when it's a genuine pass — a resave or
-  // resubmit of an already-attempted drill never awards twice, and a
-  // "review_needed" first try earns nothing until retried and passed.
+  // GP dedupe: keyed to the FIRST GENUINE PASS at this exact (user, drill,
+  // version), not the raw attempt count — a drill can legitimately be
+  // re-served after a wrong answer (e.g. it's the member's only weak-skill
+  // recommendation), and a member who eventually gets it right must still
+  // earn GP for that, not be locked out forever because attempt #1 missed.
+  // A resave/resubmit of an already-passed drill never awards twice.
+  const { data: priorPassRows } = await supabase.from('chart_lab_attempts')
+    .select('id').eq('user_id', userId).eq('drill_id', drill.id).eq('drill_version', drill.version).neq('result', 'review_needed').limit(1);
+  const isFirstGenuinePass = !(priorPassRows && priorPassRows.length);
+
   let gpAwarded = 0;
-  if (attemptNumber === 1 && result !== 'review_needed') {
+  if (isFirstGenuinePass && result !== 'review_needed') {
     const todayStart = new Date(); todayStart.setUTCHours(0, 0, 0, 0);
     const { data: todaysAttempts } = await supabase.from('chart_lab_attempts')
       .select('gp_awarded').eq('user_id', userId).gte('completed_at', todayStart.toISOString());
@@ -155,7 +161,7 @@ async function handleAttempt(req, res, userId) {
   const priorRank = MASTERY_RANK.indexOf(existingMastery?.mastery_state || 'new');
   const nextRank = MASTERY_RANK.indexOf(nextMastery.mastery_state);
   const masteryLeveledUp = nextRank > priorRank;
-  if (masteryLeveledUp && attemptNumber === 1) {
+  if (masteryLeveledUp && isFirstGenuinePass) {
     const todayStart2 = new Date(); todayStart2.setUTCHours(0, 0, 0, 0);
     const { data: todaysAttempts2 } = await supabase.from('chart_lab_attempts')
       .select('gp_awarded').eq('user_id', userId).gte('completed_at', todayStart2.toISOString());
@@ -176,7 +182,7 @@ async function handleAttempt(req, res, userId) {
     await supabase.from('profiles').update({ gp: (profile?.gp || 0) + gpAwarded }).eq('id', userId);
   }
 
-  if (attemptNumber === 1 && result !== 'review_needed') {
+  if (isFirstGenuinePass && result !== 'review_needed') {
     try {
       await creditChallengeActivity(supabase, { userId, sourceTable: 'chart_lab_attempts', sourceRecordId: attempt.id, activityType: 'chart_lab_completed', occurredAt: attempt.completed_at });
     } catch { /* a missing/unmigrated challenge table must never block a Chart Lab attempt */ }
