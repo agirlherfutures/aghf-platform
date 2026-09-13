@@ -114,6 +114,8 @@
   .stack-item.pink .icon{ background:var(--pink-pale); }
   .stack-item.teal .icon{ background:var(--teal-pale); }
   .stack-item.peach .icon{ background:var(--peach-pale); }
+  .soon-tag{ display:inline-block; background:var(--dark); color:#fff; font-size:.6rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:3px 9px; border-radius:100px; margin-left:8px; vertical-align:middle; }
+  .stack-item h3 .soon-tag{ margin-left:6px; }
 
   .value-math{ display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; padding:18px 0 30px; font-size:.95rem; color:var(--muted); }
   .value-math .strike{ text-decoration:line-through; opacity:.6; }
@@ -178,6 +180,8 @@
   .mini-card .mp span{ font-size:.85rem; font-weight:500; color:var(--muted); font-family:'DM Sans',sans-serif; }
   .mini-card p{ font-size:.88rem; color:var(--muted); }
   .mini-card a{ display:inline-block; margin-top:12px; font-weight:700; font-size:.88rem; color:var(--dark); text-decoration:none; border-bottom:2px solid var(--peach); }
+  .mini-card.disabled{ opacity:.85; }
+  .mini-card.disabled a{ color:var(--muted); border-bottom-color:#E0D2C8; }
 
   /* founder sign-off */
   .founder{ display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:30px; flex-wrap:wrap; }
@@ -232,7 +236,7 @@
       </div>
       <div class="hero-visual" aria-hidden="true">
         <div class="hv-card hv-academy">
-          <div class="hv-label">AG&amp;HF Academy</div>
+          <div class="hv-label">AG&amp;HF Academy <span class="soon-tag" style="margin-left:4px;">Soon</span></div>
           <div class="hv-row"><span class="hv-check">✓</span> Chart basics</div>
           <div class="hv-row"><span class="hv-check">✓</span> Indication &amp; Correction</div>
           <div class="hv-row"><span class="hv-check">✓</span> Continuation</div>
@@ -287,7 +291,7 @@
         </div>
         <div class="stack-item teal">
           <div class="icon">🎓</div>
-          <h3>AG&HF Academy</h3>
+          <h3>AG&HF Academy <span class="soon-tag">Coming soon</span></h3>
           <p>The gamified course platform — go grade by grade from chart basics to the full Dayli ICC Method, at your own pace.</p>
         </div>
       </div>
@@ -300,7 +304,7 @@
 
       <div class="cta-row">
         <a href="#checkout-bundle" class="btn-primary">Join the Bundle</a>
-        <div class="microcopy">Cancel anytime. You'll get access to all three the moment you join.</div>
+        <div class="microcopy">Cancel anytime. Discord + Indicator unlock the moment you join — Academy access is included and turns on automatically at launch, no extra cost.</div>
       </div>
     </div>
   </div>
@@ -402,7 +406,7 @@
           <tr>
             <td>AG&HF Academy (gamified course platform)</td>
             <td class="center no">—</td>
-            <td class="center col-bundle yes">✓</td>
+            <td class="center col-bundle yes">✓ <span style="font-size:.68rem;font-weight:700;color:var(--muted);">(soon)</span></td>
           </tr>
           <tr>
             <td>Monthly price</td>
@@ -434,11 +438,11 @@
           <p>Just the ICC Structure Lab Premium Discord — daily access, chart feedback, and the Thursday Chart Clarity Call.</p>
           <a href="#checkout-premium">Choose Premium →</a>
         </div>
-        <div class="mini-card">
-          <h3>Academy only</h3>
+        <div class="mini-card disabled">
+          <h3>Academy only <span class="soon-tag">Coming soon</span></h3>
           <div class="mp">$34.99<span>/mo</span></div>
-          <p>Just the gamified course platform — go grade by grade through the Dayli ICC Method at your own pace.</p>
-          <a href="#checkout-academy">Choose Academy →</a>
+          <p>Just the gamified course platform — go grade by grade through the Dayli ICC Method at your own pace. Not open standalone yet, but included free the moment it launches if you're already in the Bundle.</p>
+          <a href="#checkout-academy">Get notified at launch →</a>
         </div>
       </div>
     </div>
