@@ -1,0 +1,107 @@
+/* dashboard.css — standalone Whop tracker. Colors follow the dataviz
+   skill's reference palette (references/palette.md): one sequential hue
+   (blue) for the single-series revenue chart, and the fixed
+   good/critical status colors for the activity feed — never themed,
+   never reused as "just another series." */
+
+:root{
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --border: rgba(11,11,11,.10);
+  --grid: #e1e0d9;
+  --accent: #2a78d6;
+  --accent-strong: #184f95;
+  --good: #0ca30c;
+  --critical: #d03b3b;
+  --shadow: 0 10px 30px rgba(11,11,11,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border: rgba(255,255,255,.10);
+    --grid: #2c2c2a;
+    --accent: #3987e5;
+    --accent-strong: #86b6ef;
+    --good: #0ca30c;
+    --critical: #e66767;
+    --shadow: 0 10px 30px rgba(0,0,0,.4);
+  }
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0; min-height:100vh; background:var(--page); color:var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+[hidden]{display:none!important;}
+
+/* ── login gate ─────────────────────────────────────────────────────── */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+.login-card{background:var(--surface);border-radius:16px;box-shadow:var(--shadow);padding:36px 32px;max-width:360px;width:100%;}
+.login-title{font-size:1.15rem;font-weight:700;margin-bottom:6px;}
+.login-sub{font-size:.85rem;color:var(--text-secondary);margin-bottom:22px;line-height:1.5;}
+.login-input{width:100%;padding:11px 14px;border-radius:10px;border:1px solid var(--border);background:var(--page);color:var(--text-primary);font-size:.95rem;margin-bottom:14px;}
+.login-btn{width:100%;padding:12px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-weight:600;font-size:.92rem;cursor:pointer;}
+.login-btn:disabled{opacity:.6;cursor:default;}
+.login-error{color:var(--critical);font-size:.82rem;margin-top:10px;min-height:1.2em;}
+
+/* ── dashboard shell ────────────────────────────────────────────────── */
+.dash-shell{max-width:980px;margin:0 auto;padding:28px 24px 64px;}
+.dash-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;}
+.dash-title{font-size:1.35rem;font-weight:700;}
+.dash-sub{font-size:.82rem;color:var(--text-secondary);margin-top:2px;}
+.dash-actions{display:flex;align-items:center;gap:10px;}
+.btn{font-family:inherit;font-size:.85rem;font-weight:600;padding:10px 18px;border-radius:100px;border:1px solid var(--border);background:var(--surface);color:var(--text-primary);cursor:pointer;}
+.btn.primary{background:var(--accent);color:#fff;border:none;}
+.btn:disabled{opacity:.6;cursor:default;}
+.sync-meta{font-size:.76rem;color:var(--text-muted);margin-top:6px;text-align:right;}
+
+.setup-note{background:var(--surface);border:1px dashed var(--border);border-radius:14px;padding:14px 16px;font-size:.83rem;color:var(--text-secondary);line-height:1.6;margin-bottom:20px;}
+.setup-note code{background:var(--border);padding:1px 6px;border-radius:5px;font-size:.78rem;}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:22px;}
+.kpi{background:var(--surface);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);}
+.kpi-label{font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;}
+.kpi-value{font-size:1.6rem;font-weight:700;line-height:1.1;}
+.kpi-sub{font-size:.76rem;color:var(--text-muted);margin-top:4px;}
+.kpi-sub.pos{color:var(--good);}
+.kpi-sub.neg{color:var(--critical);}
+
+.card{background:var(--surface);border-radius:16px;padding:22px;box-shadow:var(--shadow);margin-bottom:20px;}
+.card-title{font-size:1rem;font-weight:700;margin-bottom:14px;}
+
+.chart-wrap{position:relative;}
+.tooltip{position:absolute;pointer-events:none;background:var(--text-primary);color:var(--page);font-size:.74rem;padding:6px 10px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-110%);opacity:0;transition:opacity .1s ease;z-index:5;}
+.tooltip.show{opacity:1;}
+.bar{fill:var(--accent);}
+.bar:hover{fill:var(--accent-strong);}
+.axis-label{font-size:9px;fill:var(--text-muted);}
+.gridline{stroke:var(--grid);stroke-width:1;}
+
+.events-table{width:100%;border-collapse:collapse;font-size:.85rem;}
+.events-table th{text-align:left;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted);padding:0 10px 10px;border-bottom:1px solid var(--border);}
+.events-table td{padding:10px;border-bottom:1px solid var(--border);}
+.events-table tr:last-child td{border-bottom:none;}
+.event-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;}
+.event-dot.good{background:var(--good);}
+.event-dot.critical{background:var(--critical);}
+.event-amount{font-variant-numeric:tabular-nums;font-weight:700;}
+.empty-state{padding:32px 20px;text-align:center;color:var(--text-muted);font-size:.88rem;}
+
+.error-box{max-width:480px;margin:60px auto;padding:28px;background:var(--surface);border-radius:16px;box-shadow:var(--shadow);text-align:center;}
+.error-box .title{font-weight:700;margin-bottom:8px;}
+.error-box .msg{font-size:.85rem;color:var(--text-secondary);margin-bottom:18px;word-break:break-word;}
+
+@media (max-width: 640px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .kpi-value{font-size:1.3rem;}
+}

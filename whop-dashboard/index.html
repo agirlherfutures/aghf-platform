@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whop Dashboard</title>
+<link rel="stylesheet" href="shared/dashboard.css">
+</head>
+<body>
+
+<div class="login-wrap" id="loginWrap">
+  <form class="login-card" id="loginForm">
+    <div class="login-title">Whop Dashboard</div>
+    <div class="login-sub">Members, churn, and revenue — pulled straight from Whop.</div>
+    <input class="login-input" type="password" id="passwordInput" placeholder="Password" autocomplete="current-password" required>
+    <button class="login-btn" type="submit" id="loginBtn">Log in</button>
+    <div class="login-error" id="loginError"></div>
+  </form>
+</div>
+
+<div id="dashWrap" hidden>
+  <div class="dash-shell">
+    <div class="dash-top">
+      <div>
+        <div class="dash-title">Whop Dashboard</div>
+        <div class="dash-sub">Members and revenue, pulled from Whop in real time.</div>
+      </div>
+      <button type="button" class="btn" id="logoutBtn">Log out</button>
+    </div>
+    <div id="dashRoot"></div>
+  </div>
+</div>
+
+<script type="module" src="shared/dashboard.js"></script>
+</body>
+</html>
