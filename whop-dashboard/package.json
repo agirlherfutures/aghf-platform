@@ -1,0 +1,9 @@
+{
+  "name": "whop-dashboard",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Standalone Whop members/revenue tracker — real-time via webhook, backfill via Sync now.",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  }
+}

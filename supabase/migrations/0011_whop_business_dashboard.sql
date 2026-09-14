@@ -1,17 +1,20 @@
 -- 0011_whop_business_dashboard.sql — A Girl & Her Futures™
 --
--- Backs a new admin-only "Business Dashboard" (agihf/business-dashboard.html)
--- that answers the question the site owner keeps losing track of inside
--- Whop's own UI: how many members are active right now, who joined/fell off
--- recently, and how much money is actually coming in today/this
--- week/this month. This is entirely separate from the existing Stripe
--- `subscriptions` table (0001-era) — Whop is a different, unrelated
+-- Backs "Whop Dashboard" (the whop-dashboard/ app at this repo's root — a
+-- standalone site, fully separate from the AGHF academy in agihf/, with
+-- its own login and its own Vercel deployment) that answers the question
+-- the site owner keeps losing track of inside Whop's own UI: how many
+-- members are active right now, who joined/fell off recently, and how
+-- much money is actually coming in today/this week/this month. This is
+-- entirely separate from the existing Stripe `subscriptions` table
+-- (0001-era, used by agihf/) — Whop is a different, unrelated
 -- payment/membership platform this project has never integrated with
 -- before, so nothing here touches `subscriptions`, `profiles`, or any
--- other existing table.
+-- other existing table. The two apps share only this one Supabase project
+-- and these tables — no code, no deployment, no login.
 --
 -- Two ways data lands here, both server-only (via the service-role key in
--- agihf/api/billing-data.js — never from the browser):
+-- whop-dashboard/api/ — never from the browser):
 --   1. Whop webhooks (real-time, the primary source of truth going
 --      forward) — every membership/payment event Whop sends is appended to
 --      whop_member_events, and whop_members/whop_payments are upserted from
@@ -27,9 +30,9 @@
 -- never erase that history.
 --
 -- HOW TO APPLY: paste into the Supabase SQL editor (or `supabase db push`)
--- alongside 0001-0010. Until applied, resource=dashboard/sync in
--- billing-data.js will fail with a clear "relation does not exist" error
--- surfaced in the dashboard UI, same convention as every prior migration.
+-- alongside 0001-0010. Until applied, whop-dashboard/api/dashboard.js and
+-- sync.js will fail with a clear "relation does not exist" error surfaced
+-- in the dashboard UI, same convention as every prior migration.
 
 /* ── whop_members (current-state snapshot, one row per Whop membership) ── */
 
@@ -120,12 +123,13 @@ create table if not exists whop_sync_state (
 insert into whop_sync_state (id) values (true) on conflict (id) do nothing;
 
 /* ── RLS — same defense-in-depth rationale as every prior migration: every
-   read/write to these tables goes exclusively through
-   agihf/api/billing-data.js using the service-role key (webhook resources
-   need no user session at all; resource=dashboard/sync re-check
-   profiles.is_admin server-side on every call). No public policies are
-   created — an ordinary authenticated member has zero direct access to
-   Whop member/payment data via the anon/authenticated Supabase roles. ── */
+   read/write to these tables goes exclusively through whop-dashboard/api/
+   using the service-role key (the webhook endpoint needs no session at
+   all; dashboard/sync re-check the single-password session cookie server-
+   side on every call — see whop-dashboard/api/_lib/session.js). No public
+   policies are created — an ordinary authenticated AGHF member has zero
+   direct access to Whop member/payment data via the anon/authenticated
+   Supabase roles, and neither app exposes these tables to the browser. ── */
 
 alter table whop_members enable row level security;
 alter table whop_payments enable row level security;
