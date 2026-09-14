@@ -32,10 +32,6 @@
     { "source": "/api/challenge-winners", "destination": "/api/challenge-data?resource=winners" },
     { "source": "/api/challenge-prefs", "destination": "/api/challenge-data?resource=prefs" },
     { "source": "/api/notifications", "destination": "/api/challenge-data?resource=notifications" },
-    { "source": "/api/challenge-admin", "destination": "/api/challenge-data?resource=admin" },
-    { "source": "/api/webhook", "destination": "/api/billing-data?resource=stripe-webhook" },
-    { "source": "/api/whop-webhook", "destination": "/api/billing-data?resource=whop-webhook" },
-    { "source": "/api/business-dashboard", "destination": "/api/billing-data?resource=dashboard" },
-    { "source": "/api/business-sync", "destination": "/api/billing-data?resource=sync" }
+    { "source": "/api/challenge-admin", "destination": "/api/challenge-data?resource=admin" }
   ]
 }
