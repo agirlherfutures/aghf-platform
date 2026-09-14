@@ -1,0 +1,59 @@
+/* business-dashboard.css — A Girl & Her Futures™
+ * Admin-only Whop Business Dashboard. Chart-specific color roles are kept
+ * local (--biz-* custom properties) per the dataviz skill's guidance —
+ * a single-series magnitude bar (revenue) uses one brand-derived hue, and
+ * the two status colors (good/critical) are the dataviz skill's own fixed,
+ * never-themed status palette, not brand colors, so a churn event can
+ * never be visually confused with a themed "series" color.
+ */
+
+.biz-page{
+  --biz-bar: #4E9C90;         /* darker step of brand teal — sequential/magnitude, single series */
+  --biz-bar-hover: #3D7F75;
+  --biz-good: #0ca30c;        /* dataviz skill's fixed status palette — never themed */
+  --biz-critical: #d03b3b;
+  --biz-grid: #e1e0d9;
+}
+
+.biz-header-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;}
+.biz-sync-btn{font-family:var(--font-body);font-size:.85rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--pink),var(--peach));border:none;padding:11px 22px;border-radius:100px;cursor:pointer;box-shadow:0 10px 22px rgba(244,130,154,.28);white-space:nowrap;}
+.biz-sync-btn:disabled{opacity:.6;cursor:default;}
+.biz-sync-meta{font-size:.76rem;color:var(--muted);margin-top:6px;text-align:right;}
+
+.biz-kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:22px;}
+.biz-kpi{background:#fff;border-radius:18px;padding:16px 18px;box-shadow:0 12px 28px rgba(44,24,16,.08);}
+.biz-kpi-label{font-size:.72rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.biz-kpi-value{font-family:var(--font-display);font-size:1.7rem;font-weight:700;color:var(--dark);line-height:1.1;}
+.biz-kpi-sub{font-size:.76rem;color:var(--muted);margin-top:4px;}
+.biz-kpi-sub.pos{color:var(--biz-good);}
+.biz-kpi-sub.neg{color:var(--biz-critical);}
+
+.biz-card{background:#fff;border-radius:20px;padding:22px;box-shadow:0 14px 32px rgba(44,24,16,.08);margin-bottom:20px;}
+.biz-card-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:14px;}
+
+.biz-chart-wrap{position:relative;}
+.biz-tooltip{position:absolute;pointer-events:none;background:var(--dark);color:#fff;font-size:.74rem;padding:6px 10px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-110%);opacity:0;transition:opacity .1s ease;z-index:5;}
+.biz-tooltip.show{opacity:1;}
+.biz-bar{fill:var(--biz-bar);}
+.biz-bar:hover{fill:var(--biz-bar-hover);}
+.biz-axis-label{font-size:9px;fill:var(--muted);font-family:var(--font-body);}
+.biz-gridline{stroke:var(--biz-grid);stroke-width:1;}
+
+.biz-events-table{width:100%;border-collapse:collapse;font-size:.85rem;}
+.biz-events-table th{text-align:left;font-size:.72rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);padding:0 10px 10px;border-bottom:1px solid var(--border);}
+.biz-events-table td{padding:10px;border-bottom:1px solid var(--border);color:var(--text);}
+.biz-events-table tr:last-child td{border-bottom:none;}
+.biz-event-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;}
+.biz-event-dot.good{background:var(--biz-good);}
+.biz-event-dot.critical{background:var(--biz-critical);}
+.biz-event-label{font-weight:600;}
+.biz-event-amount{font-variant-numeric:tabular-nums;font-weight:700;}
+.biz-empty-state{padding:32px 20px;text-align:center;color:var(--muted);font-size:.88rem;}
+
+.biz-setup-note{background:var(--peach-pale);border:1px solid var(--peach-light);border-radius:14px;padding:14px 16px;font-size:.82rem;color:var(--text);line-height:1.6;margin-bottom:20px;}
+.biz-setup-note code{background:rgba(44,24,16,.08);padding:1px 6px;border-radius:5px;font-size:.78rem;}
+
+@media (max-width: 640px){
+  .biz-kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .biz-kpi-value{font-size:1.4rem;}
+}
