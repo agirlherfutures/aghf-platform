@@ -8,16 +8,16 @@
 
 /* SIDEBAR — a saturated pink→peach gradient "brand banner" across the
  * logo + user block (same gradient the login screen's left panel
- * already uses), sized to just that top band via a layered background
- * on the shared .sb parent rather than on each child separately, so
- * the two elements read as one continuous gradient instead of each
- * restarting its own 0%-100% gradient and showing a hard seam where
- * they meet. Dark below, unchanged, for the nav list's legibility. */
-.sb{width:230px;flex-shrink:0;
-  background:
-    linear-gradient(155deg,var(--pink),var(--peach)) top left / 100% 150px no-repeat,
-    var(--dark);
-  border-right:none;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto;}
+ * already uses). Lives on .sb-top, a dedicated wrapper around just
+ * those two elements (see sidebar.js), rather than on each separately
+ * — same reasoning as before (one continuous gradient, no seam where
+ * they meet) but now sized to its own content instead of a guessed
+ * pixel height. .sb-top is also position:sticky within .sb's own
+ * scrolling area, so on a short viewport where the nav list scrolls,
+ * the gradient banner stays pinned at the top instead of scrolling up
+ * and letting nav items scroll into/underneath it. */
+.sb{width:230px;flex-shrink:0;background:var(--dark);border-right:none;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto;}
+.sb-top{position:sticky;top:0;z-index:2;background:linear-gradient(155deg,var(--pink),var(--peach));flex-shrink:0;}
 .sb-logo{padding:24px 22px 14px;font-family:"Playfair Display",serif;font-style:italic;font-weight:700;font-size:1.05rem;color:#fff;text-shadow:0 1px 10px rgba(44,24,16,.18);border-bottom:none;cursor:pointer;display:block;text-decoration:none;}
 .sb-logo span{color:rgba(255,255,255,.8);font-weight:400;}
 .sb-user{padding:8px 18px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.14);margin-bottom:6px;}

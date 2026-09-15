@@ -76,14 +76,16 @@
   const html = `
     ${demoBanner}
     <aside class="sb">
-      <a class="sb-logo" href="${ROOT}index.html">A Girl &amp; <span>Her Futures</span>™</a>
-      <div class="sb-user">
-        <div class="sb-av" id="sbAvatar">D</div>
-        <div>
-          <div class="sb-nm" id="sbName">Trader</div>
-          <div class="sb-lv" id="sbLevel">Level 1 · She's Brand New</div>
+      <div class="sb-top">
+        <a class="sb-logo" href="${ROOT}index.html">A Girl &amp; <span>Her Futures</span>™</a>
+        <div class="sb-user">
+          <div class="sb-av" id="sbAvatar">D</div>
+          <div>
+            <div class="sb-nm" id="sbName">Trader</div>
+            <div class="sb-lv" id="sbLevel">Level 1 · She's Brand New</div>
+          </div>
+          <div class="sb-notif-wrap" id="sbNotifWrap"></div>
         </div>
-        <div class="sb-notif-wrap" id="sbNotifWrap"></div>
       </div>
       ${sectionsHtml}
       <div class="sb-bot">
