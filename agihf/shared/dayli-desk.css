@@ -13,8 +13,21 @@
  */
 
 @media (prefers-reduced-motion: reduce) {
-  .dd-checklist-item, .dd-trade-row, .dd-outlook-card, .dd-badge, .dd-toast { transition: none !important; animation: none !important; }
+  .dd-checklist-item, .dd-trade-row, .dd-outlook-card, .dd-badge, .dd-toast, .dd-card { transition: none !important; animation: none !important; }
 }
+
+/* Every .dd-card across the Dashboard, Chart Lab, Wins, and Challenge
+ * pages starts as an empty container in the static markup and gets its
+ * real content set via innerHTML once its data actually arrives — which
+ * previously popped in instantly with no transition, at a different
+ * moment for every card since each fetches independently. :empty here
+ * matches only before that happens; the instant a card gains children it
+ * stops matching :empty and starts matching :not(:empty), so the
+ * animation on that rule newly applies and plays once — no per-render-
+ * call-site changes needed anywhere. */
+.dd-card:empty{opacity:0;}
+.dd-card:not(:empty){animation:aghfContentFadeIn .35s ease both;}
+@keyframes aghfContentFadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
 
 
 /* ── Header ─────────────────────────────────────────────────────── */
