@@ -77,7 +77,6 @@
     ${demoBanner}
     <aside class="sb">
       <div class="sb-top">
-        <a class="sb-logo" href="${ROOT}index.html"><img src="${ROOT}shared/img/aghf-logo.png" alt="A Girl &amp; Her Futures"></a>
         <div class="sb-user">
           <div class="sb-av" id="sbAvatar">D</div>
           <div>
