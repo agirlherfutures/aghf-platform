@@ -16,11 +16,6 @@
   .dd-checklist-item, .dd-trade-row, .dd-outlook-card, .dd-badge, .dd-toast { transition: none !important; animation: none !important; }
 }
 
-/* Wider shell just for the Dayli Desk, so the paired 2-up rows below
- * have real room instead of squeezing into the shared .main's 1000px
- * cap (same selector specificity as .main, but this file loads after
- * sidebar.css so it wins). */
-@media(min-width:900px){.main.dd-desktop-order{max-width:1180px;}}
 
 /* ── Header ─────────────────────────────────────────────────────── */
 .dd-header-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
