@@ -26,8 +26,14 @@
  * instead of a hard cut to blank between one page unloading and the next's
  * first paint — this site has no SPA routing, every nav is a real browser
  * navigation. Silently ignored elsewhere (Safari/Firefox as of today), so
- * it can only help, never regress. */
+ * it can only help, never regress. sidebar.js adds the equivalent fade for
+ * browsers that ignore this (feature-detected there, not here, so the two
+ * mechanisms never both fire on the same navigation). */
 @view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root){
+  animation-duration:220ms;
+  animation-timing-function:ease;
+}
 
 *{margin:0;padding:0;box-sizing:border-box;}
 /* The browser's own [hidden]{display:none} UA-stylesheet rule has the same
@@ -40,6 +46,24 @@
  * visible together. `!important` here restores `hidden` as an unconditional
  * override, matching what every other site assumes it already does. */
 [hidden]{display:none!important;}
-html{background:var(--bg);}
-body{font-family:var(--font-body);background:var(--bg);color:var(--dark);}
+html{background:var(--warm);}
+/* Same soft radial-mesh wash used on the marketing site's hero sections
+ * (agirlherfutures.com/bundle's .mesh), so the logged-in app reads as the
+ * same product instead of a flatter, plainer shell. --bg itself stays a
+ * flat color unchanged, since several components (status pills, image
+ * placeholders) rely on it as a solid `background-color`. */
+body{
+  font-family:var(--font-body);color:var(--dark);
+  background:
+    radial-gradient(55% 40% at 8% 0%, var(--pink-pale) 0%, transparent 70%),
+    radial-gradient(45% 35% at 100% 8%, var(--teal-pale) 0%, transparent 70%),
+    radial-gradient(50% 40% at 40% 100%, var(--peach-pale) 0%, transparent 70%),
+    var(--warm);
+}
 img{max-width:100%;}
+
+/* auth-guard.js's loading overlay, shown while the auth check (and on a
+ * slow connection, the page's own data-fetching JS) is in flight. Defined
+ * here rather than inline since @keyframes can't be set via style.cssText. */
+@keyframes aghfLoaderPulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.14);opacity:.72;}}
+@media(prefers-reduced-motion:reduce){#aghfLoader > div:first-child{animation:none!important;}}

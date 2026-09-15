@@ -52,11 +52,22 @@
   // <html> let the browser's own default canvas show through underneath
   // — plain white — for the whole duration of the auth check, on every
   // single navigation. Hiding <body> instead leaves <html>'s own
-  // background (tokens.css: `html { background: var(--bg) }`) visible and
-  // opaque the whole time, so the hidden window reads as the site's own
-  // cream color instead of a jarring white flash.
+  // background (tokens.css: `html { background: var(--warm) }`) visible
+  // and opaque the whole time, so the hidden window reads as the site's
+  // own cream color instead of a jarring white flash.
   document.body.style.visibility = 'hidden';
-  document.body.style.opacity = '0';
+
+  // A branded loading overlay, shown for however long the auth check (and
+  // on a slow connection, the page's own data-fetching JS) takes — instead
+  // of the hidden <body> just reading as a blank cream screen with nothing
+  // happening. Explicit visibility:visible overrides the hidden <body> it
+  // lives inside, same technique the diagnostic box below already uses.
+  const loader = document.createElement('div');
+  loader.id = 'aghfLoader';
+  loader.style.cssText = 'visibility:visible;position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(55% 40% at 8% 0%, var(--pink-pale) 0%, transparent 70%),radial-gradient(45% 35% at 100% 8%, var(--teal-pale) 0%, transparent 70%),radial-gradient(50% 40% at 40% 100%, var(--peach-pale) 0%, transparent 70%),var(--warm);transition:opacity .2s ease;';
+  loader.innerHTML = '<div style="width:52px;height:52px;border-radius:50%;background:radial-gradient(circle,var(--peach),var(--pink) 55%,var(--teal));box-shadow:0 14px 32px rgba(244,130,154,.32);animation:aghfLoaderPulse 1.1s ease-in-out infinite;"></div>'
+    + '<div style="font-family:var(--font-display,\'Playfair Display\',serif);font-style:italic;font-weight:700;font-size:1rem;color:var(--dark);">A Girl &amp; Her Futures</div>';
+  document.body.appendChild(loader);
 
   // TEMPORARY DIAGNOSTIC — a member's real account is going blank in a way
   // that's been hard to pin down over chat (blank forever vs. a redirect,
@@ -122,8 +133,12 @@
   // the listener registration) has already executed by the time we fire.
   function fireAuthReady() {
     document.body.style.visibility = '';
-    document.body.style.transition = 'opacity .15s ease';
-    document.body.style.opacity = '1';
+    const loaderEl = document.getElementById('aghfLoader');
+    if (loaderEl) {
+      loaderEl.style.opacity = '0';
+      loaderEl.style.pointerEvents = 'none';
+      setTimeout(() => loaderEl.remove(), 220);
+    }
     document.dispatchEvent(new Event('aghf-auth-ready'));
   }
   function fireAuthReadySafely() {

@@ -54,19 +54,20 @@
     <div class="dd-card" id="ddCalendar"></div>
   </div>
 
-  <!-- 4. Trading Snapshot -->
-  <div class="dd-section dd-order-4">
-    <div class="dd-section-head"><div class="dd-section-title">Today's Trading Snapshot</div></div>
-    <div class="dd-card" id="ddSnapshot"></div>
-  </div>
-
-  <!-- 5. Dayli ICC Checklist -->
-  <div class="dd-section dd-order-3" id="ddPlanSection">
-    <div class="dd-section-head">
-      <div class="dd-section-title">Dayli ICC Checklist</div>
-      <a class="dd-section-link" href="checklist.html">Open Checklist →</a>
+  <!-- 4+5. Trading Snapshot + Dayli ICC Checklist, side by side on desktop -->
+  <div class="dd-row-2col">
+    <div class="dd-section dd-order-4">
+      <div class="dd-section-head"><div class="dd-section-title">Today's Trading Snapshot</div></div>
+      <div class="dd-card" id="ddSnapshot"></div>
     </div>
-    <div class="dd-card" id="ddChecklist"></div>
+
+    <div class="dd-section dd-order-3" id="ddPlanSection">
+      <div class="dd-section-head">
+        <div class="dd-section-title">Dayli ICC Checklist</div>
+        <a class="dd-section-link" href="checklist.html">Open Checklist →</a>
+      </div>
+      <div class="dd-card" id="ddChecklist"></div>
+    </div>
   </div>
 
   <!-- 6. Quick Journal -->
@@ -92,16 +93,24 @@
     <div class="dd-card dd-learning-card" id="ddLearning"></div>
   </div>
 
-  <!-- 9. Recent Trades -->
-  <div class="dd-section dd-order-8">
-    <div class="dd-section-head">
-      <div class="dd-section-title">Recent Trades</div>
-      <a class="dd-section-link" href="journal-history.html">View All →</a>
+  <!-- 9+10. Recent Trades + Consistency, side by side on desktop -->
+  <div class="dd-row-2col">
+    <div class="dd-section dd-order-8">
+      <div class="dd-section-head">
+        <div class="dd-section-title">Recent Trades</div>
+        <a class="dd-section-link" href="journal-history.html">View All →</a>
+      </div>
+      <div class="dd-card" id="ddTrades"></div>
     </div>
-    <div class="dd-card" id="ddTrades"></div>
+
+    <div class="dd-section dd-order-9">
+      <div class="dd-card" id="ddConsistency"></div>
+    </div>
   </div>
 
-  <!-- 9b. Share My Win -->
+  <!-- 9b. Share My Win — kept full width; its internal layout (text +
+       embedded featured-win preview) is built for a wide single column
+       and overflowed when squeezed into a paired half-width row. -->
   <div class="dd-section dd-order-9">
     <div class="dd-card" id="ddShareWin"></div>
   </div>
@@ -111,10 +120,7 @@
     <div class="dd-card" id="ddChallenge"></div>
   </div>
 
-  <!-- 10. Consistency + Journey -->
-  <div class="dd-section dd-order-9">
-    <div class="dd-card" id="ddConsistency"></div>
-  </div>
+  <!-- 10b. Journey -->
   <div class="dd-section dd-order-9">
     <div class="dd-section-head"><div class="dd-section-title">Your Journey</div></div>
     <div class="dd-card" id="ddJourney"></div>
