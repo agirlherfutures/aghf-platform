@@ -16,6 +16,12 @@
   .dd-checklist-item, .dd-trade-row, .dd-outlook-card, .dd-badge, .dd-toast { transition: none !important; animation: none !important; }
 }
 
+/* Wider shell just for the Dayli Desk, so the paired 2-up rows below
+ * have real room instead of squeezing into the shared .main's 1000px
+ * cap (same selector specificity as .main, but this file loads after
+ * sidebar.css so it wins). */
+@media(min-width:900px){.main.dd-desktop-order{max-width:1180px;}}
+
 /* ── Header ─────────────────────────────────────────────────────── */
 .dd-header-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
 .dd-meta-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:.78rem;color:var(--muted);}
@@ -553,6 +559,19 @@
   .dd-order-1{order:1;} .dd-order-2{order:2;} .dd-order-3{order:3;} .dd-order-4{order:4;}
   .dd-order-5{order:5;} .dd-order-6{order:6;} .dd-order-7{order:7;} .dd-order-8{order:8;} .dd-order-9{order:9;}
   .dd-order-10{order:10;}
+  /* Row wrappers below generate no box of their own here, so their
+   * .dd-order-N children re-attach to .dd-desktop-order's own flex
+   * context and keep the exact priority order above — unchanged from
+   * before these pairs existed. */
+  .dd-row-2col{display:contents;}
+}
+
+/* ── Paired cards, side by side on desktop only — breaks up what was a
+ * single unbroken column of same-width white cards top to bottom. Below
+ * 900px, .dd-row-2col is display:contents (see above), so this rule
+ * never applies there. ─────────────────────────────────────────────── */
+@media(min-width:900px){
+  .dd-row-2col{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;align-items:start;}
 }
 
 /* ── The Inner Edge (Psychology Coach) ───────────────────────────── */
