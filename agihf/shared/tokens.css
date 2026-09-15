@@ -40,6 +40,18 @@
  * visible together. `!important` here restores `hidden` as an unconditional
  * override, matching what every other site assumes it already does. */
 [hidden]{display:none!important;}
-html{background:var(--bg);}
-body{font-family:var(--font-body);background:var(--bg);color:var(--dark);}
+html{background:var(--warm);}
+/* Same soft radial-mesh wash used on the marketing site's hero sections
+ * (agirlherfutures.com/bundle's .mesh), so the logged-in app reads as the
+ * same product instead of a flatter, plainer shell. --bg itself stays a
+ * flat color unchanged, since several components (status pills, image
+ * placeholders) rely on it as a solid `background-color`. */
+body{
+  font-family:var(--font-body);color:var(--dark);
+  background:
+    radial-gradient(55% 40% at 8% 0%, var(--pink-pale) 0%, transparent 70%),
+    radial-gradient(45% 35% at 100% 8%, var(--teal-pale) 0%, transparent 70%),
+    radial-gradient(50% 40% at 40% 100%, var(--peach-pale) 0%, transparent 70%),
+    var(--warm);
+}
 img{max-width:100%;}
