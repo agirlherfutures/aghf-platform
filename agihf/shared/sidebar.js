@@ -101,13 +101,52 @@
 
   script.insertAdjacentHTML('beforebegin', html);
 
+  // ── Smooth page-to-page transitions ───────────────────────────────
+  // This site has no SPA router — every nav is a real browser
+  // navigation — so without this, leaving a page is an instant, jarring
+  // cut to blank rather than a fade. Chromium-based browsers already get
+  // a native crossfade for free via tokens.css's `@view-transition {
+  // navigation: auto; }`; `startViewTransition` existing is a reliable
+  // proxy for that same-release feature also being supported, so this
+  // fallback fade only runs where it isn't — Safari, Firefox — and the
+  // two mechanisms never both fire on one navigation.
+  const NATIVE_CROSSFADE = 'startViewTransition' in document;
+  const FADE_MS = 160;
+  function fadeNavigate(href) {
+    if (NATIVE_CROSSFADE) { window.location.href = href; return; }
+    document.body.style.transition = `opacity ${FADE_MS}ms ease`;
+    document.body.style.opacity = '0';
+    setTimeout(() => { window.location.href = href; }, FADE_MS);
+  }
+  if (!NATIVE_CROSSFADE) {
+    document.addEventListener('click', (e) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target.closest('a[href]');
+      if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+      let url;
+      try { url = new URL(a.href, location.href); } catch { return; }
+      if (url.origin !== location.origin) return;
+      // Same-page hash link — nothing to fade to, let the browser handle it.
+      if (url.pathname === location.pathname && url.search === location.search && url.hash) return;
+      e.preventDefault();
+      fadeNavigate(a.href);
+    });
+    // A back/forward navigation can restore this exact page from the
+    // browser's cache mid-fade (opacity still 0) — reset it so the page
+    // isn't stuck invisible.
+    window.addEventListener('pageshow', () => {
+      document.body.style.transition = '';
+      document.body.style.opacity = '';
+    });
+  }
+
   async function doLogout() {
     if (window.AGHF_DEMO) {
       sessionStorage.removeItem('aghf_demo');
     } else if (window.AGHF_SUPABASE) {
       await window.AGHF_SUPABASE.auth.signOut();
     }
-    window.location.href = `${ROOT}login.html`;
+    fadeNavigate(`${ROOT}login.html`);
   }
   document.getElementById('sbLogout').addEventListener('click', doLogout);
   document.getElementById('mbLogout').addEventListener('click', doLogout);
