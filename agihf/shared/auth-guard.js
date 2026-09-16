@@ -65,8 +65,7 @@
   const loader = document.createElement('div');
   loader.id = 'aghfLoader';
   loader.style.cssText = 'visibility:visible;position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(55% 40% at 8% 0%, var(--pink-pale) 0%, transparent 70%),radial-gradient(45% 35% at 100% 8%, var(--teal-pale) 0%, transparent 70%),radial-gradient(50% 40% at 40% 100%, var(--peach-pale) 0%, transparent 70%),var(--warm);transition:opacity .2s ease;';
-  loader.innerHTML = '<div style="width:52px;height:52px;border-radius:50%;background:radial-gradient(circle,var(--peach),var(--pink) 55%,var(--teal));box-shadow:0 14px 32px rgba(244,130,154,.32);animation:aghfLoaderPulse 1.1s ease-in-out infinite;"></div>'
-    + '<div style="font-family:var(--font-display,\'Playfair Display\',serif);font-style:italic;font-weight:700;font-size:1rem;color:var(--dark);">A Girl &amp; Her Futures</div>';
+  loader.innerHTML = `<img src="${new URL('img/aghf-logo.png', scriptSrc).href}" alt="" style="width:64px;height:64px;object-fit:contain;filter:drop-shadow(0 8px 20px rgba(244,130,154,.35));animation:aghfLoaderPulse 1.1s ease-in-out infinite;">`;
   document.body.appendChild(loader);
 
   // TEMPORARY DIAGNOSTIC — a member's real account is going blank in a way
