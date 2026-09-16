@@ -22,18 +22,14 @@
   --font-script:'Caveat',cursive;
 }
 
-/* Crossfades full-page navigations in supporting (Chromium-based) browsers
- * instead of a hard cut to blank between one page unloading and the next's
- * first paint — this site has no SPA routing, every nav is a real browser
- * navigation. Silently ignored elsewhere (Safari/Firefox as of today), so
- * it can only help, never regress. sidebar.js adds the equivalent fade for
- * browsers that ignore this (feature-detected there, not here, so the two
- * mechanisms never both fire on the same navigation). */
-@view-transition { navigation: auto; }
-::view-transition-old(root), ::view-transition-new(root){
-  animation-duration:220ms;
-  animation-timing-function:ease;
-}
+/* Page-to-page fade transitions are handled entirely by sidebar.js's own
+ * click-intercept + opacity fade now, unconditionally on every browser —
+ * this used to also lean on the browser's native cross-document
+ * view-transition crossfade here, gated behind a feature check in
+ * sidebar.js, but that platform feature wasn't visibly firing in
+ * practice. Removed rather than left in place unused, since running both
+ * at once (had the feature check ever been wrong) would double up into a
+ * choppier fade instead of a smoother one. */
 
 *{margin:0;padding:0;box-sizing:border-box;}
 /* The browser's own [hidden]{display:none} UA-stylesheet rule has the same
