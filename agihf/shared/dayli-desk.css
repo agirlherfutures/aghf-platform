@@ -29,6 +29,16 @@
 .dd-card:not(:empty){animation:aghfContentFadeIn .35s ease both;}
 @keyframes aghfContentFadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
 
+/* Same fade, JS-triggered by dayli-desk-engine.js's renderSkeleton() the
+ * instant its skeleton gets replaced by real content (or an error
+ * state) — covers the many containers that use the skeleton-loading
+ * pattern but aren't themselves a `.dd-card` (e.g. checklist.html's
+ * #clRoot), where the CSS-only :empty/:not(:empty) trick above can't
+ * apply since the container was never empty to begin with (it held
+ * skeleton markup). */
+.aghf-swap-in{animation:aghfContentFadeIn .35s ease both;}
+@media (prefers-reduced-motion: reduce) { .aghf-swap-in { animation: none !important; } }
+
 
 /* ── Header ─────────────────────────────────────────────────────── */
 .dd-header-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
