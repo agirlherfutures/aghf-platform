@@ -81,4 +81,3 @@ export const DASHBOARD_CARD = {
 };
 
 export const IMAGE_CAVEAT = 'Image reads can be imperfect — I’ll treat anything I see as tentative, never a trade signal.';
-export const VOICE_DISCLOSURE = 'Voice input uses your browser’s built-in speech recognition, which may send audio to your browser vendor for transcription.';
