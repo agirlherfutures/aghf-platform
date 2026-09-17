@@ -263,7 +263,16 @@ export default async function handler(req, res) {
 
     // ── Load consent + memory ──────────────────────────────────────
     const { data: profile } = await supabase.from('psychology_profiles').select('*').eq('user_id', userId).maybeSingle();
-    const consent = profile?.consent || DEFAULT_CONSENT;
+    // Merge onto DEFAULT_CONSENT rather than an all-or-nothing `||` — a
+    // profile whose consent object predates a since-added key (e.g.
+    // journalFreetext) is a real, non-null object, so `|| DEFAULT_CONSENT`
+    // never applies and that specific key silently reads as undefined
+    // (falsy) forever, blocking just that one data category with no
+    // error anywhere. This is very likely why journal content kept not
+    // reaching the model even after the excluded_from_agent NULL fix —
+    // that fix gets the row fetched, but consent.journalFreetext gated
+    // whether its text ever made it into memberDataBlock.
+    const consent = { ...DEFAULT_CONSENT, ...(profile?.consent || {}) };
     const personalizationEnabled = profile?.personalization_enabled !== false;
     const coachingTone = profile?.coaching_tone || 'gentle';
 
