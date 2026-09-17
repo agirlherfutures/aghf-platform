@@ -606,20 +606,26 @@ export function renderAgentWorkspace(container, helpers = {}) {
 
   /* ── Composer ── */
   function paintComposer() {
+    // The attach button (📎) — and everything behind it: trade/journal/
+    // checklist/screenshot/week/date-range attaching — is removed here
+    // rather than fixed further. Two real server-side bugs in how
+    // attached records reached the model were found and fixed (a NULL
+    // vs. false filter dropping rows, and a partial consent object
+    // silently gating content), but it was still unreliable enough that
+    // removing the entry point was preferred over continuing to debug
+    // it live. Pasting the record's text directly into the message
+    // still works fine — that path never touched any of this.
     els.composer.innerHTML = `
       <div class="agc-attach-chips" id="agcAttachChips"></div>
       <div class="agc-input-row">
-        <button type="button" class="agc-icon-btn" id="agcAttachBtn" aria-label="Add attachment">📎</button>
         <button type="button" class="agc-icon-btn" id="agcMicBtn" aria-label="Voice input" hidden>🎙</button>
         <textarea class="agc-textarea" id="agcTextarea" rows="1" placeholder="What's happening with your trading right now?" aria-label="Message the AGHF Agent"></textarea>
         <button type="button" class="dd-primary-btn agc-send-btn" id="agcSendBtn">Send</button>
         <button type="button" class="dd-secondary-btn agc-stop-btn" id="agcStopBtn" hidden>Stop</button>
       </div>
-      <div class="agc-attach-popover" id="agcAttachPopover" hidden></div>
     `;
     els.composer.querySelector('#agcSendBtn').addEventListener('click', sendMessage);
     els.composer.querySelector('#agcStopBtn').addEventListener('click', stopGenerating);
-    els.composer.querySelector('#agcAttachBtn').addEventListener('click', toggleAttachPopover);
     getTextarea().addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
     });

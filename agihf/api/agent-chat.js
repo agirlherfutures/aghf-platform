@@ -70,8 +70,7 @@ const VALID_INTENTS = new Set([
 // since this is a server-only validation boundary; the model's own
 // suggestedActions output is never trusted without this check.
 const VALID_CONTEXTUAL_ACTIONS = new Set([
-  'review_trade', 'attach_trade', 'compare_recent_trades', 'review_this_week', 'attach_checklist',
-  'attach_journal', 'find_the_trigger', 'explain_concept', 'show_example', 'challenge_belief',
+  'find_the_trigger', 'explain_concept', 'show_example', 'challenge_belief',
   'build_rule', 'create_practice_plan', 'start_post_loss_reset', 'start_cooldown', 'practice_scenario',
   'save_insight', 'add_to_playbook', 'make_weekly_focus', 'open_recommended_lesson',
   'continue_without_data', 'go_deeper',

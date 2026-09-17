@@ -30,12 +30,6 @@ export const SUPPORTING_COPY = 'Ask a question, unpack a trading pattern, analyz
  *   - 'link'      → navigates to another page.
  */
 export const CONTEXTUAL_ACTIONS = {
-  review_trade: { label: 'Review the Trade', behavior: 'attach', attachType: 'trade' },
-  attach_trade: { label: 'Attach a Trade', behavior: 'attach', attachType: 'trade' },
-  compare_recent_trades: { label: 'Compare Recent Trades', behavior: 'attach', attachType: 'trade' },
-  review_this_week: { label: 'Review This Week', behavior: 'attach', attachType: 'week' },
-  attach_checklist: { label: 'Attach My Checklist', behavior: 'attach', attachType: 'checklist' },
-  attach_journal: { label: 'Attach My Journal', behavior: 'attach', attachType: 'journal' },
   find_the_trigger: { label: 'Find the Trigger', behavior: 'synthetic', prompt: 'Help me find the trigger behind this.' },
   explain_concept: { label: 'Explain This Concept', behavior: 'synthetic', prompt: 'Can you explain that concept in a bit more depth?' },
   show_example: { label: 'Show Me an Example', behavior: 'synthetic', prompt: 'Can you show me a concrete trading example of that?' },
@@ -76,7 +70,7 @@ export const ATTACHMENT_ACTIONS = [
 
 export const EMPTY_STATES = {
   aiUnavailable: 'The AGHF Agent is temporarily unavailable. Your saved conversations, Playbook, resets, and Scenario Labs are still available.',
-  noDataAccess: 'You can ask any general trading-psychology question. Attach a trade or enable selected data access when you want a personalized analysis.',
+  noDataAccess: 'You can ask any general trading-psychology question. Paste a trade, journal entry, or checklist here, or enable selected data access in Privacy & Settings, when you want a personalized analysis.',
   insufficientEvidence: 'I don’t have enough evidence to call this a repeating pattern yet. We can explore the current situation or compare more trades.',
 };
 
