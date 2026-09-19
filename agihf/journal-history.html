@@ -168,7 +168,9 @@
     return body;
   }
 
-  document.addEventListener('aghf-auth-ready', boot);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 
   /* ── Calendar / Summary views (independent of the List view's own filters) ── */
 
@@ -260,15 +262,15 @@
     renderPerformanceSummaryView(document.getElementById('jhSummaryBody'), { ...summary, journalingStreak }, { monthLabel });
   }
 
-  function switchView(view) {
+  async function switchView(view) {
     activeView = view;
     document.getElementById('jhListView').hidden = view !== 'list';
     document.getElementById('jhCalendarView').hidden = view !== 'calendar';
     document.getElementById('jhSummaryView').hidden = view !== 'summary';
     closeTradeDayDrawer(document.getElementById('jhDrawerRoot'));
     renderViewSwitcher(document.getElementById('jhViewSwitch'), activeView, switchView);
-    if (view === 'calendar') paintCalendarView();
-    else if (view === 'summary') paintSummaryView();
+    if (view === 'calendar') await paintCalendarView();
+    else if (view === 'summary') await paintSummaryView();
   }
 
   async function boot() {
@@ -319,9 +321,9 @@
 
     // Deep-link support for "View Full Calendar"-style cards elsewhere (e.g. performance.html).
     const initialView = new URLSearchParams(window.location.search).get('view');
-    if (initialView === 'calendar' || initialView === 'summary') switchView(initialView);
+    if (initialView === 'calendar' || initialView === 'summary') await switchView(initialView);
 
-    load();
+    await load();
   }
 </script>
 

@@ -80,7 +80,9 @@
     }
   }
 
-  document.addEventListener('aghf-auth-ready', load);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await load(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 </script>
 
 </body>

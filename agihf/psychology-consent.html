@@ -64,7 +64,9 @@
     }
   }
 
-  document.addEventListener('aghf-auth-ready', boot);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 
   async function boot() {
     try {
@@ -75,7 +77,7 @@
       renderFallbackError(err);
       return;
     }
-    load();
+    await load();
   }
 </script>
 

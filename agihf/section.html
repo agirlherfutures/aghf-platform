@@ -100,7 +100,9 @@
     });
   }
 
-  document.addEventListener('aghf-auth-ready', boot);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 
   async function boot() {
     try {
@@ -116,7 +118,7 @@
     section = phase.sections[secIdx];
     nextSection = phase.sections[secIdx + 1];
 
-    load();
+    await load();
   }
 </script>
 

@@ -121,6 +121,30 @@
     });
   }
 
+  // Hides and removes the branded loader. Exposed on window rather than
+  // fired automatically alongside auth success, because auth passing
+  // isn't the same as the page being ready to look at — every page's own
+  // boot() still has to fetch and render its data after `aghf-auth-ready`
+  // fires below, and that used to happen behind a revealed, half-built
+  // page (skeletons popping in one card at a time). Each page's boot
+  // listener now calls this itself once ITS OWN data has finished
+  // rendering, so the loader stays up for the full wait, not just the
+  // auth check.
+  function hideLoader() {
+    const loaderEl = document.getElementById('aghfLoader');
+    if (loaderEl) {
+      loaderEl.style.opacity = '0';
+      loaderEl.style.pointerEvents = 'none';
+      setTimeout(() => loaderEl.remove(), 220);
+    }
+  }
+  window.AGHF_HIDE_LOADER = hideLoader;
+  // Last-resort safety net: if a page's boot listener throws before its
+  // own try/finally can call AGHF_HIDE_LOADER, or a page never registers
+  // an `aghf-auth-ready` listener at all, don't leave the loader on
+  // screen forever — hide it anyway after a generous window.
+  setTimeout(hideLoader, 20000);
+
   // This script is a classic (non-module) tag, so it runs synchronously
   // while the document is still parsing. Consuming pages listen for
   // `aghf-auth-ready` from a type="module" script, and module scripts are
@@ -132,12 +156,6 @@
   // the listener registration) has already executed by the time we fire.
   function fireAuthReady() {
     document.body.style.visibility = '';
-    const loaderEl = document.getElementById('aghfLoader');
-    if (loaderEl) {
-      loaderEl.style.opacity = '0';
-      loaderEl.style.pointerEvents = 'none';
-      setTimeout(() => loaderEl.remove(), 220);
-    }
     document.dispatchEvent(new Event('aghf-auth-ready'));
   }
   function fireAuthReadySafely() {

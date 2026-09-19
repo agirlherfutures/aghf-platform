@@ -135,7 +135,9 @@
       <a class="dd-primary-btn" href="journal-history.html?view=calendar">View Full Calendar</a>`;
   }
 
-  document.addEventListener('aghf-auth-ready', boot);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 
   async function boot() {
     try {
@@ -150,10 +152,7 @@
       renderFallbackError(err);
       return;
     }
-    loadConsistency();
-    loadJourney();
-    loadEvalPlanCard();
-    loadCalendarLinkCard();
+    await Promise.all([loadConsistency(), loadJourney(), loadEvalPlanCard(), loadCalendarLinkCard()]);
   }
 </script>
 

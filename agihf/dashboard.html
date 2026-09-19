@@ -386,14 +386,16 @@
     }
     renderContinueLearningCard(document.getElementById('ddLearning'), learningData);
 
-    loadChecklistSummary();
-    loadQuickJournal();
-    loadTradingSnapshot();
-    loadRecentTrades();
-    loadConsistency();
-    loadAskAgentCard();
-    loadShareWinCard();
-    loadChallengeCard();
+    const cardLoads = Promise.all([
+      loadChecklistSummary(),
+      loadQuickJournal(),
+      loadTradingSnapshot(),
+      loadRecentTrades(),
+      loadConsistency(),
+      loadAskAgentCard(),
+      loadShareWinCard(),
+      loadChallengeCard(),
+    ]);
 
     try {
       const consistency = await computeConsistencyScore();
@@ -409,10 +411,12 @@
       renderErrorState(document.getElementById('ddFocus'), "Couldn't load your current focus.", loadDashboard);
     }
 
-    loadJourney(p, doneCount);
+    await Promise.all([cardLoads, loadJourney(p, doneCount)]);
   }
 
-  document.addEventListener('aghf-auth-ready', boot);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 
   async function boot() {
     try {
@@ -450,9 +454,7 @@
     renderSessionBadge(document.getElementById('ddSessionBadge'));
 
     await migrateLegacyDataIfNeeded();
-    loadDashboard();
-    loadMarketOutlook();
-    loadCalendar();
+    await Promise.all([loadDashboard(), loadMarketOutlook(), loadCalendar()]);
   }
 </script>
 

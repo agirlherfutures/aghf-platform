@@ -82,7 +82,9 @@
   // Registered synchronously, before any async work, so it can never miss
   // the `aghf-auth-ready` event — the dynamic imports below happen only
   // once this actually fires, inside boot() itself.
-  document.addEventListener('aghf-auth-ready', boot);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 
   async function boot() {
   // Loaded dynamically rather than as static top-level imports — a failure
