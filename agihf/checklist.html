@@ -44,11 +44,18 @@
 
   async function boot() {
     try {
-      ({ getTodayChecklist, getChecklistById, saveChecklist, createAutosaver } = await import('./shared/checklist-service.js'));
-      ({ renderChecklistPage } = await import('./shared/checklist-engine.js'));
-      ({ saveEntry } = await import('./shared/journal-service.js'));
-      ({ migrateLegacyDataIfNeeded } = await import('./shared/journal-migration.js'));
-      ({ renderErrorState, renderSkeleton } = await import('./shared/dayli-desk-engine.js'));
+      const [checklistService, checklistEngine, journalService, journalMigration, dayliDeskEngine] = await Promise.all([
+        import('./shared/checklist-service.js'),
+        import('./shared/checklist-engine.js'),
+        import('./shared/journal-service.js'),
+        import('./shared/journal-migration.js'),
+        import('./shared/dayli-desk-engine.js'),
+      ]);
+      ({ getTodayChecklist, getChecklistById, saveChecklist, createAutosaver } = checklistService);
+      ({ renderChecklistPage } = checklistEngine);
+      ({ saveEntry } = journalService);
+      ({ migrateLegacyDataIfNeeded } = journalMigration);
+      ({ renderErrorState, renderSkeleton } = dayliDeskEngine);
     } catch (err) {
       renderFallbackError(err);
       return;

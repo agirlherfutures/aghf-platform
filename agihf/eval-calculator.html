@@ -70,10 +70,16 @@
 
   async function boot() {
     try {
-      ({ listEvalPlans, getEvalPlan, saveEvalPlan, duplicateEvalPlan, archiveEvalPlan, setActiveEvalPlan, deleteEvalPlan, syncEvalPlanProgress } = await import('./shared/eval-service.js'));
-      ({ renderEvalCalculatorPage } = await import('./shared/eval-calculator-wizard-engine.js'));
-      ({ renderErrorState, renderSkeleton, showDeskToast } = await import('./shared/dayli-desk-engine.js'));
-      ({ validatePlanInputs } = await import('./shared/eval-calculator-math.js'));
+      const [evalService, evalWizardEngine, dayliDeskEngine, evalCalculatorMath] = await Promise.all([
+        import('./shared/eval-service.js'),
+        import('./shared/eval-calculator-wizard-engine.js'),
+        import('./shared/dayli-desk-engine.js'),
+        import('./shared/eval-calculator-math.js'),
+      ]);
+      ({ listEvalPlans, getEvalPlan, saveEvalPlan, duplicateEvalPlan, archiveEvalPlan, setActiveEvalPlan, deleteEvalPlan, syncEvalPlanProgress } = evalService);
+      ({ renderEvalCalculatorPage } = evalWizardEngine);
+      ({ renderErrorState, renderSkeleton, showDeskToast } = dayliDeskEngine);
+      ({ validatePlanInputs } = evalCalculatorMath);
     } catch (err) {
       renderFallbackError(err);
       return;

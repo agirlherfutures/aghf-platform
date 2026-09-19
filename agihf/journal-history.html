@@ -262,29 +262,44 @@
     renderPerformanceSummaryView(document.getElementById('jhSummaryBody'), { ...summary, journalingStreak }, { monthLabel });
   }
 
-  async function switchView(view) {
+  function switchView(view) {
     activeView = view;
     document.getElementById('jhListView').hidden = view !== 'list';
     document.getElementById('jhCalendarView').hidden = view !== 'calendar';
     document.getElementById('jhSummaryView').hidden = view !== 'summary';
     closeTradeDayDrawer(document.getElementById('jhDrawerRoot'));
     renderViewSwitcher(document.getElementById('jhViewSwitch'), activeView, switchView);
-    if (view === 'calendar') await paintCalendarView();
-    else if (view === 'summary') await paintSummaryView();
+    if (view === 'calendar') paintCalendarView();
+    else if (view === 'summary') paintSummaryView();
   }
 
   async function boot() {
     try {
-      ({ listEntries, getJournalStats } = await import('./shared/journal-service.js'));
-      ({ listChecklists } = await import('./shared/checklist-service.js'));
-      ({ INSTRUMENT_SYMBOLS } = await import('./shared/instrument-data.js'));
-      ({ EMOTION_OPTIONS_V2 } = await import('./shared/dashboard-models.js'));
-      ({ renderTradeSummaryCard, entryToSummaryCardProps, hydrateTscShots, renderJournalStatsRow, renderBadgesStrip, renderInsightCards } = await import('./shared/journal-engine.js'));
-      ({ computeInsights } = await import('./shared/journal-insights.js'));
-      ({ renderSkeleton, renderErrorState } = await import('./shared/dayli-desk-engine.js'));
-      ({ groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid, computeMonthSummary, filterByAccount } = await import('./shared/journal-calendar-math.js'));
-      ({ renderViewSwitcher, renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer, renderPerformanceSummaryView, isPnlHidden, renderEvalPlanProgressStrip } = await import('./shared/journal-calendar-engine.js'));
-      ({ listEvalPlans } = await import('./shared/eval-service.js'));
+      const [
+        journalService, checklistService, instrumentData, dashboardModels, journalEngine,
+        journalInsights, dayliDeskEngine, journalCalendarMath, journalCalendarEngine, evalService,
+      ] = await Promise.all([
+        import('./shared/journal-service.js'),
+        import('./shared/checklist-service.js'),
+        import('./shared/instrument-data.js'),
+        import('./shared/dashboard-models.js'),
+        import('./shared/journal-engine.js'),
+        import('./shared/journal-insights.js'),
+        import('./shared/dayli-desk-engine.js'),
+        import('./shared/journal-calendar-math.js'),
+        import('./shared/journal-calendar-engine.js'),
+        import('./shared/eval-service.js'),
+      ]);
+      ({ listEntries, getJournalStats } = journalService);
+      ({ listChecklists } = checklistService);
+      ({ INSTRUMENT_SYMBOLS } = instrumentData);
+      ({ EMOTION_OPTIONS_V2 } = dashboardModels);
+      ({ renderTradeSummaryCard, entryToSummaryCardProps, hydrateTscShots, renderJournalStatsRow, renderBadgesStrip, renderInsightCards } = journalEngine);
+      ({ computeInsights } = journalInsights);
+      ({ renderSkeleton, renderErrorState } = dayliDeskEngine);
+      ({ groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid, computeMonthSummary, filterByAccount } = journalCalendarMath);
+      ({ renderViewSwitcher, renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer, renderPerformanceSummaryView, isPnlHidden, renderEvalPlanProgressStrip } = journalCalendarEngine);
+      ({ listEvalPlans } = evalService);
     } catch (err) {
       renderFallbackError(err);
       return;
@@ -321,9 +336,9 @@
 
     // Deep-link support for "View Full Calendar"-style cards elsewhere (e.g. performance.html).
     const initialView = new URLSearchParams(window.location.search).get('view');
-    if (initialView === 'calendar' || initialView === 'summary') await switchView(initialView);
+    if (initialView === 'calendar' || initialView === 'summary') switchView(initialView);
 
-    await load();
+    load();
   }
 </script>
 

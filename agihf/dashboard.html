@@ -386,16 +386,19 @@
     }
     renderContinueLearningCard(document.getElementById('ddLearning'), learningData);
 
-    const cardLoads = Promise.all([
-      loadChecklistSummary(),
-      loadQuickJournal(),
-      loadTradingSnapshot(),
-      loadRecentTrades(),
-      loadConsistency(),
-      loadAskAgentCard(),
-      loadShareWinCard(),
-      loadChallengeCard(),
-    ]);
+    // Fire-and-forget, deliberately not awaited: each card below paints its
+    // own skeleton immediately and fades in its real content when ready
+    // (dd-card's :empty/:not(:empty) CSS), so the page reveals fast and
+    // these fill in progressively rather than the loader waiting on the
+    // slowest of eight independent fetches.
+    loadChecklistSummary();
+    loadQuickJournal();
+    loadTradingSnapshot();
+    loadRecentTrades();
+    loadConsistency();
+    loadAskAgentCard();
+    loadShareWinCard();
+    loadChallengeCard();
 
     try {
       const consistency = await computeConsistencyScore();
@@ -411,7 +414,7 @@
       renderErrorState(document.getElementById('ddFocus'), "Couldn't load your current focus.", loadDashboard);
     }
 
-    await Promise.all([cardLoads, loadJourney(p, doneCount)]);
+    loadJourney(p, doneCount);
   }
 
   document.addEventListener('aghf-auth-ready', async () => {
@@ -420,25 +423,51 @@
 
   async function boot() {
     try {
-      ({ PHASES, LEVEL_NAMES, isSectionCleared } = await import('./shared/curriculum-data.js'));
-      ({ getMarketOutlook } = await import('./shared/market-outlook-service.js'));
-      ({ getTodaysEvents } = await import('./shared/economic-calendar-service.js'));
-      ({ getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS, listEntries } = await import('./shared/journal-service.js'));
-      ({ getTodayChecklist, listChecklists } = await import('./shared/checklist-service.js'));
-      ({ migrateLegacyDataIfNeeded } = await import('./shared/journal-migration.js'));
-      ({ computeConsistencyScore } = await import('./shared/consistency-service.js'));
+      // Fetched together rather than one at a time — these 14 modules have
+      // no dependency on each other, so awaiting each `import()` in turn
+      // before starting the next just adds up their individual round trips
+      // (real latency, not this dev server's near-zero one). Promise.all
+      // lets the browser request them all at once and only waits for the
+      // slowest.
+      const [
+        curriculumData, marketOutlookService, economicCalendarService, journalService,
+        checklistService, journalMigration, consistencyService, dayliDeskEngine,
+        psychologyService, agentService, winsService, winsEngine, challengeService, challengeEngine,
+      ] = await Promise.all([
+        import('./shared/curriculum-data.js'),
+        import('./shared/market-outlook-service.js'),
+        import('./shared/economic-calendar-service.js'),
+        import('./shared/journal-service.js'),
+        import('./shared/checklist-service.js'),
+        import('./shared/journal-migration.js'),
+        import('./shared/consistency-service.js'),
+        import('./shared/dayli-desk-engine.js'),
+        import('./shared/psychology-service.js'),
+        import('./shared/agent-service.js'),
+        import('./shared/wins-service.js'),
+        import('./shared/wins-engine.js'),
+        import('./shared/challenge-service.js'),
+        import('./shared/challenge-engine.js'),
+      ]);
+      ({ PHASES, LEVEL_NAMES, isSectionCleared } = curriculumData);
+      ({ getMarketOutlook } = marketOutlookService);
+      ({ getTodaysEvents } = economicCalendarService);
+      ({ getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS, listEntries } = journalService);
+      ({ getTodayChecklist, listChecklists } = checklistService);
+      ({ migrateLegacyDataIfNeeded } = journalMigration);
+      ({ computeConsistencyScore } = consistencyService);
       ({
         renderSessionBadge, renderMarketOutlookCard, renderEconomicCalendarCard, renderTradingSnapshot,
         renderChecklistSummaryCard, renderQuickJournalCard, renderRecentTrades, computeCurrentFocus,
         renderCurrentFocusCard, renderContinueLearningCard, renderConsistencyScore, renderJourneySummary,
         renderAskAgentCard, renderSkeleton, renderErrorState,
-      } = await import('./shared/dayli-desk-engine.js'));
-      ({ getPsychologyProfile } = await import('./shared/psychology-service.js'));
-      ({ listConversations } = await import('./shared/agent-service.js'));
-      ({ listPublicWins } = await import('./shared/wins-service.js'));
-      ({ renderShareWinCard } = await import('./shared/wins-engine.js'));
-      ({ getCurrentChallenge, getProgress } = await import('./shared/challenge-service.js'));
-      ({ renderChallengeTeaserCard } = await import('./shared/challenge-engine.js'));
+      } = dayliDeskEngine);
+      ({ getPsychologyProfile } = psychologyService);
+      ({ listConversations } = agentService);
+      ({ listPublicWins } = winsService);
+      ({ renderShareWinCard } = winsEngine);
+      ({ getCurrentChallenge, getProgress } = challengeService);
+      ({ renderChallengeTeaserCard } = challengeEngine);
     } catch (err) {
       renderFallbackError(err);
       return;
@@ -454,7 +483,9 @@
     renderSessionBadge(document.getElementById('ddSessionBadge'));
 
     await migrateLegacyDataIfNeeded();
-    await Promise.all([loadDashboard(), loadMarketOutlook(), loadCalendar()]);
+    loadDashboard();
+    loadMarketOutlook();
+    loadCalendar();
   }
 </script>
 
