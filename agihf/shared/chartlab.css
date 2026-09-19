@@ -7,13 +7,12 @@
  * cl2-* classes are new (cl-* is already used by checklist-engine.js).
  */
 
-body.chartlab-page .main{
-  background:
-    radial-gradient(circle at 10% 0%,var(--pink-pale),transparent 45%),
-    radial-gradient(circle at 90% 15%,var(--teal-pale),transparent 40%),
-    radial-gradient(circle at 50% 100%,var(--peach-pale),transparent 45%),
-    var(--bg);
-}
+/* .main no longer paints its own page-scoped background here — it
+ * used var(--bg) (the flat neutral token, not the warm mesh) as its
+ * base layer, which painted a mismatched rectangle over .main's own
+ * box once sidebar.css stopped giving .main any background of its own
+ * in favor of body's single full-viewport mesh. Letting that show
+ * through uniformly is what removes the seam. */
 
 /* ── Hero / Today's Drill ─────────────────────────────────────────────── */
 

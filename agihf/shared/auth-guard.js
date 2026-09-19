@@ -52,11 +52,21 @@
   // <html> let the browser's own default canvas show through underneath
   // — plain white — for the whole duration of the auth check, on every
   // single navigation. Hiding <body> instead leaves <html>'s own
-  // background (tokens.css: `html { background: var(--bg) }`) visible and
-  // opaque the whole time, so the hidden window reads as the site's own
-  // cream color instead of a jarring white flash.
+  // background (tokens.css: `html { background: var(--warm) }`) visible
+  // and opaque the whole time, so the hidden window reads as the site's
+  // own cream color instead of a jarring white flash.
   document.body.style.visibility = 'hidden';
-  document.body.style.opacity = '0';
+
+  // A branded loading overlay, shown for however long the auth check (and
+  // on a slow connection, the page's own data-fetching JS) takes — instead
+  // of the hidden <body> just reading as a blank cream screen with nothing
+  // happening. Explicit visibility:visible overrides the hidden <body> it
+  // lives inside, same technique the diagnostic box below already uses.
+  const loader = document.createElement('div');
+  loader.id = 'aghfLoader';
+  loader.style.cssText = 'visibility:visible;position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(55% 40% at 8% 0%, var(--pink-pale) 0%, transparent 70%),radial-gradient(45% 35% at 100% 8%, var(--teal-pale) 0%, transparent 70%),radial-gradient(50% 40% at 40% 100%, var(--peach-pale) 0%, transparent 70%),var(--warm);transition:opacity .2s ease;';
+  loader.innerHTML = `<img src="${new URL('img/aghf-logo.png', scriptSrc).href}" alt="" style="width:64px;height:64px;object-fit:contain;filter:drop-shadow(0 8px 20px rgba(244,130,154,.35));animation:aghfLoaderPulse 1.1s ease-in-out infinite;">`;
+  document.body.appendChild(loader);
 
   // TEMPORARY DIAGNOSTIC — a member's real account is going blank in a way
   // that's been hard to pin down over chat (blank forever vs. a redirect,
@@ -111,6 +121,30 @@
     });
   }
 
+  // Hides and removes the branded loader. Exposed on window rather than
+  // fired automatically alongside auth success, because auth passing
+  // isn't the same as the page being ready to look at — every page's own
+  // boot() still has to fetch and render its data after `aghf-auth-ready`
+  // fires below, and that used to happen behind a revealed, half-built
+  // page (skeletons popping in one card at a time). Each page's boot
+  // listener now calls this itself once ITS OWN data has finished
+  // rendering, so the loader stays up for the full wait, not just the
+  // auth check.
+  function hideLoader() {
+    const loaderEl = document.getElementById('aghfLoader');
+    if (loaderEl) {
+      loaderEl.style.opacity = '0';
+      loaderEl.style.pointerEvents = 'none';
+      setTimeout(() => loaderEl.remove(), 220);
+    }
+  }
+  window.AGHF_HIDE_LOADER = hideLoader;
+  // Last-resort safety net: if a page's boot listener throws before its
+  // own try/finally can call AGHF_HIDE_LOADER, or a page never registers
+  // an `aghf-auth-ready` listener at all, don't leave the loader on
+  // screen forever — hide it anyway after a generous window.
+  setTimeout(hideLoader, 20000);
+
   // This script is a classic (non-module) tag, so it runs synchronously
   // while the document is still parsing. Consuming pages listen for
   // `aghf-auth-ready` from a type="module" script, and module scripts are
@@ -122,8 +156,6 @@
   // the listener registration) has already executed by the time we fire.
   function fireAuthReady() {
     document.body.style.visibility = '';
-    document.body.style.transition = 'opacity .15s ease';
-    document.body.style.opacity = '1';
     document.dispatchEvent(new Event('aghf-auth-ready'));
   }
   function fireAuthReadySafely() {

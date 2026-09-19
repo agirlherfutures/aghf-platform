@@ -166,7 +166,9 @@
     return buckets.map((v, i) => (i === 0 || v > 0 || buckets.slice(0, i).some((x) => x > 0)) ? v : null);
   }
 
-  document.addEventListener('aghf-auth-ready', boot);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 </script>
 
 </body>

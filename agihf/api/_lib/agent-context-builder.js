@@ -82,7 +82,15 @@ function checklistRowToShape(row) {
 }
 
 export async function fetchTradesInRange(supabase, userId, { from, to, ids, limit = MAX_TRADES_PER_TURN }) {
-  let query = supabase.from('journal_entries').select('*').eq('user_id', userId).eq('entry_type', 'trade').eq('is_draft', false).eq('excluded_from_agent', false);
+  // .not(col,'is',true) rather than .eq(col,false) — excluded_from_agent
+  // is only ever written when a member explicitly toggles it (see
+  // journal-entries.js), so any row from before that toggle existed has
+  // it as NULL, not false, and .eq('excluded_from_agent', false) never
+  // matches NULL in SQL. That silently dropped every such row from every
+  // attach flow (trades, checklists, journal entries below) — the exact
+  // "the journal entry didn't come through" report. This form matches
+  // false AND null, excluding only rows explicitly set to true.
+  let query = supabase.from('journal_entries').select('*').eq('user_id', userId).eq('entry_type', 'trade').eq('is_draft', false).not('excluded_from_agent', 'is', true);
   if (ids?.length) query = query.in('id', ids);
   if (from) query = query.gte('trade_date', from);
   if (to) query = query.lte('trade_date', to);
@@ -93,7 +101,7 @@ export async function fetchTradesInRange(supabase, userId, { from, to, ids, limi
 
 export async function fetchChecklistsFor(supabase, userId, checklistIds) {
   if (!checklistIds.length) return [];
-  const { data, error } = await supabase.from('trade_checklists').select('*').eq('user_id', userId).eq('excluded_from_agent', false).in('id', checklistIds);
+  const { data, error } = await supabase.from('trade_checklists').select('*').eq('user_id', userId).not('excluded_from_agent', 'is', true).in('id', checklistIds);
   if (error) throw error;
   return (data || []).map(checklistRowToShape);
 }
@@ -134,7 +142,7 @@ export async function buildTurnContext({ supabase, userId, consent = {}, persona
   const journalAttachmentIds = attachments.filter((a) => a.type === 'journal' && a.id).map((a) => a.id);
   let journalEntries = [];
   if (journalAttachmentIds.length && (consent.journalStructured || consent.journalFreetext)) {
-    const { data } = await supabase.from('journal_entries').select('*').eq('user_id', userId).eq('excluded_from_agent', false).in('id', journalAttachmentIds);
+    const { data } = await supabase.from('journal_entries').select('*').eq('user_id', userId).not('excluded_from_agent', 'is', true).in('id', journalAttachmentIds);
     journalEntries = data || [];
     attachmentSummaries.push({ type: 'journal', count: journalEntries.length });
   }

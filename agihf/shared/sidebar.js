@@ -76,14 +76,15 @@
   const html = `
     ${demoBanner}
     <aside class="sb">
-      <a class="sb-logo" href="${ROOT}index.html">A Girl &amp; <span>Her Futures</span>™</a>
-      <div class="sb-user">
-        <div class="sb-av" id="sbAvatar">D</div>
-        <div>
-          <div class="sb-nm" id="sbName">Trader</div>
-          <div class="sb-lv" id="sbLevel">Level 1 · She's Brand New</div>
+      <div class="sb-top">
+        <div class="sb-user">
+          <div class="sb-av" id="sbAvatar">D</div>
+          <div>
+            <div class="sb-nm" id="sbName">Trader</div>
+            <div class="sb-lv" id="sbLevel">Level 1 · She's Brand New</div>
+          </div>
+          <div class="sb-notif-wrap" id="sbNotifWrap"></div>
         </div>
-        <div class="sb-notif-wrap" id="sbNotifWrap"></div>
       </div>
       ${sectionsHtml}
       <div class="sb-bot">
@@ -99,13 +100,50 @@
 
   script.insertAdjacentHTML('beforebegin', html);
 
+  // ── Smooth page-to-page transitions ───────────────────────────────
+  // This site has no SPA router — every nav is a real browser
+  // navigation — so without this, leaving a page is an instant, jarring
+  // cut to blank rather than a fade. This used to defer to the browser's
+  // own native cross-document view-transition crossfade (tokens.css's
+  // `@view-transition { navigation: auto; }`) wherever `startViewTransition`
+  // existed, on the theory that Chromium browsers would smooth the
+  // navigation out on their own — in practice that wasn't visibly
+  // happening, so this now always runs its own fade unconditionally,
+  // on every browser, instead of trusting a platform feature it can't
+  // fully control.
+  const FADE_MS = 160;
+  function fadeNavigate(href) {
+    document.body.style.transition = `opacity ${FADE_MS}ms ease`;
+    document.body.style.opacity = '0';
+    setTimeout(() => { window.location.href = href; }, FADE_MS);
+  }
+  document.addEventListener('click', (e) => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest('a[href]');
+    if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+    let url;
+    try { url = new URL(a.href, location.href); } catch { return; }
+    if (url.origin !== location.origin) return;
+    // Same-page hash link — nothing to fade to, let the browser handle it.
+    if (url.pathname === location.pathname && url.search === location.search && url.hash) return;
+    e.preventDefault();
+    fadeNavigate(a.href);
+  });
+  // A back/forward navigation can restore this exact page from the
+  // browser's cache mid-fade (opacity still 0) — reset it so the page
+  // isn't stuck invisible.
+  window.addEventListener('pageshow', () => {
+    document.body.style.transition = '';
+    document.body.style.opacity = '';
+  });
+
   async function doLogout() {
     if (window.AGHF_DEMO) {
       sessionStorage.removeItem('aghf_demo');
     } else if (window.AGHF_SUPABASE) {
       await window.AGHF_SUPABASE.auth.signOut();
     }
-    window.location.href = `${ROOT}login.html`;
+    fadeNavigate(`${ROOT}login.html`);
   }
   document.getElementById('sbLogout').addEventListener('click', doLogout);
   document.getElementById('mbLogout').addEventListener('click', doLogout);

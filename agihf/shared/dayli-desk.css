@@ -13,8 +13,32 @@
  */
 
 @media (prefers-reduced-motion: reduce) {
-  .dd-checklist-item, .dd-trade-row, .dd-outlook-card, .dd-badge, .dd-toast { transition: none !important; animation: none !important; }
+  .dd-checklist-item, .dd-trade-row, .dd-outlook-card, .dd-badge, .dd-toast, .dd-card { transition: none !important; animation: none !important; }
 }
+
+/* Every .dd-card across the Dashboard, Chart Lab, Wins, and Challenge
+ * pages starts as an empty container in the static markup and gets its
+ * real content set via innerHTML once its data actually arrives — which
+ * previously popped in instantly with no transition, at a different
+ * moment for every card since each fetches independently. :empty here
+ * matches only before that happens; the instant a card gains children it
+ * stops matching :empty and starts matching :not(:empty), so the
+ * animation on that rule newly applies and plays once — no per-render-
+ * call-site changes needed anywhere. */
+.dd-card:empty{opacity:0;}
+.dd-card:not(:empty){animation:aghfContentFadeIn .35s ease both;}
+@keyframes aghfContentFadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* Same fade, JS-triggered by dayli-desk-engine.js's renderSkeleton() the
+ * instant its skeleton gets replaced by real content (or an error
+ * state) — covers the many containers that use the skeleton-loading
+ * pattern but aren't themselves a `.dd-card` (e.g. checklist.html's
+ * #clRoot), where the CSS-only :empty/:not(:empty) trick above can't
+ * apply since the container was never empty to begin with (it held
+ * skeleton markup). */
+.aghf-swap-in{animation:aghfContentFadeIn .35s ease both;}
+@media (prefers-reduced-motion: reduce) { .aghf-swap-in { animation: none !important; } }
+
 
 /* ── Header ─────────────────────────────────────────────────────── */
 .dd-header-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
@@ -32,22 +56,25 @@
 .dd-session-after .dot{background:var(--pink);}
 .dd-session-closed{background:var(--cream);color:var(--muted);}
 .dd-session-closed .dot{background:var(--placeholder);}
-.dd-primary-btn{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none;padding:11px 22px;border-radius:100px;font-family:var(--font-body);font-size:.85rem;font-weight:600;cursor:pointer;white-space:nowrap;box-shadow:0 10px 24px rgba(244,130,154,.25);text-decoration:none;display:inline-block;text-align:center;}
-.dd-primary-btn:hover{filter:brightness(1.04);}
+.dd-primary-btn{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;border:none;padding:13px 26px;border-radius:100px;font-family:var(--font-body);font-size:.88rem;font-weight:700;cursor:pointer;white-space:nowrap;box-shadow:0 12px 28px rgba(244,130,154,.3);text-decoration:none;display:inline-block;text-align:center;transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;}
+.dd-primary-btn:hover{filter:brightness(1.04);transform:translateY(-2px);box-shadow:0 16px 34px rgba(244,130,154,.38);}
 .dd-primary-btn:focus-visible, .dd-secondary-btn:focus-visible, .dd-icon-btn:focus-visible, .dd-checklist-item:focus-visible, .dd-tab:focus-visible{outline:2.5px solid var(--pink);outline-offset:2px;}
 
 /* ── Section shell shared by every dashboard card ──────────────── */
 .dd-section{margin-bottom:20px;}
 .dd-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:11px;}
-.dd-section-title{font-family:var(--font-display);font-size:1.02rem;font-weight:700;color:var(--dark);}
+.dd-section-title{font-family:var(--font-display);font-style:italic;font-size:1.2rem;font-weight:700;color:var(--dark);}
 .dd-section-link{font-size:.78rem;color:var(--pink);font-weight:600;text-decoration:none;white-space:nowrap;}
 .dd-section-link:hover{text-decoration:underline;}
-.dd-card{background:#fff;border-radius:18px;padding:19px 21px;border:1px solid rgba(244,130,154,.1);box-shadow:0 3px 14px rgba(244,130,154,.05);}
+.dd-card{background:#fff;border-radius:18px;padding:19px 21px;border:1px solid rgba(244,130,154,.1);border-top:3px solid var(--pink-light);box-shadow:0 10px 26px rgba(44,24,16,.07);}
 
 /* ── Market Outlook ─────────────────────────────────────────────── */
 .dd-outlook-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
 @media(max-width:700px){.dd-outlook-grid{grid-template-columns:1fr;}}
-.dd-outlook-card{background:#fff;border-radius:19px;padding:18px 20px;border:1px solid rgba(244,130,154,.12);box-shadow:0 4px 18px rgba(244,130,154,.06);position:relative;}
+.dd-outlook-card{background:#fff;border-radius:19px;padding:18px 20px;border:1px solid rgba(244,130,154,.12);border-top:3px solid var(--placeholder);box-shadow:0 10px 26px rgba(44,24,16,.07);position:relative;}
+.dd-outlook-card:has(.dd-badge-bull){border-top-color:var(--teal);}
+.dd-outlook-card:has(.dd-badge-bear){border-top-color:var(--pink);}
+.dd-outlook-card:has(.dd-badge-neutral){border-top-color:var(--peach);}
 .dd-outlook-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
 .dd-outlook-symbol{font-family:var(--font-display);font-size:1.05rem;font-weight:800;color:var(--dark);}
 .dd-outlook-label{font-size:.72rem;color:var(--muted);}
@@ -550,6 +577,19 @@
   .dd-order-1{order:1;} .dd-order-2{order:2;} .dd-order-3{order:3;} .dd-order-4{order:4;}
   .dd-order-5{order:5;} .dd-order-6{order:6;} .dd-order-7{order:7;} .dd-order-8{order:8;} .dd-order-9{order:9;}
   .dd-order-10{order:10;}
+  /* Row wrappers below generate no box of their own here, so their
+   * .dd-order-N children re-attach to .dd-desktop-order's own flex
+   * context and keep the exact priority order above — unchanged from
+   * before these pairs existed. */
+  .dd-row-2col{display:contents;}
+}
+
+/* ── Paired cards, side by side on desktop only — breaks up what was a
+ * single unbroken column of same-width white cards top to bottom. Below
+ * 900px, .dd-row-2col is display:contents (see above), so this rule
+ * never applies there. ─────────────────────────────────────────────── */
+@media(min-width:900px){
+  .dd-row-2col{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;align-items:start;}
 }
 
 /* ── The Inner Edge (Psychology Coach) ───────────────────────────── */

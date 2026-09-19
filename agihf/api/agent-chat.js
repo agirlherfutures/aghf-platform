@@ -70,8 +70,7 @@ const VALID_INTENTS = new Set([
 // since this is a server-only validation boundary; the model's own
 // suggestedActions output is never trusted without this check.
 const VALID_CONTEXTUAL_ACTIONS = new Set([
-  'review_trade', 'attach_trade', 'compare_recent_trades', 'review_this_week', 'attach_checklist',
-  'attach_journal', 'find_the_trigger', 'explain_concept', 'show_example', 'challenge_belief',
+  'find_the_trigger', 'explain_concept', 'show_example', 'challenge_belief',
   'build_rule', 'create_practice_plan', 'start_post_loss_reset', 'start_cooldown', 'practice_scenario',
   'save_insight', 'add_to_playbook', 'make_weekly_focus', 'open_recommended_lesson',
   'continue_without_data', 'go_deeper',
@@ -263,7 +262,16 @@ export default async function handler(req, res) {
 
     // ── Load consent + memory ──────────────────────────────────────
     const { data: profile } = await supabase.from('psychology_profiles').select('*').eq('user_id', userId).maybeSingle();
-    const consent = profile?.consent || DEFAULT_CONSENT;
+    // Merge onto DEFAULT_CONSENT rather than an all-or-nothing `||` — a
+    // profile whose consent object predates a since-added key (e.g.
+    // journalFreetext) is a real, non-null object, so `|| DEFAULT_CONSENT`
+    // never applies and that specific key silently reads as undefined
+    // (falsy) forever, blocking just that one data category with no
+    // error anywhere. This is very likely why journal content kept not
+    // reaching the model even after the excluded_from_agent NULL fix —
+    // that fix gets the row fetched, but consent.journalFreetext gated
+    // whether its text ever made it into memberDataBlock.
+    const consent = { ...DEFAULT_CONSENT, ...(profile?.consent || {}) };
     const personalizationEnabled = profile?.personalization_enabled !== false;
     const coachingTone = profile?.coaching_tone || 'gentle';
 
