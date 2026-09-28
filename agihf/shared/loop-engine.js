@@ -148,7 +148,7 @@ function appendLoopContinue(el, satisfy, label = 'Continue →') {
 
 /* ── Watch (Launchpad + video + stubbed markers + Focus Mode) ──────── */
 
-function renderLoopWatch(slide, data, satisfy) {
+export function renderLoopWatch(slide, data, satisfy) {
   const lp = data.launchpad || {};
   const markers = (data.watch && data.watch.markers) || [];
   const preview = data.watch && data.watch.preview;

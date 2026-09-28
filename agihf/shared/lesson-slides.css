@@ -1,0 +1,72 @@
+/* lesson-slides.css — A Girl & Her Futures™
+ *
+ * The bite-sized, always-visual lesson format (opt-in via a lesson's
+ * `format: "slides"` flag in agihf/lesson.html) — one idea and one thing
+ * to look at or tap per screen, replacing the old five-stage Learn It/
+ * See It/Try It/Say It Back/Save It flow for lessons converted to it.
+ * Kept separate from lesson-engine.css/loop-engine.css so this can keep
+ * evolving without touching either of those. Reuses their shared `.lw-*`
+ * chrome (card, eyebrow, feedback, continue button, dots/prev/next bar)
+ * — only genuinely new classes live here, prefixed `.ls-`.
+ */
+
+/* Quick check — two or three big tap cards under a teach paragraph */
+.ls-check{margin-top:20px;}
+.ls-check-q{font-size:.88rem;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.5;}
+.ls-tap-row{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.ls-tap-row.ls-tap-row-3{grid-template-columns:1fr 1fr 1fr;}
+@media(max-width:640px){.ls-tap-row,.ls-tap-row-3{grid-template-columns:1fr;}}
+.ls-tap{border-radius:14px;padding:15px 17px;border:1.5px solid var(--border);background:#fff;cursor:pointer;text-align:left;transition:border-color .15s;}
+.ls-tap:hover:not(:disabled){border-color:var(--pink-light);}
+.ls-tap-title{display:block;font-weight:700;font-size:.87rem;color:var(--dark);margin-bottom:3px;}
+.ls-tap-body{display:block;font-size:.76rem;color:var(--muted);line-height:1.5;}
+.ls-tap.correct{background:var(--teal-pale);border-color:var(--teal);}
+.ls-tap.correct .ls-tap-title{color:#1a6b63;}
+.ls-tap.wrong{background:var(--pink-pale);border-color:var(--pink);}
+.ls-tap.wrong .ls-tap-title{color:#a84060;}
+.ls-tap:disabled{cursor:default;}
+
+/* Chart-direction experience — a live price path + a big Long/Short pick */
+.ls-chart-panel{background:var(--cream);border:1px solid var(--border);border-radius:16px;padding:16px;margin-top:14px;}
+.ls-chart-canvas{display:block;width:100%;height:auto;background:#fff;border-radius:12px;border:1px solid var(--border);}
+.ls-choice-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+.ls-choice{border-radius:14px;padding:17px;text-align:center;cursor:pointer;border:1.5px solid var(--border);background:#fff;font-weight:700;font-size:.92rem;transition:border-color .15s;}
+.ls-choice:hover:not(:disabled){border-color:var(--pink-light);}
+.ls-choice.correct{background:var(--teal-pale);border-color:var(--teal);color:#1a6b63;}
+.ls-choice.wrong{background:var(--pink-pale);border-color:var(--pink);color:#a84060;}
+.ls-choice:disabled{cursor:default;}
+.ls-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px;}
+.ls-stat-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:11px;text-align:center;}
+.ls-stat-label{font-size:.62rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;margin-bottom:4px;}
+.ls-stat-value{font-family:var(--font-display);font-weight:800;font-size:1.05rem;color:var(--dark);}
+.ls-stat-value.pos{color:#1a6b63;}
+.ls-stat-value.neg{color:var(--pink);}
+
+/* Icon grid — a concept broken into compact scannable pieces, not prose */
+.ls-icon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;}
+@media(max-width:700px){.ls-icon-grid{grid-template-columns:1fr 1fr;}}
+.ls-icon-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 12px;text-align:center;}
+.ls-icon{font-size:1.4rem;margin-bottom:8px;}
+.ls-icon-title{font-weight:700;font-size:.8rem;color:var(--dark);margin-bottom:4px;}
+.ls-icon-desc{font-size:.72rem;color:var(--muted);line-height:1.4;}
+
+/* Live calculator — instrument pick + inputs + a big glanceable number */
+.ls-inst-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+.ls-inst-card{border-radius:14px;padding:15px;border:1.5px solid var(--border);cursor:pointer;background:#fff;transition:border-color .15s;}
+.ls-inst-card:hover{border-color:var(--pink-light);}
+.ls-inst-card.on{border-color:var(--pink);background:var(--pink-pale);}
+.ls-inst-card h4{font-family:var(--font-display);font-size:.98rem;margin:0 0 2px;color:var(--dark);}
+.ls-inst-card p{font-size:.72rem;color:var(--muted);margin:0 0 8px;}
+.ls-inst-stat{display:flex;justify-content:space-between;font-size:.76rem;padding:4px 0;border-top:1px solid var(--border);}
+.ls-calc-controls{margin-top:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.ls-calc-controls label{font-size:.8rem;color:var(--muted);}
+.ls-calc-controls input{width:80px;padding:8px 10px;border-radius:8px;border:1px solid var(--border);font-family:var(--font-body);font-size:.86rem;}
+.ls-num-btns{display:flex;gap:6px;}
+.ls-num-btn{padding:7px 13px;border-radius:8px;border:1px solid var(--border);background:#fff;font-size:.82rem;cursor:pointer;}
+.ls-num-btn.on{background:var(--pink-pale);border-color:var(--pink);color:var(--pink);font-weight:700;}
+.ls-calc-result{margin-top:16px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;}
+.ls-calc-big{font-family:var(--font-display);font-size:2.1rem;font-weight:800;color:#1a6b63;}
+.ls-calc-formula{font-size:.78rem;color:var(--muted);margin-top:4px;}
+
+/* Reflection — lighter-weight than the old full-panel version */
+.ls-reflect-prompt{font-size:.92rem;color:var(--dark);line-height:1.65;margin-bottom:14px;}
