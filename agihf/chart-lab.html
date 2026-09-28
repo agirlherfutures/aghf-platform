@@ -143,6 +143,16 @@
   }
 
   async function boot() {
+    // Chart Lab is temporarily hidden while its drill data/content is
+    // reworked — bounce anyone who lands here directly (old bookmark,
+    // cached link, dashboard teaser) back to the dashboard instead of
+    // showing a feature that's mid-fix. Remove this early return to bring
+    // the page back once it's ready.
+    location.href = 'dashboard.html';
+    return;
+  }
+
+  async function unusedBoot() {
     try {
       ({ listDrills, getCurrentSession, startSession, getMastery, getMistakes } = await import('./shared/chartlab-service.js'));
       ({ renderTodaysDrillCard, renderContinuePracticingCard, renderBrowseBySkill, renderSessionPicker, renderProgressSnapshot, renderMistakeReview } = await import('./shared/chartlab-engine.js'));

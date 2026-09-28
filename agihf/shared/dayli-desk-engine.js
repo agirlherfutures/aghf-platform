@@ -346,10 +346,10 @@ export function renderCurrentFocusCard(container, focus, opts) {
     <div class="dd-focus-body">${focus.body}</div>
     <div class="dd-focus-links">
       ${opts.lessonHref ? `<a class="dd-focus-link" href="${opts.lessonHref}">📖 Recommended Academy lesson</a>` : ''}
-      <a class="dd-focus-link" href="${opts.chartLabHref}">📊 Recommended Chart Lab drill</a>
+      ${opts.chartLabHref ? `<a class="dd-focus-link" href="${opts.chartLabHref}">📊 Recommended Chart Lab drill</a>` : ''}
       <a class="dd-focus-link" href="${opts.journalHref}">📝 Journal reflection</a>
     </div>
-    <a class="dd-primary-btn" href="${opts.lessonHref || opts.chartLabHref}">Practice This</a>
+    <a class="dd-primary-btn" href="${opts.lessonHref || opts.chartLabHref || opts.journalHref}">Practice This</a>
   `;
 }
 
