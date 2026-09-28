@@ -61,6 +61,17 @@ export function renderSectionWizard(data, opts) {
     updateChrome();
   }
 
+  // A step's own "Continue"/"Save & Continue"/etc. button already means
+  // "I'm ready to move on" — advancing here too, instead of just marking
+  // the step done and leaving the member to also click the separate
+  // bottom Next button. That button stays as a fallback (e.g. after
+  // Back/a dot lands on an already-done step with nothing left to click).
+  function completeStepAndAdvance(i) {
+    markDone(i);
+    if (i !== cur || i >= steps.length - 1) return;
+    goTo(i + 1);
+  }
+
   function buildDots() {
     dotsEl.innerHTML = '';
     steps.forEach((_, i) => {
@@ -103,10 +114,10 @@ export function renderSectionWizard(data, opts) {
     slide.className = 'lw-slide active';
     wrap.appendChild(slide);
 
-    if (step.type === 'welcome') renderWelcome(slide, data.welcome, () => markDone(i));
-    else if (step.type === 'challenge') renderChallenge(slide, data.challenge, () => markDone(i), { handleStreak, burst });
-    else if (step.type === 'knowledge') renderKnowledge(slide, data.knowledgeCheck, (pct) => { results.knowledgePct = pct; markDone(i); }, { handleStreak, burst });
-    else if (step.type === 'checkin') renderCheckin(slide, data.checkin, sectionId, () => markDone(i));
+    if (step.type === 'welcome') renderWelcome(slide, data.welcome, () => completeStepAndAdvance(i));
+    else if (step.type === 'challenge') renderChallenge(slide, data.challenge, () => completeStepAndAdvance(i), { handleStreak, burst });
+    else if (step.type === 'knowledge') renderKnowledge(slide, data.knowledgeCheck, (pct) => { results.knowledgePct = pct; completeStepAndAdvance(i); }, { handleStreak, burst });
+    else if (step.type === 'checkin') renderCheckin(slide, data.checkin, sectionId, () => completeStepAndAdvance(i));
     else if (step.type === 'complete') renderComplete(slide, data, { flagKey, backHref, nextSectionHref, nextSectionLabel, lessonsLabel, lessonGpTotal, results, data });
   }
 
