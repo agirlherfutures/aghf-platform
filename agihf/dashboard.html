@@ -366,7 +366,7 @@
         continueHref: `lesson.html?phase=p1&n=${next.lesson.n}`,
         continueLabel: doneCount === 0 ? 'Start →' : 'Continue →',
         notesHref: 'journal.html',
-        practiceHref: 'chart-lab.html',
+        practiceHref: null, // Chart Lab is hidden until it's fixed
       };
     } else if (next && next.type === 'checkpoint') {
       learningData = {
@@ -403,10 +403,9 @@
     try {
       const consistency = await computeConsistencyScore();
       const focus = computeCurrentFocus(consistency);
-      const { chartLabHrefForFocus } = await import('./shared/chartlab-copy.js');
       renderCurrentFocusCard(document.getElementById('ddFocus'), focus, {
         lessonHref: next && next.type === 'lesson' ? `lesson.html?phase=p1&n=${next.lesson.n}` : null,
-        chartLabHref: chartLabHrefForFocus(focus.key),
+        // Chart Lab is hidden until it's fixed — no chartLabHref passed.
         journalHref: 'journal.html',
       });
     } catch (err) {
