@@ -25,6 +25,8 @@
  * spot_it.
  */
 
+import { saveLessonReflection } from './journal-service.js';
+
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 let uidCounter = 0;
 
@@ -484,12 +486,14 @@ function renderReflection(slide, block, lessonId, markDone) {
   const saveBtn = slide.querySelector('#lwSaveNoteBtn');
   input.addEventListener('input', () => { saveBtn.disabled = input.value.trim().length < 5; });
   saveBtn.addEventListener('click', () => {
+    const text = input.value.trim();
     try {
       const key = 'aghf_notes';
       const notes = JSON.parse(localStorage.getItem(key) || '[]');
-      notes.push({ lessonId, prompt: block.prompt, text: input.value.trim(), savedAt: Date.now() });
+      notes.push({ lessonId, prompt: block.prompt, text, savedAt: Date.now() });
       localStorage.setItem(key, JSON.stringify(notes));
     } catch (err) { console.error('Note save error:', err); }
+    saveLessonReflection(lessonId, block.prompt, text).catch((err) => console.error('Server reflection save error:', err));
     slide.querySelector('#lwReflectSaved').style.display = '';
     saveBtn.disabled = true;
     input.disabled = true;

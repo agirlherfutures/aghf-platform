@@ -22,6 +22,7 @@ import {
   burst, showStreak, showToast, drawFrame, drawCandle, wireRetryOptions,
   renderBreakdown, renderDayliSays, renderConfusion, renderCatchMistake,
 } from './lesson-engine.js';
+import { saveLessonReflection } from './journal-service.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 let uidCounter = 0;
@@ -1024,12 +1025,14 @@ function renderSayItBack(slide, sayItBack, lessonId, satisfy) {
   });
 
   function save(selfMark) {
+    const text = input.value.trim();
     try {
       const key = 'aghf_notes';
       const notes = JSON.parse(localStorage.getItem(key) || '[]');
-      notes.push({ lessonId, prompt: sayItBack.prompt, text: input.value.trim(), selfMark, savedAt: Date.now() });
+      notes.push({ lessonId, prompt: sayItBack.prompt, text, selfMark, savedAt: Date.now() });
       localStorage.setItem(key, JSON.stringify(notes));
     } catch (err) { console.error('Note save error:', err); }
+    saveLessonReflection(lessonId, sayItBack.prompt, text).catch((err) => console.error('Server reflection save error:', err));
     slide.querySelector('#dlSaySaved').style.display = '';
     input.disabled = true;
     satisfy();

@@ -32,6 +32,7 @@ export function toClientShape(row) {
     userId: row.user_id,
     checklistId: row.checklist_id,
     entryType: row.entry_type,
+    lessonId: row.lesson_id,
     prompt: row.prompt,
     accountId: row.account_id,
     tradeNumber: row.trade_number,
@@ -95,7 +96,7 @@ function computeOutcome(netPnl) {
 async function handleEntries(req, res, userId) {
   try {
     if (req.method === 'GET') {
-      const { id, entryType, instrument, direction, outcome, session, setupType, methodQualityTag, executionGrade, ruleCheck, hasIccSetup, from, to, limit, offset } = req.query;
+      const { id, entryType, instrument, direction, outcome, session, setupType, methodQualityTag, executionGrade, ruleCheck, hasIccSetup, lessonId, from, to, limit, offset } = req.query;
 
       if (id) {
         const { data, error } = await supabase
@@ -115,6 +116,7 @@ async function handleEntries(req, res, userId) {
       if (executionGrade) query = query.eq('execution_grade', executionGrade);
       if (ruleCheck) query = query.eq('rule_check', ruleCheck);
       if (hasIccSetup === 'true') query = query.not('icc_checklist', 'is', null);
+      if (lessonId) query = query.eq('lesson_id', lessonId);
       if (from) query = query.gte('trade_date', from);
       if (to) query = query.lte('trade_date', to);
 
@@ -137,6 +139,7 @@ async function handleEntries(req, res, userId) {
         user_id: userId,
         checklist_id: body.checklistId || null,
         entry_type: body.entryType || 'trade',
+        lesson_id: body.lessonId || null,
         prompt: body.prompt || null,
         account_id: body.accountId || null,
         trade_date: body.tradeDate || new Date().toISOString().slice(0, 10),

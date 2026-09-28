@@ -8,12 +8,15 @@
  * member and is never reachable by another member's session, since every
  * request is scoped server-side to the verified JWT's user id.
  *
- * Note: lesson-engine.js, loop-engine.js, and section-engine.js write
- * lesson-reflection/check-in entries directly to the `aghf_notes`
- * localStorage array — they never imported this module, so nothing about
- * their behavior changes here. journal-migration.js is what carries their
- * *reflection-type* siblings (premarket/postmarket) into the new table;
- * lesson/checkin entries stay in `aghf_notes` untouched, out of scope.
+ * Note: lesson-engine.js, loop-engine.js, section-engine.js, and
+ * lesson-slides-engine.js still write every lesson-reflection/check-in
+ * entry to the `aghf_notes` localStorage array first — that's what
+ * playbook.html reads for the instant "Lesson Notes" list — but each of
+ * them also calls saveLessonReflection()/saveCheckinReflection() below
+ * so the same note lands here, tied to the member's account instead of
+ * being stuck on whichever browser she wrote it in. journal-migration.js
+ * carries any of these notes written before this file existed (plus
+ * their premarket/postmarket siblings) into this table on next load.
  *
  * In demo/preview mode, falls back to an in-memory store for the same
  * reason checklist-service.js does — no real session token to call the
@@ -202,6 +205,22 @@ export function createAutosaver(onStatus) {
 export async function saveReflection(type, prompt, text) {
   return saveEntry({
     entryType: type, prompt, entryReasoning: text,
+    tradeDate: todayKey(), isDraft: false,
+  });
+}
+
+/** "Tell me what you know" lesson reflection — ties the note to the member's account instead of just her browser's `aghf_notes`. */
+export async function saveLessonReflection(lessonId, prompt, text) {
+  return saveEntry({
+    entryType: 'lesson_reflection', lessonId, prompt, entryReasoning: text,
+    tradeDate: todayKey(), isDraft: false,
+  });
+}
+
+/** Section "Student Check-In" reflection — same server-backed save, keyed by sectionId instead of a lessonId. */
+export async function saveCheckinReflection(sectionId, prompt, text) {
+  return saveEntry({
+    entryType: 'checkin_reflection', lessonId: sectionId, prompt, entryReasoning: text,
     tradeDate: todayKey(), isDraft: false,
   });
 }

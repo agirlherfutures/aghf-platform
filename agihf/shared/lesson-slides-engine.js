@@ -31,6 +31,7 @@ import {
   burst, showStreak, showToast, wireRetryOptions, drawFrame, renderDayliSays, renderConfusion,
 } from './lesson-engine.js';
 import { renderLoopWatch } from './loop-engine.js';
+import { saveLessonReflection } from './journal-service.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 let uidCounter = 0;
@@ -409,12 +410,14 @@ function renderReflectSlide(el, slide, satisfy, helpers) {
   const saveBtn = el.querySelector('#lsReflectSave');
   input.addEventListener('input', () => { saveBtn.disabled = input.value.trim().length < 5; });
   saveBtn.addEventListener('click', () => {
+    const text = input.value.trim();
     try {
       const key = 'aghf_notes';
       const notes = JSON.parse(localStorage.getItem(key) || '[]');
-      notes.push({ lessonId: helpers.lessonId, prompt: slide.prompt, text: input.value.trim(), savedAt: Date.now() });
+      notes.push({ lessonId: helpers.lessonId, prompt: slide.prompt, text, savedAt: Date.now() });
       localStorage.setItem(key, JSON.stringify(notes));
     } catch (err) { console.error('Note save error:', err); }
+    saveLessonReflection(helpers.lessonId, slide.prompt, text).catch((err) => console.error('Server reflection save error:', err));
     el.querySelector('#lsReflectSaved').style.display = '';
     saveBtn.disabled = true;
     input.disabled = true;

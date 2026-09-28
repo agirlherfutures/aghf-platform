@@ -16,6 +16,7 @@
  */
 
 import { burst, showStreak, showToast, wireRetryOptions } from './lesson-engine.js';
+import { saveCheckinReflection } from './journal-service.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 
@@ -390,13 +391,14 @@ function renderCheckin(slide, checkin, sectionId, satisfy) {
   [whatClicked, didntKnow, explain].forEach((input) => input.addEventListener('input', checkValid));
 
   saveBtn.addEventListener('click', () => {
+    const text = explain.value.trim();
     try {
       const key = 'aghf_notes';
       const notes = JSON.parse(localStorage.getItem(key) || '[]');
       notes.push({
         sectionId,
         prompt: p.explainToFriend,
-        text: explain.value.trim(),
+        text,
         whatClicked: whatClicked.value.trim(),
         didntKnow: didntKnow.value.trim(),
         topic: selectedTopic,
@@ -404,6 +406,7 @@ function renderCheckin(slide, checkin, sectionId, satisfy) {
       });
       localStorage.setItem(key, JSON.stringify(notes));
     } catch (err) { console.error('Check-in save error:', err); }
+    saveCheckinReflection(sectionId, p.explainToFriend, text).catch((err) => console.error('Server reflection save error:', err));
     slide.querySelector('#swCheckinSaved').style.display = '';
     saveBtn.disabled = true;
     [whatClicked, didntKnow, explain].forEach((el) => { el.disabled = true; });
