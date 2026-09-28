@@ -9,22 +9,26 @@
  *
  * One idea and one thing to look at or tap per slide — never a paragraph
  * without an interaction nearby. A lesson's `slides[]` array picks freely
- * from six slide types: teach (a short paragraph, optionally paired with
- * a two/three-card quick check), chart_direction (a real price path +
- * a Long/Short pick that reveals live P&L), icon_grid (a concept broken
- * into compact cards instead of prose), dayli (the existing signature
- * card), calculator (a live-updating P&L calculator), and reflect (free
- * text saved to notes). Watch keeps using the existing Dayli-Learning-Loop
- * video/launchpad/markers experience members already like — only what
- * comes after it is replaced by this file.
+ * from eight slide types: teach (a short paragraph, optionally paired
+ * with a two/three-card quick check), chart_direction (a real price path
+ * + a Long/Short pick that reveals live P&L), chart_tap (a real price
+ * path where you tap the point where control shifted, one or more
+ * rounds), icon_grid (a concept broken into compact cards instead of
+ * prose), dayli / confusion (the existing signature card and two-column
+ * comparison, reused as-is), calculator (a live-updating P&L
+ * calculator), and reflect (free text saved to notes). Watch keeps using
+ * the existing Dayli-Learning-Loop video/launchpad/markers experience
+ * members already like — only what comes after it is replaced by this
+ * file.
  *
  * Reuses the shared primitives lesson-engine.js and loop-engine.js
  * already export instead of duplicating them: burst, showStreak,
- * showToast, wireRetryOptions, drawFrame, renderDayliSays, renderLoopWatch.
+ * showToast, wireRetryOptions, drawFrame, renderDayliSays, renderConfusion,
+ * renderLoopWatch.
  */
 
 import {
-  burst, showStreak, showToast, wireRetryOptions, drawFrame, renderDayliSays,
+  burst, showStreak, showToast, wireRetryOptions, drawFrame, renderDayliSays, renderConfusion,
 } from './lesson-engine.js';
 import { renderLoopWatch } from './loop-engine.js';
 
@@ -418,11 +422,96 @@ function renderReflectSlide(el, slide, satisfy, helpers) {
   });
 }
 
+/* ── Chart tap: a real price path, tap the point where control shifted ── */
+
+function drawPricePath(ctx, w, h, path) {
+  drawFrame(ctx, w, h);
+  ctx.strokeStyle = '#2C1810';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  (path || []).forEach(([x, y], i) => (i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)));
+  ctx.stroke();
+}
+
+function renderChartTapSlide(el, slide, satisfy, helpers) {
+  const uid = `ct${uidCounter++}`;
+  const rounds = slide.rounds || [];
+  let idx = 0;
+  let solved = false;
+  let currentPoints = [];
+
+  el.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">${slide.kicker || 'Experience'}</div>
+      <h2>${slide.title || ''}</h2>
+      ${slide.intro ? `<p>${slide.intro}</p>` : ''}
+      <p id="lsCtPrompt_${uid}" style="font-weight:700;color:var(--dark);"></p>
+      <div class="ls-chart-panel">
+        <canvas id="lsCtCanvas_${uid}" class="ls-chart-canvas" width="700" height="260" style="cursor:pointer"></canvas>
+      </div>
+      <div class="lw-feedback" id="lsCtFb_${uid}"></div>
+    </div>
+  `;
+  const card = el.querySelector('.lw-card');
+  const canvas = document.getElementById(`lsCtCanvas_${uid}`);
+  const ctx = canvas.getContext('2d');
+  const promptEl = document.getElementById(`lsCtPrompt_${uid}`);
+  const fb = document.getElementById(`lsCtFb_${uid}`);
+
+  function loadRound() {
+    const round = rounds[idx];
+    currentPoints = round.points || [];
+    solved = false;
+    fb.className = 'lw-feedback';
+    fb.textContent = '';
+    promptEl.textContent = round.prompt || '';
+    drawPricePath(ctx, canvas.width, canvas.height, round.path);
+  }
+
+  canvas.addEventListener('click', (e) => {
+    if (solved) return;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width, scaleY = canvas.height / rect.height;
+    const x = (e.clientX - rect.left) * scaleX, y = (e.clientY - rect.top) * scaleY;
+    let nearest = null, nearestDist = Infinity;
+    currentPoints.forEach((p) => {
+      const d = Math.hypot(p.x - x, p.y - y);
+      if (d < (p.r || 40) && d < nearestDist) { nearest = p; nearestDist = d; }
+    });
+    if (!nearest) return;
+    if (nearest.correct) {
+      solved = true;
+      fb.innerHTML = `<strong>✦ Why?</strong> ${nearest.feedback || 'Exactly!'}`;
+      fb.className = 'lw-feedback show good';
+      helpers.handleStreak(true);
+      if (idx < rounds.length - 1) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'lw-continue-btn';
+        btn.textContent = 'Next part →';
+        btn.addEventListener('click', () => { idx += 1; btn.remove(); loadRound(); });
+        card.appendChild(btn);
+      } else {
+        helpers.burst();
+        appendContinue(el, satisfy);
+      }
+    } else {
+      fb.textContent = nearest.feedback || 'Not quite — look again.';
+      fb.className = 'lw-feedback show bad';
+      helpers.handleStreak(false);
+    }
+  });
+
+  loadRound();
+}
+
 const SLIDE_RENDERERS = {
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
+  chart_tap: renderChartTapSlide,
   icon_grid: renderIconGridSlide,
   dayli: (el, slide, satisfy) => renderDayliSays(el, slide, satisfy),
+  confusion: (el, slide, satisfy) => renderConfusion(el, slide, satisfy),
   calculator: renderCalculatorSlide,
   reflect: renderReflectSlide,
 };
