@@ -28,7 +28,7 @@
  */
 
 import {
-  burst, showStreak, showToast, wireRetryOptions, drawFrame, renderDayliSays, renderConfusion,
+  burst, showStreak, showToast, wireRetryOptions, drawFrame, drawCandle, renderDayliSays, renderConfusion,
 } from './lesson-engine.js';
 import { renderLoopWatch } from './loop-engine.js';
 import { saveLessonReflection } from './journal-service.js';
@@ -312,6 +312,75 @@ function renderIconGridSlide(el, slide, satisfy) {
   appendContinue(el, satisfy);
 }
 
+/* ── Candle reveal: real drawn candlesticks, tap one to see its story ── */
+
+function renderCandleRevealSlide(el, slide, satisfy, helpers) {
+  const uid = `cdl${uidCounter++}`;
+  const W = 700, H = 260;
+  const candles = slide.candles || [];
+  const spacing = W / (candles.length + 1);
+  const positions = candles.map((c, i) => ({ ...c, x: spacing * (i + 1) }));
+  let picked = false;
+
+  el.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">${slide.kicker || 'See It on the Chart'}</div>
+      <h2>${slide.title || ''}</h2>
+      ${slide.body ? `<p>${slide.body}</p>` : ''}
+      <div class="ls-chart-panel">
+        <canvas id="lsCdl_${uid}" class="ls-chart-canvas" width="${W}" height="${H}" style="cursor:pointer"></canvas>
+      </div>
+      <div class="lw-feedback" id="lsCdlFb_${uid}"></div>
+    </div>
+  `;
+  const canvas = document.getElementById(`lsCdl_${uid}`);
+  const ctx = canvas.getContext('2d');
+  const fb = document.getElementById(`lsCdlFb_${uid}`);
+
+  function draw() {
+    drawFrame(ctx, W, H);
+    if (slide.level) {
+      ctx.setLineDash([6, 5]);
+      ctx.strokeStyle = '#F4829A';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(0, slide.level.y);
+      ctx.lineTo(W, slide.level.y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      if (slide.level.label) {
+        ctx.font = '11px DM Sans';
+        ctx.fillStyle = '#F4829A';
+        ctx.fillText(slide.level.label, 8, slide.level.y - 6);
+      }
+    }
+    ctx.font = '12px DM Sans';
+    ctx.textAlign = 'center';
+    positions.forEach((c) => {
+      drawCandle(ctx, c.x, c.open, c.close, c.high, c.low, c.bull, 70);
+      ctx.fillStyle = '#7A5C50';
+      ctx.fillText(c.label, c.x, H - 10);
+    });
+    ctx.textAlign = 'left';
+  }
+  draw();
+
+  canvas.addEventListener('click', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = W / rect.width;
+    const x = (e.clientX - rect.left) * scaleX;
+    const hit = positions.find((c) => Math.abs(c.x - x) < 50);
+    if (!hit) return;
+    fb.className = 'lw-feedback show good';
+    fb.innerHTML = `<strong>${hit.label}</strong> — ${hit.desc}`;
+    if (!picked) {
+      picked = true;
+      helpers.handleStreak(true);
+      appendContinue(el, satisfy);
+    }
+  });
+}
+
 /* ── Calculator: live-updating P&L, gated on at least one real interaction ── */
 
 function renderCalculatorSlide(el, slide, satisfy) {
@@ -436,6 +505,11 @@ function drawPricePath(ctx, w, h, path) {
   ctx.stroke();
 }
 
+function drawTapCandle(ctx, w, h, candle) {
+  drawFrame(ctx, w, h);
+  drawCandle(ctx, w / 2, candle.open, candle.close, candle.high, candle.low, candle.bull, 90);
+}
+
 function renderChartTapSlide(el, slide, satisfy, helpers) {
   const uid = `ct${uidCounter++}`;
   const rounds = slide.rounds || [];
@@ -468,7 +542,8 @@ function renderChartTapSlide(el, slide, satisfy, helpers) {
     fb.className = 'lw-feedback';
     fb.textContent = '';
     promptEl.textContent = round.prompt || '';
-    drawPricePath(ctx, canvas.width, canvas.height, round.path);
+    if (round.candle) drawTapCandle(ctx, canvas.width, canvas.height, round.candle);
+    else drawPricePath(ctx, canvas.width, canvas.height, round.path);
   }
 
   canvas.addEventListener('click', (e) => {
@@ -748,11 +823,104 @@ function renderLabCheckpointSlide(el, slide, satisfy, helpers) {
   });
 }
 
+/* ── Decision path: a branching "what now?" scenario, tap through to an outcome ── */
+
+function renderDecisionPathSlide(el, slide, satisfy, helpers) {
+  const nodesById = {};
+  (slide.nodes || []).forEach((n) => { nodesById[n.id] = n; });
+  let currentId = slide.startNode;
+
+  function renderNode() {
+    const node = nodesById[currentId];
+    let answered = false;
+    el.innerHTML = `
+      <div class="lw-card">
+        <div class="lw-eyebrow">${slide.kicker || 'Experience'}</div>
+        <h2>${slide.title || ''}</h2>
+        ${slide.body ? `<p>${slide.body}</p>` : ''}
+        <p style="font-weight:700;color:var(--dark);margin-top:14px;">${node.prompt}</p>
+        <div class="ls-tap-row">
+          ${node.options.map((o, i) => `<button type="button" class="ls-tap" data-i="${i}"><span class="ls-tap-title">${o.label}</span></button>`).join('')}
+        </div>
+        <div class="lw-feedback" id="lsDpFb"></div>
+      </div>
+    `;
+    const buttons = el.querySelectorAll('.ls-tap');
+    const fb = el.querySelector('#lsDpFb');
+    buttons.forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        if (answered) return;
+        answered = true;
+        const opt = node.options[i];
+        buttons.forEach((b) => { b.disabled = true; });
+        btn.classList.add(opt.good ? 'correct' : 'wrong');
+        fb.textContent = opt.feedback || opt.outcomeText || '';
+        fb.className = `lw-feedback show ${opt.good ? 'good' : 'bad'}`;
+        helpers.handleStreak(!!opt.good);
+        if (opt.outcomeText) {
+          if (opt.good) helpers.burst();
+          appendContinue(el, satisfy);
+        } else if (opt.next) {
+          const nextBtn = document.createElement('button');
+          nextBtn.type = 'button';
+          nextBtn.className = 'lw-continue-btn';
+          nextBtn.textContent = 'Continue →';
+          nextBtn.addEventListener('click', () => { currentId = opt.next; renderNode(); });
+          el.querySelector('.lw-card').appendChild(nextBtn);
+        } else {
+          appendContinue(el, satisfy);
+        }
+      });
+    });
+  }
+
+  renderNode();
+}
+
+/* ── Sequence build: tap items in the order you think is right, then find out ── */
+
+function renderSequenceBuildSlide(el, slide, satisfy, helpers) {
+  const items = slide.items || [];
+  el.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">${slide.kicker || 'Build the Order'}</div>
+      <h2>${slide.title || ''}</h2>
+      ${slide.body ? `<p>${slide.body}</p>` : ''}
+      <div class="ls-tap-row${items.length === 3 ? ' ls-tap-row-3' : ''}">
+        ${items.map((it) => `<button type="button" class="ls-tap" data-key="${it.key}"><span class="ls-tap-title">${it.label}</span>${it.desc ? `<span class="ls-tap-body">${it.desc}</span>` : ''}</button>`).join('')}
+      </div>
+      <div class="lw-feedback" id="lsSeqFb"></div>
+    </div>
+  `;
+  const order = [];
+  const buttons = el.querySelectorAll('.ls-tap');
+  const fb = el.querySelector('#lsSeqFb');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (order.includes(btn.dataset.key)) return;
+      order.push(btn.dataset.key);
+      btn.classList.add('correct');
+      btn.disabled = true;
+      if (order.length === items.length) {
+        const success = order.join('|') === (slide.correctOrder || []).join('|');
+        fb.textContent = success ? (slide.successFeedback || 'Clean order — nice work.') : (slide.failFeedback || "That order isn't quite right — review the pieces.");
+        fb.className = `lw-feedback show ${success ? 'good' : 'bad'}`;
+        helpers.handleStreak(success);
+        if (success) helpers.burst();
+        appendContinue(el, satisfy);
+      }
+    });
+  });
+}
+
 const SLIDE_RENDERERS = {
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
   chart_tap: renderChartTapSlide,
   icon_grid: renderIconGridSlide,
+  candle_reveal: renderCandleRevealSlide,
+  decision_path: renderDecisionPathSlide,
+  sequence_build: renderSequenceBuildSlide,
   dayli: (el, slide, satisfy) => renderDayliSays(el, slide, satisfy),
   confusion: (el, slide, satisfy) => renderConfusion(el, slide, satisfy),
   calculator: renderCalculatorSlide,
