@@ -91,7 +91,7 @@
 .lw-eyebrow{position:relative;font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:11px;padding-left:16px;display:block;}
 .lw-eyebrow::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:10px;height:2px;background:currentColor;border-radius:2px;}
 
-.lw-continue-btn{align-self:flex-start;font-family:var(--font-body);background:var(--pink);color:#fff;border:none;padding:11px 22px;border-radius:100px;font-size:.83rem;font-weight:700;cursor:pointer;box-shadow:0 6px 16px rgba(244,130,154,.22);}
+.lw-continue-btn{align-self:center;font-family:var(--font-body);background:var(--pink);color:#fff;border:none;padding:15px 40px;border-radius:100px;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:0 6px 16px rgba(244,130,154,.22);margin-top:8px;}
 
 /* Watch */
 .lw-video-block{border-radius:20px;overflow:hidden;background:var(--dark);aspect-ratio:16/9;position:relative;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px rgba(44,24,16,.2);}

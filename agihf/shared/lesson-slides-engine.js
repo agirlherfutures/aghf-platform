@@ -71,6 +71,24 @@ export function renderSlideWizard(data, opts) {
     updateChrome();
   }
 
+  // Every slide's own "Continue"/"Watched"/etc. button already means "I'm
+  // ready to move on" — advancing here too, instead of just unlocking the
+  // separate bottom Next button, so nothing ever needs two clicks in a
+  // row to do the same thing. The bottom Next button stays as a fallback
+  // (e.g. after using Back/a dot to revisit an already-done slide).
+  function completeStepAndAdvance(i) {
+    markDone(i);
+    if (i !== cur || i >= steps.length - 1) return;
+    const wasLastBeforeComplete = i === steps.length - 2;
+    goTo(i + 1);
+    if (wasLastBeforeComplete && !awarded) {
+      awarded = true;
+      burst();
+      showToast(`+${data.xpValue} GP earned!`, `${data.title} complete 🫧✨`);
+      onAward();
+    }
+  }
+
   function buildDots() {
     dotsEl.innerHTML = '';
     steps.forEach((_, i) => {
@@ -118,23 +136,19 @@ export function renderSlideWizard(data, opts) {
     slideEl.className = 'lw-slide active';
     wrap.appendChild(slideEl);
 
-    if (step.type === 'watch') renderLoopWatch(slideEl, data, () => markDone(i));
-    else if (step.type === 'slide') renderSlideBlock(slideEl, step.slide, () => markDone(i), helpers);
+    if (step.type === 'watch') renderLoopWatch(slideEl, data, () => completeStepAndAdvance(i));
+    else if (step.type === 'slide') renderSlideBlock(slideEl, step.slide, () => completeStepAndAdvance(i), helpers);
     else if (step.type === 'complete') renderSlideComplete(slideEl, data, { nextHref, backHref, nextTitle, nextHook, nextCtaLabel });
   }
 
   prevBtn.addEventListener('click', () => goTo(cur - 1));
+  // Fallback only: a slide's own Continue button already advances via
+  // completeStepAndAdvance the moment it's clicked. This still matters
+  // after Back/a dot lands on an already-done slide with nothing left to
+  // click on it.
   nextBtn.addEventListener('click', () => {
-    if (!done[cur]) return;
-    if (cur === steps.length - 1) return;
-    const wasLastBeforeComplete = cur === steps.length - 2;
+    if (!done[cur] || cur === steps.length - 1) return;
     goTo(cur + 1);
-    if (wasLastBeforeComplete && !awarded) {
-      awarded = true;
-      burst();
-      showToast(`+${data.xpValue} GP earned!`, `${data.title} complete 🫧✨`);
-      onAward();
-    }
   });
 
   goTo(0);
