@@ -25,8 +25,8 @@
   "slides": [
     {
       "type": "teach",
-      "kicker": "What is a futures contract?",
-      "body": "A futures contract is a standardized agreement tied to an underlying asset or benchmark, under specs set by the exchange. When you trade futures, you're trading contracts whose values move with their underlying market — not buying shares of a company.",
+      "kicker": "Core idea",
+      "body": "The instrument is the market. The contract count is your size inside that market.<br><br><strong>MNQ, NQ, MGC, and ES</strong> are instruments — they tell you what market you're trading. <strong>1, 2, or 5 contracts</strong> tells you how much exposure you have to that instrument's move. Same market. Very different dollar and emotional weight.",
       "check": {
         "prompt": "A trader moves from MNQ to NQ but keeps the same number of contracts because \"the chart looks the same.\"",
         "options": [
@@ -36,45 +36,94 @@
       }
     },
     {
-      "type": "icon_grid",
-      "kicker": "The pairs to know",
-      "title": "Micro vs. mini — same market, different size",
-      "items": [
-        { "icon": "🔹", "label": "MNQ → NQ", "desc": "Micro is 1/10 of E-mini Nasdaq-100." },
-        { "icon": "🔹", "label": "MES → ES", "desc": "Micro is 1/10 of E-mini S&P 500." },
-        { "icon": "🔹", "label": "MGC → GC", "desc": "Micro Gold is 1/10 of Gold." },
-        { "icon": "✦", "label": "Always verify", "desc": "Contract specs differ — check the exchange." }
-      ]
+      "type": "instrument_explorer",
+      "kicker": "Meet the instruments with the real numbers",
+      "title": "Meet the instruments with the real numbers",
+      "body": "Tap an instrument to see the exact dollar amount attached to one point and one tick. Then check the table below — this is where it starts feeling real.",
+      "instruments": [
+        { "key": "mnq", "label": "MNQ", "sub": "Micro Nasdaq 100", "perPoint": 2, "perTick": 0.5, "useCase": "Beginner-friendly Nasdaq", "tone": "Lighter Nasdaq exposure — great for learning." },
+        { "key": "nq", "label": "NQ", "sub": "Nasdaq futures", "perPoint": 20, "perTick": 5, "useCase": "Much heavier Nasdaq", "tone": "This hits 10x harder than MNQ per point." },
+        { "key": "mgc", "label": "MGC", "sub": "Micro Gold", "perPoint": 10, "perTick": 1, "useCase": "Micro gold exposure", "tone": "Gold exposure with micro sizing." },
+        { "key": "es", "label": "ES", "sub": "E-mini S&P 500", "perPoint": 50, "perTick": 12.5, "useCase": "Heavy S&P contract", "tone": "Very heavy point value — not casual." }
+      ],
+      "compareColumns": [2, 5]
+    },
+    {
+      "type": "teach",
+      "kicker": "How the amounts actually attach",
+      "body": "Think of it simply: the instrument is the vehicle, and contract count is how many of that vehicle you're driving.<br><br>If price moves 10 points on <strong>MNQ</strong>, one contract gives you <strong>$20</strong>. That same 10-point move on <strong>NQ</strong> gives you <strong>$200</strong> — ten times the weight, same chart shape.<br><br><em>Same chart logic. Very different dollar consequence. This is why size and instrument selection matter just as much as the setup.</em>"
     },
     {
       "type": "dayli",
       "kicker": "Dayli Says",
-      "quote": "Never choose your number of contracts because someone else trades that size. Know the instrument. Know its value. Know your risk."
+      "quote": "A lot of people don't have a strategy problem first. They have a size problem first. They're trying to learn on instruments that hit too hard for where they are mentally."
     },
     {
-      "type": "teach",
-      "kicker": "Make the call",
-      "body": "Same underlying market, different contract multiplier — always check the specs before you trade.",
-      "check": {
-        "prompt": "Which pair correctly matches the instrument to its name?",
+      "type": "pnl_lab",
+      "kicker": "Contracts lab — see the dollars attached",
+      "title": "Contracts lab — see the dollars attached",
+      "body": "Pick the instrument. Pick the points. Pick the contract count. Watch how fast the number — and the way it feels — changes.",
+      "instruments": [
+        { "key": "mnq", "label": "MNQ", "perPoint": 2, "perTick": 0.5, "exposure": ["Light", "Teachable"] },
+        { "key": "nq", "label": "NQ", "perPoint": 20, "perTick": 5, "exposure": ["Heavy", "Emotional faster"] },
+        { "key": "mgc", "label": "MGC", "perPoint": 10, "perTick": 1, "exposure": ["Medium", "More manageable"] },
+        { "key": "es", "label": "ES", "perPoint": 50, "perTick": 12.5, "exposure": ["Very heavy", "Needs respect"] }
+      ],
+      "defaultPoints": 15,
+      "contractOptions": [1, 2, 3, 5]
+    },
+    {
+      "type": "compare_cards",
+      "kicker": "Correct a misconception",
+      "title": "Contract vs. instrument",
+      "body": "Beginners blur these together all the time. We're not doing that here.",
+      "options": [
+        { "label": "Better understanding", "body": "MNQ is the instrument. If I take 3 MNQ contracts, the market is still MNQ — what changed is my size.", "correct": true, "feedback": "Exactly. The instrument is the market. The contract count is your size inside that market. Those are connected, but not interchangeable." },
+        { "label": "Bad understanding", "body": "A contract and an instrument are basically the same thing, so I don't need to separate them.", "correct": false, "feedback": "Not this one — when you mix those up, you stop respecting the actual dollar weight attached to what you chose." }
+      ],
+      "quickCheck": {
+        "prompt": "If you go from 1 NQ contract to 2 NQ contracts, what changed?",
         "options": [
-          { "label": "MGC → Micro Gold", "correct": true, "why": "MGC is Micro Gold. ES is the full-size E-mini S&P 500 (MES is the micro), and MNQ is the micro version of NQ." },
-          { "label": "ES → Micro E-mini S&P 500", "correct": false, "feedback": "ES is the full-size E-mini S&P 500 — MES is the micro version." },
-          { "label": "MNQ → E-mini Nasdaq-100", "correct": false, "feedback": "MNQ is the MICRO E-mini Nasdaq-100 — NQ is the full-size version." }
+          { "label": "Your size changed, not the instrument", "correct": true, "why": "Exactly. It's still NQ — what changed is your size and the dollar weight of the move." },
+          { "label": "The instrument changed", "correct": false, "feedback": "Not quite. NQ stayed NQ — you just increased how much NQ exposure you took." },
+          { "label": "Nothing really changed", "correct": false, "feedback": "No — the dollar amount attached to the move absolutely changed." }
         ]
       }
     },
     {
-      "type": "teach",
-      "kicker": "One more thing",
-      "body": "Contract count changes your exposure — never the instrument itself.",
-      "check": {
-        "prompt": "A trader switches from trading 1 contract of MNQ to 5 contracts of MNQ. Has she changed instruments?",
-        "options": [
-          { "label": "No", "body": "She's still trading MNQ; only her size and dollar exposure changed.", "correct": true, "why": "The instrument stays MNQ — contract count only changes exposure." },
-          { "label": "Yes", "body": "5 contracts makes it a different instrument.", "correct": false, "feedback": "Contract count never changes what instrument you're trading." }
-        ]
-      }
+      "type": "lab_checkpoint",
+      "kicker": "Checkpoint",
+      "title": "Build the idea",
+      "body": "Let's make sure this is really clicking.",
+      "steps": [
+        {
+          "prompt": "A newer trader wants Nasdaq exposure with smaller dollar weight. Best fit?",
+          "options": [
+            { "label": "MNQ", "value": "mnq", "correct": true },
+            { "label": "NQ", "value": "nq", "correct": false }
+          ]
+        },
+        {
+          "prompt": "What helps someone stay more teachable while still learning?",
+          "options": [
+            { "label": "Smaller contract count", "value": "small", "correct": true },
+            { "label": "Big size for faster money", "value": "big", "correct": false }
+          ]
+        }
+      ],
+      "goodFeedback": "Clean logic. MNQ gives Nasdaq exposure with lighter point value, and a smaller contract count keeps a trader more teachable while she's still learning.",
+      "badFeedback": "Almost. The deeper point here is choosing a lighter instrument or lighter size when you're still learning to read the market."
+    },
+    {
+      "type": "icon_grid",
+      "kicker": "What you know now",
+      "title": "Recap",
+      "items": [
+        { "icon": "📌", "label": "The instrument is the market.", "desc": "MNQ, NQ, MGC, ES tell you what you're trading." },
+        { "icon": "📄", "label": "The contract count is your size.", "desc": "1 contract and 5 contracts of the same instrument are not emotionally the same trade." },
+        { "icon": "💵", "label": "Dollar amounts attach fast.", "desc": "One point means something very different on MNQ than it does on ES or NQ." },
+        { "icon": "🧠", "label": "Micros keep you teachable.", "desc": "Smaller exposure gives you room to actually learn before your emotions hijack the lesson." }
+      ]
     },
     {
       "type": "reflect",
@@ -84,9 +133,9 @@
     }
   ],
   "takeaways": [
-    "A futures contract's value moves with its underlying market — it isn't ownership.",
+    "The instrument is the market — the contract count is your size inside it.",
     "Micro contracts (MNQ, MES, MGC) are a fraction of their mini counterparts (NQ, ES, GC).",
-    "Contract count changes your exposure, not the instrument itself."
+    "Dollar amounts attach fast — the same move means very different money depending on the instrument and size."
   ],
   "remember": "Know the instrument. Know its value. Know your risk."
 }

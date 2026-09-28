@@ -505,6 +505,246 @@ function renderChartTapSlide(el, slide, satisfy, helpers) {
   loadRound();
 }
 
+/* ── Instrument explorer: tap a card, see its real per-point/per-tick numbers, plus a full comparison table ── */
+
+function renderInstrumentExplorerSlide(el, slide, satisfy, helpers) {
+  const instruments = slide.instruments || [];
+  const compareCols = slide.compareColumns || [2, 5];
+  let picked = false;
+
+  el.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">${slide.kicker || 'Experience'}</div>
+      <h2>${slide.title || ''}</h2>
+      ${slide.body ? `<p>${slide.body}</p>` : ''}
+      <div class="ls-ie-grid">
+        ${instruments.map((inst) => `
+          <div class="ls-ie-card" data-key="${inst.key}">
+            <div class="ls-ie-name">${inst.label}</div>
+            <div class="ls-ie-sub">${inst.sub || ''}</div>
+            <div class="ls-ie-row"><span>Per point</span><strong>$${Number(inst.perPoint).toFixed(2)}</strong></div>
+            <div class="ls-ie-row"><span>Per tick</span><strong>$${Number(inst.perTick).toFixed(2)}</strong></div>
+            ${inst.useCase ? `<div class="ls-ie-row"><span>Use case</span><strong>${inst.useCase}</strong></div>` : ''}
+          </div>`).join('')}
+      </div>
+      <div class="lw-feedback" id="lsIeFb"></div>
+      <div class="ls-compare-wrap">
+        <table class="ls-compare-table">
+          <thead><tr><th>Instrument</th><th>1 Point</th><th>1 Tick</th>${compareCols.map((c) => `<th>${c} Contracts</th>`).join('')}</tr></thead>
+          <tbody>
+            ${instruments.map((inst) => `
+              <tr><td><strong>${inst.label}</strong></td><td>$${Number(inst.perPoint).toFixed(2)}</td><td>$${Number(inst.perTick).toFixed(2)}</td>${compareCols.map((c) => `<td>$${(inst.perPoint * c).toFixed(2)}/pt</td>`).join('')}</tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+
+  const fb = el.querySelector('#lsIeFb');
+  el.querySelectorAll('.ls-ie-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      el.querySelectorAll('.ls-ie-card').forEach((c) => c.classList.remove('on'));
+      card.classList.add('on');
+      const inst = instruments.find((i) => i.key === card.dataset.key);
+      fb.className = 'lw-feedback show good';
+      fb.innerHTML = `<strong>${inst.label}</strong>${inst.tone ? `: ${inst.tone}` : ''}<br><br><strong>1 point = $${Number(inst.perPoint).toFixed(2)}</strong> &nbsp; <strong>1 tick = $${Number(inst.perTick).toFixed(2)}</strong>`;
+      if (!picked) {
+        picked = true;
+        helpers.handleStreak(true);
+        appendContinue(el, satisfy);
+      }
+    });
+  });
+}
+
+/* ── P&L lab: dropdown-driven calculator with a 4-cell stat readout ── */
+
+function renderPnlLabSlide(el, slide, satisfy) {
+  const uid = `pnl${uidCounter++}`;
+  const instruments = slide.instruments || [];
+  const contractOptions = slide.contractOptions || [1, 2, 3, 5];
+  let interacted = false;
+
+  el.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">${slide.kicker || 'Experience'}</div>
+      <h2>${slide.title || ''}</h2>
+      ${slide.body ? `<p>${slide.body}</p>` : ''}
+      <div class="ls-pnl-grid">
+        <div class="ls-pnl-panel">
+          <label>Instrument</label>
+          <select class="ls-pnl-select" id="lsPnlInst_${uid}">
+            ${instruments.map((i) => `<option value="${i.key}">${i.label}</option>`).join('')}
+          </select>
+          <label>Points moved</label>
+          <input class="ls-pnl-input" type="number" id="lsPnlPoints_${uid}" value="${slide.defaultPoints || 15}" min="1" max="500">
+          <label>Contracts</label>
+          <select class="ls-pnl-select" id="lsPnlContracts_${uid}">
+            ${contractOptions.map((n) => `<option value="${n}">${n} contract${n > 1 ? 's' : ''}</option>`).join('')}
+          </select>
+        </div>
+        <div class="ls-pnl-panel ls-pnl-readout">
+          <div class="ls-pnl-output" id="lsPnlOutput_${uid}"></div>
+          <div class="ls-pnl-formula" id="lsPnlFormula_${uid}"></div>
+          <div class="ls-stat-grid-4">
+            <div class="ls-stat-box"><div class="ls-stat-label">Per Point</div><div class="ls-stat-value" id="lsPPStat_${uid}"></div></div>
+            <div class="ls-stat-box"><div class="ls-stat-label">Per Tick</div><div class="ls-stat-value" id="lsPTStat_${uid}"></div></div>
+            <div class="ls-stat-box"><div class="ls-stat-label">Exposure</div><div class="ls-stat-value" id="lsExpStat_${uid}"></div></div>
+            <div class="ls-stat-box"><div class="ls-stat-label">Feeling</div><div class="ls-stat-value" id="lsFeelStat_${uid}"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="lw-feedback show" id="lsPnlFb_${uid}"></div>
+    </div>
+  `;
+
+  const instSel = document.getElementById(`lsPnlInst_${uid}`);
+  const pointsInput = document.getElementById(`lsPnlPoints_${uid}`);
+  const contractsSel = document.getElementById(`lsPnlContracts_${uid}`);
+  const outputEl = document.getElementById(`lsPnlOutput_${uid}`);
+  const formulaEl = document.getElementById(`lsPnlFormula_${uid}`);
+  const ppStat = document.getElementById(`lsPPStat_${uid}`);
+  const ptStat = document.getElementById(`lsPTStat_${uid}`);
+  const expStat = document.getElementById(`lsExpStat_${uid}`);
+  const feelStat = document.getElementById(`lsFeelStat_${uid}`);
+  const fb = document.getElementById(`lsPnlFb_${uid}`);
+
+  function update() {
+    const inst = instruments.find((i) => i.key === instSel.value) || instruments[0];
+    const points = Math.max(1, Number(pointsInput.value || 1));
+    const contracts = Math.max(1, Number(contractsSel.value || 1));
+    const total = points * inst.perPoint * contracts;
+    outputEl.textContent = `$${total.toFixed(2)}`;
+    formulaEl.textContent = `${points} points × $${Number(inst.perPoint).toFixed(2)} × ${contracts} ${contracts === 1 ? 'contract' : 'contracts'}`;
+    ppStat.textContent = `$${Number(inst.perPoint).toFixed(2)}`;
+    ptStat.textContent = `$${Number(inst.perTick).toFixed(2)}`;
+    const exposure = inst.exposure || ['—', '—'];
+    expStat.textContent = exposure[0];
+    feelStat.textContent = contracts >= 5 ? 'Loud' : contracts >= 3 ? 'Heavier' : exposure[1];
+    fb.textContent = `A ${points}-point move on ${inst.label} with ${contracts} ${contracts === 1 ? 'contract' : 'contracts'} = $${total.toFixed(2)}. This is exactly why instrument and size both matter.`;
+  }
+
+  function markInteracted() {
+    if (interacted) return;
+    interacted = true;
+    appendContinue(el, satisfy);
+  }
+
+  instSel.addEventListener('change', () => { update(); markInteracted(); });
+  pointsInput.addEventListener('input', () => { update(); markInteracted(); });
+  contractsSel.addEventListener('change', () => { update(); markInteracted(); });
+
+  update();
+}
+
+/* ── Compare cards: tap the better vs. worse understanding, then a quick check ── */
+
+function renderCompareCardsSlide(el, slide, satisfy, helpers) {
+  const hasQuickCheck = !!slide.quickCheck;
+  el.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">${slide.kicker || 'Correct a misconception'}</div>
+      <h2>${slide.title || ''}</h2>
+      ${slide.body ? `<p>${slide.body}</p>` : ''}
+      <div class="ls-compare-cards">
+        ${(slide.options || []).map((o, i) => `
+          <button type="button" class="ls-compare-card" data-i="${i}">
+            <div class="ls-compare-card-label">${o.label}</div>
+            <div class="ls-compare-card-body">${o.body}</div>
+          </button>`).join('')}
+      </div>
+      <div class="lw-feedback" id="lsCompareFb"></div>
+      ${hasQuickCheck ? `
+        <div class="ls-check" style="margin-top:18px">
+          <div class="ls-check-q">${slide.quickCheck.prompt}</div>
+          <div class="ls-tap-row${slide.quickCheck.options.length > 2 ? ' ls-tap-row-3' : ''}">
+            ${slide.quickCheck.options.map((o) => `
+              <button type="button" class="ls-tap">
+                <span class="ls-tap-title">${o.label}</span>
+              </button>`).join('')}
+          </div>
+          <div class="lw-feedback" id="lsQuickCheckFb"></div>
+        </div>
+      ` : ''}
+    </div>
+  `;
+
+  const fb = el.querySelector('#lsCompareFb');
+  let picked = false;
+  let quickCheckDone = !hasQuickCheck;
+  const cards = el.querySelectorAll('.ls-compare-card');
+
+  function checkDone() {
+    if (picked && quickCheckDone) appendContinue(el, satisfy);
+  }
+
+  cards.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (picked) return;
+      picked = true;
+      const opt = slide.options[Number(btn.dataset.i)];
+      cards.forEach((c) => { c.disabled = true; });
+      btn.classList.add(opt.correct ? 'correct' : 'wrong');
+      fb.className = `lw-feedback show ${opt.correct ? 'good' : 'bad'}`;
+      fb.textContent = opt.feedback || '';
+      helpers.handleStreak(!!opt.correct);
+      checkDone();
+    });
+  });
+
+  if (hasQuickCheck) {
+    const qcButtons = el.querySelectorAll('.ls-tap');
+    const qcFb = el.querySelector('#lsQuickCheckFb');
+    wireRetryOptions(qcButtons, slide.quickCheck.options, qcFb, () => { quickCheckDone = true; checkDone(); }, helpers.handleStreak);
+  }
+}
+
+/* ── Lab checkpoint: two sequential steps, each a tap between two card options ── */
+
+function renderLabCheckpointSlide(el, slide, satisfy, helpers) {
+  const steps = slide.steps || [];
+  const answers = steps.map(() => null);
+
+  el.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">${slide.kicker || 'Checkpoint'}</div>
+      <h2>${slide.title || ''}</h2>
+      ${slide.body ? `<p>${slide.body}</p>` : ''}
+      ${steps.map((step, si) => `
+        <div class="ls-lab-step">
+          <div class="ls-lab-step-label">Step ${si + 1}</div>
+          <div class="ls-lab-step-prompt">${step.prompt}</div>
+          <div class="ls-lab-grid" data-step="${si}">
+            ${step.options.map((o, oi) => `<button type="button" class="ls-lab-card" data-step="${si}" data-i="${oi}">${o.label}</button>`).join('')}
+          </div>
+        </div>
+      `).join('')}
+      <div class="lw-feedback" id="lsLabFb"></div>
+    </div>
+  `;
+
+  const fb = el.querySelector('#lsLabFb');
+  el.querySelectorAll('.ls-lab-card').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const si = Number(btn.dataset.step);
+      if (answers[si] !== null) return;
+      const oi = Number(btn.dataset.i);
+      const opt = steps[si].options[oi];
+      answers[si] = !!opt.correct;
+      el.querySelector(`.ls-lab-grid[data-step="${si}"]`).querySelectorAll('.ls-lab-card').forEach((c) => { c.disabled = true; });
+      btn.classList.add('on');
+      if (answers.every((a) => a !== null)) {
+        const allCorrect = answers.every(Boolean);
+        fb.className = `lw-feedback show ${allCorrect ? 'good' : 'bad'}`;
+        fb.textContent = allCorrect ? (slide.goodFeedback || 'Clean logic.') : (slide.badFeedback || 'Almost — think it through again next time.');
+        helpers.handleStreak(allCorrect);
+        if (allCorrect) helpers.burst();
+        appendContinue(el, satisfy);
+      }
+    });
+  });
+}
+
 const SLIDE_RENDERERS = {
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
@@ -514,6 +754,10 @@ const SLIDE_RENDERERS = {
   confusion: (el, slide, satisfy) => renderConfusion(el, slide, satisfy),
   calculator: renderCalculatorSlide,
   reflect: renderReflectSlide,
+  instrument_explorer: renderInstrumentExplorerSlide,
+  pnl_lab: renderPnlLabSlide,
+  compare_cards: renderCompareCardsSlide,
+  lab_checkpoint: renderLabCheckpointSlide,
 };
 
 /* ── Complete ─────────────────────────────────────────────────────── */

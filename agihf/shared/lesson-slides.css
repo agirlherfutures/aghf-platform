@@ -70,3 +70,60 @@
 
 /* Reflection — lighter-weight than the old full-panel version */
 .ls-reflect-prompt{font-size:.92rem;color:var(--dark);line-height:1.65;margin-bottom:14px;}
+
+/* Instrument explorer — tap a card, see the real numbers, plus a full compare table */
+.ls-ie-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+@media(max-width:640px){.ls-ie-grid{grid-template-columns:1fr;}}
+.ls-ie-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px;cursor:pointer;transition:border-color .15s,transform .15s;}
+.ls-ie-card:hover{transform:translateY(-2px);border-color:var(--pink-light);}
+.ls-ie-card.on{border-color:var(--pink);background:var(--pink-pale);}
+.ls-ie-name{font-family:var(--font-display);font-size:1.02rem;font-weight:700;color:var(--dark);margin-bottom:2px;}
+.ls-ie-sub{font-size:.72rem;color:var(--muted);margin-bottom:10px;}
+.ls-ie-row{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-top:1px solid var(--border);font-size:.76rem;}
+.ls-ie-row:first-of-type{border-top:none;}
+.ls-ie-row span{color:var(--muted);}
+.ls-ie-row strong{color:var(--dark);}
+.ls-compare-wrap{overflow:auto;border-radius:14px;border:1px solid var(--border);margin-top:14px;}
+.ls-compare-table{width:100%;border-collapse:collapse;background:#fff;min-width:520px;}
+.ls-compare-table th,.ls-compare-table td{padding:10px 13px;border-bottom:1px solid var(--border);font-size:.78rem;text-align:left;}
+.ls-compare-table th{background:var(--cream);color:var(--dark);font-weight:700;}
+.ls-compare-table td strong{color:var(--dark);}
+.ls-compare-table tr:last-child td{border-bottom:none;}
+
+/* P&L lab — dropdown-driven calculator with a 4-cell stat readout */
+.ls-pnl-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;}
+@media(max-width:640px){.ls-pnl-grid{grid-template-columns:1fr;}}
+.ls-pnl-panel{background:var(--cream);border:1px solid var(--border);border-radius:14px;padding:16px;}
+.ls-pnl-panel label{display:block;font-size:.76rem;color:var(--muted);margin:0 0 5px;}
+.ls-pnl-panel label:not(:first-child){margin-top:12px;}
+.ls-pnl-select,.ls-pnl-input{width:100%;padding:9px 11px;border-radius:9px;border:1px solid var(--border);background:#fff;font-family:var(--font-body);font-size:.86rem;color:var(--dark);}
+.ls-pnl-readout{display:flex;flex-direction:column;justify-content:center;text-align:center;}
+.ls-pnl-output{font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--dark);}
+.ls-pnl-formula{font-size:.76rem;color:var(--muted);margin-top:2px;margin-bottom:12px;}
+.ls-stat-grid-4{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.ls-stat-grid-4 .ls-stat-box{padding:9px;}
+.ls-stat-grid-4 .ls-stat-label{margin-bottom:3px;}
+
+/* Compare cards — tap the better vs. worse understanding */
+.ls-compare-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+@media(max-width:640px){.ls-compare-cards{grid-template-columns:1fr;}}
+.ls-compare-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px;text-align:left;cursor:pointer;transition:border-color .15s,transform .15s;}
+.ls-compare-card:hover:not(:disabled){transform:translateY(-2px);border-color:var(--pink-light);}
+.ls-compare-card-label{font-family:var(--font-display);font-weight:700;font-size:.94rem;color:var(--dark);margin-bottom:6px;}
+.ls-compare-card-body{font-size:.78rem;color:var(--muted);line-height:1.5;}
+.ls-compare-card.correct{background:var(--teal-pale);border-color:var(--teal);}
+.ls-compare-card.correct .ls-compare-card-label{color:#1a6b63;}
+.ls-compare-card.wrong{background:var(--pink-pale);border-color:var(--pink);}
+.ls-compare-card.wrong .ls-compare-card-label{color:#a84060;}
+.ls-compare-card:disabled{cursor:default;}
+
+/* Lab checkpoint — two sequential steps, each a tap between two cards */
+.ls-lab-step{margin-top:16px;}
+.ls-lab-step-label{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+.ls-lab-step-prompt{font-size:.88rem;color:var(--dark);line-height:1.5;margin-bottom:10px;}
+.ls-lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:640px){.ls-lab-grid{grid-template-columns:1fr;}}
+.ls-lab-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:13px 15px;font-family:var(--font-body);font-size:.85rem;font-weight:600;color:var(--dark);text-align:left;cursor:pointer;transition:border-color .15s;}
+.ls-lab-card:hover:not(:disabled){border-color:var(--pink-light);}
+.ls-lab-card.on{background:var(--pink-pale);border-color:var(--pink);}
+.ls-lab-card:disabled{cursor:default;opacity:.7;}
