@@ -154,7 +154,7 @@ function renderLoopWatch(slide, data, satisfy) {
   const preview = data.watch && data.watch.preview;
   slide.innerHTML = `
     <div class="dl-launchpad">
-      <div class="lw-eyebrow">✦ Lesson Launchpad</div>
+      <div class="lw-eyebrow">Lesson Launchpad</div>
       <h2>${data.title}</h2>
       ${lp.outcome ? `<p class="dl-outcome"><strong>By the end, you'll be able to:</strong> ${lp.outcome}</p>` : ''}
       <div class="dl-launchpad-meta">
@@ -236,7 +236,7 @@ function renderLearnIt(slide, learnIt, satisfy, helpers) {
   const blocks = learnIt.blocks || [];
   if (!blocks.length) { satisfy(); return; }
 
-  slide.innerHTML = `<div class="lw-eyebrow">📖 Learn It</div>`;
+  slide.innerHTML = `<div class="lw-eyebrow">Learn It</div>`;
   const container = document.createElement('div');
   container.className = 'lw-body-stream';
   slide.appendChild(container);
@@ -649,7 +649,7 @@ function renderGuidedReveal(slide, seeIt, satisfy, helpers) {
   const uid = `si${uidCounter++}`;
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">👁️ See It</div>
+      <div class="lw-eyebrow">See It</div>
       <h2>${seeIt.heading || 'Watch it happen'}</h2>
       ${seeIt.prompt ? `<p>${seeIt.prompt}</p>` : ''}
       <div class="lw-chartbox">
@@ -715,7 +715,7 @@ function renderCardsSeeIt(slide, seeIt, satisfy, helpers) {
 
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">👁️ See It</div>
+      <div class="lw-eyebrow">See It</div>
       <h2>${seeIt.heading || 'Watch it happen'}</h2>
       ${seeIt.prompt ? `<p>${seeIt.prompt}</p>` : ''}
       <div id="dlCardStack"></div>
@@ -782,7 +782,7 @@ function renderClickChart(slide, tryIt, satisfy, helpers) {
 
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🎯 Try It</div>
+      <div class="lw-eyebrow">Try It</div>
       <h2>${tryIt.heading || 'Tap it on the chart'}</h2>
       <p id="dlTryPrompt"></p>
       ${rounds.length > 1 ? '<div class="dl-reveal-dots" id="dlTryDots"></div>' : ''}
@@ -875,7 +875,7 @@ function renderDecisionPath(slide, tryIt, satisfy, helpers) {
 
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🧭 Try It</div>
+      <div class="lw-eyebrow">Try It</div>
       <h2>${tryIt.heading || 'What would you do?'}</h2>
       ${tryIt.prompt ? `<p class="lw-scenario">${tryIt.prompt}</p>` : ''}
       <div id="dlDecisionBody"></div>
@@ -947,7 +947,7 @@ function renderChoiceRounds(slide, tryIt, satisfy, helpers) {
 
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🎯 Try It</div>
+      <div class="lw-eyebrow">Try It</div>
       <h2>${tryIt.heading || 'What would you say?'}</h2>
       ${rounds.length > 1 ? '<div class="dl-reveal-dots" id="dlCrDots"></div>' : ''}
       <div id="dlCrBody"></div>
@@ -998,7 +998,7 @@ function renderChoiceRounds(slide, tryIt, satisfy, helpers) {
 function renderSayItBack(slide, sayItBack, lessonId, satisfy) {
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">💬 Say It Back</div>
+      <div class="lw-eyebrow">Say It Back</div>
       <h2>In your own words</h2>
       <p>${sayItBack.prompt || ''}</p>
       <textarea class="lw-reflect-textarea" id="dlSayInput" rows="4" placeholder="Type it how YOU understand it..."></textarea>
@@ -1044,12 +1044,12 @@ function renderSaveIt(slide, data, { lessonId, nextHref, backHref, nextTitle, ne
   const checklist = (data.saveIt && data.saveIt.checklist) || data.takeaways || [];
   slide.innerHTML = `
     <div class="lw-card dl-playbook-card" id="dlPlaybookCard">
-      <div class="lw-eyebrow">🎀 Save It</div>
+      <div class="lw-eyebrow">Save It</div>
       <h2>${data.title}</h2>
       <div class="dl-playbook-checklist">
         ${checklist.map((c) => `<div class="lw-takeaway dl-playbook-item">✓ ${c}</div>`).join('')}
       </div>
-      ${data.remember ? `<div class="lw-remember dl-playbook-remember"><div class="lw-remember-label">🎀 One Thing to Remember</div><div class="lw-remember-text dl-playbook-remember-text">${data.remember}</div></div>` : ''}
+      ${data.remember ? `<div class="lw-remember dl-playbook-remember"><div class="lw-remember-label">✦ One Thing to Remember</div><div class="lw-remember-text dl-playbook-remember-text">${data.remember}</div></div>` : ''}
       <div class="lw-badge dl-playbook-badge">+${data.xpValue} GP</div>
     </div>
     <div class="dl-playbook-actions">

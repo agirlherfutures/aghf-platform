@@ -124,7 +124,7 @@ export function renderSectionWizard(data, opts) {
 function renderWelcome(slide, welcome, satisfy) {
   slide.innerHTML = `
     <div class="lw-card sw-hero">
-      <div class="lw-eyebrow">${welcome.eyebrow || '✦ Section Complete Flow'}</div>
+      <div class="lw-eyebrow">${welcome.eyebrow || 'Section Complete Flow'}</div>
       <h2>${welcome.heading}</h2>
       <p>${welcome.body}</p>
       <div class="sw-mission">
@@ -143,7 +143,7 @@ function renderChallenge(slide, challenge, onAllDone, helpers) {
   const intro = document.createElement('div');
   intro.className = 'lw-card';
   intro.innerHTML = `
-    <div class="lw-eyebrow">🎯 Section Challenge</div>
+    <div class="lw-eyebrow">Section Challenge</div>
     <h2>${challenge.title}</h2>
     <p>${challenge.subtitle}</p>
   `;
@@ -270,7 +270,7 @@ function renderKnowledge(slide, kc, onPass, helpers) {
       const q = set[qi];
       slide.innerHTML = `
         <div class="lw-card">
-          <div class="lw-eyebrow">🧠 Knowledge Check</div>
+          <div class="lw-eyebrow">Knowledge Check</div>
           <div class="sw-progress-row"><span>Question ${qi + 1} of ${set.length}</span><span>Score: ${score} / ${qi}</span></div>
           <div class="sw-progress-track"><div class="sw-progress-fill" style="width:${(qi / set.length) * 100}%"></div></div>
           <h2>${q.question}</h2>
@@ -313,7 +313,7 @@ function renderKnowledge(slide, kc, onPass, helpers) {
       const passed = pct >= kc.passPct * 100;
       slide.innerHTML = `
         <div class="lw-card sw-result-card">
-          <div class="lw-eyebrow">🧠 Knowledge Check</div>
+          <div class="lw-eyebrow">Knowledge Check</div>
           <div class="sw-result-pct ${passed ? 'pass' : 'fail'}">${pct}%</div>
           <div class="sw-result-sub">${score} of ${total} correct — ${passed ? `you passed (${Math.round(kc.passPct * 100)}% required)` : `${Math.round(kc.passPct * 100)}% required to pass`}</div>
           ${passed
@@ -340,7 +340,7 @@ function renderCheckin(slide, checkin, sectionId, satisfy) {
   const p = checkin.prompts;
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">💭 Student Check-In</div>
+      <div class="lw-eyebrow">Student Check-In</div>
       <h2>Let's reflect before you move on.</h2>
 
       <div class="sw-field">

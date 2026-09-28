@@ -179,7 +179,7 @@ function renderWatch(slide, data, satisfy) {
       ${!data.videoUrl ? '<div class="lw-video-soon">Video coming soon</div>' : ''}
       <div class="lw-video-duration">${data.videoDuration || ''}</div>
     </div>
-    <div class="lw-eyebrow" style="margin:14px 0 0">🎥 Watch With Dayli</div>
+    <div class="lw-eyebrow" style="margin:14px 0 0">Watch With Dayli</div>
     <div class="lw-card lw-mission-card">
       <div class="lw-eyebrow">Today's mission</div>
       <p>${data.mission || ''}</p>
@@ -258,7 +258,7 @@ export function wireRetryOptions(buttons, options, feedbackEl, onSolved, handleS
 export function renderBreakdown(el, block, satisfy) {
   el.innerHTML = `
     <div class="lw-card lw-breakdown-card">
-      <div class="lw-eyebrow">📖 Break It Down</div>
+      <div class="lw-eyebrow">Break It Down</div>
       ${block.heading ? `<h2>${block.heading}</h2>` : ''}
       <div class="lw-beats">
         ${(block.beats || []).map((b) => `<div class="lw-beat"><h3>${b.heading || ''}</h3><p>${b.body}</p></div>`).join('')}
@@ -271,7 +271,7 @@ export function renderBreakdown(el, block, satisfy) {
 export function renderDayliSays(el, block, satisfy) {
   el.innerHTML = `
     <div class="lw-card lw-dayli-card">
-      <div class="lw-dayli-avatar">🎀</div>
+      <div class="lw-dayli-avatar">D</div>
       <div class="lw-dayli-body">
         <div class="lw-dayli-label">Dayli says</div>
         <div class="lw-dayli-quote">${block.quote}</div>
@@ -284,7 +284,7 @@ export function renderDayliSays(el, block, satisfy) {
 export function renderConfusion(el, block, satisfy) {
   el.innerHTML = `
     <div class="lw-card lw-confusion-card">
-      <div class="lw-eyebrow">⚠️ Don't Get This Confused</div>
+      <div class="lw-eyebrow">Don't Get This Confused</div>
       <h2>${block.heading}</h2>
       <div class="lw-confusion-grid">
         <div class="lw-confusion-col left">
@@ -305,7 +305,7 @@ function renderChartPractice(el, block, satisfy, helpers) {
   const uid = `cp${uidCounter++}`;
   el.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">📊 See It on the Chart</div>
+      <div class="lw-eyebrow">See It on the Chart</div>
       <h2>${block.heading || 'Now find it'}</h2>
       <p>${block.prompt || ''}</p>
       <div class="lw-chartbox">
@@ -352,7 +352,7 @@ function renderChartPractice(el, block, satisfy, helpers) {
 export function renderCatchMistake(el, block, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🚩 Catch the Mistake</div>
+      <div class="lw-eyebrow">Catch the Mistake</div>
       <h2>${block.heading || 'What did she get wrong?'}</h2>
       <p class="lw-scenario">${block.scenario}</p>
       <div class="${(block.options || []).length >= 3 ? 'lw-grid3' : 'lw-grid2'}" id="lwCmOpts">
@@ -371,7 +371,7 @@ function renderWhatHappensNext(el, block, satisfy, helpers) {
   const shown = seqIdx >= 0 ? block.sequence.slice(0, seqIdx + 1) : block.sequence;
   el.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🫧 What Happens Next?</div>
+      <div class="lw-eyebrow">What Happens Next?</div>
       <h2>${block.heading || 'Continue the sequence'}</h2>
       <div class="lw-seq-strip">
         ${shown.map((s) => `<span class="lw-seq-step done">${s}</span><span class="lw-seq-arrow">→</span>`).join('')}<span class="lw-seq-step next">?</span>
@@ -391,7 +391,7 @@ function renderWhatHappensNext(el, block, satisfy, helpers) {
 function renderBuildSequence(el, block, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🎯 Build the Setup</div>
+      <div class="lw-eyebrow">Build the Setup</div>
       <h2>${block.heading || 'Tap the steps in order'}</h2>
       <p>${block.prompt || ''}</p>
       <div class="lw-grid3" id="lwBsItems">
@@ -430,7 +430,7 @@ function renderBuildSequence(el, block, satisfy, helpers) {
 function renderLockItIn(el, block, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🧠 Lock It In</div>
+      <div class="lw-eyebrow">Lock It In</div>
       <h2>Before we move on, show me you can use it.</h2>
       <div id="lwLiiQuestions">
         ${block.questions.map((q, qi) => `
@@ -472,7 +472,7 @@ const BLOCK_RENDERERS = {
 function renderReflection(slide, block, lessonId, markDone) {
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">💭 Tell Me What You Know</div>
+      <div class="lw-eyebrow">Tell Me What You Know</div>
       <h2>In your own words</h2>
       <p>${block.prompt}</p>
       <textarea class="lw-reflect-textarea" id="lwReflectInput" rows="5" placeholder="Type it how YOU understand it..."></textarea>
@@ -507,7 +507,7 @@ function renderComplete(slide, data, { nextHref, backHref, nextTitle, nextHook, 
       <div class="lw-takeaways">
         ${(data.takeaways || []).map((t) => `<div class="lw-takeaway">✓ ${t}</div>`).join('')}
       </div>
-      ${data.remember ? `<div class="lw-remember"><div class="lw-remember-label">🎀 One Thing to Remember</div><div class="lw-remember-text">${data.remember}</div></div>` : ''}
+      ${data.remember ? `<div class="lw-remember"><div class="lw-remember-label">✦ One Thing to Remember</div><div class="lw-remember-text">${data.remember}</div></div>` : ''}
     </div>
     ${nextTitle ? `
     <div class="lw-card lw-next-up">
