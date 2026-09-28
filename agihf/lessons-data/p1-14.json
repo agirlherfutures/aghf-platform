@@ -76,7 +76,7 @@
     }
   },
   "sayItBack": {
-    "prompt": "Imagine another AGHF girl asks: \"What's the difference between a wick and a close?\" How would you explain it to her?",
+    "prompt": "Imagine another AGHF member asks: \"What's the difference between a wick and a close?\" How would you explain it to them?",
     "modelAnswer": "A wick shows me where price traveled but didn't stay — it's the reach. A close shows me where price actually settled, what the market accepted by the end of that candle. If I only look at the wick, I only know where price visited. The close tells me what actually held."
   },
   "saveIt": {

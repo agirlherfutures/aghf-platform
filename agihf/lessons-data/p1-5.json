@@ -80,7 +80,7 @@
     {
       "type": "reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Imagine another AGHF girl asks: \"Why can't I just trade the same number of contracts as shares I used to trade?\" How would you explain it to her?",
+      "prompt": "Imagine another AGHF member asks: \"Why can't I just trade the same number of contracts as shares I used to trade?\" How would you explain it to them?",
       "modelAnswer": "Because a share and a contract aren't the same unit of risk. One share of a stock might be worth $50, while one futures contract's point value could be worth $2, $5, or $50 per point depending on the instrument. The number 10 doesn't mean anything on its own."
     }
   ],

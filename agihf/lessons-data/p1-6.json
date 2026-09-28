@@ -107,7 +107,7 @@
     {
       "type": "reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Imagine another AGHF girl asks: \"My friend said she made 50 points today — is that a lot of money?\" How would you explain it to her?",
+      "prompt": "Imagine another AGHF member asks: \"My friend said she made 50 points today — is that a lot of money?\" How would you explain it to them?",
       "modelAnswer": "Points alone don't tell you anything — you need to know the instrument's point value and how many contracts she was holding. 50 points on MNQ with 1 contract is $100. 50 points on MNQ with 10 contracts is $1,000. Same 50 points, completely different amount of money."
     }
   ],

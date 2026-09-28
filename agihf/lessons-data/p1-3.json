@@ -69,7 +69,7 @@
     {
       "type": "reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Imagine another AGHF girl asks: \"How do you know when buyers actually lost control, and not just a normal pullback?\" How would you explain it to her?",
+      "prompt": "Imagine another AGHF member asks: \"How do you know when buyers actually lost control, and not just a normal pullback?\" How would you explain it to them?",
       "modelAnswer": "A normal pullback still respects the overall pattern — price dips a little but keeps making higher highs and higher lows overall. A real shift is when price actually breaks that pattern. One candle never tells you that on its own; you need to see the pattern actually break, not just wiggle."
     }
   ],

@@ -128,7 +128,7 @@
     {
       "type": "reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Imagine another AGHF girl asks: \"What's actually different between MNQ and NQ?\" How would you explain it to her?",
+      "prompt": "Imagine another AGHF member asks: \"What's actually different between MNQ and NQ?\" How would you explain it to them?",
       "modelAnswer": "They're the same underlying market — the Nasdaq-100 — just different contract sizes. MNQ is the micro version, worth 1/10 of what NQ is per point. So the exact same price move means very different dollar risk depending on which one you're trading."
     }
   ],

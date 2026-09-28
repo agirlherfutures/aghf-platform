@@ -69,7 +69,7 @@
     ]
   },
   "sayItBack": {
-    "prompt": "Imagine another AGHF girl asks: \"Why does it matter which timeframe I look at first?\" How would you explain it to her?",
+    "prompt": "Imagine another AGHF member asks: \"Why does it matter which timeframe I look at first?\" How would you explain it to them?",
     "modelAnswer": "Every timeframe shows the same market, just zoomed to a different level of detail. The 4H shows the big picture with the least noise, so I check that first to know the overall direction. The 1M shows way more detail, but without the 4H's context, every small move on the 1M can feel like a signal when it's really just noise. Checking the bigger timeframe first gives the smaller one a job to do, instead of asking it to explain everything alone."
   },
   "saveIt": {
