@@ -248,8 +248,8 @@ function renderChartDirectionSlide(el, slide, satisfy, helpers) {
       <div class="ls-chart-panel">
         <canvas id="lsChart_${uid}" class="ls-chart-canvas" width="700" height="220"></canvas>
         <div class="ls-choice-row" id="lsChoices_${uid}">
-          <button type="button" class="ls-choice" data-v="long">🟢 Long — buyers stay in control</button>
-          <button type="button" class="ls-choice" data-v="short">🔴 Short — sellers take over</button>
+          <button type="button" class="ls-choice" data-v="long">🟢 Long, buyers stay in control</button>
+          <button type="button" class="ls-choice" data-v="short">🔴 Short, sellers take over</button>
         </div>
         <div id="lsResult_${uid}"></div>
       </div>
@@ -286,7 +286,7 @@ function renderChartDirectionSlide(el, slide, satisfy, helpers) {
       } else {
         btn.classList.add('wrong');
         helpers.handleStreak(false);
-        resultEl.innerHTML = `<div class="lw-feedback show bad">${slide.badMsg || 'Not quite — look again.'}</div>`;
+        resultEl.innerHTML = `<div class="lw-feedback show bad">${slide.badMsg || 'Not quite, look again.'}</div>`;
       }
     });
   });
@@ -372,7 +372,7 @@ function renderCandleRevealSlide(el, slide, satisfy, helpers) {
     const hit = positions.find((c) => Math.abs(c.x - x) < 50);
     if (!hit) return;
     fb.className = 'lw-feedback show good';
-    fb.innerHTML = `<strong>${hit.label}</strong> — ${hit.desc}`;
+    fb.innerHTML = `<strong>${hit.label}</strong>, ${hit.desc}`;
     if (!picked) {
       picked = true;
       helpers.handleStreak(true);
@@ -574,7 +574,7 @@ function renderChartTapSlide(el, slide, satisfy, helpers) {
         appendContinue(el, satisfy);
       }
     } else {
-      fb.textContent = nearest.feedback || 'Not quite — look again.';
+      fb.textContent = nearest.feedback || 'Not quite, look again.';
       fb.className = 'lw-feedback show bad';
       helpers.handleStreak(false);
     }
@@ -696,7 +696,7 @@ function renderPnlLabSlide(el, slide, satisfy) {
     formulaEl.textContent = `${points} points × $${Number(inst.perPoint).toFixed(2)} × ${contracts} ${contracts === 1 ? 'contract' : 'contracts'}`;
     ppStat.textContent = `$${Number(inst.perPoint).toFixed(2)}`;
     ptStat.textContent = `$${Number(inst.perTick).toFixed(2)}`;
-    const exposure = inst.exposure || ['—', '—'];
+    const exposure = inst.exposure || ['-', '-'];
     expStat.textContent = exposure[0];
     feelStat.textContent = contracts >= 5 ? 'Loud' : contracts >= 3 ? 'Heavier' : exposure[1];
     fb.textContent = `A ${points}-point move on ${inst.label} with ${contracts} ${contracts === 1 ? 'contract' : 'contracts'} = $${total.toFixed(2)}. This is exactly why instrument and size both matter.`;
@@ -814,7 +814,7 @@ function renderLabCheckpointSlide(el, slide, satisfy, helpers) {
       if (answers.every((a) => a !== null)) {
         const allCorrect = answers.every(Boolean);
         fb.className = `lw-feedback show ${allCorrect ? 'good' : 'bad'}`;
-        fb.textContent = allCorrect ? (slide.goodFeedback || 'Clean logic.') : (slide.badFeedback || 'Almost — think it through again next time.');
+        fb.textContent = allCorrect ? (slide.goodFeedback || 'Clean logic.') : (slide.badFeedback || 'Almost, think it through again next time.');
         helpers.handleStreak(allCorrect);
         if (allCorrect) helpers.burst();
         appendContinue(el, satisfy);
@@ -903,7 +903,7 @@ function renderSequenceBuildSlide(el, slide, satisfy, helpers) {
       btn.disabled = true;
       if (order.length === items.length) {
         const success = order.join('|') === (slide.correctOrder || []).join('|');
-        fb.textContent = success ? (slide.successFeedback || 'Clean order — nice work.') : (slide.failFeedback || "That order isn't quite right — review the pieces.");
+        fb.textContent = success ? (slide.successFeedback || 'Clean order, nice work.') : (slide.failFeedback || "That order isn't quite right, review the pieces.");
         fb.className = `lw-feedback show ${success ? 'good' : 'bad'}`;
         helpers.handleStreak(success);
         if (success) helpers.burst();

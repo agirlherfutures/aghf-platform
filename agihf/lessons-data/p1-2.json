@@ -10,7 +10,7 @@
   "hook": "Before you try to beat the market, understand what the market is doing.",
   "format": "slides",
   "launchpad": {
-    "outcome": "Explain why markets exist — and why disagreement between buyers and sellers is what creates a transaction, not a problem.",
+    "outcome": "Explain why markets exist, and why disagreement between buyers and sellers is what creates a transaction, not a problem.",
     "missionQuestion": "If two traders disagree about where price is headed, can they still both trade at the same price?",
     "estMinutes": 4
   },
@@ -26,12 +26,12 @@
     {
       "type": "teach",
       "kicker": "Buyers need sellers",
-      "body": "Participants enter markets for different reasons — some speculate, some hedge risk, some invest or manage portfolios. Price helps buyers and sellers find where they're willing to transact, and as that willingness changes, price changes too.",
+      "body": "Participants enter markets for different reasons: some speculate, some hedge risk, some invest or manage portfolios. Price helps buyers and sellers find where they're willing to transact, and as that willingness changes, price changes too.",
       "check": {
         "prompt": "A new trader assumes every single person in the futures market is trying to speculate on which way price will go.",
         "options": [
-          { "label": "Not necessarily", "body": "Some participants, like producers, hedge and manage risk instead.", "correct": true, "why": "Right — same market, different objective. Hedgers and speculators can both be on the other side of your trade." },
-          { "label": "That's true", "body": "Everyone in the market is speculating on direction.", "correct": false, "feedback": "Not quite — plenty of participants are managing risk exposure, not betting on direction." }
+          { "label": "That's true", "body": "Everyone in the market is speculating on direction.", "correct": false, "feedback": "Not quite. Plenty of participants are managing risk exposure, not betting on direction." },
+          { "label": "Not necessarily", "body": "Some participants, like producers, hedge and manage risk instead.", "correct": true, "why": "Right: same market, different objective. Hedgers and speculators can both be on the other side of your trade." }
         ]
       }
     },
@@ -51,7 +51,7 @@
       "kicker": "Watch a transaction form",
       "title": "Same price. Two different opinions.",
       "items": [
-        { "icon": "🙋", "label": "A buyer shows up", "desc": "\"That's attractive — I want in here.\"" },
+        { "icon": "🙋", "label": "A buyer shows up", "desc": "\"That's attractive, I want in here.\"" },
         { "icon": "🙋‍♀️", "label": "A seller shows up", "desc": "\"I'm willing to sell here.\" Doesn't matter why." },
         { "icon": "⚖️", "label": "Neither is wrong", "desc": "They just want different things at the same price." },
         { "icon": "✦", "label": "That's the transaction", "desc": "Zero disagreement means zero trades." }
@@ -65,13 +65,13 @@
     {
       "type": "teach",
       "kicker": "Make the call",
-      "body": "Trader A believes the current price is an attractive buy. Trader B believes price is likely to fall and wants to sell — at the exact same price.",
+      "body": "Trader A believes the current price is an attractive buy. Trader B believes price is likely to fall and wants to sell, at the exact same price.",
       "check": {
         "prompt": "Can they both participate in the same market at the same time?",
         "options": [
-          { "label": "Yes", "body": "Their disagreement is exactly what creates the transaction.", "correct": true, "why": "Disagreement between participants isn't a glitch — it's the entire reason a transaction can happen at all." },
-          { "label": "No", "body": "Only one of them can be right, so only one can trade.", "correct": false, "feedback": "Being \"right\" isn't a requirement to trade — willingness to transact is." },
-          { "label": "No", "body": "The market would reject one of their orders.", "correct": false, "feedback": "Markets don't reject orders based on who turns out to be right later." }
+          { "label": "No", "body": "The market would reject one of their orders.", "correct": false, "feedback": "Markets don't reject orders based on who turns out to be right later." },
+          { "label": "Yes", "body": "Their disagreement is exactly what creates the transaction.", "correct": true, "why": "Disagreement between participants isn't a glitch. It's the entire reason a transaction can happen at all." },
+          { "label": "No", "body": "Only one of them can be right, so only one can trade.", "correct": false, "feedback": "Being \"right\" isn't a requirement to trade, willingness to transact is." }
         ]
       }
     },
@@ -79,12 +79,12 @@
       "type": "reflect",
       "kicker": "Tell me what you know",
       "prompt": "Why is disagreement between market participants necessary for trading to occur? Explain it in your own words.",
-      "modelAnswer": "If everyone agreed on where price should be, no one would want to trade with anyone else — a buyer needs someone willing to sell, and a seller needs someone willing to buy. That disagreement is literally what creates a transaction. No disagreement means no trade."
+      "modelAnswer": "If everyone agreed on where price should be, no one would want to trade with anyone else. A buyer needs someone willing to sell, and a seller needs someone willing to buy. That disagreement is literally what creates a transaction. No disagreement means no trade."
     }
   ],
   "takeaways": [
     "Markets exist because participants with different needs transact.",
-    "Some participants speculate, others hedge risk — same market, different objective.",
+    "Some participants speculate, others hedge risk: same market, different objective.",
     "Disagreement between buyers and sellers is what creates a transaction, not a problem with the market."
   ],
   "remember": "The chart is just the visual record of buyers and sellers disagreeing."

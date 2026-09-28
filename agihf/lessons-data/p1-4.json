@@ -26,12 +26,12 @@
     {
       "type": "teach",
       "kicker": "Core idea",
-      "body": "The instrument is the market. The contract count is your size inside that market.<br><br><strong>MNQ, NQ, MGC, and ES</strong> are instruments — they tell you what market you're trading. <strong>1, 2, or 5 contracts</strong> tells you how much exposure you have to that instrument's move. Same market. Very different dollar and emotional weight.",
+      "body": "The instrument is the market. The contract count is your size inside that market.<br><br><strong>MNQ, NQ, MGC, and ES</strong> are instruments: they tell you what market you're trading. <strong>1, 2, or 5 contracts</strong> tells you how much exposure you have to that instrument's move. Same market. Very different dollar and emotional weight.",
       "check": {
         "prompt": "A trader moves from MNQ to NQ but keeps the same number of contracts because \"the chart looks the same.\"",
         "options": [
-          { "label": "That's a mistake", "body": "The contract multiplier is different, so the same price move produces very different P&L and risk.", "correct": true, "why": "Exactly — the chart shape being similar doesn't mean the dollar exposure is similar." },
-          { "label": "That's fine", "body": "NQ and MNQ are the same size, just different tickers.", "correct": false, "feedback": "They're not the same size — MNQ is 1/10 the contract multiplier of NQ." }
+          { "label": "That's fine", "body": "NQ and MNQ are the same size, just different tickers.", "correct": false, "feedback": "They're not the same size, MNQ is 1/10 the contract multiplier of NQ." },
+          { "label": "That's a mistake", "body": "The contract multiplier is different, so the same price move produces very different P&L and risk.", "correct": true, "why": "Exactly. The chart shape being similar doesn't mean the dollar exposure is similar." }
         ]
       }
     },
@@ -39,19 +39,19 @@
       "type": "instrument_explorer",
       "kicker": "Meet the instruments with the real numbers",
       "title": "Meet the instruments with the real numbers",
-      "body": "Tap an instrument to see the exact dollar amount attached to one point and one tick. Then check the table below — this is where it starts feeling real.",
+      "body": "Tap an instrument to see the exact dollar amount attached to one point and one tick. Then check the table below, this is where it starts feeling real.",
       "instruments": [
-        { "key": "mnq", "label": "MNQ", "sub": "Micro Nasdaq 100", "perPoint": 2, "perTick": 0.5, "useCase": "Beginner-friendly Nasdaq", "tone": "Lighter Nasdaq exposure — great for learning." },
+        { "key": "mnq", "label": "MNQ", "sub": "Micro Nasdaq 100", "perPoint": 2, "perTick": 0.5, "useCase": "Beginner-friendly Nasdaq", "tone": "Lighter Nasdaq exposure, great for learning." },
         { "key": "nq", "label": "NQ", "sub": "Nasdaq futures", "perPoint": 20, "perTick": 5, "useCase": "Much heavier Nasdaq", "tone": "This hits 10x harder than MNQ per point." },
         { "key": "mgc", "label": "MGC", "sub": "Micro Gold", "perPoint": 10, "perTick": 1, "useCase": "Micro gold exposure", "tone": "Gold exposure with micro sizing." },
-        { "key": "es", "label": "ES", "sub": "E-mini S&P 500", "perPoint": 50, "perTick": 12.5, "useCase": "Heavy S&P contract", "tone": "Very heavy point value — not casual." }
+        { "key": "es", "label": "ES", "sub": "E-mini S&P 500", "perPoint": 50, "perTick": 12.5, "useCase": "Heavy S&P contract", "tone": "Very heavy point value, not casual." }
       ],
       "compareColumns": [2, 5]
     },
     {
       "type": "teach",
       "kicker": "How the amounts actually attach",
-      "body": "Think of it simply: the instrument is the vehicle, and contract count is how many of that vehicle you're driving.<br><br>If price moves 10 points on <strong>MNQ</strong>, one contract gives you <strong>$20</strong>. That same 10-point move on <strong>NQ</strong> gives you <strong>$200</strong> — ten times the weight, same chart shape.<br><br><em>Same chart logic. Very different dollar consequence. This is why size and instrument selection matter just as much as the setup.</em>"
+      "body": "Think of it simply: the instrument is the vehicle, and contract count is how many of that vehicle you're driving.<br><br>If price moves 10 points on <strong>MNQ</strong>, one contract gives you <strong>$20</strong>. That same 10-point move on <strong>NQ</strong> gives you <strong>$200</strong>, ten times the weight, same chart shape.<br><br><em>Same chart logic. Very different dollar consequence. This is why size and instrument selection matter just as much as the setup.</em>"
     },
     {
       "type": "dayli",
@@ -60,9 +60,9 @@
     },
     {
       "type": "pnl_lab",
-      "kicker": "Contracts lab — see the dollars attached",
-      "title": "Contracts lab — see the dollars attached",
-      "body": "Pick the instrument. Pick the points. Pick the contract count. Watch how fast the number — and the way it feels — changes.",
+      "kicker": "Contracts lab, see the dollars attached",
+      "title": "Contracts lab, see the dollars attached",
+      "body": "Pick the instrument. Pick the points. Pick the contract count. Watch how fast the number, and the way it feels, changes.",
       "instruments": [
         { "key": "mnq", "label": "MNQ", "perPoint": 2, "perTick": 0.5, "exposure": ["Light", "Teachable"] },
         { "key": "nq", "label": "NQ", "perPoint": 20, "perTick": 5, "exposure": ["Heavy", "Emotional faster"] },
@@ -78,15 +78,15 @@
       "title": "Contract vs. instrument",
       "body": "Beginners blur these together all the time. We're not doing that here.",
       "options": [
-        { "label": "Better understanding", "body": "MNQ is the instrument. If I take 3 MNQ contracts, the market is still MNQ — what changed is my size.", "correct": true, "feedback": "Exactly. The instrument is the market. The contract count is your size inside that market. Those are connected, but not interchangeable." },
-        { "label": "Bad understanding", "body": "A contract and an instrument are basically the same thing, so I don't need to separate them.", "correct": false, "feedback": "Not this one — when you mix those up, you stop respecting the actual dollar weight attached to what you chose." }
+        { "label": "Bad understanding", "body": "A contract and an instrument are basically the same thing, so I don't need to separate them.", "correct": false, "feedback": "Not this one. When you mix those up, you stop respecting the actual dollar weight attached to what you chose." },
+        { "label": "Better understanding", "body": "MNQ is the instrument. If I take 3 MNQ contracts, the market is still MNQ, what changed is my size.", "correct": true, "feedback": "Exactly. The instrument is the market. The contract count is your size inside that market. Those are connected, but not interchangeable." }
       ],
       "quickCheck": {
         "prompt": "If you go from 1 NQ contract to 2 NQ contracts, what changed?",
         "options": [
-          { "label": "Your size changed, not the instrument", "correct": true, "why": "Exactly. It's still NQ — what changed is your size and the dollar weight of the move." },
-          { "label": "The instrument changed", "correct": false, "feedback": "Not quite. NQ stayed NQ — you just increased how much NQ exposure you took." },
-          { "label": "Nothing really changed", "correct": false, "feedback": "No — the dollar amount attached to the move absolutely changed." }
+          { "label": "The instrument changed", "correct": false, "feedback": "Not quite. NQ stayed NQ, you just increased how much NQ exposure you took." },
+          { "label": "Your size changed, not the instrument", "correct": true, "why": "Exactly. It's still NQ, what changed is your size and the dollar weight of the move." },
+          { "label": "Nothing really changed", "correct": false, "feedback": "No. The dollar amount attached to the move absolutely changed." }
         ]
       }
     },
@@ -99,15 +99,15 @@
         {
           "prompt": "A newer trader wants Nasdaq exposure with smaller dollar weight. Best fit?",
           "options": [
-            { "label": "MNQ", "value": "mnq", "correct": true },
-            { "label": "NQ", "value": "nq", "correct": false }
+            { "label": "NQ", "value": "nq", "correct": false },
+            { "label": "MNQ", "value": "mnq", "correct": true }
           ]
         },
         {
           "prompt": "What helps someone stay more teachable while still learning?",
           "options": [
-            { "label": "Smaller contract count", "value": "small", "correct": true },
-            { "label": "Big size for faster money", "value": "big", "correct": false }
+            { "label": "Big size for faster money", "value": "big", "correct": false },
+            { "label": "Smaller contract count", "value": "small", "correct": true }
           ]
         }
       ],
@@ -129,13 +129,13 @@
       "type": "reflect",
       "kicker": "Tell me what you know",
       "prompt": "Imagine another AGHF member asks: \"What's actually different between MNQ and NQ?\" How would you explain it to them?",
-      "modelAnswer": "They're the same underlying market — the Nasdaq-100 — just different contract sizes. MNQ is the micro version, worth 1/10 of what NQ is per point. So the exact same price move means very different dollar risk depending on which one you're trading."
+      "modelAnswer": "They're the same underlying market, the Nasdaq-100, just different contract sizes. MNQ is the micro version, worth 1/10 of what NQ is per point. So the exact same price move means very different dollar risk depending on which one you're trading."
     }
   ],
   "takeaways": [
-    "The instrument is the market — the contract count is your size inside it.",
+    "The instrument is the market, the contract count is your size inside it.",
     "Micro contracts (MNQ, MES, MGC) are a fraction of their mini counterparts (NQ, ES, GC).",
-    "Dollar amounts attach fast — the same move means very different money depending on the instrument and size."
+    "Dollar amounts attach fast, the same move means very different money depending on the instrument and size."
   ],
   "remember": "Know the instrument. Know its value. Know your risk."
 }

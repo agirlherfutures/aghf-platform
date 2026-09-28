@@ -10,15 +10,15 @@
   "hook": "Higher timeframes tell the story. Lower timeframes let you step inside it.",
   "format": "slides",
   "launchpad": {
-    "outcome": "Explain what actually changes when you switch chart timeframes — and what doesn't.",
+    "outcome": "Explain what actually changes when you switch chart timeframes, and what doesn't.",
     "missionQuestion": "If the 1M looks messy and confusing, what should you actually do first?",
     "estMinutes": 6
   },
   "watch": {
     "markers": [
       { "t": "00:00", "label": "What is a timeframe" },
-      { "t": "01:20", "label": "4H — the big picture" },
-      { "t": "03:00", "label": "1M — the detail trap" },
+      { "t": "01:20", "label": "4H, the big picture" },
+      { "t": "03:00", "label": "1M, the detail trap" },
       { "t": "04:40", "label": "Giving each timeframe a job" },
       { "t": "05:30", "label": "Try it yourself" }
     ]
@@ -27,34 +27,34 @@
     {
       "type": "teach",
       "kicker": "What is a timeframe?",
-      "body": "Every timeframe shows the same market, just zoomed to a different level of detail.<br><br>The <strong>4H</strong> shows the fewest candles but the clearest big-picture direction. Zoom into <strong>1H</strong>, then <strong>15M</strong>, and you start seeing the smaller moves inside that bigger picture. By the <strong>1M</strong>, you get the most detail — and the most noise. Every tiny wiggle can look urgent there."
+      "body": "Every timeframe shows the same market, just zoomed to a different level of detail.<br><br>The <strong>4H</strong> shows the fewest candles but the clearest big-picture direction. Zoom into <strong>1H</strong>, then <strong>15M</strong>, and you start seeing the smaller moves inside that bigger picture. By the <strong>1M</strong>, you get the most detail, and the most noise. Every tiny wiggle can look urgent there."
     },
     {
       "type": "decision_path",
       "kicker": "Experience",
       "title": "The 1M looks messy. What now?",
-      "body": "You open your chart straight to the 1M. It's choppy and confusing — every candle looks like a signal.",
+      "body": "You open your chart straight to the 1M. It's choppy and confusing, every candle looks like a signal.",
       "startNode": "start",
       "nodes": [
         {
           "id": "start",
           "prompt": "What's your first move?",
           "options": [
-            { "label": "Stay on the 1M and react to what I see", "good": false, "feedback": "This is how beginners get pulled around by noise — every candle starts to feel urgent.", "next": "stuck" },
-            { "label": "Zoom out to the 4H first", "good": true, "feedback": "Yes — get the bigger picture before the small candles get to decide your mood.", "next": "zoomed" }
+            { "label": "Stay on the 1M and react to what I see", "good": false, "feedback": "This is how beginners get pulled around by noise, every candle starts to feel urgent.", "next": "stuck" },
+            { "label": "Zoom out to the 4H first", "good": true, "feedback": "Yes. Get the bigger picture before the small candles get to decide your mood.", "next": "zoomed" }
           ]
         },
         {
           "id": "stuck",
           "prompt": "You keep reacting to the 1M. Ten minutes later, you're not even sure if you're bullish or bearish anymore. What now?",
           "options": [
-            { "label": "Keep watching the 1M — the answer has to be in here somewhere", "good": false, "outcomeText": "Still stuck. The bigger picture only lives on the bigger timeframe. No amount of staring at the 1M will produce it." },
+            { "label": "Keep watching the 1M, the answer has to be in here somewhere", "good": false, "outcomeText": "Still stuck. The bigger picture only lives on the bigger timeframe. No amount of staring at the 1M will produce it." },
             { "label": "Stop, and zoom out to the 4H", "good": true, "next": "zoomed" }
           ]
         },
         {
           "id": "zoomed",
-          "prompt": "On the 4H, the bigger picture is actually pretty clear — a clean move in one direction. Now what?",
+          "prompt": "On the 4H, the bigger picture is actually pretty clear, a clean move in one direction. Now what?",
           "options": [
             { "label": "Go back to the 1M with that context in mind", "good": true, "outcomeText": "This is the clean flow. The 4H gives you the big picture, then the 1M makes sense INSIDE that picture instead of trying to explain everything by itself." },
             { "label": "Ignore the 4H and go back to just reacting on the 1M", "good": false, "outcomeText": "Right back where you started. Context doesn't help if you don't carry it with you." }
@@ -65,7 +65,7 @@
     {
       "type": "dayli",
       "kicker": "Dayli Says",
-      "quote": "The market doesn't change when you switch the chart view — your perspective does. Always zoom out before you zoom in. Context first, detail second."
+      "quote": "The market doesn't change when you switch the chart view, your perspective does. Always zoom out before you zoom in. Context first, detail second."
     },
     {
       "type": "reflect",
@@ -77,7 +77,7 @@
   "takeaways": [
     "Every timeframe is a different zoom on the same price story.",
     "Higher timeframes show direction; lower timeframes show detail.",
-    "Zoom out before you zoom in — context first, detail second."
+    "Zoom out before you zoom in, context first, detail second."
   ],
-  "remember": "The market doesn't change when you switch the chart view — your perspective does."
+  "remember": "The market doesn't change when you switch the chart view, your perspective does."
 }

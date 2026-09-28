@@ -186,7 +186,7 @@ function renderWatch(slide, data, satisfy) {
       <div class="lw-eyebrow">Today's mission</div>
       <p>${data.mission || ''}</p>
     </div>
-    <button type="button" class="lw-continue-btn lw-watched-btn" id="lwWatchedBtn">✓ Watched — Continue</button>
+    <button type="button" class="lw-continue-btn lw-watched-btn" id="lwWatchedBtn">✓ Watched, Continue</button>
   `;
   document.getElementById('lwWatchedBtn').addEventListener('click', satisfy);
 }
@@ -247,7 +247,7 @@ export function wireRetryOptions(buttons, options, feedbackEl, onSolved, handleS
         onSolved();
       } else {
         btn.classList.add('wrong');
-        feedbackEl.textContent = opt.feedback || 'Not quite — look again.';
+        feedbackEl.textContent = opt.feedback || 'Not quite, look again.';
         feedbackEl.className = 'lw-feedback show bad';
         handleStreak(false);
       }
@@ -378,7 +378,7 @@ function renderWhatHappensNext(el, block, satisfy, helpers) {
       <div class="lw-seq-strip">
         ${shown.map((s) => `<span class="lw-seq-step done">${s}</span><span class="lw-seq-arrow">→</span>`).join('')}<span class="lw-seq-step next">?</span>
       </div>
-      <p>${block.prompt || "What comes next — not where price goes, what's next in the framework?"}</p>
+      <p>${block.prompt || "What comes next, not where price goes, what's next in the framework?"}</p>
       <div class="lw-opts" id="lwWhnOpts">
         ${block.options.map((o, i) => `<button type="button" class="lw-qopt" data-i="${i}">${o.label}</button>`).join('')}
       </div>
@@ -419,7 +419,7 @@ function renderBuildSequence(el, block, satisfy, helpers) {
       if (order.length === block.items.length) {
         const success = order.join('|') === block.correctOrder.join('|');
         document.getElementById('lwBsStatus').textContent = success ? 'Correct order!' : 'Review below';
-        fb.textContent = success ? (block.successFeedback || 'Clean sequence — nice work.') : (block.failFeedback || "That order isn't quite right yet — review the pieces before the next lesson.");
+        fb.textContent = success ? (block.successFeedback || 'Clean sequence, nice work.') : (block.failFeedback || "That order isn't quite right yet, review the pieces before the next lesson.");
         fb.className = `lw-feedback show ${success ? 'good' : 'bad'}`;
         helpers.handleStreak(success);
         if (success) helpers.burst();
@@ -450,7 +450,7 @@ function renderLockItIn(el, block, satisfy, helpers) {
     const qEl = el.querySelector(`[data-qi="${qi}"]`);
     const buttons = qEl.querySelectorAll('.lw-qopt');
     const fb = document.getElementById(`lwLiiFb${qi}`);
-    const options = q.options.map((label, oi) => ({ label, correct: oi === q.correctIndex, why: q.why, feedback: (q.hints && q.hints[oi]) || 'Not quite — look again.' }));
+    const options = q.options.map((label, oi) => ({ label, correct: oi === q.correctIndex, why: q.why, feedback: (q.hints && q.hints[oi]) || 'Not quite, look again.' }));
     wireRetryOptions(buttons, options, fb, () => {
       solvedCount += 1;
       if (solvedCount === block.questions.length) appendContinue(el, satisfy);
@@ -612,7 +612,7 @@ const CHART_MODES = {
           ]);
           if (found.size === parts.length) {
             draw('all');
-            setFb('Full anatomy unlocked — open, high, low, close, body, and wick.');
+            setFb('Full anatomy unlocked: open, high, low, close, body, and wick.');
             handleStreak(true);
             markDone();
           } else {
@@ -679,11 +679,11 @@ const CHART_MODES = {
           y = close;
         }
         ctx.fillStyle = '#2C1810'; ctx.font = 'bold 13px DM Sans';
-        ctx.fillText(`${lens.key} — ${n} candles shown (${lens.detail})`, 20, 24);
+        ctx.fillText(`${lens.key}: ${n} candles shown (${lens.detail})`, 20, 24);
       }
 
       btnRow.innerHTML = lenses.map((l) => `<button type="button" data-key="${l.key}">${l.key}</button>`).join('');
-      setKpis([{ label: 'Lens', value: '—' }, { label: 'Candles shown', value: '—' }, { label: 'Detail level', value: '—' }]);
+      setKpis([{ label: 'Lens', value: '-' }, { label: 'Candles shown', value: '-' }, { label: 'Detail level', value: '-' }]);
       setFb('Tap a timeframe to see how the same window looks at different zoom levels.');
       btnRow.querySelectorAll('button').forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -693,7 +693,7 @@ const CHART_MODES = {
           draw(lens);
           seen.add(lens.key);
           setKpis([{ label: 'Lens', value: lens.key }, { label: 'Candles shown', value: String(lens.count) }, { label: 'Detail level', value: lens.detail }]);
-          setFb(`${lens.key} shows ${lens.count} candles — ${lens.key === '4H' ? 'the least detail, the clearest direction' : lens.key === '1M' ? 'the most detail, the most noise' : 'a middle zoom between the two'}.`);
+          setFb(`${lens.key} shows ${lens.count} candles, ${lens.key === '4H' ? 'the least detail, the clearest direction' : lens.key === '1M' ? 'the most detail, the most noise' : 'a middle zoom between the two'}.`);
           handleStreak(true);
           if (seen.size >= 2) markDone();
         });
@@ -724,7 +724,7 @@ const CHART_MODES = {
       }
 
       btnRow.innerHTML = contractOptions.map((n) => `<button type="button" data-n="${n}">${n} contract${n > 1 ? 's' : ''}</button>`).join('');
-      setKpis([{ label: 'Points', value: points }, { label: 'Point value', value: `$${pointValue}` }, { label: 'Contracts', value: '—' }]);
+      setKpis([{ label: 'Points', value: points }, { label: 'Point value', value: `$${pointValue}` }, { label: 'Contracts', value: '-' }]);
       setFb('Choose a contract size to see how P&L scales.');
       draw(null);
       btnRow.querySelectorAll('button').forEach((btn) => {
@@ -803,7 +803,7 @@ const CHART_MODES = {
       }
 
       btnRow.innerHTML = points.map((p) => `<button type="button" data-key="${p.key}">${p.key}</button>`).join('');
-      setKpis([{ label: 'Structure', value: config.structureLabel || '—' }, { label: 'Points', value: points.length }, { label: 'Tap to explore', value: points.map((p) => p.key).join(' / ') }]);
+      setKpis([{ label: 'Structure', value: config.structureLabel || '-' }, { label: 'Points', value: points.length }, { label: 'Tap to explore', value: points.map((p) => p.key).join(' / ') }]);
       setFb(config.prompt2 || 'Tap the point you think is correct.');
       draw(null);
       let solved = false;
@@ -812,7 +812,7 @@ const CHART_MODES = {
           if (solved) return;
           const p = points.find((pt) => pt.key === btn.dataset.key);
           draw(p.key);
-          setFb(p.feedback || (p.correct ? 'Exactly!' : 'Not quite — look again.'));
+          setFb(p.feedback || (p.correct ? 'Exactly!' : 'Not quite, look again.'));
           if (p.correct) { solved = true; handleStreak(true); markDone(); }
           else handleStreak(false);
         });

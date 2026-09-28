@@ -10,7 +10,7 @@
   "hook": "A futures chart might look like every other chart. What you're trading underneath it isn't the same.",
   "format": "slides",
   "launchpad": {
-    "outcome": "Name the structural differences between trading futures and trading stocks — not just \"futures move faster.\"",
+    "outcome": "Name the structural differences between trading futures and trading stocks, not just \"futures move faster.\"",
     "missionQuestion": "Can you treat 10 shares of a stock and 10 futures contracts as the same size?",
     "estMinutes": 6
   },
@@ -30,8 +30,8 @@
       "check": {
         "prompt": "A trader wants to profit from a short-term price move without caring about long-term company ownership. Which instrument type is built for that, and why?",
         "options": [
-          { "label": "Futures", "body": "Built purely around price movement, no ownership stake.", "correct": true, "why": "Futures contracts are built purely around price movement, with no ownership stake." },
-          { "label": "Stocks", "body": "Stock ownership was always designed for short-term moves.", "correct": false, "feedback": "Stock ownership is fundamentally about owning a piece of a company, not short-term price speculation." }
+          { "label": "Stocks", "body": "Stock ownership was always designed for short-term moves.", "correct": false, "feedback": "Stock ownership is fundamentally about owning a piece of a company, not short-term price speculation." },
+          { "label": "Futures", "body": "Built purely around price movement, no ownership stake.", "correct": true, "why": "Futures contracts are built purely around price movement, with no ownership stake." }
         ]
       }
     },
@@ -45,7 +45,7 @@
       },
       "right": {
         "label": "Futures",
-        "points": ["You're trading standardized contracts", "Contracts expire — rollover applies", "Nearly 24-hour weekday trading for many contracts"]
+        "points": ["You're trading standardized contracts", "Contracts expire, rollover applies", "Nearly 24-hour weekday trading for many contracts"]
       }
     },
     {
@@ -55,8 +55,8 @@
       "check": {
         "prompt": "What's wrong with Maya's reasoning?",
         "options": [
-          { "label": "The unit is different", "body": "Share quantity and futures contract quantity aren't equivalent units of risk.", "correct": true, "why": "Right — 10 shares and 10 contracts can carry wildly different dollar risk." },
-          { "label": "Nothing", "body": "10 is 10, no matter what she's trading.", "correct": false, "feedback": "The unit matters. 10 shares of a stock and 10 futures contracts are not comparable sizes." }
+          { "label": "Nothing", "body": "10 is 10, no matter what she's trading.", "correct": false, "feedback": "The unit matters. 10 shares of a stock and 10 futures contracts are not comparable sizes." },
+          { "label": "The unit is different", "body": "Share quantity and futures contract quantity aren't equivalent units of risk.", "correct": true, "why": "Right. 10 shares and 10 contracts can carry wildly different dollar risk." }
         ]
       }
     },
@@ -68,12 +68,12 @@
     {
       "type": "teach",
       "kicker": "The core difference",
-      "body": "A stock is a claim on ownership. A futures contract carries no ownership stake at all — just an agreement based on price movement.",
+      "body": "A stock is a claim on ownership. A futures contract carries no ownership stake at all, just an agreement based on price movement.",
       "check": {
         "prompt": "What's the core difference between what you own when you buy a stock versus what you hold in a futures contract?",
         "options": [
-          { "label": "Ownership vs. agreement", "body": "A stock is a claim on company ownership; a futures contract is an agreement based on price movement.", "correct": true, "why": "Buying a stock means owning a piece of a company. A futures contract carries no ownership stake at all." },
-          { "label": "Same thing", "body": "Different names for the same idea.", "correct": false, "feedback": "They're structurally different — one is ownership, one isn't." }
+          { "label": "Same thing", "body": "Different names for the same idea.", "correct": false, "feedback": "They're structurally different, one is ownership, one isn't." },
+          { "label": "Ownership vs. agreement", "body": "A stock is a claim on company ownership; a futures contract is an agreement based on price movement.", "correct": true, "why": "Buying a stock means owning a piece of a company. A futures contract carries no ownership stake at all." }
         ]
       }
     },
@@ -86,7 +86,7 @@
   ],
   "takeaways": [
     "Stocks are ownership; futures are standardized contracts on price movement.",
-    "Futures contracts expire and involve rollover — stocks don't.",
+    "Futures contracts expire and involve rollover, stocks don't.",
     "Share count and contract count are not equivalent units of risk."
   ],
   "remember": "Know what one unit of your instrument is actually worth."

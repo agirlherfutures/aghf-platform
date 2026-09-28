@@ -188,7 +188,7 @@ function renderChallenge(slide, challenge, onAllDone, helpers) {
 function renderMcRound(el, round, i, total, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
-      <div class="sw-round-label">Round ${i + 1} of ${total}${round.heading ? ` — ${round.heading.replace(/^Round \d+\s*—\s*/, '')}` : ''}</div>
+      <div class="sw-round-label">Round ${i + 1} of ${total}${round.heading ? `: ${round.heading.replace(/^Round \d+\s*[—:]\s*/, '')}` : ''}</div>
       <h2>${round.question}</h2>
       ${round.prompt ? `<p class="lw-scenario">${round.prompt}</p>` : ''}
       <div class="lw-opts" id="swOpts${i}">
@@ -205,7 +205,7 @@ function renderMcRound(el, round, i, total, satisfy, helpers) {
 function renderMultiselectRound(el, round, i, total, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
-      <div class="sw-round-label">Round ${i + 1} of ${total}${round.heading ? ` — ${round.heading.replace(/^Round \d+\s*—\s*/, '')}` : ''}</div>
+      <div class="sw-round-label">Round ${i + 1} of ${total}${round.heading ? `: ${round.heading.replace(/^Round \d+\s*[—:]\s*/, '')}` : ''}</div>
       <h2>${round.question}</h2>
       ${round.prompt ? `<p class="lw-scenario">${round.prompt}</p>` : ''}
       <div class="sw-multi-grid" id="swMulti${i}">
@@ -241,7 +241,7 @@ function renderMultiselectRound(el, round, i, total, satisfy, helpers) {
       items.forEach((btn, ii) => {
         if (selected[ii] && !round.items[ii].correct) btn.classList.add('wrong');
       });
-      fb.textContent = "Not quite — review your selections and try again.";
+      fb.textContent = "Not quite, review your selections and try again.";
       fb.className = 'lw-feedback show bad';
       helpers.handleStreak(false);
     }
@@ -327,10 +327,10 @@ function renderKnowledge(slide, kc, onPass, helpers) {
         <div class="lw-card sw-result-card">
           <div class="lw-eyebrow">Knowledge Check</div>
           <div class="sw-result-pct ${passed ? 'pass' : 'fail'}">${pct}%</div>
-          <div class="sw-result-sub">${score} of ${total} correct — ${passed ? `you passed (${Math.round(kc.passPct * 100)}% required)` : `${Math.round(kc.passPct * 100)}% required to pass`}</div>
+          <div class="sw-result-sub">${score} of ${total} correct, ${passed ? `you passed (${Math.round(kc.passPct * 100)}% required)` : `${Math.round(kc.passPct * 100)}% required to pass`}</div>
           ${passed
             ? '<button type="button" class="lw-continue-btn" id="swKcContinue" style="align-self:center">Continue →</button>'
-            : '<button type="button" class="lw-continue-btn" id="swKcRetry" style="align-self:center">Try Again — New Questions</button>'}
+            : '<button type="button" class="lw-continue-btn" id="swKcRetry" style="align-self:center">Try Again, New Questions</button>'}
         </div>
       `;
       if (passed) {

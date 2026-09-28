@@ -26,7 +26,7 @@
     {
       "type": "teach",
       "kicker": "Every timeframe has a job. You just don't know what it is yet.",
-      "body": "Higher timeframes give you context — the bigger picture of what price is doing. Lower timeframes reveal detail — the smaller moves inside that picture.<br><br>Later in the Academy, you'll learn exactly how AGHF assigns a specific job to each timeframe. For now, just get comfortable with the idea that they're telling different parts of the same story."
+      "body": "Higher timeframes give you context: the bigger picture of what price is doing. Lower timeframes reveal detail: the smaller moves inside that picture.<br><br>Later in the Academy, you'll learn exactly how AGHF assigns a specific job to each timeframe. For now, just get comfortable with the idea that they're telling different parts of the same story."
     },
     {
       "type": "sequence_build",
@@ -40,8 +40,8 @@
         { "key": "1m", "label": "1M", "desc": "Most zoomed in" }
       ],
       "correctOrder": ["4h", "1h", "15m", "1m"],
-      "successFeedback": "That's the general zoom order — biggest picture first, most detail last. You'll learn the exact job each one does later in the Academy.",
-      "failFeedback": "Not quite the order — think biggest picture first, most zoomed-in last."
+      "successFeedback": "That's the general zoom order: biggest picture first, most detail last. You'll learn the exact job each one does later in the Academy.",
+      "failFeedback": "Not quite the order: think biggest picture first, most zoomed-in last."
     },
     {
       "type": "teach",
@@ -50,8 +50,8 @@
       "check": {
         "prompt": "What's the risk in her thinking?",
         "options": [
-          { "label": "She'll get confused when a detailed view and a big-picture view naturally look different", "correct": true, "why": "Exactly — expecting every timeframe to answer the same question leads to unnecessary confusion." },
-          { "label": "There's no risk — all timeframes should always agree perfectly", "correct": false, "feedback": "Timeframes don't have to agree perfectly at every moment." }
+          { "label": "There's no risk, all timeframes should always agree perfectly", "correct": false, "feedback": "Timeframes don't have to agree perfectly at every moment." },
+          { "label": "She'll get confused when a detailed view and a big-picture view naturally look different", "correct": true, "why": "Exactly. Expecting every timeframe to answer the same question leads to unnecessary confusion." }
         ]
       }
     },
@@ -63,13 +63,13 @@
     {
       "type": "teach",
       "kicker": "The clean beginner flow",
-      "body": "Bigger picture, then structure, then detail — in that order.",
+      "body": "Bigger picture, then structure, then detail, in that order.",
       "check": {
         "prompt": "The clean beginner flow is bigger picture, then structure, then ___ detail last.",
         "options": [
-          { "label": "Entry", "correct": true, "why": "Entry detail comes last, after the bigger picture and structure are established." },
-          { "label": "News", "correct": false, "feedback": "News isn't the third step in this flow — entry detail is." },
-          { "label": "Guesswork", "correct": false, "feedback": "The whole point of this flow is to remove guesswork, not add it at the end." }
+          { "label": "News", "correct": false, "feedback": "News isn't the third step in this flow, entry detail is." },
+          { "label": "Guesswork", "correct": false, "feedback": "The whole point of this flow is to remove guesswork, not add it at the end." },
+          { "label": "Entry", "correct": true, "why": "Entry detail comes last, after the bigger picture and structure are established." }
         ]
       }
     },
@@ -82,7 +82,7 @@
   ],
   "takeaways": [
     "Higher timeframes give context; lower timeframes reveal detail.",
-    "Zooming in changes what you can see — not what's actually happening.",
+    "Zooming in changes what you can see, not what's actually happening.",
     "A messy lower timeframe doesn't erase a clear higher-timeframe read."
   ],
   "remember": "Different timeframes, different parts of the same story."

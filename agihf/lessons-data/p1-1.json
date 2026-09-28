@@ -10,7 +10,7 @@
   "hook": "Trading isn't predicting the future. You're participating in price movement.",
   "format": "slides",
   "launchpad": {
-    "outcome": "Explain what a trade actually is — market, direction, risk, outcome — before any strategy talk.",
+    "outcome": "Explain what a trade actually is (market, direction, risk, outcome) before any strategy talk.",
     "missionQuestion": "Is \"I think price is going up\" a complete trading plan?",
     "estMinutes": 5
   },
@@ -40,12 +40,12 @@
     {
       "type": "teach",
       "kicker": "What you're really doing",
-      "body": "Trading means taking a position because you expect price to move. Go long, and you profit if price rises. Go short, and you profit if price falls. Futures let you do either from your very first trade — you don't have to \"buy first\" the way you might with a stock.",
+      "body": "Trading means taking a position because you expect price to move. Go long, and you profit if price rises. Go short, and you profit if price falls. Futures let you do either from your very first trade. You don't have to \"buy first\" the way you might with a stock.",
       "check": {
         "prompt": "A trader believes MNQ is likely to decline and takes a position designed to profit from falling prices. What kind of position did she take?",
         "options": [
-          { "label": "Short", "body": "Positioned to benefit when price falls.", "correct": true, "why": "Exactly — a position designed to profit from falling prices is a short." },
-          { "label": "Long", "body": "Positioned to benefit when price rises.", "correct": false, "feedback": "Long benefits from price rising — the opposite of what's described here." }
+          { "label": "Long", "body": "Positioned to benefit when price rises.", "correct": false, "feedback": "Long benefits from price rising, the opposite of what's described here." },
+          { "label": "Short", "body": "Positioned to benefit when price falls.", "correct": true, "why": "Exactly: a position designed to profit from falling prices is a short." }
         ]
       }
     },
@@ -58,8 +58,8 @@
       "pointValue": 2,
       "correct": "short",
       "outcomePoints": 60,
-      "goodMsg": "You read that correctly — price reversed, and you positioned for the side that was actually in control. That's the whole job: not predicting with certainty, reacting to what price shows you.",
-      "badMsg": "Look again — price pushed higher then lost control right at the edge of the chart. The reaction is the tell."
+      "goodMsg": "You read that correctly: price reversed, and you positioned for the side that was actually in control. That's the whole job, not predicting with certainty, reacting to what price shows you.",
+      "badMsg": "Look again: price pushed higher then lost control right at the edge of the chart. The reaction is the tell."
     },
     {
       "type": "icon_grid",
@@ -80,12 +80,12 @@
     {
       "type": "teach",
       "kicker": "Trading vs. investing",
-      "body": "Investing is usually about owning something for years. Trading is about profiting from price movement over a much shorter window. Either way, our job isn't to know exactly what happens next — it's to interpret what price is showing us and make rule-based decisions.",
+      "body": "Investing is usually about owning something for years. Trading is about profiting from price movement over a much shorter window. Either way, our job isn't to know exactly what happens next. It's to interpret what price is showing us and make rule-based decisions.",
       "check": {
         "prompt": "Your analysis supports higher prices, but price moves against you. What's the AGHF mindset?",
         "options": [
-          { "label": "A thesis can be reasonable and still be wrong", "body": "Risk defines what happens next.", "correct": true, "why": "Being reasonable and being right aren't the same thing — that's exactly why risk is defined before the trade, not decided emotionally after." },
-          { "label": "The analysis must eventually become correct", "body": "Wait for the market to catch up.", "correct": false, "feedback": "Waiting for the market to \"prove you right\" isn't a risk plan." }
+          { "label": "The analysis must eventually become correct", "body": "Wait for the market to catch up.", "correct": false, "feedback": "Waiting for the market to \"prove you right\" isn't a risk plan." },
+          { "label": "A thesis can be reasonable and still be wrong", "body": "Risk defines what happens next.", "correct": true, "why": "Being reasonable and being right aren't the same thing. That's exactly why risk is defined before the trade, not decided emotionally after." }
         ]
       }
     },
@@ -93,7 +93,7 @@
       "type": "reflect",
       "kicker": "Tell me what you know",
       "prompt": "Why is \"I think price is going up\" not a complete trading plan? What's missing from that statement?",
-      "modelAnswer": "\"I think price is going up\" only covers direction — it doesn't say what market, how much risk, where you'd be proven wrong, or what the outcome plan is. A real trade needs all four pieces: market, direction, risk, and outcome."
+      "modelAnswer": "\"I think price is going up\" only covers direction. It doesn't say what market, how much risk, where you'd be proven wrong, or what the outcome plan is. A real trade needs all four pieces: market, direction, risk, and outcome."
     }
   ],
   "takeaways": [

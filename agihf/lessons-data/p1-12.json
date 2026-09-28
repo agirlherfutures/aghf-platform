@@ -41,8 +41,8 @@
       "check": {
         "prompt": "Which test carries more information?",
         "options": [
-          { "label": "The New York open retest — more participation, more real signal", "correct": true, "why": "Right — more real participants means the reaction reflects more genuine agreement or disagreement." },
-          { "label": "They're equal", "correct": false, "feedback": "Volume differences between sessions are real information, not noise to ignore." }
+          { "label": "They're equal", "correct": false, "feedback": "Volume differences between sessions are real information, not noise to ignore." },
+          { "label": "The New York open retest, more participation, more real signal", "correct": true, "why": "Right. More real participants means the reaction reflects more genuine agreement or disagreement." }
         ]
       }
     },
@@ -58,9 +58,9 @@
       "check": {
         "prompt": "The New York session (RTH open) typically brings the highest ___ and sharpest moves.",
         "options": [
-          { "label": "Volume", "correct": true, "why": "It overlaps with US stock market hours and major news, driving the most participation." },
-          { "label": "Spread", "correct": false, "feedback": "Spread isn't what defines a session's character — participation is." },
-          { "label": "Fees", "correct": false, "feedback": "Fees don't change session to session — volume and participation do." }
+          { "label": "Spread", "correct": false, "feedback": "Spread isn't what defines a session's character, participation is." },
+          { "label": "Fees", "correct": false, "feedback": "Fees don't change session to session, volume and participation do." },
+          { "label": "Volume", "correct": true, "why": "It overlaps with US stock market hours and major news, driving the most participation." }
         ]
       }
     },
@@ -68,11 +68,11 @@
       "type": "reflect",
       "kicker": "Tell me what you know",
       "prompt": "Imagine another AGHF member asks: \"Why does it matter what time I'm looking at a breakout?\" How would you explain it to them?",
-      "modelAnswer": "The same-looking break of structure means different things depending on how many real participants were actually there to make it happen. A break on thin overnight volume can look identical to one at the New York open, but the New York version reflects way more real conviction — ignoring session context throws away free information the chart is already giving you."
+      "modelAnswer": "The same-looking break of structure means different things depending on how many real participants were actually there to make it happen. A break on thin overnight volume can look identical to one at the New York open, but the New York version reflects way more real conviction, ignoring session context throws away free information the chart is already giving you."
     }
   ],
   "takeaways": [
-    "Asia, London, and New York each behave differently — none is \"better,\" just different.",
+    "Asia, London, and New York each behave differently, none is \"better,\" just different.",
     "A move on heavy volume carries more real information than the same-looking move on thin volume.",
     "Ignoring session context throws away free, useful information."
   ],

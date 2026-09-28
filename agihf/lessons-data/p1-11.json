@@ -26,13 +26,13 @@
     {
       "type": "teach",
       "kicker": "Contracts change the money, not the structure",
-      "body": "Your entry can be clean and your stop loss can be correct, but if your size is too big, the trade becomes emotionally heavy.<br><br>Position sizing is what makes the same setup feel manageable or reckless — the chart doesn't know how many contracts you're in, but you will."
+      "body": "Your entry can be clean and your stop loss can be correct, but if your size is too big, the trade becomes emotionally heavy.<br><br>Position sizing is what makes the same setup feel manageable or reckless, the chart doesn't know how many contracts you're in, but you will."
     },
     {
       "type": "calculator",
       "kicker": "Same setup, two different sizes",
       "title": "Tap each size to see how the weight changes",
-      "body": "Same 10-point stop, same setup — only the contract count changes below.",
+      "body": "Same 10-point stop, same setup, only the contract count changes below.",
       "instruments": [
         { "key": "mnq", "label": "MNQ", "sub": "Micro Nasdaq 100", "pointValue": 2 }
       ],
@@ -46,38 +46,38 @@
       "check": {
         "prompt": "What's actually happening here?",
         "options": [
-          { "label": "Emotion is driving her sizing decision, not her risk plan", "correct": true, "why": "Exactly — that's revenge sizing, and it compounds risk right when discipline matters most." },
-          { "label": "That's a smart way to recover losses quickly", "correct": false, "feedback": "Increasing size to chase back a loss usually increases risk at the worst possible moment." }
+          { "label": "That's a smart way to recover losses quickly", "correct": false, "feedback": "Increasing size to chase back a loss usually increases risk at the worst possible moment." },
+          { "label": "Emotion is driving her sizing decision, not her risk plan", "correct": true, "why": "Exactly. That's revenge sizing, and it compounds risk right when discipline matters most." }
         ]
       }
     },
     {
       "type": "dayli",
       "kicker": "Dayli Says",
-      "quote": "Keep your size consistent. Going heavier because confidence is high, or doubling size after a loss, is emotion talking — not a risk plan."
+      "quote": "Keep your size consistent. Going heavier because confidence is high, or doubling size after a loss, is emotion talking, not a risk plan."
     },
     {
       "type": "teach",
       "kicker": "Same structure, different weight",
-      "body": "Two traders take the identical setup — same entry, same stop, same target — but one uses 1 contract and the other uses 10.",
+      "body": "Two traders take the identical setup (same entry, same stop, same target) but one uses 1 contract and the other uses 10.",
       "check": {
         "prompt": "Is one trade objectively better structured?",
         "options": [
-          { "label": "No — the structure is identical; only the dollar risk and emotional weight differ", "correct": true, "why": "Sizing decides how much is on the line — it doesn't change whether the setup itself is good." },
-          { "label": "Yes — more contracts always means a better trade", "correct": false, "feedback": "More contracts just means more exposure — it doesn't improve the setup itself." },
-          { "label": "Yes — fewer contracts always means a safer, more valid setup", "correct": false, "feedback": "Fewer contracts reduces dollar risk, but it doesn't change whether the setup itself was valid." }
+          { "label": "Yes, more contracts always means a better trade", "correct": false, "feedback": "More contracts just means more exposure, it doesn't improve the setup itself." },
+          { "label": "Yes, fewer contracts always means a safer, more valid setup", "correct": false, "feedback": "Fewer contracts reduces dollar risk, but it doesn't change whether the setup itself was valid." },
+          { "label": "No, the structure is identical; only the dollar risk and emotional weight differ", "correct": true, "why": "Sizing decides how much is on the line, it doesn't change whether the setup itself is good." }
         ]
       }
     },
     {
       "type": "teach",
       "kicker": "Where sizing should come from",
-      "body": "Your contract size should be decided the same way every time — not based on how you feel that day.",
+      "body": "Your contract size should be decided the same way every time, not based on how you feel that day.",
       "check": {
         "prompt": "Your contract size should be decided by your ___, not by how confident or excited you feel today.",
         "options": [
+          { "label": "Mood", "correct": false, "feedback": "Mood changes day to day, your sizing shouldn't." },
           { "label": "Risk plan", "correct": true, "why": "A risk plan stays consistent regardless of how a trader feels in the moment." },
-          { "label": "Mood", "correct": false, "feedback": "Mood changes day to day — your sizing shouldn't." },
           { "label": "Win streak", "correct": false, "feedback": "A win streak doesn't change how much risk a setup can actually handle." }
         ]
       }
@@ -86,7 +86,7 @@
       "type": "reflect",
       "kicker": "Tell me what you know",
       "prompt": "Imagine another AGHF member asks: \"Isn't bigger size just a way to make more money faster?\" How would you explain the risk to them?",
-      "modelAnswer": "Bigger size doesn't make a bad setup good, and it doesn't make a good setup better — it just multiplies whatever is already there, including the emotional weight of being wrong. The same setup that's easy to think clearly through at 1 contract can become impossible to manage at 10, even though nothing about the chart changed."
+      "modelAnswer": "Bigger size doesn't make a bad setup good, and it doesn't make a good setup better, it just multiplies whatever is already there, including the emotional weight of being wrong. The same setup that's easy to think clearly through at 1 contract can become impossible to manage at 10, even though nothing about the chart changed."
     }
   ],
   "takeaways": [

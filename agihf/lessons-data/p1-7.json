@@ -26,12 +26,12 @@
     {
       "type": "teach",
       "kicker": "Your workspace, not a decoration contest",
-      "body": "You're using TradingView to read price, change your perspective with timeframes, and mark behavior so your eyes stop feeling lost.<br><br>A horizontal level marking a repeated reaction area is one of the cleanest beginner tools — you don't need every feature to read a chart well.",
+      "body": "You're using TradingView to read price, change your perspective with timeframes, and mark behavior so your eyes stop feeling lost.<br><br>A horizontal level marking a repeated reaction area is one of the cleanest beginner tools, you don't need every feature to read a chart well.",
       "check": {
         "prompt": "A new trader adds ten different drawing tools to her chart at once, hoping more markings will make her read clearer.",
         "options": [
-          { "label": "An overloaded chart makes price harder to read, not easier", "correct": true, "why": "Right — clutter competes with price for your attention." },
-          { "label": "Nothing — more tools always means a better read", "correct": false, "feedback": "More markings isn't automatically more useful information." }
+          { "label": "Nothing, more tools always means a better read", "correct": false, "feedback": "More markings isn't automatically more useful information." },
+          { "label": "An overloaded chart makes price harder to read, not easier", "correct": true, "why": "Right. Clutter competes with price for your attention." }
         ]
       }
     },
@@ -43,12 +43,12 @@
     {
       "type": "teach",
       "kicker": "Perspective, not a different market",
-      "body": "Switching timeframes changes what you're looking at — not what's actually happening in the market underneath it.",
+      "body": "Switching timeframes changes what you're looking at, not what's actually happening in the market underneath it.",
       "check": {
         "prompt": "Switching timeframes changes your ___ on the same market, not the market itself.",
         "options": [
-          { "label": "Perspective", "correct": true, "why": "Zooming in or out just changes what detail you can see, not the underlying price story." },
           { "label": "Instrument", "correct": false, "feedback": "The instrument doesn't change just because you zoomed in or out." },
+          { "label": "Perspective", "correct": true, "why": "Zooming in or out just changes what detail you can see, not the underlying price story." },
           { "label": "Broker", "correct": false, "feedback": "Your broker has nothing to do with which timeframe you're viewing." }
         ]
       }
@@ -68,13 +68,13 @@
       "type": "reflect",
       "kicker": "Tell me what you know",
       "prompt": "Imagine another AGHF member asks: \"Why does my chart look so messy compared to yours?\" How would you explain it to them?",
-      "modelAnswer": "More drawing tools doesn't mean more clarity — usually it means more clutter. A clean chart uses a few tools clearly, like a couple of horizontal levels marking areas price has reacted to before, so your eyes can find the story instead of fighting through noise."
+      "modelAnswer": "More drawing tools doesn't mean more clarity, usually it means more clutter. A clean chart uses a few tools clearly, like a couple of horizontal levels marking areas price has reacted to before, so your eyes can find the story instead of fighting through noise."
     }
   ],
   "takeaways": [
     "TradingView is a workspace for reading price, not a decoration contest.",
     "A cluttered chart makes price harder to read, not easier.",
-    "Switching timeframes changes your view — not the market itself."
+    "Switching timeframes changes your view, not the market itself."
   ],
   "remember": "A few tools used clearly beats a messy chart."
 }
