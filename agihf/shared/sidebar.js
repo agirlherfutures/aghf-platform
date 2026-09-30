@@ -12,8 +12,7 @@
  * Usage: <script src="../shared/sidebar.js" data-active="dashboard"></script>
  * data-active must match one of: dashboard, market-outlook, checklist,
  * journal, eval-calculator, agent, lessons, games, chart-lab, playbook,
- * resource-library, leaderboard, monthly-challenge, store, profile,
- * performance
+ * leaderboard, monthly-challenge, store, profile, performance
  */
 (function () {
   const script = document.currentScript;
@@ -31,7 +30,6 @@
     { section: 'Learn', key: 'games', icon: '◈', label: 'Games', href: 'games.html' },
     { section: 'Learn', key: 'chart-lab', icon: '◧', label: 'Chart Lab', href: 'chart-lab.html' },
     { section: 'Learn', key: 'playbook', icon: '❦', label: 'Lesson Notes', href: 'playbook.html' },
-    { section: 'Learn', key: 'resource-library', icon: '📖', label: 'Resource Library', href: 'trader-resource-library.html' },
     { section: 'Community', key: 'leaderboard', icon: '✦', label: 'Share My Win', href: 'share-win.html' },
     { section: 'Community', key: 'monthly-challenge', icon: '🏆', label: 'Monthly Challenge', href: 'monthly-challenge.html' },
     { section: 'Community', key: 'store', icon: '◈', label: 'Join Discord', href: 'store.html' },
