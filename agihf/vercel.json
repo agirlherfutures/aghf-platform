@@ -3,6 +3,7 @@
     "api/agent-chat.js": { "maxDuration": 60 }
   },
   "rewrites": [
+    { "source": "/resources", "destination": "/resources.html" },
     { "source": "/api/agent-conversations", "destination": "/api/agent-data?resource=conversations" },
     { "source": "/api/agent-messages", "destination": "/api/agent-data?resource=messages" },
     { "source": "/api/agent-memory", "destination": "/api/agent-data?resource=memory" },
