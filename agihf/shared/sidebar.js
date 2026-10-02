@@ -28,7 +28,6 @@
     { section: 'Mindset', key: 'agent', icon: '♡', label: 'AGHF Agent', href: 'psychology.html' },
     { section: 'Learn', key: 'lessons', icon: '✦', label: 'Academy', href: 'lessons.html', mobileIcon: '✦', mobileLabel: 'Academy' },
     { section: 'Learn', key: 'games', icon: '◈', label: 'Games', href: 'games.html' },
-    { section: 'Learn', key: 'chart-lab', icon: '◧', label: 'Chart Lab', href: 'chart-lab.html' },
     { section: 'Learn', key: 'playbook', icon: '❦', label: 'Lesson Notes', href: 'playbook.html' },
     { section: 'Community', key: 'leaderboard', icon: '✦', label: 'Share My Win', href: 'share-win.html' },
     { section: 'Community', key: 'monthly-challenge', icon: '🏆', label: 'Monthly Challenge', href: 'monthly-challenge.html' },

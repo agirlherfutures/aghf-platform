@@ -118,6 +118,14 @@
   }
 
   async function boot() {
+    // Chart Lab is temporarily hidden while its drill data/content is
+    // reworked — see chart-lab.html for the matching redirect. Remove
+    // this early return to bring the page back once it's ready.
+    location.href = 'dashboard.html';
+    return;
+  }
+
+  async function unusedBoot() {
     try {
       ({ getDrill, submitAttempt, getCurrentSession, updateSession, reportDrill } = await import('./shared/chartlab-service.js'));
       ({ renderDrillPlayer, renderRevealScreen, renderSessionResults } = await import('./shared/chartlab-engine.js'));
