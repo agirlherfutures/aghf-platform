@@ -4,7 +4,7 @@
   "lessonNumber": 6,
   "title": "Points, Ticks & P&L",
   "videoUrl": null,
-  "videoDuration": "8 min",
+  "videoDuration": "1:32",
   "xpValue": 50,
   "passThreshold": 0.6,
   "hook": "Before you worry about making money, you need to understand how the numbers work.",
@@ -16,10 +16,12 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Point vs. tick" },
-      { "t": "01:30", "label": "The P&L formula" },
-      { "t": "03:00", "label": "Watch it scale with contract size" },
-      { "t": "05:00", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Points and ticks" },
+      { "t": "00:31", "label": "The P&L formula" },
+      { "t": "00:52", "label": "Wins and losses scale the same" },
+      { "t": "01:06", "label": "Never risk in points alone" },
+      { "t": "01:18", "label": "Your mission" }
     ]
   },
   "slides": [

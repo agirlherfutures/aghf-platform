@@ -4,7 +4,7 @@
   "lessonNumber": 17,
   "title": "Timeframes",
   "videoUrl": null,
-  "videoDuration": "6 min",
+  "videoDuration": "1:20",
   "xpValue": 70,
   "passThreshold": 0.6,
   "hook": "Higher timeframes tell the story. Lower timeframes let you step inside it.",
@@ -16,11 +16,11 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "What is a timeframe" },
-      { "t": "01:20", "label": "4H, the big picture" },
-      { "t": "03:00", "label": "1M, the detail trap" },
-      { "t": "04:40", "label": "Giving each timeframe a job" },
-      { "t": "05:30", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Zooming in on price" },
+      { "t": "00:32", "label": "The 1M noise problem" },
+      { "t": "00:52", "label": "Your perspective changes" },
+      { "t": "01:06", "label": "Your mission" }
     ]
   },
   "slides": [

@@ -4,7 +4,7 @@
   "lessonNumber": 16,
   "title": "Candle Psychology",
   "videoUrl": null,
-  "videoDuration": "8 min",
+  "videoDuration": "1:16",
   "xpValue": 100,
   "passThreshold": 0.6,
   "hook": "Going deeper. What specific candle behavior means for your next read.",
@@ -16,10 +16,11 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Every candle is a battle" },
-      { "t": "02:00", "label": "Same wick, different close" },
-      { "t": "04:15", "label": "Reacted, rejected, closed" },
-      { "t": "06:15", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Push, reject, accept, fail" },
+      { "t": "00:30", "label": "React, reject, close" },
+      { "t": "00:44", "label": "Wait for confirmation" },
+      { "t": "01:02", "label": "Your mission" }
     ]
   },
   "slides": [

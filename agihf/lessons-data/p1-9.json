@@ -4,7 +4,7 @@
   "lessonNumber": 9,
   "title": "Order Types",
   "videoUrl": null,
-  "videoDuration": "6 min",
+  "videoDuration": "1:32",
   "xpValue": 60,
   "passThreshold": 0.6,
   "hook": "Know the difference before you touch a chart.",
@@ -16,10 +16,12 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Market, limit, and stop orders" },
-      { "t": "01:45", "label": "Speed vs. price control" },
-      { "t": "03:30", "label": "When a stop order actually triggers" },
-      { "t": "05:00", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Market, limit, stop" },
+      { "t": "00:32", "label": "See them in action" },
+      { "t": "00:58", "label": "Speed vs. control" },
+      { "t": "01:09", "label": "Understand all three first" },
+      { "t": "01:21", "label": "Your mission" }
     ]
   },
   "slides": [

@@ -4,7 +4,7 @@
   "lessonNumber": 10,
   "title": "Stop Loss & Take Profit",
   "videoUrl": null,
-  "videoDuration": "6 min",
+  "videoDuration": "1:28",
   "xpValue": 60,
   "passThreshold": 0.6,
   "hook": "Protect your capital first. Always know your exit before your entry.",
@@ -16,10 +16,12 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Stops belong where the setup is proven wrong" },
-      { "t": "01:45", "label": "Comfort vs. structure" },
-      { "t": "03:15", "label": "When fear says move it" },
-      { "t": "04:45", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Exits before entries" },
+      { "t": "00:29", "label": "When fear says move it" },
+      { "t": "00:50", "label": "Take profit is planned" },
+      { "t": "01:02", "label": "Your stop protects your account" },
+      { "t": "01:13", "label": "Your mission" }
     ]
   },
   "slides": [

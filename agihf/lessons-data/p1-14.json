@@ -4,7 +4,7 @@
   "lessonNumber": 14,
   "title": "Candle Anatomy",
   "videoUrl": null,
-  "videoDuration": "7 min",
+  "videoDuration": "1:19",
   "xpValue": 95,
   "passThreshold": 0.6,
   "hook": "Body, wicks, open, close. Know every part before you read a single chart.",
@@ -16,10 +16,11 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Open, high, low, close" },
-      { "t": "01:10", "label": "Body vs. wick" },
-      { "t": "02:45", "label": "Why the close matters most" },
-      { "t": "04:30", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Open, close, high, low, body, wick" },
+      { "t": "00:35", "label": "Body, then wicks, then close" },
+      { "t": "00:54", "label": "Wick vs. close" },
+      { "t": "01:06", "label": "Your mission" }
     ]
   },
   "slides": [

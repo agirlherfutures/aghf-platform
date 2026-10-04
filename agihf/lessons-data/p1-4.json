@@ -4,7 +4,7 @@
   "lessonNumber": 4,
   "title": "Contracts & Instruments",
   "videoUrl": null,
-  "videoDuration": "6 min",
+  "videoDuration": "1:27",
   "xpValue": 50,
   "passThreshold": 0.6,
   "hook": "MNQ isn't just a ticker on your screen. Know what you're actually trading.",
@@ -16,10 +16,13 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "What a futures contract is" },
-      { "t": "01:15", "label": "The instrument pairs to know" },
-      { "t": "02:45", "label": "MNQ vs. NQ size difference" },
-      { "t": "04:00", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "The instrument is the vehicle" },
+      { "t": "00:21", "label": "Contract count is your size" },
+      { "t": "00:32", "label": "MNQ vs. NQ: $20 vs. $200" },
+      { "t": "00:53", "label": "A size problem first" },
+      { "t": "01:04", "label": "Instrument, value, risk" },
+      { "t": "01:14", "label": "Your mission" }
     ]
   },
   "slides": [

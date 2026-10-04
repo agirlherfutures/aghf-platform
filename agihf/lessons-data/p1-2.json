@@ -4,7 +4,7 @@
   "lessonNumber": 2,
   "title": "Why Do Markets Exist?",
   "videoUrl": null,
-  "videoDuration": "4 min",
+  "videoDuration": "1:29",
   "xpValue": 50,
   "passThreshold": 0.6,
   "hook": "Before you try to beat the market, understand what the market is doing.",
@@ -16,10 +16,13 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Why markets exist" },
-      { "t": "01:00", "label": "Buyers need sellers" },
-      { "t": "02:00", "label": "Hedging vs. speculating" },
-      { "t": "03:00", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Understand the market first" },
+      { "t": "00:16", "label": "Hedger, speculator, investor" },
+      { "t": "00:35", "label": "Watch a transaction form" },
+      { "t": "00:55", "label": "Disagreement creates trades" },
+      { "t": "01:06", "label": "The chart is the record" },
+      { "t": "01:15", "label": "Your mission" }
     ]
   },
   "slides": [

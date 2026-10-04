@@ -4,7 +4,7 @@
   "lessonNumber": 12,
   "title": "Trading Sessions & Market Hours",
   "videoUrl": null,
-  "videoDuration": "6 min",
+  "videoDuration": "1:27",
   "xpValue": 60,
   "passThreshold": 0.6,
   "hook": "Different sessions, different behavior. Know which one you're looking at.",
@@ -16,10 +16,12 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Asia, London, and New York" },
-      { "t": "01:45", "label": "Not better, just different" },
-      { "t": "03:15", "label": "Volume as real information" },
-      { "t": "04:45", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Asia, London, New York" },
+      { "t": "00:33", "label": "Volume: who showed up" },
+      { "t": "00:51", "label": "Know your session" },
+      { "t": "01:02", "label": "Which session are you in?" },
+      { "t": "01:13", "label": "Your mission" }
     ]
   },
   "slides": [

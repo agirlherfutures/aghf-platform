@@ -4,7 +4,7 @@
   "lessonNumber": 15,
   "title": "Wicks, Bodies & Closes",
   "videoUrl": null,
-  "videoDuration": "6 min",
+  "videoDuration": "1:13",
   "xpValue": 60,
   "passThreshold": 0.6,
   "hook": "I don't care about the wick. I need the candle to close through the level.",
@@ -16,10 +16,11 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Reached vs. accepted" },
-      { "t": "01:30", "label": "Why later entries are built on this" },
-      { "t": "03:00", "label": "Wick vs. close, side by side" },
-      { "t": "04:30", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Reached vs. accepted" },
+      { "t": "00:32", "label": "Wick vs. close" },
+      { "t": "00:48", "label": "I need the close" },
+      { "t": "00:59", "label": "Your mission" }
     ]
   },
   "slides": [

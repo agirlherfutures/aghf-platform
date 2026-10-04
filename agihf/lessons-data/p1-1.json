@@ -4,7 +4,7 @@
   "lessonNumber": 1,
   "title": "What Even Is Trading?",
   "videoUrl": null,
-  "videoDuration": "5 min",
+  "videoDuration": "1:30",
   "xpValue": 50,
   "passThreshold": 0.6,
   "hook": "Trading isn't predicting the future. You're participating in price movement.",
@@ -16,11 +16,13 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "What trading actually is" },
-      { "t": "01:00", "label": "Long vs. short" },
-      { "t": "02:15", "label": "Trading vs. investing" },
-      { "t": "03:20", "label": "Why prediction isn't the job" },
-      { "t": "04:30", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Meet Aristella" },
+      { "t": "00:10", "label": "Trading isn't predicting" },
+      { "t": "00:20", "label": "Long vs. short" },
+      { "t": "00:36", "label": "Every trade's four pieces" },
+      { "t": "00:55", "label": "Trading vs. investing" },
+      { "t": "01:07", "label": "Structured decisions" },
+      { "t": "01:17", "label": "Your mission" }
     ],
     "preview": {
       "shape": "trade_anatomy",
