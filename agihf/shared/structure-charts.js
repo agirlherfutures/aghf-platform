@@ -124,7 +124,7 @@ export function mountChart(container, spec, opts = {}) {
     const g = el('g', { class: 'sc-box' }, boxes);
     el('rect', { x: b.x1, y: b.y1, width: b.x2 - b.x1, height: b.y2 - b.y1, rx: 10, fill: t.pale, stroke: t.fill, 'stroke-width': 2, 'stroke-dasharray': b.dashed === false ? null : '8 6' }, g);
     if (b.label) {
-      const tx = el('text', { x: b.labelRight ? b.x2 - 4 : b.x1 + 4, y: b.labelBelow ? b.y2 + 18 : b.y1 - 8, 'text-anchor': b.labelRight ? 'end' : 'start', 'font-size': 13, 'font-weight': 800, fill: t.dark, 'font-family': 'DM Sans, sans-serif' }, g);
+      const tx = el('text', { x: b.labelRight ? b.x2 - 4 : b.x1 + 4, y: b.labelBelow ? b.y2 + 18 : b.y1 - 8, 'text-anchor': b.labelRight ? 'end' : 'start', 'font-size': b.size || 13, 'font-weight': 800, fill: t.dark, 'font-family': 'DM Sans, sans-serif' }, g);
       tx.textContent = b.label;
     }
     track(b.id, g);
@@ -136,7 +136,7 @@ export function mountChart(container, spec, opts = {}) {
     el('line', { x1: hl.x1 ?? 8, x2: hl.x2 ?? W - 8, y1: hl.y, y2: hl.y, stroke: t.fill, 'stroke-width': hl.door ? 4 : 2.5, 'stroke-dasharray': hl.door ? null : '9 7' }, g);
     if (hl.label) {
       const lx = hl.labelX ?? (hl.x1 ?? 8) + 6;
-      const tx = el('text', { x: lx, y: hl.y + (hl.below ? 18 : -8), 'font-size': 13, 'font-weight': 800, fill: t.dark, 'font-family': 'DM Sans, sans-serif' }, g);
+      const tx = el('text', { x: lx, y: hl.y + (hl.below ? (hl.size || 13) + 5 : -8), 'font-size': hl.size || 13, 'font-weight': 800, fill: t.dark, 'font-family': 'DM Sans, sans-serif' }, g);
       tx.textContent = (hl.door ? '🚪 ' : '') + hl.label;
     }
     track(hl.id, g);
@@ -147,7 +147,7 @@ export function mountChart(container, spec, opts = {}) {
   const bars = spec.bars ? spec.bars.map((b, i, arr) => {
     const x1 = spec.barsX ? spec.barsX[0] : 120, x2 = spec.barsX ? spec.barsX[1] : 580;
     const step = (x2 - x1) / Math.max(1, arr.length - 1);
-    return { x: b.x ?? x1 + step * i, o: b.o, c: b.c, h: b.h ?? Math.min(b.o, b.c) - 6, l: b.l ?? Math.max(b.o, b.c) + 6, w: b.w ?? Math.min(34, step * 0.55), seg: b.seg ?? Math.max(0, swings.length - 1) };
+    return { x: b.x ?? x1 + step * i, o: b.o, c: b.c, h: b.h ?? Math.min(b.o, b.c) - 6, l: b.l ?? Math.max(b.o, b.c) + 6, w: b.w ?? Math.min(34, step * 0.55), seg: b.seg ?? Math.max(0, swings.length - 1), id: b.id };
   }) : [];
   const generated = spec.candles !== false && swings.length > 1 ? buildCandles(swings, spec.seed, spec.density || 1) : [];
   const candleNodes = [];
@@ -156,6 +156,7 @@ export function mountChart(container, spec, opts = {}) {
       const up = c.c < c.o, t = up ? TONE.up : TONE.down;
       const g = el('g', { class: 'sc-candle', style: `animation-delay:${Math.min(i * 28, 1400)}ms` }, candleG);
       candleNodes.push({ g, seg: c.seg });
+      if (c.id) track(c.id, g);
       el('line', { x1: c.x, x2: c.x, y1: c.h, y2: c.l, stroke: t.fill, 'stroke-width': 2, 'stroke-linecap': 'round' }, g);
       el('rect', { x: c.x - c.w / 2, y: Math.min(c.o, c.c), width: c.w, height: Math.max(2.5, Math.abs(c.o - c.c)), rx: 2, fill: t.fill }, g);
     });
@@ -269,8 +270,23 @@ export function mountChart(container, spec, opts = {}) {
   const mk = el('marker', { id: 'scArrow', viewBox: '0 0 10 10', refX: 5, refY: 5, markerWidth: 5, markerHeight: 5, orient: 'auto-start-reverse' }, defs);
   el('path', { d: 'M0,0 L10,5 L0,10 z', fill: '#5E56B8' }, mk);
 
+  // Candle-by-candle playback: show the first k candles; new ones print one after another.
+  let shown = candleNodes.length;
+  function showCandles(k, gap = 160) {
+    const prev = shown;
+    shown = Math.max(0, Math.min(k, candleNodes.length));
+    let d = 0;
+    candleNodes.forEach(({ g }, i) => {
+      const on = i < shown;
+      g.style.display = on ? '' : 'none';
+      if (on && i >= prev) { g.style.animation = 'none'; void g.getBoundingClientRect(); g.style.animation = ''; g.style.animationDelay = `${d++ * gap}ms`; }
+    });
+    return Math.max(0, (d - 1) * gap) + 350;
+  }
+  if (spec.showCandles != null) { shown = spec.showCandles; candleNodes.forEach(({ g }, i) => { g.style.display = i < shown ? '' : 'none'; }); }
+
   const api = {
-    svg, wrap, points, swings, zoomTo, progress, compare,
+    svg, wrap, points, swings, zoomTo, progress, compare, showCandles, candleCount: candleNodes.length,
     clearCompare() { compareG.innerHTML = ''; },
     dim(ids, on = true) { [].concat(ids || []).forEach((id) => (reveal[id] || []).forEach((n) => n.classList.toggle('sc-dim', on))); },
     /** The labellable swing nearest a screen point, or -1. */

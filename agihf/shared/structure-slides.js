@@ -371,6 +371,7 @@ export function renderFlashSort(el, slide, satisfy, helpers) {
     locked = true;
     const item = items[k];
     const right = b.dataset.k === item.answer;
+    helpers.onPick?.(item, { label: b.textContent.trim() }, right);
     btns.forEach((x) => { x.disabled = true; if (x.dataset.k === item.answer) x.classList.add('correct'); });
     if (!right) b.classList.add('wrong');
     if (right) { score += 1; run += 1; best = Math.max(best, run); } else run = 0;

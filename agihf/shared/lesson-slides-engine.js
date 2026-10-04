@@ -34,6 +34,7 @@ import { renderLoopWatch } from './loop-engine.js';
 import { saveLessonReflection } from './journal-service.js';
 import { STRUCTURE_RENDERERS } from './structure-slides.js';
 import { V2_RENDERERS, renderV2Complete } from './lesson-v2.js';
+import { PRICE_LAB_RENDERERS } from './price-lab.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 let uidCounter = 0;
@@ -919,6 +920,7 @@ function renderSequenceBuildSlide(el, slide, satisfy, helpers) {
 export const SLIDE_RENDERERS = {
   ...STRUCTURE_RENDERERS,
   ...V2_RENDERERS,
+  ...PRICE_LAB_RENDERERS,
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
   chart_tap: renderChartTapSlide,

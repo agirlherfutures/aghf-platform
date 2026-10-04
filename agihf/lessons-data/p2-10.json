@@ -1,0 +1,931 @@
+{
+  "phase": "p2",
+  "section": "s5",
+  "lessonNumber": 10,
+  "title": "What Does It Mean to Break Structure?",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Before you label a break, identify the level.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Identify what actually broke (a candle, a minor internal swing, a relevant swing or an external swing) before labeling it.",
+    "missionQuestion": "If price breaks a high, did the structure break?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "kicker": "Watch with Dayli",
+      "title": "Before you label a break, identify the level.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            268
+          ],
+          [
+            128.0,
+            70
+          ],
+          [
+            176.0,
+            150
+          ],
+          [
+            208.0,
+            118
+          ],
+          [
+            272.0,
+            232
+          ],
+          [
+            304.0,
+            196
+          ],
+          [
+            320.0,
+            210
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 268,
+            "c": 237.5,
+            "h": 233.9,
+            "l": 272.4,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 237.5,
+            "c": 191.5,
+            "h": 186.0,
+            "l": 243.2,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 191.5,
+            "c": 174.5,
+            "h": 172.2,
+            "l": 195.6,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 174.5,
+            "c": 129.9,
+            "h": 127.1,
+            "l": 180.7,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 129.9,
+            "c": 120.7,
+            "h": 119.0,
+            "l": 135.7,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 120.7,
+            "c": 78.4,
+            "h": 70,
+            "l": 124.2,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 78.4,
+            "c": 99.5,
+            "h": 73.5,
+            "l": 103.3,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 99.5,
+            "c": 128.5,
+            "h": 94.7,
+            "l": 130.7,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 128.5,
+            "c": 140.9,
+            "h": 122.6,
+            "l": 150,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 140.9,
+            "c": 131.4,
+            "h": 126.8,
+            "l": 142.6,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 131.4,
+            "c": 124.0,
+            "h": 118,
+            "l": 133.9,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 124.0,
+            "c": 159.6,
+            "h": 121.0,
+            "l": 162.9,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 159.6,
+            "c": 185.7,
+            "h": 156.5,
+            "l": 190.0,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 185.7,
+            "c": 203.8,
+            "h": 183.9,
+            "l": 208.2,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 203.8,
+            "c": 222.6,
+            "h": 201.1,
+            "l": 232,
+            "w": 9.6
+          },
+          {
+            "x": 288.0,
+            "o": 222.6,
+            "c": 208.0,
+            "h": 204.4,
+            "l": 224.3,
+            "w": 9.6
+          },
+          {
+            "x": 304.0,
+            "o": 208.0,
+            "c": 204.0,
+            "h": 196,
+            "l": 213.3,
+            "w": 9.6
+          },
+          {
+            "x": 320.0,
+            "o": 204.0,
+            "c": 201.4,
+            "h": 197.2,
+            "l": 210,
+            "w": 9.6
+          },
+          {
+            "x": 336.0,
+            "o": 201.4,
+            "c": 192.4,
+            "h": 190.1,
+            "l": 205.7,
+            "w": 9.6
+          },
+          {
+            "x": 352.0,
+            "o": 192.4,
+            "c": 178.4,
+            "h": 173.9,
+            "l": 194.4,
+            "w": 9.6
+          },
+          {
+            "x": 368.0,
+            "o": 178.4,
+            "c": 168.0,
+            "h": 162.6,
+            "l": 180.4,
+            "w": 9.6
+          },
+          {
+            "x": 384.0,
+            "o": 168.0,
+            "c": 142.8,
+            "h": 137.3,
+            "l": 174.2,
+            "w": 9.6
+          },
+          {
+            "x": 400.0,
+            "o": 142.8,
+            "c": 124.6,
+            "h": 121.0,
+            "l": 145.6,
+            "w": 9.6
+          },
+          {
+            "x": 416.0,
+            "o": 124.6,
+            "c": 104.0,
+            "h": 101.1,
+            "l": 129.2,
+            "w": 9.6
+          },
+          {
+            "x": 432.0,
+            "o": 104.0,
+            "c": 94.6,
+            "h": 92.5,
+            "l": 107.8,
+            "w": 9.6
+          },
+          {
+            "x": 448.0,
+            "o": 94.6,
+            "c": 86.6,
+            "h": 81.8,
+            "l": 100.2,
+            "w": 9.6
+          },
+          {
+            "x": 464.0,
+            "o": 86.6,
+            "c": 80.0,
+            "h": 74.6,
+            "l": 90.5,
+            "w": 9.6
+          },
+          {
+            "x": 480.0,
+            "o": 80.0,
+            "c": 86,
+            "h": 56,
+            "l": 90,
+            "w": 9.6
+          }
+        ],
+        "hlines": [
+          {
+            "y": 70,
+            "label": "C · external high",
+            "tone": "purple",
+            "x1": 118.0,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          },
+          {
+            "y": 118,
+            "label": "B · relevant swing high",
+            "tone": "gold",
+            "x1": 198.0,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          },
+          {
+            "y": 196,
+            "label": "A · tiny internal high",
+            "tone": "muted",
+            "x1": 294.0,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          }
+        ],
+        "marks": [
+          {
+            "i": 1,
+            "label": "C",
+            "tone": "purple"
+          },
+          {
+            "i": 3,
+            "label": "B",
+            "tone": "gold"
+          },
+          {
+            "i": 5,
+            "label": "A",
+            "tone": "muted"
+          }
+        ]
+      },
+      "start": 18,
+      "story": {
+        "rows": [
+          {
+            "key": "larger",
+            "label": "Larger structure",
+            "value": "Bullish",
+            "tone": "up"
+          },
+          {
+            "key": "last",
+            "label": "Last break",
+            "value": "None yet",
+            "tone": "muted"
+          },
+          {
+            "key": "ext",
+            "label": "External high (C)",
+            "value": "Intact",
+            "tone": "purple"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "HL → HH → HL. Price pulled back inside a bullish structure, and three highs are marked above it. Watch what price does to each one.",
+          "next": "Play price →"
+        },
+        {
+          "candles": 19,
+          "text": "Price just closed above something. Pause.",
+          "tap": {
+            "prompt": "WHAT ACTUALLY BROKE? Tap it on the chart.",
+            "answer": 5,
+            "only": [
+              1,
+              3,
+              5
+            ],
+            "concept": "structural-break",
+            "names": {
+              "1": "C",
+              "3": "B",
+              "5": "A"
+            },
+            "hint": "Look at the lowest of the three marked highs. Which one did price just get above?",
+            "notes": {
+              "1": "C is still far above price.",
+              "3": "Not yet. B is still above price."
+            },
+            "reveal": {
+              "5": {
+                "label": "A · broken",
+                "tone": "muted"
+              }
+            },
+            "why": "A broke. The tiny internal high."
+          },
+          "asks": [
+            {
+              "prompt": "What kind of level was A?",
+              "options": [
+                {
+                  "label": "A single candle high",
+                  "correct": false,
+                  "feedback": "A was a small swing, not just one candle’s high. Look at how it formed."
+                },
+                {
+                  "label": "A minor internal swing",
+                  "correct": true,
+                  "why": "A was a tiny swing inside the pullback."
+                },
+                {
+                  "label": "A relevant swing",
+                  "correct": false,
+                  "feedback": "B is the relevant swing high here. A is much smaller.",
+                  "mistake": "internal-as-relevant"
+                },
+                {
+                  "label": "An external swing",
+                  "correct": false,
+                  "feedback": "C is the external high. A sits deep inside the range.",
+                  "mistake": "internal-as-external"
+                }
+              ],
+              "concept": "internal-structure",
+              "hint": "Compare A to B and C. How big was the move that formed it?"
+            },
+            {
+              "prompt": "Did the larger external structure necessarily break?",
+              "options": [
+                {
+                  "label": "Yes, a high broke",
+                  "correct": false,
+                  "feedback": "A high broke, but it was a tiny internal one. C hasn’t been touched.",
+                  "mistake": "internal-as-external"
+                },
+                {
+                  "label": "No",
+                  "correct": true,
+                  "why": "No. C, the external high, is still far above price. A tiny internal break is not the same structural event."
+                }
+              ],
+              "concept": "external-structure",
+              "story": {
+                "last": {
+                  "value": "A · minor",
+                  "tone": "muted"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "candles": 24,
+          "text": "Price keeps going. Another level just gave way.",
+          "tap": {
+            "prompt": "WHAT BROKE THIS TIME? Tap it.",
+            "answer": 3,
+            "only": [
+              1,
+              3
+            ],
+            "concept": "relevant-swing",
+            "names": {
+              "1": "C",
+              "3": "B"
+            },
+            "hint": "Which marked high is price sitting just above now?",
+            "notes": {
+              "1": "C is still above price."
+            },
+            "reveal": {
+              "3": {
+                "label": "B · broken",
+                "tone": "gold"
+              }
+            },
+            "why": "B broke. The relevant swing high of this pullback."
+          },
+          "asks": [
+            {
+              "prompt": "HOW did price break B?",
+              "options": [
+                {
+                  "label": "Wick through only",
+                  "correct": false,
+                  "feedback": "Look at where the candle’s body finished. It closed above B.",
+                  "mistake": "close-as-wick"
+                },
+                {
+                  "label": "Close through",
+                  "correct": true,
+                  "why": "The candle body closed above B, not just a wick."
+                }
+              ],
+              "concept": "close-break",
+              "hint": "Find the candle that crossed B. Where did its body end?"
+            },
+            {
+              "prompt": "Is breaking B the same event as breaking A?",
+              "options": [
+                {
+                  "label": "Yes, a high is a high",
+                  "correct": false,
+                  "feedback": "Not every broken high carries the same weight.",
+                  "mistake": "all-breaks-equal"
+                },
+                {
+                  "label": "No. B was the relevant swing, A was a tiny internal one",
+                  "correct": true,
+                  "why": "Exactly. B was the swing that defined this pullback. That carries more structural meaning than A."
+                }
+              ],
+              "concept": "structural-break",
+              "story": {
+                "last": {
+                  "value": "B · relevant",
+                  "tone": "gold"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "candles": 28,
+          "text": "Now price reaches C, the external high.",
+          "asks": [
+            {
+              "prompt": "What happened at C?",
+              "options": [
+                {
+                  "label": "Price closed through the external high",
+                  "correct": false,
+                  "feedback": "Look at the last candle’s body. It finished back below C.",
+                  "mistake": "wick-as-close"
+                },
+                {
+                  "label": "Price wicked above C, then closed back below it",
+                  "correct": true,
+                  "why": "Price traded above C, but the candle closed back below it. A visit, not a confirmed close."
+                },
+                {
+                  "label": "Price never reached C",
+                  "correct": false,
+                  "feedback": "The last candle’s wick went above C."
+                }
+              ],
+              "concept": "wick-break",
+              "hint": "Compare the top of the wick with where the body closed.",
+              "story": {
+                "ext": {
+                  "value": "Wicked only",
+                  "tone": "gold"
+                }
+              },
+              "text": "A candle high, a tiny internal swing, a relevant swing and an external swing can all “break.” <strong>They are not automatically the same structural event.</strong>"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "icon_grid",
+      "kicker": "Four things that can “break”",
+      "title": "Not every break is the same event",
+      "items": [
+        {
+          "icon": "▮",
+          "label": "A candle high/low",
+          "desc": "Just the last candle’s extreme."
+        },
+        {
+          "icon": "·",
+          "label": "A minor internal swing",
+          "desc": "A tiny turn inside a larger move."
+        },
+        {
+          "icon": "◆",
+          "label": "A relevant swing",
+          "desc": "The swing defining the move you’re reading."
+        },
+        {
+          "icon": "⬛",
+          "label": "An external swing",
+          "desc": "The boundary of the larger range."
+        }
+      ]
+    },
+    {
+      "type": "dayli",
+      "label": "Core principle",
+      "quote": "<strong>Before you label a break, identify the level.</strong>"
+    },
+    {
+      "type": "price_lab",
+      "kicker": "What actually broke?",
+      "title": "Same question. Less help.",
+      "body": "The levels are only lettered now. Name each one yourself.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            60
+          ],
+          [
+            112.0,
+            250
+          ],
+          [
+            160.0,
+            150
+          ],
+          [
+            192.0,
+            205
+          ],
+          [
+            240.0,
+            110
+          ],
+          [
+            272.0,
+            160
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 60,
+            "c": 96.4,
+            "h": 55.7,
+            "l": 102.5,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 96.4,
+            "c": 134.8,
+            "h": 92.3,
+            "l": 139.3,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 134.8,
+            "c": 163.2,
+            "h": 130.8,
+            "l": 167.9,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 163.2,
+            "c": 222.0,
+            "h": 161.2,
+            "l": 225.0,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 222.0,
+            "c": 243.6,
+            "h": 216.8,
+            "l": 250,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 243.6,
+            "c": 215.7,
+            "h": 214.0,
+            "l": 250.0,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 215.7,
+            "c": 189.0,
+            "h": 184.3,
+            "l": 220.3,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 189.0,
+            "c": 156.6,
+            "h": 150,
+            "l": 191.1,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 156.6,
+            "c": 181.1,
+            "h": 154.8,
+            "l": 183.5,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 181.1,
+            "c": 198.0,
+            "h": 178.9,
+            "l": 205,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 198.0,
+            "c": 168.1,
+            "h": 164.4,
+            "l": 203.7,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 168.1,
+            "c": 139.6,
+            "h": 134.9,
+            "l": 172.1,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 139.6,
+            "c": 118.6,
+            "h": 110,
+            "l": 143.5,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 118.6,
+            "c": 137.7,
+            "h": 112.2,
+            "l": 144.2,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 137.7,
+            "c": 150.6,
+            "h": 132.8,
+            "l": 160,
+            "w": 9.6
+          },
+          {
+            "x": 288.0,
+            "o": 150.6,
+            "c": 145.0,
+            "h": 142.3,
+            "l": 153.6,
+            "w": 9.6
+          },
+          {
+            "x": 304.0,
+            "o": 145.0,
+            "c": 140.0,
+            "h": 138.1,
+            "l": 150.3,
+            "w": 9.6
+          },
+          {
+            "x": 320.0,
+            "o": 140.0,
+            "c": 144.8,
+            "h": 134.3,
+            "l": 148.3,
+            "w": 9.6
+          },
+          {
+            "x": 336.0,
+            "o": 144.8,
+            "c": 150.0,
+            "h": 138.5,
+            "l": 155.7,
+            "w": 9.6
+          },
+          {
+            "x": 352.0,
+            "o": 150.0,
+            "c": 154.0,
+            "h": 147.0,
+            "l": 158.7,
+            "w": 9.6
+          }
+        ],
+        "hlines": [
+          {
+            "y": 250,
+            "label": "C",
+            "tone": "purple",
+            "x1": 104.0,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          },
+          {
+            "y": 205,
+            "label": "B",
+            "tone": "gold",
+            "x1": 184.0,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          },
+          {
+            "y": 160,
+            "label": "A",
+            "tone": "muted",
+            "x1": 264.0,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          }
+        ],
+        "marks": [
+          {
+            "i": 1,
+            "label": "C",
+            "tone": "purple"
+          },
+          {
+            "i": 3,
+            "label": "B",
+            "tone": "gold"
+          },
+          {
+            "i": 5,
+            "label": "A",
+            "tone": "muted"
+          }
+        ]
+      },
+      "start": 19,
+      "steps": [
+        {
+          "text": "Three lows are lettered below price. Take a moment to decide what each one is.",
+          "next": "Next candle →"
+        },
+        {
+          "candles": 20,
+          "text": "The newest candle traded below the candle before it.",
+          "asks": [
+            {
+              "prompt": "WHAT BROKE?",
+              "options": [
+                {
+                  "label": "A candle low",
+                  "correct": true,
+                  "why": "Only the previous candle’s low. Price never reached A, B or C."
+                },
+                {
+                  "label": "A · a minor internal swing",
+                  "correct": false,
+                  "feedback": "Look again. Price is still above A.",
+                  "mistake": "candle-as-swing"
+                },
+                {
+                  "label": "B · a relevant swing",
+                  "correct": false,
+                  "feedback": "B is well below price. It hasn’t been touched.",
+                  "mistake": "candle-as-swing"
+                },
+                {
+                  "label": "C · an external swing",
+                  "correct": false,
+                  "feedback": "C is the lowest level. Nowhere near.",
+                  "mistake": "candle-as-swing"
+                }
+              ],
+              "concept": "structural-break",
+              "hint": "Before you label a break, identify the level. Did price reach any lettered low?"
+            },
+            {
+              "prompt": "What does this change about the structure?",
+              "options": [
+                {
+                  "label": "The structure turned bearish",
+                  "correct": false,
+                  "feedback": "One candle trading below the last candle doesn’t change swing structure.",
+                  "mistake": "overreact-break"
+                },
+                {
+                  "label": "Nothing structural yet",
+                  "correct": true,
+                  "why": "Exactly. A candle low broke. No swing broke, so the structural story is unchanged for now."
+                },
+                {
+                  "label": "Not enough information to say anything",
+                  "correct": false,
+                  "feedback": "We actually can say something: no swing broke. Look at the lettered lows again.",
+                  "nei": true
+                }
+              ],
+              "concept": "structural-break"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "teach",
+      "kicker": "The loop",
+      "body": "Every time price crosses a level, run the same questions:<br><br><strong>What broke?</strong> → <strong>Which swing was it?</strong> → <strong>How did price break it?</strong> → <strong>What was the prior structure?</strong> → <strong>What does that break actually tell me?</strong> → <strong>Do I have enough information yet?</strong>",
+      "check": {
+        "prompt": "Price just crossed a level. What’s the FIRST question?",
+        "options": [
+          {
+            "label": "BOS or MSS?",
+            "correct": false,
+            "feedback": "Vocabulary comes later. First, identify what actually broke."
+          },
+          {
+            "label": "What actually broke?",
+            "correct": true,
+            "why": "Always start there. The label depends on the level."
+          },
+          {
+            "label": "Where do I enter?",
+            "correct": false,
+            "feedback": "Entries come much later. First, investigate what price did."
+          }
+        ]
+      }
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Why isn’t every broken high or low the same structural event?",
+      "modelAnswer": "Because different levels mean different things. A candle high, a tiny internal swing, a relevant swing and an external swing can all break, but breaking a tiny internal swing doesn’t say the same thing as breaking the swing that defines the larger structure. Before you label a break, you have to identify the level."
+    }
+  ],
+  "takeaways": [
+    "A candle high, a minor internal swing, a relevant swing and an external swing are different levels.",
+    "Breaking a tiny internal swing doesn’t automatically break the larger structure.",
+    "Before you label a break, identify the level."
+  ],
+  "remember": "Before you label a break, identify the level."
+}
