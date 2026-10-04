@@ -92,7 +92,7 @@
 
   function sectionHtml(phase, section, completedIds, phaseUnlocked, sectionIdx) {
     const prevSection = phase.sections[sectionIdx - 1];
-    const sectionGateOk = !prevSection || !prevSection.checkpoint || isSectionCleared(phase.key, prevSection.key);
+    const sectionGateOk = !prevSection || !prevSection.checkpoint || isSectionCleared(phase.key, prevSection.key, completedIds);
     const lessonsHtml = section.lessons.map((lesson) => {
       if (!phaseUnlocked || !lesson.n || !sectionGateOk) return lessonRowHtml(phase, section, lesson, 'locked');
       const id = `${phase.key}-${lesson.n}`;
@@ -104,7 +104,7 @@
     let checkpointHtml = '';
     if (section.checkpoint) {
       const allLessonsDone = phaseUnlocked && sectionGateOk && section.lessons.every((l) => !l.n || completedIds.has(`${phase.key}-${l.n}`));
-      const cleared = phaseUnlocked && isSectionCleared(phase.key, section.key);
+      const cleared = phaseUnlocked && isSectionCleared(phase.key, section.key, completedIds);
       checkpointHtml = checkpointRowHtml(phase, section, cleared ? 'done' : allLessonsDone ? 'active' : 'locked');
     }
     const gameHtml = section.game ? gameRowHtml(section.game, true) : '';
@@ -125,12 +125,11 @@
     </div>`;
   }
 
-  // A phase is complete when every built lesson is done and every section
-  // checkpoint in it is cleared. The next phase unlocks on that.
+  // A phase is complete when every built lesson in it is done (saved to the
+  // member's account, so it holds on any device). The next phase unlocks on
+  // that; section checkpoints gate the sections inside a phase.
   function phaseComplete(phase, completedIds) {
-    return phase.sections.every((s) =>
-      s.lessons.every((l) => !l.n || completedIds.has(`${phase.key}-${l.n}`))
-      && (!s.checkpoint || isSectionCleared(phase.key, s.key)));
+    return phase.sections.every((s) => s.lessons.every((l) => !l.n || completedIds.has(`${phase.key}-${l.n}`)));
   }
 
   // A section's welcome, shown at the top of the section before its lessons.

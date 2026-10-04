@@ -114,10 +114,11 @@
   const current = allLessons.find((l) => l.n === n);
 
   /** Is `lesson`'s section still locked behind an earlier section's uncleared checkpoint? */
+  let gateIds = null;
   function isLessonGated(lesson) {
     const idx = phase.sections.findIndex((s) => s.key === lesson.section.key);
     const prevSection = phase.sections[idx - 1];
-    return !!(prevSection && prevSection.checkpoint && !isSectionCleared(phaseKey, prevSection.key));
+    return !!(prevSection && prevSection.checkpoint && !isSectionCleared(phaseKey, prevSection.key, gateIds));
   }
 
   /** Is `lesson` the last lesson in its section? */
@@ -181,6 +182,15 @@
   });
 
   async function loadLesson() {
+    let completedIds = new Set();
+    try {
+      const profile = await window.AGHF_FETCH_PROFILE();
+      completedIds = new Set((profile.lessons_completed || []).map((l) => l.lesson_id));
+    } catch (err) {
+      console.error('Profile load error:', err);
+    }
+    gateIds = completedIds;
+
     if (!current || isLessonGated(current)) {
       window.location.href = 'lessons.html';
       return;
@@ -194,14 +204,6 @@
     } catch (err) {
       document.getElementById('lwWrap').innerHTML = '<p style="padding:20px;color:var(--muted)">This lesson isn\'t available yet.</p>';
       return;
-    }
-
-    let completedIds = new Set();
-    try {
-      const profile = await window.AGHF_FETCH_PROFILE();
-      completedIds = new Set((profile.lessons_completed || []).map((l) => l.lesson_id));
-    } catch (err) {
-      console.error('Profile load error:', err);
     }
 
     try {

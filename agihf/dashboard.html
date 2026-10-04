@@ -199,7 +199,7 @@
     for (const section of p1.sections) {
       const lesson = section.lessons.find((l) => l.n && !completedIds.has(`p1-${l.n}`));
       if (lesson) return { type: 'lesson', lesson, section };
-      if (section.checkpoint && !isSectionCleared('p1', section.key)) return { type: 'checkpoint', section };
+      if (section.checkpoint && !isSectionCleared('p1', section.key, completedIds)) return { type: 'checkpoint', section };
     }
     return null;
   }

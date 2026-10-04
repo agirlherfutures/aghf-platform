@@ -427,12 +427,18 @@ export function totalLessonCount() {
  * been cleared? A section with no `checkpoint` field is always considered
  * cleared — the hard gate only applies where a checkpoint exists.
  */
-export function isSectionCleared(phaseKey, sectionKey) {
+export function isSectionCleared(phaseKey, sectionKey, completedIds) {
   const found = sectionByKey(sectionKey);
   if (!found || found.phase.key !== phaseKey || !found.section.checkpoint) return true;
   try {
-    return localStorage.getItem(`aghf_section_clear:${phaseKey}-${sectionKey}`) === 'true';
-  } catch (err) {
-    return false;
+    if (localStorage.getItem(`aghf_section_clear:${phaseKey}-${sectionKey}`) === 'true') return true;
+  } catch (err) { /* storage blocked */ }
+  // The clear flag lives in this browser only. A member who has already
+  // completed lessons in the next section got past this gate (on another
+  // device, or before the checkpoint existed), so don't lock her out.
+  if (completedIds) {
+    const next = found.phase.sections[found.phase.sections.indexOf(found.section) + 1];
+    if (next && next.lessons.some((l) => l.n && completedIds.has(`${phaseKey}-${l.n}`))) return true;
   }
+  return false;
 }
