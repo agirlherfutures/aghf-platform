@@ -1,6 +1,7 @@
 /**
- * Lesson 2 intro video — "Why Do Markets Exist?"
+ * Lesson 2 intro video — "Why Do Markets Exist?" (illustrated version)
  * Times are seconds from the start of the video (see lesson-01.js for the format).
+ * Illustrated scene types live in scenes-illustrated.js; artwork in illustrations.js.
  */
 window.LESSON_VIDEO = {
   slug: 'lesson-02',
@@ -8,7 +9,7 @@ window.LESSON_VIDEO = {
   duration: 89,
   scenes: [
     {
-      type: 'title', start: 0, end: 8,
+      type: 'host-title', start: 0, end: 8, nameTag: true,
       phase: 'Phase 1: Welcome to the Market',
       title: 'Why Do Markets Exist?',
       quote: 'Markets exist because buyers and sellers need each other. That’s it.',
@@ -18,11 +19,11 @@ window.LESSON_VIDEO = {
       ],
     },
     {
-      type: 'hook', start: 8, end: 16,
+      type: 'host-hook', start: 8, end: 16, pointAt: 11.6,
       kicker: 'First things first',
       parts: [
         { at: 8.8, text: 'Before you try to beat the market,' },
-        { at: 11.6, text: 'understand what the market is doing.', highlight: 'understand' },
+        { at: 11.6, html: '<span class="mark">understand</span> what the market is doing.' },
       ],
       lines: [
         { at: 8.8, text: 'Before you try to beat the market,' },
@@ -30,13 +31,13 @@ window.LESSON_VIDEO = {
       ],
     },
     {
-      type: 'grid4', start: 16, end: 35,
+      type: 'participants', start: 16, end: 35,
       kicker: 'Same market, different objective',
       title: 'People trade for different reasons',
       items: [
-        { at: 20.4, label: 'Hedger', desc: 'Managing exposure to price changes.', color: 'purple' },
-        { at: 24.6, label: 'Speculator', desc: 'Expects price to change.', color: 'teal' },
-        { at: 29.0, label: 'Investor', desc: 'Managing a longer-term portfolio.', color: 'peach' },
+        { at: 20.4, kind: 'hedger', label: 'Hedger', desc: ['Managing exposure', 'to price changes'], color: 'purple' },
+        { at: 24.6, kind: 'speculator', label: 'Speculator', desc: ['Expects price', 'to change'], color: 'teal' },
+        { at: 29.0, kind: 'investor', label: 'Investor', desc: ['Managing a longer-', 'term portfolio'], color: 'peach' },
       ],
       lines: [
         { at: 16.4, text: 'Markets exist because people come to them for different reasons.' },
@@ -46,12 +47,12 @@ window.LESSON_VIDEO = {
       ],
     },
     {
-      type: 'duo', start: 35, end: 55,
+      type: 'exchange', start: 35, end: 55,
       kicker: 'Watch a transaction form',
-      title: 'Same price. Two different opinions.',
-      left: { at: 38.4, icon: 'B', label: 'Buyer', quote: 'That’s attractive. I want in here.', color: 'teal' },
-      middle: { at: 46.2, text: 'Same price' },
-      right: { at: 42.4, icon: 'S', label: 'Seller', quote: 'I’m willing to sell here.', color: 'pink' },
+      titleAt: 46.2, title: 'Same price. Two different opinions.',
+      buyerQuote: 'That’s attractive. I want in!',
+      sellerQuote: 'I’m willing to sell here.',
+      beats: { buyerIn: 35.6, buyerSay: 38.4, sellerIn: 39.6, sellerSay: 42.4, price: 46.2, swap: 49.0, meet: 50.8 },
       footer: { at: 49.6, text: 'Neither is wrong. They just want different things.' },
       lines: [
         { at: 35.4, text: 'Now watch a transaction form.' },
@@ -62,11 +63,12 @@ window.LESSON_VIDEO = {
       ],
     },
     {
-      type: 'hook', start: 55, end: 66,
+      type: 'crowd', start: 55, end: 66,
       kicker: 'Here’s the key',
-      parts: [
-        { at: 57.2, text: 'If everyone agreed, no one would trade.' },
-        { at: 60.6, text: 'Disagreement is what creates the transaction.', highlight: 'creates the transaction' },
+      beats: { agree: 57.2, flip: 60.6, trade: 61.6 },
+      headlines: [
+        { at: 57.2, out: 60.4, text: 'If everyone agreed, no one would trade.' },
+        { at: 60.8, html: 'Disagreement <span class="mark">creates the transaction.</span>' },
       ],
       lines: [
         { at: 55.4, text: 'And here’s the key.' },
@@ -75,19 +77,16 @@ window.LESSON_VIDEO = {
       ],
     },
     {
-      type: 'remember', start: 66, end: 75,
-      kicker: 'Remember this',
-      parts: [
-        { at: 67.6, text: 'The chart is just the visual record' },
-        { at: 69.8, text: 'of buyers and sellers disagreeing.', highlight: 'disagreeing' },
-      ],
+      type: 'chart-tug', start: 66, end: 75,
+      kicker: 'Remember this', textAt: 67.6, chartStart: 67.0, chartEnd: 74.2,
+      html: 'The chart is just the visual record of buyers and sellers <span class="mark">disagreeing.</span>',
       lines: [
         { at: 66.4, text: 'Here’s what to remember.' },
         { at: 67.6, text: 'The chart is just the visual record of buyers and sellers disagreeing.' },
       ],
     },
     {
-      type: 'mission', start: 75, end: 89,
+      type: 'host-mission', start: 75, end: 89,
       kicker: 'Your mission',
       question: { at: 77.4, text: 'If two traders disagree about where price is headed, can they still both trade at the same price?' },
       cta: { at: 85.0, text: 'Let’s find out' },
