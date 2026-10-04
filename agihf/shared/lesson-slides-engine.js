@@ -33,6 +33,7 @@ import {
 import { renderLoopWatch } from './loop-engine.js';
 import { saveLessonReflection } from './journal-service.js';
 import { STRUCTURE_RENDERERS } from './structure-slides.js';
+import { V2_RENDERERS, renderV2Complete } from './lesson-v2.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 let uidCounter = 0;
@@ -115,7 +116,7 @@ export function renderSlideWizard(data, opts) {
   function stepPrompt(i) {
     const step = steps[i];
     if (step.type === 'watch') return 'Watch first';
-    if (step.type === 'slide' && step.slide.type === 'reflect') return 'Save your answer';
+    if (step.type === 'slide' && (step.slide.type === 'reflect' || step.slide.type === 'v2_reflect')) return 'Save your answer';
     return 'Keep going';
   }
 
@@ -144,6 +145,7 @@ export function renderSlideWizard(data, opts) {
 
     if (step.type === 'watch') renderLoopWatch(slideEl, data, () => completeStepAndAdvance(i));
     else if (step.type === 'slide') renderSlideBlock(slideEl, step.slide, () => completeStepAndAdvance(i), helpers);
+    else if (step.type === 'complete' && data.completeStyle === 'v2') renderV2Complete(slideEl, data, { nextHref, backHref, nextTitle, nextCtaLabel });
     else if (step.type === 'complete') renderSlideComplete(slideEl, data, { nextHref, backHref, nextTitle, nextHook, nextCtaLabel });
   }
 
@@ -916,6 +918,7 @@ function renderSequenceBuildSlide(el, slide, satisfy, helpers) {
 
 export const SLIDE_RENDERERS = {
   ...STRUCTURE_RENDERERS,
+  ...V2_RENDERERS,
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
   chart_tap: renderChartTapSlide,
