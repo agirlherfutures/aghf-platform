@@ -32,6 +32,38 @@
     <rect x="0" y="${y}" width="1920" height="4" fill="#EADFD8" opacity="${op}"/>`;
   const pop = (t, at, d = 0.6) => back((t - at) / d);
 
+
+  // Shared chart panel for trade-plan scenes: frame, past candles, planned levels.
+  function tradePanel(t, s, o) {
+    const x0 = 260, x1 = 1660, y0 = 400, y1 = 960;
+    const X = u => x0 + 30 + u * (x1 - x0 - 60), Y = v => y0 + 30 + v * (y1 - y0 - 60);
+    const wp = pop(t, s.start + 0.3, 0.6);
+    const frame = `<rect x="${x0}" y="${y0}" width="${x1 - x0}" height="${y1 - y0}" rx="34" fill="#fff" stroke="#F1E7E1" stroke-width="2" opacity="${clamp(wp)}"/>`;
+    const history = (upto, a, b) => {
+      const n = 10, out = [];
+      for (let i = 0; i < n; i++) {
+        const p = ease((t - (a + (b - a) * i / n)) / 0.4);
+        if (p <= 0) continue;
+        const u = (i + 0.5) / n * upto, v0 = 0.62 - i * 0.012 + Math.sin(i * 1.7) * 0.05, v1 = v0 + (i % 3 === 1 ? 0.05 : -0.06);
+        const up = v1 < v0, col = up ? C.teal : C.pink, w = (upto / n) * (x1 - x0) * 0.45;
+        out.push(`<line x1="${X(u)}" x2="${X(u)}" y1="${Y(Math.min(v0, v1) - 0.035)}" y2="${Y(Math.max(v0, v1) + 0.035)}" stroke="${col}" stroke-width="3" opacity="${0.85 * p}"/>`);
+        out.push(`<rect x="${X(u) - w / 2}" y="${Y(Math.min(v0, lerp(v0, v1, p)))}" width="${w}" height="${Math.max(3, Math.abs(Y(v1) - Y(v0)) * p)}" rx="3" fill="${col}" opacity=".85"/>`);
+      }
+      return out.join('');
+    };
+    const level = (at, v, col, label, icon, wave) => {
+      const k = ease((t - at) / 0.8);
+      if (k <= 0) return '';
+      const y = Y(v), flap = Math.sin(t * (wave && t > wave ? 9 : 3)) * (wave && t > wave ? 10 : 4);
+      const ic = icon === 'flag'
+        ? `<g transform="translate(${x0 + 36},${y})"><line x1="0" y1="0" x2="0" y2="-64" stroke="${C.dark}" stroke-width="5" stroke-linecap="round"/><path d="M0,-64 Q${22 + flap},${-70 + flap * 0.4} 46,-58 L46,-34 Q${22 - flap},${-42 - flap * 0.4} 0,-36 Z" fill="${col}"/></g>`
+        : `<g transform="translate(${x0 + 36},${y})"><path d="M0,-34 L28,-24 C28,0 16,16 0,26 C-16,16 -28,0 -28,-24 Z" fill="${col}" stroke="#fff" stroke-width="3"/></g>`;
+      return `<g opacity="${k}"><line x1="${x0 + 80}" x2="${x0 + 80 + (x1 - x0 - 120) * k}" y1="${y}" y2="${y}" stroke="${col}" stroke-width="6" stroke-dasharray="16 10"/>${ic}
+        <text x="${x1 - 40}" y="${y - 14}" font-size="26" font-weight="900" text-anchor="end" fill="${col === C.pink ? '#C2475F' : '#2F8A7F'}" font-family="DM Sans">${label}</text></g>`;
+    };
+    return { frame, history, level, X, Y, x0, x1 };
+  }
+
   const BUILD = {
     'host-title': s => `
       <div class="abs" style="left:760px;right:120px;top:300px">
@@ -124,6 +156,15 @@
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'seesaw': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'exit-plan': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'fear-drag': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'tp-hit': s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
@@ -1124,6 +1165,84 @@
         <path d="M${cx - 70},${cy + 120} L${cx + 70},${cy + 120} L${cx},${cy - 20} Z" fill="${C.purple}"/>
         <line x1="${l.x}" y1="${l.y}" x2="${r.x}" y2="${r.y}" stroke="#9B6A45" stroke-width="22" stroke-linecap="round"/>
         ${seat(l, 'mkt', 'Speed', 'Market order', '#B86E12')}${seat(r, 'lmt', 'Control', 'Limit order', '#2F8A7F')}</g>`;
+    },
+
+    'exit-plan': (s, t) => {
+      const P = tradePanel(t, s, { entryX: 0.55 });
+      let out = P.frame;
+      const T = s.beats;
+      out += P.history(0.55, s.start + 0.6, s.start + 3);
+      out += P.level(T.tp, 0.18, C.teal, 'Take profit', 'flag');
+      out += P.level(T.sl, 0.8, C.pink, 'Stop loss', 'shield');
+      if (t > T.entry) {
+        const k = back((t - T.entry) / 0.5), ex = P.X(0.55), ey = P.Y(0.5);
+        out += `<g transform="translate(${ex},${ey}) scale(${k})"><circle r="16" fill="${C.tealD}"/><circle r="28" fill="none" stroke="${C.tealD}" stroke-width="4" opacity=".5"/></g>
+          <text x="${ex + 36}" y="${ey + 9}" font-size="28" font-weight="900" fill="#2F8A7F" font-family="DM Sans" opacity="${clamp(k)}">Entry</text>`;
+      }
+      // Plan checklist.
+      const items = [['Take profit', T.tp], ['Stop loss', T.sl], ['Entry', T.entry]];
+      out += `<g transform="translate(1440,572)" opacity="${clamp((t - T.tp + 0.4) / 0.4)}"><rect x="-150" y="-50" width="300" height="250" rx="24" fill="#fff" stroke="#EADFD8" stroke-width="3"/>
+        <text y="-12" font-size="22" font-weight="700" text-anchor="middle" fill="${C.muted}" font-family="DM Sans" letter-spacing="3">THE ORDER</text>
+        ${items.map(([l, at], i) => { const k = back((t - at - 0.4) / 0.4); return `<text x="-110" y="${40 + i * 56}" font-size="26" font-weight="900" fill="${C.dark}" font-family="DM Sans">${i + 1}.</text>
+          <text x="-76" y="${40 + i * 56}" font-size="28" font-weight="700" fill="${k > 0 ? C.dark : '#C9B9AE'}" font-family="DM Sans">${l}</text>
+          ${k > 0 ? `<path d="M80,${30 + i * 56} l10,10 l20,-22" fill="none" stroke="${C.tealD}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" transform="translate(${95},${30 + i * 56}) scale(${k}) translate(${-95},${-30 - i * 56})"/>` : ''}`; }).join('')}</g>`;
+      return out;
+    },
+
+    'fear-drag': (s, t) => {
+      const P = tradePanel(t, s, {});
+      const T = s.beats;
+      let out = P.frame + P.history(0.3, s.start + 0.4, s.start + 1.6);
+      out += `<circle cx="${P.X(0.3)}" cy="${P.Y(0.45)}" r="14" fill="${C.tealD}"/>`;
+      // Pullback toward the stop, without closing below it.
+      const k = ease(seg(t, T.pull, T.pull + 3));
+      let d = `M${P.X(0.3)},${P.Y(0.45)}`;
+      for (let u = 0; u <= k; u += 0.01) d += ` L${P.X(0.3 + u * 0.45)},${P.Y(0.45 + Math.sin(u * Math.PI * 0.9) * 0.3 + Math.sin(u * 20) * 0.02)}`;
+      out += `<path d="${d}" fill="none" stroke="${C.dark}" stroke-width="5" stroke-linejoin="round"/>`;
+      // The stop gets dragged down, stamped, and snaps back.
+      const drag = ease(seg(t, T.drag, T.drag + 1.6)) * (1 - ease(seg(t, T.snap, T.snap + 0.6)));
+      const slY = P.Y(0.8 + drag * 0.14);
+      out += `<line x1="${P.x0}" x2="${P.x1}" y1="${P.Y(0.8)}" y2="${P.Y(0.8)}" stroke="${C.pink}" stroke-width="3" stroke-dasharray="4 10" opacity="${drag > 0 ? 0.5 : 0}"/>
+        <line x1="${P.x0}" x2="${P.x1}" y1="${slY}" y2="${slY}" stroke="${C.pink}" stroke-width="7" stroke-dasharray="16 10"/>
+        <text x="${P.x0 + 10}" y="${slY + 36}" font-size="26" font-weight="900" fill="#C2475F" font-family="DM Sans">Stop loss</text>`;
+      if (t > T.drag - 0.6 && t < T.snap + 0.4) {
+        const hx = P.X(0.85), hy = slY + 10;
+        out += `<g transform="translate(${hx},${hy})"><path d="M0,0 L0,46 L12,34 L22,56 L32,52 L22,30 L40,30 Z" fill="#fff" stroke="${C.dark}" stroke-width="4" stroke-linejoin="round"/></g>`;
+      }
+      if (t > T.stamp) {
+        const sp = back((t - T.stamp) / 0.5) * (1 - clamp((t - T.snap - 0.8) / 0.5));
+        if (sp > 0) out += `<g transform="translate(${P.X(0.7)},${P.Y(0.88)}) scale(${sp}) rotate(-8)"><line x1="-70" y1="-70" x2="70" y2="70" stroke="${C.pink}" stroke-width="26" stroke-linecap="round"/><line x1="70" y1="-70" x2="-70" y2="70" stroke="${C.pink}" stroke-width="26" stroke-linecap="round"/></g>`;
+      }
+      // A nervous trader.
+      const pp = pop(t, T.pull + 1, 0.6);
+      if (pp > 0) {
+        const sweat = [0, 1].map(i => { const q = ((t * 0.9) + i * 0.5) % 1; return `<path d="M${1560 + 40 + i * 16},${560 + q * 46} q6,10 0,16 q-6,-6 0,-16 Z" fill="#9FD8F0" opacity="${(1 - q) * (t < T.snap ? 1 : 0)}"/>`; }).join('');
+        out += `<g transform="translate(1560,880) scale(${pp}) translate(-1560,-880)">` + A.person(t, { x: 1560, y: 880, scale: 0.9, look: A.LOOKS.d, mood: t < T.snap ? 'sad' : undefined, seed: 8 }) + sweat + '</g>';
+      }
+      return out;
+    },
+
+    'tp-hit': (s, t) => {
+      const P = tradePanel(t, s, {});
+      const T = s.beats;
+      let out = P.frame + P.history(0.25, s.start + 0.4, s.start + 1.6);
+      out += P.level(s.start + 0.6, 0.2, C.teal, 'Take profit', 'flag', T.hit);
+      out += `<circle cx="${P.X(0.25)}" cy="${P.Y(0.65)}" r="14" fill="${C.tealD}"/>`;
+      const k = ease(seg(t, T.rise, T.hit));
+      let d = `M${P.X(0.25)},${P.Y(0.65)}`;
+      for (let u = 0; u <= k; u += 0.01) d += ` L${P.X(0.25 + u * 0.5)},${P.Y(0.65 - u * 0.45 + Math.sin(u * 18) * 0.03 * (1 - u))}`;
+      out += `<path d="${d}" fill="none" stroke="${C.dark}" stroke-width="5" stroke-linejoin="round"/>`;
+      if (t > T.hit) {
+        const hx = P.X(0.75), hy = P.Y(0.2);
+        out += A.sparkle(hx, hy, T.hit, t) + [0, 1, 2, 3, 4].map(i => {
+          const q = clamp((t - T.hit - i * 0.12) / 1.2);
+          return `<g transform="translate(${hx + (i - 2) * 40 * q},${hy - 40 - q * 120 + q * q * 80})" opacity="${1 - q * 0.6}"><circle r="20" fill="${C.gold}" stroke="#C98A1F" stroke-width="3"/><text y="7" font-size="20" font-weight="900" text-anchor="middle" fill="#8A5A0A" font-family="DM Sans">$</text></g>`;
+        }).join('');
+        const bp = back((t - T.hit - 0.6) / 0.5);
+        out += `<g transform="translate(1420,${P.Y(0.62)}) scale(${bp})"><rect x="-190" y="-36" width="380" height="72" rx="36" fill="${C.teal}"/>
+          <text y="12" font-size="32" font-weight="900" text-anchor="middle" fill="#fff" font-family="Playfair Display">Plan executed ✓</text></g>`;
+      }
+      return out;
     },
 
     'host-mission': (s, t, ctx) =>
