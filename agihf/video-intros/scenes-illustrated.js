@@ -117,6 +117,9 @@
     'timeframe-zoom': s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'prop-path': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
       <div class="abs" style="left:760px;right:110px;top:260px">
         <div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
@@ -725,9 +728,9 @@
       const hp = clamp((t - s.start - 0.8) / 0.5);
       out += `<g opacity="${hp}">
         <rect x="${colX[0] - 260}" y="378" width="520" height="70" rx="35" fill="${C.purpleP || '#EEEDFE'}"/>
-        <text x="${colX[0]}" y="426" font-size="36" font-weight="900" text-anchor="middle" fill="${C.purple}" font-family="Playfair Display">Stocks</text>
+        <text x="${colX[0]}" y="426" font-size="36" font-weight="900" text-anchor="middle" fill="${C.purple}" font-family="Playfair Display">${esc((s.cols || ['Stocks'])[0])}</text>
         <rect x="${colX[1] - 260}" y="378" width="520" height="70" rx="35" fill="${C.pinkP}"/>
-        <text x="${colX[1]}" y="426" font-size="36" font-weight="900" text-anchor="middle" fill="#C2475F" font-family="Playfair Display">Futures</text></g>`;
+        <text x="${colX[1]}" y="426" font-size="36" font-weight="900" text-anchor="middle" fill="#C2475F" font-family="Playfair Display">${esc((s.cols || [0, 'Futures'])[1])}</text></g>`;
       const icon = (kind, x, y) => {
         if (kind === 'pie') return `<g transform="translate(${x},${y})"><circle r="34" fill="${C.purpleL}"/><path d="M0,0 L0,-34 A34,34 0 0,1 30,-16 Z" fill="${C.purple}" transform="translate(4,-4)"/></g>`;
         if (kind === 'doc') return `<g transform="translate(${x},${y}) rotate(-6)"><rect x="-26" y="-34" width="52" height="68" rx="6" fill="#fff" stroke="${C.pink}" stroke-width="4"/><rect x="-14" y="-16" width="28" height="5" rx="2" fill="${C.pinkL}"/><rect x="-14" y="-4" width="28" height="5" rx="2" fill="${C.pinkL}"/><rect x="-14" y="8" width="20" height="5" rx="2" fill="${C.pinkL}"/></g>`;
@@ -739,6 +742,7 @@
             <g transform="translate(44,-28) rotate(${f * 360})"><path d="M-12,0 A12,12 0 1,1 0,12" fill="none" stroke="${C.tealD}" stroke-width="5" stroke-linecap="round"/><path d="M-4,8 L0,14 L6,10" fill="none" stroke="${C.tealD}" stroke-width="5" stroke-linecap="round"/></g></g>`;
         }
         if (kind === 'sun') return `<g transform="translate(${x},${y}) rotate(${t * 30})"><circle r="20" fill="${C.peach}"/>${Array.from({ length: 8 }, (_, i) => `<rect x="-3" y="-36" width="6" height="11" rx="3" fill="${C.peach}" transform="rotate(${i * 45})"/>`).join('')}</g>`;
+        if (kind !== 'moon') return `<g transform="translate(${x},${y}) scale(${['coins', 'split', 'open', 'gate'].includes(kind) ? 0.9 : 0.42})">${A.badge(kind, t)}</g>`;
         // sun and moon orbiting: nearly all day
         const a = t * 1.4;
         return `<g transform="translate(${x},${y})"><circle r="34" fill="none" stroke="#EADFD8" stroke-width="4" stroke-dasharray="6 6"/>
@@ -1002,6 +1006,47 @@
           <text x="${(bx0 + bx1) / 2}" y="${Y(hi) - 40}" font-size="22" font-weight="700" text-anchor="middle" fill="${C.dark}" font-family="DM Sans">6 × 5m = 1 hour candle</text></g>`;
       }
       return out + '</g>';
+    },
+
+    'prop-path': (s, t) => {
+      const G = 900, T = s.beats;
+      const st = [{ x: 480, at: T.eval, label: 'Evaluation' }, { x: 960, at: T.funded, label: 'Funded' }, { x: 1440, at: T.split, label: 'Profit split' }];
+      let out = ground(G);
+      // Dotted path between stations.
+      out += `<path d="M160,${G + 40} L1760,${G + 40}" stroke="#DCCFC6" stroke-width="8" stroke-dasharray="4 18" stroke-linecap="round"/>`;
+      st.forEach((p, i) => {
+        const k = pop(t, p.at - 0.4, 0.6);
+        if (k <= 0) return;
+        let art = '';
+        if (i === 0) {
+          const ticks = Math.floor(clamp((t - p.at - 0.6) / 2.4) * 3.999);
+          art = `<rect x="-120" y="-200" width="240" height="250" rx="20" fill="#fff" stroke="${C.pink}" stroke-width="5"/><rect x="-46" y="-220" width="92" height="36" rx="10" fill="${C.muted}"/>
+            ${['Daily loss limit', 'Max drawdown', 'Follow the rules'].map((r, j) => `<rect x="-96" y="${-160 + j * 64}" width="34" height="34" rx="8" fill="#fff" stroke="${j < ticks ? C.teal : '#EADFD8'}" stroke-width="4"/>
+              ${j < ticks ? `<path d="M-88,${-143 + j * 64} L-80,${-134 + j * 64} L-66,${-152 + j * 64}" fill="none" stroke="${C.tealD}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>` : ''}
+              <text x="-50" y="${-136 + j * 64}" font-size="20" font-weight="700" fill="${C.dark}" font-family="DM Sans">${r}</text>`).join('')}`;
+        } else if (i === 1) {
+          const open = ease(seg(t, p.at + 0.3, p.at + 1.5));
+          art = `<rect x="-130" y="-210" width="260" height="260" rx="24" fill="#8C7A70"/>
+            <rect x="-110" y="-190" width="220" height="220" rx="16" fill="#4A3A33"/>
+            ${[0, 1, 2].map(j => `<rect x="${-80 + j * 40}" y="${-30 - j * 22}" width="70" height="26" rx="4" fill="${C.gold}" stroke="#C98A1F" stroke-width="2"/>`).join('')}
+            <g transform="translate(-110,-190) scale(${1 - open * 0.85},1)"><rect x="0" y="0" width="220" height="220" rx="16" fill="#A8968B" stroke="#7A6A60" stroke-width="5"/>
+              <circle cx="110" cy="110" r="44" fill="none" stroke="#7A6A60" stroke-width="8"/><g transform="translate(110,110) rotate(${open * 270})"><rect x="-5" y="-44" width="10" height="88" fill="#7A6A60"/><rect x="-44" y="-5" width="88" height="10" fill="#7A6A60"/></g></g>`;
+        } else {
+          const sp = ease(seg(t, p.at + 0.3, p.at + 1.4));
+          art = `<g transform="translate(0,-90)"><circle r="110" fill="${C.purpleL}"/>
+            <path d="M0,0 L0,-110 A110,110 0 1,1 -105,-33 Z" fill="${C.teal}" transform="translate(${-sp * 12},${sp * 8})"/>
+            <text x="${-sp * 12 + 20}" y="${sp * 8 + 40}" font-size="30" font-weight="900" text-anchor="middle" fill="#fff" font-family="Playfair Display">You</text>
+            <text x="-54" y="-50" font-size="24" font-weight="900" text-anchor="middle" fill="${C.purple}" font-family="Playfair Display">Firm</text></g>`;
+        }
+        out += `<g transform="translate(${p.x},${G - 70}) scale(${k * 1.3})">${art}</g>
+          <text x="${p.x}" y="${G + 110}" font-size="34" font-weight="900" text-anchor="middle" fill="${C.dark}" font-family="Playfair Display" opacity="${clamp(k)}">${p.label}</text>`;
+      });
+      // The trader walks from station to station.
+      const legs = [[s.start + 0.6, T.eval - 0.2, 140, 260], [T.funded - 1.2, T.funded, 260, 740], [T.split - 1.2, T.split, 740, 1220]];
+      let x = 160, walking = false;
+      legs.forEach(([a, b, x0, x1]) => { if (t >= a) { x = lerp(x0, x1, ease(seg(t, a, b))); if (t < b) walking = true; } });
+      out += A.person(t, { x, y: G, scale: 1.0, look: A.LOOKS.buyer, walking, seed: 3, frontArm: walking ? undefined : { a1: 100, a2: 95 } });
+      return out;
     },
 
     'host-mission': (s, t, ctx) =>

@@ -348,6 +348,54 @@
         </g>
       </g>`;
     }
+    if (kind === 'broker') {
+      const f = Math.sin(t * 2.4) * 6;
+      return `<g>
+        <circle r="90" fill="#E8F8F6"/>
+        <g transform="translate(0,${-26 + f}) rotate(-10)"><rect x="-38" y="-20" width="76" height="40" rx="5" fill="${COL.cash}" stroke="${COL.cashD}" stroke-width="3"/><circle r="10" fill="none" stroke="${COL.cashD}" stroke-width="3"/></g>
+        <rect x="-62" y="-14" width="124" height="80" rx="16" fill="${COL.tealD}"/>
+        <rect x="16" y="10" width="54" height="34" rx="10" fill="${COL.teal}"/><circle cx="34" cy="27" r="7" fill="${COL.gold}"/>
+      </g>`;
+    }
+    if (kind === 'prop') {
+      const lit = Math.floor(t * 2) % 6;
+      return `<g>
+        <circle r="90" fill="${COL.purpleL}" opacity=".55"/>
+        <rect x="-44" y="-70" width="88" height="140" rx="6" fill="${COL.purple}"/>
+        ${Array.from({ length: 12 }, (_, i) => `<rect x="${-30 + (i % 3) * 22}" y="${-56 + Math.floor(i / 3) * 26}" width="16" height="16" rx="3" fill="${i % 6 === lit ? COL.gold : '#E7E4FB'}"/>`).join('')}
+        <rect x="-12" y="46" width="24" height="24" rx="3" fill="#E7E4FB"/>
+        <path d="M-58,70 L58,70" stroke="${COL.dark}" stroke-width="5" stroke-linecap="round"/>
+      </g>`;
+    }
+    if (kind === 'sim') {
+      const bub = [0, 1, 2].map(i => { const p = ((t * 0.8) + i / 3) % 1; return `<circle cx="${(i - 1) * 12}" cy="${-20 - p * 60}" r="${6 + i * 2}" fill="${COL.pinkL}" opacity="${1 - p}"/>`; }).join('');
+      return `<g>
+        <circle r="90" fill="${COL.pinkP}"/>
+        ${bub}
+        <path d="M-16,-50 L16,-50 L16,-14 L52,52 Q56,64 44,64 L-44,64 Q-56,64 -52,52 L-16,-14 Z" fill="#fff" stroke="${COL.pink}" stroke-width="5"/>
+        <path d="M-34,20 L34,20 L50,54 Q52,60 44,60 L-44,60 Q-52,60 -50,54 Z" fill="${COL.pinkL}"/>
+        <text x="0" y="50" font-size="22" font-weight="900" text-anchor="middle" fill="#C2475F" font-family="DM Sans">SIM</text>
+      </g>`;
+    }
+    if (kind === 'coins') {
+      return `<g>${Array.from({ length: 5 }, (_, i) => `<ellipse cx="0" cy="${30 - i * 14}" rx="34" ry="12" fill="${COL.gold}" stroke="#C98A1F" stroke-width="3"/>`).join('')}
+        <text x="0" y="70" font-size="24" font-weight="900" text-anchor="middle" fill="#2F8A7F" font-family="DM Sans">100%</text></g>`;
+    }
+    if (kind === 'split') {
+      const a = Math.sin(t * 1.5) * 4;
+      return `<g><circle r="40" fill="${COL.purpleL}"/>
+        <path d="M0,0 L0,-40 A40,40 0 1,1 -38,-12 Z" fill="${COL.teal}" transform="translate(${a * 0.2},${a * 0.2})"/>
+        <text x="8" y="16" font-size="14" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">YOU</text></g>`;
+    }
+    if (kind === 'open') {
+      return `<g><rect x="-30" y="-40" width="60" height="80" rx="6" fill="#fff" stroke="${COL.teal}" stroke-width="4"/>
+        <path d="M-30,-40 L4,-30 L4,48 L-30,40 Z" fill="${COL.tealL}"/><circle cx="-2" cy="6" r="4" fill="${COL.tealD}"/></g>`;
+    }
+    if (kind === 'gate') {
+      const k = Math.floor(t * 1.5) % 4;
+      return `<g><rect x="-34" y="-44" width="68" height="88" rx="8" fill="#fff" stroke="${COL.pink}" stroke-width="4"/><rect x="-14" y="-52" width="28" height="14" rx="4" fill="${COL.muted}"/>
+        ${[0, 1, 2].map(i => `<rect x="-22" y="${-26 + i * 22}" width="12" height="12" rx="3" fill="${i < k ? COL.teal : '#fff'}" stroke="${COL.tealD}" stroke-width="2"/><rect x="-4" y="${-23 + i * 22}" width="28" height="6" rx="3" fill="${COL.pinkL}"/>`).join('')}</g>`;
+    }
     if (kind === 'read') {
       const mx = Math.sin(t * 1.2) * 26;
       return `<g>
