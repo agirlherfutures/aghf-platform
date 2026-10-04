@@ -296,6 +296,61 @@
         </g>
       </g>`;
     }
+    if (kind === 'market') {
+      const f = Math.sin(t * 2) * 5;
+      return `<g>
+        <circle r="90" fill="${COL.purpleL}" opacity=".55"/>
+        <g transform="rotate(${-8 + f * 0.6}) translate(0,${f})">
+          <rect x="-56" y="-70" width="112" height="140" rx="12" fill="#fff" stroke="${COL.purple}" stroke-width="6"/>
+          <text x="0" y="-26" font-size="30" font-weight="700" text-anchor="middle" fill="${COL.purple}" font-family="DM Sans">MNQ</text>
+          <rect x="-34" y="-6" width="68" height="7" rx="3.5" fill="${COL.purpleL}"/>
+          <rect x="-34" y="12" width="52" height="7" rx="3.5" fill="${COL.purpleL}"/>
+          <rect x="-34" y="30" width="60" height="7" rx="3.5" fill="${COL.purpleL}"/>
+        </g>
+        <g transform="translate(52,48) rotate(${f * 2})"><circle r="22" fill="${COL.gold}"/><path d="M-10,18 L-16,44 L0,34 L16,44 L10,18" fill="${COL.pink}"/><circle r="12" fill="#F3C25C"/></g>
+      </g>`;
+    }
+    if (kind === 'direction') {
+      const swing = Math.sin(t * 1.7) * 70;
+      return `<g>
+        <circle r="90" fill="#fff" stroke="${COL.teal}" stroke-width="8"/>
+        <circle r="74" fill="#E8F8F6"/>
+        <text x="0" y="-46" font-size="24" font-weight="700" text-anchor="middle" fill="#2F8A7F" font-family="DM Sans">UP</text>
+        <text x="0" y="64" font-size="24" font-weight="700" text-anchor="middle" fill="#C2475F" font-family="DM Sans">DOWN</text>
+        <g transform="rotate(${swing})">
+          <path d="M0,-58 L14,0 L-14,0 Z" fill="${COL.tealD}"/>
+          <path d="M0,58 L14,0 L-14,0 Z" fill="${COL.pink}"/>
+        </g>
+        <circle r="9" fill="${COL.dark}"/>
+      </g>`;
+    }
+    if (kind === 'risk') {
+      const wav = Math.sin(t * 5);
+      return `<g>
+        <circle r="90" fill="${COL.pinkP}"/>
+        <path d="M-74,-20 L-40,-40 L-10,-14 L20,-30 L74,-4" fill="none" stroke="${COL.teal}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="-80" x2="80" y1="30" y2="30" stroke="${COL.pink}" stroke-width="6" stroke-dasharray="12 9"/>
+        <path d="M-40,30 L-40,-62" stroke="${COL.dark}" stroke-width="5" stroke-linecap="round"/>
+        <path d="M-40,-62 Q${-8 + wav * 4},${-70 + wav * 4} 24,-58 L24,-30 Q${-8 - wav * 4},${-42 - wav * 4} -40,-34 Z" fill="${COL.pink}"/>
+        <text x="-8" y="-40" font-size="16" font-weight="700" text-anchor="middle" fill="#fff" font-family="DM Sans">STOP</text>
+      </g>`;
+    }
+    if (kind === 'outcome') {
+      const tilt = Math.sin(t * 1.4) * 12;
+      const pan = (x, y, coins) => `<g transform="translate(${x},${y})">
+          <line x1="-26" y1="-40" x2="0" y2="0" stroke="${COL.muted}" stroke-width="3"/><line x1="26" y1="-40" x2="0" y2="0" stroke="${COL.muted}" stroke-width="3"/>
+          <path d="M-36,0 L36,0 Q30,22 0,22 Q-30,22 -36,0 Z" fill="${COL.peach}"/>
+          ${Array.from({ length: coins }, (_, i) => `<ellipse cx="${-12 + (i % 2) * 22}" cy="${-6 - Math.floor(i / 2) * 9}" rx="11" ry="5" fill="${COL.gold}" stroke="#C98A1F" stroke-width="2"/>`).join('')}
+        </g>`;
+      const ax = Math.cos(tilt * Math.PI / 180) * 62, ay = Math.sin(tilt * Math.PI / 180) * 62;
+      return `<g>
+        <circle r="90" fill="#FEF3E4"/>
+        <path d="M-30,70 L30,70 L8,50 L8,-46 L-8,-46 L-8,50 Z" fill="${COL.muted}"/>
+        <line x1="${-ax}" y1="${-46 - ay}" x2="${ax}" y2="${-46 + ay}" stroke="${COL.muted}" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="0" cy="-48" r="9" fill="${COL.gold}"/>
+        ${pan(-ax, -6 - ay, 4)}${pan(ax, -6 + ay, 1)}
+      </g>`;
+    }
     if (kind === 'speculator') {
       const zig = 'M-70,40 L-36,10 L-12,26 L18,-18 L40,-6 L70,-50';
       const d = clamp((t % 4) / 2.2);
