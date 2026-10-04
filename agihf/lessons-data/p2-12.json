@@ -1,0 +1,1119 @@
+{
+  "phase": "p2",
+  "section": "s5",
+  "lessonNumber": 12,
+  "title": "Market Structure Shift: MSS",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "MSS is change information, not an entry signal.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Tell the difference between price simply moving against the structure and price breaking the relevant supporting swing, and treat MSS as change information.",
+    "missionQuestion": "If bullish structure starts moving lower and breaks a small low, has the market structure shifted?",
+    "estMinutes": 9
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "kicker": "Watch it unfold",
+      "title": "Price moving down ≠ structure changing.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            268
+          ],
+          [
+            96.0,
+            165
+          ],
+          [
+            144.0,
+            215
+          ],
+          [
+            208.0,
+            112
+          ],
+          [
+            256.0,
+            190
+          ],
+          [
+            320.0,
+            80
+          ],
+          [
+            368.0,
+            122
+          ],
+          [
+            384.0,
+            108
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 268,
+            "c": 233.2,
+            "h": 231.1,
+            "l": 271.5,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 233.2,
+            "c": 219.9,
+            "h": 217.7,
+            "l": 235.3,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 219.9,
+            "c": 185.8,
+            "h": 180.5,
+            "l": 222.1,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 185.8,
+            "c": 174.0,
+            "h": 165,
+            "l": 190.4,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 174.0,
+            "c": 185.0,
+            "h": 169.8,
+            "l": 188.7,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 185.0,
+            "c": 200.7,
+            "h": 178.5,
+            "l": 202.6,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 200.7,
+            "c": 208.9,
+            "h": 194.9,
+            "l": 215,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 208.9,
+            "c": 183.0,
+            "h": 180.5,
+            "l": 212.1,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 183.0,
+            "c": 158.1,
+            "h": 151.8,
+            "l": 185.5,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 158.1,
+            "c": 131.3,
+            "h": 126.9,
+            "l": 162.3,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 131.3,
+            "c": 121.8,
+            "h": 112,
+            "l": 136.6,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 121.8,
+            "c": 142.8,
+            "h": 119.3,
+            "l": 148.5,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 142.8,
+            "c": 173.3,
+            "h": 141.1,
+            "l": 178.4,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 173.3,
+            "c": 180.5,
+            "h": 168.7,
+            "l": 190,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 180.5,
+            "c": 150.3,
+            "h": 144.8,
+            "l": 185.7,
+            "w": 9.6
+          },
+          {
+            "x": 288.0,
+            "o": 150.3,
+            "c": 124.7,
+            "h": 120.0,
+            "l": 152.9,
+            "w": 9.6
+          },
+          {
+            "x": 304.0,
+            "o": 124.7,
+            "c": 96.8,
+            "h": 93.7,
+            "l": 127.9,
+            "w": 9.6
+          },
+          {
+            "x": 320.0,
+            "o": 96.8,
+            "c": 87.6,
+            "h": 80,
+            "l": 101.4,
+            "w": 9.6
+          },
+          {
+            "x": 336.0,
+            "o": 87.6,
+            "c": 101.3,
+            "h": 81.3,
+            "l": 107.7,
+            "w": 9.6
+          },
+          {
+            "x": 352.0,
+            "o": 101.3,
+            "c": 112.0,
+            "h": 94.8,
+            "l": 117.4,
+            "w": 9.6
+          },
+          {
+            "x": 368.0,
+            "o": 112.0,
+            "c": 114.8,
+            "h": 109.3,
+            "l": 122,
+            "w": 9.6
+          },
+          {
+            "x": 384.0,
+            "o": 114.8,
+            "c": 116.5,
+            "h": 108,
+            "l": 120.7,
+            "w": 9.6
+          },
+          {
+            "x": 400.0,
+            "o": 116.5,
+            "c": 129.0,
+            "h": 114.5,
+            "l": 131.4,
+            "w": 9.6
+          },
+          {
+            "x": 416.0,
+            "o": 129.0,
+            "c": 140.0,
+            "h": 122.9,
+            "l": 144.5,
+            "w": 9.6
+          },
+          {
+            "x": 432.0,
+            "o": 140.0,
+            "c": 155.5,
+            "h": 138.0,
+            "l": 159.0,
+            "w": 9.6
+          },
+          {
+            "x": 448.0,
+            "o": 155.5,
+            "c": 171.1,
+            "h": 150.7,
+            "l": 177.6,
+            "w": 9.6
+          },
+          {
+            "x": 464.0,
+            "o": 171.1,
+            "c": 182.0,
+            "h": 168.6,
+            "l": 185.8,
+            "w": 9.6
+          },
+          {
+            "x": 480.0,
+            "o": 182.0,
+            "c": 199.7,
+            "h": 178.3,
+            "l": 205.2,
+            "w": 9.6
+          },
+          {
+            "x": 496.0,
+            "o": 199.7,
+            "c": 214.0,
+            "h": 195.4,
+            "l": 216.1,
+            "w": 9.6
+          }
+        ],
+        "hlines": [
+          {
+            "y": 190,
+            "label": "Relevant supporting HL",
+            "tone": "up",
+            "x1": 248.0,
+            "x2": 690,
+            "size": 13,
+            "below": true,
+            "labelX": 528
+          },
+          {
+            "y": 122,
+            "label": "Tiny internal low",
+            "tone": "muted",
+            "x1": 376.0,
+            "x2": 690,
+            "size": 13,
+            "id": "tiny",
+            "below": true,
+            "labelX": 528
+          }
+        ],
+        "marks": [
+          {
+            "i": 2,
+            "label": "HL",
+            "tone": "up"
+          },
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "up"
+          },
+          {
+            "i": 4,
+            "label": "HL",
+            "tone": "up"
+          },
+          {
+            "i": 5,
+            "label": "HH",
+            "tone": "up"
+          }
+        ],
+        "notes": [
+          {
+            "x": 560,
+            "y": 250,
+            "text": "POTENTIAL BEARISH MSS",
+            "tone": "down",
+            "size": 17,
+            "anchor": "middle",
+            "id": "mss"
+          },
+          {
+            "x": 560,
+            "y": 272,
+            "text": "change information",
+            "tone": "purple",
+            "size": 14,
+            "anchor": "middle",
+            "id": "mss"
+          }
+        ]
+      },
+      "start": 18,
+      "story": {
+        "rows": [
+          {
+            "key": "larger",
+            "label": "Larger structure",
+            "value": "Bullish",
+            "tone": "up"
+          },
+          {
+            "key": "internal",
+            "label": "Internal movement",
+            "value": "Bullish",
+            "tone": "up"
+          },
+          {
+            "key": "sup",
+            "label": "Supporting HL",
+            "value": "Intact",
+            "tone": "muted"
+          },
+          {
+            "key": "status",
+            "label": "Break status",
+            "value": "None",
+            "tone": "muted"
+          }
+        ]
+      },
+      "evidence": {
+        "items": [
+          {
+            "text": "Bullish HH/HL progression existed",
+            "ok": true
+          }
+        ],
+        "conclusion": "Bullish structure intact"
+      },
+      "steps": [
+        {
+          "text": "HL → HH → HL → HH. A clean bullish structure. The low holding it up is marked.",
+          "next": "Play price →"
+        },
+        {
+          "candles": 20,
+          "text": "Price begins moving lower. Red candles.",
+          "evidence": {
+            "items": [
+              {
+                "text": "Bullish HH/HL progression existed",
+                "ok": true
+              },
+              {
+                "text": "Price began pulling back",
+                "ok": true
+              },
+              {
+                "text": "Supporting HL broken",
+                "ok": false
+              }
+            ],
+            "conclusion": "Pullback in progress"
+          },
+          "asks": [
+            {
+              "prompt": "MSS?",
+              "options": [
+                {
+                  "label": "Yes, price is going down",
+                  "correct": false,
+                  "feedback": "Price moving down isn’t structural change. Nothing has broken yet.",
+                  "mistake": "move-as-mss"
+                },
+                {
+                  "label": "Not yet",
+                  "correct": true,
+                  "why": "Not yet. Price is moving lower, but no structurally meaningful level has broken."
+                }
+              ],
+              "concept": "mss"
+            }
+          ]
+        },
+        {
+          "candles": 23,
+          "text": "Price breaks the tiny internal low.",
+          "show": [
+            "tiny"
+          ],
+          "story": {
+            "internal": {
+              "value": "Bearish",
+              "tone": "down"
+            },
+            "status": {
+              "value": "Internal low only",
+              "tone": "gold"
+            }
+          },
+          "evidence": {
+            "items": [
+              {
+                "text": "Bullish HH/HL progression existed",
+                "ok": true
+              },
+              {
+                "text": "Price began pulling back",
+                "ok": true
+              },
+              {
+                "text": "Internal low broke",
+                "ok": true
+              },
+              {
+                "text": "Relevant supporting HL broken",
+                "ok": false
+              },
+              {
+                "text": "Confirmed larger structural shift",
+                "ok": false
+              }
+            ],
+            "conclusion": "Not enough information for a larger shift"
+          },
+          "asks": [
+            {
+              "prompt": "MSS?",
+              "options": [
+                {
+                  "label": "Yes, a low broke",
+                  "correct": false,
+                  "feedback": "A low broke, but it was a tiny internal one. Which low is actually holding up the bullish structure?",
+                  "mistake": "internal-as-mss"
+                },
+                {
+                  "label": "Not necessarily",
+                  "correct": true,
+                  "why": "Not necessarily. Internal movement turned bearish, but the relevant supporting HL is still intact."
+                }
+              ],
+              "concept": "mss",
+              "hint": "Before you label a break, identify the level. Was that the supporting HL?"
+            }
+          ]
+        },
+        {
+          "candles": 28,
+          "text": "Price reaches the relevant supporting HL, and a candle <strong>closes through it</strong>.",
+          "story": {
+            "sup": {
+              "value": "Closed through",
+              "tone": "down"
+            },
+            "status": {
+              "value": "Potential MSS",
+              "tone": "down"
+            }
+          },
+          "evidence": {
+            "items": [
+              {
+                "text": "Bullish HH/HL progression existed",
+                "ok": true
+              },
+              {
+                "text": "Internal low broke",
+                "ok": true
+              },
+              {
+                "text": "Relevant supporting HL closed through",
+                "ok": true
+              }
+            ],
+            "conclusion": "Change information: the bullish structure may be transitioning"
+          },
+          "asks": [
+            {
+              "prompt": "WHAT CHANGED?",
+              "options": [
+                {
+                  "label": "Another red candle appeared",
+                  "correct": false,
+                  "feedback": "Candle color isn’t the change. Look at which level price closed through.",
+                  "mistake": "color-as-structure"
+                },
+                {
+                  "label": "Price closed through the relevant supporting low, against the bullish progression",
+                  "correct": true,
+                  "why": "That’s the difference. Price didn’t just move down: it broke the swing that was supporting the bullish structure. <strong>Potential bearish MSS.</strong>"
+                },
+                {
+                  "label": "Nothing structural changed",
+                  "correct": false,
+                  "feedback": "Something meaningful did break this time. Which level?"
+                }
+              ],
+              "concept": "mss",
+              "stack": true,
+              "show": [
+                "mss"
+              ]
+            },
+            {
+              "prompt": "Does this MSS mean the reversal is confirmed and it’s time to enter?",
+              "options": [
+                {
+                  "label": "Yes, reversal confirmed",
+                  "correct": false,
+                  "feedback": "MSS is change information. It suggests the prior structure may be transitioning. It doesn’t confirm anything or tell you to enter.",
+                  "mistake": "mss-as-entry"
+                },
+                {
+                  "label": "No. It’s change information, not an entry signal",
+                  "correct": true,
+                  "why": "Exactly. The old structure <strong>may</strong> no longer be behaving the same way. That’s all it says."
+                }
+              ],
+              "concept": "mss",
+              "stack": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "dayli",
+      "quote": "<strong>MSS tells you the old structure may no longer be behaving the same way.</strong><br><br>It does NOT mean: <strong>ENTER IMMEDIATELY.</strong> 🚫"
+    },
+    {
+      "type": "price_lab",
+      "kicker": "Now the other way",
+      "title": "Bearish to bullish. Fewer labels.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            42
+          ],
+          [
+            96.0,
+            145
+          ],
+          [
+            144.0,
+            95
+          ],
+          [
+            208.0,
+            198
+          ],
+          [
+            256.0,
+            120
+          ],
+          [
+            320.0,
+            230
+          ],
+          [
+            368.0,
+            188
+          ],
+          [
+            384.0,
+            202
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 42,
+            "c": 76.80000000000001,
+            "h": 38.5,
+            "l": 78.9,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 76.80000000000001,
+            "c": 90.1,
+            "h": 74.69999999999999,
+            "l": 92.30000000000001,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 90.1,
+            "c": 124.19999999999999,
+            "h": 87.9,
+            "l": 129.5,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 124.19999999999999,
+            "c": 136.0,
+            "h": 119.6,
+            "l": 145,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 136.0,
+            "c": 125.0,
+            "h": 121.30000000000001,
+            "l": 140.2,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 125.0,
+            "c": 109.30000000000001,
+            "h": 107.4,
+            "l": 131.5,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 109.30000000000001,
+            "c": 101.1,
+            "h": 95,
+            "l": 115.1,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 101.1,
+            "c": 127.0,
+            "h": 97.9,
+            "l": 129.5,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 127.0,
+            "c": 151.9,
+            "h": 124.5,
+            "l": 158.2,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 151.9,
+            "c": 178.7,
+            "h": 147.7,
+            "l": 183.1,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 178.7,
+            "c": 188.2,
+            "h": 173.4,
+            "l": 198,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 188.2,
+            "c": 167.2,
+            "h": 161.5,
+            "l": 190.7,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 167.2,
+            "c": 136.7,
+            "h": 131.6,
+            "l": 168.9,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 136.7,
+            "c": 129.5,
+            "h": 120,
+            "l": 141.3,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 129.5,
+            "c": 159.7,
+            "h": 124.30000000000001,
+            "l": 165.2,
+            "w": 9.6
+          },
+          {
+            "x": 288.0,
+            "o": 159.7,
+            "c": 185.3,
+            "h": 157.1,
+            "l": 190.0,
+            "w": 9.6
+          },
+          {
+            "x": 304.0,
+            "o": 185.3,
+            "c": 213.2,
+            "h": 182.1,
+            "l": 216.3,
+            "w": 9.6
+          },
+          {
+            "x": 320.0,
+            "o": 213.2,
+            "c": 222.4,
+            "h": 208.6,
+            "l": 230,
+            "w": 9.6
+          },
+          {
+            "x": 336.0,
+            "o": 222.4,
+            "c": 208.7,
+            "h": 202.3,
+            "l": 228.7,
+            "w": 9.6
+          },
+          {
+            "x": 352.0,
+            "o": 208.7,
+            "c": 198.0,
+            "h": 192.6,
+            "l": 215.2,
+            "w": 9.6
+          },
+          {
+            "x": 368.0,
+            "o": 198.0,
+            "c": 195.2,
+            "h": 188,
+            "l": 200.7,
+            "w": 9.6
+          },
+          {
+            "x": 384.0,
+            "o": 195.2,
+            "c": 193.5,
+            "h": 189.3,
+            "l": 202,
+            "w": 9.6
+          },
+          {
+            "x": 400.0,
+            "o": 193.5,
+            "c": 181.0,
+            "h": 178.6,
+            "l": 195.5,
+            "w": 9.6
+          },
+          {
+            "x": 416.0,
+            "o": 181.0,
+            "c": 170.0,
+            "h": 165.5,
+            "l": 187.1,
+            "w": 9.6
+          },
+          {
+            "x": 432.0,
+            "o": 170.0,
+            "c": 154.5,
+            "h": 151.0,
+            "l": 172.0,
+            "w": 9.6
+          },
+          {
+            "x": 448.0,
+            "o": 154.5,
+            "c": 138.9,
+            "h": 132.4,
+            "l": 159.3,
+            "w": 9.6
+          },
+          {
+            "x": 464.0,
+            "o": 138.9,
+            "c": 128.0,
+            "h": 124.19999999999999,
+            "l": 141.4,
+            "w": 9.6
+          },
+          {
+            "x": 480.0,
+            "o": 128.0,
+            "c": 110.30000000000001,
+            "h": 104.80000000000001,
+            "l": 131.7,
+            "w": 9.6
+          },
+          {
+            "x": 496.0,
+            "o": 110.30000000000001,
+            "c": 96.0,
+            "h": 93.9,
+            "l": 114.6,
+            "w": 9.6
+          }
+        ],
+        "hlines": [
+          {
+            "y": 120,
+            "label": "C",
+            "tone": "down",
+            "x1": 248.0,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          },
+          {
+            "y": 188,
+            "label": "A",
+            "tone": "muted",
+            "x1": 376.0,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          }
+        ],
+        "marks": [
+          {
+            "i": 4,
+            "label": "C",
+            "tone": "down"
+          },
+          {
+            "i": 7,
+            "label": "A",
+            "tone": "muted"
+          }
+        ]
+      },
+      "start": 18,
+      "story": {
+        "rows": [
+          {
+            "key": "larger",
+            "label": "Larger structure",
+            "value": "Bearish",
+            "tone": "down"
+          },
+          {
+            "key": "status",
+            "label": "Break status",
+            "value": "None",
+            "tone": "muted"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "LH → LL → LH → LL. Two highs are lettered above price: A and C.",
+          "next": "Play price →"
+        },
+        {
+          "candles": 23,
+          "text": "Price closes above A.",
+          "asks": [
+            {
+              "prompt": "MSS?",
+              "options": [
+                {
+                  "label": "Yes",
+                  "correct": false,
+                  "feedback": "A is a tiny internal high. The swing holding the bearish structure is C.",
+                  "mistake": "internal-as-mss"
+                },
+                {
+                  "label": "Not necessarily",
+                  "correct": true,
+                  "why": "A was internal. C, the relevant LH, is still intact."
+                }
+              ],
+              "concept": "mss",
+              "hint": "Which of the two lettered highs is the relevant LH?",
+              "story": {
+                "status": {
+                  "value": "Internal high only",
+                  "tone": "gold"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "candles": 28,
+          "text": "Price closes above C.",
+          "asks": [
+            {
+              "prompt": "What does this break tell you?",
+              "options": [
+                {
+                  "label": "Bullish BOS, continuation",
+                  "correct": false,
+                  "feedback": "The structure was bearish. Breaking the relevant LH goes against it.",
+                  "mistake": "mss-as-bos"
+                },
+                {
+                  "label": "Potential bullish MSS: change information",
+                  "correct": true,
+                  "why": "Price closed through the relevant LH against the bearish progression. The bearish structure may be transitioning."
+                },
+                {
+                  "label": "Enter long now",
+                  "correct": false,
+                  "feedback": "MSS is information, not an entry.",
+                  "mistake": "mss-as-entry"
+                }
+              ],
+              "concept": "mss",
+              "stack": true,
+              "story": {
+                "status": {
+                  "value": "Potential MSS",
+                  "tone": "up"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "swing_tap",
+      "kicker": "Find the shift",
+      "title": "Which break would actually matter?",
+      "rounds": [
+        {
+          "tag": "Bullish structure",
+          "prompt": "<strong>Which break would most directly challenge this bullish structure?</strong>",
+          "chart": {
+            "swings": [
+              [
+                40,
+                270
+              ],
+              [
+                130,
+                175
+              ],
+              [
+                180,
+                215
+              ],
+              [
+                260,
+                125
+              ],
+              [
+                320,
+                190
+              ],
+              [
+                400,
+                85
+              ],
+              [
+                440,
+                120
+              ],
+              [
+                470,
+                105
+              ],
+              [
+                510,
+                150
+              ],
+              [
+                545,
+                135
+              ],
+              [
+                600,
+                170
+              ]
+            ],
+            "seed": 41,
+            "density": 1.3,
+            "marks": [
+              {
+                "i": 6,
+                "label": "A",
+                "tone": "muted"
+              },
+              {
+                "i": 8,
+                "label": "B",
+                "tone": "muted"
+              },
+              {
+                "i": 4,
+                "label": "C",
+                "tone": "muted"
+              }
+            ]
+          },
+          "only": [
+            4,
+            6,
+            8
+          ],
+          "answer": 4,
+          "reveal": {
+            "4": {
+              "label": "C · supporting HL",
+              "tone": "up"
+            }
+          },
+          "why": "C is the higher low that supports the bullish progression (HL → HH). Breaking it would challenge the structure itself. A and B are internal fluctuations inside the pullback.",
+          "notes": {
+            "6": "A is a tiny internal low inside the latest pullback.",
+            "8": "B is another internal fluctuation. It isn’t holding up the larger structure."
+          }
+        }
+      ]
+    },
+    {
+      "type": "teach",
+      "kicker": "The word that matters",
+      "body": "A meaningful structural break <strong>against</strong> the prior directional progression suggests the prior structural state <strong>may</strong> be transitioning.<br><br>MSS = change information. The word <strong>may</strong> matters.",
+      "check": {
+        "prompt": "Which statement is most accurate?",
+        "options": [
+          {
+            "label": "MSS = reversal confirmed",
+            "correct": false,
+            "feedback": "MSS suggests the structure may be transitioning. It doesn’t confirm a reversal."
+          },
+          {
+            "label": "MSS = enter now",
+            "correct": false,
+            "feedback": "MSS is not an entry signal."
+          },
+          {
+            "label": "MSS = change information",
+            "correct": true,
+            "why": "Yes. It tells you the prior structure may be transitioning. Nothing more."
+          }
+        ]
+      }
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What’s the difference between price moving down and price giving you structural change information?",
+      "modelAnswer": "Price moving down is just direction. Red candles, a pullback, even breaking a tiny internal low can all happen inside a bullish structure. Structural change information comes when price closes through the relevant swing that was supporting the structure, against its prior direction. Even then, it’s a potential MSS: the structure may be transitioning. It isn’t an entry signal."
+    }
+  ],
+  "takeaways": [
+    "Price moving against the structure isn’t a shift by itself.",
+    "A potential MSS is a close through the relevant supporting swing against the prior progression.",
+    "MSS is change information. It does not mean enter immediately."
+  ],
+  "remember": "MSS tells you the old structure may no longer be behaving the same way. It does not mean enter immediately."
+}

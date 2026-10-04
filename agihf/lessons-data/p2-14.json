@@ -1,0 +1,1085 @@
+{
+  "phase": "p2",
+  "section": "s5",
+  "lessonNumber": 14,
+  "title": "Retracement vs. Reversal",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Levels decide it. Not candle color.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Separate a retracement (supporting swing holds) from a potential reversal (supporting swing breaks and new structure forms) using levels, not candle color.",
+    "missionQuestion": "Price dropped hard. Retracement or reversal?",
+    "estMinutes": 9
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "kicker": "Scenario A",
+      "title": "A big move down. Is it a reversal?",
+      "chart": {
+        "swings": [
+          [
+            40,
+            268
+          ],
+          [
+            80.0,
+            170
+          ],
+          [
+            128.0,
+            225
+          ],
+          [
+            176.0,
+            125
+          ],
+          [
+            224.0,
+            200
+          ],
+          [
+            272.0,
+            92
+          ],
+          [
+            352.0,
+            184
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 268,
+            "c": 235.3,
+            "h": 231.0,
+            "l": 273.5,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 235.3,
+            "c": 201.3,
+            "h": 198.2,
+            "l": 240.3,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 201.3,
+            "c": 177.9,
+            "h": 170,
+            "l": 204.7,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 177.9,
+            "c": 193.3,
+            "h": 174.8,
+            "l": 195.6,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 193.3,
+            "c": 209.8,
+            "h": 187.3,
+            "l": 214.8,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 209.8,
+            "c": 216.5,
+            "h": 206.5,
+            "l": 225,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 216.5,
+            "c": 185.5,
+            "h": 183.3,
+            "l": 221.6,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 185.5,
+            "c": 154.0,
+            "h": 151.0,
+            "l": 191.9,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 154.0,
+            "c": 132.4,
+            "h": 125,
+            "l": 159.9,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 132.4,
+            "c": 155.5,
+            "h": 127.1,
+            "l": 160.2,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 155.5,
+            "c": 175.7,
+            "h": 150.5,
+            "l": 178.5,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 175.7,
+            "c": 192.4,
+            "h": 173.2,
+            "l": 200,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 192.4,
+            "c": 155.4,
+            "h": 152.0,
+            "l": 193.9,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 155.4,
+            "c": 124.5,
+            "h": 118.8,
+            "l": 161.9,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 124.5,
+            "c": 99.7,
+            "h": 92,
+            "l": 127.0,
+            "w": 9.6
+          },
+          {
+            "x": 288.0,
+            "o": 99.7,
+            "c": 115.5,
+            "h": 97.9,
+            "l": 118.1,
+            "w": 9.6
+          },
+          {
+            "x": 304.0,
+            "o": 115.5,
+            "c": 134.2,
+            "h": 110.9,
+            "l": 135.9,
+            "w": 9.6
+          },
+          {
+            "x": 320.0,
+            "o": 134.2,
+            "c": 150.2,
+            "h": 130.6,
+            "l": 153.7,
+            "w": 9.6
+          },
+          {
+            "x": 336.0,
+            "o": 150.2,
+            "c": 164.7,
+            "h": 146.7,
+            "l": 166.7,
+            "w": 9.6
+          },
+          {
+            "x": 352.0,
+            "o": 164.7,
+            "c": 175.3,
+            "h": 160.1,
+            "l": 184,
+            "w": 9.6
+          },
+          {
+            "x": 368.0,
+            "o": 175.3,
+            "c": 163.9,
+            "h": 160.3,
+            "l": 181.5,
+            "w": 9.6
+          },
+          {
+            "x": 384.0,
+            "o": 163.9,
+            "c": 151.4,
+            "h": 148.9,
+            "l": 167.2,
+            "w": 9.6
+          },
+          {
+            "x": 400.0,
+            "o": 151.4,
+            "c": 140.0,
+            "h": 133.9,
+            "l": 153.7,
+            "w": 9.6
+          },
+          {
+            "x": 416.0,
+            "o": 140.0,
+            "c": 122.8,
+            "h": 116.6,
+            "l": 145.8,
+            "w": 9.6
+          },
+          {
+            "x": 432.0,
+            "o": 122.8,
+            "c": 104.0,
+            "h": 100.2,
+            "l": 126.5,
+            "w": 9.6
+          }
+        ],
+        "hlines": [
+          {
+            "y": 200,
+            "label": "Supporting HL",
+            "tone": "up",
+            "x1": 216.0,
+            "x2": 690,
+            "size": 13,
+            "below": true,
+            "labelX": 528
+          }
+        ],
+        "marks": [
+          {
+            "i": 2,
+            "label": "HL",
+            "tone": "up"
+          },
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "up"
+          },
+          {
+            "i": 4,
+            "label": "HL",
+            "tone": "up"
+          },
+          {
+            "i": 5,
+            "label": "HH",
+            "tone": "up"
+          },
+          {
+            "i": 6,
+            "label": "HL",
+            "tone": "up",
+            "id": "nhl"
+          }
+        ],
+        "notes": [
+          {
+            "x": 560,
+            "y": 60,
+            "text": "POSSIBLE RETRACEMENT",
+            "tone": "up",
+            "size": 17,
+            "anchor": "middle",
+            "id": "ret"
+          }
+        ]
+      },
+      "start": 15,
+      "story": {
+        "rows": [
+          {
+            "key": "larger",
+            "label": "Larger structure",
+            "value": "Bullish",
+            "tone": "up"
+          },
+          {
+            "key": "move",
+            "label": "Current move",
+            "value": "Up",
+            "tone": "up"
+          },
+          {
+            "key": "sup",
+            "label": "Supporting HL",
+            "value": "Intact",
+            "tone": "muted"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "Bullish structure. Price just made a higher high.",
+          "next": "Play price →"
+        },
+        {
+          "candles": 20,
+          "text": "A run of red candles. A big move down.",
+          "story": {
+            "move": {
+              "value": "Down",
+              "tone": "down"
+            }
+          },
+          "asks": [
+            {
+              "prompt": "Reversal?",
+              "options": [
+                {
+                  "label": "Yes, look at all that red",
+                  "correct": false,
+                  "feedback": "Candle color and size don’t decide it. Levels do.",
+                  "mistake": "color-as-structure"
+                },
+                {
+                  "label": "Not from this alone. Check the levels",
+                  "correct": true,
+                  "why": "Right. A big move down inside a bullish structure can still be a retracement. The levels decide."
+                }
+              ],
+              "concept": "retracement"
+            }
+          ]
+        },
+        {
+          "candles": 20,
+          "text": "So which level decides it?",
+          "tap": {
+            "prompt": "Tap the swing that decides it.",
+            "answer": 4,
+            "only": [
+              2,
+              4,
+              5
+            ],
+            "concept": "relevant-swing",
+            "names": {
+              "2": "the first HL",
+              "4": "the supporting HL",
+              "5": "the HH"
+            },
+            "hint": "Which low is holding up the latest HH?",
+            "notes": {
+              "2": "That HL is older. The latest HH is supported by a more recent low.",
+              "5": "That’s the high price just came from."
+            },
+            "reveal": {
+              "4": {
+                "label": "Supporting HL",
+                "tone": "up"
+              }
+            },
+            "why": "The supporting HL. If price closes through it, the bullish structure is challenged. If it holds, the bullish story stays intact."
+          }
+        },
+        {
+          "candles": 25,
+          "text": "Price holds above the supporting HL and turns back up.",
+          "story": {
+            "sup": {
+              "value": "Held",
+              "tone": "up"
+            },
+            "move": {
+              "value": "Up",
+              "tone": "up"
+            }
+          },
+          "asks": [
+            {
+              "prompt": "Read it.",
+              "options": [
+                {
+                  "label": "Possible retracement: the supporting HL held",
+                  "correct": true,
+                  "why": "The move down was big, but it never closed through the swing supporting the structure, and price formed a new higher low. <strong>Possible retracement.</strong>"
+                },
+                {
+                  "label": "Reversal: the move down was big",
+                  "correct": false,
+                  "feedback": "Size isn’t the test. Did price break the supporting HL?",
+                  "mistake": "color-as-structure"
+                },
+                {
+                  "label": "Not enough information",
+                  "correct": false,
+                  "feedback": "You have some evidence here: the supporting HL held and price formed a new higher low.",
+                  "nei": true
+                }
+              ],
+              "concept": "retracement",
+              "show": [
+                "ret",
+                "nhl"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "price_lab",
+      "kicker": "Scenario B",
+      "title": "Same start. The levels tell a different story.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            268
+          ],
+          [
+            80.0,
+            170
+          ],
+          [
+            128.0,
+            225
+          ],
+          [
+            176.0,
+            125
+          ],
+          [
+            224.0,
+            200
+          ],
+          [
+            272.0,
+            92
+          ],
+          [
+            368.0,
+            222
+          ],
+          [
+            416.0,
+            150
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 268,
+            "c": 242.9,
+            "h": 240.5,
+            "l": 274.4,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 242.9,
+            "c": 198.0,
+            "h": 194.2,
+            "l": 248.9,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 198.0,
+            "c": 177.4,
+            "h": 170,
+            "l": 202.1,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 177.4,
+            "c": 190.4,
+            "h": 171.1,
+            "l": 196.8,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 190.4,
+            "c": 206.3,
+            "h": 188.3,
+            "l": 210.2,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 206.3,
+            "c": 216.9,
+            "h": 201.2,
+            "l": 225,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 216.9,
+            "c": 183.7,
+            "h": 179.2,
+            "l": 219.2,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 183.7,
+            "c": 150.9,
+            "h": 149.0,
+            "l": 187.9,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 150.9,
+            "c": 133.3,
+            "h": 125,
+            "l": 155.4,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 133.3,
+            "c": 160.7,
+            "h": 130.2,
+            "l": 163.9,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 160.7,
+            "c": 177.3,
+            "h": 154.5,
+            "l": 180.3,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 177.3,
+            "c": 192.8,
+            "h": 173.6,
+            "l": 200,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 192.8,
+            "c": 162.7,
+            "h": 159.8,
+            "l": 195.2,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 162.7,
+            "c": 129.8,
+            "h": 125.4,
+            "l": 167.1,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 129.8,
+            "c": 98.1,
+            "h": 92,
+            "l": 132.8,
+            "w": 9.6
+          },
+          {
+            "x": 288.0,
+            "o": 98.1,
+            "c": 113.0,
+            "h": 94.7,
+            "l": 119.1,
+            "w": 9.6
+          },
+          {
+            "x": 304.0,
+            "o": 113.0,
+            "c": 147.4,
+            "h": 107.3,
+            "l": 150.8,
+            "w": 9.6
+          },
+          {
+            "x": 320.0,
+            "o": 147.4,
+            "c": 162.0,
+            "h": 141.4,
+            "l": 165.2,
+            "w": 9.6
+          },
+          {
+            "x": 336.0,
+            "o": 162.0,
+            "c": 182.0,
+            "h": 158.5,
+            "l": 187.1,
+            "w": 9.6
+          },
+          {
+            "x": 352.0,
+            "o": 182.0,
+            "c": 200.9,
+            "h": 178.1,
+            "l": 204.2,
+            "w": 9.6
+          },
+          {
+            "x": 368.0,
+            "o": 200.9,
+            "c": 212.7,
+            "h": 196.8,
+            "l": 222,
+            "w": 9.6
+          },
+          {
+            "x": 384.0,
+            "o": 212.7,
+            "c": 187.3,
+            "h": 185.7,
+            "l": 217.4,
+            "w": 9.6
+          },
+          {
+            "x": 400.0,
+            "o": 187.3,
+            "c": 166.6,
+            "h": 161.7,
+            "l": 189.9,
+            "w": 9.6
+          },
+          {
+            "x": 416.0,
+            "o": 166.6,
+            "c": 158.1,
+            "h": 150,
+            "l": 169.9,
+            "w": 9.6
+          },
+          {
+            "x": 432.0,
+            "o": 158.1,
+            "c": 184.2,
+            "h": 156.0,
+            "l": 187.8,
+            "w": 9.6
+          },
+          {
+            "x": 448.0,
+            "o": 184.2,
+            "c": 207.7,
+            "h": 181.4,
+            "l": 214.2,
+            "w": 9.6
+          },
+          {
+            "x": 464.0,
+            "o": 207.7,
+            "c": 236.8,
+            "h": 201.4,
+            "l": 243.0,
+            "w": 9.6
+          },
+          {
+            "x": 480.0,
+            "o": 236.8,
+            "c": 252.0,
+            "h": 230.6,
+            "l": 256.4,
+            "w": 9.6
+          }
+        ],
+        "hlines": [
+          {
+            "y": 200,
+            "label": "Supporting HL",
+            "tone": "up",
+            "x1": 216.0,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          },
+          {
+            "y": 222,
+            "label": "New low",
+            "tone": "down",
+            "x1": 360.0,
+            "x2": 690,
+            "size": 13,
+            "id": "nl",
+            "below": true,
+            "labelX": 528
+          }
+        ],
+        "marks": [
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "up"
+          },
+          {
+            "i": 4,
+            "label": "HL",
+            "tone": "up"
+          },
+          {
+            "i": 5,
+            "label": "HH",
+            "tone": "up"
+          },
+          {
+            "i": 7,
+            "label": "LH",
+            "tone": "down",
+            "id": "lh"
+          }
+        ],
+        "notes": [
+          {
+            "x": 560,
+            "y": 50,
+            "text": "POTENTIAL REVERSAL",
+            "tone": "down",
+            "size": 17,
+            "anchor": "middle",
+            "id": "rev"
+          },
+          {
+            "x": 560,
+            "y": 72,
+            "text": "structural transition",
+            "tone": "purple",
+            "size": 14,
+            "anchor": "middle",
+            "id": "rev"
+          }
+        ]
+      },
+      "start": 15,
+      "story": {
+        "rows": [
+          {
+            "key": "larger",
+            "label": "Larger structure",
+            "value": "Bullish",
+            "tone": "up"
+          },
+          {
+            "key": "sup",
+            "label": "Supporting HL",
+            "value": "Intact",
+            "tone": "muted"
+          },
+          {
+            "key": "new",
+            "label": "New structure",
+            "value": "Not yet",
+            "tone": "muted"
+          }
+        ]
+      },
+      "evidence": {
+        "items": [
+          {
+            "text": "Bullish HH/HL progression existed",
+            "ok": true
+          }
+        ],
+        "conclusion": "Bullish structure intact"
+      },
+      "steps": [
+        {
+          "text": "Bullish structure. Same supporting HL.",
+          "next": "Play price →"
+        },
+        {
+          "candles": 20,
+          "text": "This time price <strong>closes</strong> through the supporting HL.",
+          "story": {
+            "sup": {
+              "value": "Closed through",
+              "tone": "down"
+            }
+          },
+          "evidence": {
+            "items": [
+              {
+                "text": "Bullish HH/HL progression existed",
+                "ok": true
+              },
+              {
+                "text": "Supporting HL closed through",
+                "ok": true
+              },
+              {
+                "text": "Lower high formed",
+                "ok": false
+              },
+              {
+                "text": "Lower low formed",
+                "ok": false
+              }
+            ],
+            "conclusion": "Potential shift"
+          },
+          "asks": [
+            {
+              "prompt": "Reversal confirmed?",
+              "options": [
+                {
+                  "label": "Yes",
+                  "correct": false,
+                  "feedback": "One break is change information. Watch what price builds next.",
+                  "mistake": "mss-as-reversal"
+                },
+                {
+                  "label": "Potential shift. Watch what price builds next",
+                  "correct": true,
+                  "why": "Right. The supporting swing broke. Now the question is what structure price builds after it."
+                }
+              ],
+              "concept": "reversal"
+            }
+          ]
+        },
+        {
+          "candles": 24,
+          "show": [
+            "nl"
+          ],
+          "text": "Price bounces, then stalls well below the HH.",
+          "asks": [
+            {
+              "prompt": "What did this bounce create?",
+              "options": [
+                {
+                  "label": "A lower high",
+                  "correct": true,
+                  "why": "A lower high: price couldn’t get back to the prior HH."
+                },
+                {
+                  "label": "A higher high",
+                  "correct": false,
+                  "feedback": "Compare it to the prior HH. It’s well below it."
+                },
+                {
+                  "label": "Nothing structural",
+                  "correct": false,
+                  "feedback": "It turned and formed a swing. How does it compare to the prior HH?"
+                }
+              ],
+              "concept": "reversal",
+              "show": [
+                "lh"
+              ],
+              "story": {
+                "new": {
+                  "value": "LH formed",
+                  "tone": "down"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "candles": 27,
+          "text": "Price <strong>closes</strong> below the new low.",
+          "story": {
+            "new": {
+              "value": "LH → LL",
+              "tone": "down"
+            }
+          },
+          "evidence": {
+            "items": [
+              {
+                "text": "Supporting HL closed through",
+                "ok": true
+              },
+              {
+                "text": "Lower high formed",
+                "ok": true
+              },
+              {
+                "text": "Lower low formed",
+                "ok": true
+              }
+            ],
+            "conclusion": "Potential reversal: structural transition"
+          },
+          "asks": [
+            {
+              "prompt": "What does the evidence suggest now?",
+              "options": [
+                {
+                  "label": "Just a retracement",
+                  "correct": false,
+                  "feedback": "The supporting HL broke, then price made a lower high and a lower low. That’s more than a pullback.",
+                  "mistake": "reversal-as-retracement"
+                },
+                {
+                  "label": "Potential reversal / structural transition",
+                  "correct": true,
+                  "why": "The supporting swing broke, and price built a lower high and a lower low after it. <strong>The structure may be transitioning.</strong>"
+                },
+                {
+                  "label": "Not enough information",
+                  "correct": false,
+                  "feedback": "You have more now: a break of the supporting swing, a lower high, and a close below the new low.",
+                  "nei": true
+                }
+              ],
+              "concept": "reversal",
+              "show": [
+                "rev"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "confusion",
+      "kicker": "Keep these separate",
+      "heading": "Current move ≠ larger structure",
+      "left": {
+        "label": "Direction of the current move",
+        "points": [
+          "What price is doing right now",
+          "Can be down inside a bullish structure",
+          "Candle color shows this"
+        ]
+      },
+      "right": {
+        "label": "Direction of the larger structure",
+        "points": [
+          "What the relevant swings show",
+          "Changes only when relevant levels break",
+          "Swings and closes show this"
+        ]
+      }
+    },
+    {
+      "type": "teach",
+      "kicker": "A preview",
+      "title": "Different charts, different stories.",
+      "body": "The same moment can look like this:<br><br><strong>4H:</strong> bullish structure<br><strong>1H:</strong> pulling back<br><strong>1M:</strong> bearish internal movement<br><br>All three can be true at the same time. We’ll go deeper on timeframes later. For now: <strong>name the structure you’re reading.</strong>",
+      "check": {
+        "prompt": "The 1M chart is bearish. Does that mean the 4H structure is bearish?",
+        "options": [
+          {
+            "label": "Yes",
+            "correct": false,
+            "feedback": "A lower timeframe can move against the larger structure without breaking it."
+          },
+          {
+            "label": "Not necessarily",
+            "correct": true,
+            "why": "Right. A pullback on a smaller chart can sit inside a larger bullish structure."
+          }
+        ]
+      }
+    },
+    {
+      "type": "chart_check",
+      "kicker": "Catch the mistake",
+      "title": "What decides it?",
+      "scenario": "Price dropped hard from the HH, but never closed through the supporting HL.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            260
+          ],
+          [
+            120,
+            170
+          ],
+          [
+            190,
+            225
+          ],
+          [
+            270,
+            120
+          ],
+          [
+            340,
+            200
+          ],
+          [
+            420,
+            80
+          ],
+          [
+            560,
+            185
+          ],
+          [
+            640,
+            140
+          ]
+        ],
+        "seed": 64,
+        "hlines": [
+          {
+            "y": 200,
+            "label": "Supporting HL",
+            "tone": "up",
+            "below": true
+          }
+        ]
+      },
+      "check": {
+        "prompt": "What decides retracement vs. reversal?",
+        "options": [
+          {
+            "label": "Candle color",
+            "correct": false,
+            "feedback": "Red candles show the current move, not the structure."
+          },
+          {
+            "label": "How big the move was",
+            "correct": false,
+            "feedback": "A big move can still be a retracement."
+          },
+          {
+            "label": "What price did at the relevant swing levels",
+            "correct": true,
+            "why": "Yes. Here the supporting HL held, so this reads as a possible retracement."
+          }
+        ]
+      }
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "How do you tell a retracement from a reversal?",
+      "modelAnswer": "I look at the levels, not the candle color. If price pulls back but the supporting swing holds, it’s a possible retracement inside the larger structure. If price closes through the supporting swing and then builds new structure the other way, like a lower high and a lower low, that’s a potential reversal or structural transition."
+    }
+  ],
+  "takeaways": [
+    "A big move against the structure can still be a retracement.",
+    "A potential reversal needs the supporting swing to break, and new structure to form after it.",
+    "The direction of the current move isn’t always the direction of the larger structure."
+  ],
+  "remember": "Levels decide it. Not candle color."
+}

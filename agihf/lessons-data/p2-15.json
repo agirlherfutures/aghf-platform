@@ -1,0 +1,1325 @@
+{
+  "phase": "p2",
+  "section": "s5",
+  "lessonNumber": 15,
+  "title": "Wick Break vs. Candle-Close Break",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "A wick can visit. A close finishes there.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Tell a wick through a level apart from a candle close through it, and know why the close carries more structural weight here.",
+    "missionQuestion": "Price poked above the level. Did it break it?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "kicker": "Compare",
+      "title": "Same level. Two endings.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            170
+          ],
+          [
+            103.0,
+            205
+          ],
+          [
+            175.0,
+            150
+          ],
+          [
+            211.0,
+            180
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 49.0,
+            "o": 170,
+            "c": 178.8,
+            "h": 166.2,
+            "l": 183.1,
+            "w": 10.8
+          },
+          {
+            "x": 67.0,
+            "o": 178.8,
+            "c": 186.8,
+            "h": 173.1,
+            "l": 189.1,
+            "w": 10.8
+          },
+          {
+            "x": 85.0,
+            "o": 186.8,
+            "c": 195.9,
+            "h": 181.5,
+            "l": 200.5,
+            "w": 10.8
+          },
+          {
+            "x": 103.0,
+            "o": 195.9,
+            "c": 195.4,
+            "h": 192.2,
+            "l": 205,
+            "w": 10.8
+          },
+          {
+            "x": 121.0,
+            "o": 195.4,
+            "c": 182.9,
+            "h": 179.8,
+            "l": 197.5,
+            "w": 10.8
+          },
+          {
+            "x": 139.0,
+            "o": 182.9,
+            "c": 169.2,
+            "h": 165.2,
+            "l": 185.9,
+            "w": 10.8
+          },
+          {
+            "x": 157.0,
+            "o": 169.2,
+            "c": 162.0,
+            "h": 155.7,
+            "l": 175.7,
+            "w": 10.8
+          },
+          {
+            "x": 175.0,
+            "o": 162.0,
+            "c": 159.1,
+            "h": 150,
+            "l": 165.3,
+            "w": 10.8
+          },
+          {
+            "x": 193.0,
+            "o": 159.1,
+            "c": 169.1,
+            "h": 153.1,
+            "l": 171.8,
+            "w": 10.8
+          },
+          {
+            "x": 211.0,
+            "o": 169.1,
+            "c": 170.7,
+            "h": 166.1,
+            "l": 180,
+            "w": 10.8
+          },
+          {
+            "x": 229.0,
+            "o": 170.7,
+            "c": 160.7,
+            "h": 156.4,
+            "l": 177.0,
+            "w": 10.8
+          },
+          {
+            "x": 247.0,
+            "o": 160.7,
+            "c": 153.0,
+            "h": 147.3,
+            "l": 163.9,
+            "w": 10.8
+          },
+          {
+            "x": 265.0,
+            "o": 153.0,
+            "c": 140.6,
+            "h": 134.8,
+            "l": 157.4,
+            "w": 10.8
+          },
+          {
+            "x": 283.0,
+            "o": 140.6,
+            "c": 132.0,
+            "h": 126.9,
+            "l": 142.6,
+            "w": 10.8
+          },
+          {
+            "x": 301.0,
+            "o": 132.0,
+            "c": 128,
+            "h": 98,
+            "l": 135.0,
+            "w": 10.8,
+            "id": "wick"
+          },
+          {
+            "x": 301.0,
+            "o": 132.0,
+            "c": 104,
+            "h": 97,
+            "l": 135.0,
+            "w": 10.8,
+            "id": "close"
+          }
+        ],
+        "hlines": [
+          {
+            "y": 120,
+            "label": "Structural level",
+            "tone": "purple",
+            "x1": 40,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          }
+        ]
+      },
+      "start": 14,
+      "views": [
+        {
+          "key": "wick",
+          "label": "Wick through",
+          "show": [
+            "wick"
+          ],
+          "hide": [
+            "close"
+          ],
+          "text": "The wick traded above the level. The body <strong>closed back below</strong> it."
+        },
+        {
+          "key": "close",
+          "label": "Close through",
+          "show": [
+            "close"
+          ],
+          "hide": [
+            "wick"
+          ],
+          "text": "The body <strong>closed above</strong> the level."
+        }
+      ],
+      "steps": [
+        {
+          "text": "Price is approaching a structural level.",
+          "next": "Play price →"
+        },
+        {
+          "candles": 16,
+          "text": "Price trades through the level. Toggle <strong>Wick through</strong> and <strong>Close through</strong> above the chart to compare.",
+          "asks": [
+            {
+              "prompt": "In the WICK THROUGH version, where did the candle finish?",
+              "options": [
+                {
+                  "label": "Above the level",
+                  "correct": false,
+                  "feedback": "Toggle to Wick through and look at where the body ends.",
+                  "mistake": "wick-as-close"
+                },
+                {
+                  "label": "Back below the level",
+                  "correct": true,
+                  "why": "Price traded above the level, then the candle closed back below it."
+                }
+              ],
+              "concept": "wick-break"
+            },
+            {
+              "prompt": "In the CLOSE THROUGH version?",
+              "options": [
+                {
+                  "label": "Above the level",
+                  "correct": true,
+                  "why": "The body finished beyond the level."
+                },
+                {
+                  "label": "Back below the level",
+                  "correct": false,
+                  "feedback": "Toggle to Close through. Where did the body end?",
+                  "mistake": "close-as-wick"
+                }
+              ],
+              "concept": "close-break",
+              "stack": true
+            },
+            {
+              "prompt": "Which gives stronger confirmation that price finished beyond the level?",
+              "options": [
+                {
+                  "label": "The wick through",
+                  "correct": false,
+                  "feedback": "The wick went further, but the candle didn’t finish there.",
+                  "mistake": "wick-as-close"
+                },
+                {
+                  "label": "The close through",
+                  "correct": true,
+                  "why": "The close. Price didn’t just visit beyond the level. It finished there."
+                }
+              ],
+              "concept": "close-break",
+              "stack": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "teach",
+      "kicker": "A wick still tells you something",
+      "title": "A wick isn’t “nothing.”",
+      "body": "A wick through a level can show:<br><br>· price traded beyond the level<br>· rejection<br>· a temporary excursion<br>· interaction around liquidity<br><br>But it does <strong>not</strong> automatically communicate the same structural confirmation as a candle <strong>close</strong> through the level."
+    },
+    {
+      "type": "teach",
+      "kicker": "The AGHF convention",
+      "title": "How we confirm a break here.",
+      "body": "Within the framework being taught, <strong>candle-close confirmation carries more significance</strong> when evaluating whether price has actually broken a structural level.",
+      "check": {
+        "prompt": "A candle wicks below the supporting HL, then closes back above it. Has the supporting HL been broken with close confirmation?",
+        "options": [
+          {
+            "label": "Yes, price went below it",
+            "correct": false,
+            "feedback": "Price visited below it, but the candle closed back above it."
+          },
+          {
+            "label": "No. It was a wick through, not a close through",
+            "correct": true,
+            "why": "Right. The wick shows price traded below the level. It didn’t close there."
+          }
+        ]
+      }
+    },
+    {
+      "type": "flash_sort",
+      "kicker": "Rapid fire",
+      "title": "Wick or close?",
+      "body": "Look at the last candle and the level. Where did the body finish?",
+      "options": [
+        {
+          "key": "wick",
+          "label": "Wick",
+          "emoji": "┆"
+        },
+        {
+          "key": "close",
+          "label": "Close",
+          "emoji": "▮"
+        }
+      ],
+      "items": [
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                165
+              ],
+              [
+                140.0,
+                200
+              ],
+              [
+                260.0,
+                160
+              ],
+              [
+                340.0,
+                180
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60.0,
+                "o": 165,
+                "c": 174.8,
+                "h": 163.0,
+                "l": 179.6,
+                "w": 20
+              },
+              {
+                "x": 100.0,
+                "o": 174.8,
+                "c": 188.9,
+                "h": 170.1,
+                "l": 192.2,
+                "w": 20
+              },
+              {
+                "x": 140.0,
+                "o": 188.9,
+                "c": 192.2,
+                "h": 183.3,
+                "l": 200,
+                "w": 20
+              },
+              {
+                "x": 180.0,
+                "o": 192.2,
+                "c": 183.3,
+                "h": 180.5,
+                "l": 195.1,
+                "w": 20
+              },
+              {
+                "x": 220.0,
+                "o": 183.3,
+                "c": 168.3,
+                "h": 163.1,
+                "l": 185.0,
+                "w": 20
+              },
+              {
+                "x": 260.0,
+                "o": 168.3,
+                "c": 168.7,
+                "h": 160,
+                "l": 174.5,
+                "w": 20
+              },
+              {
+                "x": 300.0,
+                "o": 168.7,
+                "c": 175.1,
+                "h": 165.4,
+                "l": 180.6,
+                "w": 20
+              },
+              {
+                "x": 340.0,
+                "o": 175.1,
+                "c": 173.5,
+                "h": 168.4,
+                "l": 180,
+                "w": 20
+              },
+              {
+                "x": 380.0,
+                "o": 173.5,
+                "c": 153.7,
+                "h": 148.8,
+                "l": 175.1,
+                "w": 20
+              },
+              {
+                "x": 420.0,
+                "o": 153.7,
+                "c": 138.0,
+                "h": 134.0,
+                "l": 159.8,
+                "w": 20
+              },
+              {
+                "x": 460.0,
+                "o": 138.0,
+                "c": 129,
+                "h": 98,
+                "l": 142.0,
+                "w": 20
+              }
+            ],
+            "hlines": [
+              {
+                "y": 120,
+                "label": "Level",
+                "tone": "purple"
+              }
+            ]
+          },
+          "answer": "wick",
+          "why": "Wick through: price visited beyond the level, then closed back inside."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                75
+              ],
+              [
+                140.0,
+                40
+              ],
+              [
+                260.0,
+                80
+              ],
+              [
+                340.0,
+                60
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60.0,
+                "o": 75,
+                "c": 66.0,
+                "h": 61.0,
+                "l": 77.4,
+                "w": 20
+              },
+              {
+                "x": 100.0,
+                "o": 66.0,
+                "c": 53.80000000000001,
+                "h": 48.099999999999994,
+                "l": 72.19999999999999,
+                "w": 20
+              },
+              {
+                "x": 140.0,
+                "o": 53.80000000000001,
+                "c": 49.0,
+                "h": 40,
+                "l": 57.69999999999999,
+                "w": 20
+              },
+              {
+                "x": 180.0,
+                "o": 49.0,
+                "c": 57.5,
+                "h": 44.5,
+                "l": 60.19999999999999,
+                "w": 20
+              },
+              {
+                "x": 220.0,
+                "o": 57.5,
+                "c": 70.4,
+                "h": 51.19999999999999,
+                "l": 74.30000000000001,
+                "w": 20
+              },
+              {
+                "x": 260.0,
+                "o": 70.4,
+                "c": 73.1,
+                "h": 65.4,
+                "l": 80,
+                "w": 20
+              },
+              {
+                "x": 300.0,
+                "o": 73.1,
+                "c": 65.9,
+                "h": 59.5,
+                "l": 75.1,
+                "w": 20
+              },
+              {
+                "x": 340.0,
+                "o": 65.9,
+                "c": 67.80000000000001,
+                "h": 60,
+                "l": 72.0,
+                "w": 20
+              },
+              {
+                "x": 380.0,
+                "o": 67.80000000000001,
+                "c": 86.1,
+                "h": 61.5,
+                "l": 90.4,
+                "w": 20
+              },
+              {
+                "x": 420.0,
+                "o": 86.1,
+                "c": 102.0,
+                "h": 81.0,
+                "l": 105.19999999999999,
+                "w": 20
+              },
+              {
+                "x": 460.0,
+                "o": 102.0,
+                "c": 132,
+                "h": 98.0,
+                "l": 140,
+                "w": 20
+              }
+            ],
+            "hlines": [
+              {
+                "y": 120,
+                "label": "Level",
+                "tone": "purple",
+                "below": true
+              }
+            ]
+          },
+          "answer": "close",
+          "why": "Close through: the body finished beyond the level."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                165
+              ],
+              [
+                140.0,
+                200
+              ],
+              [
+                260.0,
+                160
+              ],
+              [
+                340.0,
+                180
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60.0,
+                "o": 165,
+                "c": 176.2,
+                "h": 160.7,
+                "l": 180.5,
+                "w": 20
+              },
+              {
+                "x": 100.0,
+                "o": 176.2,
+                "c": 188.9,
+                "h": 170.7,
+                "l": 195.2,
+                "w": 20
+              },
+              {
+                "x": 140.0,
+                "o": 188.9,
+                "c": 191.3,
+                "h": 183.7,
+                "l": 200,
+                "w": 20
+              },
+              {
+                "x": 180.0,
+                "o": 191.3,
+                "c": 181.3,
+                "h": 177.4,
+                "l": 197.0,
+                "w": 20
+              },
+              {
+                "x": 220.0,
+                "o": 181.3,
+                "c": 173.2,
+                "h": 168.9,
+                "l": 185.9,
+                "w": 20
+              },
+              {
+                "x": 260.0,
+                "o": 173.2,
+                "c": 166.2,
+                "h": 160,
+                "l": 178.7,
+                "w": 20
+              },
+              {
+                "x": 300.0,
+                "o": 166.2,
+                "c": 173.5,
+                "h": 161.6,
+                "l": 175.8,
+                "w": 20
+              },
+              {
+                "x": 340.0,
+                "o": 173.5,
+                "c": 171.7,
+                "h": 167.3,
+                "l": 180,
+                "w": 20
+              },
+              {
+                "x": 380.0,
+                "o": 171.7,
+                "c": 152.8,
+                "h": 149.2,
+                "l": 176.9,
+                "w": 20
+              },
+              {
+                "x": 420.0,
+                "o": 152.8,
+                "c": 138.0,
+                "h": 132.6,
+                "l": 157.8,
+                "w": 20
+              },
+              {
+                "x": 460.0,
+                "o": 138.0,
+                "c": 108,
+                "h": 100,
+                "l": 142.0,
+                "w": 20
+              }
+            ],
+            "hlines": [
+              {
+                "y": 120,
+                "label": "Level",
+                "tone": "purple"
+              }
+            ]
+          },
+          "answer": "close",
+          "why": "Close through: the body finished beyond the level."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                75
+              ],
+              [
+                140.0,
+                40
+              ],
+              [
+                260.0,
+                80
+              ],
+              [
+                340.0,
+                60
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60.0,
+                "o": 75,
+                "c": 60.69999999999999,
+                "h": 56.400000000000006,
+                "l": 79.0,
+                "w": 20
+              },
+              {
+                "x": 100.0,
+                "o": 60.69999999999999,
+                "c": 52.599999999999994,
+                "h": 49.30000000000001,
+                "l": 62.80000000000001,
+                "w": 20
+              },
+              {
+                "x": 140.0,
+                "o": 52.599999999999994,
+                "c": 46.69999999999999,
+                "h": 40,
+                "l": 55.099999999999994,
+                "w": 20
+              },
+              {
+                "x": 180.0,
+                "o": 46.69999999999999,
+                "c": 59.80000000000001,
+                "h": 42.400000000000006,
+                "l": 61.5,
+                "w": 20
+              },
+              {
+                "x": 220.0,
+                "o": 59.80000000000001,
+                "c": 71.19999999999999,
+                "h": 56.5,
+                "l": 75.80000000000001,
+                "w": 20
+              },
+              {
+                "x": 260.0,
+                "o": 71.19999999999999,
+                "c": 70.4,
+                "h": 65.80000000000001,
+                "l": 80,
+                "w": 20
+              },
+              {
+                "x": 300.0,
+                "o": 70.4,
+                "c": 64.69999999999999,
+                "h": 59.400000000000006,
+                "l": 75.1,
+                "w": 20
+              },
+              {
+                "x": 340.0,
+                "o": 64.69999999999999,
+                "c": 69.80000000000001,
+                "h": 60,
+                "l": 75.80000000000001,
+                "w": 20
+              },
+              {
+                "x": 380.0,
+                "o": 69.80000000000001,
+                "c": 87.80000000000001,
+                "h": 66.80000000000001,
+                "l": 90.80000000000001,
+                "w": 20
+              },
+              {
+                "x": 420.0,
+                "o": 87.80000000000001,
+                "c": 102.0,
+                "h": 82.5,
+                "l": 104.6,
+                "w": 20
+              },
+              {
+                "x": 460.0,
+                "o": 102.0,
+                "c": 111,
+                "h": 98.0,
+                "l": 142,
+                "w": 20
+              }
+            ],
+            "hlines": [
+              {
+                "y": 120,
+                "label": "Level",
+                "tone": "purple",
+                "below": true
+              }
+            ]
+          },
+          "answer": "wick",
+          "why": "Wick through: price visited beyond the level, then closed back inside."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                165
+              ],
+              [
+                140.0,
+                200
+              ],
+              [
+                260.0,
+                160
+              ],
+              [
+                340.0,
+                180
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60.0,
+                "o": 165,
+                "c": 177.0,
+                "h": 162.9,
+                "l": 179.9,
+                "w": 20
+              },
+              {
+                "x": 100.0,
+                "o": 177.0,
+                "c": 187.9,
+                "h": 175.4,
+                "l": 191.9,
+                "w": 20
+              },
+              {
+                "x": 140.0,
+                "o": 187.9,
+                "c": 190.2,
+                "h": 184.2,
+                "l": 200,
+                "w": 20
+              },
+              {
+                "x": 180.0,
+                "o": 190.2,
+                "c": 181.9,
+                "h": 175.6,
+                "l": 191.8,
+                "w": 20
+              },
+              {
+                "x": 220.0,
+                "o": 181.9,
+                "c": 167.4,
+                "h": 163.7,
+                "l": 188.2,
+                "w": 20
+              },
+              {
+                "x": 260.0,
+                "o": 167.4,
+                "c": 167.8,
+                "h": 160,
+                "l": 173.0,
+                "w": 20
+              },
+              {
+                "x": 300.0,
+                "o": 167.8,
+                "c": 174.3,
+                "h": 166.1,
+                "l": 178.1,
+                "w": 20
+              },
+              {
+                "x": 340.0,
+                "o": 174.3,
+                "c": 171.4,
+                "h": 168.8,
+                "l": 180,
+                "w": 20
+              },
+              {
+                "x": 380.0,
+                "o": 171.4,
+                "c": 152.5,
+                "h": 147.7,
+                "l": 174.4,
+                "w": 20
+              },
+              {
+                "x": 420.0,
+                "o": 152.5,
+                "c": 138.0,
+                "h": 133.0,
+                "l": 155.4,
+                "w": 20
+              },
+              {
+                "x": 460.0,
+                "o": 138.0,
+                "c": 108,
+                "h": 100,
+                "l": 142.0,
+                "w": 20
+              }
+            ],
+            "hlines": [
+              {
+                "y": 120,
+                "label": "Level",
+                "tone": "purple"
+              }
+            ]
+          },
+          "answer": "close",
+          "why": "Close through: the body finished beyond the level."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                165
+              ],
+              [
+                140.0,
+                200
+              ],
+              [
+                260.0,
+                160
+              ],
+              [
+                340.0,
+                180
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60.0,
+                "o": 165,
+                "c": 178.3,
+                "h": 160.9,
+                "l": 184.8,
+                "w": 20
+              },
+              {
+                "x": 100.0,
+                "o": 178.3,
+                "c": 188.6,
+                "h": 172.1,
+                "l": 190.7,
+                "w": 20
+              },
+              {
+                "x": 140.0,
+                "o": 188.6,
+                "c": 192.0,
+                "h": 186.0,
+                "l": 200,
+                "w": 20
+              },
+              {
+                "x": 180.0,
+                "o": 192.0,
+                "c": 178.5,
+                "h": 176.6,
+                "l": 194.9,
+                "w": 20
+              },
+              {
+                "x": 220.0,
+                "o": 178.5,
+                "c": 168.9,
+                "h": 164.6,
+                "l": 182.7,
+                "w": 20
+              },
+              {
+                "x": 260.0,
+                "o": 168.9,
+                "c": 166.8,
+                "h": 160,
+                "l": 173.5,
+                "w": 20
+              },
+              {
+                "x": 300.0,
+                "o": 166.8,
+                "c": 173.1,
+                "h": 161.6,
+                "l": 176.5,
+                "w": 20
+              },
+              {
+                "x": 340.0,
+                "o": 173.1,
+                "c": 173.4,
+                "h": 170.3,
+                "l": 180,
+                "w": 20
+              },
+              {
+                "x": 380.0,
+                "o": 173.4,
+                "c": 158.6,
+                "h": 154.0,
+                "l": 177.9,
+                "w": 20
+              },
+              {
+                "x": 420.0,
+                "o": 158.6,
+                "c": 138.0,
+                "h": 133.5,
+                "l": 162.6,
+                "w": 20
+              },
+              {
+                "x": 460.0,
+                "o": 138.0,
+                "c": 129,
+                "h": 98,
+                "l": 142.0,
+                "w": 20
+              }
+            ],
+            "hlines": [
+              {
+                "y": 120,
+                "label": "Level",
+                "tone": "purple"
+              }
+            ]
+          },
+          "answer": "wick",
+          "why": "Wick through: price visited beyond the level, then closed back inside."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                75
+              ],
+              [
+                140.0,
+                40
+              ],
+              [
+                260.0,
+                80
+              ],
+              [
+                340.0,
+                60
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60.0,
+                "o": 75,
+                "c": 64.1,
+                "h": 60.69999999999999,
+                "l": 81.0,
+                "w": 20
+              },
+              {
+                "x": 100.0,
+                "o": 64.1,
+                "c": 53.5,
+                "h": 48.19999999999999,
+                "l": 69.69999999999999,
+                "w": 20
+              },
+              {
+                "x": 140.0,
+                "o": 53.5,
+                "c": 48.80000000000001,
+                "h": 40,
+                "l": 55.599999999999994,
+                "w": 20
+              },
+              {
+                "x": 180.0,
+                "o": 48.80000000000001,
+                "c": 59.69999999999999,
+                "h": 46.0,
+                "l": 62.80000000000001,
+                "w": 20
+              },
+              {
+                "x": 220.0,
+                "o": 59.69999999999999,
+                "c": 70.5,
+                "h": 55.69999999999999,
+                "l": 73.4,
+                "w": 20
+              },
+              {
+                "x": 260.0,
+                "o": 70.5,
+                "c": 74.0,
+                "h": 66.19999999999999,
+                "l": 80,
+                "w": 20
+              },
+              {
+                "x": 300.0,
+                "o": 74.0,
+                "c": 65.80000000000001,
+                "h": 62.69999999999999,
+                "l": 77.9,
+                "w": 20
+              },
+              {
+                "x": 340.0,
+                "o": 65.80000000000001,
+                "c": 68.80000000000001,
+                "h": 60,
+                "l": 72.1,
+                "w": 20
+              },
+              {
+                "x": 380.0,
+                "o": 68.80000000000001,
+                "c": 82.9,
+                "h": 63.30000000000001,
+                "l": 88.80000000000001,
+                "w": 20
+              },
+              {
+                "x": 420.0,
+                "o": 82.9,
+                "c": 102.0,
+                "h": 81.30000000000001,
+                "l": 106.1,
+                "w": 20
+              },
+              {
+                "x": 460.0,
+                "o": 102.0,
+                "c": 111,
+                "h": 98.0,
+                "l": 142,
+                "w": 20
+              }
+            ],
+            "hlines": [
+              {
+                "y": 120,
+                "label": "Level",
+                "tone": "purple",
+                "below": true
+              }
+            ]
+          },
+          "answer": "wick",
+          "why": "Wick through: price visited beyond the level, then closed back inside."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                75
+              ],
+              [
+                140.0,
+                40
+              ],
+              [
+                260.0,
+                80
+              ],
+              [
+                340.0,
+                60
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60.0,
+                "o": 75,
+                "c": 65.30000000000001,
+                "h": 61.900000000000006,
+                "l": 80.5,
+                "w": 20
+              },
+              {
+                "x": 100.0,
+                "o": 65.30000000000001,
+                "c": 49.5,
+                "h": 45.099999999999994,
+                "l": 70.69999999999999,
+                "w": 20
+              },
+              {
+                "x": 140.0,
+                "o": 49.5,
+                "c": 48.19999999999999,
+                "h": 40,
+                "l": 51.69999999999999,
+                "w": 20
+              },
+              {
+                "x": 180.0,
+                "o": 48.19999999999999,
+                "c": 56.599999999999994,
+                "h": 44.900000000000006,
+                "l": 62.19999999999999,
+                "w": 20
+              },
+              {
+                "x": 220.0,
+                "o": 56.599999999999994,
+                "c": 71.9,
+                "h": 51.69999999999999,
+                "l": 75.6,
+                "w": 20
+              },
+              {
+                "x": 260.0,
+                "o": 71.9,
+                "c": 70.69999999999999,
+                "h": 67.69999999999999,
+                "l": 80,
+                "w": 20
+              },
+              {
+                "x": 300.0,
+                "o": 70.69999999999999,
+                "c": 65.69999999999999,
+                "h": 62.19999999999999,
+                "l": 73.5,
+                "w": 20
+              },
+              {
+                "x": 340.0,
+                "o": 65.69999999999999,
+                "c": 66.80000000000001,
+                "h": 60,
+                "l": 72.19999999999999,
+                "w": 20
+              },
+              {
+                "x": 380.0,
+                "o": 66.80000000000001,
+                "c": 86.1,
+                "h": 64.9,
+                "l": 90.30000000000001,
+                "w": 20
+              },
+              {
+                "x": 420.0,
+                "o": 86.1,
+                "c": 102.0,
+                "h": 84.0,
+                "l": 107.19999999999999,
+                "w": 20
+              },
+              {
+                "x": 460.0,
+                "o": 102.0,
+                "c": 132,
+                "h": 98.0,
+                "l": 140,
+                "w": 20
+              }
+            ],
+            "hlines": [
+              {
+                "y": 120,
+                "label": "Level",
+                "tone": "purple",
+                "below": true
+              }
+            ]
+          },
+          "answer": "close",
+          "why": "Close through: the body finished beyond the level."
+        }
+      ],
+      "passText": "Your eyes are finding the close."
+    },
+    {
+      "type": "dayli",
+      "quote": "<strong>A wick can visit.</strong><br><br>A close gives stronger confirmation that price finished beyond the level."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What’s the difference between a wick through a level and a candle close through it?",
+      "modelAnswer": "A wick through means price traded beyond the level during the candle but the body finished back inside. It can show rejection or a temporary excursion, so it isn’t meaningless. A close through means the candle finished beyond the level. In this framework, the close carries more significance when deciding whether price actually broke a structural level."
+    }
+  ],
+  "takeaways": [
+    "A wick through: price traded beyond the level, then the candle closed back inside.",
+    "A close through: the candle body finished beyond the level.",
+    "A wick still carries information, but a close gives stronger structural confirmation."
+  ],
+  "remember": "A wick can visit. A close gives stronger confirmation that price finished beyond the level."
+}

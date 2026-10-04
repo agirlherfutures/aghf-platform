@@ -1,0 +1,801 @@
+{
+  "phase": "p2",
+  "section": "s5",
+  "lessonNumber": 17,
+  "title": "Structural Invalidation & The New Story",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Your chart updates because price updates.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Recognize when the supporting swing is invalidated, avoid jumping to the opposite bias, and update which swings are relevant now.",
+    "missionQuestion": "The level holding up your bullish story just broke. Now what?",
+    "estMinutes": 10
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "kicker": "The story changes",
+      "title": "Which low is holding the bullish story up?",
+      "chart": {
+        "swings": [
+          [
+            40,
+            268
+          ],
+          [
+            80.0,
+            175
+          ],
+          [
+            128.0,
+            220
+          ],
+          [
+            176.0,
+            125
+          ],
+          [
+            224.0,
+            190
+          ],
+          [
+            272.0,
+            90
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 268,
+            "c": 238.4,
+            "h": 235.9,
+            "l": 274.3,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 238.4,
+            "c": 213.1,
+            "h": 209.3,
+            "l": 243.2,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 213.1,
+            "c": 181.9,
+            "h": 175,
+            "l": 216.0,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 181.9,
+            "c": 193.1,
+            "h": 176.9,
+            "l": 195.7,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 193.1,
+            "c": 210.5,
+            "h": 191.3,
+            "l": 213.0,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 210.5,
+            "c": 213.6,
+            "h": 205.4,
+            "l": 220,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 213.6,
+            "c": 182.0,
+            "h": 178.1,
+            "l": 216.8,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 182.0,
+            "c": 156.7,
+            "h": 153.2,
+            "l": 184.5,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 156.7,
+            "c": 132.7,
+            "h": 125,
+            "l": 160.0,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 132.7,
+            "c": 147.8,
+            "h": 127.1,
+            "l": 152.7,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 147.8,
+            "c": 172.6,
+            "h": 141.9,
+            "l": 176.1,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 172.6,
+            "c": 182.5,
+            "h": 168.9,
+            "l": 190,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 182.5,
+            "c": 150.1,
+            "h": 145.2,
+            "l": 184.0,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 150.1,
+            "c": 120.2,
+            "h": 116.1,
+            "l": 153.3,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 120.2,
+            "c": 96.1,
+            "h": 90,
+            "l": 125.0,
+            "w": 9.6
+          },
+          {
+            "x": 288.0,
+            "o": 96.1,
+            "c": 107.2,
+            "h": 91.8,
+            "l": 109.5,
+            "w": 9.6
+          },
+          {
+            "x": 304.0,
+            "o": 107.2,
+            "c": 124.8,
+            "h": 104.8,
+            "l": 126.6,
+            "w": 9.6
+          },
+          {
+            "x": 320.0,
+            "o": 124.8,
+            "c": 143.4,
+            "h": 119.8,
+            "l": 148.6,
+            "w": 9.6
+          },
+          {
+            "x": 336.0,
+            "o": 143.4,
+            "c": 165.0,
+            "h": 140.1,
+            "l": 169.8,
+            "w": 9.6
+          },
+          {
+            "x": 352.0,
+            "o": 165.0,
+            "c": 181.4,
+            "h": 161.0,
+            "l": 187.3,
+            "w": 9.6
+          },
+          {
+            "x": 368.0,
+            "o": 181.4,
+            "c": 196.6,
+            "h": 175.6,
+            "l": 201.6,
+            "w": 9.6
+          },
+          {
+            "x": 384.0,
+            "o": 196.6,
+            "c": 215.0,
+            "h": 191.7,
+            "l": 216.5,
+            "w": 9.6
+          }
+        ],
+        "hlines": [
+          {
+            "y": 190,
+            "label": "Supporting HL",
+            "tone": "up",
+            "x1": 216.0,
+            "x2": 690,
+            "size": 13,
+            "id": "sup",
+            "below": true,
+            "labelX": 528
+          }
+        ],
+        "marks": [
+          {
+            "i": 1,
+            "label": "HH",
+            "tone": "up"
+          },
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "up"
+          },
+          {
+            "i": 5,
+            "label": "HH",
+            "tone": "up"
+          }
+        ]
+      },
+      "start": 15,
+      "story": {
+        "rows": [
+          {
+            "key": "old",
+            "label": "Old story",
+            "value": "Bullish progression",
+            "tone": "up"
+          },
+          {
+            "key": "status",
+            "label": "Status",
+            "value": "Intact",
+            "tone": "up"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "HH → HL → HH. A bullish structural story.",
+          "tap": {
+            "prompt": "WHICH LOW IS CURRENTLY SUPPORTING THE BULLISH STRUCTURAL STORY? Tap it.",
+            "answer": 4,
+            "only": [
+              2,
+              4
+            ],
+            "concept": "relevant-swing",
+            "names": {
+              "2": "the older HL",
+              "4": "the most recent HL"
+            },
+            "hint": "Which low did price launch from to make the latest HH?",
+            "notes": {
+              "2": "That low supported an earlier leg. The latest HH was built from a more recent low."
+            },
+            "reveal": {
+              "4": {
+                "label": "HL",
+                "tone": "up"
+              }
+            },
+            "show": [
+              "sup"
+            ],
+            "why": "The most recent HL. Price launched from it to make the latest HH."
+          },
+          "next": "Play price →"
+        },
+        {
+          "candles": 22,
+          "text": "Price <strong>closes</strong> through the supporting HL. Pause.",
+          "story": {
+            "status": {
+              "value": "Challenged / invalidated",
+              "tone": "down"
+            }
+          },
+          "asks": [
+            {
+              "prompt": "NOW WHAT?",
+              "options": [
+                {
+                  "label": "Short immediately",
+                  "correct": false,
+                  "feedback": "Invalidation tells you the old story is in question. It isn’t an entry signal.",
+                  "mistake": "invalidation-as-entry"
+                },
+                {
+                  "label": "Ignore it",
+                  "correct": false,
+                  "feedback": "The level holding up the bullish story just closed through. That’s worth noticing.",
+                  "mistake": "ignore-invalidation"
+                },
+                {
+                  "label": "Move the level",
+                  "correct": false,
+                  "feedback": "Moving the level to keep the old story alive ignores what price just did.",
+                  "mistake": "move-the-level"
+                },
+                {
+                  "label": "Watch what price builds next",
+                  "correct": true,
+                  "why": "Exactly. The old story was materially challenged. The new one isn’t written yet."
+                }
+              ],
+              "concept": "structural-invalidation",
+              "hint": "What does a broken supporting level actually tell you, and what doesn’t it?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "confusion",
+      "kicker": "The most important card in this section",
+      "heading": "Invalidation ≠ instant opposite bias",
+      "left": {
+        "label": "Bullish structure invalidated",
+        "points": [
+          "The bullish story was materially challenged",
+          "The old structure may no longer be behaving the same way",
+          "Time to watch what price builds"
+        ]
+      },
+      "right": {
+        "label": "Bearish entry right now",
+        "points": [
+          "NOT what invalidation tells you",
+          "Doesn’t automatically follow",
+          "Skipping straight here is overtrading"
+        ]
+      }
+    },
+    {
+      "type": "icon_grid",
+      "kicker": "After invalidation",
+      "title": "Price may…",
+      "items": [
+        {
+          "icon": "⇄",
+          "label": "Transition",
+          "desc": "Shift into a new structure over time."
+        },
+        {
+          "icon": "↔",
+          "label": "Consolidate",
+          "desc": "Move sideways without clear progression."
+        },
+        {
+          "icon": "▲▼",
+          "label": "Build new structure",
+          "desc": "Form new highs and lows."
+        },
+        {
+          "icon": "◆",
+          "label": "Set a new relevant swing",
+          "desc": "Establish another level that matters."
+        },
+        {
+          "icon": "?",
+          "label": "Remain unclear",
+          "desc": "Not give you enough information yet."
+        }
+      ]
+    },
+    {
+      "type": "price_lab",
+      "kicker": "Update the map",
+      "title": "Price updates. So does your chart.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            268
+          ],
+          [
+            80.0,
+            175
+          ],
+          [
+            128.0,
+            220
+          ],
+          [
+            176.0,
+            125
+          ],
+          [
+            224.0,
+            190
+          ],
+          [
+            272.0,
+            90
+          ],
+          [
+            368.0,
+            222
+          ],
+          [
+            416.0,
+            160
+          ],
+          [
+            464.0,
+            238
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 268,
+            "c": 231.1,
+            "h": 226.5,
+            "l": 270.3,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 231.1,
+            "c": 209.6,
+            "h": 205.0,
+            "l": 234.5,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 209.6,
+            "c": 183.5,
+            "h": 175,
+            "l": 213.8,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 183.5,
+            "c": 192.6,
+            "h": 179.3,
+            "l": 197.2,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 192.6,
+            "c": 208.0,
+            "h": 186.7,
+            "l": 213.1,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 208.0,
+            "c": 212.5,
+            "h": 205.0,
+            "l": 220,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 212.5,
+            "c": 177.5,
+            "h": 171.9,
+            "l": 217.4,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 177.5,
+            "c": 155.9,
+            "h": 152.2,
+            "l": 181.5,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 155.9,
+            "c": 131.9,
+            "h": 125,
+            "l": 160.0,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 131.9,
+            "c": 147.5,
+            "h": 127.3,
+            "l": 152.2,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 147.5,
+            "c": 172.4,
+            "h": 144.8,
+            "l": 174.4,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 172.4,
+            "c": 182.7,
+            "h": 167.7,
+            "l": 190,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 182.7,
+            "c": 151.9,
+            "h": 146.7,
+            "l": 186.3,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 151.9,
+            "c": 119.2,
+            "h": 113.2,
+            "l": 154.3,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 119.2,
+            "c": 96.8,
+            "h": 90,
+            "l": 123.6,
+            "w": 9.6
+          },
+          {
+            "x": 288.0,
+            "o": 96.8,
+            "c": 117.4,
+            "h": 93.2,
+            "l": 121.7,
+            "w": 9.6
+          },
+          {
+            "x": 304.0,
+            "o": 117.4,
+            "c": 133.6,
+            "h": 112.6,
+            "l": 139.6,
+            "w": 9.6
+          },
+          {
+            "x": 320.0,
+            "o": 133.6,
+            "c": 157.6,
+            "h": 128.9,
+            "l": 161.5,
+            "w": 9.6
+          },
+          {
+            "x": 336.0,
+            "o": 157.6,
+            "c": 172.0,
+            "h": 151.4,
+            "l": 175.7,
+            "w": 9.6
+          },
+          {
+            "x": 352.0,
+            "o": 172.0,
+            "c": 198.1,
+            "h": 166.2,
+            "l": 203.0,
+            "w": 9.6
+          },
+          {
+            "x": 368.0,
+            "o": 198.1,
+            "c": 214.4,
+            "h": 193.2,
+            "l": 222,
+            "w": 9.6
+          },
+          {
+            "x": 384.0,
+            "o": 214.4,
+            "c": 197.3,
+            "h": 191.2,
+            "l": 219.1,
+            "w": 9.6
+          },
+          {
+            "x": 400.0,
+            "o": 197.3,
+            "c": 178.5,
+            "h": 172.1,
+            "l": 201.4,
+            "w": 9.6
+          },
+          {
+            "x": 416.0,
+            "o": 178.5,
+            "c": 167.6,
+            "h": 160,
+            "l": 184.2,
+            "w": 9.6
+          },
+          {
+            "x": 432.0,
+            "o": 167.6,
+            "c": 196.7,
+            "h": 165.2,
+            "l": 198.6,
+            "w": 9.6
+          },
+          {
+            "x": 448.0,
+            "o": 196.7,
+            "c": 219.1,
+            "h": 190.8,
+            "l": 222.5,
+            "w": 9.6
+          },
+          {
+            "x": 464.0,
+            "o": 219.1,
+            "c": 231.0,
+            "h": 214.3,
+            "l": 238,
+            "w": 9.6
+          }
+        ],
+        "hlines": [
+          {
+            "y": 190,
+            "label": "Relevant HL",
+            "tone": "up",
+            "x1": 216.0,
+            "x2": 690,
+            "size": 13,
+            "id": "hl",
+            "below": true,
+            "labelX": 528
+          }
+        ],
+        "marks": [
+          {
+            "i": 5,
+            "label": "HH",
+            "tone": "up"
+          }
+        ]
+      },
+      "start": 15,
+      "story": {
+        "rows": [
+          {
+            "key": "story",
+            "label": "Story",
+            "value": "Bullish",
+            "tone": "up"
+          },
+          {
+            "key": "hl",
+            "label": "Relevant HL",
+            "value": "Not yet",
+            "tone": "muted"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "<strong>1.</strong> A bullish structure exists.",
+          "next": "Next →"
+        },
+        {
+          "text": "<strong>2.</strong> The relevant HL is highlighted.",
+          "show": [
+            "hl"
+          ],
+          "story": {
+            "hl": {
+              "value": "Intact",
+              "tone": "up"
+            }
+          },
+          "next": "Play price →"
+        },
+        {
+          "candles": 20,
+          "text": "<strong>3.</strong> Price closes through the relevant HL.",
+          "story": {
+            "hl": {
+              "value": "Invalidated",
+              "tone": "down"
+            },
+            "story": {
+              "value": "In question",
+              "tone": "gold"
+            }
+          },
+          "next": "Play price →"
+        },
+        {
+          "candles": 27,
+          "text": "<strong>4.</strong> Price starts creating new highs and lows.",
+          "story": {
+            "story": {
+              "value": "New structure forming",
+              "tone": "down"
+            }
+          },
+          "tap": {
+            "prompt": "<strong>5.</strong> Which swing is now becoming more relevant? Tap it.",
+            "answer": 7,
+            "only": [
+              4,
+              5,
+              7
+            ],
+            "concept": "relevant-swing",
+            "names": {
+              "4": "the old HL",
+              "5": "the old HH",
+              "7": "the new lower high"
+            },
+            "hint": "Which swing is the new move building from?",
+            "notes": {
+              "4": "That level already broke. Its role in the old story is done.",
+              "5": "The old HH is part of the old story. Price has built new swings since."
+            },
+            "reveal": {
+              "7": {
+                "label": "LH",
+                "tone": "down"
+              }
+            },
+            "hide": [
+              "hl"
+            ],
+            "why": "The new lower high. It’s the swing the new structure is building from. A level isn’t important forever just because you marked it earlier."
+          }
+        }
+      ]
+    },
+    {
+      "type": "dayli",
+      "label": "Core principle",
+      "quote": "<strong>Your chart updates because price updates.</strong>"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Your bullish HL just got closed through. What do you do with your chart, and what don’t you do?",
+      "modelAnswer": "I accept that the bullish story was materially challenged. I don’t ignore it or move the level to keep the old story alive, and I don’t jump straight into a bearish trade. I watch what price builds next and update which swings are relevant now, like a new lower high, because my chart updates when price updates."
+    }
+  ],
+  "takeaways": [
+    "When price closes through the supporting swing, the old story is materially challenged.",
+    "Invalidation doesn’t mean an instant opposite-direction entry.",
+    "Levels don’t stay relevant forever. Update the map as price builds new structure."
+  ],
+  "remember": "Your chart updates because price updates."
+}

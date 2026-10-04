@@ -1,0 +1,489 @@
+{
+  "phase": "p2",
+  "section": "s5",
+  "lessonNumber": 16,
+  "title": "False Breaks & Fakeouts",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Observation before interpretation.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Describe a failed breakout objectively: price moved beyond a level and failed to hold beyond it.",
+    "missionQuestion": "Price closed above resistance. Is the breakout confirmed?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "kicker": "Watch it play out",
+      "title": "Resistance at 20,000.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            165
+          ],
+          [
+            110.0,
+            210
+          ],
+          [
+            190.0,
+            140
+          ],
+          [
+            250.0,
+            190
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 50.0,
+            "o": 165,
+            "c": 172.9,
+            "h": 162.6,
+            "l": 177.8,
+            "w": 12.0
+          },
+          {
+            "x": 70.0,
+            "o": 172.9,
+            "c": 184.8,
+            "h": 166.6,
+            "l": 190.5,
+            "w": 12.0
+          },
+          {
+            "x": 90.0,
+            "o": 184.8,
+            "c": 200.7,
+            "h": 180.9,
+            "l": 206.3,
+            "w": 12.0
+          },
+          {
+            "x": 110.0,
+            "o": 200.7,
+            "c": 203.0,
+            "h": 196.3,
+            "l": 210,
+            "w": 12.0
+          },
+          {
+            "x": 130.0,
+            "o": 203.0,
+            "c": 185.8,
+            "h": 181.8,
+            "l": 209.3,
+            "w": 12.0
+          },
+          {
+            "x": 150.0,
+            "o": 185.8,
+            "c": 168.3,
+            "h": 163.0,
+            "l": 191.1,
+            "w": 12.0
+          },
+          {
+            "x": 170.0,
+            "o": 168.3,
+            "c": 151.1,
+            "h": 144.6,
+            "l": 172.0,
+            "w": 12.0
+          },
+          {
+            "x": 190.0,
+            "o": 151.1,
+            "c": 148.2,
+            "h": 140,
+            "l": 154.3,
+            "w": 12.0
+          },
+          {
+            "x": 210.0,
+            "o": 148.2,
+            "c": 162.5,
+            "h": 141.9,
+            "l": 165.8,
+            "w": 12.0
+          },
+          {
+            "x": 230.0,
+            "o": 162.5,
+            "c": 177.8,
+            "h": 157.1,
+            "l": 183.7,
+            "w": 12.0
+          },
+          {
+            "x": 250.0,
+            "o": 177.8,
+            "c": 181.2,
+            "h": 174.1,
+            "l": 190,
+            "w": 12.0
+          },
+          {
+            "x": 270.0,
+            "o": 181.2,
+            "c": 168.9,
+            "h": 165.5,
+            "l": 184.6,
+            "w": 12.0
+          },
+          {
+            "x": 290.0,
+            "o": 168.9,
+            "c": 162.2,
+            "h": 156.6,
+            "l": 171.5,
+            "w": 12.0
+          },
+          {
+            "x": 310.0,
+            "o": 162.2,
+            "c": 146.2,
+            "h": 144.5,
+            "l": 168.3,
+            "w": 12.0
+          },
+          {
+            "x": 330.0,
+            "o": 146.2,
+            "c": 135.0,
+            "h": 135.0,
+            "l": 149.6,
+            "w": 12.0
+          },
+          {
+            "x": 350.0,
+            "o": 135.0,
+            "c": 112.5,
+            "h": 108.5,
+            "l": 138.0,
+            "w": 12.0
+          },
+          {
+            "x": 370.0,
+            "o": 112.5,
+            "c": 142.5,
+            "h": 109.5,
+            "l": 146.5,
+            "w": 12.0
+          }
+        ],
+        "hlines": [
+          {
+            "y": 120,
+            "label": "Resistance · 20,000",
+            "tone": "purple",
+            "x1": 40,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          }
+        ],
+        "notes": [
+          {
+            "x": 560,
+            "y": 240,
+            "text": "FAILED BREAKOUT",
+            "tone": "down",
+            "size": 17,
+            "anchor": "middle",
+            "id": "fail"
+          },
+          {
+            "x": 560,
+            "y": 262,
+            "text": "false break behavior",
+            "tone": "purple",
+            "size": 14,
+            "anchor": "middle",
+            "id": "fail"
+          }
+        ]
+      },
+      "start": 15,
+      "story": {
+        "rows": [
+          {
+            "key": "level",
+            "label": "Resistance",
+            "value": "20,000",
+            "tone": "purple"
+          },
+          {
+            "key": "price",
+            "label": "Price",
+            "value": "19,990",
+            "tone": "muted"
+          },
+          {
+            "key": "status",
+            "label": "Status",
+            "value": "Below the level",
+            "tone": "muted"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "Price: <strong>19,990</strong>. Just under resistance.",
+          "next": "Next candle →"
+        },
+        {
+          "candles": 16,
+          "text": "Price: <strong>20,005</strong>. The candle closed above 20,000. Pause.",
+          "story": {
+            "price": {
+              "value": "20,005",
+              "tone": "up"
+            },
+            "status": {
+              "value": "Above the level",
+              "tone": "up"
+            }
+          },
+          "asks": [
+            {
+              "prompt": "Breakout confirmed forever?",
+              "options": [
+                {
+                  "label": "Yes, it closed above",
+                  "correct": false,
+                  "feedback": "It closed above for now. One candle doesn’t tell you what happens next.",
+                  "mistake": "break-as-forever"
+                },
+                {
+                  "label": "No. What happens next still matters",
+                  "correct": true,
+                  "why": "Right. Price is above the level right now. That’s all it has shown so far."
+                }
+              ],
+              "concept": "false-break"
+            }
+          ],
+          "next": "Next candle →"
+        },
+        {
+          "candles": 17,
+          "text": "Price: <strong>19,985</strong>.",
+          "story": {
+            "price": {
+              "value": "19,985",
+              "tone": "down"
+            },
+            "status": {
+              "value": "Back below",
+              "tone": "down"
+            }
+          },
+          "asks": [
+            {
+              "prompt": "What actually happened?",
+              "options": [
+                {
+                  "label": "Big money trapped the buyers",
+                  "correct": false,
+                  "feedback": "The chart can’t show you who bought or why. Describe what price did.",
+                  "mistake": "assumption-as-observation"
+                },
+                {
+                  "label": "Price moved above the level and failed to hold above it",
+                  "correct": true,
+                  "why": "That’s what the chart shows. <strong>Failed breakout / false break behavior.</strong>"
+                },
+                {
+                  "label": "The breakout was confirmed",
+                  "correct": false,
+                  "feedback": "Price is back below 20,000. It didn’t hold above the level.",
+                  "mistake": "break-as-forever"
+                }
+              ],
+              "concept": "objective-observation",
+              "show": [
+                "fail"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "teach",
+      "kicker": "Name it",
+      "title": "Failed breakout / false break behavior.",
+      "body": "Price moves beyond a level, then fails to hold beyond it.<br><br>That’s the description. Notice what it doesn’t say: <strong>who</strong> was buying, <strong>why</strong> they did it, or that anyone was <strong>trapped</strong>. The chart doesn’t show that."
+    },
+    {
+      "type": "chart_check",
+      "kicker": "Objective vs. assumption",
+      "title": "Which statement does the chart actually show?",
+      "chart": {
+        "swings": [
+          [
+            40,
+            250
+          ],
+          [
+            120,
+            160
+          ],
+          [
+            190,
+            205
+          ],
+          [
+            270,
+            110
+          ],
+          [
+            340,
+            190
+          ],
+          [
+            430,
+            120
+          ],
+          [
+            470,
+            92
+          ],
+          [
+            520,
+            150
+          ],
+          [
+            600,
+            200
+          ]
+        ],
+        "seed": 93,
+        "hlines": [
+          {
+            "y": 110,
+            "label": "Prior high",
+            "tone": "purple"
+          }
+        ]
+      },
+      "check": {
+        "prompt": "Which statement does the chart actually show?",
+        "concept": "objective-observation",
+        "options": [
+          {
+            "label": "A: “Big money trapped retail.”",
+            "correct": false,
+            "feedback": "That’s an assumption about who did what. The chart only shows price."
+          },
+          {
+            "label": "B: “Price moved above the prior high and then returned below it.”",
+            "correct": true,
+            "why": "B. It describes exactly what price did, and nothing it didn’t show."
+          }
+        ]
+      }
+    },
+    {
+      "type": "chart_check",
+      "kicker": "Objective vs. assumption",
+      "title": "Now the other side.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            60
+          ],
+          [
+            120,
+            150
+          ],
+          [
+            190,
+            105
+          ],
+          [
+            270,
+            200
+          ],
+          [
+            340,
+            120
+          ],
+          [
+            430,
+            190
+          ],
+          [
+            470,
+            218
+          ],
+          [
+            520,
+            160
+          ],
+          [
+            600,
+            110
+          ]
+        ],
+        "seed": 94,
+        "hlines": [
+          {
+            "y": 200,
+            "label": "Prior low",
+            "tone": "purple",
+            "below": true
+          }
+        ]
+      },
+      "check": {
+        "prompt": "Which statement does the chart actually show?",
+        "concept": "objective-observation",
+        "options": [
+          {
+            "label": "“Institutions hunted everyone’s stops.”",
+            "correct": false,
+            "feedback": "The chart doesn’t show who was trading or what their orders were."
+          },
+          {
+            "label": "“Price traded below the prior low and then returned above it.”",
+            "correct": true,
+            "why": "Yes. Observation first."
+          },
+          {
+            "label": "“They manipulated price.”",
+            "correct": false,
+            "feedback": "That’s a claim about intent. The chart shows what price did."
+          }
+        ]
+      }
+    },
+    {
+      "type": "dayli",
+      "label": "Core principle",
+      "quote": "<strong>Observation before interpretation.</strong>"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Price broke above a high and then fell back below it. How would you describe that objectively?",
+      "modelAnswer": "Price moved above the prior high and then returned below it. It failed to hold above the level. That’s false break behavior. I wouldn’t say anyone was trapped or that stops were hunted, because the chart doesn’t show who was trading or why."
+    }
+  ],
+  "takeaways": [
+    "A move beyond a level isn’t a break that holds forever.",
+    "False break behavior: price moved beyond a level and failed to hold beyond it.",
+    "Describe what the chart shows before guessing who did what."
+  ],
+  "remember": "Observation before interpretation."
+}

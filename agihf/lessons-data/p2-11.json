@@ -1,0 +1,910 @@
+{
+  "phase": "p2",
+  "section": "s5",
+  "lessonNumber": 11,
+  "title": "Break of Structure: BOS",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Price just proved it progressed with the existing structure.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Recognize a BOS as a break of a relevant swing in the direction of the existing structure, and treat it as continuation information, not a promise.",
+    "missionQuestion": "If price closes above the relevant prior high in a bullish structure, what did it just prove?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "kicker": "Watch it happen",
+      "title": "Price breaks the relevant prior high.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            270
+          ],
+          [
+            112.0,
+            170
+          ],
+          [
+            160.0,
+            215
+          ],
+          [
+            224.0,
+            120
+          ],
+          [
+            272.0,
+            178
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 270,
+            "c": 244.0,
+            "h": 239.0,
+            "l": 274.7,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 244.0,
+            "c": 229.6,
+            "h": 227.0,
+            "l": 249.4,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 229.6,
+            "c": 215.5,
+            "h": 211.5,
+            "l": 233.6,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 215.5,
+            "c": 185.2,
+            "h": 183.7,
+            "l": 218.9,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 185.2,
+            "c": 178.3,
+            "h": 170,
+            "l": 187.5,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 178.3,
+            "c": 192.5,
+            "h": 175.7,
+            "l": 195.2,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 192.5,
+            "c": 199.8,
+            "h": 186.0,
+            "l": 205.0,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 199.8,
+            "c": 205.5,
+            "h": 195.3,
+            "l": 215,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 205.5,
+            "c": 177.0,
+            "h": 173.8,
+            "l": 209.5,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 177.0,
+            "c": 156.8,
+            "h": 150.6,
+            "l": 180.3,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 156.8,
+            "c": 136.1,
+            "h": 130.5,
+            "l": 159.0,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 136.1,
+            "c": 129.7,
+            "h": 120,
+            "l": 139.9,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 129.7,
+            "c": 146.3,
+            "h": 126.5,
+            "l": 150.2,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 146.3,
+            "c": 159.2,
+            "h": 144.6,
+            "l": 165.0,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 159.2,
+            "c": 171.1,
+            "h": 154.1,
+            "l": 178,
+            "w": 9.6
+          },
+          {
+            "x": 288.0,
+            "o": 171.1,
+            "c": 151.1,
+            "h": 144.8,
+            "l": 177.0,
+            "w": 9.6
+          },
+          {
+            "x": 304.0,
+            "o": 151.1,
+            "c": 143.1,
+            "h": 137.7,
+            "l": 155.5,
+            "w": 9.6
+          },
+          {
+            "x": 320.0,
+            "o": 143.1,
+            "c": 126.9,
+            "h": 124.8,
+            "l": 146.9,
+            "w": 9.6
+          },
+          {
+            "x": 336.0,
+            "o": 126.9,
+            "c": 112.5,
+            "h": 110.0,
+            "l": 133.0,
+            "w": 9.6
+          },
+          {
+            "x": 352.0,
+            "o": 112.5,
+            "c": 92.0,
+            "h": 86.1,
+            "l": 116.0,
+            "w": 9.6
+          }
+        ],
+        "hlines": [
+          {
+            "y": 120,
+            "label": "Relevant prior HH",
+            "tone": "up",
+            "x1": 216.0,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          }
+        ],
+        "marks": [
+          {
+            "i": 2,
+            "label": "HL",
+            "tone": "up"
+          },
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "up"
+          },
+          {
+            "i": 4,
+            "label": "HL",
+            "tone": "up"
+          }
+        ],
+        "notes": [
+          {
+            "x": 334.0,
+            "y": 60,
+            "text": "BULLISH BOS",
+            "tone": "up",
+            "size": 18,
+            "anchor": "middle",
+            "id": "bos"
+          },
+          {
+            "x": 334.0,
+            "y": 82,
+            "text": "continuation information",
+            "tone": "purple",
+            "size": 14,
+            "anchor": "middle",
+            "id": "bos"
+          }
+        ]
+      },
+      "start": 15,
+      "story": {
+        "rows": [
+          {
+            "key": "larger",
+            "label": "Existing structure",
+            "value": "Bullish",
+            "tone": "up"
+          },
+          {
+            "key": "level",
+            "label": "Relevant prior HH",
+            "value": "Intact",
+            "tone": "muted"
+          },
+          {
+            "key": "info",
+            "label": "This break gives",
+            "value": "Not yet",
+            "tone": "muted"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "HL → HH → HL. Bullish structure. The relevant prior higher high is marked.",
+          "next": "Play price →"
+        },
+        {
+          "candles": 19,
+          "text": "Price expanded and <strong>closed</strong> above the relevant prior HH. Freeze.",
+          "story": {
+            "level": {
+              "value": "Closed through",
+              "tone": "up"
+            }
+          },
+          "asks": [
+            {
+              "prompt": "Was that break WITH or AGAINST the existing structure?",
+              "options": [
+                {
+                  "label": "With the existing structure",
+                  "correct": true,
+                  "why": "With. The structure was bullish, and price broke a high in the same direction."
+                },
+                {
+                  "label": "Against the existing structure",
+                  "correct": false,
+                  "feedback": "The existing structure is bullish (HL → HH → HL). Breaking a high is in that same direction.",
+                  "mistake": "bos-direction"
+                }
+              ],
+              "concept": "bos",
+              "hint": "Which way was the structure already progressing?",
+              "show": [
+                "bos"
+              ],
+              "story": {
+                "info": {
+                  "value": "Continuation info",
+                  "tone": "up"
+                }
+              }
+            },
+            {
+              "prompt": "So what did price just prove?",
+              "options": [
+                {
+                  "label": "Price will keep going up",
+                  "correct": false,
+                  "feedback": "A BOS describes what price did. It doesn’t promise what price will do next.",
+                  "mistake": "bos-as-guarantee"
+                },
+                {
+                  "label": "Price progressed in the direction of the existing structure",
+                  "correct": true,
+                  "why": "Exactly. <strong>Price just proved</strong> it progressed with the existing structure. That’s continuation information, not a guarantee."
+                }
+              ],
+              "concept": "bos",
+              "stack": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "price_lab",
+      "kicker": "Now the mirror",
+      "title": "Price breaks the relevant prior low.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            40
+          ],
+          [
+            112.0,
+            140
+          ],
+          [
+            160.0,
+            95
+          ],
+          [
+            224.0,
+            190
+          ],
+          [
+            272.0,
+            132
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 40,
+            "c": 66.0,
+            "h": 35.30000000000001,
+            "l": 71.0,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 66.0,
+            "c": 80.4,
+            "h": 60.599999999999994,
+            "l": 83.0,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 80.4,
+            "c": 94.5,
+            "h": 76.4,
+            "l": 98.5,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 94.5,
+            "c": 124.80000000000001,
+            "h": 91.1,
+            "l": 126.30000000000001,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 124.80000000000001,
+            "c": 131.7,
+            "h": 122.5,
+            "l": 140,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 131.7,
+            "c": 117.5,
+            "h": 114.80000000000001,
+            "l": 134.3,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 117.5,
+            "c": 110.19999999999999,
+            "h": 105.0,
+            "l": 124.0,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 110.19999999999999,
+            "c": 104.5,
+            "h": 95,
+            "l": 114.69999999999999,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 104.5,
+            "c": 133.0,
+            "h": 100.5,
+            "l": 136.2,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 133.0,
+            "c": 153.2,
+            "h": 129.7,
+            "l": 159.4,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 153.2,
+            "c": 173.9,
+            "h": 151.0,
+            "l": 179.5,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 173.9,
+            "c": 180.3,
+            "h": 170.1,
+            "l": 190,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 180.3,
+            "c": 163.7,
+            "h": 159.8,
+            "l": 183.5,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 163.7,
+            "c": 150.8,
+            "h": 145.0,
+            "l": 165.4,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 150.8,
+            "c": 138.9,
+            "h": 132,
+            "l": 155.9,
+            "w": 9.6
+          },
+          {
+            "x": 288.0,
+            "o": 138.9,
+            "c": 158.9,
+            "h": 133.0,
+            "l": 165.2,
+            "w": 9.6
+          },
+          {
+            "x": 304.0,
+            "o": 158.9,
+            "c": 166.9,
+            "h": 154.5,
+            "l": 172.3,
+            "w": 9.6
+          },
+          {
+            "x": 320.0,
+            "o": 166.9,
+            "c": 183.1,
+            "h": 163.1,
+            "l": 185.2,
+            "w": 9.6
+          },
+          {
+            "x": 336.0,
+            "o": 183.1,
+            "c": 197.5,
+            "h": 177.0,
+            "l": 200.0,
+            "w": 9.6
+          },
+          {
+            "x": 352.0,
+            "o": 197.5,
+            "c": 218.0,
+            "h": 194.0,
+            "l": 223.9,
+            "w": 9.6
+          }
+        ],
+        "hlines": [
+          {
+            "y": 190,
+            "label": "Relevant prior LL",
+            "tone": "down",
+            "x1": 216.0,
+            "x2": 690,
+            "size": 13,
+            "below": true,
+            "labelX": 528
+          }
+        ],
+        "marks": [
+          {
+            "i": 2,
+            "label": "LH",
+            "tone": "down"
+          },
+          {
+            "i": 3,
+            "label": "LL",
+            "tone": "down"
+          },
+          {
+            "i": 4,
+            "label": "LH",
+            "tone": "down"
+          }
+        ],
+        "notes": [
+          {
+            "x": 334.0,
+            "y": 258,
+            "text": "BEARISH BOS",
+            "tone": "down",
+            "size": 18,
+            "anchor": "middle",
+            "id": "bos"
+          },
+          {
+            "x": 334.0,
+            "y": 280,
+            "text": "continuation information",
+            "tone": "purple",
+            "size": 14,
+            "anchor": "middle",
+            "id": "bos"
+          }
+        ]
+      },
+      "start": 15,
+      "story": {
+        "rows": [
+          {
+            "key": "larger",
+            "label": "Existing structure",
+            "value": "Bearish",
+            "tone": "down"
+          },
+          {
+            "key": "level",
+            "label": "Relevant prior LL",
+            "value": "Intact",
+            "tone": "muted"
+          },
+          {
+            "key": "info",
+            "label": "This break gives",
+            "value": "Not yet",
+            "tone": "muted"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "LH → LL → LH. Bearish structure.",
+          "next": "Play price →"
+        },
+        {
+          "candles": 19,
+          "text": "Price closed below the relevant prior LL.",
+          "story": {
+            "level": {
+              "value": "Closed through",
+              "tone": "down"
+            }
+          },
+          "asks": [
+            {
+              "prompt": "WITH or AGAINST the existing structure?",
+              "options": [
+                {
+                  "label": "With",
+                  "correct": true,
+                  "why": "With. A bearish structure, and price broke a low in the same direction: <strong>bearish BOS, continuation information.</strong>"
+                },
+                {
+                  "label": "Against",
+                  "correct": false,
+                  "feedback": "The structure was already making lower lows. This break goes the same way.",
+                  "mistake": "bos-direction"
+                }
+              ],
+              "concept": "bos",
+              "show": [
+                "bos"
+              ],
+              "story": {
+                "info": {
+                  "value": "Continuation info",
+                  "tone": "down"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "confusion",
+      "kicker": "Watch your words",
+      "heading": "Proved ≠ Will",
+      "left": {
+        "label": "Price just proved →",
+        "points": [
+          "Price progressed in the direction of the existing structure",
+          "Describes what already happened",
+          "Continuation information"
+        ]
+      },
+      "right": {
+        "label": "Price will →",
+        "points": [
+          "A prediction",
+          "Not what a BOS tells you",
+          "BOS isn’t guaranteed future continuation"
+        ]
+      }
+    },
+    {
+      "type": "price_lab",
+      "kicker": "BOS or not?",
+      "title": "Same move up. Different level.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            260
+          ],
+          [
+            112.0,
+            110
+          ],
+          [
+            160.0,
+            190
+          ],
+          [
+            192.0,
+            165
+          ],
+          [
+            224.0,
+            200
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 260,
+            "c": 242.4,
+            "h": 240.2,
+            "l": 261.6,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 242.4,
+            "c": 213.5,
+            "h": 211.0,
+            "l": 244.5,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 213.5,
+            "c": 174.1,
+            "h": 170.9,
+            "l": 219.4,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 174.1,
+            "c": 132.8,
+            "h": 126.5,
+            "l": 177.2,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 132.8,
+            "c": 118.4,
+            "h": 110,
+            "l": 138.5,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 118.4,
+            "c": 144.7,
+            "h": 112.3,
+            "l": 149.7,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 144.7,
+            "c": 160.3,
+            "h": 138.8,
+            "l": 164.8,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 160.3,
+            "c": 182.8,
+            "h": 157.6,
+            "l": 190,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 182.8,
+            "c": 175.0,
+            "h": 170.6,
+            "l": 188.9,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 175.0,
+            "c": 174.1,
+            "h": 165,
+            "l": 180.8,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 174.1,
+            "c": 187.4,
+            "h": 169.1,
+            "l": 191.9,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 187.4,
+            "c": 193.0,
+            "h": 181.5,
+            "l": 200,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 193.0,
+            "c": 177.2,
+            "h": 171.8,
+            "l": 199.2,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 177.2,
+            "c": 165.5,
+            "h": 163.3,
+            "l": 182.8,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 165.5,
+            "c": 150.0,
+            "h": 145.2,
+            "l": 167.9,
+            "w": 9.6
+          }
+        ],
+        "hlines": [
+          {
+            "y": 110,
+            "label": "Relevant HH",
+            "tone": "up",
+            "x1": 104.0,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          },
+          {
+            "y": 165,
+            "label": "Tiny internal high",
+            "tone": "muted",
+            "x1": 184.0,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          }
+        ],
+        "marks": [
+          {
+            "i": 1,
+            "label": "HH",
+            "tone": "up"
+          },
+          {
+            "i": 3,
+            "label": "tiny",
+            "tone": "muted",
+            "size": "sm"
+          }
+        ]
+      },
+      "start": 12,
+      "steps": [
+        {
+          "text": "Bullish structure, pulling back. Two highs above price.",
+          "next": "Play price →"
+        },
+        {
+          "candles": 15,
+          "text": "Price closed above a high.",
+          "asks": [
+            {
+              "prompt": "Is this a larger bullish BOS?",
+              "options": [
+                {
+                  "label": "Yes, price closed above a high",
+                  "correct": false,
+                  "feedback": "It closed above the tiny internal high, not the relevant HH. Identify the level first.",
+                  "mistake": "internal-as-bos"
+                },
+                {
+                  "label": "Not necessarily",
+                  "correct": true,
+                  "why": "Only a tiny internal high broke. The relevant HH that would confirm larger continuation is still above price."
+                }
+              ],
+              "concept": "bos",
+              "hint": "Which of the two highs did price actually close above?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "dayli",
+      "label": "Remember",
+      "quote": "A BOS tells you what <strong>price just proved</strong>. It does not tell you what price will do next."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What does a bullish BOS tell you, and what doesn’t it tell you?",
+      "modelAnswer": "A bullish BOS tells me price closed through the relevant prior high in the direction of the existing bullish structure. That’s continuation information: price just proved it progressed with the structure. It doesn’t guarantee price will keep going. And I have to check that it was actually the relevant high, not a tiny internal one."
+    }
+  ],
+  "takeaways": [
+    "A BOS is a break of the relevant prior swing WITH the existing structure.",
+    "Bullish BOS and bearish BOS are continuation information.",
+    "A BOS describes what price just proved, not what price will do."
+  ],
+  "remember": "Price just proved. Not price will."
+}

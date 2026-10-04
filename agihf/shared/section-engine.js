@@ -290,8 +290,17 @@ function renderGame(slide, game, onAllDone, helpers) {
     const accEl = slide.querySelector('.sg-acc-n');
     slide.querySelector('.sg-restart').addEventListener('click', show);
     const renderer = SLIDE_RENDERERS[level.type];
+    let firstRead = null;
+    const reads = {};
     const levelHelpers = {
       ...helpers,
+      // Her first answer to a question is her read; the debrief compares it with what price showed.
+      // level.readPrompt picks the question that counts (default: the first one she answers).
+      onPick(q, opt, correct) {
+        const key = q?.prompt || '';
+        if (!reads[key]) reads[key] = { label: opt.label, correct };
+        if (!firstRead) firstRead = reads[key];
+      },
       handleStreak(correct) {
         stats[idx].tries += 1;
         if (correct) stats[idx].right += 1;
@@ -300,10 +309,30 @@ function renderGame(slide, game, onAllDone, helpers) {
         helpers.handleStreak(correct);
       },
     };
-    const next = () => {
+    const advance = () => {
       idx += 1;
       if (idx < levels.length) { show(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
       else finish();
+    };
+    const next = () => {
+      if (!level.debrief) { advance(); return; }
+      body.querySelectorAll('.lw-continue-btn').forEach((b) => b.remove());
+      const d = level.debrief;
+      const read = (level.readPrompt && reads[level.readPrompt]) || firstRead || { label: '—', correct: true };
+      const card = document.createElement('div');
+      card.className = 'lw-card sg-debrief-card';
+      card.innerHTML = `<div class="lw-eyebrow">${read.correct ? 'Nice read ✦' : 'Here’s what happened'}</div>
+        <div class="sg-debrief">
+          <div class="${read.correct ? 'sg-read-ok' : 'sg-read-no'}"><b>Your read</b>${read.label} ${read.correct ? '✓' : '✗'}</div>
+          <div><b>What price actually showed</b>${d.showed}</div>
+          <div><b>Why</b>${d.why}</div>
+        </div>`;
+      const btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'lw-continue-btn'; btn.textContent = idx + 1 < levels.length ? 'Next level →' : 'Finish →';
+      btn.addEventListener('click', advance);
+      card.appendChild(btn);
+      body.appendChild(card);
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     };
     if (renderer) renderer(body, { ...level, kicker: '', title: level.title || '' }, next, levelHelpers); else next();
   }
@@ -443,7 +472,7 @@ function renderKnowledge(slide, kc, onPass, helpers) {
           <div class="lw-eyebrow">Knowledge Check</div>
           <div class="sw-result-pct ${passed ? 'pass' : 'fail'}">${pct}%</div>
           <div class="sw-result-sub">${score} of ${total} correct, ${passed ? `you passed (${Math.round(kc.passPct * 100)}% required)` : `${Math.round(kc.passPct * 100)}% required to pass`}</div>
-          ${review.length ? `<div class="sw-review"><strong>${passed ? 'Worth another look:' : 'Review these, then try a fresh set:'}</strong><ul>${review.map((c) => `<li>${c}</li>`).join('')}</ul></div>` : ''}
+          ${review.length ? `<div class="sw-review"><strong>${passed ? 'Give these another look:' : 'Give these another look, then try a fresh set:'}</strong><ul>${review.map((c) => `<li>↻ ${c}${kc.reviewLessons && kc.reviewLessons[c] ? `<a href="lesson.html?phase=${kc.reviewLessons[c][0]}&n=${kc.reviewLessons[c][1]}">Review this lesson →</a>` : ''}</li>`).join('')}</ul></div>` : ''}
           ${passed
             ? '<button type="button" class="lw-continue-btn" id="swKcContinue" style="align-self:center">Continue →</button>'
             : '<button type="button" class="lw-continue-btn" id="swKcRetry" style="align-self:center">Try Again, New Questions</button>'}
@@ -451,7 +480,7 @@ function renderKnowledge(slide, kc, onPass, helpers) {
       `;
       if (passed) {
         helpers.burst();
-        showToast(`+${kc.xp} GP earned!`, 'Knowledge Check passed 🧠✨');
+        if (kc.xp > 0) showToast(`+${kc.xp} GP earned!`, 'Knowledge Check passed 🧠✨');
         document.getElementById('swKcContinue').addEventListener('click', () => onPass(pct));
       } else {
         document.getElementById('swKcRetry').addEventListener('click', () => startAttempt());
