@@ -81,6 +81,18 @@
     pullback: s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    garage: s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:58px">${h.html}</div></div>`).join('')}`,
+    convoy: s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:58px">${h.html}</div></div>`).join('')}`,
+    'point-value': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    lift: s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:58px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
       <div class="abs" style="left:760px;right:110px;top:260px">
         <div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
@@ -521,6 +533,123 @@
         if (p > 0) out += `<g transform="translate(${x0 + step * 15.5},${Y(130) + 40}) scale(${p})">
           <rect x="-130" y="-30" width="260" height="60" rx="30" fill="${C.pinkP}" stroke="${C.pinkL}" stroke-width="3"/>
           <text y="11" font-size="28" font-weight="700" text-anchor="middle" fill="#C2475F" font-family="DM Sans">⚡ Real shift</text></g>` + A.sparkle(x0 + step * 15.5, Y(130) + 40, brk + 0.4, t, C.pink);
+      }
+      return out;
+    },
+
+    garage: (s, t) => {
+      const RY = 780;
+      let out = A.road(RY - 10, { h: 110 });
+      s.items.forEach((it, i) => {
+        const k = ease(seg(t, it.at, it.at + 1.6));
+        if (k <= 0) return;
+        const x = lerp(-300, it.x, k);
+        out += A.vehicle(it.kind, { x, y: RY + 60, dist: x, plate: it.plate, t, moving: k < 1 });
+        const lp = clamp((t - it.at - 1.2) / 0.5);
+        out += `<g opacity="${lp}"><text x="${it.x}" y="${RY + 170}" font-size="40" font-weight="900" text-anchor="middle" fill="${C.dark}" font-family="Playfair Display">${esc(it.plate)}</text>
+          <text x="${it.x}" y="${RY + 212}" font-size="26" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">${esc(it.name)}</text></g>`;
+      });
+      return out;
+    },
+
+    convoy: (s, t) => {
+      const RY = 760;
+      let out = A.road(RY - 10, { h: 110 });
+      const k1 = ease(seg(t, s.oneAt, s.oneAt + 1.6));
+      const k3 = ease(seg(t, s.threeAt, s.threeAt + 1.8));
+      const lead = lerp(lerp(-300, 960, k1), 1340, k3);
+      out += A.vehicle('car', { x: lead, y: RY + 60, dist: lead, plate: 'MNQ', t, moving: (k1 > 0 && k1 < 1) || (k3 > 0 && k3 < 1) });
+      if (k3 > 0) {
+        [960, 580].forEach((tx, i) => {
+          const kk = ease(seg(t, s.threeAt + i * 0.25, s.threeAt + 1.8 + i * 0.25));
+          const x = lerp(-300 - i * 320, tx, kk);
+          out += A.vehicle('car', { x, y: RY + 60, dist: x, plate: 'MNQ', t, moving: kk < 1 });
+        });
+      }
+      const n = t >= s.threeAt + 1.2 ? 3 : 1;
+      if (k1 > 0) {
+        const cp = n === 3 ? back((t - s.threeAt - 1.2) / 0.6) : 1;
+        out += `<g transform="translate(960,${RY + 220})">
+          <rect x="-330" y="-46" width="300" height="92" rx="24" fill="#fff" stroke="#F1E7E1" stroke-width="3"/>
+          <text x="-180" y="-10" font-size="20" font-weight="700" text-anchor="middle" fill="${C.muted}" font-family="DM Sans" letter-spacing="3">MARKET</text>
+          <text x="-180" y="30" font-size="36" font-weight="900" text-anchor="middle" fill="${C.purple}" font-family="Playfair Display">MNQ</text>
+          <g transform="translate(180,0) scale(${0.85 + 0.15 * cp})">
+            <rect x="-150" y="-46" width="300" height="92" rx="24" fill="#fff" stroke="${n === 3 ? C.teal : '#F1E7E1'}" stroke-width="3"/>
+            <text y="-10" font-size="20" font-weight="700" text-anchor="middle" fill="${C.muted}" font-family="DM Sans" letter-spacing="3">CONTRACTS</text>
+            <text y="30" font-size="36" font-weight="900" text-anchor="middle" fill="${n === 3 ? '#2F8A7F' : C.dark}" font-family="Playfair Display">${n}</text></g></g>`;
+        if (n === 3) out += A.sparkle(1140, RY + 220, s.threeAt + 1.2, t, C.teal);
+      }
+      return out;
+    },
+
+    'point-value': (s, t) => {
+      const lanes = [{ y: 600, kind: 'car', plate: 'MNQ', at: s.mnqAt, usd: 20, bills: 1, col: C.teal },
+                     { y: 870, kind: 'truck', plate: 'NQ', at: s.nqAt, usd: 200, bills: 10, col: C.purple }];
+      const x0 = 260, x1 = 1180;
+      const k = ease(seg(t, s.moveAt, s.moveAt + 2.4));
+      let out = '';
+      // Points ruler.
+      const rp = clamp((t - s.start - 0.6) / 0.5);
+      out += `<g opacity="${rp}"><line x1="${x0}" x2="${x1}" y1="420" y2="420" stroke="${C.muted}" stroke-width="4"/>
+        ${Array.from({ length: 11 }, (_, i) => `<line x1="${x0 + i * (x1 - x0) / 10}" x2="${x0 + i * (x1 - x0) / 10}" y1="408" y2="432" stroke="${C.muted}" stroke-width="3"/>`).join('')}
+        <text x="${x0}" y="398" font-size="22" font-weight="700" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">0</text>
+        <text x="${x1}" y="398" font-size="22" font-weight="700" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">10 pts</text>
+        <circle cx="${lerp(x0, x1, k)}" cy="420" r="13" fill="${C.peach}"/></g>`;
+      lanes.forEach(L => {
+        out += A.road(L.y - 70, { x0: 140, x1: 1300, h: 80, shift: k * 900 });
+        const x = lerp(x0, x1, k);
+        out += A.vehicle(L.kind, { x, y: L.y, dist: x, plate: L.plate, t, moving: k > 0 && k < 1, scale: L.kind === 'truck' ? 0.62 : 0.7 });
+        // Cash stack next to the lane.
+        const cp = clamp((t - L.at) / 1.2);
+        if (cp > 0) {
+          const shown = Math.max(1, Math.ceil(cp * L.bills));
+          for (let b = 0; b < shown; b++) {
+            out += `<g transform="translate(1440,${L.y - 18 - b * 16})"><rect x="-80" y="-14" width="160" height="30" rx="5" fill="${C.cash}" stroke="${C.cashD}" stroke-width="3"/>
+              <circle r="9" fill="none" stroke="${C.cashD}" stroke-width="2.5"/></g>`;
+          }
+          const val = Math.round(cp * L.usd);
+          out += `<text x="1640" y="${L.y - 30}" font-size="66" font-weight="900" fill="${L.kind === 'truck' ? C.purple : '#2F8A7F'}" font-family="Playfair Display">$${val}</text>
+            <text x="1640" y="${L.y + 8}" font-size="24" fill="${C.muted}" font-family="DM Sans">1 ${L.plate} contract</text>`;
+        }
+      });
+      if (t > s.timesAt) {
+        const p = back((t - s.timesAt) / 0.6);
+        out += `<g transform="translate(1720,698) scale(${p})"><circle r="56" fill="${C.pink}"/>
+          <text y="16" font-size="44" font-weight="900" text-anchor="middle" fill="#fff" font-family="Playfair Display">×10</text></g>` + A.sparkle(1720, 698, s.timesAt, t);
+      }
+      return out;
+    },
+
+    lift: (s, t) => {
+      const G = 940;
+      let out = ground(G);
+      // Heavy: struggling under a huge barbell.
+      const hp = pop(t, s.heavyAt, 0.7);
+      if (hp > 0) {
+        const wob = Math.sin(t * 7) * 6;
+        const bar = `<g transform="translate(-22,-96) rotate(${wob})">
+          <rect x="-190" y="-8" width="380" height="16" rx="8" fill="#8C7A70"/>
+          <rect x="-200" y="-62" width="44" height="124" rx="10" fill="${C.dark}"/><rect x="-250" y="-74" width="50" height="148" rx="10" fill="${C.dark}"/>
+          <rect x="156" y="-62" width="44" height="124" rx="10" fill="${C.dark}"/><rect x="200" y="-74" width="50" height="148" rx="10" fill="${C.dark}"/>
+          <rect x="-56" y="-26" width="112" height="52" rx="12" fill="#fff" stroke="${C.pink}" stroke-width="4"/>
+          <text y="12" font-size="30" font-weight="900" text-anchor="middle" fill="#C2475F" font-family="DM Sans">ES</text></g>`;
+        const sweat = [0, 1].map(i => {
+          const p = ((t * 0.9) + i * 0.5) % 1;
+          return `<path d="M${1350 + 46 + i * 18},${G - 300 + p * 50} q6,10 0,16 q-6,-6 0,-16 Z" fill="#9FD8F0" opacity="${1 - p}"/>`;
+        }).join('');
+        out += `<g transform="translate(1350,${G}) scale(${hp}) translate(-1350,${-G})">` +
+          A.person(t, { x: 1350, y: G + Math.abs(wob) * 0.6, scale: 1.1, look: A.LOOKS.d, mood: 'sad', frontArm: { a1: -80, a2: -92 }, backArm: { a1: -100, a2: -88 }, hold: bar, seed: 6 }) + sweat + '</g>';
+      }
+      // Light: easy curls with a small dumbbell.
+      const lp = pop(t, s.lightAt, 0.7);
+      if (lp > 0) {
+        const curl = (Math.sin(t * 3.2) + 1) / 2;
+        const db = `<g><rect x="-26" y="-6" width="52" height="12" rx="6" fill="#8C7A70"/>
+          <rect x="-38" y="-20" width="16" height="40" rx="5" fill="${C.teal}"/><rect x="22" y="-20" width="16" height="40" rx="5" fill="${C.teal}"/>
+          <text y="48" font-size="22" font-weight="900" text-anchor="middle" fill="#2F8A7F" font-family="DM Sans">MNQ</text></g>`;
+        out += `<g transform="translate(560,${G}) scale(${lp}) translate(-560,${-G})">` +
+          A.person(t, { x: 560, y: G, scale: 1.1, look: A.LOOKS.c, frontArm: { a1: 95, a2: lerp(50, -25, curl) }, hold: db, seed: 2 }) + '</g>' +
+          (t > s.lightAt + 0.8 ? A.bubble(700, G - 420, 'I can learn here!', { op: clamp((t - s.lightAt - 0.8) / 0.4), size: 30, weight: 700, color: '#2F8A7F', fill: '#E8F8F6', stroke: C.tealL, tail: 'left' }) : '');
       }
       return out;
     },

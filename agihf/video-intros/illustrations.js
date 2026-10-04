@@ -248,6 +248,58 @@
     }).join('');
   }
 
+
+  /* ------------------------------------------------------------------ *
+   * Vehicles for "instrument = vehicle". (x, y) = centre of the road
+   * contact line. dist (px travelled) spins the wheels.
+   *   kind: 'car' | 'truck' | 'gold' | 'bus'
+   * ------------------------------------------------------------------ */
+  function vehicle(kind, o) {
+    const { x, y, dist = 0, plate = '', t = 0 } = o;
+    const s = o.scale || 1;
+    const bounce = Math.sin(t * 9 + x * 0.01) * (o.moving ? 2.5 : 0.6);
+    const wheel = (wx, r) => {
+      const a = (dist / r) * 180 / Math.PI;
+      return `<g transform="translate(${wx},${-r}) rotate(${a})">
+        <circle r="${r}" fill="${COL.dark}"/><circle r="${r * 0.45}" fill="#D9CFC8"/>
+        <rect x="-2.5" y="${-r * 0.9}" width="5" height="${r * 0.9}" fill="#D9CFC8"/></g>`;
+    };
+    const plateTag = (px, py) => plate ? `<g transform="translate(${px},${py})">
+        <rect x="-50" y="-22" width="100" height="44" rx="10" fill="#fff" stroke="${COL.dark}" stroke-width="3"/>
+        <text y="10" font-size="26" font-weight="900" text-anchor="middle" fill="${COL.dark}" font-family="DM Sans">${plate}</text></g>` : '';
+    let body = '';
+    if (kind === 'truck') {
+      body = `<rect x="-170" y="-210" width="230" height="160" rx="14" fill="${COL.purple}"/>
+        <rect x="-158" y="-198" width="206" height="10" rx="5" fill="#fff" opacity=".25"/>
+        <path d="M60,-150 L120,-150 L170,-100 L170,-50 L60,-50 Z" fill="${COL.purpleL}" stroke="${COL.purple}" stroke-width="5"/>
+        <path d="M78,-138 L116,-138 L150,-104 L78,-104 Z" fill="#E8F8F6"/>
+        <rect x="-176" y="-60" width="352" height="22" rx="10" fill="${COL.dark}" opacity=".8"/>
+        ${wheel(-120, 30)}${wheel(-60, 30)}${wheel(120, 30)}${plateTag(-55, -130)}`;
+    } else if (kind === 'bus') {
+      body = `<rect x="-175" y="-200" width="350" height="160" rx="28" fill="${COL.pink}"/>
+        ${[-140, -80, -20, 40].map(wx => `<rect x="${wx}" y="-180" width="46" height="46" rx="8" fill="#FDE8ED"/>`).join('')}
+        <rect x="104" y="-180" width="54" height="100" rx="10" fill="#FDE8ED"/>
+        <rect x="-175" y="-110" width="350" height="12" fill="#fff" opacity=".35"/>
+        ${wheel(-110, 30)}${wheel(110, 30)}${plateTag(-40, -70)}`;
+    } else {
+      const col = kind === 'gold' ? COL.peach : COL.teal, dark = kind === 'gold' ? '#E08E2E' : COL.tealD;
+      body = `<path d="M-115,-40 L-115,-90 Q-112,-104 -96,-106 L-60,-110 L-30,-160 Q-24,-170 -10,-170 L52,-170 Q66,-170 74,-160 L104,-112 Q118,-108 118,-92 L118,-40 Z" fill="${col}" stroke="${dark}" stroke-width="4"/>
+        <path d="M-18,-158 L-44,-114 L6,-114 L6,-158 Z" fill="#E8F8F6"/><path d="M16,-158 L16,-114 L90,-114 L64,-158 Z" fill="#E8F8F6"/>
+        ${kind === 'gold' ? `<path d="M-16,-196 L52,-196 L62,-172 L-26,-172 Z" fill="${COL.gold}" stroke="#C98A1F" stroke-width="3"/><path d="M-4,-192 L40,-192" stroke="#fff" stroke-width="3" opacity=".6"/>` : ''}
+        <circle cx="112" cy="-80" r="8" fill="#FFF3C4"/>
+        ${wheel(-68, 26)}${wheel(70, 26)}${plateTag(0, -72)}`;
+    }
+    return `<g transform="translate(${x},${y + bounce}) scale(${s})"><ellipse cx="0" cy="2" rx="${kind === 'car' || kind === 'gold' ? 120 : 180}" ry="10" fill="${COL.dark}" opacity=".08"/>${body}</g>`;
+  }
+
+  function road(y, o = {}) {
+    const x0 = o.x0 ?? 0, x1 = o.x1 ?? 1920, h = o.h ?? 90, shift = o.shift ?? 0;
+    const dashes = [];
+    for (let x = x0 - 120 + ((shift % 120) + 120) % 120; x < x1 - 60; x += 120) if (x >= x0) dashes.push(`<rect x="${x}" y="${y + h / 2 - 4}" width="60" height="8" rx="4" fill="#fff" opacity=".8"/>`);
+    return `<rect x="${x0}" y="${y}" width="${x1 - x0}" height="${h}" fill="#E9DED6"/>${dashes.join('')}
+      <rect x="${x0}" y="${y}" width="${x1 - x0}" height="4" fill="#DCCFC6"/>`;
+  }
+
   // Seeded candles: deterministic so every render is identical.
   function candleSeries(n, seed, drift) {
     let v = 100, s = seed;
@@ -381,5 +433,5 @@
     </g>`;
   }
 
-  window.ART = { COL, LOOKS, aristella, person, bubble, sparkle, cashStack, contract, candleSeries, candleChart, badge, ease, back, clamp, lerp };
+  window.ART = { COL, LOOKS, vehicle, road, aristella, person, bubble, sparkle, cashStack, contract, candleSeries, candleChart, badge, ease, back, clamp, lerp };
 })();
