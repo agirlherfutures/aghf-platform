@@ -16,66 +16,253 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Intro" },
-      { "t": "00:08", "label": "Exits before entries" },
-      { "t": "00:29", "label": "When fear says move it" },
-      { "t": "00:50", "label": "Take profit is planned" },
-      { "t": "01:02", "label": "Your stop protects your account" },
-      { "t": "01:13", "label": "Your mission" }
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Exits before entries"
+      },
+      {
+        "t": "00:29",
+        "label": "When fear says move it"
+      },
+      {
+        "t": "00:50",
+        "label": "Take profit is planned"
+      },
+      {
+        "t": "01:02",
+        "label": "Your stop protects your account"
+      },
+      {
+        "t": "01:13",
+        "label": "Your mission"
+      }
     ]
   },
   "slides": [
     {
-      "type": "chart_tap",
-      "kicker": "Where does the stop actually belong?",
-      "title": "Tap the point that proves this uptrend wrong",
-      "intro": "Your stop loss belongs where the setup is proven wrong, not some random number of points away, and not just wherever feels comfortable.",
-      "rounds": [
-        {
-          "prompt": "This is an uptrend with one pullback so far. Where does the stop loss actually belong?",
-          "path": [[0, 220], [80, 150], [160, 90], [200, 80], [260, 120], [320, 160], [400, 120], [480, 90], [560, 60], [640, 40], [700, 30]],
-          "points": [
-            { "x": 320, "y": 190, "r": 45, "correct": true, "feedback": "Exactly. That's below the swing low, the point where this uptrend idea is actually proven wrong. A close beneath it means the structure failed." },
-            { "x": 550, "y": 78, "r": 45, "correct": false, "feedback": "That's just a comfortable distance from current price, it isn't tied to the point where the trade idea is actually proven wrong." }
-          ]
-        }
-      ]
+      "type": "v2_screen",
+      "kicker": "Stop loss & take profit",
+      "headline": "Your stop goes where <em>you’re wrong.</em>",
+      "line": "Not some random number of points away. Not wherever feels comfortable.",
+      "visual": {
+        "host": "wave"
+      },
+      "cta": "Let’s go →",
+      "ctaPink": true
     },
     {
-      "type": "teach",
-      "kicker": "Fear kicks in",
-      "body": "Price pulls back and gets close to the stop, without closing below the swing low.",
-      "check": {
-        "prompt": "Should the stop move closer to \"reduce risk\"?",
-        "options": [
-          { "label": "Yes, tightening it feels safer", "correct": false, "feedback": "Tightening a stop based on fear usually gets you stopped out of a trade that was still valid." },
-          { "label": "No, moving it early abandons the actual invalidation point", "correct": true, "why": "Right. Your stop protects the plan; moving it out of fear defeats its purpose." }
+      "type": "v2_tool",
+      "kicker": "Where does the stop actually belong?",
+      "headline": "Tap the point that proves <em>this uptrend wrong.</em>",
+      "tool": {
+        "type": "chart_tap",
+        "kicker": "Where does the stop actually belong?",
+        "title": "Tap the point that proves this uptrend wrong",
+        "intro": "Your stop loss belongs where the setup is proven wrong, not some random number of points away, and not just wherever feels comfortable.",
+        "rounds": [
+          {
+            "prompt": "This is an uptrend with one pullback so far. Where does the stop loss actually belong?",
+            "path": [
+              [
+                0,
+                220
+              ],
+              [
+                80,
+                150
+              ],
+              [
+                160,
+                90
+              ],
+              [
+                200,
+                80
+              ],
+              [
+                260,
+                120
+              ],
+              [
+                320,
+                160
+              ],
+              [
+                400,
+                120
+              ],
+              [
+                480,
+                90
+              ],
+              [
+                560,
+                60
+              ],
+              [
+                640,
+                40
+              ],
+              [
+                700,
+                30
+              ]
+            ],
+            "points": [
+              {
+                "x": 320,
+                "y": 190,
+                "r": 45,
+                "correct": true,
+                "feedback": "Exactly. That's below the swing low, the point where this uptrend idea is actually proven wrong. A close beneath it means the structure failed."
+              },
+              {
+                "x": 550,
+                "y": 78,
+                "r": 45,
+                "correct": false,
+                "feedback": "That's just a comfortable distance from current price, it isn't tied to the point where the trade idea is actually proven wrong."
+              }
+            ]
+          }
         ]
       }
     },
     {
-      "type": "dayli",
-      "kicker": "Dayli Says",
-      "quote": "Your stop loss protects your account and your structure logic, it isn't punishment, and it isn't about ego."
+      "type": "v2_screen",
+      "kicker": "Fear kicks in",
+      "headline": "Price is <em>closing in</em> on your stop.",
+      "line": "It pulls back close, without closing below the swing low.",
+      "visual": {
+        "chart": {
+          "swings": [
+            [
+              20,
+              270
+            ],
+            [
+              110,
+              190
+            ],
+            [
+              200,
+              110
+            ],
+            [
+              280,
+              160
+            ],
+            [
+              350,
+              200
+            ],
+            [
+              440,
+              120
+            ],
+            [
+              530,
+              80
+            ],
+            [
+              600,
+              140
+            ],
+            [
+              670,
+              192
+            ]
+          ],
+          "seed": 5,
+          "marks": [
+            {
+              "i": 4,
+              "label": "Swing low",
+              "tone": "purple",
+              "pos": "low"
+            }
+          ],
+          "hlines": [
+            {
+              "y": 245,
+              "x1": 250,
+              "tone": "down"
+            }
+          ],
+          "notes": [
+            {
+              "x": 670,
+              "y": 282,
+              "text": "Your stop",
+              "tone": "down",
+              "anchor": "end",
+              "size": 24
+            }
+          ]
+        }
+      },
+      "check": {
+        "prompt": "Should the stop move closer to “reduce risk”?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Yes, tightening it feels safer",
+            "correct": false,
+            "feedback": "Tightening a stop based on fear usually gets you stopped out of a trade that was still valid."
+          },
+          {
+            "label": "No, that abandons the invalidation point",
+            "correct": true,
+            "why": "Right. Your stop protects the plan. Moving it out of fear defeats its purpose."
+          }
+        ]
+      }
     },
     {
-      "type": "teach",
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Your stop loss <em>isn’t punishment.</em>",
+      "line": "It protects your account and your structure logic, and it isn’t about ego."
+    },
+    {
+      "type": "v2_screen",
       "kicker": "Discipline in one word",
-      "body": "After entry, your stop loss only works if you actually respect it.",
+      "headline": "A stop only works if you <em>respect it.</em>",
+      "visual": {
+        "icon": "lock",
+        "tone": "pink",
+        "caption": "The plan already decided."
+      },
       "check": {
         "prompt": "After entry, discipline means you ___ to the plan instead of moving your stop out of fear.",
         "options": [
-          { "label": "React", "correct": false, "feedback": "Reacting is exactly what fear-based stop-moving is, the opposite of sticking to the plan." },
-          { "label": "Guess", "correct": false, "feedback": "The plan already answered this, no guessing needed." },
-          { "label": "Stick", "correct": true, "why": "Committing to the plan is what makes a stop loss actually work." }
+          {
+            "label": "React",
+            "correct": false,
+            "feedback": "Reacting is exactly what fear-based stop-moving is, the opposite of sticking to the plan."
+          },
+          {
+            "label": "Guess",
+            "correct": false,
+            "feedback": "The plan already answered this, no guessing needed."
+          },
+          {
+            "label": "Stick",
+            "correct": true,
+            "why": "Committing to the plan is what makes a stop loss actually work."
+          }
         ]
       }
     },
     {
-      "type": "reflect",
+      "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Imagine another AGHF member asks: \"Why can't I just move my stop if a trade starts going against me?\" How would you explain it to them?",
-      "modelAnswer": "Your stop is placed at the point where the trade idea is actually proven wrong, moving it out of fear just delays finding that out, and usually costs more in the end. If you move your stop every time you're scared, it isn't protecting anything anymore; it's just following your emotions instead of your plan."
+      "prompt": "Why can’t you just move your stop when a trade goes against you?",
+      "modelAnswer": "Your stop is placed at the point where the trade idea is actually proven wrong, moving it out of fear just delays finding that out, and usually costs more in the end. If you move your stop every time you’re scared, it isn’t protecting anything anymore; it’s just following your emotions instead of your plan."
     }
   ],
   "takeaways": [
@@ -83,5 +270,6 @@
     "Moving your stop out of fear defeats the reason it exists.",
     "A take profit is planned in advance, not decided in the moment."
   ],
-  "remember": "Your stop protects the plan, not your feelings in the moment."
+  "remember": "Your stop protects the plan, not your feelings in the moment.",
+  "completeStyle": "v2"
 }
