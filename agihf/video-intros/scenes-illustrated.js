@@ -93,6 +93,15 @@
     lift: s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:58px">${h.html}</div></div>`).join('')}`,
+    'lift-reveal': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'versus-rows': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
+        <div class="h2" data-in="${s.start + 0.6}" style="font-size:60px">${esc(s.title)}</div></div>`,
+    maya: s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
       <div class="abs" style="left:760px;right:110px;top:260px">
         <div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
@@ -651,6 +660,123 @@
           A.person(t, { x: 560, y: G, scale: 1.1, look: A.LOOKS.c, frontArm: { a1: 95, a2: lerp(50, -25, curl) }, hold: db, seed: 2 }) + '</g>' +
           (t > s.lightAt + 0.8 ? A.bubble(700, G - 420, 'I can learn here!', { op: clamp((t - s.lightAt - 0.8) / 0.4), size: 30, weight: 700, color: '#2F8A7F', fill: '#E8F8F6', stroke: C.tealL, tail: 'left' }) : '');
       }
+      return out;
+    },
+
+    'lift-reveal': (s, t) => {
+      const data = s._d || (s._d = A.candleSeries(12, 5, i => Math.sin(i / 2.4) * 0.7 + 0.2));
+      return [[s.left, 540, 'stock'], [s.right, 1380, 'futures']].map(([side, cx, kind]) => {
+        const p = pop(t, s.start + 0.5 + (kind === 'futures' ? 0.3 : 0), 0.7);
+        if (p <= 0) return '';
+        const lift = ease(seg(t, side.at, side.at + 0.9));
+        let under = '';
+        if (kind === 'stock') {
+          // A little storefront you own a slice of.
+          const sl = clamp((t - side.at - 0.6) / 0.6);
+          under = `<g transform="translate(${cx},760)">
+            <rect x="-150" y="-90" width="300" height="170" rx="10" fill="#fff" stroke="${C.purple}" stroke-width="5"/>
+            <path d="M-170,-90 L170,-90 L150,-150 L-150,-150 Z" fill="${C.purple}"/>
+            ${[-120, -60, 0, 60, 120].map((x, i) => `<path d="M${x - 30},-90 Q${x},-60 ${x + 30},-90" fill="${i % 2 ? '#fff' : C.purpleL}"/>`).join('')}
+            <rect x="-40" y="0" width="80" height="80" rx="6" fill="${C.purpleL}"/>
+            <rect x="-120" y="-40" width="60" height="50" rx="6" fill="#E8F8F6"/><rect x="60" y="-40" width="60" height="50" rx="6" fill="#E8F8F6"/>
+            <g transform="translate(150,-160) scale(${back(sl)})">
+              <circle r="46" fill="${C.purpleL}"/><path d="M0,0 L0,-46 A46,46 0 0,1 40,-23 Z" fill="${C.pink}" transform="translate(${6 * sl},${-6 * sl})"/>
+            </g></g>
+            <text x="${cx}" y="900" font-size="34" font-weight="900" text-anchor="middle" fill="${C.purple}" font-family="Playfair Display" opacity="${lift}">You own a slice</text>`;
+        } else {
+          under = `<g transform="translate(${cx},740) rotate(${Math.sin(t * 2) * 3})">
+            <rect x="-110" y="-130" width="220" height="250" rx="14" fill="#fff" stroke="${C.pink}" stroke-width="5"/>
+            <text y="-82" font-size="30" font-weight="900" text-anchor="middle" fill="#C2475F" font-family="Playfair Display">CONTRACT</text>
+            ${[-40, -10, 20].map(y => `<rect x="-76" y="${y}" width="${y === 20 ? 100 : 152}" height="10" rx="5" fill="${C.pinkL}"/>`).join('')}
+            <path d="M-60,80 Q-30,60 0,82 T60,78" fill="none" stroke="${C.dark}" stroke-width="4" stroke-linecap="round"/></g>
+            <text x="${cx}" y="900" font-size="34" font-weight="900" text-anchor="middle" fill="#C2475F" font-family="Playfair Display" opacity="${lift}">An agreement on price</text>`;
+        }
+        const col = kind === 'stock' ? C.purple : C.pink;
+        return `<g transform="translate(${cx},640) scale(${p}) translate(${-cx},-640)">
+          <rect x="${cx - 360}" y="380" width="720" height="560" rx="40" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>
+          <g opacity="${lift}">${under}</g>
+          <g transform="translate(0,${-lift * 60})" opacity="${1 - lift}">
+            <rect x="${cx - 330}" y="410" width="660" height="500" rx="30" fill="#fff" stroke="${col}" stroke-width="4"/>
+            <rect x="${cx - 70}" y="${380 + 10}" width="140" height="44" rx="22" fill="${col}"/>
+            <text x="${cx}" y="${380 + 41}" font-size="22" font-weight="700" text-anchor="middle" fill="#fff" font-family="DM Sans" letter-spacing="3">${kind === 'stock' ? 'STOCK' : 'FUTURES'}</text>
+            <g transform="translate(${cx - 270},500)">${A.candleChart(t, { w: 540, h: 340, data, t0: s.start + 0.8, t1: s.start + 3.2 })}</g>
+          </g></g>`;
+      }).join('');
+    },
+
+    'versus-rows': (s, t) => {
+      const colX = [700, 1360], rowY = r => 545 + r * 165;
+      let out = '';
+      const hp = clamp((t - s.start - 0.8) / 0.5);
+      out += `<g opacity="${hp}">
+        <rect x="${colX[0] - 260}" y="378" width="520" height="70" rx="35" fill="${C.purpleP || '#EEEDFE'}"/>
+        <text x="${colX[0]}" y="426" font-size="36" font-weight="900" text-anchor="middle" fill="${C.purple}" font-family="Playfair Display">Stocks</text>
+        <rect x="${colX[1] - 260}" y="378" width="520" height="70" rx="35" fill="${C.pinkP}"/>
+        <text x="${colX[1]}" y="426" font-size="36" font-weight="900" text-anchor="middle" fill="#C2475F" font-family="Playfair Display">Futures</text></g>`;
+      const icon = (kind, x, y) => {
+        if (kind === 'pie') return `<g transform="translate(${x},${y})"><circle r="34" fill="${C.purpleL}"/><path d="M0,0 L0,-34 A34,34 0 0,1 30,-16 Z" fill="${C.purple}" transform="translate(4,-4)"/></g>`;
+        if (kind === 'doc') return `<g transform="translate(${x},${y}) rotate(-6)"><rect x="-26" y="-34" width="52" height="68" rx="6" fill="#fff" stroke="${C.pink}" stroke-width="4"/><rect x="-14" y="-16" width="28" height="5" rx="2" fill="${C.pinkL}"/><rect x="-14" y="-4" width="28" height="5" rx="2" fill="${C.pinkL}"/><rect x="-14" y="8" width="20" height="5" rx="2" fill="${C.pinkL}"/></g>`;
+        if (kind === 'inf') return `<g transform="translate(${x},${y})"><path d="M0,0 C-16,-24 -44,-24 -44,0 C-44,24 -16,24 0,0 C16,-24 44,-24 44,0 C44,24 16,24 0,0 Z" fill="none" stroke="${C.purple}" stroke-width="8" stroke-linecap="round"/></g>`;
+        if (kind === 'cal') {
+          const f = (t * 0.8) % 1;
+          return `<g transform="translate(${x},${y})"><rect x="-34" y="-30" width="68" height="64" rx="8" fill="#fff" stroke="${C.pink}" stroke-width="4"/><rect x="-34" y="-30" width="68" height="18" rx="6" fill="${C.pink}"/>
+            <text y="22" font-size="22" font-weight="900" text-anchor="middle" fill="${C.dark}" font-family="DM Sans">EXP</text>
+            <g transform="translate(44,-28) rotate(${f * 360})"><path d="M-12,0 A12,12 0 1,1 0,12" fill="none" stroke="${C.tealD}" stroke-width="5" stroke-linecap="round"/><path d="M-4,8 L0,14 L6,10" fill="none" stroke="${C.tealD}" stroke-width="5" stroke-linecap="round"/></g></g>`;
+        }
+        if (kind === 'sun') return `<g transform="translate(${x},${y}) rotate(${t * 30})"><circle r="20" fill="${C.peach}"/>${Array.from({ length: 8 }, (_, i) => `<rect x="-3" y="-36" width="6" height="11" rx="3" fill="${C.peach}" transform="rotate(${i * 45})"/>`).join('')}</g>`;
+        // sun and moon orbiting: nearly all day
+        const a = t * 1.4;
+        return `<g transform="translate(${x},${y})"><circle r="34" fill="none" stroke="#EADFD8" stroke-width="4" stroke-dasharray="6 6"/>
+          <circle cx="${Math.cos(a) * 34}" cy="${Math.sin(a) * 34}" r="13" fill="${C.peach}"/>
+          <circle cx="${Math.cos(a + Math.PI) * 34}" cy="${Math.sin(a + Math.PI) * 34}" r="12" fill="${C.purple}"/>
+          <circle cx="${Math.cos(a + Math.PI) * 34 + 5}" cy="${Math.sin(a + Math.PI) * 34 - 4}" r="9" fill="#fff"/></g>`;
+      };
+      s.rows.forEach((r, i) => {
+        const p = pop(t, r.at, 0.6);
+        if (p <= 0) return;
+        const y = rowY(i), cx = 1030;
+        out += `<g transform="translate(${cx},${y}) scale(${p}) translate(${-cx},${-y})">
+          <rect x="${colX[0] - 300}" y="${y - 70}" width="1260" height="140" rx="30" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>
+          <text x="${colX[0] - 520}" y="${y + 12}" font-size="30" font-weight="700" fill="${C.muted}" font-family="DM Sans">${esc(r.label)}</text>
+          ${icon(r.left.icon, colX[0] - 200, y)}<text x="${colX[0] - 140}" y="${y + 12}" font-size="32" fill="${C.dark}" font-family="DM Sans">${esc(r.left.text)}</text>
+          ${icon(r.right.icon, colX[1] - 200, y)}<text x="${colX[1] - 140}" y="${y + 12}" font-size="32" fill="${C.dark}" font-family="DM Sans">${esc(r.right.text)}</text>
+        </g>`;
+      });
+      return out;
+    },
+
+    maya: (s, t, ctx) => {
+      const G = 940, T = s.beats;
+      let out = ground(G);
+      const mp = pop(t, s.start + 0.4, 0.7);
+      if (mp > 0) out += `<g transform="translate(960,${G}) scale(${mp}) translate(-960,${-G})">` +
+        A.person(t, { x: 960, y: G, scale: 1.15, look: A.LOOKS.e, seed: 7, talk: t > T.say && t < T.say + 3,
+          frontArm: t > T.say ? { a1: -30, a2: -70 } : { a1: 100, a2: 95 } }) + '</g>';
+      if (t > T.say) out += A.bubble(1160, 470, '“10 is my normal size!”', { op: clamp((t - T.say) / 0.4) * (1 - clamp((t - T.neq + 0.3) / 0.4)), size: 32, italic: true, font: 'Playfair Display', tail: 'left' });
+      if (t > T.neq) {
+        const p = back((t - T.neq) / 0.6);
+        out += `<g transform="translate(960,430) scale(${p})"><rect x="-170" y="-62" width="340" height="124" rx="30" fill="${C.pink}"/>
+          <text y="28" font-size="80" font-weight="900" text-anchor="middle" fill="#fff" font-family="Playfair Display">10 ≠ 10</text></g>`;
+      }
+      // Two very different "10s".
+      [[T.shares, 410, 'purple'], [T.mnq, 1510, 'teal']].forEach(([at, x, col], i) => {
+        const p = pop(t, at, 0.7);
+        if (p <= 0) return;
+        const shares = i === 0;
+        let stack = '';
+        if (shares) {
+          for (let k = 0; k < 10; k++) stack += `<rect x="${x - 110 + (k % 5) * 46}" y="${700 - Math.floor(k / 5) * 46}" width="38" height="38" rx="8" fill="${C.purpleL}" stroke="${C.purple}" stroke-width="3"/>`;
+        } else {
+          const n = Math.max(1, Math.ceil(clamp((t - at - 0.3) / 1.2) * 10));
+          for (let k = 0; k < n; k++) stack += `<g transform="translate(${x},${740 - k * 16})"><rect x="-90" y="-14" width="180" height="30" rx="5" fill="${C.cash}" stroke="${C.cashD}" stroke-width="3"/><circle r="9" fill="none" stroke="${C.cashD}" stroke-width="2.5"/></g>`;
+        }
+        out += `<g transform="translate(${x},700) scale(${p}) translate(${-x},-700)">
+          <rect x="${x - 220}" y="420" width="440" height="460" rx="36" fill="#fff" stroke="${shares ? C.purpleL : C.tealL}" stroke-width="3"/>
+          <text x="${x}" y="490" font-size="44" font-weight="900" text-anchor="middle" fill="${C.dark}" font-family="Playfair Display">${shares ? '10 shares' : '10 MNQ'}</text>
+          <text x="${x}" y="530" font-size="24" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">${shares ? 'stock moves $1' : 'price moves 10 points'}</text>
+          ${stack}
+          <text x="${x}" y="840" font-size="62" font-weight="900" text-anchor="middle" fill="${shares ? C.purple : '#2F8A7F'}" font-family="Playfair Display">${shares ? '$10' : '$200'}</text></g>`;
+      });
       return out;
     },
 
