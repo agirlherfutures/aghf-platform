@@ -83,6 +83,26 @@
     return { svg, k, op, cl, hi, lo, up };
   }
 
+
+  // Point at fraction k along a polyline (screen coords), plus segment index.
+  function alongPath(pts, k) {
+    const lens = pts.slice(1).map((p, i) => Math.hypot(p[0] - pts[i][0], p[1] - pts[i][1]));
+    let d = lens.reduce((a, b) => a + b, 0) * clamp(k);
+    for (let i = 0; i < lens.length; i++) {
+      if (d <= lens[i] || i === lens.length - 1) {
+        const f = lens[i] ? Math.min(1, d / lens[i]) : 0;
+        return { x: lerp(pts[i][0], pts[i + 1][0], f), y: lerp(pts[i][1], pts[i + 1][1], f), seg: i, f };
+      }
+      d -= lens[i];
+    }
+    return { x: pts[0][0], y: pts[0][1], seg: 0, f: 0 };
+  }
+  const pillSvg = (x, y, text, col, k = 1, fs = 28) => {
+    const w = text.length * fs * 0.62 + 34;
+    return `<g transform="translate(${x},${y}) scale(${k})"><rect x="${-w / 2}" y="${-fs * 0.8}" width="${w}" height="${fs * 1.6}" rx="${fs * 0.8}" fill="${col}"/>
+      <text y="${fs * 0.36}" font-size="${fs}" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">${text}</text></g>`;
+  };
+
   const BUILD = {
     'host-title': s => `
       <div class="abs" style="left:760px;right:120px;top:300px">
@@ -237,6 +257,11 @@
     'story-book': s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    ...Object.fromEntries(['zoom-chaos', 'words-sentence', 'heel-valley', 'turn-finder', 'label-board', 'stairs-duo',
+      'ridge-hike', 'bounce-down', 'mountain-bumps', 'two-scopes', 'the-room', 'pacing-box', 'chart-sorter', 'road-trip', 'fork-break']
+      .map((k) => [k, (s) => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${(s.headlines || []).map((h) => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:${h.size || 56}px">${h.html}</div></div>`).join('')}`])),
     'host-mission': s => `
       <div class="abs" style="left:760px;right:110px;top:260px">
         <div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
@@ -1804,6 +1829,298 @@
       // A page turning.
       if (flip > 0 && flip < 1) out += `<path d="M0,-240 Q${260 * (1 - 2 * flip)},-270 ${520 * (1 - 2 * flip)},-232 L${520 * (1 - 2 * flip)},240 Q${260 * (1 - 2 * flip)},210 0,256 Z" fill="#FFFBF5" stroke="#E6D3C2" stroke-width="3"/>`;
       return out + '</g>';
+    },
+
+    'zoom-chaos': (s, t) => {
+      const T = s.beats;
+      let out = `<rect x="260" y="380" width="1400" height="580" rx="34" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>`;
+      // 1. Chaos: a dense 1M chart.
+      const zoom = ease(seg(t, T.zoom, T.zoom + 2));
+      if (zoom < 1) {
+        const noisy = s._n || (s._n = Array.from({ length: 34 }, (_, i) => [i / 33, 0.5 + Math.sin(i * 1.7) * 0.18 + Math.sin(i * 4.3) * 0.12 + (i % 3 - 1) * 0.06]));
+        out += `<g opacity="${1 - zoom}" transform="translate(960,670) scale(${1 + zoom * 0.6}) translate(-960,-670)">` + A.swingChart(t, { x: 300, y: 420, w: 1320, h: 500, swings: noisy, t0: s.start + 0.4, t1: s.start + 3, seed: 7, per: 70, _cs: null }) + '</g>';
+        out += `<g opacity="${1 - zoom}"><rect x="290" y="400" width="90" height="46" rx="12" fill="${C.pink}"/><text x="335" y="432" font-size="26" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">1M</text></g>`;
+        [0, 1, 2].forEach((i) => {
+          const p = ((t * 0.7) + i / 3) % 1;
+          if (t > T.chaos && zoom < 0.5) out += `<text x="${520 + i * 380}" y="${520 - p * 60}" font-size="64" font-weight="900" fill="${[C.pink, C.purple, C.peach][i]}" opacity="${Math.sin(p * Math.PI)}" font-family="Playfair Display">${['?!', '??', '!?'][i]}</text>`;
+        });
+      }
+      // 2. Zoomed out: clean swings, then push / pullback.
+      if (zoom > 0) {
+        const sw = [[0, 0.1], [0.17, 0.42], [0.3, 0.28], [0.48, 0.62], [0.62, 0.45], [0.8, 0.82], [0.92, 0.66], [1, 0.9]];
+        const kinds = ['PUSH', 'PULLBACK', 'PUSH', 'PULLBACK', 'PUSH', 'PULLBACK', 'PUSH'];
+        out += `<g opacity="${zoom}">` + A.swingChart(t, { x: 330, y: 430, w: 1260, h: 480, swings: sw, t0: T.zoom + 0.6, t1: T.zoom + 3, seed: 5, per: 30, line: { at: T.line, dashed: true } }) + '</g>';
+        kinds.forEach((k, i) => {
+          const at = T.pp + i * 0.5, q = back((t - at) / 0.5);
+          if (q <= 0) return;
+          const [u0, v0] = sw[i], [u1, v1] = sw[i + 1], up = v1 > v0;
+          const x = 330 + ((u0 + u1) / 2) * 1260, y = 430 + 480 - ((v0 + v1) / 2) * 480 + (up ? -46 : 56);
+          out += `<g transform="translate(${x},${y}) scale(${q})"><rect x="${-k.length * 10 - 14}" y="-22" width="${k.length * 20 + 28}" height="44" rx="22" fill="${up ? C.teal : C.peach}"/>
+            <text y="9" font-size="24" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">${k}</text></g>`;
+        });
+      }
+      return out;
+    },
+
+    'words-sentence': (s, t) => {
+      const T = s.beats;
+      const words = ['HIGH', 'LOW', 'HIGH', 'LOW', 'HIGH'];
+      const home = [[520, 760], [740, 860], [960, 660], [1180, 780], [1400, 560]];
+      const scatter = [[420, 520], [1500, 470], [700, 940], [1240, 950], [950, 470]];
+      let out = '';
+      // Loose candle "words" first.
+      const loose = 1 - ease(seg(t, T.assemble, T.assemble + 0.8));
+      if (loose > 0) {
+        for (let i = 0; i < 9; i++) {
+          const p = back((t - s.start - 0.4 - i * 0.15) / 0.5);
+          if (p <= 0) continue;
+          const x = 360 + (i % 5) * 300 + (i > 4 ? 150 : 0), y = 520 + Math.floor(i / 5) * 260 + Math.sin(t * 2 + i) * 8, up = i % 3 !== 1;
+          out += `<g opacity="${loose}" transform="translate(${x},${y}) scale(${p}) rotate(${Math.sin(i * 7) * 10})">
+            <rect x="-80" y="-60" width="160" height="120" rx="22" fill="#fff" stroke="#EADFD8" stroke-width="3"/>
+            <line x1="0" x2="0" y1="-44" y2="44" stroke="${up ? C.teal : C.pink}" stroke-width="5"/><rect x="-16" y="-26" width="32" height="52" rx="5" fill="${up ? C.teal : C.pink}"/></g>`;
+        }
+        if (t > T.words) out += `<text x="960" y="1010" font-size="36" font-weight="900" text-anchor="middle" fill="${C.muted}" opacity="${clamp((t - T.words) / 0.4) * loose}" font-family="Playfair Display">candles = the words</text>`;
+      }
+      // Then the swings line up into a sentence.
+      const k = ease(seg(t, T.assemble, T.assemble + 1.6));
+      if (k > 0) {
+        const pts = home.map((h, i) => [lerp(scatter[i][0], h[0], k), lerp(scatter[i][1], h[1], k)]);
+        if (k >= 1) out += `<polyline points="${home.map((h) => h.join(',')).join(' ')}" fill="none" stroke="${C.dark}" stroke-width="6" stroke-linejoin="round" opacity="${clamp((t - T.assemble - 1.6) / 0.6) * 0.5}"/>`;
+        pts.forEach(([x, y], i) => {
+          const col = words[i] === 'HIGH' ? C.purple : C.peach;
+          out += `<g transform="translate(${x},${y})"><circle r="16" fill="${col}"/><g transform="translate(0,${words[i] === 'HIGH' ? -60 : 60})">
+            <rect x="-72" y="-28" width="144" height="56" rx="28" fill="${col}"/><text y="11" font-size="30" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">${words[i]}</text></g></g>`;
+        });
+        if (t > T.sentence) out += `<text x="960" y="1010" font-size="36" font-weight="900" text-anchor="middle" fill="${C.purple}" opacity="${clamp((t - T.sentence) / 0.4)}" font-family="Playfair Display">structure = the sentence</text>`;
+      }
+      return out;
+    },
+
+    'heel-valley': (s, t) => {
+      const T = s.beats;
+      let out = '';
+      // Left: the heel. A pump silhouette whose toe-to-heel line is the swing high.
+      const hp = pop(t, T.heel, 0.8);
+      out += `<rect x="200" y="400" width="720" height="560" rx="34" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>`;
+      out += A.swingChart(t, { x: 260, y: 470, w: 600, h: 400, swings: [[0, 0.05], [0.5, 0.95], [1, 0.1]], t0: s.start + 0.5, t1: s.start + 2.4, seed: 4, per: 22 });
+      if (hp > 0) out += `<g transform="translate(560,500) scale(${hp})"><text x="0" y="0" font-size="120" text-anchor="middle">👠</text></g>
+        <g opacity="${clamp(hp)}"><rect x="420" y="890" width="280" height="56" rx="28" fill="${C.pink}"/><text x="560" y="928" font-size="30" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">SWING HIGH</text></g>`;
+      // Right: the valley, with a stream and bubbles at the bottom.
+      out += `<rect x="1000" y="400" width="720" height="560" rx="34" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>`;
+      const vp = clamp((t - T.valley) / 0.8);
+      if (vp > 0) {
+        out += `<g opacity="${vp}"><path d="M1030,520 C1180,560 1250,820 1360,840 C1470,820 1540,560 1690,520 L1690,930 L1030,930 Z" fill="#E8F8F6"/>
+          <path d="M1260,846 Q1360,868 1460,846" fill="none" stroke="${C.teal}" stroke-width="10" stroke-linecap="round"/></g>`;
+        out += [0, 1, 2, 3].map((i) => { const q = ((t * 0.6) + i / 4) % 1; return `<circle cx="${1320 + i * 26}" cy="${830 - q * 120}" r="${8 + i * 2}" fill="none" stroke="${C.teal}" stroke-width="3" opacity="${(1 - q) * vp}"/>`; }).join('');
+      }
+      out += A.swingChart(t, { x: 1060, y: 470, w: 600, h: 400, swings: [[0, 0.95], [0.5, 0.05], [1, 0.9]], t0: T.valley, t1: T.valley + 1.9, seed: 9, per: 22 });
+      if (t > T.valley + 2) {
+        const q = pop(t, T.valley + 2, 0.6);
+        out += `<g opacity="${clamp(q)}"><rect x="1220" y="410" width="280" height="56" rx="28" fill="${C.teal}"/><text x="1360" y="448" font-size="30" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">SWING LOW 🫧</text></g>`;
+      }
+      return out;
+    },
+
+    'turn-finder': (s, t) => {
+      const T = s.beats;
+      const sw = [[0, 0.1], [0.08, 0.3], [0.12, 0.22], [0.2, 0.48], [0.25, 0.4], [0.34, 0.66], [0.38, 0.58], [0.46, 0.92], [0.53, 0.72], [0.58, 0.78], [0.66, 0.5], [0.71, 0.58], [0.8, 0.3], [0.86, 0.38], [1, 0.08]];
+      const X = (u) => 300 + u * 1320, Y = (v) => 930 - v * 480;
+      let out = `<rect x="260" y="400" width="1400" height="580" rx="34" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>`;
+      out += A.swingChart(t, { x: 300, y: 450, w: 1320, h: 480, swings: sw, t0: s.start + 0.4, t1: s.start + 3.2, seed: 13, per: 60 });
+      // A spotlight scans left to right, dropping a dot at every turn.
+      const k = clamp((t - T.scan) / 4.2);
+      if (t > T.scan) {
+        const sx = X(k);
+        out += `<rect x="${sx - 70}" y="420" width="140" height="540" rx="70" fill="${C.peachL}" opacity="${k < 1 ? 0.25 : 0}"/>`;
+        sw.forEach(([u, v], i) => {
+          if (i === 0 || i === sw.length - 1 || u > k) return;
+          const big = i === 7;
+          const q = back((t - (T.scan + u * 4.2)) / 0.4);
+          out += `<circle cx="${X(u)}" cy="${Y(v)}" r="${(big ? 20 : 9) * q}" fill="${big ? C.purple : '#C9B9AE'}" stroke="#fff" stroke-width="3"/>`;
+        });
+      }
+      if (t > T.big) {
+        const q = back((t - T.big) / 0.6), pulse = 1 + Math.sin(t * 5) * 0.08;
+        out += `<circle cx="${X(0.46)}" cy="${Y(0.92)}" r="${36 * pulse}" fill="none" stroke="${C.purple}" stroke-width="5" opacity="${clamp(q)}"/>
+          <g transform="translate(${X(0.46)},${Y(0.92) - 74}) scale(${q})"><rect x="-150" y="-28" width="300" height="56" rx="28" fill="${C.purple}"/>
+          <text y="10" font-size="28" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">the big turn</text></g>`;
+      }
+      return out;
+    },
+
+    'label-board': (s, t) => {
+      const cards = [
+        { k: 'HH', name: 'Higher High', up: true, high: true }, { k: 'HL', name: 'Higher Low', up: true, high: false },
+        { k: 'LH', name: 'Lower High', up: false, high: true }, { k: 'LL', name: 'Lower Low', up: false, high: false },
+      ];
+      return cards.map((c, i) => {
+        const at = s.items[i], fl = ease(seg(t, at, at + 0.7));
+        if (t < at - 0.6) return '';
+        const cx = 560 + (i % 2) * 800, cy = 520 + Math.floor(i / 2) * 290;
+        const col = c.up ? C.teal : C.pink, dark = c.up ? '#2F8A7F' : '#C2475F';
+        const sx = Math.abs(Math.cos((1 - fl) * Math.PI / 2));
+        // Mini drawing: previous swing (dashed level) vs new swing (above or below it).
+        const newY = c.up ? -34 : 34;
+        // A peak (for highs) or a dip (for lows) with its tip at (x, y).
+        const shape = (x, y, color, w) => c.high
+          ? `<polyline points="${x - 38},${y + 52} ${x},${y} ${x + 38},${y + 52}" fill="none" stroke="${color}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"/>`
+          : `<polyline points="${x - 38},${y - 52} ${x},${y} ${x + 38},${y - 52}" fill="none" stroke="${color}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"/>`;
+        const front = fl > 0.5 ? `
+          <rect x="-340" y="-115" width="680" height="230" rx="30" fill="#fff" stroke="${col}" stroke-width="5"/>
+          <text x="-300" y="-30" font-size="72" font-weight="900" fill="${dark}" font-family="Playfair Display">${c.k}</text>
+          <text x="-300" y="30" font-size="30" font-weight="700" fill="${C.dark}" font-family="DM Sans">${c.name}</text>
+          <text x="-300" y="72" font-size="22" fill="${C.muted}" font-family="DM Sans">${c.up ? 'above' : 'below'} the previous swing ${c.high ? 'high' : 'low'}</text>
+          <g transform="translate(150,${c.high ? -12 : 12})">
+            <line x1="-150" x2="150" y1="0" y2="0" stroke="${C.muted}" stroke-width="3" stroke-dasharray="10 8"/>
+            ${shape(-80, 0, C.muted, 5)}${shape(70, newY, col, 8)}
+            <circle cx="70" cy="${newY}" r="11" fill="${col}"/>
+            <text x="112" y="${newY + 12}" font-size="38" font-weight="900" fill="${col}" font-family="DM Sans">${c.up ? '↑' : '↓'}</text>
+          </g>` : `<rect x="-340" y="-115" width="680" height="230" rx="30" fill="${col}"/><text y="20" font-size="64" text-anchor="middle" fill="#fff" font-family="Playfair Display" font-weight="900">?</text>`;
+        return `<g transform="translate(${cx},${cy}) scale(${sx},1)">${front}</g>`;
+      }).join('');
+    },
+
+    'stairs-duo': (s, t) => {
+      const T = s.beats;
+      const bull = [[0, 0.05], [0.18, 0.35], [0.3, 0.22], [0.5, 0.58], [0.62, 0.45], [0.82, 0.85], [0.92, 0.72], [1, 0.97]];
+      const bear = bull.map(([u, v]) => [u, 1 - v]);
+      let out = '';
+      [[bull, 260, T.up, ['HL', 'HH', 'HL', 'HH', 'HL', 'HH'], 'up', 'UP the stairs'], [bear, 1000, T.down, ['LH', 'LL', 'LH', 'LL', 'LH', 'LL'], 'down', 'DOWN the stairs']].forEach(([sw, x0, at, labs, tone, title]) => {
+        const p = clamp((t - at + 0.6) / 0.6);
+        if (p <= 0) return;
+        // Faint staircase behind the chart.
+        let stairs = '';
+        for (let k = 0; k < 5; k++) {
+          const sx = x0 + 40 + k * 120, sy = tone === 'up' ? 900 - k * 90 : 540 + k * 90;
+          stairs += `<rect x="${sx}" y="${sy}" width="120" height="${tone === 'up' ? 960 - sy : 960 - sy}" fill="${tone === 'up' ? '#E8F8F6' : C.pinkP}"/>`;
+        }
+        out += `<g opacity="${p}"><rect x="${x0}" y="400" width="660" height="580" rx="34" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>${stairs}
+          <text x="${x0 + 330}" y="456" font-size="34" font-weight="900" text-anchor="middle" fill="${tone === 'up' ? '#2F8A7F' : '#C2475F'}" font-family="Playfair Display">${title} 🪜</text></g>`;
+        out += A.swingChart(t, { x: x0 + 40, y: 520, w: 580, h: 380, swings: sw, t0: at, t1: at + 2.4, seed: tone === 'up' ? 4 : 6, per: 26, maxBody: 14, wick: 3,
+          labels: labs.map((l, i) => ({ i: i + 2, text: l, tone, at: at + 2.6 + i * 0.45, size: 22, off: 34 })) });
+      });
+      return out;
+    },
+
+    'ridge-hike': (s, t) => {
+      const T = s.beats;
+      const ridge0 = [[260, 930], [470, 690], [600, 780], [860, 540], [1000, 640], [1280, 390], [1420, 470], [1660, 300]];
+      const ridge = ridge0.map(([x, y]) => [x, 955 - (955 - y) * 0.72]);
+      const labs = { 1: 'HH', 2: 'HL', 3: 'HH', 4: 'HL', 5: 'HH', 6: 'HL', 7: 'HH' };
+      let out = `<path d="M260,960 ${ridge.map((p) => `L${p[0]},${p[1]}`).join(' ')} L1660,960 Z" fill="#E8F8F6"/>
+        <path d="M260,960 ${ridge.map((p) => `L${p[0]},${p[1] + 60}`).join(' ')} L1660,960 Z" fill="#D3F0EC"/>
+        <polyline points="${ridge.map((p) => p.join(',')).join(' ')}" fill="none" stroke="${C.tealD}" stroke-width="8" stroke-linejoin="round"/>`;
+      const k = ease(seg(t, T.hike, T.hike + T.dur));
+      const pos = alongPath(ridge, k);
+      ridge.forEach((p, i) => {
+        if (!labs[i]) return;
+        const passAt = pos.seg >= i;
+        if (!passAt && !(k >= 1)) return;
+        const hi = labs[i] === 'HH';
+        out += hi ? `<g transform="translate(${p[0]},${p[1]})"><line x1="0" y1="0" x2="0" y2="-80" stroke="${C.dark}" stroke-width="5"/><path d="M0,-80 L52,-66 L0,-52 Z" fill="${C.pink}"/></g>` + pillSvg(p[0], p[1] - 112, 'HH', C.teal, 1, 26)
+          : pillSvg(p[0], p[1] + 54, 'HL ☕', C.peach, 1, 24);
+      });
+      // Red candles on the downhill bits, as the hiker goes through them.
+      [[2, 'pullback'], [4, 'pullback'], [6, 'pullback']].forEach(([i]) => {
+        if (pos.seg < i - 1) return;
+        const a = ridge[i - 1], b = ridge[i];
+        for (let j = 1; j <= 2; j++) {
+          const f = j / 3, x = lerp(a[0], b[0], f), y = lerp(a[1], b[1], f);
+          out += `<rect x="${x - 9}" y="${y - 44}" width="18" height="30" rx="3" fill="${C.pink}" opacity=".9"/><line x1="${x}" x2="${x}" y1="${y - 52}" y2="${y - 8}" stroke="${C.pink}" stroke-width="3"/>`;
+        }
+      });
+      const walking = k > 0 && k < 1;
+      out += A.person(t, { x: pos.x, y: pos.y - 4, scale: 0.6, look: A.LOOKS.buyer, walking, seed: 3 });
+      if (k >= 1) out += A.sparkle(1660, 240, T.hike + T.dur, t);
+      return out;
+    },
+
+    'bounce-down': (s, t) => {
+      const T = s.beats;
+      // Landings get lower (LL) and each bounce peaks lower (LH).
+      const lands = [[300, 520], [620, 640], [940, 760], [1260, 880], [1560, 960]];
+      const peaks = [430, 545, 665, 785];
+      let out = '';
+      lands.forEach(([x, y], i) => { if (i < 4) out += `<rect x="${x - 70}" y="${y}" width="${i === 3 ? 400 : 330}" height="16" rx="8" fill="#DCCFC6"/>`; });
+      const k = clamp((t - T.drop) / T.dur);
+      const n = lands.length - 1, f = k * n, i = Math.min(n - 1, Math.floor(f)), u = f - i;
+      const [x0, y0] = lands[i], [x1, y1] = lands[i + 1], apex = peaks[i];
+      // Parabola from landing i up to the apex and down to landing i+1.
+      const x = lerp(x0, x1, u);
+      const yLin = lerp(y0, y1, u), bump = 4 * u * (1 - u) * (((y0 + y1) / 2) - apex);
+      const y = yLin - bump;
+      // Trails: past bounces in green (the "green candles").
+      for (let j = 0; j <= i; j++) {
+        const [a0, b0] = lands[j], [a1, b1] = lands[j + 1], ap = peaks[j];
+        const end = j < i ? 1 : u;
+        let d = '';
+        for (let q = 0; q <= end + 1e-6; q += 0.05) { const xx = lerp(a0, a1, q), yy = lerp(b0, b1, q) - 4 * q * (1 - q) * (((b0 + b1) / 2) - ap); d += `${d ? 'L' : 'M'}${xx},${yy}`; }
+        out += `<path d="${d}" fill="none" stroke="${C.tealL}" stroke-width="5" stroke-dasharray="10 9"/>`;
+      }
+      lands.slice(1).forEach(([lx, ly], j) => {
+        if (f < j + 1) return;
+        out += pillSvg(lx, ly + 48, 'LL', C.pink, back((t - (T.drop + (j + 1) * T.dur / n)) / 0.5), 24);
+      });
+      peaks.forEach((py, j) => {
+        if (f < j + 0.5) return;
+        const px = (lands[j][0] + lands[j + 1][0]) / 2;
+        out += pillSvg(px, py - 52, 'LH', C.pink, back((t - (T.drop + (j + 0.5) * T.dur / n)) / 0.5), 24);
+      });
+      if (t > T.green) {
+        const q = clamp((t - T.green) / 0.5);
+        out += `<g opacity="${q}">${pillSvg(1500, 470, 'bounces = green candles', C.teal, 1, 26)}</g>`;
+      }
+      out += `<circle cx="${x}" cy="${y - 34}" r="34" fill="${C.peach}" stroke="#E08E2E" stroke-width="5"/><text x="${x}" y="${y - 22}" font-size="32" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">$</text>`;
+      return out;
+    },
+
+    'mountain-bumps': (s, t) => {
+      const T = s.beats;
+      const m0 = [[260, 950], [330, 870], [370, 900], [450, 790], [490, 820], [570, 700], [610, 730], [700, 600], [740, 625], [960, 380], [1120, 560], [1160, 535], [1250, 660], [1290, 640], [1400, 800], [1440, 780], [1660, 950]];
+      const m = m0.map(([x, y]) => [x, 960 - (960 - y) * 0.8]);
+      let out = `<path d="M${m.map((p) => p.join(',')).join(' L')} Z" fill="${C.purpleL}" opacity=".55"/>
+        <polyline points="${m.map((p) => p.join(',')).join(' ')}" fill="none" stroke="${C.purple}" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M912,536 L960,480 L1016,544 Q992,528 960,552 Q936,528 912,536 Z" fill="#fff" opacity=".9"/>`;
+      const pk = pop(t, T.major, 0.7);
+      if (pk > 0) out += pillSvg(960, 440, 'MAJOR HIGH', C.purple, pk, 30) + pillSvg(330, 1000, 'MAJOR LOW', C.purple, pk, 26);
+      if (t > T.lens) {
+        // A magnifier slides up the left slope; bumps under it get "minor" tags.
+        const k = ease(seg(t, T.lens, T.lens + 4));
+        const lx = lerp(380, 720, k), ly = lerp(m[2][1] - 40, m[8][1] - 40, k);
+        [[2, 370, 900], [4, 490, 820], [6, 610, 730], [8, 740, 625]].map(([i, bx]) => [i, bx, m[i][1]]).forEach(([, bx, by]) => {
+          if (bx > lx + 60) return;
+          out += `<circle cx="${bx}" cy="${by}" r="10" fill="${C.peach}" stroke="#fff" stroke-width="3"/>` + pillSvg(bx - 70, by + 6, 'minor', '#C9A27A', 1, 20);
+        });
+        out += `<g transform="translate(${lx},${ly})"><circle r="70" fill="#fff" fill-opacity=".25" stroke="${C.dark}" stroke-width="10"/><line x1="50" y1="50" x2="110" y2="110" stroke="${C.dark}" stroke-width="18" stroke-linecap="round"/></g>`;
+      }
+      return out;
+    },
+
+    'two-scopes': (s, t) => {
+      const T = s.beats;
+      const sw = [[0, 0.05], [0.1, 0.28], [0.16, 0.18], [0.27, 0.45], [0.33, 0.35], [0.46, 0.92], [0.55, 0.66], [0.6, 0.74], [0.7, 0.45], [0.76, 0.54], [1, 0.1]];
+      const X = (u) => 560 + u * 800, Y = (v) => 820 - v * 380;
+      let out = `<rect x="520" y="400" width="880" height="470" rx="30" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>` +
+        A.swingChart(t, { x: 560, y: 440, w: 800, h: 380, swings: sw, t0: s.start + 0.4, t1: s.start + 2.6, seed: 23, per: 50, maxBody: 12, wick: 3 });
+      const G = 960;
+      const tele = `<g transform="rotate(-35)"><rect x="-10" y="-14" width="120" height="28" rx="8" fill="${C.purple}"/><rect x="100" y="-20" width="30" height="40" rx="6" fill="#5E56B8"/></g>`;
+      const mag = `<g transform="rotate(-30)"><circle cx="70" cy="0" r="30" fill="#fff" fill-opacity=".3" stroke="${C.dark}" stroke-width="7"/><line x1="0" y1="0" x2="42" y2="0" stroke="${C.dark}" stroke-width="10" stroke-linecap="round"/></g>`;
+      const lp = pop(t, T.left, 0.6), rp = pop(t, T.right, 0.6);
+      if (lp > 0) {
+        out += `<g transform="translate(300,${G}) scale(${lp}) translate(-300,${-G})">` + A.person(t, { x: 300, y: G, scale: 1, look: A.LOOKS.a, frontArm: { a1: -40, a2: -40 }, hold: tele, seed: 2 }) + '</g>';
+        if (t > T.left + 0.6) [[0, 0.05], [0.46, 0.92], [1, 0.1]].forEach(([u, v]) => { out += `<circle cx="${X(u)}" cy="${Y(v)}" r="16" fill="${C.purple}" stroke="#fff" stroke-width="4"/>`; });
+        if (t > T.left + 0.6) out += `<polyline points="${[[0, 0.05], [0.46, 0.92], [1, 0.1]].map(([u, v]) => `${X(u)},${Y(v)}`).join(' ')}" fill="none" stroke="${C.purple}" stroke-width="5" stroke-dasharray="12 10" opacity=".7"/>` + pillSvg(300, 500, 'big picture', C.purple, 1, 24);
+      }
+      if (rp > 0) {
+        out += `<g transform="translate(1620,${G}) scale(${rp}) translate(-1620,${-G})">` + A.person(t, { x: 1620, y: G, scale: 1, look: A.LOOKS.e, flip: true, frontArm: { a1: -40, a2: -40 }, hold: mag, seed: 5 }) + '</g>';
+        if (t > T.right + 0.6) [1, 2, 3, 4, 6, 7, 8, 9].forEach((i) => { out += `<circle cx="${X(sw[i][0])}" cy="${Y(sw[i][1])}" r="9" fill="${C.peach}" stroke="#fff" stroke-width="3"/>`; });
+        if (t > T.right + 0.6) out += pillSvg(1620, 560, 'the details', C.peach, 1, 24);
+      }
+      if (t > T.both) {
+        const q = back((t - T.both) / 0.6);
+        out += pillSvg(300, 568, '✓ right', C.teal, q, 26) + pillSvg(1620, 568, '✓ right', C.teal, q, 26);
+      }
+      return out;
     },
 
     'host-mission': (s, t, ctx) =>

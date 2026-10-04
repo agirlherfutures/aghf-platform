@@ -12,7 +12,7 @@ new Function('window', fs.readFileSync(path.join(__dirname, 'lessons', slug + '.
 const V = window.LESSON_VIDEO;
 const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 const title = V.scenes[0].title;
-const n = parseInt(slug.split('-')[1], 10);
+const n = parseInt(slug.split('-').pop(), 10);
 let md = `# Lesson ${n} intro: "${title}"\n\n`;
 md += `**Length:** ${mmss(V.duration)} · **Pace:** relaxed and conversational, about 150 words a minute\n`;
 md += `**Tip:** Play \`${slug}-captions.mp4\` while you record, then lay your audio over the clean \`${slug}.mp4\`.\n\n`;

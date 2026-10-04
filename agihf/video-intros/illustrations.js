@@ -300,6 +300,80 @@
       <rect x="${x0}" y="${y}" width="${x1 - x0}" height="4" fill="#DCCFC6"/>`;
   }
 
+
+  /* ------------------------------------------------------------------ *
+   * Swing chart: candles that print along a path of swing points.
+   *   o = { x, y, w, h, swings (0..1 coords, y up), t0, t1, seed,
+   *         labels: [{ i, text, tone, at }], line: { at, dashed } }
+   * Swings are in unit space: [u, v] with u = 0..1 across, v = 0..1 up.
+   * ------------------------------------------------------------------ */
+  function swingCandles(swings, seed, per) {
+    let s = seed * 9301 + 49297;
+    const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const out = [];
+    for (let k = 0; k < swings.length - 1; k++) {
+      const [u0, v0] = swings[k], [u1, v1] = swings[k + 1];
+      const n = Math.max(2, Math.round((u1 - u0) * per));
+      let prev = v0;
+      for (let j = 0; j < n; j++) {
+        const f = (j + 1) / n;
+        let c = v0 + (v1 - v0) * f + (j < n - 1 ? (rnd() - 0.5) * Math.abs(v1 - v0) * 0.4 : 0);
+        if (j === n - 1) c = v1;
+        const o = prev, wick = 0.012 + rnd() * 0.03;
+        let hi = Math.max(o, c) + wick * rnd(), lo = Math.min(o, c) - wick * rnd();
+        if (j === n - 1) { if (v1 > v0) hi = v1; else lo = v1; }
+        out.push({ u: u0 + (u1 - u0) * ((j + 0.5) / n), o, c, hi, lo, du: (u1 - u0) / n });
+        prev = c;
+      }
+    }
+    return out;
+  }
+
+  function swingChart(t, o) {
+    const { x, y, w, h } = o;
+    const X = (u) => x + u * w, Y = (v) => y + h - v * h;
+    const cs = o._cs || (o._cs = swingCandles(o.swings, o.seed || 3, o.per || 34));
+    const t0 = o.t0 ?? -1, t1 = o.t1 ?? 0;
+    let out = '';
+    cs.forEach((c, i) => {
+      const p = ease((t - (t0 + (t1 - t0) * (i / cs.length))) / 0.35);
+      if (p <= 0) return;
+      const up = c.c >= c.o, col = up ? COL.teal : COL.pink, cx = X(c.u), bw = Math.max(4, Math.min(o.maxBody || 26, c.du * w * 0.6));
+      const cc = lerp(c.o, c.c, p);
+      out += `<line x1="${cx}" x2="${cx}" y1="${Y(lerp(Math.max(c.o, c.c), c.hi, p))}" y2="${Y(lerp(Math.min(c.o, c.c), c.lo, p))}" stroke="${col}" stroke-width="${o.wick || 4}" stroke-linecap="round" opacity="${o.fade ?? 1}"/>
+        <rect x="${cx - bw / 2}" y="${Y(Math.max(c.o, cc))}" width="${bw}" height="${Math.max(3, Math.abs(Y(c.o) - Y(cc)))}" rx="3" fill="${col}" opacity="${o.fade ?? 1}"/>`;
+    });
+    if (o.line && t > o.line.at) {
+      const k = ease((t - o.line.at) / (o.line.dur || 1.2));
+      const pts = o.swings.map(([u, v]) => [X(u), Y(v)]);
+      let d = `M${pts[0][0]},${pts[0][1]}`, total = 0;
+      const seglen = pts.slice(1).map((p, i) => Math.hypot(p[0] - pts[i][0], p[1] - pts[i][1]));
+      const all = seglen.reduce((a, b) => a + b, 0) * k;
+      for (let i = 1; i < pts.length; i++) {
+        const L = seglen[i - 1];
+        if (total + L <= all) { d += ` L${pts[i][0]},${pts[i][1]}`; total += L; continue; }
+        const f = (all - total) / L;
+        d += ` L${lerp(pts[i - 1][0], pts[i][0], f)},${lerp(pts[i - 1][1], pts[i][1], f)}`;
+        break;
+      }
+      out += `<path d="${d}" fill="none" stroke="${o.line.color || COL.dark}" stroke-width="${o.line.width || 5}" stroke-linejoin="round" stroke-linecap="round" ${o.line.dashed ? 'stroke-dasharray="14 12"' : ''} opacity="${o.line.opacity ?? 0.6}"/>`;
+    }
+    (o.labels || []).forEach((lb) => {
+      const k = back((t - lb.at) / 0.5);
+      if (k <= 0) return;
+      const [u, v] = o.swings[lb.i];
+      const prev = o.swings[lb.i - 1], next = o.swings[lb.i + 1];
+      const isHigh = lb.pos ? lb.pos === 'high' : v >= (prev ? prev[1] : next ? next[1] : v);
+      const px = X(u), py = Y(v), ly = isHigh ? py - (lb.off || 44) : py + (lb.off || 44);
+      const col = { up: COL.teal, down: COL.pink, purple: COL.purple, gold: COL.peach, muted: '#C9B9AE' }[lb.tone || 'purple'];
+      const fs = lb.size || 30, tw = Math.max(fs * 1.6, lb.text.length * fs * 0.62 + 28);
+      out += `<circle cx="${px}" cy="${py}" r="${10 * Math.min(1, k)}" fill="${col}" stroke="#fff" stroke-width="4"/>
+        <g transform="translate(${px},${ly}) scale(${k})"><rect x="${-tw / 2}" y="${-fs * 0.8}" width="${tw}" height="${fs * 1.6}" rx="${fs * 0.8}" fill="${col}"/>
+        <text y="${fs * 0.36}" font-size="${fs}" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">${lb.text}</text></g>`;
+    });
+    return out;
+  }
+
   // Seeded candles: deterministic so every render is identical.
   function candleSeries(n, seed, drift) {
     let v = 100, s = seed;
@@ -572,5 +646,5 @@
     </g>`;
   }
 
-  window.ART = { COL, LOOKS, vehicle, road, aristella, person, bubble, sparkle, cashStack, contract, candleSeries, candleChart, badge, ease, back, clamp, lerp };
+  window.ART = { COL, LOOKS, vehicle, road, swingChart, aristella, person, bubble, sparkle, cashStack, contract, candleSeries, candleChart, badge, ease, back, clamp, lerp };
 })();
