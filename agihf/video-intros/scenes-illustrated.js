@@ -167,6 +167,15 @@
     'tp-hit': s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'backpacks': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'size-dial': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'same-size': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
       <div class="abs" style="left:760px;right:110px;top:260px">
         <div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
@@ -1241,6 +1250,98 @@
         const bp = back((t - T.hit - 0.6) / 0.5);
         out += `<g transform="translate(1420,${P.Y(0.62)}) scale(${bp})"><rect x="-190" y="-36" width="380" height="72" rx="36" fill="${C.teal}"/>
           <text y="12" font-size="32" font-weight="900" text-anchor="middle" fill="#fff" font-family="Playfair Display">Plan executed ✓</text></g>`;
+      }
+      return out;
+    },
+
+    backpacks: (s, t) => {
+      const G = 960;
+      let out = ground(G);
+      [[s.light, 560, 1, A.LOOKS.c, '#2F8A7F', C.teal], [s.heavy, 1360, 10, A.LOOKS.d, '#C2475F', C.pink]].forEach(([at, cx, n, look, dark, col], i) => {
+        const p = pop(t, at, 0.7);
+        if (p <= 0) return;
+        const heavy = i === 1;
+        // Same mini chart above each: entry and a 10-point stop.
+        const cy = 470;
+        out += `<g transform="translate(${cx},${cy}) scale(${p})">
+          <rect x="-250" y="-90" width="500" height="180" rx="24" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>
+          <path d="M-210,40 L-140,10 L-80,24 L-20,-20 L40,-6" fill="none" stroke="${C.dark}" stroke-width="5" stroke-linejoin="round"/>
+          <circle cx="40" cy="-6" r="11" fill="${C.tealD}"/>
+          <line x1="-220" x2="220" y1="56" y2="56" stroke="${C.pink}" stroke-width="5" stroke-dasharray="12 8"/>
+          <text x="210" y="46" font-size="20" font-weight="700" text-anchor="end" fill="#C2475F" font-family="DM Sans">10-pt stop</text>
+          <text x="-226" y="-56" font-size="20" font-weight="700" fill="${C.muted}" font-family="DM Sans" letter-spacing="2">SAME SETUP</text></g>`;
+        const walk = Math.sin(t * (heavy ? 3 : 7));
+        const bag = heavy ? 2.4 : 0.9, hunch = heavy ? 18 : 0;
+        const pack = `<g transform="translate(${cx - 34 - 14 * bag},${G - 190 + hunch - 30 * bag}) scale(${bag})">
+          <rect x="-34" y="-46" width="68" height="92" rx="16" fill="${col}" stroke="${dark}" stroke-width="${3 / bag + 1}"/>
+          <rect x="-24" y="0" width="48" height="30" rx="8" fill="#fff" opacity=".4"/>
+          <text y="24" font-size="${20 / Math.sqrt(bag)}" font-weight="900" text-anchor="middle" fill="${dark}" font-family="DM Sans">${n}</text></g>`;
+        const sweat = heavy ? [0, 1].map(j => { const q = ((t * 0.9) + j * 0.5) % 1; return `<path d="M${cx + 46 + j * 16},${G - 330 + hunch + q * 46} q6,10 0,16 q-6,-6 0,-16 Z" fill="#9FD8F0" opacity="${1 - q}"/>`; }).join('') : '';
+        out += `<g transform="translate(${cx},${G}) scale(${p}) translate(${-cx},${-G})">${pack}` +
+          A.person(t, { x: cx, y: G + hunch * 0.3, scale: 1.05, look, mood: heavy ? 'sad' : undefined, walking: true, seed: i + 2 }) + sweat +
+          `<text x="${cx + 170}" y="${G - 210}" font-size="38" font-weight="900" fill="${C.dark}" font-family="Playfair Display">${n} contract${n > 1 ? 's' : ''}</text>
+          <text x="${cx + 170}" y="${G - 166}" font-size="32" font-weight="900" fill="${dark}" font-family="DM Sans">$${n * 20} at risk</text></g>`;
+        void walk;
+      });
+      return out;
+    },
+
+    'size-dial': (s, t) => {
+      const T = s.beats, cx = 860, cy = 820;
+      const size = t >= T.d2 ? 4 : t >= T.d1 ? 2 : 1;
+      const target = { 1: -60, 2: 0, 4: 60 }[size];
+      const prev = { 1: -60, 2: -60, 4: 0 }[size], at = size === 4 ? T.d2 : size === 2 ? T.d1 : s.start;
+      const ang = lerp(prev, target, back((t - at) / 0.7)) + (size === 4 ? Math.sin(t * 20) * 3 : 0);
+      const p = pop(t, s.start + 0.4, 0.7);
+      if (p <= 0) return '';
+      const heat = clamp((size - 1) / 3);
+      let out = `<g transform="translate(${cx},${cy}) scale(${p})">
+        <circle r="300" fill="${C.pink}" opacity="${heat * 0.12 * (1 + Math.sin(t * 6) * 0.3)}"/>
+        <path d="M-260,0 A260,260 0 0,1 260,0" fill="none" stroke="#EADFD8" stroke-width="44" stroke-linecap="round"/>
+        <path d="M-260,0 A260,260 0 0,1 -130,-225" fill="none" stroke="${C.teal}" stroke-width="44" stroke-linecap="round"/>
+        <path d="M130,-225 A260,260 0 0,1 260,0" fill="none" stroke="${C.pink}" stroke-width="44" stroke-linecap="round"/>
+        <text x="-240" y="60" font-size="24" font-weight="700" fill="#2F8A7F" font-family="DM Sans">calm</text>
+        <text x="240" y="60" font-size="24" font-weight="700" text-anchor="end" fill="#C2475F" font-family="DM Sans">on tilt</text>
+        <g transform="rotate(${ang})"><path d="M-14,0 L0,-230 L14,0 Z" fill="${C.dark}"/></g><circle r="26" fill="${C.dark}"/>
+        <text y="120" font-size="64" font-weight="900" text-anchor="middle" fill="${size > 1 ? '#C2475F' : C.dark}" font-family="Playfair Display">${size} contract${size > 1 ? 's' : ''}</text></g>`;
+      // Loss tags.
+      [[T.l1, '−$20', 1420, 520], [T.l2, '−$40', 1500, 680]].forEach(([at, txt, x, y]) => {
+        const k = back((t - at) / 0.5);
+        if (k > 0) out += `<g transform="translate(${x},${y}) scale(${k}) rotate(${-6})"><rect x="-110" y="-44" width="220" height="88" rx="22" fill="${C.pinkP}" stroke="${C.pink}" stroke-width="4"/>
+          <text y="16" font-size="46" font-weight="900" text-anchor="middle" fill="#C2475F" font-family="Playfair Display">${txt}</text></g>`;
+      });
+      if (t > T.stamp) {
+        const k = back((t - T.stamp) / 0.5);
+        out += `<g transform="translate(1440,860) scale(${k}) rotate(-8)"><rect x="-240" y="-56" width="480" height="112" rx="20" fill="none" stroke="#C2475F" stroke-width="8"/>
+          <text y="-6" font-size="36" font-weight="900" text-anchor="middle" fill="#C2475F" font-family="DM Sans">EMOTION,</text>
+          <text y="36" font-size="36" font-weight="900" text-anchor="middle" fill="#C2475F" font-family="DM Sans">NOT A RISK PLAN</text></g>`;
+      }
+      return out;
+    },
+
+    'same-size': (s, t) => {
+      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], moods = ['happy', 'sad', 'wow', 'meh', 'happy'];
+      const face = (m) => {
+        const mouth = m === 'happy' ? 'M-16,8 Q0,24 16,8' : m === 'sad' ? 'M-16,18 Q0,4 16,18' : m === 'wow' ? '' : 'M-14,14 L14,14';
+        return `<circle r="44" fill="${C.peachL}"/><circle cx="-14" cy="-8" r="5" fill="${C.dark}"/><circle cx="14" cy="-8" r="5" fill="${C.dark}"/>
+          ${m === 'wow' ? `<ellipse cx="0" cy="14" rx="8" ry="11" fill="${C.dark}"/>` : `<path d="${mouth}" fill="none" stroke="${C.dark}" stroke-width="5" stroke-linecap="round"/>`}`;
+      };
+      let out = '';
+      days.forEach((d, i) => {
+        const x = 360 + i * 300, at = s.start + 0.6 + i * 0.5, p = pop(t, at, 0.6);
+        if (p <= 0) return;
+        out += `<g transform="translate(${x},660) scale(${p})">
+          <rect x="-125" y="-200" width="250" height="400" rx="30" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>
+          <text y="-150" font-size="30" font-weight="900" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">${d}</text>
+          <g transform="translate(0,-50)">${face(moods[i])}</g>
+          <rect x="-90" y="50" width="180" height="110" rx="20" fill="#E8F8F6" stroke="${C.tealL}" stroke-width="3"/>
+          <text y="104" font-size="54" font-weight="900" text-anchor="middle" fill="#2F8A7F" font-family="Playfair Display">1</text>
+          <text y="142" font-size="20" font-weight="700" text-anchor="middle" fill="#2F8A7F" font-family="DM Sans">contract</text></g>`;
+      });
+      if (t > s.ruleAt) {
+        const k = ease((t - s.ruleAt) / 1.2);
+        out += `<line x1="235" x2="${235 + 1450 * k}" y1="905" y2="905" stroke="${C.teal}" stroke-width="8" stroke-linecap="round"/>
+          <text x="960" y="960" font-size="34" font-weight="900" text-anchor="middle" fill="#2F8A7F" font-family="Playfair Display" opacity="${k}">Same rule. Same size.</text>`;
       }
       return out;
     },
