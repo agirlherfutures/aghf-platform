@@ -213,6 +213,9 @@
     'color-rule': s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'anatomy': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
       <div class="abs" style="left:760px;right:110px;top:260px">
         <div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
@@ -1561,6 +1564,28 @@
         <text x="1320" y="${close + 10}" font-size="30" font-weight="900" fill="${C.dark}" font-family="DM Sans">CLOSE</text>
         <text x="1500" y="${open + 14}" font-size="52" font-weight="900" text-anchor="middle" fill="${up ? '#2F8A7F' : '#C2475F'}" font-family="Playfair Display">${up ? 'Green' : 'Red'}</text>
         <text x="1500" y="${open + 56}" font-size="24" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">${up ? 'close above open' : 'close below open'}</text></g>`;
+    },
+
+    anatomy: (s, t) => {
+      const Y = v => 930 - v * 4.4;
+      const path = u => 30 + Math.sin(u * 8) * 20 * Math.sin(u * Math.PI) - (u < 0.3 ? u * 50 : 15) + ease(clamp((u - 0.3) / 0.7)) * 70 + (u > 0.75 ? Math.sin((u - 0.75) * 12) * 30 : 0);
+      const c = formCandle(t, { x: 960, y: Y, path, t0: s.formAt, t1: s.formAt + 4.4, w: 170, wick: 12 });
+      let out = `<rect x="560" y="${Y(120)}" width="800" height="${Y(-10) - Y(120)}" rx="34" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>` + c.svg;
+      if (c.k >= 1) {
+        const tag = (at, x, y, text, col, side) => {
+          const k = back((t - at) / 0.5);
+          if (k <= 0) return '';
+          const tx = side < 0 ? x - 210 : x + 210;
+          return `<g opacity="${clamp(k)}"><line x1="${x + side * 20}" x2="${tx - side * 6}" y1="${y}" y2="${y}" stroke="${col}" stroke-width="3" stroke-dasharray="6 6"/>
+            <g transform="translate(${tx + side * 70},${y}) scale(${k})"><rect x="-74" y="-26" width="148" height="52" rx="26" fill="${col}"/>
+            <text y="9" font-size="26" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">${text}</text></g></g>`;
+        };
+        const L = s.labels;
+        out += tag(L.open, 960 - 85, Y(c.op), 'Open', C.muted, -1) + tag(L.close, 960 + 85, Y(c.cl), 'Close', C.pink, 1)
+          + tag(L.range, 960, Y(c.hi), 'High', C.purple, 1) + tag(L.range, 960, Y(c.lo), 'Low', C.purple, 1)
+          + tag(L.body, 960 + 85, (Y(c.op) + Y(c.cl)) / 2, 'Body', C.tealD, 1) + tag(L.wick, 960, (Y(c.hi) + Y(c.cl)) / 2, 'Wick', C.peach, -1);
+      }
+      return out;
     },
 
     'host-mission': (s, t, ctx) =>

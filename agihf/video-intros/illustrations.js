@@ -348,6 +348,14 @@
         </g>
       </g>`;
     }
+    if (kind === 'body' || kind === 'wicks' || kind === 'close') {
+      const hl = kind, pulse = 0.5 + 0.5 * Math.sin(t * 4);
+      const dim = part => (hl === part ? 1 : 0.3);
+      return `<g><circle r="90" fill="${kind === 'body' ? '#E8F8F6' : kind === 'wicks' ? COL.purpleL : COL.pinkP}" opacity="${kind === 'wicks' ? 0.55 : 1}"/>
+        <line x1="0" x2="0" y1="-70" y2="70" stroke="${COL.tealD}" stroke-width="${hl === 'wicks' ? 10 : 7}" stroke-linecap="round" opacity="${dim('wicks')}"/>
+        <rect x="-26" y="-34" width="52" height="68" rx="8" fill="${COL.teal}" opacity="${hl === 'body' ? 1 : 0.35}"/>
+        <line x1="-48" x2="48" y1="-34" y2="-34" stroke="${COL.pink}" stroke-width="7" stroke-linecap="round" opacity="${hl === 'close' ? 0.6 + 0.4 * pulse : 0}"/></g>`;
+    }
     if (kind === 'mkt') {
       const fl = (Math.sin(t * 6) + 1) / 2;
       return `<g>
