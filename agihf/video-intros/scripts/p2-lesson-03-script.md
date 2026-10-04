@@ -1,6 +1,7 @@
 # Lesson 3 intro: "HH, HL, LH & LL"
 
 **Length:** 1:28 · **Pace:** relaxed and conversational, about 150 words a minute
+
 **Tip:** Play `p2-lesson-03.mp4` while you record, using the Time column to stay in sync, then lay your audio over it.
 
 | Time | On screen | Say |

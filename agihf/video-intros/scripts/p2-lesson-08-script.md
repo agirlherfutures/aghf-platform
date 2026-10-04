@@ -1,6 +1,7 @@
 # Lesson 8 intro: "Consolidation"
 
 **Length:** 1:20 · **Pace:** relaxed and conversational, about 150 words a minute
+
 **Tip:** Play `p2-lesson-08.mp4` while you record, using the Time column to stay in sync, then lay your audio over it.
 
 | Time | On screen | Say |

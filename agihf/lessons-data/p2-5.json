@@ -11,7 +11,7 @@
   "format": "slides",
   "launchpad": {
     "outcome": "Recognize bearish structure, and keep candle color from overriding what the structure shows.",
-    "missionQuestion": "If three green candles form inside bearish structure, has the trend turned bullish?",
+    "missionQuestion": "Price makes a lower low, a lower high, another lower low. Then three bullish candles form. Is the trend bullish now?",
     "estMinutes": 7
   },
   "watch": {

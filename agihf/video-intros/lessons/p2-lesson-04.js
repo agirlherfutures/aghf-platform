@@ -29,7 +29,7 @@ window.LESSON_VIDEO = {
         { at: 13.6, text: 'Push up to a new high. Plant a flag.', screen: 'HH flags at each peak' },
         { at: 16.8, text: 'Pull back a little. Rest. Then climb to the next high.', screen: 'HL ☕ rest stops' },
         { at: 22.6, text: 'But bullish structure doesn’t mean every candle is bullish.', screen: 'Red candles on the downhill bits' },
-        { at: 27.0, text: 'There will be red candles. There will be pullbacks. There will be corrections.' },
+        { at: 27.0, text: 'There will be red candles. There will be pullbacks. There will be corrections.', screen: 'Red candles circled: "red candles = pullbacks, part of the climb"' },
         { at: 32.6, text: 'That’s how price moves. Push, pullback, next push.', screen: 'The hiker reaches the top' },
       ],
     },

@@ -1,6 +1,7 @@
 # Lesson 4 intro: "Bullish Structure"
 
 **Length:** 1:07 · **Pace:** relaxed and conversational, about 150 words a minute
+
 **Tip:** Play `p2-lesson-04.mp4` while you record, using the Time column to stay in sync, then lay your audio over it.
 
 | Time | On screen | Say |
@@ -11,7 +12,7 @@
 | 0:13 | HH flags at each peak | Push up to a new high. Plant a flag. |
 | 0:16 | HL ☕ rest stops | Pull back a little. Rest. Then climb to the next high. |
 | 0:22 | Red candles on the downhill bits | But bullish structure doesn't mean every candle is bullish. |
-| 0:27 |  | There will be red candles. There will be pullbacks. There will be corrections. |
+| 0:27 | Red candles circled: "red candles = pullbacks, part of the climb" | There will be red candles. There will be pullbacks. There will be corrections. |
 | 0:32 | The hiker reaches the top | That's how price moves. Push, pullback, next push. |
 | 0:40 | Aristella thinks | Here's what to remember. |
 | 0:41 |  | Red candles inside bullish structure aren't automatically bearish. |

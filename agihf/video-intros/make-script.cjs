@@ -14,7 +14,7 @@ const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2
 const title = V.scenes[0].title;
 const n = parseInt(slug.split('-').pop(), 10);
 let md = `# Lesson ${n} intro: "${title}"\n\n`;
-md += `**Length:** ${mmss(V.duration)} · **Pace:** relaxed and conversational, about 150 words a minute\n`;
+md += `**Length:** ${mmss(V.duration)} · **Pace:** relaxed and conversational, about 150 words a minute\n\n`;
 md += `**Tip:** Play \`${slug}.mp4\` while you record, using the Time column to stay in sync, then lay your audio over it.\n\n`;
 md += `| Time | On screen | Say |\n|---|---|---|\n`;
 V.scenes.forEach(s => s.lines.forEach(l => {

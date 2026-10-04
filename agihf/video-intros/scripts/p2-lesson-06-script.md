@@ -1,6 +1,7 @@
 # Lesson 6 intro: "Valid vs. Minor Swings"
 
 **Length:** 1:18 · **Pace:** relaxed and conversational, about 150 words a minute
+
 **Tip:** Play `p2-lesson-06.mp4` while you record, using the Time column to stay in sync, then lay your audio over it.
 
 | Time | On screen | Say |

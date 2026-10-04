@@ -1,6 +1,7 @@
 # Lesson 2 intro: "Swing Highs & Swing Lows"
 
 **Length:** 1:15 · **Pace:** relaxed and conversational, about 150 words a minute
+
 **Tip:** Play `p2-lesson-02.mp4` while you record, using the Time column to stay in sync, then lay your audio over it.
 
 | Time | On screen | Say |
