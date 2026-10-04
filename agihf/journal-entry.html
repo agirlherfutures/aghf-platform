@@ -169,7 +169,7 @@
           window.location.href = 'journal-history.html';
         } catch (err) {
           console.error('Save draft error:', err);
-          alert("Couldn't save this draft — try again in a moment.");
+          alert(`Couldn't save this draft — try again in a moment.${err?.message ? `\n\n(${err.message})` : ''}`);
         }
       },
       onSaveFinal: async () => {
@@ -200,7 +200,7 @@
           }
         } catch (err) {
           console.error('Save final error:', err);
-          alert("Couldn't save this entry — try again in a moment.");
+          alert(`Couldn't save this entry — try again in a moment.${err?.message ? `\n\n(${err.message})` : ''}`);
         }
       },
     });
