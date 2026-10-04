@@ -68,11 +68,11 @@
     } else if (pose === 'cheer') {
       R = reach(292, 382, 336 + Math.sin(t * 6) * 8, 150, 100, 100, -1);
     } else {
-      R = reach(292, 382, 318, 560, 100, 100, 1);
+      R = reach(292, 382, 322, 575, 100, 100, -1);
     }
     L = pose === 'cheer'
       ? reach(108, 382, 64 - Math.sin(t * 6) * 8, 150, 100, 100, 1)
-      : reach(108, 382, 82, 560, 100, 100, -1);
+      : reach(108, 382, 78, 575, 100, 100, 1);
 
     const armPath = a => `M${a === R ? 292 : 108},382 L${a.ex.toFixed(1)},${a.ey.toFixed(1)} L${a.hx.toFixed(1)},${a.hy.toFixed(1)}`;
     const hand = (a, pointing) => `
