@@ -270,6 +270,7 @@
       "title": "Train your eyes",
       "rounds": [
         {
+          "tag": "Level 1 · Obvious",
           "prompt": "Tap the swing high.",
           "chart": {
             "swings": [
@@ -299,10 +300,11 @@
               "tone": "purple"
             }
           },
-          "why": "Price pushed up, turned, and moved lower from here.",
+          "why": "Price pushed upward, formed a local turning point, and then moved lower.",
           "miss": "That’s not where price turned from up to down. Find the top of the heel."
         },
         {
+          "tag": "Level 1 · Obvious",
           "prompt": "Now tap the swing low.",
           "chart": {
             "swings": [
@@ -332,11 +334,86 @@
               "tone": "gold"
             }
           },
-          "why": "Price pushed down, turned, and moved higher from here.",
+          "why": "Price pushed downward, formed a local turning point, and then moved higher.",
           "miss": "Find the valley, where price stopped falling and turned back up."
         },
         {
-          "prompt": "Harder: which high appears most structurally meaningful in this move?",
+          "tag": "Level 2 · Several moves",
+          "prompt": "More movement now. Tap <strong>every</strong> swing low (there are three).",
+          "chart": {
+            "swings": [
+              [
+                40,
+                255
+              ],
+              [
+                130,
+                140
+              ],
+              [
+                200,
+                210
+              ],
+              [
+                300,
+                100
+              ],
+              [
+                380,
+                195
+              ],
+              [
+                480,
+                75
+              ],
+              [
+                560,
+                175
+              ],
+              [
+                660,
+                115
+              ]
+            ],
+            "seed": 22
+          },
+          "only": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "answer": [
+            2,
+            4,
+            6
+          ],
+          "reveal": {
+            "2": {
+              "label": "LOW",
+              "tone": "gold"
+            },
+            "4": {
+              "label": "LOW",
+              "tone": "gold"
+            },
+            "6": {
+              "label": "LOW",
+              "tone": "gold"
+            }
+          },
+          "why": "Three valleys: each one is where price stopped falling and turned higher.",
+          "notes": {
+            "1": "That’s a swing high: price turned down from there.",
+            "3": "That’s a swing high, the top of a push.",
+            "5": "Swing high. Look for the valleys."
+          }
+        },
+        {
+          "tag": "Level 3 · Minor fluctuations",
+          "prompt": "<strong>WHICH HIGH IS MOST STRUCTURALLY MEANINGFUL HERE?</strong>",
           "chart": {
             "swings": [
               [
@@ -401,7 +478,7 @@
               "tone": "purple"
             }
           },
-          "why": "This is the high the whole move built toward and then turned from. The others are smaller turns inside the larger move.",
+          "why": "This is the high the whole move built toward and then turned from. The others are real turns, but smaller ones inside the larger move.",
           "notes": {
             "1": "That’s a real turn, but it’s a small one early in the move.",
             "3": "Real, but it formed inside the larger push.",

@@ -253,7 +253,7 @@
     {
       "type": "label_swings",
       "kicker": "Label it",
-      "title": "Drag the labels onto the swings",
+      "title": "Label it",
       "rounds": [
         {
           "prompt": "A clean bullish trend. Label every swing after the first two.",
@@ -452,7 +452,8 @@
           ],
           "why": "Structure walked up, then started walking down. The labels tell the whole story."
         }
-      ]
+      ],
+      "body": "Drag each label onto the swing it belongs to. Compare every swing to the previous relevant swing of the same kind."
     },
     {
       "type": "chart_check",
@@ -494,22 +495,6 @@
             "tone": "down",
             "key": "pt3"
           }
-        ],
-        "notes": [
-          {
-            "x": 232,
-            "y": 146,
-            "text": "20,000",
-            "tone": "muted",
-            "anchor": "start"
-          },
-          {
-            "x": 512,
-            "y": 116,
-            "text": "20,030",
-            "tone": "muted",
-            "anchor": "start"
-          }
         ]
       },
       "scenario": "Previous swing high: <strong>20,000</strong>. New swing high: <strong>20,030</strong>. A student labels the new high <strong>LH</strong>.",
@@ -524,7 +509,7 @@
           {
             "label": "The new high formed above the previous high, so it’s an HH",
             "correct": true,
-            "why": "The new relevant high formed above the previous high. Therefore: <strong>HH ✓</strong>"
+            "why": "Compare this high to the previous relevant high: 20,030 formed <strong>above</strong> 20,000. Therefore: <strong>HH ✓</strong>"
           },
           {
             "label": "It should be an LL",
@@ -536,11 +521,18 @@
       "fix": [
         {
           "i": 3,
-          "label": "HH",
+          "label": "HH ✓",
           "tone": "up",
           "key": "pt3"
         }
-      ]
+      ],
+      "compare": {
+        "i": 3,
+        "prev": 1,
+        "newText": "20,030 · NEW HIGH",
+        "prevText": "20,000 · PREVIOUS HIGH",
+        "tone": "up"
+      }
     },
     {
       "type": "chart_check",
@@ -582,22 +574,6 @@
             "tone": "purple",
             "key": "pt3"
           }
-        ],
-        "notes": [
-          {
-            "x": 222,
-            "y": 236,
-            "text": "19,950",
-            "tone": "muted",
-            "anchor": "start"
-          },
-          {
-            "x": 512,
-            "y": 211,
-            "text": "19,975",
-            "tone": "muted",
-            "anchor": "start"
-          }
         ]
       },
       "scenario": "Previous relevant low = <strong>19,950</strong>. New relevant low = <strong>19,975</strong>.",
@@ -624,11 +600,18 @@
       "fix": [
         {
           "i": 3,
-          "label": "HL",
+          "label": "HL ✓",
           "tone": "up",
           "key": "pt3"
         }
-      ]
+      ],
+      "compare": {
+        "i": 3,
+        "prev": 1,
+        "newText": "19,975 · NEW LOW",
+        "prevText": "19,950 · PREVIOUS LOW",
+        "tone": "up"
+      }
     }
   ],
   "takeaways": [

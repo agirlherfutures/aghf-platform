@@ -20,8 +20,8 @@
   "slides": [
     {
       "type": "structure_story",
-      "kicker": "Watch with Dayli",
-      "title": "The mirror image",
+      "kicker": "Watch it build",
+      "title": "Bearish structure, one move at a time",
       "chart": {
         "swings": [
           [
@@ -54,8 +54,7 @@
           ]
         ],
         "seed": 21,
-        "line": "dashed",
-        "lineId": "ln",
+        "progress": 0,
         "marks": [
           {
             "i": 0,
@@ -65,7 +64,8 @@
           {
             "i": 1,
             "label": "L",
-            "tone": "muted"
+            "tone": "muted",
+            "id": "m1"
           },
           {
             "i": 2,
@@ -92,41 +92,90 @@
             "id": "m5"
           }
         ],
-        "boxes": [
+        "notes": [
           {
-            "x1": 366,
-            "y1": 120,
-            "x2": 436,
-            "y2": 210,
-            "label": "green candles!",
+            "x": 588,
+            "y": 164,
+            "text": "green candles ↑",
             "tone": "up",
-            "id": "green",
-            "labelBelow": true
+            "id": "cc",
+            "anchor": "middle"
           }
         ]
       },
       "steps": [
         {
-          "text": "Basic bearish progression: <strong>LH → LL → LH → LL</strong>.",
+          "to": 1,
           "show": [
-            "m2",
-            "m3",
-            "m4",
+            "m1"
+          ],
+          "text": "Price pushes down and creates a low.",
+          "next": "NEXT MOVE →"
+        },
+        {
+          "to": 2,
+          "show": [
+            "m2"
+          ],
+          "text": "Price corrects upward. The high forms <strong>below</strong> the previous high: <strong>Lower High (LH)</strong>.",
+          "next": "NEXT MOVE →"
+        },
+        {
+          "to": 3,
+          "show": [
+            "m3"
+          ],
+          "text": "Price pushes below the previous low: <strong>Lower Low (LL)</strong>.",
+          "next": "NEXT MOVE →"
+        },
+        {
+          "to": 4,
+          "show": [
+            "m4"
+          ],
+          "text": "Another correction. It stays below the previous high: <strong>LH</strong>.",
+          "next": "NEXT MOVE →"
+        },
+        {
+          "to": 5,
+          "show": [
             "m5"
           ],
-          "next": "But… →"
+          "text": "Another push to a new low: <strong>LL</strong>. Basic bearish progression: <strong>LH → LL → LH → LL</strong>.",
+          "next": "NEXT MOVE →"
         },
         {
-          "text": "Green candles will show up inside bearish structure too.",
+          "to": 6,
           "show": [
-            "green"
-          ]
-        },
-        {
-          "text": "Green candles inside bearish structure <strong>do not automatically make the market bullish</strong>.",
-          "show": [
-            "ln"
-          ]
+            "cc"
+          ],
+          "text": "Now watch the newest candles.",
+          "ask": {
+            "prompt": "WHAT IS PRICE CURRENTLY DOING?",
+            "options": [
+              {
+                "label": "Expanding",
+                "correct": false,
+                "feedback": "Expansion would be pushing to new lows. These candles are moving higher."
+              },
+              {
+                "label": "Pulling back",
+                "correct": true,
+                "why": "An upward correction inside bearish structure. The candles are green, but the structure labels haven’t changed: LL and LH are still there."
+              },
+              {
+                "label": "Reversing",
+                "correct": false,
+                "feedback": "Green candles alone don’t reverse anything. Nothing about the structure has changed yet."
+              },
+              {
+                "label": "Not enough information",
+                "correct": false,
+                "feedback": "We can see enough to describe it: price is retracing against the last push, inside bearish structure."
+              }
+            ],
+            "text": "Green candles inside bearish structure <strong>do not automatically make the market bullish</strong>."
+          }
         }
       ]
     },
@@ -253,7 +302,8 @@
     },
     {
       "type": "dayli",
-      "quote": "Stop letting candle color override structure. 🔥"
+      "label": "Dayli says",
+      "quote": "<strong>STOP LETTING CANDLE COLOR OVERRIDE STRUCTURE.</strong> 🔥<br><br>Green candles inside bearish structure don’t automatically make the market bullish. Red candles inside bullish structure don’t automatically make it bearish. Read the swings."
     },
     {
       "type": "chart_check",

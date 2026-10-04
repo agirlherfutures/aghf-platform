@@ -133,7 +133,7 @@
       },
       "steps": [
         {
-          "text": "<strong>External structure</strong> is the larger swing boundaries defining the range you’re analyzing. Think of it as 🚪 the room. The external high and low are the doors.",
+          "text": "<strong>External structure</strong> refers to the larger swing boundaries defining the range you’re analyzing. Think of it as 🚪 the room. The external high and low are the doors.",
           "show": [
             "doors"
           ]
@@ -149,6 +149,289 @@
           "show": [
             "turn"
           ]
+        }
+      ]
+    },
+    {
+      "type": "structure_story",
+      "kicker": "Now on a chart",
+      "title": "External, internal, or both?",
+      "chart": {
+        "swings": [
+          [
+            40,
+            285
+          ],
+          [
+            190,
+            150
+          ],
+          [
+            270,
+            222
+          ],
+          [
+            380,
+            66
+          ],
+          [
+            430,
+            130
+          ],
+          [
+            470,
+            104
+          ],
+          [
+            520,
+            166
+          ],
+          [
+            560,
+            142
+          ],
+          [
+            610,
+            198
+          ],
+          [
+            660,
+            182
+          ]
+        ],
+        "seed": 44,
+        "density": 1.3,
+        "paths": [
+          {
+            "swings": [
+              [
+                40,
+                285
+              ],
+              [
+                190,
+                150
+              ],
+              [
+                270,
+                222
+              ],
+              [
+                380,
+                66
+              ]
+            ],
+            "tone": "purple",
+            "id": "ext",
+            "width": 3
+          },
+          {
+            "swings": [
+              [
+                380,
+                66
+              ],
+              [
+                430,
+                130
+              ],
+              [
+                470,
+                104
+              ],
+              [
+                520,
+                166
+              ],
+              [
+                560,
+                142
+              ],
+              [
+                610,
+                198
+              ]
+            ],
+            "tone": "down",
+            "id": "int",
+            "dashed": true,
+            "width": 2.5
+          }
+        ],
+        "hlines": [
+          {
+            "y": 66,
+            "label": "EXTERNAL HIGH",
+            "tone": "purple",
+            "door": true,
+            "id": "ext",
+            "x1": 300,
+            "labelX": 440
+          },
+          {
+            "y": 222,
+            "label": "EXTERNAL LOW",
+            "tone": "purple",
+            "door": true,
+            "below": true,
+            "id": "ext",
+            "x1": 210,
+            "labelX": 440
+          }
+        ],
+        "marks": [
+          {
+            "i": 1,
+            "label": "H",
+            "tone": "purple",
+            "id": "ext",
+            "big": true
+          },
+          {
+            "i": 2,
+            "label": "HL",
+            "tone": "purple",
+            "id": "ext",
+            "big": true
+          },
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "purple",
+            "id": "ext",
+            "big": true
+          },
+          {
+            "i": 4,
+            "label": "L",
+            "tone": "gold",
+            "id": "int",
+            "size": "sm"
+          },
+          {
+            "i": 5,
+            "label": "LH",
+            "tone": "down",
+            "id": "int",
+            "size": "sm"
+          },
+          {
+            "i": 6,
+            "label": "LL",
+            "tone": "down",
+            "id": "int",
+            "size": "sm"
+          },
+          {
+            "i": 7,
+            "label": "LH",
+            "tone": "down",
+            "id": "int",
+            "size": "sm"
+          },
+          {
+            "i": 8,
+            "label": "LL",
+            "tone": "down",
+            "id": "int",
+            "size": "sm"
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 400,
+            "y1": 92,
+            "x2": 680,
+            "y2": 214,
+            "label": "INTERNAL: BEARISH",
+            "tone": "down",
+            "id": "proof",
+            "labelRight": true
+          }
+        ],
+        "notes": [
+          {
+            "x": 120,
+            "y": 60,
+            "text": "EXTERNAL: BULLISH, INTACT",
+            "tone": "purple",
+            "id": "proof"
+          }
+        ]
+      },
+      "views": [
+        {
+          "key": "external",
+          "label": "External",
+          "show": [
+            "ext"
+          ],
+          "hide": [
+            "int",
+            "proof"
+          ],
+          "text": "🚪 The room: the larger swing boundaries. HL → HH, and price is still inside."
+        },
+        {
+          "key": "internal",
+          "label": "Internal",
+          "show": [
+            "int"
+          ],
+          "hide": [
+            "ext",
+            "proof"
+          ],
+          "text": "🛋️ The furniture: smaller swings inside the room. LH → LL → LH → LL."
+        },
+        {
+          "key": "both",
+          "label": "Both",
+          "show": [
+            "ext",
+            "int"
+          ],
+          "hide": [
+            "proof"
+          ],
+          "text": "Both at once: structure inside structure."
+        }
+      ],
+      "view": "both",
+      "viewsFrom": 0,
+      "steps": [
+        {
+          "view": "external",
+          "text": "Start with the <strong>external</strong> structure. Higher low, higher high. The room is bullish, and price hasn’t left it.",
+          "next": "Now the internal →"
+        },
+        {
+          "view": "internal",
+          "text": "Now the <strong>internal</strong> structure. Inside the room, the smaller swings are making lower highs and lower lows.",
+          "next": "Put them together →"
+        },
+        {
+          "view": "both",
+          "text": "External: bullish and intact. Internal: bearish.",
+          "ask": {
+            "prompt": "CAN BOTH BE TRUE?",
+            "options": [
+              {
+                "label": "YES",
+                "correct": true,
+                "why": "Yes. Price is still above the external low, so the larger bullish structure is intact. Inside it, the smaller swings are bearish. Two scales, two true descriptions."
+              },
+              {
+                "label": "NO",
+                "correct": false,
+                "feedback": "Look again: has price left the room? The external low still holds, while the furniture inside is moving lower."
+              }
+            ],
+            "show": [
+              "proof"
+            ],
+            "text": "Internal structure can change while price is still inside the larger external range. <strong>The furniture moved. The room didn’t.</strong> Flip the views above to see it again."
+          }
         }
       ]
     },
@@ -183,91 +466,203 @@
       "chart": {
         "swings": [
           [
-            30,
-            255
+            40,
+            285
           ],
           [
-            110,
-            190
-          ],
-          [
-            160,
-            215
-          ],
-          [
-            230,
-            120
-          ],
-          [
-            290,
-            160
-          ],
-          [
-            350,
-            95
-          ],
-          [
-            400,
-            140
-          ],
-          [
-            450,
-            115
-          ],
-          [
-            500,
-            170
-          ],
-          [
-            550,
+            190,
             150
           ],
           [
-            600,
-            200
+            270,
+            222
           ],
           [
-            650,
-            185
+            380,
+            66
+          ],
+          [
+            430,
+            130
+          ],
+          [
+            470,
+            104
+          ],
+          [
+            520,
+            166
+          ],
+          [
+            560,
+            142
+          ],
+          [
+            610,
+            198
+          ],
+          [
+            660,
+            182
           ]
         ],
-        "seed": 41,
-        "density": 1.4,
-        "hlines": [
+        "seed": 44,
+        "density": 1.3,
+        "paths": [
           {
-            "y": 60,
-            "label": "EXTERNAL HIGH",
+            "swings": [
+              [
+                40,
+                285
+              ],
+              [
+                190,
+                150
+              ],
+              [
+                270,
+                222
+              ],
+              [
+                380,
+                66
+              ]
+            ],
             "tone": "purple",
-            "door": true
+            "id": "ext",
+            "width": 3
           },
           {
-            "y": 285,
+            "swings": [
+              [
+                380,
+                66
+              ],
+              [
+                430,
+                130
+              ],
+              [
+                470,
+                104
+              ],
+              [
+                520,
+                166
+              ],
+              [
+                560,
+                142
+              ],
+              [
+                610,
+                198
+              ]
+            ],
+            "tone": "down",
+            "id": "int",
+            "dashed": true,
+            "width": 2.5
+          }
+        ],
+        "hlines": [
+          {
+            "y": 66,
+            "label": "EXTERNAL HIGH",
+            "tone": "purple",
+            "door": true,
+            "id": "ext",
+            "x1": 300,
+            "labelX": 440
+          },
+          {
+            "y": 222,
             "label": "EXTERNAL LOW",
             "tone": "purple",
             "door": true,
-            "below": true
+            "below": true,
+            "id": "ext",
+            "x1": 210,
+            "labelX": 440
           }
         ],
         "marks": [
           {
+            "i": 1,
+            "label": "H",
+            "tone": "purple",
+            "id": "ext",
+            "big": true
+          },
+          {
+            "i": 2,
+            "label": "HL",
+            "tone": "purple",
+            "id": "ext",
+            "big": true
+          },
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "purple",
+            "id": "ext",
+            "big": true
+          },
+          {
+            "i": 4,
+            "label": "L",
+            "tone": "gold",
+            "id": "int",
+            "size": "sm"
+          },
+          {
+            "i": 5,
+            "label": "LH",
+            "tone": "down",
+            "id": "int",
+            "size": "sm"
+          },
+          {
+            "i": 6,
+            "label": "LL",
+            "tone": "down",
+            "id": "int",
+            "size": "sm"
+          },
+          {
             "i": 7,
             "label": "LH",
-            "tone": "down"
+            "tone": "down",
+            "id": "int",
+            "size": "sm"
           },
           {
             "i": 8,
             "label": "LL",
-            "tone": "down"
-          },
+            "tone": "down",
+            "id": "int",
+            "size": "sm"
+          }
+        ],
+        "boxes": [
           {
-            "i": 9,
-            "label": "LH",
-            "tone": "down"
-          },
+            "x1": 400,
+            "y1": 92,
+            "x2": 680,
+            "y2": 214,
+            "label": "INTERNAL: BEARISH",
+            "tone": "down",
+            "id": "proof",
+            "labelRight": true
+          }
+        ],
+        "notes": [
           {
-            "i": 10,
-            "label": "LL",
-            "tone": "down"
+            "x": 120,
+            "y": 60,
+            "text": "EXTERNAL: BULLISH, INTACT",
+            "tone": "purple",
+            "id": "proof"
           }
         ]
       },
@@ -296,7 +691,46 @@
             "feedback": "An internal change doesn’t automatically change every timeframe."
           }
         ]
-      }
+      },
+      "views": [
+        {
+          "key": "external",
+          "label": "External",
+          "show": [
+            "ext"
+          ],
+          "hide": [
+            "int",
+            "proof"
+          ],
+          "text": "🚪 The room: the larger swing boundaries. HL → HH, and price is still inside."
+        },
+        {
+          "key": "internal",
+          "label": "Internal",
+          "show": [
+            "int"
+          ],
+          "hide": [
+            "ext",
+            "proof"
+          ],
+          "text": "🛋️ The furniture: smaller swings inside the room. LH → LL → LH → LL."
+        },
+        {
+          "key": "both",
+          "label": "Both",
+          "show": [
+            "ext",
+            "int"
+          ],
+          "hide": [
+            "proof"
+          ],
+          "text": "Both at once: structure inside structure."
+        }
+      ],
+      "view": "both"
     }
   ],
   "takeaways": [

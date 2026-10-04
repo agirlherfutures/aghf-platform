@@ -58,9 +58,15 @@
           ]
         ],
         "seed": 9,
-        "density": 2.4,
+        "density": 3,
         "line": "dashed",
         "lineId": "ln",
+        "zoom": [
+          272,
+          108,
+          120,
+          55
+        ],
         "notes": [
           {
             "x": 74.0,
@@ -111,24 +117,210 @@
             "tone": "up",
             "id": "pp"
           }
+        ],
+        "marks": [
+          {
+            "i": 0,
+            "label": "L",
+            "tone": "gold",
+            "id": "turns"
+          },
+          {
+            "i": 1,
+            "label": "H",
+            "tone": "purple",
+            "id": "turns"
+          },
+          {
+            "i": 2,
+            "label": "L",
+            "tone": "gold",
+            "id": "turns"
+          },
+          {
+            "i": 3,
+            "label": "H",
+            "tone": "purple",
+            "id": "turns"
+          },
+          {
+            "i": 4,
+            "label": "L",
+            "tone": "gold",
+            "id": "turns"
+          },
+          {
+            "i": 5,
+            "label": "H",
+            "tone": "purple",
+            "id": "turns"
+          },
+          {
+            "i": 6,
+            "label": "L",
+            "tone": "gold",
+            "id": "turns"
+          },
+          {
+            "i": 7,
+            "label": "H",
+            "tone": "purple",
+            "id": "turns"
+          }
         ]
       },
       "steps": [
         {
-          "text": "Zoomed all the way in on a 1M chart, it looks like chaos. Every candle feels like it matters.",
+          "text": "Zoomed all the way in on a 1M chart, it looks like chaos. Up, down, up, down. Every candle feels like it matters.",
           "next": "Zoom out →"
         },
         {
-          "text": "Now zoom out and connect the turns. A shape starts to appear.",
-          "show": [
-            "ln"
-          ]
+          "text": "Now zoom out. The same candles start to form a shape.",
+          "zoom": "out",
+          "next": "Show the moves →"
         },
         {
           "text": "<strong>Push → pullback → push → pullback.</strong> Price doesn’t move in straight lines. It moves in swings.",
           "show": [
             "pp"
+          ],
+          "next": "Find the turns →"
+        },
+        {
+          "text": "Every swing ends at a turn. Those turns are the <strong>meaningful highs and lows</strong>: HIGH, LOW, HIGH, LOW. That’s the beginning of structure.",
+          "show": [
+            "ln",
+            "turns"
+          ],
+          "hide": [
+            "pp"
           ]
+        }
+      ]
+    },
+    {
+      "type": "structure_story",
+      "kicker": "Flip the view",
+      "title": "Candles vs. structure",
+      "chart": {
+        "swings": [
+          [
+            40,
+            270
+          ],
+          [
+            140,
+            170
+          ],
+          [
+            220,
+            220
+          ],
+          [
+            330,
+            120
+          ],
+          [
+            410,
+            170
+          ],
+          [
+            520,
+            75
+          ],
+          [
+            590,
+            120
+          ],
+          [
+            670,
+            40
+          ]
+        ],
+        "seed": 9,
+        "density": 3,
+        "line": "solid",
+        "lineId": "ln",
+        "marks": [
+          {
+            "i": 0,
+            "label": "L",
+            "tone": "gold",
+            "id": "turns"
+          },
+          {
+            "i": 1,
+            "label": "H",
+            "tone": "purple",
+            "id": "turns"
+          },
+          {
+            "i": 2,
+            "label": "L",
+            "tone": "gold",
+            "id": "turns"
+          },
+          {
+            "i": 3,
+            "label": "H",
+            "tone": "purple",
+            "id": "turns"
+          },
+          {
+            "i": 4,
+            "label": "L",
+            "tone": "gold",
+            "id": "turns"
+          },
+          {
+            "i": 5,
+            "label": "H",
+            "tone": "purple",
+            "id": "turns"
+          },
+          {
+            "i": 6,
+            "label": "L",
+            "tone": "gold",
+            "id": "turns"
+          },
+          {
+            "i": 7,
+            "label": "H",
+            "tone": "purple",
+            "id": "turns"
+          }
+        ]
+      },
+      "views": [
+        {
+          "key": "candles",
+          "label": "Candles",
+          "show": [
+            "@candles"
+          ],
+          "hide": [
+            "ln",
+            "turns"
+          ],
+          "text": "Every candle, every wiggle. These are the <strong>words</strong>."
+        },
+        {
+          "key": "structure",
+          "label": "Structure",
+          "show": [
+            "ln",
+            "turns"
+          ],
+          "dim": [
+            "@candles"
+          ],
+          "text": "The same price, simplified into its swing progression: L → H → L → H. This is the <strong>sentence</strong>."
+        }
+      ],
+      "steps": [
+        {
+          "text": "Tap <strong>Candles</strong> and <strong>Structure</strong> to flip between them. Same chart. Notice how much easier it is to read the story when you look at the swings."
         }
       ]
     },

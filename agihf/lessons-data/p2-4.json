@@ -20,8 +20,8 @@
   "slides": [
     {
       "type": "structure_story",
-      "kicker": "Watch with Dayli",
-      "title": "Combine the labels",
+      "kicker": "Watch it build",
+      "title": "Bullish structure, one move at a time",
       "chart": {
         "swings": [
           [
@@ -54,8 +54,7 @@
           ]
         ],
         "seed": 21,
-        "line": "dashed",
-        "lineId": "ln",
+        "progress": 0,
         "marks": [
           {
             "i": 0,
@@ -65,7 +64,8 @@
           {
             "i": 1,
             "label": "H",
-            "tone": "muted"
+            "tone": "muted",
+            "id": "m1"
           },
           {
             "i": 2,
@@ -92,40 +92,90 @@
             "id": "m5"
           }
         ],
-        "boxes": [
+        "notes": [
           {
-            "x1": 366,
-            "y1": 100,
-            "x2": 436,
-            "y2": 190,
-            "label": "red candles!",
+            "x": 588,
+            "y": 150,
+            "text": "red candles ↓",
             "tone": "down",
-            "id": "red"
+            "id": "cc",
+            "anchor": "middle"
           }
         ]
       },
       "steps": [
         {
-          "text": "In basic bullish structure, price generally creates <strong>higher highs and higher lows</strong>.",
+          "to": 1,
           "show": [
-            "m2",
-            "m3",
-            "m4",
+            "m1"
+          ],
+          "text": "Price pushes up and creates a high.",
+          "next": "NEXT MOVE →"
+        },
+        {
+          "to": 2,
+          "show": [
+            "m2"
+          ],
+          "text": "Price pulls back. The low forms <strong>above</strong> the previous low: <strong>Higher Low (HL)</strong>.",
+          "next": "NEXT MOVE →"
+        },
+        {
+          "to": 3,
+          "show": [
+            "m3"
+          ],
+          "text": "Price pushes past the previous high: <strong>Higher High (HH)</strong>.",
+          "next": "NEXT MOVE →"
+        },
+        {
+          "to": 4,
+          "show": [
+            "m4"
+          ],
+          "text": "Another pullback. It holds above the previous low: <strong>HL</strong>.",
+          "next": "NEXT MOVE →"
+        },
+        {
+          "to": 5,
+          "show": [
             "m5"
           ],
-          "next": "But… →"
+          "text": "Another push to a new high: <strong>HH</strong>. In basic bullish structure, price generally creates <strong>higher highs and higher lows</strong>.",
+          "next": "NEXT MOVE →"
         },
         {
-          "text": "Bullish structure doesn’t mean every candle is bullish. There <strong>will</strong> be bearish candles.",
+          "to": 6,
           "show": [
-            "red"
-          ]
-        },
-        {
-          "text": "There will be pullbacks. There will be corrections. <strong>That’s how price moves.</strong>",
-          "show": [
-            "ln"
-          ]
+            "cc"
+          ],
+          "text": "Now watch the newest candles.",
+          "ask": {
+            "prompt": "WHAT IS PRICE CURRENTLY DOING?",
+            "options": [
+              {
+                "label": "Expanding",
+                "correct": false,
+                "feedback": "Expansion would be pushing to new highs. These candles are moving lower."
+              },
+              {
+                "label": "Pulling back",
+                "correct": true,
+                "why": "Price is pulling back. The candles are red, but the structure labels haven’t changed: HH and HL are still there."
+              },
+              {
+                "label": "Reversing",
+                "correct": false,
+                "feedback": "Moving lower isn’t the same as reversing. Nothing about the structure has changed yet."
+              },
+              {
+                "label": "Not enough information",
+                "correct": false,
+                "feedback": "We can see enough to describe it: price is moving against the last push, inside bullish structure."
+              }
+            ],
+            "text": "Bullish structure doesn’t mean every candle is bullish. There will be bearish candles. There will be pullbacks. There will be corrections. <strong>That’s how price moves.</strong>"
+          }
         }
       ]
     },

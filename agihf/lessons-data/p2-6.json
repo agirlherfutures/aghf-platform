@@ -96,46 +96,61 @@
             "big": true
           },
           {
+            "i": 12,
+            "label": "LOW",
+            "tone": "purple",
+            "id": "ext",
+            "pos": "low",
+            "big": true
+          },
+          {
             "i": 1,
             "label": "minor",
             "tone": "muted",
-            "id": "minor"
+            "id": "minor",
+            "size": "sm"
           },
           {
             "i": 2,
             "label": "minor",
             "tone": "muted",
-            "id": "minor"
+            "id": "minor",
+            "size": "sm"
           },
           {
             "i": 3,
             "label": "minor",
             "tone": "muted",
-            "id": "minor"
+            "id": "minor",
+            "size": "sm"
           },
           {
             "i": 4,
             "label": "minor",
             "tone": "muted",
-            "id": "minor"
+            "id": "minor",
+            "size": "sm"
           },
           {
             "i": 5,
             "label": "minor",
             "tone": "muted",
-            "id": "minor"
+            "id": "minor",
+            "size": "sm"
           },
           {
             "i": 6,
             "label": "minor",
             "tone": "muted",
-            "id": "minor"
+            "id": "minor",
+            "size": "sm"
           },
           {
             "i": 9,
             "label": "minor",
             "tone": "muted",
-            "id": "minor"
+            "id": "minor",
+            "size": "sm"
           }
         ]
       },
@@ -155,6 +170,196 @@
           "show": [
             "minor"
           ]
+        }
+      ]
+    },
+    {
+      "type": "structure_story",
+      "kicker": "Flip the view",
+      "title": "All swings vs. relevant swings",
+      "chart": {
+        "swings": [
+          [
+            40,
+            270
+          ],
+          [
+            90,
+            225
+          ],
+          [
+            120,
+            240
+          ],
+          [
+            175,
+            185
+          ],
+          [
+            210,
+            205
+          ],
+          [
+            265,
+            140
+          ],
+          [
+            300,
+            160
+          ],
+          [
+            350,
+            60
+          ],
+          [
+            420,
+            120
+          ],
+          [
+            460,
+            100
+          ],
+          [
+            520,
+            175
+          ],
+          [
+            560,
+            150
+          ],
+          [
+            640,
+            265
+          ]
+        ],
+        "seed": 31,
+        "density": 1.6,
+        "paths": [
+          {
+            "swings": [
+              [
+                40,
+                270
+              ],
+              [
+                350,
+                60
+              ],
+              [
+                640,
+                265
+              ]
+            ],
+            "tone": "purple",
+            "id": "extpath",
+            "dashed": true,
+            "width": 2.5
+          }
+        ],
+        "marks": [
+          {
+            "i": 7,
+            "label": "EXTERNAL HIGH",
+            "tone": "purple",
+            "id": "ext",
+            "big": true
+          },
+          {
+            "i": 0,
+            "label": "EXTERNAL LOW",
+            "tone": "purple",
+            "id": "ext",
+            "pos": "low",
+            "big": true
+          },
+          {
+            "i": 12,
+            "label": "LOW",
+            "tone": "purple",
+            "id": "ext",
+            "pos": "low",
+            "big": true
+          },
+          {
+            "i": 1,
+            "tone": "gold",
+            "id": "minor",
+            "size": "sm",
+            "label": "minor"
+          },
+          {
+            "i": 2,
+            "tone": "gold",
+            "id": "minor",
+            "size": "sm",
+            "label": "minor"
+          },
+          {
+            "i": 3,
+            "tone": "gold",
+            "id": "minor",
+            "size": "sm",
+            "label": "minor"
+          },
+          {
+            "i": 4,
+            "tone": "gold",
+            "id": "minor",
+            "size": "sm",
+            "label": "minor"
+          },
+          {
+            "i": 5,
+            "tone": "gold",
+            "id": "minor",
+            "size": "sm",
+            "label": "minor"
+          },
+          {
+            "i": 6,
+            "tone": "gold",
+            "id": "minor",
+            "size": "sm",
+            "label": "minor"
+          },
+          {
+            "i": 9,
+            "tone": "gold",
+            "id": "minor",
+            "size": "sm",
+            "label": "minor"
+          }
+        ]
+      },
+      "views": [
+        {
+          "key": "all",
+          "label": "Show all swings",
+          "show": [
+            "ext",
+            "minor"
+          ],
+          "hide": [
+            "extpath"
+          ],
+          "text": "Every turn on the chart. All of them are real."
+        },
+        {
+          "key": "relevant",
+          "label": "Show relevant swings",
+          "show": [
+            "ext",
+            "extpath"
+          ],
+          "hide": [
+            "minor"
+          ],
+          "text": "Only the swings that define the larger move you’re analyzing. Same chart, much clearer question."
+        }
+      ],
+      "steps": [
+        {
+          "text": "Big markers are <strong>major / relevant</strong> swings. Small markers are <strong>minor / internal</strong> swings. Flip between the views and watch the larger structure appear."
         }
       ]
     },

@@ -112,11 +112,12 @@ export function renderSectionWizard(data, opts) {
     const slide = document.createElement('div');
     slide.className = 'lw-slide active';
     wrap.appendChild(slide);
+    document.body.classList.toggle('sg-lab', step.type === 'game');
 
     if (step.type === 'welcome') renderWelcome(slide, data.welcome, () => completeStepAndAdvance(i));
     else if (step.type === 'challenge') renderChallenge(slide, data.challenge, () => completeStepAndAdvance(i), { handleStreak, burst });
-    else if (step.type === 'game') renderGame(slide, data.game, () => completeStepAndAdvance(i), { handleStreak, burst });
-    else if (step.type === 'knowledge') renderKnowledge(slide, data.knowledgeCheck, (pct) => { results.knowledgePct = pct; completeStepAndAdvance(i); }, { handleStreak, burst });
+    else if (step.type === 'game') renderGame(slide, data.game, () => completeStepAndAdvance(i), { handleStreak, burst, sectionId });
+    else if (step.type === 'knowledge') renderKnowledge(slide, data.knowledgeCheck, (pct) => { results.knowledgePct = pct; completeStepAndAdvance(i); }, { handleStreak, burst, sectionId });
     else if (step.type === 'checkin') renderCheckin(slide, data.checkin, sectionId, () => completeStepAndAdvance(i));
     else if (step.type === 'complete') renderComplete(slide, data, { flagKey, backHref, nextSectionHref, nextSectionLabel, lessonsLabel, lessonGpTotal, results, data });
   }
@@ -262,34 +263,99 @@ function appendChallengeContinue(el, satisfy) {
 
 function renderGame(slide, game, onAllDone, helpers) {
   const levels = game.levels || [];
+  const stats = levels.map(() => ({ right: 0, tries: 0 }));
   let idx = 0;
+  const totals = () => stats.reduce((a, s) => ({ right: a.right + s.right, tries: a.tries + s.tries }), { right: 0, tries: 0 });
+  const pct = (r, t) => (t ? Math.round((r / t) * 100) : 100);
+
   function show() {
     const level = levels[idx];
+    stats[idx] = { right: 0, tries: 0 };
+    const t = totals();
     slide.innerHTML = `
-      <div class="lw-card">
-        <div class="lw-eyebrow">${game.title}</div>
-        <h2>${game.tagline || ''}</h2>
-        <div class="sg-ladder">${levels.map((_, k) => `<span class="${k < idx ? 'on' : k === idx ? 'cur' : ''}"></span>`).join('')}</div>
-        <div class="sg-level"><div class="sg-level-badge">${idx + 1}</div><div><div class="sg-level-name">Level ${idx + 1} of ${levels.length}</div><div class="sg-level-title">${level.name}</div></div></div>
-      </div>
-      <div class="sg-body"></div>`;
+      <div class="sg-stage">
+        <div class="sg-head">
+          <div><div class="sg-title">${game.title}</div><div class="sg-tagline">${game.tagline || ''}</div></div>
+          <div class="sg-meter">
+            <div class="sg-dots">LEVEL ${idx + 1} OF ${levels.length} ${levels.map((_, k) => `<i class="${k < idx ? 'on' : k === idx ? 'cur' : ''}">${k <= idx ? '●' : '○'}</i>`).join('')}</div>
+            <div class="sg-acc">Accuracy <span class="sg-acc-n">${t.tries ? `${pct(t.right, t.tries)}%` : '·'}</span></div>
+          </div>
+        </div>
+        <div class="sg-level"><div class="sg-level-badge">${idx + 1}</div><div><div class="sg-level-name">Level ${idx + 1}${level.concept ? ` · ${level.concept}` : ''}</div><div class="sg-level-title">${level.name}</div></div></div>
+        ${level.goal ? `<div class="sg-goal">${level.goal}</div>` : ''}
+        <div class="sg-body"></div>
+        <button type="button" class="sg-restart">↻ Restart this level</button>
+      </div>`;
     const body = slide.querySelector('.sg-body');
+    const accEl = slide.querySelector('.sg-acc-n');
+    slide.querySelector('.sg-restart').addEventListener('click', show);
     const renderer = SLIDE_RENDERERS[level.type];
+    const levelHelpers = {
+      ...helpers,
+      handleStreak(correct) {
+        stats[idx].tries += 1;
+        if (correct) stats[idx].right += 1;
+        const tt = totals();
+        accEl.textContent = `${pct(tt.right, tt.tries)}%`;
+        helpers.handleStreak(correct);
+      },
+    };
     const next = () => {
       idx += 1;
       if (idx < levels.length) { show(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-      else {
-        slide.innerHTML = `<div class="lw-card lw-complete"><h2>${game.doneHeading || 'Game cleared ✦'}</h2><div class="lw-badge">${game.doneBadge || 'All levels complete'}</div>${game.xp ? `<div class="lw-badge" style="background:rgba(245,168,87,.18);border-color:rgba(245,168,87,.35);color:#F5A857;">+${game.xp} GP</div>` : ''}</div>`;
-        helpers.burst();
-        const btn = document.createElement('button');
-        btn.type = 'button'; btn.className = 'lw-continue-btn'; btn.style.alignSelf = 'center'; btn.textContent = 'Continue →';
-        btn.addEventListener('click', onAllDone);
-        slide.appendChild(btn);
-      }
+      else finish();
     };
-    if (renderer) renderer(body, level, next, helpers); else next();
+    if (renderer) renderer(body, { ...level, kicker: '', title: level.title || '' }, next, levelHelpers); else next();
+  }
+
+  function finish() {
+    const t = totals();
+    const concepts = {};
+    levels.forEach((l, k) => {
+      const c = l.concept || l.name;
+      concepts[c] = concepts[c] || { right: 0, tries: 0 };
+      concepts[c].right += stats[k].right;
+      concepts[c].tries += stats[k].tries;
+    });
+    recordConcepts(helpers.sectionId, concepts, 'game');
+    slide.innerHTML = `
+      <div class="sg-stage sg-done">
+        <div class="sg-done-check">✓</div>
+        <h2>${game.doneHeading || 'STRUCTURE BUILDER COMPLETE ✓'}</h2>
+        ${game.doneLine ? `<p class="sg-done-line">${game.doneLine}</p>` : ''}
+        <div class="sg-done-stats">
+          <div><b>${levels.length}/${levels.length}</b>Levels</div>
+          <div><b>${pct(t.right, t.tries)}%</b>Accuracy</div>
+          <div><b>${game.xp ? `+${game.xp}` : '✓'}</b>${game.xp ? 'GP' : 'Cleared'}</div>
+        </div>
+        <div class="sg-concepts">${Object.entries(concepts).map(([c, v]) => `<div class="sg-concept"><span>${c}</span><div class="sg-concept-bar"><div style="width:${pct(v.right, v.tries)}%"></div></div><b>${pct(v.right, v.tries)}%</b></div>`).join('')}</div>
+      </div>`;
+    helpers.burst();
+    if (game.xp) showToast(`+${game.xp} GP earned!`, `${game.title} complete ✓`);
+    try { localStorage.setItem(`aghf_game:${helpers.sectionId}`, JSON.stringify({ accuracy: pct(t.right, t.tries), at: Date.now() })); } catch (e) { /* storage blocked */ }
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'lw-continue-btn'; btn.style.alignSelf = 'center'; btn.textContent = 'Continue →';
+    btn.addEventListener('click', onAllDone);
+    slide.appendChild(btn);
   }
   show();
+}
+
+/** Concept-level performance, kept per section: { concept: { right, tries, missed } }. */
+function recordConcepts(sectionId, concepts, source) {
+  try {
+    const key = `aghf_concepts:${sectionId}`;
+    const all = JSON.parse(localStorage.getItem(key) || '{}');
+    Object.entries(concepts).forEach(([c, v]) => {
+      const cur = all[c] || { right: 0, tries: 0, missed: 0 };
+      cur.right += v.right || 0;
+      cur.tries += v.tries || 0;
+      cur.missed += v.missed || 0;
+      cur[source] = Date.now();
+      all[c] = cur;
+    });
+    localStorage.setItem(key, JSON.stringify(all));
+  } catch (e) { /* storage blocked */ }
 }
 
 /* ── Knowledge Check ─────────────────────────────────────────────── */
@@ -303,13 +369,21 @@ function shuffle(arr) {
   return a;
 }
 
+/** Shuffle a question's options, keeping track of the right one. */
+function shuffleQuestion(q) {
+  const order = shuffle(q.options.map((_, i) => i));
+  return { ...q, options: order.map((i) => q.options[i]), correctIndex: order.indexOf(q.correctIndex) };
+}
+
 function renderKnowledge(slide, kc, onPass, helpers) {
   const count = Math.min(kc.questionCount, kc.questionBank.length);
 
   function startAttempt() {
-    const set = shuffle(kc.questionBank).slice(0, count);
+    const set = shuffle(kc.questionBank).slice(0, count).map((q) => (kc.shuffleOptions ? shuffleQuestion(q) : q));
     let qi = 0;
     let score = 0;
+    const missed = [];
+    const concepts = {};
     renderQuestion(set, qi, score);
 
     function renderQuestion(set, qi, score) {
@@ -334,6 +408,11 @@ function renderKnowledge(slide, kc, onPass, helpers) {
           if (answered) return;
           answered = true;
           const correct = oi === q.correctIndex;
+          if (q.concept) {
+            concepts[q.concept] = concepts[q.concept] || { right: 0, tries: 0, missed: 0 };
+            concepts[q.concept].tries += 1;
+            if (correct) concepts[q.concept].right += 1; else { concepts[q.concept].missed += 1; missed.push(q.concept); }
+          }
           buttons[q.correctIndex].classList.add('correct');
           if (!correct) btn.classList.add('wrong');
           buttons.forEach((b) => { b.disabled = true; });
@@ -357,11 +436,14 @@ function renderKnowledge(slide, kc, onPass, helpers) {
     function renderResults(total, score) {
       const pct = Math.round((score / total) * 100);
       const passed = pct >= kc.passPct * 100;
+      recordConcepts(helpers.sectionId, concepts, 'knowledge');
+      const review = [...new Set(missed)];
       slide.innerHTML = `
         <div class="lw-card sw-result-card">
           <div class="lw-eyebrow">Knowledge Check</div>
           <div class="sw-result-pct ${passed ? 'pass' : 'fail'}">${pct}%</div>
           <div class="sw-result-sub">${score} of ${total} correct, ${passed ? `you passed (${Math.round(kc.passPct * 100)}% required)` : `${Math.round(kc.passPct * 100)}% required to pass`}</div>
+          ${review.length ? `<div class="sw-review"><strong>${passed ? 'Worth another look:' : 'Review these, then try a fresh set:'}</strong><ul>${review.map((c) => `<li>${c}</li>`).join('')}</ul></div>` : ''}
           ${passed
             ? '<button type="button" class="lw-continue-btn" id="swKcContinue" style="align-self:center">Continue →</button>'
             : '<button type="button" class="lw-continue-btn" id="swKcRetry" style="align-self:center">Try Again, New Questions</button>'}
@@ -474,8 +556,8 @@ function renderFieldCheckin(slide, checkin, sectionId, satisfy) {
           <div class="sw-radio-group" data-f="${i}">${f.options.map((o, oi) => `<div class="sw-radio-opt" data-oi="${oi}"><span class="sw-dot"></span><span>${o}</span></div>`).join('')}</div></div>` : `
         <div class="sw-field"><label>${f.label}</label>${f.hint ? `<div class="sw-hint">${f.hint}</div>` : ''}
           <textarea class="sw-textarea" data-f="${i}" rows="${f.rows || 2}" placeholder="${f.placeholder || ''}"></textarea></div>`).join('')}
-      <button type="button" class="lw-continue-btn" id="swSaveCheckin" disabled>Save & Continue →</button>
-      <div class="lw-reflect-saved" id="swCheckinSaved" style="display:none">✓ Saved to My Notes</div>
+      <button type="button" class="lw-continue-btn" id="swSaveCheckin" disabled>${checkin.saveLabel || 'Save & Continue →'}</button>
+      <div class="lw-reflect-saved" id="swCheckinSaved" style="display:none">${checkin.savedLabel || '✓ Saved to My Notes'}</div>
     </div>`;
   const answers = fields.map(() => null);
   const saveBtn = slide.querySelector('#swSaveCheckin');
