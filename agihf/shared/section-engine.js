@@ -291,10 +291,16 @@ function renderGame(slide, game, onAllDone, helpers) {
     slide.querySelector('.sg-restart').addEventListener('click', show);
     const renderer = SLIDE_RENDERERS[level.type];
     let firstRead = null;
+    const reads = {};
     const levelHelpers = {
       ...helpers,
-      // The first answer she gives in a level is her read; the debrief compares it with what price showed.
-      onPick(q, opt, correct) { if (!firstRead) firstRead = { label: opt.label, correct }; },
+      // Her first answer to a question is her read; the debrief compares it with what price showed.
+      // level.readPrompt picks the question that counts (default: the first one she answers).
+      onPick(q, opt, correct) {
+        const key = q?.prompt || '';
+        if (!reads[key]) reads[key] = { label: opt.label, correct };
+        if (!firstRead) firstRead = reads[key];
+      },
       handleStreak(correct) {
         stats[idx].tries += 1;
         if (correct) stats[idx].right += 1;
@@ -312,7 +318,7 @@ function renderGame(slide, game, onAllDone, helpers) {
       if (!level.debrief) { advance(); return; }
       body.querySelectorAll('.lw-continue-btn').forEach((b) => b.remove());
       const d = level.debrief;
-      const read = firstRead || { label: '—', correct: true };
+      const read = (level.readPrompt && reads[level.readPrompt]) || firstRead || { label: '—', correct: true };
       const card = document.createElement('div');
       card.className = 'lw-card sg-debrief-card';
       card.innerHTML = `<div class="lw-eyebrow">${read.correct ? 'Nice read ✦' : 'Here’s what happened'}</div>
@@ -474,7 +480,7 @@ function renderKnowledge(slide, kc, onPass, helpers) {
       `;
       if (passed) {
         helpers.burst();
-        showToast(`+${kc.xp} GP earned!`, 'Knowledge Check passed 🧠✨');
+        if (kc.xp > 0) showToast(`+${kc.xp} GP earned!`, 'Knowledge Check passed 🧠✨');
         document.getElementById('swKcContinue').addEventListener('click', () => onPass(pct));
       } else {
         document.getElementById('swKcRetry').addEventListener('click', () => startAttempt());

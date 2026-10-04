@@ -275,7 +275,7 @@
           {
             "key": "info",
             "label": "This break gives",
-            "value": "—",
+            "value": "Not yet",
             "tone": "muted"
           }
         ]
@@ -602,7 +602,7 @@
           {
             "key": "info",
             "label": "This break gives",
-            "value": "—",
+            "value": "Not yet",
             "tone": "muted"
           }
         ]

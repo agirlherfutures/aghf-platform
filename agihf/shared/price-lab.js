@@ -22,7 +22,7 @@
  *       text, show, hide,         caption + chart reveals
  *       story: { key: { value, tone } },   panel updates
  *       evidence: { items, conclusion },
- *       tap:  { prompt, answer, only, hint, notes, reveal }      pick on the chart
+ *       tap:  { prompt, answer, only, hint, notes, reveal, show, hide }  pick on the chart
  *       asks: [question, …]       chained questions (each solved before the next)
  *       next: 'Next candle →'
  *     }],
@@ -125,6 +125,27 @@ function evidenceHtml(ev) {
 
 /* ── The screen ─────────────────────────────────────────────────────── */
 
+/* On phones the 700-wide chart shrinks a lot. Crop the empty space right of
+   the candles, and pin level labels and notes to the new right edge. */
+function compactChart(chart, spec) {
+  const bars = spec.bars || [];
+  if (!bars.length) return;
+  const left = Math.max(0, Math.min(...bars.map((b) => b.x - (b.w || 10))) - 16);
+  const right = Math.min(700, Math.max(...bars.map((b) => b.x + (b.w || 10))) + 110);
+  if (right - left > 640) return;
+  chart.svg.setAttribute('viewBox', `${left} 0 ${right - left} 320`);
+  chart.svg.style.overflow = 'hidden';
+  chart.svg.classList.add('sc-compact');
+  const noteTexts = new Set((spec.notes || []).map((n) => n.text));
+  chart.svg.querySelectorAll('text').forEach((t) => {
+    const isLevel = t.closest('.sc-hline');
+    if (!isLevel && !noteTexts.has(t.textContent)) return;
+    t.setAttribute('x', right - 6);
+    t.setAttribute('text-anchor', 'end');
+    t.classList.add('sc-halo');
+  });
+}
+
 export function renderPriceLab(el, slide, satisfy, helpers) {
   const steps = slide.steps || [];
   const side = slide.story || slide.evidence;
@@ -146,6 +167,7 @@ export function renderPriceLab(el, slide, satisfy, helpers) {
     </div>`;
   const card = el.querySelector('.pl-card');
   const chart = mountChart(card.querySelector('.pl-chart'), { ...slide.chart, showCandles: slide.start ?? slide.chart.showCandles }, { label: slide.title });
+  if (window.matchMedia?.('(max-width: 600px)').matches) compactChart(chart, slide.chart);
   if (slide.views) mountViews(card.querySelector('.pl-chart'), chart, slide.views, slide.view);
   const cap = card.querySelector('.pl-caption');
   const asks = card.querySelector('.pl-asks');
@@ -224,6 +246,7 @@ export function renderPriceLab(el, slide, satisfy, helpers) {
           fb.className = 'pl-fb show good';
           helpers.handleStreak?.(true);
           if (t.show) chart.reveal(t.show);
+          if (t.hide) chart.hide(t.hide);
           if (t.story) updateStory(t.story);
           done();
         } else {
