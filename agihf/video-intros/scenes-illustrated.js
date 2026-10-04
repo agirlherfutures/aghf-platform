@@ -111,6 +111,12 @@
     'mirror': s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'declutter': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'timeframe-zoom': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
       <div class="abs" style="left:760px;right:110px;top:260px">
         <div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
@@ -903,6 +909,99 @@
           <text y="12" font-size="30" font-weight="900" text-anchor="middle" fill="${C.purple}" font-family="Playfair Display">Short? Same math.</text></g>`;
       }
       return out;
+    },
+
+    declutter: (s, t) => {
+      const wx = 300, wy = 370, ww = 1320, wh = 620;
+      const cx0 = wx + 60, cy0 = wy + 90, cw = ww - 120, ch = wh - 140;
+      const closes = [100, 103, 101, 106, 109, 104, 101, 104, 108, 112, 110, 106, 104, 107, 111, 115, 113, 110, 113, 117];
+      const mn = 94, mx = 122, Y = v => cy0 + ch - (v - mn) / (mx - mn) * ch, step = cw / closes.length;
+      const wp = pop(t, s.start + 0.4, 0.7);
+      if (wp <= 0) return '';
+      let out = `<g transform="translate(960,680) scale(${wp}) translate(-960,-680)">
+        <rect x="${wx}" y="${wy}" width="${ww}" height="${wh}" rx="28" fill="#fff" stroke="#EADFD8" stroke-width="3"/>
+        <rect x="${wx}" y="${wy}" width="${ww}" height="56" rx="28" fill="#F6EDE6"/><rect x="${wx}" y="${wy + 30}" width="${ww}" height="26" fill="#F6EDE6"/>
+        ${[0, 1, 2].map(i => `<circle cx="${wx + 36 + i * 30}" cy="${wy + 28}" r="9" fill="${[C.pink, C.peach, C.teal][i]}"/>`).join('')}
+        <text x="${wx + 140}" y="${wy + 37}" font-size="24" font-weight="700" fill="${C.muted}" font-family="DM Sans">MNQ · 5m</text>`;
+      closes.forEach((c, i) => {
+        const o = i ? closes[i - 1] : 99, up = c >= o, col = up ? C.teal : C.pink, x = cx0 + step * i + step / 2;
+        out += `<line x1="${x}" x2="${x}" y1="${Y(Math.max(o, c) + 1.2)}" y2="${Y(Math.min(o, c) - 1.2)}" stroke="${col}" stroke-width="3"/>
+          <rect x="${x - step * 0.28}" y="${Y(Math.max(o, c))}" width="${step * 0.56}" height="${Math.max(3, Math.abs(Y(o) - Y(c)))}" rx="3" fill="${col}"/>`;
+      });
+      // Clutter piles up, then the broom sweeps it away.
+      const bx = lerp(wx - 120, wx + ww + 140, ease(seg(t, s.sweepAt, s.sweepAt + 1.8)));
+      const swept = t >= s.sweepAt ? bx : wx - 200;
+      const junk = [];
+      const add = (at, svg) => { if (t > at) junk.push(`<g opacity="${clamp((t - at) / 0.3)}">${svg}</g>`); };
+      const wav = (amp, ph, col, w) => { let d = ''; for (let x = cx0; x <= cx0 + cw; x += 20) d += `${d ? 'L' : 'M'}${x},${Y(108 + Math.sin(x / 90 + ph) * amp)}`; return `<path d="${d}" fill="none" stroke="${col}" stroke-width="${w}"/>`; };
+      const m = s.messAt;
+      add(m, wav(5, 0, '#E9A93B', 4)); add(m + 0.4, wav(7, 2, '#7F77DD', 4)); add(m + 0.8, wav(4, 4, '#4FA99E', 4));
+      add(m + 1.1, `<line x1="${cx0}" y1="${Y(98)}" x2="${cx0 + cw}" y2="${Y(121)}" stroke="#C2475F" stroke-width="3"/><line x1="${cx0}" y1="${Y(104)}" x2="${cx0 + cw}" y2="${Y(96)}" stroke="#5E56B8" stroke-width="3"/>`);
+      add(m + 1.5, [0.236, 0.382, 0.5, 0.618, 0.786].map((f, i) => `<line x1="${cx0}" x2="${cx0 + cw}" y1="${cy0 + ch * f}" y2="${cy0 + ch * f}" stroke="${['#F4829A', '#F5A857', '#7ECEC4', '#7F77DD', '#E9A93B'][i]}" stroke-width="2"/><text x="${cx0 + 6}" y="${cy0 + ch * f - 6}" font-size="16" fill="${C.muted}" font-family="DM Sans">${f}</text>`).join(''));
+      add(m + 2.0, [[0.2, 0.3, '▲'], [0.45, 0.7, '▼'], [0.7, 0.25, '▲'], [0.85, 0.6, '★'], [0.33, 0.55, '◆']].map(([fx, fy, g]) => `<text x="${cx0 + cw * fx}" y="${cy0 + ch * fy}" font-size="34" fill="${['#C2475F', '#7F77DD', '#E9A93B'][Math.floor(fx * 10) % 3]}" font-family="DM Sans">${g}</text>`).join(''));
+      add(m + 2.4, `<rect x="${cx0}" y="${cy0 + ch - 90}" width="${cw}" height="90" fill="#F3EEF9" opacity=".9"/>${wav(0, 0, 'none', 0)}<text x="${cx0 + 10}" y="${cy0 + ch - 60}" font-size="18" font-weight="700" fill="#7F77DD" font-family="DM Sans">RSI · MACD · STOCH · VOL</text>
+        <path d="M${cx0},${cy0 + ch - 30} ${Array.from({ length: 40 }, (_, i) => `L${cx0 + i * cw / 39},${cy0 + ch - 45 + Math.sin(i * 0.9) * 22}`).join(' ')}" fill="none" stroke="#7F77DD" stroke-width="3"/>`);
+      add(m + 2.8, `<rect x="${cx0 + cw * 0.55}" y="${cy0 + 20}" width="260" height="90" rx="10" fill="#FFF3C4" stroke="#E9A93B" stroke-width="2"/><text x="${cx0 + cw * 0.55 + 16}" y="${cy0 + 60}" font-size="20" fill="${C.dark}" font-family="DM Sans">BUY SIGNAL??</text><text x="${cx0 + cw * 0.55 + 16}" y="${cy0 + 90}" font-size="20" fill="${C.dark}" font-family="DM Sans">or SELL??</text>`);
+      out += `<clipPath id="sweepclip"><rect x="${swept}" y="${wy}" width="${ww + 400}" height="${wh}"/></clipPath><g clip-path="url(#sweepclip)">${junk.join('')}</g>`;
+      // Clean levels.
+      if (t > s.levelsAt) {
+        [[104, 0], [110, 0.5]].forEach(([lv, d]) => {
+          const k = ease((t - s.levelsAt - d) / 0.9);
+          out += `<line x1="${cx0}" x2="${cx0 + cw * k}" y1="${Y(lv)}" y2="${Y(lv)}" stroke="${C.peach}" stroke-width="6" stroke-dasharray="16 10"/>`;
+          if (k >= 1) out += `<rect x="${cx0 - 30}" y="${Y(lv) - 18}" width="210" height="36" rx="18" fill="${C.peachL}"/><text x="${cx0 + 75}" y="${Y(lv) + 7}" font-size="20" font-weight="700" text-anchor="middle" fill="${C.dark}" font-family="DM Sans">reaction area</text>`;
+        });
+      }
+      out += '</g>';
+      if (t > s.sweepAt && t < s.sweepAt + 2) {
+        out += `<g transform="translate(${bx},${wy + wh / 2}) rotate(${-12 + Math.sin(t * 14) * 8})">
+          <rect x="-9" y="-330" width="18" height="300" rx="9" fill="#9B6A45"/>
+          <path d="M-70,-40 L70,-40 L100,90 L-100,90 Z" fill="${C.peach}"/>
+          ${[-60, -30, 0, 30, 60].map(x => `<line x1="${x}" y1="-20" x2="${x * 1.4}" y2="88" stroke="#E08E2E" stroke-width="5"/>`).join('')}
+          <rect x="-76" y="-54" width="152" height="26" rx="8" fill="${C.pink}"/></g>`;
+      }
+      return out;
+    },
+
+    'timeframe-zoom': (s, t) => {
+      const wx = 300, wy = 370, ww = 1320, wh = 620;
+      const cx0 = wx + 60, cy0 = wy + 100, cw = ww - 120, ch = wh - 160;
+      const small = s._sm || (s._sm = A.candleSeries(48, 13, i => Math.sin(i / 7) * 0.5 + 0.15));
+      const big = s._bg || (s._bg = Array.from({ length: 8 }, (_, g) => {
+        const grp = small.slice(g * 6, g * 6 + 6);
+        return { o: grp[0].o, c: grp[5].c, hi: Math.max(...grp.map(d => d.hi)), lo: Math.min(...grp.map(d => d.lo)) };
+      }));
+      const all = small.flatMap(d => [d.hi, d.lo]), mn = Math.min(...all) - 2, mx = Math.max(...all) + 2;
+      const Y = v => cy0 + ch - (v - mn) / (mx - mn) * ch;
+      const wp = pop(t, s.start + 0.4, 0.7);
+      if (wp <= 0) return '';
+      const toSmall = ease(seg(t, s.switchAt, s.switchAt + 0.8));
+      const active = toSmall > 0.5 ? '5m' : '1H';
+      const draw = (data, op) => {
+        const step = cw / data.length;
+        return `<g opacity="${op}">${data.map((d, i) => {
+          const up = d.c >= d.o, col = up ? C.teal : C.pink, x = cx0 + step * i + step / 2;
+          return `<line x1="${x}" x2="${x}" y1="${Y(d.hi)}" y2="${Y(d.lo)}" stroke="${col}" stroke-width="${step > 60 ? 5 : 3}"/>
+            <rect x="${x - step * 0.3}" y="${Y(Math.max(d.o, d.c))}" width="${step * 0.6}" height="${Math.max(3, Math.abs(Y(d.o) - Y(d.c)))}" rx="${step > 60 ? 8 : 3}" fill="${col}"/>`;
+        }).join('')}</g>`;
+      };
+      let out = `<g transform="translate(960,680) scale(${wp}) translate(-960,-680)">
+        <rect x="${wx}" y="${wy}" width="${ww}" height="${wh}" rx="28" fill="#fff" stroke="#EADFD8" stroke-width="3"/>
+        <rect x="${wx}" y="${wy}" width="${ww}" height="64" rx="28" fill="#F6EDE6"/><rect x="${wx}" y="${wy + 34}" width="${ww}" height="30" fill="#F6EDE6"/>
+        <text x="${wx + 40}" y="${wy + 42}" font-size="24" font-weight="700" fill="${C.muted}" font-family="DM Sans">MNQ</text>
+        ${['5m', '15m', '1H'].map((l, i) => `<g transform="translate(${wx + 200 + i * 90},${wy + 32})"><rect x="-38" y="-20" width="76" height="40" rx="10" fill="${l === active ? C.purple : '#fff'}" stroke="${C.purple}" stroke-width="2"/>
+          <text y="8" font-size="20" font-weight="700" text-anchor="middle" fill="${l === active ? '#fff' : C.purple}" font-family="DM Sans">${l}</text></g>`).join('')}
+        <g transform="translate(${wx + ww - 200},${wy + 32})"><rect x="-150" y="-20" width="300" height="40" rx="20" fill="${C.tealL}"/>
+          <text y="8" font-size="20" font-weight="700" text-anchor="middle" fill="#2F8A7F" font-family="DM Sans">Same market underneath</text></g>
+        ${draw(big, 1 - toSmall)}${draw(small, toSmall)}`;
+      if (t > s.boxAt) {
+        const k = back((t - s.boxAt) / 0.6), step = cw / 48, g = 3;
+        const grp = small.slice(g * 6, g * 6 + 6), hi = Math.max(...grp.map(d => d.hi)), lo = Math.min(...grp.map(d => d.lo));
+        const bx0 = cx0 + step * g * 6, bx1 = bx0 + step * 6;
+        out += `<g opacity="${clamp(k)}"><rect x="${bx0 - 6}" y="${Y(hi) - 16}" width="${bx1 - bx0 + 12}" height="${Y(lo) - Y(hi) + 32}" rx="14" fill="none" stroke="${C.peach}" stroke-width="5" stroke-dasharray="12 8"/>
+          <rect x="${(bx0 + bx1) / 2 - 130}" y="${Y(hi) - 70}" width="260" height="44" rx="22" fill="${C.peachL}"/>
+          <text x="${(bx0 + bx1) / 2}" y="${Y(hi) - 40}" font-size="22" font-weight="700" text-anchor="middle" fill="${C.dark}" font-family="DM Sans">6 × 5m = 1 hour candle</text></g>`;
+      }
+      return out + '</g>';
     },
 
     'host-mission': (s, t, ctx) =>

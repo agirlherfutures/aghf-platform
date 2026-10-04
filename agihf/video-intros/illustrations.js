@@ -348,6 +348,48 @@
         </g>
       </g>`;
     }
+    if (kind === 'read') {
+      const mx = Math.sin(t * 1.2) * 26;
+      return `<g>
+        <circle r="90" fill="#E8F8F6"/>
+        ${[[-46, 20, 26, 1], [-18, 6, 30, 0], [10, -10, 34, 1], [38, -24, 30, 1]].map(([x, y, h, up]) => `<rect x="${x - 8}" y="${y - h / 2}" width="16" height="${h}" rx="3" fill="${up ? COL.teal : COL.pink}"/>`).join('')}
+        <g transform="translate(${mx},${-6})"><circle r="38" fill="#fff" fill-opacity=".35" stroke="${COL.dark}" stroke-width="8"/>
+          <line x1="27" y1="27" x2="58" y2="58" stroke="${COL.dark}" stroke-width="12" stroke-linecap="round"/></g>
+      </g>`;
+    }
+    if (kind === 'zoom') {
+      const on = Math.floor(t / 1.5) % 3;
+      return `<g>
+        <circle r="90" fill="${COL.purpleL}" opacity=".55"/>
+        ${['5m', '15m', '1H'].map((l, i) => `<g transform="translate(${(i - 1) * 54},0)"><rect x="-25" y="-22" width="50" height="44" rx="10" fill="${i === on ? COL.purple : '#fff'}" stroke="${COL.purple}" stroke-width="3"/>
+          <text y="7" font-size="18" font-weight="700" text-anchor="middle" fill="${i === on ? '#fff' : COL.purple}" font-family="DM Sans">${l}</text></g>`).join('')}
+        <path d="M-50,-46 A60,60 0 0,1 50,-46" fill="none" stroke="${COL.purple}" stroke-width="5" stroke-linecap="round"/>
+        <path d="M40,-58 L52,-44 L36,-38" fill="none" stroke="${COL.purple}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>`;
+    }
+    if (kind === 'mark') {
+      const d = (t * 0.6) % 1;
+      const px = -60 + ease(clamp(d / 0.7)) * 120;
+      return `<g>
+        <circle r="90" fill="${COL.pinkP}"/>
+        <line x1="-60" y1="20" x2="${px}" y2="20" stroke="${COL.peach}" stroke-width="7" stroke-dasharray="12 8" stroke-linecap="round"/>
+        <g transform="translate(${px},20) rotate(40)">
+          <rect x="-9" y="-80" width="18" height="70" rx="3" fill="${COL.pink}"/><rect x="-9" y="-92" width="18" height="14" rx="3" fill="${COL.pinkL}"/>
+          <path d="M-9,-10 L9,-10 L0,8 Z" fill="#F3D6B4"/><path d="M-3,2 L3,2 L0,8 Z" fill="${COL.dark}"/></g>
+      </g>`;
+    }
+    if (kind === 'simplify') {
+      const sw = Math.sin(t * 4) * 14;
+      return `<g>
+        <circle r="90" fill="#FEF3E4"/>
+        <g transform="rotate(${sw} 0 -10)">
+          <rect x="-5" y="-80" width="10" height="90" rx="5" fill="#9B6A45"/>
+          <path d="M-34,10 L34,10 L44,58 L-44,58 Z" fill="${COL.peach}"/>
+          ${[-30, -15, 0, 15, 30].map(x => `<line x1="${x}" y1="20" x2="${x * 1.25}" y2="56" stroke="#E08E2E" stroke-width="3"/>`).join('')}
+          <rect x="-36" y="4" width="72" height="12" rx="4" fill="${COL.pink}"/></g>
+        ${[0, 1, 2].map(i => { const p = ((t * 0.9) + i / 3) % 1; return `<circle cx="${50 + p * 20}" cy="${50 - p * 40}" r="${5 - p * 3}" fill="${COL.gold}" opacity="${1 - p}"/>`; }).join('')}
+      </g>`;
+    }
     if (kind === 'market') {
       const f = Math.sin(t * 2) * 5;
       return `<g>
