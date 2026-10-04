@@ -28,9 +28,9 @@ window.LESSON_VIDEO = {
         { at: 22.0, html: 'The close shows <span class="mark">who held control.</span>' },
       ],
       lines: [
-        { at: 8.4, text: 'Every candle is a battle between buyers and sellers.', screen: 'Buyers and Sellers on either side' },
+        { at: 8.4, text: 'Every candle is a battle between buyers and sellers.', screen: 'A buyer and a seller beside a giant candle' },
         { at: 11.4, text: 'Buyers push price up. Sellers push it down.' },
-        { at: 14.4, text: 'Inside one candle, price can push, get rejected, find acceptance, or fail.', screen: 'Inside a giant candle: Push! Reject! Accept! Fail!' },
+        { at: 14.4, text: 'Inside one candle, price can push, get rejected, find acceptance, or fail.', screen: 'Inside the candle: Push! Reject! Accept! Fail!' },
         { at: 22.0, text: 'And the close shows who held control by the end.', screen: 'The candle shape is left behind' },
       ],
     },

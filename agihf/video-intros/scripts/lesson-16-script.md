@@ -7,9 +7,9 @@
 |---|---|---|
 | 0:00 | Aristella waves; title *Candle Psychology* | Welcome to Lesson Sixteen of A Girl & Her Futures. |
 | 0:03 |  | Today we're going inside the candle. |
-| 0:08 | Buyers and Sellers on either side | Every candle is a battle between buyers and sellers. |
+| 0:08 | A buyer and a seller beside a giant candle | Every candle is a battle between buyers and sellers. |
 | 0:11 |  | Buyers push price up. Sellers push it down. |
-| 0:14 | Inside a giant candle: Push! Reject! Accept! Fail! | Inside one candle, price can push, get rejected, find acceptance, or fail. |
+| 0:14 | Inside the candle: Push! Reject! Accept! Fail! | Inside one candle, price can push, get rejected, find acceptance, or fail. |
 | 0:22 | The candle shape is left behind | And the close shows who held control by the end. |
 | 0:30 | Aristella thinks | So stop asking just one question. |
 | 0:31 |  | I'm not just asking if the candle is green or red. |
