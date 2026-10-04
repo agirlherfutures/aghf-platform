@@ -240,10 +240,10 @@
           {
             "label": "Closed above support",
             "desc": "Buyers stepped in and defended the level, the wick tested support, but the close held above it.",
-            "open": 140,
-            "close": 150,
+            "open": 165,
+            "close": 120,
             "high": 100,
-            "low": 200,
+            "low": 205,
             "bull": true
           },
           {

@@ -223,6 +223,17 @@
       }
     },
     {
+      "type": "v2_screen",
+      "kicker": "Take profit",
+      "headline": "Your take profit is <em>planned in advance.</em>",
+      "line": "Not decided in the moment.",
+      "visual": {
+        "icon": "target",
+        "tone": "teal",
+        "caption": "Exit plan first. Then the entry."
+      }
+    },
+    {
       "type": "v2_dayli",
       "kicker": "Dayli says",
       "quote": "Your stop loss <em>isn’t punishment.</em>",

@@ -199,3 +199,7 @@
   .v2-toolbody{padding:6px 38px 30px;}
 }
 .v2.v2-toolwrap{padding:0!important;}
+
+.v2-takeaways{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:7px;text-align:left;max-width:34em;}
+.v2-takeaways li{position:relative;padding-left:26px;font-size:.92rem;line-height:1.45;color:rgba(255,255,255,.82);}
+.v2-takeaways li:before{content:"✓";position:absolute;left:0;top:0;color:var(--teal);font-weight:900;}
