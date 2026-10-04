@@ -8,7 +8,7 @@
 body{background:#F6EEE9;font-family:var(--fb);color:var(--text);padding:40px}
 .title{font-family:var(--fd);font-size:34px;color:var(--dark);margin-bottom:6px}
 .sub{color:var(--muted);margin-bottom:30px;font-size:16px}
-.grid{display:grid;grid-template-columns:repeat(4,360px);gap:28px}
+.grid{display:grid;grid-template-columns:repeat(3,360px);gap:28px}
 .phone{width:360px;height:720px;border-radius:40px;background:linear-gradient(180deg,#FFF7F4,#FFFDFB);border:8px solid #2C1810;overflow:hidden;position:relative;display:flex;flex-direction:column}
 .bar{display:flex;align-items:center;gap:10px;padding:18px 20px 6px}
 .dots{display:flex;gap:4px;flex:1}.dots i{flex:1;height:5px;border-radius:3px;background:var(--border)}.dots i.on{background:var(--pink)}
@@ -58,16 +58,16 @@ body{background:#F6EEE9;font-family:var(--fb);color:var(--text);padding:40px}
 .host{width:170px;height:238px;flex:none;overflow:hidden}
 .hostsm{width:110px;height:154px;position:absolute;right:6px;bottom:84px}
 .mini{position:absolute;left:22px;bottom:96px;width:200px}
-.note{margin-top:30px;max-width:1520px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;font-size:13px;color:var(--muted);line-height:1.45}
+.note{margin-top:30px;max-width:1136px;display:grid;grid-template-columns:repeat(2,1fr);gap:28px;font-size:13px;color:var(--muted);line-height:1.45}
 .note b{color:var(--dark)}
 </style></head><body>
-<div class="title">Lesson 1 redesign · mock-up</div>
-<div class="sub">One idea per screen. Fewer words, bigger type, visuals that teach. Same content and order as today's lesson.</div>
+<div class="title">Lesson 1 redesign · mock-up v2</div>
+<div class="sub">v2: screen 5 now only compares investing and trading, screen 6 is a clear “you’re wrong, now what?” chart, and screen 8 is one short typed answer.</div>
 <div class="grid">
 
 <!-- 1 hook -->
 <div class="wrap"><div class="label">1 · THE HOOK</div><div class="phone">
- <div class="bar"><div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="x">✕</span></div>
+ <div class="bar"><div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="x">✕</span></div>
  <div class="scr">
   <div class="kick">What even is trading?</div>
   <div class="big">Trading isn’t <em>predicting.</em></div>
@@ -79,7 +79,7 @@ body{background:#F6EEE9;font-family:var(--fb);color:var(--text);padding:40px}
 
 <!-- 2 long/short -->
 <div class="wrap"><div class="label">2 · LONG OR SHORT (tap each card)</div><div class="phone">
- <div class="bar"><div class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div><span class="x">✕</span></div>
+ <div class="bar"><div class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="x">✕</span></div>
  <div class="scr">
   <div class="kick">Two directions</div>
   <div class="big">Up or down. <em>You can trade both.</em></div>
@@ -94,7 +94,7 @@ body{background:#F6EEE9;font-family:var(--fb);color:var(--text);padding:40px}
 
 <!-- 3 trade ticket -->
 <div class="wrap"><div class="label">3 · BUILD THE TICKET (fills in as you tap)</div><div class="phone">
- <div class="bar"><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div><span class="x">✕</span></div>
+ <div class="bar"><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div><span class="x">✕</span></div>
  <div class="scr">
   <div class="kick">Every trade has four pieces</div>
   <div class="big">Your trade <em>ticket.</em></div>
@@ -110,7 +110,7 @@ body{background:#F6EEE9;font-family:var(--fb);color:var(--text);padding:40px}
 
 <!-- 4 what's missing -->
 <div class="wrap"><div class="label">4 · CATCH WHAT’S MISSING (tap the gaps)</div><div class="phone">
- <div class="bar"><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><span class="x">✕</span></div>
+ <div class="bar"><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div><span class="x">✕</span></div>
  <div class="scr">
   <div class="kick">Spot it</div>
   <div class="big" style="font-size:28px">“I think price is going up.”</div>
@@ -125,22 +125,40 @@ body{background:#F6EEE9;font-family:var(--fb);color:var(--text);padding:40px}
  </div></div></div>
 
 <!-- 5 trading vs investing -->
-<div class="wrap"><div class="label">5 · TRADING VS. INVESTING</div><div class="phone">
- <div class="bar"><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span class="x">✕</span></div>
+<div class="wrap"><div class="label">5 · TRADING VS. INVESTING (just the difference)</div><div class="phone">
+ <div class="bar"><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><span class="x">✕</span></div>
  <div class="scr">
   <div class="kick">Don’t mix these up</div>
-  <div class="big">Same market. <em>Different job.</em></div>
+  <div class="big">Investing ≠ <em>trading.</em></div>
   <div class="cmp">
-   <div class="card"><svg viewBox="0 0 120 60" width="100%" height="56"><polyline points="4,52 20,48 36,44 52,40 68,34 84,28 100,22 116,14" fill="none" stroke="#7F77DD" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="12" font-size="10" font-weight="800" text-anchor="middle" fill="#7A5C50">YEARS</text></svg><b>Investing</b><span>Own it for years</span></div>
-   <div class="card" style="border-color:var(--pinkL)"><svg viewBox="0 0 120 60" width="100%" height="56"><polyline points="4,40 18,26 28,34 44,14 56,30 70,20 84,44 98,28 116,10" fill="none" stroke="#F4829A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="44" cy="14" r="5" fill="#2C1810"/><circle cx="84" cy="44" r="5" fill="#2C1810"/></svg><b>Trading</b><span>Profit from the move</span></div>
+   <div class="card"><svg viewBox="0 0 120 60" width="100%" height="56"><polyline points="4,52 20,48 36,44 52,40 68,34 84,28 100,22 116,14" fill="none" stroke="#7F77DD" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="12" font-size="10" font-weight="800" text-anchor="middle" fill="#7A5C50">YEARS</text></svg><b>Investing</b><span>Buy it, own it, hold it for years</span></div>
+   <div class="card" style="border-color:var(--pinkL)"><svg viewBox="0 0 120 60" width="100%" height="56"><polyline points="4,40 18,26 28,34 44,14 56,30 70,20 84,44 98,28 116,10" fill="none" stroke="#F4829A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="58" font-size="10" font-weight="800" text-anchor="middle" fill="#7A5C50">MINUTES · HOURS</text></svg><b>Trading</b><span>Profit from the move, over a much shorter window</span></div>
   </div>
-  <div class="q">Your idea says up. Price goes down. Now what?</div>
-  <div class="chips" style="flex-direction:column"><div class="chip">Hold and hope</div><div class="chip ok">Follow your rules ✓</div></div>
+  <div class="q">You’re here to trade. So your job is…</div>
+  <div class="chips" style="flex-direction:column"><div class="chip">to know exactly what happens next</div><div class="chip ok">to read price and follow your rules ✓</div></div>
+ </div></div></div>
+
+<!-- 6 when you're wrong -->
+<div class="wrap"><div class="label">6 · WHEN YOU’RE WRONG (one clear scenario)</div><div class="phone">
+ <div class="bar"><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span class="x">✕</span></div>
+ <div class="scr">
+  <div class="kick">What happens when you’re wrong?</div>
+  <div class="big" style="font-size:28px">You bought. <em>Price fell.</em></div>
+  <div class="ticket" style="padding:12px 12px 6px">
+   <svg viewBox="0 0 300 150" width="100%">
+    <line x1="10" x2="290" y1="58" y2="58" stroke="#7F77DD" stroke-width="2" stroke-dasharray="6 5"/><text x="288" y="52" font-size="11" font-weight="800" text-anchor="end" fill="#5E56B8">YOUR ENTRY (LONG)</text>
+    <line x1="10" x2="290" y1="112" y2="112" stroke="#F4829A" stroke-width="3"/><text x="236" y="130" font-size="11" font-weight="800" text-anchor="end" fill="#C2475F">YOUR STOP · IDEA IS WRONG</text>
+    <polyline points="14,70 50,52 80,62 110,46 140,58 165,76 190,70 215,92 240,104 262,116" fill="none" stroke="#2C1810" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="110" cy="58" r="6" fill="#7F77DD"/><circle cx="262" cy="116" r="7" fill="#F4829A" stroke="#fff" stroke-width="2"/>
+   </svg>
+  </div>
+  <div class="q">Price hit the spot your plan said you’re wrong. Now what?</div>
+  <div class="chips" style="flex-direction:column"><div class="chip">Hold and hope it comes back</div><div class="chip ok">Exit, like your plan says ✓</div></div>
  </div></div></div>
 
 <!-- 6 dayli says -->
-<div class="wrap"><div class="label">6 · DAYLI SAYS (Aristella delivers it)</div><div class="phone">
- <div class="bar"><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><span class="x">✕</span></div>
+<div class="wrap"><div class="label">7 · DAYLI SAYS (Aristella delivers it)</div><div class="phone">
+ <div class="bar"><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span class="x">✕</span></div>
  <div class="scr"><div class="dayli">
   <div class="host" id="h2"></div>
   <div class="quote">You don’t need <em>certainty</em> to trade.</div>
@@ -150,24 +168,21 @@ body{background:#F6EEE9;font-family:var(--fb);color:var(--text);padding:40px}
   <div class="btn pink" style="width:100%">Got it ✦</div>
  </div></div></div></div>
 
-<!-- 7 lock it in -->
-<div class="wrap"><div class="label">7 · LOCK IT IN (one tap, one line)</div><div class="phone">
- <div class="bar"><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="x">✕</span></div>
+<!-- 8 your words -->
+<div class="wrap"><div class="label">8 · IN YOUR OWN WORDS (one short typed answer)</div><div class="phone">
+ <div class="bar"><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="x">✕</span></div>
  <div class="scr">
-  <div class="kick">Lock it in</div>
-  <div class="big" style="font-size:28px">Finish the sentence.</div>
-  <div class="line">A trade isn’t just a direction. It’s…</div>
-  <div class="chips" style="flex-direction:column">
-   <div class="chip">a really strong feeling</div>
-   <div class="chip ok">market + direction + risk + outcome ✓</div>
-   <div class="chip">whatever the last candle did</div>
-  </div>
+  <div class="kick">Tell me what you know</div>
+  <div class="big" style="font-size:28px">Why isn’t “I think it’s going up” a trade?</div>
+  <div style="margin-top:16px;border:2px solid var(--pinkL);border-radius:18px;background:#fff;padding:14px;min-height:120px;font-size:15px;line-height:1.5;color:var(--text)">It’s only a direction. There’s no market, no risk and no plan for if I’m wrong.<span style="display:inline-block;width:2px;height:16px;background:var(--pink);vertical-align:-3px;margin-left:2px"></span></div>
+  <div style="font-size:12px;color:var(--muted);margin-top:6px;font-weight:600">One or two sentences is perfect. Saved to your Lesson Notes.</div>
+  <div class="fb" style="background:var(--purpleP);color:#5E56B8">💡 Dayli’s answer: it only covers direction. A real trade needs all four pieces: market, direction, risk and outcome.</div>
   <div class="spacer"></div>
   <div class="btn pink">Complete lesson · +50 GP</div>
  </div></div></div>
 
 <!-- 8 complete -->
-<div class="wrap"><div class="label">8 · COMPLETE</div><div class="phone" style="background:linear-gradient(180deg,#2C1810,#4a2a20)">
+<div class="wrap"><div class="label">9 · COMPLETE</div><div class="phone" style="background:linear-gradient(180deg,#2C1810,#4a2a20)">
  <div class="scr" style="align-items:center;justify-content:center;text-align:center;color:#fff">
   <div class="host" id="h3"></div>
   <div class="big" style="color:#fff;margin-top:6px">Lesson 1 ✦</div>
