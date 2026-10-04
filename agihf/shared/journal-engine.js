@@ -79,6 +79,10 @@ export function computeTradeTotals(entry) {
     return { ...ex, points, dollars };
   });
 
+  // Points captured per contract (a contract-weighted average across
+  // partial exits). weightedPoints is points × contracts, so it isn't the
+  // move itself: 91 points on 5 contracts is 455 contract-points.
+  const avgPoints = totalContracts ? weightedPoints / totalContracts : null;
   const exceedsPosition = entry.contracts != null && totalContracts > entry.contracts;
   const netPnl = grossPnl - (Number(entry.fees) || 0);
 
@@ -96,7 +100,7 @@ export function computeTradeTotals(entry) {
   const rMultiple = plannedRisk ? netPnl / plannedRisk : null;
 
   return {
-    computedExits, totalContracts, exceedsPosition, weightedPoints, grossPnl, netPnl, pointValue,
+    computedExits, totalContracts, exceedsPosition, weightedPoints, avgPoints, grossPnl, netPnl, pointValue,
     plannedRisk, plannedReward, riskRewardRatio, rMultiple,
   };
 }
@@ -745,7 +749,7 @@ export function renderTradeCaseFile(container, entry, { onEdit, apiFetch }) {
         ${caseFieldRow('Exit', lastExit?.exitPrice)}
         ${caseFieldRow('Stop Loss (pts)', entry.stopLossPoints)}
         ${caseFieldRow('Take Profit (pts)', entry.takeProfitPoints)}
-        ${caseFieldRow('Points', totals.weightedPoints ? fmt(totals.weightedPoints) : null)}
+        ${caseFieldRow('Points', totals.avgPoints ? fmt(totals.avgPoints) : null)}
         ${caseFieldRow('P&L', entry.netPnl != null ? fmtMoney(entry.netPnl) : null)}
         ${caseFieldRow('Risk-to-Reward', totals.riskRewardRatio != null ? '1 : ' + totals.riskRewardRatio.toFixed(2) : null)}
         ${caseFieldRow('Target Hit?', entry.targetHit)}
@@ -798,7 +802,7 @@ export function entryToSummaryCardProps(entry) {
     direction: entry.direction,
     tradeDate: entry.tradeDate,
     netPnl: entry.netPnl ?? totals.netPnl,
-    weightedPoints: totals.weightedPoints,
+    points: totals.avgPoints,
     executionGrade: entry.executionGrade,
     entryTags: entry.entryTags || [],
     entryReasoningShort: (entry.entryReasoning || '').slice(0, 140),
@@ -830,7 +834,7 @@ export function renderTradeSummaryCard(props, opts = {}) {
         <div class="tsc-ticker">${props.instrument || '—'} • ${props.direction ? props.direction.toUpperCase() : '—'}</div>
         <div class="tsc-date">${props.tradeDate || ''}</div>
         <div class="tsc-pnl ${pnlClass}">${props.netPnl != null ? fmtMoney(props.netPnl) : '—'}</div>
-        ${props.weightedPoints ? `<div class="tsc-points">${fmt(props.weightedPoints)} pts</div>` : ''}
+        ${props.points ? `<div class="tsc-points">${fmt(props.points)} pts</div>` : ''}
         ${props.executionGrade ? `<div class="tsc-grade">${props.executionGrade} Execution</div>` : ''}
         ${setupFlow ? `<div class="tsc-setup-flow">${setupFlow}</div>` : ''}
         ${isCelebration && props.entryReasoningShort ? `<div class="tsc-section"><strong>Why I Entered</strong><p>${props.entryReasoningShort}</p></div>` : ''}
