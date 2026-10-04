@@ -64,6 +64,25 @@
     return { frame, history, level, X, Y, x0, x1 };
   }
 
+
+  // A candle that forms live from a price path. path(u) gives price for u in [0,1];
+  // y(price) maps price to screen. Returns the SVG and the live OHLC.
+  function formCandle(t, o) {
+    const k = clamp((t - o.t0) / (o.t1 - o.t0));
+    if (t < o.t0) return { svg: '', k: 0 };
+    const steps = Math.max(1, Math.round(k * 120));
+    let hi = -Infinity, lo = Infinity;
+    for (let i = 0; i <= steps; i++) { const v = o.path(i / 120); hi = Math.max(hi, v); lo = Math.min(lo, v); }
+    const op = o.path(0), cl = o.path(k), up = cl >= op;
+    const col = up ? C.teal : C.pink, w = o.w || 120, x = o.x, Y = o.y;
+    const top = Y(Math.max(op, cl)), bot = Y(Math.min(op, cl));
+    let svg = `<line x1="${x}" x2="${x}" y1="${Y(hi)}" y2="${Y(lo)}" stroke="${col}" stroke-width="${o.wick || 8}" stroke-linecap="round"/>
+      <rect x="${x - w / 2}" y="${top}" width="${w}" height="${Math.max(5, bot - top)}" rx="${w * 0.12}" fill="${col}"/>`;
+    if (k < 1 && o.live !== false) svg += `<line x1="${x - w}" x2="${x + w}" y1="${Y(cl)}" y2="${Y(cl)}" stroke="${C.dark}" stroke-width="2" stroke-dasharray="6 6" opacity=".5"/>
+      <circle cx="${x + w / 2 + 26}" cy="${Y(cl)}" r="12" fill="${C.dark}"/>`;
+    return { svg, k, op, cl, hi, lo, up };
+  }
+
   const BUILD = {
     'host-title': s => `
       <div class="abs" style="left:760px;right:120px;top:300px">
@@ -183,6 +202,15 @@
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'clock24': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'candle-forms': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'two-stories': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'color-rule': s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
@@ -1468,6 +1496,71 @@
       out += `<line x1="${cx}" y1="${cy}" x2="${hx}" y2="${hy}" stroke="${C.dark}" stroke-width="10" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="18" fill="${C.dark}"/>
         <text x="${cx}" y="${cy + R + 110}" font-size="22" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">Approximate hours, US Eastern Time</text></g>`;
       return out;
+    },
+
+    'candle-forms': (s, t) => {
+      const Y = v => 900 - v * 4.4;
+      const path = u => 50 + Math.sin(u * 9) * 18 * (1 - u * 0.4) - Math.sin(u * 3.3) * 22 + u * 52 + Math.sin(u * 23) * 4;
+      const c = formCandle(t, { x: 960, y: Y, path, t0: s.formAt, t1: s.formAt + 5, w: 150, wick: 10 });
+      let out = `<rect x="700" y="${Y(120) - 20}" width="520" height="${Y(0) - Y(120) + 40}" rx="30" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>` + c.svg;
+      // Buyers and sellers pushing as price moves.
+      if (c.k > 0 && c.k < 1) {
+        const rising = path(Math.min(1, c.k + 0.01)) >= path(c.k);
+        out += `<text x="${rising ? 560 : 1360}" y="${Y(c.cl) + 20}" font-size="60" font-weight="900" text-anchor="middle" fill="${rising ? C.teal : C.pink}" font-family="DM Sans">${rising ? '▲' : '▼'}</text>`;
+      }
+      const bp = pop(t, s.start + 0.6, 0.6);
+      if (bp > 0) {
+        out += `<g transform="translate(470,${560}) scale(${bp})"><circle r="70" fill="${C.teal}"/><text y="20" font-size="58" font-weight="900" text-anchor="middle" fill="#fff" font-family="Playfair Display">B</text></g>
+          <text x="470" y="680" font-size="26" font-weight="700" text-anchor="middle" fill="#2F8A7F" font-family="DM Sans" opacity="${bp}">BUYERS</text>
+          <g transform="translate(1450,${560}) scale(${bp})"><circle r="70" fill="${C.pink}"/><text y="20" font-size="58" font-weight="900" text-anchor="middle" fill="#fff" font-family="Playfair Display">S</text></g>
+          <text x="1450" y="680" font-size="26" font-weight="700" text-anchor="middle" fill="#C2475F" font-family="DM Sans" opacity="${bp}">SELLERS</text>`;
+      }
+      if (c.k >= 1) {
+        const wp = back((t - s.formAt - 5) / 0.6);
+        out += `<g transform="translate(470,820) scale(${wp})"><rect x="-130" y="-38" width="260" height="76" rx="38" fill="${C.teal}"/>
+          <text y="12" font-size="32" font-weight="900" text-anchor="middle" fill="#fff" font-family="Playfair Display">Buyers won</text></g>` + A.sparkle(470, 560, s.formAt + 5, t, C.teal)
+          + `<text x="1080" y="${Y(c.op) + 10}" font-size="24" font-weight="700" fill="${C.muted}" font-family="DM Sans">open</text>
+             <text x="1080" y="${Y(c.cl) + 10}" font-size="24" font-weight="700" fill="${C.dark}" font-family="DM Sans">close</text>`;
+      }
+      return out;
+    },
+
+    'two-stories': (s, t) => {
+      const Y = v => 850 - v * 3.9;
+      const big = u => 15 + ease(u) * 95 + Math.sin(u * 14) * 3;
+      const fight = u => 60 + Math.sin(u * 7) * 40 * Math.sin(u * Math.PI) - u * 5;
+      const L = formCandle(t, { x: 640, y: Y, path: big, t0: s.bigAt, t1: s.bigAt + 3, w: 140, wick: 10 });
+      const R = formCandle(t, { x: 1280, y: Y, path: fight, t0: s.fightAt, t1: s.fightAt + 3.4, w: 140, wick: 10 });
+      let out = '';
+      [[640, s.bigAt, L, 'Decisive win', 'Price traveled far, one direction', C.teal, '#2F8A7F'], [1280, s.fightAt, R, 'A real fight', 'Long wicks, nobody settled it', C.pink, '#C2475F']].forEach(([x, at, c, h, d, col, dark]) => {
+        const p = pop(t, at - 0.3, 0.6);
+        if (p <= 0) return;
+        out += `<rect x="${x - 290}" y="380" width="580" height="580" rx="34" fill="#fff" stroke="${c.k >= 1 ? col : '#F1E7E1'}" stroke-width="${c.k >= 1 ? 4 : 2}" opacity="${clamp(p)}"/>` + c.svg;
+        if (c.k >= 1) {
+          const lp = clamp((t - at - (x === 640 ? 3 : 3.4)) / 0.5);
+          out += `<g opacity="${lp}"><text x="${x}" y="900" font-size="38" font-weight="900" text-anchor="middle" fill="${dark}" font-family="Playfair Display">${h}</text>
+            <text x="${x}" y="938" font-size="24" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">${d}</text></g>`;
+        }
+      });
+      return out;
+    },
+
+    'color-rule': (s, t) => {
+      const cx = 960, open = 680;
+      const phase = t < s.redAt ? 0 : 1;
+      const k = ease(seg(t, phase ? s.redAt : s.greenAt, (phase ? s.redAt : s.greenAt) + 1.2));
+      const close = phase ? lerp(open - 220, open + 220, k) : lerp(open, open - 220, k);
+      const up = close <= open, col = up ? C.teal : C.pink;
+      const p = pop(t, s.start + 0.4, 0.6);
+      if (p <= 0) return '';
+      return `<g opacity="${clamp(p)}">
+        <line x1="620" x2="1300" y1="${open}" y2="${open}" stroke="${C.muted}" stroke-width="4" stroke-dasharray="14 10"/>
+        <text x="600" y="${open + 10}" font-size="30" font-weight="900" text-anchor="end" fill="${C.muted}" font-family="DM Sans">OPEN</text>
+        <rect x="${cx - 80}" y="${Math.min(open, close)}" width="160" height="${Math.max(6, Math.abs(open - close))}" rx="16" fill="${col}"/>
+        <line x1="620" x2="1300" y1="${close}" y2="${close}" stroke="${C.dark}" stroke-width="4"/>
+        <text x="1320" y="${close + 10}" font-size="30" font-weight="900" fill="${C.dark}" font-family="DM Sans">CLOSE</text>
+        <text x="1500" y="${open + 14}" font-size="52" font-weight="900" text-anchor="middle" fill="${up ? '#2F8A7F' : '#C2475F'}" font-family="Playfair Display">${up ? 'Green' : 'Red'}</text>
+        <text x="1500" y="${open + 56}" font-size="24" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">${up ? 'close above open' : 'close below open'}</text></g>`;
     },
 
     'host-mission': (s, t, ctx) =>
