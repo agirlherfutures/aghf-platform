@@ -9,15 +9,15 @@
 | 0:03 |  | Today we're going inside the candle. |
 | 0:08 | Buyers and Sellers on either side | Every candle is a battle between buyers and sellers. |
 | 0:11 |  | Buyers push price up. Sellers push it down. |
-| 0:14 | A candle forms live; arrows show who is pushing | Inside one candle, price can push, get rejected, find acceptance, or fail. |
-| 0:22 | It closes green; "Buyers won" | And the close shows who held control by the end. |
+| 0:14 | Inside a giant candle: Push! Reject! Accept! Fail! | Inside one candle, price can push, get rejected, find acceptance, or fail. |
+| 0:22 | The candle shape is left behind | And the close shows who held control by the end. |
 | 0:30 | Aristella thinks | So stop asking just one question. |
 | 0:31 |  | I'm not just asking if the candle is green or red. |
 | 0:34 |  | I'm asking where it reacted, where it rejected, |
 | 0:37 | Aristella points | and where it closed. |
-| 0:44 | "Support" line draws | And when price tests a level, wait for confirmation. |
-| 0:48 | A candle wicks below support, then closes above | Watch it dip into support, and fight its way back. |
-| 0:54 | "The close confirms it" | The close is what confirms whether that level actually held, or broke. |
+| 0:44 | A support plank | And when price tests a level, wait for confirmation. |
+| 0:48 | Price drops through and bounces; an hourglass runs | Watch it dip into support, and fight its way back. |
+| 0:54 | "Closed above: held" | The close is what confirms whether that level actually held, or broke. |
 | 1:02 | "Your mission" | So here's your mission for this lesson. |
 | 1:04 | Mission question | If two candles wick to nearly the same low at support, does that mean they end the same way? |
 | 1:11 | Aristella cheers; "Let's find out →" | Let's find out. |

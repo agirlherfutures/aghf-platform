@@ -19,8 +19,8 @@ window.LESSON_VIDEO = {
       ],
     },
     {
-      type: 'timeframe-zoom', start: 8, end: 32, switchAt: 22.6, boxAt: 26.0,
-      tfs: ['1M', '15M', '1H', '4H'], from: '4H', to: '1M', boxText: 'Same move, more detail',
+      type: 'camera-zoom', start: 8, end: 32,
+      levels: [{ at: 8, label: '4H', z: 1 }, { at: 18.6, label: '1H', z: 4 }, { at: 22.6, label: '15M', z: 14 }, { at: 25.4, label: '1M', z: 48 }],
       kicker: 'What is a timeframe?',
       headlines: [
         { at: 8.4, out: 13.2, html: 'Higher timeframes <span class="mark">tell the story.</span>' },
@@ -28,29 +28,26 @@ window.LESSON_VIDEO = {
         { at: 22.6, html: 'More detail… <span class="mark">and more noise.</span>' },
       ],
       lines: [
-        { at: 8.4, text: 'Higher timeframes tell the story.', screen: 'Chart on 4H' },
+        { at: 8.4, text: 'Higher timeframes tell the story.', screen: 'A camera viewfinder on a price landscape (4H)' },
         { at: 10.6, text: 'Lower timeframes let you step inside it.' },
         { at: 13.4, text: 'Every timeframe is the same market, zoomed to a different level of detail.' },
         { at: 18.6, text: 'The higher view shows the big-picture direction, with the fewest candles.' },
-        { at: 22.6, text: 'Zoom all the way in, and you see every tiny move, and a lot more noise.', screen: 'Switches to 1M; "Same move, more detail"' },
-        { at: 28.0, text: 'Every wiggle starts to look urgent.' },
+        { at: 22.6, text: 'Zoom all the way in, and you see every tiny move, and a lot more noise.', screen: 'Camera zooms 1H → 15M → 1M; finer wiggles appear' },
+        { at: 28.0, text: 'Same market. You’re just closer.' },
       ],
     },
     {
-      type: 'participants', start: 32, end: 52,
-      kicker: 'From big picture to detail', title: 'Four zoom levels',
-      items: [
-        { at: 34.4, kind: 'tf-4H', label: '4H', desc: ['Clearest', 'direction'], color: 'purple' },
-        { at: 37.6, kind: 'tf-1H', label: '1H', desc: ['Smaller moves', 'inside it'], color: 'teal' },
-        { at: 40.8, kind: 'tf-15M', label: '15M', desc: ['Finer', 'detail'], color: 'peach' },
-        { at: 44.0, kind: 'tf-1M', label: '1M', desc: ['Most detail,', 'most noise'], color: 'pink' },
+      type: 'noise-alarm', start: 32, end: 52, alarmAt: 44.0,
+      kicker: 'The noise problem',
+      headlines: [
+        { at: 32.4, out: 43.8, html: 'The 1M: <span class="mark">the most detail.</span>' },
+        { at: 44.0, html: 'And the most <span class="mark">noise.</span>' },
       ],
       lines: [
-        { at: 32.4, text: 'Think of it as four zoom levels.', screen: 'Four timeframe cards' },
-        { at: 34.4, text: 'The four-hour shows the clearest direction.', screen: '4H card' },
-        { at: 37.6, text: 'The one-hour shows the smaller moves inside it.', screen: '1H card' },
-        { at: 40.8, text: 'The fifteen-minute gets finer.', screen: '15M card' },
-        { at: 44.0, text: 'And the one-minute? The most detail, and the most noise.', screen: '1M card' },
+        { at: 32.4, text: 'Down on the one-minute, you get the most detail of any timeframe.', screen: 'A jittery 1M chart' },
+        { at: 37.6, text: 'Every tiny move shows up.' },
+        { at: 40.0, text: 'Which sounds great, until you notice what it does to you.' },
+        { at: 44.0, text: 'Every wiggle starts to scream at you: buy, sell, now, hurry.', screen: '"Buy!" "Sell!" "Now!" bubbles pop everywhere' },
       ],
     },
     {

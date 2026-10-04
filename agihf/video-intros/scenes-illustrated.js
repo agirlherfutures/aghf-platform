@@ -219,6 +219,24 @@
     'level-candles': s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'candle-arena': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'wait-close': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'camera-zoom': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'noise-alarm': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'nesting-boxes': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'story-book': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
       <div class="abs" style="left:760px;right:110px;top:260px">
         <div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
@@ -1617,6 +1635,175 @@
         }
       });
       return out;
+    },
+
+    'candle-arena': (s, t) => {
+      // A giant candle outline is the arena; a price block gets shoved up and down inside it.
+      const T = s.beats, cx = 960, Y = v => 940 - v * 5.2;
+      const keys = [[s.start, 30], [T.push, 30], [T.push + 1.4, 78], [T.reject, 78], [T.reject + 1.2, 52], [T.accept, 52], [T.accept + 1.6, 56], [T.fail, 56], [T.fail + 0.8, 70], [T.fail + 1.8, 58], [s.end, 58]];
+      let v = 30;
+      for (let i = 0; i < keys.length - 1; i++) if (t >= keys[i][0]) v = lerp(keys[i][1], keys[i + 1][1], ease(seg(t, keys[i][0], keys[i + 1][0])));
+      let hi = 30, lo = 30;
+      for (let i = 0; i < keys.length; i++) if (t >= keys[i][0]) { hi = Math.max(hi, keys[i][1]); lo = Math.min(lo, keys[i][1]); }
+      hi = Math.max(hi, v); lo = Math.min(lo, v);
+      const op = 30, up = v >= op;
+      const ap = pop(t, s.start + 0.4, 0.7);
+      if (ap <= 0) return '';
+      let out = `<g opacity="${clamp(ap)}"><rect x="${cx - 200}" y="${Y(100)}" width="400" height="${Y(0) - Y(100)}" rx="40" fill="#fff" stroke="#EADFD8" stroke-width="4" stroke-dasharray="14 12"/>
+        <line x1="${cx}" x2="${cx}" y1="${Y(hi)}" y2="${Y(lo)}" stroke="${up ? C.teal : C.pink}" stroke-width="14" stroke-linecap="round" opacity=".5"/>
+        <rect x="${cx - 110}" y="${Y(Math.max(op, v))}" width="220" height="${Math.max(8, Math.abs(Y(op) - Y(v)))}" rx="20" fill="${up ? C.teal : C.pink}" opacity=".35"/>
+        <g transform="translate(${cx},${Y(v)})"><rect x="-120" y="-30" width="240" height="60" rx="18" fill="${C.peach}" stroke="#E08E2E" stroke-width="4"/>
+          <text y="12" font-size="30" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">PRICE</text></g></g>`;
+      // Buyer pushes from below-left, seller pushes from above-right.
+      const pushing = (t > T.push && t < T.push + 1.4) || (t > T.fail && t < T.fail + 0.8);
+      const shoving = t > T.reject && t < T.reject + 1.2;
+      out += A.person(t, { x: 600, y: 960, scale: 1.05, look: A.LOOKS.buyer, seed: 3, frontArm: pushing ? { a1: -40, a2: -40 + Math.sin(t * 16) * 8 } : { a1: 100, a2: 95 }, mood: t > T.fail + 1 ? 'sad' : undefined })
+        + A.person(t, { x: 1320, y: 960, scale: 1.05, look: A.LOOKS.seller, flip: true, seed: 5, frontArm: shoving ? { a1: -40, a2: -40 + Math.sin(t * 16) * 8 } : { a1: 100, a2: 95 } });
+      // Event labels.
+      [[T.push, 'Push', C.teal, 520], [T.reject, 'Reject', C.pink, 1400], [T.accept, 'Accept', C.purple, 1400], [T.fail, 'Fail', C.peach, 520]].forEach(([at, txt, col, x]) => {
+        const k = back((t - at) / 0.5) * (1 - clamp((t - at - 2.6) / 0.5));
+        if (k > 0) out += `<g transform="translate(${x},450) scale(${k}) rotate(${x < 960 ? -6 : 6})"><rect x="-120" y="-44" width="240" height="88" rx="44" fill="${col}"/>
+          <text y="16" font-size="46" font-weight="900" text-anchor="middle" fill="#fff" font-family="Playfair Display">${txt}!</text></g>`;
+      });
+      return out;
+    },
+
+    'wait-close': (s, t) => {
+      // A ball drops through a support plank, an hourglass runs, then the close is revealed.
+      const T = s.beats, plankY = 760, bx = 760;
+      const drop = ease(seg(t, T.drop, T.drop + 1.2)), back_ = ease(seg(t, T.drop + 1.4, T.drop + 2.6));
+      const by = lerp(420, 900, drop) - back_ * 360;
+      let out = `<rect x="320" y="400" width="1280" height="560" rx="34" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>
+        <rect x="400" y="${plankY}" width="760" height="22" rx="11" fill="${C.purple}"/>
+        <text x="410" y="${plankY - 18}" font-size="28" font-weight="900" fill="${C.purple}" font-family="DM Sans">Support</text>`;
+      // Wick trail left by the ball.
+      if (t > T.drop) out += `<line x1="${bx}" x2="${bx}" y1="${Math.min(by, 420)}" y2="${Math.max(by, lerp(420, 900, drop))}" stroke="${C.pinkL}" stroke-width="10" stroke-linecap="round" opacity=".7"/>`;
+      if (t > T.drop - 0.4) out += `<circle cx="${bx}" cy="${by}" r="36" fill="${C.peach}" stroke="#E08E2E" stroke-width="4"/><text x="${bx}" y="${by + 10}" font-size="28" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">$</text>`;
+      // Hourglass: wait for the close.
+      const hp = pop(t, T.wait, 0.6);
+      if (hp > 0) {
+        const sand = clamp((t - T.wait) / 3.4), hx = 1340, hy = 600;
+        out += `<g transform="translate(${hx},${hy}) scale(${hp}) rotate(${t > T.wait + 3.4 ? 0 : Math.sin(t * 3) * 4})">
+          <rect x="-70" y="-120" width="140" height="18" rx="8" fill="#9B6A45"/><rect x="-70" y="102" width="140" height="18" rx="8" fill="#9B6A45"/>
+          <path d="M-56,-102 L56,-102 L8,0 L56,102 L-56,102 L-8,0 Z" fill="#fff" stroke="${C.muted}" stroke-width="5"/>
+          <path d="M${-46 * (1 - sand)},${-92 + 80 * sand} L${46 * (1 - sand)},${-92 + 80 * sand} L0,-6 Z" fill="${C.peachL}"/>
+          <path d="M${-46 * sand},96 L${46 * sand},96 L0,${96 - 70 * sand} Z" fill="${C.peachL}"/>
+          <line x1="0" y1="-6" x2="0" y2="96" stroke="${C.peachL}" stroke-width="3" opacity="${sand < 1 ? 1 : 0}"/></g>
+          <text x="${hx}" y="${hy + 170}" font-size="28" font-weight="900" text-anchor="middle" fill="${C.muted}" font-family="DM Sans" opacity="${clamp(hp)}">Wait for the close…</text>`;
+      }
+      if (t > T.reveal) {
+        const k = back((t - T.reveal) / 0.6);
+        out += `<g transform="translate(1000,${plankY + 110}) scale(${k})"><rect x="-200" y="-36" width="400" height="72" rx="36" fill="${C.teal}"/>
+          <text y="12" font-size="32" font-weight="900" text-anchor="middle" fill="#fff" font-family="Playfair Display">Closed above: held</text></g>` + A.sparkle(1000, plankY + 110, T.reveal, t, C.teal);
+      }
+      return out;
+    },
+
+    'camera-zoom': (s, t) => {
+      // Price as a landscape. The camera zooms in step by step; finer wiggles appear as it does.
+      const levels = s.levels; // [{at, label, z}]
+      let z = 1, label = levels[0].label;
+      levels.forEach((L, i) => { if (t >= L.at) { const prev = i ? levels[i - 1].z : 1; z = lerp(prev, L.z, ease(seg(t, L.at, L.at + 1.4))); label = L.label; } });
+      const fx = 0.62, W = 1240, H = 480, x0 = 340, y0 = 440;
+      const price = u => 0.35 * Math.sin(u * 3.1) + 0.25 * u + (z > 2 ? 0.06 * Math.sin(u * 37) : 0) * clamp((z - 2) / 2)
+        + (z > 6 ? 0.025 * Math.sin(u * 151) : 0) * clamp((z - 6) / 6) + (z > 12 ? 0.012 * Math.sin(u * 613) : 0) * clamp((z - 12) / 10)
+        + (z > 20 ? 0.005 * Math.sin(u * 2450) + 0.002 * Math.sin(u * 9800) : 0) * clamp((z - 20) / 20);
+      const u0 = fx - 0.5 / z, u1 = fx + 0.5 / z;
+      let vmin = Infinity, vmax = -Infinity;
+      const pts = [];
+      for (let i = 0; i <= 300; i++) { const u = lerp(u0, u1, i / 300), v = price(u); pts.push([i / 300, v]); vmin = Math.min(vmin, v); vmax = Math.max(vmax, v); }
+      const pad = (vmax - vmin) * 0.15 + 1e-6;
+      const d = pts.map(([a, v], i) => `${i ? 'L' : 'M'}${(x0 + a * W).toFixed(1)},${(y0 + H - (v - vmin + pad) / (vmax - vmin + 2 * pad) * H).toFixed(1)}`).join('');
+      const p = pop(t, s.start + 0.4, 0.6);
+      if (p <= 0) return '';
+      // Viewfinder corners.
+      const vf = (x, y, dx, dy) => `<path d="M${x},${y + dy * 50} L${x},${y} L${x + dx * 50},${y}" fill="none" stroke="${C.dark}" stroke-width="8" stroke-linecap="round"/>`;
+      return `<g opacity="${clamp(p)}"><rect x="${x0 - 30}" y="${y0 - 40}" width="${W + 60}" height="${H + 80}" rx="30" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>
+        <path d="${d} L${x0 + W},${y0 + H} L${x0},${y0 + H} Z" fill="${C.tealL}" opacity=".35"/>
+        <path d="${d}" fill="none" stroke="${C.tealD}" stroke-width="5" stroke-linejoin="round"/>
+        ${vf(x0 - 10, y0 - 20, 1, 1)}${vf(x0 + W + 10, y0 - 20, -1, 1)}${vf(x0 - 10, y0 + H + 20, 1, -1)}${vf(x0 + W + 10, y0 + H + 20, -1, -1)}
+        <circle cx="${x0 + 20}" cy="${y0 + 10}" r="10" fill="${C.pink}" opacity="${0.5 + 0.5 * Math.sin(t * 5)}"/>
+        <rect x="${x0 + W - 190}" y="${y0 - 10}" width="170" height="60" rx="16" fill="${C.purple}"/>
+        <text x="${x0 + W - 105}" y="${y0 + 32}" font-size="34" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">${label}</text></g>`;
+    },
+
+    'noise-alarm': (s, t) => {
+      const p = pop(t, s.start + 0.4, 0.6);
+      if (p <= 0) return '';
+      const x0 = 300, w = 1320, y0 = 420, h = 520;
+      // Jittery 1M line that never sits still.
+      let d = '';
+      for (let i = 0; i <= 160; i++) {
+        const u = i / 160, v = 0.5 + 0.12 * Math.sin(u * 9 + t * 0.6) + 0.07 * Math.sin(u * 47 + t * 3) + 0.04 * Math.sin(u * 131 - t * 5);
+        d += `${i ? 'L' : 'M'}${(x0 + 40 + u * (w - 80)).toFixed(1)},${(y0 + 40 + v * (h - 80)).toFixed(1)}`;
+      }
+      let out = `<g opacity="${clamp(p)}"><rect x="${x0}" y="${y0}" width="${w}" height="${h}" rx="30" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>
+        <rect x="${x0 + 30}" y="${y0 + 24}" width="90" height="44" rx="12" fill="${C.pink}"/><text x="${x0 + 75}" y="${y0 + 55}" font-size="24" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">1M</text>
+        <path d="${d}" fill="none" stroke="${C.dark}" stroke-width="4" stroke-linejoin="round"/></g>`;
+      // Alarm bubbles popping all over.
+      if (t > s.alarmAt) {
+        const words = ['Buy!', 'Sell!', 'Now!', 'Breakout!', 'Reversal!', 'Hurry!', 'Buy!', 'Sell!'];
+        for (let i = 0; i < 8; i++) {
+          const life = ((t - s.alarmAt) * 1.1 + i * 0.37) % 2.2;
+          if (t - s.alarmAt < i * 0.3) continue;
+          const k = life < 0.4 ? back(life / 0.4) : life > 1.8 ? 1 - (life - 1.8) / 0.4 : 1;
+          const bx = x0 + 160 + ((i * 397) % (w - 320)), by = y0 + 110 + ((i * 211) % (h - 220));
+          out += `<g transform="translate(${bx},${by}) scale(${Math.max(0, k)}) rotate(${(i % 2 ? 1 : -1) * 6})"><rect x="-90" y="-32" width="180" height="64" rx="32" fill="${i % 2 ? C.pinkP : '#E8F8F6'}" stroke="${i % 2 ? C.pink : C.teal}" stroke-width="3"/>
+            <text y="11" font-size="28" font-weight="900" text-anchor="middle" fill="${i % 2 ? '#C2475F' : '#2F8A7F'}" font-family="DM Sans">${words[i]}</text></g>`;
+        }
+      }
+      return out;
+    },
+
+    'nesting-boxes': (s, t) => {
+      const boxes = [
+        { label: '4H', desc: 'Biggest picture', w: 1360, h: 620, col: C.purple },
+        { label: '1H', desc: 'Narrower structure', w: 1000, h: 450, col: C.tealD },
+        { label: '15M', desc: 'Finer detail', w: 660, h: 290, col: C.peach },
+        { label: '1M', desc: 'Most zoomed in', w: 340, h: 140, col: C.pink },
+      ];
+      const cx = 960, cy = 690;
+      return boxes.map((b, i) => {
+        const at = s.items[i], k = pop(t, at, 0.7);
+        if (k <= 0) return '';
+        const on = t >= at && (i === 3 || t < s.items[i + 1]);
+        return `<g transform="translate(${cx},${cy}) scale(${k})">
+          <rect x="${-b.w / 2}" y="${-b.h / 2}" width="${b.w}" height="${b.h}" rx="28" fill="${i === 0 ? '#fff' : 'none'}" stroke="${b.col}" stroke-width="${on ? 8 : 4}" ${i ? 'stroke-dasharray="16 10"' : ''}/>
+          <rect x="${-b.w / 2 + 18}" y="${-b.h / 2 + 16}" width="${b.label.length * 22 + 40}" height="46" rx="14" fill="${b.col}"/>
+          <text x="${-b.w / 2 + 38}" y="${-b.h / 2 + 49}" font-size="28" font-weight="900" fill="#fff" font-family="DM Sans">${b.label}</text>
+          <text x="${b.w / 2 - 24}" y="${-b.h / 2 + 48}" font-size="${i === 3 ? 20 : 26}" font-weight="700" text-anchor="end" fill="${b.col}" font-family="DM Sans" opacity="${on ? 1 : 0.6}">${b.desc}</text></g>`;
+      }).join('') + (t > s.items[3] + 1 ? `<path d="M${cx - 60},${cy + 30} q30,-36 60,-6 t60,-10" fill="none" stroke="${C.dark}" stroke-width="4" opacity="${clamp((t - s.items[3] - 1) / 0.5)}"/>` : '');
+    },
+
+    'story-book': (s, t) => {
+      const p = pop(t, s.start + 0.4, 0.7);
+      if (p <= 0) return '';
+      const cx = 960, cy = 700;
+      const parts = [['4H', 'The plot', C.purple], ['1H', 'The chapter', C.tealD], ['15M', 'The page', C.peach], ['1M', 'The sentence', C.pink]];
+      let idx = -1; s.items.forEach((at, i) => { if (t >= at) idx = i; });
+      const flip = idx >= 0 ? ease(seg(t, s.items[idx], s.items[idx] + 0.8)) : 0;
+      let out = `<g transform="translate(${cx},${cy}) scale(${p})">
+        <path d="M-560,-260 Q-280,-300 0,-250 Q280,-300 560,-260 L560,260 Q280,220 0,270 Q-280,220 -560,260 Z" fill="${C.peachL}"/>
+        <path d="M-530,-240 Q-270,-276 -10,-232 L-10,250 Q-270,206 -530,240 Z" fill="#fff"/>
+        <path d="M10,-232 Q270,-276 530,-240 L530,240 Q270,206 10,250 Z" fill="#fff"/>
+        <line x1="0" y1="-248" x2="0" y2="268" stroke="#E6D3C2" stroke-width="6"/>`;
+      // Left page: the list so far.
+      parts.forEach(([tf, name, col], i) => {
+        if (i > idx) return;
+        out += `<g opacity="${i === idx ? flip : 1}"><rect x="-470" y="${-170 + i * 100}" width="96" height="52" rx="14" fill="${col}"/>
+          <text x="-422" y="${-134 + i * 100}" font-size="26" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">${tf}</text>
+          <text x="-350" y="${-132 + i * 100}" font-size="38" font-weight="900" fill="${C.dark}" font-family="Playfair Display">${name}</text></g>`;
+      });
+      // Right page: a picture that gets more detailed.
+      if (idx >= 0) {
+        const n = [3, 6, 12, 26][idx];
+        let d = '';
+        for (let i = 0; i <= n; i++) { const u = i / n; d += `${i ? 'L' : 'M'}${(70 + u * 400).toFixed(1)},${(60 - u * 120 + Math.sin(u * n * 1.7) * (idx + 1) * 9).toFixed(1)}`; }
+        out += `<path d="${d}" fill="none" stroke="${parts[idx][2]}" stroke-width="6" stroke-linejoin="round" opacity="${flip}"/>`;
+      }
+      // A page turning.
+      if (flip > 0 && flip < 1) out += `<path d="M0,-240 Q${260 * (1 - 2 * flip)},-270 ${520 * (1 - 2 * flip)},-232 L${520 * (1 - 2 * flip)},240 Q${260 * (1 - 2 * flip)},210 0,256 Z" fill="#FFFBF5" stroke="#E6D3C2" stroke-width="3"/>`;
+      return out + '</g>';
     },
 
     'host-mission': (s, t, ctx) =>

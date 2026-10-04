@@ -19,7 +19,8 @@ window.LESSON_VIDEO = {
       ],
     },
     {
-      type: 'candle-forms', start: 8, end: 30, formAt: 14.4,
+      type: 'candle-arena', start: 8, end: 30,
+      beats: { push: 15.4, reject: 17.2, accept: 19.0, fail: 20.6 },
       kicker: 'Every candle is a battle',
       headlines: [
         { at: 8.4, out: 14.2, html: 'Buyers push up. <span class="mark">Sellers push down.</span>' },
@@ -29,8 +30,8 @@ window.LESSON_VIDEO = {
       lines: [
         { at: 8.4, text: 'Every candle is a battle between buyers and sellers.', screen: 'Buyers and Sellers on either side' },
         { at: 11.4, text: 'Buyers push price up. Sellers push it down.' },
-        { at: 14.4, text: 'Inside one candle, price can push, get rejected, find acceptance, or fail.', screen: 'A candle forms live; arrows show who is pushing' },
-        { at: 22.0, text: 'And the close shows who held control by the end.', screen: 'It closes green; "Buyers won"' },
+        { at: 14.4, text: 'Inside one candle, price can push, get rejected, find acceptance, or fail.', screen: 'Inside a giant candle: Push! Reject! Accept! Fail!' },
+        { at: 22.0, text: 'And the close shows who held control by the end.', screen: 'The candle shape is left behind' },
       ],
     },
     {
@@ -49,18 +50,17 @@ window.LESSON_VIDEO = {
       ],
     },
     {
-      type: 'level-candles', start: 44, end: 62, levelAt: 46.6, levelLabel: 'Support',
-      level: 35,
-      candles: [{ x: 960, at: 48.6, path: 'supportHold', dur: 5, verdict: 'The close confirms it', good: true, below: true }],
+      type: 'wait-close', start: 44, end: 62,
+      beats: { drop: 48.6, wait: 51.0, reveal: 54.4 },
       kicker: 'Wait for confirmation',
       headlines: [
         { at: 44.4, out: 53.6, html: 'Price tests a level…' },
         { at: 54.0, html: 'The close <span class="mark">confirms</span> whether it held or broke.' },
       ],
       lines: [
-        { at: 44.4, text: 'And when price tests a level, wait for confirmation.', screen: '"Support" line draws' },
-        { at: 48.6, text: 'Watch it dip into support, and fight its way back.', screen: 'A candle wicks below support, then closes above' },
-        { at: 54.0, text: 'The close is what confirms whether that level actually held, or broke.', screen: '"The close confirms it"' },
+        { at: 44.4, text: 'And when price tests a level, wait for confirmation.', screen: 'A support plank' },
+        { at: 48.6, text: 'Watch it dip into support, and fight its way back.', screen: 'Price drops through and bounces; an hourglass runs' },
+        { at: 54.0, text: 'The close is what confirms whether that level actually held, or broke.', screen: '"Closed above: held"' },
       ],
     },
     {

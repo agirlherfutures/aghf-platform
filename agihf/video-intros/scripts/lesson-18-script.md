@@ -7,16 +7,17 @@
 |---|---|---|
 | 0:00 | Aristella waves; title *Multi-Timeframe Thinking* | Welcome to Lesson Eighteen of A Girl & Her Futures. |
 | 0:03 |  | Today: how timeframes work together. |
-| 0:08 | "Biggest picture first, detail last" | Higher timeframes give you context. Lower timeframes reveal detail. |
+| 0:08 | Nested boxes, one inside the next | Higher timeframes give you context. Lower timeframes reveal detail. |
 | 0:13 |  | Here's the general order to check them in. |
-| 0:17 | 4H card | The four-hour: the biggest picture. |
-| 0:20 | 1H card | The one-hour: narrower structure. |
-| 0:23 | 15M card | The fifteen-minute: finer detail. |
-| 0:26 | 1M card | And the one-minute: the most zoomed in. |
-| 0:34 | Chart on 4H | Each one tells a different part of the same story. |
-| 0:37 |  | Bigger picture, then structure, then detail. In that order. |
-| 0:40 | Switches to 1M; "Inside the bigger picture" | When you zoom in, you see the smaller moves inside the bigger one. |
-| 0:47 |  | Zooming in changes what you can see, not what's actually happening. |
+| 0:17 | 4H box | The four-hour: the biggest picture. |
+| 0:20 | 1H box inside it | The one-hour: narrower structure. |
+| 0:23 | 15M box inside that | The fifteen-minute: finer detail. |
+| 0:26 | 1M box, innermost | And the one-minute: the most zoomed in. |
+| 0:34 | An open storybook | Think of it like a book. |
+| 0:37 | 4H: The plot | The four-hour is the plot. |
+| 0:40 | 1H: The chapter | The one-hour is the chapter. |
+| 0:43 | 15M: The page | The fifteen-minute is the page. |
+| 0:46 | 1M: The sentence | And the one-minute? A single sentence. Read it without the plot, and it's easy to get lost. |
 | 0:52 | Aristella thinks | Here's what to remember. |
 | 0:53 |  | Later in the Academy, you'll learn exactly how AGHF gives each timeframe a job. |
 | 0:57 |  | For now, just notice this: |
