@@ -51,7 +51,7 @@ window.LESSON_VIDEO = {
     {
       type: 'level-candles', start: 44, end: 62, levelAt: 46.6, levelLabel: 'Support',
       level: 35,
-      candles: [{ x: 960, at: 48.6, path: 'supportHold', dur: 5, verdict: 'The close confirms it', good: true }],
+      candles: [{ x: 960, at: 48.6, path: 'supportHold', dur: 5, verdict: 'The close confirms it', good: true, below: true }],
       kicker: 'Wait for confirmation',
       headlines: [
         { at: 44.4, out: 53.6, html: 'Price tests a level…' },

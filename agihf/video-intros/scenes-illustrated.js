@@ -1078,7 +1078,7 @@
       const wp = pop(t, s.start + 0.4, 0.7);
       if (wp <= 0) return '';
       const toSmall = ease(seg(t, s.switchAt, s.switchAt + 0.8));
-      const active = toSmall > 0.5 ? '5m' : '1H';
+      const active = toSmall > 0.5 ? (s.to || '5m') : (s.from || '1H');
       const draw = (data, op) => {
         const step = cw / data.length;
         return `<g opacity="${op}">${data.map((d, i) => {
@@ -1091,7 +1091,7 @@
         <rect x="${wx}" y="${wy}" width="${ww}" height="${wh}" rx="28" fill="#fff" stroke="#EADFD8" stroke-width="3"/>
         <rect x="${wx}" y="${wy}" width="${ww}" height="64" rx="28" fill="#F6EDE6"/><rect x="${wx}" y="${wy + 34}" width="${ww}" height="30" fill="#F6EDE6"/>
         <text x="${wx + 40}" y="${wy + 42}" font-size="24" font-weight="700" fill="${C.muted}" font-family="DM Sans">MNQ</text>
-        ${['5m', '15m', '1H'].map((l, i) => `<g transform="translate(${wx + 200 + i * 90},${wy + 32})"><rect x="-38" y="-20" width="76" height="40" rx="10" fill="${l === active ? C.purple : '#fff'}" stroke="${C.purple}" stroke-width="2"/>
+        ${(s.tfs || ['5m', '15m', '1H']).map((l, i) => `<g transform="translate(${wx + 200 + i * 90},${wy + 32})"><rect x="-38" y="-20" width="76" height="40" rx="10" fill="${l === active ? C.purple : '#fff'}" stroke="${C.purple}" stroke-width="2"/>
           <text y="8" font-size="20" font-weight="700" text-anchor="middle" fill="${l === active ? '#fff' : C.purple}" font-family="DM Sans">${l}</text></g>`).join('')}
         <g transform="translate(${wx + ww - 200},${wy + 32})"><rect x="-150" y="-20" width="300" height="40" rx="20" fill="${C.tealL}"/>
           <text y="8" font-size="20" font-weight="700" text-anchor="middle" fill="#2F8A7F" font-family="DM Sans">Same market underneath</text></g>
@@ -1102,7 +1102,7 @@
         const bx0 = cx0 + step * g * 6, bx1 = bx0 + step * 6;
         out += `<g opacity="${clamp(k)}"><rect x="${bx0 - 6}" y="${Y(hi) - 16}" width="${bx1 - bx0 + 12}" height="${Y(lo) - Y(hi) + 32}" rx="14" fill="none" stroke="${C.peach}" stroke-width="5" stroke-dasharray="12 8"/>
           <rect x="${(bx0 + bx1) / 2 - 130}" y="${Y(hi) - 70}" width="260" height="44" rx="22" fill="${C.peachL}"/>
-          <text x="${(bx0 + bx1) / 2}" y="${Y(hi) - 40}" font-size="22" font-weight="700" text-anchor="middle" fill="${C.dark}" font-family="DM Sans">6 × 5m = 1 hour candle</text></g>`;
+          <text x="${(bx0 + bx1) / 2}" y="${Y(hi) - 40}" font-size="22" font-weight="700" text-anchor="middle" fill="${C.dark}" font-family="DM Sans">${esc(s.boxText || '6 × 5m = 1 hour candle')}</text></g>`;
       }
       return out + '</g>';
     },

@@ -348,6 +348,21 @@
         </g>
       </g>`;
     }
+    if (kind.startsWith('tf-')) {
+      // Timeframe card: bigger timeframes show fewer, bigger candles.
+      const lab = kind.slice(3), n = { '4H': 3, '1H': 5, '15M': 8, '1M': 14 }[lab] || 6;
+      const w = 120 / n, bob = Math.sin(t * 2) * 3;
+      let cs = '';
+      for (let i = 0; i < n; i++) {
+        const up = (i * 7 + n) % 3 !== 0, h = (n < 6 ? 40 : n < 10 ? 26 : 16) * (0.6 + 0.4 * Math.abs(Math.sin(i * 1.9 + n)));
+        const y = 20 - i * (40 / n) + Math.sin(i * 2.1 + n) * (n > 8 ? 12 : 4);
+        cs += `<rect x="${-60 + i * w + w * 0.18}" y="${y - h / 2}" width="${w * 0.64}" height="${h}" rx="2" fill="${up ? COL.teal : COL.pink}"/>`;
+      }
+      return `<g><circle r="90" fill="${COL.purpleL}" opacity=".45"/>
+        <g transform="translate(0,${bob})">${cs}</g>
+        <rect x="-40" y="-82" width="80" height="34" rx="17" fill="${COL.purple}"/>
+        <text y="-58" font-size="20" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">${lab}</text></g>`;
+    }
     if (kind === 'body' || kind === 'wicks' || kind === 'close') {
       const hl = kind, pulse = 0.5 + 0.5 * Math.sin(t * 4);
       const dim = part => (hl === part ? 1 : 0.3);
