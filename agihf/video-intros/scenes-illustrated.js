@@ -216,6 +216,9 @@
     'anatomy': s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'level-candles': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
       <div class="abs" style="left:760px;right:110px;top:260px">
         <div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
@@ -1585,6 +1588,34 @@
           + tag(L.range, 960, Y(c.hi), 'High', C.purple, 1) + tag(L.range, 960, Y(c.lo), 'Low', C.purple, 1)
           + tag(L.body, 960 + 85, (Y(c.op) + Y(c.cl)) / 2, 'Body', C.tealD, 1) + tag(L.wick, 960, (Y(c.hi) + Y(c.cl)) / 2, 'Wick', C.peach, -1);
       }
+      return out;
+    },
+
+    'level-candles': (s, t) => {
+      // Candle paths relative to a level at 60 (open, extreme, close).
+      const P = {
+        pokeReject: u => 40 + Math.sin(Math.min(u, 0.7) / 0.7 * Math.PI / 2) * 36 - (u > 0.7 ? (u - 0.7) / 0.3 * 42 : 0),
+        breakHold: u => 42 + ease(u) * 30 + Math.sin(u * 12) * 3,
+        supportHold: u => 70 - Math.sin(Math.min(u, 0.6) / 0.6 * Math.PI / 2) * 46 + (u > 0.6 ? (u - 0.6) / 0.4 * 66 : 0),
+        supportBreak: u => 70 - Math.sin(Math.min(u, 0.6) / 0.6 * Math.PI / 2) * 46 + (u > 0.6 ? (u - 0.6) / 0.4 * 6 : 0),
+      };
+      const Y = v => 960 - v * 5.2;
+      const lv = s.level ?? 60;
+      const lp = clamp((t - s.levelAt) / 0.8);
+      let out = `<rect x="300" y="${Y(100)}" width="1320" height="${Y(0) - Y(100)}" rx="34" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>`;
+      if (lp > 0) out += `<line x1="340" x2="${340 + 1240 * ease(lp)}" y1="${Y(lv)}" y2="${Y(lv)}" stroke="${C.purple}" stroke-width="6" stroke-dasharray="18 10"/>
+        <text x="350" y="${Y(lv) - 16}" font-size="28" font-weight="900" fill="${C.purple}" font-family="DM Sans" opacity="${lp}">${esc(s.levelLabel)}</text>`;
+      s.candles.forEach(cd => {
+        const c = formCandle(t, { x: cd.x, y: Y, path: P[cd.path], t0: cd.at, t1: cd.at + (cd.dur || 4), w: 130, wick: 10 });
+        out += c.svg;
+        if (c.k >= 1 && cd.verdict) {
+          const vp = back((t - cd.at - (cd.dur || 4) - 0.2) / 0.5);
+          const col = cd.good ? C.teal : C.pink, dark = cd.good ? '#2F8A7F' : '#C2475F';
+          const vy = cd.below ? Y(8) : Y(94);
+          out += `<g transform="translate(${cd.x},${vy}) scale(${Math.max(0, vp)})"><rect x="-160" y="-30" width="320" height="60" rx="30" fill="${cd.good ? '#E8F8F6' : C.pinkP}" stroke="${col}" stroke-width="3"/>
+            <text y="10" font-size="26" font-weight="900" text-anchor="middle" fill="${dark}" font-family="DM Sans">${esc(cd.verdict)}</text></g>`;
+        }
+      });
       return out;
     },
 
