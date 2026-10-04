@@ -71,6 +71,16 @@
     checklist: s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
         ${s.parts.map(p => `<div class="h2" data-in="${p.at}" style="font-size:56px;margin-top:10px">${p.html || esc(p.text)}</div>`).join('')}</div>`,
+    'push-candle': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.4}">${esc(s.kicker)}</div>
+        <div class="h2" data-in="${s.lineA}" style="font-size:58px">Price isn’t moving because your <span style="color:#2F8A7F">candle turned green.</span></div>
+        <div class="h2" data-in="${s.rewindAt}" style="font-size:58px;margin-top:12px">The candle turned green because <span class="mark">price moved.</span></div></div>`,
+    stairs: s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:58px">${h.html}</div></div>`).join('')}`,
+    pullback: s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
       <div class="abs" style="left:760px;right:110px;top:260px">
         <div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
@@ -390,6 +400,127 @@
               <text x="-104" y="${y + 16}" font-size="48" font-weight="700" fill="${k > 0 ? C.dark : C.muted}" font-family="Playfair Display">${esc(it.label)}</text>`;
           }).join('')}
         </g>`;
+      }
+      return out;
+    },
+
+    'push-candle': (s, t) => {
+      let out = '';
+      const R = s.rewindAt;
+      // The candle: shown first as if it "made" the move, then rewound and rebuilt by the push.
+      const shrink = ease(seg(t, R, R + 0.6));
+      const k = ease(seg(t, R + 0.9, R + 4.2));
+      const h = t < R + 0.6 ? 1 - shrink : k;
+      const ap = pop(t, s.start + 0.8, 0.8);
+      const cx = 1480, bot = 940, top = bot - 286 * h;
+      if (ap > 0) {
+        out += `<g transform="translate(${cx},700) scale(${ap}) translate(${-cx},-700)">
+          <line x1="${cx}" x2="${cx}" y1="${top - 40 * h}" y2="${bot + 30}" stroke="${C.teal}" stroke-width="10" stroke-linecap="round"/>
+          <rect x="${cx - 70}" y="${top}" width="140" height="${Math.max(6, bot - top)}" rx="14" fill="${C.teal}"/>
+          ${t < R ? `<text x="${cx + 120}" y="${560 + Math.sin(t * 3) * 8}" font-size="90" font-weight="900" fill="${C.purple}" opacity=".6" font-family="Playfair Display">?</text>` : ''}
+        </g>`;
+      }
+      // Slope, ball and the buyer pushing it.
+      const so = clamp((t - (R + 0.3)) / 0.5);
+      if (so > 0) {
+        const x0 = 220, y0 = 980, x1 = 1060, y1 = 700;
+        const bx = lerp(x0 + 160, x1 - 40, k), by = lerp(y0, y1, (bx - x0) / (x1 - x0));
+        out += `<g opacity="${so}">
+          <path d="M${x0},${y0} L${x1},${y1} L${x1},1080 L${x0},1080 Z" fill="#F6EDE6"/>
+          <line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}" stroke="#EADFD8" stroke-width="6"/>
+          <line x1="${bx}" x2="${cx - 80}" y1="${by - 46}" y2="${by - 46}" stroke="${C.teal}" stroke-width="3" stroke-dasharray="10 10" opacity="${k > 0 ? 0.8 : 0}"/>
+          <g transform="translate(${bx},${by - 46}) rotate(${k * 540})">
+            <circle r="46" fill="${C.peach}"/><circle r="46" fill="none" stroke="#E08E2E" stroke-width="4"/>
+            <text y="14" font-size="40" font-weight="900" text-anchor="middle" fill="#fff" font-family="Playfair Display">$</text></g>
+          ${A.person(t, { x: bx - 120, y: lerp(y0, y1, (bx - 120 - x0) / (x1 - x0)), scale: 0.9, look: A.LOOKS.buyer, walking: k > 0 && k < 1, frontArm: { a1: -5, a2: -10 }, backArm: { a1: 10, a2: 0 }, seed: 3 })}
+        </g>`;
+      }
+      return out;
+    },
+
+    stairs: (s, t) => {
+      const x0 = 340, W = 220, H = 56, base = 960, n = 5;
+      let steps = `M${x0},1080 `;
+      for (let i = 0; i < n; i++) steps += `L${x0 + i * W},${base - i * H} L${x0 + (i + 1) * W},${base - i * H} `;
+      steps += `L${x0 + n * W},1080 Z`;
+      let out = `<path d="${steps}" fill="#F6EDE6" stroke="#EADFD8" stroke-width="5" stroke-linejoin="round"/>`;
+      for (let i = 0; i < n; i++) out += `<text x="${x0 + i * W + W / 2}" y="${base - i * H + 50}" font-size="24" font-weight="700" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">$18,${String(i * 10).padStart(3, '0')}</text>`;
+      const B = s.buyer, S = s.seller;
+      const kb = ease(seg(t, B.at + 0.5, B.end)), ks = ease(seg(t, S.at + 0.4, S.end));
+      const selling = t >= S.at;
+      const f = selling ? (n - 1) * (1 - ks) : (n - 1) * kb;
+      const fl = Math.floor(f + 1e-6), fr = f - fl;
+      // Stay on the current step, then hop up (buying) or down (selling) near the edge.
+      const level = fl + (selling ? clamp(fr / 0.45) : clamp((fr - 0.55) / 0.45));
+      const px = x0 + W / 2 + f * W, py = base - level * H;
+      const price = 18000 + Math.round(level) * 10;
+      const moving = selling ? ks > 0 && ks < 1 : kb > 0 && kb < 1;
+      const vis = selling ? clamp((t - S.at) / 0.4) : clamp((t - (B.at - 0.2)) / 0.4) * (1 - clamp((t - (S.at - 0.4)) / 0.3));
+      const col = selling ? C.pink : C.teal, dark = selling ? '#C2475F' : '#2F8A7F';
+      const sign = `<g><line x1="0" y1="0" x2="0" y2="-90" stroke="${C.muted}" stroke-width="7" stroke-linecap="round"/>
+        <rect x="-90" y="-150" width="180" height="66" rx="14" fill="#fff" stroke="${col}" stroke-width="5"/>
+        <text x="0" y="-105" font-size="32" font-weight="900" text-anchor="middle" fill="${dark}" font-family="Playfair Display">$${price.toLocaleString('en-US')}</text></g>`;
+      if (vis > 0) {
+        out += `<g opacity="${vis}">` + A.person(t, { x: px, y: py, scale: 0.8, look: selling ? A.LOOKS.seller : A.LOOKS.buyer, flip: selling, walking: moving,
+          frontArm: { a1: -40, a2: -80 }, hold: sign, seed: selling ? 5 : 3 }) + '</g>';
+        // Trail of arrows showing the push.
+        for (let i = 0; i < 3; i++) {
+          const p = ((t * 1.2) + i / 3) % 1;
+          if (moving) out += `<text x="${px + (selling ? 90 : -90)}" y="${py - 100 - (selling ? -p * 60 : p * 60)}" font-size="40" font-weight="900" text-anchor="middle" fill="${col}" opacity="${Math.sin(p * Math.PI) * 0.8}" font-family="DM Sans">${selling ? '▼' : '▲'}</text>`;
+        }
+      }
+      // Price ticker.
+      if (t > B.at - 0.2) {
+        const tc = selling ? '#C2475F' : (kb > 0 ? '#2F8A7F' : C.dark);
+        out += `<g transform="translate(1680,560)">
+          <rect x="-170" y="-80" width="340" height="160" rx="30" fill="#fff" stroke="${moving ? col : '#F1E7E1'}" stroke-width="4"/>
+          <text x="0" y="-30" font-size="22" font-weight="700" text-anchor="middle" fill="${C.muted}" font-family="DM Sans" letter-spacing="3">PRICE</text>
+          <text x="0" y="40" font-size="62" font-weight="900" text-anchor="middle" fill="${tc}" font-family="Playfair Display">${price.toLocaleString('en-US')} ${selling ? '▼' : (kb > 0 ? '▲' : '')}</text></g>`;
+      }
+      return out;
+    },
+
+    pullback: (s, t) => {
+      const closes = [100, 104, 103, 108, 112, 110, 115, 119, 115, 118, 122, 121, 126, 123, 119, 114, 108, 103];
+      const T = s.beats;
+      const at = closes.map((_, i) => i < 8 ? s.start + 0.6 + i * ((T.red - 0.5 - s.start - 0.6) / 8)
+        : i === 8 ? T.red : i <= 12 ? T.resume + (i - 9) * 0.6 : T.brk + (i - 13) * 0.6);
+      const x0 = 260, y0 = 380, w = 1400, h = 520;
+      const mn = 96, mx = 130, Y = v => y0 + h - (v - mn) / (mx - mn) * h;
+      const step = w / closes.length, cw = step * 0.56;
+      const spot = t > T.red + 0.6 && t < T.resume;
+      let out = `<rect x="${x0 - 40}" y="${y0 - 30}" width="${w + 80}" height="${h + 60}" rx="36" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>`;
+      closes.forEach((c, i) => {
+        const p = ease((t - at[i]) / 0.45);
+        if (p <= 0) return;
+        const o = i ? closes[i - 1] : 98, up = c >= o, col = up ? C.teal : C.pink;
+        const cc = lerp(o, c, p), cx = x0 + step * i + step / 2;
+        const tp = Y(Math.max(o, cc)), bt = Y(Math.min(o, cc));
+        const dim = spot && i !== 8 ? 0.22 : 1;
+        out += `<g opacity="${dim}"><line x1="${cx}" x2="${cx}" y1="${Y(Math.max(o, c) + 1.4 * p)}" y2="${Y(Math.min(o, c) - 1.4 * p)}" stroke="${col}" stroke-width="4" stroke-linecap="round"/>
+          <rect x="${cx - cw / 2}" y="${tp}" width="${cw}" height="${Math.max(3, bt - tp)}" rx="4" fill="${col}"/></g>`;
+      });
+      const c8x = x0 + step * 8 + step / 2, c8y = Y(117);
+      if (spot) {
+        const r = 90 + Math.sin(t * 4) * 4;
+        out += `<circle cx="${c8x}" cy="${c8y}" r="${r}" fill="none" stroke="${C.purple}" stroke-width="10"/>
+          <line x1="${c8x + r * 0.7}" y1="${c8y + r * 0.7}" x2="${c8x + r * 0.7 + 80}" y2="${c8y + r * 0.7 + 80}" stroke="${C.purple}" stroke-width="18" stroke-linecap="round"/>`;
+        if (t > T.ask) out += A.bubble(c8x - 60, c8y - 170, 'Sellers in control?', { op: clamp((t - T.ask) / 0.4), size: 32, weight: 700, color: '#C2475F', fill: C.pinkP, stroke: C.pinkL, tail: 'left' });
+      }
+      if (t > T.resume + 2.4) {
+        const p = back((t - T.resume - 2.4) / 0.5);
+        out += `<g transform="translate(${c8x},${Y(108.5)}) scale(${p})">
+          <rect x="-150" y="-30" width="300" height="60" rx="30" fill="#E8F8F6" stroke="${C.tealL}" stroke-width="3"/>
+          <text y="11" font-size="28" font-weight="700" text-anchor="middle" fill="#2F8A7F" font-family="DM Sans">✓ Just a pullback</text></g>`;
+      }
+      const brk = at[15] + 0.4;
+      if (t > brk) {
+        const lp = ease((t - brk) / 0.6), ly = Y(115);
+        out += `<line x1="${c8x - 40}" x2="${c8x - 40 + (x0 + w - c8x + 40) * lp}" y1="${ly}" y2="${ly}" stroke="${C.pink}" stroke-width="5" stroke-dasharray="14 10"/>`;
+        const p = back((t - brk - 0.4) / 0.5);
+        if (p > 0) out += `<g transform="translate(${x0 + step * 15.5},${Y(130) + 40}) scale(${p})">
+          <rect x="-130" y="-30" width="260" height="60" rx="30" fill="${C.pinkP}" stroke="${C.pinkL}" stroke-width="3"/>
+          <text y="11" font-size="28" font-weight="700" text-anchor="middle" fill="#C2475F" font-family="DM Sans">⚡ Real shift</text></g>` + A.sparkle(x0 + step * 15.5, Y(130) + 40, brk + 0.4, t, C.pink);
       }
       return out;
     },
