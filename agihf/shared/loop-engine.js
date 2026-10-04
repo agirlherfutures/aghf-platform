@@ -22,6 +22,7 @@ import {
   burst, showStreak, showToast, drawFrame, drawCandle, wireRetryOptions,
   renderBreakdown, renderDayliSays, renderConfusion, renderCatchMistake,
 } from './lesson-engine.js';
+import { saveLessonReflection } from './journal-service.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 let uidCounter = 0;
@@ -148,13 +149,13 @@ function appendLoopContinue(el, satisfy, label = 'Continue →') {
 
 /* ── Watch (Launchpad + video + stubbed markers + Focus Mode) ──────── */
 
-function renderLoopWatch(slide, data, satisfy) {
+export function renderLoopWatch(slide, data, satisfy) {
   const lp = data.launchpad || {};
   const markers = (data.watch && data.watch.markers) || [];
   const preview = data.watch && data.watch.preview;
   slide.innerHTML = `
     <div class="dl-launchpad">
-      <div class="lw-eyebrow">✦ Lesson Launchpad</div>
+      <div class="lw-eyebrow">Lesson Launchpad</div>
       <h2>${data.title}</h2>
       ${lp.outcome ? `<p class="dl-outcome"><strong>By the end, you'll be able to:</strong> ${lp.outcome}</p>` : ''}
       <div class="dl-launchpad-meta">
@@ -169,7 +170,7 @@ function renderLoopWatch(slide, data, satisfy) {
         ${preview ? `
           <canvas class="dl-watch-preview-canvas" id="dlWatchPreview" width="780" height="320"></canvas>
           <div class="dl-watch-preview-caption" id="dlWatchPreviewCaption"></div>
-          <div class="lw-video-soon">Preview — full video coming soon</div>
+          <div class="lw-video-soon">Preview, full video coming soon</div>
         ` : `
           <div class="lw-video-bg"></div>
           <div class="lw-video-play">▶</div>
@@ -182,7 +183,7 @@ function renderLoopWatch(slide, data, satisfy) {
         ${markers.map((m) => `<button type="button" class="dl-marker"><span class="dl-marker-t">${m.t}</span><span class="dl-marker-label">${m.label}</span></button>`).join('')}
       </div>` : ''}
     </div>
-    <button type="button" class="lw-continue-btn lw-watched-btn" id="lwWatchedBtn">✓ Watched — Continue</button>
+    <button type="button" class="lw-continue-btn lw-watched-btn" id="lwWatchedBtn">✓ Watched, Continue</button>
   `;
   document.getElementById('lwWatchedBtn').addEventListener('click', satisfy);
   document.getElementById('dlFocusToggle').addEventListener('click', () => {
@@ -236,7 +237,7 @@ function renderLearnIt(slide, learnIt, satisfy, helpers) {
   const blocks = learnIt.blocks || [];
   if (!blocks.length) { satisfy(); return; }
 
-  slide.innerHTML = `<div class="lw-eyebrow">📖 Learn It</div>`;
+  slide.innerHTML = `<div class="lw-eyebrow">Learn It</div>`;
   const container = document.createElement('div');
   container.className = 'lw-body-stream';
   slide.appendChild(container);
@@ -332,7 +333,7 @@ const GUIDED_DRAWERS = {
     }
     ctx.fillStyle = '#2C1810';
     ctx.font = 'bold 13px DM Sans';
-    ctx.fillText(`${part} — ${n} candles shown`, 20, 24);
+    ctx.fillText(`${part}: ${n} candles shown`, 20, 24);
     if (onDone) onDone();
   },
 
@@ -604,7 +605,7 @@ const GUIDED_DRAWERS = {
   stocks_vs_futures(ctx, w, h, stage, config, onDone) {
     const cfg = config || {};
     const stockPoints = cfg.stockPoints || ['Shares / equity', 'No expiration', 'Regular + extended hours'];
-    const futuresPoints = cfg.futuresPoints || ['Standardized contracts', 'Contracts expire — rollover', 'Nearly 24hr weekday trading'];
+    const futuresPoints = cfg.futuresPoints || ['Standardized contracts', 'Contracts expire, rollover', 'Nearly 24hr weekday trading'];
     const layer = (stage && stage.layer) || 'stocks';
     const duration = 600;
     const start = performance.now();
@@ -649,7 +650,7 @@ function renderGuidedReveal(slide, seeIt, satisfy, helpers) {
   const uid = `si${uidCounter++}`;
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">👁️ See It</div>
+      <div class="lw-eyebrow">See It</div>
       <h2>${seeIt.heading || 'Watch it happen'}</h2>
       ${seeIt.prompt ? `<p>${seeIt.prompt}</p>` : ''}
       <div class="lw-chartbox">
@@ -715,7 +716,7 @@ function renderCardsSeeIt(slide, seeIt, satisfy, helpers) {
 
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">👁️ See It</div>
+      <div class="lw-eyebrow">See It</div>
       <h2>${seeIt.heading || 'Watch it happen'}</h2>
       ${seeIt.prompt ? `<p>${seeIt.prompt}</p>` : ''}
       <div id="dlCardStack"></div>
@@ -782,7 +783,7 @@ function renderClickChart(slide, tryIt, satisfy, helpers) {
 
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🎯 Try It</div>
+      <div class="lw-eyebrow">Try It</div>
       <h2>${tryIt.heading || 'Tap it on the chart'}</h2>
       <p id="dlTryPrompt"></p>
       ${rounds.length > 1 ? '<div class="dl-reveal-dots" id="dlTryDots"></div>' : ''}
@@ -846,7 +847,7 @@ function renderClickChart(slide, tryIt, satisfy, helpers) {
       navEl.appendChild(btn);
     } else {
       if (el) el.classList.add('wrong');
-      fb.textContent = point.feedback || 'Not quite — look again.';
+      fb.textContent = point.feedback || 'Not quite, look again.';
       fb.className = 'lw-feedback show bad';
       helpers.handleStreak(false);
     }
@@ -875,7 +876,7 @@ function renderDecisionPath(slide, tryIt, satisfy, helpers) {
 
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🧭 Try It</div>
+      <div class="lw-eyebrow">Try It</div>
       <h2>${tryIt.heading || 'What would you do?'}</h2>
       ${tryIt.prompt ? `<p class="lw-scenario">${tryIt.prompt}</p>` : ''}
       <div id="dlDecisionBody"></div>
@@ -947,7 +948,7 @@ function renderChoiceRounds(slide, tryIt, satisfy, helpers) {
 
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🎯 Try It</div>
+      <div class="lw-eyebrow">Try It</div>
       <h2>${tryIt.heading || 'What would you say?'}</h2>
       ${rounds.length > 1 ? '<div class="dl-reveal-dots" id="dlCrDots"></div>' : ''}
       <div id="dlCrBody"></div>
@@ -998,7 +999,7 @@ function renderChoiceRounds(slide, tryIt, satisfy, helpers) {
 function renderSayItBack(slide, sayItBack, lessonId, satisfy) {
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">💬 Say It Back</div>
+      <div class="lw-eyebrow">Say It Back</div>
       <h2>In your own words</h2>
       <p>${sayItBack.prompt || ''}</p>
       <textarea class="lw-reflect-textarea" id="dlSayInput" rows="4" placeholder="Type it how YOU understand it..."></textarea>
@@ -1024,12 +1025,14 @@ function renderSayItBack(slide, sayItBack, lessonId, satisfy) {
   });
 
   function save(selfMark) {
+    const text = input.value.trim();
     try {
       const key = 'aghf_notes';
       const notes = JSON.parse(localStorage.getItem(key) || '[]');
-      notes.push({ lessonId, prompt: sayItBack.prompt, text: input.value.trim(), selfMark, savedAt: Date.now() });
+      notes.push({ lessonId, prompt: sayItBack.prompt, text, selfMark, savedAt: Date.now() });
       localStorage.setItem(key, JSON.stringify(notes));
     } catch (err) { console.error('Note save error:', err); }
+    saveLessonReflection(lessonId, sayItBack.prompt, text).catch((err) => console.error('Server reflection save error:', err));
     slide.querySelector('#dlSaySaved').style.display = '';
     input.disabled = true;
     satisfy();
@@ -1044,12 +1047,12 @@ function renderSaveIt(slide, data, { lessonId, nextHref, backHref, nextTitle, ne
   const checklist = (data.saveIt && data.saveIt.checklist) || data.takeaways || [];
   slide.innerHTML = `
     <div class="lw-card dl-playbook-card" id="dlPlaybookCard">
-      <div class="lw-eyebrow">🎀 Save It</div>
+      <div class="lw-eyebrow">Save It</div>
       <h2>${data.title}</h2>
       <div class="dl-playbook-checklist">
         ${checklist.map((c) => `<div class="lw-takeaway dl-playbook-item">✓ ${c}</div>`).join('')}
       </div>
-      ${data.remember ? `<div class="lw-remember dl-playbook-remember"><div class="lw-remember-label">🎀 One Thing to Remember</div><div class="lw-remember-text dl-playbook-remember-text">${data.remember}</div></div>` : ''}
+      ${data.remember ? `<div class="lw-remember dl-playbook-remember"><div class="lw-remember-label">✦ One Thing to Remember</div><div class="lw-remember-text dl-playbook-remember-text">${data.remember}</div></div>` : ''}
       <div class="lw-badge dl-playbook-badge">+${data.xpValue} GP</div>
     </div>
     <div class="dl-playbook-actions">

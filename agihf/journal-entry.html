@@ -83,11 +83,18 @@
 
   async function boot() {
     try {
-      ({ getEntry, saveEntry, deleteEntry, createAutosaver } = await import('./shared/journal-service.js'));
-      ({ renderJournalEntryPage, renderTradeCaseFile, entryToSummaryCardProps, renderTradeSummaryCard, hydrateTscShots } = await import('./shared/journal-engine.js'));
-      ({ renderErrorState, renderSkeleton, showDeskToast, openModal, closeModal } = await import('./shared/dayli-desk-engine.js'));
-      ({ burst } = await import('./shared/lesson-engine.js'));
-      ({ todayKey } = await import('./shared/dashboard-models.js'));
+      const [journalService, journalEngine, dayliDeskEngine, lessonEngine, dashboardModels] = await Promise.all([
+        import('./shared/journal-service.js'),
+        import('./shared/journal-engine.js'),
+        import('./shared/dayli-desk-engine.js'),
+        import('./shared/lesson-engine.js'),
+        import('./shared/dashboard-models.js'),
+      ]);
+      ({ getEntry, saveEntry, deleteEntry, createAutosaver } = journalService);
+      ({ renderJournalEntryPage, renderTradeCaseFile, entryToSummaryCardProps, renderTradeSummaryCard, hydrateTscShots } = journalEngine);
+      ({ renderErrorState, renderSkeleton, showDeskToast, openModal, closeModal } = dayliDeskEngine);
+      ({ burst } = lessonEngine);
+      ({ todayKey } = dashboardModels);
     } catch (err) {
       renderFallbackError(err);
       return;
@@ -199,7 +206,9 @@
     });
   }
 
-  document.addEventListener('aghf-auth-ready', boot);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 </script>
 
 </body>

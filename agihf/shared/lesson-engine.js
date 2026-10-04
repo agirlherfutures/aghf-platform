@@ -25,6 +25,8 @@
  * spot_it.
  */
 
+import { saveLessonReflection } from './journal-service.js';
+
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 let uidCounter = 0;
 
@@ -179,12 +181,12 @@ function renderWatch(slide, data, satisfy) {
       ${!data.videoUrl ? '<div class="lw-video-soon">Video coming soon</div>' : ''}
       <div class="lw-video-duration">${data.videoDuration || ''}</div>
     </div>
-    <div class="lw-eyebrow" style="margin:14px 0 0">🎥 Watch With Dayli</div>
+    <div class="lw-eyebrow" style="margin:14px 0 0">Watch With Dayli</div>
     <div class="lw-card lw-mission-card">
       <div class="lw-eyebrow">Today's mission</div>
       <p>${data.mission || ''}</p>
     </div>
-    <button type="button" class="lw-continue-btn lw-watched-btn" id="lwWatchedBtn">✓ Watched — Continue</button>
+    <button type="button" class="lw-continue-btn lw-watched-btn" id="lwWatchedBtn">✓ Watched, Continue</button>
   `;
   document.getElementById('lwWatchedBtn').addEventListener('click', satisfy);
 }
@@ -245,7 +247,7 @@ export function wireRetryOptions(buttons, options, feedbackEl, onSolved, handleS
         onSolved();
       } else {
         btn.classList.add('wrong');
-        feedbackEl.textContent = opt.feedback || 'Not quite — look again.';
+        feedbackEl.textContent = opt.feedback || 'Not quite, look again.';
         feedbackEl.className = 'lw-feedback show bad';
         handleStreak(false);
       }
@@ -258,7 +260,7 @@ export function wireRetryOptions(buttons, options, feedbackEl, onSolved, handleS
 export function renderBreakdown(el, block, satisfy) {
   el.innerHTML = `
     <div class="lw-card lw-breakdown-card">
-      <div class="lw-eyebrow">📖 Break It Down</div>
+      <div class="lw-eyebrow">Break It Down</div>
       ${block.heading ? `<h2>${block.heading}</h2>` : ''}
       <div class="lw-beats">
         ${(block.beats || []).map((b) => `<div class="lw-beat"><h3>${b.heading || ''}</h3><p>${b.body}</p></div>`).join('')}
@@ -271,7 +273,7 @@ export function renderBreakdown(el, block, satisfy) {
 export function renderDayliSays(el, block, satisfy) {
   el.innerHTML = `
     <div class="lw-card lw-dayli-card">
-      <div class="lw-dayli-avatar">🎀</div>
+      <div class="lw-dayli-avatar">D</div>
       <div class="lw-dayli-body">
         <div class="lw-dayli-label">Dayli says</div>
         <div class="lw-dayli-quote">${block.quote}</div>
@@ -284,7 +286,7 @@ export function renderDayliSays(el, block, satisfy) {
 export function renderConfusion(el, block, satisfy) {
   el.innerHTML = `
     <div class="lw-card lw-confusion-card">
-      <div class="lw-eyebrow">⚠️ Don't Get This Confused</div>
+      <div class="lw-eyebrow">Don't Get This Confused</div>
       <h2>${block.heading}</h2>
       <div class="lw-confusion-grid">
         <div class="lw-confusion-col left">
@@ -305,7 +307,7 @@ function renderChartPractice(el, block, satisfy, helpers) {
   const uid = `cp${uidCounter++}`;
   el.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">📊 See It on the Chart</div>
+      <div class="lw-eyebrow">See It on the Chart</div>
       <h2>${block.heading || 'Now find it'}</h2>
       <p>${block.prompt || ''}</p>
       <div class="lw-chartbox">
@@ -352,7 +354,7 @@ function renderChartPractice(el, block, satisfy, helpers) {
 export function renderCatchMistake(el, block, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🚩 Catch the Mistake</div>
+      <div class="lw-eyebrow">Catch the Mistake</div>
       <h2>${block.heading || 'What did she get wrong?'}</h2>
       <p class="lw-scenario">${block.scenario}</p>
       <div class="${(block.options || []).length >= 3 ? 'lw-grid3' : 'lw-grid2'}" id="lwCmOpts">
@@ -371,12 +373,12 @@ function renderWhatHappensNext(el, block, satisfy, helpers) {
   const shown = seqIdx >= 0 ? block.sequence.slice(0, seqIdx + 1) : block.sequence;
   el.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🫧 What Happens Next?</div>
+      <div class="lw-eyebrow">What Happens Next?</div>
       <h2>${block.heading || 'Continue the sequence'}</h2>
       <div class="lw-seq-strip">
         ${shown.map((s) => `<span class="lw-seq-step done">${s}</span><span class="lw-seq-arrow">→</span>`).join('')}<span class="lw-seq-step next">?</span>
       </div>
-      <p>${block.prompt || "What comes next — not where price goes, what's next in the framework?"}</p>
+      <p>${block.prompt || "What comes next, not where price goes, what's next in the framework?"}</p>
       <div class="lw-opts" id="lwWhnOpts">
         ${block.options.map((o, i) => `<button type="button" class="lw-qopt" data-i="${i}">${o.label}</button>`).join('')}
       </div>
@@ -391,7 +393,7 @@ function renderWhatHappensNext(el, block, satisfy, helpers) {
 function renderBuildSequence(el, block, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🎯 Build the Setup</div>
+      <div class="lw-eyebrow">Build the Setup</div>
       <h2>${block.heading || 'Tap the steps in order'}</h2>
       <p>${block.prompt || ''}</p>
       <div class="lw-grid3" id="lwBsItems">
@@ -417,7 +419,7 @@ function renderBuildSequence(el, block, satisfy, helpers) {
       if (order.length === block.items.length) {
         const success = order.join('|') === block.correctOrder.join('|');
         document.getElementById('lwBsStatus').textContent = success ? 'Correct order!' : 'Review below';
-        fb.textContent = success ? (block.successFeedback || 'Clean sequence — nice work.') : (block.failFeedback || "That order isn't quite right yet — review the pieces before the next lesson.");
+        fb.textContent = success ? (block.successFeedback || 'Clean sequence, nice work.') : (block.failFeedback || "That order isn't quite right yet, review the pieces before the next lesson.");
         fb.className = `lw-feedback show ${success ? 'good' : 'bad'}`;
         helpers.handleStreak(success);
         if (success) helpers.burst();
@@ -430,7 +432,7 @@ function renderBuildSequence(el, block, satisfy, helpers) {
 function renderLockItIn(el, block, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">🧠 Lock It In</div>
+      <div class="lw-eyebrow">Lock It In</div>
       <h2>Before we move on, show me you can use it.</h2>
       <div id="lwLiiQuestions">
         ${block.questions.map((q, qi) => `
@@ -448,7 +450,7 @@ function renderLockItIn(el, block, satisfy, helpers) {
     const qEl = el.querySelector(`[data-qi="${qi}"]`);
     const buttons = qEl.querySelectorAll('.lw-qopt');
     const fb = document.getElementById(`lwLiiFb${qi}`);
-    const options = q.options.map((label, oi) => ({ label, correct: oi === q.correctIndex, why: q.why, feedback: (q.hints && q.hints[oi]) || 'Not quite — look again.' }));
+    const options = q.options.map((label, oi) => ({ label, correct: oi === q.correctIndex, why: q.why, feedback: (q.hints && q.hints[oi]) || 'Not quite, look again.' }));
     wireRetryOptions(buttons, options, fb, () => {
       solvedCount += 1;
       if (solvedCount === block.questions.length) appendContinue(el, satisfy);
@@ -472,7 +474,7 @@ const BLOCK_RENDERERS = {
 function renderReflection(slide, block, lessonId, markDone) {
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">💭 Tell Me What You Know</div>
+      <div class="lw-eyebrow">Tell Me What You Know</div>
       <h2>In your own words</h2>
       <p>${block.prompt}</p>
       <textarea class="lw-reflect-textarea" id="lwReflectInput" rows="5" placeholder="Type it how YOU understand it..."></textarea>
@@ -484,12 +486,14 @@ function renderReflection(slide, block, lessonId, markDone) {
   const saveBtn = slide.querySelector('#lwSaveNoteBtn');
   input.addEventListener('input', () => { saveBtn.disabled = input.value.trim().length < 5; });
   saveBtn.addEventListener('click', () => {
+    const text = input.value.trim();
     try {
       const key = 'aghf_notes';
       const notes = JSON.parse(localStorage.getItem(key) || '[]');
-      notes.push({ lessonId, prompt: block.prompt, text: input.value.trim(), savedAt: Date.now() });
+      notes.push({ lessonId, prompt: block.prompt, text, savedAt: Date.now() });
       localStorage.setItem(key, JSON.stringify(notes));
     } catch (err) { console.error('Note save error:', err); }
+    saveLessonReflection(lessonId, block.prompt, text).catch((err) => console.error('Server reflection save error:', err));
     slide.querySelector('#lwReflectSaved').style.display = '';
     saveBtn.disabled = true;
     input.disabled = true;
@@ -507,7 +511,7 @@ function renderComplete(slide, data, { nextHref, backHref, nextTitle, nextHook, 
       <div class="lw-takeaways">
         ${(data.takeaways || []).map((t) => `<div class="lw-takeaway">✓ ${t}</div>`).join('')}
       </div>
-      ${data.remember ? `<div class="lw-remember"><div class="lw-remember-label">🎀 One Thing to Remember</div><div class="lw-remember-text">${data.remember}</div></div>` : ''}
+      ${data.remember ? `<div class="lw-remember"><div class="lw-remember-label">✦ One Thing to Remember</div><div class="lw-remember-text">${data.remember}</div></div>` : ''}
     </div>
     ${nextTitle ? `
     <div class="lw-card lw-next-up">
@@ -608,7 +612,7 @@ const CHART_MODES = {
           ]);
           if (found.size === parts.length) {
             draw('all');
-            setFb('Full anatomy unlocked — open, high, low, close, body, and wick.');
+            setFb('Full anatomy unlocked: open, high, low, close, body, and wick.');
             handleStreak(true);
             markDone();
           } else {
@@ -675,11 +679,11 @@ const CHART_MODES = {
           y = close;
         }
         ctx.fillStyle = '#2C1810'; ctx.font = 'bold 13px DM Sans';
-        ctx.fillText(`${lens.key} — ${n} candles shown (${lens.detail})`, 20, 24);
+        ctx.fillText(`${lens.key}: ${n} candles shown (${lens.detail})`, 20, 24);
       }
 
       btnRow.innerHTML = lenses.map((l) => `<button type="button" data-key="${l.key}">${l.key}</button>`).join('');
-      setKpis([{ label: 'Lens', value: '—' }, { label: 'Candles shown', value: '—' }, { label: 'Detail level', value: '—' }]);
+      setKpis([{ label: 'Lens', value: '-' }, { label: 'Candles shown', value: '-' }, { label: 'Detail level', value: '-' }]);
       setFb('Tap a timeframe to see how the same window looks at different zoom levels.');
       btnRow.querySelectorAll('button').forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -689,7 +693,7 @@ const CHART_MODES = {
           draw(lens);
           seen.add(lens.key);
           setKpis([{ label: 'Lens', value: lens.key }, { label: 'Candles shown', value: String(lens.count) }, { label: 'Detail level', value: lens.detail }]);
-          setFb(`${lens.key} shows ${lens.count} candles — ${lens.key === '4H' ? 'the least detail, the clearest direction' : lens.key === '1M' ? 'the most detail, the most noise' : 'a middle zoom between the two'}.`);
+          setFb(`${lens.key} shows ${lens.count} candles, ${lens.key === '4H' ? 'the least detail, the clearest direction' : lens.key === '1M' ? 'the most detail, the most noise' : 'a middle zoom between the two'}.`);
           handleStreak(true);
           if (seen.size >= 2) markDone();
         });
@@ -720,7 +724,7 @@ const CHART_MODES = {
       }
 
       btnRow.innerHTML = contractOptions.map((n) => `<button type="button" data-n="${n}">${n} contract${n > 1 ? 's' : ''}</button>`).join('');
-      setKpis([{ label: 'Points', value: points }, { label: 'Point value', value: `$${pointValue}` }, { label: 'Contracts', value: '—' }]);
+      setKpis([{ label: 'Points', value: points }, { label: 'Point value', value: `$${pointValue}` }, { label: 'Contracts', value: '-' }]);
       setFb('Choose a contract size to see how P&L scales.');
       draw(null);
       btnRow.querySelectorAll('button').forEach((btn) => {
@@ -799,7 +803,7 @@ const CHART_MODES = {
       }
 
       btnRow.innerHTML = points.map((p) => `<button type="button" data-key="${p.key}">${p.key}</button>`).join('');
-      setKpis([{ label: 'Structure', value: config.structureLabel || '—' }, { label: 'Points', value: points.length }, { label: 'Tap to explore', value: points.map((p) => p.key).join(' / ') }]);
+      setKpis([{ label: 'Structure', value: config.structureLabel || '-' }, { label: 'Points', value: points.length }, { label: 'Tap to explore', value: points.map((p) => p.key).join(' / ') }]);
       setFb(config.prompt2 || 'Tap the point you think is correct.');
       draw(null);
       let solved = false;
@@ -808,7 +812,7 @@ const CHART_MODES = {
           if (solved) return;
           const p = points.find((pt) => pt.key === btn.dataset.key);
           draw(p.key);
-          setFb(p.feedback || (p.correct ? 'Exactly!' : 'Not quite — look again.'));
+          setFb(p.feedback || (p.correct ? 'Exactly!' : 'Not quite, look again.'));
           if (p.correct) { solved = true; handleStreak(true); markDone(); }
           else handleStreak(false);
         });

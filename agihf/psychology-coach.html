@@ -112,21 +112,31 @@
     }
   }
 
-  document.addEventListener('aghf-auth-ready', boot);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 
   async function boot() {
     try {
-      ({ getTodayChecklist } = await import('./shared/checklist-service.js'));
-      ({ getTodaysSnapshot } = await import('./shared/journal-service.js'));
-      ({ savePsychologySession, savePsychologyProfile, getPsychologyProfile } = await import('./shared/psychology-service.js'));
-      ({ checkDailyLimits } = await import('./shared/psychology-rules-engine.js'));
-      ({ renderTalkMeThrough, renderPreTradeCheck, renderPostLossReset, renderCooldownTimer } = await import('./shared/psychology-engine.js'));
-      ({ showDeskToast } = await import('./shared/dayli-desk-engine.js'));
+      const [checklistService, journalService, psychologyService, psychologyRulesEngine, psychologyEngine, dayliDeskEngine] = await Promise.all([
+        import('./shared/checklist-service.js'),
+        import('./shared/journal-service.js'),
+        import('./shared/psychology-service.js'),
+        import('./shared/psychology-rules-engine.js'),
+        import('./shared/psychology-engine.js'),
+        import('./shared/dayli-desk-engine.js'),
+      ]);
+      ({ getTodayChecklist } = checklistService);
+      ({ getTodaysSnapshot } = journalService);
+      ({ savePsychologySession, savePsychologyProfile, getPsychologyProfile } = psychologyService);
+      ({ checkDailyLimits } = psychologyRulesEngine);
+      ({ renderTalkMeThrough, renderPreTradeCheck, renderPostLossReset, renderCooldownTimer } = psychologyEngine);
+      ({ showDeskToast } = dayliDeskEngine);
     } catch (err) {
       renderFallbackError(err);
       return;
     }
-    start();
+    await start();
   }
 </script>
 

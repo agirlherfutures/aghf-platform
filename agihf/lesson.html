@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/lesson-engine.css">
 <link rel="stylesheet" href="shared/loop-engine.css">
+<link rel="stylesheet" href="shared/lesson-slides.css">
 </head>
 <body>
 
@@ -82,7 +83,9 @@
   // Registered synchronously, before any async work, so it can never miss
   // the `aghf-auth-ready` event — the dynamic imports below happen only
   // once this actually fires, inside boot() itself.
-  document.addEventListener('aghf-auth-ready', boot);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 
   async function boot() {
   // Loaded dynamically rather than as static top-level imports — a failure
@@ -90,11 +93,12 @@
   // syntax error anywhere in their own import graph) would previously kill
   // this entire script before it ever ran, leaving #lwWrap permanently
   // empty with no error shown at all.
-  let PHASES, phaseByKey, isSectionCleared, renderLessonWizard, renderLoopWizard;
+  let PHASES, phaseByKey, isSectionCleared, renderLessonWizard, renderLoopWizard, renderSlideWizard;
   try {
     ({ PHASES, phaseByKey, isSectionCleared } = await import('./shared/curriculum-data.js'));
     ({ renderLessonWizard } = await import('./shared/lesson-engine.js'));
     ({ renderLoopWizard } = await import('./shared/loop-engine.js'));
+    ({ renderSlideWizard } = await import('./shared/lesson-slides-engine.js'));
   } catch (err) {
     renderFallbackError(err);
     return;
@@ -245,7 +249,8 @@
     };
 
     try {
-      if (data.loop) renderLoopWizard(data, wizardOpts);
+      if (data.format === 'slides') renderSlideWizard(data, wizardOpts);
+      else if (data.loop) renderLoopWizard(data, wizardOpts);
       else renderLessonWizard(data, wizardOpts);
     } catch (err) {
       renderFallbackError(err);

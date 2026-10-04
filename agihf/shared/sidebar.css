@@ -6,14 +6,28 @@
  * variables) to be included first.
  */
 
-/* SIDEBAR */
+/* SIDEBAR — a saturated pink→peach gradient "brand banner" across the
+ * logo + user block (same gradient the login screen's left panel
+ * already uses). Lives on .sb-top, a dedicated wrapper around just
+ * those two elements (see sidebar.js), rather than on each separately
+ * — same reasoning as before (one continuous gradient, no seam where
+ * they meet) but now sized to its own content instead of a guessed
+ * pixel height. .sb-top is also position:sticky within .sb's own
+ * scrolling area, so on a short viewport where the nav list scrolls,
+ * the gradient banner stays pinned at the top instead of scrolling up
+ * and letting nav items scroll into/underneath it. */
 .sb{width:230px;flex-shrink:0;background:var(--dark);border-right:none;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto;}
-.sb-logo{padding:22px 22px 16px;font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--pink);border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer;display:block;text-decoration:none;}
-.sb-logo span{color:var(--teal);}
-.sb-user{padding:13px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:6px;}
-.sb-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--peach));border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.85rem;font-weight:700;color:white;flex-shrink:0;}
-.sb-nm{font-size:.84rem;font-weight:600;color:white;}
-.sb-lv{font-size:.68rem;color:rgba(255,255,255,.45);}
+.sb-top{position:sticky;top:0;z-index:2;background:linear-gradient(155deg,var(--pink),var(--peach));flex-shrink:0;}
+/* .sb-logo is currently unused — no logo image wired in — but left
+ * defined so dropping a new `<a class="sb-logo" href="..."><img
+ * src="..."></a>` back in as .sb-top's first child (see sidebar.js)
+ * needs no CSS changes. */
+.sb-logo{padding:20px 22px 12px;border-bottom:none;cursor:pointer;display:block;}
+.sb-logo img{height:52px;width:auto;display:block;filter:drop-shadow(0 3px 10px rgba(44,24,16,.28));}
+.sb-user{padding:22px 18px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.14);margin-bottom:6px;}
+.sb-av{width:36px;height:36px;border-radius:50%;background:#fff;border:2px solid rgba(255,255,255,.6);box-shadow:0 4px 14px rgba(44,24,16,.18);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.85rem;font-weight:700;color:var(--pink);flex-shrink:0;}
+.sb-nm{font-size:.84rem;font-weight:700;color:#fff;text-shadow:0 1px 8px rgba(44,24,16,.15);}
+.sb-lv{font-size:.68rem;color:rgba(255,255,255,.85);}
 .sb-sec{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:12px 18px 5px;}
 .sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:.85rem;color:rgba(255,255,255,.55);cursor:pointer;transition:all .2s;border-left:3px solid transparent;border-radius:0;text-decoration:none;}
 .sb-item:hover{color:white;background:rgba(255,255,255,.07);}
@@ -32,9 +46,23 @@
 .demo-banner{background:var(--peach);color:var(--dark);font-size:12px;font-weight:700;text-align:center;padding:8px 16px 8px 246px;}
 @media(max-width:900px){.demo-banner{padding-left:16px;}}
 
-/* MAIN */
-.main{margin-left:230px;padding:36px 44px 80px;min-height:100vh;background:var(--bg);position:relative;z-index:1;max-width:1000px;}
+/* MAIN
+ * No background of its own — the previous version painted its own
+ * boxed mesh gradient here, which only covers this max-width-capped,
+ * left-aligned box. On any viewport wider than ~1310px that left a
+ * hard rectangular edge with flat, uncolored dead space to its right,
+ * which read as a rendering bug. Letting body's full-viewport mesh
+ * (tokens.css) show through instead makes the color wash continuous
+ * everywhere, sidebar aside. */
+.main{margin-left:230px;padding:44px 52px 90px;min-height:100vh;position:relative;z-index:1;max-width:1100px;}
 @media(max-width:900px){.sb{display:none;}.main{margin-left:0;padding:24px 20px 84px;}}
+/* Past the width where the max-width cap actually binds, center the
+ * content column in the space to the right of the fixed sidebar
+ * instead of leaving it flush against the sidebar with a growing dead
+ * zone on the right — the "why isn't this centered" complaint. */
+@media(min-width:1330px){
+  .main{margin-left:calc(230px + (100vw - 1330px) / 2);}
+}
 
 /* MOBILE BOTTOM NAV (replaces the vanishing sidebar below 900px) */
 .mb-bar{display:none;}
@@ -60,17 +88,21 @@
 }
 @media (prefers-reduced-motion: reduce){.mb-sheet, .mb-sheet-card{transition:none;}}
 
-/* PAGE HEADER */
-.pg-eye{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--peach);margin-bottom:5px;}
-.pg-title{font-family:"Playfair Display",serif;font-size:2rem;font-weight:900;color:var(--dark);margin-bottom:20px;}
-.pg-acc{color:var(--pink);}
+/* PAGE HEADER — pill eyebrow + italic display title, matching the
+ * marketing site's .eyebrow/.section-label + h1 treatment. */
+.pg-eye{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--pink-light);border-radius:100px;padding:8px 18px;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);margin-bottom:16px;box-shadow:0 6px 18px rgba(244,130,154,.16);}
+.pg-title{font-family:"Playfair Display",serif;font-style:italic;font-size:clamp(1.9rem,3.4vw,2.9rem);font-weight:800;line-height:1.12;letter-spacing:-.01em;color:var(--dark);margin-bottom:24px;}
+/* Gradient accent word, same technique as the marketing site's h1 em
+ * (linear-gradient text via background-clip) rather than a flat color. */
+.pg-acc{background:linear-gradient(100deg,var(--pink),var(--peach));-webkit-background-clip:text;background-clip:text;color:transparent;}
 
 /* DASHBOARD */
-.dayli-quote-card{background:var(--dark);border-radius:16px;padding:18px 22px;margin-bottom:18px;position:relative;overflow:hidden;}
+.dayli-quote-card{background:var(--dark);border-radius:16px;padding:18px 22px;margin-bottom:18px;position:relative;overflow:hidden;box-shadow:0 16px 34px rgba(44,24,16,.16);}
+.dayli-quote-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 75% 60% at 85% 15%, rgba(244,130,154,.22), transparent);pointer-events:none;}
 .dayli-quote-card::after{content:'🫧';position:absolute;right:12px;bottom:-8px;font-size:52px;opacity:.12;}
-.dq-tag{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);margin-bottom:7px;}
-.dq-text{font-family:"Playfair Display",serif;font-style:italic;font-size:.96rem;color:white;line-height:1.7;}
-.gp-progress-card{background:white;border-radius:16px;border:1px solid rgba(244,130,154,.1);padding:16px 20px;margin-bottom:20px;}
+.dq-tag{position:relative;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);margin-bottom:7px;}
+.dq-text{position:relative;font-family:"Playfair Display",serif;font-style:italic;font-size:.96rem;color:white;line-height:1.7;}
+.gp-progress-card{background:white;border-radius:16px;border:1px solid rgba(244,130,154,.1);box-shadow:0 10px 28px rgba(44,24,16,.07);padding:16px 20px;margin-bottom:20px;}
 .gp-prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
 .gp-prog-label{font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
 .gp-prog-val{font-size:.8rem;font-weight:600;color:var(--peach);}
@@ -78,12 +110,13 @@
 .gp-prog-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;transition:width .8s ease;}
 .gp-prog-sub{font-size:.75rem;color:var(--muted);}
 .stats-g{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;}
-.stat-c{background:white;border-radius:15px;padding:16px 18px;border:1px solid rgba(244,130,154,.1);box-shadow:0 2px 10px rgba(244,130,154,.05);}
+.stat-c{background:white;border-radius:15px;padding:16px 18px;border:1px solid rgba(244,130,154,.1);box-shadow:0 8px 22px rgba(44,24,16,.06);}
 .stat-l{font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
 .stat-v{font-family:"Playfair Display",serif;font-size:1.6rem;font-weight:900;}
 .sv-p{color:var(--pink);}.sv-t{color:var(--teal);}.sv-c{color:var(--peach);}.sv-d{color:var(--dark);}
 .stat-s{font-size:.7rem;color:var(--muted);margin-top:2px;}
-.cont-banner{background:white;border-radius:17px;padding:19px 23px;border:1px solid rgba(244,130,154,.12);box-shadow:0 3px 16px rgba(244,130,154,.07);margin-bottom:20px;display:flex;align-items:center;gap:15px;text-decoration:none;}
+.cont-banner{background:white;border-radius:17px;padding:19px 23px;border:1px solid rgba(244,130,154,.12);box-shadow:0 10px 28px rgba(44,24,16,.08);margin-bottom:20px;display:flex;align-items:center;gap:15px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease;}
+.cont-banner:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(44,24,16,.11);}
 .cb-ico{width:44px;height:44px;border-radius:12px;background:var(--pink-pale);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
 .cb-inf{flex:1;min-width:0;}
 .cb-ey{font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
@@ -92,7 +125,7 @@
 .cb-go{background:linear-gradient(135deg,var(--pink),var(--peach));color:white;border:none;padding:9px 20px;border-radius:100px;font-family:"DM Sans",sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;white-space:nowrap;}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:20px;}
 @media(max-width:700px){.two-col{grid-template-columns:1fr;}}
-.panel{background:white;border-radius:16px;padding:19px;border:1px solid rgba(244,130,154,.1);}
+.panel{background:white;border-radius:16px;padding:19px;border:1px solid rgba(244,130,154,.1);box-shadow:0 10px 28px rgba(44,24,16,.07);}
 .pn-t{font-family:"Playfair Display",serif;font-size:.94rem;font-weight:700;color:var(--dark);margin-bottom:2px;}
 .pn-s{font-size:.74rem;color:var(--muted);margin-bottom:13px;}
 .ch-row{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid rgba(244,130,154,.07);cursor:pointer;}
@@ -132,12 +165,24 @@
 /* LESSONS HUB */
 .po-g{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:26px;}
 @media(max-width:700px){.po-g{grid-template-columns:1fr 1fr;}}
-.po-c{background:white;border-radius:13px;padding:14px 16px;border:1px solid rgba(244,130,154,.1);}
+/* Colored top-accent stripe keyed off the stat's own value color, same
+ * "module card" language as the marketing site's .module-card::before —
+ * picked purely from the value class already in the markup via :has(),
+ * no HTML changes needed. */
+.po-c{background:white;border-radius:13px;padding:16px 16px 14px;border:1px solid rgba(244,130,154,.1);border-top:3px solid transparent;box-shadow:0 8px 22px rgba(44,24,16,.06);}
+.po-c:has(.pov-p){border-top-color:var(--pink);}
+.po-c:has(.pov-t){border-top-color:var(--teal);}
+.po-c:has(.pov-c){border-top-color:var(--peach);}
+.po-c:has(.pov-d){border-top-color:var(--purple);}
 .po-l{font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
-.po-v{font-family:"Playfair Display",serif;font-size:1.5rem;font-weight:900;}
+.po-v{font-family:"Playfair Display",serif;font-size:1.65rem;font-weight:900;}
 .pov-p{color:var(--pink);}.pov-t{color:var(--teal);}.pov-c{color:var(--peach);}.pov-d{color:var(--dark);}
 .po-s{font-size:.68rem;color:var(--muted);margin-top:2px;}
-.phase-blk{background:white;border-radius:20px;border:1px solid rgba(244,130,154,.12);margin-bottom:16px;overflow:hidden;}
+.phase-blk{background:white;border-radius:20px;border:1px solid rgba(244,130,154,.12);border-top:4px solid transparent;box-shadow:0 12px 30px rgba(44,24,16,.07);margin-bottom:16px;overflow:hidden;}
+.phase-blk:has(.pb-p){border-top-color:var(--pink);}
+.phase-blk:has(.pb-t){border-top-color:var(--teal);}
+.phase-blk:has(.pb-u){border-top-color:var(--purple);}
+.phase-blk:has(.pb-d){border-top-color:var(--placeholder);}
 .phase-hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;cursor:pointer;transition:background .2s;}
 .phase-hdr:hover{background:var(--cream);}
 .phase-hdr-left{display:flex;align-items:center;gap:14px;}
@@ -147,13 +192,17 @@
 .pb-t{background:var(--teal-pale);color:var(--teal);border:1px solid var(--teal-light);}
 .pb-u{background:var(--purple-pale);color:var(--purple);border:1px solid var(--purple-light);}
 .pb-d{background:var(--cream);color:var(--muted);border:1px solid rgba(244,130,154,.15);}
-.phase-title{font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;font-weight:900;color:var(--dark);}
+.phase-title{font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;font-weight:900;color:var(--dark);}
 .phase-sub{font-size:.75rem;color:var(--muted);margin-top:2px;}
 .phase-count{font-size:.75rem;color:var(--muted);}
 .phase-chevron{font-size:.7rem;color:var(--muted);transition:transform .25s;}
 .phase-body{border-top:1px solid rgba(244,130,154,.08);padding:12px 16px 16px;}
 .phase-closed{display:none;}
-.sec-blk{border-radius:12px;border:1px solid rgba(244,130,154,.1);overflow:hidden;margin-bottom:10px;}
+.sec-blk{border-radius:12px;border:1px solid rgba(244,130,154,.1);border-left:4px solid transparent;overflow:hidden;margin-bottom:10px;}
+.sec-blk:has(.sb-badge-p){border-left-color:var(--pink-light);}
+.sec-blk:has(.sb-badge-t){border-left-color:var(--teal-light);}
+.sec-blk:has(.sb-badge-c){border-left-color:var(--peach-light);}
+.sec-blk:has(.sb-badge-u){border-left-color:var(--purple-light);}
 .sec-hdr{display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;background:var(--cream);transition:background .2s;}
 .sec-hdr:hover{background:rgba(244,130,154,.05);}
 .sec-hdr-lk{cursor:default;opacity:.5;}
@@ -169,8 +218,8 @@
 .sec-closed{display:none;}
 
 /* LESSON CARD */
-.lc{background:white;border-radius:13px;padding:15px 17px;border:1px solid rgba(244,130,154,.1);display:flex;align-items:center;gap:13px;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(244,130,154,.04);text-decoration:none;}
-.lc:hover:not(.lc-lk){transform:translateX(3px);border-color:var(--pink-light);}
+.lc{background:white;border-radius:13px;padding:15px 17px;border:1px solid rgba(244,130,154,.1);display:flex;align-items:center;gap:13px;cursor:pointer;transition:all .2s;box-shadow:0 6px 18px rgba(44,24,16,.06);text-decoration:none;}
+.lc:hover:not(.lc-lk){transform:translateX(3px) translateY(-1px);border-color:var(--pink-light);box-shadow:0 10px 24px rgba(44,24,16,.09);}
 .lc.lc-lk{opacity:.52;cursor:default;}
 .lc.lc-lk:hover{transform:none !important;border-color:rgba(244,130,154,.1) !important;}
 .lc-n{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.77rem;font-weight:700;flex-shrink:0;}

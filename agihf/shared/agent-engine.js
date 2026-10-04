@@ -18,7 +18,7 @@
  * slide-over when the agent suggests launching one.
  */
 
-import { CONTEXTUAL_ACTIONS, SUGGESTED_PROMPTS, ATTACHMENT_ACTIONS, EMPTY_STATES, IMAGE_CAVEAT, VOICE_DISCLOSURE, DESCRIPTION, SUPPORTING_COPY } from './agent-copy.js';
+import { CONTEXTUAL_ACTIONS, SUGGESTED_PROMPTS, ATTACHMENT_ACTIONS, EMPTY_STATES, IMAGE_CAVEAT, DESCRIPTION, SUPPORTING_COPY } from './agent-copy.js';
 import * as agentService from './agent-service.js';
 import { scanForSafetyConcern } from './psychology-safety.js';
 import { openModal, closeModal, showDeskToast } from './dayli-desk-engine.js';
@@ -606,27 +606,31 @@ export function renderAgentWorkspace(container, helpers = {}) {
 
   /* ── Composer ── */
   function paintComposer() {
+    // The attach button (📎) — and everything behind it: trade/journal/
+    // checklist/screenshot/week/date-range attaching — is removed here
+    // rather than fixed further. Two real server-side bugs in how
+    // attached records reached the model were found and fixed (a NULL
+    // vs. false filter dropping rows, and a partial consent object
+    // silently gating content), but it was still unreliable enough that
+    // removing the entry point was preferred over continuing to debug
+    // it live. Pasting the record's text directly into the message
+    // still works fine — that path never touched any of this.
     els.composer.innerHTML = `
       <div class="agc-attach-chips" id="agcAttachChips"></div>
       <div class="agc-input-row">
-        <button type="button" class="agc-icon-btn" id="agcAttachBtn" aria-label="Add attachment">📎</button>
-        <button type="button" class="agc-icon-btn" id="agcMicBtn" aria-label="Voice input" hidden>🎙</button>
         <textarea class="agc-textarea" id="agcTextarea" rows="1" placeholder="What's happening with your trading right now?" aria-label="Message the AGHF Agent"></textarea>
         <button type="button" class="dd-primary-btn agc-send-btn" id="agcSendBtn">Send</button>
         <button type="button" class="dd-secondary-btn agc-stop-btn" id="agcStopBtn" hidden>Stop</button>
       </div>
-      <div class="agc-attach-popover" id="agcAttachPopover" hidden></div>
     `;
     els.composer.querySelector('#agcSendBtn').addEventListener('click', sendMessage);
     els.composer.querySelector('#agcStopBtn').addEventListener('click', stopGenerating);
-    els.composer.querySelector('#agcAttachBtn').addEventListener('click', toggleAttachPopover);
     getTextarea().addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
     });
     getTextarea().addEventListener('input', () => {
       const ta = getTextarea(); ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 160) + 'px';
     });
-    setupVoiceInput();
     paintAttachChips();
   }
 
@@ -810,43 +814,6 @@ export function renderAgentWorkspace(container, helpers = {}) {
       }
     };
     reader.readAsDataURL(file);
-  }
-
-  function setupVoiceInput() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const micBtn = els.composer.querySelector('#agcMicBtn');
-    if (!SpeechRecognition) return; // feature-detected: hidden, not disabled, when unsupported
-    micBtn.hidden = false;
-    let recognizing = false;
-    let recognizer = null;
-    micBtn.addEventListener('click', () => {
-      if (recognizing) { recognizer?.stop(); return; }
-      if (!window._agcVoiceDisclosed) { showDeskToast(VOICE_DISCLOSURE); window._agcVoiceDisclosed = true; }
-      recognizer = new SpeechRecognition();
-      recognizer.lang = 'en-US'; recognizer.interimResults = false;
-      recognizer.onstart = () => { recognizing = true; micBtn.classList.add('active'); };
-      recognizer.onend = () => { recognizing = false; micBtn.classList.remove('active'); };
-      recognizer.onresult = (e) => { getTextarea().value += (getTextarea().value ? ' ' : '') + e.results[0][0].transcript; };
-      // Without this, a permission/network failure just silently does
-      // nothing — the mic button un-activates with no feedback at all,
-      // which is exactly what "voice input isn't working" looks like from
-      // the outside. Surface what actually went wrong instead.
-      recognizer.onerror = (e) => {
-        recognizing = false; micBtn.classList.remove('active');
-        const messages = {
-          'not-allowed': 'Microphone access was blocked — check your browser’s site permissions and try again.',
-          'no-speech': 'Didn’t catch that — try again.',
-          'audio-capture': 'No microphone was found.',
-          'network': 'Voice input couldn’t reach the speech service — this usually means a work/school network, VPN, or browser privacy setting is blocking it, not your internet connection. Try a different network, or type instead.',
-        };
-        showDeskToast(messages[e.error] || 'Voice input ran into a problem — try typing instead.');
-      };
-      try {
-        recognizer.start();
-      } catch {
-        showDeskToast('Voice input couldn’t start — try typing instead.');
-      }
-    });
   }
 
   /* ── Sending + streaming ──────────────────────────────────────────

@@ -168,7 +168,9 @@
     return body;
   }
 
-  document.addEventListener('aghf-auth-ready', boot);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 
   /* ── Calendar / Summary views (independent of the List view's own filters) ── */
 
@@ -273,16 +275,31 @@
 
   async function boot() {
     try {
-      ({ listEntries, getJournalStats } = await import('./shared/journal-service.js'));
-      ({ listChecklists } = await import('./shared/checklist-service.js'));
-      ({ INSTRUMENT_SYMBOLS } = await import('./shared/instrument-data.js'));
-      ({ EMOTION_OPTIONS_V2 } = await import('./shared/dashboard-models.js'));
-      ({ renderTradeSummaryCard, entryToSummaryCardProps, hydrateTscShots, renderJournalStatsRow, renderBadgesStrip, renderInsightCards } = await import('./shared/journal-engine.js'));
-      ({ computeInsights } = await import('./shared/journal-insights.js'));
-      ({ renderSkeleton, renderErrorState } = await import('./shared/dayli-desk-engine.js'));
-      ({ groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid, computeMonthSummary, filterByAccount } = await import('./shared/journal-calendar-math.js'));
-      ({ renderViewSwitcher, renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer, renderPerformanceSummaryView, isPnlHidden, renderEvalPlanProgressStrip } = await import('./shared/journal-calendar-engine.js'));
-      ({ listEvalPlans } = await import('./shared/eval-service.js'));
+      const [
+        journalService, checklistService, instrumentData, dashboardModels, journalEngine,
+        journalInsights, dayliDeskEngine, journalCalendarMath, journalCalendarEngine, evalService,
+      ] = await Promise.all([
+        import('./shared/journal-service.js'),
+        import('./shared/checklist-service.js'),
+        import('./shared/instrument-data.js'),
+        import('./shared/dashboard-models.js'),
+        import('./shared/journal-engine.js'),
+        import('./shared/journal-insights.js'),
+        import('./shared/dayli-desk-engine.js'),
+        import('./shared/journal-calendar-math.js'),
+        import('./shared/journal-calendar-engine.js'),
+        import('./shared/eval-service.js'),
+      ]);
+      ({ listEntries, getJournalStats } = journalService);
+      ({ listChecklists } = checklistService);
+      ({ INSTRUMENT_SYMBOLS } = instrumentData);
+      ({ EMOTION_OPTIONS_V2 } = dashboardModels);
+      ({ renderTradeSummaryCard, entryToSummaryCardProps, hydrateTscShots, renderJournalStatsRow, renderBadgesStrip, renderInsightCards } = journalEngine);
+      ({ computeInsights } = journalInsights);
+      ({ renderSkeleton, renderErrorState } = dayliDeskEngine);
+      ({ groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid, computeMonthSummary, filterByAccount } = journalCalendarMath);
+      ({ renderViewSwitcher, renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer, renderPerformanceSummaryView, isPnlHidden, renderEvalPlanProgressStrip } = journalCalendarEngine);
+      ({ listEvalPlans } = evalService);
     } catch (err) {
       renderFallbackError(err);
       return;

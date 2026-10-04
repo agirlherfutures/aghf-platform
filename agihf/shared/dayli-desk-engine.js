@@ -346,10 +346,10 @@ export function renderCurrentFocusCard(container, focus, opts) {
     <div class="dd-focus-body">${focus.body}</div>
     <div class="dd-focus-links">
       ${opts.lessonHref ? `<a class="dd-focus-link" href="${opts.lessonHref}">📖 Recommended Academy lesson</a>` : ''}
-      <a class="dd-focus-link" href="${opts.chartLabHref}">📊 Recommended Chart Lab drill</a>
+      ${opts.chartLabHref ? `<a class="dd-focus-link" href="${opts.chartLabHref}">📊 Recommended Chart Lab drill</a>` : ''}
       <a class="dd-focus-link" href="${opts.journalHref}">📝 Journal reflection</a>
     </div>
-    <a class="dd-primary-btn" href="${opts.lessonHref || opts.chartLabHref}">Practice This</a>
+    <a class="dd-primary-btn" href="${opts.lessonHref || opts.chartLabHref || opts.journalHref}">Practice This</a>
   `;
 }
 
@@ -431,6 +431,23 @@ export function renderJourneySummary(container, stats) {
 
 export function renderSkeleton(container, lines = 3) {
   container.innerHTML = `${'<div class="dd-skel dd-skel-line"></div>'.repeat(lines)}<div class="dd-skel dd-skel-block"></div>`;
+
+  // Whatever replaces this skeleton next — the real content on success,
+  // or renderErrorState on failure — previously popped in instantly with
+  // no transition, since neither this container nor its new content is
+  // necessarily a `.dd-card` (which fades in via CSS :empty/:not(:empty)
+  // on its own). A one-shot observer scoped to just this container (not
+  // a page-wide one — this can't interfere with modals, toasts, or
+  // anything else) fades in whatever gets swapped in next, then
+  // disconnects; it does not fire again on later re-renders of the same
+  // already-populated container.
+  const mo = new MutationObserver(() => {
+    mo.disconnect();
+    container.classList.remove('aghf-swap-in');
+    void container.offsetWidth; // restart the animation if the class was already present from an earlier skeleton cycle
+    container.classList.add('aghf-swap-in');
+  });
+  mo.observe(container, { childList: true });
 }
 
 /* ── Error state with retry ─────────────────────────────────────── */

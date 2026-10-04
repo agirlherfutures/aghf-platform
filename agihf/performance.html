@@ -135,17 +135,28 @@
       <a class="dd-primary-btn" href="journal-history.html?view=calendar">View Full Calendar</a>`;
   }
 
-  document.addEventListener('aghf-auth-ready', boot);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 
   async function boot() {
     try {
-      ({ PHASES } = await import('./shared/curriculum-data.js'));
-      ({ listEntries } = await import('./shared/journal-service.js'));
-      ({ listChecklists } = await import('./shared/checklist-service.js'));
-      ({ computeConsistencyScore } = await import('./shared/consistency-service.js'));
-      ({ renderConsistencyScore, renderJourneySummary, renderErrorState } = await import('./shared/dayli-desk-engine.js'));
-      ({ listEvalPlans } = await import('./shared/eval-service.js'));
-      ({ computeProfitTargetDollar, computeRemainingProfitTarget, computeDrawdownLimitDollar, computeRemainingDrawdown } = await import('./shared/eval-calculator-math.js'));
+      const [curriculumData, journalService, checklistService, consistencyService, dayliDeskEngine, evalService, evalCalculatorMath] = await Promise.all([
+        import('./shared/curriculum-data.js'),
+        import('./shared/journal-service.js'),
+        import('./shared/checklist-service.js'),
+        import('./shared/consistency-service.js'),
+        import('./shared/dayli-desk-engine.js'),
+        import('./shared/eval-service.js'),
+        import('./shared/eval-calculator-math.js'),
+      ]);
+      ({ PHASES } = curriculumData);
+      ({ listEntries } = journalService);
+      ({ listChecklists } = checklistService);
+      ({ computeConsistencyScore } = consistencyService);
+      ({ renderConsistencyScore, renderJourneySummary, renderErrorState } = dayliDeskEngine);
+      ({ listEvalPlans } = evalService);
+      ({ computeProfitTargetDollar, computeRemainingProfitTarget, computeDrawdownLimitDollar, computeRemainingDrawdown } = evalCalculatorMath);
     } catch (err) {
       renderFallbackError(err);
       return;

@@ -8,51 +8,71 @@
   "xpValue": 60,
   "passThreshold": 0.6,
   "hook": "Different sessions, different behavior. Know which one you're looking at.",
-  "mission": "By the end of this lesson, you should be able to weigh a chart move differently depending on which session it formed in.",
-  "blocks": [
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Weigh a chart move differently depending on which session it formed in.",
+    "missionQuestion": "Does a break of structure mean the same thing overnight on thin volume as it does at the New York open?",
+    "estMinutes": 6
+  },
+  "watch": {
+    "markers": [
+      { "t": "00:00", "label": "Asia, London, and New York" },
+      { "t": "01:45", "label": "Not better, just different" },
+      { "t": "03:15", "label": "Volume as real information" },
+      { "t": "04:45", "label": "Try it yourself" }
+    ]
+  },
+  "slides": [
     {
-      "type": "breakdown",
-      "heading": "The same chart behaves differently depending on what time it is",
-      "beats": [
-        { "heading": "Three sessions, three personalities", "body": "Asia tends to be quiet and range-bound. London often brings the first real expansion. New York — especially the RTH open — usually brings the highest volume and sharpest moves." },
-        { "heading": "Not \"better,\" just different", "body": "None of this means one session is better. It means the same setup can look completely different depending on which session it's forming in." }
+      "type": "icon_grid",
+      "kicker": "The same chart behaves differently depending on what time it is",
+      "title": "Three sessions, three personalities",
+      "items": [
+        { "icon": "🌙", "label": "Asia", "desc": "Tends to be quiet and range-bound." },
+        { "icon": "🌅", "label": "London", "desc": "Often brings the first real expansion of the day." },
+        { "icon": "🗽", "label": "New York (RTH open)", "desc": "Usually the highest volume and sharpest moves." },
+        { "icon": "⚖️", "label": "Not \"better,\" just different", "desc": "The same setup can look completely different depending on the session it forms in." }
       ]
     },
     {
-      "type": "what_happens_next",
-      "heading": "Weigh the test",
-      "sequence": ["A level gets tested overnight on thin volume"],
-      "askAfter": "A level gets tested overnight on thin volume",
-      "prompt": "That same level gets retested at the New York open with much higher volume. Which test carries more information?",
-      "options": [
-        { "label": "The New York open retest — more participation, more real signal", "correct": true, "feedback": "Right — more real participants means the reaction reflects more genuine agreement or disagreement." },
-        { "label": "They're equal", "correct": false, "feedback": "Volume differences between sessions are real information, not noise to ignore." }
-      ]
+      "type": "teach",
+      "kicker": "Weigh the test",
+      "body": "A level gets tested overnight on thin volume. That same level gets retested at the New York open with much higher volume.",
+      "check": {
+        "prompt": "Which test carries more information?",
+        "options": [
+          { "label": "They're equal", "correct": false, "feedback": "Volume differences between sessions are real information, not noise to ignore." },
+          { "label": "The New York open retest, more participation, more real signal", "correct": true, "why": "Right. More real participants means the reaction reflects more genuine agreement or disagreement." }
+        ]
+      }
     },
     {
-      "type": "dayli_says",
+      "type": "dayli",
+      "kicker": "Dayli Says",
       "quote": "I'm not telling you to only trade one session. I'm telling you to know which session you're looking at, because a level in London and a level at the New York open don't carry the same weight."
     },
     {
-      "type": "lock_it_in",
-      "questions": [
-        {
-          "question": "A trader sees a clean-looking break of structure during the thin overnight session, then the exact same level gets retested with much higher volume at the New York open. Which read should she trust more?",
-          "options": ["The New York retest — higher volume and participation make the reaction more meaningful", "They're identical — session doesn't change how a break should be read", "The overnight break is more reliable because it happened first"],
-          "correctIndex": 0,
-          "why": "More volume and participation means the reaction reflects more real conviction."
-        },
-        {
-          "question": "The New York session (RTH open) typically brings the highest ___ and sharpest moves.",
-          "options": ["Volume", "Spread", "Fees"],
-          "correctIndex": 0,
-          "why": "It overlaps with US stock market hours and major news, driving the most participation."
-        }
-      ]
+      "type": "teach",
+      "kicker": "Know your session",
+      "body": "The New York session lines up with US stock market hours and major news.",
+      "check": {
+        "prompt": "The New York session (RTH open) typically brings the highest ___ and sharpest moves.",
+        "options": [
+          { "label": "Spread", "correct": false, "feedback": "Spread isn't what defines a session's character, participation is." },
+          { "label": "Fees", "correct": false, "feedback": "Fees don't change session to session, volume and participation do." },
+          { "label": "Volume", "correct": true, "why": "It overlaps with US stock market hours and major news, driving the most participation." }
+        ]
+      }
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Imagine another AGHF member asks: \"Why does it matter what time I'm looking at a breakout?\" How would you explain it to them?",
+      "modelAnswer": "The same-looking break of structure means different things depending on how many real participants were actually there to make it happen. A break on thin overnight volume can look identical to one at the New York open, but the New York version reflects way more real conviction, ignoring session context throws away free information the chart is already giving you."
     }
   ],
   "takeaways": [
-    "Asia, London, and New York each behave differently — none is \"better,\" just different.",
+    "Asia, London, and New York each behave differently, none is \"better,\" just different.",
     "A move on heavy volume carries more real information than the same-looking move on thin volume.",
     "Ignoring session context throws away free, useful information."
   ],

@@ -7,16 +7,12 @@
  * duplicating them.
  */
 
-/* ── Page backdrop (scoped to body.wins-page, never leaks to dashboard.html
-   even though it also links this stylesheet for the embedded win card) ── */
-
-body.wins-page .main{
-  background:
-    radial-gradient(circle at 8% 0%,rgba(244,130,154,.12),transparent 42%),
-    radial-gradient(circle at 92% 8%,rgba(245,168,90,.12),transparent 40%),
-    radial-gradient(circle at 50% 100%,rgba(126,206,196,.09),transparent 42%),
-    var(--bg);
-}
+/* .main no longer paints its own page-scoped background here — it
+ * used var(--bg) (the flat neutral token, not the warm mesh) as its
+ * base layer, which painted a mismatched rectangle over .main's own
+ * box once sidebar.css stopped giving .main any background of its own
+ * in favor of body's single full-viewport mesh. Letting that show
+ * through uniformly is what removes the seam. */
 
 /* ── Shared floating-card look: soft warm gradient fill + two-layer
    diffused shadow, reused by every card in this section ─────────────── */

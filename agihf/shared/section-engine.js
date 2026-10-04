@@ -16,6 +16,7 @@
  */
 
 import { burst, showStreak, showToast, wireRetryOptions } from './lesson-engine.js';
+import { saveCheckinReflection } from './journal-service.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 
@@ -60,6 +61,17 @@ export function renderSectionWizard(data, opts) {
     updateChrome();
   }
 
+  // A step's own "Continue"/"Save & Continue"/etc. button already means
+  // "I'm ready to move on" — advancing here too, instead of just marking
+  // the step done and leaving the member to also click the separate
+  // bottom Next button. That button stays as a fallback (e.g. after
+  // Back/a dot lands on an already-done step with nothing left to click).
+  function completeStepAndAdvance(i) {
+    markDone(i);
+    if (i !== cur || i >= steps.length - 1) return;
+    goTo(i + 1);
+  }
+
   function buildDots() {
     dotsEl.innerHTML = '';
     steps.forEach((_, i) => {
@@ -102,10 +114,10 @@ export function renderSectionWizard(data, opts) {
     slide.className = 'lw-slide active';
     wrap.appendChild(slide);
 
-    if (step.type === 'welcome') renderWelcome(slide, data.welcome, () => markDone(i));
-    else if (step.type === 'challenge') renderChallenge(slide, data.challenge, () => markDone(i), { handleStreak, burst });
-    else if (step.type === 'knowledge') renderKnowledge(slide, data.knowledgeCheck, (pct) => { results.knowledgePct = pct; markDone(i); }, { handleStreak, burst });
-    else if (step.type === 'checkin') renderCheckin(slide, data.checkin, sectionId, () => markDone(i));
+    if (step.type === 'welcome') renderWelcome(slide, data.welcome, () => completeStepAndAdvance(i));
+    else if (step.type === 'challenge') renderChallenge(slide, data.challenge, () => completeStepAndAdvance(i), { handleStreak, burst });
+    else if (step.type === 'knowledge') renderKnowledge(slide, data.knowledgeCheck, (pct) => { results.knowledgePct = pct; completeStepAndAdvance(i); }, { handleStreak, burst });
+    else if (step.type === 'checkin') renderCheckin(slide, data.checkin, sectionId, () => completeStepAndAdvance(i));
     else if (step.type === 'complete') renderComplete(slide, data, { flagKey, backHref, nextSectionHref, nextSectionLabel, lessonsLabel, lessonGpTotal, results, data });
   }
 
@@ -124,7 +136,7 @@ export function renderSectionWizard(data, opts) {
 function renderWelcome(slide, welcome, satisfy) {
   slide.innerHTML = `
     <div class="lw-card sw-hero">
-      <div class="lw-eyebrow">${welcome.eyebrow || '✦ Section Complete Flow'}</div>
+      <div class="lw-eyebrow">${welcome.eyebrow || 'Section Complete Flow'}</div>
       <h2>${welcome.heading}</h2>
       <p>${welcome.body}</p>
       <div class="sw-mission">
@@ -143,7 +155,7 @@ function renderChallenge(slide, challenge, onAllDone, helpers) {
   const intro = document.createElement('div');
   intro.className = 'lw-card';
   intro.innerHTML = `
-    <div class="lw-eyebrow">🎯 Section Challenge</div>
+    <div class="lw-eyebrow">Section Challenge</div>
     <h2>${challenge.title}</h2>
     <p>${challenge.subtitle}</p>
   `;
@@ -176,7 +188,7 @@ function renderChallenge(slide, challenge, onAllDone, helpers) {
 function renderMcRound(el, round, i, total, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
-      <div class="sw-round-label">Round ${i + 1} of ${total}${round.heading ? ` — ${round.heading.replace(/^Round \d+\s*—\s*/, '')}` : ''}</div>
+      <div class="sw-round-label">Round ${i + 1} of ${total}${round.heading ? `: ${round.heading.replace(/^Round \d+\s*[—:]\s*/, '')}` : ''}</div>
       <h2>${round.question}</h2>
       ${round.prompt ? `<p class="lw-scenario">${round.prompt}</p>` : ''}
       <div class="lw-opts" id="swOpts${i}">
@@ -193,7 +205,7 @@ function renderMcRound(el, round, i, total, satisfy, helpers) {
 function renderMultiselectRound(el, round, i, total, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
-      <div class="sw-round-label">Round ${i + 1} of ${total}${round.heading ? ` — ${round.heading.replace(/^Round \d+\s*—\s*/, '')}` : ''}</div>
+      <div class="sw-round-label">Round ${i + 1} of ${total}${round.heading ? `: ${round.heading.replace(/^Round \d+\s*[—:]\s*/, '')}` : ''}</div>
       <h2>${round.question}</h2>
       ${round.prompt ? `<p class="lw-scenario">${round.prompt}</p>` : ''}
       <div class="sw-multi-grid" id="swMulti${i}">
@@ -229,7 +241,7 @@ function renderMultiselectRound(el, round, i, total, satisfy, helpers) {
       items.forEach((btn, ii) => {
         if (selected[ii] && !round.items[ii].correct) btn.classList.add('wrong');
       });
-      fb.textContent = "Not quite — review your selections and try again.";
+      fb.textContent = "Not quite, review your selections and try again.";
       fb.className = 'lw-feedback show bad';
       helpers.handleStreak(false);
     }
@@ -270,7 +282,7 @@ function renderKnowledge(slide, kc, onPass, helpers) {
       const q = set[qi];
       slide.innerHTML = `
         <div class="lw-card">
-          <div class="lw-eyebrow">🧠 Knowledge Check</div>
+          <div class="lw-eyebrow">Knowledge Check</div>
           <div class="sw-progress-row"><span>Question ${qi + 1} of ${set.length}</span><span>Score: ${score} / ${qi}</span></div>
           <div class="sw-progress-track"><div class="sw-progress-fill" style="width:${(qi / set.length) * 100}%"></div></div>
           <h2>${q.question}</h2>
@@ -313,12 +325,12 @@ function renderKnowledge(slide, kc, onPass, helpers) {
       const passed = pct >= kc.passPct * 100;
       slide.innerHTML = `
         <div class="lw-card sw-result-card">
-          <div class="lw-eyebrow">🧠 Knowledge Check</div>
+          <div class="lw-eyebrow">Knowledge Check</div>
           <div class="sw-result-pct ${passed ? 'pass' : 'fail'}">${pct}%</div>
-          <div class="sw-result-sub">${score} of ${total} correct — ${passed ? `you passed (${Math.round(kc.passPct * 100)}% required)` : `${Math.round(kc.passPct * 100)}% required to pass`}</div>
+          <div class="sw-result-sub">${score} of ${total} correct, ${passed ? `you passed (${Math.round(kc.passPct * 100)}% required)` : `${Math.round(kc.passPct * 100)}% required to pass`}</div>
           ${passed
             ? '<button type="button" class="lw-continue-btn" id="swKcContinue" style="align-self:center">Continue →</button>'
-            : '<button type="button" class="lw-continue-btn" id="swKcRetry" style="align-self:center">Try Again — New Questions</button>'}
+            : '<button type="button" class="lw-continue-btn" id="swKcRetry" style="align-self:center">Try Again, New Questions</button>'}
         </div>
       `;
       if (passed) {
@@ -340,7 +352,7 @@ function renderCheckin(slide, checkin, sectionId, satisfy) {
   const p = checkin.prompts;
   slide.innerHTML = `
     <div class="lw-card">
-      <div class="lw-eyebrow">💭 Student Check-In</div>
+      <div class="lw-eyebrow">Student Check-In</div>
       <h2>Let's reflect before you move on.</h2>
 
       <div class="sw-field">
@@ -390,13 +402,14 @@ function renderCheckin(slide, checkin, sectionId, satisfy) {
   [whatClicked, didntKnow, explain].forEach((input) => input.addEventListener('input', checkValid));
 
   saveBtn.addEventListener('click', () => {
+    const text = explain.value.trim();
     try {
       const key = 'aghf_notes';
       const notes = JSON.parse(localStorage.getItem(key) || '[]');
       notes.push({
         sectionId,
         prompt: p.explainToFriend,
-        text: explain.value.trim(),
+        text,
         whatClicked: whatClicked.value.trim(),
         didntKnow: didntKnow.value.trim(),
         topic: selectedTopic,
@@ -404,6 +417,7 @@ function renderCheckin(slide, checkin, sectionId, satisfy) {
       });
       localStorage.setItem(key, JSON.stringify(notes));
     } catch (err) { console.error('Check-in save error:', err); }
+    saveCheckinReflection(sectionId, p.explainToFriend, text).catch((err) => console.error('Server reflection save error:', err));
     slide.querySelector('#swCheckinSaved').style.display = '';
     saveBtn.disabled = true;
     [whatClicked, didntKnow, explain].forEach((el) => { el.disabled = true; });

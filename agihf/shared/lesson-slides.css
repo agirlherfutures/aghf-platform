@@ -1,0 +1,129 @@
+/* lesson-slides.css — A Girl & Her Futures™
+ *
+ * The bite-sized, always-visual lesson format (opt-in via a lesson's
+ * `format: "slides"` flag in agihf/lesson.html) — one idea and one thing
+ * to look at or tap per screen, replacing the old five-stage Learn It/
+ * See It/Try It/Say It Back/Save It flow for lessons converted to it.
+ * Kept separate from lesson-engine.css/loop-engine.css so this can keep
+ * evolving without touching either of those. Reuses their shared `.lw-*`
+ * chrome (card, eyebrow, feedback, continue button, dots/prev/next bar)
+ * — only genuinely new classes live here, prefixed `.ls-`.
+ */
+
+/* Quick check — two or three big tap cards under a teach paragraph */
+.ls-check{margin-top:20px;}
+.ls-check-q{font-size:.88rem;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.5;}
+.ls-tap-row{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.ls-tap-row.ls-tap-row-3{grid-template-columns:1fr 1fr 1fr;}
+@media(max-width:640px){.ls-tap-row,.ls-tap-row-3{grid-template-columns:1fr;}}
+.ls-tap{border-radius:14px;padding:15px 17px;border:1.5px solid var(--border);background:#fff;cursor:pointer;text-align:left;transition:border-color .15s;}
+.ls-tap:hover:not(:disabled){border-color:var(--pink-light);}
+.ls-tap-title{display:block;font-weight:700;font-size:.87rem;color:var(--dark);margin-bottom:3px;}
+.ls-tap-body{display:block;font-size:.76rem;color:var(--muted);line-height:1.5;}
+.ls-tap.correct{background:var(--teal-pale);border-color:var(--teal);}
+.ls-tap.correct .ls-tap-title{color:#1a6b63;}
+.ls-tap.wrong{background:var(--pink-pale);border-color:var(--pink);}
+.ls-tap.wrong .ls-tap-title{color:#a84060;}
+.ls-tap:disabled{cursor:default;}
+
+/* Chart-direction experience — a live price path + a big Long/Short pick */
+.ls-chart-panel{background:var(--cream);border:1px solid var(--border);border-radius:16px;padding:16px;margin-top:14px;}
+.ls-chart-canvas{display:block;width:100%;height:auto;background:#fff;border-radius:12px;border:1px solid var(--border);}
+.ls-choice-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+.ls-choice{border-radius:14px;padding:17px;text-align:center;cursor:pointer;border:1.5px solid var(--border);background:#fff;font-weight:700;font-size:.92rem;transition:border-color .15s;}
+.ls-choice:hover:not(:disabled){border-color:var(--pink-light);}
+.ls-choice.correct{background:var(--teal-pale);border-color:var(--teal);color:#1a6b63;}
+.ls-choice.wrong{background:var(--pink-pale);border-color:var(--pink);color:#a84060;}
+.ls-choice:disabled{cursor:default;}
+.ls-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px;}
+.ls-stat-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:11px;text-align:center;}
+.ls-stat-label{font-size:.62rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;margin-bottom:4px;}
+.ls-stat-value{font-family:var(--font-display);font-weight:800;font-size:1.05rem;color:var(--dark);}
+.ls-stat-value.pos{color:#1a6b63;}
+.ls-stat-value.neg{color:var(--pink);}
+
+/* Icon grid — a concept broken into compact scannable pieces, not prose */
+.ls-icon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;}
+@media(max-width:700px){.ls-icon-grid{grid-template-columns:1fr 1fr;}}
+.ls-icon-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 12px;text-align:center;}
+.ls-icon{font-size:1.4rem;margin-bottom:8px;}
+.ls-icon-title{font-weight:700;font-size:.8rem;color:var(--dark);margin-bottom:4px;}
+.ls-icon-desc{font-size:.72rem;color:var(--muted);line-height:1.4;}
+
+/* Live calculator — instrument pick + inputs + a big glanceable number */
+.ls-inst-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+.ls-inst-card{border-radius:14px;padding:15px;border:1.5px solid var(--border);cursor:pointer;background:#fff;transition:border-color .15s;}
+.ls-inst-card:hover{border-color:var(--pink-light);}
+.ls-inst-card.on{border-color:var(--pink);background:var(--pink-pale);}
+.ls-inst-card h4{font-family:var(--font-display);font-size:.98rem;margin:0 0 2px;color:var(--dark);}
+.ls-inst-card p{font-size:.72rem;color:var(--muted);margin:0 0 8px;}
+.ls-inst-stat{display:flex;justify-content:space-between;font-size:.76rem;padding:4px 0;border-top:1px solid var(--border);}
+.ls-calc-controls{margin-top:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.ls-calc-controls label{font-size:.8rem;color:var(--muted);}
+.ls-calc-controls input{width:80px;padding:8px 10px;border-radius:8px;border:1px solid var(--border);font-family:var(--font-body);font-size:.86rem;}
+.ls-num-btns{display:flex;gap:6px;}
+.ls-num-btn{padding:7px 13px;border-radius:8px;border:1px solid var(--border);background:#fff;font-size:.82rem;cursor:pointer;}
+.ls-num-btn.on{background:var(--pink-pale);border-color:var(--pink);color:var(--pink);font-weight:700;}
+.ls-calc-result{margin-top:16px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;}
+.ls-calc-big{font-family:var(--font-display);font-size:2.1rem;font-weight:800;color:#1a6b63;}
+.ls-calc-formula{font-size:.78rem;color:var(--muted);margin-top:4px;}
+
+/* Reflection — lighter-weight than the old full-panel version */
+.ls-reflect-prompt{font-size:.92rem;color:var(--dark);line-height:1.65;margin-bottom:14px;}
+
+/* Instrument explorer — tap a card, see the real numbers, plus a full compare table */
+.ls-ie-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+@media(max-width:640px){.ls-ie-grid{grid-template-columns:1fr;}}
+.ls-ie-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px;cursor:pointer;transition:border-color .15s,transform .15s;}
+.ls-ie-card:hover{transform:translateY(-2px);border-color:var(--pink-light);}
+.ls-ie-card.on{border-color:var(--pink);background:var(--pink-pale);}
+.ls-ie-name{font-family:var(--font-display);font-size:1.02rem;font-weight:700;color:var(--dark);margin-bottom:2px;}
+.ls-ie-sub{font-size:.72rem;color:var(--muted);margin-bottom:10px;}
+.ls-ie-row{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-top:1px solid var(--border);font-size:.76rem;}
+.ls-ie-row:first-of-type{border-top:none;}
+.ls-ie-row span{color:var(--muted);}
+.ls-ie-row strong{color:var(--dark);}
+.ls-compare-wrap{overflow:auto;border-radius:14px;border:1px solid var(--border);margin-top:14px;}
+.ls-compare-table{width:100%;border-collapse:collapse;background:#fff;min-width:520px;}
+.ls-compare-table th,.ls-compare-table td{padding:10px 13px;border-bottom:1px solid var(--border);font-size:.78rem;text-align:left;}
+.ls-compare-table th{background:var(--cream);color:var(--dark);font-weight:700;}
+.ls-compare-table td strong{color:var(--dark);}
+.ls-compare-table tr:last-child td{border-bottom:none;}
+
+/* P&L lab — dropdown-driven calculator with a 4-cell stat readout */
+.ls-pnl-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;}
+@media(max-width:640px){.ls-pnl-grid{grid-template-columns:1fr;}}
+.ls-pnl-panel{background:var(--cream);border:1px solid var(--border);border-radius:14px;padding:16px;}
+.ls-pnl-panel label{display:block;font-size:.76rem;color:var(--muted);margin:0 0 5px;}
+.ls-pnl-panel label:not(:first-child){margin-top:12px;}
+.ls-pnl-select,.ls-pnl-input{width:100%;padding:9px 11px;border-radius:9px;border:1px solid var(--border);background:#fff;font-family:var(--font-body);font-size:.86rem;color:var(--dark);}
+.ls-pnl-readout{display:flex;flex-direction:column;justify-content:center;text-align:center;}
+.ls-pnl-output{font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--dark);}
+.ls-pnl-formula{font-size:.76rem;color:var(--muted);margin-top:2px;margin-bottom:12px;}
+.ls-stat-grid-4{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.ls-stat-grid-4 .ls-stat-box{padding:9px;}
+.ls-stat-grid-4 .ls-stat-label{margin-bottom:3px;}
+
+/* Compare cards — tap the better vs. worse understanding */
+.ls-compare-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+@media(max-width:640px){.ls-compare-cards{grid-template-columns:1fr;}}
+.ls-compare-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px;text-align:left;cursor:pointer;transition:border-color .15s,transform .15s;}
+.ls-compare-card:hover:not(:disabled){transform:translateY(-2px);border-color:var(--pink-light);}
+.ls-compare-card-label{font-family:var(--font-display);font-weight:700;font-size:.94rem;color:var(--dark);margin-bottom:6px;}
+.ls-compare-card-body{font-size:.78rem;color:var(--muted);line-height:1.5;}
+.ls-compare-card.correct{background:var(--teal-pale);border-color:var(--teal);}
+.ls-compare-card.correct .ls-compare-card-label{color:#1a6b63;}
+.ls-compare-card.wrong{background:var(--pink-pale);border-color:var(--pink);}
+.ls-compare-card.wrong .ls-compare-card-label{color:#a84060;}
+.ls-compare-card:disabled{cursor:default;}
+
+/* Lab checkpoint — two sequential steps, each a tap between two cards */
+.ls-lab-step{margin-top:16px;}
+.ls-lab-step-label{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+.ls-lab-step-prompt{font-size:.88rem;color:var(--dark);line-height:1.5;margin-bottom:10px;}
+.ls-lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:640px){.ls-lab-grid{grid-template-columns:1fr;}}
+.ls-lab-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:13px 15px;font-family:var(--font-body);font-size:.85rem;font-weight:600;color:var(--dark);text-align:left;cursor:pointer;transition:border-color .15s;}
+.ls-lab-card:hover:not(:disabled){border-color:var(--pink-light);}
+.ls-lab-card.on{background:var(--pink-pale);border-color:var(--pink);}
+.ls-lab-card:disabled{cursor:default;opacity:.7;}

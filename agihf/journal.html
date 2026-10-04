@@ -77,17 +77,28 @@
     }
   }
 
-  document.addEventListener('aghf-auth-ready', boot);
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
 
   async function boot() {
     try {
-      ({ getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS, listEntries } = await import('./shared/journal-service.js'));
-      ({ openJournalModal, renderRecentTrades, renderSkeleton, renderErrorState } = await import('./shared/dayli-desk-engine.js'));
-      ({ listChecklists } = await import('./shared/checklist-service.js'));
-      ({ listEvalPlans } = await import('./shared/eval-service.js'));
-      ({ hydrateTscShots } = await import('./shared/journal-engine.js'));
-      ({ groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid } = await import('./shared/journal-calendar-math.js'));
-      ({ renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer } = await import('./shared/journal-calendar-engine.js'));
+      const [journalService, dayliDeskEngine, checklistService, evalService, journalEngine, journalCalendarMath, journalCalendarEngine] = await Promise.all([
+        import('./shared/journal-service.js'),
+        import('./shared/dayli-desk-engine.js'),
+        import('./shared/checklist-service.js'),
+        import('./shared/eval-service.js'),
+        import('./shared/journal-engine.js'),
+        import('./shared/journal-calendar-math.js'),
+        import('./shared/journal-calendar-engine.js'),
+      ]);
+      ({ getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS, listEntries } = journalService);
+      ({ openJournalModal, renderRecentTrades, renderSkeleton, renderErrorState } = dayliDeskEngine);
+      ({ listChecklists } = checklistService);
+      ({ listEvalPlans } = evalService);
+      ({ hydrateTscShots } = journalEngine);
+      ({ groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid } = journalCalendarMath);
+      ({ renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer } = journalCalendarEngine);
     } catch (err) {
       renderFallbackError(err);
       return;

@@ -98,12 +98,19 @@ async function migrateReflections() {
   try { notes = JSON.parse(localStorage.getItem('aghf_notes') || '[]'); } catch { /* none to migrate */ }
   let count = 0;
   for (const n of notes) {
-    if (n.type !== 'premarket' && n.type !== 'postmarket') continue;
+    const type = n.type || (n.sectionId ? 'checkin' : (n.lessonId ? 'lesson' : null));
+    const tradeDate = new Date(n.savedAt || Date.now()).toISOString().slice(0, 10);
+    const entryType = {
+      premarket: 'premarket_reflection', postmarket: 'postmarket_reflection',
+      lesson: 'lesson_reflection', checkin: 'checkin_reflection',
+    }[type];
+    if (!entryType) continue;
     await saveEntry({
-      entryType: n.type === 'premarket' ? 'premarket_reflection' : 'postmarket_reflection',
+      entryType,
+      lessonId: n.lessonId || n.sectionId || null,
       prompt: n.prompt,
       entryReasoning: n.text,
-      tradeDate: new Date(n.savedAt || Date.now()).toISOString().slice(0, 10),
+      tradeDate,
       isDraft: false,
     });
     count += 1;
