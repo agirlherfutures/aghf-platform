@@ -16,73 +16,175 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Intro" },
-      { "t": "00:08", "label": "Ownership vs. an agreement" },
-      { "t": "00:26", "label": "Stocks vs. futures side by side" },
-      { "t": "00:44", "label": "Maya's \"10 is normal\" mistake" },
-      { "t": "01:07", "label": "Know what one unit is worth" },
-      { "t": "01:17", "label": "Your mission" }
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Ownership vs. an agreement"
+      },
+      {
+        "t": "00:26",
+        "label": "Stocks vs. futures side by side"
+      },
+      {
+        "t": "00:44",
+        "label": "Maya's \"10 is normal\" mistake"
+      },
+      {
+        "t": "01:07",
+        "label": "Know what one unit is worth"
+      },
+      {
+        "t": "01:17",
+        "label": "Your mission"
+      }
     ]
   },
   "slides": [
     {
-      "type": "teach",
-      "kicker": "Terms you'll hear",
-      "body": "Futures contracts have a defined contract month and expiration, can require a rollover into the next contract, and use a margin structure different from a typical stock account. You don't need to master all of it today.",
-      "check": {
-        "prompt": "A trader wants to profit from a short-term price move without caring about long-term company ownership. Which instrument type is built for that, and why?",
-        "options": [
-          { "label": "Stocks", "body": "Stock ownership was always designed for short-term moves.", "correct": false, "feedback": "Stock ownership is fundamentally about owning a piece of a company, not short-term price speculation." },
-          { "label": "Futures", "body": "Built purely around price movement, no ownership stake.", "correct": true, "why": "Futures contracts are built purely around price movement, with no ownership stake." }
-        ]
-      }
-    },
-    {
-      "type": "confusion",
-      "kicker": "Don't Get This Confused",
-      "heading": "Stocks ≠ Futures",
-      "left": {
-        "label": "Stocks",
-        "points": ["You're trading shares/equity", "No contract expiration", "Trading hours: regular + extended sessions"]
+      "type": "v2_screen",
+      "kicker": "Futures vs stocks",
+      "headline": "A share isn’t a <em>contract.</em>",
+      "line": "Different thing. Different unit. Different risk.",
+      "visual": {
+        "host": "wave"
       },
-      "right": {
-        "label": "Futures",
-        "points": ["You're trading standardized contracts", "Contracts expire, rollover applies", "Nearly 24-hour weekday trading for many contracts"]
-      }
+      "cta": "Let’s go →",
+      "ctaPink": true
     },
     {
-      "type": "teach",
-      "kicker": "What's wrong with Maya's reasoning?",
-      "body": "Maya normally trades 10 shares of a stock. She decides she'll trade 10 MNQ contracts because \"10 is my normal size.\"",
-      "check": {
-        "prompt": "What's wrong with Maya's reasoning?",
-        "options": [
-          { "label": "Nothing", "body": "10 is 10, no matter what she's trading.", "correct": false, "feedback": "The unit matters. 10 shares of a stock and 10 futures contracts are not comparable sizes." },
-          { "label": "The unit is different", "body": "Share quantity and futures contract quantity aren't equivalent units of risk.", "correct": true, "why": "Right. 10 shares and 10 contracts can carry wildly different dollar risk." }
-        ]
-      }
-    },
-    {
-      "type": "dayli",
-      "kicker": "Dayli Says",
-      "quote": "Position size only means something when you understand what one unit of your instrument is worth."
-    },
-    {
-      "type": "teach",
+      "type": "v2_screen",
       "kicker": "The core difference",
-      "body": "A stock is a claim on ownership. A futures contract carries no ownership stake at all, just an agreement based on price movement.",
+      "headline": "Own it, or <em>trade the move.</em>",
+      "line": "Tap each one.",
+      "visual": {
+        "cards": [
+          {
+            "icon": "bank",
+            "tone": "purple",
+            "label": "Stock",
+            "sub": "A claim on owning a piece of a company."
+          },
+          {
+            "icon": "doc",
+            "tone": "pink",
+            "label": "Futures contract",
+            "sub": "An agreement based on price movement. No ownership."
+          }
+        ]
+      },
       "check": {
-        "prompt": "What's the core difference between what you own when you buy a stock versus what you hold in a futures contract?",
+        "prompt": "What’s the core difference between them?",
+        "stack": true,
         "options": [
-          { "label": "Same thing", "body": "Different names for the same idea.", "correct": false, "feedback": "They're structurally different, one is ownership, one isn't." },
-          { "label": "Ownership vs. agreement", "body": "A stock is a claim on company ownership; a futures contract is an agreement based on price movement.", "correct": true, "why": "Buying a stock means owning a piece of a company. A futures contract carries no ownership stake at all." }
+          {
+            "label": "Same thing, different names",
+            "correct": false,
+            "feedback": "They’re structurally different. One is ownership, one isn’t."
+          },
+          {
+            "label": "Ownership vs. agreement",
+            "correct": true,
+            "why": "Buying a stock means owning a piece of a company. A futures contract carries no ownership stake at all."
+          }
         ]
       }
     },
     {
-      "type": "reflect",
+      "type": "v2_screen",
+      "kicker": "Don’t get this confused",
+      "headline": "Stocks ≠ <em>futures.</em>",
+      "visual": {
+        "versus": [
+          {
+            "label": "Stocks",
+            "tone": "purple",
+            "icon": "bank",
+            "points": [
+              "Shares of equity",
+              "No expiration",
+              "Regular + extended hours"
+            ]
+          },
+          {
+            "label": "Futures",
+            "tone": "pink",
+            "icon": "doc",
+            "points": [
+              "Standardized contracts",
+              "Expire, then roll over",
+              "Nearly 24 hours on weekdays"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Terms you’ll hear",
+      "headline": "Expiration. Rollover. <em>Margin.</em>",
+      "line": "Futures have a contract month, may roll into the next contract, and use different margin. No need to master it today.",
+      "visual": {
+        "icon": "calendar",
+        "tone": "peach",
+        "caption": "Futures contracts expire. Shares don’t."
+      },
+      "check": {
+        "prompt": "She wants to profit from a short-term move and doesn’t care about owning the company. Which is built for that?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Stocks",
+            "correct": false,
+            "feedback": "Stock ownership is fundamentally about owning a piece of a company, not short-term price speculation."
+          },
+          {
+            "label": "Futures",
+            "correct": true,
+            "why": "Futures contracts are built purely around price movement, with no ownership stake."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "What’s wrong here?",
+      "headline": "Maya trades 10 shares. So <em>10 MNQ?</em>",
+      "small": true,
+      "line": "“10 is my normal size.”",
+      "visual": {
+        "icon": "scale",
+        "tone": "purple",
+        "caption": "10 shares. 10 contracts. Same size?"
+      },
+      "check": {
+        "prompt": "What’s wrong with Maya’s reasoning?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Nothing, 10 is 10",
+            "correct": false,
+            "feedback": "The unit matters. 10 shares of a stock and 10 futures contracts are not comparable sizes."
+          },
+          {
+            "label": "The unit is different",
+            "correct": true,
+            "why": "Right. Share quantity and contract quantity aren’t equivalent units of risk. 10 shares and 10 contracts can carry wildly different dollar risk."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Position size only means something when you understand what <em>one unit</em> of your instrument is worth."
+    },
+    {
+      "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Imagine another AGHF member asks: \"Why can't I just trade the same number of contracts as shares I used to trade?\" How would you explain it to them?",
+      "prompt": "Why can’t you just trade as many contracts as you used to trade shares?",
       "modelAnswer": "Because a share and a contract aren't the same unit of risk. One share of a stock might be worth $50, while one futures contract's point value could be worth $2, $5, or $50 per point depending on the instrument. The number 10 doesn't mean anything on its own."
     }
   ],
@@ -91,5 +193,6 @@
     "Futures contracts expire and involve rollover, stocks don't.",
     "Share count and contract count are not equivalent units of risk."
   ],
-  "remember": "Know what one unit of your instrument is actually worth."
+  "remember": "Know what one unit of your instrument is actually worth.",
+  "completeStyle": "v2"
 }
