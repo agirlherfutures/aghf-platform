@@ -1,0 +1,1256 @@
+{
+  "phase": "p1",
+  "section": "s3",
+  "title": "Candles & Timeframes",
+  "steps": [
+    "game",
+    "knowledge",
+    "checkin",
+    "complete"
+  ],
+  "hook": "Clear the Pattern Recognition Game, pass the Knowledge Check, and save your Check-In to finish Phase 1.",
+  "game": {
+    "title": "Pattern Recognition Game",
+    "tagline": "Read the candle. Call it before the gate.",
+    "xp": 75,
+    "doneHeading": "PATTERN RECOGNITION COMPLETE ✓",
+    "doneLine": "You read the wick, the body and the close, told reach from acceptance, and zoomed out before you zoomed in.",
+    "levels": [
+      {
+        "name": "Reached or accepted?",
+        "concept": "Wick vs. close",
+        "type": "flash_sort",
+        "goal": "Did price just visit the level, or close through it?",
+        "options": [
+          {
+            "key": "accept",
+            "label": "Accepted (closed through)",
+            "emoji": "✅"
+          },
+          {
+            "key": "reject",
+            "label": "Rejected (wick, no close)",
+            "emoji": "↩️"
+          }
+        ],
+        "items": [
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 225,
+                  "w": 34
+                },
+                {
+                  "o": 225,
+                  "c": 232,
+                  "w": 34
+                },
+                {
+                  "o": 232,
+                  "c": 185,
+                  "w": 34
+                },
+                {
+                  "o": 185,
+                  "c": 90,
+                  "h": 82,
+                  "l": 190,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ],
+              "hlines": [
+                {
+                  "y": 120,
+                  "label": "Resistance",
+                  "tone": "down",
+                  "x1": 60,
+                  "x2": 640,
+                  "below": false
+                }
+              ]
+            },
+            "answer": "accept",
+            "why": "The body closed above resistance. Price accepted the level."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 225,
+                  "w": 34
+                },
+                {
+                  "o": 225,
+                  "c": 232,
+                  "w": 34
+                },
+                {
+                  "o": 232,
+                  "c": 185,
+                  "w": 34
+                },
+                {
+                  "o": 182,
+                  "c": 170,
+                  "h": 78,
+                  "l": 188,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ],
+              "hlines": [
+                {
+                  "y": 120,
+                  "label": "Resistance",
+                  "tone": "down",
+                  "x1": 60,
+                  "x2": 640,
+                  "below": false
+                }
+              ]
+            },
+            "answer": "reject",
+            "why": "The wick pushed above, but the candle closed back below. Reached, not accepted."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 225,
+                  "w": 34
+                },
+                {
+                  "o": 225,
+                  "c": 232,
+                  "w": 34
+                },
+                {
+                  "o": 232,
+                  "c": 185,
+                  "w": 34
+                },
+                {
+                  "o": 175,
+                  "c": 150,
+                  "h": 92,
+                  "l": 180,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ],
+              "hlines": [
+                {
+                  "y": 120,
+                  "label": "Key high",
+                  "tone": "down",
+                  "x1": 60,
+                  "x2": 640,
+                  "below": false
+                }
+              ]
+            },
+            "answer": "reject",
+            "why": "A wick through the key high isn’t a break. No close, no acceptance."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 225,
+                  "w": 34
+                },
+                {
+                  "o": 225,
+                  "c": 232,
+                  "w": 34
+                },
+                {
+                  "o": 232,
+                  "c": 185,
+                  "w": 34
+                },
+                {
+                  "o": 180,
+                  "c": 100,
+                  "h": 96,
+                  "l": 186,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ],
+              "hlines": [
+                {
+                  "y": 120,
+                  "label": "Key high",
+                  "tone": "down",
+                  "x1": 60,
+                  "x2": 640,
+                  "below": false
+                }
+              ]
+            },
+            "answer": "accept",
+            "why": "Closed through the key high. That’s acceptance."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 70,
+                  "c": 95,
+                  "w": 34
+                },
+                {
+                  "o": 95,
+                  "c": 88,
+                  "w": 34
+                },
+                {
+                  "o": 88,
+                  "c": 135,
+                  "w": 34
+                },
+                {
+                  "o": 135,
+                  "c": 240,
+                  "h": 128,
+                  "l": 252,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ],
+              "hlines": [
+                {
+                  "y": 205,
+                  "label": "Support",
+                  "tone": "up",
+                  "x1": 60,
+                  "x2": 640,
+                  "below": true
+                }
+              ]
+            },
+            "answer": "accept",
+            "why": "The close settled below support. Sellers broke the level."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 70,
+                  "c": 95,
+                  "w": 34
+                },
+                {
+                  "o": 95,
+                  "c": 88,
+                  "w": 34
+                },
+                {
+                  "o": 88,
+                  "c": 135,
+                  "w": 34
+                },
+                {
+                  "o": 135,
+                  "c": 150,
+                  "h": 128,
+                  "l": 248,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ],
+              "hlines": [
+                {
+                  "y": 205,
+                  "label": "Support",
+                  "tone": "up",
+                  "x1": 60,
+                  "x2": 640,
+                  "below": true
+                }
+              ]
+            },
+            "answer": "reject",
+            "why": "The wick tested below support, but the close held above it. Buyers defended the level."
+          }
+        ]
+      },
+      {
+        "name": "Read the close",
+        "concept": "Bodies & closes",
+        "type": "flash_sort",
+        "goal": "Who held control at the end of the candle?",
+        "options": [
+          {
+            "key": "strong",
+            "label": "Strong close",
+            "emoji": "💪"
+          },
+          {
+            "key": "weak",
+            "label": "Weak close",
+            "emoji": "🫥"
+          }
+        ],
+        "items": [
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 225,
+                  "w": 34
+                },
+                {
+                  "o": 225,
+                  "c": 232,
+                  "w": 34
+                },
+                {
+                  "o": 232,
+                  "c": 185,
+                  "w": 34
+                },
+                {
+                  "o": 240,
+                  "c": 70,
+                  "h": 66,
+                  "l": 244,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ]
+            },
+            "answer": "strong",
+            "why": "A big body that closed right near its high. Buyers held control to the end."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 225,
+                  "w": 34
+                },
+                {
+                  "o": 225,
+                  "c": 232,
+                  "w": 34
+                },
+                {
+                  "o": 232,
+                  "c": 185,
+                  "w": 34
+                },
+                {
+                  "o": 180,
+                  "c": 160,
+                  "h": 70,
+                  "l": 250,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ]
+            },
+            "answer": "weak",
+            "why": "Long wicks both ways and a small body in the middle. Nobody held control."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 220,
+                  "w": 34
+                },
+                {
+                  "o": 220,
+                  "c": 200,
+                  "w": 34
+                },
+                {
+                  "o": 200,
+                  "c": 210,
+                  "w": 34
+                },
+                {
+                  "o": 80,
+                  "c": 250,
+                  "h": 76,
+                  "l": 254,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ]
+            },
+            "answer": "strong",
+            "why": "A big body that closed near its low. Sellers held control to the end."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 225,
+                  "w": 34
+                },
+                {
+                  "o": 225,
+                  "c": 232,
+                  "w": 34
+                },
+                {
+                  "o": 232,
+                  "c": 185,
+                  "w": 34
+                },
+                {
+                  "o": 160,
+                  "c": 180,
+                  "h": 72,
+                  "l": 246,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ]
+            },
+            "answer": "weak",
+            "why": "Price traveled far both ways, then closed near where it opened."
+          }
+        ]
+      },
+      {
+        "name": "Same wick, different story",
+        "concept": "Candle psychology",
+        "type": "chart_check",
+        "goal": "Two candles test support with nearly the same wick.",
+        "chart": {
+          "swings": [],
+          "bars": [
+            {
+              "o": 160,
+              "c": 140,
+              "h": 125,
+              "l": 245,
+              "w": 44
+            },
+            {
+              "o": 140,
+              "c": 238,
+              "h": 125,
+              "l": 252,
+              "w": 44
+            }
+          ],
+          "barsX": [
+            240,
+            460
+          ],
+          "hlines": [
+            {
+              "y": 205,
+              "label": "Support",
+              "tone": "up",
+              "x1": 60,
+              "x2": 640,
+              "below": true
+            }
+          ],
+          "notes": [
+            {
+              "x": 240,
+              "y": 290,
+              "text": "A",
+              "tone": "purple",
+              "size": 20
+            },
+            {
+              "x": 460,
+              "y": 290,
+              "text": "B",
+              "tone": "purple",
+              "size": 20
+            }
+          ]
+        },
+        "scenario": "Both candles wick down below support. Read where each one closed.",
+        "check": {
+          "prompt": "Which candle shows buyers defending the level?",
+          "options": [
+            {
+              "label": "A",
+              "correct": true,
+              "why": "A closed back above support: buyers defended it. B closed below: sellers broke it. Same wick, opposite stories."
+            },
+            {
+              "label": "B",
+              "correct": false,
+              "feedback": "Look at B’s close. It settled below support, that’s sellers breaking the level."
+            },
+            {
+              "label": "Both, the wicks are the same",
+              "correct": false,
+              "feedback": "The wicks are similar, but the close is the tiebreaker."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Call it before the gate",
+        "concept": "Reading candles",
+        "type": "flash_sort",
+        "goal": "All four reads, mixed up. Go.",
+        "options": [
+          {
+            "key": "accept",
+            "label": "Accepted (closed through)",
+            "emoji": "✅"
+          },
+          {
+            "key": "reject",
+            "label": "Rejected (wick, no close)",
+            "emoji": "↩️"
+          },
+          {
+            "key": "strong",
+            "label": "Strong close",
+            "emoji": "💪"
+          },
+          {
+            "key": "weak",
+            "label": "Weak close",
+            "emoji": "🫥"
+          }
+        ],
+        "items": [
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 225,
+                  "w": 34
+                },
+                {
+                  "o": 225,
+                  "c": 232,
+                  "w": 34
+                },
+                {
+                  "o": 232,
+                  "c": 185,
+                  "w": 34
+                },
+                {
+                  "o": 182,
+                  "c": 170,
+                  "h": 78,
+                  "l": 188,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ],
+              "hlines": [
+                {
+                  "y": 120,
+                  "label": "Resistance",
+                  "tone": "down",
+                  "x1": 60,
+                  "x2": 640,
+                  "below": false
+                }
+              ]
+            },
+            "answer": "reject",
+            "why": "Wick above, close below. Reached, not accepted."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 225,
+                  "w": 34
+                },
+                {
+                  "o": 225,
+                  "c": 232,
+                  "w": 34
+                },
+                {
+                  "o": 232,
+                  "c": 185,
+                  "w": 34
+                },
+                {
+                  "o": 240,
+                  "c": 70,
+                  "h": 66,
+                  "l": 244,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ]
+            },
+            "answer": "strong",
+            "why": "Big body, closed near the high."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 225,
+                  "w": 34
+                },
+                {
+                  "o": 225,
+                  "c": 232,
+                  "w": 34
+                },
+                {
+                  "o": 232,
+                  "c": 185,
+                  "w": 34
+                },
+                {
+                  "o": 185,
+                  "c": 90,
+                  "h": 82,
+                  "l": 190,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ],
+              "hlines": [
+                {
+                  "y": 120,
+                  "label": "Resistance",
+                  "tone": "down",
+                  "x1": 60,
+                  "x2": 640,
+                  "below": false
+                }
+              ]
+            },
+            "answer": "accept",
+            "why": "Closed through resistance."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 225,
+                  "w": 34
+                },
+                {
+                  "o": 225,
+                  "c": 232,
+                  "w": 34
+                },
+                {
+                  "o": 232,
+                  "c": 185,
+                  "w": 34
+                },
+                {
+                  "o": 160,
+                  "c": 180,
+                  "h": 72,
+                  "l": 246,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ]
+            },
+            "answer": "weak",
+            "why": "Wicks both ways, closed near the open."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 70,
+                  "c": 95,
+                  "w": 34
+                },
+                {
+                  "o": 95,
+                  "c": 88,
+                  "w": 34
+                },
+                {
+                  "o": 88,
+                  "c": 135,
+                  "w": 34
+                },
+                {
+                  "o": 135,
+                  "c": 240,
+                  "h": 128,
+                  "l": 252,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ],
+              "hlines": [
+                {
+                  "y": 205,
+                  "label": "Support",
+                  "tone": "up",
+                  "x1": 60,
+                  "x2": 640,
+                  "below": true
+                }
+              ]
+            },
+            "answer": "accept",
+            "why": "Closed below support. The break was accepted."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 220,
+                  "w": 34
+                },
+                {
+                  "o": 220,
+                  "c": 200,
+                  "w": 34
+                },
+                {
+                  "o": 200,
+                  "c": 210,
+                  "w": 34
+                },
+                {
+                  "o": 80,
+                  "c": 250,
+                  "h": 76,
+                  "l": 254,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ]
+            },
+            "answer": "strong",
+            "why": "Big body, closed near the low."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 225,
+                  "w": 34
+                },
+                {
+                  "o": 225,
+                  "c": 232,
+                  "w": 34
+                },
+                {
+                  "o": 232,
+                  "c": 185,
+                  "w": 34
+                },
+                {
+                  "o": 175,
+                  "c": 150,
+                  "h": 92,
+                  "l": 180,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ],
+              "hlines": [
+                {
+                  "y": 120,
+                  "label": "Key high",
+                  "tone": "down",
+                  "x1": 60,
+                  "x2": 640,
+                  "below": false
+                }
+              ]
+            },
+            "answer": "reject",
+            "why": "No close through the key high."
+          },
+          {
+            "chart": {
+              "swings": [],
+              "bars": [
+                {
+                  "o": 250,
+                  "c": 225,
+                  "w": 34
+                },
+                {
+                  "o": 225,
+                  "c": 232,
+                  "w": 34
+                },
+                {
+                  "o": 232,
+                  "c": 185,
+                  "w": 34
+                },
+                {
+                  "o": 180,
+                  "c": 160,
+                  "h": 70,
+                  "l": 250,
+                  "w": 34
+                }
+              ],
+              "barsX": [
+                170,
+                530
+              ]
+            },
+            "answer": "weak",
+            "why": "Small body in the middle of a big range."
+          }
+        ]
+      },
+      {
+        "name": "Zoom out first",
+        "concept": "Timeframes",
+        "type": "chart_check",
+        "goal": "The 1M chart is a mess.",
+        "scenario": "You open the 1-minute chart and it looks choppy and confusing. You can’t tell what’s going on.",
+        "check": {
+          "prompt": "What should you do first?",
+          "options": [
+            {
+              "label": "Zoom out to a higher timeframe for context",
+              "correct": true,
+              "why": "Context first, detail second. Higher timeframes show direction, lower timeframes show detail."
+            },
+            {
+              "label": "Stare at the 1M until it makes sense",
+              "correct": false,
+              "feedback": "The 1M shows detail. Without context, the detail is noise."
+            },
+            {
+              "label": "Switch to an even lower timeframe",
+              "correct": false,
+              "feedback": "That’s more detail, not more context. Zoom out before you zoom in."
+            }
+          ]
+        }
+      },
+      {
+        "name": "The full read",
+        "concept": "Multi-timeframe thinking",
+        "type": "chart_check",
+        "goal": "Put it all together.",
+        "chart": {
+          "swings": [],
+          "bars": [
+            {
+              "o": 250,
+              "c": 225,
+              "w": 34
+            },
+            {
+              "o": 225,
+              "c": 232,
+              "w": 34
+            },
+            {
+              "o": 232,
+              "c": 185,
+              "w": 34
+            },
+            {
+              "o": 175,
+              "c": 150,
+              "h": 92,
+              "l": 180,
+              "w": 34
+            }
+          ],
+          "barsX": [
+            170,
+            530
+          ],
+          "hlines": [
+            {
+              "y": 120,
+              "label": "Key high",
+              "tone": "down",
+              "x1": 60,
+              "x2": 640,
+              "below": false
+            }
+          ]
+        },
+        "scenario": "The 4H shows a clear upward story. On the 5M, a candle wicks above the key high but closes back below it.",
+        "check": {
+          "prompt": "Which statement is most accurate?",
+          "options": [
+            {
+              "label": "The breakout is confirmed, the wick went above",
+              "correct": false,
+              "feedback": "A wick shows reach. Only a close through the level shows acceptance."
+            },
+            {
+              "label": "The 4H story is erased because the 5M looks messy",
+              "correct": false,
+              "feedback": "A messy lower timeframe doesn’t erase a clear higher-timeframe read."
+            },
+            {
+              "label": "The level was reached, not accepted, and the 4H context still stands",
+              "correct": true,
+              "why": "That’s the full read: wick ≠ close, and zooming in changes what you can see, not what’s actually happening."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "knowledgeCheck": {
+    "questionCount": 10,
+    "passPct": 0.8,
+    "xp": 20,
+    "shuffleOptions": true,
+    "questionBank": [
+      {
+        "concept": "Candlesticks",
+        "question": "What does a candle actually represent?",
+        "options": [
+          "Decoration on the chart",
+          "A small record of the fight between buyers and sellers",
+          "A prediction of the next move",
+          "The volume traded"
+        ],
+        "correctIndex": 1,
+        "why": "Every candle is a record of a buyer and seller battle."
+      },
+      {
+        "concept": "Candlesticks",
+        "question": "Does a long lower wick automatically mean the market is about to reverse upward?",
+        "options": [
+          "Yes, always",
+          "No, no single candle is an automatic signal, context decides",
+          "Only on green candles",
+          "Only on the 1M"
+        ],
+        "correctIndex": 1,
+        "why": "A single candle is never an automatic signal."
+      },
+      {
+        "concept": "Candle anatomy",
+        "question": "What is a candle’s body?",
+        "options": [
+          "The distance from open to close",
+          "The highest price reached",
+          "The thin line above and below",
+          "The candle’s color"
+        ],
+        "correctIndex": 0,
+        "why": "The body is open to close."
+      },
+      {
+        "concept": "Candle anatomy",
+        "question": "Which part of a candle shows where price accepted?",
+        "options": [
+          "The upper wick",
+          "The lower wick",
+          "The close",
+          "The color"
+        ],
+        "correctIndex": 2,
+        "why": "A wick shows where price went. A close shows where price accepted."
+      },
+      {
+        "concept": "Candle anatomy",
+        "question": "What’s the clean order to read a candle?",
+        "options": [
+          "Color, then size",
+          "Body, then wicks, then close",
+          "Wicks only",
+          "Close, then color"
+        ],
+        "correctIndex": 1,
+        "why": "Body, then wicks, then close."
+      },
+      {
+        "concept": "Wick vs. close",
+        "question": "Price wicks above a key high but closes back below it. Has the break been accepted?",
+        "options": [
+          "Yes, the wick went above",
+          "No, it reached the level but didn’t close through it",
+          "Yes, if the candle is green",
+          "Only on the 4H"
+        ],
+        "correctIndex": 1,
+        "why": "I don’t care about the wick. I need the close."
+      },
+      {
+        "concept": "Wick vs. close",
+        "question": "A wick tells you where price ___.",
+        "options": [
+          "Will go next",
+          "Traveled",
+          "Was manipulated",
+          "Accepted"
+        ],
+        "correctIndex": 1,
+        "why": "A wick is the extreme price traveled to, not proof of acceptance."
+      },
+      {
+        "concept": "Candle psychology",
+        "question": "Two candles wick to nearly the same low at support. One closes above, one closes below. Same story?",
+        "options": [
+          "Yes, same wick, same story",
+          "No, one shows buyers defending, the other shows sellers breaking the level",
+          "Only if they’re the same color",
+          "You can’t tell anything from candles"
+        ],
+        "correctIndex": 1,
+        "why": "The close is the tiebreaker."
+      },
+      {
+        "concept": "Candle psychology",
+        "question": "Before calling acceptance above a level, what do you wait for?",
+        "options": [
+          "The candle’s color",
+          "A volume spike",
+          "The candle’s close",
+          "A second wick"
+        ],
+        "correctIndex": 2,
+        "why": "The close confirms whether the level held or broke."
+      },
+      {
+        "concept": "Timeframes",
+        "question": "What changes when you switch chart timeframes?",
+        "options": [
+          "The market",
+          "Your perspective of the same price",
+          "The contract you’re trading",
+          "Nothing at all"
+        ],
+        "correctIndex": 1,
+        "why": "The market doesn’t change when you switch the view. Your perspective does."
+      },
+      {
+        "concept": "Timeframes",
+        "question": "Higher timeframes show ___. Lower timeframes show ___.",
+        "options": [
+          "Detail / direction",
+          "Direction / detail",
+          "Noise / signals",
+          "Nothing / everything"
+        ],
+        "correctIndex": 1,
+        "why": "Higher timeframes give direction and context. Lower timeframes give detail."
+      },
+      {
+        "concept": "Multi-timeframe thinking",
+        "question": "What’s the risk of forming your whole directional bias off the 1-minute chart alone?",
+        "options": [
+          "None",
+          "You see detail without the context that gives it meaning",
+          "The 1M is always wrong",
+          "It uses too much data"
+        ],
+        "correctIndex": 1,
+        "why": "Detail without context is noise."
+      },
+      {
+        "concept": "Multi-timeframe thinking",
+        "question": "Does a messy lower timeframe erase a clear higher-timeframe read?",
+        "options": [
+          "Yes, the lower timeframe is more recent",
+          "No, zooming in changes what you can see, not what’s happening",
+          "Only during New York",
+          "Only if candles are red"
+        ],
+        "correctIndex": 1,
+        "why": "Different timeframes, different parts of the same story."
+      },
+      {
+        "concept": "Multi-timeframe thinking",
+        "question": "What’s the right zoom order?",
+        "options": [
+          "Zoom in first, then out",
+          "Zoom out first for context, then in for detail",
+          "Only use one timeframe",
+          "It doesn’t matter"
+        ],
+        "correctIndex": 1,
+        "why": "Context first, detail second."
+      }
+    ]
+  },
+  "checkin": {
+    "eyebrow": "📓 My Section 3 Check-In",
+    "heading": "What clicked? 🫧",
+    "saveLabel": "Save to My Academy Notes →",
+    "savedLabel": "✓ Saved to My Academy Notes",
+    "fields": [
+      {
+        "type": "text",
+        "label": "Before this section, what did you look at first on a candle?"
+      },
+      {
+        "type": "text",
+        "label": "In your own words, what’s the difference between a wick and a close?"
+      },
+      {
+        "type": "choice",
+        "label": "Which topic needs another look?",
+        "options": [
+          "Candlesticks",
+          "Candle anatomy",
+          "Wicks, bodies & closes",
+          "Candle psychology",
+          "Timeframes",
+          "Multi-timeframe thinking",
+          "I’m good ✨"
+        ]
+      },
+      {
+        "type": "text",
+        "share": true,
+        "rows": 4,
+        "min": 15,
+        "placeholder": "Type it how YOU understand it...",
+        "label": "💭 Explain it to an AGHF girl: your friend says, “Price wicked above the high, so it broke out!” What would you tell her?"
+      }
+    ]
+  },
+  "complete": {
+    "eyebrow": "🎉 Phase 1 complete",
+    "heading": "✦ YOU CAN READ A CANDLE.",
+    "badge": "Candles & Timeframes: Complete",
+    "gp": 360,
+    "stats": [
+      {
+        "label": "Lessons",
+        "value": "{lessons} ✓"
+      },
+      {
+        "label": "Pattern Recognition Game",
+        "value": "✓"
+      },
+      {
+        "label": "Knowledge Check",
+        "value": "{kc}% ✓"
+      },
+      {
+        "label": "Academy Notes",
+        "value": "Saved ✓"
+      }
+    ],
+    "phase": {
+      "title": "📊 Phase 1: Welcome to the Market",
+      "pct": 100,
+      "sections": [
+        {
+          "icon": "✓",
+          "label": "Section 1: Introduction to Trading"
+        },
+        {
+          "icon": "✓",
+          "label": "Section 2: Before You Touch a Chart"
+        },
+        {
+          "icon": "✓",
+          "label": "Section 3: Candles & Timeframes"
+        }
+      ]
+    },
+    "nextUp": {
+      "title": "Phase 2: Understanding Structure",
+      "cta": "Enter Phase 2 →",
+      "lines": [
+        "You know the market, you know your plan, and you can read a candle.",
+        "Now we zoom out. Candles are the words. Structure is the sentence.",
+        "Welcome to How Markets Move. 🪜"
+      ]
+    }
+  }
+}

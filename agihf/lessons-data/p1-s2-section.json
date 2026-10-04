@@ -1,0 +1,463 @@
+{
+  "phase": "p1",
+  "section": "s2",
+  "title": "Before You Touch a Chart",
+  "steps": [
+    "challenge",
+    "knowledge",
+    "checkin",
+    "complete"
+  ],
+  "hook": "Clear the challenge, pass the Knowledge Check, and save your Check-In to unlock Section 3.",
+  "challenge": {
+    "title": "Ready Before You Trade",
+    "subtitle": "Real situations. Pick what a prepared trader would do.",
+    "xp": 30,
+    "rounds": [
+      {
+        "type": "mc",
+        "heading": "Clean workspace",
+        "prompt": "Your chart has 14 indicators, 9 drawings and 3 timeframes stacked on it.",
+        "question": "What’s the first fix?",
+        "options": [
+          {
+            "label": "Add one more indicator to confirm the others",
+            "correct": false,
+            "feedback": "More tools make price harder to read, not easier."
+          },
+          {
+            "label": "Strip it back to a few tools you use clearly",
+            "correct": true,
+            "feedback": "Right. A few tools used clearly beats a messy chart."
+          },
+          {
+            "label": "Switch timeframes until it looks cleaner",
+            "correct": false,
+            "feedback": "Switching timeframes changes your view, not the clutter."
+          }
+        ]
+      },
+      {
+        "type": "mc",
+        "heading": "Which account?",
+        "prompt": "A trader wants to prove she’s consistent before risking any real money.",
+        "question": "Which account actually answers that?",
+        "options": [
+          {
+            "label": "A broker account",
+            "correct": false,
+            "feedback": "A broker account risks your own capital from trade one."
+          },
+          {
+            "label": "A simulated account",
+            "correct": true,
+            "feedback": "Right. A simulated account proves consistency with zero financial risk."
+          },
+          {
+            "label": "Whichever has the biggest balance",
+            "correct": false,
+            "feedback": "Balance size doesn’t answer the consistency question."
+          }
+        ]
+      },
+      {
+        "type": "mc",
+        "heading": "Pick the order",
+        "prompt": "You only want in if price proves it can trade above a level. Until then, you want nothing to happen.",
+        "question": "Which order fits?",
+        "options": [
+          {
+            "label": "Market order",
+            "correct": false,
+            "feedback": "A market order fills right now, at whatever price is available."
+          },
+          {
+            "label": "Limit order",
+            "correct": false,
+            "feedback": "A limit order waits for a better price. It doesn’t wait for price to prove a level."
+          },
+          {
+            "label": "Stop order",
+            "correct": true,
+            "feedback": "Right. A stop order sits inactive until price reaches the level, then acts like a market order."
+          }
+        ]
+      },
+      {
+        "type": "mc",
+        "heading": "Will it fill?",
+        "prompt": "You place a buy limit order at 19,950. Price drops to 19,960, then rallies away.",
+        "question": "Did your order fill?",
+        "options": [
+          {
+            "label": "Yes, it was close enough",
+            "correct": false,
+            "feedback": "A limit only fills at your price or better. Close doesn’t count."
+          },
+          {
+            "label": "No, price never reached your limit price",
+            "correct": true,
+            "feedback": "Right. That’s the trade-off: price control, but no guaranteed fill."
+          }
+        ]
+      },
+      {
+        "type": "mc",
+        "heading": "Place the stop",
+        "prompt": "You’re long in an uptrend. The higher low that your idea depends on is 18 points below your entry.",
+        "question": "Where does the stop belong?",
+        "options": [
+          {
+            "label": "A comfortable 8 points away, so the loss feels small",
+            "correct": false,
+            "feedback": "Comfort isn’t a reason. A stop belongs where the setup is proven wrong."
+          },
+          {
+            "label": "Beyond the higher low that would prove the idea wrong",
+            "correct": true,
+            "feedback": "Right. Your stop protects the plan, not your feelings in the moment."
+          },
+          {
+            "label": "No stop, you’ll watch it closely",
+            "correct": false,
+            "feedback": "Watching isn’t a plan. Exits come before entries."
+          }
+        ]
+      },
+      {
+        "type": "mc",
+        "heading": "Size it",
+        "prompt": "Same setup, two traders. One uses 1 contract, the other uses 10 after a losing streak to “make it back.”",
+        "question": "What’s the real difference?",
+        "options": [
+          {
+            "label": "Nothing, it’s the same setup",
+            "correct": false,
+            "feedback": "Same setup, very different dollar risk and emotional weight."
+          },
+          {
+            "label": "One is sized from a plan, the other from emotion",
+            "correct": true,
+            "feedback": "Right. Size your position, not your ego."
+          },
+          {
+            "label": "The 10-contract trade is better because it can win more",
+            "correct": false,
+            "feedback": "It can lose 10 times more too. Sizing comes from the risk plan."
+          }
+        ]
+      },
+      {
+        "type": "mc",
+        "heading": "Read the clock",
+        "prompt": "Price breaks a level overnight on thin volume. The same-looking break happens again at the New York open on heavy volume.",
+        "question": "Do they carry the same weight?",
+        "options": [
+          {
+            "label": "Yes, a break is a break",
+            "correct": false,
+            "feedback": "Session context matters. Volume tells you who showed up."
+          },
+          {
+            "label": "No, the heavy-volume break carries more real information",
+            "correct": true,
+            "feedback": "Right. A level in London and a level at the New York open don’t carry the same weight."
+          }
+        ]
+      },
+      {
+        "type": "multiselect",
+        "heading": "Exit plan",
+        "prompt": "Before you enter a trade…",
+        "question": "What should already be decided? Select everything that applies.",
+        "items": [
+          {
+            "label": "Where your stop loss goes",
+            "correct": true
+          },
+          {
+            "label": "Where you’ll take profit",
+            "correct": true
+          },
+          {
+            "label": "How many contracts",
+            "correct": true
+          },
+          {
+            "label": "Whether to move your stop if it gets close",
+            "correct": false
+          },
+          {
+            "label": "Which order type you’ll use",
+            "correct": true
+          }
+        ],
+        "successFeedback": "Exactly. Exits before entries, size from the plan, and no moving the stop out of fear."
+      }
+    ]
+  },
+  "knowledgeCheck": {
+    "questionCount": 10,
+    "passPct": 0.8,
+    "xp": 20,
+    "shuffleOptions": true,
+    "questionBank": [
+      {
+        "concept": "Chart workspace",
+        "question": "What does switching your chart’s timeframe change?",
+        "options": [
+          "The market itself",
+          "Your view of the same price",
+          "The price of the contract",
+          "Your account balance"
+        ],
+        "correctIndex": 1,
+        "why": "Switching timeframes changes your view, not the market."
+      },
+      {
+        "concept": "Chart workspace",
+        "question": "Does adding more drawing tools make a chart easier to read?",
+        "options": [
+          "Yes, more information is always better",
+          "No, a cluttered chart makes price harder to read",
+          "Only on the 1M chart",
+          "Only if they’re different colors"
+        ],
+        "correctIndex": 1,
+        "why": "A few tools used clearly beats a messy chart."
+      },
+      {
+        "concept": "Accounts",
+        "question": "What does a prop firm evaluation test?",
+        "options": [
+          "How fast you can grow a balance",
+          "Rule-discipline before granting access to capital",
+          "Nothing, it’s the same as a broker account",
+          "Your internet speed"
+        ],
+        "correctIndex": 1,
+        "why": "A prop evaluation tests whether you follow the rules before you get capital access."
+      },
+      {
+        "concept": "Accounts",
+        "question": "Which account risks your own capital from the very first trade?",
+        "options": [
+          "A simulated account",
+          "A broker account",
+          "A prop evaluation",
+          "None of them"
+        ],
+        "correctIndex": 1,
+        "why": "A broker account uses your own money from trade one."
+      },
+      {
+        "concept": "Order types",
+        "question": "What’s the trade-off of a market order?",
+        "options": [
+          "Speed for price control",
+          "Price control for speed",
+          "No trade-off",
+          "It never fills"
+        ],
+        "correctIndex": 0,
+        "why": "A market order fills fast, but you don’t control the exact price."
+      },
+      {
+        "concept": "Order types",
+        "question": "If price never reaches your limit price, what happens?",
+        "options": [
+          "It fills anyway at the closest price",
+          "It doesn’t fill",
+          "It turns into a stop order",
+          "It cancels your account"
+        ],
+        "correctIndex": 1,
+        "why": "A limit only fills at your price or better."
+      },
+      {
+        "concept": "Order types",
+        "question": "How does a stop order behave?",
+        "options": [
+          "It fills immediately",
+          "It sits inactive until price reaches the level, then acts like a market order",
+          "It only fills at a better price",
+          "It closes all your trades"
+        ],
+        "correctIndex": 1,
+        "why": "A stop waits for price to prove the level, then executes like a market order."
+      },
+      {
+        "concept": "Stops & targets",
+        "question": "Where does a stop loss belong?",
+        "options": [
+          "Wherever the loss feels comfortable",
+          "Where the setup is actually proven wrong",
+          "Exactly 10 points away, always",
+          "Nowhere, you can watch it"
+        ],
+        "correctIndex": 1,
+        "why": "A stop belongs at the point that proves the idea wrong."
+      },
+      {
+        "concept": "Stops & targets",
+        "question": "Price moves toward your stop. You feel nervous and want to move it further away. What does that do?",
+        "options": [
+          "Protects the trade",
+          "Defeats the reason the stop exists",
+          "Improves your risk-reward",
+          "Nothing"
+        ],
+        "correctIndex": 1,
+        "why": "Moving your stop out of fear defeats the reason it exists."
+      },
+      {
+        "concept": "Stops & targets",
+        "question": "When should a take profit be decided?",
+        "options": [
+          "In advance, as part of the plan",
+          "In the moment, based on how you feel",
+          "Only after the trade is in profit",
+          "Never, let winners run forever"
+        ],
+        "correctIndex": 0,
+        "why": "A take profit is planned in advance, not decided in the moment."
+      },
+      {
+        "concept": "Position sizing",
+        "question": "Where should your position size come from?",
+        "options": [
+          "Your mood that day",
+          "Your last win or loss",
+          "Your risk plan",
+          "What other traders are using"
+        ],
+        "correctIndex": 2,
+        "why": "Sizing comes from your risk plan, never from mood or a streak."
+      },
+      {
+        "concept": "Position sizing",
+        "question": "Can the same setup be reasonable at one size and reckless at another?",
+        "options": [
+          "No, a good setup is good at any size",
+          "Yes, size decides the dollar risk and emotional weight",
+          "Only on futures",
+          "Only for beginners"
+        ],
+        "correctIndex": 1,
+        "why": "Same setup, different size, very different trade."
+      },
+      {
+        "concept": "Sessions",
+        "question": "Which statement about Asia, London and New York is most accurate?",
+        "options": [
+          "New York is always better",
+          "They each behave differently, none is “better,” just different",
+          "Only Asia matters",
+          "They all behave the same"
+        ],
+        "correctIndex": 1,
+        "why": "Each session has its own character. Know which one you’re in."
+      },
+      {
+        "concept": "Sessions",
+        "question": "Why does volume matter when you read a move?",
+        "options": [
+          "It doesn’t",
+          "A move on heavy volume carries more real information than the same move on thin volume",
+          "Thin volume moves are always fake",
+          "Volume decides candle color"
+        ],
+        "correctIndex": 1,
+        "why": "Volume tells you who showed up for the move."
+      }
+    ]
+  },
+  "checkin": {
+    "eyebrow": "📓 My Section 2 Check-In",
+    "heading": "What clicked? 🫧",
+    "saveLabel": "Save to My Academy Notes →",
+    "savedLabel": "✓ Saved to My Academy Notes",
+    "fields": [
+      {
+        "type": "text",
+        "label": "Before this section, how did you think about stop losses?"
+      },
+      {
+        "type": "text",
+        "label": "In your own words, why do exits come before entries?"
+      },
+      {
+        "type": "choice",
+        "label": "Which topic needs another look?",
+        "options": [
+          "TradingView",
+          "Accounts & prop firms",
+          "Order types",
+          "Stop loss & take profit",
+          "Position sizing",
+          "Sessions & market hours",
+          "I’m good ✨"
+        ]
+      },
+      {
+        "type": "text",
+        "share": true,
+        "rows": 4,
+        "min": 15,
+        "placeholder": "Type it how YOU understand it...",
+        "label": "💭 Explain it to an AGHF girl: your friend says, “I just move my stop a little further when price gets close. It gives the trade room.” What would you tell her?"
+      }
+    ]
+  },
+  "complete": {
+    "eyebrow": "🎉 Section complete",
+    "heading": "✦ YOU’RE READY BEFORE THE CHART.",
+    "badge": "Before You Touch a Chart: Complete",
+    "gp": 360,
+    "stats": [
+      {
+        "label": "Lessons",
+        "value": "{lessons} ✓"
+      },
+      {
+        "label": "Section Challenge",
+        "value": "✓"
+      },
+      {
+        "label": "Knowledge Check",
+        "value": "{kc}% ✓"
+      },
+      {
+        "label": "Academy Notes",
+        "value": "Saved ✓"
+      }
+    ],
+    "phase": {
+      "title": "📊 Phase 1: Welcome to the Market",
+      "pct": 67,
+      "sections": [
+        {
+          "icon": "✓",
+          "label": "Section 1: Introduction to Trading"
+        },
+        {
+          "icon": "✓",
+          "label": "Section 2: Before You Touch a Chart"
+        },
+        {
+          "icon": "🔓",
+          "label": "Section 3: Candles & Timeframes"
+        }
+      ]
+    },
+    "nextUp": {
+      "title": "Candles & Timeframes",
+      "cta": "Enter Section 3 →",
+      "lines": [
+        "Your workspace is clean, your plan comes first, and you know the clock.",
+        "Now we read what price actually did: inside every candle, and across every timeframe.",
+        "Wicks, bodies, closes, and the zoom order. 🕯️"
+      ]
+    }
+  }
+}
