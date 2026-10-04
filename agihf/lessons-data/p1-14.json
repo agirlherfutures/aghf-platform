@@ -16,64 +16,413 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Intro" },
-      { "t": "00:08", "label": "Open, close, high, low, body, wick" },
-      { "t": "00:35", "label": "Body, then wicks, then close" },
-      { "t": "00:54", "label": "Wick vs. close" },
-      { "t": "01:06", "label": "Your mission" }
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Open, close, high, low, body, wick"
+      },
+      {
+        "t": "00:35",
+        "label": "Body, then wicks, then close"
+      },
+      {
+        "t": "00:54",
+        "label": "Wick vs. close"
+      },
+      {
+        "t": "01:06",
+        "label": "Your mission"
+      }
     ]
   },
   "slides": [
     {
-      "type": "teach",
-      "kicker": "The full anatomy of one candle",
-      "body": "Every candle has four prices: <strong>open</strong> (where it started), <strong>close</strong> (where it ended, the one that matters most), <strong>high</strong> (the top of its full range), and <strong>low</strong> (the bottom).<br><br>The <strong>body</strong> is the distance between open and close, a bigger body means a more decisive move. The <strong>wick</strong> is everywhere price reached but didn't close, it shows travel, not acceptance."
+      "type": "v2_screen",
+      "kicker": "Candle anatomy",
+      "headline": "Know every part <em>before you read a chart.</em>",
+      "small": true,
+      "line": "Body, wicks, open, close.",
+      "visual": {
+        "host": "wave"
+      },
+      "cta": "Let’s go →",
+      "ctaPink": true
     },
     {
-      "type": "chart_tap",
+      "type": "v2_screen",
+      "kicker": "The full anatomy of one candle",
+      "headline": "One candle. <em>Every part.</em>",
+      "line": "Tap through it, one part at a time.",
+      "visual": {
+        "chart": {
+          "swings": [],
+          "bars": [
+            {
+              "o": 235,
+              "c": 105,
+              "h": 30,
+              "l": 295,
+              "w": 90
+            }
+          ],
+          "barsX": [
+            350,
+            350
+          ],
+          "hlines": [
+            {
+              "y": 235,
+              "x1": 100,
+              "x2": 300,
+              "tone": "purple",
+              "id": "open"
+            },
+            {
+              "y": 105,
+              "x1": 100,
+              "x2": 300,
+              "tone": "up",
+              "id": "close"
+            },
+            {
+              "y": 30,
+              "x1": 100,
+              "x2": 338,
+              "tone": "gold",
+              "id": "hl"
+            },
+            {
+              "y": 295,
+              "x1": 100,
+              "x2": 338,
+              "tone": "gold",
+              "id": "hl"
+            }
+          ],
+          "notes": [
+            {
+              "x": 100,
+              "y": 225,
+              "text": "Open",
+              "tone": "purple",
+              "anchor": "start",
+              "size": 26,
+              "id": "open"
+            },
+            {
+              "x": 100,
+              "y": 95,
+              "text": "Close",
+              "tone": "up",
+              "anchor": "start",
+              "size": 26,
+              "id": "close"
+            },
+            {
+              "x": 100,
+              "y": 58,
+              "text": "High",
+              "tone": "gold",
+              "anchor": "start",
+              "size": 26,
+              "id": "hl"
+            },
+            {
+              "x": 100,
+              "y": 285,
+              "text": "Low",
+              "tone": "gold",
+              "anchor": "start",
+              "size": 26,
+              "id": "hl"
+            },
+            {
+              "x": 410,
+              "y": 180,
+              "text": "← Body",
+              "tone": "up",
+              "anchor": "start",
+              "size": 28,
+              "id": "body"
+            },
+            {
+              "x": 362,
+              "y": 76,
+              "text": "← Upper wick",
+              "tone": "purple",
+              "anchor": "start",
+              "size": 26,
+              "id": "wick"
+            },
+            {
+              "x": 362,
+              "y": 274,
+              "text": "← Lower wick",
+              "tone": "purple",
+              "anchor": "start",
+              "size": 26,
+              "id": "wick"
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "open"
+            ],
+            "text": "<b>Open:</b> where the candle started."
+          },
+          {
+            "show": [
+              "close"
+            ],
+            "text": "<b>Close:</b> where it ended. The one that matters most."
+          },
+          {
+            "show": [
+              "hl"
+            ],
+            "text": "<b>High and low:</b> the top and bottom of its full range."
+          },
+          {
+            "show": [
+              "body"
+            ],
+            "text": "<b>Body:</b> open to close. A bigger body means a more decisive move."
+          },
+          {
+            "show": [
+              "wick"
+            ],
+            "text": "<b>Wick:</b> where price reached but didn’t close. Travel, not acceptance."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_tool",
       "kicker": "Find the parts",
-      "title": "Tap the part that fits each clue",
-      "intro": "Same candle, unlabeled this time. Let's test what you just read, one part at a time.",
-      "rounds": [
-        {
-          "prompt": "Tap the part that shows price traveled somewhere but did NOT close there.",
-          "candle": { "open": 205, "close": 148, "high": 122, "low": 243, "bull": true },
-          "points": [
-            { "label": "The wick", "x": 350, "y": 132, "r": 35, "correct": true, "feedback": "Exactly. That thin line above the body is the wick. Price reached up there but closed lower, it didn't hold." },
-            { "label": "The body", "x": 350, "y": 185, "r": 30, "correct": false, "feedback": "The body is the open-to-close range, that's what price DID hold, not what it reached and gave back." },
-            { "label": "The close", "x": 350, "y": 148, "r": 20, "correct": false, "feedback": "That's right at the edge where price settled, the close. We're looking for the part that reached but didn't stay." }
-          ]
-        },
-        {
-          "prompt": "Now tap the part that shows the distance between open and close.",
-          "candle": { "open": 205, "close": 148, "high": 122, "low": 243, "bull": true },
-          "points": [
-            { "label": "The body", "x": 350, "y": 185, "r": 35, "correct": true, "feedback": "Exactly. The wide filled rectangle is the body, the open-to-close range." },
-            { "label": "The top wick", "x": 350, "y": 132, "r": 30, "correct": false, "feedback": "That thin line above is the wick, not the body, the body is the wider rectangle in the middle." },
-            { "label": "The bottom wick", "x": 350, "y": 235, "r": 15, "correct": false, "feedback": "That's the wick below the body, travel, not the body itself." }
-          ]
-        },
-        {
-          "prompt": "Last one, tap the highest price this candle reached.",
-          "candle": { "open": 205, "close": 148, "high": 122, "low": 243, "bull": true },
-          "points": [
-            { "label": "The high", "x": 350, "y": 122, "r": 20, "correct": true, "feedback": "Right. That's the very top of the candle, the highest price reached this candle." },
-            { "label": "The low", "x": 350, "y": 243, "r": 20, "correct": false, "feedback": "That's the low, the bottom of the range, not the top." },
-            { "label": "The body", "x": 350, "y": 185, "r": 30, "correct": false, "feedback": "That's the body, we're looking for the highest point reached, at the very top of the wick." }
+      "headline": "Same candle. <em>No labels.</em>",
+      "line": "Tap the part that fits each clue.",
+      "tool": {
+        "type": "chart_tap",
+        "kicker": "Find the parts",
+        "title": "Tap the part that fits each clue",
+        "intro": "Same candle, unlabeled this time. Let's test what you just read, one part at a time.",
+        "rounds": [
+          {
+            "prompt": "Tap the part that shows price traveled somewhere but did NOT close there.",
+            "candle": {
+              "open": 205,
+              "close": 148,
+              "high": 122,
+              "low": 243,
+              "bull": true
+            },
+            "points": [
+              {
+                "label": "The wick",
+                "x": 350,
+                "y": 132,
+                "r": 35,
+                "correct": true,
+                "feedback": "Exactly. That thin line above the body is the wick. Price reached up there but closed lower, it didn't hold."
+              },
+              {
+                "label": "The body",
+                "x": 350,
+                "y": 185,
+                "r": 30,
+                "correct": false,
+                "feedback": "The body is the open-to-close range, that's what price DID hold, not what it reached and gave back."
+              },
+              {
+                "label": "The close",
+                "x": 350,
+                "y": 148,
+                "r": 20,
+                "correct": false,
+                "feedback": "That's right at the edge where price settled, the close. We're looking for the part that reached but didn't stay."
+              }
+            ]
+          },
+          {
+            "prompt": "Now tap the part that shows the distance between open and close.",
+            "candle": {
+              "open": 205,
+              "close": 148,
+              "high": 122,
+              "low": 243,
+              "bull": true
+            },
+            "points": [
+              {
+                "label": "The body",
+                "x": 350,
+                "y": 185,
+                "r": 35,
+                "correct": true,
+                "feedback": "Exactly. The wide filled rectangle is the body, the open-to-close range."
+              },
+              {
+                "label": "The top wick",
+                "x": 350,
+                "y": 132,
+                "r": 30,
+                "correct": false,
+                "feedback": "That thin line above is the wick, not the body, the body is the wider rectangle in the middle."
+              },
+              {
+                "label": "The bottom wick",
+                "x": 350,
+                "y": 235,
+                "r": 15,
+                "correct": false,
+                "feedback": "That's the wick below the body, travel, not the body itself."
+              }
+            ]
+          },
+          {
+            "prompt": "Last one, tap the highest price this candle reached.",
+            "candle": {
+              "open": 205,
+              "close": 148,
+              "high": 122,
+              "low": 243,
+              "bull": true
+            },
+            "points": [
+              {
+                "label": "The high",
+                "x": 350,
+                "y": 122,
+                "r": 20,
+                "correct": true,
+                "feedback": "Right. That's the very top of the candle, the highest price reached this candle."
+              },
+              {
+                "label": "The low",
+                "x": 350,
+                "y": 243,
+                "r": 20,
+                "correct": false,
+                "feedback": "That's the low, the bottom of the range, not the top."
+              },
+              {
+                "label": "The body",
+                "x": 350,
+                "y": 185,
+                "r": 30,
+                "correct": false,
+                "feedback": "That's the body, we're looking for the highest point reached, at the very top of the wick."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Wick vs. close",
+      "headline": "A wick is <em>travel.</em> A close is <em>acceptance.</em>",
+      "small": true,
+      "line": "Price reached up there, then settled lower.",
+      "visual": {
+        "chart": {
+          "swings": [],
+          "bars": [
+            {
+              "o": 250,
+              "c": 170,
+              "h": 30,
+              "l": 275,
+              "w": 90
+            }
+          ],
+          "barsX": [
+            400,
+            400
+          ],
+          "hlines": [
+            {
+              "y": 30,
+              "x1": 60,
+              "x2": 388,
+              "tone": "muted"
+            },
+            {
+              "y": 170,
+              "x1": 60,
+              "x2": 350,
+              "tone": "up"
+            }
+          ],
+          "notes": [
+            {
+              "x": 60,
+              "y": 64,
+              "text": "Price went here",
+              "tone": "muted",
+              "anchor": "start",
+              "size": 26
+            },
+            {
+              "x": 60,
+              "y": 158,
+              "text": "Price accepted here",
+              "tone": "up",
+              "anchor": "start",
+              "size": 26
+            },
+            {
+              "x": 465,
+              "y": 105,
+              "text": "← Wick",
+              "tone": "purple",
+              "anchor": "start",
+              "size": 26
+            },
+            {
+              "x": 465,
+              "y": 178,
+              "text": "← Close",
+              "tone": "up",
+              "anchor": "start",
+              "size": 26
+            }
           ]
         }
-      ]
+      },
+      "check": {
+        "prompt": "Which part shows what price accepted?",
+        "options": [
+          {
+            "label": "The wick",
+            "correct": false,
+            "feedback": "A wick only shows where price traveled. It didn’t stay there."
+          },
+          {
+            "label": "The close",
+            "correct": true,
+            "why": "The close is where price actually settled: what the market accepted by the end of that candle."
+          }
+        ]
+      }
     },
     {
-      "type": "dayli",
-      "kicker": "Dayli Says",
-      "quote": "A wick shows me where price went. A close shows me where price accepted. Read a candle in that order: body, then wicks, then respect the close."
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "A wick shows me where price went. A close shows me where price <em>accepted.</em>",
+      "line": "Read a candle in that order: body, then wicks, then respect the close."
     },
     {
-      "type": "reflect",
+      "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Imagine another AGHF member asks: \"What's the difference between a wick and a close?\" How would you explain it to them?",
-      "modelAnswer": "A wick shows me where price traveled but didn't stay, it's the reach. A close shows me where price actually settled, what the market accepted by the end of that candle. If I only look at the wick, I only know where price visited. The close tells me what actually held."
+      "prompt": "What’s the difference between a wick and a close?",
+      "modelAnswer": "A wick shows me where price traveled but didn’t stay, it’s the reach. A close shows me where price actually settled, what the market accepted by the end of that candle. If I only look at the wick, I only know where price visited. The close tells me what actually held."
     }
   ],
   "takeaways": [
@@ -81,5 +430,6 @@
     "A wick shows where price traveled; a close shows where price accepted.",
     "Reading a candle cleanly means: body, then wicks, then close."
   ],
-  "remember": "A wick shows me where price went. A close shows me where price accepted."
+  "remember": "A wick shows me where price went. A close shows me where price accepted.",
+  "completeStyle": "v2"
 }
