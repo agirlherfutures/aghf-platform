@@ -16,64 +16,372 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Intro" },
-      { "t": "00:08", "label": "Watch a candle form" },
-      { "t": "00:30", "label": "Two candles, two stories" },
-      { "t": "00:50", "label": "The color rule" },
-      { "t": "01:00", "label": "Read the whole shape" },
-      { "t": "01:11", "label": "Your mission" }
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Watch a candle form"
+      },
+      {
+        "t": "00:30",
+        "label": "Two candles, two stories"
+      },
+      {
+        "t": "00:50",
+        "label": "The color rule"
+      },
+      {
+        "t": "01:00",
+        "label": "Read the whole shape"
+      },
+      {
+        "t": "01:11",
+        "label": "Your mission"
+      }
     ]
   },
   "slides": [
     {
-      "type": "teach",
-      "kicker": "Candles show price behavior during a period of time",
-      "body": "Every candle has a beginning (open), an ending (close), a high point, and a low point. It's a record of what buyers and sellers did during that timeframe.<br><br>When you read candles correctly, you stop seeing random shapes and start seeing pressure, control, and movement."
+      "type": "v2_screen",
+      "kicker": "Candlesticks",
+      "headline": "Every candle is <em>a decision.</em>",
+      "line": "Green means buyers won. Red means sellers won.",
+      "visual": {
+        "host": "wave"
+      },
+      "cta": "Let’s go →",
+      "ctaPink": true
     },
     {
-      "type": "candle_reveal",
-      "kicker": "Two candles, two very different stories",
-      "title": "Tap each candle to see what its shape represents",
-      "candles": [
-        { "label": "Large green body", "desc": "A large body means price traveled far from open to close in one direction, a decisive win for buyers that period.", "open": 190, "close": 60, "high": 50, "low": 195, "bull": true },
-        { "label": "Small red body, long wicks", "desc": "A small body with long wicks means a real fight happened, but neither side settled far from where it started, indecision.", "open": 120, "close": 140, "high": 50, "low": 220, "bull": false }
-      ]
-    },
-    {
-      "type": "teach",
-      "kicker": "Is that a safe assumption?",
-      "body": "A trader sees a candle with a long lower wick and assumes it automatically means the market is about to reverse upward.",
-      "check": {
-        "prompt": "Is that a safe assumption?",
-        "options": [
-          { "label": "Yes, a long lower wick always means a reversal", "correct": false, "feedback": "No single wick is an automatic signal on its own." },
-          { "label": "Not on its own, it needs to be read in context, not treated as an automatic signal", "correct": true, "why": "Right. A wick shows buyers rejected a push down during that candle, not proof of what happens next." }
+      "type": "v2_screen",
+      "kicker": "Candles show price over a period of time",
+      "headline": "Four prices. <em>One candle.</em>",
+      "line": "A record of what buyers and sellers did during that timeframe.",
+      "visual": {
+        "chart": {
+          "swings": [],
+          "bars": [
+            {
+              "o": 235,
+              "c": 105,
+              "h": 30,
+              "l": 295,
+              "w": 90
+            }
+          ],
+          "barsX": [
+            350,
+            350
+          ],
+          "hlines": [
+            {
+              "y": 235,
+              "x1": 110,
+              "x2": 300,
+              "tone": "purple",
+              "id": "open"
+            },
+            {
+              "y": 105,
+              "x1": 110,
+              "x2": 300,
+              "tone": "up",
+              "id": "close"
+            },
+            {
+              "y": 30,
+              "x1": 360,
+              "x2": 590,
+              "tone": "gold",
+              "id": "hl"
+            },
+            {
+              "y": 295,
+              "x1": 360,
+              "x2": 590,
+              "tone": "gold",
+              "id": "hl"
+            }
+          ],
+          "notes": [
+            {
+              "x": 110,
+              "y": 225,
+              "text": "Open",
+              "tone": "purple",
+              "anchor": "start",
+              "size": 28,
+              "id": "open"
+            },
+            {
+              "x": 110,
+              "y": 95,
+              "text": "Close",
+              "tone": "up",
+              "anchor": "start",
+              "size": 28,
+              "id": "close"
+            },
+            {
+              "x": 590,
+              "y": 62,
+              "text": "High",
+              "tone": "gold",
+              "anchor": "end",
+              "size": 28,
+              "id": "hl"
+            },
+            {
+              "x": 590,
+              "y": 285,
+              "text": "Low",
+              "tone": "gold",
+              "anchor": "end",
+              "size": 28,
+              "id": "hl"
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "open"
+            ],
+            "text": "<b>Open:</b> where the candle began."
+          },
+          {
+            "show": [
+              "close"
+            ],
+            "text": "<b>Close:</b> where it ended."
+          },
+          {
+            "show": [
+              "hl"
+            ],
+            "text": "<b>High and low:</b> the highest and lowest points price reached."
+          }
         ]
       }
     },
     {
-      "type": "dayli",
-      "kicker": "Dayli Says",
-      "quote": "Candles are not just green and red. They show who pushed, who rejected, who held, and where price accepted."
+      "type": "v2_screen",
+      "kicker": "Read them correctly",
+      "headline": "Not random shapes. <em>Pressure.</em>",
+      "line": "Read candles correctly and you start seeing pressure, control and movement.",
+      "visual": {
+        "chart": {
+          "swings": [
+            [
+              30,
+              250
+            ],
+            [
+              200,
+              130
+            ],
+            [
+              300,
+              185
+            ],
+            [
+              480,
+              70
+            ],
+            [
+              560,
+              140
+            ],
+            [
+              670,
+              95
+            ]
+          ],
+          "seed": 5
+        }
+      }
     },
     {
-      "type": "teach",
+      "type": "v2_screen",
       "kicker": "One rule to lock in",
-      "body": "A candle's color comes from one simple relationship between two prices.",
+      "headline": "Color comes from <em>two prices.</em>",
+      "line": "One simple relationship between them decides it.",
+      "visual": {
+        "chart": {
+          "swings": [],
+          "barsX": [
+            270,
+            430
+          ],
+          "bars": [
+            {
+              "o": 250,
+              "c": 110,
+              "h": 85,
+              "l": 280,
+              "w": 84
+            },
+            {
+              "o": 110,
+              "c": 250,
+              "h": 85,
+              "l": 280,
+              "w": 84
+            }
+          ],
+          "notes": [
+            {
+              "x": 270,
+              "y": 58,
+              "text": "Bullish",
+              "tone": "up",
+              "size": 30
+            },
+            {
+              "x": 430,
+              "y": 58,
+              "text": "Bearish",
+              "tone": "down",
+              "size": 30
+            }
+          ]
+        }
+      },
       "check": {
         "prompt": "A bullish candle closes ___ where it opened.",
         "options": [
-          { "label": "Below", "correct": false, "feedback": "Closing below the open is what makes a candle bearish, not bullish." },
-          { "label": "Exactly at", "correct": false, "feedback": "Closing exactly at the open would leave no real body at all." },
-          { "label": "Above", "correct": true, "why": "A bullish close settles higher than the open, that's what makes it bullish." }
+          {
+            "label": "Below",
+            "correct": false,
+            "feedback": "Closing below the open is what makes a candle bearish, not bullish."
+          },
+          {
+            "label": "Exactly at",
+            "correct": false,
+            "feedback": "Closing exactly at the open would leave no real body at all."
+          },
+          {
+            "label": "Above",
+            "correct": true,
+            "why": "A bullish close settles higher than the open. That’s what makes it bullish."
+          }
         ]
       }
     },
     {
-      "type": "reflect",
+      "type": "v2_tool",
+      "kicker": "Two candles, two very different stories",
+      "headline": "Tap each candle. <em>Read the shape.</em>",
+      "tool": {
+        "type": "candle_reveal",
+        "kicker": "Two candles, two very different stories",
+        "title": "Tap each candle to see what its shape represents",
+        "candles": [
+          {
+            "label": "Large green body",
+            "desc": "A large body means price traveled far from open to close in one direction, a decisive win for buyers that period.",
+            "open": 190,
+            "close": 60,
+            "high": 50,
+            "low": 195,
+            "bull": true
+          },
+          {
+            "label": "Small red body, long wicks",
+            "desc": "A small body with long wicks means a real fight happened, but neither side settled far from where it started, indecision.",
+            "open": 120,
+            "close": 140,
+            "high": 50,
+            "low": 220,
+            "bull": false
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Is that a safe assumption?",
+      "headline": "Long lower wick. <em>Reversal coming?</em>",
+      "line": "A trader assumes it means the market is about to reverse upward.",
+      "visual": {
+        "chart": {
+          "swings": [],
+          "barsX": [
+            170,
+            520
+          ],
+          "bars": [
+            {
+              "o": 40,
+              "c": 100,
+              "h": 30,
+              "l": 108,
+              "w": 56
+            },
+            {
+              "o": 98,
+              "c": 160,
+              "h": 88,
+              "l": 170,
+              "w": 56
+            },
+            {
+              "o": 158,
+              "c": 205,
+              "h": 150,
+              "l": 214,
+              "w": 56
+            },
+            {
+              "o": 210,
+              "c": 192,
+              "h": 186,
+              "l": 300,
+              "w": 56
+            }
+          ],
+          "notes": [
+            {
+              "x": 495,
+              "y": 285,
+              "text": "Long lower wick →",
+              "tone": "purple",
+              "anchor": "end",
+              "size": 26
+            }
+          ]
+        }
+      },
+      "check": {
+        "prompt": "Is that a safe assumption?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Yes, a long lower wick always means a reversal",
+            "correct": false,
+            "feedback": "No single wick is an automatic signal on its own."
+          },
+          {
+            "label": "Not on its own. Read it in context.",
+            "correct": true,
+            "why": "Right. A wick shows buyers rejected a push down during that candle, not proof of what happens next."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Candles are not just <em>green and red.</em>",
+      "line": "They show who pushed, who rejected, who held, and where price accepted."
+    },
+    {
+      "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Imagine another AGHF member asks: \"Isn't a candle just green or red?\" How would you explain what it's actually showing them?",
-      "modelAnswer": "Color only tells you which side won that candle's fight. The real story is in the shape, how big the body is, how long the wicks are, and where price actually opened and closed. A big green body means buyers won decisively; a small body with long wicks means neither side really settled the fight."
+      "prompt": "Isn’t a candle just green or red?",
+      "modelAnswer": "Color only tells you which side won that candle’s fight. The real story is in the shape, how big the body is, how long the wicks are, and where price actually opened and closed. A big green body means buyers won decisively; a small body with long wicks means neither side really settled the fight."
     }
   ],
   "takeaways": [
@@ -81,5 +389,6 @@
     "Body size and wick length both carry information, read together.",
     "No single candle is an automatic signal, context decides what it means."
   ],
-  "remember": "Every candle is a decision. Read the whole shape, not just the color."
+  "remember": "Every candle is a decision. Read the whole shape, not just the color.",
+  "completeStyle": "v2"
 }

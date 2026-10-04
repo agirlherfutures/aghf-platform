@@ -16,67 +16,171 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Intro" },
-      { "t": "00:08", "label": "Three kinds of accounts" },
-      { "t": "00:34", "label": "Broker vs. prop firm" },
-      { "t": "00:52", "label": "The prop path" },
-      { "t": "01:11", "label": "Know which account you're in" },
-      { "t": "01:21", "label": "Your mission" }
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Three kinds of accounts"
+      },
+      {
+        "t": "00:34",
+        "label": "Broker vs. prop firm"
+      },
+      {
+        "t": "00:52",
+        "label": "The prop path"
+      },
+      {
+        "t": "01:11",
+        "label": "Know which account you're in"
+      },
+      {
+        "t": "01:21",
+        "label": "Your mission"
+      }
     ]
   },
   "slides": [
     {
-      "type": "icon_grid",
-      "kicker": "Every account is either your money, someone else's, or practice money",
-      "title": "Three kinds of accounts",
-      "items": [
-        { "icon": "💰", "label": "Broker account", "desc": "Trades your own capital, you keep every dollar of profit and absorb every dollar of loss." },
-        { "icon": "🏢", "label": "Prop firm evaluation", "desc": "Access to their capital if you prove you can trade within their rules, profits usually split once funded." },
-        { "icon": "🧪", "label": "Simulated account", "desc": "No real money at all, pure practice, zero financial risk." }
-      ]
+      "type": "v2_screen",
+      "kicker": "Brokers, prop firms & accounts",
+      "headline": "Whose money <em>is it?</em>",
+      "line": "Every account is your money, someone else’s, or practice money.",
+      "visual": {
+        "host": "wave"
+      },
+      "cta": "Let’s go →",
+      "ctaPink": true
     },
     {
-      "type": "confusion",
-      "kicker": "Don't Get This Confused",
-      "heading": "Broker ≠ Prop Firm",
-      "left": { "label": "Broker account", "points": ["Your own capital, full risk", "You keep 100% of profit", "No evaluation required"] },
-      "right": { "label": "Prop firm eval → funded", "points": ["Tests rule-discipline first", "Firm's capital once funded", "Profits usually split"] }
+      "type": "v2_screen",
+      "kicker": "Three kinds of accounts",
+      "headline": "Yours. Theirs. <em>Practice.</em>",
+      "line": "Tap each one.",
+      "visual": {
+        "cards": [
+          {
+            "icon": "coin",
+            "tone": "teal",
+            "label": "Broker account",
+            "sub": "Your own capital. Keep every profit, absorb every loss."
+          },
+          {
+            "icon": "bank",
+            "tone": "purple",
+            "label": "Prop firm evaluation",
+            "sub": "Their capital, if you prove you can trade their rules."
+          },
+          {
+            "icon": "flask",
+            "tone": "peach",
+            "label": "Simulated account",
+            "sub": "No real money. Pure practice, zero financial risk."
+          }
+        ]
+      }
     },
     {
-      "type": "teach",
+      "type": "v2_screen",
+      "kicker": "Don’t get this confused",
+      "headline": "Broker ≠ <em>prop firm.</em>",
+      "visual": {
+        "versus": [
+          {
+            "label": "Broker account",
+            "tone": "teal",
+            "icon": "coin",
+            "points": [
+              "Your own capital, full risk",
+              "You keep 100% of profit",
+              "No evaluation required"
+            ]
+          },
+          {
+            "label": "Prop firm eval → funded",
+            "tone": "purple",
+            "icon": "bank",
+            "points": [
+              "Tests rule discipline first",
+              "Firm’s capital once funded",
+              "Profits usually split"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
       "kicker": "Match the account to the goal",
-      "body": "A trader wants to test whether her execution is consistent before risking real money.",
+      "headline": "Prove it <em>before real money.</em>",
+      "line": "She wants to test whether her execution is consistent before risking real money.",
+      "visual": {
+        "icon": "flask",
+        "tone": "peach",
+        "caption": "Consistency first."
+      },
       "check": {
-        "prompt": "Which account type actually answers that question?",
+        "prompt": "Which account answers that question?",
+        "stack": true,
         "options": [
-          { "label": "Jump straight to a funded account", "correct": false, "feedback": "Skipping straight to funded capital without proving consistency first is a real risk." },
-          { "label": "A simulated (demo) account", "correct": true, "why": "Right. Simulated accounts exist to prove consistency with zero financial risk." }
+          {
+            "label": "Jump straight to a funded account",
+            "correct": false,
+            "feedback": "Skipping straight to funded capital without proving consistency first is a real risk."
+          },
+          {
+            "label": "A simulated (demo) account",
+            "correct": true,
+            "why": "Right. Simulated accounts exist to prove consistency with zero financial risk."
+          }
         ]
       }
     },
     {
-      "type": "dayli",
-      "kicker": "Dayli Says",
-      "quote": "I'm not telling you which account type to start with. I'm telling you to know exactly which one you're in, and what that account expects from you, before you place a single trade."
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Know exactly <em>which one you’re in.</em>",
+      "line": "I’m not telling you which account type to start with. Know what that account expects from you before you place a single trade."
     },
     {
-      "type": "teach",
+      "type": "v2_screen",
       "kicker": "Whose money, whose rules",
-      "body": "A trader passes a prop firm's evaluation and gets funded.",
+      "headline": "She passed. <em>She’s funded.</em>",
+      "line": "A trader passes a prop firm’s evaluation and gets funded.",
+      "visual": {
+        "icon": "bank",
+        "tone": "purple",
+        "caption": "New money. New rules."
+      },
       "check": {
-        "prompt": "Whose capital is she now trading, and what does that change about her risk?",
+        "prompt": "Whose capital is she trading now?",
+        "stack": true,
         "options": [
-          { "label": "Her own capital, the evaluation was just a formality", "correct": false, "feedback": "The whole point of an evaluation is that it isn't a formality, it decides whether she trades her own money or the firm's." },
-          { "label": "Nobody's capital, funded accounts are simulated", "correct": false, "feedback": "A funded account trades the firm's real capital, not a simulation." },
-          { "label": "The firm's capital, her personal money isn't directly at risk, but she now trades inside the firm's rules", "correct": true, "why": "Funded status shifts whose money is at risk but adds real rule constraints in exchange." }
+          {
+            "label": "Her own, the eval was a formality",
+            "correct": false,
+            "feedback": "The whole point of an evaluation is that it isn’t a formality. It decides whether she trades her own money or the firm’s."
+          },
+          {
+            "label": "Nobody’s, funded accounts are simulated",
+            "correct": false,
+            "feedback": "A funded account trades the firm’s real capital, not a simulation."
+          },
+          {
+            "label": "The firm’s, inside the firm’s rules",
+            "correct": true,
+            "why": "Her personal money isn’t directly at risk, but she now trades inside the firm’s rules. Funded status shifts whose money is at risk, and adds real rule constraints in exchange."
+          }
         ]
       }
     },
     {
-      "type": "reflect",
+      "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Imagine another AGHF member asks: \"Should I just go straight for a funded prop account?\" How would you explain the trade-offs to them?",
-      "modelAnswer": "A funded prop account means trading someone else's capital under their rules, without having proven yet that your execution is consistent. Going straight there skips the step where a simulated account lets you prove consistency with zero financial risk first, and most people fail an evaluation not because they don't know the market, but because they haven't proven their own discipline yet."
+      "prompt": "Should you go straight for a funded prop account? Why or why not?",
+      "modelAnswer": "A funded prop account means trading someone else’s capital under their rules, without having proven yet that your execution is consistent. Going straight there skips the step where a simulated account lets you prove consistency with zero financial risk first, and most people fail an evaluation not because they don’t know the market, but because they haven’t proven their own discipline yet."
     }
   ],
   "takeaways": [
@@ -84,5 +188,6 @@
     "A prop evaluation tests rule-discipline before granting capital access.",
     "A simulated account proves consistency with zero financial risk."
   ],
-  "remember": "Know exactly which account you're in, and what it expects from you."
+  "remember": "Know exactly which account you're in, and what it expects from you.",
+  "completeStyle": "v2"
 }

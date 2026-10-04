@@ -16,69 +16,178 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Intro" },
-      { "t": "00:08", "label": "The zoom order" },
-      { "t": "00:34", "label": "Plot, chapter, page, sentence" },
-      { "t": "00:52", "label": "Same story, different parts" },
-      { "t": "01:07", "label": "Your mission" }
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "The zoom order"
+      },
+      {
+        "t": "00:34",
+        "label": "Plot, chapter, page, sentence"
+      },
+      {
+        "t": "00:52",
+        "label": "Same story, different parts"
+      },
+      {
+        "t": "01:07",
+        "label": "Your mission"
+      }
     ]
   },
   "slides": [
     {
-      "type": "teach",
-      "kicker": "Every timeframe has a job. You just don't know what it is yet.",
-      "body": "Higher timeframes give you context: the bigger picture of what price is doing. Lower timeframes reveal detail: the smaller moves inside that picture.<br><br>Later in the Academy, you'll learn exactly how AGHF assigns a specific job to each timeframe. For now, just get comfortable with the idea that they're telling different parts of the same story."
+      "type": "v2_screen",
+      "kicker": "Multi-timeframe thinking",
+      "headline": "Every timeframe has <em>a job.</em>",
+      "line": "You just don’t know what it is yet.",
+      "visual": {
+        "host": "wave"
+      },
+      "cta": "Let’s go →",
+      "ctaPink": true
     },
     {
-      "type": "sequence_build",
-      "kicker": "Build the zoom order",
-      "title": "Tap the timeframes in the order you'd generally check them",
-      "body": "Biggest picture first, most zoomed in last.",
-      "items": [
-        { "key": "4h", "label": "4H", "desc": "Biggest picture" },
-        { "key": "1h", "label": "1H", "desc": "Narrower structure" },
-        { "key": "15m", "label": "15M", "desc": "Finer detail" },
-        { "key": "1m", "label": "1M", "desc": "Most zoomed in" }
-      ],
-      "correctOrder": ["4h", "1h", "15m", "1m"],
-      "successFeedback": "That's the general zoom order: biggest picture first, most detail last. You'll learn the exact job each one does later in the Academy.",
-      "failFeedback": "Not quite the order: think biggest picture first, most zoomed-in last."
-    },
-    {
-      "type": "teach",
-      "kicker": "What's the risk in her thinking?",
-      "body": "A trader treats every timeframe as if it should give her the same kind of answer.",
-      "check": {
-        "prompt": "What's the risk in her thinking?",
-        "options": [
-          { "label": "There's no risk, all timeframes should always agree perfectly", "correct": false, "feedback": "Timeframes don't have to agree perfectly at every moment." },
-          { "label": "She'll get confused when a detailed view and a big-picture view naturally look different", "correct": true, "why": "Exactly. Expecting every timeframe to answer the same question leads to unnecessary confusion." }
+      "type": "v2_screen",
+      "kicker": "Context vs. detail",
+      "headline": "Same story. <em>Different parts.</em>",
+      "line": "Later you’ll learn exactly which job AGHF gives each timeframe. For now, just get comfortable with this.",
+      "visual": {
+        "versus": [
+          {
+            "label": "Higher timeframes",
+            "tone": "purple",
+            "icon": "globe",
+            "points": [
+              "Give you context",
+              "The bigger picture of what price is doing"
+            ]
+          },
+          {
+            "label": "Lower timeframes",
+            "tone": "pink",
+            "icon": "zoom",
+            "points": [
+              "Reveal detail",
+              "The smaller moves inside that picture"
+            ]
+          }
         ]
       }
     },
     {
-      "type": "dayli",
-      "kicker": "Dayli Says",
-      "quote": "I'm not going to hand you the whole framework in one lesson. Right now, just notice that a higher timeframe and a lower timeframe are telling you different parts of the same story."
+      "type": "v2_tool",
+      "kicker": "Build the zoom order",
+      "headline": "Put the timeframes <em>in order.</em>",
+      "tool": {
+        "type": "sequence_build",
+        "kicker": "Build the zoom order",
+        "title": "Tap the timeframes in the order you'd generally check them",
+        "body": "Biggest picture first, most zoomed in last.",
+        "items": [
+          {
+            "key": "4h",
+            "label": "4H",
+            "desc": "Biggest picture"
+          },
+          {
+            "key": "1h",
+            "label": "1H",
+            "desc": "Narrower structure"
+          },
+          {
+            "key": "15m",
+            "label": "15M",
+            "desc": "Finer detail"
+          },
+          {
+            "key": "1m",
+            "label": "1M",
+            "desc": "Most zoomed in"
+          }
+        ],
+        "correctOrder": [
+          "4h",
+          "1h",
+          "15m",
+          "1m"
+        ],
+        "successFeedback": "That's the general zoom order: biggest picture first, most detail last. You'll learn the exact job each one does later in the Academy.",
+        "failFeedback": "Not quite the order: think biggest picture first, most zoomed-in last."
+      }
     },
     {
-      "type": "teach",
+      "type": "v2_screen",
+      "kicker": "Spot the risk",
+      "headline": "She wants every timeframe to give <em>the same answer.</em>",
+      "small": true,
+      "visual": {
+        "icon": "layers",
+        "tone": "purple",
+        "caption": "Detail and big picture, side by side."
+      },
+      "check": {
+        "prompt": "What’s the risk in her thinking?",
+        "stack": true,
+        "options": [
+          {
+            "label": "No risk, they should always agree",
+            "correct": false,
+            "feedback": "Timeframes don’t have to agree perfectly at every moment."
+          },
+          {
+            "label": "She’ll get confused when views naturally differ",
+            "correct": true,
+            "why": "Exactly. A detailed view and a big-picture view naturally look different. Expecting every timeframe to answer the same question leads to unnecessary confusion."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "I’m not going to hand you the <em>whole framework</em> in one lesson.",
+      "line": "Right now, just notice that a higher timeframe and a lower timeframe are telling you different parts of the same story."
+    },
+    {
+      "type": "v2_screen",
       "kicker": "The clean beginner flow",
-      "body": "Bigger picture, then structure, then detail, in that order.",
+      "headline": "Big picture. Structure. <em>Then what?</em>",
+      "line": "Bigger picture, then structure, then detail, in that order.",
+      "visual": {
+        "icon": "layers",
+        "tone": "teal",
+        "caption": "Three steps, always in this order."
+      },
       "check": {
         "prompt": "The clean beginner flow is bigger picture, then structure, then ___ detail last.",
         "options": [
-          { "label": "News", "correct": false, "feedback": "News isn't the third step in this flow, entry detail is." },
-          { "label": "Guesswork", "correct": false, "feedback": "The whole point of this flow is to remove guesswork, not add it at the end." },
-          { "label": "Entry", "correct": true, "why": "Entry detail comes last, after the bigger picture and structure are established." }
+          {
+            "label": "News",
+            "correct": false,
+            "feedback": "News isn’t the third step in this flow, entry detail is."
+          },
+          {
+            "label": "Guesswork",
+            "correct": false,
+            "feedback": "The whole point of this flow is to remove guesswork, not add it at the end."
+          },
+          {
+            "label": "Entry",
+            "correct": true,
+            "why": "Entry detail comes last, after the bigger picture and structure are established."
+          }
         ]
       }
     },
     {
-      "type": "reflect",
+      "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Imagine another AGHF member asks: \"Why not just trade off the 1-minute chart the whole time?\" How would you explain it to them?",
-      "modelAnswer": "Because the 1-minute chart is built to show detail, not to establish the overall direction of the market. If you only look at the 1M, every small wiggle can feel like a huge signal, when it's really just noise inside a much bigger picture. Checking the higher timeframes first gives you the context to actually understand what the 1M is showing you."
+      "prompt": "Why not just trade off the 1-minute chart the whole time?",
+      "modelAnswer": "Because the 1-minute chart is built to show detail, not to establish the overall direction of the market. If you only look at the 1M, every small wiggle can feel like a huge signal, when it’s really just noise inside a much bigger picture. Checking the higher timeframes first gives you the context to actually understand what the 1M is showing you."
     }
   ],
   "takeaways": [
@@ -86,5 +195,6 @@
     "Zooming in changes what you can see, not what's actually happening.",
     "A messy lower timeframe doesn't erase a clear higher-timeframe read."
   ],
-  "remember": "Different timeframes, different parts of the same story."
+  "remember": "Different timeframes, different parts of the same story.",
+  "completeStyle": "v2"
 }

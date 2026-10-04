@@ -16,61 +16,233 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Intro" },
-      { "t": "00:08", "label": "Clean up your workspace" },
-      { "t": "00:30", "label": "Timeframes change your view" },
-      { "t": "00:47", "label": "Read, zoom, mark, simplify" },
-      { "t": "01:06", "label": "A few tools, used clearly" },
-      { "t": "01:15", "label": "Your mission" }
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Clean up your workspace"
+      },
+      {
+        "t": "00:30",
+        "label": "Timeframes change your view"
+      },
+      {
+        "t": "00:47",
+        "label": "Read, zoom, mark, simplify"
+      },
+      {
+        "t": "01:06",
+        "label": "A few tools, used clearly"
+      },
+      {
+        "t": "01:15",
+        "label": "Your mission"
+      }
     ]
   },
   "slides": [
     {
-      "type": "teach",
-      "kicker": "Your workspace, not a decoration contest",
-      "body": "You're using TradingView to read price, change your perspective with timeframes, and mark behavior so your eyes stop feeling lost.<br><br>A horizontal level marking a repeated reaction area is one of the cleanest beginner tools, you don't need every feature to read a chart well.",
-      "check": {
-        "prompt": "A new trader adds ten different drawing tools to her chart at once, hoping more markings will make her read clearer.",
-        "options": [
-          { "label": "Nothing, more tools always means a better read", "correct": false, "feedback": "More markings isn't automatically more useful information." },
-          { "label": "An overloaded chart makes price harder to read, not easier", "correct": true, "why": "Right. Clutter competes with price for your attention." }
-        ]
-      }
+      "type": "v2_screen",
+      "kicker": "TradingView basics",
+      "headline": "Your chart is a <em>workspace.</em>",
+      "line": "Not a decoration contest. You’re here to read price, change perspective, and mark behavior.",
+      "visual": {
+        "host": "wave"
+      },
+      "cta": "Let’s go →",
+      "ctaPink": true
     },
     {
-      "type": "dayli",
-      "kicker": "Dayli Says",
-      "quote": "You do not need every feature. A few tools used clearly is better than a messy chart."
-    },
-    {
-      "type": "teach",
-      "kicker": "Perspective, not a different market",
-      "body": "Switching timeframes changes what you're looking at, not what's actually happening in the market underneath it.",
-      "check": {
-        "prompt": "Switching timeframes changes your ___ on the same market, not the market itself.",
-        "options": [
-          { "label": "Instrument", "correct": false, "feedback": "The instrument doesn't change just because you zoomed in or out." },
-          { "label": "Perspective", "correct": true, "why": "Zooming in or out just changes what detail you can see, not the underlying price story." },
-          { "label": "Broker", "correct": false, "feedback": "Your broker has nothing to do with which timeframe you're viewing." }
-        ]
-      }
-    },
-    {
-      "type": "icon_grid",
+      "type": "v2_screen",
       "kicker": "The workspace mindset",
-      "title": "Keep it clean",
-      "items": [
-        { "icon": "🔍", "label": "Read", "desc": "Your chart's job is showing you what price is doing." },
-        { "icon": "🔁", "label": "Zoom", "desc": "Timeframes change your perspective, not the market." },
-        { "icon": "✏️", "label": "Mark", "desc": "A few clean levels beat ten drawing tools." },
-        { "icon": "🧹", "label": "Simplify", "desc": "If it doesn't help you read price, take it off the chart." }
-      ]
+      "headline": "Keep it <em>clean.</em>",
+      "line": "Tap each one.",
+      "visual": {
+        "cards": [
+          {
+            "icon": "eye",
+            "tone": "teal",
+            "label": "Read",
+            "sub": "Your chart’s job is showing you what price is doing."
+          },
+          {
+            "icon": "zoom",
+            "tone": "purple",
+            "label": "Zoom",
+            "sub": "Timeframes change your perspective, not the market."
+          },
+          {
+            "icon": "ruler",
+            "tone": "pink",
+            "label": "Mark",
+            "sub": "A few clean levels beat ten drawing tools."
+          },
+          {
+            "icon": "check",
+            "tone": "peach",
+            "label": "Simplify",
+            "sub": "If it doesn’t help you read price, take it off."
+          }
+        ]
+      }
     },
     {
-      "type": "reflect",
+      "type": "v2_screen",
+      "kicker": "One clean tool",
+      "headline": "One level can do <em>a lot.</em>",
+      "line": "A horizontal level marking a repeated reaction area is one of the cleanest beginner tools.",
+      "visual": {
+        "chart": {
+          "swings": [
+            [
+              30,
+              120
+            ],
+            [
+              120,
+              220
+            ],
+            [
+              210,
+              110
+            ],
+            [
+              300,
+              220
+            ],
+            [
+              390,
+              90
+            ],
+            [
+              480,
+              220
+            ],
+            [
+              570,
+              100
+            ],
+            [
+              670,
+              70
+            ]
+          ],
+          "seed": 4,
+          "hlines": [
+            {
+              "y": 222,
+              "tone": "purple",
+              "id": "lvl"
+            }
+          ],
+          "notes": [
+            {
+              "x": 350,
+              "y": 262,
+              "text": "Repeated reaction area",
+              "tone": "purple",
+              "size": 24,
+              "id": "lvl"
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "lvl"
+            ],
+            "text": "Price keeps reacting here. One line marks it."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Your workspace, not a decoration contest",
+      "headline": "Clean chart ≠ <em>busy chart.</em>",
+      "visual": {
+        "versus": [
+          {
+            "label": "Clean chart",
+            "tone": "teal",
+            "icon": "ruler",
+            "points": [
+              "A few clear levels",
+              "Your eyes find the story"
+            ]
+          },
+          {
+            "label": "Busy chart",
+            "tone": "pink",
+            "icon": "layers",
+            "points": [
+              "Ten drawing tools at once",
+              "Clutter competes with price"
+            ]
+          }
+        ]
+      },
+      "check": {
+        "prompt": "She adds ten drawing tools, hoping for a clearer read. What happens?",
+        "stack": true,
+        "options": [
+          {
+            "label": "A better read, more tools always help",
+            "correct": false,
+            "feedback": "More markings isn’t automatically more useful information."
+          },
+          {
+            "label": "Price gets harder to read, not easier",
+            "correct": true,
+            "why": "Right. Clutter competes with price for your attention. You don’t need every feature to read a chart well."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Perspective, not a different market",
+      "headline": "Timeframes change your <em>view.</em>",
+      "line": "Not what’s actually happening in the market underneath.",
+      "visual": {
+        "icon": "zoom",
+        "tone": "purple",
+        "caption": "Same market. Zoomed in or out."
+      },
+      "check": {
+        "prompt": "Switching timeframes changes your ___ on the same market.",
+        "options": [
+          {
+            "label": "Instrument",
+            "correct": false,
+            "feedback": "The instrument doesn’t change just because you zoomed in or out."
+          },
+          {
+            "label": "Perspective",
+            "correct": true,
+            "why": "Zooming in or out just changes what detail you can see, not the underlying price story."
+          },
+          {
+            "label": "Broker",
+            "correct": false,
+            "feedback": "Your broker has nothing to do with which timeframe you’re viewing."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "You do not need <em>every feature.</em>",
+      "line": "A few tools used clearly is better than a messy chart."
+    },
+    {
+      "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Imagine another AGHF member asks: \"Why does my chart look so messy compared to yours?\" How would you explain it to them?",
-      "modelAnswer": "More drawing tools doesn't mean more clarity, usually it means more clutter. A clean chart uses a few tools clearly, like a couple of horizontal levels marking areas price has reacted to before, so your eyes can find the story instead of fighting through noise."
+      "prompt": "A member asks why her chart looks so messy. What do you tell her?",
+      "modelAnswer": "More drawing tools doesn’t mean more clarity, usually it means more clutter. A clean chart uses a few tools clearly, like a couple of horizontal levels marking areas price has reacted to before, so your eyes can find the story instead of fighting through noise."
     }
   ],
   "takeaways": [
@@ -78,5 +250,6 @@
     "A cluttered chart makes price harder to read, not easier.",
     "Switching timeframes changes your view, not the market itself."
   ],
-  "remember": "A few tools used clearly beats a messy chart."
+  "remember": "A few tools used clearly beats a messy chart.",
+  "completeStyle": "v2"
 }

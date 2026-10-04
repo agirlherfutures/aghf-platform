@@ -16,100 +16,265 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Intro" },
-      { "t": "00:08", "label": "Points and ticks" },
-      { "t": "00:31", "label": "The P&L formula" },
-      { "t": "00:52", "label": "Wins and losses scale the same" },
-      { "t": "01:06", "label": "Never risk in points alone" },
-      { "t": "01:18", "label": "Your mission" }
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Points and ticks"
+      },
+      {
+        "t": "00:31",
+        "label": "The P&L formula"
+      },
+      {
+        "t": "00:52",
+        "label": "Wins and losses scale the same"
+      },
+      {
+        "t": "01:06",
+        "label": "Never risk in points alone"
+      },
+      {
+        "t": "01:18",
+        "label": "Your mission"
+      }
     ]
   },
   "slides": [
     {
-      "type": "teach",
+      "type": "v2_screen",
+      "kicker": "Points, ticks & P&L",
+      "headline": "Points aren’t <em>dollars.</em>",
+      "line": "Not until you know the point value and how many contracts you hold.",
+      "visual": {
+        "host": "wave"
+      },
+      "cta": "Let’s go →",
+      "ctaPink": true
+    },
+    {
+      "type": "v2_screen",
       "kicker": "Point and tick",
-      "body": "A point is a whole-number move in price, on MNQ, 20,000 → 20,001 is 1 point. A tick is the minimum increment inside that: MNQ's tick is 0.25 points, worth $0.50 per contract, so a full point is $2.00 per contract. Tick size and value differ by contract, so don't assume every product works like MNQ.",
-      "check": {
-        "prompt": "A trader says: \"I only have a 30-point stop, so I can't lose that much.\"",
-        "options": [
-          { "label": "Nothing's missing", "body": "30 points is 30 points, the risk is already clear.", "correct": false, "feedback": "Points alone don't tell you the dollar risk, you need the point value and contract count too." },
-          { "label": "Something's missing", "body": "The number of contracts and the contract's point value: points alone don't tell you the dollar risk.", "correct": true, "why": "Bingo. 30 points means very different things at 1 contract versus 10." }
+      "headline": "Point vs <em>tick.</em>",
+      "line": "Tick size and value differ by contract. Don’t assume every product works like MNQ.",
+      "visual": {
+        "cards": [
+          {
+            "icon": "ruler",
+            "tone": "purple",
+            "label": "Point",
+            "sub": "A whole-number move. MNQ 20,000 → 20,001."
+          },
+          {
+            "icon": "bars",
+            "tone": "teal",
+            "label": "Tick",
+            "sub": "The minimum step. On MNQ: 0.25 points, $0.50."
+          },
+          {
+            "icon": "coin",
+            "tone": "peach",
+            "label": "1 MNQ point",
+            "sub": "$2.00 per contract."
+          }
         ]
       }
     },
     {
-      "type": "calculator",
+      "type": "v2_screen",
+      "kicker": "Spot it",
+      "headline": "“I only have a 30-point stop, so <em>I can’t lose that much.</em>”",
+      "small": true,
+      "visual": {
+        "icon": "stop",
+        "tone": "pink",
+        "caption": "30 points. But how many dollars?"
+      },
+      "check": {
+        "prompt": "What’s missing?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Nothing, 30 points is clear",
+            "correct": false,
+            "feedback": "Points alone don’t tell you the dollar risk. You need the point value and contract count too."
+          },
+          {
+            "label": "Contract count and point value",
+            "correct": true,
+            "why": "Bingo. 30 points means very different things at 1 contract versus 10."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_tool",
       "kicker": "Experience",
-      "title": "Build your own P&L",
-      "body": "Points moved × point value × number of contracts. Same chart, same move, different position size, different P&L.",
-      "instruments": [
-        { "key": "mnq", "label": "MNQ", "sub": "Micro Nasdaq 100", "pointValue": 2 },
-        { "key": "mgc", "label": "MGC", "sub": "Micro Gold", "pointValue": 10 }
-      ],
-      "defaultPoints": 30,
-      "contractOptions": [1, 2, 3, 5]
+      "headline": "Build your <em>own P&amp;L.</em>",
+      "tool": {
+        "type": "calculator",
+        "kicker": "Experience",
+        "title": "Build your own P&L",
+        "body": "Points moved × point value × number of contracts. Same chart, same move, different position size, different P&L.",
+        "instruments": [
+          {
+            "key": "mnq",
+            "label": "MNQ",
+            "sub": "Micro Nasdaq 100",
+            "pointValue": 2
+          },
+          {
+            "key": "mgc",
+            "label": "MGC",
+            "sub": "Micro Gold",
+            "pointValue": 10
+          }
+        ],
+        "defaultPoints": 30,
+        "contractOptions": [
+          1,
+          2,
+          3,
+          5
+        ]
+      }
     },
     {
-      "type": "dayli",
-      "kicker": "Dayli Says",
-      "quote": "Points describe price movement. Contracts determine how much exposure you have to that movement. Never discuss risk in points alone without understanding what those points mean in dollars for your position."
-    },
-    {
-      "type": "teach",
+      "type": "v2_screen",
       "kicker": "Do the math",
-      "body": "Same formula, every time: points moved × point value × contracts.",
+      "headline": "1 MNQ. Up <em>10 points.</em>",
+      "line": "You buy at 20,000. Price rises to 20,010.",
+      "visual": {
+        "icon": "up",
+        "tone": "teal",
+        "caption": "Points × point value × contracts"
+      },
       "check": {
-        "prompt": "You buy 1 MNQ at 20,000. Price rises to 20,010, that's 10 points. What's the P&L before fees?",
+        "prompt": "What’s the P&amp;L before fees?",
         "options": [
-          { "label": "+$10", "correct": false, "feedback": "That's just the points, you still need to multiply by the point value." },
-          { "label": "+$20", "correct": true, "why": "10 points × $2 × 1 contract = $20." },
-          { "label": "+$200", "correct": false, "feedback": "That's 10x too much, check your multiplication." }
+          {
+            "label": "+$10",
+            "correct": false,
+            "feedback": "That’s just the points. You still need to multiply by the point value."
+          },
+          {
+            "label": "+$20",
+            "correct": true,
+            "why": "10 points × $2 × 1 contract = $20."
+          },
+          {
+            "label": "+$200",
+            "correct": false,
+            "feedback": "That’s 10x too much. Check your multiplication."
+          }
         ]
       }
     },
     {
-      "type": "teach",
+      "type": "v2_screen",
       "kicker": "Shorts work the same way",
-      "body": "Favorable direction still multiplies out the same, whichever way you're positioned.",
+      "headline": "Short 2 MNQ. Down <em>15 points.</em>",
+      "line": "You short at 20,000. Price falls to 19,985, a favorable move.",
+      "visual": {
+        "icon": "down",
+        "tone": "teal",
+        "caption": "Same formula, either direction"
+      },
       "check": {
-        "prompt": "You short 2 MNQ at 20,000. Price falls to 19,985, a 15-point favorable move. What's the P&L before fees?",
+        "prompt": "What’s the P&amp;L before fees?",
         "options": [
-          { "label": "+$30", "correct": false, "feedback": "That's only 1 contract's worth, you have 2." },
-          { "label": "+$15", "correct": false, "feedback": "That's just the points, not multiplied by point value or contracts." },
-          { "label": "+$60", "correct": true, "why": "15 points × $2 × 2 contracts = $60." }
+          {
+            "label": "+$30",
+            "correct": false,
+            "feedback": "That’s only 1 contract’s worth. You have 2."
+          },
+          {
+            "label": "+$15",
+            "correct": false,
+            "feedback": "That’s just the points, not multiplied by point value or contracts."
+          },
+          {
+            "label": "+$60",
+            "correct": true,
+            "why": "15 points × $2 × 2 contracts = $60."
+          }
         ]
       }
     },
     {
-      "type": "teach",
+      "type": "v2_screen",
       "kicker": "Not every trade is a winner",
-      "body": "The formula doesn't care about direction, it just multiplies. A loss scales exactly the same way a gain does.",
+      "headline": "3 MNQ. 10 points <em>against you.</em>",
+      "line": "The formula doesn’t care about direction. A loss scales exactly like a gain.",
+      "visual": {
+        "icon": "down",
+        "tone": "pink",
+        "caption": "Losses multiply too"
+      },
       "check": {
-        "prompt": "You buy 3 MNQ. Price moves 10 points against you. What's the P&L before fees?",
+        "prompt": "What’s the P&amp;L before fees?",
         "options": [
-          { "label": "−$20", "correct": false, "feedback": "That's only 1 contract's worth, you have 3." },
-          { "label": "−$60", "correct": true, "why": "10 points × $2 × 3 contracts = $60 lost, and not every trade is a winner." },
-          { "label": "−$30", "correct": false, "feedback": "Check your multiplication: points × point value × contracts." }
+          {
+            "label": "−$20",
+            "correct": false,
+            "feedback": "That’s only 1 contract’s worth. You have 3."
+          },
+          {
+            "label": "−$60",
+            "correct": true,
+            "why": "10 points × $2 × 3 contracts = $60 lost, and not every trade is a winner."
+          },
+          {
+            "label": "−$30",
+            "correct": false,
+            "feedback": "Check your multiplication: points × point value × contracts."
+          }
         ]
       }
     },
     {
-      "type": "teach",
+      "type": "v2_screen",
       "kicker": "One more piece",
-      "body": "Converting between points and ticks works the same way, multiply.",
+      "headline": "1 point = <em>4 ticks.</em>",
+      "line": "Converting between points and ticks works the same way: multiply.",
+      "visual": {
+        "icon": "ruler",
+        "tone": "purple",
+        "caption": "Points × ticks per point"
+      },
       "check": {
-        "prompt": "If 1 point = 4 ticks, how many ticks are in 2 points?",
+        "prompt": "How many ticks are in 2 points?",
         "options": [
-          { "label": "4 ticks", "correct": false, "feedback": "That's ticks for just 1 point, you need 2 points' worth." },
-          { "label": "12 ticks", "correct": false, "feedback": "Check your multiplication: 2 × 4, not 3 × 4." },
-          { "label": "8 ticks", "correct": true, "why": "2 points × 4 ticks per point = 8 ticks." }
+          {
+            "label": "4 ticks",
+            "correct": false,
+            "feedback": "That’s ticks for just 1 point. You need 2 points’ worth."
+          },
+          {
+            "label": "12 ticks",
+            "correct": false,
+            "feedback": "Check your multiplication: 2 × 4, not 3 × 4."
+          },
+          {
+            "label": "8 ticks",
+            "correct": true,
+            "why": "2 points × 4 ticks per point = 8 ticks."
+          }
         ]
       }
     },
     {
-      "type": "reflect",
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Points describe price movement. <em>Contracts</em> determine how much exposure you have to that movement.",
+      "line": "Never discuss risk in points alone without understanding what those points mean in dollars for your position."
+    },
+    {
+      "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Imagine another AGHF member asks: \"My friend said she made 50 points today, is that a lot of money?\" How would you explain it to them?",
+      "prompt": "Her friend made 50 points today. Is that a lot of money?",
       "modelAnswer": "Points alone don't tell you anything, you need to know the instrument's point value and how many contracts she was holding. 50 points on MNQ with 1 contract is $100. 50 points on MNQ with 10 contracts is $1,000. Same 50 points, completely different amount of money."
     }
   ],
@@ -118,5 +283,6 @@
     "P&L = points moved × point value × contract count, for wins and losses alike.",
     "Points alone never tell you the real dollar risk, contracts and point value do."
   ],
-  "remember": "Never discuss risk in points alone."
+  "remember": "Never discuss risk in points alone.",
+  "completeStyle": "v2"
 }

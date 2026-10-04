@@ -16,59 +16,241 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Intro" },
-      { "t": "00:08", "label": "Reached vs. accepted" },
-      { "t": "00:32", "label": "Wick vs. close" },
-      { "t": "00:48", "label": "I need the close" },
-      { "t": "00:59", "label": "Your mission" }
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Reached vs. accepted"
+      },
+      {
+        "t": "00:32",
+        "label": "Wick vs. close"
+      },
+      {
+        "t": "00:48",
+        "label": "I need the close"
+      },
+      {
+        "t": "00:59",
+        "label": "Your mission"
+      }
     ]
   },
   "slides": [
     {
-      "type": "teach",
+      "type": "v2_screen",
+      "kicker": "Wicks, bodies & closes",
+      "headline": "Reaching a level ≠ <em>accepting it.</em>",
+      "line": "A wick and a close make two different claims. Today you learn to tell them apart.",
+      "visual": {
+        "host": "wave"
+      },
+      "cta": "Let’s go →",
+      "ctaPink": true
+    },
+    {
+      "type": "v2_screen",
       "kicker": "Reached ≠ accepted",
-      "body": "A wick shows price reached an area. A close shows price accepted (or rejected) it. Those are not the same claim.<br><br>This matters far beyond this lesson, an entire entry model later in the Academy is built around the rule that a candle has to close past a level, not just poke a wick through it."
-    },
-    {
-      "type": "confusion",
-      "kicker": "Don't Get This Confused",
-      "heading": "Wick ≠ Close",
-      "left": { "label": "Wick", "points": ["Shows price reached an area", "A visit, not a decision", "Can be misleading on its own"] },
-      "right": { "label": "Close", "points": ["Shows price actually accepted", "The scoreboard for that candle", "What later entry rules are built on"] }
-    },
-    {
-      "type": "candle_reveal",
-      "kicker": "Wick vs. close, side by side",
-      "title": "Tap the candle to see what the wick didn't hold",
-      "body": "This candle wicks above a key high but closes back below it.",
-      "level": { "y": 100, "label": "Key high" },
-      "candles": [
-        { "label": "This candle", "desc": "The wick pushed above the key high, but the candle closed back below it, the break was never accepted. This is exactly why later entry rules require a close through the level, not just a touch.", "open": 140, "close": 160, "high": 70, "low": 175, "bull": false }
-      ]
-    },
-    {
-      "type": "dayli",
-      "kicker": "Dayli Says",
-      "quote": "I don't care about the wick. I need the candle to close through the level. Say that back to yourself every time you're tempted to react to a wick."
-    },
-    {
-      "type": "teach",
-      "kicker": "One more distinction",
-      "body": "A wick and a close tell you two different things about where price went.",
-      "check": {
-        "prompt": "A wick tells you where price ___. A close tells you where price accepted.",
-        "options": [
-          { "label": "Will go next", "correct": false, "feedback": "A wick is a record of what already happened, not a forecast." },
-          { "label": "Was manipulated", "correct": false, "feedback": "A wick alone doesn't tell you anyone's intent, just that price reached and didn't hold there." },
-          { "label": "Traveled", "correct": true, "why": "The wick is just the extreme reached, not proof of acceptance." }
+      "headline": "A wick <em>reaches.</em> A close <em>accepts.</em>",
+      "line": "Watch one candle at a key high.",
+      "visual": {
+        "chart": {
+          "swings": [],
+          "bars": [
+            {
+              "o": 270,
+              "c": 228,
+              "h": 218,
+              "l": 280,
+              "w": 42
+            },
+            {
+              "o": 228,
+              "c": 242,
+              "h": 216,
+              "l": 254,
+              "w": 42
+            },
+            {
+              "o": 242,
+              "c": 192,
+              "h": 180,
+              "l": 250,
+              "w": 42
+            },
+            {
+              "o": 192,
+              "c": 156,
+              "h": 142,
+              "l": 200,
+              "w": 42
+            },
+            {
+              "o": 152,
+              "c": 176,
+              "h": 56,
+              "l": 186,
+              "w": 42
+            }
+          ],
+          "barsX": [
+            130,
+            420
+          ],
+          "hlines": [
+            {
+              "y": 120,
+              "tone": "purple",
+              "x1": 40,
+              "x2": 660
+            }
+          ],
+          "notes": [
+            {
+              "x": 40,
+              "y": 108,
+              "text": "Key high",
+              "tone": "purple",
+              "anchor": "start",
+              "size": 24
+            },
+            {
+              "x": 456,
+              "y": 72,
+              "text": "Wick: reached",
+              "tone": "gold",
+              "anchor": "start",
+              "id": "wick",
+              "size": 26
+            },
+            {
+              "x": 456,
+              "y": 182,
+              "text": "Close: below",
+              "tone": "down",
+              "anchor": "start",
+              "id": "close",
+              "size": 26
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "wick"
+            ],
+            "text": "The wick pokes above the key high. Price <strong>reached</strong> the area.",
+            "next": "Then →"
+          },
+          {
+            "show": [
+              "close"
+            ],
+            "text": "But the candle closed back below. The break was <strong>never accepted.</strong>"
+          }
         ]
       }
     },
     {
-      "type": "reflect",
+      "type": "v2_screen",
+      "kicker": "Don’t get this confused",
+      "headline": "Wick ≠ <em>close.</em>",
+      "line": "An entire entry model later in the Academy is built on closing past a level, not poking a wick through it.",
+      "visual": {
+        "versus": [
+          {
+            "label": "Wick",
+            "tone": "peach",
+            "icon": "eye",
+            "points": [
+              "Shows price reached an area",
+              "A visit, not a decision",
+              "Can mislead on its own"
+            ]
+          },
+          {
+            "label": "Close",
+            "tone": "teal",
+            "icon": "check",
+            "points": [
+              "Shows price actually accepted",
+              "The scoreboard for that candle",
+              "What later entry rules are built on"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_tool",
+      "kicker": "Wick vs. close, side by side",
+      "headline": "Tap the candle. <em>What didn’t the wick hold?</em>",
+      "tool": {
+        "type": "candle_reveal",
+        "kicker": "Wick vs. close, side by side",
+        "title": "Tap the candle to see what the wick didn't hold",
+        "body": "This candle wicks above a key high but closes back below it.",
+        "level": {
+          "y": 100,
+          "label": "Key high"
+        },
+        "candles": [
+          {
+            "label": "This candle",
+            "desc": "The wick pushed above the key high, but the candle closed back below it, the break was never accepted. This is exactly why later entry rules require a close through the level, not just a touch.",
+            "open": 140,
+            "close": 160,
+            "high": 70,
+            "low": 175,
+            "bull": false
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "One more distinction",
+      "headline": "Two marks. <em>Two different facts.</em>",
+      "line": "A wick and a close tell you two different things about where price went.",
+      "visual": {
+        "icon": "candle",
+        "tone": "purple",
+        "caption": "Reach vs. acceptance."
+      },
+      "check": {
+        "prompt": "A wick tells you where price ___. A close tells you where price accepted.",
+        "options": [
+          {
+            "label": "Will go next",
+            "correct": false,
+            "feedback": "A wick is a record of what already happened, not a forecast."
+          },
+          {
+            "label": "Was manipulated",
+            "correct": false,
+            "feedback": "A wick alone doesn’t tell you anyone’s intent, just that price reached and didn’t hold there."
+          },
+          {
+            "label": "Traveled",
+            "correct": true,
+            "why": "The wick is just the extreme reached, not proof of acceptance."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "I don’t care about the wick. I need the candle to <em>close</em> through the level.",
+      "line": "Say that back to yourself every time you’re tempted to react to a wick."
+    },
+    {
+      "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Imagine another AGHF member asks: \"Why doesn't a wick above a level count as a break?\" How would you explain it to them?",
-      "modelAnswer": "Because reaching a level and closing past it are two different claims. A wick just shows price visited that area briefly, it doesn't mean the market accepted trading there. Only a close through the level shows real acceptance, which is why entry rules later in the Academy are built on closes, not wicks."
+      "prompt": "Why doesn’t a wick above a level count as a break?",
+      "modelAnswer": "Because reaching a level and closing past it are two different claims. A wick just shows price visited that area briefly, it doesn’t mean the market accepted trading there. Only a close through the level shows real acceptance, which is why entry rules later in the Academy are built on closes, not wicks."
     }
   ],
   "takeaways": [
@@ -76,5 +258,6 @@
     "Price can wick past a level and still close back below it, that's not a break.",
     "Close-based confirmation is the rule you'll build entries around later."
   ],
-  "remember": "I don't care about the wick. I need the close."
+  "remember": "I don't care about the wick. I need the close.",
+  "completeStyle": "v2"
 }
