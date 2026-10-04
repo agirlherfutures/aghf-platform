@@ -42,7 +42,7 @@
     'host-hook': s => `
       <div class="abs" style="left:780px;right:120px;top:300px">
         <div class="kicker" data-in="${s.start + 0.4}">${esc(s.kicker)}</div>
-        ${s.parts.map(p => `<div class="big" data-in="${p.at}" style="text-align:left;font-size:80px">${p.html || esc(p.text)}</div>`).join('')}
+        ${s.parts.map(p => `<div class="big" data-in="${p.at}" style="text-align:left;font-size:${s.size || 80}px">${p.html || esc(p.text)}</div>`).join('')}
       </div>`,
     participants: s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
@@ -100,6 +100,15 @@
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
         <div class="h2" data-in="${s.start + 0.6}" style="font-size:60px">${esc(s.title)}</div></div>`,
     maya: s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'ruler-zoom': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'formula': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'mirror': s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
@@ -777,6 +786,122 @@
           ${stack}
           <text x="${x}" y="840" font-size="62" font-weight="900" text-anchor="middle" fill="${shares ? C.purple : '#2F8A7F'}" font-family="Playfair Display">${shares ? '$10' : '$200'}</text></g>`;
       });
+      return out;
+    },
+
+    'ruler-zoom': (s, t) => {
+      const x0 = 380, x1 = 1540, y = 640;
+      const rp = clamp((t - s.start - 0.6) / 0.6);
+      let out = `<g opacity="${rp}">
+        <rect x="${x0 - 60}" y="${y - 150}" width="${x1 - x0 + 120}" height="360" rx="40" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>
+        <line x1="${x0}" x2="${x1}" y1="${y}" y2="${y}" stroke="${C.dark}" stroke-width="6" stroke-linecap="round"/>
+        <line x1="${x0}" x2="${x0}" y1="${y - 40}" y2="${y + 40}" stroke="${C.dark}" stroke-width="6" stroke-linecap="round"/>
+        <line x1="${x1}" x2="${x1}" y1="${y - 40}" y2="${y + 40}" stroke="${C.dark}" stroke-width="6" stroke-linecap="round"/>
+        <text x="${x0}" y="${y + 90}" font-size="34" font-weight="900" text-anchor="middle" fill="${C.dark}" font-family="Playfair Display">20,000</text>
+        <text x="${x1}" y="${y + 90}" font-size="34" font-weight="900" text-anchor="middle" fill="${C.dark}" font-family="Playfair Display">20,001</text></g>`;
+      // A one-point move.
+      const mv = ease(seg(t, s.pointAt, s.pointAt + 1.6));
+      if (t > s.pointAt - 0.4) {
+        const mx = lerp(x0, x1, mv);
+        out += `<path d="M${x0},${y - 70} Q${(x0 + mx) / 2},${y - 130} ${mx},${y - 70}" fill="none" stroke="${C.peach}" stroke-width="6" stroke-dasharray="12 10" opacity="${mv}"/>
+          <g transform="translate(${mx},${y - 20})"><path d="M0,0 L-18,-30 L18,-30 Z" fill="${C.peach}"/><circle cy="-44" r="22" fill="${C.peach}"/></g>`;
+        if (mv >= 1) {
+          const p = back((t - s.pointAt - 1.6) / 0.5);
+          out += `<g transform="translate(${(x0 + x1) / 2},${y - 150}) scale(${p})"><rect x="-110" y="-34" width="220" height="68" rx="34" fill="${C.peachL}"/>
+            <text y="12" font-size="34" font-weight="900" text-anchor="middle" fill="${C.dark}" font-family="Playfair Display">1 point</text></g>`;
+        }
+      }
+      // Split into four ticks.
+      if (t > s.tickAt) {
+        [0.25, 0.5, 0.75].forEach((f, i) => {
+          const p = clamp((t - s.tickAt - i * 0.25) / 0.4);
+          const x = lerp(x0, x1, f);
+          out += `<g opacity="${p}"><line x1="${x}" x2="${x}" y1="${y - 28 * p}" y2="${y + 28 * p}" stroke="${C.pink}" stroke-width="5" stroke-linecap="round"/>
+            <text x="${x}" y="${y + 70}" font-size="24" font-weight="700" text-anchor="middle" fill="#C2475F" font-family="DM Sans">.${String(f * 100)}</text></g>`;
+        });
+        for (let i = 0; i < 4; i++) {
+          const p = back((t - s.tickAt - 1.2 - i * 0.35) / 0.5);
+          if (p <= 0) continue;
+          const cx = lerp(x0, x1, i / 4 + 0.125);
+          out += `<g transform="translate(${cx},${y - 60}) scale(${p})"><circle r="30" fill="${C.gold}" stroke="#C98A1F" stroke-width="3"/>
+            <text y="8" font-size="20" font-weight="900" text-anchor="middle" fill="#7A4E08" font-family="DM Sans">$.50</text></g>`;
+        }
+      }
+      if (t > s.sumAt) {
+        const p = back((t - s.sumAt) / 0.6);
+        out += `<g transform="translate(960,${y + 190}) scale(${p})"><rect x="-330" y="-40" width="660" height="80" rx="40" fill="${C.teal}"/>
+          <text y="14" font-size="36" font-weight="900" text-anchor="middle" fill="#fff" font-family="Playfair Display">4 ticks = 1 point = $2.00 (1 MNQ)</text></g>` + A.sparkle(960, y + 190, s.sumAt, t, C.teal);
+      }
+      return out;
+    },
+
+    formula: (s, t) => {
+      const T = s.beats, y = 520;
+      const three = t >= T.three;
+      const tiles = [
+        { at: T.parts, x: 330, top: 'POINTS', val: '30', col: C.peach },
+        { at: T.parts + 0.6, x: 750, top: 'POINT VALUE', val: '$2', col: C.purple },
+        { at: T.parts + 1.2, x: 1170, top: 'CONTRACTS', val: three ? '3' : '1', col: C.teal, pulse: three ? T.three : null },
+      ];
+      let out = '';
+      tiles.forEach((tl, i) => {
+        const p = pop(t, tl.at, 0.6);
+        if (p <= 0) return;
+        const pulse = tl.pulse ? 1 + 0.15 * Math.max(0, 1 - (t - tl.pulse) / 0.6) : 1;
+        out += `<g transform="translate(${tl.x},${y}) scale(${p * pulse})">
+          <rect x="-150" y="-90" width="300" height="180" rx="30" fill="#fff" stroke="${tl.col}" stroke-width="5"/>
+          <text y="-40" font-size="20" font-weight="700" text-anchor="middle" fill="${C.muted}" font-family="DM Sans" letter-spacing="3">${tl.top}</text>
+          <text y="46" font-size="84" font-weight="900" text-anchor="middle" fill="${C.dark}" font-family="Playfair Display">${tl.val}</text></g>`;
+        if (i < 2) out += `<text x="${tl.x + 210}" y="${y + 24}" font-size="70" font-weight="900" text-anchor="middle" fill="${C.muted}" opacity="${p}" font-family="Playfair Display">×</text>`;
+      });
+      // Gears turning while it calculates.
+      const gp = clamp((t - T.parts - 1.6) / 0.5);
+      const gear = (cx, cy, r, dir, col) => `<g transform="translate(${cx},${cy}) rotate(${t * 60 * dir})">${Array.from({ length: 8 }, (_, i) => `<rect x="-9" y="${-r - 14}" width="18" height="24" rx="4" fill="${col}" transform="rotate(${i * 45})"/>`).join('')}<circle r="${r}" fill="${col}"/><circle r="${r * 0.35}" fill="#fff"/></g>`;
+      out += `<g opacity="${gp}">${gear(860, 820, 50, 1, C.purpleL)}${gear(958, 790, 34, -1.5, C.pinkL)}${gear(1040, 846, 40, 1.2, C.tealL)}</g>`;
+      // Result jar.
+      if (t > T.result) {
+        const val = three ? Math.round(lerp(60, 180, ease((t - T.three) / 1.2))) : Math.round(60 * ease((t - T.result) / 1));
+        const p = pop(t, T.result, 0.6);
+        out += `<text x="1395" y="${y + 24}" font-size="70" font-weight="900" text-anchor="middle" fill="${C.muted}" opacity="${p}" font-family="Playfair Display">=</text>
+          <g transform="translate(1640,${y}) scale(${p})">
+            <rect x="-160" y="-90" width="320" height="180" rx="30" fill="${C.teal}"/>
+            <text y="-40" font-size="20" font-weight="700" text-anchor="middle" fill="#fff" font-family="DM Sans" letter-spacing="3">P&amp;L</text>
+            <text y="46" font-size="84" font-weight="900" text-anchor="middle" fill="#fff" font-family="Playfair Display">$${val}</text></g>`;
+        const fill = val / 200;
+        out += `<g transform="translate(1640,860)" opacity="${p}">
+          <path d="M-90,-120 L90,-120 L80,60 Q78,80 58,80 L-58,80 Q-78,80 -80,60 Z" fill="#fff" stroke="${C.tealL}" stroke-width="5"/>
+          <clipPath id="jarclip"><path d="M-86,-116 L86,-116 L76,58 Q74,76 56,76 L-56,76 Q-74,76 -76,58 Z"/></clipPath>
+          <rect x="-90" y="${76 - 196 * fill}" width="180" height="${196 * fill}" fill="${C.gold}" clip-path="url(#jarclip)"/>
+          ${Array.from({ length: Math.round(fill * 9) }, (_, i) => `<ellipse cx="${-50 + (i % 3) * 50}" cy="${66 - Math.floor(i / 3) * 22}" rx="22" ry="8" fill="#F3C25C" stroke="#C98A1F" stroke-width="2"/>`).join('')}
+        </g>`;
+        if (three) out += A.sparkle(1640, y, T.three + 0.6, t, C.teal);
+      }
+      return out;
+    },
+
+    mirror: (s, t) => {
+      const T = s.beats, cy = 690, x = 960;
+      let out = `<line x1="420" x2="1500" y1="${cy}" y2="${cy}" stroke="${C.muted}" stroke-width="4" stroke-dasharray="14 10" opacity="${clamp((t - s.start - 0.4) / 0.5)}"/>
+        <text x="400" y="${cy + 10}" font-size="26" font-weight="700" text-anchor="end" fill="${C.muted}" font-family="DM Sans" opacity="${clamp((t - s.start - 0.4) / 0.5)}">ENTRY</text>`;
+      const side = (at, up) => {
+        const k = ease(seg(t, at, at + 1.2));
+        if (k <= 0) return '';
+        const len = 200 * k, col = up ? C.teal : C.pink, dark = up ? '#2F8A7F' : '#C2475F';
+        const y2 = up ? cy - len : cy + len;
+        const head = up ? `M${x - 34},${y2 + 10} L${x},${y2 - 30} L${x + 34},${y2 + 10} Z` : `M${x - 34},${y2 - 10} L${x},${y2 + 30} L${x + 34},${y2 - 10} Z`;
+        const p = back((t - at - 0.8) / 0.5);
+        return `<line x1="${x}" x2="${x}" y1="${cy}" y2="${y2}" stroke="${col}" stroke-width="22" stroke-linecap="round"/><path d="${head}" fill="${col}"/>
+          <g transform="translate(${x + 380},${up ? cy - 130 : cy + 130}) scale(${Math.max(0, p)})">
+            <rect x="-290" y="-50" width="580" height="100" rx="50" fill="#fff" stroke="${col}" stroke-width="4"/>
+            <text y="14" font-size="36" font-weight="900" text-anchor="middle" fill="${dark}" font-family="Playfair Display">${up ? '+30' : '−30'} pts × $2 × 3 = ${up ? '+$180' : '−$180'}</text></g>
+          <text x="${x - 90}" y="${up ? cy - 110 : cy + 130}" font-size="30" font-weight="700" text-anchor="end" fill="${dark}" font-family="DM Sans" opacity="${k}">${up ? 'In your favor' : 'Against you'}</text>`;
+      };
+      out += side(T.win, true) + side(T.loss, false);
+      if (t > T.short) {
+        const p = back((t - T.short) / 0.5);
+        out += `<g transform="translate(1660,420) scale(${p}) rotate(-6)"><rect x="-150" y="-36" width="300" height="72" rx="36" fill="${C.purpleL}"/>
+          <text y="12" font-size="30" font-weight="900" text-anchor="middle" fill="${C.purple}" font-family="Playfair Display">Short? Same math.</text></g>`;
+      }
       return out;
     },
 
