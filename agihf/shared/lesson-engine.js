@@ -230,7 +230,7 @@ function appendContinue(el, satisfy, label = 'Continue →') {
 }
 
 /** Shared retry-until-correct wiring for any group of option buttons. */
-export function wireRetryOptions(buttons, options, feedbackEl, onSolved, handleStreak) {
+export function wireRetryOptions(buttons, options, feedbackEl, onSolved, handleStreak, onWrong) {
   let solved = false;
   buttons.forEach((btn, i) => {
     btn.addEventListener('click', () => {
@@ -250,6 +250,7 @@ export function wireRetryOptions(buttons, options, feedbackEl, onSolved, handleS
         feedbackEl.textContent = opt.feedback || 'Not quite, look again.';
         feedbackEl.className = 'lw-feedback show bad';
         handleStreak(false);
+        if (onWrong) onWrong(opt, i);
       }
     });
   });
@@ -275,7 +276,7 @@ export function renderDayliSays(el, block, satisfy) {
     <div class="lw-card lw-dayli-card">
       <div class="lw-dayli-avatar">D</div>
       <div class="lw-dayli-body">
-        <div class="lw-dayli-label">Dayli says</div>
+        <div class="lw-dayli-label">${block.label || 'Dayli says'}</div>
         <div class="lw-dayli-quote">${block.quote}</div>
       </div>
     </div>

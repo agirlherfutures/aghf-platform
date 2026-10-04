@@ -4,7 +4,7 @@
   "lessonNumber": 18,
   "title": "Multi-Timeframe Thinking",
   "videoUrl": null,
-  "videoDuration": "8 min",
+  "videoDuration": "1:22",
   "xpValue": 95,
   "passThreshold": 0.6,
   "hook": "Higher timeframes give context. Lower timeframes reveal detail.",
@@ -16,10 +16,11 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Every timeframe has a job" },
-      { "t": "02:00", "label": "Context first, detail last" },
-      { "t": "04:15", "label": "Building the zoom order" },
-      { "t": "06:15", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "The zoom order" },
+      { "t": "00:34", "label": "Plot, chapter, page, sentence" },
+      { "t": "00:52", "label": "Same story, different parts" },
+      { "t": "01:07", "label": "Your mission" }
     ]
   },
   "slides": [

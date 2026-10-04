@@ -4,7 +4,7 @@
   "lessonNumber": 11,
   "title": "Position Sizing",
   "videoUrl": null,
-  "videoDuration": "6 min",
+  "videoDuration": "1:27",
   "xpValue": 60,
   "passThreshold": 0.6,
   "hook": "Risk only what you can afford to lose. Size your position, not your ego.",
@@ -16,10 +16,12 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Contracts change the money, not the structure" },
-      { "t": "01:30", "label": "Same setup, different weight" },
-      { "t": "03:15", "label": "Revenge sizing after a loss" },
-      { "t": "04:45", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Same setup, different weight" },
+      { "t": "00:30", "label": "Revenge sizing" },
+      { "t": "00:48", "label": "Same rule, same size" },
+      { "t": "01:00", "label": "Size your position, not your ego" },
+      { "t": "01:11", "label": "Your mission" }
     ]
   },
   "slides": [

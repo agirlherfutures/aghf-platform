@@ -4,7 +4,7 @@
   "lessonNumber": 3,
   "title": "Buyers vs Sellers",
   "videoUrl": null,
-  "videoDuration": "5 min",
+  "videoDuration": "1:24",
   "xpValue": 50,
   "passThreshold": 0.6,
   "hook": "Price isn't moving because your candle turned green. The candle turned green because price moved.",
@@ -16,10 +16,12 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "What buyer aggression looks like" },
-      { "t": "01:10", "label": "What seller aggression looks like" },
-      { "t": "02:20", "label": "Why one candle isn't the whole story" },
-      { "t": "03:30", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Price moves the candle" },
+      { "t": "00:19", "label": "Buyer vs. seller aggression" },
+      { "t": "00:40", "label": "The one-candle trap" },
+      { "t": "00:59", "label": "Read structure, not one candle" },
+      { "t": "01:10", "label": "Your mission" }
     ]
   },
   "slides": [

@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="shared/tokens.css">
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/lesson-engine.css">
+<link rel="stylesheet" href="shared/lesson-slides.css">
+<link rel="stylesheet" href="shared/structure-charts.css">
 </head>
 <body>
 
@@ -55,7 +57,7 @@
   const sectionKey = params.get('section') || 's1';
   const step = params.get('step') || 'welcome';
 
-  let phase, secIdx, section, nextSection;
+  let phase, secIdx, section, nextSection, PHASES;
 
   function renderFallbackError(err) {
     console.error('Section page failed to load:', err);
@@ -80,13 +82,16 @@
 
     document.getElementById('lhCrumb').textContent = `Phase ${phase.n} · ${section.title}`;
     document.getElementById('lhTitle').textContent = `${section.title} — Section Complete`;
-    document.getElementById('lhHook').textContent = 'Complete the Challenge, Knowledge Check, and Check-In to unlock what\'s next.';
+    document.getElementById('lhHook').textContent = data.hook || 'Complete the Challenge, Knowledge Check, and Check-In to unlock what\'s next.';
 
     const lessonCount = section.lessons.filter((l) => l.n).length;
     const lessonGpTotal = section.lessons.filter((l) => l.n).reduce((sum, l) => sum + l.xp, 0);
 
-    const nextLesson = nextSection ? nextSection.lessons.find((l) => l.n) : null;
-    const nextSectionHref = nextLesson ? `lesson.html?phase=${phaseKey}&n=${nextLesson.n}` : null;
+    // After a phase's last section, "next" is the first lesson of the next phase.
+    const nextPhase = !nextSection ? PHASES[PHASES.indexOf(phase) + 1] : null;
+    const nextHome = nextSection || (nextPhase && nextPhase.sections[0]);
+    const nextLesson = nextHome ? nextHome.lessons.find((l) => l.n) : null;
+    const nextSectionHref = nextLesson ? `lesson.html?phase=${nextSection ? phaseKey : nextPhase.key}&n=${nextLesson.n}` : null;
 
     renderSectionWizard(data, {
       phaseKey,
@@ -106,7 +111,7 @@
 
   async function boot() {
     try {
-      ({ phaseByKey } = await import('./shared/curriculum-data.js'));
+      ({ phaseByKey, PHASES } = await import('./shared/curriculum-data.js'));
       ({ renderSectionWizard } = await import('./shared/section-engine.js'));
     } catch (err) {
       renderFallbackError(err);

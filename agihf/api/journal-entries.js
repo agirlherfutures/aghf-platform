@@ -139,7 +139,6 @@ async function handleEntries(req, res, userId) {
         user_id: userId,
         checklist_id: body.checklistId || null,
         entry_type: body.entryType || 'trade',
-        lesson_id: body.lessonId || null,
         prompt: body.prompt || null,
         account_id: body.accountId || null,
         trade_date: body.tradeDate || new Date().toISOString().slice(0, 10),
@@ -188,6 +187,10 @@ async function handleEntries(req, res, userId) {
         is_draft: isDraft,
         updated_at: new Date().toISOString(),
       };
+      // lesson_id only exists once migration 0012 is applied. Write it only
+      // for lesson/check-in reflections, so trade entries keep saving on a
+      // database that doesn't have the column yet.
+      if (body.lessonId) row.lesson_id = body.lessonId;
 
       // GP/streak award: a one-time side effect the first time a trade entry
       // goes from draft to final. Eligibility is checked against the row's

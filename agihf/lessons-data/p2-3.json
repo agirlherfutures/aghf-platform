@@ -1,0 +1,644 @@
+{
+  "phase": "p2",
+  "section": "s4",
+  "lessonNumber": 3,
+  "title": "HH, HL, LH & LL",
+  "videoUrl": null,
+  "videoDuration": "1:28",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "The four labels that turn movement into readable structure.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Label HH, HL, LH and LL correctly by comparing each swing to the previous relevant swing.",
+    "missionQuestion": "If a new swing low forms above the previous relevant swing low, what do you call it?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": [
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "The four labels"
+      },
+      {
+        "t": "00:36",
+        "label": "Up and down the stairs"
+      },
+      {
+        "t": "01:04",
+        "label": "Catch the mistake"
+      },
+      {
+        "t": "01:15",
+        "label": "Your mission"
+      }
+    ]
+  },
+  "slides": [
+    {
+      "type": "structure_story",
+      "kicker": "Watch with Dayli",
+      "title": "Walk up the stairs 🪜",
+      "chart": {
+        "swings": [
+          [
+            40,
+            270
+          ],
+          [
+            140,
+            170
+          ],
+          [
+            220,
+            220
+          ],
+          [
+            330,
+            120
+          ],
+          [
+            410,
+            170
+          ],
+          [
+            520,
+            75
+          ],
+          [
+            590,
+            120
+          ],
+          [
+            670,
+            40
+          ]
+        ],
+        "seed": 4,
+        "line": "dashed",
+        "lineId": "ln",
+        "marks": [
+          {
+            "i": 0,
+            "label": "L",
+            "tone": "muted"
+          },
+          {
+            "i": 1,
+            "label": "H",
+            "tone": "muted"
+          },
+          {
+            "i": 2,
+            "label": "HL",
+            "tone": "up",
+            "id": "hl"
+          },
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "up",
+            "id": "hh"
+          },
+          {
+            "i": 4,
+            "label": "HL",
+            "tone": "up",
+            "id": "hl"
+          },
+          {
+            "i": 5,
+            "label": "HH",
+            "tone": "up",
+            "id": "hh"
+          },
+          {
+            "i": 6,
+            "label": "HL",
+            "tone": "up",
+            "id": "hl"
+          },
+          {
+            "i": 7,
+            "label": "HH",
+            "tone": "up",
+            "id": "hh"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "Every swing gets compared to the <strong>previous relevant swing of the same kind</strong>.",
+          "next": "Show me →"
+        },
+        {
+          "text": "📈 <strong>Higher High (HH):</strong> a swing high that forms above the previous relevant swing high.",
+          "show": [
+            "hh"
+          ]
+        },
+        {
+          "text": "📈 <strong>Higher Low (HL):</strong> a swing low that forms above the previous relevant swing low.",
+          "show": [
+            "hl"
+          ]
+        },
+        {
+          "text": "<strong>HL → HH → HL → HH.</strong> Price is generally walking <em>up</em> the stairs.",
+          "show": [
+            "ln"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "structure_story",
+      "kicker": "Watch with Dayli",
+      "title": "Walk down the stairs 🪜",
+      "chart": {
+        "swings": [
+          [
+            40,
+            40
+          ],
+          [
+            140,
+            140
+          ],
+          [
+            220,
+            90
+          ],
+          [
+            330,
+            190
+          ],
+          [
+            410,
+            140
+          ],
+          [
+            520,
+            235
+          ],
+          [
+            590,
+            190
+          ],
+          [
+            670,
+            270
+          ]
+        ],
+        "seed": 4,
+        "line": "dashed",
+        "lineId": "ln",
+        "marks": [
+          {
+            "i": 0,
+            "label": "H",
+            "tone": "muted"
+          },
+          {
+            "i": 1,
+            "label": "L",
+            "tone": "muted"
+          },
+          {
+            "i": 2,
+            "label": "LH",
+            "tone": "down",
+            "id": "lh"
+          },
+          {
+            "i": 3,
+            "label": "LL",
+            "tone": "down",
+            "id": "ll"
+          },
+          {
+            "i": 4,
+            "label": "LH",
+            "tone": "down",
+            "id": "lh"
+          },
+          {
+            "i": 5,
+            "label": "LL",
+            "tone": "down",
+            "id": "ll"
+          },
+          {
+            "i": 6,
+            "label": "LH",
+            "tone": "down",
+            "id": "lh"
+          },
+          {
+            "i": 7,
+            "label": "LL",
+            "tone": "down",
+            "id": "ll"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "Now the mirror image.",
+          "next": "Show me →"
+        },
+        {
+          "text": "📉 <strong>Lower Low (LL):</strong> a swing low that forms below the previous relevant swing low.",
+          "show": [
+            "ll"
+          ]
+        },
+        {
+          "text": "📉 <strong>Lower High (LH):</strong> a swing high that forms below the previous relevant swing high.",
+          "show": [
+            "lh"
+          ]
+        },
+        {
+          "text": "<strong>LH → LL → LH → LL.</strong> Price is generally walking <em>down</em> the stairs.",
+          "show": [
+            "ln"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "label_swings",
+      "kicker": "Label it",
+      "title": "Label it",
+      "rounds": [
+        {
+          "prompt": "A clean bullish trend. Label every swing after the first two.",
+          "chart": {
+            "swings": [
+              [
+                40,
+                270
+              ],
+              [
+                140,
+                170
+              ],
+              [
+                220,
+                220
+              ],
+              [
+                330,
+                120
+              ],
+              [
+                410,
+                170
+              ],
+              [
+                520,
+                75
+              ],
+              [
+                590,
+                120
+              ],
+              [
+                670,
+                40
+              ]
+            ],
+            "seed": 4,
+            "marks": [
+              {
+                "i": 0,
+                "label": "L",
+                "tone": "muted"
+              },
+              {
+                "i": 1,
+                "label": "H",
+                "tone": "muted"
+              }
+            ]
+          },
+          "targets": {
+            "2": "HL",
+            "3": "HH",
+            "4": "HL",
+            "5": "HH",
+            "6": "HL",
+            "7": "HH"
+          },
+          "chips": [
+            "HH",
+            "HL"
+          ],
+          "why": "HL, HH, HL, HH: walking up the stairs."
+        },
+        {
+          "prompt": "Now a bearish trend.",
+          "chart": {
+            "swings": [
+              [
+                40,
+                40
+              ],
+              [
+                140,
+                140
+              ],
+              [
+                220,
+                90
+              ],
+              [
+                330,
+                190
+              ],
+              [
+                410,
+                140
+              ],
+              [
+                520,
+                235
+              ],
+              [
+                590,
+                190
+              ],
+              [
+                670,
+                270
+              ]
+            ],
+            "seed": 4,
+            "marks": [
+              {
+                "i": 0,
+                "label": "H",
+                "tone": "muted"
+              },
+              {
+                "i": 1,
+                "label": "L",
+                "tone": "muted"
+              }
+            ]
+          },
+          "targets": {
+            "2": "LH",
+            "3": "LL",
+            "4": "LH",
+            "5": "LL",
+            "6": "LH",
+            "7": "LL"
+          },
+          "chips": [
+            "LL",
+            "LH"
+          ],
+          "why": "LH, LL, LH, LL: walking down the stairs."
+        },
+        {
+          "prompt": "Mixed. Compare every swing to the previous swing of the same kind.",
+          "chart": {
+            "swings": [
+              [
+                40,
+                240
+              ],
+              [
+                140,
+                140
+              ],
+              [
+                230,
+                190
+              ],
+              [
+                330,
+                90
+              ],
+              [
+                420,
+                200
+              ],
+              [
+                500,
+                130
+              ],
+              [
+                600,
+                240
+              ],
+              [
+                670,
+                170
+              ]
+            ],
+            "seed": 8,
+            "marks": [
+              {
+                "i": 0,
+                "label": "L",
+                "tone": "muted"
+              },
+              {
+                "i": 1,
+                "label": "H",
+                "tone": "muted"
+              }
+            ]
+          },
+          "targets": {
+            "2": "HL",
+            "3": "HH",
+            "4": "LL",
+            "5": "LH",
+            "6": "LL",
+            "7": "LH"
+          },
+          "chips": [
+            "HH",
+            "HL",
+            "LH",
+            "LL"
+          ],
+          "why": "Structure walked up, then started walking down. The labels tell the whole story."
+        }
+      ],
+      "body": "Drag each label onto the swing it belongs to. Compare every swing to the previous relevant swing of the same kind."
+    },
+    {
+      "type": "chart_check",
+      "kicker": "Catch the mistake",
+      "title": "What’s wrong with this label?",
+      "chart": {
+        "swings": [
+          [
+            60,
+            260
+          ],
+          [
+            210,
+            140
+          ],
+          [
+            340,
+            215
+          ],
+          [
+            490,
+            110
+          ],
+          [
+            620,
+            200
+          ]
+        ],
+        "seed": 6,
+        "marks": [
+          {
+            "i": 1,
+            "label": "H",
+            "tone": "muted"
+          },
+          {
+            "i": 3,
+            "label": "LH",
+            "tone": "down",
+            "key": "pt3"
+          }
+        ]
+      },
+      "scenario": "Previous swing high: <strong>20,000</strong>. New swing high: <strong>20,030</strong>. A student labels the new high <strong>LH</strong>.",
+      "check": {
+        "prompt": "What’s wrong?",
+        "options": [
+          {
+            "label": "Nothing, it’s a lower high",
+            "correct": false,
+            "feedback": "Compare the prices: 20,030 is above 20,000."
+          },
+          {
+            "label": "The new high formed above the previous high, so it’s an HH",
+            "correct": true,
+            "why": "Compare this high to the previous relevant high: 20,030 formed <strong>above</strong> 20,000. Therefore: <strong>HH ✓</strong>"
+          },
+          {
+            "label": "It should be an LL",
+            "correct": false,
+            "feedback": "LL describes a swing low. This is a swing high."
+          }
+        ]
+      },
+      "fix": [
+        {
+          "i": 3,
+          "label": "HH ✓",
+          "tone": "up",
+          "key": "pt3"
+        }
+      ],
+      "compare": {
+        "i": 3,
+        "prev": 1,
+        "newText": "20,030 · NEW HIGH",
+        "prevText": "20,000 · PREVIOUS HIGH",
+        "tone": "up"
+      }
+    },
+    {
+      "type": "chart_check",
+      "kicker": "Lock it in",
+      "title": "Label the new low",
+      "chart": {
+        "swings": [
+          [
+            60,
+            110
+          ],
+          [
+            200,
+            230
+          ],
+          [
+            340,
+            120
+          ],
+          [
+            490,
+            205
+          ],
+          [
+            620,
+            90
+          ]
+        ],
+        "seed": 2,
+        "marks": [
+          {
+            "i": 1,
+            "label": "L",
+            "tone": "muted"
+          },
+          {
+            "i": 3,
+            "label": "?",
+            "tone": "purple",
+            "key": "pt3"
+          }
+        ]
+      },
+      "scenario": "Previous relevant low = <strong>19,950</strong>. New relevant low = <strong>19,975</strong>.",
+      "check": {
+        "prompt": "What is the new low relative to the previous low?",
+        "options": [
+          {
+            "label": "Higher Low",
+            "correct": true,
+            "why": "19,975 is above 19,950, so the new low is a <strong>Higher Low</strong>."
+          },
+          {
+            "label": "Lower Low",
+            "correct": false,
+            "feedback": "A lower low would form below 19,950. This one formed above it."
+          },
+          {
+            "label": "Higher High",
+            "correct": false,
+            "feedback": "HH describes a swing high. This is a swing low."
+          }
+        ]
+      },
+      "fix": [
+        {
+          "i": 3,
+          "label": "HL ✓",
+          "tone": "up",
+          "key": "pt3"
+        }
+      ],
+      "compare": {
+        "i": 3,
+        "prev": 1,
+        "newText": "19,975 · NEW LOW",
+        "prevText": "19,950 · PREVIOUS LOW",
+        "tone": "up"
+      }
+    }
+  ],
+  "takeaways": [
+    "HH and HL: highs and lows forming above the previous relevant ones.",
+    "LH and LL: highs and lows forming below the previous relevant ones.",
+    "Always compare a swing to the previous relevant swing of the same kind."
+  ],
+  "remember": "Compare every swing to the previous relevant swing of the same kind."
+}

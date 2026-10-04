@@ -167,7 +167,7 @@ export function renderLoopWatch(slide, data, satisfy) {
     <div class="dl-watch-block" id="dlWatchBlock">
       <button type="button" class="dl-focus-toggle" id="dlFocusToggle">⛶ Focus Mode</button>
       <div class="lw-video-block">
-        ${preview ? `
+        ${data.videoUrl ? videoPlayerHtml(data.videoUrl) : preview ? `
           <canvas class="dl-watch-preview-canvas" id="dlWatchPreview" width="780" height="320"></canvas>
           <div class="dl-watch-preview-caption" id="dlWatchPreviewCaption"></div>
           <div class="lw-video-soon">Preview, full video coming soon</div>
@@ -176,7 +176,7 @@ export function renderLoopWatch(slide, data, satisfy) {
           <div class="lw-video-play">▶</div>
           ${!data.videoUrl ? '<div class="lw-video-soon">Video coming soon</div>' : ''}
         `}
-        <div class="lw-video-duration">${data.videoDuration || ''}</div>
+        ${data.videoUrl ? '' : `<div class="lw-video-duration">${data.videoDuration || ''}</div>`}
       </div>
       ${markers.length ? `
       <div class="dl-marker-rail" id="dlMarkerRail">
@@ -189,12 +189,60 @@ export function renderLoopWatch(slide, data, satisfy) {
   document.getElementById('dlFocusToggle').addEventListener('click', () => {
     slide.classList.toggle('dl-focus-active');
   });
-  slide.querySelectorAll('.dl-marker').forEach((btn) => {
+  const player = data.videoUrl ? wireVideoPlayer(slide, data.videoUrl, markers) : null;
+  slide.querySelectorAll('.dl-marker').forEach((btn, i) => {
     btn.addEventListener('click', () => {
-      showToast('Video coming soon', 'Markers will jump here once the video is live ✦');
+      if (player) player.seek(markerSeconds(markers[i].t));
+      else showToast('Video coming soon', 'Markers will jump here once the video is live ✦');
     });
   });
-  if (preview) renderWatchPreview(slide, preview);
+  if (preview && !data.videoUrl) renderWatchPreview(slide, preview);
+}
+
+/* ── Lesson video: a hosted file (<video>) or a YouTube / Vimeo embed ── */
+
+function markerSeconds(t) {
+  return String(t).split(':').reduce((acc, part) => acc * 60 + Number(part || 0), 0);
+}
+
+function videoEmbed(url) {
+  const yt = url.match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{6,})/);
+  if (yt) return { kind: 'youtube', src: (start) => `https://www.youtube-nocookie.com/embed/${yt[1]}?rel=0&modestbranding=1&playsinline=1${start ? `&start=${start}&autoplay=1` : ''}` };
+  const vm = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if (vm) return { kind: 'vimeo', src: (start) => `https://player.vimeo.com/video/${vm[1]}?title=0&byline=0&portrait=0${start ? `&autoplay=1#t=${start}s` : ''}` };
+  return { kind: 'file' };
+}
+
+function videoPlayerHtml(url) {
+  const embed = videoEmbed(url);
+  if (embed.kind === 'file') {
+    return `<video class="dl-video" id="dlVideo" src="${url}" controls playsinline preload="metadata"></video>`;
+  }
+  return `<iframe class="dl-video" id="dlVideo" src="${embed.src(0)}" title="Lesson video" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>`;
+}
+
+// Returns { seek(seconds) }. For a hosted file the marker rail also follows
+// along, highlighting the chapter that's playing.
+function wireVideoPlayer(slide, url, markers) {
+  const el = slide.querySelector('#dlVideo');
+  const embed = videoEmbed(url);
+  const btns = [...slide.querySelectorAll('.dl-marker')];
+  const times = markers.map((m) => markerSeconds(m.t));
+  const highlight = (sec) => {
+    let active = -1;
+    times.forEach((t, i) => { if (sec >= t) active = i; });
+    btns.forEach((b, i) => b.classList.toggle('is-active', i === active));
+  };
+  if (embed.kind === 'file') {
+    el.addEventListener('timeupdate', () => highlight(el.currentTime));
+    el.addEventListener('ended', () => slide.querySelector('#lwWatchedBtn')?.classList.add('is-ready'));
+    return {
+      seek(sec) { el.currentTime = sec; el.play().catch(() => {}); highlight(sec); },
+    };
+  }
+  return {
+    seek(sec) { el.src = embed.src(Math.max(1, Math.floor(sec))); highlight(sec); },
+  };
 }
 
 // Silent, ambient placeholder for the video slot: loops the lesson's

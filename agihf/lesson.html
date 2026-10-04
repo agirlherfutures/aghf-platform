@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="shared/tokens.css">
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/lesson-engine.css">
+<link rel="stylesheet" href="shared/structure-charts.css">
 <link rel="stylesheet" href="shared/loop-engine.css">
 <link rel="stylesheet" href="shared/lesson-slides.css">
 </head>
@@ -113,10 +114,11 @@
   const current = allLessons.find((l) => l.n === n);
 
   /** Is `lesson`'s section still locked behind an earlier section's uncleared checkpoint? */
+  let gateIds = null;
   function isLessonGated(lesson) {
     const idx = phase.sections.findIndex((s) => s.key === lesson.section.key);
     const prevSection = phase.sections[idx - 1];
-    return !!(prevSection && prevSection.checkpoint && !isSectionCleared(phaseKey, prevSection.key));
+    return !!(prevSection && prevSection.checkpoint && !isSectionCleared(phaseKey, prevSection.key, gateIds));
   }
 
   /** Is `lesson` the last lesson in its section? */
@@ -149,7 +151,7 @@
     const thisDone = isDone(current);
     const lastInSection = isLastInSection(current);
     if (thisDone && lastInSection && current.section.checkpoint) {
-      nextLink.href = `section.html?phase=${phaseKey}&section=${current.section.key}&step=welcome`;
+      nextLink.href = `section.html?phase=${phaseKey}&section=${current.section.key}&step=${current.section.checkpoint?.firstStep || 'welcome'}`;
       nextLink.textContent = 'Section Checkpoint →';
       nextLink.classList.remove('locked');
     } else if (n < total && (thisDone || n === 1 || (n > 1 && isDone(allLessons[n - 2]))) && !isLessonGated(allLessons[n])) {
@@ -180,6 +182,15 @@
   });
 
   async function loadLesson() {
+    let completedIds = new Set();
+    try {
+      const profile = await window.AGHF_FETCH_PROFILE();
+      completedIds = new Set((profile.lessons_completed || []).map((l) => l.lesson_id));
+    } catch (err) {
+      console.error('Profile load error:', err);
+    }
+    gateIds = completedIds;
+
     if (!current || isLessonGated(current)) {
       window.location.href = 'lessons.html';
       return;
@@ -195,14 +206,6 @@
       return;
     }
 
-    let completedIds = new Set();
-    try {
-      const profile = await window.AGHF_FETCH_PROFILE();
-      completedIds = new Set((profile.lessons_completed || []).map((l) => l.lesson_id));
-    } catch (err) {
-      console.error('Profile load error:', err);
-    }
-
     try {
       renderHeader(completedIds);
     } catch (err) {
@@ -213,7 +216,7 @@
     const lastInSection = isLastInSection(current);
     let nextHref, nextTitle, nextHook, nextCtaLabel, backHref;
     if (lastInSection && current.section.checkpoint) {
-      nextHref = `section.html?phase=${phaseKey}&section=${current.section.key}&step=welcome`;
+      nextHref = `section.html?phase=${phaseKey}&section=${current.section.key}&step=${current.section.checkpoint?.firstStep || 'welcome'}`;
       nextTitle = `Section Checkpoint: ${current.section.checkpoint.title}`;
       nextHook = null;
       nextCtaLabel = 'Start Section Checkpoint →';

@@ -4,7 +4,7 @@
   "lessonNumber": 8,
   "title": "Brokers, Prop Firms & Accounts",
   "videoUrl": null,
-  "videoDuration": "7 min",
+  "videoDuration": "1:35",
   "xpValue": 60,
   "passThreshold": 0.6,
   "hook": "Know the difference before you fund an account.",
@@ -16,10 +16,12 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Broker vs. prop firm vs. simulated" },
-      { "t": "02:00", "label": "Whose money is at risk" },
-      { "t": "04:15", "label": "Matching the account to the goal" },
-      { "t": "05:45", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Three kinds of accounts" },
+      { "t": "00:34", "label": "Broker vs. prop firm" },
+      { "t": "00:52", "label": "The prop path" },
+      { "t": "01:11", "label": "Know which account you're in" },
+      { "t": "01:21", "label": "Your mission" }
     ]
   },
   "slides": [

@@ -1,0 +1,873 @@
+{
+  "phase": "p2",
+  "section": "s4",
+  "lessonNumber": 8,
+  "title": "Consolidation",
+  "videoUrl": null,
+  "videoDuration": "1:20",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Sometimes price isn’t walking up or down the stairs. It’s walking around the room.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Recognize consolidation and describe it objectively, without forcing a direction onto it.",
+    "missionQuestion": "If price keeps trading between similar highs and lows, how would you describe it?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": [
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Walking around the room"
+      },
+      {
+        "t": "00:34",
+        "label": "Trend or range?"
+      },
+      {
+        "t": "00:58",
+        "label": "Moving without progress"
+      },
+      {
+        "t": "01:07",
+        "label": "Your mission"
+      }
+    ]
+  },
+  "slides": [
+    {
+      "type": "structure_story",
+      "kicker": "Three conditions",
+      "title": "Up the stairs, down the stairs, or around the room?",
+      "chart": {
+        "swings": [],
+        "candles": false,
+        "paths": [
+          {
+            "swings": [
+              [
+                40,
+                280
+              ],
+              [
+                140,
+                200
+              ],
+              [
+                210,
+                235
+              ],
+              [
+                310,
+                150
+              ],
+              [
+                380,
+                185
+              ],
+              [
+                480,
+                95
+              ],
+              [
+                550,
+                130
+              ],
+              [
+                660,
+                40
+              ]
+            ],
+            "tone": "up",
+            "id": "bull",
+            "width": 4
+          },
+          {
+            "swings": [
+              [
+                40,
+                30
+              ],
+              [
+                140,
+                110
+              ],
+              [
+                210,
+                75
+              ],
+              [
+                310,
+                160
+              ],
+              [
+                380,
+                125
+              ],
+              [
+                480,
+                215
+              ],
+              [
+                550,
+                180
+              ],
+              [
+                660,
+                270
+              ]
+            ],
+            "tone": "down",
+            "id": "bear",
+            "width": 4
+          },
+          {
+            "swings": [
+              [
+                40,
+                205
+              ],
+              [
+                110,
+                118
+              ],
+              [
+                180,
+                200
+              ],
+              [
+                250,
+                122
+              ],
+              [
+                320,
+                206
+              ],
+              [
+                390,
+                114
+              ],
+              [
+                460,
+                198
+              ],
+              [
+                530,
+                120
+              ],
+              [
+                600,
+                204
+              ],
+              [
+                660,
+                140
+              ]
+            ],
+            "tone": "purple",
+            "id": "range",
+            "width": 4
+          }
+        ],
+        "hlines": [
+          {
+            "y": 114,
+            "label": "RANGE HIGH",
+            "tone": "purple",
+            "id": "range",
+            "x1": 30,
+            "x2": 670
+          },
+          {
+            "y": 206,
+            "label": "RANGE LOW",
+            "tone": "purple",
+            "id": "range",
+            "below": true,
+            "x1": 30,
+            "x2": 670
+          }
+        ],
+        "notes": [
+          {
+            "x": 560,
+            "y": 260,
+            "text": "HH · HL · HH · HL ↗",
+            "tone": "up",
+            "id": "bull"
+          },
+          {
+            "x": 560,
+            "y": 60,
+            "text": "LH · LL · LH · LL ↘",
+            "tone": "down",
+            "id": "bear"
+          },
+          {
+            "x": 350,
+            "y": 250,
+            "text": "↔  walking around the room  ↔",
+            "tone": "purple",
+            "size": 15,
+            "id": "range"
+          }
+        ]
+      },
+      "views": [
+        {
+          "key": "bull",
+          "label": "📈 Bullish",
+          "show": [
+            "bull"
+          ],
+          "hide": [
+            "bear",
+            "range"
+          ],
+          "text": "Higher highs and higher lows. Walking up the stairs."
+        },
+        {
+          "key": "bear",
+          "label": "📉 Bearish",
+          "show": [
+            "bear"
+          ],
+          "hide": [
+            "bull",
+            "range"
+          ],
+          "text": "Lower highs and lower lows. Walking down the stairs."
+        },
+        {
+          "key": "range",
+          "label": "↔ Range",
+          "show": [
+            "range"
+          ],
+          "hide": [
+            "bull",
+            "bear"
+          ],
+          "text": "Similar highs, similar lows. Walking around the room."
+        }
+      ],
+      "steps": [
+        {
+          "view": "bull",
+          "text": "You already know this one.",
+          "next": "And this one →"
+        },
+        {
+          "view": "bear",
+          "text": "And its mirror.",
+          "next": "Now something new →"
+        },
+        {
+          "view": "range",
+          "text": "Sometimes price isn’t walking up or down the stairs. <strong>It’s walking around the room.</strong> Flip between all three."
+        }
+      ]
+    },
+    {
+      "type": "structure_story",
+      "kicker": "Watch with Dayli",
+      "title": "📦 The box",
+      "chart": {
+        "swings": [
+          [
+            30,
+            210
+          ],
+          [
+            90,
+            110
+          ],
+          [
+            150,
+            205
+          ],
+          [
+            215,
+            105
+          ],
+          [
+            275,
+            200
+          ],
+          [
+            340,
+            112
+          ],
+          [
+            400,
+            208
+          ],
+          [
+            460,
+            100
+          ],
+          [
+            520,
+            202
+          ],
+          [
+            585,
+            108
+          ],
+          [
+            650,
+            200
+          ]
+        ],
+        "seed": 51,
+        "density": 1.3,
+        "hlines": [
+          {
+            "y": 100,
+            "label": "RANGE HIGH",
+            "tone": "purple",
+            "id": "box"
+          },
+          {
+            "y": 208,
+            "label": "RANGE LOW",
+            "tone": "purple",
+            "below": true,
+            "id": "box"
+          }
+        ],
+        "notes": [
+          {
+            "x": 350,
+            "y": 166,
+            "text": "↔  ↔  ↔  ↔",
+            "tone": "purple",
+            "size": 22,
+            "id": "arrows"
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 20,
+            "y1": 100,
+            "x2": 680,
+            "y2": 208,
+            "tone": "purple",
+            "id": "arrows"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "<strong>Consolidation</strong> is when price trades within a relatively contained area without clear, sustained directional progression.",
+          "next": "Show the box →"
+        },
+        {
+          "text": "Instead of HH → HL → HH, or LL → LH → LL, price keeps returning to similar highs and lows.",
+          "show": [
+            "box"
+          ]
+        },
+        {
+          "text": "<strong>Price is moving. But it isn’t making clean directional progress.</strong> It’s walking around the room.",
+          "show": [
+            "arrows"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "icon_grid",
+      "kicker": "Things you might see",
+      "title": "Clues, not a rigid checklist",
+      "items": [
+        {
+          "icon": "🧱",
+          "label": "Overlapping candles",
+          "desc": "Candles keep covering the same ground."
+        },
+        {
+          "icon": "🔁",
+          "label": "Back-and-forth",
+          "desc": "Repeated movement in both directions."
+        },
+        {
+          "icon": "🐢",
+          "label": "Limited progress",
+          "desc": "Lots of movement, not much distance."
+        },
+        {
+          "icon": "🎯",
+          "label": "Repeated tests",
+          "desc": "The same nearby areas get tested again and again."
+        }
+      ]
+    },
+    {
+      "type": "dayli",
+      "label": "Dayli note",
+      "quote": "For the Dayli ICC framework, market condition matters. Later, you’ll learn when consolidation makes a setup lower quality or keeps us out altogether. For now, your job is simply: <strong>recognize it.</strong>"
+    },
+    {
+      "type": "flash_sort",
+      "kicker": "Trend or range?",
+      "title": "Read it. Call it. Next.",
+      "body": "Charts load one after another. Read the swings, not the candles.",
+      "options": [
+        {
+          "key": "bull",
+          "label": "Bullish",
+          "emoji": "📈"
+        },
+        {
+          "key": "bear",
+          "label": "Bearish",
+          "emoji": "📉"
+        },
+        {
+          "key": "range",
+          "label": "Range",
+          "emoji": "↔️"
+        },
+        {
+          "key": "unclear",
+          "label": "Not enough information",
+          "emoji": "❓"
+        }
+      ],
+      "items": [
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                205
+              ],
+              [
+                110,
+                118
+              ],
+              [
+                180,
+                200
+              ],
+              [
+                250,
+                122
+              ],
+              [
+                320,
+                206
+              ],
+              [
+                390,
+                114
+              ],
+              [
+                460,
+                198
+              ],
+              [
+                530,
+                120
+              ],
+              [
+                600,
+                204
+              ],
+              [
+                660,
+                140
+              ]
+            ],
+            "seed": 61,
+            "hlines": [
+              {
+                "y": 114,
+                "label": "RANGE HIGH",
+                "tone": "purple",
+                "id": "rng"
+              },
+              {
+                "y": 206,
+                "label": "RANGE LOW",
+                "tone": "purple",
+                "below": true,
+                "id": "rng"
+              }
+            ]
+          },
+          "answer": "range",
+          "after": [
+            "rng"
+          ],
+          "why": "Similar highs, similar lows, no sustained progress."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                270
+              ],
+              [
+                150,
+                180
+              ],
+              [
+                230,
+                225
+              ],
+              [
+                340,
+                130
+              ],
+              [
+                420,
+                175
+              ],
+              [
+                530,
+                80
+              ],
+              [
+                610,
+                120
+              ],
+              [
+                670,
+                50
+              ]
+            ],
+            "seed": 62
+          },
+          "answer": "bull",
+          "why": "Higher highs and higher lows."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                60,
+                230
+              ],
+              [
+                330,
+                120
+              ]
+            ],
+            "seed": 67
+          },
+          "answer": "unclear",
+          "why": "One push. No swings to compare yet, so there’s no structure to describe."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                40
+              ],
+              [
+                150,
+                130
+              ],
+              [
+                230,
+                85
+              ],
+              [
+                340,
+                180
+              ],
+              [
+                420,
+                135
+              ],
+              [
+                530,
+                230
+              ],
+              [
+                610,
+                190
+              ],
+              [
+                670,
+                260
+              ]
+            ],
+            "seed": 63
+          },
+          "answer": "bear",
+          "why": "Lower highs and lower lows."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                230
+              ],
+              [
+                130,
+                140
+              ],
+              [
+                210,
+                215
+              ],
+              [
+                300,
+                130
+              ],
+              [
+                380,
+                225
+              ],
+              [
+                460,
+                140
+              ],
+              [
+                540,
+                220
+              ],
+              [
+                620,
+                135
+              ],
+              [
+                670,
+                200
+              ]
+            ],
+            "seed": 64,
+            "hlines": [
+              {
+                "y": 130,
+                "label": "RANGE HIGH",
+                "tone": "purple",
+                "id": "rng"
+              },
+              {
+                "y": 225,
+                "label": "RANGE LOW",
+                "tone": "purple",
+                "below": true,
+                "id": "rng"
+              }
+            ]
+          },
+          "answer": "range",
+          "after": [
+            "rng"
+          ],
+          "why": "Back and forth between the same areas."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                55
+              ],
+              [
+                130,
+                110
+              ],
+              [
+                200,
+                85
+              ],
+              [
+                300,
+                160
+              ],
+              [
+                370,
+                125
+              ],
+              [
+                470,
+                215
+              ],
+              [
+                540,
+                175
+              ],
+              [
+                660,
+                265
+              ]
+            ],
+            "seed": 65
+          },
+          "answer": "bear",
+          "why": "Each low below the last, each high below the last."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                60,
+                120
+              ],
+              [
+                250,
+                220
+              ],
+              [
+                440,
+                150
+              ]
+            ],
+            "seed": 68
+          },
+          "answer": "unclear",
+          "why": "Only a couple of swings. Not enough information to call it yet."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                255
+              ],
+              [
+                130,
+                200
+              ],
+              [
+                200,
+                225
+              ],
+              [
+                300,
+                150
+              ],
+              [
+                370,
+                185
+              ],
+              [
+                470,
+                95
+              ],
+              [
+                540,
+                135
+              ],
+              [
+                660,
+                45
+              ]
+            ],
+            "seed": 66
+          },
+          "answer": "bull",
+          "why": "Walking up the stairs."
+        }
+      ]
+    },
+    {
+      "type": "chart_check",
+      "kicker": "Lock it in",
+      "title": "Describe it",
+      "chart": {
+        "swings": [
+          [
+            40,
+            205
+          ],
+          [
+            110,
+            118
+          ],
+          [
+            180,
+            200
+          ],
+          [
+            250,
+            122
+          ],
+          [
+            320,
+            206
+          ],
+          [
+            390,
+            114
+          ],
+          [
+            460,
+            198
+          ],
+          [
+            530,
+            120
+          ],
+          [
+            600,
+            204
+          ],
+          [
+            660,
+            140
+          ]
+        ],
+        "seed": 52,
+        "hlines": [
+          {
+            "y": 114,
+            "label": "RANGE HIGH",
+            "tone": "purple",
+            "id": "rng"
+          },
+          {
+            "y": 206,
+            "label": "RANGE LOW",
+            "tone": "purple",
+            "below": true,
+            "id": "rng"
+          }
+        ]
+      },
+      "scenario": "A chart repeatedly trades between similar highs and lows without sustained directional progression.",
+      "check": {
+        "prompt": "Which description is most appropriate?",
+        "options": [
+          {
+            "label": "Bullish progression",
+            "correct": false,
+            "feedback": "Bullish progression needs higher highs and higher lows."
+          },
+          {
+            "label": "Bearish progression",
+            "correct": false,
+            "feedback": "Bearish progression needs lower highs and lower lows."
+          },
+          {
+            "label": "Consolidating / ranging",
+            "correct": true,
+            "why": "Exactly. Similar highs and lows without sustained progress: consolidating."
+          }
+        ]
+      },
+      "after": [
+        "rng"
+      ]
+    }
+  ],
+  "takeaways": [
+    "Consolidation: price moves within a contained area without sustained directional progress.",
+    "Look for overlap, back-and-forth, limited progress and repeated tests.",
+    "For now, the job is to recognize it, not to label it good or bad."
+  ],
+  "remember": "Price can be moving without making progress."
+}

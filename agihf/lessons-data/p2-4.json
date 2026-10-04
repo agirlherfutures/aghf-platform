@@ -1,0 +1,402 @@
+{
+  "phase": "p2",
+  "section": "s4",
+  "lessonNumber": 4,
+  "title": "Bullish Structure",
+  "videoUrl": null,
+  "videoDuration": "1:07",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Higher highs + higher lows show upward structural progression.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Recognize bullish structure, and explain why red candles and pullbacks don’t automatically end it.",
+    "missionQuestion": "If price makes HH, HL, HH and then starts moving lower, has bullish structure automatically reversed?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": [
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "The climb"
+      },
+      {
+        "t": "00:40",
+        "label": "Red candles aren’t automatically bearish"
+      },
+      {
+        "t": "00:53",
+        "label": "Your mission"
+      }
+    ]
+  },
+  "slides": [
+    {
+      "type": "structure_story",
+      "kicker": "Watch it build",
+      "title": "Bullish structure, one move at a time",
+      "chart": {
+        "swings": [
+          [
+            40,
+            265
+          ],
+          [
+            150,
+            165
+          ],
+          [
+            230,
+            215
+          ],
+          [
+            340,
+            110
+          ],
+          [
+            430,
+            175
+          ],
+          [
+            540,
+            70
+          ],
+          [
+            620,
+            120
+          ]
+        ],
+        "seed": 21,
+        "progress": 0,
+        "marks": [
+          {
+            "i": 0,
+            "label": "L",
+            "tone": "muted"
+          },
+          {
+            "i": 1,
+            "label": "H",
+            "tone": "muted",
+            "id": "m1"
+          },
+          {
+            "i": 2,
+            "label": "HL",
+            "tone": "up",
+            "id": "m2"
+          },
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "up",
+            "id": "m3"
+          },
+          {
+            "i": 4,
+            "label": "HL",
+            "tone": "up",
+            "id": "m4"
+          },
+          {
+            "i": 5,
+            "label": "HH",
+            "tone": "up",
+            "id": "m5"
+          }
+        ],
+        "notes": [
+          {
+            "x": 588,
+            "y": 150,
+            "text": "red candles ↓",
+            "tone": "down",
+            "id": "cc",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "to": 1,
+          "show": [
+            "m1"
+          ],
+          "text": "Price pushes up and creates a high.",
+          "next": "NEXT MOVE →"
+        },
+        {
+          "to": 2,
+          "show": [
+            "m2"
+          ],
+          "text": "Price pulls back. The low forms <strong>above</strong> the previous low: <strong>Higher Low (HL)</strong>.",
+          "next": "NEXT MOVE →"
+        },
+        {
+          "to": 3,
+          "show": [
+            "m3"
+          ],
+          "text": "Price pushes past the previous high: <strong>Higher High (HH)</strong>.",
+          "next": "NEXT MOVE →"
+        },
+        {
+          "to": 4,
+          "show": [
+            "m4"
+          ],
+          "text": "Another pullback. It holds above the previous low: <strong>HL</strong>.",
+          "next": "NEXT MOVE →"
+        },
+        {
+          "to": 5,
+          "show": [
+            "m5"
+          ],
+          "text": "Another push to a new high: <strong>HH</strong>. In basic bullish structure, price generally creates <strong>higher highs and higher lows</strong>.",
+          "next": "NEXT MOVE →"
+        },
+        {
+          "to": 6,
+          "show": [
+            "cc"
+          ],
+          "text": "Now watch the newest candles.",
+          "ask": {
+            "prompt": "WHAT IS PRICE CURRENTLY DOING?",
+            "options": [
+              {
+                "label": "Expanding",
+                "correct": false,
+                "feedback": "Expansion would be pushing to new highs. These candles are moving lower."
+              },
+              {
+                "label": "Pulling back",
+                "correct": true,
+                "why": "Price is pulling back. The candles are red, but the structure labels haven’t changed: HH and HL are still there."
+              },
+              {
+                "label": "Reversing",
+                "correct": false,
+                "feedback": "Moving lower isn’t the same as reversing. Nothing about the structure has changed yet."
+              },
+              {
+                "label": "Not enough information",
+                "correct": false,
+                "feedback": "We can see enough to describe it: price is moving against the last push, inside bullish structure."
+              }
+            ],
+            "text": "Bullish structure doesn’t mean every candle is bullish. There will be bearish candles. There will be pullbacks. There will be corrections. <strong>That’s how price moves.</strong>"
+          }
+        }
+      ]
+    },
+    {
+      "type": "structure_story",
+      "kicker": "Push + pullback",
+      "title": "The rhythm of an uptrend",
+      "chart": {
+        "swings": [
+          [
+            40,
+            265
+          ],
+          [
+            150,
+            165
+          ],
+          [
+            230,
+            215
+          ],
+          [
+            340,
+            110
+          ],
+          [
+            430,
+            175
+          ],
+          [
+            540,
+            70
+          ]
+        ],
+        "seed": 21,
+        "paths": [
+          {
+            "swings": [
+              [
+                230,
+                215
+              ],
+              [
+                340,
+                110
+              ]
+            ],
+            "tone": "up",
+            "id": "push"
+          },
+          {
+            "swings": [
+              [
+                340,
+                110
+              ],
+              [
+                430,
+                175
+              ]
+            ],
+            "tone": "gold",
+            "id": "pb"
+          },
+          {
+            "swings": [
+              [
+                430,
+                175
+              ],
+              [
+                540,
+                70
+              ]
+            ],
+            "tone": "up",
+            "id": "next"
+          }
+        ],
+        "notes": [
+          {
+            "x": 318,
+            "y": 224,
+            "text": "PUSH",
+            "tone": "up",
+            "id": "push"
+          },
+          {
+            "x": 405,
+            "y": 214,
+            "text": "PULLBACK",
+            "tone": "gold",
+            "id": "pb"
+          },
+          {
+            "x": 548,
+            "y": 148,
+            "text": "NEXT PUSH",
+            "tone": "up",
+            "id": "next"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "<strong>Push:</strong> price expands upward and creates a new high.",
+          "show": [
+            "push"
+          ]
+        },
+        {
+          "text": "<strong>Pullback:</strong> price moves lower without necessarily invalidating the larger bullish structure.",
+          "show": [
+            "pb"
+          ]
+        },
+        {
+          "text": "<strong>Next push:</strong> price progresses higher again. Expansion, then correction, then expansion.",
+          "show": [
+            "next"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "dayli",
+      "quote": "Red candles inside bullish structure aren’t automatically bearish. Ask what the pullback is doing inside the larger structure."
+    },
+    {
+      "type": "chart_check",
+      "kicker": "Lock it in",
+      "title": "Has it reversed?",
+      "chart": {
+        "swings": [
+          [
+            60,
+            250
+          ],
+          [
+            210,
+            140
+          ],
+          [
+            330,
+            195
+          ],
+          [
+            490,
+            80
+          ],
+          [
+            600,
+            150
+          ]
+        ],
+        "seed": 14,
+        "marks": [
+          {
+            "i": 1,
+            "label": "HH",
+            "tone": "up"
+          },
+          {
+            "i": 2,
+            "label": "HL",
+            "tone": "up"
+          },
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "up"
+          }
+        ],
+        "notes": [
+          {
+            "x": 600,
+            "y": 186,
+            "text": "moving lower…",
+            "tone": "down"
+          }
+        ]
+      },
+      "scenario": "Price has made <strong>HH → HL → HH</strong>. Price then begins moving lower.",
+      "check": {
+        "prompt": "Has bullish structure automatically reversed?",
+        "options": [
+          {
+            "label": "Yes, price is going down now",
+            "correct": false,
+            "feedback": "Moving lower isn’t the same as reversing. Pullbacks happen inside bullish structure."
+          },
+          {
+            "label": "No",
+            "correct": true,
+            "why": "A pullback can occur within bullish structure. More structural information is needed."
+          }
+        ]
+      }
+    }
+  ],
+  "takeaways": [
+    "Basic bullish structure: higher highs and higher lows.",
+    "Bullish structure still has red candles, pullbacks and corrections.",
+    "Ask what the pullback is doing inside the larger structure."
+  ],
+  "remember": "Red candles inside bullish structure aren’t automatically bearish."
+}

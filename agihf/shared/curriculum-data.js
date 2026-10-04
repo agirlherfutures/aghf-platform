@@ -39,7 +39,29 @@ export const PHASES = [
         { n: 4, title: 'Contracts & Instruments', quote: "MNQ. MGC. Know what you're trading before you trade it.", xp: 50 },
         { n: 5, title: 'Futures vs Stocks', quote: "Futures aren't stocks. The rules are different. Let's break it down.", xp: 50 },
         { n: 6, title: 'Points, Ticks & P&L', quote: 'MNQ = $2 per point. MGC = $10 per point. Know your numbers before you trade.', xp: 50 },
-      ], checkpoint: { title: "Know What You're Trading", xp: 30 } },
+      ],
+      welcome: {
+        eyebrow: 'Phase 1 \u00b7 Section 1 \u00b7 Introduction to Trading',
+        heading: 'Welcome to the Market',
+        paragraphs: [
+          { text: 'Before charts. Before setups. Before Dayli ICC. You need to understand the world you\u2019re stepping into.' },
+          { text: 'What you\u2019re actually buying and selling. Why price moves at all. What a futures contract is. And how a move on your chart turns into real dollars.' },
+          { cls: 'sec-welcome-big', text: 'FIRST, THE LANGUAGE.' },
+          { text: 'This is where <span class="sec-welcome-quote">\u201cI think it\u2019s going up\u201d</span> becomes <span class="sec-welcome-quote">\u201cI\u2019m long 1 MNQ, my stop is 20 points away, so I\u2019m risking $40.\u201d</span>' },
+          { text: 'One is a guess. The other is a trader talking.' },
+        ],
+        goals: [
+          'Explain what a trade is: market, direction, risk and outcome.',
+          'Explain going long vs. going short.',
+          'Explain why markets exist, and why disagreement creates a trade.',
+          'Describe buyer and seller aggression without over-reading one candle.',
+          'Name common futures instruments and the difference between minis and micros.',
+          'Explain how futures differ from stocks.',
+          'Calculate P&L from points, point value and contract count.',
+        ],
+        mission: 'Don\u2019t memorize trading terms. Understand what they mean.',
+      },
+      checkpoint: { title: "Know What You're Trading", xp: 30, firstStep: 'challenge', desc: 'Section Challenge + Knowledge Check + Check-In. Clear this to unlock Section 2.' } },
       { key: 's2', n: 2, badge: 't', title: 'Before You Touch a Chart', lessons: [
         { n: 7, title: 'TradingView Basics', quote: 'Your chart is your workspace. Learn it before you try to read it.', xp: 60 },
         { n: 8, title: 'Brokers, Prop Firms & Accounts', quote: 'Funded, personal, simulated, live — know the account before you know the strategy.', xp: 60 },
@@ -47,7 +69,27 @@ export const PHASES = [
         { n: 10, title: 'Stop Loss & Take Profit', quote: 'Protect your capital first. Always know your exit before your entry.', xp: 60 },
         { n: 11, title: 'Position Sizing', quote: 'Risk only what you can afford to lose. Size your position, not your ego.', xp: 60 },
         { n: 12, title: 'Trading Sessions & Market Hours', quote: 'Asia. London. New York. The clock changes the chart.', xp: 60 },
-      ] },
+      ],
+      welcome: {
+        eyebrow: 'Phase 1 \u00b7 Section 2 \u00b7 Before You Touch a Chart',
+        heading: 'Before You Touch a Chart',
+        paragraphs: [
+          { text: 'Most new traders start with the setup. We start with everything that keeps you in the game.' },
+          { text: 'A clean workspace. Knowing which account you\u2019re in. Knowing how your orders actually fill. Knowing your exit before your entry, your size before your click, and what time it is in the market.' },
+          { cls: 'sec-welcome-big', text: 'PREPARATION IS PROTECTION.' },
+          { text: 'This is where <span class="sec-welcome-quote">\u201cI\u2019ll figure out my stop once I\u2019m in\u201d</span> becomes <span class="sec-welcome-quote">\u201cMy stop goes where my idea is proven wrong, and my size comes from my plan.\u201d</span>' },
+        ],
+        goals: [
+          'Set up a clean, readable TradingView chart.',
+          'Explain what a broker account, a prop evaluation and a simulated account each test.',
+          'Choose between market, limit and stop orders.',
+          'Place a stop loss based on structure, not comfort, and plan your take profit in advance.',
+          'Size a position from your risk plan, not your mood.',
+          'Read a move differently depending on the session it formed in.',
+        ],
+        mission: 'Know your exit before your entry.',
+      },
+      checkpoint: { title: 'Ready Before You Trade', xp: 30, firstStep: 'challenge', desc: 'Section Challenge + Knowledge Check + Check-In. Clear this to unlock Section 3.' } },
       { key: 's3', n: 3, badge: 'c', title: 'Candles & Timeframes', lessons: [
         { n: 13, title: 'Candlesticks', quote: "Every candle is a decision. Green means buyers won. Red means sellers won.", xp: 60 },
         { n: 14, title: 'Candle Anatomy', quote: 'Body, wicks, open, close. Know every part before you read a single chart.', xp: 60 },
@@ -55,23 +97,67 @@ export const PHASES = [
         { n: 16, title: 'Candle Psychology', quote: 'Push. Reject. Accept. Fail. Read what actually happened inside the candle.', xp: 60 },
         { n: 17, title: 'Timeframes', quote: 'Higher timeframes tell the story. Lower timeframes let you step inside it.', xp: 60 },
         { n: 18, title: 'Multi-Timeframe Thinking', quote: "Higher timeframes give you context. Lower timeframes give you detail. You'll learn how AGHF assigns each one a job.", xp: 60 },
-      ], game: { title: 'Pattern Recognition Game', quote: 'Rejection. Acceptance. Strong close. Weak close. Wick with no close. Call it before the gate.', xp: 75 } },
+      ],
+      welcome: {
+        eyebrow: 'Phase 1 \u00b7 Section 3 \u00b7 Candles & Timeframes',
+        heading: 'Candles & Timeframes',
+        paragraphs: [
+          { text: 'Every candle is a tiny record of a fight between buyers and sellers. Most people only read its color.' },
+          { text: 'You\u2019re going to read the whole thing: the body, the wicks, and most of all, the close. Then you\u2019ll learn to zoom out before you zoom in.' },
+          { cls: 'sec-welcome-big', text: 'REACHED \u2260 ACCEPTED.' },
+          { text: 'This is where <span class="sec-welcome-quote">\u201cIt wicked above the high, it broke out!\u201d</span> becomes <span class="sec-welcome-quote">\u201cIt reached the high, but it didn\u2019t close through it.\u201d</span>' },
+        ],
+        goals: [
+          'Read what a candle\u2019s shape represents, not just its color.',
+          'Name every part of a candle: open, close, high, low, body and wicks.',
+          'Tell the difference between price reaching a level and accepting it.',
+          'Explain why two similar candles can tell opposite stories.',
+          'Explain what changes when you switch timeframes, and what doesn\u2019t.',
+          'Use higher timeframes for context and lower timeframes for detail.',
+        ],
+        mission: 'Read the whole candle. Zoom out before you zoom in.',
+      },
+      checkpoint: { title: 'Pattern Recognition Game', xp: 75, firstStep: 'game', desc: 'Rejection. Acceptance. Strong close. Weak close. Call it before the gate, then Knowledge Check + Check-In to finish Phase 1.' } },
     ],
   },
   {
-    key: 'p2', n: 2, badge: 't', title: 'Understanding Structure', locked: true,
+    key: 'p2', n: 2, badge: 't', title: 'Understanding Structure', locked: false,
     sections: [
       { key: 's4', n: 4, badge: 't', title: 'How Markets Move', lessons: [
-        { title: 'Trending vs Ranging', quote: 'Two environments. Two totally different games.', xp: 65 },
-        { title: 'Uptrends', quote: 'Higher highs and higher lows. Like walking UP stairs.', xp: 65 },
-        { title: 'Downtrends', quote: "Lower lows and lower highs. If it's not doing this, don't trade it.", xp: 65 },
-        { title: 'HH, HL, LH & LL', quote: 'The four labels that describe everything price does.', xp: 65 },
-        { title: 'Swing Highs & Swing Lows', quote: 'Every swing is a decision point. Later, they become everything.', xp: 65 },
-        { title: 'Valid vs Invalid Swings', quote: 'Not every wiggle on the chart counts. Learn which ones do.', xp: 65 },
-        { title: 'Internal vs External Structure', quote: 'External is where price is going. Internal is how it gets there.', xp: 65 },
-        { title: 'Consolidation', quote: "This is where most people lose money. They're forcing trades in dead zones.", xp: 65 },
-        { title: 'Expansion', quote: 'Expansion, correction, expansion. That’s the whole rhythm.', xp: 65 },
-      ] },
+        { n: 1, title: 'What Is Market Structure?', quote: 'Candles are the words. Structure is the sentence.', xp: 65 },
+        { n: 2, title: 'Swing Highs & Swing Lows', quote: 'Before you can read structure, you need to find the turns.', xp: 65 },
+        { n: 3, title: 'HH, HL, LH & LL', quote: 'The four labels that turn movement into readable structure.', xp: 65 },
+        { n: 4, title: 'Bullish Structure', quote: 'Higher highs + higher lows show upward structural progression.', xp: 65 },
+        { n: 5, title: 'Bearish Structure', quote: 'Lower lows + lower highs show downward structural progression.', xp: 65 },
+        { n: 6, title: 'Valid vs. Minor Swings', quote: 'Every turn exists. Not every turn carries the same structural weight.', xp: 65 },
+        { n: 7, title: 'Internal vs. External Structure', quote: 'Structure exists inside structure.', xp: 65 },
+        { n: 8, title: 'Consolidation', quote: "Sometimes price isn't walking up or down the stairs. It's walking around the room.", xp: 65 },
+        { n: 9, title: 'Expansion, Pullbacks & Progression', quote: 'Price pushes. Price pauses. Price pulls back. Then we see what it does next.', xp: 65 },
+      ],
+      welcome: {
+        eyebrow: 'Phase 2 · Section 1 · How Markets Move',
+        heading: 'How Markets Move',
+        paragraphs: [
+          { text: 'You learned how to read one candle. Now zoom out. Because the market isn\u2019t one candle.' },
+          { text: 'Candles move together. They create pushes and pullbacks. Those pushes and pullbacks create swings. And those swings begin forming something much bigger:' },
+          { cls: 'sec-welcome-big', text: 'MARKET STRUCTURE.' },
+          { text: 'This is where you\u2019re going to stop saying <span class="sec-welcome-quote">\u201cIt looks like it\u2019s going up.\u201d</span> And start saying <span class="sec-welcome-quote">\u201cPrice is forming higher highs and higher lows, so the current structure is bullish.\u201d</span>' },
+          { text: 'One is a feeling. The other is an observation.' },
+        ],
+        goals: [
+          'Identify swing highs and swing lows.',
+          'Label HH, HL, LH, and LL correctly.',
+          'Recognize basic bullish and bearish structure.',
+          'Distinguish trending from ranging price.',
+          'Understand internal vs. external structure at an introductory level.',
+          'Recognize consolidation and expansion.',
+          'Understand that a pullback does not automatically mean a reversal.',
+          'Begin identifying which swings are structurally meaningful.',
+          'Describe market structure objectively rather than simply saying \u201cbullish\u201d or \u201cbearish.\u201d',
+        ],
+        mission: 'Stop guessing direction. Learn to describe structure.',
+      },
+      checkpoint: { title: 'Can You Read the Stairs?', xp: 0, firstStep: 'game', desc: 'Structure Builder + Knowledge Check + Check-In. Clear this to unlock Section 2.' } },
       { key: 's5', n: 5, badge: 'p', title: 'Breaks, Shifts & Fakeouts', lessons: [
         { title: 'Break of Structure', quote: 'Trend continuing. Structure agrees with itself.', xp: 65 },
         { title: 'Market Structure Shift', quote: 'Trend changing. Structure just disagreed with itself.', xp: 65 },
@@ -341,12 +427,18 @@ export function totalLessonCount() {
  * been cleared? A section with no `checkpoint` field is always considered
  * cleared — the hard gate only applies where a checkpoint exists.
  */
-export function isSectionCleared(phaseKey, sectionKey) {
+export function isSectionCleared(phaseKey, sectionKey, completedIds) {
   const found = sectionByKey(sectionKey);
   if (!found || found.phase.key !== phaseKey || !found.section.checkpoint) return true;
   try {
-    return localStorage.getItem(`aghf_section_clear:${phaseKey}-${sectionKey}`) === 'true';
-  } catch (err) {
-    return false;
+    if (localStorage.getItem(`aghf_section_clear:${phaseKey}-${sectionKey}`) === 'true') return true;
+  } catch (err) { /* storage blocked */ }
+  // The clear flag lives in this browser only. A member who has already
+  // completed lessons in the next section got past this gate (on another
+  // device, or before the checkpoint existed), so don't lock her out.
+  if (completedIds) {
+    const next = found.phase.sections[found.phase.sections.indexOf(found.section) + 1];
+    if (next && next.lessons.some((l) => l.n && completedIds.has(`${phaseKey}-${l.n}`))) return true;
   }
+  return false;
 }

@@ -4,7 +4,7 @@
   "lessonNumber": 7,
   "title": "TradingView Basics",
   "videoUrl": null,
-  "videoDuration": "6 min",
+  "videoDuration": "1:26",
   "xpValue": 60,
   "passThreshold": 0.6,
   "hook": "Your chart is your workspace. Learn it before you try to read it.",
@@ -16,10 +16,12 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "TradingView as a workspace" },
-      { "t": "01:30", "label": "Reading, zooming, marking" },
-      { "t": "03:00", "label": "Why less is more" },
-      { "t": "04:30", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Clean up your workspace" },
+      { "t": "00:30", "label": "Timeframes change your view" },
+      { "t": "00:47", "label": "Read, zoom, mark, simplify" },
+      { "t": "01:06", "label": "A few tools, used clearly" },
+      { "t": "01:15", "label": "Your mission" }
     ]
   },
   "slides": [

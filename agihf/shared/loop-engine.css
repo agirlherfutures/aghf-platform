@@ -28,6 +28,11 @@
 .dl-marker:hover{border-color:var(--pink-light);}
 .dl-marker-t{font-size:.72rem;font-weight:700;color:var(--muted);min-width:38px;font-variant-numeric:tabular-nums;}
 .dl-marker-label{font-size:.82rem;color:var(--text);}
+.dl-marker.is-active{border-color:var(--pink);background:var(--pink-pale);}
+.dl-marker.is-active .dl-marker-t{color:var(--pink);}
+.lw-video-block .dl-video{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--dark);object-fit:contain;}
+.lw-watched-btn.is-ready{animation:dlReadyPulse 1.6s ease-in-out 2;}
+@keyframes dlReadyPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.04);box-shadow:0 0 0 6px var(--pink-pale);}}
 .lw-slide.dl-focus-active .dl-launchpad,
 .lw-slide.dl-focus-active .lw-watched-btn{display:none;}
 .lw-slide.dl-focus-active .dl-watch-block{max-width:640px;margin:0 auto;}

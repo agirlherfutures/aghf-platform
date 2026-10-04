@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/tokens.css">
 <link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/structure-charts.css">
 </head>
 <body>
 
@@ -81,29 +82,29 @@
       <div class="lc-n ${numClass}">${numContent}</div>
       <div class="lc-inf">
         <div class="lc-ttl">Section Checkpoint: ${cp.title}</div>
-        <div class="lc-qt">Challenge + Knowledge Check + Check-In — clear this to unlock the next section.</div>
-        <div class="lc-tags"><span class="t-gm">Checkpoint</span><span class="t-xp">+${cp.xp}+ GP</span></div>
+        <div class="lc-qt">${cp.desc || 'Challenge + Knowledge Check + Check-In — clear this to unlock the next section.'}</div>
+        <div class="lc-tags"><span class="t-gm">Checkpoint</span>${cp.xp ? `<span class="t-xp">+${cp.xp}+ GP</span>` : ''}</div>
       </div>
       ${statusHtml}`;
     if (state === 'locked') return `<div class="lc lc-lk">${inner}</div>`;
-    return `<a class="lc" href="section.html?phase=${phase.key}&section=${section.key}&step=welcome">${inner}</a>`;
+    return `<a class="lc" href="section.html?phase=${phase.key}&section=${section.key}&step=${cp.firstStep || 'welcome'}">${inner}</a>`;
   }
 
   function sectionHtml(phase, section, completedIds, phaseUnlocked, sectionIdx) {
     const prevSection = phase.sections[sectionIdx - 1];
-    const sectionGateOk = !prevSection || !prevSection.checkpoint || isSectionCleared(phase.key, prevSection.key);
+    const sectionGateOk = !prevSection || !prevSection.checkpoint || isSectionCleared(phase.key, prevSection.key, completedIds);
     const lessonsHtml = section.lessons.map((lesson) => {
       if (!phaseUnlocked || !lesson.n || !sectionGateOk) return lessonRowHtml(phase, section, lesson, 'locked');
-      const id = `p1-${lesson.n}`;
+      const id = `${phase.key}-${lesson.n}`;
       if (completedIds.has(id)) return lessonRowHtml(phase, section, lesson, 'done');
       const firstIncomplete = !phase.sections.some((s) =>
-        s.lessons.some((l) => l.n < lesson.n && l.n && !completedIds.has(`p1-${l.n}`)));
+        s.lessons.some((l) => l.n < lesson.n && l.n && !completedIds.has(`${phase.key}-${l.n}`)));
       return lessonRowHtml(phase, section, lesson, firstIncomplete ? 'active' : 'locked');
     }).join('');
     let checkpointHtml = '';
     if (section.checkpoint) {
-      const allLessonsDone = phaseUnlocked && sectionGateOk && section.lessons.every((l) => !l.n || completedIds.has(`p1-${l.n}`));
-      const cleared = phaseUnlocked && isSectionCleared(phase.key, section.key);
+      const allLessonsDone = phaseUnlocked && sectionGateOk && section.lessons.every((l) => !l.n || completedIds.has(`${phase.key}-${l.n}`));
+      const cleared = phaseUnlocked && isSectionCleared(phase.key, section.key, completedIds);
       checkpointHtml = checkpointRowHtml(phase, section, cleared ? 'done' : allLessonsDone ? 'active' : 'locked');
     }
     const gameHtml = section.game ? gameRowHtml(section.game, true) : '';
@@ -119,16 +120,39 @@
         ${phaseUnlocked ? `<span class="sec-chev" id="chev-${phase.key}-${section.key}">${chev}</span>` : ''}
       </div>
       <div class="sec-body${closed}" id="body-${phase.key}-${section.key}">
-        ${dayliNoteHtml}${lessonsHtml}${checkpointHtml}${gameHtml}
+        ${phaseUnlocked && section.welcome ? welcomeHtml(phase, section, completedIds) : ''}${dayliNoteHtml}${lessonsHtml}${checkpointHtml}${gameHtml}
       </div>
+    </div>`;
+  }
+
+  // A phase is complete when every built lesson in it is done (saved to the
+  // member's account, so it holds on any device). The next phase unlocks on
+  // that; section checkpoints gate the sections inside a phase.
+  function phaseComplete(phase, completedIds) {
+    return phase.sections.every((s) => s.lessons.every((l) => !l.n || completedIds.has(`${phase.key}-${l.n}`)));
+  }
+
+  // A section's welcome, shown at the top of the section before its lessons.
+  function welcomeHtml(phase, section, completedIds) {
+    const w = section.welcome;
+    const built = section.lessons.filter((l) => l.n);
+    const done = built.filter((l) => completedIds.has(`${phase.key}-${l.n}`)).length;
+    return `<div class="sec-welcome">
+      <div class="sec-welcome-eyebrow">${w.eyebrow}</div>
+      <h3>${w.heading}</h3>
+      ${w.paragraphs.map((p) => `<p class="${p.cls || ''}">${p.text}</p>`).join('')}
+      ${w.goals ? `<details><summary class="sec-welcome-eyebrow" style="cursor:pointer;margin-top:8px">🎯 By the end of this section</summary><ul class="sec-welcome-goals">${w.goals.map((g) => `<li>${g}</li>`).join('')}</ul></details>` : ''}
+      <div class="sec-welcome-mission"><span>🎀 Your mission</span>${w.mission}</div>
+      <div class="sec-welcome-progress"><div class="sec-welcome-dots">${built.map((l) => `<i class="${completedIds.has(`${phase.key}-${l.n}`) ? 'on' : ''}"></i>`).join('')}</div>${done} of ${built.length} lessons complete</div>
     </div>`;
   }
 
   function phaseHtml(phase, phaseIdx, completedIds) {
     const totalLessons = phase.sections.reduce((sum, s) => sum + s.lessons.length, 0);
-    const doneInPhase = phase.locked ? 0 : phase.sections.reduce((sum, s) =>
-      sum + s.lessons.filter((l) => l.n && completedIds.has(`p1-${l.n}`)).length, 0);
-    const phaseUnlocked = !phase.locked;
+    const prevPhase = PHASES[phaseIdx - 1];
+    const phaseUnlocked = !phase.locked && (!prevPhase || phaseComplete(prevPhase, completedIds));
+    const doneInPhase = !phaseUnlocked ? 0 : phase.sections.reduce((sum, s) =>
+      sum + s.lessons.filter((l) => l.n && completedIds.has(`${phase.key}-${l.n}`)).length, 0);
     const badgeClass = BADGE_PHASE_CLASS[phase.badge] || 'pb-p';
     const sub = phaseUnlocked
       ? `Sections ${phase.sections[0].n}–${phase.sections[phase.sections.length - 1].n} · ${doneInPhase === totalLessons ? 'Complete' : 'In progress'}`

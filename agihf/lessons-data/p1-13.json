@@ -4,7 +4,7 @@
   "lessonNumber": 13,
   "title": "Candlesticks",
   "videoUrl": null,
-  "videoDuration": "7 min",
+  "videoDuration": "1:23",
   "xpValue": 90,
   "passThreshold": 0.6,
   "hook": "Every candle is a decision. Green means buyers won. Red means sellers won.",
@@ -16,10 +16,12 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Open, close, high, low" },
-      { "t": "01:45", "label": "Two candles, two different stories" },
-      { "t": "03:30", "label": "Reading wicks in context" },
-      { "t": "05:30", "label": "Try it yourself" }
+      { "t": "00:00", "label": "Intro" },
+      { "t": "00:08", "label": "Watch a candle form" },
+      { "t": "00:30", "label": "Two candles, two stories" },
+      { "t": "00:50", "label": "The color rule" },
+      { "t": "01:00", "label": "Read the whole shape" },
+      { "t": "01:11", "label": "Your mission" }
     ]
   },
   "slides": [
