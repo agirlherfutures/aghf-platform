@@ -16,86 +16,272 @@
   },
   "watch": {
     "markers": [
-      { "t": "00:00", "label": "Meet Aristella" },
-      { "t": "00:10", "label": "Trading isn't predicting" },
-      { "t": "00:20", "label": "Long vs. short" },
-      { "t": "00:36", "label": "Every trade's four pieces" },
-      { "t": "00:55", "label": "Trading vs. investing" },
-      { "t": "01:07", "label": "Structured decisions" },
-      { "t": "01:17", "label": "Your mission" }
+      {
+        "t": "00:00",
+        "label": "Meet Aristella"
+      },
+      {
+        "t": "00:10",
+        "label": "Trading isn't predicting"
+      },
+      {
+        "t": "00:20",
+        "label": "Long vs. short"
+      },
+      {
+        "t": "00:36",
+        "label": "Every trade's four pieces"
+      },
+      {
+        "t": "00:55",
+        "label": "Trading vs. investing"
+      },
+      {
+        "t": "01:07",
+        "label": "Structured decisions"
+      },
+      {
+        "t": "01:17",
+        "label": "Your mission"
+      }
     ],
     "preview": {
       "shape": "trade_anatomy",
-      "path": [[40, 220], [130, 210], [220, 215], [310, 195], [400, 200], [490, 170]],
-      "extension": [[490, 170], [570, 130], [650, 110], [730, 80]],
+      "path": [
+        [
+          40,
+          220
+        ],
+        [
+          130,
+          210
+        ],
+        [
+          220,
+          215
+        ],
+        [
+          310,
+          195
+        ],
+        [
+          400,
+          200
+        ],
+        [
+          490,
+          170
+        ]
+      ],
+      "extension": [
+        [
+          490,
+          170
+        ],
+        [
+          570,
+          130
+        ],
+        [
+          650,
+          110
+        ],
+        [
+          730,
+          80
+        ]
+      ],
       "riskY": 235,
       "outcomeValue": 120,
       "stages": [
-        { "layer": "market", "caption": "Market: what are you trading?" },
-        { "layer": "direction", "caption": "Direction: long or short?" },
-        { "layer": "risk", "caption": "Risk: where are you wrong?" },
-        { "layer": "outcome", "caption": "Outcome: price moves, position gains or loses value." }
+        {
+          "layer": "market",
+          "caption": "Market: what are you trading?"
+        },
+        {
+          "layer": "direction",
+          "caption": "Direction: long or short?"
+        },
+        {
+          "layer": "risk",
+          "caption": "Risk: where are you wrong?"
+        },
+        {
+          "layer": "outcome",
+          "caption": "Outcome: price moves, position gains or loses value."
+        }
       ]
     }
   },
   "slides": [
     {
-      "type": "teach",
-      "kicker": "What you're really doing",
-      "body": "Trading means taking a position because you expect price to move. Go long, and you profit if price rises. Go short, and you profit if price falls. Futures let you do either from your very first trade. You don't have to \"buy first\" the way you might with a stock.",
+      "type": "v2_hero",
+      "kicker": "What even is trading?",
+      "headline": "Trading isn’t <em>predicting.</em>",
+      "line": "It’s taking a position because you expect price to move.",
+      "pose": "wave",
+      "cta": "Let’s go →"
+    },
+    {
+      "type": "v2_tiles",
+      "kicker": "Two directions",
+      "headline": "Up or down. <em>You can trade both.</em>",
+      "tiles": [
+        {
+          "dir": "up",
+          "label": "Long",
+          "sub": "Profit if price rises"
+        },
+        {
+          "dir": "down",
+          "label": "Short",
+          "sub": "Profit if price falls"
+        }
+      ],
       "check": {
-        "prompt": "A trader believes MNQ is likely to decline and takes a position designed to profit from falling prices. What kind of position did she take?",
+        "prompt": "She expects MNQ to fall. Which side?",
         "options": [
-          { "label": "Long", "body": "Positioned to benefit when price rises.", "correct": false, "feedback": "Long benefits from price rising, the opposite of what's described here." },
-          { "label": "Short", "body": "Positioned to benefit when price falls.", "correct": true, "why": "Exactly: a position designed to profit from falling prices is a short." }
+          {
+            "label": "Long",
+            "correct": false,
+            "feedback": "Long profits when price rises. She expects it to fall."
+          },
+          {
+            "label": "Short",
+            "correct": true,
+            "why": "Short profits when price falls. Futures let you do either from your very first trade."
+          }
         ]
       }
     },
     {
-      "type": "chart_direction",
-      "kicker": "Experience",
-      "title": "Long or short?",
-      "body": "Price has been stepping higher and defending its pullbacks. Based on what you actually see, what happens next?",
-      "entry": 18000,
-      "pointValue": 2,
-      "correct": "short",
-      "outcomePoints": 60,
-      "goodMsg": "You read that correctly: price reversed, and you positioned for the side that was actually in control. That's the whole job, not predicting with certainty, reacting to what price shows you.",
-      "badMsg": "Look again: price pushed higher then lost control right at the edge of the chart. The reaction is the tell."
-    },
-    {
-      "type": "icon_grid",
-      "kicker": "Break it down",
-      "title": "Every trade has four pieces",
-      "items": [
-        { "icon": "📊", "label": "Market", "desc": "What are you trading?" },
-        { "icon": "🧭", "label": "Direction", "desc": "Long or short?" },
-        { "icon": "🛑", "label": "Risk", "desc": "Where are you wrong?" },
-        { "icon": "💰", "label": "Outcome", "desc": "Price moves. You gain or lose." }
+      "type": "v2_ticket",
+      "kicker": "Every trade has four pieces",
+      "headline": "Your trade <em>ticket.</em>",
+      "line": "Tap each line to fill it in. Every trade you take has these four.",
+      "rows": [
+        {
+          "key": "market",
+          "label": "Market",
+          "value": "MNQ"
+        },
+        {
+          "key": "direction",
+          "label": "Direction",
+          "value": "Long"
+        },
+        {
+          "key": "risk",
+          "label": "Risk",
+          "value": "Wrong below 19,980"
+        },
+        {
+          "key": "outcome",
+          "label": "Outcome",
+          "value": "Price moves. You gain or lose."
+        }
       ]
     },
     {
-      "type": "dayli",
-      "kicker": "Dayli Says",
-      "quote": "You don't need to know what happens next with certainty to trade. Later, you'll learn to build a thesis, wait for confirmation, and define exactly what would make that thesis invalid."
+      "type": "v2_missing",
+      "kicker": "Spot it",
+      "headline": "“I think price is going up.”",
+      "small": true,
+      "line": "Is that a trade? Tap what’s missing.",
+      "rows": [
+        {
+          "key": "market",
+          "label": "Market"
+        },
+        {
+          "key": "direction",
+          "label": "Direction",
+          "value": "Up",
+          "present": true
+        },
+        {
+          "key": "risk",
+          "label": "Risk"
+        },
+        {
+          "key": "outcome",
+          "label": "Outcome"
+        }
+      ],
+      "presentNote": "Direction is the one piece she <em>does</em> have. Look for what’s missing.",
+      "why": "Direction alone isn’t a plan. A trade needs all four: market, direction, risk and outcome."
     },
     {
-      "type": "teach",
-      "kicker": "Trading vs. investing",
-      "body": "Investing is usually about owning something for years. Trading is about profiting from price movement over a much shorter window. Either way, our job isn't to know exactly what happens next. It's to interpret what price is showing us and make rule-based decisions.",
+      "type": "v2_compare",
+      "kicker": "Don’t mix these up",
+      "headline": "Investing ≠ <em>trading.</em>",
+      "cards": [
+        {
+          "label": "Investing",
+          "sub": "Own something for years",
+          "spark": "slow",
+          "tag": "YEARS",
+          "tone": "purple"
+        },
+        {
+          "label": "Trading",
+          "sub": "Profit from the move, over a much shorter window",
+          "spark": "chop",
+          "tag": "MINUTES · HOURS",
+          "tone": "pink"
+        }
+      ],
       "check": {
-        "prompt": "Your analysis supports higher prices, but price moves against you. What's the AGHF mindset?",
+        "prompt": "You’re here to trade. So your job is…",
+        "stack": true,
         "options": [
-          { "label": "The analysis must eventually become correct", "body": "Wait for the market to catch up.", "correct": false, "feedback": "Waiting for the market to \"prove you right\" isn't a risk plan." },
-          { "label": "A thesis can be reasonable and still be wrong", "body": "Risk defines what happens next.", "correct": true, "why": "Being reasonable and being right aren't the same thing. That's exactly why risk is defined before the trade, not decided emotionally after." }
+          {
+            "label": "To know exactly what happens next",
+            "correct": false,
+            "feedback": "Nobody knows that, and you don’t need to. Look again."
+          },
+          {
+            "label": "To read what price is showing you and follow your rules",
+            "correct": true,
+            "why": "Our job isn’t to know exactly what happens next. It’s to interpret what price is showing us and make rule-based decisions."
+          }
         ]
       }
     },
     {
-      "type": "reflect",
+      "type": "v2_scenario",
+      "kicker": "What happens when you’re wrong?",
+      "headline": "You bought. <em>Price fell.</em>",
+      "scene": "stopped_long",
+      "check": {
+        "prompt": "Price hit the spot your plan said you’re wrong. Now what?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Hold and hope it comes back",
+            "correct": false,
+            "feedback": "Waiting for the market to “prove you right” isn’t a risk plan."
+          },
+          {
+            "label": "Exit, like your plan says",
+            "correct": true,
+            "why": "A thesis can be reasonable and still be wrong. That’s why risk is defined before the trade, not decided emotionally after."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "You don’t need <em>certainty</em> to trade.",
+      "line": "Later, you’ll learn to build a thesis, wait for confirmation, and define exactly what would make that thesis invalid.",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Why is \"I think price is going up\" not a complete trading plan? What's missing from that statement?",
-      "modelAnswer": "\"I think price is going up\" only covers direction. It doesn't say what market, how much risk, where you'd be proven wrong, or what the outcome plan is. A real trade needs all four pieces: market, direction, risk, and outcome."
+      "prompt": "Why isn’t “I think price is going up” a complete trading plan?",
+      "modelAnswer": "It only covers direction. It doesn’t say what market, how much risk, where you’d be proven wrong, or what the outcome plan is. A real trade needs all four pieces: market, direction, risk, and outcome."
     }
   ],
   "takeaways": [
@@ -103,5 +289,6 @@
     "Going long profits from price rising; going short profits from price falling.",
     "Every trade has four pieces: market, direction, risk, and outcome."
   ],
-  "remember": "Trading isn't about being certain. It's about making structured decisions under uncertainty."
+  "remember": "Trading isn't about being certain. It's about making structured decisions under uncertainty.",
+  "completeStyle": "v2"
 }
