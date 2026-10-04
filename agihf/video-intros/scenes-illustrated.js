@@ -176,6 +176,15 @@
     'same-size': s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'sessions': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'crowd-rooms': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'clock24': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
       <div class="abs" style="left:760px;right:110px;top:260px">
         <div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
@@ -1343,6 +1352,121 @@
         out += `<line x1="235" x2="${235 + 1450 * k}" y1="905" y2="905" stroke="${C.teal}" stroke-width="8" stroke-linecap="round"/>
           <text x="960" y="960" font-size="34" font-weight="900" text-anchor="middle" fill="#2F8A7F" font-family="Playfair Display" opacity="${k}">Same rule. Same size.</text>`;
       }
+      return out;
+    },
+
+    sessions: (s, t) => {
+      const cols = [
+        { x: 400, at: s.asia, name: 'Asia', sky: ['#3D3550', '#5E56B8'], kind: 'asia', amp: 0.4, desc: 'Quiet, range-bound' },
+        { x: 960, at: s.london, name: 'London', sky: ['#F5A857', '#F9B8C6'], kind: 'london', amp: 0.45, desc: 'First real expansion' },
+        { x: 1520, at: s.ny, name: 'New York', sky: ['#7ECEC4', '#E8F8F6'], kind: 'ny', amp: 0.9, desc: 'Highest volume, sharpest moves' },
+      ];
+      const active = t >= s.ny ? 2 : t >= s.london ? 1 : t >= s.asia ? 0 : -1;
+      return cols.map((c, i) => {
+        const p = pop(t, c.at - 0.2, 0.7);
+        if (p <= 0) return '';
+        const w = 500, x0 = c.x - w / 2, top = 360;
+        const on = i === active;
+        let sky = `<defs><linearGradient id="sky${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.sky[0]}"/><stop offset="1" stop-color="${c.sky[1]}"/></linearGradient></defs>
+          <rect x="${x0}" y="${top}" width="${w}" height="250" rx="28" fill="url(#sky${i})"/>`;
+        const g = top + 250;
+        if (c.kind === 'asia') {
+          sky += `<circle cx="${x0 + 400}" cy="${top + 70}" r="34" fill="#FFF3C4"/><circle cx="${x0 + 414}" cy="${top + 60}" r="30" fill="${c.sky[0]}"/>
+            ${[[80, 120], [190, 90], [300, 140]].map(([dx, h]) => `<rect x="${x0 + dx}" y="${g - h}" width="90" height="${h}" fill="#2A2440"/><path d="M${x0 + dx - 14},${g - h} L${x0 + dx + 45},${g - h - 34} L${x0 + dx + 104},${g - h} Z" fill="#2A2440"/>
+              ${[0, 1].map(k => `<rect x="${x0 + dx + 18 + k * 34}" y="${g - h + 24}" width="18" height="18" rx="3" fill="#FFE08A" opacity="${0.5 + 0.5 * Math.sin(t * 2 + dx + k)}"/>`).join('')}`).join('')}`;
+        } else if (c.kind === 'london') {
+          const rise = Math.sin(t * 0.8) * 6;
+          sky += `<circle cx="${x0 + 380}" cy="${g - 40 + rise}" r="56" fill="#FFE08A"/>
+            <rect x="${x0 + 230}" y="${g - 190}" width="56" height="190" fill="#6E5A62"/><path d="M${x0 + 224},${g - 190} L${x0 + 258},${g - 240} L${x0 + 292},${g - 190} Z" fill="#6E5A62"/>
+            <circle cx="${x0 + 258}" cy="${g - 150}" r="20" fill="#FFF3C4"/><line x1="${x0 + 258}" y1="${g - 150}" x2="${x0 + 258 + Math.cos(t) * 14}" y2="${g - 150 + Math.sin(t) * 14}" stroke="#6E5A62" stroke-width="3"/>
+            <rect x="${x0 + 30}" y="${g - 80}" width="80" height="80" fill="#8A7480"/><rect x="${x0 + 120}" y="${g - 110}" width="100" height="110" fill="#8A7480"/><rect x="${x0 + 310}" y="${g - 70}" width="160" height="70" fill="#6E5A62"/>`;
+        } else {
+          sky += `<circle cx="${x0 + 410}" cy="${top + 60}" r="38" fill="#FFE08A"/>${Array.from({ length: 8 }, (_, k) => `<rect x="${x0 + 407}" y="${top + 6}" width="6" height="14" rx="3" fill="#FFE08A" transform="rotate(${k * 45 + t * 20} ${x0 + 410} ${top + 60})"/>`).join('')}
+            ${[[30, 150, 70], [110, 200, 60], [180, 130, 80], [270, 220, 56], [336, 160, 70]].map(([dx, h, ww]) => `<rect x="${x0 + dx}" y="${g - h}" width="${ww}" height="${h}" fill="#4FA99E"/>
+              ${Array.from({ length: Math.floor(h / 30) }, (_, k) => `<rect x="${x0 + dx + 10}" y="${g - h + 12 + k * 30}" width="${ww - 20}" height="10" rx="2" fill="#E8F8F6" opacity=".7"/>`).join('')}`).join('')}`;
+        }
+        // Candle strip showing the session's personality.
+        let candles = '';
+        const n = 9, cw = w / n;
+        // Build the session's candles, then scale them into the strip.
+        const seq = []; let v = 0;
+        for (let k = 0; k < n; k++) {
+          const dir = c.kind === 'asia' ? (k % 2 ? 1 : -1) : (k < 3 ? (k % 2 ? 1 : -1) * 0.5 : 1) * (c.kind === 'ny' && k > 6 ? -1 : 1);
+          const o = v, cl = v + dir * c.amp * (c.kind === 'asia' ? 0.6 : 1);
+          seq.push([o, cl]); v = cl;
+        }
+        const lo = Math.min(...seq.flat()) - 0.15, hi = Math.max(...seq.flat()) + 0.15;
+        const span = Math.max(hi - lo, 1.6), mid = (hi + lo) / 2;
+        const Yc = val => 765 - (val - mid) / span * 200;
+        seq.forEach(([o, cl], k) => {
+          const kp = ease((t - c.at - 0.4 - k * 0.22) / 0.4);
+          if (kp <= 0) return;
+          const up = cl >= o, col = up ? C.teal : C.pink, cx = x0 + cw * k + cw / 2;
+          const y1 = Yc(Math.max(o, lerp(o, cl, kp))), y2 = Yc(Math.min(o, lerp(o, cl, kp)));
+          candles += `<line x1="${cx}" x2="${cx}" y1="${y1 - 8}" y2="${y2 + 8}" stroke="${col}" stroke-width="3"/><rect x="${cx - cw * 0.3}" y="${y1}" width="${cw * 0.6}" height="${Math.max(3, y2 - y1)}" rx="3" fill="${col}"/>`;
+          const vh = (c.kind === 'asia' ? 14 : c.kind === 'london' ? 34 : 70) * (0.7 + 0.3 * Math.abs(Math.sin(k * 2.3))) * kp;
+          candles += `<rect x="${cx - cw * 0.3}" y="${930 - vh}" width="${cw * 0.6}" height="${vh}" rx="2" fill="${C.purpleL}"/>`;
+        });
+        return `<g transform="translate(${c.x},640) scale(${p * (on ? 1.03 : 1)}) translate(${-c.x},-640)">
+          <rect x="${x0 - 14}" y="${top - 14}" width="${w + 28}" height="${600}" rx="36" fill="#fff" stroke="${on ? C.peach : '#F1E7E1'}" stroke-width="${on ? 5 : 2}"/>
+          ${sky}<text x="${x0 + 24}" y="${top + 50}" font-size="40" font-weight="900" fill="#fff" font-family="Playfair Display">${c.name}</text>
+          ${candles}
+          <text x="${c.x}" y="${985}" font-size="26" font-weight="700" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">${c.desc}</text></g>`;
+      }).join('');
+    },
+
+    'crowd-rooms': (s, t) => {
+      const G = 900;
+      let out = '';
+      [[s.empty, 520, 2, 'Overnight', true], [s.packed, 1400, 7, 'New York open', false]].forEach(([at, cx, n, label, night], i) => {
+        const p = pop(t, at, 0.7);
+        if (p <= 0) return;
+        const w = 760, x0 = cx - w / 2, top = 400;
+        let room = `<rect x="${x0}" y="${top}" width="${w}" height="560" rx="36" fill="${night ? '#EEEDFE' : '#FEF3E4'}" stroke="${night ? C.purpleL : C.peachL}" stroke-width="4"/>
+          <rect x="${x0 + 30}" y="${top + 30}" width="160" height="110" rx="14" fill="${night ? '#3D3550' : '#B2E4DF'}"/>
+          ${night ? `<circle cx="${x0 + 140}" cy="${top + 70}" r="22" fill="#FFF3C4"/><circle cx="${x0 + 150}" cy="${top + 63}" r="20" fill="#3D3550"/>` : `<circle cx="${x0 + 110}" cy="${top + 85}" r="30" fill="#FFE08A"/>`}
+          <text x="${x0 + w - 30}" y="${top + 70}" font-size="40" font-weight="900" text-anchor="end" fill="${C.dark}" font-family="Playfair Display">${label}</text>`;
+        const looks = ['a', 'b', 'c', 'd', 'e', 'buyer', 'seller'];
+        for (let k = 0; k < n; k++) {
+          const kp = pop(t, at + 0.3 + k * 0.25, 0.5);
+          if (kp <= 0) continue;
+          const px = n === 2 ? x0 + 260 + k * 260 : x0 + 90 + k * 96, sway = night ? 0 : Math.sin(t * 4 + k) * 6;
+          room += `<g transform="translate(${px},${G}) scale(${kp}) translate(${-px},${-G})">` + A.person(t, { x: px + sway, y: G, scale: n === 2 ? 0.8 : 0.72, look: A.LOOKS[looks[k % looks.length]], seed: k + i * 3, talk: !night && k % 2 === 0,
+            frontArm: !night && k % 3 === 0 ? { a1: -60, a2: -100 + Math.sin(t * 6 + k) * 10 } : undefined }) + '</g>';
+        }
+        // Volume meter.
+        const vp = clamp((t - at - 0.6) / 1.4) * (night ? 0.18 : 0.95);
+        room += `<rect x="${x0 + 30}" y="${top + 160}" width="24" height="${330}" rx="12" fill="#fff"/>
+          <rect x="${x0 + 30}" y="${top + 490 - 330 * vp}" width="24" height="${330 * vp}" rx="12" fill="${night ? C.purple : C.peach}"/>
+          <text x="${x0 + 42}" y="${top + 530}" font-size="18" font-weight="700" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">VOL</text>`;
+        out += `<g transform="translate(${cx},680) scale(${p}) translate(${-cx},-680)">${room}</g>`;
+      });
+      return out;
+    },
+
+    clock24: (s, t) => {
+      const cx = 960, cy = 700, R = 230;
+      const p = pop(t, s.start + 0.4, 0.7);
+      if (p <= 0) return '';
+      // Approximate session windows in US Eastern Time (hours).
+      const sess = [{ a: 19, b: 28, col: C.purple, name: 'Asia' }, { a: 3, b: 11.5, col: C.peach, name: 'London' }, { a: 9.5, b: 16, col: C.teal, name: 'New York' }];
+      const ang = h => (h / 24) * 360 - 90;
+      const pt = (h, r) => [cx + Math.cos(ang(h) * Math.PI / 180) * r, cy + Math.sin(ang(h) * Math.PI / 180) * r];
+      const arc = (a, b, r) => { const [x1, y1] = pt(a, r), [x2, y2] = pt(b, r); return `M${x1},${y1} A${r},${r} 0 ${b - a > 12 ? 1 : 0},1 ${x2},${y2}`; };
+      const now = (s.start + 0.5 < t ? ((t - s.start) * 2.4 + 18) % 24 : 18);
+      let out = `<g transform="translate(${cx},${cy}) scale(${p}) translate(${-cx},${-cy})">
+        <circle cx="${cx}" cy="${cy}" r="${R + 60}" fill="#fff" stroke="#F1E7E1" stroke-width="3"/>`;
+      sess.forEach((q, i) => {
+        const r = R - i * 46;
+        const inside = (now >= q.a && now < q.b) || (now + 24 >= q.a && now + 24 < q.b);
+        out += `<path d="${arc(q.a, q.b, r)}" fill="none" stroke="${q.col}" stroke-width="${inside ? 40 : 30}" stroke-linecap="round" opacity="${inside ? 1 : 0.45}"/>`;
+        const [lx, ly] = pt((q.a + q.b) / 2, r);
+        out += `<text x="${lx}" y="${ly + 8}" font-size="${inside ? 26 : 22}" font-weight="900" text-anchor="middle" fill="${inside ? '#fff' : C.dark}" font-family="DM Sans">${q.name}</text>`;
+      });
+      [0, 6, 12, 18].forEach(h => { const [x, y] = pt(h, R + 34); out += `<text x="${x}" y="${y + 9}" font-size="26" font-weight="700" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">${['12am', '6am', '12pm', '6pm'][h / 6]}</text>`; });
+      const [hx, hy] = pt(now, R - 150);
+      out += `<line x1="${cx}" y1="${cy}" x2="${hx}" y2="${hy}" stroke="${C.dark}" stroke-width="10" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="18" fill="${C.dark}"/>
+        <text x="${cx}" y="${cy + R + 110}" font-size="22" text-anchor="middle" fill="${C.muted}" font-family="DM Sans">Approximate hours, US Eastern Time</text></g>`;
       return out;
     },
 
