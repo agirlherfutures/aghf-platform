@@ -17,6 +17,7 @@
 
 import { burst, showStreak, showToast, wireRetryOptions } from './lesson-engine.js';
 import { saveCheckinReflection } from './journal-service.js';
+import { SLIDE_RENDERERS } from './lesson-slides-engine.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 
@@ -25,15 +26,12 @@ export function renderSectionWizard(data, opts) {
   const flagKey = `aghf_section_clear:${phaseKey}-${sectionKey}`;
   const sectionId = `${phaseKey}-${sectionKey}`;
 
-  const steps = [
-    { type: 'welcome', label: 'Welcome' },
-    { type: 'challenge', label: 'Challenge' },
-    { type: 'knowledge', label: 'Knowledge Check' },
-    { type: 'checkin', label: 'Check-In' },
-    { type: 'complete', label: 'Complete' },
-  ];
+  // A section can list its own steps (e.g. a game instead of a Challenge,
+  // or no Welcome here because it's shown before the lessons instead).
+  const STEP_LABELS = { welcome: 'Welcome', challenge: 'Challenge', game: (data.game && data.game.title) || 'Game', knowledge: 'Knowledge Check', checkin: 'Check-In', complete: 'Complete' };
+  const steps = (data.steps || ['welcome', 'challenge', 'knowledge', 'checkin', 'complete']).map((type) => ({ type, label: STEP_LABELS[type] }));
 
-  const startIdx = Math.max(0, steps.findIndex((s) => s.type === (initialStep || 'welcome')));
+  const startIdx = Math.max(0, steps.findIndex((s) => s.type === (initialStep || steps[0].type)));
   let cur = startIdx;
   let streak = 0;
   const done = steps.map(() => false);
@@ -94,6 +92,7 @@ export function renderSectionWizard(data, opts) {
     const s = steps[i];
     if (s.type === 'welcome') return 'Start below';
     if (s.type === 'challenge') return 'Work through it';
+    if (s.type === 'game') return 'Clear every level';
     if (s.type === 'knowledge') return 'Pass at 80%';
     if (s.type === 'checkin') return 'Save your answers';
     return 'Continue';
@@ -116,6 +115,7 @@ export function renderSectionWizard(data, opts) {
 
     if (step.type === 'welcome') renderWelcome(slide, data.welcome, () => completeStepAndAdvance(i));
     else if (step.type === 'challenge') renderChallenge(slide, data.challenge, () => completeStepAndAdvance(i), { handleStreak, burst });
+    else if (step.type === 'game') renderGame(slide, data.game, () => completeStepAndAdvance(i), { handleStreak, burst });
     else if (step.type === 'knowledge') renderKnowledge(slide, data.knowledgeCheck, (pct) => { results.knowledgePct = pct; completeStepAndAdvance(i); }, { handleStreak, burst });
     else if (step.type === 'checkin') renderCheckin(slide, data.checkin, sectionId, () => completeStepAndAdvance(i));
     else if (step.type === 'complete') renderComplete(slide, data, { flagKey, backHref, nextSectionHref, nextSectionLabel, lessonsLabel, lessonGpTotal, results, data });
@@ -258,6 +258,40 @@ function appendChallengeContinue(el, satisfy) {
   el.appendChild(btn);
 }
 
+/* ── Game: levels built from the lesson slide types ─────────────────── */
+
+function renderGame(slide, game, onAllDone, helpers) {
+  const levels = game.levels || [];
+  let idx = 0;
+  function show() {
+    const level = levels[idx];
+    slide.innerHTML = `
+      <div class="lw-card">
+        <div class="lw-eyebrow">${game.title}</div>
+        <h2>${game.tagline || ''}</h2>
+        <div class="sg-ladder">${levels.map((_, k) => `<span class="${k < idx ? 'on' : k === idx ? 'cur' : ''}"></span>`).join('')}</div>
+        <div class="sg-level"><div class="sg-level-badge">${idx + 1}</div><div><div class="sg-level-name">Level ${idx + 1} of ${levels.length}</div><div class="sg-level-title">${level.name}</div></div></div>
+      </div>
+      <div class="sg-body"></div>`;
+    const body = slide.querySelector('.sg-body');
+    const renderer = SLIDE_RENDERERS[level.type];
+    const next = () => {
+      idx += 1;
+      if (idx < levels.length) { show(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+      else {
+        slide.innerHTML = `<div class="lw-card lw-complete"><h2>${game.doneHeading || 'Game cleared ✦'}</h2><div class="lw-badge">${game.doneBadge || 'All levels complete'}</div>${game.xp ? `<div class="lw-badge" style="background:rgba(245,168,87,.18);border-color:rgba(245,168,87,.35);color:#F5A857;">+${game.xp} GP</div>` : ''}</div>`;
+        helpers.burst();
+        const btn = document.createElement('button');
+        btn.type = 'button'; btn.className = 'lw-continue-btn'; btn.style.alignSelf = 'center'; btn.textContent = 'Continue →';
+        btn.addEventListener('click', onAllDone);
+        slide.appendChild(btn);
+      }
+    };
+    if (renderer) renderer(body, level, next, helpers); else next();
+  }
+  show();
+}
+
 /* ── Knowledge Check ─────────────────────────────────────────────── */
 
 function shuffle(arr) {
@@ -349,6 +383,7 @@ function renderKnowledge(slide, kc, onPass, helpers) {
 /* ── Check-In ────────────────────────────────────────────────────── */
 
 function renderCheckin(slide, checkin, sectionId, satisfy) {
+  if (checkin.fields) { renderFieldCheckin(slide, checkin, sectionId, satisfy); return; }
   const p = checkin.prompts;
   slide.innerHTML = `
     <div class="lw-card">
@@ -425,10 +460,57 @@ function renderCheckin(slide, checkin, sectionId, satisfy) {
   });
 }
 
+// A check-in described as a list of fields:
+//   { type: 'text', label, hint?, rows?, min? } or { type: 'choice', label, options }
+// The field marked `share: true` is the one also saved as the server reflection.
+function renderFieldCheckin(slide, checkin, sectionId, satisfy) {
+  const fields = checkin.fields;
+  slide.innerHTML = `
+    <div class="lw-card">
+      <div class="lw-eyebrow">${checkin.eyebrow || 'Student Check-In'}</div>
+      <h2>${checkin.heading || "Let's reflect before you move on."}</h2>
+      ${fields.map((f, i) => f.type === 'choice' ? `
+        <div class="sw-field"><label>${f.label}</label>
+          <div class="sw-radio-group" data-f="${i}">${f.options.map((o, oi) => `<div class="sw-radio-opt" data-oi="${oi}"><span class="sw-dot"></span><span>${o}</span></div>`).join('')}</div></div>` : `
+        <div class="sw-field"><label>${f.label}</label>${f.hint ? `<div class="sw-hint">${f.hint}</div>` : ''}
+          <textarea class="sw-textarea" data-f="${i}" rows="${f.rows || 2}" placeholder="${f.placeholder || ''}"></textarea></div>`).join('')}
+      <button type="button" class="lw-continue-btn" id="swSaveCheckin" disabled>Save & Continue →</button>
+      <div class="lw-reflect-saved" id="swCheckinSaved" style="display:none">✓ Saved to My Notes</div>
+    </div>`;
+  const answers = fields.map(() => null);
+  const saveBtn = slide.querySelector('#swSaveCheckin');
+  const valid = () => fields.every((f, i) => f.type === 'choice' ? answers[i] !== null : (answers[i] || '').trim().length >= (f.min || 3));
+  slide.querySelectorAll('textarea[data-f]').forEach((t) => t.addEventListener('input', () => { answers[Number(t.dataset.f)] = t.value; saveBtn.disabled = !valid(); }));
+  slide.querySelectorAll('.sw-radio-group').forEach((g) => {
+    g.querySelectorAll('.sw-radio-opt').forEach((opt) => opt.addEventListener('click', () => {
+      g.querySelectorAll('.sw-radio-opt').forEach((o) => o.classList.remove('on'));
+      opt.classList.add('on');
+      const f = Number(g.dataset.f);
+      answers[f] = fields[f].options[Number(opt.dataset.oi)];
+      saveBtn.disabled = !valid();
+    }));
+  });
+  saveBtn.addEventListener('click', () => {
+    const entry = { sectionId, savedAt: Date.now(), answers: fields.map((f, i) => ({ prompt: f.label, answer: (answers[i] || '').trim() })) };
+    try {
+      const notes = JSON.parse(localStorage.getItem('aghf_notes') || '[]');
+      notes.push(entry);
+      localStorage.setItem('aghf_notes', JSON.stringify(notes));
+    } catch (err) { console.error('Check-in save error:', err); }
+    const shareIdx = Math.max(0, fields.findIndex((f) => f.share));
+    saveCheckinReflection(sectionId, fields[shareIdx].label, (answers[shareIdx] || '').trim()).catch((err) => console.error('Server reflection save error:', err));
+    slide.querySelector('#swCheckinSaved').style.display = '';
+    saveBtn.disabled = true;
+    slide.querySelectorAll('textarea').forEach((t) => { t.disabled = true; });
+    satisfy();
+  });
+}
+
 /* ── Complete ────────────────────────────────────────────────────── */
 
 function renderComplete(slide, data, { flagKey, backHref, nextSectionHref, nextSectionLabel, lessonsLabel, lessonGpTotal, results }) {
   try { localStorage.setItem(flagKey, 'true'); } catch (err) { console.error('Section clear flag error:', err); }
+  if (data.complete.stats) { renderRichComplete(slide, data, { backHref, nextSectionHref, lessonsLabel, lessonGpTotal, results }); return; }
 
   const challengeXp = data.challenge.xp;
   const knowledgeXp = data.knowledgeCheck.xp;
@@ -461,4 +543,35 @@ function renderComplete(slide, data, { flagKey, backHref, nextSectionHref, nextS
   document.getElementById('swNextSectionBtn').addEventListener('click', () => {
     window.location.href = nextSectionHref || backHref;
   });
+}
+
+// Section complete with the section's own stat lines, a phase progress
+// block, and a "next up" teaser for the following section.
+function renderRichComplete(slide, data, { backHref, nextSectionHref, lessonsLabel, lessonGpTotal, results }) {
+  const c = data.complete;
+  const fill = (str) => String(str).replace('{lessons}', lessonsLabel).replace('{kc}', results.knowledgePct ?? '').replace('{gp}', c.gp ?? lessonGpTotal);
+  const ph = c.phase;
+  slide.innerHTML = `
+    <div class="lw-card lw-complete">
+      <div class="lw-eyebrow">${c.eyebrow || 'Section complete'}</div>
+      <h2>${c.heading}</h2>
+      <div class="lw-badge">${c.badge}</div>
+      <div class="sw-stats">${c.stats.map((st) => `<div class="sw-stat-row"><span>${st.label}</span><strong>${fill(st.value)}</strong></div>`).join('')}</div>
+      <div class="lw-badge" style="background:rgba(245,168,87,.18);border-color:rgba(245,168,87,.35);color:#F5A857;">+${fill(c.gp ?? lessonGpTotal)} GP</div>
+      ${ph ? `<div class="sw-phase"><div class="lw-eyebrow">${ph.title}</div>
+        ${ph.sections.map((x) => `<div class="sw-phase-row"><span>${x.icon} ${x.label}</span></div>`).join('')}
+        <div class="sw-phase-bar"><div style="width:${ph.pct}%"></div></div>
+        <div class="sw-phase-row"><span></span><strong>${ph.pct}%</strong></div></div>` : ''}
+    </div>
+    ${c.nextUp ? `
+    <div class="lw-card lw-next-up sw-next-teaser">
+      <div class="lw-eyebrow">🔓 Next up</div>
+      <h2>${c.nextUp.title}</h2>
+      ${c.nextUp.lines.map((l) => `<p>${l}</p>`).join('')}
+      <button type="button" class="lw-cc-next" id="swNextSectionBtn">${c.nextUp.cta || 'Enter next section →'}</button>
+    </div>` : `
+    <div class="lw-card" style="text-align:center"><button type="button" class="lw-cc-next" id="swNextSectionBtn">Back to Lessons →</button></div>`}
+    <div class="lw-back-link"><a href="${backHref}">← Back to all lessons</a></div>`;
+  burst();
+  document.getElementById('swNextSectionBtn').addEventListener('click', () => { window.location.href = nextSectionHref || backHref; });
 }

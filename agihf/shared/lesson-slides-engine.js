@@ -32,6 +32,7 @@ import {
 } from './lesson-engine.js';
 import { renderLoopWatch } from './loop-engine.js';
 import { saveLessonReflection } from './journal-service.js';
+import { STRUCTURE_RENDERERS } from './structure-slides.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 let uidCounter = 0;
@@ -913,7 +914,8 @@ function renderSequenceBuildSlide(el, slide, satisfy, helpers) {
   });
 }
 
-const SLIDE_RENDERERS = {
+export const SLIDE_RENDERERS = {
+  ...STRUCTURE_RENDERERS,
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
   chart_tap: renderChartTapSlide,

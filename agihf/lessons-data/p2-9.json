@@ -1,0 +1,271 @@
+{
+  "phase": "p2",
+  "section": "s4",
+  "lessonNumber": 9,
+  "title": "Expansion, Pullbacks & Progression",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Price pushes. Price pauses. Price pulls back. Then we see what it does next.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Describe expansion, pullbacks and structural progression, and why a pullback alone isn’t a reversal.",
+    "missionQuestion": "When bullish structure starts pulling back, how do you know whether it has reversed?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "structure_story",
+      "kicker": "Watch with Dayli",
+      "title": "Three behaviors",
+      "chart": {
+        "swings": [
+          [
+            40,
+            265
+          ],
+          [
+            190,
+            150
+          ],
+          [
+            280,
+            200
+          ],
+          [
+            430,
+            80
+          ],
+          [
+            520,
+            140
+          ]
+        ],
+        "seed": 71,
+        "paths": [
+          {
+            "swings": [
+              [
+                40,
+                265
+              ],
+              [
+                190,
+                150
+              ]
+            ],
+            "tone": "up",
+            "id": "exp"
+          },
+          {
+            "swings": [
+              [
+                190,
+                150
+              ],
+              [
+                280,
+                200
+              ]
+            ],
+            "tone": "gold",
+            "id": "pb"
+          },
+          {
+            "swings": [
+              [
+                280,
+                200
+              ],
+              [
+                430,
+                80
+              ]
+            ],
+            "tone": "up",
+            "id": "prog"
+          }
+        ],
+        "marks": [
+          {
+            "i": 1,
+            "label": "HH",
+            "tone": "up",
+            "id": "exp"
+          },
+          {
+            "i": 2,
+            "label": "HL",
+            "tone": "up",
+            "id": "pb"
+          },
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "up",
+            "id": "prog"
+          }
+        ],
+        "notes": [
+          {
+            "x": 105,
+            "y": 150,
+            "text": "1 · EXPANSION",
+            "tone": "up",
+            "id": "exp"
+          },
+          {
+            "x": 250,
+            "y": 245,
+            "text": "2 · PULLBACK",
+            "tone": "gold",
+            "id": "pb"
+          },
+          {
+            "x": 405,
+            "y": 200,
+            "text": "3 · PROGRESSION",
+            "tone": "up",
+            "id": "prog"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "<strong>1. Expansion:</strong> price makes meaningful directional progress. ↑ ↑ ↑",
+          "show": [
+            "exp"
+          ]
+        },
+        {
+          "text": "<strong>2. Pullback / retracement:</strong> price temporarily moves against the current move. ↑ ↑ ↓ A pullback does not automatically equal reversal.",
+          "show": [
+            "pb"
+          ]
+        },
+        {
+          "text": "<strong>3. Structural progression:</strong> after the pullback, price continues developing in a way that maintains or changes the larger pattern. Here: HH → pullback → HL → expansion → HH.",
+          "show": [
+            "prog"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "teach",
+      "kicker": "🫧 This is important…",
+      "body": "You’re going to notice throughout the Academy that price often moves in <strong>sequences</strong> rather than straight lines.<br><br>It moves. It corrects. It moves again.<br><br>Later, we’re going to give some of those behaviors much more specific meaning. 👀"
+    },
+    {
+      "type": "chart_check",
+      "kicker": "Retracement or reversal?",
+      "title": "Has it reversed?",
+      "chart": {
+        "swings": [
+          [
+            40,
+            265
+          ],
+          [
+            190,
+            150
+          ],
+          [
+            280,
+            200
+          ],
+          [
+            430,
+            80
+          ],
+          [
+            560,
+            150
+          ]
+        ],
+        "seed": 72,
+        "marks": [
+          {
+            "i": 1,
+            "label": "HH",
+            "tone": "up"
+          },
+          {
+            "i": 2,
+            "label": "HL",
+            "tone": "up"
+          },
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "up"
+          }
+        ],
+        "notes": [
+          {
+            "x": 560,
+            "y": 186,
+            "text": "pulling back…",
+            "tone": "gold"
+          }
+        ]
+      },
+      "scenario": "Bullish structure. Price begins pulling back.",
+      "check": {
+        "prompt": "Has it reversed?",
+        "options": [
+          {
+            "label": "Yes",
+            "correct": false,
+            "feedback": "A pullback alone doesn’t tell us that."
+          },
+          {
+            "label": "No, it’s definitely continuing",
+            "correct": false,
+            "feedback": "We can’t know that yet either."
+          },
+          {
+            "label": "Not enough information",
+            "correct": true,
+            "why": "✨ Exactly. The existence of a pullback does not tell us whether the larger structure has changed."
+          }
+        ]
+      }
+    },
+    {
+      "type": "chart_check",
+      "kicker": "So what’s next?",
+      "title": "What would we need to study?",
+      "check": {
+        "prompt": "If a pullback alone can’t tell us whether structure changed, what would we need to study next?",
+        "options": [
+          {
+            "label": "What price breaks",
+            "correct": true,
+            "why": "BOOM. 💥 That’s exactly where Section 2 begins: breaks, shifts and fakeouts."
+          },
+          {
+            "label": "How many red candles there are",
+            "correct": false,
+            "feedback": "Candle count and color don’t define structure."
+          },
+          {
+            "label": "How fast price is falling",
+            "correct": false,
+            "feedback": "Speed alone doesn’t tell you what changed structurally."
+          }
+        ]
+      }
+    }
+  ],
+  "takeaways": [
+    "Expansion: meaningful directional progress.",
+    "Pullback: a temporary move against the current move, not automatically a reversal.",
+    "Progression: what price does after the pullback is what maintains or changes structure."
+  ],
+  "remember": "A pullback alone doesn’t tell you whether structure changed. What price breaks does."
+}

@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="shared/tokens.css">
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/lesson-engine.css">
+<link rel="stylesheet" href="shared/lesson-slides.css">
+<link rel="stylesheet" href="shared/structure-charts.css">
 </head>
 <body>
 
@@ -80,7 +82,7 @@
 
     document.getElementById('lhCrumb').textContent = `Phase ${phase.n} · ${section.title}`;
     document.getElementById('lhTitle').textContent = `${section.title} — Section Complete`;
-    document.getElementById('lhHook').textContent = 'Complete the Challenge, Knowledge Check, and Check-In to unlock what\'s next.';
+    document.getElementById('lhHook').textContent = data.hook || 'Complete the Challenge, Knowledge Check, and Check-In to unlock what\'s next.';
 
     const lessonCount = section.lessons.filter((l) => l.n).length;
     const lessonGpTotal = section.lessons.filter((l) => l.n).reduce((sum, l) => sum + l.xp, 0);

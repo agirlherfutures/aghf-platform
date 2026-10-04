@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="shared/tokens.css">
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/lesson-engine.css">
+<link rel="stylesheet" href="shared/structure-charts.css">
 <link rel="stylesheet" href="shared/loop-engine.css">
 <link rel="stylesheet" href="shared/lesson-slides.css">
 </head>
@@ -149,7 +150,7 @@
     const thisDone = isDone(current);
     const lastInSection = isLastInSection(current);
     if (thisDone && lastInSection && current.section.checkpoint) {
-      nextLink.href = `section.html?phase=${phaseKey}&section=${current.section.key}&step=welcome`;
+      nextLink.href = `section.html?phase=${phaseKey}&section=${current.section.key}&step=${current.section.checkpoint?.firstStep || 'welcome'}`;
       nextLink.textContent = 'Section Checkpoint →';
       nextLink.classList.remove('locked');
     } else if (n < total && (thisDone || n === 1 || (n > 1 && isDone(allLessons[n - 2]))) && !isLessonGated(allLessons[n])) {
@@ -213,7 +214,7 @@
     const lastInSection = isLastInSection(current);
     let nextHref, nextTitle, nextHook, nextCtaLabel, backHref;
     if (lastInSection && current.section.checkpoint) {
-      nextHref = `section.html?phase=${phaseKey}&section=${current.section.key}&step=welcome`;
+      nextHref = `section.html?phase=${phaseKey}&section=${current.section.key}&step=${current.section.checkpoint?.firstStep || 'welcome'}`;
       nextTitle = `Section Checkpoint: ${current.section.checkpoint.title}`;
       nextHook = null;
       nextCtaLabel = 'Start Section Checkpoint →';

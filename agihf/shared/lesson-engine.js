@@ -275,7 +275,7 @@ export function renderDayliSays(el, block, satisfy) {
     <div class="lw-card lw-dayli-card">
       <div class="lw-dayli-avatar">D</div>
       <div class="lw-dayli-body">
-        <div class="lw-dayli-label">Dayli says</div>
+        <div class="lw-dayli-label">${block.label || 'Dayli says'}</div>
         <div class="lw-dayli-quote">${block.quote}</div>
       </div>
     </div>

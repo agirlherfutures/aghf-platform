@@ -1,0 +1,358 @@
+{
+  "phase": "p2",
+  "section": "s4",
+  "lessonNumber": 5,
+  "title": "Bearish Structure",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Lower lows + lower highs show downward structural progression.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Recognize bearish structure, and keep candle color from overriding what the structure shows.",
+    "missionQuestion": "If three green candles form inside bearish structure, has the trend turned bullish?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "structure_story",
+      "kicker": "Watch with Dayli",
+      "title": "The mirror image",
+      "chart": {
+        "swings": [
+          [
+            40,
+            45
+          ],
+          [
+            150,
+            145
+          ],
+          [
+            230,
+            95
+          ],
+          [
+            340,
+            200
+          ],
+          [
+            430,
+            135
+          ],
+          [
+            540,
+            240
+          ],
+          [
+            620,
+            190
+          ]
+        ],
+        "seed": 21,
+        "line": "dashed",
+        "lineId": "ln",
+        "marks": [
+          {
+            "i": 0,
+            "label": "H",
+            "tone": "muted"
+          },
+          {
+            "i": 1,
+            "label": "L",
+            "tone": "muted"
+          },
+          {
+            "i": 2,
+            "label": "LH",
+            "tone": "down",
+            "id": "m2"
+          },
+          {
+            "i": 3,
+            "label": "LL",
+            "tone": "down",
+            "id": "m3"
+          },
+          {
+            "i": 4,
+            "label": "LH",
+            "tone": "down",
+            "id": "m4"
+          },
+          {
+            "i": 5,
+            "label": "LL",
+            "tone": "down",
+            "id": "m5"
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 366,
+            "y1": 120,
+            "x2": 436,
+            "y2": 210,
+            "label": "green candles!",
+            "tone": "up",
+            "id": "green",
+            "labelBelow": true
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "Basic bearish progression: <strong>LH → LL → LH → LL</strong>.",
+          "show": [
+            "m2",
+            "m3",
+            "m4",
+            "m5"
+          ],
+          "next": "But… →"
+        },
+        {
+          "text": "Green candles will show up inside bearish structure too.",
+          "show": [
+            "green"
+          ]
+        },
+        {
+          "text": "Green candles inside bearish structure <strong>do not automatically make the market bullish</strong>.",
+          "show": [
+            "ln"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "structure_story",
+      "kicker": "Push + pullback",
+      "title": "The rhythm of a downtrend",
+      "chart": {
+        "swings": [
+          [
+            40,
+            45
+          ],
+          [
+            150,
+            145
+          ],
+          [
+            230,
+            95
+          ],
+          [
+            340,
+            200
+          ],
+          [
+            430,
+            135
+          ],
+          [
+            540,
+            240
+          ]
+        ],
+        "seed": 21,
+        "paths": [
+          {
+            "swings": [
+              [
+                230,
+                95
+              ],
+              [
+                340,
+                200
+              ]
+            ],
+            "tone": "down",
+            "id": "push"
+          },
+          {
+            "swings": [
+              [
+                340,
+                200
+              ],
+              [
+                430,
+                135
+              ]
+            ],
+            "tone": "gold",
+            "id": "pb"
+          },
+          {
+            "swings": [
+              [
+                430,
+                135
+              ],
+              [
+                540,
+                240
+              ]
+            ],
+            "tone": "down",
+            "id": "next"
+          }
+        ],
+        "notes": [
+          {
+            "x": 300,
+            "y": 92,
+            "text": "DOWNWARD PUSH",
+            "tone": "down",
+            "id": "push"
+          },
+          {
+            "x": 420,
+            "y": 104,
+            "text": "CORRECTION",
+            "tone": "gold",
+            "id": "pb"
+          },
+          {
+            "x": 560,
+            "y": 172,
+            "text": "CONTINUATION",
+            "tone": "down",
+            "id": "next"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "<strong>Downward push:</strong> price expands downward and creates lower price.",
+          "show": [
+            "push"
+          ]
+        },
+        {
+          "text": "<strong>Upward correction:</strong> price retraces.",
+          "show": [
+            "pb"
+          ]
+        },
+        {
+          "text": "<strong>Continuation:</strong> price resumes its downward progression.",
+          "show": [
+            "next"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "dayli",
+      "quote": "Stop letting candle color override structure. 🔥"
+    },
+    {
+      "type": "chart_check",
+      "kicker": "Catch the mistake",
+      "title": "What mistake is she making?",
+      "chart": {
+        "swings": [
+          [
+            60,
+            70
+          ],
+          [
+            200,
+            190
+          ],
+          [
+            320,
+            130
+          ],
+          [
+            470,
+            245
+          ]
+        ],
+        "seed": 7,
+        "marks": [
+          {
+            "i": 1,
+            "label": "LL",
+            "tone": "down"
+          },
+          {
+            "i": 2,
+            "label": "LH",
+            "tone": "down"
+          },
+          {
+            "i": 3,
+            "label": "LL",
+            "tone": "down"
+          }
+        ],
+        "bars": [
+          {
+            "x": 505,
+            "o": 243,
+            "c": 222,
+            "w": 13
+          },
+          {
+            "x": 530,
+            "o": 222,
+            "c": 203,
+            "w": 13
+          },
+          {
+            "x": 555,
+            "o": 203,
+            "c": 184,
+            "w": 13
+          }
+        ],
+        "notes": [
+          {
+            "x": 600,
+            "y": 165,
+            "text": "3 green candles",
+            "tone": "up",
+            "anchor": "start"
+          }
+        ]
+      },
+      "scenario": "A trader sees <strong>LL → LH → LL</strong>. Then three bullish candles form. She says: “The trend is bullish now.”",
+      "check": {
+        "prompt": "What mistake is she making?",
+        "options": [
+          {
+            "label": "She’s confusing short-term candle direction with structural change",
+            "correct": true,
+            "why": "Exactly. Three green candles are short-term direction. Nothing in the structure has changed yet."
+          },
+          {
+            "label": "No mistake, three green candles flip the trend",
+            "correct": false,
+            "feedback": "Candle color doesn’t override structure. What changed in the swings?"
+          },
+          {
+            "label": "She should have waited for four green candles",
+            "correct": false,
+            "feedback": "It’s not about the number of candles. It’s about the structure."
+          }
+        ]
+      }
+    }
+  ],
+  "takeaways": [
+    "Basic bearish structure: lower lows and lower highs.",
+    "Bearish structure still has green candles and upward corrections.",
+    "Short-term candle direction isn’t the same as a structural change."
+  ],
+  "remember": "Stop letting candle color override structure."
+}

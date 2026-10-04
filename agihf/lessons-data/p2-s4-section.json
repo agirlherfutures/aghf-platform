@@ -1,0 +1,1092 @@
+{
+  "phase": "p2",
+  "section": "s4",
+  "title": "How Markets Move",
+  "steps": [
+    "game",
+    "knowledge",
+    "checkin",
+    "complete"
+  ],
+  "hook": "Clear the Structure Builder, pass the Knowledge Check, and save your Check-In to unlock Section 2.",
+  "game": {
+    "title": "Structure Builder",
+    "tagline": "Can you read the stairs?",
+    "xp": 0,
+    "doneHeading": "You can read the stairs. ✦",
+    "doneBadge": "Structure Builder: all 6 levels cleared",
+    "levels": [
+      {
+        "name": "Find the swings",
+        "type": "swing_tap",
+        "kicker": "Level 1",
+        "rounds": [
+          {
+            "prompt": "Tap the swing high.",
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  250
+                ],
+                [
+                  230,
+                  80
+                ],
+                [
+                  420,
+                  240
+                ],
+                [
+                  640,
+                  110
+                ]
+              ],
+              "seed": 81
+            },
+            "answer": 1,
+            "reveal": {
+              "1": {
+                "label": "SWING HIGH",
+                "tone": "purple"
+              }
+            },
+            "why": "Up, turn, down."
+          },
+          {
+            "prompt": "Tap the swing low.",
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  90
+                ],
+                [
+                  230,
+                  250
+                ],
+                [
+                  420,
+                  100
+                ],
+                [
+                  640,
+                  230
+                ]
+              ],
+              "seed": 82
+            },
+            "answer": 1,
+            "reveal": {
+              "1": {
+                "label": "SWING LOW",
+                "tone": "gold"
+              }
+            },
+            "why": "Down, turn, up."
+          }
+        ]
+      },
+      {
+        "name": "Label the structure",
+        "type": "label_swings",
+        "kicker": "Level 2",
+        "rounds": [
+          {
+            "prompt": "Label the bullish chart.",
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  270
+                ],
+                [
+                  140,
+                  170
+                ],
+                [
+                  220,
+                  220
+                ],
+                [
+                  330,
+                  120
+                ],
+                [
+                  410,
+                  170
+                ],
+                [
+                  520,
+                  75
+                ],
+                [
+                  590,
+                  120
+                ],
+                [
+                  670,
+                  40
+                ]
+              ],
+              "seed": 83,
+              "marks": [
+                {
+                  "i": 0,
+                  "label": "L",
+                  "tone": "muted"
+                },
+                {
+                  "i": 1,
+                  "label": "H",
+                  "tone": "muted"
+                }
+              ]
+            },
+            "targets": {
+              "2": "HL",
+              "3": "HH",
+              "4": "HL",
+              "5": "HH",
+              "6": "HL",
+              "7": "HH"
+            },
+            "chips": [
+              "HH",
+              "HL"
+            ],
+            "why": "Up the stairs."
+          },
+          {
+            "prompt": "Now the bearish chart.",
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  40
+                ],
+                [
+                  140,
+                  140
+                ],
+                [
+                  220,
+                  90
+                ],
+                [
+                  330,
+                  190
+                ],
+                [
+                  410,
+                  140
+                ],
+                [
+                  520,
+                  235
+                ],
+                [
+                  590,
+                  190
+                ],
+                [
+                  670,
+                  270
+                ]
+              ],
+              "seed": 84,
+              "marks": [
+                {
+                  "i": 0,
+                  "label": "H",
+                  "tone": "muted"
+                },
+                {
+                  "i": 1,
+                  "label": "L",
+                  "tone": "muted"
+                }
+              ]
+            },
+            "targets": {
+              "2": "LH",
+              "3": "LL",
+              "4": "LH",
+              "5": "LL",
+              "6": "LH",
+              "7": "LL"
+            },
+            "chips": [
+              "LL",
+              "LH"
+            ],
+            "why": "Down the stairs."
+          }
+        ]
+      },
+      {
+        "name": "What’s the story?",
+        "type": "flash_sort",
+        "kicker": "Level 3",
+        "options": [
+          {
+            "key": "bull",
+            "label": "Bullish progression",
+            "emoji": "📈"
+          },
+          {
+            "key": "bear",
+            "label": "Bearish progression",
+            "emoji": "📉"
+          },
+          {
+            "key": "range",
+            "label": "Range / consolidation",
+            "emoji": "↔️"
+          },
+          {
+            "key": "unclear",
+            "label": "Not enough structure yet",
+            "emoji": "❓"
+          }
+        ],
+        "items": [
+          {
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  270
+                ],
+                [
+                  150,
+                  180
+                ],
+                [
+                  230,
+                  225
+                ],
+                [
+                  340,
+                  130
+                ],
+                [
+                  420,
+                  175
+                ],
+                [
+                  530,
+                  80
+                ],
+                [
+                  610,
+                  120
+                ],
+                [
+                  670,
+                  50
+                ]
+              ],
+              "seed": 85
+            },
+            "answer": "bull",
+            "why": "HH, HL, HH, HL."
+          },
+          {
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  200
+                ],
+                [
+                  120,
+                  120
+                ],
+                [
+                  200,
+                  195
+                ],
+                [
+                  280,
+                  125
+                ],
+                [
+                  360,
+                  205
+                ],
+                [
+                  440,
+                  115
+                ],
+                [
+                  520,
+                  200
+                ],
+                [
+                  600,
+                  120
+                ],
+                [
+                  670,
+                  185
+                ]
+              ],
+              "seed": 86
+            },
+            "answer": "range",
+            "why": "Same highs, same lows, no progress."
+          },
+          {
+            "chart": {
+              "swings": [
+                [
+                  60,
+                  200
+                ],
+                [
+                  330,
+                  120
+                ]
+              ],
+              "seed": 87
+            },
+            "answer": "unclear",
+            "why": "One push isn’t structure yet. There are no swings to compare."
+          },
+          {
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  40
+                ],
+                [
+                  150,
+                  130
+                ],
+                [
+                  230,
+                  85
+                ],
+                [
+                  340,
+                  180
+                ],
+                [
+                  420,
+                  135
+                ],
+                [
+                  530,
+                  230
+                ],
+                [
+                  610,
+                  190
+                ],
+                [
+                  670,
+                  260
+                ]
+              ],
+              "seed": 88
+            },
+            "answer": "bear",
+            "why": "LH, LL, LH, LL."
+          },
+          {
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  260
+                ],
+                [
+                  140,
+                  205
+                ],
+                [
+                  210,
+                  230
+                ],
+                [
+                  310,
+                  160
+                ],
+                [
+                  380,
+                  190
+                ],
+                [
+                  480,
+                  110
+                ],
+                [
+                  550,
+                  140
+                ],
+                [
+                  660,
+                  60
+                ]
+              ],
+              "seed": 89
+            },
+            "answer": "bull",
+            "why": "Up the stairs."
+          },
+          {
+            "chart": {
+              "swings": [
+                [
+                  60,
+                  120
+                ],
+                [
+                  220,
+                  200
+                ],
+                [
+                  380,
+                  150
+                ]
+              ],
+              "seed": 90
+            },
+            "answer": "unclear",
+            "why": "Too few swings to describe structure yet."
+          }
+        ]
+      },
+      {
+        "name": "Internal or external?",
+        "type": "swing_tap",
+        "kicker": "Level 4",
+        "rounds": [
+          {
+            "prompt": "Tap the swing that is part of the <strong>external</strong> structure of this range.",
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  270
+                ],
+                [
+                  90,
+                  225
+                ],
+                [
+                  120,
+                  240
+                ],
+                [
+                  175,
+                  185
+                ],
+                [
+                  210,
+                  205
+                ],
+                [
+                  265,
+                  140
+                ],
+                [
+                  300,
+                  160
+                ],
+                [
+                  350,
+                  60
+                ],
+                [
+                  420,
+                  120
+                ],
+                [
+                  460,
+                  100
+                ],
+                [
+                  520,
+                  175
+                ],
+                [
+                  560,
+                  150
+                ],
+                [
+                  640,
+                  265
+                ]
+              ],
+              "seed": 31,
+              "density": 1.6
+            },
+            "only": [
+              3,
+              5,
+              7,
+              9
+            ],
+            "answer": 7,
+            "reveal": {
+              "7": {
+                "label": "EXTERNAL HIGH",
+                "tone": "purple"
+              }
+            },
+            "why": "This high is the top boundary of the whole move.",
+            "miss": "That one formed inside the larger move. It’s internal."
+          },
+          {
+            "prompt": "Now tap an <strong>internal</strong> swing high.",
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  270
+                ],
+                [
+                  90,
+                  225
+                ],
+                [
+                  120,
+                  240
+                ],
+                [
+                  175,
+                  185
+                ],
+                [
+                  210,
+                  205
+                ],
+                [
+                  265,
+                  140
+                ],
+                [
+                  300,
+                  160
+                ],
+                [
+                  350,
+                  60
+                ],
+                [
+                  420,
+                  120
+                ],
+                [
+                  460,
+                  100
+                ],
+                [
+                  520,
+                  175
+                ],
+                [
+                  560,
+                  150
+                ],
+                [
+                  640,
+                  265
+                ]
+              ],
+              "seed": 31,
+              "density": 1.6,
+              "marks": [
+                {
+                  "i": 7,
+                  "label": "EXTERNAL HIGH",
+                  "tone": "purple"
+                }
+              ]
+            },
+            "only": [
+              3,
+              5,
+              9
+            ],
+            "answer": [
+              3,
+              5,
+              9
+            ],
+            "reveal": {
+              "3": {
+                "label": "internal",
+                "tone": "gold"
+              },
+              "5": {
+                "label": "internal",
+                "tone": "gold"
+              },
+              "9": {
+                "label": "internal",
+                "tone": "gold"
+              }
+            },
+            "why": "All three formed inside the external range. Tap them all."
+          }
+        ]
+      },
+      {
+        "name": "Don’t get faked out",
+        "type": "chart_check",
+        "kicker": "Level 5",
+        "chart": {
+          "swings": [
+            [
+              40,
+              265
+            ],
+            [
+              190,
+              150
+            ],
+            [
+              280,
+              200
+            ],
+            [
+              430,
+              80
+            ]
+          ],
+          "seed": 91,
+          "marks": [
+            {
+              "i": 1,
+              "label": "HH",
+              "tone": "up"
+            },
+            {
+              "i": 2,
+              "label": "HL",
+              "tone": "up"
+            },
+            {
+              "i": 3,
+              "label": "HH",
+              "tone": "up"
+            }
+          ],
+          "bars": [
+            {
+              "x": 455,
+              "o": 82,
+              "c": 100,
+              "w": 13
+            },
+            {
+              "x": 480,
+              "o": 100,
+              "c": 120,
+              "w": 13
+            }
+          ],
+          "notes": [
+            {
+              "x": 505,
+              "y": 125,
+              "text": "2 bearish candles",
+              "tone": "down",
+              "anchor": "start"
+            }
+          ]
+        },
+        "scenario": "Bullish structure. Two bearish candles appear.",
+        "check": {
+          "prompt": "Did the market automatically become bearish?",
+          "options": [
+            {
+              "label": "Yes",
+              "correct": false,
+              "feedback": "Two red candles are candle direction, not structure."
+            },
+            {
+              "label": "NO 🔥",
+              "correct": true,
+              "why": "Exactly. Nothing about the structure has changed yet."
+            }
+          ]
+        }
+      },
+      {
+        "name": "The hard one",
+        "type": "chart_check",
+        "kicker": "Level 6",
+        "chart": {
+          "swings": [
+            [
+              30,
+              255
+            ],
+            [
+              110,
+              190
+            ],
+            [
+              160,
+              215
+            ],
+            [
+              230,
+              120
+            ],
+            [
+              290,
+              160
+            ],
+            [
+              350,
+              95
+            ],
+            [
+              400,
+              140
+            ],
+            [
+              450,
+              115
+            ],
+            [
+              500,
+              170
+            ],
+            [
+              550,
+              150
+            ],
+            [
+              600,
+              200
+            ],
+            [
+              650,
+              185
+            ]
+          ],
+          "seed": 41,
+          "density": 1.4,
+          "hlines": [
+            {
+              "y": 60,
+              "label": "EXTERNAL HIGH",
+              "tone": "purple",
+              "door": true
+            },
+            {
+              "y": 285,
+              "label": "EXTERNAL LOW",
+              "tone": "purple",
+              "door": true,
+              "below": true
+            }
+          ],
+          "marks": [
+            {
+              "i": 7,
+              "label": "LH",
+              "tone": "down"
+            },
+            {
+              "i": 8,
+              "label": "LL",
+              "tone": "down"
+            },
+            {
+              "i": 9,
+              "label": "LH",
+              "tone": "down"
+            },
+            {
+              "i": 10,
+              "label": "LL",
+              "tone": "down"
+            }
+          ]
+        },
+        "scenario": "The external range is intact, but internal movement has turned bearish.",
+        "check": {
+          "prompt": "Which statement best describes the chart?",
+          "options": [
+            {
+              "label": "The whole market is now bearish",
+              "correct": false,
+              "feedback": "The external range is still intact."
+            },
+            {
+              "label": "Internal price movement is bearish while the larger external structure remains intact",
+              "correct": true,
+              "why": "That’s it. Now you’re thinking like an actual analyst."
+            },
+            {
+              "label": "Nothing is happening",
+              "correct": false,
+              "feedback": "Something is happening, just inside the room."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "knowledgeCheck": {
+    "questionCount": 10,
+    "passPct": 0.8,
+    "xp": 0,
+    "questionBank": [
+      {
+        "question": "Price forms: 20,000 high → 19,950 low → 20,050 high → 19,980 low. How would the newest high and low be labeled relative to the previous relevant swings?",
+        "options": [
+          "HH + HL",
+          "LH + LL",
+          "HH + LL",
+          "LH + HL"
+        ],
+        "correctIndex": 0,
+        "why": "20,050 is above 20,000 (HH) and 19,980 is above 19,950 (HL)."
+      },
+      {
+        "question": "A trader sees four consecutive bearish candles during a pullback inside bullish structure and immediately changes her structural bias to bearish. What’s the flaw?",
+        "options": [
+          "Nothing, four red candles is enough",
+          "She’s using candle direction rather than structural progression to decide whether the larger structure changed",
+          "She should have waited for five red candles",
+          "She should only use green candles"
+        ],
+        "correctIndex": 1,
+        "why": "Candle direction isn’t structural progression. A pullback can happen inside bullish structure."
+      },
+      {
+        "question": "Can internal structure become bearish without immediately invalidating the larger external bullish range?",
+        "options": [
+          "No, any internal change flips everything",
+          "Yes, internal swings can turn while price stays inside the larger external range",
+          "Only on the 1M chart",
+          "Only if candles are red"
+        ],
+        "correctIndex": 1,
+        "why": "Structure exists inside structure. The furniture can move while the room stays the same."
+      },
+      {
+        "question": "What is a swing high?",
+        "options": [
+          "Any green candle",
+          "An area where price pushes upward, forms a local turning point, and then moves lower",
+          "The highest price of the day",
+          "A candle with a long upper wick"
+        ],
+        "correctIndex": 1,
+        "why": "A swing high is a local turning point: up, turn, down."
+      },
+      {
+        "question": "A new swing low forms below the previous relevant swing low. What is it?",
+        "options": [
+          "HL",
+          "LL",
+          "HH",
+          "LH"
+        ],
+        "correctIndex": 1,
+        "why": "Below the previous relevant low: a Lower Low."
+      },
+      {
+        "question": "A new swing high forms below the previous relevant swing high. What is it?",
+        "options": [
+          "LH",
+          "HH",
+          "HL",
+          "LL"
+        ],
+        "correctIndex": 0,
+        "why": "Below the previous relevant high: a Lower High."
+      },
+      {
+        "question": "Which sequence describes basic bullish structure?",
+        "options": [
+          "LH → LL → LH → LL",
+          "HL → HH → HL → HH",
+          "Three green candles in a row",
+          "Similar highs and lows"
+        ],
+        "correctIndex": 1,
+        "why": "Higher highs and higher lows."
+      },
+      {
+        "question": "Price keeps trading between similar highs and lows without sustained directional progress. How would you describe it?",
+        "options": [
+          "Bullish progression",
+          "Bearish progression",
+          "Consolidating / ranging",
+          "A reversal"
+        ],
+        "correctIndex": 2,
+        "why": "Contained, back-and-forth movement without progress: consolidation."
+      },
+      {
+        "question": "Bullish structure is in place and price begins pulling back. Has it reversed?",
+        "options": [
+          "Yes",
+          "Definitely not",
+          "Not enough information",
+          "Only if the candles are red"
+        ],
+        "correctIndex": 2,
+        "why": "A pullback alone doesn’t tell us whether the larger structure changed."
+      },
+      {
+        "question": "Why can two traders mark different swings on the same chart without one being wrong?",
+        "options": [
+          "One of them is always wrong",
+          "They may be analyzing different structural scales or timeframes",
+          "Swings are random",
+          "Only one timeframe has real swings"
+        ],
+        "correctIndex": 1,
+        "why": "Different scales can make different swings relevant."
+      },
+      {
+        "question": "What best describes minor (internal) swings?",
+        "options": [
+          "Fake swings to ignore",
+          "Real swings developing inside a larger structural leg",
+          "The boundaries of the range",
+          "Only found on the 4H"
+        ],
+        "correctIndex": 1,
+        "why": "Minor swings are real. They just exist inside a larger leg."
+      },
+      {
+        "question": "What should you ask first when reading a chart?",
+        "options": [
+          "Where is price going?",
+          "What has price already shown me?",
+          "How many green candles are there?",
+          "What is everyone else saying?"
+        ],
+        "correctIndex": 1,
+        "why": "Start with what price has already shown you."
+      },
+      {
+        "question": "Green candles appear inside bearish structure. What does that tell you on its own?",
+        "options": [
+          "The trend is now bullish",
+          "Nothing structural changed yet, so check the swings",
+          "Sell immediately",
+          "The external range broke"
+        ],
+        "correctIndex": 1,
+        "why": "Don’t let candle color override structure."
+      },
+      {
+        "question": "What is external structure?",
+        "options": [
+          "The smaller swings inside a range",
+          "The larger swing boundaries defining the range you’re analyzing",
+          "Any candle outside the chart",
+          "The last three candles"
+        ],
+        "correctIndex": 1,
+        "why": "External structure is the room: the larger boundaries, the doors."
+      }
+    ]
+  },
+  "checkin": {
+    "eyebrow": "📓 My Section 1 Check-In",
+    "heading": "What clicked? 🫧",
+    "fields": [
+      {
+        "type": "text",
+        "label": "Before this section, how did you decide whether a market looked bullish or bearish?"
+      },
+      {
+        "type": "text",
+        "label": "In your own words, what makes a swing high or swing low meaningful?"
+      },
+      {
+        "type": "text",
+        "label": "What’s the difference between internal and external structure?"
+      },
+      {
+        "type": "choice",
+        "label": "Which concept needs another look?",
+        "options": [
+          "Swing highs/lows",
+          "HH/HL/LH/LL",
+          "Bullish structure",
+          "Bearish structure",
+          "Relevant swings",
+          "Internal/external structure",
+          "Consolidation",
+          "Expansion/pullbacks",
+          "I’m good ✨"
+        ]
+      },
+      {
+        "type": "text",
+        "share": true,
+        "rows": 4,
+        "min": 15,
+        "placeholder": "Type it how YOU understand it...",
+        "label": "💭 Explain it to an AGHF girl: your friend says, “The market was bullish, but now I see red candles, so it’s bearish.” What question would you tell her to ask instead?"
+      }
+    ]
+  },
+  "complete": {
+    "eyebrow": "🎉 Section complete",
+    "heading": "✦ YOU CAN READ THE STAIRS.",
+    "badge": "How Markets Move: Complete",
+    "gp": 585,
+    "stats": [
+      {
+        "label": "Lessons",
+        "value": "{lessons} ✓"
+      },
+      {
+        "label": "Structure Builder",
+        "value": "✓"
+      },
+      {
+        "label": "Knowledge Check",
+        "value": "{kc}% ✓"
+      },
+      {
+        "label": "Academy Notes",
+        "value": "Saved ✓"
+      }
+    ],
+    "phase": {
+      "title": "📊 Phase 2: Understanding Structure",
+      "pct": 33,
+      "sections": [
+        {
+          "icon": "✓",
+          "label": "Section 1: How Markets Move"
+        },
+        {
+          "icon": "🔓",
+          "label": "Section 2: Breaks, Shifts & Fakeouts"
+        },
+        {
+          "icon": "🔒",
+          "label": "Section 3: Reading Key Levels"
+        }
+      ]
+    },
+    "nextUp": {
+      "title": "Breaks, Shifts & Fakeouts",
+      "cta": "Enter Section 2 →",
+      "lines": [
+        "You know how structure forms. But what happens when price stops following it?",
+        "When is a break simply continuation? When does it signal that the story may actually be changing? And when did price just fake everybody out?",
+        "That’s where BOS + MSS enter the chat. 🎀"
+      ]
+    }
+  }
+}

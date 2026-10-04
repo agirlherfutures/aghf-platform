@@ -1,0 +1,357 @@
+{
+  "phase": "p2",
+  "section": "s4",
+  "lessonNumber": 1,
+  "title": "What Is Market Structure?",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Candles are the words. Structure is the sentence.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Explain what market structure is, and why reading it starts with what price has already shown you.",
+    "missionQuestion": "If a trader sees three green candles in a row, is that enough to call the structure bullish?",
+    "estMinutes": 6
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "structure_story",
+      "kicker": "Watch with Dayli",
+      "title": "Zoom out",
+      "chart": {
+        "swings": [
+          [
+            40,
+            270
+          ],
+          [
+            140,
+            170
+          ],
+          [
+            220,
+            220
+          ],
+          [
+            330,
+            120
+          ],
+          [
+            410,
+            170
+          ],
+          [
+            520,
+            75
+          ],
+          [
+            590,
+            120
+          ],
+          [
+            670,
+            40
+          ]
+        ],
+        "seed": 9,
+        "density": 2.4,
+        "line": "dashed",
+        "lineId": "ln",
+        "notes": [
+          {
+            "x": 74.0,
+            "y": 206.0,
+            "text": "push",
+            "tone": "up",
+            "id": "pp"
+          },
+          {
+            "x": 196.0,
+            "y": 221.0,
+            "text": "pullback",
+            "tone": "gold",
+            "id": "pp"
+          },
+          {
+            "x": 259.0,
+            "y": 156.0,
+            "text": "push",
+            "tone": "up",
+            "id": "pp"
+          },
+          {
+            "x": 386.0,
+            "y": 171.0,
+            "text": "pullback",
+            "tone": "gold",
+            "id": "pp"
+          },
+          {
+            "x": 449.0,
+            "y": 108.5,
+            "text": "push",
+            "tone": "up",
+            "id": "pp"
+          },
+          {
+            "x": 571.0,
+            "y": 123.5,
+            "text": "pullback",
+            "tone": "gold",
+            "id": "pp"
+          },
+          {
+            "x": 614.0,
+            "y": 66.0,
+            "text": "push",
+            "tone": "up",
+            "id": "pp"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "Zoomed all the way in on a 1M chart, it looks like chaos. Every candle feels like it matters.",
+          "next": "Zoom out →"
+        },
+        {
+          "text": "Now zoom out and connect the turns. A shape starts to appear.",
+          "show": [
+            "ln"
+          ]
+        },
+        {
+          "text": "<strong>Push → pullback → push → pullback.</strong> Price doesn’t move in straight lines. It moves in swings.",
+          "show": [
+            "pp"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "icon_grid",
+      "kicker": "What is market structure?",
+      "title": "A way of organizing price movement by its meaningful highs and lows, and the relationship between them.",
+      "items": [
+        {
+          "icon": "🚀",
+          "label": "Where did price push?",
+          "desc": "The move that went somewhere."
+        },
+        {
+          "icon": "↩️",
+          "label": "Where did it pull back?",
+          "desc": "The move against it."
+        },
+        {
+          "icon": "⛰️",
+          "label": "What high did it create?",
+          "desc": "The turn at the top."
+        },
+        {
+          "icon": "🏞️",
+          "label": "What low did it create?",
+          "desc": "The turn at the bottom."
+        },
+        {
+          "icon": "📏",
+          "label": "Did the next push go farther?",
+          "desc": "Compare it to the last one."
+        },
+        {
+          "icon": "🛡️",
+          "label": "Did the next pullback hold?",
+          "desc": "Or did it go deeper?"
+        },
+        {
+          "icon": "📈",
+          "label": "Is price progressing?",
+          "desc": "Getting somewhere, swing by swing."
+        },
+        {
+          "icon": "↔️",
+          "label": "Is price ranging?",
+          "desc": "Moving, but going nowhere."
+        }
+      ]
+    },
+    {
+      "type": "structure_story",
+      "kicker": "Break it down",
+      "title": "From dots to structure",
+      "chart": {
+        "swings": [
+          [
+            60,
+            260
+          ],
+          [
+            190,
+            150
+          ],
+          [
+            300,
+            205
+          ],
+          [
+            450,
+            90
+          ],
+          [
+            560,
+            160
+          ],
+          [
+            660,
+            60
+          ]
+        ],
+        "seed": 5,
+        "candles": false,
+        "line": "solid",
+        "marks": [
+          {
+            "i": 0,
+            "tone": "purple",
+            "id": "dots"
+          },
+          {
+            "i": 1,
+            "tone": "purple",
+            "id": "dots"
+          },
+          {
+            "i": 2,
+            "tone": "purple",
+            "id": "dots"
+          },
+          {
+            "i": 3,
+            "tone": "purple",
+            "id": "dots"
+          },
+          {
+            "i": 4,
+            "tone": "purple",
+            "id": "dots"
+          },
+          {
+            "i": 5,
+            "tone": "purple",
+            "id": "dots"
+          },
+          {
+            "i": 0,
+            "label": "LOW",
+            "tone": "gold",
+            "id": "words"
+          },
+          {
+            "i": 1,
+            "label": "HIGH",
+            "tone": "purple",
+            "id": "words"
+          },
+          {
+            "i": 2,
+            "label": "LOW",
+            "tone": "gold",
+            "id": "words"
+          },
+          {
+            "i": 3,
+            "label": "HIGH",
+            "tone": "purple",
+            "id": "words"
+          },
+          {
+            "i": 4,
+            "label": "LOW",
+            "tone": "gold",
+            "id": "words"
+          },
+          {
+            "i": 5,
+            "label": "HIGH",
+            "tone": "purple",
+            "id": "words"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "Strip a move down to its turns.",
+          "next": "Show the turns →"
+        },
+        {
+          "text": "Every place price changed direction becomes a point.",
+          "show": [
+            "dots"
+          ]
+        },
+        {
+          "text": "Now name them: <strong>HIGH → LOW → HIGH → LOW → HIGH.</strong> That’s the beginning of structure.",
+          "show": [
+            "words"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "dayli",
+      "quote": "Don’t start by asking, “Where is price going?” Start with: “What has price already shown me?” That’s one of the biggest habits I want AGHF students to develop."
+    },
+    {
+      "type": "chart_check",
+      "kicker": "Lock it in",
+      "title": "What’s missing?",
+      "scenario": "A trader sees three green candles and says: “Bullish structure.”",
+      "chart": {
+        "swings": [],
+        "bars": [
+          {
+            "o": 230,
+            "c": 180
+          },
+          {
+            "o": 180,
+            "c": 140
+          },
+          {
+            "o": 140,
+            "c": 95
+          }
+        ],
+        "barsX": [
+          270,
+          430
+        ]
+      },
+      "check": {
+        "prompt": "What’s missing from her read?",
+        "options": [
+          {
+            "label": "Nothing. Three green candles is bullish structure.",
+            "correct": false,
+            "feedback": "Three bullish candles alone don’t define market structure. Candles are the words, not the sentence."
+          },
+          {
+            "label": "The meaningful swings, and whether price is progressing",
+            "correct": true,
+            "why": "Exactly. Three bullish candles alone don’t define market structure. We need to understand the meaningful swings and how price is progressing."
+          }
+        ]
+      }
+    }
+  ],
+  "takeaways": [
+    "Market structure organizes price by its meaningful highs and lows, and the relationship between them.",
+    "Price moves in swings: push, pullback, push, pullback.",
+    "A few candles in one direction don’t define structure on their own."
+  ],
+  "remember": "Start with what price has already shown you, not where you think it’s going."
+}

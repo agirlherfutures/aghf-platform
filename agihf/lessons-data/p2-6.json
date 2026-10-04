@@ -1,0 +1,418 @@
+{
+  "phase": "p2",
+  "section": "s4",
+  "lessonNumber": 6,
+  "title": "Valid vs. Minor Swings",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Every turn exists. Not every turn carries the same structural weight.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Tell apart the major swings that define a range from the minor swings developing inside it.",
+    "missionQuestion": "Can two traders mark different swings on the same chart without either of them being wrong?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "structure_story",
+      "kicker": "Watch with Dayli",
+      "title": "Swings inside swings",
+      "chart": {
+        "swings": [
+          [
+            40,
+            270
+          ],
+          [
+            90,
+            225
+          ],
+          [
+            120,
+            240
+          ],
+          [
+            175,
+            185
+          ],
+          [
+            210,
+            205
+          ],
+          [
+            265,
+            140
+          ],
+          [
+            300,
+            160
+          ],
+          [
+            350,
+            60
+          ],
+          [
+            420,
+            120
+          ],
+          [
+            460,
+            100
+          ],
+          [
+            520,
+            175
+          ],
+          [
+            560,
+            150
+          ],
+          [
+            640,
+            265
+          ]
+        ],
+        "seed": 31,
+        "density": 1.6,
+        "marks": [
+          {
+            "i": 7,
+            "label": "EXTERNAL HIGH",
+            "tone": "purple",
+            "id": "ext",
+            "big": true
+          },
+          {
+            "i": 0,
+            "label": "EXTERNAL LOW",
+            "tone": "purple",
+            "id": "ext",
+            "pos": "low",
+            "big": true
+          },
+          {
+            "i": 1,
+            "label": "minor",
+            "tone": "muted",
+            "id": "minor"
+          },
+          {
+            "i": 2,
+            "label": "minor",
+            "tone": "muted",
+            "id": "minor"
+          },
+          {
+            "i": 3,
+            "label": "minor",
+            "tone": "muted",
+            "id": "minor"
+          },
+          {
+            "i": 4,
+            "label": "minor",
+            "tone": "muted",
+            "id": "minor"
+          },
+          {
+            "i": 5,
+            "label": "minor",
+            "tone": "muted",
+            "id": "minor"
+          },
+          {
+            "i": 6,
+            "label": "minor",
+            "tone": "muted",
+            "id": "minor"
+          },
+          {
+            "i": 9,
+            "label": "minor",
+            "tone": "muted",
+            "id": "minor"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "Here’s one large move up and back down.",
+          "next": "Show me →"
+        },
+        {
+          "text": "<strong>Major / relevant swings</strong> define the structure or range you’re currently analyzing.",
+          "show": [
+            "ext"
+          ]
+        },
+        {
+          "text": "<strong>Minor / internal swings</strong> are the smaller swings developing inside that movement. They’re real. They just exist inside a larger structural leg.",
+          "show": [
+            "minor"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "confusion",
+      "heading": "Major ≠ Minor (and minor ≠ fake)",
+      "left": {
+        "label": "Major / relevant swings",
+        "points": [
+          "Define the range you’re analyzing",
+          "The boundaries of the larger move",
+          "Answer your current question"
+        ]
+      },
+      "right": {
+        "label": "Minor / internal swings",
+        "points": [
+          "Develop inside the larger move",
+          "Completely real turns",
+          "Matter at a smaller scale"
+        ]
+      }
+    },
+    {
+      "type": "dayli",
+      "quote": "A swing can exist without being the swing that answers your current question. 🔥"
+    },
+    {
+      "type": "swing_tap",
+      "kicker": "Which one matters?",
+      "title": "Learn the hierarchy",
+      "rounds": [
+        {
+          "prompt": "Which high currently defines the larger visible range?",
+          "chart": {
+            "swings": [
+              [
+                40,
+                260
+              ],
+              [
+                120,
+                180
+              ],
+              [
+                170,
+                205
+              ],
+              [
+                250,
+                120
+              ],
+              [
+                300,
+                150
+              ],
+              [
+                370,
+                55
+              ],
+              [
+                430,
+                110
+              ],
+              [
+                480,
+                90
+              ],
+              [
+                560,
+                180
+              ],
+              [
+                610,
+                150
+              ],
+              [
+                670,
+                255
+              ]
+            ],
+            "seed": 17,
+            "density": 1.5,
+            "marks": [
+              {
+                "i": 1,
+                "label": "A",
+                "tone": "muted"
+              },
+              {
+                "i": 3,
+                "label": "B",
+                "tone": "muted"
+              },
+              {
+                "i": 5,
+                "label": "C",
+                "tone": "muted"
+              },
+              {
+                "i": 7,
+                "label": "D",
+                "tone": "muted"
+              }
+            ]
+          },
+          "only": [
+            1,
+            3,
+            5,
+            7
+          ],
+          "answer": 5,
+          "reveal": {
+            "5": {
+              "label": "C · defines the range",
+              "tone": "purple"
+            }
+          },
+          "why": "C is the top of the whole visible move. Everything else formed below it.",
+          "notes": {
+            "1": "A is a real high, but it formed inside the move up toward C.",
+            "3": "B formed inside the larger move too.",
+            "7": "D is a smaller high inside the drop from C."
+          }
+        },
+        {
+          "prompt": "Now tap the highs that formed <em>inside</em> that range (there are three).",
+          "chart": {
+            "swings": [
+              [
+                40,
+                260
+              ],
+              [
+                120,
+                180
+              ],
+              [
+                170,
+                205
+              ],
+              [
+                250,
+                120
+              ],
+              [
+                300,
+                150
+              ],
+              [
+                370,
+                55
+              ],
+              [
+                430,
+                110
+              ],
+              [
+                480,
+                90
+              ],
+              [
+                560,
+                180
+              ],
+              [
+                610,
+                150
+              ],
+              [
+                670,
+                255
+              ]
+            ],
+            "seed": 17,
+            "density": 1.5,
+            "marks": [
+              {
+                "i": 1,
+                "label": "A",
+                "tone": "muted"
+              },
+              {
+                "i": 3,
+                "label": "B",
+                "tone": "muted"
+              },
+              {
+                "i": 5,
+                "label": "C",
+                "tone": "purple"
+              },
+              {
+                "i": 7,
+                "label": "D",
+                "tone": "muted"
+              }
+            ]
+          },
+          "only": [
+            1,
+            3,
+            7
+          ],
+          "answer": [
+            1,
+            3,
+            7
+          ],
+          "reveal": {
+            "1": {
+              "label": "A · inside",
+              "tone": "up"
+            },
+            "3": {
+              "label": "B · inside",
+              "tone": "up"
+            },
+            "7": {
+              "label": "D · inside",
+              "tone": "up"
+            }
+          },
+          "why": "A, B and D all formed inside the range C defines. You’re starting to see hierarchy."
+        }
+      ]
+    },
+    {
+      "type": "chart_check",
+      "kicker": "Lock it in",
+      "title": "Two traders, one chart",
+      "check": {
+        "prompt": "Why can two traders identify different swings on the same chart without one necessarily being “blind”?",
+        "options": [
+          {
+            "label": "Because one of them is wrong",
+            "correct": false,
+            "feedback": "Not necessarily. They might just be answering different questions."
+          },
+          {
+            "label": "Because they may be analyzing different structural scales or timeframes",
+            "correct": true,
+            "why": "Exactly. They may be analyzing different structural scales or timeframes."
+          },
+          {
+            "label": "Because swings are random",
+            "correct": false,
+            "feedback": "Swings aren’t random. Which ones matter depends on the scale you’re analyzing."
+          }
+        ]
+      }
+    }
+  ],
+  "takeaways": [
+    "Major (relevant) swings define the structure or range you’re analyzing.",
+    "Minor (internal) swings are real, but develop inside a larger leg.",
+    "Different scales can produce different relevant swings on the same chart."
+  ],
+  "remember": "A swing can exist without being the swing that answers your current question."
+}

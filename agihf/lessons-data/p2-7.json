@@ -1,0 +1,308 @@
+{
+  "phase": "p2",
+  "section": "s4",
+  "lessonNumber": 7,
+  "title": "Internal vs. External Structure",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Structure exists inside structure.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Describe internal and external structure, and why an internal change doesn’t automatically rewrite the bigger story.",
+    "missionQuestion": "If smaller swings turn bearish while price stays inside a larger range, has the bigger story changed?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "structure_story",
+      "kicker": "Watch with Dayli",
+      "title": "🏠 Read the room (a preview)",
+      "chart": {
+        "swings": [
+          [
+            30,
+            255
+          ],
+          [
+            110,
+            190
+          ],
+          [
+            160,
+            215
+          ],
+          [
+            230,
+            120
+          ],
+          [
+            290,
+            160
+          ],
+          [
+            350,
+            95
+          ],
+          [
+            400,
+            140
+          ],
+          [
+            450,
+            115
+          ],
+          [
+            500,
+            170
+          ],
+          [
+            550,
+            150
+          ],
+          [
+            600,
+            200
+          ],
+          [
+            650,
+            185
+          ]
+        ],
+        "seed": 41,
+        "density": 1.4,
+        "hlines": [
+          {
+            "y": 60,
+            "label": "EXTERNAL HIGH",
+            "tone": "purple",
+            "door": true,
+            "id": "doors"
+          },
+          {
+            "y": 285,
+            "label": "EXTERNAL LOW",
+            "tone": "purple",
+            "door": true,
+            "below": true,
+            "id": "doors"
+          }
+        ],
+        "marks": [
+          {
+            "i": 5,
+            "label": "internal high",
+            "tone": "gold",
+            "id": "furn"
+          },
+          {
+            "i": 2,
+            "label": "internal low",
+            "tone": "gold",
+            "id": "furn"
+          },
+          {
+            "i": 7,
+            "label": "LH",
+            "tone": "down",
+            "id": "turn"
+          },
+          {
+            "i": 8,
+            "label": "LL",
+            "tone": "down",
+            "id": "turn"
+          },
+          {
+            "i": 9,
+            "label": "LH",
+            "tone": "down",
+            "id": "turn"
+          },
+          {
+            "i": 10,
+            "label": "LL",
+            "tone": "down",
+            "id": "turn"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "text": "<strong>External structure</strong> is the larger swing boundaries defining the range you’re analyzing. Think of it as 🚪 the room. The external high and low are the doors.",
+          "show": [
+            "doors"
+          ]
+        },
+        {
+          "text": "<strong>Internal structure</strong> is the smaller swings developing inside those boundaries. Furniture. Pictures. Mirrors. Tables. Things are happening inside the room, but you’re still inside the room.",
+          "show": [
+            "furn"
+          ]
+        },
+        {
+          "text": "Internal structure can change while price is still inside the larger external range.",
+          "show": [
+            "turn"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "dayli",
+      "quote": "Internal structure can change while price is still inside the larger external range. That’s why one little lower low doesn’t automatically mean the entire higher-timeframe story changed."
+    },
+    {
+      "type": "confusion",
+      "heading": "External ≠ Internal",
+      "left": {
+        "label": "🚪 External structure",
+        "points": [
+          "The room",
+          "The larger swing boundaries",
+          "Defines the range you’re analyzing"
+        ]
+      },
+      "right": {
+        "label": "🛋️ Internal structure",
+        "points": [
+          "The furniture",
+          "The smaller swings inside",
+          "Can change while the room stays the same"
+        ]
+      }
+    },
+    {
+      "type": "chart_check",
+      "kicker": "Lock it in",
+      "title": "Describe the chart",
+      "chart": {
+        "swings": [
+          [
+            30,
+            255
+          ],
+          [
+            110,
+            190
+          ],
+          [
+            160,
+            215
+          ],
+          [
+            230,
+            120
+          ],
+          [
+            290,
+            160
+          ],
+          [
+            350,
+            95
+          ],
+          [
+            400,
+            140
+          ],
+          [
+            450,
+            115
+          ],
+          [
+            500,
+            170
+          ],
+          [
+            550,
+            150
+          ],
+          [
+            600,
+            200
+          ],
+          [
+            650,
+            185
+          ]
+        ],
+        "seed": 41,
+        "density": 1.4,
+        "hlines": [
+          {
+            "y": 60,
+            "label": "EXTERNAL HIGH",
+            "tone": "purple",
+            "door": true
+          },
+          {
+            "y": 285,
+            "label": "EXTERNAL LOW",
+            "tone": "purple",
+            "door": true,
+            "below": true
+          }
+        ],
+        "marks": [
+          {
+            "i": 7,
+            "label": "LH",
+            "tone": "down"
+          },
+          {
+            "i": 8,
+            "label": "LL",
+            "tone": "down"
+          },
+          {
+            "i": 9,
+            "label": "LH",
+            "tone": "down"
+          },
+          {
+            "i": 10,
+            "label": "LL",
+            "tone": "down"
+          }
+        ]
+      },
+      "scenario": "Price remains between its larger external high and low, but smaller swings inside the range begin forming lower highs and lower lows.",
+      "check": {
+        "prompt": "Which statement is most accurate?",
+        "options": [
+          {
+            "label": "A. The external range no longer exists.",
+            "correct": false,
+            "feedback": "Price is still between the external high and low. The room is still there."
+          },
+          {
+            "label": "B. Price must break lower.",
+            "correct": false,
+            "feedback": "Nothing says it must. That’s a prediction, not an observation."
+          },
+          {
+            "label": "C. Internal structure has become bearish while price remains within the larger external range.",
+            "correct": true,
+            "why": "Exactly. The furniture moved. The room didn’t."
+          },
+          {
+            "label": "D. The market is automatically bearish on every timeframe.",
+            "correct": false,
+            "feedback": "An internal change doesn’t automatically change every timeframe."
+          }
+        ]
+      }
+    }
+  ],
+  "takeaways": [
+    "External structure: the larger boundaries, the room and its doors.",
+    "Internal structure: the smaller swings developing inside those boundaries.",
+    "Internal structure can change without the external range changing."
+  ],
+  "remember": "One little lower low doesn’t automatically mean the whole story changed."
+}
