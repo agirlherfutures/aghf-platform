@@ -304,6 +304,7 @@ function icon(name, tone = 'pink', size = 26) {
  *         | { versus: [{ label, tone, icon, points: [] }, …] }
  *         | { chart: <structure-charts spec>, steps: [{ show, text }] }
  *         | { scene }
+ *         | { schedule: { cols: [a, b], rows: [{ label, tone, et, pt }], note } }   a timetable
  *   check: { prompt, options, stack } (same option shape as everywhere else)
  */
 let mountChartFn = null;
@@ -327,6 +328,11 @@ export function renderV2Screen(el, slide, satisfy, helpers) {
         <ul>${c.points.map((pt) => `<li>${pt}</li>`).join('')}</ul></div>`).join('<div class="v2-vs-ne">≠</div>')}</div>`;
   else if (v.chart) right = `<div class="v2-chartbox"><div class="v2-chart"></div>${v.steps ? '<div class="v2-chart-cap"></div><button type="button" class="v2-stepbtn">Show me →</button>' : ''}</div>`;
   else if (v.scene) right = `<div class="v2-scene-box">${SCENES[v.scene] || ''}</div>`;
+  else if (v.schedule) right = `<div class="v2-sched">
+      <div class="v2-sched-row v2-sched-head"><span></span><span>${v.schedule.cols?.[0] || 'Eastern (ET)'}</span><span>${v.schedule.cols?.[1] || 'Pacific (PT)'}</span></div>
+      ${v.schedule.rows.map((r) => `<div class="v2-sched-row"><span class="v2-sched-name"><i style="background:${(TONES[r.tone] || TONES.pink)[0]}"></i>${r.label}</span>${[r.et, r.pt].map((t) => { const [a, b] = String(t).split(/\s*[–-]\s*/); return `<span class="v2-sched-t">${a}${b ? `<small>to ${b}</small>` : ''}</span>`; }).join('')}</div>`).join('')}
+      ${v.schedule.note ? `<div class="v2-sched-note">${v.schedule.note}</div>` : ''}
+    </div>`;
 
   const { act, card } = shell(el, slide, right, slide.check ? '<div class="v2-check-slot"></div>' : '', { cls: right ? '' : 'v2-solo' });
   const gates = [];

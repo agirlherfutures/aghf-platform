@@ -90,6 +90,73 @@
     },
     {
       "type": "v2_screen",
+      "kicker": "When each session runs",
+      "headline": "Know the <em>clock.</em>",
+      "line": "Every session in Eastern and Pacific time. Find yours.",
+      "visual": {
+        "schedule": {
+          "cols": [
+            "Eastern (ET)",
+            "Pacific (PT)"
+          ],
+          "rows": [
+            {
+              "label": "Asia",
+              "tone": "purple",
+              "et": "7:00 PM – 4:00 AM",
+              "pt": "4:00 PM – 1:00 AM"
+            },
+            {
+              "label": "London",
+              "tone": "peach",
+              "et": "3:00 AM – 12:00 PM",
+              "pt": "12:00 AM – 9:00 AM"
+            },
+            {
+              "label": "NY AM",
+              "tone": "pink",
+              "et": "9:30 AM – 12:00 PM",
+              "pt": "6:30 AM – 9:00 AM"
+            },
+            {
+              "label": "NY Lunch",
+              "tone": "teal",
+              "et": "12:00 PM – 1:30 PM",
+              "pt": "9:00 AM – 10:30 AM"
+            },
+            {
+              "label": "NY PM",
+              "tone": "dark",
+              "et": "1:30 PM – 4:00 PM",
+              "pt": "10:30 AM – 1:00 PM"
+            }
+          ],
+          "note": "London and NY AM overlap from 9:30 AM to 12:00 PM ET (6:30 to 9:00 AM PT). ET stays the same all year: EST in winter, EDT in summer."
+        }
+      },
+      "check": {
+        "prompt": "It’s 11:00 AM Pacific. Which session are you in?",
+        "options": [
+          {
+            "label": "London",
+            "correct": false,
+            "feedback": "London wraps up at 9:00 AM Pacific. Check the clock again."
+          },
+          {
+            "label": "NY Lunch",
+            "correct": false,
+            "feedback": "NY Lunch runs 9:00 to 10:30 AM Pacific. 11:00 is just after it."
+          },
+          {
+            "label": "NY PM",
+            "correct": true,
+            "why": "NY PM runs 10:30 AM to 1:00 PM Pacific (1:30 to 4:00 PM Eastern)."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
       "kicker": "Weigh the test",
       "headline": "Same level. <em>Two tests.</em>",
       "line": "Tested overnight on thin volume. Retested at the New York open on much higher volume.",
