@@ -348,6 +348,32 @@
         </g>
       </g>`;
     }
+    if (kind === 'mkt') {
+      const fl = (Math.sin(t * 6) + 1) / 2;
+      return `<g>
+        <circle r="90" fill="#FEF3E4"/>
+        <circle r="${60 + fl * 8}" fill="${COL.peachL}" opacity="${0.5 * fl}"/>
+        <path d="M14,-70 L-34,6 L-2,6 L-14,70 L36,-8 L4,-8 Z" fill="${COL.gold}" stroke="#C98A1F" stroke-width="4" stroke-linejoin="round"/>
+      </g>`;
+    }
+    if (kind === 'lmt') {
+      const a = (t * 0.7) % 1, ax = 70 - ease(clamp(a / 0.5)) * 70;
+      return `<g>
+        <circle r="90" fill="#E8F8F6"/>
+        ${[64, 44, 24].map((r, i) => `<circle r="${r}" fill="${i % 2 ? '#fff' : COL.teal}"/>`).join('')}<circle r="8" fill="${COL.tealD}"/>
+        <g transform="translate(${ax},${-ax}) rotate(-45)"><line x1="0" y1="0" x2="70" y2="0" stroke="${COL.dark}" stroke-width="6" stroke-linecap="round"/>
+          <path d="M70,-10 L86,0 L70,10" fill="${COL.pink}"/><path d="M-2,-6 L10,0 L-2,6 Z" fill="${COL.dark}"/></g>
+      </g>`;
+    }
+    if (kind === 'stp') {
+      const awake = Math.floor(t / 2.5) % 2;
+      return `<g>
+        <circle r="90" fill="${COL.pinkP}"/>
+        <path d="M-28,-68 L28,-68 L68,-28 L68,28 L28,68 L-28,68 L-68,28 L-68,-28 Z" fill="${awake ? COL.pink : '#E8C7CF'}" stroke="#fff" stroke-width="6"/>
+        <text y="12" font-size="34" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">STOP</text>
+        ${awake ? '' : [0, 1].map(i => { const p = ((t * 0.8) + i * 0.5) % 1; return `<text x="${48 + p * 26}" y="${-50 - p * 40}" font-size="${22 + i * 6}" font-weight="900" fill="${COL.purple}" opacity="${1 - p}" font-family="DM Sans">z</text>`; }).join('')}
+      </g>`;
+    }
     if (kind === 'broker') {
       const f = Math.sin(t * 2.4) * 6;
       return `<g>

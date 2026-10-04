@@ -120,6 +120,12 @@
     'prop-path': s => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'order-demo': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
+    'seesaw': s => `
+      <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
+      ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     'host-mission': s => `
       <div class="abs" style="left:760px;right:110px;top:260px">
         <div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div>
@@ -1047,6 +1053,77 @@
       legs.forEach(([a, b, x0, x1]) => { if (t >= a) { x = lerp(x0, x1, ease(seg(t, a, b))); if (t < b) walking = true; } });
       out += A.person(t, { x, y: G, scale: 1.0, look: A.LOOKS.buyer, walking, seed: 3, frontArm: walking ? undefined : { a1: 100, a2: 95 } });
       return out;
+    },
+
+    'order-demo': (s, t) => {
+      const panels = [{ x: 160, at: s.mkt, kind: 'mkt', title: 'Market' }, { x: 700, at: s.lmt, kind: 'lmt', title: 'Limit' }, { x: 1240, at: s.stp, kind: 'stp', title: 'Stop' }];
+      const W = 520, top = 400, H = 500, py0 = top + 110, ph = 300;
+      return panels.map((P, i) => {
+        const k = pop(t, P.at - 0.3, 0.6);
+        if (k <= 0) return '';
+        const cx = P.x + W / 2, col = [C.peach, C.teal, C.pink][i], dark = ['#B86E12', '#2F8A7F', '#C2475F'][i];
+        const prog = ease(seg(t, P.at + 0.2, P.at + 4.2));
+        // Price paths (0..1 x, value in panel units 0 top .. 1 bottom).
+        const path = i === 0 ? (u => 0.45 + Math.sin(u * 12) * 0.06)
+          : i === 1 ? (u => 0.25 + u * 0.56 + Math.sin(u * 14) * 0.04 - (u > 0.72 ? (u - 0.72) * 1.6 : 0))
+          : (u => 0.3 + u * 0.55 + Math.sin(u * 13) * 0.04);
+        const X = u => P.x + 40 + u * (W - 80), Yv = v => py0 + v * ph;
+        const end = i === 0 ? 0.5 : 1;
+        let d = '';
+        for (let u = 0; u <= prog * end + 1e-6; u += 0.01) d += `${d ? 'L' : 'M'}${X(u).toFixed(1)},${Yv(path(u)).toFixed(1)}`;
+        let extra = '';
+        const lineV = i === 1 ? 0.62 : 0.72;
+        if (i > 0) {
+          const hit = i === 1 ? 0.62 : 0.72;
+          // Find when price first reaches the line.
+          let hu = 1; for (let u = 0; u <= 1; u += 0.005) if (path(u) >= hit) { hu = u; break; }
+          const triggered = prog >= hu;
+          const flash = triggered ? clamp(1 - (t - (P.at + 0.2 + hu * 4)) / 0.8) : 0;
+          extra += `<line x1="${P.x + 30}" x2="${P.x + W - 30}" y1="${Yv(lineV)}" y2="${Yv(lineV)}" stroke="${col}" stroke-width="${5 + flash * 6}" stroke-dasharray="14 10"/>
+            <text x="${P.x + 34}" y="${Yv(lineV) + 34}" font-size="22" font-weight="700" text-anchor="start" fill="${dark}" font-family="DM Sans">${i === 1 ? 'Buy limit' : 'Stop below your long'}</text>`;
+          if (i === 2) extra += `<circle cx="${X(0)}" cy="${Yv(path(0))}" r="11" fill="${C.tealD}"/><text x="${X(0) + 16}" y="${Yv(path(0)) - 14}" font-size="20" font-weight="700" fill="#2F8A7F" font-family="DM Sans">Long entry</text>`;
+          if (i === 2 && !triggered) extra += [0, 1].map(j => { const q = ((t * 0.8) + j * 0.5) % 1; return `<text x="${P.x + 60 + q * 20}" y="${Yv(lineV) - 14 - q * 30}" font-size="${22 + j * 6}" font-weight="900" fill="${C.purple}" opacity="${1 - q}" font-family="DM Sans">z</text>`; }).join('');
+          if (triggered) {
+            const tp = back((t - (P.at + 0.2 + hu * 4)) / 0.5);
+            extra += `<circle cx="${X(hu)}" cy="${Yv(lineV)}" r="${14 + flash * 10}" fill="${col}"/>
+              <g transform="translate(${cx},${top + H - 50}) scale(${tp})"><rect x="-210" y="-30" width="420" height="60" rx="30" fill="${col}"/>
+              <text y="10" font-size="26" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">${i === 1 ? 'Filled at your price' : 'Triggered → exits at market'}</text></g>`;
+          }
+        } else {
+          const clickAt = P.at + 2.2;
+          if (t > clickAt) {
+            const tp = back((t - clickAt) / 0.5), u = 0.5;
+            extra += `<circle cx="${X(u)}" cy="${Yv(path(u))}" r="16" fill="${col}"/>${A.sparkle(X(u), Yv(path(u)), clickAt, t)}
+              <g transform="translate(${cx},${top + H - 50}) scale(${tp})"><rect x="-210" y="-30" width="420" height="60" rx="30" fill="${col}"/>
+              <text y="10" font-size="26" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">Filled instantly</text></g>`;
+          }
+          const press = t > clickAt - 0.2 && t < clickAt + 0.2 ? 0.9 : 1;
+          extra += `<g transform="translate(${P.x + W - 110},${py0 + 30}) scale(${press})"><rect x="-70" y="-28" width="140" height="56" rx="14" fill="${C.tealD}"/>
+            <text y="9" font-size="24" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">BUY</text></g>`;
+        }
+        return `<g transform="translate(${cx},${top + H / 2}) scale(${k}) translate(${-cx},${-(top + H / 2)})">
+          <rect x="${P.x}" y="${top}" width="${W}" height="${H}" rx="34" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>
+          <g transform="translate(${P.x + 60},${top + 52}) scale(0.38)">${A.badge(P.kind, t)}</g>
+          <text x="${P.x + 104}" y="${top + 66}" font-size="40" font-weight="900" fill="${C.dark}" font-family="Playfair Display">${P.title}</text>
+          <path d="${d}" fill="none" stroke="${C.dark}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>${extra}</g>`;
+      }).join('');
+    },
+
+    seesaw: (s, t) => {
+      const p = pop(t, s.start + 0.4, 0.8);
+      if (p <= 0) return '';
+      const tilt = Math.sin((t - s.start) * 1.2) * 9;
+      const L = 520, cx = 960, cy = 800;
+      const end = dir => ({ x: cx + dir * Math.cos(tilt * Math.PI / 180) * L, y: cy - 30 + dir * Math.sin(tilt * Math.PI / 180) * L });
+      const l = end(-1), r = end(1);
+      const seat = (q, kind, label, sub, col) => `<g transform="translate(${q.x},${q.y - 110})">
+          <g transform="scale(0.8)">${A.badge(kind, t)}</g>
+          <text y="-132" font-size="40" font-weight="900" text-anchor="middle" fill="${C.dark}" font-family="Playfair Display">${label}</text>
+          <text y="-92" font-size="26" font-weight="700" text-anchor="middle" fill="${col}" font-family="DM Sans">${sub}</text></g>`;
+      return `<g transform="translate(${cx},${cy}) scale(${p}) translate(${-cx},${-cy})">
+        <path d="M${cx - 70},${cy + 120} L${cx + 70},${cy + 120} L${cx},${cy - 20} Z" fill="${C.purple}"/>
+        <line x1="${l.x}" y1="${l.y}" x2="${r.x}" y2="${r.y}" stroke="#9B6A45" stroke-width="22" stroke-linecap="round"/>
+        ${seat(l, 'mkt', 'Speed', 'Market order', '#B86E12')}${seat(r, 'lmt', 'Control', 'Limit order', '#2F8A7F')}</g>`;
     },
 
     'host-mission': (s, t, ctx) =>
