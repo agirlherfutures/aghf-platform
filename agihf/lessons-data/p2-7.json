@@ -4,7 +4,7 @@
   "lessonNumber": 7,
   "title": "Internal vs. External Structure",
   "videoUrl": null,
-  "videoDuration": "",
+  "videoDuration": "1:22",
   "xpValue": 65,
   "passThreshold": 0.6,
   "hook": "Structure exists inside structure.",
@@ -15,7 +15,28 @@
     "estMinutes": 8
   },
   "watch": {
-    "markers": []
+    "markers": [
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Read the room"
+      },
+      {
+        "t": "00:34",
+        "label": "Now on a chart"
+      },
+      {
+        "t": "00:58",
+        "label": "One lower low isn’t the whole story"
+      },
+      {
+        "t": "01:09",
+        "label": "Your mission"
+      }
+    ]
   },
   "slides": [
     {

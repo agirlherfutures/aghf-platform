@@ -4,7 +4,7 @@
   "lessonNumber": 4,
   "title": "Bullish Structure",
   "videoUrl": null,
-  "videoDuration": "",
+  "videoDuration": "1:07",
   "xpValue": 65,
   "passThreshold": 0.6,
   "hook": "Higher highs + higher lows show upward structural progression.",
@@ -15,7 +15,24 @@
     "estMinutes": 7
   },
   "watch": {
-    "markers": []
+    "markers": [
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "The climb"
+      },
+      {
+        "t": "00:40",
+        "label": "Red candles aren’t automatically bearish"
+      },
+      {
+        "t": "00:53",
+        "label": "Your mission"
+      }
+    ]
   },
   "slides": [
     {

@@ -4,7 +4,7 @@
   "lessonNumber": 1,
   "title": "What Is Market Structure?",
   "videoUrl": null,
-  "videoDuration": "",
+  "videoDuration": "1:17",
   "xpValue": 65,
   "passThreshold": 0.6,
   "hook": "Candles are the words. Structure is the sentence.",
@@ -15,7 +15,28 @@
     "estMinutes": 6
   },
   "watch": {
-    "markers": []
+    "markers": [
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:09",
+        "label": "Zoom out"
+      },
+      {
+        "t": "00:31",
+        "label": "Candles are words, structure is the sentence"
+      },
+      {
+        "t": "00:52",
+        "label": "What has price already shown me?"
+      },
+      {
+        "t": "01:04",
+        "label": "Your mission"
+      }
+    ]
   },
   "slides": [
     {

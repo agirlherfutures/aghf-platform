@@ -15,7 +15,7 @@ const title = V.scenes[0].title;
 const n = parseInt(slug.split('-').pop(), 10);
 let md = `# Lesson ${n} intro: "${title}"\n\n`;
 md += `**Length:** ${mmss(V.duration)} · **Pace:** relaxed and conversational, about 150 words a minute\n`;
-md += `**Tip:** Play \`${slug}-captions.mp4\` while you record, then lay your audio over the clean \`${slug}.mp4\`.\n\n`;
+md += `**Tip:** Play \`${slug}.mp4\` while you record, using the Time column to stay in sync, then lay your audio over it.\n\n`;
 md += `| Time | On screen | Say |\n|---|---|---|\n`;
 V.scenes.forEach(s => s.lines.forEach(l => {
   md += `| ${mmss(l.at)} | ${(l.screen || '').replace(/\|/g, '/')} | ${l.text.replace(/[’]/g, "'").replace(/[“”]/g, '"')} |\n`;

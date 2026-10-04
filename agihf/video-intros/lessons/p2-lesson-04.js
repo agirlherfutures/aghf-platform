@@ -18,7 +18,7 @@ window.LESSON_VIDEO = {
       ],
     },
     {
-      type: 'ridge-hike', start: 8, end: 40, beats: { hike: 11.0, dur: 20 },
+      type: 'ridge-hike', start: 8, end: 40, beats: { hike: 11.0, dur: 20, red: 27.0 },
       kicker: 'The climb',
       headlines: [
         { at: 8.4, out: 22.4, html: 'Higher highs. <span class="mark">Higher lows.</span>' },

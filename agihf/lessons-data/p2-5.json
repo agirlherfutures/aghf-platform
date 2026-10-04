@@ -4,7 +4,7 @@
   "lessonNumber": 5,
   "title": "Bearish Structure",
   "videoUrl": null,
-  "videoDuration": "",
+  "videoDuration": "1:04",
   "xpValue": 65,
   "passThreshold": 0.6,
   "hook": "Lower lows + lower highs show downward structural progression.",
@@ -15,7 +15,24 @@
     "estMinutes": 7
   },
   "watch": {
-    "markers": []
+    "markers": [
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Down the stairs"
+      },
+      {
+        "t": "00:40",
+        "label": "Stop letting candle color override structure"
+      },
+      {
+        "t": "00:50",
+        "label": "Your mission"
+      }
+    ]
   },
   "slides": [
     {

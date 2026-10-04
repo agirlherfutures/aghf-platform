@@ -258,7 +258,7 @@
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${s.headlines.map(h => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:56px">${h.html}</div></div>`).join('')}`,
     ...Object.fromEntries(['zoom-chaos', 'words-sentence', 'heel-valley', 'turn-finder', 'label-board', 'stairs-duo',
-      'ridge-hike', 'bounce-down', 'mountain-bumps', 'two-scopes', 'the-room', 'pacing-box', 'chart-sorter', 'road-trip', 'fork-break']
+      'ridge-hike', 'bounce-down', 'mountain-bumps', 'two-scopes', 'the-room', 'room-chart', 'pacing-box', 'chart-sorter', 'road-trip', 'fork-break']
       .map((k) => [k, (s) => `
       <div class="top"><div class="kicker" data-in="${s.start + 0.3}">${esc(s.kicker)}</div></div>
       ${(s.headlines || []).map((h) => `<div class="top" style="top:250px"><div class="h2" data-in="${h.at}" ${h.out ? `data-out="${h.out}"` : ''} style="font-size:${h.size || 56}px">${h.html}</div></div>`).join('')}`])),
@@ -2029,6 +2029,17 @@
           out += `<rect x="${x - 9}" y="${y - 44}" width="18" height="30" rx="3" fill="${C.pink}" opacity=".9"/><line x1="${x}" x2="${x}" y1="${y - 52}" y2="${y - 8}" stroke="${C.pink}" stroke-width="3"/>`;
         }
       });
+      // Spotlight the red candles: they're the pullbacks, part of the climb.
+      if (T.red && t > T.red) {
+        [2, 4, 6].forEach((i, j) => {
+          const q = pop(t, T.red + j * 0.5, 0.5);
+          if (q <= 0) return;
+          const a = ridge[i - 1], b = ridge[i], cx = (a[0] + b[0]) / 2, cy = (a[1] + b[1]) / 2 - 30;
+          const pulse = 1 + Math.sin((t - T.red) * 4 + j) * 0.06;
+          out += `<ellipse cx="${cx}" cy="${cy}" rx="${70 * q * pulse}" ry="${52 * q * pulse}" fill="none" stroke="${C.pink}" stroke-width="5" stroke-dasharray="10 8"/>`;
+        });
+        out += pillSvg(960, 1030, 'red candles = pullbacks, part of the climb', C.pink, back((t - T.red - 1.6) / 0.6), 26);
+      }
       const walking = k > 0 && k < 1;
       out += A.person(t, { x: pos.x, y: pos.y - 4, scale: 0.6, look: A.LOOKS.buyer, walking, seed: 3 });
       if (k >= 1) out += A.sparkle(1660, 240, T.hike + T.dur, t);
@@ -2114,11 +2125,199 @@
       if (rp > 0) {
         out += `<g transform="translate(1620,${G}) scale(${rp}) translate(-1620,${-G})">` + A.person(t, { x: 1620, y: G, scale: 1, look: A.LOOKS.e, flip: true, frontArm: { a1: -40, a2: -40 }, hold: mag, seed: 5 }) + '</g>';
         if (t > T.right + 0.6) [1, 2, 3, 4, 6, 7, 8, 9].forEach((i) => { out += `<circle cx="${X(sw[i][0])}" cy="${Y(sw[i][1])}" r="9" fill="${C.peach}" stroke="#fff" stroke-width="3"/>`; });
-        if (t > T.right + 0.6) out += pillSvg(1620, 560, 'the details', C.peach, 1, 24);
+        if (t > T.right + 0.6) out += pillSvg(1620, 500, 'the details', C.peach, 1, 24);
       }
       if (t > T.both) {
         const q = back((t - T.both) / 0.6);
         out += pillSvg(300, 568, '✓ right', C.teal, q, 26) + pillSvg(1620, 568, '✓ right', C.teal, q, 26);
+      }
+      return out;
+    },
+
+    'the-room': (s, t) => {
+      const T = s.beats;
+      const x0 = 420, x1 = 1500, y0 = 440, y1 = 960;
+      const rp = pop(t, T.room, 0.8);
+      if (rp <= 0) return '';
+      let out = `<g transform="translate(960,${(y0 + y1) / 2}) scale(${rp}) translate(-960,${-(y0 + y1) / 2})">
+        <rect x="${x0}" y="${y0}" width="${x1 - x0}" height="${y1 - y0}" rx="26" fill="#FFF6F0" stroke="${C.dark}" stroke-width="8"/>
+        <rect x="${x0 + 8}" y="${y1 - 70}" width="${x1 - x0 - 16}" height="62" fill="#F3E3D7"/>`;
+      // Doors: one in the top wall, one in the bottom wall.
+      const door = (x, y, up) => `<g transform="translate(${x},${y})"><rect x="-46" y="${up ? -4 : -116}" width="92" height="120" rx="10" fill="${C.purpleL}" stroke="${C.purple}" stroke-width="6"/><circle cx="26" cy="${up ? 58 : -56}" r="7" fill="${C.purple}"/></g>`;
+      out += door(1240, y0, true) + door(700, y1, false) + '</g>';
+      const dp = pop(t, T.room + 3.4, 0.6);
+      if (dp > 0) out += pillSvg(1240, y0 - 46, '🚪 EXTERNAL HIGH', C.purple, dp, 28) + pillSvg(700, y1 + 50, '🚪 EXTERNAL LOW', C.purple, dp, 28);
+      // Furniture, one piece at a time.
+      const f = (i) => pop(t, T.furn + i * 1.2, 0.6);
+      const piece = (i, x, y, svg) => { const k = f(i); return k > 0 ? `<g transform="translate(${x},${y}) scale(${k})">${svg}</g>` : ''; };
+      out += piece(0, 640, 830, `<rect x="-120" y="-40" width="240" height="70" rx="22" fill="${C.pink}"/><rect x="-140" y="-80" width="44" height="110" rx="18" fill="${C.pinkL}"/><rect x="96" y="-80" width="44" height="110" rx="18" fill="${C.pinkL}"/><rect x="-96" y="-90" width="192" height="60" rx="18" fill="${C.pinkL}"/>`);
+      out += piece(1, 1000, 530, `<rect x="-80" y="-56" width="160" height="112" rx="8" fill="#fff" stroke="${C.peach}" stroke-width="10"/><path d="M-60,36 L-20,-6 L10,22 L34,0 L60,36 Z" fill="${C.tealL}"/><circle cx="34" cy="-24" r="12" fill="${C.peachL}"/>`);
+      out += piece(2, 1370, 580, `<ellipse rx="56" ry="76" fill="#E8F8F6" stroke="${C.tealD}" stroke-width="8"/><path d="M-20,-40 L10,-60" stroke="#fff" stroke-width="8" stroke-linecap="round"/>`);
+      out += piece(3, 1120, 870, `<rect x="-90" y="-20" width="180" height="20" rx="8" fill="${C.muted}"/><rect x="-74" y="0" width="12" height="70" fill="${C.muted}"/><rect x="62" y="0" width="12" height="70" fill="${C.muted}"/><rect x="-30" y="-56" width="40" height="36" rx="6" fill="${C.purpleL}"/>`);
+      out += piece(4, 480, 640, `<rect x="-6" y="0" width="12" height="150" fill="${C.dark}"/><path d="M-50,0 L50,0 L32,-70 L-32,-70 Z" fill="${C.peachL}"/>`);
+      // Price steps lower inside the room (internal LH / LL), never leaving it.
+      if (t > T.price) {
+        const pts = [[600, 520], [720, 640], [810, 590], [940, 710], [1030, 660], [1160, 780], [1250, 740], [1380, 840]];
+        const k = ease(seg(t, T.price, T.price + 4.5));
+        const p = alongPath(pts, k);
+        const drawn = pts.slice(0, p.seg + 1).concat([[p.x, p.y]]);
+        out += `<polyline points="${drawn.map((q) => q.join(',')).join(' ')}" fill="none" stroke="${C.pink}" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>`;
+        [[2, 'LH'], [3, 'LL'], [4, 'LH'], [5, 'LL'], [6, 'LH'], [7, 'LL']].forEach(([i, lab]) => {
+          if (p.seg < i && k < 1) return;
+          const hi = lab === 'LH';
+          out += `<circle cx="${pts[i][0]}" cy="${pts[i][1]}" r="10" fill="${C.pink}" stroke="#fff" stroke-width="4"/>` + pillSvg(pts[i][0], pts[i][1] + (hi ? -44 : 44), lab, C.pink, 1, 22);
+        });
+        out += `<circle cx="${p.x}" cy="${p.y}" r="14" fill="${C.dark}"/>`;
+      }
+      if (t > T.still) out += pillSvg(1250, 1024, 'still inside the room ✓', C.teal, back((t - T.still) / 0.6), 28);
+      return out;
+    },
+
+    'room-chart': (s, t) => {
+      const T = s.beats;
+      const sw = [[0, 0.02], [0.22, 0.55], [0.33, 0.3], [0.5, 0.95], [0.57, 0.72], [0.63, 0.84], [0.71, 0.6], [0.77, 0.7], [0.86, 0.45], [0.93, 0.52], [1, 0.4]];
+      const x = 360, y = 450, w = 1200, h = 470;
+      const X = (u) => x + u * w, Y = (v) => y + h - v * h;
+      let out = `<rect x="300" y="400" width="1320" height="580" rx="34" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>` +
+        A.swingChart(t, { x, y, w, h, swings: sw, t0: s.start + 0.3, t1: s.start + 2.4, seed: 44, per: 46, maxBody: 14, wick: 3, fade: t > T.ext ? 0.45 : 1 });
+      const ek = ease(seg(t, T.ext, T.ext + 1.6));
+      if (ek > 0) {
+        const pts = sw.slice(0, 4).map(([u, v]) => [X(u), Y(v)]);
+        const p = alongPath(pts, ek);
+        out += `<polyline points="${pts.slice(0, p.seg + 1).concat([[p.x, p.y]]).map((q) => q.join(',')).join(' ')}" fill="none" stroke="${C.purple}" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>`;
+        const lk = pop(t, T.ext + 1.6, 0.6);
+        if (lk > 0) {
+          out += `<g opacity="${clamp(lk)}"><line x1="${X(0.5)}" x2="${X(1)}" y1="${Y(0.95)}" y2="${Y(0.95)}" stroke="${C.purple}" stroke-width="6"/><line x1="${X(0.33)}" x2="${X(1)}" y1="${Y(0.3)}" y2="${Y(0.3)}" stroke="${C.purple}" stroke-width="6"/>
+            <text x="${X(1) - 10}" y="${Y(0.95) - 16}" font-size="26" font-weight="900" text-anchor="end" fill="#5E56B8" font-family="DM Sans">🚪 EXTERNAL HIGH</text>
+            <text x="${X(1) - 10}" y="${Y(0.3) + 40}" font-size="26" font-weight="900" text-anchor="end" fill="#5E56B8" font-family="DM Sans">🚪 EXTERNAL LOW</text></g>`;
+          [[1, 'H', -1], [2, 'HL', 1], [3, 'HH', -1]].forEach(([i, lab, d]) => { out += `<circle cx="${X(sw[i][0])}" cy="${Y(sw[i][1])}" r="13" fill="${C.purple}" stroke="#fff" stroke-width="4"/>` + pillSvg(X(sw[i][0]) - (i === 3 ? 70 : 0), Y(sw[i][1]) + d * 50, lab, C.purple, lk, 28); });
+        }
+      }
+      const ik = ease(seg(t, T.int, T.int + 2.4));
+      if (ik > 0) {
+        const pts = sw.slice(3).map(([u, v]) => [X(u), Y(v)]);
+        const p = alongPath(pts, ik);
+        out += `<polyline points="${pts.slice(0, p.seg + 1).concat([[p.x, p.y]]).map((q) => q.join(',')).join(' ')}" fill="none" stroke="${C.pink}" stroke-width="6" stroke-dasharray="14 10" stroke-linejoin="round"/>`;
+        [[5, 'LH', -1], [6, 'LL', 1], [7, 'LH', -1], [8, 'LL', 1], [9, 'LH', -1]].forEach(([i, lab, d]) => {
+          if (p.seg + 3 < i && ik < 1) return;
+          out += `<circle cx="${X(sw[i][0])}" cy="${Y(sw[i][1])}" r="8" fill="${C.pink}" stroke="#fff" stroke-width="3"/>` + pillSvg(X(sw[i][0]), Y(sw[i][1]) + d * 38, lab, C.pink, 1, 20);
+        });
+      }
+      if (t > T.both) {
+        const q = back((t - T.both) / 0.6);
+        out += pillSvg(560, 470, 'EXTERNAL: BULLISH ✓', C.purple, q, 30) + pillSvg(1240, 950, 'INTERNAL: BEARISH', C.pink, back((t - T.both - 0.8) / 0.6), 28);
+        out += A.sparkle(960, 690, T.both + 1.4, t);
+      }
+      return out;
+    },
+
+    'pacing-box': (s, t) => {
+      const T = s.beats;
+      const x0 = 380, x1 = 1540, top = 470, bot = 760;
+      const bp = pop(t, T.box, 0.8);
+      if (bp <= 0) return '';
+      let out = `<g opacity="${clamp(bp)}"><rect x="${x0}" y="${top}" width="${x1 - x0}" height="${bot - top}" rx="24" fill="${C.purpleL}" fill-opacity=".25" stroke="${C.purple}" stroke-width="5" stroke-dasharray="18 12"/></g>`;
+      // Price bounces between the same high and low.
+      if (t > T.pace) {
+        const n = 10, pts = [];
+        for (let i = 0; i <= n; i++) pts.push([x0 + 40 + i * (x1 - x0 - 80) / n, i % 2 ? top + 14 + (i % 3) * 6 : bot - 14 - (i % 4) * 5]);
+        pts[0][1] = (top + bot) / 2;
+        const k = ease(seg(t, T.pace, T.pace + 7));
+        const p = alongPath(pts, k);
+        out += `<polyline points="${pts.slice(0, p.seg + 1).concat([[p.x, p.y]]).map((q) => q.join(',')).join(' ')}" fill="none" stroke="${C.purple}" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${p.x}" cy="${p.y}" r="13" fill="${C.dark}"/>`;
+        // Someone pacing back and forth underneath: lots of steps, no distance.
+        const ph = (t - T.pace) * 0.22, tri = 1 - Math.abs((ph % 2) - 1);
+        const px = lerp(620, 1300, tri), dir = (ph % 2) < 1;
+        for (let j = 0; j < 9; j++) out += `<ellipse cx="${640 + j * 80}" cy="${1000 + (j % 2) * 14}" rx="13" ry="7" fill="${C.muted}" opacity=".18"/>`;
+        out += A.person(t, { x: px, y: 990, scale: 0.42, look: A.LOOKS.d, walking: true, flip: !dir, seed: 7 });
+      }
+      if (t > T.labels) {
+        const q = back((t - T.labels) / 0.6);
+        out += pillSvg(x0 + 150, top - 36, 'RANGE HIGH', C.purple, q, 28) + pillSvg(x0 + 150, bot + 40, 'RANGE LOW', C.purple, back((t - T.labels - 0.6) / 0.6), 28);
+        out += `<text x="${x1 - 30}" y="${(top + bot) / 2 + 22}" font-size="64" font-weight="900" text-anchor="end" fill="${C.purple}" opacity="${clamp(q) * 0.5}" font-family="DM Sans">↔</text>`;
+      }
+      return out;
+    },
+
+    'chart-sorter': (s, t) => {
+      const T = s.beats;
+      const bins = [{ x: 500, label: '📈 Bullish', col: C.teal }, { x: 960, label: '📉 Bearish', col: C.pink }, { x: 1420, label: '↔ Range', col: C.purple }];
+      let out = '';
+      bins.forEach((b, i) => {
+        const k = pop(t, s.start + 0.6 + i * 0.3, 0.6);
+        if (k <= 0) return;
+        out += `<g transform="translate(${b.x},900) scale(${k})"><path d="M-190,-90 L190,-90 L160,90 L-160,90 Z" fill="#fff" stroke="${b.col}" stroke-width="6"/>
+          <text y="40" font-size="40" font-weight="900" text-anchor="middle" fill="${C.dark}" font-family="DM Sans">${b.label}</text></g>`;
+      });
+      const shapes = {
+        0: [[0, 0.1], [0.25, 0.5], [0.4, 0.35], [0.65, 0.75], [0.8, 0.6], [1, 0.95]],
+        1: [[0, 0.9], [0.25, 0.5], [0.4, 0.65], [0.65, 0.3], [0.8, 0.45], [1, 0.05]],
+        2: [[0, 0.5], [0.15, 0.85], [0.3, 0.15], [0.45, 0.85], [0.6, 0.15], [0.75, 0.85], [0.9, 0.15], [1, 0.5]],
+      };
+      const seq = [2, 0, 1, 2, 2, 0];
+      seq.forEach((bin, i) => {
+        const at = T.cards + i * T.every;
+        if (t < at) return;
+        const k = ease(seg(t, at + 1.2, at + 2.2));
+        const cx = lerp(960, bins[bin].x, k), cy = lerp(560, 860, k), sc = lerp(1, 0.4, k);
+        const pts = shapes[bin].map(([u, v]) => `${-130 + u * 260},${60 - v * 120}`).join(' ');
+        if (t > at + 2.2) {
+          const n = seq.slice(0, i).filter((x) => x === bin).length;
+          out += `<g opacity="${clamp((t - at - 2.2) / 0.4)}" transform="translate(${bins[bin].x - 60 + n * 60},${865 - n * 8}) scale(0.28)"><polyline points="${pts}" fill="none" stroke="${bins[bin].col}" stroke-width="14" stroke-linejoin="round" stroke-linecap="round"/></g>`;
+        }
+        const op = 1 - seg(t, at + 2.2, at + 2.6);
+        if (op <= 0) return;
+        out += `<g opacity="${op}" transform="translate(${cx},${cy}) scale(${sc * pop(t, at, 0.5)})"><rect x="-160" y="-95" width="320" height="190" rx="22" fill="#fff" stroke="#F1E7E1" stroke-width="3"/>
+          <polyline points="${pts}" fill="none" stroke="${bins[bin].col}" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/></g>`;
+      });
+      if (t > T.recog) out += pillSvg(960, 1025, 'recognize it ✓', C.teal, back((t - T.recog) / 0.6), 30);
+      return out;
+    },
+
+    'road-trip': (s, t) => {
+      const T = s.beats;
+      const road = [[180, 980], [560, 700], [760, 790], [1180, 500], [1340, 580], [1760, 400]];
+      let out = `<path d="M180,1080 ${road.map((p) => `L${p[0]},${p[1] + 40}`).join(' ')} L1760,1080 Z" fill="#E8F8F6"/>
+        <polyline points="${road.map((p) => p.join(',')).join(' ')}" fill="none" stroke="#E9DED6" stroke-width="56" stroke-linejoin="round" stroke-linecap="round"/>
+        <polyline points="${road.map((p) => p.join(',')).join(' ')}" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="26 22" stroke-linejoin="round"/>`;
+      const k = ease(seg(t, T.drive, T.drive + T.dur));
+      // Ease off at the pit stop: the pullback is slow, then the drive resumes.
+      const p = alongPath(road, k);
+      const a = road[p.seg], b = road[p.seg + 1];
+      const ang = Math.atan2(b[1] - a[1], b[0] - a[0]) * 180 / Math.PI;
+      const tags = [[T.exp, 330, 760, '1 · EXPANSION', C.teal], [T.pb, 760, 945, '2 · PULLBACK', C.peach], [T.prog, 1000, 545, '3 · PROGRESSION', C.teal]];
+      tags.forEach(([at, x, y, txt, col]) => { const q = pop(t, at, 0.6); if (q > 0) out += pillSvg(x, y, txt, col, q, 30); });
+      if (t > T.pb + 1.2) out += pillSvg(760, 1012, 'pit stop ≠ U-turn', C.peach, back((t - T.pb - 1.2) / 0.6), 24);
+      [[1, 'HH'], [3, 'HH'], [5, 'HH']].forEach(([i, lab]) => { if (p.seg >= i || k >= 1) out += pillSvg(road[i][0], road[i][1] - 90, lab, C.teal, 1, 24); });
+      [[2, 'HL'], [4, 'HL']].forEach(([i, lab]) => { if (p.seg >= i || k >= 1) out += pillSvg(road[i][0], road[i][1] + 76, lab, C.peach, 1, 24); });
+      const moving = k > 0 && k < 1;
+      out += `<g transform="translate(${p.x},${p.y - 26}) rotate(${ang})">${A.vehicle('car', { x: 0, y: 0, dist: k * 3000, t, moving, scale: 0.5 })}</g>`;
+      if (k >= 1) out += A.sparkle(1760, 230, T.drive + T.dur, t);
+      return out;
+    },
+
+    'fork-break': (s, t) => {
+      const T = s.beats;
+      const sw = [[0, 0.05], [0.2, 0.5], [0.3, 0.32], [0.55, 0.85], [0.68, 0.6]];
+      const x = 340, y = 450, w = 1060, h = 460;
+      const X = (u) => x + u * w, Y = (v) => y + h - v * h;
+      let out = `<rect x="300" y="400" width="1320" height="580" rx="34" fill="#fff" stroke="#F1E7E1" stroke-width="2"/>` +
+        A.swingChart(t, { x, y, w, h, swings: sw, t0: s.start + 0.3, t1: s.start + 3.6, seed: 72, per: 40, maxBody: 16, wick: 3,
+          labels: [{ i: 1, text: 'HH', tone: 'up', at: s.start + 1.6, size: 24, off: 40 }, { i: 2, text: 'HL', tone: 'up', at: s.start + 2.2, size: 24, off: 40 }, { i: 3, text: 'HH', tone: 'up', at: s.start + 3.0, size: 24, off: 40 }] });
+      const ox = X(0.68), oy = Y(0.6);
+      if (t > T.fork) {
+        const k = ease(seg(t, T.fork, T.fork + 1.4));
+        out += `<path d="M${ox},${oy} Q${ox + 120},${oy - 40} ${lerp(ox, X(1) + 60, k)},${lerp(oy, Y(0.92), k)}" fill="none" stroke="${C.teal}" stroke-width="7" stroke-dasharray="16 12"/>
+          <path d="M${ox},${oy} Q${ox + 120},${oy + 40} ${lerp(ox, X(1) + 60, k)},${lerp(oy, Y(0.15), k)}" fill="none" stroke="${C.pink}" stroke-width="7" stroke-dasharray="16 12"/>`;
+        const q = pop(t, T.fork + 1.2, 0.6);
+        if (q > 0) out += pillSvg(X(1) + 40, Y(0.92) - 40, 'continues?', C.teal, q, 24) + pillSvg(X(1) + 40, Y(0.15) + 40, 'reverses?', C.pink, q, 24) +
+          `<text x="${ox + 170}" y="${oy + 36}" font-size="${110 * q}" font-weight="900" text-anchor="middle" fill="${C.purple}" font-family="Playfair Display">?</text>`;
+      }
+      if (t > T.level) {
+        const k = ease(seg(t, T.level, T.level + 1));
+        out += `<line x1="${X(0.3)}" x2="${lerp(X(0.3), X(1) + 100, k)}" y1="${Y(0.32)}" y2="${Y(0.32)}" stroke="${C.peach}" stroke-width="6" stroke-dasharray="18 12"/>`;
+        out += pillSvg(X(0.6), Y(0.32) + 46, 'what price breaks…', C.peach, back((t - T.level - 0.6) / 0.6), 26);
+        out += pillSvg(960, 1032, 'Section 2 🔒', C.purple, back((t - T.level - 2.4) / 0.6), 28);
       }
       return out;
     },

@@ -4,18 +4,39 @@
   "lessonNumber": 3,
   "title": "HH, HL, LH & LL",
   "videoUrl": null,
-  "videoDuration": "",
+  "videoDuration": "1:28",
   "xpValue": 65,
   "passThreshold": 0.6,
   "hook": "The four labels that turn movement into readable structure.",
   "format": "slides",
   "launchpad": {
     "outcome": "Label HH, HL, LH and LL correctly by comparing each swing to the previous relevant swing.",
-    "missionQuestion": "If a new swing high forms above the previous swing high, what do you call it?",
+    "missionQuestion": "If a new swing low forms above the previous relevant swing low, what do you call it?",
     "estMinutes": 8
   },
   "watch": {
-    "markers": []
+    "markers": [
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "The four labels"
+      },
+      {
+        "t": "00:36",
+        "label": "Up and down the stairs"
+      },
+      {
+        "t": "01:04",
+        "label": "Catch the mistake"
+      },
+      {
+        "t": "01:15",
+        "label": "Your mission"
+      }
+    ]
   },
   "slides": [
     {

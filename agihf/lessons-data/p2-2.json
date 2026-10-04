@@ -4,7 +4,7 @@
   "lessonNumber": 2,
   "title": "Swing Highs & Swing Lows",
   "videoUrl": null,
-  "videoDuration": "",
+  "videoDuration": "1:15",
   "xpValue": 65,
   "passThreshold": 0.6,
   "hook": "Before you can read structure, you need to find the turns.",
@@ -15,7 +15,28 @@
     "estMinutes": 7
   },
   "watch": {
-    "markers": []
+    "markers": [
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "The heel and the valley"
+      },
+      {
+        "t": "00:30",
+        "label": "Not every wiggle is equal"
+      },
+      {
+        "t": "00:51",
+        "label": "Learn to see them"
+      },
+      {
+        "t": "01:02",
+        "label": "Your mission"
+      }
+    ]
   },
   "slides": [
     {

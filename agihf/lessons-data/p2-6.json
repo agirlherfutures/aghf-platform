@@ -4,7 +4,7 @@
   "lessonNumber": 6,
   "title": "Valid vs. Minor Swings",
   "videoUrl": null,
-  "videoDuration": "",
+  "videoDuration": "1:18",
   "xpValue": 65,
   "passThreshold": 0.6,
   "hook": "Every turn exists. Not every turn carries the same structural weight.",
@@ -15,7 +15,28 @@
     "estMinutes": 8
   },
   "watch": {
-    "markers": []
+    "markers": [
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Swings inside swings"
+      },
+      {
+        "t": "00:32",
+        "label": "Same chart, two traders"
+      },
+      {
+        "t": "00:54",
+        "label": "Which swing answers your question?"
+      },
+      {
+        "t": "01:05",
+        "label": "Your mission"
+      }
+    ]
   },
   "slides": [
     {

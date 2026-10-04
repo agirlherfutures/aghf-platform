@@ -4,7 +4,7 @@
   "lessonNumber": 8,
   "title": "Consolidation",
   "videoUrl": null,
-  "videoDuration": "",
+  "videoDuration": "1:20",
   "xpValue": 65,
   "passThreshold": 0.6,
   "hook": "Sometimes price isn’t walking up or down the stairs. It’s walking around the room.",
@@ -15,7 +15,28 @@
     "estMinutes": 7
   },
   "watch": {
-    "markers": []
+    "markers": [
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Walking around the room"
+      },
+      {
+        "t": "00:34",
+        "label": "Trend or range?"
+      },
+      {
+        "t": "00:58",
+        "label": "Moving without progress"
+      },
+      {
+        "t": "01:07",
+        "label": "Your mission"
+      }
+    ]
   },
   "slides": [
     {

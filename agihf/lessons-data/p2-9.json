@@ -4,7 +4,7 @@
   "lessonNumber": 9,
   "title": "Expansion, Pullbacks & Progression",
   "videoUrl": null,
-  "videoDuration": "",
+  "videoDuration": "1:24",
   "xpValue": 65,
   "passThreshold": 0.6,
   "hook": "Price pushes. Price pauses. Price pulls back. Then we see what it does next.",
@@ -15,7 +15,28 @@
     "estMinutes": 8
   },
   "watch": {
-    "markers": []
+    "markers": [
+      {
+        "t": "00:00",
+        "label": "Intro"
+      },
+      {
+        "t": "00:08",
+        "label": "Push, pull back, push again"
+      },
+      {
+        "t": "00:36",
+        "label": "Retracement or reversal?"
+      },
+      {
+        "t": "01:00",
+        "label": "What price breaks"
+      },
+      {
+        "t": "01:11",
+        "label": "Your mission"
+      }
+    ]
   },
   "slides": [
     {
