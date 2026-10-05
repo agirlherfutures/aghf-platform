@@ -1,0 +1,816 @@
+{
+  "phase": "p3",
+  "section": "s8",
+  "lessonNumber": 14,
+  "title": "Efficient vs Inefficient",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "More balanced-looking or more imbalanced-looking. Not good or bad.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Describe delivery as more balanced-looking or more imbalanced-looking, and keep structure first.",
+    "missionQuestion": "Does a strong move change the structure?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "teach",
+      "kicker": "Two descriptions",
+      "heading": "More balanced-looking. More imbalanced-looking.",
+      "body": "<strong>More balanced-looking:</strong> lots of overlap and back-and-forth. Both sides traded through the same prices.<br><br><strong>More imbalanced-looking:</strong> big one-direction candles with little overlap.<br><br>Some people call these “efficient” and “inefficient.” Neither one is <em>good</em> or <em>bad</em>. They’re descriptions of delivery.",
+      "check": {
+        "prompt": "Is an imbalanced-looking move better than a balanced-looking one?",
+        "options": [
+          {
+            "label": "No. They’re descriptions, not grades",
+            "correct": true,
+            "why": "Right. Different delivery, not better or worse."
+          },
+          {
+            "label": "Yes, faster is always better",
+            "correct": false,
+            "feedback": "Fast isn’t a grade. It’s a description."
+          }
+        ]
+      }
+    },
+    {
+      "type": "flash_sort",
+      "kicker": "Quick sort",
+      "title": "More balanced-looking or more imbalanced-looking?",
+      "body": "Not good or bad. Just how it looks.",
+      "options": [
+        {
+          "key": "bal",
+          "label": "More balanced-looking",
+          "emoji": "≈"
+        },
+        {
+          "key": "imb",
+          "label": "More imbalanced-looking",
+          "emoji": "⚡"
+        }
+      ],
+      "items": [
+        {
+          "chart": {
+            "swings": [
+              [
+                120,
+                230
+              ],
+              [
+                520,
+                196
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 120,
+                "o": 230,
+                "c": 216,
+                "h": 208,
+                "l": 238,
+                "w": 23.2
+              },
+              {
+                "x": 160,
+                "o": 216,
+                "c": 225,
+                "h": 208,
+                "l": 233,
+                "w": 23.2
+              },
+              {
+                "x": 200,
+                "o": 225,
+                "c": 213,
+                "h": 205,
+                "l": 233,
+                "w": 23.2
+              },
+              {
+                "x": 240,
+                "o": 213,
+                "c": 223,
+                "h": 205,
+                "l": 231,
+                "w": 23.2
+              },
+              {
+                "x": 280,
+                "o": 223,
+                "c": 208,
+                "h": 200,
+                "l": 231,
+                "w": 23.2
+              },
+              {
+                "x": 320,
+                "o": 208,
+                "c": 216,
+                "h": 200,
+                "l": 224,
+                "w": 23.2
+              },
+              {
+                "x": 360,
+                "o": 216,
+                "c": 203,
+                "h": 195,
+                "l": 224,
+                "w": 23.2
+              },
+              {
+                "x": 400,
+                "o": 203,
+                "c": 212,
+                "h": 195,
+                "l": 220,
+                "w": 23.2
+              },
+              {
+                "x": 440,
+                "o": 212,
+                "c": 200,
+                "h": 192,
+                "l": 220,
+                "w": 23.2
+              },
+              {
+                "x": 480,
+                "o": 200,
+                "c": 207,
+                "h": 192,
+                "l": 215,
+                "w": 23.2
+              },
+              {
+                "x": 520,
+                "o": 207,
+                "c": 196,
+                "h": 188,
+                "l": 215,
+                "w": 23.2
+              }
+            ]
+          },
+          "answer": "bal",
+          "why": "Lots of back-and-forth and overlap."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                120,
+                230
+              ],
+              [
+                360,
+                106
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 120,
+                "o": 230,
+                "c": 232,
+                "h": 225,
+                "l": 237,
+                "w": 23.2
+              },
+              {
+                "x": 160,
+                "o": 232,
+                "c": 231,
+                "h": 226,
+                "l": 237,
+                "w": 23.2
+              },
+              {
+                "x": 200,
+                "o": 231,
+                "c": 185,
+                "h": 183,
+                "l": 233,
+                "w": 23.2
+              },
+              {
+                "x": 240,
+                "o": 185,
+                "c": 135,
+                "h": 133,
+                "l": 187,
+                "w": 23.2
+              },
+              {
+                "x": 280,
+                "o": 135,
+                "c": 105,
+                "h": 102,
+                "l": 137,
+                "w": 23.2
+              },
+              {
+                "x": 320,
+                "o": 105,
+                "c": 108,
+                "h": 100,
+                "l": 113,
+                "w": 23.2
+              },
+              {
+                "x": 360,
+                "o": 108,
+                "c": 106,
+                "h": 101,
+                "l": 113,
+                "w": 23.2
+              }
+            ]
+          },
+          "answer": "imb",
+          "why": "Big one-directional candles with little overlap."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                120,
+                110
+              ],
+              [
+                440,
+                138
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 120,
+                "o": 110,
+                "c": 122,
+                "h": 102,
+                "l": 130,
+                "w": 23.2
+              },
+              {
+                "x": 160,
+                "o": 122,
+                "c": 114,
+                "h": 106,
+                "l": 130,
+                "w": 23.2
+              },
+              {
+                "x": 200,
+                "o": 114,
+                "c": 128,
+                "h": 106,
+                "l": 136,
+                "w": 23.2
+              },
+              {
+                "x": 240,
+                "o": 128,
+                "c": 119,
+                "h": 111,
+                "l": 136,
+                "w": 23.2
+              },
+              {
+                "x": 280,
+                "o": 119,
+                "c": 131,
+                "h": 111,
+                "l": 139,
+                "w": 23.2
+              },
+              {
+                "x": 320,
+                "o": 131,
+                "c": 121,
+                "h": 113,
+                "l": 139,
+                "w": 23.2
+              },
+              {
+                "x": 360,
+                "o": 121,
+                "c": 134,
+                "h": 113,
+                "l": 142,
+                "w": 23.2
+              },
+              {
+                "x": 400,
+                "o": 134,
+                "c": 127,
+                "h": 119,
+                "l": 142,
+                "w": 23.2
+              },
+              {
+                "x": 440,
+                "o": 127,
+                "c": 138,
+                "h": 119,
+                "l": 146,
+                "w": 23.2
+              }
+            ]
+          },
+          "answer": "bal",
+          "why": "Grinding lower with plenty of overlap."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                120,
+                90
+              ],
+              [
+                360,
+                210
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 120,
+                "o": 90,
+                "c": 88,
+                "h": 83,
+                "l": 95,
+                "w": 23.2
+              },
+              {
+                "x": 160,
+                "o": 88,
+                "c": 89,
+                "h": 83,
+                "l": 94,
+                "w": 23.2
+              },
+              {
+                "x": 200,
+                "o": 89,
+                "c": 129,
+                "h": 87,
+                "l": 131,
+                "w": 23.2
+              },
+              {
+                "x": 240,
+                "o": 129,
+                "c": 175,
+                "h": 127,
+                "l": 177,
+                "w": 23.2
+              },
+              {
+                "x": 280,
+                "o": 175,
+                "c": 209,
+                "h": 173,
+                "l": 212,
+                "w": 23.2
+              },
+              {
+                "x": 320,
+                "o": 209,
+                "c": 207,
+                "h": 202,
+                "l": 214,
+                "w": 23.2
+              },
+              {
+                "x": 360,
+                "o": 207,
+                "c": 210,
+                "h": 202,
+                "l": 215,
+                "w": 23.2
+              }
+            ]
+          },
+          "answer": "imb",
+          "why": "Fast, one-sided delivery down."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                120,
+                200
+              ],
+              [
+                400,
+                200
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 120,
+                "o": 200,
+                "c": 192,
+                "h": 185,
+                "l": 207,
+                "w": 23.2
+              },
+              {
+                "x": 160,
+                "o": 192,
+                "c": 199,
+                "h": 185,
+                "l": 206,
+                "w": 23.2
+              },
+              {
+                "x": 200,
+                "o": 199,
+                "c": 190,
+                "h": 183,
+                "l": 206,
+                "w": 23.2
+              },
+              {
+                "x": 240,
+                "o": 190,
+                "c": 198,
+                "h": 183,
+                "l": 205,
+                "w": 23.2
+              },
+              {
+                "x": 280,
+                "o": 198,
+                "c": 192,
+                "h": 185,
+                "l": 205,
+                "w": 23.2
+              },
+              {
+                "x": 320,
+                "o": 192,
+                "c": 201,
+                "h": 185,
+                "l": 208,
+                "w": 23.2
+              },
+              {
+                "x": 360,
+                "o": 201,
+                "c": 193,
+                "h": 186,
+                "l": 208,
+                "w": 23.2
+              },
+              {
+                "x": 400,
+                "o": 193,
+                "c": 200,
+                "h": 186,
+                "l": 207,
+                "w": 23.2
+              }
+            ]
+          },
+          "answer": "bal",
+          "why": "Small overlapping candles."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                120,
+                230
+              ],
+              [
+                320,
+                117
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 120,
+                "o": 230,
+                "c": 227,
+                "h": 222,
+                "l": 235,
+                "w": 23.2
+              },
+              {
+                "x": 160,
+                "o": 227,
+                "c": 189,
+                "h": 187,
+                "l": 229,
+                "w": 23.2
+              },
+              {
+                "x": 200,
+                "o": 189,
+                "c": 193,
+                "h": 184,
+                "l": 198,
+                "w": 23.2
+              },
+              {
+                "x": 240,
+                "o": 193,
+                "c": 151,
+                "h": 149,
+                "l": 195,
+                "w": 23.2
+              },
+              {
+                "x": 280,
+                "o": 151,
+                "c": 115,
+                "h": 112,
+                "l": 153,
+                "w": 23.2
+              },
+              {
+                "x": 320,
+                "o": 115,
+                "c": 117,
+                "h": 110,
+                "l": 122,
+                "w": 23.2
+              }
+            ]
+          },
+          "answer": "imb",
+          "why": "Mostly big candles in one direction."
+        }
+      ],
+      "passText": "Different delivery. Not better or worse."
+    },
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            50,
+            70
+          ],
+          [
+            620,
+            198
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 50,
+            "o": 70,
+            "c": 78,
+            "h": 66,
+            "l": 82,
+            "w": 17.4
+          },
+          {
+            "x": 80,
+            "o": 78,
+            "c": 84,
+            "h": 74,
+            "l": 88,
+            "w": 17.4
+          },
+          {
+            "x": 110,
+            "o": 84,
+            "c": 93,
+            "h": 80,
+            "l": 97,
+            "w": 17.4
+          },
+          {
+            "x": 140,
+            "o": 93,
+            "c": 113,
+            "h": 90,
+            "l": 116,
+            "w": 17.4
+          },
+          {
+            "x": 170,
+            "o": 113,
+            "c": 131,
+            "h": 109,
+            "l": 135,
+            "w": 17.4
+          },
+          {
+            "x": 200,
+            "o": 131,
+            "c": 153,
+            "h": 127,
+            "l": 157,
+            "w": 17.4
+          },
+          {
+            "x": 230,
+            "o": 153,
+            "c": 169,
+            "h": 149,
+            "l": 173,
+            "w": 17.4
+          },
+          {
+            "x": 260,
+            "o": 169,
+            "c": 190,
+            "h": 165,
+            "l": 194,
+            "w": 17.4
+          },
+          {
+            "x": 290,
+            "o": 190,
+            "c": 204,
+            "h": 186,
+            "l": 208,
+            "w": 17.4
+          },
+          {
+            "x": 320,
+            "o": 204,
+            "c": 184,
+            "h": 180,
+            "l": 208,
+            "w": 17.4
+          },
+          {
+            "x": 350,
+            "o": 184,
+            "c": 168,
+            "h": 164,
+            "l": 188,
+            "w": 17.4
+          },
+          {
+            "x": 380,
+            "o": 168,
+            "c": 188,
+            "h": 164,
+            "l": 192,
+            "w": 17.4
+          },
+          {
+            "x": 410,
+            "o": 188,
+            "c": 212,
+            "h": 184,
+            "l": 216,
+            "w": 17.4
+          },
+          {
+            "x": 440,
+            "o": 212,
+            "c": 238,
+            "h": 208,
+            "l": 242,
+            "w": 17.4
+          },
+          {
+            "x": 470,
+            "o": 238,
+            "c": 260,
+            "h": 234,
+            "l": 264,
+            "w": 17.4
+          },
+          {
+            "x": 500,
+            "o": 260,
+            "c": 236,
+            "h": 233,
+            "l": 262,
+            "w": 17.4
+          },
+          {
+            "x": 530,
+            "o": 236,
+            "c": 210,
+            "h": 208,
+            "l": 238,
+            "w": 17.4
+          },
+          {
+            "x": 560,
+            "o": 210,
+            "c": 196,
+            "h": 193,
+            "l": 212,
+            "w": 17.4
+          },
+          {
+            "x": 590,
+            "o": 196,
+            "c": 201,
+            "h": 192,
+            "l": 205,
+            "w": 17.4
+          },
+          {
+            "x": 620,
+            "o": 201,
+            "c": 198,
+            "h": 194,
+            "l": 205,
+            "w": 17.4
+          }
+        ],
+        "hlines": [
+          {
+            "y": 164,
+            "label": "Relevant lower high",
+            "tone": "down",
+            "x1": 338,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          },
+          {
+            "y": 264,
+            "label": "Lower low",
+            "tone": "down",
+            "x1": 458,
+            "x2": 690,
+            "size": 13,
+            "below": true,
+            "labelX": 528
+          }
+        ]
+      },
+      "start": 20,
+      "steps": [
+        {
+          "text": "Bearish external structure. Then a burst of strong bullish candles.",
+          "asks": [
+            {
+              "prompt": "Did this displacement change the bearish external structure?",
+              "options": [
+                {
+                  "label": "No. Price hasn’t closed through the relevant lower high",
+                  "correct": true,
+                  "why": "Strong delivery inside the structure. The structure itself is unchanged."
+                },
+                {
+                  "label": "Yes. That move was strong",
+                  "correct": false,
+                  "feedback": "Strength isn’t structure. Which level would need to break?",
+                  "mistake": "structure-hierarchy-error"
+                }
+              ],
+              "concept": "structure-first"
+            }
+          ],
+          "lens": {
+            "structure": "Still bearish. The relevant lower high is intact.",
+            "context": "Imbalanced-looking bullish delivery inside the range.",
+            "execution": "Entry model: not present / not being evaluated yet",
+            "labels": {
+              "context": "Liquidity + delivery"
+            }
+          }
+        }
+      ],
+      "kicker": "Structure check",
+      "title": "Strong move. Same structure?"
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Different delivery. <em>Not good or bad.</em>",
+      "pose": "point",
+      "line": "And strong delivery inside a structure doesn’t change the structure by itself."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What’s the difference between more balanced-looking and more imbalanced-looking delivery?",
+      "modelAnswer": "More balanced-looking delivery has lots of overlap and back-and-forth. More imbalanced-looking delivery has big one-direction candles with little overlap. Neither is good or bad, and a strong move inside a structure doesn’t change that structure unless the relevant swing breaks."
+    }
+  ],
+  "takeaways": [
+    "Balanced-looking: lots of overlap. Imbalanced-looking: big candles, little overlap.",
+    "They’re descriptions, not grades.",
+    "Strong delivery doesn’t change structure unless the relevant swing breaks."
+  ],
+  "remember": "Different delivery. Not good or bad."
+}

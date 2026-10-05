@@ -1,0 +1,384 @@
+{
+  "phase": "p3",
+  "section": "s8",
+  "lessonNumber": 16,
+  "title": "When FVGs Matter",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "The existence of a concept is not the same as relevance.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Choose the FVG that connects to the structure and location, and keep it as context.",
+    "missionQuestion": "Does every FVG matter?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            150
+          ],
+          [
+            586,
+            130
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 40,
+            "o": 150,
+            "c": 160,
+            "h": 145,
+            "l": 165,
+            "w": 15.1
+          },
+          {
+            "x": 66,
+            "o": 160,
+            "c": 151,
+            "h": 146,
+            "l": 165,
+            "w": 15.1
+          },
+          {
+            "x": 92,
+            "o": 151,
+            "c": 145,
+            "h": 142,
+            "l": 154,
+            "w": 15.1
+          },
+          {
+            "x": 118,
+            "o": 145,
+            "c": 121,
+            "h": 119,
+            "l": 147,
+            "w": 15.1
+          },
+          {
+            "x": 144,
+            "o": 121,
+            "c": 113,
+            "h": 110,
+            "l": 124,
+            "w": 15.1
+          },
+          {
+            "x": 170,
+            "o": 113,
+            "c": 127,
+            "h": 108,
+            "l": 132,
+            "w": 15.1
+          },
+          {
+            "x": 196,
+            "o": 127,
+            "c": 139,
+            "h": 122,
+            "l": 144,
+            "w": 15.1
+          },
+          {
+            "x": 222,
+            "o": 139,
+            "c": 155,
+            "h": 134,
+            "l": 160,
+            "w": 15.1
+          },
+          {
+            "x": 248,
+            "o": 155,
+            "c": 173,
+            "h": 150,
+            "l": 178,
+            "w": 15.1
+          },
+          {
+            "x": 274,
+            "o": 173,
+            "c": 193,
+            "h": 168,
+            "l": 198,
+            "w": 15.1
+          },
+          {
+            "x": 300,
+            "o": 193,
+            "c": 207,
+            "h": 188,
+            "l": 212,
+            "w": 15.1
+          },
+          {
+            "x": 326,
+            "o": 207,
+            "c": 197,
+            "h": 192,
+            "l": 212,
+            "w": 15.1
+          },
+          {
+            "x": 352,
+            "o": 197,
+            "c": 205,
+            "h": 192,
+            "l": 210,
+            "w": 15.1
+          },
+          {
+            "x": 378,
+            "o": 205,
+            "c": 217,
+            "h": 200,
+            "l": 222,
+            "w": 15.1
+          },
+          {
+            "x": 404,
+            "o": 217,
+            "c": 227,
+            "h": 212,
+            "l": 232,
+            "w": 15.1
+          },
+          {
+            "x": 430,
+            "o": 227,
+            "c": 215,
+            "h": 212,
+            "l": 230,
+            "w": 15.1
+          },
+          {
+            "x": 456,
+            "o": 215,
+            "c": 169,
+            "h": 167,
+            "l": 217,
+            "w": 15.1
+          },
+          {
+            "x": 482,
+            "o": 169,
+            "c": 129,
+            "h": 127,
+            "l": 171,
+            "w": 15.1
+          },
+          {
+            "x": 508,
+            "o": 129,
+            "c": 103,
+            "h": 100,
+            "l": 132,
+            "w": 15.1
+          },
+          {
+            "x": 534,
+            "o": 103,
+            "c": 112,
+            "h": 98,
+            "l": 117,
+            "w": 15.1
+          },
+          {
+            "x": 560,
+            "o": 112,
+            "c": 120,
+            "h": 107,
+            "l": 125,
+            "w": 15.1
+          },
+          {
+            "x": 586,
+            "o": 120,
+            "c": 130,
+            "h": 115,
+            "l": 135,
+            "w": 15.1
+          }
+        ],
+        "hlines": [
+          {
+            "y": 108,
+            "label": "Prior high",
+            "tone": "purple",
+            "x1": 160,
+            "x2": 690,
+            "size": 13,
+            "labelX": 164
+          }
+        ]
+      },
+      "start": 22,
+      "steps": [
+        {
+          "text": "Three FVGs. Price just broke the prior high with displacement and is pulling back.",
+          "pick": {
+            "prompt": "Which FVG is most relevant to what price is doing now?",
+            "answer": "B",
+            "concept": "fvg-relevance",
+            "hint": "Which gap formed in the move that just changed the picture, close to where price is now?",
+            "notes": {
+              "A": "A formed in old messy price and has been traded through.",
+              "C": "C is old. Price already traded through it."
+            },
+            "mistakes": {
+              "A": "fvg-noise",
+              "C": "fvg-noise"
+            },
+            "why": "B formed in the displacement that broke the prior high, and price is pulling back toward it."
+          },
+          "asks": [
+            {
+              "prompt": "AUTOMATIC TRADE?",
+              "options": [
+                {
+                  "label": "No",
+                  "correct": true,
+                  "why": "Relevant context is still just context."
+                },
+                {
+                  "label": "Yes, buy at B",
+                  "correct": false,
+                  "feedback": "Relevance isn’t an entry.",
+                  "mistake": "context-equals-entry"
+                }
+              ],
+              "concept": "entry-criteria"
+            },
+            {
+              "prompt": "WHY DOES THIS MATTER HERE?",
+              "options": [
+                {
+                  "label": "It formed in the move that broke structure, near where price is now",
+                  "correct": true,
+                  "why": "Location and story. That’s relevance."
+                },
+                {
+                  "label": "Because it’s the biggest box",
+                  "correct": false,
+                  "feedback": "Size isn’t relevance.",
+                  "mistake": "fvg-noise"
+                },
+                {
+                  "label": "Because every FVG matters",
+                  "correct": false,
+                  "feedback": "The existence of a concept is not the same as relevance.",
+                  "mistake": "fvg-noise"
+                }
+              ],
+              "concept": "fvg-relevance"
+            }
+          ],
+          "card": {
+            "title": "FVG context panel",
+            "rows": [
+              [
+                "Where it formed",
+                "Inside the displacement that broke the prior high"
+              ],
+              [
+                "Structure",
+                "Prior high broken. Watching the pullback"
+              ],
+              [
+                "Location",
+                "Price is pulling back toward it"
+              ],
+              [
+                "Status",
+                "Untouched so far"
+              ],
+              [
+                "Entry model",
+                "Not present. Not being evaluated"
+              ]
+            ],
+            "note": "Context, never an entry signal."
+          }
+        }
+      ],
+      "levels": [
+        {
+          "id": "A",
+          "y": 160,
+          "y2": 168,
+          "label": "A",
+          "tone": "muted",
+          "reason": "A small gap in the middle of a messy sell-off. Price traded back through it long ago.",
+          "name": "FVG A",
+          "x1": 210,
+          "x2": 378
+        },
+        {
+          "id": "B",
+          "y": 132,
+          "y2": 167,
+          "label": "B",
+          "tone": "muted",
+          "reason": "Formed in the displacement that broke the prior high. Price is pulling back toward it now.",
+          "name": "FVG B",
+          "x1": 444,
+          "x2": 690
+        },
+        {
+          "id": "C",
+          "y": 124,
+          "y2": 142,
+          "label": "C",
+          "tone": "muted",
+          "reason": "An old gap from before the swing high. Price already traded through it.",
+          "name": "FVG C",
+          "x1": 80,
+          "x2": 248
+        }
+      ],
+      "kicker": "Which one matters?",
+      "title": "Three gaps. One story."
+    },
+    {
+      "type": "academy_concept",
+      "variant": "literacy",
+      "title": "The existence of a concept is not the same as relevance.",
+      "body": "Every chart has FVGs. Most of them don’t matter to the question you’re asking. One that formed in the move that changed the structure, near where price is now, may be worth noting as context.",
+      "points": [
+        "Where did it form?",
+        "Does it connect to the structure?",
+        "Is price anywhere near it?"
+      ],
+      "footer": "And even then: context, not an entry."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Existence ≠ <em>relevance.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What makes one FVG more relevant than another?",
+      "modelAnswer": "Where it formed and how it connects to structure. An FVG that formed in the displacement that broke structure, near where price is now, is more relevant than an old gap or one from messy price. Even then, it’s context and not an automatic trade."
+    }
+  ],
+  "takeaways": [
+    "Most FVGs on a chart don’t matter to your question.",
+    "Relevance comes from where it formed, the structure, and location.",
+    "A relevant FVG is still context, not an automatic trade."
+  ],
+  "remember": "The existence of a concept is not the same as relevance."
+}

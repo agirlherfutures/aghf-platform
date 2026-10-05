@@ -1,0 +1,330 @@
+{
+  "phase": "p3",
+  "section": "s8",
+  "lessonNumber": 17,
+  "title": "When FVGs Don’t Matter",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "If the drawing makes you forget the structure, the drawing is hurting you.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Clean a chart full of FVGs down to the structure and the one piece of context that helps.",
+    "missionQuestion": "Should you keep every FVG you find?",
+    "estMinutes": 6
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "teach",
+      "kicker": "It happens fast",
+      "heading": "FVGs pile up.",
+      "body": "Every displacement leaves a gap. Every pullback can leave one too. Mark them all and your chart turns into boxes on boxes, and the structure disappears underneath.",
+      "check": {
+        "prompt": "You have nine FVG boxes on one chart. What’s the first question?",
+        "options": [
+          {
+            "label": "Which of these helps me read the structure?",
+            "correct": true,
+            "why": "Structure first. Then keep what helps."
+          },
+          {
+            "label": "Which box is the biggest?",
+            "correct": false,
+            "feedback": "Size isn’t relevance.",
+            "mistake": "fvg-noise"
+          },
+          {
+            "label": "How do I fit more on?",
+            "correct": false,
+            "feedback": "More drawings ≠ more understanding.",
+            "mistake": "concept-overload"
+          }
+        ]
+      }
+    },
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            280
+          ],
+          [
+            553,
+            202
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 40,
+            "o": 280,
+            "c": 270,
+            "h": 265,
+            "l": 285,
+            "w": 15.7
+          },
+          {
+            "x": 67,
+            "o": 270,
+            "c": 278,
+            "h": 265,
+            "l": 283,
+            "w": 15.7
+          },
+          {
+            "x": 94,
+            "o": 278,
+            "c": 266,
+            "h": 263,
+            "l": 281,
+            "w": 15.7
+          },
+          {
+            "x": 121,
+            "o": 266,
+            "c": 232,
+            "h": 230,
+            "l": 268,
+            "w": 15.7
+          },
+          {
+            "x": 148,
+            "o": 232,
+            "c": 220,
+            "h": 217,
+            "l": 235,
+            "w": 15.7
+          },
+          {
+            "x": 175,
+            "o": 220,
+            "c": 226,
+            "h": 217,
+            "l": 229,
+            "w": 15.7
+          },
+          {
+            "x": 202,
+            "o": 226,
+            "c": 246,
+            "h": 224,
+            "l": 248,
+            "w": 15.7
+          },
+          {
+            "x": 229,
+            "o": 246,
+            "c": 254,
+            "h": 243,
+            "l": 257,
+            "w": 15.7
+          },
+          {
+            "x": 256,
+            "o": 254,
+            "c": 242,
+            "h": 239,
+            "l": 257,
+            "w": 15.7
+          },
+          {
+            "x": 283,
+            "o": 242,
+            "c": 206,
+            "h": 204,
+            "l": 244,
+            "w": 15.7
+          },
+          {
+            "x": 310,
+            "o": 206,
+            "c": 192,
+            "h": 189,
+            "l": 209,
+            "w": 15.7
+          },
+          {
+            "x": 337,
+            "o": 192,
+            "c": 198,
+            "h": 189,
+            "l": 201,
+            "w": 15.7
+          },
+          {
+            "x": 364,
+            "o": 198,
+            "c": 216,
+            "h": 196,
+            "l": 218,
+            "w": 15.7
+          },
+          {
+            "x": 391,
+            "o": 216,
+            "c": 224,
+            "h": 213,
+            "l": 227,
+            "w": 15.7
+          },
+          {
+            "x": 418,
+            "o": 224,
+            "c": 212,
+            "h": 209,
+            "l": 227,
+            "w": 15.7
+          },
+          {
+            "x": 445,
+            "o": 212,
+            "c": 180,
+            "h": 178,
+            "l": 214,
+            "w": 15.7
+          },
+          {
+            "x": 472,
+            "o": 180,
+            "c": 166,
+            "h": 163,
+            "l": 183,
+            "w": 15.7
+          },
+          {
+            "x": 499,
+            "o": 166,
+            "c": 176,
+            "h": 161,
+            "l": 181,
+            "w": 15.7
+          },
+          {
+            "x": 526,
+            "o": 176,
+            "c": 190,
+            "h": 171,
+            "l": 195,
+            "w": 15.7
+          },
+          {
+            "x": 553,
+            "o": 190,
+            "c": 202,
+            "h": 185,
+            "l": 207,
+            "w": 15.7
+          }
+        ]
+      },
+      "start": 20,
+      "steps": [
+        {
+          "text": "Bullish structure, pulling back. Every FVG has been drawn. Can you still see the structure?",
+          "clean": {
+            "prompt": "FVG CLEANUP: delete every drawing that doesn’t help you read this structure.",
+            "concept": "fvg-noise",
+            "done": "Clean. Structure first, one piece of context, nothing else."
+          }
+        }
+      ],
+      "levels": [
+        {
+          "id": "hl",
+          "y": 227,
+          "label": "HL",
+          "tone": "up",
+          "keep": true,
+          "reason": "The higher low supporting the bullish structure. It stays.",
+          "x1": 381
+        },
+        {
+          "id": "hh",
+          "y": 161,
+          "label": "HH",
+          "tone": "up",
+          "keep": true,
+          "reason": "The latest higher high. It stays.",
+          "x1": 489
+        },
+        {
+          "id": "f0",
+          "y": 235,
+          "y2": 263,
+          "tone": "junk",
+          "keep": false,
+          "reason": "An old gap from an earlier leg. It doesn’t help you read where the structure stands now.",
+          "x1": 84,
+          "x2": 268
+        },
+        {
+          "id": "f1",
+          "y": 229,
+          "y2": 243,
+          "tone": "junk",
+          "keep": false,
+          "reason": "A small gap inside a pullback. Noise for this question.",
+          "x1": 165,
+          "x2": 349
+        },
+        {
+          "id": "f2",
+          "y": 209,
+          "y2": 239,
+          "tone": "junk",
+          "keep": false,
+          "reason": "An old gap from an earlier leg. It doesn’t help you read where the structure stands now.",
+          "x1": 246,
+          "x2": 430
+        },
+        {
+          "id": "f3",
+          "y": 201,
+          "y2": 213,
+          "tone": "junk",
+          "keep": false,
+          "reason": "A small gap inside a pullback. Noise for this question.",
+          "x1": 327,
+          "x2": 511
+        },
+        {
+          "id": "f4",
+          "y": 183,
+          "y2": 209,
+          "tone": "purple",
+          "keep": true,
+          "reason": "The gap from the latest displacement, right where price is pulling back. It can stay as context.",
+          "x1": 408,
+          "x2": 690
+        }
+      ],
+      "kicker": "FVG cleanup",
+      "title": "When the drawings pile up."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "If the drawing makes you forget the structure, <em>the drawing is hurting you.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "When does an FVG not matter?",
+      "modelAnswer": "When it doesn’t help me read the structure or answer my current question: old gaps from earlier legs, tiny gaps inside pullbacks, or boxes that just pile up. If a drawing makes me forget the structure, it’s hurting me, so I delete it."
+    }
+  ],
+  "takeaways": [
+    "FVGs pile up fast.",
+    "Keep only what helps you read the structure.",
+    "If the drawing makes you forget the structure, the drawing is hurting you."
+  ],
+  "remember": "If the drawing makes you forget the structure, the drawing is hurting you."
+}

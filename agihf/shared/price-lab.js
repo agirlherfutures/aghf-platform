@@ -140,6 +140,22 @@ export function lensCard(l) {
   return d;
 }
 
+/* ── Delivery meter: qualitative only, never a fake number ────────── */
+
+const METER_POS = { overlap: 0.12, balanced: 0.25, mixed: 0.5, imbalanced: 0.75, displaced: 0.88 };
+const METER_WORD = { overlap: 'Overlapping', balanced: 'More balanced-looking', mixed: 'Mixed', imbalanced: 'More imbalanced-looking', displaced: 'Displaced' };
+/** m = 'balanced' | 'mixed' | 'displaced' | … or { value, label, title } */
+export function meterEl(m) {
+  const v = typeof m === 'string' ? { value: m } : m;
+  const d = document.createElement('div');
+  d.className = 'p3-meter';
+  d.innerHTML = `<div class="p3-meter-head"><span>${v.title || 'Delivery meter'}</span><em>Educational read · not a measurement</em></div>
+    <div class="p3-meter-track" role="img" aria-label="${v.label || METER_WORD[v.value] || ''}"><i style="left:${(METER_POS[v.value] ?? 0.5) * 100}%"></i></div>
+    <div class="p3-meter-ends"><span>${v.left || 'Two-sided / overlapping'}</span><span>${v.right || 'One-sided / displaced'}</span></div>
+    <div class="p3-meter-word">${v.label || METER_WORD[v.value] || ''}</div>`;
+  return d;
+}
+
 /* ── Structure Story + What we know ─────────────────────────────────── */
 
 function storyHtml(story) {
@@ -319,7 +335,7 @@ export function renderPriceLab(el, slide, satisfy, helpers) {
       if (s.evidence) card.querySelector('.pl-ev-slot').innerHTML = evidenceHtml(s.evidence);
       if (s.relabel && lv) Object.entries(s.relabel).forEach(([id, r]) => lv.relabel(id, r.label, r.tone));
       say(s.text);
-      const afterAsks = () => { if (s.card) asks.appendChild(purposeCard(s.card)); if (s.lens) asks.appendChild(lensCard(s.lens)); finish(); };
+      const afterAsks = () => { if (s.card) asks.appendChild(purposeCard(s.card)); if (s.lens) asks.appendChild(lensCard(s.lens)); if (s.meter) asks.appendChild(meterEl(s.meter)); finish(); };
       const afterTools = () => (s.asks || s.ask ? runAsks(s.asks || [s.ask], 0, afterAsks) : afterAsks());
       const tool = lv && ['pick', 'keep', 'clean', 'zone'].find((k) => s[k]);
       const afterTap = () => (tool ? lv[tool](s[tool], asks, helpers, afterTools) : afterTools());

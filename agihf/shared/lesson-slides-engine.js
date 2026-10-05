@@ -36,6 +36,7 @@ import { STRUCTURE_RENDERERS } from './structure-slides.js';
 import { V2_RENDERERS, renderV2Complete } from './lesson-v2.js';
 import { PRICE_LAB_RENDERERS } from './price-lab.js';
 import { PHASE3_RENDERERS } from './phase3-tools.js';
+import { PRICE_REPLAY_RENDERERS } from './price-replay.js';
 import { LEVEL_RENDERERS } from './level-tools.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
@@ -926,6 +927,7 @@ export const SLIDE_RENDERERS = {
   ...PRICE_LAB_RENDERERS,
   ...LEVEL_RENDERERS,
   ...PHASE3_RENDERERS,
+  ...PRICE_REPLAY_RENDERERS,
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
   chart_tap: renderChartTapSlide,

@@ -1,0 +1,342 @@
+{
+  "phase": "p3",
+  "section": "s8",
+  "lessonNumber": 11,
+  "title": "Displacement",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Momentum is information. Not a complete trade plan.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Recognize displacement and separate what it tells you from what it doesn’t.",
+    "missionQuestion": "If a candle displaces, is that a reason to buy?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_replay",
+      "kicker": "Show it first",
+      "charts": [
+        {
+          "chart": {
+            "swings": [
+              [
+                60,
+                235
+              ],
+              [
+                536,
+                107
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60,
+                "o": 235,
+                "c": 244,
+                "h": 229,
+                "l": 250,
+                "w": 19.7
+              },
+              {
+                "x": 94,
+                "o": 244,
+                "c": 234,
+                "h": 228,
+                "l": 250,
+                "w": 19.7
+              },
+              {
+                "x": 128,
+                "o": 234,
+                "c": 242,
+                "h": 228,
+                "l": 248,
+                "w": 19.7
+              },
+              {
+                "x": 162,
+                "o": 242,
+                "c": 231,
+                "h": 225,
+                "l": 248,
+                "w": 19.7
+              },
+              {
+                "x": 196,
+                "o": 231,
+                "c": 241,
+                "h": 225,
+                "l": 247,
+                "w": 19.7
+              },
+              {
+                "x": 230,
+                "o": 241,
+                "c": 232,
+                "h": 226,
+                "l": 247,
+                "w": 19.7
+              },
+              {
+                "x": 264,
+                "o": 232,
+                "c": 240,
+                "h": 226,
+                "l": 246,
+                "w": 19.7
+              },
+              {
+                "x": 298,
+                "o": 240,
+                "c": 188,
+                "h": 185,
+                "l": 242,
+                "w": 19.7
+              },
+              {
+                "x": 332,
+                "o": 188,
+                "c": 130,
+                "h": 128,
+                "l": 190,
+                "w": 19.7
+              },
+              {
+                "x": 366,
+                "o": 130,
+                "c": 90,
+                "h": 86,
+                "l": 133,
+                "w": 19.7
+              },
+              {
+                "x": 400,
+                "o": 90,
+                "c": 102,
+                "h": 84,
+                "l": 108,
+                "w": 19.7
+              },
+              {
+                "x": 434,
+                "o": 102,
+                "c": 111,
+                "h": 96,
+                "l": 117,
+                "w": 19.7
+              },
+              {
+                "x": 468,
+                "o": 111,
+                "c": 104,
+                "h": 98,
+                "l": 117,
+                "w": 19.7
+              },
+              {
+                "x": 502,
+                "o": 104,
+                "c": 115,
+                "h": 98,
+                "l": 121,
+                "w": 19.7
+              },
+              {
+                "x": 536,
+                "o": 115,
+                "c": 107,
+                "h": 101,
+                "l": 121,
+                "w": 19.7
+              }
+            ],
+            "hlines": [
+              {
+                "y": 207,
+                "label": "Prior high",
+                "tone": "purple",
+                "x1": 40,
+                "x2": 690,
+                "size": 13,
+                "id": "st",
+                "labelX": 528
+              }
+            ],
+            "boxes": [
+              {
+                "x1": 284,
+                "y1": 86,
+                "x2": 380,
+                "y2": 244,
+                "tone": "gold",
+                "label": "Displacement",
+                "id": "dp",
+                "labelRight": false
+              }
+            ]
+          }
+        }
+      ],
+      "start": 1,
+      "title": "Watch this move.",
+      "pauses": [
+        {
+          "at": 10,
+          "text": "Look at the last three candles.",
+          "show": [
+            "dp"
+          ],
+          "asks": [
+            {
+              "prompt": "WHAT DO YOU NOTICE?",
+              "options": [
+                {
+                  "label": "Large candles moving one direction with little overlap",
+                  "correct": true,
+                  "why": "That’s displacement: a strong, fast, one-directional move."
+                },
+                {
+                  "label": "Price will definitely keep going up",
+                  "correct": false,
+                  "feedback": "That’s a prediction. Describe what you see.",
+                  "mistake": "displacement-as-entry"
+                },
+                {
+                  "label": "A normal slow grind",
+                  "correct": false,
+                  "feedback": "Compare the size of these candles to the ones before."
+                }
+              ],
+              "concept": "displacement"
+            }
+          ],
+          "meter": "displaced"
+        }
+      ],
+      "end": {
+        "text": "Price pulled back after the push.",
+        "asks": [
+          {
+            "prompt": "Did the displacement promise what happens next?",
+            "options": [
+              {
+                "label": "No",
+                "correct": true,
+                "why": "It told us about that moment. Not the future."
+              },
+              {
+                "label": "Yes",
+                "correct": false,
+                "feedback": "Look what price did after it.",
+                "mistake": "displacement-as-entry"
+              }
+            ],
+            "concept": "displacement"
+          }
+        ]
+      },
+      "overlays": [
+        {
+          "key": "st",
+          "label": "Show structure",
+          "ids": [
+            "st"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "confusion",
+      "heading": "What displacement tells you, and what it doesn’t.",
+      "left": {
+        "label": "It can tell you ✓",
+        "points": [
+          "Price moved strongly in one direction",
+          "Participation looked one-sided in that moment",
+          "That move may be worth noting as context"
+        ]
+      },
+      "right": {
+        "label": "It doesn’t tell you ✗",
+        "points": [
+          "That price will continue",
+          "That structure changed",
+          "That you have an entry"
+        ]
+      }
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Catch the mistake",
+      "title": "“That candle displaced. I’m buying.”",
+      "items": [
+        {
+          "text": "A strong displacement candle",
+          "answer": "SHE HAS IT",
+          "why": "Yes, that part is real.",
+          "concept": "displacement"
+        },
+        {
+          "text": "The structural context",
+          "answer": "MISSING",
+          "why": "What is the structure doing? She hasn’t said.",
+          "mistake": "displacement-as-entry",
+          "concept": "structure-first"
+        },
+        {
+          "text": "The Dayli ICC entry sequence",
+          "answer": "MISSING",
+          "why": "A big candle isn’t the entry model.",
+          "mistake": "displacement-as-entry",
+          "concept": "entry-criteria"
+        },
+        {
+          "text": "A plan for where her idea is wrong",
+          "answer": "MISSING",
+          "why": "No risk plan, no trade plan.",
+          "mistake": "displacement-as-entry",
+          "concept": "entry-criteria"
+        }
+      ],
+      "prompt": "Your friend has one thing. What’s missing?",
+      "choices": [
+        "SHE HAS IT",
+        "MISSING"
+      ],
+      "footer": "<strong>MOMENTUM IS INFORMATION. NOT A COMPLETE TRADE PLAN.</strong>"
+    },
+    {
+      "type": "academy_concept",
+      "variant": "literacy",
+      "title": "Momentum is information. Not a complete trade plan.",
+      "body": "Displacement is a useful thing to notice. It describes how price delivered in that moment. It isn’t a structure change, a prediction, or an entry."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Momentum is <em>information.</em>",
+      "pose": "point",
+      "line": "Not a complete trade plan."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What does displacement tell you, and what doesn’t it tell you?",
+      "modelAnswer": "Displacement tells me price moved strongly in one direction with little overlap, so participation looked one-sided in that moment. It doesn’t tell me price will continue, that structure changed, or that I have an entry."
+    }
+  ],
+  "takeaways": [
+    "Displacement: a strong, fast, one-directional move with little overlap.",
+    "It describes that moment, not the future.",
+    "Momentum is information. Not a complete trade plan."
+  ],
+  "remember": "Momentum is information. Not a complete trade plan."
+}

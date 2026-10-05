@@ -1,0 +1,568 @@
+{
+  "phase": "p3",
+  "section": "s8",
+  "lessonNumber": 10,
+  "title": "What Is Price Delivery?",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Don’t just ask where price went. Ask how it got there.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Compare two moves that reach the same place with different delivery.",
+    "missionQuestion": "If two moves end in the same place, were they the same move?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "v2_screen",
+      "kicker": "Phase 3 · Section 2 · Lesson 10",
+      "headline": "See how price <em>traveled.</em>",
+      "line": "Same destination can come from very different trips. This section is about the trip.",
+      "visual": {
+        "host": "wave"
+      },
+      "cta": "Let’s investigate →",
+      "ctaPink": true
+    },
+    {
+      "type": "price_replay",
+      "kicker": "Play both",
+      "charts": [
+        {
+          "label": "Move A",
+          "chart": {
+            "swings": [
+              [
+                60,
+                270
+              ],
+              [
+                592,
+                76
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60,
+                "o": 270,
+                "c": 242,
+                "h": 235,
+                "l": 277,
+                "w": 16.2
+              },
+              {
+                "x": 88,
+                "o": 242,
+                "c": 254,
+                "h": 235,
+                "l": 261,
+                "w": 16.2
+              },
+              {
+                "x": 116,
+                "o": 254,
+                "c": 226,
+                "h": 219,
+                "l": 261,
+                "w": 16.2
+              },
+              {
+                "x": 144,
+                "o": 226,
+                "c": 238,
+                "h": 219,
+                "l": 245,
+                "w": 16.2
+              },
+              {
+                "x": 172,
+                "o": 238,
+                "c": 210,
+                "h": 203,
+                "l": 245,
+                "w": 16.2
+              },
+              {
+                "x": 200,
+                "o": 210,
+                "c": 222,
+                "h": 203,
+                "l": 229,
+                "w": 16.2
+              },
+              {
+                "x": 228,
+                "o": 222,
+                "c": 194,
+                "h": 187,
+                "l": 229,
+                "w": 16.2
+              },
+              {
+                "x": 256,
+                "o": 194,
+                "c": 206,
+                "h": 187,
+                "l": 213,
+                "w": 16.2
+              },
+              {
+                "x": 284,
+                "o": 206,
+                "c": 178,
+                "h": 171,
+                "l": 213,
+                "w": 16.2
+              },
+              {
+                "x": 312,
+                "o": 178,
+                "c": 190,
+                "h": 171,
+                "l": 197,
+                "w": 16.2
+              },
+              {
+                "x": 340,
+                "o": 190,
+                "c": 162,
+                "h": 155,
+                "l": 197,
+                "w": 16.2
+              },
+              {
+                "x": 368,
+                "o": 162,
+                "c": 174,
+                "h": 155,
+                "l": 181,
+                "w": 16.2
+              },
+              {
+                "x": 396,
+                "o": 174,
+                "c": 146,
+                "h": 139,
+                "l": 181,
+                "w": 16.2
+              },
+              {
+                "x": 424,
+                "o": 146,
+                "c": 158,
+                "h": 139,
+                "l": 165,
+                "w": 16.2
+              },
+              {
+                "x": 452,
+                "o": 158,
+                "c": 130,
+                "h": 123,
+                "l": 165,
+                "w": 16.2
+              },
+              {
+                "x": 480,
+                "o": 130,
+                "c": 142,
+                "h": 123,
+                "l": 149,
+                "w": 16.2
+              },
+              {
+                "x": 508,
+                "o": 142,
+                "c": 114,
+                "h": 107,
+                "l": 149,
+                "w": 16.2
+              },
+              {
+                "x": 536,
+                "o": 114,
+                "c": 126,
+                "h": 107,
+                "l": 133,
+                "w": 16.2
+              },
+              {
+                "x": 564,
+                "o": 126,
+                "c": 102,
+                "h": 95,
+                "l": 133,
+                "w": 16.2
+              },
+              {
+                "x": 592,
+                "o": 102,
+                "c": 76,
+                "h": 69,
+                "l": 109,
+                "w": 16.2
+              }
+            ],
+            "hlines": [
+              {
+                "y": 270,
+                "label": "Start",
+                "tone": "muted",
+                "x1": 40,
+                "x2": 690,
+                "size": 12,
+                "below": true,
+                "labelX": 40
+              },
+              {
+                "y": 76,
+                "label": "End",
+                "tone": "muted",
+                "x1": 40,
+                "x2": 690,
+                "size": 12,
+                "labelX": 40
+              }
+            ]
+          }
+        },
+        {
+          "label": "Move B",
+          "chart": {
+            "swings": [
+              [
+                60,
+                270
+              ],
+              [
+                592,
+                76
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60,
+                "o": 270,
+                "c": 278,
+                "h": 264,
+                "l": 284,
+                "w": 16.2
+              },
+              {
+                "x": 88,
+                "o": 278,
+                "c": 269,
+                "h": 263,
+                "l": 284,
+                "w": 16.2
+              },
+              {
+                "x": 116,
+                "o": 269,
+                "c": 279,
+                "h": 263,
+                "l": 285,
+                "w": 16.2
+              },
+              {
+                "x": 144,
+                "o": 279,
+                "c": 271,
+                "h": 265,
+                "l": 285,
+                "w": 16.2
+              },
+              {
+                "x": 172,
+                "o": 271,
+                "c": 280,
+                "h": 265,
+                "l": 286,
+                "w": 16.2
+              },
+              {
+                "x": 200,
+                "o": 280,
+                "c": 270,
+                "h": 264,
+                "l": 286,
+                "w": 16.2
+              },
+              {
+                "x": 228,
+                "o": 270,
+                "c": 262,
+                "h": 256,
+                "l": 276,
+                "w": 16.2
+              },
+              {
+                "x": 256,
+                "o": 262,
+                "c": 271,
+                "h": 256,
+                "l": 277,
+                "w": 16.2
+              },
+              {
+                "x": 284,
+                "o": 271,
+                "c": 209,
+                "h": 206,
+                "l": 273,
+                "w": 16.2
+              },
+              {
+                "x": 312,
+                "o": 209,
+                "c": 139,
+                "h": 136,
+                "l": 211,
+                "w": 16.2
+              },
+              {
+                "x": 340,
+                "o": 139,
+                "c": 81,
+                "h": 77,
+                "l": 142,
+                "w": 16.2
+              },
+              {
+                "x": 368,
+                "o": 81,
+                "c": 90,
+                "h": 75,
+                "l": 96,
+                "w": 16.2
+              },
+              {
+                "x": 396,
+                "o": 90,
+                "c": 82,
+                "h": 76,
+                "l": 96,
+                "w": 16.2
+              },
+              {
+                "x": 424,
+                "o": 82,
+                "c": 92,
+                "h": 76,
+                "l": 98,
+                "w": 16.2
+              },
+              {
+                "x": 452,
+                "o": 92,
+                "c": 83,
+                "h": 77,
+                "l": 98,
+                "w": 16.2
+              },
+              {
+                "x": 480,
+                "o": 83,
+                "c": 91,
+                "h": 77,
+                "l": 97,
+                "w": 16.2
+              },
+              {
+                "x": 508,
+                "o": 91,
+                "c": 81,
+                "h": 75,
+                "l": 97,
+                "w": 16.2
+              },
+              {
+                "x": 536,
+                "o": 81,
+                "c": 88,
+                "h": 75,
+                "l": 94,
+                "w": 16.2
+              },
+              {
+                "x": 564,
+                "o": 88,
+                "c": 80,
+                "h": 74,
+                "l": 94,
+                "w": 16.2
+              },
+              {
+                "x": 592,
+                "o": 80,
+                "c": 76,
+                "h": 70,
+                "l": 86,
+                "w": 16.2
+              }
+            ],
+            "hlines": [
+              {
+                "y": 270,
+                "label": "Start",
+                "tone": "muted",
+                "x1": 40,
+                "x2": 690,
+                "size": 12,
+                "below": true,
+                "labelX": 40
+              },
+              {
+                "y": 76,
+                "label": "End",
+                "tone": "muted",
+                "x1": 40,
+                "x2": 690,
+                "size": 12,
+                "labelX": 40
+              }
+            ]
+          }
+        }
+      ],
+      "start": 1,
+      "title": "Two moves. Same trip?",
+      "pauses": [
+        {
+          "at": 8,
+          "text": "Eight candles in.",
+          "asks": [
+            {
+              "prompt": "Which move has traveled further so far?",
+              "options": [
+                {
+                  "label": "Move A",
+                  "correct": true,
+                  "why": "A has been grinding up. B has barely moved."
+                },
+                {
+                  "label": "Move B",
+                  "correct": false,
+                  "feedback": "Look again. B is still sitting near the start."
+                }
+              ],
+              "concept": "price-delivery"
+            }
+          ]
+        },
+        {
+          "at": 11,
+          "text": "Move B just woke up.",
+          "asks": [
+            {
+              "prompt": "What just happened in Move B?",
+              "options": [
+                {
+                  "label": "Price traveled a long way in three candles with little overlap",
+                  "correct": true,
+                  "why": "Big candles, one direction, very little back-and-forth."
+                },
+                {
+                  "label": "Nothing important",
+                  "correct": false,
+                  "feedback": "Three candles just covered most of the move."
+                },
+                {
+                  "label": "Price is guaranteed to keep going",
+                  "correct": false,
+                  "feedback": "We’re describing what happened, not predicting.",
+                  "mistake": "displacement-as-entry"
+                }
+              ],
+              "concept": "displacement"
+            }
+          ],
+          "meter": [
+            null,
+            "displaced"
+          ]
+        }
+      ],
+      "end": {
+        "text": "Both moves are done.",
+        "asks": [
+          {
+            "prompt": "Where did both moves end?",
+            "options": [
+              {
+                "label": "In roughly the same place",
+                "correct": true,
+                "why": "Same start. Same destination."
+              },
+              {
+                "label": "Somewhere completely different",
+                "correct": false,
+                "feedback": "Compare the End lines."
+              }
+            ],
+            "concept": "price-delivery"
+          }
+        ],
+        "meter": [
+          "balanced",
+          "displaced"
+        ],
+        "card": "<strong>SAME DESTINATION. DIFFERENT DELIVERY.</strong><br>Move A traveled with lots of overlap. Move B traveled fast with little overlap."
+      },
+      "intro": "Press <strong>Play both</strong>, or step through one candle at a time."
+    },
+    {
+      "type": "teach",
+      "kicker": "A new habit",
+      "heading": "Ask how price got there.",
+      "body": "<ol class=\"p3-chain\"><li>Where did price start?</li><li>Where did it go?</li><li><strong>How did it get there?</strong></li><li>What did it leave behind?</li><li>What is the structure?</li><li>Does it change my entry model? <em>Not by itself.</em></li></ol>That chain is this whole section. Delivery is context: it sits with liquidity in the middle lens.",
+      "check": {
+        "prompt": "Price moved from the low to the high. What’s the new question this section adds?",
+        "options": [
+          {
+            "label": "How did price get there?",
+            "correct": true,
+            "why": "Exactly. Not just where. How."
+          },
+          {
+            "label": "Where should I enter?",
+            "correct": false,
+            "feedback": "Not this section’s question. We’re learning to see delivery.",
+            "mistake": "displacement-as-entry"
+          },
+          {
+            "label": "Is it going higher?",
+            "correct": false,
+            "feedback": "That’s a prediction. Start with what price already did."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Don’t just ask where price went. Ask <em>how it got there.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What does “price delivery” mean to you now?",
+      "modelAnswer": "Price delivery is how price traveled from one place to another: slowly with lots of overlapping candles, or quickly with big one-directional candles and little overlap. Two moves can reach the same destination with very different delivery. It’s context, not an entry signal."
+    }
+  ],
+  "takeaways": [
+    "Price delivery is how price traveled, not just where it went.",
+    "Same destination, different delivery.",
+    "Delivery is context. It doesn’t change your entry model by itself."
+  ],
+  "remember": "Same destination. Different delivery."
+}
