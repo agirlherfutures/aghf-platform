@@ -1,0 +1,256 @@
+{
+  "phase": "p3",
+  "section": "s9",
+  "lessonNumber": 21,
+  "title": "Aggressive Participation",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Describe what price did before you decide who you think did it.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Describe aggressive moves objectively, and translate participant stories into chart language.",
+    "missionQuestion": "Can a candle tell you who caused it?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            80,
+            110
+          ],
+          [
+            448,
+            207
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 80,
+            "o": 110,
+            "c": 104,
+            "h": 100,
+            "l": 114,
+            "w": 26.7
+          },
+          {
+            "x": 126,
+            "o": 104,
+            "c": 112,
+            "h": 100,
+            "l": 116,
+            "w": 26.7
+          },
+          {
+            "x": 172,
+            "o": 112,
+            "c": 107,
+            "h": 103,
+            "l": 116,
+            "w": 26.7
+          },
+          {
+            "x": 218,
+            "o": 107,
+            "c": 114,
+            "h": 103,
+            "l": 118,
+            "w": 26.7
+          },
+          {
+            "x": 264,
+            "o": 114,
+            "c": 108,
+            "h": 104,
+            "l": 118,
+            "w": 26.7
+          },
+          {
+            "x": 310,
+            "o": 108,
+            "c": 200,
+            "h": 106,
+            "l": 203,
+            "w": 26.7
+          },
+          {
+            "x": 356,
+            "o": 200,
+            "c": 208,
+            "h": 196,
+            "l": 212,
+            "w": 26.7
+          },
+          {
+            "x": 402,
+            "o": 208,
+            "c": 202,
+            "h": 198,
+            "l": 212,
+            "w": 26.7
+          },
+          {
+            "x": 448,
+            "o": 202,
+            "c": 207,
+            "h": 198,
+            "l": 211,
+            "w": 26.7
+          }
+        ]
+      },
+      "start": 9,
+      "steps": [
+        {
+          "text": "One enormous red candle.",
+          "asks": [
+            {
+              "prompt": "WHO CAUSED IT?",
+              "options": [
+                {
+                  "label": "A big bank",
+                  "correct": false,
+                  "feedback": "Maybe. Maybe not. Can the chart show you that?",
+                  "mistake": "participant-identity-assumption"
+                },
+                {
+                  "label": "Retail traders panicking",
+                  "correct": false,
+                  "feedback": "That’s a story. Can the chart show you that?",
+                  "mistake": "participant-identity-assumption"
+                },
+                {
+                  "label": "The chart alone can’t tell us",
+                  "correct": true,
+                  "why": "Right. We can describe what price did. Not who did it."
+                }
+              ],
+              "concept": "participant-identity"
+            },
+            {
+              "prompt": "So what CAN you say?",
+              "options": [
+                {
+                  "label": "Price dropped sharply in one candle with little overlap",
+                  "correct": true,
+                  "why": "Description first."
+                },
+                {
+                  "label": "Smart money exited",
+                  "correct": false,
+                  "feedback": "Still a story.",
+                  "mistake": "storytelling-over-evidence"
+                }
+              ],
+              "concept": "objective-observation"
+            }
+          ]
+        }
+      ],
+      "kicker": "Who did it?",
+      "title": "Something big just happened."
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Bad → better",
+      "title": "Language transformer",
+      "items": [
+        {
+          "text": "“Institutions dumped it.”",
+          "answer": "STORY",
+          "why": "Who sold? The chart can’t say.",
+          "mistake": "participant-identity-assumption",
+          "concept": "objective-observation",
+          "instead": {
+            "prompt": "Better version?",
+            "options": [
+              {
+                "label": "Price dropped sharply with large bearish candles",
+                "correct": true,
+                "why": "Objective."
+              },
+              {
+                "label": "Banks sold everything",
+                "correct": false,
+                "feedback": "Still naming who.",
+                "mistake": "participant-identity-assumption"
+              }
+            ]
+          }
+        },
+        {
+          "text": "“Price closed below the prior low with a large candle.”",
+          "answer": "OBJECTIVE",
+          "why": "You can point at every part of it.",
+          "concept": "objective-observation"
+        },
+        {
+          "text": "“Smart money trapped the buyers.”",
+          "answer": "STORY",
+          "why": "Intent and identity. Not provable here.",
+          "mistake": "storytelling-over-evidence",
+          "concept": "objective-observation",
+          "instead": {
+            "prompt": "Better version?",
+            "options": [
+              {
+                "label": "Price moved above the high, then closed back below it",
+                "correct": true,
+                "why": "Objective."
+              },
+              {
+                "label": "Smart money hunted stops",
+                "correct": false,
+                "feedback": "Still a story.",
+                "mistake": "storytelling-over-evidence"
+              }
+            ]
+          }
+        },
+        {
+          "text": "“Whales are accumulating.”",
+          "answer": "STORY",
+          "why": "You can describe the range. You can’t see whales.",
+          "mistake": "participant-identity-assumption",
+          "concept": "objective-observation",
+          "write": {
+            "prompt": "Your turn: rewrite it objectively.",
+            "model": "Price has been moving sideways in a range with similar highs and lows."
+          }
+        }
+      ],
+      "prompt": "Objective, or a story?",
+      "choices": [
+        "OBJECTIVE",
+        "STORY"
+      ]
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Describe what price did <em>before</em> you decide who you think did it.",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Why is “institutions dumped it” a weaker read than describing the candles?",
+      "modelAnswer": "Because the chart can’t show who traded or why. “Institutions dumped it” is a story. “Price dropped sharply with large bearish candles and little overlap” is something I can point at, and I can build a read on it."
+    }
+  ],
+  "takeaways": [
+    "The chart shows what price did, not who did it.",
+    "Rewrite stories as descriptions you can point at.",
+    "Describe first. Interpret carefully. Claim less."
+  ],
+  "remember": "Describe what price did before you decide who you think did it."
+}

@@ -1,0 +1,598 @@
+{
+  "phase": "p3",
+  "section": "s9",
+  "lessonNumber": 19,
+  "title": "Supply & Demand Basics",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "They show where strong participation appeared before. They don’t replace structure.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Describe supply and demand zones as places where participation appeared before, without treating them as promises.",
+    "missionQuestion": "If price returns to a demand zone, does it have to bounce?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "v2_screen",
+      "kicker": "Phase 3 · Section 3 · Lesson 19",
+      "headline": "Observe first. <em>Assume less.</em>",
+      "line": "This section asks one question over and over: what can I actually claim from this chart?",
+      "visual": {
+        "host": "wave"
+      },
+      "cta": "Let’s investigate →",
+      "ctaPink": true
+    },
+    {
+      "type": "teach",
+      "kicker": "Two definitions",
+      "heading": "Potential demand. Potential supply.",
+      "body": "<strong>Potential demand zone:</strong> an area where price previously left strongly upward, suggesting buyers may have been aggressive there.<br><br><strong>Potential supply zone:</strong> an area where price previously left strongly downward, suggesting sellers may have been aggressive there.<br><br>Notice the words: <em>potential</em>, <em>previously</em>, <em>may</em>. They’re doing real work."
+    },
+    {
+      "type": "price_replay",
+      "kicker": "Zone replay",
+      "charts": [
+        {
+          "chart": {
+            "swings": [
+              [
+                50,
+                170
+              ],
+              [
+                492,
+                96
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 50,
+                "o": 170,
+                "c": 184,
+                "h": 164,
+                "l": 190,
+                "w": 19.7
+              },
+              {
+                "x": 84,
+                "o": 184,
+                "c": 202,
+                "h": 178,
+                "l": 208,
+                "w": 19.7
+              },
+              {
+                "x": 118,
+                "o": 202,
+                "c": 218,
+                "h": 196,
+                "l": 224,
+                "w": 19.7
+              },
+              {
+                "x": 152,
+                "o": 218,
+                "c": 230,
+                "h": 212,
+                "l": 236,
+                "w": 19.7
+              },
+              {
+                "x": 186,
+                "o": 230,
+                "c": 236,
+                "h": 226,
+                "l": 240,
+                "w": 19.7
+              },
+              {
+                "x": 220,
+                "o": 236,
+                "c": 231,
+                "h": 227,
+                "l": 240,
+                "w": 19.7
+              },
+              {
+                "x": 254,
+                "o": 231,
+                "c": 235,
+                "h": 227,
+                "l": 239,
+                "w": 19.7
+              },
+              {
+                "x": 288,
+                "o": 235,
+                "c": 173,
+                "h": 171,
+                "l": 237,
+                "w": 19.7
+              },
+              {
+                "x": 322,
+                "o": 173,
+                "c": 125,
+                "h": 123,
+                "l": 175,
+                "w": 19.7
+              },
+              {
+                "x": 356,
+                "o": 125,
+                "c": 95,
+                "h": 92,
+                "l": 128,
+                "w": 19.7
+              },
+              {
+                "x": 390,
+                "o": 95,
+                "c": 103,
+                "h": 89,
+                "l": 109,
+                "w": 19.7
+              },
+              {
+                "x": 424,
+                "o": 103,
+                "c": 93,
+                "h": 87,
+                "l": 109,
+                "w": 19.7
+              },
+              {
+                "x": 458,
+                "o": 93,
+                "c": 102,
+                "h": 87,
+                "l": 108,
+                "w": 19.7
+              },
+              {
+                "x": 492,
+                "o": 102,
+                "c": 96,
+                "h": 90,
+                "l": 108,
+                "w": 19.7
+              }
+            ],
+            "boxes": [
+              {
+                "x1": 172,
+                "y1": 224,
+                "x2": 690,
+                "y2": 242,
+                "tone": "up",
+                "label": "Potential demand zone",
+                "id": "dz",
+                "labelRight": true,
+                "labelBelow": true
+              }
+            ]
+          }
+        }
+      ],
+      "start": 1,
+      "title": "Where did price leave in a hurry?",
+      "pauses": [
+        {
+          "at": 10,
+          "text": "Look where that move started.",
+          "show": [
+            "dz"
+          ],
+          "asks": [
+            {
+              "prompt": "What happened at that small base?",
+              "options": [
+                {
+                  "label": "Price left that area strongly upward",
+                  "correct": true,
+                  "why": "Yes. Strong buying participation appeared there at that time."
+                },
+                {
+                  "label": "Price must come back to it",
+                  "correct": false,
+                  "feedback": "We’re describing the past. Nothing has to happen.",
+                  "mistake": "supply-demand-guarantee"
+                },
+                {
+                  "label": "Institutions loaded up there",
+                  "correct": false,
+                  "feedback": "The chart shows price, not who traded.",
+                  "mistake": "participant-identity-assumption"
+                }
+              ],
+              "concept": "supply-demand"
+            }
+          ]
+        }
+      ],
+      "end": {
+        "text": "That base is now a <strong>potential demand zone</strong>: an area where strong buying participation appeared before."
+      }
+    },
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            150
+          ],
+          [
+            460,
+            222
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 40,
+            "o": 150,
+            "c": 138,
+            "h": 133,
+            "l": 155,
+            "w": 16.2
+          },
+          {
+            "x": 68,
+            "o": 138,
+            "c": 148,
+            "h": 133,
+            "l": 153,
+            "w": 16.2
+          },
+          {
+            "x": 96,
+            "o": 148,
+            "c": 108,
+            "h": 103,
+            "l": 153,
+            "w": 16.2
+          },
+          {
+            "x": 124,
+            "o": 108,
+            "c": 62,
+            "h": 57,
+            "l": 113,
+            "w": 16.2
+          },
+          {
+            "x": 152,
+            "o": 62,
+            "c": 42,
+            "h": 37,
+            "l": 67,
+            "w": 16.2
+          },
+          {
+            "x": 180,
+            "o": 42,
+            "c": 52,
+            "h": 37,
+            "l": 57,
+            "w": 16.2
+          },
+          {
+            "x": 208,
+            "o": 52,
+            "c": 66,
+            "h": 47,
+            "l": 71,
+            "w": 16.2
+          },
+          {
+            "x": 236,
+            "o": 66,
+            "c": 84,
+            "h": 61,
+            "l": 89,
+            "w": 16.2
+          },
+          {
+            "x": 264,
+            "o": 84,
+            "c": 106,
+            "h": 79,
+            "l": 111,
+            "w": 16.2
+          },
+          {
+            "x": 292,
+            "o": 106,
+            "c": 126,
+            "h": 101,
+            "l": 131,
+            "w": 16.2
+          },
+          {
+            "x": 320,
+            "o": 126,
+            "c": 142,
+            "h": 121,
+            "l": 147,
+            "w": 16.2
+          },
+          {
+            "x": 348,
+            "o": 142,
+            "c": 148,
+            "h": 136,
+            "l": 154,
+            "w": 16.2,
+            "id": "r1"
+          },
+          {
+            "x": 376,
+            "o": 148,
+            "c": 128,
+            "h": 122,
+            "l": 154,
+            "w": 16.2,
+            "id": "r1"
+          },
+          {
+            "x": 404,
+            "o": 128,
+            "c": 102,
+            "h": 96,
+            "l": 134,
+            "w": 16.2,
+            "id": "r1"
+          },
+          {
+            "x": 432,
+            "o": 102,
+            "c": 80,
+            "h": 74,
+            "l": 108,
+            "w": 16.2,
+            "id": "r1"
+          },
+          {
+            "x": 460,
+            "o": 80,
+            "c": 62,
+            "h": 56,
+            "l": 86,
+            "w": 16.2,
+            "id": "r1"
+          },
+          {
+            "x": 348,
+            "o": 142,
+            "c": 150,
+            "h": 136,
+            "l": 156,
+            "w": 16.2,
+            "id": "r2"
+          },
+          {
+            "x": 376,
+            "o": 150,
+            "c": 144,
+            "h": 138,
+            "l": 156,
+            "w": 16.2,
+            "id": "r2"
+          },
+          {
+            "x": 404,
+            "o": 144,
+            "c": 153,
+            "h": 138,
+            "l": 159,
+            "w": 16.2,
+            "id": "r2"
+          },
+          {
+            "x": 432,
+            "o": 153,
+            "c": 146,
+            "h": 140,
+            "l": 159,
+            "w": 16.2,
+            "id": "r2"
+          },
+          {
+            "x": 460,
+            "o": 146,
+            "c": 154,
+            "h": 140,
+            "l": 160,
+            "w": 16.2,
+            "id": "r2"
+          },
+          {
+            "x": 488,
+            "o": 154,
+            "c": 149,
+            "h": 143,
+            "l": 160,
+            "w": 16.2,
+            "id": "r2"
+          },
+          {
+            "x": 516,
+            "o": 149,
+            "c": 155,
+            "h": 143,
+            "l": 161,
+            "w": 16.2,
+            "id": "r2"
+          },
+          {
+            "x": 348,
+            "o": 142,
+            "c": 156,
+            "h": 136,
+            "l": 162,
+            "w": 16.2,
+            "id": "r3"
+          },
+          {
+            "x": 376,
+            "o": 156,
+            "c": 174,
+            "h": 150,
+            "l": 180,
+            "w": 16.2,
+            "id": "r3"
+          },
+          {
+            "x": 404,
+            "o": 174,
+            "c": 190,
+            "h": 168,
+            "l": 196,
+            "w": 16.2,
+            "id": "r3"
+          },
+          {
+            "x": 432,
+            "o": 190,
+            "c": 210,
+            "h": 184,
+            "l": 216,
+            "w": 16.2,
+            "id": "r3"
+          },
+          {
+            "x": 460,
+            "o": 210,
+            "c": 222,
+            "h": 204,
+            "l": 228,
+            "w": 16.2,
+            "id": "r3"
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 56,
+            "y1": 58,
+            "x2": 690,
+            "y2": 150,
+            "tone": "up",
+            "label": "Potential demand zone",
+            "labelRight": true,
+            "labelBelow": true
+          }
+        ]
+      },
+      "start": 28,
+      "steps": [
+        {
+          "text": "Price is returning to the potential demand zone. Answer first, then tap the outcomes.",
+          "asks": [
+            {
+              "prompt": "WHAT HAPPENS NEXT?",
+              "options": [
+                {
+                  "label": "Price bounces",
+                  "correct": false,
+                  "feedback": "It might. Look at the outcomes.",
+                  "mistake": "supply-demand-guarantee"
+                },
+                {
+                  "label": "Price breaks through",
+                  "correct": false,
+                  "feedback": "It might. Look at the outcomes."
+                },
+                {
+                  "label": "Not enough information",
+                  "correct": true,
+                  "why": "Exactly. The zone shows where participation appeared before. It doesn’t promise what happens now.",
+                  "nei": true
+                }
+              ],
+              "concept": "supply-demand"
+            }
+          ]
+        }
+      ],
+      "views": [
+        {
+          "key": "now",
+          "label": "Now",
+          "hide": [
+            "r1",
+            "r2",
+            "r3"
+          ],
+          "text": "Price is back at the zone."
+        },
+        {
+          "key": "r1",
+          "label": "Outcome 1",
+          "show": [
+            "r1"
+          ],
+          "hide": [
+            "r2",
+            "r3"
+          ],
+          "text": "Price responded and moved higher."
+        },
+        {
+          "key": "r2",
+          "label": "Outcome 2",
+          "show": [
+            "r2"
+          ],
+          "hide": [
+            "r1",
+            "r3"
+          ],
+          "text": "Price chopped around inside the zone."
+        },
+        {
+          "key": "r3",
+          "label": "Outcome 3",
+          "show": [
+            "r3"
+          ],
+          "hide": [
+            "r1",
+            "r2"
+          ],
+          "text": "Price went straight through it."
+        }
+      ],
+      "kicker": "Return to the zone",
+      "title": "Price comes back. Now what?"
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Supply and demand can show where strong participation <em>appeared before.</em>",
+      "pose": "point",
+      "line": "They do not replace structure."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What does a potential demand zone tell you, and what doesn’t it tell you?",
+      "modelAnswer": "It tells me price previously left that area strongly upward, so buyers may have been aggressive there before. It doesn’t tell me what price will do when it returns, and it doesn’t replace structure."
+    }
+  ],
+  "takeaways": [
+    "Potential demand: price previously left strongly upward from that area.",
+    "Potential supply: price previously left strongly downward.",
+    "They don’t promise a reaction and they don’t replace structure."
+  ],
+  "remember": "Supply and demand show where participation appeared before. Not what happens next."
+}
