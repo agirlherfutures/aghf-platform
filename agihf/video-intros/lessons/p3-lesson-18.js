@@ -91,16 +91,16 @@ window.LESSON_VIDEO = {
           "screen": "Candles + FVG"
         },
         {
-          "at": 12.0,
+          "at": 12,
           "text": "Useful context. Now look at the Dayli ICC sequence."
         },
         {
-          "at": 18.0,
+          "at": 18,
           "text": "P.I.L., indication, correction, continuation, retest, entry.",
           "screen": "Sequence"
         },
         {
-          "at": 25.0,
+          "at": 25,
           "text": "Where’s the required FVG step? There isn’t one.",
           "screen": "\"no FVG step\""
         },
@@ -115,7 +115,7 @@ window.LESSON_VIDEO = {
           "from": 0.38,
           "label": "Bullish FVG",
           "tone": "up",
-          "at": 12.0,
+          "at": 12,
           "v2": 0.66
         }
       ],
@@ -125,11 +125,11 @@ window.LESSON_VIDEO = {
           "v": 0.95,
           "text": "PIL → Indication → Correction",
           "tone": "purple",
-          "at": 18.0,
+          "at": 18,
           "fs": 24
         },
         {
-          "u": 0.62,
+          "u": 0.82,
           "v": 0.95,
           "text": "→ Continuation → Retest → Entry",
           "tone": "purple",
@@ -141,7 +141,7 @@ window.LESSON_VIDEO = {
           "v": 1.04,
           "text": "no FVG step",
           "tone": "down",
-          "at": 25.0,
+          "at": 25,
           "fs": 26
         }
       ]
@@ -188,7 +188,7 @@ window.LESSON_VIDEO = {
       ],
       "headlines": [
         {
-          "at": 51.0,
+          "at": 51,
           "html": "We don’t force our method <span class=\"mark\">to fit another concept.</span>"
         }
       ],
@@ -214,7 +214,7 @@ window.LESSON_VIDEO = {
           "screen": "An FVG entry"
         },
         {
-          "at": 51.0,
+          "at": 51,
           "text": "We don’t force our method to fit another concept."
         }
       ]
@@ -243,7 +243,7 @@ window.LESSON_VIDEO = {
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 58,
           "text": "We don’t force our method to fit another concept.",
           "screen": "Aristella points"
         }

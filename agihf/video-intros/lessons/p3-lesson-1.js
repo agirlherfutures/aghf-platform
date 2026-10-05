@@ -81,17 +81,17 @@ window.LESSON_VIDEO = {
           "screen": "Candles build"
         },
         {
-          "at": 12.0,
+          "at": 12,
           "text": "Lots of traders can see that previous high.",
           "screen": "\"Previous high\""
         },
         {
-          "at": 17.0,
+          "at": 17,
           "text": "So orders may rest around it: take-profits, breakout buyers, short stop losses.",
           "screen": "Order pills appear"
         },
         {
-          "at": 23.0,
+          "at": 23,
           "text": "Maybe new sellers too. Other orders we can’t see."
         },
         {
@@ -105,20 +105,20 @@ window.LESSON_VIDEO = {
           "from": 0.25,
           "label": "Previous high",
           "tone": "purple",
-          "at": 12.0
+          "at": 12
         },
         {
           "v": 0.73,
           "from": 0.25,
           "label": "Orders may rest here",
           "tone": "gold",
-          "at": 17.0,
+          "at": 17,
           "v2": 0.86
         }
       ],
       "pills": [
         {
-          "u": 0.8,
+          "u": 1.02,
           "v": 0.95,
           "text": "take-profits",
           "tone": "gold",
@@ -126,7 +126,7 @@ window.LESSON_VIDEO = {
           "fs": 24
         },
         {
-          "u": 0.6,
+          "u": 0.7,
           "v": 0.95,
           "text": "breakout buyers",
           "tone": "gold",
@@ -134,7 +134,7 @@ window.LESSON_VIDEO = {
           "fs": 24
         },
         {
-          "u": 0.4,
+          "u": 0.38,
           "v": 0.95,
           "text": "short stops",
           "tone": "gold",
@@ -180,7 +180,7 @@ window.LESSON_VIDEO = {
       ],
       "headlines": [
         {
-          "at": 51.0,
+          "at": 51,
           "html": "Useful context. <span class=\"mark\">Not a conspiracy.</span>"
         }
       ],
@@ -206,7 +206,7 @@ window.LESSON_VIDEO = {
           "screen": "Liquidity the orders available to trade against"
         },
         {
-          "at": 51.0,
+          "at": 51,
           "text": "It’s useful context. Not a conspiracy."
         }
       ]
@@ -235,7 +235,7 @@ window.LESSON_VIDEO = {
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 58,
           "text": "Liquidity isn’t a secret trap.",
           "screen": "Aristella points"
         }

@@ -91,17 +91,17 @@ window.LESSON_VIDEO = {
           "screen": "Candles build"
         },
         {
-          "at": 13.0,
+          "at": 13,
           "text": "And recovers. A beautiful sweep.",
           "screen": "The sweep candle"
         },
         {
-          "at": 18.0,
+          "at": 18,
           "text": "Structure: bullish. Liquidity: swept and recovered.",
           "screen": "Lens pills"
         },
         {
-          "at": 23.0,
+          "at": 23,
           "text": "Execution: the entry model isn’t here yet.",
           "screen": "\"Execution: not yet\""
         },
@@ -116,25 +116,25 @@ window.LESSON_VIDEO = {
           "from": 0.4,
           "label": "Prior low",
           "tone": "purple",
-          "at": 10.0,
+          "at": 10,
           "below": true
         }
       ],
       "pills": [
         {
-          "u": 0.3,
+          "u": 0.25,
           "v": 0.92,
           "text": "Structure: bullish",
           "tone": "up",
-          "at": 18.0,
+          "at": 18,
           "fs": 26
         },
         {
-          "u": 0.55,
+          "u": 0.75,
           "v": 0.92,
           "text": "Liquidity: swept, recovered",
           "tone": "gold",
-          "at": 20.0,
+          "at": 20,
           "fs": 26
         },
         {
@@ -142,7 +142,7 @@ window.LESSON_VIDEO = {
           "v": 1.02,
           "text": "Execution: not yet",
           "tone": "purple",
-          "at": 23.0,
+          "at": 23,
           "fs": 26
         }
       ],
@@ -153,7 +153,7 @@ window.LESSON_VIDEO = {
           "c": 0.48,
           "hi": 0.5,
           "lo": 0.4,
-          "at": 13.0
+          "at": 13
         }
       ]
     },
@@ -197,7 +197,7 @@ window.LESSON_VIDEO = {
       ],
       "headlines": [
         {
-          "at": 51.0,
+          "at": 51,
           "html": "Understand more. <span class=\"mark\">Require nothing new.</span>"
         }
       ],
@@ -223,7 +223,7 @@ window.LESSON_VIDEO = {
           "screen": "Liquidity required?"
         },
         {
-          "at": 51.0,
+          "at": 51,
           "text": "Understand more. Require nothing new."
         }
       ]
@@ -252,7 +252,7 @@ window.LESSON_VIDEO = {
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 58,
           "text": "Learn more so you can understand more. Not so you can require more.",
           "screen": "Aristella points"
         }

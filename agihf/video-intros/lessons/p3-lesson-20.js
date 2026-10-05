@@ -69,12 +69,12 @@ window.LESSON_VIDEO = {
         },
         {
           "to": 3,
-          "at": 18.0,
+          "at": 18,
           "dur": 1.4
         },
         {
           "to": 4,
-          "at": 23.0,
+          "at": 23,
           "dur": 2.6
         }
       ],
@@ -96,17 +96,17 @@ window.LESSON_VIDEO = {
           "screen": "Candles build"
         },
         {
-          "at": 13.0,
+          "at": 13,
           "text": "Buyers appear more aggressive right now.",
           "screen": "\"buyers appear aggressive\""
         },
         {
-          "at": 18.0,
+          "at": 18,
           "text": "Then wicks both ways. Mixed. Unclear. That’s a real answer.",
           "screen": "\"mixed / unclear\""
         },
         {
-          "at": 23.0,
+          "at": 23,
           "text": "Then closes near the lows. Sellers.",
           "screen": "\"sellers appear aggressive\""
         },
@@ -117,11 +117,11 @@ window.LESSON_VIDEO = {
       ],
       "pills": [
         {
-          "u": 0.18,
+          "u": 0.25,
           "v": 0.75,
           "text": "buyers appear aggressive",
           "tone": "up",
-          "at": 13.0,
+          "at": 13,
           "fs": 26
         },
         {
@@ -129,15 +129,15 @@ window.LESSON_VIDEO = {
           "v": 0.9,
           "text": "mixed / unclear",
           "tone": "muted",
-          "at": 19.0,
+          "at": 19,
           "fs": 26
         },
         {
-          "u": 0.65,
+          "u": 1,
           "v": 0.6,
           "text": "sellers appear aggressive",
           "tone": "down",
-          "at": 25.0,
+          "at": 25,
           "fs": 26
         }
       ]
@@ -180,7 +180,7 @@ window.LESSON_VIDEO = {
       ],
       "headlines": [
         {
-          "at": 51.0,
+          "at": 51,
           "html": "An educational read. <span class=\"mark\">Not a forecast.</span>"
         }
       ],
@@ -206,7 +206,7 @@ window.LESSON_VIDEO = {
           "screen": "Mixed / unclear"
         },
         {
-          "at": 51.0,
+          "at": 51,
           "text": "An educational read. Not a forecast."
         }
       ]
@@ -235,7 +235,7 @@ window.LESSON_VIDEO = {
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 58,
           "text": "Pressure tells you who appears more aggressive right now. Not who wins forever.",
           "screen": "Aristella points"
         }

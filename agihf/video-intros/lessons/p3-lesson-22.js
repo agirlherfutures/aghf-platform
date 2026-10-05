@@ -85,11 +85,11 @@ window.LESSON_VIDEO = {
         {
           "to": 7,
           "at": 8.6,
-          "dur": 4.0
+          "dur": 4
         },
         {
           "to": 8,
-          "at": 23.0,
+          "at": 23,
           "dur": 1.4
         }
       ],
@@ -111,17 +111,17 @@ window.LESSON_VIDEO = {
           "screen": "Candles build"
         },
         {
-          "at": 13.0,
+          "at": 13,
           "text": "Live, what you can see is a consolidation.",
           "screen": "\"Consolidation\""
         },
         {
-          "at": 18.0,
+          "at": 18,
           "text": "Is it accumulation? Not enough information yet.",
           "screen": "Pills"
         },
         {
-          "at": 23.0,
+          "at": 23,
           "text": "Now the future: price breaks higher and builds.",
           "screen": "The break"
         },
@@ -136,7 +136,7 @@ window.LESSON_VIDEO = {
           "from": 0.15,
           "label": "Consolidation",
           "tone": "muted",
-          "at": 13.0,
+          "at": 13,
           "v2": 0.57,
           "out": 28.3
         }
@@ -144,21 +144,21 @@ window.LESSON_VIDEO = {
       "pills": [
         {
           "u": 0.4,
-          "v": 0.75,
+          "v": 0.86,
           "text": "accumulation?",
           "tone": "gold",
-          "at": 18.0,
+          "at": 18,
           "fs": 26,
-          "out": 23.0
+          "out": 23
         },
         {
           "u": 0.4,
-          "v": 0.8,
+          "v": 0.72,
           "text": "not enough information",
           "tone": "purple",
-          "at": 20.0,
+          "at": 20,
           "fs": 26,
-          "out": 23.0
+          "out": 23
         },
         {
           "u": 0.4,
@@ -206,7 +206,7 @@ window.LESSON_VIDEO = {
       ],
       "headlines": [
         {
-          "at": 51.0,
+          "at": 51,
           "html": "Structure confirms. <span class=\"mark\">Then label.</span>"
         }
       ],
@@ -232,7 +232,7 @@ window.LESSON_VIDEO = {
           "screen": "Breaks down distribution in hindsight"
         },
         {
-          "at": 51.0,
+          "at": 51,
           "text": "Let structure confirm. Then label."
         }
       ]
@@ -261,7 +261,7 @@ window.LESSON_VIDEO = {
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 58,
           "text": "A label becomes more useful after structure confirms the story.",
           "screen": "Aristella points"
         }

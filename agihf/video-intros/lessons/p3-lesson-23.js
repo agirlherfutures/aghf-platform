@@ -101,12 +101,12 @@ window.LESSON_VIDEO = {
           "screen": "Candles build"
         },
         {
-          "at": 14.0,
+          "at": 14,
           "text": "Good questions: did it close back below? Is it holding there?",
           "screen": "Green questions"
         },
         {
-          "at": 20.0,
+          "at": 20,
           "text": "Bad questions: how many buy orders? Who bought?",
           "screen": "Red questions"
         },
@@ -122,40 +122,40 @@ window.LESSON_VIDEO = {
       "levels": [
         {
           "v": 0.58,
-          "from": 0.0,
+          "from": 0,
           "label": "Prior high",
           "tone": "purple",
-          "at": 10.0
+          "at": 10
         }
       ],
       "pills": [
         {
-          "u": 0.7,
-          "v": 0.92,
+          "u": 0.85,
+          "v": 0.94,
           "text": "Did it close back below?",
           "tone": "up",
-          "at": 14.0,
+          "at": 14,
           "fs": 26
         },
         {
-          "u": 0.7,
-          "v": 0.82,
+          "u": 0.85,
+          "v": 0.8,
           "text": "Is it holding there?",
           "tone": "up",
-          "at": 16.0,
+          "at": 16,
           "fs": 26
         },
         {
-          "u": 0.3,
-          "v": 0.92,
+          "u": 0.25,
+          "v": 0.94,
           "text": "How many buy orders?",
           "tone": "down",
-          "at": 20.0,
+          "at": 20,
           "fs": 26
         },
         {
-          "u": 0.3,
-          "v": 0.82,
+          "u": 0.25,
+          "v": 0.8,
           "text": "Who bought?",
           "tone": "down",
           "at": 21.4,
@@ -199,7 +199,7 @@ window.LESSON_VIDEO = {
       ],
       "headlines": [
         {
-          "at": 51.0,
+          "at": 51,
           "html": "You don’t need <span class=\"mark\">all of this yet.</span>"
         }
       ],
@@ -225,7 +225,7 @@ window.LESSON_VIDEO = {
           "screen": "Volume profile & delta later"
         },
         {
-          "at": 51.0,
+          "at": 51,
           "text": "You don’t need all of this yet."
         }
       ]
@@ -254,7 +254,7 @@ window.LESSON_VIDEO = {
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 58,
           "text": "You don’t need more data if you still can’t read the price in front of you.",
           "screen": "Aristella points"
         }

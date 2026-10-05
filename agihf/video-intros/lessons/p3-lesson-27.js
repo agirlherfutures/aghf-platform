@@ -91,7 +91,7 @@ window.LESSON_VIDEO = {
           "screen": "Candles build"
         },
         {
-          "at": 13.0,
+          "at": 13,
           "text": "Sweep, FVG, zone, pressure, accumulation… Mercury retrograde.",
           "screen": "The checklist"
         },
@@ -101,7 +101,7 @@ window.LESSON_VIDEO = {
           "screen": "\"GIRL. NO.\""
         },
         {
-          "at": 23.0,
+          "at": 23,
           "text": "Context informs. Execution decides.",
           "screen": "Context vs execution"
         },
@@ -116,16 +116,16 @@ window.LESSON_VIDEO = {
           "v": 0.95,
           "text": "sweep ✓ FVG ✓ zone ✓",
           "tone": "muted",
-          "at": 13.0,
+          "at": 13,
           "fs": 24,
           "out": 22.6
         },
         {
-          "u": 0.6,
+          "u": 0.85,
           "v": 0.95,
           "text": "pressure ✓ accumulation ✓ Mercury ✓ 😂",
           "tone": "muted",
-          "at": 15.0,
+          "at": 15,
           "fs": 24,
           "out": 22.6
         },
@@ -143,7 +143,7 @@ window.LESSON_VIDEO = {
           "v": 1.02,
           "text": "Context informs. Execution decides.",
           "tone": "up",
-          "at": 23.0,
+          "at": 23,
           "fs": 26
         }
       ]
@@ -190,7 +190,7 @@ window.LESSON_VIDEO = {
       ],
       "headlines": [
         {
-          "at": 51.0,
+          "at": 51,
           "html": "Clearer chart. <span class=\"mark\">Not heavier rules.</span>"
         }
       ],
@@ -216,7 +216,7 @@ window.LESSON_VIDEO = {
           "screen": "More rules"
         },
         {
-          "at": 51.0,
+          "at": 51,
           "text": "A clearer chart. Not heavier rules."
         }
       ]
@@ -245,7 +245,7 @@ window.LESSON_VIDEO = {
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 58,
           "text": "More knowledge should make your chart clearer. Not your rules heavier.",
           "screen": "Aristella points"
         }
