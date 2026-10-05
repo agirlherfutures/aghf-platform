@@ -95,9 +95,11 @@
   // syntax error anywhere in their own import graph) would previously kill
   // this entire script before it ever ran, leaving #lwWrap permanently
   // empty with no error shown at all.
+  let UNLOCK = false;
   let PHASES, phaseByKey, isSectionCleared, renderLessonWizard, renderLoopWizard, renderSlideWizard;
   try {
     ({ PHASES, phaseByKey, isSectionCleared } = await import('./shared/curriculum-data.js'));
+    ({ UNLOCK_ALL: UNLOCK } = await import('./shared/preview.js'));
     ({ renderLessonWizard } = await import('./shared/lesson-engine.js'));
     ({ renderLoopWizard } = await import('./shared/loop-engine.js'));
     ({ renderSlideWizard } = await import('./shared/lesson-slides-engine.js'));
@@ -117,6 +119,7 @@
   /** Is `lesson`'s section still locked behind an earlier section's uncleared checkpoint? */
   let gateIds = null;
   function isLessonGated(lesson) {
+    if (UNLOCK) return false;
     const idx = phase.sections.findIndex((s) => s.key === lesson.section.key);
     const prevSection = phase.sections[idx - 1];
     return !!(prevSection && prevSection.checkpoint && !isSectionCleared(phaseKey, prevSection.key, gateIds));
@@ -151,7 +154,14 @@
     }
     const thisDone = isDone(current);
     const lastInSection = isLastInSection(current);
-    if (thisDone && lastInSection && current.section.checkpoint) {
+    const nextBuilt = allLessons[n] && allLessons[n].n;
+    if (UNLOCK && lastInSection && current.section.checkpoint) {
+      nextLink.href = `section.html?phase=${phaseKey}&section=${current.section.key}&step=${current.section.checkpoint?.firstStep || 'welcome'}`;
+      nextLink.textContent = 'Section Checkpoint →';
+    } else if (UNLOCK && nextBuilt) {
+      nextLink.href = `lesson.html?phase=${phaseKey}&n=${n + 1}`;
+      nextLink.textContent = 'Next Lesson →';
+    } else if (thisDone && lastInSection && current.section.checkpoint) {
       nextLink.href = `section.html?phase=${phaseKey}&section=${current.section.key}&step=${current.section.checkpoint?.firstStep || 'welcome'}`;
       nextLink.textContent = 'Section Checkpoint →';
       nextLink.classList.remove('locked');
@@ -169,8 +179,8 @@
       <div class="lh-map-sec">
         <div class="lh-map-sec-title">${sec.title}</div>
         ${sec.lessons.filter((l) => l.n).map((l) => {
-          const state = l.n === n ? 'current' : isDone(l) ? 'done' : 'locked';
-          const icon = state === 'done' ? '✓' : state === 'current' ? '●' : '🔒';
+          const state = l.n === n ? 'current' : isDone(l) ? 'done' : UNLOCK ? 'open' : 'locked';
+          const icon = state === 'done' ? '✓' : state === 'current' ? '●' : state === 'open' ? '○' : '🔒';
           return l.n === n
             ? `<div class="lh-map-lesson ${state}"><span class="lh-map-ico">${icon}</span>${l.title}</div>`
             : `<a class="lh-map-lesson ${state}" ${state !== 'locked' ? `href="lesson.html?phase=${phaseKey}&n=${l.n}"` : ''}><span class="lh-map-ico">${icon}</span>${l.title}</a>`;

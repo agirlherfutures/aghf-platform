@@ -30,6 +30,7 @@
 import {
   burst, showStreak, showToast, wireRetryOptions, drawFrame, drawCandle, renderDayliSays, renderConfusion,
 } from './lesson-engine.js';
+import { isPreviewAll } from './preview.js';
 import { renderLoopWatch } from './loop-engine.js';
 import { saveLessonReflection } from './journal-service.js';
 import { STRUCTURE_RENDERERS } from './structure-slides.js';
@@ -38,6 +39,9 @@ import { PRICE_LAB_RENDERERS } from './price-lab.js';
 import { PHASE3_RENDERERS } from './phase3-tools.js';
 import { PRICE_REPLAY_RENDERERS } from './price-replay.js';
 import { LEVEL_RENDERERS } from './level-tools.js';
+
+// Temporary: everything unlocked while the Academy is being built (see preview.js).
+const UNLOCK = isPreviewAll();
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 let uidCounter = 0;
@@ -105,7 +109,7 @@ export function renderSlideWizard(data, opts) {
     steps.forEach((_, i) => {
       const d = document.createElement('div');
       d.className = 'lw-dot ' + (i < cur ? (done[i] ? 'done' : '') : i === cur ? 'active' : '');
-      if (i <= cur || done[i]) d.addEventListener('click', () => goTo(i));
+      if (UNLOCK || i <= cur || done[i]) d.addEventListener('click', () => goTo(i));
       dotsEl.appendChild(d);
     });
   }
@@ -127,8 +131,8 @@ export function renderSlideWizard(data, opts) {
   function updateChrome() {
     stepnameEl.textContent = stepLabel(cur);
     prevBtn.disabled = cur === 0;
-    nextBtn.disabled = !done[cur];
-    nextBtn.textContent = cur === steps.length - 1 ? 'Done ✦' : done[cur] ? 'Next →' : stepPrompt(cur);
+    nextBtn.disabled = !done[cur] && !UNLOCK;
+    nextBtn.textContent = cur === steps.length - 1 ? 'Done ✦' : done[cur] ? 'Next →' : UNLOCK ? 'Skip →' : stepPrompt(cur);
     buildDots();
   }
 
@@ -159,7 +163,7 @@ export function renderSlideWizard(data, opts) {
   // after Back/a dot lands on an already-done slide with nothing left to
   // click on it.
   nextBtn.addEventListener('click', () => {
-    if (!done[cur] || cur === steps.length - 1) return;
+    if ((!done[cur] && !UNLOCK) || cur === steps.length - 1) return;
     goTo(cur + 1);
   });
 

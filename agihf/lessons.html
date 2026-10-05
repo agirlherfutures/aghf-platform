@@ -35,7 +35,7 @@
   // would silently kill this entire script before any of it (including
   // this file's own error-handling code) ever ran, exactly the bug
   // already fixed on this page's sibling pages this session.
-  let PHASES, isSectionCleared;
+  let PHASES, isSectionCleared, UNLOCK = false;
 
   const BADGE_PHASE_CLASS = { p: 'pb-p', t: 'pb-t', u: 'pb-u', d: 'pb-d' };
   const BADGE_SECTION_CLASS = { p: 'sb-badge-p', t: 'sb-badge-t', c: 'sb-badge-c', u: 'sb-badge-u' };
@@ -94,8 +94,10 @@
     const prevSection = phase.sections[sectionIdx - 1];
     const sectionGateOk = !prevSection || !prevSection.checkpoint || isSectionCleared(phase.key, prevSection.key, completedIds);
     const lessonsHtml = section.lessons.map((lesson) => {
-      if (!phaseUnlocked || !lesson.n || !sectionGateOk) return lessonRowHtml(phase, section, lesson, 'locked');
+      if (!lesson.n) return lessonRowHtml(phase, section, lesson, 'locked');
       const id = `${phase.key}-${lesson.n}`;
+      if (UNLOCK) return lessonRowHtml(phase, section, lesson, completedIds.has(id) ? 'done' : 'active');
+      if (!phaseUnlocked || !sectionGateOk) return lessonRowHtml(phase, section, lesson, 'locked');
       if (completedIds.has(id)) return lessonRowHtml(phase, section, lesson, 'done');
       const firstIncomplete = !phase.sections.some((s) =>
         s.lessons.some((l) => l.n < lesson.n && l.n && !completedIds.has(`${phase.key}-${l.n}`)));
@@ -105,7 +107,7 @@
     if (section.checkpoint) {
       const allLessonsDone = phaseUnlocked && sectionGateOk && section.lessons.every((l) => !l.n || completedIds.has(`${phase.key}-${l.n}`));
       const cleared = phaseUnlocked && isSectionCleared(phase.key, section.key, completedIds);
-      checkpointHtml = checkpointRowHtml(phase, section, cleared ? 'done' : allLessonsDone ? 'active' : 'locked');
+      checkpointHtml = checkpointRowHtml(phase, section, cleared ? 'done' : (allLessonsDone || (UNLOCK && section.lessons.some((l) => l.n))) ? 'active' : 'locked');
     }
     const gameHtml = section.game ? gameRowHtml(section.game, true) : '';
     const badgeClass = BADGE_SECTION_CLASS[section.badge] || 'sb-badge-p';
@@ -152,7 +154,7 @@
   function phaseHtml(phase, phaseIdx, completedIds) {
     const totalLessons = phase.sections.reduce((sum, s) => sum + s.lessons.length, 0);
     const prevPhase = PHASES[phaseIdx - 1];
-    const phaseUnlocked = !phase.locked && (!prevPhase || phaseComplete(prevPhase, completedIds));
+    const phaseUnlocked = (UNLOCK && phase.sections.some((sec) => sec.lessons.some((l) => l.n))) || (!phase.locked && (!prevPhase || phaseComplete(prevPhase, completedIds)));
     const doneInPhase = !phaseUnlocked ? 0 : phase.sections.reduce((sum, s) =>
       sum + s.lessons.filter((l) => l.n && completedIds.has(`${phase.key}-${l.n}`)).length, 0);
     const badgeClass = BADGE_PHASE_CLASS[phase.badge] || 'pb-p';
@@ -221,6 +223,7 @@
   async function load() {
     try {
       ({ PHASES, isSectionCleared } = await import('./shared/curriculum-data.js'));
+      ({ UNLOCK_ALL: UNLOCK } = await import('./shared/preview.js'));
     } catch (err) {
       renderLoadError(err);
       return;
@@ -248,7 +251,8 @@
       document.getElementById('poPhaseName').textContent = p1Done === p1Total ? 'Complete' : 'Foundation';
       document.getElementById('poGp').textContent = gpFromLessons;
 
-      document.getElementById('phaseList').innerHTML = PHASES.map((phase, i) => phaseHtml(phase, i, completedIds)).join('');
+      const unlockNote = UNLOCK ? '<div class="gate" style="margin-bottom:14px">👀 <strong>Build mode:</strong> every built lesson and checkpoint is unlocked so you can jump around. The normal gates come back before launch.</div>' : '';
+      document.getElementById('phaseList').innerHTML = unlockNote + PHASES.map((phase, i) => phaseHtml(phase, i, completedIds)).join('');
       wireToggles();
     } catch (err) {
       renderLoadError(err);
