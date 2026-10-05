@@ -1,0 +1,540 @@
+{
+  "phase": "p3",
+  "section": "s9",
+  "lessonNumber": 20,
+  "title": "Buying vs Selling Pressure",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Who appears more aggressive right now. Not who wins forever.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Read which side appears more aggressive right now, including “mixed”, without turning it into a prediction.",
+    "missionQuestion": "If buyers look aggressive now, will they win?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_replay",
+      "kicker": "Play both",
+      "charts": [
+        {
+          "label": "Sequence A",
+          "chart": {
+            "swings": [
+              [
+                80,
+                230
+              ],
+              [
+                360,
+                149
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 80,
+                "o": 230,
+                "c": 214,
+                "h": 212,
+                "l": 236,
+                "w": 23.2
+              },
+              {
+                "x": 120,
+                "o": 214,
+                "c": 200,
+                "h": 198,
+                "l": 221,
+                "w": 23.2
+              },
+              {
+                "x": 160,
+                "o": 200,
+                "c": 206,
+                "h": 196,
+                "l": 210,
+                "w": 23.2
+              },
+              {
+                "x": 200,
+                "o": 206,
+                "c": 188,
+                "h": 186,
+                "l": 212,
+                "w": 23.2
+              },
+              {
+                "x": 240,
+                "o": 188,
+                "c": 176,
+                "h": 173,
+                "l": 196,
+                "w": 23.2
+              },
+              {
+                "x": 280,
+                "o": 176,
+                "c": 181,
+                "h": 172,
+                "l": 185,
+                "w": 23.2
+              },
+              {
+                "x": 320,
+                "o": 181,
+                "c": 164,
+                "h": 162,
+                "l": 187,
+                "w": 23.2
+              },
+              {
+                "x": 360,
+                "o": 164,
+                "c": 149,
+                "h": 147,
+                "l": 171,
+                "w": 23.2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Sequence B",
+          "chart": {
+            "swings": [
+              [
+                80,
+                90
+              ],
+              [
+                360,
+                171
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 80,
+                "o": 90,
+                "c": 106,
+                "h": 84,
+                "l": 108,
+                "w": 23.2
+              },
+              {
+                "x": 120,
+                "o": 106,
+                "c": 120,
+                "h": 99,
+                "l": 122,
+                "w": 23.2
+              },
+              {
+                "x": 160,
+                "o": 120,
+                "c": 114,
+                "h": 110,
+                "l": 124,
+                "w": 23.2
+              },
+              {
+                "x": 200,
+                "o": 114,
+                "c": 132,
+                "h": 108,
+                "l": 134,
+                "w": 23.2
+              },
+              {
+                "x": 240,
+                "o": 132,
+                "c": 144,
+                "h": 124,
+                "l": 147,
+                "w": 23.2
+              },
+              {
+                "x": 280,
+                "o": 144,
+                "c": 139,
+                "h": 135,
+                "l": 148,
+                "w": 23.2
+              },
+              {
+                "x": 320,
+                "o": 139,
+                "c": 156,
+                "h": 133,
+                "l": 158,
+                "w": 23.2
+              },
+              {
+                "x": 360,
+                "o": 156,
+                "c": 171,
+                "h": 149,
+                "l": 173,
+                "w": 23.2
+              }
+            ]
+          }
+        }
+      ],
+      "start": 1,
+      "title": "Who appears more aggressive?",
+      "end": {
+        "text": "Both sequences are done.",
+        "asks": [
+          {
+            "prompt": "Sequence A: WHO APPEARS MORE AGGRESSIVE RIGHT NOW?",
+            "options": [
+              {
+                "label": "Buyers",
+                "correct": true,
+                "why": "Closes near the highs, higher and higher."
+              },
+              {
+                "label": "Sellers",
+                "correct": false,
+                "feedback": "Look at where the candles close."
+              },
+              {
+                "label": "Mixed / unclear",
+                "correct": false,
+                "feedback": "This one is fairly clear.",
+                "nei": true
+              }
+            ],
+            "concept": "pressure"
+          },
+          {
+            "prompt": "Sequence B: WHO APPEARS MORE AGGRESSIVE RIGHT NOW?",
+            "options": [
+              {
+                "label": "Sellers",
+                "correct": true,
+                "why": "Closes near the lows, lower and lower."
+              },
+              {
+                "label": "Buyers",
+                "correct": false,
+                "feedback": "Look at where the candles close."
+              },
+              {
+                "label": "Mixed / unclear",
+                "correct": false,
+                "feedback": "This one is fairly clear.",
+                "nei": true
+              }
+            ],
+            "concept": "pressure"
+          }
+        ],
+        "meter": [
+          {
+            "value": "buyers",
+            "pressure": true,
+            "title": "Pressure meter · educational read"
+          },
+          {
+            "value": "sellers",
+            "pressure": true,
+            "title": "Pressure meter · educational read"
+          }
+        ]
+      }
+    },
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            80,
+            160
+          ],
+          [
+            344,
+            153
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 80,
+            "o": 160,
+            "c": 148,
+            "h": 140,
+            "l": 168,
+            "w": 25.5
+          },
+          {
+            "x": 124,
+            "o": 148,
+            "c": 158,
+            "h": 139,
+            "l": 165,
+            "w": 25.5
+          },
+          {
+            "x": 168,
+            "o": 158,
+            "c": 149,
+            "h": 141,
+            "l": 167,
+            "w": 25.5
+          },
+          {
+            "x": 212,
+            "o": 149,
+            "c": 161,
+            "h": 142,
+            "l": 169,
+            "w": 25.5
+          },
+          {
+            "x": 256,
+            "o": 161,
+            "c": 151,
+            "h": 142,
+            "l": 168,
+            "w": 25.5
+          },
+          {
+            "x": 300,
+            "o": 151,
+            "c": 159,
+            "h": 143,
+            "l": 168,
+            "w": 25.5
+          },
+          {
+            "x": 344,
+            "o": 159,
+            "c": 153,
+            "h": 144,
+            "l": 167,
+            "w": 25.5
+          }
+        ]
+      },
+      "start": 7,
+      "steps": [
+        {
+          "text": "A third sequence.",
+          "asks": [
+            {
+              "prompt": "WHO APPEARS MORE AGGRESSIVE RIGHT NOW?",
+              "options": [
+                {
+                  "label": "Mixed / unclear",
+                  "correct": true,
+                  "why": "Exactly. Closes all over the place. “Mixed” is a real answer."
+                },
+                {
+                  "label": "Buyers",
+                  "correct": false,
+                  "feedback": "Some green, some red, long wicks both ways. Is it clear?",
+                  "mistake": "pressure-equals-direction"
+                },
+                {
+                  "label": "Sellers",
+                  "correct": false,
+                  "feedback": "Some green, some red, long wicks both ways. Is it clear?",
+                  "mistake": "pressure-equals-direction"
+                }
+              ],
+              "concept": "pressure"
+            }
+          ],
+          "meter": {
+            "value": "mixed",
+            "pressure": true,
+            "title": "Pressure meter · educational read"
+          }
+        }
+      ],
+      "kicker": "Not always clear",
+      "title": "And this one?"
+    },
+    {
+      "type": "price_replay",
+      "kicker": "Pressure can change",
+      "charts": [
+        {
+          "chart": {
+            "swings": [
+              [
+                60,
+                240
+              ],
+              [
+                412,
+                252
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60,
+                "o": 240,
+                "c": 224,
+                "h": 222,
+                "l": 246,
+                "w": 25.5
+              },
+              {
+                "x": 104,
+                "o": 224,
+                "c": 210,
+                "h": 208,
+                "l": 231,
+                "w": 25.5
+              },
+              {
+                "x": 148,
+                "o": 210,
+                "c": 198,
+                "h": 195,
+                "l": 216,
+                "w": 25.5
+              },
+              {
+                "x": 192,
+                "o": 198,
+                "c": 188,
+                "h": 184,
+                "l": 204,
+                "w": 25.5
+              },
+              {
+                "x": 236,
+                "o": 188,
+                "c": 192,
+                "h": 180,
+                "l": 196,
+                "w": 25.5
+              },
+              {
+                "x": 280,
+                "o": 192,
+                "c": 206,
+                "h": 185,
+                "l": 208,
+                "w": 25.5
+              },
+              {
+                "x": 324,
+                "o": 206,
+                "c": 222,
+                "h": 200,
+                "l": 224,
+                "w": 25.5
+              },
+              {
+                "x": 368,
+                "o": 222,
+                "c": 234,
+                "h": 215,
+                "l": 237,
+                "w": 25.5
+              },
+              {
+                "x": 412,
+                "o": 234,
+                "c": 252,
+                "h": 228,
+                "l": 254,
+                "w": 25.5
+              }
+            ]
+          }
+        }
+      ],
+      "start": 1,
+      "title": "Who’s in control now?",
+      "pauses": [
+        {
+          "at": 4,
+          "text": "Four candles in.",
+          "asks": [
+            {
+              "prompt": "Who appears more aggressive right now?",
+              "options": [
+                {
+                  "label": "Buyers",
+                  "correct": true,
+                  "why": "Closing near the highs."
+                },
+                {
+                  "label": "Sellers",
+                  "correct": false,
+                  "feedback": "Where are the candles closing?"
+                }
+              ],
+              "concept": "pressure"
+            }
+          ],
+          "meter": {
+            "value": "buyers",
+            "pressure": true,
+            "title": "Pressure meter · educational read"
+          }
+        }
+      ],
+      "end": {
+        "text": "Keep watching what happened next.",
+        "asks": [
+          {
+            "prompt": "And now?",
+            "options": [
+              {
+                "label": "Sellers",
+                "correct": true,
+                "why": "Pressure changed. It always can."
+              },
+              {
+                "label": "Still buyers, they were winning",
+                "correct": false,
+                "feedback": "Pressure isn’t a team that stays ahead. It changes.",
+                "mistake": "pressure-equals-direction"
+              }
+            ],
+            "concept": "pressure"
+          }
+        ],
+        "meter": {
+          "value": "sellers",
+          "pressure": true,
+          "title": "Pressure meter · educational read"
+        }
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Pressure tells you who appears more aggressive <em>right now.</em>",
+      "pose": "point",
+      "line": "Not who wins forever."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What does buying or selling pressure tell you?",
+      "modelAnswer": "It tells me which side appears more aggressive right now, from where candles close and how they move. Sometimes it’s mixed or unclear. Pressure can change, so it isn’t a prediction or a direction call."
+    }
+  ],
+  "takeaways": [
+    "Pressure: which side appears more aggressive right now.",
+    "“Mixed / unclear” is a real answer.",
+    "Pressure can change. It isn’t a prediction."
+  ],
+  "remember": "Pressure tells you who appears more aggressive right now. Not who wins forever."
+}

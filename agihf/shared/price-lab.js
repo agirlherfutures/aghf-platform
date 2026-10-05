@@ -142,17 +142,31 @@ export function lensCard(l) {
 
 /* ── Delivery meter: qualitative only, never a fake number ────────── */
 
-const METER_POS = { overlap: 0.12, balanced: 0.25, mixed: 0.5, imbalanced: 0.75, displaced: 0.88 };
-const METER_WORD = { overlap: 'Overlapping', balanced: 'More balanced-looking', mixed: 'Mixed', imbalanced: 'More imbalanced-looking', displaced: 'Displaced' };
+const METER_POS = { overlap: 0.12, balanced: 0.25, mixed: 0.5, imbalanced: 0.75, displaced: 0.88, sellers: 0.12, leanSellers: 0.32, leanBuyers: 0.68, buyers: 0.88 };
+const METER_WORD = { overlap: 'Overlapping', balanced: 'More balanced-looking', mixed: 'Mixed / unclear', imbalanced: 'More imbalanced-looking', displaced: 'Displaced', sellers: 'Sellers appear more aggressive', leanSellers: 'Leaning sellers', leanBuyers: 'Leaning buyers', buyers: 'Buyers appear more aggressive' };
 /** m = 'balanced' | 'mixed' | 'displaced' | … or { value, label, title } */
 export function meterEl(m) {
-  const v = typeof m === 'string' ? { value: m } : m;
+  let v = typeof m === 'string' ? { value: m } : m;
+  if (/ellers|uyers/.test(v.value) || v.pressure) v = { title: 'Pressure meter', left: 'Sellers more aggressive', right: 'Buyers more aggressive', ...v };
   const d = document.createElement('div');
   d.className = 'p3-meter';
   d.innerHTML = `<div class="p3-meter-head"><span>${v.title || 'Delivery meter'}</span><em>Educational read · not a measurement</em></div>
     <div class="p3-meter-track" role="img" aria-label="${v.label || METER_WORD[v.value] || ''}"><i style="left:${(METER_POS[v.value] ?? 0.5) * 100}%"></i></div>
     <div class="p3-meter-ends"><span>${v.left || 'Two-sided / overlapping'}</span><span>${v.right || 'One-sided / displaced'}</span></div>
     <div class="p3-meter-word">${v.label || METER_WORD[v.value] || ''}</div>`;
+  return d;
+}
+
+/* ── Market Read panel: one row per lens, extensible ─────────────── */
+
+const READ_ROWS = ['Structure', 'Location', 'Liquidity', 'Price delivery', 'Participation', 'Execution'];
+/** r = { title, rows: { Structure: 'Bullish', … } or [[label, value]], note }. Not a signal generator. */
+export function readPanel(r) {
+  const rows = Array.isArray(r.rows) ? r.rows : READ_ROWS.filter((k) => r.rows[k] != null).map((k) => [k, r.rows[k]]).concat(Object.entries(r.rows).filter(([k]) => !READ_ROWS.includes(k)));
+  const d = document.createElement('div');
+  d.className = 'p3-read';
+  d.innerHTML = `<div class="pl-panel-title">${r.title || 'Market read'}</div>${rows.map(([k, v]) => `<div class="p3-read-row${/^execution/i.test(k) ? ' p3-read-exec' : ''}"><span>${k}</span><b>${v}</b></div>`).join('')}
+    <div class="pl-purpose-note">${r.note || 'A read, not a signal. Execution is decided by the entry model alone.'}</div>`;
   return d;
 }
 
@@ -203,6 +217,23 @@ function compactChart(chart, spec) {
   });
 }
 
+/* Layer chips: toggle several overlays at once, plus ALL and CLEAR. */
+function mountLayers(before, chart, layers) {
+  const bar = document.createElement('div');
+  bar.className = 'pr-overlays p3-layers';
+  bar.innerHTML = layers.map((l) => `<button type="button" class="pr-ov" data-k="${l.key}" aria-pressed="false">${l.label}</button>`).join('')
+    + '<button type="button" class="pr-ov p3-all" data-k="@all">All</button><button type="button" class="pr-ov p3-clear" data-k="@clear">Clear</button>';
+  before.parentNode.insertBefore(bar, before);
+  const set = (l, on) => { const b = bar.querySelector(`[data-k="${l.key}"]`); b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); (on ? chart.reveal : chart.hide)(l.ids); };
+  bar.querySelectorAll('.pr-ov').forEach((b) => b.addEventListener('click', () => {
+    const k = b.dataset.k;
+    if (k === '@all') layers.forEach((l) => set(l, true));
+    else if (k === '@clear') layers.forEach((l) => set(l, false));
+    else { const l = layers.find((x) => x.key === k); set(l, !b.classList.contains('on')); }
+  }));
+  layers.filter((l) => l.on).forEach((l) => set(l, true));
+}
+
 export function renderPriceLab(el, slide, satisfy, helpers) {
   const steps = slide.steps || [];
   const side = slide.story || slide.evidence;
@@ -227,6 +258,7 @@ export function renderPriceLab(el, slide, satisfy, helpers) {
   const chart = mountChart(card.querySelector('.pl-chart'), { ...slide.chart, showCandles: slide.start ?? slide.chart.showCandles }, { label: slide.title });
   if (window.matchMedia?.('(max-width: 600px)').matches) compactChart(chart, slide.chart);
   if (slide.views) mountViews(card.querySelector('.pl-chart'), chart, slide.views, slide.view);
+  if (slide.layers) mountLayers(card.querySelector('.pl-chart'), chart, slide.layers);
   const lv = slide.levels ? mountLevels(chart, slide.levels) : null;
   const cap = card.querySelector('.pl-caption');
   const asks = card.querySelector('.pl-asks');
@@ -335,7 +367,7 @@ export function renderPriceLab(el, slide, satisfy, helpers) {
       if (s.evidence) card.querySelector('.pl-ev-slot').innerHTML = evidenceHtml(s.evidence);
       if (s.relabel && lv) Object.entries(s.relabel).forEach(([id, r]) => lv.relabel(id, r.label, r.tone));
       say(s.text);
-      const afterAsks = () => { if (s.card) asks.appendChild(purposeCard(s.card)); if (s.lens) asks.appendChild(lensCard(s.lens)); if (s.meter) asks.appendChild(meterEl(s.meter)); finish(); };
+      const afterAsks = () => { if (s.card) asks.appendChild(purposeCard(s.card)); if (s.lens) asks.appendChild(lensCard(s.lens)); if (s.meter) asks.appendChild(meterEl(s.meter)); if (s.read) asks.appendChild(readPanel(s.read)); finish(); };
       const afterTools = () => (s.asks || s.ask ? runAsks(s.asks || [s.ask], 0, afterAsks) : afterAsks());
       const tool = lv && ['pick', 'keep', 'clean', 'zone'].find((k) => s[k]);
       const afterTap = () => (tool ? lv[tool](s[tool], asks, helpers, afterTools) : afterTools());

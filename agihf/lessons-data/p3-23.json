@@ -1,0 +1,211 @@
+{
+  "phase": "p3",
+  "section": "s9",
+  "lessonNumber": 23,
+  "title": "Order Flow Intuition",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "You don’t need more data if you can’t read the price in front of you.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Build order-flow intuition from candles, and ask questions the chart can actually answer.",
+    "missionQuestion": "Do you need a footprint chart to read participation?",
+    "estMinutes": 6
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "explore",
+      "kicker": "Keep it light",
+      "title": "There’s a whole world of order-flow tools.",
+      "prompt": "Tap each one. Then set it aside.",
+      "cards": [
+        {
+          "icon": "📊",
+          "title": "DOM / order book",
+          "body": "Shows resting orders at each price. Changes constantly. Set aside for now."
+        },
+        {
+          "icon": "👣",
+          "title": "Footprint charts",
+          "body": "Shows trading inside each candle. Powerful, and a lot. Set aside for now."
+        },
+        {
+          "icon": "📈",
+          "title": "Volume profile",
+          "body": "Shows where most trading happened. Set aside for now."
+        },
+        {
+          "icon": "±",
+          "title": "Delta",
+          "body": "Compares aggressive buying and selling. Set aside for now."
+        }
+      ],
+      "footer": "<strong>YOU DON’T NEED ALL OF THIS YET.</strong><br>You can build real intuition from the price in front of you."
+    },
+    {
+      "type": "teach",
+      "kicker": "Intuition checklist",
+      "heading": "Questions price can answer.",
+      "body": "<ul class=\"p3-list\"><li>Where did price close?</li><li>Did it hold beyond the level, or come back?</li><li>How fast did it move? Big candles or small?</li><li>Did candles overlap, or travel cleanly?</li><li>Did the move change the structure?</li></ul>That’s order-flow intuition, read straight from candles."
+    },
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            80,
+            160
+          ],
+          [
+            448,
+            158
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 80,
+            "o": 160,
+            "c": 152,
+            "h": 148,
+            "l": 164,
+            "w": 26.7
+          },
+          {
+            "x": 126,
+            "o": 152,
+            "c": 159,
+            "h": 148,
+            "l": 163,
+            "w": 26.7
+          },
+          {
+            "x": 172,
+            "o": 159,
+            "c": 150,
+            "h": 146,
+            "l": 163,
+            "w": 26.7
+          },
+          {
+            "x": 218,
+            "o": 150,
+            "c": 158,
+            "h": 146,
+            "l": 162,
+            "w": 26.7
+          },
+          {
+            "x": 264,
+            "o": 158,
+            "c": 152,
+            "h": 148,
+            "l": 162,
+            "w": 26.7
+          },
+          {
+            "x": 310,
+            "o": 152,
+            "c": 126,
+            "h": 123,
+            "l": 154,
+            "w": 26.7
+          },
+          {
+            "x": 356,
+            "o": 126,
+            "c": 140,
+            "h": 123,
+            "l": 142,
+            "w": 26.7
+          },
+          {
+            "x": 402,
+            "o": 140,
+            "c": 148,
+            "h": 136,
+            "l": 152,
+            "w": 26.7
+          },
+          {
+            "x": 448,
+            "o": 148,
+            "c": 158,
+            "h": 144,
+            "l": 162,
+            "w": 26.7
+          }
+        ],
+        "hlines": [
+          {
+            "y": 144,
+            "label": "Prior high",
+            "tone": "purple",
+            "x1": 60,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          }
+        ]
+      },
+      "start": 9,
+      "steps": [
+        {
+          "text": "Price poked above the prior high, then pulled back.",
+          "asks": [
+            {
+              "prompt": "PRICE INTERROGATION: which question is most useful to ask this chart?",
+              "options": [
+                {
+                  "label": "Did price close back below the level, and is it holding there?",
+                  "correct": true,
+                  "why": "A question the chart can actually answer."
+                },
+                {
+                  "label": "How many buy orders were filled up there?",
+                  "correct": false,
+                  "feedback": "The chart can’t show that number.",
+                  "mistake": "fake-precision"
+                },
+                {
+                  "label": "Who was buying the breakout?",
+                  "correct": false,
+                  "feedback": "The chart can’t show who.",
+                  "mistake": "participant-identity-assumption"
+                }
+              ],
+              "concept": "evidence",
+              "stack": true
+            }
+          ]
+        }
+      ],
+      "kicker": "Price interrogation mode",
+      "title": "Ask the better question."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "You don’t need more data if you still can’t read <em>the price in front of you.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What does order-flow intuition mean at this stage?",
+      "modelAnswer": "Reading what candles already show: where price closed, whether it held, how fast it moved, whether it overlapped, and whether structure changed. I don’t need extra tools yet. I need to ask price questions it can answer."
+    }
+  ],
+  "takeaways": [
+    "Order-flow tools exist. You don’t need them yet.",
+    "Candles already answer: close, hold, speed, overlap, structure.",
+    "Ask the chart questions it can answer."
+  ],
+  "remember": "You don’t need more data if you still can’t read the price in front of you."
+}

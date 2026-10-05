@@ -1,0 +1,155 @@
+{
+  "phase": "p3",
+  "section": "s9",
+  "lessonNumber": 27,
+  "title": "How This Fits Into Dayli ICC",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "More knowledge should make your chart clearer. Not your rules heavier.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Keep every Phase 3 concept on the context side, and the entry model unchanged.",
+    "missionQuestion": "Does your entry model now need all of these concepts?",
+    "estMinutes": 6
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "teach",
+      "kicker": "Big question",
+      "heading": "DOES YOUR ENTRY MODEL NOW NEED ALL OF THESE?",
+      "body": "Liquidity. Sweeps. Equal highs. Displacement. Imbalance. FVGs. Supply and demand. Pressure. Accumulation. Order flow.",
+      "check": {
+        "prompt": "Does a Dayli ICC entry now need all of these?",
+        "options": [
+          {
+            "label": "No",
+            "correct": true,
+            "why": "No. Not one of them."
+          },
+          {
+            "label": "Yes, more confirmation is safer",
+            "correct": false,
+            "feedback": "More rules aren’t more safety.",
+            "mistake": "concept-overload"
+          },
+          {
+            "label": "Just a few of them",
+            "correct": false,
+            "feedback": "None of them become entry rules.",
+            "mistake": "concept-overload"
+          }
+        ]
+      }
+    },
+    {
+      "type": "literacy_entry",
+      "kicker": "Context vs execution",
+      "title": "Phase 3, sorted.",
+      "sort": {
+        "prompt": "Where does each one belong?",
+        "concept": "entry-criteria",
+        "items": [
+          {
+            "text": "Liquidity sweeps",
+            "side": "lit",
+            "why": "Context.",
+            "mistake": "liquidity-required"
+          },
+          {
+            "text": "Fair value gaps",
+            "side": "lit",
+            "why": "Context.",
+            "mistake": "fvg-required"
+          },
+          {
+            "text": "Supply & demand zones",
+            "side": "lit",
+            "why": "Context.",
+            "mistake": "supply-demand-guarantee"
+          },
+          {
+            "text": "Correction",
+            "side": "entry",
+            "why": "A Dayli ICC step."
+          },
+          {
+            "text": "Buying / selling pressure",
+            "side": "lit",
+            "why": "Context.",
+            "mistake": "pressure-equals-direction"
+          },
+          {
+            "text": "Accumulation & distribution",
+            "side": "lit",
+            "why": "Context, often only in hindsight.",
+            "mistake": "consolidation-equals-accumulation"
+          }
+        ]
+      },
+      "literacy": {
+        "title": "Context",
+        "sub": "Helps you understand the chart"
+      },
+      "entry": {
+        "title": "Execution",
+        "sub": "The Dayli ICC sequence"
+      },
+      "footer": "Everything from Phase 3 lives on the context side."
+    },
+    {
+      "type": "joke_checklist",
+      "kicker": "The overcomplicated trader",
+      "title": "Meet her checklist.",
+      "sheetTitle": "Before I take ANY trade",
+      "items": [
+        "Liquidity swept",
+        "FVG filled",
+        "Demand zone touched",
+        "Buyers aggressive",
+        "Accumulation confirmed",
+        "Footprint delta positive",
+        "Equal highs untouched",
+        "Mercury not in retrograde 😂"
+      ],
+      "stamp": "GIRL. NO. 😭",
+      "run": "Run her checklist →",
+      "after": "<strong>MORE KNOWLEDGE SHOULD MAKE YOUR CHART CLEARER. NOT YOUR RULES HEAVIER.</strong>"
+    },
+    {
+      "type": "academy_concept",
+      "variant": "icc",
+      "title": "Context informs. Execution decides.",
+      "body": "Phase 3 gave you better context. The Dayli ICC entry model stays exactly what it was.",
+      "points": [
+        "Context: structure, liquidity, delivery, participation",
+        "Execution: the Dayli ICC sequence, and nothing else"
+      ],
+      "footer": "Learn more so you can understand more. Not so you can require more."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "More knowledge should make your chart <em>clearer.</em>",
+      "pose": "point",
+      "line": "Not your rules heavier."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What does “context > confluence” mean to you now?",
+      "modelAnswer": "More concepts don’t mean more reasons I need before entering. Context helps me understand what price is doing. My entry is still decided by the Dayli ICC sequence alone, so my chart gets clearer, not my rules heavier."
+    }
+  ],
+  "takeaways": [
+    "Every Phase 3 concept is context.",
+    "The Dayli ICC entry model doesn’t change.",
+    "More knowledge should make your chart clearer, not your rules heavier."
+  ],
+  "remember": "More knowledge should make your chart clearer. Not your rules heavier."
+}

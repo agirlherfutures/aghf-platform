@@ -1,0 +1,252 @@
+{
+  "phase": "p3",
+  "section": "s9",
+  "lessonNumber": 25,
+  "title": "What Price Cannot Prove",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "If you can’t prove the story, don’t build your trade around it.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Separate observation, interpretation and unsupported claims, and rewrite stories objectively.",
+    "missionQuestion": "Can a chart prove manipulation?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "verdicts",
+      "kicker": "Three-way sort",
+      "title": "Catch the story",
+      "items": [
+        {
+          "text": "Price closed below the prior low.",
+          "answer": "OBSERVATION",
+          "why": "You can point at it.",
+          "concept": "objective-observation"
+        },
+        {
+          "text": "Sellers appear more aggressive right now.",
+          "answer": "INTERPRETATION",
+          "why": "A reasonable read. Still a read.",
+          "concept": "objective-observation"
+        },
+        {
+          "text": "The banks are hunting stops today.",
+          "answer": "UNSUPPORTED CLAIM",
+          "why": "Identity and intent. Nothing on the chart proves it.",
+          "mistake": "storytelling-over-evidence",
+          "concept": "objective-observation",
+          "tone": "myth"
+        },
+        {
+          "text": "Price left this base strongly, so it may be a potential demand zone.",
+          "answer": "INTERPRETATION",
+          "why": "Hedged and based on what price did.",
+          "concept": "supply-demand"
+        },
+        {
+          "text": "This is definitely institutional accumulation.",
+          "answer": "UNSUPPORTED CLAIM",
+          "why": "“Definitely” and “institutional”: two things the chart can’t prove.",
+          "mistake": "consolidation-equals-accumulation",
+          "concept": "accumulation-distribution",
+          "tone": "myth"
+        },
+        {
+          "text": "Candles overlapped heavily inside the range.",
+          "answer": "OBSERVATION",
+          "why": "Visible.",
+          "concept": "objective-observation"
+        }
+      ],
+      "prompt": "Observation, interpretation, or unsupported claim?",
+      "choices": [
+        "OBSERVATION",
+        "INTERPRETATION",
+        "UNSUPPORTED CLAIM"
+      ]
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Story detector",
+      "title": "STORY DETECTOR 🚨",
+      "items": [
+        {
+          "text": "“They faked the breakout to trap longs.”",
+          "answer": "🚨 STORY",
+          "why": "Intent you can’t see.",
+          "mistake": "storytelling-over-evidence",
+          "concept": "objective-observation",
+          "instead": {
+            "prompt": "MAKE IT OBJECTIVE",
+            "options": [
+              {
+                "label": "Price closed above the high, then closed back below it",
+                "correct": true,
+                "why": "That’s what happened."
+              },
+              {
+                "label": "Market makers trapped longs",
+                "correct": false,
+                "feedback": "Still a story.",
+                "mistake": "storytelling-over-evidence"
+              }
+            ]
+          }
+        },
+        {
+          "text": "“Price is respecting the zone because whales defend it.”",
+          "answer": "🚨 STORY",
+          "why": "Whales aren’t on the chart.",
+          "mistake": "participant-identity-assumption",
+          "concept": "objective-observation",
+          "instead": {
+            "prompt": "MAKE IT OBJECTIVE",
+            "options": [
+              {
+                "label": "Price has turned higher from this area three times",
+                "correct": true,
+                "why": "Observable."
+              },
+              {
+                "label": "Whales are buying here",
+                "correct": false,
+                "feedback": "Still a story.",
+                "mistake": "participant-identity-assumption"
+              }
+            ]
+          }
+        },
+        {
+          "text": "“That drop was pure manipulation.”",
+          "answer": "🚨 STORY",
+          "why": "Not provable from candles.",
+          "mistake": "storytelling-over-evidence",
+          "concept": "objective-observation",
+          "write": {
+            "prompt": "MAKE IT OBJECTIVE in your own words.",
+            "model": "Price dropped sharply in a few large bearish candles, then recovered part of the move."
+          }
+        }
+      ],
+      "prompt": "Each one is a story. Stamp it, then make it objective.",
+      "choices": [
+        "🚨 STORY",
+        "✓ OBJECTIVE"
+      ]
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Prove it",
+      "title": "PROVE IT",
+      "items": [
+        {
+          "text": "“Buyers are in control, so price will go up.”",
+          "answer": "NO",
+          "why": "Pressure right now isn’t a forecast.",
+          "mistake": "pressure-equals-direction",
+          "concept": "pressure",
+          "instead": {
+            "prompt": "WHAT CAN WE SAY INSTEAD?",
+            "options": [
+              {
+                "label": "Buyers appear more aggressive right now",
+                "correct": true,
+                "why": "Hedged and honest."
+              },
+              {
+                "label": "Price is guaranteed higher",
+                "correct": false,
+                "feedback": "Still a promise.",
+                "mistake": "pressure-equals-direction"
+              }
+            ]
+          }
+        },
+        {
+          "text": "“Price closed above the prior high.”",
+          "answer": "YES",
+          "why": "There’s the close.",
+          "concept": "objective-observation"
+        },
+        {
+          "text": "“This demand zone will hold.”",
+          "answer": "NO",
+          "why": "Zones show the past, not the future.",
+          "mistake": "supply-demand-guarantee",
+          "concept": "supply-demand",
+          "instead": {
+            "prompt": "WHAT CAN WE SAY INSTEAD?",
+            "options": [
+              {
+                "label": "Strong buying participation appeared here before",
+                "correct": true,
+                "why": "Past tense. Provable."
+              },
+              {
+                "label": "This zone always holds",
+                "correct": false,
+                "feedback": "Nothing always holds.",
+                "mistake": "supply-demand-guarantee"
+              }
+            ]
+          }
+        },
+        {
+          "text": "“This range is accumulation.” (price still inside it)",
+          "answer": "NOT ENOUGH INFO",
+          "why": "Live, it’s a consolidation.",
+          "mistake": "consolidation-equals-accumulation",
+          "concept": "accumulation-distribution",
+          "tone": "calm",
+          "instead": {
+            "prompt": "WHAT CAN WE SAY INSTEAD?",
+            "options": [
+              {
+                "label": "Price is consolidating between similar highs and lows",
+                "correct": true,
+                "why": "What you can see."
+              },
+              {
+                "label": "Smart money is loading up",
+                "correct": false,
+                "feedback": "Still a story.",
+                "mistake": "storytelling-over-evidence"
+              }
+            ]
+          }
+        }
+      ],
+      "prompt": "CAN THE CHART PROVE THAT?",
+      "choices": [
+        "YES",
+        "NO",
+        "NOT ENOUGH INFO"
+      ]
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "If you can’t prove the story, <em>don’t build your trade around it.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What’s the difference between an observation, an interpretation and an unsupported claim?",
+      "modelAnswer": "An observation is something I can point at on the chart, like a close. An interpretation is a reasonable, hedged read of that evidence, like “buyers appear more aggressive.” An unsupported claim names who, why or what will happen, and the chart can’t prove it."
+    }
+  ],
+  "takeaways": [
+    "Observation: you can point at it.",
+    "Interpretation: a hedged read of the evidence.",
+    "Unsupported claim: who, why or what will happen. Don’t build trades on it."
+  ],
+  "remember": "If you can’t prove the story, don’t build your trade around it."
+}

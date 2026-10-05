@@ -79,15 +79,15 @@ export function computeMastery(phaseKey = 'p2', skills = PHASE2_SKILLS) {
 }
 
 /** The one or two most useful things to review, from real answers. */
-export function nextBestReview(mastery) {
+export function nextBestReview(mastery, insights = MISTAKE_INSIGHTS) {
   const learning = read('aghf_learning', '{"concepts":{},"mistakes":{}}');
-  const mistakes = Object.entries(learning.mistakes || {}).filter(([k, v]) => MISTAKE_INSIGHTS[k] && v.count >= 2).sort((a, b) => b[1].count - a[1].count);
+  const mistakes = Object.entries(learning.mistakes || {}).filter(([k, v]) => insights[k] && v.count >= 2).sort((a, b) => b[1].count - a[1].count);
   const measured = mastery.filter((m) => m.level !== 'none');
   const strong = measured.filter((m) => m.pct >= 80).sort((a, b) => b.pct - a.pct)[0];
   const weak = measured.filter((m) => m.pct < 80).sort((a, b) => a.pct - b.pct).slice(0, 2);
   const items = [];
   if (mistakes[0]) {
-    const mi = MISTAKE_INSIGHTS[mistakes[0][0]];
+    const mi = insights[mistakes[0][0]];
     items.push({ text: mi.text, label: mi.label, review: mi.review });
   }
   weak.forEach((w) => {
@@ -128,6 +128,21 @@ function drawSet(final) {
   const set = [...visual, ...by('mcq').slice(0, mix.mcq)];
   const written = by('written').slice(0, mix.written || 0);
   return [...shuffle(set), ...written];
+}
+
+/* A failed Final: strongest skills, what needs another look, and the lessons to revisit. */
+function adaptiveReview(per, skillsByKey, final) {
+  const rows = Object.entries(per).map(([s, v]) => ({ s: skillsByKey[s], pct: v.right / v.tries })).filter((r) => r.s);
+  const strong = rows.filter((r) => r.pct === 1).slice(0, 2);
+  const weak = rows.filter((r) => r.pct < 1).sort((a, b) => a.pct - b.pct).slice(0, 2);
+  const lessons = weak.map((w) => w.s.review);
+  return `<div class="pf-adaptive">
+      <div class="lw-eyebrow">${final.reviewTitle || 'Your review'}</div>
+      ${strong.length ? `<div class="pf-ad-row ok"><b>Strongest</b>${strong.map((r) => r.s.label).join(' · ')}</div>` : ''}
+      ${weak.length ? `<div class="pf-ad-row no"><b>Needs another look</b>${weak.map((r) => r.s.label).join(' · ')}</div>` : ''}
+      ${lessons.length ? `<div class="pf-ad-links">${weak.map((w) => `<a href="lesson.html?phase=${w.s.review[0]}&n=${w.s.review[1]}">↻ Lesson ${w.s.review[1]}: ${w.s.label}</a>`).join('')}</div>
+        <a class="lw-cc-next pf-ad-cta" href="lesson.html?phase=${lessons[0][0]}&n=${lessons[0][1]}">Review ${lessons.length} lesson${lessons.length > 1 ? 's' : ''} →</a>` : ''}
+    </div>`;
 }
 
 export function renderPhaseFinal(slide, final, onPass, helpers) {
@@ -215,8 +230,8 @@ export function renderPhaseFinal(slide, final, onPass, helpers) {
           <div class="sw-result-pct ${passed ? 'pass' : 'fail'}">${pct}%</div>
           <div class="sw-result-sub">${right} of ${results.length} scored questions right, ${passed ? `you passed (${Math.round(passPct * 100)}% required)` : `${Math.round(passPct * 100)}% required to pass`}</div>
           <div class="pf-skillgrid">${Object.entries(per).map(([s, v]) => `<div class="${v.right === v.tries ? 'ok' : 'no'}"><span>${skillsByKey[s]?.label || s}</span><b>${v.right}/${v.tries}</b></div>`).join('')}</div>
-          ${missed.length ? `<div class="sw-review"><strong>${passed ? 'Give these another look:' : 'Give these another look, then try a fresh set:'}</strong><ul>${missed.map((m) => `<li>↻ ${m.label}<a href="lesson.html?phase=${m.review[0]}&n=${m.review[1]}">Review this lesson →</a></li>`).join('')}</ul></div>` : ''}
-          <button type="button" class="lw-continue-btn" id="pfAfter" style="align-self:center">${passed ? 'Continue →' : 'Try again, new questions'}</button>
+          ${!passed && final.adaptive ? adaptiveReview(per, skillsByKey, final) : missed.length ? `<div class="sw-review"><strong>${passed ? 'Give these another look:' : 'Give these another look, then try a fresh set:'}</strong><ul>${missed.map((m) => `<li>↻ ${m.label}<a href="lesson.html?phase=${m.review[0]}&n=${m.review[1]}">Review this lesson →</a></li>`).join('')}</ul></div>` : ''}
+          <button type="button" class="lw-continue-btn" id="pfAfter" style="align-self:center">${passed ? 'Continue →' : (final.retryLabel || 'Try again, new questions')}</button>
         </div>`;
       slide.querySelector('#pfAfter').addEventListener('click', () => (passed ? onPass(pct) : start()));
     }
@@ -226,6 +241,14 @@ export function renderPhaseFinal(slide, final, onPass, helpers) {
 }
 
 /* ── Phase completion ───────────────────────────────────────────────── */
+
+// The Phase 3 ending: overlays flash on a chart, then fade away to clean candles.
+const CLEAN_CHART = `<svg class="pc-clean" viewBox="0 0 320 120" aria-hidden="true">
+  <g class="pc-ovl"><rect x="150" y="40" width="160" height="16" rx="4" fill="#7ECEC4" opacity=".35"/><rect x="40" y="78" width="270" height="10" rx="3" fill="#F4829A" opacity=".3"/>
+  <line x1="20" x2="310" y1="30" y2="30" stroke="#7F77DD" stroke-width="2" stroke-dasharray="6 5"/><line x1="20" x2="310" y1="96" y2="96" stroke="#F5A857" stroke-width="2" stroke-dasharray="6 5"/>
+  <rect x="96" y="58" width="80" height="22" rx="4" fill="#F5A857" opacity=".25"/><text x="300" y="26" text-anchor="end" font-size="9" font-weight="800" fill="#5E56B8">BSL</text></g>
+  ${[[30, 92, 84], [50, 84, 88], [70, 88, 74], [90, 74, 78], [110, 78, 60], [130, 60, 66], [150, 66, 50], [170, 50, 56], [190, 56, 44], [210, 44, 48], [230, 48, 36], [250, 36, 42], [270, 42, 30]].map(([x, o, c]) => `<g><line x1="${x}" x2="${x}" y1="${Math.min(o, c) - 4}" y2="${Math.max(o, c) + 4}" stroke="${c < o ? '#7ECEC4' : '#F4829A'}" stroke-width="2"/><rect x="${x - 5}" y="${Math.min(o, c)}" width="10" height="${Math.max(3, Math.abs(o - c))}" rx="2" fill="${c < o ? '#7ECEC4' : '#F4829A'}"/></g>`).join('')}
+</svg>`;
 
 const LEVEL_TEXT = { mastered: 'Mastered', strong: 'Strong', developing: 'Developing', none: 'Not enough data yet' };
 
@@ -242,12 +265,13 @@ export function renderPhaseComplete(slide, data, { flagKey, backHref, results })
     localStorage.setItem('aghf_learning_profile', JSON.stringify(prof));
   } catch (e) { /* storage blocked */ }
 
-  const mastery = computeMastery(c.phaseKey);
-  const review = nextBestReview(mastery);
+  const mastery = computeMastery(c.phaseKey, c.skills || PHASE2_SKILLS);
+  const review = nextBestReview(mastery, { ...MISTAKE_INSIGHTS, ...(c.insights || {}) });
   const fill = (s) => String(s).replace('{final}', results.finalPct ?? '80+');
   slide.innerHTML = `
     <div class="pc-hero">
       <div class="pc-rays"></div>
+      ${c.cleanChart ? CLEAN_CHART : ''}
       <div class="pc-eyebrow">${c.eyebrow}</div>
       <h1>${c.heading}</h1>
       <div class="pc-sub">${c.sub}</div>
@@ -257,16 +281,17 @@ export function renderPhaseComplete(slide, data, { flagKey, backHref, results })
       <div class="pc-badge-eyebrow">🏆 Badge unlocked</div>
       <div class="pc-medal"><svg viewBox="0 0 160 160" aria-hidden="true"><defs><linearGradient id="pcG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F9B8C6"/><stop offset=".55" stop-color="#F5A857"/><stop offset="1" stop-color="#7F77DD"/></linearGradient></defs>
         <circle class="pc-ring" cx="80" cy="80" r="70" fill="none" stroke="url(#pcG)" stroke-width="6"/><circle cx="80" cy="80" r="58" fill="#fff"/><circle cx="80" cy="80" r="58" fill="url(#pcG)" opacity=".14"/>
-        <polyline class="pc-stairs" points="44,104 60,104 60,88 76,88 76,72 92,72 92,56 112,56" fill="none" stroke="#2C1810" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        ${c.badge.mark === 'diamond' ? '<polygon class="pc-stairs" points="80,42 112,74 80,118 48,74" fill="none" stroke="#2C1810" stroke-width="5" stroke-linejoin="round"/><line class="pc-stairs" x1="48" y1="74" x2="112" y2="74" stroke="#2C1810" stroke-width="4"/><polyline class="pc-stairs" points="64,58 80,74 96,58" fill="none" stroke="#2C1810" stroke-width="4" stroke-linejoin="round"/>'
+          : '<polyline class="pc-stairs" points="44,104 60,104 60,88 76,88 76,72 92,72 92,56 112,56" fill="none" stroke="#2C1810" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>'}</svg>
         <span class="pc-shine"></span></div>
       <h2>${c.badge.title} ${c.badge.emoji}</h2>
       <p class="pc-quote">${c.badge.quote}</p>
       <div class="pc-saved">Added to your Academy profile</div>
     </div>
     <div class="lw-card pc-mastery">
-      <div class="lw-eyebrow">My learning · Your structure skills</div>
+      <div class="lw-eyebrow">${c.masteryTitle || 'My learning · Your structure skills'}</div>
       <div class="pc-skills">${mastery.map((m) => `<div class="pc-skill pc-${m.level}"><span>${m.label}</span><b>${LEVEL_TEXT[m.level]}</b>${m.level !== 'none' ? `<i style="--w:${m.pct}%"></i>` : ''}</div>`).join('')}</div>
-      <p class="pc-note">Based on your answers across Phase 2. Skills without enough answers yet say so instead of guessing.</p>
+      <p class="pc-note">${c.masteryNote || 'Based on your answers across Phase 2. Skills without enough answers yet say so instead of guessing.'}</p>
       ${review.items.length ? `<div class="pc-review"><div class="lw-eyebrow">Your next best review</div>${review.lead ? `<p>${review.lead}</p>` : ''}
         ${review.items.map((it) => `<div class="pc-review-row"><p>${it.text}</p><a href="lesson.html?phase=${it.review[0]}&n=${it.review[1]}">Review ${it.label} →</a></div>`).join('')}</div>` : ''}
     </div>
@@ -276,6 +301,7 @@ export function renderPhaseComplete(slide, data, { flagKey, backHref, results })
       ${c.next.lines.map((l) => `<p>${l}</p>`).join('')}
       ${c.next.topics ? `<ul class="pc-topics">${c.next.topics.map((t) => `<li>${t}</li>`).join('')}</ul>` : ''}
       ${c.next.distinction ? `<div class="pc-distinction">${c.next.distinction}</div>` : ''}
+      ${c.next.note ? `<div class="pc-distinction">${c.next.note}</div>` : ''}
       ${c.next.preview ? `<div class="pc-preview">${c.next.preview.map((p) => `<div>${p}</div>`).join('')}</div>` : ''}
       <button type="button" class="lw-cc-next" id="pcNext">${c.next.cta}</button>
     </div>

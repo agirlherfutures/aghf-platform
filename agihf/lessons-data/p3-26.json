@@ -1,0 +1,347 @@
+{
+  "phase": "p3",
+  "section": "s9",
+  "lessonNumber": 26,
+  "title": "Market Participation + Structure",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Context gets deeper. The chart doesn’t need to get messier.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Layer structure, levels, liquidity, delivery and participation, then summarize it in a Market Read.",
+    "missionQuestion": "Does more context mean more drawings?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            50,
+            250
+          ],
+          [
+            424,
+            152
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 50,
+            "o": 250,
+            "c": 224,
+            "h": 221,
+            "l": 253,
+            "w": 19.7
+          },
+          {
+            "x": 84,
+            "o": 224,
+            "c": 204,
+            "h": 199,
+            "l": 229,
+            "w": 19.7
+          },
+          {
+            "x": 118,
+            "o": 204,
+            "c": 216,
+            "h": 199,
+            "l": 221,
+            "w": 19.7
+          },
+          {
+            "x": 152,
+            "o": 216,
+            "c": 226,
+            "h": 211,
+            "l": 231,
+            "w": 19.7
+          },
+          {
+            "x": 186,
+            "o": 226,
+            "c": 214,
+            "h": 211,
+            "l": 229,
+            "w": 19.7
+          },
+          {
+            "x": 220,
+            "o": 214,
+            "c": 174,
+            "h": 172,
+            "l": 216,
+            "w": 19.7
+          },
+          {
+            "x": 254,
+            "o": 174,
+            "c": 140,
+            "h": 138,
+            "l": 176,
+            "w": 19.7
+          },
+          {
+            "x": 288,
+            "o": 140,
+            "c": 128,
+            "h": 125,
+            "l": 143,
+            "w": 19.7
+          },
+          {
+            "x": 322,
+            "o": 128,
+            "c": 138,
+            "h": 123,
+            "l": 143,
+            "w": 19.7
+          },
+          {
+            "x": 356,
+            "o": 138,
+            "c": 150,
+            "h": 133,
+            "l": 155,
+            "w": 19.7
+          },
+          {
+            "x": 390,
+            "o": 150,
+            "c": 158,
+            "h": 145,
+            "l": 163,
+            "w": 19.7
+          },
+          {
+            "x": 424,
+            "o": 158,
+            "c": 152,
+            "h": 147,
+            "l": 163,
+            "w": 19.7
+          }
+        ],
+        "hlines": [
+          {
+            "y": 231,
+            "label": "Supporting HL",
+            "tone": "up",
+            "x1": 142,
+            "x2": 690,
+            "size": 13,
+            "id": "lv",
+            "below": true,
+            "labelX": 528
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 242,
+            "y1": 97,
+            "x2": 690,
+            "y2": 121,
+            "tone": "gold",
+            "label": "Potential buy-side",
+            "id": "lq",
+            "labelRight": true
+          },
+          {
+            "x1": 176.15,
+            "y1": 176,
+            "x2": 690,
+            "y2": 211,
+            "tone": "up",
+            "label": "Bullish FVG",
+            "id": "dl",
+            "labelRight": true,
+            "labelBelow": true
+          },
+          {
+            "x1": 104,
+            "y1": 213,
+            "x2": 234,
+            "y2": 237,
+            "tone": "up",
+            "label": "Buyers appeared aggressive",
+            "id": "pp",
+            "labelRight": false,
+            "labelBelow": true
+          }
+        ],
+        "notes": [
+          {
+            "x": 84,
+            "y": 185,
+            "text": "HH",
+            "tone": "up",
+            "size": 13,
+            "anchor": "middle",
+            "id": "st"
+          },
+          {
+            "x": 200,
+            "y": 233,
+            "text": "HL",
+            "tone": "up",
+            "size": 13,
+            "anchor": "start",
+            "id": "st"
+          },
+          {
+            "x": 322,
+            "y": 109,
+            "text": "HH",
+            "tone": "up",
+            "size": 13,
+            "anchor": "middle",
+            "id": "st"
+          }
+        ]
+      },
+      "start": 12,
+      "steps": [
+        {
+          "text": "Turn the layers on one at a time. Then try All.",
+          "asks": [
+            {
+              "prompt": "With every layer on, is the chart easier to read?",
+              "options": [
+                {
+                  "label": "Not really. Turn on the layer that answers your question",
+                  "correct": true,
+                  "why": "Exactly. Context can get deeper without the chart getting messier."
+                },
+                {
+                  "label": "Yes, more layers = better read",
+                  "correct": false,
+                  "feedback": "Try All again. Is it clearer, or busier?",
+                  "mistake": "concept-overload"
+                }
+              ],
+              "concept": "market-read"
+            }
+          ],
+          "read": {
+            "rows": {
+              "Structure": "Bullish: HL → HH",
+              "Location": "Pulling back above the supporting HL",
+              "Liquidity": "Potential buy-side above the HH",
+              "Price delivery": "Displaced move up left a bullish FVG",
+              "Participation": "Buyers appeared aggressive from the HL",
+              "Execution": "Entry model not present"
+            }
+          }
+        }
+      ],
+      "layers": [
+        {
+          "key": "st",
+          "label": "Structure",
+          "ids": [
+            "st"
+          ]
+        },
+        {
+          "key": "lv",
+          "label": "Relevant level",
+          "ids": [
+            "lv"
+          ]
+        },
+        {
+          "key": "lq",
+          "label": "Liquidity",
+          "ids": [
+            "lq"
+          ]
+        },
+        {
+          "key": "dl",
+          "label": "Price delivery",
+          "ids": [
+            "dl"
+          ]
+        },
+        {
+          "key": "pp",
+          "label": "Participation",
+          "ids": [
+            "pp"
+          ]
+        }
+      ],
+      "kicker": "Layer the chart",
+      "title": "Five lenses. One chart."
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Market read",
+      "title": "Fill in the Market Read.",
+      "items": [
+        {
+          "text": "Structure",
+          "answer": "BULLISH",
+          "why": "HL → HH.",
+          "concept": "market-read",
+          "choices": [
+            "BULLISH",
+            "BEARISH",
+            "RANGE"
+          ]
+        },
+        {
+          "text": "Participation",
+          "answer": "BUYERS APPEARED AGGRESSIVE",
+          "why": "From the HL.",
+          "mistake": "participant-identity-assumption",
+          "concept": "market-read",
+          "choices": [
+            "BUYERS APPEARED AGGRESSIVE",
+            "BANKS ARE BUYING"
+          ]
+        },
+        {
+          "text": "Execution",
+          "answer": "NOT PRESENT",
+          "why": "The read doesn’t decide entries. The entry model does.",
+          "mistake": "context-equals-entry",
+          "concept": "entry-criteria",
+          "choices": [
+            "NOT PRESENT",
+            "BUY NOW"
+          ]
+        }
+      ],
+      "prompt": "Choose each row.",
+      "footer": "<strong>A MARKET READ IS NOT A SIGNAL GENERATOR.</strong> It’s a clear way to hold the context while you wait for the entry model."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Context gets deeper. <em>The chart doesn’t need to get messier.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "How does participation fit with structure on your chart?",
+      "modelAnswer": "Structure comes first. Participation, liquidity and delivery add context on top, one lens at a time. I don’t need every layer on at once, and the Market Read is context, not a signal. Execution is still decided by the entry model."
+    }
+  ],
+  "takeaways": [
+    "Structure first. Then add the lens that answers your question.",
+    "The Market Read holds context: structure, location, liquidity, delivery, participation, execution.",
+    "It isn’t a signal generator."
+  ],
+  "remember": "Context gets deeper. The chart doesn’t need to get messier."
+}

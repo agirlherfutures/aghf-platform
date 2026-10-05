@@ -23,7 +23,7 @@
 
 import { mountChart } from './structure-charts.js';
 import { mountLevels } from './level-tools.js';
-import { recordLearning, mistakeNudge } from './price-lab.js';
+import { recordLearning, mistakeNudge, askQuestion } from './price-lab.js';
 
 const reduced = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
@@ -100,9 +100,14 @@ function renderVerdicts(el, slide, satisfy, helpers) {
       fb.innerHTML = it.why ? `<strong>✦</strong> ${it.why}` : '';
       fb.className = it.why ? 'pl-fb show good' : 'pl-fb';
       if (it.show && chart) chart.reveal(it.show);
-      k += 1;
-      if (k < items.length) setTimeout(addItem, reduced() ? 0 : 260);
-      else finish();
+      const nextItem = () => {
+        k += 1;
+        if (k < items.length) setTimeout(addItem, reduced() ? 0 : 260);
+        else finish();
+      };
+      const afterInstead = () => (it.write ? freeWrite(row, it.write, nextItem) : nextItem());
+      if (it.instead) askQuestion(row, it.instead, helpers, afterInstead);
+      else afterInstead();
     }));
   }
   function finish() {
@@ -226,7 +231,126 @@ function renderJokeChecklist(el, slide, satisfy) {
   });
 }
 
+
+/* Free response after a selection: not graded, a model answer follows. */
+function freeWrite(container, w, done) {
+  const box = document.createElement('div');
+  box.className = 'pl-ask p3-write';
+  box.innerHTML = `<div class="pl-q">${w.prompt || 'Now say it in your own words.'}</div>
+    <textarea class="sw-textarea" rows="2" placeholder="${w.placeholder || 'Type it objectively…'}"></textarea>
+    <button type="button" class="p3-v-btn p3-write-go" disabled>Check it →</button><div class="p3-write-model"></div>`;
+  container.appendChild(box);
+  const ta = box.querySelector('textarea'), go = box.querySelector('.p3-write-go');
+  ta.addEventListener('input', () => { go.disabled = ta.value.trim().length < (w.min || 10); });
+  go.addEventListener('click', () => {
+    ta.disabled = true; go.remove();
+    box.querySelector('.p3-write-model').innerHTML = `<div class="pl-purpose"><div class="pl-panel-title">One objective version</div><p>${w.model}</p></div>`;
+    done();
+  });
+}
+
+/* ── evidence_board ─────────────────────────────────────────────────── */
+
+const BOARD_COLS = [
+  ['shows', '✓', 'What the chart shows'],
+  ['infer', '○', 'What we may infer'],
+  ['cannot', '✕', 'What we cannot prove'],
+];
+
+function renderEvidenceBoard(el, slide, satisfy, helpers) {
+  const items = slide.items || [];
+  el.innerHTML = `<div class="lw-card p3-card">${head(slide)}
+      ${mistakeNudge(slide.watch)}
+      ${slide.chart ? '<div class="p3-chart"></div>' : ''}
+      ${items.length ? `<div class="p3-prompt">${slide.prompt || 'Put each statement on the board.'}</div><div class="p3-le-tray"></div>` : ''}
+      <div class="p3-board">
+        ${BOARD_COLS.map(([k, ic, t]) => `<div class="p3-bcol p3-b-${k}"><div class="p3-btag"><span>${ic}</span>${t}</div><ul data-col="${k}">${(slide.filled?.[k] || []).map((x) => `<li>${x}</li>`).join('')}</ul></div>`).join('')}
+        <div class="p3-bcol p3-b-entry"><div class="p3-btag"><span>○</span>Entry model</div><ul><li>${slide.entry || 'Not present / not being evaluated yet'}</li></ul></div>
+      </div>
+      <div class="p3-foot"></div>
+    </div>`;
+  const card = el.querySelector('.p3-card');
+  maybeChart(card, slide);
+  const finish = () => {
+    const foot = card.querySelector('.p3-foot');
+    if (slide.footer) { foot.innerHTML = slide.footer; foot.classList.add('show'); }
+    continueBtn(el, satisfy, slide.cta);
+  };
+  if (!items.length) { finish(); return; }
+  const tray = card.querySelector('.p3-le-tray');
+  let k = 0;
+  function next() {
+    if (k >= items.length) { tray.remove(); finish(); return; }
+    const it = items[k];
+    let wrongs = 0;
+    tray.innerHTML = `<div class="p3-le-item">${it.text}</div>
+      <div class="p3-v-btns">${BOARD_COLS.map(([c, ic, t]) => `<button type="button" class="p3-v-btn" data-c="${c}">${ic} ${t.replace('What ', '').replace('the chart ', 'Chart ')}</button>`).join('')}</div>
+      <div class="pl-fb" aria-live="polite"></div>`;
+    const fb = tray.querySelector('.pl-fb');
+    tray.querySelectorAll('.p3-v-btn').forEach((b) => b.addEventListener('click', () => {
+      const ok = b.dataset.c === it.col;
+      helpers.onPick?.({ prompt: it.text, concept: it.concept || slide.concept }, { label: b.textContent.trim() }, ok, wrongs);
+      recordLearning({ concept: it.concept || slide.concept, mistake: ok ? null : (it.mistake || 'storytelling-over-evidence'), correct: ok });
+      helpers.handleStreak?.(ok);
+      if (!ok) {
+        wrongs += 1; b.disabled = true; b.classList.add('no');
+        fb.innerHTML = wrongs === 1 && it.hint ? `<strong>Try again.</strong> ${it.hint}` : (it.feedback || 'Not quite. Can you point at it on the chart?');
+        fb.className = 'pl-fb show bad';
+        return;
+      }
+      const li = document.createElement('li');
+      li.className = 'p3-le-new';
+      li.innerHTML = `${it.text}${it.why ? `<span>${it.why}</span>` : ''}`;
+      card.querySelector(`.p3-board ul[data-col="${it.col}"]`).appendChild(li);
+      k += 1; next();
+    }));
+  }
+  next();
+}
+
+/* ── read_builder: assemble a disciplined read, piece by piece ─────── */
+
+function renderReadBuilder(el, slide, satisfy, helpers) {
+  const slots = slide.slots || [];
+  el.innerHTML = `<div class="lw-card p3-card">${head(slide)}
+      ${slide.chart ? '<div class="p3-chart"></div>' : ''}
+      <div class="p3-rb-sentence" aria-live="polite">${slots.map((s, i) => `<span class="p3-rb-slot" data-i="${i}">${s.label}</span>`).join(' ')}</div>
+      <div class="p3-rb-pick"></div>
+      <div class="p3-foot"></div>
+    </div>`;
+  const card = el.querySelector('.p3-card');
+  maybeChart(card, slide);
+  const pick = card.querySelector('.p3-rb-pick');
+  let k = 0;
+  function next() {
+    if (k >= slots.length) {
+      pick.innerHTML = '';
+      card.querySelector('.p3-rb-sentence').classList.add('done');
+      const foot = card.querySelector('.p3-foot');
+      foot.innerHTML = slide.footer || '<strong>✓ DISCIPLINED READ.</strong>';
+      foot.classList.add('show');
+      helpers.burst?.();
+      continueBtn(el, satisfy, slide.cta);
+      return;
+    }
+    const s = slots[k];
+    card.querySelectorAll('.p3-rb-slot').forEach((x, i) => x.classList.toggle('cur', i === k));
+    const q = { prompt: `${s.prompt || 'Choose the piece'}: <em>${s.label}</em>`, concept: s.concept, stack: true, options: s.options };
+    pick.innerHTML = '';
+    askQuestion(pick, q, helpers, (o) => {
+      const slot = card.querySelector(`.p3-rb-slot[data-i="${k}"]`);
+      slot.textContent = o.piece || o.label;
+      slot.classList.remove('cur'); slot.classList.add('filled');
+      k += 1;
+      setTimeout(next, reduced() ? 0 : 450);
+    });
+  }
+  next();
+}
+
 export const PHASE3_RENDERERS = {
+  evidence_board: renderEvidenceBoard,
+  read_builder: renderReadBuilder,
   verdicts: renderVerdicts,
   explore: renderExplore,
   literacy_entry: renderLiteracyEntry,

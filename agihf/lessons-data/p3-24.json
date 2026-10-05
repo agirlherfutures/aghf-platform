@@ -1,0 +1,256 @@
+{
+  "phase": "p3",
+  "section": "s9",
+  "lessonNumber": 24,
+  "title": "What Price Can Tell You",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Ask the chart questions it can actually answer.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Sort questions the chart can answer from ones it can’t, and build an evidence board.",
+    "missionQuestion": "Can a chart tell you who was buying?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "verdicts",
+      "kicker": "Sort it",
+      "title": "ASK THE CHART",
+      "items": [
+        {
+          "text": "Where did price close?",
+          "answer": "CAN ANSWER",
+          "why": "Right there on the candle.",
+          "concept": "evidence"
+        },
+        {
+          "text": "Who was buying?",
+          "answer": "CAN’T ANSWER",
+          "why": "The chart shows price, not people.",
+          "mistake": "participant-identity-assumption",
+          "concept": "evidence",
+          "tone": "calm"
+        },
+        {
+          "text": "Did price hold above the level?",
+          "answer": "CAN ANSWER",
+          "why": "Look at the closes after the break.",
+          "concept": "evidence"
+        },
+        {
+          "text": "Why did they sell?",
+          "answer": "CAN’T ANSWER",
+          "why": "Motives aren’t on the chart.",
+          "mistake": "storytelling-over-evidence",
+          "concept": "evidence",
+          "tone": "calm"
+        },
+        {
+          "text": "How fast did price move?",
+          "answer": "CAN ANSWER",
+          "why": "Candle size and overlap show you.",
+          "concept": "evidence"
+        },
+        {
+          "text": "What happens next?",
+          "answer": "CAN’T ANSWER",
+          "why": "The chart shows what happened. Not what will.",
+          "mistake": "pressure-equals-direction",
+          "concept": "evidence",
+          "tone": "calm"
+        }
+      ],
+      "prompt": "Can a price chart answer it?",
+      "choices": [
+        "CAN ANSWER",
+        "CAN’T ANSWER"
+      ]
+    },
+    {
+      "type": "evidence_board",
+      "kicker": "Evidence board",
+      "title": "Evidence mode.",
+      "items": [
+        {
+          "text": "Price closed above the prior high.",
+          "col": "shows",
+          "why": "You can point at the close."
+        },
+        {
+          "text": "Price has held above it for several candles.",
+          "col": "shows",
+          "why": "Visible in the closes after the break."
+        },
+        {
+          "text": "Buyers appear more aggressive right now.",
+          "col": "infer",
+          "why": "A reasonable read of the closes. Still an interpretation."
+        },
+        {
+          "text": "Big funds are buying.",
+          "col": "cannot",
+          "why": "Identity isn’t on the chart.",
+          "mistake": "participant-identity-assumption"
+        },
+        {
+          "text": "Price will keep going higher.",
+          "col": "cannot",
+          "why": "A prediction, not evidence.",
+          "mistake": "pressure-equals-direction"
+        }
+      ],
+      "chart": {
+        "swings": [
+          [
+            60,
+            200
+          ],
+          [
+            460,
+            131
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 60,
+            "o": 200,
+            "c": 192,
+            "h": 187,
+            "l": 205,
+            "w": 23.2
+          },
+          {
+            "x": 100,
+            "o": 192,
+            "c": 201,
+            "h": 187,
+            "l": 206,
+            "w": 23.2
+          },
+          {
+            "x": 140,
+            "o": 201,
+            "c": 191,
+            "h": 186,
+            "l": 206,
+            "w": 23.2
+          },
+          {
+            "x": 180,
+            "o": 191,
+            "c": 198,
+            "h": 186,
+            "l": 203,
+            "w": 23.2
+          },
+          {
+            "x": 220,
+            "o": 198,
+            "c": 189,
+            "h": 184,
+            "l": 203,
+            "w": 23.2
+          },
+          {
+            "x": 260,
+            "o": 189,
+            "c": 153,
+            "h": 151,
+            "l": 191,
+            "w": 23.2
+          },
+          {
+            "x": 300,
+            "o": 153,
+            "c": 139,
+            "h": 134,
+            "l": 158,
+            "w": 23.2
+          },
+          {
+            "x": 340,
+            "o": 139,
+            "c": 145,
+            "h": 134,
+            "l": 150,
+            "w": 23.2
+          },
+          {
+            "x": 380,
+            "o": 145,
+            "c": 133,
+            "h": 128,
+            "l": 150,
+            "w": 23.2
+          },
+          {
+            "x": 420,
+            "o": 133,
+            "c": 141,
+            "h": 128,
+            "l": 146,
+            "w": 23.2
+          },
+          {
+            "x": 460,
+            "o": 141,
+            "c": 131,
+            "h": 126,
+            "l": 146,
+            "w": 23.2
+          }
+        ],
+        "hlines": [
+          {
+            "y": 182,
+            "label": "Prior high",
+            "tone": "purple",
+            "x1": 40,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 244,
+            "y1": 120,
+            "x2": 476,
+            "y2": 184,
+            "tone": "up",
+            "label": "Holding above",
+            "labelRight": false
+          }
+        ]
+      },
+      "footer": "<strong>THE CHART IS POWERFUL WHEN YOU ASK IT QUESTIONS IT CAN ACTUALLY ANSWER.</strong>",
+      "prompt": "Put each statement on the board."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "The chart is powerful when you ask it questions it can <em>actually answer.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What kinds of questions can a price chart answer well?",
+      "modelAnswer": "Where price closed, whether it held beyond a level, how fast it moved, whether candles overlapped, and whether structure changed. It can’t tell me who traded, why, or what happens next."
+    }
+  ],
+  "takeaways": [
+    "Price can show closes, holds, speed, overlap and structure.",
+    "It can’t show who, why, or what’s next.",
+    "Evidence board: shows / may infer / cannot prove."
+  ],
+  "remember": "The chart is powerful when you ask it questions it can actually answer."
+}
