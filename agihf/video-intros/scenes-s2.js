@@ -7,7 +7,7 @@
  *     per:    candles per leg (number or array, one per leg)
  *     play:   [{ to, at, dur }]     reveal the legs up to swing `to` between at and at+dur
  *     extra:  [{ u, o, c, hi, lo, at, out }]   exact candles (o/c/hi/lo in v units)
- *     levels: [{ v, from, label, tone, at, out, below }]
+ *     levels: [{ v, v2?, from, to?, label, tone, at, out, below }]   v2 = a zone
  *     marks:  [{ i, text, tone, at, out, below }]      pills on swing points
  *     pills:  [{ u, v, text, tone, at, out, fs }]
  *     rings:  [{ u, v, tone, at, out }]                 a pulsing circle
@@ -94,9 +94,12 @@
       (s.levels || []).forEach((l) => {
         const k = ease((t - l.at) / 0.8) * (l.out != null ? 1 - clamp((t - l.out) / 0.4) : 1);
         if (k <= 0) return;
-        const col = TONE[l.tone] || C.purple, x0 = X(l.from ?? 0), x1 = lerp(x0, px + pw - 40, k), yy = Y(l.v);
-        out += `<line x1="${x0}" x2="${x1}" y1="${yy}" y2="${yy}" stroke="${col}" stroke-width="5" stroke-dasharray="16 12" opacity="${k}"/>`;
-        if (l.label) out += `<text x="${px + pw - 44}" y="${yy + (l.below ? 40 : -16)}" font-size="${l.fs || 30}" font-weight="800" text-anchor="end" fill="${col}" opacity="${k}" font-family="DM Sans" paint-order="stroke" stroke="#fff" stroke-width="8">${l.label}</text>`;
+        const col = TONE[l.tone] || C.purple, x0 = X(l.from ?? 0), x1 = l.to != null ? lerp(x0, X(l.to), k) : lerp(x0, px + pw - 40, k);
+        // v2 makes it a zone (an area between v and v2) instead of a line.
+        const yy = l.v2 != null ? Y(Math.max(l.v, l.v2)) : Y(l.v);
+        if (l.v2 != null) out += `<rect x="${x0}" y="${yy}" width="${Math.max(0, x1 - x0)}" height="${Math.abs(Y(l.v) - Y(l.v2))}" rx="10" fill="${col}" fill-opacity=".2" stroke="${col}" stroke-width="3" stroke-dasharray="14 10" opacity="${k}"/>`;
+        else out += `<line x1="${x0}" x2="${x1}" y1="${yy}" y2="${yy}" stroke="${col}" stroke-width="5" stroke-dasharray="16 12" opacity="${k}"/>`;
+        if (l.label) out += `<text x="${l.to != null ? x1 - 4 : px + pw - 44}" y="${l.v2 != null && l.below ? Y(Math.min(l.v, l.v2)) + 40 : yy + (l.below ? 40 : -16)}" font-size="${l.fs || 30}" font-weight="800" text-anchor="end" fill="${col}" opacity="${k}" font-family="DM Sans" paint-order="stroke" stroke="#fff" stroke-width="8">${l.label}</text>`;
       });
       cs.forEach((c) => {
         const at = revealTime(s, c, 0, cs);
