@@ -22,7 +22,7 @@
       "type": "teach",
       "kicker": "Three honest answers",
       "title": "Not every pullback is a reversal.",
-      "body": "When price moves against the structure, there are three honest reads:<br><br><strong>→ Continuation:</strong> price proved it progressed with the structure.<br><strong>⇄ Potential shift:</strong> price broke the swing supporting the structure.<br><strong>? Not enough information:</strong> nothing relevant has broken yet.",
+      "body": "Price moves against the structure. Three honest reads:",
       "check": {
         "prompt": "Price is pulling back inside a bullish structure. Nothing relevant has broken. Which read fits?",
         "options": [
@@ -43,7 +43,24 @@
             "feedback": "Continuation needs a break of the prior high. Price hasn’t done that yet."
           }
         ]
-      }
+      },
+      "beats": [
+        {
+          "icon": "→",
+          "title": "Continuation",
+          "line": "It progressed with the structure"
+        },
+        {
+          "icon": "⇄",
+          "title": "Potential shift",
+          "line": "It broke the supporting swing"
+        },
+        {
+          "icon": "?",
+          "title": "Not enough info",
+          "line": "Nothing relevant has broken"
+        }
+      ]
     },
     {
       "type": "price_lab",

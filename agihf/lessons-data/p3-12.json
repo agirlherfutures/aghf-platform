@@ -427,7 +427,7 @@
       "type": "teach",
       "kicker": "Two words",
       "heading": "Imbalance ≠ FVG.",
-      "body": "<strong>Imbalance</strong> is the broad idea: price delivered with little two-sided trading, usually a fast move with little overlap.<br><br>A <strong>fair value gap</strong> is one specific way traders measure a piece of it, using exactly three candles. You’ll build one next lesson.<br><br>Every FVG comes from imbalance. Not every imbalanced-looking move gets labeled an FVG.",
+      "body": "",
       "check": {
         "prompt": "Which is broader?",
         "options": [
@@ -442,7 +442,20 @@
             "feedback": "An FVG is a specific three-candle pattern inside the broader idea."
           }
         ]
-      }
+      },
+      "beats": [
+        {
+          "icon": "🌊",
+          "title": "Imbalance",
+          "line": "The broad idea: fast delivery, little overlap"
+        },
+        {
+          "icon": "📦",
+          "title": "FVG",
+          "line": "One way to measure it: exactly 3 candles"
+        }
+      ],
+      "punch": "Every FVG comes from imbalance. Not every imbalance gets called an FVG."
     },
     {
       "type": "verdicts",

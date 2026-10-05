@@ -343,7 +343,34 @@
       "type": "teach",
       "kicker": "Weighting, not formulas",
       "title": "There’s no strength score.",
-      "body": "No level gets a <strong>93%</strong>. And <strong>3 touches ≠ strong</strong>.<br><br>Instead, weigh the context: structural relevance, reaction, prior swing alignment, timeframe context, location in the range and testing history.<br><br>Then ask: <strong>does this level answer the structural question I’m asking?</strong>"
+      "body": "No level gets a 93%. And 3 touches ≠ strong.",
+      "beats": [
+        {
+          "icon": "🏗️",
+          "title": "Structural relevance"
+        },
+        {
+          "icon": "↩️",
+          "title": "Reaction"
+        },
+        {
+          "icon": "🔗",
+          "title": "Swing alignment"
+        },
+        {
+          "icon": "⏱️",
+          "title": "Timeframe"
+        },
+        {
+          "icon": "📍",
+          "title": "Location in range"
+        },
+        {
+          "icon": "🧪",
+          "title": "Testing history"
+        }
+      ],
+      "punch": "Does this level answer the structural question I’m asking?"
     },
     {
       "type": "confusion",
@@ -355,7 +382,8 @@
           "Price hasn’t returned yet",
           "Fresh ≠ guaranteed",
           "Still needs context"
-        ]
+        ],
+        "icon": "🌱"
       },
       "right": {
         "label": "Repeatedly tested level",
@@ -363,7 +391,8 @@
           "Price has interacted several times",
           "Tested ≠ useless",
           "Watch how it’s behaving now"
-        ]
+        ],
+        "icon": "🔁"
       }
     },
     {

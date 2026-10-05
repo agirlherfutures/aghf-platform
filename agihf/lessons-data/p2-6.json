@@ -393,7 +393,8 @@
           "Define the range you’re analyzing",
           "The boundaries of the larger move",
           "Answer your current question"
-        ]
+        ],
+        "icon": "⛰️"
       },
       "right": {
         "label": "Minor / internal swings",
@@ -401,7 +402,8 @@
           "Develop inside the larger move",
           "Completely real turns",
           "Matter at a smaller scale"
-        ]
+        ],
+        "icon": "🌿"
       }
     },
     {

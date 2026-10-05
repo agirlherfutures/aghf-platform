@@ -23,7 +23,26 @@
       "type": "teach",
       "kicker": "A new word",
       "heading": "A liquidity pool is an area.",
-      "body": "A <strong>liquidity pool</strong> is an area where orders may be concentrated. Commonly:<ul class=\"p3-list\"><li>Swing highs and swing lows</li><li>Equal highs and equal lows</li><li>Range boundaries</li><li>Session highs and lows</li></ul>Areas, not exact dots. And never with a fake number attached."
+      "body": "An area where orders may be concentrated. Commonly:",
+      "beats": [
+        {
+          "icon": "⛰️",
+          "title": "Swing highs & lows"
+        },
+        {
+          "icon": "〰️",
+          "title": "Equal highs & lows"
+        },
+        {
+          "icon": "🚪",
+          "title": "Range boundaries"
+        },
+        {
+          "icon": "🕘",
+          "title": "Session highs & lows"
+        }
+      ],
+      "punch": "Areas, not dots. Never with a fake number."
     },
     {
       "type": "price_lab",
@@ -593,7 +612,25 @@
       "type": "teach",
       "kicker": "No fake data",
       "heading": "You’ll never see “Pool size: 4,200 contracts” here.",
-      "body": "A price chart can’t show you how many orders sit in a pool or how big they are. Anyone giving you a number from a candlestick chart is guessing. We describe <strong>areas where orders may be concentrated</strong>. That’s honest, and it’s enough."
+      "body": "A chart can’t count orders.",
+      "beats": [
+        {
+          "icon": "🚫",
+          "title": "No order counts",
+          "line": "Not visible on a candle chart"
+        },
+        {
+          "icon": "📏",
+          "title": "No pool sizes",
+          "line": "Any number is a guess"
+        },
+        {
+          "icon": "✅",
+          "title": "Areas only",
+          "line": "Where orders may be concentrated"
+        }
+      ],
+      "punch": "Honest is enough."
     },
     {
       "type": "v2_dayli",

@@ -262,7 +262,8 @@
           "Price moved strongly in one direction",
           "Participation looked one-sided in that moment",
           "That move may be worth noting as context"
-        ]
+        ],
+        "icon": "✅"
       },
       "right": {
         "label": "It doesn’t tell you ✗",
@@ -270,7 +271,8 @@
           "That price will continue",
           "That structure changed",
           "That you have an entry"
-        ]
+        ],
+        "icon": "🚫"
       }
     },
     {

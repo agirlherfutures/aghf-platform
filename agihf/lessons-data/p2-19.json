@@ -311,7 +311,20 @@
       "type": "teach",
       "kicker": "Two tools",
       "title": "Line or zone?",
-      "body": "<strong>LINE</strong> = a specific price reference.<br>Useful when you need an exact reference, like a prior high price would need to close above.<br><br><strong>ZONE</strong> = a broader area where price has shown meaningful behavior.<br>Useful when price reacted across a small area, not one exact tick."
+      "body": "",
+      "beats": [
+        {
+          "icon": "📏",
+          "title": "Line",
+          "line": "An exact price reference, like a prior high to close above"
+        },
+        {
+          "icon": "🟪",
+          "title": "Zone",
+          "line": "A small area where price reacted, not one exact tick"
+        }
+      ],
+      "punch": "Pick the tool that matches what price actually did."
     },
     {
       "type": "price_lab",

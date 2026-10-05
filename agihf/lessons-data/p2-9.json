@@ -179,7 +179,22 @@
     {
       "type": "teach",
       "kicker": "🫧 This is important…",
-      "body": "You’re going to notice throughout the Academy that price often moves in <strong>sequences</strong> rather than straight lines.<br><br>It moves. It corrects. It moves again.<br><br>Later, we’re going to give some of those behaviors much more specific meaning. 👀"
+      "body": "Price moves in sequences, not straight lines.",
+      "beats": [
+        {
+          "icon": "➡️",
+          "title": "It moves"
+        },
+        {
+          "icon": "↩️",
+          "title": "It corrects"
+        },
+        {
+          "icon": "➡️",
+          "title": "It moves again"
+        }
+      ],
+      "punch": "Later, these get much more specific meaning. 👀"
     },
     {
       "type": "structure_story",

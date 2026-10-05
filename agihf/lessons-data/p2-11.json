@@ -662,7 +662,8 @@
           "Price progressed in the direction of the existing structure",
           "Describes what already happened",
           "Continuation information"
-        ]
+        ],
+        "icon": "✅"
       },
       "right": {
         "label": "Price will →",
@@ -670,7 +671,8 @@
           "A prediction",
           "Not what a BOS tells you",
           "BOS isn’t guaranteed future continuation"
-        ]
+        ],
+        "icon": "🔮"
       }
     },
     {

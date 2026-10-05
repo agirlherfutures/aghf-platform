@@ -893,7 +893,7 @@
     {
       "type": "teach",
       "kicker": "The loop",
-      "body": "Every time price crosses a level, run the same questions:<br><br><strong>What broke?</strong> → <strong>Which swing was it?</strong> → <strong>How did price break it?</strong> → <strong>What was the prior structure?</strong> → <strong>What does that break actually tell me?</strong> → <strong>Do I have enough information yet?</strong>",
+      "body": "Every time price crosses a level:",
       "check": {
         "prompt": "Price just crossed a level. What’s the FIRST question?",
         "options": [
@@ -913,7 +913,33 @@
             "feedback": "Entries come much later. First, investigate what price did."
           }
         ]
-      }
+      },
+      "beats": [
+        {
+          "icon": "1",
+          "title": "What broke?"
+        },
+        {
+          "icon": "2",
+          "title": "Which swing?"
+        },
+        {
+          "icon": "3",
+          "title": "How did it break?"
+        },
+        {
+          "icon": "4",
+          "title": "Prior structure?"
+        },
+        {
+          "icon": "5",
+          "title": "What does it tell me?"
+        },
+        {
+          "icon": "6",
+          "title": "Enough info yet?"
+        }
+      ]
     },
     {
       "type": "reflect",

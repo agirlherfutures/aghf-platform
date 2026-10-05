@@ -330,7 +330,7 @@ function renderAcademyConcept(el2, slide, satisfy) {
       ${slide.title ? `<h2>${slide.title}</h2>` : ''}
       ${slide.versus ? `<div class="ac-versus"><div>${slide.versus[0]}</div><b>≠</b><div>${slide.versus[1]}</div></div>` : ''}
       <p class="ac-body">${slide.body || c.body}</p>
-      ${slide.points ? `<ul class="ac-points">${slide.points.map((p) => `<li>${p}</li>`).join('')}</ul>` : ''}
+      ${slide.points ? `<div class="ac-chips">${slide.points.map((p) => `<span>${p}</span>`).join('')}</div>` : ''}
       ${slide.footer ? `<p class="ac-foot">${slide.footer}</p>` : ''}
     </div>
     <button type="button" class="lw-continue-btn">${slide.cta || 'Got it →'}</button>`;

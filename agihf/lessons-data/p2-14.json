@@ -966,7 +966,8 @@
           "What price is doing right now",
           "Can be down inside a bullish structure",
           "Candle color shows this"
-        ]
+        ],
+        "icon": "〽️"
       },
       "right": {
         "label": "Direction of the larger structure",
@@ -974,14 +975,15 @@
           "What the relevant swings show",
           "Changes only when relevant levels break",
           "Swings and closes show this"
-        ]
+        ],
+        "icon": "🏛️"
       }
     },
     {
       "type": "teach",
       "kicker": "A preview",
       "title": "Different charts, different stories.",
-      "body": "The same moment can look like this:<br><br><strong>4H:</strong> bullish structure<br><strong>1H:</strong> pulling back<br><strong>1M:</strong> bearish internal movement<br><br>All three can be true at the same time. We’ll go deeper on timeframes later. For now: <strong>name the structure you’re reading.</strong>",
+      "body": "The same moment, three charts:",
       "check": {
         "prompt": "The 1M chart is bearish. Does that mean the 4H structure is bearish?",
         "options": [
@@ -996,7 +998,25 @@
             "why": "Right. A pullback on a smaller chart can sit inside a larger bullish structure."
           }
         ]
-      }
+      },
+      "beats": [
+        {
+          "icon": "🏛️",
+          "title": "4H",
+          "line": "Bullish structure"
+        },
+        {
+          "icon": "↘️",
+          "title": "1H",
+          "line": "Pulling back"
+        },
+        {
+          "icon": "〽️",
+          "title": "1M",
+          "line": "Bearish internal movement"
+        }
+      ],
+      "punch": "All three can be true. Name the structure you’re reading."
     },
     {
       "type": "chart_check",

@@ -23,7 +23,7 @@
       "type": "teach",
       "kicker": "Remember the room?",
       "heading": "Doors and furniture.",
-      "body": "In Phase 2 the range was a room.<br><br>🚪 <strong>The doors</strong> are the external high and external low. <strong>External liquidity</strong> sits beyond them.<br>🪞 <strong>Inside the room</strong> are internal highs and lows. <strong>Internal liquidity</strong> sits around those.<br><br>You can’t answer “which liquidity?” until you’ve defined the room.",
+      "body": "In Phase 2 the range was a room.",
       "check": {
         "prompt": "What do you need before you can call liquidity internal or external?",
         "options": [
@@ -43,7 +43,20 @@
             "feedback": "A sweep doesn’t define anything. The range does."
           }
         ]
-      }
+      },
+      "beats": [
+        {
+          "icon": "🚪",
+          "title": "The doors",
+          "line": "External high and low. External liquidity sits beyond."
+        },
+        {
+          "icon": "🛋️",
+          "title": "The furniture",
+          "line": "Internal highs and lows. Internal liquidity sits around them."
+        }
+      ],
+      "punch": "Define the room before you name the liquidity."
     },
     {
       "type": "price_lab",

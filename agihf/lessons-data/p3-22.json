@@ -23,7 +23,25 @@
       "type": "teach",
       "kicker": "Two famous words",
       "heading": "Accumulation and distribution.",
-      "body": "<strong>Accumulation</strong> is commonly used for a range before a move higher. <strong>Distribution</strong> for a range before a move lower.<br><br>The catch: while you’re inside the range, they often look the same. What you can see live is a <strong>consolidation</strong>."
+      "body": "",
+      "beats": [
+        {
+          "icon": "📈",
+          "title": "Accumulation",
+          "line": "A range before a move higher"
+        },
+        {
+          "icon": "📉",
+          "title": "Distribution",
+          "line": "A range before a move lower"
+        },
+        {
+          "icon": "👀",
+          "title": "Live, you see…",
+          "line": "A consolidation"
+        }
+      ],
+      "punch": "Inside the range, they often look the same."
     },
     {
       "type": "price_lab",

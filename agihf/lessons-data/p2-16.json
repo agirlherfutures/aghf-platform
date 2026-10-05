@@ -322,7 +322,22 @@
       "type": "teach",
       "kicker": "Name it",
       "title": "Failed breakout / false break behavior.",
-      "body": "Price moves beyond a level, then fails to hold beyond it.<br><br>That’s the description. Notice what it doesn’t say: <strong>who</strong> was buying, <strong>why</strong> they did it, or that anyone was <strong>trapped</strong>. The chart doesn’t show that."
+      "body": "Price moves beyond a level, then fails to hold.",
+      "beats": [
+        {
+          "icon": "🙈",
+          "title": "Not who"
+        },
+        {
+          "icon": "🤷🏾‍♀️",
+          "title": "Not why"
+        },
+        {
+          "icon": "🪤",
+          "title": "Not “trapped”"
+        }
+      ],
+      "punch": "That’s the whole description. The chart doesn’t show the rest."
     },
     {
       "type": "chart_check",

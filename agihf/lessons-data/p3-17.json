@@ -23,7 +23,7 @@
       "type": "teach",
       "kicker": "It happens fast",
       "heading": "FVGs pile up.",
-      "body": "Every displacement leaves a gap. Every pullback can leave one too. Mark them all and your chart turns into boxes on boxes, and the structure disappears underneath.",
+      "body": "Every displacement leaves a gap. So can every pullback.",
       "check": {
         "prompt": "You have nine FVG boxes on one chart. What’s the first question?",
         "options": [
@@ -45,7 +45,21 @@
             "mistake": "concept-overload"
           }
         ]
-      }
+      },
+      "beats": [
+        {
+          "icon": "📦",
+          "title": "Mark them all…"
+        },
+        {
+          "icon": "📦📦📦",
+          "title": "…boxes on boxes"
+        },
+        {
+          "icon": "🫥",
+          "title": "Structure disappears"
+        }
+      ]
     },
     {
       "type": "price_lab",

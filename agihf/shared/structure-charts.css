@@ -576,3 +576,40 @@ body.sg-lab .lw-wrap,body.sg-lab #lwWrap{max-width:980px;}
 .p3-case-notes.closed .p3-case-notes-h{color:var(--teal,#2F8A7F);}
 @media (max-width:600px){.p3-case-tag{display:none}.p3-tiles-3,.p3-tiles-4{--n:1}.p3-tile{flex-direction:row;justify-content:flex-start;text-align:left;padding:11px 14px;gap:10px}.p3-tile-t,.p3-tile-s{text-align:left}.p3-tile-s{margin-left:auto}.p3-clue-text{font-size:1.08rem}}
 @media (prefers-reduced-motion: reduce){.p3-clue,.p3-tile.ok,.p3-case-note{animation:none!important;}}
+
+/* ── Visual text: beats, versus cards, punchlines, status chips ── */
+.vt-lead{font-size:1rem;color:var(--muted,#7a5c50);margin:4px 0 0;}
+.vt-lead .p3-pair,.vt-lead .p3-memo{margin-top:6px;}
+.vt-beats{display:grid;gap:10px;margin-top:16px;grid-template-columns:repeat(var(--c,3),minmax(0,1fr));}
+.vt-cols-1{--c:1}.vt-cols-2{--c:2}.vt-cols-3{--c:3}
+.vt-beat{display:flex;flex-direction:column;align-items:flex-start;gap:4px;background:linear-gradient(160deg,#fff,var(--warm,#FDF8F5));border:1.5px solid var(--border);border-radius:18px;padding:14px 15px;animation:ssPop .35s ease-out both;}
+.vt-ic{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:900;color:var(--purple);background:var(--purple-pale);margin-bottom:4px;}
+.vt-beat:nth-child(3n+2) .vt-ic{background:var(--pink-pale);color:var(--pink);}
+.vt-beat:nth-child(3n) .vt-ic{background:var(--teal-pale);color:#1f6f66;}
+.vt-t{font-family:var(--font-display,Georgia,serif);font-weight:700;font-size:1.02rem;line-height:1.25;color:var(--dark);}
+.vt-l{font-size:.82rem;line-height:1.4;color:var(--muted,#7a5c50);}
+.vt-punch{display:flex;gap:10px;align-items:flex-start;margin-top:16px;background:var(--teal-pale);border-radius:14px;padding:11px 15px;font-weight:700;font-size:.92rem;line-height:1.45;color:#1f5f58;}
+.vt-punch span{color:var(--teal,#2F8A7F);}
+.vt-vs{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch;margin-top:16px;}
+.vt-vs-card{border-radius:22px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px;}
+.vt-vs-card.left{background:linear-gradient(160deg,#fff4f7,#fde1e8);border:1.5px solid #f7c6d2;}
+.vt-vs-card.right{background:linear-gradient(160deg,#effaf8,#d6f1ec);border:1.5px solid #b5e3dc;}
+.vt-vs-ic{font-size:1.7rem;line-height:1;}
+.vt-vs-label{font-family:var(--font-display,Georgia,serif);font-weight:700;font-size:1.12rem;line-height:1.25;}
+.vt-vs-card.left .vt-vs-label{color:#B23A57;}
+.vt-vs-card.right .vt-vs-label{color:#1a6f64;}
+.vt-vs-points{display:flex;flex-direction:column;gap:6px;margin-top:2px;}
+.vt-vs-points span{background:rgba(255,255,255,.75);border-radius:10px;padding:7px 11px;font-size:.84rem;font-weight:600;line-height:1.35;color:var(--dark);}
+.vt-vs-ne{align-self:center;width:42px;height:42px;border-radius:50%;background:var(--dark);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;}
+.pl-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.pl-chips .pl-row{flex:1 1 140px;flex-direction:column;align-items:flex-start;gap:5px;border:1px solid var(--border);border-radius:12px;padding:8px 10px;background:#fff;}
+.pl-chips .pl-row:last-child{border-bottom:1px solid var(--border);}
+.pl-chips .pl-row-label{max-width:none;font-size:.72rem;}
+.ac-chips{display:flex;flex-direction:column;gap:7px;margin-top:10px;}
+.ac-chips span{background:#fff;border-radius:12px;padding:9px 13px;font-size:.88rem;font-weight:600;line-height:1.4;border-left:3px solid var(--purple);}
+.ac-body{font-size:.88rem!important;color:var(--muted,#7a5c50);}
+@media (max-width:640px){.vt-beats{grid-template-columns:1fr;}.vt-beat{flex-direction:row;align-items:center;flex-wrap:wrap;column-gap:12px;padding:11px 13px}.vt-ic{margin:0;width:36px;height:36px}.vt-l{flex-basis:100%;padding-left:48px;margin-top:-4px}
+ .vt-vs{grid-template-columns:1fr}.vt-vs-ne{justify-self:center;margin:-4px 0}}
+@media (prefers-reduced-motion: reduce){.vt-beat{animation:none!important;}}
+.pl-card .pl-side > .pl-story:has(+ .pl-ev-slot:empty),.pl-card .pl-side > :only-child{grid-column:1/-1;}
+.pl-ev-slot:empty{display:none;}

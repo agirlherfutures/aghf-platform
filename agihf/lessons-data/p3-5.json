@@ -23,7 +23,25 @@
       "type": "teach",
       "kicker": "Look closer",
       "heading": "When highs line up.",
-      "body": "Sometimes price stops at nearly the same high twice, or nearly the same low twice. Those are <strong>equal highs</strong> and <strong>equal lows</strong>.<br><br>“Equal” means roughly equal. Two highs at 20,010 and 20,012 can be read as equal. They make very obvious areas, so many traders may have orders just beyond them."
+      "body": "Price stops at nearly the same place twice.",
+      "beats": [
+        {
+          "icon": "〰️",
+          "title": "Equal highs",
+          "line": "Two highs at about the same price"
+        },
+        {
+          "icon": "〰️",
+          "title": "Equal lows",
+          "line": "Two lows at about the same price"
+        },
+        {
+          "icon": "≈",
+          "title": "“Equal” = roughly",
+          "line": "20,010 and 20,012 count"
+        }
+      ],
+      "punch": "Very obvious areas, so orders may sit just beyond them."
     },
     {
       "type": "price_lab",
@@ -667,7 +685,8 @@
           "An obvious area",
           "Where orders may be concentrated",
           "Something worth monitoring"
-        ]
+        ],
+        "icon": "🧲"
       },
       "right": {
         "label": "What they don’t give you ✗",
@@ -675,7 +694,8 @@
           "A promise price will go there",
           "A target",
           "An entry"
-        ]
+        ],
+        "icon": "🚫"
       }
     },
     {

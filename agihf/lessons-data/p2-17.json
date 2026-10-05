@@ -362,7 +362,8 @@
           "The bullish story was materially challenged",
           "The old structure may no longer be behaving the same way",
           "Time to watch what price builds"
-        ]
+        ],
+        "icon": "🧱"
       },
       "right": {
         "label": "Bearish entry right now",
@@ -370,7 +371,8 @@
           "NOT what invalidation tells you",
           "Doesn’t automatically follow",
           "Skipping straight here is overtrading"
-        ]
+        ],
+        "icon": "⚡"
       }
     },
     {
