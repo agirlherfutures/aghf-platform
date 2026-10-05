@@ -326,11 +326,13 @@ function renderGame(slide, game, onAllDone, helpers) {
       const read = (level.readPrompt && reads[level.readPrompt]) || firstRead || { label: '—', correct: true };
       const card = document.createElement('div');
       card.className = 'lw-card sg-debrief-card';
-      card.innerHTML = `<div class="lw-eyebrow">${read.correct ? 'Nice read ✦' : 'Here’s what happened'}</div>
+      card.innerHTML = `<div class="lw-eyebrow">${read.correct ? (d.good || 'Nice read ✦') : 'Here’s what happened'}</div>
         <div class="sg-debrief">
           <div class="${read.correct ? 'sg-read-ok' : 'sg-read-no'}"><b>Your read</b>${read.label} ${read.correct ? '✓' : '✗'}</div>
-          <div><b>What price actually showed</b>${d.showed}</div>
-          <div><b>Why</b>${d.why}</div>
+          ${d.saw ? `<div><b>What you saw</b>${d.saw}</div>
+          <div class="sg-know"><b>✓ What we know</b>${d.know}</div>
+          <div class="sg-unknown"><b>○ What we don’t know yet</b>${d.unknown}</div>` : `<div><b>What price actually showed</b>${d.showed}</div>
+          <div><b>Why</b>${d.why}</div>`}
         </div>`;
       const btn = document.createElement('button');
       btn.type = 'button'; btn.className = 'lw-continue-btn'; btn.textContent = idx + 1 < levels.length ? 'Next level →' : 'Finish →';

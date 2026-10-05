@@ -1,0 +1,572 @@
+{
+  "phase": "p3",
+  "section": "s7",
+  "lessonNumber": 1,
+  "title": "What Is Liquidity?",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Liquidity isn’t a secret trap.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Describe liquidity as available orders, and explain why obvious levels may attract activity without claiming to know who is there.",
+    "missionQuestion": "Why might a previous high attract activity?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "v2_screen",
+      "kicker": "Phase 3 · Lesson 1",
+      "headline": "Where might orders <em>be waiting?</em>",
+      "line": "Phase 3 is about investigating price. Not collecting new reasons to enter.",
+      "visual": {
+        "host": "wave"
+      },
+      "cta": "Let’s investigate →",
+      "ctaPink": true
+    },
+    {
+      "type": "teach",
+      "kicker": "Start here",
+      "heading": "Every trade needs two sides.",
+      "body": "<div class=\"p3-pair\"><span>🟢 BUYERS</span><b>↔</b><span>🔴 SELLERS</span></div>To buy, someone has to sell to you. To sell, someone has to buy from you. Markets need counterparties.<br><br><strong>Liquidity</strong> is about the orders available to trade against: buyers and sellers willing to transact at a price.",
+      "check": {
+        "prompt": "You want to buy 1 contract. What has to exist?",
+        "options": [
+          {
+            "label": "Someone willing to sell to you",
+            "correct": true,
+            "why": "Exactly. Every buy needs a seller on the other side."
+          },
+          {
+            "label": "A green candle",
+            "correct": false,
+            "feedback": "Candle color has nothing to do with it. You need a counterparty."
+          },
+          {
+            "label": "A level on your chart",
+            "correct": false,
+            "feedback": "Your chart doesn’t fill orders. Another trader does."
+          }
+        ]
+      }
+    },
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            160
+          ],
+          [
+            106.5,
+            205
+          ],
+          [
+            201.5,
+            100
+          ],
+          [
+            277.5,
+            192
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 49.5,
+            "o": 160,
+            "c": 170.4,
+            "h": 154.5,
+            "l": 174.4,
+            "w": 11.4
+          },
+          {
+            "x": 68.5,
+            "o": 170.4,
+            "c": 182.2,
+            "h": 167.7,
+            "l": 187.0,
+            "w": 11.4
+          },
+          {
+            "x": 87.5,
+            "o": 182.2,
+            "c": 191.8,
+            "h": 175.8,
+            "l": 194.5,
+            "w": 11.4
+          },
+          {
+            "x": 106.5,
+            "o": 191.8,
+            "c": 195.2,
+            "h": 189.4,
+            "l": 205,
+            "w": 11.4
+          },
+          {
+            "x": 125.5,
+            "o": 195.2,
+            "c": 175.2,
+            "h": 170.9,
+            "l": 201.4,
+            "w": 11.4
+          },
+          {
+            "x": 144.5,
+            "o": 175.2,
+            "c": 163.0,
+            "h": 159.9,
+            "l": 179.9,
+            "w": 11.4
+          },
+          {
+            "x": 163.5,
+            "o": 163.0,
+            "c": 144.2,
+            "h": 141.8,
+            "l": 168.6,
+            "w": 11.4
+          },
+          {
+            "x": 182.5,
+            "o": 144.2,
+            "c": 124.4,
+            "h": 118.1,
+            "l": 146.8,
+            "w": 11.4
+          },
+          {
+            "x": 201.5,
+            "o": 124.4,
+            "c": 109.0,
+            "h": 100,
+            "l": 128.2,
+            "w": 11.4
+          },
+          {
+            "x": 220.5,
+            "o": 109.0,
+            "c": 136.5,
+            "h": 103.6,
+            "l": 138.1,
+            "w": 11.4
+          },
+          {
+            "x": 239.5,
+            "o": 136.5,
+            "c": 157.1,
+            "h": 130.9,
+            "l": 160.0,
+            "w": 11.4
+          },
+          {
+            "x": 258.5,
+            "o": 157.1,
+            "c": 178.2,
+            "h": 154.8,
+            "l": 184.4,
+            "w": 11.4
+          },
+          {
+            "x": 277.5,
+            "o": 178.2,
+            "c": 183.6,
+            "h": 176.1,
+            "l": 192,
+            "w": 11.4
+          },
+          {
+            "x": 296.5,
+            "o": 183.6,
+            "c": 172.8,
+            "h": 169.7,
+            "l": 185.5,
+            "w": 11.4
+          },
+          {
+            "x": 315.5,
+            "o": 172.8,
+            "c": 152.5,
+            "h": 150.5,
+            "l": 176.6,
+            "w": 11.4
+          },
+          {
+            "x": 334.5,
+            "o": 152.5,
+            "c": 139.8,
+            "h": 133.7,
+            "l": 155.9,
+            "w": 11.4
+          },
+          {
+            "x": 353.5,
+            "o": 139.8,
+            "c": 128.0,
+            "h": 126.0,
+            "l": 141.3,
+            "w": 11.4
+          }
+        ],
+        "hlines": [
+          {
+            "y": 100,
+            "label": "Previous high",
+            "tone": "purple",
+            "x1": 191.5,
+            "x2": 690,
+            "size": 13,
+            "below": true,
+            "labelX": 528
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 191.5,
+            "y1": 64,
+            "x2": 690,
+            "y2": 99,
+            "tone": "gold",
+            "label": "Area above the previous high",
+            "id": "above",
+            "labelRight": true
+          }
+        ]
+      },
+      "start": 17,
+      "steps": [
+        {
+          "text": "Price made a high, pulled back, and is now working its way back up.",
+          "next": "Next →"
+        },
+        {
+          "text": "Look at the previous high. Lots of traders can see it.",
+          "asks": [
+            {
+              "prompt": "WHY MIGHT THIS AREA ATTRACT ACTIVITY?",
+              "options": [
+                {
+                  "label": "Many traders can see it, so orders may be resting around it",
+                  "correct": true,
+                  "why": "Yes. An obvious level is a place many traders may have orders: exits, stops and new entries."
+                },
+                {
+                  "label": "Price has to come back to it",
+                  "correct": false,
+                  "feedback": "Nothing has to happen. We’re describing where orders may be, not where price must go.",
+                  "mistake": "liquidity-as-destination"
+                },
+                {
+                  "label": "That’s where the big banks are hiding",
+                  "correct": false,
+                  "feedback": "The chart can’t show us who is there. Stick to what you can see.",
+                  "mistake": "participant-identity-assumption"
+                }
+              ],
+              "concept": "liquidity-basics"
+            }
+          ],
+          "show": [
+            "above"
+          ]
+        }
+      ],
+      "kicker": "Look first",
+      "title": "A previous high."
+    },
+    {
+      "type": "explore",
+      "kicker": "Who might be here?",
+      "title": "Who might have orders above that high?",
+      "chart": {
+        "swings": [
+          [
+            40,
+            160
+          ],
+          [
+            106.5,
+            205
+          ],
+          [
+            201.5,
+            100
+          ],
+          [
+            277.5,
+            192
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 49.5,
+            "o": 160,
+            "c": 170.4,
+            "h": 154.5,
+            "l": 174.4,
+            "w": 11.4
+          },
+          {
+            "x": 68.5,
+            "o": 170.4,
+            "c": 182.2,
+            "h": 167.7,
+            "l": 187.0,
+            "w": 11.4
+          },
+          {
+            "x": 87.5,
+            "o": 182.2,
+            "c": 191.8,
+            "h": 175.8,
+            "l": 194.5,
+            "w": 11.4
+          },
+          {
+            "x": 106.5,
+            "o": 191.8,
+            "c": 195.2,
+            "h": 189.4,
+            "l": 205,
+            "w": 11.4
+          },
+          {
+            "x": 125.5,
+            "o": 195.2,
+            "c": 175.2,
+            "h": 170.9,
+            "l": 201.4,
+            "w": 11.4
+          },
+          {
+            "x": 144.5,
+            "o": 175.2,
+            "c": 163.0,
+            "h": 159.9,
+            "l": 179.9,
+            "w": 11.4
+          },
+          {
+            "x": 163.5,
+            "o": 163.0,
+            "c": 144.2,
+            "h": 141.8,
+            "l": 168.6,
+            "w": 11.4
+          },
+          {
+            "x": 182.5,
+            "o": 144.2,
+            "c": 124.4,
+            "h": 118.1,
+            "l": 146.8,
+            "w": 11.4
+          },
+          {
+            "x": 201.5,
+            "o": 124.4,
+            "c": 109.0,
+            "h": 100,
+            "l": 128.2,
+            "w": 11.4
+          },
+          {
+            "x": 220.5,
+            "o": 109.0,
+            "c": 136.5,
+            "h": 103.6,
+            "l": 138.1,
+            "w": 11.4
+          },
+          {
+            "x": 239.5,
+            "o": 136.5,
+            "c": 157.1,
+            "h": 130.9,
+            "l": 160.0,
+            "w": 11.4
+          },
+          {
+            "x": 258.5,
+            "o": 157.1,
+            "c": 178.2,
+            "h": 154.8,
+            "l": 184.4,
+            "w": 11.4
+          },
+          {
+            "x": 277.5,
+            "o": 178.2,
+            "c": 183.6,
+            "h": 176.1,
+            "l": 192,
+            "w": 11.4
+          },
+          {
+            "x": 296.5,
+            "o": 183.6,
+            "c": 172.8,
+            "h": 169.7,
+            "l": 185.5,
+            "w": 11.4
+          },
+          {
+            "x": 315.5,
+            "o": 172.8,
+            "c": 152.5,
+            "h": 150.5,
+            "l": 176.6,
+            "w": 11.4
+          },
+          {
+            "x": 334.5,
+            "o": 152.5,
+            "c": 139.8,
+            "h": 133.7,
+            "l": 155.9,
+            "w": 11.4
+          },
+          {
+            "x": 353.5,
+            "o": 139.8,
+            "c": 128.0,
+            "h": 126.0,
+            "l": 141.3,
+            "w": 11.4
+          }
+        ],
+        "hlines": [
+          {
+            "y": 100,
+            "label": "Previous high",
+            "tone": "purple",
+            "x1": 191.5,
+            "x2": 690,
+            "size": 13,
+            "below": true,
+            "labelX": 528
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 191.5,
+            "y1": 64,
+            "x2": 690,
+            "y2": 99,
+            "tone": "gold",
+            "label": "Area above the previous high",
+            "labelRight": true
+          }
+        ]
+      },
+      "prompt": "Tap each one to see why it might be there.",
+      "cards": [
+        {
+          "icon": "💰",
+          "title": "Take-profit orders",
+          "body": "Traders who bought lower may plan to take profit near the high they can see."
+        },
+        {
+          "icon": "🚀",
+          "title": "Breakout buyers",
+          "body": "Some traders wait to buy if price moves above the high."
+        },
+        {
+          "icon": "🛑",
+          "title": "Short stop losses",
+          "body": "Traders who sold short may place their stops above the high. A short’s stop is a buy order."
+        },
+        {
+          "icon": "🔻",
+          "title": "New sellers",
+          "body": "Some traders may see the high as a place to sell."
+        },
+        {
+          "icon": "❔",
+          "title": "Other resting orders",
+          "body": "Limit and stop orders we can’t see, for reasons we can’t know."
+        }
+      ],
+      "footer": "<strong>WE CAN IDENTIFY THE AREA. WE CANNOT KNOW EVERY PARTICIPANT’S MOTIVE.</strong><br>We don’t know how many orders are there, how big they are, or what anyone will do next."
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Investigate it",
+      "title": "What can we actually say?",
+      "items": [
+        {
+          "text": "Orders may be resting around this high.",
+          "answer": "REASONABLE INFERENCE",
+          "why": "An obvious level is a reasonable place to expect resting orders. “May” is doing important work here.",
+          "concept": "liquidity-basics"
+        },
+        {
+          "text": "This is a previous high many traders can see.",
+          "answer": "CHART SHOWS",
+          "why": "That one is right there on the chart."
+        },
+        {
+          "text": "There are exactly 3,000 stop orders above it.",
+          "answer": "CAN’T PROVE",
+          "why": "A price chart can’t show order counts. Never trust a number you can’t see.",
+          "feedback": "Where on this chart would that number come from?",
+          "mistake": "fake-precision",
+          "tone": "calm"
+        },
+        {
+          "text": "Price will definitely trade up there next.",
+          "answer": "CAN’T PROVE",
+          "why": "Orders may sit there. Price still doesn’t owe anyone a visit.",
+          "mistake": "liquidity-as-destination",
+          "tone": "calm"
+        }
+      ],
+      "prompt": "Sort each statement.",
+      "choices": [
+        "CHART SHOWS",
+        "REASONABLE INFERENCE",
+        "CAN’T PROVE"
+      ],
+      "concept": "liquidity-basics"
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Liquidity isn’t a <em>secret trap.</em>",
+      "pose": "point",
+      "line": "It’s a way of describing where orders may be concentrated. Useful context. Not a conspiracy."
+    },
+    {
+      "type": "academy_concept",
+      "variant": "literacy",
+      "title": "Liquidity is market literacy.",
+      "points": [
+        "It helps you understand why some areas attract activity.",
+        "It does not tell you where price must go.",
+        "It is not a Dayli ICC entry condition."
+      ],
+      "footer": "You’ll see this card all through Phase 3. Learn more so you can understand more. Not so you can require more."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "In your own words, what is liquidity?",
+      "modelAnswer": "Liquidity is about the orders available to trade: buyers and sellers willing to transact. Obvious levels like previous highs may attract resting orders, like take-profits, stops and breakout orders. I can identify the area, but I can’t know every participant’s motive, and it doesn’t tell me where price must go."
+    }
+  ],
+  "takeaways": [
+    "Markets need counterparties: buyers and sellers.",
+    "Obvious levels may attract resting orders: take-profits, stops, breakout and new orders.",
+    "You can identify the area. You can’t know every participant’s motive."
+  ],
+  "remember": "Liquidity isn’t a secret trap. It’s where orders may be concentrated."
+}

@@ -1,0 +1,408 @@
+{
+  "phase": "p3",
+  "section": "s7",
+  "lessonNumber": 7,
+  "title": "Liquidity Sweeps",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Sweep = context. Not entry.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Describe sweep-like behavior objectively, then dismiss the assumptions people attach to it.",
+    "missionQuestion": "If price sweeps a high, is that an entry?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            160
+          ],
+          [
+            117.0,
+            205
+          ],
+          [
+            205.0,
+            120
+          ],
+          [
+            293.0,
+            190
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 51.0,
+            "o": 160,
+            "c": 174.1,
+            "h": 155.6,
+            "l": 177.3,
+            "w": 13.2
+          },
+          {
+            "x": 73.0,
+            "o": 174.1,
+            "c": 180.7,
+            "h": 167.7,
+            "l": 183.6,
+            "w": 13.2
+          },
+          {
+            "x": 95.0,
+            "o": 180.7,
+            "c": 193.4,
+            "h": 178.1,
+            "l": 197.2,
+            "w": 13.2
+          },
+          {
+            "x": 117.0,
+            "o": 193.4,
+            "c": 198.1,
+            "h": 188.4,
+            "l": 205,
+            "w": 13.2
+          },
+          {
+            "x": 139.0,
+            "o": 198.1,
+            "c": 180.8,
+            "h": 175.1,
+            "l": 203.3,
+            "w": 13.2
+          },
+          {
+            "x": 161.0,
+            "o": 180.8,
+            "c": 165.3,
+            "h": 160.0,
+            "l": 184.1,
+            "w": 13.2
+          },
+          {
+            "x": 183.0,
+            "o": 165.3,
+            "c": 145.3,
+            "h": 141.4,
+            "l": 167.3,
+            "w": 13.2
+          },
+          {
+            "x": 205.0,
+            "o": 145.3,
+            "c": 126.1,
+            "h": 120,
+            "l": 149.1,
+            "w": 13.2
+          },
+          {
+            "x": 227.0,
+            "o": 126.1,
+            "c": 138.8,
+            "h": 122.1,
+            "l": 141.6,
+            "w": 13.2
+          },
+          {
+            "x": 249.0,
+            "o": 138.8,
+            "c": 154.2,
+            "h": 135.1,
+            "l": 160.4,
+            "w": 13.2
+          },
+          {
+            "x": 271.0,
+            "o": 154.2,
+            "c": 170.7,
+            "h": 149.6,
+            "l": 176.1,
+            "w": 13.2
+          },
+          {
+            "x": 293.0,
+            "o": 170.7,
+            "c": 182.8,
+            "h": 166.4,
+            "l": 190,
+            "w": 13.2
+          },
+          {
+            "x": 315.0,
+            "o": 182.8,
+            "c": 174.4,
+            "h": 171.1,
+            "l": 189.2,
+            "w": 13.2
+          },
+          {
+            "x": 337.0,
+            "o": 174.4,
+            "c": 163.1,
+            "h": 160.8,
+            "l": 176.9,
+            "w": 13.2
+          },
+          {
+            "x": 359.0,
+            "o": 163.1,
+            "c": 150.6,
+            "h": 148.3,
+            "l": 165.4,
+            "w": 13.2
+          },
+          {
+            "x": 381.0,
+            "o": 150.6,
+            "c": 135.0,
+            "h": 133.2,
+            "l": 154.9,
+            "w": 13.2
+          },
+          {
+            "x": 403.0,
+            "o": 135.0,
+            "c": 124.5,
+            "h": 108.0,
+            "l": 139.5,
+            "w": 13.2
+          },
+          {
+            "x": 425.0,
+            "o": 124.5,
+            "c": 132.0,
+            "h": 121.5,
+            "l": 136.5,
+            "w": 13.2
+          },
+          {
+            "x": 447.0,
+            "o": 132.0,
+            "c": 153.0,
+            "h": 129.0,
+            "l": 157.5,
+            "w": 13.2
+          }
+        ],
+        "hlines": [
+          {
+            "y": 120,
+            "label": "Previous high · 20,000",
+            "tone": "purple",
+            "x1": 197.0,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          }
+        ],
+        "notes": [
+          {
+            "x": 403.0,
+            "y": 96.0,
+            "text": "20,008",
+            "tone": "gold",
+            "size": 13,
+            "anchor": "middle",
+            "id": "n1"
+          },
+          {
+            "x": 429.0,
+            "y": 162.0,
+            "text": "19,992",
+            "tone": "purple",
+            "size": 13,
+            "anchor": "middle",
+            "id": "n2"
+          },
+          {
+            "x": 413.0,
+            "y": 62,
+            "text": "Sweep-like behavior",
+            "tone": "purple",
+            "size": 15,
+            "anchor": "middle",
+            "id": "nm"
+          }
+        ]
+      },
+      "start": 16,
+      "steps": [
+        {
+          "text": "Previous high: <strong>20,000</strong>. Price is at <strong>19,990</strong>.",
+          "next": "Next candle →"
+        },
+        {
+          "candles": 17,
+          "text": "Price trades up to <strong>20,008</strong>.",
+          "show": [
+            "n1"
+          ],
+          "asks": [
+            {
+              "prompt": "WHAT HAPPENED?",
+              "options": [
+                {
+                  "label": "Price traded above the previous high",
+                  "correct": true,
+                  "why": "That’s it. Observation first."
+                },
+                {
+                  "label": "Smart money hunted the stops",
+                  "correct": false,
+                  "feedback": "The chart can’t show who traded or why. Describe what price did.",
+                  "mistake": "participant-identity-assumption"
+                },
+                {
+                  "label": "A bullish breakout is confirmed",
+                  "correct": false,
+                  "feedback": "One candle traded above. Look at where it closed.",
+                  "mistake": "sweep-equals-break"
+                }
+              ],
+              "concept": "liquidity-sweep"
+            }
+          ]
+        },
+        {
+          "candles": 18,
+          "text": "Next candle: price closes at <strong>19,992</strong>.",
+          "show": [
+            "n2"
+          ],
+          "asks": [
+            {
+              "prompt": "Best description now?",
+              "options": [
+                {
+                  "label": "Price traded above the previous high, then failed to sustain above it",
+                  "correct": true,
+                  "why": "Objective and complete."
+                },
+                {
+                  "label": "Price reversed. It’s going down now",
+                  "correct": false,
+                  "feedback": "We don’t know that. It failed to hold above. That’s all so far.",
+                  "mistake": "sweep-equals-reversal"
+                },
+                {
+                  "label": "Nothing happened",
+                  "correct": false,
+                  "feedback": "Something did happen: price traded above and came back below."
+                }
+              ],
+              "concept": "liquidity-sweep"
+            }
+          ]
+        },
+        {
+          "candles": 19,
+          "text": "Traders commonly call this <strong>sweep-like behavior</strong>: price trades through an area where orders may rest, then fails to sustain beyond it.",
+          "show": [
+            "nm"
+          ]
+        }
+      ],
+      "kicker": "Watch first",
+      "title": "Previous high: 20,000."
+    },
+    {
+      "type": "teach",
+      "kicker": "Name it after you see it",
+      "heading": "Sweep-like behavior.",
+      "body": "Notice the order: we described what price did <em>before</em> we gave it a name.<br><br><strong>Sweep-like behavior:</strong> price trades through an area where orders may rest (above a high or below a low), then fails to sustain beyond it.<br><br>That’s a description. Not a prediction."
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Sweep = context",
+      "title": "Dismiss each assumption.",
+      "items": [
+        {
+          "text": "Does this prove a reversal?",
+          "answer": "NO",
+          "why": "A sweep can happen inside a continuing move. Reversal needs structure, not one wick.",
+          "mistake": "sweep-equals-reversal",
+          "concept": "liquidity-sweep"
+        },
+        {
+          "text": "Is this a market structure shift?",
+          "answer": "NO",
+          "why": "MSS is a structure question: a close through the relevant swing. This was a liquidity event.",
+          "mistake": "sweep-equals-mss",
+          "concept": "sweep-vs-break"
+        },
+        {
+          "text": "Is this a Dayli ICC entry?",
+          "answer": "NO",
+          "why": "The entry model has its own sequence. A sweep isn’t in it.",
+          "mistake": "context-equals-entry",
+          "concept": "dayli-icc-context"
+        },
+        {
+          "text": "Should you enter now?",
+          "answer": "NO",
+          "why": "Context is not a trade.",
+          "mistake": "context-equals-entry",
+          "concept": "entry-criteria"
+        },
+        {
+          "text": "Was this manipulation?",
+          "answer": "NOT PROVEN",
+          "why": "The chart can’t show intent. “Not proven” is the honest answer.",
+          "mistake": "storytelling-over-evidence",
+          "concept": "objective-observation",
+          "choices": [
+            "PROVEN",
+            "NOT PROVEN"
+          ],
+          "tone": "calm"
+        }
+      ],
+      "prompt": "Tap your answer for each.",
+      "choices": [
+        "YES",
+        "NO"
+      ],
+      "body": "Price traded above 20,000 and closed back at 19,992.",
+      "watch": {
+        "mistake": "sweep-equals-reversal",
+        "text": "Heads up: earlier you read a sweep as a reversal. Slow down on this one."
+      }
+    },
+    {
+      "type": "academy_concept",
+      "variant": "literacy",
+      "title": "Sweep = context. Not entry.",
+      "body": "A sweep tells you price traded through an area where orders may rest and didn’t stay. That can be useful context. It is not a reversal signal, not an MSS, and not a Dayli ICC entry."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Sweep = <em>context.</em> Not entry.",
+      "pose": "point",
+      "line": "Describe it. Note it. Then keep reading what price builds next."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Why isn’t a liquidity sweep automatically an entry?",
+      "modelAnswer": "Because a sweep only tells me price traded through an area where orders may rest and failed to hold beyond it. It doesn’t prove a reversal or an MSS, and it isn’t part of the Dayli ICC entry sequence. It’s context, not a trade."
+    }
+  ],
+  "takeaways": [
+    "Describe what price did before you name it.",
+    "Sweep-like behavior: trades through an area where orders may rest, then fails to sustain beyond it.",
+    "A sweep is not a reversal, not an MSS, not an entry, and not proof of manipulation."
+  ],
+  "remember": "Sweep = context. Not entry."
+}

@@ -1,0 +1,701 @@
+{
+  "phase": "p3",
+  "section": "s7",
+  "lessonNumber": 5,
+  "title": "Equal Highs & Equal Lows",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "A magnet ≠ a guaranteed destination.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Identify equal highs and lows with tolerance, and describe what they suggest without treating them as destinations.",
+    "missionQuestion": "If you spot equal highs, does price have to go take them?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "teach",
+      "kicker": "Look closer",
+      "heading": "When highs line up.",
+      "body": "Sometimes price stops at nearly the same high twice, or nearly the same low twice. Those are <strong>equal highs</strong> and <strong>equal lows</strong>.<br><br>“Equal” means roughly equal. Two highs at 20,010 and 20,012 can be read as equal. They make very obvious areas, so many traders may have orders just beyond them."
+    },
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            150
+          ],
+          [
+            80.0,
+            60
+          ],
+          [
+            144.0,
+            215
+          ],
+          [
+            192.0,
+            118
+          ],
+          [
+            240.0,
+            190
+          ],
+          [
+            288.0,
+            116
+          ],
+          [
+            336.0,
+            222
+          ],
+          [
+            368.0,
+            160
+          ],
+          [
+            400.0,
+            221
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 150,
+            "c": 125.4,
+            "h": 122.3,
+            "l": 152.4,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 125.4,
+            "c": 96.0,
+            "h": 91.3,
+            "l": 130.2,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 96.0,
+            "c": 67.9,
+            "h": 60,
+            "l": 101.9,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 67.9,
+            "c": 109.0,
+            "h": 63.5,
+            "l": 114.8,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 109.0,
+            "c": 147.9,
+            "h": 103.1,
+            "l": 153.5,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 147.9,
+            "c": 185.3,
+            "h": 142.9,
+            "l": 189.8,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 185.3,
+            "c": 208.8,
+            "h": 181.1,
+            "l": 215,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 208.8,
+            "c": 185.1,
+            "h": 180.0,
+            "l": 214.2,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 185.1,
+            "c": 153.2,
+            "h": 149.0,
+            "l": 190.7,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 153.2,
+            "c": 124.9,
+            "h": 118,
+            "l": 155.8,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 124.9,
+            "c": 149.7,
+            "h": 120.4,
+            "l": 151.6,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 149.7,
+            "c": 169.3,
+            "h": 143.4,
+            "l": 174.4,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 169.3,
+            "c": 181.8,
+            "h": 165.2,
+            "l": 190,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 181.8,
+            "c": 162.3,
+            "h": 158.2,
+            "l": 183.5,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 162.3,
+            "c": 140.4,
+            "h": 138.7,
+            "l": 164.4,
+            "w": 9.6
+          },
+          {
+            "x": 288.0,
+            "o": 140.4,
+            "c": 124.0,
+            "h": 116,
+            "l": 144.5,
+            "w": 9.6
+          },
+          {
+            "x": 304.0,
+            "o": 124.0,
+            "c": 165.3,
+            "h": 118.5,
+            "l": 168.3,
+            "w": 9.6
+          },
+          {
+            "x": 320.0,
+            "o": 165.3,
+            "c": 192.6,
+            "h": 161.4,
+            "l": 194.3,
+            "w": 9.6
+          },
+          {
+            "x": 336.0,
+            "o": 192.6,
+            "c": 215.9,
+            "h": 187.9,
+            "l": 222,
+            "w": 9.6
+          },
+          {
+            "x": 352.0,
+            "o": 215.9,
+            "c": 183.3,
+            "h": 178.7,
+            "l": 221.7,
+            "w": 9.6
+          },
+          {
+            "x": 368.0,
+            "o": 183.3,
+            "c": 169.4,
+            "h": 160,
+            "l": 186.6,
+            "w": 9.6
+          },
+          {
+            "x": 384.0,
+            "o": 169.4,
+            "c": 191.5,
+            "h": 166.9,
+            "l": 196.9,
+            "w": 9.6
+          },
+          {
+            "x": 400.0,
+            "o": 191.5,
+            "c": 214.8,
+            "h": 188.0,
+            "l": 221,
+            "w": 9.6
+          },
+          {
+            "x": 416.0,
+            "o": 214.8,
+            "c": 196.8,
+            "h": 191.1,
+            "l": 219.8,
+            "w": 9.6
+          },
+          {
+            "x": 432.0,
+            "o": 196.8,
+            "c": 175.0,
+            "h": 173.3,
+            "l": 202.3,
+            "w": 9.6
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 182.0,
+            "y1": 88,
+            "x2": 690,
+            "y2": 115,
+            "tone": "up",
+            "label": "POTENTIAL BUY-SIDE",
+            "id": "ov",
+            "labelRight": true
+          },
+          {
+            "x1": 326.0,
+            "y1": 224,
+            "x2": 690,
+            "y2": 252,
+            "tone": "down",
+            "label": "POTENTIAL SELL-SIDE",
+            "id": "ov",
+            "labelRight": true,
+            "labelBelow": true
+          }
+        ]
+      },
+      "start": 25,
+      "steps": [
+        {
+          "text": "Four lines. Only some of them mark equal highs or equal lows.",
+          "pick": {
+            "prompt": "Tap the equal highs.",
+            "answer": "eqh",
+            "concept": "equal-highs",
+            "hint": "Find two highs that stopped at nearly the same price.",
+            "notes": {
+              "maj": "Only one high is up there. That’s the previous major high.",
+              "int": "Just one small internal high.",
+              "eql": "Those are lows."
+            },
+            "reveal": {
+              "label": "EQH",
+              "tone": "up"
+            },
+            "why": "Two highs at nearly the same price. Equal doesn’t mean identical to the tick."
+          },
+          "next": "Next →"
+        },
+        {
+          "text": "Now the lows.",
+          "pick": {
+            "prompt": "Tap the equal lows.",
+            "answer": "eql",
+            "concept": "equal-lows",
+            "hint": "Find two lows that stopped at nearly the same price.",
+            "notes": {
+              "maj": "That’s a high.",
+              "int": "That’s a small internal high.",
+              "eqh": "Those are the equal highs."
+            },
+            "reveal": {
+              "label": "EQL",
+              "tone": "down"
+            },
+            "why": "Two lows at nearly the same price."
+          },
+          "next": "Show the overlay →"
+        },
+        {
+          "text": "Above equal highs: potential buy-side. Below equal lows: potential sell-side.",
+          "show": [
+            "ov"
+          ],
+          "asks": [
+            {
+              "prompt": "WHAT CAN WE CONCLUDE?",
+              "options": [
+                {
+                  "label": "It’s an obvious area worth monitoring",
+                  "correct": true,
+                  "why": "That’s it. Obvious to you means obvious to many traders."
+                },
+                {
+                  "label": "Price will sweep the equal highs next",
+                  "correct": false,
+                  "feedback": "Maybe. Maybe not. Obvious doesn’t mean guaranteed.",
+                  "mistake": "liquidity-as-destination"
+                },
+                {
+                  "label": "Sell at the equal highs",
+                  "correct": false,
+                  "feedback": "Phase 3 isn’t giving you entries. This is context.",
+                  "mistake": "context-equals-entry"
+                }
+              ],
+              "concept": "equal-highs"
+            }
+          ]
+        }
+      ],
+      "levels": [
+        {
+          "id": "maj",
+          "y": 60,
+          "label": "Previous major high",
+          "tone": "muted",
+          "name": "the previous major high",
+          "x1": 70.0
+        },
+        {
+          "id": "eqh",
+          "y": 117,
+          "tone": "muted",
+          "name": "the equal highs",
+          "x1": 182.0
+        },
+        {
+          "id": "int",
+          "y": 160,
+          "tone": "muted",
+          "name": "a random internal high",
+          "x1": 358.0
+        },
+        {
+          "id": "eql",
+          "y": 222,
+          "tone": "muted",
+          "name": "the equal lows",
+          "x1": 326.0,
+          "below": true
+        }
+      ],
+      "kicker": "Find them",
+      "title": "Equal highs. Equal lows."
+    },
+    {
+      "type": "flash_sort",
+      "kicker": "Spot it",
+      "title": "Equal highs, equal lows, or neither?",
+      "body": "Roughly equal counts. Not identical to the tick.",
+      "options": [
+        {
+          "key": "eqh",
+          "label": "Equal highs",
+          "emoji": "═"
+        },
+        {
+          "key": "eql",
+          "label": "Equal lows",
+          "emoji": "═"
+        },
+        {
+          "key": "none",
+          "label": "Neither",
+          "emoji": "?"
+        }
+      ],
+      "items": [
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                220
+              ],
+              [
+                140,
+                100
+              ],
+              [
+                230,
+                190
+              ],
+              [
+                330,
+                103
+              ],
+              [
+                420,
+                200
+              ],
+              [
+                520,
+                150
+              ],
+              [
+                620,
+                170
+              ]
+            ],
+            "seed": 333
+          },
+          "answer": "eqh",
+          "why": "Two highs stopped at nearly the same price."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                90
+              ],
+              [
+                140,
+                220
+              ],
+              [
+                230,
+                140
+              ],
+              [
+                330,
+                223
+              ],
+              [
+                420,
+                120
+              ],
+              [
+                520,
+                170
+              ],
+              [
+                620,
+                110
+              ]
+            ],
+            "seed": 332
+          },
+          "answer": "eql",
+          "why": "Two lows stopped at nearly the same price."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                260
+              ],
+              [
+                130,
+                180
+              ],
+              [
+                210,
+                230
+              ],
+              [
+                300,
+                140
+              ],
+              [
+                380,
+                190
+              ],
+              [
+                470,
+                100
+              ],
+              [
+                560,
+                150
+              ],
+              [
+                640,
+                70
+              ]
+            ],
+            "seed": 348
+          },
+          "answer": "none",
+          "why": "Each high is higher. Nothing is equal."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                200
+              ],
+              [
+                130,
+                120
+              ],
+              [
+                220,
+                210
+              ],
+              [
+                320,
+                118
+              ],
+              [
+                410,
+                205
+              ],
+              [
+                500,
+                140
+              ],
+              [
+                600,
+                160
+              ]
+            ],
+            "seed": 342
+          },
+          "answer": "eqh",
+          "why": "Highs at 120 and 118. Close enough to read as equal."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                60
+              ],
+              [
+                130,
+                140
+              ],
+              [
+                210,
+                100
+              ],
+              [
+                300,
+                180
+              ],
+              [
+                380,
+                130
+              ],
+              [
+                470,
+                220
+              ],
+              [
+                560,
+                170
+              ],
+              [
+                640,
+                240
+              ]
+            ],
+            "seed": 335
+          },
+          "answer": "none",
+          "why": "Lower highs and lower lows. Nothing lines up."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                120
+              ],
+              [
+                140,
+                230
+              ],
+              [
+                240,
+                150
+              ],
+              [
+                340,
+                228
+              ],
+              [
+                440,
+                140
+              ],
+              [
+                540,
+                200
+              ],
+              [
+                630,
+                160
+              ]
+            ],
+            "seed": 344
+          },
+          "answer": "eql",
+          "why": "Two lows at nearly the same price."
+        }
+      ],
+      "passText": "You’re spotting obvious areas. Now remember: obvious isn’t guaranteed."
+    },
+    {
+      "type": "confusion",
+      "heading": "A magnet ≠ a guaranteed destination.",
+      "left": {
+        "label": "What equal highs give you ✓",
+        "points": [
+          "An obvious area",
+          "Where orders may be concentrated",
+          "Something worth monitoring"
+        ]
+      },
+      "right": {
+        "label": "What they don’t give you ✗",
+        "points": [
+          "A promise price will go there",
+          "A target",
+          "An entry"
+        ]
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "A magnet ≠ a <em>guaranteed destination.</em>",
+      "pose": "point",
+      "line": "People call equal highs a magnet. Fine. Magnets still don’t guarantee where price goes."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What can you conclude when you spot equal highs?",
+      "modelAnswer": "That there’s an obvious area above them where buy-side liquidity may rest, so it’s worth monitoring. I can’t conclude price will go there, and it isn’t a target or an entry by itself."
+    }
+  ],
+  "takeaways": [
+    "Equal highs/lows: highs or lows at roughly the same price.",
+    "Potential buy-side above equal highs. Potential sell-side below equal lows.",
+    "An obvious area worth monitoring, not a guaranteed destination."
+  ],
+  "remember": "A magnet ≠ a guaranteed destination."
+}

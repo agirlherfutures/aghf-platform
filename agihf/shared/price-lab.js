@@ -110,6 +110,36 @@ export function askQuestion(container, q, helpers, onSolved) {
   return box;
 }
 
+/* ── Electric nudge: only when her own history shows the mistake ────── */
+
+/** watch = { mistake, text } → a heads-up banner if she has made that mistake before. */
+export function mistakeNudge(watch) {
+  if (!watch) return '';
+  try {
+    const all = JSON.parse(localStorage.getItem('aghf_learning') || '{}');
+    const m = (all.mistakes || {})[watch.mistake];
+    if (!m || !m.count) return '';
+  } catch (e) { return ''; }
+  return `<div class="p3-nudge" role="note"><span>👀</span>${watch.text}</div>`;
+}
+
+/* ── Three lenses: structure · context · execution ─────────────────── */
+
+const LENSES = [
+  ['structure', '🏗️', 'Structure', 'What is price building?'],
+  ['context', '💧', 'Liquidity / context', 'Where might orders sit? How did price deliver?'],
+  ['execution', '✦', 'Execution', 'Is the entry model present?'],
+];
+export function lensCard(l) {
+  const d = document.createElement('div');
+  d.className = 'p3-lens';
+  d.innerHTML = `<div class="pl-panel-title">${l.title || 'Three lenses'}</div>${LENSES.map(([k, ic, name, q]) => `
+    <div class="p3-lens-row p3-lens-${k}"><span class="p3-lens-ic" aria-hidden="true">${ic}</span>
+      <div><b>${(l.labels || {})[k] || name}</b><small>${q}</small></div>
+      <span class="p3-lens-val">${l[k] ?? (k === 'execution' ? 'Entry model: not present / not being evaluated yet' : '·')}</span></div>`).join('')}`;
+  return d;
+}
+
 /* ── Structure Story + What we know ─────────────────────────────────── */
 
 function storyHtml(story) {
@@ -164,6 +194,7 @@ export function renderPriceLab(el, slide, satisfy, helpers) {
       ${slide.kicker === '' ? '' : `<div class="lw-eyebrow">${slide.kicker || 'Price lab'}</div>`}
       ${slide.title ? `<h2>${slide.title}</h2>` : ''}
       ${slide.body ? `<p>${slide.body}</p>` : ''}
+      ${mistakeNudge(slide.watch)}
       <div class="pl-stage${side ? ' pl-has-side' : ''}">
         <div class="pl-main"><div class="pl-chart"></div></div>
         ${side ? `<div class="pl-side">${slide.story ? storyHtml(slide.story) : ''}<div class="pl-ev-slot">${slide.evidence ? evidenceHtml(slide.evidence) : ''}</div></div>` : ''}
@@ -288,7 +319,7 @@ export function renderPriceLab(el, slide, satisfy, helpers) {
       if (s.evidence) card.querySelector('.pl-ev-slot').innerHTML = evidenceHtml(s.evidence);
       if (s.relabel && lv) Object.entries(s.relabel).forEach(([id, r]) => lv.relabel(id, r.label, r.tone));
       say(s.text);
-      const afterAsks = () => { if (s.card) asks.appendChild(purposeCard(s.card)); finish(); };
+      const afterAsks = () => { if (s.card) asks.appendChild(purposeCard(s.card)); if (s.lens) asks.appendChild(lensCard(s.lens)); finish(); };
       const afterTools = () => (s.asks || s.ask ? runAsks(s.asks || [s.ask], 0, afterAsks) : afterAsks());
       const tool = lv && ['pick', 'keep', 'clean', 'zone'].find((k) => s[k]);
       const afterTap = () => (tool ? lv[tool](s[tool], asks, helpers, afterTools) : afterTools());

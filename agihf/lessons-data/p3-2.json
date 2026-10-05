@@ -1,0 +1,889 @@
+{
+  "phase": "p3",
+  "section": "s7",
+  "lessonNumber": 2,
+  "title": "Buy-Side & Sell-Side",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Above highs: buy-side. Below lows: sell-side.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Locate buy-side and sell-side liquidity on a chart, with less help each time, without treating either as a destination.",
+    "missionQuestion": "Does buy-side liquidity above a high mean price has to go up?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            160
+          ],
+          [
+            87.5,
+            215
+          ],
+          [
+            163.5,
+            105
+          ],
+          [
+            239.5,
+            220
+          ],
+          [
+            315.5,
+            112
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 49.5,
+            "o": 160,
+            "c": 182.9,
+            "h": 155.8,
+            "l": 187.2,
+            "w": 11.4
+          },
+          {
+            "x": 68.5,
+            "o": 182.9,
+            "c": 196.4,
+            "h": 180.5,
+            "l": 198.1,
+            "w": 11.4
+          },
+          {
+            "x": 87.5,
+            "o": 196.4,
+            "c": 207.4,
+            "h": 192.4,
+            "l": 215,
+            "w": 11.4
+          },
+          {
+            "x": 106.5,
+            "o": 207.4,
+            "c": 186.9,
+            "h": 183.7,
+            "l": 213.8,
+            "w": 11.4
+          },
+          {
+            "x": 125.5,
+            "o": 186.9,
+            "c": 149.1,
+            "h": 144.3,
+            "l": 188.5,
+            "w": 11.4
+          },
+          {
+            "x": 144.5,
+            "o": 149.1,
+            "c": 125.4,
+            "h": 123.3,
+            "l": 155.5,
+            "w": 11.4
+          },
+          {
+            "x": 163.5,
+            "o": 125.4,
+            "c": 113.7,
+            "h": 105,
+            "l": 129.7,
+            "w": 11.4
+          },
+          {
+            "x": 182.5,
+            "o": 113.7,
+            "c": 147.2,
+            "h": 107.5,
+            "l": 150.6,
+            "w": 11.4
+          },
+          {
+            "x": 201.5,
+            "o": 147.2,
+            "c": 173.8,
+            "h": 144.3,
+            "l": 178.8,
+            "w": 11.4
+          },
+          {
+            "x": 220.5,
+            "o": 173.8,
+            "c": 199.7,
+            "h": 170.4,
+            "l": 204.5,
+            "w": 11.4
+          },
+          {
+            "x": 239.5,
+            "o": 199.7,
+            "c": 211.1,
+            "h": 197.4,
+            "l": 220,
+            "w": 11.4
+          },
+          {
+            "x": 258.5,
+            "o": 211.1,
+            "c": 191.0,
+            "h": 188.5,
+            "l": 214.0,
+            "w": 11.4
+          },
+          {
+            "x": 277.5,
+            "o": 191.0,
+            "c": 156.9,
+            "h": 154.0,
+            "l": 197.2,
+            "w": 11.4
+          },
+          {
+            "x": 296.5,
+            "o": 156.9,
+            "c": 135.6,
+            "h": 129.8,
+            "l": 159.1,
+            "w": 11.4
+          },
+          {
+            "x": 315.5,
+            "o": 135.6,
+            "c": 119.0,
+            "h": 112,
+            "l": 137.6,
+            "w": 11.4
+          },
+          {
+            "x": 334.5,
+            "o": 119.0,
+            "c": 135.7,
+            "h": 112.7,
+            "l": 139.8,
+            "w": 11.4
+          },
+          {
+            "x": 353.5,
+            "o": 135.7,
+            "c": 155.0,
+            "h": 133.4,
+            "l": 156.8,
+            "w": 11.4
+          },
+          {
+            "x": 372.5,
+            "o": 155.0,
+            "c": 170.0,
+            "h": 152.4,
+            "l": 176.3,
+            "w": 11.4
+          }
+        ],
+        "hlines": [
+          {
+            "y": 105,
+            "label": "Range high",
+            "tone": "muted",
+            "x1": 77.5,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          },
+          {
+            "y": 220,
+            "label": "Range low",
+            "tone": "muted",
+            "x1": 77.5,
+            "x2": 690,
+            "size": 13,
+            "below": true,
+            "labelX": 528
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 77.5,
+            "y1": 70,
+            "x2": 690,
+            "y2": 104,
+            "tone": "up",
+            "label": "BUY-SIDE LIQUIDITY ↑",
+            "id": "bsl",
+            "labelRight": true
+          },
+          {
+            "x1": 77.5,
+            "y1": 221,
+            "x2": 690,
+            "y2": 256,
+            "tone": "down",
+            "label": "SELL-SIDE LIQUIDITY ↓",
+            "id": "ssl",
+            "labelRight": true,
+            "labelBelow": true
+          }
+        ]
+      },
+      "start": 18,
+      "steps": [
+        {
+          "text": "A range: a high and a low.",
+          "next": "Show me →"
+        },
+        {
+          "text": "<strong>Above the high:</strong> buy-side liquidity. <strong>Below the low:</strong> sell-side liquidity.",
+          "show": [
+            "bsl",
+            "ssl"
+          ],
+          "asks": [
+            {
+              "prompt": "Why is the area above highs called buy-side?",
+              "options": [
+                {
+                  "label": "Orders resting there are commonly buy orders",
+                  "correct": true,
+                  "why": "Yes. Short stop losses (a short exits by buying) and breakout buy orders may sit above highs."
+                },
+                {
+                  "label": "Because price is going up there",
+                  "correct": false,
+                  "feedback": "It’s named after the orders that may rest there, not a direction price must go.",
+                  "mistake": "liquidity-as-destination"
+                },
+                {
+                  "label": "Because buyers are winning",
+                  "correct": false,
+                  "feedback": "It says nothing about who is winning. It describes the type of resting orders."
+                }
+              ],
+              "concept": "buy-side-liquidity"
+            },
+            {
+              "prompt": "And below lows: sell-side. Why?",
+              "options": [
+                {
+                  "label": "Long stop losses and breakdown sells may rest there, and those are sell orders",
+                  "correct": true,
+                  "why": "A long exits by selling, so a long’s stop below a low is a sell order."
+                },
+                {
+                  "label": "Because price must drop there",
+                  "correct": false,
+                  "feedback": "No “must.” It names the orders, not the outcome.",
+                  "mistake": "liquidity-as-destination"
+                }
+              ],
+              "concept": "sell-side-liquidity"
+            }
+          ]
+        }
+      ],
+      "kicker": "Labeled view",
+      "title": "Two sides of the range."
+    },
+    {
+      "type": "teach",
+      "kicker": "Memory device",
+      "heading": "Above highs. Below lows.",
+      "body": "<div class=\"p3-memo\"><div><b>ABOVE HIGHS</b><span>→ BUY-SIDE</span></div><div><b>BELOW LOWS</b><span>→ SELL-SIDE</span></div></div>Name it after the orders that may rest there. Short stops and breakout buys above. Long stops and breakdown sells below."
+    },
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            160
+          ],
+          [
+            87.5,
+            215
+          ],
+          [
+            163.5,
+            105
+          ],
+          [
+            239.5,
+            220
+          ],
+          [
+            315.5,
+            112
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 49.5,
+            "o": 160,
+            "c": 182.9,
+            "h": 155.8,
+            "l": 187.2,
+            "w": 11.4
+          },
+          {
+            "x": 68.5,
+            "o": 182.9,
+            "c": 196.4,
+            "h": 180.5,
+            "l": 198.1,
+            "w": 11.4
+          },
+          {
+            "x": 87.5,
+            "o": 196.4,
+            "c": 207.4,
+            "h": 192.4,
+            "l": 215,
+            "w": 11.4
+          },
+          {
+            "x": 106.5,
+            "o": 207.4,
+            "c": 186.9,
+            "h": 183.7,
+            "l": 213.8,
+            "w": 11.4
+          },
+          {
+            "x": 125.5,
+            "o": 186.9,
+            "c": 149.1,
+            "h": 144.3,
+            "l": 188.5,
+            "w": 11.4
+          },
+          {
+            "x": 144.5,
+            "o": 149.1,
+            "c": 125.4,
+            "h": 123.3,
+            "l": 155.5,
+            "w": 11.4
+          },
+          {
+            "x": 163.5,
+            "o": 125.4,
+            "c": 113.7,
+            "h": 105,
+            "l": 129.7,
+            "w": 11.4
+          },
+          {
+            "x": 182.5,
+            "o": 113.7,
+            "c": 147.2,
+            "h": 107.5,
+            "l": 150.6,
+            "w": 11.4
+          },
+          {
+            "x": 201.5,
+            "o": 147.2,
+            "c": 173.8,
+            "h": 144.3,
+            "l": 178.8,
+            "w": 11.4
+          },
+          {
+            "x": 220.5,
+            "o": 173.8,
+            "c": 199.7,
+            "h": 170.4,
+            "l": 204.5,
+            "w": 11.4
+          },
+          {
+            "x": 239.5,
+            "o": 199.7,
+            "c": 211.1,
+            "h": 197.4,
+            "l": 220,
+            "w": 11.4
+          },
+          {
+            "x": 258.5,
+            "o": 211.1,
+            "c": 191.0,
+            "h": 188.5,
+            "l": 214.0,
+            "w": 11.4
+          },
+          {
+            "x": 277.5,
+            "o": 191.0,
+            "c": 156.9,
+            "h": 154.0,
+            "l": 197.2,
+            "w": 11.4
+          },
+          {
+            "x": 296.5,
+            "o": 156.9,
+            "c": 135.6,
+            "h": 129.8,
+            "l": 159.1,
+            "w": 11.4
+          },
+          {
+            "x": 315.5,
+            "o": 135.6,
+            "c": 119.0,
+            "h": 112,
+            "l": 137.6,
+            "w": 11.4
+          },
+          {
+            "x": 334.5,
+            "o": 119.0,
+            "c": 135.7,
+            "h": 112.7,
+            "l": 139.8,
+            "w": 11.4
+          },
+          {
+            "x": 353.5,
+            "o": 135.7,
+            "c": 155.0,
+            "h": 133.4,
+            "l": 156.8,
+            "w": 11.4
+          },
+          {
+            "x": 372.5,
+            "o": 155.0,
+            "c": 170.0,
+            "h": 152.4,
+            "l": 176.3,
+            "w": 11.4
+          }
+        ],
+        "hlines": [
+          {
+            "y": 105,
+            "label": "",
+            "tone": "muted",
+            "x1": 77.5,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          },
+          {
+            "y": 220,
+            "label": "",
+            "tone": "muted",
+            "x1": 77.5,
+            "x2": 690,
+            "size": 13,
+            "labelX": 528
+          }
+        ]
+      },
+      "start": 18,
+      "steps": [
+        {
+          "text": "Same chart. The labels are gone.",
+          "pick": {
+            "prompt": "Tap the buy-side.",
+            "answer": "bs",
+            "concept": "buy-side-liquidity",
+            "hint": "Buy-side sits above highs.",
+            "notes": {
+              "mid": "That’s inside the range, not beyond a high.",
+              "ss": "That’s below the low: sell-side."
+            },
+            "reveal": {
+              "label": "BSL",
+              "tone": "up"
+            },
+            "why": "Above the high: buy-side liquidity (BSL).",
+            "mistakes": {
+              "ss": "side-confusion"
+            }
+          },
+          "next": "Next →"
+        },
+        {
+          "text": "Now the other side.",
+          "pick": {
+            "prompt": "Tap the sell-side.",
+            "answer": "ss",
+            "concept": "sell-side-liquidity",
+            "hint": "Sell-side sits below lows.",
+            "notes": {
+              "mid": "That’s inside the range.",
+              "bs": "That’s above the high: buy-side."
+            },
+            "reveal": {
+              "label": "SSL",
+              "tone": "down"
+            },
+            "why": "Below the low: sell-side liquidity (SSL).",
+            "mistakes": {
+              "bs": "side-confusion"
+            }
+          }
+        }
+      ],
+      "levels": [
+        {
+          "id": "bs",
+          "y": 74,
+          "y2": 102,
+          "tone": "muted",
+          "name": "above the high",
+          "x1": 77.5
+        },
+        {
+          "id": "mid",
+          "y": 150,
+          "y2": 178,
+          "tone": "muted",
+          "name": "the middle of the range",
+          "x1": 77.5
+        },
+        {
+          "id": "ss",
+          "y": 223,
+          "y2": 251,
+          "tone": "muted",
+          "name": "below the low",
+          "x1": 77.5
+        }
+      ],
+      "kicker": "Less help",
+      "title": "Find both sides."
+    },
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            250
+          ],
+          [
+            82.5,
+            150
+          ],
+          [
+            133.5,
+            230
+          ],
+          [
+            201.5,
+            120
+          ],
+          [
+            252.5,
+            190
+          ],
+          [
+            303.5,
+            95
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.5,
+            "o": 250,
+            "c": 208.2,
+            "h": 201.9,
+            "l": 252.5,
+            "w": 10.2
+          },
+          {
+            "x": 65.5,
+            "o": 208.2,
+            "c": 192.2,
+            "h": 186.0,
+            "l": 211.0,
+            "w": 10.2
+          },
+          {
+            "x": 82.5,
+            "o": 192.2,
+            "c": 158.1,
+            "h": 150,
+            "l": 195.8,
+            "w": 10.2
+          },
+          {
+            "x": 99.5,
+            "o": 158.1,
+            "c": 180.9,
+            "h": 152.6,
+            "l": 186.5,
+            "w": 10.2
+          },
+          {
+            "x": 116.5,
+            "o": 180.9,
+            "c": 202.9,
+            "h": 176.7,
+            "l": 207.8,
+            "w": 10.2
+          },
+          {
+            "x": 133.5,
+            "o": 202.9,
+            "c": 221.6,
+            "h": 200.4,
+            "l": 230,
+            "w": 10.2
+          },
+          {
+            "x": 150.5,
+            "o": 221.6,
+            "c": 194.2,
+            "h": 190.3,
+            "l": 227.7,
+            "w": 10.2
+          },
+          {
+            "x": 167.5,
+            "o": 194.2,
+            "c": 176.7,
+            "h": 171.8,
+            "l": 197.1,
+            "w": 10.2
+          },
+          {
+            "x": 184.5,
+            "o": 176.7,
+            "c": 153.4,
+            "h": 150.8,
+            "l": 179.9,
+            "w": 10.2
+          },
+          {
+            "x": 201.5,
+            "o": 153.4,
+            "c": 126.6,
+            "h": 120,
+            "l": 157.8,
+            "w": 10.2
+          },
+          {
+            "x": 218.5,
+            "o": 126.6,
+            "c": 151.1,
+            "h": 121.6,
+            "l": 156.8,
+            "w": 10.2
+          },
+          {
+            "x": 235.5,
+            "o": 151.1,
+            "c": 171.2,
+            "h": 146.4,
+            "l": 173.9,
+            "w": 10.2
+          },
+          {
+            "x": 252.5,
+            "o": 171.2,
+            "c": 180.2,
+            "h": 165.2,
+            "l": 190,
+            "w": 10.2
+          },
+          {
+            "x": 269.5,
+            "o": 180.2,
+            "c": 155.3,
+            "h": 148.9,
+            "l": 186.1,
+            "w": 10.2
+          },
+          {
+            "x": 286.5,
+            "o": 155.3,
+            "c": 129.2,
+            "h": 123.9,
+            "l": 160.9,
+            "w": 10.2
+          },
+          {
+            "x": 303.5,
+            "o": 129.2,
+            "c": 103.8,
+            "h": 95,
+            "l": 131.7,
+            "w": 10.2
+          },
+          {
+            "x": 320.5,
+            "o": 103.8,
+            "c": 121.2,
+            "h": 100.5,
+            "l": 126.0,
+            "w": 10.2
+          },
+          {
+            "x": 337.5,
+            "o": 121.2,
+            "c": 135.9,
+            "h": 117.3,
+            "l": 138.8,
+            "w": 10.2
+          },
+          {
+            "x": 354.5,
+            "o": 135.9,
+            "c": 146.5,
+            "h": 130.0,
+            "l": 152.2,
+            "w": 10.2
+          },
+          {
+            "x": 371.5,
+            "o": 146.5,
+            "c": 160.0,
+            "h": 140.0,
+            "l": 166.0,
+            "w": 10.2
+          }
+        ]
+      },
+      "start": 20,
+      "steps": [
+        {
+          "text": "A trending chart. No lines this time, only highlighted areas.",
+          "pick": {
+            "prompt": "Tap the area where buy-side liquidity may rest.",
+            "answer": "A",
+            "concept": "buy-side-liquidity",
+            "hint": "Find the most recent swing high. What’s above it?",
+            "notes": {
+              "B": "That area is between swings. No obvious high sits right below it.",
+              "C": "That’s below a low: sell-side."
+            },
+            "mistakes": {
+              "C": "side-confusion"
+            }
+          },
+          "next": "Next →"
+        },
+        {
+          "text": "And the sell-side?",
+          "pick": {
+            "prompt": "Tap the area where sell-side liquidity may rest.",
+            "answer": "C",
+            "concept": "sell-side-liquidity",
+            "hint": "Find the most recent swing low. What’s below it?",
+            "notes": {
+              "B": "That isn’t below a swing low.",
+              "A": "That’s above a high: buy-side."
+            },
+            "mistakes": {
+              "A": "side-confusion"
+            }
+          }
+        }
+      ],
+      "levels": [
+        {
+          "id": "A",
+          "y": 68,
+          "y2": 93,
+          "tone": "muted",
+          "name": "above the latest high",
+          "x1": 293.5
+        },
+        {
+          "id": "B",
+          "y": 122,
+          "y2": 146,
+          "tone": "muted",
+          "name": "between swings",
+          "x1": 191.5
+        },
+        {
+          "id": "C",
+          "y": 192,
+          "y2": 216,
+          "tone": "muted",
+          "name": "below the latest higher low",
+          "x1": 242.5
+        }
+      ],
+      "kicker": "Highlight only",
+      "title": "Less obvious now."
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Myth check",
+      "title": "Does it tell you where price goes next?",
+      "items": [
+        {
+          "text": "Buy-side liquidity describes where buy orders may rest.",
+          "answer": "FACT",
+          "why": "That’s exactly what the term describes.",
+          "concept": "buy-side-liquidity"
+        },
+        {
+          "text": "Buy-side liquidity is above this high, so price must go up to take it.",
+          "answer": "MYTH",
+          "why": "Price might trade there. It might not. The label names orders, not a destination.",
+          "mistake": "liquidity-as-destination",
+          "concept": "buy-side-liquidity",
+          "tone": "myth"
+        },
+        {
+          "text": "Sell-side liquidity pulls price down like a magnet.",
+          "answer": "MYTH",
+          "why": "No magnets here. An area where orders may rest is context, not gravity.",
+          "mistake": "liquidity-as-destination",
+          "concept": "sell-side-liquidity",
+          "tone": "myth"
+        },
+        {
+          "text": "Sell-side liquidity may sit below an obvious low.",
+          "answer": "FACT",
+          "why": "Long stops and breakdown sells may rest there.",
+          "concept": "sell-side-liquidity"
+        }
+      ],
+      "prompt": "MYTH or FACT?",
+      "choices": [
+        "MYTH",
+        "FACT"
+      ]
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "This does <em>not</em> tell you where price must go next.",
+      "pose": "point",
+      "line": "Above highs: buy-side. Below lows: sell-side. That’s a description of where orders may rest. Nothing more."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What’s the difference between buy-side and sell-side liquidity?",
+      "modelAnswer": "Buy-side liquidity sits above highs, where buy orders like short stop losses and breakout buys may rest. Sell-side liquidity sits below lows, where sell orders like long stop losses and breakdown sells may rest. Neither one tells me where price must go next."
+    }
+  ],
+  "takeaways": [
+    "Above highs: buy-side liquidity (short stops, breakout buys).",
+    "Below lows: sell-side liquidity (long stops, breakdown sells).",
+    "It describes where orders may rest, not where price must go."
+  ],
+  "remember": "Above highs → buy-side. Below lows → sell-side. Not a destination."
+}

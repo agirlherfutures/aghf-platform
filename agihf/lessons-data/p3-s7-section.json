@@ -1,0 +1,2748 @@
+{
+  "phase": "p3",
+  "section": "s7",
+  "title": "Understanding Liquidity",
+  "steps": [
+    "game",
+    "knowledge",
+    "checkin",
+    "complete"
+  ],
+  "hook": "Clear Liquidity Detective, pass the Knowledge Check and save your Check-In to unlock Section 2.",
+  "game": {
+    "title": "Liquidity Detective 💧",
+    "tagline": "Nine cases. What do we know, and what don’t we know yet?",
+    "xp": 0,
+    "doneHeading": "LIQUIDITY DETECTIVE COMPLETE ✓",
+    "doneBadge": "Liquidity Detective: all 9 levels cleared",
+    "doneLine": "You found the sides, the pools and the doors, described sweeps without the story, and kept liquidity where it belongs: context, not an entry rule.",
+    "levels": [
+      {
+        "type": "flash_sort",
+        "body": "Look at the highlighted area. Go fast.",
+        "options": [
+          {
+            "key": "bsl",
+            "label": "Buy-side",
+            "emoji": "↑"
+          },
+          {
+            "key": "ssl",
+            "label": "Sell-side",
+            "emoji": "↓"
+          }
+        ],
+        "items": [
+          {
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  200
+                ],
+                [
+                  130,
+                  110
+                ],
+                [
+                  220,
+                  220
+                ],
+                [
+                  320,
+                  118
+                ],
+                [
+                  420,
+                  215
+                ],
+                [
+                  520,
+                  150
+                ],
+                [
+                  620,
+                  170
+                ]
+              ],
+              "seed": 401,
+              "boxes": [
+                {
+                  "x1": 120,
+                  "y1": 80,
+                  "x2": 690,
+                  "y2": 108,
+                  "tone": "gold"
+                }
+              ]
+            },
+            "answer": "bsl",
+            "why": "Above the range highs: buy-side."
+          },
+          {
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  200
+                ],
+                [
+                  130,
+                  110
+                ],
+                [
+                  220,
+                  220
+                ],
+                [
+                  320,
+                  118
+                ],
+                [
+                  420,
+                  215
+                ],
+                [
+                  520,
+                  150
+                ],
+                [
+                  620,
+                  170
+                ]
+              ],
+              "seed": 402,
+              "boxes": [
+                {
+                  "x1": 210,
+                  "y1": 222,
+                  "x2": 690,
+                  "y2": 250,
+                  "tone": "gold"
+                }
+              ]
+            },
+            "answer": "ssl",
+            "why": "Below the range lows: sell-side."
+          },
+          {
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  260
+                ],
+                [
+                  130,
+                  180
+                ],
+                [
+                  210,
+                  230
+                ],
+                [
+                  300,
+                  130
+                ],
+                [
+                  380,
+                  190
+                ],
+                [
+                  470,
+                  90
+                ],
+                [
+                  560,
+                  150
+                ],
+                [
+                  640,
+                  120
+                ]
+              ],
+              "seed": 403,
+              "boxes": [
+                {
+                  "x1": 460,
+                  "y1": 60,
+                  "x2": 690,
+                  "y2": 88,
+                  "tone": "gold"
+                }
+              ]
+            },
+            "answer": "bsl",
+            "why": "Above the latest high: buy-side."
+          },
+          {
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  60
+                ],
+                [
+                  130,
+                  140
+                ],
+                [
+                  210,
+                  100
+                ],
+                [
+                  300,
+                  190
+                ],
+                [
+                  380,
+                  140
+                ],
+                [
+                  470,
+                  240
+                ],
+                [
+                  560,
+                  190
+                ],
+                [
+                  640,
+                  210
+                ]
+              ],
+              "seed": 404,
+              "boxes": [
+                {
+                  "x1": 460,
+                  "y1": 242,
+                  "x2": 690,
+                  "y2": 270,
+                  "tone": "gold"
+                }
+              ]
+            },
+            "answer": "ssl",
+            "why": "Below the latest low: sell-side."
+          },
+          {
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  260
+                ],
+                [
+                  130,
+                  180
+                ],
+                [
+                  210,
+                  230
+                ],
+                [
+                  300,
+                  130
+                ],
+                [
+                  380,
+                  190
+                ],
+                [
+                  470,
+                  90
+                ],
+                [
+                  560,
+                  150
+                ],
+                [
+                  640,
+                  120
+                ]
+              ],
+              "seed": 405,
+              "boxes": [
+                {
+                  "x1": 30,
+                  "y1": 262,
+                  "x2": 690,
+                  "y2": 290,
+                  "tone": "gold"
+                }
+              ]
+            },
+            "answer": "ssl",
+            "why": "Below the first low on the chart: sell-side."
+          },
+          {
+            "chart": {
+              "swings": [
+                [
+                  40,
+                  60
+                ],
+                [
+                  130,
+                  140
+                ],
+                [
+                  210,
+                  100
+                ],
+                [
+                  300,
+                  190
+                ],
+                [
+                  380,
+                  140
+                ],
+                [
+                  470,
+                  240
+                ],
+                [
+                  560,
+                  190
+                ],
+                [
+                  640,
+                  210
+                ]
+              ],
+              "seed": 406,
+              "boxes": [
+                {
+                  "x1": 30,
+                  "y1": 30,
+                  "x2": 690,
+                  "y2": 58,
+                  "tone": "gold"
+                }
+              ]
+            },
+            "answer": "bsl",
+            "why": "Above the first high on the chart: buy-side."
+          }
+        ],
+        "passText": "Above highs → buy-side. Below lows → sell-side.",
+        "replay": false,
+        "name": "Buy-side or sell-side?",
+        "kicker": "Level 1",
+        "concept": "Buy-side & sell-side",
+        "goal": "Above highs or below lows? Name the side.",
+        "debrief": {
+          "saw": "Highlighted areas above highs and below lows.",
+          "know": "Above highs: buy-side liquidity. Below lows: sell-side liquidity.",
+          "unknown": "Whether price will ever trade into any of them."
+        }
+      },
+      {
+        "type": "price_lab",
+        "chart": {
+          "swings": [
+            [
+              40,
+              175
+            ],
+            [
+              90.0,
+              120
+            ],
+            [
+              150.0,
+              225
+            ],
+            [
+              210.0,
+              122
+            ],
+            [
+              270.0,
+              200
+            ],
+            [
+              310.0,
+              160
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 50.0,
+              "o": 175,
+              "c": 153.9,
+              "h": 150.7,
+              "l": 179.5,
+              "w": 12.0
+            },
+            {
+              "x": 70.0,
+              "o": 153.9,
+              "c": 135.7,
+              "h": 129.7,
+              "l": 157.4,
+              "w": 12.0
+            },
+            {
+              "x": 90.0,
+              "o": 135.7,
+              "c": 126.8,
+              "h": 120,
+              "l": 137.7,
+              "w": 12.0
+            },
+            {
+              "x": 110.0,
+              "o": 126.8,
+              "c": 167.1,
+              "h": 121.9,
+              "l": 172.5,
+              "w": 12.0
+            },
+            {
+              "x": 130.0,
+              "o": 167.1,
+              "c": 197.0,
+              "h": 161.9,
+              "l": 199.6,
+              "w": 12.0
+            },
+            {
+              "x": 150.0,
+              "o": 197.0,
+              "c": 215.4,
+              "h": 192.6,
+              "l": 225,
+              "w": 12.0
+            },
+            {
+              "x": 170.0,
+              "o": 215.4,
+              "c": 187.7,
+              "h": 182.7,
+              "l": 220.7,
+              "w": 12.0
+            },
+            {
+              "x": 190.0,
+              "o": 187.7,
+              "c": 154.6,
+              "h": 152.9,
+              "l": 193.2,
+              "w": 12.0
+            },
+            {
+              "x": 210.0,
+              "o": 154.6,
+              "c": 130.4,
+              "h": 122,
+              "l": 158.8,
+              "w": 12.0
+            },
+            {
+              "x": 230.0,
+              "o": 130.4,
+              "c": 154.2,
+              "h": 128.8,
+              "l": 156.2,
+              "w": 12.0
+            },
+            {
+              "x": 250.0,
+              "o": 154.2,
+              "c": 179.0,
+              "h": 150.1,
+              "l": 184.0,
+              "w": 12.0
+            },
+            {
+              "x": 270.0,
+              "o": 179.0,
+              "c": 193.0,
+              "h": 176.8,
+              "l": 200,
+              "w": 12.0
+            },
+            {
+              "x": 290.0,
+              "o": 193.0,
+              "c": 175.5,
+              "h": 172.6,
+              "l": 197.7,
+              "w": 12.0
+            },
+            {
+              "x": 310.0,
+              "o": 175.5,
+              "c": 167.2,
+              "h": 160,
+              "l": 180.9,
+              "w": 12.0
+            },
+            {
+              "x": 330.0,
+              "o": 167.2,
+              "c": 176.0,
+              "h": 164.0,
+              "l": 182.0,
+              "w": 12.0
+            },
+            {
+              "x": 350.0,
+              "o": 176.0,
+              "c": 185.0,
+              "h": 171.1,
+              "l": 190.6,
+              "w": 12.0
+            }
+          ]
+        },
+        "start": 16,
+        "steps": [
+          {
+            "text": "No labels. Find where orders may gather.",
+            "pick": {
+              "prompt": "Tap the most obvious liquidity pool.",
+              "answer": "eq",
+              "concept": "liquidity-pools",
+              "hint": "Two highs stopped at nearly the same price.",
+              "notes": {
+                "mid": "That’s the middle of the move. Nothing obvious sits there.",
+                "low2": "That low is less obvious than what’s above. Look for a pair."
+              },
+              "why": "Above the equal highs: an obvious pool area many traders can see."
+            }
+          }
+        ],
+        "levels": [
+          {
+            "id": "eq",
+            "y": 92,
+            "y2": 119,
+            "tone": "muted",
+            "name": "above the equal highs",
+            "x1": 80.0
+          },
+          {
+            "id": "mid",
+            "y": 160,
+            "y2": 186,
+            "tone": "muted",
+            "name": "the middle of the move",
+            "x1": 180.0
+          },
+          {
+            "id": "low2",
+            "y": 202,
+            "y2": 226,
+            "tone": "muted",
+            "name": "below the latest low",
+            "x1": 260.0
+          }
+        ],
+        "name": "Find the pool",
+        "kicker": "Level 2",
+        "concept": "Liquidity pools",
+        "goal": "Pools are areas, not dots.",
+        "debrief": {
+          "saw": "Two highs at nearly the same price, and lows below.",
+          "know": "Equal highs make an obvious area where buy-side liquidity may rest.",
+          "unknown": "How many orders are there, and whether price will reach them."
+        }
+      },
+      {
+        "type": "price_lab",
+        "chart": {
+          "swings": [
+            [
+              40,
+              180
+            ],
+            [
+              85.0,
+              75
+            ],
+            [
+              157.0,
+              245
+            ],
+            [
+              211.0,
+              150
+            ],
+            [
+              265.0,
+              210
+            ],
+            [
+              301.0,
+              140
+            ],
+            [
+              337.0,
+              190
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 49.0,
+              "o": 180,
+              "c": 147.9,
+              "h": 143.4,
+              "l": 185.8,
+              "w": 10.8
+            },
+            {
+              "x": 67.0,
+              "o": 147.9,
+              "c": 109.9,
+              "h": 105.9,
+              "l": 151.0,
+              "w": 10.8
+            },
+            {
+              "x": 85.0,
+              "o": 109.9,
+              "c": 84.4,
+              "h": 75,
+              "l": 113.7,
+              "w": 10.8
+            },
+            {
+              "x": 103.0,
+              "o": 84.4,
+              "c": 127.4,
+              "h": 81.0,
+              "l": 129.5,
+              "w": 10.8
+            },
+            {
+              "x": 121.0,
+              "o": 127.4,
+              "c": 177.5,
+              "h": 125.7,
+              "l": 182.8,
+              "w": 10.8
+            },
+            {
+              "x": 139.0,
+              "o": 177.5,
+              "c": 208.5,
+              "h": 172.0,
+              "l": 212.7,
+              "w": 10.8
+            },
+            {
+              "x": 157.0,
+              "o": 208.5,
+              "c": 237.2,
+              "h": 205.3,
+              "l": 245,
+              "w": 10.8
+            },
+            {
+              "x": 175.0,
+              "o": 237.2,
+              "c": 210.4,
+              "h": 208.8,
+              "l": 240.9,
+              "w": 10.8
+            },
+            {
+              "x": 193.0,
+              "o": 210.4,
+              "c": 185.0,
+              "h": 182.6,
+              "l": 214.4,
+              "w": 10.8
+            },
+            {
+              "x": 211.0,
+              "o": 185.0,
+              "c": 159.5,
+              "h": 150,
+              "l": 189.2,
+              "w": 10.8
+            },
+            {
+              "x": 229.0,
+              "o": 159.5,
+              "c": 173.4,
+              "h": 156.5,
+              "l": 176.9,
+              "w": 10.8
+            },
+            {
+              "x": 247.0,
+              "o": 173.4,
+              "c": 193.0,
+              "h": 170.9,
+              "l": 196.9,
+              "w": 10.8
+            },
+            {
+              "x": 265.0,
+              "o": 193.0,
+              "c": 201.1,
+              "h": 188.4,
+              "l": 210,
+              "w": 10.8
+            },
+            {
+              "x": 283.0,
+              "o": 201.1,
+              "c": 171.5,
+              "h": 169.7,
+              "l": 204.2,
+              "w": 10.8
+            },
+            {
+              "x": 301.0,
+              "o": 171.5,
+              "c": 146.7,
+              "h": 140,
+              "l": 174.3,
+              "w": 10.8
+            },
+            {
+              "x": 319.0,
+              "o": 146.7,
+              "c": 165.8,
+              "h": 140.3,
+              "l": 168.7,
+              "w": 10.8
+            },
+            {
+              "x": 337.0,
+              "o": 165.8,
+              "c": 180.6,
+              "h": 161.4,
+              "l": 190,
+              "w": 10.8
+            },
+            {
+              "x": 355.0,
+              "o": 180.6,
+              "c": 159.6,
+              "h": 155.8,
+              "l": 185.6,
+              "w": 10.8
+            },
+            {
+              "x": 373.0,
+              "o": 159.6,
+              "c": 136.0,
+              "h": 131.8,
+              "l": 162.8,
+              "w": 10.8
+            },
+            {
+              "x": 391.0,
+              "o": 136,
+              "c": 138,
+              "h": 128,
+              "l": 142,
+              "w": 10.8
+            }
+          ]
+        },
+        "start": 20,
+        "steps": [
+          {
+            "text": "Before you can answer “which liquidity?”, define the room.",
+            "pick": {
+              "prompt": "Tap the external high.",
+              "answer": "eh",
+              "concept": "external-liquidity",
+              "hint": "The top of the whole range.",
+              "notes": {
+                "ih": "That’s inside the range.",
+                "el": "That’s the bottom of the range."
+              },
+              "reveal": {
+                "label": "🚪 External high",
+                "tone": "purple"
+              },
+              "why": "The top door."
+            },
+            "next": "Next →"
+          },
+          {
+            "text": "Price just traded above a high inside the range.",
+            "asks": [
+              {
+                "prompt": "WHICH LIQUIDITY did price take?",
+                "options": [
+                  {
+                    "label": "Internal",
+                    "correct": true,
+                    "why": "Above an internal high, still inside the room."
+                  },
+                  {
+                    "label": "External",
+                    "correct": false,
+                    "feedback": "The external high is far above price.",
+                    "mistake": "internal-external-confusion"
+                  }
+                ],
+                "concept": "internal-liquidity"
+              }
+            ]
+          }
+        ],
+        "levels": [
+          {
+            "id": "eh",
+            "y": 75,
+            "tone": "muted",
+            "name": "the external high",
+            "x1": 77.0
+          },
+          {
+            "id": "ih",
+            "y": 140,
+            "tone": "muted",
+            "name": "an internal high",
+            "x1": 293.0
+          },
+          {
+            "id": "el",
+            "y": 245,
+            "tone": "muted",
+            "name": "the external low",
+            "x1": 149.0,
+            "below": true
+          }
+        ],
+        "name": "Internal or external?",
+        "kicker": "Level 3",
+        "concept": "Internal vs external",
+        "goal": "Define the range first.",
+        "debrief": {
+          "saw": "An external high far above, and price trading above an internal high.",
+          "know": "Price took internal liquidity. The external high is untouched.",
+          "unknown": "Whether price will ever reach the external high."
+        },
+        "readPrompt": "WHICH LIQUIDITY did price take?"
+      },
+      {
+        "type": "price_lab",
+        "chart": {
+          "swings": [
+            [
+              40,
+              160
+            ],
+            [
+              90.0,
+              200
+            ],
+            [
+              170.0,
+              110
+            ],
+            [
+              230.0,
+              175
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 50.0,
+              "o": 160,
+              "c": 176.7,
+              "h": 154.6,
+              "l": 182.8,
+              "w": 12.0
+            },
+            {
+              "x": 70.0,
+              "o": 176.7,
+              "c": 188.7,
+              "h": 175.2,
+              "l": 192.4,
+              "w": 12.0
+            },
+            {
+              "x": 90.0,
+              "o": 188.7,
+              "c": 193.4,
+              "h": 184.6,
+              "l": 200,
+              "w": 12.0
+            },
+            {
+              "x": 110.0,
+              "o": 193.4,
+              "c": 168.0,
+              "h": 163.8,
+              "l": 196.6,
+              "w": 12.0
+            },
+            {
+              "x": 130.0,
+              "o": 168.0,
+              "c": 156.7,
+              "h": 153.2,
+              "l": 173.3,
+              "w": 12.0
+            },
+            {
+              "x": 150.0,
+              "o": 156.7,
+              "c": 132.9,
+              "h": 127.8,
+              "l": 163.1,
+              "w": 12.0
+            },
+            {
+              "x": 170.0,
+              "o": 132.9,
+              "c": 117.5,
+              "h": 110,
+              "l": 135.6,
+              "w": 12.0
+            },
+            {
+              "x": 190.0,
+              "o": 117.5,
+              "c": 138.3,
+              "h": 111.9,
+              "l": 142.1,
+              "w": 12.0
+            },
+            {
+              "x": 210.0,
+              "o": 138.3,
+              "c": 152.6,
+              "h": 133.7,
+              "l": 157.8,
+              "w": 12.0
+            },
+            {
+              "x": 230.0,
+              "o": 152.6,
+              "c": 165.1,
+              "h": 147.1,
+              "l": 175,
+              "w": 12.0
+            },
+            {
+              "x": 250.0,
+              "o": 165.1,
+              "c": 150.8,
+              "h": 147.5,
+              "l": 171.4,
+              "w": 12.0
+            },
+            {
+              "x": 270.0,
+              "o": 150.8,
+              "c": 138.6,
+              "h": 135.0,
+              "l": 157.0,
+              "w": 12.0
+            },
+            {
+              "x": 290.0,
+              "o": 138.6,
+              "c": 122.0,
+              "h": 117.9,
+              "l": 145.0,
+              "w": 12.0
+            },
+            {
+              "x": 310.0,
+              "o": 122,
+              "c": 104,
+              "h": 100,
+              "l": 126,
+              "w": 12.0
+            },
+            {
+              "x": 330.0,
+              "o": 104,
+              "c": 116,
+              "h": 98,
+              "l": 120,
+              "w": 12.0
+            },
+            {
+              "x": 350.0,
+              "o": 116,
+              "c": 134,
+              "h": 112,
+              "l": 138,
+              "w": 12.0
+            },
+            {
+              "x": 370.0,
+              "o": 134,
+              "c": 150,
+              "h": 130,
+              "l": 154,
+              "w": 12.0
+            }
+          ],
+          "hlines": [
+            {
+              "y": 110,
+              "label": "Prior high",
+              "tone": "purple",
+              "x1": 162.0,
+              "x2": 690,
+              "size": 13,
+              "labelX": 528
+            }
+          ]
+        },
+        "start": 13,
+        "steps": [
+          {
+            "candles": 14,
+            "text": "One candle closes just above the prior high.",
+            "asks": [
+              {
+                "prompt": "Sweep-like or acceptance-like?",
+                "options": [
+                  {
+                    "label": "Acceptance-like",
+                    "correct": false,
+                    "feedback": "One close isn’t holding and building. Wait.",
+                    "mistake": "sweep-equals-break"
+                  },
+                  {
+                    "label": "Sweep-like",
+                    "correct": false,
+                    "feedback": "It closed above. You can’t call failure yet."
+                  },
+                  {
+                    "label": "Not enough information yet",
+                    "correct": true,
+                    "why": "Right. One close above is a start, not a whole behavior.",
+                    "nei": true
+                  }
+                ],
+                "concept": "sweep-vs-break"
+              }
+            ]
+          },
+          {
+            "candles": 17,
+            "text": "Price closes back below and moves away.",
+            "asks": [
+              {
+                "prompt": "Now?",
+                "options": [
+                  {
+                    "label": "Sweep-like: traded above, failed to sustain",
+                    "correct": true,
+                    "why": "Now the behavior is clear."
+                  },
+                  {
+                    "label": "Acceptance-like",
+                    "correct": false,
+                    "feedback": "It didn’t hold above.",
+                    "mistake": "sweep-equals-break"
+                  },
+                  {
+                    "label": "Not enough information",
+                    "correct": false,
+                    "feedback": "Price has shown enough now.",
+                    "nei": true
+                  }
+                ],
+                "concept": "liquidity-sweep"
+              }
+            ]
+          }
+        ],
+        "name": "Sweep or acceptance?",
+        "kicker": "Level 4",
+        "concept": "Sweep vs break",
+        "goal": "Let the behavior develop. “Not enough information” is a real answer.",
+        "debrief": {
+          "saw": "A close just above the high, then a close back below and a move away.",
+          "know": "Price traded above the prior high and failed to sustain: sweep-like behavior.",
+          "unknown": "Whether this becomes a reversal. That’s a structure question for later."
+        },
+        "readPrompt": "Sweep-like or acceptance-like?"
+      },
+      {
+        "type": "verdicts",
+        "kicker": "Level 5",
+        "title": "",
+        "items": [
+          {
+            "text": "Price traded above the prior high.",
+            "answer": "WE KNOW",
+            "why": "Visible on the chart.",
+            "concept": "objective-observation"
+          },
+          {
+            "text": "Price closed back below it.",
+            "answer": "WE KNOW",
+            "why": "Visible on the chart.",
+            "concept": "objective-observation"
+          },
+          {
+            "text": "Buy-side liquidity above the high may have been taken.",
+            "answer": "WE KNOW",
+            "why": "Reasonable: price traded where buy-side may rest. Note the “may.”",
+            "concept": "liquidity-sweep"
+          },
+          {
+            "text": "The bullish structure is broken.",
+            "answer": "DON’T KNOW YET",
+            "why": "Nothing closed through the HL. Structure hasn’t changed.",
+            "mistake": "sweep-equals-mss",
+            "concept": "liquidity-vs-structure",
+            "tone": "calm"
+          },
+          {
+            "text": "Price will reverse lower now.",
+            "answer": "DON’T KNOW YET",
+            "why": "That’s a prediction, not an observation.",
+            "mistake": "sweep-equals-reversal",
+            "concept": "liquidity-vs-structure",
+            "tone": "calm"
+          },
+          {
+            "text": "Big players trapped the breakout buyers.",
+            "answer": "DON’T KNOW YET",
+            "why": "The chart can’t show who traded or why.",
+            "mistake": "participant-identity-assumption",
+            "concept": "objective-observation",
+            "tone": "calm"
+          }
+        ],
+        "prompt": "What do we know, and what don’t we know yet?",
+        "choices": [
+          "WE KNOW",
+          "DON’T KNOW YET"
+        ],
+        "chart": {
+          "swings": [
+            [
+              40,
+              262
+            ],
+            [
+              87.5,
+              170
+            ],
+            [
+              144.5,
+              230
+            ],
+            [
+              220.5,
+              120
+            ],
+            [
+              277.5,
+              195
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 49.5,
+              "o": 262,
+              "c": 226.0,
+              "h": 220.5,
+              "l": 267.0,
+              "w": 11.4
+            },
+            {
+              "x": 68.5,
+              "o": 226.0,
+              "c": 202.5,
+              "h": 198.7,
+              "l": 231.6,
+              "w": 11.4
+            },
+            {
+              "x": 87.5,
+              "o": 202.5,
+              "c": 177.8,
+              "h": 170,
+              "l": 208.2,
+              "w": 11.4
+            },
+            {
+              "x": 106.5,
+              "o": 177.8,
+              "c": 193.3,
+              "h": 172.3,
+              "l": 196.8,
+              "w": 11.4
+            },
+            {
+              "x": 125.5,
+              "o": 193.3,
+              "c": 208.8,
+              "h": 190.0,
+              "l": 213.9,
+              "w": 11.4
+            },
+            {
+              "x": 144.5,
+              "o": 208.8,
+              "c": 223.4,
+              "h": 205.6,
+              "l": 230,
+              "w": 11.4
+            },
+            {
+              "x": 163.5,
+              "o": 223.4,
+              "c": 190.9,
+              "h": 187.6,
+              "l": 227.5,
+              "w": 11.4
+            },
+            {
+              "x": 182.5,
+              "o": 190.9,
+              "c": 162.7,
+              "h": 160.4,
+              "l": 196.8,
+              "w": 11.4
+            },
+            {
+              "x": 201.5,
+              "o": 162.7,
+              "c": 150.5,
+              "h": 148.8,
+              "l": 166.4,
+              "w": 11.4
+            },
+            {
+              "x": 220.5,
+              "o": 150.5,
+              "c": 129.1,
+              "h": 120,
+              "l": 156.3,
+              "w": 11.4
+            },
+            {
+              "x": 239.5,
+              "o": 129.1,
+              "c": 153.6,
+              "h": 127.4,
+              "l": 155.7,
+              "w": 11.4
+            },
+            {
+              "x": 258.5,
+              "o": 153.6,
+              "c": 178.7,
+              "h": 147.9,
+              "l": 182.9,
+              "w": 11.4
+            },
+            {
+              "x": 277.5,
+              "o": 178.7,
+              "c": 186.1,
+              "h": 173.0,
+              "l": 195,
+              "w": 11.4
+            },
+            {
+              "x": 296.5,
+              "o": 186.1,
+              "c": 167.0,
+              "h": 164.2,
+              "l": 190.0,
+              "w": 11.4
+            },
+            {
+              "x": 315.5,
+              "o": 167.0,
+              "c": 150.0,
+              "h": 148.3,
+              "l": 173.4,
+              "w": 11.4
+            },
+            {
+              "x": 334.5,
+              "o": 150,
+              "c": 136,
+              "h": 112,
+              "l": 154,
+              "w": 11.4
+            },
+            {
+              "x": 353.5,
+              "o": 136,
+              "c": 150,
+              "h": 132,
+              "l": 156,
+              "w": 11.4
+            }
+          ],
+          "hlines": [
+            {
+              "y": 120,
+              "label": "Prior high",
+              "tone": "purple",
+              "x1": 212.5,
+              "x2": 690,
+              "size": 13,
+              "labelX": 528
+            },
+            {
+              "y": 195,
+              "label": "HL",
+              "tone": "up",
+              "x1": 269.5,
+              "x2": 690,
+              "size": 13,
+              "below": true,
+              "labelX": 528
+            }
+          ]
+        },
+        "name": "Structure or liquidity?",
+        "concept": "Liquidity vs structure",
+        "goal": "Sort observation from assumption.",
+        "debrief": {
+          "saw": "A wick above the prior high and a close back below, with the HL intact.",
+          "know": "Price traded above, closed back below, and buy-side may have been taken.",
+          "unknown": "Whether structure changes, where price goes, and who traded."
+        }
+      },
+      {
+        "type": "price_lab",
+        "chart": {
+          "swings": [
+            [
+              40,
+              165
+            ],
+            [
+              90.0,
+              205
+            ],
+            [
+              170.0,
+              115
+            ],
+            [
+              230.0,
+              180
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 50.0,
+              "o": 165,
+              "c": 175.0,
+              "h": 162.9,
+              "l": 180.2,
+              "w": 12.0
+            },
+            {
+              "x": 70.0,
+              "o": 175.0,
+              "c": 188.4,
+              "h": 173.0,
+              "l": 193.8,
+              "w": 12.0
+            },
+            {
+              "x": 90.0,
+              "o": 188.4,
+              "c": 196.1,
+              "h": 185.2,
+              "l": 205,
+              "w": 12.0
+            },
+            {
+              "x": 110.0,
+              "o": 196.1,
+              "c": 171.0,
+              "h": 165.1,
+              "l": 197.9,
+              "w": 12.0
+            },
+            {
+              "x": 130.0,
+              "o": 171.0,
+              "c": 151.4,
+              "h": 148.0,
+              "l": 176.0,
+              "w": 12.0
+            },
+            {
+              "x": 150.0,
+              "o": 151.4,
+              "c": 141.1,
+              "h": 137.0,
+              "l": 153.8,
+              "w": 12.0
+            },
+            {
+              "x": 170.0,
+              "o": 141.1,
+              "c": 121.8,
+              "h": 115,
+              "l": 145.7,
+              "w": 12.0
+            },
+            {
+              "x": 190.0,
+              "o": 121.8,
+              "c": 141.7,
+              "h": 117.5,
+              "l": 147.1,
+              "w": 12.0
+            },
+            {
+              "x": 210.0,
+              "o": 141.7,
+              "c": 163.8,
+              "h": 137.1,
+              "l": 166.1,
+              "w": 12.0
+            },
+            {
+              "x": 230.0,
+              "o": 163.8,
+              "c": 170.8,
+              "h": 159.6,
+              "l": 180,
+              "w": 12.0
+            },
+            {
+              "x": 250.0,
+              "o": 170.8,
+              "c": 157.0,
+              "h": 153.8,
+              "l": 175.0,
+              "w": 12.0
+            },
+            {
+              "x": 270.0,
+              "o": 157.0,
+              "c": 138.6,
+              "h": 132.2,
+              "l": 159.0,
+              "w": 12.0
+            },
+            {
+              "x": 290.0,
+              "o": 138.6,
+              "c": 126.0,
+              "h": 122.8,
+              "l": 144.4,
+              "w": 12.0
+            },
+            {
+              "x": 310.0,
+              "o": 126,
+              "c": 122,
+              "h": 100,
+              "l": 130,
+              "w": 12.0
+            },
+            {
+              "x": 330.0,
+              "o": 122,
+              "c": 140,
+              "h": 118,
+              "l": 144,
+              "w": 12.0
+            }
+          ],
+          "hlines": [
+            {
+              "y": 115,
+              "label": "Previous high",
+              "tone": "purple",
+              "x1": 162.0,
+              "x2": 690,
+              "size": 13,
+              "labelX": 528
+            }
+          ]
+        },
+        "start": 15,
+        "steps": [
+          {
+            "text": "Three traders describe the same two candles.",
+            "asks": [
+              {
+                "prompt": "Which description is objective?",
+                "options": [
+                  {
+                    "label": "A: That was manipulation by the big banks",
+                    "correct": false,
+                    "feedback": "The chart can’t prove intent or identity.",
+                    "mistake": "storytelling-over-evidence"
+                  },
+                  {
+                    "label": "B: Short now, the sweep is done",
+                    "correct": false,
+                    "feedback": "That turns context into an entry.",
+                    "mistake": "context-equals-entry"
+                  },
+                  {
+                    "label": "C: Price traded above the previous high and closed back below it",
+                    "correct": true,
+                    "why": "Objective. Nothing added."
+                  }
+                ],
+                "concept": "objective-observation",
+                "stack": true
+              }
+            ]
+          }
+        ],
+        "name": "Don’t overlabel it",
+        "kicker": "Level 6",
+        "concept": "Objective observation",
+        "goal": "Say what price did. Nothing more.",
+        "debrief": {
+          "saw": "A wick above the previous high and a close back below.",
+          "know": "Price traded above the previous high and closed back below it.",
+          "unknown": "Who traded, why, and what price does next."
+        }
+      },
+      {
+        "type": "price_lab",
+        "chart": {
+          "swings": [
+            [
+              40,
+              180
+            ],
+            [
+              82.5,
+              70
+            ],
+            [
+              150.5,
+              240
+            ],
+            [
+              201.5,
+              150
+            ],
+            [
+              252.5,
+              205
+            ],
+            [
+              303.5,
+              151
+            ],
+            [
+              354.5,
+              200
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 48.5,
+              "o": 180,
+              "c": 147.7,
+              "h": 142.4,
+              "l": 184.3,
+              "w": 10.2
+            },
+            {
+              "x": 65.5,
+              "o": 147.7,
+              "c": 107.6,
+              "h": 101.3,
+              "l": 152.3,
+              "w": 10.2
+            },
+            {
+              "x": 82.5,
+              "o": 107.6,
+              "c": 78.5,
+              "h": 70,
+              "l": 109.9,
+              "w": 10.2
+            },
+            {
+              "x": 99.5,
+              "o": 78.5,
+              "c": 116.6,
+              "h": 74.5,
+              "l": 119.0,
+              "w": 10.2
+            },
+            {
+              "x": 116.5,
+              "o": 116.6,
+              "c": 158.5,
+              "h": 111.1,
+              "l": 160.8,
+              "w": 10.2
+            },
+            {
+              "x": 133.5,
+              "o": 158.5,
+              "c": 195.6,
+              "h": 156.8,
+              "l": 200.8,
+              "w": 10.2
+            },
+            {
+              "x": 150.5,
+              "o": 195.6,
+              "c": 233.3,
+              "h": 193.3,
+              "l": 240,
+              "w": 10.2
+            },
+            {
+              "x": 167.5,
+              "o": 233.3,
+              "c": 202.0,
+              "h": 195.7,
+              "l": 238.9,
+              "w": 10.2
+            },
+            {
+              "x": 184.5,
+              "o": 202.0,
+              "c": 173.6,
+              "h": 167.5,
+              "l": 206.9,
+              "w": 10.2
+            },
+            {
+              "x": 201.5,
+              "o": 173.6,
+              "c": 157.4,
+              "h": 150,
+              "l": 178.4,
+              "w": 10.2
+            },
+            {
+              "x": 218.5,
+              "o": 157.4,
+              "c": 175.9,
+              "h": 153.9,
+              "l": 178.2,
+              "w": 10.2
+            },
+            {
+              "x": 235.5,
+              "o": 175.9,
+              "c": 192.0,
+              "h": 172.3,
+              "l": 193.6,
+              "w": 10.2
+            },
+            {
+              "x": 252.5,
+              "o": 192.0,
+              "c": 198.3,
+              "h": 189.6,
+              "l": 205,
+              "w": 10.2
+            },
+            {
+              "x": 269.5,
+              "o": 198.3,
+              "c": 179.0,
+              "h": 173.8,
+              "l": 203.5,
+              "w": 10.2
+            },
+            {
+              "x": 286.5,
+              "o": 179.0,
+              "c": 166.7,
+              "h": 163.4,
+              "l": 181.8,
+              "w": 10.2
+            },
+            {
+              "x": 303.5,
+              "o": 166.7,
+              "c": 160.3,
+              "h": 151,
+              "l": 172.2,
+              "w": 10.2
+            },
+            {
+              "x": 320.5,
+              "o": 160.3,
+              "c": 173.8,
+              "h": 153.9,
+              "l": 179.0,
+              "w": 10.2
+            },
+            {
+              "x": 337.5,
+              "o": 173.8,
+              "c": 186.1,
+              "h": 170.5,
+              "l": 190.0,
+              "w": 10.2
+            },
+            {
+              "x": 354.5,
+              "o": 186.1,
+              "c": 192.5,
+              "h": 180.3,
+              "l": 200,
+              "w": 10.2
+            },
+            {
+              "x": 371.5,
+              "o": 192.5,
+              "c": 175.3,
+              "h": 172.7,
+              "l": 198.3,
+              "w": 10.2
+            },
+            {
+              "x": 388.5,
+              "o": 175.3,
+              "c": 160.0,
+              "h": 156.0,
+              "l": 177.4,
+              "w": 10.2
+            },
+            {
+              "x": 405.5,
+              "o": 160,
+              "c": 152,
+              "h": 140,
+              "l": 164,
+              "w": 10.2
+            },
+            {
+              "x": 422.5,
+              "o": 152,
+              "c": 166,
+              "h": 148,
+              "l": 170,
+              "w": 10.2
+            },
+            {
+              "x": 439.5,
+              "o": 166,
+              "c": 178,
+              "h": 162,
+              "l": 182,
+              "w": 10.2
+            }
+          ],
+          "hlines": [
+            {
+              "y": 70,
+              "label": "External high",
+              "tone": "purple",
+              "x1": 74.5,
+              "x2": 690,
+              "size": 13,
+              "labelX": 528,
+              "door": true
+            },
+            {
+              "y": 240,
+              "label": "External low",
+              "tone": "purple",
+              "x1": 142.5,
+              "x2": 690,
+              "size": 13,
+              "below": true,
+              "labelX": 528,
+              "door": true
+            },
+            {
+              "y": 150,
+              "label": "Equal highs",
+              "tone": "gold",
+              "x1": 193.5,
+              "x2": 690,
+              "size": 12,
+              "labelX": 528
+            }
+          ]
+        },
+        "start": 24,
+        "steps": [
+          {
+            "text": "Price traded above the equal highs, then came back down.",
+            "asks": [
+              {
+                "prompt": "Which liquidity did price take?",
+                "options": [
+                  {
+                    "label": "Internal: the equal highs inside the range",
+                    "correct": true,
+                    "why": "Internal equal highs. The external high is untouched."
+                  },
+                  {
+                    "label": "External: the range high",
+                    "correct": false,
+                    "feedback": "Look up. The external high is far above.",
+                    "mistake": "internal-external-confusion"
+                  },
+                  {
+                    "label": "Both",
+                    "correct": false,
+                    "feedback": "Only one of them was traded through.",
+                    "mistake": "internal-external-confusion"
+                  }
+                ],
+                "concept": "internal-liquidity",
+                "stack": true
+              }
+            ]
+          }
+        ],
+        "name": "Which liquidity?",
+        "kicker": "Level 7",
+        "concept": "Internal vs external",
+        "goal": "Name the right liquidity.",
+        "debrief": {
+          "saw": "Price traded above equal highs inside the range. The external high stayed far above.",
+          "know": "Internal equal-high liquidity was taken. External liquidity was not.",
+          "unknown": "Whether price will ever reach the external high."
+        }
+      },
+      {
+        "type": "price_lab",
+        "chart": {
+          "swings": [
+            [
+              40,
+              262
+            ],
+            [
+              87.5,
+              175
+            ],
+            [
+              144.5,
+              230
+            ],
+            [
+              220.5,
+              125
+            ],
+            [
+              277.5,
+              200
+            ],
+            [
+              315.5,
+              165
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 49.5,
+              "o": 262,
+              "c": 240.5,
+              "h": 234.4,
+              "l": 263.8,
+              "w": 11.4
+            },
+            {
+              "x": 68.5,
+              "o": 240.5,
+              "c": 200.8,
+              "h": 197.0,
+              "l": 243.7,
+              "w": 11.4
+            },
+            {
+              "x": 87.5,
+              "o": 200.8,
+              "c": 182.0,
+              "h": 175,
+              "l": 204.3,
+              "w": 11.4
+            },
+            {
+              "x": 106.5,
+              "o": 182.0,
+              "c": 194.3,
+              "h": 177.8,
+              "l": 199.0,
+              "w": 11.4
+            },
+            {
+              "x": 125.5,
+              "o": 194.3,
+              "c": 217.8,
+              "h": 191.4,
+              "l": 222.8,
+              "w": 11.4
+            },
+            {
+              "x": 144.5,
+              "o": 217.8,
+              "c": 220.7,
+              "h": 212.1,
+              "l": 230,
+              "w": 11.4
+            },
+            {
+              "x": 163.5,
+              "o": 220.7,
+              "c": 195.2,
+              "h": 192.6,
+              "l": 224.0,
+              "w": 11.4
+            },
+            {
+              "x": 182.5,
+              "o": 195.2,
+              "c": 168.0,
+              "h": 166.3,
+              "l": 198.8,
+              "w": 11.4
+            },
+            {
+              "x": 201.5,
+              "o": 168.0,
+              "c": 143.4,
+              "h": 139.0,
+              "l": 170.2,
+              "w": 11.4
+            },
+            {
+              "x": 220.5,
+              "o": 143.4,
+              "c": 134.2,
+              "h": 125,
+              "l": 146.3,
+              "w": 11.4
+            },
+            {
+              "x": 239.5,
+              "o": 134.2,
+              "c": 153.7,
+              "h": 131.1,
+              "l": 156.0,
+              "w": 11.4
+            },
+            {
+              "x": 258.5,
+              "o": 153.7,
+              "c": 172.3,
+              "h": 151.8,
+              "l": 176.8,
+              "w": 11.4
+            },
+            {
+              "x": 277.5,
+              "o": 172.3,
+              "c": 191.6,
+              "h": 168.9,
+              "l": 200,
+              "w": 11.4
+            },
+            {
+              "x": 296.5,
+              "o": 191.6,
+              "c": 176.9,
+              "h": 171.4,
+              "l": 198.0,
+              "w": 11.4
+            },
+            {
+              "x": 315.5,
+              "o": 176.9,
+              "c": 172.8,
+              "h": 165,
+              "l": 180.6,
+              "w": 11.4
+            },
+            {
+              "x": 334.5,
+              "o": 172.8,
+              "c": 185.8,
+              "h": 167.7,
+              "l": 189.1,
+              "w": 11.4
+            },
+            {
+              "x": 353.5,
+              "o": 185.8,
+              "c": 196.0,
+              "h": 183.4,
+              "l": 202.5,
+              "w": 11.4
+            },
+            {
+              "x": 372.5,
+              "o": 196,
+              "c": 194,
+              "h": 190,
+              "l": 222,
+              "w": 11.4
+            },
+            {
+              "x": 391.5,
+              "o": 194,
+              "c": 172,
+              "h": 168,
+              "l": 198,
+              "w": 11.4
+            },
+            {
+              "x": 410.5,
+              "o": 172,
+              "c": 150,
+              "h": 146,
+              "l": 176,
+              "w": 11.4
+            }
+          ],
+          "hlines": [
+            {
+              "y": 200,
+              "label": "Prior low",
+              "tone": "purple",
+              "x1": 269.5,
+              "x2": 690,
+              "size": 13,
+              "below": true,
+              "labelX": 528
+            }
+          ]
+        },
+        "start": 20,
+        "steps": [
+          {
+            "text": "A beautiful sweep below the prior low, then a strong push up.",
+            "asks": [
+              {
+                "prompt": "DO YOU HAVE A DAYLI ICC ENTRY?",
+                "options": [
+                  {
+                    "label": "Yes, look at that sweep",
+                    "correct": false,
+                    "feedback": "Beautiful, yes. But a sweep isn’t part of the entry sequence.",
+                    "mistake": "context-equals-entry"
+                  },
+                  {
+                    "label": "No",
+                    "correct": true,
+                    "why": "Good read. A beautiful sweep is still context."
+                  }
+                ],
+                "concept": "dayli-icc-context"
+              }
+            ],
+            "lens": {
+              "structure": "Bullish. The HL area held.",
+              "context": "Sweep-like behavior below the prior low.",
+              "execution": "Entry model: not present / not being evaluated yet"
+            }
+          }
+        ],
+        "name": "The Dayli trap",
+        "kicker": "Level 8",
+        "concept": "Literacy vs entry",
+        "goal": "Pretty isn’t the same as permission.",
+        "debrief": {
+          "saw": "A clean sweep below the prior low and a strong push higher.",
+          "know": "Sell-side below the prior low was traded through and price recovered. Useful context.",
+          "unknown": "Whether the Dayli ICC sequence ever forms here.",
+          "good": "✓ GOOD READ. You didn’t let a pretty sweep become an entry."
+        }
+      },
+      {
+        "type": "price_lab",
+        "chart": {
+          "swings": [
+            [
+              40,
+              262
+            ],
+            [
+              80.0,
+              180
+            ],
+            [
+              128.0,
+              235
+            ],
+            [
+              192.0,
+              130
+            ],
+            [
+              240.0,
+              205
+            ],
+            [
+              304.0,
+              95
+            ],
+            [
+              352.0,
+              160
+            ],
+            [
+              384.0,
+              138
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 48.0,
+              "o": 262,
+              "c": 237.3,
+              "h": 233.4,
+              "l": 265.6,
+              "w": 9.6
+            },
+            {
+              "x": 64.0,
+              "o": 237.3,
+              "c": 202.0,
+              "h": 197.3,
+              "l": 241.1,
+              "w": 9.6
+            },
+            {
+              "x": 80.0,
+              "o": 202.0,
+              "c": 186.8,
+              "h": 180,
+              "l": 204.5,
+              "w": 9.6
+            },
+            {
+              "x": 96.0,
+              "o": 186.8,
+              "c": 201.0,
+              "h": 181.3,
+              "l": 202.9,
+              "w": 9.6
+            },
+            {
+              "x": 112.0,
+              "o": 201.0,
+              "c": 216.7,
+              "h": 197.9,
+              "l": 222.4,
+              "w": 9.6
+            },
+            {
+              "x": 128.0,
+              "o": 216.7,
+              "c": 227.9,
+              "h": 214.0,
+              "l": 235,
+              "w": 9.6
+            },
+            {
+              "x": 144.0,
+              "o": 227.9,
+              "c": 212.0,
+              "h": 210.4,
+              "l": 231.8,
+              "w": 9.6
+            },
+            {
+              "x": 160.0,
+              "o": 212.0,
+              "c": 173.1,
+              "h": 170.7,
+              "l": 213.9,
+              "w": 9.6
+            },
+            {
+              "x": 176.0,
+              "o": 173.1,
+              "c": 150.4,
+              "h": 144.9,
+              "l": 175.0,
+              "w": 9.6
+            },
+            {
+              "x": 192.0,
+              "o": 150.4,
+              "c": 137.9,
+              "h": 130,
+              "l": 153.2,
+              "w": 9.6
+            },
+            {
+              "x": 208.0,
+              "o": 137.9,
+              "c": 157.9,
+              "h": 135.6,
+              "l": 161.8,
+              "w": 9.6
+            },
+            {
+              "x": 224.0,
+              "o": 157.9,
+              "c": 182.2,
+              "h": 153.0,
+              "l": 185.5,
+              "w": 9.6
+            },
+            {
+              "x": 240.0,
+              "o": 182.2,
+              "c": 197.3,
+              "h": 179.1,
+              "l": 205,
+              "w": 9.6
+            },
+            {
+              "x": 256.0,
+              "o": 197.3,
+              "c": 179.7,
+              "h": 174.4,
+              "l": 200.8,
+              "w": 9.6
+            },
+            {
+              "x": 272.0,
+              "o": 179.7,
+              "c": 141.2,
+              "h": 138.1,
+              "l": 183.5,
+              "w": 9.6
+            },
+            {
+              "x": 288.0,
+              "o": 141.2,
+              "c": 118.5,
+              "h": 114.3,
+              "l": 145.3,
+              "w": 9.6
+            },
+            {
+              "x": 304.0,
+              "o": 118.5,
+              "c": 101.9,
+              "h": 95,
+              "l": 123.9,
+              "w": 9.6
+            },
+            {
+              "x": 320.0,
+              "o": 101.9,
+              "c": 122.6,
+              "h": 96.7,
+              "l": 128.1,
+              "w": 9.6
+            },
+            {
+              "x": 336.0,
+              "o": 122.6,
+              "c": 141.7,
+              "h": 117.6,
+              "l": 143.4,
+              "w": 9.6
+            },
+            {
+              "x": 352.0,
+              "o": 141.7,
+              "c": 150.3,
+              "h": 138.2,
+              "l": 160,
+              "w": 9.6
+            },
+            {
+              "x": 368.0,
+              "o": 150.3,
+              "c": 143.8,
+              "h": 140.2,
+              "l": 152.5,
+              "w": 9.6
+            },
+            {
+              "x": 384.0,
+              "o": 143.8,
+              "c": 145.0,
+              "h": 138,
+              "l": 149.0,
+              "w": 9.6
+            },
+            {
+              "x": 400.0,
+              "o": 145.0,
+              "c": 157.4,
+              "h": 140.6,
+              "l": 163.9,
+              "w": 9.6
+            },
+            {
+              "x": 416.0,
+              "o": 157.4,
+              "c": 168.0,
+              "h": 155.3,
+              "l": 172.7,
+              "w": 9.6
+            },
+            {
+              "x": 432.0,
+              "o": 168,
+              "c": 166,
+              "h": 162,
+              "l": 182,
+              "w": 9.6
+            },
+            {
+              "x": 448.0,
+              "o": 166,
+              "c": 150,
+              "h": 146,
+              "l": 170,
+              "w": 9.6
+            },
+            {
+              "x": 464.0,
+              "o": 150,
+              "c": 140,
+              "h": 136,
+              "l": 154,
+              "w": 9.6
+            }
+          ],
+          "hlines": [
+            {
+              "y": 95,
+              "label": "HH · buy-side above",
+              "tone": "up",
+              "x1": 296.0,
+              "x2": 690,
+              "size": 13,
+              "labelX": 528
+            },
+            {
+              "y": 160,
+              "label": "Internal low",
+              "tone": "gold",
+              "x1": 344.0,
+              "x2": 690,
+              "size": 12,
+              "below": true,
+              "labelX": 528
+            },
+            {
+              "y": 205,
+              "label": "HL",
+              "tone": "up",
+              "x1": 232.0,
+              "x2": 690,
+              "size": 13,
+              "below": true,
+              "labelX": 528
+            }
+          ]
+        },
+        "start": 27,
+        "steps": [
+          {
+            "text": "Bullish structure. Price dipped below an internal low, closed back above, and is pushing up toward the HH.",
+            "asks": [
+              {
+                "prompt": "What’s the most complete read?",
+                "options": [
+                  {
+                    "label": "Liquidity and structure provide useful bullish context, but a Dayli ICC entry cannot be assumed until the actual entry model forms.",
+                    "correct": true,
+                    "why": "That’s a disciplined read: context from two lenses, and execution kept separate."
+                  },
+                  {
+                    "label": "Internal sell-side was swept in a bullish structure, so buy now.",
+                    "correct": false,
+                    "feedback": "That turns context into an entry.",
+                    "mistake": "context-equals-entry"
+                  },
+                  {
+                    "label": "Price will take the buy-side above the HH next.",
+                    "correct": false,
+                    "feedback": "Possible. Not guaranteed.",
+                    "mistake": "liquidity-as-destination"
+                  },
+                  {
+                    "label": "Nothing useful here.",
+                    "correct": false,
+                    "feedback": "There’s plenty of useful context. It just isn’t an entry."
+                  }
+                ],
+                "concept": "dayli-icc-context",
+                "stack": true
+              }
+            ],
+            "lens": {
+              "structure": "Bullish: HL → HH, HL intact.",
+              "context": "Internal sell-side traded through and recovered. Buy-side may rest above the HH.",
+              "execution": "Entry model: not present / not being evaluated yet"
+            }
+          }
+        ],
+        "name": "Final boss",
+        "kicker": "Level 9",
+        "concept": "Full read",
+        "goal": "Structure. Liquidity. Execution. Keep them separate.",
+        "debrief": {
+          "saw": "A bullish structure, a dip below an internal low that recovered, and price heading toward the HH.",
+          "know": "Structure is bullish and the liquidity picture adds supportive context.",
+          "unknown": "Whether the Dayli ICC entry sequence forms. Until it does, there’s no entry.",
+          "good": "✓ DISCIPLINED READ."
+        }
+      }
+    ]
+  },
+  "knowledgeCheck": {
+    "questionCount": 10,
+    "passPct": 0.8,
+    "xp": 0,
+    "shuffleOptions": true,
+    "questionBank": [
+      {
+        "concept": "What is liquidity?",
+        "question": "Your friend says, “Liquidity is a secret trap the market sets for us.” What’s a better description?",
+        "options": [
+          "Liquidity is about available orders: buyers and sellers willing to trade at a price",
+          "Liquidity is where price must go next",
+          "Liquidity is only the stops of retail traders",
+          "Liquidity is an indicator"
+        ],
+        "correctIndex": 0,
+        "why": "Liquidity is about available orders. Not a trap, not a destination."
+      },
+      {
+        "concept": "What is liquidity?",
+        "question": "Price is approaching an obvious previous high. What can you reasonably say?",
+        "options": [
+          "Orders may be resting around it",
+          "There are exactly 5,000 stops above it",
+          "Price will definitely trade above it",
+          "Banks are waiting there to trap you"
+        ],
+        "correctIndex": 0,
+        "why": "An obvious level may attract orders. The chart can’t show counts, intent or the future."
+      },
+      {
+        "concept": "Buy-side & sell-side",
+        "question": "Where does buy-side liquidity commonly sit?",
+        "options": [
+          "Above highs",
+          "Below lows",
+          "In the middle of a range",
+          "Only at round numbers"
+        ],
+        "correctIndex": 0,
+        "why": "Above highs: short stops and breakout buys are buy orders."
+      },
+      {
+        "concept": "Buy-side & sell-side",
+        "question": "A long trader’s stop below a swing low is part of…",
+        "options": [
+          "Sell-side liquidity",
+          "Buy-side liquidity",
+          "An FVG",
+          "External structure"
+        ],
+        "correctIndex": 0,
+        "why": "A long exits by selling, so that stop is a sell order below a low."
+      },
+      {
+        "concept": "Buy-side & sell-side",
+        "question": "Buy-side liquidity sits above the current high. What does that tell you about where price goes next?",
+        "options": [
+          "Nothing guaranteed. It describes where orders may rest",
+          "Price must go up to take it",
+          "Price must go down first",
+          "Price will reverse there"
+        ],
+        "correctIndex": 0,
+        "why": "It names orders, not a destination."
+      },
+      {
+        "concept": "Why stops cluster",
+        "question": "Why do stops tend to cluster above obvious highs?",
+        "options": [
+          "Many shorts read the same structure and pick similar logical spots",
+          "The market tells traders where to place them",
+          "Brokers move stops there",
+          "Stops are always placed at round numbers"
+        ],
+        "correctIndex": 0,
+        "why": "Predictable structure can create predictable order placement."
+      },
+      {
+        "concept": "Why stops cluster",
+        "question": "Price wicks below your stop, then rallies. What does the chart prove?",
+        "options": [
+          "Price traded below the low before moving up",
+          "Someone targeted your stop",
+          "The market knows where your stop is",
+          "It was manipulation"
+        ],
+        "correctIndex": 0,
+        "why": "The chart shows what price did, not intent."
+      },
+      {
+        "concept": "Liquidity pools",
+        "question": "Which is the most likely liquidity pool area?",
+        "options": [
+          "Just beyond equal highs at the top of a range",
+          "A random candle mid-move",
+          "The open of a random candle",
+          "Halfway between two swings"
+        ],
+        "correctIndex": 0,
+        "why": "Obvious highs, lows, equal highs/lows, range and session extremes."
+      },
+      {
+        "concept": "Equal highs & lows",
+        "question": "You spot equal highs. What can you conclude?",
+        "options": [
+          "It’s an obvious area worth monitoring",
+          "Price will sweep them next",
+          "Sell at the equal highs",
+          "The trend is about to reverse"
+        ],
+        "correctIndex": 0,
+        "why": "A magnet ≠ a guaranteed destination."
+      },
+      {
+        "concept": "Internal vs external",
+        "question": "Inside a defined range, price trades above an internal high. The external high is far above. Which liquidity was taken?",
+        "options": [
+          "Internal",
+          "External",
+          "Both",
+          "Neither"
+        ],
+        "correctIndex": 0,
+        "why": "Price is still inside the room."
+      },
+      {
+        "concept": "Internal vs external",
+        "question": "What do you need before you can call liquidity internal or external?",
+        "options": [
+          "A defined range",
+          "An FVG",
+          "A sweep",
+          "A news event"
+        ],
+        "correctIndex": 0,
+        "why": "Define the range first. Then ask: which liquidity?"
+      },
+      {
+        "concept": "Liquidity sweeps",
+        "question": "Previous high: 20,000. Price trades to 20,008, then closes at 19,992. The most objective description?",
+        "options": [
+          "Price traded above the previous high and failed to sustain above it",
+          "Smart money hunted stops",
+          "Bearish reversal confirmed",
+          "Bullish breakout confirmed"
+        ],
+        "correctIndex": 0,
+        "why": "Observation first. Then you can call it sweep-like behavior."
+      },
+      {
+        "concept": "Liquidity sweeps",
+        "question": "Price sweeps a high. What does that prove?",
+        "options": [
+          "That price traded through an area where orders may rest",
+          "A reversal",
+          "A market structure shift",
+          "A Dayli ICC entry"
+        ],
+        "correctIndex": 0,
+        "why": "Sweep = context. Not entry."
+      },
+      {
+        "concept": "Sweep vs break",
+        "question": "Bearish structure. Price wicks above a minor internal high and closes back below. The relevant lower high is untouched. Your friend says it’s an MSS. What’s missing?",
+        "options": [
+          "A close through the relevant lower high",
+          "A bigger wick",
+          "Nothing, liquidity taken = MSS",
+          "A green candle"
+        ],
+        "correctIndex": 0,
+        "why": "MSS is a structure event: a close through the relevant swing."
+      },
+      {
+        "concept": "Sweep vs break",
+        "question": "Price closes above the prior high, holds above it and builds a higher low. Best description?",
+        "options": [
+          "Acceptance-like: structure progressed",
+          "Sweep-like behavior",
+          "A failed break",
+          "Not enough information"
+        ],
+        "correctIndex": 0,
+        "why": "Close, hold, build: acceptance-like."
+      },
+      {
+        "concept": "Liquidity & Dayli ICC",
+        "question": "Is a liquidity sweep a required Dayli ICC entry condition?",
+        "options": [
+          "No. Liquidity is context, not a required condition",
+          "Yes, every entry needs one",
+          "Only on the 1-minute chart",
+          "Only for shorts"
+        ],
+        "correctIndex": 0,
+        "why": "Learn more so you can understand more. Not so you can require more."
+      }
+    ],
+    "reviewLessons": {
+      "What is liquidity?": [
+        "p3",
+        1
+      ],
+      "Buy-side & sell-side": [
+        "p3",
+        2
+      ],
+      "Why stops cluster": [
+        "p3",
+        3
+      ],
+      "Liquidity pools": [
+        "p3",
+        4
+      ],
+      "Equal highs & lows": [
+        "p3",
+        5
+      ],
+      "Internal vs external": [
+        "p3",
+        6
+      ],
+      "Liquidity sweeps": [
+        "p3",
+        7
+      ],
+      "Sweep vs break": [
+        "p3",
+        8
+      ],
+      "Liquidity & Dayli ICC": [
+        "p3",
+        9
+      ]
+    }
+  },
+  "checkin": {
+    "eyebrow": "📓 My Section 1 Check-In",
+    "heading": "What clicked? 💧",
+    "fields": [
+      {
+        "type": "text",
+        "label": "In your own words, what is liquidity?"
+      },
+      {
+        "type": "text",
+        "label": "What’s the difference between buy-side and sell-side liquidity?"
+      },
+      {
+        "type": "text",
+        "label": "What’s the difference between internal and external liquidity?"
+      },
+      {
+        "type": "text",
+        "label": "Why isn’t a liquidity sweep automatically an entry?"
+      },
+      {
+        "type": "choice",
+        "label": "Which concept needs another look?",
+        "options": [
+          "What liquidity is",
+          "Buy-side & sell-side",
+          "Why stops cluster",
+          "Liquidity pools",
+          "Equal highs & lows",
+          "Internal vs external",
+          "Liquidity sweeps",
+          "Sweep vs structural break",
+          "Liquidity & Dayli ICC",
+          "I’m good ✨"
+        ]
+      },
+      {
+        "type": "text",
+        "share": true,
+        "rows": 4,
+        "min": 15,
+        "placeholder": "Type it how YOU understand it...",
+        "label": "💭 Explain it to an AGHF girl: your friend says, “Look! Price swept liquidity. I’m entering.” What would you ask her next?"
+      }
+    ],
+    "saveLabel": "Save to My Academy Notes →",
+    "savedLabel": "✓ Saved to My Academy Notes"
+  },
+  "complete": {
+    "eyebrow": "🎉 Section complete",
+    "heading": "✦ YOU CAN SEE WHERE ORDERS MAY BE SITTING.",
+    "badge": "Understanding Liquidity: Complete",
+    "gp": 630,
+    "stats": [
+      {
+        "label": "Lessons",
+        "value": "{lessons} ✓"
+      },
+      {
+        "label": "Liquidity Detective",
+        "value": "✓"
+      },
+      {
+        "label": "Knowledge Check",
+        "value": "{kc}% ✓"
+      },
+      {
+        "label": "Academy Notes",
+        "value": "Saved ✓"
+      }
+    ],
+    "phase": {
+      "title": "💎 Phase 3: Reading Price Like a Pro",
+      "pct": 33,
+      "sections": [
+        {
+          "icon": "✓",
+          "label": "Section 1: Understanding Liquidity"
+        },
+        {
+          "icon": "🔓",
+          "label": "Section 2: Gaps, Imbalances & Price Delivery"
+        },
+        {
+          "icon": "🔒",
+          "label": "Section 3: Understanding Market Participation"
+        }
+      ]
+    },
+    "nextUp": {
+      "title": "Gaps, Imbalances & Price Delivery",
+      "cta": "Enter Section 2 →",
+      "lines": [
+        "You can see where orders may be sitting. Next: <strong>how did price travel?</strong>",
+        "Price delivery · Displacement · Imbalance · Fair value gaps · Efficient vs inefficient moves",
+        "<strong>WE’RE LEARNING THESE CONCEPTS TO UNDERSTAND PRICE. NOT TO TURN THEM INTO DAYLI ICC ENTRY REQUIREMENTS.</strong>"
+      ]
+    }
+  }
+}

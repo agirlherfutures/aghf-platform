@@ -35,6 +35,7 @@ import { saveLessonReflection } from './journal-service.js';
 import { STRUCTURE_RENDERERS } from './structure-slides.js';
 import { V2_RENDERERS, renderV2Complete } from './lesson-v2.js';
 import { PRICE_LAB_RENDERERS } from './price-lab.js';
+import { PHASE3_RENDERERS } from './phase3-tools.js';
 import { LEVEL_RENDERERS } from './level-tools.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
@@ -187,6 +188,7 @@ function renderTeachSlide(el, slide, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
       <div class="lw-eyebrow">${slide.kicker || 'Teach'}</div>
+      ${slide.heading ? `<h2>${slide.heading}</h2>` : ''}
       <p>${slide.body}</p>
       ${hasCheck ? `
         <div class="ls-check">
@@ -923,6 +925,7 @@ export const SLIDE_RENDERERS = {
   ...V2_RENDERERS,
   ...PRICE_LAB_RENDERERS,
   ...LEVEL_RENDERERS,
+  ...PHASE3_RENDERERS,
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
   chart_tap: renderChartTapSlide,
