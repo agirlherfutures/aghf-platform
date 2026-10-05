@@ -112,7 +112,7 @@ export function renderStructureStory(el, slide, satisfy, helpers) {
     if (i >= steps.length - 1) {
       next.remove();
       if (slide.check) renderInlineCheck(card, slide.check, () => cont(el, satisfy), helpers);
-      else cont(el, satisfy);
+      else cont(el, satisfy, slide.cta);
     } else {
       next.style.display = '';
       next.textContent = steps[i].next || 'Next →';
@@ -157,7 +157,11 @@ function renderInlineCheck(container, check, onSolved, helpers, onWrong) {
       ${check.options.map((o, i) => `<button type="button" class="ls-tap" data-i="${i}"><span class="ls-tap-title">${o.label}</span>${o.body ? `<span class="ls-tap-body">${o.body}</span>` : ''}</button>`).join('')}
     </div><div class="lw-feedback"></div>`;
   container.appendChild(box);
-  wireRetryOptions(box.querySelectorAll('.ls-tap'), check.options, box.querySelector('.lw-feedback'), onSolved, helpers.handleStreak, onWrong);
+  // Report every answer so games (Your read) and the Phase Final (scoring) can see it.
+  let picked = false;
+  const solved = () => { if (!picked) { picked = true; helpers.onPick?.(check, { label: check.options.find((o) => o.correct)?.label || '' }, true); } onSolved(); };
+  const wrong = (opt, i) => { picked = true; helpers.onPick?.(check, { label: opt.label }, false); if (onWrong) onWrong(opt, i); };
+  wireRetryOptions(box.querySelectorAll('.ls-tap'), check.options, box.querySelector('.lw-feedback'), solved, helpers.handleStreak, wrong);
 }
 
 /* ── Swing tap: find the right turn ─────────────────────────────────── */
@@ -192,6 +196,7 @@ export function renderSwingTap(el, slide, satisfy, helpers) {
     chart.tappable((i) => {
       if (solved || found.has(i)) return;
       const note = (round.notes || {})[i];
+      helpers.onPick?.({ prompt: round.prompt, concept: round.concept || slide.concept }, { label: (round.names || {})[i] || `Point ${i}` }, answers.includes(i));
       if (answers.includes(i)) {
         found.add(i);
         chart.setPoint(i, 'good');
@@ -202,7 +207,7 @@ export function renderSwingTap(el, slide, satisfy, helpers) {
           feedback(fb, `<strong>✦ Yes.</strong> ${round.why || note || ''}`, true);
           if (round.after) chart.reveal(round.after);
           if (r < rounds.length - 1) nextRoundBtn(card, round.nextLabel || 'Next round →', () => { r += 1; load(); });
-          else { helpers.burst(); cont(el, satisfy); }
+          else { helpers.burst(); cont(el, satisfy, slide.cta); }
         } else {
           feedback(fb, note || `Good, that's one. ${answers.length - found.size} to go.`, true);
         }
@@ -303,7 +308,7 @@ export function renderLabelSwings(el, slide, satisfy, helpers) {
           feedback(fb, `<strong>✦ Readable structure.</strong> ${round.why || ''}`, true);
           chipBtns.forEach((x) => { x.disabled = true; });
           if (r < rounds.length - 1) nextRoundBtn(card, 'Next chart →', () => { r += 1; load(); });
-          else { helpers.burst(); cont(el, satisfy); }
+          else { helpers.burst(); cont(el, satisfy, slide.cta); }
         } else {
           feedback(fb, `${lab} ✓ &nbsp;${total - placed.size} to go.`, true);
         }
@@ -401,7 +406,7 @@ export function renderFlashSort(el, slide, satisfy, helpers) {
       again.addEventListener('click', () => renderFlashSort(el, slide, satisfy, helpers));
       card.appendChild(again);
     }
-    cont(el, satisfy);
+    cont(el, satisfy, slide.cta);
   }
   load();
 }
@@ -424,7 +429,7 @@ export function renderChartCheck(el, slide, satisfy, helpers) {
     }
     drawCompare();
     if (chart && slide.after) chart.reveal(slide.after);
-    cont(el, satisfy);
+    cont(el, satisfy, slide.cta);
   }, helpers, () => { if (slide.compareOnWrong !== false) drawCompare(); });
 }
 

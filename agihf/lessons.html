@@ -156,7 +156,9 @@
     const doneInPhase = !phaseUnlocked ? 0 : phase.sections.reduce((sum, s) =>
       sum + s.lessons.filter((l) => l.n && completedIds.has(`${phase.key}-${l.n}`)).length, 0);
     const badgeClass = BADGE_PHASE_CLASS[phase.badge] || 'pb-p';
-    const sub = phaseUnlocked
+    const sub = phaseUnlocked && phase.comingSoon
+      ? '🔓 Unlocked · Lessons coming soon'
+      : phaseUnlocked
       ? `Sections ${phase.sections[0].n}–${phase.sections[phase.sections.length - 1].n} · ${doneInPhase === totalLessons ? 'Complete' : 'In progress'}`
       : `🔒 Complete Phase ${phase.n - 1} to unlock${phase.comingSoon ? ' · Coming soon' : ''}`;
     const sectionsHtml = phase.sections.map((s, i) => sectionHtml(phase, s, completedIds, phaseUnlocked, i)).join('');
