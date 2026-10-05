@@ -1,0 +1,785 @@
+{
+  "phase": "p2",
+  "section": "s6",
+  "lessonNumber": 21,
+  "title": "What Makes a Level Stronger?",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Weigh the context. There’s no strength score.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Judge which level deserves more attention by weighing structural context, and see that the answer depends on the question.",
+    "missionQuestion": "Two levels on your chart. Which one deserves more attention?",
+    "estMinutes": 9
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "level_inspect",
+      "kicker": "Compare levels",
+      "title": "Which level deserves more attention?",
+      "body": "The structural question: <strong>where is the current bullish structure supported?</strong> Inspect each factor for A and B.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            262
+          ],
+          [
+            99.5,
+            175
+          ],
+          [
+            150.5,
+            232
+          ],
+          [
+            218.5,
+            130
+          ],
+          [
+            269.5,
+            205
+          ],
+          [
+            337.5,
+            92
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.5,
+            "o": 262,
+            "c": 241.3,
+            "h": 236.1,
+            "l": 263.6,
+            "w": 10.2
+          },
+          {
+            "x": 65.5,
+            "o": 241.3,
+            "c": 224.5,
+            "h": 219.8,
+            "l": 246.0,
+            "w": 10.2
+          },
+          {
+            "x": 82.5,
+            "o": 224.5,
+            "c": 202.2,
+            "h": 198.9,
+            "l": 230.0,
+            "w": 10.2
+          },
+          {
+            "x": 99.5,
+            "o": 202.2,
+            "c": 183.7,
+            "h": 175,
+            "l": 204.7,
+            "w": 10.2
+          },
+          {
+            "x": 116.5,
+            "o": 183.7,
+            "c": 201.6,
+            "h": 179.2,
+            "l": 207.2,
+            "w": 10.2
+          },
+          {
+            "x": 133.5,
+            "o": 201.6,
+            "c": 218.8,
+            "h": 196.8,
+            "l": 223.3,
+            "w": 10.2
+          },
+          {
+            "x": 150.5,
+            "o": 218.8,
+            "c": 222.3,
+            "h": 216.1,
+            "l": 232,
+            "w": 10.2
+          },
+          {
+            "x": 167.5,
+            "o": 222.3,
+            "c": 193.6,
+            "h": 188.9,
+            "l": 227.2,
+            "w": 10.2
+          },
+          {
+            "x": 184.5,
+            "o": 193.6,
+            "c": 183.9,
+            "h": 178.8,
+            "l": 197.8,
+            "w": 10.2
+          },
+          {
+            "x": 201.5,
+            "o": 183.9,
+            "c": 159.7,
+            "h": 157.6,
+            "l": 186.6,
+            "w": 10.2
+          },
+          {
+            "x": 218.5,
+            "o": 159.7,
+            "c": 139.9,
+            "h": 130,
+            "l": 164.6,
+            "w": 10.2
+          },
+          {
+            "x": 235.5,
+            "o": 139.9,
+            "c": 163.2,
+            "h": 135.8,
+            "l": 165.0,
+            "w": 10.2
+          },
+          {
+            "x": 252.5,
+            "o": 163.2,
+            "c": 181.9,
+            "h": 160.6,
+            "l": 184.7,
+            "w": 10.2
+          },
+          {
+            "x": 269.5,
+            "o": 181.9,
+            "c": 197.1,
+            "h": 179.5,
+            "l": 205,
+            "w": 10.2
+          },
+          {
+            "x": 286.5,
+            "o": 197.1,
+            "c": 176.9,
+            "h": 174.6,
+            "l": 198.6,
+            "w": 10.2
+          },
+          {
+            "x": 303.5,
+            "o": 176.9,
+            "c": 144.7,
+            "h": 141.9,
+            "l": 179.5,
+            "w": 10.2
+          },
+          {
+            "x": 320.5,
+            "o": 144.7,
+            "c": 122.5,
+            "h": 117.8,
+            "l": 150.5,
+            "w": 10.2
+          },
+          {
+            "x": 337.5,
+            "o": 122.5,
+            "c": 101.9,
+            "h": 92,
+            "l": 125.6,
+            "w": 10.2
+          },
+          {
+            "x": 354.5,
+            "o": 101.9,
+            "c": 114.2,
+            "h": 98.7,
+            "l": 117.0,
+            "w": 10.2
+          },
+          {
+            "x": 371.5,
+            "o": 114.2,
+            "c": 123.9,
+            "h": 111.0,
+            "l": 127.8,
+            "w": 10.2
+          },
+          {
+            "x": 388.5,
+            "o": 123.9,
+            "c": 139.6,
+            "h": 117.6,
+            "l": 145.5,
+            "w": 10.2
+          },
+          {
+            "x": 405.5,
+            "o": 139.6,
+            "c": 150.0,
+            "h": 137.7,
+            "l": 152.7,
+            "w": 10.2
+          }
+        ],
+        "marks": [
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "up"
+          },
+          {
+            "i": 4,
+            "label": "HL",
+            "tone": "up"
+          },
+          {
+            "i": 5,
+            "label": "HH",
+            "tone": "up"
+          }
+        ]
+      },
+      "levels": [
+        {
+          "id": "A",
+          "y": 168,
+          "label": "A",
+          "tone": "gold",
+          "x1": 40
+        },
+        {
+          "id": "B",
+          "y": 205,
+          "label": "B",
+          "tone": "purple",
+          "x1": 261.5
+        }
+      ],
+      "names": [
+        "A",
+        "B"
+      ],
+      "factors": [
+        {
+          "key": "rel",
+          "label": "Structural relevance",
+          "notes": {
+            "A": "A random price. No swing formed here.",
+            "B": "The higher low the current bullish structure is built on."
+          }
+        },
+        {
+          "key": "react",
+          "label": "Reaction",
+          "notes": {
+            "A": "A small wiggle as price passed through.",
+            "B": "A clear turn: price launched from here to make the latest HH."
+          }
+        },
+        {
+          "key": "align",
+          "label": "Prior swing alignment",
+          "notes": {
+            "A": "Doesn’t line up with any prior swing.",
+            "B": "It is a prior swing low."
+          }
+        },
+        {
+          "key": "tf",
+          "label": "Timeframe context",
+          "notes": {
+            "A": "Only visible as noise on this chart.",
+            "B": "Part of the structure you’re reading on this timeframe."
+          }
+        },
+        {
+          "key": "loc",
+          "label": "Location in range",
+          "notes": {
+            "A": "In the middle of a move.",
+            "B": "At the base of the latest leg up."
+          }
+        },
+        {
+          "key": "test",
+          "label": "Testing history",
+          "notes": {
+            "A": "Price passed through without caring.",
+            "B": "Price hasn’t returned yet. Fresh doesn’t mean guaranteed."
+          }
+        }
+      ],
+      "minViews": 3,
+      "check": {
+        "prompt": "Which one better answers the structural question?",
+        "options": [
+          {
+            "label": "A",
+            "correct": false,
+            "feedback": "A sits in the middle of a move with no swing behind it. What job would it have?",
+            "mistake": "random-level"
+          },
+          {
+            "label": "B",
+            "correct": true,
+            "why": "B is the relevant swing supporting the bullish structure, with a clear reaction in a meaningful location. That’s weighting, not a score."
+          }
+        ],
+        "concept": "level-quality"
+      },
+      "after": {
+        "B": "good"
+      }
+    },
+    {
+      "type": "teach",
+      "kicker": "Weighting, not formulas",
+      "title": "There’s no strength score.",
+      "body": "No level gets a <strong>93%</strong>. And <strong>3 touches ≠ strong</strong>.<br><br>Instead, weigh the context: structural relevance, reaction, prior swing alignment, timeframe context, location in the range and testing history.<br><br>Then ask: <strong>does this level answer the structural question I’m asking?</strong>"
+    },
+    {
+      "type": "confusion",
+      "kicker": "Fresh vs. tested",
+      "heading": "Neither one is a rule.",
+      "left": {
+        "label": "Fresher level",
+        "points": [
+          "Price hasn’t returned yet",
+          "Fresh ≠ guaranteed",
+          "Still needs context"
+        ]
+      },
+      "right": {
+        "label": "Repeatedly tested level",
+        "points": [
+          "Price has interacted several times",
+          "Tested ≠ useless",
+          "Watch how it’s behaving now"
+        ]
+      }
+    },
+    {
+      "type": "price_lab",
+      "kicker": "It depends on the question",
+      "title": "Which level matters more?",
+      "chart": {
+        "swings": [
+          [
+            40,
+            262
+          ],
+          [
+            96.0,
+            160
+          ],
+          [
+            144.0,
+            240
+          ],
+          [
+            208.0,
+            120
+          ],
+          [
+            256.0,
+            205
+          ],
+          [
+            320.0,
+            80
+          ],
+          [
+            368.0,
+            140
+          ],
+          [
+            400.0,
+            118
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 262,
+            "c": 234.6,
+            "h": 228.2,
+            "l": 267.0,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 234.6,
+            "c": 202.9,
+            "h": 198.6,
+            "l": 236.9,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 202.9,
+            "c": 177.2,
+            "h": 171.5,
+            "l": 209.3,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 177.2,
+            "c": 168.1,
+            "h": 160,
+            "l": 181.7,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 168.1,
+            "c": 187.3,
+            "h": 166.1,
+            "l": 190.3,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 187.3,
+            "c": 210.5,
+            "h": 182.0,
+            "l": 212.8,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 210.5,
+            "c": 232.1,
+            "h": 208.2,
+            "l": 240,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 232.1,
+            "c": 197.9,
+            "h": 194.7,
+            "l": 236.2,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 197.9,
+            "c": 171.9,
+            "h": 167.7,
+            "l": 202.5,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 171.9,
+            "c": 141.2,
+            "h": 136.9,
+            "l": 173.9,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 141.2,
+            "c": 128.6,
+            "h": 120,
+            "l": 146.4,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 128.6,
+            "c": 160.1,
+            "h": 122.7,
+            "l": 164.5,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 160.1,
+            "c": 185.6,
+            "h": 155.1,
+            "l": 190.4,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 185.6,
+            "c": 198.8,
+            "h": 183.5,
+            "l": 205,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 198.8,
+            "c": 163.9,
+            "h": 157.9,
+            "l": 204.8,
+            "w": 9.6
+          },
+          {
+            "x": 288.0,
+            "o": 163.9,
+            "c": 146.3,
+            "h": 142.4,
+            "l": 166.4,
+            "w": 9.6
+          },
+          {
+            "x": 304.0,
+            "o": 146.3,
+            "c": 107.0,
+            "h": 100.8,
+            "l": 149.0,
+            "w": 9.6
+          },
+          {
+            "x": 320.0,
+            "o": 107.0,
+            "c": 89.5,
+            "h": 80,
+            "l": 111.4,
+            "w": 9.6
+          },
+          {
+            "x": 336.0,
+            "o": 89.5,
+            "c": 106.7,
+            "h": 86.7,
+            "l": 109.6,
+            "w": 9.6
+          },
+          {
+            "x": 352.0,
+            "o": 106.7,
+            "c": 120.9,
+            "h": 101.1,
+            "l": 122.6,
+            "w": 9.6
+          },
+          {
+            "x": 368.0,
+            "o": 120.9,
+            "c": 132.5,
+            "h": 116.3,
+            "l": 140,
+            "w": 9.6
+          },
+          {
+            "x": 384.0,
+            "o": 132.5,
+            "c": 124.7,
+            "h": 122.3,
+            "l": 139.0,
+            "w": 9.6
+          },
+          {
+            "x": 400.0,
+            "o": 124.7,
+            "c": 125.2,
+            "h": 118,
+            "l": 131.2,
+            "w": 9.6
+          },
+          {
+            "x": 416.0,
+            "o": 125.2,
+            "c": 142.4,
+            "h": 120.2,
+            "l": 145.8,
+            "w": 9.6
+          },
+          {
+            "x": 432.0,
+            "o": 142.4,
+            "c": 158.8,
+            "h": 138.8,
+            "l": 164.4,
+            "w": 9.6
+          },
+          {
+            "x": 448.0,
+            "o": 158.8,
+            "c": 175.0,
+            "h": 156.8,
+            "l": 178.5,
+            "w": 9.6
+          }
+        ]
+      },
+      "start": 26,
+      "levels": [
+        {
+          "id": "A",
+          "y": 152,
+          "label": "A",
+          "tone": "muted",
+          "reason": "A random price inside a candle range. No swing.",
+          "name": "A · random intrabar high",
+          "x1": 40
+        },
+        {
+          "id": "B",
+          "y": 118,
+          "label": "B",
+          "tone": "muted",
+          "reason": "A minor internal high inside the pullback.",
+          "name": "B · minor internal swing",
+          "x1": 392.0
+        },
+        {
+          "id": "C",
+          "y": 205,
+          "label": "C",
+          "tone": "muted",
+          "reason": "The higher low supporting the current bullish structure.",
+          "name": "C · relevant structural swing",
+          "x1": 248.0
+        },
+        {
+          "id": "D",
+          "y": 240,
+          "label": "D",
+          "tone": "muted",
+          "reason": "The low of the larger range.",
+          "name": "D · external boundary",
+          "x1": 136.0
+        }
+      ],
+      "steps": [
+        {
+          "text": "Bullish structure, pulling back. Four lettered levels.",
+          "pick": {
+            "prompt": "Which level would price need to close through to challenge the CURRENT bullish structure?",
+            "answer": "C",
+            "concept": "level-quality",
+            "hint": "Which swing is the latest higher low?",
+            "why": "C, the higher low supporting the current bullish structure.",
+            "reveal": {
+              "label": "C · supporting HL",
+              "tone": "up"
+            }
+          },
+          "next": "New question →"
+        },
+        {
+          "text": "Same chart. Different question.",
+          "pick": {
+            "prompt": "Which level marks the bottom of the LARGER range price is trading in?",
+            "answer": "D",
+            "concept": "level-quality",
+            "hint": "Where did the whole larger structure start?",
+            "why": "D, the external boundary. The best level depends on the question you’re asking.",
+            "reveal": {
+              "label": "D · external boundary",
+              "tone": "purple"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "chart_check",
+      "kicker": "Catch the mistake",
+      "title": "“Three touches. It’ll hold.”",
+      "scenario": "A trader says: “This level has three touches, so it’s strong. It will hold.”",
+      "chart": {
+        "swings": [
+          [
+            40,
+            120
+          ],
+          [
+            110,
+            215
+          ],
+          [
+            180,
+            140
+          ],
+          [
+            250,
+            214
+          ],
+          [
+            320,
+            150
+          ],
+          [
+            400,
+            216
+          ],
+          [
+            470,
+            130
+          ],
+          [
+            560,
+            212
+          ],
+          [
+            640,
+            170
+          ]
+        ],
+        "seed": 213,
+        "hlines": [
+          {
+            "y": 214,
+            "label": "Three touches",
+            "tone": "gold",
+            "below": true
+          }
+        ]
+      },
+      "check": {
+        "prompt": "What’s the flaw?",
+        "concept": "level-quality",
+        "options": [
+          {
+            "label": "Nothing. Three touches means strong",
+            "correct": false,
+            "feedback": "Touch count alone doesn’t decide it."
+          },
+          {
+            "label": "Touch count alone doesn’t decide it, and no level guarantees a hold",
+            "correct": true,
+            "why": "Right. Weigh the context and the structure, then watch what price does there."
+          },
+          {
+            "label": "It needs four touches",
+            "correct": false,
+            "feedback": "No number of touches makes a level a guarantee."
+          }
+        ]
+      }
+    },
+    {
+      "type": "dayli",
+      "label": "Core principle",
+      "quote": "There’s no strength score.<br><br><strong>Weigh the context. Ask what the level answers.</strong>"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Two levels are on your chart. How do you decide which one deserves more attention?",
+      "modelAnswer": "I weigh the context instead of using a formula: is it a relevant swing, did price react there clearly, does it line up with a prior swing, is it in a meaningful location, and how has price behaved there before? Most of all: does it answer the structural question I’m asking? There’s no strength score, and touches alone don’t decide it."
+    }
+  ],
+  "takeaways": [
+    "Weigh structural relevance, reaction, alignment, timeframe, location and testing history.",
+    "No strength scores. Three touches doesn’t make a level strong.",
+    "Fresh ≠ guaranteed. Tested ≠ useless. The best level depends on the question."
+  ],
+  "remember": "Weigh the context. There’s no strength score."
+}

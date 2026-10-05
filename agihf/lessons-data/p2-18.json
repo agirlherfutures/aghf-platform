@@ -1,0 +1,912 @@
+{
+  "phase": "p2",
+  "section": "s6",
+  "lessonNumber": 18,
+  "title": "Support & Resistance",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "A level is information. Not permission to enter.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Recognize support and resistance as areas where price has previously responded, without treating them as guarantees.",
+    "missionQuestion": "If price is at support, does it have to go up?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "kicker": "Look first",
+      "title": "What do you notice here?",
+      "chart": {
+        "swings": [
+          [
+            40,
+            120
+          ],
+          [
+            103.0,
+            230
+          ],
+          [
+            157.0,
+            160
+          ],
+          [
+            211.0,
+            228
+          ],
+          [
+            265.0,
+            150
+          ],
+          [
+            319.0,
+            232
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 49.0,
+            "o": 120,
+            "c": 149.1,
+            "h": 118.0,
+            "l": 152.3,
+            "w": 10.8
+          },
+          {
+            "x": 67.0,
+            "o": 149.1,
+            "c": 171.8,
+            "h": 146.6,
+            "l": 174.9,
+            "w": 10.8
+          },
+          {
+            "x": 85.0,
+            "o": 171.8,
+            "c": 199.2,
+            "h": 168.1,
+            "l": 204.4,
+            "w": 10.8
+          },
+          {
+            "x": 103.0,
+            "o": 199.2,
+            "c": 223.0,
+            "h": 196.3,
+            "l": 230,
+            "w": 10.8
+          },
+          {
+            "x": 121.0,
+            "o": 223.0,
+            "c": 196.6,
+            "h": 190.4,
+            "l": 228.4,
+            "w": 10.8
+          },
+          {
+            "x": 139.0,
+            "o": 196.6,
+            "c": 179.5,
+            "h": 176.5,
+            "l": 202.7,
+            "w": 10.8
+          },
+          {
+            "x": 157.0,
+            "o": 179.5,
+            "c": 167.6,
+            "h": 160,
+            "l": 183.0,
+            "w": 10.8
+          },
+          {
+            "x": 175.0,
+            "o": 167.6,
+            "c": 189.1,
+            "h": 164.7,
+            "l": 191.6,
+            "w": 10.8
+          },
+          {
+            "x": 193.0,
+            "o": 189.1,
+            "c": 202.8,
+            "h": 183.3,
+            "l": 208.0,
+            "w": 10.8
+          },
+          {
+            "x": 211.0,
+            "o": 202.8,
+            "c": 219.1,
+            "h": 199.3,
+            "l": 228,
+            "w": 10.8
+          },
+          {
+            "x": 229.0,
+            "o": 219.1,
+            "c": 191.2,
+            "h": 187.5,
+            "l": 225.5,
+            "w": 10.8
+          },
+          {
+            "x": 247.0,
+            "o": 191.2,
+            "c": 169.4,
+            "h": 167.3,
+            "l": 197.5,
+            "w": 10.8
+          },
+          {
+            "x": 265.0,
+            "o": 169.4,
+            "c": 159.6,
+            "h": 150,
+            "l": 172.0,
+            "w": 10.8
+          },
+          {
+            "x": 283.0,
+            "o": 159.6,
+            "c": 186.2,
+            "h": 153.1,
+            "l": 192.7,
+            "w": 10.8
+          },
+          {
+            "x": 301.0,
+            "o": 186.2,
+            "c": 212.3,
+            "h": 181.2,
+            "l": 214.4,
+            "w": 10.8
+          },
+          {
+            "x": 319.0,
+            "o": 212.3,
+            "c": 222.0,
+            "h": 208.1,
+            "l": 232,
+            "w": 10.8
+          },
+          {
+            "x": 337.0,
+            "o": 222.0,
+            "c": 195.5,
+            "h": 192.7,
+            "l": 227.2,
+            "w": 10.8
+          },
+          {
+            "x": 355.0,
+            "o": 195.5,
+            "c": 179.8,
+            "h": 176.9,
+            "l": 198.6,
+            "w": 10.8
+          },
+          {
+            "x": 373.0,
+            "o": 179.8,
+            "c": 161.8,
+            "h": 155.9,
+            "l": 181.4,
+            "w": 10.8
+          },
+          {
+            "x": 391.0,
+            "o": 161.8,
+            "c": 140.0,
+            "h": 135.0,
+            "l": 164.8,
+            "w": 10.8
+          }
+        ]
+      },
+      "start": 0,
+      "levels": [
+        {
+          "id": "A",
+          "y": 70,
+          "y2": 84,
+          "label": "A",
+          "tone": "muted",
+          "x1": 40
+        },
+        {
+          "id": "B",
+          "y": 178,
+          "y2": 192,
+          "label": "B",
+          "tone": "muted",
+          "x1": 40
+        },
+        {
+          "id": "C",
+          "y": 222,
+          "y2": 240,
+          "label": "C",
+          "tone": "muted",
+          "x1": 40
+        }
+      ],
+      "steps": [
+        {
+          "text": "No labels yet. Just watch price.",
+          "next": "Play price →"
+        },
+        {
+          "candles": 20,
+          "text": "Look at where price kept turning.",
+          "asks": [
+            {
+              "prompt": "WHAT DO YOU NOTICE HERE?",
+              "options": [
+                {
+                  "label": "Price kept responding near the same lower area",
+                  "correct": true,
+                  "why": "Yes. Three times, price came down into roughly the same area and turned back up."
+                },
+                {
+                  "label": "Price is going to go up",
+                  "correct": false,
+                  "feedback": "That’s a prediction. Describe what price already did.",
+                  "mistake": "level-as-prediction"
+                },
+                {
+                  "label": "Nothing in particular",
+                  "correct": false,
+                  "feedback": "Look at the lows. Do they line up anywhere?"
+                }
+              ],
+              "concept": "support-resistance"
+            }
+          ],
+          "next": "Next →"
+        },
+        {
+          "text": "Now point to it.",
+          "pick": {
+            "prompt": "Tap the area where price repeatedly responded.",
+            "answer": "C",
+            "concept": "support-resistance",
+            "hint": "Find where the lows kept stopping.",
+            "notes": {
+              "A": "Price never even traded up there.",
+              "B": "Price passed straight through B. It never turned there."
+            },
+            "reveal": {
+              "label": "SUPPORT AREA",
+              "tone": "up"
+            },
+            "why": "That’s where price repeatedly showed difficulty continuing lower: a support area."
+          }
+        }
+      ]
+    },
+    {
+      "type": "teach",
+      "kicker": "Name it",
+      "title": "Support and resistance.",
+      "body": "<strong>Support:</strong> an area where price has previously shown buying interest or difficulty continuing lower.<br><br><strong>Resistance:</strong> an area where price has previously shown selling interest or difficulty continuing higher.",
+      "check": {
+        "prompt": "Price is approaching a support area. What do you know?",
+        "options": [
+          {
+            "label": "Price must bounce",
+            "correct": false,
+            "feedback": "Support ≠ price must go up. It’s an area of interest."
+          },
+          {
+            "label": "Price has shown buying interest there before",
+            "correct": true,
+            "why": "Exactly. That’s information about the past. It isn’t a promise about the future."
+          },
+          {
+            "label": "It’s time to buy",
+            "correct": false,
+            "feedback": "A level is information, not permission to enter."
+          }
+        ]
+      }
+    },
+    {
+      "type": "confusion",
+      "kicker": "Stamp this on your brain",
+      "heading": "Area of interest. Not a guaranteed bounce.",
+      "left": {
+        "label": "Area of interest ✓",
+        "points": [
+          "Where price has shown behavior before",
+          "Information and context",
+          "Worth watching"
+        ]
+      },
+      "right": {
+        "label": "Guaranteed bounce ✗",
+        "points": [
+          "Support ≠ price must go up",
+          "Resistance ≠ price must go down",
+          "Not permission to enter"
+        ]
+      }
+    },
+    {
+      "type": "price_lab",
+      "kicker": "Now the other side",
+      "title": "Find the resistance area.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            190
+          ],
+          [
+            103.0,
+            80
+          ],
+          [
+            157.0,
+            150
+          ],
+          [
+            211.0,
+            82
+          ],
+          [
+            265.0,
+            160
+          ],
+          [
+            319.0,
+            78
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 49.0,
+            "o": 190,
+            "c": 160.9,
+            "h": 157.7,
+            "l": 192.0,
+            "w": 10.8
+          },
+          {
+            "x": 67.0,
+            "o": 160.9,
+            "c": 138.2,
+            "h": 135.1,
+            "l": 163.4,
+            "w": 10.8
+          },
+          {
+            "x": 85.0,
+            "o": 138.2,
+            "c": 110.80000000000001,
+            "h": 105.6,
+            "l": 141.9,
+            "w": 10.8
+          },
+          {
+            "x": 103.0,
+            "o": 110.80000000000001,
+            "c": 87.0,
+            "h": 80,
+            "l": 113.69999999999999,
+            "w": 10.8
+          },
+          {
+            "x": 121.0,
+            "o": 87.0,
+            "c": 113.4,
+            "h": 81.6,
+            "l": 119.6,
+            "w": 10.8
+          },
+          {
+            "x": 139.0,
+            "o": 113.4,
+            "c": 130.5,
+            "h": 107.30000000000001,
+            "l": 133.5,
+            "w": 10.8
+          },
+          {
+            "x": 157.0,
+            "o": 130.5,
+            "c": 142.4,
+            "h": 127.0,
+            "l": 150,
+            "w": 10.8
+          },
+          {
+            "x": 175.0,
+            "o": 142.4,
+            "c": 120.9,
+            "h": 118.4,
+            "l": 145.3,
+            "w": 10.8
+          },
+          {
+            "x": 193.0,
+            "o": 120.9,
+            "c": 107.19999999999999,
+            "h": 102.0,
+            "l": 126.69999999999999,
+            "w": 10.8
+          },
+          {
+            "x": 211.0,
+            "o": 107.19999999999999,
+            "c": 90.9,
+            "h": 82,
+            "l": 110.69999999999999,
+            "w": 10.8
+          },
+          {
+            "x": 229.0,
+            "o": 90.9,
+            "c": 118.80000000000001,
+            "h": 84.5,
+            "l": 122.5,
+            "w": 10.8
+          },
+          {
+            "x": 247.0,
+            "o": 118.80000000000001,
+            "c": 140.6,
+            "h": 112.5,
+            "l": 142.7,
+            "w": 10.8
+          },
+          {
+            "x": 265.0,
+            "o": 140.6,
+            "c": 150.4,
+            "h": 138.0,
+            "l": 160,
+            "w": 10.8
+          },
+          {
+            "x": 283.0,
+            "o": 150.4,
+            "c": 123.80000000000001,
+            "h": 117.30000000000001,
+            "l": 156.9,
+            "w": 10.8
+          },
+          {
+            "x": 301.0,
+            "o": 123.80000000000001,
+            "c": 97.69999999999999,
+            "h": 95.6,
+            "l": 128.8,
+            "w": 10.8
+          },
+          {
+            "x": 319.0,
+            "o": 97.69999999999999,
+            "c": 88.0,
+            "h": 78,
+            "l": 101.9,
+            "w": 10.8
+          },
+          {
+            "x": 337.0,
+            "o": 88.0,
+            "c": 114.5,
+            "h": 82.80000000000001,
+            "l": 117.30000000000001,
+            "w": 10.8
+          },
+          {
+            "x": 355.0,
+            "o": 114.5,
+            "c": 130.2,
+            "h": 111.4,
+            "l": 133.1,
+            "w": 10.8
+          },
+          {
+            "x": 373.0,
+            "o": 130.2,
+            "c": 148.2,
+            "h": 128.6,
+            "l": 154.1,
+            "w": 10.8
+          },
+          {
+            "x": 391.0,
+            "o": 148.2,
+            "c": 170.0,
+            "h": 145.2,
+            "l": 175.0,
+            "w": 10.8
+          }
+        ]
+      },
+      "start": 20,
+      "levels": [
+        {
+          "id": "A",
+          "y": 135,
+          "y2": 149,
+          "label": "A",
+          "tone": "muted",
+          "x1": 40
+        },
+        {
+          "id": "B",
+          "y": 70,
+          "y2": 88,
+          "label": "B",
+          "tone": "muted",
+          "x1": 40
+        },
+        {
+          "id": "C",
+          "y": 240,
+          "y2": 252,
+          "label": "C",
+          "tone": "muted",
+          "x1": 40
+        }
+      ],
+      "steps": [
+        {
+          "text": "Price keeps turning lower from somewhere.",
+          "pick": {
+            "prompt": "Tap the area where price repeatedly turned lower.",
+            "answer": "B",
+            "concept": "support-resistance",
+            "hint": "Find where the highs kept stopping.",
+            "notes": {
+              "A": "Price moved through A in both directions. No repeated turn there.",
+              "C": "Price never traded down there."
+            },
+            "reveal": {
+              "label": "RESISTANCE AREA",
+              "tone": "down"
+            },
+            "why": "Price repeatedly showed difficulty continuing higher there: a resistance area."
+          },
+          "asks": [
+            {
+              "prompt": "Does price have to react there again?",
+              "options": [
+                {
+                  "label": "Yes, resistance means it will go down",
+                  "correct": false,
+                  "feedback": "Resistance isn’t a promise. A level gives you information and context.",
+                  "mistake": "level-as-guarantee"
+                },
+                {
+                  "label": "No",
+                  "correct": true,
+                  "why": "No. A level gives you information and context. It does not give you permission to enter."
+                }
+              ],
+              "concept": "level-expectations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "flash_sort",
+      "kicker": "Spot it",
+      "title": "Support, resistance, or no clear area?",
+      "body": "Read where price kept responding. Don’t predict anything.",
+      "options": [
+        {
+          "key": "sup",
+          "label": "Clear support area",
+          "emoji": "▁"
+        },
+        {
+          "key": "res",
+          "label": "Repeated resistance",
+          "emoji": "▔"
+        },
+        {
+          "key": "none",
+          "label": "No clear area",
+          "emoji": "?"
+        }
+      ],
+      "items": [
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                100
+              ],
+              [
+                110,
+                220
+              ],
+              [
+                180,
+                150
+              ],
+              [
+                250,
+                222
+              ],
+              [
+                320,
+                140
+              ],
+              [
+                400,
+                218
+              ],
+              [
+                470,
+                130
+              ],
+              [
+                540,
+                216
+              ],
+              [
+                620,
+                150
+              ]
+            ],
+            "seed": 197
+          },
+          "answer": "sup",
+          "why": "Price kept turning up from the same lower area."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                210
+              ],
+              [
+                110,
+                90
+              ],
+              [
+                180,
+                160
+              ],
+              [
+                250,
+                88
+              ],
+              [
+                320,
+                170
+              ],
+              [
+                400,
+                92
+              ],
+              [
+                470,
+                180
+              ],
+              [
+                540,
+                94
+              ],
+              [
+                620,
+                160
+              ]
+            ],
+            "seed": 199
+          },
+          "answer": "res",
+          "why": "Price kept turning down from the same upper area."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                260
+              ],
+              [
+                120,
+                200
+              ],
+              [
+                180,
+                230
+              ],
+              [
+                260,
+                160
+              ],
+              [
+                320,
+                190
+              ],
+              [
+                400,
+                120
+              ],
+              [
+                460,
+                150
+              ],
+              [
+                540,
+                80
+              ],
+              [
+                620,
+                110
+              ]
+            ],
+            "seed": 189
+          },
+          "answer": "none",
+          "why": "Price kept making new highs and lows. No area got repeated reactions."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                60
+              ],
+              [
+                130,
+                200
+              ],
+              [
+                200,
+                120
+              ],
+              [
+                290,
+                205
+              ],
+              [
+                360,
+                110
+              ],
+              [
+                450,
+                198
+              ],
+              [
+                530,
+                120
+              ],
+              [
+                620,
+                90
+              ]
+            ],
+            "seed": 194
+          },
+          "answer": "sup",
+          "why": "Three lows stopped in nearly the same place."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                160
+              ],
+              [
+                110,
+                90
+              ],
+              [
+                170,
+                230
+              ],
+              [
+                240,
+                130
+              ],
+              [
+                300,
+                260
+              ],
+              [
+                380,
+                70
+              ],
+              [
+                450,
+                190
+              ],
+              [
+                530,
+                110
+              ],
+              [
+                620,
+                240
+              ]
+            ],
+            "seed": 181
+          },
+          "answer": "none",
+          "why": "Highs and lows all over the place. No repeated reaction area."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                40,
+                250
+              ],
+              [
+                130,
+                110
+              ],
+              [
+                200,
+                190
+              ],
+              [
+                290,
+                105
+              ],
+              [
+                360,
+                200
+              ],
+              [
+                450,
+                112
+              ],
+              [
+                530,
+                190
+              ],
+              [
+                620,
+                220
+              ]
+            ],
+            "seed": 195
+          },
+          "answer": "res",
+          "why": "Three highs stalled in nearly the same place."
+        }
+      ],
+      "passText": "You’re reading where price responded, not guessing where it will."
+    },
+    {
+      "type": "dayli",
+      "label": "Dayli says",
+      "quote": "<strong>A level is information.</strong><br><br>Not permission to enter."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What does a support area tell you, and what doesn’t it tell you?",
+      "modelAnswer": "A support area tells me price has previously shown buying interest or difficulty continuing lower there. It’s an area of interest with context. It doesn’t tell me price must bounce, and it isn’t permission to enter."
+    }
+  ],
+  "takeaways": [
+    "Support: where price has shown buying interest or difficulty continuing lower.",
+    "Resistance: where price has shown selling interest or difficulty continuing higher.",
+    "A level is information, not a guaranteed bounce and not permission to enter."
+  ],
+  "remember": "A level is information. Not permission to enter."
+}

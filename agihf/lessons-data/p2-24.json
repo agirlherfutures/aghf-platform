@@ -1,0 +1,750 @@
+{
+  "phase": "p2",
+  "section": "s6",
+  "lessonNumber": 24,
+  "title": "Why the Level’s Name Matters Less Than Its Context",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "Context > label.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "See that different labels can describe the same area, and judge a level by its structural context instead of its name.",
+    "missionQuestion": "Support, demand, previous low, discount. Four different levels?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "kicker": "One area",
+      "title": "Different traders. Different names.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            262
+          ],
+          [
+            99.5,
+            160
+          ],
+          [
+            150.5,
+            222
+          ],
+          [
+            218.5,
+            110
+          ],
+          [
+            269.5,
+            196
+          ],
+          [
+            337.5,
+            80
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.5,
+            "o": 262,
+            "c": 240.0,
+            "h": 234.7,
+            "l": 265.3,
+            "w": 10.2
+          },
+          {
+            "x": 65.5,
+            "o": 240.0,
+            "c": 214.7,
+            "h": 209.6,
+            "l": 242.6,
+            "w": 10.2
+          },
+          {
+            "x": 82.5,
+            "o": 214.7,
+            "c": 188.2,
+            "h": 184.0,
+            "l": 217.0,
+            "w": 10.2
+          },
+          {
+            "x": 99.5,
+            "o": 188.2,
+            "c": 167.0,
+            "h": 160,
+            "l": 191.3,
+            "w": 10.2
+          },
+          {
+            "x": 116.5,
+            "o": 167.0,
+            "c": 183.9,
+            "h": 164.8,
+            "l": 189.7,
+            "w": 10.2
+          },
+          {
+            "x": 133.5,
+            "o": 183.9,
+            "c": 200.4,
+            "h": 177.6,
+            "l": 205.0,
+            "w": 10.2
+          },
+          {
+            "x": 150.5,
+            "o": 200.4,
+            "c": 214.0,
+            "h": 196.4,
+            "l": 222,
+            "w": 10.2
+          },
+          {
+            "x": 167.5,
+            "o": 214.0,
+            "c": 189.3,
+            "h": 185.1,
+            "l": 216.3,
+            "w": 10.2
+          },
+          {
+            "x": 184.5,
+            "o": 189.3,
+            "c": 153.6,
+            "h": 147.3,
+            "l": 194.1,
+            "w": 10.2
+          },
+          {
+            "x": 201.5,
+            "o": 153.6,
+            "c": 142.2,
+            "h": 136.9,
+            "l": 155.9,
+            "w": 10.2
+          },
+          {
+            "x": 218.5,
+            "o": 142.2,
+            "c": 116.7,
+            "h": 110,
+            "l": 146.9,
+            "w": 10.2
+          },
+          {
+            "x": 235.5,
+            "o": 116.7,
+            "c": 140.9,
+            "h": 112.1,
+            "l": 142.6,
+            "w": 10.2
+          },
+          {
+            "x": 252.5,
+            "o": 140.9,
+            "c": 163.1,
+            "h": 139.3,
+            "l": 166.1,
+            "w": 10.2
+          },
+          {
+            "x": 269.5,
+            "o": 163.1,
+            "c": 187.8,
+            "h": 157.4,
+            "l": 196,
+            "w": 10.2
+          },
+          {
+            "x": 286.5,
+            "o": 187.8,
+            "c": 157.9,
+            "h": 152.5,
+            "l": 193.2,
+            "w": 10.2
+          },
+          {
+            "x": 303.5,
+            "o": 157.9,
+            "c": 127.7,
+            "h": 125.0,
+            "l": 161.8,
+            "w": 10.2
+          },
+          {
+            "x": 320.5,
+            "o": 127.7,
+            "c": 97.3,
+            "h": 94.8,
+            "l": 130.9,
+            "w": 10.2
+          },
+          {
+            "x": 337.5,
+            "o": 97.3,
+            "c": 87.1,
+            "h": 80,
+            "l": 101.1,
+            "w": 10.2
+          },
+          {
+            "x": 354.5,
+            "o": 87.1,
+            "c": 101.2,
+            "h": 82.2,
+            "l": 104.6,
+            "w": 10.2
+          },
+          {
+            "x": 371.5,
+            "o": 101.2,
+            "c": 126.4,
+            "h": 95.4,
+            "l": 132.0,
+            "w": 10.2
+          },
+          {
+            "x": 388.5,
+            "o": 126.4,
+            "c": 152.2,
+            "h": 121.7,
+            "l": 158.2,
+            "w": 10.2
+          },
+          {
+            "x": 405.5,
+            "o": 152.2,
+            "c": 170.0,
+            "h": 150.1,
+            "l": 172.1,
+            "w": 10.2
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 261.5,
+            "y1": 188,
+            "x2": 690,
+            "y2": 204,
+            "tone": "purple"
+          }
+        ],
+        "notes": [
+          {
+            "x": 520,
+            "y": 182,
+            "text": "Support",
+            "tone": "up",
+            "size": 15,
+            "anchor": "start",
+            "id": "n0"
+          },
+          {
+            "x": 520,
+            "y": 224,
+            "text": "Demand",
+            "tone": "gold",
+            "size": 15,
+            "anchor": "start",
+            "id": "n1"
+          },
+          {
+            "x": 520,
+            "y": 246,
+            "text": "Previous swing low",
+            "tone": "purple",
+            "size": 15,
+            "anchor": "start",
+            "id": "n2"
+          },
+          {
+            "x": 520,
+            "y": 268,
+            "text": "Discount",
+            "tone": "down",
+            "size": 15,
+            "anchor": "start",
+            "id": "n3"
+          }
+        ]
+      },
+      "start": 22,
+      "steps": [
+        {
+          "text": "One area on the chart.",
+          "next": "Add labels →"
+        },
+        {
+          "show": [
+            "n0",
+            "n1"
+          ],
+          "text": "One trader calls it support. Another calls it demand.",
+          "next": "More →"
+        },
+        {
+          "show": [
+            "n2",
+            "n3"
+          ],
+          "text": "Someone else: the previous swing low. Another: discount.",
+          "asks": [
+            {
+              "prompt": "Are these necessarily four different areas?",
+              "options": [
+                {
+                  "label": "Yes, four labels means four levels",
+                  "correct": false,
+                  "feedback": "Look at the chart. They all point at the same place.",
+                  "mistake": "label-over-context"
+                },
+                {
+                  "label": "No",
+                  "correct": true,
+                  "why": "No. Different frameworks may use different terminology around overlapping price areas."
+                }
+              ],
+              "concept": "context-label"
+            },
+            {
+              "prompt": "So what does AGHF care about most?",
+              "options": [
+                {
+                  "label": "Which label is correct",
+                  "correct": false,
+                  "feedback": "The name matters less than the context."
+                },
+                {
+                  "label": "Why this area matters to the structure you’re reading",
+                  "correct": true,
+                  "why": "Exactly. Here: it’s the higher low supporting the current bullish structure."
+                },
+                {
+                  "label": "How many labels agree",
+                  "correct": false,
+                  "feedback": "Stacking labels doesn’t add understanding."
+                }
+              ],
+              "concept": "context-label"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "teach",
+      "kicker": "Context > label",
+      "title": "The name matters less than the job.",
+      "body": "Different frameworks may use different terminology around overlapping price areas.<br><br>AGHF cares about one question: <strong>why does this area matter to the structure you’re reading?</strong>"
+    },
+    {
+      "type": "price_lab",
+      "kicker": "Don’t collect confluence",
+      "title": "Keep adding labels…",
+      "chart": {
+        "swings": [
+          [
+            40,
+            262
+          ],
+          [
+            99.5,
+            160
+          ],
+          [
+            150.5,
+            222
+          ],
+          [
+            218.5,
+            110
+          ],
+          [
+            269.5,
+            196
+          ],
+          [
+            337.5,
+            80
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.5,
+            "o": 262,
+            "c": 240.0,
+            "h": 234.7,
+            "l": 265.3,
+            "w": 10.2
+          },
+          {
+            "x": 65.5,
+            "o": 240.0,
+            "c": 214.7,
+            "h": 209.6,
+            "l": 242.6,
+            "w": 10.2
+          },
+          {
+            "x": 82.5,
+            "o": 214.7,
+            "c": 188.2,
+            "h": 184.0,
+            "l": 217.0,
+            "w": 10.2
+          },
+          {
+            "x": 99.5,
+            "o": 188.2,
+            "c": 167.0,
+            "h": 160,
+            "l": 191.3,
+            "w": 10.2
+          },
+          {
+            "x": 116.5,
+            "o": 167.0,
+            "c": 183.9,
+            "h": 164.8,
+            "l": 189.7,
+            "w": 10.2
+          },
+          {
+            "x": 133.5,
+            "o": 183.9,
+            "c": 200.4,
+            "h": 177.6,
+            "l": 205.0,
+            "w": 10.2
+          },
+          {
+            "x": 150.5,
+            "o": 200.4,
+            "c": 214.0,
+            "h": 196.4,
+            "l": 222,
+            "w": 10.2
+          },
+          {
+            "x": 167.5,
+            "o": 214.0,
+            "c": 189.3,
+            "h": 185.1,
+            "l": 216.3,
+            "w": 10.2
+          },
+          {
+            "x": 184.5,
+            "o": 189.3,
+            "c": 153.6,
+            "h": 147.3,
+            "l": 194.1,
+            "w": 10.2
+          },
+          {
+            "x": 201.5,
+            "o": 153.6,
+            "c": 142.2,
+            "h": 136.9,
+            "l": 155.9,
+            "w": 10.2
+          },
+          {
+            "x": 218.5,
+            "o": 142.2,
+            "c": 116.7,
+            "h": 110,
+            "l": 146.9,
+            "w": 10.2
+          },
+          {
+            "x": 235.5,
+            "o": 116.7,
+            "c": 140.9,
+            "h": 112.1,
+            "l": 142.6,
+            "w": 10.2
+          },
+          {
+            "x": 252.5,
+            "o": 140.9,
+            "c": 163.1,
+            "h": 139.3,
+            "l": 166.1,
+            "w": 10.2
+          },
+          {
+            "x": 269.5,
+            "o": 163.1,
+            "c": 187.8,
+            "h": 157.4,
+            "l": 196,
+            "w": 10.2
+          },
+          {
+            "x": 286.5,
+            "o": 187.8,
+            "c": 157.9,
+            "h": 152.5,
+            "l": 193.2,
+            "w": 10.2
+          },
+          {
+            "x": 303.5,
+            "o": 157.9,
+            "c": 127.7,
+            "h": 125.0,
+            "l": 161.8,
+            "w": 10.2
+          },
+          {
+            "x": 320.5,
+            "o": 127.7,
+            "c": 97.3,
+            "h": 94.8,
+            "l": 130.9,
+            "w": 10.2
+          },
+          {
+            "x": 337.5,
+            "o": 97.3,
+            "c": 87.1,
+            "h": 80,
+            "l": 101.1,
+            "w": 10.2
+          },
+          {
+            "x": 354.5,
+            "o": 87.1,
+            "c": 101.2,
+            "h": 82.2,
+            "l": 104.6,
+            "w": 10.2
+          },
+          {
+            "x": 371.5,
+            "o": 101.2,
+            "c": 126.4,
+            "h": 95.4,
+            "l": 132.0,
+            "w": 10.2
+          },
+          {
+            "x": 388.5,
+            "o": 126.4,
+            "c": 152.2,
+            "h": 121.7,
+            "l": 158.2,
+            "w": 10.2
+          },
+          {
+            "x": 405.5,
+            "o": 152.2,
+            "c": 170.0,
+            "h": 150.1,
+            "l": 172.1,
+            "w": 10.2
+          }
+        ]
+      },
+      "start": 22,
+      "levels": [
+        {
+          "id": "sup",
+          "y": 196,
+          "label": "Support",
+          "tone": "up",
+          "x1": 261.5,
+          "hidden": true
+        },
+        {
+          "id": "dem",
+          "y": 192,
+          "y2": 210,
+          "label": "Demand",
+          "tone": "gold",
+          "x1": 261.5,
+          "hidden": true
+        },
+        {
+          "id": "fvg",
+          "y": 128,
+          "y2": 146,
+          "label": "FVG",
+          "tone": "purple",
+          "x1": 300,
+          "x2": 420,
+          "hidden": true
+        },
+        {
+          "id": "f5",
+          "y": 125,
+          "label": "Fib 0.5",
+          "tone": "muted",
+          "x1": 300,
+          "hidden": true
+        },
+        {
+          "id": "f6",
+          "y": 142,
+          "label": "Fib 0.618",
+          "tone": "muted",
+          "x1": 300,
+          "hidden": true
+        },
+        {
+          "id": "f7",
+          "y": 158,
+          "label": "Fib 0.786",
+          "tone": "muted",
+          "x1": 300,
+          "hidden": true
+        },
+        {
+          "id": "pl",
+          "y": 222,
+          "label": "Previous low",
+          "tone": "purple",
+          "x1": 142.5,
+          "hidden": true
+        },
+        {
+          "id": "ob",
+          "y": 170,
+          "y2": 186,
+          "label": "Order block",
+          "tone": "down",
+          "x1": 200,
+          "x2": 360,
+          "hidden": true
+        },
+        {
+          "id": "tl",
+          "y": 0,
+          "label": "Trendline",
+          "tone": "gold",
+          "slope": [
+            40,
+            262,
+            640,
+            120
+          ],
+          "hidden": true
+        }
+      ],
+      "steps": [
+        {
+          "text": "A clean chart.",
+          "next": "Add confluence →"
+        },
+        {
+          "show": [
+            "sup",
+            "dem"
+          ],
+          "text": "Support. Demand.",
+          "next": "More →"
+        },
+        {
+          "show": [
+            "fvg",
+            "f5",
+            "f6",
+            "f7"
+          ],
+          "text": "An FVG. Three fib levels.",
+          "next": "More →"
+        },
+        {
+          "show": [
+            "pl",
+            "ob",
+            "tl"
+          ],
+          "text": "A previous low. An order block. A trendline.",
+          "asks": [
+            {
+              "prompt": "Did adding more labels automatically make the analysis better?",
+              "options": [
+                {
+                  "label": "Yes, more confluence is better",
+                  "correct": false,
+                  "feedback": "Can you still read the structure? More markings didn’t add understanding.",
+                  "mistake": "collect-confluence"
+                },
+                {
+                  "label": "No",
+                  "correct": true,
+                  "why": "No. The chart got harder to read, and none of it explained the structure better."
+                }
+              ],
+              "concept": "context-label"
+            }
+          ],
+          "next": "Clean it up →"
+        },
+        {
+          "hide": [
+            "dem",
+            "fvg",
+            "f5",
+            "f6",
+            "f7",
+            "pl",
+            "ob",
+            "tl"
+          ],
+          "relabel": {
+            "sup": {
+              "label": "Supporting HL · the structural reason",
+              "tone": "up"
+            }
+          },
+          "text": "<strong>More markings ≠ more understanding.</strong> Back to the structurally relevant information."
+        }
+      ]
+    },
+    {
+      "type": "dayli",
+      "label": "Dayli says",
+      "quote": "<strong>Context &gt; label.</strong><br><br>More markings ≠ more understanding."
+    },
+    {
+      "type": "academy_concept",
+      "variant": "literacy",
+      "title": "Market literacy vs. entry criteria",
+      "body": "You’ll learn support, demand, FVGs, fibs, liquidity and structure. Understanding them makes you market-literate. It does not make every one of them an entry requirement.",
+      "versus": [
+        "Knowing a concept",
+        "Trading the concept"
+      ],
+      "points": [
+        "The Academy teaches market literacy.",
+        "Later, the Dayli ICC Method defines the actual entry model.",
+        "No 14-confluence Frankenstein strategies. 🎀"
+      ],
+      "footer": "This concept helps you understand market behavior. You are not being instructed to add it to your entry model."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Your friend’s chart has support, demand, an FVG, fibs and an order block all on one area. What would you ask her?",
+      "modelAnswer": "I’d ask: why does this area matter to the structure she’s reading? If it’s the higher low supporting the current structure, that’s the reason. Stacking more labels on the same area doesn’t make the analysis better, and knowing a concept doesn’t make it part of her entry model."
+    }
+  ],
+  "takeaways": [
+    "Different frameworks can use different names for overlapping areas.",
+    "What matters is why the area matters to the structure you’re reading.",
+    "More markings ≠ more understanding. Knowing a concept ≠ trading it."
+  ],
+  "remember": "Context > label."
+}

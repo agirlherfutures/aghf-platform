@@ -38,6 +38,11 @@
     </div>
   </div>
 
+  <div class="bill-card" id="badgeCard" style="display:none">
+    <div class="bill-top"><div class="bill-ttl">Academy badges</div></div>
+    <div id="badgeList" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;"></div>
+  </div>
+
   <div class="bill-card">
     <div class="bill-top"><div class="bill-ttl">AG&amp;HF Trading Academy</div><div class="bill-st" id="billingStatus">Active ✓</div></div>
     <div class="bill-pr">$14.99<span>/month</span></div>
@@ -79,6 +84,16 @@
       document.getElementById('billingRenew').textContent = `Next billing date: ${new Date(sub.current_period_end).toLocaleDateString()}`;
     }
   }
+
+  // Badges earned in the Academy (e.g. Structure Scholar for completing Phase 2).
+  function renderBadges() {
+    let list = [];
+    try { list = JSON.parse(localStorage.getItem('aghf_badges') || '[]'); } catch (e) { /* storage blocked */ }
+    if (!list.length) return;
+    document.getElementById('badgeCard').style.display = '';
+    document.getElementById('badgeList').innerHTML = list.map((b) => `<div style="display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--pink-pale),var(--purple-pale));border-radius:999px;padding:8px 14px;font-weight:700;font-size:.85rem;color:var(--dark);"><span>${b.emoji || '🏆'}</span>${b.title}<span style="font-weight:400;color:var(--muted);font-size:.75rem;">${new Date(b.at).toLocaleDateString()}</span></div>`).join('');
+  }
+  renderBadges();
 
   document.addEventListener('aghf-auth-ready', async () => {
     try { await load(); } finally { window.AGHF_HIDE_LOADER?.(); }

@@ -18,6 +18,7 @@
 import { burst, showStreak, showToast, wireRetryOptions } from './lesson-engine.js';
 import { saveCheckinReflection } from './journal-service.js';
 import { SLIDE_RENDERERS } from './lesson-slides-engine.js';
+import { renderPhaseFinal, renderPhaseComplete } from './phase-final.js';
 
 const STREAK_MESSAGES = { 2: ['👀', 'okayyy I see you 👀'], 3: ['🔥', "you're locked in 🔥"], 5: ['🎯', 'sniper energy activated 🎯'] };
 
@@ -28,14 +29,14 @@ export function renderSectionWizard(data, opts) {
 
   // A section can list its own steps (e.g. a game instead of a Challenge,
   // or no Welcome here because it's shown before the lessons instead).
-  const STEP_LABELS = { welcome: 'Welcome', challenge: 'Challenge', game: (data.game && data.game.title) || 'Game', knowledge: 'Knowledge Check', checkin: 'Check-In', complete: 'Complete' };
+  const STEP_LABELS = { welcome: 'Welcome', challenge: 'Challenge', game: (data.game && data.game.title) || 'Game', knowledge: 'Knowledge Check', checkin: 'Check-In', final: (data.final && data.final.stepLabel) || 'Phase Final', reflection: 'Phase Reflection', 'phase-complete': 'Phase Complete', complete: 'Complete' };
   const steps = (data.steps || ['welcome', 'challenge', 'knowledge', 'checkin', 'complete']).map((type) => ({ type, label: STEP_LABELS[type] }));
 
   const startIdx = Math.max(0, steps.findIndex((s) => s.type === (initialStep || steps[0].type)));
   let cur = startIdx;
   let streak = 0;
   const done = steps.map(() => false);
-  const results = { knowledgePct: null };
+  const results = { knowledgePct: null, finalPct: null };
 
   const wrap = document.getElementById('lwWrap');
   const dotsEl = document.getElementById('lwDots');
@@ -94,7 +95,8 @@ export function renderSectionWizard(data, opts) {
     if (s.type === 'challenge') return 'Work through it';
     if (s.type === 'game') return 'Clear every level';
     if (s.type === 'knowledge') return 'Pass at 80%';
-    if (s.type === 'checkin') return 'Save your answers';
+    if (s.type === 'checkin' || s.type === 'reflection') return 'Save your answers';
+    if (s.type === 'final') return 'Pass at 80%';
     return 'Continue';
   }
 
@@ -119,6 +121,9 @@ export function renderSectionWizard(data, opts) {
     else if (step.type === 'game') renderGame(slide, data.game, () => completeStepAndAdvance(i), { handleStreak, burst, sectionId });
     else if (step.type === 'knowledge') renderKnowledge(slide, data.knowledgeCheck, (pct) => { results.knowledgePct = pct; completeStepAndAdvance(i); }, { handleStreak, burst, sectionId });
     else if (step.type === 'checkin') renderCheckin(slide, data.checkin, sectionId, () => completeStepAndAdvance(i));
+    else if (step.type === 'final') renderPhaseFinal(slide, data.final, (pct) => { results.finalPct = pct; completeStepAndAdvance(i); }, { handleStreak, burst, sectionId });
+    else if (step.type === 'reflection') renderCheckin(slide, data.reflection, `${phaseKey}-reflection`, () => completeStepAndAdvance(i));
+    else if (step.type === 'phase-complete') renderPhaseComplete(slide, data, { flagKey, backHref, results });
     else if (step.type === 'complete') renderComplete(slide, data, { flagKey, backHref, nextSectionHref, nextSectionLabel, lessonsLabel, lessonGpTotal, results, data });
   }
 
@@ -580,6 +585,7 @@ function renderFieldCheckin(slide, checkin, sectionId, satisfy) {
     <div class="lw-card">
       <div class="lw-eyebrow">${checkin.eyebrow || 'Student Check-In'}</div>
       <h2>${checkin.heading || "Let's reflect before you move on."}</h2>
+      ${checkin.intro || ''}
       ${fields.map((f, i) => f.type === 'choice' ? `
         <div class="sw-field"><label>${f.label}</label>
           <div class="sw-radio-group" data-f="${i}">${f.options.map((o, oi) => `<div class="sw-radio-opt" data-oi="${oi}"><span class="sw-dot"></span><span>${o}</span></div>`).join('')}</div></div>` : `
@@ -608,6 +614,12 @@ function renderFieldCheckin(slide, checkin, sectionId, satisfy) {
       notes.push(entry);
       localStorage.setItem('aghf_notes', JSON.stringify(notes));
     } catch (err) { console.error('Check-in save error:', err); }
+    // Fields marked `profile: 'key'` also go into the learning profile (e.g. a confidence check).
+    try {
+      const prof = JSON.parse(localStorage.getItem('aghf_learning_profile') || '{}');
+      fields.forEach((f, i) => { if (f.profile) { prof[sectionId] = { ...(prof[sectionId] || {}), [f.profile]: answers[i], savedAt: Date.now() }; } });
+      localStorage.setItem('aghf_learning_profile', JSON.stringify(prof));
+    } catch (err) { /* storage blocked */ }
     const shareIdx = Math.max(0, fields.findIndex((f) => f.share));
     saveCheckinReflection(sectionId, fields[shareIdx].label, (answers[shareIdx] || '').trim()).catch((err) => console.error('Server reflection save error:', err));
     slide.querySelector('#swCheckinSaved').style.display = '';

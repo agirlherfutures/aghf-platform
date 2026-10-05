@@ -129,7 +129,9 @@
   // member's account, so it holds on any device). The next phase unlocks on
   // that; section checkpoints gate the sections inside a phase.
   function phaseComplete(phase, completedIds) {
-    return phase.sections.every((s) => s.lessons.every((l) => !l.n || completedIds.has(`${phase.key}-${l.n}`)));
+    const lessonsDone = phase.sections.every((s) => s.lessons.every((l) => !l.n || completedIds.has(`${phase.key}-${l.n}`)));
+    // A phase with a final gate (e.g. the Phase 2 Final) also needs that gate cleared.
+    return lessonsDone && (!phase.finalGate || isSectionCleared(phase.key, phase.finalGate, completedIds));
   }
 
   // A section's welcome, shown at the top of the section before its lessons.
@@ -154,7 +156,9 @@
     const doneInPhase = !phaseUnlocked ? 0 : phase.sections.reduce((sum, s) =>
       sum + s.lessons.filter((l) => l.n && completedIds.has(`${phase.key}-${l.n}`)).length, 0);
     const badgeClass = BADGE_PHASE_CLASS[phase.badge] || 'pb-p';
-    const sub = phaseUnlocked
+    const sub = phaseUnlocked && phase.comingSoon
+      ? '🔓 Unlocked · Lessons coming soon'
+      : phaseUnlocked
       ? `Sections ${phase.sections[0].n}–${phase.sections[phase.sections.length - 1].n} · ${doneInPhase === totalLessons ? 'Complete' : 'In progress'}`
       : `🔒 Complete Phase ${phase.n - 1} to unlock${phase.comingSoon ? ' · Coming soon' : ''}`;
     const sectionsHtml = phase.sections.map((s, i) => sectionHtml(phase, s, completedIds, phaseUnlocked, i)).join('');
