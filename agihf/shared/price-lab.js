@@ -23,7 +23,9 @@
  *       story: { key: { value, tone } },   panel updates
  *       evidence: { items, conclusion },
  *       tap:  { prompt, answer, only, hint, notes, reveal, show, hide }  pick on the chart
+ *       pick / keep / clean / zone   a Level Toolkit action (see level-tools.js; needs slide.levels)
  *       asks: [question, …]       chained questions (each solved before the next)
+ *       card: { title, rows }     a LEVEL PURPOSE card shown after the asks
  *       next: 'Next candle →'
  *     }],
  *     check: question at the end (optional)
@@ -40,6 +42,7 @@
 
 import { mountChart } from './structure-charts.js';
 import { mountViews } from './structure-slides.js';
+import { mountLevels } from './level-tools.js';
 
 const NEI_WHY = '✓ Exactly. You don’t have to force a directional conclusion before price gives you enough evidence.';
 
@@ -123,6 +126,14 @@ function evidenceHtml(ev) {
   </div>`;
 }
 
+/* A LEVEL PURPOSE card: { title, rows: [[label, value]] }. Context, never an entry signal. */
+function purposeCard(c) {
+  const d = document.createElement('div');
+  d.className = 'pl-purpose';
+  d.innerHTML = `<div class="pl-panel-title">${c.title || 'Level purpose'}</div>${c.rows.map(([k, v]) => `<div class="pl-purpose-row"><span>${k}</span><b>${v}</b></div>`).join('')}${c.note ? `<div class="pl-purpose-note">${c.note}</div>` : ''}`;
+  return d;
+}
+
 /* ── The screen ─────────────────────────────────────────────────────── */
 
 /* On phones the 700-wide chart shrinks a lot. Crop the empty space right of
@@ -169,6 +180,7 @@ export function renderPriceLab(el, slide, satisfy, helpers) {
   const chart = mountChart(card.querySelector('.pl-chart'), { ...slide.chart, showCandles: slide.start ?? slide.chart.showCandles }, { label: slide.title });
   if (window.matchMedia?.('(max-width: 600px)').matches) compactChart(chart, slide.chart);
   if (slide.views) mountViews(card.querySelector('.pl-chart'), chart, slide.views, slide.view);
+  const lv = slide.levels ? mountLevels(chart, slide.levels) : null;
   const cap = card.querySelector('.pl-caption');
   const asks = card.querySelector('.pl-asks');
   const next = card.querySelector('.pl-next');
@@ -270,12 +282,16 @@ export function renderPriceLab(el, slide, satisfy, helpers) {
     pips.forEach((p, k) => p.classList.toggle('on', k <= i));
     const wait = s.candles != null ? chart.showCandles(s.candles, s.gap ?? 220) : 0;
     setTimeout(() => {
-      if (s.show) chart.reveal(s.show);
-      if (s.hide) chart.hide(s.hide);
+      if (s.show) { chart.reveal(s.show); lv?.show(s.show); }
+      if (s.hide) { chart.hide(s.hide); lv?.hide(s.hide); }
       if (s.story) updateStory(s.story);
       if (s.evidence) card.querySelector('.pl-ev-slot').innerHTML = evidenceHtml(s.evidence);
+      if (s.relabel && lv) Object.entries(s.relabel).forEach(([id, r]) => lv.relabel(id, r.label, r.tone));
       say(s.text);
-      const afterTap = () => (s.asks || s.ask ? runAsks(s.asks || [s.ask], 0, finish) : finish());
+      const afterAsks = () => { if (s.card) asks.appendChild(purposeCard(s.card)); finish(); };
+      const afterTools = () => (s.asks || s.ask ? runAsks(s.asks || [s.ask], 0, afterAsks) : afterAsks());
+      const tool = lv && ['pick', 'keep', 'clean', 'zone'].find((k) => s[k]);
+      const afterTap = () => (tool ? lv[tool](s[tool], asks, helpers, afterTools) : afterTools());
       if (s.tap) runTap(s.tap, afterTap); else afterTap();
     }, s.candles != null ? Math.min(wait, 2400) : 0);
   }

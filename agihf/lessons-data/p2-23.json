@@ -1,0 +1,900 @@
+{
+  "phase": "p2",
+  "section": "s6",
+  "lessonNumber": 23,
+  "title": "Structure-Based Levels",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 65,
+  "passThreshold": 0.6,
+  "hook": "The level needs a job.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Describe a level by its structural job, and clean a crowded chart down to the levels that answer the structural question.",
+    "missionQuestion": "Can you explain why every line on your chart is there?",
+    "estMinutes": 9
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "teach",
+      "kicker": "Stop saying “that’s support”",
+      "title": "A level needs a job.",
+      "body": "Instead of:<br><s>“That’s support.”</s><br><br>Say:<br><strong>“This is the swing low supporting the current bullish structure.”</strong><br>or<br><strong>“This is the prior high price would need to overcome for continued bullish progression.”</strong>"
+    },
+    {
+      "type": "price_lab",
+      "kicker": "Give the level a job",
+      "title": "Why is this here?",
+      "body": "Stop saying “that’s support.” Say what the level is doing for the structure.",
+      "chart": {
+        "swings": [
+          [
+            40,
+            262
+          ],
+          [
+            99.5,
+            175
+          ],
+          [
+            150.5,
+            232
+          ],
+          [
+            218.5,
+            130
+          ],
+          [
+            269.5,
+            200
+          ],
+          [
+            337.5,
+            95
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.5,
+            "o": 262,
+            "c": 245.8,
+            "h": 239.5,
+            "l": 267.6,
+            "w": 10.2
+          },
+          {
+            "x": 65.5,
+            "o": 245.8,
+            "c": 224.1,
+            "h": 217.7,
+            "l": 251.1,
+            "w": 10.2
+          },
+          {
+            "x": 82.5,
+            "o": 224.1,
+            "c": 203.3,
+            "h": 200.7,
+            "l": 229.5,
+            "w": 10.2
+          },
+          {
+            "x": 99.5,
+            "o": 203.3,
+            "c": 183.3,
+            "h": 175,
+            "l": 206.6,
+            "w": 10.2
+          },
+          {
+            "x": 116.5,
+            "o": 183.3,
+            "c": 199.1,
+            "h": 180.1,
+            "l": 205.4,
+            "w": 10.2
+          },
+          {
+            "x": 133.5,
+            "o": 199.1,
+            "c": 218.1,
+            "h": 196.2,
+            "l": 222.9,
+            "w": 10.2
+          },
+          {
+            "x": 150.5,
+            "o": 218.1,
+            "c": 225.5,
+            "h": 215.6,
+            "l": 232,
+            "w": 10.2
+          },
+          {
+            "x": 167.5,
+            "o": 225.5,
+            "c": 207.9,
+            "h": 202.1,
+            "l": 228.7,
+            "w": 10.2
+          },
+          {
+            "x": 184.5,
+            "o": 207.9,
+            "c": 173.9,
+            "h": 170.6,
+            "l": 209.5,
+            "w": 10.2
+          },
+          {
+            "x": 201.5,
+            "o": 173.9,
+            "c": 159.1,
+            "h": 152.9,
+            "l": 178.8,
+            "w": 10.2
+          },
+          {
+            "x": 218.5,
+            "o": 159.1,
+            "c": 136.2,
+            "h": 130,
+            "l": 162.9,
+            "w": 10.2
+          },
+          {
+            "x": 235.5,
+            "o": 136.2,
+            "c": 163.1,
+            "h": 134.5,
+            "l": 168.0,
+            "w": 10.2
+          },
+          {
+            "x": 252.5,
+            "o": 163.1,
+            "c": 179.1,
+            "h": 157.6,
+            "l": 184.0,
+            "w": 10.2
+          },
+          {
+            "x": 269.5,
+            "o": 179.1,
+            "c": 192.6,
+            "h": 175.7,
+            "l": 200,
+            "w": 10.2
+          },
+          {
+            "x": 286.5,
+            "o": 192.6,
+            "c": 163.8,
+            "h": 161.7,
+            "l": 198.3,
+            "w": 10.2
+          },
+          {
+            "x": 303.5,
+            "o": 163.8,
+            "c": 143.9,
+            "h": 137.9,
+            "l": 168.5,
+            "w": 10.2
+          },
+          {
+            "x": 320.5,
+            "o": 143.9,
+            "c": 110.8,
+            "h": 106.1,
+            "l": 147.0,
+            "w": 10.2
+          },
+          {
+            "x": 337.5,
+            "o": 110.8,
+            "c": 102.5,
+            "h": 95,
+            "l": 113.1,
+            "w": 10.2
+          },
+          {
+            "x": 354.5,
+            "o": 102.5,
+            "c": 117.7,
+            "h": 97.9,
+            "l": 121.2,
+            "w": 10.2
+          },
+          {
+            "x": 371.5,
+            "o": 117.7,
+            "c": 129.9,
+            "h": 112.5,
+            "l": 133.3,
+            "w": 10.2
+          },
+          {
+            "x": 388.5,
+            "o": 129.9,
+            "c": 136.6,
+            "h": 127.0,
+            "l": 139.8,
+            "w": 10.2
+          },
+          {
+            "x": 405.5,
+            "o": 136.6,
+            "c": 150.0,
+            "h": 130.4,
+            "l": 152.1,
+            "w": 10.2
+          }
+        ],
+        "marks": [
+          {
+            "i": 2,
+            "label": "HL",
+            "tone": "up"
+          },
+          {
+            "i": 3,
+            "label": "HH",
+            "tone": "up"
+          },
+          {
+            "i": 4,
+            "label": "HL",
+            "tone": "up"
+          },
+          {
+            "i": 5,
+            "label": "HH",
+            "tone": "up"
+          }
+        ]
+      },
+      "start": 22,
+      "levels": [
+        {
+          "id": "sup",
+          "y": 200,
+          "label": "Marked level",
+          "tone": "purple",
+          "x1": 261.5,
+          "hidden": true
+        },
+        {
+          "id": "phh",
+          "y": 95,
+          "label": "Marked level",
+          "tone": "purple",
+          "x1": 329.5,
+          "hidden": true
+        },
+        {
+          "id": "rnd",
+          "y": 168,
+          "label": "Marked level",
+          "tone": "purple",
+          "x1": 40,
+          "hidden": true
+        }
+      ],
+      "steps": [
+        {
+          "show": [
+            "sup"
+          ],
+          "text": "Bullish structure, pulling back. One level is marked.",
+          "asks": [
+            {
+              "prompt": "WHY IS THIS HERE?",
+              "options": [
+                {
+                  "label": "Supporting current bullish structure",
+                  "correct": true,
+                  "why": "It’s the higher low the current bullish progression is built on."
+                },
+                {
+                  "label": "Resisting current bearish structure",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                },
+                {
+                  "label": "External range boundary",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                },
+                {
+                  "label": "Internal reference",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                },
+                {
+                  "label": "Previous high/low",
+                  "correct": false,
+                  "feedback": "It is a prior low. More specifically, it’s the higher low the current bullish structure is built on."
+                },
+                {
+                  "label": "No clear reason",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                }
+              ],
+              "concept": "structure-levels",
+              "hint": "Which swing is this level drawn from, and what is that swing doing for the structure?",
+              "stack": true
+            }
+          ],
+          "card": {
+            "rows": [
+              [
+                "Price",
+                "19,950"
+              ],
+              [
+                "Role",
+                "Relevant bullish swing low"
+              ],
+              [
+                "Why it matters",
+                "Currently supports the bullish structural progression"
+              ]
+            ],
+            "note": "Educational context. Not an entry signal."
+          },
+          "next": "Next level →"
+        },
+        {
+          "hide": [
+            "sup"
+          ],
+          "show": [
+            "phh"
+          ],
+          "text": "A different level.",
+          "asks": [
+            {
+              "prompt": "WHY IS THIS HERE?",
+              "options": [
+                {
+                  "label": "Supporting current bullish structure",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                },
+                {
+                  "label": "Resisting current bearish structure",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                },
+                {
+                  "label": "External range boundary",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                },
+                {
+                  "label": "Internal reference",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                },
+                {
+                  "label": "Previous high/low",
+                  "correct": true,
+                  "why": "It’s the prior high price would need to overcome for continued bullish progression."
+                },
+                {
+                  "label": "No clear reason",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                }
+              ],
+              "concept": "structure-levels",
+              "hint": "Which swing is this level drawn from?",
+              "stack": true
+            }
+          ],
+          "card": {
+            "rows": [
+              [
+                "Price",
+                "20,060"
+              ],
+              [
+                "Role",
+                "Prior swing high"
+              ],
+              [
+                "Why it matters",
+                "Price would need to overcome it for continued bullish progression"
+              ]
+            ],
+            "note": "Educational context. Not an entry signal."
+          },
+          "next": "Next level →"
+        },
+        {
+          "hide": [
+            "phh"
+          ],
+          "show": [
+            "rnd"
+          ],
+          "text": "One more.",
+          "asks": [
+            {
+              "prompt": "WHY IS THIS HERE?",
+              "options": [
+                {
+                  "label": "Supporting current bullish structure",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                },
+                {
+                  "label": "Resisting current bearish structure",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                },
+                {
+                  "label": "External range boundary",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                },
+                {
+                  "label": "Internal reference",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                },
+                {
+                  "label": "Previous high/low",
+                  "correct": false,
+                  "feedback": "Look at what price built around this level. What is it doing for the structure?"
+                },
+                {
+                  "label": "No clear reason",
+                  "correct": true,
+                  "why": "No swing formed here and price never reacted here. If you can’t explain it, it doesn’t need to be on your chart."
+                }
+              ],
+              "concept": "structure-levels",
+              "hint": "Did a swing form at this level? Did price react here?",
+              "stack": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "price_lab",
+      "kicker": "Delete the junk",
+      "title": "Clean the chart.",
+      "body": "Tap any line that doesn’t answer the current structural question. The question: <strong>where does the bullish structure stand right now?</strong>",
+      "chart": {
+        "swings": [
+          [
+            40,
+            262
+          ],
+          [
+            99.5,
+            175
+          ],
+          [
+            150.5,
+            232
+          ],
+          [
+            218.5,
+            130
+          ],
+          [
+            269.5,
+            200
+          ],
+          [
+            337.5,
+            95
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.5,
+            "o": 262,
+            "c": 245.8,
+            "h": 239.5,
+            "l": 267.6,
+            "w": 10.2
+          },
+          {
+            "x": 65.5,
+            "o": 245.8,
+            "c": 224.1,
+            "h": 217.7,
+            "l": 251.1,
+            "w": 10.2
+          },
+          {
+            "x": 82.5,
+            "o": 224.1,
+            "c": 203.3,
+            "h": 200.7,
+            "l": 229.5,
+            "w": 10.2
+          },
+          {
+            "x": 99.5,
+            "o": 203.3,
+            "c": 183.3,
+            "h": 175,
+            "l": 206.6,
+            "w": 10.2
+          },
+          {
+            "x": 116.5,
+            "o": 183.3,
+            "c": 199.1,
+            "h": 180.1,
+            "l": 205.4,
+            "w": 10.2
+          },
+          {
+            "x": 133.5,
+            "o": 199.1,
+            "c": 218.1,
+            "h": 196.2,
+            "l": 222.9,
+            "w": 10.2
+          },
+          {
+            "x": 150.5,
+            "o": 218.1,
+            "c": 225.5,
+            "h": 215.6,
+            "l": 232,
+            "w": 10.2
+          },
+          {
+            "x": 167.5,
+            "o": 225.5,
+            "c": 207.9,
+            "h": 202.1,
+            "l": 228.7,
+            "w": 10.2
+          },
+          {
+            "x": 184.5,
+            "o": 207.9,
+            "c": 173.9,
+            "h": 170.6,
+            "l": 209.5,
+            "w": 10.2
+          },
+          {
+            "x": 201.5,
+            "o": 173.9,
+            "c": 159.1,
+            "h": 152.9,
+            "l": 178.8,
+            "w": 10.2
+          },
+          {
+            "x": 218.5,
+            "o": 159.1,
+            "c": 136.2,
+            "h": 130,
+            "l": 162.9,
+            "w": 10.2
+          },
+          {
+            "x": 235.5,
+            "o": 136.2,
+            "c": 163.1,
+            "h": 134.5,
+            "l": 168.0,
+            "w": 10.2
+          },
+          {
+            "x": 252.5,
+            "o": 163.1,
+            "c": 179.1,
+            "h": 157.6,
+            "l": 184.0,
+            "w": 10.2
+          },
+          {
+            "x": 269.5,
+            "o": 179.1,
+            "c": 192.6,
+            "h": 175.7,
+            "l": 200,
+            "w": 10.2
+          },
+          {
+            "x": 286.5,
+            "o": 192.6,
+            "c": 163.8,
+            "h": 161.7,
+            "l": 198.3,
+            "w": 10.2
+          },
+          {
+            "x": 303.5,
+            "o": 163.8,
+            "c": 143.9,
+            "h": 137.9,
+            "l": 168.5,
+            "w": 10.2
+          },
+          {
+            "x": 320.5,
+            "o": 143.9,
+            "c": 110.8,
+            "h": 106.1,
+            "l": 147.0,
+            "w": 10.2
+          },
+          {
+            "x": 337.5,
+            "o": 110.8,
+            "c": 102.5,
+            "h": 95,
+            "l": 113.1,
+            "w": 10.2
+          },
+          {
+            "x": 354.5,
+            "o": 102.5,
+            "c": 117.7,
+            "h": 97.9,
+            "l": 121.2,
+            "w": 10.2
+          },
+          {
+            "x": 371.5,
+            "o": 117.7,
+            "c": 129.9,
+            "h": 112.5,
+            "l": 133.3,
+            "w": 10.2
+          },
+          {
+            "x": 388.5,
+            "o": 129.9,
+            "c": 136.6,
+            "h": 127.0,
+            "l": 139.8,
+            "w": 10.2
+          },
+          {
+            "x": 405.5,
+            "o": 136.6,
+            "c": 150.0,
+            "h": 130.4,
+            "l": 152.1,
+            "w": 10.2
+          }
+        ]
+      },
+      "start": 22,
+      "levels": [
+        {
+          "id": "ext",
+          "y": 262,
+          "tone": "purple",
+          "keep": true,
+          "reason": "This is the external low the whole bullish structure started from.",
+          "name": "The lowest level",
+          "x1": 30
+        },
+        {
+          "id": "sup",
+          "y": 200,
+          "tone": "purple",
+          "keep": true,
+          "reason": "This is the higher low supporting the current bullish structure.",
+          "name": "The middle level",
+          "x1": 261.5
+        },
+        {
+          "id": "phh",
+          "y": 95,
+          "tone": "purple",
+          "keep": true,
+          "reason": "This is the prior high price would need to overcome for continued bullish progression.",
+          "name": "The top level",
+          "x1": 329.5
+        },
+        {
+          "id": "j0",
+          "y": 60,
+          "tone": "junk",
+          "keep": false,
+          "reason": "Price never traded up here. No reaction, no swing.",
+          "x1": 40
+        },
+        {
+          "id": "j1",
+          "y": 78,
+          "tone": "junk",
+          "keep": false,
+          "reason": "Nothing happened at this price.",
+          "x1": 40
+        },
+        {
+          "id": "j2",
+          "y": 115,
+          "tone": "junk",
+          "keep": false,
+          "reason": "A random line through the middle of a move.",
+          "x1": 40
+        },
+        {
+          "id": "j3",
+          "y": 140,
+          "tone": "junk",
+          "keep": false,
+          "reason": "A single candle’s high. Not a structural swing.",
+          "x1": 40
+        },
+        {
+          "id": "j4",
+          "y": 160,
+          "tone": "junk",
+          "keep": false,
+          "reason": "A line through the middle of candles. No swing formed here.",
+          "x1": 40
+        },
+        {
+          "id": "j5",
+          "y": 178,
+          "tone": "junk",
+          "keep": false,
+          "reason": "A tiny wiggle inside the pullback. It doesn’t answer the structural question.",
+          "x1": 40
+        },
+        {
+          "id": "j6",
+          "y": 218,
+          "tone": "junk",
+          "keep": false,
+          "reason": "A random line between two swings.",
+          "x1": 40
+        },
+        {
+          "id": "j7",
+          "y": 240,
+          "tone": "junk",
+          "keep": false,
+          "reason": "Price only passed through here.",
+          "x1": 40
+        },
+        {
+          "id": "j8",
+          "y": 290,
+          "tone": "junk",
+          "keep": false,
+          "reason": "Price never traded down here.",
+          "x1": 40
+        }
+      ],
+      "steps": [
+        {
+          "text": "12 markings. Most of them are noise.",
+          "clean": {
+            "prompt": "Tap the lines that don’t belong.",
+            "concept": "chart-cleanup",
+            "done": "Three lines left. Now: can you explain why each one is here?"
+          },
+          "asks": [
+            {
+              "prompt": "Why is the TOP level here?",
+              "options": [
+                {
+                  "label": "It’s the prior high price would need to overcome for bullish continuation",
+                  "correct": true,
+                  "why": "Yes. It’s the prior swing high."
+                },
+                {
+                  "label": "It’s where price will reverse",
+                  "correct": false,
+                  "feedback": "A level is information, not a prediction."
+                },
+                {
+                  "label": "No clear reason",
+                  "correct": false,
+                  "feedback": "Look again. Which swing is it drawn from?"
+                }
+              ],
+              "concept": "structure-levels",
+              "stack": true
+            },
+            {
+              "prompt": "Why is the MIDDLE level here?",
+              "options": [
+                {
+                  "label": "It’s the higher low supporting the current bullish structure",
+                  "correct": true,
+                  "why": "Exactly. If price closed through it, the bullish story would be challenged."
+                },
+                {
+                  "label": "It’s a random support line",
+                  "correct": false,
+                  "feedback": "It isn’t random. Which swing formed here?"
+                },
+                {
+                  "label": "It’s where to buy",
+                  "correct": false,
+                  "feedback": "It’s context, not an entry signal."
+                }
+              ],
+              "concept": "structure-levels",
+              "stack": true
+            },
+            {
+              "prompt": "Why is the BOTTOM level here?",
+              "options": [
+                {
+                  "label": "It’s the external low the bullish structure started from",
+                  "correct": true,
+                  "why": "Yes. It’s the boundary of the larger structure."
+                },
+                {
+                  "label": "It’s a minor internal low",
+                  "correct": false,
+                  "feedback": "It’s the lowest point the whole move started from. That’s external."
+                },
+                {
+                  "label": "No clear reason",
+                  "correct": false,
+                  "feedback": "Which swing started the whole move?"
+                }
+              ],
+              "concept": "structure-levels",
+              "stack": true
+            }
+          ],
+          "next": "Next →"
+        },
+        {
+          "relabel": {
+            "phh": {
+              "label": "Prior HH · overcome for continuation",
+              "tone": "up"
+            },
+            "sup": {
+              "label": "Supporting HL",
+              "tone": "up"
+            },
+            "ext": {
+              "label": "External low",
+              "tone": "purple"
+            }
+          },
+          "text": "Every line left on the chart has a job."
+        }
+      ]
+    },
+    {
+      "type": "dayli",
+      "label": "Dayli says",
+      "quote": "<strong>Every line on your chart should have a reason.</strong><br><br>If you can’t explain why it’s there: <strong>delete it.</strong>"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Pick one level from a chart you’ve looked at recently. What is its job?",
+      "modelAnswer": "A level earns its place by having a structural job. For example: “This is the swing low supporting the current bullish structure,” or “This is the prior high price would need to overcome for continued bullish progression.” If I can’t say what job a line has, it doesn’t belong on my chart."
+    }
+  ],
+  "takeaways": [
+    "“Support” isn’t a job. Name what the level does for the structure.",
+    "Swing lows and highs that hold up or cap the current structure are the levels with jobs.",
+    "If you can’t explain why a line is there, delete it."
+  ],
+  "remember": "Every line on your chart should have a reason."
+}
