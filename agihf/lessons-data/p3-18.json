@@ -1,0 +1,161 @@
+{
+  "phase": "p3",
+  "section": "s8",
+  "lessonNumber": 18,
+  "title": "FVGs in the Dayli ICC Framework",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "We don’t force our method to fit another concept.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Keep FVGs as market literacy, never a Dayli ICC requirement.",
+    "missionQuestion": "Does a Dayli ICC entry need an FVG?",
+    "estMinutes": 6
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "v2_screen",
+      "kicker": "Phase 3 · Lesson 18",
+      "headline": "You are not becoming an <em>FVG trader</em> 😂",
+      "line": "You’re becoming a trader who understands delivery and keeps her method clean.",
+      "visual": {
+        "host": "wave"
+      },
+      "cta": "Okay, okay →",
+      "ctaPink": true
+    },
+    {
+      "type": "literacy_entry",
+      "kicker": "Literacy vs execution",
+      "title": "Two columns.",
+      "literacy": {
+        "title": "Market literacy",
+        "sub": "Helps you understand the chart",
+        "items": [
+          "Price delivery",
+          "Displacement",
+          "Imbalance",
+          "Fair value gaps",
+          "Possible revisits"
+        ]
+      },
+      "entry": {
+        "title": "Entry criteria",
+        "sub": "The Dayli ICC sequence"
+      },
+      "footer": "Look at the right column carefully before the next question."
+    },
+    {
+      "type": "teach",
+      "kicker": "Look closely",
+      "heading": "WHERE IS THE REQUIRED FVG STEP?",
+      "body": "PIL → Indication → Correction → Continuation → Retest → Entry.",
+      "check": {
+        "prompt": "Where in that sequence is the required FVG step?",
+        "options": [
+          {
+            "label": "There isn’t one",
+            "correct": true,
+            "why": "Exactly. There is no FVG step."
+          },
+          {
+            "label": "Between correction and continuation",
+            "correct": false,
+            "feedback": "Read the sequence again. No FVG there.",
+            "mistake": "fvg-required"
+          },
+          {
+            "label": "Right before entry",
+            "correct": false,
+            "feedback": "The step before entry is the retest. Not an FVG.",
+            "mistake": "fvg-required"
+          }
+        ]
+      }
+    },
+    {
+      "type": "academy_concept",
+      "variant": "icc",
+      "title": "FVGs are not required for Dayli ICC.",
+      "body": "A valid Dayli ICC setup does not need:",
+      "points": [
+        "An FVG",
+        "An FVG fill",
+        "An FVG retest",
+        "An FVG entry"
+      ],
+      "footer": "If FVGs help you understand the chart, great. They never become a requirement."
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Thought check",
+      "title": "Useful thought, or not?",
+      "items": [
+        {
+          "text": "Price displaced and left an imbalance. I’ll note it as context.",
+          "answer": "USEFUL",
+          "why": "Literacy doing its job.",
+          "concept": "market-literacy"
+        },
+        {
+          "text": "No FVG, so this valid setup is invalid.",
+          "answer": "NOT USEFUL",
+          "why": "A valid Dayli ICC setup never needs an FVG.",
+          "mistake": "fvg-required",
+          "concept": "entry-criteria",
+          "tone": "myth"
+        },
+        {
+          "text": "I’ll wait for the FVG to fill before I take my entry.",
+          "answer": "NOT USEFUL",
+          "why": "That adds a rule the method doesn’t have.",
+          "mistake": "fvg-must-fill",
+          "concept": "entry-criteria",
+          "tone": "myth"
+        },
+        {
+          "text": "The move was displaced, so participation looked one-sided in that moment.",
+          "answer": "USEFUL",
+          "why": "A clear description of delivery.",
+          "concept": "displacement"
+        },
+        {
+          "text": "There’s an FVG, so the entry model is confirmed.",
+          "answer": "NOT USEFUL",
+          "why": "An FVG never confirms the entry model.",
+          "mistake": "context-equals-entry",
+          "concept": "entry-criteria",
+          "tone": "myth"
+        }
+      ],
+      "choices": [
+        "USEFUL",
+        "NOT USEFUL"
+      ]
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "We don’t force our method to <em>fit another concept.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "How do FVGs fit into the way you read a chart, and what don’t they change?",
+      "modelAnswer": "FVGs help me describe how price delivered and where it moved quickly. They’re context. They don’t change my entry model: Dayli ICC never requires an FVG, a fill, a retest of an FVG, or an FVG entry."
+    }
+  ],
+  "takeaways": [
+    "There is no FVG step in the Dayli ICC sequence.",
+    "No FVG, fill, retest or FVG entry is required.",
+    "We don’t force our method to fit another concept."
+  ],
+  "remember": "We don’t force our method to fit another concept."
+}

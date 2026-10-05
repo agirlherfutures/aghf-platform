@@ -122,7 +122,7 @@ export function mountChart(container, spec, opts = {}) {
   (spec.boxes || []).forEach((b) => {
     const t = TONE[b.tone] || TONE.muted;
     const g = el('g', { class: 'sc-box' }, boxes);
-    el('rect', { x: b.x1, y: b.y1, width: b.x2 - b.x1, height: b.y2 - b.y1, rx: 10, fill: t.pale, stroke: t.fill, 'stroke-width': 2, 'stroke-dasharray': b.dashed === false ? null : '8 6' }, g);
+    el('rect', { x: b.x1, y: b.y1, width: b.x2 - b.x1, height: b.y2 - b.y1, rx: b.rx ?? 10, fill: b.solid ? t.fill : t.pale, 'fill-opacity': b.op ?? null, stroke: b.stroke === false ? 'none' : t.fill, 'stroke-width': 2, 'stroke-dasharray': b.dashed === false ? null : '8 6' }, g);
     if (b.label) {
       const tx = el('text', { x: b.labelRight ? b.x2 - 4 : b.x1 + 4, y: b.labelBelow ? b.y2 + 18 : b.y1 - 8, 'text-anchor': b.labelRight ? 'end' : 'start', 'font-size': b.size || 13, 'font-weight': 800, fill: t.dark, 'font-family': 'DM Sans, sans-serif' }, g);
       tx.textContent = b.label;

@@ -1,0 +1,977 @@
+{
+  "phase": "p3",
+  "section": "s8",
+  "lessonNumber": 13,
+  "title": "Fair Value Gaps",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "A three-candle pattern. Not another entry rule.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Build bullish and bearish FVGs from three candles, then spot them fast.",
+    "missionQuestion": "Is an FVG automatically a place to enter?",
+    "estMinutes": 9
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            60,
+            240
+          ],
+          [
+            500,
+            151
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 60,
+            "o": 240,
+            "c": 226,
+            "h": 220,
+            "l": 246,
+            "w": 25.5
+          },
+          {
+            "x": 104,
+            "o": 226,
+            "c": 238,
+            "h": 220,
+            "l": 244,
+            "w": 25.5
+          },
+          {
+            "x": 148,
+            "o": 238,
+            "c": 226,
+            "h": 220,
+            "l": 244,
+            "w": 25.5
+          },
+          {
+            "x": 192,
+            "o": 226,
+            "c": 240,
+            "h": 220,
+            "l": 246,
+            "w": 25.5
+          },
+          {
+            "x": 236,
+            "o": 240,
+            "c": 226,
+            "h": 222,
+            "l": 243,
+            "w": 25.5
+          },
+          {
+            "x": 280,
+            "o": 226,
+            "c": 162,
+            "h": 159,
+            "l": 229,
+            "w": 25.5
+          },
+          {
+            "x": 324,
+            "o": 162,
+            "c": 144,
+            "h": 140,
+            "l": 164,
+            "w": 25.5
+          },
+          {
+            "x": 368,
+            "o": 144,
+            "c": 156,
+            "h": 138,
+            "l": 162,
+            "w": 25.5
+          },
+          {
+            "x": 412,
+            "o": 156,
+            "c": 146,
+            "h": 140,
+            "l": 162,
+            "w": 25.5
+          },
+          {
+            "x": 456,
+            "o": 146,
+            "c": 159,
+            "h": 140,
+            "l": 165,
+            "w": 25.5
+          },
+          {
+            "x": 500,
+            "o": 159,
+            "c": 151,
+            "h": 145,
+            "l": 165,
+            "w": 25.5
+          }
+        ],
+        "hlines": [
+          {
+            "y": 222,
+            "label": "Candle 1 high",
+            "tone": "up",
+            "x1": 222,
+            "x2": 690,
+            "size": 13,
+            "id": "h1",
+            "below": true,
+            "labelX": 354
+          },
+          {
+            "y": 164,
+            "label": "Candle 3 low",
+            "tone": "up",
+            "x1": 310,
+            "x2": 690,
+            "size": 13,
+            "id": "l3",
+            "labelX": 354
+          }
+        ],
+        "notes": [
+          {
+            "x": 236,
+            "y": 265,
+            "text": "C1",
+            "tone": "purple",
+            "size": 15,
+            "anchor": "middle",
+            "id": "n1"
+          },
+          {
+            "x": 280,
+            "y": 251,
+            "text": "C2",
+            "tone": "purple",
+            "size": 15,
+            "anchor": "middle",
+            "id": "n2"
+          },
+          {
+            "x": 324,
+            "y": 128,
+            "text": "C3",
+            "tone": "purple",
+            "size": 15,
+            "anchor": "middle",
+            "id": "n3"
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 223.25,
+            "y1": 164,
+            "x2": 690,
+            "y2": 222,
+            "tone": "up",
+            "label": "FVG",
+            "id": "fvg",
+            "labelRight": true
+          }
+        ]
+      },
+      "start": 4,
+      "steps": [
+        {
+          "text": "An FVG is built from three candles. Here’s candle 1.",
+          "candles": 5,
+          "show": [
+            "n1"
+          ],
+          "next": "Candle 2 →"
+        },
+        {
+          "text": "Candle 2: the big one in the middle.",
+          "candles": 6,
+          "show": [
+            "n2"
+          ],
+          "next": "Candle 3 →"
+        },
+        {
+          "text": "Candle 3.",
+          "candles": 7,
+          "show": [
+            "n3"
+          ],
+          "next": "Highlight the edges →"
+        },
+        {
+          "text": "Look at <strong>candle 1’s high</strong> and <strong>candle 3’s low</strong>. Candle 3’s low never came back down to candle 1’s high.",
+          "show": [
+            "h1",
+            "l3"
+          ],
+          "next": "Show the gap →"
+        },
+        {
+          "text": "The space between them is a <strong>bullish fair value gap</strong>.",
+          "show": [
+            "fvg"
+          ],
+          "asks": [
+            {
+              "prompt": "What defines this bullish FVG?",
+              "options": [
+                {
+                  "label": "The gap between candle 1’s high and candle 3’s low",
+                  "correct": true,
+                  "why": "Exactly. Three candles, two edges."
+                },
+                {
+                  "label": "The body of candle 2",
+                  "correct": false,
+                  "feedback": "Candle 2 creates it, but the edges come from candles 1 and 3."
+                },
+                {
+                  "label": "Any big candle",
+                  "correct": false,
+                  "feedback": "It needs the three-candle gap."
+                }
+              ],
+              "concept": "bullish-fvg"
+            }
+          ]
+        }
+      ],
+      "kicker": "Build it",
+      "title": "Candle 1. Candle 2. Candle 3."
+    },
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            60,
+            70
+          ],
+          [
+            500,
+            159
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 60,
+            "o": 70,
+            "c": 84,
+            "h": 64,
+            "l": 90,
+            "w": 25.5
+          },
+          {
+            "x": 104,
+            "o": 84,
+            "c": 72,
+            "h": 66,
+            "l": 90,
+            "w": 25.5
+          },
+          {
+            "x": 148,
+            "o": 72,
+            "c": 84,
+            "h": 66,
+            "l": 90,
+            "w": 25.5
+          },
+          {
+            "x": 192,
+            "o": 84,
+            "c": 70,
+            "h": 64,
+            "l": 90,
+            "w": 25.5
+          },
+          {
+            "x": 236,
+            "o": 70,
+            "c": 84,
+            "h": 67,
+            "l": 88,
+            "w": 25.5
+          },
+          {
+            "x": 280,
+            "o": 84,
+            "c": 148,
+            "h": 81,
+            "l": 151,
+            "w": 25.5
+          },
+          {
+            "x": 324,
+            "o": 148,
+            "c": 166,
+            "h": 146,
+            "l": 170,
+            "w": 25.5
+          },
+          {
+            "x": 368,
+            "o": 166,
+            "c": 154,
+            "h": 148,
+            "l": 172,
+            "w": 25.5
+          },
+          {
+            "x": 412,
+            "o": 154,
+            "c": 164,
+            "h": 148,
+            "l": 170,
+            "w": 25.5
+          },
+          {
+            "x": 456,
+            "o": 164,
+            "c": 151,
+            "h": 145,
+            "l": 170,
+            "w": 25.5
+          },
+          {
+            "x": 500,
+            "o": 151,
+            "c": 159,
+            "h": 145,
+            "l": 165,
+            "w": 25.5
+          }
+        ],
+        "hlines": [
+          {
+            "y": 88,
+            "label": "C1 low",
+            "tone": "down",
+            "x1": 222,
+            "x2": 690,
+            "size": 13,
+            "id": "lbl",
+            "labelX": 354
+          },
+          {
+            "y": 146,
+            "label": "C3 high",
+            "tone": "down",
+            "x1": 310,
+            "x2": 690,
+            "size": 13,
+            "id": "lbl",
+            "below": true,
+            "labelX": 354
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 223.25,
+            "y1": 88,
+            "x2": 690,
+            "y2": 146,
+            "tone": "down",
+            "label": "Bearish FVG",
+            "id": "fvg",
+            "labelRight": true,
+            "labelBelow": true
+          }
+        ]
+      },
+      "start": 11,
+      "steps": [
+        {
+          "text": "The mirror image. Use the toggles to turn the FVG and the labels on and off.",
+          "asks": [
+            {
+              "prompt": "In a bearish FVG, which two prices define the gap?",
+              "options": [
+                {
+                  "label": "Candle 1’s low and candle 3’s high",
+                  "correct": true,
+                  "why": "Mirror of the bullish one."
+                },
+                {
+                  "label": "Candle 1’s high and candle 3’s low",
+                  "correct": false,
+                  "feedback": "That’s the bullish version. Flip it."
+                },
+                {
+                  "label": "Candle 2’s open and close",
+                  "correct": false,
+                  "feedback": "The edges come from candles 1 and 3."
+                }
+              ],
+              "concept": "bearish-fvg"
+            }
+          ]
+        }
+      ],
+      "views": [
+        {
+          "key": "all",
+          "label": "FVG + labels",
+          "show": [
+            "fvg",
+            "lbl"
+          ]
+        },
+        {
+          "key": "fvg",
+          "label": "FVG only",
+          "show": [
+            "fvg"
+          ],
+          "hide": [
+            "lbl"
+          ]
+        },
+        {
+          "key": "none",
+          "label": "Clean chart",
+          "hide": [
+            "fvg",
+            "lbl"
+          ]
+        }
+      ],
+      "kicker": "Bearish mirror",
+      "title": "Same idea, upside down."
+    },
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            80,
+            250
+          ],
+          [
+            512,
+            178
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 80,
+            "o": 250,
+            "c": 262,
+            "h": 244,
+            "l": 268,
+            "w": 27.8
+          },
+          {
+            "x": 128,
+            "o": 262,
+            "c": 252,
+            "h": 246,
+            "l": 268,
+            "w": 27.8
+          },
+          {
+            "x": 176,
+            "o": 252,
+            "c": 265,
+            "h": 246,
+            "l": 271,
+            "w": 27.8
+          },
+          {
+            "x": 224,
+            "o": 265,
+            "c": 254,
+            "h": 248,
+            "l": 271,
+            "w": 27.8
+          },
+          {
+            "x": 272,
+            "o": 254,
+            "c": 240,
+            "h": 237,
+            "l": 257,
+            "w": 27.8
+          },
+          {
+            "x": 320,
+            "o": 240,
+            "c": 182,
+            "h": 179,
+            "l": 242,
+            "w": 27.8
+          },
+          {
+            "x": 368,
+            "o": 182,
+            "c": 164,
+            "h": 161,
+            "l": 185,
+            "w": 27.8
+          },
+          {
+            "x": 416,
+            "o": 164,
+            "c": 176,
+            "h": 158,
+            "l": 182,
+            "w": 27.8
+          },
+          {
+            "x": 464,
+            "o": 176,
+            "c": 167,
+            "h": 161,
+            "l": 182,
+            "w": 27.8
+          },
+          {
+            "x": 512,
+            "o": 167,
+            "c": 178,
+            "h": 161,
+            "l": 184,
+            "w": 27.8
+          }
+        ]
+      },
+      "start": 10,
+      "steps": [
+        {
+          "text": "No labels now. Find the three candles and their edges.",
+          "zone": {
+            "prompt": "BUILD THE FVG: drag across the gap.",
+            "target": [
+              185,
+              237
+            ],
+            "maxH": 78,
+            "concept": "bullish-fvg",
+            "x1": 256,
+            "missHint": "Find the big candle. Then look at the candle before it (its high) and the candle after it (its low).",
+            "why": "From candle 1’s high to candle 3’s low. Close enough counts: it’s an area, not a pixel."
+          }
+        }
+      ],
+      "levels": [],
+      "kicker": "Your turn",
+      "title": "Build the FVG."
+    },
+    {
+      "type": "flash_sort",
+      "kicker": "Spot the FVG",
+      "title": "FVG or no FVG?",
+      "body": "Three candles each time. Is there a gap between candle 1 and candle 3?",
+      "options": [
+        {
+          "key": "fvg",
+          "label": "FVG",
+          "emoji": "▭"
+        },
+        {
+          "key": "none",
+          "label": "No FVG",
+          "emoji": "✕"
+        }
+      ],
+      "items": [
+        {
+          "chart": {
+            "swings": [
+              [
+                230,
+                220
+              ],
+              [
+                450,
+                100
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 230,
+                "o": 220,
+                "c": 200,
+                "h": 196,
+                "l": 226,
+                "w": 46
+              },
+              {
+                "x": 340,
+                "o": 200,
+                "c": 120,
+                "h": 116,
+                "l": 204,
+                "w": 46
+              },
+              {
+                "x": 450,
+                "o": 120,
+                "c": 100,
+                "h": 94,
+                "l": 170,
+                "w": 46
+              }
+            ]
+          },
+          "answer": "fvg",
+          "why": "Candle 3’s low stayed above candle 1’s high."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                230,
+                220
+              ],
+              [
+                450,
+                170
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 230,
+                "o": 220,
+                "c": 190,
+                "h": 186,
+                "l": 226,
+                "w": 46
+              },
+              {
+                "x": 340,
+                "o": 190,
+                "c": 150,
+                "h": 140,
+                "l": 196,
+                "w": 46
+              },
+              {
+                "x": 450,
+                "o": 150,
+                "c": 170,
+                "h": 146,
+                "l": 192,
+                "w": 46
+              }
+            ]
+          },
+          "answer": "none",
+          "why": "Candle 3’s low reached back below candle 1’s high. They overlap."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                230,
+                100
+              ],
+              [
+                450,
+                220
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 230,
+                "o": 100,
+                "c": 120,
+                "h": 96,
+                "l": 126,
+                "w": 46
+              },
+              {
+                "x": 340,
+                "o": 120,
+                "c": 200,
+                "h": 116,
+                "l": 204,
+                "w": 46
+              },
+              {
+                "x": 450,
+                "o": 200,
+                "c": 220,
+                "h": 160,
+                "l": 226,
+                "w": 46
+              }
+            ]
+          },
+          "answer": "none",
+          "why": "Candle 3’s high reached back above candle 1’s low."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                230,
+                100
+              ],
+              [
+                450,
+                230
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 230,
+                "o": 100,
+                "c": 120,
+                "h": 94,
+                "l": 124,
+                "w": 46
+              },
+              {
+                "x": 340,
+                "o": 120,
+                "c": 210,
+                "h": 116,
+                "l": 214,
+                "w": 46
+              },
+              {
+                "x": 450,
+                "o": 210,
+                "c": 230,
+                "h": 150,
+                "l": 236,
+                "w": 46
+              }
+            ]
+          },
+          "answer": "fvg",
+          "why": "Candle 3’s high stayed below candle 1’s low: a bearish FVG."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                230,
+                210
+              ],
+              [
+                450,
+                170
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 230,
+                "o": 210,
+                "c": 200,
+                "h": 194,
+                "l": 214,
+                "w": 46
+              },
+              {
+                "x": 340,
+                "o": 200,
+                "c": 180,
+                "h": 176,
+                "l": 206,
+                "w": 46
+              },
+              {
+                "x": 450,
+                "o": 180,
+                "c": 170,
+                "h": 166,
+                "l": 186,
+                "w": 46
+              }
+            ]
+          },
+          "answer": "none",
+          "why": "Small overlapping candles. No gap."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                230,
+                230
+              ],
+              [
+                450,
+                128
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 230,
+                "o": 230,
+                "c": 214,
+                "h": 208,
+                "l": 236,
+                "w": 46
+              },
+              {
+                "x": 340,
+                "o": 214,
+                "c": 140,
+                "h": 136,
+                "l": 218,
+                "w": 46
+              },
+              {
+                "x": 450,
+                "o": 140,
+                "c": 128,
+                "h": 124,
+                "l": 196,
+                "w": 46
+              }
+            ]
+          },
+          "answer": "fvg",
+          "why": "A gap between candle 1’s high and candle 3’s low."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                230,
+                90
+              ],
+              [
+                450,
+                196
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 230,
+                "o": 90,
+                "c": 104,
+                "h": 86,
+                "l": 110,
+                "w": 46
+              },
+              {
+                "x": 340,
+                "o": 104,
+                "c": 180,
+                "h": 100,
+                "l": 184,
+                "w": 46
+              },
+              {
+                "x": 450,
+                "o": 180,
+                "c": 196,
+                "h": 112,
+                "l": 202,
+                "w": 46
+              }
+            ]
+          },
+          "answer": "none",
+          "why": "Candle 3’s wick filled all the way back up past candle 1’s low."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                230,
+                80
+              ],
+              [
+                450,
+                206
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 230,
+                "o": 80,
+                "c": 96,
+                "h": 76,
+                "l": 100,
+                "w": 46
+              },
+              {
+                "x": 340,
+                "o": 96,
+                "c": 190,
+                "h": 92,
+                "l": 194,
+                "w": 46
+              },
+              {
+                "x": 450,
+                "o": 190,
+                "c": 206,
+                "h": 130,
+                "l": 210,
+                "w": 46
+              }
+            ]
+          },
+          "answer": "fvg",
+          "why": "Candle 3’s high stayed below candle 1’s low: bearish FVG."
+        }
+      ],
+      "passText": "Your eyes are fast now. Next question: does it matter?"
+    },
+    {
+      "type": "academy_concept",
+      "variant": "literacy",
+      "title": "Before your brain turns this into another entry rule 😂",
+      "body": "An FVG is a three-candle description of how price delivered. It is <strong>not automatically</strong>:",
+      "points": [
+        "Support or resistance",
+        "An entry",
+        "A target",
+        "A reversal level",
+        "A Dayli ICC requirement"
+      ],
+      "footer": "Spotting one is market literacy. Whether it matters is a separate question."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Three candles. Two edges.",
+      "pose": "point",
+      "line": "And zero automatic rules."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "How do you find a bullish FVG, and what isn’t it automatically?",
+      "modelAnswer": "Find a strong middle candle, then compare candle 1’s high with candle 3’s low. If candle 3’s low stayed above candle 1’s high, the space between is a bullish FVG. It isn’t automatically support, a target, a reversal level, an entry, or a Dayli ICC requirement."
+    }
+  ],
+  "takeaways": [
+    "Bullish FVG: the gap between candle 1’s high and candle 3’s low.",
+    "Bearish FVG: the gap between candle 1’s low and candle 3’s high.",
+    "An FVG is not automatically support, a target, an entry, or a Dayli ICC requirement."
+  ],
+  "remember": "Three candles. Two edges. Zero automatic rules."
+}

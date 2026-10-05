@@ -1,0 +1,505 @@
+{
+  "phase": "p3",
+  "section": "s8",
+  "lessonNumber": 12,
+  "title": "What Is Imbalance?",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Imbalance ≠ FVG. And price doesn’t have to return.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "See imbalance as one-sided delivery with little overlap, and tell it apart from an FVG.",
+    "missionQuestion": "Does price have to come back to an imbalance?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_replay",
+      "kicker": "Show overlap",
+      "charts": [
+        {
+          "chart": {
+            "swings": [
+              [
+                60,
+                260
+              ],
+              [
+                536,
+                101
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60,
+                "o": 260,
+                "c": 246,
+                "h": 238,
+                "l": 268,
+                "w": 19.7
+              },
+              {
+                "x": 94,
+                "o": 246,
+                "c": 256,
+                "h": 238,
+                "l": 264,
+                "w": 19.7
+              },
+              {
+                "x": 128,
+                "o": 256,
+                "c": 241,
+                "h": 233,
+                "l": 264,
+                "w": 19.7
+              },
+              {
+                "x": 162,
+                "o": 241,
+                "c": 252,
+                "h": 233,
+                "l": 260,
+                "w": 19.7
+              },
+              {
+                "x": 196,
+                "o": 252,
+                "c": 240,
+                "h": 232,
+                "l": 260,
+                "w": 19.7
+              },
+              {
+                "x": 230,
+                "o": 240,
+                "c": 252,
+                "h": 232,
+                "l": 260,
+                "w": 19.7
+              },
+              {
+                "x": 264,
+                "o": 252,
+                "c": 236,
+                "h": 228,
+                "l": 260,
+                "w": 19.7
+              },
+              {
+                "x": 298,
+                "o": 236,
+                "c": 245,
+                "h": 228,
+                "l": 253,
+                "w": 19.7
+              },
+              {
+                "x": 332,
+                "o": 245,
+                "c": 195,
+                "h": 192,
+                "l": 247,
+                "w": 19.7
+              },
+              {
+                "x": 366,
+                "o": 195,
+                "c": 139,
+                "h": 137,
+                "l": 197,
+                "w": 19.7
+              },
+              {
+                "x": 400,
+                "o": 139,
+                "c": 95,
+                "h": 92,
+                "l": 142,
+                "w": 19.7
+              },
+              {
+                "x": 434,
+                "o": 95,
+                "c": 105,
+                "h": 87,
+                "l": 113,
+                "w": 19.7
+              },
+              {
+                "x": 468,
+                "o": 105,
+                "c": 97,
+                "h": 89,
+                "l": 113,
+                "w": 19.7
+              },
+              {
+                "x": 502,
+                "o": 97,
+                "c": 108,
+                "h": 89,
+                "l": 116,
+                "w": 19.7
+              },
+              {
+                "x": 536,
+                "o": 108,
+                "c": 101,
+                "h": 93,
+                "l": 116,
+                "w": 19.7
+              }
+            ],
+            "boxes": [
+              {
+                "x1": 60,
+                "y1": 238,
+                "x2": 94,
+                "y2": 264,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 94,
+                "y1": 238,
+                "x2": 128,
+                "y2": 264,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 128,
+                "y1": 233,
+                "x2": 162,
+                "y2": 260,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 162,
+                "y1": 233,
+                "x2": 196,
+                "y2": 260,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 196,
+                "y1": 232,
+                "x2": 230,
+                "y2": 260,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 230,
+                "y1": 232,
+                "x2": 264,
+                "y2": 260,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 264,
+                "y1": 228,
+                "x2": 298,
+                "y2": 253,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 298,
+                "y1": 228,
+                "x2": 332,
+                "y2": 247,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 332,
+                "y1": 192,
+                "x2": 366,
+                "y2": 197,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 366,
+                "y1": 137,
+                "x2": 400,
+                "y2": 142,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 400,
+                "y1": 92,
+                "x2": 434,
+                "y2": 113,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 434,
+                "y1": 89,
+                "x2": 468,
+                "y2": 113,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 468,
+                "y1": 89,
+                "x2": 502,
+                "y2": 113,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 502,
+                "y1": 93,
+                "x2": 536,
+                "y2": 116,
+                "tone": "purple",
+                "id": "ov",
+                "rx": 2,
+                "op": 0.32,
+                "solid": true,
+                "stroke": false,
+                "dashed": false
+              },
+              {
+                "x1": 316,
+                "y1": 93,
+                "x2": 416,
+                "y2": 247,
+                "tone": "gold",
+                "label": "Imbalanced-looking",
+                "id": "imb"
+              }
+            ]
+          }
+        }
+      ],
+      "start": 15,
+      "title": "Where did both sides trade?",
+      "end": {
+        "text": "Turn on <strong>Show overlap</strong>. Each band marks prices two neighboring candles both traded.",
+        "asks": [
+          {
+            "prompt": "Where do the overlap bands get thin or disappear?",
+            "options": [
+              {
+                "label": "In the fast move up",
+                "correct": true,
+                "why": "Neighbors barely shared any prices there. Price moved with little two-sided trading."
+              },
+              {
+                "label": "In the slow part on the left",
+                "correct": false,
+                "feedback": "Look at the left. The bands are tall: lots of shared prices."
+              },
+              {
+                "label": "Everywhere equally",
+                "correct": false,
+                "feedback": "Compare the slow part and the fast part."
+              }
+            ],
+            "concept": "imbalance"
+          },
+          {
+            "prompt": "Now turn on <strong>Show imbalance</strong>. How would you describe that area?",
+            "options": [
+              {
+                "label": "An area where price moved quickly with little back-and-forth",
+                "correct": true,
+                "why": "That’s imbalance: delivery that looks one-sided."
+              },
+              {
+                "label": "A guaranteed return zone",
+                "correct": false,
+                "feedback": "Nothing guarantees a return.",
+                "mistake": "fvg-must-fill"
+              },
+              {
+                "label": "A buy zone",
+                "correct": false,
+                "feedback": "It’s a description of delivery, not an instruction.",
+                "mistake": "context-equals-entry"
+              }
+            ],
+            "concept": "imbalance"
+          }
+        ]
+      },
+      "overlays": [
+        {
+          "key": "ov",
+          "label": "Show overlap",
+          "ids": [
+            "ov"
+          ]
+        },
+        {
+          "key": "imb",
+          "label": "Show imbalance",
+          "ids": [
+            "imb"
+          ]
+        }
+      ],
+      "intro": "Use the overlay buttons. Step back with ◀ to watch it build."
+    },
+    {
+      "type": "teach",
+      "kicker": "Two words",
+      "heading": "Imbalance ≠ FVG.",
+      "body": "<strong>Imbalance</strong> is the broad idea: price delivered with little two-sided trading, usually a fast move with little overlap.<br><br>A <strong>fair value gap</strong> is one specific way traders measure a piece of it, using exactly three candles. You’ll build one next lesson.<br><br>Every FVG comes from imbalance. Not every imbalanced-looking move gets labeled an FVG.",
+      "check": {
+        "prompt": "Which is broader?",
+        "options": [
+          {
+            "label": "Imbalance",
+            "correct": true,
+            "why": "Imbalance is the idea. An FVG is one specific measurement."
+          },
+          {
+            "label": "FVG",
+            "correct": false,
+            "feedback": "An FVG is a specific three-candle pattern inside the broader idea."
+          }
+        ]
+      }
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Myth stamp",
+      "title": "Myth or fact?",
+      "items": [
+        {
+          "text": "An imbalanced-looking area shows price moved with little two-sided trading.",
+          "answer": "FACT",
+          "why": "That’s the description.",
+          "concept": "imbalance"
+        },
+        {
+          "text": "PRICE MUST RETURN HERE.",
+          "answer": "MYTH",
+          "why": "Price may revisit an imbalance. It never has to.",
+          "mistake": "fvg-must-fill",
+          "concept": "fvg-revisit",
+          "tone": "myth"
+        },
+        {
+          "text": "An imbalance and an FVG are exactly the same thing.",
+          "answer": "MYTH",
+          "why": "An FVG is one specific three-candle measurement of imbalance.",
+          "concept": "imbalance",
+          "tone": "myth"
+        },
+        {
+          "text": "Some traders watch imbalanced areas for a possible revisit.",
+          "answer": "FACT",
+          "why": "Commonly, yes. Watching isn’t the same as expecting.",
+          "concept": "fvg-revisit"
+        }
+      ],
+      "choices": [
+        "MYTH",
+        "FACT"
+      ]
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Imbalance describes <em>how</em> price moved.",
+      "pose": "point",
+      "line": "Not where it has to go back to."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What is imbalance, and how is it different from an FVG?",
+      "modelAnswer": "Imbalance is an area where price moved quickly with little two-sided trading: big candles, little overlap. An FVG is one specific three-candle way of measuring part of that. Neither one means price must return."
+    }
+  ],
+  "takeaways": [
+    "Imbalance: price moved with little two-sided trading.",
+    "An FVG is one specific three-candle measurement of imbalance.",
+    "Price may revisit an imbalance. It never has to."
+  ],
+  "remember": "Imbalance ≠ FVG. Price doesn’t have to return."
+}

@@ -1,0 +1,512 @@
+{
+  "phase": "p3",
+  "section": "s8",
+  "lessonNumber": 15,
+  "title": "Why Price May Revisit an Imbalance",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Possible revisit ≠ guaranteed destination.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Explain why price may revisit an imbalance, and why you never assume it will.",
+    "missionQuestion": "Does every FVG get filled?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            260
+          ],
+          [
+            580,
+            122
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 40,
+            "o": 260,
+            "c": 270,
+            "h": 254,
+            "l": 276,
+            "w": 17.4
+          },
+          {
+            "x": 70,
+            "o": 270,
+            "c": 261,
+            "h": 255,
+            "l": 276,
+            "w": 17.4
+          },
+          {
+            "x": 100,
+            "o": 261,
+            "c": 272,
+            "h": 255,
+            "l": 278,
+            "w": 17.4
+          },
+          {
+            "x": 130,
+            "o": 272,
+            "c": 264,
+            "h": 258,
+            "l": 278,
+            "w": 17.4
+          },
+          {
+            "x": 160,
+            "o": 264,
+            "c": 250,
+            "h": 247,
+            "l": 267,
+            "w": 17.4
+          },
+          {
+            "x": 190,
+            "o": 250,
+            "c": 188,
+            "h": 186,
+            "l": 252,
+            "w": 17.4
+          },
+          {
+            "x": 220,
+            "o": 188,
+            "c": 170,
+            "h": 167,
+            "l": 191,
+            "w": 17.4
+          },
+          {
+            "x": 250,
+            "o": 170,
+            "c": 179,
+            "h": 164,
+            "l": 185,
+            "w": 17.4
+          },
+          {
+            "x": 280,
+            "o": 179,
+            "c": 172,
+            "h": 166,
+            "l": 185,
+            "w": 17.4
+          },
+          {
+            "x": 310,
+            "o": 172,
+            "c": 188,
+            "h": 166,
+            "l": 194,
+            "w": 17.4,
+            "id": "r1"
+          },
+          {
+            "x": 340,
+            "o": 188,
+            "c": 206,
+            "h": 182,
+            "l": 212,
+            "w": 17.4,
+            "id": "r1"
+          },
+          {
+            "x": 370,
+            "o": 206,
+            "c": 226,
+            "h": 200,
+            "l": 232,
+            "w": 17.4,
+            "id": "r1"
+          },
+          {
+            "x": 400,
+            "o": 226,
+            "c": 204,
+            "h": 198,
+            "l": 232,
+            "w": 17.4,
+            "id": "r1"
+          },
+          {
+            "x": 430,
+            "o": 204,
+            "c": 178,
+            "h": 172,
+            "l": 210,
+            "w": 17.4,
+            "id": "r1"
+          },
+          {
+            "x": 460,
+            "o": 178,
+            "c": 158,
+            "h": 152,
+            "l": 184,
+            "w": 17.4,
+            "id": "r1"
+          },
+          {
+            "x": 490,
+            "o": 158,
+            "c": 140,
+            "h": 134,
+            "l": 164,
+            "w": 17.4,
+            "id": "r1"
+          },
+          {
+            "x": 520,
+            "o": 140,
+            "c": 126,
+            "h": 120,
+            "l": 146,
+            "w": 17.4,
+            "id": "r1"
+          },
+          {
+            "x": 310,
+            "o": 172,
+            "c": 158,
+            "h": 152,
+            "l": 178,
+            "w": 17.4,
+            "id": "r2"
+          },
+          {
+            "x": 340,
+            "o": 158,
+            "c": 167,
+            "h": 152,
+            "l": 173,
+            "w": 17.4,
+            "id": "r2"
+          },
+          {
+            "x": 370,
+            "o": 167,
+            "c": 151,
+            "h": 145,
+            "l": 173,
+            "w": 17.4,
+            "id": "r2"
+          },
+          {
+            "x": 400,
+            "o": 151,
+            "c": 161,
+            "h": 145,
+            "l": 167,
+            "w": 17.4,
+            "id": "r2"
+          },
+          {
+            "x": 430,
+            "o": 161,
+            "c": 149,
+            "h": 143,
+            "l": 167,
+            "w": 17.4,
+            "id": "r2"
+          },
+          {
+            "x": 460,
+            "o": 149,
+            "c": 169,
+            "h": 143,
+            "l": 175,
+            "w": 17.4,
+            "id": "r2"
+          },
+          {
+            "x": 490,
+            "o": 169,
+            "c": 193,
+            "h": 163,
+            "l": 199,
+            "w": 17.4,
+            "id": "r2"
+          },
+          {
+            "x": 520,
+            "o": 193,
+            "c": 211,
+            "h": 187,
+            "l": 217,
+            "w": 17.4,
+            "id": "r2"
+          },
+          {
+            "x": 550,
+            "o": 211,
+            "c": 193,
+            "h": 187,
+            "l": 217,
+            "w": 17.4,
+            "id": "r2"
+          },
+          {
+            "x": 580,
+            "o": 193,
+            "c": 171,
+            "h": 165,
+            "l": 199,
+            "w": 17.4,
+            "id": "r2"
+          },
+          {
+            "x": 310,
+            "o": 172,
+            "c": 160,
+            "h": 154,
+            "l": 178,
+            "w": 17.4,
+            "id": "r3"
+          },
+          {
+            "x": 340,
+            "o": 160,
+            "c": 169,
+            "h": 154,
+            "l": 175,
+            "w": 17.4,
+            "id": "r3"
+          },
+          {
+            "x": 370,
+            "o": 169,
+            "c": 153,
+            "h": 147,
+            "l": 175,
+            "w": 17.4,
+            "id": "r3"
+          },
+          {
+            "x": 400,
+            "o": 153,
+            "c": 163,
+            "h": 147,
+            "l": 169,
+            "w": 17.4,
+            "id": "r3"
+          },
+          {
+            "x": 430,
+            "o": 163,
+            "c": 145,
+            "h": 139,
+            "l": 169,
+            "w": 17.4,
+            "id": "r3"
+          },
+          {
+            "x": 460,
+            "o": 145,
+            "c": 156,
+            "h": 139,
+            "l": 162,
+            "w": 17.4,
+            "id": "r3"
+          },
+          {
+            "x": 490,
+            "o": 156,
+            "c": 142,
+            "h": 136,
+            "l": 162,
+            "w": 17.4,
+            "id": "r3"
+          },
+          {
+            "x": 520,
+            "o": 142,
+            "c": 126,
+            "h": 120,
+            "l": 148,
+            "w": 17.4,
+            "id": "r3"
+          },
+          {
+            "x": 550,
+            "o": 126,
+            "c": 134,
+            "h": 120,
+            "l": 140,
+            "w": 17.4,
+            "id": "r3"
+          },
+          {
+            "x": 580,
+            "o": 134,
+            "c": 122,
+            "h": 116,
+            "l": 140,
+            "w": 17.4,
+            "id": "r3"
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 151.3,
+            "y1": 191,
+            "x2": 690,
+            "y2": 247,
+            "tone": "up",
+            "label": "Bullish FVG",
+            "labelRight": true
+          }
+        ]
+      },
+      "start": 37,
+      "steps": [
+        {
+          "text": "Same start: price displaced and left a bullish FVG. Now look at three possible futures. Tap through all three.",
+          "asks": [
+            {
+              "prompt": "Which scenario did price HAVE to follow?",
+              "options": [
+                {
+                  "label": "None of them. Each one was possible",
+                  "correct": true,
+                  "why": "Exactly. A revisit is possible. It’s never guaranteed."
+                },
+                {
+                  "label": "Scenario 1: gaps always fill fast",
+                  "correct": false,
+                  "feedback": "Look at Scenario 3. It never came back.",
+                  "mistake": "fvg-must-fill"
+                },
+                {
+                  "label": "Scenario 2: it always comes back eventually",
+                  "correct": false,
+                  "feedback": "“Eventually” isn’t a rule either. Look at Scenario 3.",
+                  "mistake": "fvg-must-fill"
+                }
+              ],
+              "concept": "fvg-revisit"
+            }
+          ]
+        }
+      ],
+      "views": [
+        {
+          "key": "r1",
+          "label": "Scenario 1",
+          "show": [
+            "r1"
+          ],
+          "hide": [
+            "r2",
+            "r3"
+          ],
+          "text": "<strong>Returns quickly.</strong> Price came straight back into the gap, then moved on."
+        },
+        {
+          "key": "r2",
+          "label": "Scenario 2",
+          "show": [
+            "r2"
+          ],
+          "hide": [
+            "r1",
+            "r3"
+          ],
+          "text": "<strong>Returns later.</strong> Price kept going first, then came back much later."
+        },
+        {
+          "key": "r3",
+          "label": "Scenario 3",
+          "show": [
+            "r3"
+          ],
+          "hide": [
+            "r1",
+            "r2"
+          ],
+          "text": "<strong>Never returns.</strong> Price never came back. The gap is still open."
+        }
+      ],
+      "kicker": "Three futures",
+      "title": "Does price come back?"
+    },
+    {
+      "type": "teach",
+      "kicker": "Why it might",
+      "heading": "Why price may revisit an imbalance.",
+      "body": "Traders commonly explain it like this:<ul class=\"p3-list\"><li>Price moved through the area quickly, with little two-sided trading.</li><li>Some traders watch those areas, so activity may show up there again.</li><li>Orders that missed the fast move may still be interested in those prices.</li></ul>These are <strong>explanations</strong>, not laws. Sometimes price comes back fast. Sometimes much later. Sometimes never."
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Language check",
+      "title": "Possible or guaranteed?",
+      "items": [
+        {
+          "text": "Price may revisit this imbalance.",
+          "answer": "FAIR",
+          "why": "Hedged and honest.",
+          "concept": "fvg-revisit"
+        },
+        {
+          "text": "Price will fill this gap before it goes higher.",
+          "answer": "OVERSTATED",
+          "why": "No gap has to fill.",
+          "mistake": "fvg-must-fill",
+          "concept": "fvg-revisit",
+          "tone": "myth"
+        },
+        {
+          "text": "It filled last time, so it will fill this time.",
+          "answer": "OVERSTATED",
+          "why": "One fill proves nothing about the next one.",
+          "mistake": "fvg-must-fill",
+          "concept": "fvg-revisit",
+          "tone": "myth"
+        },
+        {
+          "text": "Some traders watch imbalanced areas for a possible revisit.",
+          "answer": "FAIR",
+          "why": "Commonly, yes.",
+          "concept": "fvg-revisit"
+        }
+      ],
+      "prompt": "Fair, or overstated?",
+      "choices": [
+        "FAIR",
+        "OVERSTATED"
+      ],
+      "footer": "<strong>POSSIBLE REVISIT ≠ GUARANTEED DESTINATION.</strong>"
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Possible revisit ≠ <em>guaranteed destination.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Why might price revisit an FVG, and why should you never assume it will?",
+      "modelAnswer": "Price may revisit an FVG because it moved through that area quickly with little two-sided trading, and some traders watch those areas. But that’s an explanation, not a law. Price can come back fast, much later, or never, so I never assume a fill."
+    }
+  ],
+  "takeaways": [
+    "Price may revisit an imbalance: quickly, later, or never.",
+    "The reasons traders give are explanations, not laws.",
+    "Possible revisit ≠ guaranteed destination."
+  ],
+  "remember": "Possible revisit ≠ guaranteed destination."
+}
