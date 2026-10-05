@@ -152,7 +152,11 @@ export function renderSlideWizard(data, opts) {
     wrap.appendChild(slideEl);
 
     if (step.type === 'watch') renderLoopWatch(slideEl, data, () => completeStepAndAdvance(i));
-    else if (step.type === 'slide') renderSlideBlock(slideEl, step.slide, () => completeStepAndAdvance(i), helpers);
+    else if (step.type === 'slide') {
+      // The most recent chart in this lesson, so a follow-up activity can keep it in view.
+      const ctx = steps.slice(0, i).reverse().find((st) => st.type === 'slide' && st.slide.chart);
+      renderSlideBlock(slideEl, step.slide, () => completeStepAndAdvance(i), { ...helpers, contextChart: ctx?.slide.chart });
+    }
     else if (step.type === 'complete' && data.completeStyle === 'v2') renderV2Complete(slideEl, data, { nextHref, backHref, nextTitle, nextCtaLabel });
     else if (step.type === 'complete') renderSlideComplete(slideEl, data, { nextHref, backHref, nextTitle, nextHook, nextCtaLabel });
   }
