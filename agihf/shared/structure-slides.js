@@ -24,6 +24,7 @@
  */
 
 import { wireRetryOptions } from './lesson-engine.js';
+import { wrapGuide } from './guide.js';
 import { mountChart, swingKind } from './structure-charts.js';
 
 const TONE_FOR = { HH: 'up', HL: 'up', LH: 'down', LL: 'down' };
@@ -93,6 +94,7 @@ export function renderStructureStory(el, slide, satisfy, helpers) {
   const holder = card.querySelector('.ss-chart');
   const chart = mountChart(holder, slide.chart, { label: slide.title });
   const cap = card.querySelector('.ss-caption');
+  wrapGuide(cap);
   const ask = card.querySelector('.ss-ask');
   const pips = card.querySelector('.ss-pips');
   const next = card.querySelector('.ss-next');

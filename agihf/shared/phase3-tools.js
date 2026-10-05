@@ -24,6 +24,7 @@
 import { mountChart } from './structure-charts.js';
 import { mountLevels } from './level-tools.js';
 import { recordLearning, mistakeNudge, askQuestion } from './price-lab.js';
+import { mountHost } from './lesson-v2.js';
 
 const reduced = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
@@ -50,39 +51,94 @@ function maybeChart(card, slide) {
 }
 
 /* ── verdicts ───────────────────────────────────────────────────────── */
+// Aristella's clue cards: the chart she just read stays on top, Aristella
+// reads one clue at a time, she answers with big tiles, Aristella reacts in
+// her bubble, and each solved clue drops into the case notes below.
+
+const TILE = {
+  'CHART SHOWS': ['👀', 'I can point to it on the chart'],
+  'REASONABLE INFERENCE': ['🤔', 'Makes sense, but not proven'],
+  'CAN’T PROVE': ['🚫', 'A chart can’t tell us that'],
+  'CAN\'T PROVE': ['🚫', 'A chart can’t tell us that'],
+  'MYTH': ['🧢', 'Sounds good, not true'],
+  'FACT': ['✅', 'True every time'],
+  'YES': ['✅', ''], 'NO': ['❌', ''],
+  'NOT ENOUGH INFO': ['🤷🏾‍♀️', 'The chart doesn’t say'],
+  'OBJECTIVE': ['📏', 'Just what happened'],
+  'STORY': ['📖', 'A tale we added'],
+  'OBSERVATION': ['👀', 'On the chart'],
+  'INTERPRETATION': ['🤔', 'A fair read of it'],
+  'UNSUPPORTED CLAIM': ['🚫', 'No proof for that'],
+  'CAN ANSWER': ['✅', 'The chart shows it'],
+  'CAN’T ANSWER': ['🚫', 'Not on a chart'],
+  'USEFUL': ['💡', 'Helps the read'],
+  'NOT USEFUL': ['🙅🏾‍♀️', 'Leads you astray'],
+  'FAIR': ['👍🏾', 'Said carefully'],
+  'OVERSTATED': ['📢', 'Says too much'],
+  'POOL AREA': ['💧', 'Orders may gather here'],
+  'NOT REALLY': ['🤷🏾‍♀️', 'Nothing obvious'],
+  'PROVEN': ['✅', ''], 'NOT PROVEN': ['🚫', ''],
+};
+const DEFAULT_INTRO = 'Detective mode. I’ll read you one clue at a time about this chart. You tell me what kind of clue it is.';
 
 function renderVerdicts(el, slide, satisfy, helpers) {
   const items = slide.items || [];
   const base = slide.choices || ['YES', 'NO'];
-  el.innerHTML = `<div class="lw-card p3-card">${head(slide)}
+  const chartData = slide.chart || (slide.chart === false ? null : helpers?.contextChart);
+  const columns = base.length <= 3 && !items.some((it) => it.choices);
+  el.innerHTML = `<div class="lw-card p3-card p3-case">${head(slide)}
       ${mistakeNudge(slide.watch)}
-      ${slide.chart ? '<div class="p3-chart"></div>' : ''}
-      ${slide.prompt ? `<div class="p3-prompt">${slide.prompt}</div>` : ''}
-      <div class="p3-verdicts"></div>
+      ${chartData ? `<div class="p3-case-chartwrap">${slide.chart ? '' : '<span class="p3-case-tag">The chart we’re reading</span>'}<div class="p3-chart"></div></div>` : ''}
+      <div class="ag-guide p3-case-guide"><div class="ag-face" aria-hidden="true"></div><div class="ag-bubble"><div class="ag-name">Aristella</div><div class="p3-case-say" aria-live="polite"></div></div></div>
+      <div class="p3-case-stage"></div>
+      <div class="p3-case-notes">
+        <div class="p3-case-notes-h">📁 Case notes <b>0</b> / ${items.length}</div>
+        ${columns ? `<div class="p3-case-cols">${base.map((c) => `<div class="p3-case-col" data-c="${c}"><div class="p3-case-col-h">${(TILE[c] || [''])[0]} ${c}</div></div>`).join('')}</div>` : '<div class="p3-case-list"></div>'}
+      </div>
       <div class="p3-foot"></div>
     </div>`;
-  const card = el.querySelector('.p3-card');
-  const chart = maybeChart(card, slide);
-  const list = card.querySelector('.p3-verdicts');
+  const card = el.querySelector('.p3-case');
+  mountHost(card.querySelector('.ag-face'), 'idle', '30 20 340 340');
+  if (chartData) {
+    const chart = mountChart(card.querySelector('.p3-chart'), chartData, { label: slide.title });
+    if (slide.levels) mountLevels(chart, slide.levels);
+    card._chart = chart;
+  }
+  const say = card.querySelector('.p3-case-say');
+  const stage = card.querySelector('.p3-case-stage');
+  const count = card.querySelector('.p3-case-notes-h b');
   const foot = card.querySelector('.p3-foot');
+  const talk = (html, tone = '') => { say.innerHTML = html; say.className = `p3-case-say ${tone}`; };
+  talk(slide.intro || (slide.prompt && slide.prompt !== 'Sort each statement.' ? `${DEFAULT_INTRO.split('.')[0]}. ${slide.prompt}` : DEFAULT_INTRO));
   let k = 0;
 
-  function addItem() {
+  function file(it, pick, tone) {
+    const chip = `<div class="p3-case-note p3-case-${tone}">${it.text}${columns ? '' : ` <span>→ ${pick}</span>`}</div>`;
+    const col = columns && card.querySelector(`.p3-case-col[data-c="${CSS.escape(pick)}"]`);
+    (col || card.querySelector('.p3-case-list') || card.querySelector('.p3-case-cols')).insertAdjacentHTML('beforeend', chip);
+    count.textContent = k + 1;
+  }
+
+  function showClue() {
     const it = items[k];
     const choices = it.choices || base;
     const answers = [].concat(it.answer);
-    const row = document.createElement('div');
-    row.className = 'p3-v';
-    row.innerHTML = `<div class="p3-v-text">${it.text}</div>
-      <div class="p3-v-btns">${choices.map((c) => `<button type="button" class="p3-v-btn">${c}</button>`).join('')}</div>
-      <div class="pl-fb" aria-live="polite"></div>`;
-    list.appendChild(row);
-    if (k > 0 && !reduced()) row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    const fb = row.querySelector('.pl-fb');
+    stage.innerHTML = `<div class="p3-clue">
+        <div class="p3-clue-n">Clue ${k + 1} of ${items.length}</div>
+        <div class="p3-clue-text">“${it.text.replace(/^[“"]|[”"]$/g, '')}”</div>
+      </div>
+      <div class="p3-tiles p3-tiles-${Math.min(choices.length, 4)}">${choices.map((c) => {
+        const [ic, sub] = TILE[c] || ['', ''];
+        return `<button type="button" class="p3-tile">${ic ? `<span class="p3-tile-ic">${ic}</span>` : ''}<span class="p3-tile-t">${c}</span>${sub ? `<span class="p3-tile-s">${sub}</span>` : ''}</button>`;
+      }).join('')}</div>
+      <div class="p3-case-extra"></div>`;
+    if (k > 0 && !reduced()) stage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (k > 0) talk(it.lead || 'Next clue. What kind is this one?');
+    const extra = stage.querySelector('.p3-case-extra');
     let wrongs = 0;
-    row.querySelectorAll('.p3-v-btn').forEach((b) => b.addEventListener('click', () => {
+    stage.querySelectorAll('.p3-tile').forEach((b) => b.addEventListener('click', () => {
       if (b.disabled) return;
-      const pick = b.textContent;
+      const pick = b.querySelector('.p3-tile-t').textContent;
       const ok = answers.includes(pick);
       helpers.onPick?.({ prompt: it.text, concept: it.concept || slide.concept }, { label: `${pick}` }, ok, wrongs);
       recordLearning({ concept: it.concept || slide.concept, mistake: it.mistake, correct: ok });
@@ -90,31 +146,35 @@ function renderVerdicts(el, slide, satisfy, helpers) {
       if (!ok) {
         wrongs += 1;
         b.disabled = true; b.classList.add('no');
-        fb.innerHTML = wrongs === 1 && it.hint ? `<strong>Try again.</strong> ${it.hint}` : (it.feedback || 'Not quite. Look at what the chart actually shows.');
-        fb.className = 'pl-fb show bad';
+        talk(wrongs === 1 && it.hint ? `<strong>Hmm, try again.</strong> ${it.hint}` : (it.feedback || 'Not quite. Look at what the chart actually shows.'), 'bad');
         return;
       }
-      row.querySelectorAll('.p3-v-btn').forEach((x) => { x.disabled = true; });
-      row.querySelector('.p3-v-btns').innerHTML = `<span class="p3-stamp p3-stamp-${(it.tone || slide.tone || 'ok')}">${pick}${it.mark === false ? '' : ' ✓'}</span>`;
-      row.classList.add('done');
-      fb.innerHTML = it.why ? `<strong>✦</strong> ${it.why}` : '';
-      fb.className = it.why ? 'pl-fb show good' : 'pl-fb';
-      if (it.show && chart) chart.reveal(it.show);
-      const nextItem = () => {
-        k += 1;
-        if (k < items.length) setTimeout(addItem, reduced() ? 0 : 260);
-        else finish();
+      stage.querySelectorAll('.p3-tile').forEach((x) => { x.disabled = true; if (x !== b) x.classList.add('dim'); });
+      b.classList.add('ok');
+      talk(`<strong>${pick}${it.mark === false ? '' : ' ✓'}</strong> ${it.why || 'Nice detective work.'}`, 'good');
+      if (it.show && card._chart) card._chart.reveal(it.show);
+      file(it, pick, it.tone || slide.tone || 'ok');
+      const next = () => {
+        const last = k === items.length - 1;
+        const btn = document.createElement('button');
+        btn.type = 'button'; btn.className = 'p3-case-next';
+        btn.textContent = last ? 'Close the case ✦' : 'Next clue →';
+        btn.addEventListener('click', () => { btn.remove(); k += 1; if (last) finish(); else showClue(); });
+        extra.appendChild(btn);
       };
-      const afterInstead = () => (it.write ? freeWrite(row, it.write, nextItem) : nextItem());
-      if (it.instead) askQuestion(row, it.instead, helpers, afterInstead);
+      const afterInstead = () => (it.write ? freeWrite(extra, it.write, next) : next());
+      if (it.instead) askQuestion(extra, it.instead, helpers, afterInstead);
       else afterInstead();
     }));
   }
   function finish() {
+    stage.innerHTML = '';
+    talk(slide.outro || 'Case closed. That’s how a pro reads: what the chart shows, what we can fairly guess, and what nobody can know.', 'good');
+    card.querySelector('.p3-case-notes').classList.add('closed');
     if (slide.footer) { foot.innerHTML = slide.footer; foot.classList.add('show'); }
     continueBtn(el, satisfy, slide.cta);
   }
-  if (items.length) addItem(); else finish();
+  if (items.length) showClue(); else finish();
 }
 
 /* ── explore ────────────────────────────────────────────────────────── */

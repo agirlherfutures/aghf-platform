@@ -20,6 +20,358 @@
   },
   "slides": [
     {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            140
+          ],
+          [
+            144.5,
+            92
+          ],
+          [
+            258.5,
+            196
+          ],
+          [
+            353.5,
+            136
+          ],
+          [
+            448.5,
+            210
+          ],
+          [
+            562.5,
+            112
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 49.5,
+            "o": 140,
+            "c": 130.9,
+            "h": 124.8,
+            "l": 145.7,
+            "w": 11.4
+          },
+          {
+            "x": 68.5,
+            "o": 130.9,
+            "c": 121.5,
+            "h": 115.7,
+            "l": 135.6,
+            "w": 11.4
+          },
+          {
+            "x": 87.5,
+            "o": 121.5,
+            "c": 112.0,
+            "h": 105.8,
+            "l": 124.3,
+            "w": 11.4
+          },
+          {
+            "x": 106.5,
+            "o": 112.0,
+            "c": 106.3,
+            "h": 102.7,
+            "l": 116.5,
+            "w": 11.4
+          },
+          {
+            "x": 125.5,
+            "o": 106.3,
+            "c": 96.8,
+            "h": 91.8,
+            "l": 112.0,
+            "w": 11.4
+          },
+          {
+            "x": 144.5,
+            "o": 96.8,
+            "c": 100.0,
+            "h": 92,
+            "l": 105.2,
+            "w": 11.4
+          },
+          {
+            "x": 163.5,
+            "o": 100.0,
+            "c": 118.2,
+            "h": 94.4,
+            "l": 120.6,
+            "w": 11.4
+          },
+          {
+            "x": 182.5,
+            "o": 118.2,
+            "c": 129.6,
+            "h": 114.4,
+            "l": 131.6,
+            "w": 11.4
+          },
+          {
+            "x": 201.5,
+            "o": 129.6,
+            "c": 156.2,
+            "h": 124.9,
+            "l": 158.2,
+            "w": 11.4
+          },
+          {
+            "x": 220.5,
+            "o": 156.2,
+            "c": 165.4,
+            "h": 152.6,
+            "l": 167.9,
+            "w": 11.4
+          },
+          {
+            "x": 239.5,
+            "o": 165.4,
+            "c": 174.2,
+            "h": 161.6,
+            "l": 176.0,
+            "w": 11.4
+          },
+          {
+            "x": 258.5,
+            "o": 174.2,
+            "c": 187.7,
+            "h": 170.1,
+            "l": 196,
+            "w": 11.4
+          },
+          {
+            "x": 277.5,
+            "o": 187.7,
+            "c": 173.9,
+            "h": 168.0,
+            "l": 189.5,
+            "w": 11.4
+          },
+          {
+            "x": 296.5,
+            "o": 173.9,
+            "c": 164.0,
+            "h": 158.4,
+            "l": 176.5,
+            "w": 11.4
+          },
+          {
+            "x": 315.5,
+            "o": 164.0,
+            "c": 156.0,
+            "h": 151.7,
+            "l": 167.7,
+            "w": 11.4
+          },
+          {
+            "x": 334.5,
+            "o": 156.0,
+            "c": 146.3,
+            "h": 142.3,
+            "l": 159.9,
+            "w": 11.4
+          },
+          {
+            "x": 353.5,
+            "o": 146.3,
+            "c": 142.2,
+            "h": 136,
+            "l": 151.6,
+            "w": 11.4
+          },
+          {
+            "x": 372.5,
+            "o": 142.2,
+            "c": 153.1,
+            "h": 140.5,
+            "l": 156.7,
+            "w": 11.4
+          },
+          {
+            "x": 391.5,
+            "o": 153.1,
+            "c": 173.2,
+            "h": 148.5,
+            "l": 177.0,
+            "w": 11.4
+          },
+          {
+            "x": 410.5,
+            "o": 173.2,
+            "c": 182.6,
+            "h": 170.6,
+            "l": 187.2,
+            "w": 11.4
+          },
+          {
+            "x": 429.5,
+            "o": 182.6,
+            "c": 194.6,
+            "h": 180.8,
+            "l": 196.8,
+            "w": 11.4
+          },
+          {
+            "x": 448.5,
+            "o": 194.6,
+            "c": 192,
+            "h": 189.9,
+            "l": 224,
+            "w": 11.4
+          },
+          {
+            "x": 467.5,
+            "o": 192,
+            "c": 194.7,
+            "h": 189.4,
+            "l": 206.2,
+            "w": 11.4
+          },
+          {
+            "x": 486.5,
+            "o": 194.7,
+            "c": 167.3,
+            "h": 161.0,
+            "l": 198.0,
+            "w": 11.4
+          },
+          {
+            "x": 505.5,
+            "o": 167.3,
+            "c": 152.3,
+            "h": 148.0,
+            "l": 171.9,
+            "w": 11.4
+          },
+          {
+            "x": 524.5,
+            "o": 152.3,
+            "c": 143.2,
+            "h": 139.5,
+            "l": 155.3,
+            "w": 11.4
+          },
+          {
+            "x": 543.5,
+            "o": 143.2,
+            "c": 127.2,
+            "h": 123.4,
+            "l": 148.1,
+            "w": 11.4
+          },
+          {
+            "x": 562.5,
+            "o": 127.2,
+            "c": 119.8,
+            "h": 112,
+            "l": 130.6,
+            "w": 11.4
+          }
+        ],
+        "hlines": [
+          {
+            "y": 196,
+            "label": "Prior low",
+            "tone": "purple",
+            "x1": 248.5,
+            "x2": 690,
+            "size": 13,
+            "id": "low",
+            "labelX": 600
+          }
+        ],
+        "notes": [
+          {
+            "x": 448.5,
+            "y": 246,
+            "text": "dipped below, closed back above",
+            "tone": "down",
+            "size": 13,
+            "anchor": "middle",
+            "id": "dip"
+          },
+          {
+            "x": 518.5,
+            "y": 60,
+            "text": "“They hunted our stops!” 🚨",
+            "tone": "muted",
+            "size": 14,
+            "anchor": "middle",
+            "id": "story"
+          }
+        ]
+      },
+      "start": 28,
+      "steps": [
+        {
+          "text": "Here’s a prior low. Lots of traders can see it.",
+          "show": [
+            "low"
+          ]
+        },
+        {
+          "text": "Price dipped below it, then closed back above and rallied.",
+          "show": [
+            "dip"
+          ],
+          "asks": [
+            {
+              "prompt": "WHAT IS THE OBSERVATION?",
+              "options": [
+                {
+                  "label": "Price traded below the prior low and closed back above it",
+                  "correct": true,
+                  "why": "That’s pure observation. Anyone can point to it."
+                },
+                {
+                  "label": "Someone hunted the stops",
+                  "correct": false,
+                  "feedback": "That’s a story about people. The chart shows price.",
+                  "mistake": "storytelling-over-evidence"
+                }
+              ],
+              "concept": "observation"
+            }
+          ]
+        },
+        {
+          "text": "And here comes the story everyone tells about it.",
+          "show": [
+            "story"
+          ],
+          "asks": [
+            {
+              "prompt": "CAN THIS CHART PROVE MANIPULATION?",
+              "options": [
+                {
+                  "label": "No. It can’t show who or why",
+                  "correct": true,
+                  "why": "Right. A sweep is something we observe. Intent isn’t on the chart."
+                },
+                {
+                  "label": "Yes. The wick proves it",
+                  "correct": false,
+                  "feedback": "A wick shows where price went, not why.",
+                  "mistake": "storytelling-over-evidence"
+                }
+              ],
+              "concept": "cannot-prove"
+            }
+          ]
+        }
+      ],
+      "kicker": "Observe first",
+      "title": "What happened here, and what can’t we prove?",
+      "guided": true
+    },
+    {
       "type": "verdicts",
       "kicker": "Three-way sort",
       "title": "Catch the story",

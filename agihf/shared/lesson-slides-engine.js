@@ -34,7 +34,7 @@ import { isPreviewAll } from './preview.js';
 import { renderLoopWatch } from './loop-engine.js';
 import { saveLessonReflection } from './journal-service.js';
 import { STRUCTURE_RENDERERS } from './structure-slides.js';
-import { V2_RENDERERS, renderV2Complete } from './lesson-v2.js';
+import { V2_RENDERERS, renderV2Complete, renderV2Dayli } from './lesson-v2.js';
 import { PRICE_LAB_RENDERERS } from './price-lab.js';
 import { PHASE3_RENDERERS } from './phase3-tools.js';
 import { PRICE_REPLAY_RENDERERS } from './price-replay.js';
@@ -152,7 +152,11 @@ export function renderSlideWizard(data, opts) {
     wrap.appendChild(slideEl);
 
     if (step.type === 'watch') renderLoopWatch(slideEl, data, () => completeStepAndAdvance(i));
-    else if (step.type === 'slide') renderSlideBlock(slideEl, step.slide, () => completeStepAndAdvance(i), helpers);
+    else if (step.type === 'slide') {
+      // The most recent chart in this lesson, so a follow-up activity can keep it in view.
+      const ctx = steps.slice(0, i).reverse().find((st) => st.type === 'slide' && st.slide.chart);
+      renderSlideBlock(slideEl, step.slide, () => completeStepAndAdvance(i), { ...helpers, contextChart: ctx?.slide.chart });
+    }
     else if (step.type === 'complete' && data.completeStyle === 'v2') renderV2Complete(slideEl, data, { nextHref, backHref, nextTitle, nextCtaLabel });
     else if (step.type === 'complete') renderSlideComplete(slideEl, data, { nextHref, backHref, nextTitle, nextHook, nextCtaLabel });
   }
@@ -939,7 +943,12 @@ export const SLIDE_RENDERERS = {
   candle_reveal: renderCandleRevealSlide,
   decision_path: renderDecisionPathSlide,
   sequence_build: renderSequenceBuildSlide,
-  dayli: (el, slide, satisfy) => renderDayliSays(el, slide, satisfy),
+  // Aristella delivers every Dayli Says.
+  dayli: (el, slide, satisfy) => {
+    // A long quote keeps its first line as the big headline; the rest becomes her line underneath.
+    const [quote, ...rest] = String(slide.quote).split(/<br>\s*<br>/);
+    renderV2Dayli(el, { kicker: slide.label || 'Dayli says', quote, line: rest.join(' ') || undefined, pose: 'point', cta: slide.cta }, satisfy);
+  },
   confusion: (el, slide, satisfy) => renderConfusion(el, slide, satisfy),
   calculator: renderCalculatorSlide,
   reflect: renderReflectSlide,
