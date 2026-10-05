@@ -38,6 +38,7 @@ import { V2_RENDERERS, renderV2Complete, renderV2Dayli } from './lesson-v2.js';
 import { PRICE_LAB_RENDERERS } from './price-lab.js';
 import { PHASE3_RENDERERS } from './phase3-tools.js';
 import { PRICE_REPLAY_RENDERERS } from './price-replay.js';
+import { TOPDOWN_RENDERERS } from './topdown.js';
 import { LEVEL_RENDERERS } from './level-tools.js';
 
 // Temporary: everything unlocked while the Academy is being built (see preview.js).
@@ -950,6 +951,7 @@ export const SLIDE_RENDERERS = {
   ...LEVEL_RENDERERS,
   ...PHASE3_RENDERERS,
   ...PRICE_REPLAY_RENDERERS,
+  ...TOPDOWN_RENDERERS,
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
   chart_tap: renderChartTapSlide,

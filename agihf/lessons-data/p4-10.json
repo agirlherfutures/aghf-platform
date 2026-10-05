@@ -1,0 +1,940 @@
+{
+  "phase": "p4",
+  "section": "s10",
+  "lessonNumber": 10,
+  "title": "External Objectives & Liquidity",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Where could price reasonably be going?",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Choose a potential external objective that fits the thesis, and notice how much room is left.",
+    "missionQuestion": "Is an objective a guaranteed target?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "teach",
+      "kicker": "Potential objectives",
+      "heading": "Where could price be attempting to go?",
+      "body": "",
+      "beats": [
+        {
+          "icon": "🚪",
+          "title": "4H external high"
+        },
+        {
+          "icon": "🚪",
+          "title": "4H external low"
+        },
+        {
+          "icon": "⛰️",
+          "title": "Relevant previous high / low"
+        },
+        {
+          "icon": "🏛️",
+          "title": "Major structural boundary"
+        },
+        {
+          "icon": "💧",
+          "title": "Visible external liquidity"
+        }
+      ],
+      "punch": "Always: <strong>potential</strong> objective. Never: target guaranteed."
+    },
+    {
+      "type": "td_workspace",
+      "kicker": "Objective selector",
+      "title": "Pick the objective.",
+      "flow": 1,
+      "charts": {
+        "4H": {
+          "swings": [
+            [
+              40,
+              122
+            ],
+            [
+              112.0,
+              44
+            ],
+            [
+              240.0,
+              292
+            ],
+            [
+              336.0,
+              160
+            ],
+            [
+              400.0,
+              236
+            ],
+            [
+              496.0,
+              92
+            ],
+            [
+              544.0,
+              152
+            ],
+            [
+              576.0,
+              132
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 48.0,
+              "o": 122,
+              "c": 102.7,
+              "h": 100.7,
+              "l": 125.5,
+              "w": 9.6
+            },
+            {
+              "x": 64.0,
+              "o": 102.7,
+              "c": 86.0,
+              "h": 84.1,
+              "l": 106.2,
+              "w": 9.6
+            },
+            {
+              "x": 80.0,
+              "o": 86.0,
+              "c": 81.1,
+              "h": 75.6,
+              "l": 91.3,
+              "w": 9.6
+            },
+            {
+              "x": 96.0,
+              "o": 81.1,
+              "c": 55.7,
+              "h": 51.5,
+              "l": 84.0,
+              "w": 9.6
+            },
+            {
+              "x": 112.0,
+              "o": 55.7,
+              "c": 50.7,
+              "h": 44,
+              "l": 58.1,
+              "w": 9.6
+            },
+            {
+              "x": 128.0,
+              "o": 50.7,
+              "c": 68.4,
+              "h": 44.6,
+              "l": 74.1,
+              "w": 9.6
+            },
+            {
+              "x": 144.0,
+              "o": 68.4,
+              "c": 124.3,
+              "h": 62.9,
+              "l": 126.8,
+              "w": 9.6
+            },
+            {
+              "x": 160.0,
+              "o": 124.3,
+              "c": 132.9,
+              "h": 119.7,
+              "l": 138.1,
+              "w": 9.6
+            },
+            {
+              "x": 176.0,
+              "o": 132.9,
+              "c": 186.7,
+              "h": 127.0,
+              "l": 188.7,
+              "w": 9.6
+            },
+            {
+              "x": 192.0,
+              "o": 186.7,
+              "c": 206.1,
+              "h": 181.9,
+              "l": 210.1,
+              "w": 9.6
+            },
+            {
+              "x": 208.0,
+              "o": 206.1,
+              "c": 217.7,
+              "h": 202.2,
+              "l": 219.6,
+              "w": 9.6
+            },
+            {
+              "x": 224.0,
+              "o": 217.7,
+              "c": 280.7,
+              "h": 211.8,
+              "l": 285.0,
+              "w": 9.6
+            },
+            {
+              "x": 240.0,
+              "o": 280.7,
+              "c": 284.8,
+              "h": 275.1,
+              "l": 292,
+              "w": 9.6
+            },
+            {
+              "x": 256.0,
+              "o": 284.8,
+              "c": 265.6,
+              "h": 259.7,
+              "l": 290.5,
+              "w": 9.6
+            },
+            {
+              "x": 272.0,
+              "o": 265.6,
+              "c": 243.4,
+              "h": 239.8,
+              "l": 270.1,
+              "w": 9.6
+            },
+            {
+              "x": 288.0,
+              "o": 243.4,
+              "c": 220.9,
+              "h": 218.5,
+              "l": 246.4,
+              "w": 9.6
+            },
+            {
+              "x": 304.0,
+              "o": 220.9,
+              "c": 208.6,
+              "h": 206.9,
+              "l": 222.6,
+              "w": 9.6
+            },
+            {
+              "x": 320.0,
+              "o": 208.6,
+              "c": 183.6,
+              "h": 180.7,
+              "l": 212.8,
+              "w": 9.6
+            },
+            {
+              "x": 336.0,
+              "o": 183.6,
+              "c": 167.9,
+              "h": 160,
+              "l": 187.0,
+              "w": 9.6
+            },
+            {
+              "x": 352.0,
+              "o": 167.9,
+              "c": 191.0,
+              "h": 165.4,
+              "l": 194.6,
+              "w": 9.6
+            },
+            {
+              "x": 368.0,
+              "o": 191.0,
+              "c": 198.3,
+              "h": 186.3,
+              "l": 201.2,
+              "w": 9.6
+            },
+            {
+              "x": 384.0,
+              "o": 198.3,
+              "c": 217.2,
+              "h": 193.1,
+              "l": 220.3,
+              "w": 9.6
+            },
+            {
+              "x": 400.0,
+              "o": 217.2,
+              "c": 227.8,
+              "h": 211.6,
+              "l": 236,
+              "w": 9.6
+            },
+            {
+              "x": 416.0,
+              "o": 227.8,
+              "c": 195.4,
+              "h": 193.6,
+              "l": 230.4,
+              "w": 9.6
+            },
+            {
+              "x": 432.0,
+              "o": 195.4,
+              "c": 189.0,
+              "h": 184.4,
+              "l": 198.1,
+              "w": 9.6
+            },
+            {
+              "x": 448.0,
+              "o": 189.0,
+              "c": 155.8,
+              "h": 153.4,
+              "l": 192.8,
+              "w": 9.6
+            },
+            {
+              "x": 464.0,
+              "o": 155.8,
+              "c": 126.1,
+              "h": 121.1,
+              "l": 161.7,
+              "w": 9.6
+            },
+            {
+              "x": 480.0,
+              "o": 126.1,
+              "c": 125.7,
+              "h": 120.6,
+              "l": 132.4,
+              "w": 9.6
+            },
+            {
+              "x": 496.0,
+              "o": 125.7,
+              "c": 98.1,
+              "h": 92,
+              "l": 128.9,
+              "w": 9.6
+            },
+            {
+              "x": 512.0,
+              "o": 98.1,
+              "c": 120.6,
+              "h": 92.7,
+              "l": 124.1,
+              "w": 9.6
+            },
+            {
+              "x": 528.0,
+              "o": 120.6,
+              "c": 138.3,
+              "h": 116.0,
+              "l": 143.9,
+              "w": 9.6
+            },
+            {
+              "x": 544.0,
+              "o": 138.3,
+              "c": 144.8,
+              "h": 135.6,
+              "l": 152,
+              "w": 9.6
+            },
+            {
+              "x": 560.0,
+              "o": 144.8,
+              "c": 138.3,
+              "h": 136.1,
+              "l": 148.2,
+              "w": 9.6
+            },
+            {
+              "x": 576.0,
+              "o": 138.3,
+              "c": 141.8,
+              "h": 132,
+              "l": 145.2,
+              "w": 9.6
+            },
+            {
+              "x": 592.0,
+              "o": 141.8,
+              "c": 150.2,
+              "h": 140.1,
+              "l": 152.6,
+              "w": 9.6
+            },
+            {
+              "x": 608.0,
+              "o": 150.2,
+              "c": 166.4,
+              "h": 146.9,
+              "l": 169.3,
+              "w": 9.6
+            },
+            {
+              "x": 624.0,
+              "o": 166.4,
+              "c": 176.0,
+              "h": 164.4,
+              "l": 182.4,
+              "w": 9.6
+            }
+          ],
+          "hlines": [
+            {
+              "y": 92,
+              "label": "EXTERNAL HIGH · 21,040",
+              "tone": "purple",
+              "x1": 392.0,
+              "x2": 692,
+              "size": 13,
+              "id": "doorH",
+              "labelX": 470,
+              "door": true
+            },
+            {
+              "y": 236,
+              "label": "EXTERNAL LOW · 20,610",
+              "tone": "purple",
+              "x1": 392.0,
+              "x2": 692,
+              "size": 13,
+              "id": "doorL",
+              "below": true,
+              "labelX": 470,
+              "door": true
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 392.0,
+              "y1": 92,
+              "x2": 692,
+              "y2": 236,
+              "tone": "purple",
+              "id": "room",
+              "op": 0.45,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6
+            }
+          ],
+          "notes": [
+            {
+              "x": 650.0,
+              "y": 180.0,
+              "text": "● now",
+              "tone": "dark",
+              "size": 13,
+              "anchor": "middle",
+              "id": "now"
+            }
+          ]
+        }
+      },
+      "board": [
+        "4h.high",
+        "4h.low",
+        "4h.location",
+        "1h.structure"
+      ],
+      "tasks": [
+        {
+          "do": "say",
+          "tf": "4H",
+          "say": "Bullish thesis. Price in the lower area of the room.",
+          "show": [
+            "doorH",
+            "doorL",
+            "room",
+            "now"
+          ]
+        },
+        {
+          "do": "choose",
+          "key": "thesis.objective",
+          "prompt": "WHICH EXTERNAL LEVEL BETTER ALIGNS WITH THE CURRENT THESIS?",
+          "options": [
+            {
+              "label": "4H external high",
+              "correct": true,
+              "why": "The external objective that matches the bullish thesis. Potential, not guaranteed."
+            },
+            {
+              "label": "The minor 1H high just above price",
+              "correct": false,
+              "feedback": "Direction looks good. But how much room does price actually have? That level is barely above price.",
+              "mistake": "objective-too-close"
+            },
+            {
+              "label": "4H external low",
+              "correct": false,
+              "feedback": "That’s the other door. Does it match a bullish thesis?"
+            }
+          ],
+          "concept": "external-objective",
+          "stack": true,
+          "value": "4H external high · 21,040 (potential)"
+        },
+        {
+          "do": "choose",
+          "prompt": "HOW MUCH ROOM IS LEFT?",
+          "concept": "distance-to-objective",
+          "options": [
+            {
+              "label": "Plenty: price is low in the room",
+              "correct": true,
+              "why": "Room to the objective is part of the read."
+            },
+            {
+              "label": "Almost none",
+              "correct": false,
+              "feedback": "Look at where price sits in the room."
+            }
+          ]
+        }
+      ],
+      "given": {
+        "4h.high": "21,040",
+        "4h.low": "20,610",
+        "4h.structure": "Bullish",
+        "4h.location": "lower area of the room",
+        "1h.structure": "Correction → potential bullish shift",
+        "thesis.direction": "Bullish"
+      },
+      "thesis": true,
+      "save": "p4-10"
+    },
+    {
+      "type": "td_compare",
+      "kicker": "Distance matters",
+      "title": "Same bullish idea.",
+      "flow": 1,
+      "a": {
+        "label": "CHART A",
+        "chart": {
+          "swings": [
+            [
+              60,
+              170
+            ],
+            [
+              177.0,
+              260
+            ],
+            [
+              333.0,
+              80
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 73.0,
+              "o": 170,
+              "c": 187.7,
+              "h": 166.7,
+              "l": 192.6,
+              "w": 15.6
+            },
+            {
+              "x": 99.0,
+              "o": 187.7,
+              "c": 203.9,
+              "h": 183.5,
+              "l": 208.8,
+              "w": 15.6
+            },
+            {
+              "x": 125.0,
+              "o": 203.9,
+              "c": 229.4,
+              "h": 202.0,
+              "l": 235.0,
+              "w": 15.6
+            },
+            {
+              "x": 151.0,
+              "o": 229.4,
+              "c": 235.7,
+              "h": 225.8,
+              "l": 240.9,
+              "w": 15.6
+            },
+            {
+              "x": 177.0,
+              "o": 235.7,
+              "c": 253.6,
+              "h": 230.2,
+              "l": 260,
+              "w": 15.6
+            },
+            {
+              "x": 203.0,
+              "o": 253.6,
+              "c": 220.1,
+              "h": 216.4,
+              "l": 256.7,
+              "w": 15.6
+            },
+            {
+              "x": 229.0,
+              "o": 220.1,
+              "c": 184.5,
+              "h": 179.4,
+              "l": 223.9,
+              "w": 15.6
+            },
+            {
+              "x": 255.0,
+              "o": 184.5,
+              "c": 177.2,
+              "h": 173.3,
+              "l": 190.6,
+              "w": 15.6
+            },
+            {
+              "x": 281.0,
+              "o": 177.2,
+              "c": 147.2,
+              "h": 140.7,
+              "l": 180.7,
+              "w": 15.6
+            },
+            {
+              "x": 307.0,
+              "o": 147.2,
+              "c": 96.2,
+              "h": 90.0,
+              "l": 149.4,
+              "w": 15.6
+            },
+            {
+              "x": 333.0,
+              "o": 96.2,
+              "c": 89.3,
+              "h": 80,
+              "l": 101.8,
+              "w": 15.6
+            },
+            {
+              "x": 359.0,
+              "o": 89.3,
+              "c": 115.2,
+              "h": 85.1,
+              "l": 121.6,
+              "w": 15.6
+            },
+            {
+              "x": 385.0,
+              "o": 115.2,
+              "c": 160.9,
+              "h": 110.5,
+              "l": 167.0,
+              "w": 15.6
+            },
+            {
+              "x": 411.0,
+              "o": 160.9,
+              "c": 190.5,
+              "h": 155.1,
+              "l": 193.1,
+              "w": 15.6
+            },
+            {
+              "x": 437.0,
+              "o": 190.5,
+              "c": 220.0,
+              "h": 185.0,
+              "l": 225.9,
+              "w": 15.6
+            }
+          ],
+          "hlines": [
+            {
+              "y": 80,
+              "label": "EXTERNAL HIGH · 21,080",
+              "tone": "purple",
+              "x1": 169.0,
+              "x2": 692,
+              "size": 13,
+              "labelX": 470,
+              "door": true
+            },
+            {
+              "y": 260,
+              "label": "EXTERNAL LOW · 20,540",
+              "tone": "purple",
+              "x1": 169.0,
+              "x2": 692,
+              "size": 13,
+              "below": true,
+              "labelX": 470,
+              "door": true
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 169.0,
+              "y1": 80,
+              "x2": 692,
+              "y2": 260,
+              "tone": "purple",
+              "op": 0.45,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6
+            }
+          ],
+          "notes": [
+            {
+              "x": 459.0,
+              "y": 224.0,
+              "text": "●",
+              "tone": "dark",
+              "size": 15,
+              "anchor": "middle"
+            }
+          ]
+        },
+        "note": "Lower in the room"
+      },
+      "b": {
+        "label": "CHART B",
+        "chart": {
+          "swings": [
+            [
+              60,
+              170
+            ],
+            [
+              177.0,
+              260
+            ],
+            [
+              333.0,
+              80
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 73.0,
+              "o": 170,
+              "c": 189.7,
+              "h": 167.8,
+              "l": 195.9,
+              "w": 15.6
+            },
+            {
+              "x": 99.0,
+              "o": 189.7,
+              "c": 205.0,
+              "h": 186.0,
+              "l": 209.7,
+              "w": 15.6
+            },
+            {
+              "x": 125.0,
+              "o": 205.0,
+              "c": 227.8,
+              "h": 199.5,
+              "l": 233.6,
+              "w": 15.6
+            },
+            {
+              "x": 151.0,
+              "o": 227.8,
+              "c": 239.0,
+              "h": 222.1,
+              "l": 244.0,
+              "w": 15.6
+            },
+            {
+              "x": 177.0,
+              "o": 239.0,
+              "c": 252.1,
+              "h": 236.7,
+              "l": 260,
+              "w": 15.6
+            },
+            {
+              "x": 203.0,
+              "o": 252.1,
+              "c": 221.0,
+              "h": 217.7,
+              "l": 255.3,
+              "w": 15.6
+            },
+            {
+              "x": 229.0,
+              "o": 221.0,
+              "c": 199.0,
+              "h": 196.5,
+              "l": 223.7,
+              "w": 15.6
+            },
+            {
+              "x": 255.0,
+              "o": 199.0,
+              "c": 152.5,
+              "h": 147.2,
+              "l": 204.4,
+              "w": 15.6
+            },
+            {
+              "x": 281.0,
+              "o": 152.5,
+              "c": 150.3,
+              "h": 146.3,
+              "l": 155.5,
+              "w": 15.6
+            },
+            {
+              "x": 307.0,
+              "o": 150.3,
+              "c": 100.4,
+              "h": 95.2,
+              "l": 152.7,
+              "w": 15.6
+            },
+            {
+              "x": 333.0,
+              "o": 100.4,
+              "c": 89.3,
+              "h": 80,
+              "l": 105.5,
+              "w": 15.6
+            },
+            {
+              "x": 359.0,
+              "o": 89.3,
+              "c": 90.9,
+              "h": 84.1,
+              "l": 94.9,
+              "w": 15.6
+            },
+            {
+              "x": 385.0,
+              "o": 90.9,
+              "c": 92.3,
+              "h": 87.3,
+              "l": 94.9,
+              "w": 15.6
+            },
+            {
+              "x": 411.0,
+              "o": 92.3,
+              "c": 93.8,
+              "h": 90.1,
+              "l": 98.3,
+              "w": 15.6
+            },
+            {
+              "x": 437.0,
+              "o": 93.8,
+              "c": 96.0,
+              "h": 92.0,
+              "l": 100.4,
+              "w": 15.6
+            }
+          ],
+          "hlines": [
+            {
+              "y": 80,
+              "label": "EXTERNAL HIGH · 21,080",
+              "tone": "purple",
+              "x1": 169.0,
+              "x2": 692,
+              "size": 13,
+              "labelX": 470,
+              "door": true
+            },
+            {
+              "y": 260,
+              "label": "EXTERNAL LOW · 20,540",
+              "tone": "purple",
+              "x1": 169.0,
+              "x2": 692,
+              "size": 13,
+              "below": true,
+              "labelX": 470,
+              "door": true
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 169.0,
+              "y1": 80,
+              "x2": 692,
+              "y2": 260,
+              "tone": "purple",
+              "op": 0.45,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6
+            }
+          ],
+          "notes": [
+            {
+              "x": 459.0,
+              "y": 100.0,
+              "text": "●",
+              "tone": "dark",
+              "size": 15,
+              "anchor": "middle"
+            }
+          ]
+        },
+        "note": "Right under the external high"
+      },
+      "say": "Both are bullish. Look where price is standing.",
+      "asks": [
+        {
+          "prompt": "SAME LOCATION QUALITY?",
+          "options": [
+            {
+              "label": "No",
+              "correct": true,
+              "why": "Direction is the same. Room to the objective isn’t."
+            },
+            {
+              "label": "Yes, both bullish",
+              "correct": false,
+              "feedback": "Direction is the same. Is the room to the objective?",
+              "mistake": "objective-too-close"
+            }
+          ],
+          "concept": "distance-to-objective"
+        }
+      ],
+      "outro": "Direction is not enough. Section 2 measures this properly."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Potential objective. <em>Never a guaranteed target.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "How do you choose a potential external objective?",
+      "modelAnswer": "I pick the external level that fits my structural thesis, call it potential, and check how much room price has to get there."
+    }
+  ],
+  "takeaways": [
+    "Objectives are potential, never guaranteed.",
+    "They should fit the thesis.",
+    "Distance to the objective matters."
+  ],
+  "remember": "Direction is not enough. Check how much room is left."
+}

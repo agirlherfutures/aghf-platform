@@ -19,6 +19,7 @@ import { isPreviewAll } from './preview.js';
 import { burst, showStreak, showToast, wireRetryOptions } from './lesson-engine.js';
 import { saveCheckinReflection } from './journal-service.js';
 import { SLIDE_RENDERERS } from './lesson-slides-engine.js';
+import { mountChart } from './structure-charts.js';
 import { renderPhaseFinal, renderPhaseComplete } from './phase-final.js';
 
 // Temporary: everything unlocked while the Academy is being built (see preview.js).
@@ -273,7 +274,11 @@ function appendChallengeContinue(el, satisfy) {
 function renderGame(slide, game, onAllDone, helpers) {
   const levels = game.levels || [];
   const stats = levels.map(() => ({ right: 0, tries: 0 }));
+  // game.save: remember the level she's on, so an unfinished lab survives a refresh.
+  const saveKey = game.save ? `aghf_game:${game.save}` : null;
   let idx = 0;
+  if (saveKey) { try { idx = Math.min(levels.length - 1, Math.max(0, +localStorage.getItem(saveKey) || 0)); } catch { /* storage blocked */ } }
+  const remember = (v) => { if (saveKey) { try { localStorage.setItem(saveKey, String(v)); } catch { /* ignore */ } } };
   const totals = () => stats.reduce((a, s) => ({ right: a.right + s.right, tries: a.tries + s.tries }), { right: 0, tries: 0 });
   const pct = (r, t) => (t ? Math.round((r / t) * 100) : 100);
 
@@ -297,7 +302,10 @@ function renderGame(slide, game, onAllDone, helpers) {
       </div>`;
     const body = slide.querySelector('.sg-body');
     const accEl = slide.querySelector('.sg-acc-n');
-    slide.querySelector('.sg-restart').addEventListener('click', show);
+    slide.querySelector('.sg-restart').addEventListener('click', () => {
+      if (game.save) { try { localStorage.removeItem(`aghf_td:${level.save || `${game.save}-L${idx + 1}`}`); } catch { /* ignore */ } }
+      show();
+    });
     const renderer = SLIDE_RENDERERS[level.type];
     let firstRead = null;
     const reads = {};
@@ -320,6 +328,7 @@ function renderGame(slide, game, onAllDone, helpers) {
     };
     const advance = () => {
       idx += 1;
+      remember(idx < levels.length ? idx : 0);
       if (idx < levels.length) { show(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
       else finish();
     };
@@ -345,7 +354,7 @@ function renderGame(slide, game, onAllDone, helpers) {
       body.appendChild(card);
       card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     };
-    if (renderer) renderer(body, { ...level, kicker: '', title: level.title || '' }, next, levelHelpers); else next();
+    if (renderer) renderer(body, { ...level, kicker: '', title: level.title || '', save: level.save || (game.save ? `${game.save}-L${idx + 1}` : undefined) }, next, levelHelpers); else next();
   }
 
   function finish() {
@@ -433,6 +442,7 @@ function renderKnowledge(slide, kc, onPass, helpers) {
           <div class="lw-eyebrow">Knowledge Check</div>
           <div class="sw-progress-row"><span>Question ${qi + 1} of ${set.length}</span><span>Score: ${score} / ${qi}</span></div>
           <div class="sw-progress-track"><div class="sw-progress-fill" style="width:${(qi / set.length) * 100}%"></div></div>
+          ${q.chart ? '<div class="sw-kc-chart"></div>' : ''}
           <h2>${q.question}</h2>
           <div class="lw-opts" id="swKcOpts">
             ${q.options.map((opt, oi) => `<button type="button" class="lw-qopt" data-oi="${oi}">${opt}</button>`).join('')}
@@ -440,6 +450,7 @@ function renderKnowledge(slide, kc, onPass, helpers) {
         </div>
         <div class="lw-feedback" id="swKcFb"></div>
       `;
+      if (q.chart) mountChart(slide.querySelector('.sw-kc-chart'), q.chart, { label: 'Question chart' });
       const buttons = slide.querySelectorAll('.lw-qopt');
       const fb = slide.querySelector('#swKcFb');
       let answered = false;

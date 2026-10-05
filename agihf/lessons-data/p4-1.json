@@ -1,0 +1,185 @@
+{
+  "phase": "p4",
+  "section": "s10",
+  "lessonNumber": 1,
+  "title": "What Is Directional Bias?",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Bias isn’t a feeling.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Tell an observation, a working thesis and a prediction apart, and know what a real thesis answers.",
+    "missionQuestion": "Is “I feel bullish” a bias?",
+    "estMinutes": 6
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "v2_screen",
+      "kicker": "Phase 4 · Lesson 1",
+      "headline": "Bias isn’t <em>a feeling.</em>",
+      "line": "It’s a thesis you can explain, and invalidate.",
+      "visual": {
+        "host": "wave"
+      },
+      "cta": "Let’s build one →",
+      "ctaPink": true
+    },
+    {
+      "type": "teach",
+      "kicker": "Three statements",
+      "heading": "Which one is a useful trading bias?",
+      "body": "Same chart. Three ways to talk about it:",
+      "beats": [
+        {
+          "icon": "👀",
+          "title": "Observation",
+          "line": "“The 4H structure is progressing higher.”"
+        },
+        {
+          "icon": "🧠",
+          "title": "Thesis",
+          "line": "“I’m more interested in bullish continuation, unless price changes the story.”"
+        },
+        {
+          "icon": "🔮",
+          "title": "Prediction",
+          "line": "“Price is definitely going to 21,000 today.”"
+        }
+      ],
+      "check": {
+        "prompt": "Which one is a useful trading bias?",
+        "options": [
+          {
+            "label": "The thesis",
+            "correct": true,
+            "why": "It’s based on structure, and it says what would change it."
+          },
+          {
+            "label": "The prediction",
+            "correct": false,
+            "feedback": "A prediction gets defended. A thesis updates."
+          },
+          {
+            "label": "The observation",
+            "correct": false,
+            "feedback": "Observations are the evidence. The thesis is what you build from them."
+          }
+        ]
+      }
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Bias or prediction?",
+      "title": "Bias or prediction?",
+      "items": [
+        {
+          "text": "Price closed above the previous 4H swing.",
+          "answer": "OBSERVATION",
+          "why": "Pure fact. Anyone can point to it.",
+          "concept": "bias-vs-prediction"
+        },
+        {
+          "text": "Current structure supports bullish continuation unless supporting structure fails.",
+          "answer": "WORKING THESIS",
+          "why": "Conditional, based on structure, with a way to be wrong.",
+          "concept": "bias-vs-prediction"
+        },
+        {
+          "text": "NQ is definitely hitting the external high today.",
+          "answer": "PREDICTION",
+          "why": "“Definitely” is doing a lot of work. The market doesn’t owe anyone that.",
+          "mistake": "bias-as-prediction",
+          "concept": "bias-vs-prediction"
+        },
+        {
+          "text": "Price is trading in the lower half of the 4H room.",
+          "answer": "OBSERVATION",
+          "why": "Location is something you can see.",
+          "concept": "bias-vs-prediction"
+        },
+        {
+          "text": "I called bullish this morning, so I’m bullish all day.",
+          "answer": "PREDICTION",
+          "why": "That’s loyalty to an opinion, not a read of current structure.",
+          "mistake": "bias-as-prediction",
+          "concept": "bias-vs-prediction"
+        },
+        {
+          "text": "I favor bearish continuation while price holds below the 1H lower high.",
+          "answer": "WORKING THESIS",
+          "why": "Direction, evidence, and a condition that would change it.",
+          "concept": "bias-vs-prediction"
+        }
+      ],
+      "prompt": "Stamp each statement.",
+      "choices": [
+        "OBSERVATION",
+        "WORKING THESIS",
+        "PREDICTION"
+      ],
+      "concept": "bias-vs-prediction"
+    },
+    {
+      "type": "teach",
+      "kicker": "Thesis anatomy",
+      "heading": "A real thesis answers seven questions.",
+      "body": "Each one gets a place on your Analysis Board.",
+      "beats": [
+        {
+          "icon": "🏛️",
+          "title": "Larger structure?"
+        },
+        {
+          "icon": "📍",
+          "title": "Where is price?"
+        },
+        {
+          "icon": "⛰️",
+          "title": "Which swing matters?"
+        },
+        {
+          "icon": "🧭",
+          "title": "What is price attempting?"
+        },
+        {
+          "icon": "✅",
+          "title": "What supports it?"
+        },
+        {
+          "icon": "⚠️",
+          "title": "What weakens it?"
+        },
+        {
+          "icon": "🚪",
+          "title": "What invalidates it?"
+        }
+      ],
+      "punch": "You’ll fill every one of these in by the end of this section."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Your bias is allowed to change <em>when price changes.</em>",
+      "pose": "point",
+      "line": "That’s not inconsistency. That’s analysis."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "In your own words, what’s the difference between a bias and a prediction?",
+      "modelAnswer": "A prediction says what price will do. A bias is a conditional thesis built on current structure, and it changes when the structure that supports it changes."
+    }
+  ],
+  "takeaways": [
+    "Observation = what the chart shows.",
+    "Thesis = a conditional read built on structure.",
+    "Prediction = certainty the market never promised."
+  ],
+  "remember": "Bias is a conditional directional thesis based on current structural evidence."
+}

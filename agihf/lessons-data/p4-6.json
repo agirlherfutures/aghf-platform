@@ -1,0 +1,830 @@
+{
+  "phase": "p4",
+  "section": "s10",
+  "lessonNumber": 6,
+  "title": "Internal Movement Inside the 4H Room",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "The furniture can move.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "See lower-timeframe movement inside higher-timeframe structure, and read it without forcing certainty.",
+    "missionQuestion": "Can the 4H be bullish while the 1H is bearish?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "td_workspace",
+      "kicker": "Two timeframes",
+      "title": "Inside the room.",
+      "flow": 1,
+      "charts": {
+        "4H": {
+          "swings": [
+            [
+              40,
+              122
+            ],
+            [
+              112.0,
+              44
+            ],
+            [
+              240.0,
+              292
+            ],
+            [
+              336.0,
+              160
+            ],
+            [
+              400.0,
+              236
+            ],
+            [
+              496.0,
+              92
+            ],
+            [
+              544.0,
+              152
+            ],
+            [
+              576.0,
+              132
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 48.0,
+              "o": 122,
+              "c": 102.7,
+              "h": 100.7,
+              "l": 125.5,
+              "w": 9.6
+            },
+            {
+              "x": 64.0,
+              "o": 102.7,
+              "c": 86.0,
+              "h": 84.1,
+              "l": 106.2,
+              "w": 9.6
+            },
+            {
+              "x": 80.0,
+              "o": 86.0,
+              "c": 81.1,
+              "h": 75.6,
+              "l": 91.3,
+              "w": 9.6
+            },
+            {
+              "x": 96.0,
+              "o": 81.1,
+              "c": 55.7,
+              "h": 51.5,
+              "l": 84.0,
+              "w": 9.6
+            },
+            {
+              "x": 112.0,
+              "o": 55.7,
+              "c": 50.7,
+              "h": 44,
+              "l": 58.1,
+              "w": 9.6
+            },
+            {
+              "x": 128.0,
+              "o": 50.7,
+              "c": 68.4,
+              "h": 44.6,
+              "l": 74.1,
+              "w": 9.6
+            },
+            {
+              "x": 144.0,
+              "o": 68.4,
+              "c": 124.3,
+              "h": 62.9,
+              "l": 126.8,
+              "w": 9.6
+            },
+            {
+              "x": 160.0,
+              "o": 124.3,
+              "c": 132.9,
+              "h": 119.7,
+              "l": 138.1,
+              "w": 9.6
+            },
+            {
+              "x": 176.0,
+              "o": 132.9,
+              "c": 186.7,
+              "h": 127.0,
+              "l": 188.7,
+              "w": 9.6
+            },
+            {
+              "x": 192.0,
+              "o": 186.7,
+              "c": 206.1,
+              "h": 181.9,
+              "l": 210.1,
+              "w": 9.6
+            },
+            {
+              "x": 208.0,
+              "o": 206.1,
+              "c": 217.7,
+              "h": 202.2,
+              "l": 219.6,
+              "w": 9.6
+            },
+            {
+              "x": 224.0,
+              "o": 217.7,
+              "c": 280.7,
+              "h": 211.8,
+              "l": 285.0,
+              "w": 9.6
+            },
+            {
+              "x": 240.0,
+              "o": 280.7,
+              "c": 284.8,
+              "h": 275.1,
+              "l": 292,
+              "w": 9.6
+            },
+            {
+              "x": 256.0,
+              "o": 284.8,
+              "c": 265.6,
+              "h": 259.7,
+              "l": 290.5,
+              "w": 9.6
+            },
+            {
+              "x": 272.0,
+              "o": 265.6,
+              "c": 243.4,
+              "h": 239.8,
+              "l": 270.1,
+              "w": 9.6
+            },
+            {
+              "x": 288.0,
+              "o": 243.4,
+              "c": 220.9,
+              "h": 218.5,
+              "l": 246.4,
+              "w": 9.6
+            },
+            {
+              "x": 304.0,
+              "o": 220.9,
+              "c": 208.6,
+              "h": 206.9,
+              "l": 222.6,
+              "w": 9.6
+            },
+            {
+              "x": 320.0,
+              "o": 208.6,
+              "c": 183.6,
+              "h": 180.7,
+              "l": 212.8,
+              "w": 9.6
+            },
+            {
+              "x": 336.0,
+              "o": 183.6,
+              "c": 167.9,
+              "h": 160,
+              "l": 187.0,
+              "w": 9.6
+            },
+            {
+              "x": 352.0,
+              "o": 167.9,
+              "c": 191.0,
+              "h": 165.4,
+              "l": 194.6,
+              "w": 9.6
+            },
+            {
+              "x": 368.0,
+              "o": 191.0,
+              "c": 198.3,
+              "h": 186.3,
+              "l": 201.2,
+              "w": 9.6
+            },
+            {
+              "x": 384.0,
+              "o": 198.3,
+              "c": 217.2,
+              "h": 193.1,
+              "l": 220.3,
+              "w": 9.6
+            },
+            {
+              "x": 400.0,
+              "o": 217.2,
+              "c": 227.8,
+              "h": 211.6,
+              "l": 236,
+              "w": 9.6
+            },
+            {
+              "x": 416.0,
+              "o": 227.8,
+              "c": 195.4,
+              "h": 193.6,
+              "l": 230.4,
+              "w": 9.6
+            },
+            {
+              "x": 432.0,
+              "o": 195.4,
+              "c": 189.0,
+              "h": 184.4,
+              "l": 198.1,
+              "w": 9.6
+            },
+            {
+              "x": 448.0,
+              "o": 189.0,
+              "c": 155.8,
+              "h": 153.4,
+              "l": 192.8,
+              "w": 9.6
+            },
+            {
+              "x": 464.0,
+              "o": 155.8,
+              "c": 126.1,
+              "h": 121.1,
+              "l": 161.7,
+              "w": 9.6
+            },
+            {
+              "x": 480.0,
+              "o": 126.1,
+              "c": 125.7,
+              "h": 120.6,
+              "l": 132.4,
+              "w": 9.6
+            },
+            {
+              "x": 496.0,
+              "o": 125.7,
+              "c": 98.1,
+              "h": 92,
+              "l": 128.9,
+              "w": 9.6
+            },
+            {
+              "x": 512.0,
+              "o": 98.1,
+              "c": 120.6,
+              "h": 92.7,
+              "l": 124.1,
+              "w": 9.6
+            },
+            {
+              "x": 528.0,
+              "o": 120.6,
+              "c": 138.3,
+              "h": 116.0,
+              "l": 143.9,
+              "w": 9.6
+            },
+            {
+              "x": 544.0,
+              "o": 138.3,
+              "c": 144.8,
+              "h": 135.6,
+              "l": 152,
+              "w": 9.6
+            },
+            {
+              "x": 560.0,
+              "o": 144.8,
+              "c": 138.3,
+              "h": 136.1,
+              "l": 148.2,
+              "w": 9.6
+            },
+            {
+              "x": 576.0,
+              "o": 138.3,
+              "c": 141.8,
+              "h": 132,
+              "l": 145.2,
+              "w": 9.6
+            },
+            {
+              "x": 592.0,
+              "o": 141.8,
+              "c": 150.2,
+              "h": 140.1,
+              "l": 152.6,
+              "w": 9.6
+            },
+            {
+              "x": 608.0,
+              "o": 150.2,
+              "c": 166.4,
+              "h": 146.9,
+              "l": 169.3,
+              "w": 9.6
+            },
+            {
+              "x": 624.0,
+              "o": 166.4,
+              "c": 176.0,
+              "h": 164.4,
+              "l": 182.4,
+              "w": 9.6
+            }
+          ],
+          "hlines": [
+            {
+              "y": 92,
+              "label": "EXTERNAL HIGH · 21,040",
+              "tone": "purple",
+              "x1": 392.0,
+              "x2": 692,
+              "size": 13,
+              "id": "doorH",
+              "labelX": 470,
+              "door": true
+            },
+            {
+              "y": 236,
+              "label": "EXTERNAL LOW · 20,610",
+              "tone": "purple",
+              "x1": 392.0,
+              "x2": 692,
+              "size": 13,
+              "id": "doorL",
+              "below": true,
+              "labelX": 470,
+              "door": true
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 392.0,
+              "y1": 92,
+              "x2": 692,
+              "y2": 236,
+              "tone": "purple",
+              "id": "room",
+              "op": 0.45,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6
+            }
+          ],
+          "notes": [
+            {
+              "x": 650.0,
+              "y": 180.0,
+              "text": "● now",
+              "tone": "dark",
+              "size": 13,
+              "anchor": "middle",
+              "id": "now"
+            }
+          ]
+        },
+        "1H": {
+          "swings": [
+            [
+              40,
+              54
+            ],
+            [
+              106.5,
+              116
+            ],
+            [
+              163.5,
+              92
+            ],
+            [
+              258.5,
+              166
+            ],
+            [
+              315.5,
+              136
+            ],
+            [
+              410.5,
+              204
+            ],
+            [
+              467.5,
+              172
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 49.5,
+              "o": 54,
+              "c": 64.1,
+              "h": 51.9,
+              "l": 67.5,
+              "w": 11.4
+            },
+            {
+              "x": 68.5,
+              "o": 64.1,
+              "c": 87.1,
+              "h": 61.9,
+              "l": 89.1,
+              "w": 11.4
+            },
+            {
+              "x": 87.5,
+              "o": 87.1,
+              "c": 97.5,
+              "h": 81.8,
+              "l": 99.7,
+              "w": 11.4
+            },
+            {
+              "x": 106.5,
+              "o": 97.5,
+              "c": 107.0,
+              "h": 92.9,
+              "l": 116,
+              "w": 11.4
+            },
+            {
+              "x": 125.5,
+              "o": 107.0,
+              "c": 101.0,
+              "h": 96.9,
+              "l": 110.8,
+              "w": 11.4
+            },
+            {
+              "x": 144.5,
+              "o": 101.0,
+              "c": 96.8,
+              "h": 90.3,
+              "l": 103.0,
+              "w": 11.4
+            },
+            {
+              "x": 163.5,
+              "o": 96.8,
+              "c": 98.1,
+              "h": 92,
+              "l": 103.8,
+              "w": 11.4
+            },
+            {
+              "x": 182.5,
+              "o": 98.1,
+              "c": 110.5,
+              "h": 95.6,
+              "l": 113.6,
+              "w": 11.4
+            },
+            {
+              "x": 201.5,
+              "o": 110.5,
+              "c": 123.6,
+              "h": 104.2,
+              "l": 126.1,
+              "w": 11.4
+            },
+            {
+              "x": 220.5,
+              "o": 123.6,
+              "c": 135.4,
+              "h": 119.2,
+              "l": 139.6,
+              "w": 11.4
+            },
+            {
+              "x": 239.5,
+              "o": 135.4,
+              "c": 158.0,
+              "h": 129.7,
+              "l": 161.2,
+              "w": 11.4
+            },
+            {
+              "x": 258.5,
+              "o": 158.0,
+              "c": 159.2,
+              "h": 152.6,
+              "l": 166,
+              "w": 11.4
+            },
+            {
+              "x": 277.5,
+              "o": 159.2,
+              "c": 153.5,
+              "h": 151.8,
+              "l": 164.4,
+              "w": 11.4
+            },
+            {
+              "x": 296.5,
+              "o": 153.5,
+              "c": 145.3,
+              "h": 140.5,
+              "l": 156.1,
+              "w": 11.4
+            },
+            {
+              "x": 315.5,
+              "o": 145.3,
+              "c": 145.2,
+              "h": 136,
+              "l": 150.2,
+              "w": 11.4
+            },
+            {
+              "x": 334.5,
+              "o": 145.2,
+              "c": 153.7,
+              "h": 140.5,
+              "l": 156.3,
+              "w": 11.4
+            },
+            {
+              "x": 353.5,
+              "o": 153.7,
+              "c": 163.9,
+              "h": 150.5,
+              "l": 167.0,
+              "w": 11.4
+            },
+            {
+              "x": 372.5,
+              "o": 163.9,
+              "c": 179.4,
+              "h": 159.1,
+              "l": 185.1,
+              "w": 11.4
+            },
+            {
+              "x": 391.5,
+              "o": 179.4,
+              "c": 197.1,
+              "h": 173.0,
+              "l": 203.6,
+              "w": 11.4
+            },
+            {
+              "x": 410.5,
+              "o": 197.1,
+              "c": 194.8,
+              "h": 191.6,
+              "l": 204,
+              "w": 11.4
+            },
+            {
+              "x": 429.5,
+              "o": 194.8,
+              "c": 185.9,
+              "h": 181.3,
+              "l": 199.1,
+              "w": 11.4
+            },
+            {
+              "x": 448.5,
+              "o": 185.9,
+              "c": 180.3,
+              "h": 178.4,
+              "l": 188.4,
+              "w": 11.4
+            },
+            {
+              "x": 467.5,
+              "o": 180.3,
+              "c": 181.7,
+              "h": 172,
+              "l": 186.1,
+              "w": 11.4
+            },
+            {
+              "x": 486.5,
+              "o": 181.7,
+              "c": 187.0,
+              "h": 179.7,
+              "l": 190.5,
+              "w": 11.4
+            },
+            {
+              "x": 505.5,
+              "o": 187.0,
+              "c": 192.3,
+              "h": 182.2,
+              "l": 198.7,
+              "w": 11.4
+            },
+            {
+              "x": 524.5,
+              "o": 192.3,
+              "c": 196.0,
+              "h": 189.8,
+              "l": 199.8,
+              "w": 11.4
+            }
+          ],
+          "hlines": [
+            {
+              "y": 38,
+              "label": "4H external high",
+              "tone": "muted",
+              "x1": 8,
+              "x2": 692,
+              "size": 11,
+              "below": true,
+              "labelX": 548
+            },
+            {
+              "y": 296,
+              "label": "4H external low",
+              "tone": "muted",
+              "x1": 8,
+              "x2": 692,
+              "size": 11,
+              "labelX": 548
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 8,
+              "y1": 38,
+              "x2": 692,
+              "y2": 296,
+              "tone": "purple",
+              "op": 0.22,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6
+            }
+          ]
+        }
+      },
+      "board": [
+        "4h.high",
+        "4h.low",
+        "4h.structure",
+        "1h.structure",
+        "1h.relation"
+      ],
+      "tasks": [
+        {
+          "do": "say",
+          "tf": "4H",
+          "say": "Here’s the bullish 4H room. Doors marked. Price is inside.",
+          "show": [
+            "doorH",
+            "doorL",
+            "room",
+            "now"
+          ]
+        },
+        {
+          "do": "tf",
+          "to": "1H",
+          "label": "LOOK INSIDE → 1H",
+          "say": "Now look inside it on the 1H. The 4H doors stay faint in the background."
+        },
+        {
+          "do": "choose",
+          "key": "1h.structure",
+          "prompt": "WHAT IS THE 1H DOING?",
+          "concept": "1h-map",
+          "say": "Lower highs, lower lows. Inside a bullish room.",
+          "options": [
+            {
+              "label": "Moving lower inside the room",
+              "correct": true,
+              "why": "Bearish internal movement. The doors haven’t moved."
+            },
+            {
+              "label": "Breaking the 4H room",
+              "correct": false,
+              "feedback": "Is the room broken, or is the furniture just moving? Check the external structure.",
+              "mistake": "internal-vs-external"
+            }
+          ],
+          "value": "Bearish internal movement"
+        },
+        {
+          "do": "choose",
+          "prompt": "CAN BOTH BE TRUE?",
+          "concept": "internal-vs-external",
+          "options": [
+            {
+              "label": "Yes",
+              "correct": true,
+              "why": "4H bullish room. 1H bearish movement inside it. Both true."
+            },
+            {
+              "label": "No, one has to be wrong",
+              "correct": false,
+              "feedback": "These can both be true. They’re describing different structures.",
+              "mistake": "internal-vs-external"
+            }
+          ]
+        },
+        {
+          "do": "choose",
+          "key": "1h.relation",
+          "prompt": "WHAT MIGHT THE 1H BE SHOWING?",
+          "concept": "internal-vs-external",
+          "stack": true,
+          "options": [
+            {
+              "label": "A potential internal correction",
+              "correct": true,
+              "why": "Potentially. Not certain, and that’s fine."
+            },
+            {
+              "label": "A confirmed reversal of the 4H",
+              "correct": false,
+              "feedback": "The 4H doors are still intact.",
+              "mistake": "internal-vs-external"
+            },
+            {
+              "label": "A signal to sell",
+              "correct": false,
+              "feedback": "That jumps from structure to execution. We’re reading, not trading.",
+              "mistake": "context-equals-entry"
+            }
+          ],
+          "value": "Potential internal correction"
+        }
+      ],
+      "given": {
+        "4h.high": "21,040",
+        "4h.low": "20,610",
+        "4h.structure": "Bullish"
+      },
+      "save": "p4-6"
+    },
+    {
+      "type": "teach",
+      "kicker": "The room analogy",
+      "heading": "The furniture can move.",
+      "body": "",
+      "beats": [
+        {
+          "icon": "🛋️",
+          "title": "The couch can move"
+        },
+        {
+          "icon": "🖼️",
+          "title": "The pictures can fall 😂"
+        },
+        {
+          "icon": "🏠",
+          "title": "You’re still in the room",
+          "line": "Until external structure changes"
+        }
+      ]
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Lower-timeframe movement lives <em>inside</em> higher-timeframe structure.",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "How can the 4H be bullish while the 1H moves lower?",
+      "modelAnswer": "The 1H can be correcting inside the 4H room. Unless the external structure breaks, the larger room is still bullish."
+    }
+  ],
+  "takeaways": [
+    "1H movement sits inside the 4H room.",
+    "Both can be true at once.",
+    "Don’t force certainty from internal movement."
+  ],
+  "remember": "The furniture can move. You’re still inside the room until external structure changes."
+}

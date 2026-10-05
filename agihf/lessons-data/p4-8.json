@@ -1,0 +1,534 @@
+{
+  "phase": "p4",
+  "section": "s10",
+  "lessonNumber": 8,
+  "title": "Finding Relevant 1H Swings",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Lots of swings. One matters most.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Pick the 1H swing that defines the current leg, and explain why.",
+    "missionQuestion": "Which swing actually matters?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "td_workspace",
+      "kicker": "Relevance mode",
+      "title": "Which swing actually matters?",
+      "flow": 1,
+      "charts": {
+        "1H": {
+          "swings": [
+            [
+              40,
+              120
+            ],
+            [
+              77.5,
+              150
+            ],
+            [
+              107.5,
+              132
+            ],
+            [
+              152.5,
+              176
+            ],
+            [
+              182.5,
+              160
+            ],
+            [
+              242.5,
+              218
+            ],
+            [
+              287.5,
+              190
+            ],
+            [
+              317.5,
+              204
+            ],
+            [
+              377.5,
+              140
+            ],
+            [
+              407.5,
+              156
+            ],
+            [
+              437.5,
+              146
+            ],
+            [
+              467.5,
+              166
+            ],
+            [
+              527.5,
+              110
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 47.5,
+              "o": 120,
+              "c": 129.4,
+              "h": 117.3,
+              "l": 131.7,
+              "w": 9.0
+            },
+            {
+              "x": 62.5,
+              "o": 129.4,
+              "c": 142.2,
+              "h": 125.0,
+              "l": 147.2,
+              "w": 9.0
+            },
+            {
+              "x": 77.5,
+              "o": 142.2,
+              "c": 141.8,
+              "h": 138.3,
+              "l": 150,
+              "w": 9.0
+            },
+            {
+              "x": 92.5,
+              "o": 141.8,
+              "c": 137.3,
+              "h": 132.9,
+              "l": 147.2,
+              "w": 9.0
+            },
+            {
+              "x": 107.5,
+              "o": 137.3,
+              "c": 140.6,
+              "h": 132,
+              "l": 146.0,
+              "w": 9.0
+            },
+            {
+              "x": 122.5,
+              "o": 140.6,
+              "c": 152.0,
+              "h": 138.4,
+              "l": 154.3,
+              "w": 9.0
+            },
+            {
+              "x": 137.5,
+              "o": 152.0,
+              "c": 165.6,
+              "h": 149.7,
+              "l": 170.4,
+              "w": 9.0
+            },
+            {
+              "x": 152.5,
+              "o": 165.6,
+              "c": 167.5,
+              "h": 163.4,
+              "l": 176,
+              "w": 9.0
+            },
+            {
+              "x": 167.5,
+              "o": 167.5,
+              "c": 164.1,
+              "h": 162.5,
+              "l": 173.4,
+              "w": 9.0
+            },
+            {
+              "x": 182.5,
+              "o": 164.1,
+              "c": 169.4,
+              "h": 160,
+              "l": 172.2,
+              "w": 9.0
+            },
+            {
+              "x": 197.5,
+              "o": 169.4,
+              "c": 183.5,
+              "h": 164.2,
+              "l": 185.6,
+              "w": 9.0
+            },
+            {
+              "x": 212.5,
+              "o": 183.5,
+              "c": 195.2,
+              "h": 181.4,
+              "l": 201.2,
+              "w": 9.0
+            },
+            {
+              "x": 227.5,
+              "o": 195.2,
+              "c": 207.5,
+              "h": 188.8,
+              "l": 209.3,
+              "w": 9.0
+            },
+            {
+              "x": 242.5,
+              "o": 207.5,
+              "c": 210.7,
+              "h": 203.0,
+              "l": 218,
+              "w": 9.0
+            },
+            {
+              "x": 257.5,
+              "o": 210.7,
+              "c": 204.2,
+              "h": 201.8,
+              "l": 216.7,
+              "w": 9.0
+            },
+            {
+              "x": 272.5,
+              "o": 204.2,
+              "c": 198.2,
+              "h": 195.2,
+              "l": 206.5,
+              "w": 9.0
+            },
+            {
+              "x": 287.5,
+              "o": 198.2,
+              "c": 198.7,
+              "h": 190,
+              "l": 202.3,
+              "w": 9.0
+            },
+            {
+              "x": 302.5,
+              "o": 198.7,
+              "c": 201.5,
+              "h": 194.7,
+              "l": 205.0,
+              "w": 9.0
+            },
+            {
+              "x": 317.5,
+              "o": 201.5,
+              "c": 197.9,
+              "h": 195.4,
+              "l": 204,
+              "w": 9.0
+            },
+            {
+              "x": 332.5,
+              "o": 197.9,
+              "c": 183.0,
+              "h": 177.9,
+              "l": 201.5,
+              "w": 9.0
+            },
+            {
+              "x": 347.5,
+              "o": 183.0,
+              "c": 171.5,
+              "h": 167.3,
+              "l": 188.9,
+              "w": 9.0
+            },
+            {
+              "x": 362.5,
+              "o": 171.5,
+              "c": 156.1,
+              "h": 153.0,
+              "l": 173.7,
+              "w": 9.0
+            },
+            {
+              "x": 377.5,
+              "o": 156.1,
+              "c": 146.3,
+              "h": 140,
+              "l": 158.3,
+              "w": 9.0
+            },
+            {
+              "x": 392.5,
+              "o": 146.3,
+              "c": 151.8,
+              "h": 140.4,
+              "l": 157.0,
+              "w": 9.0
+            },
+            {
+              "x": 407.5,
+              "o": 151.8,
+              "c": 149.6,
+              "h": 144.9,
+              "l": 156,
+              "w": 9.0
+            },
+            {
+              "x": 422.5,
+              "o": 149.6,
+              "c": 147.5,
+              "h": 141.6,
+              "l": 154.3,
+              "w": 9.0
+            },
+            {
+              "x": 437.5,
+              "o": 147.5,
+              "c": 155.0,
+              "h": 146,
+              "l": 159.4,
+              "w": 9.0
+            },
+            {
+              "x": 452.5,
+              "o": 155.0,
+              "c": 160.3,
+              "h": 149.3,
+              "l": 166.6,
+              "w": 9.0
+            },
+            {
+              "x": 467.5,
+              "o": 160.3,
+              "c": 159.0,
+              "h": 155.3,
+              "l": 166,
+              "w": 9.0
+            },
+            {
+              "x": 482.5,
+              "o": 159.0,
+              "c": 148.8,
+              "h": 143.9,
+              "l": 162.6,
+              "w": 9.0
+            },
+            {
+              "x": 497.5,
+              "o": 148.8,
+              "c": 134.1,
+              "h": 127.7,
+              "l": 151.7,
+              "w": 9.0
+            },
+            {
+              "x": 512.5,
+              "o": 134.1,
+              "c": 119.7,
+              "h": 114.8,
+              "l": 137.0,
+              "w": 9.0
+            },
+            {
+              "x": 527.5,
+              "o": 119.7,
+              "c": 119.6,
+              "h": 110,
+              "l": 123.0,
+              "w": 9.0
+            },
+            {
+              "x": 542.5,
+              "o": 119.6,
+              "c": 126.3,
+              "h": 116.2,
+              "l": 132.2,
+              "w": 9.0
+            },
+            {
+              "x": 557.5,
+              "o": 126.3,
+              "c": 131.3,
+              "h": 121.2,
+              "l": 133.8,
+              "w": 9.0
+            },
+            {
+              "x": 572.5,
+              "o": 131.3,
+              "c": 136.0,
+              "h": 129.0,
+              "l": 137.7,
+              "w": 9.0
+            }
+          ],
+          "hlines": [
+            {
+              "y": 38,
+              "label": "4H external high",
+              "tone": "muted",
+              "x1": 8,
+              "x2": 692,
+              "size": 11,
+              "below": true,
+              "labelX": 548
+            },
+            {
+              "y": 296,
+              "label": "4H external low",
+              "tone": "muted",
+              "x1": 8,
+              "x2": 692,
+              "size": 11,
+              "labelX": 548
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 8,
+              "y1": 38,
+              "x2": 692,
+              "y2": 296,
+              "tone": "purple",
+              "op": 0.22,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6
+            }
+          ]
+        }
+      },
+      "board": [
+        "1h.swing"
+      ],
+      "tasks": [
+        {
+          "do": "pick",
+          "tf": "1H",
+          "key": "1h.swing",
+          "prompt": "Tap the 1H swing low that matters most to the current leg up.",
+          "only": [
+            1,
+            3,
+            7,
+            9,
+            11,
+            4
+          ],
+          "answer": 4,
+          "value": "1H low the leg started from",
+          "label": "RELEVANT",
+          "concept": "1h-relevant-swing",
+          "notes": {
+            "1": "Real swing, but older. Did the current leg start there?",
+            "3": "Real swing, but older. Did the current leg start there?",
+            "7": "Minor internal pullback inside the leg.",
+            "9": "Minor internal pullback inside the leg. Close isn’t the same as relevant.",
+            "11": "Small internal wiggle near price. The closer swing isn’t always the right swing."
+          },
+          "mistakes": {
+            "1": "1h-relevant-swing",
+            "3": "1h-relevant-swing",
+            "7": "minor-swing",
+            "9": "minor-swing",
+            "11": "minor-swing"
+          },
+          "say": "A messy 1H. Lots of real swings. Which one defines the leg price is in now?",
+          "why": "That’s where the current leg came from."
+        },
+        {
+          "do": "choose",
+          "prompt": "WHY MIGHT THIS MATTER?",
+          "options": [
+            {
+              "label": "Defines the current structural leg",
+              "correct": true,
+              "why": "The leg up started there. If it fails, the leg fails."
+            },
+            {
+              "label": "Minor internal movement",
+              "correct": false,
+              "feedback": "That describes the small wiggles, not this low."
+            },
+            {
+              "label": "Already meaningfully broken",
+              "correct": false,
+              "feedback": "Price hasn’t traded back through it."
+            },
+            {
+              "label": "Not enough information",
+              "correct": false,
+              "feedback": "You have the structure you need here.",
+              "nei": true
+            }
+          ],
+          "concept": "1h-relevant-swing",
+          "stack": true
+        },
+        {
+          "do": "say",
+          "say": "Some of these 1H swings will matter a lot later, because price may need to prove itself through them. 👀",
+          "label": "Noted →"
+        }
+      ],
+      "save": "p4-8",
+      "outro": "Structure decided. Not distance, not size."
+    },
+    {
+      "type": "teach",
+      "kicker": "Relevance",
+      "heading": "Close isn’t the same as relevant.",
+      "body": "",
+      "beats": [
+        {
+          "icon": "🏗️",
+          "title": "Current structure"
+        },
+        {
+          "icon": "📍",
+          "title": "Proximity, maybe"
+        },
+        {
+          "icon": "🦵",
+          "title": "Structural leg"
+        },
+        {
+          "icon": "🧪",
+          "title": "Tested or broken?"
+        },
+        {
+          "icon": "🏛️",
+          "title": "Relation to the 4H room"
+        }
+      ],
+      "punch": "Structure decides."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "The closer swing isn’t always the right swing. <em>Structure decides.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "How do you choose the relevant 1H swing?",
+      "modelAnswer": "I look for the swing that defines the current structural leg and its relationship to the 4H room, not just the closest or most obvious one."
+    }
+  ],
+  "takeaways": [
+    "The closer swing isn’t always right.",
+    "The obvious swing isn’t always relevant.",
+    "Structure decides."
+  ],
+  "remember": "Find the swing the current leg depends on."
+}
