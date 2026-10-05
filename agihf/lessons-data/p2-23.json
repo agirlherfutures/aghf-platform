@@ -22,7 +22,19 @@
       "type": "teach",
       "kicker": "Stop saying “that’s support”",
       "title": "A level needs a job.",
-      "body": "Instead of:<br><s>“That’s support.”</s><br><br>Say:<br><strong>“This is the swing low supporting the current bullish structure.”</strong><br>or<br><strong>“This is the prior high price would need to overcome for continued bullish progression.”</strong>"
+      "body": "<s>“That’s support.”</s> Give the level a job:",
+      "beats": [
+        {
+          "icon": "🛡️",
+          "title": "The swing low supporting",
+          "line": "the current bullish structure"
+        },
+        {
+          "icon": "🚧",
+          "title": "The prior high to overcome",
+          "line": "for continued bullish progression"
+        }
+      ]
     },
     {
       "type": "price_lab",

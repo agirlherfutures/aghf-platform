@@ -298,7 +298,20 @@
       "type": "teach",
       "kicker": "Memory device",
       "heading": "Above highs. Below lows.",
-      "body": "<div class=\"p3-memo\"><div><b>ABOVE HIGHS</b><span>→ BUY-SIDE</span></div><div><b>BELOW LOWS</b><span>→ SELL-SIDE</span></div></div>Name it after the orders that may rest there. Short stops and breakout buys above. Long stops and breakdown sells below."
+      "body": "<div class=\"p3-memo\"><div><b>ABOVE HIGHS</b><span>→ BUY-SIDE</span></div><div><b>BELOW LOWS</b><span>→ SELL-SIDE</span></div></div>",
+      "beats": [
+        {
+          "icon": "⬆️",
+          "title": "Above",
+          "line": "Short stops + breakout buys"
+        },
+        {
+          "icon": "⬇️",
+          "title": "Below",
+          "line": "Long stops + breakdown sells"
+        }
+      ],
+      "punch": "Named after the orders that may rest there."
     },
     {
       "type": "price_lab",

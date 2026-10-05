@@ -34,7 +34,20 @@
       "type": "teach",
       "kicker": "Two definitions",
       "heading": "Potential demand. Potential supply.",
-      "body": "<strong>Potential demand zone:</strong> an area where price previously left strongly upward, suggesting buyers may have been aggressive there.<br><br><strong>Potential supply zone:</strong> an area where price previously left strongly downward, suggesting sellers may have been aggressive there.<br><br>Notice the words: <em>potential</em>, <em>previously</em>, <em>may</em>. They’re doing real work."
+      "body": "",
+      "beats": [
+        {
+          "icon": "🟢",
+          "title": "Potential demand",
+          "line": "Price left strongly upward from here"
+        },
+        {
+          "icon": "🔴",
+          "title": "Potential supply",
+          "line": "Price left strongly downward from here"
+        }
+      ],
+      "punch": "Potential. Previously. May. Those words are doing real work."
     },
     {
       "type": "price_replay",

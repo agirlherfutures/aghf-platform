@@ -447,7 +447,25 @@
       "type": "teach",
       "kicker": "Why it might",
       "heading": "Why price may revisit an imbalance.",
-      "body": "Traders commonly explain it like this:<ul class=\"p3-list\"><li>Price moved through the area quickly, with little two-sided trading.</li><li>Some traders watch those areas, so activity may show up there again.</li><li>Orders that missed the fast move may still be interested in those prices.</li></ul>These are <strong>explanations</strong>, not laws. Sometimes price comes back fast. Sometimes much later. Sometimes never."
+      "body": "Traders usually explain it three ways.",
+      "beats": [
+        {
+          "icon": "⚡",
+          "title": "Fast move",
+          "line": "Little two-sided trading"
+        },
+        {
+          "icon": "👀",
+          "title": "Watched area",
+          "line": "Activity may show up again"
+        },
+        {
+          "icon": "⏳",
+          "title": "Missed orders",
+          "line": "May still want those prices"
+        }
+      ],
+      "punch": "Explanations, not laws. Sometimes fast, later, or never."
     },
     {
       "type": "verdicts",

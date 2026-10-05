@@ -523,7 +523,7 @@
       "type": "teach",
       "kicker": "A new habit",
       "heading": "Ask how price got there.",
-      "body": "<ol class=\"p3-chain\"><li>Where did price start?</li><li>Where did it go?</li><li><strong>How did it get there?</strong></li><li>What did it leave behind?</li><li>What is the structure?</li><li>Does it change my entry model? <em>Not by itself.</em></li></ol>That chain is this whole section. Delivery is context: it sits with liquidity in the middle lens.",
+      "body": "A new habit for every move:",
       "check": {
         "prompt": "Price moved from the low to the high. What’s the new question this section adds?",
         "options": [
@@ -544,7 +544,36 @@
             "feedback": "That’s a prediction. Start with what price already did."
           }
         ]
-      }
+      },
+      "beats": [
+        {
+          "icon": "📍",
+          "title": "Where did it start?"
+        },
+        {
+          "icon": "🏁",
+          "title": "Where did it go?"
+        },
+        {
+          "icon": "🛣️",
+          "title": "How did it get there?",
+          "line": "The new question"
+        },
+        {
+          "icon": "👣",
+          "title": "What did it leave behind?"
+        },
+        {
+          "icon": "🏗️",
+          "title": "What is the structure?"
+        },
+        {
+          "icon": "🎯",
+          "title": "Change my entry model?",
+          "line": "Not by itself"
+        }
+      ],
+      "punch": "Delivery is context. It sits with liquidity in the middle lens."
     },
     {
       "type": "v2_dayli",

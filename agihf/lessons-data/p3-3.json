@@ -1003,7 +1003,20 @@
       "type": "teach",
       "kicker": "Keep it in perspective",
       "heading": "This lesson doesn’t move your stop.",
-      "body": "It explains why orders tend to cluster around obvious highs and lows. Where you place a stop is part of your risk plan and your entry model. Understanding clusters helps you read the chart calmly, instead of taking every wick personally."
+      "body": "Why orders cluster at obvious highs and lows.",
+      "beats": [
+        {
+          "icon": "🧠",
+          "title": "This lesson",
+          "line": "Helps you read the chart calmly"
+        },
+        {
+          "icon": "🛡️",
+          "title": "Your stop",
+          "line": "Lives in your risk plan and entry model"
+        }
+      ],
+      "punch": "Understanding clusters doesn’t move your stop. It stops you taking every wick personally."
     },
     {
       "type": "reflect",

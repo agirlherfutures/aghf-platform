@@ -52,7 +52,31 @@
       "type": "teach",
       "kicker": "Intuition checklist",
       "heading": "Questions price can answer.",
-      "body": "<ul class=\"p3-list\"><li>Where did price close?</li><li>Did it hold beyond the level, or come back?</li><li>How fast did it move? Big candles or small?</li><li>Did candles overlap, or travel cleanly?</li><li>Did the move change the structure?</li></ul>That’s order-flow intuition, read straight from candles."
+      "body": "Questions price can actually answer:",
+      "beats": [
+        {
+          "icon": "🔒",
+          "title": "Where did it close?"
+        },
+        {
+          "icon": "🧲",
+          "title": "Did it hold beyond?"
+        },
+        {
+          "icon": "⚡",
+          "title": "How fast?",
+          "line": "Big candles or small"
+        },
+        {
+          "icon": "🧵",
+          "title": "Overlap or clean?"
+        },
+        {
+          "icon": "🏗️",
+          "title": "Did structure change?"
+        }
+      ],
+      "punch": "That’s order-flow intuition, straight from candles."
     },
     {
       "type": "price_lab",

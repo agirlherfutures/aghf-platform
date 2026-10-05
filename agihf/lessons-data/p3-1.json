@@ -34,7 +34,7 @@
       "type": "teach",
       "kicker": "Start here",
       "heading": "Every trade needs two sides.",
-      "body": "<div class=\"p3-pair\"><span>🟢 BUYERS</span><b>↔</b><span>🔴 SELLERS</span></div>To buy, someone has to sell to you. To sell, someone has to buy from you. Markets need counterparties.<br><br><strong>Liquidity</strong> is about the orders available to trade against: buyers and sellers willing to transact at a price.",
+      "body": "<div class=\"p3-pair\"><span>🟢 BUYERS</span><b>↔</b><span>🔴 SELLERS</span></div>",
       "check": {
         "prompt": "You want to buy 1 contract. What has to exist?",
         "options": [
@@ -54,7 +54,20 @@
             "feedback": "Your chart doesn’t fill orders. Another trader does."
           }
         ]
-      }
+      },
+      "beats": [
+        {
+          "icon": "🛒",
+          "title": "To buy",
+          "line": "Someone has to sell to you"
+        },
+        {
+          "icon": "💸",
+          "title": "To sell",
+          "line": "Someone has to buy from you"
+        }
+      ],
+      "punch": "<strong>Liquidity</strong> = the orders available to trade against."
     },
     {
       "type": "price_lab",

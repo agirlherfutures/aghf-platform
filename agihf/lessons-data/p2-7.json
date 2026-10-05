@@ -464,20 +464,22 @@
       "type": "confusion",
       "heading": "External ≠ Internal",
       "left": {
-        "label": "🚪 External structure",
+        "label": "External structure",
         "points": [
           "The room",
           "The larger swing boundaries",
           "Defines the range you’re analyzing"
-        ]
+        ],
+        "icon": "🚪"
       },
       "right": {
-        "label": "🛋️ Internal structure",
+        "label": "Internal structure",
         "points": [
           "The furniture",
           "The smaller swings inside",
           "Can change while the room stays the same"
-        ]
+        ],
+        "icon": "🛋️"
       }
     },
     {

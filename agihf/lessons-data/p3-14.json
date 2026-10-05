@@ -23,7 +23,7 @@
       "type": "teach",
       "kicker": "Two descriptions",
       "heading": "More balanced-looking. More imbalanced-looking.",
-      "body": "<strong>More balanced-looking:</strong> lots of overlap and back-and-forth. Both sides traded through the same prices.<br><br><strong>More imbalanced-looking:</strong> big one-direction candles with little overlap.<br><br>Some people call these “efficient” and “inefficient.” Neither one is <em>good</em> or <em>bad</em>. They’re descriptions of delivery.",
+      "body": "",
       "check": {
         "prompt": "Is an imbalanced-looking move better than a balanced-looking one?",
         "options": [
@@ -38,7 +38,20 @@
             "feedback": "Fast isn’t a grade. It’s a description."
           }
         ]
-      }
+      },
+      "beats": [
+        {
+          "icon": "🧶",
+          "title": "More balanced-looking",
+          "line": "Lots of overlap, both sides traded"
+        },
+        {
+          "icon": "🚀",
+          "title": "More imbalanced-looking",
+          "line": "Big one-way candles, little overlap"
+        }
+      ],
+      "punch": "Some say efficient and inefficient. Neither is good or bad."
     },
     {
       "type": "flash_sort",

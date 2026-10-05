@@ -176,7 +176,7 @@ export function readPanel(r) {
 function storyHtml(story) {
   return `<div class="pl-story">
     <div class="pl-panel-title">${story.title || 'Structure story'}</div>
-    ${story.rows.map((r) => `<div class="pl-row" data-key="${r.key}"><span class="pl-row-label">${r.label}</span><span class="pl-row-val pl-tone-${r.tone || 'muted'}">${r.value}</span></div>`).join('')}
+    <div class="pl-chips">${story.rows.map((r) => `<div class="pl-row" data-key="${r.key}"><span class="pl-row-label">${r.label}</span><span class="pl-row-val pl-tone-${r.tone || 'muted'}">${r.value}</span></div>`).join('')}</div>
   </div>`;
 }
 function evidenceHtml(ev) {

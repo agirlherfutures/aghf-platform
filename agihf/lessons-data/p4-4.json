@@ -1,0 +1,455 @@
+{
+  "phase": "p4",
+  "section": "s10",
+  "lessonNumber": 4,
+  "title": "Previous 4H Swing Highs & Lows",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Same landmark. Different message.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Separate a wick interaction from a close and progression through a previous 4H swing.",
+    "missionQuestion": "Did price say the same thing both times?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_replay",
+      "kicker": "Play both",
+      "charts": [
+        {
+          "label": "Scenario A",
+          "chart": {
+            "swings": [
+              [
+                60,
+                232
+              ],
+              [
+                570,
+                200
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60,
+                "o": 232,
+                "c": 218,
+                "h": 214,
+                "l": 236,
+                "w": 19.7
+              },
+              {
+                "x": 94,
+                "o": 218,
+                "c": 206,
+                "h": 202,
+                "l": 222,
+                "w": 19.7
+              },
+              {
+                "x": 128,
+                "o": 206,
+                "c": 190,
+                "h": 186,
+                "l": 210,
+                "w": 19.7
+              },
+              {
+                "x": 162,
+                "o": 190,
+                "c": 180,
+                "h": 176,
+                "l": 194,
+                "w": 19.7
+              },
+              {
+                "x": 196,
+                "o": 180,
+                "c": 166,
+                "h": 162,
+                "l": 184,
+                "w": 19.7
+              },
+              {
+                "x": 230,
+                "o": 166,
+                "c": 178,
+                "h": 162,
+                "l": 182,
+                "w": 19.7
+              },
+              {
+                "x": 264,
+                "o": 178,
+                "c": 192,
+                "h": 174,
+                "l": 196,
+                "w": 19.7
+              },
+              {
+                "x": 298,
+                "o": 192,
+                "c": 202,
+                "h": 188,
+                "l": 206,
+                "w": 19.7
+              },
+              {
+                "x": 332,
+                "o": 202,
+                "c": 194,
+                "h": 190,
+                "l": 206,
+                "w": 19.7
+              },
+              {
+                "x": 366,
+                "o": 194,
+                "c": 184,
+                "h": 180,
+                "l": 198,
+                "w": 19.7
+              },
+              {
+                "x": 400,
+                "o": 184,
+                "c": 176,
+                "h": 172,
+                "l": 188,
+                "w": 19.7
+              },
+              {
+                "x": 434,
+                "o": 176,
+                "c": 170,
+                "h": 167,
+                "l": 180,
+                "w": 19.7
+              },
+              {
+                "x": 468,
+                "o": 170,
+                "c": 164,
+                "h": 134,
+                "l": 174,
+                "w": 19.7
+              },
+              {
+                "x": 502,
+                "o": 164,
+                "c": 178,
+                "h": 160,
+                "l": 182,
+                "w": 19.7
+              },
+              {
+                "x": 536,
+                "o": 178,
+                "c": 190,
+                "h": 174,
+                "l": 194,
+                "w": 19.7
+              },
+              {
+                "x": 570,
+                "o": 190,
+                "c": 200,
+                "h": 186,
+                "l": 204,
+                "w": 19.7
+              }
+            ],
+            "hlines": [
+              {
+                "y": 162,
+                "label": "Previous 4H swing high",
+                "tone": "purple",
+                "x1": 186,
+                "x2": 692,
+                "size": 13,
+                "labelX": 430
+              }
+            ]
+          }
+        },
+        {
+          "label": "Scenario B",
+          "chart": {
+            "swings": [
+              [
+                60,
+                232
+              ],
+              [
+                604,
+                118
+              ]
+            ],
+            "candles": false,
+            "bars": [
+              {
+                "x": 60,
+                "o": 232,
+                "c": 218,
+                "h": 214,
+                "l": 236,
+                "w": 19.7
+              },
+              {
+                "x": 94,
+                "o": 218,
+                "c": 206,
+                "h": 202,
+                "l": 222,
+                "w": 19.7
+              },
+              {
+                "x": 128,
+                "o": 206,
+                "c": 190,
+                "h": 186,
+                "l": 210,
+                "w": 19.7
+              },
+              {
+                "x": 162,
+                "o": 190,
+                "c": 180,
+                "h": 176,
+                "l": 194,
+                "w": 19.7
+              },
+              {
+                "x": 196,
+                "o": 180,
+                "c": 166,
+                "h": 162,
+                "l": 184,
+                "w": 19.7
+              },
+              {
+                "x": 230,
+                "o": 166,
+                "c": 178,
+                "h": 162,
+                "l": 182,
+                "w": 19.7
+              },
+              {
+                "x": 264,
+                "o": 178,
+                "c": 192,
+                "h": 174,
+                "l": 196,
+                "w": 19.7
+              },
+              {
+                "x": 298,
+                "o": 192,
+                "c": 202,
+                "h": 188,
+                "l": 206,
+                "w": 19.7
+              },
+              {
+                "x": 332,
+                "o": 202,
+                "c": 194,
+                "h": 190,
+                "l": 206,
+                "w": 19.7
+              },
+              {
+                "x": 366,
+                "o": 194,
+                "c": 184,
+                "h": 180,
+                "l": 198,
+                "w": 19.7
+              },
+              {
+                "x": 400,
+                "o": 184,
+                "c": 176,
+                "h": 172,
+                "l": 188,
+                "w": 19.7
+              },
+              {
+                "x": 434,
+                "o": 176,
+                "c": 170,
+                "h": 167,
+                "l": 180,
+                "w": 19.7
+              },
+              {
+                "x": 468,
+                "o": 170,
+                "c": 148,
+                "h": 144,
+                "l": 174,
+                "w": 19.7
+              },
+              {
+                "x": 502,
+                "o": 148,
+                "c": 136,
+                "h": 132,
+                "l": 152,
+                "w": 19.7
+              },
+              {
+                "x": 536,
+                "o": 136,
+                "c": 142,
+                "h": 132,
+                "l": 146,
+                "w": 19.7
+              },
+              {
+                "x": 570,
+                "o": 142,
+                "c": 128,
+                "h": 124,
+                "l": 146,
+                "w": 19.7
+              },
+              {
+                "x": 604,
+                "o": 128,
+                "c": 118,
+                "h": 114,
+                "l": 132,
+                "w": 19.7
+              }
+            ],
+            "hlines": [
+              {
+                "y": 162,
+                "label": "Previous 4H swing high",
+                "tone": "purple",
+                "x1": 186,
+                "x2": 692,
+                "size": 13,
+                "labelX": 430
+              }
+            ]
+          }
+        }
+      ],
+      "start": 6,
+      "title": "Same swing. Two stories.",
+      "pauses": [
+        {
+          "at": 12,
+          "text": "Both approach the previous 4H swing high. Same landmark."
+        }
+      ],
+      "end": {
+        "text": "A wicked through and closed back below. B closed through and built above.",
+        "asks": [
+          {
+            "prompt": "DID PRICE COMMUNICATE THE SAME THING?",
+            "options": [
+              {
+                "label": "No",
+                "correct": true,
+                "why": "Same landmark. Very different interaction."
+              },
+              {
+                "label": "Yes, both went above it",
+                "correct": false,
+                "feedback": "Look at the closes, not just the wicks.",
+                "mistake": "wick-equals-break"
+              }
+            ],
+            "concept": "4h-relevant-swing"
+          },
+          {
+            "prompt": "SCENARIO A WAS…",
+            "options": [
+              {
+                "label": "A wick interaction",
+                "correct": true,
+                "why": "Traded above, closed back below."
+              },
+              {
+                "label": "Closure + progression",
+                "correct": false,
+                "feedback": "Did any candle close above and build?"
+              }
+            ],
+            "concept": "4h-relevant-swing"
+          },
+          {
+            "prompt": "SCENARIO B WAS…",
+            "options": [
+              {
+                "label": "Closure + progression",
+                "correct": true,
+                "why": "Closed through, then built above."
+              },
+              {
+                "label": "A wick interaction",
+                "correct": false,
+                "feedback": "Look where B’s candles closed."
+              }
+            ],
+            "concept": "4h-relevant-swing"
+          }
+        ]
+      }
+    },
+    {
+      "type": "teach",
+      "kicker": "Remember Phase 2?",
+      "heading": "The swing is the landmark.",
+      "body": "",
+      "beats": [
+        {
+          "icon": "⛰️",
+          "title": "The swing",
+          "line": "Where to look"
+        },
+        {
+          "icon": "🔒",
+          "title": "The close",
+          "line": "How price interacted with it"
+        },
+        {
+          "icon": "🏗️",
+          "title": "What comes next",
+          "line": "Did price build beyond?"
+        }
+      ],
+      "punch": "Wicks, closes and structure: the same skills, now on the 4H."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "The swing is the landmark. <em>The close tells you how price interacted with it.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What’s the difference between a wick through a 4H swing and a close through it?",
+      "modelAnswer": "A wick shows price traded beyond the swing. A close and progression beyond it shows price actually built there, which tells me much more about the structure."
+    }
+  ],
+  "takeaways": [
+    "A swing is a landmark.",
+    "Wicks and closes say different things.",
+    "Progression beyond a swing is the real information."
+  ],
+  "remember": "The swing is the landmark. The close tells you how price interacted with it."
+}

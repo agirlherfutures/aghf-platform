@@ -858,7 +858,7 @@
       "type": "teach",
       "kicker": "Observe, don’t formula",
       "title": "Questions, not one-candle rules.",
-      "body": "At a level, ask:<br><br>· Did price interact and move away?<br>· Did price begin holding beyond?<br>· Did closes develop beyond?<br>· Did structure begin developing beyond?<br>· <strong>Do we have enough information yet?</strong>",
+      "body": "At a level, ask:",
       "check": {
         "prompt": "One candle closes above resistance. Acceptance confirmed?",
         "options": [
@@ -873,7 +873,29 @@
             "why": "Exactly. Behavior develops over several candles."
           }
         ]
-      }
+      },
+      "beats": [
+        {
+          "icon": "↩️",
+          "title": "Moved away?"
+        },
+        {
+          "icon": "🧲",
+          "title": "Holding beyond?"
+        },
+        {
+          "icon": "🔒",
+          "title": "Closes beyond?"
+        },
+        {
+          "icon": "🏗️",
+          "title": "Structure beyond?"
+        },
+        {
+          "icon": "?",
+          "title": "Enough info yet?"
+        }
+      ]
     },
     {
       "type": "flash_sort",

@@ -289,20 +289,18 @@ export function renderDayliSays(el, block, satisfy) {
 }
 
 export function renderConfusion(el, block, satisfy) {
+  const side = (c, k) => `
+        <div class="vt-vs-card ${k}">
+          <span class="vt-vs-ic">${c.icon || (k === 'left' ? '👀' : '🧭')}</span>
+          <div class="vt-vs-label">${c.label}</div>
+          <div class="vt-vs-points">${c.points.map((p) => `<span>${p}</span>`).join('')}</div>
+        </div>`;
   el.innerHTML = `
     <div class="lw-card lw-confusion-card">
-      <div class="lw-eyebrow">Don't Get This Confused</div>
+      <div class="lw-eyebrow">${block.kicker || "Don't Get This Confused"}</div>
       <h2>${block.heading}</h2>
-      <div class="lw-confusion-grid">
-        <div class="lw-confusion-col left">
-          <div class="lw-confusion-label">${block.left.label}</div>
-          <ul>${block.left.points.map((p) => `<li>${p}</li>`).join('')}</ul>
-        </div>
-        <div class="lw-confusion-col right">
-          <div class="lw-confusion-label">${block.right.label}</div>
-          <ul>${block.right.points.map((p) => `<li>${p}</li>`).join('')}</ul>
-        </div>
-      </div>
+      <div class="vt-vs">${side(block.left, 'left')}<b class="vt-vs-ne">≠</b>${side(block.right, 'right')}</div>
+      ${block.punch ? `<div class="vt-punch"><span>✦</span>${block.punch}</div>` : ''}
     </div>
   `;
   appendContinue(el, satisfy);

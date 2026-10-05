@@ -1,0 +1,586 @@
+{
+  "phase": "p4",
+  "section": "s10",
+  "lessonNumber": 13,
+  "title": "Updating Your Bias in Real Time",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "New information received.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Update a live thesis as price prints, without treating a change as failure.",
+    "missionQuestion": "What do you do when price changes the evidence?",
+    "estMinutes": 9
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            100
+          ],
+          [
+            99.5,
+            150
+          ],
+          [
+            150.5,
+            124
+          ],
+          [
+            218.5,
+            176
+          ],
+          [
+            286.5,
+            118
+          ],
+          [
+            337.5,
+            146
+          ],
+          [
+            371.5,
+            130
+          ],
+          [
+            456.5,
+            212
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.5,
+            "o": 100,
+            "c": 112.5,
+            "h": 95.7,
+            "l": 118.0,
+            "w": 10.2
+          },
+          {
+            "x": 65.5,
+            "o": 112.5,
+            "c": 123.4,
+            "h": 109.3,
+            "l": 128.4,
+            "w": 10.2
+          },
+          {
+            "x": 82.5,
+            "o": 123.4,
+            "c": 137.4,
+            "h": 120.1,
+            "l": 140.9,
+            "w": 10.2
+          },
+          {
+            "x": 99.5,
+            "o": 137.4,
+            "c": 142.7,
+            "h": 134.7,
+            "l": 150,
+            "w": 10.2
+          },
+          {
+            "x": 116.5,
+            "o": 142.7,
+            "c": 136.9,
+            "h": 130.9,
+            "l": 147.6,
+            "w": 10.2
+          },
+          {
+            "x": 133.5,
+            "o": 136.9,
+            "c": 130.7,
+            "h": 127.5,
+            "l": 140.6,
+            "w": 10.2
+          },
+          {
+            "x": 150.5,
+            "o": 130.7,
+            "c": 130.6,
+            "h": 124,
+            "l": 135.6,
+            "w": 10.2
+          },
+          {
+            "x": 167.5,
+            "o": 130.6,
+            "c": 140.3,
+            "h": 127.6,
+            "l": 146.7,
+            "w": 10.2
+          },
+          {
+            "x": 184.5,
+            "o": 140.3,
+            "c": 152.0,
+            "h": 133.9,
+            "l": 156.6,
+            "w": 10.2
+          },
+          {
+            "x": 201.5,
+            "o": 152.0,
+            "c": 166.8,
+            "h": 147.3,
+            "l": 169.2,
+            "w": 10.2
+          },
+          {
+            "x": 218.5,
+            "o": 166.8,
+            "c": 167.1,
+            "h": 163.7,
+            "l": 176,
+            "w": 10.2
+          },
+          {
+            "x": 235.5,
+            "o": 167.1,
+            "c": 154.0,
+            "h": 151.9,
+            "l": 168.9,
+            "w": 10.2
+          },
+          {
+            "x": 252.5,
+            "o": 154.0,
+            "c": 141.4,
+            "h": 139.8,
+            "l": 157.5,
+            "w": 10.2
+          },
+          {
+            "x": 269.5,
+            "o": 141.4,
+            "c": 133.4,
+            "h": 126.9,
+            "l": 145.0,
+            "w": 10.2
+          },
+          {
+            "x": 286.5,
+            "o": 133.4,
+            "c": 124.4,
+            "h": 118,
+            "l": 136.8,
+            "w": 10.2
+          },
+          {
+            "x": 303.5,
+            "o": 124.4,
+            "c": 129.9,
+            "h": 121.8,
+            "l": 134.5,
+            "w": 10.2
+          },
+          {
+            "x": 320.5,
+            "o": 129.9,
+            "c": 139.3,
+            "h": 128.3,
+            "l": 143.2,
+            "w": 10.2
+          },
+          {
+            "x": 337.5,
+            "o": 139.3,
+            "c": 138.3,
+            "h": 134.7,
+            "l": 146,
+            "w": 10.2
+          },
+          {
+            "x": 354.5,
+            "o": 138.3,
+            "c": 133.6,
+            "h": 130.1,
+            "l": 140.3,
+            "w": 10.2
+          },
+          {
+            "x": 371.5,
+            "o": 133.6,
+            "c": 138.7,
+            "h": 130,
+            "l": 143.3,
+            "w": 10.2
+          },
+          {
+            "x": 388.5,
+            "o": 138.7,
+            "c": 155.1,
+            "h": 135.2,
+            "l": 161.4,
+            "w": 10.2
+          },
+          {
+            "x": 405.5,
+            "o": 155.1,
+            "c": 166.3,
+            "h": 152.6,
+            "l": 169.7,
+            "w": 10.2
+          },
+          {
+            "x": 422.5,
+            "o": 166.3,
+            "c": 188.1,
+            "h": 164.0,
+            "l": 193.5,
+            "w": 10.2
+          },
+          {
+            "x": 439.5,
+            "o": 188.1,
+            "c": 203.1,
+            "h": 182.4,
+            "l": 207.0,
+            "w": 10.2
+          },
+          {
+            "x": 456.5,
+            "o": 203.1,
+            "c": 204.2,
+            "h": 197.6,
+            "l": 212,
+            "w": 10.2
+          },
+          {
+            "x": 473.5,
+            "o": 204.2,
+            "c": 201.8,
+            "h": 196.2,
+            "l": 206.6,
+            "w": 10.2
+          },
+          {
+            "x": 490.5,
+            "o": 201.8,
+            "c": 198.9,
+            "h": 193.7,
+            "l": 204.5,
+            "w": 10.2
+          },
+          {
+            "x": 507.5,
+            "o": 198.9,
+            "c": 196.0,
+            "h": 193.5,
+            "l": 204.6,
+            "w": 10.2
+          }
+        ],
+        "hlines": [
+          {
+            "y": 38,
+            "label": "4H external high",
+            "tone": "muted",
+            "x1": 8,
+            "x2": 692,
+            "size": 11,
+            "below": true,
+            "labelX": 548
+          },
+          {
+            "y": 296,
+            "label": "4H external low",
+            "tone": "muted",
+            "x1": 8,
+            "x2": 692,
+            "size": 11,
+            "labelX": 548
+          },
+          {
+            "y": 176,
+            "label": "1H low",
+            "tone": "purple",
+            "x1": 210.5,
+            "x2": 692,
+            "size": 12,
+            "id": "keylow",
+            "below": true,
+            "labelX": 560
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 8,
+            "y1": 38,
+            "x2": 692,
+            "y2": 296,
+            "tone": "purple",
+            "op": 0.22,
+            "dashed": false,
+            "stroke": false,
+            "rx": 6
+          }
+        ]
+      },
+      "start": 12,
+      "steps": [
+        {
+          "text": "9:00 AM · Bullish room. 1H correcting. Your thesis: bullish, if the 1H low holds.",
+          "show": [
+            "keylow"
+          ]
+        },
+        {
+          "candles": 17,
+          "text": "10:00 AM · The 1H holds the low and builds higher.",
+          "asks": [
+            {
+              "prompt": "YOUR THESIS IS…",
+              "options": [
+                {
+                  "label": "Strengthened",
+                  "correct": true,
+                  "why": "Price supported the structure the thesis needs."
+                },
+                {
+                  "label": "Weakened",
+                  "correct": false,
+                  "feedback": "Price built higher off the key low. What did that do to the thesis?"
+                },
+                {
+                  "label": "Invalidated",
+                  "correct": false,
+                  "feedback": "Price built higher off the key low. What did that do to the thesis?"
+                },
+                {
+                  "label": "Unchanged",
+                  "correct": false,
+                  "feedback": "Price built higher off the key low. What did that do to the thesis?"
+                }
+              ],
+              "concept": "bias-update"
+            }
+          ],
+          "story": {
+            "t": {
+              "value": "10:00 AM",
+              "tone": "muted"
+            },
+            "h1": {
+              "value": "Building higher",
+              "tone": "up"
+            },
+            "th": {
+              "value": "Strengthened",
+              "tone": "up"
+            }
+          }
+        },
+        {
+          "candles": 20,
+          "text": "11:00 AM · A lower high under the top, and price drifts lower. The key low hasn’t broken.",
+          "asks": [
+            {
+              "prompt": "YOUR THESIS IS…",
+              "options": [
+                {
+                  "label": "Strengthened",
+                  "correct": false,
+                  "feedback": "Something changed, but did the key low break?"
+                },
+                {
+                  "label": "Weakened",
+                  "correct": true,
+                  "why": "A lower high weakens it. The key low is still intact, so it isn’t invalidated."
+                },
+                {
+                  "label": "Invalidated",
+                  "correct": false,
+                  "feedback": "Something changed, but did the key low break?"
+                },
+                {
+                  "label": "Unchanged",
+                  "correct": false,
+                  "feedback": "Something changed, but did the key low break?"
+                }
+              ],
+              "concept": "bias-update"
+            }
+          ],
+          "story": {
+            "t": {
+              "value": "11:00 AM",
+              "tone": "muted"
+            },
+            "h1": {
+              "value": "Lower high",
+              "tone": "gold"
+            },
+            "th": {
+              "value": "Weakened",
+              "tone": "gold"
+            }
+          }
+        },
+        {
+          "candles": 28,
+          "text": "12:00 PM · Price fails and closes below the 1H low.",
+          "asks": [
+            {
+              "prompt": "YOUR THESIS IS…",
+              "options": [
+                {
+                  "label": "Strengthened",
+                  "correct": false,
+                  "feedback": "The key low broke on a close. You built the morning thesis correctly. Now price has changed the evidence.",
+                  "mistake": "refuses-update"
+                },
+                {
+                  "label": "Weakened",
+                  "correct": false,
+                  "feedback": "The key low broke on a close. You built the morning thesis correctly. Now price has changed the evidence.",
+                  "mistake": "refuses-update"
+                },
+                {
+                  "label": "Invalidated",
+                  "correct": true,
+                  "why": "The structure the thesis depended on broke."
+                },
+                {
+                  "label": "Unchanged",
+                  "correct": false,
+                  "feedback": "The key low broke on a close. You built the morning thesis correctly. Now price has changed the evidence.",
+                  "mistake": "refuses-update"
+                }
+              ],
+              "concept": "bias-update"
+            }
+          ],
+          "story": {
+            "t": {
+              "value": "12:00 PM",
+              "tone": "muted"
+            },
+            "h1": {
+              "value": "Key low broken",
+              "tone": "down"
+            },
+            "th": {
+              "value": "No longer supported",
+              "tone": "down"
+            }
+          }
+        }
+      ],
+      "story": {
+        "title": "Live thesis",
+        "rows": [
+          {
+            "key": "t",
+            "label": "Time",
+            "value": "9:00 AM",
+            "tone": "muted"
+          },
+          {
+            "key": "ctx",
+            "label": "4H room",
+            "value": "Bullish",
+            "tone": "up"
+          },
+          {
+            "key": "h1",
+            "label": "1H",
+            "value": "Correcting",
+            "tone": "gold"
+          },
+          {
+            "key": "th",
+            "label": "Thesis",
+            "value": "Bullish, if the 1H low holds",
+            "tone": "up"
+          }
+        ]
+      },
+      "kicker": "Live thesis simulation",
+      "title": "Next price →"
+    },
+    {
+      "type": "teach",
+      "kicker": "New information received",
+      "heading": "Changing your read isn’t failure.",
+      "body": "",
+      "beats": [
+        {
+          "icon": "🗂️",
+          "title": "Old thesis",
+          "line": "No longer supported"
+        },
+        {
+          "icon": "🔎",
+          "title": "New read",
+          "line": "Reassess current structure"
+        }
+      ],
+      "punch": "Update analysis →"
+    },
+    {
+      "type": "teach",
+      "kicker": "The AGHF Analysis Loop",
+      "heading": "Read. Map. Wait. Update. Repeat.",
+      "body": "",
+      "beats": [
+        {
+          "icon": "1",
+          "title": "READ",
+          "line": "What is structure showing?"
+        },
+        {
+          "icon": "2",
+          "title": "MAP",
+          "line": "Which levels matter?"
+        },
+        {
+          "icon": "3",
+          "title": "WAIT",
+          "line": "What does price do there?"
+        },
+        {
+          "icon": "4",
+          "title": "UPDATE",
+          "line": "Confirm, weaken or invalidate?"
+        },
+        {
+          "icon": "5",
+          "title": "REPEAT",
+          "line": "Every session"
+        }
+      ],
+      "punch": "You’ll use this loop for the rest of the Academy."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Consistency in process. <em>Not consistency in opinion.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Your friend says: “I said I was bullish this morning, so I’m staying bullish all day.” What do you tell her?",
+      "modelAnswer": "Bias isn’t a promise. If the structure supporting the bullish thesis changes, the analysis should change too."
+    }
+  ],
+  "takeaways": [
+    "New information can strengthen, weaken or invalidate.",
+    "Updating isn’t failure.",
+    "Read → Map → Wait → Update → Repeat."
+  ],
+  "remember": "Consistency in process. Not consistency in opinion."
+}

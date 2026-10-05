@@ -38,6 +38,7 @@ import { V2_RENDERERS, renderV2Complete, renderV2Dayli } from './lesson-v2.js';
 import { PRICE_LAB_RENDERERS } from './price-lab.js';
 import { PHASE3_RENDERERS } from './phase3-tools.js';
 import { PRICE_REPLAY_RENDERERS } from './price-replay.js';
+import { TOPDOWN_RENDERERS } from './topdown.js';
 import { LEVEL_RENDERERS } from './level-tools.js';
 
 // Temporary: everything unlocked while the Academy is being built (see preview.js).
@@ -192,13 +193,27 @@ function renderSlideBlock(el, slide, satisfy, helpers) {
 
 /* ── Teach: one short paragraph, optionally paired with a quick check ── */
 
+// beats: [{ icon, title, line }] turn a paragraph into a row of small visual cards.
+function beatsHtml(beats) {
+  if (!beats || !beats.length) return '';
+  const cols = beats.length === 4 ? 2 : Math.min(beats.length, 3);
+  return `<div class="vt-beats vt-cols-${cols}">${beats.map((b, i) => `
+    <div class="vt-beat" style="animation-delay:${i * 90}ms">
+      ${b.icon ? `<span class="vt-ic">${b.icon}</span>` : ''}
+      <span class="vt-t">${b.title}</span>
+      ${b.line ? `<span class="vt-l">${b.line}</span>` : ''}
+    </div>`).join('')}</div>`;
+}
+
 function renderTeachSlide(el, slide, satisfy, helpers) {
   const hasCheck = !!slide.check;
   el.innerHTML = `
     <div class="lw-card">
       <div class="lw-eyebrow">${slide.kicker || 'Teach'}</div>
-      ${slide.heading ? `<h2>${slide.heading}</h2>` : ''}
-      <p>${slide.body}</p>
+      ${slide.heading || slide.title ? `<h2>${slide.heading || slide.title}</h2>` : ''}
+      ${slide.body ? `<p class="${slide.beats ? 'vt-lead' : ''}">${slide.body}</p>` : ''}
+      ${beatsHtml(slide.beats)}
+      ${slide.punch ? `<div class="vt-punch"><span>✦</span>${slide.punch}</div>` : ''}
       ${hasCheck ? `
         <div class="ls-check">
           <div class="ls-check-q">${slide.check.prompt}</div>
@@ -936,6 +951,7 @@ export const SLIDE_RENDERERS = {
   ...LEVEL_RENDERERS,
   ...PHASE3_RENDERERS,
   ...PRICE_REPLAY_RENDERERS,
+  ...TOPDOWN_RENDERERS,
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
   chart_tap: renderChartTapSlide,

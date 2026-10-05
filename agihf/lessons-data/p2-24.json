@@ -343,7 +343,9 @@
       "type": "teach",
       "kicker": "Context > label",
       "title": "The name matters less than the job.",
-      "body": "Different frameworks may use different terminology around overlapping price areas.<br><br>AGHF cares about one question: <strong>why does this area matter to the structure you’re reading?</strong>"
+      "body": "Frameworks use different names for overlapping areas.",
+      "beats": [],
+      "punch": "Why does this area matter to the structure you’re reading?"
     },
     {
       "type": "price_lab",

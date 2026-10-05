@@ -23,20 +23,22 @@
       "type": "confusion",
       "heading": "Two lenses. Two questions.",
       "left": {
-        "label": "💧 Liquidity question",
+        "label": "Liquidity question",
         "points": [
           "Did price trade through an area where orders may rest?",
           "Above a high? Below a low?",
           "A wick can answer it"
-        ]
+        ],
+        "icon": "💧"
       },
       "right": {
-        "label": "🏗️ Structure question",
+        "label": "Structure question",
         "points": [
           "Did price close through the relevant swing?",
           "Did it hold and build beyond?",
           "Only behavior over time can answer it"
-        ]
+        ],
+        "icon": "🏗️"
       }
     },
     {

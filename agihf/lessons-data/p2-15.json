@@ -281,7 +281,26 @@
       "type": "teach",
       "kicker": "A wick still tells you something",
       "title": "A wick isn’t “nothing.”",
-      "body": "A wick through a level can show:<br><br>· price traded beyond the level<br>· rejection<br>· a temporary excursion<br>· interaction around liquidity<br><br>But it does <strong>not</strong> automatically communicate the same structural confirmation as a candle <strong>close</strong> through the level."
+      "body": "A wick through a level can show:",
+      "beats": [
+        {
+          "icon": "↗️",
+          "title": "Traded beyond"
+        },
+        {
+          "icon": "↩️",
+          "title": "Rejection"
+        },
+        {
+          "icon": "⏱️",
+          "title": "Quick excursion"
+        },
+        {
+          "icon": "💧",
+          "title": "Liquidity interaction"
+        }
+      ],
+      "punch": "But a wick isn’t the same confirmation as a <strong>close</strong>."
     },
     {
       "type": "teach",
