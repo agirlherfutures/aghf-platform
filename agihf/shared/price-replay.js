@@ -23,6 +23,7 @@
 
 import { mountChart } from './structure-charts.js';
 import { askQuestion, meterEl, lensCard, mistakeNudge } from './price-lab.js';
+import { wrapGuide } from './guide.js';
 
 export function renderPriceReplay(el, slide, satisfy, helpers) {
   const charts = slide.charts || [{ chart: slide.chart }];
@@ -50,6 +51,7 @@ export function renderPriceReplay(el, slide, satisfy, helpers) {
   const minis = charts.map((c, i) => mountChart(card.querySelector(`.pl-chart[data-i="${i}"]`), { ...c.chart, showCandles: 0 }, { label: c.label || slide.title }));
   const total = Math.max(...minis.map((m) => m.candleCount));
   const cap = card.querySelector('.pl-caption');
+  wrapGuide(cap);
   const asks = card.querySelector('.pl-asks');
   const playBtn = card.querySelector('.pr-play');
   const countEl = card.querySelector('.pr-count');

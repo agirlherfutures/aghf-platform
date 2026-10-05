@@ -43,12 +43,16 @@ function loadArt() {
 const still = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /** Draw Aristella into `box` and keep her gently alive (blink, bob) while on screen. */
-export function mountHost(box, pose = 'idle') {
-  box.classList.add('v2-host');
+export function mountHost(box, pose = 'idle', crop = null) {
+  // crop: a viewBox for a portrait (e.g. the little guide face beside a chart).
+  if (!crop) box.classList.add('v2-host');
   loadArt().then((ART) => {
     if (!ART) return;
+    const open = crop
+      ? `<svg viewBox="${crop}" width="100%" height="100%" preserveAspectRatio="xMidYMin slice" aria-hidden="true">`
+      : '<svg viewBox="0 0 400 560" width="100%" height="100%" style="overflow:visible" aria-hidden="true">';
     const draw = (t) => {
-      box.innerHTML = ART.aristella(t, { pose }).replace(/<svg [^>]*>/, '<svg viewBox="0 0 400 560" width="100%" height="100%" style="overflow:visible" aria-hidden="true">');
+      box.innerHTML = ART.aristella(t, { pose }).replace(/<svg [^>]*>/, open);
     };
     if (still()) { draw(1); return; }
     const t0 = performance.now();

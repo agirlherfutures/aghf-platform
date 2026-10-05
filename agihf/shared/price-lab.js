@@ -43,6 +43,7 @@
 import { mountChart } from './structure-charts.js';
 import { mountViews } from './structure-slides.js';
 import { mountLevels } from './level-tools.js';
+import { wrapGuide } from './guide.js';
 
 const NEI_WHY = '✓ Exactly. You don’t have to force a directional conclusion before price gives you enough evidence.';
 
@@ -244,10 +245,10 @@ export function renderPriceLab(el, slide, satisfy, helpers) {
       ${mistakeNudge(slide.watch)}
       <div class="pl-stage${side ? ' pl-has-side' : ''}">
         <div class="pl-main"><div class="pl-chart"></div></div>
-        ${side ? `<div class="pl-side">${slide.story ? storyHtml(slide.story) : ''}<div class="pl-ev-slot">${slide.evidence ? evidenceHtml(slide.evidence) : ''}</div></div>` : ''}
       </div>
       <div class="pl-caption" aria-live="polite"></div>
       <div class="pl-asks"></div>
+      ${side ? `<div class="pl-side">${slide.story ? storyHtml(slide.story) : ''}<div class="pl-ev-slot">${slide.evidence ? evidenceHtml(slide.evidence) : ''}</div></div>` : ''}
       <div class="pl-controls">
         <button type="button" class="pl-reset" title="Start this chart over">↺ Reset</button>
         <div class="pl-pips">${steps.map(() => '<span></span>').join('')}</div>
@@ -261,6 +262,7 @@ export function renderPriceLab(el, slide, satisfy, helpers) {
   if (slide.layers) mountLayers(card.querySelector('.pl-chart'), chart, slide.layers);
   const lv = slide.levels ? mountLevels(chart, slide.levels) : null;
   const cap = card.querySelector('.pl-caption');
+  wrapGuide(cap);
   const asks = card.querySelector('.pl-asks');
   const next = card.querySelector('.pl-next');
   const pips = [...card.querySelectorAll('.pl-pips span')];
