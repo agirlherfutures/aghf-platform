@@ -1,0 +1,732 @@
+{
+  "phase": "p3",
+  "section": "s7",
+  "lessonNumber": 6,
+  "title": "Internal vs External Liquidity",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Define the range first. Then ask: which liquidity?",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Separate internal from external liquidity by defining the range first.",
+    "missionQuestion": "If price takes a high, was it internal or external liquidity?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "teach",
+      "kicker": "Remember the room?",
+      "heading": "Doors and furniture.",
+      "body": "In Phase 2 the range was a room.<br><br>🚪 <strong>The doors</strong> are the external high and external low. <strong>External liquidity</strong> sits beyond them.<br>🪞 <strong>Inside the room</strong> are internal highs and lows. <strong>Internal liquidity</strong> sits around those.<br><br>You can’t answer “which liquidity?” until you’ve defined the room.",
+      "check": {
+        "prompt": "What do you need before you can call liquidity internal or external?",
+        "options": [
+          {
+            "label": "A defined range: its external high and low",
+            "correct": true,
+            "why": "Exactly. Define the range first."
+          },
+          {
+            "label": "An FVG",
+            "correct": false,
+            "feedback": "Not needed. You need the room’s boundaries."
+          },
+          {
+            "label": "A sweep",
+            "correct": false,
+            "feedback": "A sweep doesn’t define anything. The range does."
+          }
+        ]
+      }
+    },
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            200
+          ],
+          [
+            77.5,
+            80
+          ],
+          [
+            137.5,
+            240
+          ],
+          [
+            182.5,
+            150
+          ],
+          [
+            227.5,
+            205
+          ],
+          [
+            272.5,
+            132
+          ],
+          [
+            317.5,
+            195
+          ],
+          [
+            347.5,
+            122
+          ],
+          [
+            392.5,
+            172
+          ],
+          [
+            452.5,
+            72
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 47.5,
+            "o": 200,
+            "c": 161.8,
+            "h": 157.4,
+            "l": 202.3,
+            "w": 9.0
+          },
+          {
+            "x": 62.5,
+            "o": 161.8,
+            "c": 110.5,
+            "h": 104.7,
+            "l": 164.6,
+            "w": 9.0
+          },
+          {
+            "x": 77.5,
+            "o": 110.5,
+            "c": 86.3,
+            "h": 80,
+            "l": 115.3,
+            "w": 9.0
+          },
+          {
+            "x": 92.5,
+            "o": 86.3,
+            "c": 123.0,
+            "h": 80.1,
+            "l": 125.7,
+            "w": 9.0
+          },
+          {
+            "x": 107.5,
+            "o": 123.0,
+            "c": 151.8,
+            "h": 117.0,
+            "l": 155.2,
+            "w": 9.0
+          },
+          {
+            "x": 122.5,
+            "o": 151.8,
+            "c": 209.9,
+            "h": 146.3,
+            "l": 214.7,
+            "w": 9.0
+          },
+          {
+            "x": 137.5,
+            "o": 209.9,
+            "c": 231.5,
+            "h": 205.3,
+            "l": 240,
+            "w": 9.0
+          },
+          {
+            "x": 152.5,
+            "o": 231.5,
+            "c": 201.1,
+            "h": 199.2,
+            "l": 236.9,
+            "w": 9.0
+          },
+          {
+            "x": 167.5,
+            "o": 201.1,
+            "c": 171.1,
+            "h": 165.2,
+            "l": 207.1,
+            "w": 9.0
+          },
+          {
+            "x": 182.5,
+            "o": 171.1,
+            "c": 157.1,
+            "h": 150,
+            "l": 177.0,
+            "w": 9.0
+          },
+          {
+            "x": 197.5,
+            "o": 157.1,
+            "c": 175.3,
+            "h": 153.3,
+            "l": 179.5,
+            "w": 9.0
+          },
+          {
+            "x": 212.5,
+            "o": 175.3,
+            "c": 184.9,
+            "h": 170.2,
+            "l": 191.0,
+            "w": 9.0
+          },
+          {
+            "x": 227.5,
+            "o": 184.9,
+            "c": 195.6,
+            "h": 180.9,
+            "l": 205,
+            "w": 9.0
+          },
+          {
+            "x": 242.5,
+            "o": 195.6,
+            "c": 180.0,
+            "h": 174.0,
+            "l": 199.8,
+            "w": 9.0
+          },
+          {
+            "x": 257.5,
+            "o": 180.0,
+            "c": 156.3,
+            "h": 150.0,
+            "l": 182.3,
+            "w": 9.0
+          },
+          {
+            "x": 272.5,
+            "o": 156.3,
+            "c": 141.7,
+            "h": 132,
+            "l": 159.1,
+            "w": 9.0
+          },
+          {
+            "x": 287.5,
+            "o": 141.7,
+            "c": 157.7,
+            "h": 138.4,
+            "l": 163.6,
+            "w": 9.0
+          },
+          {
+            "x": 302.5,
+            "o": 157.7,
+            "c": 180.9,
+            "h": 155.6,
+            "l": 186.7,
+            "w": 9.0
+          },
+          {
+            "x": 317.5,
+            "o": 180.9,
+            "c": 185.0,
+            "h": 175.0,
+            "l": 195,
+            "w": 9.0
+          },
+          {
+            "x": 332.5,
+            "o": 185.0,
+            "c": 154.8,
+            "h": 151.3,
+            "l": 191.1,
+            "w": 9.0
+          },
+          {
+            "x": 347.5,
+            "o": 154.8,
+            "c": 129.1,
+            "h": 122,
+            "l": 158.7,
+            "w": 9.0
+          },
+          {
+            "x": 362.5,
+            "o": 129.1,
+            "c": 140.9,
+            "h": 123.0,
+            "l": 143.6,
+            "w": 9.0
+          },
+          {
+            "x": 377.5,
+            "o": 140.9,
+            "c": 153.9,
+            "h": 138.7,
+            "l": 159.4,
+            "w": 9.0
+          },
+          {
+            "x": 392.5,
+            "o": 153.9,
+            "c": 162.9,
+            "h": 151.7,
+            "l": 172,
+            "w": 9.0
+          },
+          {
+            "x": 407.5,
+            "o": 162.9,
+            "c": 148.2,
+            "h": 141.8,
+            "l": 167.5,
+            "w": 9.0
+          },
+          {
+            "x": 422.5,
+            "o": 148.2,
+            "c": 121.2,
+            "h": 119.3,
+            "l": 154.4,
+            "w": 9.0
+          },
+          {
+            "x": 437.5,
+            "o": 121.2,
+            "c": 88.8,
+            "h": 83.3,
+            "l": 125.6,
+            "w": 9.0
+          },
+          {
+            "x": 452.5,
+            "o": 88.8,
+            "c": 81.2,
+            "h": 72,
+            "l": 94.7,
+            "w": 9.0
+          },
+          {
+            "x": 467.5,
+            "o": 81.2,
+            "c": 89.3,
+            "h": 78.8,
+            "l": 95.5,
+            "w": 9.0
+          },
+          {
+            "x": 482.5,
+            "o": 89.3,
+            "c": 95.0,
+            "h": 83.4,
+            "l": 99.8,
+            "w": 9.0
+          }
+        ],
+        "hlines": [
+          {
+            "y": 80,
+            "label": "External high",
+            "tone": "purple",
+            "x1": 69.5,
+            "x2": 690,
+            "size": 13,
+            "id": "ext",
+            "labelX": 528,
+            "door": true
+          },
+          {
+            "y": 240,
+            "label": "External low",
+            "tone": "purple",
+            "x1": 129.5,
+            "x2": 690,
+            "size": 13,
+            "id": "ext",
+            "below": true,
+            "labelX": 528,
+            "door": true
+          },
+          {
+            "y": 132,
+            "label": "Internal high",
+            "tone": "gold",
+            "x1": 264.5,
+            "x2": 690,
+            "size": 12,
+            "id": "int",
+            "labelX": 528
+          },
+          {
+            "y": 205,
+            "label": "Internal low",
+            "tone": "gold",
+            "x1": 219.5,
+            "x2": 690,
+            "size": 12,
+            "id": "int",
+            "below": true,
+            "labelX": 528
+          }
+        ]
+      },
+      "start": 19,
+      "steps": [
+        {
+          "candles": 19,
+          "text": "Price set the range: an external high and an external low. Then it moved around inside. Toggle the views.",
+          "next": "Play price →"
+        },
+        {
+          "candles": 21,
+          "text": "Price just traded above a high.",
+          "asks": [
+            {
+              "prompt": "WHICH LIQUIDITY?",
+              "options": [
+                {
+                  "label": "Internal: price traded above an internal high",
+                  "correct": true,
+                  "why": "Price is still inside the room. It took the liquidity around an internal high, not a door."
+                },
+                {
+                  "label": "External: price broke the range",
+                  "correct": false,
+                  "feedback": "Check the doors. The external high is still well above price.",
+                  "mistake": "internal-external-confusion"
+                }
+              ],
+              "concept": "internal-liquidity"
+            }
+          ]
+        },
+        {
+          "candles": 30,
+          "text": "Price keeps going.",
+          "asks": [
+            {
+              "prompt": "WHICH LIQUIDITY now?",
+              "options": [
+                {
+                  "label": "External: price traded above the external high",
+                  "correct": true,
+                  "why": "Now price reached a door: liquidity beyond the external high."
+                },
+                {
+                  "label": "Internal",
+                  "correct": false,
+                  "feedback": "Which line did price just trade above? It’s the top of the room.",
+                  "mistake": "internal-external-confusion"
+                }
+              ],
+              "concept": "external-liquidity"
+            }
+          ]
+        }
+      ],
+      "views": [
+        {
+          "key": "ext",
+          "label": "🚪 External",
+          "show": [
+            "ext"
+          ],
+          "hide": [
+            "int"
+          ],
+          "text": "The doors: the range’s external high and low. External liquidity sits beyond them."
+        },
+        {
+          "key": "int",
+          "label": "🪞 Internal",
+          "show": [
+            "int"
+          ],
+          "hide": [
+            "ext"
+          ],
+          "text": "Inside the room: internal highs and lows. Internal liquidity sits around them."
+        },
+        {
+          "key": "both",
+          "label": "Both",
+          "show": [
+            "ext",
+            "int"
+          ],
+          "text": "Define the range first. Then ask: <strong>which liquidity?</strong>"
+        }
+      ],
+      "kicker": "The room is back",
+      "title": "Doors and furniture."
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Your turn",
+      "title": "WHICH LIQUIDITY?",
+      "items": [
+        {
+          "text": "Liquidity above line A",
+          "answer": "EXTERNAL",
+          "why": "A is the range’s external high, a door.",
+          "mistake": "internal-external-confusion",
+          "concept": "external-liquidity"
+        },
+        {
+          "text": "Liquidity below line B",
+          "answer": "INTERNAL",
+          "why": "B is an internal low inside the range.",
+          "mistake": "internal-external-confusion",
+          "concept": "internal-liquidity"
+        },
+        {
+          "text": "Liquidity above line C",
+          "answer": "INTERNAL",
+          "why": "C is an internal high inside the range.",
+          "mistake": "internal-external-confusion",
+          "concept": "internal-liquidity"
+        },
+        {
+          "text": "Liquidity below line D",
+          "answer": "EXTERNAL",
+          "why": "D is the range’s external low, the other door.",
+          "mistake": "internal-external-confusion",
+          "concept": "external-liquidity"
+        }
+      ],
+      "prompt": "The range is already defined. Sort each one.",
+      "choices": [
+        "INTERNAL",
+        "EXTERNAL"
+      ],
+      "chart": {
+        "swings": [
+          [
+            40,
+            190
+          ],
+          [
+            85.0,
+            70
+          ],
+          [
+            157.0,
+            245
+          ],
+          [
+            211.0,
+            140
+          ],
+          [
+            265.0,
+            210
+          ],
+          [
+            301.0,
+            160
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 49.0,
+            "o": 190,
+            "c": 141.8,
+            "h": 137.4,
+            "l": 191.9,
+            "w": 10.8
+          },
+          {
+            "x": 67.0,
+            "o": 141.8,
+            "c": 109.6,
+            "h": 104.4,
+            "l": 148.2,
+            "w": 10.8
+          },
+          {
+            "x": 85.0,
+            "o": 109.6,
+            "c": 78.1,
+            "h": 70,
+            "l": 115.6,
+            "w": 10.8
+          },
+          {
+            "x": 103.0,
+            "o": 78.1,
+            "c": 105.9,
+            "h": 74.0,
+            "l": 110.1,
+            "w": 10.8
+          },
+          {
+            "x": 121.0,
+            "o": 105.9,
+            "c": 169.8,
+            "h": 104.3,
+            "l": 175.1,
+            "w": 10.8
+          },
+          {
+            "x": 139.0,
+            "o": 169.8,
+            "c": 208.7,
+            "h": 164.2,
+            "l": 214.5,
+            "w": 10.8
+          },
+          {
+            "x": 157.0,
+            "o": 208.7,
+            "c": 238.3,
+            "h": 206.7,
+            "l": 245,
+            "w": 10.8
+          },
+          {
+            "x": 175.0,
+            "o": 238.3,
+            "c": 214.0,
+            "h": 211.0,
+            "l": 243.0,
+            "w": 10.8
+          },
+          {
+            "x": 193.0,
+            "o": 214.0,
+            "c": 174.2,
+            "h": 168.6,
+            "l": 215.6,
+            "w": 10.8
+          },
+          {
+            "x": 211.0,
+            "o": 174.2,
+            "c": 149.5,
+            "h": 140,
+            "l": 178.5,
+            "w": 10.8
+          },
+          {
+            "x": 229.0,
+            "o": 149.5,
+            "c": 173.5,
+            "h": 145.1,
+            "l": 176.2,
+            "w": 10.8
+          },
+          {
+            "x": 247.0,
+            "o": 173.5,
+            "c": 188.9,
+            "h": 171.2,
+            "l": 192.0,
+            "w": 10.8
+          },
+          {
+            "x": 265.0,
+            "o": 188.9,
+            "c": 201.8,
+            "h": 185.4,
+            "l": 210,
+            "w": 10.8
+          },
+          {
+            "x": 283.0,
+            "o": 201.8,
+            "c": 183.6,
+            "h": 181.4,
+            "l": 203.9,
+            "w": 10.8
+          },
+          {
+            "x": 301.0,
+            "o": 183.6,
+            "c": 168.7,
+            "h": 160,
+            "l": 186.9,
+            "w": 10.8
+          },
+          {
+            "x": 319.0,
+            "o": 168.7,
+            "c": 180.4,
+            "h": 165.4,
+            "l": 184.0,
+            "w": 10.8
+          },
+          {
+            "x": 337.0,
+            "o": 180.4,
+            "c": 190.0,
+            "h": 175.8,
+            "l": 195.2,
+            "w": 10.8
+          }
+        ]
+      },
+      "levels": [
+        {
+          "id": "A",
+          "y": 70,
+          "label": "A · external high",
+          "tone": "purple",
+          "x1": 77.0
+        },
+        {
+          "id": "C",
+          "y": 140,
+          "label": "C",
+          "tone": "gold",
+          "x1": 203.0
+        },
+        {
+          "id": "B",
+          "y": 210,
+          "label": "B",
+          "tone": "gold",
+          "x1": 257.0,
+          "below": true
+        },
+        {
+          "id": "D",
+          "y": 245,
+          "label": "D · external low",
+          "tone": "purple",
+          "x1": 149.0,
+          "below": true
+        }
+      ]
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Define the range first. Then ask: <em>which liquidity?</em>",
+      "pose": "point",
+      "line": "Taking an internal high isn’t the same event as reaching a door."
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What’s the difference between internal and external liquidity?",
+      "modelAnswer": "External liquidity sits beyond the range’s external high and low, the doors of the room. Internal liquidity sits around the highs and lows inside the range. I have to define the range first, and price taking internal liquidity doesn’t mean it reached external liquidity."
+    }
+  ],
+  "takeaways": [
+    "🚪 External liquidity sits beyond the range’s external high and low.",
+    "🪞 Internal liquidity sits around highs and lows inside the range.",
+    "Define the range first. Then ask: which liquidity?"
+  ],
+  "remember": "Define the range first. Then ask: which liquidity?"
+}

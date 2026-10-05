@@ -116,7 +116,7 @@
       <div class="sec-hdr${phaseUnlocked ? '' : ' sec-hdr-lk'}" data-toggle-sec="${phase.key}-${section.key}">
         <span class="sec-badge ${badgeClass}">Section ${section.n}</span>
         <div class="sec-title">${section.title}</div>
-        <span class="sec-cnt">${section.lessons.length} lesson${section.lessons.length === 1 ? '' : 's'}${phaseUnlocked ? '' : ' 🔒'}</span>
+        <span class="sec-cnt">${section.lessons.length} lesson${section.lessons.length === 1 ? '' : 's'}${phaseUnlocked ? '' : ' 🔒'}${phaseUnlocked && !section.lessons.some((l) => l.n) ? ' · Coming soon' : ''}</span>
         ${phaseUnlocked ? `<span class="sec-chev" id="chev-${phase.key}-${section.key}">${chev}</span>` : ''}
       </div>
       <div class="sec-body${closed}" id="body-${phase.key}-${section.key}">
