@@ -48,6 +48,465 @@
       }
     },
     {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            200
+          ],
+          [
+            128.0,
+            240
+          ],
+          [
+            224.0,
+            140
+          ],
+          [
+            304.0,
+            196
+          ],
+          [
+            400.0,
+            138
+          ],
+          [
+            480.0,
+            220
+          ],
+          [
+            592.0,
+            84
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.0,
+            "o": 200,
+            "c": 207.7,
+            "h": 195.0,
+            "l": 214.0,
+            "w": 9.6
+          },
+          {
+            "x": 64.0,
+            "o": 207.7,
+            "c": 211.1,
+            "h": 205.9,
+            "l": 216.8,
+            "w": 9.6
+          },
+          {
+            "x": 80.0,
+            "o": 211.1,
+            "c": 218.8,
+            "h": 207.8,
+            "l": 224.4,
+            "w": 9.6
+          },
+          {
+            "x": 96.0,
+            "o": 218.8,
+            "c": 224.4,
+            "h": 212.7,
+            "l": 228.3,
+            "w": 9.6
+          },
+          {
+            "x": 112.0,
+            "o": 224.4,
+            "c": 230.2,
+            "h": 218.3,
+            "l": 234.6,
+            "w": 9.6
+          },
+          {
+            "x": 128.0,
+            "o": 230.2,
+            "c": 233.7,
+            "h": 224.9,
+            "l": 240,
+            "w": 9.6
+          },
+          {
+            "x": 144.0,
+            "o": 233.7,
+            "c": 222.7,
+            "h": 217.5,
+            "l": 238.5,
+            "w": 9.6
+          },
+          {
+            "x": 160.0,
+            "o": 222.7,
+            "c": 210.8,
+            "h": 209.2,
+            "l": 229.1,
+            "w": 9.6
+          },
+          {
+            "x": 176.0,
+            "o": 210.8,
+            "c": 189.2,
+            "h": 186.5,
+            "l": 215.3,
+            "w": 9.6
+          },
+          {
+            "x": 192.0,
+            "o": 189.2,
+            "c": 168.5,
+            "h": 163.7,
+            "l": 194.3,
+            "w": 9.6
+          },
+          {
+            "x": 208.0,
+            "o": 168.5,
+            "c": 156.0,
+            "h": 154.0,
+            "l": 172.0,
+            "w": 9.6
+          },
+          {
+            "x": 224.0,
+            "o": 156.0,
+            "c": 147.2,
+            "h": 140,
+            "l": 161.0,
+            "w": 9.6
+          },
+          {
+            "x": 240.0,
+            "o": 147.2,
+            "c": 160.8,
+            "h": 141.8,
+            "l": 164.9,
+            "w": 9.6
+          },
+          {
+            "x": 256.0,
+            "o": 160.8,
+            "c": 163.8,
+            "h": 155.7,
+            "l": 166.7,
+            "w": 9.6
+          },
+          {
+            "x": 272.0,
+            "o": 163.8,
+            "c": 180.9,
+            "h": 161.5,
+            "l": 187.2,
+            "w": 9.6
+          },
+          {
+            "x": 288.0,
+            "o": 180.9,
+            "c": 182.0,
+            "h": 175.5,
+            "l": 185.2,
+            "w": 9.6
+          },
+          {
+            "x": 304.0,
+            "o": 182.0,
+            "c": 187.7,
+            "h": 178.3,
+            "l": 196,
+            "w": 9.6
+          },
+          {
+            "x": 320.0,
+            "o": 187.7,
+            "c": 177.7,
+            "h": 174.0,
+            "l": 193.3,
+            "w": 9.6
+          },
+          {
+            "x": 336.0,
+            "o": 177.7,
+            "c": 169.8,
+            "h": 166.5,
+            "l": 183.1,
+            "w": 9.6
+          },
+          {
+            "x": 352.0,
+            "o": 169.8,
+            "c": 160.0,
+            "h": 156.7,
+            "l": 173.9,
+            "w": 9.6
+          },
+          {
+            "x": 368.0,
+            "o": 160.0,
+            "c": 154.7,
+            "h": 152.4,
+            "l": 165.3,
+            "w": 9.6
+          },
+          {
+            "x": 384.0,
+            "o": 154.7,
+            "c": 146.2,
+            "h": 144.2,
+            "l": 157.9,
+            "w": 9.6
+          },
+          {
+            "x": 400.0,
+            "o": 146.2,
+            "c": 144.2,
+            "h": 138,
+            "l": 149.6,
+            "w": 9.6
+          },
+          {
+            "x": 416.0,
+            "o": 144.2,
+            "c": 154.1,
+            "h": 141.5,
+            "l": 158.4,
+            "w": 9.6
+          },
+          {
+            "x": 432.0,
+            "o": 154.1,
+            "c": 177.1,
+            "h": 151.1,
+            "l": 180.9,
+            "w": 9.6
+          },
+          {
+            "x": 448.0,
+            "o": 177.1,
+            "c": 189.9,
+            "h": 172.7,
+            "l": 195.9,
+            "w": 9.6
+          },
+          {
+            "x": 464.0,
+            "o": 189.9,
+            "c": 201.0,
+            "h": 184.5,
+            "l": 205.3,
+            "w": 9.6
+          },
+          {
+            "x": 480.0,
+            "o": 201.0,
+            "c": 210.4,
+            "h": 196.2,
+            "l": 220,
+            "w": 9.6
+          },
+          {
+            "x": 496.0,
+            "o": 210.4,
+            "c": 181.1,
+            "h": 179.3,
+            "l": 215.9,
+            "w": 9.6
+          },
+          {
+            "x": 512.0,
+            "o": 181.1,
+            "c": 169.7,
+            "h": 165.1,
+            "l": 183.1,
+            "w": 9.6
+          },
+          {
+            "x": 528.0,
+            "o": 169.7,
+            "c": 157.7,
+            "h": 154.1,
+            "l": 173.5,
+            "w": 9.6
+          },
+          {
+            "x": 544.0,
+            "o": 157.7,
+            "c": 126.9,
+            "h": 120.9,
+            "l": 163.4,
+            "w": 9.6
+          },
+          {
+            "x": 560.0,
+            "o": 126.9,
+            "c": 125.6,
+            "h": 121.0,
+            "l": 129.5,
+            "w": 9.6
+          },
+          {
+            "x": 576.0,
+            "o": 125.6,
+            "c": 95.0,
+            "h": 89.4,
+            "l": 128.8,
+            "w": 9.6
+          },
+          {
+            "x": 592.0,
+            "o": 95.0,
+            "c": 91.5,
+            "h": 84,
+            "l": 100.6,
+            "w": 9.6
+          }
+        ],
+        "hlines": [
+          {
+            "y": 139,
+            "label": "equal highs",
+            "tone": "gold",
+            "x1": 214.0,
+            "x2": 690,
+            "size": 13,
+            "id": "eq",
+            "labelX": 420.0
+          },
+          {
+            "y": 240,
+            "label": "sell-side liquidity",
+            "tone": "purple",
+            "x1": 118.0,
+            "x2": 690,
+            "size": 13,
+            "id": "ssl",
+            "below": true,
+            "labelX": 304.0
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 475.2,
+            "y1": 183.1,
+            "x2": 582.0,
+            "y2": 196.2,
+            "tone": "up",
+            "label": "FVG",
+            "id": "fvg",
+            "labelRight": true,
+            "labelBelow": true
+          },
+          {
+            "x1": 290.0,
+            "y1": 186,
+            "x2": 364.0,
+            "y2": 212,
+            "tone": "muted",
+            "label": "demand?",
+            "id": "zone",
+            "labelBelow": true
+          },
+          {
+            "x1": 460.0,
+            "y1": 156,
+            "x2": 500.0,
+            "y2": 228,
+            "tone": "gold",
+            "label": "accumulation?",
+            "id": "acc",
+            "labelRight": true,
+            "labelBelow": true
+          }
+        ],
+        "notes": [
+          {
+            "x": 130,
+            "y": 292,
+            "text": "pressure ✓",
+            "tone": "down",
+            "size": 13,
+            "anchor": "middle",
+            "id": "pr"
+          },
+          {
+            "x": 590,
+            "y": 292,
+            "text": "Mercury retrograde ✓ 😂",
+            "tone": "muted",
+            "size": 13,
+            "anchor": "middle",
+            "id": "merc"
+          }
+        ]
+      },
+      "start": 35,
+      "steps": [
+        {
+          "text": "Phase 3 gave you a lot of words. Watch what happens if you draw all of them at once.",
+          "show": [
+            "eq",
+            "ssl",
+            "fvg"
+          ]
+        },
+        {
+          "text": "Then a zone. Then accumulation. Then pressure. Then… Mercury. 😂",
+          "show": [
+            "zone",
+            "acc",
+            "pr",
+            "merc"
+          ],
+          "asks": [
+            {
+              "prompt": "IS THIS CHART CLEARER NOW?",
+              "options": [
+                {
+                  "label": "No. It’s heavier, not clearer",
+                  "correct": true,
+                  "why": "Exactly. More drawings, less clarity."
+                },
+                {
+                  "label": "Yes. More confluence",
+                  "correct": false,
+                  "feedback": "Confluence isn’t context. This chart got louder, not clearer.",
+                  "mistake": "concept-overload"
+                }
+              ],
+              "concept": "context-vs-execution"
+            }
+          ]
+        },
+        {
+          "text": "So here’s how it fits: these concepts help you read context. Your Dayli ICC entry model decides execution, unchanged.",
+          "asks": [
+            {
+              "prompt": "WHAT DECIDES EXECUTION?",
+              "options": [
+                {
+                  "label": "My Dayli ICC entry model, exactly as it was",
+                  "correct": true,
+                  "why": "Context informs. Execution decides."
+                },
+                {
+                  "label": "Whichever concepts line up the most",
+                  "correct": false,
+                  "feedback": "Stacking concepts isn’t an entry model.",
+                  "mistake": "concept-overload"
+                }
+              ],
+              "concept": "context-vs-execution"
+            }
+          ]
+        }
+      ],
+      "kicker": "Context check",
+      "title": "All of Phase 3 on one chart?",
+      "guided": true
+    },
+    {
       "type": "literacy_entry",
       "kicker": "Context vs execution",
       "title": "Phase 3, sorted.",

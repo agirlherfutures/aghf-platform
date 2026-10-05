@@ -80,6 +80,432 @@
       }
     },
     {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            190
+          ],
+          [
+            150.5,
+            250
+          ],
+          [
+            252.5,
+            168
+          ],
+          [
+            337.5,
+            214
+          ],
+          [
+            439.5,
+            96
+          ],
+          [
+            524.5,
+            150
+          ],
+          [
+            626.5,
+            60
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 48.5,
+            "o": 190,
+            "c": 195.1,
+            "h": 185.2,
+            "l": 198.3,
+            "w": 10.2
+          },
+          {
+            "x": 65.5,
+            "o": 195.1,
+            "c": 203.9,
+            "h": 191.2,
+            "l": 207.9,
+            "w": 10.2
+          },
+          {
+            "x": 82.5,
+            "o": 203.9,
+            "c": 215.5,
+            "h": 200.1,
+            "l": 218.3,
+            "w": 10.2
+          },
+          {
+            "x": 99.5,
+            "o": 215.5,
+            "c": 221.6,
+            "h": 210.5,
+            "l": 224.7,
+            "w": 10.2
+          },
+          {
+            "x": 116.5,
+            "o": 221.6,
+            "c": 234.7,
+            "h": 216.2,
+            "l": 240.6,
+            "w": 10.2
+          },
+          {
+            "x": 133.5,
+            "o": 234.7,
+            "c": 246.2,
+            "h": 232.1,
+            "l": 248.9,
+            "w": 10.2
+          },
+          {
+            "x": 150.5,
+            "o": 246.2,
+            "c": 241.1,
+            "h": 236.8,
+            "l": 250,
+            "w": 10.2
+          },
+          {
+            "x": 167.5,
+            "o": 241.1,
+            "c": 225.0,
+            "h": 220.1,
+            "l": 246.9,
+            "w": 10.2
+          },
+          {
+            "x": 184.5,
+            "o": 225.0,
+            "c": 221.1,
+            "h": 218.5,
+            "l": 228.0,
+            "w": 10.2
+          },
+          {
+            "x": 201.5,
+            "o": 221.1,
+            "c": 198.0,
+            "h": 191.7,
+            "l": 223.7,
+            "w": 10.2
+          },
+          {
+            "x": 218.5,
+            "o": 198.0,
+            "c": 195.3,
+            "h": 191.2,
+            "l": 202.5,
+            "w": 10.2
+          },
+          {
+            "x": 235.5,
+            "o": 195.3,
+            "c": 180.5,
+            "h": 174.9,
+            "l": 199.8,
+            "w": 10.2
+          },
+          {
+            "x": 252.5,
+            "o": 180.5,
+            "c": 175.2,
+            "h": 168,
+            "l": 183.0,
+            "w": 10.2
+          },
+          {
+            "x": 269.5,
+            "o": 175.2,
+            "c": 182.8,
+            "h": 169.1,
+            "l": 185.0,
+            "w": 10.2
+          },
+          {
+            "x": 286.5,
+            "o": 182.8,
+            "c": 192.0,
+            "h": 178.2,
+            "l": 194.3,
+            "w": 10.2
+          },
+          {
+            "x": 303.5,
+            "o": 192.0,
+            "c": 196.4,
+            "h": 187.1,
+            "l": 200.1,
+            "w": 10.2
+          },
+          {
+            "x": 320.5,
+            "o": 196.4,
+            "c": 205.6,
+            "h": 192.5,
+            "l": 207.6,
+            "w": 10.2
+          },
+          {
+            "x": 337.5,
+            "o": 205.6,
+            "c": 205.2,
+            "h": 200.8,
+            "l": 214,
+            "w": 10.2
+          },
+          {
+            "x": 354.5,
+            "o": 205.2,
+            "c": 187.7,
+            "h": 184.5,
+            "l": 210.7,
+            "w": 10.2
+          },
+          {
+            "x": 371.5,
+            "o": 187.7,
+            "c": 175.2,
+            "h": 170.9,
+            "l": 189.6,
+            "w": 10.2
+          },
+          {
+            "x": 388.5,
+            "o": 175.2,
+            "c": 143.7,
+            "h": 141.4,
+            "l": 177.0,
+            "w": 10.2
+          },
+          {
+            "x": 405.5,
+            "o": 143.7,
+            "c": 135.3,
+            "h": 131.1,
+            "l": 146.2,
+            "w": 10.2
+          },
+          {
+            "x": 422.5,
+            "o": 135.3,
+            "c": 122.3,
+            "h": 117.6,
+            "l": 140.8,
+            "w": 10.2
+          },
+          {
+            "x": 439.5,
+            "o": 122.3,
+            "c": 105.3,
+            "h": 96,
+            "l": 127.0,
+            "w": 10.2
+          },
+          {
+            "x": 456.5,
+            "o": 105.3,
+            "c": 114.4,
+            "h": 98.8,
+            "l": 116.6,
+            "w": 10.2
+          },
+          {
+            "x": 473.5,
+            "o": 114.4,
+            "c": 124.7,
+            "h": 108.5,
+            "l": 128.6,
+            "w": 10.2
+          },
+          {
+            "x": 490.5,
+            "o": 124.7,
+            "c": 134.7,
+            "h": 122.3,
+            "l": 138.2,
+            "w": 10.2
+          },
+          {
+            "x": 507.5,
+            "o": 134.7,
+            "c": 139.2,
+            "h": 131.2,
+            "l": 144.2,
+            "w": 10.2
+          },
+          {
+            "x": 524.5,
+            "o": 139.2,
+            "c": 143.4,
+            "h": 135.9,
+            "l": 150,
+            "w": 10.2
+          },
+          {
+            "x": 541.5,
+            "o": 143.4,
+            "c": 134.7,
+            "h": 131.7,
+            "l": 145.6,
+            "w": 10.2
+          },
+          {
+            "x": 558.5,
+            "o": 134.7,
+            "c": 123.0,
+            "h": 118.8,
+            "l": 136.3,
+            "w": 10.2
+          },
+          {
+            "x": 575.5,
+            "o": 123.0,
+            "c": 102.8,
+            "h": 100.6,
+            "l": 125.4,
+            "w": 10.2
+          },
+          {
+            "x": 592.5,
+            "o": 102.8,
+            "c": 91.4,
+            "h": 86.6,
+            "l": 106.4,
+            "w": 10.2
+          },
+          {
+            "x": 609.5,
+            "o": 91.4,
+            "c": 74.1,
+            "h": 69.8,
+            "l": 95.2,
+            "w": 10.2
+          },
+          {
+            "x": 626.5,
+            "o": 74.1,
+            "c": 66.4,
+            "h": 60,
+            "l": 79.2,
+            "w": 10.2
+          }
+        ],
+        "hlines": [
+          {
+            "y": 168,
+            "label": "Indication high",
+            "tone": "purple",
+            "x1": 242.5,
+            "x2": 690,
+            "size": 13,
+            "id": "ind",
+            "labelX": 248.5
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 332.4,
+            "y1": 189.6,
+            "x2": 461.5,
+            "y2": 200.8,
+            "tone": "up",
+            "label": "FVG",
+            "id": "fvg",
+            "labelRight": true,
+            "labelBelow": true
+          }
+        ],
+        "notes": [
+          {
+            "x": 337.5,
+            "y": 240,
+            "text": "Correction",
+            "tone": "purple",
+            "size": 14,
+            "anchor": "middle",
+            "id": "corr"
+          },
+          {
+            "x": 409.5,
+            "y": 82,
+            "text": "Continuation",
+            "tone": "up",
+            "size": 14,
+            "anchor": "middle",
+            "id": "cont"
+          }
+        ]
+      },
+      "start": 35,
+      "steps": [
+        {
+          "text": "Here’s a full bullish move. Price dropped, turned, and pushed up through a high. That push is our indication.",
+          "show": [
+            "ind"
+          ]
+        },
+        {
+          "text": "Then price pulled back. That’s the correction.",
+          "show": [
+            "corr"
+          ],
+          "asks": [
+            {
+              "prompt": "WHAT HAVE WE USED SO FAR?",
+              "options": [
+                {
+                  "label": "Structure: the high, the pullback",
+                  "correct": true,
+                  "why": "Exactly. Just structure, nothing extra."
+                },
+                {
+                  "label": "An FVG",
+                  "correct": false,
+                  "feedback": "No FVG has even shown up yet. The read already works.",
+                  "mistake": "fvg-required"
+                }
+              ],
+              "concept": "fvg-not-required"
+            }
+          ]
+        },
+        {
+          "text": "Price continued higher, and inside that push an FVG formed. Notice it showed up on its own.",
+          "show": [
+            "cont",
+            "fvg"
+          ],
+          "asks": [
+            {
+              "prompt": "IS THAT FVG A REQUIRED STEP?",
+              "options": [
+                {
+                  "label": "No. It’s context I can notice",
+                  "correct": true,
+                  "why": "Right. It can add context. The sequence didn’t need it."
+                },
+                {
+                  "label": "Yes. No FVG, no trade",
+                  "correct": false,
+                  "feedback": "Your Dayli ICC sequence has no FVG step.",
+                  "mistake": "fvg-required"
+                }
+              ],
+              "concept": "fvg-not-required"
+            }
+          ]
+        }
+      ],
+      "kicker": "Read it with me",
+      "title": "Where does the FVG fit?",
+      "guided": true
+    },
+    {
       "type": "academy_concept",
       "variant": "icc",
       "title": "FVGs are not required for Dayli ICC.",
