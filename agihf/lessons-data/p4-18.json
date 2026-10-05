@@ -1,0 +1,417 @@
+{
+  "phase": "p4",
+  "section": "s11",
+  "lessonNumber": 18,
+  "title": "Premium / Discount Is Not an Entry Signal",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "BUY?",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Refuse the shortcut: discount is location, not a trade.",
+    "missionQuestion": "Price is in discount. Do you buy?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "price_lab",
+      "chart": {
+        "swings": [
+          [
+            40,
+            170
+          ],
+          [
+            134.5,
+            262
+          ],
+          [
+            260.5,
+            70
+          ],
+          [
+            323.5,
+            120
+          ],
+          [
+            365.5,
+            100
+          ]
+        ],
+        "candles": false,
+        "bars": [
+          {
+            "x": 50.5,
+            "o": 170,
+            "c": 189.7,
+            "h": 167.5,
+            "l": 196.1,
+            "w": 12.6
+          },
+          {
+            "x": 71.5,
+            "o": 189.7,
+            "c": 213.8,
+            "h": 185.9,
+            "l": 218.6,
+            "w": 12.6
+          },
+          {
+            "x": 92.5,
+            "o": 213.8,
+            "c": 220.5,
+            "h": 211.2,
+            "l": 223.4,
+            "w": 12.6
+          },
+          {
+            "x": 113.5,
+            "o": 220.5,
+            "c": 246.8,
+            "h": 217.9,
+            "l": 253.1,
+            "w": 12.6
+          },
+          {
+            "x": 134.5,
+            "o": 246.8,
+            "c": 255.7,
+            "h": 244.0,
+            "l": 262,
+            "w": 12.6
+          },
+          {
+            "x": 155.5,
+            "o": 255.7,
+            "c": 211.0,
+            "h": 205.7,
+            "l": 259.1,
+            "w": 12.6
+          },
+          {
+            "x": 176.5,
+            "o": 211.0,
+            "c": 192.9,
+            "h": 189.7,
+            "l": 215.7,
+            "w": 12.6
+          },
+          {
+            "x": 197.5,
+            "o": 192.9,
+            "c": 159.6,
+            "h": 157.1,
+            "l": 196.5,
+            "w": 12.6
+          },
+          {
+            "x": 218.5,
+            "o": 159.6,
+            "c": 125.4,
+            "h": 123.3,
+            "l": 165.3,
+            "w": 12.6
+          },
+          {
+            "x": 239.5,
+            "o": 125.4,
+            "c": 107.0,
+            "h": 102.2,
+            "l": 131.3,
+            "w": 12.6
+          },
+          {
+            "x": 260.5,
+            "o": 107.0,
+            "c": 77.6,
+            "h": 70,
+            "l": 110.5,
+            "w": 12.6
+          },
+          {
+            "x": 281.5,
+            "o": 77.6,
+            "c": 91.1,
+            "h": 74.1,
+            "l": 96.0,
+            "w": 12.6
+          },
+          {
+            "x": 302.5,
+            "o": 91.1,
+            "c": 102.1,
+            "h": 87.3,
+            "l": 106.3,
+            "w": 12.6
+          },
+          {
+            "x": 323.5,
+            "o": 102.1,
+            "c": 112.6,
+            "h": 100.0,
+            "l": 120,
+            "w": 12.6
+          },
+          {
+            "x": 344.5,
+            "o": 112.6,
+            "c": 106.8,
+            "h": 105.2,
+            "l": 116.9,
+            "w": 12.6
+          },
+          {
+            "x": 365.5,
+            "o": 106.8,
+            "c": 106.6,
+            "h": 100,
+            "l": 108.9,
+            "w": 12.6
+          },
+          {
+            "x": 386.5,
+            "o": 106.6,
+            "c": 121.9,
+            "h": 104.8,
+            "l": 124.2,
+            "w": 12.6
+          },
+          {
+            "x": 407.5,
+            "o": 121.9,
+            "c": 153.1,
+            "h": 116.8,
+            "l": 156.5,
+            "w": 12.6
+          },
+          {
+            "x": 428.5,
+            "o": 153.1,
+            "c": 174.0,
+            "h": 149.3,
+            "l": 178.0,
+            "w": 12.6
+          },
+          {
+            "x": 449.5,
+            "o": 174.0,
+            "c": 199.8,
+            "h": 170.9,
+            "l": 205.6,
+            "w": 12.6
+          },
+          {
+            "x": 470.5,
+            "o": 199.8,
+            "c": 214.0,
+            "h": 194.8,
+            "l": 218.9,
+            "w": 12.6
+          }
+        ],
+        "hlines": [
+          {
+            "y": 70,
+            "label": "4H range high",
+            "tone": "purple",
+            "x1": 126.5,
+            "x2": 690,
+            "size": 13,
+            "labelX": 480,
+            "door": true
+          },
+          {
+            "y": 262,
+            "label": "4H range low",
+            "tone": "purple",
+            "x1": 126.5,
+            "x2": 690,
+            "size": 13,
+            "below": true,
+            "labelX": 480,
+            "door": true
+          },
+          {
+            "y": 166.0,
+            "label": "equilibrium",
+            "tone": "purple",
+            "x1": 126.5,
+            "x2": 690,
+            "size": 11,
+            "labelX": 560
+          }
+        ],
+        "boxes": [
+          {
+            "x1": 126.5,
+            "y1": 70,
+            "x2": 692,
+            "y2": 166.0,
+            "tone": "down",
+            "op": 0.3,
+            "dashed": false,
+            "stroke": false,
+            "rx": 4
+          },
+          {
+            "x1": 126.5,
+            "y1": 166.0,
+            "x2": 692,
+            "y2": 262,
+            "tone": "up",
+            "op": 0.3,
+            "dashed": false,
+            "stroke": false,
+            "rx": 4
+          }
+        ]
+      },
+      "start": 14,
+      "steps": [
+        {
+          "text": "Bullish 4H structure. Price is up in premium, pulling back."
+        },
+        {
+          "candles": 21,
+          "text": "Price drops into discount. A big button appears: <strong>BUY?</strong>",
+          "asks": [
+            {
+              "prompt": "BUY?",
+              "options": [
+                {
+                  "label": "Yes",
+                  "correct": false,
+                  "feedback": "Discount told you where price is. It didn’t give you an entry.",
+                  "mistake": "discount-equals-buy-error"
+                },
+                {
+                  "label": "No",
+                  "correct": true,
+                  "why": "Location alone isn’t a trade."
+                }
+              ],
+              "concept": "context-vs-execution"
+            },
+            {
+              "prompt": "WHY?",
+              "options": [
+                {
+                  "label": "Discount only tells me location",
+                  "correct": false,
+                  "feedback": "True, and there’s more."
+                },
+                {
+                  "label": "I still need the structural and execution story",
+                  "correct": false,
+                  "feedback": "True, and there’s more."
+                },
+                {
+                  "label": "Both",
+                  "correct": true,
+                  "why": "Location is context. Structure and execution still decide."
+                }
+              ],
+              "concept": "location-as-context"
+            }
+          ],
+          "story": {
+            "l": {
+              "value": "4H discount ✓",
+              "tone": "up"
+            },
+            "st": {
+              "value": "WAIT",
+              "tone": "purple"
+            }
+          }
+        }
+      ],
+      "story": {
+        "title": "Location status",
+        "rows": [
+          {
+            "key": "s",
+            "label": "Structure",
+            "value": "Bullish context ✓",
+            "tone": "up"
+          },
+          {
+            "key": "l",
+            "label": "Location",
+            "value": "4H premium",
+            "tone": "down"
+          },
+          {
+            "key": "e",
+            "label": "Execution",
+            "value": "Not established ○",
+            "tone": "muted"
+          },
+          {
+            "key": "st",
+            "label": "Status",
+            "value": "…",
+            "tone": "muted"
+          }
+        ]
+      },
+      "kicker": "The shortcut",
+      "title": "Bullish context. Price slides into discount."
+    },
+    {
+      "type": "verdicts",
+      "kicker": "Two more scenarios",
+      "title": "Entry?",
+      "items": [
+        {
+          "text": "Bullish context. 4H discount. Price still falling aggressively. No lower-timeframe entry model.",
+          "answer": "WAIT",
+          "why": "Discount doesn’t stop a fall, and there’s no execution model.",
+          "concept": "context-vs-execution"
+        },
+        {
+          "text": "Bearish context. 4H premium. No execution model.",
+          "answer": "WAIT",
+          "why": "Premium is location. Not a short signal.",
+          "concept": "premium-equals-sell-error"
+        },
+        {
+          "text": "No clear 4H structure. Price in discount.",
+          "answer": "WAIT",
+          "why": "Discount without a thesis is just a place.",
+          "concept": "discount-equals-buy-error"
+        }
+      ],
+      "prompt": "Entry, or wait?",
+      "choices": [
+        "ENTER",
+        "WAIT"
+      ],
+      "concept": "context-vs-execution"
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Location can make a setup more attractive. <em>It cannot make an invalid setup valid.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Why isn’t discount a reason to buy by itself?",
+      "modelAnswer": "Discount only tells me where price is in the range. I still need the structural story, and later the execution model, before anything is a trade."
+    }
+  ],
+  "takeaways": [
+    "Discount ≠ buy.",
+    "Premium ≠ sell.",
+    "Structure ✓ + location ✓ + execution ○ = WAIT."
+  ],
+  "remember": "Location can’t make an invalid setup valid."
+}

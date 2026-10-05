@@ -58,6 +58,9 @@ export const ROWS = {
   '1h.swing': ['1H MAP', 'Relevant Swing'],
   '1h.mss': ['1H MAP', 'MSS'],
   '1h.relation': ['1H MAP', 'Relationship to 4H'],
+  'q.structure': ['THE THREE QUESTIONS', 'Structure'],
+  'q.direction': ['THE THREE QUESTIONS', 'Direction'],
+  'q.location': ['THE THREE QUESTIONS', 'Location'],
 };
 
 const THESIS = {
@@ -80,6 +83,7 @@ const SCHEMA = {
   'thesis.direction': ['thesis', 'direction'], 'thesis.evidence': ['thesis', 'evidence'],
   'thesis.objective': ['fourHour', 'objective'], 'thesis.invalidation': ['thesis', 'invalidation'],
   'thesis.alternate': ['thesis', 'alternateScenario'], 'thesis.primary': ['thesis', 'primaryScenario'],
+  'q.structure': ['thesis', 'structure'], 'q.direction': ['thesis', 'direction'], 'q.location': ['location', 'summary'],
 };
 
 function load(key) {
@@ -117,6 +121,63 @@ export function phoneCrop(chart) {
   });
 }
 
+
+/* ── RangeMap: range high / premium / equilibrium / discount / range low ─ */
+// Reused by Section 2 lessons, the Location lab and later phases.
+export function rangeMapHtml({ high, low, price, objective, eq, tf = '4H', priceLabel }) {
+  const fmt = (v) => (v == null ? '?' : Math.round(v).toLocaleString('en-US'));
+  const known = high != null && low != null && high > low;
+  const pct = (v) => (known ? Math.max(2, Math.min(98, ((v - low) / (high - low)) * 100)) : 50);
+  const mid = known ? (high + low) / 2 : null;
+  const p = price != null ? pct(price) : null;
+  const o = objective != null ? pct(objective) : null;
+  const room = known && objective != null && price != null ? Math.abs(objective - price) : null;
+  // An objective sitting on a door marks the door itself instead of a floating tag.
+  const objTop = known && objective != null && Math.abs(objective - high) <= (high - low) * 0.03;
+  const objBot = known && objective != null && Math.abs(objective - low) <= (high - low) * 0.03;
+  return `<div class="rm-h">${tf} RANGE MAP</div>
+    <div class="rm-bar${eq && known ? ' has-eq' : ''}">
+      <div class="rm-door top"><span>${objTop ? '🎯' : '🚪'} RANGE HIGH</span><b>${fmt(high)}</b></div>
+      ${eq && known ? `<div class="rm-zone prem"><span>${tf} PREMIUM</span></div>
+      <div class="rm-eq"><span>EQUILIBRIUM</span><b>${fmt(mid)}</b></div>
+      <div class="rm-zone disc"><span>${tf} DISCOUNT</span></div>` : '<div class="rm-zone none"><span>Measure the range to see location</span></div>'}
+      <div class="rm-door bot"><span>${objBot ? '🎯' : '🚪'} RANGE LOW</span><b>${fmt(low)}</b></div>
+      ${o != null && !objTop && !objBot ? `<div class="rm-obj" style="bottom:${o}%"><span>🎯 objective</span></div>` : ''}
+      ${room != null ? `<div class="rm-room" style="bottom:${Math.min(p, o)}%;height:${Math.abs(o - p)}%"><span>↕ ${fmt(room)} pts</span></div>` : ''}
+      ${p != null ? `<div class="rm-dot" style="bottom:${p}%"><i></i><span>${priceLabel || `price ${fmt(price)}`}</span></div>` : ''}
+    </div>`;
+}
+
+/** Shade premium / discount on a chart once equilibrium is known. */
+export function drawZones(chart, yh, yl, x1 = 8) {
+  const svg = chart.svg;
+  svg.querySelector('.td-zones')?.remove();
+  svg.querySelector('.td-zone-labels')?.remove();
+  const NS = 'http://www.w3.org/2000/svg';
+  const g = document.createElementNS(NS, 'g');
+  g.setAttribute('class', 'td-zones');
+  const top = Math.min(yh, yl), bot = Math.max(yh, yl), mid = (top + bot) / 2;
+  const mk = (tag, attrs, text) => {
+    const e = document.createElementNS(NS, tag);
+    Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v));
+    if (text) { e.textContent = text; e.setAttribute('stroke', '#fff'); e.setAttribute('stroke-width', 4); e.setAttribute('paint-order', 'stroke'); e.setAttribute('stroke-linejoin', 'round'); }
+    g.appendChild(e); return e;
+  };
+  mk('rect', { x: x1, y: top, width: 692 - x1, height: mid - top, fill: '#FDE8ED', opacity: 0.75 });
+  mk('rect', { x: x1, y: mid, width: 692 - x1, height: bot - mid, fill: '#E8F8F6', opacity: 0.8 });
+  mk('line', { x1, x2: 692, y1: mid, y2: mid, stroke: '#7F77DD', 'stroke-width': 2.5, 'stroke-dasharray': '8 6' });
+  mk('text', { x: 686, y: top + 18, 'text-anchor': 'end', 'font-size': 12, 'font-weight': 800, fill: '#C2475F', 'font-family': 'DM Sans, sans-serif' }, 'PREMIUM');
+  mk('text', { x: 686, y: mid - 7, 'text-anchor': 'end', 'font-size': 12, 'font-weight': 800, fill: '#5E56B8', 'font-family': 'DM Sans, sans-serif' }, 'EQUILIBRIUM · 50%');
+  mk('text', { x: 686, y: bot - 8, 'text-anchor': 'end', 'font-size': 12, 'font-weight': 800, fill: '#2F8A7F', 'font-family': 'DM Sans, sans-serif' }, 'DISCOUNT');
+  const first = svg.querySelector('.sc-boxes') || svg.firstChild;
+  svg.insertBefore(g, first.nextSibling);
+  // Labels go on top of the candles so they stay readable.
+  const lab = document.createElementNS(NS, 'g');
+  lab.setAttribute('class', 'td-zone-labels');
+  g.querySelectorAll('text').forEach((t) => lab.appendChild(t));
+  svg.appendChild(lab);
+}
+
 /* ── Small pieces of markup ─────────────────────────────────────────── */
 
 function flowHtml(k) {
@@ -134,8 +195,10 @@ export function renderWorkspace(el, slide, satisfy, helpers = {}) {
   const tfs = Object.keys(slide.charts || {});
   const hasTwo = tfs.includes('1H') && tfs.includes('4H');
   const saveKey = `aghf_td:${slide.save || helpers.lessonId || 'workspace'}`;
-  const saved = load(saveKey);
+  const saved = slide.ephemeral ? null : load(saveKey);
   const state = saved && saved.v === 1 ? saved : { v: 1, k: 0, vals: {}, tf: tfs[0] || '4H', picks: {} };
+  state.nums = { ...(slide.nums || {}), ...(state.nums || {}) };
+  state.ys = { ...(slide.ys || {}), ...(state.ys || {}) };
   Object.entries(slide.given || {}).forEach(([k, v]) => { if (state.vals[k] == null) state.vals[k] = v; });
   const persist = () => store(saveKey, state);
 
@@ -157,7 +220,10 @@ export function renderWorkspace(el, slide, satisfy, helpers = {}) {
         <i class="td-arrow" aria-hidden="true">→</i>
         <button type="button" class="td-step" data-tf="1H"><small>STEP 2</small><span>1H — Build the Map</span></button>
       </div>` : ''}
-      <div class="td-stage">${tfs.map((tf) => `<div class="td-tf" data-tf="${tf}"><span class="td-tf-tag">${tf === '1H' && hasTwo ? '1H · inside the 4H room' : tf}</span><div class="td-chart"></div></div>`).join('')}</div>
+      <div class="td-stage-row${slide.rangeMap ? ' has-rm' : ''}">
+        <div class="td-stage">${tfs.map((tf) => `<div class="td-tf" data-tf="${tf}"><span class="td-tf-tag">${tf === '1H' && hasTwo ? '1H · inside the 4H room' : tf}</span><div class="td-chart"></div></div>`).join('')}</div>
+        ${slide.rangeMap ? `<aside class="td-rm" aria-live="polite"></aside>` : ''}
+      </div>
       ${guideHtml()}
       <div class="td-task"></div>
       <div class="td-panels${slide.thesis ? '' : ' td-one'}">
@@ -218,6 +284,24 @@ export function renderWorkspace(el, slide, satisfy, helpers = {}) {
       f.classList.toggle('now', !!cur && cur.key === f.dataset.k && v == null);
       slot.innerHTML = v == null ? '○' : Array.isArray(v) ? v.map((x) => `<span class="td-chip">${x}</span>`).join('') : v;
     });
+    paintRange();
+  }
+
+  function paintRange() {
+    const box = card.querySelector('.td-rm');
+    if (!box) return;
+    const rm = slide.rangeMap;
+    box.innerHTML = rangeMapHtml({
+      high: state.nums['4h.high'], low: state.nums['4h.low'], price: rm.price, objective: rm.objective,
+      eq: state.vals['loc.eq'] != null || rm.showEq, tf: rm.tf || '4H', priceLabel: rm.priceLabel,
+    });
+  }
+  function zones() {
+    const ch = charts['4H'] || charts[tfs[0]];
+    const yh = state.ys['4h.high'], yl = state.ys['4h.low'];
+    if (!ch || yh == null || yl == null) return;
+    if (state.vals['loc.eq'] == null && !slide.zones) return;
+    drawZones(ch, yh, yl, slide.zoneX ?? Math.min(ch.swings.find((sw) => sw[1] === yh)?.[0] ?? 40, ch.swings.find((sw) => sw[1] === yl)?.[0] ?? 40) - 8);
   }
 
   function fill(key, value) {
@@ -251,7 +335,7 @@ export function renderWorkspace(el, slide, satisfy, helpers = {}) {
     persist();
     paint();
     const next = () => run();
-    if (t.do === 'pick' || t.do === 'choose') {
+    if (t.do === 'pick' || t.do === 'choose' || t.do === 'eq') {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'td-next';
       b.textContent = state.k < tasks.length ? 'Next →' : (slide.cta || 'Continue →');
@@ -265,6 +349,8 @@ export function renderWorkspace(el, slide, satisfy, helpers = {}) {
     tasks.slice(0, state.k).forEach((t) => {
       const ch = charts[t.tf || '4H'] || charts[tfs[0]];
       if (t.do === 'pick' && ch) {
+        if (t.price != null) state.nums[t.key] = t.price;
+        state.ys[t.key] = ch.swings[t.answer][1];
         ch.setPoint(t.answer, 'good');
         if (t.label) ch.label(t.answer, t.label, t.tone || 'purple');
       }
@@ -307,6 +393,8 @@ export function renderWorkspace(el, slide, satisfy, helpers = {}) {
         if (t.label) ch.label(idx, t.label, t.tone || 'purple');
         fb.innerHTML = `<strong>✦</strong> ${t.why || 'That’s the one.'}`;
         fb.className = 'pl-fb show good';
+        if (t.price != null) state.nums[t.key] = t.price;
+        state.ys[t.key] = ch.swings[idx][1];
         fill(t.key, t.value);
         finishTask(t);
       };
@@ -321,6 +409,58 @@ export function renderWorkspace(el, slide, satisfy, helpers = {}) {
       fill(t.key, t.value ?? right?.value ?? right?.label);
       finishTask(t);
     });
+  }
+
+  /* Equilibrium: type the midpoint, or tap it on the chart. Checked against the real range. */
+  function doEq(t) {
+    const hi = state.nums['4h.high'], lo = state.nums['4h.low'];
+    const yh = state.ys['4h.high'], yl = state.ys['4h.low'];
+    const eq = (hi + lo) / 2, eqY = (yh + yl) / 2;
+    const ch = charts['4H'] || charts[tfs[0]];
+    const ok = (val) => {
+      fill('loc.eq', `${Math.round(eq).toLocaleString('en-US')} (50%)`);
+      recordLearning({ concept: 'equilibrium', correct: true });
+      helpers.handleStreak?.(true);
+      helpers.onPick?.({ prompt: t.prompt, concept: 'equilibrium' }, { label: String(val) }, true, wrongs);
+      zones();
+      finishTask(t);
+    };
+    let wrongs = 0;
+    const miss = (msg, val) => {
+      wrongs += 1;
+      recordLearning({ concept: 'equilibrium', mistake: 'equilibrium-math', correct: false });
+      helpers.handleStreak?.(false);
+      helpers.onPick?.({ prompt: t.prompt, concept: 'equilibrium' }, { label: String(val) }, false, wrongs);
+      talk(msg, 'bad');
+    };
+    if (t.mode === 'input') {
+      taskBox.innerHTML = `<div class="td-prompt">${t.prompt || 'EQUILIBRIUM?'}</div>
+        <div class="td-eq"><span>HIGH <b>${hi.toLocaleString('en-US')}</b></span><span>LOW <b>${lo.toLocaleString('en-US')}</b></span>
+        <label>EQUILIBRIUM <input type="number" inputmode="decimal" aria-label="Equilibrium price"></label><button type="button">Check →</button></div>`;
+      const inp = taskBox.querySelector('input'), go = taskBox.querySelector('button');
+      go.addEventListener('click', () => {
+        const v = parseFloat(inp.value);
+        if (Number.isNaN(v)) { talk('Type a number first.', 'bad'); return; }
+        if (Math.abs(v - eq) <= (t.tolerance ?? 5)) { inp.disabled = true; go.remove(); ok(v); }
+        else miss(wrongs ? `(high + low) ÷ 2 = (${hi.toLocaleString('en-US')} + ${lo.toLocaleString('en-US')}) ÷ 2.` : 'Not quite. Add the high and the low, then divide by 2.', v);
+      });
+      return;
+    }
+    // tap mode: tap the chart where 50% sits
+    taskBox.innerHTML = `<div class="td-prompt">👆 ${t.prompt || 'Tap the chart where equilibrium sits.'}</div>`;
+    ch.wrap.classList.add('td-eq-tap');
+    const svg = ch.svg;
+    const onTap = (e) => {
+      const m = svg.getScreenCTM(); if (!m) return;
+      const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(m.inverse());
+      const span = Math.abs(yl - yh);
+      if (Math.abs(pt.y - eqY) <= Math.max(10, span * 0.07)) {
+        svg.removeEventListener('click', onTap);
+        ch.wrap.classList.remove('td-eq-tap');
+        ok('tap');
+      } else miss(pt.y < eqY ? 'That’s above halfway. Equilibrium is exactly 50% of the range.' : 'That’s below halfway. Equilibrium is exactly 50% of the range.', 'tap');
+    };
+    svg.addEventListener('click', onTap);
   }
 
   function doTf(t) {
@@ -353,7 +493,8 @@ export function renderWorkspace(el, slide, satisfy, helpers = {}) {
     ];
     const label = (k) => (ROWS[k] ? ROWS[k][1] : THESIS[k.split('.')[1]] || k);
     const val = (k) => { const v = state.vals[k]; return Array.isArray(v) ? v.join(' · ') : v; };
-    const missing = sections.flatMap(([, ks]) => ks).filter((k) => (t.required || []).includes(k) && val(k) == null);
+    const needed = [...new Set([...(t.required || []), ...((t.sentence || '').match(/\{([\w.]+)\}/g) || []).map((m) => m.slice(1, -1))])];
+    const missing = needed.filter((k) => val(k) == null);
     const box = document.createElement('div');
     box.className = 'td-output';
     if (missing.length) {
@@ -361,7 +502,9 @@ export function renderWorkspace(el, slide, satisfy, helpers = {}) {
       taskBox.appendChild(box);
       return;
     }
+    const sentence = t.sentence ? t.sentence.replace(/\{([\w.]+)\}/g, (_, k) => `<b>${val(k)}</b>`) : '';
     box.innerHTML = `<div class="td-out-k">✦ BUILT FROM YOUR ANSWERS</div><h3>${t.title || 'My AGHF Market Thesis'}</h3>
+      ${sentence ? `<p class="td-out-sentence">“${sentence}”</p>` : ''}
       <div class="td-out-grid">${sections.map(([h, ks]) => {
         const parts = ks.map((k) => (val(k) != null ? `<span><i>${label(k)}</i>${val(k)}</span>` : '')).filter(Boolean);
         if (!parts.length) return '';
@@ -374,7 +517,7 @@ export function renderWorkspace(el, slide, satisfy, helpers = {}) {
       save.className = 'td-save';
       save.innerHTML = `<button type="button">Save to My Academy Notes →</button><span></span>`;
       save.querySelector('button').addEventListener('click', (e) => {
-        const text = sections.map(([h, ks]) => {
+        const text = (sentence ? `${sentence.replace(/<[^>]+>/g, '')}\n\n` : '') + sections.map(([h, ks]) => {
           const parts = ks.map((k) => (val(k) != null ? `${label(k)}: ${val(k)}` : null)).filter(Boolean);
           return parts.length ? `${h}\n${parts.join('\n')}` : null;
         }).filter(Boolean).join('\n\n');
@@ -420,6 +563,7 @@ export function renderWorkspace(el, slide, satisfy, helpers = {}) {
     else if (t.do === 'choose') doChoose(t);
     else if (t.do === 'tf') doTf(t);
     else if (t.do === 'output') doOutput(t);
+    else if (t.do === 'eq') doEq(t);
     else {
       // A "say" step describes what's on the chart, so draw it now.
       const ch = charts[t.tf || state.tf];
@@ -430,6 +574,7 @@ export function renderWorkspace(el, slide, satisfy, helpers = {}) {
 
   setTf(state.tf in charts ? state.tf : tfs[0]);
   replayDone();
+  zones();
   if (state.k > 0 && state.k < tasks.length) talk('Welcome back. Your read is right where you left it. 💗');
   run();
 }
@@ -715,7 +860,7 @@ export function renderCompare(el, slide, satisfy, helpers = {}) {
       ${flowHtml(slide.flow ?? 1)}
       ${slide.kicker ? `<div class="lw-eyebrow">${slide.kicker}</div>` : ''}
       ${slide.title ? `<h2 class="td-title">${slide.title}</h2>` : ''}
-      <div class="td-cmp-grid">${pane(slide.a, 'a')}${pane(slide.b, 'b')}</div>
+      <div class="td-cmp-grid${slide.c ? ' three' : ''}">${pane(slide.a, 'a')}${pane(slide.b, 'b')}${slide.c ? pane(slide.c, 'c') : ''}</div>
       ${guideHtml()}
       <div class="td-task"></div>
     </div>`;
@@ -725,6 +870,7 @@ export function renderCompare(el, slide, satisfy, helpers = {}) {
   say.innerHTML = slide.say || '';
   mountChart(card.querySelector('.td-cmp-pane.a .td-chart'), slide.a.chart, { label: slide.a.label });
   mountChart(card.querySelector('.td-cmp-pane.b .td-chart'), slide.b.chart, { label: slide.b.label });
+  if (slide.c) mountChart(card.querySelector('.td-cmp-pane.c .td-chart'), slide.c.chart, { label: slide.c.label });
   const task = card.querySelector('.td-task');
   const asks = slide.asks || [];
   let k = 0;
@@ -739,3 +885,92 @@ export function renderCompare(el, slide, satisfy, helpers = {}) {
   next();
 }
 TOPDOWN_RENDERERS.td_compare = renderCompare;
+
+/* ── range_toggle: two ranges, one price. "Premium or discount of WHAT range?" ── */
+// slide = { kicker, title, flow, chart (ids 'r4' and 'r1' on each range's overlays),
+//   ranges: { '4H': { high, low }, '1H': { high, low } }, price, say, asks, outro }
+export function renderRangeToggle(el, slide, satisfy, helpers = {}) {
+  const tfs = Object.keys(slide.ranges);
+  el.innerHTML = `<div class="lw-card td-ws td-rt">
+      ${flowHtml(slide.flow ?? 1)}
+      ${slide.kicker ? `<div class="lw-eyebrow">${slide.kicker}</div>` : ''}
+      ${slide.title ? `<h2 class="td-title">${slide.title}</h2>` : ''}
+      <div class="td-rt-tabs" role="group" aria-label="Which range">${[...tfs, 'BOTH'].map((k) => `<button type="button" data-k="${k}">${k === 'BOTH' ? 'BOTH' : `${k} RANGE`}</button>`).join('')}</div>
+      <div class="td-stage-row has-rm"><div class="td-stage"><div class="td-tf on"><div class="td-chart"></div></div></div>
+        <aside class="td-rm-pair">${tfs.map((k) => `<div class="td-rm" data-k="${k}"></div>`).join('')}</aside></div>
+      ${guideHtml()}
+      <div class="td-task"></div>
+    </div>`;
+  const card = el.querySelector('.td-rt');
+  mountHost(card.querySelector('.ag-face'), 'idle', '30 20 340 340');
+  const say = card.querySelector('.td-say');
+  say.innerHTML = slide.say || 'Same price. Two ranges. Toggle them.';
+  const chart = mountChart(card.querySelector('.td-chart'), slide.chart, { label: slide.title });
+  phoneCrop(chart);
+  tfs.forEach((k) => {
+    const r = slide.ranges[k];
+    card.querySelector(`.td-rm[data-k="${k}"]`).innerHTML = rangeMapHtml({ high: r.high, low: r.low, price: slide.price, eq: true, tf: k });
+  });
+  const seen = new Set();
+  const set = (k) => {
+    seen.add(k);
+    card.querySelectorAll('.td-rt-tabs button').forEach((b) => b.classList.toggle('on', b.dataset.k === k));
+    tfs.forEach((t) => {
+      const on = k === 'BOTH' || k === t;
+      (on ? chart.reveal : chart.hide)(`r${t.replace('H', '')}`);
+      card.querySelector(`.td-rm[data-k="${t}"]`).classList.toggle('dim', !on);
+    });
+    if (seen.size >= tfs.length + 1 && !card.dataset.asked) { card.dataset.asked = '1'; ask(); }
+  };
+  card.querySelectorAll('.td-rt-tabs button').forEach((b) => b.addEventListener('click', () => set(b.dataset.k)));
+  set(tfs[0]);
+  const task = card.querySelector('.td-task');
+  task.innerHTML = '<div class="td-prompt">👆 Tap each view: both ranges, then BOTH.</div>';
+  const asks = slide.asks || [];
+  let k = 0;
+  function ask() {
+    if (k === 0) task.innerHTML = '';
+    if (k >= asks.length) {
+      if (slide.outro) { say.innerHTML = slide.outro; say.className = 'td-say good'; }
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'lw-continue-btn'; b.textContent = slide.cta || 'Continue →';
+      b.addEventListener('click', satisfy);
+      el.appendChild(b);
+      return;
+    }
+    askQuestion(task, asks[k++], helpers, ask);
+  }
+}
+
+/* ── range_stand: where are you standing in the room? ── */
+// slide = { kicker, title, flow, high, low, steps: [{ price, say }], outro }
+export function renderRangeStand(el, slide, satisfy) {
+  el.innerHTML = `<div class="lw-card td-ws td-stand">
+      ${flowHtml(slide.flow ?? 0)}
+      ${slide.kicker ? `<div class="lw-eyebrow">${slide.kicker}</div>` : ''}
+      ${slide.title ? `<h2 class="td-title">${slide.title}</h2>` : ''}
+      <div class="td-stand-row"><div class="td-rm big"></div></div>
+      ${guideHtml()}
+      <div class="td-task"></div>
+    </div>`;
+  const card = el.querySelector('.td-stand');
+  mountHost(card.querySelector('.ag-face'), 'idle', '30 20 340 340');
+  const say = card.querySelector('.td-say');
+  const rm = card.querySelector('.td-rm');
+  const task = card.querySelector('.td-task');
+  let i = 0;
+  const step = () => {
+    const st = slide.steps[i];
+    rm.innerHTML = rangeMapHtml({ high: slide.high, low: slide.low, price: st.price, eq: !!st.eq, tf: '4H', priceLabel: st.label || 'you are here' });
+    say.innerHTML = st.say; say.className = `td-say ${st.tone || ''}`;
+    task.innerHTML = '';
+    const b = document.createElement('button');
+    b.type = 'button';
+    if (i < slide.steps.length - 1) { b.className = 'td-next'; b.textContent = 'Next →'; b.addEventListener('click', () => { i += 1; step(); }); task.appendChild(b); }
+    else { b.className = 'lw-continue-btn'; b.textContent = slide.cta || 'Continue →'; b.addEventListener('click', satisfy); el.appendChild(b); }
+  };
+  step();
+}
+
+TOPDOWN_RENDERERS.range_toggle = renderRangeToggle;
+TOPDOWN_RENDERERS.range_stand = renderRangeStand;

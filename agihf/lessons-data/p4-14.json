@@ -1,0 +1,558 @@
+{
+  "phase": "p4",
+  "section": "s11",
+  "lessonNumber": 14,
+  "title": "Understanding the Trading Range",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 70,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Where are you standing?",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Pick the range that frames the current 4H analysis, the one everything else gets measured against.",
+    "missionQuestion": "High or low, relative to what?",
+    "estMinutes": 7
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "range_stand",
+      "kicker": "Section 2 · Location",
+      "title": "Where are you standing?",
+      "flow": 0,
+      "high": 21040,
+      "low": 20610,
+      "steps": [
+        {
+          "price": 20650,
+          "say": "Same room as Section 1. Now there’s a marker: <strong>where price is standing.</strong> Near the bottom door…"
+        },
+        {
+          "price": 20825.0,
+          "say": "…in the middle of the room…"
+        },
+        {
+          "price": 21020,
+          "say": "…or right under the top door."
+        },
+        {
+          "price": 21020,
+          "tone": "good",
+          "say": "Being bullish near the bottom of the room isn’t the same as being bullish when you’re already standing at the top door. 😂"
+        }
+      ]
+    },
+    {
+      "type": "teach",
+      "kicker": "You already built this",
+      "heading": "Now we measure it.",
+      "body": "",
+      "beats": [
+        {
+          "icon": "🚪",
+          "title": "External high",
+          "line": "Top of the range"
+        },
+        {
+          "icon": "🚪",
+          "title": "External low",
+          "line": "Bottom of the range"
+        },
+        {
+          "icon": "●",
+          "title": "Current price",
+          "line": "Where you’re standing"
+        }
+      ],
+      "punch": "Direction + location."
+    },
+    {
+      "type": "td_workspace",
+      "kicker": "Pick the range",
+      "title": "Pick the range.",
+      "flow": 1,
+      "charts": {
+        "4H": {
+          "swings": [
+            [
+              40,
+              122
+            ],
+            [
+              112.0,
+              44
+            ],
+            [
+              240.0,
+              292
+            ],
+            [
+              336.0,
+              160
+            ],
+            [
+              400.0,
+              236
+            ],
+            [
+              496.0,
+              92
+            ],
+            [
+              544.0,
+              152
+            ],
+            [
+              576.0,
+              132
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 48.0,
+              "o": 122,
+              "c": 102.7,
+              "h": 100.7,
+              "l": 125.5,
+              "w": 9.6
+            },
+            {
+              "x": 64.0,
+              "o": 102.7,
+              "c": 86.0,
+              "h": 84.1,
+              "l": 106.2,
+              "w": 9.6
+            },
+            {
+              "x": 80.0,
+              "o": 86.0,
+              "c": 81.1,
+              "h": 75.6,
+              "l": 91.3,
+              "w": 9.6
+            },
+            {
+              "x": 96.0,
+              "o": 81.1,
+              "c": 55.7,
+              "h": 51.5,
+              "l": 84.0,
+              "w": 9.6
+            },
+            {
+              "x": 112.0,
+              "o": 55.7,
+              "c": 50.7,
+              "h": 44,
+              "l": 58.1,
+              "w": 9.6
+            },
+            {
+              "x": 128.0,
+              "o": 50.7,
+              "c": 68.4,
+              "h": 44.6,
+              "l": 74.1,
+              "w": 9.6
+            },
+            {
+              "x": 144.0,
+              "o": 68.4,
+              "c": 124.3,
+              "h": 62.9,
+              "l": 126.8,
+              "w": 9.6
+            },
+            {
+              "x": 160.0,
+              "o": 124.3,
+              "c": 132.9,
+              "h": 119.7,
+              "l": 138.1,
+              "w": 9.6
+            },
+            {
+              "x": 176.0,
+              "o": 132.9,
+              "c": 186.7,
+              "h": 127.0,
+              "l": 188.7,
+              "w": 9.6
+            },
+            {
+              "x": 192.0,
+              "o": 186.7,
+              "c": 206.1,
+              "h": 181.9,
+              "l": 210.1,
+              "w": 9.6
+            },
+            {
+              "x": 208.0,
+              "o": 206.1,
+              "c": 217.7,
+              "h": 202.2,
+              "l": 219.6,
+              "w": 9.6
+            },
+            {
+              "x": 224.0,
+              "o": 217.7,
+              "c": 280.7,
+              "h": 211.8,
+              "l": 285.0,
+              "w": 9.6
+            },
+            {
+              "x": 240.0,
+              "o": 280.7,
+              "c": 284.8,
+              "h": 275.1,
+              "l": 292,
+              "w": 9.6
+            },
+            {
+              "x": 256.0,
+              "o": 284.8,
+              "c": 265.6,
+              "h": 259.7,
+              "l": 290.5,
+              "w": 9.6
+            },
+            {
+              "x": 272.0,
+              "o": 265.6,
+              "c": 243.4,
+              "h": 239.8,
+              "l": 270.1,
+              "w": 9.6
+            },
+            {
+              "x": 288.0,
+              "o": 243.4,
+              "c": 220.9,
+              "h": 218.5,
+              "l": 246.4,
+              "w": 9.6
+            },
+            {
+              "x": 304.0,
+              "o": 220.9,
+              "c": 208.6,
+              "h": 206.9,
+              "l": 222.6,
+              "w": 9.6
+            },
+            {
+              "x": 320.0,
+              "o": 208.6,
+              "c": 183.6,
+              "h": 180.7,
+              "l": 212.8,
+              "w": 9.6
+            },
+            {
+              "x": 336.0,
+              "o": 183.6,
+              "c": 167.9,
+              "h": 160,
+              "l": 187.0,
+              "w": 9.6
+            },
+            {
+              "x": 352.0,
+              "o": 167.9,
+              "c": 191.0,
+              "h": 165.4,
+              "l": 194.6,
+              "w": 9.6
+            },
+            {
+              "x": 368.0,
+              "o": 191.0,
+              "c": 198.3,
+              "h": 186.3,
+              "l": 201.2,
+              "w": 9.6
+            },
+            {
+              "x": 384.0,
+              "o": 198.3,
+              "c": 217.2,
+              "h": 193.1,
+              "l": 220.3,
+              "w": 9.6
+            },
+            {
+              "x": 400.0,
+              "o": 217.2,
+              "c": 227.8,
+              "h": 211.6,
+              "l": 236,
+              "w": 9.6
+            },
+            {
+              "x": 416.0,
+              "o": 227.8,
+              "c": 195.4,
+              "h": 193.6,
+              "l": 230.4,
+              "w": 9.6
+            },
+            {
+              "x": 432.0,
+              "o": 195.4,
+              "c": 189.0,
+              "h": 184.4,
+              "l": 198.1,
+              "w": 9.6
+            },
+            {
+              "x": 448.0,
+              "o": 189.0,
+              "c": 155.8,
+              "h": 153.4,
+              "l": 192.8,
+              "w": 9.6
+            },
+            {
+              "x": 464.0,
+              "o": 155.8,
+              "c": 126.1,
+              "h": 121.1,
+              "l": 161.7,
+              "w": 9.6
+            },
+            {
+              "x": 480.0,
+              "o": 126.1,
+              "c": 125.7,
+              "h": 120.6,
+              "l": 132.4,
+              "w": 9.6
+            },
+            {
+              "x": 496.0,
+              "o": 125.7,
+              "c": 98.1,
+              "h": 92,
+              "l": 128.9,
+              "w": 9.6
+            },
+            {
+              "x": 512.0,
+              "o": 98.1,
+              "c": 120.6,
+              "h": 92.7,
+              "l": 124.1,
+              "w": 9.6
+            },
+            {
+              "x": 528.0,
+              "o": 120.6,
+              "c": 138.3,
+              "h": 116.0,
+              "l": 143.9,
+              "w": 9.6
+            },
+            {
+              "x": 544.0,
+              "o": 138.3,
+              "c": 144.8,
+              "h": 135.6,
+              "l": 152,
+              "w": 9.6
+            },
+            {
+              "x": 560.0,
+              "o": 144.8,
+              "c": 138.3,
+              "h": 136.1,
+              "l": 148.2,
+              "w": 9.6
+            },
+            {
+              "x": 576.0,
+              "o": 138.3,
+              "c": 141.8,
+              "h": 132,
+              "l": 145.2,
+              "w": 9.6
+            },
+            {
+              "x": 592.0,
+              "o": 141.8,
+              "c": 150.2,
+              "h": 140.1,
+              "l": 152.6,
+              "w": 9.6
+            },
+            {
+              "x": 608.0,
+              "o": 150.2,
+              "c": 166.4,
+              "h": 146.9,
+              "l": 169.3,
+              "w": 9.6
+            },
+            {
+              "x": 624.0,
+              "o": 166.4,
+              "c": 176.0,
+              "h": 164.4,
+              "l": 182.4,
+              "w": 9.6
+            }
+          ],
+          "hlines": [
+            {
+              "y": 92,
+              "label": "EXTERNAL HIGH · 21,040",
+              "tone": "purple",
+              "x1": 392.0,
+              "x2": 692,
+              "size": 13,
+              "labelX": 470,
+              "door": true
+            },
+            {
+              "y": 236,
+              "label": "EXTERNAL LOW · 20,610",
+              "tone": "purple",
+              "x1": 392.0,
+              "x2": 692,
+              "size": 13,
+              "below": true,
+              "labelX": 470,
+              "door": true
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 392.0,
+              "y1": 92,
+              "x2": 692,
+              "y2": 236,
+              "tone": "purple",
+              "op": 0.45,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6
+            }
+          ],
+          "notes": [
+            {
+              "x": 650.0,
+              "y": 180.0,
+              "text": "● now",
+              "tone": "dark",
+              "size": 13,
+              "anchor": "middle"
+            }
+          ]
+        }
+      },
+      "board": [
+        "4h.high",
+        "4h.low"
+      ],
+      "tasks": [
+        {
+          "do": "pick",
+          "tf": "4H",
+          "key": "4h.high",
+          "prompt": "Pick the range high: the high framing the current 4H analysis.",
+          "only": [
+            1,
+            3,
+            5,
+            7
+          ],
+          "answer": 5,
+          "value": "21,040",
+          "notes": {
+            "1": "That high exists. But is it framing the structure you’re currently analyzing?",
+            "3": "Price already traded through that one. It isn’t framing the room anymore.",
+            "7": "You found a real swing. Now check: is it defining the external room, or movement inside it?"
+          },
+          "label": "EXTERNAL HIGH",
+          "concept": "range-selection",
+          "mistakes": {
+            "1": "4h-relevant-swing",
+            "3": "4h-relevant-swing",
+            "7": "internal-vs-external"
+          },
+          "why": "That high is defining the room price is in right now.",
+          "show": [
+            "doorH"
+          ],
+          "say": "Find the doors. Not the highest high on the screen. The high defining the room price is in <strong>now</strong>.",
+          "price": 21040
+        },
+        {
+          "do": "pick",
+          "tf": "4H",
+          "key": "4h.low",
+          "prompt": "Now the range low.",
+          "only": [
+            2,
+            4,
+            6
+          ],
+          "answer": 4,
+          "value": "20,610",
+          "notes": {
+            "2": "That low exists. But is it framing the structure you’re currently analyzing?",
+            "6": "You found a real swing. Now check: is it defining the external room, or movement inside it?"
+          },
+          "label": "EXTERNAL LOW",
+          "concept": "range-selection",
+          "mistakes": {
+            "2": "4h-relevant-swing",
+            "6": "internal-vs-external"
+          },
+          "why": "That’s the low the current move was built from.",
+          "show": [
+            "doorL",
+            "room",
+            "now"
+          ],
+          "after": "<strong>THIS IS THE RANGE WE’RE MEASURING ✓</strong>",
+          "price": 20610
+        }
+      ],
+      "save": "p4-14",
+      "outro": "That’s the range. Every location question in this section gets measured against it.",
+      "nums": {},
+      "ys": {},
+      "rangeMap": {
+        "price": 20790,
+        "tf": "4H"
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Before you call price high or low, <em>ask: high or low relative to what?</em>",
+      "pose": "point"
+    },
+    {
+      "type": "reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Why does the range you pick matter before you call price high or low?",
+      "modelAnswer": "Because high and low only mean something relative to a range. If I measure against the wrong range, every location read after it is wrong too."
+    }
+  ],
+  "takeaways": [
+    "The range = the current external high and low.",
+    "Relevance, not the most extreme candles.",
+    "Everything in this section is measured against it."
+  ],
+  "remember": "High or low, relative to what?"
+}
