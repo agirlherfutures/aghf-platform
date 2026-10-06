@@ -1,250 +1,149 @@
 /**
- * Phase 4 · Section 1 · Lesson 11 intro video — "Bullish Scenario vs. Bearish Scenario"
+ * Phase 4 · Section 10 · Lesson 11 intro video: "Bullish Scenario vs. Bearish Scenario"
+ * Scenes: s10-train-switch (train at a track switch, ghost trains preview both paths), s10-adventure-book (choose-your-path storybook with an IF/THEN on each page).
  */
 window.LESSON_VIDEO = {
   "slug": "p4-lesson-11",
-  "eyebrow": "Phase 4 · Section 1 · Lesson 11",
-  "duration": 76,
-  "sources": "From Phase 4, Lesson 11: the scenario builder with a primary thesis and an alternate scenario as IF / AND / THEN, side by side, with neither called right or wrong.",
+  "eyebrow": "Phase 4 · Section 10 · Lesson 11",
+  "duration": 80,
+  "sources": "From Phase 4, Section 10, Lesson 11 (\"Bullish Scenario vs. Bearish Scenario\"): conditional thinking (not \"bullish or bearish?\"), a primary thesis from current evidence and an alternate scenario for what would change the read, the scenario builder (if price holds the 1H low, the bullish thesis stays supported; if it breaks, reassess), and \"a thesis should tell you what you’d need to see, not what you need the market to do.\"",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Finding Your Bias",
+      "phase": "Section 10: Finding Your Bias",
       "title": "Bullish Scenario vs. Bearish Scenario",
-      "quote": "What would you need to see?",
+      "quote": "From bias to conditional thinking.",
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Lesson Eleven: Bullish Scenario vs. Bearish Scenario.",
+          "text": "Welcome to Lesson Eleven: Bullish Scenario versus Bearish Scenario.",
           "screen": "Aristella waves; title *Bullish Scenario vs. Bearish Scenario*"
         },
         {
           "at": 4.6,
-          "text": "Two stories."
+          "text": "From bias to conditional thinking."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s10-train-switch",
       "start": 8,
-      "end": 38,
-      "seed": 411,
-      "kicker": "Both stories",
-      "swings": [
-        [
-          0,
-          0.9
-        ],
-        [
-          0.12,
-          0.62
-        ],
-        [
-          0.2,
-          0.75
-        ],
-        [
-          0.36,
-          0.45
-        ],
-        [
-          0.44,
-          0.58
-        ],
-        [
-          0.58,
-          0.25
-        ],
-        [
-          0.72,
-          0.68
-        ],
-        [
-          0.8,
-          0.52
-        ],
-        [
-          0.9,
-          0.62
-        ]
-      ],
-      "per": [
-        3,
-        2,
-        4,
-        2,
-        4,
-        4,
-        2,
-        2
-      ],
-      "play": [
-        {
-          "to": 8,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 34,
+      "kicker": "Conditional thinking",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Bullish <span class=\"mark\">or bearish?</span>",
-          "out": 28.3
+          "html": "Not <span class=\"mark\">“bullish or bearish?”</span>",
+          "out": 22.6
         },
         {
-          "at": 28.5,
-          "html": "IF… THEN… <span class=\"mark\"></span>"
+          "at": 22.8,
+          "html": "Two stories. <span class=\"mark\">Both conditional.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Here’s the relevant 1H low.",
-          "screen": "\"1H low\""
+          "text": "Here comes price. And here’s the relevant 1H low. Think of it as a switch on the tracks.",
+          "screen": "A train rolls up to the switch"
         },
         {
-          "at": 13.0,
+          "at": 14.6,
           "text": "If price holds above it, the bullish thesis stays supported.",
-          "screen": "\"IF it holds\""
+          "screen": "IF it holds"
         },
         {
-          "at": 18.0,
-          "text": "If price breaks it, I reassess toward the external low.",
-          "screen": "\"IF it breaks\""
+          "at": 18.4,
+          "text": "If price breaks it, I reassess, toward the external low.",
+          "screen": "IF it breaks"
         },
         {
-          "at": 23.0,
-          "text": "Two stories. Both conditional."
+          "at": 22.8,
+          "text": "Two stories. Both conditional.",
+          "screen": "both conditional"
         },
         {
-          "at": 28.5,
+          "at": 25.2,
           "text": "One reflects current evidence. The other says what would change the read."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.25,
-          "from": 0.58,
-          "label": "1H low",
-          "tone": "purple",
-          "at": 12.0,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.78,
-          "v": 0.9,
-          "text": "IF it holds → bullish",
-          "tone": "up",
-          "at": 13.0,
-          "fs": 24
-        },
-        {
-          "u": 0.62,
-          "v": 0.08,
-          "text": "IF it breaks → reassess",
-          "tone": "purple",
-          "at": 18.0,
-          "fs": 24
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
+      "type": "s10-adventure-book",
+      "start": 34,
+      "end": 58,
       "kicker": "Scenario builder",
-      "items": [
-        {
-          "title": "IF",
-          "desc": [
-            "price holds",
-            "the 1H low"
-          ],
-          "tone": "up",
-          "at": 40.8
-        },
-        {
-          "title": "THEN",
-          "desc": [
-            "bullish stays",
-            "supported"
-          ],
-          "tone": "up",
-          "at": 44.2
-        },
-        {
-          "title": "ELSE",
-          "desc": [
-            "reassess",
-            ""
-          ],
-          "tone": "purple",
-          "at": 47.6
-        }
-      ],
       "headlines": [
         {
-          "at": 51.0,
+          "at": 34.4,
+          "html": "<span class=\"mark\">IF</span> this, <span class=\"mark\">THEN</span> that.",
+          "out": 48.6
+        },
+        {
+          "at": 48.8,
           "html": "Conditions, <span class=\"mark\">not hopes.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Build it like this.",
-          "screen": "\"Scenario builder\""
+          "at": 34.4,
+          "text": "Build both stories, like a choose your path book.",
+          "screen": "A storybook opens"
         },
         {
-          "at": 40.8,
-          "text": "IF price holds the 1H low…",
-          "screen": "IF price holds the 1H low"
+          "at": 37.6,
+          "text": "If price holds the 1H low, then the bullish thesis stays supported.",
+          "screen": "Left page"
         },
         {
-          "at": 44.2,
-          "text": "THEN the bullish thesis stays supported.",
-          "screen": "THEN bullish stays supported"
+          "at": 42.6,
+          "text": "If it breaks, then I reassess.",
+          "screen": "Right page"
         },
         {
-          "at": 47.6,
-          "text": "If not, reassess.",
-          "screen": "ELSE reassess"
+          "at": 45.6,
+          "text": "Each page says what you’d need to see."
         },
         {
-          "at": 51.0,
-          "text": "Conditions, not hopes."
+          "at": 48.8,
+          "text": "Not what you need the market to do.",
+          "screen": "\"Please just go up! 🙏\""
+        },
+        {
+          "at": 51.6,
+          "text": "Conditions, not hopes.",
+          "screen": "HOPE ≠ PLAN"
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 58,
+      "end": 68,
+      "pointAt": 60.6,
+      "size": 58,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "A thesis tells you what"
+          "at": 59.2,
+          "text": "A thesis tells you what you’d need to see."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">you’d need to see.</span>"
+          "at": 60.6,
+          "html": "<span class=\"mark\">Not what you need the market to do.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 58.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 59.6,
           "text": "A thesis should tell you what you’d need to see. Not what you need the market to do.",
           "screen": "Aristella points"
         }
@@ -252,30 +151,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 68,
+      "end": 80,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 70.6,
         "text": "What would you need to see?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 76.4,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 68.2,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 70.6,
           "text": "What would you need to see?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 76.4,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

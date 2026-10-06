@@ -1,20 +1,21 @@
 /**
- * Phase 4 · Section 1 · Lesson 13 intro video — "Updating Your Bias in Real Time"
+ * Phase 4 · Section 10 · Lesson 13 intro video: "Updating Your Bias in Real Time"
+ * Scenes: s10-mailbox (hourly mail delivers new information, the thesis gets restamped), s10-ferris-loop (Ferris wheel with READ, MAP, WAIT, UPDATE, REPEAT cabins).
  */
 window.LESSON_VIDEO = {
   "slug": "p4-lesson-13",
-  "eyebrow": "Phase 4 · Section 1 · Lesson 13",
-  "duration": 76,
-  "sources": "From Phase 4, Lesson 13: a live thesis simulation from 9:00 to 12:00 (strengthened, weakened, invalidated), updating without calling it failure, and the AGHF Analysis Loop: read, map, wait, update, repeat.",
+  "eyebrow": "Phase 4 · Section 10 · Lesson 13",
+  "duration": 80,
+  "sources": "From Phase 4, Section 10, Lesson 13 (\"Updating Your Bias in Real Time\"): the live thesis simulation (bullish if the 1H low holds, then strengthened, weakened, invalidated), changing your read isn’t failure (old thesis no longer supported, reassess current structure), and the AGHF Analysis Loop: Read, Map, Wait, Update, Repeat. Last lesson of Section 10; next is Section 11: Location Within the Range.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Finding Your Bias",
+      "phase": "Section 10: Finding Your Bias",
       "title": "Updating Your Bias in Real Time",
-      "quote": "Consistency in process.",
+      "quote": "New information received.",
       "lines": [
         {
           "at": 0.6,
@@ -28,229 +29,132 @@ window.LESSON_VIDEO = {
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s10-mailbox",
       "start": 8,
-      "end": 38,
-      "seed": 413,
+      "end": 34,
       "kicker": "Live thesis",
-      "swings": [
-        [
-          0,
-          0.5
-        ],
-        [
-          0.14,
-          0.3
-        ],
-        [
-          0.26,
-          0.55
-        ],
-        [
-          0.38,
-          0.35
-        ],
-        [
-          0.52,
-          0.8
-        ],
-        [
-          0.62,
-          0.62
-        ],
-        [
-          0.7,
-          0.72
-        ],
-        [
-          0.88,
-          0.15
-        ]
-      ],
-      "per": [
-        3,
-        3,
-        3,
-        4,
-        2,
-        2,
-        4
-      ],
-      "play": [
-        {
-          "to": 7,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
       "headlines": [
         {
           "at": 8.4,
-          "html": "9:00 AM. <span class=\"mark\">Bullish, if…</span>",
-          "out": 28.3
+          "html": "New information <span class=\"mark\">received.</span>",
+          "out": 23.8
         },
         {
-          "at": 28.5,
-          "html": "New information <span class=\"mark\">received.</span>"
+          "at": 24,
+          "html": "Changing your read <span class=\"mark\">isn’t failure.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "9 a.m. Bullish, if the 1H low holds.",
-          "screen": "\"1H low\""
+          "text": "Nine a.m. Bullish, if the 1H low holds.",
+          "screen": "Street clock, mail carrier, chart"
         },
         {
-          "at": 13.0,
-          "text": "10 a.m. Price builds higher. Strengthened.",
-          "screen": "\"strengthened\""
+          "at": 11.8,
+          "text": "Ten a.m. New information. Price builds higher. Strengthened.",
+          "screen": "STRENGTHENED"
         },
         {
-          "at": 18.0,
-          "text": "11 a.m. A lower high. Weakened.",
-          "screen": "\"weakened\""
+          "at": 16.4,
+          "text": "Eleven. A lower high. Weakened.",
+          "screen": "WEAKENED"
         },
         {
-          "at": 23.0,
+          "at": 20.6,
           "text": "Noon. A close below the low. Invalidated.",
-          "screen": "\"invalidated\""
+          "screen": "INVALIDATED"
         },
         {
-          "at": 28.5,
-          "text": "That isn’t failure. It’s new information. Update the read."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.35,
-          "from": 0.38,
-          "label": "1H low",
-          "tone": "purple",
-          "at": 10.0,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.36,
-          "v": 0.96,
-          "text": "10:00 strengthened",
-          "tone": "up",
-          "at": 13.0,
-          "fs": 22
+          "at": 24,
+          "text": "Is that failure? No. It’s new information.",
+          "screen": "\"New information received.\""
         },
         {
-          "u": 0.98,
-          "v": 0.86,
-          "text": "11:00 weakened",
-          "tone": "gold",
-          "at": 18.0,
-          "fs": 22
-        },
-        {
-          "u": 0.84,
-          "v": 0.05,
-          "text": "12:00 invalidated",
-          "tone": "down",
-          "at": 23.0,
-          "fs": 22
+          "at": 27,
+          "text": "The old thesis is no longer supported. Reassess current structure.",
+          "screen": "reassess current structure"
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "The Analysis Loop",
-      "items": [
-        {
-          "title": "Read",
-          "desc": [
-            "& map",
-            ""
-          ],
-          "tone": "purple",
-          "at": 40.8
-        },
-        {
-          "title": "Wait",
-          "desc": [
-            "for price",
-            ""
-          ],
-          "tone": "gold",
-          "at": 44.2
-        },
-        {
-          "title": "Update",
-          "desc": [
-            "& repeat",
-            ""
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s10-ferris-loop",
+      "start": 34,
+      "end": 58,
+      "kicker": "The AGHF Analysis Loop",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Process <span class=\"mark\">over opinion.</span>"
+          "at": 34.4,
+          "html": "Read. Map. Wait. <span class=\"mark\">Update. Repeat.</span>",
+          "out": 49.6
+        },
+        {
+          "at": 49.8,
+          "html": "Same process, <span class=\"mark\">every session.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "The AGHF Analysis Loop.",
-          "screen": "\"The Analysis Loop\""
+          "at": 34.4,
+          "text": "Here’s the AGHF Analysis Loop.",
+          "screen": "A Ferris wheel"
         },
         {
-          "at": 40.8,
-          "text": "Read the structure and map the levels.",
-          "screen": "Read & map"
+          "at": 36.8,
+          "text": "Read: what is structure showing?",
+          "screen": "READ"
         },
         {
-          "at": 44.2,
-          "text": "Wait for what price does there.",
-          "screen": "Wait for price"
+          "at": 39.2,
+          "text": "Map: which levels matter?",
+          "screen": "MAP"
         },
         {
-          "at": 47.6,
-          "text": "Update, and repeat.",
-          "screen": "Update & repeat"
+          "at": 41.2,
+          "text": "Wait: what does price do there?",
+          "screen": "WAIT"
         },
         {
-          "at": 51.0,
-          "text": "Process over opinion."
+          "at": 44,
+          "text": "Update: does it confirm, weaken, or invalidate the thesis?",
+          "screen": "UPDATE"
+        },
+        {
+          "at": 47.8,
+          "text": "Repeat. Every session.",
+          "screen": "REPEAT"
+        },
+        {
+          "at": 50,
+          "text": "Your opinion can change. Your process doesn’t."
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
+      "start": 58,
+      "end": 68,
+      "pointAt": 60.6,
       "size": 66,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 59.2,
           "text": "Consistency in process."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">Not in opinion.</span>"
+          "at": 60.6,
+          "html": "<span class=\"mark\">Not consistency in opinion.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 58.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 59.6,
           "text": "Consistency in process. Not consistency in opinion.",
           "screen": "Aristella points"
         }
@@ -258,31 +162,31 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 68,
+      "end": 80,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 70.6,
         "text": "What do you do when price changes the evidence?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 76.4,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
-          "text": "Here’s your mission for this lesson.",
+          "at": 68.2,
+          "text": "Here’s your mission for the last lesson of this section.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 70.6,
           "text": "What do you do when price changes the evidence?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
-          "text": "Let’s find out.",
+          "at": 76.4,
+          "text": "Let’s find out. And after this, Section 11: Location Within the Range.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }
       ]

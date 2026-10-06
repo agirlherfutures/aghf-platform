@@ -977,17 +977,17 @@
     else if (t >= T.slip) {
       const a = seg(t, T.slip, T.slip + 0.7), b = seg(t, T.slip + 0.7, T.slip + 1.3);
       cx = lerp(640, 930, ease(a)); cy = SH; rot = a * 10;
-      if (b > 0) { cx = lerp(930, 990, b); cy = lerp(SH, CT, b * b); rot = lerp(10, -20, b); }
+      if (b > 0) { cx = lerp(930, 960, b); cy = lerp(SH, CT, b * b); rot = lerp(10, -20, b); }
       mood = b > 0 ? (b >= 1 ? 'dizzy' : 'shock') : 'shock';
     }
     out += cat(t, { x: cx, y: cy, s: 1.0, rot, sy, mood, seed: 6, lookY: t < T.jump ? -6 : 0 });
     if (t > T.jump + 0.8 && t < T.slip) out += sparkle(640, SH - 150, T.jump + 0.8, t, C.gold);
-    if (t > T.slip + 1.3) out += [0, 1, 2].map(i => { const a = t * 3 + i * 2.1; return `<text x="${990 + Math.cos(a) * 54}" y="${CT - 200 + Math.sin(a) * 14}" font-size="30" text-anchor="middle" fill="${C.gold}" ${F}>★</text>`; }).join('');
+    if (t > T.slip + 1.3) out += [0, 1, 2].map(i => { const a = t * 3 + i * 2.1; return `<text x="${960 + Math.cos(a) * 54}" y="${CT - 200 + Math.sin(a) * 14}" font-size="30" text-anchor="middle" fill="${C.gold}" ${F}>★</text>`; }).join('');
     // Mouse laughs at the slip.
-    out += mouse(t, { x: 1080, y: CT - 10, s: 1.1, flip: true, laugh: t > T.slip + 1.2 && t < T.slip + 4.5 });
+    out += mouse(t, { x: 1120, y: CT - 10, s: 1.1, flip: true, laugh: t > T.slip + 1.2 && t < T.slip + 4.5 });
     // Pills.
-    out += pill(620, 470, 'breakout confirmed forever?', C.peach, pop(t, T.forever, 0.5) * (1 - clamp((t - T.slip + 0.2) / 0.3)), 26);
-    if (t > T.forever + 1.4 && t < T.slip) out += xMark(860, 470, pop(t, T.forever + 1.4, 0.4), 20);
+    out += pill(380, 540, 'confirmed forever?', C.peach, pop(t, T.forever, 0.5) * (1 - clamp((t - T.slip + 0.2) / 0.3)), 26);
+    if (t > T.forever + 1.4 && t < T.slip) out += xMark(570, 540, pop(t, T.forever + 1.4, 0.4), 20);
     out += pill(640, 470, 'moved above, failed to hold', C.pink, pop(t, T.fail, 0.5), 26);
     out += pill(1490, 1030, 'false break behavior', C.pink, pop(t, T.fb, 0.5), 26);
     return out;
@@ -1023,11 +1023,11 @@
     }
     // Gossip with a parrot; calm analyst.
     const gTalk = t > T.g1 && t < T.g1 + 2.8;
-    out += P(t, { x: 300, y: 1000, scale: 1.05, look: A.LOOKS.b, seed: 3, talk: gTalk, frontArm: gTalk ? { a1: -50, a2: -90 + Math.sin(t * 9) * 12 } : undefined, mood: t > T.assume + 0.4 && t < T.parrot2 ? 'sad' : undefined });
+    out += P(t, { x: 330, y: 1000, scale: 1.25, look: A.LOOKS.b, seed: 3, talk: gTalk, frontArm: gTalk ? { a1: -50, a2: -90 + Math.sin(t * 9) * 12 } : undefined, mood: t > T.assume + 0.4 && t < T.parrot2 ? 'sad' : undefined });
     const squawk = (t > T.g1 + 1.4 && t < T.g1 + 3.8) || (t > T.parrot2 && t < T.parrot2 + 3);
-    out += bird(t, { x: 338, y: 800, s: 0.85, col: C.teal, wing: C.pink, tail: C.peach, crest: C.pink, seed: 5, hop: squawk });
+    out += bird(t, { x: 370, y: 760, s: 1.0, col: C.teal, wing: C.pink, tail: C.peach, crest: C.pink, seed: 5, hop: squawk });
     const aTalk = t > T.obs - 0.2 && t < T.obs + 4;
-    out += P(t, { x: 1600, y: 1000, scale: 1.05, look: A.LOOKS.e, flip: true, seed: 7, talk: aTalk, frontArm: { a1: 40, a2: -60 },
+    out += P(t, { x: 1600, y: 1000, scale: 1.25, look: A.LOOKS.e, flip: true, seed: 7, talk: aTalk, frontArm: { a1: 40, a2: -60 },
       hold: `<rect x="-28" y="-62" width="56" height="70" rx="6" fill="#fff" stroke="${C.tealD}" stroke-width="4"/><path d="M-16,-40 h32 M-16,-26 h24 M-16,-12 h28" stroke="${C.tealL}" stroke-width="5"/>` }, 'cap', C.purple);
     // Desk in front.
     out += `<rect x="200" y="${DK}" width="1520" height="26" rx="10" fill="${C.peach}"/><rect x="220" y="${DK + 26}" width="1480" height="${1000 - DK - 26}" fill="${C.peachL}"/>
@@ -1035,19 +1035,155 @@
       <rect x="1380" y="${DK - 54}" width="44" height="54" rx="8" fill="${C.teal}"/><path d="M1424,${DK - 42} q20,0 20,16 q0,14 -20,14" stroke="${C.teal}" stroke-width="6" fill="none"/>`;
     // Speech.
     const b1 = win(t, T.g1, T.obs - 0.4);
-    if (b1 > 0) out += A.bubble(430, 455, 'Big money trapped retail!', { op: b1, sc: 0.8 + 0.2 * b1, size: 30, weight: 800, tail: 'left', color: C.pink });
+    if (b1 > 0) out += A.bubble(420, 430, 'Big money trapped retail!', { op: b1, sc: 0.8 + 0.2 * b1, size: 28, weight: 800, tail: 'left', color: C.pink });
     const b2 = win(t, T.g1 + 1.4, T.g1 + 4.2);
-    if (b2 > 0) out += A.bubble(300, 560, 'Trapped! Squawk!', { op: b2, sc: 0.8 + 0.2 * b2, size: 26, weight: 800, tail: 'right', color: C.tealD });
+    if (b2 > 0) out += A.bubble(200, 525, 'Trapped! Squawk!', { op: b2, sc: 0.8 + 0.2 * b2, size: 26, weight: 800, tail: 'right', color: C.tealD });
     const sa = clamp((t - T.assume) / 0.3);
-    if (sa > 0 && b1 > 0) out += `<g transform="translate(430,455) rotate(-8) scale(${lerp(1.6, 1, ease(sa))})" opacity="${sa}"><rect x="-140" y="-30" width="280" height="60" rx="10" fill="#fff" fill-opacity=".85" stroke="${C.pink}" stroke-width="6"/>
+    if (sa > 0 && b1 > 0) out += `<g transform="translate(420,430) rotate(-8) scale(${lerp(1.6, 1, ease(sa))})" opacity="${sa}"><rect x="-140" y="-30" width="280" height="60" rx="10" fill="#fff" fill-opacity=".85" stroke="${C.pink}" stroke-width="6"/>
       <text y="12" font-size="32" font-weight="900" text-anchor="middle" fill="${C.pink}" letter-spacing="3" ${F}>ASSUMPTION</text></g>`;
     const b3 = win(t, T.obs, s.end);
-    if (b3 > 0) out += A.bubble(1590, 470, 'Above the high, then back below.', { op: b3, sc: 0.8 + 0.2 * b3, size: 28, weight: 700, tail: 'right', color: C.tealD });
+    if (b3 > 0) out += A.bubble(1590, 440, 'Above the high, then back below.', { op: b3, sc: 0.8 + 0.2 * b3, size: 28, weight: 700, tail: 'right', color: C.tealD });
     const so = clamp((t - T.obs - 2.6) / 0.3);
-    if (so > 0) out += `<g transform="translate(1590,555) rotate(6) scale(${lerp(1.6, 1, ease(so))})" opacity="${so}"><rect x="-150" y="-30" width="300" height="60" rx="10" fill="#fff" fill-opacity=".85" stroke="${C.tealD}" stroke-width="6"/>
+    if (so > 0) out += `<g transform="translate(1590,520) rotate(6) scale(${lerp(1.6, 1, ease(so))})" opacity="${so}"><rect x="-150" y="-30" width="300" height="60" rx="10" fill="#fff" fill-opacity=".85" stroke="${C.tealD}" stroke-width="6"/>
       <text y="12" font-size="30" font-weight="900" text-anchor="middle" fill="${C.tealD}" letter-spacing="3" ${F}>OBSERVATION ✓</text></g>`;
     const b4 = win(t, T.parrot2, s.end);
-    if (b4 > 0) out += A.bubble(300, 560, 'Observation!', { op: b4, sc: 0.8 + 0.2 * b4, size: 26, weight: 800, tail: 'right', color: C.tealD });
+    if (b4 > 0) out += A.bubble(200, 525, 'Observation!', { op: b4, sc: 0.8 + 0.2 * b4, size: 26, weight: 800, tail: 'right', color: C.tealD });
+    return out;
+  };
+
+  /* ===================== Lesson 17 ===================== */
+  // The bullish story is a bridge held up by the supporting low. When that pillar goes, now what?
+  LIVE['s5-bridge'] = (s, t, ctx) => {
+    const T = s.beats, W = 920;
+    let out = `<rect x="0" y="${W}" width="1920" height="${1080 - W}" fill="${C.tealL}"/>`;
+    for (let i = 0; i < 14; i++) { const x = ((i * 150 + t * 40) % 2100) - 90; out += `<path d="M${x},${W + 50 + (i % 3) * 36} q20,-12 40,0 q20,12 40,0" stroke="#fff" stroke-width="4" fill="none" opacity=".7"/>`; }
+    out += `<path d="M0,${W - 20} L520,${W - 20} L560,${W + 30} L0,${W + 30} Z" fill="#F6EDE6"/><rect x="0" y="${W - 24}" width="530" height="6" fill="#EADFD8"/>
+      <path d="M1920,${W - 20} L1720,${W - 20} L1690,${W + 30} L1920,${W + 30} Z" fill="#F6EDE6"/>`;
+    const DP = [[520, W - 20], [700, 680], [860, 790], [1100, 600], [1300, 760], [1560, 540]];
+    const bk = seg(t, s.start + 0.3, s.start + 2.0);
+    const fall = ease((t - T.close - 0.7) / 1.0);
+    // Pillars.
+    const pillar = (x, top, col, stroke) => `<rect x="${x - 26}" y="${top}" width="52" height="${W + 10 - top}" rx="6" fill="${col}" stroke="${stroke}" stroke-width="4"/>
+      ${[0, 1, 2].map(i => `<line x1="${x - 26}" x2="${x + 26}" y1="${top + 40 + i * 50}" y2="${top + 40 + i * 50}" stroke="${stroke}" stroke-width="3" opacity=".5"/>`).join('')}`;
+    if (bk > 0.4) out += pillar(860, 790, '#E9DED6', C.muted) + pillar(1560, 540, '#E9DED6', C.muted);
+    if (bk > 0.6) {
+      if (fall <= 0) out += pillar(1300, 760, C.tealL, C.tealD);
+      else [0, 1, 2].forEach(i => {
+        const y0 = 760 + i * 54, dy = fall * fall * (W + 40 - y0) + (i * 10), r = fall * (i % 2 ? 40 : -50);
+        out += `<g transform="translate(${(i - 1) * 30 * fall},${dy}) rotate(${r} 1300 ${y0 + 33})" opacity="${1 - clamp((fall - 0.8) / 0.2) * 0.6}"><rect x="1274" y="${y0}" width="52" height="52" rx="6" fill="${C.tealL}" stroke="${C.tealD}" stroke-width="4"/></g>`;
+      });
+      if (fall > 0.6) out += [0, 1].map(i => { const q = clamp((t - T.close - 1.4 - i * 0.2) / 0.9); return q > 0 && q < 1 ? `<ellipse cx="${1300 + (i ? 60 : -50)}" cy="${W + 20}" rx="${30 + q * 70}" ry="${10 + q * 16}" fill="none" stroke="#fff" stroke-width="5" opacity="${1 - q}"/>` : ''; }).join('');
+    }
+    // Deck: draw segments; the two around the broken pillar droop.
+    const nSeg = Math.ceil(bk * (DP.length - 1));
+    const deckSeg = (a, b) => `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#C9A27A" stroke-width="22" stroke-linecap="round"/>
+      ${Array.from({ length: 4 }, (_, j) => { const f = (j + 0.5) / 4, x = lerp(a[0], b[0], f), y = lerp(a[1], b[1], f); return `<line x1="${x}" x2="${x}" y1="${y - 10}" y2="${y - 42}" stroke="#B98A5E" stroke-width="5"/>`; }).join('')}
+      <line x1="${a[0]}" y1="${a[1] - 42}" x2="${b[0]}" y2="${b[1] - 42}" stroke="#B98A5E" stroke-width="5"/>`;
+    for (let i = 0; i < nSeg; i++) {
+      const a = DP[i], b = DP[i + 1];
+      if (i === 3) out += `<g transform="rotate(${28 * fall} ${a[0]} ${a[1]})">${deckSeg(a, b)}</g>`;
+      else if (i === 4) out += `<g transform="rotate(${-26 * fall} ${b[0]} ${b[1]})">${deckSeg(a, b)}</g>`;
+      else out += deckSeg(a, b);
+    }
+    // Swing labels.
+    [[700, 640, 'HH'], [1100, 560, 'HH'], [1560, 500, 'HH']].forEach(([x, y, l], i) => { out += pill(x, y - 20, l, C.teal, pop(t, s.start + 1.6 + i * 0.3, 0.5), 22); });
+    out += pill(780, 840, 'HL', C.teal, pop(t, s.start + 2.0, 0.5), 22);
+    out += pill(1430, 830, 'supporting HL', C.tealD, pop(t, T.sup, 0.5) * (1 - clamp((t - T.close - 0.6) / 0.3)), 24);
+    // Price closes through the supporting level.
+    if (t > T.close - 1.2) {
+      out += level(x => x, y => y, 1300, 1800, 760, C.tealD, seg(t, T.close - 1.2, T.close - 0.6), '12 9', 4);
+      const k = ease((t - T.close) / 0.8);
+      out += `<line x1="1580" y1="540" x2="${lerp(1580, 1720, k)}" y2="${lerp(540, 860, k)}" stroke="${C.pink}" stroke-width="9" stroke-linecap="round"/>`;
+      if (k >= 1) out += `<circle cx="1676" cy="760" r="${14 + Math.sin(t * 6) * 3}" fill="none" stroke="${C.pink}" stroke-width="5"/>`;
+    }
+    // Traveller walks the bridge to the HH and stops.
+    const wk = seg(t, T.walk, T.walk + 5.0);
+    const pos = alongPath(DP.slice(0, 4), wk);
+    const shocked = t > T.close + 0.7 && t < T.close + 2.6;
+    out += P(t, { x: pos.x - (shocked ? 18 * Math.min(1, (t - T.close - 0.7) * 3) : 0), y: pos.y - 10, scale: 0.62, look: A.LOOKS.c, seed: 4, walking: wk > 0 && wk < 1, mood: shocked ? 'sad' : undefined,
+      frontArm: shocked ? { a1: -120, a2: -100 } : { a1: 60, a2: 90 }, backArm: shocked ? { a1: -60, a2: -80 } : undefined,
+      hold: shocked ? '' : `<rect x="-20" y="-6" width="40" height="34" rx="6" fill="${C.teal}"/>` }, 'cap', C.teal);
+    const nw = win(t, T.now, T.no + 2);
+    if (nw > 0) out += A.bubble(1290, 470, 'Now what?', { op: nw, sc: 0.8 + 0.2 * nw, size: 34, weight: 800, tail: 'left', color: C.purple });
+    // Signpost of options on the left bank.
+    const sp = pop(t, T.opts - 0.6, 0.5);
+    if (sp > 0) out += scaleAt(260, W - 20, sp, `<rect x="250" y="470" width="20" height="${W - 490}" rx="6" fill="#9B6A45"/>`);
+    const opts = [['Short immediately?', T.opts], ['Ignore it?', T.opts + 1.2], ['Move the level?', T.opts + 2.4], ['Watch what builds', T.no + 1.2]];
+    opts.forEach(([txt, at], i) => {
+      const k = pop(t, at, 0.5);
+      if (k <= 0) return;
+      const y = 510 + i * 82, good = i === 3, col = good ? C.tealD : C.pink;
+      out += scaleAt(260, y, k, `<path d="M90,${y - 30} L410,${y - 30} L440,${y} L410,${y + 30} L90,${y + 30} Z" fill="${good ? C.tealL : '#fff'}" stroke="${col}" stroke-width="4"/>
+        <text x="255" y="${y + 9}" font-size="26" font-weight="900" text-anchor="middle" fill="${good ? TD.teal : C.dark}" ${F}>${txt}</text>`);
+      if (!good) out += xMark(420, y - 26, pop(t, T.no + i * 0.25, 0.4), 16);
+      else out += tick(420, y - 26, pop(t, T.no + 1.6, 0.4), 18) + sparkle(260, y, T.no + 1.6, t, C.teal);
+    });
+    // Duck and a fish.
+    const duckX = 1000 - (t > T.close + 1.2 ? ease((t - T.close - 1.2) / 2) * 180 : 0);
+    out += duck(t, { x: duckX, y: W + 40, s: 1.0, flip: t > T.close + 1.2 });
+    if (t > T.close + 1.6 && t < T.close + 2.8) { const f = (t - T.close - 1.6) / 1.2; out += `<g transform="translate(${lerp(1420, 1560, f)},${W + 30 - Math.sin(Math.PI * f) * 120}) rotate(${lerp(-40, 40, f)})"><ellipse rx="28" ry="14" fill="${C.peach}"/><path d="M-26,0 L-44,-14 L-44,14 Z" fill="${C.peach}"/><circle cx="14" cy="-3" r="3" fill="${C.dark}"/></g>`; }
+    // Bottom pills.
+    out += pill(960, 1040, 'old bullish story: materially challenged', C.pink, pop(t, T.close + 1.4, 0.5) * (1 - clamp((t - T.inv + 0.3) / 0.3)), 26);
+    out += pill(960, 1040, 'invalidation ≠ instant opposite bias', C.purple, pop(t, T.inv, 0.5), 26);
+    return out;
+  };
+
+  // A cartographer updates the map when price brings news. Next stop: Section 6.
+  LIVE['s5-map-update'] = (s, t, ctx) => {
+    const T = s.beats;
+    let out = `<rect x="0" y="920" width="1920" height="160" fill="#C9A27A"/><rect x="0" y="920" width="1920" height="10" fill="#B98A5E"/>`;
+    const mk = pop(t, s.start + 0.3, 0.7);
+    let map = `<path d="M330,400 L520,392 L700,402 L900,390 L1100,400 L1300,392 L1450,402 L1442,600 L1452,800 L1440,900 L1200,892 L1000,904 L760,894 L520,904 L338,896 L346,700 L334,520 Z" fill="#FFF6E6" stroke="${C.peachL}" stroke-width="8"/>`;
+    for (let i = 1; i < 9; i++) map += `<line x1="${330 + i * 124}" x2="${330 + i * 124}" y1="410" y2="890" stroke="${C.peachL}" stroke-width="2" opacity=".6"/>`;
+    for (let i = 1; i < 5; i++) map += `<line x1="340" x2="1440" y1="${400 + i * 100}" y2="${400 + i * 100}" stroke="${C.peachL}" stroke-width="2" opacity=".6"/>`;
+    const cr = t * 6;
+    map += `<g transform="translate(430,480)"><circle r="44" fill="none" stroke="${C.peach}" stroke-width="4"/><g transform="rotate(${Math.sin(cr * 0.1) * 8})"><path d="M0,-40 L10,0 L0,40 L-10,0 Z" fill="${C.pink}"/><path d="M-40,0 L0,10 L40,0 L0,-10 Z" fill="${C.peach}" opacity=".6"/></g><text y="-50" font-size="20" font-weight="900" text-anchor="middle" fill="${C.peach}" ${F}>N</text></g>`;
+    out += scaleAt(890, 650, mk, `<g transform="rotate(-1 890 650)">${map}</g>`);
+    // Old trail.
+    const old = [[400, 830], [560, 620], [660, 720], [840, 520], [940, 660], [1100, 470]];
+    const ok = ease(seg(t, s.start + 1.0, s.start + 3.0));
+    if (ok > 0) {
+      const pp = alongPath(old, ok), drawn = old.slice(0, pp.seg + 1).concat([[pp.x, pp.y]]);
+      out += `<polyline points="${drawn.map(q => q.join(',')).join(' ')}" fill="none" stroke="${C.dark}" stroke-width="6" stroke-dasharray="4 14" stroke-linecap="round" stroke-linejoin="round"/>`;
+    }
+    const flag = (x, y, col, k, big) => k <= 0 ? '' : `<g transform="translate(${x},${y}) scale(${k * (big ? 1.3 : 1)})"><line x1="0" y1="0" x2="0" y2="-60" stroke="${C.dark}" stroke-width="5" stroke-linecap="round"/><path d="M0,-60 Q${18 + Math.sin(t * 5) * 4},-66 36,-56 L36,-36 Q${18 - Math.sin(t * 5) * 4},-44 0,-38 Z" fill="${col}"/><circle r="7" fill="${C.dark}"/></g>`;
+    [[560, 620], [840, 520], [1100, 470]].forEach(([x, y], i) => { out += flag(x, y, C.teal, pop(t, s.start + 1.8 + i * 0.4, 0.4)); });
+    out += flag(660, 720, C.tealL, pop(t, s.start + 2.2, 0.4));
+    // The old supporting HL flag fades and gets crossed out after the update.
+    const crossed = t > T.cross;
+    out += `<g opacity="${crossed ? 0.4 : 1}">${flag(940, 660, C.tealD, pop(t, s.start + 2.8, 0.5), true)}</g>`;
+    out += pill(940, 700, crossed ? 'old HL' : 'supporting HL', crossed ? '#B9A79C' : C.tealD, pop(t, s.start + 3.2, 0.5), 22);
+    if (crossed) out += xMark(964, 600, pop(t, T.cross, 0.4), 30);
+    // Pigeon delivers the news.
+    let gx = -120, gy = 430, fly = true;
+    if (t > T.pigeon) { const f = seg(t, T.pigeon, T.pigeon + 2.0); gx = lerp(-120, 1180, ease(f)); gy = lerp(460, 400, f) - Math.sin(Math.PI * f) * 30; fly = f < 1; }
+    const letter = t < T.pigeon + 2.4;
+    if (t > T.pigeon - 0.1) {
+      out += bird(t, { x: gx, y: gy, s: 1.1, col: C.purpleL, wing: C.purple, seed: 2, fly, hop: !fly && t < T.pigeon + 4 });
+      if (letter) out += `<g transform="translate(${gx + 10},${gy + 8}) rotate(-8)"><rect x="-26" y="-16" width="52" height="34" rx="4" fill="#fff" stroke="${C.pink}" stroke-width="3"/><path d="M-26,-16 L0,4 L26,-16" stroke="${C.pink}" stroke-width="3" fill="none"/></g>`;
+      else out += `<g transform="translate(1180,${430 + ease((t - T.pigeon - 2.4) / 0.6) * 40}) rotate(-20)" opacity="${1 - clamp((t - T.pigeon - 3) / 0.5)}"><rect x="-26" y="-16" width="52" height="34" rx="4" fill="#fff" stroke="${C.pink}" stroke-width="3"/></g>`;
+    }
+    // New trail: closes through the old HL, builds a lower high and a lower low.
+    const nk = ease(seg(t, T.update, T.update + 3.0));
+    if (nk > 0) {
+      const nw = [[1100, 470], [1180, 740], [1270, 630], [1390, 820]];
+      const pp = alongPath(nw, nk), drawn = nw.slice(0, pp.seg + 1).concat([[pp.x, pp.y]]);
+      out += `<line x1="940" x2="1430" y1="660" y2="660" stroke="${C.tealD}" stroke-width="3" stroke-dasharray="8 8" opacity=".6"/>`;
+      out += `<polyline points="${drawn.map(q => q.join(',')).join(' ')}" fill="none" stroke="${C.pink}" stroke-width="7" stroke-dasharray="4 14" stroke-linecap="round" stroke-linejoin="round"/>`;
+      out += pill(1270, 590, 'LH', C.pink, pop(t, T.update + 1.6, 0.4), 22) + pill(1390, 862, 'LL', C.pink, pop(t, T.update + 2.6, 0.4), 22);
+    }
+    out += flag(1270, 630, C.purple, pop(t, T.newflag, 0.5), true);
+    out += pill(1240, 520, 'matters more now', C.purple, pop(t, T.newflag + 0.4, 0.5), 24);
+    if (t > T.newflag) out += sparkle(1290, 560, T.newflag, t, C.purple);
+    // Cartographer.
+    const drawing = (t > T.cross - 0.4 && t < T.cross + 1) || (t > T.newflag - 0.6 && t < T.newflag + 1.2);
+    out += P(t, { x: 1680, y: 1000, scale: 1.1, look: A.LOOKS.a, flip: true, seed: 5, talk: ctx.talking && t > T.update,
+      frontArm: drawing ? { a1: -20, a2: -30 + Math.sin(t * 14) * 8 } : { a1: 50, a2: -40 },
+      hold: `<g transform="rotate(-30)"><rect x="-7" y="-80" width="14" height="80" rx="3" fill="${C.gold}"/><path d="M-7,-80 L7,-80 L0,-98 Z" fill="${C.peachL}"/><rect x="-7" y="-10" width="14" height="12" fill="${C.pink}"/></g>` }, 'beret', C.purple);
+    // Teaser for Section 6.
+    const nx = pop(t, T.next, 0.6);
+    if (nx > 0) out += scaleAt(890, 1000, nx, `<rect x="560" y="962" width="660" height="76" rx="38" fill="${C.purple}"/>
+      <text x="890" y="1012" font-size="32" font-weight="900" text-anchor="middle" fill="#fff" ${F}>Next: Section 6 · Reading Key Levels →</text>`) + sparkle(890, 1000, T.next + 0.2, t, C.purple);
     return out;
   };
 

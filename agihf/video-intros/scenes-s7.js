@@ -182,9 +182,9 @@
       ${eyes(t, -40, 40, -172, 16, 9)}
       <path d="M-12,-146 L12,-146 L0,${-122 + m * 0.4} Z" fill="${C.gold}"/>
       <rect x="-74" y="-214" width="148" height="22" rx="6" fill="${C.dark}" opacity=".85"/>
-      <g transform="translate(92,-80) rotate(${o.gavel ?? -20})">
+      <g transform="translate(118,-70) rotate(${o.gavel ?? 25})">
         <rect x="-6" y="-84" width="12" height="84" rx="5" fill="#9B6A45"/><rect x="-30" y="-110" width="60" height="34" rx="8" fill="#B98258"/></g>
-      <ellipse cx="92" cy="-80" rx="22" ry="30" fill="${C.purple}"/>
+      <ellipse cx="112" cy="-70" rx="22" ry="30" fill="${C.purple}"/>
     </g>`;
   }
   // Robot on a wheeled base, (x,y) = base. o: { a1, a2 (arm angles), talk, broom, hold, face }
@@ -589,7 +589,7 @@
     // judge's bench + owl
     const bk = pop(t, s.start + 0.3, 0.8);
     const bang = (r > 19 && r < 19.3) || (r > 19.7 && r < 20);
-    out += scaleAt(960, 800, bk, owl(t, 960, 720, 0.95, { talk: ctx.talking && r > 13 && r < 25, gavel: bang ? 40 : -20 }) +
+    out += scaleAt(960, 800, bk, owl(t, 960, 720, 0.95, { talk: ctx.talking && r > 13 && r < 25, gavel: bang ? 85 : 25 }) +
       `<rect x="740" y="690" width="440" height="${G - 690}" rx="10" fill="#B98258"/><rect x="720" y="672" width="480" height="30" rx="10" fill="#9B6A45"/>
       <circle cx="960" cy="830" r="54" fill="${C.gold}" opacity=".85"/><path d="M930,830 L990,830 M960,800 L960,860 M936,812 L984,812" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
       <rect x="1180" y="664" width="70" height="20" rx="6" fill="#9B6A45"/>`);
@@ -597,11 +597,11 @@
     // witness stand + trader
     const tk = pop(t, s.start + 0.8, 0.7);
     const upset = r < 13;
-    out += scaleAt(400, G, tk, P(t, { x: 400, y: G, scale: 1, look: A.LOOKS.d, seed: 8, mood: upset && !ctx.talking ? 'sad' : undefined,
+    out += scaleAt(400, G, tk, P(t, { x: 400, y: G, scale: 1.3, look: A.LOOKS.d, seed: 8, mood: upset && !ctx.talking ? 'sad' : undefined,
       frontArm: r > 1.2 && r < 6 ? { a1: -40, a2: -80 + Math.sin(t * 7) * 12 } : r > 6 && r < 13 ? { a1: -10, a2: -10 } : { a1: 100, a2: 95 }, talk: ctx.talking && r < 6 }) +
       `<rect x="250" y="820" width="300" height="${G - 820}" rx="10" fill="#C9A27A"/><rect x="236" y="806" width="328" height="24" rx="8" fill="#9B6A45"/>`);
     const b1 = fade(r, 1.4, 6.4);
-    if (b1 > 0) out += A.bubble(450, 600, 'The market targeted me!', { op: b1, sc: 0.8 + 0.2 * b1, size: 28, italic: true, font: 'Playfair Display', tail: 'left' });
+    if (b1 > 0) out += A.bubble(450, 520, 'The market targeted me!', { op: b1, sc: 0.8 + 0.2 * b1, size: 28, italic: true, font: 'Playfair Display', tail: 'left' });
     const b2 = fade(r, 13.4, 18.6);
     if (b2 > 0) out += A.bubble(960, 430, 'Describe what price did.', { op: b2, sc: 0.8 + 0.2 * b2, size: 28, italic: true, font: 'Playfair Display', tail: 'left' });
     // bailiff dog
@@ -615,7 +615,7 @@
   // Swap glasses: the structure lens reads HL/HH, the liquidity lens reads pools at the same points.
   LIVE['s7-lens-swap'] = (s, t, ctx) => {
     const r = t - s.start, G = 1030;
-    const x = 660, y = 470, w = 1000, h = 440;
+    const x = 660, y = 510, w = 1000, h = 380;
     const X = (u) => x + u * w, Y = (v) => y + h - v * h;
     let out = ground(G) + panel(600, 400, 1720, 990, pop(t, s.start + 0.2, 0.7));
     const sw = [[0, 0.06], [0.16, 0.48], [0.3, 0.26], [0.5, 0.7], [0.64, 0.48], [0.84, 0.92], [1, 0.74]];
@@ -650,9 +650,9 @@
     }
     out += pill(330, 520, liq ? 'LIQUIDITY LENS' : 'STRUCTURE LENS', liq ? C.purple : C.tealD, liq ? pop(t, s.start + 12.4) : pop(t, s.start + 4), 24);
     // parrot perched on the chart frame
-    out += parrot(t, 690, 404, 0.8, { talk: r > 20.4 && r < 23 });
+    out += parrot(t, 530, G, 0.8, { talk: r > 20.4 && r < 23 });
     const b = fade(r, 20.4, 25);
-    if (b > 0) out += A.bubble(870, 340 + 0, 'Same level!', { op: b, sc: 0.8 + 0.2 * b, size: 26, weight: 700, tail: 'left' });
+    if (b > 0) out += A.bubble(480, 880, 'Same level!', { op: b, sc: 0.8 + 0.2 * b, size: 26, weight: 700, tail: 'left' });
     if (r > 20.4) out += A.sparkle(X(0.5), Y(0.7), s.start + 20.4, t, C.purple);
     return out;
   };
@@ -660,33 +660,41 @@
   // Fishermen at ponds where orders may gather. Nobody can count the fish.
   LIVE['s7-fishing-pond'] = (s, t, ctx) => {
     const r = t - s.start;
-    let out = `<rect x="0" y="620" width="1920" height="460" fill="${C.peachL}" opacity=".35"/><rect x="0" y="620" width="1920" height="4" fill="${C.peachL}"/>`;
-    const ponds = [[380, 770, 'swing highs & lows'], [820, 930, 'equal highs & lows'], [1240, 760, 'range edges'], [1640, 930, 'session highs & lows']];
+    let out = `<rect x="0" y="600" width="1920" height="480" fill="${C.peachL}" opacity=".35"/><rect x="0" y="600" width="1920" height="4" fill="${C.peachL}"/>`;
+    // sun + drifting clouds
+    out += `<circle cx="1700" cy="470" r="${56 + Math.sin(t * 2) * 3}" fill="${C.gold}" opacity=".55"/>`;
+    [[200, 440], [1220, 470]].forEach(([cx0, cy], i) => {
+      const cx = cx0 + ((t * 18 + i * 300) % 400) - 200;
+      out += `<g opacity=".8"><ellipse cx="${cx}" cy="${cy}" rx="80" ry="26" fill="#fff"/><ellipse cx="${cx + 40}" cy="${cy - 18}" rx="46" ry="26" fill="#fff"/><ellipse cx="${cx - 34}" cy="${cy - 12}" rx="36" ry="20" fill="#fff"/></g>`;
+    });
+    const ponds = [[480, 760, 'swing highs & lows'], [900, 950, 'equal highs & lows'], [1320, 770, 'range edges'], [1580, 960, 'session highs & lows']];
     ponds.forEach(([px, py, lab], i) => {
       const k = pop(t, s.start + 1 + i * 1.6, 0.7);
       if (k <= 0) return;
       const rip = ((t * 0.5 + i * 0.3) % 1);
-      out += scaleAt(px, py, k, `<ellipse cx="${px}" cy="${py}" rx="160" ry="54" fill="${C.teal}"/><ellipse cx="${px}" cy="${py - 6}" rx="140" ry="42" fill="${C.tealL}" opacity=".6"/>
-        <ellipse cx="${px + 30}" cy="${py}" rx="${30 + rip * 60}" ry="${8 + rip * 14}" fill="none" stroke="#fff" stroke-width="3" opacity="${1 - rip}"/>`) +
-        pill(px, py - 92, lab, i % 2 ? C.purple : C.tealD, k, 22);
+      out += scaleAt(px, py, k, `<ellipse cx="${px}" cy="${py}" rx="190" ry="62" fill="${C.teal}"/><ellipse cx="${px}" cy="${py - 6}" rx="166" ry="48" fill="${C.tealL}" opacity=".6"/>
+        <ellipse cx="${px + 30}" cy="${py}" rx="${30 + rip * 70}" ry="${8 + rip * 16}" fill="none" stroke="#fff" stroke-width="3" opacity="${1 - rip}"/>`) +
+        pill(px, py - 100, lab, i % 2 ? C.purple : C.tealD, k, 24);
     });
-    // a fish jumps now and then
-    [[0, 1240, 760, 6], [2, 380, 770, 10.5], [1, 1640, 930, 19.4]].forEach(([i, px, py, at]) => {
+    [[0, 1320, 770, 6], [2, 480, 760, 10.5], [1, 1580, 960, 19.4]].forEach(([i, px, py, at]) => {
       const k = seg(r, at, at + 1.2);
-      if (k > 0 && k < 1) out += fish(t, px - 60 + k * 120, py - Math.sin(k * Math.PI) * 120, 0.6, -60 + k * 120, C.peach);
-      if (k >= 1 && k < 1.5) out += A.sparkle(px + 60, py, s.start + at + 1.2, t, C.teal);
+      if (k > 0 && k < 1) out += fish(t, px - 70 + k * 140, py - Math.sin(k * Math.PI) * 140, 0.7, -60 + k * 120, C.peach);
+      if (k >= 1 && k < 1.5) out += A.sparkle(px + 70, py, s.start + at + 1.2, t, C.teal);
     });
-    out += duck(t, 820 + Math.sin(t * 0.6) * 60, 930, 0.8, Math.cos(t * 0.6) < 0);
-    // fishermen with rods
-    const rod = (dir, bob) => `<line x1="0" y1="0" x2="${dir * 130}" y2="-130" stroke="#9B6A45" stroke-width="6" stroke-linecap="round"/>
-      <path d="M${dir * 130},-130 Q${dir * 230},-60 ${dir * 290},${170 + bob}" fill="none" stroke="${C.muted}" stroke-width="2"/><circle cx="${dir * 290}" cy="${172 + bob}" r="8" fill="${C.pink}"/>`;
-    [[200, 800, A.LOOKS.c, false, 1], [1060, 790, A.LOOKS.seller, false, 3], [1840, 960, A.LOOKS.a, true, 4.6]].forEach(([fx, fy, look, flip, at], i) => {
+    out += duck(t, 900 + Math.sin(t * 0.6) * 80, 950, 0.95, Math.cos(t * 0.6) < 0);
+    // fishermen: rod line ends at a bobber in their pond
+    [[200, 790, A.LOOKS.c, false, 1, 0], [1060, 800, A.LOOKS.seller, false, 3, 2], [1860, 990, A.LOOKS.a, true, 4.6, 3]].forEach(([fx, fy, look, flip, at, pi], i) => {
       const k = pop(t, s.start + at, 0.6);
       if (k <= 0) return;
-      const bob = Math.sin(t * 3 + i) * 5;
-      out += scaleAt(fx, fy, k, P(t, { x: fx, y: fy, scale: 0.55, look, flip, seed: i + 2, frontArm: { a1: -10, a2: -30 }, hold: rod(1, bob), hat: i === 1 ? 'cap' : undefined, hatCol: C.purple, talk: false }));
+      const sc = 0.78, fa = { a1: -10, a2: -40 };
+      const o = { x: fx, y: fy, scale: sc, look, flip, seed: i + 2, t, frontArm: fa };
+      const h = handPos(o, fa), d = flip ? -1 : 1;
+      const tipX = h.x + d * 120, tipY = h.y - 120;
+      const bob = Math.sin(t * 3 + i) * 5, bx = ponds[pi][0] + (flip ? 60 : -60), by = ponds[pi][1] + bob;
+      out += scaleAt(fx, fy, k, P(t, { ...o, hat: i === 1 ? 'cap' : i === 2 ? 'ranger' : undefined, hatCol: C.purple, talk: false }) +
+        `<line x1="${h.x}" y1="${h.y}" x2="${tipX}" y2="${tipY}" stroke="#9B6A45" stroke-width="7" stroke-linecap="round"/>
+        <path d="M${tipX},${tipY} Q${(tipX + bx) / 2},${tipY + 30} ${bx},${by}" fill="none" stroke="${C.muted}" stroke-width="2.5"/><circle cx="${bx}" cy="${by}" r="9" fill="${C.pink}" stroke="#fff" stroke-width="3"/>`);
     });
-    // the sign nobody can fill in
     const sk = pop(t, s.start + 12.4, 0.7);
     if (sk > 0) {
       const unknown = r > 15;
@@ -696,7 +704,7 @@
       const xk = ease(seg(r, 14.2, 14.8)) * (1 - seg(r, 14.9, 15.1));
       if (xk > 0) out += `<line x1="720" y1="540" x2="${lerp(720, 1200, xk)}" y2="${lerp(540, 452, xk)}" stroke="${C.pink}" stroke-width="12" stroke-linecap="round"/>`;
     }
-    out += pill(960, 604, 'an area, never a count', C.purple, pop(t, s.start + 17.6), 26);
+    out += pill(960, 600, 'an area, never a count', C.purple, pop(t, s.start + 17.6), 26);
     return out;
   };
 
@@ -705,7 +713,7 @@
   // A builder lays a spirit level across two highs, then two lows: close enough counts.
   LIVE['s7-spirit-level'] = (s, t, ctx) => {
     const r = t - s.start, G = 1030;
-    const x = 240, y = 470, w = 1080, h = 440;
+    const x = 240, y = 450, w = 1080, h = 520;
     const X = (u) => x + u * w, Y = (v) => y + h - v * h;
     let out = ground(G) + panel(180, 400, 1400, 990, pop(t, s.start + 0.2, 0.7));
     const sw = [[0, 0.3], [0.16, 0.79], [0.31, 0.46], [0.46, 0.8], [0.61, 0.24], [0.76, 0.22], [0.88, 0.5], [1, 0.42]];
@@ -794,14 +802,14 @@
     void taken;
     out += pill(1500, 940, 'sometimes: trades through', C.teal, pop(t, s.start + 8) * (1 - seg(r, 10.2, 10.5)), 22);
     out += pill(1430, 470, 'sometimes: turns away', C.pink, pop(t, s.start + 14.6) * (1 - seg(r, 16.8, 17.1)), 22);
-    out += pill(1120, 690, 'obvious area ✓', C.tealD, pop(t, s.start + 17.4), 24) + pill(1120, 750, 'worth monitoring ✓', C.tealD, pop(t, s.start + 18.8), 24) +
-      pill(1120, 810, 'guaranteed ✗', C.pink, pop(t, s.start + 22.2), 24);
+    out += pill(900, 850, 'obvious area ✓', C.tealD, pop(t, s.start + 17.4), 24) + pill(900, 905, 'worth monitoring ✓', C.tealD, pop(t, s.start + 18.8), 24) +
+      pill(900, 960, 'guaranteed ✗', C.pink, pop(t, s.start + 22.2), 24);
     // robot fan and a curious cat
     out += robot(t, 230, G, 0.95, { a1: r > 4 && r < 16 ? -50 : 80, a2: r > 4 && r < 16 ? -70 : 90, talk: ctx.talking && r > 17, face: r > 22 ? undefined : r > 17.4 ? 'happy' : undefined });
     if (r > 6.6 && r < 9.6) out += bubbleTiny(330, 560, 'beep!');
     if (r > 12.8 && r < 15.6) out += bubbleTiny(330, 560, 'hmm?');
     const ck = pop(t, s.start + 1.2, 0.6);
-    out += scaleAt(1620, 400, ck, cat(t, 1620, 400, 0.6, { col: C.purpleL, dark: C.purple, flip: true }));
+    out += scaleAt(1820, G, ck, cat(t, 1820, G, 0.8, { col: C.purpleL, dark: C.purple, flip: true, hop: r > 6.4 && r < 7.2 ? Math.sin((r - 6.4) / 0.8 * Math.PI) * 50 : 0 }));
     return out;
   };
   function bubbleTiny(x, y, text) { return A.bubble(x, y, text, { size: 24, weight: 700, color: C.purple, tail: 'left', w: text.length * 15 + 40 }); }
@@ -904,7 +912,7 @@
     if (press1 || press2) out += A.sparkle(press1 ? 310 : 450, 790, s.start + (press1 ? 11 : 16.8), t, C.gold);
     // host with a mic
     const ho = { x: 1580, y: G, scale: 1.05, look: A.LOOKS.seller, flip: true, seed: 6, t, hat: undefined,
-      frontArm: { a1: -40, a2: -100 }, hold: `<g><rect x="-6" y="-10" width="12" height="40" rx="5" fill="${C.dark}"/><circle cy="-16" r="13" fill="${C.muted}"/></g>`,
+      frontArm: { a1: -10, a2: -75 }, hold: `<g><rect x="-6" y="-10" width="12" height="40" rx="5" fill="${C.dark}"/><circle cy="-16" r="13" fill="${C.muted}"/></g>`,
       backArm: r > 19.6 ? { a1: 220, a2: 250 } : undefined, talk: ctx.talking };
     out += P(t, ho);
     const b1 = fade(r, 8.2, 10.8), b2 = fade(r, 13.8, 16.6);
@@ -966,7 +974,7 @@
     }
     out += pill(880, 1046, 'describe first · name second', C.teal, pop(t, s.start + 22.8), 24);
     // commentator desk: person with headset + parrot co-host
-    const co = { x: 1660, y: G, scale: 1, look: A.LOOKS.b, flip: true, seed: 4, t, hat: 'headset',
+    const co = { x: 1660, y: G, scale: 1.3, look: A.LOOKS.b, flip: true, seed: 4, t, hat: 'headset',
       frontArm: r > 14 && r < 18 ? { a1: -30, a2: -60 } : { a1: 70, a2: 20 }, talk: ctx.talking };
     out += P(t, co) + `<rect x="1460" y="830" width="440" height="${G - 830}" rx="12" fill="${C.pink}"/><rect x="1450" y="818" width="460" height="22" rx="8" fill="${C.pinkL}"/>
       <text x="1680" y="910" font-size="24" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans" letter-spacing="3">LIVE DESK</text>`;
@@ -1001,7 +1009,7 @@
         out += `<g transform="translate(${x},${y}) rotate(${rot}) scale(${sc})"><rect x="${-w / 2}" y="-32" width="${w}" height="64" rx="12" fill="#fff" stroke="${C.pink}" stroke-width="5"/>
           <text y="10" font-size="26" font-weight="900" text-anchor="middle" fill="${C.pink}" font-family="DM Sans">${txt}</text></g>`;
       }
-      out += pill(cx, G - 120, `${txt.replace('?', '')}: ${verdict}`, C.muted, pop(t, s.start + sweepAt + 0.2), 20);
+      out += pill(960, 450 + i * 62, `${txt.replace('?', '').toLowerCase()}: ${verdict}`, [C.pink, C.purple, C.pink, C.pink][i], pop(t, s.start + sweepAt + 0.2), 26);
     });
     // robot janitor with a broom
     const rp = kf(r, [[4.4, -180, G], [5.8, 470, G], [9.3, 710, G], [12.8, 950, G], [16.3, 1190, G], [19.6, 1190, G], [21, 760, G]]);
@@ -1082,7 +1090,7 @@
     // both traded through; only B changed structure
     out += check(560, ledge - 56, pop(t, s.start + 18.2, 0.5), true, 22) + check(1460, ledge - 56, pop(t, s.start + 18.4, 0.5), true, 22);
     out += pill(560, ledge - 100, 'traded through', C.teal, pop(t, s.start + 18.4), 18) + pill(1400, ledge - 100, 'traded through', C.teal, pop(t, s.start + 18.6), 18);
-    out += pill(1440, 940, 'structure changed ✓', C.tealD, pop(t, s.start + 21.2), 24) + pill(560, 920, 'structure unchanged', C.muted, pop(t, s.start + 21.6), 22);
+    out += pill(1440, 940, 'structure changed ✓', C.tealD, pop(t, s.start + 21.2), 24) + pill(300, 840, 'structure unchanged', C.muted, pop(t, s.start + 21.6), 22);
     // a dragonfly zips about
     const dx = 960 + Math.sin(t * 0.9) * 700, dy = 430 + Math.sin(t * 2.3) * 30;
     out += `<g transform="translate(${dx},${dy}) scale(${Math.cos(t * 0.9) > 0 ? 1 : -1},1)"><ellipse cx="-10" cy="-8" rx="22" ry="7" fill="${C.purpleL}" opacity=".8" transform="rotate(${Math.sin(t * 30) * 20})"/><ellipse cx="-10" cy="8" rx="22" ry="7" fill="${C.purpleL}" opacity=".8" transform="rotate(${-Math.sin(t * 30) * 20})"/>
@@ -1158,12 +1166,13 @@
       if (k <= 0) return;
       const restY = plateY - 48 - (i + 1) * LH;
       const lean = Math.sin(t * 3) * wobAmp * (i + 1) * 0.6;
-      let x = cx + lean, y = lerp(300, restY, k), rot = lean * 0.15;
+      let x = cx + lean, y = lerp(380, restY, k), rot = lean * 0.15;
       if (topple > 0) {
         const dir = i % 2 ? 1 : -1, f = ease(topple);
-        x += dir * (120 + i * 70) * f + (i - 3) * 30 * f;
-        y = lerp(restY, G - 20 - (i % 3) * 14, f) - Math.sin(f * Math.PI) * (80 + i * 30);
-        rot = dir * (40 + i * 25) * f;
+        const fin = [[720, 0], [1270, 0], [880, -42], [1120, -44], [1000, -86], [800, -90], [1000, 0]][i];
+        x = lerp(x, fin[0], f);
+        y = lerp(restY, G - 24 + fin[1], f) - Math.sin(f * Math.PI) * (80 + i * 30);
+        rot = dir * (Math.sin(f * Math.PI) * 70 + f * (4 + i * 1.5));
       }
       if (i === n - 1 && topple > 0.6) return; // the moon layer gets caught by the dog
       const w = 380 - (i % 2) * 20;
@@ -1174,7 +1183,7 @@
     const tb = ease(seg(r, 13.4, 14));
     if (tb > 0 && topple < 0.3) {
       const restY = plateY - 48 - (n + 1) * LH + 6, lean = Math.sin(t * 3) * wobAmp * (n + 1) * 0.6;
-      out += `<path d="M${cx + lean - 200},${lerp(300, restY, tb) + 20} Q${cx + lean},${lerp(300, restY, tb) - 60} ${cx + lean + 200},${lerp(300, restY, tb) + 20} Z" fill="#E0A869"/>`;
+      out += `<path d="M${cx + lean - 200},${lerp(380, restY, tb) + 20} Q${cx + lean},${lerp(380, restY, tb) - 60} ${cx + lean + 200},${lerp(380, restY, tb) + 20} Z" fill="#E0A869"/>`;
     }
     out += stamp(cx, 600, 'ABSOLUTELY NOT.', pop(t, s.start + 14.6, 0.5) * (1 - seg(r, 17.4, 17.7)), C.pink, -10, 56);
     if (r > 17.6 && r < 19) out += A.sparkle(cx, 760, s.start + 17.6, t, C.peach);

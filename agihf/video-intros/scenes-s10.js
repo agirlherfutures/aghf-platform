@@ -1114,6 +1114,365 @@
     return out;
   };
 
+  /* ================= Lesson 10 · External Objectives & Liquidity ================= */
+
+  // Crossroads signpost of potential objectives; the hiker picks the one that fits the thesis.
+  LIVE['s10-signpost'] = (s, t, ctx) => {
+    const r = t - s.start;
+    let out = `<path d="M1380,1000 L1700,500 L1900,1000 Z" fill="${C.purpleL}" opacity=".6"/><path d="M1640,594 L1700,500 L1758,590 Q1720,575 1700,596 Q1676,578 1640,594 Z" fill="#fff"/>
+      <path d="M0,960 Q480,900 960,950 T1920,940 L1920,1080 L0,1080 Z" fill="${C.tealL}"/><path d="M200,1080 Q600,1000 1000,990 L1100,1080 Z" fill="#F3E3D7"/>`;
+    const fk = pop(t, s.start + 0.6, 0.6);
+    if (fk > 0) out += scl(1700, 500, fk, `<line x1="1700" y1="500" x2="1700" y2="420" stroke="${C.dark}" stroke-width="5"/><path d="M1700,420 L1750,432 L1700,446 Z" fill="${C.teal}"/>`);
+    const pk = pop(t, s.start + 0.3, 0.6);
+    out += scl(1000, 1000, pk, `<rect x="988" y="410" width="24" height="590" rx="8" fill="#9B6A45"/><circle cx="1000" cy="408" r="16" fill="#C9A27A"/>`);
+    const signs = [[3.0, '4H EXTERNAL HIGH', 1, 470, C.teal, true], [4.4, '4H EXTERNAL LOW', -1, 560, C.pink, false], [5.8, 'PREVIOUS HIGH', 1, 650, C.teal, true], [7.6, 'STRUCTURAL BOUNDARY', -1, 740, C.purple, false], [9.0, 'EXTERNAL LIQUIDITY 💧', 1, 830, C.peach, true]];
+    const pick = r > 11.6;
+    signs.forEach(([at, label, dir, y, col, fits], i) => {
+      const k = pop(t, s.start + at, 0.5);
+      if (k <= 0) return;
+      const w = tw(label, 26) + 90, sway = Math.sin(r * 2 + i) * 1.5;
+      const dim = pick && i !== 0 ? 0.4 : 1, glow = pick && i === 0 ? 0.5 + 0.5 * Math.sin(r * 5) : 0;
+      const D = n => dir * n;
+      out += `<g transform="translate(1000,${y}) rotate(${(dir > 0 ? -5 : 5) + sway}) scale(${k})" opacity="${dim}">
+        <path d="M${D(10)},-32 L${D(w - 30)},-32 L${D(w)},0 L${D(w - 30)},32 L${D(10)},32 Z" fill="${col}" stroke="${glow ? C.gold : '#fff'}" stroke-width="${4 + glow * 6}"/>
+        <text x="${D((w - 10) / 2 + 2)}" y="9" font-size="26" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">${label}</text></g>`;
+    });
+    out += bird(t, 1000, 394, 0.6, { hop: r > 3 && r < 9, col: C.purple, wing: '#5E56B8' });
+    // Hiker and dog.
+    const hx = lerp(-100, 640, ease(seg(r, 9.6, 11.8))), walking = r > 9.6 && r < 11.8;
+    const pack = '';
+    const hk = { x: hx, y: 1000, scale: 0.9, look: LK.c, seed: 4, walking, frontArm: pick && r < 15 ? { a1: -60, a2: -50 } : undefined, talk: ctx.talking && r > 11.6 && r < 14.4, hold: pack };
+    if (r > 9.6) {
+      const hp = headOf(t, hk);
+      out += `<rect x="${hx - 70 * 0.9}" y="${hp.y + 70}" width="${44}" height="${90}" rx="14" fill="${C.peach}" stroke="#E08E2E" stroke-width="4"/>` + person(t, hk) + hat(t, hk, 'cap', C.pink);
+      out += dog(t, hx - 150, 1000, 0.55, { run: walking, happy: pick });
+      out += pill(hx, 560, 'bullish thesis', C.teal, pop(t, s.start + 10.4), 22);
+    }
+    out += card(560, 680, ['Bullish?', 'Look up.'], { k: back(seg(r, 11.8, 12.2)), op: 1 - seg(r, 15, 15.4), fs: 26, tx: 60 });
+    out += stamp(1220, 470, 'POTENTIAL', TX.purple, t, s.start + 15, { fs: 30, rot: -8, fill: '#fff' });
+    if (r > 17.4) out += pill(1500, 990, 'guaranteed?', C.pink, pop(t, s.start + 17.4), 26) + cross(1640, 990, pop(t, s.start + 18, 0.5), C.pink, 26);
+    return out;
+  };
+
+  function plane(t, x, y, s, o = {}) {
+    const col = o.col || '#fff', acc = o.acc || C.teal;
+    return `<g transform="translate(${x},${y}) scale(${s}) rotate(${o.rot || 0})">
+      <path d="M-150,-30 L-180,-110 L-140,-110 L-90,-40 Z" fill="${acc}"/>
+      <path d="M-170,-40 Q-170,-70 -120,-70 L110,-70 Q170,-66 190,-30 Q170,0 110,0 L-130,0 Q-170,0 -170,-40 Z" fill="${col}" stroke="#E9DED6" stroke-width="4"/>
+      <path d="M150,-60 Q176,-50 186,-34 L144,-34 Z" fill="${C.tealL}"/>
+      ${[-90, -50, -10, 30, 70].map(wx => `<circle cx="${wx}" cy="-40" r="10" fill="${C.tealL}"/>`).join('')}
+      <path d="M-30,-20 L40,-20 L-10,40 L-50,40 Z" fill="${acc}"/>
+      <rect x="-170" y="-36" width="340" height="8" fill="${acc}" opacity=".6"/>
+      ${o.gear !== false ? `<line x1="-80" y1="0" x2="-80" y2="22" stroke="${C.dark}" stroke-width="5"/><circle cx="-80" cy="28" r="10" fill="${C.dark}"/><line x1="110" y1="0" x2="110" y2="22" stroke="${C.dark}" stroke-width="5"/><circle cx="110" cy="28" r="10" fill="${C.dark}"/>` : ''}
+    </g>`;
+  }
+
+  // Two runways, same bullish idea: one has room to fly, one hits a wall.
+  LIVE['s10-runway'] = (s, t, ctx) => {
+    const r = t - s.start;
+    let out = `<rect x="0" y="960" width="1920" height="120" fill="${C.tealL}"/>`;
+    const rw = (y, at) => { const k = ease(seg(r, at, at + 0.8)); return `<rect x="200" y="${y}" width="${1560 * k}" height="80" rx="10" fill="#E9DED6"/>${Array.from({ length: 14 }, (_, i) => 240 + i * 110 < 200 + 1560 * k - 40 ? `<rect x="${240 + i * 110}" y="${y + 36}" width="60" height="8" rx="4" fill="#fff"/>` : '').join('')}`; };
+    out += rw(560, 0.3) + rw(830, 0.6);
+    out += txt(230, 540, 'CHART 1', { fs: 22, col: C.muted, anchor: 'start', ls: 2 }) + txt(230, 810, 'CHART 2', { fs: 22, col: C.muted, anchor: 'start', ls: 2 });
+    // Objectives.
+    const flag = (x, y, col, k) => k <= 0 ? '' : scl(x, y, k, `<line x1="${x}" y1="${y}" x2="${x}" y2="${y - 110}" stroke="${C.dark}" stroke-width="6"/><path d="M${x},${y - 110} Q${x + 30 + Math.sin(t * 6) * 6},${y - 116} ${x + 60},${y - 100} L${x + 60},${y - 70} Q${x + 30 - Math.sin(t * 6) * 6},${y - 80} ${x},${y - 74} Z" fill="${col}"/>`);
+    out += flag(1700, 560, C.purple, pop(t, s.start + 3.2)) + pill(1600, 400, '4H external high', C.purple, pop(t, s.start + 3.4), 22);
+    const wk = pop(t, s.start + 8.4);
+    if (wk > 0) out += scl(740, 910, wk, `<rect x="720" y="800" width="40" height="110" rx="6" fill="${C.pink}"/>${[0, 1, 2].map(i => `<rect x="720" y="${812 + i * 34}" width="40" height="12" fill="#fff"/>`).join('')}`) + pill(740, 772, 'high right above', C.pink, pop(t, s.start + 8.6), 22);
+    // Distance arrows.
+    const da = ease(seg(r, 5, 6.4)), db = ease(seg(r, 9.4, 10.2));
+    if (da > 0) out += `<line x1="500" x2="${lerp(500, 1660, da)}" y1="520" y2="520" stroke="${C.teal}" stroke-width="6" stroke-dasharray="14 10"/><path d="M${lerp(500, 1660, da)},506 L${lerp(500, 1660, da) + 22},520 L${lerp(500, 1660, da)},534 Z" fill="${C.teal}"/>` + pill(1080, 490, 'lots of room', C.teal, pop(t, s.start + 6.2), 24);
+    if (db > 0) out += `<line x1="500" x2="${lerp(500, 690, db)}" y1="790" y2="790" stroke="${C.pink}" stroke-width="6" stroke-dasharray="10 8"/>` + pill(470, 740, 'barely any room', C.pink, pop(t, s.start + 10.2), 22);
+    // Plane one: rolls, lifts off.
+    const roll = ease(seg(r, 6.4, 10)), lift = ease(seg(r, 9.2, 12));
+    const ax = lerp(420, 1160, roll) + lift * 300, ay = 600 - lift * 130;
+    out += scl(ax, ay, pop(t, s.start + 1.2), plane(t, ax, ay, 0.62, { rot: -lift * 10, gear: lift < 0.5 }));
+    if (roll > 0 && roll < 1) out += [0, 1, 2].map(i => `<line x1="${ax - 130 - i * 26}" x2="${ax - 170 - i * 26}" y1="${ay - 30 + i * 12}" y2="${ay - 30 + i * 12}" stroke="${C.muted}" stroke-width="4" opacity=".4"/>`).join('');
+    if (lift >= 1) out += A.sparkle(ax + 80, ay - 40, s.start + 12, t, C.teal);
+    // Plane two: rolls a bit and brakes.
+    const br = 1 - Math.pow(1 - seg(r, 12.4, 13.6), 2), bx = lerp(420, 590, br);
+    out += scl(bx, 870, pop(t, s.start + 1.5), plane(t, bx, 870, 0.62, { acc: C.pink, rot: r > 13.4 && r < 14 ? 2 : 0 }));
+    if (r > 13.4 && r < 15) out += [0, 1, 2].map(i => `<path d="M${bx + 80 + i * 18},${900 + i * 3} q10,-8 20,0" stroke="${C.dark}" stroke-width="4" fill="none" opacity="${1 - seg(r, 13.4, 15)}"/>`).join('');
+    out += pill(560, 1000, 'same bullish idea', C.purple, pop(t, s.start + 1.6), 24);
+    // Marshaller with paddles.
+    const wave = Math.sin(t * 7) * 20;
+    const paddle = `<g><line x1="0" y1="0" x2="0" y2="-40" stroke="${C.dark}" stroke-width="6"/><circle cx="0" cy="-58" r="22" fill="${C.peach}"/></g>`;
+    const mk = { x: 1300, y: 1040, scale: 0.72, look: LK.i, seed: 5, flip: true, frontArm: r > 12.8 && r < 16 ? { a1: -90 + wave, a2: -100 } : { a1: -60 + wave * 0.5, a2: -90 }, backArm: { a1: -100 - wave, a2: -90 }, hold: paddle, talk: ctx.talking && r > 13.6 && r < 15.4 };
+    out += popPerson(t, s.start + 1.0, mk) + hat(t, mk, 'cap', C.peach);
+    out += card(1120, 690, ['Not much', 'runway!'], { k: back(seg(r, 13.8, 14.2)), op: 1 - seg(r, 18, 18.4), fs: 26, tx: 70, col: TX.pink });
+    return out;
+  };
+
+  /* ================= Lesson 11 · Bullish Scenario vs. Bearish Scenario ================= */
+
+  function engine(t, x, y, s, o = {}) {
+    const ey = 7 * blink(t, 4), wr = (o.dist || 0) / 20;
+    const wheel = (wx) => `<g transform="translate(${wx},0) rotate(${wr * 57})"><circle r="22" fill="${C.dark}"/><circle r="8" fill="#D9CFC8"/><rect x="-2" y="-20" width="4" height="20" fill="#D9CFC8"/></g>`;
+    return `<g transform="translate(${x},${y}) scale(${s})" opacity="${o.op ?? 1}">
+      <rect x="-250" y="-110" width="150" height="86" rx="12" fill="${C.purpleL}" stroke="${C.purple}" stroke-width="4"/>${[-230, -180].map(wx => `<rect x="${wx}" y="-96" width="36" height="30" rx="6" fill="#fff"/>`).join('')}
+      <line x1="-100" y1="-50" x2="-80" y2="-50" stroke="${C.dark}" stroke-width="6"/>
+      <rect x="-80" y="-150" width="70" height="126" rx="10" fill="${C.pink}"/><rect x="-70" y="-136" width="50" height="40" rx="6" fill="#fff"/>
+      <rect x="-14" y="-104" width="130" height="80" rx="30" fill="${C.pink}"/>
+      <rect x="60" y="-150" width="28" height="50" rx="6" fill="${C.dark}"/>
+      <circle cx="112" cy="-64" r="38" fill="${C.pinkL}" stroke="${C.pink}" stroke-width="5"/>
+      <ellipse cx="100" cy="-72" rx="5" ry="${ey}" fill="${C.dark}"/><ellipse cx="124" cy="-72" rx="5" ry="${ey}" fill="${C.dark}"/>
+      <path d="M100,-52 Q112,-42 124,-52" stroke="${C.dark}" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <g transform="translate(0,-14)">${wheel(-210)}${wheel(-140)}${wheel(-40)}${wheel(40)}</g>
+    </g>`;
+  }
+
+  // Train at a switch: IF price holds the 1H low, one track; IF it breaks, the other.
+  LIVE['s10-train-switch'] = (s, t, ctx) => {
+    const r = t - s.start;
+    const main = [[-60, 800], [860, 800]];
+    const up = [[860, 800], [1100, 772], [1350, 660], [1820, 520]];
+    const dn = [[860, 800], [1100, 830], [1350, 920], [1820, 960]];
+    const track = (pts, k) => { if (k <= 0) return ''; const d = along(pts, k).drawn.map(p => p.map(F1).join(',')).join(' '); return `<polyline points="${d}" fill="none" stroke="#9B6A45" stroke-width="56" stroke-dasharray="10 22"/><polyline points="${d}" fill="none" stroke="#7A5C50" stroke-width="34" stroke-linejoin="round"/><polyline points="${d}" fill="none" stroke="#FFF6F0" stroke-width="20" stroke-linejoin="round"/>`; };
+    let out = `<rect x="0" y="1000" width="1920" height="80" fill="${C.tealL}"/>`;
+    out += track(main, ease(seg(r, 0.3, 1.2))) + track(up, ease(seg(r, 0.9, 1.9))) + track(dn, ease(seg(r, 1.1, 2.1)));
+    // Signal post at the switch: the relevant 1H low.
+    const sk = pop(t, s.start + 6.0, 0.6);
+    if (sk > 0) {
+      const bl = Math.floor(r * 2.5) % 2;
+      out += scl(860, 760, sk, `<rect x="852" y="560" width="16" height="200" fill="${C.dark}"/><rect x="826" y="520" width="68" height="110" rx="14" fill="${C.dark}"/>
+        <circle cx="860" cy="548" r="16" fill="${r > 14.8 ? (bl ? C.gold : '#5E4A40') : '#5E4A40'}"/><circle cx="860" cy="600" r="16" fill="#5E4A40"/>`) + pill(860, 480, 'RELEVANT 1H LOW', C.gold, sk, 24);
+    }
+    // Ghost trains preview each path.
+    const gu = seg(r, 6.6, 9.6), gd = seg(r, 10.4, 13.4);
+    if (gu > 0 && gu < 1) { const p = along(up, ease(gu)); out += engine(t, p.x, p.y - 10, 0.55, { op: 0.45 * Math.sin(gu * Math.PI) + 0.2, dist: gu * 900 }); }
+    if (gd > 0 && gd < 1) { const p = along(dn, ease(gd)); out += engine(t, p.x, p.y - 10, 0.55, { op: 0.45 * Math.sin(gd * Math.PI) + 0.2, dist: gd * 900 }); }
+    if (r > 6.6) out += pill(1460, 560, 'IF it holds → bullish thesis supported', C.teal, pop(t, s.start + 6.6), 24);
+    if (r > 10.4) out += pill(1430, 1022, 'IF it breaks → reassess toward the external low', C.pink, pop(t, s.start + 10.4), 22);
+    // The real train arrives and waits.
+    const tx = lerp(-300, 720, ease(seg(r, 1, 5)));
+    const moving = r > 1 && r < 5;
+    for (let i = 0; i < 4; i++) { const p = ((r * 0.8) + i / 4) % 1; out += `<circle cx="${tx + 74 * 0.6 - p * 60}" cy="${800 - 100 - p * 140}" r="${12 + p * 26}" fill="#fff" stroke="#EADFD8" stroke-width="3" opacity="${(moving ? 0.9 : 0.5) * (1 - p)}"/>`; }
+    out += engine(t, tx, 790, 0.6, { dist: tx });
+    // Operator by the lever.
+    const lev = gu > 0 && gu < 1 ? -30 : gd > 0 && gd < 1 ? 30 : 0;
+    out += `<g transform="rotate(${lev} 1000 1000)"><line x1="1000" y1="1000" x2="1000" y2="900" stroke="${C.dark}" stroke-width="10" stroke-linecap="round"/><circle cx="1000" cy="896" r="16" fill="${C.pink}"/></g><rect x="970" y="990" width="60" height="20" rx="6" fill="${C.muted}"/>`;
+    const op = { x: 1090, y: 1040, scale: 0.75, look: LK.a, seed: 2, flip: true, frontArm: { a1: -150 + lev * 0.5, a2: -170 }, talk: ctx.talking && r > 14.8 };
+    out += popPerson(t, s.start + 1.6, op) + hat(t, op, 'cap', C.purple);
+    if (r > 14.8) out += pill(520, 640, 'both conditional', C.purple, pop(t, s.start + 14.8), 28);
+    return out;
+  };
+
+  // A choose-your-path storybook: IF this, THEN that, on both pages.
+  LIVE['s10-adventure-book'] = (s, t, ctx) => {
+    const r = t - s.start;
+    const ok = ease(seg(r, 0.3, 1.3));
+    let out = `<rect x="0" y="1000" width="1920" height="80" fill="#F3E3D7"/>`;
+    out += `<rect x="${960 - 560 * ok}" y="404" width="${1120 * ok}" height="520" rx="20" fill="${C.purple}"/>`;
+    if (ok > 0) out += `<path d="M${960 - 540 * ok},420 Q${960 - 270 * ok},400 960,430 L960,910 Q${960 - 270 * ok},890 ${960 - 540 * ok},904 Z" fill="#FFFBF2"/>
+      <path d="M${960 + 540 * ok},420 Q${960 + 270 * ok},400 960,430 L960,910 Q${960 + 270 * ok},890 ${960 + 540 * ok},904 Z" fill="#FFF6EA"/><line x1="960" y1="430" x2="960" y2="910" stroke="#EADFD8" stroke-width="4"/>`;
+    const page = (x0, at, ifTxt, thenTxt, pts, col, mark) => {
+      if (r < at) return '';
+      let g = txt(x0 + 250, 480, ifTxt, { fs: 30, col: TX.purple, font: 'Playfair Display', w: 700, op: clamp((r - at) / 0.4) });
+      const Lv = 700;
+      g += hline(x0 + 50, x0 + 450, Lv, C.gold, { w: 4, op: clamp((r - at - 0.4) / 0.4) });
+      const k = ease(seg(r, at + 0.6, at + 2.6));
+      g += poly(along(pts.map(([u, v]) => [x0 + 50 + u * 400, v]), k).drawn, col, 6);
+      const tk = pop(t, s.start + at + 2.8, 0.5);
+      if (tk > 0) g += pill(x0 + 250, 850, thenTxt, col, tk, 26) + (mark === 'ok' ? check(x0 + 430, 850, tk, C.teal, 22) : '');
+      return g;
+    };
+    out += page(440, 3.6, 'IF price holds the 1H low…', 'THEN: thesis stays supported', [[0, 600], [0.2, 690], [0.4, 610], [0.55, 680], [0.75, 560], [1, 520]], C.teal, 'ok');
+    out += page(980, 8.6, 'IF it breaks…', 'THEN: reassess', [[0, 600], [0.2, 660], [0.35, 620], [0.6, 760], [0.75, 730], [1, 800]], C.pink, '');
+    // Reader, owl, hoping guy.
+    const rd = { x: 260, y: 1000, scale: 0.9, look: LK.k, seed: 2, frontArm: r > 3.6 && r < 14 ? { a1: -20, a2: -30 } : undefined, talk: ctx.talking && r < 14.6 };
+    out += popPerson(t, s.start + 0.5, rd);
+    out += owl(t, 1460, 418, 0.7);
+    if (r > 18.2 && r < 19.6) out += txt(1540, 360 + 20, 'hoo!', { fs: 30, col: TX.purple, font: 'Playfair Display' });
+    if (r > 14.4) {
+      const hp = { x: lerp(2020, 1700, ease(seg(r, 14.4, 15.4))), y: 1000, scale: 0.85, look: LK.buyer, seed: 6, flip: true, walking: r < 15.4, frontArm: { a1: -100, a2: -60 + Math.sin(t * 6) * 6 }, talk: ctx.talking && r > 15 && r < 17 };
+      out += person(t, hp);
+      out += card(1690, 560, ['Please just', 'go up! 🙏'], { k: back(seg(r, 15.2, 15.6)), fs: 28, tx: 10, italic: true, font: 'Playfair Display' });
+      out += stamp(1690, 560, 'HOPE ≠ PLAN', TX.pink, t, s.start + 17.0, { fs: 28, rot: -10 });
+    }
+    return out;
+  };
+
+  /* ================= Lesson 12 · Bias Invalidation ================= */
+
+  // A bridge (the thesis) rests on a pillar (the 1H low). A close below knocks it out.
+  LIVE['s10-bridge-collapse'] = (s, t, ctx) => {
+    const r = t - s.start;
+    let out = `<rect x="500" y="640" width="920" height="440" fill="#FEF3E4"/><rect x="500" y="1030" width="920" height="50" fill="${C.tealL}"/>`;
+    // Price drawn faintly on the canyon wall.
+    const pts = [[560, 770], [660, 700], [760, 820], [880, 720], [1000, 790], [1120, 700], [1260, 920]];
+    const pk = ease(seg(r, 8, 13.2));
+    if (pk > 0) out += poly(along(pts, pk).drawn, C.dark, 5, { op: 0.6 });
+    const LV = 860;
+    if (r > 5.4) out += hline(520, 1400, LV, C.gold, { w: 5, op: clamp((r - 5.4) / 0.5) }) + pill(1250, LV - 30, '1H low', C.gold, pop(t, s.start + 5.6), 22);
+    if (r > 13.2) out += dot(1260, 920, C.pink, 12) + pill(1260, 966, 'close below', C.pink, pop(t, s.start + 13.2), 22);
+    // Cliffs.
+    out += `<path d="M0,640 L520,640 L500,760 L540,900 L480,1080 L0,1080 Z" fill="${C.peach}"/><path d="M0,640 L520,640 L516,668 L0,668 Z" fill="${C.cash}"/>
+      <path d="M1920,640 L1400,640 L1420,780 L1380,920 L1440,1080 L1920,1080 Z" fill="${C.peach}"/><path d="M1920,640 L1400,640 L1404,668 L1920,668 Z" fill="${C.cash}"/>`;
+    // Rock ledge + pillar.
+    const fall = ease(seg(r, 14.8, 16.2)), crack = r > 13.6;
+    out += `<path d="M880,${LV} L1040,${LV} L1020,${LV + 50} L900,${LV + 50} Z" fill="#C9B9AE" transform="translate(0,${fall * 180}) rotate(${fall * 20} 960 ${LV})" opacity="${1 - fall}"/>`;
+    const bk = ease(seg(r, 1.2, 2.8));
+    if (bk > 0) {
+      out += `<g transform="translate(0,${fall * 240}) rotate(${fall * -25} 960 750)" opacity="${1 - fall * 0.9}"><rect x="930" y="650" width="60" height="${(LV - 650) * bk}" fill="#9B6A45"/>
+        ${crack ? `<path d="M940,700 L965,730 L950,760 L975,800" stroke="${C.dark}" stroke-width="4" fill="none"/>` : ''}</g>`;
+      const half = (x0, x1, pivot, dir) => `<g transform="rotate(${dir * fall * 38} ${pivot} 650)"><rect x="${x0}" y="636" width="${(x1 - x0) * bk}" height="22" fill="#C9A27A"/>
+        ${Array.from({ length: 12 }, (_, i) => `<line x1="${x0 + i * 37}" x2="${x0 + i * 37}" y1="600" y2="636" stroke="#9B6A45" stroke-width="5" opacity="${bk}"/>`).join('')}
+        <line x1="${x0}" x2="${x0 + (x1 - x0) * bk}" y1="600" y2="600" stroke="#9B6A45" stroke-width="6"/></g>`;
+      out += half(520, 960, 520, 1) + half(960, 1400, 1400, -1).replace(`width="${440 * bk}"`, `width="${440 * bk}"`);
+    }
+    if (r > 4 && fall < 0.3) out += pill(960, 560, 'BULLISH THESIS', C.teal, pop(t, s.start + 4) * (1 - fall * 3), 28);
+    if (crack && r < 16) out += txt(1080, 760, 'crack!', { fs: 32, col: TX.pink, font: 'Playfair Display', op: 1 - seg(r, 15.4, 16) });
+    // Walker and dog.
+    let wx = lerp(120, 720, ease(seg(r, 3, 7.6)));
+    if (r > 13.6) wx = lerp(720, 330, ease(seg(r, 13.6, 15.4)));
+    const onBridge = wx > 520 ? (wx - 520) * Math.tan(rad(fall * 38)) : 0;
+    const wk = { x: wx, y: 640 + onBridge, scale: 0.72, look: LK.c, seed: 3, walking: (r > 3 && r < 7.6) || (r > 13.6 && r < 15.4), flip: r > 13.6 && r < 15.4, talk: ctx.talking && r > 17.6 };
+    out += person(t, wk) + dog(t, wx - (r > 13.6 && r < 15.4 ? -90 : 90), 640 + (wx - 90 > 520 ? onBridge : 0), 0.42, { run: wk.walking, flip: wk.flip });
+    if (r > 15.6) out += card(330, 380 + 30, ['Story changed.', 'Update the read.'], { k: back(seg(r, 15.8, 16.2)), fs: 24, tx: 0 });
+    if (r > 17.6) out += pill(960, 1000, 'thesis invalidated → analysis changes', C.pink, pop(t, s.start + 17.6), 26);
+    return out;
+  };
+
+  // The analysis board changes; the stop loss is an exit door. Related, not identical.
+  LIVE['s10-board-vs-exit'] = (s, t, ctx) => {
+    const r = t - s.start;
+    let out = `<rect x="0" y="1000" width="1920" height="80" fill="#F3E3D7"/>`;
+    // Analysis board.
+    const bk = pop(t, s.start + 0.3, 0.6);
+    let b = `<g stroke="${C.muted}" stroke-width="10" stroke-linecap="round"><line x1="300" y1="800" x2="270" y2="1000"/><line x1="660" y1="800" x2="690" y2="1000"/></g>
+      <rect x="200" y="400" width="560" height="400" rx="16" fill="#fff" stroke="${C.muted}" stroke-width="10"/>
+      ${txt(480, 450, 'ANALYSIS BOARD', { fs: 24, col: C.muted, ls: 3 })}`;
+    const pts = [[240, 700], [320, 620], [380, 680], [470, 560], [540, 620], [620, 600], [720, 760]];
+    b += hline(360, 740, 680, C.gold, { w: 4 }) + poly(along(pts, ease(seg(r, 1, 4))).drawn, C.dark, 5, { op: 0.8 });
+    const wr = clamp((r - 1.2) / 0.6);
+    b += txt(480, 520, 'BULLISH', { fs: 46, col: TX.teal, font: 'Playfair Display', op: wr });
+    const cr = ease(seg(r, 4.6, 5.4));
+    if (cr > 0) b += `<line x1="380" y1="508" x2="${lerp(380, 580, cr)}" y2="${lerp(508, 500, cr)}" stroke="${C.pink}" stroke-width="8" stroke-linecap="round"/>`;
+    const rw = clamp((r - 5.4) / 1.2);
+    if (rw > 0) b += `<defs><clipPath id="s10-rw"><rect x="300" y="530" width="${360 * rw}" height="60"/></clipPath></defs><g clip-path="url(#s10-rw)">${txt(480, 576, 'REASSESS', { fs: 44, col: TX.pink, font: 'Playfair Display' })}</g>`;
+    out += scl(480, 700, bk, b);
+    const nv = { x: 860, y: 1000, scale: 0.85, look: LK.e, seed: 4, flip: true, frontArm: r > 4.4 && r < 7 ? { a1: -150 + Math.sin(t * 10) * 8, a2: -160 } : undefined, talk: ctx.talking && r > 4.6 && r < 6.6 };
+    out += popPerson(t, s.start + 0.6, nv);
+    if (r > 6.6) out += pill(480, 860, 'your ANALYSIS changes', C.purple, pop(t, s.start + 6.6), 24);
+    // Exit door with a STOP LOSS sign.
+    const open = ease(seg(r, 7.4, 8.2)) * (1 - ease(seg(r, 10, 10.6)));
+    out += `<rect x="1394" y="554" width="192" height="432" rx="8" fill="${C.dark}"/><rect x="1400" y="560" width="180" height="420" fill="#3D3550"/>
+      <rect x="1400" y="560" width="${180 * (1 - open * 0.85)}" height="420" fill="${C.tealD}"/><circle cx="${1400 + 180 * (1 - open * 0.85) - 24}" cy="780" r="9" fill="${C.gold}"/>
+      <rect x="1400" y="470" width="180" height="60" rx="10" fill="${C.pink}"/>${txt(1490, 512, 'STOP LOSS', { fs: 28, col: '#fff', ls: 2 })}`;
+    const tx_ = lerp(1160, 1490, ease(seg(r, 7.6, 9.6))), top = 1 - seg(r, 9.4, 9.9);
+    if (top > 0) {
+      const box = `<g transform="translate(-6,-10)"><rect x="-40" y="-40" width="80" height="56" rx="6" fill="#C9A27A" stroke="#9B6A45" stroke-width="3"/><text y="-6" font-size="14" font-weight="900" text-anchor="middle" fill="${C.dark}" font-family="DM Sans">POSITION</text></g>`;
+      out += `<g opacity="${top}">` + person(t, { x: tx_, y: 980, scale: 0.8, look: LK.buyer, seed: 6, walking: r > 7.6 && r < 9.6, frontArm: { a1: 30, a2: -60 }, hold: box }) + '</g>';
+    }
+    if (r > 9.8) out += pill(1490, 1030, 'your POSITION exits', C.pink, pop(t, s.start + 9.8), 24);
+    // Not identical, but related.
+    const nk = pop(t, s.start + 10.4, 0.6) * (1 - seg(r, 15, 15.4));
+    if (nk > 0) out += `<g transform="translate(1110,700) scale(${nk})">${txt(0, 40, '≠', { fs: 150, col: TX.purple, font: 'Playfair Display' })}</g>` + `<path d="M820,440 Q1110,360 1380,440" fill="none" stroke="${C.purple}" stroke-width="5" stroke-dasharray="10 10" opacity="${clamp(nk)}"/>` + pill(1110, 410, 'related', C.purple, nk, 22);
+    // The mistake.
+    if (r > 15.2) {
+      const mp = { x: 1110, y: 1000, scale: 0.8, look: LK.j, seed: 8, talk: ctx.talking && r > 15.4 && r < 17.4, mood: r > 17.6 ? 'sad' : undefined, frontArm: r < 17.6 ? { a1: -70, a2: -100 + Math.sin(t * 8) * 10 } : undefined };
+      out += popPerson(t, s.start + 15.2, mp);
+      out += card(1110, 560, ['“Bullish until', 'my trade loses!”'], { k: back(seg(r, 15.4, 15.8)), fs: 26, italic: true, font: 'Playfair Display', tx: 0 });
+      out += cross(1250, 520, pop(t, s.start + 17.6, 0.5), C.pink, 34);
+      if (r > 17.6 && r < 18.6) out += txt(1330, 470, 'BZZT', { fs: 34, col: TX.pink });
+    }
+    return out;
+  };
+
+  /* ================= Lesson 13 · Updating Your Bias in Real Time ================= */
+
+  // Hourly mail: each letter is new information; the thesis gets a new stamp.
+  LIVE['s10-mailbox'] = (s, t, ctx) => {
+    const r = t - s.start;
+    let out = `<rect x="0" y="1000" width="1920" height="80" fill="#F3E3D7"/>`;
+    // Street clock.
+    const hrs = [[0, 9], [3.8, 10], [8.4, 11], [12.6, 12]];
+    let hour = 9;
+    hrs.forEach(([at, h], i) => { if (r > at) hour = i ? lerp(hrs[i - 1][1], h, ease(seg(r, at, at + 0.8))) : h; });
+    const ha = rad(hour * 30 - 90), ma = rad((hour % 1) * 360 - 90);
+    out += `<rect x="290" y="560" width="20" height="440" fill="${C.dark}"/><circle cx="300" cy="480" r="86" fill="#fff" stroke="${C.dark}" stroke-width="10"/>
+      ${Array.from({ length: 12 }, (_, i) => `<circle cx="${300 + Math.cos(rad(i * 30)) * 68}" cy="${480 + Math.sin(rad(i * 30)) * 68}" r="4" fill="${C.muted}"/>`).join('')}
+      <line x1="300" y1="480" x2="${300 + Math.cos(ha) * 40}" y2="${480 + Math.sin(ha) * 40}" stroke="${C.dark}" stroke-width="9" stroke-linecap="round"/>
+      <line x1="300" y1="480" x2="${300 + Math.cos(ma) * 60}" y2="${480 + Math.sin(ma) * 60}" stroke="${C.pink}" stroke-width="5" stroke-linecap="round"/><circle cx="300" cy="480" r="8" fill="${C.dark}"/>`;
+    out += pill(300, 600, ['9 a.m.', '10 a.m.', '11 a.m.', 'Noon'][Math.min(3, Math.round(hour) - 9)], C.purple, 1, 22);
+    // Chart panel.
+    const pk = pop(t, s.start + 0.3, 0.6);
+    out += scl(1340, 680, pk, `<rect x="920" y="400" width="840" height="560" rx="28" fill="#fff" stroke="#F1E7E1" stroke-width="3"/>`);
+    const LV = 820;
+    out += hline(960, 1720, LV, C.gold, { w: 5, op: clamp(r / 1) }) + (r > 1 ? pill(1010, LV + 30, '1H low', C.gold, 1, 20) : '');
+    const segs = [[0.4, [[960, 760], [1020, 700], [1060, 760], [1120, 650]]], [3.8, [[1120, 650], [1200, 560], [1240, 600], [1300, 500]]], [8.4, [[1300, 500], [1360, 680], [1440, 580]]], [12.6, [[1440, 580], [1520, 760], [1560, 720], [1640, 880]]]];
+    let drawn = [];
+    segs.forEach(([at, pts]) => { const k = ease(seg(r, at + 0.4, at + 2.2)); if (k > 0) drawn = drawn.concat(along(pts, k).drawn.slice(drawn.length ? 1 : 0)); });
+    out += poly(drawn, C.dark, 6, { op: 0.85 });
+    if (drawn.length) { const h = drawn[drawn.length - 1]; out += `<circle cx="${h[0]}" cy="${h[1]}" r="11" fill="${C.dark}"/>`; }
+    ['9', '10', '11', '12'].forEach((l, i) => { if (r > segs[i][0]) out += txt(segs[i][1][segs[i][1].length - 1][0], 940, l, { fs: 22, col: C.muted }); });
+    const st = [[2.0, 'BULLISH, IF THE LOW HOLDS', TX.purple], [6.0, 'STRENGTHENED', TX.teal], [10.6, 'WEAKENED', TX.peach], [14.6, 'INVALIDATED', TX.pink]];
+    st.forEach(([at, label, col], i) => {
+      const next = st[i + 1] ? st[i + 1][0] : 99;
+      if (r > at && r < next) out += stamp(1340, 470, label, col, t, s.start + at, { fs: i ? 34 : 26, rot: -4, fill: '#fff' });
+    });
+    // Mailbox, carrier, reader.
+    out += `<rect x="562" y="800" width="16" height="200" fill="#9B6A45"/><path d="M510,800 L630,800 L630,730 Q630,690 570,690 Q510,690 510,730 Z" fill="${C.purple}"/>
+      <rect x="626" y="${r > 1 ? 700 : 740}" width="8" height="${r > 1 ? 50 : 30}" fill="${C.pink}"/>`;
+    const cr = { x: 430, y: 1000, scale: 0.85, look: LK.b, seed: 3, frontArm: { a1: -10, a2: -40 }, talk: false };
+    out += popPerson(t, s.start + 0.5, cr) + hat(t, cr, 'cap', C.tealD);
+    out += `<path d="M${430 - 46},${1000 - 190} L${430 + 10},${1000 - 120}" stroke="#9B6A45" stroke-width="6"/><rect x="${430 - 66}" y="${1000 - 130}" width="70" height="56" rx="10" fill="#C9A27A"/>`;
+    const rd = { x: 790, y: 1000, scale: 0.85, look: LK.a, seed: 5, flip: true, frontArm: { a1: -20, a2: -50 }, talk: ctx.talking && r > 16 };
+    out += popPerson(t, s.start + 0.7, rd);
+    const env = (x, y, sc = 1) => `<g transform="translate(${x},${y}) scale(${sc})"><rect x="-30" y="-20" width="60" height="40" rx="4" fill="#fff" stroke="${C.pink}" stroke-width="3"/><path d="M-30,-20 L0,4 L30,-20" fill="none" stroke="${C.pink}" stroke-width="3"/></g>`;
+    const h1 = handOf(cr), h2 = handOf(rd);
+    [3.8, 8.4, 12.6].forEach(at => {
+      const k = seg(r, at, at + 1.2);
+      if (k > 0 && k < 1) out += env(lerp(h1.x, h2.x, k), lerp(h1.y, h2.y, k) - Math.sin(k * Math.PI) * 120, 1.1);
+    });
+    if (r > 4.8) out += env(h2.x, h2.y - 10, 1);
+    out += card(800, 560, ['New information', 'received.'], { k: back(seg(r, 16, 16.4)), fs: 26, tx: -20 });
+    if (r > 18.8) out += pill(1340, 1020, 'reassess current structure', C.purple, pop(t, s.start + 18.8), 24);
+    return out;
+  };
+
+  // Ferris wheel: READ, MAP, WAIT, UPDATE, REPEAT, round and round.
+  LIVE['s10-ferris-loop'] = (s, t, ctx) => {
+    const r = t - s.start;
+    const cx = 960, cy = 650, R = 220;
+    const wk = pop(t, s.start + 0.3, 0.7);
+    if (wk <= 0) return '';
+    const rot = r * 14;
+    let g = `<g stroke="${C.purple}" stroke-width="14" stroke-linecap="round"><line x1="${cx}" y1="${cy}" x2="${cx - 170}" y2="1000"/><line x1="${cx}" y1="${cy}" x2="${cx + 170}" y2="1000"/></g>
+      <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${C.purpleL}" stroke-width="12"/>`;
+    for (let i = 0; i < 10; i++) { const a = rad(rot + i * 36); g += `<line x1="${cx}" y1="${cy}" x2="${cx + Math.cos(a) * R}" y2="${cy + Math.sin(a) * R}" stroke="${C.purpleL}" stroke-width="6"/>`; }
+    for (let i = 0; i < 20; i++) { const a = rad(rot + i * 18), on = (Math.floor(r * 4) + i) % 2; g += `<circle cx="${cx + Math.cos(a) * R}" cy="${cy + Math.sin(a) * R}" r="7" fill="${on ? C.gold : '#fff'}"/>`; }
+    g += `<circle cx="${cx}" cy="${cy}" r="30" fill="${C.purple}"/>`;
+    const steps = [['READ', 2.8, C.teal], ['MAP', 5.2, C.peach], ['WAIT', 7.2, C.purple], ['UPDATE', 10.0, C.pink], ['REPEAT', 13.8, C.tealD]];
+    let cur = -1; steps.forEach(([, at], i) => { if (r >= at) cur = i; });
+    const heads = [LK.a, LK.b, LK.c, LK.d, LK.e];
+    steps.forEach(([lab, at, col], i) => {
+      const a = rad(rot + i * 72 - 90), ax = cx + Math.cos(a) * R, ay = cy + Math.sin(a) * R;
+      const k = pop(t, s.start + 0.6 + i * 0.2, 0.5);
+      if (k <= 0) return;
+      const hi = i === cur && r < 16 ? 1 : 0, sc = k * (1 + hi * 0.18), sw = Math.sin(r * 2 + i) * 4;
+      g += `<g transform="translate(${ax},${ay}) rotate(${sw}) scale(${sc})"><line x1="0" y1="0" x2="0" y2="18" stroke="${C.dark}" stroke-width="5"/>
+        <circle cx="-22" cy="20" r="13" fill="${heads[i].skin}"/><circle cx="-22" cy="12" r="10" fill="${heads[i].hair}"/>
+        <rect x="-78" y="22" width="156" height="58" rx="18" fill="${hi ? col : '#fff'}" stroke="${col}" stroke-width="5"/>
+        <text y="62" font-size="26" font-weight="900" text-anchor="middle" fill="${hi ? '#fff' : C.dark}" font-family="DM Sans">${lab}</text></g>`;
+    });
+    let out = scl(cx, 1000, wk, g);
+    out += `<rect x="700" y="990" width="520" height="16" rx="8" fill="${C.purple}"/><rect x="0" y="1000" width="1920" height="80" fill="#F3E3D7"/>`;
+    // Step questions shown beside the wheel.
+    const qs = ['What is structure showing?', 'Which levels matter?', 'What does price do there?', 'Confirm, weaken or invalidate?', 'Every session.'];
+    if (cur >= 0 && r < 16) out += card(1500, 560, [qs[cur]], { k: back(seg(r, steps[cur][1], steps[cur][1] + 0.4)), fs: 28, tail: 'left', col: TX[['teal', 'peach', 'purple', 'pink', 'teal'][cur]] });
+    // Operator and a queue.
+    const op = { x: 1330, y: 1000, scale: 0.85, look: LK.g, seed: 3, flip: true, frontArm: { a1: 60 + Math.sin(r * 2) * 10, a2: 80 } };
+    out += popPerson(t, s.start + 0.8, op) + hat(t, op, 'cap', C.pink);
+    out += `<g transform="rotate(${Math.sin(r * 2) * 10} 1270 1000)"><line x1="1270" y1="1000" x2="1250" y2="900" stroke="${C.dark}" stroke-width="8" stroke-linecap="round"/><circle cx="1250" cy="896" r="12" fill="${C.pink}"/></g>`;
+    [[440, LK.j, 2], [560, LK.k, 6]].forEach(([x, look, seed], i) => {
+      const kid = { x, y: 1000, scale: 0.6, look, seed, frontArm: i ? { a1: -70, a2: -100 + Math.sin(t * 7) * 12 } : undefined };
+      out += popPerson(t, s.start + 1 + i * 0.2, kid);
+    });
+    out += A.sparkle(cx, cy - R - 30, s.start + 13.8, t) + (r > 15.8 ? pill(960, 1040, 'same process, every session', C.purple, pop(t, s.start + 15.8), 26) : '');
+    return out;
+  };
+
   const BUILD = {};
   Object.keys(LIVE).forEach(k => {
     BUILD[k] = s => `
