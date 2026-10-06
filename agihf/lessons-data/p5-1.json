@@ -1,0 +1,296 @@
+{
+ "phase": "p5",
+ "section": "s12",
+ "lessonNumber": 1,
+ "title": "What Is ICC?",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 75,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Learn the story before you learn the trigger.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Explain ICC as Indication → Correction → Continuation, and why it isn’t the 1M entry model yet.",
+  "missionQuestion": "What story is price telling me?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "icc_unlock",
+   "kicker": "Phase 5 · The Dayli ICC Method™",
+   "framework": [
+    [
+     "4H",
+     "READ THE ROOM"
+    ],
+    [
+     "1H",
+     "BUILD THE MAP"
+    ],
+    [
+     "THESIS",
+     ""
+    ]
+   ],
+   "question": "But how does price actually move <em>through</em> the story?",
+   "lines": [
+    "You made it.",
+    "You know how to read the market.",
+    "Now I’m going to show you how I organize the story price is telling me."
+   ],
+   "cta": "Show me →"
+  },
+  {
+   "type": "icc_replay",
+   "kicker": "Watch first",
+   "title": "What do you notice?",
+   "chart": {
+    "swings": [
+     [
+      40,
+      260
+     ],
+     [
+      200,
+      120
+     ],
+     [
+      300,
+      185
+     ],
+     [
+      470,
+      60
+     ]
+    ],
+    "seed": 11
+   },
+   "segments": [
+    {
+     "key": "indication",
+     "from": 0,
+     "to": 1
+    },
+    {
+     "key": "correction",
+     "from": 1,
+     "to": 2
+    },
+    {
+     "key": "continuation",
+     "from": 2,
+     "to": 3
+    }
+   ],
+   "dir": "bullish",
+   "tf": "1H",
+   "unlabeledFirst": true,
+   "intro": "No labels yet. Just watch what price does.",
+   "replayText": "Same move. This time I’ll name each chapter.",
+   "end": {
+    "text": "Push. Pullback. Push. Now it has names.",
+    "card": "LEARN THE STORY BEFORE YOU LEARN THE TRIGGER."
+   }
+  },
+  {
+   "type": "teach",
+   "kicker": "Three chapters",
+   "heading": "I · C · C",
+   "body": "",
+   "beats": [
+    {
+     "icon": "I",
+     "title": "Indication",
+     "line": "Price provides meaningful directional information."
+    },
+    {
+     "icon": "C",
+     "title": "Correction",
+     "line": "Price temporarily moves against that move."
+    },
+    {
+     "icon": "C",
+     "title": "Continuation",
+     "line": "Price shows evidence the move is trying to resume."
+    }
+   ],
+   "punch": "A way to organize the story. On any timeframe."
+  },
+  {
+   "type": "icc_split",
+   "kicker": "Know the difference",
+   "title": "ICC ≠ automatically a Dayli ICC entry.",
+   "left": {
+    "tag": "Now · Section 12",
+    "title": "ICC framework",
+    "letters": [
+     "Indication",
+     "Correction",
+     "Continuation"
+    ],
+    "items": [
+     "Organizes price behavior",
+     "Any timeframe",
+     "Reads the story"
+    ],
+    "foot": "You’re learning this now."
+   },
+   "right": {
+    "tag": "Next · Section 13",
+    "title": "Dayli ICC 1M Entry Model™",
+    "letters": [
+     "PIL",
+     "I",
+     "C",
+     "C",
+     "Retest",
+     "Entry"
+    ],
+    "items": [
+     "Specific execution rules",
+     {
+      "text": "PIL",
+      "locked": true
+     },
+     {
+      "text": "1M close rules",
+      "locked": true
+     },
+     {
+      "text": "Retest",
+      "locked": true
+     },
+     {
+      "text": "Entry",
+      "locked": true
+     },
+     {
+      "text": "Invalidation / reset rules",
+      "locked": true
+     }
+    ],
+    "foot": "🔒 Unlocks in Section 13",
+    "locked": true
+   },
+   "ask": {
+    "prompt": "A clean I-C-C just printed on the 4H. Is that a Dayli ICC entry?",
+    "options": [
+     {
+      "label": "Yes, ICC is ICC",
+      "feedback": "The framework reads the story. The entry model has its own rules, and you haven’t learned them yet.",
+      "mistake": "icc-as-entry"
+     },
+     {
+      "label": "No. The framework reads the story. The 1M model has specific execution rules.",
+      "correct": true,
+      "why": "Exactly. Story now. Trigger next."
+     }
+    ],
+    "stack": true
+   }
+  },
+  {
+   "type": "icc_replay",
+   "kicker": "See the sequence",
+   "title": "Watch the chapters unfold",
+   "chart": {
+    "swings": [
+     [
+      30,
+      250
+     ],
+     [
+      110,
+      150
+     ],
+     [
+      180,
+      215
+     ],
+     [
+      290,
+      92
+     ],
+     [
+      370,
+      168
+     ],
+     [
+      470,
+      60
+     ],
+     [
+      520,
+      78
+     ]
+    ],
+    "seed": 7,
+    "hlines": [
+     {
+      "y": 150,
+      "label": "meaningful high",
+      "tone": "muted"
+     }
+    ]
+   },
+   "segments": [
+    {
+     "key": "indication",
+     "from": 2,
+     "to": 3
+    },
+    {
+     "key": "correction",
+     "from": 3,
+     "to": 4
+    },
+    {
+     "key": "continuation",
+     "from": 4,
+     "to": 5
+    }
+   ],
+   "dir": "bullish",
+   "tf": "4H",
+   "intro": "Play it. Step it candle by candle. Hide the labels and see if you can still read it.",
+   "pauses": [
+    {
+     "seg": "indication",
+     "text": "Price pushed <b>beyond the meaningful high</b>. That’s new information. <b>Indication.</b>",
+     "resume": true
+    },
+    {
+     "seg": "correction",
+     "text": "Now price moved back. The tracker says <b>correction</b>. Continuation? Not confirmed.",
+     "resume": true
+    }
+   ],
+   "end": {
+    "text": "Only now, after price pushed beyond again, does the last C turn solid.",
+    "card": "ICC IS HOW DAYLI ORGANIZES THE STORY PRICE IS TELLING HER."
+   }
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "ICC is how I organize <em>the story price is telling me.</em> Learn the story first. The trigger comes next.",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words: what are the three chapters of ICC?",
+   "modelAnswer": "Indication: price gives meaningful directional information. Correction: it moves back against that move. Continuation: it shows evidence the move is trying to resume."
+  }
+ ],
+ "takeaways": [
+  "ICC = Indication → Correction → Continuation.",
+  "It organizes the story on any timeframe.",
+  "The 1M entry model is next, with its own rules."
+ ],
+ "remember": "Learn the story before you learn the trigger."
+}

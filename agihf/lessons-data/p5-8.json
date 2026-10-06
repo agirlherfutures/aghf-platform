@@ -1,0 +1,202 @@
+{
+ "phase": "p5",
+ "section": "s12",
+ "lessonNumber": 8,
+ "title": "ICC + Market Structure",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 75,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "You need both.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Use structure and ICC together, and explain why ICC can’t replace structure.",
+  "missionQuestion": "What is price building, and where is it in the sequence?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "icc_layers",
+   "mode": "views",
+   "kicker": "Two lenses",
+   "title": "Structure. ICC. Both.",
+   "chart": {
+    "swings": [
+     [
+      30,
+      250
+     ],
+     [
+      110,
+      150
+     ],
+     [
+      180,
+      215
+     ],
+     [
+      290,
+      92
+     ],
+     [
+      370,
+      168
+     ],
+     [
+      470,
+      60
+     ],
+     [
+      520,
+      78
+     ]
+    ],
+    "seed": 7,
+    "hlines": [
+     {
+      "y": 150,
+      "label": "meaningful high",
+      "tone": "muted"
+     }
+    ],
+    "marks": [
+     {
+      "i": 1,
+      "label": "H",
+      "tone": "muted",
+      "id": "s1"
+     },
+     {
+      "i": 2,
+      "label": "HL",
+      "tone": "up",
+      "id": "s2"
+     },
+     {
+      "i": 3,
+      "label": "HH",
+      "tone": "up",
+      "id": "s3"
+     },
+     {
+      "i": 4,
+      "label": "HL",
+      "tone": "up",
+      "id": "s4"
+     },
+     {
+      "i": 5,
+      "label": "HH",
+      "tone": "up",
+      "id": "s5"
+     }
+    ]
+   },
+   "structureIds": [
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "s5"
+   ],
+   "segments": [
+    {
+     "key": "indication",
+     "from": 2,
+     "to": 3
+    },
+    {
+     "key": "correction",
+     "from": 3,
+     "to": 4
+    },
+    {
+     "key": "continuation",
+     "from": 4,
+     "to": 5
+    }
+   ],
+   "dir": "bullish",
+   "tf": "4H",
+   "stage": "complete",
+   "asks": [
+    {
+     "prompt": "Which question does ICC answer?",
+     "options": [
+      {
+       "label": "What is price building?",
+       "feedback": "That’s structure’s question."
+      },
+      {
+       "label": "Where is price in the directional sequence?",
+       "correct": true,
+       "why": "Structure: what. ICC: where in the sequence."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "icc_split",
+   "kicker": "Catch the mistake",
+   "title": "“I learned ICC, so I don’t need market structure.”",
+   "left": {
+    "tag": "Without structure",
+    "title": "You can’t answer…",
+    "items": [
+     "What level mattered?",
+     "What actually indicated?",
+     "Did the correction invalidate anything?",
+     "Was continuation meaningful?"
+    ]
+   },
+   "right": {
+    "tag": "With both",
+    "title": "You can.",
+    "items": [
+     "Structure: what price is building",
+     "ICC: the behavior inside it",
+     "Together: a read you can explain"
+    ]
+   },
+   "vs": "+",
+   "ask": {
+    "prompt": "So, is that statement right?",
+    "options": [
+     {
+      "label": "Yes, ICC replaces structure",
+      "feedback": "ICC describes behavior inside the structure. Without structure it has nothing to stand on.",
+      "mistake": "icc-replaces-structure"
+     },
+     {
+      "label": "NO MA’AM. 😂",
+      "correct": true,
+      "why": "You need both."
+     }
+    ]
+   }
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Structure asks <em>what is price building?</em> ICC asks <em>where is price in the sequence?</em> You need both.",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why doesn’t ICC replace market structure?",
+   "modelAnswer": "Because structure tells you which level mattered, what really indicated, and whether a correction broke anything. ICC describes the sequence happening inside that structure."
+  }
+ ],
+ "takeaways": [
+  "Structure: what is price building?",
+  "ICC: where in the sequence?",
+  "Use both, always."
+ ],
+ "remember": "Structure asks what. ICC asks where in the sequence."
+}

@@ -1,0 +1,429 @@
+{
+ "phase": "p5",
+ "section": "s12",
+ "lessonNumber": 2,
+ "title": "Indication",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 75,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "What did price actually prove?",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Spot meaningful indication: price progressing beyond a meaningful structural reference, not just a big candle.",
+  "missionQuestion": "Which move gave real directional information?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "Not a candle. A proof.",
+   "heading": "What is indication NOT?",
+   "body": "",
+   "beats": [
+    {
+     "icon": "✗",
+     "title": "A green or red candle",
+     "line": "Color is not proof."
+    },
+    {
+     "icon": "✗",
+     "title": "A big candle",
+     "line": "Size is not proof."
+    },
+    {
+     "icon": "✗",
+     "title": "An FVG, a sweep, a level touch",
+     "line": "Events are not proof."
+    },
+    {
+     "icon": "✓",
+     "title": "New information",
+     "line": "Price progressed beyond something that mattered."
+    }
+   ],
+   "punch": "What did price actually prove?"
+  },
+  {
+   "type": "icc_pick",
+   "kicker": "Indication detective",
+   "title": "Which one provides the most meaningful directional information?",
+   "charts": [
+    {
+     "label": "A",
+     "chart": {
+      "swings": [
+       [
+        30,
+        170
+       ],
+       [
+        80,
+        140
+       ],
+       [
+        130,
+        195
+       ],
+       [
+        180,
+        145
+       ],
+       [
+        230,
+        200
+       ],
+       [
+        280,
+        150
+       ],
+       [
+        330,
+        196
+       ]
+      ],
+      "seed": 3,
+      "hlines": [
+       {
+        "y": 126,
+        "label": "range high",
+        "tone": "muted"
+       }
+      ],
+      "bars": [
+       {
+        "x": 352,
+        "o": 196,
+        "c": 136,
+        "h": 131,
+        "l": 199,
+        "w": 14
+       }
+      ]
+     },
+     "caption": "Giant green candle in a messy range"
+    },
+    {
+     "label": "B",
+     "chart": {
+      "swings": [
+       [
+        30,
+        240
+       ],
+       [
+        120,
+        110
+       ],
+       [
+        200,
+        200
+       ],
+       [
+        300,
+        112
+       ],
+       [
+        360,
+        170
+       ],
+       [
+        420,
+        146
+       ],
+       [
+        480,
+        196
+       ]
+      ],
+      "seed": 4,
+      "hlines": [
+       {
+        "y": 110,
+        "label": "previous high",
+        "tone": "muted"
+       }
+      ]
+     },
+     "caption": "Touches the previous high"
+    },
+    {
+     "label": "C",
+     "chart": {
+      "swings": [
+       [
+        30,
+        250
+       ],
+       [
+        110,
+        150
+       ],
+       [
+        180,
+        215
+       ],
+       [
+        290,
+        92
+       ],
+       [
+        350,
+        118
+       ]
+      ],
+      "seed": 7,
+      "hlines": [
+       {
+        "y": 150,
+        "label": "meaningful high",
+        "tone": "muted"
+       }
+      ]
+     },
+     "caption": "Through a meaningful level, and beyond"
+    },
+    {
+     "label": "D",
+     "chart": {
+      "swings": [
+       [
+        30,
+        220
+       ],
+       [
+        110,
+        140
+       ],
+       [
+        180,
+        200
+       ],
+       [
+        250,
+        142
+       ],
+       [
+        285,
+        122
+       ],
+       [
+        340,
+        192
+       ],
+       [
+        400,
+        232
+       ]
+      ],
+      "seed": 9,
+      "hlines": [
+       {
+        "y": 140,
+        "label": "equal highs",
+        "tone": "muted"
+       }
+      ]
+     },
+     "caption": "Sweeps the equal highs"
+    }
+   ],
+   "ask": {
+    "prompt": "Pick the chart.",
+    "options": [
+     {
+      "label": "A",
+      "feedback": "Big, yes. But it stayed inside the mess. What did that candle actually change?",
+      "mistake": "big-candle-indication",
+      "chart": "A"
+     },
+     {
+      "label": "B",
+      "feedback": "Price visited the high. It didn’t progress beyond it.",
+      "mistake": "touch-as-indication",
+      "chart": "B"
+     },
+     {
+      "label": "C",
+      "correct": true,
+      "why": "Price interacted with a meaningful structural level and demonstrated directional progression beyond it. That’s new information.",
+      "chart": "C"
+     },
+     {
+      "label": "D",
+      "feedback": "A sweep is an event. Price didn’t progress anywhere afterwards.",
+      "mistake": "sweep-as-indication",
+      "chart": "D"
+     }
+    ]
+   },
+   "why": {
+    "prompt": "Why C?",
+    "options": [
+     {
+      "label": "It had the biggest candle",
+      "feedback": "Size isn’t the point. Look at what changed.",
+      "mistake": "big-candle-indication"
+     },
+     {
+      "label": "Price progressed beyond a meaningful structural reference: it provided new information",
+      "correct": true,
+      "why": "That’s the question every time: what did price prove?"
+     },
+     {
+      "label": "It made an FVG",
+      "feedback": "An FVG isn’t required for indication.",
+      "mistake": "context-as-requirement"
+     }
+    ],
+    "stack": true
+   }
+  },
+  {
+   "type": "icc_replay",
+   "kicker": "Bullish · bearish",
+   "title": "Same idea, mirrored",
+   "charts": [
+    {
+     "label": "Bullish",
+     "chart": {
+      "swings": [
+       [
+        30,
+        250
+       ],
+       [
+        110,
+        150
+       ],
+       [
+        180,
+        215
+       ],
+       [
+        290,
+        92
+       ],
+       [
+        330,
+        112
+       ]
+      ],
+      "seed": 7,
+      "hlines": [
+       {
+        "y": 150,
+        "label": "meaningful high",
+        "tone": "muted"
+       }
+      ]
+     },
+     "segments": [
+      {
+       "key": "indication",
+       "from": 2,
+       "to": 3
+      }
+     ],
+     "dir": "bullish",
+     "tf": "4H"
+    },
+    {
+     "label": "Bearish",
+     "chart": {
+      "swings": [
+       [
+        30,
+        70
+       ],
+       [
+        110,
+        170
+       ],
+       [
+        180,
+        105
+       ],
+       [
+        290,
+        228
+       ],
+       [
+        330,
+        208
+       ]
+      ],
+      "seed": 8,
+      "hlines": [
+       {
+        "y": 170,
+        "label": "meaningful low",
+        "tone": "muted"
+       }
+      ]
+     },
+     "segments": [
+      {
+       "key": "indication",
+       "from": 2,
+       "to": 3
+      }
+     ],
+     "dir": "bearish",
+     "tf": "4H"
+    }
+   ],
+   "intro": "Play both.",
+   "end": {
+    "text": "<b>Bullish:</b> contained beneath a meaningful high → progression beyond it. <b>Bearish:</b> holding above a meaningful low → progression below it.",
+    "card": "Potential indication: price provided new directional information."
+   }
+  },
+  {
+   "type": "teach",
+   "kicker": "Say it like Dayli",
+   "heading": "The words we use (for now)",
+   "body": "",
+   "beats": [
+    {
+     "icon": "◆",
+     "title": "Meaningful structural reference",
+     "line": "A level that actually mattered."
+    },
+    {
+     "icon": "↗",
+     "title": "Directional progression",
+     "line": "Price moved beyond it, not just to it."
+    },
+    {
+     "icon": "✦",
+     "title": "New information",
+     "line": "Price proved something."
+    }
+   ],
+   "punch": "Indication is a concept here. The exact 1M rule comes in Section 13."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Don’t ask how big the candle was. <em>Ask what price proved.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why isn’t a big candle automatically indication?",
+   "modelAnswer": "Because size isn’t proof. Indication is price progressing beyond a meaningful structural reference: it has to change the information, not just be big."
+  }
+ ],
+ "takeaways": [
+  "Indication = meaningful directional information.",
+  "Not color, size, an FVG, a sweep or a touch.",
+  "Ask: what did price actually prove?"
+ ],
+ "remember": "What did price actually prove?"
+}

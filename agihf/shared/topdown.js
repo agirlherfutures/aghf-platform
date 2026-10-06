@@ -50,6 +50,9 @@ export const ROWS = {
   '4h.low': ['4H ROOM', 'External Low'],
   '4h.structure': ['4H ROOM', 'Structure'],
   '4h.location': ['4H ROOM', 'Location'],
+  '4h.icc': ['4H ROOM', 'ICC Status'],
+  '4h.iccClarity': ['4H ROOM', 'ICC Clarity'],
+  '1h.icc': ['1H MAP', 'ICC Status'],
   'loc.range': ['LOCATION', 'Range'],
   'loc.eq': ['LOCATION', 'Equilibrium'],
   'loc.zone': ['LOCATION', 'Premium / Discount'],
@@ -76,6 +79,7 @@ const READ_KEY = 'aghf_topdown_read';
 const SCHEMA = {
   '4h.high': ['fourHour', 'externalHigh'], '4h.low': ['fourHour', 'externalLow'],
   '4h.structure': ['fourHour', 'structure'], '4h.location': ['fourHour', 'location'],
+  '4h.icc': ['fourHour', 'iccStage'], '4h.iccClarity': ['fourHour', 'iccClarity'], '1h.icc': ['oneHour', 'iccStage'],
   'loc.range': ['location', 'range'], 'loc.eq': ['location', 'equilibrium'],
   'loc.zone': ['location', 'zone'], 'loc.room': ['location', 'roomToObjective'],
   '1h.structure': ['oneHour', 'structure'], '1h.swing': ['oneHour', 'relevantSwing'],

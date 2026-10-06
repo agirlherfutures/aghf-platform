@@ -1,0 +1,487 @@
+{
+ "phase": "p5",
+ "section": "s13",
+ "lessonNumber": 14,
+ "title": "Indication",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "CLOSE.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Confirm indication only when a 1M candle CLOSES through the PIL, never on a wick or an open candle.",
+  "missionQuestion": "Did the candle close through the PIL?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "The rule",
+   "heading": "Indication = a 1M candle CLOSES through the PIL.",
+   "body": "",
+   "beats": [
+    {
+     "icon": "↑",
+     "title": "Bullish",
+     "line": "A 1M candle CLOSES above the bullish PIL."
+    },
+    {
+     "icon": "↓",
+     "title": "Bearish",
+     "line": "A 1M candle CLOSES below the bearish PIL."
+    },
+    {
+     "icon": "✗",
+     "title": "Wicks don’t vote",
+     "line": "Price visiting the level proves nothing."
+    }
+   ],
+   "punch": "CLOSE."
+  },
+  {
+   "type": "exec_sim",
+   "kicker": "Wick vs close simulator",
+   "title": "Watch the candle form",
+   "goal": "indication",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20987.75,
+      "l": 20981.0,
+      "c": 20986.5
+     },
+     {
+      "o": 20986.5,
+      "h": 20992.5,
+      "l": 20985.0,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20993.75,
+      "l": 20989.75,
+      "c": 20993.0
+     },
+     {
+      "o": 20993.0,
+      "h": 20999.25,
+      "l": 20991.5,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.5,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.75,
+      "l": 20997.5,
+      "c": 20998.5
+     },
+     {
+      "o": 20998.5,
+      "h": 20999.0,
+      "l": 20994.75,
+      "c": 20995.25
+     },
+     {
+      "o": 20995.25,
+      "h": 20996.5,
+      "l": 20994.5,
+      "c": 20995.0
+     },
+     {
+      "o": 20995.0,
+      "h": 20996.25,
+      "l": 20990.75,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20995.5,
+      "l": 20991.0,
+      "c": 20995.0
+     },
+     {
+      "o": 20995.0,
+      "h": 20999.25,
+      "l": 20994.5,
+      "c": 20998.75
+     },
+     {
+      "o": 20998.75,
+      "h": 21002.75,
+      "l": 20997.5,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21006.75,
+      "l": 20999.75,
+      "c": 21002.75,
+      "path": [
+       21001.25,
+       21006.75,
+       21002.75
+      ]
+     },
+     {
+      "o": 21002.75,
+      "h": 21003.75,
+      "l": 20999.25,
+      "c": 21000.25
+     },
+     {
+      "o": 21000.25,
+      "h": 21007.75,
+      "l": 21000.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21008.5,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21009.75,
+      "l": 21006.75,
+      "c": 21009.25
+     },
+     {
+      "o": 21009.25,
+      "h": 21011.5,
+      "l": 21008.25,
+      "c": 21010.75
+     },
+     {
+      "o": 21010.75,
+      "h": 21013.75,
+      "l": 21010.0,
+      "c": 21012.75
+     },
+     {
+      "o": 21012.75,
+      "h": 21017.0,
+      "l": 21011.5,
+      "c": 21016.25
+     },
+     {
+      "o": 21016.25,
+      "h": 21017.0,
+      "l": 21012.5,
+      "c": 21013.25
+     },
+     {
+      "o": 21013.25,
+      "h": 21013.5,
+      "l": 21009.25,
+      "c": 21010.75
+     },
+     {
+      "o": 21010.75,
+      "h": 21011.0,
+      "l": 21006.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21008.5,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21008.75,
+      "l": 21005.0,
+      "c": 21008.0
+     },
+     {
+      "o": 21008.0,
+      "h": 21008.25,
+      "l": 21007.25,
+      "c": 21007.75
+     },
+     {
+      "o": 21007.75,
+      "h": 21012.25,
+      "l": 21006.5,
+      "c": 21011.75
+     },
+     {
+      "o": 21011.75,
+      "h": 21013.75,
+      "l": 21010.25,
+      "c": 21012.25
+     }
+    ],
+    "pil": 21004.25,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish",
+      "ok": true
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis",
+      "ok": true
+     },
+     {
+      "label": "HTF ICC",
+      "value": "Correction"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ],
+    "structure": "Pullback from the swing high at the PIL. Price is below it.",
+    "start": 12
+   },
+   "pauses": [
+    {
+     "at": 12,
+     "intrabar": 0.45,
+     "text": "Price is trading <b>above</b> the PIL right now…",
+     "ask": {
+      "prompt": "INDICATION?",
+      "options": [
+       {
+        "label": "Yes, it’s above!",
+        "feedback": "CANDLE IS STILL OPEN. Price visited the level. It hasn’t proven the close.",
+        "mistake": "wick-counted"
+       },
+       {
+        "label": "Not yet: the candle is still open",
+        "correct": true,
+        "why": "Exactly. Let it close."
+       }
+      ]
+     }
+    },
+    {
+     "at": 12,
+     "text": "The candle <b>closed below</b> the PIL.",
+     "ask": {
+      "prompt": "Indication now?",
+      "options": [
+       {
+        "label": "Yes, it broke the level",
+        "feedback": "The wick broke it. The close didn’t.",
+        "mistake": "wick-counted"
+       },
+       {
+        "label": "No indication: only a wick",
+        "correct": true,
+        "why": "No close through, no indication."
+       }
+      ]
+     },
+     "resume": true
+    }
+   ],
+   "intro": "Press Next candle (or Play). Confirm Indication only when price has earned it.",
+   "end": {
+    "text": "PIL ✓ · INDICATION ✓ · then correction, continuation, retest, entry: all still open.",
+    "card": "I DON’T CARE THAT PRICE VISITED THE LEVEL.<br>PROVE IT TO ME WITH THE CLOSE."
+   }
+  },
+  {
+   "type": "exec_drill",
+   "kicker": "Speed drill",
+   "title": "Indication or not?",
+   "items": [
+    {
+     "bars": [
+      {
+       "o": 21000.25,
+       "h": 21002.75,
+       "l": 20999.25,
+       "c": 21002.25
+      },
+      {
+       "o": 21002.25,
+       "h": 21007.75,
+       "l": 21001.75,
+       "c": 21007.0
+      }
+     ],
+     "pil": 21004.25,
+     "answer": "valid",
+     "why": "Closed above the PIL. Valid indication."
+    },
+    {
+     "bars": [
+      {
+       "o": 21000.25,
+       "h": 21002.75,
+       "l": 20999.25,
+       "c": 21002.25
+      },
+      {
+       "o": 21002.25,
+       "h": 21007.25,
+       "l": 21001.75,
+       "c": 21003.25
+      }
+     ],
+     "pil": 21004.25,
+     "answer": "wick",
+     "why": "The wick traveled above. The close stayed below."
+    },
+    {
+     "bars": [
+      {
+       "o": 20998.25,
+       "h": 21001.25,
+       "l": 20997.25,
+       "c": 21000.25
+      },
+      {
+       "o": 21000.25,
+       "h": 21002.75,
+       "l": 20999.25,
+       "c": 21001.75
+      }
+     ],
+     "pil": 21004.25,
+     "answer": "none",
+     "why": "Never reached the PIL."
+    },
+    {
+     "bars": [
+      {
+       "o": 21001.25,
+       "h": 21003.25,
+       "l": 21000.25,
+       "c": 21002.75
+      },
+      {
+       "o": 21002.75,
+       "h": 21010.25,
+       "l": 21002.25,
+       "c": 21009.5
+      }
+     ],
+     "pil": 21004.25,
+     "answer": "valid",
+     "why": "Big candle, and it CLOSED above. Valid."
+    },
+    {
+     "bars": [
+      {
+       "o": 21001.25,
+       "h": 21003.25,
+       "l": 21000.25,
+       "c": 21002.75
+      },
+      {
+       "o": 21002.75,
+       "h": 21005.5,
+       "l": 21002.25,
+       "c": 21004.0
+      }
+     ],
+     "pil": 21004.25,
+     "answer": "wick",
+     "why": "So close. Still a wick. The close is below."
+    },
+    {
+     "bars": [
+      {
+       "o": 21002.25,
+       "h": 21003.75,
+       "l": 21001.25,
+       "c": 21003.25
+      },
+      {
+       "o": 21003.25,
+       "h": 21004.75,
+       "l": 21002.75,
+       "c": 21004.25
+      }
+     ],
+     "pil": 21004.25,
+     "answer": "wick",
+     "why": "Closed exactly ON the PIL. Not through it."
+    },
+    {
+     "bars": [
+      {
+       "o": 20999.25,
+       "h": 21002.25,
+       "l": 20998.25,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21003.5,
+       "l": 20996.25,
+       "c": 20997.25
+      }
+     ],
+     "pil": 21004.25,
+     "answer": "none",
+     "why": "Moved away from the PIL entirely."
+    },
+    {
+     "bars": [
+      {
+       "o": 21002.25,
+       "h": 21006.25,
+       "l": 21001.25,
+       "c": 21005.75
+      },
+      {
+       "o": 21005.75,
+       "h": 21008.25,
+       "l": 21005.25,
+       "c": 21007.75
+      }
+     ],
+     "pil": 21004.25,
+     "answer": "valid",
+     "why": "The first candle already closed above: that’s the indication."
+    }
+   ],
+   "save": "p5-L14"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "I don’t care that price visited the level. <em>Prove it to me with the close.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why doesn’t a wick through the PIL count as indication?",
+   "modelAnswer": "Because the wick only shows where price traveled. Indication needs the 1M candle to CLOSE through the PIL: that’s price proving it, not visiting."
+  }
+ ],
+ "takeaways": [
+  "Indication = 1M CLOSE through the PIL.",
+  "Open candle = not yet.",
+  "Wick = visit, not proof."
+ ],
+ "remember": "Prove it to me with the close."
+}

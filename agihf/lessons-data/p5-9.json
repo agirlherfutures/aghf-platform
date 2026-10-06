@@ -1,0 +1,218 @@
+{
+ "phase": "p5",
+ "section": "s12",
+ "lessonNumber": 9,
+ "title": "ICC + Liquidity + Location",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 75,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Every concept has a different job.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Keep liquidity and location as optional context, never as ICC requirements.",
+  "missionQuestion": "Are all four required to call something ICC?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "Your market read",
+   "heading": "Four rows. Four jobs.",
+   "body": "",
+   "beats": [
+    {
+     "icon": "▦",
+     "title": "Structure: Bullish",
+     "line": "What is price building?"
+    },
+    {
+     "icon": "↕",
+     "title": "Location: 4H Discount",
+     "line": "Where is price?"
+    },
+    {
+     "icon": "💧",
+     "title": "Liquidity: sell-side interaction",
+     "line": "Where may orders be concentrated?"
+    },
+    {
+     "icon": "I·C·C",
+     "title": "ICC: bullish sequence developing",
+     "line": "Where is price in the directional sequence?"
+    }
+   ],
+   "punch": "Different job. Different question."
+  },
+  {
+   "type": "icc_layers",
+   "mode": "toggles",
+   "kicker": "Context toggle",
+   "title": "Turn the context off",
+   "chart": {
+    "swings": [
+     [
+      30,
+      250
+     ],
+     [
+      110,
+      150
+     ],
+     [
+      180,
+      215
+     ],
+     [
+      290,
+      92
+     ],
+     [
+      370,
+      168
+     ],
+     [
+      470,
+      60
+     ],
+     [
+      520,
+      78
+     ]
+    ],
+    "seed": 7,
+    "hlines": [
+     {
+      "y": 150,
+      "label": "meaningful high",
+      "tone": "muted"
+     },
+     {
+      "y": 262,
+      "label": "sell-side liquidity",
+      "tone": "down",
+      "id": "liq"
+     }
+    ],
+    "boxes": [
+     {
+      "x1": 300,
+      "y1": 110,
+      "x2": 340,
+      "y2": 140,
+      "label": "FVG",
+      "tone": "purple",
+      "id": "fvg"
+     },
+     {
+      "x1": 540,
+      "y1": 178,
+      "x2": 690,
+      "y2": 300,
+      "label": "discount",
+      "tone": "gold",
+      "id": "disc"
+     }
+    ]
+   },
+   "segments": [
+    {
+     "key": "indication",
+     "from": 2,
+     "to": 3
+    },
+    {
+     "key": "correction",
+     "from": 3,
+     "to": 4
+    },
+    {
+     "key": "continuation",
+     "from": 4,
+     "to": 5
+    }
+   ],
+   "dir": "bullish",
+   "tf": "4H",
+   "stage": "complete",
+   "toggles": [
+    {
+     "key": "liq",
+     "label": "Liquidity",
+     "ids": [
+      "liq"
+     ]
+    },
+    {
+     "key": "fvg",
+     "label": "FVG",
+     "ids": [
+      "fvg"
+     ]
+    },
+    {
+     "key": "loc",
+     "label": "Location",
+     "ids": [
+      "disc"
+     ]
+    }
+   ],
+   "asks": [
+    {
+     "prompt": "Are all four required to call something ICC?",
+     "options": [
+      {
+       "label": "Yes, structure, location, liquidity AND ICC",
+       "feedback": "You’re adding context to the definition. Would the ICC still exist without the sweep?",
+       "mistake": "context-as-requirement"
+      },
+      {
+       "label": "No. Context can help. It isn’t a requirement.",
+       "correct": true,
+       "why": "Exactly. No confluence score. No checklist of everything you’ve learned."
+      }
+     ]
+    },
+    {
+     "prompt": "A clean bullish ICC with no FVG, no equal lows and no sweep. Invalid?",
+     "options": [
+      {
+       "label": "Invalid, no confluence",
+       "feedback": "ICC doesn’t need an FVG or a sweep to exist.",
+       "mistake": "context-as-requirement"
+      },
+      {
+       "label": "Still ICC",
+       "correct": true,
+       "why": "Context supports understanding. It doesn’t define ICC."
+      }
+     ]
+    }
+   ],
+   "principle": "CONTEXT CAN SUPPORT UNDERSTANDING<br>WITHOUT BECOMING ANOTHER BOX TO CHECK."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "No 4/5 confirmations. No 90% setups. <em>Every concept you learned has a job, and none of them is “required box”.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why don’t we turn every concept into an ICC requirement?",
+   "modelAnswer": "Because each concept answers a different question. Liquidity, location and FVGs can support a read, but ICC exists without them. Adding them all as requirements is method bloat."
+  }
+ ],
+ "takeaways": [
+  "Structure, location, liquidity, ICC: four jobs.",
+  "Context helps; it never defines ICC.",
+  "No confluence scores."
+ ],
+ "remember": "Context can support understanding without becoming another box to check."
+}

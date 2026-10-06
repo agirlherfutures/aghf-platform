@@ -21,6 +21,7 @@ import { saveCheckinReflection } from './journal-service.js';
 import { SLIDE_RENDERERS } from './lesson-slides-engine.js';
 import { mountChart } from './structure-charts.js';
 import { renderPhaseFinal, renderPhaseComplete } from './phase-final.js';
+import { iccModelHtml } from './icc.js';
 
 // Temporary: everything unlocked while the Academy is being built (see preview.js).
 const UNLOCK = isPreviewAll();
@@ -296,7 +297,7 @@ function renderGame(slide, game, onAllDone, helpers) {
           </div>
         </div>
         <div class="sg-level"><div class="sg-level-badge">${idx + 1}</div><div><div class="sg-level-name">Level ${idx + 1}${level.concept ? ` · ${level.concept}` : ''}</div><div class="sg-level-title">${level.name}</div></div></div>
-        ${level.goal ? `<div class="sg-goal">${level.goal}</div>` : ''}
+        ${(level.brief || (level.type === 'exec_sim' ? '' : level.goal)) ? `<div class="sg-goal">${level.brief || level.goal}</div>` : ''}
         <div class="sg-body"></div>
         <button type="button" class="sg-restart">↻ Restart this level</button>
       </div>`;
@@ -357,6 +358,17 @@ function renderGame(slide, game, onAllDone, helpers) {
     if (renderer) renderer(body, { ...level, kicker: '', title: level.title || '', save: level.save || (game.save ? `${game.save}-L${idx + 1}` : undefined) }, next, levelHelpers); else next();
   }
 
+  // A qualitative read of each skill (never a fake score), plus links to the moments worth reviewing.
+  function readoutHtml(concepts) {
+    const word = (v) => { const p = pct(v.right, v.tries); return p >= 85 ? ['Strong', 'ok'] : p >= 60 ? ['Developing', 'dev'] : ['Needs review', 'no']; };
+    const rows = Object.entries(concepts);
+    const weak = rows.filter(([, v]) => pct(v.right, v.tries) < 85).sort((a, b) => pct(a[1].right, a[1].tries) - pct(b[1].right, b[1].tries)).slice(0, 2);
+    const link = (c) => { const r = (game.review || {})[c]; return r ? `<a class="sg-review" href="lesson.html?phase=${r[0]}&n=${r[1]}">${c}: ${r[2] || `Lesson ${r[1]}`} →</a>` : ''; };
+    return `<div class="sg-readout"><div class="lw-eyebrow">${game.readout === true ? 'Your read' : game.readout}</div>
+      ${rows.map(([c, v]) => { const [w, k] = word(v); return `<div class="sg-read-row"><span>${c}</span><b class="sg-rd-${k}">${w}</b></div>`; }).join('')}
+      ${weak.length ? `<div class="sg-review-box"><div class="lw-eyebrow">Review these ${weak.length} moment${weak.length > 1 ? 's' : ''} →</div>${weak.map(([c]) => link(c)).join('')}</div>` : ''}</div>`;
+  }
+
   function finish() {
     const t = totals();
     const concepts = {};
@@ -377,7 +389,7 @@ function renderGame(slide, game, onAllDone, helpers) {
           <div><b>${pct(t.right, t.tries)}%</b>Accuracy</div>
           <div><b>${game.xp ? `+${game.xp}` : '✓'}</b>${game.xp ? 'GP' : 'Cleared'}</div>
         </div>
-        <div class="sg-concepts">${Object.entries(concepts).map(([c, v]) => `<div class="sg-concept"><span>${c}</span><div class="sg-concept-bar"><div style="width:${pct(v.right, v.tries)}%"></div></div><b>${pct(v.right, v.tries)}%</b></div>`).join('')}</div>
+        ${game.readout ? readoutHtml(concepts) : `<div class="sg-concepts">${Object.entries(concepts).map(([c, v]) => `<div class="sg-concept"><span>${c}</span><div class="sg-concept-bar"><div style="width:${pct(v.right, v.tries)}%"></div></div><b>${pct(v.right, v.tries)}%</b></div>`).join('')}</div>`}
       </div>`;
     helpers.burst();
     if (game.xp) showToast(`+${game.xp} GP earned!`, `${game.title} complete ✓`);
@@ -642,6 +654,18 @@ function renderFieldCheckin(slide, checkin, sectionId, satisfy) {
     slide.querySelector('#swCheckinSaved').style.display = '';
     saveBtn.disabled = true;
     slide.querySelectorAll('textarea').forEach((t) => { t.disabled = true; });
+    // Fields with `concepts` get a gentle concept check: ideas, not exact wording.
+    fields.forEach((f, i) => {
+      if (!f.concepts) return;
+      const txt = (answers[i] || '').toLowerCase();
+      const box = document.createElement('div');
+      box.className = 'sw-concepts';
+      box.innerHTML = `<div class="lw-eyebrow">What your explanation covered</div>${f.concepts.map((c) => {
+        const hit = c.any.some((k) => txt.includes(k.toLowerCase()));
+        return `<span class="sw-concept ${hit ? 'is-hit' : ''}">${hit ? '✓' : '○'} ${c.label}</span>`;
+      }).join('')}${f.conceptsNote ? `<p>${f.conceptsNote}</p>` : ''}`;
+      slide.querySelector(`textarea[data-f="${i}"]`).after(box);
+    });
     satisfy();
   });
 }
@@ -692,6 +716,7 @@ function renderRichComplete(slide, data, { backHref, nextSectionHref, lessonsLab
   const fill = (str) => String(str).replace('{lessons}', lessonsLabel).replace('{kc}', results.knowledgePct ?? '').replace('{gp}', c.gp ?? lessonGpTotal);
   const ph = c.phase;
   slide.innerHTML = `
+    ${c.cinema ? '<div class="sw-cinema"></div>' : ''}
     <div class="lw-card lw-complete">
       <div class="lw-eyebrow">${c.eyebrow || 'Section complete'}</div>
       <h2>${c.heading}</h2>
@@ -702,16 +727,26 @@ function renderRichComplete(slide, data, { backHref, nextSectionHref, lessonsLab
         ${ph.sections.map((x) => `<div class="sw-phase-row"><span>${x.icon} ${x.label}</span></div>`).join('')}
         <div class="sw-phase-bar"><div style="width:${ph.pct}%"></div></div>
         <div class="sw-phase-row"><span></span><strong>${ph.pct}%</strong></div></div>` : ''}
+      ${c.badgeUnlock ? `<div class="sw-badge-unlock"><div class="lw-eyebrow">🏆 Badge unlocked</div><div class="sw-badge-icon">${c.badgeUnlock.icon}</div><h3>${c.badgeUnlock.title}</h3><p>${c.badgeUnlock.line || ''}</p></div>` : ''}
     </div>
     ${c.nextUp ? `
     <div class="lw-card lw-next-up sw-next-teaser">
       <div class="lw-eyebrow">🔓 Next up</div>
       <h2>${c.nextUp.title}</h2>
       ${c.nextUp.lines.map((l) => `<p>${l}</p>`).join('')}
+      ${c.nextUp.model ? iccModelHtml({ locked: true, questions: c.nextUp.model }) : ''}
+      ${c.nextUp.zoom ? `<div class="sw-zoom">${c.nextUp.zoom.map((z, i) => `${i ? '<div class="sw-zoom-arrow">↓</div>' : ''}<div class="sw-zoom-row" style="--d:${0.3 + i * 0.4}s"><b>${z.tf}</b><span><strong>${z.title}</strong>${z.line ? `<small>${z.line}</small>` : ''}</span></div>`).join('')}</div>` : ''}
+      ${c.nextUp.questions ? `<ul class="sw-next-qs">${c.nextUp.questions.map((q) => `<li>🔒 ${q}</li>`).join('')}</ul>` : ''}
+      ${c.nextUp.after ? `<p class="sw-next-after">${c.nextUp.after}</p>` : ''}
       <button type="button" class="lw-cc-next" id="swNextSectionBtn">${c.nextUp.cta || 'Enter next section →'}</button>
     </div>` : `
     <div class="lw-card" style="text-align:center"><button type="button" class="lw-cc-next" id="swNextSectionBtn">Back to Lessons →</button></div>`}
     <div class="lw-back-link"><a href="${backHref}">← Back to all lessons</a></div>`;
   burst();
+  if (c.cinema) {
+    const host = slide.querySelector('.sw-cinema');
+    const r = SLIDE_RENDERERS[c.cinema.type];
+    if (r) r(host, c.cinema, null, {});
+  }
   document.getElementById('swNextSectionBtn').addEventListener('click', () => { window.location.href = nextSectionHref || backHref; });
 }
