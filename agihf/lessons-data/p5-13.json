@@ -23,7 +23,8 @@
    "type": "exec_sim",
    "kicker": "Four candidates",
    "title": "Pick the PIL. Then say why.",
-   "goal": "pil",
+   "watch": true,
+   "body": "Four swings. Only one is the level price has to prove itself through right now.",
    "scenario": {
     "dir": "bullish",
     "tf": "1M",
@@ -196,6 +197,120 @@
       "h": 20993.75,
       "l": 20990.0,
       "c": 20993.25
+     },
+     {
+      "o": 20993.25,
+      "h": 20997.5,
+      "l": 20991.75,
+      "c": 20996.5
+     },
+     {
+      "o": 20996.5,
+      "h": 21000.0,
+      "l": 20995.75,
+      "c": 20999.5
+     },
+     {
+      "o": 20999.5,
+      "h": 21002.25,
+      "l": 20999.25,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21003.0,
+      "l": 21000.75,
+      "c": 21002.75
+     },
+     {
+      "o": 21002.75,
+      "h": 21007.75,
+      "l": 21002.5,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21010.5,
+      "l": 21007.0,
+      "c": 21009.25
+     },
+     {
+      "o": 21009.25,
+      "h": 21012.5,
+      "l": 21008.0,
+      "c": 21011.5
+     },
+     {
+      "o": 21011.5,
+      "h": 21016.0,
+      "l": 21011.0,
+      "c": 21014.75
+     },
+     {
+      "o": 21014.75,
+      "h": 21017.0,
+      "l": 21014.0,
+      "c": 21016.25
+     },
+     {
+      "o": 21016.25,
+      "h": 21017.75,
+      "l": 21013.75,
+      "c": 21014.25
+     },
+     {
+      "o": 21014.25,
+      "h": 21014.75,
+      "l": 21009.0,
+      "c": 21009.5
+     },
+     {
+      "o": 21009.5,
+      "h": 21010.25,
+      "l": 21006.25,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21007.75,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21008.25,
+      "l": 21005.0,
+      "c": 21007.5
+     },
+     {
+      "o": 21007.5,
+      "h": 21011.75,
+      "l": 21006.5,
+      "c": 21010.75
+     },
+     {
+      "o": 21010.75,
+      "h": 21012.75,
+      "l": 21010.5,
+      "c": 21011.75
+     },
+     {
+      "o": 21011.75,
+      "h": 21014.5,
+      "l": 21010.5,
+      "c": 21013.25
      }
     ],
     "pil": null,
@@ -257,7 +372,6 @@
        "why": "Older structure, from before the drop. It isn’t what the current move has to prove itself through."
       }
      ],
-     "modes": true,
      "ask": {
       "prompt": "WHY THIS ONE?",
       "options": [
@@ -295,7 +409,7 @@
    "type": "exec_sim",
    "kicker": "New information",
    "title": "The map can update",
-   "goal": "decision",
+   "watch": true,
    "scenario": {
     "dir": "bullish",
     "tf": "1M",
@@ -457,11 +571,12 @@
     "indication",
     "correction"
    ],
-   "intro": "PIL A is active. Indication ✓, correction ✓. Play on.",
+   "intro": "PIL A is active. Indication ✓, correction ✓. Watch what price does next.",
    "reassess": {
     "at": 20,
     "text": "Price never closed back above PIL A. Instead it built a <b>new, lower swing high</b> that now controls the move.",
     "newPil": 20999.0,
+    "newPilAt": 17,
     "done": true
    },
    "end": {
