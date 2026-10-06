@@ -10,7 +10,7 @@
   const { ease, back, clamp, lerp } = A;
   const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
   const seg = (t, a, b) => clamp((t - a) / (b - a));
-  const pop = (t, at, d = 0.6) => back((t - at) / d);
+  const pop = (t, at, d = 0.6) => Math.max(0, back((t - at) / d));
   const inout = (t, a, b, d = 0.4) => clamp((t - a) / d) * (1 - clamp((t - b) / d));
   const rad = d => d * Math.PI / 180;
   const TD = '#2F8A7F', PD = '#C2475F';
