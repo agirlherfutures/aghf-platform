@@ -16,7 +16,7 @@
 #
 # Run it: open Terminal, type "bash " (with a space), drag this file into
 # the window, press Enter. Run it again any time: finished videos are
-# skipped unless their video, voiceover or music changed.
+# skipped unless their video, voiceover, music or the settings below changed.
 
 # Background music volume, in percent of the music file's own loudness.
 # 100 plays it exactly as saved. Lower it if the music competes with your
@@ -25,6 +25,7 @@ MUSIC_VOLUME=100
 
 cd "$(dirname "$0")" || exit 1
 HERE="$(pwd)"
+SELF="$HERE/$(basename "$0")"
 VIDEOS="$HERE/Videos"
 AUDIO="$HERE/Audio"
 FINAL="$HERE/Final"
@@ -121,7 +122,8 @@ while IFS= read -r -d '' v; do
     continue
   fi
   out="$FINAL/${rel%.*}.mp4"
-  if [ -f "$out" ] && [ "$out" -nt "$v" ] && [ "$out" -nt "$a" ] \
+  # Redo it if the video, voiceover, music or these settings changed since.
+  if [ -f "$out" ] && [ "$out" -nt "$v" ] && [ "$out" -nt "$a" ] && [ "$out" -nt "$SELF" ] \
      && { [ -z "$MUSIC" ] || [ "$out" -nt "$MUSIC" ]; }; then
     skipped=$((skipped+1))
     continue
