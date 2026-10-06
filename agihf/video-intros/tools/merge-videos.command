@@ -18,9 +18,10 @@
 # the window, press Enter. Run it again any time: finished videos are
 # skipped unless their video, voiceover or music changed.
 
-# Background music volume, in percent of its normal loudness.
-# Lower it if the music competes with your voice, raise it if you can't hear it.
-MUSIC_VOLUME=12
+# Background music volume, in percent of the music file's own loudness.
+# 100 plays it exactly as saved. Lower it if the music competes with your
+# voice, raise it if you can't hear it.
+MUSIC_VOLUME=100
 
 cd "$(dirname "$0")" || exit 1
 HERE="$(pwd)"
