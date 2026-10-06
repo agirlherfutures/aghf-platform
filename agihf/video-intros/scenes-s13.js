@@ -1030,7 +1030,7 @@
       const T = s.beats;
       let out = ground(1000, '#F1ECF6', '#DED5EA');
       // Robot cashier behind the counter.
-      out += crit(t, 'robot', { x: 1000, y: 860, scale: 1.2, seed: 2, at: T.counter + 0.3, screen: 'POS', talk: ctx.talking && t > T.beep && t < T.beep + 2 });
+      out += crit(t, 'robot', { x: 1150, y: 790, scale: 1.25, seed: 2, at: T.counter + 0.3, screen: 'POS', talk: ctx.talking && t > T.beep && t < T.beep + 2 });
       // Counter + conveyor.
       const ck = pop(t, T.counter, 0.7);
       let cn = `<rect x="200" y="780" width="1100" height="220" rx="18" fill="${C.purpleL}" stroke="${C.purple}" stroke-width="6"/>
@@ -1078,7 +1078,7 @@
       cu.hold = `<g transform="translate(0,6)"><path d="M-30,0 Q0,-40 30,0" stroke="${C.muted}" stroke-width="5" fill="none"/><rect x="-36" y="0" width="72" height="44" rx="8" fill="${C.peachL}" stroke="${C.peach}" stroke-width="4"/></g>`;
       out += who(t, cu);
       out += bub(260, 560, 'Can I enter on hope? 🤞', between(t, T.hope + 0.2, T.beep + 1.4), { size: 28 });
-      out += bub(1000, 450, 'BEEP. Not an entry.', between(t, T.beep + 0.2, T.items[0] - 0.4), { size: 28 });
+      out += bub(1150, 430, 'BEEP. Not an entry.', between(t, T.beep + 0.2, T.items[0] - 0.4), { size: 28 });
       return out;
     },
 
@@ -1115,7 +1115,7 @@
       // No-running-on-the-tracks sign.
       const nk = pop(t, T.norun, 0.6);
       out += scaleAt(1810, 860, nk, `<rect x="1806" y="700" width="8" height="160" fill="${C.muted}"/><circle cx="1810" cy="660" r="62" fill="#fff" stroke="${C.pink}" stroke-width="10"/>${txt(1810, 676, '🏃', 50, C.dark)}<line x1="1766" y1="616" x2="1854" y2="704" stroke="${C.pink}" stroke-width="10"/>`);
-      out += pill(1580, 540, 'no chasing down the tracks', C.pink, between(t, T.norun + 0.3, T.arrive), 22);
+      out += pill(1560, 470, 'no chasing down the tracks', C.pink, between(t, T.norun + 0.3, T.arrive), 22);
       // Passenger waits behind the yellow line, then boards.
       const bd = ease(seg(t, T.boarding, T.boarding + 1.4));
       const pa = { x: lerp(1360, 1370, bd), y: lerp(1000, 860, bd), scale: 0.95 - bd * 0.15, look: A.LOOKS.c, flip: true, seed: 3, at: T.platform + 0.4, talk: ctx.talking && t > T.leave + 0.6 && t < T.leave + 3.4, walking: bd > 0 && bd < 1 };
@@ -1186,11 +1186,11 @@
         let g = `<rect x="${x - 170}" y="450" width="340" height="420" rx="14" fill="#FFFCF6" stroke="#E2D6CC" stroke-width="4"/>
           <circle cx="${x}" cy="452" r="18" fill="${stampCol}"/>${txt(x, 520, title, 34, C.dark, { f: 'Playfair Display' })}`;
         rows.forEach(([a, ok], i) => g += txt(x - 130, 580 + i * 50, a, 26, C.text, { a: 'start', w: 700 }) + txt(x + 130, 580 + i * 50, ok ? '✓' : '✗', 28, ok === null ? C.muted : ok ? DK.teal : DK.pink, { a: 'end' }));
-        return scaleAt(x, 450, k, rotAt(x, 450, rot, g)) + stamp(x, 790, stampTxt, stampCol, ease(seg(t, stAt, stAt + 0.3)), -10, 74, stampTxt.length > 8 ? 17 : 22);
+        return scaleAt(x, 450, k, rotAt(x, 450, rot, g)) + stamp(x + 60, 808, stampTxt, stampCol, ease(seg(t, stAt, stAt + 0.3)), -10, 66, stampTxt.length > 8 ? 17 : 24);
       };
       out += card(760, T.cardA, 'Setup A', [['PIL', true], ['Indication', true], ['Correction', true], ['Continuation', true]], 'VALID · MISSED', DK.teal, T.stampA, -2);
       out += card(1160, T.cardB, 'Setup B', [['PIL', true], ['Indication', true], ['Correction', false], ['Continuation', false]], 'INVALID', DK.pink, T.stampB, 2);
-      out += pill(760, 900, 'retest: missed', C.muted, pop(t, T.stampA + 0.4), 22) + pill(1160, 900, 'never completed', C.muted, pop(t, T.stampB + 0.4), 22);
+      out += pill(700, 900, 'retest: missed', C.muted, pop(t, T.stampA + 0.4), 22) + pill(1100, 900, 'never completed', C.muted, pop(t, T.stampB + 0.4), 22);
       // Not-equal sign.
       const nk = pop(t, T.compare, 0.6);
       out += scaleAt(960, 660, nk, `<circle cx="960" cy="660" r="46" fill="${C.purple}"/>${txt(960, 682, '≠', 64, '#fff')}`);
@@ -1263,7 +1263,7 @@
       const T = s.beats;
       let out = ground(1000, '#EEF0F8', '#D9DCEC');
       // Light switch.
-      const sw = pop(t, T.sw, 0.6), off = 1 - ease(seg(t, T.xsw + 1.4, T.xsw + 2.2));
+      const sw = pop(t, T.sw, 0.6), off = 1 - 0.6 * ease(seg(t, T.xsw + 1.4, T.xsw + 2.2));
       if (off > 0) {
         const flick = t > T.sw + 1 && t < T.xsw ? (Math.floor(t * 2) % 2) : 1;
         out += `<g opacity="${off}">` + scaleAt(330, 640, sw, `<rect x="230" y="500" width="200" height="280" rx="24" fill="#fff" stroke="${C.muted}" stroke-width="6"/><rect x="295" y="570" width="70" height="140" rx="14" fill="#EADFD8"/>
@@ -1271,20 +1271,20 @@
       }
       // The scale with a dial.
       const sk = pop(t, T.scale, 0.7);
-      const zones = [['KEEP PIL', DK.teal, -50], ['REASSESS', DK.peach, 0], ['REPLACED', DK.pink, 50]];
-      let ang = -80;
+      const zones = [['KEEP PIL', DK.teal, -64], ['REASSESS', DK.peach, 0], ['REPLACED', DK.pink, 64]];
+      let ang = -95;
       T.w.forEach((at, i) => { if (t > at + 0.6) ang = lerp(ang, zones[i][2], ease(seg(t, at + 0.6, at + 1.6))) + (t < at + 2.2 ? Math.sin((t - at) * 12) * 6 * (1 - seg(t, at + 0.6, at + 2.2)) : 0); });
-      if (t > T.w[0] - 0.4) { const k = seg(t, T.w[0] - 0.4, T.w[0] + 0.6); if (k < 1 && t < T.w[0] + 0.6) ang = lerp(-80, -80, k); }
+      if (t > T.w[0] - 0.4) { const k = seg(t, T.w[0] - 0.4, T.w[0] + 0.6); if (k < 1 && t < T.w[0] + 0.6) ang = lerp(-95, -95, k); }
       let sc = `<rect x="820" y="880" width="360" height="120" rx="20" fill="${C.purple}"/><rect x="980" y="760" width="40" height="130" fill="${DK.purple}"/>
         <rect x="860" y="740" width="280" height="30" rx="10" fill="${C.purpleL}" stroke="${C.purple}" stroke-width="5"/>
         <circle cx="1000" cy="560" r="170" fill="#fff" stroke="${C.purple}" stroke-width="10"/>`;
       zones.forEach(([lab, col, a], i) => {
-        const a0 = a - 25, a1 = a + 25, r = 150;
+        const a0 = a - 30, a1 = a + 30, r = 155;
         const p = d => [1000 + Math.sin(rad(d)) * r, 560 - Math.cos(rad(d)) * r];
         const [x0, y0] = p(a0), [x1, y1] = p(a1);
         sc += `<path d="M1000,560 L${f1(x0)},${f1(y0)} A${r},${r} 0 0,1 ${f1(x1)},${f1(y1)} Z" fill="${col}" opacity=".18"/>`;
-        const [lx, ly] = [1000 + Math.sin(rad(a)) * 104, 560 - Math.cos(rad(a)) * 104];
-        sc += rotAt(lx, ly, a, txt(lx, ly + 7, lab, 20, col));
+        const [lx, ly] = [1000 + Math.sin(rad(a)) * 122, 560 - Math.cos(rad(a)) * 122];
+        sc += rotAt(lx, ly, a, txt(lx, ly + 7, lab, 19, col));
       });
       sc += `<g transform="rotate(${f1(ang)} 1000 560)"><path d="M994,560 L1000,420 L1006,560 Z" fill="${C.dark}"/></g><circle cx="1000" cy="560" r="16" fill="${C.dark}"/>`;
       out += scaleAt(1000, 1000, sk, sc);
@@ -1302,8 +1302,8 @@
         out += pill(1000, 360 + 44, q, zones[i][1], between(t, T.w[i] + 0.8, next - 0.3), 24);
       });
       // Owl scientist with goggles and a mouse helper.
-      out += crit(t, 'owl', { x: 1440, y: 1000, scale: 1.2, seed: 3, at: T.scale + 0.4, talk: ctx.talking && t > T.w[0] });
-      if (t > T.scale + 0.4) out += `<g transform="translate(1440,${1000 - 84 * 1.2 + Math.sin(t * 2.4 + 3) * 2.5 * 1.2})" opacity="${clamp(pop(t, T.scale + 0.4))}">${HATS.goggles.replace(/cx="-15"/, 'cx="-20"').replace(/cx="15"/, 'cx="22"')}</g>`;
+      out += crit(t, 'owl', { x: 1400, y: 1000, scale: 1.4, seed: 3, at: T.scale + 0.4, talk: ctx.talking && t > T.w[0] });
+      if (t > T.scale + 0.4) out += `<g transform="translate(1400,${1000 - 84 * 1.4 + Math.sin(t * 2.4 + 3) * 2.5 * 1.4}) scale(1.17)" opacity="${clamp(pop(t, T.scale + 0.4))}">${HATS.goggles.replace(/cx="-15"/, 'cx="-20"').replace(/cx="15"/, 'cx="22"')}</g>`;
       out += crit(t, 'mouse', { x: 640, y: 1000, scale: 1, seed: 2, at: T.scale + 0.8, hop: t > T.w[2] + 1 && t < T.w[2] + 3 ? 8 : 0 });
       out += pill(1000, 1040, 'principles, not a switch', C.purple, pop(t, T.done, 0.6), 26);
       return out;
