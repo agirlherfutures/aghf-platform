@@ -412,3 +412,10 @@
 .icc-ocard b { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--icc-ink); color: var(--icc-gold-soft); font-family: var(--font-display); font-size: 15px; }
 .icc-ocard:disabled { opacity: .3; }
 .icc-shake { animation: exShake .35s; }
+.ex-views-bar { display: flex; flex-wrap: wrap; gap: 6px; }
+.ex-vbtn { border: 1px solid var(--icc-line); background: #fff; border-radius: 999px; padding: 5px 11px; font: 800 11.5px var(--font-body); color: var(--muted); cursor: pointer; }
+.ex-vbtn.is-on { background: var(--icc-ink); color: var(--icc-gold-soft); border-color: var(--icc-ink); }
+.ex-piv { fill: #fff; stroke-width: 1.6; } .ex-piv.hi { stroke: #4FA99E; } .ex-piv.lo { stroke: #E0607C; }
+.ex-structline { fill: none; stroke: var(--icc-ink); stroke-width: 1.6; stroke-dasharray: 5 4; opacity: .55; }
+.ex-cmp { stroke: var(--purple); stroke-width: 1.2; stroke-dasharray: 2 4; }
+.ex-cmp-t { fill: #5E56B8; font: 800 9px 'DM Sans', sans-serif; paint-order: stroke; stroke: #fff; stroke-width: 3px; }

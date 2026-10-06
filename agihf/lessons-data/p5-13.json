@@ -275,6 +275,7 @@
        "why": "Older structure, from before the drop. It isn’t what the current move has to prove itself through."
       }
      ],
+     "modes": true,
      "ask": {
       "prompt": "WHY THIS ONE?",
       "options": [

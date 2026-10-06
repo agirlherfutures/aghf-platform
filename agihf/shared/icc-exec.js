@@ -62,6 +62,7 @@ export function mountExecChart(container, cfg) {
   const grid = el('g', { class: 'ex-grid' }, svg);
   const pilG = el('g', { class: 'ex-pil' }, svg);
   const candG = el('g', { class: 'ex-cands' }, svg);
+  const viewG = el('g', { class: 'ex-views' }, svg);
   const markG = el('g', { class: 'ex-marks' }, svg);
   const tagG = el('g', { class: 'ex-tags' }, svg);
   const live = el('g', { class: 'ex-live' }, svg);
@@ -133,6 +134,7 @@ export function mountExecChart(container, cfg) {
       drawPil();
       api.redrawMarks();
       api.redrawTags();
+      if (Object.keys(api._views).length) api.redrawViews();
     },
     setPil(p) { pil = p; preview = null; api.draw(shownK); },
     previewPil(p) { preview = p; api.draw(shownK); },
@@ -182,6 +184,32 @@ export function mountExecChart(container, cfg) {
       });
     },
     flash() { svg.classList.remove('ex-shake'); void svg.getBoundingClientRect(); svg.classList.add('ex-shake'); },
+    // PIL relevance views: all swings, the current structure path, candidate comparison lines.
+    _views: {},
+    view(name, on) { api._views[name] = on; api.redrawViews(); },
+    redrawViews() {
+      viewG.innerHTML = '';
+      const bars = cfg.bars.slice(0, shownK);
+      const piv = [];
+      for (let i = 2; i < bars.length - 2; i++) {
+        const b = bars[i], win = bars.slice(i - 2, i + 3);
+        if (b.h >= Math.max(...win.map((x) => x.h))) piv.push({ i, p: b.h, hi: true });
+        else if (b.l <= Math.min(...win.map((x) => x.l))) piv.push({ i, p: b.l, hi: false });
+      }
+      if (api._views.swings) piv.forEach((v) => el('circle', { cx: X(v.i), cy: Y(v.p), r: 3.5, class: `ex-piv ${v.hi ? 'hi' : 'lo'}` }, viewG));
+      if (api._views.structure && piv.length > 1) {
+        const pts = [];
+        piv.forEach((v) => { const lastP = pts[pts.length - 1]; if (lastP && lastP.hi === v.hi) { if ((v.hi && v.p > lastP.p) || (!v.hi && v.p < lastP.p)) pts[pts.length - 1] = v; } else pts.push(v); });
+        el('polyline', { points: pts.map((v) => `${X(v.i)},${Y(v.p)}`).join(' '), class: 'ex-structline' }, viewG);
+      }
+      if (api._views.compare) api._marks.forEach((m) => {
+        if (m.at >= shownK) return;
+        el('line', { x1: X(m.at), x2: W - PAD_R, y1: Y(m.price), y2: Y(m.price), class: 'ex-cmp' }, viewG);
+        const t = el('text', { x: W - PAD_R - 4, y: Y(m.price) - 4, 'text-anchor': 'end', class: 'ex-cmp-t' }, viewG);
+        t.textContent = `${m.label} · ${fmt(m.price)}`;
+      });
+      markG.style.display = api._views.candidates === false ? 'none' : '';
+    },
   };
   return api;
 }
@@ -231,6 +259,7 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
     <div class="ex-grid-wrap">
       <div class="ex-left">
         <div class="ex-chart-head"><b>${sc.tf || '1M'}</b><span>${sc.symbol || 'MNQ'}</span><span class="ex-dir ex-dir-${dir}">${dir === 'bearish' ? '↓ Bearish evaluation' : '↑ Bullish evaluation'}</span></div>
+        ${sc.pick && sc.pick.modes ? `<div class="ex-views-bar" role="group" aria-label="PIL relevance">${[['swings', 'Show all swings'], ['structure', 'Show current structure'], ['candidates', 'Show PIL candidates'], ['compare', 'Compare PILs']].map(([k, l]) => `<button type="button" class="ex-vbtn${k === 'candidates' ? ' is-on' : ''}" data-v="${k}" aria-pressed="${k === 'candidates'}">${l}</button>`).join('')}</div>` : ''}
         <div class="ex-chart"></div>
         <div class="pr-bar ex-bar">
           <button type="button" class="pr-btn ex-play" data-a="play">▶ Play</button>
@@ -624,6 +653,13 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
       if (sc.pick) setupPick();
       refresh();
     } else if (a === 'speed') { speed = speed === 1 ? 2 : speed === 2 ? 0.5 : 1; speedBtn.textContent = `${speed}×`; }
+  });
+  card.querySelector('.ex-views-bar')?.addEventListener('click', (ev0) => {
+    const b = ev0.target.closest('.ex-vbtn');
+    if (!b) return;
+    const on = !b.classList.contains('is-on');
+    b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', String(on));
+    chart.view(b.dataset.v, on);
   });
   actionsEl.addEventListener('click', (ev0) => { const b = ev0.target.closest('.ex-act'); if (b && !b.disabled) act(b.dataset.a); });
 
