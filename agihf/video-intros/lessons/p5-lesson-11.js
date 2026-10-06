@@ -19,7 +19,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Lesson Eleven: What Is the Dayli ICC 1-Minute Entry Model?.",
+          "text": "Welcome to Lesson Eleven: What Is the Dayli ICC 1-Minute Entry Model?",
           "screen": "Aristella waves; title *What Is the Dayli ICC 1M Entry Model?*"
         },
         {

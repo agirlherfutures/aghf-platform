@@ -6,7 +6,7 @@
 
 | Time | On screen | Say |
 |---|---|---|
-| 0:00 | Aristella waves; title *What Is the Dayli ICC 1M Entry Model?* | Welcome to Lesson Eleven: What Is the Dayli ICC 1-Minute Entry Model?. |
+| 0:00 | Aristella waves; title *What Is the Dayli ICC 1M Entry Model?* | Welcome to Lesson Eleven: What Is the Dayli ICC 1-Minute Entry Model? |
 | 0:05 |  | Now: how do you actually enter? |
 | 0:08 | A corkboard of analysis cards; a scout in a cap | Before the 1-minute, you've already done the analysis. |
 | 0:11 | Cards: 4H READ THE ROOM, 1H BUILD THE MAP, HTF ICC READ THE STORY | The 4H room, the 1H map, the higher-timeframe story. |

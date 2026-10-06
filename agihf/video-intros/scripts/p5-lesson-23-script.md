@@ -6,7 +6,7 @@
 
 | Time | On screen | Say |
 |---|---|---|
-| 0:00 | Aristella waves; title *What Invalidates the Setup?* | Welcome to Lesson Twenty-Three: What Invalidates the Setup?. |
+| 0:00 | Aristella waves; title *What Invalidates the Setup?* | Welcome to Lesson Twenty-Three: What Invalidates the Setup? |
 | 0:05 |  | When does a setup stop standing? |
 | 0:08 | A beach; a kid builds a castle with a SETUP flag; a crab | Every setup is built on structure, like a sandcastle on a sandbar. |
 | 0:13 | A small wave: structure holds ✓ | Small waves come and go. If the structure holds, the setup stands. |

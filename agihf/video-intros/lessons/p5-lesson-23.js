@@ -19,7 +19,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Lesson Twenty-Three: What Invalidates the Setup?.",
+          "text": "Welcome to Lesson Twenty-Three: What Invalidates the Setup?",
           "screen": "Aristella waves; title *What Invalidates the Setup?*"
         },
         {
