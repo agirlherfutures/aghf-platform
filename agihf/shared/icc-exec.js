@@ -264,7 +264,24 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
   const dir = sc.dir || 'bullish';
   const go = dir === 'bearish' ? 'below' : 'above';
   const total = sc.bars.length;
-  el0.innerHTML = `<div class="lw-card ex-card${slide.demo ? ' ex-demo' : ''}">
+  // watch: a guided slide (pick the PIL, then watch the sequence play out). No
+  // playback controls, no side panel, no action buttons: only what the animation needs.
+  const watch = !!slide.watch;
+  const ctxLine = (sc.context || []).map((c) => `<span><i>${c.label}</i> ${c.value}</span>`).join('');
+  const hidden = `<div class="ex-hidden" hidden><div class="pr-bar ex-bar"><button type="button" class="ex-play"></button><button type="button" class="ex-speed"></button><span class="pr-count"></span></div><div class="ex-pilval"></div><div class="ex-status"></div><div class="ex-actions"></div><aside class="ex-panel"></aside></div>`;
+  el0.innerHTML = watch ? `<div class="lw-card ex-card ex-watch">
+    ${slide.kicker === '' ? '' : `<div class="lw-eyebrow">${slide.kicker || 'Dayli ICC · 1M execution'}</div>`}
+    ${slide.title ? `<h2>${slide.title}</h2>` : ''}
+    ${slide.body ? `<p class="icc-body">${slide.body}</p>` : ''}
+    <div class="ex-chart-head"><b>${sc.tf || '1M'}</b><span>${sc.symbol || 'MNQ'}</span><span class="ex-dir ex-dir-${dir}">${dir === 'bearish' ? '↓ Bearish' : '↑ Bullish'}</span></div>
+    ${ctxLine ? `<div class="ex-ctxline">${ctxLine}</div>` : ''}
+    <div class="ex-chart"></div>
+    <div class="ex-fb" aria-live="polite"></div>
+    <div class="ex-tl ex-rail" aria-label="Dayli ICC progress"></div>
+    <div class="pl-caption" aria-live="polite"></div>
+    <div class="pl-asks"></div>
+    ${hidden}
+  </div>` : `<div class="lw-card ex-card${slide.demo ? ' ex-demo' : ''}">
     ${slide.kicker === '' ? '' : `<div class="lw-eyebrow">${slide.kicker || 'Dayli ICC · 1M execution'}</div>`}
     ${slide.title ? `<h2>${slide.title}</h2>` : ''}
     ${slide.body ? `<p class="icc-body">${slide.body}</p>` : ''}
@@ -319,6 +336,9 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
   let lastStatusNote = '';
   const stats = { mistakes: [], good: [] };
 
+  // Demo slides, and watch slides once the PIL is set, play and mark themselves.
+  const autoRun = () => !!slide.demo || (watch && marks.pil);
+  function startAuto(delay) { timer = 1; setTimeout(() => { if (card.isConnected && !finished) nextCandle(true); }, reduced() ? 0 : delay); }
   const ev = () => evaluateDayliICC(sc.bars, { pil, dir, from: pilFrom }, k);
   const say = (html) => { if (!html) return; cap.innerHTML = html; cap.classList.add('show'); wrapGuide(cap); };
   const feedback = (html, good) => { fb.innerHTML = html; fb.className = `ex-fb show ${good ? 'good' : 'bad'}`; };
@@ -350,6 +370,13 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
     const e = ev();
     const order = ['pil', 'indication', 'correction', 'continuation', 'retest', 'entry'];
     const cur = order.find((s) => !marks[s]);
+    if (watch) {
+      tlEl.innerHTML = STEPS.map((s) => {
+        const st = marks[s.key] ? 'done' : s.key === cur && !outcome ? 'current' : 'open';
+        return `<span class="ex-rs is-${st}"><i></i>${s.name}</span>`;
+      }).join('');
+      return;
+    }
     tlEl.innerHTML = STEPS.map((s) => {
       const st = marks[s.key] ? 'done' : s.key === cur && !outcome ? 'current' : 'open';
       return `<div class="ex-step is-${st}" title="${s.q}"><i>${st === 'done' ? '✓' : st === 'current' ? '●' : '○'}</i><span>${s.short}</span></div>`;
@@ -375,7 +402,7 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
   /* actions: progressive, but I / C / C are always all visible so skipping can be blocked (and taught) */
   function actions() {
     // Once the slide's goal is met there's nothing left to act on here.
-    if (slide.demo || finished) { actionsEl.innerHTML = ''; return; }
+    if (slide.demo || watch || finished) { actionsEl.innerHTML = ''; return; }
     const btns = [];
     if (outcome && outcome !== 'missed') { actionsEl.innerHTML = ''; return; }
     if (!marks.pil && sc.pick) btns.push(['pilhint', 'Mark PIL: tap a swing on the chart', 'ghost']);
@@ -496,7 +523,8 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
         feedback(`<strong>PIL ✓</strong> ${m.why || 'Structure created the PIL.'}`, true);
         good(SKILL.pil, 'pil-selection');
         refresh();
-        if (sc.pick.ask) { blocked = true; askQuestion(asks, sc.pick.ask, wrapHelpers(), () => { blocked = false; checkGoal('pil'); }); } else checkGoal('pil');
+        const next = () => { if (watch) { say(slide.watchText || 'Now watch price prove each step through it. <b>Closes only.</b>'); startAuto(1400); } else checkGoal('pil'); };
+        if (sc.pick.ask) { blocked = true; askQuestion(asks, sc.pick.ask, wrapHelpers(), () => { blocked = false; next(); }); } else next();
       });
     });
   }
@@ -547,14 +575,14 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
   function afterClose() {
     const e = ev();
     // A missed first retest: the setup was valid; the entry was missed.
-    if (marks.continuation && !marks.retest && e.firstRetest != null && k > e.firstRetest + (slide.retestGrace ?? 1) && outcome == null && !slide.demo) {
+    if (marks.continuation && !marks.retest && e.firstRetest != null && k > e.firstRetest + (slide.retestGrace ?? 1) && outcome == null && !autoRun()) {
       outcome = 'missed';
       lastStatusNote = 'A missed trade is not a bad trade. It’s just a trade you didn’t get.';
       say(slide.missedText || '<strong>The first retest came and went.</strong> SETUP VALID · ENTRY MISSED. Don’t chase.');
       trackICC('missed-trade-seen', true);
       refresh();
     }
-    if (slide.demo) demoStep(e);
+    if (autoRun()) demoStep(e);
     const pz = (slide.pauses || []).find((p) => p.at === k - 1 && p.intrabar == null && !firedPauses.has(p));
     if (pz) { firedPauses.add(pz); stopPlay(); pauseAt(pz); return; }
     if (slide.reassess && k - 1 === slide.reassess.at && !firedPauses.has(slide.reassess)) { firedPauses.add(slide.reassess); stopPlay(); reassessEvent(); return; }
@@ -597,7 +625,7 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
   function endOfData() {
     stopPlay();
     if (finished) return;
-    if (slide.demo) { done(); return; }
+    if (autoRun()) { done(); return; }
     if (slide.goal === 'pass' || slide.goal === 'decision') {
       if (!outcome) say(slide.endHint || 'That’s all the price we have. What’s your call?');
       return;
@@ -700,7 +728,7 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
     const run = (j) => { if (j >= qs.length) { blocked = false; if (slide.goal === 'asks') done(); return; } askQuestion(asks, qs[j], wrapHelpers(), () => run(j + 1)); };
     run(0);
   }
-  if (slide.demo) { timer = 1; setTimeout(() => nextCandle(true), 700); }
+  if (slide.demo || (watch && pil != null)) startAuto(slide.demo ? 700 : 1600);
 }
 
 /* ── exec_drill: indication or not? ─────────────────────────────────── */
