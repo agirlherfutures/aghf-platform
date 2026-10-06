@@ -1,0 +1,138 @@
+#!/bin/bash
+# AGHF Video Merge
+#
+# Puts each voiceover into its matching intro video, without re-rendering.
+#
+# Folder layout (next to this file):
+#   Videos/   the intro videos (.mp4), subfolders are fine
+#   Audio/    the voiceovers (.mp3, .m4a or .wav), subfolders are fine
+#   Final/    finished videos are saved here (created for you)
+#
+# A video and its voiceover match by file name:
+#   Videos/p6-lesson-1.mp4  +  Audio/p6-lesson-1.mp3  ->  Final/p6-lesson-1.mp4
+# Capital letters don't matter. Spaces are fine.
+#
+# Run it: open Terminal, type "bash " (with a space), drag this file into
+# the window, press Enter. Run it again any time: finished videos are
+# skipped unless their video or voiceover changed.
+
+cd "$(dirname "$0")" || exit 1
+HERE="$(pwd)"
+VIDEOS="$HERE/Videos"
+AUDIO="$HERE/Audio"
+FINAL="$HERE/Final"
+TOOLS="$HERE/.tools"
+
+say() { printf '%s\n' "$*"; }
+line() { say "------------------------------------------------------------"; }
+
+line
+say "AGHF Video Merge"
+line
+
+if [ ! -d "$VIDEOS" ] || [ ! -d "$AUDIO" ]; then
+  mkdir -p "$VIDEOS" "$AUDIO"
+  say "I made the Videos and Audio folders next to this file."
+  say "Put your .mp4 videos in Videos and your voiceovers in Audio, then run me again."
+  exit 0
+fi
+mkdir -p "$FINAL"
+
+# ---- find ffmpeg (installs a private copy the first time) ----
+FFMPEG="$(command -v ffmpeg || true)"
+[ -z "$FFMPEG" ] && [ -x "$TOOLS/ffmpeg" ] && FFMPEG="$TOOLS/ffmpeg"
+for p in /opt/homebrew/bin/ffmpeg /usr/local/bin/ffmpeg; do
+  [ -z "$FFMPEG" ] && [ -x "$p" ] && FFMPEG="$p"
+done
+if [ -z "$FFMPEG" ]; then
+  say "First run: downloading ffmpeg, the free tool that does the merging (about 80 MB)..."
+  mkdir -p "$TOOLS"
+  case "$(uname -m)" in
+    arm64) ARCH=arm64 ;;
+    *) ARCH=amd64 ;;
+  esac
+  for URL in "https://ffmpeg.martin-riedl.de/redirect/latest/macos/$ARCH/release/ffmpeg.zip" \
+             "https://evermeet.cx/ffmpeg/getrelease/zip"; do
+    if curl -fL --progress-bar -o "$TOOLS/ffmpeg.zip" "$URL" \
+       && unzip -oq "$TOOLS/ffmpeg.zip" -d "$TOOLS" && chmod +x "$TOOLS/ffmpeg" \
+       && "$TOOLS/ffmpeg" -version >/dev/null 2>&1; then
+      FFMPEG="$TOOLS/ffmpeg"
+      break
+    fi
+  done
+  rm -f "$TOOLS/ffmpeg.zip"
+  if [ -z "$FFMPEG" ] && command -v brew >/dev/null; then
+    say "Trying Homebrew instead..."
+    brew install ffmpeg && FFMPEG="$(command -v ffmpeg)"
+  fi
+  if [ -z "$FFMPEG" ]; then
+    say "I couldn't install ffmpeg. Check your internet connection and run me again."
+    exit 1
+  fi
+  xattr -d com.apple.quarantine "$FFMPEG" 2>/dev/null
+  say "ffmpeg is ready."
+fi
+
+lower() { printf '%s' "$1" | tr '[:upper:]' '[:lower:]'; }
+
+# All voiceovers, as "lowercase-name<TAB>full path" lines.
+AUDIO_LIST="$(mktemp)"
+trap 'rm -f "$AUDIO_LIST"' EXIT
+find "$AUDIO" -type f \( -iname '*.mp3' -o -iname '*.m4a' -o -iname '*.wav' -o -iname '*.aac' \) ! -name '._*' -print0 |
+while IFS= read -r -d '' a; do
+  b="$(basename "$a")"
+  printf '%s\t%s\n' "$(lower "${b%.*}")" "$a"
+done > "$AUDIO_LIST"
+
+made=0; skipped=0; missing=0; failed=0
+MISSING_NAMES=""; FAILED_NAMES=""
+
+while IFS= read -r -d '' v; do
+  rel="${v#$VIDEOS/}"
+  name="$(basename "$v")"
+  stem="${name%.*}"
+  key="$(lower "$stem")"
+  a="$(awk -F '\t' -v k="$key" '$1 == k { print $2; exit }' "$AUDIO_LIST")"
+  if [ -z "$a" ]; then
+    missing=$((missing+1)); MISSING_NAMES="$MISSING_NAMES
+  $rel"
+    continue
+  fi
+  out="$FINAL/${rel%.*}.mp4"
+  if [ -f "$out" ] && [ "$out" -nt "$v" ] && [ "$out" -nt "$a" ]; then
+    skipped=$((skipped+1))
+    continue
+  fi
+  mkdir -p "$(dirname "$out")"
+  say "Merging $rel"
+  # Video is copied as is. Voiceover becomes AAC, padded with silence so the
+  # finished file is exactly as long as the video.
+  if "$FFMPEG" -nostdin -loglevel error -y -i "$v" -i "$a" \
+       -map 0:v:0 -map 1:a:0 -c:v copy -af apad -c:a aac -b:a 192k -shortest \
+       -movflags +faststart "$out.part.mp4"; then
+    mv -f "$out.part.mp4" "$out"
+    made=$((made+1))
+  else
+    rm -f "$out.part.mp4"
+    failed=$((failed+1)); FAILED_NAMES="$FAILED_NAMES
+  $rel"
+  fi
+done < <(find "$VIDEOS" -type f -iname '*.mp4' ! -name '._*' -print0 | sort -z)
+
+line
+say "Done."
+say "  Merged now:            $made"
+say "  Already done, skipped: $skipped"
+say "  Waiting on voiceover:  $missing"
+[ "$failed" -gt 0 ] && say "  Failed:                $failed"
+if [ "$missing" -gt 0 ]; then
+  say ""
+  say "No voiceover with the same name yet:$MISSING_NAMES"
+fi
+if [ "$failed" -gt 0 ]; then
+  say ""
+  say "These didn't merge (the files may still be downloading from Drive, try again):$FAILED_NAMES"
+fi
+say ""
+say "Finished videos are in: $FINAL"
+line
