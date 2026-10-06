@@ -1,18 +1,19 @@
 /**
- * Phase 2 · Section 3 · Lesson 19 intro video — "Zones vs. Lines"
+ * Phase 2 · Section 6 · Lesson 19 intro video: "Zones vs. Lines"
+ * Scenes: s6-bird-wire, s6-easels (see scenes-s6.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p2-lesson-19",
-  "eyebrow": "Phase 2 · Section 3 · Lesson 19",
-  "duration": 76,
-  "sources": "From Section 3, Lesson 19 (\"Zones vs. Lines\"): did the level fail because price missed your exact line (not necessarily), line = specific price reference, zone = broader area where price has shown meaningful behavior, and give price room to behave without turning every level into a giant mystery box.",
+  "eyebrow": "Phase 2 · Section 6 · Lesson 19",
+  "duration": 80,
+  "sources": "From Section 6, Lesson 19 (\"Zones vs. Lines\"): an exact line at 19,980 that price turns a little above and a little below, \"missing an exact line by a few points isn’t failing,\" a line as a specific price reference (like a prior high to close above), a zone as a small area where price reacted, and \"Give price room to behave. But don’t turn every level into a giant mystery box.\"",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 3: Reading Key Levels",
+      "phase": "Section 6: Reading Key Levels",
       "title": "Zones vs. Lines",
       "quote": "Give price room to behave.",
       "lines": [
@@ -22,274 +23,165 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Zones vs. Lines*"
         },
         {
-          "at": 4.6,
+          "at": 4.8,
           "text": "Did price really miss your level?"
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s6-bird-wire",
       "start": 8,
-      "end": 38,
-      "seed": 19,
+      "end": 34,
       "kicker": "Line or zone?",
-      "swings": [
-        [
-          0,
-          0.85
-        ],
-        [
-          0.14,
-          0.42
-        ],
-        [
-          0.28,
-          0.76
-        ],
-        [
-          0.42,
-          0.36
-        ],
-        [
-          0.58,
-          0.78
-        ],
-        [
-          0.72,
-          0.45
-        ],
-        [
-          0.9,
-          0.7
-        ]
-      ],
-      "per": [
-        4,
-        4,
-        4,
-        4,
-        4,
-        4
-      ],
-      "play": [
-        {
-          "to": 6,
-          "at": 8.6,
-          "dur": 3.6
-        }
-      ],
-      "rings": [
-        {
-          "u": 0.14,
-          "v": 0.42,
-          "tone": "gold",
-          "at": 13.0,
-          "out": 21
-        },
-        {
-          "u": 0.42,
-          "v": 0.36,
-          "tone": "gold",
-          "at": 13.4,
-          "out": 21
-        },
-        {
-          "u": 0.72,
-          "v": 0.45,
-          "tone": "gold",
-          "at": 13.8,
-          "out": 21
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.4,
-          "from": 0.0,
-          "label": "Exact line",
-          "tone": "purple",
-          "at": 10.0,
-          "out": 23.6
-        },
-        {
-          "v": 0.33,
-          "v2": 0.48,
-          "from": 0.0,
-          "label": "Reaction zone",
-          "tone": "up",
-          "at": 24.0,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.45,
-          "v": 1.02,
-          "text": "missed by a few points?",
-          "tone": "gold",
-          "at": 17.0,
-          "out": 23.6,
-          "fs": 26
-        }
-      ],
       "headlines": [
         {
           "at": 8.4,
-          "html": "Did price <span class=\"mark\">miss your line?</span>",
-          "out": 23.8
+          "html": "Did the level <span class=\"mark\">fail?</span>",
+          "out": 24.2
         },
         {
-          "at": 24.0,
-          "html": "Same reaction. <span class=\"mark\">Better description.</span>"
+          "at": 24.4,
+          "html": "A zone fits <span class=\"mark\">the reaction.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Here’s an exact line.",
-          "screen": "Candles build; \"Exact line\""
+          "text": "Here’s an exact line, like a wire across the sky.",
+          "screen": "Telephone wire labelled EXACT LINE · 19,980"
         },
         {
-          "at": 13.0,
-          "text": "Price turns a little above it. Then a little below it.",
-          "screen": "The turns circle"
+          "at": 12.4,
+          "text": "Watch where each bird turns. A little above. A little below.",
+          "screen": "Five birds swoop and turn near the wire; \"Missed!\""
         },
         {
-          "at": 17.0,
-          "text": "Did the level fail because price missed your exact line? Not necessarily.",
-          "screen": "\"missed by a few points?\""
+          "at": 16.6,
+          "text": "Did the level fail because they missed the exact line?",
+          "screen": "The ruler guy frowns"
         },
         {
-          "at": 24.0,
+          "at": 20.4,
+          "text": "Not necessarily. They kept turning in the same small area.",
+          "screen": "\"same small area\""
+        },
+        {
+          "at": 24.4,
           "text": "Switch to a zone, and the reaction makes sense.",
-          "screen": "\"Reaction zone\""
+          "screen": "A girl unfurls a teal zone; every turn sits inside"
         },
         {
-          "at": 28.5,
-          "text": "A line is a specific price reference. A zone is a broader area where price showed meaningful behavior."
+          "at": 28,
+          "text": "A line is an exact price reference. A zone is a small area where price reacted.",
+          "screen": "\"line = exact price\" / \"zone = reaction area\""
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 55,
-      "kicker": "So which one?",
-      "items": [
-        {
-          "title": "Line",
-          "desc": [
-            "an exact price",
-            "reference"
-          ],
-          "tone": "purple",
-          "at": 40.0
-        },
-        {
-          "title": "Zone",
-          "desc": [
-            "an area where",
-            "price behaved"
-          ],
-          "tone": "up",
-          "at": 43.5
-        },
-        {
-          "title": "Mystery box",
-          "desc": [
-            "too big to",
-            "mean anything"
-          ],
-          "tone": "down",
-          "at": 47.0,
-          "mark": "no",
-          "markAt": 49.4
-        }
-      ],
+      "type": "s6-easels",
+      "start": 34,
+      "end": 58,
+      "kicker": "Pick the right tool",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Give price room. <span class=\"mark\">No mystery boxes.</span>"
+          "at": 34.4,
+          "html": "Match the tool to <span class=\"mark\">what price did.</span>",
+          "out": 46.8
+        },
+        {
+          "at": 47,
+          "html": "Room to behave. <span class=\"mark\">No mystery box.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "So which one?",
-          "screen": "\"So which one?\""
+          "at": 34.4,
+          "text": "So which tool do you pick?",
+          "screen": "Three easels: LINE, TIGHT ZONE, GIANT BOX"
         },
         {
-          "at": 40.0,
-          "text": "Use a line when you need an exact reference.",
-          "screen": "Line"
+          "at": 36.8,
+          "text": "Use a line when you need an exact reference, like a prior high to close above.",
+          "screen": "\"exact reference ✓\""
         },
         {
-          "at": 43.5,
+          "at": 43,
           "text": "Use a zone when price reacted across a small area.",
-          "screen": "Zone"
+          "screen": "\"fits the reaction ✓\""
         },
         {
-          "at": 47.0,
-          "text": "But don’t turn every level into a giant mystery box.",
-          "screen": "Mystery box ✗"
+          "at": 47,
+          "text": "But don’t make it too big.",
+          "screen": "She walks to the giant box"
+        },
+        {
+          "at": 49.6,
+          "text": "A giant box can mean anything, so it tells you nothing.",
+          "screen": "A jack-in-the-box pops out; \"mystery box ✗\""
+        },
+        {
+          "at": 54,
+          "text": "Keep it tight enough to describe the reaction.",
+          "screen": "The tight zone glows"
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 55,
-      "end": 64,
-      "pointAt": 57.2,
-      "size": 64,
+      "start": 58,
+      "end": 68,
+      "pointAt": 61.4,
+      "size": 70,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 56.0,
+          "at": 59,
           "text": "Give price room to behave."
         },
         {
-          "at": 57.2,
-          "html": "But <span class=\"mark\">don’t build a mystery box.</span>"
+          "at": 61.4,
+          "html": "But <span class=\"mark\">no giant mystery box.</span> 📦"
         }
       ],
       "lines": [
         {
-          "at": 55.4,
+          "at": 58.4,
           "text": "So here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 56.2,
-          "text": "Give price room to behave. But don’t build a mystery box.",
+          "at": 60.2,
+          "text": "Give price room to behave. But don’t build a giant mystery box.",
           "screen": "Aristella points"
         }
       ]
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 68,
+      "end": 80,
       "kicker": "Your mission",
       "question": {
-        "at": 66,
+        "at": 70.2,
         "text": "If price misses your line by a few points, did the level fail?"
       },
       "cta": {
-        "at": 71.5,
+        "at": 75.6,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.4,
+          "at": 68.4,
           "text": "So here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 66,
+          "at": 70.2,
           "text": "If price misses your line by a few points, did the level fail?",
           "screen": "Mission question"
         },
         {
-          "at": 71.5,
+          "at": 75.6,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

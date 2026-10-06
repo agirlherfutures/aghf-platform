@@ -1,18 +1,18 @@
 /**
- * Phase 3 · Section 2 · Lesson 10 intro video — "What Is Price Delivery?"
+ * Phase 3 · Section 8 · Lesson 10 intro video: "What Is Price Delivery?"
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-10",
-  "eyebrow": "Phase 3 · Section 2 · Lesson 10",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 10: Move A (overlapping) vs Move B (displaced) played side by side, same destination different delivery, and the chain from where price started to whether it changes the entry model.",
+  "eyebrow": "Phase 3 · Section 8 · Lesson 10",
+  "duration": 80,
+  "sources": "From Phase 3, Section 8, Lesson 10 (\"What Is Price Delivery?\"): Move A (overlapping) vs Move B (displaced) reaching the same destination, the new habit of asking how price got there and not just where, and \"delivery is context; it doesn’t change your entry model by itself.\"",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 2: Gaps, Imbalances & Price Delivery",
+      "phase": "Section 8: Gaps, Imbalances & Price Delivery",
       "title": "What Is Price Delivery?",
       "quote": "Don’t just ask where price went. Ask how it got there.",
       "lines": [
@@ -22,243 +22,141 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *What Is Price Delivery?*"
         },
         {
-          "at": 4.6,
-          "text": "See how price traveled."
+          "at": 4.2,
+          "text": "Don’t just ask where price went. Ask how it got there."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s8-two-couriers",
       "start": 8,
-      "end": 38,
-      "seed": 310,
+      "end": 34,
+      "beats": {
+        "go": 10.0,
+        "dur": 9.0,
+        "candles": 21.4,
+        "same": 29.6
+      },
       "kicker": "Same trip?",
-      "swings": [
-        [
-          0,
-          0.12
-        ],
-        [
-          0.1,
-          0.24
-        ],
-        [
-          0.17,
-          0.18
-        ],
-        [
-          0.27,
-          0.34
-        ],
-        [
-          0.34,
-          0.28
-        ],
-        [
-          0.44,
-          0.46
-        ],
-        [
-          0.5,
-          0.4
-        ],
-        [
-          0.6,
-          0.6
-        ],
-        [
-          0.66,
-          0.55
-        ],
-        [
-          0.8,
-          0.82
-        ]
-      ],
-      "per": [
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        3
-      ],
-      "play": [
-        {
-          "to": 9,
-          "at": 8.6,
-          "dur": 8.0
-        }
-      ],
       "headlines": [
         {
           "at": 8.4,
           "html": "Where did it go? <span class=\"mark\">How?</span>",
-          "out": 28.3
+          "out": 29.4
         },
         {
-          "at": 28.5,
+          "at": 29.6,
           "html": "Same destination. <span class=\"mark\">Different delivery.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Here’s a move from the start to the destination.",
-          "screen": "Candles grind up"
+          "text": "Two couriers leave the same start, headed for the same house.",
+          "screen": "A START flag and a DESTINATION house"
         },
         {
-          "at": 13.0,
-          "text": "It got there slowly, with lots of overlapping candles."
+          "at": 12.8,
+          "text": "One wanders, forward and back, forward and back.",
+          "screen": "A walker zigzags with a parcel"
         },
         {
-          "at": 18.0,
-          "text": "Another move could reach the same place in three big candles.",
-          "screen": "\"overlapping\""
+          "at": 16.4,
+          "text": "The other waits, then makes one fast run.",
+          "screen": "A delivery drone zips straight in"
         },
         {
-          "at": 23.0,
-          "text": "Same start. Same destination."
+          "at": 21.4,
+          "text": "Now turn those trips into candles.",
+          "screen": "The routes turn into candles"
         },
         {
-          "at": 28.5,
-          "text": "Very different delivery. This section is about the trip, not just the destination."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.12,
-          "from": 0.0,
-          "label": "Start",
-          "tone": "muted",
-          "at": 9.0,
-          "below": true
+          "at": 24.0,
+          "text": "The wanderer is lots of small, overlapping candles. The fast run is three big ones.",
+          "screen": "\"lots of overlap\" / \"3 big candles\""
         },
         {
-          "v": 0.82,
-          "from": 0.0,
-          "label": "Destination",
-          "tone": "muted",
-          "at": 17.0
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.45,
-          "v": 0.6,
-          "text": "overlapping",
-          "tone": "purple",
-          "at": 18.0,
-          "fs": 26
-        },
-        {
-          "u": 0.45,
-          "v": 1.02,
-          "text": "same destination, different delivery?",
-          "tone": "gold",
-          "at": 28.5,
-          "fs": 26
+          "at": 29.6,
+          "text": "Same start. Same destination. Very different delivery.",
+          "screen": "\"same destination, different delivery\""
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
+      "type": "s8-parcel-label",
+      "start": 34,
+      "end": 58,
+      "beats": {
+        "robot": 34.6,
+        "where": 38.0,
+        "how": 42.6,
+        "rule": 49.4
+      },
       "kicker": "A new habit",
-      "items": [
-        {
-          "title": "Where did",
-          "desc": [
-            "price go?",
-            ""
-          ],
-          "tone": "purple",
-          "at": 40.8
-        },
-        {
-          "title": "How did it",
-          "desc": [
-            "get there?",
-            ""
-          ],
-          "tone": "gold",
-          "icon": "diamond",
-          "at": 44.2
-        },
-        {
-          "title": "Does it change",
-          "desc": [
-            "my entry model?",
-            "not by itself"
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Ask how. <span class=\"mark\">Not just where.</span>"
+          "at": 34.4,
+          "html": "A new habit: <span class=\"mark\">ask how.</span>",
+          "out": 52.8
+        },
+        {
+          "at": 53.0,
+          "html": "Delivery is <span class=\"mark\">context.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Here’s the new habit.",
-          "screen": "\"A new habit\""
+          "at": 34.4,
+          "text": "Here’s the new habit for every move.",
+          "screen": "A robot rolls up with a parcel"
         },
         {
-          "at": 40.8,
-          "text": "Where did price go?",
-          "screen": "Where did price go?"
+          "at": 38.0,
+          "text": "First question: where did price go? That’s the address on the label.",
+          "screen": "Label: WHERE did price go?"
         },
         {
-          "at": 44.2,
-          "text": "How did it get there?",
-          "screen": "How did it get there?"
+          "at": 42.6,
+          "text": "Now flip the label. How did it get there? Slowly with lots of overlap, or fast and one-sided?",
+          "screen": "Label flips: HOW did it get there?"
         },
         {
-          "at": 47.6,
-          "text": "Does that change my entry model? Not by itself.",
-          "screen": "Does it change my entry model? not by itself"
+          "at": 49.4,
+          "text": "And does that change your entry model? Not by itself.",
+          "screen": "Rulebook \"MY ENTRY MODEL\": unchanged"
         },
         {
-          "at": 51.0,
-          "text": "Ask how. Not just where."
+          "at": 53.4,
+          "text": "Delivery is context. Your rules stay the same.",
+          "screen": "\"delivery = context\""
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 58,
+      "end": 68,
+      "pointAt": 60.8,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "Don’t just ask where."
+          "at": 59.0,
+          "text": "Don’t just ask where price went."
         },
         {
-          "at": 58.6,
+          "at": 60.8,
           "html": "<span class=\"mark\">Ask how it got there.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 58.4,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 60.0,
           "text": "Don’t just ask where price went. Ask how it got there.",
           "screen": "Aristella points"
         }
@@ -266,30 +164,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 68,
+      "end": 80,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 70.4,
         "text": "If two moves end in the same place, were they the same move?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 76.4,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 68.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 70.4,
           "text": "If two moves end in the same place, were they the same move?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 76.4,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

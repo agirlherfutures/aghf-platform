@@ -15,7 +15,7 @@
 | 0:30 |  | A pullback does not automatically equal reversal. |
 | 0:36 | A chart pulls back | So bullish structure starts pulling back. Has it reversed? |
 | 0:41 | Two possible paths and a big question mark | Honestly? Not enough information. The existence of a pullback doesn't tell us whether the larger structure changed. |
-| 0:50 | A level lights up; "Section 2" | To know more, we need to study what price breaks. And that's exactly where Section 2 begins. |
+| 0:50 | A level lights up; "Section 5" | To know more, we need to study what price breaks. And that's exactly where Section 5 begins. |
 | 1:00 | Aristella thinks | So here's the big takeaway. |
 | 1:01 | Aristella points | A pullback alone doesn't tell you whether structure changed. What price breaks does. |
 | 1:11 | "Your mission" | So here's your mission for this lesson. |
@@ -23,4 +23,4 @@
 | 1:20 | Aristella cheers; "Let's find out →" | Let's find out. |
 
 ## Where the words come from
-From Section 4, Lesson 9 ("Expansion, Pullbacks & Progression"): expansion, pullback/retracement and structural progression, "a pullback does not automatically equal reversal," the has-it-reversed check (not enough information), and the teaser that what price breaks is where Section 2 begins.
+From Section 4, Lesson 9 ("Expansion, Pullbacks & Progression"): expansion, pullback/retracement and structural progression, "a pullback does not automatically equal reversal," the has-it-reversed check (not enough information), and the teaser that what price breaks is where Section 5 begins.

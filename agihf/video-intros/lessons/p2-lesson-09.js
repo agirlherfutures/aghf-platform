@@ -5,7 +5,7 @@ window.LESSON_VIDEO = {
   slug: 'p2-lesson-09',
   eyebrow: 'Phase 2 · Section 4 · Lesson 9',
   duration: 84,
-  sources: 'From Section 4, Lesson 9 ("Expansion, Pullbacks & Progression"): expansion, pullback/retracement and structural progression, "a pullback does not automatically equal reversal," the has-it-reversed check (not enough information), and the teaser that what price breaks is where Section 2 begins.',
+  sources: 'From Section 4, Lesson 9 ("Expansion, Pullbacks & Progression"): expansion, pullback/retracement and structural progression, "a pullback does not automatically equal reversal," the has-it-reversed check (not enough information), and the teaser that what price breaks is where Section 5 begins.',
   scenes: [
     {
       type: 'host-title', start: 0, end: 8, nameTag: true,
@@ -42,7 +42,7 @@ window.LESSON_VIDEO = {
       lines: [
         { at: 36.4, text: 'So bullish structure starts pulling back. Has it reversed?', screen: 'A chart pulls back' },
         { at: 41.4, text: 'Honestly? Not enough information. The existence of a pullback doesn’t tell us whether the larger structure changed.', screen: 'Two possible paths and a big question mark' },
-        { at: 50.0, text: 'To know more, we need to study what price breaks. And that’s exactly where Section 2 begins.', screen: 'A level lights up; "Section 2"' },
+        { at: 50.0, text: 'To know more, we need to study what price breaks. And that’s exactly where Section 5 begins.', screen: 'A level lights up; "Section 5"' },
       ],
     },
     {

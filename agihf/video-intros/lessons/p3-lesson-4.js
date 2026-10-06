@@ -1,18 +1,19 @@
 /**
- * Phase 3 · Section 1 · Lesson 4 intro video — "Liquidity Pools"
+ * Phase 3 · Section 7 · Lesson 4 intro video: "Liquidity Pools"
+ * Scenes: host-title, s7-lens-swap, s7-fishing-pond, host-hook, host-mission (scene art in scenes-s7.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-4",
-  "eyebrow": "Phase 3 · Section 1 · Lesson 4",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 4: pools are areas (swing highs/lows, equal highs/lows, range and session extremes), structure view vs liquidity view of the same level, and never a fake order count.",
+  "eyebrow": "Phase 3 · Section 7 · Lesson 4",
+  "duration": 84,
+  "sources": "From Section 7, Lesson 4 (\"Liquidity Pools\"): pools commonly sit at swing highs/lows, equal highs/lows, range boundaries and session highs/lows, a pool is an area and never an exact count of orders (\"You’ll never see Pool size: 4,200 contracts\"), and structure and liquidity answer different questions about the same level.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Understanding Liquidity",
+      "phase": "Section 7: Understanding Liquidity",
       "title": "Liquidity Pools",
       "quote": "Same level. Different lens.",
       "lines": [
@@ -22,269 +23,155 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Liquidity Pools*"
         },
         {
-          "at": 4.6,
+          "at": 4.8,
           "text": "Where might orders gather?"
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s7-lens-swap",
       "start": 8,
-      "end": 38,
-      "seed": 304,
-      "kicker": "Two lenses",
-      "swings": [
-        [
-          0,
-          0.15
-        ],
-        [
-          0.18,
-          0.5
-        ],
-        [
-          0.32,
-          0.3
-        ],
-        [
-          0.52,
-          0.72
-        ],
-        [
-          0.66,
-          0.5
-        ],
-        [
-          0.85,
-          0.66
-        ]
-      ],
-      "per": [
-        4,
-        3,
-        5,
-        3,
-        4
-      ],
-      "play": [
-        {
-          "to": 5,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 34,
+      "kicker": "Two pairs of glasses",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Structure lens. <span class=\"mark\">Liquidity lens.</span>",
-          "out": 28.3
+          "out": 27.8,
+          "html": "Structure lens. <span class=\"mark\">Liquidity lens.</span>"
         },
         {
-          "at": 28.5,
+          "at": 28,
           "html": "Same level. <span class=\"mark\">Different lens.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "In structure, these are a higher low and a higher high.",
-          "screen": "Swings ring"
+          "text": "Here’s a chart you know. Put on your structure glasses first.",
+          "screen": "A reader puts on teal glasses; a parrot perches on the chart"
         },
         {
-          "at": 13.0,
-          "text": "They tell you what price is building."
+          "at": 13,
+          "text": "Higher lows, higher highs. They tell you what price is building.",
+          "screen": "HL and HH labels; \"what is price building?\""
         },
         {
-          "at": 18.0,
-          "text": "In liquidity, the same places are pools where orders may rest.",
-          "screen": "Pools appear"
+          "at": 19.8,
+          "text": "Now swap lenses. Same places, new question.",
+          "screen": "The glasses swap to purple: LIQUIDITY LENS"
         },
         {
-          "at": 23.0,
-          "text": "Pools are areas, never exact counts of orders."
+          "at": 23,
+          "text": "Through this lens, those swing highs and lows are pools: areas where orders may rest.",
+          "screen": "Pools ripple above highs and below lows"
         },
         {
-          "at": 28.5,
-          "text": "Same level, read through a different lens. Neither one replaces the other."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.73,
-          "from": 0.52,
-          "label": "Potential buy-side",
-          "tone": "gold",
-          "at": 18.0,
-          "v2": 0.85
-        },
-        {
-          "v": 0.29,
-          "from": 0.32,
-          "label": "Potential sell-side",
-          "tone": "gold",
-          "at": 18.6,
-          "v2": 0.18,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.32,
-          "v": 0.36,
-          "text": "HL",
-          "tone": "up",
-          "at": 12.0,
-          "fs": 24
-        },
-        {
-          "u": 0.52,
-          "v": 0.78,
-          "text": "HH",
-          "tone": "up",
-          "at": 12.4,
-          "fs": 24
-        }
-      ],
-      "rings": [
-        {
-          "u": 0.32,
-          "v": 0.3,
-          "tone": "up",
-          "at": 12.0,
-          "out": 22.0
-        },
-        {
-          "u": 0.52,
-          "v": 0.72,
-          "tone": "up",
-          "at": 12.4,
-          "out": 22.0
+          "at": 28.6,
+          "text": "Same level. Different lens. Neither one replaces the other.",
+          "screen": "The parrot: \"Same level!\""
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Where pools gather",
-      "items": [
-        {
-          "title": "Swing highs",
-          "desc": [
-            "& swing lows",
-            ""
-          ],
-          "tone": "purple",
-          "at": 40.8
-        },
-        {
-          "title": "Equal highs",
-          "desc": [
-            "& equal lows",
-            ""
-          ],
-          "tone": "purple",
-          "at": 44.2
-        },
-        {
-          "title": "Range & session",
-          "desc": [
-            "highs and lows",
-            ""
-          ],
-          "tone": "purple",
-          "at": 47.6
-        }
-      ],
+      "type": "s7-fishing-pond",
+      "start": 34,
+      "end": 60,
+      "kicker": "Gone fishing",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Areas. <span class=\"mark\">Never fake numbers.</span>"
+          "at": 34.4,
+          "out": 45.8,
+          "html": "Where might <span class=\"mark\">orders gather?</span>"
+        },
+        {
+          "at": 46,
+          "html": "An area. <span class=\"mark\">Never a count.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
+          "at": 34.4,
           "text": "So where do pools commonly gather?",
-          "screen": "\"Where pools gather\""
+          "screen": "Ponds appear one by one"
         },
         {
-          "at": 40.8,
-          "text": "Around swing highs and lows.",
-          "screen": "Swing highs & swing lows"
+          "at": 36.6,
+          "text": "Around swing highs and lows. Equal highs and lows. Range edges. Session highs and lows.",
+          "screen": "Each pond gets its label; fishermen cast lines"
         },
         {
-          "at": 44.2,
-          "text": "Equal highs and equal lows.",
-          "screen": "Equal highs & equal lows"
+          "at": 43.6,
+          "text": "Places lots of people can see, so lots of people cast a line there.",
+          "screen": "A duck paddles; fish jump"
         },
         {
-          "at": 47.6,
-          "text": "Range and session extremes.",
-          "screen": "Range & session highs and lows"
+          "at": 47,
+          "text": "But nobody can tell you how many fish are in the pond.",
+          "screen": "Sign: POOL SIZE 4,200 contracts, crossed out to ???"
         },
         {
-          "at": 51.0,
-          "text": "Always areas. Never a fake number of orders."
+          "at": 51.6,
+          "text": "A pool is an area. Never an exact count of orders.",
+          "screen": "\"an area, never a count\""
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 60,
+      "end": 71,
+      "pointAt": 63.8,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 61.2,
           "text": "Same level."
         },
         {
-          "at": 58.6,
+          "at": 63.8,
           "html": "<span class=\"mark\">Different lens.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
-          "text": "Here’s the big takeaway.",
+          "at": 60.4,
+          "text": "So here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
-          "text": "Same level. Different lens.",
+          "at": 61.8,
+          "text": "Same level. Different lens. Structure and liquidity answer different questions.",
           "screen": "Aristella points"
         }
       ]
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 71,
+      "end": 84,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 73,
         "text": "Is a swing low structure or liquidity?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 80,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 71.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 73,
           "text": "Is a swing low structure or liquidity?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 80,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

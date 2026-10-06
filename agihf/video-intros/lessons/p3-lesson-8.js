@@ -1,20 +1,21 @@
 /**
- * Phase 3 · Section 1 · Lesson 8 intro video — "Sweep vs Structural Break"
+ * Phase 3 · Section 7 · Lesson 8 intro video: "Sweep vs Structural Break"
+ * Scenes: host-title, s7-frog-ledge, s7-two-clipboards, host-hook, host-mission (scene art in scenes-s7.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-8",
-  "eyebrow": "Phase 3 · Section 1 · Lesson 8",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 8: the liquidity question vs the structure question, Example A (wick above, close back below) vs Example B (close above, hold, build), and “price took liquidity, so that’s MSS” as the mistake to catch.",
+  "eyebrow": "Phase 3 · Section 7 · Lesson 8",
+  "duration": 84,
+  "sources": "From Section 7, Lesson 8 (\"Sweep vs Structural Break\"): the liquidity question (did price trade through an area where orders may rest?) vs the structure question (did price close through the relevant swing, hold and build?), wick above and close back below vs close above, hold and build, and \"Taking liquidity is not an MSS. Neither is an entry.\"",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Understanding Liquidity",
+      "phase": "Section 7: Understanding Liquidity",
       "title": "Sweep vs Structural Break",
-      "quote": "Liquidity tells you where something may happen. Structure tells you what price actually did.",
+      "quote": "Two lenses. Two questions.",
       "lines": [
         {
           "at": 0.6,
@@ -22,240 +23,124 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Sweep vs Structural Break*"
         },
         {
-          "at": 4.6,
-          "text": "Two lenses. Two questions."
+          "at": 4.8,
+          "text": "Same high. Two very different behaviors."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s7-frog-ledge",
       "start": 8,
-      "end": 38,
-      "seed": 308,
-      "kicker": "A, then B",
-      "swings": [
-        [
-          0,
-          0.2
-        ],
-        [
-          0.2,
-          0.62
-        ],
-        [
-          0.35,
-          0.38
-        ],
-        [
-          0.5,
-          0.58
-        ],
-        [
-          0.62,
-          0.4
-        ],
-        [
-          0.82,
-          0.86
-        ],
-        [
-          0.92,
-          0.74
-        ]
-      ],
-      "per": [
-        5,
-        4,
-        4,
-        3,
-        5,
-        2
-      ],
-      "play": [
-        {
-          "to": 3,
-          "at": 8.6,
-          "dur": 2.6
-        },
-        {
-          "to": 4,
-          "at": 13.0,
-          "dur": 0.8
-        },
-        {
-          "to": 6,
-          "at": 18.0,
-          "dur": 2.4
-        }
-      ],
+      "end": 34,
+      "kicker": "Two frogs, one ledge",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Same high. <span class=\"mark\">Two behaviors.</span>",
-          "out": 28.3
+          "out": 25.8,
+          "html": "Same high. <span class=\"mark\">Two behaviors.</span>"
         },
         {
-          "at": 28.5,
-          "html": "Two questions. <span class=\"mark\">Ask both.</span>"
+          "at": 26,
+          "html": "Only one <span class=\"mark\">changed structure.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Here’s a prior high. Watch two attempts.",
-          "screen": "Candles build"
+          "text": "Here’s a prior high: the top of that ledge. Two frogs are going to try it.",
+          "screen": "Two ponds, two ledges, two frogs"
         },
         {
-          "at": 13.0,
-          "text": "Example A: a wick above, then a close back below. Sweep-like.",
-          "screen": "\"A\""
+          "at": 12.2,
+          "text": "Frog A jumps above it, then drops right back below. Wick above, close back below. Sweep-like.",
+          "screen": "Frog A splashes back down"
         },
         {
-          "at": 18.0,
-          "text": "Example B: price closes above, holds, and builds higher.",
-          "screen": "\"B\""
+          "at": 18.4,
+          "text": "Frog B lands on top, stays there, and keeps climbing. Close above, hold, build.",
+          "screen": "Frog B lands, holds, and hops up the steps"
         },
         {
-          "at": 23.0,
-          "text": "Both traded through the area above the high."
+          "at": 26.2,
+          "text": "Both traded through the area above the high.",
+          "screen": "\"traded through ✓\" on both"
         },
         {
-          "at": 28.5,
-          "text": "But only B changed what price is building. Ask the liquidity question and the structure question separately."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.62,
-          "from": 0.2,
-          "label": "Prior high",
-          "tone": "purple",
-          "at": 9.4
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.54,
-          "v": 0.76,
-          "text": "A · wick above, close below",
-          "tone": "gold",
-          "at": 12.0,
-          "fs": 26
-        },
-        {
-          "u": 0.8,
-          "v": 0.95,
-          "text": "B · close, hold, build",
-          "tone": "up",
-          "at": 20.0,
-          "fs": 26
-        }
-      ],
-      "extra": [
-        {
-          "u": 0.54,
-          "o": 0.58,
-          "c": 0.57,
-          "hi": 0.68,
-          "lo": 0.55,
-          "at": 11.4
+          "at": 29.2,
+          "text": "But only B changed what price is building.",
+          "screen": "\"structure changed ✓\""
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Two lenses",
-      "items": [
-        {
-          "title": "Liquidity",
-          "desc": [
-            "did price trade",
-            "through the area?"
-          ],
-          "tone": "gold",
-          "at": 40.8
-        },
-        {
-          "title": "Structure",
-          "desc": [
-            "did price close,",
-            "hold and build?"
-          ],
-          "tone": "up",
-          "at": 44.2
-        },
-        {
-          "title": "“Took liquidity",
-          "desc": [
-            "= MSS”",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s7-two-clipboards",
+      "start": 34,
+      "end": 60,
+      "kicker": "Two inspectors",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Two questions. <span class=\"mark\">Not one.</span>"
+          "at": 34.4,
+          "out": 48.8,
+          "html": "Two lenses. <span class=\"mark\">Two questions.</span>"
+        },
+        {
+          "at": 49,
+          "html": "Took liquidity <span class=\"mark\">≠ MSS.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Two lenses.",
-          "screen": "\"Two lenses\""
+          "at": 34.4,
+          "text": "So call in two inspectors. Each one asks a single question.",
+          "screen": "Two inspectors with clipboards and a scoreboard"
         },
         {
-          "at": 40.8,
-          "text": "Liquidity asks: did price trade through the area?",
-          "screen": "Liquidity did price trade through the area?"
+          "at": 36.8,
+          "text": "Liquidity asks: did price trade through the area where orders may rest? A, yes. B, yes.",
+          "screen": "\"Through the area?\" A ✓ B ✓"
         },
         {
-          "at": 44.2,
-          "text": "Structure asks: did it close, hold and build?",
-          "screen": "Structure did price close, hold and build?"
+          "at": 43.6,
+          "text": "Structure asks: did price close through, hold, and build? A, no. B, yes.",
+          "screen": "\"Close, hold, build?\" A ✗ B ✓"
         },
         {
-          "at": 47.6,
-          "text": "Took liquidity equals MSS? No.",
-          "screen": "Took liquidity = MSS"
+          "at": 49.6,
+          "text": "And here’s the classic mistake: price took liquidity, so that’s an MSS.",
+          "screen": "\"took liquidity = MSS\""
         },
         {
-          "at": 51.0,
-          "text": "Two questions. Not one."
+          "at": 53.8,
+          "text": "No. Two questions, not one. And neither one is an entry.",
+          "screen": "Crossed out to ≠; \"neither is an entry\""
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 60,
+      "end": 71,
+      "pointAt": 63.8,
+      "size": 56,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "Liquidity: where it may happen."
+          "at": 61.2,
+          "text": "Liquidity tells you where something may happen."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">Structure: what price did.</span>"
+          "at": 63.8,
+          "html": "Structure tells you <span class=\"mark\">what price actually did.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
-          "text": "Here’s the big takeaway.",
+          "at": 60.4,
+          "text": "So here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 61.8,
           "text": "Liquidity tells you where something may happen. Structure tells you what price actually did.",
           "screen": "Aristella points"
         }
@@ -263,30 +148,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 71,
+      "end": 84,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 73,
         "text": "Price took liquidity. Is that an MSS?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 80,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 71.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 73,
           "text": "Price took liquidity. Is that an MSS?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 80,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

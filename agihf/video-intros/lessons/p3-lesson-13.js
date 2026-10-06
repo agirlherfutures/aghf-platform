@@ -1,18 +1,18 @@
 /**
- * Phase 3 · Section 2 · Lesson 13 intro video — "Fair Value Gaps"
+ * Phase 3 · Section 8 · Lesson 13 intro video: "Fair Value Gaps"
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-13",
-  "eyebrow": "Phase 3 · Section 2 · Lesson 13",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 13: building candle 1, 2, 3, highlighting candle 1’s high and candle 3’s low, the bullish and bearish FVG, build-the-FVG and spot-the-FVG drills, and what an FVG is not automatically.",
+  "eyebrow": "Phase 3 · Section 8 · Lesson 13",
+  "duration": 78,
+  "sources": "From Phase 3, Section 8, Lesson 13 (\"Fair Value Gaps\"): the three-candle pattern, bullish FVG = the gap between candle 1’s high and candle 3’s low, bearish FVG = the gap between candle 1’s low and candle 3’s high, and \"before your brain turns this into another entry rule\": an FVG is not automatically support, a target, an entry, a reversal level, or a Dayli ICC requirement. Spotting one is market literacy.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 2: Gaps, Imbalances & Price Delivery",
+      "phase": "Section 8: Gaps, Imbalances & Price Delivery",
       "title": "Fair Value Gaps",
       "quote": "A three-candle pattern. Not another entry rule.",
       "lines": [
@@ -22,261 +22,164 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Fair Value Gaps*"
         },
         {
-          "at": 4.6,
-          "text": "Candle 1. Candle 2. Candle 3."
+          "at": 4.0,
+          "text": "A three-candle pattern. Not another entry rule."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s8-candle-trio",
       "start": 8,
-      "end": 38,
-      "seed": 313,
-      "kicker": "Build it",
-      "swings": [
-        [
-          0,
-          0.1
-        ],
-        [
-          0.16,
-          0.24
-        ],
-        [
-          0.26,
-          0.16
-        ],
-        [
-          0.42,
-          0.3
-        ],
-        [
-          0.52,
-          0.72
-        ],
-        [
-          0.6,
-          0.76
-        ],
-        [
-          0.85,
-          0.7
-        ]
-      ],
-      "per": [
-        2,
-        2,
-        2,
-        1,
-        1,
-        3
-      ],
-      "play": [
-        {
-          "to": 3,
-          "at": 8.6,
-          "dur": 1.6
-        },
-        {
-          "to": 4,
-          "at": 11.0,
-          "dur": 0.7
-        },
-        {
-          "to": 6,
-          "at": 12.6,
-          "dur": 1.6
-        }
-      ],
+      "end": 32,
+      "beats": {
+        "c1": 9.8,
+        "c2": 11.0,
+        "c3": 13.2,
+        "edges": 14.8,
+        "gap": 18.4,
+        "flip": 23.4
+      },
+      "kicker": "Meet the trio",
       "headlines": [
         {
           "at": 8.4,
           "html": "Three candles. <span class=\"mark\">Two edges.</span>",
-          "out": 28.3
+          "out": 23.2
         },
         {
-          "at": 28.5,
-          "html": "Spot it. <span class=\"mark\">Then ask if it matters.</span>"
+          "at": 23.4,
+          "html": "Flip it for <span class=\"mark\">bearish.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Candle one. Then a big candle two. Then candle three.",
-          "screen": "C1, C2, C3"
+          "text": "Meet three candles.",
+          "screen": "A stage; candle characters appear"
         },
         {
-          "at": 14.0,
-          "text": "Look at candle one’s high and candle three’s low.",
-          "screen": "The edges"
+          "at": 9.8,
+          "text": "Candle one.",
+          "screen": "C1"
         },
         {
-          "at": 18.0,
-          "text": "Candle three never came back to candle one. The space between is a bullish fair value gap.",
-          "screen": "\"FVG\""
+          "at": 11.0,
+          "text": "Then a big candle two.",
+          "screen": "C2 drops in"
         },
         {
-          "at": 25.0,
-          "text": "Flip it for bearish."
+          "at": 13.2,
+          "text": "Then candle three.",
+          "screen": "C3"
         },
         {
-          "at": 28.5,
-          "text": "You’ll build them, spot them fast, and then ask whether they even matter."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.33,
-          "from": 0.38,
-          "label": "Candle 1 high",
-          "tone": "up",
-          "at": 14.0,
-          "below": true
+          "at": 14.8,
+          "text": "Look at candle one’s high, and candle three’s low.",
+          "screen": "\"C1 high\" / \"C3 low\" lines"
         },
         {
-          "v": 0.62,
-          "from": 0.52,
-          "label": "Candle 3 low",
-          "tone": "up",
-          "at": 16.0
+          "at": 18.4,
+          "text": "They never met. The space between is a bullish fair value gap.",
+          "screen": "\"BULLISH FVG\""
         },
         {
-          "v": 0.335,
-          "from": 0.38,
-          "label": "",
-          "tone": "up",
-          "at": 18.0,
-          "v2": 0.615
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.42,
-          "v": 0.18,
-          "text": "C1",
-          "tone": "purple",
-          "at": 9.6,
-          "fs": 24
+          "at": 23.4,
+          "text": "Flip it for bearish:",
+          "screen": "The trio flips and turns pink"
         },
         {
-          "u": 0.52,
-          "v": 0.2,
-          "text": "C2",
-          "tone": "purple",
-          "at": 11.2,
-          "fs": 24
+          "at": 25.2,
+          "text": "the gap between candle one’s low and candle three’s high.",
+          "screen": "\"C1 low\" / \"C3 high\"; \"BEARISH FVG\""
         },
         {
-          "u": 0.6,
-          "v": 0.86,
-          "text": "C3",
-          "tone": "purple",
-          "at": 12.8,
-          "fs": 24
-        },
-        {
-          "u": 0.8,
-          "v": 0.48,
-          "text": "BULLISH FVG",
-          "tone": "up",
-          "at": 18.0,
-          "fs": 26
+          "at": 29.4,
+          "text": "Three candles. Two edges."
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
+      "type": "s8-label-referee",
+      "start": 32,
       "end": 56,
-      "kicker": "An FVG is not automatically",
-      "items": [
-        {
-          "title": "Support",
-          "desc": [
-            "or a target",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "An entry",
-          "desc": [
-            "",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "A Dayli ICC",
-          "desc": [
-            "requirement",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "beats": {
+        "l": [
+          35.6,
+          37.8,
+          39.8,
+          41.8
+        ],
+        "desc": 45.4
+      },
+      "kicker": "Not another rule",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Before your brain makes it <span class=\"mark\">another rule 😂</span>"
+          "at": 32.4,
+          "html": "An FVG is <span class=\"mark\">not automatically…</span>",
+          "out": 45.2
+        },
+        {
+          "at": 45.4,
+          "html": "Spotting it is <span class=\"mark\">market literacy.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "An FVG is not automatically…",
-          "screen": "\"An FVG is not automatically\""
+          "at": 32.4,
+          "text": "Now, before your brain turns this into another entry rule.",
+          "screen": "An FVG on display; a labeller with sticky labels"
+        },
+        {
+          "at": 36.4,
+          "text": "Is it automatically support? No.",
+          "screen": "SUPPORT label: whistled off"
+        },
+        {
+          "at": 38.8,
+          "text": "A target? No.",
+          "screen": "TARGET label: whistled off"
         },
         {
           "at": 40.8,
-          "text": "Support or a target.",
-          "screen": "Support or a target"
+          "text": "An entry? No.",
+          "screen": "ENTRY label: whistled off"
         },
         {
-          "at": 44.2,
-          "text": "An entry.",
-          "screen": "An entry"
+          "at": 42.8,
+          "text": "A Dayli ICC requirement? Definitely not.",
+          "screen": "ICC STEP label: whistled off"
         },
         {
-          "at": 47.6,
-          "text": "Or a Dayli ICC requirement.",
-          "screen": "A Dayli ICC requirement"
+          "at": 45.4,
+          "text": "An FVG describes how price delivered. Spotting one is market literacy.",
+          "screen": "\"a description ✓\""
         },
         {
-          "at": 51.0,
-          "text": "Before your brain turns it into another entry rule."
+          "at": 49.8,
+          "text": "Whether it matters is a separate question."
         }
       ]
     },
     {
       "type": "host-hook",
       "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "end": 66,
+      "pointAt": 58.4,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 57.0,
           "text": "Three candles. Two edges."
         },
         {
-          "at": 58.6,
+          "at": 58.4,
           "html": "<span class=\"mark\">Zero automatic rules.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 56.4,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
@@ -289,30 +192,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 66,
+      "end": 78,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 68.4,
         "text": "Is an FVG automatically a place to enter?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 74.0,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 66.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 68.4,
           "text": "Is an FVG automatically a place to enter?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 74.0,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

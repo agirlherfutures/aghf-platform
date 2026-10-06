@@ -1,6 +1,6 @@
 # Lesson 12 intro: "Market Structure Shift: MSS"
 
-**Length:** 1:25 · **Pace:** relaxed and conversational, about 150 words a minute
+**Length:** 1:22 · **Pace:** relaxed and conversational, about 150 words a minute
 
 **Tip:** Play `p2-lesson-12.mp4` while you record, using the Time column to stay in sync, then lay your audio over it.
 
@@ -8,22 +8,21 @@
 |---|---|---|
 | 0:00 | Aristella waves; title *Market Structure Shift: MSS* | Welcome to Lesson Twelve: Market Structure Shift, or MSS. |
 | 0:04 |  | Price moving down is not the same as structure changing. |
-| 0:08 | Candles build; Supporting HL | Here's a clean bullish structure. The low holding it up is marked. |
-| 0:15 | "MSS? Not yet" | Price starts moving lower. Is that a shift? Not yet. Nothing meaningful broke. |
-| 0:21 | "MSS? Not necessarily" | Now it breaks a tiny internal low. Shift? Not necessarily. The supporting low is still intact. |
-| 0:29 |  | Then price closes through the supporting low. |
-| 0:31 | "POTENTIAL BEARISH MSS" | That's a potential bearish MSS. |
-| 0:34 | "change information" | It's change information: the old structure may no longer be behaving the same way. |
-| 0:44 | "So what is an MSS?" | So what is an MSS, really? |
-| 0:46 | Change information ✓ | It's change information. |
-| 0:49 | Reversal confirmed ✗ | It's not a confirmed reversal. |
-| 0:52 | Enter now ✗ | And it's definitely not an instruction to enter. |
-| 0:57 |  | The word may matters. |
-| 1:02 | Aristella thinks | Dayli says it best. |
-| 1:03 | Aristella points | MSS tells you the old structure may no longer be behaving the same way. It does not mean enter immediately. |
-| 1:12 | "Your mission" | So here's your mission for this lesson. |
-| 1:14 | Mission question | If bullish structure starts moving lower and breaks a small low, has the market structure shifted? |
-| 1:20 | Aristella cheers; "Let's find out →" | Let's find out. |
+| 0:08 | A block tower and a matching chart | Think of bullish structure as a block tower. |
+| 0:11 | "supporting low" | This block is the supporting low. It's holding the whole thing up. |
+| 0:16 | "wobble ≠ shift" | Price starts moving lower. The tower wobbles. Is that a shift? Not yet. |
+| 0:22 | A small block slides out; "still standing ✓" | Now a tiny internal low breaks. Still standing. The supporting low is intact. |
+| 0:28 | The teal block is pulled; the tower leans; "potential MSS" | Then price closes through the supporting low. That's a potential MSS. |
+| 0:35 | A street; the light turns amber | So what is an MSS, really? Think of a traffic light turning amber. |
+| 0:41 | "MSS = change information", "may be transitioning" | It tells you something may be changing. That's change information. |
+| 0:46 | "≠ confirmed reversal" | It's not a confirmed reversal. |
+| 0:49 | The car revs; a crossing guard holds up WAIT | And it's definitely not an instruction to hit the gas and enter. |
+| 0:54 |  | The word may matters. |
+| 0:59 | Aristella thinks | As Dayli says. |
+| 1:00 | Aristella points | MSS tells you the old structure may no longer be behaving the same way. It does not mean enter immediately. |
+| 1:10 | "Your mission" | Here's your mission. |
+| 1:12 | Mission question | If bullish structure starts moving lower and breaks a small low, has the market structure shifted? |
+| 1:18 | Aristella cheers; "Let's find out →" | Let's find out. |
 
 ## Where the words come from
-From Section 2, Lesson 12 ("Market Structure Shift: MSS"): price moving down is not structure changing, breaking a tiny internal low is not necessarily a shift, a close through the relevant supporting swing against the prior progression is a potential MSS, MSS is change information, and Dayli's quote "MSS tells you the old structure may no longer be behaving the same way. It does NOT mean: ENTER IMMEDIATELY."
+From Section 5, Lesson 12 ("Market Structure Shift: MSS"): price moving down is not structure changing, breaking a tiny internal low is not necessarily a shift, a close through the relevant supporting swing against the prior progression is a potential MSS, MSS is change information ("the word may matters"), and Dayli's quote "MSS tells you the old structure may no longer be behaving the same way. It does NOT mean: ENTER IMMEDIATELY."

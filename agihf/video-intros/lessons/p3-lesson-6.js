@@ -1,18 +1,19 @@
 /**
- * Phase 3 · Section 1 · Lesson 6 intro video — "Internal vs External Liquidity"
+ * Phase 3 · Section 7 · Lesson 6 intro video: "Internal vs External Liquidity"
+ * Scenes: host-title, s7-aquarium, s7-quiz-show, host-hook, host-mission (scene art in scenes-s7.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-6",
-  "eyebrow": "Phase 3 · Section 1 · Lesson 6",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 6: the Phase 2 room analogy (doors = external high and low, inside the room = internal), toggling external and internal, and the recurring question “which liquidity?”",
+  "eyebrow": "Phase 3 · Section 7 · Lesson 6",
+  "duration": 84,
+  "sources": "From Section 7, Lesson 6 (\"Internal vs External Liquidity\"): external liquidity sits beyond the range’s external high and low, internal liquidity sits around highs and lows inside the range, and the recurring question \"Define the range first. Then ask: which liquidity?\"",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Understanding Liquidity",
+      "phase": "Section 7: Understanding Liquidity",
       "title": "Internal vs External Liquidity",
       "quote": "Define the range first. Then ask: which liquidity?",
       "lines": [
@@ -22,251 +23,138 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Internal vs External Liquidity*"
         },
         {
-          "at": 4.6,
-          "text": "The room is back."
+          "at": 4.8,
+          "text": "Inside the range, or beyond it?"
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s7-aquarium",
       "start": 8,
-      "end": 38,
-      "seed": 306,
-      "kicker": "Doors and furniture",
-      "swings": [
-        [
-          0,
-          0.5
-        ],
-        [
-          0.1,
-          0.88
-        ],
-        [
-          0.24,
-          0.12
-        ],
-        [
-          0.38,
-          0.6
-        ],
-        [
-          0.5,
-          0.35
-        ],
-        [
-          0.64,
-          0.66
-        ],
-        [
-          0.8,
-          0.45
-        ],
-        [
-          0.92,
-          0.95
-        ]
-      ],
-      "per": [
-        3,
-        4,
-        3,
-        3,
-        3,
-        3,
-        3
-      ],
-      "play": [
-        {
-          "to": 5,
-          "at": 8.6,
-          "dur": 3.2
-        },
-        {
-          "to": 6,
-          "at": 18.0,
-          "dur": 0.8
-        },
-        {
-          "to": 7,
-          "at": 28.5,
-          "dur": 1.0
-        }
-      ],
+      "end": 34,
+      "kicker": "Define the tank",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Define the room <span class=\"mark\">first.</span>",
-          "out": 28.3
+          "out": 22.8,
+          "html": "Define the <span class=\"mark\">range first.</span>"
         },
         {
-          "at": 28.5,
-          "html": "Now that’s <span class=\"mark\">a door.</span>"
+          "at": 23,
+          "html": "Inside or beyond? <span class=\"mark\">Which liquidity?</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "First, define the room: the external high and low are the doors.",
-          "screen": "Doors appear"
+          "text": "Think of the range as a fish tank. First, define its edges.",
+          "screen": "A fish tank; a cat watches"
         },
         {
-          "at": 13.0,
-          "text": "Inside the room are internal highs and lows.",
-          "screen": "\"Internal high\""
+          "at": 12.2,
+          "text": "The top and bottom of the range are the external high and low.",
+          "screen": "EXTERNAL HIGH and EXTERNAL LOW"
         },
         {
-          "at": 18.0,
-          "text": "Price takes this internal high. Which liquidity? Internal.",
-          "screen": "\"internal ✓\""
+          "at": 16.6,
+          "text": "Inside the tank are smaller highs and lows. That’s internal liquidity.",
+          "screen": "Internal high and low lines on the rocks"
         },
         {
-          "at": 23.0,
-          "text": "Still inside the room."
+          "at": 20,
+          "text": "Price takes this internal high. Still inside the tank.",
+          "screen": "The fish noses above the internal high: internal ✓"
         },
         {
-          "at": 28.5,
-          "text": "Now price trades above the external high. That’s external liquidity.",
-          "screen": "\"external ✓\""
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.88,
-          "from": 0.1,
-          "label": "🚪 External high",
-          "tone": "purple",
-          "at": 10.0
+          "at": 24.4,
+          "text": "Now it trades above the external high. That’s external liquidity.",
+          "screen": "The fish leaps out; the cat jumps: external ✓"
         },
         {
-          "v": 0.12,
-          "from": 0.24,
-          "label": "🚪 External low",
-          "tone": "purple",
-          "at": 10.4,
-          "below": true
-        },
-        {
-          "v": 0.6,
-          "from": 0.38,
-          "label": "Internal high",
-          "tone": "gold",
-          "at": 13.0
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.66,
-          "v": 0.74,
-          "text": "internal ✓",
-          "tone": "gold",
-          "at": 18.8,
-          "fs": 26
-        },
-        {
-          "u": 0.92,
-          "v": 1.02,
-          "text": "external ✓",
-          "tone": "purple",
-          "at": 29.6,
-          "fs": 26
+          "at": 30,
+          "text": "Define the range first. Then ask which."
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
+      "type": "s7-quiz-show",
+      "start": 34,
+      "end": 60,
       "kicker": "Which liquidity?",
-      "items": [
-        {
-          "title": "🚪 External",
-          "desc": [
-            "beyond the",
-            "doors"
-          ],
-          "tone": "purple",
-          "at": 40.8
-        },
-        {
-          "title": "🪞 Internal",
-          "desc": [
-            "inside the",
-            "room"
-          ],
-          "tone": "gold",
-          "at": 44.2
-        },
-        {
-          "title": "Define the",
-          "desc": [
-            "range first",
-            ""
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Define the range. <span class=\"mark\">Then ask.</span>"
+          "at": 34.4,
+          "out": 41.8,
+          "html": "Step one: <span class=\"mark\">define the range.</span>"
+        },
+        {
+          "at": 42,
+          "html": "Then ask: <span class=\"mark\">which liquidity?</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "So, which liquidity?",
-          "screen": "\"Which liquidity?\""
+          "at": 34.4,
+          "text": "Let’s play a quick round of Which Liquidity.",
+          "screen": "A game-show stage with a contestant and a host"
         },
         {
-          "at": 40.8,
-          "text": "External sits beyond the doors.",
-          "screen": "🚪 External beyond the doors"
+          "at": 37.2,
+          "text": "Step one, always: define the range.",
+          "screen": "A dashed RANGE box on the big screen"
         },
         {
-          "at": 44.2,
-          "text": "Internal sits inside the room.",
-          "screen": "🪞 Internal inside the room"
+          "at": 42,
+          "text": "Price takes this high inside the range. Which liquidity?",
+          "screen": "Host: \"Which liquidity?\""
         },
         {
-          "at": 47.6,
-          "text": "And you always define the range first.",
-          "screen": "Define the range first"
+          "at": 45.4,
+          "text": "Internal.",
+          "screen": "The contestant buzzes INTERNAL ✓"
         },
         {
-          "at": 51.0,
-          "text": "Define the range. Then ask which liquidity."
+          "at": 47.8,
+          "text": "Now price trades below the range low. Which one?",
+          "screen": "Host: \"And this one?\""
+        },
+        {
+          "at": 51.2,
+          "text": "External. It sits beyond the range.",
+          "screen": "EXTERNAL ✓"
+        },
+        {
+          "at": 54.6,
+          "text": "Define the range first. Then ask: which liquidity?",
+          "screen": "Confetti"
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 60,
+      "end": 71,
+      "pointAt": 63.8,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "Define the range."
+          "at": 61.2,
+          "text": "Define the range first."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">Then ask: which liquidity?</span>"
+          "at": 63.8,
+          "html": "Then ask: <span class=\"mark\">which liquidity?</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
-          "text": "Here’s the big takeaway.",
+          "at": 60.4,
+          "text": "So here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 61.8,
           "text": "Define the range first. Then ask: which liquidity?",
           "screen": "Aristella points"
         }
@@ -274,30 +162,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 71,
+      "end": 84,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 73,
         "text": "If price takes a high, was it internal or external?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 80,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 71.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 73,
           "text": "If price takes a high, was it internal or external?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 80,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

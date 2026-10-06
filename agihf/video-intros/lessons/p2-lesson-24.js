@@ -1,408 +1,156 @@
 /**
- * Phase 2 · Section 3 · Lesson 24 intro video — "Why the Level’s Name Matters Less Than Its Context"
+ * Phase 2 · Section 6 · Lesson 24 intro video: "Why the Level’s Name Matters Less Than Its Context"
+ * Scenes: s6-name-party, s6-sticker-storm (see scenes-s6.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p2-lesson-24",
-  "eyebrow": "Phase 2 · Section 3 · Lesson 24",
-  "duration": 88,
-  "sources": "From Section 3, Lesson 24 (\"Why the Level’s Name Matters Less Than Its Context\"): one area with four labels (support, demand, previous swing low, discount), different frameworks naming overlapping areas, don’t collect confluence, more markings ≠ more understanding, context > label, and knowing a concept ≠ trading the concept.",
+  "eyebrow": "Phase 2 · Section 6 · Lesson 24",
+  "duration": 84,
+  "sources": "From Section 6, Lesson 24 (\"Why the Level’s Name Matters Less Than Its Context\"): one area called support, demand, previous swing low and discount by different traders, \"different frameworks may use different terminology around overlapping price areas,\" the question \"why does this area matter to the structure you’re reading?\", the confluence pile-up (support, demand, FVG, fibs, previous low, order block, trendline) that adds no understanding, market literacy versus entry criteria (\"knowing a concept ≠ trading it\"), and \"Context > label.\" Next: Phase 3, Section 7: Understanding Liquidity.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 3: Reading Key Levels",
+      "phase": "Section 6: Reading Key Levels",
       "title": "Why the Level’s Name Matters Less Than Its Context",
       "quote": "Context > label.",
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Lesson Twenty-Four, the last lesson of Reading Key Levels.",
+          "text": "Welcome to Lesson Twenty-Four: Why the Level’s Name Matters Less Than Its Context.",
           "screen": "Aristella waves; title *Why the Level’s Name Matters Less Than Its Context*"
         },
         {
-          "at": 4.6,
-          "text": "What’s in a name?"
+          "at": 5.2,
+          "text": "The last lesson of Phase Two."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s6-name-party",
       "start": 8,
-      "end": 31,
-      "seed": 24,
+      "end": 33,
       "kicker": "One area",
-      "swings": [
-        [
-          0,
-          0.1
-        ],
-        [
-          0.14,
-          0.55
-        ],
-        [
-          0.24,
-          0.32
-        ],
-        [
-          0.4,
-          0.78
-        ],
-        [
-          0.52,
-          0.45
-        ],
-        [
-          0.66,
-          0.95
-        ],
-        [
-          0.8,
-          0.66
-        ]
-      ],
-      "per": [
-        4,
-        3,
-        4,
-        3,
-        4,
-        3
-      ],
-      "play": [
-        {
-          "to": 6,
-          "at": 8.6,
-          "dur": 3.0
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.4,
-          "v2": 0.5,
-          "from": 0.52,
-          "tone": "purple",
-          "at": 10.0
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.95,
-          "v": 0.32,
-          "text": "Support",
-          "tone": "up",
-          "at": 11.8,
-          "fs": 26
-        },
-        {
-          "u": 0.95,
-          "v": 0.22,
-          "text": "Demand",
-          "tone": "gold",
-          "at": 13.4,
-          "fs": 26
-        },
-        {
-          "u": 0.95,
-          "v": 0.12,
-          "text": "Previous swing low",
-          "tone": "purple",
-          "at": 15.2,
-          "fs": 26
-        },
-        {
-          "u": 0.95,
-          "v": 0.02,
-          "text": "Discount",
-          "tone": "down",
-          "at": 17.0,
-          "fs": 26
-        }
-      ],
       "headlines": [
         {
           "at": 8.4,
-          "html": "One area. <span class=\"mark\">Four names.</span>",
-          "out": 19.8
+          "html": "Different traders. <span class=\"mark\">Different names.</span>",
+          "out": 22
         },
         {
-          "at": 20.0,
-          "html": "Four different <span class=\"mark\">areas?</span>"
+          "at": 22.2,
+          "html": "Same area. <span class=\"mark\">What’s its job?</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "One area on the chart.",
-          "screen": "A zone appears"
+          "text": "One area on the chart. Now meet the guests.",
+          "screen": "A friendly zone character at a party"
         },
         {
-          "at": 11.6,
-          "text": "One trader calls it support. Another, demand.",
-          "screen": "\"Support\", \"Demand\""
+          "at": 12,
+          "text": "One trader calls it support. Another calls it demand.",
+          "screen": "\"Support!\" \"Demand!\" name tags fly on"
         },
         {
-          "at": 15.2,
-          "text": "Someone else says previous swing low. Another says discount.",
-          "screen": "\"Previous swing low\", \"Discount\""
+          "at": 15.6,
+          "text": "Someone says previous swing low. Someone else says discount.",
+          "screen": "\"Previous low!\" \"Discount!\""
         },
         {
-          "at": 20.0,
-          "text": "Are these four different areas? Not necessarily."
+          "at": 19.2,
+          "text": "Are these four different areas? Not necessarily.",
+          "screen": "The zone looks puzzled"
         },
         {
-          "at": 24.0,
-          "text": "Different frameworks can use different names for the same price area."
+          "at": 22.2,
+          "text": "Different frameworks can use different names for the same price area.",
+          "screen": "Everyone points: \"same price area\""
+        },
+        {
+          "at": 26.6,
+          "text": "What matters is why this area matters to the structure you’re reading.",
+          "screen": "\"why does it matter to the structure?\""
         }
       ]
     },
     {
-      "type": "break-chart",
-      "start": 31,
-      "end": 53,
-      "seed": 24,
+      "type": "s6-sticker-storm",
+      "start": 33,
+      "end": 60,
       "kicker": "Don’t collect confluence",
-      "swings": [
-        [
-          0,
-          0.1
-        ],
-        [
-          0.14,
-          0.55
-        ],
-        [
-          0.24,
-          0.32
-        ],
-        [
-          0.4,
-          0.78
-        ],
-        [
-          0.52,
-          0.45
-        ],
-        [
-          0.66,
-          0.95
-        ],
-        [
-          0.8,
-          0.66
-        ]
-      ],
-      "per": [
-        4,
-        3,
-        4,
-        3,
-        4,
-        3
-      ],
-      "play": [
-        {
-          "to": 6,
-          "at": 31.4,
-          "dur": 1.6
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.45,
-          "from": 0.52,
-          "label": "Support",
-          "tone": "up",
-          "at": 33.0,
-          "out": 45.6
-        },
-        {
-          "v": 0.38,
-          "v2": 0.5,
-          "from": 0.5,
-          "label": "Demand",
-          "tone": "gold",
-          "at": 34.0,
-          "out": 45.6,
-          "below": true
-        },
-        {
-          "v": 0.7,
-          "v2": 0.78,
-          "from": 0.3,
-          "to": 0.55,
-          "label": "FVG",
-          "tone": "purple",
-          "at": 35.0,
-          "out": 45.6
-        },
-        {
-          "v": 0.6,
-          "from": 0.3,
-          "label": "Fib 0.5",
-          "tone": "muted",
-          "at": 36.0,
-          "out": 45.6,
-          "fs": 24
-        },
-        {
-          "v": 0.66,
-          "from": 0.3,
-          "label": "Fib 0.618",
-          "tone": "muted",
-          "at": 36.3,
-          "out": 45.6,
-          "fs": 24
-        },
-        {
-          "v": 0.3,
-          "from": 0.2,
-          "label": "Previous low",
-          "tone": "purple",
-          "at": 37.0,
-          "out": 45.6,
-          "below": true
-        },
-        {
-          "v": 0.52,
-          "v2": 0.58,
-          "from": 0.2,
-          "to": 0.5,
-          "label": "Order block",
-          "tone": "down",
-          "at": 38.0,
-          "out": 45.6
-        },
-        {
-          "v": 0.45,
-          "from": 0.52,
-          "label": "Supporting HL · the structural reason",
-          "tone": "up",
-          "at": 46.0,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.3,
-          "v": 1.03,
-          "text": "MORE MARKINGS ≠ MORE UNDERSTANDING",
-          "tone": "purple",
-          "at": 47.5,
-          "fs": 26
-        }
-      ],
       "headlines": [
         {
-          "at": 31.2,
-          "html": "Keep adding <span class=\"mark\">labels…</span>",
-          "out": 45.8
+          "at": 33.4,
+          "html": "Keep adding labels<span class=\"mark\">…</span>",
+          "out": 48.8
         },
         {
-          "at": 46.0,
-          "html": "Back to <span class=\"mark\">the structure.</span>"
-        }
-      ],
-      "lines": [
-        {
-          "at": 31.4,
-          "text": "Now watch what happens when we keep adding labels.",
-          "screen": "A clean chart"
-        },
-        {
-          "at": 33.0,
-          "text": "Support. Demand. An FVG. Fib levels. A previous low. An order block.",
-          "screen": "Labels pile up"
-        },
-        {
-          "at": 40.6,
-          "text": "Did all of that make the analysis better? No."
-        },
-        {
-          "at": 46.0,
-          "text": "Back to what matters: why does this area matter to the structure?",
-          "screen": "\"MORE MARKINGS ≠ MORE UNDERSTANDING\""
-        }
-      ]
-    },
-    {
-      "type": "cards",
-      "start": 53,
-      "end": 68,
-      "kicker": "Academy concept",
-      "items": [
-        {
-          "title": "Knowing",
-          "desc": [
-            "a concept"
-          ],
-          "tone": "up",
-          "at": 55.0
-        },
-        {
-          "title": "Trading",
-          "desc": [
-            "the concept"
-          ],
-          "tone": "gold",
-          "at": 57.0
-        }
-      ],
-      "headlines": [
-        {
-          "at": 59.4,
-          "html": "Knowing <span class=\"mark\">≠ trading.</span>"
-        }
-      ],
-      "lines": [
-        {
-          "at": 53.4,
-          "text": "And one more thing.",
-          "screen": "\"Academy concept\""
-        },
-        {
-          "at": 55.0,
-          "text": "Knowing a concept",
-          "screen": "Knowing"
-        },
-        {
-          "at": 57.0,
-          "text": "isn’t the same as trading it.",
-          "screen": "Trading"
-        },
-        {
-          "at": 60.0,
-          "text": "The Academy teaches market literacy. Dayli ICC defines the entry model."
-        }
-      ]
-    },
-    {
-      "type": "host-hook",
-      "start": 68,
-      "end": 76,
-      "pointAt": 70.2,
-      "size": 64,
-      "kicker": "Dayli says",
-      "parts": [
-        {
-          "at": 69.0,
-          "text": "Context > label."
-        },
-        {
-          "at": 70.2,
+          "at": 49,
           "html": "More markings <span class=\"mark\">≠ more understanding.</span>"
         }
       ],
       "lines": [
         {
-          "at": 68.4,
-          "text": "So remember.",
+          "at": 33.4,
+          "text": "Now watch what happens when we keep adding labels.",
+          "screen": "A clean chart on an easel"
+        },
+        {
+          "at": 37,
+          "text": "Support. Demand. An FVG. Three fib levels.",
+          "screen": "Stickers fly onto the chart"
+        },
+        {
+          "at": 39.8,
+          "text": "A previous low. An order block. A trendline.",
+          "screen": "The chart gets buried; the cat gets dizzy"
+        },
+        {
+          "at": 43.2,
+          "text": "Did all of that make the analysis better? No. You can’t even see the structure.",
+          "screen": "\"structure?\""
+        },
+        {
+          "at": 49,
+          "text": "Clear it away, and come back to the reason this area matters.",
+          "screen": "A fan blows the stickers away; \"supporting HL · the structural reason\""
+        },
+        {
+          "at": 53.8,
+          "text": "And remember: knowing a concept isn’t the same as trading it.",
+          "screen": "\"knowing a concept ≠ trading it\""
+        }
+      ]
+    },
+    {
+      "type": "host-hook",
+      "start": 60,
+      "end": 70,
+      "pointAt": 63.4,
+      "size": 66,
+      "kicker": "Dayli says",
+      "parts": [
+        {
+          "at": 61,
+          "text": "Context over label."
+        },
+        {
+          "at": 63.4,
+          "html": "<span class=\"mark\">More markings ≠ more understanding.</span>"
+        }
+      ],
+      "lines": [
+        {
+          "at": 60.4,
+          "text": "So here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 69.2,
+          "at": 62.2,
           "text": "Context over label. More markings don’t mean more understanding.",
           "screen": "Aristella points"
         }
@@ -410,31 +158,31 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 76,
-      "end": 88,
+      "start": 70,
+      "end": 84,
       "kicker": "Your mission",
       "question": {
-        "at": 78,
+        "at": 72.2,
         "text": "Support, demand, previous low, discount. Four different levels?"
       },
       "cta": {
-        "at": 83.5,
+        "at": 76.8,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 76.4,
+          "at": 70.4,
           "text": "So here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 78,
+          "at": 72.2,
           "text": "Support, demand, previous low, discount. Four different levels?",
           "screen": "Mission question"
         },
         {
-          "at": 83.5,
-          "text": "Let’s find out.",
+          "at": 76.8,
+          "text": "Let’s find out. And then, Phase Three begins with Understanding Liquidity.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }
       ]

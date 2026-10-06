@@ -1,18 +1,19 @@
 /**
- * Phase 3 · Section 1 · Lesson 7 intro video — "Liquidity Sweeps"
+ * Phase 3 · Section 7 · Lesson 7 intro video: "Liquidity Sweeps"
+ * Scenes: host-title, s7-instant-replay, s7-tidy-up, host-hook, host-mission (scene art in scenes-s7.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-7",
-  "eyebrow": "Phase 3 · Section 1 · Lesson 7",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 7: previous high 20,000, price trades to 20,008 then closes at 19,992, sweep-like behavior named only after the observation, and dismissing reversal, MSS, Dayli ICC entry, entering, and unproven manipulation.",
+  "eyebrow": "Phase 3 · Section 7 · Lesson 7",
+  "duration": 84,
+  "sources": "From Section 7, Lesson 7 (\"Liquidity Sweeps\"): previous high 20,000, price trades to 20,008, the next candle closes at 19,992, describe what price did before you name it (sweep-like behavior), and a sweep is not a reversal, not an MSS, not an entry and not proof of manipulation (\"Sweep = context. Not entry.\").",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Understanding Liquidity",
+      "phase": "Section 7: Understanding Liquidity",
       "title": "Liquidity Sweeps",
       "quote": "Sweep = context. Not entry.",
       "lines": [
@@ -22,236 +23,139 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Liquidity Sweeps*"
         },
         {
-          "at": 4.6,
+          "at": 4.8,
           "text": "Watch first. Name it second."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s7-instant-replay",
       "start": 8,
-      "end": 38,
-      "seed": 307,
-      "kicker": "What happened?",
-      "swings": [
-        [
-          0,
-          0.2
-        ],
-        [
-          0.25,
-          0.72
-        ],
-        [
-          0.45,
-          0.4
-        ],
-        [
-          0.7,
-          0.66
-        ]
-      ],
-      "per": [
-        6,
-        5,
-        6
-      ],
-      "play": [
-        {
-          "to": 3,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 34,
+      "kicker": "Instant replay",
       "headlines": [
         {
           "at": 8.4,
-          "html": "What <span class=\"mark\">happened?</span>",
-          "out": 28.3
+          "out": 25.8,
+          "html": "What <span class=\"mark\">happened?</span>"
         },
         {
-          "at": 28.5,
-          "html": "Now <span class=\"mark\">name it.</span>"
+          "at": 26,
+          "html": "Describe first. <span class=\"mark\">Name it second.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Previous high: twenty thousand. Price is at nineteen nine ninety.",
-          "screen": "Candles build"
+          "text": "Let’s watch the replay. Previous high: twenty thousand. Price is at nineteen nine ninety.",
+          "screen": "A TV replay; a commentator and a parrot at the desk"
         },
         {
-          "at": 13.0,
+          "at": 14,
           "text": "Price trades up to twenty thousand and eight.",
-          "screen": "\"20,008\""
+          "screen": "A candle wicks to 20,008"
         },
         {
-          "at": 18.0,
-          "text": "Next candle closes at nineteen nine ninety-two.",
-          "screen": "\"19,992\""
+          "at": 18,
+          "text": "The next candle closes at nineteen nine ninety-two.",
+          "screen": "19,992"
         },
         {
-          "at": 23.0,
-          "text": "It traded above the high and failed to hold."
+          "at": 22,
+          "text": "So describe it first. It traded above the high and failed to hold.",
+          "screen": "\"Traded above. Failed to hold.\""
         },
         {
-          "at": 28.5,
-          "text": "Only now do we name it: sweep-like behavior. Description first, label second.",
-          "screen": "\"SWEEP-LIKE BEHAVIOR\""
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.72,
-          "from": 0.25,
-          "label": "Previous high · 20,000",
-          "tone": "purple",
-          "at": 10.0
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.75,
-          "v": 0.9,
-          "text": "20,008",
-          "tone": "gold",
-          "at": 13.4,
-          "fs": 26
+          "at": 27.4,
+          "text": "Only now do we name it: sweep-like behavior.",
+          "screen": "Stamp: SWEEP-LIKE; the parrot repeats it"
         },
         {
-          "u": 0.86,
-          "v": 0.52,
-          "text": "19,992",
-          "tone": "purple",
-          "at": 18.4,
-          "fs": 26
-        },
-        {
-          "u": 0.45,
-          "v": 1.02,
-          "text": "SWEEP-LIKE BEHAVIOR",
-          "tone": "purple",
-          "at": 28.5,
-          "fs": 26
-        }
-      ],
-      "extra": [
-        {
-          "u": 0.75,
-          "o": 0.66,
-          "c": 0.69,
-          "hi": 0.8,
-          "lo": 0.64,
-          "at": 13.0
-        },
-        {
-          "u": 0.8,
-          "o": 0.69,
-          "c": 0.62,
-          "hi": 0.7,
-          "lo": 0.6,
-          "at": 18.0
+          "at": 31,
+          "text": "Description first. Label second.",
+          "screen": "\"describe first · name second\""
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Dismiss the assumptions",
-      "items": [
-        {
-          "title": "Reversal?",
-          "desc": [
-            "not proven",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "MSS?",
-          "desc": [
-            "a structure",
-            "question"
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "Entry?",
-          "desc": [
-            "context is",
-            "not a trade"
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s7-tidy-up",
+      "start": 34,
+      "end": 60,
+      "kicker": "Tidy up the assumptions",
       "headlines": [
         {
-          "at": 51.0,
+          "at": 34.4,
+          "out": 53.8,
+          "html": "Dismiss <span class=\"mark\">each assumption.</span>"
+        },
+        {
+          "at": 54,
           "html": "Sweep = context. <span class=\"mark\">Not entry.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Now dismiss the assumptions.",
-          "screen": "\"Dismiss the assumptions\""
+          "at": 34.4,
+          "text": "Now watch what people pile onto a sweep.",
+          "screen": "Someone tosses labels onto the floor"
         },
         {
-          "at": 40.8,
+          "at": 37.4,
+          "text": "Time to tidy up.",
+          "screen": "A robot janitor rolls in with a broom"
+        },
+        {
+          "at": 39.8,
           "text": "Is it a reversal? Not proven.",
-          "screen": "Reversal? not proven"
+          "screen": "REVERSAL swept into the bin"
         },
         {
-          "at": 44.2,
+          "at": 43.3,
           "text": "Is it an MSS? That’s a structure question.",
-          "screen": "MSS? a structure question"
+          "screen": "MSS swept away"
         },
         {
-          "at": 47.6,
+          "at": 46.8,
           "text": "Is it an entry? No.",
-          "screen": "Entry? context is not a trade"
+          "screen": "ENTRY swept away"
         },
         {
-          "at": 51.0,
-          "text": "A sweep is context. Not an entry."
+          "at": 50.3,
+          "text": "Is it manipulation? Not proven either.",
+          "screen": "MANIPULATION swept away"
+        },
+        {
+          "at": 54,
+          "text": "What’s left? Context. A sweep is context, not an entry.",
+          "screen": "CONTEXT ✓ on a pedestal"
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 60,
+      "end": 71,
+      "pointAt": 63.8,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "Sweep = context."
+          "at": 61.2,
+          "text": "A sweep is context."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">Not entry.</span>"
+          "at": 63.8,
+          "html": "<span class=\"mark\">Not an entry.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
-          "text": "Here’s the big takeaway.",
+          "at": 60.4,
+          "text": "So here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 61.8,
           "text": "A sweep is context. Not an entry.",
           "screen": "Aristella points"
         }
@@ -259,30 +163,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 71,
+      "end": 84,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 73,
         "text": "If price sweeps a high, is that an entry?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 80,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 71.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 73,
           "text": "If price sweeps a high, is that an entry?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 80,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

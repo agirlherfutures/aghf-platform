@@ -1,18 +1,19 @@
 /**
- * Phase 3 · Section 3 · Lesson 25 intro video — "What Price Cannot Prove"
+ * Phase 3 · Section 9 · Lesson 25 intro video: "What Price Cannot Prove"
+ * Scenes: s9-courtroom, s9-cloud-house (see scenes-s9.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-25",
-  "eyebrow": "Phase 3 · Section 3 · Lesson 25",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 25: catch the story (observation, interpretation, unsupported claim), the story detector and “make it objective,” prove it (yes, no, not enough info) with “what can we say instead?”",
+  "eyebrow": "Phase 3 · Section 9 · Lesson 25",
+  "duration": 81,
+  "sources": "From Phase 3, Section 9, Lesson 25 (\"What Price Cannot Prove\"): the prior-low sweep replay (the observation is the dip below and close back above; the chart can’t prove manipulation, who or why), and the three-way sort: observation, interpretation, unsupported claim.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 3: Understanding Market Participation",
+      "phase": "Section 9: Understanding Market Participation",
       "title": "What Price Cannot Prove",
       "quote": "If you can’t prove the story, don’t build your trade around it.",
       "lines": [
@@ -22,233 +23,129 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *What Price Cannot Prove*"
         },
         {
-          "at": 4.6,
-          "text": "Catch the story."
+          "at": 4.4,
+          "text": "Evidence first. Stories second."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s9-courtroom",
       "start": 8,
-      "end": 38,
-      "seed": 325,
-      "kicker": "Story detector 🚨",
-      "swings": [
-        [
-          0,
-          0.3
-        ],
-        [
-          0.2,
-          0.68
-        ],
-        [
-          0.34,
-          0.45
-        ],
-        [
-          0.5,
-          0.7
-        ],
-        [
-          0.58,
-          0.8
-        ],
-        [
-          0.66,
-          0.6
-        ],
-        [
-          0.84,
-          0.35
-        ]
-      ],
-      "per": [
-        4,
-        3,
-        3,
-        1,
-        2,
-        4
-      ],
-      "play": [
-        {
-          "to": 6,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 34,
+      "kicker": "Can the chart prove it?",
       "headlines": [
         {
           "at": 8.4,
-          "html": "What really <span class=\"mark\">happened?</span>",
-          "out": 28.3
+          "html": "Exhibit A: <span class=\"mark\">a prior low.</span>",
+          "out": 17.8
         },
         {
-          "at": 28.5,
-          "html": "Prove it, <span class=\"mark\">or drop it.</span>"
+          "at": 18,
+          "html": "Can the chart prove <span class=\"mark\">manipulation?</span>",
+          "out": 26.8
+        },
+        {
+          "at": 27,
+          "html": "The sweep is observed. <span class=\"mark\">Intent isn’t.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Price closed above the range high, then fell back.",
-          "screen": "Candles build"
+          "text": "Order in the court. Exhibit A: a prior low everyone can see.",
+          "screen": "Owl judge, an easel with a chart"
         },
         {
-          "at": 14.0,
-          "text": "Someone says: they trapped the longs!",
-          "screen": "Story pill"
+          "at": 13.2,
+          "text": "Price dipped below it, then closed back above and rallied. That’s the observation.",
+          "screen": "\"dipped below, closed back above\""
         },
         {
-          "at": 18.0,
-          "text": "Can the chart prove who, or why? No."
+          "at": 18.4,
+          "text": "Then comes the story. Someone hunted the stops! Manipulation!",
+          "screen": "Prosecutor: \"Stop hunt!\" \"Manipulation!\""
         },
         {
-          "at": 23.0,
-          "text": "Make it objective: price closed above, then closed back below.",
-          "screen": "Objective pill"
+          "at": 22.2,
+          "text": "The judge asks: can this chart prove who did it, or why?",
+          "screen": "The owl tilts its head"
         },
         {
-          "at": 28.5,
-          "text": "Sort every statement: observation, interpretation, or unsupported claim."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.7,
-          "from": 0.2,
-          "label": "Range high",
-          "tone": "purple",
-          "at": 10.0
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.6,
-          "v": 0.95,
-          "text": "🚨 “They trapped the longs!”",
-          "tone": "down",
-          "at": 14.0,
-          "fs": 26,
-          "out": 22.6
-        },
-        {
-          "u": 0.6,
-          "v": 0.95,
-          "text": "closed above, then back below",
-          "tone": "up",
-          "at": 23.0,
-          "fs": 26
-        },
-        {
-          "u": 0.3,
-          "v": 0.2,
-          "text": "observation · interpretation · claim",
-          "tone": "purple",
-          "at": 28.5,
-          "fs": 26
+          "at": 27,
+          "text": "No. The sweep is observed. The intent is not on the chart.",
+          "screen": "Gavel; OBSERVED: the sweep / NOT ON THE CHART: intent"
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Catch the story",
-      "items": [
-        {
-          "title": "Observation",
-          "desc": [
-            "you can",
-            "point at it"
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "Interpretation",
-          "desc": [
-            "a hedged",
-            "read"
-          ],
-          "tone": "purple",
-          "mark": "yes",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "Unsupported",
-          "desc": [
-            "claim",
-            "who, why, next"
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s9-cloud-house",
+      "start": 34,
+      "end": 59,
+      "kicker": "Three kinds of statements",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Can’t prove the story? <span class=\"mark\">Don’t trade it.</span>"
+          "at": 34.4,
+          "html": "Observation. Interpretation. <span class=\"mark\">Claim.</span>",
+          "out": 51.6
+        },
+        {
+          "at": 51.8,
+          "html": "Can’t prove it? <span class=\"mark\">Don’t build on it.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
+          "at": 34.4,
           "text": "Three kinds of statements.",
-          "screen": "\"Catch the story\""
+          "screen": "Two builders; a rock and a cloud"
         },
         {
-          "at": 40.8,
-          "text": "Observation: you can point at it.",
-          "screen": "Observation you can point at it"
+          "at": 36.2,
+          "text": "An observation is something you can point at, like a close. Solid rock.",
+          "screen": "Foundation blocks land on the rock: OBSERVATION"
         },
         {
-          "at": 44.2,
-          "text": "Interpretation: a hedged read.",
-          "screen": "Interpretation a hedged read"
+          "at": 41.4,
+          "text": "An interpretation is a hedged read of that evidence: sellers appear more aggressive.",
+          "screen": "Walls and roof: INTERPRETATION"
         },
         {
-          "at": 47.6,
-          "text": "Unsupported claim: who, why, or what’s next.",
-          "screen": "Unsupported claim who, why, next"
+          "at": 46.6,
+          "text": "An unsupported claim names who, why, or what will happen. That’s a cloud.",
+          "screen": "A house on a cloud: UNSUPPORTED CLAIM"
         },
         {
-          "at": 51.0,
-          "text": "If you can’t prove the story, don’t trade it."
+          "at": 51.8,
+          "text": "If you can’t prove the story, don’t build your trade around it.",
+          "screen": "The cloud dissolves; the house crashes"
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 59,
+      "end": 69,
+      "pointAt": 61.6,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 60.6,
           "text": "If you can’t prove the story,"
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">don’t build a trade on it.</span>"
+          "at": 61.6,
+          "html": "<span class=\"mark\">don’t build your trade around it.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 59.4,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 60.8,
           "text": "If you can’t prove the story, don’t build your trade around it.",
           "screen": "Aristella points"
         }
@@ -256,30 +153,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 69,
+      "end": 81,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 71.6,
         "text": "Can a chart prove manipulation?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 77.4,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 69.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 71.6,
           "text": "Can a chart prove manipulation?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 77.4,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

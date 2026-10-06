@@ -1,18 +1,18 @@
 /**
- * Phase 3 · Section 2 · Lesson 12 intro video — "What Is Imbalance?"
+ * Phase 3 · Section 8 · Lesson 12 intro video: "What Is Imbalance?"
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-12",
-  "eyebrow": "Phase 3 · Section 2 · Lesson 12",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 12: the show-overlap overlay, imbalance as an area where price moved with little two-sided trading, imbalance is not the same as an FVG, and the “price must return here” myth.",
+  "eyebrow": "Phase 3 · Section 8 · Lesson 12",
+  "duration": 78,
+  "sources": "From Phase 3, Section 8, Lesson 12 (\"What Is Imbalance?\"): overlap vs little overlap between neighboring candles, imbalance as price moving with little two-sided trading, \"Imbalance ≠ FVG\" (an FVG is one specific three-candle measurement of imbalance), and the myth stamp: price may revisit an imbalance, it never has to.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 2: Gaps, Imbalances & Price Delivery",
+      "phase": "Section 8: Gaps, Imbalances & Price Delivery",
       "title": "What Is Imbalance?",
       "quote": "Imbalance ≠ FVG. And price doesn’t have to return.",
       "lines": [
@@ -22,205 +22,115 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *What Is Imbalance?*"
         },
         {
-          "at": 4.6,
-          "text": "Where did both sides trade?"
+          "at": 4.0,
+          "text": "Imbalance is not an FVG. And price doesn’t have to return."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s8-tennis-rally",
       "start": 8,
-      "end": 38,
-      "seed": 312,
-      "kicker": "Show overlap",
-      "swings": [
-        [
-          0,
-          0.15
-        ],
-        [
-          0.12,
-          0.25
-        ],
-        [
-          0.2,
-          0.2
-        ],
-        [
-          0.32,
-          0.3
-        ],
-        [
-          0.4,
-          0.26
-        ],
-        [
-          0.5,
-          0.32
-        ],
-        [
-          0.62,
-          0.82
-        ],
-        [
-          0.75,
-          0.76
-        ],
-        [
-          0.9,
-          0.8
-        ]
-      ],
-      "per": [
-        2,
-        2,
-        2,
-        2,
-        2,
-        3,
-        2,
-        2
-      ],
-      "play": [
-        {
-          "to": 8,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 32,
+      "beats": {
+        "rally": 9.0,
+        "smash": 19.4,
+        "imb": 25.4
+      },
+      "kicker": "Tennis, anyone?",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Where did both <span class=\"mark\">sides trade?</span>",
-          "out": 28.3
+          "html": "Where did <span class=\"mark\">both sides</span> trade?",
+          "out": 25.2
         },
         {
-          "at": 28.5,
-          "html": "Imbalance <span class=\"mark\">isn’t a promise.</span>"
+          "at": 25.4,
+          "html": "Little two-sided trading: <span class=\"mark\">imbalance.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Look at how neighboring candles overlap.",
-          "screen": "Candles build"
+          "text": "Think of trading like a tennis rally.",
+          "screen": "Two players on a tennis court"
         },
         {
-          "at": 13.0,
-          "text": "On the left, they share lots of prices. Both sides traded.",
-          "screen": "\"Lots of overlap\""
+          "at": 11.0,
+          "text": "The ball goes back and forth. Both sides are trading.",
+          "screen": "The ball rallies; \"both sides trading\""
         },
         {
-          "at": 18.0,
-          "text": "Then the fast move: neighbors barely share any prices.",
-          "screen": "\"Imbalanced-looking\""
+          "at": 14.8,
+          "text": "On the chart, neighboring candles overlap. They share lots of prices.",
+          "screen": "Small overlapping candles print with each hit"
         },
         {
-          "at": 23.0,
-          "text": "That’s imbalance: little two-sided trading."
+          "at": 19.4,
+          "text": "Then one side smashes it. Nobody hits back.",
+          "screen": "Smash; the other player misses; the dog chases the ball"
         },
         {
-          "at": 28.5,
-          "text": "Does price have to come back to it? That’s a myth. It may. It never has to.",
-          "screen": "\"MYTH\""
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.15,
-          "from": 0.0,
-          "label": "Lots of overlap",
-          "tone": "purple",
-          "at": 13.0,
-          "v2": 0.34,
-          "out": 22.6,
-          "below": true
+          "at": 22.6,
+          "text": "Big candles, barely sharing any prices.",
+          "screen": "\"one side only\""
         },
         {
-          "v": 0.34,
-          "from": 0.5,
-          "label": "Imbalanced-looking",
-          "tone": "gold",
-          "at": 18.0,
-          "v2": 0.8
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.75,
-          "v": 0.55,
-          "text": "PRICE MUST RETURN? MYTH",
-          "tone": "down",
-          "at": 28.5,
-          "fs": 26
+          "at": 25.4,
+          "text": "That’s imbalance: price moved with little two-sided trading.",
+          "screen": "\"little two-sided trading = IMBALANCE\""
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
+      "type": "s8-measure-parrot",
+      "start": 32,
       "end": 56,
+      "beats": {
+        "cloud": 35.0,
+        "fvg": 39.8,
+        "myth": 44.4,
+        "stamp": 47.8
+      },
       "kicker": "Two words",
-      "items": [
-        {
-          "title": "Imbalance",
-          "desc": [
-            "little two-sided",
-            "trading"
-          ],
-          "tone": "gold",
-          "at": 40.8
-        },
-        {
-          "title": "FVG",
-          "desc": [
-            "one 3-candle",
-            "measurement"
-          ],
-          "tone": "purple",
-          "at": 44.2
-        },
-        {
-          "title": "“Price must",
-          "desc": [
-            "return here”",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Imbalance ≠ FVG. <span class=\"mark\">No must-return.</span>"
+          "at": 32.4,
+          "html": "Imbalance <span class=\"mark\">≠</span> FVG.",
+          "out": 44.2
+        },
+        {
+          "at": 44.4,
+          "html": "Price must return? <span class=\"mark\">Myth.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Two words, two meanings.",
-          "screen": "\"Two words\""
+          "at": 32.4,
+          "text": "Two words that get mixed up.",
+          "screen": "A chart with a fast move"
         },
         {
-          "at": 40.8,
-          "text": "Imbalance: little two-sided trading.",
-          "screen": "Imbalance little two-sided trading"
+          "at": 35.0,
+          "text": "Imbalance is the big idea: a fast move with little two-sided trading.",
+          "screen": "\"IMBALANCE: the big idea\""
         },
         {
-          "at": 44.2,
-          "text": "An FVG: one specific three-candle measurement.",
-          "screen": "FVG one 3-candle measurement"
+          "at": 39.8,
+          "text": "A fair value gap is one specific three-candle measurement inside it.",
+          "screen": "A carpenter measures; \"FVG: one measurement\""
         },
         {
-          "at": 47.6,
-          "text": "Price must return here? No.",
-          "screen": "Price must return here"
+          "at": 44.4,
+          "text": "And this parrot keeps squawking: price must return here!",
+          "screen": "Parrot: \"MUST RETURN!\""
         },
         {
-          "at": 51.0,
+          "at": 47.8,
+          "text": "Myth. Price may revisit an imbalance. It never has to.",
+          "screen": "MYTH stamp; \"may revisit, never has to\""
+        },
+        {
+          "at": 51.8,
           "text": "Imbalance isn’t an FVG. And nothing has to return."
         }
       ]
@@ -228,23 +138,23 @@ window.LESSON_VIDEO = {
     {
       "type": "host-hook",
       "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "end": 66,
+      "pointAt": 58.4,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 57.0,
           "text": "Imbalance ≠ FVG."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">No must-return.</span>"
+          "at": 58.4,
+          "html": "And price <span class=\"mark\">doesn’t have to return.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 56.4,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
@@ -257,30 +167,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 66,
+      "end": 78,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 68.4,
         "text": "Does price have to come back to an imbalance?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 74.0,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 66.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 68.4,
           "text": "Does price have to come back to an imbalance?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 74.0,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

@@ -1,18 +1,19 @@
 /**
- * Phase 3 · Section 1 · Lesson 9 intro video — "Liquidity in the Dayli ICC Framework"
+ * Phase 3 · Section 7 · Lesson 9 intro video: "Liquidity in the Dayli ICC Framework"
+ * Scenes: host-title, s7-tower-sandwich, s7-shelf-or-panel, host-hook, host-mission (scene art in scenes-s7.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-9",
-  "eyebrow": "Phase 3 · Section 1 · Lesson 9",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 9: the overloaded joke checklist, market literacy vs entry criteria (PIL, indication, correction, continuation, retest, entry), and liquidity is not a required Dayli ICC entry condition.",
+  "eyebrow": "Phase 3 · Section 7 · Lesson 9",
+  "duration": 84,
+  "sources": "From Section 7, Lesson 9 (\"Liquidity in the Dayli ICC Framework\"): the overloaded joke checklist (liquidity sweep, equal highs taken, session high taken, internal AND external, stops cleared, three confirmations, moon phase, \"ABSOLUTELY NOT.\"), market literacy vs entry criteria (the Dayli ICC sequence), liquidity is not a required Dayli ICC entry condition (no sweep, no pool, no \"stops taken\" required), \"context is not execution,\" and the teaser for Section 8 (Gaps, Imbalances & Price Delivery).",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Understanding Liquidity",
+      "phase": "Section 7: Understanding Liquidity",
       "title": "Liquidity in the Dayli ICC Framework",
       "quote": "Learn more so you can understand more. Not so you can require more.",
       "lines": [
@@ -22,237 +23,134 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Liquidity in the Dayli ICC Framework*"
         },
         {
-          "at": 4.6,
+          "at": 4.8,
           "text": "Where does liquidity belong?"
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s7-tower-sandwich",
       "start": 8,
-      "end": 38,
-      "seed": 309,
-      "kicker": "Context vs execution",
-      "swings": [
-        [
-          0,
-          0.15
-        ],
-        [
-          0.2,
-          0.55
-        ],
-        [
-          0.34,
-          0.32
-        ],
-        [
-          0.52,
-          0.72
-        ],
-        [
-          0.64,
-          0.46
-        ],
-        [
-          0.86,
-          0.68
-        ]
-      ],
-      "per": [
-        4,
-        3,
-        4,
-        3,
-        4
-      ],
-      "play": [
-        {
-          "to": 5,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 34,
+      "kicker": "Be honest",
       "headlines": [
         {
           "at": 8.4,
-          "html": "A beautiful <span class=\"mark\">sweep.</span>",
-          "out": 28.3
+          "out": 25.8,
+          "html": "The <span class=\"mark\">overloaded</span> checklist."
         },
         {
-          "at": 28.5,
+          "at": 26,
+          "html": "Learn it. <span class=\"mark\">Don’t stack it.</span>"
+        }
+      ],
+      "lines": [
+        {
+          "at": 8.4,
+          "text": "Be honest. Has this ever happened to you?",
+          "screen": "A chef stands by a sandwich base: MY ENTRY CHECKLIST"
+        },
+        {
+          "at": 11,
+          "text": "You learn a new concept, and it goes straight onto your entry checklist.",
+          "screen": "Layers start dropping on"
+        },
+        {
+          "at": 15.4,
+          "text": "Liquidity sweep. Equal highs taken. Session high. Stops cleared. Three confirmations.",
+          "screen": "The tower grows and wobbles; the dog watches"
+        },
+        {
+          "at": 20.6,
+          "text": "Moon phase?",
+          "screen": "The moon phase layer lands"
+        },
+        {
+          "at": 22.6,
+          "text": "Absolutely not.",
+          "screen": "Stamp: ABSOLUTELY NOT."
+        },
+        {
+          "at": 26.4,
+          "text": "The more rules you stack, the fewer clean reads you’ll take.",
+          "screen": "The tower topples; the dog catches the moon; \"more rules ≠ better reads\""
+        }
+      ]
+    },
+    {
+      "type": "s7-shelf-or-panel",
+      "start": 34,
+      "end": 60,
+      "kicker": "Where does it belong?",
+      "headlines": [
+        {
+          "at": 34.4,
+          "out": 50.8,
+          "html": "Where does <span class=\"mark\">liquidity belong?</span>"
+        },
+        {
+          "at": 51,
           "html": "Context. <span class=\"mark\">Not execution.</span>"
         }
       ],
       "lines": [
         {
-          "at": 8.4,
-          "text": "A bullish structure. Price dips below a prior low.",
-          "screen": "Candles build"
-        },
-        {
-          "at": 13,
-          "text": "And recovers. A beautiful sweep.",
-          "screen": "The sweep candle"
-        },
-        {
-          "at": 18,
-          "text": "Structure: bullish. Liquidity: swept and recovered.",
-          "screen": "Lens pills"
-        },
-        {
-          "at": 23,
-          "text": "Execution: the entry model isn’t here yet.",
-          "screen": "\"Execution: not yet\""
-        },
-        {
-          "at": 28.5,
-          "text": "Liquidity is market literacy. It helps you read the chart. It is not a Dayli ICC entry condition."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.44,
-          "from": 0.4,
-          "label": "Prior low",
-          "tone": "purple",
-          "at": 10,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.25,
-          "v": 0.92,
-          "text": "Structure: bullish",
-          "tone": "up",
-          "at": 18,
-          "fs": 26
-        },
-        {
-          "u": 0.75,
-          "v": 0.92,
-          "text": "Liquidity: swept, recovered",
-          "tone": "gold",
-          "at": 20,
-          "fs": 26
-        },
-        {
-          "u": 0.5,
-          "v": 1.02,
-          "text": "Execution: not yet",
-          "tone": "purple",
-          "at": 23,
-          "fs": 26
-        }
-      ],
-      "extra": [
-        {
-          "u": 0.68,
-          "o": 0.46,
-          "c": 0.48,
-          "hi": 0.5,
-          "lo": 0.4,
-          "at": 13
-        }
-      ]
-    },
-    {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Where it belongs",
-      "items": [
-        {
-          "title": "Market",
-          "desc": [
-            "literacy",
-            ""
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "Entry",
-          "desc": [
-            "criteria",
-            ""
-          ],
-          "tone": "purple",
-          "at": 44.2
-        },
-        {
-          "title": "Liquidity",
-          "desc": [
-            "required?",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
-      "headlines": [
-        {
-          "at": 51,
-          "html": "Understand more. <span class=\"mark\">Require nothing new.</span>"
-        }
-      ],
-      "lines": [
-        {
-          "at": 38.4,
+          "at": 34.4,
           "text": "So where does liquidity belong?",
-          "screen": "\"Where it belongs\""
+          "screen": "A bookshelf (MARKET LITERACY) and a panel (ENTRY CRITERIA)"
         },
         {
-          "at": 40.8,
-          "text": "Market literacy. Yes.",
-          "screen": "Market literacy"
+          "at": 36.6,
+          "text": "Over here: your entry criteria, the Dayli ICC sequence. That stays exactly as it is.",
+          "screen": "A student carries the LIQUIDITY book: \"Where does this go?\""
         },
         {
-          "at": 44.2,
-          "text": "Entry criteria are the Dayli ICC sequence.",
-          "screen": "Entry criteria"
+          "at": 42.8,
+          "text": "No sweep required. No pool required. No stops taken required.",
+          "screen": "Three \"no … required\" chips"
         },
         {
-          "at": 47.6,
-          "text": "Is liquidity required? No.",
-          "screen": "Liquidity required?"
+          "at": 46.6,
+          "text": "Liquidity goes on the market literacy shelf. It helps you read the chart.",
+          "screen": "The book flies onto the shelf"
         },
         {
-          "at": 51,
-          "text": "Understand more. Require nothing new."
+          "at": 51.4,
+          "text": "Context, not execution.",
+          "screen": "\"context · not execution\""
+        },
+        {
+          "at": 53.6,
+          "text": "And next up, Section 8: gaps, imbalances, and price delivery.",
+          "screen": "Signpost: NEXT · SECTION 8"
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 60,
+      "end": 71,
+      "pointAt": 63.8,
+      "size": 60,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "Learn more to understand more."
+          "at": 61.2,
+          "text": "Learn more so you can understand more."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">Not to require more.</span>"
+          "at": 63.8,
+          "html": "<span class=\"mark\">Not so you can require more.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
-          "text": "Here’s the big takeaway.",
+          "at": 60.4,
+          "text": "So here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58,
+          "at": 61.8,
           "text": "Learn more so you can understand more. Not so you can require more.",
           "screen": "Aristella points"
         }
@@ -260,30 +158,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 71,
+      "end": 84,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 73,
         "text": "Does your entry model now need a liquidity sweep?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 80,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 71.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 73,
           "text": "Does your entry model now need a liquidity sweep?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 80,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

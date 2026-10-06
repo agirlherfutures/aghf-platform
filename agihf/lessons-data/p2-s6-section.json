@@ -2293,7 +2293,7 @@
     }
   },
   "checkin": {
-    "eyebrow": "📓 My Section 3 Check-In",
+    "eyebrow": "📓 My Section 6 Check-In",
     "heading": "What clicked? 🫧",
     "fields": [
       {
@@ -2342,7 +2342,7 @@
     "storeId": "p2-final",
     "notesId": "p2-final",
     "intro": [
-      "This isn’t just the Section 3 quiz. It’s the mastery gate for all of Phase 2.",
+      "This isn’t just the Section 6 quiz. It’s the mastery gate for all of Phase 2.",
       "You’ll read charts, tap swings, judge breaks, watch behavior at levels and clean up a chart. 16 questions, 80% to pass, unlimited retries with a fresh set."
     ],
     "covers": [
@@ -5725,9 +5725,9 @@
       ],
       "distinction": "Learning a concept does not automatically make it part of your entry model.",
       "preview": [
-        "Section 1 · Understanding Liquidity",
-        "Section 2 · Gaps, Imbalances & Price Delivery",
-        "Section 3 · Understanding Market Participation"
+        "Section 7 · Understanding Liquidity",
+        "Section 8 · Gaps, Imbalances & Price Delivery",
+        "Section 9 · Understanding Market Participation"
       ]
     }
   }

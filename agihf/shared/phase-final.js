@@ -127,7 +127,9 @@ function drawSet(final) {
   pool.forEach((it) => { if (visual.length < mix.visual && !visual.includes(it)) visual.push(it); });
   const set = [...visual, ...by('mcq').slice(0, mix.mcq)];
   const written = by('written').slice(0, mix.written || 0);
-  return [...shuffle(set), ...written];
+  // final.capstone: an item that is always asked, last (e.g. a full top-down read from scratch).
+  const capstone = (final.capstone || []).map((c) => (typeof c === 'number' ? final.bank[c] : c));
+  return [...shuffle(set), ...written, ...capstone];
 }
 
 /* A failed Final: strongest skills, what needs another look, and the lessons to revisit. */
@@ -207,7 +209,8 @@ export function renderPhaseFinal(slide, final, onPass, helpers) {
       } else {
         const renderer = SLIDE_RENDERERS[it.slide.type];
         // A chart item shows its own continue button when solved; that button moves on.
-        renderer(body, { ...it.slide, kicker: it.slide.kicker ?? '', cta: nextLabel }, () => { results.push({ skill: it.skill, correct: !wrong }); advance(); }, itemHelpers);
+        // Quiz items always start fresh, each in its own save slot.
+        renderer(body, { ...it.slide, kicker: it.slide.kicker ?? '', cta: nextLabel, ephemeral: true, save: `${final.storeId || 'final'}-q${k}` }, () => { results.push({ skill: it.skill, correct: !wrong }); advance(); }, itemHelpers);
       }
     }
 
@@ -250,6 +253,37 @@ const CLEAN_CHART = `<svg class="pc-clean" viewBox="0 0 320 120" aria-hidden="tr
   ${[[30, 92, 84], [50, 84, 88], [70, 88, 74], [90, 74, 78], [110, 78, 60], [130, 60, 66], [150, 66, 50], [170, 50, 56], [190, 56, 44], [210, 44, 48], [230, 48, 36], [250, 36, 42], [270, 42, 30]].map(([x, o, c]) => `<g><line x1="${x}" x2="${x}" y1="${Math.min(o, c) - 4}" y2="${Math.max(o, c) + 4}" stroke="${c < o ? '#7ECEC4' : '#F4829A'}" stroke-width="2"/><rect x="${x - 5}" y="${Math.min(o, c)}" width="10" height="${Math.max(3, Math.abs(o - c))}" rx="2" fill="${c < o ? '#7ECEC4' : '#F4829A'}"/></g>`).join('')}
 </svg>`;
 
+// The Phase 4 ending: her framework draws itself onto a clean chart, then fades away.
+function frameworkHtml(fw) {
+  const bars = [[24, 96, 88], [40, 88, 92], [56, 92, 78], [72, 78, 84], [88, 84, 98], [104, 98, 104], [120, 104, 90], [136, 90, 74], [152, 74, 62], [168, 62, 66], [184, 66, 50], [200, 50, 40], [216, 40, 46], [232, 46, 60], [248, 60, 68], [264, 68, 58], [280, 58, 64], [296, 64, 56]];
+  const candles = bars.map(([x, o, c]) => `<g><line x1="${x}" x2="${x}" y1="${Math.min(o, c) - 4}" y2="${Math.max(o, c) + 4}" stroke="${c < o ? '#7ECEC4' : '#F4829A'}" stroke-width="2"/><rect x="${x - 5}" y="${Math.min(o, c)}" width="10" height="${Math.max(3, Math.abs(o - c))}" rx="2" fill="${c < o ? '#7ECEC4' : '#F4829A'}"/></g>`).join('');
+  const ovl = `<g class="pc-fw-ovl">
+    <rect x="96" y="36" width="216" height="72" rx="4" fill="#7F77DD" opacity=".1"/>
+    <line x1="96" x2="312" y1="36" y2="36" stroke="#7F77DD" stroke-width="2.5"/><line x1="96" x2="312" y1="108" y2="108" stroke="#7F77DD" stroke-width="2.5"/>
+    <line x1="96" x2="312" y1="72" y2="72" stroke="#7F77DD" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="296" cy="56" r="4.5" fill="#2C1810"/><circle cx="104" cy="104" r="4" fill="#F5A857"/>
+    <line x1="300" x2="300" y1="40" y2="54" stroke="#F5A857" stroke-width="2"/></g>`;
+  let k = 0;
+  const groups = fw.groups.map((g) => `<div class="pc-fw-g"><b>${g.title}</b>${g.items.map((it) => `<span style="animation-delay:${0.5 + (k++) * 0.42}s">${it}</span>`).join('')}</div>`).join('<i class="pc-fw-arrow">↓</i>');
+  const total = 0.5 + k * 0.42;
+  return `<div class="pc-fw" style="--fw-out:${total + 1.2}s">
+      <svg class="pc-fw-chart" viewBox="0 0 320 130" aria-hidden="true">${candles}${ovl}</svg>
+      <div class="pc-fw-list">${groups}</div>
+      ${fw.headline ? `<div class="pc-fw-head" style="animation-delay:${total + 1.8}s">${fw.headline}</div>` : ""}
+    </div>`;
+}
+
+/* Lines that appear one by one when the card scrolls into view. */
+function pauseHtml(pz) {
+  let d = 0;
+  const line = (t, cls = '') => `<p class="pc-pz ${cls}" style="animation-delay:${(d += 0.9)}s">${t}</p>`;
+  return `<div class="lw-card pc-pause">
+      ${pz.lines.map((t) => line(t)).join('')}
+      ${pz.recap ? `<ul class="pc-pz pc-recap" style="animation-delay:${(d += 0.9)}s">${pz.recap.map((r) => `<li>${r}</li>`).join('')}</ul>` : ''}
+      ${pz.ready ? line(pz.ready, 'pc-ready') : ''}
+    </div>`;
+}
+
 const LEVEL_TEXT = { mastered: 'Mastered', strong: 'Strong', developing: 'Developing', none: 'Not enough data yet' };
 
 export function renderPhaseComplete(slide, data, { flagKey, backHref, results }) {
@@ -271,7 +305,7 @@ export function renderPhaseComplete(slide, data, { flagKey, backHref, results })
   slide.innerHTML = `
     <div class="pc-hero">
       <div class="pc-rays"></div>
-      ${c.cleanChart ? CLEAN_CHART : ''}
+      ${c.framework ? frameworkHtml(c.framework) : c.cleanChart ? CLEAN_CHART : ''}
       <div class="pc-eyebrow">${c.eyebrow}</div>
       <h1>${c.heading}</h1>
       <div class="pc-sub">${c.sub}</div>
@@ -281,7 +315,8 @@ export function renderPhaseComplete(slide, data, { flagKey, backHref, results })
       <div class="pc-badge-eyebrow">🏆 Badge unlocked</div>
       <div class="pc-medal"><svg viewBox="0 0 160 160" aria-hidden="true"><defs><linearGradient id="pcG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F9B8C6"/><stop offset=".55" stop-color="#F5A857"/><stop offset="1" stop-color="#7F77DD"/></linearGradient></defs>
         <circle class="pc-ring" cx="80" cy="80" r="70" fill="none" stroke="url(#pcG)" stroke-width="6"/><circle cx="80" cy="80" r="58" fill="#fff"/><circle cx="80" cy="80" r="58" fill="url(#pcG)" opacity=".14"/>
-        ${c.badge.mark === 'diamond' ? '<polygon class="pc-stairs" points="80,42 112,74 80,118 48,74" fill="none" stroke="#2C1810" stroke-width="5" stroke-linejoin="round"/><line class="pc-stairs" x1="48" y1="74" x2="112" y2="74" stroke="#2C1810" stroke-width="4"/><polyline class="pc-stairs" points="64,58 80,74 96,58" fill="none" stroke="#2C1810" stroke-width="4" stroke-linejoin="round"/>'
+        ${c.badge.mark === 'target' ? '<circle class="pc-stairs" cx="80" cy="80" r="34" fill="none" stroke="#2C1810" stroke-width="5"/><circle class="pc-stairs" cx="80" cy="80" r="18" fill="none" stroke="#2C1810" stroke-width="5"/><circle cx="80" cy="80" r="5" fill="#F4829A"/><polyline class="pc-stairs" points="58,58 76,50 80,64 96,46 104,58" fill="none" stroke="#7F77DD" stroke-width="3" stroke-linejoin="round"/>'
+          : c.badge.mark === 'diamond' ? '<polygon class="pc-stairs" points="80,42 112,74 80,118 48,74" fill="none" stroke="#2C1810" stroke-width="5" stroke-linejoin="round"/><line class="pc-stairs" x1="48" y1="74" x2="112" y2="74" stroke="#2C1810" stroke-width="4"/><polyline class="pc-stairs" points="64,58 80,74 96,58" fill="none" stroke="#2C1810" stroke-width="4" stroke-linejoin="round"/>'
           : '<polyline class="pc-stairs" points="44,104 60,104 60,88 76,88 76,72 92,72 92,56 112,56" fill="none" stroke="#2C1810" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>'}</svg>
         <span class="pc-shine"></span></div>
       <h2>${c.badge.title} ${c.badge.emoji}</h2>
@@ -295,7 +330,8 @@ export function renderPhaseComplete(slide, data, { flagKey, backHref, results })
       ${review.items.length ? `<div class="pc-review"><div class="lw-eyebrow">Your next best review</div>${review.lead ? `<p>${review.lead}</p>` : ''}
         ${review.items.map((it) => `<div class="pc-review-row"><p>${it.text}</p><a href="lesson.html?phase=${it.review[0]}&n=${it.review[1]}">Review ${it.label} →</a></div>`).join('')}</div>` : ''}
     </div>
-    <div class="lw-card pc-next">
+    ${c.pause ? pauseHtml(c.pause) : ''}
+    <div class="lw-card pc-next${c.next.method ? ' pc-method' : ''}">
       <div class="lw-eyebrow">🔓 ${c.next.eyebrow}</div>
       <h2>${c.next.title}</h2>
       ${c.next.lines.map((l) => `<p>${l}</p>`).join('')}
@@ -303,8 +339,17 @@ export function renderPhaseComplete(slide, data, { flagKey, backHref, results })
       ${c.next.distinction ? `<div class="pc-distinction">${c.next.distinction}</div>` : ''}
       ${c.next.note ? `<div class="pc-distinction">${c.next.note}</div>` : ''}
       ${c.next.preview ? `<div class="pc-preview">${c.next.preview.map((p) => `<div>${p}</div>`).join('')}</div>` : ''}
+      ${c.next.sections ? `<div class="pc-msec">${c.next.sections.map((sec) => `<div class="pc-msec-c"><small>${sec.label}</small><b>${sec.title}</b><span>${sec.items.join(' <i>→</i> ')}</span></div>`).join('')}</div>` : ''}
       <button type="button" class="lw-cc-next" id="pcNext">${c.next.cta}</button>
     </div>
     <div class="lw-back-link"><a href="${backHref}">← Back to all lessons</a></div>`;
   slide.querySelector('#pcNext').addEventListener('click', () => { window.location.href = c.next.href || backHref; });
+  const pz = slide.querySelector('.pc-pause');
+  if (pz) {
+    const go = () => pz.classList.add('go');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { go(); io.disconnect(); } }, { threshold: 0.3 });
+      io.observe(pz);
+    } else go();
+  }
 }

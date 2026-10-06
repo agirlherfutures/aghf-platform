@@ -1,18 +1,19 @@
 /**
- * Phase 3 · Section 3 · Lesson 19 intro video — "Supply & Demand Basics"
+ * Phase 3 · Section 9 · Lesson 19 intro video: "Supply & Demand Basics"
+ * Scenes: s9-launchpad, s9-trampoline (see scenes-s9.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-19",
-  "eyebrow": "Phase 3 · Section 3 · Lesson 19",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 19: potential demand and supply zones defined with hedged language, a zone replay, returning to the zone (“what happens next?” not enough information) with multiple outcomes, and they don’t replace structure.",
+  "eyebrow": "Phase 3 · Section 9 · Lesson 19",
+  "duration": 79,
+  "sources": "From Phase 3, Section 9, Lesson 19 (\"Supply & Demand Basics\"): potential demand (price left strongly upward) and potential supply (price left strongly downward), the hedged words \"potential, previously, may\", the return-to-the-zone question (not enough information, several outcomes), and that zones don’t replace structure.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 3: Understanding Market Participation",
+      "phase": "Section 9: Understanding Market Participation",
       "title": "Supply & Demand Basics",
       "quote": "They show where strong participation appeared before. They don’t replace structure.",
       "lines": [
@@ -22,234 +23,129 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Supply & Demand Basics*"
         },
         {
-          "at": 4.6,
+          "at": 4.4,
           "text": "Observe first. Assume less."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s9-launchpad",
       "start": 8,
-      "end": 38,
-      "seed": 319,
-      "kicker": "Return to the zone",
-      "swings": [
-        [
-          0,
-          0.5
-        ],
-        [
-          0.12,
-          0.3
-        ],
-        [
-          0.2,
-          0.33
-        ],
-        [
-          0.32,
-          0.8
-        ],
-        [
-          0.5,
-          0.6
-        ],
-        [
-          0.64,
-          0.34
-        ]
-      ],
-      "per": [
-        3,
-        1,
-        3,
-        4,
-        4
-      ],
-      "play": [
-        {
-          "to": 5,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 33,
+      "kicker": "Two definitions",
       "headlines": [
         {
           "at": 8.4,
           "html": "Where did price <span class=\"mark\">leave in a hurry?</span>",
-          "out": 28.3
+          "out": 21.6
         },
         {
-          "at": 28.5,
+          "at": 21.8,
+          "html": "Potential demand. <span class=\"mark\">Potential supply.</span>"
+        }
+      ],
+      "lines": [
+        {
+          "at": 8.4,
+          "text": "Picture a rocket on a launch pad.",
+          "screen": "Rocket on its pad; mission control counts down"
+        },
+        {
+          "at": 11,
+          "text": "Three, two, one. Price leaves that base in a hurry, strongly upward.",
+          "screen": "Liftoff; teal candles shoot up on the mini chart"
+        },
+        {
+          "at": 16,
+          "text": "That base becomes a potential demand zone: buyers may have been aggressive there before.",
+          "screen": "Pad glows: POTENTIAL DEMAND"
+        },
+        {
+          "at": 21.8,
+          "text": "Now flip it. Price leaves a high platform strongly downward.",
+          "screen": "A diver leaps off the tower; pink candles drop"
+        },
+        {
+          "at": 25.8,
+          "text": "That’s a potential supply zone.",
+          "screen": "Board glows: POTENTIAL SUPPLY"
+        },
+        {
+          "at": 28,
+          "text": "Potential. Previously. May. Those words are doing real work.",
+          "screen": "Tags pop: potential, previously, may"
+        }
+      ]
+    },
+    {
+      "type": "s9-trampoline",
+      "start": 33,
+      "end": 57,
+      "kicker": "Return to the zone",
+      "headlines": [
+        {
+          "at": 33.4,
+          "html": "Price comes back. <span class=\"mark\">Now what?</span>",
+          "out": 48
+        },
+        {
+          "at": 48.2,
           "html": "The past. <span class=\"mark\">Not a promise.</span>"
         }
       ],
       "lines": [
         {
-          "at": 8.4,
-          "text": "Price based here, then left strongly upward.",
-          "screen": "Candles build"
+          "at": 33.4,
+          "text": "Later, price comes back to that zone.",
+          "screen": "A price-ball drops back onto the demand trampoline"
         },
         {
-          "at": 13.0,
-          "text": "That base is a potential demand zone: buyers may have been aggressive there.",
-          "screen": "\"Potential demand zone\""
+          "at": 36.6,
+          "text": "What happens next? Does it have to bounce?",
+          "screen": "Ball sits on the mat; question marks"
         },
         {
-          "at": 18.0,
-          "text": "Now price is coming back to it."
+          "at": 40,
+          "text": "It might bounce. It might chop around. It might break straight through.",
+          "screen": "Three trampolines: bounce? chop? break?"
         },
         {
-          "at": 23.0,
-          "text": "Bounce? Chop? Break?",
-          "screen": "Outcome pills"
+          "at": 44.8,
+          "text": "Honestly? Not enough information.",
+          "screen": "Referee holds up NOT ENOUGH INFORMATION"
         },
         {
-          "at": 28.5,
-          "text": "Not enough information. The zone shows where participation appeared before. Not what happens now.",
-          "screen": "\"NOT ENOUGH INFORMATION\""
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.28,
-          "from": 0.12,
-          "label": "Potential demand zone",
-          "tone": "up",
-          "at": 13.0,
-          "v2": 0.38,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.75,
-          "v": 0.6,
-          "text": "bounce?",
-          "tone": "gold",
-          "at": 23.0,
-          "fs": 26
-        },
-        {
-          "u": 0.75,
-          "v": 0.45,
-          "text": "chop?",
-          "tone": "gold",
-          "at": 24.0,
-          "fs": 26
-        },
-        {
-          "u": 0.75,
-          "v": 0.2,
-          "text": "break?",
-          "tone": "gold",
-          "at": 25.0,
-          "fs": 26
-        },
-        {
-          "u": 0.5,
-          "v": 1.02,
-          "text": "NOT ENOUGH INFORMATION",
-          "tone": "purple",
-          "at": 28.5,
-          "fs": 26
-        }
-      ]
-    },
-    {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Two definitions",
-      "items": [
-        {
-          "title": "Potential",
-          "desc": [
-            "demand",
-            "left strongly up"
-          ],
-          "tone": "up",
-          "at": 40.8
-        },
-        {
-          "title": "Potential",
-          "desc": [
-            "supply",
-            "left strongly down"
-          ],
-          "tone": "down",
-          "at": 44.2
-        },
-        {
-          "title": "Replaces",
-          "desc": [
-            "structure?",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
-      "headlines": [
-        {
-          "at": 51.0,
-          "html": "Past participation. <span class=\"mark\">Not a promise.</span>"
-        }
-      ],
-      "lines": [
-        {
-          "at": 38.4,
-          "text": "Two definitions.",
-          "screen": "\"Two definitions\""
-        },
-        {
-          "at": 40.8,
-          "text": "Potential demand: price left strongly upward.",
-          "screen": "Potential demand left strongly up"
-        },
-        {
-          "at": 44.2,
-          "text": "Potential supply: price left strongly downward.",
-          "screen": "Potential supply left strongly down"
-        },
-        {
-          "at": 47.6,
-          "text": "Do they replace structure? No.",
-          "screen": "Replaces structure?"
-        },
-        {
-          "at": 51.0,
-          "text": "Past participation. Not a promise."
+          "at": 48.2,
+          "text": "The zone shows where participation appeared before. Not what happens now. And it never replaces structure.",
+          "screen": "\"zones do not replace structure\""
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 57,
+      "end": 67,
+      "pointAt": 59.6,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 58.6,
           "text": "Where participation appeared before."
         },
         {
-          "at": 58.6,
+          "at": 59.6,
           "html": "<span class=\"mark\">Not a promise.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 57.4,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 58.8,
           "text": "Supply and demand show where strong participation appeared before. They don’t replace structure.",
           "screen": "Aristella points"
         }
@@ -257,30 +153,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 67,
+      "end": 79,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 69.6,
         "text": "If price returns to a demand zone, does it have to bounce?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 75.4,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 67.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 69.6,
           "text": "If price returns to a demand zone, does it have to bounce?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 75.4,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

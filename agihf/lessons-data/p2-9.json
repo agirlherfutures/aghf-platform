@@ -339,7 +339,7 @@
               {
                 "label": "What price breaks",
                 "correct": true,
-                "why": "BOOM. 💥 That’s exactly where Section 2 begins."
+                "why": "BOOM. 💥 That’s exactly where Section 5 begins."
               },
               {
                 "label": "How many red candles there are",
@@ -355,7 +355,7 @@
             "show": [
               "q"
             ],
-            "text": "<strong>WHAT PRICE BREAKS.</strong> What happens if price breaks a level like this one? When is a break simply continuation, and when does the story change? 👀 That’s Section 2."
+            "text": "<strong>WHAT PRICE BREAKS.</strong> What happens if price breaks a level like this one? When is a break simply continuation, and when does the story change? 👀 That’s Section 5."
           }
         }
       ]

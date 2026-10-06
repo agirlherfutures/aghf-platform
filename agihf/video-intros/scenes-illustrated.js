@@ -2317,7 +2317,7 @@
         const k = ease(seg(t, T.level, T.level + 1));
         out += `<line x1="${X(0.3)}" x2="${lerp(X(0.3), X(1) + 100, k)}" y1="${Y(0.32)}" y2="${Y(0.32)}" stroke="${C.peach}" stroke-width="6" stroke-dasharray="18 12"/>`;
         out += pillSvg(X(0.6), Y(0.32) + 46, 'what price breaks…', C.peach, back((t - T.level - 0.6) / 0.6), 26);
-        out += pillSvg(960, 1032, 'Section 2 🔒', C.purple, back((t - T.level - 2.4) / 0.6), 28);
+        out += pillSvg(960, 1032, 'Section 5 🔒', C.purple, back((t - T.level - 2.4) / 0.6), 28);
       }
       return out;
     },

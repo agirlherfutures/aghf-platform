@@ -1,20 +1,21 @@
 /**
- * Phase 3 · Section 1 · Lesson 5 intro video — "Equal Highs & Equal Lows"
+ * Phase 3 · Section 7 · Lesson 5 intro video: "Equal Highs & Equal Lows"
+ * Scenes: host-title, s7-spirit-level, s7-magnet, host-hook, host-mission (scene art in scenes-s7.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-5",
-  "eyebrow": "Phase 3 · Section 1 · Lesson 5",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 5: identify equal highs and lows with tolerance, potential buy-side above equal highs and potential sell-side below equal lows, an obvious area worth monitoring, and a magnet is not a guaranteed destination.",
+  "eyebrow": "Phase 3 · Section 7 · Lesson 5",
+  "duration": 84,
+  "sources": "From Section 7, Lesson 5 (\"Equal Highs & Equal Lows\"): equal highs/lows are highs or lows at roughly the same price, potential buy-side above equal highs and potential sell-side below equal lows, an obvious area worth monitoring, and \"A magnet ≠ a guaranteed destination.\"",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Understanding Liquidity",
+      "phase": "Section 7: Understanding Liquidity",
       "title": "Equal Highs & Equal Lows",
-      "quote": "A magnet ≠ a guaranteed destination.",
+      "quote": "A magnet is not a guaranteed destination.",
       "lines": [
         {
           "at": 0.6,
@@ -22,275 +23,160 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Equal Highs & Equal Lows*"
         },
         {
-          "at": 4.6,
+          "at": 4.8,
           "text": "When highs line up."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s7-spirit-level",
       "start": 8,
-      "end": 38,
-      "seed": 305,
-      "kicker": "Look closer",
-      "swings": [
-        [
-          0,
-          0.3
-        ],
-        [
-          0.16,
-          0.74
-        ],
-        [
-          0.3,
-          0.4
-        ],
-        [
-          0.46,
-          0.75
-        ],
-        [
-          0.6,
-          0.35
-        ],
-        [
-          0.78,
-          0.6
-        ]
-      ],
-      "per": [
-        4,
-        4,
-        4,
-        4,
-        4
-      ],
-      "play": [
-        {
-          "to": 5,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 34,
+      "kicker": "Check the level",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Two highs. <span class=\"mark\">Same price?</span>",
-          "out": 28.3
+          "out": 22.8,
+          "html": "When highs <span class=\"mark\">line up.</span>"
         },
         {
-          "at": 28.5,
-          "html": "A magnet <span class=\"mark\">≠ a destination.</span>"
+          "at": 23,
+          "html": "And when <span class=\"mark\">lows line up.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Watch the highs.",
-          "screen": "Candles build"
+          "text": "Watch the highs on this chart.",
+          "screen": "A builder in a hard hat beside a chart"
         },
         {
-          "at": 13.0,
-          "text": "Two highs stopped at nearly the same price. Close enough counts.",
-          "screen": "The highs ring"
+          "at": 11,
+          "text": "Two highs stopped at nearly the same price. Let’s check with a level.",
+          "screen": "A spirit level settles across both highs"
         },
         {
-          "at": 18.0,
+          "at": 16.6,
+          "text": "Not perfectly equal. Close enough counts.",
+          "screen": "A bird lands on the level; \"close enough counts\""
+        },
+        {
+          "at": 19.6,
           "text": "Above equal highs: potential buy-side liquidity.",
-          "screen": "\"POTENTIAL BUY-SIDE\""
+          "screen": "EQUAL HIGHS; \"potential buy-side ↑\""
         },
         {
-          "at": 23.0,
-          "text": "That’s an obvious area worth monitoring.",
-          "screen": "\"worth monitoring\""
+          "at": 23,
+          "text": "Same idea underneath. Equal lows.",
+          "screen": "The level slides under two lows"
         },
         {
-          "at": 28.5,
-          "text": "People call it a magnet. Magnets still don’t guarantee where price goes."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.745,
-          "from": 0.16,
-          "label": "Equal highs",
-          "tone": "gold",
-          "at": 14.0
-        },
-        {
-          "v": 0.76,
-          "from": 0.16,
-          "label": "POTENTIAL BUY-SIDE",
-          "tone": "up",
-          "at": 18.0,
-          "v2": 0.88
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.5,
-          "v": 0.5,
-          "text": "worth monitoring",
-          "tone": "up",
-          "at": 23.0,
-          "fs": 26
-        },
-        {
-          "u": 0.5,
-          "v": 0.42,
-          "text": "not guaranteed",
-          "tone": "muted",
-          "at": 28.5,
-          "fs": 26
-        }
-      ],
-      "rings": [
-        {
-          "u": 0.16,
-          "v": 0.74,
-          "tone": "gold",
-          "at": 13.0,
-          "out": 22.0
-        },
-        {
-          "u": 0.46,
-          "v": 0.75,
-          "tone": "gold",
-          "at": 13.4,
-          "out": 22.0
+          "at": 27.2,
+          "text": "Below equal lows: potential sell-side liquidity. An obvious area worth monitoring.",
+          "screen": "EQUAL LOWS; \"potential sell-side ↓\""
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "What can we conclude?",
-      "items": [
-        {
-          "title": "An obvious",
-          "desc": [
-            "area",
-            ""
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "Worth",
-          "desc": [
-            "monitoring",
-            ""
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "Price will",
-          "desc": [
-            "sweep it next",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s7-magnet",
+      "start": 34,
+      "end": 60,
+      "kicker": "The magnet myth",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Obvious. <span class=\"mark\">Not guaranteed.</span>"
+          "at": 34.4,
+          "out": 50.8,
+          "html": "Is it a <span class=\"mark\">magnet?</span>"
+        },
+        {
+          "at": 51,
+          "html": "A magnet <span class=\"mark\">≠ a guaranteed destination.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "So what can we conclude?",
-          "screen": "\"What can we conclude?\""
+          "at": 34.4,
+          "text": "People like to call equal highs a magnet for price.",
+          "screen": "A robot watches a magnet dangle over equal highs"
         },
         {
-          "at": 40.8,
-          "text": "It’s an obvious area.",
-          "screen": "An obvious area"
+          "at": 38.2,
+          "text": "Sometimes price does run up there and trade through them.",
+          "screen": "Run one: price pokes through; paper clips fly to the magnet"
         },
         {
-          "at": 44.2,
-          "text": "It’s worth monitoring.",
-          "screen": "Worth monitoring"
+          "at": 44.6,
+          "text": "And sometimes it gets close, then turns away.",
+          "screen": "Run two: price turns away"
         },
         {
-          "at": 47.6,
-          "text": "Price will sweep it next? No.",
-          "screen": "Price will sweep it next"
+          "at": 51.2,
+          "text": "So what can we really say? It’s an obvious area, and it’s worth monitoring.",
+          "screen": "\"obvious area ✓\" \"worth monitoring ✓\""
         },
         {
-          "at": 51.0,
-          "text": "Obvious. Not guaranteed."
+          "at": 56,
+          "text": "But it isn’t a guaranteed destination.",
+          "screen": "\"guaranteed ✗\""
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 60,
+      "end": 71,
+      "pointAt": 63.8,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "A magnet"
+          "at": 61.2,
+          "text": "Equal highs and lows are worth monitoring."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">≠ a guaranteed destination.</span>"
+          "at": 63.8,
+          "html": "A magnet <span class=\"mark\">≠ a guaranteed destination.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
-          "text": "Here’s the big takeaway.",
+          "at": 60.4,
+          "text": "So here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
-          "text": "A magnet is not a guaranteed destination.",
+          "at": 61.8,
+          "text": "Equal highs and lows are worth monitoring. But a magnet is not a guaranteed destination.",
           "screen": "Aristella points"
         }
       ]
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 71,
+      "end": 84,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 73,
         "text": "If you spot equal highs, does price have to take them?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 80,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 71.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 73,
           "text": "If you spot equal highs, does price have to take them?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 80,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

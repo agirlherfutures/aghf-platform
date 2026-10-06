@@ -1,463 +1,77 @@
 /**
- * Phase 2 · Section 2 · Lesson 17 intro video — "Structural Invalidation & The New Story"
+ * Phase 2 · Section 5 · Lesson 17 intro video: "Structural Invalidation & The New Story"
+ * Scenes: s5-bridge (the supporting pillar gives way; now what?), s5-map-update (a cartographer redraws the map; teaser for Section 6).
  */
 window.LESSON_VIDEO = {
-  "slug": "p2-lesson-17",
-  "eyebrow": "Phase 2 · Section 2 · Lesson 17",
-  "duration": 94,
-  "sources": "From Section 2, Lesson 17 (\"Structural Invalidation & The New Story\"): which low supports the bullish story, a close through it materially challenges / invalidates the old story, \"Now what?\" (watch what price builds next), invalidation does not equal instant opposite bias, updating the map to the swing that is now more relevant, and \"Your chart updates because price updates.\"",
-  "scenes": [
+  slug: 'p2-lesson-17',
+  eyebrow: 'Phase 2 · Section 5 · Lesson 17',
+  duration: 86,
+  sources: 'From Section 5, Lesson 17 ("Structural Invalidation & The New Story"): which low supports the bullish story, a close through it materially challenges the old story, "Now what?" (not short immediately, not ignore it, not move the level: watch what price builds next), "Invalidation ≠ instant opposite bias," updating the map to the swing that is now more relevant, and "Your chart updates because price updates." Closes the section and points ahead to Section 6: Reading Key Levels (Lesson 18, "Support & Resistance").',
+  scenes: [
     {
-      "type": "host-title",
-      "start": 0,
-      "end": 8,
-      "nameTag": true,
-      "phase": "Section 2: Breaks, Shifts & Fakeouts",
-      "title": "Structural Invalidation & The New Story",
-      "quote": "Your chart updates because price updates.",
-      "lines": [
-        {
-          "at": 0.6,
-          "text": "Welcome to Lesson Seventeen, the last lesson of Breaks, Shifts and Fakeouts.",
-          "screen": "Aristella waves; title *Structural Invalidation & The New Story*"
-        },
-        {
-          "at": 5.0,
-          "text": "When the story changes, so does your chart."
-        }
-      ]
+      type: 'host-title', start: 0, end: 8, nameTag: true,
+      phase: 'Section 5: Breaks, Shifts & Fakeouts',
+      title: 'Structural Invalidation & The New Story',
+      quote: 'Your chart updates because price updates.',
+      lines: [
+        { at: 0.6, text: 'Welcome to Lesson Seventeen: Structural Invalidation and The New Story.', screen: 'Aristella waves; title *Structural Invalidation & The New Story*' },
+        { at: 5.2, text: 'When the story changes, so does your chart.' },
+      ],
     },
     {
-      "type": "break-chart",
-      "start": 8,
-      "end": 31,
-      "seed": 18,
-      "kicker": "The story changes",
-      "swings": [
-        [
-          0,
-          0.1
-        ],
-        [
-          0.14,
-          0.55
-        ],
-        [
-          0.24,
-          0.32
-        ],
-        [
-          0.4,
-          0.78
-        ],
-        [
-          0.52,
-          0.45
-        ],
-        [
-          0.66,
-          0.95
-        ],
-        [
-          0.76,
-          0.68
-        ],
-        [
-          0.84,
-          0.36
-        ]
+      type: 's5-bridge', start: 8, end: 37, beats: { walk: 8.6, sup: 12.2, close: 16.8, now: 22.6, opts: 23.4, no: 28.0, inv: 31.6 },
+      kicker: 'The story changes',
+      headlines: [
+        { at: 8.4, out: 22.2, html: 'Which low holds the <span class="mark">story</span> up?' },
+        { at: 22.4, html: 'Now what? <span class="mark">Watch what price builds.</span>' },
       ],
-      "per": [
-        4,
-        3,
-        4,
-        3,
-        4,
-        3,
-        3
+      lines: [
+        { at: 8.4, text: 'Your bullish story is a bridge. HH, HL, HH.', screen: 'A bridge shaped like bullish structure; a traveller walks it' },
+        { at: 12.0, text: 'This pillar, the higher low, is the one holding the story up.', screen: '"supporting HL"' },
+        { at: 16.6, text: 'Then price closes through it. The old bullish story is materially challenged.', screen: 'The pillar crumbles; the bridge sags' },
+        { at: 22.6, text: 'So, now what? Short immediately? Ignore it? Move the level?', screen: 'Signpost options' },
+        { at: 28.0, text: 'None of those. Watch what price builds next.', screen: 'Three crossed out; "Watch what builds" ✓' },
+        { at: 31.6, text: 'Invalidation does not mean an instant opposite bias.', screen: '"invalidation ≠ instant opposite bias"' },
       ],
-      "play": [
-        {
-          "to": 5,
-          "at": 8.6,
-          "dur": 3.2
-        },
-        {
-          "to": 7,
-          "at": 20.0,
-          "dur": 1.6
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.45,
-          "from": 0.52,
-          "label": "Supporting HL",
-          "tone": "up",
-          "at": 13.6,
-          "below": true
-        }
-      ],
-      "marks": [
-        {
-          "i": 1,
-          "text": "HH",
-          "tone": "up",
-          "at": 10.0
-        },
-        {
-          "i": 2,
-          "text": "HL",
-          "tone": "up",
-          "at": 10.6,
-          "below": true
-        },
-        {
-          "i": 3,
-          "text": "HH",
-          "tone": "up",
-          "at": 11.2
-        },
-        {
-          "i": 4,
-          "text": "HL",
-          "tone": "up",
-          "at": 11.8,
-          "below": true
-        },
-        {
-          "i": 5,
-          "text": "HH",
-          "tone": "up",
-          "at": 12.4
-        }
-      ],
-      "rings": [
-        {
-          "u": 0.52,
-          "v": 0.45,
-          "tone": "up",
-          "at": 13.0,
-          "out": 19.6
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.3,
-          "v": 0.97,
-          "text": "Old story: bullish progression",
-          "tone": "up",
-          "at": 22.6,
-          "fs": 26
-        },
-        {
-          "u": 0.66,
-          "v": 0.15,
-          "text": "Challenged / invalidated",
-          "tone": "down",
-          "at": 24.2,
-          "fs": 26
-        }
-      ],
-      "headlines": [
-        {
-          "at": 8.4,
-          "html": "Which low is <span class=\"mark\">holding the story up?</span>",
-          "out": 27.8
-        },
-        {
-          "at": 28.0,
-          "html": "So… <span class=\"mark\">now what?</span>"
-        }
-      ],
-      "lines": [
-        {
-          "at": 8.4,
-          "text": "HH, HL, HH. A bullish structural story.",
-          "screen": "Candles build; HH, HL, HH, HL, HH"
-        },
-        {
-          "at": 13.0,
-          "text": "This higher low is the one supporting it.",
-          "screen": "The supporting HL is circled"
-        },
-        {
-          "at": 20.0,
-          "text": "Then price closes through it."
-        },
-        {
-          "at": 22.6,
-          "text": "The old bullish story is now materially challenged.",
-          "screen": "\"Challenged / invalidated\""
-        },
-        {
-          "at": 28.0,
-          "text": "So, now what?"
-        }
-      ]
     },
     {
-      "type": "cards",
-      "start": 31,
-      "end": 52,
-      "kicker": "Now what?",
-      "titleFs": 34,
-      "cardH": 300,
-      "top": 520,
-      "items": [
-        {
-          "title": "Short\nimmediately",
-          "tone": "down",
-          "at": 31.8,
-          "mark": "no",
-          "markAt": 39.0
-        },
-        {
-          "title": "Ignore it",
-          "tone": "down",
-          "at": 32.8,
-          "mark": "no",
-          "markAt": 40.4
-        },
-        {
-          "title": "Move\nthe level",
-          "tone": "down",
-          "at": 33.8,
-          "mark": "no",
-          "markAt": 41.8
-        },
-        {
-          "title": "Watch what\nprice builds",
-          "tone": "up",
-          "at": 35.0,
-          "mark": "yes",
-          "markAt": 44.0
-        }
+      type: 's5-map-update', start: 37, end: 63, beats: { pigeon: 39.4, update: 42.0, cross: 42.8, newflag: 50.2, next: 59.0 },
+      kicker: 'Update the map',
+      headlines: [
+        { at: 37.4, out: 53.8, html: 'Price updates. <span class="mark">So does your map.</span>' },
+        { at: 54.0, html: 'Levels don’t stay relevant <span class="mark">forever.</span>' },
       ],
-      "headlines": [
-        {
-          "at": 46.5,
-          "html": "Invalidation ≠ <span class=\"mark\">instant opposite bias.</span>"
-        }
+      lines: [
+        { at: 37.4, text: 'Now let’s update the map.', screen: 'A cartographer and a parchment map of the swings' },
+        { at: 39.4, text: 'A pigeon brings news: price closed through the old higher low.', screen: 'The pigeon lands; the old HL flag is crossed out' },
+        { at: 44.6, text: 'Then it builds new swings: a lower high, and a lower low.', screen: '"LH", "LL"' },
+        { at: 50.0, text: 'That new lower high is the swing that matters more now.', screen: 'A new flag; "matters more now"' },
+        { at: 54.4, text: 'A level isn’t important forever just because you marked it.' },
+        { at: 59.0, text: 'Next up, Section Six: Reading Key Levels.', screen: '"Next: Section 6 · Reading Key Levels →"' },
       ],
-      "lines": [
-        {
-          "at": 31.4,
-          "text": "Short immediately? Ignore it? Move the level? Or watch what price builds next?",
-          "screen": "Four options"
-        },
-        {
-          "at": 39.0,
-          "text": "Not short immediately. Not ignore it. Not move the level.",
-          "screen": "Three ✗"
-        },
-        {
-          "at": 44.0,
-          "text": "Watch what price builds next.",
-          "screen": "Watch what price builds ✓"
-        },
-        {
-          "at": 46.5,
-          "text": "Invalidation does not mean an instant opposite bias."
-        }
-      ]
     },
     {
-      "type": "break-chart",
-      "start": 52,
-      "end": 74,
-      "seed": 19,
-      "kicker": "Update the map",
-      "swings": [
-        [
-          0,
-          0.1
-        ],
-        [
-          0.12,
-          0.55
-        ],
-        [
-          0.22,
-          0.32
-        ],
-        [
-          0.36,
-          0.78
-        ],
-        [
-          0.46,
-          0.45
-        ],
-        [
-          0.58,
-          0.95
-        ],
-        [
-          0.68,
-          0.6
-        ],
-        [
-          0.73,
-          0.36
-        ],
-        [
-          0.82,
-          0.58
-        ],
-        [
-          0.93,
-          0.2
-        ]
+      type: 'host-hook', start: 63, end: 73, pointAt: 65.8, size: 72,
+      kicker: 'Dayli says',
+      parts: [
+        { at: 64.4, text: 'Your chart updates' },
+        { at: 65.8, html: '<span class="mark">because price updates.</span> 🗺️' },
       ],
-      "per": [
-        4,
-        3,
-        4,
-        3,
-        4,
-        3,
-        2,
-        3,
-        4
+      lines: [
+        { at: 63.4, text: 'So remember.', screen: 'Aristella thinks' },
+        { at: 64.4, text: 'Your chart updates because price updates.', screen: 'Aristella points' },
       ],
-      "play": [
-        {
-          "to": 5,
-          "at": 52.6,
-          "dur": 2.0
-        },
-        {
-          "to": 7,
-          "at": 56.0,
-          "dur": 1.2
-        },
-        {
-          "to": 9,
-          "at": 60.0,
-          "dur": 2.0
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.45,
-          "from": 0.46,
-          "label": "Old HL",
-          "tone": "up",
-          "at": 52.8,
-          "below": true,
-          "out": 66.0
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.84,
-          "v": 0.9,
-          "text": "LH · matters now",
-          "tone": "down",
-          "at": 64.0,
-          "fs": 26
-        }
-      ],
-      "rings": [
-        {
-          "u": 0.82,
-          "v": 0.58,
-          "tone": "down",
-          "at": 64.0
-        }
-      ],
-      "headlines": [
-        {
-          "at": 52.4,
-          "html": "Price updates. <span class=\"mark\">So does your map.</span>"
-        }
-      ],
-      "lines": [
-        {
-          "at": 52.4,
-          "text": "Let’s update the map.",
-          "screen": "Same story, replayed"
-        },
-        {
-          "at": 56.0,
-          "text": "Price closes through the old higher low."
-        },
-        {
-          "at": 60.0,
-          "text": "Then it builds new swings: a lower high, and a lower low."
-        },
-        {
-          "at": 64.0,
-          "text": "Now this new lower high is the swing that matters more.",
-          "screen": "\"LH · matters now\"; the old HL fades"
-        },
-        {
-          "at": 68.4,
-          "text": "A level isn’t important forever just because you marked it."
-        }
-      ]
     },
     {
-      "type": "host-hook",
-      "start": 74,
-      "end": 82,
-      "pointAt": 76.4,
-      "size": 72,
-      "kicker": "Dayli says",
-      "parts": [
-        {
-          "at": 75.2,
-          "text": "Your chart updates"
-        },
-        {
-          "at": 76.4,
-          "html": "because <span class=\"mark\">price updates.</span>"
-        }
+      type: 'host-mission', start: 73, end: 86,
+      kicker: 'Your mission',
+      question: { at: 75.0, text: 'The level holding up your bullish story just broke. Now what?' },
+      cta: { at: 81.6, text: 'Let’s find out' },
+      lines: [
+        { at: 73.4, text: 'Here’s your mission.', screen: '"Your mission"' },
+        { at: 75.0, text: 'The level holding up your bullish story just broke. Now what?', screen: 'Mission question' },
+        { at: 81.6, text: 'Let’s find out.', screen: 'Aristella cheers; "Let\'s find out →"' },
       ],
-      "lines": [
-        {
-          "at": 74.4,
-          "text": "So remember.",
-          "screen": "Aristella thinks"
-        },
-        {
-          "at": 75.2,
-          "text": "Your chart updates because price updates.",
-          "screen": "Aristella points"
-        }
-      ]
     },
-    {
-      "type": "host-mission",
-      "start": 82,
-      "end": 94,
-      "kicker": "Your mission",
-      "question": {
-        "at": 84,
-        "text": "The level holding up your bullish story just broke. Now what?"
-      },
-      "cta": {
-        "at": 89.5,
-        "text": "Let’s find out"
-      },
-      "lines": [
-        {
-          "at": 82.4,
-          "text": "So here’s your mission for this lesson.",
-          "screen": "\"Your mission\""
-        },
-        {
-          "at": 84,
-          "text": "The level holding up your bullish story just broke. Now what?",
-          "screen": "Mission question"
-        },
-        {
-          "at": 89.5,
-          "text": "Let’s find out.",
-          "screen": "Aristella cheers; \"Let's find out →\""
-        }
-      ]
-    }
-  ]
+  ],
 };

@@ -1,18 +1,18 @@
 /**
- * Phase 3 · Section 2 · Lesson 11 intro video — "Displacement"
+ * Phase 3 · Section 8 · Lesson 11 intro video: "Displacement"
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-11",
-  "eyebrow": "Phase 3 · Section 2 · Lesson 11",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 11: displacement shown first (large one-directional candles with little overlap), what it tells you and what it doesn’t, catching “that candle displaced, I’m buying,” and momentum is information, not a complete trade plan.",
+  "eyebrow": "Phase 3 · Section 8 · Lesson 11",
+  "duration": 78,
+  "sources": "From Phase 3, Section 8, Lesson 11 (\"Displacement\"): small overlapping candles then a strong, fast, one-directional move with little overlap, what displacement tells you and what it doesn’t (not continuation, not a structure change, not an entry), the \"it displaced, I’m buying\" mistake, and \"momentum is information, not a complete trade plan.\"",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 2: Gaps, Imbalances & Price Delivery",
+      "phase": "Section 8: Gaps, Imbalances & Price Delivery",
       "title": "Displacement",
       "quote": "Momentum is information. Not a complete trade plan.",
       "lines": [
@@ -22,230 +22,141 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Displacement*"
         },
         {
-          "at": 4.6,
-          "text": "Watch this move."
-        }
-      ]
-    },
-    {
-      "type": "break-chart",
-      "start": 8,
-      "end": 38,
-      "seed": 311,
-      "kicker": "Show it first",
-      "swings": [
-        [
-          0,
-          0.15
-        ],
-        [
-          0.12,
-          0.25
-        ],
-        [
-          0.2,
-          0.2
-        ],
-        [
-          0.32,
-          0.3
-        ],
-        [
-          0.4,
-          0.26
-        ],
-        [
-          0.5,
-          0.32
-        ],
-        [
-          0.62,
-          0.82
-        ],
-        [
-          0.75,
-          0.76
-        ],
-        [
-          0.9,
-          0.8
-        ]
-      ],
-      "per": [
-        2,
-        2,
-        2,
-        2,
-        2,
-        3,
-        2,
-        2
-      ],
-      "play": [
-        {
-          "to": 5,
-          "at": 8.6,
-          "dur": 3.0
-        },
-        {
-          "to": 6,
-          "at": 13.0,
-          "dur": 0.9
-        },
-        {
-          "to": 8,
-          "at": 23.0,
-          "dur": 1.4
-        }
-      ],
-      "headlines": [
-        {
-          "at": 8.4,
-          "html": "Slow, slow… <span class=\"mark\">then?</span>",
-          "out": 28.3
-        },
-        {
-          "at": 28.5,
-          "html": "Information. <span class=\"mark\">Not a plan.</span>"
-        }
-      ],
-      "lines": [
-        {
-          "at": 8.4,
-          "text": "Small candles, going nowhere.",
-          "screen": "Candles build"
-        },
-        {
-          "at": 13.0,
-          "text": "Then big candles, one direction, almost no overlap.",
-          "screen": "\"Displacement\""
-        },
-        {
-          "at": 18.0,
-          "text": "That’s displacement: participation looked one-sided in that moment.",
-          "screen": "\"one-sided moment\""
-        },
-        {
-          "at": 23.0,
-          "text": "Price pulled back after it."
-        },
-        {
-          "at": 28.5,
-          "text": "Displacement doesn’t promise continuation. It isn’t a structure change, and it isn’t an entry."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.52,
-          "from": 0.5,
-          "label": "Displacement",
-          "tone": "gold",
-          "at": 14.2,
-          "v2": 0.82
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.8,
-          "v": 0.95,
-          "text": "one-sided moment",
-          "tone": "up",
-          "at": 18.0,
-          "fs": 26
-        },
-        {
-          "u": 0.3,
-          "v": 0.6,
-          "text": "continuation? entry?",
-          "tone": "muted",
-          "at": 28.5,
-          "fs": 26
-        }
-      ]
-    },
-    {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "“It displaced. I’m buying.”",
-      "items": [
-        {
-          "title": "A big candle",
-          "desc": [
-            "she has it",
-            ""
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "Structure",
-          "desc": [
-            "context",
-            "missing"
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "Entry model",
-          "desc": [
-            "and a plan",
-            "missing"
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
-      "headlines": [
-        {
-          "at": 51.0,
-          "html": "Momentum is information. <span class=\"mark\">Not a plan.</span>"
-        }
-      ],
-      "lines": [
-        {
-          "at": 38.4,
-          "text": "Your friend says: it displaced, I’m buying.",
-          "screen": "\"“It displaced. I’m buying.”\""
-        },
-        {
-          "at": 40.8,
-          "text": "She has a big candle.",
-          "screen": "A big candle she has it"
-        },
-        {
-          "at": 44.2,
-          "text": "She’s missing the structure.",
-          "screen": "Structure context missing"
-        },
-        {
-          "at": 47.6,
-          "text": "And the entry model, and a plan.",
-          "screen": "Entry model and a plan missing"
-        },
-        {
-          "at": 51.0,
+          "at": 3.6,
           "text": "Momentum is information. Not a complete trade plan."
+        }
+      ]
+    },
+    {
+      "type": "s8-sprint-burst",
+      "start": 8,
+      "end": 34,
+      "beats": {
+        "jog": 9.0,
+        "burst": 15.6,
+        "pb": 22.4,
+        "photo": 24.6
+      },
+      "kicker": "Watch this move",
+      "headlines": [
+        {
+          "at": 8.4,
+          "html": "Strong. Fast. <span class=\"mark\">One direction.</span>",
+          "out": 24.4
+        },
+        {
+          "at": 24.6,
+          "html": "It describes <span class=\"mark\">that moment.</span>"
+        }
+      ],
+      "lines": [
+        {
+          "at": 8.4,
+          "text": "Meet our runner. She’s jogging in place.",
+          "screen": "A runner jogs in place on a track"
+        },
+        {
+          "at": 11.4,
+          "text": "Small candles, overlapping, going nowhere.",
+          "screen": "\"small, overlapping\""
+        },
+        {
+          "at": 15.6,
+          "text": "Then, bang. Big candles, one direction, almost no overlap.",
+          "screen": "She sprints; big candles print fast"
+        },
+        {
+          "at": 19.4,
+          "text": "That’s displacement: a strong, fast, one-sided move.",
+          "screen": "\"DISPLACEMENT\""
+        },
+        {
+          "at": 22.6,
+          "text": "Then price pulled back.",
+          "screen": "\"then a pullback\""
+        },
+        {
+          "at": 24.6,
+          "text": "Displacement is a snapshot of that moment.",
+          "screen": "A photographer snaps \"that moment\""
+        },
+        {
+          "at": 27.6,
+          "text": "It doesn’t promise continuation. It isn’t a structure change, and it isn’t an entry.",
+          "screen": "\"not a forecast\""
+        }
+      ]
+    },
+    {
+      "type": "s8-missing-pieces",
+      "start": 34,
+      "end": 56,
+      "beats": {
+        "claim": 34.8,
+        "place": 38.4,
+        "miss": 41.6,
+        "gap": 2.2,
+        "info": 50.0
+      },
+      "kicker": "Catch the mistake",
+      "headlines": [
+        {
+          "at": 34.4,
+          "html": "“It displaced. <span class=\"mark\">I’m buying.</span>”",
+          "out": 49.6
+        },
+        {
+          "at": 50.0,
+          "html": "Momentum is <span class=\"mark\">information.</span>"
+        }
+      ],
+      "lines": [
+        {
+          "at": 34.4,
+          "text": "Your friend shouts: it displaced, I’m buying!",
+          "screen": "A friend holds one puzzle piece"
+        },
+        {
+          "at": 38.0,
+          "text": "She has one real piece: a strong displacement.",
+          "screen": "DISPLACEMENT piece snaps into the TRADE PLAN board"
+        },
+        {
+          "at": 41.6,
+          "text": "But what is the structure doing?",
+          "screen": "STRUCTURE: MISSING"
+        },
+        {
+          "at": 44.0,
+          "text": "Where’s the entry model?",
+          "screen": "ENTRY MODEL: MISSING"
+        },
+        {
+          "at": 45.8,
+          "text": "And the risk plan?",
+          "screen": "RISK PLAN: MISSING"
+        },
+        {
+          "at": 47.6,
+          "text": "One piece is not a plan."
+        },
+        {
+          "at": 50.0,
+          "text": "Momentum is information. Not a complete trade plan.",
+          "screen": "\"information, not a complete plan\""
         }
       ]
     },
     {
       "type": "host-hook",
       "start": 56,
-      "end": 64,
+      "end": 66,
       "pointAt": 58.6,
-      "size": 66,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 57.0,
           "text": "Momentum is information."
         },
         {
@@ -255,7 +166,7 @@ window.LESSON_VIDEO = {
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 56.4,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
@@ -268,30 +179,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 66,
+      "end": 78,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 68.4,
         "text": "If a candle displaces, is that a reason to buy?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 74.0,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 66.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 68.4,
           "text": "If a candle displaces, is that a reason to buy?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 74.0,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }
