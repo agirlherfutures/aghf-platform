@@ -1,18 +1,19 @@
 /**
- * Phase 4 · Section 1 · Lesson 9 intro video — "MSS as Directional Information"
+ * Phase 4 · Section 10 · Lesson 9 intro video: "MSS as Directional Information"
+ * Scenes: s10-weathervane (barn weathervane swings back toward the bullish 4H wind), s10-false-start (running track: a false start on the MSS, the starter gun is Dayli ICC).
  */
 window.LESSON_VIDEO = {
   "slug": "p4-lesson-9",
-  "eyebrow": "Phase 4 · Section 1 · Lesson 9",
-  "duration": 76,
-  "sources": "From Phase 4, Lesson 9: a bullish 4H room, a 1H correction, a bullish 1H MSS, the analysis board updating to a potential bullish transition, and execution not being evaluated yet.",
+  "eyebrow": "Phase 4 · Section 10 · Lesson 9",
+  "duration": 80,
+  "sources": "From Phase 4, Section 10, Lesson 9 (\"MSS as Directional Information\"): a bullish 4H room with a 1H correcting lower, a close above the last 1H lower high (bullish MSS) updating the 1H map, execution not being evaluated yet, and MSS ≠ entry (Dayli ICC tells you whether you have an entry, taught later).",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Finding Your Bias",
+      "phase": "Section 10: Finding Your Bias",
       "title": "MSS as Directional Information",
       "quote": "MSS changes the conversation.",
       "lines": [
@@ -23,237 +24,137 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 4.6,
-          "text": "Bullish room. Bearish 1H. Then…"
+          "text": "MSS changes the conversation."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s10-weathervane",
       "start": 8,
-      "end": 38,
-      "seed": 409,
+      "end": 34,
       "kicker": "Watch the board",
-      "swings": [
-        [
-          0,
-          0.9
-        ],
-        [
-          0.12,
-          0.62
-        ],
-        [
-          0.2,
-          0.75
-        ],
-        [
-          0.36,
-          0.45
-        ],
-        [
-          0.44,
-          0.58
-        ],
-        [
-          0.58,
-          0.25
-        ],
-        [
-          0.72,
-          0.68
-        ],
-        [
-          0.8,
-          0.52
-        ],
-        [
-          0.9,
-          0.62
-        ]
-      ],
-      "per": [
-        3,
-        2,
-        4,
-        2,
-        4,
-        4,
-        2,
-        2
-      ],
-      "play": [
-        {
-          "to": 8,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
       "headlines": [
         {
           "at": 8.4,
-          "html": "What just <span class=\"mark\">changed?</span>",
-          "out": 28.3
+          "html": "Bullish room. <span class=\"mark\">Bearish 1H.</span> Then…",
+          "out": 22.2
         },
         {
-          "at": 28.5,
-          "html": "Information. <span class=\"mark\">Not an entry.</span>"
+          "at": 22.4,
+          "html": "MSS changes <span class=\"mark\">the conversation.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Bullish 4H room. The 1H is correcting lower.",
-          "screen": "Candles build"
+          "text": "Bullish 4H room. That’s the prevailing wind.",
+          "screen": "Barn sign: 4H ROOM BULLISH"
         },
         {
-          "at": 13.0,
+          "at": 11.4,
+          "text": "Meanwhile the 1H is correcting lower, and the vane points down.",
+          "screen": "Chalk 1H: LH, LL"
+        },
+        {
+          "at": 16.2,
           "text": "Here’s the last 1H lower high.",
-          "screen": "\"1H lower high\""
+          "screen": "last LH"
         },
         {
-          "at": 18.0,
+          "at": 19.4,
           "text": "Price closes above it. A bullish MSS.",
-          "screen": "\"MSS ↑\""
+          "screen": "bullish MSS"
         },
         {
-          "at": 23.0,
-          "text": "Execution? Not being evaluated yet.",
-          "screen": "\"execution: not yet\""
+          "at": 22.4,
+          "text": "The vane swings back toward the bullish room.",
+          "screen": "Vane swings up"
         },
         {
-          "at": 28.5,
-          "text": "The 1H may be turning back toward the bullish room. That’s information."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.58,
-          "from": 0.44,
-          "label": "1H lower high",
-          "tone": "purple",
-          "at": 10.0
+          "at": 25.8,
+          "text": "That’s directional information. It updates the 1H map.",
+          "screen": "\"Noted on the 1H map.\""
         },
         {
-          "v": 0.97,
-          "from": 0.0,
-          "label": "4H external high",
-          "tone": "muted",
-          "at": 9.0
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.72,
-          "v": 0.8,
-          "text": "MSS ↑",
-          "tone": "up",
-          "at": 18.0,
-          "fs": 26
-        },
-        {
-          "u": 0.45,
-          "v": 0.06,
-          "text": "execution: not yet",
-          "tone": "purple",
-          "at": 23.0,
-          "fs": 24
+          "at": 29.6,
+          "text": "Execution isn’t being evaluated yet."
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "The board",
-      "items": [
-        {
-          "title": "4H context",
-          "desc": [
-            "bullish",
-            ""
-          ],
-          "tone": "up",
-          "at": 40.8
-        },
-        {
-          "title": "1H",
-          "desc": [
-            "potential",
-            "bullish shift"
-          ],
-          "tone": "up",
-          "at": 44.2
-        },
-        {
-          "title": "Buy now",
-          "desc": [
-            "",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s10-false-start",
+      "start": 34,
+      "end": 58,
+      "kicker": "Keep these separate",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "MSS ≠ <span class=\"mark\">entry.</span>"
+          "at": 34.4,
+          "html": "MSS <span class=\"mark\">≠</span> entry.",
+          "out": 50
+        },
+        {
+          "at": 50.2,
+          "html": "Information, <span class=\"mark\">not an order.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Here’s the board.",
-          "screen": "\"The board\""
+          "at": 34.4,
+          "text": "Here’s the board. 4H context: bullish.",
+          "screen": "Scoreboard"
         },
         {
-          "at": 40.8,
-          "text": "4H context: bullish.",
-          "screen": "4H context bullish"
+          "at": 37.6,
+          "text": "1H: a bullish MSS. A potential bullish transition.",
+          "screen": "1H: bullish MSS ✓"
         },
         {
-          "at": 44.2,
-          "text": "1H: a potential bullish transition.",
-          "screen": "1H potential bullish shift"
+          "at": 40.6,
+          "text": "So, go? One runner thinks so.",
+          "screen": "Runner bolts"
         },
         {
-          "at": 47.6,
-          "text": "Buy now? No.",
-          "screen": "Buy now"
+          "at": 43,
+          "text": "False start. MSS is not an entry.",
+          "screen": "Red flag: MSS ≠ ENTRY"
         },
         {
-          "at": 51.0,
-          "text": "MSS is not an entry."
+          "at": 46.4,
+          "text": "Entries come later, with Dayli ICC on the 1-minute.",
+          "screen": "Dayli ICC · 1-minute · later"
+        },
+        {
+          "at": 50.2,
+          "text": "MSS tells you the conversation changed. Information, not an order to buy.",
+          "screen": "information ✓"
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 58,
+      "end": 68,
+      "pointAt": 60.6,
+      "size": 56,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 59.2,
           "text": "MSS changes the conversation."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">Dayli ICC decides entries.</span>"
+          "at": 60.6,
+          "html": "<span class=\"mark\">Dayli ICC later tells you whether you have an entry.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 58.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 59.6,
           "text": "MSS changes the conversation. Dayli ICC later tells you whether you have an entry.",
           "screen": "Aristella points"
         }
@@ -261,30 +162,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 68,
+      "end": 80,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 70.6,
         "text": "Does a bullish 1H MSS mean buy?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 76.4,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 68.2,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 70.6,
           "text": "Does a bullish 1H MSS mean buy?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 76.4,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

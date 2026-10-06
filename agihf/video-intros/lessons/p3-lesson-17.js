@@ -1,18 +1,18 @@
 /**
- * Phase 3 · Section 2 · Lesson 17 intro video — "When FVGs Don’t Matter"
+ * Phase 3 · Section 8 · Lesson 17 intro video: "When FVGs Don’t Matter"
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-17",
-  "eyebrow": "Phase 3 · Section 2 · Lesson 17",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 17: FVGs pile up, the FVG cleanup (delete what doesn’t help read the structure), and if the drawing makes you forget the structure, the drawing is hurting you.",
+  "eyebrow": "Phase 3 · Section 8 · Lesson 17",
+  "duration": 79,
+  "sources": "From Phase 3, Section 8, Lesson 17 (\"When FVGs Don’t Matter\"): FVGs pile up fast (every displacement and pullback can leave one), the price lab where every FVG is drawn on a bullish structure, deleting old gaps from earlier legs and tiny gaps inside pullbacks, keeping the structure and maybe one gap from the latest leg, and \"if the drawing makes you forget the structure, the drawing is hurting you.\"",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 2: Gaps, Imbalances & Price Delivery",
+      "phase": "Section 8: Gaps, Imbalances & Price Delivery",
       "title": "When FVGs Don’t Matter",
       "quote": "If the drawing makes you forget the structure, the drawing is hurting you.",
       "lines": [
@@ -22,274 +22,151 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *When FVGs Don’t Matter*"
         },
         {
-          "at": 4.6,
-          "text": "When the boxes pile up."
+          "at": 4.2,
+          "text": "Sometimes the drawings hide the chart."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s8-sticky-window",
       "start": 8,
-      "end": 38,
-      "seed": 317,
-      "kicker": "FVG cleanup",
-      "swings": [
-        [
-          0,
-          0.1
-        ],
-        [
-          0.14,
-          0.38
-        ],
-        [
-          0.22,
-          0.28
-        ],
-        [
-          0.36,
-          0.56
-        ],
-        [
-          0.44,
-          0.46
-        ],
-        [
-          0.6,
-          0.78
-        ],
-        [
-          0.7,
-          0.68
-        ],
-        [
-          0.86,
-          0.74
-        ]
-      ],
-      "per": [
-        2,
-        2,
-        2,
-        2,
-        3,
-        2,
-        3
-      ],
-      "play": [
-        {
-          "to": 7,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 32,
+      "beats": {
+        "ridge": 9.0,
+        "pile": 13.2,
+        "see": 21.4
+      },
+      "kicker": "When the boxes pile up",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Every gap <span class=\"mark\">drawn.</span>",
-          "out": 23.8
+          "html": "Every FVG <span class=\"mark\">drawn.</span>",
+          "out": 21.2
         },
         {
-          "at": 24.0,
-          "html": "Delete. <span class=\"mark\">Breathe.</span>"
+          "at": 21.4,
+          "html": "Can you still see <span class=\"mark\">the structure?</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Bullish structure. Every FVG drawn.",
-          "screen": "Boxes pile up"
+          "text": "Here’s a clear view: a bullish structure, higher highs and higher lows.",
+          "screen": "A window view of a ridge: HH, HL"
         },
         {
-          "at": 13.4,
+          "at": 13.2,
+          "text": "Now let’s draw every FVG we can find.",
+          "screen": "FVG sticky notes start covering the glass"
+        },
+        {
+          "at": 16.4,
+          "text": "Old ones. Tiny ones. Ones inside pullbacks."
+        },
+        {
+          "at": 19.4,
+          "text": "They pile up fast.",
+          "screen": "The counter climbs"
+        },
+        {
+          "at": 21.4,
           "text": "Can you still see the structure?",
           "screen": "\"can you see the structure?\""
         },
         {
-          "at": 18.0,
-          "text": "Old gaps from earlier legs. Tiny gaps in pullbacks."
+          "at": 24.2,
+          "text": "Neither can she.",
+          "screen": "She squints, confused"
         },
         {
-          "at": 24.0,
-          "text": "Delete what doesn’t help.",
-          "screen": "Boxes clear"
-        },
-        {
-          "at": 28.5,
-          "text": "Keep the structure, and maybe one gap from the latest leg. That’s it."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.16,
-          "from": 0.05,
-          "label": "",
-          "tone": "muted",
-          "at": 11.0,
-          "v2": 0.3,
-          "out": 24.0
-        },
-        {
-          "v": 0.32,
-          "from": 0.15,
-          "label": "",
-          "tone": "muted",
-          "at": 11.6,
-          "v2": 0.46,
-          "out": 24.4
-        },
-        {
-          "v": 0.4,
-          "from": 0.3,
-          "label": "",
-          "tone": "muted",
-          "at": 12.2,
-          "v2": 0.5,
-          "out": 24.8
-        },
-        {
-          "v": 0.5,
-          "from": 0.4,
-          "label": "",
-          "tone": "muted",
-          "at": 12.8,
-          "v2": 0.56,
-          "out": 25.2
-        },
-        {
-          "v": 0.58,
-          "from": 0.5,
-          "label": "FVG from the latest leg",
-          "tone": "up",
-          "at": 25.6,
-          "v2": 0.72
-        },
-        {
-          "v": 0.46,
-          "from": 0.44,
-          "label": "HL",
-          "tone": "up",
           "at": 26.0,
-          "below": true
-        },
-        {
-          "v": 0.78,
-          "from": 0.6,
-          "label": "HH",
-          "tone": "up",
-          "at": 26.4
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.5,
-          "v": 0.95,
-          "text": "can you see the structure?",
-          "tone": "down",
-          "at": 13.4,
-          "fs": 26,
-          "out": 23.6
+          "text": "The drawings were supposed to help. Now they’re hiding the view."
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Keep or delete?",
-      "items": [
-        {
-          "title": "Old gaps",
-          "desc": [
-            "from earlier",
-            "legs"
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "Tiny gaps",
-          "desc": [
-            "in pullbacks",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "Structure",
-          "desc": [
-            "first",
-            ""
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s8-pruning",
+      "start": 32,
+      "end": 57,
+      "beats": {
+        "old": 37.4,
+        "tiny": 40.8,
+        "keep": 43.4
+      },
+      "kicker": "Garden time",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "If it hides the structure, <span class=\"mark\">it’s hurting you.</span>"
+          "at": 32.4,
+          "html": "Keep or <span class=\"mark\">delete?</span>",
+          "out": 47.8
+        },
+        {
+          "at": 48.0,
+          "html": "Structure first. <span class=\"mark\">Keep what helps.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Keep or delete?",
-          "screen": "\"Keep or delete?\""
+          "at": 32.4,
+          "text": "Time to prune.",
+          "screen": "A tree whose trunk zigzags like structure"
+        },
+        {
+          "at": 33.8,
+          "text": "The trunk is the structure. Every branch is another FVG.",
+          "screen": "FVG boxes grow on the branches"
+        },
+        {
+          "at": 38.0,
+          "text": "Old gaps from earlier legs: snip.",
+          "screen": "\"old gaps\" fall"
         },
         {
           "at": 40.8,
-          "text": "Old gaps from earlier legs: delete.",
-          "screen": "Old gaps from earlier legs"
+          "text": "Tiny gaps inside pullbacks: snip.",
+          "screen": "\"tiny gaps\" fall"
         },
         {
-          "at": 44.2,
-          "text": "Tiny gaps in pullbacks: delete.",
-          "screen": "Tiny gaps in pullbacks"
+          "at": 43.4,
+          "text": "Keep the structure, and maybe one gap from the latest leg.",
+          "screen": "\"structure first\" / \"latest leg: maybe keep\""
         },
         {
-          "at": 47.6,
-          "text": "Structure first: keep.",
-          "screen": "Structure first"
+          "at": 48.0,
+          "text": "That’s it. Keep only what helps you read the structure.",
+          "screen": "A bird lands on the tree"
         },
         {
-          "at": 51.0,
+          "at": 52.0,
           "text": "If a drawing hides the structure, it’s hurting you."
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 57,
+      "end": 67,
+      "pointAt": 59.4,
+      "size": 60,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "If the drawing hides the structure,"
+          "at": 58.0,
+          "text": "If the drawing makes you forget the structure,"
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">it’s hurting you.</span>"
+          "at": 59.4,
+          "html": "<span class=\"mark\">the drawing is hurting you.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 57.4,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 59.0,
           "text": "If the drawing makes you forget the structure, the drawing is hurting you.",
           "screen": "Aristella points"
         }
@@ -297,30 +174,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 67,
+      "end": 79,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 69.4,
         "text": "Should you keep every FVG you find?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 75.0,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 67.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 69.4,
           "text": "Should you keep every FVG you find?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 75.0,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

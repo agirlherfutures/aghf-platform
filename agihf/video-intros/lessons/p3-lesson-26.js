@@ -1,266 +1,146 @@
 /**
- * Phase 3 · Section 3 · Lesson 26 intro video — "Market Participation + Structure"
+ * Phase 3 · Section 9 · Lesson 26 intro video: "Market Participation + Structure"
+ * Scenes: s9-eye-exam, s9-order-ticket (see scenes-s9.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-26",
-  "eyebrow": "Phase 3 · Section 3 · Lesson 26",
+  "eyebrow": "Phase 3 · Section 9 · Lesson 26",
   "duration": 76,
-  "sources": "From Phase 3, Lesson 26: layering the chart (structure, relevant level, liquidity, price delivery, participation, all, clear), and the Market Read panel that holds context without being a signal generator.",
+  "sources": "From Phase 3, Section 9, Lesson 26 (\"Market Participation + Structure\"): layering structure, levels, liquidity, delivery and participation one at a time (all at once is busier, not clearer), and the Market Read (structure, location, liquidity, delivery, participation, execution: not present), which is not a signal generator.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 3: Understanding Market Participation",
+      "phase": "Section 9: Understanding Market Participation",
       "title": "Market Participation + Structure",
       "quote": "Context gets deeper. The chart doesn’t need to get messier.",
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Lesson Twenty-Six: Market Participation + Structure.",
+          "text": "Welcome to Lesson Twenty-Six: Market Participation and Structure.",
           "screen": "Aristella waves; title *Market Participation + Structure*"
         },
         {
-          "at": 4.6,
-          "text": "Five lenses. One chart."
+          "at": 4.4,
+          "text": "Context gets deeper. The chart doesn’t need to get messier."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s9-eye-exam",
       "start": 8,
-      "end": 38,
-      "seed": 326,
-      "kicker": "Layer the chart",
-      "swings": [
-        [
-          0,
-          0.15
-        ],
-        [
-          0.16,
-          0.48
-        ],
-        [
-          0.28,
-          0.32
-        ],
-        [
-          0.46,
-          0.78
-        ],
-        [
-          0.6,
-          0.6
-        ],
-        [
-          0.8,
-          0.68
-        ]
-      ],
-      "per": [
-        3,
-        3,
-        4,
-        3,
-        4
-      ],
-      "play": [
-        {
-          "to": 5,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 31,
+      "kicker": "One lens at a time",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Turn it <span class=\"mark\">all on?</span>",
-          "out": 23.8
+          "html": "Which is clearer: <span class=\"mark\">one, or all?</span>",
+          "out": 21.6
         },
         {
-          "at": 24.0,
-          "html": "Context deeper. <span class=\"mark\">Chart cleaner.</span>"
+          "at": 21.8,
+          "html": "Use the lens that <span class=\"mark\">answers your question.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Structure first: a bullish chart, with its supporting higher low.",
-          "screen": "Candles + HL"
+          "text": "Time for an eye exam, trader edition.",
+          "screen": "Optometrist, patient, a chart on the wall"
         },
         {
-          "at": 13.0,
-          "text": "Add liquidity. Add delivery. Add participation.",
-          "screen": "Layers stack"
+          "at": 11.2,
+          "text": "Structure first. Then levels. Liquidity. Delivery. Participation.",
+          "screen": "Lens toggles light up one by one"
         },
         {
-          "at": 18.4,
-          "text": "Every layer on at once? Busier, not clearer.",
-          "screen": "\"busier, not clearer\""
-        },
-        {
-          "at": 24.0,
-          "text": "Turn on the lens that answers your question.",
-          "screen": "Layers clear"
-        },
-        {
-          "at": 28.5,
-          "text": "Then hold it all in a Market Read. Context, never a signal."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.32,
-          "from": 0.28,
-          "label": "Supporting HL",
-          "tone": "up",
-          "at": 11.0
-        },
-        {
-          "v": 0.8,
-          "from": 0.46,
-          "label": "Potential buy-side",
-          "tone": "gold",
-          "at": 13.0,
-          "v2": 0.9,
-          "out": 23.6
-        },
-        {
-          "v": 0.5,
-          "from": 0.32,
-          "label": "Bullish FVG",
-          "tone": "up",
           "at": 14.6,
-          "v2": 0.62,
-          "out": 23.6
+          "text": "Now flip on every lens at once. Is it easier to read?",
+          "screen": "ALL: the chart turns into a blurry mess"
         },
         {
-          "v": 0.26,
-          "from": 0.2,
-          "label": "Buyers appeared aggressive",
-          "tone": "up",
-          "at": 16.2,
-          "v2": 0.36,
-          "out": 23.6,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.5,
-          "v": 1.02,
-          "text": "busier, not clearer",
-          "tone": "down",
-          "at": 18.4,
-          "fs": 26,
-          "out": 23.6
+          "at": 19.4,
+          "text": "Not really. Busier, not clearer.",
+          "screen": "Patient: \"Busier!\""
         },
         {
-          "u": 0.7,
-          "v": 0.95,
-          "text": "one lens at a time",
-          "tone": "up",
-          "at": 24.0,
-          "fs": 26
+          "at": 21.8,
+          "text": "Turn on the lens that answers your question. Context gets deeper, the chart doesn’t get messier.",
+          "screen": "Back to structure and participation; crisp"
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
+      "type": "s9-order-ticket",
+      "start": 31,
+      "end": 54,
       "kicker": "The Market Read",
-      "items": [
-        {
-          "title": "Structure",
-          "desc": [
-            "location,",
-            "liquidity"
-          ],
-          "tone": "purple",
-          "at": 40.8
-        },
-        {
-          "title": "Delivery",
-          "desc": [
-            "& participation",
-            ""
-          ],
-          "tone": "purple",
-          "at": 44.2
-        },
-        {
-          "title": "Execution",
-          "desc": [
-            "the entry",
-            "model alone"
-          ],
-          "tone": "gold",
-          "mark": "yes",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
       "headlines": [
         {
-          "at": 51.0,
-          "html": "A read. <span class=\"mark\">Not a signal.</span>"
+          "at": 31.4,
+          "html": "Hold it all in <span class=\"mark\">a Market Read.</span>",
+          "out": 46
+        },
+        {
+          "at": 46.2,
+          "html": "Context, <span class=\"mark\">not a signal.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Then fill in the Market Read.",
-          "screen": "\"The Market Read\""
+          "at": 31.4,
+          "text": "Here’s how you hold all that context: the Market Read.",
+          "screen": "A diner order pad; a chef cat by the ENTRY MODEL bell"
         },
         {
-          "at": 40.8,
-          "text": "Structure, location, liquidity.",
-          "screen": "Structure location, liquidity"
+          "at": 35.6,
+          "text": "Structure, location, liquidity, delivery, participation. One line each.",
+          "screen": "Rows are written in"
         },
         {
-          "at": 44.2,
-          "text": "Delivery and participation.",
-          "screen": "Delivery & participation"
+          "at": 39,
+          "text": "Participation: buyers appeared aggressive. Not banks are buying.",
+          "screen": "\"Banks are buying\" crossed out"
         },
         {
-          "at": 47.6,
-          "text": "Execution: the entry model alone.",
-          "screen": "Execution the entry model alone"
+          "at": 42.4,
+          "text": "And execution? Not present. The read doesn’t decide entries.",
+          "screen": "NOT PRESENT stamp; the cat shakes its head"
         },
         {
-          "at": 51.0,
-          "text": "A read. Not a signal."
+          "at": 46.2,
+          "text": "A market read is not a signal generator. Your entry model decides execution.",
+          "screen": "CONTEXT ONLY; \"decides execution\""
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
+      "start": 54,
       "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "pointAt": 56.6,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 55.6,
           "text": "Context gets deeper."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">The chart doesn’t get messier.</span>"
+          "at": 56.6,
+          "html": "<span class=\"mark\">The chart doesn’t need to get messier.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 54.4,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 55.8,
           "text": "Context gets deeper. The chart doesn’t need to get messier.",
           "screen": "Aristella points"
         }
@@ -272,7 +152,7 @@ window.LESSON_VIDEO = {
       "end": 76,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 66.6,
         "text": "Does more context mean more drawings?"
       },
       "cta": {
@@ -281,12 +161,12 @@ window.LESSON_VIDEO = {
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 64.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 66.6,
           "text": "Does more context mean more drawings?",
           "screen": "Mission question"
         },

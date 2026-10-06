@@ -1,18 +1,19 @@
 /**
- * Phase 3 · Section 3 · Lesson 27 intro video — "How This Fits Into Dayli ICC"
+ * Phase 3 · Section 9 · Lesson 27 intro video: "How This Fits Into Dayli ICC"
+ * Scenes: s9-scroll-checklist, s9-library-key (see scenes-s9.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-27",
-  "eyebrow": "Phase 3 · Section 3 · Lesson 27",
+  "eyebrow": "Phase 3 · Section 9 · Lesson 27",
   "duration": 76,
-  "sources": "From Phase 3, Lesson 27: does your entry model now need all of these (no), context vs execution, the overcomplicated trader’s checklist (Mercury retrograde 😂) and “GIRL. NO. 😭,” and more knowledge should make your chart clearer, not your rules heavier.",
+  "sources": "From Phase 3, Section 9, Lesson 27 (\"How This Fits Into Dayli ICC\"): the overcomplicated trader’s checklist (liquidity swept, FVG filled, demand zone touched, buyers aggressive, accumulation confirmed, footprint delta positive, equal highs untouched, Mercury not in retrograde: \"Girl. No.\"), every Phase 3 concept sorted to context, and the Dayli ICC entry model unchanged (\"context informs, execution decides\"). Next: Phase 4, Section 10: Finding Your Bias.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 3: Understanding Market Participation",
+      "phase": "Section 9: Understanding Market Participation",
       "title": "How This Fits Into Dayli ICC",
       "quote": "More knowledge should make your chart clearer. Not your rules heavier.",
       "lines": [
@@ -22,230 +23,127 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *How This Fits Into Dayli ICC*"
         },
         {
-          "at": 4.6,
-          "text": "The big question."
+          "at": 4.4,
+          "text": "More knowledge should make your chart clearer. Not your rules heavier."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s9-scroll-checklist",
       "start": 8,
-      "end": 38,
-      "seed": 327,
-      "kicker": "Context vs execution",
-      "swings": [
-        [
-          0,
-          0.12
-        ],
-        [
-          0.18,
-          0.45
-        ],
-        [
-          0.3,
-          0.3
-        ],
-        [
-          0.48,
-          0.72
-        ],
-        [
-          0.6,
-          0.55
-        ],
-        [
-          0.82,
-          0.82
-        ]
-      ],
-      "per": [
-        3,
-        3,
-        4,
-        3,
-        4
-      ],
-      "play": [
-        {
-          "to": 5,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 30,
+      "kicker": "The overcomplicated trader",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Does your entry <span class=\"mark\">need all of this?</span>",
-          "out": 28.3
+          "html": "Meet <span class=\"mark\">her checklist.</span>",
+          "out": 20.4
         },
         {
-          "at": 28.5,
-          "html": "Clearer chart. <span class=\"mark\">Lighter rules.</span>"
-        }
-      ],
-      "lines": [
-        {
-          "at": 8.4,
-          "text": "You learned a lot in Phase Three.",
-          "screen": "Candles build"
-        },
-        {
-          "at": 13,
-          "text": "Sweep, FVG, zone, pressure, accumulation… Mercury retrograde.",
-          "screen": "The checklist"
-        },
-        {
-          "at": 18.4,
-          "text": "Girl. No.",
-          "screen": "\"GIRL. NO.\""
-        },
-        {
-          "at": 23,
-          "text": "Context informs. Execution decides.",
-          "screen": "Context vs execution"
-        },
-        {
-          "at": 28.5,
-          "text": "Every Phase Three concept lives on the context side. The entry model doesn’t change."
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.25,
-          "v": 0.95,
-          "text": "sweep ✓ FVG ✓ zone ✓",
-          "tone": "muted",
-          "at": 13,
-          "fs": 24,
-          "out": 22.6
-        },
-        {
-          "u": 0.85,
-          "v": 0.95,
-          "text": "pressure ✓ accumulation ✓ Mercury ✓ 😂",
-          "tone": "muted",
-          "at": 15,
-          "fs": 24,
-          "out": 22.6
-        },
-        {
-          "u": 0.45,
-          "v": 0.78,
-          "text": "GIRL. NO. 😭",
-          "tone": "down",
-          "at": 18.4,
-          "fs": 26,
-          "out": 22.6
-        },
-        {
-          "u": 0.5,
-          "v": 1.02,
-          "text": "Context informs. Execution decides.",
-          "tone": "up",
-          "at": 23,
-          "fs": 26
-        }
-      ]
-    },
-    {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Phase 3, sorted",
-      "items": [
-        {
-          "title": "Liquidity, FVGs,",
-          "desc": [
-            "zones, pressure",
-            "context"
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "Dayli ICC",
-          "desc": [
-            "sequence",
-            "execution"
-          ],
-          "tone": "purple",
-          "mark": "yes",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "More rules",
-          "desc": [
-            "",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
-      "headlines": [
-        {
-          "at": 51,
+          "at": 20.6,
           "html": "Clearer chart. <span class=\"mark\">Not heavier rules.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Phase Three, sorted.",
-          "screen": "\"Phase 3, sorted\""
+          "at": 8.4,
+          "text": "Meet the overcomplicated trader, and her checklist.",
+          "screen": "A scroll checklist starts to unroll"
         },
         {
-          "at": 40.8,
-          "text": "Liquidity, FVGs, zones, pressure: context.",
-          "screen": "Liquidity, FVGs, zones, pressure context"
+          "at": 11.4,
+          "text": "Liquidity swept. FVG filled. Demand zone touched. Buyers aggressive.",
+          "screen": "Items tick on, one by one"
         },
         {
-          "at": 44.2,
-          "text": "The Dayli ICC sequence: execution.",
-          "screen": "Dayli ICC sequence execution"
+          "at": 15.2,
+          "text": "Accumulation confirmed. Footprint delta positive. And... Mercury not in retrograde.",
+          "screen": "The scroll hits the floor and rolls away; the dog gives chase"
         },
         {
-          "at": 47.6,
-          "text": "More rules? No.",
-          "screen": "More rules"
+          "at": 19.2,
+          "text": "Girl. No.",
+          "screen": "Her friend stamps GIRL. NO."
         },
         {
-          "at": 51,
-          "text": "A clearer chart. Not heavier rules."
+          "at": 20.6,
+          "text": "More knowledge should make your chart clearer. Not your rules heavier."
+        },
+        {
+          "at": 25.2,
+          "text": "None of these become entry rules.",
+          "screen": "Every item struck through"
+        }
+      ]
+    },
+    {
+      "type": "s9-library-key",
+      "start": 30,
+      "end": 53.5,
+      "kicker": "Context vs execution",
+      "headlines": [
+        {
+          "at": 30.4,
+          "html": "Context informs. <span class=\"mark\">Execution decides.</span>",
+          "out": 45.8
+        },
+        {
+          "at": 46,
+          "html": "Next: <span class=\"mark\">finding your bias.</span>"
+        }
+      ],
+      "lines": [
+        {
+          "at": 30.4,
+          "text": "So where does all of Phase 3 go?",
+          "screen": "A big CONTEXT bookshelf"
+        },
+        {
+          "at": 33.8,
+          "text": "Liquidity, sweeps, gaps, zones, pressure, accumulation. All of it goes on the context shelf.",
+          "screen": "The librarian shelves every concept book"
+        },
+        {
+          "at": 39.4,
+          "text": "Your Dayli ICC entry model stays exactly what it was. Unchanged.",
+          "screen": "A golden key in a glass case: UNCHANGED"
+        },
+        {
+          "at": 44,
+          "text": "Context informs. Execution decides."
+        },
+        {
+          "at": 46,
+          "text": "And that’s Phase 3 done. Next, in Phase 4, we start finding your bias.",
+          "screen": "A door opens on a compass: PHASE 4, Finding Your Bias"
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 53.5,
+      "end": 63.5,
+      "pointAt": 56.1,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "More knowledge, clearer chart."
+          "at": 55.1,
+          "text": "More knowledge should make your chart clearer."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">Not heavier rules.</span>"
+          "at": 56.1,
+          "html": "<span class=\"mark\">Not your rules heavier.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 53.9,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58,
+          "at": 55.3,
           "text": "More knowledge should make your chart clearer. Not your rules heavier.",
           "screen": "Aristella points"
         }
@@ -253,30 +151,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 63.5,
+      "end": 75.5,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 66.1,
         "text": "Does your entry model now need all of these concepts?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 71.9,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 63.9,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 66.1,
           "text": "Does your entry model now need all of these concepts?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 71.9,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

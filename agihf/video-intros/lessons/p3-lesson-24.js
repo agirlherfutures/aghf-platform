@@ -1,18 +1,19 @@
 /**
- * Phase 3 · Section 3 · Lesson 24 intro video — "What Price Can Tell You"
+ * Phase 3 · Section 9 · Lesson 24 intro video: "What Price Can Tell You"
+ * Scenes: s9-quiz-show, s9-cork-board (see scenes-s9.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-24",
-  "eyebrow": "Phase 3 · Section 3 · Lesson 24",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 24: the ask-the-chart sort (can answer vs can’t answer), evidence mode highlighting candles and levels, and the evidence board.",
+  "eyebrow": "Phase 3 · Section 9 · Lesson 24",
+  "duration": 79,
+  "sources": "From Phase 3, Section 9, Lesson 24 (\"What Price Can Tell You\"): the ask-the-chart sort (where did price close, did it hold, how fast: can answer; who was buying, why did they sell, what happens next: can’t answer) and the evidence board (shows / may infer / cannot prove).",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 3: Understanding Market Participation",
+      "phase": "Section 9: Understanding Market Participation",
       "title": "What Price Can Tell You",
       "quote": "Ask the chart questions it can actually answer.",
       "lines": [
@@ -22,240 +23,123 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *What Price Can Tell You*"
         },
         {
-          "at": 4.6,
-          "text": "Evidence mode."
+          "at": 4.4,
+          "text": "Ask the chart questions it can actually answer."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s9-quiz-show",
       "start": 8,
-      "end": 38,
-      "seed": 324,
+      "end": 32,
       "kicker": "Ask the chart",
-      "swings": [
-        [
-          0,
-          0.25
-        ],
-        [
-          0.15,
-          0.4
-        ],
-        [
-          0.25,
-          0.32
-        ],
-        [
-          0.38,
-          0.42
-        ],
-        [
-          0.48,
-          0.72
-        ],
-        [
-          0.6,
-          0.66
-        ],
-        [
-          0.72,
-          0.74
-        ],
-        [
-          0.84,
-          0.68
-        ]
-      ],
-      "per": [
-        3,
-        2,
-        3,
-        2,
-        2,
-        2,
-        2
-      ],
-      "play": [
-        {
-          "to": 7,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
       "headlines": [
         {
           "at": 8.4,
-          "html": "What can the chart <span class=\"mark\">actually answer?</span>",
-          "out": 28.3
+          "html": "Ask the chart. <span class=\"mark\">Can it answer?</span>",
+          "out": 22.4
         },
         {
-          "at": 28.5,
-          "html": "Evidence <span class=\"mark\">first.</span>"
+          "at": 22.6,
+          "html": "Price, <span class=\"mark\">not people.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Ask the chart what it can actually answer.",
-          "screen": "Candles build"
+          "text": "Welcome to the quiz show where the chart is the contestant.",
+          "screen": "A game-show stage; the chart is a TV contestant"
         },
         {
-          "at": 13.0,
-          "text": "Where did price close? Above the prior high.",
-          "screen": "\"closed above\""
+          "at": 12.8,
+          "text": "Where did price close? Easy. It’s right there.",
+          "screen": "Q: Where did price close? CAN ANSWER"
         },
         {
-          "at": 17.0,
-          "text": "Is it holding? Yes, for several candles.",
-          "screen": "\"holding\""
+          "at": 16.2,
+          "text": "Who was buying? Buzz. A chart shows price, not people.",
+          "screen": "Q: Who was buying? CAN’T ANSWER; static"
         },
         {
-          "at": 23.0,
-          "text": "Who was buying? Why? What’s next? The chart can’t say.",
-          "screen": "\"who? why? next?\""
+          "at": 20.4,
+          "text": "Did it hold above the level? Yes. Why did they sell? No idea.",
+          "screen": "CAN, then CAN’T"
         },
         {
-          "at": 28.5,
-          "text": "Build your read on what the chart can show you."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.45,
-          "from": 0.0,
-          "label": "Prior high",
-          "tone": "purple",
-          "at": 10.0
-        },
-        {
-          "v": 0.5,
-          "from": 0.48,
-          "label": "Holding above",
-          "tone": "up",
-          "at": 17.0,
-          "v2": 0.78
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.48,
-          "v": 0.9,
-          "text": "closed above ✓",
-          "tone": "up",
-          "at": 13.0,
-          "fs": 26
-        },
-        {
-          "u": 0.75,
-          "v": 0.9,
-          "text": "holding ✓",
-          "tone": "up",
-          "at": 17.4,
-          "fs": 26
-        },
-        {
-          "u": 0.25,
-          "v": 0.7,
-          "text": "who? why? next? ✕",
-          "tone": "down",
-          "at": 23.0,
-          "fs": 26
+          "at": 25.6,
+          "text": "And what happens next? The chart can’t answer that either.",
+          "screen": "Q: What happens next? CAN’T ANSWER"
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "The evidence board",
-      "items": [
-        {
-          "title": "✓ Shows",
-          "desc": [
-            "closes, holds,",
-            "speed"
-          ],
-          "tone": "up",
-          "at": 40.8
-        },
-        {
-          "title": "○ May infer",
-          "desc": [
-            "a hedged",
-            "read"
-          ],
-          "tone": "purple",
-          "at": 44.2
-        },
-        {
-          "title": "✕ Can’t prove",
-          "desc": [
-            "who, why,",
-            "what’s next"
-          ],
-          "tone": "down",
-          "at": 47.6
-        }
-      ],
+      "type": "s9-cork-board",
+      "start": 32,
+      "end": 57,
+      "kicker": "Evidence mode",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Ask questions <span class=\"mark\">it can answer.</span>"
+          "at": 32.4,
+          "html": "Build an <span class=\"mark\">evidence board.</span>",
+          "out": 49.6
+        },
+        {
+          "at": 49.8,
+          "html": "Ask what it can <span class=\"mark\">actually answer.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Here’s the evidence board.",
-          "screen": "\"The evidence board\""
+          "at": 32.4,
+          "text": "Now let’s build an evidence board.",
+          "screen": "A corkboard: SHOWS, MAY INFER, CANNOT PROVE"
         },
         {
-          "at": 40.8,
-          "text": "What the chart shows: closes, holds, speed.",
-          "screen": "✓ Shows closes, holds, speed"
+          "at": 35,
+          "text": "Price closed above the prior high. It held there. The chart shows both.",
+          "screen": "Two notes pinned under SHOWS"
+        },
+        {
+          "at": 40.2,
+          "text": "Buyers appear more aggressive? A reasonable inference. Still a read.",
+          "screen": "Note under MAY INFER; red string"
         },
         {
           "at": 44.2,
-          "text": "What we may infer: a hedged read.",
-          "screen": "○ May infer a hedged read"
+          "text": "Big funds are buying? Price will keep going higher? The chart can’t prove those.",
+          "screen": "Two notes under CANNOT PROVE"
         },
         {
-          "at": 47.6,
-          "text": "What we can’t prove: who, why, what’s next.",
-          "screen": "✕ Can’t prove who, why, what’s next"
-        },
-        {
-          "at": 51.0,
-          "text": "Ask questions the chart can answer."
+          "at": 49.8,
+          "text": "The chart is powerful when you ask it questions it can actually answer."
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 57,
+      "end": 67,
+      "pointAt": 59.6,
+      "size": 60,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "Ask the chart"
+          "at": 58.6,
+          "text": "The chart is powerful when you ask it questions"
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">questions it can answer.</span>"
+          "at": 59.6,
+          "html": "<span class=\"mark\">it can actually answer.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 57.4,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 58.8,
           "text": "The chart is powerful when you ask it questions it can actually answer.",
           "screen": "Aristella points"
         }
@@ -263,30 +147,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 67,
+      "end": 79,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 69.6,
         "text": "Can a chart tell you who was buying?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 75.4,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 67.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 69.6,
           "text": "Can a chart tell you who was buying?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 75.4,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

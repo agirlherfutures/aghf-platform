@@ -172,10 +172,10 @@
     // Rocket.
     const lt = r - 3.0;
     let ry = 930, rx = padX, rot = 0, rop = 1;
-    if (lt > 0) { ry = 930 - lt * lt * 95; rx = padX + lt * lt * 10; rot = lt * 3; rop = clamp((ry - 380) / 140); }
+    if (lt > 0) { ry = 930 - lt * lt * 95; rx = padX + lt * lt * 10; rot = lt * 3; rop = clamp((ry - 420) / 140); }
     const shake = r > 2.2 && r < 3.3 ? Math.sin(t * 60) * 3 : 0;
     const fire = r > 2.4;
-    if (rop > 0) out += `<g transform="translate(${rx + shake},${ry}) rotate(${rot})" opacity="${rop}">
+    if (rop > 0) out += `<g transform="translate(${rx + shake},${ry}) rotate(${rot}) scale(1.3)" opacity="${rop}">
       ${fire ? `<path d="M-22,0 Q0,${70 + Math.sin(t * 40) * 16} 22,0 Z" fill="${C.peach}"/><path d="M-12,0 Q0,${40 + Math.sin(t * 50) * 9} 12,0 Z" fill="${C.gold}"/>` : ''}
       <path d="M-48,-10 L-30,-74 L-30,-10 Z" fill="${C.pink}"/><path d="M48,-10 L30,-74 L30,-10 Z" fill="${C.pink}"/>
       <path d="M-30,-8 L-30,-150 Q0,-236 30,-150 L30,-8 Z" fill="#fff" stroke="${C.purple}" stroke-width="5"/>
@@ -200,24 +200,24 @@
     out += card(850, 450, 280, 250, sk, bars(r, { x: 870, y: 470, w: 240, h: 210, data: mirror(DEMAND), t0: 14.4, dt: 0.3 }) +
       (zs > 0 ? `<rect x="872" y="${470 + 210 - 0.84 * 210}" width="${120 * zs}" height="${0.14 * 210}" rx="6" fill="${C.pink}" opacity=".35"/>` : ''));
     // Diving tower and pool.
-    let tower = `<rect x="1180" y="512" width="14" height="448" fill="${C.muted}"/><rect x="1290" y="512" width="14" height="448" fill="${C.muted}"/>`;
-    for (let k = 0; k < 8; k++) tower += `<rect x="1180" y="${560 + k * 52}" width="124" height="8" rx="4" fill="${C.muted}" opacity=".6"/>`;
-    out += `<g opacity="${clamp((r - 0.2) / 0.5)}">${tower}<rect x="1170" y="504" width="250" height="14" rx="7" fill="${zs > 0 ? C.pink : C.peach}"/>
+    let tower = `<rect x="1180" y="588" width="14" height="372" fill="${C.muted}"/><rect x="1290" y="588" width="14" height="372" fill="${C.muted}"/>`;
+    for (let k = 0; k < 7; k++) tower += `<rect x="1180" y="${630 + k * 46}" width="124" height="8" rx="4" fill="${C.muted}" opacity=".6"/>`;
+    out += `<g opacity="${clamp((r - 0.2) / 0.5)}">${tower}<rect x="1170" y="580" width="250" height="14" rx="7" fill="${zs > 0 ? C.pink : C.peach}"/>
       <rect x="1400" y="880" width="430" height="80" rx="10" fill="${C.tealL}"/>
       <path d="M1400,884 ${Array.from({ length: 9 }, (_, i) => `Q${1424 + i * 48},${876 + Math.sin(t * 3 + i) * 6} ${1448 + i * 48},884`).join(' ')}" fill="none" stroke="${C.tealD}" stroke-width="4"/>
       <rect x="1392" y="872" width="446" height="12" rx="6" fill="#fff" stroke="#EADFD8" stroke-width="2"/></g>`;
-    if (zs > 0) out += pill(1300, 460, 'POTENTIAL SUPPLY', C.pink, pop(r, 17.8), 26);
+    if (zs > 0) out += pill(1300, 536, 'POTENTIAL SUPPLY', C.pink, pop(r, 17.8), 26);
     // Bird perched on the rail, then off it goes.
     const bf = seg(r, 14.6, 16.6);
-    out += bf <= 0 ? bird(t, { x: 1200, y: 504, s: 1, col: C.teal, wing: C.tealL, flip: true })
-      : bf < 1 ? bird(t, { x: lerp(1200, 1960, bf), y: 504 - Math.sin(bf * Math.PI) * 120 - bf * 80, s: 1, col: C.teal, wing: C.tealL, flying: true, fast: true }) : '';
+    out += bf <= 0 ? bird(t, { x: 1200, y: 580, s: 1, col: C.teal, wing: C.tealL, flip: true })
+      : bf < 1 ? bird(t, { x: lerp(1200, 1960, bf), y: 580 - Math.sin(bf * Math.PI) * 120 - bf * 120, s: 1, col: C.teal, wing: C.tealL, flying: true, fast: true }) : '';
     // Diver.
     const look = A.LOOKS.seller;
     if (r < 14.6) {
       const hop = r > 13.8 ? -Math.abs(Math.sin((r - 13.8) * 12)) * 16 : 0;
-      out += P(t, { x: 1380, y: 504 + hop, scale: 0.6, look, seed: 5, flip: true, frontArm: r > 13.4 ? { a1: -95, a2: -90 } : undefined, backArm: r > 13.4 ? { a1: -85, a2: -90 } : undefined });
+      out += P(t, { x: 1380, y: 580 + hop, scale: 0.6, look, seed: 5, flip: true, frontArm: r > 13.4 ? { a1: -95, a2: -90 } : undefined, backArm: r > 13.4 ? { a1: -85, a2: -90 } : undefined });
     } else if (r < 15.7) {
-      const k = (r - 14.6) / 1.1, x = lerp(1380, 1600, k), y = 504 - 200 * k + 636 * k * k;
+      const k = (r - 14.6) / 1.1, x = lerp(1380, 1600, k), y = 580 - 160 * k + 520 * k * k;
       out += `<g transform="rotate(${k * 170} ${x} ${y - 90})">${P(t, { x, y, scale: 0.6, look, seed: 5, frontArm: { a1: -95, a2: -90 }, backArm: { a1: -85, a2: -90 } })}</g>`;
     }
     if (r > 15.6) {
@@ -415,10 +415,11 @@
     if (w < 0.5) { const p = ((r * 0.16) % 1); out += bird(t, { x: lerp(620, 1780, p), y: 600 - p * 160, s: 1.1, col: C.pink, wing: C.pinkL, belly: C.cream, flying: true, rot: -8 }); }
     else out += bird(t, { x: 1220 - Math.min(r - 10.6, 6) * 22, y: 640 + Math.sin(t * 5) * 18, s: 1.1, col: C.pink, wing: C.pinkL, belly: C.cream, flying: true, fast: true, rot: 18 });
     // Candles that tell the story of the wind.
-    const data = SEQ_A.slice(0, 4).map(d => d.map(v => v * 0.6 + 0.3)).concat(mirror(SEQ_A).slice(0, 4).map(d => d.map(v => v * 0.6 + 0.04)));
+    const up4 = [[.2, .38, .4, .17], [.36, .52, .54, .33], [.5, .66, .68, .47], [.64, .8, .82, .61]];
+    const dn4 = [[.8, .64, .83, .62], [.64, .46, .66, .44], [.46, .3, .48, .27], [.3, .14, .32, .12]];
     const ck = pop(r, 0.6);
-    out += card(80, 430, 340, 250, ck, bars(r, { x: 100, y: 450, w: 300, h: 210, data: data.slice(0, 4), t0: 2.8, dt: 0.5 }) +
-      bars(r, { x: 100 + 150, y: 450, w: 150, h: 210, data: data.slice(4, 6), t0: 10.2, dt: 0.6 }));
+    out += card(80, 430, 340, 250, ck, bars(r, { x: 100, y: 450, w: 150, h: 210, data: up4, t0: 2.8, dt: 0.5, bw: 24 }) +
+      bars(r, { x: 250, y: 450, w: 150, h: 210, data: dn4, t0: 10.2, dt: 0.5, bw: 24 }));
     out += pill(250, 728, 'buyers appear aggressive', C.tealD, pop(r, 4.6) * (1 - clamp((r - 9.8) / 0.3)), 22);
     out += pill(250, 728, 'now sellers do', C.pink, pop(r, 11.4), 22);
     return out;
@@ -430,7 +431,7 @@
     let out = ground(960);
     // Wall chart board.
     const bk = pop(r, 0.3);
-    const pre = [[.66, .7, .73, .63], [.7, .68, .72, .65], [.68, .74, .76, .66], [.74, .72, .77, .7], [.72, .76, .79, .7], [.76, .78, .8, .74]];
+    const pre = [[.62, .72, .75, .6], [.72, .66, .76, .63], [.66, .76, .79, .64], [.76, .7, .8, .67], [.7, .8, .83, .68], [.8, .78, .86, .75]];
     const big = ease(seg(r, 4.6, 5.0));
     let bigC = '';
     if (big > 0) { const Y = v => 440 + 340 - v * 340, x = 120 + 380 / 7 * 6.5 + 20; bigC = `<line x1="${x}" x2="${x}" y1="${Y(.8)}" y2="${Y(lerp(.78, .1, big))}" stroke="${C.pink}" stroke-width="5"/><rect x="${x - 20}" y="${Y(.78)}" width="40" height="${Math.max(3, (0.78 - lerp(0.78, 0.12, big)) * 340)}" rx="4" fill="${C.pink}"/>`; }
@@ -517,7 +518,7 @@
     const holding1 = r > 0.8 && r < 2.6, holding2 = r > 10.4 && r < 11.8;
     giver.frontArm = holding1 || holding2 ? { a1: -70, a2: -85 } : undefined;
     out += P(t, giver);
-    const h = handPos(giver), hold = { x: h.x, y: h.y - 70 };
+    const h = handPos(giver), hold = { x: h.x + 40, y: 594 };
     const cards = [
       { inAt: 0.8, fly: 2.4, out: 5.6, gone: 10.6, s1: 'Institutions', s2: 'dumped it.', f1: 'Price dropped sharply with', f2: 'large bearish candles.' },
       { inAt: 10.4, fly: 11.6, out: 14.2, gone: 99, s1: 'Smart money trapped', s2: 'the buyers.', f1: 'Price closed above the high,', f2: 'then closed back below it.' },
@@ -584,7 +585,7 @@
     upC.forEach(([a, b], i) => {
       const k = pop(r, 13.2 + i * 0.3, 0.5);
       if (k <= 0) return;
-      const x = 560 + i * 70, y0 = 560 - a * 200, y1 = 560 - b * 200;
+      const x = 560 + i * 70, y0 = 540 - a * 140, y1 = 540 - b * 140;
       out += zoom(x, y0, k, `<line x1="${x}" x2="${x}" y1="${y1 - 14}" y2="${y0 + 12}" stroke="${C.teal}" stroke-width="5"/><rect x="${x - 20}" y="${y1}" width="40" height="${y0 - y1}" rx="5" fill="${C.teal}"/>`);
     });
     if (r > 13.2) out += A.sparkle(780, 340, s.start + 14.4, t, C.teal);
@@ -592,7 +593,7 @@
     dnC.forEach(([a, b], i) => {
       const k = pop(r, 14.8 + i * 0.3, 0.5);
       if (k <= 0) return;
-      const x = 1480 + i * 50, y0 = 600 + a * 240, y1 = 600 + b * 240;
+      const x = 1130 - i * 56, y0 = 620 + a * 220, y1 = 620 + b * 220;
       out += zoom(x, y0, k, `<line x1="${x}" x2="${x}" y1="${y0 - 12}" y2="${y1 + 14}" stroke="${C.pink}" stroke-width="5"/><rect x="${x - 17}" y="${y0}" width="34" height="${y1 - y0}" rx="5" fill="${C.pink}"/>`);
     });
     out += pill(600, 1012, 'accumulation, in hindsight', C.tealD, pop(r, 16.6), 24) + pill(1320, 1012, 'distribution, in hindsight', C.pink, pop(r, 17.2), 24);
@@ -617,7 +618,7 @@
     const cam = `<g transform="rotate(20)"><rect x="-44" y="-30" width="88" height="60" rx="10" fill="${C.dark}"/><rect x="-20" y="-40" width="34" height="14" rx="4" fill="${C.dark}"/><circle cx="4" cy="2" r="20" fill="#3D3550" stroke="#fff" stroke-width="4"/><circle cx="30" cy="-18" r="5" fill="${C.gold}"/></g>`;
     ph.hold = r < 1.4 ? cam : '';
     out += P(t, ph);
-    if (r >= 1.4) out += `<g transform="translate(350,900)">${cam}</g>`;
+    if (r >= 1.4) out += `<path d="M290,720 L330,800 M312,724 L340,800" stroke="${C.dark}" stroke-width="4"/><g transform="translate(336,820) scale(.8)">${cam}</g>`;
     const fl = inout(r, 0.5, 0.8, 0.12);
     if (fl > 0) out += `<circle cx="${handPos(ph).x + 30}" cy="${handPos(ph).y - 30}" r="${60 + fl * 60}" fill="#FFF3C4" opacity="${fl}"/>`;
     const squawk = r > 8.2 && r < 11.4;
@@ -723,8 +724,6 @@
       <path d="M${lx - 46},${ly + 24} L${lx - 22},${ly - 8} L${lx + 22},${ly - 8} L${lx + 46},${ly + 24} Z" fill="${C.purple}"/><ellipse cx="${lx}" cy="${ly + 26}" rx="22" ry="8" fill="#FFF3C4"/>`;
     const mx = lx + Math.cos(t * 3) * 80, my = ly + 10 + Math.sin(t * 4.4) * 34, mf = Math.sin(t * 40) * 10;
     out += `<g transform="translate(${mx},${my})"><ellipse cx="-8" cy="0" rx="10" ry="${6 + mf * 0.3}" fill="${C.purpleL}"/><ellipse cx="8" cy="0" rx="10" ry="${6 - mf * 0.3}" fill="${C.purpleL}"/><ellipse rx="4" ry="8" fill="${C.muted}"/></g>`;
-    // Table.
-    out += `<rect x="1000" y="860" width="230" height="16" rx="6" fill="${C.muted}"/><rect x="1020" y="876" width="12" height="84" fill="${C.muted}"/><rect x="1198" y="876" width="12" height="84" fill="${C.muted}"/>`;
     // The candle suspect.
     const qs = [
       ['Where did you close?', 'Back below the level', 2.0], ['Did you hold beyond it?', 'No', 3.8], ['How fast did you move?', 'Big candles', 6.2],
@@ -846,7 +845,7 @@
     const bk = pop(r, 0.2, 0.8);
     let speck = '';
     for (let i = 0; i < 60; i++) speck += `<circle cx="${540 + (i * 197) % 1220}" cy="${400 + (i * 113) % 520}" r="${2 + i % 3}" fill="${C.peach}" opacity=".35"/>`;
-    out += zoom(1150, 660, bk, `<rect x="510" y="372" width="1280" height="576" rx="22" fill="${C.muted}"/><rect x="528" y="390" width="1244" height="540" rx="12" fill="${C.peachL}" opacity=".55"/>${speck}
+    out += zoom(1150, 660, bk, `<rect x="510" y="372" width="1280" height="576" rx="22" fill="${C.muted}"/><rect x="528" y="390" width="1244" height="540" rx="12" fill="#FDF3E6"/><rect x="528" y="390" width="1244" height="540" rx="12" fill="${C.peachL}" opacity=".35"/>${speck}
       <line x1="940" y1="470" x2="940" y2="910" stroke="${C.muted}" stroke-width="3" stroke-dasharray="10 10" opacity=".5"/><line x1="1360" y1="470" x2="1360" y2="910" stroke="${C.muted}" stroke-width="3" stroke-dasharray="10 10" opacity=".5"/>`);
     out += pill(730, 432, 'SHOWS', C.tealD, pop(r, 0.6), 24) + pill(1150, 432, 'MAY INFER', C.peach, pop(r, 0.8), 24) + pill(1570, 432, 'CANNOT PROVE', C.pink, pop(r, 1.0), 24);
     // Exhibit photo of the chart.
@@ -903,7 +902,7 @@
     const lk = ease(seg(r, 2.2, 3.0));
     if (lk > 0) ch += `<line x1="${X0}" x2="${X0 + W * lk}" y1="${Yv(0.3)}" y2="${Yv(0.3)}" stroke="${C.purple}" stroke-width="4" stroke-dasharray="12 8"/>` + pill(X0 + 70, Yv(0.3) + 30, 'prior low', C.purple, pop(r, 2.6), 18);
     if (r > 6.4) ch += `<circle cx="${X0 + W / 11 * 8.5}" cy="${Yv(0.2)}" r="${30 + Math.sin(t * 6) * 3}" fill="none" stroke="${C.tealD}" stroke-width="5"/>`;
-    out += zoom(1560, 640, ek, `<path d="M1460,960 L1560,400 L1660,960 M1560,400 L1560,960" stroke="${C.muted}" stroke-width="12" stroke-linecap="round"/>
+    out += zoom(1560, 640, ek, `<path d="M1460,960 L1560,400 L1660,960 M1560,400 L1560,960" stroke="${C.muted}" stroke-width="8" stroke-linecap="round"/>
       <rect x="1340" y="430" width="440" height="390" rx="14" fill="#fff" stroke="${C.muted}" stroke-width="6"/>${ch}`);
     out += pill(1560, 410, 'EXHIBIT A', C.pink, pop(r, 0.6), 22);
     out += pill(1560, 880, 'dipped below, closed back above', C.tealD, pop(r, 7.0), 22);
@@ -1123,11 +1122,11 @@
     out += zoom(880, 410, rk, sc);
     // The roll escapes along the floor.
     if (bottom >= 966) {
-      const rollK = ease(seg(r, 9.8, 11.4)), rx = lerp(900, 1600, rollK);
-      out += `<path d="M640,962 L${rx},962 L${rx},990 L640,990 Z" fill="${C.cream}" stroke="#EADFD8" stroke-width="3"/>
+      const rollK = ease(seg(r, 9.8, 11.4)), rx = lerp(900, 1520, rollK);
+      out += `<path d="M640,962 L${rx},962 L${rx},992 L640,992 Z" fill="#fff" stroke="${C.peachL}" stroke-width="3"/>
         <g transform="translate(${rx},962) rotate(${rollK * 720})"><circle r="30" fill="${C.cream}" stroke="#EADFD8" stroke-width="4"/><path d="M0,0 m-14,0 a14,14 0 1,0 28,0 a14,14 0 1,0 -28,0" fill="none" stroke="#EADFD8" stroke-width="3"/></g>`;
       const chase = r > 10 && r < 12;
-      out += dog(t, { x: r < 10 ? 1760 : lerp(1760, 1720, 0) + 0, y: 990, s: 0.85, flip: true, excited: chase || r > 12, hop: chase });
+      out += dog(t, { x: lerp(1760, 1630, ease(seg(r, 10.2, 11.6))), y: 990, s: 0.85, flip: true, excited: chase || r > 12, hop: chase });
     } else out += dog(t, { x: 1760, y: 990, s: 0.85, flip: true });
     // The trader.
     const me = { x: 460, y: 960, scale: 0.9, look: A.LOOKS.d, seed: 4, talk: ctx.talking && r < 10.4 && r > 3.2, mood: r > 11.4 && r < 13 ? 'sad' : undefined,

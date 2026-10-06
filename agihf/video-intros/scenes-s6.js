@@ -68,7 +68,7 @@
     judge: { skin: '#A86B4C', hair: '#C9B9AE', hairStyle: 'bun', shirt: C.purpleL, pants: '#5C4A6E' },
     janitor: { skin: '#E8B48C', hair: '#3A2318', hairStyle: 'short', shirt: C.teal, pants: '#3D3550' },
     captain: { skin: '#C68B62', hair: '#fff', hairStyle: 'short', shirt: '#4A5A78', pants: '#3D3550' },
-    girl: { skin: '#6E4530', hair: '#1E120C', hairStyle: 'puff', shirt: C.pink, pants: '#4A5A78' },
+    girl: { skin: '#E8B48C', hair: '#C27A3A', hairStyle: 'waves', shirt: C.pink, pants: '#4A5A78' },
     mom: { skin: '#8E5A3C', hair: '#2C1810', hairStyle: 'waves', shirt: C.purple, pants: '#3D3550' },
     boss: { skin: '#F1C7A5', hair: '#2C1810', hairStyle: 'bun', shirt: '#4A5A78', pants: '#3D3550' },
     tech: { skin: '#C68B62', hair: '#C27A3A', hairStyle: 'waves', shirt: C.peach, pants: '#5C4A6E' },
@@ -707,16 +707,16 @@
       drops.forEach(([at], i) => {
         const f = seg(u, at, at + 0.5);
         if (f <= 0) return;
-        const tx = bx + (i === 2 ? 0 : (i - 0.5) * 108), ty = by + 148 - (i === 2 ? 64 : 0);
+        const tx = bx + (i === 2 ? 0 : (i - 0.5) * 120), ty = by + 148 - (i === 2 ? 76 : 0);
         const x = tx, y = lerp(370, ty, f * f);
-        out += `<g transform="translate(${F(x)},${F(y)})"><path d="M-50,0 L50,0 L40,-60 L-40,-60 Z" fill="${W[i][1]}"/><rect x="-14" y="-74" width="28" height="18" rx="8" fill="none" stroke="${W[i][1]}" stroke-width="6"/>
-          <text y="-20" font-size="20" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">${W[i][0]}</text></g>`;
+        out += `<g transform="translate(${F(x)},${F(y)}) scale(1.2)"><path d="M-52,0 L52,0 L44,-60 L-44,-60 Z" fill="${W[i][1]}"/><rect x="-14" y="-74" width="28" height="18" rx="8" fill="none" stroke="${W[i][1]}" stroke-width="6"/>
+          <text y="-22" font-size="18" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">${W[i][0]}</text></g>`;
       });
       out += pill(ax, ay + 240, 'A · random price', C.muted, pop(u, 3.4, 0.6), 24);
       out += pill(bx, by + 240, 'B · higher low', C.tealD, pop(u, 7.8, 0.6), 24);
       if (u > 15.8) out += pill(960, 430, 'B gets more weight', C.tealD, pop(u, 15.8, 0.6), 30) + A.sparkle(bx, by + 100, s.start + 16.0, t, C.teal);
       // Judge points; robot rolls in with a score that gets crossed out.
-      out += P(t, { x: 1620, y: 1000, scale: 0.85, look: LK.judge, flip: true, seed: 6, talk: u > 12.4 && u < 19.8, frontArm: u > 7.8 ? { a1: -10, a2: -20 } : { a1: 100, a2: 95 } });
+      out += P(t, { x: 1640, y: 1000, scale: 1.0, look: LK.judge, flip: true, seed: 6, talk: u > 12.4 && u < 19.8, frontArm: u > 7.8 ? { a1: -10, a2: -20 } : { a1: 100, a2: 95 } });
       const rx = lerp(-160, 300, ease(seg(u, 19.4, 20.8)));
       if (u > 19.4) {
         const sign = `<g transform="translate(10,-60)"><rect x="-6" y="0" width="12" height="70" fill="#9B6A45"/><rect x="-80" y="-74" width="160" height="80" rx="12" fill="#fff" stroke="${C.purple}" stroke-width="5"/><text y="-14" font-size="46" font-weight="900" text-anchor="middle" fill="${C.purple}" font-family="DM Sans">93%</text></g>`;
@@ -727,7 +727,7 @@
           out += `<path d="M${F(hx - 70)},${F(hy - 30)} L${F(lerp(hx - 70, hx + 70, ck))},${F(lerp(hy - 30, hy + 30, ck))}" stroke="${C.pink}" stroke-width="12" stroke-linecap="round"/>`;
           if (ck >= 1) out += `<path d="M${F(hx + 70)},${F(hy - 30)} L${F(lerp(hx + 70, hx - 70, ease(seg(u, 22.0, 22.3))))},${F(lerp(hy - 30, hy + 30, ease(seg(u, 22.0, 22.3))))}" stroke="${C.pink}" stroke-width="12" stroke-linecap="round"/>`;
         }
-        out += pill(560, 600, 'weigh it, don’t score it', C.purple, pop(u, 22.6, 0.6), 28);
+        out += pill(960, 1036, 'weigh it, don’t score it', C.purple, pop(u, 22.6, 0.6), 28);
       }
       return out;
     },
@@ -764,7 +764,7 @@
         return about(x, 970, q, `<rect x="${x - 110}" y="560" width="220" height="410" rx="14" fill="${C.cream}" stroke="${C.dark}" stroke-width="6"/>
           <rect x="${x - 100}" y="570" width="200" height="400" fill="#FFF3C4" opacity="${o}"/>
           <path d="M${x - 100},570 L${x - 100 + 200 * (1 - o * 0.7)},${570 + o * 20} L${x - 100 + 200 * (1 - o * 0.7)},${970 - o * 20} L${x - 100},970 Z" fill="${col}"/>
-          <circle cx="${x - 100 + 200 * (1 - o * 0.7) - 24}" cy="770" r="9" fill="${C.gold}"/>`) + pill(x, 516, lab, C.dark, q, 22);
+          <circle cx="${x - 100 + 200 * (1 - o * 0.7) - 24}" cy="770" r="9" fill="${C.gold}"/>`) + pill(x, 514, lab, C.dark, q, 26);
       };
       out += door(1160, 'CURRENT STRUCTURE?', 7.8, seg(u, 14.4, 15.2), C.purpleL);
       out += door(1580, 'LARGER RANGE?', 16.8, seg(u, 20.6, 21.4), C.peachL);
@@ -782,10 +782,10 @@
       let jx = 920, jw = false;
       [[3.8, 5.2, 1980, 920], [12.2, 13.0, 920, 980], [17.0, 18.4, 980, 1400]].forEach(([a, b, x0, x1]) => { if (u >= a) { jx = lerp(x0, x1, seg(u, a, b)); if (u < b) jw = true; } });
       if (u < 3.8) jx = 1980;
-      out += P(t, { x: jx, y: 985, scale: 0.8, look: LK.janitor, seed: 4, flip: u < 5.2, walking: jw, talk: (u > 14.4 && u < 16.6) || (u > 20.6 && u < 22.4), frontArm: { a1: -30, a2: 40 }, hold: ring });
-      out += dog(t, jx - 140 + (u < 5.2 ? 260 : 0), 985, 0.55, { wag: hiC, happy: hiC, flip: u < 5.2, look: 1, hop: jw ? Math.abs(Math.sin(t * 9)) * 10 : 0 });
+      out += P(t, { x: jx, y: 985, scale: 0.95, look: LK.janitor, seed: 4, flip: u < 5.2, walking: jw, talk: (u > 14.4 && u < 16.6) || (u > 20.6 && u < 22.4), frontArm: { a1: -30, a2: 40 }, hold: ring });
+      out += dog(t, jx - 150 + (u < 5.2 ? 300 : 0), 985, 0.62, { wag: hiC, happy: hiC, flip: u < 5.2, look: 1, hop: jw ? Math.abs(Math.sin(t * 9)) * 10 : 0 });
       // Myth buster.
-      if (u > 22.8) out += pill(960, 1028, '3 touches ≠ strong', C.pink, pop(u, 22.8, 0.6), 28) + `<g opacity="${clamp(u - 23)}">${[0, 1, 2].map(i => `<line x1="${1150 + i * 16}" x2="${1150 + i * 16}" y1="1010" y2="1046" stroke="${C.pink}" stroke-width="6" stroke-linecap="round"/>`).join('')}</g>`;
+      if (u > 22.8) out += pill(960, 1024, '3 touches ≠ strong', C.pink, pop(u, 22.8, 0.6), 30) + `<g opacity="${clamp(u - 23)}">${[0, 1, 2].map(i => `<line x1="${1160 + i * 16}" x2="${1160 + i * 16}" y1="1010" y2="1046" stroke="${C.pink}" stroke-width="6" stroke-linecap="round"/>`).join('')}</g>`;
       return out;
     },
 
@@ -803,7 +803,8 @@
       // Rock and lighthouse.
       const lk = pop(u, 0.1, 0.8);
       const beamA = Math.sin(t * 1.2) * 0.9;
-      const beam = `<path d="M${LX},${LH - 18} L${F(LX + Math.cos(beamA) * 700)},${F(LH - 18 + Math.sin(beamA) * 120 - 110)} L${F(LX + Math.cos(beamA) * 700)},${F(LH - 18 + Math.sin(beamA) * 120 + 110)} Z" fill="${C.gold}" opacity=".16"/>`;
+      const bl = 520 + Math.cos(beamA) * 120, bdy = Math.sin(beamA) * 90;
+      const beam = `<path d="M${LX},${LH - 18} L${F(LX + bl)},${F(LH - 18 + bdy - 70)} Q${F(LX + bl + 40)},${F(LH - 18 + bdy)} ${F(LX + bl)},${F(LH - 18 + bdy + 70)} Z" fill="${C.gold}" opacity=".14"/>`;
       out += about(LX, SEA, lk, `${beam}
         <path d="M${LX - 210},${SEA + 30} Q${LX - 160},${SEA - 120} ${LX - 40},${SEA - 130} Q${LX + 80},${SEA - 140} ${LX + 170},${SEA + 30} Z" fill="#9B8B80"/>
         <path d="M${LX - 60},${SEA - 120} L${LX - 44},${LH + 20} L${LX + 44},${LH + 20} L${LX + 60},${SEA - 120} Z" fill="#fff" stroke="${C.dark}" stroke-width="5"/>
@@ -815,8 +816,8 @@
       // Level line from the lamp.
       const lvk = ease(seg(u, 3.4, 4.6));
       if (lvk > 0) out += `<line x1="${LX + 40}" x2="${F(lerp(LX + 40, 1820, lvk))}" y1="${LH - 18}" y2="${LH - 18}" stroke="${C.purple}" stroke-width="5" stroke-dasharray="18 12"/>`;
-      out += pill(1560, LH - 64, 'PREVIOUS HIGH', C.purple, pop(u, 3.6, 0.6), 26);
-      out += pill(1560, LH + 30, 'a landmark', C.purpleL, pop(u, 4.4, 0.6), 24, '#5E56B8');
+      out += pill(1720, LH - 64, 'PREVIOUS HIGH', C.purple, pop(u, 3.6, 0.6), 26);
+      out += pill(1720, LH + 30, 'a landmark', C.purpleL, pop(u, 4.4, 0.6), 24, '#5E56B8');
       // Gull flight path = price.
       const GP = [[200, 820], [LX - 20, LH - 70], [920, 800], [1300, LH + 40]];
       const segs = [[0.4, 3.0, 0], [3.4, 5.8, 1], [11.4, 14.0, 2]];
@@ -830,8 +831,8 @@
         gx = lerp(x0, x1, f); gy = lerp(y0, y1, ease(f)) + Math.sin(f * Math.PI * 3) * 14; flying = f < 1; k2 = i;
       });
       if (path.length > 1) out += `<polyline points="${path.map(p => p.map(F).join(',')).join(' ')}" fill="none" stroke="${C.dark}" stroke-width="5" stroke-dasharray="12 10" opacity=".45"/>`;
-      if (u > 0.4) out += bird(t, gx, gy - (flying ? 0 : 6 + Math.sin(t * 4) * 6), 1.2, { col: '#fff', dark: C.muted, fly: flying || u > 14, seed: 2, flip: k2 === 1 && flying });
-      if (u > 14 && u < 17.2) out += A.bubble(gx + 60, gy - 110, 'Will it reverse?', { size: 28, weight: 700, color: '#C2475F', op: clamp((u - 14) / 0.3) * (1 - seg(u, 16.8, 17.2)) });
+      if (u > 0.4) out += bird(t, gx, gy - (flying ? 0 : 6 + Math.sin(t * 4) * 6), 1.6, { col: '#fff', dark: C.muted, fly: flying || u > 14, seed: 2, flip: k2 === 1 && flying });
+      if (u > 14 && u < 17.2) out += A.bubble(gx - 20, gy - 100, 'Will it reverse?', { size: 28, weight: 700, color: '#C2475F', op: clamp((u - 14) / 0.3) * (1 - seg(u, 16.8, 17.2)) });
       // Boat with the captain and a telescope.
       const bxp = lerp(1500, 1180, ease(seg(u, 0.5, 10))), byp = SEA + 50 + Math.sin(t * 2) * 6, rock = Math.sin(t * 1.6) * 3;
       const scope = `<g transform="rotate(-8)"><rect x="-6" y="-12" width="70" height="20" rx="6" fill="${C.gold}"/><rect x="56" y="-16" width="20" height="28" rx="4" fill="#C98A1F"/></g>`;
@@ -850,11 +851,11 @@
       let out = `<rect x="200" y="380" width="1520" height="620" rx="24" fill="#FFF6F0"/>
         ${Array.from({ length: 16 }, (_, i) => `<rect x="${230 + i * 92}" y="390" width="40" height="590" fill="${C.purpleL}" opacity=".18"/>`).join('')}
         <rect x="200" y="960" width="1520" height="40" fill="#EADBCF"/><rect x="0" y="1000" width="1920" height="80" fill="#F6EDE6"/>`;
-      const DX0 = 1000, DX1 = 1240, DT = 420, OLD = 778, NEW = 745;
+      const DX0 = 1000, DX1 = 1240, DT = 420, OLD = 690, NEW = 642;
       out += `<rect x="${DX0 + 26}" y="${DT + 26}" width="${DX1 - DX0 - 52}" height="${1000 - DT - 26}" fill="${C.purpleL}" opacity=".5"/>
         <rect x="${DX0}" y="${DT}" width="26" height="${1000 - DT}" fill="#C9A27A"/><rect x="${DX1 - 26}" y="${DT}" width="26" height="${1000 - DT}" fill="#C9A27A"/><rect x="${DX0}" y="${DT}" width="${DX1 - DX0}" height="26" fill="#C9A27A"/>`;
       // Small old tick marks for flavour.
-      [900, 860, 820].forEach((y, i) => { out += `<line x1="${DX0 - 4}" x2="${DX0 + 30}" y1="${y}" y2="${y}" stroke="${C.muted}" stroke-width="3" opacity=".6"/>`; });
+      [880, 820, 760].forEach((y, i) => { out += `<line x1="${DX0 - 4}" x2="${DX0 + 30}" y1="${y}" y2="${y}" stroke="${C.muted}" stroke-width="3" opacity=".6"/>`; });
       // The old high mark.
       const ok = pop(u, 3.8, 0.6);
       if (ok > 0) out += `<line x1="${DX0 - 30}" x2="${F(lerp(DX0, 1190, ease(seg(u, 4.2, 5.2))))}" y1="${OLD}" y2="${OLD}" stroke="${C.purple}" stroke-width="5" stroke-dasharray="${u > 4.2 ? '12 8' : ''}"/>` + pill(880, OLD, 'OLD HIGH', C.purple, ok, 24);
@@ -862,32 +863,32 @@
       if (nk > 0) out += `<line x1="${DX0 - 30}" x2="${F(lerp(DX0, 1190, nk))}" y1="${NEW}" y2="${NEW}" stroke="${C.tealD}" stroke-width="5"/>` + pill(880, NEW - 44, 'NEW MARK', C.tealD, pop(u, 17.4, 0.6), 24);
       // Kid: base, tiptoe, grow, grow again.
       let ks = 0.62, lift = 0;
-      if (u > 6.8 && u < 11.4) lift = 34 * ease(seg(u, 6.8, 7.3)) * (1 - ease(seg(u, 10.8, 11.4)));
-      ks = lerp(0.62, 0.71, ease(seg(u, 12.2, 13.2)));
-      ks = lerp(ks, 0.77, ease(seg(u, 15.8, 16.8)));
+      if (u > 6.8 && u < 11.4) lift = 52 * ease(seg(u, 6.8, 7.3)) * (1 - ease(seg(u, 10.8, 11.4)));
+      ks = lerp(0.9, 1.04, ease(seg(u, 12.2, 13.2)));
+      ks = lerp(ks, 1.13, ease(seg(u, 15.8, 16.8)));
       const kidX = 1110;
       if (lift > 1) out += `<ellipse cx="${kidX}" cy="1000" rx="30" ry="6" fill="${C.dark}" opacity=".12"/>`;
-      out += P(t, { x: kidX, y: 995 - lift, scale: ks, look: LK.girl, seed: 3, talk: u > 12.6 && u < 14, frontArm: lift > 1 ? { a1: -100, a2: -95 } : { a1: 100, a2: 95 }, backArm: lift > 1 ? { a1: -80, a2: -85 } : undefined });
+      out += P(t, { x: kidX, y: 995 - lift, scale: ks, look: LK.girl, seed: 3, talk: u > 12.6 && u < 14, frontArm: lift > 1 ? { a1: -40, a2: -70 } : { a1: 100, a2: 95 }, backArm: lift > 1 ? { a1: -140, a2: -110 } : undefined });
       // Labels for the three moments.
-      out += pill(560, 560, 'WICK THROUGH', C.gold, pop(u, 7.4, 0.5) * (1 - seg(u, 11.6, 12) * 0.999), 28);
-      out += pill(560, 560, 'CLOSE THROUGH', C.teal, pop(u, 12.6, 0.5) * (1 - seg(u, 15.6, 16) * 0.999), 28);
-      out += pill(560, 560, 'BUILDING BEYOND', C.tealD, pop(u, 16.2, 0.5) * (1 - seg(u, 19.8, 20.2) * 0.999), 28);
+      out += pill(560, 500, 'WICK THROUGH', C.gold, pop(u, 7.4, 0.5) * (1 - seg(u, 11.6, 12) * 0.999), 28);
+      out += pill(560, 500, 'CLOSE THROUGH', C.teal, pop(u, 12.6, 0.5) * (1 - seg(u, 15.6, 16) * 0.999), 28);
+      out += pill(560, 500, 'BUILDING BEYOND', C.tealD, pop(u, 16.2, 0.5) * (1 - seg(u, 19.8, 20.2) * 0.999), 28);
       // Level → candle → structure chips.
       if (u > 20.2) [['level', C.purple], ['candle', C.gold], ['structure', C.tealD]].forEach(([w, col], i) => {
-        out += pill(400 + i * 190, 560, w, col, pop(u, 20.2 + i * 0.5, 0.5), 28) + (i < 2 ? `<text x="${495 + i * 190}" y="572" font-size="34" font-weight="900" text-anchor="middle" fill="${C.muted}" opacity="${clamp(u - 20.6 - i * 0.5)}" font-family="DM Sans">→</text>` : '');
+        out += pill(380 + i * 190, 500, w, col, pop(u, 20.2 + i * 0.5, 0.5), 28) + (i < 2 ? `<text x="${475 + i * 190}" y="512" font-size="34" font-weight="900" text-anchor="middle" fill="${C.muted}" opacity="${clamp(u - 20.6 - i * 0.5)}" font-family="DM Sans">→</text>` : '');
       });
       // Calendar flips while she stays taller.
       const pages = Math.floor(clamp((u - 15.8) / 2.4) * 4);
-      out += `<g transform="translate(1520,560)"><rect x="-80" y="-80" width="160" height="170" rx="14" fill="#fff" stroke="${C.pinkL}" stroke-width="5"/><rect x="-80" y="-80" width="160" height="44" rx="14" fill="${C.pink}"/>
+      out += `<g transform="translate(1560,500)"><rect x="-80" y="-80" width="160" height="170" rx="14" fill="#fff" stroke="${C.pinkL}" stroke-width="5"/><rect x="-80" y="-80" width="160" height="44" rx="14" fill="${C.pink}"/>
         <text y="56" font-size="70" font-weight="900" text-anchor="middle" fill="${C.dark}" font-family="Playfair Display">${12 + pages * 3}</text>
         <circle cx="-40" cy="-84" r="7" fill="${C.dark}"/><circle cx="40" cy="-84" r="7" fill="${C.dark}"/></g>`;
-      if (u > 15.8 && u < 18.4) { const f = ((u - 15.8) * 1.66) % 1; out += `<path d="M1440,520 L1600,520 L1600,${F(520 + 130 * (1 - f))} L1440,${F(520 + 130 * (1 - f))} Z" fill="#fff" opacity="${F(1 - f)}" stroke="${C.pinkL}" stroke-width="3"/>`; }
+      if (u > 15.8 && u < 18.4) { const f = ((u - 15.8) * 1.66) % 1; out += `<path d="M1480,460 L1640,460 L1640,${F(460 + 130 * (1 - f))} L1480,${F(460 + 130 * (1 - f))} Z" fill="#fff" opacity="${F(1 - f)}" stroke="${C.pinkL}" stroke-width="3"/>`; }
       // Mom with the pencil; dog.
       const pencil = `<g transform="rotate(-60)"><rect x="-6" y="-70" width="12" height="62" rx="3" fill="${C.gold}"/><path d="M-6,-8 L6,-8 L0,8 Z" fill="#F3D6B4"/></g>`;
       const marking = (u > 4.0 && u < 5.4) || (u > 17.0 && u < 18.0);
-      out += P(t, { x: 1360, y: 1000, scale: 0.92, look: LK.mom, flip: true, seed: 5, talk: u > 7.4 && u < 10.6, frontArm: marking ? { a1: -10, a2: 10 } : u > 7.4 && u < 10.6 ? { a1: -30, a2: -60 + Math.sin(t * 8) * 15 } : { a1: 100, a2: 95 }, hold: pencil });
-      if (u > 7.4 && u < 10.8) out += A.bubble(1450, 650, 'Tiptoes don’t count!', { size: 26, weight: 700, color: '#B07A1C', tail: 'left', op: clamp((u - 7.4) / 0.3) * (1 - seg(u, 10.4, 10.8)) });
-      out += dog(t, 1600, 1000, 0.6, { flip: true, look: -1, wag: u > 16 && u < 20, happy: u > 16 && u < 20 });
+      out += P(t, { x: 1390, y: 1000, scale: 1.1, look: LK.mom, flip: true, seed: 5, talk: u > 7.4 && u < 10.6, frontArm: marking ? { a1: -10, a2: 10 } : u > 7.4 && u < 10.6 ? { a1: -30, a2: -60 + Math.sin(t * 8) * 15 } : { a1: 100, a2: 95 }, hold: pencil });
+      if (u > 7.4 && u < 10.8) out += A.bubble(1300, 540, 'Tiptoes don’t count!', { size: 26, weight: 700, color: '#B07A1C', tail: 'right', op: clamp((u - 7.4) / 0.3) * (1 - seg(u, 10.4, 10.8)) });
+      out += dog(t, 1610, 1000, 0.8, { flip: true, look: -1, wag: u > 16 && u < 20, happy: u > 16 && u < 20 });
       return out;
     },
 
@@ -904,9 +905,9 @@
       if (wk > 0) out += about((X0 + X1) / 2, (Y0 + Y1) / 2, wk, `<rect x="${X0}" y="${Y0}" width="${X1 - X0}" height="${Y1 - Y0}" rx="22" fill="#fff" stroke="#9B6A45" stroke-width="8"/>
         <polyline points="${sw.map(([a, b]) => `${F(X(a))},${F(Y(b))}`).join(' ')}" fill="none" stroke="${C.dark}" stroke-width="5" stroke-linejoin="round" opacity=".8"/>`);
       // Desk and the boss.
-      out += P(t, { x: 1500, y: 1000, scale: 0.9, look: LK.boss, flip: true, seed: 6, talk: [[6.0, 7.2], [10.6, 11.8], [16.2, 17.4], [18.0, 19.0]].some(([a, b]) => u > a && u < b),
+      out += P(t, { x: 1500, y: 870, scale: 1.0, look: LK.boss, flip: true, seed: 6, talk: [[6.0, 7.2], [10.6, 11.8], [16.2, 17.4], [18.0, 19.0]].some(([a, b]) => u > a && u < b),
         frontArm: u > 17.8 && u < 18.6 ? { a1: -60, a2: -80 } : { a1: 20, a2: -10 } });
-      const gy = 1000 - 282 * 0.9 + Math.sin(t * 2 + 6) * 1.8;
+      const gy = 870 - 282 * 1.0 + Math.sin(t * 2 + 6) * 1.8;
       out += `<g transform="translate(1500,${F(gy)})"><circle cx="-15" cy="0" r="14" fill="none" stroke="${C.dark}" stroke-width="4"/><circle cx="15" cy="0" r="14" fill="none" stroke="${C.dark}" stroke-width="4"/><line x1="-1" x2="1" y1="0" y2="0" stroke="${C.dark}" stroke-width="4"/></g>`;
       out += `<rect x="1260" y="800" width="460" height="34" rx="10" fill="#9B6A45"/><rect x="1290" y="834" width="400" height="160" fill="#B9845A"/>
         <rect x="1380" y="760" width="160" height="40" rx="8" fill="#fff" stroke="${C.dark}" stroke-width="3"/><text x="1460" y="788" font-size="20" font-weight="900" text-anchor="middle" fill="${C.dark}" font-family="DM Sans">HIRING</text>
@@ -917,7 +918,7 @@
         { col: C.peach, q: 1, v: .78, step: 10.4, badge: '🚧 high to overcome', badgeAt: 11.8, hire: 13.6 },
         { col: '#C9B9AE', q: 2, v: null, step: 16.0, badge: null, fire: 18.0 },
       ];
-      const queueX = [820, 560, 300];
+      const queueX = [900, 580, 260];
       G.forEach((g, i) => {
         let x = lerp(-200 - i * 260, queueX[i], seg(u, 2.2, 4.8)), y = 990, walking = u > 2.2 && u < 4.8, op = 1, mood;
         // Move forward as earlier candidates leave.
@@ -931,19 +932,19 @@
             return;
           }
           x = lerp(1100, (X0 + X1) / 2, f); y = lerp(990, Y(g.v) + 82, f); op = 1;
-          out += `<g opacity="${op}">${lineGuy(t, x, y, lerp(0.9, 1.6, f), { col: g.col, seed: i + 2 })}</g>`;
+          out += `<g opacity="${op}">${lineGuy(t, x, y, lerp(1.2, 1.6, f), { col: g.col, seed: i + 2 })}</g>`;
           return;
         }
         if (g.fire && u > g.fire + 1.0) { x = lerp(1100, -260, seg(u, g.fire + 1.0, g.fire + 3.4)); walking = true; mood = 'sad'; }
         if (g.fire && u > g.fire - 1.6) mood = 'sad';
-        out += lineGuy(t, x, y, 0.9, { col: g.col, walking, seed: i + 2, mood, flip: g.fire && u > g.fire + 1.0 });
-        if (g.badge && u > g.badgeAt) out += pill(x, y - 140, g.badge, g.col === C.peach ? '#E08E2E' : C.tealD, pop(u, g.badgeAt, 0.5), 24);
-        if (g.fire && u > g.fire - 1.2 && u < g.fire + 1.2) out += qmark(x, y - 120, t, s.start + g.fire - 1.2, C.muted, 64);
+        out += lineGuy(t, x, y, 1.2, { col: g.col, walking, seed: i + 2, mood, flip: g.fire && u > g.fire + 1.0 });
+        if (g.badge && u > g.badgeAt) out += pill(x, y - 170, g.badge, g.col === C.peach ? '#E08E2E' : C.tealD, pop(u, g.badgeAt, 0.5), 24);
+        if (g.fire && u > g.fire - 1.2 && u < g.fire + 1.2) out += qmark(x, y - 150, t, s.start + g.fire - 1.2, C.muted, 70);
       });
       if (u > 6.0 && u < 7.2) out += A.bubble(1380, 600, 'Your job?', { size: 28, weight: 700, op: clamp((u - 6) / 0.3) });
       if (u > 10.6 && u < 11.8) out += A.bubble(1380, 600, 'And yours?', { size: 28, weight: 700, op: clamp((u - 10.6) / 0.3) });
       if (u > 16.2 && u < 17.8) out += A.bubble(1380, 600, 'No swing here?', { size: 28, weight: 700, op: clamp((u - 16.2) / 0.3) });
-      out += stamp(1100, 820, 'NO JOB', C.muted, u, 18.0, -10, 40);
+      if (u < 21) out += `<g opacity="${1 - seg(u, 20.3, 21)}">${stamp(1100, 800, 'NO JOB', C.muted, u, 18.0, -10, 40)}</g>`;
       return out;
     },
 
@@ -963,7 +964,7 @@
         const at = 2.0 + i * 0.16, q = ease(seg(u, at, at + 0.4));
         if (q <= 0) return;
         const dropAt = 5.0 + (300 + i * 140 + 100) / 2100 * 4.0;
-        const f = seg(u, dropAt, dropAt + 0.55);
+        const f = seg(u, dropAt, dropAt + 0.8);
         if (f >= 1) return;
         const y = lerp(Y(v), 960, f * f), rot = f * (i % 2 ? 14 : -14), w = (PX1 - PX0 - 60) * q * (1 - f * 0.85);
         const cx = lerp((PX0 + PX1) / 2, 300 + i * 140 + 100, f);
@@ -982,7 +983,7 @@
       // Robot vacuum.
       if (u > 5.0 && u < 9.2) {
         const b = blink(t, 3);
-        out += `<g transform="translate(${F(vx)},970)"><ellipse cx="0" cy="22" rx="96" ry="12" fill="${C.dark}" opacity=".1"/>
+        out += `<g transform="translate(${F(vx)},966) scale(1.4)"><ellipse cx="0" cy="22" rx="96" ry="12" fill="${C.dark}" opacity=".1"/>
           <path d="M-90,20 Q-90,-40 0,-44 Q90,-40 90,20 Z" fill="${C.purple}"/><rect x="-92" y="6" width="184" height="18" rx="9" fill="${C.dark}"/>
           <ellipse cx="34" cy="-14" rx="8" ry="${F(11 * (1 - b * 0.9))}" fill="#fff"/><ellipse cx="62" cy="-14" rx="8" ry="${F(11 * (1 - b * 0.9))}" fill="#fff"/>
           <path d="M36,4 Q48,12 60,4" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
@@ -991,7 +992,7 @@
       }
       // Girl with the remote.
       const remote = `<g transform="rotate(-20)"><rect x="-12" y="-46" width="24" height="46" rx="6" fill="${C.dark}"/><circle cx="0" cy="-34" r="5" fill="${C.pink}"/></g>`;
-      out += P(t, { x: 210, y: 1005, scale: 0.7, look: LK.tech, seed: 4, talk: u > 10.8 && u < 20, frontArm: u > 9.2 && u < 10.6 ? { a1: -70, a2: -100 + Math.sin(t * 8) * 10 } : { a1: -20, a2: -40 }, hold: remote });
+      out += P(t, { x: 200, y: 1005, scale: 0.9, look: LK.tech, seed: 4, talk: u > 10.8 && u < 20, frontArm: u > 9.2 && u < 10.6 ? { a1: -70, a2: -100 + Math.sin(t * 8) * 10 } : { a1: -20, a2: -40 }, hold: remote });
       return out;
     },
 
@@ -1024,22 +1025,22 @@
         { x: 1320, look: LK.g3, at: 7.6, name: 'Previous low!', tag: 'PREV LOW', col: C.pink, flip: true },
         { x: 1580, look: LK.g4, at: 9.2, name: 'Discount!', tag: 'DISCOUNT', col: '#E08E2E', flip: true },
       ];
-      const tagPos = [[-80, -205], [80, -205], [-80, -150], [80, -150]];
+      const tagPos = [[-84, -122], [84, -122], [-84, -66], [84, -66]];
       GU.forEach((g, i) => {
         const enter = pop(u, 1.0 + i * 0.3, 0.6);
         if (enter <= 0) return;
         const talking = u > g.at && u < g.at + 1.4;
         const point = u > 14.2;
-        const arm = point || talking ? { a1: aim(g.x, 990, 0.72, g.flip, 960, 840), a2: aim(g.x, 990, 0.72, g.flip, 960, 840) } : { a1: 100, a2: 95 };
-        out += about(g.x, 990, enter, P(t, { x: g.x, y: 990, scale: 0.72, look: g.look, flip: g.flip, seed: i + 2, talk: talking, frontArm: arm }));
-        if (u > g.at && u < g.at + 3.4) out += A.bubble(g.x + (g.flip ? -30 : 30), 690, g.name, { size: 28, weight: 900, color: g.col, tail: g.flip ? 'right' : 'left', op: clamp((u - g.at) / 0.3) * (1 - seg(u, g.at + 3.0, g.at + 3.4)) });
+        const arm = point || talking ? { a1: aim(g.x, 990, 0.95, g.flip, 960, 840), a2: aim(g.x, 990, 0.95, g.flip, 960, 840) } : { a1: 100, a2: 95 };
+        out += about(g.x, 990, enter, P(t, { x: g.x, y: 990, scale: 0.95, look: g.look, flip: g.flip, seed: i + 2, talk: talking, frontArm: arm }));
+        if (u > g.at && u < g.at + 3.4) out += A.bubble(g.x + (g.flip ? -30 : 30), 600, g.name, { size: 28, weight: 900, color: g.col, tail: g.flip ? 'right' : 'left', op: clamp((u - g.at) / 0.3) * (1 - seg(u, g.at + 3.0, g.at + 3.4)) });
         // The name tag flies onto the blob.
         const f = seg(u, g.at + 0.6, g.at + 1.4);
         if (f > 0) {
           const [ox, oy] = tagPos[i], tx = 960 + ox * 0.95, ty = 990 + oy * 0.95;
-          const x = lerp(g.x, tx, ease(f)), y = lerp(780, ty, ease(f)) - Math.sin(f * Math.PI) * 120;
-          out += `<g transform="translate(${F(x)},${F(y)}) rotate(${F((i % 2 ? 6 : -6) + (1 - f) * 200)})"><rect x="-74" y="-24" width="148" height="48" rx="8" fill="#fff" stroke="${g.col}" stroke-width="4"/><rect x="-74" y="-24" width="148" height="12" rx="6" fill="${g.col}"/>
-            <text y="16" font-size="20" font-weight="900" text-anchor="middle" fill="${g.col}" font-family="DM Sans">${g.tag}</text></g>`;
+          const x = lerp(g.x, tx, ease(f)), y = lerp(700, ty, ease(f)) - Math.sin(f * Math.PI) * 120;
+          out += `<g transform="translate(${F(x)},${F(y)}) rotate(${F((i % 2 ? 6 : -6) + (1 - f) * 200)})"><rect x="-80" y="-27" width="160" height="54" rx="8" fill="#fff" stroke="${g.col}" stroke-width="4"/><rect x="-80" y="-27" width="160" height="12" rx="6" fill="${g.col}"/>
+            <text y="18" font-size="23" font-weight="900" text-anchor="middle" fill="${g.col}" font-family="DM Sans">${g.tag}</text></g>`;
         }
       });
       if (u > 11.2 && u < 14.2) out += qmark(960, 690, t, s.start + 11.2, C.purple, 90);
@@ -1091,11 +1092,11 @@
         if (u > 16) for (let i = 0; i < 5; i++) { const p = ((t * 1.6) + i / 5) % 1; out += `<path d="M${F(1560 - p * 700)},${F(700 + i * 60)} q-60,-16 -120,0" fill="none" stroke="${C.purpleL}" stroke-width="5" stroke-linecap="round" opacity="${F(Math.sin(p * Math.PI) * 0.8)}"/>`; }
       }
       if (u > 17.6) out += pill(960, Y(0.3), 'supporting HL · the structural reason', C.tealD, pop(u, 17.6, 0.6), 26) + A.sparkle(960, Y(0.3), s.start + 18, t, C.teal);
-      if (u > 20.8) out += pill(960, 945, 'knowing a concept ≠ trading it', C.purple, pop(u, 20.8, 0.6), 30);
+      if (u > 20.8) out += pill(960, 1036, 'knowing a concept ≠ trading it', C.purple, pop(u, 20.8, 0.6), 30);
       // Kid with stickers, cat that gets dizzy.
       const throwing = u > 3.8 && u < 9.6;
-      out += P(t, { x: 300, y: 1000, scale: 0.78, look: LK.artist, seed: 2, mood: u > 10.4 && u < 16 ? 'sad' : undefined, talk: throwing,
-        frontArm: throwing ? { a1: -30 + Math.sin(u * 9) * 40, a2: -50 + Math.sin(u * 9) * 40 } : u > 18 ? { a1: -70, a2: -100 + Math.sin(t * 8) * 10 } : { a1: 100, a2: 95 } });
+      out += P(t, { x: 290, y: 1000, scale: 0.95, look: LK.artist, seed: 2, mood: u > 10.4 && u < 16 ? 'sad' : undefined, talk: throwing,
+        frontArm: throwing ? { a1: -30 + Math.sin(u * 9) * 40, a2: -50 + Math.sin(u * 9) * 40 } : u > 18 ? { a1: -25, a2: -35 + Math.sin(t * 4) * 6 } : { a1: 100, a2: 95 } });
       out += cat(t, 1500, 1000, 0.6, { col: C.purpleL, dark: C.purple, seed: 6, flip: true, dizzy: u > 9.6 && u < 16.4, look: -1 });
       return out;
     },

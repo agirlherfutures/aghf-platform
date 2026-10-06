@@ -1,20 +1,21 @@
 /**
- * Phase 4 · Section 1 · Lesson 7 intro video — "Reading 1H Structure Inside the 4H"
+ * Phase 4 · Section 10 · Lesson 7 intro video: "Reading 1H Structure Inside the 4H"
+ * Scenes: s10-you-are-here (mall directory "you are here" vs the path you walk), s10-fish-tank (aquarium: the 1H fish breaks the last lower high inside the 4H tank).
  */
 window.LESSON_VIDEO = {
   "slug": "p4-lesson-7",
-  "eyebrow": "Phase 4 · Section 1 · Lesson 7",
-  "duration": 76,
-  "sources": "From Phase 4, Lesson 7: the finished 4H room, BUILD THE MAP with the room kept faint, the 1H correction, its last lower high and a potential bullish shift.",
+  "eyebrow": "Phase 4 · Section 10 · Lesson 7",
+  "duration": 80,
+  "sources": "From Phase 4, Section 10, Lesson 7 (\"Reading 1H Structure Inside the 4H\"): two timeframes, two jobs (4H: read the room, where am I? 1H: build the map, how am I moving through it?), reading the 1H correction and a close above the last lower high, and keep the room visible.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Finding Your Bias",
+      "phase": "Section 10: Finding Your Bias",
       "title": "Reading 1H Structure Inside the 4H",
-      "quote": "Build the map.",
+      "quote": "The 4H asks where you are.",
       "lines": [
         {
           "at": 0.6,
@@ -23,267 +24,163 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 4.6,
-          "text": "Two timeframes. Two jobs."
+          "text": "The 4H asks where you are."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s10-you-are-here",
       "start": 8,
-      "end": 38,
-      "seed": 407,
-      "kicker": "Build the map",
-      "swings": [
-        [
-          0,
-          0.9
-        ],
-        [
-          0.12,
-          0.62
-        ],
-        [
-          0.2,
-          0.75
-        ],
-        [
-          0.36,
-          0.45
-        ],
-        [
-          0.44,
-          0.58
-        ],
-        [
-          0.58,
-          0.25
-        ],
-        [
-          0.72,
-          0.68
-        ],
-        [
-          0.8,
-          0.52
-        ],
-        [
-          0.9,
-          0.62
-        ]
-      ],
-      "per": [
-        3,
-        2,
-        4,
-        2,
-        4,
-        4,
-        2,
-        2
-      ],
-      "play": [
-        {
-          "to": 8,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 34,
+      "kicker": "Two jobs",
       "headlines": [
         {
           "at": 8.4,
-          "html": "4H: where am I? <span class=\"mark\"></span>",
-          "out": 28.3
+          "html": "4H: <span class=\"mark\">where am I?</span>",
+          "out": 18.6
         },
         {
-          "at": 28.5,
-          "html": "1H: how am I <span class=\"mark\">moving through it?</span>"
+          "at": 18.8,
+          "html": "1H: <span class=\"mark\">how am I moving?</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Your 4H room is done. Now build the map.",
-          "screen": "BUILD THE MAP →"
+          "text": "Two timeframes. Two jobs.",
+          "screen": "A 4H mall directory"
         },
         {
-          "at": 13.0,
-          "text": "The 1H, with the room still faint behind it."
+          "at": 10.4,
+          "text": "The 4H is the mall directory. It answers: where am I?",
+          "screen": "YOU ARE HERE"
         },
         {
-          "at": 18.0,
-          "text": "It corrected lower. Here’s the last lower high.",
-          "screen": "\"1H lower high\""
+          "at": 15,
+          "text": "Upper part of the room? Lower part? Near a door?",
+          "screen": "lower half of the room"
         },
         {
-          "at": 23.0,
-          "text": "Price closed above it. A potential shift.",
-          "screen": "\"shift?\""
+          "at": 18.8,
+          "text": "The 1H is the path you walk. How am I moving through it?",
+          "screen": "Footsteps on the 1H map"
         },
         {
-          "at": 28.5,
-          "text": "Correcting, progressing or ranging. That’s what the 1H tells you."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.97,
-          "from": 0.0,
-          "label": "4H external high",
-          "tone": "muted",
-          "at": 9.0
+          "at": 23.6,
+          "text": "Correcting, progressing, or ranging.",
+          "screen": "progressing ✓"
         },
         {
-          "v": 0.1,
-          "from": 0.0,
-          "label": "4H external low",
-          "tone": "muted",
-          "at": 9.4,
-          "below": true
-        },
-        {
-          "v": 0.58,
-          "from": 0.44,
-          "label": "1H lower high",
-          "tone": "purple",
-          "at": 18.0
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.72,
-          "v": 0.78,
-          "text": "shift?",
-          "tone": "up",
-          "at": 23.0,
-          "fs": 24
+          "at": 26,
+          "text": "And the 1H never replaces the 4H. Keep the room in view.",
+          "screen": "keep the room in view"
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Two jobs",
-      "items": [
-        {
-          "title": "4H",
-          "desc": [
-            "Read the",
-            "Room"
-          ],
-          "tone": "purple",
-          "at": 40.8
-        },
-        {
-          "title": "1H",
-          "desc": [
-            "Build the",
-            "Map"
-          ],
-          "tone": "up",
-          "at": 44.2
-        },
-        {
-          "title": "1H replaces",
-          "desc": [
-            "the 4H",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s10-fish-tank",
+      "start": 34,
+      "end": 58,
+      "kicker": "Build the map",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Keep the room <span class=\"mark\">in view.</span>"
+          "at": 34.4,
+          "html": "Build the map <span class=\"mark\">inside the room.</span>",
+          "out": 48.8
+        },
+        {
+          "at": 49,
+          "html": "The 1H never <span class=\"mark\">replaces</span> the 4H."
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Two timeframes, two jobs.",
-          "screen": "\"Two jobs\""
+          "at": 34.4,
+          "text": "Your 4H room is done. Now build the map inside it.",
+          "screen": "A fish tank: the room"
         },
         {
-          "at": 40.8,
-          "text": "4H: read the room.",
-          "screen": "4H Read the Room"
+          "at": 38.6,
+          "text": "The fish is price on the 1H. It’s correcting lower.",
+          "screen": "LH, LL"
         },
         {
-          "at": 44.2,
-          "text": "1H: build the map.",
-          "screen": "1H Build the Map"
+          "at": 43,
+          "text": "Here’s the last 1H lower high.",
+          "screen": "last 1H lower high"
         },
         {
-          "at": 47.6,
-          "text": "Does the 1H replace the 4H? No.",
-          "screen": "1H replaces the 4H"
+          "at": 45.8,
+          "text": "Price closes above it. A potential shift.",
+          "screen": "closes above: potential shift"
         },
         {
-          "at": 51.0,
-          "text": "Always keep the room in view."
+          "at": 49,
+          "text": "And notice: it’s still swimming inside the same tank.",
+          "screen": "still inside the same tank ✓"
+        },
+        {
+          "at": 53,
+          "text": "You’re looking inside the room, not replacing it."
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 58,
+      "end": 68,
+      "pointAt": 60.6,
+      "size": 60,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "The 4H asks where."
+          "at": 59.2,
+          "text": "The 4H asks where am I?"
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">The 1H asks how.</span>"
+          "at": 60.6,
+          "html": "<span class=\"mark\">The 1H asks how am I moving through it?</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 58.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
-          "text": "The 4H asks where you are. The 1H asks how you’re moving through it.",
+          "at": 59.6,
+          "text": "The 4H asks: where am I? The 1H asks: how am I moving through it?",
           "screen": "Aristella points"
         }
       ]
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 68,
+      "end": 80,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 70.6,
         "text": "How is price moving through the room?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 76.4,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 68.2,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 70.6,
           "text": "How is price moving through the room?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 76.4,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

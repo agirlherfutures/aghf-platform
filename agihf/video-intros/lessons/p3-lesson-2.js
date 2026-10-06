@@ -1,18 +1,19 @@
 /**
- * Phase 3 · Section 1 · Lesson 2 intro video — "Buy-Side & Sell-Side"
+ * Phase 3 · Section 7 · Lesson 2 intro video: "Buy-Side & Sell-Side"
+ * Scenes: host-title, s7-balloons-anchors, s7-street-signs, host-hook, host-mission (scene art in scenes-s7.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-2",
-  "eyebrow": "Phase 3 · Section 1 · Lesson 2",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 2: above highs is buy-side liquidity (short stops, breakout buys), below lows is sell-side (long stops, breakdown sells), labels removed with less help each time, and it does not tell you where price must go next.",
+  "eyebrow": "Phase 3 · Section 7 · Lesson 2",
+  "duration": 84,
+  "sources": "From Section 7, Lesson 2 (\"Buy-Side & Sell-Side\"): above highs is buy-side liquidity (short stops, breakout buys), below lows is sell-side liquidity (long stops, breakdown sells), and it describes where orders may rest, not where price must go (\"Not a destination\").",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Understanding Liquidity",
+      "phase": "Section 7: Understanding Liquidity",
       "title": "Buy-Side & Sell-Side",
       "quote": "Above highs: buy-side. Below lows: sell-side.",
       "lines": [
@@ -22,249 +23,155 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Buy-Side & Sell-Side*"
         },
         {
-          "at": 4.6,
+          "at": 4.8,
           "text": "Two sides of every range."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s7-balloons-anchors",
       "start": 8,
-      "end": 38,
-      "seed": 302,
-      "kicker": "Name the sides",
-      "swings": [
-        [
-          0,
-          0.5
-        ],
-        [
-          0.15,
-          0.78
-        ],
-        [
-          0.3,
-          0.28
-        ],
-        [
-          0.47,
-          0.8
-        ],
-        [
-          0.62,
-          0.3
-        ],
-        [
-          0.82,
-          0.55
-        ]
-      ],
-      "per": [
-        4,
-        4,
-        4,
-        4,
-        4
-      ],
-      "play": [
-        {
-          "to": 5,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 34,
+      "kicker": "Two sides of the range",
       "headlines": [
         {
           "at": 8.4,
-          "html": "A range. <span class=\"mark\">Two sides.</span>",
-          "out": 28.3
+          "out": 27.8,
+          "html": "Above highs. Below lows. <span class=\"mark\">Two sides.</span>"
         },
         {
-          "at": 28.5,
-          "html": "Orders may rest there. <span class=\"mark\">Price doesn’t have to.</span>"
+          "at": 28,
+          "html": "Named after <span class=\"mark\">the orders.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Here’s a range: a high and a low.",
-          "screen": "Candles build"
+          "text": "Here’s a range: a high and a low, with price moving between them.",
+          "screen": "A range draws; price swings inside it"
         },
         {
-          "at": 14.0,
-          "text": "Above the highs: buy-side liquidity. Short stops and breakout buys.",
-          "screen": "\"BUY-SIDE\""
+          "at": 12.8,
+          "text": "Above the highs: buy-side liquidity. Short stops and breakout buys, floating up there like balloons.",
+          "screen": "Balloons rise above the high; BUY-SIDE ↑"
         },
         {
-          "at": 18.0,
-          "text": "Below the lows: sell-side liquidity. Long stops and breakdown sells.",
-          "screen": "\"SELL-SIDE\""
+          "at": 20.4,
+          "text": "Below the lows: sell-side liquidity. Long stops and breakdown sells, hanging down there like anchors.",
+          "screen": "Anchors drop below the low; SELL-SIDE ↓"
         },
         {
-          "at": 23.0,
-          "text": "Name it after the orders that may rest there."
-        },
-        {
-          "at": 28.5,
-          "text": "And notice what it doesn’t tell you: where price must go next.",
-          "screen": "\"not a destination\""
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.81,
-          "from": 0.15,
-          "label": "BUY-SIDE ↑",
-          "tone": "up",
-          "at": 14.0,
-          "v2": 0.93
-        },
-        {
-          "v": 0.27,
-          "from": 0.3,
-          "label": "SELL-SIDE ↓",
-          "tone": "down",
-          "at": 18.0,
-          "v2": 0.15,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.5,
-          "v": 0.55,
-          "text": "not a destination",
-          "tone": "muted",
-          "at": 28.5,
-          "fs": 26
+          "at": 28.2,
+          "text": "It’s named after the orders that may rest there: buy orders above, sell orders below.",
+          "screen": "A bird flies past; balloons and anchors pulse"
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Memory device",
-      "items": [
-        {
-          "title": "Above highs",
-          "desc": [
-            "→ buy-side",
-            "liquidity"
-          ],
-          "tone": "up",
-          "at": 40.8
-        },
-        {
-          "title": "Below lows",
-          "desc": [
-            "→ sell-side",
-            "liquidity"
-          ],
-          "tone": "down",
-          "at": 44.2
-        },
-        {
-          "title": "Price must",
-          "desc": [
-            "go take it",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s7-street-signs",
+      "start": 34,
+      "end": 60,
+      "kicker": "Read the map",
       "headlines": [
         {
-          "at": 51.0,
+          "at": 34.4,
+          "out": 48.8,
+          "html": "Does it tell you <span class=\"mark\">where price goes?</span>"
+        },
+        {
+          "at": 49,
           "html": "Describes orders. <span class=\"mark\">Not a destination.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Here’s your memory device.",
-          "screen": "\"Memory device\""
+          "at": 34.4,
+          "text": "Here’s where people trip up.",
+          "screen": "A walker and her dog reach a park map"
         },
         {
-          "at": 40.8,
-          "text": "Above highs: buy-side.",
-          "screen": "Above highs → buy-side liquidity"
+          "at": 36.6,
+          "text": "You see buy-side above the highs and think: price has to go up there.",
+          "screen": "\"So price has to go up there?\""
         },
         {
-          "at": 44.2,
-          "text": "Below lows: sell-side.",
-          "screen": "Below lows → sell-side liquidity"
+          "at": 42.6,
+          "text": "But look again. That map shows where orders may rest.",
+          "screen": "BUY-SIDE and SELL-SIDE zones glow"
         },
         {
-          "at": 47.6,
-          "text": "Price must go take it? No.",
-          "screen": "Price must go take it"
+          "at": 46.4,
+          "text": "It doesn’t draw your route. Price might go up, go down, or keep ranging.",
+          "screen": "Three dotted paths, each with a question mark"
         },
         {
-          "at": 51.0,
-          "text": "It describes orders. It isn’t a destination."
+          "at": 51.6,
+          "text": "Buy-side and sell-side describe orders. They aren’t destinations.",
+          "screen": "Stamp: NOT A DESTINATION"
+        },
+        {
+          "at": 55.8,
+          "text": "A map, not a route.",
+          "screen": "A park ranger: \"It’s a map, not a route!\""
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 60,
+      "end": 71,
+      "pointAt": 63.8,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "Above highs: buy-side."
+          "at": 61.2,
+          "text": "Above highs: buy-side. Below lows: sell-side."
         },
         {
-          "at": 58.6,
+          "at": 63.8,
           "html": "<span class=\"mark\">Not a destination.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
-          "text": "Here’s the big takeaway.",
+          "at": 60.4,
+          "text": "So here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
-          "text": "Above highs, buy-side. Below lows, sell-side. Not a destination.",
+          "at": 61.8,
+          "text": "Above highs, buy-side. Below lows, sell-side. And neither one is a destination.",
           "screen": "Aristella points"
         }
       ]
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 71,
+      "end": 84,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 73,
         "text": "Does buy-side above a high mean price has to go up?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 80,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 71.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 73,
           "text": "Does buy-side above a high mean price has to go up?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 80,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

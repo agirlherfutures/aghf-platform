@@ -1,18 +1,19 @@
 /**
- * Phase 3 · Section 1 · Lesson 3 intro video — "Why Stops Cluster"
+ * Phase 3 · Section 7 · Lesson 3 intro video: "Why Stops Cluster"
+ * Scenes: host-title, s7-pin-cluster, s7-courtroom, host-hook, host-mission (scene art in scenes-s7.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-3",
-  "eyebrow": "Phase 3 · Section 1 · Lesson 3",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 3: a short’s logical stop above a meaningful high, a long’s below a meaningful low, many traders reading the same structure, and objective language instead of “the market targeted me.”",
+  "eyebrow": "Phase 3 · Section 7 · Lesson 3",
+  "duration": 84,
+  "sources": "From Section 7, Lesson 3 (\"Why Stops Cluster\"): shorts commonly place stops above meaningful highs and longs below meaningful lows, many traders reading the same structure can create clusters of orders, and the chart shows what price did but can’t prove anyone targeted you (\"Not a conspiracy\").",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Understanding Liquidity",
+      "phase": "Section 7: Understanding Liquidity",
       "title": "Why Stops Cluster",
       "quote": "Predictable structure can create predictable order placement.",
       "lines": [
@@ -22,272 +23,154 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Why Stops Cluster*"
         },
         {
-          "at": 4.6,
+          "at": 4.8,
           "text": "Why do orders bunch up?"
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s7-pin-cluster",
       "start": 8,
-      "end": 38,
-      "seed": 303,
-      "kicker": "Many traders",
-      "swings": [
-        [
-          0,
-          0.5
-        ],
-        [
-          0.15,
-          0.78
-        ],
-        [
-          0.3,
-          0.28
-        ],
-        [
-          0.47,
-          0.8
-        ],
-        [
-          0.62,
-          0.3
-        ],
-        [
-          0.82,
-          0.55
-        ]
-      ],
-      "per": [
-        4,
-        4,
-        4,
-        4,
-        4
-      ],
-      "play": [
-        {
-          "to": 5,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 34,
+      "kicker": "Where’s your stop?",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Where would <span class=\"mark\">you put your stop?</span>",
-          "out": 28.3
+          "out": 25.8,
+          "html": "Where would <span class=\"mark\">you put your stop?</span>"
         },
         {
-          "at": 28.5,
+          "at": 26,
           "html": "Same chart. <span class=\"mark\">Similar spots.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "If you were short here, where would your stop go?",
-          "screen": "Candles build"
+          "text": "Say you’re short here. Where would your stop go?",
+          "screen": "Three shorts and three longs below a chart"
         },
         {
-          "at": 13.0,
-          "text": "Logically, above the high. So would a lot of other shorts.",
-          "screen": "Short stops gather"
+          "at": 12.4,
+          "text": "Logically, just above the high. And so would a lot of other shorts.",
+          "screen": "The shorts toss stop pins above the high; \"short stops\""
         },
         {
-          "at": 18.0,
-          "text": "Longs put theirs below the low.",
-          "screen": "Long stops gather"
+          "at": 19.6,
+          "text": "Longs think the same way. Their stops go just below the low.",
+          "screen": "The longs toss pins below the low; \"long stops\""
         },
         {
-          "at": 23.0,
-          "text": "Nobody coordinated that. They read the same chart."
+          "at": 26.2,
+          "text": "Nobody coordinated that. They all read the same chart.",
+          "screen": "\"nobody coordinated ✓ same chart\""
         },
         {
-          "at": 28.5,
-          "text": "Predictable structure can create predictable order placement."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.8,
-          "from": 0.15,
-          "label": "Range high",
-          "tone": "muted",
-          "at": 10.0
-        },
-        {
-          "v": 0.28,
-          "from": 0.3,
-          "label": "Range low",
-          "tone": "muted",
-          "at": 10.4,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.35,
-          "v": 0.9,
-          "text": "× × × short stops",
-          "tone": "up",
-          "at": 13.0,
-          "fs": 26
-        },
-        {
-          "u": 0.75,
-          "v": 0.9,
-          "text": "× × ×",
-          "tone": "up",
-          "at": 14.0,
-          "fs": 26
-        },
-        {
-          "u": 0.45,
-          "v": 0.16,
-          "text": "× × × long stops",
-          "tone": "down",
-          "at": 18.0,
-          "fs": 26
-        },
-        {
-          "u": 0.8,
-          "v": 0.16,
-          "text": "× × ×",
-          "tone": "down",
-          "at": 19.0,
-          "fs": 26
+          "at": 30,
+          "text": "Predictable structure, predictable order placement."
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Say it objectively",
-      "items": [
-        {
-          "title": "“They came",
-          "desc": [
-            "for my stop”",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "Price traded",
-          "desc": [
-            "below the low",
-            "then moved up"
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "Orders there",
-          "desc": [
-            "may have",
-            "been filled"
-          ],
-          "tone": "purple",
-          "at": 47.6
-        }
-      ],
+      "type": "s7-courtroom",
+      "start": 34,
+      "end": 60,
+      "kicker": "Order in the court",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Structure. <span class=\"mark\">Not a conspiracy.</span>"
+          "at": 34.4,
+          "out": 48.8,
+          "html": "“The market <span class=\"mark\">targeted me.</span>”"
+        },
+        {
+          "at": 49,
+          "html": "Describe it. <span class=\"mark\">Don’t accuse it.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "So how do you describe a stop-out?",
-          "screen": "\"Say it objectively\""
+          "at": 34.4,
+          "text": "Then your stop gets hit, and it’s tempting to say: the market targeted me.",
+          "screen": "A trader on the witness stand; an owl judge"
         },
         {
-          "at": 40.8,
-          "text": "Not: they came for my stop.",
-          "screen": "They came for my stop"
+          "at": 40.2,
+          "text": "So let’s look at the evidence. What does the chart actually show?",
+          "screen": "EXHIBIT A: a chart with \"my stop\" below the low"
         },
         {
-          "at": 44.2,
-          "text": "Instead: price traded below the low, then moved up.",
-          "screen": "Price traded below the low then moved up"
+          "at": 44,
+          "text": "Price traded below the low, then moved up.",
+          "screen": "Price dips through the stop, then rises"
         },
         {
           "at": 47.6,
-          "text": "Orders there may have been filled.",
-          "screen": "Orders there may have been filled"
+          "text": "Orders there may have been filled. That’s what the chart can tell you.",
+          "screen": "The owl: \"Describe what price did.\""
         },
         {
-          "at": 51.0,
-          "text": "That’s structure. Not a conspiracy."
+          "at": 52.8,
+          "text": "It can’t prove anyone targeted you. That’s structure, not a conspiracy.",
+          "screen": "Gavel bangs; \"structure, not a conspiracy\""
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 60,
+      "end": 71,
+      "pointAt": 63.8,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "Predictable structure,"
+          "at": 61.2,
+          "text": "Predictable structure can create predictable order placement."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">predictable orders.</span>"
+          "at": 63.8,
+          "html": "<span class=\"mark\">Not a conspiracy.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
-          "text": "Here’s the big takeaway.",
+          "at": 60.4,
+          "text": "So here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
-          "text": "Predictable structure can create predictable order placement.",
+          "at": 61.8,
+          "text": "Predictable structure can create predictable order placement. Not a conspiracy.",
           "screen": "Aristella points"
         }
       ]
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 71,
+      "end": 84,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 73,
         "text": "If price takes your stop, did the market target you?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 80,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 71.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 73,
           "text": "If price takes your stop, did the market target you?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 80,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

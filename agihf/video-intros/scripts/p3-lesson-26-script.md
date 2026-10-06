@@ -6,23 +6,23 @@
 
 | Time | On screen | Say |
 |---|---|---|
-| 0:00 | Aristella waves; title *Market Participation + Structure* | Welcome to Lesson Twenty-Six: Market Participation + Structure. |
-| 0:04 |  | Five lenses. One chart. |
-| 0:08 | Candles + HL | Structure first: a bullish chart, with its supporting higher low. |
-| 0:13 | Layers stack | Add liquidity. Add delivery. Add participation. |
-| 0:18 | "busier, not clearer" | Every layer on at once? Busier, not clearer. |
-| 0:24 | Layers clear | Turn on the lens that answers your question. |
-| 0:28 |  | Then hold it all in a Market Read. Context, never a signal. |
-| 0:38 | "The Market Read" | Then fill in the Market Read. |
-| 0:40 | Structure location, liquidity | Structure, location, liquidity. |
-| 0:44 | Delivery & participation | Delivery and participation. |
-| 0:47 | Execution the entry model alone | Execution: the entry model alone. |
-| 0:51 |  | A read. Not a signal. |
-| 0:56 | Aristella thinks | Here's the big takeaway. |
-| 0:58 | Aristella points | Context gets deeper. The chart doesn't need to get messier. |
+| 0:00 | Aristella waves; title *Market Participation + Structure* | Welcome to Lesson Twenty-Six: Market Participation and Structure. |
+| 0:04 |  | Context gets deeper. The chart doesn't need to get messier. |
+| 0:08 | Optometrist, patient, a chart on the wall | Time for an eye exam, trader edition. |
+| 0:11 | Lens toggles light up one by one | Structure first. Then levels. Liquidity. Delivery. Participation. |
+| 0:14 | ALL: the chart turns into a blurry mess | Now flip on every lens at once. Is it easier to read? |
+| 0:19 | Patient: "Busier!" | Not really. Busier, not clearer. |
+| 0:21 | Back to structure and participation; crisp | Turn on the lens that answers your question. Context gets deeper, the chart doesn't get messier. |
+| 0:31 | A diner order pad; a chef cat by the ENTRY MODEL bell | Here's how you hold all that context: the Market Read. |
+| 0:35 | Rows are written in | Structure, location, liquidity, delivery, participation. One line each. |
+| 0:39 | "Banks are buying" crossed out | Participation: buyers appeared aggressive. Not banks are buying. |
+| 0:42 | NOT PRESENT stamp; the cat shakes its head | And execution? Not present. The read doesn't decide entries. |
+| 0:46 | CONTEXT ONLY; "decides execution" | A market read is not a signal generator. Your entry model decides execution. |
+| 0:54 | Aristella thinks | Here's the big takeaway. |
+| 0:55 | Aristella points | Context gets deeper. The chart doesn't need to get messier. |
 | 1:04 | "Your mission" | Here's your mission for this lesson. |
-| 1:07 | Mission question | Does more context mean more drawings? |
+| 1:06 | Mission question | Does more context mean more drawings? |
 | 1:12 | Aristella cheers; "Let's find out →" | Let's find out. |
 
 ## Where the words come from
-From Phase 3, Lesson 26: layering the chart (structure, relevant level, liquidity, price delivery, participation, all, clear), and the Market Read panel that holds context without being a signal generator.
+From Phase 3, Section 9, Lesson 26 ("Market Participation + Structure"): layering structure, levels, liquidity, delivery and participation one at a time (all at once is busier, not clearer), and the Market Read (structure, location, liquidity, delivery, participation, execution: not present), which is not a signal generator.

@@ -559,7 +559,7 @@
     const sp = clamp((t - T.c1) / 0.6);
     if (sp > 0) out += `<path d="M330,${G - 260} L640,470 L1320,470 L1320,${G} L640,${G} Z" fill="#FFF3C4" opacity="${0.35 * sp}"/>`;
     // Gap box behind the candles.
-    const edge1 = bear ? my(890) : 770, edge3 = bear ? my(680) : 680;
+    const edge1 = bear ? my(770) : 770, edge3 = bear ? my(680) : 680;
     const gk = bear ? ease(seg(t, T.flip + 2.6, T.flip + 3.4)) : ease(seg(t, T.gap, T.gap + 0.8)) * (1 - seg(t, T.flip, T.flip + 0.3));
     if (gk > 0) out += `<rect x="640" y="${Math.min(edge1, edge3)}" width="${600 * gk}" height="${Math.abs(edge1 - edge3)}" fill="${C.purple}" opacity=".22"/>`;
     let guys = '';
@@ -581,8 +581,8 @@
     const ek3 = bear ? ease(seg(t, T.flip + 2.0, T.flip + 2.6)) : ease(seg(t, T.edges + 1, T.edges + 1.6)) * (1 - seg(t, T.flip, T.flip + 0.2));
     if (ek1 > 0) out += `<line x1="630" x2="${lerp(630, 1340, ek1)}" y1="${edge1}" y2="${edge1}" stroke="${C.purple}" stroke-width="5" stroke-dasharray="14 10"/>` + pill(1430, edge1 + (bear ? -28 : 28), bear ? 'C1 low' : 'C1 high', C.purple, ek1, 24);
     if (ek3 > 0) out += `<line x1="630" x2="${lerp(630, 1340, ek3)}" y1="${edge3}" y2="${edge3}" stroke="${C.purple}" stroke-width="5" stroke-dasharray="14 10"/>` + pill(1430, edge3 + (bear ? 28 : -28), bear ? 'C3 high' : 'C3 low', C.purple, ek3, 24);
-    if (gk > 0.5) out += pill(1500, (edge1 + edge3) / 2 + (bear ? 130 : -150), bear ? 'BEARISH FVG' : 'BULLISH FVG', bear ? C.pink : C.tealD, pop(t, bear ? T.flip + 3.0 : T.gap + 0.6), 32) +
-      A.sparkle(1500, (edge1 + edge3) / 2 + (bear ? 130 : -150), bear ? T.flip + 3.0 : T.gap + 0.6, t);
+    if (gk > 0.5) out += pill(1500, (edge1 + edge3) / 2 + (bear ? 175 : -150), bear ? 'BEARISH FVG' : 'BULLISH FVG', bear ? C.pink : C.tealD, pop(t, bear ? T.flip + 3.0 : T.gap + 0.6), 32) +
+      A.sparkle(1500, (edge1 + edge3) / 2 + (bear ? 175 : -150), bear ? T.flip + 3.0 : T.gap + 0.6, t);
     // Spotlight operator.
     out += P(t, { x: 300, y: G, scale: 0.85, look: look('a', { shirt: C.purpleL }), seed: 6, frontArm: { a1: -30, a2: -40 },
       hold: `<g transform="rotate(-30)"><rect x="-6" y="-14" width="56" height="28" rx="6" fill="${C.dark}"/><rect x="46" y="-20" width="16" height="40" rx="4" fill="${C.gold}"/></g>` });
@@ -712,7 +712,7 @@
     if (ju > 0 && ju < 1) out += speedLines(430, jy + 60, 1, 1, C.tealL).replace(/x1="(\d+)"/g, 'x1="$1"');
     // Did it close through? No.
     if (t > T.close) {
-      out += pill(1560, 650, 'closed through? NO', C.pink, pop(t, T.close), 26);
+      out += pill(1570, 770, 'closed through? NO', C.pink, pop(t, T.close), 26);
       out += stampX(1520, 520, 0, 0);
     }
     if (t > T.still) out += pill(1240, 1035, 'structure: still bearish', C.pink, pop(t, T.still), 30) + A.sparkle(1240, 1000, T.still + 0.3, t, C.pinkL);
@@ -820,7 +820,301 @@
     return out;
   };
 
-  /* @@MORE@@ */
+  /* ================================================================== *
+   * Lesson 16 · When FVGs Matter
+   * ================================================================== */
+
+  // A sniffer dog checks three gaps on the chart; only one formed in the break, near price now.
+  LIVE['s8-sniffer-dog'] = (s, t) => {
+    const T = s.beats, G = 990;
+    let out = `<rect x="0" y="${G}" width="1920" height="90" fill="#F6EDE6"/>`;
+    const my = y => 410 + (y - 460) * 0.92;
+    out += panel(240, 375, 1440, 405, pop(t, s.start + 0.2, 0.7));
+    const pts = [[300, 820], [430, 610], [480, 690], [520, 640], [560, 690], [600, 630], [640, 680], [680, 620], [760, 580], [820, 700], [1000, 460], [1120, 590], [1200, 572]];
+    const dk = ease(seg(t, s.start + 0.6, s.start + 3.2));
+    pts.forEach(p => { p[1] = my(p[1]); });
+    // FVG boxes (drawn behind price).
+    const bk = seg(t, T.boxes, T.boxes + 0.6);
+    const boxes = [['A', 340, 620, 700, 735, T.a, 'old', C.muted], ['C', 590, 760, 642, 656, T.c, 'messy', C.muted], ['B', 880, 1300, 548, 602, T.b, 'formed in the break, near price', C.tealD]];
+    boxes.forEach(([l, x0, x1, y0, y1, a, why, col], i) => {
+      const lit = t > a, good = l === 'B' && lit;
+      const fade = !good && t > T.auto ? 0.45 : 1;
+      out += `<g opacity="${fade}">${fvg(x0, x1, my(y0), my(y1), ease(bk * 2 - i * 0.4), good ? C.teal : C.purple)}</g>`;
+      out += pill(x0 - 22, my((y0 + y1) / 2), l, good ? C.tealD : C.purple, pop(t, T.boxes + 0.3 + i * 0.3) * fade, 22);
+      if (lit) out += pill(l === 'C' ? 640 : l === 'B' ? 1420 : (x0 + x1) / 2, l === 'B' ? 455 : l === 'C' ? 745 : 745, why, col, pop(t, a + 0.8) * fade, 24);
+    });
+    out += poly(partial(pts, dk), C.dark, 7);
+    if (dk >= 1) {
+      out += `<line x1="430" x2="1060" y1="${my(610)}" y2="${my(610)}" stroke="${C.pink}" stroke-width="4" stroke-dasharray="10 10" opacity=".7"/>` + pill(1110, my(640), 'prior high broken', C.pink, pop(t, s.start + 3.2), 22);
+      const pulse = 1 + Math.sin(t * 5) * 0.2;
+      out += `<circle cx="1200" cy="${my(572)}" r="${14 * pulse}" fill="${C.dark}"/>` + pill(1290, my(700), 'price now', C.dark, pop(t, s.start + 3.6), 22);
+    }
+    // Dog route: A, C, B.
+    const stops = [[s.start, 330], [T.a - 1.2, 330], [T.a, 380], [T.c - 1.2, 380], [T.c, 640], [T.b - 1.4, 640], [T.b, 960]];
+    let dx = 330, moving = false;
+    for (let i = 0; i < stops.length - 1; i++) {
+      const [ta, xa] = stops[i], [tb, xb] = stops[i + 1];
+      if (t >= ta && t < tb) { const k = seg(t, ta, tb); dx = lerp(xa, xb, ease(k)); moving = xa !== xb && k < 1; }
+    }
+    if (t >= T.b) dx = 960;
+    const sniff = !moving && ((t > T.a && t < T.a + 1.6) || (t > T.c && t < T.c + 1.6) || (t > T.b && t < T.b + 1.2));
+    const happy = t > T.b + 1.2;
+    const jump = happy ? Math.abs(Math.sin((t - T.b) * 5)) * 30 * (t < T.b + 3.4 ? 1 : 0) : 0;
+    out += dog(t, { x: dx, y: G - jump, s: 0.9, walking: moving, sniff, wag: happy || moving, tongue: happy, collar: C.pink, seed: 4 });
+    if (sniff) out += [0, 1, 2].map(i => { const q = ((t * 1.5) + i / 3) % 1; return `<circle cx="${dx + 110 + i * 10}" cy="${G - 60 - q * 50}" r="${5 + q * 6}" fill="none" stroke="${C.muted}" stroke-width="2.5" opacity="${1 - q}"/>`; }).join('');
+    if (happy) out += A.sparkle(dx + 90, G - 200, T.b + 1.2, t, C.teal);
+    // Handler with a leash.
+    const hx = dx - 230;
+    out += P(t, { x: hx, y: G, scale: 0.72, look: look('a', { shirt: C.peach }), walking: moving, seed: 2, frontArm: { a1: -10, a2: 20 } });
+    out += `<path d="M${hx + 90},${G - 135} Q${(hx + dx) / 2 + 40},${G - 50} ${dx + 45},${G - 66}" fill="none" stroke="${C.pink}" stroke-width="4"/>`;
+    if (T.auto && t > T.auto) out += pill(1500, 1040, 'automatic trade? NO', C.pink, pop(t, T.auto + 1.6), 26);
+    return out;
+  };
+
+  // Three keys open the door: where it formed, ties to structure, where price is now. Inside: context.
+  LIVE['s8-three-keys'] = (s, t) => {
+    const T = s.beats, G = 980;
+    let out = `<rect x="0" y="${G}" width="1920" height="100" fill="#F6EDE6"/>`;
+    const dk = pop(t, s.start + 0.3, 0.7);
+    const op = ease(seg(t, T.open, T.open + 1.0));
+    // Room behind the door: a lantern labelled CONTEXT and a curious cat.
+    let inside = `<rect x="790" y="410" width="360" height="${G - 410}" rx="12" fill="#3D3550"/>`;
+    if (op > 0) {
+      const glow = 0.6 + 0.4 * Math.sin(t * 3);
+      inside += `<circle cx="970" cy="650" r="${130 + glow * 20}" fill="#FFF3C4" opacity="${0.35 * op}"/>
+        <g transform="translate(970,650)" opacity="${op}"><line x1="0" y1="-120" x2="0" y2="-70" stroke="${C.muted}" stroke-width="5"/><rect x="-44" y="-72" width="88" height="20" rx="8" fill="${C.dark}"/>
+        <rect x="-38" y="-52" width="76" height="100" rx="14" fill="#FFF3C4" stroke="${C.gold}" stroke-width="6"/><path d="M0,-30 Q16,0 0,22 Q-16,0 0,-30 Z" fill="${C.peach}"/><rect x="-44" y="48" width="88" height="16" rx="6" fill="${C.dark}"/></g>`;
+      inside += cat(t, { x: 1060, y: G, s: 0.8, flip: true, col: C.peachL, seed: 5 });
+    }
+    out += at(970, 700, dk, inside);
+    // Door swings open on the left hinge.
+    const dw = 360 * (1 - op * 0.82);
+    out += at(970, 700, dk, `<rect x="790" y="410" width="${dw}" height="${G - 410}" rx="12" fill="${C.purple}" stroke="#5E56B8" stroke-width="6"/>
+      ${op < 0.5 ? `<rect x="${790 + dw * 0.1}" y="440" width="${dw * 0.8}" height="230" rx="10" fill="#fff" opacity=".12"/><rect x="${790 + dw * 0.1}" y="700" width="${dw * 0.8}" height="230" rx="10" fill="#fff" opacity=".12"/>` : ''}
+      <rect x="770" y="395" width="400" height="20" rx="8" fill="#5E56B8"/>`);
+    // Locks and keys.
+    const ly = [520, 670, 820], labels = ['where it formed', 'ties to structure', 'where price is now'], kc = [C.peach, C.teal, C.pink];
+    ly.forEach((y, i) => {
+      const a = T.k[i], kk = ease(seg(t, a, a + 0.8)), turn = seg(t, a + 0.8, a + 1.2), opened = t > a + 1.2;
+      const fall = seg(t, a + 1.4, a + 2.2);
+      if (t < T.open + 0.3 && fall < 1) {
+        const lx = 1000, lyy = y + fall * (G - y - 30);
+        out += `<g transform="translate(${lx},${lyy}) rotate(${fall * 60})" opacity="${1 - fall}"><path d="M-22,0 L-22,${opened ? -44 : -26} A22,22 0 0,1 22,${opened ? -44 : -26} L22,${opened ? -30 : 0}" fill="none" stroke="${C.muted}" stroke-width="10"/>
+          <rect x="-36" y="-6" width="72" height="62" rx="12" fill="${C.gold}" stroke="#C98A1F" stroke-width="4"/><circle cx="0" cy="20" r="8" fill="${C.dark}"/></g>`;
+      }
+      if (kk > 0 && fall < 1) {
+        const kx = lerp(560, 1000, kk), kyy = lerp(760, y + 20, kk) - Math.sin(kk * Math.PI) * 100;
+        out += `<g transform="translate(${kx},${kyy}) rotate(${turn * 90})" opacity="${1 - fall}"><circle cx="-48" cy="0" r="18" fill="none" stroke="${kc[i]}" stroke-width="9"/><rect x="-32" y="-5" width="44" height="10" rx="4" fill="${kc[i]}"/><rect x="2" y="0" width="8" height="14" fill="${kc[i]}"/></g>`;
+      }
+      out += pill(1400, y + 20, (i + 1) + ' · ' + labels[i], kc[i] === C.teal ? C.tealD : kc[i] === C.peach ? '#E08E2E' : kc[i], pop(t, a), 26);
+      if (opened) out += check(1640, y + 20, pop(t, a + 1.2), C.tealD, 0.7);
+    });
+    // Locksmith.
+    const ring = `<circle cx="0" cy="0" r="20" fill="none" stroke="${C.gold}" stroke-width="6"/>`;
+    out += P(t, { x: 520, y: G, scale: 1, look: look('buyer', { shirt: C.purpleL }), seed: 3, talk: T.k.some(a => t > a && t < a + 1.2),
+      frontArm: T.k.some(a => t > a - 0.2 && t < a + 0.5) ? { a1: -30, a2: -20 } : { a1: 30, a2: -40 }, hold: ring, mood: 'happy' });
+    if (op > 0.6) {
+      out += pill(970, 800, 'CONTEXT', C.peach, pop(t, T.open + 0.8), 34) + A.sparkle(970, 650, T.open + 0.8, t);
+      out += pill(1450, 960, 'not an automatic trade', C.pink, pop(t, T.open + 2.0), 24);
+    }
+    return out;
+  };
+
+  /* ================================================================== *
+   * Lesson 17 · When FVGs Don't Matter
+   * ================================================================== */
+
+  // A clear view through a window, until FVG sticky notes cover the glass.
+  LIVE['s8-sticky-window'] = (s, t) => {
+    const T = s.beats, G = 1000;
+    let out = `<rect x="0" y="360" width="1920" height="720" fill="${C.pinkP}" opacity=".6"/><rect x="0" y="${G}" width="1920" height="80" fill="#EADFD8"/>`;
+    const wx = 580, wy = 400, ww = 780, wh = 470;
+    out += `<rect x="${wx - 20}" y="${wy - 20}" width="${ww + 40}" height="${wh + 40}" rx="16" fill="#fff"/><rect x="${wx}" y="${wy}" width="${ww}" height="${wh}" fill="#E8F8F6"/>`;
+    out += sun(wx + 100, wy + 90, t, 40) + cloud(wx + 520 + Math.sin(t * 0.4) * 30, wy + 90, 0.6);
+    const ridge = [[600, 840], [720, 720], [790, 780], [920, 640], [990, 710], [1120, 560], [1190, 620], [1340, 470]];
+    out += `<path d="M600,870 ${ridge.map(p => `L${p[0]},${p[1]}`).join(' ')} L1360,470 L1360,870 Z" fill="${C.tealL}" opacity=".7"/>` + poly(partial(ridge, ease(seg(t, T.ridge, T.ridge + 2))), C.tealD, 8);
+    [[1, 'HH'], [2, 'HL'], [3, 'HH'], [4, 'HL'], [5, 'HH'], [6, 'HL'], [7, 'HH']].forEach(([i, l], j) => {
+      out += pill(ridge[i][0], ridge[i][1] + (l === 'HH' ? -32 : 34), l, l === 'HH' ? C.tealD : C.peach, pop(t, T.ridge + 1 + j * 0.25, 0.4) * (t > T.pile + 6 ? 0.6 : 1), 20);
+    });
+    // Sticky FVG notes pile onto the glass.
+    const notes = [[640, 760, 160, 60], [1000, 520, 220, 70], [800, 600, 200, 90], [1180, 700, 150, 80], [700, 450, 240, 80], [920, 720, 260, 100], [1100, 420, 200, 90], [610, 560, 180, 120], [860, 470, 180, 100], [1150, 580, 190, 110], [780, 790, 280, 70], [960, 610, 200, 90], [620, 820, 150, 40], [1240, 800, 110, 60]];
+    let shown = 0;
+    notes.forEach(([x, y, w, h], i) => {
+      const a = T.pile + Math.pow(i, 0.85) * 0.8;
+      const k = pop(t, a, 0.4);
+      if (k <= 0) return;
+      shown++;
+      const xx = Math.min(x, wx + ww - w), yy = Math.min(y, wy + wh - h);
+      out += at(xx + w / 2, yy + h / 2, k, `<rect x="${xx}" y="${yy}" width="${w}" height="${h}" rx="6" fill="${[C.purpleL, '#E5E1FA', C.purpleL][i % 3]}" opacity=".92" stroke="${C.purple}" stroke-width="3" stroke-dasharray="10 6"/>${txt(xx + w / 2, yy + h / 2 + 9, 'FVG', Math.min(26, h * 0.5), C.purple)}`);
+    });
+    out += `<rect x="${wx - 30}" y="${wy + wh + 14}" width="${ww + 60}" height="24" rx="8" fill="#fff" stroke="#EADFD8" stroke-width="3"/>`;
+    if (shown) out += at(1560, 470, pop(t, T.pile), `<rect x="1450" y="420" width="220" height="100" rx="20" fill="#fff" stroke="${C.purple}" stroke-width="4"/>${txt(1560, 460, 'FVG boxes', 22, C.muted)}${txt(1560, 504, String(shown), 40, C.purple, { f: 'Playfair Display' })}`);
+    // Cat on the sill swats at a note.
+    out += cat(t, { x: 1250, y: wy + wh + 16, s: 0.62, flip: true, seed: 2, col: '#C9B9AE' });
+    // Viewer.
+    const lost = t > T.see;
+    out += P(t, { x: 330, y: G, scale: 1.05, look: look('d', { shirt: C.peach }), seed: 5, mood: lost ? 'sad' : undefined,
+      frontArm: lost ? { a1: -60, a2: -150 } : { a1: -20, a2: -40 } });
+    if (lost) out += questionMarks(330, 600, t, C.purple);
+    if (t > T.see) out += pill(960, 1045, 'can you see the structure?', C.pink, pop(t, T.see), 28);
+    return out;
+  };
+
+  // The trunk is the structure; the gardener prunes old and tiny FVG branches, keeping the latest.
+  LIVE['s8-pruning'] = (s, t) => {
+    const T = s.beats, G = 980;
+    let out = `<rect x="0" y="${G - 20}" width="1920" height="140" fill="${C.tealL}" opacity=".5"/>` + sun(1780, 420, t, 44);
+    const trunk = [[600, 975], [760, 760], [840, 840], [1000, 620], [1080, 700], [1240, 500], [1310, 560], [1460, 420]];
+    const tk = ease(seg(t, s.start + 0.3, s.start + 2));
+    const glow = t > T.keep ? 1 : 0;
+    if (glow) out += poly(trunk, C.teal, 44, `opacity="${0.4 + 0.2 * Math.sin(t * 4)}"`);
+    out += poly(partial(trunk, tk), '#9B6A45', 24);
+    // Branches: [from, to, size, group]
+    const br = [
+      [[680, 868], [520, 850], [120, 60], 'old'], [[920, 730], [880, 630], [110, 56], 'old'], [[760, 760], [700, 650], [100, 52], 'old'],
+      [[800, 800], [870, 860], [50, 24], 'tiny'], [[1040, 660], [1110, 720], [46, 22], 'tiny'], [[1275, 530], [1345, 590], [46, 22], 'tiny'],
+      [[1400, 476], [1540, 470], [110, 56], 'keep'],
+    ];
+    br.forEach(([a, b, [w, h], grp], i) => {
+      const grow = pop(t, s.start + 1.2 + i * 0.25, 0.5);
+      if (grow <= 0) return;
+      const cutAt = grp === 'old' ? T.old + (i) * 0.5 : grp === 'tiny' ? T.tiny + (i - 3) * 0.5 : Infinity;
+      const f = isFinite(cutAt) ? seg(t, cutAt, cutAt + 1.1) : 0;
+      if (f >= 1) return;
+      const dy = f * f * (G - b[1]), rot = f * (i % 2 ? 70 : -70);
+      const g = `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#9B6A45" stroke-width="10" stroke-linecap="round"/>
+        <rect x="${b[0] - w / 2}" y="${b[1] - h / 2}" width="${w}" height="${h}" rx="6" fill="${grp === 'keep' ? C.teal : C.purpleL}" opacity=".9" stroke="${grp === 'keep' ? C.tealD : C.purple}" stroke-width="3" stroke-dasharray="8 5"/>
+        ${w > 60 ? txt(b[0], b[1] + 8, 'FVG', 22, grp === 'keep' ? '#fff' : C.purple) : ''}`;
+      out += `<g transform="translate(0,${dy}) rotate(${rot} ${b[0]} ${b[1]})" opacity="${1 - f * 0.6}">${at(a[0], a[1], grow, g)}</g>`;
+      if (f > 0 && f < 0.5) out += txt(a[0] + (b[0] - a[0]) * 0.5, a[1] - 30, 'snip!', 30, C.pink, { f: 'Playfair Display' });
+    });
+    out += pill(560, 560, 'old gaps', C.purple, pop(t, T.old - 0.4) * (1 - seg(t, T.keep, T.keep + 0.5)), 24);
+    out += pill(1190, 820, 'tiny gaps', C.purple, pop(t, T.tiny - 0.4) * (1 - seg(t, T.keep, T.keep + 0.5)), 24);
+    if (t > T.keep) {
+      out += pill(1560, 545, 'latest leg: maybe keep', C.tealD, pop(t, T.keep + 1.2), 24);
+      out += pill(440, 900, 'structure first', '#9B6A45', pop(t, T.keep), 28);
+    }
+    // A bird lands on top of the tree.
+    const bl = seg(t, T.keep + 1.6, T.keep + 3);
+    if (bl > 0) out += bird(t, { x: lerp(1800, 1462, ease(bl)), y: lerp(380, 418, ease(bl)) - Math.sin(bl * Math.PI) * 60, s: 1.1, flip: true, flying: bl < 1, col: C.pink, seed: 3 });
+    // Gardener with shears.
+    const shears = `<g transform="rotate(${-30 + (T.old && ((t > T.old && t < T.old + 2) || (t > T.tiny && t < T.tiny + 2)) ? Math.sin(t * 16) * 8 : 0)})"><line x1="0" y1="0" x2="90" y2="-14" stroke="${C.muted}" stroke-width="7" stroke-linecap="round"/><line x1="0" y1="0" x2="90" y2="14" stroke="${C.muted}" stroke-width="7" stroke-linecap="round"/><rect x="-36" y="-8" width="40" height="16" rx="6" fill="${C.pink}"/></g>`;
+    const gx = t < T.tiny - 0.6 ? 330 : lerp(330, 1680, ease(seg(t, T.tiny - 0.6, T.tiny + 0.4)));
+    out += P(t, { x: gx, y: G, scale: 1, look: look('c', { shirt: C.teal, pants: C.purple }), seed: 4, flip: gx > 1000,
+      walking: t > T.tiny - 0.6 && t < T.tiny + 0.4, frontArm: { a1: -20, a2: -20 }, hold: shears });
+    out += `<g transform="translate(${gx},${G - 300}) scale(${gx > 1000 ? -1 : 1},1)"><ellipse cx="0" cy="0" rx="62" ry="12" fill="${C.peach}"/><path d="M-34,0 Q-30,-40 0,-42 Q30,-40 34,0 Z" fill="${C.peach}"/><rect x="-34" y="-10" width="68" height="8" fill="${C.pink}"/></g>`;
+    return out;
+  };
+
+  /* ================================================================== *
+   * Lesson 18 · FVGs in the Dayli ICC Framework
+   * ================================================================== */
+
+  // The ICC train pulls in; the inspector checks every car for an FVG step. There isn't one.
+  LIVE['s8-icc-train'] = (s, t) => {
+    const T = s.beats, R = 830, G = 1045;
+    let out = `<rect x="0" y="${R + 20}" width="1920" height="${1080 - R - 20}" fill="#EADFD8"/><rect x="0" y="${R + 20}" width="1920" height="10" fill="${C.muted}" opacity=".4"/>
+      <rect x="0" y="${R - 6}" width="1920" height="8" fill="${C.muted}"/>${Array.from({ length: 24 }, (_, i) => `<rect x="${i * 82}" y="${R}" width="44" height="18" fill="#9B6A45" opacity=".5"/>`).join('')}`;
+    const ak = ease(seg(t, T.arrive, T.arrive + 3));
+    const dx = (1 - ak) * 1900;
+    const cars = ['PIL', 'INDICATION', 'CORRECTION', 'CONTINUATION', 'RETEST', 'ENTRY'];
+    const cols = [C.purple, C.teal, C.peach, C.pink, C.purpleL, C.tealD];
+    const moving = ak > 0 && ak < 1;
+    const wheel = (x) => `<g transform="translate(${x},${R - 16}) rotate(${-dx * 2})"><circle r="18" fill="${C.dark}"/><circle r="7" fill="#D9CFC8"/><rect x="-2" y="-16" width="4" height="12" fill="#D9CFC8"/></g>`;
+    let train = '';
+    // Engine.
+    train += `<rect x="150" y="${R - 170}" width="220" height="150" rx="18" fill="${C.dark}"/><rect x="290" y="${R - 230}" width="80" height="80" rx="10" fill="${C.dark}"/>
+      <rect x="302" y="${R - 218}" width="56" height="44" rx="6" fill="#FFF3C4"/><rect x="180" y="${R - 220}" width="34" height="60" rx="6" fill="${C.muted}"/>
+      <path d="M150,${R - 40} L110,${R - 20} L150,${R - 20} Z" fill="${C.pink}"/><circle cx="170" cy="${R - 120}" r="16" fill="#FFF3C4"/>
+      ${wheel(200)}${wheel(260)}${wheel(330)}`;
+    cars.forEach((c, i) => {
+      const x = 400 + i * 234, lit = t > T.read + i * 0.42;
+      const checked = t > T.inspect + (i + 0.6) * (T.walk / 6);
+      train += `<rect x="${x}" y="${R - 160}" width="220" height="140" rx="14" fill="${cols[i]}" stroke="${lit ? C.dark : 'none'}" stroke-width="${lit ? 4 : 0}"/>
+        <rect x="${x + 14}" y="${R - 146}" width="192" height="64" rx="10" fill="#fff" opacity=".9"/>
+        ${txt(x + 110, R - 104, c, c.length > 10 ? 21 : 26, C.dark)}
+        ${[0, 1, 2].map(j => `<rect x="${x + 22 + j * 64}" y="${R - 72}" width="48" height="34" rx="6" fill="#fff" opacity=".35"/>`).join('')}
+        <rect x="${x - 14}" y="${R - 60}" width="14" height="8" fill="${C.dark}"/>
+        ${wheel(x + 50)}${wheel(x + 170)}
+        ${checked ? check(x + 200, R - 170, pop(t, T.inspect + (i + 0.6) * (T.walk / 6)), C.tealD, 0.6) : ''}`;
+    });
+    out += `<g transform="translate(${dx},${moving ? Math.sin(t * 20) * 1.5 : 0})">${train}</g>`;
+    // Steam puffs.
+    [0, 1, 2, 3].forEach(i => { const q = ((t * 0.6) + i / 4) % 1; out += `<circle cx="${197 + dx - q * 80}" cy="${R - 230 - q * 140}" r="${16 + q * 34}" fill="#fff" opacity="${0.8 * (1 - q)}"/>`; });
+    // Inspector walks the platform.
+    const wk = seg(t, T.inspect, T.inspect + T.walk);
+    const ix = lerp(420, 1760, wk);
+    const clip = `<g transform="rotate(-10)"><rect x="-24" y="-44" width="48" height="62" rx="6" fill="#9B6A45"/><rect x="-18" y="-36" width="36" height="48" rx="3" fill="#fff"/></g>`;
+    out += P(t, { x: ix, y: G, scale: 0.62, look: look('a', { shirt: C.purpleL }), walking: wk > 0 && wk < 1, seed: 3, flip: t > T.none && Math.floor(t * 1.2) % 2 === 0,
+      frontArm: { a1: -20, a2: -60 }, hold: clip });
+    if (t > T.none) {
+      out += questionMarks(ix, 760 - 30, t, C.pink);
+      out += pill(1500, 450, 'FVG car?', C.purple, pop(t, T.none), 28);
+      out += pill(1500, 520, 'no FVG step', C.pink, pop(t, T.none + 1.2), 32);
+    }
+    // Luggage on the platform: the FVG rides as context.
+    const lk = pop(t, T.lug, 0.6);
+    if (lk > 0) {
+      out += at(220, 960, lk, `<rect x="160" y="900" width="130" height="90" rx="14" fill="${C.purple}"/><rect x="200" y="880" width="50" height="24" rx="8" fill="none" stroke="${C.purple}" stroke-width="8"/>
+        <rect x="160" y="935" width="130" height="10" fill="#5E56B8"/>${txt(225, 978, 'FVG', 24, '#fff')}`);
+      out += pill(330, 860, 'luggage, not a car', C.purple, pop(t, T.lug + 1), 24);
+    }
+    out += bird(t, { x: 700 + Math.sin(t * 0.7) * 40, y: G + 10, s: 0.9, col: '#C9B9AE', seed: 6, flip: Math.cos(t * 0.7) < 0 });
+    return out;
+  };
+
+  // A shape sorter: the square FVG block doesn't go into the round Dayli ICC hole. Don't force it.
+  LIVE['s8-shape-sorter'] = (s, t) => {
+    const T = s.beats, G = 990;
+    let out = `<rect x="0" y="${G}" width="1920" height="90" fill="#F6EDE6"/>`;
+    // Sorter box.
+    const bk = pop(t, s.start + 0.3, 0.7);
+    out += at(960, 800, bk, `<rect x="740" y="660" width="440" height="${G - 660}" rx="24" fill="${C.pink}"/><path d="M740,680 L780,620 L1220,620 L1180,680 Z" fill="${C.pinkL}"/>
+      <ellipse cx="980" cy="650" rx="74" ry="20" fill="${C.dark}"/>
+      <rect x="800" y="760" width="320" height="70" rx="35" fill="#fff"/>${txt(960, 808, 'DAYLI ICC', 34, C.pink, { f: 'Playfair Display' })}
+      <circle cx="840" cy="900" r="22" fill="#fff" opacity=".4"/><rect x="1060" y="880" width="40" height="40" fill="#fff" opacity=".4" transform="rotate(20 1080 900)"/>`);
+    // The FVG block.
+    const shelfX = 1640, shelfY = 520;
+    const sh = seg(t, T.shelf, T.shelf + 1.2);
+    let fx = 980, fy = 590, rot = 0;
+    if (t < T.push) { fx = 690; fy = 640; }
+    else if (t < T.shelf) {
+      const k = ease(seg(t, T.push, T.push + 0.8));
+      fx = lerp(690, 980, k); fy = lerp(640, 590, k) - Math.sin(k * Math.PI) * 60;
+      if (t > T.push + 0.8) { fy += Math.abs(Math.sin((t - T.push) * 6)) * 6; rot = Math.sin((t - T.push) * 9) * 6; }
+    } else {
+      fx = lerp(980, shelfX, ease(sh)); fy = lerp(590, shelfY - 46, ease(sh)) - Math.sin(sh * Math.PI) * 180; rot = sh * 360;
+    }
+    // Bonks.
+    const bonking = t > T.bonk && t < T.stop;
+    if (bonking && (t - T.bonk) % 0.6 < 0.15) fy += 8;
+    // Shelf of market literacy blocks.
+    const shk = pop(t, s.start + 0.8, 0.6);
+    out += at(1640, 560, shk, `<rect x="1460" y="${shelfY}" width="380" height="18" rx="6" fill="#9B6A45"/><rect x="1480" y="${shelfY + 18}" width="12" height="40" fill="#9B6A45"/><rect x="1808" y="${shelfY + 18}" width="12" height="40" fill="#9B6A45"/>
+      <rect x="1500" y="${shelfY - 70}" width="70" height="70" rx="10" fill="${C.teal}"/>${txt(1535, shelfY - 28, '⚡', 30, '#fff')}
+      <rect x="1740" y="${shelfY - 70}" width="70" height="70" rx="10" fill="${C.peach}"/>${txt(1775, shelfY - 26, '≈', 36, '#fff')}`);
+    out += pill(1650, shelfY + 90, 'MARKET LITERACY', C.purple, pop(t, s.start + 1.2), 24);
+    out += `<g transform="translate(${fx},${fy}) rotate(${rot})"><rect x="-46" y="-46" width="92" height="92" rx="12" fill="${C.purple}" stroke="#5E56B8" stroke-width="5"/>${txt(0, 10, 'FVG', 30, '#fff')}</g>`;
+    if (sh >= 1) out += A.sparkle(shelfX, shelfY - 50, T.shelf + 1.2, t, C.purple);
+    // Pusher with a toy hammer.
+    const hammerUp = bonking ? ((t - T.bonk) % 0.6) / 0.6 : 0;
+    const hammer = `<g transform="rotate(${bonking ? -40 + Math.sin(hammerUp * Math.PI * 2) * 50 : -30})"><rect x="-4" y="-70" width="10" height="72" rx="4" fill="#9B6A45"/><rect x="-26" y="-92" width="52" height="30" rx="8" fill="${C.peach}"/></g>`;
+    out += P(t, { x: 640, y: G, scale: 1, look: look('e', { shirt: C.teal }), seed: 2, mood: t > T.stop && t < T.shelf ? 'sad' : undefined, talk: t > T.push && t < T.push + 2,
+      frontArm: bonking ? { a1: -40 + Math.sin(hammerUp * Math.PI * 2) * 20, a2: -60 } : t > T.push && t < T.bonk ? { a1: -10, a2: -30 } : { a1: 100, a2: 95 }, hold: bonking ? hammer : '' });
+    if (bonking && (t - T.bonk) % 0.6 < 0.3) out += txt(1040, 540, 'BONK!', 40, C.pink, { f: 'Playfair Display' }) + [0, 1, 2].map(i => `<text x="${940 + i * 40}" y="${560 - i * 14}" font-size="30" fill="${C.gold}">★</text>`).join('');
+    // Friend: don't force it.
+    out += P(t, { x: 1340, y: G, scale: 1, look: A.LOOKS.seller, flip: true, seed: 7, talk: t > T.stop && t < T.stop + 1.4,
+      frontArm: t > T.stop ? { a1: -100, a2: -110 } : { a1: 100, a2: 95 } });
+    if (t > T.stop && t < T.shelf + 1) out += A.bubble(1250, 500, 'Don’t force it!', { size: 34, weight: 900, tail: 'right', sc: clamp(pop(t, T.stop)), stroke: C.pinkL, color: C.pink });
+    // Next section sign.
+    if (T.next && t > T.next) {
+      const nk = pop(t, T.next, 0.7);
+      out += at(260, 900, nk, `<rect x="250" y="700" width="16" height="${G - 700}" fill="#9B6A45"/><path d="M110,600 L380,600 L420,650 L380,700 L110,700 Z" fill="${C.purple}"/>${txt(255, 640, 'NEXT', 24, '#fff', { ls: 4 })}${txt(255, 682, 'Section 9', 30, '#fff', { f: 'Playfair Display' })}`);
+      out += pill(960, 1040, 'Next: Section 9 · Understanding Market Participation', C.purple, pop(t, T.next + 0.6), 26);
+    }
+    return out;
+  };
+
 
   /* -------- shared text layer for every s8 scene -------- */
   const textLayer = s => `

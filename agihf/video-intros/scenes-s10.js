@@ -644,7 +644,7 @@
   LIVE['s10-polaroid'] = (s, t, ctx) => {
     const r = t - s.start;
     const sw = [[0, 0.4], [0.1, 0.7], [0.2, 0.35], [0.3, 0.55], [0.38, 0.12], [0.5, 0.6], [0.58, 0.42], [0.72, 0.9], [0.82, 0.66]];
-    const X = u => 780 + u * 1060, Y = v => 910 - v * 450;
+    const X = u => 790 + u * 980, Y = v => 910 - v * 450;
     let out = `<rect x="0" y="1000" width="1920" height="80" fill="#F3E3D7"/>`;
     const pk = pop(t, s.start + 0.3, 0.6);
     out += scl(1240, 680, pk, `<rect x="720" y="400" width="1100" height="560" rx="30" fill="#fff" stroke="#F1E7E1" stroke-width="3"/>`);
@@ -661,7 +661,7 @@
       out += pill(X(0.24), Y(0.7) - 30, after ? 'old high' : '🚪 EXTERNAL HIGH', after ? '#C9B9AE' : C.purple, 1, 22) + pill(X(0.62), Y(0.12) + 32, after ? 'old low' : '🚪 EXTERNAL LOW', after ? '#C9B9AE' : C.purple, 1, 22);
     }
     if (r > 11.6) out += pill(X(0.66), Y(0.78), 'closes through', C.peach, pop(t, s.start + 11.6) * (after ? 0 : 1), 22);
-    if (r > 14.4) out += dot(X(0.72), Y(0.9), C.teal, 13) + pill(X(0.86), Y(0.9) - 4, 'new swing ✓', C.teal, pop(t, s.start + 14.4), 22);
+    if (r > 14.4) out += dot(X(0.72), Y(0.9), C.teal, 13) + pill(X(0.88), Y(0.9) - 4, 'new swing ✓', C.teal, pop(t, s.start + 14.4) * (1 - seg(r, 17.2, 17.5)), 22);
     if (after) {
       const nk = ease(seg(r, 17.6, 18.6));
       out += hline(X(0.72), lerp(X(0.72), X(1), nk), Y(0.9), C.purple, { w: 7 }) + hline(X(0.58), lerp(X(0.58), X(1), nk), Y(0.42), C.purple, { w: 7 });
@@ -747,6 +747,370 @@
     out += person(t, hp);
     out += card(240, 600, ['Move it now?'], { k: back(seg(r, 8.4, 8.8)), op: 1 - seg(r, 13, 13.4), fs: 26, tx: -60 });
     out += card(1690, 560, ['Not yet.'], { k: back(seg(r, 9.6, 10)), op: 1 - seg(r, 13.4, 13.8), fs: 28, col: TX.peach, tx: 30 });
+    return out;
+  };
+
+  /* ================= Lesson 6 · Internal Movement Inside the 4H Room ================= */
+
+  // Snow globe: shake it, the 1H storms lower inside, the glass (the 4H room) holds.
+  LIVE['s10-snow-globe'] = (s, t, ctx) => {
+    const r = t - s.start;
+    let out = `<rect x="0" y="1000" width="1920" height="80" fill="#F3E3D7"/>
+      <rect x="520" y="958" width="880" height="26" rx="10" fill="#C9A27A"/><rect x="560" y="984" width="22" height="96" fill="#9B6A45"/><rect x="1338" y="984" width="22" height="96" fill="#9B6A45"/>`;
+    const gk = pop(t, s.start + 0.3, 0.7);
+    const shake = seg(r, 2.8, 3.2) * (1 - seg(r, 9.6, 10.2));
+    const settle = ease(seg(r, 10, 16));
+    const wob = Math.sin(t * 13) * 5 * shake;
+    const cx = 960, cy = 620, R = 245;
+    let g = `<defs><clipPath id="s10-globe"><circle cx="${cx}" cy="${cy}" r="${R - 8}"/></clipPath></defs>
+      <path d="M780,880 L1140,880 L1180,958 L740,958 Z" fill="${C.purple}"/><rect x="760" y="864" width="400" height="26" rx="10" fill="#5E56B8"/>
+      <circle cx="${cx}" cy="${cy}" r="${R}" fill="#E8F8F6" stroke="#fff" stroke-width="10"/>
+      <g clip-path="url(#s10-globe)"><rect x="700" y="800" width="520" height="80" fill="#fff"/>`;
+    // Faint 4H room inside.
+    g += `<rect x="790" y="480" width="340" height="320" fill="${C.purpleL}" opacity=".25"/>` + hline(780, 1140, 480, C.purple, { w: 4, op: 0.7 }) + hline(780, 1140, 800, C.purple, { w: 4, op: 0.7 });
+    const pts = [[800, 520], [860, 610], [900, 570], [960, 690], [1010, 650], [1070, 760], [1120, 720]];
+    const pk = along(pts, ease(seg(r, 4, 10.4)));
+    g += poly(pk.drawn, C.pink, 7);
+    [[2, 'LH', -1], [3, 'LL', 1], [4, 'LH', -1], [5, 'LL', 1]].forEach(([i, lab, d]) => { if (pk.seg >= i || pk.seg === pts.length - 2 && pk.f >= 1) g += pill(pts[i][0], pts[i][1] + d * 30, lab, C.pink, pop(t, s.start + 4 + i * 1.0, 0.4), 18); });
+    // Snow.
+    for (let i = 0; i < 46; i++) {
+      const a = i * 2.39 + r * (1.6 + (i % 5) * 0.2) * shake, rr = 40 + (i * 37) % 190;
+      const sx = cx + Math.cos(a) * rr, sy = cy + Math.sin(a) * rr * 0.9;
+      const bx = cx - 200 + (i * 53) % 400, by = 850 - (i % 4) * 9;
+      const m = r < 3 ? 1 : settle;
+      g += `<circle cx="${lerp(sx, bx, m)}" cy="${lerp(sy, by, m)}" r="${4 + (i % 3) * 2}" fill="#fff" stroke="#E9DED6" stroke-width="1.5"/>`;
+    }
+    g += `</g><path d="M${cx - 170},${cy - 150} Q${cx - 210},${cy - 60} ${cx - 196},${cy + 10}" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round" opacity=".7"/>
+      <text x="${cx}" y="934" font-size="28" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">4H · BULLISH ROOM ↑</text>`;
+    out += `<g transform="rotate(${wob} 960 958)">${scl(960, 958, gk, g)}</g>`;
+    if (r > 10.8) out += pill(960, 440, '1H · bearish ↓', C.pink, pop(t, s.start + 10.8), 24);
+    // Kid shaking the globe.
+    const kh = shake > 0 ? Math.sin(t * 13) * 10 : 0;
+    const kid = { x: 620, y: 1000, scale: 0.85, look: LK.d, seed: 3, talk: false, frontArm: shake > 0 || (r > 2.4 && r < 3) ? { a1: -18 + kh * 0.4, a2: -10 + kh } : undefined };
+    out += popPerson(t, s.start + 0.6, kid);
+    // Grandpa with tea.
+    const mug = `<g transform="translate(0,-14)"><rect x="-16" y="-20" width="32" height="34" rx="6" fill="${C.teal}"/><path d="M16,-12 q14,0 14,12 q0,12 -14,10" stroke="${C.teal}" stroke-width="5" fill="none"/>${[0, 1].map(i => { const p = ((r * 0.7) + i * 0.5) % 1; return `<path d="M${-6 + i * 10},${-26 - p * 30} q6,-8 0,-16" stroke="${C.muted}" stroke-width="3" fill="none" opacity="${1 - p}"/>`; }).join('')}</g>`;
+    const gp = { x: 1480, y: 1000, scale: 0.9, look: { skin: '#B07750', hair: '#E9DED6', hairStyle: 'short', shirt: C.peach, pants: '#3D3550' }, seed: 5, flip: true, frontArm: { a1: 20, a2: -70 }, hold: mug, talk: ctx.talking && r > 14.4 && r < 17.6 };
+    out += popPerson(t, s.start + 0.9, gp);
+    out += card(1520, 580, ['Still the', 'same room.'], { k: back(seg(r, 14.6, 15)), fs: 26, tx: -20, italic: true, font: 'Playfair Display' });
+    // Cat on the table bats at it.
+    out += cat(t, 1250, 958, 0.55, { flip: true, col: '#D9CFC8', dark: C.muted, run: shake > 0 });
+    if (r > 14.4) out += pill(960, 1034, 'both true ✓', C.teal, pop(t, s.start + 14.4), 26) + A.sparkle(960, 420, s.start + 16, t, C.teal);
+    return out;
+  };
+
+  // Living room chaos: the cat moves the couch, the picture falls, you are still in the room.
+  LIVE['s10-cat-chaos'] = (s, t, ctx) => {
+    const r = t - s.start;
+    const rk = pop(t, s.start + 0.3, 0.7);
+    let room = `<rect x="240" y="390" width="1440" height="600" rx="20" fill="#FEF3E4" stroke="${C.dark}" stroke-width="8"/>
+      ${Array.from({ length: 12 }, (_, i) => `<circle cx="${320 + i * 115}" cy="${470 + (i % 2) * 60}" r="10" fill="${C.peachL}" opacity=".6"/>`).join('')}
+      <rect x="248" y="900" width="1424" height="86" fill="#F3E3D7"/>
+      <rect x="1440" y="386" width="140" height="26" rx="6" fill="${C.purpleL}" stroke="${C.purple}" stroke-width="6"/>
+      <rect x="400" y="964" width="150" height="26" rx="6" fill="${C.purpleL}" stroke="${C.purple}" stroke-width="6"/>`;
+    // Window.
+    room += `<rect x="330" y="470" width="170" height="160" rx="10" fill="${C.tealL}" stroke="#fff" stroke-width="10"/><line x1="415" x2="415" y1="470" y2="630" stroke="#fff" stroke-width="8"/>`;
+    // Couch slides.
+    const cpush = ease(seg(r, 2.6, 4.6)), cxp = lerp(620, 860, cpush), ctilt = Math.sin(cpush * Math.PI) * 3;
+    room += `<g transform="translate(${cxp},900) rotate(${ctilt})"><rect x="-150" y="-70" width="300" height="70" rx="24" fill="${C.pink}"/><rect x="-170" y="-110" width="50" height="110" rx="18" fill="${C.pinkL}"/><rect x="120" y="-110" width="50" height="110" rx="18" fill="${C.pinkL}"/><rect x="-120" y="-130" width="240" height="70" rx="20" fill="${C.pinkL}"/></g>`;
+    if (cpush > 0 && cpush < 1) room += [0, 1, 2].map(i => `<line x1="${cxp - 190 - i * 30}" x2="${cxp - 230 - i * 30}" y1="${860 + i * 14}" y2="${860 + i * 14}" stroke="${C.muted}" stroke-width="4" stroke-linecap="round" opacity=".5"/>`).join('');
+    // Picture falls.
+    const pf = seg(r, 5.2, 6.4), py = lerp(560, 862, pf * pf), pr = lerp(0, 168, pf) + (pf <= 0 ? Math.sin(r * 9) * (r > 4.6 ? 6 : 0) : 0);
+    if (pf <= 0) room += `<line x1="1180" y1="470" x2="1130" y2="500" stroke="${C.muted}" stroke-width="3"/><line x1="1180" y1="470" x2="1230" y2="500" stroke="${C.muted}" stroke-width="3"/>`;
+    room += `<circle cx="1180" cy="468" r="6" fill="${C.muted}"/><g transform="translate(1180,${py}) rotate(${pr})"><rect x="-80" y="-60" width="160" height="120" rx="8" fill="#fff" stroke="${C.purple}" stroke-width="10"/><circle cx="0" cy="-6" r="22" fill="${C.peachL}"/><path d="M-30,40 Q0,10 30,40" fill="${C.tealL}"/></g>`;
+    // Lamp wobbles.
+    const lw = r > 6.4 && r < 9 ? Math.sin(r * 10) * 6 * (1 - seg(r, 6.4, 9)) : 0;
+    room += `<g transform="rotate(${lw} 1560 900)"><rect x="1554" y="720" width="12" height="180" fill="${C.dark}"/><path d="M1510,720 L1610,720 L1592,650 L1528,650 Z" fill="${C.peachL}"/></g>`;
+    let out = scl(960, 690, rk, room);
+    // Cat: enters, pushes couch, leaps at the picture, naps.
+    let kx = lerp(-80, cxp - 240, ease(seg(r, 1, 2.6))), ky = 900;
+    if (r > 2.6) kx = cxp - 240;
+    if (r > 4.6) kx = lerp(cxp - 240, 1110, ease(seg(r, 4.6, 5.3)));
+    if (r > 4.9 && r < 6.2) ky = 900 - Math.sin(seg(r, 4.9, 6.2) * Math.PI) * 230;
+    if (r > 13) kx = lerp(1110, 980, ease(seg(r, 13, 14.2)));
+    out += cat(t, kx, ky, 0.7, { run: (r > 1 && r < 5.3) || (r > 13 && r < 14.2), sleep: r > 15.2, flip: r > 13 && r < 14.2 });
+    // Calm person.
+    const cup = `<g transform="translate(0,-10)"><rect x="-14" y="-18" width="28" height="28" rx="6" fill="#fff" stroke="${C.purple}" stroke-width="4"/></g>`;
+    const cp = { x: 1410, y: 960, scale: 0.85, look: LK.a, seed: 2, flip: true, frontArm: { a1: Math.sin(r * 0.8) > 0.6 ? -40 : 30, a2: Math.sin(r * 0.8) > 0.6 ? -120 : -70 }, hold: cup, talk: ctx.talking && r > 11 && r < 13.4 };
+    out += popPerson(t, s.start + 0.8, cp);
+    out += pill(760, 700, 'the couch can move', C.pink, pop(t, s.start + 3.2), 24);
+    out += pill(1180, 520, 'pictures can fall 😂', C.purple, pop(t, s.start + 6.0) * (1 - seg(r, 10.6, 11)), 24);
+    out += card(1250, 610, ['Still in', 'the room.'], { k: back(seg(r, 11, 11.4)), fs: 26, tx: 50, italic: true, font: 'Playfair Display' });
+    if (r > 13.8) {
+      const gl = 0.5 + 0.5 * Math.sin(r * 5);
+      out += `<rect x="1430" y="376" width="160" height="46" rx="10" fill="none" stroke="${C.purple}" stroke-width="${3 + gl * 4}"/><rect x="390" y="954" width="170" height="46" rx="10" fill="none" stroke="${C.purple}" stroke-width="${3 + gl * 4}"/>`;
+      out += pill(1510, 450, '🚪 door', C.purple, pop(t, s.start + 13.8), 24) + pill(475, 1036, '🚪 door', C.purple, pop(t, s.start + 14.1), 24);
+    }
+    return out;
+  };
+
+  /* ================= Lesson 7 · Reading 1H Structure Inside the 4H ================= */
+
+  // Mall directory (4H: where am I?) and the path you walk (1H: how am I moving?).
+  LIVE['s10-you-are-here'] = (s, t, ctx) => {
+    const r = t - s.start;
+    let out = `<rect x="0" y="960" width="1920" height="120" fill="#F6EDE6"/>${Array.from({ length: 16 }, (_, i) => `<line x1="${i * 130}" x2="${i * 130 - 60}" y1="960" y2="1080" stroke="#EADFD8" stroke-width="3"/>`).join('')}`;
+    // Directory sign.
+    const dk = pop(t, s.start + 0.3, 0.7);
+    let d = `<rect x="488" y="800" width="24" height="170" fill="${C.muted}"/><rect x="240" y="392" width="520" height="420" rx="24" fill="#fff" stroke="${C.purple}" stroke-width="6"/>
+      <rect x="240" y="392" width="520" height="62" rx="24" fill="${C.purple}"/><rect x="240" y="430" width="520" height="24" fill="${C.purple}"/>
+      <text x="500" y="436" font-size="30" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans" letter-spacing="2">4H DIRECTORY</text>`;
+    const rmk = ease(seg(r, 1.4, 2.4));
+    d += `<g opacity="${rmk}"><rect x="290" y="490" width="420" height="270" rx="8" fill="${C.purpleL}" opacity=".35" stroke="${C.purple}" stroke-width="5"/>
+      <rect x="560" y="480" width="70" height="20" rx="5" fill="${C.purple}"/><rect x="360" y="750" width="70" height="20" rx="5" fill="${C.purple}"/>
+      ${[[330, 540, 90, 60, C.pinkL], [450, 560, 70, 80, C.tealL], [560, 600, 110, 60, C.peachL], [340, 650, 80, 70, C.tealL], [470, 670, 90, 60, C.pinkL]].map(([x, y, w, h, c]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="${c}"/>`).join('')}</g>`;
+    if (r > 3) {
+      const pu = 1 + Math.sin(r * 6) * 0.2;
+      d += `<circle cx="600" cy="712" r="${22 * pu}" fill="${C.pink}" opacity=".3"/><circle cx="600" cy="712" r="13" fill="${C.pink}"/>` + pill(600, 784 - 4, 'YOU ARE HERE', C.pink, pop(t, s.start + 3), 18);
+    }
+    out += scl(500, 680, dk, d);
+    if (r > 7) {
+      out += pill(500, 862, 'lower half of the room', C.peach, pop(t, s.start + 7.2), 22);
+    }
+    if (r > 4) out += pill(500, 920, '4H · read the room', C.purple, pop(t, s.start + 4), 26);
+    // Right: the 1H map with the room faint behind.
+    const mk = pop(t, s.start + 10.4, 0.7);
+    if (mk > 0) {
+      const glow = r > 18 ? 0.5 + 0.5 * Math.sin(r * 5) : 0;
+      let m = `<rect x="980" y="400" width="780" height="520" rx="22" fill="#fff" stroke="#F1E7E1" stroke-width="3"/>
+        <rect x="1010" y="440" width="720" height="450" rx="10" fill="${C.purpleL}" opacity="${0.18 + glow * 0.15}" stroke="${C.purple}" stroke-width="${3 + glow * 3}" stroke-dasharray="14 10"/>`;
+      const pts = [[1040, 860], [1120, 740], [1190, 800], [1300, 640], [1370, 710], [1490, 540], [1560, 600], [1690, 470]];
+      const pk = along(pts, ease(seg(r, 11, 16.6)));
+      m += poly(pk.drawn, C.teal, 6, { dash: '2 16' });
+      pk.drawn.forEach((p, i) => { if (i > 0) m += `<ellipse cx="${p[0]}" cy="${p[1]}" rx="9" ry="13" fill="${C.tealD}" transform="rotate(${30} ${p[0]} ${p[1]})"/>`; });
+      m += `<circle cx="${pk.x}" cy="${pk.y}" r="12" fill="${C.dark}"/>`;
+      m += pill(1370, 430, '1H · build the map', C.teal, pop(t, s.start + 11.2), 26);
+      out += scl(1370, 660, mk, m);
+      if (r > 15.6) out += pill(1110, 990, 'correcting', '#C9B9AE', pop(t, s.start + 15.6), 22) + pill(1340, 990, 'progressing ✓', C.teal, pop(t, s.start + 15.9), 22) + pill(1570, 990, 'ranging', '#C9B9AE', pop(t, s.start + 16.2), 22);
+      if (r > 18) out += pill(1370, 880, 'keep the room in view', C.purple, pop(t, s.start + 18), 22);
+    }
+    // Shopper and kid.
+    const sx = 790;
+    const bag = `<g transform="translate(0,10)"><rect x="-26" y="-6" width="52" height="56" rx="6" fill="${C.pink}"/><path d="M-12,-6 Q0,-28 12,-6" stroke="${C.pink}" stroke-width="5" fill="none"/></g>`;
+    const sh = { x: sx, y: 1000, scale: 0.85, look: LK.b, seed: 3, flip: r < 10.8, walking: false, hold: bag, talk: ctx.talking && (r > 2.4 && r < 6.4 || r > 10.8 && r < 15) };
+    out += person(t, sh);
+    out += card(r < 10.8 ? 760 : 840, 560, [r < 10.8 ? 'Where am I?' : 'How am I moving?'], { k: back(seg(r, r < 10.8 ? 2.4 : 11, r < 10.8 ? 2.8 : 11.4)), op: r < 10.8 ? 1 - seg(r, 10, 10.4) : 1, fs: 28, tx: -20 });
+    const kid = { x: 900, y: 1000, scale: 0.55, look: LK.k, seed: 8, frontArm: { a1: -70, a2: -90 } };
+    const kh = handOf(kid);
+    out += person(t, kid) + `<path d="M${kh.x},${kh.y} Q${kh.x + 10},${kh.y - 60} ${kh.x + Math.sin(r * 2) * 10},${kh.y - 120}" stroke="${C.muted}" stroke-width="2" fill="none"/><ellipse cx="${kh.x + Math.sin(r * 2) * 10}" cy="${kh.y - 150}" rx="26" ry="32" fill="${C.teal}"/>`;
+    return out;
+  };
+
+  // Fish tank: the 1H fish swims inside the 4H tank, breaks the last lower high.
+  LIVE['s10-fish-tank'] = (s, t, ctx) => {
+    const r = t - s.start;
+    const tk = pop(t, s.start + 0.3, 0.7);
+    let out = `<rect x="0" y="1000" width="1920" height="80" fill="#F3E3D7"/>`;
+    let g = `<rect x="400" y="900" width="1120" height="100" rx="10" fill="#C9A27A"/><rect x="400" y="900" width="1120" height="16" fill="#9B6A45"/>
+      <rect x="420" y="400" width="1080" height="500" rx="14" fill="${C.tealL}" opacity=".45"/>
+      <path d="M420,430 ${Array.from({ length: 28 }, (_, i) => `Q${435 + i * 40},${422 + Math.sin(r * 3 + i) * 6} ${455 + i * 40},430`).join(' ')} L1500,430" stroke="#fff" stroke-width="4" fill="none"/>
+      <rect x="420" y="850" width="1080" height="50" fill="${C.peachL}"/>`;
+    [[520, 0], [700, 1], [1340, 2], [1460, 0]].forEach(([x, i]) => { const sw = Math.sin(r * 2 + i) * 10; g += `<path d="M${x},860 Q${x - 20 + sw},780 ${x + sw},720 M${x + 20},860 Q${x + 30 + sw},790 ${x + 24 + sw},750" stroke="${C.tealD}" stroke-width="12" fill="none" stroke-linecap="round"/>`; });
+    for (let i = 0; i < 8; i++) { const p = ((r * 0.35) + i / 8) % 1; g += `<circle cx="${560 + (i * 157) % 900 + Math.sin(p * 9 + i) * 8}" cy="${860 - p * 420}" r="${5 + (i % 3) * 3}" fill="none" stroke="#fff" stroke-width="3" opacity="${1 - p}"/>`; }
+    g += `<rect x="420" y="400" width="1080" height="500" rx="14" fill="none" stroke="#fff" stroke-width="12"/><rect x="410" y="390" width="1100" height="20" rx="8" fill="${C.purple}"/>`;
+    out += scl(960, 700, tk, g);
+    if (r > 1.6) out += pill(1680, 404, '🚪 EXTERNAL HIGH', C.purple, pop(t, s.start + 1.6), 24) + pill(1680, 878, '🚪 EXTERNAL LOW', C.purple, pop(t, s.start + 2), 24);
+    const pts = [[500, 520], [600, 640], [680, 590], [780, 720], [860, 670], [960, 790], [1070, 630], [1180, 560], [1300, 610], [1420, 500]];
+    const k = seg(r, 3.6, 15);
+    const p = along(pts, k);
+    out += poly(p.drawn, C.pink, 5, { dash: '4 14', op: 0.8 });
+    [[2, 'LH', -1], [3, 'LL', 1], [4, 'LH', -1], [5, 'LL', 1]].forEach(([i, lab, d]) => { if (p.seg >= i) out += dot(pts[i][0], pts[i][1], C.pink, 8) + pill(pts[i][0], pts[i][1] + d * 34, lab, C.pink, 1, 20); });
+    if (r > 9) {
+      const lk = ease(seg(r, 9, 10));
+      out += hline(860, lerp(860, 1480, lk), 670, C.gold, { w: 5 }) + pill(1230, 694, 'last 1H lower high', C.gold, pop(t, s.start + 9.2), 22);
+    }
+    if (p.seg >= 6 || k >= 1) out += pill(1110, 540, 'closes above: potential shift', C.teal, pop(t, s.start + 12), 22);
+    const a = pts[p.seg], b = pts[p.seg + 1], ang = Math.atan2(b[1] - a[1], b[0] - a[0]) * 180 / Math.PI;
+    out += fish(t, p.x, p.y, 0.8, { rot: ang * 0.6 });
+    // Kid at the glass and a cat on top.
+    const kid = { x: 290, y: 1000, scale: 0.9, look: LK.j, seed: 4, frontArm: { a1: -30, a2: -20 }, talk: ctx.talking };
+    out += popPerson(t, s.start + 0.6, kid);
+    const paw = r > 15.6 && r < 17 ? Math.sin(seg(r, 15.6, 17) * Math.PI) * 50 : 0;
+    out += `<path d="M1300,400 Q${1290 - paw * 0.3},${420 + paw} ${1280 - paw * 0.2},${430 + paw}" stroke="#D9CFC8" stroke-width="16" stroke-linecap="round" fill="none"/>` + cat(t, 1330, 392, 0.65, { col: '#D9CFC8', dark: C.muted, flip: true });
+    if (r > 15) out += pill(960, 950, 'still inside the same tank ✓', C.teal, pop(t, s.start + 15), 26);
+    return out;
+  };
+
+  /* ================= Lesson 8 · Finding Relevant 1H Swings ================= */
+
+  // Block tower: pull a minor block, it stands; pull the base, the leg falls.
+  LIVE['s10-jenga'] = (s, t, ctx) => {
+    const r = t - s.start;
+    let out = `<rect x="0" y="980" width="1920" height="100" fill="#F3E3D7"/>`;
+    // Chart.
+    const ck = pop(t, s.start + 0.3, 0.6);
+    out += scl(530, 680, ck, `<rect x="140" y="400" width="780" height="560" rx="28" fill="#fff" stroke="#F1E7E1" stroke-width="3"/>`);
+    const pts = [[200, 600], [250, 880], [340, 740], [380, 790], [480, 640], [520, 690], [620, 560], [660, 610], [760, 480], [820, 540], [870, 500]];
+    out += poly(along(pts, ease(seg(r, 0.6, 3.4))).drawn, C.dark, 6, { op: 0.85 });
+    [3, 5, 7, 9].forEach((i, j) => { if (r > 3.6) out += scl(pts[i][0], pts[i][1], pop(t, s.start + 3.6 + j * 0.2, 0.4), dot(pts[i][0], pts[i][1], '#C9B9AE', 9)); });
+    if (r > 7.2) out += `<circle cx="${pts[9][0]}" cy="${pts[9][1]}" r="26" fill="none" stroke="${C.peach}" stroke-width="5" stroke-dasharray="8 6"/>` + pill(pts[9][0] - 20, pts[9][1] + 50, 'minor wiggle', C.peach, pop(t, s.start + 7.2), 22);
+    if (r > 12.2) {
+      const gl = 0.5 + 0.5 * Math.sin(r * 5);
+      out += hline(250, 900, 880, C.teal, { w: 5 }) + `<circle cx="250" cy="880" r="${16 + gl * 6}" fill="${C.teal}" opacity=".35"/>` + dot(250, 880, C.teal, 13) + pill(420, 924, 'the leg starts here', C.teal, pop(t, s.start + 12.2), 24);
+    }
+    // Tower.
+    const BX = 1330, BW = 240, BH = 40, N = 12;
+    const fail = ease(seg(r, 15.8, 17)) * (1 - ease(seg(r, 19.4, 20.4)));
+    const pull = ease(seg(r, 7, 8.6));
+    const wob = r > 8 && r < 11 ? Math.sin(r * 12) * 2.5 * (1 - seg(r, 8, 11)) : 0;
+    const tilt = fail * 16 + wob;
+    let tower = '';
+    for (let i = N - 1; i >= 1; i--) {
+      const y = 980 - (i + 1) * BH, side = i % 2;
+      const col = [C.peachL, '#F3D6B4', C.peachL][i % 3];
+      if (side) tower += [0, 1, 2].map(j => `<rect x="${BX - BW / 2 + j * 80 + 2}" y="${y + 2}" width="76" height="${BH - 4}" rx="6" fill="${col}" stroke="#E0B47E" stroke-width="3"/>`).join('');
+      else tower += `<rect x="${BX - BW / 2}" y="${y + 2}" width="${BW}" height="${BH - 4}" rx="6" fill="${col}" stroke="#E0B47E" stroke-width="3"/>`;
+      if (i === 9 && side) tower = tower.replace(/<rect x="[^"]*" y="[^"]*" width="76"[^>]*\/>$/, '');
+    }
+    const baseOut = ease(seg(r, 15.8, 16.6)) * (1 - ease(seg(r, 19.4, 20.2)));
+    const baseX = BX - baseOut * 300;
+    const bg = r > 12.2 ? 0.5 + 0.5 * Math.sin(r * 5) : 0;
+    out += `<g transform="rotate(${tilt} ${BX + BW / 2} 980)">${tower}</g>`;
+    out += `<rect x="${baseX - BW / 2}" y="${942}" width="${BW}" height="36" rx="6" fill="${C.teal}" stroke="${C.tealD}" stroke-width="${3 + bg * 4}"/>`;
+    const p1 = { x: 1640, y: 980, scale: 0.85, look: LK.i, seed: 3, flip: true, frontArm: r > 6.4 ? { a1: -20, a2: 0 } : undefined, talk: false };
+    const p2 = { x: 1010, y: 980, scale: 0.85, look: LK.h, seed: 6, frontArm: r > 12.2 ? { a1: 40, a2: 50 } : undefined, talk: ctx.talking && r > 12 && r < 15.4, mood: fail > 0.5 ? 'sad' : undefined };
+    // Pulled block travels to player one's hand.
+    const h1 = handOf(p1);
+    const px = lerp(BX + 80, h1.x - 20, pull), py = lerp(980 - 10 * BH + 2, h1.y - 18, pull);
+    out += `<rect x="${px - 38}" y="${py}" width="76" height="${BH - 4}" rx="6" fill="${C.peachL}" stroke="#E0B47E" stroke-width="3" transform="rotate(${pull > 0 ? 0 : tilt * 0.4} ${BX} 980)"/>`;
+    out += popPerson(t, s.start + 1.2, p1) + popPerson(t, s.start + 1.4, p2);
+    out += card(1640, 560, ['Still standing!'], { k: back(seg(r, 9.6, 10)), op: 1 - seg(r, 12, 12.4), fs: 26, tx: 20 });
+    if (r > 16.6 && r < 19.6) out += pill(1330, 470, 'if it fails, the leg fails', C.pink, pop(t, s.start + 16.6), 26);
+    if (r > 20.4) out += pill(1330, 470, 'the swing the leg depends on', C.teal, pop(t, s.start + 20.4), 26) + A.sparkle(BX, 960, s.start + 20.4, t, C.teal);
+    return out;
+  };
+
+  // Talent-show judges score two swings: the closest one and the leg origin.
+  LIVE['s10-judges'] = (s, t, ctx) => {
+    const r = t - s.start;
+    let out = `<rect x="0" y="940" width="1920" height="140" fill="#F3E3D7"/><rect x="0" y="936" width="1920" height="8" fill="${C.purpleL}"/>`;
+    [470, 860].forEach(x => { out += `<polygon points="${x - 50},360 ${x + 50},360 ${x + 170},940 ${x - 170},940" fill="#FFF3C4" opacity=".35"/>`; });
+    // Scoreboard.
+    const bk = pop(t, s.start + 2.6, 0.6);
+    const rows = [['Closest to price', 4.8, '✓', 'maybe'], ['Defines the leg', 8.6, '✗', '✓'], ['Still intact', 12.8, '✗', '✓'], ['Fits the 4H room', 14.8, 'maybe', '✓']];
+    let b = `<rect x="220" y="384" width="900" height="300" rx="22" fill="#fff" stroke="${C.purple}" stroke-width="5"/>
+      ${txt(830, 428, 'CLOSEST', { fs: 22, col: TX.pink, ls: 2 })}${txt(1010, 428, 'LEG ORIGIN', { fs: 22, col: TX.teal, ls: 2 })}`;
+    rows.forEach(([lab, at, a, c], i) => {
+      const y = 482 + i * 56, k = clamp((r - at) / 0.3);
+      b += `<line x1="240" x2="1100" y1="${y - 30}" y2="${y - 30}" stroke="#F1E7E1" stroke-width="2"/>` + txt(250, y + 8, lab, { fs: 26, anchor: 'start', w: 700, op: 0.4 + 0.6 * k });
+      const mark = (x, m, kk) => kk <= 0 ? '' : m === '✓' ? check(x, y, back(kk), C.teal, 20) : m === '✗' ? cross(x, y, back(kk), C.pink, 20) : pill(x, y, 'maybe', C.peach, back(kk), 18);
+      b += mark(830, a, k) + mark(1010, c, clamp((r - at - 0.4) / 0.3));
+    });
+    out += scl(670, 534, bk, b);
+    // Contestants.
+    const ck = pop(t, s.start + 0.8, 0.6), ck2 = pop(t, s.start + 1.1, 0.6);
+    const win = r > 17.4;
+    out += scl(470, 940, ck, candleGuy(t, 470, 940, 1, { up: false, h: 100, seed: 1, mood: win ? 'sad' : undefined }) + pill(470, 990, 'CLOSEST', C.pink, 1, 22));
+    out += scl(860, 940, ck2, candleGuy(t, 860, 940, 1.1, { up: true, h: 120, seed: 4, arms: win ? 'up' : undefined, talk: false }) + pill(860, 990, 'LEG ORIGIN', C.teal, 1, 22));
+    if (win) {
+      const tk = pop(t, s.start + 17.4, 0.6);
+      out += scl(860, 760, tk, `<g transform="translate(860,740)"><path d="M-36,-50 L36,-50 L30,-6 Q0,20 -30,-6 Z" fill="${C.gold}"/><rect x="-8" y="10" width="16" height="22" fill="${C.gold}"/><rect x="-28" y="30" width="56" height="12" rx="4" fill="#C98A1F"/>
+        <path d="M-36,-40 Q-60,-36 -50,-14 Q-44,-6 -30,-12 M36,-40 Q60,-36 50,-14 Q44,-6 30,-12" stroke="${C.gold}" stroke-width="6" fill="none"/></g>`);
+      for (let i = 0; i < 18; i++) { const p = ((r - 17.4) * 0.5 + i / 18) % 1; out += `<rect x="${600 + (i * 97) % 520 + Math.sin(p * 8 + i) * 20}" y="${380 + p * 560}" width="12" height="18" rx="3" fill="${[C.pink, C.teal, C.peach, C.purple][i % 4]}" transform="rotate(${p * 400 + i * 30} ${600 + (i * 97) % 520} ${380 + p * 560})" opacity="${1 - p * 0.6}"/>`; }
+    }
+    // Judges with paddles.
+    const J = [[1330, LK.a, 2], [1530, LK.e, 5], [1730, LK.k, 8]];
+    const lastRow = rows.filter(rw => r >= rw[1]).pop();
+    J.forEach(([x, look, seed], i) => {
+      const raising = lastRow && r - lastRow[1] < 1.8;
+      const good = lastRow && lastRow[3] === '✓';
+      const paddle = `<g><line x1="0" y1="0" x2="0" y2="-50" stroke="#9B6A45" stroke-width="7"/><circle cx="0" cy="-80" r="38" fill="${good ? C.teal : C.peach}" stroke="#fff" stroke-width="5"/><text y="-68" font-size="34" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans">${good ? '✓' : '~'}</text></g>`;
+      const jp = { x, y: 1000, scale: 0.78, look, seed, flip: true, frontArm: raising ? { a1: -80, a2: -90 } : { a1: 60, a2: 110 }, hold: raising ? paddle : '' };
+      out += popPerson(t, s.start + 0.5 + i * 0.2, jp);
+    });
+    out += `<rect x="1200" y="850" width="640" height="150" rx="14" fill="${C.pink}"/><rect x="1200" y="850" width="640" height="24" rx="10" fill="${C.pinkL}"/>`;
+    out += txt(1520, 942, 'JUDGES', { fs: 34, col: '#fff', ls: 6, font: 'Playfair Display' });
+    return out;
+  };
+
+  /* ================= Lesson 9 · MSS as Directional Information ================= */
+
+  // Farm weathervane: the 1H vane swings back toward the bullish 4H wind.
+  LIVE['s10-weathervane'] = (s, t, ctx) => {
+    const r = t - s.start;
+    let out = `<rect x="0" y="1000" width="1920" height="80" fill="${C.tealL}"/><path d="M0,1000 Q480,980 960,1000 T1920,1000" fill="${C.tealL}"/>`;
+    out += cloud(((r * 30) % 2200) - 200, 470, 0.8, 0.9) + cloud(((r * 20 + 1100) % 2200) - 200, 560, 0.6, 0.8);
+    // Barn.
+    const bk = pop(t, s.start + 0.3, 0.7);
+    out += scl(510, 1000, bk, `<rect x="270" y="640" width="480" height="360" fill="${C.pink}"/><path d="M240,650 L510,500 L780,650 Z" fill="#C2475F"/>
+      <rect x="440" y="820" width="140" height="180" fill="#fff"/><path d="M440,820 L580,1000 M580,820 L440,1000" stroke="${C.pink}" stroke-width="10"/>
+      <rect x="470" y="560" width="80" height="70" fill="#fff"/>
+      <rect x="320" y="676" width="380" height="76" rx="12" fill="#fff" stroke="${C.purple}" stroke-width="5"/>
+      <text x="510" y="726" font-size="30" font-weight="900" text-anchor="middle" fill="${TX.purple}" font-family="DM Sans">4H ROOM: BULLISH ↑</text>
+      <line x1="510" y1="500" x2="510" y2="410" stroke="${C.dark}" stroke-width="6"/>`);
+    // Vane: down during the correction, swings up at the MSS.
+    const swing = ease(seg(r, 14.4, 15.8));
+    const ang = lerp(68, -68, swing) + Math.sin(r * 2.6) * (swing < 1 ? 7 : 3);
+    if (bk > 0.5) {
+      out += txt(560, 404, '▲', { fs: 24, col: TX.teal }) + txt(560, 470, '▼', { fs: 24, col: TX.pink });
+      out += `<g transform="translate(510,410) rotate(${ang})"><line x1="-70" y1="0" x2="80" y2="0" stroke="${C.dark}" stroke-width="7" stroke-linecap="round"/><path d="M80,-14 L106,0 L80,14 Z" fill="${swing > 0.5 ? C.teal : C.pink}"/><path d="M-70,-20 L-46,0 L-70,20 L-84,0 Z" fill="${C.dark}"/>
+        <g transform="translate(10,-6)"><path d="M-30,0 Q-30,-34 0,-36 Q20,-50 30,-30 L40,-26 L28,-20 Q24,0 -30,0 Z" fill="${C.dark}"/><path d="M14,-46 l6,-12 l6,12" fill="${C.pink}"/></g></g><circle cx="510" cy="410" r="9" fill="${C.gold}"/>`;
+    }
+    // Chalkboard on an easel with the 1H.
+    const ek = pop(t, s.start + 1.0, 0.7);
+    let e = `<g stroke="#9B6A45" stroke-width="12" stroke-linecap="round"><line x1="1120" y1="880" x2="1080" y2="1000"/><line x1="1580" y1="880" x2="1620" y2="1000"/></g>
+      <rect x="980" y="400" width="740" height="490" rx="18" fill="#3D3550" stroke="#9B6A45" stroke-width="14"/>
+      ${txt(1050, 450, '1H', { fs: 30, col: '#fff', anchor: 'start', font: 'Playfair Display', op: 0.9 })}`;
+    const pts = [[1040, 500], [1120, 620], [1190, 580], [1280, 700], [1340, 650], [1430, 780], [1540, 600], [1640, 630]];
+    const pk = along(pts.slice(0, 6), ease(seg(r, 3, 8))), pk2 = ease(seg(r, 11.4, 13.4));
+    let drawn = pk.drawn;
+    if (pk2 > 0) drawn = drawn.concat(along(pts.slice(5), pk2).drawn.slice(1));
+    e += poly(drawn, '#fff', 6, { op: 0.9 });
+    [[2, 'LH', -1], [3, 'LL', 1], [4, 'LH', -1], [5, 'LL', 1]].forEach(([i, lab, d]) => { if (pk.seg >= i || pk.f >= 1 && i <= 5) e += txt(pts[i][0], pts[i][1] + d * 26 + (d > 0 ? 18 : 0), lab, { fs: 22, col: C.pinkL }); });
+    if (r > 8.2) e += hline(1340, lerp(1340, 1690, ease(seg(r, 8.2, 9.2))), 650, C.gold, { w: 5 }) + txt(1600, 640, 'last LH', { fs: 22, col: C.gold });
+    if (r > 13.4) e += pill(1500, 540, 'bullish MSS', C.teal, pop(t, s.start + 13.4), 24);
+    out += scl(1350, 700, ek, e);
+    if (swing >= 1) out += A.sparkle(560, 360, s.start + 15.8, t, C.teal);
+    // Farmer with a clipboard and a chicken.
+    const clip = `<g transform="translate(0,-20) rotate(-10)"><rect x="-26" y="-34" width="52" height="68" rx="6" fill="#C9A27A"/><rect x="-20" y="-24" width="40" height="52" fill="#fff"/><path d="M-12,-10 L12,-10 M-12,2 L12,2 M-12,14 L6,14" stroke="${C.muted}" stroke-width="3"/></g>`;
+    const fm = { x: 860, y: 1000, scale: 0.85, look: LK.g, seed: 4, frontArm: { a1: 20, a2: -80 }, hold: clip, talk: ctx.talking && r > 17.8 && r < 21 };
+    out += popPerson(t, s.start + 0.8, fm) + hat(t, fm, 'fedora', C.gold);
+    out += card(880, 560, ['Noted on', 'the 1H map.'], { k: back(seg(r, 17.8, 18.2)), fs: 26, tx: -30 });
+    const chx = 700 + Math.sin(r * 0.5) * 60;
+    out += chicken(t, chx, 1000, 0.7, { peck: true, flip: Math.cos(r * 0.5) < 0 });
+    return out;
+  };
+
+  // Track: MSS sounds on the board, one runner false-starts, the starter's gun (Dayli ICC) comes later.
+  LIVE['s10-false-start'] = (s, t, ctx) => {
+    const r = t - s.start;
+    let out = `<rect x="0" y="780" width="1920" height="300" fill="${C.pinkL}" opacity=".7"/>
+      ${[780, 880, 980].map(y => `<rect x="0" y="${y}" width="1920" height="6" fill="#fff"/>`).join('')}
+      <rect x="520" y="780" width="10" height="300" fill="#fff"/>`;
+    // Scoreboard.
+    const sk = pop(t, s.start + 0.3, 0.6);
+    let b = `<rect x="1180" y="384" width="600" height="250" rx="20" fill="${C.dark}"/><rect x="1300" y="634" width="20" height="150" fill="${C.muted}"/><rect x="1640" y="634" width="20" height="150" fill="${C.muted}"/>`;
+    [['4H: bullish room ✓', 2.4, '#9FE3D8'], ['1H: bullish MSS ✓', 3.6, '#9FE3D8'], ['ENTRY: not yet', 12.2, C.peachL]].forEach(([l, at, col], i) => {
+      const on = r > at, bl = on && r < at + 1.4 ? (Math.floor(r * 6) % 2) : 1;
+      b += txt(1220, 450 + i * 70, l, { fs: 34, col: on ? col : '#5E4A40', anchor: 'start', op: on ? (bl ? 1 : 0.4) : 1 });
+    });
+    out += scl(1480, 510, sk, b) + bird(t, 1700, 384, 0.6, { col: C.peach, wing: '#E08E2E', hop: r > 3.6 && r < 5 });
+    // Patient runner.
+    const p1 = { x: 400, y: 880, scale: 0.78, look: LK.buyer, seed: 2, frontArm: { a1: 110, a2: 70 }, backArm: { a1: 60, a2: 100 } };
+    out += popPerson(t, s.start + 0.8, p1);
+    // Eager runner.
+    let ex = 590, walking = false, flip = false;
+    if (r > 6.6) { ex = lerp(590, 1000, ease(seg(r, 6.6, 8.8))); walking = r < 8.8; }
+    if (r > 10.4) { ex = lerp(1000, 590, ease(seg(r, 10.4, 12.4))); walking = r < 12.4; flip = r < 12.4; }
+    const p2 = { x: ex, y: 1000, scale: 0.84, look: LK.f, seed: 6, walking, flip, mood: r > 9 && r < 16 ? 'sad' : undefined, talk: ctx.talking && r > 6.6 && r < 8 };
+    out += popPerson(t, s.start + 1.0, p2);
+    if (r > 6.6 && r < 8.6) out += txt(ex + 60, 640, 'GO!', { fs: 40, col: TX.peach, font: 'Playfair Display' });
+    // Starter with a pistol and a flag.
+    const flagUp = r > 9 && r < 11.4;
+    const pistol = `<g><rect x="-8" y="-6" width="16" height="30" rx="4" fill="${C.dark}"/><rect x="-8" y="-14" width="46" height="14" rx="4" fill="${C.dark}"/></g>`;
+    const flag = `<g><line x1="0" y1="0" x2="0" y2="-90" stroke="${C.dark}" stroke-width="5"/><path d="M0,-90 Q${-30 + Math.sin(t * 12) * 8},-96 -60,-80 L-60,-44 Q${-30 - Math.sin(t * 12) * 8},-56 0,-50 Z" fill="${C.pink}"/></g>`;
+    const st = { x: 1520, y: 1000, scale: 0.9, look: LK.a, seed: 3, flip: true, frontArm: flagUp ? { a1: -80, a2: -95 } : { a1: -60, a2: -100 }, hold: flagUp ? flag : pistol, talk: ctx.talking && r > 9 && r < 11.4 };
+    out += popPerson(t, s.start + 1.2, st) + hat(t, st, 'cap', C.purple);
+    if (flagUp) {
+      const wh = Math.floor(r * 8) % 2;
+      out += card(1300, 640, ['False start!'], { k: back(seg(r, 9, 9.3)), fs: 30, col: TX.pink, stroke: C.pinkL, tx: 60 }) + txt(1640, 600, wh ? 'tweet!' : '', { fs: 28, col: TX.purple, font: 'Playfair Display' });
+      out += stamp(1000, 700, 'MSS ≠ ENTRY', TX.pink, t, s.start + 9.4, { fs: 32, rot: -8 });
+    }
+    if (r > 12.4) {
+      const h = handOf(st);
+      out += pill(h.x - 40, h.y - 70, 'Dayli ICC · 1-minute · later', C.purple, pop(t, s.start + 12.4), 22);
+    }
+    if (r > 16.2) out += pill(400, 470, 'information ✓', C.teal, pop(t, s.start + 16.2), 26) + A.sparkle(400, 540, s.start + 16.2, t, C.teal);
     return out;
   };
 

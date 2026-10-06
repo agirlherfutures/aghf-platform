@@ -1,18 +1,19 @@
 /**
- * Phase 3 · Section 3 · Lesson 23 intro video — "Order Flow Intuition"
+ * Phase 3 · Section 9 · Lesson 23 intro video: "Order Flow Intuition"
+ * Scenes: s9-gadget-shop, s9-candle-interview (see scenes-s9.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-23",
-  "eyebrow": "Phase 3 · Section 3 · Lesson 23",
+  "eyebrow": "Phase 3 · Section 9 · Lesson 23",
   "duration": 76,
-  "sources": "From Phase 3, Lesson 23: order-flow tools (DOM, footprint, volume profile, delta) set aside with “you don’t need all of this yet,” an intuition checklist from candles, and price interrogation mode.",
+  "sources": "From Phase 3, Section 9, Lesson 23 (\"Order Flow Intuition\"): the world of order-flow tools (DOM, footprint, volume profile, delta) set aside for now, the intuition checklist (where did it close, did it hold, how fast, overlap or clean, did structure change), and price interrogation mode: ask questions the chart can answer.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 3: Understanding Market Participation",
+      "phase": "Section 9: Understanding Market Participation",
       "title": "Order Flow Intuition",
       "quote": "You don’t need more data if you can’t read the price in front of you.",
       "lines": [
@@ -22,239 +23,128 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Order Flow Intuition*"
         },
         {
-          "at": 4.6,
-          "text": "Keep it light."
+          "at": 4.4,
+          "text": "Start with the price in front of you."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s9-gadget-shop",
       "start": 8,
-      "end": 38,
-      "seed": 323,
-      "kicker": "Price interrogation",
-      "swings": [
-        [
-          0,
-          0.3
-        ],
-        [
-          0.15,
-          0.5
-        ],
-        [
-          0.25,
-          0.42
-        ],
-        [
-          0.38,
-          0.55
-        ],
-        [
-          0.46,
-          0.48
-        ],
-        [
-          0.56,
-          0.74
-        ],
-        [
-          0.66,
-          0.5
-        ],
-        [
-          0.8,
-          0.46
-        ]
-      ],
-      "per": [
-        3,
-        2,
-        3,
-        2,
-        2,
-        3,
-        3
-      ],
-      "play": [
-        {
-          "to": 7,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 30.5,
+      "kicker": "Keep it light",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Ask the <span class=\"mark\">better question.</span>",
-          "out": 28.3
+          "html": "A whole world of <span class=\"mark\">order-flow tools.</span>",
+          "out": 19
         },
         {
-          "at": 28.5,
-          "html": "Read the price <span class=\"mark\">first.</span>"
+          "at": 19.2,
+          "html": "You don’t need them <span class=\"mark\">yet.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Price poked above the prior high, then came back.",
-          "screen": "Candles build"
+          "text": "There’s a whole shop of order-flow tools out there.",
+          "screen": "A gadget shop with an empty shelf"
         },
         {
-          "at": 14,
-          "text": "Good questions: did it close back below? Is it holding there?",
-          "screen": "Green questions"
+          "at": 12.2,
+          "text": "The DOM. Footprint charts. Volume profile. Delta.",
+          "screen": "Four glowing gadgets pop onto the shelf"
         },
         {
-          "at": 20,
-          "text": "Bad questions: how many buy orders? Who bought?",
-          "screen": "Red questions"
+          "at": 15.4,
+          "text": "They’re real, and they’re powerful. And they’re a lot.",
+          "screen": "The shopper piles them all into her basket"
         },
         {
-          "at": 24.6,
-          "text": "The chart can’t answer those."
+          "at": 19.2,
+          "text": "So for now, put them back on the shelf.",
+          "screen": "Each gadget goes back with a \"later\" tag"
         },
         {
-          "at": 28.5,
-          "text": "You can build real intuition from the candles in front of you."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.58,
-          "from": 0,
-          "label": "Prior high",
-          "tone": "purple",
-          "at": 10
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.85,
-          "v": 0.94,
-          "text": "Did it close back below?",
-          "tone": "up",
-          "at": 14,
-          "fs": 26
-        },
-        {
-          "u": 0.85,
-          "v": 0.8,
-          "text": "Is it holding there?",
-          "tone": "up",
-          "at": 16,
-          "fs": 26
-        },
-        {
-          "u": 0.25,
-          "v": 0.94,
-          "text": "How many buy orders?",
-          "tone": "down",
-          "at": 20,
-          "fs": 26
-        },
-        {
-          "u": 0.25,
-          "v": 0.8,
-          "text": "Who bought?",
-          "tone": "down",
-          "at": 21.4,
-          "fs": 26
+          "at": 23,
+          "text": "You can build real intuition from the price in front of you.",
+          "screen": "A simple candle chart on the counter"
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Set aside for now",
-      "items": [
-        {
-          "title": "DOM /",
-          "desc": [
-            "order book",
-            "later"
-          ],
-          "tone": "muted",
-          "at": 40.8
-        },
-        {
-          "title": "Footprint",
-          "desc": [
-            "charts",
-            "later"
-          ],
-          "tone": "muted",
-          "at": 44.2
-        },
-        {
-          "title": "Volume profile",
-          "desc": [
-            "& delta",
-            "later"
-          ],
-          "tone": "muted",
-          "at": 47.6
-        }
-      ],
+      "type": "s9-candle-interview",
+      "start": 30.5,
+      "end": 53.5,
+      "kicker": "Price interrogation mode",
       "headlines": [
         {
-          "at": 51,
-          "html": "You don’t need <span class=\"mark\">all of this yet.</span>"
+          "at": 30.9,
+          "html": "Ask questions <span class=\"mark\">price can answer.</span>",
+          "out": 47.5
+        },
+        {
+          "at": 47.7,
+          "html": "That’s <span class=\"mark\">order-flow intuition.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "There’s a whole world of order-flow tools.",
-          "screen": "\"Set aside for now\""
+          "at": 30.9,
+          "text": "Price interrogation mode.",
+          "screen": "A detective, a swinging lamp, a candle in the chair"
         },
         {
-          "at": 40.8,
-          "text": "The order book.",
-          "screen": "DOM / order book later"
+          "at": 32.5,
+          "text": "Where did you close? Did you hold beyond the level?",
+          "screen": "Questions stack up; the candle answers"
         },
         {
-          "at": 44.2,
-          "text": "Footprint charts.",
-          "screen": "Footprint charts later"
+          "at": 36.7,
+          "text": "How fast did you move? Clean, or overlapping? Did structure change?",
+          "screen": "More questions, more answers, ticks"
         },
         {
-          "at": 47.6,
-          "text": "Volume profile and delta.",
-          "screen": "Volume profile & delta later"
+          "at": 41.3,
+          "text": "The candle can answer all of those.",
+          "screen": "Five ticks"
         },
         {
-          "at": 51,
-          "text": "You don’t need all of this yet."
+          "at": 44.3,
+          "text": "Who was buying? It can’t tell you that.",
+          "screen": "Pink question; the candle shrugs: \"Can’t say!\""
+        },
+        {
+          "at": 47.7,
+          "text": "That’s order-flow intuition, straight from candles."
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 53.5,
+      "end": 63.5,
+      "pointAt": 56.1,
+      "size": 60,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "Read the price"
+          "at": 55.1,
+          "text": "You don’t need more data if you can’t read"
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">in front of you first.</span>"
+          "at": 56.1,
+          "html": "<span class=\"mark\">the price in front of you.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 53.9,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58,
+          "at": 55.3,
           "text": "You don’t need more data if you still can’t read the price in front of you.",
           "screen": "Aristella points"
         }
@@ -262,30 +152,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 63.5,
+      "end": 75.5,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 66.1,
         "text": "Do you need a footprint chart to read participation?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 71.9,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 63.9,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 66.1,
           "text": "Do you need a footprint chart to read participation?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 71.9,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

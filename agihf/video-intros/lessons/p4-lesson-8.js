@@ -1,20 +1,21 @@
 /**
- * Phase 4 · Section 1 · Lesson 8 intro video — "Finding Relevant 1H Swings"
+ * Phase 4 · Section 10 · Lesson 8 intro video: "Finding Relevant 1H Swings"
+ * Scenes: s10-jenga (block tower: a minor block comes out fine, the base block holds the leg), s10-judges (talent-show judges score the closest swing vs the leg origin).
  */
 window.LESSON_VIDEO = {
   "slug": "p4-lesson-8",
-  "eyebrow": "Phase 4 · Section 1 · Lesson 8",
-  "duration": 76,
-  "sources": "From Phase 4, Lesson 8: a messy 1H with many swings, the low the current leg came from, relevance reasons, and the closer or obvious swing not always being the relevant one.",
+  "eyebrow": "Phase 4 · Section 10 · Lesson 8",
+  "duration": 80,
+  "sources": "From Phase 4, Section 10, Lesson 8 (\"Finding Relevant 1H Swings\"): relevance mode (which swing actually matters?), close isn’t the same as relevant (current structure, proximity maybe, structural leg, tested or broken, relation to the 4H room), and \"find the swing the current leg depends on.\"",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Finding Your Bias",
+      "phase": "Section 10: Finding Your Bias",
       "title": "Finding Relevant 1H Swings",
-      "quote": "Structure decides.",
+      "quote": "Lots of swings. One matters most.",
       "lines": [
         {
           "at": 0.6,
@@ -23,239 +24,127 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 4.6,
-          "text": "Lots of swings."
+          "text": "Lots of swings. One matters most."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s10-jenga",
       "start": 8,
-      "end": 38,
-      "seed": 408,
-      "kicker": "Which swing?",
-      "swings": [
-        [
-          0,
-          0.5
-        ],
-        [
-          0.1,
-          0.62
-        ],
-        [
-          0.18,
-          0.4
-        ],
-        [
-          0.26,
-          0.55
-        ],
-        [
-          0.36,
-          0.15
-        ],
-        [
-          0.48,
-          0.6
-        ],
-        [
-          0.56,
-          0.48
-        ],
-        [
-          0.66,
-          0.75
-        ],
-        [
-          0.74,
-          0.65
-        ],
-        [
-          0.86,
-          0.85
-        ]
-      ],
-      "per": [
-        2,
-        2,
-        2,
-        3,
-        3,
-        2,
-        2,
-        2,
-        3
-      ],
-      "play": [
-        {
-          "to": 9,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 34,
+      "kicker": "Which swing matters?",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Which swing <span class=\"mark\">matters?</span>",
-          "out": 28.3
+          "html": "Lots of swings. <span class=\"mark\">One matters most.</span>",
+          "out": 26.4
         },
         {
-          "at": 28.5,
-          "html": "Structure <span class=\"mark\">decides.</span>"
+          "at": 26.6,
+          "html": "Find the swing <span class=\"mark\">the leg depends on.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
           "text": "A messy 1H. Lots of real swings.",
-          "screen": "Candles build"
+          "screen": "A 1H leg and a block tower"
         },
         {
-          "at": 13.0,
-          "text": "Some are minor wiggles inside the leg.",
-          "screen": "\"minor\""
+          "at": 11.6,
+          "text": "Which one matters? Think of a block tower."
         },
         {
-          "at": 18.0,
-          "text": "This low is where the current leg started.",
-          "screen": "\"leg started here\""
+          "at": 15,
+          "text": "Pull out a minor block near the top? It wobbles. It stands.",
+          "screen": "minor wiggle; \"Still standing!\""
         },
         {
-          "at": 23.0,
-          "text": "If it fails, the leg fails. That’s why it matters."
+          "at": 20.2,
+          "text": "But this low is where the current leg started.",
+          "screen": "the leg starts here"
         },
         {
-          "at": 28.5,
-          "text": "Not the closest. Not the most obvious. The one structure depends on."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.15,
-          "from": 0.36,
-          "label": "leg started here",
-          "tone": "up",
-          "at": 18.0,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.56,
-          "v": 0.36,
-          "text": "minor",
-          "tone": "muted",
-          "at": 13.0,
-          "fs": 22
+          "at": 23.8,
+          "text": "If it fails, the leg fails.",
+          "screen": "The base slides out, the tower tilts"
         },
         {
-          "u": 0.74,
-          "v": 0.52,
-          "text": "close ≠ relevant",
-          "tone": "muted",
-          "at": 14.0,
-          "fs": 22
+          "at": 26.6,
+          "text": "That’s the swing the current leg depends on. Structure decides.",
+          "screen": "Tower rebuilds"
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
+      "type": "s10-judges",
+      "start": 34,
+      "end": 58,
       "kicker": "Relevance",
-      "items": [
-        {
-          "title": "Closest",
-          "desc": [
-            "swing",
-            ""
-          ],
-          "tone": "muted",
-          "mark": "no",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "Most obvious",
-          "desc": [
-            "swing",
-            ""
-          ],
-          "tone": "muted",
-          "mark": "no",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "Defines the",
-          "desc": [
-            "current leg",
-            ""
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Structure <span class=\"mark\">decides.</span>"
+          "at": 34.4,
+          "html": "Close isn’t the same as <span class=\"mark\">relevant.</span>",
+          "out": 51.2
+        },
+        {
+          "at": 51.4,
+          "html": "<span class=\"mark\">Structure</span> decides."
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "How do you decide?",
-          "screen": "\"Relevance\""
+          "at": 34.4,
+          "text": "How do you decide which swing matters? Let’s judge it.",
+          "screen": "Two candle contestants, three judges"
         },
         {
-          "at": 40.8,
-          "text": "The closest swing? Not automatically.",
-          "screen": "Closest swing"
+          "at": 38.6,
+          "text": "The closest swing wins on proximity. Sometimes that matters.",
+          "screen": "Closest to price"
         },
         {
-          "at": 44.2,
-          "text": "The most obvious one? Not automatically.",
-          "screen": "Most obvious swing"
+          "at": 42.4,
+          "text": "But does it define the current leg? No. The origin does.",
+          "screen": "Defines the leg"
         },
         {
-          "at": 47.6,
-          "text": "The swing that defines the current leg.",
-          "screen": "Defines the current leg"
+          "at": 46.6,
+          "text": "Is it still intact? Does it fit the 4H room?",
+          "screen": "Still intact / Fits the 4H room"
         },
         {
-          "at": 51.0,
-          "text": "Structure decides."
+          "at": 51.4,
+          "text": "The closer swing isn’t always the right swing.",
+          "screen": "Trophy to LEG ORIGIN"
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 58,
+      "end": 68,
+      "pointAt": 60.6,
+      "size": 62,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "The closer swing isn’t"
+          "at": 59.2,
+          "text": "The closer swing isn’t always the right swing."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">always the right swing.</span>"
+          "at": 60.6,
+          "html": "<span class=\"mark\">Structure decides.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 58.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 59.6,
           "text": "The closer swing isn’t always the right swing. Structure decides.",
           "screen": "Aristella points"
         }
@@ -263,30 +152,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 68,
+      "end": 80,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 70.6,
         "text": "Which swing actually matters?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 76.4,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 68.2,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 70.6,
           "text": "Which swing actually matters?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 76.4,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }
