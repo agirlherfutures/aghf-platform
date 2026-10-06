@@ -313,6 +313,7 @@
      }
     ],
     "structure": "Price keeps wicking above the PIL and closing back below.",
+    "pilAt": 4,
     "start": 14
    },
    "passOk": true,

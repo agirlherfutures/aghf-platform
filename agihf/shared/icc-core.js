@@ -218,14 +218,18 @@ export function wickOnly(bar, pil, side) {
  * down to the PIL (retest) → entry available at the PIL.
  * Bearish mirrors it.
  */
-export function evaluateDayliICC(bars, { pil, dir }, upto = bars.length) {
+export function evaluateDayliICC(bars, { pil, dir, from = -1 }, upto = bars.length) {
   const out = { state: EXEC.WAITING_FOR_INDICATION, events: {}, retests: [], firstRetest: null };
   if (pil == null) return { ...out, state: EXEC.NO_PIL };
   const go = dir === 'bearish' ? 'below' : 'above';
   const back = go === 'above' ? 'below' : 'above';
-  let phase = 'indication';
-  for (let i = 0; i < Math.min(upto, bars.length); i++) {
+  // The PIL only exists once the swing that created it has printed (bar `from`):
+  // nothing before it can count. Then price has to START on the far side of the
+  // PIL (bullish: a close below it) before a close through it is indication.
+  let phase = 'start';
+  for (let i = Math.max(0, from + 1); i < Math.min(upto, bars.length); i++) {
     const b = bars[i], side = closeSide(b, pil);
+    if (phase === 'start') { if (side === back) phase = 'indication'; continue; }
     if (phase === 'indication' && side === go) { out.events.indication = i; phase = 'correction'; continue; }
     if (phase === 'correction' && side === back) { out.events.correction = i; phase = 'continuation'; continue; }
     if (phase === 'continuation' && side === go) { out.events.continuation = i; phase = 'retest'; continue; }
