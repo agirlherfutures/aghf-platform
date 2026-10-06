@@ -427,10 +427,10 @@
         ${txt(1680, 476, 'PRICE RISK', 22, C.gold, { ls: 2 })}${tot ? txt(1680, 560, '≈ ' + money(tot), 58, C.cash) : txt(1680, 556, '…', 50, '#7A5C50')}`);
       if (tot === 240 && t < T.out4 + 3.2) out += sparkAt(1680, 520, T.out4 + 2.1, t, C.cash);
       // Robot operator turns the dial, cat watches.
-      const rb = { x: 1630, y: 1000, scale: 1.1, seed: 4, at: T.belt + 1.3, screen: tot ? '×' + n : '...', talk: ctx.talking && t > T.note && t < T.note + 3 };
+      const rb = { x: 1770, y: 1000, scale: 1.05, seed: 4, at: T.belt + 1.3, screen: tot ? '×' + n : '...', talk: ctx.talking && t > T.note && t < T.note + 3 };
       out += crit(t, 'robot', rb);
       out += crit(t, 'cat', { x: 1110, y: 1000, scale: 0.62, seed: 3, at: T.belt + 1.6, flip: t > T.copy + 1 && t < T.out4 + 3 });
-      out += bub(1720, 640, 'Make it 4! 🔧', between(t, T.dial4 - 0.6, T.out4 + 1), { size: 28 });
+      out += bub(1700, 672, 'Make it 4! 🔧', between(t, T.dial4 - 0.6, T.out4 + 1), { size: 28 });
       out += pill(1360, 740, n + (n > 1 ? ' contracts' : ' contract'), DK.teal, pop(t, T.copy + 1.6, 0.5), 24);
       out += pill(960, 1044, '≈ approximate, before fees and slippage', C.purple, pop(t, T.note, 0.6), 24);
       return out;
@@ -574,13 +574,13 @@
             else if (i < 3) { x = lerp(px, slots[i], k); y = lerp(py, 840, k) - Math.sin(k * Math.PI) * 220; }
             else {
               const kb = ease(seg(t, at + 0.8, at + 1.6));
-              x = lerp(lerp(px, 1250, k), 830, kb); y = lerp(lerp(py, 700, k), 948, kb) - Math.sin(k * Math.PI) * 200 * (1 - kb) - Math.sin(kb * Math.PI) * 120;
+              x = lerp(lerp(px, 1250, k), 640, kb); y = lerp(lerp(py, 700, k), 948, kb) - Math.sin(k * Math.PI) * 200 * (1 - kb) - Math.sin(kb * Math.PI) * 120;
             }
             const op = t > T.phase2 - 0.6 ? 1 - seg(t, T.phase2 - 0.6, T.phase2) : 1;
             out += fade(op * pop(t, T.box + i * 0.2, 0.5), crate(x, y, 140, 100, '$50', BOX, BOXD, 34, '25 pts × $2'));
           }
         }
-        out += cross(830, 860, between(t, T.fourth + 1.6, T.phase2 - 0.4, 0.4), C.pink, 30);
+        out += cross(640, 860, between(t, T.fourth + 1.6, T.phase2 - 0.4, 0.4), C.pink, 30);
         out += pill(1250, 640, '÷ $50 = 3 contracts', DK.teal, between(t, T.loads[2] + 1, T.fourth + 0.6), 26);
         out += pill(1250, 640, 'floor it: never round up', C.pink, between(t, T.fourth + 1.2, T.phase2 - 0.2), 26);
       } else {
