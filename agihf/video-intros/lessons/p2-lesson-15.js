@@ -1,5 +1,5 @@
 /**
- * Phase 2 · Section 5 · Lesson 15 intro video — "Wick Break vs. Candle-Close Break"
+ * Phase 2 · Section 5 · Lesson 15 intro video: "Wick Break vs. Candle-Close Break"
  * Scenes: s5-house-visit (a wick peeks upstairs, a close moves in), s5-photo-finish (a reach is not a finish).
  */
 window.LESSON_VIDEO = {
@@ -66,7 +66,7 @@ window.LESSON_VIDEO = {
       question: { at: 69.0, text: 'Price poked above the level. Did it break it?' },
       cta: { at: 75.0, text: 'Let’s find out' },
       lines: [
-        { at: 67.4, text: 'So here’s your mission for this lesson.', screen: '"Your mission"' },
+        { at: 67.4, text: 'Here’s your mission.', screen: '"Your mission"' },
         { at: 69.0, text: 'Price poked above the level. Did it break it?', screen: 'Mission question' },
         { at: 75.0, text: 'Let’s find out.', screen: 'Aristella cheers; "Let\'s find out →"' },
       ],

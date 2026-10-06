@@ -8,22 +8,21 @@
 |---|---|---|
 | 0:00 | Aristella waves; title *Break of Structure: BOS* | Welcome to Lesson Eleven: Break of Structure, or BOS. |
 | 0:04 |  | Price just proved something. Let's see what. |
-| 0:08 | Candles build; HL, HH, HL | Here's a bullish structure. Higher lows, higher highs. |
-| 0:12 | Relevant prior HH | The relevant prior high is marked. |
-| 0:16 |  | Now price closes above it. |
-| 0:17 | "BULLISH BOS" | That's a bullish break of structure. A BOS. |
-| 0:20 | "WITH the structure" | The break went with the existing structure, not against it. |
-| 0:24 | "continuation information" | So it gives you continuation information. |
-| 0:30 |  | And bearish structure is the mirror: a close below the relevant prior low is a bearish BOS. |
-| 0:38 | "Watch your words" | Now, watch your words. |
-| 0:40 | Price just proved → ✓ | A BOS tells you what price just proved: it progressed with the existing structure. |
-| 0:47 | Price will → ✗ | It does not tell you what price will do next. |
-| 0:53 |  | Proved is not the same as will. |
-| 0:58 | Aristella thinks | So here's the big takeaway. |
-| 0:59 | Aristella points | A BOS tells you what price just proved. Not what price will do. |
-| 1:07 | "Your mission" | So here's your mission for this lesson. |
+| 0:08 | A track; bullish structure on the left | Think of a BOS like a high jump. |
+| 0:11 | "relevant prior high" | In a bullish structure, the bar sits at the relevant prior high. |
+| 0:16 | The athlete flips over the bar; "BOS ▲" | Price closes above it. Cleared! That's a bullish break of structure. |
+| 0:20 |  | It broke with the existing structure, so it's continuation information. |
+| 0:25 | Limbo under the prior low; "BOS ▼" | Bearish is the mirror, like limbo: a close below the relevant prior low. |
+| 0:32 | A robot cashier at a shop counter | Now, watch your words. |
+| 0:34 |  | A BOS is like a receipt. It records what already happened. |
+| 0:39 | The receipt prints; "PROVED" stamp | Price progressed with the existing structure, and closed above the relevant high. |
+| 0:45 | "So it WILL keep going?" | But a receipt can't tell you what you'll buy tomorrow. |
+| 0:49 | "not on the receipt" | A BOS doesn't tell you what price will do next. Proved is not will. |
+| 0:57 | Aristella thinks | Here's the takeaway. |
+| 0:58 | Aristella points | A BOS tells you what price just proved. Not what price will do. |
+| 1:07 | "Your mission" | Here's your mission. |
 | 1:09 | Mission question | If price closes above the relevant prior high in a bullish structure, what did it just prove? |
-| 1:14 | Aristella cheers; "Let's find out →" | Let's find out. |
+| 1:15 | Aristella cheers; "Let's find out →" | Let's find out. |
 
 ## Where the words come from
-From Section 2, Lesson 11 ("Break of Structure: BOS"): a BOS is a close through the relevant prior swing in the direction of the existing structure, it gives continuation information, bearish BOS mirrors bullish, and a BOS tells you what price just proved, not what price will do.
+From Section 5, Lesson 11 ("Break of Structure: BOS"): a BOS is a close through the relevant prior swing in the direction of the existing structure, it gives continuation information, bearish BOS mirrors bullish, the "Proved ≠ Will" comparison, and Dayli's line "A BOS tells you what price just proved. It does not tell you what price will do next."

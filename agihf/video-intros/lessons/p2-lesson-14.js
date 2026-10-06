@@ -1,5 +1,5 @@
 /**
- * Phase 2 · Section 5 · Lesson 14 intro video — "Retracement vs. Reversal"
+ * Phase 2 · Section 5 · Lesson 14 intro video: "Retracement vs. Reversal"
  * Scenes: s5-circus-net (the safety net holds vs tears), s5-train (walking backward on a forward-moving train).
  */
 window.LESSON_VIDEO = {
@@ -66,7 +66,7 @@ window.LESSON_VIDEO = {
       question: { at: 72.0, text: 'Price dropped hard. Retracement or reversal?' },
       cta: { at: 77.6, text: 'Let’s find out' },
       lines: [
-        { at: 70.4, text: 'So here’s your mission for this lesson.', screen: '"Your mission"' },
+        { at: 70.4, text: 'Here’s your mission.', screen: '"Your mission"' },
         { at: 72.0, text: 'Price dropped hard. Retracement or reversal?', screen: 'Mission question' },
         { at: 77.6, text: 'Let’s find out.', screen: 'Aristella cheers; "Let\'s find out →"' },
       ],

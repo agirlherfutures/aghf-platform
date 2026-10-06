@@ -1,5 +1,5 @@
 /**
- * Phase 2 · Section 5 · Lesson 12 intro video — "Market Structure Shift: MSS"
+ * Phase 2 · Section 5 · Lesson 12 intro video: "Market Structure Shift: MSS"
  * Scenes: s5-block-tower (wobbles vs pulling the supporting block), s5-traffic (amber light: change information, not an entry).
  */
 window.LESSON_VIDEO = {
@@ -56,7 +56,7 @@ window.LESSON_VIDEO = {
         { at: 64.6, html: 'It does <span class="mark">not</span> mean enter immediately. 🚫' },
       ],
       lines: [
-        { at: 59.4, text: 'Dayli says it best.', screen: 'Aristella thinks' },
+        { at: 59.4, text: 'As Dayli says.', screen: 'Aristella thinks' },
         { at: 60.6, text: 'MSS tells you the old structure may no longer be behaving the same way. It does not mean enter immediately.', screen: 'Aristella points' },
       ],
     },
@@ -66,7 +66,7 @@ window.LESSON_VIDEO = {
       question: { at: 72.0, text: 'If bullish structure starts moving lower and breaks a small low, has the market structure shifted?' },
       cta: { at: 78.6, text: 'Let’s find out' },
       lines: [
-        { at: 70.4, text: 'So here’s your mission for this lesson.', screen: '"Your mission"' },
+        { at: 70.4, text: 'Here’s your mission.', screen: '"Your mission"' },
         { at: 72.0, text: 'If bullish structure starts moving lower and breaks a small low, has the market structure shifted?', screen: 'Mission question' },
         { at: 78.6, text: 'Let’s find out.', screen: 'Aristella cheers; "Let\'s find out →"' },
       ],

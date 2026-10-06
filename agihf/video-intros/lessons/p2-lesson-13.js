@@ -1,5 +1,5 @@
 /**
- * Phase 2 · Section 5 · Lesson 13 intro video — "Continuation vs. Reversal"
+ * Phase 2 · Section 5 · Lesson 13 intro video: "Continuation vs. Reversal"
  * Scenes: s5-game-show (three honest reads on a quiz stage), s5-owl-court (an owl judge waits for evidence).
  */
 window.LESSON_VIDEO = {
@@ -57,7 +57,7 @@ window.LESSON_VIDEO = {
         { at: 61.4, html: 'the most <span class="mark">technically correct</span> answer. 🦉' },
       ],
       lines: [
-        { at: 58.4, text: 'Here’s the big takeaway.', screen: 'Aristella thinks' },
+        { at: 58.4, text: 'The takeaway?', screen: 'Aristella thinks' },
         { at: 59.6, text: 'I don’t know yet is sometimes the most technically correct answer.', screen: 'Aristella points' },
       ],
     },
@@ -67,7 +67,7 @@ window.LESSON_VIDEO = {
       question: { at: 70.0, text: 'Price is pulling back in a bullish structure. Is it a reversal?' },
       cta: { at: 76.0, text: 'Let’s find out' },
       lines: [
-        { at: 68.4, text: 'So here’s your mission for this lesson.', screen: '"Your mission"' },
+        { at: 68.4, text: 'Here’s your mission.', screen: '"Your mission"' },
         { at: 70.0, text: 'Price is pulling back in a bullish structure. Is it a reversal?', screen: 'Mission question' },
         { at: 76.0, text: 'Let’s find out.', screen: 'Aristella cheers; "Let\'s find out →"' },
       ],

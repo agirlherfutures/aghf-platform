@@ -1,5 +1,5 @@
 /**
- * Phase 2 · Section 5 · Lesson 16 intro video — "False Breaks & Fakeouts"
+ * Phase 2 · Section 5 · Lesson 16 intro video: "False Breaks & Fakeouts"
  * Scenes: s5-cat-shelf (a cat gets above the shelf, then slides back off), s5-cctv (the footage only shows price).
  */
 window.LESSON_VIDEO = {
@@ -56,7 +56,7 @@ window.LESSON_VIDEO = {
         { at: 61.0, html: '<span class="mark">before interpretation.</span> 🦜' },
       ],
       lines: [
-        { at: 58.4, text: 'So here’s the rule.', screen: 'Aristella thinks' },
+        { at: 58.4, text: 'Here’s the rule.', screen: 'Aristella thinks' },
         { at: 59.6, text: 'Observation before interpretation.', screen: 'Aristella points' },
       ],
     },
@@ -66,7 +66,7 @@ window.LESSON_VIDEO = {
       question: { at: 70.0, text: 'Price closed above resistance. Is the breakout confirmed?' },
       cta: { at: 76.0, text: 'Let’s find out' },
       lines: [
-        { at: 68.4, text: 'So here’s your mission for this lesson.', screen: '"Your mission"' },
+        { at: 68.4, text: 'Here’s your mission.', screen: '"Your mission"' },
         { at: 70.0, text: 'Price closed above resistance. Is the breakout confirmed?', screen: 'Mission question' },
         { at: 76.0, text: 'Let’s find out.', screen: 'Aristella cheers; "Let\'s find out →"' },
       ],

@@ -1,5 +1,5 @@
 /**
- * Phase 2 · Section 5 · Lesson 10 intro video — "What Does It Mean to Break Structure?"
+ * Phase 2 · Section 5 · Lesson 10 intro video: "What Does It Mean to Break Structure?"
  * Scenes: s5-fences (a puppy hops fences of different heights), s5-detective (which high actually broke?).
  */
 window.LESSON_VIDEO = {
@@ -57,7 +57,7 @@ window.LESSON_VIDEO = {
         { at: 61.4, html: '<span class="mark">identify the level.</span> 🔍' },
       ],
       lines: [
-        { at: 58.4, text: 'So here’s the big takeaway.', screen: 'Aristella thinks' },
+        { at: 58.4, text: 'Here’s the takeaway.', screen: 'Aristella thinks' },
         { at: 60.0, text: 'Before you label a break, identify the level.', screen: 'Aristella points' },
       ],
     },
@@ -67,7 +67,7 @@ window.LESSON_VIDEO = {
       question: { at: 70.0, text: 'If price breaks a high, did the structure break?' },
       cta: { at: 76.0, text: 'Let’s find out' },
       lines: [
-        { at: 68.4, text: 'So here’s your mission for this lesson.', screen: '"Your mission"' },
+        { at: 68.4, text: 'Here’s your mission.', screen: '"Your mission"' },
         { at: 70.0, text: 'If price breaks a high, did the structure break?', screen: 'Mission question' },
         { at: 76.0, text: 'Let’s find out.', screen: 'Aristella cheers; "Let\'s find out →"' },
       ],

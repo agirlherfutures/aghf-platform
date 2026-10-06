@@ -1,5 +1,5 @@
 /**
- * Phase 2 · Section 5 · Lesson 17 intro video — "Structural Invalidation & The New Story"
+ * Phase 2 · Section 5 · Lesson 17 intro video: "Structural Invalidation & The New Story"
  * Scenes: s5-bridge (the supporting pillar gives way; now what?), s5-map-update (a cartographer redraws the map; teaser for Section 6).
  */
 window.LESSON_VIDEO = {
@@ -68,7 +68,7 @@ window.LESSON_VIDEO = {
       question: { at: 75.0, text: 'The level holding up your bullish story just broke. Now what?' },
       cta: { at: 81.6, text: 'Let’s find out' },
       lines: [
-        { at: 73.4, text: 'So here’s your mission for this lesson.', screen: '"Your mission"' },
+        { at: 73.4, text: 'Here’s your mission.', screen: '"Your mission"' },
         { at: 75.0, text: 'The level holding up your bullish story just broke. Now what?', screen: 'Mission question' },
         { at: 81.6, text: 'Let’s find out.', screen: 'Aristella cheers; "Let\'s find out →"' },
       ],

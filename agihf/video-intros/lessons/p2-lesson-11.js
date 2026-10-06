@@ -1,5 +1,5 @@
 /**
- * Phase 2 · Section 5 · Lesson 11 intro video — "Break of Structure: BOS"
+ * Phase 2 · Section 5 · Lesson 11 intro video: "Break of Structure: BOS"
  * Scenes: s5-high-jump (clearing the bar at the prior high / limbo under the prior low), s5-receipt (a BOS is a receipt, not a forecast).
  */
 window.LESSON_VIDEO = {
@@ -56,7 +56,7 @@ window.LESSON_VIDEO = {
         { at: 60.2, html: '<span class="mark">Not price will.</span> 🧾' },
       ],
       lines: [
-        { at: 57.4, text: 'So here’s the big takeaway.', screen: 'Aristella thinks' },
+        { at: 57.4, text: 'Here’s the takeaway.', screen: 'Aristella thinks' },
         { at: 58.8, text: 'A BOS tells you what price just proved. Not what price will do.', screen: 'Aristella points' },
       ],
     },
@@ -66,7 +66,7 @@ window.LESSON_VIDEO = {
       question: { at: 69.0, text: 'If price closes above the relevant prior high in a bullish structure, what did it just prove?' },
       cta: { at: 75.6, text: 'Let’s find out' },
       lines: [
-        { at: 67.4, text: 'So here’s your mission for this lesson.', screen: '"Your mission"' },
+        { at: 67.4, text: 'Here’s your mission.', screen: '"Your mission"' },
         { at: 69.0, text: 'If price closes above the relevant prior high in a bullish structure, what did it just prove?', screen: 'Mission question' },
         { at: 75.6, text: 'Let’s find out.', screen: 'Aristella cheers; "Let\'s find out →"' },
       ],
