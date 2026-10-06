@@ -1,275 +1,164 @@
 /**
- * Phase 4 · Section 2 · Lesson 20 intro video — "Location + Structure + Direction"
+ * Phase 4 · Section 11 · Lesson 20 intro video: "Location + Structure + Direction"
+ * Scenes: s11-stool, s11-late-party (see scenes-s11.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p4-lesson-20",
-  "eyebrow": "Phase 4 · Section 2 · Lesson 20",
-  "duration": 76,
-  "sources": "From Phase 4, Lesson 20: the three questions (structure, direction, location), a coherent bullish thesis that isn’t a buy, and the same direction with a changed opportunity context.",
+  "eyebrow": "Phase 4 · Section 11 · Lesson 20",
+  "duration": 82,
+  "sources": "From Phase 4, Section 11, Lesson 20 (\"Location + Structure + Direction\"): the three questions (structure: what is price building? direction: what does the thesis favor? location: where is price in the range?); Example A: bullish, bullish, lower portion / 4H discount = a coherent bullish thesis, not \"buy\"; Example B: bullish, bullish, upper premium with the objective almost reached = direction still bullish, opportunity context has changed; direction tells you what side, location tells you whether you are late to the party.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 2: Location Within the Range",
+      "phase": "Section 11: Location Within the Range",
       "title": "Location + Structure + Direction",
-      "quote": "Three questions.",
+      "quote": "Three questions. Every read.",
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Lesson Twenty: Location + Structure + Direction.",
+          "text": "Welcome to Lesson Twenty: Location, Structure and Direction.",
           "screen": "Aristella waves; title *Location + Structure + Direction*"
         },
         {
-          "at": 4.6,
-          "text": "Put it together."
+          "at": 4.8,
+          "text": "Three questions, every read."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s11-stool",
       "start": 8,
-      "end": 38,
-      "seed": 420,
-      "kicker": "Three questions",
-      "swings": [
-        [
-          0,
-          0.6
-        ],
-        [
-          0.1,
-          0.95
-        ],
-        [
-          0.26,
-          0.08
-        ],
-        [
-          0.38,
-          0.55
-        ],
-        [
-          0.48,
-          0.25
-        ],
-        [
-          0.66,
-          0.85
-        ],
-        [
-          0.76,
-          0.6
-        ],
-        [
-          0.82,
-          0.68
-        ],
-        [
-          0.9,
-          0.5
-        ]
-      ],
-      "per": [
-        3,
-        5,
-        4,
-        3,
-        5,
-        3,
-        2,
-        3
-      ],
-      "play": [
-        {
-          "to": 8,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 34,
+      "kicker": "The three questions",
+      "beats": {
+        "seat": 8.6,
+        "leg1": 11.6,
+        "leg2": 15,
+        "leg3": 18.4,
+        "cat": 23,
+        "coherent": 26.6
+      },
       "headlines": [
         {
           "at": 8.4,
-          "html": "Structure. <span class=\"mark\">Direction. Location.</span>",
-          "out": 28.3
+          "html": "Three questions. <span class=\"mark\">Every read.</span>",
+          "out": 26.4
         },
         {
-          "at": 28.5,
-          "html": "Late to <span class=\"mark\">the party? 😂</span>"
+          "at": 26.6,
+          "html": "A read that <span class=\"mark\">hangs together.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Three questions, every read.",
-          "screen": "Doors appear"
+          "text": "Think of a thesis like a three-legged stool.",
+          "screen": "A wobbly stool seat; a builder with a hammer"
         },
         {
-          "at": 13.0,
-          "text": "Structure, direction, location.",
-          "screen": "The three questions"
+          "at": 11.6,
+          "text": "Leg one, structure: what is price building?",
+          "screen": "1 · STRUCTURE"
         },
         {
-          "at": 18.0,
-          "text": "Bullish, bullish, in discount: a coherent bullish thesis. Not a buy."
+          "at": 15,
+          "text": "Leg two, direction: what does the thesis favor?",
+          "screen": "2 · DIRECTION"
         },
         {
-          "at": 23.0,
-          "text": "Bullish, bullish, way up in premium: same direction, different context."
+          "at": 18.4,
+          "text": "Leg three, location: where is price in the range?",
+          "screen": "3 · LOCATION"
         },
         {
-          "at": 28.5,
-          "text": "Direction says which side. Location says if you’re late."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.85,
-          "from": 0.48,
-          "label": "🚪 External high",
-          "tone": "purple",
-          "at": 9.6
+          "at": 23,
+          "text": "All three, and it holds.",
+          "screen": "A cat jumps on and naps"
         },
         {
-          "v": 0.25,
-          "from": 0.48,
-          "label": "🚪 External low",
-          "tone": "purple",
-          "at": 10.0,
-          "below": true
-        },
-        {
-          "v": 0.55,
-          "from": 0.48,
-          "label": "equilibrium · 50%",
-          "tone": "purple",
-          "at": 10.4
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.25,
-          "v": 1.02,
-          "text": "1 structure",
-          "tone": "purple",
-          "at": 13.0,
-          "fs": 22
-        },
-        {
-          "u": 0.55,
-          "v": 1.02,
-          "text": "2 direction",
-          "tone": "up",
-          "at": 14.0,
-          "fs": 22
-        },
-        {
-          "u": 0.84,
-          "v": 1.02,
-          "text": "3 location",
-          "tone": "gold",
-          "at": 15.0,
-          "fs": 22
+          "at": 26.6,
+          "text": "Bullish, bullish, in discount: a coherent bullish thesis. Not a buy. A read that hangs together.",
+          "screen": "\"coherent thesis ✓\" · \"still not a buy\""
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Example A vs B",
-      "items": [
-        {
-          "title": "A · Discount",
-          "desc": [
-            "coherent",
-            "thesis"
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "B · Premium",
-          "desc": [
-            "near the",
-            "objective"
-          ],
-          "tone": "gold",
-          "at": 44.2
-        },
-        {
-          "title": "Either",
-          "desc": [
-            "= buy",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s11-late-party",
+      "start": 34,
+      "end": 60,
+      "kicker": "Same direction, two contexts",
+      "beats": {
+        "rooms": 34.4,
+        "a": 37.4,
+        "b": 43.4,
+        "buy": 53.6
+      },
       "headlines": [
         {
-          "at": 51.0,
+          "at": 34.4,
+          "html": "Same direction. <span class=\"mark\">Same context?</span>",
+          "out": 49.6
+        },
+        {
+          "at": 49.8,
           "html": "Same direction. <span class=\"mark\">Different context.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Two examples.",
-          "screen": "\"Example A vs B\""
+          "at": 34.4,
+          "text": "Now two examples. Same bullish party.",
+          "screen": "Two rooms of the same party"
         },
         {
-          "at": 40.8,
-          "text": "A, in discount: a coherent bullish thesis.",
-          "screen": "A · Discount coherent thesis"
+          "at": 37.4,
+          "text": "A arrives in discount, with room to run: a coherent bullish thesis.",
+          "screen": "Guest A walks into a party in full swing"
         },
         {
-          "at": 44.2,
-          "text": "B, in premium near the objective: the context changed.",
-          "screen": "B · Premium near the objective"
+          "at": 43.4,
+          "text": "B arrives up in premium, near the objective. Direction is still bullish, but the context changed.",
+          "screen": "Guest B arrives at clean-up time: \"Did I miss it?\""
         },
         {
-          "at": 47.6,
-          "text": "Either one means buy? No.",
-          "screen": "Either = buy"
-        },
-        {
-          "at": 51.0,
+          "at": 49.8,
           "text": "Same direction. Different context."
+        },
+        {
+          "at": 53.6,
+          "text": "Does either one mean buy? No.",
+          "screen": "\"neither one = buy\""
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 60,
+      "end": 70,
+      "pointAt": 64,
+      "size": 60,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 61.4,
           "text": "Direction says which side."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">Location says if you’re late.</span> 😂"
+          "at": 64,
+          "html": "Location says if you’re <span class=\"mark\">late to the party.</span> 😂"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 60.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 61.6,
           "text": "Direction tells you what side you’re interested in. Location tells you whether you’re late to the party.",
           "screen": "Aristella points"
         }
@@ -277,30 +166,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 70,
+      "end": 82,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 72.4,
         "text": "Can the direction stay the same while the context changes?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 77.8,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 70.2,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 72.4,
           "text": "Can the direction stay the same while the context changes?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 77.8,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

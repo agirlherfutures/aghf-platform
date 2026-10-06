@@ -1,279 +1,180 @@
 /**
- * Phase 4 · Section 2 · Lesson 17 intro video — "Buying Lower / Selling Higher"
+ * Phase 4 · Section 11 · Lesson 17 intro video: "Buying Lower / Selling Higher"
+ * Scenes: s11-bus-route, s11-sale-sign (see scenes-s11.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p4-lesson-17",
-  "eyebrow": "Phase 4 · Section 2 · Lesson 17",
-  "duration": 76,
-  "sources": "From Phase 4, Lesson 17: the same bullish thesis low vs high in the range, the bearish mirror, selling lower possibly meaning chasing, and cheap not meaning bullish.",
+  "eyebrow": "Phase 4 · Section 11 · Lesson 17",
+  "duration": 82,
+  "sources": "From Phase 4, Section 11, Lesson 17 (\"Buying Lower / Selling Higher\"): the same bullish structural thesis twice, one lower in the range with room to the external high, one up near the high; same direction, different positioning; selling low or buying high late can mean chasing; cheap ≠ bullish, expensive ≠ bearish, direction comes from structure; location improves an idea, it does not create one.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 2: Location Within the Range",
+      "phase": "Section 11: Location Within the Range",
       "title": "Buying Lower / Selling Higher",
-      "quote": "Location improves an idea.",
+      "quote": "Same direction. Same positioning?",
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Lesson Seventeen: Buying Lower / Selling Higher.",
+          "text": "Welcome to Lesson Seventeen: Buying Lower, Selling Higher.",
           "screen": "Aristella waves; title *Buying Lower / Selling Higher*"
         },
         {
-          "at": 4.6,
-          "text": "Same direction. Same position?"
+          "at": 4.8,
+          "text": "Same direction. Same positioning?"
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s11-bus-route",
       "start": 8,
-      "end": 38,
-      "seed": 417,
-      "kicker": "Positioning",
-      "swings": [
-        [
-          0,
-          0.6
-        ],
-        [
-          0.1,
-          0.95
-        ],
-        [
-          0.26,
-          0.08
-        ],
-        [
-          0.38,
-          0.55
-        ],
-        [
-          0.48,
-          0.25
-        ],
-        [
-          0.66,
-          0.85
-        ],
-        [
-          0.76,
-          0.6
-        ],
-        [
-          0.82,
-          0.68
-        ],
-        [
-          0.9,
-          0.5
-        ]
-      ],
-      "per": [
-        3,
-        5,
-        4,
-        3,
-        5,
-        3,
-        2,
-        3
-      ],
-      "play": [
-        {
-          "to": 8,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 36,
+      "kicker": "Bullish thesis, twice",
+      "beats": {
+        "road": 8.6,
+        "stopA": 12.6,
+        "stopB": 17.8,
+        "go": 19.4,
+        "chase": 29.4
+      },
       "headlines": [
         {
           "at": 8.4,
           "html": "Same direction. <span class=\"mark\">Same positioning?</span>",
-          "out": 28.3
+          "out": 21.2
         },
         {
-          "at": 28.5,
-          "html": "Location improves. <span class=\"mark\">It doesn’t create.</span>"
+          "at": 21.4,
+          "html": "Same direction. <span class=\"mark\">Different positioning.</span>",
+          "out": 29.2
+        },
+        {
+          "at": 29.4,
+          "html": "Late can mean <span class=\"mark\">chasing.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Same bullish thesis, two places.",
-          "screen": "Doors appear"
+          "text": "Same bullish thesis. Same bus, heading up to the external high.",
+          "screen": "A road climbing through the range to the objective"
         },
         {
-          "at": 13.0,
-          "text": "A: lower in the range, with room to the high.",
-          "screen": "\"A · lower\""
+          "at": 12.6,
+          "text": "Passenger A gets on low in the range, with plenty of room to the high.",
+          "screen": "Stop A, low in the range"
         },
         {
-          "at": 18.0,
-          "text": "B: up near the external high.",
-          "screen": "\"B · near the top\""
+          "at": 17.8,
+          "text": "Passenger B gets on right up near the high.",
+          "screen": "Stop B, near the high"
         },
         {
-          "at": 23.0,
-          "text": "Same direction. Different positioning."
+          "at": 21.4,
+          "text": "Same direction. Very different positioning.",
+          "screen": "The bus picks up A"
         },
         {
-          "at": 28.5,
-          "text": "And cheap doesn’t mean bullish. Structure creates the idea.",
-          "screen": "\"cheap ≠ bullish\""
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.85,
-          "from": 0.48,
-          "label": "🚪 External high",
-          "tone": "purple",
-          "at": 9.6
+          "at": 24.4,
+          "text": "A gets the whole ride. B gets the last stop.",
+          "screen": "The bus picks up B"
         },
         {
-          "v": 0.25,
-          "from": 0.48,
-          "label": "🚪 External low",
-          "tone": "purple",
-          "at": 10.0,
-          "below": true
-        },
-        {
-          "v": 0.55,
-          "from": 0.48,
-          "label": "equilibrium · 50%",
-          "tone": "purple",
-          "at": 10.4
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.42,
-          "v": 0.18,
-          "text": "A · lower",
-          "tone": "up",
-          "at": 13.0,
-          "fs": 22
-        },
-        {
-          "u": 0.72,
-          "v": 0.92,
-          "text": "B · near the top",
-          "tone": "down",
-          "at": 18.0,
-          "fs": 22
-        },
-        {
-          "u": 0.5,
-          "v": 0.65,
-          "text": "cheap ≠ bullish",
-          "tone": "muted",
-          "at": 23.0,
-          "fs": 22
+          "at": 29.4,
+          "text": "And running after it right at the top? That can mean chasing.",
+          "screen": "A runner chases the bus: \"chasing?\""
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
+      "type": "s11-sale-sign",
+      "start": 36,
+      "end": 60,
       "kicker": "Keep it straight",
-      "items": [
-        {
-          "title": "Cheap",
-          "desc": [
-            "≠ bullish",
-            ""
-          ],
-          "tone": "muted",
-          "mark": "no",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "Expensive",
-          "desc": [
-            "≠ bearish",
-            ""
-          ],
-          "tone": "muted",
-          "mark": "no",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "Structure",
-          "desc": [
-            "creates the",
-            "idea"
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "beats": {
+        "shop": 36.4,
+        "cheap": 38.6,
+        "exp": 44.6,
+        "struct": 50,
+        "loc": 55
+      },
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Location <span class=\"mark\">improves it.</span>"
+          "at": 36.4,
+          "html": "Does cheap <span class=\"mark\">mean bullish?</span>",
+          "out": 49.8
+        },
+        {
+          "at": 50,
+          "html": "Structure <span class=\"mark\">creates the idea.</span>",
+          "out": 54.8
+        },
+        {
+          "at": 55,
+          "html": "Location can <span class=\"mark\">improve it.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Keep it straight.",
-          "screen": "\"Keep it straight\""
+          "at": 36.4,
+          "text": "Now, a trap.",
+          "screen": "A shop window full of candles"
         },
         {
-          "at": 40.8,
-          "text": "Cheap doesn’t mean bullish.",
-          "screen": "Cheap ≠ bullish"
+          "at": 38.6,
+          "text": "Price is low, so it’s cheap. Cheap means bullish, right?",
+          "screen": "CHEAP tag; shopper: \"Cheap = bullish!\""
         },
         {
-          "at": 44.2,
-          "text": "Expensive doesn’t mean bearish.",
-          "screen": "Expensive ≠ bearish"
+          "at": 42.4,
+          "text": "No. Cheap doesn’t mean bullish.",
+          "screen": "\"cheap ≠ bullish\""
         },
         {
-          "at": 47.6,
-          "text": "Structure creates the idea.",
-          "screen": "Structure creates the idea"
+          "at": 44.6,
+          "text": "And expensive doesn’t mean bearish.",
+          "screen": "EXPENSIVE tag; \"expensive ≠ bearish\""
         },
         {
-          "at": 51.0,
-          "text": "Location can improve it."
+          "at": 50,
+          "text": "Direction comes from structure. Structure creates the idea.",
+          "screen": "The owl’s compass settles: STRUCTURE"
+        },
+        {
+          "at": 55,
+          "text": "Location can improve an idea. It doesn’t create one.",
+          "screen": "\"location can improve it ✨\""
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 60,
+      "end": 70,
+      "pointAt": 63.4,
+      "size": 54,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "Location can improve an idea."
+          "at": 61.4,
+          "text": "Location can improve a directional idea."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">It doesn’t create one.</span>"
+          "at": 63.4,
+          "html": "It <span class=\"mark\">does not create one.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 60.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 61.6,
           "text": "Location can improve a directional idea. It does not create one.",
           "screen": "Aristella points"
         }
@@ -281,30 +182,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 70,
+      "end": 82,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 72.4,
         "text": "Does cheap mean bullish?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 76.8,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 70.2,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 72.4,
           "text": "Does cheap mean bullish?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 76.8,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

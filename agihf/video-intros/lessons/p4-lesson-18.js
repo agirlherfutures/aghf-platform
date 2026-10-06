@@ -1,250 +1,165 @@
 /**
- * Phase 4 · Section 2 · Lesson 18 intro video — "Premium / Discount Is Not an Entry Signal"
+ * Phase 4 · Section 11 · Lesson 18 intro video: "Premium / Discount Is Not an Entry Signal"
+ * Scenes: s11-vending, s11-crosswalk (see scenes-s11.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p4-lesson-18",
-  "eyebrow": "Phase 4 · Section 2 · Lesson 18",
-  "duration": 76,
-  "sources": "From Phase 4, Lesson 18: bullish structure, price moving into discount, a big BUY? button, structure ✓ location ✓ execution ○, and status WAIT.",
+  "eyebrow": "Phase 4 · Section 11 · Lesson 18",
+  "duration": 82,
+  "sources": "From Phase 4, Section 11, Lesson 18 (\"Premium / Discount Is Not an Entry Signal\"): bullish 4H structure, price slides into discount and a big BUY? button appears; discount told you where price is, not that you have a trade; status: structure ✓, location ✓, execution ○ = WAIT; three more scenarios (still falling hard with no entry model, bearish premium with no execution model, discount with no clear structure) are all WAIT; discount ≠ buy, premium ≠ sell; location can make a setup more attractive, it cannot make an invalid setup valid.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 2: Location Within the Range",
+      "phase": "Section 11: Location Within the Range",
       "title": "Premium / Discount Is Not an Entry Signal",
-      "quote": "BUY? No.",
+      "quote": "Price is in discount. Do you buy?",
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Lesson Eighteen: Premium / Discount Is Not an Entry Signal.",
+          "text": "Welcome to Lesson Eighteen: Premium and Discount Is Not an Entry Signal.",
           "screen": "Aristella waves; title *Premium / Discount Is Not an Entry Signal*"
         },
         {
-          "at": 4.6,
-          "text": "The shortcut."
+          "at": 5.4,
+          "text": "Meet the shortcut."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s11-vending",
       "start": 8,
-      "end": 38,
-      "seed": 418,
-      "kicker": "BUY?",
-      "swings": [
-        [
-          0,
-          0.2
-        ],
-        [
-          0.24,
-          0.92
-        ],
-        [
-          0.36,
-          0.7
-        ],
-        [
-          0.46,
-          0.8
-        ],
-        [
-          0.7,
-          0.25
-        ]
-      ],
-      "per": [
-        5,
-        3,
-        2,
-        6
-      ],
-      "play": [
-        {
-          "to": 4,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 36,
+      "kicker": "The shortcut",
+      "beats": {
+        "machine": 8.6,
+        "slide": 10.4,
+        "button": 14.6,
+        "press": 18.4,
+        "checks": 20.6,
+        "wait": 25
+      },
       "headlines": [
         {
           "at": 8.4,
-          "html": "Discount. <span class=\"mark\">BUY?</span>",
-          "out": 28.3
+          "html": "The <span class=\"mark\">shortcut.</span>",
+          "out": 24.8
         },
         {
-          "at": 28.5,
-          "html": "Status: <span class=\"mark\">WAIT.</span>"
+          "at": 25,
+          "html": "Location alone <span class=\"mark\">isn’t a trade.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Bullish structure. Price slides into discount.",
-          "screen": "Candles build"
+          "text": "Bullish 4H structure. Price slides down into discount.",
+          "screen": "A vending machine; its screen shows price sliding into discount"
         },
         {
-          "at": 13.0,
-          "text": "A big button appears. BUY?",
-          "screen": "\"BUY?\""
+          "at": 14.6,
+          "text": "And a big shiny button appears: BUY?",
+          "screen": "A pulsing BUY? button"
         },
         {
-          "at": 18.0,
+          "at": 18,
+          "text": "So you drop in your coin: 4H discount.",
+          "screen": "The coin flies into the slot"
+        },
+        {
+          "at": 21,
           "text": "Structure, check. Location, check. Execution: not established.",
-          "screen": "Status panel"
+          "screen": "Status card: ✓ ✓ ○"
         },
         {
-          "at": 23.0,
-          "text": "Status: wait."
+          "at": 25,
+          "text": "Status: wait.",
+          "screen": "WAIT"
         },
         {
-          "at": 28.5,
-          "text": "Discount told you where price is. Not that you have a trade."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.92,
-          "from": 0.24,
-          "label": "range high",
-          "tone": "purple",
-          "at": 9.0
-        },
-        {
-          "v": 0.15,
-          "from": 0.24,
-          "label": "range low",
-          "tone": "purple",
-          "at": 9.4,
-          "below": true
-        },
-        {
-          "v": 0.55,
-          "from": 0.24,
-          "label": "equilibrium",
-          "tone": "purple",
-          "at": 9.8
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.74,
-          "v": 0.38,
-          "text": "BUY?",
-          "tone": "down",
-          "at": 13.0,
-          "fs": 30
-        },
-        {
-          "u": 0.42,
-          "v": 0.06,
-          "text": "structure ✓ location ✓ execution ○",
-          "tone": "purple",
-          "at": 18.0,
-          "fs": 22
+          "at": 27,
+          "text": "Discount told you where price is. It didn’t give you an entry.",
+          "screen": "\"Huh. No snack?\""
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Entry?",
-      "items": [
-        {
-          "title": "Discount",
-          "desc": [
-            "buy",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "Premium",
-          "desc": [
-            "sell",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "Structure +",
-          "desc": [
-            "execution",
-            "later"
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s11-crosswalk",
+      "start": 36,
+      "end": 60,
+      "kicker": "Entry, or wait?",
+      "beats": {
+        "s1": 39.2,
+        "s2": 44.4,
+        "s3": 49.6,
+        "done": 55.4
+      },
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Location isn’t <span class=\"mark\">permission.</span>"
+          "at": 36.4,
+          "html": "Entry, <span class=\"mark\">or wait?</span>",
+          "out": 55.2
+        },
+        {
+          "at": 55.4,
+          "html": "Location <span class=\"mark\">isn’t permission.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "So, entry?",
-          "screen": "\"Entry?\""
+          "at": 36.4,
+          "text": "Let’s try three more.",
+          "screen": "A crosswalk, a red light, a crossing guard, a dog"
         },
         {
-          "at": 40.8,
-          "text": "Discount means buy? No.",
-          "screen": "Discount buy"
+          "at": 39.2,
+          "text": "Bullish context, 4H discount, but price is still falling hard. No entry model. Wait.",
+          "screen": "Scenario 1; red light: WAIT"
         },
         {
-          "at": 44.2,
-          "text": "Premium means sell? No.",
-          "screen": "Premium sell"
+          "at": 44.4,
+          "text": "Bearish context, 4H premium, no execution model. Premium is not a short signal. Wait.",
+          "screen": "Scenario 2; WAIT"
         },
         {
-          "at": 47.6,
-          "text": "Structure, and execution later.",
-          "screen": "Structure + execution later"
+          "at": 49.6,
+          "text": "No clear structure, price in discount. Discount without a thesis is just a place. Wait.",
+          "screen": "Scenario 3; WAIT"
         },
         {
-          "at": 51.0,
-          "text": "Location isn’t permission."
+          "at": 55.4,
+          "text": "Location isn’t permission.",
+          "screen": "\"Still red. We wait.\""
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 60,
+      "end": 70,
+      "pointAt": 64,
+      "size": 52,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "Location can’t make an"
+          "at": 61.4,
+          "text": "Location can make a setup more attractive."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">invalid setup valid.</span>"
+          "at": 64,
+          "html": "It <span class=\"mark\">cannot make an invalid setup valid.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 60.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 61.6,
           "text": "Location can make a setup more attractive. It cannot make an invalid setup valid.",
           "screen": "Aristella points"
         }
@@ -252,30 +167,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 70,
+      "end": 82,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 72.4,
         "text": "Price is in discount. Do you buy?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 77,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 70.2,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 72.4,
           "text": "Price is in discount. Do you buy?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 77,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

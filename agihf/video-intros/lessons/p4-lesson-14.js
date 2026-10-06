@@ -1,18 +1,19 @@
 /**
- * Phase 4 · Section 2 · Lesson 14 intro video — "Understanding the Trading Range"
+ * Phase 4 · Section 11 · Lesson 14 intro video: "Understanding the Trading Range"
+ * Scenes: s11-you-are-here, s11-tape-measure (see scenes-s11.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p4-lesson-14",
-  "eyebrow": "Phase 4 · Section 2 · Lesson 14",
-  "duration": 76,
-  "sources": "From Phase 4, Lesson 14: reopening the 4H room, a current-price marker near the bottom, middle and top, picking the range that frames the current analysis, and asking relative to what.",
+  "eyebrow": "Phase 4 · Section 11 · Lesson 14",
+  "duration": 82,
+  "sources": "From Phase 4, Section 11, Lesson 14 (\"Understanding the Trading Range\"): the same 4H room as Section 10 with a current-price marker near the bottom door, the middle and the top door; bullish near the bottom is not the same as bullish at the top door; pick the range that frames the current analysis (the current external high and low, by relevance, not the most extreme candle or an internal swing); \"high or low, relative to what?\"",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 2: Location Within the Range",
+      "phase": "Section 11: Location Within the Range",
       "title": "Understanding the Trading Range",
       "quote": "High or low, relative to what?",
       "lines": [
@@ -22,284 +23,173 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Understanding the Trading Range*"
         },
         {
-          "at": 4.6,
-          "text": "Where are you standing?"
+          "at": 4.8,
+          "text": "So, where are you standing?"
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s11-you-are-here",
       "start": 8,
-      "end": 38,
-      "seed": 414,
-      "kicker": "The room, measured",
-      "swings": [
-        [
-          0,
-          0.6
-        ],
-        [
-          0.1,
-          0.95
-        ],
-        [
-          0.26,
-          0.08
-        ],
-        [
-          0.38,
-          0.55
-        ],
-        [
-          0.48,
-          0.25
-        ],
-        [
-          0.66,
-          0.85
-        ],
-        [
-          0.76,
-          0.6
-        ],
-        [
-          0.82,
-          0.68
-        ],
-        [
-          0.9,
-          0.5
-        ]
-      ],
-      "per": [
-        3,
-        5,
-        4,
-        3,
-        5,
-        3,
-        2,
-        3
-      ],
-      "play": [
-        {
-          "to": 8,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 35,
+      "kicker": "You are here",
+      "beats": {
+        "board": 8.6,
+        "doors": 10.6,
+        "bot": 13,
+        "mid": 18,
+        "top": 21.6,
+        "ask": 30.2
+      },
       "headlines": [
         {
           "at": 8.4,
           "html": "Where are <span class=\"mark\">you standing?</span>",
-          "out": 28.3
+          "out": 29.8
         },
         {
-          "at": 28.5,
+          "at": 30,
           "html": "Relative <span class=\"mark\">to what?</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "You know the room. You know the doors.",
-          "screen": "Doors appear"
+          "text": "You know the 4H room. You know the doors.",
+          "screen": "A mall directory shaped like the 4H room; doors light up"
         },
         {
-          "at": 13.0,
-          "text": "Now: where is price standing? Near the bottom…",
-          "screen": "\"near the bottom\""
+          "at": 13,
+          "text": "Now there’s a marker: where price is standing. Near the bottom door…",
+          "screen": "\"You are here\" pin near the bottom door"
         },
         {
-          "at": 18.0,
-          "text": "…in the middle…",
-          "screen": "\"middle\""
+          "at": 18,
+          "text": "…in the middle of the room…",
+          "screen": "Pin moves to the middle"
         },
         {
-          "at": 23.0,
+          "at": 21.6,
           "text": "…or right under the top door.",
-          "screen": "\"top door\""
+          "screen": "Pin moves right under the top door"
         },
         {
-          "at": 28.5,
-          "text": "Before you call price high or low, ask: relative to what range?"
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.85,
-          "from": 0.48,
-          "label": "🚪 External high",
-          "tone": "purple",
-          "at": 10.0
+          "at": 24.6,
+          "text": "Being bullish down at the bottom isn’t the same as being bullish up at the top door.",
+          "screen": "Shopper points; dog hops"
         },
         {
-          "v": 0.25,
-          "from": 0.48,
-          "label": "🚪 External low",
-          "tone": "purple",
-          "at": 10.4,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.3,
-          "v": 0.1,
-          "text": "● near the bottom",
-          "tone": "up",
-          "at": 13.0,
-          "fs": 22,
-          "out": 17.6
-        },
-        {
-          "u": 0.5,
-          "v": 0.55,
-          "text": "● middle",
-          "tone": "muted",
-          "at": 18.0,
-          "fs": 22,
-          "out": 22.6
-        },
-        {
-          "u": 0.7,
-          "v": 0.95,
-          "text": "● top door",
-          "tone": "down",
-          "at": 23.0,
-          "fs": 22
+          "at": 30.2,
+          "text": "So before you call price high or low, ask: relative to what?",
+          "screen": "\"Relative to the room!\""
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
+      "type": "s11-tape-measure",
+      "start": 35,
+      "end": 60,
       "kicker": "Pick the range",
-      "items": [
-        {
-          "title": "Highest",
-          "desc": [
-            "candle",
-            ""
-          ],
-          "tone": "muted",
-          "mark": "no",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "Internal",
-          "desc": [
-            "swing",
-            ""
-          ],
-          "tone": "gold",
-          "mark": "no",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "Current",
-          "desc": [
-            "external range",
-            ""
-          ],
-          "tone": "purple",
-          "mark": "yes",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "beats": {
+        "high": 38.6,
+        "internal": 43.8,
+        "ext": 48.6,
+        "done": 52.6
+      },
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Measure the <span class=\"mark\">right room.</span>"
+          "at": 35.4,
+          "html": "Pick the <span class=\"mark\">right room.</span>",
+          "out": 53.8
+        },
+        {
+          "at": 54,
+          "html": "Everything gets <span class=\"mark\">measured against it.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
+          "at": 35.4,
           "text": "So which range do we measure?",
-          "screen": "\"Pick the range\""
+          "screen": "A carpenter with a tape measure beside a 4H chart; a cat watches"
         },
         {
-          "at": 40.8,
-          "text": "The highest candle? No.",
-          "screen": "Highest candle"
+          "at": 38.6,
+          "text": "The highest candle on the screen? It exists, but it isn’t framing the room.",
+          "screen": "Tape stretches to the highest candle; ✗"
         },
         {
-          "at": 44.2,
-          "text": "An internal swing? No.",
-          "screen": "Internal swing"
+          "at": 43.8,
+          "text": "An internal swing? That’s movement inside the room.",
+          "screen": "Tape measures an internal swing; ✗"
         },
         {
-          "at": 47.6,
-          "text": "The current external range.",
-          "screen": "Current external range"
+          "at": 48.6,
+          "text": "The current external range: the high and low framing the structure right now.",
+          "screen": "External high and low doors; ✓"
         },
         {
-          "at": 51.0,
-          "text": "Measure the right room."
+          "at": 54,
+          "text": "That’s the room. Every location question gets measured against it."
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 60,
+      "end": 70,
+      "pointAt": 63.4,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "Bullish at the bottom"
+          "at": 61.4,
+          "text": "Before you call price high or low,"
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">≠ bullish at the top.</span> 😂"
+          "at": 63.4,
+          "html": "ask: <span class=\"mark\">relative to what?</span> 📏"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 60.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
-          "text": "Being bullish near the bottom of the room isn’t the same as being bullish at the top door.",
+          "at": 61.6,
+          "text": "Before you call price high or low, ask: high or low, relative to what?",
           "screen": "Aristella points"
         }
       ]
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 70,
+      "end": 82,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 72.4,
         "text": "High or low, relative to what?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 77.6,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 70.2,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 72.4,
           "text": "High or low, relative to what?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 77.6,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

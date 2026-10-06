@@ -1,20 +1,21 @@
 /**
- * Phase 4 · Section 2 · Lesson 16 intro video — "Premium & Discount"
+ * Phase 4 · Section 11 · Lesson 16 intro video: "Premium & Discount"
+ * Scenes: s11-two-thermometers, s11-label-gun (see scenes-s11.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p4-lesson-16",
-  "eyebrow": "Phase 4 · Section 2 · Lesson 16",
-  "duration": 76,
-  "sources": "From Phase 4, Lesson 16: premium above and discount below equilibrium of the selected range, one price being 4H discount and 1H premium at the same time, and always naming the range.",
+  "eyebrow": "Phase 4 · Section 11 · Lesson 16",
+  "duration": 80,
+  "sources": "From Phase 4, Section 11, Lesson 16 (\"Premium & Discount\"): premium = above equilibrium of the selected range, discount = below it; one price, two ranges (below the 4H equilibrium and above the 1H equilibrium at once, so 4H discount and 1H premium are both true); never just \"premium\": label it with the timeframe; \"Premium or discount of WHAT range?\"",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 2: Location Within the Range",
+      "phase": "Section 11: Location Within the Range",
       "title": "Premium & Discount",
-      "quote": "Of WHAT range?",
+      "quote": "Premium or discount of what range?",
       "lines": [
         {
           "at": 0.6,
@@ -28,282 +29,176 @@ window.LESSON_VIDEO = {
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s11-two-thermometers",
       "start": 8,
-      "end": 38,
-      "seed": 416,
+      "end": 34,
       "kicker": "Which range?",
-      "swings": [
-        [
-          0,
-          0.6
-        ],
-        [
-          0.1,
-          0.95
-        ],
-        [
-          0.26,
-          0.08
-        ],
-        [
-          0.38,
-          0.55
-        ],
-        [
-          0.48,
-          0.25
-        ],
-        [
-          0.66,
-          0.85
-        ],
-        [
-          0.76,
-          0.6
-        ],
-        [
-          0.82,
-          0.68
-        ],
-        [
-          0.9,
-          0.5
-        ]
-      ],
-      "per": [
-        3,
-        5,
-        4,
-        3,
-        5,
-        3,
-        2,
-        3
-      ],
-      "play": [
-        {
-          "to": 8,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "beats": {
+        "t4": 8.8,
+        "t1": 12.2,
+        "price": 15.8,
+        "read4": 19.6,
+        "read1": 23.4,
+        "both": 27.4
+      },
       "headlines": [
         {
           "at": 8.4,
-          "html": "Premium? <span class=\"mark\">Of what?</span>",
-          "out": 28.3
+          "html": "One price. <span class=\"mark\">Two ranges.</span>",
+          "out": 27.2
         },
         {
-          "at": 28.5,
-          "html": "Both <span class=\"mark\">can be true.</span>"
+          "at": 27.4,
+          "html": "Both can be <span class=\"mark\">true at once.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Here’s the 4H range and its equilibrium.",
-          "screen": "Doors appear"
+          "text": "Here’s the 4H range, with equilibrium in the middle.",
+          "screen": "A tall 4H thermometer"
         },
         {
-          "at": 13.0,
-          "text": "And a smaller 1H range inside it.",
-          "screen": "\"1H range\""
+          "at": 12.2,
+          "text": "And here’s a smaller 1H range.",
+          "screen": "A shorter 1H thermometer"
         },
         {
-          "at": 18.0,
-          "text": "The same price is 4H discount, and 1H premium.",
-          "screen": "Labels"
+          "at": 15.8,
+          "text": "Now one price, measured against both.",
+          "screen": "One price line across both"
         },
         {
-          "at": 23.0,
-          "text": "Both are true. They measure different ranges."
+          "at": 19.6,
+          "text": "Against the 4H range, it’s below the middle: 4H discount.",
+          "screen": "Left reader: \"4H discount\""
         },
         {
-          "at": 28.5,
-          "text": "So never just “premium.” Premium of which range?"
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.85,
-          "from": 0.48,
-          "label": "🚪 External high",
-          "tone": "purple",
-          "at": 9.6
+          "at": 23.4,
+          "text": "Against the 1H range, it’s above the middle: 1H premium.",
+          "screen": "Right reader: \"1H premium\""
         },
         {
-          "v": 0.25,
-          "from": 0.48,
-          "label": "🚪 External low",
-          "tone": "purple",
-          "at": 10.0,
-          "below": true
-        },
-        {
-          "v": 0.55,
-          "from": 0.48,
-          "label": "equilibrium · 50%",
-          "tone": "purple",
-          "at": 10.4
-        },
-        {
-          "v": 0.68,
-          "from": 0.66,
-          "label": "1H range",
-          "tone": "gold",
-          "at": 14.0,
-          "v2": 0.42
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.34,
-          "v": 0.2,
-          "text": "4H discount",
-          "tone": "up",
-          "at": 18.0,
-          "fs": 22
-        },
-        {
-          "u": 0.34,
-          "v": 0.92,
-          "text": "1H premium",
-          "tone": "down",
-          "at": 18.6,
-          "fs": 22
+          "at": 27.4,
+          "text": "Both are true. They measure different ranges.",
+          "screen": "Two checkmarks"
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Say it properly",
-      "items": [
-        {
-          "title": "“Premium”",
-          "desc": [
-            "",
-            ""
-          ],
-          "tone": "muted",
-          "mark": "no",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "4H",
-          "desc": [
-            "discount",
-            ""
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "1H",
-          "desc": [
-            "premium",
-            ""
-          ],
-          "tone": "down",
-          "mark": "yes",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s11-label-gun",
+      "start": 34,
+      "end": 58,
+      "kicker": "Label it properly",
+      "beats": {
+        "shelf": 34.4,
+        "parrot": 37,
+        "plain": 37.6,
+        "which": 41.4,
+        "tag4": 45.6,
+        "tag1": 48.8,
+        "done": 52.6
+      },
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Name <span class=\"mark\">the range.</span>"
+          "at": 34.4,
+          "html": "Say <span class=\"mark\">which range.</span>",
+          "out": 52.4
+        },
+        {
+          "at": 52.6,
+          "html": "Always <span class=\"mark\">name the range.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Say it properly.",
-          "screen": "\"Say it properly\""
+          "at": 34.4,
+          "text": "So how do you say it properly?",
+          "screen": "A shop shelf, a jar, a shopkeeper with a label gun, a parrot"
         },
         {
-          "at": 40.8,
-          "text": "Just “premium”? Incomplete.",
-          "screen": "Premium"
+          "at": 37.6,
+          "text": "Just “premium”? That’s incomplete.",
+          "screen": "A plain PREMIUM label; the parrot squawks"
         },
         {
-          "at": 44.2,
-          "text": "4H discount.",
-          "screen": "4H discount"
+          "at": 41.4,
+          "text": "Premium of which range?",
+          "screen": "\"premium of WHICH range?\"; the label falls off"
         },
         {
-          "at": 47.6,
-          "text": "1H premium.",
-          "screen": "1H premium"
+          "at": 45.6,
+          "text": "Price is below 4H equilibrium: 4H discount.",
+          "screen": "4H DISCOUNT label"
         },
         {
-          "at": 51.0,
-          "text": "Always name the range."
+          "at": 48.8,
+          "text": "And above 1H equilibrium: 1H premium.",
+          "screen": "1H PREMIUM label"
+        },
+        {
+          "at": 52.6,
+          "text": "Always name the range.",
+          "screen": "\"always name the range ✓\""
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
+      "start": 58,
+      "end": 68,
+      "pointAt": 61.6,
       "size": 66,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 59.4,
           "text": "Premium or discount"
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">of WHAT range?</span>"
+          "at": 61.6,
+          "html": "of <span class=\"mark\">WHAT range?</span> 🤔"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 58.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
-          "text": "Premium or discount of what range?",
+          "at": 59.6,
+          "text": "Premium or discount of what range? Always say which one you mean.",
           "screen": "Aristella points"
         }
       ]
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 68,
+      "end": 80,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 70.4,
         "text": "Can price be in discount and premium at the same time?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 76,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 68.2,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 70.4,
           "text": "Can price be in discount and premium at the same time?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 76,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

@@ -1,20 +1,21 @@
 /**
- * Phase 4 · Section 2 · Lesson 19 intro video — "Room to the Target"
+ * Phase 4 · Section 11 · Lesson 19 intro video: "Room to the Target"
+ * Scenes: s11-climb-wall, s11-calc-robot (see scenes-s11.js).
  */
 window.LESSON_VIDEO = {
   "slug": "p4-lesson-19",
-  "eyebrow": "Phase 4 · Section 2 · Lesson 19",
-  "duration": 76,
-  "sources": "From Phase 4, Lesson 19: the same bullish thesis with price low in the range vs right under the external high, room to objective on the Range Map, and the 300-point vs 20-point example.",
+  "eyebrow": "Phase 4 · Section 11 · Lesson 19",
+  "duration": 80,
+  "sources": "From Phase 4, Section 11, Lesson 19 (\"Room to the Target\"): a bullish thesis with the 4H external high as the potential objective; low in the room there is meaningful room, right under the high the room is almost gone; room = objective − current price (21,000 − 20,700 = 300 points; 21,000 − 20,980 = 20 points); context, never a trade score; being right about direction does not mean you are early enough to trade it.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 2: Location Within the Range",
+      "phase": "Section 11: Location Within the Range",
       "title": "Room to the Target",
-      "quote": "Are you early enough?",
+      "quote": "How much room is left?",
       "lines": [
         {
           "at": 0.6,
@@ -28,231 +29,138 @@ window.LESSON_VIDEO = {
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s11-climb-wall",
       "start": 8,
-      "end": 38,
-      "seed": 419,
+      "end": 34,
       "kicker": "Room to objective",
-      "swings": [
-        [
-          0,
-          0.6
-        ],
-        [
-          0.1,
-          0.95
-        ],
-        [
-          0.26,
-          0.08
-        ],
-        [
-          0.38,
-          0.55
-        ],
-        [
-          0.48,
-          0.25
-        ],
-        [
-          0.66,
-          0.85
-        ],
-        [
-          0.76,
-          0.6
-        ],
-        [
-          0.82,
-          0.68
-        ],
-        [
-          0.9,
-          0.5
-        ]
-      ],
-      "per": [
-        3,
-        5,
-        4,
-        3,
-        5,
-        3,
-        2,
-        3
-      ],
-      "play": [
-        {
-          "to": 8,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "beats": {
+        "obj": 9.6,
+        "climbA": 12.8,
+        "measA": 16.4,
+        "climbB": 20.4,
+        "measB": 24,
+        "same": 27.6
+      },
       "headlines": [
         {
           "at": 8.4,
-          "html": "Same thesis. <span class=\"mark\">Same room?</span>",
-          "out": 28.3
+          "html": "How much <span class=\"mark\">room is left?</span>",
+          "out": 27.4
         },
         {
-          "at": 28.5,
-          "html": "Right isn’t <span class=\"mark\">the same as early.</span>"
+          "at": 27.6,
+          "html": "Same direction. <span class=\"mark\">Very different room.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Bullish thesis, objective at the external high.",
-          "screen": "Doors appear"
+          "text": "Bullish thesis. The objective: the 4H external high, around twenty-one thousand.",
+          "screen": "Two climbing walls, one objective flag"
         },
         {
-          "at": 13.0,
-          "text": "Low in the room: about 300 points of room.",
-          "screen": "\"300 pts of room\""
+          "at": 12.8,
+          "text": "Climber A is low in the room, at twenty thousand seven hundred.",
+          "screen": "Climber A stops low on wall A"
         },
         {
-          "at": 18.0,
-          "text": "Right under the high: about 20.",
-          "screen": "\"20 pts of room\""
+          "at": 17,
+          "text": "That leaves about three hundred points of room.",
+          "screen": "\"300 pts\""
         },
         {
-          "at": 23.0,
-          "text": "Same direction. Very different room."
+          "at": 20.4,
+          "text": "Climber B? Same thesis, same objective, but already at twenty thousand nine eighty.",
+          "screen": "Climber B climbs right under the flag"
         },
         {
-          "at": 28.5,
-          "text": "Being right about direction doesn’t mean you’re early enough."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.85,
-          "from": 0.48,
-          "label": "🚪 External high",
-          "tone": "purple",
-          "at": 9.6
+          "at": 25,
+          "text": "About twenty points left.",
+          "screen": "\"20 pts\""
         },
         {
-          "v": 0.25,
-          "from": 0.48,
-          "label": "🚪 External low",
-          "tone": "purple",
-          "at": 10.0,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.32,
-          "v": 0.55,
-          "text": "300 pts of room",
-          "tone": "gold",
-          "at": 13.0,
-          "fs": 24,
-          "out": 17.6
-        },
-        {
-          "u": 0.72,
-          "v": 0.9,
-          "text": "20 pts of room",
-          "tone": "down",
-          "at": 18.0,
-          "fs": 24
+          "at": 27.6,
+          "text": "Same direction. Very different room.",
+          "screen": "\"early enough?\""
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Do the math",
-      "items": [
-        {
-          "title": "Objective",
-          "desc": [
-            "21,000",
-            ""
-          ],
-          "tone": "purple",
-          "at": 40.8
-        },
-        {
-          "title": "Price",
-          "desc": [
-            "20,700",
-            "300 pts"
-          ],
-          "tone": "up",
-          "at": 44.2
-        },
-        {
-          "title": "Price",
-          "desc": [
-            "20,980",
-            "20 pts"
-          ],
-          "tone": "down",
-          "at": 47.6
-        }
-      ],
+      "type": "s11-calc-robot",
+      "start": 34,
+      "end": 58,
+      "kicker": "Quick math",
+      "beats": {
+        "robot": 34.4,
+        "eq1": 37.6,
+        "eq2": 42.6,
+        "score": 48.4,
+        "ctx": 52.4
+      },
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Context. <span class=\"mark\">Not a score.</span>"
+          "at": 34.4,
+          "html": "Room = <span class=\"mark\">objective − price.</span>",
+          "out": 52.2
+        },
+        {
+          "at": 52.4,
+          "html": "Context, <span class=\"mark\">not a trade score.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Quick math.",
-          "screen": "\"Do the math\""
+          "at": 34.4,
+          "text": "Quick math. Room equals objective minus price.",
+          "screen": "A calculator robot"
         },
         {
-          "at": 40.8,
-          "text": "Objective: twenty-one thousand.",
-          "screen": "Objective 21,000"
+          "at": 37.6,
+          "text": "Twenty-one thousand minus twenty thousand seven hundred: three hundred points.",
+          "screen": "21,000 − 20,700 = 300 pts"
         },
         {
-          "at": 44.2,
-          "text": "Price at twenty thousand seven hundred: three hundred points.",
-          "screen": "Price 20,700 300 pts"
+          "at": 42.6,
+          "text": "Twenty-one thousand minus twenty thousand nine eighty: twenty points.",
+          "screen": "21,000 − 20,980 = 20 pts"
         },
         {
-          "at": 47.6,
-          "text": "Price at twenty thousand nine eighty: twenty points.",
-          "screen": "Price 20,980 20 pts"
+          "at": 48.4,
+          "text": "So is room a trade score? Nope.",
+          "screen": "A \"TRADE SCORE 9/10\" card gets crossed out"
         },
         {
-          "at": 51.0,
-          "text": "Context. Never a trade score."
+          "at": 52.4,
+          "text": "It’s context. Never a trade score.",
+          "screen": "\"room = context ✓\""
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 58,
+      "end": 68,
+      "pointAt": 61.8,
+      "size": 56,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
-          "text": "Right about direction"
+          "at": 59.4,
+          "text": "Being right about direction"
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">≠ early enough.</span>"
+          "at": 61.8,
+          "html": "doesn’t mean you’re <span class=\"mark\">early enough.</span> ⏰"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 58.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 59.6,
           "text": "Being right about direction doesn’t mean you’re early enough to trade it.",
           "screen": "Aristella points"
         }
@@ -260,30 +168,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 68,
+      "end": 80,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 70.4,
         "text": "Right about direction, early enough to trade it?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 76,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 68.2,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 70.4,
           "text": "Right about direction, early enough to trade it?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 76,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

@@ -1,6 +1,6 @@
 # Lesson 16 intro: "Premium & Discount"
 
-**Length:** 1:16 · **Pace:** relaxed and conversational, about 150 words a minute
+**Length:** 1:20 · **Pace:** relaxed and conversational, about 150 words a minute
 
 **Tip:** Play `p4-lesson-16.mp4` while you record, using the Time column to stay in sync, then lay your audio over it.
 
@@ -8,21 +8,23 @@
 |---|---|---|
 | 0:00 | Aristella waves; title *Premium & Discount* | Welcome to Lesson Sixteen: Premium and Discount. |
 | 0:04 |  | One price. Two ranges. |
-| 0:08 | Doors appear | Here's the 4H range and its equilibrium. |
-| 0:13 | "1H range" | And a smaller 1H range inside it. |
-| 0:18 | Labels | The same price is 4H discount, and 1H premium. |
-| 0:23 |  | Both are true. They measure different ranges. |
-| 0:28 |  | So never just "premium." Premium of which range? |
-| 0:38 | "Say it properly" | Say it properly. |
-| 0:40 | Premium | Just "premium"? Incomplete. |
-| 0:44 | 4H discount | 4H discount. |
-| 0:47 | 1H premium | 1H premium. |
-| 0:51 |  | Always name the range. |
-| 0:56 | Aristella thinks | Here's the big takeaway. |
-| 0:58 | Aristella points | Premium or discount of what range? |
-| 1:04 | "Your mission" | Here's your mission for this lesson. |
-| 1:07 | Mission question | Can price be in discount and premium at the same time? |
-| 1:12 | Aristella cheers; "Let's find out →" | Let's find out. |
+| 0:08 | A tall 4H thermometer | Here's the 4H range, with equilibrium in the middle. |
+| 0:12 | A shorter 1H thermometer | And here's a smaller 1H range. |
+| 0:15 | One price line across both | Now one price, measured against both. |
+| 0:19 | Left reader: "4H discount" | Against the 4H range, it's below the middle: 4H discount. |
+| 0:23 | Right reader: "1H premium" | Against the 1H range, it's above the middle: 1H premium. |
+| 0:27 | Two checkmarks | Both are true. They measure different ranges. |
+| 0:34 | A shop shelf, a jar, a shopkeeper with a label gun, a parrot | So how do you say it properly? |
+| 0:37 | A plain PREMIUM label; the parrot squawks | Just "premium"? That's incomplete. |
+| 0:41 | "premium of WHICH range?"; the label falls off | Premium of which range? |
+| 0:45 | 4H DISCOUNT label | Price is below 4H equilibrium: 4H discount. |
+| 0:48 | 1H PREMIUM label | And above 1H equilibrium: 1H premium. |
+| 0:52 | "always name the range ✓" | Always name the range. |
+| 0:58 | Aristella thinks | Here's the big takeaway. |
+| 0:59 | Aristella points | Premium or discount of what range? Always say which one you mean. |
+| 1:08 | "Your mission" | Here's your mission for this lesson. |
+| 1:10 | Mission question | Can price be in discount and premium at the same time? |
+| 1:16 | Aristella cheers; "Let's find out →" | Let's find out. |
 
 ## Where the words come from
-From Phase 4, Lesson 16: premium above and discount below equilibrium of the selected range, one price being 4H discount and 1H premium at the same time, and always naming the range.
+From Phase 4, Section 11, Lesson 16 ("Premium & Discount"): premium = above equilibrium of the selected range, discount = below it; one price, two ranges (below the 4H equilibrium and above the 1H equilibrium at once, so 4H discount and 1H premium are both true); never just "premium": label it with the timeframe; "Premium or discount of WHAT range?"
