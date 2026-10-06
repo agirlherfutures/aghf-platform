@@ -1366,8 +1366,8 @@
       const T = s.beats;
       let out = ground(1000, '#F6EEE6');
       const sk = pop(t, T.shelf, 0.7);
-      out += scaleAt(960, 820, sk, `<rect x="120" y="790" width="1680" height="30" rx="8" fill="#B8835A"/><rect x="160" y="820" width="20" height="180" fill="#9B6A45"/><rect x="1740" y="820" width="20" height="180" fill="#9B6A45"/>
-        <rect x="120" y="480" width="1680" height="20" rx="8" fill="#B8835A" opacity=".5"/>`);
+      out += scaleAt(960, 820, sk, `<rect x="200" y="790" width="1560" height="30" rx="8" fill="#B8835A"/><rect x="240" y="820" width="20" height="180" fill="#9B6A45"/><rect x="1700" y="820" width="20" height="180" fill="#9B6A45"/>
+        <rect x="200" y="480" width="1560" height="20" rx="8" fill="#B8835A" opacity=".5"/>`);
       const jars = [['VALID + CLEAN', '✦', C.teal, DK.teal], ['VALID BUT MESSY', '≈', C.peach, DK.peach], ['INCOMPLETE', '◐', C.purple, DK.purple], ['INVALID', '✗', C.pink, DK.pink], ['NO TRADE', '○', '#C9B9AE', C.muted]];
       const focus = t > T.done && t < T.done + 5;
       jars.forEach(([lab, ic, col, dk], i) => {
@@ -1381,9 +1381,9 @@
       });
       if (focus) out += pill(645, 470, 'technically valid · should you trade it?', DK.peach, pop(t, T.done, 0.6), 22);
       // Robot with a label gun; stickers stick, then get peeled off.
-      const rx = lerp(2000, 1700, ease(seg(t, T.robot, T.robot + 1.2)));
-      out += critter(t, 'robot', { x: rx, y: 1000, scale: 1.1, seed: 5, screen: '%', flip: true, talk: ctx.talking && t > T.tags[0] && t < T.rip });
-      out += bub(1640, 560, 'Let me score these! 🏷️', between(t, T.robot + 0.6, T.tags[1] + 0.6), { size: 28, tail: 'right' });
+      const rx = lerp(2050, 1840, ease(seg(t, T.robot, T.robot + 1.2)));
+      out += critter(t, 'robot', { x: rx, y: 1000, scale: 0.95, seed: 5, screen: '%', flip: true, talk: ctx.talking && t > T.tags[0] && t < T.rip });
+      out += bub(1640, 430, 'Let me score these! 🏷️', between(t, T.robot + 0.6, T.tags[1] + 0.6), { size: 28, tail: 'right' });
       [['82%', 330], ['A+', 645]].forEach(([lab, x], i) => {
         const at = T.tags[i];
         if (t < at) return;
@@ -1395,7 +1395,7 @@
       const sh = { x: lerp(-80, 140, ease(seg(t, T.shelf, T.shelf + 1.4))), y: 1000, scale: 0.9, look: A.LOOKS.a, seed: 2, walking: t > T.shelf && t < T.shelf + 1.4, talk: ctx.talking && t > T.rip - 0.4 && t < T.rip + 2.6 };
       if (t > T.rip - 0.4 && t < T.rip + 2) sh.frontArm = { a1: -40 + Math.sin(t * 9) * 20, a2: -60 };
       out += who(t, sh);
-      out += bub(260, 560, 'No fake scores! 🙅', between(t, T.rip - 0.2, T.rip + 3), { size: 28 });
+      out += bub(330, 430, 'No fake scores! 🙅', between(t, T.rip - 0.2, T.rip + 3), { size: 28 });
       return out;
     },
   });
