@@ -124,7 +124,7 @@ window.LESSON_VIDEO = {
       "start": 58,
       "end": 68,
       "pointAt": 60.6,
-      "size": 58,
+      "size": 52,
       "kicker": "Dayli says",
       "parts": [
         {

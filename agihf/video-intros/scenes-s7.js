@@ -683,7 +683,7 @@
     });
     out += duck(t, 900 + Math.sin(t * 0.6) * 80, 950, 0.95, Math.cos(t * 0.6) < 0);
     // fishermen: rod line ends at a bobber in their pond
-    [[200, 790, A.LOOKS.c, false, 1, 0], [1060, 800, A.LOOKS.seller, false, 3, 2], [1860, 990, A.LOOKS.a, true, 4.6, 3]].forEach(([fx, fy, look, flip, at, pi], i) => {
+    [[200, 790, A.LOOKS.c, false, 1, 0], [1040, 870, A.LOOKS.seller, false, 3, 2], [1860, 990, A.LOOKS.a, true, 4.6, 3]].forEach(([fx, fy, look, flip, at, pi], i) => {
       const k = pop(t, s.start + at, 0.6);
       if (k <= 0) return;
       const sc = 0.78, fa = { a1: -10, a2: -40 };
@@ -698,13 +698,13 @@
     const sk = pop(t, s.start + 12.4, 0.7);
     if (sk > 0) {
       const unknown = r > 15;
-      out += scaleAt(960, 500, sk, `<rect x="690" y="440" width="540" height="110" rx="16" fill="#fff" stroke="#9B6A45" stroke-width="8"/>
-        <text x="960" y="482" font-size="22" font-weight="700" text-anchor="middle" fill="${C.muted}" font-family="DM Sans" letter-spacing="3">POOL SIZE</text>
-        <text x="960" y="532" font-size="38" font-weight="900" text-anchor="middle" fill="${unknown ? C.purple : C.dark}" font-family="Playfair Display">${unknown ? '???' : '4,200 contracts'}</text>`);
+      out += scaleAt(960, 470, sk, `<rect x="690" y="410" width="540" height="110" rx="16" fill="#fff" stroke="#9B6A45" stroke-width="8"/>
+        <text x="960" y="452" font-size="22" font-weight="700" text-anchor="middle" fill="${C.muted}" font-family="DM Sans" letter-spacing="3">POOL SIZE</text>
+        <text x="960" y="502" font-size="38" font-weight="900" text-anchor="middle" fill="${unknown ? C.purple : C.dark}" font-family="Playfair Display">${unknown ? '???' : '4,200 contracts'}</text>`);
       const xk = ease(seg(r, 14.2, 14.8)) * (1 - seg(r, 14.9, 15.1));
-      if (xk > 0) out += `<line x1="720" y1="540" x2="${lerp(720, 1200, xk)}" y2="${lerp(540, 452, xk)}" stroke="${C.pink}" stroke-width="12" stroke-linecap="round"/>`;
+      if (xk > 0) out += `<line x1="720" y1="510" x2="${lerp(720, 1200, xk)}" y2="${lerp(510, 422, xk)}" stroke="${C.pink}" stroke-width="12" stroke-linecap="round"/>`;
     }
-    out += pill(960, 600, 'an area, never a count', C.purple, pop(t, s.start + 17.6), 26);
+    out += pill(960, 562, 'an area, never a count', C.purple, pop(t, s.start + 17.6), 26);
     return out;
   };
 
@@ -1012,7 +1012,7 @@
       out += pill(960, 450 + i * 62, `${txt.replace('?', '').toLowerCase()}: ${verdict}`, [C.pink, C.purple, C.pink, C.pink][i], pop(t, s.start + sweepAt + 0.2), 26);
     });
     // robot janitor with a broom
-    const rp = kf(r, [[4.4, -180, G], [5.8, 470, G], [9.3, 710, G], [12.8, 950, G], [16.3, 1190, G], [19.6, 1190, G], [21, 760, G]]);
+    const rp = kf(r, [[4.4, -180, G], [5.8, 470, G], [9.3, 710, G], [12.8, 950, G], [16.3, 1190, G], [19.6, 1190, G], [21, 620, G]]);
     const sweeping = cards.some(([, , , a]) => r > a - 0.4 && r < a + 0.6);
     const sw = sweeping ? Math.sin(t * 14) * 25 : 0;
     const broom = `<g transform="rotate(${-30 + sw})"><rect x="-5" y="-10" width="10" height="170" rx="4" fill="#9B6A45"/><path d="M-34,160 L34,160 L44,210 L-44,210 Z" fill="${C.peach}"/>

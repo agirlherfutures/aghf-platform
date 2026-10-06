@@ -1139,17 +1139,17 @@
     });
     out += bird(t, 1000, 394, 0.6, { hop: r > 3 && r < 9, col: C.purple, wing: '#5E56B8' });
     // Hiker and dog.
-    const hx = lerp(-100, 640, ease(seg(r, 9.6, 11.8))), walking = r > 9.6 && r < 11.8;
+    const hx = lerp(-100, 430, ease(seg(r, 9.6, 11.8))), walking = r > 9.6 && r < 11.8;
     const pack = '';
     const hk = { x: hx, y: 1000, scale: 0.9, look: LK.c, seed: 4, walking, frontArm: pick && r < 15 ? { a1: -60, a2: -50 } : undefined, talk: ctx.talking && r > 11.6 && r < 14.4, hold: pack };
     if (r > 9.6) {
       const hp = headOf(t, hk);
       out += `<rect x="${hx - 70 * 0.9}" y="${hp.y + 70}" width="${44}" height="${90}" rx="14" fill="${C.peach}" stroke="#E08E2E" stroke-width="4"/>` + person(t, hk) + hat(t, hk, 'cap', C.pink);
       out += dog(t, hx - 150, 1000, 0.55, { run: walking, happy: pick });
-      out += pill(hx, 560, 'bullish thesis', C.teal, pop(t, s.start + 10.4), 22);
+      out += pill(hx, 1040, 'bullish thesis', C.teal, pop(t, s.start + 10.4), 22);
     }
-    out += card(560, 680, ['Bullish?', 'Look up.'], { k: back(seg(r, 11.8, 12.2)), op: 1 - seg(r, 15, 15.4), fs: 26, tx: 60 });
-    out += stamp(1220, 470, 'POTENTIAL', TX.purple, t, s.start + 15, { fs: 30, rot: -8, fill: '#fff' });
+    out += card(330, 600, ['Bullish?', 'Look up.'], { k: back(seg(r, 11.8, 12.2)), op: 1 - seg(r, 15, 15.4), fs: 26, tx: 60 });
+    out += stamp(1500, 450, 'POTENTIAL', TX.purple, t, s.start + 15, { fs: 30, rot: -8, fill: '#fff' });
     if (r > 17.4) out += pill(1500, 990, 'guaranteed?', C.pink, pop(t, s.start + 17.4), 26) + cross(1640, 990, pop(t, s.start + 18, 0.5), C.pink, 26);
     return out;
   };
@@ -1173,7 +1173,7 @@
     let out = `<rect x="0" y="960" width="1920" height="120" fill="${C.tealL}"/>`;
     const rw = (y, at) => { const k = ease(seg(r, at, at + 0.8)); return `<rect x="200" y="${y}" width="${1560 * k}" height="80" rx="10" fill="#E9DED6"/>${Array.from({ length: 14 }, (_, i) => 240 + i * 110 < 200 + 1560 * k - 40 ? `<rect x="${240 + i * 110}" y="${y + 36}" width="60" height="8" rx="4" fill="#fff"/>` : '').join('')}`; };
     out += rw(560, 0.3) + rw(830, 0.6);
-    out += txt(230, 540, 'CHART 1', { fs: 22, col: C.muted, anchor: 'start', ls: 2 }) + txt(230, 810, 'CHART 2', { fs: 22, col: C.muted, anchor: 'start', ls: 2 });
+    out += txt(150, 540, 'CHART 1', { fs: 22, col: C.muted, anchor: 'start', ls: 2 }) + txt(150, 810, 'CHART 2', { fs: 22, col: C.muted, anchor: 'start', ls: 2 });
     // Objectives.
     const flag = (x, y, col, k) => k <= 0 ? '' : scl(x, y, k, `<line x1="${x}" y1="${y}" x2="${x}" y2="${y - 110}" stroke="${C.dark}" stroke-width="6"/><path d="M${x},${y - 110} Q${x + 30 + Math.sin(t * 6) * 6},${y - 116} ${x + 60},${y - 100} L${x + 60},${y - 70} Q${x + 30 - Math.sin(t * 6) * 6},${y - 80} ${x},${y - 74} Z" fill="${col}"/>`);
     out += flag(1700, 560, C.purple, pop(t, s.start + 3.2)) + pill(1600, 400, '4H external high', C.purple, pop(t, s.start + 3.4), 22);
@@ -1276,7 +1276,7 @@
       if (tk > 0) g += pill(x0 + 250, 850, thenTxt, col, tk, 26) + (mark === 'ok' ? check(x0 + 430, 850, tk, C.teal, 22) : '');
       return g;
     };
-    out += page(440, 3.6, 'IF price holds the 1H low…', 'THEN: thesis stays supported', [[0, 600], [0.2, 690], [0.4, 610], [0.55, 680], [0.75, 560], [1, 520]], C.teal, 'ok');
+    out += page(440, 3.6, 'IF price holds the 1H low…', 'THEN: supported', [[0, 600], [0.2, 690], [0.4, 610], [0.55, 680], [0.75, 560], [1, 520]], C.teal, 'ok');
     out += page(980, 8.6, 'IF it breaks…', 'THEN: reassess', [[0, 600], [0.2, 660], [0.35, 620], [0.6, 760], [0.75, 730], [1, 800]], C.pink, '');
     // Reader, owl, hoping guy.
     const rd = { x: 260, y: 1000, scale: 0.9, look: LK.k, seed: 2, frontArm: r > 3.6 && r < 14 ? { a1: -20, a2: -30 } : undefined, talk: ctx.talking && r < 14.6 };
@@ -1286,8 +1286,8 @@
     if (r > 14.4) {
       const hp = { x: lerp(2020, 1700, ease(seg(r, 14.4, 15.4))), y: 1000, scale: 0.85, look: LK.buyer, seed: 6, flip: true, walking: r < 15.4, frontArm: { a1: -100, a2: -60 + Math.sin(t * 6) * 6 }, talk: ctx.talking && r > 15 && r < 17 };
       out += person(t, hp);
-      out += card(1690, 560, ['Please just', 'go up! 🙏'], { k: back(seg(r, 15.2, 15.6)), fs: 28, tx: 10, italic: true, font: 'Playfair Display' });
-      out += stamp(1690, 560, 'HOPE ≠ PLAN', TX.pink, t, s.start + 17.0, { fs: 28, rot: -10 });
+      out += card(1690, 560, ['Please just', 'go up! 🙏'], { k: back(seg(r, 15.2, 15.6)), op: 1 - 0.55 * seg(r, 17, 17.4), fs: 28, tx: 10, italic: true, font: 'Playfair Display' });
+      out += stamp(1690, 640, 'HOPE ≠ PLAN', TX.pink, t, s.start + 17.0, { fs: 28, rot: -10 });
     }
     return out;
   };
@@ -1409,7 +1409,7 @@
     const st = [[2.0, 'BULLISH, IF THE LOW HOLDS', TX.purple], [6.0, 'STRENGTHENED', TX.teal], [10.6, 'WEAKENED', TX.peach], [14.6, 'INVALIDATED', TX.pink]];
     st.forEach(([at, label, col], i) => {
       const next = st[i + 1] ? st[i + 1][0] : 99;
-      if (r > at && r < next) out += stamp(1340, 470, label, col, t, s.start + at, { fs: i ? 34 : 26, rot: -4, fill: '#fff' });
+      if (r > at && r < next) out += stamp(i ? 1110 : 1200, 450, label, col, t, s.start + at, { fs: i ? 34 : 24, rot: -4, fill: '#fff' });
     });
     // Mailbox, carrier, reader.
     out += `<rect x="562" y="800" width="16" height="200" fill="#9B6A45"/><path d="M510,800 L630,800 L630,730 Q630,690 570,690 Q510,690 510,730 Z" fill="${C.purple}"/>
