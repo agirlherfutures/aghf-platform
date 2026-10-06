@@ -108,12 +108,12 @@ window.LESSON_VIDEO = {
         {
           "at": 13.0,
           "text": "Low in the room: about 300 points of room.",
-          "screen": "\"↕ 300 pts\""
+          "screen": "\"300 pts of room\""
         },
         {
           "at": 18.0,
           "text": "Right under the high: about 20.",
-          "screen": "\"↕ 20 pts\""
+          "screen": "\"20 pts of room\""
         },
         {
           "at": 23.0,
@@ -145,7 +145,7 @@ window.LESSON_VIDEO = {
         {
           "u": 0.32,
           "v": 0.55,
-          "text": "↕ 300 pts",
+          "text": "300 pts of room",
           "tone": "gold",
           "at": 13.0,
           "fs": 24,
@@ -154,7 +154,7 @@ window.LESSON_VIDEO = {
         {
           "u": 0.72,
           "v": 0.9,
-          "text": "↕ 20 pts",
+          "text": "20 pts of room",
           "tone": "down",
           "at": 18.0,
           "fs": 24

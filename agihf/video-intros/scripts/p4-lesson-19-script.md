@@ -9,8 +9,8 @@
 | 0:00 | Aristella waves; title *Room to the Target* | Welcome to Lesson Nineteen: Room to the Target. |
 | 0:04 |  | How much room is left? |
 | 0:08 | Doors appear | Bullish thesis, objective at the external high. |
-| 0:13 | "↕ 300 pts" | Low in the room: about 300 points of room. |
-| 0:18 | "↕ 20 pts" | Right under the high: about 20. |
+| 0:13 | "300 pts of room" | Low in the room: about 300 points of room. |
+| 0:18 | "20 pts of room" | Right under the high: about 20. |
 | 0:23 |  | Same direction. Very different room. |
 | 0:28 |  | Being right about direction doesn't mean you're early enough. |
 | 0:38 | "Do the math" | Quick math. |
