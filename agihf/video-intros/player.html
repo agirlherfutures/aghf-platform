@@ -109,7 +109,7 @@ body.captions .scene{padding-bottom:230px;}
 const params = new URLSearchParams(location.search);
 const lessonSlug = params.get('lesson') || 'lesson-01';
 if (params.get('captions') === '1') document.body.classList.add('captions');
-document.write('<script src="illustrations.js"><\/script><script src="scenes-illustrated.js"><\/script><script src="scenes-s2.js"><\/script>');
+document.write('<script src="illustrations.js"><\/script><script src="scenes-illustrated.js"><\/script><script src="scenes-s2.js"><\/script>' + [5,6,7,8,9,10,11].map(n => '<script src="scenes-s' + n + '.js"><\/script>').join(''));
 document.write('<script src="lessons/' + lessonSlug + '.js"><\/script>');
 </script>
 <script>

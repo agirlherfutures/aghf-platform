@@ -8,7 +8,7 @@
     "checkin",
     "complete"
   ],
-  "hook": "Clear Liquidity Detective, pass the Knowledge Check and save your Check-In to unlock Section 2.",
+  "hook": "Clear Liquidity Detective, pass the Knowledge Check and save your Check-In to unlock Section 8.",
   "game": {
     "title": "Liquidity Detective 💧",
     "tagline": "Nine cases. What do we know, and what don’t we know yet?",
@@ -2647,7 +2647,7 @@
     }
   },
   "checkin": {
-    "eyebrow": "📓 My Section 1 Check-In",
+    "eyebrow": "📓 My Section 7 Check-In",
     "heading": "What clicked? 💧",
     "fields": [
       {
@@ -2723,21 +2723,21 @@
       "sections": [
         {
           "icon": "✓",
-          "label": "Section 1: Understanding Liquidity"
+          "label": "Section 7: Understanding Liquidity"
         },
         {
           "icon": "🔓",
-          "label": "Section 2: Gaps, Imbalances & Price Delivery"
+          "label": "Section 8: Gaps, Imbalances & Price Delivery"
         },
         {
           "icon": "🔒",
-          "label": "Section 3: Understanding Market Participation"
+          "label": "Section 9: Understanding Market Participation"
         }
       ]
     },
     "nextUp": {
       "title": "Gaps, Imbalances & Price Delivery",
-      "cta": "Enter Section 2 →",
+      "cta": "Enter Section 8 →",
       "lines": [
         "You can see where orders may be sitting. Next: <strong>how did price travel?</strong>",
         "Price delivery · Displacement · Imbalance · Fair value gaps · Efficient vs inefficient moves",

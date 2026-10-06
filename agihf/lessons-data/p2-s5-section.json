@@ -8,7 +8,7 @@
     "checkin",
     "complete"
   ],
-  "hook": "Clear Break or Fake?, pass the Knowledge Check, and save your Check-In to unlock Section 3.",
+  "hook": "Clear Break or Fake?, pass the Knowledge Check, and save your Check-In to unlock Section 6.",
   "game": {
     "title": "Break or Fake? 👀",
     "tagline": "Eight levels. Interpret what changed.",
@@ -4908,7 +4908,7 @@
     }
   },
   "checkin": {
-    "eyebrow": "📓 My Section 2 Check-In",
+    "eyebrow": "📓 My Section 5 Check-In",
     "heading": "What changed for you? 🫧",
     "fields": [
       {
@@ -4983,21 +4983,21 @@
       "sections": [
         {
           "icon": "✓",
-          "label": "Section 1: How Markets Move"
+          "label": "Section 4: How Markets Move"
         },
         {
           "icon": "✓",
-          "label": "Section 2: Breaks, Shifts & Fakeouts"
+          "label": "Section 5: Breaks, Shifts & Fakeouts"
         },
         {
           "icon": "🔓",
-          "label": "Section 3: Reading Key Levels"
+          "label": "Section 6: Reading Key Levels"
         }
       ]
     },
     "nextUp": {
       "title": "Reading Key Levels",
-      "cta": "Enter Section 3 →",
+      "cta": "Enter Section 6 →",
       "lines": [
         "You know how structure forms.",
         "You know what happens when it breaks.",

@@ -8,7 +8,7 @@
     "checkin",
     "complete"
   ],
-  "hook": "Clear the Price Delivery Lab, pass the Knowledge Check and save your Check-In to unlock Section 3.",
+  "hook": "Clear the Price Delivery Lab, pass the Knowledge Check and save your Check-In to unlock Section 9.",
   "game": {
     "title": "Price Delivery Lab ⚡",
     "tagline": "Nine experiments. See the trip, not just the destination.",
@@ -2294,7 +2294,7 @@
     }
   },
   "checkin": {
-    "eyebrow": "📓 My Section 2 Check-In",
+    "eyebrow": "📓 My Section 8 Check-In",
     "heading": "What clicked? ⚡",
     "fields": [
       {
@@ -2374,21 +2374,21 @@
       "sections": [
         {
           "icon": "✓",
-          "label": "Section 1: Understanding Liquidity"
+          "label": "Section 7: Understanding Liquidity"
         },
         {
           "icon": "✓",
-          "label": "Section 2: Gaps, Imbalances & Price Delivery"
+          "label": "Section 8: Gaps, Imbalances & Price Delivery"
         },
         {
           "icon": "🔓",
-          "label": "Section 3: Understanding Market Participation"
+          "label": "Section 9: Understanding Market Participation"
         }
       ]
     },
     "nextUp": {
       "title": "Understanding Market Participation",
-      "cta": "Enter Section 3 →",
+      "cta": "Enter Section 9 →",
       "lines": [
         "You can see where orders may sit and how price delivered. Next: <strong>what can you actually claim about who was participating?</strong>",
         "Supply & demand · Buying vs selling pressure · Accumulation & distribution · What price can and can’t prove",

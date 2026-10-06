@@ -8,7 +8,7 @@
     "checkin",
     "complete"
   ],
-  "hook": "Clear the Structure Builder, pass the Knowledge Check, and save your Check-In to unlock Section 2.",
+  "hook": "Clear the Structure Builder, pass the Knowledge Check, and save your Check-In to unlock Section 5.",
   "game": {
     "title": "Structure Builder",
     "tagline": "Six levels. Find it, label it, read it.",
@@ -1514,7 +1514,7 @@
     "shuffleOptions": true
   },
   "checkin": {
-    "eyebrow": "📓 My Section 1 Check-In",
+    "eyebrow": "📓 My Section 4 Check-In",
     "heading": "What clicked? 🫧",
     "fields": [
       {
@@ -1585,21 +1585,21 @@
       "sections": [
         {
           "icon": "✓",
-          "label": "Section 1: How Markets Move"
+          "label": "Section 4: How Markets Move"
         },
         {
           "icon": "🔓",
-          "label": "Section 2: Breaks, Shifts & Fakeouts"
+          "label": "Section 5: Breaks, Shifts & Fakeouts"
         },
         {
           "icon": "🔒",
-          "label": "Section 3: Reading Key Levels"
+          "label": "Section 6: Reading Key Levels"
         }
       ]
     },
     "nextUp": {
       "title": "Breaks, Shifts & Fakeouts",
-      "cta": "Enter Section 2 →",
+      "cta": "Enter Section 5 →",
       "lines": [
         "You know how structure forms. But what happens when price stops following it?",
         "When is a break simply continuation? When does it signal that the story may actually be changing? And when did price just fake everybody out?",

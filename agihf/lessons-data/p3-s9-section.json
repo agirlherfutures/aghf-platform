@@ -2390,7 +2390,7 @@
     }
   },
   "checkin": {
-    "eyebrow": "📓 My Section 3 Check-In",
+    "eyebrow": "📓 My Section 9 Check-In",
     "heading": "What clicked? 📊",
     "fields": [
       {
@@ -5270,8 +5270,8 @@
       ],
       "note": "No 1-minute execution yet. First, direction.",
       "preview": [
-        "Section 1 · Finding Your Bias",
-        "Section 2 · Location Within the Range"
+        "Section 10 · Finding Your Bias",
+        "Section 11 · Location Within the Range"
       ]
     }
   }

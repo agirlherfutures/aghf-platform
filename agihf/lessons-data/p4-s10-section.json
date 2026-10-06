@@ -8,7 +8,7 @@
     "checkin",
     "complete"
   ],
-  "hook": "Clear Read the Room, pass the Knowledge Check and save your Check-In to unlock Section 2.",
+  "hook": "Clear Read the Room, pass the Knowledge Check and save your Check-In to unlock Section 11.",
   "game": {
     "title": "Read the Room 🏠",
     "save": "p4-s10",
@@ -7056,7 +7056,7 @@
     }
   },
   "checkin": {
-    "eyebrow": "📓 My Section 1 Check-In",
+    "eyebrow": "📓 My Section 10 Check-In",
     "heading": "What clicked? 🏠",
     "fields": [
       {
@@ -7139,17 +7139,17 @@
       "sections": [
         {
           "icon": "✓",
-          "label": "Section 1: Finding Your Bias"
+          "label": "Section 10: Finding Your Bias"
         },
         {
           "icon": "🔓",
-          "label": "Section 2: Location Within the Range"
+          "label": "Section 11: Location Within the Range"
         }
       ]
     },
     "nextUp": {
       "title": "Location Within the Range",
-      "cta": "Enter Section 2 →",
+      "cta": "Enter Section 11 →",
       "lines": [
         "You know the <strong>room</strong>. You know the directional <strong>thesis</strong>. Now: <strong>where is price inside that room?</strong>",
         "Same bullish room twice. Price near the bottom. Price near the top. <strong>Same direction. Same opportunity?</strong> That’s what we’re learning next.",

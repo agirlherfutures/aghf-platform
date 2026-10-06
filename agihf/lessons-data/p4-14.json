@@ -21,7 +21,7 @@
   "slides": [
     {
       "type": "range_stand",
-      "kicker": "Section 2 · Location",
+      "kicker": "Section 11 · Location",
       "title": "Where are you standing?",
       "flow": 0,
       "high": 21040,
@@ -29,7 +29,7 @@
       "steps": [
         {
           "price": 20650,
-          "say": "Same room as Section 1. Now there’s a marker: <strong>where price is standing.</strong> Near the bottom door…"
+          "say": "Same room as Section 10. Now there’s a marker: <strong>where price is standing.</strong> Near the bottom door…"
         },
         {
           "price": 20825.0,
