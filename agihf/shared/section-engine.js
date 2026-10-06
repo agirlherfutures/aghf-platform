@@ -737,6 +737,7 @@ function renderRichComplete(slide, data, { backHref, nextSectionHref, lessonsLab
       ${c.nextUp.model ? iccModelHtml({ locked: true, questions: c.nextUp.model }) : ''}
       ${c.nextUp.zoom ? `<div class="sw-zoom">${c.nextUp.zoom.map((z, i) => `${i ? '<div class="sw-zoom-arrow">↓</div>' : ''}<div class="sw-zoom-row" style="--d:${0.3 + i * 0.4}s"><b>${z.tf}</b><span><strong>${z.title}</strong>${z.line ? `<small>${z.line}</small>` : ''}</span></div>`).join('')}</div>` : ''}
       ${c.nextUp.questions ? `<ul class="sw-next-qs">${c.nextUp.questions.map((q) => `<li>🔒 ${q}</li>`).join('')}</ul>` : ''}
+      ${c.nextUp.cinema ? '<div class="sw-next-cinema"></div>' : ''}
       ${c.nextUp.after ? `<p class="sw-next-after">${c.nextUp.after}</p>` : ''}
       <button type="button" class="lw-cc-next" id="swNextSectionBtn">${c.nextUp.cta || 'Enter next section →'}</button>
     </div>` : `
@@ -747,6 +748,11 @@ function renderRichComplete(slide, data, { backHref, nextSectionHref, lessonsLab
     const host = slide.querySelector('.sw-cinema');
     const r = SLIDE_RENDERERS[c.cinema.type];
     if (r) r(host, c.cinema, null, {});
+  }
+  if (c.nextUp?.cinema) {
+    const host = slide.querySelector('.sw-next-cinema');
+    const r = SLIDE_RENDERERS[c.nextUp.cinema.type];
+    if (r) r(host, c.nextUp.cinema, null, {});
   }
   document.getElementById('swNextSectionBtn').addEventListener('click', () => { window.location.href = nextSectionHref || backHref; });
 }

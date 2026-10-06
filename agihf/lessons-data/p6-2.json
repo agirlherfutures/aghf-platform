@@ -1,0 +1,184 @@
+{
+ "phase": "p6",
+ "section": "s15",
+ "lessonNumber": 2,
+ "title": "Your Pre-Entry Checklist",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "The card prepares you to WAIT.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Use a six-field pre-entry card that prepares you to wait, never one that approves a trade.",
+  "missionQuestion": "Am I ready to wait for ICC?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "Six fields. That’s it.",
+   "heading": "The AGHF Pre-Entry Card",
+   "body": "",
+   "beats": [
+    {
+     "icon": "4H",
+     "title": "Context",
+     "line": "Do I understand the 4H story?"
+    },
+    {
+     "icon": "1H",
+     "title": "Structure",
+     "line": "Do I understand the 1H map?"
+    },
+    {
+     "icon": "📍",
+     "title": "Location",
+     "line": "Am I at or near an area that matters?"
+    },
+    {
+     "icon": "↑↓",
+     "title": "Direction",
+     "line": "What side am I interested in?"
+    },
+    {
+     "icon": "PIL",
+     "title": "PIL",
+     "line": "What level must price prove itself through?"
+    },
+    {
+     "icon": "✗",
+     "title": "Invalidation",
+     "line": "What would make this idea irrelevant?"
+    }
+   ],
+   "punch": "Then: WAIT FOR ICC."
+  },
+  {
+   "type": "p6_preentry",
+   "kicker": "Fill the card",
+   "title": "Is she ready?",
+   "brief": "4H bullish, pulling back into discount. 1H higher low holding. Long only. Invalidation: a close below the 1H HL. The PIL? <b>“I don’t really know my PIL, but I’ll know the setup when I see it.”</b>",
+   "values": {
+    "context": {
+     "state": "defined",
+     "value": "4H bullish"
+    },
+    "structure": {
+     "state": "defined",
+     "value": "1H HL holding"
+    },
+    "location": {
+     "state": "defined",
+     "value": "4H discount"
+    },
+    "direction": {
+     "state": "defined",
+     "value": "Long only"
+    },
+    "pil": {
+     "state": "unknown",
+     "value": "“I’ll know it when I see it”",
+     "why": "She never named a level. “I’ll know it when I see it” isn’t a PIL."
+    },
+    "invalidation": {
+     "state": "defined",
+     "value": "Close below the 1H HL"
+    }
+   },
+   "ask": {
+    "prompt": "“I don’t really know my PIL, but I’ll know the setup when I see it.” What’s the problem?",
+    "options": [
+     {
+      "label": "That isn’t a rule-based plan",
+      "correct": true,
+      "why": "No PIL means no indication to wait for. The plan would be invented in the moment."
+     },
+     {
+      "label": "Nothing, experienced traders feel it",
+      "feedback": "Feel isn’t a level. Without a PIL there’s nothing for price to prove."
+     },
+     {
+      "label": "She just needs more confluence",
+      "feedback": "Confluence can’t replace the level price must prove itself through."
+     }
+    ],
+    "stack": true
+   }
+  },
+  {
+   "type": "p6_preentry",
+   "kicker": "All six defined",
+   "title": "Does a full card mean “take the trade”?",
+   "brief": "Same chart. This time she named the PIL: 21,004.25, the swing high the pullback came from.",
+   "values": {
+    "context": {
+     "state": "defined",
+     "value": "4H bullish"
+    },
+    "structure": {
+     "state": "defined",
+     "value": "1H HL holding"
+    },
+    "location": {
+     "state": "defined",
+     "value": "4H discount"
+    },
+    "direction": {
+     "state": "defined",
+     "value": "Long only"
+    },
+    "pil": {
+     "state": "defined",
+     "value": "21,004.25"
+    },
+    "invalidation": {
+     "state": "defined",
+     "value": "Close below the 1H HL"
+    }
+   },
+   "ask": {
+    "prompt": "All six fields are defined. What does the card say now?",
+    "options": [
+     {
+      "label": "6/6: take the trade",
+      "feedback": "It’s not a signal checklist. Nothing has happened at the PIL yet.",
+      "mistake": "checklist-signal"
+     },
+     {
+      "label": "Ready to WAIT for ICC",
+      "correct": true,
+      "why": "The card prepares you to wait. Price still has to earn every step."
+     },
+     {
+      "label": "Enter at the PIL now",
+      "feedback": "Nothing has indicated. The card doesn’t approve entries."
+     }
+    ],
+    "stack": true
+   }
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "This card doesn’t approve a trade. <em>It tells you what you’re waiting for.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why isn’t a complete pre-entry card a reason to enter?",
+   "modelAnswer": "Because it only defines the plan: context, structure, location, direction, PIL and invalidation. Then I wait for ICC. Price still has to earn the entry."
+  }
+ ],
+ "takeaways": [
+  "Six fields, kept short.",
+  "Any unknown = NOT READY.",
+  "Defined = READY TO WAIT. Never “take trade”."
+ ],
+ "remember": "The card prepares you to wait."
+}

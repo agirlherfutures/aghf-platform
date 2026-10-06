@@ -1,0 +1,3159 @@
+{
+ "phase": "p6",
+ "section": "s15",
+ "title": "How to Actually Enter",
+ "steps": [
+  "game",
+  "knowledge",
+  "checkin",
+  "complete"
+ ],
+ "hook": "Clear the Execution Timing Lab, pass the Knowledge Check and save your Check-In to unlock Section 16.",
+ "game": {
+  "title": "Execution Timing Lab 🎯",
+  "save": "p6-s15",
+  "xp": 0,
+  "tagline": "Live candle-by-candle decisions. WAIT is usually the right button.",
+  "doneHeading": "EXECUTION TIMING LAB COMPLETE ✓",
+  "doneBadge": "Execution Timing Lab: all levels cleared",
+  "doneLine": "You waited through indication, correction and fake continuation, prepared only after the close, executed only at the first retest, passed the moves that left without you, and reassessed new structure.",
+  "readout": "YOUR EXECUTION READ",
+  "review": {
+   "Pre-entry readiness": [
+    "p6",
+    2,
+    "Your pre-entry checklist"
+   ],
+   "Execution status": [
+    "p6",
+    3,
+    "Developing vs executable"
+   ],
+   "Patience": [
+    "p6",
+    4,
+    "Confirmation vs anticipation"
+   ],
+   "Confirmation vs anticipation": [
+    "p6",
+    4,
+    "Confirmation vs anticipation"
+   ],
+   "Confirmed vs executable": [
+    "p6",
+    3,
+    "Developing vs executable"
+   ],
+   "Retest timing": [
+    "p6",
+    5,
+    "Timing the first retest"
+   ],
+   "No chase": [
+    "p6",
+    6,
+    "No retest, no chase"
+   ],
+   "Process vs outcome": [
+    "p6",
+    7,
+    "Process vs outcome"
+   ],
+   "Reassessment": [
+    "p6",
+    8,
+    "When the best entry is no entry"
+   ],
+   "Full execution": [
+    "p6",
+    5,
+    "Timing the first retest"
+   ]
+  },
+  "levels": [
+   {
+    "type": "p6_preentry",
+    "sessionStart": "execution-lab",
+    "brief": "4H ✓ 1H ✓ … PIL?",
+    "values": {
+     "context": {
+      "state": "defined",
+      "value": "4H bullish"
+     },
+     "structure": {
+      "state": "defined",
+      "value": "1H HL holding"
+     },
+     "location": {
+      "state": "defined",
+      "value": "4H discount"
+     },
+     "direction": {
+      "state": "defined",
+      "value": "Long only"
+     },
+     "pil": {
+      "state": "unknown",
+      "value": "Not chosen",
+      "why": "No level was named."
+     },
+     "invalidation": {
+      "state": "defined",
+      "value": "Close below the 1H HL"
+     }
+    },
+    "ask": {
+     "prompt": "READY FOR EXECUTION?",
+     "options": [
+      {
+       "label": "Yes, the HTF is great",
+       "feedback": "Great context doesn’t create a PIL."
+      },
+      {
+       "label": "No: the PIL is undefined",
+       "correct": true,
+       "why": "Not ready. Nothing to wait for yet."
+      }
+     ],
+     "stack": true
+    },
+    "name": "Ready or not?",
+    "concept": "Pre-entry readiness"
+   },
+   {
+    "type": "trigger_sim",
+    "mode": "decide",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20987.25,
+       "l": 20981.0,
+       "c": 20986.25
+      },
+      {
+       "o": 20986.25,
+       "h": 20990.5,
+       "l": 20985.25,
+       "c": 20989.75
+      },
+      {
+       "o": 20989.75,
+       "h": 20995.0,
+       "l": 20989.0,
+       "c": 20994.25
+      },
+      {
+       "o": 20994.25,
+       "h": 20999.0,
+       "l": 20993.75,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.0,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21002.75,
+       "l": 20998.75,
+       "c": 20999.5
+      },
+      {
+       "o": 20999.5,
+       "h": 21000.0,
+       "l": 20995.0,
+       "c": 20996.25
+      },
+      {
+       "o": 20996.25,
+       "h": 20996.75,
+       "l": 20991.75,
+       "c": 20993.25
+      },
+      {
+       "o": 20993.25,
+       "h": 20994.0,
+       "l": 20989.75,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20996.25,
+       "l": 20990.25,
+       "c": 20995.0
+      },
+      {
+       "o": 20995.0,
+       "h": 20998.25,
+       "l": 20994.5,
+       "c": 20997.0
+      },
+      {
+       "o": 20997.0,
+       "h": 21002.0,
+       "l": 20996.5,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      }
+     ],
+     "start": 6,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish"
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis"
+      },
+      {
+       "label": "15M",
+       "value": "Pulling back into the map"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ],
+     "preEntry": {
+      "context": {
+       "state": "defined",
+       "value": "4H bullish"
+      },
+      "structure": {
+       "state": "defined",
+       "value": "1H HL holding"
+      },
+      "location": {
+       "state": "defined",
+       "value": "4H discount"
+      },
+      "direction": {
+       "state": "defined",
+       "value": "Long only"
+      },
+      "pil": {
+       "state": "defined",
+       "value": "21,004.25"
+      },
+      "invalidation": {
+       "state": "defined",
+       "value": "Close below the 1H HL"
+      }
+     }
+    },
+    "setups": [
+     {
+      "pil": 21004.25,
+      "pilAt": 4
+     }
+    ],
+    "checkpoints": [
+     {
+      "at": 11,
+      "askStatus": true,
+      "goal": true,
+      "after": "Waiting. PIL set, nothing proven."
+     }
+    ],
+    "blind": true,
+    "actions": [
+     "wait",
+     "enter",
+     "pass"
+    ],
+    "name": "Waiting status",
+    "concept": "Execution status",
+    "brief": "PIL established. Name the status."
+   },
+   {
+    "type": "trigger_sim",
+    "mode": "decide",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20987.25,
+       "l": 20981.0,
+       "c": 20986.25
+      },
+      {
+       "o": 20986.25,
+       "h": 20990.5,
+       "l": 20985.25,
+       "c": 20989.75
+      },
+      {
+       "o": 20989.75,
+       "h": 20995.0,
+       "l": 20989.0,
+       "c": 20994.25
+      },
+      {
+       "o": 20994.25,
+       "h": 20999.0,
+       "l": 20993.75,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.0,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21002.75,
+       "l": 20998.75,
+       "c": 20999.5
+      },
+      {
+       "o": 20999.5,
+       "h": 21000.0,
+       "l": 20995.0,
+       "c": 20996.25
+      },
+      {
+       "o": 20996.25,
+       "h": 20996.75,
+       "l": 20991.75,
+       "c": 20993.25
+      },
+      {
+       "o": 20993.25,
+       "h": 20994.0,
+       "l": 20989.75,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20996.25,
+       "l": 20990.25,
+       "c": 20995.0
+      },
+      {
+       "o": 20995.0,
+       "h": 20998.25,
+       "l": 20994.5,
+       "c": 20997.0
+      },
+      {
+       "o": 20997.0,
+       "h": 21002.0,
+       "l": 20996.5,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      }
+     ],
+     "start": 10,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish"
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis"
+      },
+      {
+       "label": "15M",
+       "value": "Pulling back into the map"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ]
+    },
+    "setups": [
+     {
+      "pil": 21004.25,
+      "pilAt": 4
+     }
+    ],
+    "checkpoints": [
+     {
+      "at": 12,
+      "prompt": "Indication just closed. ENTER?",
+      "gp": "<b>+10</b> DISCIPLINE GP",
+      "goal": true,
+      "after": "Correct. Doing nothing was the decision."
+     }
+    ],
+    "actions": [
+     "wait",
+     "enter"
+    ],
+    "tempts": [
+     {
+      "at": 12
+     },
+     {
+      "at": 13
+     }
+    ],
+    "name": "Don’t click yet",
+    "concept": "Patience",
+    "brief": "Indication is about to form. The ENTER button will tempt you."
+   },
+   {
+    "type": "trigger_sim",
+    "mode": "decide",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20986.5,
+       "l": 20980.75,
+       "c": 20986.0
+      },
+      {
+       "o": 20986.0,
+       "h": 20990.5,
+       "l": 20984.75,
+       "c": 20990.25
+      },
+      {
+       "o": 20990.25,
+       "h": 20993.75,
+       "l": 20990.0,
+       "c": 20993.25
+      },
+      {
+       "o": 20993.25,
+       "h": 20999.25,
+       "l": 20992.0,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.75,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21003.0,
+       "l": 20999.25,
+       "c": 21000.0
+      },
+      {
+       "o": 21000.0,
+       "h": 21001.0,
+       "l": 20994.5,
+       "c": 20996.0
+      },
+      {
+       "o": 20996.0,
+       "h": 20997.25,
+       "l": 20993.75,
+       "c": 20995.0
+      },
+      {
+       "o": 20995.0,
+       "h": 20995.5,
+       "l": 20990.25,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20995.5,
+       "l": 20990.5,
+       "c": 20994.5
+      },
+      {
+       "o": 20994.5,
+       "h": 20998.5,
+       "l": 20994.25,
+       "c": 20997.25
+      },
+      {
+       "o": 20997.25,
+       "h": 21002.0,
+       "l": 20996.5,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21006.75,
+       "l": 21001.75,
+       "c": 21003.25,
+       "path": [
+        21002.0,
+        21006.75,
+        21003.25
+       ]
+      },
+      {
+       "o": 21003.25,
+       "h": 21008.0,
+       "l": 21002.5,
+       "c": 21007.25
+      }
+     ],
+     "start": 12,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish"
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis"
+      },
+      {
+       "label": "15M",
+       "value": "Pulling back into the map"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ]
+    },
+    "setups": [
+     {
+      "pil": 21004.25,
+      "pilAt": 4
+     }
+    ],
+    "checkpoints": [
+     {
+      "at": 14,
+      "intrabar": 0.42,
+      "prompt": "It looks strong, and it’s still open. What do you do?"
+     },
+     {
+      "at": 14,
+      "goal": true,
+      "after": "<b>GOOD WAIT.</b> What looked like continuation never confirmed."
+     }
+    ],
+    "tempts": [
+     {
+      "at": 14
+     }
+    ],
+    "name": "Anticipation trap",
+    "concept": "Confirmation vs anticipation",
+    "brief": "Correction is in. Watch the next candle."
+   },
+   {
+    "type": "trigger_sim",
+    "mode": "decide",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20987.25,
+       "l": 20981.0,
+       "c": 20986.25
+      },
+      {
+       "o": 20986.25,
+       "h": 20990.5,
+       "l": 20985.25,
+       "c": 20989.75
+      },
+      {
+       "o": 20989.75,
+       "h": 20995.0,
+       "l": 20989.0,
+       "c": 20994.25
+      },
+      {
+       "o": 20994.25,
+       "h": 20999.0,
+       "l": 20993.75,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.0,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21002.75,
+       "l": 20998.75,
+       "c": 20999.5
+      },
+      {
+       "o": 20999.5,
+       "h": 21000.0,
+       "l": 20995.0,
+       "c": 20996.25
+      },
+      {
+       "o": 20996.25,
+       "h": 20996.75,
+       "l": 20991.75,
+       "c": 20993.25
+      },
+      {
+       "o": 20993.25,
+       "h": 20994.0,
+       "l": 20989.75,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20996.25,
+       "l": 20990.25,
+       "c": 20995.0
+      },
+      {
+       "o": 20995.0,
+       "h": 20998.25,
+       "l": 20994.5,
+       "c": 20997.0
+      },
+      {
+       "o": 20997.0,
+       "h": 21002.0,
+       "l": 20996.5,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21008.5,
+       "l": 21002.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21009.75,
+       "l": 21006.5,
+       "c": 21009.25
+      }
+     ],
+     "start": 12,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish"
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis"
+      },
+      {
+       "label": "15M",
+       "value": "Pulling back into the map"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ]
+    },
+    "setups": [
+     {
+      "pil": 21004.25,
+      "pilAt": 4
+     }
+    ],
+    "checkpoints": [
+     {
+      "at": 14,
+      "prompt": "Continuation confirmed. ENTER?",
+      "expect": "wait",
+      "accept": [
+       "prepare"
+      ],
+      "goal": true,
+      "after": "CONFIRMED ≠ EXECUTABLE. No retest yet."
+     }
+    ],
+    "actions": [
+     "wait",
+     "prepare",
+     "enter"
+    ],
+    "name": "Confirmed",
+    "concept": "Confirmed vs executable",
+    "brief": "Continuation is closing. Does that make it executable?"
+   },
+   {
+    "type": "trigger_sim",
+    "mode": "decide",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20987.25,
+       "l": 20981.0,
+       "c": 20986.25
+      },
+      {
+       "o": 20986.25,
+       "h": 20990.5,
+       "l": 20985.25,
+       "c": 20989.75
+      },
+      {
+       "o": 20989.75,
+       "h": 20995.0,
+       "l": 20989.0,
+       "c": 20994.25
+      },
+      {
+       "o": 20994.25,
+       "h": 20999.0,
+       "l": 20993.75,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.0,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21002.75,
+       "l": 20998.75,
+       "c": 20999.5
+      },
+      {
+       "o": 20999.5,
+       "h": 21000.0,
+       "l": 20995.0,
+       "c": 20996.25
+      },
+      {
+       "o": 20996.25,
+       "h": 20996.75,
+       "l": 20991.75,
+       "c": 20993.25
+      },
+      {
+       "o": 20993.25,
+       "h": 20994.0,
+       "l": 20989.75,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20996.25,
+       "l": 20990.25,
+       "c": 20995.0
+      },
+      {
+       "o": 20995.0,
+       "h": 20998.25,
+       "l": 20994.5,
+       "c": 20997.0
+      },
+      {
+       "o": 20997.0,
+       "h": 21002.0,
+       "l": 20996.5,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21008.5,
+       "l": 21002.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21009.75,
+       "l": 21006.5,
+       "c": 21009.25
+      },
+      {
+       "o": 21009.25,
+       "h": 21011.25,
+       "l": 21008.25,
+       "c": 21010.75
+      },
+      {
+       "o": 21010.75,
+       "h": 21014.5,
+       "l": 21010.0,
+       "c": 21014.25
+      },
+      {
+       "o": 21014.25,
+       "h": 21017.0,
+       "l": 21013.5,
+       "c": 21016.25
+      },
+      {
+       "o": 21016.25,
+       "h": 21017.0,
+       "l": 21011.75,
+       "c": 21012.25
+      },
+      {
+       "o": 21012.25,
+       "h": 21013.25,
+       "l": 21009.75,
+       "c": 21010.75
+      },
+      {
+       "o": 21010.75,
+       "h": 21011.5,
+       "l": 21005.75,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21008.0,
+       "l": 21003.75,
+       "c": 21005.75
+      },
+      {
+       "o": 21005.75,
+       "h": 21008.5,
+       "l": 21005.25,
+       "c": 21007.0
+      }
+     ],
+     "start": 15,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish"
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis"
+      },
+      {
+       "label": "15M",
+       "value": "Pulling back into the map"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ],
+     "preEntry": {
+      "context": {
+       "state": "defined",
+       "value": "4H bullish"
+      },
+      "structure": {
+       "state": "defined",
+       "value": "1H HL holding"
+      },
+      "location": {
+       "state": "defined",
+       "value": "4H discount"
+      },
+      "direction": {
+       "state": "defined",
+       "value": "Long only"
+      },
+      "pil": {
+       "state": "defined",
+       "value": "21,004.25"
+      },
+      "invalidation": {
+       "state": "defined",
+       "value": "Close below the 1H HL"
+      }
+     }
+    },
+    "setups": [
+     {
+      "pil": 21004.25,
+      "pilAt": 4
+     }
+    ],
+    "checkpoints": [
+     {
+      "at": 22,
+      "goal": true,
+      "after": "On model."
+     }
+    ],
+    "name": "First retest",
+    "concept": "Retest timing",
+    "brief": "Sequence confirmed. Wait for price to come back."
+   },
+   {
+    "type": "trigger_sim",
+    "mode": "decide",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20986.5,
+       "l": 20981.0,
+       "c": 20986.0
+      },
+      {
+       "o": 20986.0,
+       "h": 20991.0,
+       "l": 20985.0,
+       "c": 20990.0
+      },
+      {
+       "o": 20990.0,
+       "h": 20994.75,
+       "l": 20988.5,
+       "c": 20993.75
+      },
+      {
+       "o": 20993.75,
+       "h": 20998.5,
+       "l": 20992.75,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.25,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21002.0,
+       "l": 20999.0,
+       "c": 20999.5
+      },
+      {
+       "o": 20999.5,
+       "h": 21000.75,
+       "l": 20995.25,
+       "c": 20996.5
+      },
+      {
+       "o": 20996.5,
+       "h": 20997.0,
+       "l": 20994.0,
+       "c": 20994.75
+      },
+      {
+       "o": 20994.75,
+       "h": 20995.75,
+       "l": 20990.5,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20995.5,
+       "l": 20990.25,
+       "c": 20994.0
+      },
+      {
+       "o": 20994.0,
+       "h": 20998.5,
+       "l": 20993.0,
+       "c": 20997.75
+      },
+      {
+       "o": 20997.75,
+       "h": 21002.5,
+       "l": 20996.5,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21007.75,
+       "l": 21002.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21011.75,
+       "l": 21007.0,
+       "c": 21010.5
+      },
+      {
+       "o": 21010.5,
+       "h": 21016.0,
+       "l": 21009.25,
+       "c": 21015.5
+      },
+      {
+       "o": 21015.5,
+       "h": 21018.75,
+       "l": 21014.0,
+       "c": 21018.25
+      },
+      {
+       "o": 21018.25,
+       "h": 21023.0,
+       "l": 21016.75,
+       "c": 21022.25
+      },
+      {
+       "o": 21022.25,
+       "h": 21023.75,
+       "l": 21021.25,
+       "c": 21023.25
+      },
+      {
+       "o": 21023.25,
+       "h": 21025.25,
+       "l": 21022.0,
+       "c": 21024.25
+      },
+      {
+       "o": 21024.25,
+       "h": 21026.75,
+       "l": 21023.25,
+       "c": 21026.5
+      },
+      {
+       "o": 21026.5,
+       "h": 21027.75,
+       "l": 21025.25,
+       "c": 21027.0
+      },
+      {
+       "o": 21027.0,
+       "h": 21030.25,
+       "l": 21026.75,
+       "c": 21029.75
+      }
+     ],
+     "start": 15,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish"
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis"
+      },
+      {
+       "label": "15M",
+       "value": "Pulling back into the map"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ]
+    },
+    "setups": [
+     {
+      "pil": 21004.25,
+      "pilAt": 4,
+      "missedAt": 23
+     }
+    ],
+    "checkpoints": [
+     {
+      "at": 23,
+      "prompt": "No retest. Price is far away. Now what?",
+      "noTrade": true
+     }
+    ],
+    "actions": [
+     "enter",
+     "pass"
+    ],
+    "labels": {
+     "enter": "MARKET ENTER"
+    },
+    "tempts": [
+     {
+      "at": 16
+     },
+     {
+      "at": 19
+     }
+    ],
+    "ticker": {
+     "from": 14,
+     "label": "Moved without you"
+    },
+    "end": {
+     "text": "The move happened without you. No capital lost. No rule broken."
+    },
+    "name": "Missed it",
+    "concept": "No chase",
+    "brief": "Continuation closed. Price is leaving."
+   },
+   {
+    "type": "trigger_sim",
+    "mode": "decide",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20986.5,
+       "l": 20980.75,
+       "c": 20985.25
+      },
+      {
+       "o": 20985.25,
+       "h": 20991.5,
+       "l": 20984.5,
+       "c": 20990.0
+      },
+      {
+       "o": 20990.0,
+       "h": 20996.0,
+       "l": 20989.5,
+       "c": 20994.5
+      },
+      {
+       "o": 20994.5,
+       "h": 20998.5,
+       "l": 20994.0,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.5,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21002.0,
+       "l": 20997.5,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 20999.5,
+       "l": 20996.0,
+       "c": 20996.25
+      },
+      {
+       "o": 20996.25,
+       "h": 20997.75,
+       "l": 20993.0,
+       "c": 20994.25
+      },
+      {
+       "o": 20994.25,
+       "h": 20994.75,
+       "l": 20990.75,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20994.5,
+       "l": 20989.75,
+       "c": 20994.25
+      },
+      {
+       "o": 20994.25,
+       "h": 20999.75,
+       "l": 20993.25,
+       "c": 20998.5
+      },
+      {
+       "o": 20998.5,
+       "h": 21002.75,
+       "l": 20997.75,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21007.5,
+       "l": 21002.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21009.25,
+       "l": 21006.25,
+       "c": 21009.0
+      },
+      {
+       "o": 21009.0,
+       "h": 21013.75,
+       "l": 21007.75,
+       "c": 21012.75
+      },
+      {
+       "o": 21012.75,
+       "h": 21014.5,
+       "l": 21012.5,
+       "c": 21013.75
+      },
+      {
+       "o": 21013.75,
+       "h": 21017.5,
+       "l": 21012.75,
+       "c": 21016.25
+      },
+      {
+       "o": 21016.25,
+       "h": 21016.75,
+       "l": 21011.25,
+       "c": 21012.25
+      },
+      {
+       "o": 21012.25,
+       "h": 21013.75,
+       "l": 21010.0,
+       "c": 21010.75
+      },
+      {
+       "o": 21010.75,
+       "h": 21011.75,
+       "l": 21006.25,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21007.5,
+       "l": 21003.75,
+       "c": 21005.75
+      },
+      {
+       "o": 21005.75,
+       "h": 21013.0,
+       "l": 21005.0,
+       "c": 21012.25
+      },
+      {
+       "o": 21012.25,
+       "h": 21019.0,
+       "l": 21011.0,
+       "c": 21017.5
+      },
+      {
+       "o": 21017.5,
+       "h": 21023.0,
+       "l": 21016.5,
+       "c": 21022.5
+      },
+      {
+       "o": 21022.5,
+       "h": 21027.0,
+       "l": 21022.0,
+       "c": 21026.25
+      }
+     ],
+     "start": 23,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish"
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis"
+      },
+      {
+       "label": "15M",
+       "value": "Pulling back into the map"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ]
+    },
+    "setups": [
+     {
+      "pil": 21004.25,
+      "pilAt": 4
+     }
+    ],
+    "checkpoints": [
+     {
+      "at": 26,
+      "prompt": "HTF thesis still valid. Enter because the bias is still valid?",
+      "noTrade": true
+     }
+    ],
+    "actions": [
+     "enter",
+     "pass"
+    ],
+    "labels": {
+     "enter": "ENTER: BIAS STILL VALID",
+     "pass": "DO NOT CHASE"
+    },
+    "end": {
+     "text": "VALID THESIS DOES NOT MEAN VALID ENTRY."
+    },
+    "name": "Late entry",
+    "concept": "No chase",
+    "brief": "The retest happened a few candles ago."
+   },
+   {
+    "type": "trigger_sim",
+    "mode": "review",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20987.0,
+       "l": 20981.75,
+       "c": 20986.75
+      },
+      {
+       "o": 20986.75,
+       "h": 20991.25,
+       "l": 20985.25,
+       "c": 20990.5
+      },
+      {
+       "o": 20990.5,
+       "h": 20996.25,
+       "l": 20989.75,
+       "c": 20995.0
+      },
+      {
+       "o": 20995.0,
+       "h": 20999.5,
+       "l": 20994.0,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.5,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21002.5,
+       "l": 20998.5,
+       "c": 20999.25
+      },
+      {
+       "o": 20999.25,
+       "h": 21000.0,
+       "l": 20995.75,
+       "c": 20996.25
+      },
+      {
+       "o": 20996.25,
+       "h": 20997.0,
+       "l": 20992.0,
+       "c": 20993.0
+      },
+      {
+       "o": 20993.0,
+       "h": 20994.0,
+       "l": 20990.0,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20996.5,
+       "l": 20990.75,
+       "c": 20995.25
+      },
+      {
+       "o": 20995.25,
+       "h": 20998.75,
+       "l": 20995.0,
+       "c": 20997.75
+      },
+      {
+       "o": 20997.75,
+       "h": 21002.5,
+       "l": 20996.5,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21003.0,
+       "l": 21001.5,
+       "c": 21002.75
+      },
+      {
+       "o": 21002.75,
+       "h": 21003.0,
+       "l": 21001.25,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21007.75,
+       "l": 21001.75,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21024.5,
+       "l": 21006.25,
+       "c": 21023.25
+      },
+      {
+       "o": 21023.25,
+       "h": 21039.75,
+       "l": 21023.0,
+       "c": 21038.75
+      },
+      {
+       "o": 21038.75,
+       "h": 21052.5,
+       "l": 21038.0,
+       "c": 21052.0
+      },
+      {
+       "o": 21052.0,
+       "h": 21069.25,
+       "l": 21050.5,
+       "c": 21068.25
+      },
+      {
+       "o": 21068.25,
+       "h": 21072.25,
+       "l": 21067.25,
+       "c": 21071.5
+      },
+      {
+       "o": 21071.5,
+       "h": 21077.0,
+       "l": 21071.0,
+       "c": 21076.25
+      }
+     ],
+     "start": 11,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish"
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis"
+      },
+      {
+       "label": "15M",
+       "value": "Pulling back into the map"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ]
+    },
+    "setups": [
+     {
+      "pil": 21004.25,
+      "pilAt": 4
+     }
+    ],
+    "checkpoints": [
+     {
+      "at": 14,
+      "blind": true,
+      "track": true,
+      "ask": {
+       "prompt": "She entered here: correction closed, continuation hadn’t. GRADE?",
+       "options": [
+        {
+         "label": "Good execution",
+         "feedback": "Continuation never closed before she clicked.",
+         "bias": true
+        },
+        {
+         "label": "Poor execution: anticipated continuation",
+         "correct": true,
+         "why": "Graded on the process."
+        }
+       ],
+       "stack": true
+      }
+     }
+    ],
+    "traders": [
+     {
+      "name": "She",
+      "at": 14,
+      "label": "ENTERS EARLY",
+      "trade": true
+     }
+    ],
+    "afterResult": {
+     "prompt": "It hit the target. FINAL GRADE?",
+     "options": [
+      {
+       "label": "A+ trade",
+       "feedback": "The outcome won. The process didn’t.",
+       "bias": true
+      },
+      {
+       "label": "Winning outcome · poor execution",
+       "correct": true,
+       "why": "Don’t let a winning result teach you a losing habit."
+      }
+     ],
+     "stack": true
+    },
+    "timeline": false,
+    "name": "Winning rule break",
+    "concept": "Process vs outcome",
+    "brief": "Watch a trader. Grade it before you know the outcome."
+   },
+   {
+    "type": "trigger_sim",
+    "mode": "review",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20986.75,
+       "l": 20982.0,
+       "c": 20985.75
+      },
+      {
+       "o": 20985.75,
+       "h": 20992.75,
+       "l": 20984.25,
+       "c": 20991.5
+      },
+      {
+       "o": 20991.5,
+       "h": 20994.25,
+       "l": 20991.25,
+       "c": 20993.75
+      },
+      {
+       "o": 20993.75,
+       "h": 20998.75,
+       "l": 20993.5,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.5,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21003.0,
+       "l": 20999.25,
+       "c": 21000.0
+      },
+      {
+       "o": 21000.0,
+       "h": 21000.75,
+       "l": 20995.5,
+       "c": 20995.75
+      },
+      {
+       "o": 20995.75,
+       "h": 20996.25,
+       "l": 20993.75,
+       "c": 20994.25
+      },
+      {
+       "o": 20994.25,
+       "h": 20995.5,
+       "l": 20990.5,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20997.25,
+       "l": 20990.25,
+       "c": 20995.75
+      },
+      {
+       "o": 20995.75,
+       "h": 20997.75,
+       "l": 20995.25,
+       "c": 20997.25
+      },
+      {
+       "o": 20997.25,
+       "h": 21002.5,
+       "l": 20996.25,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21007.5,
+       "l": 21002.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21009.75,
+       "l": 21006.5,
+       "c": 21009.0
+      },
+      {
+       "o": 21009.0,
+       "h": 21013.25,
+       "l": 21008.5,
+       "c": 21012.0
+      },
+      {
+       "o": 21012.0,
+       "h": 21013.75,
+       "l": 21011.5,
+       "c": 21013.0
+      },
+      {
+       "o": 21013.0,
+       "h": 21017.25,
+       "l": 21012.25,
+       "c": 21016.25
+      },
+      {
+       "o": 21016.25,
+       "h": 21016.5,
+       "l": 21011.5,
+       "c": 21012.75
+      },
+      {
+       "o": 21012.75,
+       "h": 21013.75,
+       "l": 21009.25,
+       "c": 21010.5
+      },
+      {
+       "o": 21010.5,
+       "h": 21011.75,
+       "l": 21007.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21007.75,
+       "l": 21003.75,
+       "c": 21005.75
+      },
+      {
+       "o": 21005.75,
+       "h": 21008.0,
+       "l": 21004.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21011.0,
+       "l": 21006.0,
+       "c": 21010.25
+      },
+      {
+       "o": 21010.25,
+       "h": 21011.5,
+       "l": 21002.25,
+       "c": 21003.25
+      },
+      {
+       "o": 21003.25,
+       "h": 21004.75,
+       "l": 20996.0,
+       "c": 20997.25
+      },
+      {
+       "o": 20997.25,
+       "h": 20998.0,
+       "l": 20988.75,
+       "c": 20989.75
+      },
+      {
+       "o": 20989.75,
+       "h": 20990.25,
+       "l": 20982.75,
+       "c": 20984.0
+      },
+      {
+       "o": 20984.0,
+       "h": 20985.25,
+       "l": 20976.5,
+       "c": 20976.75
+      },
+      {
+       "o": 20976.75,
+       "h": 20977.5,
+       "l": 20970.0,
+       "c": 20970.25
+      }
+     ],
+     "start": 11,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish"
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis"
+      },
+      {
+       "label": "15M",
+       "value": "Pulling back into the map"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ]
+    },
+    "setups": [
+     {
+      "pil": 21004.25,
+      "pilAt": 4
+     }
+    ],
+    "checkpoints": [
+     {
+      "at": 22,
+      "blind": true,
+      "track": true,
+      "ask": {
+       "prompt": "She waited for every close and entered at the first retest. GRADE?",
+       "options": [
+        {
+         "label": "Valid execution",
+         "correct": true,
+         "why": "Graded before the outcome."
+        },
+        {
+         "label": "Wait and see",
+         "feedback": "The process is already complete.",
+         "bias": true
+        }
+       ],
+       "stack": true
+      }
+     }
+    ],
+    "traders": [
+     {
+      "name": "She",
+      "at": 22,
+      "label": "ENTRY",
+      "trade": true,
+      "price": 21004.25
+     }
+    ],
+    "afterResult": {
+     "prompt": "Stopped out. FINAL GRADE?",
+     "options": [
+      {
+       "label": "Bad trade",
+       "feedback": "Losing isn’t a process grade.",
+       "bias": true
+      },
+      {
+       "label": "Valid execution · losing outcome",
+       "correct": true,
+       "why": "Two different facts."
+      }
+     ],
+     "stack": true
+    },
+    "timeline": false,
+    "name": "Losing valid trade",
+    "concept": "Process vs outcome",
+    "brief": "Every rule followed. Grade it."
+   },
+   {
+    "type": "trigger_sim",
+    "mode": "decide",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20986.75,
+       "l": 20981.25,
+       "c": 20985.75
+      },
+      {
+       "o": 20985.75,
+       "h": 20991.25,
+       "l": 20985.0,
+       "c": 20990.25
+      },
+      {
+       "o": 20990.25,
+       "h": 20994.75,
+       "l": 20989.75,
+       "c": 20994.25
+      },
+      {
+       "o": 20994.25,
+       "h": 20998.75,
+       "l": 20993.0,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.5,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21002.75,
+       "l": 20998.25,
+       "c": 20999.0
+      },
+      {
+       "o": 20999.0,
+       "h": 21000.5,
+       "l": 20996.5,
+       "c": 20997.5
+      },
+      {
+       "o": 20997.5,
+       "h": 20998.75,
+       "l": 20992.0,
+       "c": 20993.25
+      },
+      {
+       "o": 20993.25,
+       "h": 20994.0,
+       "l": 20990.0,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20997.0,
+       "l": 20990.75,
+       "c": 20995.5
+      },
+      {
+       "o": 20995.5,
+       "h": 20998.5,
+       "l": 20995.0,
+       "c": 20997.25
+      },
+      {
+       "o": 20997.25,
+       "h": 21001.75,
+       "l": 20997.0,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21002.0,
+       "l": 20999.0,
+       "c": 20999.5
+      },
+      {
+       "o": 20999.5,
+       "h": 21000.0,
+       "l": 20994.5,
+       "c": 20995.25
+      },
+      {
+       "o": 20995.25,
+       "h": 20999.0,
+       "l": 20993.75,
+       "c": 20996.75
+      },
+      {
+       "o": 20996.75,
+       "h": 20997.5,
+       "l": 20993.75,
+       "c": 20994.5
+      },
+      {
+       "o": 20994.5,
+       "h": 20995.25,
+       "l": 20993.5,
+       "c": 20994.25
+      },
+      {
+       "o": 20994.25,
+       "h": 20995.25,
+       "l": 20991.0,
+       "c": 20991.25
+      }
+     ],
+     "start": 11,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish"
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis"
+      },
+      {
+       "label": "15M",
+       "value": "Pulling back into the map"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ]
+    },
+    "setups": [
+     {
+      "pil": 21004.25,
+      "pilAt": 4,
+      "reassessAt": 18
+     }
+    ],
+    "checkpoints": [
+     {
+      "at": 13,
+      "after": "Developing."
+     },
+     {
+      "at": 18,
+      "prompt": "Price built a new, lower swing high. What now?",
+      "goal": true,
+      "after": "New structure. Reassess before anything else."
+     }
+    ],
+    "name": "New information",
+    "concept": "Reassessment",
+    "brief": "A developing setup. Keep watching the structure."
+   },
+   {
+    "type": "trigger_sim",
+    "mode": "decide",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20987.0,
+       "l": 20981.25,
+       "c": 20986.25
+      },
+      {
+       "o": 20986.25,
+       "h": 20991.25,
+       "l": 20985.75,
+       "c": 20990.0
+      },
+      {
+       "o": 20990.0,
+       "h": 20995.5,
+       "l": 20989.0,
+       "c": 20994.25
+      },
+      {
+       "o": 20994.25,
+       "h": 20999.75,
+       "l": 20993.75,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.5,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21002.0,
+       "l": 20997.25,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 20999.25,
+       "l": 20994.5,
+       "c": 20996.0
+      },
+      {
+       "o": 20996.0,
+       "h": 20997.25,
+       "l": 20994.25,
+       "c": 20995.0
+      },
+      {
+       "o": 20995.0,
+       "h": 20995.75,
+       "l": 20990.0,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20995.25,
+       "l": 20990.75,
+       "c": 20994.0
+      },
+      {
+       "o": 20994.0,
+       "h": 20998.75,
+       "l": 20992.5,
+       "c": 20997.75
+      },
+      {
+       "o": 20997.75,
+       "h": 21002.5,
+       "l": 20996.5,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21006.75,
+       "l": 21000.5,
+       "c": 21002.75,
+       "path": [
+        21001.25,
+        21006.75,
+        21002.75
+       ]
+      },
+      {
+       "o": 21002.75,
+       "h": 21004.0,
+       "l": 20999.25,
+       "c": 21000.25
+      },
+      {
+       "o": 21000.25,
+       "h": 21007.75,
+       "l": 21000.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21006.75,
+       "l": 21001.75,
+       "c": 21003.25,
+       "path": [
+        21002.0,
+        21006.75,
+        21003.25
+       ]
+      },
+      {
+       "o": 21003.25,
+       "h": 21008.5,
+       "l": 21002.5,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21010.25,
+       "l": 21006.75,
+       "c": 21009.75
+      },
+      {
+       "o": 21009.75,
+       "h": 21014.25,
+       "l": 21009.0,
+       "c": 21013.0
+      },
+      {
+       "o": 21013.0,
+       "h": 21018.5,
+       "l": 21012.0,
+       "c": 21018.25
+      },
+      {
+       "o": 21018.25,
+       "h": 21020.75,
+       "l": 21017.0,
+       "c": 21020.25
+      },
+      {
+       "o": 21020.25,
+       "h": 21023.0,
+       "l": 21019.25,
+       "c": 21022.5
+      },
+      {
+       "o": 21022.5,
+       "h": 21026.75,
+       "l": 21022.0,
+       "c": 21026.5
+      },
+      {
+       "o": 21026.5,
+       "h": 21029.75,
+       "l": 21025.75,
+       "c": 21028.25
+      },
+      {
+       "o": 21028.25,
+       "h": 21030.5,
+       "l": 21028.0,
+       "c": 21029.25
+      },
+      {
+       "o": 21029.25,
+       "h": 21030.25,
+       "l": 21028.25,
+       "c": 21030.0
+      },
+      {
+       "o": 21030.0,
+       "h": 21031.25,
+       "l": 21028.75,
+       "c": 21030.5
+      },
+      {
+       "o": 21030.5,
+       "h": 21032.5,
+       "l": 21030.0,
+       "c": 21032.25
+      },
+      {
+       "o": 21032.25,
+       "h": 21038.25,
+       "l": 21031.0,
+       "c": 21035.75
+      },
+      {
+       "o": 21035.75,
+       "h": 21036.75,
+       "l": 21031.5,
+       "c": 21033.0
+      },
+      {
+       "o": 21033.0,
+       "h": 21033.75,
+       "l": 21029.25,
+       "c": 21029.75
+      },
+      {
+       "o": 21029.75,
+       "h": 21030.0,
+       "l": 21027.25,
+       "c": 21028.5
+      },
+      {
+       "o": 21028.5,
+       "h": 21029.25,
+       "l": 21024.25,
+       "c": 21025.25
+      },
+      {
+       "o": 21025.25,
+       "h": 21029.25,
+       "l": 21024.5,
+       "c": 21027.75
+      },
+      {
+       "o": 21027.75,
+       "h": 21033.25,
+       "l": 21026.75,
+       "c": 21031.75
+      },
+      {
+       "o": 21031.75,
+       "h": 21036.0,
+       "l": 21031.25,
+       "c": 21035.25
+      },
+      {
+       "o": 21035.25,
+       "h": 21041.75,
+       "l": 21035.25,
+       "c": 21041.0
+      },
+      {
+       "o": 21041.0,
+       "h": 21041.0,
+       "l": 21035.25,
+       "c": 21036.0
+      },
+      {
+       "o": 21036.0,
+       "h": 21042.75,
+       "l": 21036.0,
+       "c": 21041.25
+      },
+      {
+       "o": 21041.25,
+       "h": 21044.5,
+       "l": 21040.25,
+       "c": 21043.25
+      },
+      {
+       "o": 21043.25,
+       "h": 21047.0,
+       "l": 21042.5,
+       "c": 21046.0
+      },
+      {
+       "o": 21046.0,
+       "h": 21049.0,
+       "l": 21044.5,
+       "c": 21048.25
+      },
+      {
+       "o": 21048.25,
+       "h": 21050.75,
+       "l": 21047.75,
+       "c": 21050.25
+      },
+      {
+       "o": 21050.25,
+       "h": 21050.75,
+       "l": 21045.75,
+       "c": 21046.75
+      },
+      {
+       "o": 21046.75,
+       "h": 21047.0,
+       "l": 21044.0,
+       "c": 21044.5
+      },
+      {
+       "o": 21044.5,
+       "h": 21045.75,
+       "l": 21040.75,
+       "c": 21041.25
+      },
+      {
+       "o": 21041.25,
+       "h": 21042.25,
+       "l": 21037.75,
+       "c": 21039.75
+      },
+      {
+       "o": 21039.75,
+       "h": 21042.0,
+       "l": 21039.0,
+       "c": 21040.5
+      },
+      {
+       "o": 21040.5,
+       "h": 21043.25,
+       "l": 21040.0,
+       "c": 21042.25
+      },
+      {
+       "o": 21042.25,
+       "h": 21045.5,
+       "l": 21041.5,
+       "c": 21045.25
+      },
+      {
+       "o": 21045.25,
+       "h": 21047.25,
+       "l": 21044.0,
+       "c": 21046.25
+      }
+     ],
+     "start": 11,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish"
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis"
+      },
+      {
+       "label": "15M",
+       "value": "Pulling back into the map"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ],
+     "preEntry": {
+      "context": {
+       "state": "defined",
+       "value": "4H bullish"
+      },
+      "structure": {
+       "state": "defined",
+       "value": "1H HL holding"
+      },
+      "location": {
+       "state": "defined",
+       "value": "4H discount"
+      },
+      "direction": {
+       "state": "defined",
+       "value": "Long only"
+      },
+      "pil": {
+       "state": "defined",
+       "value": "21,004.25"
+      },
+      "invalidation": {
+       "state": "defined",
+       "value": "Close below the 1H HL"
+      }
+     },
+     "risk": "30-pt stop · 60-pt target"
+    },
+    "setups": [
+     {
+      "pil": 21004.25,
+      "pilAt": 4,
+      "missedAt": 24,
+      "label": "Setup A"
+     },
+     {
+      "pil": 21038.25,
+      "pilAt": 29,
+      "from": 30,
+      "label": "Setup B",
+      "intro": "New swing high. New PIL."
+     }
+    ],
+    "checkpoints": [
+     {
+      "at": 12,
+      "intrabar": 0.4,
+      "prompt": "Strong wick through the PIL. Candle still open."
+     },
+     {
+      "at": 12,
+      "askStatus": true,
+      "after": "A wick isn’t indication. Still waiting."
+     },
+     {
+      "at": 14,
+      "after": "Indication. Developing."
+     },
+     {
+      "at": 15,
+      "after": "Correction. Still developing."
+     },
+     {
+      "at": 16,
+      "intrabar": 0.42,
+      "prompt": "Big green candle. Near the close. ENTER?"
+     },
+     {
+      "at": 16,
+      "after": "Fake continuation. Good wait."
+     },
+     {
+      "at": 17,
+      "after": "Now it closed. Prepare. Not executable."
+     },
+     {
+      "at": 21,
+      "prompt": "It’s running. Your objective is getting close."
+     },
+     {
+      "at": 24,
+      "prompt": "No retest. It’s gone. Now what?",
+      "noTrade": true,
+      "after": "Pass. The move happened without you."
+     },
+     {
+      "at": 30,
+      "expect": "reassess",
+      "prompt": "Price built a new swing high above. What now?",
+      "after": "Reassess: a new PIL. The sequence starts over."
+     },
+     {
+      "at": 37,
+      "after": "Indication on the new PIL."
+     },
+     {
+      "at": 38,
+      "after": "Correction."
+     },
+     {
+      "at": 39,
+      "after": "Continuation closed. Prepare."
+     },
+     {
+      "at": 47,
+      "goal": true,
+      "after": "The only valid first retest of the session. On model."
+     }
+    ],
+    "playAfterPass": true,
+    "tempts": [
+     {
+      "at": 12
+     },
+     {
+      "at": 16
+     },
+     {
+      "at": 21
+     }
+    ],
+    "speed": 900,
+    "name": "FINAL BOSS: Don’t touch the button 😂",
+    "concept": "Full execution",
+    "brief": "HTF thesis, 1H map, PIL and risk are set. Candle by candle. Only one moment is the entry."
+   },
+   {
+    "type": "p6_review",
+    "name": "Your execution review",
+    "concept": "Review",
+    "brief": "What you actually did, as behavior. Not identity."
+   }
+  ]
+ },
+ "knowledgeCheck": {
+  "questionCount": 12,
+  "passPct": 0.8,
+  "xp": 0,
+  "shuffleOptions": true,
+  "questionBank": [
+   {
+    "concept": "1M role",
+    "question": "What is the 1-minute timeframe’s job?",
+    "options": [
+     "Find the trade idea",
+     "Execute after 4H, 1H and 15M",
+     "Confirm the 4H bias",
+     "Replace the 1H map"
+    ],
+    "correctIndex": 1,
+    "why": "The 1M sits at the end: execution."
+   },
+   {
+    "concept": "1M role",
+    "question": "She found a beautiful 1M ICC, then opened the 4H to find support for it. What happened?",
+    "options": [
+     "Good confluence",
+     "She built the analysis backwards",
+     "Nothing wrong",
+     "She should have used the 15M"
+    ],
+    "correctIndex": 1,
+    "why": "HTF used to justify a 1M decision is backwards."
+   },
+   {
+    "concept": "Pre-entry",
+    "question": "Context ✓ Structure ✓ Location ✓ Direction ✓ PIL ? Invalidation ✓. Status?",
+    "options": [
+     "Ready to execute",
+     "Not ready: PIL undefined",
+     "Take a half-size trade",
+     "5/6 is enough"
+    ],
+    "correctIndex": 1,
+    "why": "Any undefined field = not ready."
+   },
+   {
+    "concept": "Pre-entry",
+    "question": "All six pre-entry fields are defined. What does that mean?",
+    "options": [
+     "Take the trade",
+     "Ready to WAIT for ICC",
+     "Enter at the PIL",
+     "Size up"
+    ],
+    "correctIndex": 1,
+    "why": "The card prepares you to wait. It never approves an entry."
+   },
+   {
+    "concept": "Developing vs executable",
+    "question": "PIL ✓ I ✓ C ✓. Continuation hasn’t closed. Status?",
+    "options": [
+     "Executable",
+     "Confirmed",
+     "Developing",
+     "Missed"
+    ],
+    "correctIndex": 2,
+    "why": "Developing. Not executable."
+   },
+   {
+    "concept": "Developing vs executable",
+    "question": "I · C · C closed. No retest yet. Status and action?",
+    "options": [
+     "Executable: enter",
+     "Confirmed: wait for the retest",
+     "Developing: pass",
+     "Missed: chase"
+    ],
+    "correctIndex": 1,
+    "why": "Confirmed ≠ executable."
+   },
+   {
+    "concept": "Confirmation vs anticipation",
+    "question": "The continuation candle is strongly bullish but still open. What do you do?",
+    "options": [
+     "Enter, it’s obvious",
+     "Wait for the close",
+     "Enter half",
+     "Move the PIL"
+    ],
+    "correctIndex": 1,
+    "why": "Open candles confirm nothing."
+   },
+   {
+    "concept": "Retest timing",
+    "question": "When does the setup first become executable?",
+    "options": [
+     "At indication",
+     "When continuation closes",
+     "At the first valid retest",
+     "When price runs 15 points"
+    ],
+    "correctIndex": 2,
+    "why": "The entry comes after confirmation, at the retest."
+   },
+   {
+    "concept": "No chase",
+    "question": "Continuation closed. Price reached your objective with no retest. What is it?",
+    "options": [
+     "A loss",
+     "A missed opportunity: no chase",
+     "A reason to market in",
+     "A bad trade"
+    ],
+    "correctIndex": 1,
+    "why": "Missed ≠ lost."
+   },
+   {
+    "concept": "No chase",
+    "question": "The valid retest happened 3 candles ago. Price is now 20 points away. The bias is still valid.",
+    "options": [
+     "Enter: the bias is valid",
+     "Too late: don’t chase",
+     "Move the PIL up",
+     "Enter on the next candle"
+    ],
+    "correctIndex": 1,
+    "why": "A valid thesis is not a valid entry."
+   },
+   {
+    "concept": "Process vs outcome",
+    "question": "She entered before continuation and the trade won. How is it journaled?",
+    "options": [
+     "A+ trade",
+     "Winning outcome + execution violation",
+     "Good process + win",
+     "It doesn’t matter, it won"
+    ],
+    "correctIndex": 1,
+    "why": "Bad process + win is dangerous reinforcement."
+   },
+   {
+    "concept": "Process vs outcome",
+    "question": "Every rule followed. The trade lost. Bad trade?",
+    "options": [
+     "Yes, it lost",
+     "No: valid process, losing outcome",
+     "Only if it lost big",
+     "Yes, the model failed"
+    ],
+    "correctIndex": 1,
+    "why": "Process and outcome are separate facts."
+   },
+   {
+    "concept": "No trade",
+    "question": "The setup failed and she keeps looking for new reasons to enter. Correct call?",
+    "options": [
+     "Find another level",
+     "Pass / no trade",
+     "Use a smaller size",
+     "Wait for any green candle"
+    ],
+    "correctIndex": 1,
+    "why": "No trade is a decision too."
+   },
+   {
+    "concept": "No trade",
+    "question": "She sat through a whole session and took zero trades because none met the model. Verdict?",
+    "options": [
+     "Try again",
+     "Perfect execution",
+     "She was too scared",
+     "Wasted session"
+    ],
+    "correctIndex": 1,
+    "why": "Zero trades can be a perfect session."
+   },
+   {
+    "concept": "Confirmation vs anticipation",
+    "question": "“If I enter now, I’ll get a better price.” That’s…",
+    "options": [
+     "Confirmation",
+     "Anticipation",
+     "A retest",
+     "Risk management"
+    ],
+    "correctIndex": 1,
+    "why": "A better price for a setup that doesn’t exist yet."
+   }
+  ],
+  "reviewLessons": {
+   "1M role": [
+    "p6",
+    1
+   ],
+   "Pre-entry": [
+    "p6",
+    2
+   ],
+   "Developing vs executable": [
+    "p6",
+    3
+   ],
+   "Confirmation vs anticipation": [
+    "p6",
+    4
+   ],
+   "Retest timing": [
+    "p6",
+    5
+   ],
+   "No chase": [
+    "p6",
+    6
+   ],
+   "Process vs outcome": [
+    "p6",
+    7
+   ],
+   "No trade": [
+    "p6",
+    8
+   ]
+  }
+ },
+ "checkin": {
+  "eyebrow": "📓 My Section 15 Check-In",
+  "heading": "What clicked? 🎯",
+  "fields": [
+   {
+    "type": "text",
+    "label": "What’s the actual job of the 1-minute timeframe?"
+   },
+   {
+    "type": "text",
+    "label": "What’s the difference between confirmation and anticipation?"
+   },
+   {
+    "type": "text",
+    "label": "Why wait until the ICC sequence confirms?"
+   },
+   {
+    "type": "text",
+    "label": "How would you handle a setup that runs without retesting?"
+   },
+   {
+    "type": "text",
+    "label": "What’s the difference between a good trade and a winning trade?"
+   },
+   {
+    "type": "text",
+    "label": "What does “no trade is still a decision” mean to you?"
+   },
+   {
+    "type": "choice",
+    "label": "Which concept needs another look?",
+    "options": [
+     "The 1M’s job",
+     "Pre-entry card",
+     "Developing vs executable",
+     "Confirmation vs anticipation",
+     "Retest timing",
+     "No chase",
+     "Process vs outcome",
+     "No-trade decisions",
+     "I’m good ✨"
+    ]
+   },
+   {
+    "type": "choice",
+    "label": "How confident do you feel pulling the trigger?",
+    "profile": "confidence",
+    "options": [
+     "Still shaky",
+     "Getting there",
+     "Pretty confident",
+     "Let me at it 🎯"
+    ]
+   },
+   {
+    "type": "text",
+    "share": true,
+    "rows": 4,
+    "min": 15,
+    "placeholder": "Type it how YOU understand it...",
+    "label": "💭 Explain it to an AGHF girl: your friend says, “I know I’m supposed to wait for Continuation, but every time I wait, I feel like I’m going to miss the move.” What do you tell her?",
+    "concepts": [
+     {
+      "label": "The model isn’t built to catch every move",
+      "any": [
+       "every move",
+       "every trade",
+       "not every",
+       "all the moves",
+       "catch"
+      ]
+     },
+     {
+      "label": "It defines which moves she participates in",
+      "any": [
+       "which",
+       "defines",
+       "rules",
+       "model",
+       "participate",
+       "my moves"
+      ]
+     },
+     {
+      "label": "If price leaves without her rules, she misses it",
+      "any": [
+       "miss",
+       "leave",
+       "leaves",
+       "without"
+      ]
+     },
+     {
+      "label": "Don’t rewrite the model from FOMO",
+      "any": [
+       "fomo",
+       "rewrite",
+       "chase",
+       "chasing",
+       "change the rule",
+       "bend"
+      ]
+     }
+    ],
+    "conceptsNote": "No exact wording needed. These are the ideas a great answer usually touches."
+   }
+  ],
+  "saveLabel": "Save to My Academy Notes →",
+  "savedLabel": "✓ Saved to My Academy Notes"
+ },
+ "complete": {
+  "eyebrow": "🎉 Section complete",
+  "heading": "✦ YOU KNOW WHEN TO PULL THE TRIGGER.",
+  "badge": "How to Actually Enter: Complete",
+  "gp": 640,
+  "cinema": {
+   "type": "trigger_sim",
+   "mode": "watch",
+   "kicker": "",
+   "title": "",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20986.5,
+      "l": 20981.0,
+      "c": 20986.0
+     },
+     {
+      "o": 20986.0,
+      "h": 20991.0,
+      "l": 20985.0,
+      "c": 20990.0
+     },
+     {
+      "o": 20990.0,
+      "h": 20994.75,
+      "l": 20988.5,
+      "c": 20993.75
+     },
+     {
+      "o": 20993.75,
+      "h": 20998.5,
+      "l": 20992.75,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.25,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.0,
+      "l": 20999.0,
+      "c": 20999.5
+     },
+     {
+      "o": 20999.5,
+      "h": 21000.75,
+      "l": 20995.25,
+      "c": 20996.5
+     },
+     {
+      "o": 20996.5,
+      "h": 20997.0,
+      "l": 20994.0,
+      "c": 20994.75
+     },
+     {
+      "o": 20994.75,
+      "h": 20995.75,
+      "l": 20990.5,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20995.5,
+      "l": 20990.25,
+      "c": 20994.0
+     },
+     {
+      "o": 20994.0,
+      "h": 20998.5,
+      "l": 20993.0,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 21002.5,
+      "l": 20996.5,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21007.75,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21011.75,
+      "l": 21007.0,
+      "c": 21010.5
+     },
+     {
+      "o": 21010.5,
+      "h": 21016.0,
+      "l": 21009.25,
+      "c": 21015.5
+     },
+     {
+      "o": 21015.5,
+      "h": 21018.75,
+      "l": 21014.0,
+      "c": 21018.25
+     },
+     {
+      "o": 21018.25,
+      "h": 21023.0,
+      "l": 21016.75,
+      "c": 21022.25
+     },
+     {
+      "o": 21022.25,
+      "h": 21023.75,
+      "l": 21021.25,
+      "c": 21023.25
+     },
+     {
+      "o": 21023.25,
+      "h": 21025.25,
+      "l": 21022.0,
+      "c": 21024.25
+     },
+     {
+      "o": 21024.25,
+      "h": 21026.75,
+      "l": 21023.25,
+      "c": 21026.5
+     },
+     {
+      "o": 21026.5,
+      "h": 21027.75,
+      "l": 21025.25,
+      "c": 21027.0
+     },
+     {
+      "o": 21027.0,
+      "h": 21030.25,
+      "l": 21026.75,
+      "c": 21029.75
+     },
+     {
+      "o": 21029.75,
+      "h": 21031.5,
+      "l": 21029.0,
+      "c": 21030.25
+     }
+    ],
+    "start": 11,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish"
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis"
+     },
+     {
+      "label": "15M",
+      "value": "Pulling back into the map"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ]
+   },
+   "setups": [
+    {
+     "pil": 21004.25,
+     "pilAt": 4,
+     "missedAt": 23
+    }
+   ],
+   "checkpoints": [
+    {
+     "at": 12,
+     "text": "She waits."
+    },
+    {
+     "at": 13,
+     "text": "Waits again."
+    },
+    {
+     "at": 14,
+     "intrabar": 0.55,
+     "text": "Continuation candle forming. <b>She still waits for the close.</b>",
+     "expect": "wait"
+    },
+    {
+     "at": 14,
+     "text": "Close confirms. <b>She prepares.</b>"
+    },
+    {
+     "at": 23,
+     "text": "Price runs away. No retest. <b>She passes.</b>"
+    },
+    {
+     "at": 24,
+     "kind": "note",
+     "text": "The trade goes to target without her.",
+     "hold": 1800
+    }
+   ],
+   "playAfterPass": true,
+   "timeline": true,
+   "end": {
+    "card": "YOU DID IT RIGHT."
+   }
+  },
+  "stats": [
+   {
+    "label": "Lessons",
+    "value": "{lessons} ✓"
+   },
+   {
+    "label": "Execution Timing Lab",
+    "value": "✓"
+   },
+   {
+    "label": "Knowledge Check",
+    "value": "{kc}% ✓"
+   },
+   {
+    "label": "Academy Notes",
+    "value": "Saved ✓"
+   }
+  ],
+  "badgeUnlock": {
+   "icon": "🎯",
+   "title": "TRIGGER DISCIPLINE",
+   "line": "You learned that execution isn’t clicking faster. It’s waiting longer."
+  },
+  "phase": {
+   "title": "✦ Phase 6: Pulling the Trigger",
+   "pct": 33,
+   "sections": [
+    {
+     "icon": "✓",
+     "label": "Section 15: How to Actually Enter"
+    },
+    {
+     "icon": "🔓",
+     "label": "Section 16: Managing the Trade"
+    },
+    {
+     "icon": "🔒",
+     "label": "Section 17: Protecting Your Account"
+    }
+   ]
+  },
+  "nextUp": {
+   "title": "🔓 Managing the Trade",
+   "cta": "ENTER SECTION 16 →",
+   "lines": [
+    "The moment the entry executes, the chart freezes. Then: <strong>live P&amp;L.</strong>"
+   ],
+   "cinema": {
+    "type": "p6_pnl_tease"
+   },
+   "questions": [
+    "Planning management before entry",
+    "Fixed targets vs structure-based targets",
+    "Partials",
+    "Runners",
+    "Moving to break even",
+    "When not to touch the stop",
+    "Over-managing",
+    "Following the plan while P&L is moving"
+   ]
+  }
+ }
+}
