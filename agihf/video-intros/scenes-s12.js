@@ -239,7 +239,7 @@
       <rect x="-40" y="-228" width="80" height="68" rx="16" fill="${C.dark}"/>
       ${face}${mouth}
       <line x1="0" y1="-240" x2="0" y2="-270" stroke="${C.purple}" stroke-width="5"/><circle cx="0" cy="-276" r="9" fill="${light}"/>
-      ${fa}${o.hold ? `<g transform="translate(${o.armUp ? 96 : 92},${o.armUp ? -204 : -114})">${o.hold}</g>` : ''}</g>`;
+      ${fa}${o.hold ? `<g transform="translate(${o.armUp ? 96 : 92},${o.armUp ? -204 : -114}) scale(${f},1)">${o.hold}</g>` : ''}</g>`;
     return `<g transform="translate(${o.x},${o.y}) scale(${s * f},${s})">${g}</g>`;
   }
   const bot = (t, o) => { const k = o.at != null ? pop(t, o.at, 0.6) : 1; return k <= 0 ? '' : scaleAt(o.x, o.y, k, robot(t, o)); };
@@ -934,7 +934,384 @@
     return out;
   };
 
-  /* @@MORE@@ */
+  /* ======================= Lesson 7: Higher-Timeframe ICC ======================= */
+  // A dial gauge with labelled ticks. idxK = fractional needle index.
+  function gauge(cx, cy, r, labels, idxK, title, col) {
+    const n = labels.length, ang = i => rad(200 + (140 * i) / (n - 1));
+    let g = `<path d="M${cx + Math.cos(rad(195)) * r},${cy + Math.sin(rad(195)) * r} A${r},${r} 0 0,1 ${cx + Math.cos(rad(345)) * r},${cy + Math.sin(rad(345)) * r}" stroke="#F1E7E1" stroke-width="${r * 0.22}" fill="none" stroke-linecap="round"/>`;
+    labels.forEach((l, i) => { const a = ang(i); g += `<circle cx="${cx + Math.cos(a) * r}" cy="${cy + Math.sin(a) * r}" r="7" fill="${C.muted}"/>` + txt(cx + Math.cos(a) * (r + 34), cy + Math.sin(a) * (r + 26) + 6, l, 17, C.muted, { w: 700 }); });
+    const a = rad(200 + (140 * idxK) / (n - 1));
+    g += `<line x1="${cx}" y1="${cy}" x2="${cx + Math.cos(a) * r * 0.86}" y2="${cy + Math.sin(a) * r * 0.86}" stroke="${col}" stroke-width="9" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="14" fill="${col}"/>`;
+    return g + pill(cx, cy + 50, title, col, 1, 22);
+  }
+
+  // A pegboard "4H · Read the Room" with its tools; a drone delivers the new ICC status gauge.
+  LIVE['s12-toolbelt'] = (s, t, ctx) => {
+    const T = s.beats;
+    let out = ground(1000, '#F3EEE9', '#E6DCD2');
+    const bk = pop(t, T.board, 0.7);
+    let b = `<rect x="300" y="400" width="800" height="540" rx="24" fill="#E9C9A0" stroke="#C99A60" stroke-width="6"/>`;
+    for (let i = 0; i < 15; i++) for (let j = 0; j < 9; j++) b += `<circle cx="${340 + i * 52}" cy="${452 + j * 56}" r="5" fill="#C99A60" opacity=".5"/>`;
+    b += `<rect x="300" y="400" width="800" height="56" rx="24" fill="${C.purple}"/>${txt(700, 438, '4H · READ THE ROOM', 28, '#fff')}`;
+    out += scaleAt(700, 940, bk, b);
+    const slot = (x, y, at, art, label, col) => {
+      const k = pop(t, at, 0.6);
+      return k <= 0 ? '' : scaleAt(x, y, k, `<rect x="${x - 150}" y="${y - 90}" width="300" height="190" rx="18" fill="#fff" opacity=".7"/>${art}`) + pill(x, y + 76, label, col, k, 22);
+    };
+    const hammer = `<g transform="translate(500,580) rotate(-30)"><rect x="-8" y="-20" width="16" height="110" rx="6" fill="#9B6A45"/><rect x="-46" y="-50" width="92" height="36" rx="8" fill="${C.muted}"/></g>`;
+    const ruler = `<g transform="translate(900,570)"><rect x="-110" y="-22" width="220" height="44" rx="6" fill="${C.gold}" stroke="#C98A1F" stroke-width="3"/>${Array.from({ length: 11 }, (_, i) => `<line x1="${-100 + i * 20}" x2="${-100 + i * 20}" y1="-22" y2="${i % 2 ? -10 : 0}" stroke="${C.dark}" stroke-width="3"/>`).join('')}</g>`;
+    const target = `<g transform="translate(500,790)">${[50, 34, 18].map((r, i) => `<circle r="${r}" fill="${[C.pink, '#fff', C.pink][i]}"/>`).join('')}<line x1="60" y1="-50" x2="0" y2="0" stroke="${C.dark}" stroke-width="5"/></g>`;
+    out += slot(500, 580, T.t1, hammer, 'Structure ✓', DK.teal) + slot(900, 580, T.t2, ruler, 'Range · Location ✓', DK.teal) + slot(500, 800, T.t3, target, 'Objective ✓', DK.teal);
+    // Empty NEW slot.
+    const nk = pop(t, T.t3 + 0.6, 0.6);
+    if (nk > 0) out += scaleAt(900, 800, nk, `<rect x="750" y="710" width="300" height="190" rx="18" fill="none" stroke="${C.purple}" stroke-width="5" stroke-dasharray="14 10"/>`) + (t < T.slot ? pill(900, 800, 'NEW', C.purple, nk, 26) : '');
+    // The ICC gauge (carried, then slotted).
+    const gaugeArt = (cx, cy, sc, needle) => `<g transform="translate(${cx},${cy}) scale(${sc})"><circle r="70" fill="#fff" stroke="${C.purple}" stroke-width="8"/>
+      <path d="M-50,10 A52,52 0 0,1 -18,-46" stroke="${CH.I}" stroke-width="14" fill="none"/><path d="M-12,-50 A52,52 0 0,1 22,-46" stroke="${CH.C}" stroke-width="14" fill="none"/><path d="M28,-42 A52,52 0 0,1 52,8" stroke="${CH.C2}" stroke-width="14" fill="none"/>
+      <line x1="0" y1="0" x2="${Math.cos(rad(needle)) * 44}" y2="${Math.sin(rad(needle)) * 44}" stroke="${C.dark}" stroke-width="7" stroke-linecap="round"/><circle r="9" fill="${C.dark}"/>${txt(0, 44, 'I·C·C', 20, DK.purple)}</g>`;
+    if (t > T.drone) {
+      const k = ease(seg(t, T.drone, T.slot));
+      const dx = lerp(1980, 900, k), dy = lerp(380, 700, k) - Math.sin(k * Math.PI) * 120 + Math.sin(t * 4) * 6;
+      const needle = -90 + Math.sin(t * 2) * 30;
+      if (t < T.slot) {
+        out += `<line x1="${dx}" y1="${dy - 70}" x2="${dx}" y2="${dy - 120}" stroke="${C.dark}" stroke-width="3"/>` + gaugeArt(dx, dy, 0.8, needle);
+        const prop = Math.sin(t * 50) * 40;
+        out += `<g transform="translate(${dx},${dy - 140})"><rect x="-60" y="-20" width="120" height="40" rx="18" fill="${C.teal}"/><circle cx="-18" cy="0" r="7" fill="${C.dark}"/><circle cx="18" cy="0" r="7" fill="${C.dark}"/><path d="M-10,10 Q0,16 10,10" stroke="${C.dark}" stroke-width="3" fill="none"/>
+          <line x1="-60" y1="-24" x2="-60" y2="-36" stroke="${C.dark}" stroke-width="4"/><line x1="60" y1="-24" x2="60" y2="-36" stroke="${C.dark}" stroke-width="4"/><ellipse cx="-60" cy="-38" rx="${Math.abs(prop)}" ry="5" fill="${C.muted}"/><ellipse cx="60" cy="-38" rx="${Math.abs(prop)}" ry="5" fill="${C.muted}"/></g>`;
+      } else {
+        out += gaugeArt(900, 790, 1, lerp(-90, -20, ease(seg(t, T.stage, T.stage + 0.8)))) + pill(900, 876, 'ICC status ✓', C.purple, pop(t, T.slot, 0.5), 22) + A.sparkle(900, 790, T.slot, t);
+      }
+    }
+    // Two separate dials.
+    if (t > T.dials) {
+      const dk = pop(t, T.dials, 0.7);
+      out += scaleAt(1470, 520, dk, `<rect x="1200" y="390" width="540" height="300" rx="26" fill="#fff" stroke="#F1E7E1" stroke-width="3"/>`);
+      if (dk > 0) {
+        const st = lerp(0, 2, ease(seg(t, T.stage, T.stage + 1)));
+        const cl = lerp(2, 0, ease(seg(t, T.clarity, T.clarity + 1)));
+        out += scaleAt(1470, 520, dk, gauge(1330, 570, 66, ['wait', 'I', 'C', 'C'], st, 'STAGE', C.peach) + gauge(1610, 570, 66, ['clear', 'dev.', 'unclear'], cl, 'CLARITY', C.teal));
+        out += `<line x1="1470" y1="430" x2="1470" y2="650" stroke="${C.muted}" stroke-width="3" stroke-dasharray="8 8"/>`;
+      }
+    }
+    const w = { x: 1800, y: 1000, scale: 0.92, look: A.LOOKS.c, flip: true, seed: 3, at: s.start + 0.5, talk: ctx.talking && t > T.dials };
+    w.frontArm = t > T.slot && t < T.dials ? aim(w, 1120, 800) : t > T.dials ? { a1: -60, a2: -80 } : { a1: 80, a2: 95 };
+    out += who(t, w) + hat(t, w, 'helmet', pop(t, s.start + 0.5));
+    out += crit(t, 'cat', { x: 1300, y: 1000, scale: 0.7, seed: 5, at: s.start + 1, hop: t > T.slot && t < T.slot + 1.5 ? 8 : 0, hopH: 20 });
+    return out;
+  };
+
+  // A big storybook on a lectern: the bookmark sits on "Correction". A robot salesman pushes BUY; the reader says it's a market read.
+  LIVE['s12-reading-nook'] = (s, t, ctx) => {
+    const T = s.beats;
+    let out = `<rect x="0" y="360" width="1920" height="640" fill="#FBF3EA"/>` + ground(1000, '#EEDFD0', '#E0CDB9');
+    // Rug, lamp, window.
+    out += `<ellipse cx="760" cy="1030" rx="520" ry="40" fill="${C.pinkL}" opacity=".6"/>
+      <rect x="196" y="560" width="10" height="440" fill="${C.muted}"/><path d="M140,560 L262,560 L232,470 L170,470 Z" fill="${C.peachL}"/><ellipse cx="201" cy="600" rx="${90 + Math.sin(t * 2) * 6}" ry="30" fill="${C.gold}" opacity=".18"/>`;
+    // Lectern + book.
+    const bk = pop(t, T.book, 0.7);
+    let b = `<path d="M900,1000 L1020,1000 L1000,780 L920,780 Z" fill="#9B6A45"/><path d="M700,790 L1220,790 L1240,820 L680,820 Z" fill="#B88058"/>
+      <path d="M700,790 Q830,760 960,790 L960,440 Q830,410 700,440 Z" fill="#FFFDF8" stroke="#E6DCD2" stroke-width="4"/>
+      <path d="M960,790 Q1090,760 1220,790 L1220,440 Q1090,410 960,440 Z" fill="#FFFDF8" stroke="#E6DCD2" stroke-width="4"/>
+      ${txt(830, 500, '4H STORY', 30, C.dark, { f: 'Playfair Display' })}
+      ${[0, 1, 2, 3, 4].map(i => `<rect x="740" y="${540 + i * 40}" width="${180 - (i % 2) * 40}" height="10" rx="5" fill="#EADFD8"/>`).join('')}`;
+    out += scaleAt(960, 1000, bk, b);
+    if (bk > 0.9) {
+      const pts = [[990, 740], [1040, 690], [1070, 715], [1150, 540], [1190, 620]];
+      out += polyPart(pts.slice(0, 3), seg(t, T.chart, T.chart + 0.8), '#C9B9AE', 7);
+      out += polyPart(pts.slice(2, 4), seg(t, T.chart + 0.8, T.chart + 1.6), CH.I, 8) + polyPart(pts.slice(3, 5), seg(t, T.chart + 1.6, T.chart + 2.4), CH.C, 8);
+      if (t > T.chart + 2.4) out += `<circle cx="1190" cy="620" r="${10 + Math.sin(t * 6) * 3}" fill="${CH.C}"/>`;
+      // Chapter tabs.
+      const tabs = [['I ✓', CH.I, 500], ['C', CH.C, 580], ['C ?', C.purpleL, 660]];
+      tabs.forEach(([l, col, y], i) => { const k = pop(t, T.chart + 2.6 + i * 0.3, 0.5); if (k > 0) out += scaleAt(1220, y, k, `<rect x="1220" y="${y - 28}" width="76" height="56" rx="10" fill="${col}"/>${txt(1262, y + 10, l, 24, i === 2 ? DK.purple : '#fff')}`); });
+      // Bookmark.
+      const mk = ease(seg(t, T.mark, T.mark + 0.8));
+      if (mk > 0) out += `<path d="M1150,${430} L1150,${430 + 150 * mk} L1166,${414 + 150 * mk} L1182,${430 + 150 * mk} L1182,430 Z" fill="${C.purple}"/>` + pill(1166, 400, 'CHAPTER: CORRECTION', C.peach, pop(t, T.mark + 0.4), 22);
+    }
+    // Read card.
+    const rows = [['4H structure · bullish', DK.teal], ['Location · discount', '#C98A1F'], ['ICC · correction', DK.peach], ['Objective · external high', DK.purple]];
+    rows.forEach(([l, col], i) => { out += pill(1560, 440 + i * 64, l, col, pop(t, T.card + i * 0.7, 0.5), 22); });
+    // Reader.
+    const r = { x: 520, y: 1000, scale: 0.95, look: A.LOOKS.seller, seed: 4, at: s.start + 0.4, talk: ctx.talking && t > T.no };
+    r.frontArm = t > T.no ? { a1: -10, a2: -10 } : t > T.mark ? aim(r, 720, 660) : { a1: 80, a2: 95 };
+    out += who(t, r);
+    out += crit(t, 'cat', { x: 330, y: 1000, scale: 0.7, seed: 2, at: s.start + 1 });
+    // Robot salesman with a BUY button.
+    if (t > T.buy) {
+      const k = ease(seg(t, T.buy, T.buy + 1));
+      const rx = lerp(2100, 1620, k);
+      out += robot(t, { x: rx, y: 1000, scale: 0.85, flip: true, seed: 3, face: t > T.no + 0.6 ? 'x' : 'happy', armUp: t < T.no, talk: t > T.buy + 1 && t < T.no,
+        hold: `<g><rect x="-50" y="-40" width="100" height="60" rx="14" fill="${C.pink}"/>${txt(0, 0, 'BUY', 28, '#fff')}</g>` });
+      out += bub(rx - 20, 690, 'Buy now?', t < T.no ? pop(t, T.buy + 1, 0.5) : 0, { size: 30, tail: 'right' });
+      out += cross(rx - 70, 820, pop(t, T.no + 0.4, 0.5));
+    }
+    out += bub(560, 600, 'That’s a market read.', t > T.no ? pop(t, T.no, 0.5) : 0, { size: 28 });
+    if (t > T.rule) out += pill(960, 1046, 'HTF ICC = context, not an entry', C.purple, pop(t, T.rule, 0.5), 26);
+    return out;
+  };
+
+  /* ======================= Lesson 8: ICC + Market Structure ======================= */
+  // A cinema with 3D glasses: the pink lens shows structure, the teal lens shows ICC, both lenses show the full read.
+  LIVE['s12-3d-glasses'] = (s, t) => {
+    const T = s.beats;
+    let out = `<rect x="0" y="360" width="1920" height="720" fill="#EDEAF8"/>`;
+    out += `<path d="M380,360 L460,380 L460,780 L380,820 Z" fill="${C.pink}" opacity=".5"/><path d="M1540,360 L1460,380 L1460,780 L1540,820 Z" fill="${C.pink}" opacity=".5"/>`;
+    out += `<rect x="460" y="380" width="1000" height="400" rx="10" fill="#fff" stroke="#DAD6F0" stroke-width="6"/>`;
+    const o = { x: 520, y: 420, w: 880, h: 320, seed: 81, per: 40, maxBody: 14, swings: [[0, 0.1], [0.15, 0.5], [0.3, 0.28], [0.55, 0.8], [0.7, 0.52], [0.95, 0.98]] };
+    const both = t > T.both, sOn = (t > T.lensS && t < T.lensI) || both, iOn = t > T.lensI;
+    out += `<rect x="460" y="380" width="1000" height="400" fill="${C.pink}" opacity="${sOn && !both ? 0.08 : 0}"/><rect x="460" y="380" width="1000" height="400" fill="${C.teal}" opacity="${iOn && !both ? 0.1 : 0}"/>`;
+    const pos = posAt(t, [[T.chart, 0], [T.chart + 2.6, 5]]);
+    if (pos >= 0) out += chart(o, pos);
+    if (iOn) out += leg(o, 2, 3, seg(t, T.lensI + 0.4, T.lensI + 1), CH.I, 9, 0.75) + leg(o, 3, 4, seg(t, T.lensI + 1.2, T.lensI + 1.8), CH.C, 9, 0.75) + leg(o, 4, 5, seg(t, T.lensI + 2, T.lensI + 2.6), CH.C2, 9, 0.75);
+    if (iOn) { const m = (i, j, dx, dy) => { const p = P(o, i), q = P(o, j); return [(p[0] + q[0]) / 2 + dx, (p[1] + q[1]) / 2 + dy]; }; const a = m(2, 3, -40, 0), b = m(3, 4, 34, -10), c = m(4, 5, -40, 10);
+      out += tag(a[0], a[1], 'I', CH.I, pop(t, T.lensI + 0.8, 0.5), 24) + tag(b[0], b[1], 'C', CH.C, pop(t, T.lensI + 1.6, 0.5), 24) + tag(c[0], c[1], 'C', CH.C2, pop(t, T.lensI + 2.4, 0.5), 24); }
+    if (sOn) { const lab = [[1, 'H', C.muted], [2, 'HL', DK.teal], [3, 'HH', DK.teal], [4, 'HL', DK.teal], [5, 'HH', DK.teal]];
+      lab.forEach(([i, l, col], j) => { const p = P(o, i), hi = o.swings[i][1] > o.swings[i - 1][1]; out += pill(p[0], p[1] + (hi ? -30 : 32), l, col, both ? 1 : pop(t, T.lensS + 0.5 + j * 0.4, 0.4), 20); }); }
+    // Question pill.
+    const q = both ? ['Structure: what? · ICC: where in the sequence?', C.purple, T.both] : iOn ? ['ICC: where is price in the sequence?', DK.teal, T.lensI] : sOn ? ['Structure: what is price building?', DK.pink, T.lensS] : null;
+    if (q) out += pill(960, 822, q[0], q[1], pop(t, q[2] + 0.3, 0.5), 26);
+    // Seats and audience.
+    const viewer = (x, look, flip, seed) => { const o2 = { x, y: 1080, scale: 0.9, look, flip, seed }; return who(t, o2) + hat(t, o2, '3d'); };
+    out += viewer(560, A.LOOKS.b, false, 3) + viewer(1360, A.LOOKS.buyer, true, 6);
+    out += critter(t, 'dog', { x: 220, y: 1010, scale: 0.6, seed: 4, hop: both && t < T.both + 2 ? 10 : 0, hopH: 14 });
+    out += `<rect x="0" y="960" width="1920" height="120" fill="${C.purple}"/>${Array.from({ length: 9 }, (_, i) => `<rect x="${20 + i * 216}" y="940" width="190" height="80" rx="24" fill="${DK.purple}"/>`).join('')}`;
+    // Giant glasses.
+    const gk = pop(t, T.lensS - 0.6, 0.6);
+    if (gk > 0) {
+      const lens = (x, col, on, label) => `<rect x="${x - 110}" y="878" width="220" height="110" rx="26" fill="${on ? col : '#E2DDF3'}" opacity="${on ? 0.9 : 0.6}" stroke="${C.dark}" stroke-width="8"/>${txt(x, 944, label, 24, on ? '#fff' : C.muted)}`;
+      out += scaleAt(960, 930, gk, `<path d="M830,900 Q960,880 1090,900" stroke="${C.dark}" stroke-width="10" fill="none"/>${lens(830 - 30, C.pink, sOn, 'STRUCTURE')}${lens(1090 + 30, C.teal, iOn, 'ICC')}`);
+      if (both) out += A.sparkle(960, 920, T.both, t);
+    }
+    return out;
+  };
+
+  // "I don't need structure": an ICC-only rider wobbles and falls; the Structure + ICC tandem rides smoothly.
+  function bike(t, x, y, len, dist, riders) {
+    const r = 46, wh = (wx) => `<g transform="translate(${wx},${-r}) rotate(${(dist / r) * 57.3})"><circle r="${r}" fill="none" stroke="${C.dark}" stroke-width="9"/><line x1="${-r}" x2="${r}" y1="0" y2="0" stroke="${C.muted}" stroke-width="3"/><line y1="${-r}" y2="${r}" x1="0" x2="0" stroke="${C.muted}" stroke-width="3"/></g>`;
+    const xs = riders.map((_, i) => -len / 2 + 40 + i * (len - 80) / Math.max(1, riders.length - 1) * (riders.length > 1 ? 1 : 0) + (riders.length > 1 ? 0 : len / 2 - 60));
+    let g = `<g transform="translate(${x},${y})">${wh(-len / 2)}${wh(len / 2)}
+      <path d="M${-len / 2},${-r} L${-len / 2 + 50},${-r - 70} L${len / 2 - 30},${-r - 70} L${len / 2},${-r}" stroke="${C.pink}" stroke-width="10" fill="none" stroke-linejoin="round"/>
+      <path d="M${len / 2 - 30},${-r - 70} L${len / 2 - 10},${-r - 110} L${len / 2 + 20},${-r - 110}" stroke="${C.dark}" stroke-width="7" fill="none" stroke-linecap="round"/>`;
+    riders.forEach((rd, i) => {
+      const sx = xs[i];
+      g += `<line x1="${sx}" y1="${-r - 70}" x2="${sx}" y2="${-r - 96}" stroke="${C.dark}" stroke-width="6"/><rect x="${sx - 24}" y="${-r - 104}" width="48" height="12" rx="6" fill="${C.dark}"/>`;
+      g += `<g transform="translate(${sx},0)">${A.person(t, Object.assign({ x: 0, y: -r - 98 + 110 * 0.75, scale: 0.75, frontArm: { a1: 10, a2: 0 }, backArm: { a1: 20, a2: 10 } }, rd))}</g>`;
+      if (rd.label) g += pill(sx, -r - 380, rd.label, rd.col, 1, 22);
+    });
+    return g + '</g>';
+  }
+  LIVE['s12-tandem-bike'] = (s, t, ctx) => {
+    const T = s.beats;
+    let out = `<rect x="0" y="360" width="1920" height="560" fill="#EEF6EC"/>`;
+    out += `<path d="M0,760 Q300,640 640,740 Q980,620 1320,730 Q1640,650 1920,720 L1920,920 L0,920 Z" fill="#DCEBD8"/>` + A.road(910, { h: 110, shift: -(t - s.start) * 120 }) + `<rect x="0" y="1020" width="1920" height="60" fill="#DCEBD8"/>`;
+    // Solo rider.
+    const sk = ease(seg(t, T.solo, T.solo + 2.2));
+    const sx = lerp(-300, 640, sk);
+    const wob = t < T.q1 ? 0 : t < T.fall ? Math.sin(t * 9) * Math.min(9, 3 + (t - T.q1) * 1.4) : 0;
+    const rider = { look: A.LOOKS.e, seed: 3, label: t < T.fall ? 'ICC only' : '', col: C.teal, mood: t > T.q2 ? 'sad' : undefined };
+    if (t < T.fall) out += `<g transform="rotate(${wob} ${sx} 960)">${bike(t, sx, 960, 260, sk * 900, [rider])}</g>`;
+    else {
+      const f = ease(seg(t, T.fall, T.fall + 0.6));
+      out += `<g transform="rotate(${-10 * f} ${sx - 130} 960)">${bike(t, sx, 960, 260, sk * 900, [])}</g>`;
+      out += `<g transform="rotate(${-90 * f} ${sx + 120} 990)">${A.person(t, { x: sx + 120, y: 990, scale: 0.75, look: A.LOOKS.e, seed: 3, mood: 'sad', frontArm: { a1: -40, a2: -60 } })}</g>`;
+    }
+    if (t > T.fall + 0.6) for (let i = 0; i < 3; i++) { const a = t * 3 + i * 2.1; out += txt(sx - 120 + Math.cos(a) * 50, 930 + Math.sin(a) * 18, '✦', 34, C.gold); }
+    const qs = [[T.q1, 'What level mattered?', 300, 470], [T.q2, 'What actually indicated?', 980, 520], [T.q3, 'Did it invalidate anything?', 1000, 620]];
+    qs.forEach(([at, l, x, y]) => { out += bub(x, y, l, t > at && t < T.tandem ? pop(t, at, 0.5) : 0, { size: 26 }); });
+    // Tandem.
+    if (t > T.tandem) {
+      const k = ease(seg(t, T.tandem, T.tandem + 3));
+      const tx = lerp(-500, 1280, k);
+      out += bike(t, tx, 960, 400, k * 1800, [{ look: A.LOOKS.b, seed: 6, label: 'ICC', col: C.teal }, { look: A.LOOKS.c, seed: 2, label: 'Structure', col: C.pink }]);
+      if (t > T.ok) out += check(tx, 470, pop(t, T.ok, 0.5)) + pill(tx, 400, 'a read you can explain', C.purple, pop(t, T.ok + 0.3, 0.5), 26) + A.sparkle(tx, 470, T.ok, t);
+    }
+    out += crit(t, 'dog', { x: 1760, y: 1050, scale: 0.6, flip: true, seed: 5, at: s.start + 0.8, hop: t > T.ok ? 10 : 0, hopH: 16 });
+    out += crit(t, 'bird', { x: 1500 + Math.sin(t * 0.7) * 200, y: 440 + Math.sin(t * 2) * 16, scale: 0.6, fly: true, flip: Math.cos(t * 0.7) < 0, seed: 3 });
+    return out;
+  };
+
+  /* ======================= Lesson 9: ICC + Liquidity + Location ======================= */
+  // A four-piece band: each concept plays its own instrument and its own job.
+  LIVE['s12-band-stage'] = (s, t) => {
+    const T = s.beats;
+    let out = `<rect x="0" y="360" width="1920" height="720" fill="#2F2440"/>`;
+    // Spotlights.
+    [360, 760, 1160, 1560].forEach((x, i) => { const on = t > [T.m1, T.m2, T.m3, T.m4][i]; if (on) out += `<path d="M${x - 40},360 L${x + 40},360 L${x + 170},1000 L${x - 170},1000 Z" fill="#FFF6E0" opacity="${0.16 + 0.04 * Math.sin(t * 3 + i)}"/>`; });
+    out += `<rect x="0" y="960" width="1920" height="120" fill="#5E4A3A"/><rect x="0" y="960" width="1920" height="14" fill="#7A5C50"/>`;
+    const jam = t > T.jam;
+    const mem = [
+      { x: 360, at: T.m1, job: 'STRUCTURE · what?', col: C.teal },
+      { x: 760, at: T.m2, job: 'LOCATION · where?', col: C.gold },
+      { x: 1160, at: T.m3, job: 'LIQUIDITY · orders?', col: C.pink },
+      { x: 1560, at: T.m4, job: 'ICC · sequence?', col: C.purple },
+    ];
+    // Drummer robot.
+    const d = mem[0];
+    if (t > d.at - 0.2) {
+      out += bot(t, { x: d.x, y: 960, scale: 0.8, seed: 2, at: d.at, armUp: jam ? Math.sin(t * 12) > 0 : Math.sin(t * 6) > 0.6 });
+      out += scaleAt(d.x, 960, pop(t, d.at, 0.6), `<circle cx="${d.x}" cy="880" r="78" fill="${C.teal}" stroke="#fff" stroke-width="8"/>${txt(d.x, 896, 'S', 46, '#fff', { f: 'Playfair Display' })}
+        <rect x="${d.x + 90}" y="820" width="70" height="40" rx="10" fill="${C.pink}"/><line x1="${d.x - 120}" y1="760" x2="${d.x - 120}" y2="960" stroke="${C.muted}" stroke-width="5"/><ellipse cx="${d.x - 120}" cy="${760 + (jam ? Math.sin(t * 12) * 4 : 0)}" rx="54" ry="10" fill="${C.gold}"/>`);
+    }
+    // Bassist.
+    const bass = `<g transform="rotate(-30)"><ellipse cx="0" cy="20" rx="34" ry="44" fill="${C.gold}"/><rect x="-6" y="-130" width="12" height="140" fill="#9B6A45"/><rect x="-12" y="-150" width="24" height="26" rx="6" fill="${C.dark}"/></g>`;
+    const sax = `<g transform="rotate(10)"><path d="M0,-80 L0,10 Q0,50 34,40 L44,10" stroke="${C.gold}" stroke-width="20" fill="none" stroke-linecap="round"/><ellipse cx="46" cy="4" rx="20" ry="12" fill="${C.gold}"/></g>`;
+    const players = [
+      { m: mem[1], o: { look: A.LOOKS.a, seed: 3, hold: bass, frontArm: { a1: 40 + (jam ? Math.sin(t * 10) * 10 : 0), a2: -20 } } },
+      { m: mem[2], o: { look: A.LOOKS.b, seed: 5, hold: sax, frontArm: { a1: -20, a2: -80 } } },
+      { m: mem[3], o: { look: A.LOOKS.buyer, seed: 6, flip: true, frontArm: { a1: -40, a2: -100 }, talk: jam || (t > mem[3].at && t < mem[3].at + 2) } },
+    ];
+    players.forEach(({ m, o }) => {
+      out += who(t, Object.assign({ x: m.x, y: 960, scale: 0.9, at: m.at }, o));
+      if (m === mem[3] && t > m.at) out += `<line x1="${m.x - 70}" y1="960" x2="${m.x - 70}" y2="700" stroke="${C.muted}" stroke-width="6"/><rect x="${m.x - 84}" y="660" width="28" height="44" rx="14" fill="${C.dark}"/>`;
+    });
+    mem.forEach((m, i) => {
+      out += pill(m.x, 430, m.job, m.col, pop(t, m.at + 0.3, 0.5), 24);
+      const active = jam || (t > m.at && t < (mem[i + 1] ? mem[i + 1].at : T.jam));
+      if (active && t > m.at) out += notes(m.x + 40, 640, t + i * 0.3, 2, m.col);
+    });
+    if (jam) out += pill(960, 1030, 'four players · four different jobs', C.purple, pop(t, T.jam, 0.5), 28);
+    return out;
+  };
+
+  // A context switch panel: liquidity, FVG and location switch off. The ICC is still there. A confluence-score robot gets a ✗.
+  LIVE['s12-switch-panel'] = (s, t, ctx) => {
+    const T = s.beats;
+    let out = ground(1000, '#F2F0F7', '#E2DFEC');
+    out += `<rect x="290" y="390" width="900" height="520" rx="26" fill="#fff" stroke="#E2DDF3" stroke-width="4"/>`;
+    const o = { x: 340, y: 440, w: 800, h: 400, seed: 91, per: 36, maxBody: 14, swings: [[0, 0.32], [0.14, 0.6], [0.27, 0.4], [0.48, 0.84], [0.62, 0.56], [0.94, 0.98]] };
+    const X = u => o.x + u * o.w, Y = v => o.y + o.h - v * o.h;
+    const offs = [T.off1, T.off2, T.off3];
+    const vis = i => 1 - seg(t, offs[i], offs[i] + 0.5);
+    const ck = seg(t, T.chart + 1.5, T.chart + 2.2);
+    // Context layers.
+    out += `<g opacity="${ck * vis(2)}"><rect x="${X(0.56)}" y="${Y(0.62)}" width="${X(0.72) - X(0.56)}" height="${Y(0.4) - Y(0.62)}" fill="${C.gold}" opacity=".25"/>${txt(X(0.64), Y(0.4) + 26, 'discount', 20, '#C98A1F')}</g>`;
+    out += `<g opacity="${ck * vis(1)}"><rect x="${X(0.34)}" y="${Y(0.7)}" width="${X(0.4) - X(0.34)}" height="${Y(0.56) - Y(0.7)}" fill="${C.purple}" opacity=".3"/>${txt(X(0.3), Y(0.63), 'FVG', 20, DK.purple, { a: 'end' })}</g>`;
+    out += `<g opacity="${ck * vis(0)}"><line x1="${X(0)}" x2="${X(1)}" y1="${Y(0.3)}" y2="${Y(0.3)}" stroke="${C.pink}" stroke-width="4" stroke-dasharray="10 8"/>${txt(X(0.98), Y(0.3) + 26, 'sell-side liquidity', 20, DK.pink, { a: 'end' })}</g>`;
+    const pos = posAt(t, [[T.chart, 0], [T.chart + 2, 5]]);
+    if (pos >= 0) out += chart(o, pos);
+    const lw = t > T.still ? 14 : 9;
+    out += leg(o, 2, 3, ck, CH.I, lw, 0.7) + leg(o, 3, 4, ck, CH.C, lw, 0.7) + leg(o, 4, 5, ck, CH.C2, lw, 0.7);
+    if (t > T.still) out += pill(740, 950, 'ICC still there ✓', C.teal, pop(t, T.still, 0.5), 28) + A.sparkle(P(o, 5)[0], P(o, 5)[1], T.still, t);
+    // Switch panel.
+    const pk = pop(t, s.start + 0.6, 0.6);
+    let pn = `<rect x="1290" y="400" width="300" height="440" rx="24" fill="${C.purpleL}" stroke="${C.purple}" stroke-width="6"/>${txt(1440, 450, 'CONTEXT', 26, DK.purple)}`;
+    ['LIQUIDITY', 'FVG', 'LOCATION'].forEach((l, i) => {
+      const y = 520 + i * 110, on = 1 - ease(seg(t, offs[i], offs[i] + 0.3));
+      pn += `<rect x="1320" y="${y - 30}" width="100" height="56" rx="28" fill="${on > 0.5 ? C.teal : '#D9CFC8'}"/><circle cx="${lerp(1348, 1392, on)}" cy="${y - 2}" r="22" fill="#fff"/>${txt(1436, y + 6, l, 20, C.dark, { a: 'start' })}`;
+    });
+    out += scaleAt(1440, 840, pk, pn);
+    const op = { x: 1700, y: 1000, scale: 0.92, look: A.LOOKS.d, flip: true, seed: 4, at: s.start + 0.8, talk: ctx.talking && t > T.still && t < T.robot };
+    const cur = offs.findIndex(a => t > a - 0.6 && t < a + 0.6);
+    if (cur >= 0) op.frontArm = aim(op, 1400, 520 + cur * 110);
+    out += who(t, op);
+    // Confluence robot.
+    if (t > T.robot) {
+      const k = ease(seg(t, T.robot, T.robot + 1));
+      const rx = lerp(2100, 1200, k);
+      out += robot(t, { x: rx, y: 1010, scale: 0.8, flip: true, seed: 5, armUp: t < T.x, face: t > T.x ? 'x' : 'happy', talk: t > T.robot + 1 && t < T.x,
+        hold: `<g><rect x="-60" y="-80" width="120" height="90" rx="12" fill="#fff" stroke="${C.gold}" stroke-width="5"/>${txt(0, -36, '4/5 ✓', 28, '#C98A1F')}${txt(0, -6, 'CONFLUENCE', 15, C.muted)}</g>` });
+      out += cross(rx - 150, 760, pop(t, T.x, 0.5));
+      if (t > T.x) out += pill(1200, 1052, 'no confluence scores', C.pink, pop(t, T.x + 0.3, 0.5), 24);
+    }
+    return out;
+  };
+
+  /* ======================= Lesson 10: When ICC Is Unclear ======================= */
+  // A harbor with three chart signs: clear, developing (half in fog), unclear (lost in fog). The captain says "I don't know yet."
+  LIVE['s12-fog-harbor'] = (s, t, ctx) => {
+    const T = s.beats;
+    let out = `<rect x="0" y="360" width="1920" height="420" fill="#F1F4F8"/><rect x="0" y="770" width="1920" height="310" fill="${C.tealL}"/>`;
+    for (let i = 0; i < 9; i++) { const x = ((i * 240 + t * 30) % 2100) - 100; out += `<path d="M${x},${820 + (i % 3) * 80} q30,-10 60,0 t60,0" stroke="#fff" stroke-width="4" fill="none" opacity=".7"/>`; }
+    const signs = [
+      { x: 620, at: T.clear, label: '● CLEAR', col: C.teal, fog: 0, kind: 'clear' },
+      { x: 1080, at: T.dev, label: '◐ DEVELOPING', col: C.peach, fog: 0.5, kind: 'dev' },
+      { x: 1540, at: T.unclear, label: '○ UNCLEAR', col: C.purple, fog: 1, kind: 'unclear' },
+    ];
+    signs.forEach((sg, i) => {
+      const k = pop(t, sg.at, 0.7);
+      if (k <= 0) return;
+      const bob = Math.sin(t * 1.6 + i) * 6;
+      const x0 = sg.x - 180, y0 = 430 + bob;
+      let g = `<rect x="${sg.x - 8}" y="${y0 + 240}" width="16" height="${800 - y0 - 240}" fill="#9B6A45"/><ellipse cx="${sg.x}" cy="800" rx="60" ry="14" fill="#fff" opacity=".5"/>
+        <rect x="${x0}" y="${y0}" width="360" height="240" rx="20" fill="#fff" stroke="${sg.col}" stroke-width="7"/>`;
+      if (sg.kind === 'unclear') {
+        const pts = Array.from({ length: 14 }, (_, j) => [x0 + 30 + j * 22, y0 + 120 + Math.sin(j * 2.3) * 40 + Math.cos(j * 1.1) * 22]);
+        g += polyPart(pts, seg(t, sg.at, sg.at + 1.4), C.muted, 6);
+      } else {
+        const p = [[x0 + 30, y0 + 200], [x0 + 90, y0 + 150], [x0 + 130, y0 + 175], [x0 + 210, y0 + 80], [x0 + 260, y0 + 140], [x0 + 330, y0 + 40]];
+        g += polyPart(p.slice(0, 3), seg(t, sg.at, sg.at + 0.6), '#C9B9AE', 6) + polyPart(p.slice(2, 4), seg(t, sg.at + 0.6, sg.at + 1.1), CH.I, 8) + polyPart(p.slice(3, 5), seg(t, sg.at + 1.1, sg.at + 1.6), CH.C, 8);
+        if (sg.kind === 'clear') g += polyPart(p.slice(4, 6), seg(t, sg.at + 1.6, sg.at + 2.1), CH.C2, 8);
+        else g += txt(x0 + 320, y0 + 110, '?', 60, C.purple, { f: 'Playfair Display', op: 0.6 + 0.3 * Math.sin(t * 4) });
+      }
+      // Fog.
+      if (sg.fog > 0) {
+        const fx = sg.fog < 1 ? sg.x + 60 : sg.x;
+        for (let j = 0; j < (sg.fog < 1 ? 4 : 8); j++) {
+          const dx = Math.sin(t * 0.6 + j * 1.7) * 30;
+          g += `<ellipse cx="${fx + dx + (j % 4 - 1.5) * (sg.fog < 1 ? 50 : 90)}" cy="${y0 + 60 + Math.floor(j / 4) * 120 + (j % 2) * 30}" rx="${sg.fog < 1 ? 90 : 130}" ry="60" fill="#fff" opacity="${(sg.fog < 1 ? 0.6 : 0.75) * clamp(seg(t, sg.at + 1, sg.at + 2.2))}"/>`;
+        }
+      }
+      out += scaleAt(sg.x, 800, k, g);
+      out += pill(sg.x, 730, sg.label, sg.col, pop(t, sg.at + 0.6, 0.5), 26);
+    });
+    // Boat + captain.
+    const bx = 200, by = 860 + Math.sin(t * 1.6) * 6;
+    const cap = { x: bx, y: by - 50, scale: 0.75, look: A.LOOKS.c, seed: 4, at: s.start + 0.4, talk: ctx.talking && t > T.idk && t < T.idk + 3 };
+    if (t > T.clear && t < T.idk) cap.frontArm = { a1: -20, a2: -20 };
+    out += who(t, cap) + hat(t, cap, 'captain', pop(t, s.start + 0.4));
+    out += `<path d="M${bx - 170},${by - 60} L${bx + 170},${by - 60} L${bx + 120},${by + 20} L${bx - 130},${by + 20} Z" fill="${C.pink}"/><rect x="${bx - 170}" y="${by - 66}" width="340" height="16" rx="8" fill="${DK.pink}"/>${txt(bx, by - 14, 'S12', 26, '#fff')}`;
+    out += bub(bx + 60, 480, 'I don’t know yet.', t > T.idk ? pop(t, T.idk, 0.5) : 0, { size: 28 });
+    out += crit(t, 'gull', { x: 1540 + Math.sin(t * 0.9) * 160, y: 400 + Math.sin(t * 2) * 14, scale: 0.6, fly: true, flip: Math.cos(t * 0.9) < 0, seed: 2 });
+    if (t > T.wait) out += pill(1080, 1030, 'unclear is a valid read · wait is a valid decision', C.purple, pop(t, T.wait, 0.5), 26);
+    return out;
+  };
+
+  // An over-eager robot scribbles ICC labels all over a messy chart; a giant eraser cleans it up: "Unclear. Wait." Then Section 13 is next.
+  LIVE['s12-scribble-eraser'] = (s, t, ctx) => {
+    const T = s.beats;
+    let out = ground(1000, '#F4EFEA', '#E6DCD2');
+    const bk = pop(t, T.board, 0.7);
+    out += scaleAt(830, 880, bk, `<rect x="360" y="390" width="940" height="480" rx="18" fill="#fff" stroke="${C.muted}" stroke-width="10"/><rect x="420" y="870" width="20" height="130" fill="${C.muted}"/><rect x="1220" y="870" width="20" height="130" fill="${C.muted}"/><rect x="600" y="866" width="300" height="14" rx="6" fill="${C.muted}"/>`);
+    const pts = Array.from({ length: 22 }, (_, j) => [400 + j * 40, 640 + Math.sin(j * 1.9) * 90 + Math.cos(j * 0.7) * 50]);
+    out += polyPart(pts, seg(t, T.board + 0.4, T.board + 1.8), C.dark, 6, 0.7);
+    // Scribbles.
+    const ex = t < T.erase ? -1 : lerp(340, 1340, seg(t, T.erase, T.erase + 1.8));
+    const labs = ['I', 'C', 'C', 'I', 'C', 'I', 'C', 'C', 'I', 'C'];
+    labs.forEach((l, j) => {
+      const at = T.scribble + j * 0.45, p = pts[2 + j * 2];
+      if (t < at || p[0] < ex) return;
+      const col = [CH.I, CH.C, CH.C2][j % 3];
+      out += `<g transform="translate(${p[0]},${p[1] - 70 + (j % 2) * 140}) rotate(${(j % 3 - 1) * 14}) scale(${pop(t, at, 0.4)})">${txt(0, 18, l, 56, col, { f: 'Playfair Display' })}</g>`;
+      if (j % 2 === 0) out += `<path d="M${p[0] - 30},${p[1] - 20} q20,-40 60,-10" stroke="${col}" stroke-width="5" fill="none" opacity=".7"/>`;
+    });
+    // Eraser.
+    if (t > T.erase && t < T.erase + 2.2) out += `<g transform="translate(${ex},${630 + Math.sin(t * 20) * 60}) rotate(-10)"><rect x="-60" y="-110" width="120" height="220" rx="20" fill="${C.purpleL}" stroke="${C.purple}" stroke-width="6"/><rect x="-60" y="60" width="120" height="50" rx="10" fill="${C.pinkL}"/></g>`;
+    // The calm note.
+    if (t > T.write) {
+      const w = seg(t, T.write, T.write + 1.2);
+      out += `<defs><clipPath id="s12-wclip"><rect x="420" y="420" width="${820 * w}" height="160"/></clipPath></defs><g clip-path="url(#s12-wclip)">${txt(830, 520, 'Unclear. Wait.', 76, DK.purple, { f: 'Playfair Display', w: 700, rot: -3 })}</g>`;
+      out += check(1170, 500, pop(t, T.write + 1.3, 0.5));
+    }
+    // Robot.
+    const rb = { x: 1460, y: 1000, scale: 0.9, seed: 3, at: s.start + 0.6, armUp: t > T.scribble && t < T.erase, talk: t > T.scribble && t < T.found + 2, face: 'happy',
+      hold: `<g transform="rotate(30)"><rect x="-8" y="-50" width="16" height="60" rx="5" fill="${C.pink}"/><rect x="-8" y="-50" width="16" height="12" fill="${C.dark}"/></g>` };
+    out += bot(t, rb);
+    out += bub(1460, 640, 'ICC everywhere!', t > T.found && t < T.erase ? pop(t, T.found, 0.5) : 0, { size: 28, tail: 'right' });
+    const pp = { x: 220, y: 1000, scale: 0.92, look: A.LOOKS.a, seed: 5, at: s.start + 0.9, talk: ctx.talking && t > T.write && t < T.next };
+    if (t > T.erase - 0.4 && t < T.write + 1.4) pp.frontArm = { a1: -50, a2: -60 };
+    out += who(t, pp);
+    out += bub(260, 600, 'Less markup.', t > T.erase && t < T.next ? pop(t, T.erase, 0.5) : 0, { size: 28 });
+    // Next: Section 13.
+    if (t > T.next) {
+      const k = pop(t, T.next, 0.7);
+      const open = ease(seg(t, T.next + 0.6, T.next + 1.6));
+      out += scaleAt(1740, 1000, k, `<rect x="1610" y="520" width="260" height="480" rx="16" fill="#FFF6DD"/><rect x="1610" y="520" width="260" height="480" rx="16" fill="none" stroke="${C.gold}" stroke-width="10"/>
+        <path d="M1614,524 L${1614 + 252 * (1 - open * 0.7)},${524 + open * 30} L${1614 + 252 * (1 - open * 0.7)},${996 - open * 30} L1614,996 Z" fill="${C.purple}"/>
+        ${txt(1740, 640, 'SECTION 13', 26, open > 0.5 ? '#C98A1F' : '#fff')}${txt(1740, 690, '1-Minute', 30, open > 0.5 ? C.dark : '#fff', { f: 'Playfair Display' })}${txt(1740, 726, 'Entry Model™', 26, open > 0.5 ? C.dark : '#fff', { f: 'Playfair Display' })}`);
+      out += pill(1740, 470, 'NEXT UP', C.pink, pop(t, T.next + 0.4, 0.5), 26) + A.sparkle(1740, 700, T.next + 1.4, t, C.gold);
+    }
+    return out;
+  };
+
 
   Object.assign(window.ILLUS.BUILD, BUILD);
   Object.assign(window.ILLUS.LIVE, LIVE);
