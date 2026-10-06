@@ -106,7 +106,7 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
   const cps = (slide.checkpoints || []).map((c) => ({ kind: mode === 'review' && !c.kind ? 'ask' : 'decide', ...c }));
   const ctxLine = (sc.context || []).map((c) => `<span><i>${c.label}</i> ${c.value}</span>`).join('');
 
-  el0.innerHTML = `<div class="lw-card tx-card tx-${mode}">
+  el0.innerHTML = `<div class="lw-card tx-card txm-${mode}">
     ${head(slide)}
     ${ctxLine ? `<div class="tx-ctx">${ctxLine}${sc.risk ? `<span><i>Risk</i> ${sc.risk}</span>` : ''}</div>` : ''}
     <div class="tx-grid">
@@ -311,6 +311,7 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
       decideEl.innerHTML = `<div class="tx-q">${cp.prompt || (forming ? 'The candle is still open. What do you do?' : 'What do you do right now?')}</div>`;
       actionsEl?.classList.add('is-live');
       pending = { cp, r, expect, then };
+      if (window.__aghfTest) decideEl.dataset.expect = expect; // test harness only
       (actionsEl || decideEl).scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'nearest' });
     };
     if (cp.askStatus) {
@@ -426,6 +427,7 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
   function end() {
     if (finished) return;
     finished = true; stop();
+    helpers.onTriggerEnd?.({ entered: ctx.entered, passed: ctx.passed, result: entry?.result || null });
     actionsEl?.querySelectorAll('.tx-act').forEach((b) => { b.disabled = true; });
     const e = slide.end || {};
     if (e.text) say(e.text);

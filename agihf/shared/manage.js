@@ -79,6 +79,7 @@ export function renderManageSim(el0, slide, satisfy, helpers = {}) {
   const results = [];
   const startRun = () => runOne(runs[runIdx], (res) => {
     results.push(res);
+    helpers.onManageResult?.(res);
     runIdx += 1;
     if (runIdx < runs.length) {
       const b = document.createElement('button');

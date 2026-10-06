@@ -1,0 +1,123 @@
+{
+ "phase": "p6",
+ "section": "s17",
+ "lessonNumber": 19,
+ "title": "Position Sizing from Risk",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Choose risk. Then determine size.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Size from the risk cap down, floor to whole contracts, and resize when the stop changes.",
+  "missionQuestion": "How many contracts fit my risk?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "Reverse it",
+   "heading": "Risk first. Size second.",
+   "body": "",
+   "beats": [
+    {
+     "icon": "1",
+     "title": "Max planned risk",
+     "line": "e.g. $150"
+    },
+    {
+     "icon": "2",
+     "title": "Stop distance",
+     "line": "e.g. 25 MNQ points"
+    },
+    {
+     "icon": "3",
+     "title": "Risk of ONE contract",
+     "line": "25 × $2 = $50"
+    },
+    {
+     "icon": "4",
+     "title": "Whole contracts that fit",
+     "line": "$150 ÷ $50 = 3"
+    }
+   ],
+   "punch": "Don’t choose contracts and discover the risk. Choose the risk, then the size."
+  },
+  {
+   "type": "size_fit",
+   "kicker": "Fill the cap",
+   "title": "Drop contracts in until the cap says no",
+   "steps": [
+    {
+     "cap": 150,
+     "stop": 25
+    },
+    {
+     "cap": 200,
+     "stop": 20
+    },
+    {
+     "cap": 200,
+     "stop": 40
+    },
+    {
+     "cap": 150,
+     "stop": 40
+    },
+    {
+     "cap": 50,
+     "stop": 30
+    }
+   ],
+   "punch": "THE STOP CHANGED. SO THE SIZE MAY NEED TO CHANGE."
+  },
+  {
+   "type": "r_normalizer",
+   "kicker": "The A+ setup trap",
+   "title": "“This setup is BEAUTIFUL.” · DOUBLE SIZE?",
+   "traders": [],
+   "asks": [
+    {
+     "prompt": "DID THE ACCOUNT’S RISK CAP CHANGE?",
+     "options": [
+      {
+       "label": "No",
+       "correct": true,
+       "why": "Confidence isn’t capacity."
+      },
+      {
+       "label": "Yes, A+ setups earn more",
+       "feedback": "The cap is set by the account, not the setup."
+      }
+     ],
+     "stack": true,
+     "skill": "sizing"
+    }
+   ],
+   "punch": "SETUP CONFIDENCE DOES NOT OVERRIDE THE RISK CEILING."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "If no whole contract fits, <em>the trade doesn’t fit the plan.</em> The stop doesn’t shrink to make it fit.",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why do you choose the risk before the size?",
+   "modelAnswer": "Because the account decides how much I can lose, not the setup. Risk cap ÷ risk per contract, floored to whole contracts. If the stop is wider, fewer contracts fit, and if none fit, I pass."
+  }
+ ],
+ "takeaways": [
+  "Risk cap ÷ risk per contract.",
+  "Floor it. Never round up.",
+  "No fit = no trade."
+ ],
+ "remember": "Setup confidence does not override the risk ceiling."
+}

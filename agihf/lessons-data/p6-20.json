@@ -1,0 +1,118 @@
+{
+ "phase": "p6",
+ "section": "s17",
+ "lessonNumber": 20,
+ "title": "Understanding R",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "R lets you compare trades without getting hypnotized by dollars.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Use R as a common language for risk and outcome.",
+  "missionQuestion": "What was this trade worth relative to what I risked?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "A common language",
+   "heading": "1R = what you planned to risk",
+   "body": "",
+   "beats": [
+    {
+     "icon": "−1R",
+     "title": "Planned risk $100",
+     "line": "−$100"
+    },
+    {
+     "icon": "+1R",
+     "title": "",
+     "line": "+$100"
+    },
+    {
+     "icon": "+2R",
+     "title": "",
+     "line": "+$200"
+    }
+   ]
+  },
+  {
+   "type": "r_normalizer",
+   "kicker": "R normalizer",
+   "title": "Different dollars. Same result?",
+   "traders": [
+    {
+     "name": "Trader A",
+     "risk": 50,
+     "result": 100
+    },
+    {
+     "name": "Trader B",
+     "risk": 250,
+     "result": 500
+    }
+   ],
+   "asks": [
+    {
+     "prompt": "Risk $150. Profit $300. R?",
+     "options": [
+      {
+       "label": "+1R",
+       "feedback": "300 is twice 150."
+      },
+      {
+       "label": "+2R",
+       "correct": true,
+       "why": "$300 ÷ $150."
+      },
+      {
+       "label": "+3R",
+       "feedback": "Check the division."
+      }
+     ],
+     "skill": "r"
+    },
+    {
+     "prompt": "Does +2R tell you the trade was valid or well executed?",
+     "options": [
+      {
+       "label": "Yes",
+       "feedback": "R expresses the outcome relative to risk. Nothing more."
+      },
+      {
+       "label": "No",
+       "correct": true,
+       "why": "R says nothing about validity, execution or edge."
+      }
+     ],
+     "skill": "r"
+    }
+   ],
+   "punch": "R LETS YOU COMPARE TRADES WITHOUT GETTING HYPNOTIZED BY DOLLARS."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "R doesn’t grade the trade. <em>It translates the outcome into the size of the risk you took.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What does R tell you, and what doesn’t it?",
+   "modelAnswer": "R tells me the outcome relative to my planned risk, so trades of different sizes can be compared. It doesn’t tell me whether the trade was valid, well executed, or whether the strategy has an edge."
+  }
+ ],
+ "takeaways": [
+  "1R = planned risk.",
+  "Result ÷ risk = R.",
+  "R ≠ validity, execution or edge."
+ ],
+ "remember": "R lets you compare trades without getting hypnotized by dollars."
+}

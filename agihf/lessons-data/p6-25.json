@@ -1,0 +1,95 @@
+{
+ "phase": "p6",
+ "section": "s17",
+ "lessonNumber": 25,
+ "title": "Drawdown, Losing Streaks & Survival",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Your risk model needs room for your strategy to be wrong.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Read drawdown, and see how risk size changes what the same losing streak does to an account.",
+  "missionQuestion": "Can my risk model survive five losses?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "drawdown",
+   "mode": "define",
+   "kicker": "Drawdown",
+   "title": "Peak $10,000 · Current $9,400",
+   "peak": 10000,
+   "current": 9400,
+   "asks": [
+    {
+     "prompt": "Drawdown?",
+     "options": [
+      {
+       "label": "$600 · 6%",
+       "correct": true,
+       "why": "Peak minus current, as a share of the peak."
+      },
+      {
+       "label": "$9,400",
+       "feedback": "That’s the balance."
+      },
+      {
+       "label": "6 points",
+       "feedback": "Dollars and %, not points."
+      }
+     ],
+     "skill": "drawdown"
+    }
+   ]
+  },
+  {
+   "type": "drawdown",
+   "mode": "streak",
+   "kicker": "L L L L L",
+   "title": "This can happen even if the strategy has an edge",
+   "asks": [
+    {
+     "prompt": "WHAT CHANGES AS RISK INCREASES?",
+     "options": [
+      {
+       "label": "Nothing, five losses is five losses",
+       "feedback": "Same streak, very different damage."
+      },
+      {
+       "label": "Drawdown severity, recovery burden and account fragility",
+       "correct": true,
+       "why": "Risk size changes survival characteristics."
+      }
+     ],
+     "stack": true,
+     "skill": "drawdown"
+    }
+   ],
+   "punch": "NOT “HOW DO I NEVER LOSE FIVE TIMES?” BUT “CAN MY RISK MODEL SURVIVE FIVE LOSSES?”"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Your risk model needs room <em>for your strategy to be wrong.</em> No % here is “the right one”. Size changes survival.",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why does risk size matter more during a losing streak?",
+   "modelAnswer": "Because the same streak does very different damage depending on risk. About 4.9% at 1% per trade versus about 41% at 10%, before costs, and deeper drawdowns are harder to recover from."
+  }
+ ],
+ "takeaways": [
+  "Drawdown = from the peak.",
+  "Streaks happen, even with an edge.",
+  "Risk size changes survival."
+ ],
+ "remember": "Your risk model needs room for your strategy to be wrong."
+}
