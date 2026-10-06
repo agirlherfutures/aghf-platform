@@ -934,6 +934,123 @@
     return out;
   };
 
+  /* ===================== Lesson 16 ===================== */
+  // A cat jumps above the shelf (resistance), then slides back off: false break behavior.
+  LIVE['s5-cat-shelf'] = (s, t, ctx) => {
+    const T = s.beats, SH = 600, CT = 880;
+    let out = `<rect x="100" y="390" width="1060" height="${CT - 390}" rx="24" fill="#FFF8F2"/>` +
+      Array.from({ length: 6 }, (_, i) => `<line x1="100" x2="1160" y1="${720 + i * 32}" y2="${720 + i * 32}" stroke="${C.peachL}" stroke-width="2"/>`).join('') +
+      Array.from({ length: 17 }, (_, i) => `<line x1="${120 + i * 62}" x2="${120 + i * 62}" y1="720" y2="${CT}" stroke="${C.peachL}" stroke-width="2"/>`).join('') + ground(1000);
+    // Counter.
+    out += `<rect x="90" y="${CT - 10}" width="1090" height="24" rx="8" fill="${C.peach}"/><rect x="100" y="${CT + 14}" width="1070" height="${1000 - CT - 14}" fill="${C.peachL}"/>
+      ${[0, 1, 2, 3].map(i => `<rect x="${130 + i * 262}" y="${CT + 30}" width="230" height="80" rx="10" fill="none" stroke="${C.peach}" stroke-width="4" opacity=".7"/><rect x="${230 + i * 262}" y="${CT + 44}" width="30" height="8" rx="4" fill="${C.peach}"/>`).join('')}`;
+    // Shelf with jars and brackets.
+    out += `<rect x="300" y="${SH}" width="600" height="18" rx="6" fill="#C9A27A"/><path d="M340,${SH + 18} l0,40 l40,-40 Z M860,${SH + 18} l0,40 l-40,-40 Z" fill="#B98A5E"/>
+      <rect x="800" y="${SH - 70}" width="44" height="70" rx="10" fill="${C.tealL}"/><rect x="796" y="${SH - 82}" width="52" height="16" rx="5" fill="${C.teal}"/>
+      <rect x="854" y="${SH - 52}" width="36" height="52" rx="10" fill="${C.pinkL}"/><rect x="850" y="${SH - 62}" width="44" height="14" rx="5" fill="${C.pink}"/>`;
+    // Price display on the wall.
+    const price = t > T.slip + 0.6 ? '19,985' : t > T.jump + 0.6 ? '20,005' : '19,990';
+    const pcol = t > T.slip + 0.6 ? C.pink : t > T.jump + 0.6 ? C.tealD : C.dark;
+    out += scaleAt(240, 450, pop(t, s.start + 0.6, 0.5), `<rect x="140" y="420" width="200" height="70" rx="14" fill="${C.dark}"/><text x="240" y="470" font-size="40" font-weight="900" text-anchor="middle" fill="${pcol === C.dark ? '#FFF3C4' : pcol}" ${F}>${price}</text>`);
+    // Level line to the chart.
+    out += level(x => x, y => y, 300, 1760, SH, C.purple, seg(t, s.start + 0.8, s.start + 2.0), '16 10', 5);
+    // Chart panel.
+    const pk = pop(t, s.start + 0.4, 0.6);
+    out += panel(1210, 400, 560, 580, pk);
+    const Yp = v => SH - (v - 20000) * 6;
+    const cs = [[1260, 19950, 19965, 19968, 19946, s.start + 1.2], [1320, 19965, 19958, 19970, 19954, s.start + 1.5], [1380, 19958, 19976, 19979, 19955, s.start + 1.8], [1440, 19976, 19990, 19993, 19972, s.start + 2.1],
+      [1530, 19990, 20005, 20008, 19987, T.jump + 0.2], [1630, 20005, 19985, 20009, 19982, T.slip + 0.2]];
+    cs.forEach(([x, o, c, hi, lo, at], i) => {
+      const p = ease((t - at) / 0.6);
+      if (p <= 0) return;
+      const cc = lerp(o, c, p), col = c >= o ? C.teal : C.pink, w = i >= 4 ? 46 : 30;
+      out += `<line x1="${x}" x2="${x}" y1="${Yp(lerp(Math.max(o, c), hi, p))}" y2="${Yp(lerp(Math.min(o, c), lo, p))}" stroke="${col}" stroke-width="5" stroke-linecap="round"/>
+        <rect x="${x - w / 2}" y="${Yp(Math.max(o, cc))}" width="${w}" height="${Math.max(4, Math.abs(Yp(o) - Yp(cc)))}" rx="5" fill="${col}"/>`;
+    });
+    out += pill(1430, SH - 36, 'resistance 20,000', C.purple, pop(t, s.start + 2.0, 0.5), 22);
+    if (t > T.jump + 0.8) out += pill(1530, Yp(20005) + 120, '20,005', C.tealD, pop(t, T.jump + 0.8, 0.4), 20);
+    if (t > T.slip + 0.8) out += pill(1650, Yp(19985) + 70, '19,985', C.pink, pop(t, T.slip + 0.8, 0.4), 20);
+    // Cat.
+    let cx = 560, cy = CT, rot = 0, mood, sy = 1;
+    if (t > T.jump && t < T.jump + 0.8) { const f = (t - T.jump) / 0.8; cx = lerp(560, 640, f); cy = lerp(CT, SH, f) - Math.sin(Math.PI * f) * 90; rot = lerp(-25, 0, f); sy = 1.08; }
+    else if (t >= T.jump + 0.8 && t < T.slip) { cx = 640; cy = SH; }
+    else if (t >= T.slip) {
+      const a = seg(t, T.slip, T.slip + 0.7), b = seg(t, T.slip + 0.7, T.slip + 1.3);
+      cx = lerp(640, 930, ease(a)); cy = SH; rot = a * 10;
+      if (b > 0) { cx = lerp(930, 990, b); cy = lerp(SH, CT, b * b); rot = lerp(10, -20, b); }
+      mood = b > 0 ? (b >= 1 ? 'dizzy' : 'shock') : 'shock';
+    }
+    out += cat(t, { x: cx, y: cy, s: 1.0, rot, sy, mood, seed: 6, lookY: t < T.jump ? -6 : 0 });
+    if (t > T.jump + 0.8 && t < T.slip) out += sparkle(640, SH - 150, T.jump + 0.8, t, C.gold);
+    if (t > T.slip + 1.3) out += [0, 1, 2].map(i => { const a = t * 3 + i * 2.1; return `<text x="${990 + Math.cos(a) * 54}" y="${CT - 200 + Math.sin(a) * 14}" font-size="30" text-anchor="middle" fill="${C.gold}" ${F}>★</text>`; }).join('');
+    // Mouse laughs at the slip.
+    out += mouse(t, { x: 1080, y: CT - 10, s: 1.1, flip: true, laugh: t > T.slip + 1.2 && t < T.slip + 4.5 });
+    // Pills.
+    out += pill(620, 470, 'breakout confirmed forever?', C.peach, pop(t, T.forever, 0.5) * (1 - clamp((t - T.slip + 0.2) / 0.3)), 26);
+    if (t > T.forever + 1.4 && t < T.slip) out += xMark(860, 470, pop(t, T.forever + 1.4, 0.4), 20);
+    out += pill(640, 470, 'moved above, failed to hold', C.pink, pop(t, T.fail, 0.5), 26);
+    out += pill(1490, 1030, 'false break behavior', C.pink, pop(t, T.fb, 0.5), 26);
+    return out;
+  };
+
+  // The security footage only shows price: observation before interpretation.
+  LIVE['s5-cctv'] = (s, t, ctx) => {
+    const T = s.beats, DK = 860;
+    let out = `<rect x="0" y="380" width="1920" height="${DK - 380}" fill="#F7F1FB" opacity=".7"/>` + ground(1000);
+    // Monitor.
+    const mk = pop(t, s.start + 0.3, 0.6);
+    let mon = `<rect x="920" y="790" width="80" height="80" fill="${C.muted}"/><rect x="840" y="850" width="240" height="16" rx="8" fill="${C.muted}"/>
+      <rect x="620" y="390" width="680" height="410" rx="26" fill="${C.dark}"/><rect x="650" y="420" width="620" height="350" rx="12" fill="#3D3550"/>`;
+    for (let i = 0; i < 18; i++) mon += `<rect x="650" y="${420 + i * 20 + (t * 30) % 20}" width="620" height="3" fill="#fff" opacity=".05"/>`;
+    const rec = Math.floor(t * 1.5) % 2;
+    mon += `<circle cx="684" cy="450" r="9" fill="${C.pink}" opacity="${rec ? 1 : 0.3}"/><text x="702" y="458" font-size="22" font-weight="900" fill="#fff" opacity=".85" ${F}>REC</text>
+      <text x="1250" y="458" font-size="20" font-weight="700" text-anchor="end" fill="#fff" opacity=".6" ${F}>CAM 1 · PRICE</text>`;
+    out += scaleAt(960, 600, mk, mon);
+    if (mk > 0.7) {
+      const pts = [[680, 720], [760, 680], [820, 700], [900, 630], [960, 660], [1030, 590], [1080, 520], [1130, 600], [1180, 650], [1240, 630]];
+      const k = ease(seg(t, s.start + 1.0, s.start + 4.0));
+      const pp = alongPath(pts, k);
+      const drawn = pts.slice(0, pp.seg + 1).concat([[pp.x, pp.y]]);
+      out += `<line x1="670" x2="1250" y1="560" y2="560" stroke="${C.purpleL}" stroke-width="4" stroke-dasharray="12 8"/>
+        <text x="676" y="548" font-size="20" font-weight="700" fill="${C.purpleL}" ${F}>prior high</text>
+        <polyline points="${drawn.map(q => q.join(',')).join(' ')}" fill="none" stroke="${C.tealL}" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="${pp.x}" cy="${pp.y}" r="10" fill="${C.gold}"/>`;
+      if (t > T.foot) out += pill(960, 736, 'only price on camera', C.purple, pop(t, T.foot, 0.5), 22);
+      if (t > T.obs) {
+        const q = pop(t, T.obs, 0.5);
+        out += `<circle cx="1080" cy="520" r="${22 * q}" fill="none" stroke="${C.gold}" stroke-width="5"/><circle cx="1180" cy="650" r="${22 * q}" fill="none" stroke="${C.gold}" stroke-width="5"/>`;
+      }
+    }
+    // Gossip with a parrot; calm analyst.
+    const gTalk = t > T.g1 && t < T.g1 + 2.8;
+    out += P(t, { x: 300, y: 1000, scale: 1.05, look: A.LOOKS.b, seed: 3, talk: gTalk, frontArm: gTalk ? { a1: -50, a2: -90 + Math.sin(t * 9) * 12 } : undefined, mood: t > T.assume + 0.4 && t < T.parrot2 ? 'sad' : undefined });
+    const squawk = (t > T.g1 + 1.4 && t < T.g1 + 3.8) || (t > T.parrot2 && t < T.parrot2 + 3);
+    out += bird(t, { x: 338, y: 800, s: 0.85, col: C.teal, wing: C.pink, tail: C.peach, crest: C.pink, seed: 5, hop: squawk });
+    const aTalk = t > T.obs - 0.2 && t < T.obs + 4;
+    out += P(t, { x: 1600, y: 1000, scale: 1.05, look: A.LOOKS.e, flip: true, seed: 7, talk: aTalk, frontArm: { a1: 40, a2: -60 },
+      hold: `<rect x="-28" y="-62" width="56" height="70" rx="6" fill="#fff" stroke="${C.tealD}" stroke-width="4"/><path d="M-16,-40 h32 M-16,-26 h24 M-16,-12 h28" stroke="${C.tealL}" stroke-width="5"/>` }, 'cap', C.purple);
+    // Desk in front.
+    out += `<rect x="200" y="${DK}" width="1520" height="26" rx="10" fill="${C.peach}"/><rect x="220" y="${DK + 26}" width="1480" height="${1000 - DK - 26}" fill="${C.peachL}"/>
+      <path d="M470,${DK} L480,${DK - 60} L540,${DK - 60} L550,${DK} Z" fill="#fff" stroke="${C.pink}" stroke-width="4"/>${[0, 1, 2, 3, 4].map(i => `<circle cx="${488 + i * 11}" cy="${DK - 66 - (i % 2) * 8}" r="9" fill="#FFF3C4"/>`).join('')}
+      <rect x="1380" y="${DK - 54}" width="44" height="54" rx="8" fill="${C.teal}"/><path d="M1424,${DK - 42} q20,0 20,16 q0,14 -20,14" stroke="${C.teal}" stroke-width="6" fill="none"/>`;
+    // Speech.
+    const b1 = win(t, T.g1, T.obs - 0.4);
+    if (b1 > 0) out += A.bubble(430, 455, 'Big money trapped retail!', { op: b1, sc: 0.8 + 0.2 * b1, size: 30, weight: 800, tail: 'left', color: C.pink });
+    const b2 = win(t, T.g1 + 1.4, T.g1 + 4.2);
+    if (b2 > 0) out += A.bubble(300, 560, 'Trapped! Squawk!', { op: b2, sc: 0.8 + 0.2 * b2, size: 26, weight: 800, tail: 'right', color: C.tealD });
+    const sa = clamp((t - T.assume) / 0.3);
+    if (sa > 0 && b1 > 0) out += `<g transform="translate(430,455) rotate(-8) scale(${lerp(1.6, 1, ease(sa))})" opacity="${sa}"><rect x="-140" y="-30" width="280" height="60" rx="10" fill="#fff" fill-opacity=".85" stroke="${C.pink}" stroke-width="6"/>
+      <text y="12" font-size="32" font-weight="900" text-anchor="middle" fill="${C.pink}" letter-spacing="3" ${F}>ASSUMPTION</text></g>`;
+    const b3 = win(t, T.obs, s.end);
+    if (b3 > 0) out += A.bubble(1590, 470, 'Above the high, then back below.', { op: b3, sc: 0.8 + 0.2 * b3, size: 28, weight: 700, tail: 'right', color: C.tealD });
+    const so = clamp((t - T.obs - 2.6) / 0.3);
+    if (so > 0) out += `<g transform="translate(1590,555) rotate(6) scale(${lerp(1.6, 1, ease(so))})" opacity="${so}"><rect x="-150" y="-30" width="300" height="60" rx="10" fill="#fff" fill-opacity=".85" stroke="${C.tealD}" stroke-width="6"/>
+      <text y="12" font-size="30" font-weight="900" text-anchor="middle" fill="${C.tealD}" letter-spacing="3" ${F}>OBSERVATION ✓</text></g>`;
+    const b4 = win(t, T.parrot2, s.end);
+    if (b4 > 0) out += A.bubble(300, 560, 'Observation!', { op: b4, sc: 0.8 + 0.2 * b4, size: 26, weight: 800, tail: 'right', color: C.tealD });
+    return out;
+  };
+
   /* @@MORE@@ */
 
   window.ILLUS.BUILD = window.ILLUS.BUILD || {};
