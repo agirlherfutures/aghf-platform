@@ -1,20 +1,21 @@
 /**
- * Phase 4 · Section 1 · Lesson 5 intro video — "When a New 4H Swing Changes the Map"
+ * Phase 4 · Section 10 · Lesson 5 intro video: "When a New 4H Swing Changes the Map"
+ * Scenes: s10-polaroid (photographer snaps the room before and after the new swing), s10-door-carpenter (carpenter waits for the swing to form, then moves the doors).
  */
 window.LESSON_VIDEO = {
   "slug": "p4-lesson-5",
-  "eyebrow": "Phase 4 · Section 1 · Lesson 5",
-  "duration": 76,
-  "sources": "From Phase 4, Lesson 5: an old room, price closing through the old external high and forming a new swing, keep vs update vs not enough information, and moving the doors yourself.",
+  "eyebrow": "Phase 4 · Section 10 · Lesson 5",
+  "duration": 80,
+  "sources": "From Phase 4, Section 10, Lesson 5 (\"When a New 4H Swing Changes the Map\"): the price lab (old external high and low, a close through, not enough information until the new swing forms, then update the map), the before/after room, and \"don’t stay loyal to old levels, stay loyal to current structure.\"",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Finding Your Bias",
+      "phase": "Section 10: Finding Your Bias",
       "title": "When a New 4H Swing Changes the Map",
-      "quote": "Stay loyal to current structure.",
+      "quote": "The room can update.",
       "lines": [
         {
           "at": 0.6,
@@ -28,223 +29,126 @@ window.LESSON_VIDEO = {
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s10-polaroid",
       "start": 8,
-      "end": 38,
-      "seed": 405,
-      "kicker": "New information",
-      "swings": [
-        [
-          0,
-          0.4
-        ],
-        [
-          0.14,
-          0.7
-        ],
-        [
-          0.28,
-          0.12
-        ],
-        [
-          0.4,
-          0.55
-        ],
-        [
-          0.5,
-          0.3
-        ],
-        [
-          0.72,
-          0.95
-        ],
-        [
-          0.86,
-          0.72
-        ]
-      ],
-      "per": [
-        3,
-        4,
-        3,
-        3,
-        6,
-        3
-      ],
-      "play": [
-        {
-          "to": 6,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 34,
+      "kicker": "Before / after",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Your room… <span class=\"mark\">just changed?</span>",
-          "out": 28.3
+          "html": "Your room, and <span class=\"mark\">new information.</span>",
+          "out": 27.6
         },
         {
-          "at": 28.5,
-          "html": "Move the doors <span class=\"mark\">yourself.</span>"
+          "at": 27.8,
+          "html": "The room <span class=\"mark\">can update.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Here’s your room. Old external high, old external low.",
-          "screen": "Candles build"
+          "text": "Here’s your 4H room. Snap a picture.",
+          "screen": "Photographer, tripod, the room"
         },
         {
-          "at": 13.0,
-          "text": "Price closes through the old high."
+          "at": 11.6,
+          "text": "Old external high. Old external low.",
+          "screen": "BEFORE polaroid"
         },
         {
-          "at": 18.0,
-          "text": "A new high forms. Price pulls back from it. New 4H information.",
-          "screen": "New doors"
+          "at": 14.6,
+          "text": "Then price gives you new information."
         },
         {
-          "at": 23.0,
-          "text": "Your map needs an update.",
-          "screen": "\"map needs an update\""
+          "at": 17.2,
+          "text": "It closes through the old high, makes a new high, and pulls back from it.",
+          "screen": "closes through; new swing"
         },
         {
-          "at": 28.5,
-          "text": "Nobody moves the doors for you. You check, and you update."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.7,
-          "from": 0.14,
-          "label": "old external high",
-          "tone": "muted",
-          "at": 10.0
+          "at": 23.2,
+          "text": "A new 4H swing just formed. Time for a new picture.",
+          "screen": "Flash: AFTER polaroid"
         },
         {
-          "v": 0.95,
-          "from": 0.6,
-          "label": "NEW external high",
-          "tone": "purple",
-          "at": 20.0
-        },
-        {
-          "v": 0.3,
-          "from": 0.5,
-          "label": "NEW external low",
-          "tone": "purple",
-          "at": 21.0,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.6,
-          "v": 0.6,
-          "text": "map needs an update",
-          "tone": "gold",
-          "at": 23.0,
-          "fs": 24
+          "at": 27.8,
+          "text": "Same chart. New doors. Your map changed.",
+          "screen": "NEW HIGH / NEW LOW"
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Did your map change?",
-      "items": [
-        {
-          "title": "Keep the",
-          "desc": [
-            "old map",
-            ""
-          ],
-          "tone": "muted",
-          "mark": "no",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "Update",
-          "desc": [
-            "the map",
-            ""
-          ],
-          "tone": "up",
-          "mark": "yes",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "Not enough",
-          "desc": [
-            "info yet",
-            "before the swing"
-          ],
-          "tone": "purple",
-          "at": 47.6
-        }
-      ],
+      "type": "s10-door-carpenter",
+      "start": 34,
+      "end": 58,
+      "kicker": "Update your map",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Current structure <span class=\"mark\">wins.</span>"
+          "at": 34.4,
+          "html": "Wait for the <span class=\"mark\">swing to form.</span>",
+          "out": 51.4
+        },
+        {
+          "at": 51.6,
+          "html": "<span class=\"mark\">You</span> move the doors."
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Did your map change?",
-          "screen": "\"Did your map change?\""
+          "at": 34.4,
+          "text": "Here’s your room, and here are the doors.",
+          "screen": "Brick wall, two doors"
         },
         {
-          "at": 40.8,
-          "text": "Keep the old map? Not after new structure.",
-          "screen": "Keep the old map"
+          "at": 37.8,
+          "text": "Price closes through the old high. Should you move the door?",
+          "screen": "closes through"
         },
         {
-          "at": 44.2,
-          "text": "Update the map? Yes, once the swing forms.",
-          "screen": "Update the map"
+          "at": 42.4,
+          "text": "Not yet. While price is still pushing, the new swing hasn’t formed. Not enough information.",
+          "screen": "WAIT sign: \"Not yet.\""
         },
         {
-          "at": 47.6,
-          "text": "Before it forms: not enough information.",
-          "screen": "Not enough info yet before the swing"
+          "at": 47.4,
+          "text": "Now price pulls back. A new 4H swing high has formed.",
+          "screen": "new swing ✓"
         },
         {
-          "at": 51.0,
-          "text": "Current structure wins."
+          "at": 51.6,
+          "text": "So you move the doors. Nothing moves them for you.",
+          "screen": "Doors move up"
+        },
+        {
+          "at": 55.6,
+          "text": "Stay loyal to current structure."
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 58,
+      "end": 68,
+      "pointAt": 60.6,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 59.2,
           "text": "Don’t stay loyal to old levels."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">Stay loyal to structure.</span>"
+          "at": 60.6,
+          "html": "<span class=\"mark\">Stay loyal to current structure.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 58.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 59.6,
           "text": "Don’t stay loyal to old levels. Stay loyal to current structure.",
           "screen": "Aristella points"
         }
@@ -252,30 +156,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 68,
+      "end": 80,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 70.6,
         "text": "Does your map still make sense?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 76.4,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 68.2,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 70.6,
           "text": "Does your map still make sense?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 76.4,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

@@ -1,20 +1,21 @@
 /**
- * Phase 4 · Section 1 · Lesson 3 intro video — "Finding the 4H External Range"
+ * Phase 4 · Section 10 · Lesson 3 intro video: "Finding the 4H External Range"
+ * Scenes: s10-moving-house (moving day: the tall old house vs the room price lives in now), s10-frame-it (gallery helpers try a picture frame on three spots).
  */
 window.LESSON_VIDEO = {
   "slug": "p4-lesson-3",
-  "eyebrow": "Phase 4 · Section 1 · Lesson 3",
-  "duration": 76,
-  "sources": "From Phase 4, Lesson 3: marking the 4H external high and low around price, not the highest or lowest candles on the screen, and feedback for old or internal swings.",
+  "eyebrow": "Phase 4 · Section 10 · Lesson 3",
+  "duration": 80,
+  "sources": "From Phase 4, Section 10, Lesson 3 (\"Finding the 4H External Range\"): the doors are not always the extremes, old swings can be real but irrelevant, internal swings are furniture, and \"not the highest high, the high defining the current room.\"",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 1: Finding Your Bias",
+      "phase": "Section 10: Finding Your Bias",
       "title": "Finding the 4H External Range",
-      "quote": "Relevant beats extreme.",
+      "quote": "Find the doors.",
       "lines": [
         {
           "at": 0.6,
@@ -28,237 +29,122 @@ window.LESSON_VIDEO = {
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s10-moving-house",
       "start": 8,
-      "end": 38,
-      "seed": 403,
-      "kicker": "Find the doors",
-      "swings": [
-        [
-          0,
-          0.6
-        ],
-        [
-          0.1,
-          0.95
-        ],
-        [
-          0.26,
-          0.08
-        ],
-        [
-          0.38,
-          0.55
-        ],
-        [
-          0.48,
-          0.25
-        ],
-        [
-          0.66,
-          0.85
-        ],
-        [
-          0.76,
-          0.6
-        ],
-        [
-          0.82,
-          0.68
-        ],
-        [
-          0.9,
-          0.5
-        ]
-      ],
-      "per": [
-        3,
-        5,
-        4,
-        3,
-        5,
-        3,
-        2,
-        3
-      ],
-      "play": [
-        {
-          "to": 8,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 34,
+      "kicker": "Not so fast",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Highest high <span class=\"mark\">= the door?</span>",
-          "out": 28.3
+          "html": "The doors aren’t always <span class=\"mark\">the extremes.</span>",
+          "out": 26.2
         },
         {
-          "at": 28.5,
-          "html": "The current <span class=\"mark\">room.</span>"
+          "at": 26.4,
+          "html": "<span class=\"mark\">Relevant</span> beats extreme."
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "Unmarked 4H chart. Where are the doors?",
-          "screen": "Candles build"
+          "text": "Here’s an unmarked 4H chart. Where are the doors?",
+          "screen": "A price path draws across"
         },
         {
-          "at": 13.0,
-          "text": "That old high is the highest thing on the screen. It isn’t this room.",
-          "screen": "\"old high\""
+          "at": 12.2,
+          "text": "That high way back there is the highest thing on the screen.",
+          "screen": "An old house on the old peak"
         },
         {
-          "at": 18.0,
+          "at": 17,
+          "text": "But it belongs to an older room. Price doesn’t live there anymore.",
+          "screen": "OLDER ROOM stamp; a mover carries boxes"
+        },
+        {
+          "at": 21.8,
           "text": "The doors are the external high and low around price now.",
-          "screen": "Doors appear"
+          "screen": "The current house: EXTERNAL HIGH / LOW"
         },
         {
-          "at": 23.0,
-          "text": "That small swing inside? Internal. Furniture.",
-          "screen": "\"internal\""
-        },
-        {
-          "at": 28.5,
-          "text": "Relevant beats extreme."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.95,
-          "from": 0.1,
-          "label": "old high: not this room",
-          "tone": "muted",
-          "at": 12.0,
-          "out": 27.8
-        },
-        {
-          "v": 0.85,
-          "from": 0.48,
-          "label": "🚪 External high",
-          "tone": "purple",
-          "at": 18.0
-        },
-        {
-          "v": 0.25,
-          "from": 0.48,
-          "label": "🚪 External low",
-          "tone": "purple",
-          "at": 18.6,
-          "below": true
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.82,
-          "v": 0.73,
-          "text": "internal",
-          "tone": "gold",
-          "at": 23.0,
-          "fs": 24
+          "at": 26.4,
+          "text": "Old swings can be real, and still be irrelevant. Relevant beats extreme.",
+          "screen": "price now"
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Which swing?",
-      "items": [
-        {
-          "title": "Old high",
-          "desc": [
-            "exists",
-            "not this room"
-          ],
-          "tone": "muted",
-          "mark": "no",
-          "at": 40.8,
-          "markAt": 42.8
-        },
-        {
-          "title": "Internal",
-          "desc": [
-            "swing",
-            "furniture"
-          ],
-          "tone": "gold",
-          "mark": "no",
-          "at": 44.2,
-          "markAt": 46.2
-        },
-        {
-          "title": "External",
-          "desc": [
-            "high and low",
-            "the doors"
-          ],
-          "tone": "purple",
-          "mark": "yes",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s10-frame-it",
+      "start": 34,
+      "end": 58,
+      "kicker": "Find the doors",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Relevant <span class=\"mark\">beats extreme.</span>"
+          "at": 34.4,
+          "html": "Frame the <span class=\"mark\">current</span> room.",
+          "out": 48.6
+        },
+        {
+          "at": 48.8,
+          "html": "The range price is in <span class=\"mark\">now.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "So which swing?",
-          "screen": "\"Which swing?\""
+          "at": 34.4,
+          "text": "Let’s frame the room.",
+          "screen": "Two helpers carry a gold frame"
         },
         {
-          "at": 40.8,
-          "text": "The old high exists, but it isn’t this room.",
-          "screen": "Old high exists not this room"
+          "at": 36.4,
+          "text": "The tallest peak? It’s real, but it belongs to an older room.",
+          "screen": "Frame on the old peak; OLDER ROOM"
         },
         {
-          "at": 44.2,
-          "text": "An internal swing is furniture.",
-          "screen": "Internal swing furniture"
+          "at": 41.6,
+          "text": "That little swing inside? Internal. That’s furniture, not a door.",
+          "screen": "Frame on a small wiggle; FURNITURE"
         },
         {
-          "at": 47.6,
-          "text": "The external high and low are the doors.",
-          "screen": "External high and low the doors"
+          "at": 46,
+          "text": "Now frame the range price is in now.",
+          "screen": "Frame snaps around the current range"
         },
         {
-          "at": 51.0,
-          "text": "Relevant beats extreme."
+          "at": 48.8,
+          "text": "Current external high. Current external low. Those are your doors.",
+          "screen": "EXTERNAL HIGH / EXTERNAL LOW"
+        },
+        {
+          "at": 53.2,
+          "text": "Find the range that defines the structure around price."
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 58,
+      "end": 68,
+      "pointAt": 60.6,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 59.2,
           "text": "Not the highest high."
         },
         {
-          "at": 58.6,
-          "html": "<span class=\"mark\">The current room.</span>"
+          "at": 60.6,
+          "html": "<span class=\"mark\">The high defining the current room.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 58.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
+          "at": 59.6,
           "text": "Not the highest high. The high defining the current room.",
           "screen": "Aristella points"
         }
@@ -266,30 +152,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 68,
+      "end": 80,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 70.6,
         "text": "Is the highest high always the door?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 76.4,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 68.2,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 70.6,
           "text": "Is the highest high always the door?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 76.4,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

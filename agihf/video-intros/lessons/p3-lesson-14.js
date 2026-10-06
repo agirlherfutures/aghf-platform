@@ -1,18 +1,18 @@
 /**
- * Phase 3 · Section 2 · Lesson 14 intro video — "Efficient vs Inefficient"
+ * Phase 3 · Section 8 · Lesson 14 intro video: "Efficient vs Inefficient"
  */
 window.LESSON_VIDEO = {
   "slug": "p3-lesson-14",
-  "eyebrow": "Phase 3 · Section 2 · Lesson 14",
-  "duration": 76,
-  "sources": "From Phase 3, Lesson 14: more balanced-looking vs more imbalanced-looking delivery, not good vs bad, and a structure check where bullish displacement inside bearish external structure doesn’t change it.",
+  "eyebrow": "Phase 3 · Section 8 · Lesson 14",
+  "duration": 79,
+  "sources": "From Phase 3, Section 8, Lesson 14 (\"Efficient vs Inefficient\"): more balanced-looking (lots of overlap) vs more imbalanced-looking (big candles, little overlap) delivery, \"they’re descriptions, not grades,\" and the price lab: a strong move inside a bearish structure that doesn’t close through the relevant lower high leaves the structure bearish.",
   "scenes": [
     {
       "type": "host-title",
       "start": 0,
       "end": 8,
       "nameTag": true,
-      "phase": "Section 2: Gaps, Imbalances & Price Delivery",
+      "phase": "Section 8: Gaps, Imbalances & Price Delivery",
       "title": "Efficient vs Inefficient",
       "quote": "More balanced-looking or more imbalanced-looking. Not good or bad.",
       "lines": [
@@ -22,259 +22,183 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Efficient vs Inefficient*"
         },
         {
-          "at": 4.6,
-          "text": "Two descriptions."
+          "at": 4.0,
+          "text": "Different delivery. Not good or bad."
         }
       ]
     },
     {
-      "type": "break-chart",
+      "type": "s8-dance-judges",
       "start": 8,
-      "end": 38,
-      "seed": 314,
-      "kicker": "Structure check",
-      "swings": [
-        [
-          0,
-          0.88
-        ],
-        [
-          0.15,
-          0.55
-        ],
-        [
-          0.25,
-          0.68
-        ],
-        [
-          0.42,
-          0.2
-        ],
-        [
-          0.58,
-          0.5
-        ],
-        [
-          0.66,
-          0.44
-        ],
-        [
-          0.8,
-          0.6
-        ]
-      ],
-      "per": [
-        4,
-        3,
-        5,
-        3,
-        2,
-        3
-      ],
-      "play": [
-        {
-          "to": 6,
-          "at": 8.6,
-          "dur": 3.8
-        }
-      ],
+      "end": 32,
+      "beats": {
+        "waltz": 11.2,
+        "leap": 14.8,
+        "score": 19.0,
+        "fix": 23.8,
+        "words": 25.6,
+        "desc": 29.0
+      },
+      "kicker": "Dance-off",
       "headlines": [
         {
           "at": 8.4,
-          "html": "Strong move. <span class=\"mark\">Same structure?</span>",
-          "out": 28.3
+          "html": "Two dancers. <span class=\"mark\">Two descriptions.</span>",
+          "out": 25.4
         },
         {
-          "at": 28.5,
-          "html": "Strength <span class=\"mark\">isn’t structure.</span>"
+          "at": 25.6,
+          "html": "Different delivery. <span class=\"mark\">Not good or bad.</span>"
         }
       ],
       "lines": [
         {
           "at": 8.4,
-          "text": "A bearish structure: lower highs, lower lows.",
-          "screen": "Candles build"
+          "text": "Picture a dance contest with two dancers.",
+          "screen": "A dance stage and a judges’ table"
         },
         {
-          "at": 12.0,
-          "text": "Here’s the relevant lower high.",
-          "screen": "Levels"
+          "at": 11.2,
+          "text": "This one sways back and forth: lots of overlap.",
+          "screen": "Dancer 1 sways; small overlapping candles"
         },
         {
-          "at": 18.0,
-          "text": "Then a strong, imbalanced-looking move up.",
-          "screen": "\"Imbalanced-looking\""
+          "at": 14.8,
+          "text": "This one leaps across the floor: big moves, little overlap.",
+          "screen": "Dancer 2 leaps; three big candles"
         },
         {
-          "at": 23.0,
-          "text": "Did it close through the relevant lower high? No."
+          "at": 19.0,
+          "text": "The judges want to score them. Six for slow, ten for fast?",
+          "screen": "Score cards: 6 and 10"
         },
         {
-          "at": 28.5,
-          "text": "So the structure is still bearish. Strong delivery inside a structure doesn’t change the structure by itself."
-        }
-      ],
-      "levels": [
-        {
-          "v": 0.68,
-          "from": 0.25,
-          "label": "Relevant lower high",
-          "tone": "down",
-          "at": 12.0
+          "at": 23.8,
+          "text": "No. These aren’t grades.",
+          "screen": "The scores get crossed out"
         },
         {
-          "v": 0.2,
-          "from": 0.42,
-          "label": "Lower low",
-          "tone": "down",
-          "at": 12.4,
-          "below": true
+          "at": 25.6,
+          "text": "One looks more balanced. One looks more imbalanced.",
+          "screen": "Cards flip: BALANCED-LOOKING / IMBALANCED-LOOKING"
         },
         {
-          "v": 0.22,
-          "from": 0.44,
-          "label": "Imbalanced-looking",
-          "tone": "gold",
-          "at": 18.0,
-          "v2": 0.5
-        }
-      ],
-      "pills": [
-        {
-          "u": 0.75,
-          "v": 0.82,
-          "text": "structure: still bearish",
-          "tone": "down",
-          "at": 28.5,
-          "fs": 26
+          "at": 29.0,
+          "text": "Descriptions, not grades.",
+          "screen": "\"descriptions, not grades\""
         }
       ]
     },
     {
-      "type": "cards",
-      "start": 38,
-      "end": 56,
-      "kicker": "Two descriptions",
-      "items": [
-        {
-          "title": "Balanced-",
-          "desc": [
-            "looking",
-            "lots of overlap"
-          ],
-          "tone": "purple",
-          "at": 40.8
-        },
-        {
-          "title": "Imbalanced-",
-          "desc": [
-            "looking",
-            "little overlap"
-          ],
-          "tone": "gold",
-          "at": 44.2
-        },
-        {
-          "title": "Good vs",
-          "desc": [
-            "bad?",
-            ""
-          ],
-          "tone": "down",
-          "mark": "no",
-          "at": 47.6,
-          "markAt": 49.6
-        }
-      ],
+      "type": "s8-high-jump",
+      "start": 32,
+      "end": 57,
+      "beats": {
+        "lh": 35.6,
+        "jump": 40.6,
+        "close": 43.6,
+        "still": 47.2
+      },
+      "kicker": "Price lab",
       "headlines": [
         {
-          "at": 51.0,
-          "html": "Descriptions. <span class=\"mark\">Not grades.</span>"
+          "at": 32.4,
+          "html": "A strong move up. <span class=\"mark\">Did it break?</span>",
+          "out": 49.6
+        },
+        {
+          "at": 49.8,
+          "html": "Structure changes when <span class=\"mark\">the swing breaks.</span>"
         }
       ],
       "lines": [
         {
-          "at": 38.4,
-          "text": "Two descriptions of delivery.",
-          "screen": "\"Two descriptions\""
+          "at": 32.4,
+          "text": "Now a bearish structure: lower highs, lower lows.",
+          "screen": "A bearish swing chart"
         },
         {
-          "at": 40.8,
-          "text": "More balanced-looking: lots of overlap.",
-          "screen": "Balanced- looking lots of overlap"
+          "at": 35.6,
+          "text": "Here’s the relevant lower high. Think of it as the bar.",
+          "screen": "The lower high becomes a high-jump bar"
         },
         {
-          "at": 44.2,
-          "text": "More imbalanced-looking: little overlap.",
-          "screen": "Imbalanced- looking little overlap"
+          "at": 40.0,
+          "text": "Then a strong, imbalanced-looking move up. What a jump!",
+          "screen": "She jumps; big candles print up"
         },
         {
-          "at": 47.6,
-          "text": "Is one good and one bad? No.",
-          "screen": "Good vs bad?"
+          "at": 43.6,
+          "text": "Did it close through the relevant lower high? No.",
+          "screen": "\"closed through? NO\""
         },
         {
-          "at": 51.0,
-          "text": "They’re descriptions. Not grades."
+          "at": 47.2,
+          "text": "So the structure is still bearish.",
+          "screen": "\"structure: still bearish\""
+        },
+        {
+          "at": 49.8,
+          "text": "Strong delivery doesn’t change structure by itself. Only a break of the relevant swing does."
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 56,
-      "end": 64,
-      "pointAt": 58.6,
-      "size": 66,
+      "start": 57,
+      "end": 67,
+      "pointAt": 59.4,
+      "size": 64,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 57.6,
+          "at": 58.0,
           "text": "Different delivery."
         },
         {
-          "at": 58.6,
+          "at": 59.4,
           "html": "<span class=\"mark\">Not good or bad.</span>"
         }
       ],
       "lines": [
         {
-          "at": 56.2,
+          "at": 57.4,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 58.0,
-          "text": "Different delivery. Not good or bad.",
+          "at": 59.0,
+          "text": "Different delivery. Not good or bad. And a strong move doesn’t change structure by itself.",
           "screen": "Aristella points"
         }
       ]
     },
     {
       "type": "host-mission",
-      "start": 64,
-      "end": 76,
+      "start": 67,
+      "end": 79,
       "kicker": "Your mission",
       "question": {
-        "at": 67,
+        "at": 69.4,
         "text": "Does a strong move change the structure?"
       },
       "cta": {
-        "at": 72.4,
+        "at": 75.0,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 64.2,
+          "at": 67.4,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 67,
+          "at": 69.4,
           "text": "Does a strong move change the structure?",
           "screen": "Mission question"
         },
         {
-          "at": 72.4,
+          "at": 75.0,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }
