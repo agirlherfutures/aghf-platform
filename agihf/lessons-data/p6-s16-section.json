@@ -1,0 +1,2285 @@
+{
+ "phase": "p6",
+ "section": "s16",
+ "title": "Managing the Trade",
+ "steps": [
+  "game",
+  "knowledge",
+  "checkin",
+  "complete"
+ ],
+ "hook": "Clear the Trade Management Simulator, pass the Knowledge Check and save your Check-In to unlock Section 17.",
+ "game": {
+  "title": "Trade Management Simulator 📊",
+  "save": "p6-s16",
+  "xp": 0,
+  "tagline": "Lock the plan. Then price moves. Does what it just did require you to do anything? Usually: no.",
+  "doneHeading": "TRADE MANAGEMENT SIMULATOR COMPLETE ✓",
+  "doneBadge": "Trade Management Simulator: all levels cleared",
+  "doneLine": "You locked the plan, ignored P&L temptations, made only rule-based adjustments, and accepted a valid loss with a 100% management score.",
+  "readout": "YOUR MANAGEMENT READ",
+  "review": {
+   "Plan math": [
+    "p6",
+    11,
+    "The Dayli ICC management example"
+   ],
+   "Discipline": [
+    "p6",
+    14,
+    "Over-managing"
+   ],
+   "P&L distortion": [
+    "p6",
+    15,
+    "Stop watching dollars"
+   ],
+   "Break even": [
+    "p6",
+    13,
+    "Moving your stop"
+   ],
+   "Partials": [
+    "p6",
+    12,
+    "Partials & runners"
+   ],
+   "Rule-based adjustment": [
+    "p6",
+    13,
+    "Moving your stop"
+   ],
+   "Process vs outcome": [
+    "p6",
+    16,
+    "Follow the plan, then grade"
+   ],
+   "Partial + runner": [
+    "p6",
+    12,
+    "Partials & runners"
+   ],
+   "Over-management": [
+    "p6",
+    14,
+    "Over-managing"
+   ]
+  },
+  "levels": [
+   {
+    "type": "manage_sim",
+    "plan": {
+     "entryPrice": 20000,
+     "stopPrice": 19970,
+     "targetPrice": 20060,
+     "contractCount": 4,
+     "managementModel": "fixed",
+     "partialRules": "None",
+     "runnerRules": "None",
+     "breakEvenRules": "None",
+     "structuralRules": "None",
+     "earlyInterventionRules": "None"
+    },
+    "bars": [
+     {
+      "o": 20018.0,
+      "h": 20018.75,
+      "l": 20013.75,
+      "c": 20014.0
+     },
+     {
+      "o": 20014.0,
+      "h": 20015.25,
+      "l": 20010.5,
+      "c": 20011.5
+     },
+     {
+      "o": 20011.5,
+      "h": 20012.75,
+      "l": 20008.25,
+      "c": 20009.0
+     },
+     {
+      "o": 20009.0,
+      "h": 20010.0,
+      "l": 20006.5,
+      "c": 20007.0
+     },
+     {
+      "o": 20007.0,
+      "h": 20008.0,
+      "l": 20002.25,
+      "c": 20003.0
+     },
+     {
+      "o": 20003.0,
+      "h": 20004.0,
+      "l": 19999.75,
+      "c": 20002.5
+     },
+     {
+      "o": 20002.5,
+      "h": 20004.5,
+      "l": 20001.5,
+      "c": 20004.0
+     },
+     {
+      "o": 20004.0,
+      "h": 20008.25,
+      "l": 20003.0,
+      "c": 20008.0
+     },
+     {
+      "o": 20008.0,
+      "h": 20010.0,
+      "l": 20004.25,
+      "c": 20006.0
+     }
+    ],
+    "entryAt": 5,
+    "checkpoints": [
+     {
+      "at": 7,
+      "goal": true,
+      "prompt": "Plan locked, price moving. Anything to do?"
+     }
+    ],
+    "lock": {
+     "prompt": "Before you lock it: check the numbers.",
+     "asks": [
+      {
+       "prompt": "Risk: 30 pts × $2 × 4 MNQ =",
+       "options": [
+        {
+         "label": "$60",
+         "feedback": "That’s 1 contract."
+        },
+        {
+         "label": "$240",
+         "correct": true,
+         "why": "Planned price risk."
+        },
+        {
+         "label": "$120",
+         "feedback": "That’s 2 contracts."
+        }
+       ]
+      },
+      {
+       "prompt": "Reward: 60 pts × $2 × 4 MNQ =",
+       "options": [
+        {
+         "label": "$480",
+         "correct": true,
+         "why": "Planned gross reward, before costs."
+        },
+        {
+         "label": "$240",
+         "feedback": "That’s the risk."
+        },
+        {
+         "label": "$600",
+         "feedback": "That’s 5 contracts."
+        }
+       ]
+      },
+      {
+       "prompt": "R:R?",
+       "options": [
+        {
+         "label": "1:1",
+         "feedback": "60 is twice 30."
+        },
+        {
+         "label": "1:2",
+         "correct": true,
+         "why": "Risk 1, reward 2."
+        },
+        {
+         "label": "2:1",
+         "feedback": "Flipped."
+        }
+       ]
+      }
+     ]
+    },
+    "actions": [
+     "follow",
+     "move-stop",
+     "partial",
+     "close",
+     "move-target"
+    ],
+    "sessionStart": "management-lab",
+    "name": "Lock the plan",
+    "concept": "Plan math",
+    "brief": "Calculate, then lock."
+   },
+   {
+    "type": "manage_sim",
+    "plan": {
+     "entryPrice": 20000,
+     "stopPrice": 19970,
+     "targetPrice": 20060,
+     "contractCount": 4,
+     "managementModel": "fixed",
+     "partialRules": "None",
+     "runnerRules": "None",
+     "breakEvenRules": "None",
+     "structuralRules": "None",
+     "earlyInterventionRules": "None"
+    },
+    "bars": [
+     {
+      "o": 20018.0,
+      "h": 20018.75,
+      "l": 20013.75,
+      "c": 20014.0
+     },
+     {
+      "o": 20014.0,
+      "h": 20015.25,
+      "l": 20010.5,
+      "c": 20011.5
+     },
+     {
+      "o": 20011.5,
+      "h": 20012.75,
+      "l": 20008.25,
+      "c": 20009.0
+     },
+     {
+      "o": 20009.0,
+      "h": 20010.0,
+      "l": 20006.5,
+      "c": 20007.0
+     },
+     {
+      "o": 20007.0,
+      "h": 20008.0,
+      "l": 20002.25,
+      "c": 20003.0
+     },
+     {
+      "o": 20003.0,
+      "h": 20004.0,
+      "l": 19999.75,
+      "c": 20002.5
+     },
+     {
+      "o": 20002.5,
+      "h": 20004.5,
+      "l": 20001.5,
+      "c": 20004.0
+     },
+     {
+      "o": 20004.0,
+      "h": 20008.25,
+      "l": 20003.0,
+      "c": 20008.0
+     },
+     {
+      "o": 20008.0,
+      "h": 20010.0,
+      "l": 20004.25,
+      "c": 20006.0
+     }
+    ],
+    "entryAt": 5,
+    "checkpoints": [
+     {
+      "at": 8,
+      "prompt": "+8, then a bearish candle. What now?",
+      "tempt": "close",
+      "goal": true
+     }
+    ],
+    "actions": [
+     "close",
+     "move-stop",
+     "follow"
+    ],
+    "name": "Don’t touch it",
+    "concept": "Discipline",
+    "brief": "+8 and a bearish candle. Nothing in the plan triggered."
+   },
+   {
+    "type": "manage_sim",
+    "plan": {
+     "entryPrice": 20000,
+     "stopPrice": 19970,
+     "targetPrice": 20060,
+     "contractCount": 4,
+     "managementModel": "fixed",
+     "partialRules": "None",
+     "runnerRules": "None",
+     "breakEvenRules": "None",
+     "structuralRules": "None",
+     "earlyInterventionRules": "None"
+    },
+    "bars": [
+     {
+      "o": 20018.0,
+      "h": 20019.25,
+      "l": 20013.0,
+      "c": 20014.0
+     },
+     {
+      "o": 20014.0,
+      "h": 20015.25,
+      "l": 20010.25,
+      "c": 20011.25
+     },
+     {
+      "o": 20011.25,
+      "h": 20012.25,
+      "l": 20008.5,
+      "c": 20009.75
+     },
+     {
+      "o": 20009.75,
+      "h": 20010.5,
+      "l": 20006.5,
+      "c": 20006.75
+     },
+     {
+      "o": 20006.75,
+      "h": 20008.0,
+      "l": 20002.5,
+      "c": 20003.0
+     },
+     {
+      "o": 20003.0,
+      "h": 20004.0,
+      "l": 19999.75,
+      "c": 20002.5
+     },
+     {
+      "o": 20002.5,
+      "h": 20007.5,
+      "l": 20000.25,
+      "c": 20007.0
+     },
+     {
+      "o": 20007.0,
+      "h": 20015.5,
+      "l": 20006.25,
+      "c": 20014.0
+     },
+     {
+      "o": 20014.0,
+      "h": 20022.0,
+      "l": 20012.5,
+      "c": 20020.0
+     },
+     {
+      "o": 20020.0,
+      "h": 20022.0,
+      "l": 20015.25,
+      "c": 20017.0
+     }
+    ],
+    "entryAt": 5,
+    "checkpoints": [
+     {
+      "at": 8,
+      "kind": "ask",
+      "hideChart": true,
+      "ask": {
+       "prompt": "+$160. EXIT?",
+       "options": [
+        {
+         "label": "Yes, take it",
+         "feedback": "Based on what? You can’t see price or the plan."
+        },
+        {
+         "label": "Not enough information",
+         "correct": true,
+         "why": "Now look at the chart and the plan: nothing triggered.",
+         "nei": true
+        }
+       ],
+       "stack": true
+      },
+      "after": "Chart and plan revealed: nothing changed."
+     },
+     {
+      "at": 9,
+      "goal": true
+     }
+    ],
+    "actions": [
+     "follow",
+     "move-stop",
+     "partial",
+     "close",
+     "move-target"
+    ],
+    "name": "P&L trap",
+    "concept": "P&L distortion",
+    "brief": "The chart is hidden. Only the number."
+   },
+   {
+    "type": "manage_sim",
+    "plan": {
+     "entryPrice": 20000,
+     "stopPrice": 19970,
+     "targetPrice": 20060,
+     "contractCount": 4,
+     "managementModel": "fixed",
+     "partialRules": "None",
+     "runnerRules": "None",
+     "breakEvenRules": "None",
+     "structuralRules": "None",
+     "earlyInterventionRules": "None"
+    },
+    "bars": [
+     {
+      "o": 20018.0,
+      "h": 20019.25,
+      "l": 20013.75,
+      "c": 20014.75
+     },
+     {
+      "o": 20014.75,
+      "h": 20016.0,
+      "l": 20011.5,
+      "c": 20012.0
+     },
+     {
+      "o": 20012.0,
+      "h": 20013.0,
+      "l": 20010.0,
+      "c": 20010.25
+     },
+     {
+      "o": 20010.25,
+      "h": 20010.75,
+      "l": 20005.0,
+      "c": 20006.5
+     },
+     {
+      "o": 20006.5,
+      "h": 20007.5,
+      "l": 20002.5,
+      "c": 20003.0
+     },
+     {
+      "o": 20003.0,
+      "h": 20004.5,
+      "l": 19999.75,
+      "c": 20002.5
+     },
+     {
+      "o": 20002.5,
+      "h": 20010.25,
+      "l": 20000.5,
+      "c": 20009.0
+     },
+     {
+      "o": 20009.0,
+      "h": 20018.5,
+      "l": 20007.75,
+      "c": 20017.0
+     },
+     {
+      "o": 20017.0,
+      "h": 20026.0,
+      "l": 20016.25,
+      "c": 20024.0
+     },
+     {
+      "o": 20024.0,
+      "h": 20026.5,
+      "l": 20019.5,
+      "c": 20021.0
+     }
+    ],
+    "entryAt": 5,
+    "checkpoints": [
+     {
+      "at": 8,
+      "prompt": "+24. MOVE TO BE?",
+      "tempt": "move-stop",
+      "temptLabel": "MOVE TO BE?",
+      "goal": true
+     }
+    ],
+    "actions": [
+     "follow",
+     "move-stop",
+     "partial",
+     "close",
+     "move-target"
+    ],
+    "name": "Break-even temptation",
+    "concept": "Break even",
+    "brief": "Trade favorable. No BE rule."
+   },
+   {
+    "type": "manage_sim",
+    "plan": {
+     "entryPrice": 20000,
+     "stopPrice": 19970,
+     "targetPrice": 20060,
+     "contractCount": 4,
+     "managementModel": "fixed",
+     "partialRules": "None",
+     "runnerRules": "None",
+     "breakEvenRules": "None",
+     "structuralRules": "None",
+     "earlyInterventionRules": "None"
+    },
+    "bars": [
+     {
+      "o": 20018.0,
+      "h": 20019.0,
+      "l": 20013.75,
+      "c": 20015.0
+     },
+     {
+      "o": 20015.0,
+      "h": 20015.5,
+      "l": 20010.25,
+      "c": 20011.25
+     },
+     {
+      "o": 20011.25,
+      "h": 20012.25,
+      "l": 20007.25,
+      "c": 20008.5
+     },
+     {
+      "o": 20008.5,
+      "h": 20009.25,
+      "l": 20004.5,
+      "c": 20005.0
+     },
+     {
+      "o": 20005.0,
+      "h": 20005.75,
+      "l": 20001.5,
+      "c": 20003.0
+     },
+     {
+      "o": 20003.0,
+      "h": 20003.5,
+      "l": 19999.75,
+      "c": 20002.5
+     },
+     {
+      "o": 20002.5,
+      "h": 20011.5,
+      "l": 20000.75,
+      "c": 20010.0
+     },
+     {
+      "o": 20010.0,
+      "h": 20020.25,
+      "l": 20009.25,
+      "c": 20018.0
+     },
+     {
+      "o": 20018.0,
+      "h": 20025.5,
+      "l": 20016.25,
+      "c": 20025.0
+     },
+     {
+      "o": 20025.0,
+      "h": 20026.0,
+      "l": 20020.25,
+      "c": 20022.0
+     }
+    ],
+    "entryAt": 5,
+    "checkpoints": [
+     {
+      "at": 8,
+      "prompt": "+25. TAKE HALF?",
+      "tempt": "partial",
+      "temptLabel": "TAKE HALF?",
+      "goal": true
+     }
+    ],
+    "actions": [
+     "follow",
+     "move-stop",
+     "partial",
+     "close",
+     "move-target"
+    ],
+    "name": "Partials trap",
+    "concept": "Partials",
+    "brief": "+25. No partial rule."
+   },
+   {
+    "type": "manage_sim",
+    "plan": {
+     "entryPrice": 20000,
+     "stopPrice": 19970,
+     "targetPrice": 20060,
+     "contractCount": 4,
+     "managementModel": "structure",
+     "partialRules": "None",
+     "runnerRules": "None",
+     "breakEvenRules": "None",
+     "structuralRules": "Trail SL to just under a new 1M HL above +20",
+     "earlyInterventionRules": "None"
+    },
+    "bars": [
+     {
+      "o": 20018.0,
+      "h": 20018.25,
+      "l": 20013.75,
+      "c": 20015.25
+     },
+     {
+      "o": 20015.25,
+      "h": 20016.25,
+      "l": 20011.0,
+      "c": 20011.5
+     },
+     {
+      "o": 20011.5,
+      "h": 20012.75,
+      "l": 20007.25,
+      "c": 20008.75
+     },
+     {
+      "o": 20008.75,
+      "h": 20009.25,
+      "l": 20005.25,
+      "c": 20005.5
+     },
+     {
+      "o": 20005.5,
+      "h": 20006.25,
+      "l": 20002.25,
+      "c": 20003.0
+     },
+     {
+      "o": 20003.0,
+      "h": 20003.25,
+      "l": 19999.75,
+      "c": 20002.5
+     },
+     {
+      "o": 20002.5,
+      "h": 20009.5,
+      "l": 20002.25,
+      "c": 20008.0
+     },
+     {
+      "o": 20008.0,
+      "h": 20019.5,
+      "l": 20007.0,
+      "c": 20017.0
+     },
+     {
+      "o": 20017.0,
+      "h": 20027.75,
+      "l": 20016.25,
+      "c": 20026.0
+     },
+     {
+      "o": 20026.0,
+      "h": 20032.0,
+      "l": 20024.25,
+      "c": 20031.0
+     },
+     {
+      "o": 20031.0,
+      "h": 20033.25,
+      "l": 20023.0,
+      "c": 20024.0
+     },
+     {
+      "o": 20024.0,
+      "h": 20024.75,
+      "l": 20020.5,
+      "c": 20021.0
+     },
+     {
+      "o": 20021.0,
+      "h": 20029.25,
+      "l": 20020.0,
+      "c": 20028.0
+     },
+     {
+      "o": 20028.0,
+      "h": 20035.25,
+      "l": 20027.5,
+      "c": 20035.0
+     }
+    ],
+    "entryAt": 5,
+    "checkpoints": [
+     {
+      "at": 8,
+      "prompt": "+26. Anything to do?"
+     },
+     {
+      "at": 11,
+      "event": "STRUCTURAL_MANAGEMENT_TRIGGERED",
+      "eventText": "A new 1M higher low formed at +21: your trail condition.",
+      "expect": "move-stop",
+      "stopTo": 20019,
+      "goal": true,
+      "after": "TOUCHING THE TRADE IS NOT THE PROBLEM. UNPLANNED TOUCHING IS."
+     }
+    ],
+    "actions": [
+     "follow",
+     "move-stop",
+     "partial",
+     "close",
+     "move-target"
+    ],
+    "name": "Structural management",
+    "concept": "Rule-based adjustment",
+    "brief": "Your plan: trail the stop after a new 1M HL above +20."
+   },
+   {
+    "type": "manage_sim",
+    "plan": {
+     "entryPrice": 20000,
+     "stopPrice": 19970,
+     "targetPrice": 20060,
+     "contractCount": 4,
+     "managementModel": "fixed",
+     "partialRules": "None",
+     "runnerRules": "None",
+     "breakEvenRules": "None",
+     "structuralRules": "None",
+     "earlyInterventionRules": "None"
+    },
+    "bars": [
+     {
+      "o": 20018.0,
+      "h": 20019.25,
+      "l": 20015.0,
+      "c": 20015.25
+     },
+     {
+      "o": 20015.25,
+      "h": 20016.25,
+      "l": 20012.0,
+      "c": 20013.0
+     },
+     {
+      "o": 20013.0,
+      "h": 20013.75,
+      "l": 20008.5,
+      "c": 20009.75
+     },
+     {
+      "o": 20009.75,
+      "h": 20010.25,
+      "l": 20005.25,
+      "c": 20006.5
+     },
+     {
+      "o": 20006.5,
+      "h": 20007.5,
+      "l": 20001.75,
+      "c": 20003.0
+     },
+     {
+      "o": 20003.0,
+      "h": 20004.25,
+      "l": 19999.75,
+      "c": 20002.5
+     },
+     {
+      "o": 20002.5,
+      "h": 20005.5,
+      "l": 20000.5,
+      "c": 20004.0
+     },
+     {
+      "o": 20004.0,
+      "h": 20010.25,
+      "l": 20001.75,
+      "c": 20010.0
+     },
+     {
+      "o": 20010.0,
+      "h": 20011.75,
+      "l": 20002.25,
+      "c": 20004.0
+     },
+     {
+      "o": 20004.0,
+      "h": 20006.25,
+      "l": 19993.0,
+      "c": 19994.0
+     },
+     {
+      "o": 19994.0,
+      "h": 20003.0,
+      "l": 19992.25,
+      "c": 20001.0
+     },
+     {
+      "o": 20001.0,
+      "h": 20014.5,
+      "l": 19999.25,
+      "c": 20014.0
+     },
+     {
+      "o": 20014.0,
+      "h": 20028.5,
+      "l": 20012.0,
+      "c": 20027.0
+     },
+     {
+      "o": 20027.0,
+      "h": 20041.0,
+      "l": 20025.25,
+      "c": 20039.0
+     },
+     {
+      "o": 20039.0,
+      "h": 20051.5,
+      "l": 20036.75,
+      "c": 20050.0
+     },
+     {
+      "o": 20050.0,
+      "h": 20057.75,
+      "l": 20049.5,
+      "c": 20057.0
+     },
+     {
+      "o": 20057.0,
+      "h": 20061.5,
+      "l": 20056.0,
+      "c": 20060.5
+     }
+    ],
+    "entryAt": 5,
+    "checkpoints": [
+     {
+      "at": 7,
+      "expect": "close",
+      "unplanned": true,
+      "text": "+10. She panics and closes the whole thing."
+     }
+    ],
+    "mode": "watch",
+    "playAfterExit": true,
+    "afterResult": {
+     "prompt": "She made +$80. The original plan would have made +$480. GRADE?",
+     "options": [
+      {
+       "label": "Good trade, she made money",
+       "feedback": "Profit isn’t a management grade.",
+       "bias": true
+      },
+      {
+       "label": "Profitable outcome · management violation",
+       "correct": true,
+       "why": "The exit wasn’t in the plan."
+      }
+     ],
+     "stack": true
+    },
+    "name": "Winning plan violation",
+    "concept": "Process vs outcome",
+    "brief": "Watch her fear-exit."
+   },
+   {
+    "type": "manage_sim",
+    "plan": {
+     "entryPrice": 20000,
+     "stopPrice": 19970,
+     "targetPrice": 20060,
+     "contractCount": 4,
+     "managementModel": "fixed",
+     "partialRules": "None",
+     "runnerRules": "None",
+     "breakEvenRules": "None",
+     "structuralRules": "None",
+     "earlyInterventionRules": "None"
+    },
+    "bars": [
+     {
+      "o": 20018.0,
+      "h": 20018.5,
+      "l": 20014.0,
+      "c": 20014.25
+     },
+     {
+      "o": 20014.25,
+      "h": 20015.25,
+      "l": 20011.0,
+      "c": 20011.75
+     },
+     {
+      "o": 20011.75,
+      "h": 20012.75,
+      "l": 20008.0,
+      "c": 20008.5
+     },
+     {
+      "o": 20008.5,
+      "h": 20009.5,
+      "l": 20004.75,
+      "c": 20005.5
+     },
+     {
+      "o": 20005.5,
+      "h": 20006.75,
+      "l": 20001.75,
+      "c": 20003.0
+     },
+     {
+      "o": 20003.0,
+      "h": 20004.0,
+      "l": 19999.75,
+      "c": 20002.5
+     },
+     {
+      "o": 20002.5,
+      "h": 20005.5,
+      "l": 20001.75,
+      "c": 20005.0
+     },
+     {
+      "o": 20005.0,
+      "h": 20011.25,
+      "l": 20003.75,
+      "c": 20011.0
+     },
+     {
+      "o": 20011.0,
+      "h": 20012.5,
+      "l": 20002.0,
+      "c": 20003.0
+     },
+     {
+      "o": 20003.0,
+      "h": 20004.0,
+      "l": 19990.5,
+      "c": 19992.0
+     },
+     {
+      "o": 19992.0,
+      "h": 19992.75,
+      "l": 19984.0,
+      "c": 19985.0
+     },
+     {
+      "o": 19985.0,
+      "h": 19986.5,
+      "l": 19976.75,
+      "c": 19978.0
+     },
+     {
+      "o": 19978.0,
+      "h": 19979.0,
+      "l": 19968.5,
+      "c": 19969.5
+     }
+    ],
+    "entryAt": 5,
+    "checkpoints": [
+     {
+      "at": 7
+     },
+     {
+      "at": 9,
+      "prompt": "Red now. Anything structural?"
+     }
+    ],
+    "actions": [
+     "follow",
+     "move-stop",
+     "partial",
+     "close",
+     "move-target"
+    ],
+    "afterResult": {
+     "prompt": "Stop hit. GRADE?",
+     "options": [
+      {
+       "label": "Bad trade",
+       "feedback": "The process was perfect.",
+       "bias": true
+      },
+      {
+       "label": "Good process · losing outcome",
+       "correct": true,
+       "why": "That’s real trading."
+      }
+     ],
+     "stack": true
+    },
+    "name": "Valid loss",
+    "concept": "Process vs outcome",
+    "brief": "Perfect setup, entry and management."
+   },
+   {
+    "type": "manage_sim",
+    "plan": {
+     "entryPrice": 20000,
+     "stopPrice": 19970,
+     "targetPrice": 20060,
+     "contractCount": 4,
+     "managementModel": "partial-runner",
+     "partialRules": "Close 2 at +30",
+     "runnerRules": "Hold 2 to +60",
+     "breakEvenRules": "Runner SL to entry after the partial",
+     "structuralRules": "None",
+     "earlyInterventionRules": "None"
+    },
+    "bars": [
+     {
+      "o": 20018.0,
+      "h": 20019.5,
+      "l": 20013.5,
+      "c": 20013.75
+     },
+     {
+      "o": 20013.75,
+      "h": 20014.0,
+      "l": 20011.25,
+      "c": 20011.5
+     },
+     {
+      "o": 20011.5,
+      "h": 20012.5,
+      "l": 20007.5,
+      "c": 20008.75
+     },
+     {
+      "o": 20008.75,
+      "h": 20010.0,
+      "l": 20005.75,
+      "c": 20006.25
+     },
+     {
+      "o": 20006.25,
+      "h": 20006.75,
+      "l": 20001.75,
+      "c": 20003.0
+     },
+     {
+      "o": 20003.0,
+      "h": 20004.25,
+      "l": 19999.75,
+      "c": 20002.5
+     },
+     {
+      "o": 20002.5,
+      "h": 20008.25,
+      "l": 20000.25,
+      "c": 20008.0
+     },
+     {
+      "o": 20008.0,
+      "h": 20017.5,
+      "l": 20007.0,
+      "c": 20017.0
+     },
+     {
+      "o": 20017.0,
+      "h": 20026.5,
+      "l": 20016.75,
+      "c": 20026.0
+     },
+     {
+      "o": 20026.0,
+      "h": 20032.0,
+      "l": 20024.25,
+      "c": 20031.0
+     },
+     {
+      "o": 20031.0,
+      "h": 20033.0,
+      "l": 20025.5,
+      "c": 20027.0
+     },
+     {
+      "o": 20027.0,
+      "h": 20038.0,
+      "l": 20026.25,
+      "c": 20036.0
+     },
+     {
+      "o": 20036.0,
+      "h": 20044.5,
+      "l": 20034.0,
+      "c": 20044.0
+     },
+     {
+      "o": 20044.0,
+      "h": 20046.0,
+      "l": 20037.75,
+      "c": 20039.0
+     }
+    ],
+    "entryAt": 5,
+    "checkpoints": [
+     {
+      "at": 9,
+      "event": "PLANNED_PARTIAL_TRIGGERED",
+      "eventText": "+31: your plan closes 2 contracts at +30.",
+      "expect": "partial",
+      "qty": 2
+     },
+     {
+      "at": 10,
+      "event": "PLANNED_STOP_ADJUSTMENT_TRIGGERED",
+      "eventText": "After the partial, your plan moves the runner’s stop to entry.",
+      "expect": "move-stop",
+      "stopTo": 20000
+     },
+     {
+      "at": 12,
+      "prompt": "+44. Close the runner now?",
+      "tempt": "close",
+      "temptLabel": "CLOSE RUNNER?",
+      "goal": true,
+      "after": "DON’T SWITCH MANAGEMENT MODELS MID-TRADE."
+     }
+    ],
+    "actions": [
+     "follow",
+     "move-stop",
+     "partial",
+     "close",
+     "move-target"
+    ],
+    "name": "Runner decision",
+    "concept": "Partial + runner",
+    "brief": "Your plan includes a partial and a runner."
+   },
+   {
+    "type": "micromanage",
+    "steps": [
+     {
+      "pnl": "+$96",
+      "button": "MOVE STOP!"
+     },
+     {
+      "pnl": "+$40",
+      "button": "MOVE TARGET?"
+     },
+     {
+      "pnl": "+$120",
+      "button": "TAKE PARTIAL?"
+     }
+    ],
+    "scripted": {
+     "Stop moves": 3,
+     "Target moves": 2,
+     "Partials": 1,
+     "Contracts added": 1,
+     "Manual closes": 0
+    },
+    "punch": "BIGGEST ISSUE: THE TRADE NO LONGER RESEMBLES THE PREDEFINED PLAN.",
+    "name": "Stop moving everything 😭",
+    "concept": "Over-management",
+    "brief": "Review her replay."
+   },
+   {
+    "type": "manage_sim",
+    "plan": {
+     "entryPrice": 20000,
+     "stopPrice": 19970,
+     "targetPrice": 20060,
+     "contractCount": 4,
+     "managementModel": "fixed",
+     "partialRules": "None",
+     "runnerRules": "None",
+     "breakEvenRules": "None",
+     "structuralRules": "None",
+     "earlyInterventionRules": "None"
+    },
+    "bars": [
+     {
+      "o": 20018.0,
+      "h": 20018.5,
+      "l": 20015.75,
+      "c": 20016.25
+     },
+     {
+      "o": 20016.25,
+      "h": 20017.0,
+      "l": 20010.75,
+      "c": 20011.25
+     },
+     {
+      "o": 20011.25,
+      "h": 20012.5,
+      "l": 20007.75,
+      "c": 20008.5
+     },
+     {
+      "o": 20008.5,
+      "h": 20009.75,
+      "l": 20005.75,
+      "c": 20006.25
+     },
+     {
+      "o": 20006.25,
+      "h": 20006.5,
+      "l": 20001.75,
+      "c": 20003.0
+     },
+     {
+      "o": 20003.0,
+      "h": 20003.5,
+      "l": 19999.75,
+      "c": 20002.5
+     },
+     {
+      "o": 20002.5,
+      "h": 20005.0,
+      "l": 19995.25,
+      "c": 19996.0
+     },
+     {
+      "o": 19996.0,
+      "h": 19996.75,
+      "l": 19990.25,
+      "c": 19991.0
+     },
+     {
+      "o": 19991.0,
+      "h": 19992.0,
+      "l": 19985.25,
+      "c": 19986.0
+     },
+     {
+      "o": 19986.0,
+      "h": 19993.0,
+      "l": 19984.0,
+      "c": 19992.0
+     },
+     {
+      "o": 19992.0,
+      "h": 19993.25,
+      "l": 19986.5,
+      "c": 19988.0
+     },
+     {
+      "o": 19988.0,
+      "h": 19995.75,
+      "l": 19987.25,
+      "c": 19994.0
+     }
+    ],
+    "entryAt": 5,
+    "checkpoints": [
+     {
+      "at": 8,
+      "kind": "ask",
+      "ask": {
+       "prompt": "−$112. Price is still above your stop and nothing structural broke. DID THE PLAN CHANGE?",
+       "options": [
+        {
+         "label": "Yes, I’m losing",
+         "feedback": "The number changed. The plan didn’t."
+        },
+        {
+         "label": "No",
+         "correct": true,
+         "why": "P&L alone doesn’t justify action."
+        }
+       ],
+       "stack": true
+      }
+     },
+     {
+      "at": 10,
+      "goal": true
+     }
+    ],
+    "actions": [
+     "follow",
+     "move-stop",
+     "partial",
+     "close",
+     "move-target"
+    ],
+    "name": "Manage price, not money",
+    "concept": "P&L distortion",
+    "brief": "P&L negative. Chart behaving normally."
+   },
+   {
+    "type": "manage_sim",
+    "plan": {
+     "entryPrice": 20000,
+     "stopPrice": 19970,
+     "targetPrice": 20060,
+     "contractCount": 4,
+     "managementModel": "fixed",
+     "partialRules": "None",
+     "runnerRules": "None",
+     "breakEvenRules": "None",
+     "structuralRules": "None",
+     "earlyInterventionRules": "None"
+    },
+    "actions": [
+     "follow",
+     "move-stop",
+     "partial",
+     "close",
+     "move-target"
+    ],
+    "speed": 800,
+    "againLabel": "↻ Same plan. Run it again.",
+    "sequence": [
+     {
+      "bars": [
+       {
+        "o": 20018.0,
+        "h": 20018.25,
+        "l": 20013.75,
+        "c": 20014.25
+       },
+       {
+        "o": 20014.25,
+        "h": 20014.75,
+        "l": 20011.5,
+        "c": 20012.75
+       },
+       {
+        "o": 20012.75,
+        "h": 20013.5,
+        "l": 20007.5,
+        "c": 20008.75
+       },
+       {
+        "o": 20008.75,
+        "h": 20010.0,
+        "l": 20004.0,
+        "c": 20005.0
+       },
+       {
+        "o": 20005.0,
+        "h": 20005.5,
+        "l": 20002.5,
+        "c": 20003.0
+       },
+       {
+        "o": 20003.0,
+        "h": 20003.75,
+        "l": 19999.75,
+        "c": 20002.5
+       },
+       {
+        "o": 20002.5,
+        "h": 20012.75,
+        "l": 20002.0,
+        "c": 20012.0
+       },
+       {
+        "o": 20012.0,
+        "h": 20026.0,
+        "l": 20010.0,
+        "c": 20025.0
+       },
+       {
+        "o": 20025.0,
+        "h": 20038.75,
+        "l": 20023.0,
+        "c": 20038.0
+       },
+       {
+        "o": 20038.0,
+        "h": 20039.0,
+        "l": 20015.75,
+        "c": 20017.0
+       },
+       {
+        "o": 20017.0,
+        "h": 20032.75,
+        "l": 20016.5,
+        "c": 20031.0
+       },
+       {
+        "o": 20031.0,
+        "h": 20033.25,
+        "l": 20006.25,
+        "c": 20008.0
+       },
+       {
+        "o": 20008.0,
+        "h": 20044.75,
+        "l": 20007.25,
+        "c": 20044.0
+       },
+       {
+        "o": 20044.0,
+        "h": 20045.25,
+        "l": 20026.0,
+        "c": 20028.0
+       },
+       {
+        "o": 20028.0,
+        "h": 20054.25,
+        "l": 20027.5,
+        "c": 20052.0
+       },
+       {
+        "o": 20052.0,
+        "h": 20053.0,
+        "l": 20038.75,
+        "c": 20041.0
+       },
+       {
+        "o": 20041.0,
+        "h": 20058.75,
+        "l": 20039.0,
+        "c": 20058.0
+       },
+       {
+        "o": 20058.0,
+        "h": 20061.5,
+        "l": 20057.0,
+        "c": 20060.5
+       }
+      ],
+      "entryAt": 5,
+      "checkpoints": [
+       {
+        "at": 6,
+        "tempt": "close",
+        "temptLabel": "TAKE PROFIT NOW"
+       },
+       {
+        "at": 8,
+        "tempt": "move-stop",
+        "temptLabel": "MOVE STOP"
+       },
+       {
+        "at": 10,
+        "tempt": "partial",
+        "temptLabel": "CLOSE HALF"
+       },
+       {
+        "at": 12,
+        "tempt": "move-target",
+        "temptLabel": "MOVE TARGET"
+       },
+       {
+        "at": 14,
+        "tempt": "close",
+        "temptLabel": "TAKE PROFIT NOW"
+       },
+       {
+        "at": 16,
+        "tempt": "move-stop",
+        "temptLabel": "MOVE STOP"
+       }
+      ]
+     },
+     {
+      "bars": [
+       {
+        "o": 20018.0,
+        "h": 20018.75,
+        "l": 20013.75,
+        "c": 20014.5
+       },
+       {
+        "o": 20014.5,
+        "h": 20015.5,
+        "l": 20011.0,
+        "c": 20012.0
+       },
+       {
+        "o": 20012.0,
+        "h": 20013.0,
+        "l": 20008.75,
+        "c": 20009.75
+       },
+       {
+        "o": 20009.75,
+        "h": 20010.75,
+        "l": 20005.25,
+        "c": 20006.75
+       },
+       {
+        "o": 20006.75,
+        "h": 20007.75,
+        "l": 20001.5,
+        "c": 20003.0
+       },
+       {
+        "o": 20003.0,
+        "h": 20003.5,
+        "l": 19999.75,
+        "c": 20002.5
+       },
+       {
+        "o": 20002.5,
+        "h": 20013.0,
+        "l": 20001.25,
+        "c": 20012.0
+       },
+       {
+        "o": 20012.0,
+        "h": 20026.25,
+        "l": 20010.5,
+        "c": 20025.0
+       },
+       {
+        "o": 20025.0,
+        "h": 20039.5,
+        "l": 20023.25,
+        "c": 20038.0
+       },
+       {
+        "o": 20038.0,
+        "h": 20040.0,
+        "l": 20015.5,
+        "c": 20017.0
+       },
+       {
+        "o": 20017.0,
+        "h": 20032.75,
+        "l": 20015.0,
+        "c": 20031.0
+       },
+       {
+        "o": 20031.0,
+        "h": 20032.75,
+        "l": 20005.5,
+        "c": 20008.0
+       },
+       {
+        "o": 20008.0,
+        "h": 20009.75,
+        "l": 19991.75,
+        "c": 19994.0
+       },
+       {
+        "o": 19994.0,
+        "h": 19994.5,
+        "l": 19985.0,
+        "c": 19986.0
+       },
+       {
+        "o": 19986.0,
+        "h": 20004.0,
+        "l": 19984.75,
+        "c": 20003.0
+       },
+       {
+        "o": 20003.0,
+        "h": 20003.5,
+        "l": 19987.25,
+        "c": 19989.0
+       },
+       {
+        "o": 19989.0,
+        "h": 19991.0,
+        "l": 19977.5,
+        "c": 19980.0
+       },
+       {
+        "o": 19980.0,
+        "h": 19981.25,
+        "l": 19972.0,
+        "c": 19974.0
+       },
+       {
+        "o": 19974.0,
+        "h": 19975.0,
+        "l": 19968.5,
+        "c": 19969.5
+       }
+      ],
+      "entryAt": 5,
+      "checkpoints": [
+       {
+        "at": 6,
+        "tempt": "close",
+        "temptLabel": "TAKE PROFIT NOW"
+       },
+       {
+        "at": 8,
+        "tempt": "move-stop",
+        "temptLabel": "MOVE STOP"
+       },
+       {
+        "at": 10,
+        "tempt": "partial",
+        "temptLabel": "CLOSE HALF"
+       },
+       {
+        "at": 12,
+        "tempt": "move-target",
+        "temptLabel": "MOVE TARGET"
+       },
+       {
+        "at": 14,
+        "tempt": "close",
+        "temptLabel": "TAKE PROFIT NOW"
+       }
+      ],
+      "intro": "Same plan. Same discipline."
+     }
+    ],
+    "end": {
+     "card": "I DID EVERYTHING RIGHT AND THE TRADE STILL LOST.<br><small>Final outcome −1R. Management score 100%. That’s real trading.</small>"
+    },
+    "name": "FINAL BOSS: Can you leave the trade alone? 😂",
+    "concept": "Discipline",
+    "brief": "Fixed target. No partials. No discretionary stop movement. Then price gets annoying."
+   },
+   {
+    "type": "m_review",
+    "name": "Your management review",
+    "concept": "Review",
+    "brief": "Graded on the plan, never on P&L."
+   }
+  ]
+ },
+ "knowledgeCheck": {
+  "questionCount": 12,
+  "passPct": 0.8,
+  "xp": 0,
+  "shuffleOptions": true,
+  "questionBank": [
+   {
+    "concept": "Pre-trade management",
+    "question": "When should the management plan exist?",
+    "options": [
+     "After entry, once you see how it moves",
+     "Before entry",
+     "When P&L turns red",
+     "At the target"
+    ],
+    "correctIndex": 1,
+    "why": "Your calmest decisions happen before money moves."
+   },
+   {
+    "concept": "Pre-trade management",
+    "question": "“I’ll see how it feels.” What does she have?",
+    "options": [
+     "A trade plan",
+     "An entry plan, not a trade plan",
+     "A flexible plan",
+     "A structure plan"
+    ],
+    "correctIndex": 1,
+    "why": "No management plan = no trade plan."
+   },
+   {
+    "concept": "Fixed vs structure",
+    "question": "Which is true?",
+    "options": [
+     "Structure-based is always better",
+     "Fixed is for beginners",
+     "Each is valid if it’s predefined and followed",
+     "Neither works"
+    ],
+    "correctIndex": 2,
+    "why": "More flexible isn’t automatically more advanced."
+   },
+   {
+    "concept": "Dayli MNQ example",
+    "question": "4 MNQ, 30-pt stop. Planned price risk?",
+    "options": [
+     "$30",
+     "$60",
+     "$120",
+     "$240"
+    ],
+    "correctIndex": 3,
+    "why": "30 × $2 × 4."
+   },
+   {
+    "concept": "Contract exposure",
+    "question": "4 → 8 MNQ. The stop is still 30 points. What changed?",
+    "options": [
+     "The setup",
+     "The financial exposure",
+     "Nothing",
+     "The R:R"
+    ],
+    "correctIndex": 1,
+    "why": "Same chart, double the dollars."
+   },
+   {
+    "concept": "R",
+    "question": "30-pt stop, 60-pt target. R:R?",
+    "options": [
+     "1:1",
+     "1:2",
+     "2:1",
+     "1:3"
+    ],
+    "correctIndex": 1,
+    "why": "Risk 1, reward 2."
+   },
+   {
+    "concept": "Partials",
+    "question": "No partial rule. She takes half because she sees green. Classification?",
+    "options": [
+     "Rule-based",
+     "Management violation",
+     "Smart",
+     "Planned"
+    ],
+    "correctIndex": 1,
+    "why": "Unplanned partial = changing the model."
+   },
+   {
+    "concept": "Partials",
+    "question": "Her plan says close 2 at +30. Price hits +30 and she does. Classification?",
+    "options": [
+     "Violation",
+     "Rule-based management",
+     "Fear-based",
+     "Over-management"
+    ],
+    "correctIndex": 1,
+    "why": "The plan said so."
+   },
+   {
+    "concept": "Break even",
+    "question": "No BE rule. Price moves favorably. She moves to BE because she’s nervous.",
+    "options": [
+     "Rule-based",
+     "Unplanned management change",
+     "Required",
+     "Risk-free"
+    ],
+    "correctIndex": 1,
+    "why": "Why did the stop move? Nerves."
+   },
+   {
+    "concept": "Break even",
+    "question": "Does a stop at break even guarantee a $0 outcome?",
+    "options": [
+     "Yes",
+     "No: fees, fills and slippage still apply",
+     "Only on MNQ",
+     "Only for partials"
+    ],
+    "correctIndex": 1,
+    "why": "BE rarely means exactly $0."
+   },
+   {
+    "concept": "Over-management",
+    "question": "SL moved 3 times, TP twice, a random partial, size added. Biggest issue?",
+    "options": [
+     "Too few partials",
+     "The trade no longer resembles the plan",
+     "Stop too wide",
+     "Wrong instrument"
+    ],
+    "correctIndex": 1,
+    "why": "Activity isn’t management."
+   },
+   {
+    "concept": "P&L distortion",
+    "question": "−$120. Nothing structural changed. Action?",
+    "options": [
+     "Close it",
+     "Move the stop",
+     "P&L alone doesn’t justify action: follow the plan",
+     "Add size"
+    ],
+    "correctIndex": 2,
+    "why": "Manage price, not money."
+   },
+   {
+    "concept": "P&L distortion",
+    "question": "+$160, chart hidden. Exit?",
+    "options": [
+     "Yes",
+     "No",
+     "Not enough information",
+     "Half"
+    ],
+    "correctIndex": 2,
+    "why": "P&L isn’t structure."
+   },
+   {
+    "concept": "Process vs outcome",
+    "question": "Perfectly managed. Stop hit. Grade?",
+    "options": [
+     "Bad trade",
+     "Good process + loss",
+     "Bad process + loss",
+     "Ungradeable"
+    ],
+    "correctIndex": 1,
+    "why": "Two different facts."
+   },
+   {
+    "concept": "Process vs outcome",
+    "question": "She fear-exited at +$80. The target later hit. Grade?",
+    "options": [
+     "Good trade",
+     "Profitable outcome + management violation",
+     "Good process + win",
+     "Perfect"
+    ],
+    "correctIndex": 1,
+    "why": "Profit isn’t a management grade."
+   }
+  ],
+  "reviewLessons": {
+   "Pre-trade management": [
+    "p6",
+    9
+   ],
+   "Fixed vs structure": [
+    "p6",
+    10
+   ],
+   "Dayli MNQ example": [
+    "p6",
+    11
+   ],
+   "Contract exposure": [
+    "p6",
+    11
+   ],
+   "R": [
+    "p6",
+    11
+   ],
+   "Partials": [
+    "p6",
+    12
+   ],
+   "Break even": [
+    "p6",
+    13
+   ],
+   "Over-management": [
+    "p6",
+    14
+   ],
+   "P&L distortion": [
+    "p6",
+    15
+   ],
+   "Process vs outcome": [
+    "p6",
+    16
+   ]
+  }
+ },
+ "checkin": {
+  "eyebrow": "📓 My Section 16 Check-In",
+  "heading": "What clicked? 📊",
+  "fields": [
+   {
+    "type": "text",
+    "label": "Why should management exist before entry?"
+   },
+   {
+    "type": "text",
+    "label": "What’s the difference between fixed and structure-based management?"
+   },
+   {
+    "type": "text",
+    "label": "When can moving to break even become a problem?"
+   },
+   {
+    "type": "text",
+    "label": "What does over-managing look like?"
+   },
+   {
+    "type": "text",
+    "label": "Why shouldn’t P&L alone determine decisions?"
+   },
+   {
+    "type": "text",
+    "label": "What’s the difference between outcome and management quality?"
+   },
+   {
+    "type": "choice",
+    "label": "What needs review?",
+    "options": [
+     "Planning before entry",
+     "Fixed vs structure",
+     "The MNQ example",
+     "Partials & runners",
+     "Break even",
+     "Over-managing",
+     "P&L distortion",
+     "Process vs outcome",
+     "I’m good ✨"
+    ]
+   },
+   {
+    "type": "choice",
+    "label": "How confident do you feel managing a live position?",
+    "profile": "confidence",
+    "options": [
+     "Still shaky",
+     "Getting there",
+     "Pretty confident",
+     "Let me at it 📊"
+    ]
+   },
+   {
+    "type": "text",
+    "share": true,
+    "rows": 4,
+    "min": 15,
+    "placeholder": "Type it how YOU understand it...",
+    "label": "💭 Explain it to an AGHF girl: your friend says, “My trade was up $200 and came all the way back to stop me out. I should’ve just taken the money.” What do you ask her first?",
+    "concepts": [
+     {
+      "label": "Ask: what was the management plan before entry?",
+      "any": [
+       "plan"
+      ]
+     },
+     {
+      "label": "If nothing in the plan triggered, holding was following it",
+      "any": [
+       "trigger",
+       "condition",
+       "rule",
+       "followed",
+       "nothing changed"
+      ]
+     },
+     {
+      "label": "Unrealized profit disappearing doesn’t prove management was wrong",
+      "any": [
+       "unrealized",
+       "disappear",
+       "gave back",
+       "doesn’t prove",
+       "doesn't prove",
+       "not wrong"
+      ]
+     },
+     {
+      "label": "Judge plan vs action, not hindsight",
+      "any": [
+       "hindsight",
+       "action",
+       "process",
+       "outcome"
+      ]
+     }
+    ],
+    "conceptsNote": "No exact wording needed. These are the ideas a great answer usually touches."
+   }
+  ],
+  "saveLabel": "Save to My Academy Notes →",
+  "savedLabel": "✓ Saved to My Academy Notes"
+ },
+ "complete": {
+  "eyebrow": "🎉 Section complete",
+  "heading": "✦ YOU CAN MANAGE THE POSITION.",
+  "badge": "Managing the Trade: Complete",
+  "gp": 640,
+  "cinema": {
+   "type": "manage_sim",
+   "kicker": "",
+   "mode": "watch",
+   "plan": {
+    "entryPrice": 20000,
+    "stopPrice": 19970,
+    "targetPrice": 20060,
+    "contractCount": 4,
+    "managementModel": "fixed",
+    "partialRules": "None",
+    "runnerRules": "None",
+    "breakEvenRules": "None",
+    "structuralRules": "None",
+    "earlyInterventionRules": "None"
+   },
+   "speed": 650,
+   "againLabel": "Same discipline. Another trade.",
+   "sequence": [
+    {
+     "bars": [
+      {
+       "o": 20018.0,
+       "h": 20019.5,
+       "l": 20014.75,
+       "c": 20016.0
+      },
+      {
+       "o": 20016.0,
+       "h": 20017.5,
+       "l": 20011.75,
+       "c": 20013.0
+      },
+      {
+       "o": 20013.0,
+       "h": 20013.5,
+       "l": 20008.75,
+       "c": 20010.0
+      },
+      {
+       "o": 20010.0,
+       "h": 20010.75,
+       "l": 20005.5,
+       "c": 20006.25
+      },
+      {
+       "o": 20006.25,
+       "h": 20007.0,
+       "l": 20001.5,
+       "c": 20003.0
+      },
+      {
+       "o": 20003.0,
+       "h": 20004.25,
+       "l": 19999.75,
+       "c": 20002.5
+      },
+      {
+       "o": 20002.5,
+       "h": 20012.25,
+       "l": 20000.0,
+       "c": 20010.0
+      },
+      {
+       "o": 20010.0,
+       "h": 20022.0,
+       "l": 20007.75,
+       "c": 20020.0
+      },
+      {
+       "o": 20020.0,
+       "h": 20022.5,
+       "l": 20005.5,
+       "c": 20007.5
+      },
+      {
+       "o": 20007.5,
+       "h": 20009.75,
+       "l": 19994.25,
+       "c": 19995.0
+      },
+      {
+       "o": 19995.0,
+       "h": 20027.0,
+       "l": 19993.5,
+       "c": 20025.0
+      },
+      {
+       "o": 20025.0,
+       "h": 20026.0,
+       "l": 20011.25,
+       "c": 20012.5
+      },
+      {
+       "o": 20012.5,
+       "h": 20034.0,
+       "l": 20010.0,
+       "c": 20033.0
+      },
+      {
+       "o": 20033.0,
+       "h": 20047.0,
+       "l": 20032.0,
+       "c": 20045.0
+      },
+      {
+       "o": 20045.0,
+       "h": 20055.75,
+       "l": 20044.5,
+       "c": 20054.0
+      },
+      {
+       "o": 20054.0,
+       "h": 20061.5,
+       "l": 20053.0,
+       "c": 20060.5
+      }
+     ],
+     "entryAt": 5,
+     "checkpoints": [
+      {
+       "at": 8,
+       "text": "+$160. She does nothing. The plan says nothing has changed."
+      },
+      {
+       "at": 9,
+       "text": "−$40. Still nothing."
+      }
+     ]
+    },
+    {
+     "bars": [
+      {
+       "o": 20018.0,
+       "h": 20019.0,
+       "l": 20014.5,
+       "c": 20015.5
+      },
+      {
+       "o": 20015.5,
+       "h": 20016.25,
+       "l": 20012.25,
+       "c": 20012.75
+      },
+      {
+       "o": 20012.75,
+       "h": 20013.25,
+       "l": 20008.75,
+       "c": 20009.75
+      },
+      {
+       "o": 20009.75,
+       "h": 20010.0,
+       "l": 20005.5,
+       "c": 20006.5
+      },
+      {
+       "o": 20006.5,
+       "h": 20008.0,
+       "l": 20001.75,
+       "c": 20003.0
+      },
+      {
+       "o": 20003.0,
+       "h": 20003.5,
+       "l": 19999.75,
+       "c": 20002.5
+      },
+      {
+       "o": 20002.5,
+       "h": 20011.75,
+       "l": 20000.75,
+       "c": 20010.0
+      },
+      {
+       "o": 20010.0,
+       "h": 20021.5,
+       "l": 20008.0,
+       "c": 20020.0
+      },
+      {
+       "o": 20020.0,
+       "h": 20021.25,
+       "l": 20006.75,
+       "c": 20007.5
+      },
+      {
+       "o": 20007.5,
+       "h": 20009.5,
+       "l": 19994.25,
+       "c": 19995.0
+      },
+      {
+       "o": 19995.0,
+       "h": 20005.75,
+       "l": 19993.25,
+       "c": 20004.0
+      },
+      {
+       "o": 20004.0,
+       "h": 20004.5,
+       "l": 19986.25,
+       "c": 19988.0
+      },
+      {
+       "o": 19988.0,
+       "h": 19990.5,
+       "l": 19977.25,
+       "c": 19979.0
+      },
+      {
+       "o": 19979.0,
+       "h": 19979.75,
+       "l": 19973.0,
+       "c": 19974.0
+      },
+      {
+       "o": 19974.0,
+       "h": 19975.0,
+       "l": 19968.5,
+       "c": 19969.5
+      }
+     ],
+     "entryAt": 5,
+     "checkpoints": [
+      {
+       "at": 9,
+       "text": "Same discipline."
+      }
+     ]
+    }
+   ],
+   "end": {
+    "card": "PLAN FOLLOWED ✓ · TARGET REACHED ✓<br>PLAN FOLLOWED ✓ · STOP REACHED ✓<br><small>BOTH CAN BE GOOD MANAGEMENT.</small>"
+   }
+  },
+  "stats": [
+   {
+    "label": "Lessons",
+    "value": "{lessons} ✓"
+   },
+   {
+    "label": "Trade Management Simulator",
+    "value": "✓"
+   },
+   {
+    "label": "Knowledge Check",
+    "value": "{kc}% ✓"
+   },
+   {
+    "label": "Academy Notes",
+    "value": "Saved ✓"
+   }
+  ],
+  "badgeUnlock": {
+   "icon": "📊",
+   "title": "PLAN PROTECTOR",
+   "line": "You learned that managing a trade doesn’t mean touching it every five seconds."
+  },
+  "phase": {
+   "title": "✦ Phase 6: Pulling the Trigger",
+   "pct": 67,
+   "sections": [
+    {
+     "icon": "✓",
+     "label": "Section 15: How to Actually Enter"
+    },
+    {
+     "icon": "✓",
+     "label": "Section 16: Managing the Trade"
+    },
+    {
+     "icon": "🔓",
+     "label": "Section 17: Protecting Your Account"
+    }
+   ]
+  },
+  "nextUp": {
+   "title": "🔓 Protecting Your Account 🛡️",
+   "cta": "ENTER SECTION 17 →",
+   "lines": [
+    "The journal closes. Now zoom <strong>out</strong> from one trade."
+   ],
+   "cinema": {
+    "type": "account_tease"
+   },
+   "questions": [
+    "Risk per trade",
+    "Contract sizing",
+    "30-point stop vs dollar risk",
+    "1:1 vs 1:2",
+    "Daily loss limits",
+    "Maximum trades",
+    "Drawdown",
+    "Prop-firm risk vs personal capital",
+    "Losing streaks",
+    "Risk of ruin",
+    "Consistency over frequency"
+   ]
+  }
+ }
+}

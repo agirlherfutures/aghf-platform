@@ -1,0 +1,213 @@
+{
+ "phase": "p6",
+ "section": "s16",
+ "lessonNumber": 12,
+ "title": "Partials & Runners",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Partials aren’t automatically safer if you take them every time you’re scared.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Read partials and runners as management structures, and spot a fear-based partial.",
+  "missionQuestion": "Was that partial in the plan?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "position_stack",
+   "kicker": "Market literacy",
+   "title": "A partial, and a runner",
+   "contracts": 4,
+   "plans": [
+    {
+     "name": "Plan A",
+     "line": "4 contracts held to +60",
+     "legs": [
+      {
+       "n": 4,
+       "pts": 60
+      }
+     ]
+    },
+    {
+     "name": "Plan B",
+     "line": "2 close at +30, 2 run to +60",
+     "legs": [
+      {
+       "n": 2,
+       "pts": 30
+      },
+      {
+       "n": 2,
+       "pts": 60
+      }
+     ]
+    }
+   ],
+   "asks": [
+    {
+     "prompt": "Is Plan B automatically safer, and Plan A for beginners?",
+     "options": [
+      {
+       "label": "Yes",
+       "feedback": "Neither. Each is a management structure."
+      },
+      {
+       "label": "No: each is a structure, judged by whether you follow it",
+       "correct": true,
+       "why": "Partials aren’t safer by default, runners aren’t more advanced, fixed isn’t beginner."
+      }
+     ],
+     "stack": true
+    }
+   ],
+   "punch": "PARTIAL: close part of the position. RUNNER: what’s left keeps going."
+  },
+  {
+   "type": "manage_sim",
+   "kicker": "Live",
+   "title": "The emotional partial trap",
+   "plan": {
+    "entryPrice": 20000,
+    "stopPrice": 19970,
+    "targetPrice": 20060,
+    "contractCount": 4,
+    "managementModel": "fixed",
+    "partialRules": "None",
+    "runnerRules": "None",
+    "breakEvenRules": "None",
+    "structuralRules": "None",
+    "earlyInterventionRules": "None"
+   },
+   "bars": [
+    {
+     "o": 20018.0,
+     "h": 20019.0,
+     "l": 20013.25,
+     "c": 20014.0
+    },
+    {
+     "o": 20014.0,
+     "h": 20015.0,
+     "l": 20012.0,
+     "c": 20013.0
+    },
+    {
+     "o": 20013.0,
+     "h": 20013.5,
+     "l": 20008.75,
+     "c": 20010.0
+    },
+    {
+     "o": 20010.0,
+     "h": 20011.0,
+     "l": 20004.25,
+     "c": 20005.75
+    },
+    {
+     "o": 20005.75,
+     "h": 20007.0,
+     "l": 20002.0,
+     "c": 20003.0
+    },
+    {
+     "o": 20003.0,
+     "h": 20004.25,
+     "l": 19999.75,
+     "c": 20002.5
+    },
+    {
+     "o": 20002.5,
+     "h": 20007.5,
+     "l": 20001.0,
+     "c": 20007.0
+    },
+    {
+     "o": 20007.0,
+     "h": 20016.25,
+     "l": 20004.75,
+     "c": 20015.0
+    },
+    {
+     "o": 20015.0,
+     "h": 20026.75,
+     "l": 20013.5,
+     "c": 20025.0
+    },
+    {
+     "o": 20025.0,
+     "h": 20027.25,
+     "l": 20020.0,
+     "c": 20021.0
+    },
+    {
+     "o": 20021.0,
+     "h": 20023.25,
+     "l": 20016.75,
+     "c": 20018.0
+    },
+    {
+     "o": 20018.0,
+     "h": 20030.75,
+     "l": 20015.5,
+     "c": 20029.0
+    },
+    {
+     "o": 20029.0,
+     "h": 20039.0,
+     "l": 20027.5,
+     "c": 20037.0
+    },
+    {
+     "o": 20037.0,
+     "h": 20039.0,
+     "l": 20030.75,
+     "c": 20031.0
+    }
+   ],
+   "entryAt": 5,
+   "checkpoints": [
+    {
+     "at": 8,
+     "prompt": "+25 points. Your plan has no partial rule.",
+     "tempt": "partial",
+     "temptLabel": "TAKE HALF?",
+     "goal": true,
+     "after": "Nothing in your plan said “take half”."
+    }
+   ],
+   "actions": [
+    "follow",
+    "move-stop",
+    "partial",
+    "close",
+    "move-target"
+   ],
+   "intro": "Fixed plan. No partials."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Partials aren’t automatically safer <em>if you take them every time you’re scared.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "When is a partial fear-based?",
+   "modelAnswer": "When it isn’t in my plan and I take it because I don’t want to lose the green. A planned partial is a management structure; an unplanned one is a change of model."
+  }
+ ],
+ "takeaways": [
+  "Partial = close part.",
+  "Runner = the rest continues.",
+  "Unplanned partial = fear-based management."
+ ],
+ "remember": "Partials aren’t automatically safer if you take them every time you’re scared."
+}
