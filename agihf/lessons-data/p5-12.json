@@ -1,0 +1,353 @@
+{
+ "phase": "p5",
+ "section": "s13",
+ "lessonNumber": 12,
+ "title": "The Pre-Indication Level",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "No PIL = no valid indication.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Find the structurally relevant level price must prove itself through, before drawing any line.",
+  "missionQuestion": "What does price actually need to prove itself through?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "Start here",
+   "heading": "No PIL = no valid indication.",
+   "body": "",
+   "beats": [
+    {
+     "icon": "PIL",
+     "title": "Pre-Indication Level",
+     "line": "The structurally relevant level price must prove itself through to begin the sequence."
+    },
+    {
+     "icon": "▦",
+     "title": "Structure creates it",
+     "line": "Not a line you drew because it looked nice."
+    }
+   ],
+   "punch": "Structure first. Then the line."
+  },
+  {
+   "type": "exec_sim",
+   "kicker": "Structure first",
+   "title": "What does price actually need to prove itself through?",
+   "goal": "pil",
+   "body": "Tap a swing, check the preview, then confirm it as your PIL.",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 21022.25,
+      "h": 21022.75,
+      "l": 21013.75,
+      "c": 21014.75
+     },
+     {
+      "o": 21014.75,
+      "h": 21015.0,
+      "l": 21007.25,
+      "c": 21008.25
+     },
+     {
+      "o": 21008.25,
+      "h": 21008.5,
+      "l": 21000.0,
+      "c": 21001.0
+     },
+     {
+      "o": 21001.0,
+      "h": 21001.75,
+      "l": 20993.25,
+      "c": 20993.5
+     },
+     {
+      "o": 20993.5,
+      "h": 20994.25,
+      "l": 20985.5,
+      "c": 20986.75
+     },
+     {
+      "o": 20986.75,
+      "h": 20987.25,
+      "l": 20979.0,
+      "c": 20980.0
+     },
+     {
+      "o": 20980.0,
+      "h": 20981.5,
+      "l": 20973.25,
+      "c": 20974.25
+     },
+     {
+      "o": 20974.25,
+      "h": 20982.25,
+      "l": 20974.0,
+      "c": 20980.75
+     },
+     {
+      "o": 20980.75,
+      "h": 20989.0,
+      "l": 20980.25,
+      "c": 20988.5
+     },
+     {
+      "o": 20988.5,
+      "h": 20994.75,
+      "l": 20987.75,
+      "c": 20994.25
+     },
+     {
+      "o": 20994.25,
+      "h": 20994.75,
+      "l": 20991.75,
+      "c": 20992.25
+     },
+     {
+      "o": 20992.25,
+      "h": 20993.25,
+      "l": 20989.0,
+      "c": 20989.75
+     },
+     {
+      "o": 20989.75,
+      "h": 20990.0,
+      "l": 20986.75,
+      "c": 20987.0
+     },
+     {
+      "o": 20987.0,
+      "h": 20987.5,
+      "l": 20983.25,
+      "c": 20984.25
+     },
+     {
+      "o": 20984.25,
+      "h": 20988.75,
+      "l": 20983.25,
+      "c": 20988.0
+     },
+     {
+      "o": 20988.0,
+      "h": 20992.75,
+      "l": 20986.75,
+      "c": 20992.25
+     },
+     {
+      "o": 20992.25,
+      "h": 20997.25,
+      "l": 20991.75,
+      "c": 20996.25
+     },
+     {
+      "o": 20996.25,
+      "h": 20998.0,
+      "l": 20995.0,
+      "c": 20997.0
+     },
+     {
+      "o": 20997.0,
+      "h": 20998.25,
+      "l": 20995.5,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 20998.5,
+      "l": 20995.5,
+      "c": 20996.75
+     },
+     {
+      "o": 20996.75,
+      "h": 20998.75,
+      "l": 20996.0,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.25,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.75,
+      "l": 20998.5,
+      "c": 20999.75
+     },
+     {
+      "o": 20999.75,
+      "h": 21000.75,
+      "l": 20995.0,
+      "c": 20996.0
+     },
+     {
+      "o": 20996.0,
+      "h": 20996.75,
+      "l": 20992.75,
+      "c": 20994.0
+     },
+     {
+      "o": 20994.0,
+      "h": 20995.5,
+      "l": 20990.5,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20995.25,
+      "l": 20990.0,
+      "c": 20995.0
+     },
+     {
+      "o": 20995.0,
+      "h": 20999.75,
+      "l": 20993.75,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21001.75,
+      "l": 20997.5,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     }
+    ],
+    "pil": null,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish",
+      "ok": true
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis",
+      "ok": true
+     },
+     {
+      "label": "HTF ICC",
+      "value": "Correction"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ],
+    "structure": "Bullish 1M leg up, now pulling back.",
+    "start": 31,
+    "pick": {
+     "candidates": [
+      {
+       "id": "A",
+       "label": "A",
+       "at": 29,
+       "price": 21007.75,
+       "valid": false,
+       "mistake": "tiny-pil",
+       "why": "A tiny wiggle inside the pullback. Closest to price, but nothing structural depends on it."
+      },
+      {
+       "id": "B",
+       "label": "B",
+       "at": 21,
+       "price": 21004.25,
+       "valid": true,
+       "why": "The swing high this pullback came from. To resume upward, price has to prove itself through it."
+      },
+      {
+       "id": "C",
+       "label": "C",
+       "at": 9,
+       "price": 20994.75,
+       "valid": false,
+       "why": "Already broken. Price went through it on the way up: it’s not controlling the current sequence."
+      },
+      {
+       "id": "D",
+       "label": "D",
+       "at": 0,
+       "price": 21022.75,
+       "valid": false,
+       "why": "Older structure, from before the drop. It isn’t what the current move has to prove itself through."
+      }
+     ]
+    }
+   },
+   "end": {
+    "text": "Structure created the PIL. The line came second.",
+    "card": "IF YOU DON’T KNOW YOUR PIL,<br>YOU ARE NOT READY TO LABEL INDICATION."
+   }
+  },
+  {
+   "type": "teach",
+   "kicker": "PIL is NOT…",
+   "heading": "Not every line is a PIL",
+   "body": "",
+   "beats": [
+    {
+     "icon": "✗",
+     "title": "Every candle high or low",
+     "line": "Candles aren’t structure."
+    },
+    {
+     "icon": "✗",
+     "title": "An FVG edge, random S/R, a supply zone",
+     "line": "Context, not the PIL."
+    },
+    {
+     "icon": "✗",
+     "title": "The nearest line",
+     "line": "Close isn’t relevant."
+    },
+    {
+     "icon": "✗",
+     "title": "Whatever makes the setup look prettier 😂",
+     "line": "We don’t decorate charts."
+    }
+   ],
+   "punch": "The PIL is the swing price must PROVE itself through."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "If you don’t know your PIL, <em>you are not ready to label indication.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What is a PIL, and what creates it?",
+   "modelAnswer": "The Pre-Indication Level: the structurally relevant level price has to prove itself through to begin the Dayli ICC sequence. Structure creates it, not a line I like."
+  }
+ ],
+ "takeaways": [
+  "PIL = Pre-Indication Level.",
+  "Structure creates the PIL.",
+  "No PIL, no valid indication."
+ ],
+ "remember": "If you don’t know your PIL, you’re not ready to label indication."
+}

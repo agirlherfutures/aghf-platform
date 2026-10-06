@@ -1,0 +1,298 @@
+{
+ "phase": "p5",
+ "section": "s13",
+ "lessonNumber": 21,
+ "title": "When the Sequence Resets",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Execution is dynamic.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Reassess the active PIL when new relevant structure forms, instead of waiting forever on an old setup.",
+  "missionQuestion": "Keep waiting for the old PIL, or reassess?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "exec_sim",
+   "kicker": "Old setup",
+   "title": "PIL A · I ✓ C ✓ C ✓ · no retest",
+   "goal": "decision",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20987.0,
+      "l": 20981.25,
+      "c": 20986.75
+     },
+     {
+      "o": 20986.75,
+      "h": 20992.25,
+      "l": 20985.75,
+      "c": 20991.0
+     },
+     {
+      "o": 20991.0,
+      "h": 20995.25,
+      "l": 20990.0,
+      "c": 20994.5
+     },
+     {
+      "o": 20994.5,
+      "h": 20998.75,
+      "l": 20993.5,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.75,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21003.0,
+      "l": 20998.0,
+      "c": 20998.75
+     },
+     {
+      "o": 20998.75,
+      "h": 21000.25,
+      "l": 20996.5,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 20998.0,
+      "l": 20992.25,
+      "c": 20992.75
+     },
+     {
+      "o": 20992.75,
+      "h": 20993.5,
+      "l": 20990.0,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20996.5,
+      "l": 20990.25,
+      "c": 20995.5
+     },
+     {
+      "o": 20995.5,
+      "h": 20998.25,
+      "l": 20994.5,
+      "c": 20998.0
+     },
+     {
+      "o": 20998.0,
+      "h": 21001.75,
+      "l": 20997.25,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21008.25,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21009.0,
+      "l": 21006.0,
+      "c": 21008.5
+     },
+     {
+      "o": 21008.5,
+      "h": 21012.0,
+      "l": 21008.0,
+      "c": 21010.75
+     },
+     {
+      "o": 21010.75,
+      "h": 21013.25,
+      "l": 21009.75,
+      "c": 21012.25
+     },
+     {
+      "o": 21012.25,
+      "h": 21014.75,
+      "l": 21011.25,
+      "c": 21013.25
+     },
+     {
+      "o": 21013.25,
+      "h": 21018.0,
+      "l": 21012.5,
+      "c": 21016.75
+     },
+     {
+      "o": 21016.75,
+      "h": 21021.75,
+      "l": 21015.75,
+      "c": 21021.25
+     },
+     {
+      "o": 21021.25,
+      "h": 21022.0,
+      "l": 21019.75,
+      "c": 21021.0
+     },
+     {
+      "o": 21021.0,
+      "h": 21021.25,
+      "l": 21019.25,
+      "c": 21020.25
+     },
+     {
+      "o": 21020.25,
+      "h": 21022.75,
+      "l": 21018.25,
+      "c": 21019.25
+     },
+     {
+      "o": 21019.25,
+      "h": 21020.0,
+      "l": 21016.0,
+      "c": 21016.5
+     },
+     {
+      "o": 21016.5,
+      "h": 21017.75,
+      "l": 21014.0,
+      "c": 21014.75
+     },
+     {
+      "o": 21014.75,
+      "h": 21016.25,
+      "l": 21012.25,
+      "c": 21013.25
+     }
+    ],
+    "pil": 21004.25,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish",
+      "ok": true
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis",
+      "ok": true
+     },
+     {
+      "label": "HTF ICC",
+      "value": "Correction"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ],
+    "structure": "Pullback from the swing high at the PIL. Price is below it.",
+    "start": 16
+   },
+   "preMarks": [
+    "indication",
+    "correction",
+    "continuation"
+   ],
+   "reassess": {
+    "at": 25,
+    "text": "No retest of PIL A. Price kept building, and formed a <b>new relevant swing high</b>.",
+    "ask": {
+     "prompt": "What now?",
+     "options": [
+      {
+       "label": "Keep waiting for PIL A",
+       "feedback": "The chart kept building while you kept waiting.",
+       "mistake": "stale-pil"
+      },
+      {
+       "label": "Reassess the current structure / PIL",
+       "correct": true,
+       "why": "Reassess. The new swing may be the more relevant reference now.",
+       "track": "new-swing-reassessment"
+      },
+      {
+       "label": "Every new swing cancels every setup",
+       "feedback": "Not automatically. The curriculum says reassess, not auto-cancel."
+      }
+     ],
+     "stack": true
+    },
+    "newPil": 21022.75,
+    "done": true
+   },
+   "end": {
+    "card": "DON’T WAIT FOREVER FOR AN OLD SETUP<br>WHILE PRICE BUILDS A NEW ONE IN FRONT OF YOU."
+   }
+  },
+  {
+   "type": "teach",
+   "kicker": "Principles, not a switch",
+   "heading": "A new swing means: reassess",
+   "body": "",
+   "beats": [
+    {
+     "icon": "◆",
+     "title": "Keep the current PIL",
+     "line": "If the new swing doesn’t change what matters."
+    },
+    {
+     "icon": "↻",
+     "title": "Reassess the PIL",
+     "line": "If a newer reference now controls the move."
+    },
+    {
+     "icon": "⇄",
+     "title": "Mark the setup replaced",
+     "line": "If a newer sequence took over."
+    }
+   ],
+   "punch": "Not “a new swing always means cancel”."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Don’t wait forever for an old setup <em>while price builds a new one in front of you.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What should you do when a new relevant swing forms during a setup?",
+   "modelAnswer": "Reassess the current structure and PIL. Sometimes I keep it, sometimes the new swing becomes the reference, sometimes the old setup is replaced."
+  }
+ ],
+ "takeaways": [
+  "New structure → reassess.",
+  "Not every swing cancels.",
+  "Old setups can be replaced."
+ ],
+ "remember": "Don’t wait forever for an old setup."
+}

@@ -1,0 +1,344 @@
+{
+ "phase": "p5",
+ "section": "s12",
+ "lessonNumber": 5,
+ "title": "The Full ICC Sequence",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 75,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "The shape isn’t the method.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Map Indication, Correction and Continuation onto real price, and refuse to force it from a shape.",
+  "missionQuestion": "Can you mark the whole story yourself?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "Letters → price",
+   "heading": "I → C → C",
+   "body": "",
+   "beats": [
+    {
+     "icon": "I",
+     "title": "Indication",
+     "line": "What changed?"
+    },
+    {
+     "icon": "C",
+     "title": "Correction",
+     "line": "What happened next?"
+    },
+    {
+     "icon": "C",
+     "title": "Continuation",
+     "line": "Did price prove the original direction again?"
+    }
+   ],
+   "punch": "Now put the letters on live price."
+  },
+  {
+   "type": "icc_story",
+   "mode": "label",
+   "kicker": "Build the story · 1",
+   "title": "Drag each label onto its movement",
+   "chart": {
+    "swings": [
+     [
+      30,
+      250
+     ],
+     [
+      110,
+      150
+     ],
+     [
+      180,
+      215
+     ],
+     [
+      290,
+      92
+     ],
+     [
+      370,
+      168
+     ],
+     [
+      470,
+      60
+     ],
+     [
+      520,
+      78
+     ]
+    ],
+    "seed": 7,
+    "hlines": [
+     {
+      "y": 150,
+      "label": "meaningful high",
+      "tone": "muted"
+     }
+    ]
+   },
+   "segments": [
+    {
+     "key": "indication",
+     "from": 2,
+     "to": 3
+    },
+    {
+     "key": "correction",
+     "from": 3,
+     "to": 4
+    },
+    {
+     "key": "continuation",
+     "from": 4,
+     "to": 5
+    }
+   ],
+   "dir": "bullish"
+  },
+  {
+   "type": "icc_story",
+   "mode": "segment",
+   "kicker": "Build the story · 2",
+   "title": "Now the labels stay put. Find each movement.",
+   "chart": {
+    "swings": [
+     [
+      30,
+      70
+     ],
+     [
+      110,
+      170
+     ],
+     [
+      180,
+      105
+     ],
+     [
+      290,
+      228
+     ],
+     [
+      370,
+      152
+     ],
+     [
+      470,
+      260
+     ],
+     [
+      520,
+      242
+     ]
+    ],
+    "seed": 8,
+    "hlines": [
+     {
+      "y": 170,
+      "label": "meaningful low",
+      "tone": "muted"
+     }
+    ]
+   },
+   "segments": [
+    {
+     "key": "indication",
+     "from": 2,
+     "to": 3
+    },
+    {
+     "key": "correction",
+     "from": 3,
+     "to": 4
+    },
+    {
+     "key": "continuation",
+     "from": 4,
+     "to": 5
+    }
+   ],
+   "dir": "bearish"
+  },
+  {
+   "type": "icc_story",
+   "mode": "mark",
+   "kicker": "Build the story · 3",
+   "title": "No labels. Mark all three.",
+   "chart": {
+    "swings": [
+     [
+      30,
+      230
+     ],
+     [
+      90,
+      175
+     ],
+     [
+      140,
+      205
+     ],
+     [
+      210,
+      150
+     ],
+     [
+      270,
+      190
+     ],
+     [
+      360,
+      96
+     ],
+     [
+      420,
+      150
+     ],
+     [
+      470,
+      128
+     ],
+     [
+      520,
+      170
+     ],
+     [
+      610,
+      58
+     ],
+     [
+      650,
+      80
+     ]
+    ],
+    "seed": 21,
+    "hlines": [
+     {
+      "y": 150,
+      "label": "meaningful high",
+      "tone": "muted"
+     }
+    ]
+   },
+   "segments": [
+    {
+     "key": "indication",
+     "from": 4,
+     "to": 5
+    },
+    {
+     "key": "correction",
+     "from": 5,
+     "to": 8
+    },
+    {
+     "key": "continuation",
+     "from": 8,
+     "to": 9
+    }
+   ],
+   "dir": "bullish",
+   "why": {
+    "indication": "Indication is the move that progressed beyond the meaningful high.",
+    "correction": "Correction is everything that moved back while the higher low held (it can take more than one swing).",
+    "continuation": "Continuation is where price proved the direction again, beyond the indication high."
+   }
+  },
+  {
+   "type": "icc_replay",
+   "kicker": "Pattern-matching protection",
+   "title": "Up. Down. Up.",
+   "tracker": false,
+   "chart": {
+    "swings": [
+     [
+      40,
+      180
+     ],
+     [
+      150,
+      140
+     ],
+     [
+      240,
+      178
+     ],
+     [
+      350,
+      136
+     ],
+     [
+      440,
+      176
+     ],
+     [
+      540,
+      140
+     ]
+    ],
+    "seed": 17,
+    "hlines": [
+     {
+      "y": 134,
+      "label": "range high",
+      "tone": "muted"
+     },
+     {
+      "y": 182,
+      "label": "range low",
+      "tone": "muted"
+     }
+    ]
+   },
+   "end": {
+    "ask": {
+     "prompt": "ICC?",
+     "options": [
+      {
+       "label": "Yes, bullish ICC",
+       "feedback": "It has the shape. Did anything meaningful happen? Price never left the range.",
+       "mistake": "forced-icc"
+      },
+      {
+       "label": "Not enough information",
+       "correct": true,
+       "why": "The shape isn’t the method. No meaningful level was broken, no directional progression.",
+       "nei": true
+      }
+     ]
+    }
+   },
+   "intro": "Watch the whole thing."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "The shape isn’t the method. <em>Structure, meaningful levels, the current range and directional context</em> decide what the shape means.",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why isn’t “up, down, up” automatically ICC?",
+   "modelAnswer": "Because ICC needs meaning: indication beyond a meaningful reference, a correction that holds structure, and continuation that proves the direction again. A shape inside a range doesn’t prove any of that."
+  }
+ ],
+ "takeaways": [
+  "Map I → C → C onto price.",
+  "A correction can take more than one swing.",
+  "The shape isn’t the method."
+ ],
+ "remember": "The shape isn’t the method."
+}

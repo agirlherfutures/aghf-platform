@@ -1,0 +1,365 @@
+{
+ "phase": "p5",
+ "section": "s12",
+ "lessonNumber": 6,
+ "title": "ICC Across Different Timeframes",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 75,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Same market. Different scale.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Recognize ICC on more than one timeframe, and describe each layer correctly.",
+  "missionQuestion": "Can the 4H be correcting while the 1H is bullish?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "icc_nested",
+   "kicker": "ICC inside ICC",
+   "title": "Zoom into the correction",
+   "tfs": [
+    {
+     "tf": "4H",
+     "role": "Larger story",
+     "chart": {
+      "swings": [
+       [
+        30,
+        260
+       ],
+       [
+        130,
+        170
+       ],
+       [
+        200,
+        220
+       ],
+       [
+        330,
+        70
+       ],
+       [
+        430,
+        165
+       ],
+       [
+        470,
+        150
+       ]
+      ],
+      "seed": 5
+     },
+     "segments": [
+      {
+       "key": "indication",
+       "from": 2,
+       "to": 3
+      },
+      {
+       "key": "correction",
+       "from": 3,
+       "to": 4
+      }
+     ],
+     "show": [
+      "indication",
+      "correction"
+     ],
+     "dir": "bullish",
+     "stage": "correction",
+     "note": "The 4H: bullish indication, now <b>correcting</b>."
+    },
+    {
+     "tf": "1H",
+     "role": "Story inside the story",
+     "chart": {
+      "swings": [
+       [
+        30,
+        70
+       ],
+       [
+        110,
+        150
+       ],
+       [
+        170,
+        120
+       ],
+       [
+        260,
+        215
+       ],
+       [
+        330,
+        190
+       ],
+       [
+        400,
+        240
+       ],
+       [
+        470,
+        160
+       ],
+       [
+        520,
+        185
+       ],
+       [
+        600,
+        110
+       ]
+      ],
+      "seed": 6
+     },
+     "segments": [
+      {
+       "key": "indication",
+       "from": 5,
+       "to": 6
+      },
+      {
+       "key": "correction",
+       "from": 6,
+       "to": 7
+      },
+      {
+       "key": "continuation",
+       "from": 7,
+       "to": 8
+      }
+     ],
+     "dir": "bullish",
+     "stage": "complete",
+     "note": "Inside that 4H correction, the 1H just printed its own <b>bullish</b> sequence."
+    },
+    {
+     "tf": "15M",
+     "role": "More detail",
+     "chart": {
+      "swings": [
+       [
+        30,
+        220
+       ],
+       [
+        80,
+        180
+       ],
+       [
+        120,
+        200
+       ],
+       [
+        180,
+        130
+       ],
+       [
+        230,
+        165
+       ],
+       [
+        290,
+        100
+       ],
+       [
+        340,
+        140
+       ],
+       [
+        400,
+        80
+       ],
+       [
+        460,
+        120
+       ],
+       [
+        540,
+        60
+       ]
+      ],
+      "seed": 7
+     },
+     "dir": "bullish",
+     "stage": "continuation",
+     "note": "More detail. More swings."
+    },
+    {
+     "tf": "1M",
+     "role": "Execution scale",
+     "chart": {
+      "swings": [
+       [
+        20,
+        170
+       ],
+       [
+        50,
+        140
+       ],
+       [
+        80,
+        178
+       ],
+       [
+        110,
+        124
+       ],
+       [
+        140,
+        162
+       ],
+       [
+        170,
+        132
+       ],
+       [
+        200,
+        146
+       ],
+       [
+        230,
+        116
+       ],
+       [
+        260,
+        154
+       ],
+       [
+        290,
+        100
+       ],
+       [
+        320,
+        138
+       ],
+       [
+        350,
+        108
+       ],
+       [
+        380,
+        122
+       ],
+       [
+        410,
+        92
+       ],
+       [
+        440,
+        130
+       ],
+       [
+        470,
+        76
+       ],
+       [
+        500,
+        114
+       ],
+       [
+        530,
+        84
+       ],
+       [
+        560,
+        98
+       ],
+       [
+        590,
+        68
+       ]
+      ],
+      "seed": 9
+     },
+     "stage": "waiting",
+     "note": "Execution scale. That’s Section 13."
+    }
+   ],
+   "asks": [
+    {
+     "prompt": "Can the 4H be CORRECTING while the 1H is temporarily BULLISH?",
+     "options": [
+      {
+       "label": "Yes",
+       "correct": true,
+       "why": "Same market. Different scale."
+      },
+      {
+       "label": "No, timeframes must agree",
+       "feedback": "Each timeframe describes a different layer of the same market.",
+       "mistake": "tf-confusion"
+      }
+     ]
+    },
+    {
+     "prompt": "Can a 1H bullish sequence sit inside a 4H bearish correction?",
+     "options": [
+      {
+       "label": "Potentially, yes",
+       "correct": true,
+       "why": "A larger correction can contain a smaller move the other way."
+      },
+      {
+       "label": "Never",
+       "feedback": "Smaller timeframes can move against the larger story inside it.",
+       "mistake": "tf-confusion"
+      }
+     ]
+    }
+   ],
+   "principle": "SAME MARKET. DIFFERENT SCALE."
+  },
+  {
+   "type": "teach",
+   "kicker": "Say it like a pro",
+   "heading": "Upgrade your language",
+   "body": "",
+   "beats": [
+    {
+     "icon": "✗",
+     "title": "“Market is bearish.”",
+     "line": "Which market? Which scale?"
+    },
+    {
+     "icon": "✓",
+     "title": "“4H is correcting.”",
+     "line": "Names the timeframe AND the chapter."
+    },
+    {
+     "icon": "✓",
+     "title": "“1H bullish sequence developing.”",
+     "line": "Inside the 4H story."
+    }
+   ],
+   "punch": "Every timeframe keeps its own ICC read."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Stop saying <em>“the market is bearish.”</em> Say <em>“the 4H is correcting.”</em> That one sentence is a whole upgrade.",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "How can ICC exist on more than one timeframe at once?",
+   "modelAnswer": "Each timeframe is a different scale of the same market. The 4H can be correcting while the 1H prints its own bullish sequence inside that correction."
+  }
+ ],
+ "takeaways": [
+  "ICC happens on every timeframe.",
+  "Each timeframe has its own stage.",
+  "Say “4H is correcting”, not “market is bearish”."
+ ],
+ "remember": "Same market. Different scale."
+}

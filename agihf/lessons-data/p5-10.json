@@ -1,0 +1,358 @@
+{
+ "phase": "p5",
+ "section": "s12",
+ "lessonNumber": 10,
+ "title": "When ICC Is Unclear",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 75,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Unclear is a valid read.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Choose CLEAR, DEVELOPING or UNCLEAR, and say “I don’t know yet” when price isn’t telling a clean story.",
+  "missionQuestion": "What if there is no ICC to find?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "icc_story",
+   "mode": "forced",
+   "kicker": "Find the ICC",
+   "title": "Find the ICC.",
+   "chart": {
+    "swings": [
+     [
+      20,
+      170
+     ],
+     [
+      60,
+      150
+     ],
+     [
+      90,
+      182
+     ],
+     [
+      130,
+      140
+     ],
+     [
+      160,
+      176
+     ],
+     [
+      200,
+      152
+     ],
+     [
+      230,
+      190
+     ],
+     [
+      270,
+      146
+     ],
+     [
+      300,
+      170
+     ],
+     [
+      340,
+      138
+     ],
+     [
+      370,
+      175
+     ],
+     [
+      410,
+      150
+     ],
+     [
+      440,
+      186
+     ],
+     [
+      480,
+      144
+     ],
+     [
+      520,
+      172
+     ],
+     [
+      560,
+      150
+     ],
+     [
+      600,
+      180
+     ],
+     [
+      640,
+      160
+     ]
+    ],
+    "seed": 41,
+    "hlines": [
+     {
+      "y": 136,
+      "label": "range high",
+      "tone": "muted"
+     },
+     {
+      "y": 192,
+      "label": "range low",
+      "tone": "muted"
+     }
+    ]
+   },
+   "segments": [],
+   "idk": "✦ <strong>I DON’T KNOW YET.</strong> That’s the right answer. Overlapping candles, tiny breaks, no meaningful progression. Sometimes the best markup is less markup."
+  },
+  {
+   "type": "teach",
+   "kicker": "Three official reads",
+   "heading": "Clarity is its own question",
+   "body": "",
+   "beats": [
+    {
+     "icon": "●",
+     "title": "Clear",
+     "line": "The meaningful sequence can be identified."
+    },
+    {
+     "icon": "◐",
+     "title": "Developing",
+     "line": "Some pieces exist. The sequence is incomplete."
+    },
+    {
+     "icon": "○",
+     "title": "Unclear",
+     "line": "Price isn’t providing a clean enough story."
+    }
+   ],
+   "punch": "Stage tells you WHERE. Clarity tells you HOW CLEAN."
+  },
+  {
+   "type": "icc_classify",
+   "kicker": "Clean or forced?",
+   "title": "Classify each chart",
+   "items": [
+    {
+     "label": "Chart 1",
+     "chart": {
+      "swings": [
+       [
+        30,
+        250
+       ],
+       [
+        110,
+        150
+       ],
+       [
+        180,
+        215
+       ],
+       [
+        290,
+        92
+       ],
+       [
+        370,
+        168
+       ],
+       [
+        470,
+        60
+       ],
+       [
+        520,
+        78
+       ]
+      ],
+      "seed": 7,
+      "hlines": [
+       {
+        "y": 150,
+        "label": "meaningful high",
+        "tone": "muted"
+       }
+      ]
+     },
+     "answer": "clear",
+     "why": "Indication, correction, continuation, all meaningful."
+    },
+    {
+     "label": "Chart 2",
+     "chart": {
+      "swings": [
+       [
+        30,
+        250
+       ],
+       [
+        110,
+        150
+       ],
+       [
+        180,
+        215
+       ],
+       [
+        290,
+        92
+       ],
+       [
+        370,
+        168
+       ]
+      ],
+      "seed": 7,
+      "hlines": [
+       {
+        "y": 150,
+        "label": "meaningful high",
+        "tone": "muted"
+       }
+      ]
+     },
+     "answer": "developing",
+     "why": "Indication and correction. Continuation not proven yet."
+    },
+    {
+     "label": "Chart 3",
+     "chart": {
+      "swings": [
+       [
+        20,
+        170
+       ],
+       [
+        60,
+        150
+       ],
+       [
+        90,
+        182
+       ],
+       [
+        130,
+        140
+       ],
+       [
+        160,
+        176
+       ],
+       [
+        200,
+        152
+       ],
+       [
+        230,
+        190
+       ],
+       [
+        270,
+        146
+       ],
+       [
+        300,
+        170
+       ],
+       [
+        340,
+        138
+       ]
+      ],
+      "seed": 42,
+      "hlines": [
+       {
+        "y": 136,
+        "label": "range high",
+        "tone": "muted"
+       },
+       {
+        "y": 192,
+        "label": "range low",
+        "tone": "muted"
+       }
+      ]
+     },
+     "answer": "unclear",
+     "why": "A messy range. No clean story.",
+     "mistake": "forced-icc"
+    },
+    {
+     "label": "Chart 4",
+     "chart": {
+      "swings": [
+       [
+        20,
+        240
+       ],
+       [
+        90,
+        120
+       ],
+       [
+        150,
+        260
+       ],
+       [
+        220,
+        90
+       ],
+       [
+        290,
+        230
+       ],
+       [
+        350,
+        110
+       ],
+       [
+        420,
+        250
+       ],
+       [
+        500,
+        100
+       ]
+      ],
+      "seed": 43
+     },
+     "answer": "unclear",
+     "why": "Random zigzag: big moves, no meaningful sequence.",
+     "mistake": "forced-icc"
+    }
+   ],
+   "principle": "IF YOU HAVE TO ARGUE WITH THE CHART TO MAKE ICC FIT, IT PROBABLY ISN’T CLEAN ENOUGH YET."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "“I don’t know yet” is a <em>professional</em> answer. Unclear is a valid read. Wait is a valid decision.",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What’s the difference between ICC stage and ICC clarity?",
+   "modelAnswer": "Stage is where price is in the sequence (indication, correction, continuation). Clarity is how clean the story is (clear, developing, unclear). They’re separate questions."
+  }
+ ],
+ "takeaways": [
+  "Clear · Developing · Unclear.",
+  "Stage ≠ clarity.",
+  "Sometimes the best markup is less markup."
+ ],
+ "remember": "Unclear is a valid read. Wait is a valid decision."
+}

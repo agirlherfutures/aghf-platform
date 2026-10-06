@@ -1,0 +1,564 @@
+{
+ "phase": "p5",
+ "section": "s13",
+ "lessonNumber": 18,
+ "title": "The Retest",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Wait for price to come back to you.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "After continuation, wait for the first retest of the PIL without chasing.",
+  "missionQuestion": "Did price return to the PIL?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "Why the PIL stays on your chart",
+   "heading": "The PIL becomes your entry location",
+   "body": "",
+   "beats": [
+    {
+     "icon": "✓",
+     "title": "I · C · C confirmed",
+     "line": "The sequence is done."
+    },
+    {
+     "icon": "⏳",
+     "title": "Now: wait",
+     "line": "Price runs away. Do nothing."
+    },
+    {
+     "icon": "↩",
+     "title": "First retest",
+     "line": "Price comes back to the PIL."
+    }
+   ],
+   "punch": "CONFIRM THE SEQUENCE → WAIT FOR PRICE TO COME BACK TO YOU."
+  },
+  {
+   "type": "exec_sim",
+   "kicker": "Retest mode",
+   "title": "Do nothing. Then do the one thing.",
+   "goal": "retest",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20988.0,
+      "l": 20981.25,
+      "c": 20986.75
+     },
+     {
+      "o": 20986.75,
+      "h": 20991.0,
+      "l": 20985.25,
+      "c": 20990.25
+     },
+     {
+      "o": 20990.25,
+      "h": 20994.25,
+      "l": 20989.75,
+      "c": 20993.75
+     },
+     {
+      "o": 20993.75,
+      "h": 20998.75,
+      "l": 20993.0,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.75,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.5,
+      "l": 20997.75,
+      "c": 20998.75
+     },
+     {
+      "o": 20998.75,
+      "h": 20999.0,
+      "l": 20995.25,
+      "c": 20995.75
+     },
+     {
+      "o": 20995.75,
+      "h": 20996.5,
+      "l": 20992.75,
+      "c": 20994.0
+     },
+     {
+      "o": 20994.0,
+      "h": 20995.25,
+      "l": 20990.5,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20994.75,
+      "l": 20990.0,
+      "c": 20993.5
+     },
+     {
+      "o": 20993.5,
+      "h": 20998.75,
+      "l": 20993.0,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 21002.75,
+      "l": 20996.5,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21008.5,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21010.25,
+      "l": 21006.25,
+      "c": 21009.75
+     },
+     {
+      "o": 21009.75,
+      "h": 21013.0,
+      "l": 21009.5,
+      "c": 21011.75
+     },
+     {
+      "o": 21011.75,
+      "h": 21016.25,
+      "l": 21011.25,
+      "c": 21015.5
+     },
+     {
+      "o": 21015.5,
+      "h": 21019.0,
+      "l": 21014.5,
+      "c": 21018.25
+     },
+     {
+      "o": 21018.25,
+      "h": 21019.5,
+      "l": 21013.0,
+      "c": 21014.25
+     },
+     {
+      "o": 21014.25,
+      "h": 21014.75,
+      "l": 21011.75,
+      "c": 21012.0
+     },
+     {
+      "o": 21012.0,
+      "h": 21012.75,
+      "l": 21006.75,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21008.5,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21007.0,
+      "l": 21005.0,
+      "c": 21006.5
+     },
+     {
+      "o": 21006.5,
+      "h": 21010.25,
+      "l": 21005.75,
+      "c": 21009.5
+     },
+     {
+      "o": 21009.5,
+      "h": 21011.25,
+      "l": 21009.0,
+      "c": 21011.0
+     },
+     {
+      "o": 21011.0,
+      "h": 21013.25,
+      "l": 21009.75,
+      "c": 21012.25
+     },
+     {
+      "o": 21012.25,
+      "h": 21012.5,
+      "l": 21008.5,
+      "c": 21009.5
+     },
+     {
+      "o": 21009.5,
+      "h": 21009.75,
+      "l": 21008.5,
+      "c": 21009.25
+     },
+     {
+      "o": 21009.25,
+      "h": 21009.75,
+      "l": 21007.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21007.75,
+      "l": 21004.0,
+      "c": 21005.25
+     },
+     {
+      "o": 21005.25,
+      "h": 21008.25,
+      "l": 21005.0,
+      "c": 21007.75
+     },
+     {
+      "o": 21007.75,
+      "h": 21011.5,
+      "l": 21006.75,
+      "c": 21010.25
+     }
+    ],
+    "pil": 21004.25,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish",
+      "ok": true
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis",
+      "ok": true
+     },
+     {
+      "label": "HTF ICC",
+      "value": "Correction"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ],
+    "structure": "Pullback from the swing high at the PIL. Price is below it.",
+    "start": 15
+   },
+   "preMarks": [
+    "indication",
+    "correction",
+    "continuation"
+   ],
+   "intro": "Sequence confirmed. Place your planned entry at the PIL, then wait.",
+   "end": {
+    "text": "FIRST VALID RETEST ✓",
+    "card": "The PIL isn’t an unlimited entry vending machine. 😂<br><small>The first clean retest is the execution opportunity.</small>"
+   }
+  },
+  {
+   "type": "exec_sim",
+   "kicker": "Back again?",
+   "title": "Price returns a second time",
+   "goal": "asks",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20988.0,
+      "l": 20981.25,
+      "c": 20986.75
+     },
+     {
+      "o": 20986.75,
+      "h": 20991.0,
+      "l": 20985.25,
+      "c": 20990.25
+     },
+     {
+      "o": 20990.25,
+      "h": 20994.25,
+      "l": 20989.75,
+      "c": 20993.75
+     },
+     {
+      "o": 20993.75,
+      "h": 20998.75,
+      "l": 20993.0,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.75,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.5,
+      "l": 20997.75,
+      "c": 20998.75
+     },
+     {
+      "o": 20998.75,
+      "h": 20999.0,
+      "l": 20995.25,
+      "c": 20995.75
+     },
+     {
+      "o": 20995.75,
+      "h": 20996.5,
+      "l": 20992.75,
+      "c": 20994.0
+     },
+     {
+      "o": 20994.0,
+      "h": 20995.25,
+      "l": 20990.5,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20994.75,
+      "l": 20990.0,
+      "c": 20993.5
+     },
+     {
+      "o": 20993.5,
+      "h": 20998.75,
+      "l": 20993.0,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 21002.75,
+      "l": 20996.5,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21008.5,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21010.25,
+      "l": 21006.25,
+      "c": 21009.75
+     },
+     {
+      "o": 21009.75,
+      "h": 21013.0,
+      "l": 21009.5,
+      "c": 21011.75
+     },
+     {
+      "o": 21011.75,
+      "h": 21016.25,
+      "l": 21011.25,
+      "c": 21015.5
+     },
+     {
+      "o": 21015.5,
+      "h": 21019.0,
+      "l": 21014.5,
+      "c": 21018.25
+     },
+     {
+      "o": 21018.25,
+      "h": 21019.5,
+      "l": 21013.0,
+      "c": 21014.25
+     },
+     {
+      "o": 21014.25,
+      "h": 21014.75,
+      "l": 21011.75,
+      "c": 21012.0
+     },
+     {
+      "o": 21012.0,
+      "h": 21012.75,
+      "l": 21006.75,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21008.5,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21007.0,
+      "l": 21005.0,
+      "c": 21006.5
+     },
+     {
+      "o": 21006.5,
+      "h": 21010.25,
+      "l": 21005.75,
+      "c": 21009.5
+     },
+     {
+      "o": 21009.5,
+      "h": 21011.25,
+      "l": 21009.0,
+      "c": 21011.0
+     },
+     {
+      "o": 21011.0,
+      "h": 21013.25,
+      "l": 21009.75,
+      "c": 21012.25
+     },
+     {
+      "o": 21012.25,
+      "h": 21012.5,
+      "l": 21008.5,
+      "c": 21009.5
+     },
+     {
+      "o": 21009.5,
+      "h": 21009.75,
+      "l": 21008.5,
+      "c": 21009.25
+     },
+     {
+      "o": 21009.25,
+      "h": 21009.75,
+      "l": 21007.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21007.75,
+      "l": 21004.0,
+      "c": 21005.25
+     },
+     {
+      "o": 21005.25,
+      "h": 21008.25,
+      "l": 21005.0,
+      "c": 21007.75
+     },
+     {
+      "o": 21007.75,
+      "h": 21011.5,
+      "l": 21006.75,
+      "c": 21010.25
+     }
+    ],
+    "pil": 21004.25,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish",
+      "ok": true
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis",
+      "ok": true
+     },
+     {
+      "label": "HTF ICC",
+      "value": "Correction"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ],
+    "structure": "Pullback from the swing high at the PIL. Price is below it.",
+    "start": 31
+   },
+   "preMarks": [
+    "indication",
+    "correction",
+    "continuation",
+    "retest"
+   ],
+   "startAsk": {
+    "prompt": "Price came back to the PIL again. Is this still the same clean setup?",
+    "options": [
+     {
+      "label": "Yes, every touch is a new entry",
+      "feedback": "The first retest was the opportunity. Repeated returns mean reassess.",
+      "mistake": "vending-machine"
+     },
+     {
+      "label": "Reassess: the first retest was the opportunity",
+      "correct": true,
+      "why": "Right. Is this still the same clean setup? Don’t assume."
+     }
+    ]
+   }
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Wait for price to <em>come back to you.</em> No chasing while you wait.",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why is the first retest the one we focus on?",
+   "modelAnswer": "Because it’s the clean execution opportunity after the completed sequence. Later returns aren’t automatically the same fresh setup."
+  }
+ ],
+ "takeaways": [
+  "After I·C·C: wait.",
+  "First retest = the opportunity.",
+  "Repeated returns: reassess."
+ ],
+ "remember": "Wait for price to come back to you."
+}

@@ -135,7 +135,7 @@ export const PHASES = [
         { n: 9, title: 'Expansion, Pullbacks & Progression', quote: 'Price pushes. Price pauses. Price pulls back. Then we see what it does next.', xp: 65 },
       ],
       welcome: {
-        eyebrow: 'Phase 2 · Section 1 · How Markets Move',
+        eyebrow: 'Phase 2 · Section 4 · How Markets Move',
         heading: 'How Markets Move',
         paragraphs: [
           { text: 'You learned how to read one candle. Now zoom out. Because the market isn\u2019t one candle.' },
@@ -157,7 +157,7 @@ export const PHASES = [
         ],
         mission: 'Stop guessing direction. Learn to describe structure.',
       },
-      checkpoint: { title: 'Can You Read the Stairs?', xp: 0, firstStep: 'game', desc: 'Structure Builder + Knowledge Check + Check-In. Clear this to unlock Section 2.' } },
+      checkpoint: { title: 'Can You Read the Stairs?', xp: 0, firstStep: 'game', desc: 'Structure Builder + Knowledge Check + Check-In. Clear this to unlock Section 5.' } },
       { key: 's5', n: 5, badge: 'p', title: 'Breaks, Shifts & Fakeouts', lessons: [
         { n: 10, title: 'What Does It Mean to Break Structure?', quote: 'Before you label a break, identify the level.', xp: 65 },
         { n: 11, title: 'Break of Structure: BOS', quote: 'Price just proved it progressed with the existing structure.', xp: 65 },
@@ -169,14 +169,14 @@ export const PHASES = [
         { n: 17, title: 'Structural Invalidation & The New Story', quote: 'Your chart updates because price updates.', xp: 65 },
       ],
       welcome: {
-        eyebrow: 'Phase 2 \u00b7 Section 2 \u00b7 Breaks, Shifts & Fakeouts',
+        eyebrow: 'Phase 2 \u00b7 Section 5 \u00b7 Breaks, Shifts & Fakeouts',
         heading: 'Breaks, Shifts & Fakeouts',
         paragraphs: [
           { text: 'You can see the structure. Now price starts interacting with it.' },
           { text: 'Highs break. Lows break. Wicks poke through levels. Some of those breaks change the story. Many of them don\u2019t.' },
           { cls: 'sec-welcome-big', text: 'WHAT ACTUALLY BROKE?' },
           { text: 'This is where <span class="sec-welcome-quote">\u201cIt broke a low, so it\u2019s bearish\u201d</span> becomes <span class="sec-welcome-quote">\u201cAn internal low broke, but the relevant supporting swing is still intact.\u201d</span>' },
-          { text: 'Section 1 taught you to see it. This section teaches you to interpret it.' },
+          { text: 'Section 4 taught you to see it. This section teaches you to interpret it.' },
         ],
         goals: [
           'Understand that not every broken high or low has the same structural significance.',
@@ -192,7 +192,7 @@ export const PHASES = [
         ],
         mission: 'Stop reacting to every break. Investigate what changed.',
       },
-      checkpoint: { title: 'Break or Fake? \ud83d\udc40', xp: 0, firstStep: 'game', desc: 'Break or Fake? game + Knowledge Check + Check-In. Clear this to unlock Section 3.' } },
+      checkpoint: { title: 'Break or Fake? \ud83d\udc40', xp: 0, firstStep: 'game', desc: 'Break or Fake? game + Knowledge Check + Check-In. Clear this to unlock Section 6.' } },
       { key: 's6', n: 6, badge: 'c', title: 'Reading Key Levels', lessons: [
         { n: 18, title: 'Support & Resistance', quote: 'A level is information. Not permission to enter.', xp: 65 },
         { n: 19, title: 'Zones vs. Lines', quote: 'Give price room to behave. Don\u2019t build a giant mystery box.', xp: 65 },
@@ -203,14 +203,14 @@ export const PHASES = [
         { n: 24, title: 'Why the Level\u2019s Name Matters Less Than Its Context', quote: 'Context > label.', xp: 65 },
       ],
       welcome: {
-        eyebrow: 'Phase 2 \u00b7 Section 3 \u00b7 Reading Key Levels',
+        eyebrow: 'Phase 2 \u00b7 Section 6 \u00b7 Reading Key Levels',
         heading: 'Reading Key Levels',
         paragraphs: [
           { text: 'You can see the structure. You can interpret what changed. Now: which parts of the chart actually deserve your attention?' },
           { text: 'Most charts aren\u2019t missing levels. They\u2019re drowning in them.' },
           { cls: 'sec-welcome-big', text: 'MARK WITH PURPOSE.' },
           { text: 'This is where <span class="sec-welcome-quote">\u201cThat\u2019s support\u201d</span> becomes <span class="sec-welcome-quote">\u201cThis is the swing low supporting the current bullish structure.\u201d</span>' },
-          { text: 'Section 1 taught you to see it. Section 2 taught you to interpret it. This section teaches you to locate what matters.' },
+          { text: 'Section 4 taught you to see it. Section 5 taught you to interpret it. This section teaches you to locate what matters.' },
         ],
         goals: [
           'Treat support and resistance as areas of interest, not guaranteed bounces.',
@@ -244,7 +244,7 @@ export const PHASES = [
           { n: 9, title: 'Liquidity in the Dayli ICC Framework', quote: 'Learn more so you can understand more. Not so you can require more.', xp: 70 },
         ],
       welcome: {
-        eyebrow: 'Phase 3 \u00b7 Section 1 \u00b7 Understanding Liquidity',
+        eyebrow: 'Phase 3 \u00b7 Section 7 \u00b7 Understanding Liquidity',
         heading: 'Understanding Liquidity',
         paragraphs: [
           { text: 'You can read structure. Now we\u2019re going to investigate the chart: where might orders be concentrated, and what did price actually do there?' },
@@ -265,7 +265,7 @@ export const PHASES = [
         ],
         mission: 'Investigate where orders may be sitting. Don\u2019t turn it into an entry rule.',
       },
-      checkpoint: { title: 'Liquidity Detective \ud83d\udca7', xp: 0, firstStep: 'game', desc: 'Liquidity Detective + Knowledge Check + Check-In. Clear this to unlock Section 2.' } },
+      checkpoint: { title: 'Liquidity Detective \ud83d\udca7', xp: 0, firstStep: 'game', desc: 'Liquidity Detective + Knowledge Check + Check-In. Clear this to unlock Section 8.' } },
       { key: 's8', n: 8, badge: 'p', title: 'Gaps, Imbalances & Price Delivery',
         dayliNote: 'FVGs are not required for a Dayli ICC setup. We learn them because they’re part of market literacy and can provide context. Not because they’re a mandatory entry condition.',
         lessons: [
@@ -280,7 +280,7 @@ export const PHASES = [
           { n: 18, title: 'FVGs in the Dayli ICC Framework', quote: 'We don’t force our method to fit another concept.', xp: 70 },
         ],
       welcome: {
-        eyebrow: 'Phase 3 \u00b7 Section 2 \u00b7 Gaps, Imbalances & Price Delivery',
+        eyebrow: 'Phase 3 \u00b7 Section 8 \u00b7 Gaps, Imbalances & Price Delivery',
         heading: 'Gaps, Imbalances & Price Delivery',
         paragraphs: [
           { text: 'You can see where orders may be sitting. Now: how did price travel to get there?' },
@@ -301,7 +301,7 @@ export const PHASES = [
         ],
         mission: 'See how price traveled. Don\u2019t turn the trip into an entry rule.',
       },
-      checkpoint: { title: 'Price Delivery Lab \u26a1', xp: 0, firstStep: 'game', desc: 'Price Delivery Lab + Knowledge Check + Check-In. Clear this to unlock Section 3.' } },
+      checkpoint: { title: 'Price Delivery Lab \u26a1', xp: 0, firstStep: 'game', desc: 'Price Delivery Lab + Knowledge Check + Check-In. Clear this to unlock Section 9.' } },
       { key: 's9', n: 9, badge: 'c', title: 'Understanding Market Participation',
         lessons: [
           { n: 19, title: 'Supply & Demand Basics', quote: 'They show where strong participation appeared before. They don’t replace structure.', xp: 70 },
@@ -315,7 +315,7 @@ export const PHASES = [
           { n: 27, title: 'How This Fits Into Dayli ICC', quote: 'More knowledge should make your chart clearer. Not your rules heavier.', xp: 70 },
         ],
       welcome: {
-        eyebrow: 'Phase 3 \u00b7 Section 3 \u00b7 Understanding Market Participation',
+        eyebrow: 'Phase 3 \u00b7 Section 9 \u00b7 Understanding Market Participation',
         heading: 'Understanding Market Participation',
         paragraphs: [
           { text: 'You can see where orders may sit and how price delivered. Now the hardest question of Phase 3: what can I actually claim from this chart?' },
@@ -360,7 +360,7 @@ export const PHASES = [
           { n: 13, title: 'Updating Your Bias in Real Time', quote: 'Consistency in process. Not consistency in opinion.', xp: 70 },
         ],
       welcome: {
-        eyebrow: 'Phase 4 · Section 1 · Finding Your Bias',
+        eyebrow: 'Phase 4 · Section 10 · Finding Your Bias',
         heading: 'Finding Your Bias',
         paragraphs: [
           { text: 'Phases 1 to 3 taught you to recognize, read and filter. Now you start building something: <strong>a market thesis.</strong>' },
@@ -382,7 +382,7 @@ export const PHASES = [
         ],
         mission: 'Build a thesis you can explain and invalidate.',
       },
-      checkpoint: { title: 'Read the Room 🏠', xp: 0, firstStep: 'game', desc: 'Read the Room Lab + Knowledge Check + Check-In. Clear this to unlock Section 2.' } },
+      checkpoint: { title: 'Read the Room 🏠', xp: 0, firstStep: 'game', desc: 'Read the Room Lab + Knowledge Check + Check-In. Clear this to unlock Section 11.' } },
       { key: 's11', n: 11, badge: 't', title: 'Location Within the Range',
         dayliNote: 'Structure first. Location second. Execution later. Discount is not a buy signal, and premium is not a sell signal.',
         lessons: [
@@ -396,7 +396,7 @@ export const PHASES = [
           { n: 21, title: 'Building the Complete 4H → 1H Thesis', quote: 'Analysis tells you what you’re waiting for.', xp: 80 },
         ],
       welcome: {
-        eyebrow: 'Phase 4 · Section 2 · Location Within the Range',
+        eyebrow: 'Phase 4 · Section 11 · Location Within the Range',
         heading: 'Location Within the Range',
         paragraphs: [
           { text: 'You know the doors. You know the room. You know the 1H movement inside it.' },
@@ -420,39 +420,85 @@ export const PHASES = [
     ],
   },
   {
-    key: 'p5', n: 5, badge: 'u', title: 'The Dayli ICC Method ✦', locked: false, comingSoon: true,
+    key: 'p5', n: 5, badge: 'u', title: 'The Dayli ICC Method ✦', locked: false,
     sections: [
-      { key: 's12', n: 12, badge: 'u', title: 'ICC Across the Market', lessons: [
-        { title: 'What Is ICC?', quote: 'A framework for how price indicates direction, corrects, and attempts continuation.', xp: 75 },
-        { title: 'Indication', quote: 'The first sign price is willing to commit to a direction.', xp: 75 },
-        { title: 'Correction', quote: "A healthy pause. If it doesn't correct, that's information too.", xp: 75 },
-        { title: 'Continuation', quote: 'Price picks back up in the direction it indicated.', xp: 75 },
-        { title: 'ICC Across Different Timeframes', quote: 'The same behavior, playing out at every zoom level.', xp: 75 },
-        { title: 'Higher-Timeframe ICC', quote: 'Before the 1-minute model, the same sequence happens above it.', xp: 75 },
-        { title: '4H ICC', quote: 'The biggest version of the same story.', xp: 75 },
-        { title: '1H ICC', quote: 'The version that sits between the story and the entry.', xp: 75 },
-        { title: 'Identifying Where Price Is in the HTF Sequence', quote: 'Are you watching indication, correction, or continuation right now?', xp: 75 },
-        { title: 'HTF ICC + Market Structure', quote: "ICC isn't separate from structure. It's structure, described in motion.", xp: 75 },
-      ] },
-      { key: 's13', n: 13, badge: 'p', title: 'The Dayli ICC 1-Minute Entry Model', lessons: [
-        { title: 'What Is the Dayli ICC Method™?', quote: 'Your top-down analysis tells you what and where. Dayli ICC tells you how.', xp: 80 },
-        { title: 'The Pre-Indication Level', quote: 'Before price can indicate, it has to break something first.', xp: 80 },
-        { title: 'Choosing the Correct PIL', quote: 'Not every level is a PIL. Learn which one actually qualifies.', xp: 80 },
-        { title: 'Indication', quote: "I don't care about wicks. I need that 1M candle to CLOSE past the level.", xp: 80 },
-        { title: 'Candle-Close Confirmation', quote: 'The close is the only vote that counts.', xp: 80 },
-        { title: 'Correction', quote: "Corrections are normal. If it doesn't correct, it's not healthy.", xp: 80 },
-        { title: 'Continuation', quote: 'Price closes back in your direction. The level got defended.', xp: 80 },
-        { title: 'The Reclaim / Retest', quote: 'Price comes back to prove itself again.', xp: 80 },
-        { title: 'The Entry', quote: 'Close. Pullback. Level. Then, and only then, you enter.', xp: 80 },
-        { title: 'The Complete ICC Sequence', quote: 'PIL → Indication → Correction → Continuation → Retest → Entry.', xp: 80 },
-        { title: 'Bullish ICC', quote: 'The sequence, from the long side.', xp: 80 },
-        { title: 'Bearish ICC', quote: 'The same sequence, mirrored to the short side.', xp: 80 },
-        { title: 'Clean vs Messy ICC', quote: 'We only take the clean ones.', xp: 80 },
-        { title: 'No Retest / Missed Entry', quote: "Not every setup gives you a second chance, and that's okay.", xp: 80 },
-        { title: 'When the ICC Sequence Resets', quote: 'Sometimes the story restarts. Know when to let it.', xp: 80 },
-        { title: 'When a New Swing Changes the Setup', quote: 'A new swing can quietly invalidate the setup you were watching.', xp: 80 },
-        { title: 'When There Is No Trade', quote: 'No trade is a decision too, and just as important as entry.', xp: 80 },
-      ] },
+      { key: 's12', n: 12, badge: 'u', title: 'ICC Across the Market',
+        dayliNote: 'This section teaches the ICC story: how price moves through Indication, Correction and Continuation. The 1-minute entry model comes next. Learn the story before you learn the trigger.',
+        lessons: [
+          { n: 1, title: 'What Is ICC?', quote: 'ICC is how I organize the story price is telling me.', xp: 75 },
+          { n: 2, title: 'Indication', quote: 'What did price actually prove?', xp: 75 },
+          { n: 3, title: 'Correction', quote: 'A correction is price moving back. A reversal is price changing the story.', xp: 75 },
+          { n: 4, title: 'Continuation', quote: 'Indication starts the story. Correction tests it. Continuation supports it.', xp: 75 },
+          { n: 5, title: 'The Full ICC Sequence', quote: 'The shape isn’t the method.', xp: 75 },
+          { n: 6, title: 'ICC Across Different Timeframes', quote: 'Same market. Different scale.', xp: 75 },
+          { n: 7, title: 'Higher-Timeframe ICC', quote: 'What chapter of the story are we in?', xp: 75 },
+          { n: 8, title: 'ICC + Market Structure', quote: 'Structure asks what price is building. ICC asks where price is in the sequence.', xp: 75 },
+          { n: 9, title: 'ICC + Liquidity + Location', quote: 'Context can support understanding without becoming another box to check.', xp: 75 },
+          { n: 10, title: 'When ICC Is Unclear', quote: 'If you have to argue with the chart to make ICC fit, it probably isn’t clean enough yet.', xp: 75 },
+        ],
+      welcome: {
+        eyebrow: 'Phase 5 · Section 12 · ICC Across the Market',
+        heading: 'You Earned Your Way Here.',
+        paragraphs: [
+          { text: '4H: Read the Room ✓ · 1H: Build the Map ✓ · Thesis ✓' },
+          { text: 'You know how to read the market. Now Dayli shows you how she <strong>organizes the story</strong> price is telling.' },
+          { cls: 'sec-welcome-big', text: 'I · C · C' },
+          { text: 'Indication. Correction. Continuation. A way to read price on <strong>any</strong> timeframe.' },
+          { text: '<strong>Learn the story before you learn the trigger.</strong> The 1-minute entry model unlocks in Section 13.' },
+        ],
+        goals: [
+          'Explain ICC as Indication → Correction → Continuation.',
+          'Spot meaningful indication, not just big candles.',
+          'Tell a correction from a reversal.',
+          'Wait for continuation instead of predicting it.',
+          'Read ICC on more than one timeframe.',
+          'Name the 4H ICC stage and its clarity.',
+          'Use structure and ICC together.',
+          'Keep liquidity and location as context, never requirements.',
+          'Say “I don’t know yet” when price isn’t clear.',
+        ],
+        mission: 'What chapter of the ICC story is price telling me right now?',
+      },
+      checkpoint: { title: 'ICC Story Builder 🧠', xp: 0, firstStep: 'game', desc: 'ICC Story Builder + Knowledge Check + Check-In. Clear this to unlock Section 13.' } },
+      { key: 's13', n: 13, badge: 'p', title: 'The Dayli ICC 1-Minute Entry Model™',
+        dayliNote: 'Stop anticipating the move. Make price prove every step. The analysis gets me interested. The 1-minute ICC earns the entry.',
+        lessons: [
+          { n: 11, title: 'What Is the Dayli ICC 1M Entry Model?', quote: 'The analysis gets me interested. The 1-minute ICC earns the entry.', xp: 80 },
+          { n: 12, title: 'The Pre-Indication Level', quote: 'If you don’t know your PIL, you’re not ready to label indication.', xp: 80 },
+          { n: 13, title: 'Choosing the Correct PIL', quote: 'Structure created the PIL. The map can update.', xp: 80 },
+          { n: 14, title: 'Indication', quote: 'I don’t care that price visited the level. Prove it to me with the close.', xp: 80 },
+          { n: 15, title: 'Correction', quote: 'If price never corrects, we don’t invent the correction because we want the trade.', xp: 80 },
+          { n: 16, title: 'Continuation', quote: 'Continuation tells me price is trying again.', xp: 80 },
+          { n: 17, title: 'The Full Candle-Close Sequence', quote: 'Rules remove the need to negotiate with the chart.', xp: 80 },
+          { n: 18, title: 'The Retest', quote: 'Wait for price to come back to you.', xp: 80 },
+          { n: 19, title: 'The Entry', quote: 'The entry is the execution point the model created.', xp: 80 },
+          { n: 20, title: 'Missed Retest = Missed Trade', quote: 'A missed trade is not a bad trade. It’s just a trade you didn’t get.', xp: 80 },
+          { n: 21, title: 'When the Sequence Resets', quote: 'Don’t wait forever for an old setup while price builds a new one in front of you.', xp: 80 },
+          { n: 22, title: 'Clean vs Messy Dayli ICC', quote: 'A valid model should not require a courtroom argument. 😂', xp: 80 },
+          { n: 23, title: 'What Invalidates the Setup?', quote: 'Reassess when the structure that created the setup changes.', xp: 80 },
+          { n: 24, title: 'When There Is No Trade', quote: 'Has price actually earned my entry?', xp: 80 },
+        ],
+      welcome: {
+        eyebrow: 'Phase 5 · Section 13 · The Dayli ICC 1-Minute Entry Model™',
+        heading: 'Now… How Do I Actually Enter?',
+        paragraphs: [
+          { text: '4H: Read the Room ✓ · 1H: Build the Map ✓ · HTF ICC: Read the Story ✓' },
+          { cls: 'sec-welcome-big', text: '1M · EXECUTE.' },
+          { text: 'The 1M doesn’t create the whole trade idea. You already know the market, the structure, the direction, the location and the story. <strong>Now you wait for execution.</strong>' },
+          { text: 'PIL → Indication → Correction → Continuation → Retest → Entry. <strong>Every step has to be earned.</strong>' },
+        ],
+        goals: [
+          'Choose the structurally relevant PIL.',
+          'Count candle CLOSES, never wicks.',
+          'Confirm Indication, Correction and Continuation in order.',
+          'Wait for the first retest, and never chase.',
+          'Treat a missed retest as a missed trade, not a bad one.',
+          'Reassess when a new swing changes the setup.',
+          'Tell clean from messy, and pass when the model doesn’t complete.',
+        ],
+        mission: 'Stop anticipating the move. Make price prove every step.',
+      },
+      checkpoint: { title: 'ICC Execution Lab 🎯', xp: 0, firstStep: 'game', desc: 'ICC Execution Lab + Knowledge Check + Check-In. Clear this to unlock Section 14.' } },
       { key: 's14', n: 14, badge: 't', title: 'Making the Timeframes Work Together', lessons: [
         { title: '4H: Read the Room', quote: 'Where is price within the larger structure?', xp: 80 },
         { title: '1H: Build the Map', quote: 'What structure and swings are actually relevant?', xp: 80 },

@@ -1,0 +1,284 @@
+{
+ "phase": "p5",
+ "section": "s13",
+ "lessonNumber": 23,
+ "title": "What Invalidates the Setup?",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Reassess when the structure changes.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Recognize when to reassess a setup, and keep research notes separate from rules.",
+  "missionQuestion": "What would make you reassess this setup?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "Principles",
+   "heading": "Reassess when…",
+   "body": "",
+   "beats": [
+    {
+     "icon": "◆",
+     "title": "New relevant 1M structure forms",
+     "line": ""
+    },
+    {
+     "icon": "◇",
+     "title": "The active PIL loses structural relevance",
+     "line": ""
+    },
+    {
+     "icon": "⇅",
+     "title": "Opposing structure materially changes the setup",
+     "line": ""
+    },
+    {
+     "icon": "↻",
+     "title": "A newer ICC sequence replaces the old one",
+     "line": ""
+    },
+    {
+     "icon": "4H",
+     "title": "The HTF context changes",
+     "line": ""
+    },
+    {
+     "icon": "⌛",
+     "title": "The old setup becomes stale or replaced",
+     "line": ""
+    }
+   ],
+   "punch": "Principles, not a magic number."
+  },
+  {
+   "type": "teach",
+   "kicker": "Dayli research note",
+   "heading": "Research is not a rule",
+   "body": "",
+   "beats": [
+    {
+     "icon": "🔬",
+     "title": "Correction depth",
+     "line": "Dayli continues studying how correction depth affects setup quality."
+    },
+    {
+     "icon": "✗",
+     "title": "Not a rule",
+     "line": "No “correction > 30 points = invalid” unless it’s an official rule."
+    }
+   ],
+   "punch": "Research observation ≠ official execution rule."
+  },
+  {
+   "type": "exec_sim",
+   "kicker": "Opposing structure",
+   "title": "Indication ✓ Correction ✓ … then this",
+   "goal": "pass",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20987.25,
+      "l": 20981.0,
+      "c": 20986.25
+     },
+     {
+      "o": 20986.25,
+      "h": 20990.5,
+      "l": 20985.25,
+      "c": 20989.75
+     },
+     {
+      "o": 20989.75,
+      "h": 20995.0,
+      "l": 20989.0,
+      "c": 20994.25
+     },
+     {
+      "o": 20994.25,
+      "h": 20999.0,
+      "l": 20993.75,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.0,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.75,
+      "l": 20998.75,
+      "c": 20999.5
+     },
+     {
+      "o": 20999.5,
+      "h": 21000.0,
+      "l": 20995.0,
+      "c": 20996.25
+     },
+     {
+      "o": 20996.25,
+      "h": 20996.75,
+      "l": 20991.75,
+      "c": 20993.25
+     },
+     {
+      "o": 20993.25,
+      "h": 20994.0,
+      "l": 20989.75,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20996.25,
+      "l": 20990.25,
+      "c": 20995.0
+     },
+     {
+      "o": 20995.0,
+      "h": 20998.25,
+      "l": 20994.5,
+      "c": 20997.0
+     },
+     {
+      "o": 20997.0,
+      "h": 21002.0,
+      "l": 20996.5,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21003.0,
+      "l": 21000.75,
+      "c": 21002.75
+     },
+     {
+      "o": 21002.75,
+      "h": 21003.0,
+      "l": 20999.25,
+      "c": 21000.75
+     },
+     {
+      "o": 21000.75,
+      "h": 21001.5,
+      "l": 20994.5,
+      "c": 20995.75
+     },
+     {
+      "o": 20995.75,
+      "h": 20996.75,
+      "l": 20992.5,
+      "c": 20993.0
+     },
+     {
+      "o": 20993.0,
+      "h": 20994.5,
+      "l": 20988.75,
+      "c": 20990.25
+     },
+     {
+      "o": 20990.25,
+      "h": 20990.75,
+      "l": 20985.25,
+      "c": 20987.25
+     },
+     {
+      "o": 20987.25,
+      "h": 20988.75,
+      "l": 20986.0,
+      "c": 20987.75
+     },
+     {
+      "o": 20987.75,
+      "h": 20989.25,
+      "l": 20987.25,
+      "c": 20988.25
+     },
+     {
+      "o": 20988.25,
+      "h": 20989.75,
+      "l": 20988.0,
+      "c": 20989.25
+     }
+    ],
+    "pil": 21004.25,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish",
+      "ok": true
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis",
+      "ok": true
+     },
+     {
+      "label": "HTF ICC",
+      "value": "Correction"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ],
+    "structure": "Pullback from the swing high at the PIL. Price is below it.",
+    "start": 15
+   },
+   "preMarks": [
+    "indication",
+    "correction"
+   ],
+   "passOk": {
+    "after": 19
+   },
+   "passText": "Reassess → pass",
+   "passWhy": "<strong>PASS ✓</strong> Price broke the higher low that supported the bullish setup. Opposing structure changed it. Reassess, don’t force.",
+   "passMiss": "Nothing structural has changed yet. Keep watching.",
+   "intro": "Watch the structure, not just the PIL."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Don’t confuse <em>research observations</em> with <em>execution rules.</em> The rules are the rules.",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "When should you reassess an active setup?",
+   "modelAnswer": "When new relevant 1M structure forms, the PIL loses relevance, opposing structure changes the setup, a newer sequence replaces it, or the HTF context changes."
+  }
+ ],
+ "takeaways": [
+  "Reassess on structural change.",
+  "Research notes aren’t rules.",
+  "Pass when the setup no longer stands."
+ ],
+ "remember": "Reassess when the structure that created the setup changes."
+}

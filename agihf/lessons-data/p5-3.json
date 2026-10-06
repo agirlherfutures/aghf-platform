@@ -1,0 +1,348 @@
+{
+ "phase": "p5",
+ "section": "s12",
+ "lessonNumber": 3,
+ "title": "Correction",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 75,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Did the story change, or did price move back?",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Tell a correction from a reversal by reading structure, not candle color.",
+  "missionQuestion": "Red candles after a bullish indication: panic, or read the structure?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "icc_replay",
+   "kicker": "Watch",
+   "title": "After the indication…",
+   "chart": {
+    "swings": [
+     [
+      30,
+      250
+     ],
+     [
+      110,
+      150
+     ],
+     [
+      180,
+      215
+     ],
+     [
+      290,
+      92
+     ],
+     [
+      370,
+      168
+     ],
+     [
+      470,
+      60
+     ],
+     [
+      520,
+      78
+     ]
+    ],
+    "seed": 7,
+    "hlines": [
+     {
+      "y": 150,
+      "label": "meaningful high",
+      "tone": "muted"
+     }
+    ],
+    "marks": [
+     {
+      "i": 2,
+      "label": "HL",
+      "tone": "up",
+      "id": "hl"
+     },
+     {
+      "i": 3,
+      "label": "HH",
+      "tone": "up",
+      "id": "hh"
+     }
+    ]
+   },
+   "segments": [
+    {
+     "key": "indication",
+     "from": 2,
+     "to": 3
+    },
+    {
+     "key": "correction",
+     "from": 3,
+     "to": 4
+    },
+    {
+     "key": "continuation",
+     "from": 4,
+     "to": 5
+    }
+   ],
+   "dir": "bullish",
+   "tf": "4H",
+   "structure": [
+    "hl",
+    "hh"
+   ],
+   "pauses": [
+    {
+     "seg": "indication",
+     "plus": 3,
+     "text": "Bullish indication ✓. Then three bearish candles.",
+     "asks": [
+      {
+       "prompt": "PANIC? 😂",
+       "options": [
+        {
+         "label": "Panic, it’s red!",
+         "feedback": "Red candles aren’t a verdict. Read the structure.",
+         "mistake": "correction-panic"
+        },
+        {
+         "label": "Read the structure",
+         "correct": true,
+         "why": "Always."
+        }
+       ]
+      },
+      {
+       "prompt": "Did the story automatically turn bearish?",
+       "options": [
+        {
+         "label": "Yes, three red candles",
+         "feedback": "You noticed the pullback. Did price change the story, or move back inside it?",
+         "mistake": "correction-as-reversal"
+        },
+        {
+         "label": "No. Check what actually changed.",
+         "correct": true,
+         "why": "Right. Let’s inspect the structure."
+        }
+       ]
+      },
+      {
+       "prompt": "What actually changed?",
+       "options": [
+        {
+         "label": "The higher low broke",
+         "feedback": "Look again: the HL is still intact."
+        },
+        {
+         "label": "Price moved back, but the supporting higher low is intact",
+         "correct": true,
+         "why": "So far, that’s a correction."
+        },
+        {
+         "label": "Bias is now bearish",
+         "feedback": "Nothing structural changed yet.",
+         "mistake": "correction-as-reversal"
+        }
+       ],
+       "stack": true
+      }
+     ],
+     "show": [
+      "hl",
+      "hh"
+     ],
+     "after": "BULLISH INDICATION ✓ · CORRECTION IN PROGRESS ● · CONTINUATION ○",
+     "resume": true
+    }
+   ],
+   "end": {
+    "card": "A correction is price moving back.<br>A reversal is price changing the story."
+   }
+  },
+  {
+   "type": "icc_split",
+   "kicker": "Know the difference",
+   "title": "Correction vs reversal",
+   "left": {
+    "tag": "Correction",
+    "title": "Moving back",
+    "items": [
+     "Price moves against the current directional sequence",
+     "The relevant supporting structure stays intact"
+    ]
+   },
+   "right": {
+    "tag": "Reversal / invalidation",
+    "title": "Changing the story",
+    "items": [
+     "Price changes the information that supported the directional story",
+     "Not one universal candle rule: read the structure"
+    ]
+   },
+   "principle": "A correction is price moving back. A reversal is price changing the story."
+  },
+  {
+   "type": "icc_replay",
+   "kicker": "Compare",
+   "title": "Which one is still a correction?",
+   "charts": [
+    {
+     "label": "A",
+     "chart": {
+      "swings": [
+       [
+        30,
+        250
+       ],
+       [
+        110,
+        150
+       ],
+       [
+        180,
+        215
+       ],
+       [
+        290,
+        92
+       ],
+       [
+        370,
+        168
+       ],
+       [
+        470,
+        60
+       ]
+      ],
+      "seed": 7,
+      "hlines": [
+       {
+        "y": 215,
+        "label": "higher low",
+        "tone": "up",
+        "id": "hl"
+       }
+      ]
+     },
+     "segments": [
+      {
+       "key": "indication",
+       "from": 2,
+       "to": 3
+      },
+      {
+       "key": "correction",
+       "from": 3,
+       "to": 4
+      }
+     ],
+     "dir": "bullish",
+     "tf": "4H"
+    },
+    {
+     "label": "B",
+     "chart": {
+      "swings": [
+       [
+        30,
+        250
+       ],
+       [
+        110,
+        150
+       ],
+       [
+        180,
+        215
+       ],
+       [
+        290,
+        92
+       ],
+       [
+        380,
+        245
+       ],
+       [
+        440,
+        205
+       ],
+       [
+        520,
+        272
+       ]
+      ],
+      "seed": 12,
+      "hlines": [
+       {
+        "y": 215,
+        "label": "higher low",
+        "tone": "up",
+        "id": "hl"
+       }
+      ]
+     },
+     "segments": [
+      {
+       "key": "indication",
+       "from": 2,
+       "to": 3
+      }
+     ],
+     "dir": "bullish",
+     "tf": "4H"
+    }
+   ],
+   "end": {
+    "ask": {
+     "prompt": "Which one is still a correction?",
+     "options": [
+      {
+       "label": "A: the higher low held",
+       "correct": true,
+       "why": "Price moved back, structure held. Correction."
+      },
+      {
+       "label": "B",
+       "feedback": "B closed below the higher low and kept building lower. That changed the story.",
+       "mistake": "correction-as-reversal"
+      },
+      {
+       "label": "Both, they both went down",
+       "feedback": "Same direction of candles, different structure."
+      }
+     ]
+    }
+   }
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "A pullback isn’t a verdict. <em>Ask whether price changed the story, or simply moved back inside it.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What’s the difference between a correction and a reversal?",
+   "modelAnswer": "A correction moves against the move while the supporting structure stays intact. A reversal changes the information that supported the directional story."
+  }
+ ],
+ "takeaways": [
+  "Correction = moving back, structure intact.",
+  "Reversal = the story changed.",
+  "Red candles alone decide nothing."
+ ],
+ "remember": "A correction is price moving back. A reversal is price changing the story."
+}

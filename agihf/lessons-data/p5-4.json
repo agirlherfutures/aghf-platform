@@ -1,0 +1,265 @@
+{
+ "phase": "p5",
+ "section": "s12",
+ "lessonNumber": 4,
+ "title": "Continuation",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 75,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Don’t assume the second C.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Wait for price to prove continuation instead of anticipating it.",
+  "missionQuestion": "After indication and correction, what comes next?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "icc_replay",
+   "kicker": "Freeze",
+   "title": "What comes next?",
+   "chart": {
+    "swings": [
+     [
+      30,
+      250
+     ],
+     [
+      110,
+      150
+     ],
+     [
+      180,
+      215
+     ],
+     [
+      290,
+      92
+     ],
+     [
+      370,
+      168
+     ],
+     [
+      470,
+      60
+     ],
+     [
+      520,
+      78
+     ]
+    ],
+    "seed": 7,
+    "hlines": [
+     {
+      "y": 150,
+      "label": "meaningful high",
+      "tone": "muted"
+     }
+    ]
+   },
+   "segments": [
+    {
+     "key": "indication",
+     "from": 2,
+     "to": 3
+    },
+    {
+     "key": "correction",
+     "from": 3,
+     "to": 4
+    },
+    {
+     "key": "continuation",
+     "from": 4,
+     "to": 5
+    }
+   ],
+   "dir": "bullish",
+   "tf": "4H",
+   "pauses": [
+    {
+     "seg": "correction",
+     "text": "Indication ✓. Correction ✓. Chart frozen.",
+     "asks": [
+      {
+       "prompt": "WHAT COMES NEXT?",
+       "options": [
+        {
+         "label": "Continuation",
+         "feedback": "That’s what normally comes next. It isn’t what price HAS done.",
+         "mistake": "anticipated-continuation"
+        },
+        {
+         "label": "Reversal",
+         "feedback": "Could be. You don’t know that either."
+        },
+        {
+         "label": "More correction",
+         "feedback": "Could be. Still a guess."
+        },
+        {
+         "label": "A range",
+         "feedback": "Possible. Still a guess."
+        },
+        {
+         "label": "Not enough information",
+         "correct": true,
+         "why": "Exactly. ICC describes a sequence. It doesn’t predict the next candle.",
+         "nei": true
+        }
+       ],
+       "stack": true
+      }
+     ],
+     "after": "Now let price play.",
+     "resume": true
+    }
+   ],
+   "end": {
+    "text": "Price pushed beyond again. NOW the tracker can say <b>continuation confirmed</b>."
+   }
+  },
+  {
+   "type": "icc_replay",
+   "kicker": "Anticipation trap",
+   "title": "Bullish indication. Correction. Now what?",
+   "chart": {
+    "swings": [
+     [
+      30,
+      250
+     ],
+     [
+      110,
+      150
+     ],
+     [
+      180,
+      215
+     ],
+     [
+      290,
+      92
+     ],
+     [
+      370,
+      168
+     ],
+     [
+      420,
+      128
+     ],
+     [
+      460,
+      172
+     ],
+     [
+      510,
+      140
+     ],
+     [
+      560,
+      178
+     ]
+    ],
+    "seed": 14,
+    "hlines": [
+     {
+      "y": 150,
+      "label": "meaningful high",
+      "tone": "muted"
+     }
+    ]
+   },
+   "segments": [
+    {
+     "key": "indication",
+     "from": 2,
+     "to": 3
+    },
+    {
+     "key": "correction",
+     "from": 3,
+     "to": 4
+    }
+   ],
+   "dir": "bullish",
+   "tf": "4H",
+   "pauses": [
+    {
+     "seg": "correction",
+     "asks": [
+      {
+       "prompt": "Your move.",
+       "options": [
+        {
+         "label": "BUY NOW 🚀",
+         "feedback": "YOU’RE FRONT-RUNNING THE STORY. You know what you WANT price to do. You don’t know what price HAS done yet.",
+         "mistake": "anticipated-continuation"
+        },
+        {
+         "label": "Let price prove continuation",
+         "correct": true,
+         "why": "Let price prove it."
+        }
+       ]
+      }
+     ],
+     "resume": true
+    }
+   ],
+   "end": {
+    "text": "Price chopped. No continuation formed, so <b>none gets awarded.</b> The last C stays open.",
+    "card": "LET PRICE PROVE CONTINUATION."
+   }
+  },
+  {
+   "type": "teach",
+   "kicker": "The core idea",
+   "heading": "Each chapter has a job",
+   "body": "",
+   "beats": [
+    {
+     "icon": "I",
+     "title": "Indication starts the story",
+     "line": "Price provided new information."
+    },
+    {
+     "icon": "C",
+     "title": "Correction tests it",
+     "line": "Price moved back while structure held."
+    },
+    {
+     "icon": "C",
+     "title": "Continuation supports it",
+     "line": "Price proved the direction again."
+    }
+   ],
+   "punch": "Knowing the sequence isn’t permission to predict the next candle."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Indication starts the story. Correction tests it. <em>Continuation supports it.</em> And continuation has to be proven.",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why do we wait for continuation instead of assuming it?",
+   "modelAnswer": "Because ICC describes what price has done, not what it will do. Until price proves the direction again, continuation isn’t confirmed."
+  }
+ ],
+ "takeaways": [
+  "Freeze after correction: not enough information.",
+  "Continuation must be proven.",
+  "No continuation, no award."
+ ],
+ "remember": "Let price prove continuation."
+}

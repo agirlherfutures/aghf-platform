@@ -1,0 +1,500 @@
+{
+ "phase": "p5",
+ "section": "s13",
+ "lessonNumber": 20,
+ "title": "Missed Retest = Missed Trade",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "A missed trade is not a bad trade.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Treat a missed retest as a missed trade, never as bad analysis or a reason to chase.",
+  "missionQuestion": "What do you do when price leaves without you?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "exec_sim",
+   "kicker": "Scenario A",
+   "title": "ICC completes. Price runs.",
+   "goal": "pass",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20987.0,
+      "l": 20981.0,
+      "c": 20986.25
+     },
+     {
+      "o": 20986.25,
+      "h": 20990.75,
+      "l": 20985.5,
+      "c": 20989.75
+     },
+     {
+      "o": 20989.75,
+      "h": 20995.5,
+      "l": 20989.25,
+      "c": 20994.0
+     },
+     {
+      "o": 20994.0,
+      "h": 20999.0,
+      "l": 20993.5,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20996.75,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.75,
+      "l": 20998.0,
+      "c": 20998.75
+     },
+     {
+      "o": 20998.75,
+      "h": 20999.5,
+      "l": 20996.5,
+      "c": 20997.0
+     },
+     {
+      "o": 20997.0,
+      "h": 20997.75,
+      "l": 20992.5,
+      "c": 20993.75
+     },
+     {
+      "o": 20993.75,
+      "h": 20994.75,
+      "l": 20990.75,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20995.5,
+      "l": 20990.25,
+      "c": 20995.0
+     },
+     {
+      "o": 20995.0,
+      "h": 20998.0,
+      "l": 20993.75,
+      "c": 20997.25
+     },
+     {
+      "o": 20997.25,
+      "h": 21002.25,
+      "l": 20996.0,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21008.25,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21009.5,
+      "l": 21006.5,
+      "c": 21008.0
+     },
+     {
+      "o": 21008.0,
+      "h": 21010.25,
+      "l": 21007.25,
+      "c": 21009.75
+     },
+     {
+      "o": 21009.75,
+      "h": 21012.25,
+      "l": 21009.0,
+      "c": 21011.5
+     },
+     {
+      "o": 21011.5,
+      "h": 21015.25,
+      "l": 21010.75,
+      "c": 21014.25
+     },
+     {
+      "o": 21014.25,
+      "h": 21017.75,
+      "l": 21013.5,
+      "c": 21016.75
+     },
+     {
+      "o": 21016.75,
+      "h": 21018.75,
+      "l": 21015.25,
+      "c": 21017.75
+     },
+     {
+      "o": 21017.75,
+      "h": 21020.25,
+      "l": 21017.25,
+      "c": 21018.75
+     },
+     {
+      "o": 21018.75,
+      "h": 21020.5,
+      "l": 21018.5,
+      "c": 21019.0
+     },
+     {
+      "o": 21019.0,
+      "h": 21023.5,
+      "l": 21018.5,
+      "c": 21022.0
+     },
+     {
+      "o": 21022.0,
+      "h": 21022.75,
+      "l": 21020.5,
+      "c": 21022.25
+     }
+    ],
+    "pil": 21004.25,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish",
+      "ok": true
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis",
+      "ok": true
+     },
+     {
+      "label": "HTF ICC",
+      "value": "Correction"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ],
+    "structure": "Pullback from the swing high at the PIL. Price is below it.",
+    "start": 15
+   },
+   "preMarks": [
+    "indication",
+    "correction",
+    "continuation"
+   ],
+   "chase": {
+    "from": 16
+   },
+   "passOk": {
+    "after": 18
+   },
+   "passText": "Let it go: missed trade",
+   "passLabel": "SETUP VALID · ENTRY MISSED",
+   "passWhy": "<strong>MISSED TRADE.</strong> Not bad analysis. Not a failed setup. Not “find another entry”.",
+   "passMiss": "Give price a chance to come back first.",
+   "intro": "Place your planned entry. Then watch what price does."
+  },
+  {
+   "type": "exec_sim",
+   "kicker": "Scenario B",
+   "title": "The retest happened. You missed it.",
+   "goal": "asks",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20985.5,
+      "l": 20981.5,
+      "c": 20985.0
+     },
+     {
+      "o": 20985.0,
+      "h": 20991.25,
+      "l": 20984.5,
+      "c": 20990.75
+     },
+     {
+      "o": 20990.75,
+      "h": 20994.75,
+      "l": 20990.25,
+      "c": 20993.5
+     },
+     {
+      "o": 20993.5,
+      "h": 20999.5,
+      "l": 20992.5,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.25,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.5,
+      "l": 20997.5,
+      "c": 20999.0
+     },
+     {
+      "o": 20999.0,
+      "h": 20999.25,
+      "l": 20994.0,
+      "c": 20995.5
+     },
+     {
+      "o": 20995.5,
+      "h": 20996.0,
+      "l": 20993.0,
+      "c": 20993.75
+     },
+     {
+      "o": 20993.75,
+      "h": 20994.5,
+      "l": 20989.75,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20994.25,
+      "l": 20990.25,
+      "c": 20993.75
+     },
+     {
+      "o": 20993.75,
+      "h": 20999.5,
+      "l": 20992.5,
+      "c": 20998.0
+     },
+     {
+      "o": 20998.0,
+      "h": 21002.0,
+      "l": 20997.5,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21008.5,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21010.0,
+      "l": 21006.0,
+      "c": 21008.75
+     },
+     {
+      "o": 21008.75,
+      "h": 21012.0,
+      "l": 21008.25,
+      "c": 21011.0
+     },
+     {
+      "o": 21011.0,
+      "h": 21013.5,
+      "l": 21010.25,
+      "c": 21012.75
+     },
+     {
+      "o": 21012.75,
+      "h": 21017.0,
+      "l": 21011.75,
+      "c": 21016.25
+     },
+     {
+      "o": 21016.25,
+      "h": 21017.75,
+      "l": 21012.5,
+      "c": 21014.0
+     },
+     {
+      "o": 21014.0,
+      "h": 21015.25,
+      "l": 21010.75,
+      "c": 21011.5
+     },
+     {
+      "o": 21011.5,
+      "h": 21012.0,
+      "l": 21006.25,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21008.25,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21006.25,
+      "l": 21005.0,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21008.75,
+      "l": 21005.5,
+      "c": 21007.75
+     },
+     {
+      "o": 21007.75,
+      "h": 21009.75,
+      "l": 21006.75,
+      "c": 21008.25
+     },
+     {
+      "o": 21008.25,
+      "h": 21011.25,
+      "l": 21007.5,
+      "c": 21010.75
+     },
+     {
+      "o": 21010.75,
+      "h": 21012.0,
+      "l": 21009.5,
+      "c": 21011.25
+     },
+     {
+      "o": 21011.25,
+      "h": 21012.0,
+      "l": 21011.0,
+      "c": 21011.5
+     },
+     {
+      "o": 21011.5,
+      "h": 21013.75,
+      "l": 21011.0,
+      "c": 21012.25
+     }
+    ],
+    "pil": 21004.25,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish",
+      "ok": true
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis",
+      "ok": true
+     },
+     {
+      "label": "HTF ICC",
+      "value": "Correction"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ],
+    "structure": "Pullback from the swing high at the PIL. Price is below it.",
+    "start": 30
+   },
+   "preMarks": [
+    "indication",
+    "correction",
+    "continuation"
+   ],
+   "presetOutcome": "missed",
+   "startAsk": {
+    "prompt": "Price retested while you were away, and left. CHASE?",
+    "options": [
+     {
+      "label": "Yes, I was right about direction",
+      "feedback": "Your analysis may have been right. Your entry still wasn’t there.",
+      "mistake": "chased"
+     },
+     {
+      "label": "No. Setup valid, entry missed.",
+      "correct": true,
+      "why": "Exactly. That’s a different thing from an invalid setup.",
+      "discipline": true
+     }
+    ]
+   }
+  },
+  {
+   "type": "teach",
+   "kicker": "Two different results",
+   "heading": "SETUP VALID · ENTRY MISSED ≠ SETUP INVALID",
+   "body": "",
+   "beats": [
+    {
+     "icon": "✓",
+     "title": "Setup valid, entry missed",
+     "line": "The model completed. You didn’t get the retest."
+    },
+    {
+     "icon": "✗",
+     "title": "Setup invalid",
+     "line": "The model never completed."
+    }
+   ],
+   "punch": "That distinction matters."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "A missed trade is not a bad trade. <em>It’s just a trade you didn’t get.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why don’t we chase a missed retest?",
+   "modelAnswer": "Because the plan was the PIL retest. If it’s gone, the setup was valid but the entry was missed. Chasing creates a new rule after price moved."
+  }
+ ],
+ "takeaways": [
+  "No retest = missed trade.",
+  "Missed ≠ invalid.",
+  "Never chase."
+ ],
+ "remember": "A missed trade is not a bad trade."
+}

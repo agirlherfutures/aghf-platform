@@ -287,6 +287,7 @@ export function mountChart(container, spec, opts = {}) {
 
   const api = {
     svg, wrap, points, swings, zoomTo, progress, compare, showCandles, candleCount: candleNodes.length,
+    candleSegs: candleNodes.map((c) => c.seg), overlayLayer: overlay, labelLayer: labels,
     clearCompare() { compareG.innerHTML = ''; },
     dim(ids, on = true) { [].concat(ids || []).forEach((id) => (reveal[id] || []).forEach((n) => n.classList.toggle('sc-dim', on))); },
     /** The labellable swing nearest a screen point, or -1. */

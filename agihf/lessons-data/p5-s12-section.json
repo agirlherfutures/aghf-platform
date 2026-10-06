@@ -1,0 +1,1765 @@
+{
+ "phase": "p5",
+ "section": "s12",
+ "title": "ICC Across the Market",
+ "steps": [
+  "game",
+  "knowledge",
+  "checkin",
+  "complete"
+ ],
+ "hook": "Clear the ICC Story Builder, pass the Knowledge Check and save your Check-In to unlock Section 13.",
+ "game": {
+  "title": "ICC Story Builder 🧠",
+  "save": "p5-s12",
+  "xp": 0,
+  "tagline": "Not a quiz. You’re reading price stories now.",
+  "doneHeading": "ICC STORY BUILDER COMPLETE ✓",
+  "doneBadge": "ICC Story Builder: all 10 levels cleared",
+  "doneLine": "You ordered the story, named every chapter, refused to anticipate, read ICC inside ICC, kept context optional, called unclear charts unclear, and read a full 4H story without inventing an entry.",
+  "levels": [
+   {
+    "type": "icc_order",
+    "name": "Put it in order",
+    "concept": "ICC definition",
+    "goal": "Indication. Correction. Continuation.",
+    "title": "Tap the chapters in order"
+   },
+   {
+    "type": "icc_replay",
+    "name": "Which chapter?",
+    "concept": "Full sequence",
+    "goal": "Name each chapter as it finishes.",
+    "chart": {
+     "swings": [
+      [
+       30,
+       250
+      ],
+      [
+       110,
+       150
+      ],
+      [
+       180,
+       215
+      ],
+      [
+       290,
+       92
+      ],
+      [
+       370,
+       168
+      ],
+      [
+       470,
+       60
+      ],
+      [
+       520,
+       78
+      ]
+     ],
+     "seed": 27,
+     "hlines": [
+      {
+       "y": 150,
+       "label": "meaningful high",
+       "tone": "muted"
+      }
+     ]
+    },
+    "segments": [
+     {
+      "key": "indication",
+      "from": 2,
+      "to": 3
+     },
+     {
+      "key": "correction",
+      "from": 3,
+      "to": 4
+     },
+     {
+      "key": "continuation",
+      "from": 4,
+      "to": 5
+     }
+    ],
+    "dir": "bullish",
+    "tf": "1H",
+    "tracker": false,
+    "pauses": [
+     {
+      "seg": "indication",
+      "ask": {
+       "prompt": "Which chapter just finished?",
+       "options": [
+        {
+         "label": "Indication",
+         "correct": true,
+         "why": "Price progressed beyond the meaningful high."
+        },
+        {
+         "label": "Correction"
+        },
+        {
+         "label": "Continuation",
+         "mistake": "anticipated-continuation"
+        }
+       ]
+      },
+      "resume": true
+     },
+     {
+      "seg": "correction",
+      "ask": {
+       "prompt": "And this one?",
+       "options": [
+        {
+         "label": "Indication"
+        },
+        {
+         "label": "Correction",
+         "correct": true,
+         "why": "Moving back, structure intact."
+        },
+        {
+         "label": "Reversal",
+         "mistake": "correction-as-reversal"
+        }
+       ]
+      },
+      "resume": true
+     },
+     {
+      "seg": "continuation",
+      "ask": {
+       "prompt": "And now?",
+       "options": [
+        {
+         "label": "Correction"
+        },
+        {
+         "label": "Continuation",
+         "correct": true,
+         "why": "Price proved the direction again."
+        },
+        {
+         "label": "Not enough information"
+        }
+       ]
+      },
+      "resume": true
+     }
+    ]
+   },
+   {
+    "type": "icc_replay",
+    "name": "Bullish or bearish?",
+    "concept": "ICC direction",
+    "goal": "Watch the whole sequence. Name the direction.",
+    "chart": {
+     "swings": [
+      [
+       30,
+       70
+      ],
+      [
+       110,
+       170
+      ],
+      [
+       180,
+       105
+      ],
+      [
+       290,
+       228
+      ],
+      [
+       370,
+       152
+      ],
+      [
+       470,
+       260
+      ],
+      [
+       520,
+       242
+      ]
+     ],
+     "seed": 28,
+     "hlines": [
+      {
+       "y": 170,
+       "label": "meaningful low",
+       "tone": "muted"
+      }
+     ]
+    },
+    "segments": [
+     {
+      "key": "indication",
+      "from": 2,
+      "to": 3
+     },
+     {
+      "key": "correction",
+      "from": 3,
+      "to": 4
+     },
+     {
+      "key": "continuation",
+      "from": 4,
+      "to": 5
+     }
+    ],
+    "dir": "bearish",
+    "tf": "1H",
+    "end": {
+     "ask": {
+      "prompt": "Which ICC is this?",
+      "options": [
+       {
+        "label": "Bullish ICC"
+       },
+       {
+        "label": "Bearish ICC",
+        "correct": true,
+        "why": "Below a meaningful low, back up, then below again."
+       },
+       {
+        "label": "Not ICC"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "type": "icc_replay",
+    "name": "What’s missing?",
+    "concept": "Incomplete ICC",
+    "goal": "Indication ✓ Correction ✓ Continuation ○",
+    "chart": {
+     "swings": [
+      [
+       30,
+       250
+      ],
+      [
+       110,
+       150
+      ],
+      [
+       180,
+       215
+      ],
+      [
+       290,
+       92
+      ],
+      [
+       370,
+       168
+      ],
+      [
+       420,
+       150
+      ]
+     ],
+     "seed": 29,
+     "hlines": [
+      {
+       "y": 150,
+       "label": "meaningful high",
+       "tone": "muted"
+      }
+     ]
+    },
+    "segments": [
+     {
+      "key": "indication",
+      "from": 2,
+      "to": 3
+     },
+     {
+      "key": "correction",
+      "from": 3,
+      "to": 4
+     }
+    ],
+    "dir": "bullish",
+    "tf": "1H",
+    "end": {
+     "ask": {
+      "prompt": "Is this ICC complete?",
+      "options": [
+       {
+        "label": "Yes, I · C · C",
+        "feedback": "The last C was never proven.",
+        "mistake": "anticipated-continuation"
+       },
+       {
+        "label": "No. Continuation hasn’t formed.",
+        "correct": true,
+        "why": "Two chapters. Not three."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "type": "icc_replay",
+    "name": "Don’t anticipate",
+    "concept": "Continuation patience",
+    "goal": "Freeze after the correction.",
+    "chart": {
+     "swings": [
+      [
+       30,
+       250
+      ],
+      [
+       110,
+       150
+      ],
+      [
+       180,
+       215
+      ],
+      [
+       290,
+       92
+      ],
+      [
+       370,
+       168
+      ],
+      [
+       470,
+       60
+      ],
+      [
+       520,
+       78
+      ]
+     ],
+     "seed": 30,
+     "hlines": [
+      {
+       "y": 150,
+       "label": "meaningful high",
+       "tone": "muted"
+      }
+     ]
+    },
+    "segments": [
+     {
+      "key": "indication",
+      "from": 2,
+      "to": 3
+     },
+     {
+      "key": "correction",
+      "from": 3,
+      "to": 4
+     },
+     {
+      "key": "continuation",
+      "from": 4,
+      "to": 5
+     }
+    ],
+    "dir": "bullish",
+    "tf": "1H",
+    "pauses": [
+     {
+      "seg": "correction",
+      "ask": {
+       "prompt": "WHAT NOW?",
+       "options": [
+        {
+         "label": "Continuation is next",
+         "feedback": "That’s the sequence talking, not price.",
+         "mistake": "anticipated-continuation"
+        },
+        {
+         "label": "Wait for more information",
+         "correct": true,
+         "why": "Exactly. Let price prove it.",
+         "nei": true
+        },
+        {
+         "label": "It’s reversing",
+         "mistake": "correction-as-reversal"
+        }
+       ]
+      },
+      "resume": true
+     }
+    ]
+   },
+   {
+    "type": "icc_nested",
+    "name": "Which timeframe?",
+    "concept": "Nested ICC",
+    "goal": "4H correction. 1H bullish movement.",
+    "tfs": [
+     {
+      "tf": "4H",
+      "role": "Larger story",
+      "chart": {
+       "swings": [
+        [
+         30,
+         270
+        ],
+        [
+         110,
+         175
+        ],
+        [
+         180,
+         230
+        ],
+        [
+         300,
+         70
+        ],
+        [
+         400,
+         185
+        ],
+        [
+         440,
+         168
+        ]
+       ],
+       "seed": 31
+      },
+      "segments": [
+       {
+        "key": "indication",
+        "from": 2,
+        "to": 3
+       },
+       {
+        "key": "correction",
+        "from": 3,
+        "to": 4
+       }
+      ],
+      "show": [
+       "indication",
+       "correction"
+      ],
+      "dir": "bullish",
+      "stage": "correction",
+      "note": "4H: correcting."
+     },
+     {
+      "tf": "1H",
+      "role": "Inside the correction",
+      "chart": {
+       "swings": [
+        [
+         30,
+         70
+        ],
+        [
+         150,
+         200
+        ],
+        [
+         220,
+         170
+        ],
+        [
+         300,
+         240
+        ],
+        [
+         380,
+         215
+        ],
+        [
+         470,
+         150
+        ],
+        [
+         520,
+         175
+        ],
+        [
+         600,
+         110
+        ]
+       ],
+       "seed": 32
+      },
+      "segments": [
+       {
+        "key": "indication",
+        "from": 4,
+        "to": 5
+       },
+       {
+        "key": "correction",
+        "from": 5,
+        "to": 6
+       },
+       {
+        "key": "continuation",
+        "from": 6,
+        "to": 7
+       }
+      ],
+      "dir": "bullish",
+      "stage": "complete",
+      "note": "1H: a bullish sequence inside it."
+     }
+    ],
+    "zoomLabel": "Zoom into the 4H correction ↓",
+    "asks": [
+     {
+      "prompt": "Can both be true?",
+      "options": [
+       {
+        "label": "Yes",
+        "correct": true,
+        "why": "Same market. Different scale."
+       },
+       {
+        "label": "No",
+        "mistake": "tf-confusion"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "type": "icc_read",
+    "name": "Structure + ICC",
+    "concept": "Structure + ICC",
+    "goal": "Two independent questions.",
+    "chart": {
+     "swings": [
+      [
+       30,
+       270
+      ],
+      [
+       110,
+       175
+      ],
+      [
+       180,
+       230
+      ],
+      [
+       300,
+       70
+      ],
+      [
+       400,
+       185
+      ],
+      [
+       440,
+       168
+      ]
+     ],
+     "seed": 33
+    },
+    "tf": "4H",
+    "segments": [
+     {
+      "key": "indication",
+      "from": 2,
+      "to": 3
+     },
+     {
+      "key": "correction",
+      "from": 3,
+      "to": 4
+     }
+    ],
+    "dir": "bullish",
+    "rows": [
+     {
+      "key": "structure",
+      "label": "Structure"
+     }
+    ],
+    "steps": [
+     {
+      "kind": "ask",
+      "ask": {
+       "prompt": "STRUCTURE?",
+       "options": [
+        {
+         "label": "Bullish",
+         "correct": true,
+         "why": "HH above the previous high, HL holding."
+        },
+        {
+         "label": "Bearish",
+         "mistake": "correction-as-reversal"
+        },
+        {
+         "label": "Unclear"
+        }
+       ]
+      },
+      "set": {
+       "structure": "Bullish"
+      }
+     },
+     {
+      "kind": "stage",
+      "prompt": "ICC STAGE?",
+      "answer": "correction",
+      "choices": [
+       "indication",
+       "correction",
+       "continuation"
+      ],
+      "why": "Bullish structure. ICC: correction. Two different answers.",
+      "reveal": "correction"
+     }
+    ]
+   },
+   {
+    "type": "icc_replay",
+    "name": "Context trap",
+    "concept": "Context ≠ requirement",
+    "goal": "Clean bullish ICC. No FVG. No equal lows. No sweep.",
+    "chart": {
+     "swings": [
+      [
+       30,
+       250
+      ],
+      [
+       110,
+       150
+      ],
+      [
+       180,
+       215
+      ],
+      [
+       290,
+       92
+      ],
+      [
+       370,
+       168
+      ],
+      [
+       470,
+       60
+      ],
+      [
+       520,
+       78
+      ]
+     ],
+     "seed": 34,
+     "hlines": [
+      {
+       "y": 150,
+       "label": "meaningful high",
+       "tone": "muted"
+      }
+     ]
+    },
+    "segments": [
+     {
+      "key": "indication",
+      "from": 2,
+      "to": 3
+     },
+     {
+      "key": "correction",
+      "from": 3,
+      "to": 4
+     },
+     {
+      "key": "continuation",
+      "from": 4,
+      "to": 5
+     }
+    ],
+    "dir": "bullish",
+    "tf": "1H",
+    "end": {
+     "ask": {
+      "prompt": "No FVG, no equal lows, no liquidity sweep. INVALID?",
+      "options": [
+       {
+        "label": "Invalid, no confluence",
+        "feedback": "You’re adding context to the definition. The ICC behavior is right there.",
+        "mistake": "context-as-requirement"
+       },
+       {
+        "label": "No. Still a clean ICC.",
+        "correct": true,
+        "why": "Context helps. It isn’t required."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "type": "icc_classify",
+    "name": "Clean or forced?",
+    "concept": "ICC clarity",
+    "goal": "Clear · Developing · Unclear",
+    "items": [
+     {
+      "label": "A",
+      "chart": {
+       "swings": [
+        [
+         30,
+         250
+        ],
+        [
+         110,
+         150
+        ],
+        [
+         180,
+         215
+        ],
+        [
+         290,
+         92
+        ],
+        [
+         370,
+         168
+        ],
+        [
+         470,
+         60
+        ],
+        [
+         520,
+         78
+        ]
+       ],
+       "seed": 35,
+       "hlines": [
+        {
+         "y": 150,
+         "label": "meaningful high",
+         "tone": "muted"
+        }
+       ]
+      },
+      "answer": "clear",
+      "why": "All three chapters, meaningful."
+     },
+     {
+      "label": "B",
+      "chart": {
+       "swings": [
+        [
+         30,
+         250
+        ],
+        [
+         110,
+         150
+        ],
+        [
+         180,
+         215
+        ],
+        [
+         290,
+         92
+        ],
+        [
+         370,
+         168
+        ]
+       ],
+       "seed": 36,
+       "hlines": [
+        {
+         "y": 150,
+         "label": "meaningful high",
+         "tone": "muted"
+        }
+       ]
+      },
+      "answer": "developing",
+      "why": "Incomplete: no continuation yet."
+     },
+     {
+      "label": "C",
+      "chart": {
+       "swings": [
+        [
+         20,
+         170
+        ],
+        [
+         70,
+         148
+        ],
+        [
+         110,
+         180
+        ],
+        [
+         150,
+         142
+        ],
+        [
+         190,
+         176
+        ],
+        [
+         230,
+         150
+        ],
+        [
+         270,
+         186
+        ],
+        [
+         310,
+         146
+        ],
+        [
+         350,
+         172
+        ],
+        [
+         400,
+         150
+        ]
+       ],
+       "seed": 37,
+       "hlines": [
+        {
+         "y": 138,
+         "label": "range high",
+         "tone": "muted"
+        },
+        {
+         "y": 190,
+         "label": "range low",
+         "tone": "muted"
+        }
+       ]
+      },
+      "answer": "unclear",
+      "why": "Messy range.",
+      "mistake": "forced-icc"
+     },
+     {
+      "label": "D",
+      "chart": {
+       "swings": [
+        [
+         20,
+         240
+        ],
+        [
+         90,
+         120
+        ],
+        [
+         150,
+         260
+        ],
+        [
+         220,
+         90
+        ],
+        [
+         290,
+         230
+        ],
+        [
+         350,
+         110
+        ],
+        [
+         420,
+         250
+        ]
+       ],
+       "seed": 38
+      },
+      "answer": "unclear",
+      "why": "Random zigzag.",
+      "mistake": "forced-icc"
+     }
+    ]
+   },
+   {
+    "type": "icc_read",
+    "name": "FINAL BOSS: where are we in the story?",
+    "concept": "HTF ICC read",
+    "goal": "An unmarked 4H chart. Nothing pre-labeled.",
+    "chart": {
+     "swings": [
+      [
+       30,
+       278
+      ],
+      [
+       100,
+       190
+      ],
+      [
+       165,
+       232
+      ],
+      [
+       255,
+       150
+      ],
+      [
+       300,
+       180
+      ],
+      [
+       380,
+       64
+      ],
+      [
+       470,
+       176
+      ],
+      [
+       520,
+       160
+      ],
+      [
+       560,
+       178
+      ]
+     ],
+     "seed": 19,
+     "hlines": [
+      {
+       "y": 150,
+       "label": "meaningful high",
+       "tone": "muted"
+      },
+      {
+       "y": 246,
+       "label": "sell-side liquidity",
+       "tone": "down"
+      },
+      {
+       "y": 171,
+       "label": "equilibrium",
+       "tone": "gold"
+      }
+     ],
+     "boxes": [
+      {
+       "x1": 330,
+       "y1": 96,
+       "x2": 372,
+       "y2": 128,
+       "label": "bullish FVG",
+       "tone": "purple"
+      },
+      {
+       "x1": 270,
+       "y1": 178,
+       "x2": 340,
+       "y2": 198,
+       "label": "demand",
+       "tone": "up"
+      }
+     ]
+    },
+    "tf": "4H",
+    "save": "p5-s12-boss",
+    "handoff": true,
+    "segments": [
+     {
+      "key": "indication",
+      "from": 4,
+      "to": 5
+     },
+     {
+      "key": "correction",
+      "from": 5,
+      "to": 6
+     }
+    ],
+    "dir": "bullish",
+    "rows": [
+     {
+      "key": "structure",
+      "label": "Structure"
+     },
+     {
+      "key": "indicationReference",
+      "label": "Indication"
+     },
+     {
+      "key": "continuationState",
+      "label": "Continuation"
+     },
+     {
+      "key": "next",
+      "label": "Need next"
+     }
+    ],
+    "steps": [
+     {
+      "kind": "ask",
+      "ask": {
+       "prompt": "1 · Current structure?",
+       "options": [
+        {
+         "label": "Bullish",
+         "correct": true,
+         "why": "Higher highs, higher lows."
+        },
+        {
+         "label": "Bearish"
+        },
+        {
+         "label": "Unclear"
+        }
+       ]
+      },
+      "set": {
+       "structure": "Bullish",
+       "direction": "bullish"
+      }
+     },
+     {
+      "kind": "ask",
+      "ask": {
+       "prompt": "2 · Did meaningful indication occur?",
+       "options": [
+        {
+         "label": "Yes",
+         "correct": true,
+         "why": "Price progressed well beyond the meaningful high."
+        },
+        {
+         "label": "No"
+        },
+        {
+         "label": "Only the FVG",
+         "mistake": "context-as-requirement"
+        }
+       ]
+      },
+      "set": {}
+     },
+     {
+      "kind": "tap",
+      "prompt": "3 · Tap the move where indication occurred.",
+      "answer": [
+       4
+      ],
+      "why": "The move that progressed beyond the meaningful high.",
+      "mistake": "big-candle-indication",
+      "set": {
+       "indicationReference": "Beyond the meaningful high"
+      },
+      "reveal": "indication"
+     },
+     {
+      "kind": "ask",
+      "ask": {
+       "prompt": "4 · Is correction occurring?",
+       "options": [
+        {
+         "label": "Yes, moving back with structure intact",
+         "correct": true,
+         "why": "The HL hasn’t broken."
+        },
+        {
+         "label": "No, it reversed",
+         "mistake": "correction-as-reversal"
+        }
+       ]
+      },
+      "set": {},
+      "reveal": "correction"
+     },
+     {
+      "kind": "ask",
+      "ask": {
+       "prompt": "5 · Has continuation formed?",
+       "options": [
+        {
+         "label": "Yes"
+        },
+        {
+         "label": "No",
+         "correct": true,
+         "why": "Price hasn’t proven the direction again."
+        },
+        {
+         "label": "It will",
+         "mistake": "anticipated-continuation"
+        }
+       ]
+      },
+      "set": {
+       "continuationState": "Not confirmed"
+      }
+     },
+     {
+      "kind": "stage",
+      "prompt": "6 · Current ICC stage?",
+      "answer": "correction",
+      "why": "Bullish indication ✓. Correction in progress."
+     },
+     {
+      "kind": "clarity",
+      "prompt": "7 · ICC clarity?",
+      "answer": "developing",
+      "why": "Pieces exist. The sequence is incomplete."
+     },
+     {
+      "kind": "ask",
+      "ask": {
+       "prompt": "8 · What information do you need next?",
+       "options": [
+        {
+         "label": "Evidence of continuation",
+         "correct": true,
+         "why": "Price proving the bullish direction again."
+        },
+        {
+         "label": "Another FVG",
+         "mistake": "context-as-requirement"
+        },
+        {
+         "label": "Nothing, I’m ready to buy",
+         "mistake": "icc-as-entry"
+        }
+       ]
+      },
+      "set": {
+       "next": "Continuation evidence"
+      }
+     }
+    ],
+    "foot": "Bullish indication occurred. Price appears to be correcting within the developing 4H ICC story.",
+    "final": {
+     "prompt": "So… DO YOU HAVE A 1M DAYLI ICC ENTRY?",
+     "options": [
+      {
+       "label": "Yes: FVG + sweep + discount + demand!",
+       "feedback": "All that beautiful context, and no execution model. That’s an imaginary entry.",
+       "mistake": "icc-as-entry"
+      },
+      {
+       "label": "GIRL, WE HAVEN’T LEARNED THAT YET. 😂",
+       "correct": true,
+       "why": "EXACTLY. That has not been established."
+      }
+     ]
+    },
+    "debrief": {
+     "good": "Section 1 worked ✦",
+     "showed": "Bullish indication occurred and price appears to be correcting within the developing higher-timeframe ICC story. Continuation hasn’t been proven.",
+     "why": "All the context (FVG, liquidity, discount, demand) supports understanding. None of it creates a 1M Dayli ICC entry."
+    },
+    "readPrompt": "So… DO YOU HAVE A 1M DAYLI ICC ENTRY?"
+   }
+  ]
+ },
+ "knowledgeCheck": {
+  "questionCount": 12,
+  "passPct": 0.8,
+  "xp": 0,
+  "shuffleOptions": true,
+  "questionBank": [
+   {
+    "concept": "ICC definition",
+    "question": "What does ICC stand for?",
+    "options": [
+     "Indication, Correction, Continuation",
+     "Impulse, Change, Close",
+     "Indication, Confirmation, Close",
+     "Inside, Correction, Candle"
+    ],
+    "correctIndex": 0,
+    "why": "Indication → Correction → Continuation."
+   },
+   {
+    "concept": "Meaningful indication",
+    "question": "A giant green candle prints inside a messy range. Indication?",
+    "options": [
+     "Yes, it’s huge",
+     "Not necessarily: what did it actually change?",
+     "Yes, if it’s green",
+     "Only with an FVG"
+    ],
+    "correctIndex": 1,
+    "why": "Size isn’t proof. Ask what price proved."
+   },
+   {
+    "concept": "Meaningful indication",
+    "question": "Which provides the most meaningful directional information?",
+    "options": [
+     "Price touches a previous high and stalls",
+     "A liquidity sweep with no progression",
+     "Price progresses beyond a meaningful structural level",
+     "A big candle in chop"
+    ],
+    "correctIndex": 2,
+    "why": "Progression beyond a meaningful reference = new information."
+   },
+   {
+    "concept": "Correction vs reversal",
+    "question": "After bullish indication, three red candles print. The HL is intact. What is this?",
+    "options": [
+     "A reversal",
+     "A correction so far",
+     "A bearish ICC",
+     "An entry"
+    ],
+    "correctIndex": 1,
+    "why": "Moving back, structure intact.",
+    "chart": {
+     "swings": [
+      [
+       30,
+       250
+      ],
+      [
+       110,
+       150
+      ],
+      [
+       180,
+       215
+      ],
+      [
+       290,
+       92
+      ],
+      [
+       370,
+       168
+      ]
+     ],
+     "seed": 51,
+     "hlines": [
+      {
+       "y": 150,
+       "label": "meaningful high",
+       "tone": "muted"
+      }
+     ]
+    }
+   },
+   {
+    "concept": "Correction vs reversal",
+    "question": "What makes a reversal different from a correction?",
+    "options": [
+     "More red candles",
+     "Price changes the information that supported the story",
+     "A bigger candle",
+     "Time"
+    ],
+    "correctIndex": 1,
+    "why": "Reversal = the story changed."
+   },
+   {
+    "concept": "Continuation patience",
+    "question": "Indication ✓, correction ✓, chart frozen. What comes next?",
+    "options": [
+     "Continuation",
+     "Reversal",
+     "Not enough information",
+     "A range"
+    ],
+    "correctIndex": 2,
+    "why": "ICC describes, it doesn’t predict."
+   },
+   {
+    "concept": "Continuation patience",
+    "question": "When can the last C be marked confirmed?",
+    "options": [
+     "When correction ends",
+     "When price provides continuation evidence",
+     "When you expect it",
+     "After three candles"
+    ],
+    "correctIndex": 1,
+    "why": "Continuation must be proven."
+   },
+   {
+    "concept": "Full sequence",
+    "question": "Up, down, up inside a range. ICC?",
+    "options": [
+     "Yes, bullish",
+     "Not enough information: the shape isn’t the method",
+     "Yes, bearish",
+     "Always"
+    ],
+    "correctIndex": 1,
+    "why": "Meaning, not shape.",
+    "chart": {
+     "swings": [
+      [
+       40,
+       180
+      ],
+      [
+       150,
+       140
+      ],
+      [
+       240,
+       178
+      ],
+      [
+       350,
+       136
+      ],
+      [
+       440,
+       176
+      ],
+      [
+       540,
+       140
+      ]
+     ],
+     "seed": 52,
+     "hlines": [
+      {
+       "y": 132,
+       "label": "range high",
+       "tone": "muted"
+      },
+      {
+       "y": 182,
+       "label": "range low",
+       "tone": "muted"
+      }
+     ]
+    }
+   },
+   {
+    "concept": "Nested ICC",
+    "question": "Can the 4H be correcting while the 1H is bullish?",
+    "options": [
+     "No",
+     "Yes: same market, different scale",
+     "Only on Fridays 😂",
+     "Only if the 1M agrees"
+    ],
+    "correctIndex": 1,
+    "why": "Each timeframe keeps its own read."
+   },
+   {
+    "concept": "HTF ICC stage",
+    "question": "Which is the sharper statement?",
+    "options": [
+     "“Market is bearish.”",
+     "“4H is correcting.”",
+     "“Price is down.”",
+     "“It’s red.”"
+    ],
+    "correctIndex": 1,
+    "why": "Name the timeframe and the chapter."
+   },
+   {
+    "concept": "HTF ICC stage",
+    "question": "4H bullish, discount, ICC: correction, objective: external high. What is it?",
+    "options": [
+     "A buy",
+     "A market read",
+     "An entry signal",
+     "A guarantee"
+    ],
+    "correctIndex": 1,
+    "why": "HTF ICC is context."
+   },
+   {
+    "concept": "Structure + ICC",
+    "question": "Which question does ICC answer?",
+    "options": [
+     "What is price building?",
+     "Where is price in the directional sequence?",
+     "Where are the orders?",
+     "Is price cheap?"
+    ],
+    "correctIndex": 1,
+    "why": "Structure: what. ICC: where in the sequence."
+   },
+   {
+    "concept": "Context ≠ requirement",
+    "question": "Clean bullish ICC, no FVG, no sweep. Valid ICC?",
+    "options": [
+     "Invalid",
+     "Still ICC: context is optional",
+     "Needs 4/5 confirmations",
+     "Only in discount"
+    ],
+    "correctIndex": 1,
+    "why": "Context supports, it doesn’t define."
+   },
+   {
+    "concept": "ICC clarity",
+    "question": "Overlapping candles, tiny breaks, random zigzags. Your read?",
+    "options": [
+     "Clear ICC",
+     "Developing",
+     "Unclear: I don’t know yet",
+     "Bullish"
+    ],
+    "correctIndex": 2,
+    "why": "Unclear is a valid read."
+   },
+   {
+    "concept": "ICC clarity",
+    "question": "Indication and correction exist, no continuation yet. Clarity?",
+    "options": [
+     "Clear",
+     "Developing",
+     "Unclear",
+     "Complete"
+    ],
+    "correctIndex": 1,
+    "why": "Some pieces, incomplete."
+   },
+   {
+    "concept": "Framework vs entry model",
+    "question": "A clean 4H ICC is visible. Do you have a Dayli ICC 1M entry?",
+    "options": [
+     "Yes",
+     "No: execution is a separate question with its own rules",
+     "Only with an FVG",
+     "Yes, at the next candle"
+    ],
+    "correctIndex": 1,
+    "why": "Story now. Trigger next."
+   }
+  ],
+  "reviewLessons": {
+   "ICC definition": [
+    "p5",
+    1
+   ],
+   "Meaningful indication": [
+    "p5",
+    2
+   ],
+   "Correction vs reversal": [
+    "p5",
+    3
+   ],
+   "Continuation patience": [
+    "p5",
+    4
+   ],
+   "Full sequence": [
+    "p5",
+    5
+   ],
+   "Nested ICC": [
+    "p5",
+    6
+   ],
+   "HTF ICC stage": [
+    "p5",
+    7
+   ],
+   "Structure + ICC": [
+    "p5",
+    8
+   ],
+   "Context ≠ requirement": [
+    "p5",
+    9
+   ],
+   "ICC clarity": [
+    "p5",
+    10
+   ],
+   "Framework vs entry model": [
+    "p5",
+    1
+   ]
+  }
+ },
+ "checkin": {
+  "eyebrow": "📓 My Section 12 Check-In",
+  "heading": "What clicked? I · C · C",
+  "fields": [
+   {
+    "type": "text",
+    "label": "In your own words, what is ICC?"
+   },
+   {
+    "type": "text",
+    "label": "What’s the job of Indication?"
+   },
+   {
+    "type": "text",
+    "label": "What’s the job of Correction?"
+   },
+   {
+    "type": "text",
+    "label": "Why do we wait for Continuation?"
+   },
+   {
+    "type": "text",
+    "label": "How can ICC exist on more than one timeframe?"
+   },
+   {
+    "type": "text",
+    "label": "What’s the difference between ICC as a price framework and the Dayli ICC entry model?"
+   },
+   {
+    "type": "choice",
+    "label": "Which concept needs another look?",
+    "options": [
+     "What is ICC",
+     "Indication",
+     "Correction",
+     "Continuation",
+     "Full sequence",
+     "Timeframes",
+     "HTF ICC",
+     "ICC + structure",
+     "Context",
+     "Unclear ICC",
+     "I’m good ✨"
+    ]
+   },
+   {
+    "type": "choice",
+    "label": "How confident do you feel reading the ICC story?",
+    "profile": "confidence",
+    "options": [
+     "Still shaky",
+     "Getting there",
+     "Pretty confident",
+     "I see it everywhere 👀"
+    ]
+   },
+   {
+    "type": "text",
+    "share": true,
+    "rows": 4,
+    "min": 15,
+    "placeholder": "Type it how YOU understand it...",
+    "label": "💭 Explain it to an AGHF girl: your friend says, “I thought Dayli ICC was just that 1-minute entry pattern.” What do you tell her?",
+    "concepts": [
+     {
+      "label": "ICC is broader price behavior",
+      "any": [
+       "story",
+       "behavior",
+       "framework",
+       "broader",
+       "organiz",
+       "any timeframe",
+       "every timeframe"
+      ]
+     },
+     {
+      "label": "Indication",
+      "any": [
+       "indication"
+      ]
+     },
+     {
+      "label": "Correction",
+      "any": [
+       "correction",
+       "pullback",
+       "pull back"
+      ]
+     },
+     {
+      "label": "Continuation",
+      "any": [
+       "continuation",
+       "continue"
+      ]
+     },
+     {
+      "label": "Across timeframes",
+      "any": [
+       "timeframe",
+       "4h",
+       "1h",
+       "time frame"
+      ]
+     },
+     {
+      "label": "1M model = specific execution rules",
+      "any": [
+       "rule",
+       "execution",
+       "entry model",
+       "1m",
+       "1-minute",
+       "one minute",
+       "1 minute"
+      ]
+     }
+    ],
+    "conceptsNote": "No exact wording needed. These are the ideas a great answer usually touches."
+   }
+  ],
+  "saveLabel": "Save to My Academy Notes →",
+  "savedLabel": "✓ Saved to My Academy Notes"
+ },
+ "complete": {
+  "eyebrow": "🎉 Section complete",
+  "heading": "✦ YOU CAN READ THE ICC STORY.",
+  "badge": "ICC Across the Market: Complete",
+  "gp": 750,
+  "cinema": {
+   "type": "icc_cinema",
+   "chart": {
+    "swings": [
+     [
+      30,
+      250
+     ],
+     [
+      110,
+      150
+     ],
+     [
+      180,
+      215
+     ],
+     [
+      290,
+      92
+     ],
+     [
+      370,
+      168
+     ],
+     [
+      470,
+      60
+     ],
+     [
+      520,
+      78
+     ]
+    ],
+    "seed": 7,
+    "hlines": [
+     {
+      "y": 150,
+      "label": "meaningful high",
+      "tone": "muted"
+     }
+    ]
+   },
+   "segments": [
+    {
+     "key": "indication",
+     "from": 2,
+     "to": 3
+    },
+    {
+     "key": "correction",
+     "from": 3,
+     "to": 4
+    },
+    {
+     "key": "continuation",
+     "from": 4,
+     "to": 5
+    }
+   ],
+   "dir": "bullish",
+   "question": "Can you still see the story?",
+   "mark": "✦ YOU CAN READ THE ICC STORY."
+  },
+  "stats": [
+   {
+    "label": "Lessons",
+    "value": "{lessons} ✓"
+   },
+   {
+    "label": "ICC Story Builder",
+    "value": "✓"
+   },
+   {
+    "label": "Knowledge Check",
+    "value": "{kc}% ✓"
+   },
+   {
+    "label": "Academy Notes",
+    "value": "Saved ✓"
+   }
+  ],
+  "phase": {
+   "title": "✦ Phase 5: The Dayli ICC Method™",
+   "pct": 33,
+   "sections": [
+    {
+     "icon": "✓",
+     "label": "Section 12: ICC Across the Market"
+    },
+    {
+     "icon": "🔓",
+     "label": "Section 13: The Dayli ICC 1-Minute Entry Model™"
+    },
+    {
+     "icon": "🔒",
+     "label": "Section 14: Making the Timeframes Work Together"
+    }
+   ]
+  },
+  "nextUp": {
+   "title": "🔓 The Dayli ICC 1-Minute Entry Model™",
+   "cta": "UNLOCK THE 1M MODEL →",
+   "lines": [
+    "You understand the ICC story.",
+    "<strong>NOW WE’RE GOING TO MAKE IT EXECUTABLE.</strong>"
+   ],
+   "model": {
+    "pil": "What level am I watching?",
+    "indication": "What exactly must price prove?",
+    "correction": "What must price do next?",
+    "continuation": "How does price confirm the sequence?",
+    "retest": "Where does price return?",
+    "entry": "When do I actually act?"
+   },
+   "questions": [
+    "What is the PIL?",
+    "Which swing becomes the PIL?",
+    "What exactly counts as Indication?",
+    "Why must the 1M candle CLOSE through the level?",
+    "What qualifies as Correction?",
+    "What qualifies as Continuation?",
+    "What is the Retest?",
+    "Where is the actual entry?",
+    "When does the setup reset?",
+    "When does a new swing take priority?",
+    "When is there simply no trade?"
+   ],
+   "after": "PIL → INDICATION → CORRECTION → CONTINUATION → RETEST → ENTRY"
+  }
+ }
+}

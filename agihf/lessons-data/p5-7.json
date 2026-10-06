@@ -1,0 +1,414 @@
+{
+ "phase": "p5",
+ "section": "s12",
+ "lessonNumber": 7,
+ "title": "Higher-Timeframe ICC",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 75,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "What chapter of the story are we in?",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Add an ICC status to your 4H Read the Room, and keep it a market read, not a buy.",
+  "missionQuestion": "What chapter of the story are we in?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "Your workspace, upgraded",
+   "heading": "4H · Read the Room",
+   "body": "",
+   "beats": [
+    {
+     "icon": "▦",
+     "title": "Structure",
+     "line": "Already on your board."
+    },
+    {
+     "icon": "↕",
+     "title": "Range · Location",
+     "line": "Already on your board."
+    },
+    {
+     "icon": "◎",
+     "title": "Objective",
+     "line": "Already on your board."
+    },
+    {
+     "icon": "I·C·C",
+     "title": "ICC status",
+     "line": "New. Where is price in the sequence?"
+    }
+   ],
+   "punch": "Same workspace. One new row."
+  },
+  {
+   "type": "icc_read",
+   "kicker": "HTF ICC status",
+   "title": "Read the 4H story",
+   "tf": "4H",
+   "save": "p5-L7",
+   "handoff": true,
+   "chart": {
+    "swings": [
+     [
+      30,
+      270
+     ],
+     [
+      110,
+      175
+     ],
+     [
+      180,
+      230
+     ],
+     [
+      300,
+      70
+     ],
+     [
+      400,
+      185
+     ],
+     [
+      440,
+      168
+     ]
+    ],
+    "seed": 5,
+    "hlines": [
+     {
+      "y": 270,
+      "label": "external low",
+      "tone": "muted",
+      "id": "xl"
+     },
+     {
+      "y": 70,
+      "label": "external high",
+      "tone": "muted",
+      "id": "xh"
+     },
+     {
+      "y": 170,
+      "label": "equilibrium",
+      "tone": "gold",
+      "id": "eq"
+     }
+    ]
+   },
+   "segments": [
+    {
+     "key": "indication",
+     "from": 2,
+     "to": 3
+    },
+    {
+     "key": "correction",
+     "from": 3,
+     "to": 4
+    }
+   ],
+   "dir": "bullish",
+   "rows": [
+    {
+     "key": "structure",
+     "label": "4H structure"
+    },
+    {
+     "key": "location",
+     "label": "4H location"
+    },
+    {
+     "key": "objective",
+     "label": "Potential objective"
+    }
+   ],
+   "steps": [
+    {
+     "kind": "ask",
+     "ask": {
+      "prompt": "4H structure?",
+      "options": [
+       {
+        "label": "Bullish",
+        "correct": true,
+        "why": "Higher high above the previous high, higher low held."
+       },
+       {
+        "label": "Bearish"
+       },
+       {
+        "label": "Unclear"
+       }
+      ]
+     },
+     "set": {
+      "structure": "Bullish",
+      "direction": "bullish"
+     }
+    },
+    {
+     "kind": "ask",
+     "ask": {
+      "prompt": "4H location?",
+      "options": [
+       {
+        "label": "Premium"
+       },
+       {
+        "label": "Discount",
+        "correct": true,
+        "why": "Price is back below equilibrium of the range."
+       },
+       {
+        "label": "At the external high"
+       }
+      ]
+     },
+     "set": {
+      "location": "Discount"
+     }
+    },
+    {
+     "kind": "stage",
+     "prompt": "4H ICC status?",
+     "answer": "correction",
+     "choices": [
+      "waiting",
+      "indication",
+      "correction",
+      "continuation",
+      "unclear"
+     ],
+     "why": "Bullish indication happened. Price is moving back. Continuation hasn’t been proven.",
+     "reveal": "correction"
+    },
+    {
+     "kind": "clarity",
+     "prompt": "Sequence quality?",
+     "answer": "developing",
+     "why": "Some pieces exist. The sequence is incomplete."
+    },
+    {
+     "kind": "ask",
+     "ask": {
+      "prompt": "Potential objective?",
+      "options": [
+       {
+        "label": "External high",
+        "correct": true,
+        "why": "A potential objective. Never guaranteed."
+       },
+       {
+        "label": "Equilibrium"
+       },
+       {
+        "label": "External low"
+       }
+      ]
+     },
+     "set": {
+      "objective": "External high"
+     }
+    }
+   ],
+   "foot": "This is a market read. Not a buy.",
+   "final": {
+    "prompt": "So… BUY?",
+    "options": [
+     {
+      "label": "Yes, bullish, discount, correcting",
+      "feedback": "You read the story correctly. Execution is a different question.",
+      "mistake": "icc-as-entry"
+     },
+     {
+      "label": "No. It’s a market read.",
+      "correct": true,
+      "why": "Exactly. HTF ICC is context."
+     }
+    ]
+   },
+   "principle": "WHAT CHAPTER OF THE STORY ARE WE IN?"
+  },
+  {
+   "type": "icc_classify",
+   "kicker": "ICCStatusCard",
+   "title": "Name the 4H ICC status",
+   "track": "htf-icc-stage",
+   "options": [
+    {
+     "key": "waiting",
+     "label": "Waiting for indication"
+    },
+    {
+     "key": "indication",
+     "label": "Indication"
+    },
+    {
+     "key": "correction",
+     "label": "Correction"
+    },
+    {
+     "key": "continuation",
+     "label": "Continuation developing"
+    }
+   ],
+   "items": [
+    {
+     "label": "4H · A",
+     "chart": {
+      "swings": [
+       [
+        30,
+        200
+       ],
+       [
+        120,
+        160
+       ],
+       [
+        200,
+        210
+       ],
+       [
+        300,
+        165
+       ],
+       [
+        380,
+        205
+       ]
+      ],
+      "seed": 31
+     },
+     "answer": "waiting",
+     "why": "Still contained. No indication yet."
+    },
+    {
+     "label": "4H · B",
+     "chart": {
+      "swings": [
+       [
+        30,
+        260
+       ],
+       [
+        130,
+        170
+       ],
+       [
+        200,
+        220
+       ],
+       [
+        330,
+        70
+       ],
+       [
+        360,
+        90
+       ]
+      ],
+      "seed": 32
+     },
+     "answer": "indication",
+     "why": "Just progressed beyond the high. Nothing after it yet."
+    },
+    {
+     "label": "4H · C",
+     "chart": {
+      "swings": [
+       [
+        30,
+        270
+       ],
+       [
+        110,
+        175
+       ],
+       [
+        180,
+        230
+       ],
+       [
+        300,
+        70
+       ],
+       [
+        400,
+        185
+       ],
+       [
+        440,
+        168
+       ]
+      ],
+      "seed": 33
+     },
+     "answer": "correction",
+     "why": "Moving back after the indication, structure intact."
+    },
+    {
+     "label": "4H · D",
+     "chart": {
+      "swings": [
+       [
+        30,
+        270
+       ],
+       [
+        110,
+        175
+       ],
+       [
+        180,
+        230
+       ],
+       [
+        300,
+        90
+       ],
+       [
+        380,
+        170
+       ],
+       [
+        450,
+        110
+       ]
+      ],
+      "seed": 34
+     },
+     "answer": "continuation",
+     "why": "Pushing back up, not beyond the indication high yet: developing, not confirmed."
+    }
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "4H structure bullish. Discount. ICC: correction. Objective: external high. <em>That’s not a buy. That’s a market read.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why isn’t a higher-timeframe ICC read an entry?",
+   "modelAnswer": "Because it’s context: it tells me what chapter the story is in. Execution is a separate question with its own rules on the 1M."
+  }
+ ],
+ "takeaways": [
+  "Add ICC status to your 4H read.",
+  "Stage and clarity are separate.",
+  "HTF ICC is context, not a buy."
+ ],
+ "remember": "What chapter of the story are we in?"
+}

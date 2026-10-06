@@ -1,0 +1,342 @@
+{
+ "phase": "p5",
+ "section": "s13",
+ "lessonNumber": 24,
+ "title": "When There Is No Trade",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Has price actually earned my entry?",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Walk the no-trade decision tree, and refuse to let beautiful context override missing execution.",
+  "missionQuestion": "Has price actually earned my entry?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "exec_tree",
+   "kicker": "The decision tree",
+   "title": "Walk it on this chart",
+   "body": "Answer each question for the chart above it.",
+   "scenario": {
+    "bars": [
+     {
+      "o": 20998.25,
+      "h": 20999.5,
+      "l": 20996.0,
+      "c": 20996.25
+     },
+     {
+      "o": 20996.25,
+      "h": 20997.75,
+      "l": 20993.0,
+      "c": 20994.25
+     },
+     {
+      "o": 20994.25,
+      "h": 20994.75,
+      "l": 20990.75,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20994.5,
+      "l": 20989.75,
+      "c": 20994.25
+     },
+     {
+      "o": 20994.25,
+      "h": 20999.75,
+      "l": 20993.25,
+      "c": 20998.5
+     },
+     {
+      "o": 20998.5,
+      "h": 21002.75,
+      "l": 20997.75,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21006.75,
+      "l": 21000.5,
+      "c": 21002.75,
+      "path": [
+       21001.25,
+       21006.75,
+       21002.75
+      ]
+     },
+     {
+      "o": 21002.75,
+      "h": 21003.5,
+      "l": 20999.0,
+      "c": 21000.25
+     },
+     {
+      "o": 21000.25,
+      "h": 21006.75,
+      "l": 20999.0,
+      "c": 21001.75,
+      "path": [
+       21000.25,
+       21006.75,
+       21001.75
+      ]
+     },
+     {
+      "o": 21001.75,
+      "h": 21003.25,
+      "l": 21000.25,
+      "c": 21001.5
+     },
+     {
+      "o": 21001.5,
+      "h": 21002.0,
+      "l": 21000.0,
+      "c": 21001.0
+     },
+     {
+      "o": 21001.0,
+      "h": 21001.5,
+      "l": 20997.75,
+      "c": 20999.0
+     },
+     {
+      "o": 20999.0,
+      "h": 21000.5,
+      "l": 20997.0,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 20998.75,
+      "l": 20996.0,
+      "c": 20997.25
+     }
+    ],
+    "pil": 21004.25
+   },
+   "answers": [
+    "yes",
+    "no",
+    "no",
+    "no",
+    "no",
+    "no"
+   ],
+   "miss": {
+    "1": "Look again: only wicks went through. No candle CLOSED above the PIL."
+   },
+   "stopWhy": "No valid indication close. Has price earned my entry? No. WAIT.",
+   "disciplineBonus": true,
+   "principle": "HAS PRICE ACTUALLY EARNED MY ENTRY? If no: WAIT."
+  },
+  {
+   "type": "exec_sim",
+   "kicker": "Context doesn’t override execution",
+   "title": "Beautiful narrative. No 1M ICC.",
+   "goal": "pass",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20986.5,
+      "l": 20980.75,
+      "c": 20985.25
+     },
+     {
+      "o": 20985.25,
+      "h": 20991.5,
+      "l": 20984.5,
+      "c": 20990.0
+     },
+     {
+      "o": 20990.0,
+      "h": 20996.0,
+      "l": 20989.5,
+      "c": 20994.5
+     },
+     {
+      "o": 20994.5,
+      "h": 20998.5,
+      "l": 20994.0,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.5,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.0,
+      "l": 20997.5,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 20999.5,
+      "l": 20996.0,
+      "c": 20996.25
+     },
+     {
+      "o": 20996.25,
+      "h": 20997.75,
+      "l": 20993.0,
+      "c": 20994.25
+     },
+     {
+      "o": 20994.25,
+      "h": 20994.75,
+      "l": 20990.75,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20994.5,
+      "l": 20989.75,
+      "c": 20994.25
+     },
+     {
+      "o": 20994.25,
+      "h": 20999.75,
+      "l": 20993.25,
+      "c": 20998.5
+     },
+     {
+      "o": 20998.5,
+      "h": 21002.75,
+      "l": 20997.75,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21006.75,
+      "l": 21000.5,
+      "c": 21002.75,
+      "path": [
+       21001.25,
+       21006.75,
+       21002.75
+      ]
+     },
+     {
+      "o": 21002.75,
+      "h": 21003.5,
+      "l": 20999.0,
+      "c": 21000.25
+     },
+     {
+      "o": 21000.25,
+      "h": 21006.75,
+      "l": 20999.0,
+      "c": 21001.75,
+      "path": [
+       21000.25,
+       21006.75,
+       21001.75
+      ]
+     },
+     {
+      "o": 21001.75,
+      "h": 21003.25,
+      "l": 21000.25,
+      "c": 21001.5
+     },
+     {
+      "o": 21001.5,
+      "h": 21002.0,
+      "l": 21000.0,
+      "c": 21001.0
+     },
+     {
+      "o": 21001.0,
+      "h": 21001.5,
+      "l": 20997.75,
+      "c": 20999.0
+     },
+     {
+      "o": 20999.0,
+      "h": 21000.5,
+      "l": 20997.0,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 20998.75,
+      "l": 20996.0,
+      "c": 20997.25
+     }
+    ],
+    "pil": 21004.25,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish",
+      "ok": true
+     },
+     {
+      "label": "1H",
+      "value": "Bullish",
+      "ok": true
+     },
+     {
+      "label": "Location",
+      "value": "Discount",
+      "ok": true
+     },
+     {
+      "label": "Liquidity",
+      "value": "Swept",
+      "ok": true
+     },
+     {
+      "label": "FVG",
+      "value": "Present",
+      "ok": true
+     },
+     {
+      "label": "1M Dayli ICC",
+      "value": "Not formed",
+      "ok": false
+     }
+    ],
+    "structure": "Price keeps wicking above the PIL and closing back below.",
+    "start": 14
+   },
+   "passOk": true,
+   "passText": "No trade",
+   "passWhy": "<strong>NO TRADE ✓</strong> 4H ✓ 1H ✓ location ✓ liquidity ✓ FVG ✓, and still no 1M Dayli ICC. Context doesn’t override execution.",
+   "intro": "Every context box is ticked. Look at the 1M."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Context doesn’t override execution. <em>Has price actually earned my entry?</em> If not: wait.",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why can’t perfect context replace the 1M Dayli ICC?",
+   "modelAnswer": "Because context only makes me interested. Execution needs price to earn every step on the 1M. Without that, there is no entry, no matter how good the story looks."
+  }
+ ],
+ "takeaways": [
+  "Walk the tree.",
+  "Context ≠ execution.",
+  "No earned entry = no trade."
+ ],
+ "remember": "No trade is a decision too."
+}
