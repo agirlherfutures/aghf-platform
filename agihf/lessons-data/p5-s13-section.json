@@ -79,6 +79,7 @@
    {
     "type": "exec_sim",
     "name": "Pick the PIL",
+    "brief": "Choose the structurally relevant PIL.",
     "concept": "PIL selection",
     "goal": "pil",
     "scenario": {
@@ -338,6 +339,7 @@
    {
     "type": "exec_sim",
     "name": "Wick doesn’t count",
+    "brief": "Price wicks through. Wait for a valid close.",
     "concept": "Candle-close discipline",
     "goal": "indication",
     "scenario": {
@@ -554,6 +556,7 @@
    {
     "type": "exec_sim",
     "name": "Find the correction",
+    "brief": "Wait for a valid close back through.",
     "concept": "Correction recognition",
     "goal": "correction",
     "scenario": {
@@ -767,6 +770,7 @@
    {
     "type": "exec_sim",
     "name": "Wait for continuation",
+    "brief": "I ✓ C ✓ C ○. Don’t anticipate.",
     "concept": "Continuation patience",
     "goal": "continuation",
     "scenario": {
@@ -987,6 +991,7 @@
    {
     "type": "exec_sim",
     "name": "Build the full sequence",
+    "brief": "PIL · I · C · C · Retest · Entry.",
     "concept": "Full sequence",
     "goal": "entry",
     "scenario": {
@@ -1185,6 +1190,7 @@
    {
     "type": "exec_sim",
     "name": "First retest",
+    "brief": "Identify the first valid retest.",
     "concept": "Retest recognition",
     "goal": "retest",
     "scenario": {
@@ -1441,6 +1447,7 @@
    {
     "type": "exec_sim",
     "name": "Don’t chase",
+    "brief": "ICC completes. Price leaves. No retest.",
     "concept": "No-chase discipline",
     "goal": "pass",
     "scenario": {
@@ -1642,6 +1649,7 @@
    {
     "type": "exec_sim",
     "name": "New swing, new information",
+    "brief": "A new relevant swing develops.",
     "concept": "Setup reset recognition",
     "goal": "decision",
     "scenario": {
@@ -2311,6 +2319,7 @@
    {
     "type": "exec_sim",
     "name": "Bullish ICC",
+    "brief": "Unmarked bullish chart. PIL, I, C, C, retest, entry.",
     "concept": "Full sequence",
     "goal": "entry",
     "scenario": {
@@ -2530,6 +2539,7 @@
    {
     "type": "exec_sim",
     "name": "Bearish ICC",
+    "brief": "The mirror. Same rules.",
     "concept": "Full sequence",
     "goal": "entry",
     "scenario": {
@@ -2749,6 +2759,7 @@
    {
     "type": "exec_sim",
     "name": "The almost trap",
+    "brief": "I ✓ C ✓ … and then a wick.",
     "concept": "Candle-close discipline",
     "goal": "pass",
     "scenario": {
@@ -2935,6 +2946,7 @@
    {
     "type": "exec_sim",
     "name": "Context isn’t entry",
+    "brief": "Every context box ✓. Look at the 1M.",
     "concept": "No-trade discipline",
     "goal": "pass",
     "scenario": {
@@ -3115,6 +3127,7 @@
    {
     "type": "exec_sim",
     "name": "FINAL BOSS: Execute the Dayli ICC",
+    "brief": "HTF context, then a blank 1M chart, one candle at a time.",
     "concept": "Full execution",
     "goal": "entry",
     "scenario": {

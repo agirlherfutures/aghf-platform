@@ -419,3 +419,5 @@
 .ex-structline { fill: none; stroke: var(--icc-ink); stroke-width: 1.6; stroke-dasharray: 5 4; opacity: .55; }
 .ex-cmp { stroke: var(--purple); stroke-width: 1.2; stroke-dasharray: 2 4; }
 .ex-cmp-t { fill: #5E56B8; font: 800 9px 'DM Sans', sans-serif; paint-order: stroke; stroke: #fff; stroke-width: 3px; }
+.sw-badge-unlock h3 { color: var(--icc-ink); }
+.sw-badge-unlock p { color: var(--muted); }

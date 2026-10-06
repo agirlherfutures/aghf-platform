@@ -297,7 +297,7 @@ function renderGame(slide, game, onAllDone, helpers) {
           </div>
         </div>
         <div class="sg-level"><div class="sg-level-badge">${idx + 1}</div><div><div class="sg-level-name">Level ${idx + 1}${level.concept ? ` · ${level.concept}` : ''}</div><div class="sg-level-title">${level.name}</div></div></div>
-        ${level.goal ? `<div class="sg-goal">${level.goal}</div>` : ''}
+        ${(level.brief || (level.type === 'exec_sim' ? '' : level.goal)) ? `<div class="sg-goal">${level.brief || level.goal}</div>` : ''}
         <div class="sg-body"></div>
         <button type="button" class="sg-restart">↻ Restart this level</button>
       </div>`;

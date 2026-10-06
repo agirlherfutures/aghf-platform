@@ -56,6 +56,10 @@ function continueBtn(host, satisfy, label = 'Continue →') {
  *   tag(i, text, tone) a stage tag over bar i (I, C, C, RETEST, ENTRY)
  */
 export function mountExecChart(container, cfg) {
+  // Phones get a narrower, taller chart that scrolls with the latest candles.
+  const compact = cfg.compact ?? (container.clientWidth > 0 && container.clientWidth < 560);
+  const W = compact ? 420 : 700;
+  const PAD_R = compact ? 78 : 92;
   const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, class: 'ex-svg', role: 'img', 'aria-label': cfg.label || '1-minute chart' });
   container.innerHTML = '';
   container.appendChild(svg);
@@ -66,21 +70,24 @@ export function mountExecChart(container, cfg) {
   const markG = el('g', { class: 'ex-marks' }, svg);
   const tagG = el('g', { class: 'ex-tags' }, svg);
   const live = el('g', { class: 'ex-live' }, svg);
-  const total = Math.max(cfg.total || cfg.bars.length, 18);
+  const total = compact ? Math.min(Math.max(cfg.total || cfg.bars.length, 18), 22) : Math.max(cfg.total || cfg.bars.length, 18);
   const step = (W - PAD_L - PAD_R) / total;
-  const X = (i) => PAD_L + step * (i + 0.5);
+  let off = 0; // first bar index in view (compact charts scroll)
+  const X = (i) => PAD_L + step * (i - off + 0.5);
+  const inView = (i) => i >= off;
   let lo = 0, hi = 1, pil = cfg.pil ?? null, preview = null;
   let shownK = 0;
   const Y = (p) => 18 + (hi - p) / (hi - lo) * (H - 36);
 
   // The price scale fits what's visible (plus the PIL): it never hints at future candles.
   function fit(k, formingBar) {
-    const vis = cfg.bars.slice(0, k);
+    off = compact ? Math.max(0, k + 3 - total) : 0;
+    const vis = cfg.bars.slice(off, k);
     if (formingBar) vis.push(formingBar);
     const ps = vis.flatMap((b) => [b.h, b.l]);
     if (pil != null) ps.push(pil);
     if (preview != null) ps.push(preview);
-    (cfg.markersList || []).forEach((m) => { if (m.at < k) ps.push(m.price); });
+    (cfg.markersList || []).forEach((m) => { if (m.at < k && m.at >= off) ps.push(m.price); });
     if (!ps.length) ps.push(cfg.bars[0].o);
     let a = Math.min(...ps), b = Math.max(...ps);
     const pad = Math.max((b - a) * 0.18, 2);
@@ -121,7 +128,7 @@ export function mountExecChart(container, cfg) {
       grid.innerHTML = '';
       [0.25, 0.5, 0.75].forEach((f) => el('line', { x1: PAD_L, x2: W - PAD_R, y1: 18 + f * (H - 36), y2: 18 + f * (H - 36), class: 'ex-gl' }, grid));
       candG.innerHTML = '';
-      for (let i = 0; i < k; i++) candle(candG, i, cfg.bars[i], { dim: cfg.dimBefore != null && i < cfg.dimBefore });
+      for (let i = off; i < k; i++) candle(candG, i, cfg.bars[i], { dim: cfg.dimBefore != null && i < cfg.dimBefore });
       live.innerHTML = '';
       if (forming?.bar) {
         candle(candG, k, forming.bar, { forming: true });
@@ -144,7 +151,7 @@ export function mountExecChart(container, cfg) {
     redrawMarks() {
       markG.innerHTML = '';
       api._marks.forEach((m) => {
-        if (m.at >= shownK) return;
+        if (m.at >= shownK || !inView(m.at)) return;
         const b = cfg.bars[m.at];
         const isHigh = m.price >= Math.max(b.o, b.c);
         const y = Y(m.price) + (isHigh ? -16 : 16);
@@ -171,7 +178,7 @@ export function mountExecChart(container, cfg) {
     redrawTags() {
       tagG.innerHTML = '';
       api._tags.forEach((t, n) => {
-        if (t.i >= shownK + 1) return;
+        if (t.i >= shownK + 1 || !inView(t.i)) return;
         const b = cfg.bars[t.i];
         if (!b) return;
         const above = t.where === 'above' || (t.where === 'auto' && (n % 2 === 0));
@@ -190,20 +197,22 @@ export function mountExecChart(container, cfg) {
     redrawViews() {
       viewG.innerHTML = '';
       const bars = cfg.bars.slice(0, shownK);
+      // pivots before the view are skipped below
       const piv = [];
       for (let i = 2; i < bars.length - 2; i++) {
         const b = bars[i], win = bars.slice(i - 2, i + 3);
         if (b.h >= Math.max(...win.map((x) => x.h))) piv.push({ i, p: b.h, hi: true });
         else if (b.l <= Math.min(...win.map((x) => x.l))) piv.push({ i, p: b.l, hi: false });
       }
-      if (api._views.swings) piv.forEach((v) => el('circle', { cx: X(v.i), cy: Y(v.p), r: 3.5, class: `ex-piv ${v.hi ? 'hi' : 'lo'}` }, viewG));
-      if (api._views.structure && piv.length > 1) {
+      const pv = piv.filter((v) => inView(v.i));
+      if (api._views.swings) pv.forEach((v) => el('circle', { cx: X(v.i), cy: Y(v.p), r: 3.5, class: `ex-piv ${v.hi ? 'hi' : 'lo'}` }, viewG));
+      if (api._views.structure && pv.length > 1) {
         const pts = [];
-        piv.forEach((v) => { const lastP = pts[pts.length - 1]; if (lastP && lastP.hi === v.hi) { if ((v.hi && v.p > lastP.p) || (!v.hi && v.p < lastP.p)) pts[pts.length - 1] = v; } else pts.push(v); });
+        pv.forEach((v) => { const lastP = pts[pts.length - 1]; if (lastP && lastP.hi === v.hi) { if ((v.hi && v.p > lastP.p) || (!v.hi && v.p < lastP.p)) pts[pts.length - 1] = v; } else pts.push(v); });
         el('polyline', { points: pts.map((v) => `${X(v.i)},${Y(v.p)}`).join(' '), class: 'ex-structline' }, viewG);
       }
       if (api._views.compare) api._marks.forEach((m) => {
-        if (m.at >= shownK) return;
+        if (m.at >= shownK || !inView(m.at)) return;
         el('line', { x1: X(m.at), x2: W - PAD_R, y1: Y(m.price), y2: Y(m.price), class: 'ex-cmp' }, viewG);
         const t = el('text', { x: W - PAD_R - 4, y: Y(m.price) - 4, 'text-anchor': 'end', class: 'ex-cmp-t' }, viewG);
         t.textContent = `${m.label} · ${fmt(m.price)}`;
@@ -220,6 +229,7 @@ function barPath(b) {
   return b.c >= b.o ? [b.o, b.l, b.h, b.c] : [b.o, b.h, b.l, b.c];
 }
 function partialBar(b, f) {
+  f = Math.max(0, Math.min(1, f || 0));
   const path = barPath(b);
   const segs = path.length - 1, pos = Math.min(segs, f * segs), k = Math.floor(pos), r = pos - k;
   const price = k >= segs ? path[segs] : path[k] + (path[k + 1] - path[k]) * r;
@@ -512,7 +522,8 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
     forming = { f: 0, label: 'OPEN · 0:59' };
     const tick = (now) => {
       if (!card.isConnected) { forming = null; stopPlay(); return; }
-      const f = Math.min(1, (now - t0) / dur);
+      // rAF timestamps can land just before t0: keep progress in 0..1.
+      const f = Math.max(0, Math.min(1, (now - t0) / dur));
       forming.f = f;
       forming.label = `OPEN · 0:${String(Math.max(0, Math.round(59 * (1 - f)))).padStart(2, '0')}`;
       if (pz && f >= pz.intrabar) { firedPauses.add(pz); refresh(); stopPlay(); pauseAt(pz, () => finishBar(auto)); return; }
