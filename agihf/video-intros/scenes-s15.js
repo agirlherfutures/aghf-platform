@@ -1191,6 +1191,139 @@
     },
   });
 
+  /* ================= Lesson 8: When the Best Entry Is No Entry ================= */
+  Object.assign(LIVE, {
+    // A batter takes three pitches outside the zone: PASS (PIL unclear), WAIT (no indication), NO TRADE (no retest). No swing, perfect at-bat.
+    's15-batter': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="360" width="1920" height="640" fill="#EEF6EA" opacity=".6"/>` + cloud(700 + (t * 10) % 200, 420, 0.6);
+      const fk = ease(seg(t, T.field - 0.2, T.field + 0.8));
+      // Outfield wall + grass + dirt.
+      let fd = `<rect x="0" y="600" width="1920" height="60" fill="${DK.teal}"/>${[0, 1, 2, 3, 4, 5, 6, 7].map(i => `<rect x="${60 + i * 240}" y="612" width="120" height="36" rx="6" fill="${C.tealL}" opacity=".5"/>`).join('')}
+        <rect x="0" y="660" width="1920" height="420" fill="#BFE3B3"/>${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => `<rect x="${i * 192}" y="660" width="96" height="420" fill="#B2DCA5" opacity=".6"/>`).join('')}
+        <ellipse cx="1330" cy="960" rx="260" ry="50" fill="#E3BE93"/><ellipse cx="430" cy="990" rx="380" ry="70" fill="#E3BE93"/><path d="M705,990 l30,-14 l30,14 l-30,14 Z" fill="#fff"/>`;
+      out += fade(fk, fd);
+      // Strike zone.
+      const zk = pop(t, T.field + 0.6, 0.6);
+      out += scaleAt(735, 760, zk, `<rect x="660" y="640" width="150" height="190" rx="10" fill="${C.teal}" opacity=".12" stroke="${DK.teal}" stroke-width="4" stroke-dasharray="12 8"/>`);
+      out += pill(735, 610, 'the model', DK.teal, zk, 20);
+      // Scoreboard of outputs.
+      const sb = pop(t, T.field + 0.9, 0.6);
+      if (sb > 0) {
+        let b = `<rect x="1460" y="380" width="420" height="230" rx="18" fill="${C.dark}"/>${txt(1670, 420, 'OUTPUT', 20, C.gold, { ls: 4 })}`;
+        const rows = [['PASS', 'PIL unclear', C.pinkL], ['WAIT', 'no indication', C.gold], ['NO TRADE', 'no retest', C.purpleL]];
+        rows.forEach(([a, b2, col], i) => { const k = pop(t, T.pitches[i] + 1.1, 0.5); if (k > 0) b += fade(k, `${txt(1490, 470 + i * 48, a, 24, col, { a: 'start' })}${txt(1850, 470 + i * 48, b2, 22, '#fff', { a: 'end', w: 700 })}`); });
+        out += scaleAt(1670, 495, sb, b);
+      }
+      // Pitches.
+      const PATH = [[[1290, 740], [800, 540], [390, 690]], [[1290, 740], [800, 960], [390, 930]], [[1290, 740], [900, 1010], [390, 890]]];
+      let mittY = 830;
+      T.pitches.forEach((p0, i) => {
+        if (t < p0 + 0.3 || t > p0 + 3.6) return;
+        const k = seg(t, p0 + 0.3, p0 + 1.2), [a, m, b] = PATH[i];
+        const x = (1 - k) * (1 - k) * a[0] + 2 * (1 - k) * k * m[0] + k * k * b[0], y = (1 - k) * (1 - k) * a[1] + 2 * (1 - k) * k * m[1] + k * k * b[1];
+        if (k >= 1) mittY = b[1];
+        else mittY = lerp(830, b[1], k);
+        out += `<g transform="translate(${f1(x)},${f1(y)}) rotate(${f1(t * 600)})"><circle r="18" fill="#fff" stroke="#E2D6E8" stroke-width="2"/><path d="M-8,-14 Q-2,0 -8,14 M8,-14 Q2,0 8,14" stroke="${C.pink}" stroke-width="2.5" fill="none"/></g>`;
+        if (k < 1) out += `<line x1="${f1(x + 30)}" y1="${f1(y)}" x2="${f1(x + 90)}" y2="${f1(y)}" stroke="#fff" stroke-width="4" opacity=".6"/>`;
+        out += pill(735, 520, ['PASS · PIL unclear', 'WAIT · no indication', 'NO TRADE · no retest'][i], [C.pink, DK.peach, C.purple][i], between(t, p0 + 1.1, p0 + 3.4), 24);
+      });
+      // Pitcher on the mound.
+      const pc = { x: 1330, y: 950, scale: 0.9, look: A.LOOKS.c, seed: 4, flip: true, at: T.field + 0.4, hat: 'cap' };
+      const wind = Math.max(0, ...T.pitches.map(p => t > p - 0.6 && t < p + 0.6 ? 1 - Math.abs(t - p - 0.1) / 0.6 : 0));
+      pc.frontArm = { a1: lerp(110, -150, wind), a2: lerp(90, -170, wind) };
+      out += who(t, pc);
+      // Catcher dog with a mitt, umpire owl behind.
+      out += crit(t, 'owl', { x: 170, y: 990, scale: 0.9, seed: 7, at: T.field + 1, talk: ctx.talking && t > T.final && t < T.final + 1.4 });
+      out += crit(t, 'dog', { x: 300, y: 990, scale: 0.9, seed: 2, at: T.field + 0.8, tongue: true, hop: mittY < 780 ? 6 : 0, hopH: 30 });
+      if (pop(t, T.field + 0.8) >= 1) out += `<g transform="translate(390,${f1(mittY + Math.sin(t * 3) * 3)})"><ellipse rx="34" ry="30" fill="#B86E12"/><ellipse rx="20" ry="16" fill="#E08E2E"/></g>`;
+      // Batter: bat ready, never swings.
+      const bt = { x: 560, y: 990, scale: 0.95, look: A.LOOKS.b, seed: 5, at: T.field + 0.5, hat: 'cap', talk: ctx.talking && t > T.final && t < T.final + 2.4 };
+      bt.frontArm = { a1: -110 + Math.sin(t * 2) * 4, a2: -140 };
+      bt.backArm = { a1: -120, a2: -150 };
+      bt.hold = `<g transform="rotate(${f1(-60 + Math.sin(t * 2) * 4)})"><rect x="-8" y="-150" width="16" height="150" rx="8" fill="#C98A5B"/><rect x="-11" y="-150" width="22" height="80" rx="11" fill="#C98A5B"/></g>`;
+      out += who(t, bt);
+      // Payoff.
+      out += bub(740, 470, 'No swing. Perfect at-bat ✓', between(t, T.final, s.end), { size: 26 });
+      if (t > T.final) out += A.sparkle(735, 700, T.final, t, C.teal);
+      out += pill(960, 1046, 'swings: 0 · rules broken: 0', DK.teal, pop(t, T.final + 0.6), 24);
+      return out;
+    },
+
+    // End of a session at home. A FOMO gremlin whispers "it's leaving!"; she asks "model complete, or afraid?", closes the laptop. Zero trades, perfect session.
+    's15-session-close': (s, t, ctx) => {
+      const T = s.beats;
+      const night = ease(seg(t, T.answer, T.close + 1));
+      let out = `<rect x="0" y="360" width="1920" height="720" fill="#FBF3EE" opacity=".7"/>`;
+      // Wall, window with day → dusk → night.
+      const rk = ease(seg(t, T.room - 0.2, T.room + 0.8));
+      const skyCol = night > 0.5 ? '#3D3550' : night > 0 ? '#F5A857' : '#CFE9F5';
+      let room = `<rect x="0" y="900" width="1920" height="180" fill="#E7C9A5"/><rect x="0" y="896" width="1920" height="8" fill="#C98A5B"/>
+        <rect x="1240" y="410" width="420" height="300" rx="14" fill="${skyCol}" stroke="#fff" stroke-width="14"/><line x1="1450" y1="410" x2="1450" y2="710" stroke="#fff" stroke-width="10"/>`;
+      if (night > 0.5) room += `<circle cx="1560" cy="490" r="34" fill="#FFF3C4"/><circle cx="1576" cy="480" r="30" fill="#3D3550"/>${[0, 1, 2, 3, 4].map(i => `<circle cx="${1280 + i * 70}" cy="${460 + (i * 37) % 120}" r="${3 + (Math.sin(t * 3 + i) + 1) * 1.5}" fill="#fff"/>`).join('')}`;
+      else room += `<circle cx="${f1(1340 + night * 80)}" cy="${f1(480 + night * 160)}" r="40" fill="${C.gold}"/>`;
+      // Wall clock spinning through the session.
+      const prog = seg(t, T.room, T.close);
+      room += `<circle cx="1110" cy="470" r="56" fill="#fff" stroke="${C.purple}" stroke-width="8"/><line x1="1110" y1="470" x2="${f1(1110 + Math.sin(prog * Math.PI * 2 * 6) * 40)}" y2="${f1(470 - Math.cos(prog * Math.PI * 2 * 6) * 40)}" stroke="${C.dark}" stroke-width="5" stroke-linecap="round"/><line x1="1110" y1="470" x2="${f1(1110 + Math.sin(prog * Math.PI) * 26)}" y2="${f1(470 - Math.cos(prog * Math.PI) * 26)}" stroke="${C.dark}" stroke-width="8" stroke-linecap="round"/><circle cx="1110" cy="470" r="7" fill="${C.pink}"/>`;
+      room += `<rect x="560" y="760" width="760" height="24" rx="8" fill="#9B6A45"/><rect x="590" y="784" width="20" height="116" fill="#9B6A45"/><rect x="1270" y="784" width="20" height="116" fill="#9B6A45"/>`;
+      out += fade(rk, room);
+      // Laptop with a little chart (closes at T.close).
+      const lid = ease(seg(t, T.close, T.close + 0.7));
+      if (rk > 0) {
+        const h = 165 * (1 - lid);
+        out += `<rect x="760" y="748" width="320" height="14" rx="6" fill="${C.muted}"/>`;
+        if (h > 4) {
+          out += `<rect x="780" y="${f1(750 - h)}" width="280" height="${f1(h)}" rx="10" fill="${C.dark}"/><rect x="792" y="${f1(760 - h)}" width="256" height="${f1(Math.max(0, h - 22))}" rx="6" fill="#fff"/>`;
+          if (h > 100) {
+            const bars = [[.3, .4], [.4, .48], [.48, .44], [.44, .5], [.5, .46], [.46, .52], [.52, .5]];
+            bars.forEach(([o, c], i) => { const x = 816 + i * 32, y0 = 750 - h + 30, hh = h - 60; const up = c > o; out += `<rect x="${x}" y="${f1(y0 + hh - Math.max(o, c) * hh)}" width="16" height="${f1(Math.max(4, Math.abs(c - o) * hh))}" rx="3" fill="${up ? C.teal : C.pink}"/>`; });
+            out += `<line x1="800" x2="1040" y1="${f1(750 - h + 30 + (h - 60) * 0.45)}" y2="${f1(750 - h + 30 + (h - 60) * 0.45)}" stroke="${C.purple}" stroke-width="3" stroke-dasharray="8 6"/>`;
+          }
+        } else out += `<rect x="780" y="736" width="280" height="14" rx="6" fill="${C.dark}"/>`;
+      }
+      // Cat on the desk, curling up to sleep after close.
+      out += crit(t, 'cat', { x: 1180, y: 760, scale: 0.8, seed: 4, at: T.room + 0.8, sleep: t > T.close + 0.8 });
+      // Trader.
+      const tr = { x: 560, y: 1000, scale: 1, look: A.LOOKS.a, seed: 3, at: T.room + 0.4, talk: ctx.talking && t > T.question && t < T.close, mood: undefined };
+      tr.frontArm = t > T.close - 0.4 && t < T.close + 0.8 ? aim(tr, 900, 600 + lid * 140) : t > T.question && t < T.answer ? { a1: -60, a2: -130 } : aim(tr, 780, 740);
+      out += who(t, tr);
+      // FOMO gremlin on her shoulder.
+      const gk = between(t, T.gremlin, T.answer, 0.5);
+      if (gk > 0 || (t > T.answer && t < T.answer + 0.8)) {
+        const poof = t > T.answer ? seg(t, T.answer, T.answer + 0.8) : 0;
+        if (poof > 0) out += [0, 1, 2, 3, 4, 5].map(i => `<circle cx="${f1(400 + Math.cos(i) * 50 * (1 + poof))}" cy="${f1(620 + Math.sin(i) * 40 * (1 + poof))}" r="${f1(24 * (1 - poof))}" fill="#E2D6E8"/>`).join('');
+        else {
+          const jit = Math.sin(t * 20) * 3, talk = ctx.talking ? Math.abs(Math.sin(t * 12)) : 0;
+          out += scaleAt(410, 680, gk, `<g transform="translate(${f1(410 + jit)},640)"><ellipse cx="0" cy="0" rx="40" ry="44" fill="${C.cash}"/><path d="M-30,-30 L-46,-66 L-12,-40 Z M30,-30 L46,-66 L12,-40 Z" fill="${C.cash}"/>
+            <circle cx="-14" cy="-8" r="11" fill="#fff"/><circle cx="14" cy="-8" r="11" fill="#fff"/><circle cx="-12" cy="-6" r="6" fill="${C.dark}"/><circle cx="16" cy="-6" r="6" fill="${C.dark}"/>
+            <ellipse cx="0" cy="20" rx="12" ry="${f1(4 + talk * 8)}" fill="#6B2A2A"/><path d="M-38,10 L-60,${f1(-20 + Math.sin(t * 14) * 10)} M38,10 L60,${f1(-20 - Math.sin(t * 14) * 10)}" stroke="${C.cashD}" stroke-width="7" stroke-linecap="round"/></g>`);
+          out += bub(300, 500, "It's leaving!! Get in!", gk, { size: 26, fill: '#FDE8ED', stroke: C.pinkL });
+        }
+      }
+      // The question card.
+      const qk = between(t, T.question, T.close + 0.4, 0.6);
+      if (qk > 0) {
+        let q = `<rect x="560" y="390" width="400" height="210" rx="20" fill="#fff" stroke="${C.purpleL}" stroke-width="5"/>${txt(760, 432, 'BEFORE EVERY ENTRY', 18, C.muted, { ls: 3 })}
+          <rect x="590" y="452" width="340" height="56" rx="14" fill="${C.tealL}"/>${txt(760, 488, 'model complete?', 26, DK.teal)}
+          <rect x="590" y="520" width="340" height="56" rx="14" fill="${C.pinkP}"/>${txt(760, 556, 'afraid it’s leaving?', 26, DK.pink)}`;
+        if (t > T.answer) q += cross(910, 480, pop(t, T.answer, 0.4), C.pink, 20) + pill(760, 620, 'not complete = no trade', C.purple, pop(t, T.answer + 0.3), 22);
+        out += scaleAt(760, 600, qk, q);
+      }
+      // Session card.
+      const ck = pop(t, T.card, 0.7);
+      if (ck > 0) {
+        out += scaleAt(1450, 820, ck, `<rect x="1300" y="740" width="420" height="150" rx="20" fill="#fff" stroke="${C.tealL}" stroke-width="5"/>${txt(1510, 778, 'SESSION', 18, C.muted, { ls: 3 })}
+          ${txt(1330, 820, 'trades', 24, C.muted, { a: 'start', w: 700 })}${txt(1690, 820, '0', 28, C.dark, { a: 'end' })}${txt(1330, 860, 'rules broken', 24, C.muted, { a: 'start', w: 700 })}${txt(1690, 860, '0', 28, C.dark, { a: 'end' })}`);
+        out += check(1720, 740, pop(t, T.card + 0.6, 0.5), C.teal, 30);
+        if (t > T.card + 0.6) out += A.sparkle(1720, 740, T.card + 0.6, t, C.teal);
+        out += pill(1510, 950, 'a perfect session', DK.teal, pop(t, T.final, 0.6), 24);
+      }
+      // Night tint.
+      if (night > 0) out += `<rect x="0" y="360" width="1920" height="720" fill="#3D3550" opacity="${f1(night * 0.08)}"/>`;
+      return out;
+    },
+  });
+
   Object.assign(window.ILLUS.BUILD, BUILD);
   Object.assign(window.ILLUS.LIVE, LIVE);
 })();
