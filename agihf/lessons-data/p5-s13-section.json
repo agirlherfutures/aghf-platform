@@ -197,81 +197,63 @@
       },
       {
        "o": 20997.0,
-       "h": 20998.25,
-       "l": 20995.5,
-       "c": 20997.75
-      },
-      {
-       "o": 20997.75,
-       "h": 20998.5,
-       "l": 20995.5,
-       "c": 20996.75
-      },
-      {
-       "o": 20996.75,
        "h": 20998.75,
-       "l": 20996.0,
+       "l": 20995.5,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 20998.75,
+       "l": 20997.5,
        "c": 20998.25
       },
       {
        "o": 20998.25,
        "h": 21004.25,
-       "l": 20997.25,
+       "l": 20997.75,
        "c": 21001.75
       },
       {
        "o": 21001.75,
-       "h": 21002.75,
-       "l": 20998.5,
-       "c": 20999.75
+       "h": 20997.75,
+       "l": 20996.5,
+       "c": 20997.5
       },
       {
-       "o": 20999.75,
-       "h": 21000.75,
-       "l": 20995.0,
-       "c": 20996.0
+       "o": 20997.5,
+       "h": 20997.75,
+       "l": 20995.25,
+       "c": 20996.25
       },
       {
-       "o": 20996.0,
+       "o": 20996.25,
+       "h": 20998.75,
+       "l": 20995.5,
+       "c": 20997.25
+      },
+      {
+       "o": 20997.25,
+       "h": 20997.75,
+       "l": 20994.5,
+       "c": 20995.5
+      },
+      {
+       "o": 20995.5,
        "h": 20996.75,
-       "l": 20992.75,
-       "c": 20994.0
+       "l": 20991.0,
+       "c": 20992.5
       },
       {
-       "o": 20994.0,
-       "h": 20995.5,
-       "l": 20990.5,
-       "c": 20991.25
+       "o": 20992.5,
+       "h": 20993.25,
+       "l": 20989.25,
+       "c": 20990.25
       },
       {
-       "o": 20991.25,
-       "h": 20995.25,
+       "o": 20990.25,
+       "h": 20993.75,
        "l": 20990.0,
-       "c": 20995.0
-      },
-      {
-       "o": 20995.0,
-       "h": 20999.75,
-       "l": 20993.75,
-       "c": 20998.25
-      },
-      {
-       "o": 20998.25,
-       "h": 21001.75,
-       "l": 20997.5,
-       "c": 21001.25
-      },
-      {
-       "o": 21001.25,
-       "h": 21007.75,
-       "l": 21001.25,
-       "c": 21007.0
-      },
-      {
-       "o": 21007.0,
-       "h": 21007.0,
-       "l": 21001.25,
-       "c": 21002.0
+       "c": 20993.25
       }
      ],
      "pil": null,
@@ -296,14 +278,14 @@
       }
      ],
      "structure": "Bullish 1M leg, now pulling back.",
-     "start": 31,
+     "start": 28,
      "pick": {
       "candidates": [
        {
         "id": "A",
         "label": "A",
-        "at": 29,
-        "price": 21007.75,
+        "at": 23,
+        "price": 20998.75,
         "valid": false,
         "mistake": "tiny-pil",
         "why": "A tiny wiggle inside the pullback. Closest to price, but nothing structural depends on it."
@@ -311,7 +293,7 @@
        {
         "id": "B",
         "label": "B",
-        "at": 21,
+        "at": 20,
         "price": 21004.25,
         "valid": true,
         "why": "The swing high this pullback came from. To resume upward, price has to prove itself through it."
@@ -319,7 +301,7 @@
        {
         "id": "C",
         "label": "C",
-        "at": 9,
+        "at": 10,
         "price": 20994.75,
         "valid": false,
         "why": "Already broken. Price went through it on the way up: it’s not controlling the current sequence."
@@ -549,6 +531,7 @@
       }
      ],
      "structure": "Pullback from the swing high at the PIL. Price is below it.",
+     "pilAt": 4,
      "start": 11
     },
     "intro": "Price is about to test the PIL. Wait for the close."
@@ -761,6 +744,7 @@
       }
      ],
      "structure": "Pullback from the swing high at the PIL. Price is below it.",
+     "pilAt": 4,
      "start": 13
     },
     "preMarks": [
@@ -981,6 +965,7 @@
       }
      ],
      "structure": "Pullback from the swing high at the PIL. Price is below it.",
+     "pilAt": 4,
      "start": 14
     },
     "preMarks": [
@@ -1184,6 +1169,7 @@
       }
      ],
      "structure": "Pullback from the swing high at the PIL. Price is below it.",
+     "pilAt": 4,
      "start": 11
     }
    },
@@ -1419,6 +1405,7 @@
       }
      ],
      "structure": "Pullback from the swing high at the PIL. Price is below it.",
+     "pilAt": 4,
      "start": 15
     },
     "preMarks": [
@@ -1628,6 +1615,7 @@
       }
      ],
      "structure": "Pullback from the swing high at the PIL. Price is below it.",
+     "pilAt": 4,
      "start": 15
     },
     "preMarks": [
@@ -1842,6 +1830,7 @@
       }
      ],
      "structure": "Pullback from the swing high at the PIL. Price is below it.",
+     "pilAt": 4,
      "start": 16
     },
     "preMarks": [
@@ -2909,6 +2898,7 @@
       }
      ],
      "structure": "Pullback from the swing high at the PIL. Price is below it.",
+     "pilAt": 4,
      "start": 14
     },
     "preMarks": [
@@ -3118,6 +3108,7 @@
       }
      ],
      "structure": "Pullback from the swing high at the PIL. Price is below it.",
+     "pilAt": 4,
      "start": 14
     },
     "passOk": true,
@@ -4597,6 +4588,7 @@
      }
     ],
     "structure": "Pullback from the swing high at the PIL. Price is below it.",
+    "pilAt": 4,
     "start": 10
    }
   },

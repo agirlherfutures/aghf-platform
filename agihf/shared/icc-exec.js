@@ -75,7 +75,7 @@ export function mountExecChart(container, cfg) {
   let off = 0; // first bar index in view (compact charts scroll)
   const X = (i) => PAD_L + step * (i - off + 0.5);
   const inView = (i) => i >= off;
-  let lo = 0, hi = 1, pil = cfg.pil ?? null, preview = null;
+  let lo = 0, hi = 1, pil = cfg.pil ?? null, preview = null, pilAt = cfg.pilAt ?? null, previewAt = null;
   let shownK = 0;
   const Y = (p) => 18 + (hi - p) / (hi - lo) * (H - 36);
 
@@ -107,16 +107,18 @@ export function mountExecChart(container, cfg) {
 
   function drawPil() {
     pilG.innerHTML = '';
-    const line = (p, cls, text) => {
+    // The PIL is drawn from the swing that created it, not from the left edge.
+    const line = (p, cls, text, at) => {
       const y = Y(p);
-      el('line', { x1: PAD_L, x2: W - PAD_R + 6, y1: y, y2: y, class: cls }, pilG);
+      const x1 = at != null && at >= off ? X(at) : PAD_L;
+      el('line', { x1, x2: W - PAD_R + 6, y1: y, y2: y, class: cls }, pilG);
       const g = el('g', { class: `${cls}-tag` }, pilG);
       el('rect', { x: W - PAD_R + 8, y: y - 11, width: PAD_R - 10, height: 22, rx: 11 }, g);
       const t = el('text', { x: W - PAD_R / 2 + 3, y: y + 4, 'text-anchor': 'middle' }, g);
       t.textContent = text;
     };
-    if (preview != null) line(preview, 'ex-prev', `${fmt(preview)}?`);
-    if (pil != null) line(pil, 'ex-pilline', `PIL ${fmt(pil)}`);
+    if (preview != null) line(preview, 'ex-prev', `${fmt(preview)}?`, previewAt);
+    if (pil != null) line(pil, 'ex-pilline', `PIL ${fmt(pil)}`, pilAt);
   }
 
   const api = {
@@ -143,8 +145,8 @@ export function mountExecChart(container, cfg) {
       api.redrawTags();
       if (Object.keys(api._views).length) api.redrawViews();
     },
-    setPil(p) { pil = p; preview = null; api.draw(shownK); },
-    previewPil(p) { preview = p; api.draw(shownK); },
+    setPil(p, at = null) { pil = p; pilAt = at; preview = null; api.draw(shownK); },
+    previewPil(p, at = null) { preview = p; previewAt = at; api.draw(shownK); },
     clearPreview() { preview = null; api.draw(shownK); },
     _marks: [], _tags: [],
     markers(list, onPick) { api._marks = list; api._onPick = onPick; cfg.markersList = list; api.redrawMarks(); },
@@ -309,13 +311,15 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
   let forming = null; // { f, raf }
   let timer = null, speed = 1, blocked = false, finished = false;
   let pil = sc.pick ? null : sc.pil;
+  // Bar index of the swing that created the active PIL: the sequence is read after it.
+  let pilFrom = sc.pick ? -1 : (sc.pilAt ?? -1);
   const marks = { pil: !!pil };
   const firedPauses = new Set();
   let outcome = null; // 'entry' | 'missed' | 'pass' | 'chased' | 'replaced'
   let lastStatusNote = '';
   const stats = { mistakes: [], good: [] };
 
-  const ev = () => evaluateDayliICC(sc.bars, { pil, dir }, k);
+  const ev = () => evaluateDayliICC(sc.bars, { pil, dir, from: pilFrom }, k);
   const say = (html) => { if (!html) return; cap.innerHTML = html; cap.classList.add('show'); wrapGuide(cap); };
   const feedback = (html, good) => { fb.innerHTML = html; fb.className = `ex-fb show ${good ? 'good' : 'bad'}`; };
 
@@ -370,7 +374,8 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
 
   /* actions: progressive, but I / C / C are always all visible so skipping can be blocked (and taught) */
   function actions() {
-    if (slide.demo) { actionsEl.innerHTML = ''; return; }
+    // Once the slide's goal is met there's nothing left to act on here.
+    if (slide.demo || finished) { actionsEl.innerHTML = ''; return; }
     const btns = [];
     if (outcome && outcome !== 'missed') { actionsEl.innerHTML = ''; return; }
     if (!marks.pil && sc.pick) btns.push(['pilhint', 'Mark PIL: tap a swing on the chart', 'ghost']);
@@ -473,7 +478,7 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
       if (marks.pil && !sc.pick.allowChange) return;
       cands.forEach((c) => { c.state = c === m ? 'sel' : null; });
       chart.markers(cands, chart._onPick);
-      chart.previewPil(m.price);
+      chart.previewPil(m.price, m.at);
       feedback(`Swing <b>${m.label}</b> · ${fmt(m.price)} <span class="ex-pick-btns"><button type="button" class="ex-mini ex-ok">Confirm PIL</button><button type="button" class="ex-mini ex-no">Cancel</button></span>`, true);
       fb.querySelector('.ex-no').addEventListener('click', () => { cands.forEach((c) => { c.state = null; }); chart.markers(cands, chart._onPick); chart.clearPreview(); fb.className = 'ex-fb'; });
       fb.querySelector('.ex-ok').addEventListener('click', () => {
@@ -484,10 +489,10 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
           mistake(m.mistake || 'tiny-pil', SKILL.pil);
           return;
         }
-        pil = m.price; marks.pil = true;
+        pil = m.price; pilFrom = m.at ?? -1; marks.pil = true;
         m.state = 'ok';
         chart.markers(cands.filter((c) => c === m), chart._onPick);
-        chart.setPil(pil);
+        chart.setPil(pil, m.at);
         feedback(`<strong>PIL ✓</strong> ${m.why || 'Structure created the PIL.'}`, true);
         good(SKILL.pil, 'pil-selection');
         refresh();
@@ -558,7 +563,7 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
   function pauseAt(p, then) {
     blocked = true;
     say(p.text);
-    if (p.newPil != null) { pil = p.newPil; chart.setPil(pil); }
+    if (p.newPil != null) { pil = p.newPil; pilFrom = p.newPilAt ?? pilFrom; chart.setPil(pil, p.newPilAt); }
     if (!p.ask) { blocked = false; then?.(); return; }
     askQuestion(asks, p.ask, wrapHelpers(), () => {
       blocked = false;
@@ -581,7 +586,7 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
       { label: 'Cancel everything, every new swing kills a setup', feedback: 'Not automatically. Reassess what the new swing changed.' },
     ] }, wrapHelpers(), (o) => {
       blocked = false;
-      if (r.newPil != null) { pil = r.newPil; chart.clearTags(); Object.keys(marks).forEach((m) => { marks[m] = false; }); marks.pil = true; chart.setPil(pil); lastStatusNote = 'New PIL. The sequence starts over from here.'; }
+      if (r.newPil != null) { pil = r.newPil; pilFrom = r.newPilAt ?? (k - 1); chart.clearTags(); Object.keys(marks).forEach((m) => { marks[m] = false; }); marks.pil = true; chart.setPil(pil, r.newPilAt); lastStatusNote = 'New PIL. The sequence starts over from here.'; }
       if (r.replace) { outcome = 'replaced'; }
       refresh();
       if (r.done) { done(); return; }
@@ -617,6 +622,7 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
     if (finished) return;
     finished = true;
     stopPlay();
+    actions();
     const e = slide.end || {};
     if (e.text) say(e.text);
     if (e.card) { const c = document.createElement('div'); c.className = 'icc-principle'; c.innerHTML = e.card; asks.appendChild(c); }
@@ -657,10 +663,10 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
       stopPlay(); if (forming?.raf) cancelAnimationFrame(forming.raf);
       forming = null; k = Math.min(sc.start ?? 6, total); outcome = null; finished = false; blocked = false; lastStatusNote = '';
       Object.keys(marks).forEach((m) => { marks[m] = false; });
-      pil = sc.pick ? null : sc.pil; marks.pil = !!pil;
+      pil = sc.pick ? null : sc.pil; pilFrom = sc.pick ? -1 : (sc.pilAt ?? -1); marks.pil = !!pil;
       firedPauses.clear(); asks.innerHTML = ''; fb.className = 'ex-fb'; cap.classList.remove('show');
       card.querySelectorAll(':scope > .lw-continue-btn').forEach((b) => b.remove());
-      chart.clearTags(); chart.setPil(pil ?? null);
+      chart.clearTags(); chart.setPil(pil ?? null, sc.pick ? null : sc.pilAt);
       if (sc.pick) setupPick();
       refresh();
     } else if (a === 'speed') { speed = speed === 1 ? 2 : speed === 2 ? 0.5 : 1; speedBtn.textContent = `${speed}×`; }
@@ -674,7 +680,7 @@ export function renderExec(el0, slide, satisfy, helpers = {}) {
   });
   actionsEl.addEventListener('click', (ev0) => { const b = ev0.target.closest('.ex-act'); if (b && !b.disabled) act(b.dataset.a); });
 
-  if (pil != null) chart.setPil(pil);
+  if (pil != null) chart.setPil(pil, sc.pilAt);
   if (sc.pick) setupPick();
   // Start mid-setup: steps price already earned before the scenario opens.
   if (slide.preMarks && pil != null) {

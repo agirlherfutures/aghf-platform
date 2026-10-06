@@ -262,6 +262,7 @@
      }
     ],
     "structure": "Pullback from the swing high at the PIL. Price is below it.",
+    "pilAt": 4,
     "start": 14
    },
    "preMarks": [
