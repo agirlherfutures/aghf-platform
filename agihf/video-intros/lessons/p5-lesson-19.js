@@ -127,7 +127,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 34.4,
-          "text": "Think of the plan like a train timetable.",
+          "text": "Think of it like a train timetable.",
           "screen": "Departures board at platform PIL; a passenger with a suitcase; a conductor"
         },
         {

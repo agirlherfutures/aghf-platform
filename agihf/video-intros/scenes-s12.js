@@ -1305,8 +1305,8 @@
       const k = pop(t, T.next, 0.7);
       const open = ease(seg(t, T.next + 0.6, T.next + 1.6));
       out += scaleAt(1740, 1000, k, `<rect x="1610" y="520" width="260" height="480" rx="16" fill="#FFF6DD"/><rect x="1610" y="520" width="260" height="480" rx="16" fill="none" stroke="${C.gold}" stroke-width="10"/>
-        <path d="M1614,524 L${1614 + 252 * (1 - open * 0.7)},${524 + open * 30} L${1614 + 252 * (1 - open * 0.7)},${996 - open * 30} L1614,996 Z" fill="${C.purple}"/>
-        ${txt(1740, 640, 'SECTION 13', 26, open > 0.5 ? '#C98A1F' : '#fff')}${txt(1740, 690, '1-Minute', 30, open > 0.5 ? C.dark : '#fff', { f: 'Playfair Display' })}${txt(1740, 726, 'Entry Model™', 26, open > 0.5 ? C.dark : '#fff', { f: 'Playfair Display' })}`);
+        <path d="M1614,524 L${1614 + 252 * (1 - open * 0.86)},${524 + open * 30} L${1614 + 252 * (1 - open * 0.86)},${996 - open * 30} L1614,996 Z" fill="${C.purple}"/>
+        ${txt(1760, 640, 'SECTION 13', 24, open > 0.5 ? '#C98A1F' : '#fff')}${txt(1760, 690, '1-Minute', 28, open > 0.5 ? C.dark : '#fff', { f: 'Playfair Display' })}${txt(1760, 726, 'Entry Model™', 24, open > 0.5 ? C.dark : '#fff', { f: 'Playfair Display' })}`);
       out += pill(1740, 470, 'NEXT UP', C.pink, pop(t, T.next + 0.4, 0.5), 26) + A.sparkle(1740, 700, T.next + 1.4, t, C.gold);
     }
     return out;

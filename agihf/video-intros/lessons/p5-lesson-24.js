@@ -24,7 +24,7 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 5,
-          "text": "The last lesson of the section, and maybe the most important."
+          "text": "The last lesson of the section."
         }
       ]
     },
@@ -206,7 +206,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 72.2,
-          "text": "Here’s your mission, and your Section 13 finale.",
+          "text": "Your Section 13 finale.",
           "screen": "\"Your mission\""
         },
         {

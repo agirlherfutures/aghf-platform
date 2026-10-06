@@ -80,7 +80,7 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 25.4,
-          "text": "Execution is dynamic. Your old ticket may not be the one being served.",
+          "text": "Execution is dynamic. Your old ticket may not be served anymore.",
           "screen": "Butcher: \"That one’s been replaced!\""
         },
         {

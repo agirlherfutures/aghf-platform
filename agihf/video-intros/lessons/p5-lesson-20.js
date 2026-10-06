@@ -196,7 +196,7 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 74.4,
-          "text": "Next time you miss one, ask: was the setup invalid, or did I just miss the entry?",
+          "text": "When you miss one, ask: was the setup invalid, or did I just miss the entry?",
           "screen": "Mission question"
         },
         {
