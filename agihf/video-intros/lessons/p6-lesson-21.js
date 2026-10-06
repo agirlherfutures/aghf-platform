@@ -124,7 +124,7 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 45,
-          "text": "With a twenty-five percent win rate, the same one to two loses about a quarter R per trade.",
+          "text": "At a twenty-five percent win rate, that same one to two loses about a quarter R.",
           "screen": "Pot A, 25% wins, wilts: ≈ −0.25R per trade"
         },
         {

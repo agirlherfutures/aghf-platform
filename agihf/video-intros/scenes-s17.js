@@ -284,7 +284,7 @@
         <path d="M-22,-74 L-6,-66 M22,-74 L6,-66" stroke="${C.dark}" stroke-width="4" stroke-linecap="round"/>
         <circle cx="-13" cy="-60" r="9" fill="#fff"/><circle cx="13" cy="-60" r="9" fill="#fff"/>${eye(-12, -59, 4.5)}${eye(14, -59, 4.5)}
         <path d="M-14,-36 Q0,${-24 - talk * 8} 14,-36 Z" fill="#6B2A2A"/><path d="M-8,-36 L-5,-30 L-2,-36 M2,-36 L5,-30 L8,-36" fill="#fff"/>
-        ${o.tag ? pill(0, 12, o.tag, DK.purple, 1, 18) : ''}`;
+        ${o.tag ? pill(0, 16, o.tag, DK.purple, 1, 24) : ''}`;
     } else if (kind === 'snail') {
       const st = Math.sin(t * 3 + seed) * 4;
       g = `<path d="M-50,-4 Q-60,-20 -40,-22 L40,-22 Q60,-22 64,-44 L60,-70" stroke="#C9B9AE" stroke-width="18" fill="none" stroke-linecap="round"/>
@@ -884,7 +884,7 @@
     // A kangaroo carries four joeys (contracts): each risks 30 points, and the target ledge is twice as far up.
     's17-kangaroo-joeys': (s, t, ctx) => {
       const T = s.beats;
-      const TY = 420, EY = 760, SY = 930;
+      const TY = 600, EY = 820, SY = 930;
       let out = ground(1000, '#F8EBDD', '#EAD7C3');
       // Price lines.
       const lk = ease(seg(t, T.lines, T.lines + 1));
@@ -904,23 +904,23 @@
       if (gk > 0) out += `<path d="M1300,${EY} L1320,${EY} L1320,${f1(lerp(EY, TY, gk))} L1300,${f1(lerp(EY, TY, gk))}" stroke="${C.teal}" stroke-width="6" fill="none"/>` + pill(1360, (EY + TY) / 2, '2', DK.teal, pop(t, T.gross + 1, 0.4), 30);
       // Kangaroo: stands on entry, hops to target.
       const hk = seg(t, T.hop, T.hop + 1.1);
-      const rx = lerp(500, 640, ease(hk)), ry = lerp(EY, TY, ease(hk)) - Math.sin(hk * Math.PI) * 120;
-      out += bst(t, 'roo', { x: rx, y: ry, scale: 1, seed: 2, at: T.roo, talk: ctx.talking && t > T.gross && t < T.gross + 3 });
+      const rx = lerp(500, 640, ease(hk)), ry = lerp(EY, TY, ease(hk)) - Math.sin(hk * Math.PI) * 90;
+      out += bst(t, 'roo', { x: rx, y: ry, scale: 0.72, seed: 2, at: T.roo, talk: ctx.talking && t > T.gross && t < T.gross + 3 });
       // Joeys: pop from the pouch, sit on the entry ledge, then follow up.
       T.joeys.forEach((at, i) => {
         if (t < at) return;
         const k = ease(seg(t, at, at + 0.7));
         const sx = 760 + i * 100, tx = 720 + i * 90;
         const jh = seg(t, T.hop + 0.5 + i * 0.25, T.hop + 1.3 + i * 0.25);
-        const x0 = lerp(530, sx, k), y0 = lerp(EY - 120, EY, k) - Math.sin(k * Math.PI) * 120;
-        const x = lerp(x0, tx, ease(jh)), y = lerp(y0, TY, ease(jh)) - Math.sin(jh * Math.PI) * 110;
-        out += beast(t, 'joey', { x, y, scale: 0.9, seed: i + 3, hop: jh <= 0 || jh >= 1 ? 3 + i * 0.4 : 0, hopH: 8 });
+        const x0 = lerp(530, sx, k), y0 = lerp(EY - 90, EY, k) - Math.sin(k * Math.PI) * 90;
+        const x = lerp(x0, tx, ease(jh)), y = lerp(y0, TY, ease(jh)) - Math.sin(jh * Math.PI) * 80;
+        out += beast(t, 'joey', { x, y, scale: 0.7, seed: i + 3, hop: jh <= 0 || jh >= 1 ? 3 + i * 0.4 : 0, hopH: 8 });
         const tg = jh >= 1 ? '+$120' : '$60';
-        out += pill(x + 4, y - 120, tg, jh >= 1 ? DK.teal : C.pink, pop(t, at + 0.5, 0.4) * (jh > 0 && jh < 1 ? 0 : 1), 20);
+        out += pill(x + 4, y - 96, tg, jh >= 1 ? DK.teal : C.pink, pop(t, at + 0.5, 0.4) * (jh > 0 && jh < 1 ? 0 : 1), 20);
       });
-      out += pill(860, 880, '4 × 30 × $2 ≈ $240 risk', C.pink, pop(t, T.sum, 0.6), 28);
-      out += pill(1000, 520, '4 × 60 × $2 ≈ $480 gross', DK.teal, pop(t, T.gross, 0.6), 28);
-      out += pill(1100, 640, '1:2, before trading costs', C.purple, pop(t, T.note - 0.6, 0.5), 24);
+      out += pill(860, 968, '4 × 30 × $2 ≈ $240 risk', C.pink, pop(t, T.sum, 0.6), 28);
+      out += pill(1150, 450, '4 × 60 × $2 ≈ $480 gross', DK.teal, pop(t, T.gross, 0.6), 28);
+      out += pill(1000, 712, '1:2, before trading costs', C.purple, pop(t, T.note - 0.6, 0.5), 24);
       // Koala referee on a stump.
       out += scaleAt(1720, 1000, pop(t, T.lines + 1, 0.6), `<path d="M1640,1000 L1650,900 L1790,900 L1800,1000 Z" fill="#9B6A45"/><ellipse cx="1720" cy="900" rx="72" ry="16" fill="#C9A27E"/>`);
       out += bst(t, 'koala', { x: 1720, y: 900, scale: 0.9, seed: 4, at: T.lines + 1.3, talk: ctx.talking && t > T.note && t < T.note + 3 });
@@ -987,6 +987,449 @@
       out += `<g transform="translate(${f1(spx)},970) rotate(${f1(Math.sin(t * 1.3) * 120)})"><rect x="-24" y="-30" width="48" height="60" rx="6" fill="${C.pink}"/><rect x="-30" y="-34" width="60" height="10" rx="4" fill="#B8835A"/><rect x="-30" y="24" width="60" height="10" rx="4" fill="#B8835A"/></g>`;
       out += crit(t, 'cat', { x: 1700, y: 1000, scale: 0.6, seed: 3, at: T.shop + 1, hop: 4, hopH: 10 });
       out += pill(960, 1044, 'same method · account-sized exposure', C.purple, pop(t, T.punch, 0.6), 26);
+      return out;
+    },
+  });
+
+  /* ================= Lesson 23: Daily Loss Limits ================= */
+  Object.assign(LIVE, {
+    // An arcade cabinet with two tokens for the day (−2R). When they're gone, it's locked, even for a beautiful setup.
+    's17-arcade-tokens': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="380" width="1920" height="620" fill="#2C1810" opacity=".05"/>` + ground(1000, '#EDE6F4', '#DCD2E8');
+      // Floor tiles.
+      for (let x = 0; x < 1920; x += 120) out += `<rect x="${x}" y="1004" width="60" height="76" fill="#E3DAEE"/>`;
+      // String lights.
+      out += `<path d="M0,410 Q480,460 960,410 T1920,410" stroke="${C.muted}" stroke-width="3" fill="none"/>` + [...Array(20)].map((_, i) => { const x = 40 + i * 96, y = 410 + 22 * Math.sin((x % 960) / 960 * Math.PI); const on = (Math.floor(t * 3) + i) % 3 === 0; return `<circle cx="${x}" cy="${f1(y + 12)}" r="9" fill="${[C.pink, C.gold, C.teal][i % 3]}" opacity="${on ? 1 : 0.45}"/>`; }).join('');
+      // Cabinet.
+      const ck = pop(t, T.cab, 0.8);
+      let cab = `<path d="M980,470 L1320,470 L1340,1000 L960,1000 Z" fill="${C.purple}"/><rect x="960" y="440" width="380" height="70" rx="14" fill="${C.pink}"/>${txt(1150, 488, 'TAKE TRADE', 34, '#fff', { ls: 3 })}
+        <rect x="1006" y="530" width="288" height="200" rx="14" fill="${C.dark}"/>
+        <path d="M990,750 L1310,750 L1330,800 L970,800 Z" fill="${DK.purple}"/><rect x="1060" y="730" width="12" height="30" fill="${C.muted}"/><circle cx="1066" cy="728" r="14" fill="${C.pink}"/>
+        <circle cx="1190" cy="772" r="12" fill="${C.gold}"/><circle cx="1230" cy="772" r="12" fill="${C.teal}"/>
+        <rect x="1110" y="840" width="80" height="70" rx="10" fill="${DK.purple}"/><rect x="1146" y="852" width="8" height="40" rx="4" fill="${C.dark}"/>${txt(1150, 936, 'TOKEN', 18, '#fff', { ls: 2 })}`;
+      out += scaleAt(1150, 1000, ck, cab);
+      // Screen content.
+      if (ck >= 1) {
+        const lost = (t > T.t1 + 0.8 ? 1 : 0) + (t > T.t2 + 0.8 ? 1 : 0), locked = t > T.lock;
+        let sc = '';
+        if (t > T.setup) {
+          const fl = Math.floor(t * 3) % 2;
+          [0.2, 0.32, 0.3, 0.45, 0.58, 0.55, 0.7].forEach((v, i) => sc += `<rect x="${1030 + i * 34}" y="${f1(700 - v * 200)}" width="22" height="${f1(40 + (i % 2) * 12)}" rx="3" fill="${i === 2 || i === 5 ? C.pink : C.teal}"/>`);
+          sc += txt(1150, 568, 'BEAUTIFUL SETUP ✨', 26, fl ? C.gold : '#fff');
+          sc += `<rect x="1006" y="640" width="288" height="56" fill="${C.dark}" opacity=".8"/>${txt(1150, 678, '🔒 LOCKED', 30, C.pinkL)}`;
+        } else if (locked) sc = txt(1150, 610, '🔒', 60, '#fff') + txt(1150, 680, 'SESSION LOCKED', 30, C.pinkL);
+        else if (lost) sc = txt(1150, 620, 'LOSS', 40, C.pink) + txt(1150, 680, '−' + lost + 'R', 48, '#fff');
+        else sc = txt(1150, 640, 'INSERT TOKEN', 30, Math.floor(t * 2) % 2 ? C.gold : '#fff');
+        out += sc;
+        if (t > T.lock && t < T.lock + 1) out += sparkAt(1150, 620, T.lock, t, C.pink);
+      }
+      // Daily meter on the side.
+      const mk = pop(t, T.cup - 0.6, 0.6);
+      const lostN = (t > T.t1 + 0.8 ? 1 : 0) + (t > T.t2 + 0.8 ? 1 : 0);
+      out += scaleAt(1420, 800, mk, `<rect x="1396" y="560" width="48" height="300" rx="24" fill="#fff" stroke="${C.pink}" stroke-width="5"/><rect x="1402" y="${f1(854 - lostN * 144)}" width="36" height="${f1(lostN * 144)}" rx="18" fill="${C.pink}"/>
+        <line x1="1390" x2="1450" y1="710" y2="710" stroke="${C.pink}" stroke-width="3"/>${txt(1490, 716, '−1R', 22, DK.pink, { a: 'start' })}${txt(1490, 572, '−2R', 22, DK.pink, { a: 'start' })}`);
+      out += pill(1420, 520, 'DAILY MAX −2R', C.pink, mk, 22);
+      // Trader with the token cup.
+      const left = 2 - (t > T.t1 ? 1 : 0) - (t > T.t2 ? 1 : 0);
+      const tr = { x: 760, y: 1000, scale: 1.08, look: A.LOOKS.seller, seed: 3, at: T.cab + 0.3, flip: t > T.no + 1.2, talk: ctx.talking && t > T.no && t < T.no + 3 && false };
+      const tossing = [T.t1, T.t2].some(x => t > x - 0.3 && t < x + 0.3);
+      tr.frontArm = tossing ? { a1: -30, a2: -40 } : { a1: 50, a2: -20 };
+      tr.hold = `<g><path d="M-26,-44 L26,-44 L20,10 L-20,10 Z" fill="#fff" stroke="${C.pink}" stroke-width="4"/>${[...Array(left)].map((_, i) => `<ellipse cx="${-8 + i * 16}" cy="${-48 - i * 4}" rx="12" ry="6" fill="${C.gold}" stroke="#C98A1F" stroke-width="2"/>`).join('')}</g>`;
+      out += who(t, tr);
+      out += pill(760, 1040, `tokens left: ${left}`, C.gold, pop(t, T.cup, 0.5), 24, C.dark);
+      // Flying tokens.
+      [T.t1, T.t2].forEach(at => {
+        const k = seg(t, at, at + 0.8);
+        if (k > 0 && k < 1) out += `<g transform="translate(${f1(lerp(840, 1150, k))},${f1(lerp(780, 860, k) - Math.sin(k * Math.PI) * 220)})"><ellipse rx="22" ry="22" fill="${C.gold}" stroke="#C98A1F" stroke-width="3"/>${txt(0, 8, '1R', 18, '#fff')}</g>`;
+      });
+      out += bub(820, 560, 'Done for today. 😌', between(t, T.no, s.end), { size: 28 });
+      // Revenge gremlin and a robot attendant.
+      const gk = t > T.gremlin;
+      out += bst(t, 'gremlin', { x: 1560, y: 1000, scale: 1.1, seed: 2, at: T.gremlin, hop: 7, hopH: 30, talk: gk && t < T.no + 1, tag: 'revenge you' });
+      out += bub(1640, 700, 'Just one more! 😈', between(t, T.gremlin + 0.4, T.no + 1.6), { size: 28, tail: 'right' });
+      out += crit(t, 'robot', { x: 1790, y: 1000, scale: 0.95, seed: 4, at: T.cab + 1, screen: t > T.lock ? '🔒' : '2R', talk: ctx.talking && t > T.no + 2 });
+      out += pill(1150, 1044, 'valid setup ≠ override', DK.purple, pop(t, T.no + 0.6, 0.6), 24);
+      return out;
+    },
+
+    // Decide the daily risk card in the calm morning; when it's hit, Take Trade switches off and learn mode lights up.
+    's17-night-desk': (s, t, ctx) => {
+      const T = s.beats;
+      const dusk = seg(t, T.lock, T.knock);
+      let out = `<rect x="0" y="380" width="1920" height="620" fill="${dusk > 0.5 ? '#EDE7F5' : '#F8F1EA'}"/>` + ground(1000, '#E7D8CB', '#D6C4B4');
+      // Window with sky going from day to night.
+      const sky = dusk < 0.5 ? '#CFEFF0' : '#3D3550';
+      out += `<rect x="130" y="430" width="300" height="270" rx="12" fill="#fff"/><rect x="146" y="446" width="268" height="238" rx="6" fill="${sky}"/>`;
+      if (dusk < 0.5) out += `<circle cx="${f1(220 + dusk * 200)}" cy="${f1(500 + dusk * 300)}" r="30" fill="${C.gold}"/>` + cloud(330, 520, 0.4);
+      else out += `<circle cx="${f1(330 - (dusk - 0.5) * 120)}" cy="510" r="26" fill="#FFF3C4"/><circle cx="${f1(342 - (dusk - 0.5) * 120)}" cy="502" r="22" fill="#3D3550"/>` + [[180, 480], [250, 600], [380, 640], [200, 650]].map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="${3 + Math.abs(Math.sin(t * 3 + i))}" fill="#fff"/>`).join('');
+      out += `<rect x="276" y="446" width="8" height="238" fill="#fff"/><rect x="146" y="561" width="268" height="8" fill="#fff"/>`;
+      // Person behind the desk.
+      const writing = t > T.card - 1 && t < T.card + 0.2;
+      const pr = { x: 620, y: 1000, scale: 1.05, look: A.LOOKS.b, seed: 2, at: T.room, talk: ctx.talking && (t < T.card || (t > T.knock + 1.6 && t < T.knock + 3.6)) };
+      pr.frontArm = writing ? { a1: 60 + Math.sin(t * 12) * 6, a2: 0 } : t > T.knock + 1.6 && t < T.knock + 4 ? { a1: -60, a2: -100 } : undefined;
+      out += who(t, pr);
+      // Desk with laptop and a sleeping cat.
+      const dk = pop(t, T.room + 0.2, 0.7);
+      const tradeOn = t < T.lock;
+      out += scaleAt(600, 1000, dk, `<rect x="300" y="800" width="620" height="28" rx="8" fill="#B8835A"/><rect x="320" y="828" width="24" height="172" fill="#9B6A45"/><rect x="876" y="828" width="24" height="172" fill="#9B6A45"/>
+        <rect x="660" y="700" width="200" height="100" rx="10" fill="${C.dark}"/><rect x="672" y="712" width="176" height="76" rx="6" fill="${tradeOn ? '#E8F8F6' : '#EFEAF4'}"/><rect x="640" y="796" width="240" height="10" rx="4" fill="${C.muted}"/>
+        <rect x="700" y="732" width="120" height="36" rx="18" fill="${tradeOn ? C.teal : '#C9B9AE'}"/>${txt(760, 757, tradeOn ? 'TAKE TRADE' : 'OFF', 16, '#fff')}`);
+      out += crit(t, 'cat', { x: 420, y: 800, scale: 0.55, seed: 4, at: T.room + 0.8, sleep: t < T.knock || t > T.knock + 2 });
+      // The daily risk card: written on the desk, then pinned on the door.
+      const door = pop(t, T.room + 0.4, 0.7);
+      const shake = t > T.knock && t < T.knock + 1.6 ? Math.sin(t * 40) * 5 : 0;
+      out += scaleAt(1630, 1000, door, `<g transform="translate(${f1(shake)},0)"><rect x="1480" y="470" width="300" height="530" rx="10" fill="#B8835A" stroke="#9B6A45" stroke-width="8"/><rect x="1550" y="492" width="160" height="82" rx="8" fill="${dusk > 0.5 ? '#3D3550' : '#CFEFF0'}"/><circle cx="1740" cy="780" r="12" fill="${C.gold}"/></g>`);
+      const fk = ease(seg(t, T.card, T.card + 1));
+      const cx = lerp(560, 1630, fk), cy = lerp(780, 730, fk) - Math.sin(fk * Math.PI) * 160, cs = lerp(0.35, 1, fk);
+      if (t > T.card - 1.2) {
+        let card = `<rect x="-110" y="-150" width="220" height="300" rx="12" fill="#fff" stroke="${C.purple}" stroke-width="5"/>${txt(0, -110, 'DAILY RISK', 22, DK.purple, { ls: 2 })}`;
+        [['$', '−$240'], ['R', '−2R'], ['✗', '2 losses'], ['#', '3 trades']].forEach(([ic, lab], i) => {
+          const k = pop(t, T.rows[i], 0.4);
+          if (k > 0) card += `<g opacity="${clamp(k)}"><circle cx="-70" cy="${-58 + i * 56}" r="18" fill="${[C.cash, C.purple, C.pink, C.peach][i]}"/>${txt(-70, -51 + i * 56, ic, 18, '#fff')}${txt(-40, -49 + i * 56, lab, 26, C.text, { a: 'start', w: 800 })}</g>`;
+        });
+        out += `<g transform="translate(${f1(cx + (fk >= 1 ? shake : 0))},${f1(cy)}) scale(${f1(cs)}) rotate(${f1((1 - fk) * -6 + (fk >= 1 ? 2 : 0))})">${card}</g>`;
+      }
+      out += stamp(1630 + shake, 930, 'LOCKED', C.pink, ease(seg(t, T.lock, T.lock + 0.3)), -12, 60, 24);
+      // Switch panel.
+      const sk = pop(t, T.room + 0.6, 0.6), sw = ease(seg(t, T.lock, T.lock + 0.3));
+      out += scaleAt(1160, 490, sk, `<rect x="990" y="440" width="340" height="100" rx="16" fill="#fff" stroke="#E2D6CC" stroke-width="4"/><rect x="1020" y="462" width="56" height="56" rx="10" fill="#F1E7E1"/><rect x="1032" y="${f1(lerp(468, 492, sw))}" width="32" height="20" rx="6" fill="${sw > 0.5 ? C.pink : C.teal}"/>${txt(1100, 500, 'TAKE TRADE', 26, C.text, { a: 'start' })}`);
+      // Learn-mode lamps.
+      ['REVIEW', 'JOURNAL', 'REPLAY', 'STUDY'].forEach((lab, i) => {
+        const on = t > T.lamps[i], x = 1030 + i * 96;
+        const k = pop(t, T.room + 0.8 + i * 0.1, 0.5);
+        out += scaleAt(x, 640, k, `<line x1="${x}" y1="560" x2="${x}" y2="610" stroke="${C.muted}" stroke-width="3"/>${on ? `<circle cx="${x}" cy="636" r="${40 + Math.sin(t * 4 + i) * 4}" fill="${C.gold}" opacity=".25"/>` : ''}<circle cx="${x}" cy="636" r="24" fill="${on ? '#FFE9A8' : '#EDE6E0'}" stroke="${on ? C.gold : '#D9CFC8'}" stroke-width="4"/><rect x="${x - 10}" y="604" width="20" height="10" fill="${C.muted}"/>`);
+        out += pill(x, 700, lab, on ? DK.teal : '#C9B9AE', k, 16);
+      });
+      out += pill(1174, 760, 'learn mode: ON', DK.teal, pop(t, T.lamps[3] + 0.4, 0.5), 24);
+      // The revenge-trading you, at the door.
+      if (t > T.knock) {
+        const pk = ease(seg(t, T.knock, T.knock + 0.6));
+        out += `<g transform="translate(${1630 + shake},${f1(580 - 40 * pk)})"><clipPath id="s17win"><rect x="-70" y="-80" width="140" height="80"/></clipPath><g clip-path="url(#s17win)"><circle cx="0" cy="${f1(40 - pk * 30)}" r="36" fill="#E8B48C"/><path d="M-36,${f1(26 - pk * 30)} C-40,${f1(-20 - pk * 30)} 40,${f1(-20 - pk * 30)} 36,${f1(26 - pk * 30)} C20,${f1(4 - pk * 30)} -20,${f1(4 - pk * 30)} -36,${f1(26 - pk * 30)} Z" fill="#C27A3A"/><path d="M-20,${f1(28 - pk * 30)} L-6,${f1(34 - pk * 30)} M20,${f1(28 - pk * 30)} L6,${f1(34 - pk * 30)}" stroke="${C.dark}" stroke-width="4"/><circle cx="-12" cy="${f1(42 - pk * 30)}" r="4" fill="${C.dark}"/><circle cx="12" cy="${f1(42 - pk * 30)}" r="4" fill="${C.dark}"/><ellipse cx="0" cy="${f1(56 - pk * 30)}" rx="8" ry="${f1(3 + Math.abs(Math.sin(t * 10)) * 4)}" fill="#6B2A2A"/></g></g>`;
+        if (t < T.knock + 1.6) out += txt(1440, 520 + Math.sin(t * 20) * 3, 'KNOCK KNOCK', 22, DK.pink, { a: 'end', ls: 2 });
+      }
+      out += bub(1560, 440, 'Just one more trade! 😤', between(t, T.knock + 0.6, T.knock + 3.4), { size: 26, tail: 'right' });
+      out += bub(700, 560, 'Already decided. 😌', between(t, T.knock + 1.8, s.end), { size: 28 });
+      return out;
+    },
+  });
+
+  /* ================= Lesson 24: Maximum Trades & Frequency Risk ================= */
+  Object.assign(LIVE, {
+    // A waiter stacks plates: each trade adds one more −$100 plate. Exposure = risk × trades.
+    's17-plate-stack': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="380" width="1920" height="620" fill="#FDF3E7" opacity=".6"/>` + ground(1000, '#F1E1CF', '#E2CDB6');
+      // Checkerboard floor strip.
+      for (let x = 0; x < 1920; x += 60) out += `<rect x="${x}" y="1004" width="30" height="38" fill="${(x / 60) % 2 ? '#E8D3BE' : '#F7EADC'}"/><rect x="${x + 30}" y="1042" width="30" height="38" fill="${(x / 60) % 2 ? '#E8D3BE' : '#F7EADC'}"/>`;
+      // Counter with a cat.
+      out += scaleAt(330, 1000, pop(t, T.diner, 0.7), `<rect x="120" y="840" width="440" height="160" rx="10" fill="${C.pinkL}"/><rect x="104" y="820" width="472" height="26" rx="8" fill="${C.pink}"/><rect x="160" y="880" width="360" height="10" rx="5" fill="#fff" opacity=".5"/>`);
+      out += crit(t, 'cat', { x: 470, y: 822, scale: 0.6, seed: 3, at: T.diner + 0.5, flip: true });
+      // Menu board tally.
+      const n = T.plates.filter(x => t > x).length;
+      const bk = pop(t, T.diner + 0.4, 0.7);
+      out += scaleAt(340, 540, bk, `<rect x="140" y="430" width="400" height="230" rx="16" fill="${C.dark}"/><rect x="156" y="446" width="368" height="198" rx="10" fill="#3B4A44"/>
+        ${txt(340, 492, 'TODAY', 26, C.gold, { ls: 4 })}${txt(180, 552, 'TRADES', 26, '#E8F8F6', { a: 'start' })}${txt(500, 554, n, 40, '#fff', { a: 'end' })}
+        ${txt(180, 618, 'DAY', 26, '#E8F8F6', { a: 'start' })}${txt(500, 622, n ? '−' + money(n * 100) : '$0', 44, n >= 6 ? C.pinkL : '#fff', { a: 'end' })}`);
+      if (n >= 6) out += sparkAt(400, 600, T.six, t, C.pink);
+      // Waiter with the tray.
+      const wt = { x: 860, y: 1000, scale: 1.25, look: A.LOOKS.c, seed: 2, at: T.diner + 0.2, talk: ctx.talking && t > T.formula && t < T.formula + 3, mood: n >= 6 && t < T.formula ? 'sad' : undefined };
+      const hx = 985, hy = 662;
+      wt.frontArm = aim(wt, hx, hy);
+      out += who(t, wt);
+      const swayAmp = 1 + n * 1.4 + (n >= 6 ? 3 : 0);
+      const sway = Math.sin(t * 3.2) * swayAmp;
+      const px = hx + 60;
+      let stack = `<rect x="${px - 110}" y="${hy - 14}" width="220" height="14" rx="7" fill="${C.muted}"/>`;
+      T.plates.forEach((at, i) => {
+        const k = ease(seg(t, at, at + 0.5));
+        if (k <= 0) return;
+        const y = hy - 30 - i * 34 - (1 - k) * 160;
+        stack += `<g opacity="${k}"><ellipse cx="${px}" cy="${y + 10}" rx="96" ry="18" fill="#fff" stroke="#E2D6CC" stroke-width="4"/><rect x="${px - 96}" y="${y - 6}" width="192" height="16" fill="#fff"/><ellipse cx="${px}" cy="${y - 6}" rx="96" ry="18" fill="#fff" stroke="#E2D6CC" stroke-width="4"/><ellipse cx="${px}" cy="${y - 6}" rx="60" ry="10" fill="${C.pinkP}"/>${txt(px, y + 1, '−$100', 20, DK.pink)}</g>`;
+      });
+      out += rotAt(hx, hy, sway, stack);
+      if (n >= 6) [0, 1].forEach(i => { const p = (t * 1.2 + i / 2) % 1; out += `<path d="M${830 + i * 70},${f1(660 + p * 40)} q6,10 0,16 q-6,-6 0,-16" fill="${C.tealL}" opacity="${1 - p}"/>`; });
+      // Customer at a table, mouse under it.
+      out += scaleAt(1400, 1000, pop(t, T.diner + 0.6, 0.6), `<rect x="1290" y="820" width="240" height="20" rx="8" fill="#B8835A"/><rect x="1400" y="840" width="20" height="160" fill="#9B6A45"/><ellipse cx="1410" cy="996" rx="60" ry="8" fill="#9B6A45"/>
+        <path d="M1320,800 q0,-30 30,-30 l20,0 q0,30 -30,30 Z" fill="${C.teal}"/><rect x="1446" y="780" width="36" height="40" rx="6" fill="#fff" stroke="#E2D6CC" stroke-width="3"/>`);
+      out += who(t, { x: 1600, y: 1000, scale: 1, look: A.LOOKS.a, flip: true, seed: 6, at: T.diner + 0.8, talk: ctx.talking && t < T.plates[0] - 2 });
+      out += bub(1540, 600, 'I only risk $100 per trade! 😇', between(t, T.diner + 0.6, T.plates[0] - 0.4), { size: 26, tail: 'right' });
+      out += bub(1530, 600, 'Wait, that’s −$600? 😳', between(t, T.six, T.formula + 2), { size: 26, tail: 'right' });
+      out += crit(t, 'mouse', { x: 1300 + Math.sin(t * 0.9) * 40, y: 1000, scale: 0.75, seed: 4, at: T.diner + 1.2, flip: Math.cos(t * 0.9) < 0 });
+      out += pill(940, 1044, 'exposure = risk per trade × trades', C.purple, pop(t, T.formula, 0.6), 26);
+      out += pill(1500, 470, '1% × 10 trades = up to 10%', C.pink, pop(t, T.pct, 0.6), 28);
+      return out;
+    },
+
+    // A fairground ride pass with three punches. Each ride brings friends (costs); a full card means the day is done.
+    's17-punch-card': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="380" width="1920" height="620" fill="#EAF6F4" opacity=".6"/>` + ground(1000, '#E8EFE3', '#D3DECB');
+      // Roller coaster track on the right.
+      const trackY = u => 780 - 260 * Math.sin(u * Math.PI) + 70 * Math.sin(u * Math.PI * 3);
+      const X = u => 1060 + u * 820;
+      let pts = '';
+      for (let i = 0; i <= 60; i++) pts += (i ? ' L' : 'M') + f1(X(i / 60)) + ',' + f1(trackY(i / 60));
+      const tk = pop(t, T.booth + 0.4, 0.8);
+      let tr = '';
+      for (let i = 1; i < 12; i++) { const u = i / 12; tr += `<line x1="${f1(X(u))}" y1="${f1(trackY(u))}" x2="${f1(X(u))}" y2="1000" stroke="#C9B9AE" stroke-width="8"/>`; }
+      tr += `<path d="${pts}" stroke="${C.pink}" stroke-width="12" fill="none"/><path d="${pts}" stroke="#fff" stroke-width="3" fill="none" stroke-dasharray="10 10"/>`;
+      out += scaleAt(1470, 1000, tk, tr);
+      // Cart rides after each punch.
+      [...T.punches].forEach(at => {
+        const k = seg(t, at + 0.4, at + 2.2);
+        if (k <= 0 || k >= 1) return;
+        const u = ease(k), x = X(u), y = trackY(u), a = Math.atan2(trackY(u + 0.01) - y, X(u + 0.01) - x) * 180 / Math.PI;
+        out += `<g transform="translate(${f1(x)},${f1(y)}) rotate(${f1(a)})"><rect x="-46" y="-46" width="92" height="40" rx="10" fill="${C.purple}"/><circle cx="-26" cy="-4" r="9" fill="${C.dark}"/><circle cx="26" cy="-4" r="9" fill="${C.dark}"/><circle cx="0" cy="-58" r="14" fill="#F1C7A5"/><path d="M-12,-62 L-20,-80 M12,-62 L20,-80" stroke="#F1C7A5" stroke-width="6" stroke-linecap="round"/></g>`;
+      });
+      // Ticket booth.
+      out += scaleAt(330, 1000, pop(t, T.booth, 0.7), `<rect x="180" y="560" width="300" height="440" rx="10" fill="${C.peachL}"/>${[0, 1, 2, 3, 4].map(i => `<path d="M${160 + i * 68},500 L${228 + i * 68},500 L${228 + i * 68},560 Q${194 + i * 68},590 ${160 + i * 68},560 Z" fill="${i % 2 ? '#fff' : C.peach}"/>`).join('')}<rect x="150" y="470" width="360" height="36" rx="10" fill="${DK.peach}"/>${txt(330, 498, 'RIDE PASS', 24, '#fff', { ls: 3 })}<rect x="220" y="620" width="220" height="150" rx="10" fill="#fff" opacity=".7"/>`);
+      // The pass card (big).
+      const ck = pop(t, T.card, 0.7);
+      const full = t > T.punches[2];
+      out += scaleAt(780, 480, ck, `<rect x="560" y="420" width="440" height="130" rx="18" fill="#fff" stroke="${C.purple}" stroke-width="5"/>${txt(700, 478, 'MAX', 22, DK.purple, { ls: 2 })}${txt(700, 520, 'TRADES', 22, DK.purple, { ls: 2 })}`);
+      T.punches.forEach((at, i) => {
+        const x = 820 + i * 70, punched = t > at;
+        if (ck > 0) out += scaleAt(780, 480, ck, `<circle cx="${x}" cy="486" r="24" fill="${punched ? C.dark : '#fff'}" stroke="${C.purple}" stroke-width="4" ${punched ? '' : 'stroke-dasharray="6 5"'}/>${punched ? '' : txt(x, 495, i + 1, 22, C.purpleL)}`);
+        if (punched) out += sparkAt(x, 486, at, t, [C.pink, C.teal, C.gold][i]);
+      });
+      out += stamp(890, 486, 'DAY DONE', C.pink, ease(seg(t, T.done, T.done + 0.3)), -10, 74, 22);
+      // Conductor with a hole punch, rider with the card.
+      const cn = { x: 560, y: 1000, scale: 1.05, look: A.LOOKS.c, seed: 2, at: T.booth + 0.3, hat: 'cap', talk: ctx.talking && t > T.fourth && t < T.done + 1 };
+      const clip = T.punches.some(x => t > x - 0.3 && t < x + 0.2);
+      cn.frontArm = clip ? { a1: -20, a2: -60 } : { a1: 20, a2: -40 };
+      cn.hold = `<g><rect x="-6" y="-30" width="12" height="40" rx="6" fill="${C.muted}"/><path d="M-20,-30 L20,-30 L14,-46 L-14,-46 Z" fill="${C.purple}"/></g>`;
+      out += who(t, cn);
+      const rd = { x: 830, y: 1000, scale: 1.05, look: A.LOOKS.seller, flip: true, seed: 5, at: T.booth + 0.5, talk: false };
+      rd.frontArm = t > T.fourth - 0.2 && t < T.done + 0.6 ? aim(rd, 680, 740) : { a1: 120, a2: 150 };
+      rd.hold = `<g transform="rotate(-10)"><rect x="-30" y="-20" width="60" height="36" rx="6" fill="#fff" stroke="${C.purple}" stroke-width="3"/></g>`;
+      out += who(t, rd);
+      out += bub(900, 640, 'One more ride? 🥺', between(t, T.fourth, T.done + 0.6), { size: 28 });
+      out += bub(560, 620, 'Card’s full. Day’s done.', between(t, T.done, s.end), { size: 26 });
+      // Friends that tag along: costs.
+      [['commission', C.pink], ['slippage', C.purple], ['exposure', C.peach], ['deviation', C.teal]].forEach(([lab, col], i) => {
+        out += bst(t, 'gremlin', { x: 1180 + i * 170, y: 1000, scale: 0.7, seed: i + 2, col, at: T.friends[i], hop: 6 + i, hopH: 24, tag: lab });
+      });
+      out += pill(1440, 640, 'more trades can mean more…', DK.purple, pop(t, T.friends[0] + 0.3, 0.5), 24);
+      return out;
+    },
+  });
+
+  /* ================= Lesson 25: Drawdown, Losing Streaks & Survival ================= */
+  Object.assign(LIVE, {
+    // A climber at the summit ($10,000) descends to a ledge ($9,400). Drawdown is measured from the peak.
+    's17-summit-rope': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="380" width="1920" height="620" fill="#EAF4F8" opacity=".7"/>` + cloud(lerp(1500, 1300, (t % 40) / 40), 470, 0.8) + cloud(lerp(260, 420, (t % 40) / 40), 520, 0.6);
+      const PX = 760, PY = 600, LX = 1120, LY = 820;
+      const mk = pop(t, T.mtn, 0.9);
+      out += scaleAt(960, 1000, mk, `<path d="M120,1000 L${PX},${PY} L${LX},${LY} L1260,${LY} L1820,1000 Z" fill="#B9AED6"/><path d="M${PX},${PY} L${PX + 70},${PY + 60} L${PX + 30},${PY + 50} L${PX},${PY + 76} L${PX - 40},${PY + 46} L${PX - 80},${PY + 66} Z" fill="#fff"/>
+        <path d="M${LX},${LY} L1260,${LY} L1250,${LY + 18} L${LX + 10},${LY + 18} Z" fill="${DK.purple}"/><path d="M400,1000 L700,760 L900,1000 Z" fill="${C.purpleL}" opacity=".6"/>`);
+      out += ground(1000, '#E6E1F0', '#D6CFE6');
+      // Peak flag.
+      const fk = pop(t, T.peak, 0.6);
+      const wave = Math.sin(t * 5) * 6;
+      out += scaleAt(PX, PY, fk, `<rect x="${PX + 30}" y="${PY - 120}" width="6" height="120" fill="${C.dark}"/><path d="M${PX + 36},${PY - 120} Q${PX + 70},${PY - 110 + wave} ${PX + 100},${PY - 116} L${PX + 100},${PY - 80} Q${PX + 70},${PY - 74 + wave} ${PX + 36},${PY - 84} Z" fill="${C.pink}"/>`);
+      out += pill(PX - 210, PY - 60, 'PEAK $10,000', DK.purple, fk, 28);
+      out += pill(LX + 70, LY + 60, 'NOW $9,400', C.pink, pop(t, T.desc + 2.4, 0.6), 28);
+      // Climber: at the peak, then walks down to the ledge.
+      const dk = ease(seg(t, T.desc, T.desc + 2.4));
+      const cx = lerp(PX, LX + 70, dk), cy = dk < 0.85 ? lerp(PY, LY, dk / 0.85) : LY;
+      const cl = { x: cx, y: cy, scale: 0.72, look: A.LOOKS.d, seed: 3, at: T.peak + 0.2, hat: 'hard', walking: dk > 0 && dk < 1, flip: false };
+      if (t > T.peak + 0.6 && t < T.desc) cl.frontArm = { a1: -110 + Math.sin(t * 8) * 10, a2: -100 };
+      out += who(t, cl);
+      // Rope / measurement from the peak.
+      const rk = ease(seg(t, T.rope, T.rope + 0.8)), vk = ease(seg(t, T.rope + 0.6, T.rope + 1.4));
+      if (rk > 0) out += `<line x1="${PX}" x2="${f1(lerp(PX, 1420, rk))}" y1="${PY}" y2="${PY}" stroke="${DK.purple}" stroke-width="5" stroke-dasharray="14 10"/>`;
+      if (vk > 0) out += `<line x1="1400" x2="1400" y1="${PY}" y2="${f1(lerp(PY, LY, vk))}" stroke="${C.pink}" stroke-width="8" stroke-linecap="round"/>${vk >= 1 ? `<path d="M1384,${LY - 18} L1400,${LY} L1416,${LY - 18}" fill="none" stroke="${C.pink}" stroke-width="8" stroke-linecap="round"/>` : ''}<line x1="1260" x2="1420" y1="${LY}" y2="${LY}" stroke="${DK.purple}" stroke-width="5" stroke-dasharray="14 10" opacity="${vk}"/>`;
+      out += pill(1620, (PY + LY) / 2 - 42, 'DRAWDOWN', C.pink, pop(t, T.rope + 1.2, 0.5), 26);
+      out += pill(1620, (PY + LY) / 2 + 30, '$600 · 6%', DK.pink, pop(t, T.rope + 1.6, 0.5), 34);
+      if (t > T.rope + 1.6) out += sparkAt(1620, (PY + LY) / 2, T.rope + 1.6, t, C.pink);
+      out += pill(1620, (PY + LY) / 2 + 100, '(peak − now) ÷ peak', DK.purple, pop(t, T.wrong + 2.4, 0.5), 24);
+      // Goat with the wrong idea.
+      out += bst(t, 'goat', { x: 380, y: 1000, scale: 0.85, seed: 2, at: T.mtn + 1, hop: t > T.wrong && t < T.wrong + 1 ? 8 : 0, hopH: 16 });
+      const wk = pop(t, T.wrong, 0.6);
+      if (wk > 0) {
+        out += scaleAt(250, 860, wk, `<rect x="244" y="760" width="10" height="240" fill="#9B6A45"/><rect x="120" y="700" width="260" height="90" rx="12" fill="#fff" stroke="${C.muted}" stroke-width="4"/>${txt(250, 736, 'from the', 22, C.muted, { w: 700 })}${txt(250, 770, 'START?', 30, C.muted)}`);
+        out += cross(370, 708, pop(t, T.wrong + 1, 0.4), C.pink, 24);
+      }
+      // Eagle circling.
+      out += crit(t, 'bird', { x: 1240 + Math.cos(t * 0.9) * 220, y: 470 + Math.sin(t * 0.9) * 40, scale: 1.1, col: '#B8835A', seed: 6, fly: true, flip: Math.sin(t * 0.9) > 0, at: T.mtn + 1.5 });
+      out += bub(LX - 40, 560, 'How deep can it get? 🤔', between(t, T.more, s.end), { size: 28 });
+      return out;
+    },
+
+    // Five waves (losses) hit two rafts: 1% per trade bobs along, 10% per trade is nearly swamped.
+    's17-raft-waves': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="380" width="1920" height="400" fill="#E6F4F6" opacity=".8"/>` + cloud(lerp(300, 500, (t % 40) / 40), 470, 0.7) + cloud(lerp(1600, 1400, (t % 40) / 40), 440, 0.8);
+      // Sea.
+      const SEA = 800;
+      let sea = `M0,${SEA}`;
+      for (let x = 0; x <= 1920; x += 40) sea += ` L${x},${f1(SEA + Math.sin(x / 90 + t * 2) * 8)}`;
+      out += `<path d="${sea} L1920,1080 L0,1080 Z" fill="${C.tealL}"/>`;
+      // Wave crests (losses) rolling right.
+      const WD = 2.4;
+      const crestX = at => lerp(-200, 2120, seg(t, at, at + WD));
+      const hitBy = x => T.waves.filter(at => t > at + (x + 200) / 2320 * WD).length;
+      T.waves.forEach((at, i) => {
+        const k = seg(t, at, at + WD);
+        if (k <= 0 || k >= 1) return;
+        const x = crestX(at);
+        out += `<path d="M${f1(x - 160)},${SEA + 10} Q${f1(x - 60)},${SEA - 10} ${f1(x - 20)},${SEA - 90} Q${f1(x + 30)},${SEA - 130} ${f1(x + 70)},${SEA - 90} Q${f1(x + 40)},${SEA - 80} ${f1(x + 50)},${SEA - 60} Q${f1(x + 90)},${SEA - 10} ${f1(x + 180)},${SEA + 10} Z" fill="${C.teal}"/>${txt(x + 10, SEA - 34, 'L', 34, '#fff')}`;
+      });
+      // Rafts.
+      const rafts = [{ x: 540, r: 0.01, lab: '1% per trade', look: A.LOOKS.d, col: DK.teal, seed: 2 }, { x: 1380, r: 0.1, lab: '10% per trade', look: A.LOOKS.b, col: DK.pink, seed: 5 }];
+      rafts.forEach((R, i) => {
+        const k = pop(t, T.rafts + i * 0.4, 0.7);
+        if (k <= 0) return;
+        const n = hitBy(R.x), dd = 1 - Math.pow(1 - R.r, n);
+        const lastHit = T.waves.map(at => at + (R.x + 200) / 2320 * WD).filter(h => t > h).pop();
+        const jolt = lastHit != null ? Math.sin(Math.min(1, (t - lastHit) / 0.6) * Math.PI) * -26 : 0;
+        const sink = dd * 220, bob = Math.sin(t * 2 + i) * 5 + jolt;
+        const y = SEA - 10 + sink + bob, tilt = Math.sin(t * 1.6 + i) * (3 + dd * 10);
+        const sailor = { x: R.x - 30, y: y - 20, scale: 0.75, look: R.look, seed: R.seed, flip: i === 1 };
+        if (i === 1 && n > 1) sailor.frontArm = { a1: 20 + Math.sin(t * 6) * 40, a2: -30 + Math.sin(t * 6) * 40 };
+        if (i === 1 && n > 1) sailor.hold = `<path d="M-14,-10 L14,-10 L10,14 L-10,14 Z" fill="${C.muted}"/>`;
+        let g = `<rect x="${R.x + 60}" y="${y - 220}" width="8" height="200" fill="#9B6A45"/><path d="M${R.x + 68},${y - 214} L${R.x + 190},${y - 170} L${R.x + 68},${y - 120} Z" fill="#fff" stroke="#E2D6CC" stroke-width="3"/>`
+          + A.person(t, sailor)
+          + `<rect x="${R.x - 150}" y="${y - 22}" width="300" height="34" rx="10" fill="#B8835A"/>${[0, 1, 2, 3, 4].map(j => `<line x1="${R.x - 150 + j * 60 + 30}" y1="${y - 22}" x2="${R.x - 150 + j * 60 + 30}" y2="${y + 12}" stroke="#9B6A45" stroke-width="3"/>`).join('')}`;
+        out += scaleAt(R.x, y, k, rotAt(R.x, y, tilt, g));
+        // Water over the raft deck for the deep one.
+        out += `<rect x="0" y="${SEA + 6}" width="0" height="0"/>`;
+        out += pill(R.x, 470, R.lab, R.col, k, 26);
+        if (n > 0) out += pill(R.x, 540, `≈ −${(dd * 100).toFixed(dd < 0.1 ? 1 : 0)}%`, i ? C.pink : C.teal, 1, i ? 30 + Math.min(1, n / 5) * 10 : 30);
+        if (i === 1 && n > 1) for (let j = 0; j < 4; j++) { const p = (t * 1.6 + j / 4) % 1; out += `<circle cx="${f1(R.x + 40 + p * 90)}" cy="${f1(y - 120 + p * p * 140 - Math.sin(p * Math.PI) * 60)}" r="6" fill="${C.teal}" opacity="${1 - p}"/>`; }
+      });
+      // Foreground water to half-hide sunk rafts.
+      let fg = `M0,${SEA + 26}`;
+      for (let x = 0; x <= 1920; x += 40) fg += ` L${x},${f1(SEA + 26 + Math.sin(x / 70 - t * 2.4) * 10)}`;
+      out += `<path d="${fg} L1920,1080 L0,1080 Z" fill="${C.teal}" opacity=".55"/>`;
+      // Seagull and a jumping fish.
+      out += crit(t, 'bird', { x: 960 + Math.sin(t * 0.7) * 300, y: 440 + Math.sin(t * 1.9) * 20, scale: 0.9, col: '#fff', seed: 3, fly: true, flip: Math.cos(t * 0.7) < 0, at: T.sea + 0.6 });
+      const fp = ((t - T.sea) % 3.2) / 1.2;
+      if (t > T.sea + 1 && fp < 1) out += rotAt(960 + fp * 160, SEA + 20 - Math.sin(fp * Math.PI) * 140, -60 + fp * 120, beast(t, 'fish', { x: 960 + fp * 160, y: SEA + 20 - Math.sin(fp * Math.PI) * 140, scale: 0.8, seed: 2, hop: 0 }));
+      out += pill(960, 1044, 'same streak · different damage · ≈ before costs', C.purple, pop(t, T.punch, 0.6), 26);
+      return out;
+    },
+  });
+
+  /* ================= Lesson 26: Prop-Firm Risk vs Personal Capital ================= */
+  Object.assign(LIVE, {
+    // Same trip (chart), two suitcases (accounts): one with plenty of room, one that shows $50,000 but has $300 of room.
+    's17-two-suitcases': (s, t, ctx) => {
+      const T = s.beats;
+      let out = ground(1000, '#F3EDF6', '#E3D9EA');
+      // Postcard chart: same for both.
+      const pk = pop(t, T.chart, 0.7);
+      let pc = `<rect x="740" y="400" width="440" height="190" rx="16" fill="#fff" stroke="#E2D6CC" stroke-width="4"/><line x1="770" x2="1150" y1="470" y2="470" stroke="${C.purple}" stroke-width="4" stroke-dasharray="10 8"/>`;
+      [[.3, .5], [.5, .4], [.4, .7], [.7, .62], [.62, .45], [.45, .58], [.58, .8], [.8, .72]].forEach(([o, c], i) => {
+        const y = v => 570 - v * 140, up = c > o;
+        pc += `<rect x="${786 + i * 34}" y="${f1(y(Math.max(o, c)))}" width="20" height="${f1(Math.abs(y(o) - y(c)))}" rx="3" fill="${up ? C.teal : C.pink}"/>`;
+      });
+      pc += `<line x1="1110" x2="1110" y1="470" y2="560" stroke="${C.pink}" stroke-width="4"/>`;
+      out += scaleAt(960, 495, pk, rotAt(960, 495, Math.sin(t * 1.2) * 1.5, pc));
+      out += pill(960, 630, 'same PIL · same ICC · 30-pt stop', DK.purple, pop(t, T.chart + 0.8, 0.5), 22);
+      out += crit(t, 'bird', { x: 1150, y: 402, scale: 0.7, seed: 2, col: '#C9C3D9', at: T.chart + 1 });
+      // Suitcases.
+      const suit = (x, col, dk, lab, roomW, k, sticker) => k <= 0 ? '' : scaleAt(x, 980, k, `<rect x="${x - 50}" y="680" width="100" height="30" rx="12" fill="none" stroke="${dk}" stroke-width="10"/>
+        <rect x="${x - 220}" y="700" width="440" height="280" rx="28" fill="${col}" stroke="${dk}" stroke-width="6"/>${txt(x, 750, lab, 26, '#fff', { ls: 2 })}
+        <rect x="${x - 190}" y="780" width="380" height="120" rx="14" fill="#fff" opacity=".35"/>
+        <rect x="${x - 190}" y="780" width="${roomW}" height="120" rx="14" fill="#fff" stroke="#fff" stroke-width="3" stroke-dasharray="10 8"/>
+        ${sticker || ''}<circle cx="${x - 150}" cy="990" r="12" fill="${C.dark}"/><circle cx="${x + 150}" cy="990" r="12" fill="${C.dark}"/>`);
+      const ak = pop(t, T.A, 0.7), bk = pop(t, T.B, 0.7);
+      out += suit(520, C.teal, DK.teal, 'A · PERSONAL', 380, ak);
+      out += suit(1400, C.purple, DK.purple, 'B · PROP EVALUATION', 112, bk, `<g transform="translate(1530,840) rotate(${f1(8 + Math.sin(t * 2) * 3)})"><circle r="56" fill="${C.gold}"/>${txt(0, 4, '$50,000', 22, '#fff')}${txt(0, 28, 'shown', 16, '#fff', { w: 700 })}</g>`);
+      out += pill(520, 940, 'room for the normal size', DK.teal, pop(t, T.A + 1, 0.5), 20);
+      out += pill(1266, 940, 'room: $300', C.pink, pop(t, T.B + 2.4, 0.5), 20);
+      // The $240 loss block drops into each. Scale: $300 room = 112px.
+      const blk = (x0, x1, y1, at, w, col, lab) => {
+        const k = ease(seg(t, at, at + 1));
+        if (k <= 0) return '';
+        const x = lerp(x0, x1, k), y = lerp(560, y1, k) - Math.sin(k * Math.PI) * 120;
+        return `<g transform="translate(${f1(x)},${f1(y)})"><rect x="${-w / 2}" y="-50" width="${w}" height="100" rx="10" fill="${col}" stroke="#fff" stroke-width="3"/>${txt(0, 10, lab, w > 80 ? 26 : 18, '#fff')}</g>`;
+      };
+      out += blk(240, 375, 840, T.packA, 90, C.pink, '$240');
+      out += check(620, 840, pop(t, T.packA + 1.1, 0.5), C.teal, 30);
+      const shrink = t > T.verdict + 0.8;
+      if (!shrink) out += blk(1700, 1255, 840, T.packB, 90, C.pink, '$240');
+      else out += blk(1255, 1225, 840, T.verdict + 0.8, 30, C.peach, '');
+      out += pill(1400, 640 + 20, 'one loss = 80% of the room', C.pink, between(t, T.packB + 1.2, T.verdict + 0.6), 24);
+      out += pill(1400, 660, 'smaller size, or no trade', DK.purple, pop(t, T.verdict + 1, 0.5), 26);
+      if (t > T.packB + 1 && t < T.verdict + 0.8) { const fl = Math.floor(t * 3) % 2; out += `<rect x="1205" y="776" width="120" height="128" rx="14" fill="none" stroke="${fl ? C.pink : C.gold}" stroke-width="5"/>`; }
+      // Travellers and a porter dog.
+      out += who(t, { x: 190, y: 1000, scale: 1, look: A.LOOKS.buyer, seed: 3, at: T.A + 0.3, talk: ctx.talking && t > T.A && t < T.A + 3 });
+      out += who(t, { x: 1730, y: 1000, scale: 1, look: A.LOOKS.d, flip: true, seed: 5, at: T.B + 0.3, talk: ctx.talking && t > T.packB && t < T.packB + 3, mood: t > T.packB + 1 && t < T.verdict + 1 ? 'sad' : undefined });
+      out += bub(1700, 600, 'Same chart, so same size? 🤔', between(t, T.B + 2, T.packB), { size: 24, tail: 'right' });
+      const dx = 960 + Math.sin(t * 0.8) * 60;
+      out += crit(t, 'dog', { x: dx, y: 1000, scale: 0.6, seed: 4, flip: Math.cos(t * 0.8) < 0, hop: 9, hopH: 8, at: T.chart + 1.4, tongue: true });
+      return out;
+    },
+
+    // An owl checks the current program rules; a blacksmith forges a four-layer shield: trade, daily, account, survival.
+    's17-shield-forge': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="380" width="1920" height="620" fill="#FBEFE4" opacity=".6"/>` + ground(1000, '#EADBCB', '#D9C5B0');
+      // Lectern with a long rules scroll.
+      out += scaleAt(420, 1000, pop(t, T.forge, 0.7), `<rect x="400" y="760" width="40" height="240" fill="#9B6A45"/><ellipse cx="420" cy="996" rx="100" ry="12" fill="#9B6A45"/><path d="M250,700 L590,700 L620,770 L220,770 Z" fill="#B8835A"/>`);
+      const rk = ease(seg(t, T.forge + 0.4, T.forge + 1.6));
+      const rules = ['max drawdown', 'daily loss rule', 'trailing drawdown', 'consistency', 'contract limits', 'payout & time rules'];
+      const upd = t > T.check;
+      if (rk > 0) {
+        let sc = `<rect x="250" y="${f1(700 - 290 * rk)}" width="340" height="${f1(290 * rk)}" fill="#FFF8EC" stroke="#E2D6C0" stroke-width="3"/><rect x="236" y="${f1(694 - 290 * rk)}" width="368" height="22" rx="11" fill="#E7C9A5"/>`;
+        rules.forEach((r, i) => {
+          const y = 440 + i * 42;
+          if (y < 700 - 290 * rk + 20) return;
+          const jitter = upd && t < T.check + 1.6 ? Math.sin(t * 30 + i) * 3 : 0;
+          sc += `<circle cx="278" cy="${y - 7}" r="6" fill="${[C.pink, C.peach, C.purple, C.teal, C.pink, C.peach][i]}"/>${txt(296 + jitter, y, r, 22, C.text, { a: 'start', w: 700 })}`;
+        });
+        out += sc;
+      }
+      // Owl with magnifier on the lectern.
+      out += crit(t, 'owl', { x: 560, y: 700, scale: 0.75, seed: 3, at: T.forge + 0.6, talk: ctx.talking && t > T.check && t < T.check + 3 });
+      const mg = 440 + ((t * 0.6) % 1) * 210;
+      if (rk >= 1) out += `<g transform="translate(${f1(330 + Math.sin(t * 1.4) * 60)},${f1(mg)})"><circle r="34" fill="#fff" fill-opacity=".3" stroke="${C.dark}" stroke-width="7"/><line x1="24" y1="24" x2="56" y2="56" stroke="${C.dark}" stroke-width="10" stroke-linecap="round"/></g>`;
+      out += stamp(610, 440, 'UPDATED', C.pink, ease(seg(t, T.check, T.check + 0.3)) * (Math.floor(t * 2) % 2 ? 1 : 0.85), 12, 70, 22);
+      out += pill(420, 1044, 'check the current rules for YOUR program', DK.pink, pop(t, T.check + 0.6, 0.5), 22);
+      // Anvil.
+      out += scaleAt(1150, 1000, pop(t, T.forge + 0.3, 0.7), `<path d="M1040,860 L1260,860 L1300,830 L1260,830 Q1250,800 1220,800 L1060,800 Q1040,800 1040,830 L990,830 Z" fill="${C.muted}"/><rect x="1100" y="860" width="100" height="80" fill="#6E5A50"/><rect x="1070" y="940" width="160" height="60" rx="8" fill="#5A4A40"/>`);
+      // Shield, built layer by layer.
+      const L = [['SURVIVAL', C.purple, 150], ['ACCOUNT', C.teal, 118], ['DAILY', C.peach, 86], ['TRADE', C.pink, 54]];
+      const order = [3, 2, 1, 0]; // trade first
+      const SX = 1150, SY = 600;
+      const glow = t > T.done ? 0.5 + 0.5 * Math.sin(t * 4) : 0;
+      if (glow) out += `<circle cx="${SX}" cy="${SY}" r="${190 + glow * 10}" fill="${C.gold}" opacity=".18"/>`;
+      const shieldPath = r => `M${SX},${SY - r} L${SX + r * 0.9},${SY - r * 0.6} C${SX + r * 0.9},${SY + r * 0.3} ${SX + r * 0.5},${SY + r * 0.8} ${SX},${SY + r * 1.05} C${SX - r * 0.5},${SY + r * 0.8} ${SX - r * 0.9},${SY + r * 0.3} ${SX - r * 0.9},${SY - r * 0.6} Z`;
+      // Draw outer to inner, each visible once its layer time has passed.
+      [0, 1, 2, 3].forEach(li => {
+        const at = T.layers[order.indexOf(li)];
+        const k = pop(t, at, 0.5);
+        if (k <= 0) return;
+        out += scaleAt(SX, SY, k, `<path d="${shieldPath(L[li][2])}" fill="${L[li][1]}" stroke="#fff" stroke-width="5"/>`);
+      });
+      if (t > T.layers[0]) out += `<text x="${SX}" y="${SY + 16}" font-size="40" text-anchor="middle">🛡️</text>`;
+      order.forEach((li, j) => {
+        const k = pop(t, T.layers[j] + 0.2, 0.5);
+        const y = 490 + j * 80;
+        out += pill(860, y, L[li][0], L[li][1] === C.peach ? DK.peach : L[li][1] === C.teal ? DK.teal : L[li][1] === C.purple ? DK.purple : DK.pink, k, 24);
+        if (t > T.layers[j]) out += sparkAt(SX, SY, T.layers[j], t, L[li][1]);
+      });
+      out += pill(SX, 400, 'never the same number', C.purple, pop(t, T.four, 0.5), 26);
+      // Blacksmith hammering.
+      const strikes = T.layers.concat([T.done]);
+      const lastS = strikes.filter(x => t > x - 0.4).pop();
+      const hp = lastS != null ? clamp((t - lastS + 0.4) / 0.6) : 1;
+      const up = hp < 1 ? Math.sin(hp * Math.PI) : 0;
+      const bs = { x: 1480, y: 1000, scale: 1.1, look: A.LOOKS.a, flip: true, seed: 4, at: T.forge + 0.5, hat: 'bandana', talk: ctx.talking && t > T.done };
+      bs.frontArm = { a1: -100 + (1 - up) * 70, a2: -140 + (1 - up) * 110 };
+      bs.hold = `<g transform="rotate(${f1(-40 + (1 - up) * 50)})"><rect x="-5" y="-60" width="10" height="70" rx="4" fill="#9B6A45"/><rect x="-22" y="-80" width="44" height="26" rx="5" fill="${C.dark}"/></g>`;
+      out += who(t, bs);
+      // Furnace and cat.
+      const fl = Math.sin(t * 9) * 6;
+      out += scaleAt(1770, 1000, pop(t, T.forge + 0.4, 0.7), `<rect x="1680" y="660" width="180" height="340" rx="20" fill="#B8835A"/><rect x="1720" y="560" width="60" height="110" fill="#9B6A45"/><path d="M1710,1000 L1710,820 Q1770,770 1830,820 L1830,1000 Z" fill="${C.dark}"/>
+        <path d="M1730,1000 Q1740,${880 + fl} 1770,${850 - fl} Q1800,${880 + fl} 1810,1000 Z" fill="${C.peach}"/><path d="M1750,1000 Q1760,${920 - fl} 1770,${900 + fl} Q1780,${920 - fl} 1790,1000 Z" fill="${C.gold}"/>`);
+      out += crit(t, 'cat', { x: 960, y: 1000, scale: 0.6, seed: 5, at: T.forge + 1, sleep: t < T.layers[0] || t > T.done + 1 });
+      out += pill(1150, 1044, 'your framework · your numbers', C.purple, pop(t, T.done, 0.6), 24);
       return out;
     },
   });
