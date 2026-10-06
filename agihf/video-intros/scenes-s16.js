@@ -818,7 +818,7 @@
         car += `<rect x="-110" y="-44" width="220" height="64" rx="18" fill="${C.pink}" stroke="${DK.pink}" stroke-width="5"/><rect x="-96" y="-34" width="192" height="10" rx="5" fill="#fff" opacity=".35"/>
           <circle cx="-66" cy="26" r="16" fill="${C.dark}"/><circle cx="66" cy="26" r="16" fill="${C.dark}"/>`;
         // Plan tag on the car's tail.
-        car += `<g transform="translate(-200,-40) rotate(${f1(-ang)})"><rect x="-100" y="-36" width="200" height="72" rx="14" fill="#fff" stroke="${planned ? C.peach : C.purple}" stroke-width="4"/>${txt(0, -8, planned ? 'PARTIAL RULE' : 'FIXED PLAN', 18, C.muted, { ls: 1 })}${txt(0, 22, planned ? '2 close at +30' : 'no partials', 24, planned ? DK.peach : DK.purple)}</g>`;
+        car += `<g transform="translate(230,-60) rotate(${f1(-ang)})"><rect x="-100" y="-36" width="200" height="72" rx="14" fill="#fff" stroke="${planned ? C.peach : C.purple}" stroke-width="4"/>${txt(0, -8, planned ? 'PARTIAL RULE' : 'FIXED PLAN', 18, C.muted, { ls: 1 })}${txt(0, 22, planned ? '2 close at +30' : 'no partials', 24, planned ? DK.peach : DK.purple)}</g>`;
         out += `<g transform="translate(${f1(cx + shake)},${f1(cy - 20)}) rotate(${f1(ang)})">${car}</g>`;
       }
       // The two who jumped (unplanned): arc out to the ground, sad.
@@ -1174,7 +1174,7 @@
         <rect x="1340" y="860" width="120" height="140" fill="#2F3B48"/>${txt(1400, 500, 'THE TRADE', 22, C.tealL, { ls: 4 })}`;
       const gauges = [['STRUCTURE', 'intact'], ['STOP', '−30 pts'], ['TARGET', '+60 pts'], ['RULES', 'followed']];
       gauges.forEach(([lab, val], i) => {
-        const gx = 1250 + (i % 2) * 300, gy = 620 + Math.floor(i / 2) * 150, k = pop(t, T.gauges[i], 0.5);
+        const gx = 1250 + (i % 2) * 300, gy = 590 + Math.floor(i / 2) * 170, k = pop(t, T.gauges[i], 0.5);
         if (k <= 0) return;
         const needle = -40 + Math.sin(t * 1.2 + i) * 3;
         pn += scaleAt(gx, gy, k, `<path d="M${gx - 70},${gy + 10} A70,70 0 0,1 ${gx + 70},${gy + 10}" fill="none" stroke="#56687A" stroke-width="14"/><path d="M${gx - 70},${gy + 10} A70,70 0 0,1 ${gx + 26},${gy - 55}" fill="none" stroke="${C.teal}" stroke-width="14"/>
@@ -1198,7 +1198,7 @@
       let out = ground(1000, '#FFF1E2', '#F1DCC4');
       // Bunting.
       out += fade(seg(t, s.start, s.start + 0.8), `<path d="M100,400 Q960,470 1820,400" stroke="${C.muted}" stroke-width="3" fill="none"/>` + Array.from({ length: 16 }, (_, i) => { const x = 150 + i * 108, y = 400 + Math.sin((i / 15) * Math.PI) * 35; return `<path d="M${x - 22},${y} L${x + 22},${y} L${x},${f1(y + 40 + Math.sin(t * 3 + i) * 4)} Z" fill="${[C.pink, C.teal, C.peach, C.purple][i % 4]}"/>`; }).join(''));
-      const blocks = [[960, 760, '1', C.gold, 'PRICE'], [700, 840, '2', '#C9C1BA', 'PLAN'], [1220, 900, '3', '#D9A273', 'P&amp;L']];
+      const blocks = [[960, 700, '1', C.gold, 'PRICE'], [700, 790, '2', '#C9C1BA', 'PLAN'], [1220, 850, '3', '#D9A273', 'P&amp;L']];
       blocks.forEach(([x, top, n, col, lab], i) => {
         const k = ease(seg(t, T.podium + i * 0.2, T.podium + i * 0.2 + 0.7));
         if (k <= 0) return;
@@ -1207,12 +1207,12 @@
         out += pill(x, 1040, lab, [DK.peach, C.muted, DK.peach][i], pop(t, T.ranks[i] + 0.3, 0.5), 24);
       });
       // 1st: price candle.
-      out += candy(t, { x: 960, y: 760, h: 140, w: 80, col: C.teal, wu: 30, seed: 2, at: T.ranks[0], arms: t > T.ranks[0] + 0.6 && t < T.ranks[0] + 2.4 ? 'cheer' : undefined });
+      out += candy(t, { x: 960, y: 700, scale: 1.2, h: 140, w: 80, col: C.teal, wu: 30, seed: 2, at: T.ranks[0], arms: t > T.ranks[0] + 0.6 && t < T.ranks[0] + 2.4 ? 'cheer' : undefined });
       // 2nd: plan clipboard character.
       const pk = pop(t, T.ranks[1], 0.6);
       if (pk > 0) {
         const b = Math.sin(t * 2.3) * 3, bl = blinkAmt(t, 21);
-        out += scaleAt(700, 840, pk, `<g transform="translate(700,${f1(840 + b)})"><path d="M-20,-30 L-24,0 M20,-30 L24,0" stroke="${C.dark}" stroke-width="8" stroke-linecap="round"/>
+        out += scaleAt(700, 790, pk, `<g transform="translate(700,${f1(790 + b)}) scale(1.25)"><path d="M-20,-30 L-24,0 M20,-30 L24,0" stroke="${C.dark}" stroke-width="8" stroke-linecap="round"/>
           <rect x="-60" y="-190" width="120" height="164" rx="12" fill="#9B6A45"/><rect x="-50" y="-176" width="100" height="140" rx="6" fill="#fff"/><rect x="-22" y="-200" width="44" height="22" rx="6" fill="${C.muted}"/>
           <ellipse cx="-18" cy="-140" rx="6" ry="${f1(8 * (1 - bl * 0.9))}" fill="${C.dark}"/><ellipse cx="18" cy="-140" rx="6" ry="${f1(8 * (1 - bl * 0.9))}" fill="${C.dark}"/><path d="M-12,-118 Q0,-108 12,-118" stroke="${C.dark}" stroke-width="4" fill="none" stroke-linecap="round"/>
           ${[0, 1, 2].map(i => `<rect x="-36" y="${-96 + i * 18}" width="72" height="8" rx="4" fill="${C.purpleL}"/>`).join('')}</g>`);
@@ -1221,33 +1221,143 @@
       const nums = ['+$186', '−$80', '+$186'];
       const ni = lastIdx(t, T.flips);
       const label = ni < 0 ? '+$186' : nums[ni];
-      let cx = 1220, cy = 900, wow = false;
+      let cx = 1220, cy = 850, wow = false;
       T.hops.forEach(h => {
         const k = seg(t, h, h + 1.6);
         if (k > 0 && k < 1) {
           const go = k < 0.45 ? ease(k / 0.45) : 1 - ease((k - 0.55) / 0.45);
-          cx = lerp(1220, 1060, clamp(go)); cy = lerp(900, 780, clamp(go)) - Math.sin(clamp(go) * Math.PI) * 60; wow = true;
+          cx = lerp(1220, 1070, clamp(go)); cy = lerp(850, 700, clamp(go)) - Math.sin(clamp(go) * Math.PI) * 60; wow = true;
         }
       });
       const ck = pop(t, T.ranks[2], 0.6);
       const flipSq = ni >= 0 ? 1 - 0.5 * Math.max(0, 1 - (t - T.flips[ni]) / 0.3) : 1;
-      if (ck > 0) out += scaleAt(cx, cy, ck, `<g transform="translate(${f1(cx)},0) scale(${f1(flipSq)},1) translate(${f1(-cx)},0)">${coin(t, cx, cy, label, { scale: 0.9, wow: wow || (ni >= 0 && t < T.flips[ni] + 0.8), arms: wow })}</g>`);
+      if (ck > 0) out += scaleAt(cx, cy, ck, `<g transform="translate(${f1(cx)},0) scale(${f1(flipSq)},1) translate(${f1(-cx)},0)">${coin(t, cx, cy, label, { scale: 1.15, wow: wow || (ni >= 0 && t < T.flips[ni] + 0.8), arms: wow })}</g>`);
       // Referee bird with whistle.
       const rb = pop(t, T.ranks[2] + 0.4, 0.6);
-      out += scaleAt(1460, 1000, rb, critter(t, 'bird', { x: 1460, y: 1000, scale: 1.3, seed: 6, flip: true, hop: T.hops.some(h => t > h + 0.5 && t < h + 1.4) ? 12 : 0, hopH: 26, talk: T.hops.some(h => t > h + 0.5 && t < h + 1.4) }));
-      T.hops.forEach(h => { out += bub(1460, 780, 'Back to third! 📣', between(t, h + 0.5, h + 1.5, 0.3), { size: 26, tail: 'left' }); });
+      out += scaleAt(1460, 1000, rb, critter(t, 'bird', { x: 1460, y: 1000, scale: 1.7, seed: 6, flip: true, hop: T.hops.some(h => t > h + 0.5 && t < h + 1.4) ? 12 : 0, hopH: 26, talk: T.hops.some(h => t > h + 0.5 && t < h + 1.4) }));
+      T.hops.forEach(h => { out += bub(1460, 740, 'Back to third! 📣', between(t, h + 0.5, h + 1.5, 0.3), { size: 26, tail: 'left' }); });
       // Plan card: unchanged.
       const pck = pop(t, T.plan, 0.6);
       if (pck > 0) {
         const rows = [['STOP', '−30 pts'], ['TARGET', '+60 pts'], ['RULES', 'same']];
         let c = card(1380, 440, 420, 250, C.purple, txt(1590, 486, 'THE PLAN', 24, C.purple, { ls: 3 }));
         rows.forEach(([a, b], i) => { const y = 540 + i * 52; c += txt(1410, y, a, 24, C.muted, { a: 'start', w: 700 }) + txt(1720, y, b, 26, DK.purple, { a: 'end' }) + check(1760, y - 8, pop(t, T.plan + 0.6 + i * 0.4, 0.4), C.teal, 14); });
-        out += scaleAt(1590, 565, pck, c);
-        out += pill(1590, 720, 'unchanged', DK.teal, pop(t, T.plan + 2, 0.5), 24);
+        out += `<g transform="translate(0,50)">${scaleAt(1590, 565, pck, c)}</g>`;
+        out += pill(1590, 780, 'unchanged', DK.teal, pop(t, T.plan + 2, 0.5), 24);
       }
       // Flip arrows for the number changing.
-      out += pill(1220, 690, 'just the number', C.pink, between(t, T.flips[0] + 0.4, T.plan + 2), 24);
-      out += bub(960, 520, 'Plan changed? Or just the number?', between(t, T.ask, s.end), { size: 28 });
+      out += pill(1220, 640, 'just the number', C.pink, between(t, T.flips[0] + 0.4, T.plan + 2), 24);
+      out += bub(560, 500, 'Plan changed? Or just the number?', between(t, T.ask, s.end), { size: 28, tail: 'right' });
+      return out;
+    },
+  });
+
+  /* ================= Lesson 16: Follow the Plan, Then Grade the Trade ================= */
+  Object.assign(LIVE, {
+    // A classroom: each trade gets two separate report cards, one for management and one for outcome.
+    's16-report-cards': (s, t, ctx) => {
+      const T = s.beats;
+      let out = ground(1000, '#F6EFE6', '#E6D9CA');
+      // Chalkboard + window.
+      out += fade(ease(seg(t, T.room, T.room + 0.8)), `<rect x="160" y="400" width="1600" height="40" rx="10" fill="#9B6A45"/><rect x="760" y="440" width="400" height="230" rx="12" fill="#3F5F57"/><rect x="760" y="440" width="400" height="230" rx="12" fill="none" stroke="#9B6A45" stroke-width="10"/>
+        ${txt(960, 510, 'GRADE', 40, '#fff', { f: 'Playfair Display', op: 0.85 })}${txt(960, 560, 'THE TRADER', 40, '#fff', { f: 'Playfair Display', op: 0.85 })}<path d="M840,600 Q960,620 1080,596" stroke="#fff" stroke-width="4" fill="none" opacity=".6"/>`);
+      // Report card helper.
+      const rcard = (cx, k, title, rows, col) => {
+        if (k <= 0) return '';
+        let c = card(cx - 250, 470, 500, 300, col, `${txt(cx, 516, title, 26, col === C.teal ? DK.teal : DK.pink, { ls: 3 })}<rect x="${cx - 220}" y="534" width="440" height="4" rx="2" fill="#F1E7E1"/>`, cx < 960 ? -1.5 : 1.5);
+        rows.forEach(r => { c += r; });
+        return scaleAt(cx, 620, k, c);
+      };
+      // Trade B: good management, loss.
+      const bk = pop(t, T.cardB, 0.6);
+      const rowsB = [];
+      if (t > T.cardB + 0.6) rowsB.push(txt(330, 590, 'followed the plan ✓', 26, C.text, { a: 'start', w: 700 }));
+      if (t > T.gradeB) rowsB.push(txt(330, 650, 'MANAGEMENT', 22, C.muted, { a: 'start', ls: 2 }));
+      if (t > T.lossB) rowsB.push(txt(330, 720, 'OUTCOME', 22, C.muted, { a: 'start', ls: 2 }) + txt(490, 722, 'stop hit · loss', 26, DK.pink, { a: 'start' }));
+      out += rcard(500, bk, 'TRADE B', rowsB, C.teal);
+      if (bk > 0) out += stamp(640, 640, 'A+', C.teal, ease(seg(t, T.gradeB, T.gradeB + 0.3)), -10, 46, 34);
+      if (t > T.gradeB) out += A.sparkle(640, 640, T.gradeB + 0.3, t, C.teal);
+      // Trade C: management violation, win.
+      const ck = pop(t, T.cardC, 0.6);
+      const rowsC = [];
+      if (t > T.cardC + 0.6) rowsC.push(txt(1190, 590, 'panicked out at +10 😬', 26, C.text, { a: 'start', w: 700 }));
+      if (t > T.cardC + 2) rowsC.push(txt(1190, 630, 'target hit later', 22, C.muted, { a: 'start', w: 700 }));
+      if (t > T.winC) rowsC.push(txt(1190, 690, 'OUTCOME', 22, C.muted, { a: 'start', ls: 2 }) + txt(1500, 692, '+10 · win', 26, '#2F6B3F', { a: 'end' }));
+      if (t > T.gradeC) rowsC.push(txt(1190, 744, 'MANAGEMENT', 22, C.muted, { a: 'start', ls: 2 }));
+      out += rcard(1420, ck, 'TRADE C', rowsC, C.pink);
+      if (ck > 0) out += stamp(1600, 730, 'F', C.pink, ease(seg(t, T.gradeC, T.gradeC + 0.3)), 10, 44, 40);
+      // Students.
+      out += candy(t, { x: 360, y: 1000, h: 110, w: 66, col: C.teal, wu: 20, seed: 3, at: T.cardB - 0.4, mood: t > T.lossB && t < T.lossB + 2 ? 'sad' : undefined, arms: t > T.lossB + 2 ? 'cheer' : undefined });
+      out += candy(t, { x: 1560, y: 1000, h: 110, w: 66, col: C.pink, wu: 20, seed: 6, flip: true, at: T.cardC - 0.4, arms: t > T.winC && t < T.gradeC ? 'cheer' : undefined, mood: t > T.gradeC + 0.3 ? 'sad' : t > T.winC ? 'wow' : undefined });
+      // Teacher with a pointer.
+      const te = { x: 960, y: 1000, scale: 1, look: A.LOOKS.e, seed: 2, at: T.room + 0.3, talk: ctx.talking, hat: 'goggles' };
+      te.frontArm = t > T.cardB && t < T.cardC ? aim(te, 860, 740) : t > T.cardC && t < T.warn ? aim(te, 1060, 740) : { a1: 100, a2: 80 };
+      te.backArm = t > T.cardC && t < T.warn ? { a1: 100, a2: 80 } : undefined;
+      te.flip = t > T.cardC && t < T.warn;
+      te.frontArm = te.flip ? aim(te, 1060, 740) : te.frontArm;
+      if (!te.backArm) delete te.backArm;
+      out += who(t, te);
+      // Bird on the board ledge.
+      out += crit(t, 'bird', { x: 1720, y: 400, scale: 0.6, seed: 4, at: T.room + 1, flip: true, hop: t > T.gradeB && t < T.gradeB + 1 ? 8 : 0, hopH: 14 });
+      // Warning sign.
+      const wk = pop(t, T.warn, 0.6);
+      if (wk > 0) out += scaleAt(1420, 860, wk, `<path d="M1420,${806} L1478,904 L1362,904 Z" fill="${C.gold}" stroke="#C98A1F" stroke-width="5" stroke-linejoin="round"/>${txt(1420, 892, '!', 50, C.dark)}`) + pill(1160, 1040, 'lucky win, broken plan', C.dark, pop(t, T.warn + 0.5, 0.5), 24);
+      return out;
+    },
+
+    // A journal card catalogue: PLANNED, ACTUAL and OUTCOME drawers stored apart. A mouse tries to grade by profit.
+    's16-journal-drawers': (s, t, ctx) => {
+      const T = s.beats;
+      let out = ground(1000, '#EEF1F8', '#DCE1EE');
+      // Bookshelf strip behind.
+      out += fade(seg(t, s.start, s.start + 0.8), Array.from({ length: 30 }, (_, i) => `<rect x="${60 + i * 62}" y="${420 + (i % 3) * 10}" width="${40 + (i % 2) * 10}" height="${110 - (i % 3) * 10}" rx="4" fill="${[C.purpleL, C.pinkL, C.tealL, C.peachL][i % 4]}"/>`).join('') + `<rect x="40" y="530" width="1840" height="14" rx="5" fill="#C9A47F"/>`);
+      const cols = [['PLANNED', 600, C.purple, DK.purple, 'entry · stop · target · rules'], ['ACTUAL', 960, C.teal, DK.teal, 'what you really did'], ['OUTCOME', 1320, C.peach, DK.peach, 'result · R · P&amp;L']];
+      const kk = pop(t, T.cabinet, 0.7);
+      let cab = `<rect x="400" y="620" width="1120" height="380" rx="24" fill="#B98A62"/><rect x="400" y="620" width="1120" height="24" rx="12" fill="#9B6A45"/>`;
+      cols.forEach(([lab, x, col, dk], i) => {
+        const open = between(t, T.drawers[i], T.drawers[i] + 1.6, 0.3);
+        const dy = open * 50;
+        cab += `<rect x="${x - 160}" y="680" width="320" height="280" rx="16" fill="#8E6444"/>
+          <g transform="translate(0,${f1(dy)})"><rect x="${x - 150}" y="690" width="300" height="${f1(260 - dy * 0.2)}" rx="14" fill="${col}"/><rect x="${x - 60}" y="800" width="120" height="16" rx="8" fill="${dk}"/>${txt(x, 760, lab, 30, '#fff', { ls: 2 })}</g>`;
+      });
+      out += scaleAt(960, 1000, kk, cab);
+      // Cards flying into drawers, with a content pill above.
+      cols.forEach(([lab, x, col, dk, info], i) => {
+        const at = T.drawers[i], k = seg(t, at, at + 0.9);
+        if (k > 0 && k < 1) {
+          const cx = lerp(250, x, ease(k)), cy = lerp(700, 700, k) - Math.sin(k * Math.PI) * 200;
+          out += `<g transform="translate(${f1(cx)},${f1(cy)}) rotate(${f1(k * 360)})"><rect x="-40" y="-26" width="80" height="52" rx="6" fill="#fff" stroke="${col}" stroke-width="4"/></g>`;
+        }
+        out += pill(x, 590, info, dk, between(t, at + 0.6, T.q[0] - 0.4), 22);
+      });
+      // Librarian.
+      const lb = { x: 230, y: 1000, scale: 1, look: A.LOOKS.d, seed: 5, at: T.cabinet + 0.3, talk: ctx.talking && (t < T.mouse || t > T.q[0]), hat: 'goggles' };
+      const di = lastIdx(t, T.drawers);
+      lb.frontArm = di >= 0 && t < T.drawers[di] + 0.4 ? { a1: -40, a2: -60 } : { a1: 90, a2: 80 };
+      out += who(t, lb);
+      // Mouse with a "profit > 0 = good trade" card; squirrel blocks it.
+      const mk = ease(seg(t, T.mouse, T.mouse + 1.6)), back2 = ease(seg(t, T.reject + 0.6, T.reject + 2));
+      const mx = lerp(lerp(1880, 1560, mk), 1900, back2);
+      if (t > T.mouse && t < T.q[0] + 1) {
+        out += crit(t, 'mouse', { x: mx, y: 1000, scale: 1.1, seed: 2, flip: true, hop: mk < 1 || back2 > 0 ? 9 : 0, hopH: 10 });
+        if (back2 < 0.5) out += `<g transform="translate(${f1(mx - 20)},${f1(880 + Math.sin(t * 6) * 4)}) rotate(-6)"><rect x="-110" y="-34" width="220" height="68" rx="10" fill="#fff" stroke="${C.gold}" stroke-width="4"/>${txt(0, -6, 'PROFIT > 0', 22, '#2F6B3F')}${txt(0, 22, '= good trade?', 20, C.muted, { w: 700 })}</g>`;
+      }
+      out += crit(t, 'squirrel', { x: lerp(1640, 1470, ease(seg(t, T.next - 0.8, T.next + 0.2))), y: 1000, scale: 1, seed: 7, flip: true, at: T.mouse + 0.6, hop: t > T.reject && t < T.reject + 1 ? 9 : 0, hopH: 20 });
+      out += cross(1560, 800, between(t, T.reject, T.q[0]), C.pink, 32);
+      out += bub(1600, 470, 'Not how we grade! ✋', between(t, T.reject, T.q[0]), { size: 28, tail: 'right' });
+      // The two questions, in order.
+      [['1', 'Did I follow my plan?', DK.teal], ['2', 'What was the outcome?', DK.peach]].forEach(([n, q, col], i) => {
+        const k = pop(t, T.q[i], 0.6);
+        if (k <= 0) return;
+        const y = 470 + i * 0, x = 760 + i * 470;
+        out += scaleAt(x, y + 60, k, `<rect x="${x - 220}" y="${y + 20}" width="440" height="80" rx="40" fill="#fff" stroke="${col}" stroke-width="5"/><circle cx="${x - 180}" cy="${y + 60}" r="30" fill="${col}"/>${txt(x - 180, y + 71, n, 32, '#fff')}${txt(x + 26, y + 70, q, 28, col)}`);
+        out += pill(x, y + 4, i ? 'THEN, SEPARATELY' : 'ASK FIRST', col, k, 20);
+      });
+      // Next: Section 17 signpost with a shield.
+      const nk = pop(t, T.next, 0.7);
+      if (nk > 0) out += scaleAt(1780, 1000, nk, `<rect x="1774" y="720" width="12" height="280" fill="#9B6A45"/><path d="M1600,640 L1860,640 L1890,680 L1860,720 L1600,720 Z" fill="${C.dark}"/>
+        ${txt(1740, 670, 'NEXT · SECTION 17', 18, C.gold, { ls: 2 })}${txt(1740, 702, 'Protecting Your Account', 22, '#fff', { f: 'Playfair Display', w: 700 })}
+        <g transform="translate(1700,${f1(860 + Math.sin(t * 2) * 6)})"><path d="M0,-60 L50,-40 C50,10 30,40 0,60 C-30,40 -50,10 -50,-40 Z" fill="${C.purple}" stroke="${DK.purple}" stroke-width="5"/><path d="M-18,0 L-4,14 L20,-14" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`) + A.sparkle(1700, 860, T.next + 0.5, t, C.purple);
       return out;
     },
   });
