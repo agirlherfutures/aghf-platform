@@ -949,7 +949,7 @@
       const inAir = t > T.throw && t < T.catch;
       if (t < T.throw) th.frontArm = { a1: -150 + seg(t, T.throw - 1, T.throw) * 60, a2: -170 };
       else if (inAir) th.frontArm = t < T.throw + 0.6 ? { a1: -20, a2: -10 } : { a1: 100, a2: 90 };
-      else th.frontArm = { a1: -60, a2: -100 };
+      else th.frontArm = { a1: -25, a2: -50 };
       // Boomerang position.
       let bx, by;
       if (!inAir) { bx = t < T.throw ? sx + 40 : sx + 90; by = t < T.throw ? 700 : 690; }
@@ -982,7 +982,7 @@
       const by = 800, spotX = 1080;
       // Person A at her spot.
       const pa = { x: spotX, y: 840, scale: 0.95, look: A.LOOKS.a, seed: 2, at: T.belt + 0.4, talk: ctx.talking && t > T.grab };
-      if (t > T.grab) { pa.frontArm = { a1: -80, a2: -110 }; pa.hold = `<g transform="translate(0,10)"><rect x="-50" y="0" width="100" height="72" rx="12" fill="${C.purple}"/><rect x="-40" y="14" width="80" height="30" rx="6" fill="#fff"/>${txt(0, 37, 'PIL', 20, C.purple)}</g>`; }
+      if (t > T.grab) { pa.frontArm = { a1: -30 + Math.sin(t * 3) * 5, a2: 0 }; pa.hold = `<g transform="translate(0,10)"><rect x="-50" y="0" width="100" height="72" rx="12" fill="${C.purple}"/><rect x="-40" y="14" width="80" height="30" rx="6" fill="#fff"/>${txt(0, 37, 'PIL', 20, C.purple)}</g>`; }
       out += who(t, pa);
       // Belt.
       if (wk > 0) {
@@ -1299,7 +1299,7 @@
       });
       ['the swing doesn’t change what matters', 'a newer reference controls the move', 'a newer sequence took over'].forEach((q, i) => {
         const next = T.w[i + 1] || s.end;
-        out += pill(1000, 360 + 44, q, zones[i][1], between(t, T.w[i] + 0.8, next - 0.3), 24);
+        out += pill(1000, 372, q, zones[i][1], between(t, T.w[i] + 0.8, next - 0.3), 24);
       });
       // Owl scientist with goggles and a mouse helper.
       out += crit(t, 'owl', { x: 1400, y: 1000, scale: 1.4, seed: 3, at: T.scale + 0.4, talk: ctx.talking && t > T.w[0] });
@@ -1440,7 +1440,7 @@
       // Kid builder with a bucket; crab.
       const kd = { x: 1380, y: 1000, scale: 0.8, look: A.LOOKS.buyer, flip: true, seed: 3, at: T.beach + 0.3, talk: ctx.talking && t > T.reassess };
       kd.hold = `<g><path d="M-22,-6 L22,-6 L16,40 L-16,40 Z" fill="${C.pink}"/><path d="M-22,-6 Q0,-30 22,-6" stroke="${C.dark}" stroke-width="3" fill="none"/></g>`;
-      if (t > T.reassess) kd.frontArm = { a1: -100, a2: -150 };
+      if (t > T.reassess) { kd.frontArm = { a1: -100, a2: -150 }; kd.hold = ''; }
       out += who(t, kd);
       out += bub(1380, 580, 'Reassess. 🤔', between(t, T.reassess, s.end), { size: 30 });
       out += crit(t, 'crab', { x: lerp(300, 420, (Math.sin(t * 0.8) + 1) / 2), y: 1000, scale: 0.8, seed: 4, at: T.beach + 0.6 });
@@ -1485,7 +1485,7 @@
         const run = ease(seg(t, T.mouse, T.try));
         const bounce = t > T.dome ? ease(seg(t, T.dome, T.dome + 0.8)) : 0;
         const mx = lerp(1000, 1300, run) - bounce * 140, my = 1000 - (t > T.try && t < T.dome ? Math.sin(seg(t, T.try, T.dome) * Math.PI) * 240 : 0);
-        out += critter(t, 'mouse', { x: mx, y: my, scale: 1.1, seed: 4, hop: run < 1 ? 14 : 0, hopH: 10 });
+        out += critter(t, 'mouse', { x: mx, y: my, scale: 1.6, seed: 4, hop: run < 1 ? 14 : 0, hopH: 10 });
         if (t < T.file) out += `<g transform="translate(${mx + 40},${my - 120}) rotate(${t > T.dome ? 30 : -10})"><rect x="-8" y="-40" width="16" height="40" rx="5" fill="#9B6A45"/><rect x="-60" y="0" width="120" height="44" rx="6" fill="${C.pink}"/>${txt(0, 28, '30 PTS = ✗', 18, '#fff')}</g>`;
         out += bub(1240, 470, 'Make it a rule! 😤', between(t, T.mouse + 0.4, T.dome), { size: 28 });
         out += bub(1240, 470, 'Ow. 😵', between(t, T.dome + 0.2, T.file), { size: 28 });
