@@ -1,0 +1,113 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Thirteen of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: continuation versus reversal.
+
+(pause-until: 00:00:07,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Price moves against the structure. So what does it mean?
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 3.000)
+
+There are three honest answers.
+
+(pause-until: 00:00:14,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Continuation: price closed through the prior high, with the structure.
+
+(pause-until: 00:00:18,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Potential shift: price closed through the supporting swing, against the structure.
+
+(pause-until: 00:00:23,000)
+
+(next-paragraph-max-duration: 6.000)
+
+And not enough information: nothing relevant has broken yet.
+
+(pause-until: 00:00:29,000)
+
+(next-paragraph-max-duration: 3.000)
+
+That third answer isn't a cop-out.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 3.000)
+
+A pullback alone is not a reversal.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Until a relevant level breaks, you don't have to force a call price hasn't earned.
+
+(pause-until: 00:00:43,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a detective.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A good detective doesn't name a suspect before the evidence comes in.
+
+(pause-until: 00:00:51,000)
+
+(next-paragraph-max-duration: 6.000)
+
+She waits, she watches, and she lets the clues decide.
+
+(pause-until: 00:00:57,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:00:59,000)
+
+(next-paragraph-max-duration: 8.000)
+
+A close through the prior high is continuation information. A close through the supporting swing is change information.
+
+(pause-until: 00:01:07,000)
+
+(next-paragraph-max-duration: 8.000)
+
+And "I don't know yet" is sometimes the most technically correct answer.
+
+(pause-until: 00:01:15,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Price is pulling back in a bullish structure. Is it a reversal?
+
+(pause-until: 00:01:26,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.

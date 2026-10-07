@@ -1,0 +1,113 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Twelve of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Today: the Market Structure Shift, or M-S-S.
+
+(pause-until: 00:00:09,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Here's the trap. Price starts moving lower inside a bullish structure.
+
+(pause-until: 00:00:14,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Red candles. A pullback. Maybe even a tiny internal low breaks.
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 5.000)
+
+None of that is a shift by itself.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So what is?
+
+(pause-until: 00:00:26,000)
+
+(next-paragraph-max-duration: 8.000)
+
+A potential M-S-S is a close through the relevant supporting swing, against the prior progression.
+
+(pause-until: 00:00:34,000)
+
+(next-paragraph-max-duration: 5.000)
+
+In a bullish structure, that's the higher low holding the structure up.
+
+(pause-until: 00:00:39,000)
+
+(next-paragraph-max-duration: 7.000)
+
+In a bearish structure, it's the lower high holding it down.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a weather warning.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 3.000)
+
+A warning tells you conditions may be changing.
+
+(pause-until: 00:00:52,000)
+
+(next-paragraph-max-duration: 8.000)
+
+It doesn't mean the storm has arrived. And it doesn't tell you to run outside.
+
+(pause-until: 00:01:00,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 3.000)
+
+M-S-S is change information.
+
+(pause-until: 00:01:05,000)
+
+(next-paragraph-max-duration: 6.000)
+
+It tells you the old structure may no longer be behaving the same way.
+
+(pause-until: 00:01:11,000)
+
+(next-paragraph-max-duration: 8.000)
+
+The word "may" matters. And it does not mean enter immediately.
+
+(pause-until: 00:01:19,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:22,000)
+
+(next-paragraph-max-duration: 10.000)
+
+If a bullish structure starts moving lower and breaks a small low, has the market structure shifted?
+
+(pause-until: 00:01:32,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.

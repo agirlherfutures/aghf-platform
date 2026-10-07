@@ -1,0 +1,970 @@
+==================== lesson-10-what-does-it-mean-to-break-structure ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Ten of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Today: what it really means to break structure.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 5.000)
+
+When price gets above a high, it's tempting to say, "Structure broke!"
+
+(pause-until: 00:00:13,000)
+
+(next-paragraph-max-duration: 6.000)
+
+But first, ask a better question: what actually broke?
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 3.000)
+
+There are four things that can break.
+
+(pause-until: 00:00:22,000)
+
+(next-paragraph-max-duration: 4.000)
+
+A candle high or low: just the last candle's extreme.
+
+(pause-until: 00:00:26,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A minor internal swing: a tiny turn inside a larger move.
+
+(pause-until: 00:00:31,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A relevant swing: the swing that defines the move you're reading.
+
+(pause-until: 00:00:36,000)
+
+(next-paragraph-max-duration: 6.000)
+
+And an external swing: the boundary of the larger range.
+
+(pause-until: 00:00:42,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a house.
+
+(pause-until: 00:00:45,000)
+
+(next-paragraph-max-duration: 3.000)
+
+A candle is a single brick.
+
+(pause-until: 00:00:48,000)
+
+(next-paragraph-max-duration: 3.000)
+
+An internal swing is a piece of trim.
+
+(pause-until: 00:00:51,000)
+
+(next-paragraph-max-duration: 3.000)
+
+A relevant swing is a wall.
+
+(pause-until: 00:00:54,000)
+
+(next-paragraph-max-duration: 8.000)
+
+And the external swing? The foundation. Losing a brick isn't the same as losing the foundation.
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:04,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Every time price crosses a level, start with the same question: what actually broke?
+
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Then: which swing, how it broke, and what it really tells you.
+
+(pause-until: 00:01:16,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Before you label a break, identify the level.
+
+(pause-until: 00:01:22,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:25,000)
+
+(next-paragraph-max-duration: 7.000)
+
+If price breaks a high, did the structure break?
+
+(pause-until: 00:01:32,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
+==================== lesson-11-break-of-structure-bos ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Eleven of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Today: the Break of Structure, or B-O-S.
+
+(pause-until: 00:00:09,000)
+
+(next-paragraph-max-duration: 9.000)
+
+A B-O-S is a break of the relevant prior swing, in the same direction as the existing structure.
+
+(pause-until: 00:00:18,000)
+
+(next-paragraph-max-duration: 5.000)
+
+In a bullish structure, price closes above the relevant prior higher high.
+
+(pause-until: 00:00:23,000)
+
+(next-paragraph-max-duration: 3.000)
+
+That's a bullish B-O-S.
+
+(pause-until: 00:00:26,000)
+
+(next-paragraph-max-duration: 5.000)
+
+In a bearish structure, price closes below the relevant prior lower low.
+
+(pause-until: 00:00:31,000)
+
+(next-paragraph-max-duration: 5.000)
+
+That's a bearish B-O-S.
+
+(pause-until: 00:00:36,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Either way, it's continuation information.
+
+(pause-until: 00:00:38,000)
+
+(next-paragraph-max-duration: 2.000)
+
+But notice the word "relevant."
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 10.000)
+
+If price only clears a tiny internal high, that's not the larger B-O-S. Identify the level first.
+
+(pause-until: 00:00:50,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a receipt.
+
+(pause-until: 00:00:53,000)
+
+(next-paragraph-max-duration: 3.000)
+
+A receipt proves what you bought.
+
+(pause-until: 00:00:56,000)
+
+(next-paragraph-max-duration: 5.000)
+
+It doesn't tell you what you'll buy tomorrow.
+
+(pause-until: 00:01:01,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:03,000)
+
+(next-paragraph-max-duration: 4.000)
+
+A B-O-S tells you what price just proved.
+
+(pause-until: 00:01:07,000)
+
+(next-paragraph-max-duration: 4.000)
+
+It does not tell you what price will do next.
+
+(pause-until: 00:01:11,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Price just proved. Not price will.
+
+(pause-until: 00:01:17,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:20,000)
+
+(next-paragraph-max-duration: 10.000)
+
+If price closes above the relevant prior high in a bullish structure, what did it just prove?
+
+(pause-until: 00:01:30,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
+==================== lesson-12-market-structure-shift-mss ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Twelve of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Today: the Market Structure Shift, or M-S-S.
+
+(pause-until: 00:00:09,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Here's the trap. Price starts moving lower inside a bullish structure.
+
+(pause-until: 00:00:14,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Red candles. A pullback. Maybe even a tiny internal low breaks.
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 5.000)
+
+None of that is a shift by itself.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So what is?
+
+(pause-until: 00:00:26,000)
+
+(next-paragraph-max-duration: 8.000)
+
+A potential M-S-S is a close through the relevant supporting swing, against the prior progression.
+
+(pause-until: 00:00:34,000)
+
+(next-paragraph-max-duration: 5.000)
+
+In a bullish structure, that's the higher low holding the structure up.
+
+(pause-until: 00:00:39,000)
+
+(next-paragraph-max-duration: 7.000)
+
+In a bearish structure, it's the lower high holding it down.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a weather warning.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 3.000)
+
+A warning tells you conditions may be changing.
+
+(pause-until: 00:00:52,000)
+
+(next-paragraph-max-duration: 8.000)
+
+It doesn't mean the storm has arrived. And it doesn't tell you to run outside.
+
+(pause-until: 00:01:00,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 3.000)
+
+M-S-S is change information.
+
+(pause-until: 00:01:05,000)
+
+(next-paragraph-max-duration: 6.000)
+
+It tells you the old structure may no longer be behaving the same way.
+
+(pause-until: 00:01:11,000)
+
+(next-paragraph-max-duration: 8.000)
+
+The word "may" matters. And it does not mean enter immediately.
+
+(pause-until: 00:01:19,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:22,000)
+
+(next-paragraph-max-duration: 10.000)
+
+If a bullish structure starts moving lower and breaks a small low, has the market structure shifted?
+
+(pause-until: 00:01:32,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
+==================== lesson-13-continuation-vs-reversal ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Thirteen of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: continuation versus reversal.
+
+(pause-until: 00:00:07,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Price moves against the structure. So what does it mean?
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 3.000)
+
+There are three honest answers.
+
+(pause-until: 00:00:14,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Continuation: price closed through the prior high, with the structure.
+
+(pause-until: 00:00:18,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Potential shift: price closed through the supporting swing, against the structure.
+
+(pause-until: 00:00:23,000)
+
+(next-paragraph-max-duration: 6.000)
+
+And not enough information: nothing relevant has broken yet.
+
+(pause-until: 00:00:29,000)
+
+(next-paragraph-max-duration: 3.000)
+
+That third answer isn't a cop-out.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 3.000)
+
+A pullback alone is not a reversal.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Until a relevant level breaks, you don't have to force a call price hasn't earned.
+
+(pause-until: 00:00:43,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a detective.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A good detective doesn't name a suspect before the evidence comes in.
+
+(pause-until: 00:00:51,000)
+
+(next-paragraph-max-duration: 6.000)
+
+She waits, she watches, and she lets the clues decide.
+
+(pause-until: 00:00:57,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:00:59,000)
+
+(next-paragraph-max-duration: 8.000)
+
+A close through the prior high is continuation information. A close through the supporting swing is change information.
+
+(pause-until: 00:01:07,000)
+
+(next-paragraph-max-duration: 8.000)
+
+And "I don't know yet" is sometimes the most technically correct answer.
+
+(pause-until: 00:01:15,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Price is pulling back in a bullish structure. Is it a reversal?
+
+(pause-until: 00:01:26,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
+==================== lesson-14-retracement-vs-reversal ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Fourteen of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: retracement versus reversal.
+
+(pause-until: 00:00:07,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Price drops hard. A whole run of red candles.
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 6.000)
+
+It feels like a reversal. But feelings aren't levels.
+
+(pause-until: 00:00:17,000)
+
+(next-paragraph-max-duration: 4.000)
+
+A retracement: price pulls back, but the supporting swing holds.
+
+(pause-until: 00:00:21,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A potential reversal: price closes through the supporting swing, then builds new structure the other way.
+
+(pause-until: 00:00:27,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A lower high. Then a lower low.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 7.000)
+
+And keep this separate: the direction of the current move isn't always the direction of the larger structure.
+
+(pause-until: 00:00:39,000)
+
+(next-paragraph-max-duration: 9.000)
+
+The one-minute can look bearish while the four-hour stays bullish. Both can be true at once.
+
+(pause-until: 00:00:48,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like the tide.
+
+(pause-until: 00:00:51,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A wave can pull back hard while the tide is still coming in.
+
+(pause-until: 00:00:56,000)
+
+(next-paragraph-max-duration: 8.000)
+
+You only know the tide turned when the water stops reaching the old marks.
+
+(pause-until: 00:01:04,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:06,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Not size. Not speed. Not candle color.
+
+(pause-until: 00:01:09,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Levels decide it.
+
+(pause-until: 00:01:14,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:17,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Price dropped hard. Retracement or reversal?
+
+(pause-until: 00:01:23,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
+==================== lesson-15-wick-break-vs-candle-close-break ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Fifteen of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Today: a wick break versus a candle-close break.
+
+(pause-until: 00:00:09,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Price pokes through a level. But did it actually break it?
+
+(pause-until: 00:00:14,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Look at how the candle finished.
+
+(pause-until: 00:00:18,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A wick through: price traded beyond the level, then the candle closed back inside.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A close through: the candle body finished beyond the level.
+
+(pause-until: 00:00:30,000)
+
+(next-paragraph-max-duration: 2.000)
+
+A wick isn't nothing.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 5.000)
+
+It can show rejection, a quick excursion, or price interacting with liquidity.
+
+(pause-until: 00:00:37,000)
+
+(next-paragraph-max-duration: 6.000)
+
+But it isn't the same confirmation as a close.
+
+(pause-until: 00:00:43,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Here at AGHF, a candle close carries more weight when deciding if a structural level actually broke.
+
+(pause-until: 00:00:51,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like visiting a new city.
+
+(pause-until: 00:00:54,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A wick is a day trip. You went, you looked around, you came home.
+
+(pause-until: 00:01:00,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A close is signing the lease.
+
+(pause-until: 00:01:05,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:07,000)
+
+(next-paragraph-max-duration: 2.000)
+
+A wick can visit.
+
+(pause-until: 00:01:09,000)
+
+(next-paragraph-max-duration: 8.000)
+
+A close gives stronger confirmation that price finished beyond the level.
+
+(pause-until: 00:01:17,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:20,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Price poked above the level. Did it break it?
+
+(pause-until: 00:01:27,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
+==================== lesson-16-false-breaks-and-fakeouts ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Sixteen of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: false breaks and fakeouts.
+
+(pause-until: 00:00:07,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Resistance sits at twenty thousand.
+
+(pause-until: 00:00:09,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Price closes at twenty thousand and five. Above the level.
+
+(pause-until: 00:00:13,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Breakout confirmed? For now, it's above. That's all it has shown.
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Next candle: nineteen thousand, nine hundred eighty-five. Back below.
+
+(pause-until: 00:00:25,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So what happened?
+
+(pause-until: 00:00:27,000)
+
+(next-paragraph-max-duration: 6.000)
+
+You'll hear people say "big money trapped the buyers," or "they hunted the stops."
+
+(pause-until: 00:00:33,000)
+
+(next-paragraph-max-duration: 6.000)
+
+But the chart can't show you who traded, or why.
+
+(pause-until: 00:00:39,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what it can show.
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Price moved above the level, and failed to hold above it.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 6.000)
+
+That's the whole description. Failed breakout. False break behavior.
+
+(pause-until: 00:00:52,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Think of it like a witness on the stand.
+
+(pause-until: 00:00:56,000)
+
+(next-paragraph-max-duration: 3.000)
+
+A good witness describes what they saw.
+
+(pause-until: 00:00:59,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Not what they imagine someone else was thinking.
+
+(pause-until: 00:01:04,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:06,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Describe what the chart shows before guessing who did what.
+
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Observation before interpretation.
+
+(pause-until: 00:01:15,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Price closed above resistance. Is the breakout confirmed?
+
+(pause-until: 00:01:24,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
+==================== lesson-17-structural-invalidation-and-the-new-story ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Seventeen of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Today: structural invalidation, and the new story.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Your bullish story rests on one key low: the most recent higher low.
+
+(pause-until: 00:00:13,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Price launched from it to make the latest higher high.
+
+(pause-until: 00:00:18,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Now price closes through it.
+
+(pause-until: 00:00:22,000)
+
+(next-paragraph-max-duration: 2.000)
+
+There are three tempting mistakes.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Ignore it.
+
+(pause-until: 00:00:26,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Move the level to keep the old story alive.
+
+(pause-until: 00:00:30,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Or flip straight into a short.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 2.000)
+
+None of those fit.
+
+(pause-until: 00:00:37,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Invalidation tells you the old story was materially challenged.
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 5.000)
+
+It is not an instant opposite bias.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 9.000)
+
+After invalidation, price may transition, consolidate, build new structure, set a new relevant swing, or stay unclear for a while.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Your job? Watch what price builds next, and update which swings matter now.
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a GPS.
+
+(pause-until: 00:01:05,000)
+
+(next-paragraph-max-duration: 9.000)
+
+When you miss a turn, it doesn't pretend you didn't. It doesn't send you backwards. It recalculates.
+
+(pause-until: 00:01:14,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:16,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Levels don't stay relevant forever.
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Your chart updates because price updates.
+
+(pause-until: 00:01:24,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:27,000)
+
+(next-paragraph-max-duration: 8.000)
+
+The level holding up your bullish story just broke. Now what?
+
+(pause-until: 00:01:35,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+

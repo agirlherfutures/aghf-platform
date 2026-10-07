@@ -1,0 +1,125 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Ten of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Today: what it really means to break structure.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 5.000)
+
+When price gets above a high, it's tempting to say, "Structure broke!"
+
+(pause-until: 00:00:13,000)
+
+(next-paragraph-max-duration: 6.000)
+
+But first, ask a better question: what actually broke?
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 3.000)
+
+There are four things that can break.
+
+(pause-until: 00:00:22,000)
+
+(next-paragraph-max-duration: 4.000)
+
+A candle high or low: just the last candle's extreme.
+
+(pause-until: 00:00:26,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A minor internal swing: a tiny turn inside a larger move.
+
+(pause-until: 00:00:31,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A relevant swing: the swing that defines the move you're reading.
+
+(pause-until: 00:00:36,000)
+
+(next-paragraph-max-duration: 6.000)
+
+And an external swing: the boundary of the larger range.
+
+(pause-until: 00:00:42,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a house.
+
+(pause-until: 00:00:45,000)
+
+(next-paragraph-max-duration: 3.000)
+
+A candle is a single brick.
+
+(pause-until: 00:00:48,000)
+
+(next-paragraph-max-duration: 3.000)
+
+An internal swing is a piece of trim.
+
+(pause-until: 00:00:51,000)
+
+(next-paragraph-max-duration: 3.000)
+
+A relevant swing is a wall.
+
+(pause-until: 00:00:54,000)
+
+(next-paragraph-max-duration: 8.000)
+
+And the external swing? The foundation. Losing a brick isn't the same as losing the foundation.
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:04,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Every time price crosses a level, start with the same question: what actually broke?
+
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Then: which swing, how it broke, and what it really tells you.
+
+(pause-until: 00:01:16,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Before you label a break, identify the level.
+
+(pause-until: 00:01:22,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:25,000)
+
+(next-paragraph-max-duration: 7.000)
+
+If price breaks a high, did the structure break?
+
+(pause-until: 00:01:32,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
