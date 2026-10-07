@@ -1,0 +1,214 @@
+{
+ "phase": "p7",
+ "section": "s19",
+ "lessonNumber": 15,
+ "title": "Consolidation & Unclear Conditions",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Technically… 😂",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Separate “does ICC exist?” from “do I participate in this condition?”, and write your environment rule.",
+  "missionQuestion": "Is price clear enough for my rules?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_ask",
+   "kicker": "Back to Phase 2",
+   "title": "Clean trend… then this.",
+   "asks": [
+    {
+     "prompt": "Overlap, close-through, close-back, close-through, multiple PIL candidates, tiny ICC-looking sequences. What’s the honest read?",
+     "options": [
+      {
+       "label": "A clean ICC",
+       "feedback": "Which of the three PILs?"
+      },
+      {
+       "label": "A technical sequence in a low-quality environment",
+       "correct": true,
+       "why": "It may not make the strategy invalid. Your environment filter may still say PASS."
+      },
+      {
+       "label": "The strategy is broken",
+       "feedback": "The strategy is fine. The condition is unclear."
+      }
+     ],
+     "rcat": "environment"
+    }
+   ],
+   "chart": {
+    "swings": [
+     [
+      20,
+      290
+     ],
+     [
+      80,
+      230
+     ],
+     [
+      120,
+      255
+     ],
+     [
+      190,
+      180
+     ],
+     [
+      230,
+      205
+     ],
+     [
+      300,
+      130
+     ],
+     [
+      330,
+      160
+     ],
+     [
+      360,
+      128
+     ],
+     [
+      390,
+      158
+     ],
+     [
+      420,
+      126
+     ],
+     [
+      450,
+      156
+     ],
+     [
+      480,
+      124
+     ],
+     [
+      510,
+      154
+     ],
+     [
+      540,
+      128
+     ],
+     [
+      570,
+      152
+     ],
+     [
+      600,
+      132
+     ]
+    ],
+    "seed": 11,
+    "hlines": [
+     {
+      "y": 126,
+      "label": "PIL?",
+      "tone": "muted"
+     },
+     {
+      "y": 140,
+      "label": "PIL?",
+      "tone": "muted"
+     },
+     {
+      "y": 156,
+      "label": "PIL?",
+      "tone": "muted"
+     }
+    ]
+   },
+   "thought": "“Technically…” 😂"
+  },
+  {
+   "type": "p7_split",
+   "kicker": "Keep them separate",
+   "title": "Two different questions",
+   "left": {
+    "h": "STRATEGY RULE",
+    "lines": [
+     "Does ICC exist?"
+    ],
+    "tone": "ink"
+   },
+   "right": {
+    "h": "QUALITY / ENVIRONMENT RULE",
+    "lines": [
+     "Do I participate in this condition?"
+    ],
+    "tone": "mind"
+   },
+   "verdict": "This prepares Section 3."
+  },
+  {
+   "type": "p7_tally",
+   "kicker": "Status board",
+   "title": "How it adds up",
+   "rows": [
+    [
+     "SETUP",
+     "TECHNICALLY VALID"
+    ],
+    [
+     "ENVIRONMENT",
+     "UNCLEAR / CHOPPY",
+     "neutral"
+    ],
+    [
+     "PERSONAL QUALITY RULE",
+     "NO TRADE"
+    ],
+    [
+     "STATUS",
+     "PASS",
+     "big"
+    ]
+   ]
+  },
+  {
+   "type": "p7_rule_form",
+   "kicker": "Environment rule builder",
+   "title": "Your consolidation / environment rule",
+   "form": "environment",
+   "punch": "Example: “I do not take Dayli ICC setups inside tight consolidation when structural direction and PIL relevance are unclear.” Yours can differ."
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "IF PRICE IS CONFUSED,",
+    "YOU DO NOT NEED TO BECOME",
+    "MORE CONFIDENT THAN THE CHART."
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Chop doesn’t break the method. <em>It just doesn’t give you much to read.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "When does your environment rule say PASS?",
+   "modelAnswer": "When the structure is too unclear for me to name the PIL and the direction without forcing it, like tight consolidation with competing levels. The setup can look technical and I still pass."
+  }
+ ],
+ "takeaways": [
+  "Technical ≠ high-quality environment.",
+  "Strategy rule vs environment rule.",
+  "Unclear chart → no extra confidence."
+ ],
+ "remember": "IF PRICE IS CONFUSED, YOU DON’T NEED TO BE MORE CONFIDENT THAN THE CHART."
+}

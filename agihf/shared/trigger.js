@@ -31,6 +31,9 @@ import { askQuestion } from './price-lab.js';
 import { wrapGuide } from './guide.js';
 import { mountExecChart, partialBar } from './icc-exec.js';
 import { mountChart } from './structure-charts.js';
+import { mindOn, mindOff, pauseButton } from './mind-ui.js';
+import { trackAll } from './mind-core.js';
+import { trackEnv } from './env-core.js';
 import {
   XS, XS_META, XA, XA_META, STATUS_CHOICES, TIMING, readExecution, timingIndex,
   PRE_ENTRY_FIELDS, PE, preEntryResult, trackP6, executionReview, startSession,
@@ -111,14 +114,14 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
     ${ctxLine ? `<div class="tx-ctx">${ctxLine}${sc.risk ? `<span><i>Risk</i> ${sc.risk}</span>` : ''}</div>` : ''}
     <div class="tx-grid">
       <div class="tx-left">
-        <div class="ex-chart-head"><b>${sc.tf || '1M'}</b><span>${sc.symbol || 'MNQ'}</span><span class="ex-dir ex-dir-${dir}">${long ? '↑ Bullish' : '↓ Bearish'}</span><span class="tx-ticker" hidden></span></div>
+        <div class="ex-chart-head"><b>${sc.tf || '1M'}</b><span>${sc.symbol || 'MNQ'}</span><span class="ex-dir ex-dir-${dir}">${long ? '↑ Bullish' : '↓ Bearish'}</span><span class="tx-ticker" hidden></span>${slide.clock ? '<span class="tx-clock">·</span>' : ''}</div>
         <div class="ex-chart"></div>
         ${slide.timeline === false ? '' : '<div class="tx-rail" aria-label="Execution timing"></div>'}
         <div class="pl-caption" aria-live="polite"></div>
       </div>
       <aside class="tx-side">
         ${sc.preEntry ? `<div class="tx-pe">${preEntryCardHtml(sc.preEntry)}</div>` : ''}
-        <div class="tx-status-box"><div class="tx-h">Execution status</div><div class="tx-status"></div></div>
+        <div class="tx-status-box"${slide.noStatus ? ' hidden' : ''}><div class="tx-h">Execution status</div><div class="tx-status"></div></div>
         <div class="tx-panel" hidden></div>
       </aside>
     </div>
@@ -128,7 +131,7 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
   </div>`;
 
   const card = el0.querySelector('.tx-card');
-  const chart = mountExecChart(card.querySelector('.ex-chart'), { bars: sc.bars, total: sc.slots || total, pil: null, dir });
+  const chart = mountExecChart(card.querySelector('.ex-chart'), { bars: sc.bars, total: sc.slots || total, pil: null, dir, range: sc.range });
   const cap = card.querySelector('.pl-caption');
   wrapGuide(cap);
   const asks = card.querySelector('.pl-asks');
@@ -140,7 +143,7 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
   const tickerEl = card.querySelector('.tx-ticker');
 
   let k = Math.min(sc.start ?? 6, total);
-  let forming = null, timer = null, finished = false, blocked = false;
+  let forming = null, timer = null, finished = false, blocked = false, keepMind = false;
   const ctx = { prepared: false, entered: false, passed: false };
   let entry = null; // { at, price }
   let statusKnown = !slide.blind;
@@ -191,6 +194,12 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
   function refresh() {
     chart.draw(k, forming ? { bar: partialBar(sc.bars[k], forming.f), label: forming.label } : null);
     rail(); status();
+    if (slide.clock) {
+      const ck = card.querySelector('.tx-clock');
+      const [h0, m0] = String(slide.clock.start || '9:30').split(':').map(Number);
+      const mins = h0 * 60 + m0 + Math.max(0, k - (slide.clock.from ?? 0)) * (slide.clock.step || 1);
+      if (ck) ck.innerHTML = `🕒 <b>${Math.floor(mins / 60)}:${String(mins % 60).padStart(2, '0')}</b>${slide.clock.label ? ` ${slide.clock.label}` : ''}`;
+    }
     if (slide.ticker && tickerEl) {
       const ref = active.pil;
       const last = forming ? partialBar(sc.bars[k], forming.f).c : sc.bars[k - 1]?.c;
@@ -228,6 +237,7 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
   }
   function close() {
     forming = null;
+    if (!keepMind) mindOff(card);
     actionsEl?.querySelector('.tx-act-enter')?.classList.remove('is-tempt');
     k += 1;
     applySetup();
@@ -280,6 +290,9 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
   /* checkpoints */
   function checkpoint(cp, then) {
     if (cp.text) say(cp.text);
+    // Phase 7: her inner voice over a muted chart, and the PAUSE interrupt.
+    if (cp.thought) { mindOn(card, cp.thought, cp); keepMind = !!cp.thoughtStay; }
+    if (cp.pause) pauseButton(asks, cp.pause, { open: cp.pauseOpen });
     if (cp.kind === 'note' || mode === 'watch') {
       const r = read();
       if (mode === 'watch') {
@@ -345,6 +358,8 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
     helpers.onPick?.({ prompt: `${slide.title || 'trigger'}:${cp.at}` }, { label: XA_META[a].label }, ok);
     helpers.handleStreak?.(ok);
     trackP6('decisions'); if (ok) trackP6('correctDecisions');
+    // Phase 7: a checkpoint can name the behavior each action represents (cp.mind = { enter: 'fomoDecisionCount', … }).
+    if (cp.mind && !pending.tracked) { trackAll(cp.mind[a]); pending.tracked = true; }
     if (ok) {
       pending = null;
       actionsEl?.classList.remove('is-live');
@@ -442,7 +457,9 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
     return { ...helpers, onPick(q, o, correct, w) {
       helpers.onPick?.(q, o, correct, w);
       if (src.track) { trackP6('decisions'); if (correct) trackP6('correctDecisions'); }
-      if (o.track) trackP6(o.track);
+      if (o.track) { trackP6(o.track); if (!w) trackAll(o.track); }
+      if (!w && q?.ecat) trackEnv(q.ecat, correct);
+      if (!w && o.einc) trackEnv(o.einc);
       if (!correct && o.bias) trackP6('outcomeBiasErrors');
       if (correct && o.patience) gpToast(card, '<b>+5</b> PATIENCE GP');
     } };

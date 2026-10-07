@@ -1,0 +1,166 @@
+{
+ "phase": "p7",
+ "section": "s20",
+ "lessonNumber": 24,
+ "title": "News Conditions",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Scheduled means known.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "See how a scheduled release changes the environment, and apply the news rule you already built.",
+  "missionQuestion": "What does my saved news rule say right now?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_timeline",
+   "kicker": "The clock",
+   "title": "Watch the environment change",
+   "rule": "news",
+   "useMine": true,
+   "example": "No new entries within 5 minutes before selected high-impact events.",
+   "rows": [
+    {
+     "t": "9:52",
+     "text": "Normal conditions.",
+     "tone": "ok"
+    },
+    {
+     "t": "9:56",
+     "text": "A setup is forming.",
+     "state": "DEVELOPING",
+     "tone": "ink"
+    },
+    {
+     "t": "9:59",
+     "text": "Scheduled release approaching.",
+     "state": "EVENT",
+     "tone": "warn"
+    },
+    {
+     "t": "10:00",
+     "text": "Large repricing.",
+     "state": "⚡",
+     "tone": "mind"
+    }
+   ],
+   "asks": [
+    {
+     "prompt": "Did the setup exist in the same environment for the entire sequence?",
+     "options": [
+      {
+       "label": "Yes, it’s the same chart",
+       "feedback": "Same chart. Different conditions minute to minute."
+      },
+      {
+       "label": "No",
+       "correct": true,
+       "why": "THE SETUP DIDN’T EXIST IN THE SAME ENVIRONMENT FOR THE ENTIRE SEQUENCE."
+      }
+     ],
+     "ecat": "news"
+    }
+   ]
+  },
+  {
+   "type": "p7_monologue",
+   "kicker": "Scheduled events can temporarily alter",
+   "cards": [
+    "VOLATILITY",
+    "LIQUIDITY",
+    "FILLS / SLIPPAGE",
+    "CANDLE SIZE",
+    "STRUCTURAL BEHAVIOR"
+   ],
+   "lines": [
+    "But news does NOT automatically invalidate every setup.",
+    "<b>YOUR PREDEFINED RULE DECIDES.</b>"
+   ]
+  },
+  {
+   "type": "p7_rulecheck",
+   "kicker": "Integration",
+   "title": "Valid ICC. Event in 4 minutes.",
+   "check": "news",
+   "situation": {
+    "minutesToEvent": 4
+   },
+   "rcat": "news",
+   "ecat": "news",
+   "facts": [
+    [
+     "Current environment",
+     "NEWS EVENT APPROACHING"
+    ],
+    [
+     "Event",
+     "in 4 minutes"
+    ],
+    [
+     "Setup",
+     "valid Dayli ICC"
+    ]
+   ],
+   "punch": "Your saved rule. Not re-written, not re-negotiated. Just read."
+  },
+  {
+   "type": "p7_ask",
+   "kicker": "Before the session",
+   "title": "Where does the event time come from?",
+   "asks": [
+    {
+     "prompt": "Tomorrow there’s a scheduled release. How do you know?",
+     "options": [
+      {
+       "label": "The Academy tells me in the simulator",
+       "feedback": "Simulator events are practice. The Academy never invents real news events."
+      },
+      {
+       "label": "I check a real economic calendar before my session",
+       "correct": true,
+       "why": "Then your news rule already knows what to do."
+      },
+      {
+       "label": "I’ll notice when the candle gets big",
+       "feedback": "That’s the surprise this lesson exists to prevent."
+      }
+     ],
+     "ecat": "news"
+    }
+   ]
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "A SCHEDULED EVENT",
+    "SHOULDN’T SURPRISE YOU",
+    "<b>JUST BECAUSE THE CANDLE DID.</b>"
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "The calendar is public. <em>Read it before the bell, not after the candle.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "How does a scheduled event change your environment, and what decides your response?",
+   "modelAnswer": "It can change volatility, liquidity, fills and candle size around the release. It doesn’t automatically invalidate a setup. My saved news rule decides, and I check the calendar before the session."
+  }
+ ],
+ "takeaways": [
+  "Events temporarily change the environment.",
+  "News ≠ automatic invalidation.",
+  "Your saved rule decides."
+ ],
+ "remember": "A SCHEDULED EVENT SHOULDN’T SURPRISE YOU JUST BECAUSE THE CANDLE DID."
+}

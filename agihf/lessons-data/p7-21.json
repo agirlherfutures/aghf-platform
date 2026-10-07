@@ -1,0 +1,789 @@
+{
+ "phase": "p7",
+ "section": "s20",
+ "lessonNumber": 21,
+ "title": "Trending vs Ranging",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Progression or boundaries?",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Classify the environment (trending, ranging or unclear) without turning the label into a trade decision.",
+  "missionQuestion": "Which problem am I solving: progression or boundaries?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_monologue",
+   "kicker": "Phase 7 · Section 20",
+   "checks": [
+    "RULEBOOK ✓",
+    "RISK ✓",
+    "SESSION ✓",
+    "EMOTIONAL STATE: NEUTRAL"
+   ],
+   "chart": {
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20986.5,
+      "l": 20981.5,
+      "c": 20985.5
+     },
+     {
+      "o": 20985.5,
+      "h": 20991.5,
+      "l": 20985.25,
+      "c": 20990.5
+     },
+     {
+      "o": 20990.5,
+      "h": 20994.25,
+      "l": 20990.0,
+      "c": 20993.0
+     },
+     {
+      "o": 20993.0,
+      "h": 20998.75,
+      "l": 20991.5,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.0,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.75,
+      "l": 20998.5,
+      "c": 20999.0
+     },
+     {
+      "o": 20999.0,
+      "h": 21000.25,
+      "l": 20995.75,
+      "c": 20996.75
+     },
+     {
+      "o": 20996.75,
+      "h": 20997.75,
+      "l": 20994.25,
+      "c": 20994.5
+     },
+     {
+      "o": 20994.5,
+      "h": 20995.75,
+      "l": 20990.25,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20994.25,
+      "l": 20990.0,
+      "c": 20994.0
+     },
+     {
+      "o": 20994.0,
+      "h": 20999.0,
+      "l": 20992.75,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 21002.5,
+      "l": 20996.25,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21008.5,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21012.5,
+      "l": 21005.75,
+      "c": 21012.0
+     },
+     {
+      "o": 21012.0,
+      "h": 21019.5,
+      "l": 21011.25,
+      "c": 21018.5
+     },
+     {
+      "o": 21018.5,
+      "h": 21025.25,
+      "l": 21017.75,
+      "c": 21024.5
+     },
+     {
+      "o": 21024.5,
+      "h": 21031.25,
+      "l": 21023.5,
+      "c": 21030.25
+     },
+     {
+      "o": 21030.25,
+      "h": 21031.25,
+      "l": 21022.0,
+      "c": 21023.5
+     },
+     {
+      "o": 21023.5,
+      "h": 21025.0,
+      "l": 21014.75,
+      "c": 21015.75
+     },
+     {
+      "o": 21015.75,
+      "h": 21016.25,
+      "l": 21006.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21008.75,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21007.75,
+      "l": 21005.25,
+      "c": 21006.5
+     },
+     {
+      "o": 21006.5,
+      "h": 21009.0,
+      "l": 21006.0,
+      "c": 21008.0
+     },
+     {
+      "o": 21008.0,
+      "h": 21009.25,
+      "l": 21005.0,
+      "c": 21006.5
+     },
+     {
+      "o": 21006.5,
+      "h": 21008.5,
+      "l": 21005.75,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21008.75,
+      "l": 21006.0,
+      "c": 21008.25
+     },
+     {
+      "o": 21008.25,
+      "h": 21010.75,
+      "l": 21007.25,
+      "c": 21010.5
+     },
+     {
+      "o": 21010.5,
+      "h": 21011.75,
+      "l": 21008.5,
+      "c": 21009.25
+     },
+     {
+      "o": 21009.25,
+      "h": 21013.5,
+      "l": 21008.25,
+      "c": 21012.0
+     },
+     {
+      "o": 21012.0,
+      "h": 21013.5,
+      "l": 21011.75,
+      "c": 21012.75
+     },
+     {
+      "o": 21012.75,
+      "h": 21013.75,
+      "l": 21012.0,
+      "c": 21012.25
+     }
+    ],
+    "pil": 21004.25,
+    "pilAt": 4,
+    "show": 23,
+    "head": {
+     "tf": "1M",
+     "label": "A perfect-looking ICC"
+    }
+   },
+   "thoughts": [
+    "“So I take it?”"
+   ],
+   "cards": [
+    "ZOOM OUT ↘",
+    "1H: MESSY",
+    "COMPETING PILs",
+    "MAJOR OBJECTIVE RIGHT ABOVE",
+    "SCHEDULED EVENT IN 2 MIN"
+   ],
+   "lines": [
+    "YOU CHECKED YOURSELF.",
+    "YOU CHECKED YOUR RULES.",
+    "<b>DID YOU CHECK THE ENVIRONMENT?</b>"
+   ],
+   "reveal": {
+    "eyebrow": "PHASE 7 · SECTION 3",
+    "title": "Reading the Environment 🌡️",
+    "sub": "Section 1 read the trader. Section 2 read the rulebook. Section 3 reads the conditions.",
+    "mission": "DON’T JUST ASK “IS IT VALID?” ASK “WHAT KIND OF ENVIRONMENT IS IT FORMING IN?”"
+   },
+   "cta": "Start →"
+  },
+  {
+   "type": "p7_chart_sort",
+   "kicker": "Two charts",
+   "title": "SAME ENVIRONMENT?",
+   "ecat": "trendRange",
+   "buckets": [
+    [
+     "same",
+     "SAME"
+    ],
+    [
+     "diff",
+     "NO: DIFFERENT"
+    ]
+   ],
+   "items": [
+    {
+     "pair": [
+      {
+       "label": "A",
+       "chart": {
+        "swings": [
+         [
+          20,
+          290
+         ],
+         [
+          90,
+          220
+         ],
+         [
+          130,
+          250
+         ],
+         [
+          220,
+          160
+         ],
+         [
+          260,
+          195
+         ],
+         [
+          350,
+          110
+         ],
+         [
+          390,
+          145
+         ],
+         [
+          480,
+          60
+         ],
+         [
+          520,
+          90
+         ],
+         [
+          600,
+          40
+         ]
+        ],
+        "seed": 21
+       }
+      },
+      {
+       "label": "B",
+       "chart": {
+        "swings": [
+         [
+          20,
+          120
+         ],
+         [
+          90,
+          240
+         ],
+         [
+          160,
+          115
+         ],
+         [
+          230,
+          245
+         ],
+         [
+          300,
+          120
+         ],
+         [
+          370,
+          240
+         ],
+         [
+          440,
+          118
+         ],
+         [
+          510,
+          242
+         ],
+         [
+          600,
+          130
+         ]
+        ],
+        "seed": 25,
+        "hlines": [
+         {
+          "y": 115,
+          "label": "boundary",
+          "tone": "muted"
+         },
+         {
+          "y": 244,
+          "label": "boundary",
+          "tone": "muted"
+         }
+        ]
+       }
+      }
+     ],
+     "answer": "diff",
+     "why": "A: HH · HL · HH · HL. Progression. B: high · low · high · low. Boundaries.",
+     "feedback": "Look at what the highs and lows are doing in each."
+    }
+   ]
+  },
+  {
+   "type": "p7_chart_sort",
+   "kicker": "Environment classifier",
+   "title": "What is price doing?",
+   "ecat": "trendRange",
+   "buckets": [
+    [
+     "bull",
+     "📈 TRENDING BULLISH"
+    ],
+    [
+     "bear",
+     "📉 TRENDING BEARISH"
+    ],
+    [
+     "range",
+     "↔ RANGING"
+    ],
+    [
+     "unclear",
+     "❓ UNCLEAR"
+    ]
+   ],
+   "items": [
+    {
+     "chart": {
+      "swings": [
+       [
+        20,
+        270
+       ],
+       [
+        110,
+        200
+       ],
+       [
+        160,
+        235
+       ],
+       [
+        250,
+        150
+       ],
+       [
+        290,
+        190
+       ],
+       [
+        380,
+        105
+       ],
+       [
+        440,
+        140
+       ],
+       [
+        530,
+        70
+       ],
+       [
+        600,
+        85
+       ]
+      ],
+      "seed": 27
+     },
+     "tf": "1H",
+     "answer": "bull",
+     "why": "Higher highs, higher lows, distinct pullbacks.",
+     "wrong": {
+      "range": "Do the highs repeat, or keep getting higher?"
+     }
+    },
+    {
+     "chart": {
+      "swings": [
+       [
+        20,
+        230
+       ],
+       [
+        100,
+        110
+       ],
+       [
+        180,
+        225
+       ],
+       [
+        250,
+        105
+       ],
+       [
+        330,
+        235
+       ],
+       [
+        410,
+        112
+       ],
+       [
+        480,
+        228
+       ],
+       [
+        600,
+        150
+       ]
+      ],
+      "seed": 29
+     },
+     "tf": "1H",
+     "answer": "range",
+     "why": "Repeated boundaries. Back and forth.",
+     "wrong": {
+      "bull": "Is each high higher, or about the same?",
+      "bear": "Is each low lower, or about the same?"
+     }
+    },
+    {
+     "chart": {
+      "swings": [
+       [
+        20,
+        30
+       ],
+       [
+        90,
+        100
+       ],
+       [
+        130,
+        70
+       ],
+       [
+        220,
+        160
+       ],
+       [
+        260,
+        125
+       ],
+       [
+        350,
+        210
+       ],
+       [
+        390,
+        175
+       ],
+       [
+        480,
+        260
+       ],
+       [
+        520,
+        230
+       ],
+       [
+        600,
+        280
+       ]
+      ],
+      "seed": 23
+     },
+     "tf": "1H",
+     "answer": "bear",
+     "why": "Lower highs, lower lows."
+    },
+    {
+     "chart": {
+      "swings": [
+       [
+        20,
+        200
+       ],
+       [
+        80,
+        120
+       ],
+       [
+        140,
+        230
+       ],
+       [
+        190,
+        150
+       ],
+       [
+        240,
+        260
+       ],
+       [
+        300,
+        90
+       ],
+       [
+        350,
+        210
+       ],
+       [
+        400,
+        170
+       ],
+       [
+        460,
+        240
+       ],
+       [
+        520,
+        110
+       ],
+       [
+        600,
+        190
+       ]
+      ],
+      "seed": 31
+     },
+     "tf": "1H",
+     "answer": "unclear",
+     "accept": [],
+     "why": "Neither progression nor clean boundaries. UNCLEAR is an honest answer.",
+     "wrong": {
+      "bull": "Is there a clear sequence of higher highs AND higher lows?",
+      "bear": "Is there a clear sequence of lower highs AND lower lows?",
+      "range": "Are the boundaries actually repeating?"
+     }
+    }
+   ],
+   "asks": [
+    {
+     "prompt": "Chart 1 was TRENDING BULLISH. So… TAKE THE TRADE?",
+     "options": [
+      {
+       "label": "Yes, it’s trending",
+       "feedback": "Trending is a classification. It isn’t a setup and it isn’t permission."
+      },
+      {
+       "label": "No: that’s a classification, not a decision",
+       "correct": true,
+       "why": "TREND ≠ TRADE. RANGE ≠ NO TRADE. Participation comes from your plan and the setup."
+      }
+     ],
+     "ecat": "trendRange"
+    }
+   ],
+   "punch": "❓ UNCLEAR is always allowed. You never have to force ambiguity into a box because a quiz wants an answer."
+  },
+  {
+   "type": "p7_split",
+   "kicker": "What each one may include",
+   "title": "Two different problems",
+   "left": {
+    "h": "📈 TRENDING",
+    "lines": [
+     "Clearer progression",
+     "Directional expansion",
+     "Distinct pullbacks",
+     "Relevant swings easier to find"
+    ],
+    "tone": "ok"
+   },
+   "right": {
+    "h": "↔ RANGING",
+    "lines": [
+     "Repeated boundaries",
+     "Overlap",
+     "Weaker progression",
+     "False breaks",
+     "Back and forth"
+    ],
+    "tone": "ink"
+   },
+   "verdict": "TREND GIVES YOU PROGRESSION. RANGE GIVES YOU BOUNDARIES.",
+   "together": true
+  },
+  {
+   "type": "p7_ask",
+   "kicker": "Not a shortcut",
+   "title": "Repeated movement inside similar boundaries.",
+   "asks": [
+    {
+     "prompt": "Correct read?",
+     "options": [
+      {
+       "label": "TRENDING",
+       "feedback": "The highs and lows keep returning to the same areas."
+      },
+      {
+       "label": "RANGING",
+       "correct": true,
+       "why": "Repeated boundaries."
+      },
+      {
+       "label": "UNCLEAR",
+       "feedback": "The boundaries are actually repeating cleanly here."
+      }
+     ],
+     "ecat": "trendRange"
+    },
+    {
+     "prompt": "So: NO TRADE?",
+     "options": [
+      {
+       "label": "Yes, ranges are bad",
+       "feedback": "Ranging isn’t bad. It’s a different problem."
+      },
+      {
+       "label": "Not automatically",
+       "correct": true,
+       "why": "Your plan and the setup decide participation. This lesson is classification."
+      }
+     ]
+    }
+   ],
+   "chart": {
+    "swings": [
+     [
+      20,
+      120
+     ],
+     [
+      90,
+      240
+     ],
+     [
+      160,
+      115
+     ],
+     [
+      230,
+      245
+     ],
+     [
+      300,
+      120
+     ],
+     [
+      370,
+      240
+     ],
+     [
+      440,
+      118
+     ],
+     [
+      510,
+      242
+     ],
+     [
+      600,
+      130
+     ]
+    ],
+    "seed": 25,
+    "hlines": [
+     {
+      "y": 115,
+      "label": "boundary",
+      "tone": "muted"
+     },
+     {
+      "y": 244,
+      "label": "boundary",
+      "tone": "muted"
+     }
+    ]
+   }
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "TREND GIVES YOU PROGRESSION.",
+    "RANGE GIVES YOU BOUNDARIES.",
+    "<b>KNOW WHICH PROBLEM YOU’RE SOLVING.</b>"
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "I don’t ask “is it trending?” to get permission. <em>I ask it to know what I’m looking at.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "How do you recognize trending vs ranging?",
+   "modelAnswer": "Trending shows progression: higher highs and higher lows (or lower), distinct pullbacks. Ranging shows repeated boundaries and overlap. If it’s neither, I call it unclear. The label isn’t a trade decision."
+  }
+ ],
+ "takeaways": [
+  "Trend = progression. Range = boundaries.",
+  "UNCLEAR is a valid answer.",
+  "Classification ≠ participation."
+ ],
+ "remember": "TREND GIVES YOU PROGRESSION. RANGE GIVES YOU BOUNDARIES."
+}

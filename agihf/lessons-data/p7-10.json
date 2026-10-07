@@ -1,0 +1,1010 @@
+{
+ "phase": "p7",
+ "section": "s18",
+ "lessonNumber": 10,
+ "title": "Patience Is an Execution Skill",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Waiting is part of trading.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Practice active patience through a session that may or may not produce a trade, and normalize the no-trade day.",
+  "missionQuestion": "Did my setup form, or did my patience run out?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_monologue",
+   "kicker": "The real Dayli ICC experience",
+   "cards": [
+    "ANALYZE",
+    "WAIT",
+    "Potential setup",
+    "WAIT",
+    "Indication",
+    "WAIT",
+    "Correction",
+    "WAIT",
+    "Continuation",
+    "WAIT",
+    "Retest",
+    "EXECUTE"
+   ],
+   "lines": [
+    "😂",
+    "Waiting isn’t what happens between trading.",
+    "<b>WAITING IS PART OF TRADING.</b>"
+   ]
+  },
+  {
+   "type": "teach",
+   "kicker": "Active patience",
+   "heading": "Patience isn’t passive. She knows…",
+   "body": "",
+   "beats": [
+    {
+     "icon": "🎯",
+     "title": "WHAT",
+     "line": "she is waiting for"
+    },
+    {
+     "icon": "🧭",
+     "title": "WHY",
+     "line": "she is waiting"
+    },
+    {
+     "icon": "⏳",
+     "title": "WHAT",
+     "line": "hasn’t happened yet"
+    },
+    {
+     "icon": "✗",
+     "title": "WHAT",
+     "line": "would invalidate interest"
+    },
+    {
+     "icon": "🕒",
+     "title": "WHEN",
+     "line": "the session ends"
+    }
+   ],
+   "punch": "Active patience is a job, not a pause between jobs."
+  },
+  {
+   "type": "p7_random",
+   "kicker": "Waiting simulator",
+   "title": "The session might give you a trade. It might not.",
+   "variants": [
+    {
+     "type": "trigger_sim",
+     "mode": "decide",
+     "kicker": "",
+     "title": "The waiting simulator",
+     "scenario": {
+      "dir": "bullish",
+      "tf": "1M",
+      "symbol": "MNQ",
+      "bars": [
+       {
+        "o": 20995.25,
+        "h": 20996.0,
+        "l": 20990.75,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20999.75,
+        "l": 20989.75,
+        "c": 20999.25
+       },
+       {
+        "o": 20999.25,
+        "h": 21000.25,
+        "l": 20990.25,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 21000.25,
+        "l": 20990.5,
+        "c": 20999.25
+       },
+       {
+        "o": 20999.25,
+        "h": 21000.5,
+        "l": 20990.25,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 21000.5,
+        "l": 20990.25,
+        "c": 20999.25
+       },
+       {
+        "o": 20999.25,
+        "h": 21000.5,
+        "l": 20990.5,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20999.75,
+        "l": 20990.75,
+        "c": 20999.25
+       },
+       {
+        "o": 20999.25,
+        "h": 21000.5,
+        "l": 20990.75,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 21000.25,
+        "l": 20990.25,
+        "c": 20999.25
+       },
+       {
+        "o": 20982.25,
+        "h": 20986.0,
+        "l": 20981.75,
+        "c": 20985.0
+       },
+       {
+        "o": 20985.0,
+        "h": 20991.25,
+        "l": 20983.75,
+        "c": 20990.25
+       },
+       {
+        "o": 20990.25,
+        "h": 20995.0,
+        "l": 20990.0,
+        "c": 20994.25
+       },
+       {
+        "o": 20994.25,
+        "h": 20999.0,
+        "l": 20993.5,
+        "c": 20998.25
+       },
+       {
+        "o": 20998.25,
+        "h": 21004.25,
+        "l": 20997.25,
+        "c": 21001.75
+       },
+       {
+        "o": 21001.75,
+        "h": 21002.5,
+        "l": 20999.25,
+        "c": 20999.75
+       },
+       {
+        "o": 20999.75,
+        "h": 21001.0,
+        "l": 20996.75,
+        "c": 20997.5
+       },
+       {
+        "o": 20997.5,
+        "h": 20998.5,
+        "l": 20992.0,
+        "c": 20992.75
+       },
+       {
+        "o": 20992.75,
+        "h": 20994.0,
+        "l": 20990.25,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20995.5,
+        "l": 20990.5,
+        "c": 20994.5
+       },
+       {
+        "o": 20994.5,
+        "h": 20997.0,
+        "l": 20993.0,
+        "c": 20996.75
+       },
+       {
+        "o": 20996.75,
+        "h": 21002.5,
+        "l": 20996.25,
+        "c": 21001.25
+       },
+       {
+        "o": 21001.25,
+        "h": 21007.75,
+        "l": 21001.25,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21007.0,
+        "l": 21001.25,
+        "c": 21002.0
+       },
+       {
+        "o": 21002.0,
+        "h": 21008.25,
+        "l": 21002.0,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21010.25,
+        "l": 21006.25,
+        "c": 21010.0
+       },
+       {
+        "o": 21010.0,
+        "h": 21013.75,
+        "l": 21009.25,
+        "c": 21012.5
+       },
+       {
+        "o": 21012.5,
+        "h": 21015.25,
+        "l": 21012.0,
+        "c": 21014.0
+       },
+       {
+        "o": 21014.0,
+        "h": 21017.5,
+        "l": 21012.75,
+        "c": 21016.25
+       },
+       {
+        "o": 21016.25,
+        "h": 21017.25,
+        "l": 21011.5,
+        "c": 21012.25
+       },
+       {
+        "o": 21012.25,
+        "h": 21013.25,
+        "l": 21008.0,
+        "c": 21009.5
+       },
+       {
+        "o": 21009.5,
+        "h": 21010.5,
+        "l": 21006.75,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21008.0,
+        "l": 21003.75,
+        "c": 21005.75
+       },
+       {
+        "o": 21005.75,
+        "h": 21009.75,
+        "l": 21005.5,
+        "c": 21008.5
+       },
+       {
+        "o": 21008.5,
+        "h": 21011.25,
+        "l": 21008.25,
+        "c": 21010.25
+       },
+       {
+        "o": 21010.25,
+        "h": 21010.5,
+        "l": 21008.75,
+        "c": 21009.75
+       },
+       {
+        "o": 21009.75,
+        "h": 21012.75,
+        "l": 21008.5,
+        "c": 21012.25
+       }
+      ],
+      "start": 3,
+      "context": [
+       {
+        "label": "4H",
+        "value": "Bullish"
+       },
+       {
+        "label": "1H",
+        "value": "Bullish thesis"
+       },
+       {
+        "label": "15M",
+        "value": "Pulling back into the map"
+       },
+       {
+        "label": "Location",
+        "value": "4H discount"
+       }
+      ]
+     },
+     "setups": [
+      {
+       "pil": 21004.25,
+       "pilAt": 14
+      }
+     ],
+     "checkpoints": [
+      {
+       "at": 6,
+       "kind": "decide",
+       "expect": "wait",
+       "prompt": "Nothing yet.",
+       "thought": "“It’s been forever.”",
+       "mind": {
+        "enter": "emotionalTradesTaken",
+        "wait": "patienceSuccessCount"
+       }
+      },
+      {
+       "at": 11,
+       "kind": "decide",
+       "expect": "wait",
+       "prompt": "Nothing yet.",
+       "thought": "“Take something?”",
+       "mind": {
+        "enter": "emotionalTradesTaken",
+        "wait": "patienceSuccessCount"
+       }
+      },
+      {
+       "at": 16,
+       "kind": "decide",
+       "expect": "wait",
+       "prompt": "Nothing yet.",
+       "thought": "“It’s been forever.”",
+       "mind": {
+        "enter": "emotionalTradesTaken",
+        "wait": "patienceSuccessCount"
+       }
+      },
+      {
+       "at": 22,
+       "kind": "decide",
+       "expect": "wait",
+       "prompt": "Almost something. What do you do?",
+       "mind": {
+        "wait": "patienceSuccessCount",
+        "enter": "emotionalTradesTaken"
+       }
+      },
+      {
+       "at": 32,
+       "kind": "decide",
+       "expect": "enter",
+       "prompt": "First valid retest.",
+       "goal": true
+      }
+     ],
+     "actions": [
+      "wait",
+      "enter"
+     ],
+     "labels": {
+      "enter": "TAKE SOMETHING"
+     },
+     "timeline": false,
+     "intro": "9:45. Analysis done. Now: wait.",
+     "end": {
+      "card": "YOUR SETUP FORMED. YOU EXECUTED. YOUR PATIENCE NEVER RAN OUT."
+     },
+     "clock": {
+      "start": "9:45",
+      "step": 3,
+      "from": 3
+     },
+     "speed": 700
+    },
+    {
+     "type": "trigger_sim",
+     "mode": "decide",
+     "kicker": "",
+     "title": "The waiting simulator",
+     "scenario": {
+      "dir": "bullish",
+      "tf": "1M",
+      "symbol": "MNQ",
+      "bars": [
+       {
+        "o": 20995.25,
+        "h": 20995.75,
+        "l": 20990.5,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20999.5,
+        "l": 20990.5,
+        "c": 20999.25
+       },
+       {
+        "o": 20999.25,
+        "h": 20999.5,
+        "l": 20991.0,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20999.75,
+        "l": 20990.75,
+        "c": 20999.25
+       },
+       {
+        "o": 20999.25,
+        "h": 21000.0,
+        "l": 20990.0,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20999.5,
+        "l": 20990.25,
+        "c": 20999.25
+       },
+       {
+        "o": 20982.25,
+        "h": 20986.75,
+        "l": 20981.5,
+        "c": 20986.0
+       },
+       {
+        "o": 20986.0,
+        "h": 20990.75,
+        "l": 20985.25,
+        "c": 20989.75
+       },
+       {
+        "o": 20989.75,
+        "h": 20993.75,
+        "l": 20989.5,
+        "c": 20993.0
+       },
+       {
+        "o": 20993.0,
+        "h": 20998.75,
+        "l": 20992.5,
+        "c": 20998.25
+       },
+       {
+        "o": 20998.25,
+        "h": 21004.25,
+        "l": 20997.5,
+        "c": 21001.75
+       },
+       {
+        "o": 21001.75,
+        "h": 21003.25,
+        "l": 20998.0,
+        "c": 20999.25
+       },
+       {
+        "o": 20999.25,
+        "h": 20999.75,
+        "l": 20995.75,
+        "c": 20996.75
+       },
+       {
+        "o": 20996.75,
+        "h": 20998.25,
+        "l": 20993.25,
+        "c": 20993.5
+       },
+       {
+        "o": 20993.5,
+        "h": 20994.25,
+        "l": 20990.25,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20995.75,
+        "l": 20990.0,
+        "c": 20994.75
+       },
+       {
+        "o": 20994.75,
+        "h": 20998.5,
+        "l": 20993.25,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 21001.5,
+        "l": 20996.5,
+        "c": 21001.25
+       },
+       {
+        "o": 21001.25,
+        "h": 21007.75,
+        "l": 21001.25,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21007.0,
+        "l": 21001.25,
+        "c": 21002.0
+       },
+       {
+        "o": 21002.0,
+        "h": 21002.5,
+        "l": 20998.25,
+        "c": 20999.5
+       },
+       {
+        "o": 20999.5,
+        "h": 21001.0,
+        "l": 20995.75,
+        "c": 20996.25
+       },
+       {
+        "o": 20996.25,
+        "h": 20997.5,
+        "l": 20993.75,
+        "c": 20994.25
+       },
+       {
+        "o": 20994.25,
+        "h": 20995.75,
+        "l": 20986.0,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20993.75,
+        "l": 20986.25,
+        "c": 20993.25
+       },
+       {
+        "o": 20993.25,
+        "h": 20993.75,
+        "l": 20986.25,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20994.5,
+        "l": 20986.75,
+        "c": 20993.25
+       },
+       {
+        "o": 20993.25,
+        "h": 20993.75,
+        "l": 20987.0,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20993.5,
+        "l": 20986.5,
+        "c": 20993.25
+       },
+       {
+        "o": 20993.25,
+        "h": 20993.75,
+        "l": 20986.75,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20994.25,
+        "l": 20986.75,
+        "c": 20993.25
+       }
+      ],
+      "start": 3,
+      "context": [
+       {
+        "label": "4H",
+        "value": "Bullish"
+       },
+       {
+        "label": "1H",
+        "value": "Bullish thesis"
+       },
+       {
+        "label": "15M",
+        "value": "Pulling back into the map"
+       },
+       {
+        "label": "Location",
+        "value": "4H discount"
+       }
+      ]
+     },
+     "setups": [
+      {
+       "pil": 21004.25,
+       "pilAt": 10
+      }
+     ],
+     "checkpoints": [
+      {
+       "at": 6,
+       "kind": "decide",
+       "expect": "wait",
+       "prompt": "Nothing yet.",
+       "thought": "“It’s been forever.”",
+       "mind": {
+        "enter": "emotionalTradesTaken",
+        "wait": "patienceSuccessCount"
+       }
+      },
+      {
+       "at": 11,
+       "kind": "decide",
+       "expect": "wait",
+       "prompt": "Nothing yet.",
+       "thought": "“Take something?”",
+       "mind": {
+        "enter": "emotionalTradesTaken",
+        "wait": "patienceSuccessCount"
+       }
+      },
+      {
+       "at": 16,
+       "kind": "decide",
+       "expect": "wait",
+       "prompt": "Nothing yet.",
+       "thought": "“It’s been forever.”",
+       "mind": {
+        "enter": "emotionalTradesTaken",
+        "wait": "patienceSuccessCount"
+       }
+      },
+      {
+       "at": 18,
+       "kind": "decide",
+       "expect": "wait",
+       "prompt": "Almost a setup. Take it?",
+       "mind": {
+        "wait": "patienceSuccessCount",
+        "enter": "emotionalTradesTaken"
+       }
+      },
+      {
+       "at": 30,
+       "kind": "note",
+       "text": "<b>11:00. Session ends.</b> The almost-setup failed. No trade.",
+       "hold": 1600
+      }
+     ],
+     "actions": [
+      "wait",
+      "enter"
+     ],
+     "labels": {
+      "enter": "TAKE SOMETHING"
+     },
+     "timeline": false,
+     "intro": "9:45. Analysis done. Now: wait.",
+     "end": {
+      "card": "SESSION COMPLETE ✓ · TRADES 0 · RULE VIOLATIONS 0 · VALID PASS ✓"
+     },
+     "clock": {
+      "start": "9:45",
+      "step": 3,
+      "from": 3
+     },
+     "speed": 700
+    },
+    {
+     "type": "trigger_sim",
+     "mode": "decide",
+     "kicker": "",
+     "title": "The waiting simulator",
+     "scenario": {
+      "dir": "bullish",
+      "tf": "1M",
+      "symbol": "MNQ",
+      "bars": [
+       {
+        "o": 20992.25,
+        "h": 20992.75,
+        "l": 20986.25,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20997.75,
+        "l": 20986.0,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 20997.75,
+        "l": 20986.25,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20998.75,
+        "l": 20986.5,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 20998.75,
+        "l": 20986.0,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20998.25,
+        "l": 20986.25,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 20998.25,
+        "l": 20986.5,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20998.75,
+        "l": 20986.5,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 20998.75,
+        "l": 20986.0,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20997.5,
+        "l": 20986.75,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 20998.0,
+        "l": 20986.0,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20997.75,
+        "l": 20986.25,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 20998.0,
+        "l": 20986.0,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20998.75,
+        "l": 20986.0,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 20997.75,
+        "l": 20986.0,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20998.0,
+        "l": 20986.0,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 20998.0,
+        "l": 20985.75,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20998.75,
+        "l": 20986.0,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 20998.5,
+        "l": 20986.0,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20998.25,
+        "l": 20986.75,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 20998.75,
+        "l": 20986.5,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20997.5,
+        "l": 20986.5,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 20998.0,
+        "l": 20986.75,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20998.75,
+        "l": 20986.75,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 20998.75,
+        "l": 20986.25,
+        "c": 20987.25
+       },
+       {
+        "o": 20987.25,
+        "h": 20997.75,
+        "l": 20986.5,
+        "c": 20997.25
+       }
+      ],
+      "start": 3,
+      "context": [
+       {
+        "label": "4H",
+        "value": "Bullish"
+       },
+       {
+        "label": "1H",
+        "value": "Bullish thesis"
+       },
+       {
+        "label": "15M",
+        "value": "Pulling back into the map"
+       },
+       {
+        "label": "Location",
+        "value": "4H discount"
+       }
+      ]
+     },
+     "setups": [
+      {
+       "pil": 21004.25,
+       "pilAt": null
+      }
+     ],
+     "checkpoints": [
+      {
+       "at": 6,
+       "kind": "decide",
+       "expect": "wait",
+       "prompt": "Nothing yet.",
+       "thought": "“It’s been forever.”",
+       "mind": {
+        "enter": "emotionalTradesTaken",
+        "wait": "patienceSuccessCount"
+       }
+      },
+      {
+       "at": 11,
+       "kind": "decide",
+       "expect": "wait",
+       "prompt": "Nothing yet.",
+       "thought": "“Take something?”",
+       "mind": {
+        "enter": "emotionalTradesTaken",
+        "wait": "patienceSuccessCount"
+       }
+      },
+      {
+       "at": 16,
+       "kind": "decide",
+       "expect": "wait",
+       "prompt": "Nothing yet.",
+       "thought": "“It’s been forever.”",
+       "mind": {
+        "enter": "emotionalTradesTaken",
+        "wait": "patienceSuccessCount"
+       }
+      },
+      {
+       "at": 25,
+       "kind": "note",
+       "text": "<b>11:00. Session ends.</b> Nothing formed. No trade.",
+       "hold": 1600
+      }
+     ],
+     "actions": [
+      "wait",
+      "enter"
+     ],
+     "labels": {
+      "enter": "TAKE SOMETHING"
+     },
+     "timeline": false,
+     "intro": "9:45. Analysis done. Now: wait.",
+     "end": {
+      "card": "SESSION COMPLETE ✓ · TRADES 0 · RULE VIOLATIONS 0 · VALID PASS ✓"
+     },
+     "clock": {
+      "start": "9:45",
+      "step": 3,
+      "from": 3
+     },
+     "speed": 700
+    }
+   ]
+  },
+  {
+   "type": "p7_ask",
+   "kicker": "Before every click",
+   "title": "Your second signature question",
+   "asks": [
+    {
+     "prompt": "DID MY SETUP FORM… OR DID MY PATIENCE RUN OUT?",
+     "options": [
+      {
+       "label": "Ask it only when bored",
+       "feedback": "Ask it before every click. Boredom is just when it’s loudest."
+      },
+      {
+       "label": "Ask it before every click",
+       "correct": true,
+       "why": "If the honest answer is “my patience ran out”, the click waits."
+      }
+     ],
+     "recog": true
+    }
+   ]
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "WAITING FOR THE SETUP",
+    "IS PART OF EXECUTING THE SETUP."
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Some of my best sessions had zero trades. <em>They count.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What does “active patience” look like for you?",
+   "modelAnswer": "I know what I’m waiting for, why, what hasn’t happened yet, what would invalidate it and when my session ends. If nothing forms, a no-trade day is a valid session."
+  }
+ ],
+ "takeaways": [
+  "Waiting is part of trading.",
+  "Active patience knows what it waits for.",
+  "A no-trade day is a valid session."
+ ],
+ "remember": "DID MY SETUP FORM… OR DID MY PATIENCE RUN OUT?"
+}

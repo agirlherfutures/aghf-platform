@@ -1,0 +1,388 @@
+{
+ "phase": "p7",
+ "section": "s18",
+ "lessonNumber": 4,
+ "title": "FOMO",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "The move happened without you.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Feel FOMO while price runs without a retest, choose not to chase, and see that a missed profit isn’t a loss.",
+  "missionQuestion": "What is FOMO asking me to do?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "trigger_sim",
+   "mode": "decide",
+   "kicker": "You know this setup from Phase 6",
+   "title": "Run the price",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20986.75,
+      "l": 20981.25,
+      "c": 20985.75
+     },
+     {
+      "o": 20985.75,
+      "h": 20991.5,
+      "l": 20985.25,
+      "c": 20991.0
+     },
+     {
+      "o": 20991.0,
+      "h": 20993.75,
+      "l": 20989.75,
+      "c": 20993.25
+     },
+     {
+      "o": 20993.25,
+      "h": 20998.75,
+      "l": 20992.25,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.75,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21003.0,
+      "l": 20998.0,
+      "c": 20999.0
+     },
+     {
+      "o": 20999.0,
+      "h": 20999.5,
+      "l": 20994.75,
+      "c": 20995.25
+     },
+     {
+      "o": 20995.25,
+      "h": 20996.5,
+      "l": 20993.5,
+      "c": 20994.75
+     },
+     {
+      "o": 20994.75,
+      "h": 20996.0,
+      "l": 20990.0,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20997.0,
+      "l": 20990.75,
+      "c": 20995.75
+     },
+     {
+      "o": 20995.75,
+      "h": 20999.5,
+      "l": 20994.5,
+      "c": 20998.75
+     },
+     {
+      "o": 20998.75,
+      "h": 21002.25,
+      "l": 20998.0,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21008.5,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21014.75,
+      "l": 21006.25,
+      "c": 21013.75
+     },
+     {
+      "o": 21013.75,
+      "h": 21018.75,
+      "l": 21012.75,
+      "c": 21018.25
+     },
+     {
+      "o": 21018.25,
+      "h": 21023.25,
+      "l": 21017.75,
+      "c": 21022.75
+     },
+     {
+      "o": 21022.75,
+      "h": 21029.25,
+      "l": 21022.25,
+      "c": 21028.25
+     },
+     {
+      "o": 21028.25,
+      "h": 21031.75,
+      "l": 21027.5,
+      "c": 21030.75
+     },
+     {
+      "o": 21030.75,
+      "h": 21033.5,
+      "l": 21030.25,
+      "c": 21032.75
+     },
+     {
+      "o": 21032.75,
+      "h": 21036.75,
+      "l": 21032.25,
+      "c": 21036.25
+     },
+     {
+      "o": 21036.25,
+      "h": 21039.25,
+      "l": 21035.25,
+      "c": 21038.0
+     },
+     {
+      "o": 21038.0,
+      "h": 21043.25,
+      "l": 21037.5,
+      "c": 21042.75
+     },
+     {
+      "o": 21042.75,
+      "h": 21045.5,
+      "l": 21041.75,
+      "c": 21044.25
+     },
+     {
+      "o": 21044.25,
+      "h": 21049.75,
+      "l": 21043.5,
+      "c": 21048.75
+     },
+     {
+      "o": 21048.75,
+      "h": 21055.5,
+      "l": 21048.25,
+      "c": 21055.0
+     },
+     {
+      "o": 21055.0,
+      "h": 21060.75,
+      "l": 21054.25,
+      "c": 21059.25
+     },
+     {
+      "o": 21059.25,
+      "h": 21063.5,
+      "l": 21058.25,
+      "c": 21062.25
+     },
+     {
+      "o": 21062.25,
+      "h": 21066.75,
+      "l": 21061.25,
+      "c": 21066.25
+     }
+    ],
+    "start": 10,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish"
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis"
+     },
+     {
+      "label": "15M",
+      "value": "Pulling back into the map"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ]
+   },
+   "setups": [
+    {
+     "pil": 21004.25,
+     "pilAt": 4,
+     "missedAt": 17
+    }
+   ],
+   "checkpoints": [
+    {
+     "at": 17,
+     "kind": "note",
+     "thought": "“It’s leaving.”",
+     "thoughtStay": true,
+     "hold": 1400
+    },
+    {
+     "at": 19,
+     "kind": "note",
+     "thought": [
+      "“It’s leaving.”",
+      "“I knew it.”"
+     ],
+     "gap": 0.2,
+     "thoughtStay": true,
+     "hold": 1500
+    },
+    {
+     "at": 24,
+     "kind": "note",
+     "thought": [
+      "“It’s leaving.”",
+      "“I knew it.”",
+      "“I should’ve just gotten in.”"
+     ],
+     "gap": 0.2,
+     "thoughtStay": true,
+     "hold": 1600
+    },
+    {
+     "at": 27,
+     "kind": "decide",
+     "expect": "pass",
+     "prompt": "BUY NOW?",
+     "thought": [
+      "“I should’ve just gotten in.”",
+      "“I can still catch it.”"
+     ],
+     "gap": 0.2,
+     "mind": {
+      "enter": "fomoDecisionCount",
+      "pass": "fomoRecognized"
+     },
+     "after": "No retest. No chase. You recognized it."
+    }
+   ],
+   "actions": [
+    "wait",
+    "enter",
+    "pass"
+   ],
+   "labels": {
+    "enter": "BUY NOW",
+    "pass": "PASS"
+   },
+   "ticker": {
+    "from": 14,
+    "label": "Price since Continuation"
+   },
+   "playAfterPass": true,
+   "intro": "Indication ✓ Correction ✓ Continuation ✓ … and price leaves before any retest.",
+   "end": {
+    "text": "<b>Price reached the hypothetical target.</b> Without you. That was still the correct decision.",
+    "card": "THE CORRECT DECISION CAN STILL MISS MONEY."
+   }
+  },
+  {
+   "type": "p7_tally",
+   "kicker": "What it actually cost",
+   "title": "The bill",
+   "rows": [
+    [
+     "MISSED OPPORTUNITY",
+     "+$500 hypothetical",
+     "neutral"
+    ],
+    [
+     "ACCOUNT CHANGE FROM NOT TAKING IT",
+     "$0",
+     "ok"
+    ],
+    [
+     "RULES BROKEN",
+     "0",
+     "ok"
+    ]
+   ],
+   "note": "Missed profit is shown in neutral on purpose. It isn’t red, because it isn’t a loss.",
+   "punch": "MISSED PROFIT IS NOT LOST MONEY."
+  },
+  {
+   "type": "p7_split",
+   "kicker": "The FOMO reframe",
+   "title": "Say it differently",
+   "left": {
+    "h": "NOT",
+    "lines": [
+     "<s>“I LOST $500.”</s>"
+    ],
+    "tone": "bad"
+   },
+   "right": {
+    "h": "INSTEAD",
+    "lines": [
+     "“THE MARKET MOVED WITHOUT MY ENTRY.”",
+     "That’s all."
+    ],
+    "tone": "ok"
+   }
+  },
+  {
+   "type": "p7_seen",
+   "kicker": "Your practice history",
+   "fallback": {
+    "key": "chase",
+    "rule": "No retest, no chase",
+    "emotionHint": "fomo",
+    "line": "A very common one: entering after the planned retest is already gone."
+   }
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "THE MARKET MOVING WITHOUT YOU",
+    "ISN’T TAKING ANYTHING FROM YOU."
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "FOMO says “it’s leaving”. <em>It is. And that’s allowed.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What does FOMO make a trader want to do?",
+   "modelAnswer": "Chase: enter late, market-buy after the retest is gone, invent a new entry. A missed move isn’t lost money. The market moved without my entry, that’s all."
+  }
+ ],
+ "takeaways": [
+  "FOMO tie-in: no retest, no chase.",
+  "The correct decision can still miss money.",
+  "Missed profit ≠ lost money."
+ ],
+ "remember": "THE MARKET MOVING WITHOUT YOU ISN’T TAKING ANYTHING FROM YOU."
+}

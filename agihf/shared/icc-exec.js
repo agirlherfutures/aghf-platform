@@ -90,6 +90,7 @@ export function mountExecChart(container, cfg) {
     if (preview != null) ps.push(preview);
     (cfg.markersList || []).forEach((m) => { if (m.at < k && m.at >= off) ps.push(m.price); });
     if (!ps.length) ps.push(cfg.bars[0].o);
+    if (cfg.range) ps.push(...cfg.range); // a fixed scale (e.g. comparing volatility)
     let a = Math.min(...ps), b = Math.max(...ps);
     const pad = Math.max((b - a) * 0.18, 2);
     lo = a - pad; hi = b + pad;

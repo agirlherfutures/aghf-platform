@@ -1,0 +1,140 @@
+{
+ "phase": "p7",
+ "section": "s19",
+ "lessonNumber": 19,
+ "title": "What to Do After You Break a Rule",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Investigate, don’t punish.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Review a violation into an IF / THEN response you can use when the trigger returns.",
+  "missionQuestion": "What will I do when this trigger appears again?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "No red X.",
+    "No “you failed.”",
+    "No “bad trader.”",
+    "<b>INVESTIGATE THE BEHAVIOR.</b>"
+   ]
+  },
+  {
+   "type": "p7_violation",
+   "kicker": "AGHF Rule Violation Review",
+   "title": "She chased.",
+   "scenario": [
+    "She missed the previous winner (no retest).",
+    "Thought: “I can’t miss another.”",
+    "Next move: she market-entered late."
+   ],
+   "thought": "I can’t miss another.",
+   "violationType": "Chase",
+   "behavior": "chase",
+   "steps": {
+    "rule": {
+     "options": [
+      "No-chase rule",
+      "Daily stop",
+      "News rule",
+      "Max trades"
+     ],
+     "correct": "No-chase rule"
+    },
+    "before": {
+     "options": [
+      "Missed a winner",
+      "A big win",
+      "News",
+      "Boredom"
+     ],
+     "correct": "Missed a winner"
+    },
+    "goal": {
+     "options": [
+      "Avoid missing out",
+      "Recover money",
+      "Protect profit",
+      "Avoid a loss"
+     ],
+     "correct": "Avoid missing out"
+    },
+    "action": {
+     "options": [
+      "No market entry after a missed retest",
+      "Enter smaller",
+      "Wait one candle, then enter"
+     ],
+     "correct": "No market entry after a missed retest"
+    }
+   },
+   "ifPrefill": "I miss a winner",
+   "thenPrefill": "screenshot it, mark it MISSED ACCORDING TO PLAN, and wait for a new valid setup",
+   "punch": "Saved: the next time a missed winner shows up, your answer is already written."
+  },
+  {
+   "type": "p7_split",
+   "kicker": "Operational or not?",
+   "title": "Two ways to finish a review",
+   "left": {
+    "h": "NOT OPERATIONAL",
+    "lines": [
+     "“I’ll be more disciplined.”"
+    ],
+    "tone": "bad"
+   },
+   "right": {
+    "h": "OPERATIONAL",
+    "lines": [
+     "IF trigger X happens",
+     "THEN I do Y."
+    ],
+    "tone": "ok"
+   },
+   "verdict": "Discipline isn’t a mood. It’s a pre-written response."
+  },
+  {
+   "type": "p7_seen",
+   "kicker": "The electric part ⚡",
+   "source": "trigger",
+   "fallbackLine": "A missed winner often creates an urge to chase the next one.",
+   "punch": "This is what the Academy will show you whenever this trigger comes back."
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "DON’T JUST JOURNAL",
+    "WHAT YOU DID WRONG.",
+    "JOURNAL WHAT YOU’LL DO",
+    "WHEN THE TRIGGER RETURNS."
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "A violation is data about a trigger. <em>Turn it into a plan.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What is your response after a rule violation?",
+   "modelAnswer": "I review it: which rule, what happened right before, what I was trying to get or avoid, what the rule-based action was, and IF this trigger happens again THEN what I’ll do."
+  }
+ ],
+ "takeaways": [
+  "Investigate, don’t punish.",
+  "Finish with IF / THEN.",
+  "Your saved response comes back when the trigger does."
+ ],
+ "remember": "JOURNAL WHAT YOU’LL DO WHEN THE TRIGGER RETURNS."
+}

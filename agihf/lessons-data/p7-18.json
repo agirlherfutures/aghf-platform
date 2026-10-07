@@ -1,0 +1,213 @@
+{
+ "phase": "p7",
+ "section": "s19",
+ "lessonNumber": 18,
+ "title": "What Counts as a Rule Violation?",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Outcome ≠ adherence.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Grade rule adherence separately from the outcome, and name the violation types.",
+  "missionQuestion": "Did I follow the rule, regardless of the result?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_ask",
+   "kicker": "Start here",
+   "title": "TRADE LOST.",
+   "asks": [
+    {
+     "prompt": "VIOLATION?",
+     "options": [
+      {
+       "label": "Yes",
+       "feedback": "You’re grading the rule by the outcome.",
+       "rinc": "validLossAsViolation"
+      },
+      {
+       "label": "No",
+       "feedback": "You don’t know that either. Yet."
+      },
+      {
+       "label": "NOT ENOUGH INFORMATION",
+       "correct": true,
+       "why": "A result tells you nothing about adherence."
+      }
+     ],
+     "rcat": "violation"
+    },
+    {
+     "prompt": "Now the execution: valid PIL, candle-close Indication, Correction, Continuation, first retest, planned size, stop untouched. VIOLATION?",
+     "options": [
+      {
+       "label": "Yes, it lost",
+       "feedback": "A loss isn’t a violation.",
+       "rinc": "validLossAsViolation"
+      },
+      {
+       "label": "No: VALID LOSS",
+       "correct": true,
+       "why": "Every rule followed."
+      }
+     ],
+     "rcat": "violation"
+    },
+    {
+     "prompt": "Another trade WINS. But she entered before Continuation closed. VIOLATION?",
+     "options": [
+      {
+       "label": "No, it won",
+       "feedback": "The trade paid you. But did the process?",
+       "rinc": "excusedWinningViolation"
+      },
+      {
+       "label": "YES",
+       "correct": true,
+       "why": "Early entry. The win doesn’t erase it."
+      }
+     ],
+     "rcat": "violation"
+    }
+   ]
+  },
+  {
+   "type": "p7_monologue",
+   "kicker": "Violation types",
+   "cards": [
+    "Early entry",
+    "Wick counted as Indication",
+    "Chase",
+    "Max trades exceeded",
+    "Daily loss exceeded",
+    "Unauthorized size",
+    "News rule broken",
+    "Stop moved outside plan",
+    "Prohibited environment",
+    "Outside session"
+   ]
+  },
+  {
+   "type": "p6_sort",
+   "kicker": "Violation or not?",
+   "title": "Read the behavior, not the result",
+   "buckets": [
+    {
+     "key": "v",
+     "label": "VIOLATION",
+     "tone": "ink",
+     "short": "⚠ VIOLATION"
+    },
+    {
+     "key": "ok",
+     "label": "NOT A VIOLATION",
+     "tone": "ink",
+     "short": "✓ NOT A VIOLATION"
+    }
+   ],
+   "items": [
+    {
+     "text": "Counted a wick through the PIL as Indication",
+     "bucket": "v"
+    },
+    {
+     "text": "Stop hit after a valid entry",
+     "bucket": "ok",
+     "why": "A valid loss."
+    },
+    {
+     "text": "Third trade when her maximum is 2",
+     "bucket": "v"
+    },
+    {
+     "text": "Exited on her pre-written early-intervention rule",
+     "bucket": "ok",
+     "why": "Planned management."
+    },
+    {
+     "text": "Moved the stop with no rule",
+     "bucket": "v"
+    },
+    {
+     "text": "New entry at 11:17, window ends 11:00",
+     "bucket": "v",
+     "why": "Outside session."
+    },
+    {
+     "text": "Missed the retest and didn’t enter",
+     "bucket": "ok",
+     "why": "That’s the no-chase rule working."
+    }
+   ],
+   "track": false,
+   "punch": "OUTCOME and RULE ADHERENCE are separate dimensions."
+  },
+  {
+   "type": "p7_process",
+   "kicker": "Process result",
+   "title": "It should feel uncomfortable. Good.",
+   "rcat": "violation",
+   "trades": [
+    {
+     "name": "TRADE 1",
+     "facts": [
+      "Entered before Continuation.",
+      "Closed at +2R."
+     ],
+     "result": "+2R WIN",
+     "violations": [
+      "Early entry"
+     ],
+     "answers": {
+      "outcome": "WIN",
+      "process": "VIOLATION"
+     }
+    },
+    {
+     "name": "TRADE 2",
+     "facts": [
+      "Every rule followed.",
+      "Stop hit."
+     ],
+     "result": "−1R LOSS",
+     "answers": {
+      "outcome": "LOSS",
+      "process": "FOLLOWED"
+     }
+    }
+   ]
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "A LOSS IS NOT AUTOMATICALLY A MISTAKE.",
+    "A MISTAKE IS A MISTAKE."
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Your journal needs two columns: <em>what happened to the money</em>, and <em>what happened to the rules</em>.",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why can’t a win prove you followed your rules?",
+   "modelAnswer": "Because the outcome and rule adherence are separate. A trade can win after an early entry, and a valid trade can lose. I grade the process by the rules, not the P&L."
+  }
+ ],
+ "takeaways": [
+  "Outcome and adherence are separate.",
+  "Valid loss ≠ violation.",
+  "Winning violation is still a violation."
+ ],
+ "remember": "A LOSS IS NOT AUTOMATICALLY A MISTAKE. A MISTAKE IS A MISTAKE."
+}

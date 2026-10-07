@@ -1,0 +1,156 @@
+{
+ "phase": "p7",
+ "section": "s19",
+ "lessonNumber": 11,
+ "title": "Why Trading Rules Exist",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Awareness is step one.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "See why rules beyond the entry model exist, and meet the AGHF Decision Hierarchy.",
+  "missionQuestion": "What does my rulebook say?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_monologue",
+   "kicker": "Phase 7 · Section 19",
+   "thoughts": [
+    "“I’M FOMOING.”"
+   ],
+   "lines": [
+    "GREAT. 👏",
+    "The cursor is still hovering over <span class=\"p7-buy\">BUY 🖱️</span>",
+    "“I know I’m revenge trading.” GREAT. But she still has to decide: TAKE TRADE?",
+    "“I know I’m overconfident.” GREAT. But the size selector still says <b>2X</b>.",
+    "AWARENESS IS STEP ONE.",
+    "<b>RULES ARE WHAT PROTECT YOU NEXT.</b>"
+   ],
+   "reveal": {
+    "eyebrow": "PHASE 7 · SECTION 2",
+    "title": "Rules That Protect You 📕",
+    "sub": "Section 1 recognized the trader. Section 2 governs her.",
+    "mission": "DECIDE YOUR RULES BEFORE YOUR EMOTIONS NEED THEM."
+   },
+   "cta": "Start →"
+  },
+  {
+   "type": "p7_split",
+   "kicker": "Same uncertain market",
+   "title": "Trader A vs Trader B",
+   "left": {
+    "h": "TRADER A",
+    "lines": [
+     "Setup appears. “Should I take it?”",
+     "Price runs. “Can I enter late?”",
+     "Loss. “Should I take another?”",
+     "Winner. “Should I size up?”",
+     "News soon. “Maybe this one is okay.”",
+     "<b>Every candle: a new negotiation.</b>"
+    ],
+    "tone": "mind",
+    "counter": {
+     "label": "LIVE DECISIONS INVENTED",
+     "value": 12
+    }
+   },
+   "right": {
+    "h": "TRADER B",
+    "lines": [
+     "Entry rule ✓",
+     "No-chase rule ✓",
+     "Risk ✓",
+     "Daily stop ✓",
+     "News rule ✓",
+     "Max trades ✓"
+    ],
+    "tone": "ok",
+    "counter": {
+     "label": "LIVE DECISIONS INVENTED",
+     "value": 3
+    },
+    "sub": "Same uncertainty. She isn’t inventing an operating system every five minutes."
+   },
+   "verdict": "RULES DON’T REMOVE MARKET UNCERTAINTY. THEY REMOVE UNNECESSARY DECISION-MAKING.",
+   "together": true,
+   "punch": "Illustrative counts, not science. The point: fewer decisions invented live."
+  },
+  {
+   "type": "p7_gate",
+   "kicker": "The AGHF Decision Hierarchy",
+   "title": "Four gates. In order.",
+   "layers": [
+    {
+     "key": "strategy",
+     "label": "STRATEGY",
+     "q": "Is the Dayli ICC setup actually valid?",
+     "state": "yes"
+    },
+    {
+     "key": "risk",
+     "label": "MY ACCOUNT",
+     "q": "Risk fits? Daily stop? Position size?",
+     "state": "yes"
+    },
+    {
+     "key": "rulebook",
+     "label": "MY PERSONAL RULEBOOK",
+     "q": "Session · news · max trades · no chase · environment",
+     "state": "no",
+     "note": "News in 3 minutes. Her rule: no new entries within 5."
+    }
+   ],
+   "status": "PASS",
+   "verdict": "VALID SETUP. INVALID PARTICIPATION.",
+   "asks": [
+    {
+     "prompt": "Does a trade become allowable as soon as gate 1 (strategy) says YES?",
+     "options": [
+      {
+       "label": "Yes",
+       "feedback": "Gate 1 only answers “does the setup exist?”."
+      },
+      {
+       "label": "No",
+       "correct": true,
+       "why": "Setup validity and participation eligibility are separate. Every gate has to clear."
+      }
+     ],
+     "rcat": "strategy"
+    }
+   ]
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "GOOD RULES DON’T PREDICT THE MARKET.",
+    "THEY CONTROL YOUR RESPONSE TO IT."
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "The market is allowed to be uncertain. <em>Your operating system isn’t.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why do you need rules beyond the entry model?",
+   "modelAnswer": "Because the entry model only answers whether the setup exists. Rules for risk, session, news, max trades and no chasing decide whether I’m allowed to participate, so I’m not inventing decisions live."
+  }
+ ],
+ "takeaways": [
+  "Awareness is step one. Rules protect you next.",
+  "Rules remove live decisions, not uncertainty.",
+  "Strategy → account → rulebook → execute or pass."
+ ],
+ "remember": "DECIDE YOUR RULES BEFORE YOUR EMOTIONS NEED THEM."
+}

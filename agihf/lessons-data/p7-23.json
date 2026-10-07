@@ -1,0 +1,872 @@
+{
+ "phase": "p7",
+ "section": "s20",
+ "lessonNumber": 23,
+ "title": "Low Volatility vs High Volatility",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Speed isn’t direction.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Read volatility as how aggressively price moves, never as where it has to go, and check it against your plan.",
+  "missionQuestion": "Does this volatility fit my tested risk and execution plan?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_chart_sort",
+   "kicker": "Volatility lens",
+   "title": "Same instrument. Same scale. LOWER or HIGHER?",
+   "ecat": "volatility",
+   "buckets": [
+    [
+     "lower",
+     "🐢 LOWER"
+    ],
+    [
+     "higher",
+     "⚡ HIGHER"
+    ]
+   ],
+   "items": [
+    {
+     "chart": {
+      "swings": [
+       [
+        20,
+        175
+       ],
+       [
+        120,
+        160
+       ],
+       [
+        200,
+        170
+       ],
+       [
+        300,
+        150
+       ],
+       [
+        380,
+        162
+       ],
+       [
+        480,
+        145
+       ],
+       [
+        600,
+        150
+       ]
+      ],
+      "seed": 37,
+      "density": 1.6
+     },
+     "answer": "lower",
+     "why": "Small candles, slower and tighter movement, limited expansion."
+    },
+    {
+     "chart": {
+      "swings": [
+       [
+        20,
+        250
+       ],
+       [
+        80,
+        60
+       ],
+       [
+        140,
+        270
+       ],
+       [
+        200,
+        50
+       ],
+       [
+        260,
+        240
+       ],
+       [
+        320,
+        40
+       ],
+       [
+        380,
+        260
+       ],
+       [
+        440,
+        70
+       ],
+       [
+        520,
+        230
+       ],
+       [
+        600,
+        80
+       ]
+      ],
+      "seed": 39,
+      "density": 0.6
+     },
+     "answer": "higher",
+     "why": "Larger candles, rapid movement, aggressive swings through levels."
+    },
+    {
+     "chart": {
+      "swings": [
+       [
+        20,
+        60
+       ],
+       [
+        90,
+        250
+       ],
+       [
+        150,
+        90
+       ],
+       [
+        220,
+        280
+       ],
+       [
+        290,
+        120
+       ],
+       [
+        360,
+        290
+       ],
+       [
+        440,
+        150
+       ],
+       [
+        520,
+        300
+       ],
+       [
+        600,
+        220
+       ]
+      ],
+      "seed": 41,
+      "density": 0.6
+     },
+     "answer": "higher",
+     "why": "Higher volatility, heading DOWN. Volatility didn’t tell you that. Structure did."
+    }
+   ],
+   "asks": [
+    {
+     "prompt": "Charts 2 and 3: both higher volatility. Same direction?",
+     "options": [
+      {
+       "label": "Yes",
+       "feedback": "One climbs, one falls.",
+       "einc": "volAsDirection"
+      },
+      {
+       "label": "No",
+       "correct": true,
+       "why": "VOLATILITY ≠ DIRECTION."
+      }
+     ],
+     "ecat": "volatility"
+    }
+   ]
+  },
+  {
+   "type": "p7_ask",
+   "kicker": "Classify it",
+   "title": "BIG GREEN CANDLE.",
+   "asks": [
+    {
+     "prompt": "BULLISH THESIS CONFIRMED?",
+     "options": [
+      {
+       "label": "YES, look at it",
+       "feedback": "Price is moving FAST. That answers speed. What answers direction?",
+       "einc": "volAsDirection"
+      },
+      {
+       "label": "NOT FROM CANDLE SIZE ALONE",
+       "correct": true,
+       "why": "Size tells you how aggressively price moved. Structure tells you direction."
+      }
+     ],
+     "ecat": "volatility"
+    }
+   ],
+   "chart": {
+    "bars": [
+     {
+      "o": 21034.25,
+      "h": 21035.25,
+      "l": 21031.0,
+      "c": 21031.25
+     },
+     {
+      "o": 21031.25,
+      "h": 21032.5,
+      "l": 21029.0,
+      "c": 21030.5
+     },
+     {
+      "o": 21030.5,
+      "h": 21031.0,
+      "l": 21026.0,
+      "c": 21026.25
+     },
+     {
+      "o": 21026.25,
+      "h": 21026.5,
+      "l": 21022.5,
+      "c": 21023.5
+     },
+     {
+      "o": 21023.5,
+      "h": 21024.75,
+      "l": 21020.25,
+      "c": 21021.5
+     },
+     {
+      "o": 21021.5,
+      "h": 21022.0,
+      "l": 21018.0,
+      "c": 21018.75
+     },
+     {
+      "o": 21018.75,
+      "h": 21019.75,
+      "l": 21015.0,
+      "c": 21015.5
+     },
+     {
+      "o": 21015.5,
+      "h": 21016.0,
+      "l": 21013.0,
+      "c": 21014.25
+     },
+     {
+      "o": 21014.25,
+      "h": 21015.75,
+      "l": 21010.5,
+      "c": 21012.0
+     },
+     {
+      "o": 21012.0,
+      "h": 21012.5,
+      "l": 21010.25,
+      "c": 21010.75
+     },
+     {
+      "o": 21010.75,
+      "h": 21011.25,
+      "l": 21007.0,
+      "c": 21008.25
+     },
+     {
+      "o": 21008.25,
+      "h": 21040.25,
+      "l": 21007.25,
+      "c": 21038.25
+     }
+    ],
+    "pil": null,
+    "pilAt": null,
+    "head": {
+     "tf": "1M",
+     "label": "After a slow drift down"
+    }
+   }
+  },
+  {
+   "type": "trigger_sim",
+   "mode": "watch",
+   "kicker": "The same setup, slower",
+   "title": "VERSION A",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20987.75,
+      "l": 20981.0,
+      "c": 20986.5
+     },
+     {
+      "o": 20986.5,
+      "h": 20992.5,
+      "l": 20985.0,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20993.75,
+      "l": 20989.75,
+      "c": 20993.0
+     },
+     {
+      "o": 20993.0,
+      "h": 20999.25,
+      "l": 20991.5,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.5,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.75,
+      "l": 20997.5,
+      "c": 20998.5
+     },
+     {
+      "o": 20998.5,
+      "h": 20999.0,
+      "l": 20994.75,
+      "c": 20995.25
+     },
+     {
+      "o": 20995.25,
+      "h": 20996.5,
+      "l": 20994.5,
+      "c": 20995.0
+     },
+     {
+      "o": 20995.0,
+      "h": 20996.25,
+      "l": 20990.75,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20995.5,
+      "l": 20991.0,
+      "c": 20995.0
+     },
+     {
+      "o": 20995.0,
+      "h": 20999.25,
+      "l": 20994.5,
+      "c": 20998.75
+     },
+     {
+      "o": 20998.75,
+      "h": 21002.75,
+      "l": 20997.5,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21007.75,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21012.0,
+      "l": 21006.0,
+      "c": 21010.5
+     },
+     {
+      "o": 21010.5,
+      "h": 21013.0,
+      "l": 21010.0,
+      "c": 21012.25
+     },
+     {
+      "o": 21012.25,
+      "h": 21014.75,
+      "l": 21011.5,
+      "c": 21014.5
+     },
+     {
+      "o": 21014.5,
+      "h": 21019.25,
+      "l": 21014.25,
+      "c": 21018.25
+     },
+     {
+      "o": 21018.25,
+      "h": 21019.0,
+      "l": 21014.25,
+      "c": 21015.0
+     },
+     {
+      "o": 21015.0,
+      "h": 21015.75,
+      "l": 21011.0,
+      "c": 21011.75
+     },
+     {
+      "o": 21011.75,
+      "h": 21012.5,
+      "l": 21006.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21007.5,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21007.0,
+      "l": 21005.0,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21008.0,
+      "l": 21005.0,
+      "c": 21006.75
+     },
+     {
+      "o": 21006.75,
+      "h": 21009.5,
+      "l": 21006.5,
+      "c": 21009.25
+     },
+     {
+      "o": 21009.25,
+      "h": 21010.75,
+      "l": 21008.75,
+      "c": 21009.25
+     },
+     {
+      "o": 21009.25,
+      "h": 21013.25,
+      "l": 21007.75,
+      "c": 21011.75
+     },
+     {
+      "o": 21011.75,
+      "h": 21013.0,
+      "l": 21011.0,
+      "c": 21012.25
+     }
+    ],
+    "start": 10,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish"
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis"
+     },
+     {
+      "label": "15M",
+      "value": "Pulling back into the map"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ],
+    "range": [
+     20946.0,
+     21041.75
+    ]
+   },
+   "setups": [
+    {
+     "pil": 21004.25,
+     "pilAt": 4
+    }
+   ],
+   "checkpoints": [
+    {
+     "at": 12,
+     "kind": "note",
+     "text": "Indication.",
+     "hold": 1700,
+     "watchSay": false,
+     "expect": "wait"
+    },
+    {
+     "at": 13,
+     "kind": "note",
+     "text": "Correction.",
+     "hold": 1700,
+     "watchSay": false,
+     "expect": "wait"
+    },
+    {
+     "at": 14,
+     "kind": "note",
+     "text": "Continuation.",
+     "hold": 1700,
+     "watchSay": false,
+     "expect": "wait"
+    },
+    {
+     "at": 22,
+     "kind": "note",
+     "text": "Retest. <b>Plenty of time to think.</b>",
+     "hold": 2200,
+     "watchSay": false,
+     "expect": "wait"
+    }
+   ],
+   "timeline": false,
+   "intro": "Version A: the candles print slowly.",
+   "end": {
+    "card": "Same model. Watch the next one."
+   },
+   "speed": 1500,
+   "noStatus": true
+  },
+  {
+   "type": "trigger_sim",
+   "mode": "watch",
+   "kicker": "The same setup, faster",
+   "title": "VERSION B",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20949.25,
+      "h": 20963.0,
+      "l": 20946.0,
+      "c": 20960.0
+     },
+     {
+      "o": 20960.0,
+      "h": 20975.0,
+      "l": 20956.0,
+      "c": 20971.75
+     },
+     {
+      "o": 20971.75,
+      "h": 20978.0,
+      "l": 20968.0,
+      "c": 20976.0
+     },
+     {
+      "o": 20976.0,
+      "h": 20991.75,
+      "l": 20972.5,
+      "c": 20989.25
+     },
+     {
+      "o": 20989.25,
+      "h": 21004.25,
+      "l": 20987.5,
+      "c": 20998.0
+     },
+     {
+      "o": 20998.0,
+      "h": 21000.5,
+      "l": 20987.5,
+      "c": 20990.0
+     },
+     {
+      "o": 20990.0,
+      "h": 20991.0,
+      "l": 20980.5,
+      "c": 20981.75
+     },
+     {
+      "o": 20981.75,
+      "h": 20985.0,
+      "l": 20980.0,
+      "c": 20981.0
+     },
+     {
+      "o": 20981.0,
+      "h": 20984.25,
+      "l": 20970.5,
+      "c": 20971.75
+     },
+     {
+      "o": 20971.75,
+      "h": 20982.5,
+      "l": 20971.0,
+      "c": 20981.0
+     },
+     {
+      "o": 20981.0,
+      "h": 20991.75,
+      "l": 20980.0,
+      "c": 20990.5
+     },
+     {
+      "o": 20990.5,
+      "h": 21000.5,
+      "l": 20987.5,
+      "c": 20996.75
+     },
+     {
+      "o": 20996.75,
+      "h": 21013.0,
+      "l": 20996.75,
+      "c": 21011.0
+     },
+     {
+      "o": 21011.0,
+      "h": 21011.0,
+      "l": 20996.75,
+      "c": 20998.5
+     },
+     {
+      "o": 20998.5,
+      "h": 21013.0,
+      "l": 20998.5,
+      "c": 21011.75
+     },
+     {
+      "o": 21011.75,
+      "h": 21023.5,
+      "l": 21008.5,
+      "c": 21020.0
+     },
+     {
+      "o": 21020.0,
+      "h": 21026.0,
+      "l": 21018.5,
+      "c": 21024.25
+     },
+     {
+      "o": 21024.25,
+      "h": 21030.5,
+      "l": 21022.5,
+      "c": 21030.0
+     },
+     {
+      "o": 21030.0,
+      "h": 21041.75,
+      "l": 21029.25,
+      "c": 21039.25
+     },
+     {
+      "o": 21039.25,
+      "h": 21041.0,
+      "l": 21029.25,
+      "c": 21031.0
+     },
+     {
+      "o": 21031.0,
+      "h": 21033.0,
+      "l": 21021.0,
+      "c": 21023.0
+     },
+     {
+      "o": 21023.0,
+      "h": 21025.0,
+      "l": 21008.5,
+      "c": 21011.75
+     },
+     {
+      "o": 21011.75,
+      "h": 21012.5,
+      "l": 21003.0,
+      "c": 21008.0
+     },
+     {
+      "o": 21008.0,
+      "h": 21011.0,
+      "l": 21006.0,
+      "c": 21008.0
+     },
+     {
+      "o": 21008.0,
+      "h": 21013.5,
+      "l": 21006.0,
+      "c": 21010.5
+     },
+     {
+      "o": 21010.5,
+      "h": 21017.5,
+      "l": 21010.0,
+      "c": 21016.75
+     },
+     {
+      "o": 21016.75,
+      "h": 21020.5,
+      "l": 21015.5,
+      "c": 21016.75
+     },
+     {
+      "o": 21016.75,
+      "h": 21026.75,
+      "l": 21013.0,
+      "c": 21023.0
+     },
+     {
+      "o": 21023.0,
+      "h": 21026.0,
+      "l": 21021.0,
+      "c": 21024.25
+     }
+    ],
+    "start": 10,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish"
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis"
+     },
+     {
+      "label": "15M",
+      "value": "Pulling back into the map"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ],
+    "range": [
+     20946.0,
+     21041.75
+    ]
+   },
+   "setups": [
+    {
+     "pil": 21004.25,
+     "pilAt": 4
+    }
+   ],
+   "checkpoints": [
+    {
+     "at": 22,
+     "kind": "note",
+     "text": "Retest. <b>Already?</b> 😳",
+     "hold": 1400,
+     "watchSay": false,
+     "expect": "wait"
+    }
+   ],
+   "timeline": false,
+   "intro": "Version B: the same conceptual setup. Bigger candles. Faster prints.",
+   "end": {
+    "ask": {
+     "prompt": "WHAT CHANGED?",
+     "options": [
+      {
+       "label": "The direction",
+       "feedback": "Both are the same bullish ICC."
+      },
+      {
+       "label": "Speed, movement, potential fills, emotional pressure and risk considerations",
+       "correct": true,
+       "why": "Same model. Different execution experience."
+      },
+      {
+       "label": "The setup became invalid",
+       "feedback": "The candle-close story is identical. Only the scale and speed changed."
+      }
+     ],
+     "stack": true
+    }
+   },
+   "speed": 320,
+   "noStatus": true
+  },
+  {
+   "type": "p7_ask",
+   "kicker": "Your plan, not a universal rule",
+   "title": "High volatility. Valid setup.",
+   "asks": [
+    {
+     "prompt": "What do you do about the volatility?",
+     "options": [
+      {
+       "label": "Always cut size in high volatility",
+       "feedback": "Only if YOUR tested plan defines that adjustment. There’s no universal rule here."
+      },
+      {
+       "label": "Check it against my tested risk + execution plan: follow its adjustment if defined, otherwise REASSESS",
+       "correct": true,
+       "why": "DOES THIS VOLATILITY FIT YOUR TESTED PLAN?"
+      },
+      {
+       "label": "Size up, it’s moving",
+       "feedback": "Movement isn’t edge. And size comes from your risk plan."
+      }
+     ],
+     "ecat": "volatility"
+    },
+    {
+     "prompt": "Low volatility. Is it automatically safer?",
+     "options": [
+      {
+       "label": "Yes",
+       "feedback": "Lower volatility isn’t a safety signal. It’s a speed reading."
+      },
+      {
+       "label": "No",
+       "correct": true,
+       "why": "Low volatility ≠ safety. High volatility ≠ direction."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "VOLATILITY TELLS YOU",
+    "HOW AGGRESSIVELY PRICE IS MOVING.",
+    "<b>NOT WHERE IT HAS TO GO.</b>"
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Fast candles make my heart rate a market indicator. 😂 <em>It isn’t one.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What changes in high volatility?",
+   "modelAnswer": "Speed, candle size, intrabar swings, potential fills and the emotional pressure. Not the direction. I check whether it fits my tested risk and execution plan, and reassess if my plan doesn’t cover it."
+  }
+ ],
+ "takeaways": [
+  "Volatility = speed, not direction.",
+  "Same setup, different execution experience.",
+  "Check it against YOUR plan."
+ ],
+ "remember": "VOLATILITY TELLS YOU HOW AGGRESSIVELY PRICE IS MOVING. NOT WHERE IT HAS TO GO."
+}

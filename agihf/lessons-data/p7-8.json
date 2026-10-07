@@ -1,0 +1,203 @@
+{
+ "phase": "p7",
+ "section": "s18",
+ "lessonNumber": 8,
+ "title": "Winning Streaks & Losing Streaks",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Both pull you off baseline.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Hold your baseline through a losing streak and a winning streak, and read your emotional temperature.",
+  "missionQuestion": "Did the plan change, or did my streak change?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_split",
+   "kicker": "Two brains",
+   "title": "Same trader. Different week.",
+   "left": {
+    "h": "LOSING STREAK BRAIN",
+    "lines": [
+     "“I can’t win.”",
+     "“I need it back.”",
+     "“Maybe the method stopped working.”",
+     "“I should skip this.”"
+    ],
+    "tone": "mind"
+   },
+   "right": {
+    "h": "WINNING STREAK BRAIN",
+    "lines": [
+     "“I can’t miss.”",
+     "“I can size up.”",
+     "“I’m seeing everything.”",
+     "“One more trade.”"
+    ],
+    "tone": "mind"
+   },
+   "verdict": "BOTH CAN PULL YOU AWAY FROM BASELINE.",
+   "together": true
+  },
+  {
+   "type": "p7_baseline",
+   "kicker": "The baseline card",
+   "title": "Written before the streak",
+   "baseline": [
+    [
+     "Risk",
+     "1R"
+    ],
+    [
+     "Max trades",
+     "2"
+    ],
+    [
+     "Entry rules",
+     "Unchanged"
+    ],
+    [
+     "Management",
+     "Unchanged"
+    ]
+   ],
+   "runs": [
+    {
+     "label": "5 LOSSES",
+     "seq": "LLLLL",
+     "thoughts": [
+      "“Maybe the method stopped working.”"
+     ],
+     "ask": {
+      "prompt": "DID THE TESTED PLAN CHANGE?",
+      "options": [
+       {
+        "label": "Yes, rewrite it",
+        "feedback": "Five losses can happen inside a working edge. Review execution and sample first."
+       },
+       {
+        "label": "Not automatically",
+        "correct": true,
+        "why": "Review execution + sample. Don’t rewrite the method after a streak."
+       }
+      ]
+     }
+    },
+    {
+     "label": "5 WINS",
+     "seq": "WWWWW",
+     "thoughts": [
+      "“I can’t miss.”",
+      "“Triple size?”"
+     ],
+     "ask": {
+      "prompt": "DID RISK DISAPPEAR?",
+      "options": [
+       {
+        "label": "Yes, triple size",
+        "feedback": "Your confidence changed. Did your risk plan?",
+        "track": "overconfidenceCount"
+       },
+       {
+        "label": "NO",
+        "correct": true,
+        "why": "Same risk. Same baseline. Wins don’t make the next trade safer."
+       }
+      ]
+     }
+    }
+   ],
+   "punch": "DON’T LET LOSSES CONVINCE YOU THE EDGE DISAPPEARED. DON’T LET WINS CONVINCE YOU RISK DISAPPEARED."
+  },
+  {
+   "type": "p7_temp",
+   "kicker": "A new tool",
+   "title": "Emotional temperature",
+   "body": "Where would you put each thought? This is for noticing, not grading yourself.",
+   "items": [
+    {
+     "thought": "Ready. Plan’s clear.",
+     "state": "calm"
+    },
+    {
+     "thought": "Ooh, it’s moving fast.",
+     "state": "elevated"
+    },
+    {
+     "thought": "Ugh. Third loss this week.",
+     "state": "frustrated"
+    },
+    {
+     "thought": "I NEED that back. Now.",
+     "state": "red"
+    }
+   ],
+   "asks": [
+    {
+     "prompt": "She’s 🔴 in a revenge state. A fully valid setup begins forming. Does her emotional state make the MARKET SETUP invalid?",
+     "options": [
+      {
+       "label": "YES",
+       "feedback": "The setup is about price. Her state is about her. Two different dimensions.",
+       "track": "feelingAsReason"
+      },
+      {
+       "label": "NO",
+       "correct": true,
+       "why": "Market setup and trader readiness are different dimensions."
+      }
+     ]
+    },
+    {
+     "prompt": "Then does her personal trading plan need a rule for what she does when she’s in this state?",
+     "options": [
+      {
+       "label": "YES",
+       "correct": true,
+       "why": "Exactly. Not invented now. Section 2 is where you build it."
+      },
+      {
+       "label": "NO, she’ll just be careful",
+       "feedback": "“Be careful” isn’t a rule. 😂"
+      }
+     ]
+    }
+   ],
+   "punch": "A RED STATE DOESN’T MAKE THE SETUP INVALID. IT MAKES YOUR PERSONAL RULE MATTER MORE."
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "DON’T LET LOSSES CONVINCE YOU",
+    "THE EDGE DISAPPEARED.",
+    "DON’T LET WINS CONVINCE YOU",
+    "RISK DISAPPEARED."
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Your baseline is the version of you that wrote the plan. <em>Trade like her.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why can winning trades reinforce bad habits?",
+   "modelAnswer": "Because a win feels like proof. After a streak I might size up or loosen my rules, and if it works, the bad habit gets rewarded. My baseline risk didn’t change just because I won."
+  }
+ ],
+ "takeaways": [
+  "Streaks pull you off baseline.",
+  "Losses ≠ broken edge. Wins ≠ no risk.",
+  "Temperature is self-observation, not a signal."
+ ],
+ "remember": "DON’T LET WINS CONVINCE YOU RISK DISAPPEARED."
+}

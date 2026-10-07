@@ -1,0 +1,325 @@
+{
+ "phase": "p7",
+ "section": "s20",
+ "lessonNumber": 29,
+ "title": "Knowing When to Sit Out",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "This should feel like freedom.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Recognize the valid pass as a complete trading result, never a missed or failed day.",
+  "missionQuestion": "Did I follow the process, whether or not I traded?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_timeline",
+   "kicker": "A full session",
+   "title": "Analysis done. Then…",
+   "rows": [
+    {
+     "t": "9:40",
+     "text": "Full top-down analysis completed.",
+     "state": "✓",
+     "tone": "ok"
+    },
+    {
+     "t": "10:00",
+     "text": "Nothing.",
+     "tone": "ink"
+    },
+    {
+     "t": "10:30",
+     "text": "Messy.",
+     "tone": "ink"
+    },
+    {
+     "t": "11:00",
+     "text": "No clarity. Session closes.",
+     "tone": "ink"
+    }
+   ],
+   "asks": [
+    {
+     "prompt": "RESULT?",
+     "options": [
+      {
+       "label": "FAILED DAY",
+       "feedback": "What failed? You followed every step."
+      },
+      {
+       "label": "MISSED DAY",
+       "feedback": "Nothing was missed. Nothing formed."
+      },
+      {
+       "label": "NO OPPORTUNITY",
+       "feedback": "True, nothing formed. But the result is about your process."
+      },
+      {
+       "label": "VALID PASS",
+       "correct": true,
+       "why": "Process followed. No trade taken."
+      }
+     ],
+     "ecat": "pass",
+     "stack": true
+    }
+   ]
+  },
+  {
+   "type": "p7_tally",
+   "kicker": "The result",
+   "title": "Not “0 trades 😔”",
+   "rows": [
+    [
+     "TRADES",
+     "0",
+     "neutral"
+    ],
+    [
+     "RULE VIOLATIONS",
+     "0",
+     "ok"
+    ],
+    [
+     "FORCED SETUPS",
+     "0",
+     "ok"
+    ],
+    [
+     "VALID PASS",
+     "✓",
+     "big"
+    ]
+   ],
+   "complete": true,
+   "stamp": "SESSION COMPLETE ✓",
+   "note": "No red $0. A no-trade day isn’t incomplete activity. It’s a complete session."
+  },
+  {
+   "type": "p7_monologue",
+   "kicker": "Three good process outcomes",
+   "cards": [
+    "VALID WIN",
+    "VALID LOSS",
+    "VALID PASS"
+   ],
+   "lines": [
+    "Process followed. Trade wins.",
+    "Process followed. Trade loses.",
+    "Process followed. No trade taken.",
+    "<b>ALL THREE: PROCESS-COMPLETE.</b>"
+   ]
+  },
+  {
+   "type": "p7_participation",
+   "kicker": "Your turn",
+   "title": "10:48. Nothing has met your framework all session.",
+   "chart": {
+    "swings": [
+     [
+      20,
+      150
+     ],
+     [
+      60,
+      185
+     ],
+     [
+      95,
+      140
+     ],
+     [
+      130,
+      178
+     ],
+     [
+      165,
+      150
+     ],
+     [
+      200,
+      190
+     ],
+     [
+      235,
+      145
+     ],
+     [
+      270,
+      175
+     ],
+     [
+      305,
+      152
+     ],
+     [
+      340,
+      188
+     ],
+     [
+      375,
+      142
+     ],
+     [
+      410,
+      180
+     ],
+     [
+      445,
+      155
+     ],
+     [
+      480,
+      186
+     ],
+     [
+      515,
+      147
+     ],
+     [
+      550,
+      176
+     ],
+     [
+      600,
+      160
+     ]
+    ],
+    "seed": 33,
+    "density": 1.3
+   },
+   "facts": [
+    [
+     "4H",
+     "Mixed"
+    ],
+    [
+     "1H",
+     "Messy overlap"
+    ],
+    [
+     "1M",
+     "Nothing formed"
+    ],
+    [
+     "Clock",
+     "10:48 · window ends 11:00"
+    ]
+   ],
+   "thought": [
+    "“I did all that analysis for nothing?”"
+   ],
+   "steps": [
+    {
+     "key": "feel",
+     "ask": {
+      "prompt": "WHAT AM I FEELING?",
+      "options": [
+       {
+        "label": "Pressure to make the analysis “pay”",
+        "correct": true,
+        "short": "PRESSURE",
+        "why": "Noticed. It doesn’t get to choose."
+       },
+       {
+        "label": "Nothing",
+        "feedback": "The thought bubble says otherwise. 😂"
+       }
+      ]
+     }
+    },
+    {
+     "key": "environment",
+     "ask": {
+      "prompt": "ENVIRONMENT?",
+      "options": [
+       {
+        "label": "SUPPORTIVE",
+        "feedback": "Messy overlap, mixed 4H."
+       },
+       {
+        "label": "POORLY DEFINED",
+        "correct": true
+       }
+      ],
+      "ecat": "clarity"
+     }
+    },
+    {
+     "key": "setup",
+     "ask": {
+      "prompt": "SETUP?",
+      "options": [
+       {
+        "label": "VALID",
+        "feedback": "Nothing formed."
+       },
+       {
+        "label": "NOT FORMED",
+        "correct": true
+       }
+      ]
+     }
+    }
+   ],
+   "decision": {
+    "correct": "PASS",
+    "options": [
+     "TAKE LEAST-BAD",
+     "DROP A TIMEFRAME",
+     "FORCE A TRADE",
+     "PASS"
+    ],
+    "ecat": "pass",
+    "why": "VALID PASS.",
+    "feedback": {
+     "TAKE LEAST-BAD": "Least bad is still not your framework.",
+     "DROP A TIMEFRAME": "Zooming in until ICC appears is forcing it.",
+     "FORCE A TRADE": "The session doesn’t have to produce a trade."
+    }
+   },
+   "whys": [
+    "Nothing met my full participation framework",
+    "I was bored",
+    "The analysis has to pay"
+   ],
+   "whyCorrect": 0,
+   "setupState": "NOT FORMED",
+   "passReason": "Nothing met the framework all session",
+   "punch": "Saved as a VALID PASS. Your journal counts it."
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "NO TRADE IS A VALID TRADING RESULT.",
+    "<b>SOMETIMES PROTECTING THE DAY IS THE TRADE.</b>"
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Some of my favorite sessions ended with my hands in my lap. <em>They count.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "When would you pass on a valid ICC, or on the whole session?",
+   "modelAnswer": "When my rulebook blocks it, the environment is poorly defined for my plan, or nothing meets my full participation framework. A valid pass is process-complete, same as a valid win or a valid loss."
+  }
+ ],
+ "takeaways": [
+  "Valid win, valid loss, valid pass.",
+  "A no-trade session is complete.",
+  "Protecting the day can be the trade."
+ ],
+ "remember": "SOMETIMES PROTECTING THE DAY IS THE TRADE."
+}

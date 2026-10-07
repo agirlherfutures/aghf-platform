@@ -1,0 +1,156 @@
+{
+ "phase": "p7",
+ "section": "s18",
+ "lessonNumber": 9,
+ "title": "Process, Outcome & Self-Worth",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Three different things.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Grade outcome, process and strategy separately, and keep one trade as one observation.",
+  "missionQuestion": "What does this trade actually tell me?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_monologue",
+   "kicker": "Don’t collapse them",
+   "cards": [
+    "1 · TRADE OUTCOME<br><small>win / loss</small>",
+    "2 · PROCESS QUALITY<br><small>did I follow my rules?</small>",
+    "3 · STRATEGY PERFORMANCE<br><small>across a meaningful sample</small>"
+   ],
+   "lines": [
+    "THREE DIFFERENT THINGS.",
+    "WIN ≠ GOOD TRADE. LOSS ≠ BAD TRADE."
+   ]
+  },
+  {
+   "type": "p7_process",
+   "kicker": "Classify it",
+   "title": "Two trades",
+   "trades": [
+    {
+     "name": "TRADE A",
+     "facts": [
+      "Valid Dayli ICC.",
+      "Entered at the first valid retest.",
+      "Perfect execution, plan followed.",
+      "Stop hit."
+     ],
+     "result": "−1R LOSS",
+     "answers": {
+      "outcome": "LOSS",
+      "process": "FOLLOWED",
+      "strategy": "NOT ENOUGH"
+     },
+     "why": "One valid loss says nothing about the strategy yet."
+    },
+    {
+     "name": "TRADE B",
+     "facts": [
+      "Entered before Continuation.",
+      "Rule violation.",
+      "Won +2R."
+     ],
+     "result": "+2R WIN",
+     "violations": [
+      "Early entry"
+     ],
+     "answers": {
+      "outcome": "WIN",
+      "process": "VIOLATION",
+      "strategy": "NOT USEFUL"
+     },
+     "why": "A win from a rule violation isn’t evidence that the method was executed."
+    }
+   ],
+   "punch": "JUDGE THE BEHAVIOR QUICKLY. JUDGE THE STRATEGY SLOWLY."
+  },
+  {
+   "type": "p7_state_card",
+   "kicker": "Trader State Card",
+   "title": "Write the state down, not just the trade",
+   "example": {
+    "emotion": "Frustrated",
+    "intensity": "High",
+    "trigger": "Previous valid loss",
+    "urge": "Take the next setup early",
+    "ruleAtRisk": "Wait for Continuation",
+    "plannedResponse": "Pause and require the full checklist"
+   },
+   "asks": [
+    {
+     "prompt": "In this example, which field turns the feeling into a decision?",
+     "options": [
+      {
+       "label": "CURRENT EMOTION",
+       "feedback": "That’s the information."
+      },
+      {
+       "label": "PLANNED RESPONSE",
+       "correct": true,
+       "why": "Decided now, used later: in the journal, the pre-trade planner and the simulator."
+      }
+     ]
+    }
+   ],
+   "own": true,
+   "punch": "Private to you. Never shared, never ranked."
+  },
+  {
+   "type": "p7_tally",
+   "kicker": "One trade",
+   "title": "Self-worth, kept simple",
+   "rows": [
+    [
+     "SAMPLE SIZE",
+     "1",
+     "big"
+    ]
+   ],
+   "asks": [
+    {
+     "prompt": "IS THIS ENOUGH DATA TO DEFINE YOUR SKILL?",
+     "options": [
+      {
+       "label": "Yes",
+       "feedback": "One trade is one observation."
+      },
+      {
+       "label": "NO",
+       "correct": true,
+       "why": "Not your skill, and definitely not who you are."
+      }
+     ]
+    }
+   ],
+   "punch": "One trade is one observation. Not identity."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Your P&amp;L grades the trade. <em>Your journal grades the process. Neither one grades you.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What does “judge behavior quickly, judge strategy slowly” mean?",
+   "modelAnswer": "After every trade I can say right away whether I followed my rules. But whether the strategy works takes a meaningful sample. One win or loss can’t answer that."
+  }
+ ],
+ "takeaways": [
+  "Outcome · process · strategy: three things.",
+  "Judge behavior quickly.",
+  "Judge strategy slowly."
+ ],
+ "remember": "JUDGE THE BEHAVIOR QUICKLY. JUDGE THE STRATEGY SLOWLY."
+}

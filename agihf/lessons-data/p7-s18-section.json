@@ -1,0 +1,2486 @@
+{
+ "phase": "p7",
+ "section": "s18",
+ "title": "Your Mind Is the Market 🪞",
+ "steps": [
+  "game",
+  "knowledge",
+  "checkin",
+  "complete"
+ ],
+ "hook": "Clear the Mindset Mirror Lab, pass the Knowledge Check and save your Check-In to unlock Section 19.",
+ "game": {
+  "title": "Mindset Mirror Lab 🪞",
+  "save": "p7-s18",
+  "xp": 0,
+  "tagline": "Not “what is fear?”. Who is trading right now?",
+  "doneHeading": "MINDSET MIRROR LAB COMPLETE ✓",
+  "doneLine": "You named the feeling, checked the market, read the rule, and chose the behavior. Over and over.",
+  "readout": "YOUR MINDSET READ",
+  "review": {
+   "Feeling vs behavior": [
+    "p7",
+    1,
+    "Emotional control"
+   ],
+   "Fear": [
+    "p7",
+    2,
+    "Fear"
+   ],
+   "FOMO": [
+    "p7",
+    4,
+    "FOMO"
+   ],
+   "Greed": [
+    "p7",
+    3,
+    "Greed"
+   ],
+   "Revenge": [
+    "p7",
+    5,
+    "Revenge trading"
+   ],
+   "Overtrading": [
+    "p7",
+    6,
+    "Overtrading"
+   ],
+   "Patience vs hesitation": [
+    "p7",
+    7,
+    "Hesitation"
+   ],
+   "Streaks": [
+    "p7",
+    8,
+    "Streaks"
+   ],
+   "Process vs outcome": [
+    "p7",
+    9,
+    "Process & outcome"
+   ],
+   "Emotional temperature": [
+    "p7",
+    8,
+    "Emotional temperature"
+   ],
+   "Full session": [
+    "p7",
+    10,
+    "Patience"
+   ]
+  },
+  "levels": [
+   {
+    "type": "p7_mirror",
+    "title": "",
+    "thought": "“I’m nervous this trade will come back.”",
+    "asks": [
+     {
+      "prompt": "FEELING OR RULE?",
+      "options": [
+       {
+        "label": "EMOTION",
+        "correct": true,
+        "why": "A feeling, honestly noticed."
+       },
+       {
+        "label": "A RULE",
+        "feedback": "Which rule says “nervous”?"
+       },
+       {
+        "label": "NEW MARKET INFORMATION",
+        "feedback": "The market is unchanged."
+       }
+      ],
+      "recog": true,
+      "focus": "mind"
+     },
+     {
+      "prompt": "DOES THAT THOUGHT ALONE REQUIRE AN ACTION?",
+      "options": [
+       {
+        "label": "Yes",
+        "feedback": "No rule triggered and nothing changed in price.",
+        "track": "feelingAsReason"
+       },
+       {
+        "label": "No",
+        "correct": true,
+        "why": "No action is required solely from that thought.",
+        "track": "ruleBasedResponses"
+       }
+      ],
+      "focus": "rule"
+     }
+    ],
+    "chart": {
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20986.5,
+       "l": 20981.5,
+       "c": 20985.5
+      },
+      {
+       "o": 20985.5,
+       "h": 20991.5,
+       "l": 20985.25,
+       "c": 20990.5
+      },
+      {
+       "o": 20990.5,
+       "h": 20994.25,
+       "l": 20990.0,
+       "c": 20993.0
+      },
+      {
+       "o": 20993.0,
+       "h": 20998.75,
+       "l": 20991.5,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.0,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21002.75,
+       "l": 20998.5,
+       "c": 20999.0
+      },
+      {
+       "o": 20999.0,
+       "h": 21000.25,
+       "l": 20995.75,
+       "c": 20996.75
+      },
+      {
+       "o": 20996.75,
+       "h": 20997.75,
+       "l": 20994.25,
+       "c": 20994.5
+      },
+      {
+       "o": 20994.5,
+       "h": 20995.75,
+       "l": 20990.25,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20994.25,
+       "l": 20990.0,
+       "c": 20994.0
+      },
+      {
+       "o": 20994.0,
+       "h": 20999.0,
+       "l": 20992.75,
+       "c": 20997.75
+      },
+      {
+       "o": 20997.75,
+       "h": 21002.5,
+       "l": 20996.25,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21008.5,
+       "l": 21002.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21009.0,
+       "l": 21005.75,
+       "c": 21008.5
+      },
+      {
+       "o": 21008.5,
+       "h": 21012.5,
+       "l": 21007.75,
+       "c": 21011.5
+      },
+      {
+       "o": 21011.5,
+       "h": 21014.75,
+       "l": 21010.75,
+       "c": 21014.0
+      },
+      {
+       "o": 21014.0,
+       "h": 21017.25,
+       "l": 21013.0,
+       "c": 21016.25
+      },
+      {
+       "o": 21016.25,
+       "h": 21017.25,
+       "l": 21012.75,
+       "c": 21014.25
+      },
+      {
+       "o": 21014.25,
+       "h": 21015.75,
+       "l": 21010.25,
+       "c": 21011.25
+      },
+      {
+       "o": 21011.25,
+       "h": 21011.75,
+       "l": 21006.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21008.75,
+       "l": 21003.75,
+       "c": 21005.75
+      },
+      {
+       "o": 21005.75,
+       "h": 21008.75,
+       "l": 21005.25,
+       "c": 21007.5
+      },
+      {
+       "o": 21007.5,
+       "h": 21010.75,
+       "l": 21007.0,
+       "c": 21009.75
+      },
+      {
+       "o": 21009.75,
+       "h": 21011.0,
+       "l": 21008.0,
+       "c": 21009.5
+      },
+      {
+       "o": 21009.5,
+       "h": 21012.5,
+       "l": 21008.25,
+       "c": 21012.25
+      }
+     ],
+     "pil": 21004.25,
+     "pilAt": 4,
+     "show": 26,
+     "head": {
+      "tf": "1M",
+      "label": "In the trade"
+     }
+    },
+    "market": {
+     "state": "Unchanged. Plan intact."
+    },
+    "mind": {
+     "history": [
+      "Long 2 MNQ · SL −30 · TP +60"
+     ]
+    },
+    "name": "Feeling or rule?",
+    "concept": "Feeling vs behavior",
+    "sessionStart": "mirror-lab",
+    "brief": "Who is trading right now? Recognize yourself in the decision."
+   },
+   {
+    "type": "p7_mirror",
+    "title": "",
+    "thought": "“I don’t want to lose the green.”",
+    "who": {
+     "correct": "fear",
+     "options": [
+      "process",
+      "fear",
+      "greed",
+      "fomo"
+     ],
+     "why": "FEAR-DRIVEN MANAGEMENT: protecting unrealized profit by abandoning the plan.",
+     "track": "fearDrivenManagementCount"
+    },
+    "market": {
+     "state": "Pullback. No structural change.",
+     "facts": [
+      [
+       "Trade",
+       "+15 pts"
+      ],
+      [
+       "Target",
+       "+60"
+      ],
+      [
+       "Management condition",
+       "none triggered"
+      ]
+     ]
+    },
+    "mind": {
+     "history": [
+      "Open trade · +$60"
+     ]
+    },
+    "action": "Closes the trade",
+    "rule": {
+     "text": "Fixed management: hold to SL −30 / TP +60."
+    },
+    "name": "The green",
+    "concept": "Fear"
+   },
+   {
+    "type": "p7_session",
+    "events": [
+     {
+      "title": "Your history",
+      "slide": {
+       "type": "p7_seen",
+       "fallback": {
+        "key": "chase",
+        "rule": "No retest, no chase",
+        "emotionHint": "fomo",
+        "line": "A very common one: entering after the planned retest is already gone."
+       }
+      }
+     },
+     {
+      "title": "Now",
+      "slide": {
+       "type": "p7_mirror",
+       "title": "",
+       "thought": "“It’s running. I’m getting in.”",
+       "who": {
+        "correct": "fomo",
+        "options": [
+         "process",
+         "fomo",
+         "greed",
+         "patience"
+        ],
+        "why": "FOMO / CHASE. The planned entry was the retest. Price leaving doesn’t create a new one.",
+        "track": "fomoRecognized"
+       },
+       "chart": {
+        "bars": [
+         {
+          "o": 20982.25,
+          "h": 20986.75,
+          "l": 20981.25,
+          "c": 20985.75
+         },
+         {
+          "o": 20985.75,
+          "h": 20991.5,
+          "l": 20985.25,
+          "c": 20991.0
+         },
+         {
+          "o": 20991.0,
+          "h": 20993.75,
+          "l": 20989.75,
+          "c": 20993.25
+         },
+         {
+          "o": 20993.25,
+          "h": 20998.75,
+          "l": 20992.25,
+          "c": 20998.25
+         },
+         {
+          "o": 20998.25,
+          "h": 21004.25,
+          "l": 20997.75,
+          "c": 21001.75
+         },
+         {
+          "o": 21001.75,
+          "h": 21003.0,
+          "l": 20998.0,
+          "c": 20999.0
+         },
+         {
+          "o": 20999.0,
+          "h": 20999.5,
+          "l": 20994.75,
+          "c": 20995.25
+         },
+         {
+          "o": 20995.25,
+          "h": 20996.5,
+          "l": 20993.5,
+          "c": 20994.75
+         },
+         {
+          "o": 20994.75,
+          "h": 20996.0,
+          "l": 20990.0,
+          "c": 20991.25
+         },
+         {
+          "o": 20991.25,
+          "h": 20997.0,
+          "l": 20990.75,
+          "c": 20995.75
+         },
+         {
+          "o": 20995.75,
+          "h": 20999.5,
+          "l": 20994.5,
+          "c": 20998.75
+         },
+         {
+          "o": 20998.75,
+          "h": 21002.25,
+          "l": 20998.0,
+          "c": 21001.25
+         },
+         {
+          "o": 21001.25,
+          "h": 21007.75,
+          "l": 21001.25,
+          "c": 21007.0
+         },
+         {
+          "o": 21007.0,
+          "h": 21007.0,
+          "l": 21001.25,
+          "c": 21002.0
+         },
+         {
+          "o": 21002.0,
+          "h": 21008.5,
+          "l": 21002.0,
+          "c": 21007.25
+         },
+         {
+          "o": 21007.25,
+          "h": 21014.75,
+          "l": 21006.25,
+          "c": 21013.75
+         },
+         {
+          "o": 21013.75,
+          "h": 21018.75,
+          "l": 21012.75,
+          "c": 21018.25
+         },
+         {
+          "o": 21018.25,
+          "h": 21023.25,
+          "l": 21017.75,
+          "c": 21022.75
+         },
+         {
+          "o": 21022.75,
+          "h": 21029.25,
+          "l": 21022.25,
+          "c": 21028.25
+         },
+         {
+          "o": 21028.25,
+          "h": 21031.75,
+          "l": 21027.5,
+          "c": 21030.75
+         },
+         {
+          "o": 21030.75,
+          "h": 21033.5,
+          "l": 21030.25,
+          "c": 21032.75
+         },
+         {
+          "o": 21032.75,
+          "h": 21036.75,
+          "l": 21032.25,
+          "c": 21036.25
+         },
+         {
+          "o": 21036.25,
+          "h": 21039.25,
+          "l": 21035.25,
+          "c": 21038.0
+         },
+         {
+          "o": 21038.0,
+          "h": 21043.25,
+          "l": 21037.5,
+          "c": 21042.75
+         },
+         {
+          "o": 21042.75,
+          "h": 21045.5,
+          "l": 21041.75,
+          "c": 21044.25
+         },
+         {
+          "o": 21044.25,
+          "h": 21049.75,
+          "l": 21043.5,
+          "c": 21048.75
+         },
+         {
+          "o": 21048.75,
+          "h": 21055.5,
+          "l": 21048.25,
+          "c": 21055.0
+         },
+         {
+          "o": 21055.0,
+          "h": 21060.75,
+          "l": 21054.25,
+          "c": 21059.25
+         },
+         {
+          "o": 21059.25,
+          "h": 21063.5,
+          "l": 21058.25,
+          "c": 21062.25
+         },
+         {
+          "o": 21062.25,
+          "h": 21066.75,
+          "l": 21061.25,
+          "c": 21066.25
+         }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "show": 20,
+        "head": {
+         "tf": "1M",
+         "label": "No retest"
+        }
+       },
+       "market": {
+        "state": "ICC complete · no retest · price +20 away"
+       },
+       "action": "Enters at market"
+      }
+     }
+    ],
+    "name": "You’ve seen this one",
+    "concept": "FOMO"
+   },
+   {
+    "type": "p7_mirror",
+    "title": "",
+    "thought": [
+     "“It looks SO bullish.”",
+     "“A little more.”"
+    ],
+    "who": {
+     "correct": "greed",
+     "options": [
+      "process",
+      "greed",
+      "fomo",
+      "overconfidence"
+     ],
+     "why": "GREED / PLAN DRIFT: no runner rule, the management model changed because of excitement.",
+     "track": "greedDrivenDecisionCount"
+    },
+    "market": {
+     "state": "Target reached",
+     "facts": [
+      [
+       "Plan",
+       "Fixed +2R"
+      ],
+      [
+       "Runner rule",
+       "none"
+      ]
+     ]
+    },
+    "mind": {
+     "history": [
+      "Target hit · +2R"
+     ]
+    },
+    "action": "Moves the target. Twice.",
+    "name": "Moving the finish line",
+    "concept": "Greed"
+   },
+   {
+    "type": "p7_mirror",
+    "title": "",
+    "thought": "“I need that back.”",
+    "who": {
+     "correct": "revenge",
+     "options": [
+      "process",
+      "revenge",
+      "fomo",
+      "hesitation"
+     ],
+     "why": "REVENGE: would she take this exact setup if the previous trade never happened? No.",
+     "track": "revengeAvoided"
+    },
+    "chart": {
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20988.0,
+       "l": 20981.25,
+       "c": 20986.75
+      },
+      {
+       "o": 20986.75,
+       "h": 20991.0,
+       "l": 20985.25,
+       "c": 20990.25
+      },
+      {
+       "o": 20990.25,
+       "h": 20994.25,
+       "l": 20989.75,
+       "c": 20993.75
+      },
+      {
+       "o": 20993.75,
+       "h": 20998.75,
+       "l": 20993.0,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.75,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21002.5,
+       "l": 20997.75,
+       "c": 20998.75
+      },
+      {
+       "o": 20998.75,
+       "h": 20999.0,
+       "l": 20995.25,
+       "c": 20995.75
+      },
+      {
+       "o": 20995.75,
+       "h": 20996.5,
+       "l": 20992.75,
+       "c": 20994.0
+      },
+      {
+       "o": 20994.0,
+       "h": 20995.25,
+       "l": 20990.5,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20994.75,
+       "l": 20990.0,
+       "c": 20993.5
+      },
+      {
+       "o": 20993.5,
+       "h": 20998.75,
+       "l": 20993.0,
+       "c": 20997.75
+      },
+      {
+       "o": 20997.75,
+       "h": 21002.75,
+       "l": 20996.5,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21010.25,
+       "l": 21006.25,
+       "c": 21009.5
+      }
+     ],
+     "pil": 21004.25,
+     "pilAt": 4,
+     "head": {
+      "tf": "1M",
+      "label": "Next setup"
+     }
+    },
+    "market": {
+     "state": "Indication only. Incomplete."
+    },
+    "mind": {
+     "history": [
+      "Trade 1 · −1R (valid)"
+     ]
+    },
+    "action": "Enters now",
+    "name": "Right after −1R",
+    "concept": "Revenge"
+   },
+   {
+    "type": "p7_mirror",
+    "title": "",
+    "thought": "“It’s mediocre… but it’s something.”",
+    "asks": [
+     {
+      "prompt": "WHAT DO YOU DO?",
+      "options": [
+       {
+        "label": "Take it, small",
+        "feedback": "Small is still a third trade.",
+        "track": "overtradeCount"
+       },
+       {
+        "label": "STOP",
+        "correct": true,
+        "why": "The maximum is the maximum.",
+        "track": "ruleBasedResponses"
+       }
+      ],
+      "focus": "rule"
+     }
+    ],
+    "who": {
+     "correct": "boredom",
+     "options": [
+      "process",
+      "boredom",
+      "greed",
+      "patience"
+     ],
+     "why": "Mediocre + “it’s something” = activity looking for a reason.",
+     "wrong": "Process stopped two trades ago."
+    },
+    "market": {
+     "state": "A mediocre setup"
+    },
+    "mind": {
+     "history": [
+      "Trade 1 · done",
+      "Trade 2 · done"
+     ],
+     "daily": "Max trades: 2 / 2"
+    },
+    "rule": {
+     "text": "MAX 2 TRADES."
+    },
+    "action": "Take a third",
+    "name": "Max reached",
+    "concept": "Overtrading"
+   },
+   {
+    "type": "p7_ask",
+    "kicker": "",
+    "title": "Two traders. Both wait.",
+    "asks": [
+     {
+      "prompt": "SCENARIO A: Continuation hasn’t closed yet. She waits.",
+      "options": [
+       {
+        "label": "PATIENCE",
+        "correct": true,
+        "why": "Waiting FOR the criteria.",
+        "track": "patienceSuccessCount"
+       },
+       {
+        "label": "HESITATION",
+        "feedback": "The criteria aren’t complete. Waiting is the model."
+       }
+      ],
+      "recog": true
+     },
+     {
+      "prompt": "SCENARIO B: Full valid setup, first retest, risk valid, the session allows it. She skips it only because her last trade lost.",
+      "options": [
+       {
+        "label": "PATIENCE",
+        "feedback": "Everything was complete. She waited AFTER the criteria.",
+        "track": "hesitationCount"
+       },
+       {
+        "label": "HESITATION / FEAR",
+        "correct": true,
+        "why": "Criteria complete, rules allow it: the previous trade is deciding."
+       }
+      ],
+      "recog": true
+     }
+    ],
+    "name": "Hesitation or patience?",
+    "concept": "Patience vs hesitation"
+   },
+   {
+    "type": "p7_ask",
+    "kicker": "",
+    "title": "The winning streak trap",
+    "asks": [
+     {
+      "prompt": "Five wins in a row. Proposed: triple size on the next trade. DID THE RISK MODEL CHANGE?",
+      "options": [
+       {
+        "label": "Yes, she earned it",
+        "feedback": "Wins don’t change the risk model. They change how it feels.",
+        "track": "overconfidenceCount"
+       },
+       {
+        "label": "NO",
+        "correct": true,
+        "why": "Same baseline: 1R. Confidence changed. Risk didn’t disappear."
+       }
+      ]
+     }
+    ],
+    "facts": [
+     [
+      "Streak",
+      "W W W W W"
+     ],
+     [
+      "Baseline risk",
+      "1R"
+     ]
+    ],
+    "name": "Five wins",
+    "concept": "Streaks"
+   },
+   {
+    "type": "p7_ask",
+    "kicker": "",
+    "title": "Don’t judge the strategy",
+    "asks": [
+     {
+      "prompt": "Two valid losses today, both executed by the rules. “ICC stopped working.” What’s the process response?",
+      "options": [
+       {
+        "label": "Rewrite the method tonight",
+        "feedback": "Two trades isn’t a sample. Judge the strategy slowly."
+       },
+       {
+        "label": "Review execution + the sample",
+        "correct": true,
+        "why": "Behavior: judged quickly (followed ✓). Strategy: judged slowly, across a meaningful sample."
+       },
+       {
+        "label": "Skip the next valid setup",
+        "feedback": "That’s hesitation dressed up as caution.",
+        "track": "hesitationCount"
+       }
+      ]
+     }
+    ],
+    "name": "Two valid losses",
+    "concept": "Process vs outcome"
+   },
+   {
+    "type": "p7_process",
+    "trades": [
+     {
+      "name": "THE TRADE",
+      "facts": [
+       "Entered before Continuation closed.",
+       "Price ran anyway.",
+       "Closed at +2R."
+      ],
+      "result": "+2R WIN",
+      "violations": [
+       "Early entry"
+      ],
+      "answers": {
+       "outcome": "WIN",
+       "process": "VIOLATION"
+      },
+      "why": "Crucial: the journal stores WIN and RULE VIOLATION side by side. The win doesn’t erase it."
+     }
+    ],
+    "name": "Journal the real problem",
+    "concept": "Process vs outcome"
+   },
+   {
+    "type": "p7_ask",
+    "kicker": "",
+    "title": "🔴 REVENGE / FOMO STATE",
+    "asks": [
+     {
+      "prompt": "A valid setup begins forming. DOES THIS EMOTIONAL STATE MAKE THE MARKET SETUP INVALID?",
+      "options": [
+       {
+        "label": "YES",
+        "feedback": "The setup is price. The state is her. Different dimensions.",
+        "track": "feelingAsReason"
+       },
+       {
+        "label": "NO",
+        "correct": true,
+        "why": "Trader readiness and setup validity are separate."
+       }
+      ]
+     },
+     {
+      "prompt": "DOES YOUR PERSONAL TRADING PLAN NEED A RULE FOR WHAT YOU DO IN THIS STATE?",
+      "options": [
+       {
+        "label": "YES",
+        "correct": true,
+        "why": "Don’t invent it now. Section 2 is where you build it."
+       },
+       {
+        "label": "NO",
+        "feedback": "Then live-trading-you decides. In a red state. 😭"
+       }
+      ]
+     }
+    ],
+    "facts": [
+     [
+      "Emotional temperature",
+      "🔴 Revenge / FOMO"
+     ]
+    ],
+    "name": "Red state",
+    "concept": "Emotional temperature"
+   },
+   {
+    "type": "p7_session",
+    "title": "One continuous session",
+    "hud": {
+     "trades": 0,
+     "maxTrades": 3,
+     "dailyR": 0,
+     "dailyStop": "−2R",
+     "temp": "calm",
+     "status": "SESSION OPEN"
+    },
+    "events": [
+     {
+      "title": "Trade 1 · a valid setup",
+      "slide": {
+       "type": "trigger_sim",
+       "mode": "decide",
+       "kicker": "",
+       "title": "",
+       "scenario": {
+        "dir": "bullish",
+        "tf": "1M",
+        "symbol": "MNQ",
+        "bars": [
+         {
+          "o": 20982.25,
+          "h": 20986.25,
+          "l": 20981.25,
+          "c": 20985.75
+         },
+         {
+          "o": 20985.75,
+          "h": 20990.25,
+          "l": 20985.0,
+          "c": 20989.25
+         },
+         {
+          "o": 20989.25,
+          "h": 20994.25,
+          "l": 20989.0,
+          "c": 20993.25
+         },
+         {
+          "o": 20993.25,
+          "h": 20999.0,
+          "l": 20993.0,
+          "c": 20998.25
+         },
+         {
+          "o": 20998.25,
+          "h": 21004.25,
+          "l": 20997.5,
+          "c": 21001.75
+         },
+         {
+          "o": 21001.75,
+          "h": 21002.25,
+          "l": 20999.5,
+          "c": 21000.0
+         },
+         {
+          "o": 21000.0,
+          "h": 21001.5,
+          "l": 20995.75,
+          "c": 20996.75
+         },
+         {
+          "o": 20996.75,
+          "h": 20998.25,
+          "l": 20993.25,
+          "c": 20993.5
+         },
+         {
+          "o": 20993.5,
+          "h": 20994.75,
+          "l": 20990.75,
+          "c": 20991.25
+         },
+         {
+          "o": 20991.25,
+          "h": 20994.25,
+          "l": 20990.5,
+          "c": 20993.75
+         },
+         {
+          "o": 20993.75,
+          "h": 20999.25,
+          "l": 20992.75,
+          "c": 20998.75
+         },
+         {
+          "o": 20998.75,
+          "h": 21002.25,
+          "l": 20998.0,
+          "c": 21001.25
+         },
+         {
+          "o": 21001.25,
+          "h": 21007.75,
+          "l": 21001.25,
+          "c": 21007.0
+         },
+         {
+          "o": 21007.0,
+          "h": 21007.0,
+          "l": 21001.25,
+          "c": 21002.0
+         },
+         {
+          "o": 21002.0,
+          "h": 21008.25,
+          "l": 21002.0,
+          "c": 21007.25
+         },
+         {
+          "o": 21007.25,
+          "h": 21010.0,
+          "l": 21006.5,
+          "c": 21009.0
+         },
+         {
+          "o": 21009.0,
+          "h": 21012.5,
+          "l": 21008.0,
+          "c": 21011.25
+         },
+         {
+          "o": 21011.25,
+          "h": 21014.25,
+          "l": 21010.25,
+          "c": 21013.25
+         },
+         {
+          "o": 21013.25,
+          "h": 21017.5,
+          "l": 21012.0,
+          "c": 21016.25
+         },
+         {
+          "o": 21016.25,
+          "h": 21017.75,
+          "l": 21012.25,
+          "c": 21012.75
+         },
+         {
+          "o": 21012.75,
+          "h": 21014.0,
+          "l": 21009.5,
+          "c": 21010.0
+         },
+         {
+          "o": 21010.0,
+          "h": 21010.75,
+          "l": 21007.0,
+          "c": 21007.25
+         },
+         {
+          "o": 21007.25,
+          "h": 21008.25,
+          "l": 21003.75,
+          "c": 21005.75
+         },
+         {
+          "o": 21005.75,
+          "h": 21006.0,
+          "l": 21000.0,
+          "c": 21000.5
+         },
+         {
+          "o": 21000.5,
+          "h": 21000.75,
+          "l": 20996.75,
+          "c": 20997.25
+         },
+         {
+          "o": 20997.25,
+          "h": 20998.75,
+          "l": 20991.75,
+          "c": 20992.25
+         },
+         {
+          "o": 20992.25,
+          "h": 20993.0,
+          "l": 20987.25,
+          "c": 20988.0
+         },
+         {
+          "o": 20988.0,
+          "h": 20988.5,
+          "l": 20981.75,
+          "c": 20983.0
+         },
+         {
+          "o": 20983.0,
+          "h": 20983.25,
+          "l": 20977.75,
+          "c": 20978.25
+         },
+         {
+          "o": 20978.25,
+          "h": 20978.5,
+          "l": 20971.25,
+          "c": 20972.75
+         }
+        ],
+        "start": 10,
+        "context": [
+         {
+          "label": "4H",
+          "value": "Bullish"
+         },
+         {
+          "label": "1H",
+          "value": "Bullish thesis"
+         },
+         {
+          "label": "15M",
+          "value": "Pulling back into the map"
+         },
+         {
+          "label": "Location",
+          "value": "4H discount"
+         }
+        ]
+       },
+       "setups": [
+        {
+         "pil": 21004.25,
+         "pilAt": 4
+        }
+       ],
+       "checkpoints": [
+        {
+         "at": 12,
+         "kind": "decide",
+         "expect": "wait",
+         "mind": {
+          "wait": "patienceSuccessCount",
+          "enter": "emotionalTradesTaken"
+         }
+        },
+        {
+         "at": 22,
+         "kind": "decide",
+         "expect": "enter",
+         "prompt": "First valid retest.",
+         "mind": {
+          "enter": "ruleBasedResponses",
+          "wait": "hesitationCount",
+          "pass": "hesitationCount"
+         }
+        }
+       ],
+       "actions": [
+        "wait",
+        "enter",
+        "pass"
+       ],
+       "timeline": false,
+       "end": {
+        "ask": {
+         "prompt": "−1R. Valid loss. What now?",
+         "options": [
+          {
+           "label": "Get it back on the next one",
+           "feedback": "That’s the revenge loop starting.",
+           "track": "revengeDecisionCount"
+          },
+          {
+           "label": "LOG IT. Continue only if the plan permits.",
+           "correct": true,
+           "why": "A valid loss is logged, not avenged."
+          }
+         ],
+         "stack": true
+        }
+       },
+       "speed": 650
+      },
+      "after": {
+       "trades": 1,
+       "dailyR": -1,
+       "temp": "frustrated"
+      }
+     },
+     {
+      "title": "Event 2 · a missed winner",
+      "slide": {
+       "type": "trigger_sim",
+       "mode": "decide",
+       "kicker": "",
+       "title": "",
+       "scenario": {
+        "dir": "bullish",
+        "tf": "1M",
+        "symbol": "MNQ",
+        "bars": [
+         {
+          "o": 20982.25,
+          "h": 20986.75,
+          "l": 20981.25,
+          "c": 20985.75
+         },
+         {
+          "o": 20985.75,
+          "h": 20991.5,
+          "l": 20985.25,
+          "c": 20991.0
+         },
+         {
+          "o": 20991.0,
+          "h": 20993.75,
+          "l": 20989.75,
+          "c": 20993.25
+         },
+         {
+          "o": 20993.25,
+          "h": 20998.75,
+          "l": 20992.25,
+          "c": 20998.25
+         },
+         {
+          "o": 20998.25,
+          "h": 21004.25,
+          "l": 20997.75,
+          "c": 21001.75
+         },
+         {
+          "o": 21001.75,
+          "h": 21003.0,
+          "l": 20998.0,
+          "c": 20999.0
+         },
+         {
+          "o": 20999.0,
+          "h": 20999.5,
+          "l": 20994.75,
+          "c": 20995.25
+         },
+         {
+          "o": 20995.25,
+          "h": 20996.5,
+          "l": 20993.5,
+          "c": 20994.75
+         },
+         {
+          "o": 20994.75,
+          "h": 20996.0,
+          "l": 20990.0,
+          "c": 20991.25
+         },
+         {
+          "o": 20991.25,
+          "h": 20997.0,
+          "l": 20990.75,
+          "c": 20995.75
+         },
+         {
+          "o": 20995.75,
+          "h": 20999.5,
+          "l": 20994.5,
+          "c": 20998.75
+         },
+         {
+          "o": 20998.75,
+          "h": 21002.25,
+          "l": 20998.0,
+          "c": 21001.25
+         },
+         {
+          "o": 21001.25,
+          "h": 21007.75,
+          "l": 21001.25,
+          "c": 21007.0
+         },
+         {
+          "o": 21007.0,
+          "h": 21007.0,
+          "l": 21001.25,
+          "c": 21002.0
+         },
+         {
+          "o": 21002.0,
+          "h": 21008.5,
+          "l": 21002.0,
+          "c": 21007.25
+         },
+         {
+          "o": 21007.25,
+          "h": 21014.75,
+          "l": 21006.25,
+          "c": 21013.75
+         },
+         {
+          "o": 21013.75,
+          "h": 21018.75,
+          "l": 21012.75,
+          "c": 21018.25
+         },
+         {
+          "o": 21018.25,
+          "h": 21023.25,
+          "l": 21017.75,
+          "c": 21022.75
+         },
+         {
+          "o": 21022.75,
+          "h": 21029.25,
+          "l": 21022.25,
+          "c": 21028.25
+         },
+         {
+          "o": 21028.25,
+          "h": 21031.75,
+          "l": 21027.5,
+          "c": 21030.75
+         },
+         {
+          "o": 21030.75,
+          "h": 21033.5,
+          "l": 21030.25,
+          "c": 21032.75
+         },
+         {
+          "o": 21032.75,
+          "h": 21036.75,
+          "l": 21032.25,
+          "c": 21036.25
+         },
+         {
+          "o": 21036.25,
+          "h": 21039.25,
+          "l": 21035.25,
+          "c": 21038.0
+         },
+         {
+          "o": 21038.0,
+          "h": 21043.25,
+          "l": 21037.5,
+          "c": 21042.75
+         },
+         {
+          "o": 21042.75,
+          "h": 21045.5,
+          "l": 21041.75,
+          "c": 21044.25
+         },
+         {
+          "o": 21044.25,
+          "h": 21049.75,
+          "l": 21043.5,
+          "c": 21048.75
+         },
+         {
+          "o": 21048.75,
+          "h": 21055.5,
+          "l": 21048.25,
+          "c": 21055.0
+         },
+         {
+          "o": 21055.0,
+          "h": 21060.75,
+          "l": 21054.25,
+          "c": 21059.25
+         },
+         {
+          "o": 21059.25,
+          "h": 21063.5,
+          "l": 21058.25,
+          "c": 21062.25
+         },
+         {
+          "o": 21062.25,
+          "h": 21066.75,
+          "l": 21061.25,
+          "c": 21066.25
+         }
+        ],
+        "start": 13,
+        "context": [
+         {
+          "label": "4H",
+          "value": "Bullish"
+         },
+         {
+          "label": "1H",
+          "value": "Bullish thesis"
+         },
+         {
+          "label": "15M",
+          "value": "Pulling back into the map"
+         },
+         {
+          "label": "Location",
+          "value": "4H discount"
+         }
+        ]
+       },
+       "setups": [
+        {
+         "pil": 21004.25,
+         "pilAt": 4,
+         "missedAt": 17
+        }
+       ],
+       "checkpoints": [
+        {
+         "at": 19,
+         "kind": "decide",
+         "expect": "pass",
+         "prompt": "No retest. Price is running.",
+         "thought": "“I knew it.”",
+         "mind": {
+          "enter": [
+           "fomoDecisionCount",
+           "emotionalTradesTaken"
+          ],
+          "pass": "fomoRecognized"
+         }
+        }
+       ],
+       "actions": [
+        "wait",
+        "enter",
+        "pass"
+       ],
+       "labels": {
+        "enter": "CHASE IT",
+        "pass": "DON’T CHASE"
+       },
+       "timeline": false,
+       "playAfterPass": true,
+       "ticker": {
+        "from": 14,
+        "label": "Without you"
+       },
+       "end": {
+        "card": "The market moved without your entry. That’s all."
+       },
+       "speed": 650
+      },
+      "after": {
+       "temp": "red"
+      }
+     },
+     {
+      "title": "Trade 3 · valid, and you feel hesitant",
+      "slide": {
+       "type": "p7_ask",
+       "kicker": "",
+       "title": "What decides this one?",
+       "asks": [
+        {
+         "prompt": "Valid setup forming. Risk valid. Daily rules permit. You feel hesitant after the loss and the miss. WHAT SHOULD DETERMINE THE DECISION?",
+         "options": [
+          {
+           "label": "How I feel right now",
+           "feedback": "Notice it. Don’t let it decide.",
+           "track": "feelingAsReason"
+          },
+          {
+           "label": "The previous trade",
+           "feedback": "The previous trade is finished.",
+           "track": "revengeDecisionCount"
+          },
+          {
+           "label": "CURRENT SETUP + CURRENT RULES",
+           "correct": true,
+           "why": "Not the previous trade. Not the feeling. The setup and the rules.",
+           "track": "ruleBasedResponses"
+          }
+         ]
+        }
+       ]
+      },
+      "skill": "Patience vs hesitation"
+     },
+     {
+      "title": "Trade 3 · execute",
+      "slide": {
+       "type": "trigger_sim",
+       "mode": "decide",
+       "kicker": "",
+       "title": "",
+       "scenario": {
+        "dir": "bullish",
+        "tf": "1M",
+        "symbol": "MNQ",
+        "bars": [
+         {
+          "o": 20982.25,
+          "h": 20987.0,
+          "l": 20981.25,
+          "c": 20986.75
+         },
+         {
+          "o": 20986.75,
+          "h": 20992.25,
+          "l": 20985.75,
+          "c": 20991.0
+         },
+         {
+          "o": 20991.0,
+          "h": 20995.25,
+          "l": 20990.0,
+          "c": 20994.5
+         },
+         {
+          "o": 20994.5,
+          "h": 20998.75,
+          "l": 20993.5,
+          "c": 20998.25
+         },
+         {
+          "o": 20998.25,
+          "h": 21004.25,
+          "l": 20997.75,
+          "c": 21001.75
+         },
+         {
+          "o": 21001.75,
+          "h": 21003.0,
+          "l": 20998.0,
+          "c": 20998.75
+         },
+         {
+          "o": 20998.75,
+          "h": 21000.25,
+          "l": 20996.5,
+          "c": 20997.75
+         },
+         {
+          "o": 20997.75,
+          "h": 20998.0,
+          "l": 20992.25,
+          "c": 20992.75
+         },
+         {
+          "o": 20992.75,
+          "h": 20993.5,
+          "l": 20990.0,
+          "c": 20991.25
+         },
+         {
+          "o": 20991.25,
+          "h": 20996.5,
+          "l": 20990.25,
+          "c": 20995.5
+         },
+         {
+          "o": 20995.5,
+          "h": 20998.25,
+          "l": 20994.5,
+          "c": 20998.0
+         },
+         {
+          "o": 20998.0,
+          "h": 21001.75,
+          "l": 20997.25,
+          "c": 21001.25
+         },
+         {
+          "o": 21001.25,
+          "h": 21007.75,
+          "l": 21001.25,
+          "c": 21007.0
+         },
+         {
+          "o": 21007.0,
+          "h": 21007.0,
+          "l": 21001.25,
+          "c": 21002.0
+         },
+         {
+          "o": 21002.0,
+          "h": 21008.25,
+          "l": 21002.0,
+          "c": 21007.25
+         },
+         {
+          "o": 21007.25,
+          "h": 21009.25,
+          "l": 21006.0,
+          "c": 21008.75
+         },
+         {
+          "o": 21008.75,
+          "h": 21012.5,
+          "l": 21008.25,
+          "c": 21011.25
+         },
+         {
+          "o": 21011.25,
+          "h": 21014.0,
+          "l": 21010.25,
+          "c": 21013.0
+         },
+         {
+          "o": 21013.0,
+          "h": 21015.75,
+          "l": 21012.0,
+          "c": 21014.25
+         },
+         {
+          "o": 21014.25,
+          "h": 21015.5,
+          "l": 21010.5,
+          "c": 21011.25
+         },
+         {
+          "o": 21011.25,
+          "h": 21012.25,
+          "l": 21008.5,
+          "c": 21008.75
+         },
+         {
+          "o": 21008.75,
+          "h": 21009.5,
+          "l": 21006.25,
+          "c": 21007.25
+         },
+         {
+          "o": 21007.25,
+          "h": 21007.5,
+          "l": 21003.75,
+          "c": 21005.75
+         },
+         {
+          "o": 21005.75,
+          "h": 21006.0,
+          "l": 20999.75,
+          "c": 21001.0
+         },
+         {
+          "o": 21001.0,
+          "h": 21002.0,
+          "l": 20993.5,
+          "c": 20994.25
+         },
+         {
+          "o": 20994.25,
+          "h": 20995.25,
+          "l": 20989.75,
+          "c": 20990.25
+         },
+         {
+          "o": 20990.25,
+          "h": 20990.75,
+          "l": 20984.75,
+          "c": 20985.5
+         },
+         {
+          "o": 20985.5,
+          "h": 20986.25,
+          "l": 20980.75,
+          "c": 20982.25
+         },
+         {
+          "o": 20982.25,
+          "h": 20983.25,
+          "l": 20976.75,
+          "c": 20977.25
+         },
+         {
+          "o": 20977.25,
+          "h": 20978.25,
+          "l": 20971.25,
+          "c": 20972.75
+         }
+        ],
+        "start": 13,
+        "context": [
+         {
+          "label": "4H",
+          "value": "Bullish"
+         },
+         {
+          "label": "1H",
+          "value": "Bullish thesis"
+         },
+         {
+          "label": "15M",
+          "value": "Pulling back into the map"
+         },
+         {
+          "label": "Location",
+          "value": "4H discount"
+         }
+        ]
+       },
+       "setups": [
+        {
+         "pil": 21004.25,
+         "pilAt": 4
+        }
+       ],
+       "checkpoints": [
+        {
+         "at": 22,
+         "kind": "decide",
+         "expect": "enter",
+         "prompt": "First valid retest. Criteria complete.",
+         "thought": "“What if this loses too?”",
+         "mind": {
+          "enter": "ruleBasedResponses",
+          "wait": "hesitationCount",
+          "pass": "hesitationCount"
+         }
+        }
+       ],
+       "actions": [
+        "wait",
+        "enter",
+        "pass"
+       ],
+       "timeline": false,
+       "end": {
+        "text": "<b>−1R.</b> A valid loss, executed correctly."
+       },
+       "speed": 650
+      },
+      "after": {
+       "trades": 2,
+       "dailyR": -2,
+       "status": "DAILY STOP REACHED",
+       "statusTone": "bad"
+      }
+     },
+     {
+      "title": "Event 4 · the cleanest setup of the day",
+      "slide": {
+       "type": "trigger_sim",
+       "mode": "decide",
+       "kicker": "",
+       "title": "",
+       "scenario": {
+        "dir": "bullish",
+        "tf": "1M",
+        "symbol": "MNQ",
+        "bars": [
+         {
+          "o": 20982.25,
+          "h": 20986.5,
+          "l": 20981.5,
+          "c": 20985.5
+         },
+         {
+          "o": 20985.5,
+          "h": 20991.5,
+          "l": 20985.25,
+          "c": 20990.5
+         },
+         {
+          "o": 20990.5,
+          "h": 20994.25,
+          "l": 20990.0,
+          "c": 20993.0
+         },
+         {
+          "o": 20993.0,
+          "h": 20998.75,
+          "l": 20991.5,
+          "c": 20998.25
+         },
+         {
+          "o": 20998.25,
+          "h": 21004.25,
+          "l": 20997.0,
+          "c": 21001.75
+         },
+         {
+          "o": 21001.75,
+          "h": 21002.75,
+          "l": 20998.5,
+          "c": 20999.0
+         },
+         {
+          "o": 20999.0,
+          "h": 21000.25,
+          "l": 20995.75,
+          "c": 20996.75
+         },
+         {
+          "o": 20996.75,
+          "h": 20997.75,
+          "l": 20994.25,
+          "c": 20994.5
+         },
+         {
+          "o": 20994.5,
+          "h": 20995.75,
+          "l": 20990.25,
+          "c": 20991.25
+         },
+         {
+          "o": 20991.25,
+          "h": 20994.25,
+          "l": 20990.0,
+          "c": 20994.0
+         },
+         {
+          "o": 20994.0,
+          "h": 20999.0,
+          "l": 20992.75,
+          "c": 20997.75
+         },
+         {
+          "o": 20997.75,
+          "h": 21002.5,
+          "l": 20996.25,
+          "c": 21001.25
+         },
+         {
+          "o": 21001.25,
+          "h": 21007.75,
+          "l": 21001.25,
+          "c": 21007.0
+         },
+         {
+          "o": 21007.0,
+          "h": 21007.0,
+          "l": 21001.25,
+          "c": 21002.0
+         },
+         {
+          "o": 21002.0,
+          "h": 21008.5,
+          "l": 21002.0,
+          "c": 21007.25
+         },
+         {
+          "o": 21007.25,
+          "h": 21012.5,
+          "l": 21005.75,
+          "c": 21012.0
+         },
+         {
+          "o": 21012.0,
+          "h": 21019.5,
+          "l": 21011.25,
+          "c": 21018.5
+         },
+         {
+          "o": 21018.5,
+          "h": 21025.25,
+          "l": 21017.75,
+          "c": 21024.5
+         },
+         {
+          "o": 21024.5,
+          "h": 21031.25,
+          "l": 21023.5,
+          "c": 21030.25
+         },
+         {
+          "o": 21030.25,
+          "h": 21031.25,
+          "l": 21022.0,
+          "c": 21023.5
+         },
+         {
+          "o": 21023.5,
+          "h": 21025.0,
+          "l": 21014.75,
+          "c": 21015.75
+         },
+         {
+          "o": 21015.75,
+          "h": 21016.25,
+          "l": 21006.0,
+          "c": 21007.25
+         },
+         {
+          "o": 21007.25,
+          "h": 21008.75,
+          "l": 21003.75,
+          "c": 21005.75
+         },
+         {
+          "o": 21005.75,
+          "h": 21007.75,
+          "l": 21005.25,
+          "c": 21006.5
+         },
+         {
+          "o": 21006.5,
+          "h": 21009.0,
+          "l": 21006.0,
+          "c": 21008.0
+         },
+         {
+          "o": 21008.0,
+          "h": 21009.25,
+          "l": 21005.0,
+          "c": 21006.5
+         },
+         {
+          "o": 21006.5,
+          "h": 21008.5,
+          "l": 21005.75,
+          "c": 21007.25
+         },
+         {
+          "o": 21007.25,
+          "h": 21008.75,
+          "l": 21006.0,
+          "c": 21008.25
+         },
+         {
+          "o": 21008.25,
+          "h": 21010.75,
+          "l": 21007.25,
+          "c": 21010.5
+         },
+         {
+          "o": 21010.5,
+          "h": 21011.75,
+          "l": 21008.5,
+          "c": 21009.25
+         },
+         {
+          "o": 21009.25,
+          "h": 21013.5,
+          "l": 21008.25,
+          "c": 21012.0
+         },
+         {
+          "o": 21012.0,
+          "h": 21013.5,
+          "l": 21011.75,
+          "c": 21012.75
+         },
+         {
+          "o": 21012.75,
+          "h": 21013.75,
+          "l": 21012.0,
+          "c": 21012.25
+         }
+        ],
+        "start": 10,
+        "context": [
+         {
+          "label": "4H",
+          "value": "Bullish"
+         },
+         {
+          "label": "1H",
+          "value": "Bullish thesis"
+         },
+         {
+          "label": "15M",
+          "value": "Pulling back into the map"
+         },
+         {
+          "label": "Location",
+          "value": "4H discount"
+         }
+        ]
+       },
+       "setups": [
+        {
+         "pil": 21004.25,
+         "pilAt": 4
+        }
+       ],
+       "checkpoints": [
+        {
+         "at": 22,
+         "kind": "decide",
+         "expect": "pass",
+         "prompt": "The cleanest setup of the session. Your daily stop is reached.",
+         "thought": "“But THIS one is perfect.”",
+         "mind": {
+          "enter": [
+           "overtradeCount",
+           "emotionalTradesTaken"
+          ],
+          "pass": "ruleBasedResponses"
+         },
+         "after": "SESSION OVER. Review mode."
+        }
+       ],
+       "actions": [
+        "enter",
+        "pass"
+       ],
+       "labels": {
+        "enter": "TAKE IT",
+        "pass": "SESSION OVER"
+       },
+       "timeline": false,
+       "playAfterPass": true,
+       "end": {
+        "text": "It went on to win. <b>Without you.</b>",
+        "card": "THE CORRECT DECISION CAN MISS MONEY."
+       },
+       "speed": 650
+      },
+      "after": {
+       "status": "SESSION OVER ✓",
+       "statusTone": "ok",
+       "temp": "elevated"
+      }
+     }
+    ],
+    "review": "mind",
+    "reviewKicker": "🪞 Your mindset review",
+    "reviewTitle": "What you actually did",
+    "reviewClean": "You felt the loss, the miss and the hesitation. None of them got to rewrite the model.",
+    "name": "FINAL BOSS: Who is trading right now?",
+    "concept": "Full session"
+   }
+  ]
+ },
+ "knowledgeCheck": {
+  "questionCount": 12,
+  "passPct": 0.8,
+  "xp": 0,
+  "shuffleOptions": true,
+  "questionBank": [
+   {
+    "concept": "Feeling vs action",
+    "question": "She feels nervous. The plan and the market are unchanged. What does the feeling require?",
+    "options": [
+     "Close the trade",
+     "Move the stop closer",
+     "Nothing by itself: feeling ≠ required action",
+     "Take a partial"
+    ],
+    "correctIndex": 2,
+    "why": "A feeling is information. With no rule triggered and nothing changed, no action is required."
+   },
+   {
+    "concept": "Hesitation",
+    "question": "Valid setup, risk valid, session rules allow it. She skips it only because her previous trade lost. What is it?",
+    "options": [
+     "Patience",
+     "Possible hesitation / fear",
+     "Overtrading",
+     "Good risk management"
+    ],
+    "correctIndex": 1,
+    "why": "Waiting AFTER the criteria are complete is hesitation."
+   },
+   {
+    "concept": "Patience",
+    "question": "Continuation hasn’t closed. She waits. What is it?",
+    "options": [
+     "Hesitation",
+     "Patience",
+     "FOMO",
+     "Fear"
+    ],
+    "correctIndex": 1,
+    "why": "Waiting FOR the criteria is patience."
+   },
+   {
+    "concept": "FOMO",
+    "question": "No retest. Price runs. She enters late. What is it?",
+    "options": [
+     "FOMO / chase",
+     "Patience",
+     "A valid entry",
+     "Greed"
+    ],
+    "correctIndex": 0,
+    "why": "The planned entry was the retest. Entering late is a chase."
+   },
+   {
+    "concept": "FOMO",
+    "question": "No retest. Price runs all the way to the target. She does nothing. How do you grade it?",
+    "options": [
+     "Bad process: she missed money",
+     "Good process",
+     "Hesitation",
+     "Fear"
+    ],
+    "correctIndex": 1,
+    "why": "No retest, no chase. A missed profit isn’t a loss."
+   },
+   {
+    "concept": "Revenge",
+    "question": "She loses −1R. The next setup is incomplete. She sizes up to recover. What is it?",
+    "options": [
+     "Patience",
+     "Revenge + a risk violation",
+     "A valid recovery plan",
+     "Overconfidence only"
+    ],
+    "correctIndex": 1,
+    "why": "Urgency to repair the last outcome plus unauthorized size."
+   },
+   {
+    "concept": "Overconfidence",
+    "question": "Five wins in a row. She doubles size because she feels “locked in.” What is it?",
+    "options": [
+     "Overconfidence / plan drift",
+     "Good management",
+     "Rewarding a strong process",
+     "Patience"
+    ],
+    "correctIndex": 0,
+    "why": "Confidence changed. The risk model didn’t."
+   },
+   {
+    "concept": "Greed",
+    "question": "She hits +2R. Her predefined plan includes runner management, and she follows it. Is that greed?",
+    "options": [
+     "Yes, runners are greedy",
+     "Not automatically: it was planned",
+     "Yes, she should close everything",
+     "Only if it loses"
+    ],
+    "correctIndex": 1,
+    "why": "A planned runner is the plan working."
+   },
+   {
+    "concept": "Overtrading",
+    "question": "Her plan allows up to four trades. Trade 3 meets her full criteria. Is it overtrading?",
+    "options": [
+     "Yes, three is too many",
+     "Not automatically",
+     "Yes, any extra trade is",
+     "Only if it loses"
+    ],
+    "correctIndex": 1,
+    "why": "Overtrading is trading beyond YOUR plan."
+   },
+   {
+    "concept": "Process vs outcome",
+    "question": "A trade wins after she violated her entry rule. How is it journaled?",
+    "options": [
+     "Win · good trade",
+     "Outcome: win · Process: rule violation",
+     "Outcome: loss",
+     "Don’t journal winners"
+    ],
+    "correctIndex": 1,
+    "why": "Outcome and process are separate. A win doesn’t erase a violation."
+   },
+   {
+    "concept": "Process vs outcome",
+    "question": "A trade loses after perfect execution. How is it journaled?",
+    "options": [
+     "Loss · bad trade",
+     "Outcome: loss · Process: good",
+     "Rule violation",
+     "Strategy is broken"
+    ],
+    "correctIndex": 1,
+    "why": "A valid loss is not a bad trade."
+   },
+   {
+    "concept": "Strategy sample",
+    "question": "One loss and she concludes the strategy is broken. What’s wrong with that?",
+    "options": [
+     "Nothing",
+     "Insufficient sample",
+     "She should double size",
+     "She should change markets"
+    ],
+    "correctIndex": 1,
+    "why": "Judge behavior quickly. Judge the strategy slowly, over a meaningful sample."
+   },
+   {
+    "concept": "Fear",
+    "question": "She moved to break even at +26 with no break-even rule. What most likely changed the plan?",
+    "options": [
+     "A management rule",
+     "New structural information",
+     "Fear",
+     "The target was hit"
+    ],
+    "correctIndex": 2,
+    "why": "No rule triggered and structure didn’t change. Fear did."
+   },
+   {
+    "concept": "Emotional temperature",
+    "question": "She’s in a red revenge state as a valid setup forms. What’s true?",
+    "options": [
+     "The setup is now invalid",
+     "The setup can still be valid; her personal rule for this state matters",
+     "She must take it to get back to calm",
+     "Emotion and setup are the same thing"
+    ],
+    "correctIndex": 1,
+    "why": "Setup validity and trader readiness are different dimensions."
+   }
+  ],
+  "reviewLessons": {
+   "Feeling vs action": [
+    "p7",
+    1
+   ],
+   "Hesitation": [
+    "p7",
+    7
+   ],
+   "Patience": [
+    "p7",
+    7
+   ],
+   "FOMO": [
+    "p7",
+    4
+   ],
+   "Revenge": [
+    "p7",
+    5
+   ],
+   "Overconfidence": [
+    "p7",
+    8
+   ],
+   "Greed": [
+    "p7",
+    3
+   ],
+   "Overtrading": [
+    "p7",
+    6
+   ],
+   "Process vs outcome": [
+    "p7",
+    9
+   ],
+   "Strategy sample": [
+    "p7",
+    9
+   ],
+   "Fear": [
+    "p7",
+    2
+   ],
+   "Emotional temperature": [
+    "p7",
+    8
+   ]
+  }
+ },
+ "checkin": {
+  "eyebrow": "📓 My Section 18 Check-In · private to you",
+  "heading": "What did you notice about yourself? 🪞",
+  "intro": "<p class=\"p7-fine\">These reflections are yours. Saved to your private Academy Notes. Never shared, never ranked, never compared.</p>",
+  "fields": [
+   {
+    "type": "choice",
+    "label": "Which emotion changes your behavior most easily?",
+    "options": [
+     "FOMO",
+     "Fear",
+     "Greed / excitement",
+     "Frustration / revenge",
+     "Hesitation",
+     "Boredom / overtrading",
+     "Overconfidence"
+    ],
+    "profile": "p7emotion"
+   },
+   {
+    "type": "text",
+    "label": "What does fear look like in your trading decisions?"
+   },
+   {
+    "type": "text",
+    "label": "What does FOMO make a trader want to do?"
+   },
+   {
+    "type": "text",
+    "label": "How would you know the next trade is revenge-driven?"
+   },
+   {
+    "type": "text",
+    "label": "What’s the difference between patience and hesitation?",
+    "share": true
+   },
+   {
+    "type": "text",
+    "label": "Why can winning trades reinforce bad habits?"
+   },
+   {
+    "type": "text",
+    "label": "What does “judge behavior quickly, judge strategy slowly” mean?"
+   },
+   {
+    "type": "choice",
+    "label": "Which area needs another look?",
+    "options": [
+     "Fear",
+     "Greed",
+     "FOMO",
+     "Revenge trading",
+     "Overtrading",
+     "Hesitation",
+     "Winning streaks",
+     "Losing streaks",
+     "Process vs outcome",
+     "Patience"
+    ],
+    "profile": "p7review"
+   }
+  ],
+  "saveLabel": "Save to My Academy Notes →",
+  "savedLabel": "✓ Saved to your private Academy Notes"
+ },
+ "complete": {
+  "eyebrow": "🎉 Section complete",
+  "heading": "✦ YOU CAN RECOGNIZE WHO’S ACTUALLY MAKING THE DECISION.",
+  "badge": "Your Mind Is the Market: Complete",
+  "gp": 850,
+  "cinema": {
+   "type": "p7_monologue",
+   "kicker": "",
+   "steps": [
+    {
+     "thought": "“What if it loses?”",
+     "act": "✓ Executes according to plan. −1R."
+    },
+    {
+     "thought": "“I don’t want another loss.”",
+     "act": "✓ Evaluates the current setup on its own."
+    },
+    {
+     "thought": "“I need to catch the next one.”",
+     "act": "✓ Missed move. Doesn’t chase."
+    },
+    {
+     "thought": "“I’m on fire.”",
+     "act": "✓ Winner. Doesn’t size up."
+    },
+    {
+     "thought": "“But this one is beautiful.”",
+     "act": "✓ Daily stop reached. SESSION OVER."
+    }
+   ],
+   "freeze": true,
+   "lines": [
+    "NOTICE SOMETHING?",
+    "You felt fear. Frustration. FOMO. Excitement. Confidence. Disappointment.",
+    "And none of them had to become:",
+    "A RULE VIOLATION."
+   ]
+  },
+  "stats": [
+   {
+    "label": "Lessons",
+    "value": "{lessons} ✓"
+   },
+   {
+    "label": "Mindset Mirror",
+    "value": "✓"
+   },
+   {
+    "label": "Knowledge Check",
+    "value": "{kc}% ✓"
+   },
+   {
+    "label": "Academy Notes",
+    "value": "Saved ✓"
+   }
+  ],
+  "badgeUnlock": {
+   "icon": "🪞",
+   "title": "MINDSET MIRROR",
+   "line": "“You learned that discipline doesn’t mean feeling nothing. It means your feelings don’t get to rewrite the model.”"
+  },
+  "phase": {
+   "title": "PHASE 7 STATUS",
+   "pct": 33,
+   "sections": [
+    {
+     "icon": "✓",
+     "label": "Section 1 · Your Mind Is the Market"
+    },
+    {
+     "icon": "🔓",
+     "label": "Section 2 · Rules That Protect You"
+    },
+    {
+     "icon": "🔒",
+     "label": "Section 3 · Reading the Environment"
+    }
+   ]
+  },
+  "nextUp": {
+   "title": "Section 2: Rules That Protect You 📕",
+   "cinema": {
+    "type": "p7_monologue",
+    "kicker": "",
+    "thoughts": [
+     "“I’M FOMOING.”"
+    ],
+    "lines": [
+     "GREAT.",
+     "NOW WHAT?",
+     "Recognizing the emotion doesn’t automatically stop the behavior.",
+     "“I’m revenge trading.” <span class=\"p7-buy\">BUY 🖱️</span>",
+     "AWARENESS IS STEP ONE.",
+     "<b>THE RULE IS WHAT PROTECTS YOU NEXT.</b>"
+    ]
+   },
+   "lines": [
+    "Section 1 recognized the trader. Section 2 governs her."
+   ],
+   "questions": [
+    "Why trading rules exist",
+    "Dayli ICC rules vs personal rules",
+    "No chasing",
+    "News rules",
+    "Consolidation rules",
+    "Maximum trades",
+    "Daily stop rules",
+    "What happens after a rule violation",
+    "Building your personal rulebook",
+    "Your non-negotiables"
+   ],
+   "cta": "BUILD MY RULEBOOK →"
+  }
+ }
+}

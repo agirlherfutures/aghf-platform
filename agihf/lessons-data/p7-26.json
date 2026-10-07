@@ -1,0 +1,316 @@
+{
+ "phase": "p7",
+ "section": "s20",
+ "lessonNumber": 26,
+ "title": "Clean vs Messy Environment",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Understandable, not flawless.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Bring the factors together and practice explaining what matters without forcing it.",
+  "missionQuestion": "Can I explain what matters without forcing it?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_split",
+   "kicker": "Not a magic status",
+   "title": "What each MAY have",
+   "left": {
+    "h": "CLEANER",
+    "lines": [
+     "Clear 4H story",
+     "Readable 1H",
+     "Relevant levels identifiable",
+     "Progression understandable",
+     "Volatility manageable for the plan",
+     "Room toward the objective"
+    ],
+    "tone": "ok"
+   },
+   "right": {
+    "h": "MESSIER",
+    "lines": [
+     "Unclear HTF",
+     "Tight chop",
+     "Conflicting swings",
+     "Competing PILs",
+     "Fakeouts",
+     "Unfamiliar volatility",
+     "Limited room"
+    ],
+    "tone": "mind"
+   },
+   "verdict": "NOT “IS THIS CHART PERFECT?” BUT “CAN I EXPLAIN WHAT MATTERS WITHOUT FORCING IT?”",
+   "together": true
+  },
+  {
+   "type": "p7_explain",
+   "kicker": "Explain the chart",
+   "title": "Three observations. That’s all.",
+   "chart": {
+    "swings": [
+     [
+      20,
+      250
+     ],
+     [
+      100,
+      150
+     ],
+     [
+      150,
+      210
+     ],
+     [
+      210,
+      140
+     ],
+     [
+      260,
+      200
+     ],
+     [
+      320,
+      150
+     ],
+     [
+      370,
+      205
+     ],
+     [
+      430,
+      145
+     ],
+     [
+      500,
+      195
+     ],
+     [
+      600,
+      160
+     ]
+    ],
+    "seed": 43
+   },
+   "acceptAll": true,
+   "prompt": "Explain what matters in 3 observations.",
+   "punch": "Not auto-marked. If you needed eight caveats, ask: is the chart unclear… or am I trying to force clarity?"
+  },
+  {
+   "type": "p7_ask",
+   "kicker": "Check the definition",
+   "title": "“It’s clean because I found a reason for every candle.”",
+   "asks": [
+    {
+     "prompt": "Clean?",
+     "options": [
+      {
+       "label": "Yes, every candle is explained",
+       "feedback": "Finding a reason for every candle can be forcing it."
+      },
+      {
+       "label": "Clean means the relevant context is understandable without excessive forcing",
+       "correct": true,
+       "why": "Understandable, not over-explained."
+      }
+     ],
+     "ecat": "clarity"
+    }
+   ]
+  },
+  {
+   "type": "p7_snapshot",
+   "kicker": "Environment Snapshot",
+   "title": "Describe it. Don’t score it.",
+   "charts": [
+    {
+     "label": "4H",
+     "chart": {
+      "swings": [
+       [
+        20,
+        290
+       ],
+       [
+        90,
+        220
+       ],
+       [
+        130,
+        250
+       ],
+       [
+        220,
+        160
+       ],
+       [
+        260,
+        195
+       ],
+       [
+        350,
+        110
+       ],
+       [
+        390,
+        145
+       ],
+       [
+        480,
+        60
+       ],
+       [
+        520,
+        90
+       ],
+       [
+        600,
+        40
+       ]
+      ],
+      "seed": 21
+     }
+    },
+    {
+     "label": "1H",
+     "chart": {
+      "swings": [
+       [
+        20,
+        270
+       ],
+       [
+        110,
+        200
+       ],
+       [
+        160,
+        235
+       ],
+       [
+        250,
+        150
+       ],
+       [
+        290,
+        190
+       ],
+       [
+        380,
+        105
+       ],
+       [
+        440,
+        140
+       ],
+       [
+        530,
+        70
+       ],
+       [
+        600,
+        85
+       ]
+      ],
+      "seed": 27
+     }
+    }
+   ],
+   "facts": [
+    [
+     "Volatility",
+     "Typical for her tested plan"
+    ],
+    [
+     "Calendar",
+     "Nothing scheduled in her window"
+    ],
+    [
+     "Clock",
+     "9:58 · her window 9:45–11:00"
+    ],
+    [
+     "Objective",
+     "4H high, well above"
+    ],
+    [
+     "1M",
+     "Indication closed. Correction not yet."
+    ]
+   ],
+   "expect": {
+    "htfClarity": "CLEAR",
+    "oneHourStructure": "PROGRESSING",
+    "volatilityState": "NORMAL FOR PLAN",
+    "newsContext": "CLEAR",
+    "sessionContext": "IN MY WINDOW",
+    "roomToObjective": "AVAILABLE",
+    "setupCleanliness": "DEVELOPING"
+   },
+   "ecat": {
+    "htfClarity": "clarity",
+    "oneHourStructure": "trendRange",
+    "volatilityState": "volatility",
+    "newsContext": "news",
+    "sessionContext": "session",
+    "roomToObjective": "room"
+   },
+   "why": {
+    "setupCleanliness": "Indication only. It’s still developing.",
+    "roomToObjective": "The 4H high is well above.",
+    "volatilityState": "Typical for her plan."
+   },
+   "asks": [
+    {
+     "prompt": "Supportive environment, ICC still developing. Entry?",
+     "options": [
+      {
+       "label": "Yes, the environment is great",
+       "feedback": "The environment can’t create an entry."
+      },
+      {
+       "label": "WAIT",
+       "correct": true,
+       "why": "ENVIRONMENT CANNOT CREATE AN ENTRY. The model still has to complete."
+      }
+     ],
+     "ecat": "pass"
+    }
+   ],
+   "punch": "Descriptive states, one honest sentence. More useful than “Environment score 87”."
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "CLEAN MEANS UNDERSTANDABLE.",
+    "<b>NOT FLAWLESS.</b>"
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "If I need a paragraph to justify the chart, <em>the chart already answered.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What does “clean” mean to you now?",
+   "modelAnswer": "Clean means I can explain what matters, the HTF story, the structure, the level and the room, without forcing it. It doesn’t mean perfect, and it doesn’t mean guaranteed."
+  }
+ ],
+ "takeaways": [
+  "Clean = understandable, not flawless.",
+  "Too many caveats is information.",
+  "Environment can’t create an entry."
+ ],
+ "remember": "CLEAN MEANS UNDERSTANDABLE. NOT FLAWLESS."
+}
