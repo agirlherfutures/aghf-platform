@@ -2,106 +2,100 @@
 
 (next-paragraph-max-duration: 4.000)
 
-Welcome to Lesson Fourteen of A Girl & Her Futures.
+Welcome to Lesson Fourteen: Retracement versus Reversal.
 
 (pause-until: 00:00:04,000)
 
-(next-paragraph-max-duration: 3.000)
-
-Today: retracement versus reversal.
-
-(pause-until: 00:00:07,000)
-
 (next-paragraph-max-duration: 4.000)
 
-Price drops hard. A whole run of red candles.
+A big move down isn't automatically a reversal.
 
-(pause-until: 00:00:11,000)
-
-(next-paragraph-max-duration: 6.000)
-
-It feels like a reversal. But feelings aren't levels.
-
-(pause-until: 00:00:17,000)
-
-(next-paragraph-max-duration: 4.000)
-
-A retracement: price pulls back, but the supporting swing holds.
-
-(pause-until: 00:00:21,000)
-
-(next-paragraph-max-duration: 6.000)
-
-A potential reversal: price closes through the supporting swing, then builds new structure the other way.
-
-(pause-until: 00:00:27,000)
+(pause-until: 00:00:08,000)
 
 (next-paragraph-max-duration: 5.000)
 
-A lower high. Then a lower low.
+Scenario A. Our acrobat takes a big drop. Lots of red candles.
 
-(pause-until: 00:00:32,000)
+(pause-until: 00:00:13,000)
 
-(next-paragraph-max-duration: 7.000)
+(next-paragraph-max-duration: 6.000)
 
-And keep this separate: the direction of the current move isn't always the direction of the larger structure.
+But the net, the supporting higher low, holds. Price never closes through it.
 
-(pause-until: 00:00:39,000)
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 5.000)
+
+She bounces back up. That reads as a possible retracement.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Scenario B. Same drop. This time price closes through the supporting low.
+
+(pause-until: 00:00:30,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Then it builds a lower high and a lower low. A potential reversal.
+
+(pause-until: 00:00:36,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Now picture walking toward the back of a moving train.
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 5.000)
+
+You're moving backward. The train is still heading forward.
+
+(pause-until: 00:00:45,000)
+
+(next-paragraph-max-duration: 4.000)
+
+That's the current move versus the larger structure.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Red candles show the current move. They don't tell you the structure changed.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Only the levels can tell you that.
+
+(pause-until: 00:01:00,000)
+
+(next-paragraph-max-duration: 1.000)
+
+So remember.
+
+(pause-until: 00:01:01,000)
 
 (next-paragraph-max-duration: 9.000)
 
-The one-minute can look bearish while the four-hour stays bullish. Both can be true at once.
+Levels decide it. Not candle color.
 
-(pause-until: 00:00:48,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Think of it like the tide.
-
-(pause-until: 00:00:51,000)
-
-(next-paragraph-max-duration: 5.000)
-
-A wave can pull back hard while the tide is still coming in.
-
-(pause-until: 00:00:56,000)
-
-(next-paragraph-max-duration: 8.000)
-
-You only know the tide turned when the water stops reaching the old marks.
-
-(pause-until: 00:01:04,000)
+(pause-until: 00:01:10,000)
 
 (next-paragraph-max-duration: 2.000)
 
-Here's what to remember.
+Here's your mission.
 
-(pause-until: 00:01:06,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Not size. Not speed. Not candle color.
-
-(pause-until: 00:01:09,000)
+(pause-until: 00:01:12,000)
 
 (next-paragraph-max-duration: 5.000)
 
-Levels decide it.
-
-(pause-until: 00:01:14,000)
-
-(next-paragraph-max-duration: 3.000)
-
-So here's your mission for this lesson.
+Price dropped hard. Retracement or reversal?
 
 (pause-until: 00:01:17,000)
 
-(next-paragraph-max-duration: 6.000)
-
-Price dropped hard. Retracement or reversal?
-
-(pause-until: 00:01:23,000)
-
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 5.000)
 
 Let's find out.

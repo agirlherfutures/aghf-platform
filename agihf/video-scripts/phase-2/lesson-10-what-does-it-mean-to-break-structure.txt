@@ -2,124 +2,106 @@
 
 (next-paragraph-max-duration: 4.000)
 
-Welcome to Lesson Ten of A Girl & Her Futures.
+Welcome to Lesson Ten: What Does It Mean to Break Structure?
 
 (pause-until: 00:00:04,000)
 
 (next-paragraph-max-duration: 4.000)
 
-Today: what it really means to break structure.
+Before you label a break, identify the level.
 
 (pause-until: 00:00:08,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 4.000)
 
-When price gets above a high, it's tempting to say, "Structure broke!"
+Picture a puppy running across a field full of fences.
 
-(pause-until: 00:00:13,000)
-
-(next-paragraph-max-duration: 6.000)
-
-But first, ask a better question: what actually broke?
-
-(pause-until: 00:00:19,000)
-
-(next-paragraph-max-duration: 3.000)
-
-There are four things that can break.
-
-(pause-until: 00:00:22,000)
+(pause-until: 00:00:12,000)
 
 (next-paragraph-max-duration: 4.000)
 
-A candle high or low: just the last candle's extreme.
+It hops a tiny edge. That's like breaking one candle's high.
 
-(pause-until: 00:00:26,000)
+(pause-until: 00:00:16,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Then a little picket fence: a minor internal swing.
+
+(pause-until: 00:00:20,000)
 
 (next-paragraph-max-duration: 5.000)
 
-A minor internal swing: a tiny turn inside a larger move.
+Then the big gate: a relevant swing. That one means a lot more.
 
-(pause-until: 00:00:31,000)
+(pause-until: 00:00:25,000)
+
+(next-paragraph-max-duration: 4.000)
+
+But the stone wall, the external swing, is still standing.
+
+(pause-until: 00:00:29,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Every hop was a break. They're not the same event.
+
+(pause-until: 00:00:33,000)
 
 (next-paragraph-max-duration: 5.000)
 
-A relevant swing: the swing that defines the move you're reading.
+Now let's investigate like a detective. Three highs sit above price.
 
-(pause-until: 00:00:36,000)
+(pause-until: 00:00:38,000)
 
 (next-paragraph-max-duration: 6.000)
 
-And an external swing: the boundary of the larger range.
+Price closes above A. Clue one: what actually broke? A tiny internal high.
 
-(pause-until: 00:00:42,000)
+(pause-until: 00:00:44,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 5.000)
 
-Think of it like a house.
+Then it closes above B, the relevant swing high. A much bigger clue.
 
-(pause-until: 00:00:45,000)
+(pause-until: 00:00:49,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 5.000)
 
-A candle is a single brick.
-
-(pause-until: 00:00:48,000)
-
-(next-paragraph-max-duration: 3.000)
-
-An internal swing is a piece of trim.
-
-(pause-until: 00:00:51,000)
-
-(next-paragraph-max-duration: 3.000)
-
-A relevant swing is a wall.
+At C, the external high, price only wicks above it, then closes back below.
 
 (pause-until: 00:00:54,000)
 
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 4.000)
 
-And the external swing? The foundation. Losing a brick isn't the same as losing the foundation.
+Same word, break. Very different meaning.
 
-(pause-until: 00:01:02,000)
+(pause-until: 00:00:58,000)
 
 (next-paragraph-max-duration: 2.000)
 
-Here's what to remember.
+Here's the takeaway.
 
-(pause-until: 00:01:04,000)
+(pause-until: 00:01:00,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 8.000)
 
-Every time price crosses a level, start with the same question: what actually broke?
+Before you label a break, identify the level.
+
+(pause-until: 00:01:08,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's your mission.
 
 (pause-until: 00:01:10,000)
 
 (next-paragraph-max-duration: 6.000)
 
-Then: which swing, how it broke, and what it really tells you.
+If price breaks a high, did the structure break?
 
 (pause-until: 00:01:16,000)
 
-(next-paragraph-max-duration: 6.000)
-
-Before you label a break, identify the level.
-
-(pause-until: 00:01:22,000)
-
-(next-paragraph-max-duration: 3.000)
-
-So here's your mission for this lesson.
-
-(pause-until: 00:01:25,000)
-
-(next-paragraph-max-duration: 7.000)
-
-If price breaks a high, did the structure break?
-
-(pause-until: 00:01:32,000)
-
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 4.000)
 
 Let's find out.

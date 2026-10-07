@@ -1,113 +1,113 @@
 (pause-until: 00:00:00,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 4.000)
 
-Welcome to Lesson Twenty-Two of A Girl & Her Futures.
+Welcome to Lesson Twenty-Two: Previous Highs and Lows.
 
-(pause-until: 00:00:05,000)
+(pause-until: 00:00:04,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 4.000)
 
-Today: previous highs and lows.
+The chart has landmarks.
 
 (pause-until: 00:00:08,000)
 
 (next-paragraph-max-duration: 3.000)
 
-Previous highs and lows are landmarks.
+Price made a high, then pulled back.
 
 (pause-until: 00:00:11,000)
 
-(next-paragraph-max-duration: 4.000)
-
-They tell you where something structurally meaningful happened before.
-
-(pause-until: 00:00:15,000)
-
 (next-paragraph-max-duration: 5.000)
 
-They do not predict what must happen next.
+That previous high is a landmark, like a lighthouse on the coast.
 
-(pause-until: 00:00:20,000)
-
-(next-paragraph-max-duration: 7.000)
-
-So when price comes back to an old high, don't predict. Watch.
-
-(pause-until: 00:00:27,000)
-
-(next-paragraph-max-duration: 2.000)
-
-Read it in order.
-
-(pause-until: 00:00:29,000)
-
-(next-paragraph-max-duration: 5.000)
-
-First, the level: is price approaching it, or has it actually broken?
-
-(pause-until: 00:00:34,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Then, the candle behavior: did it wick through and close back below, or close through?
-
-(pause-until: 00:00:40,000)
-
-(next-paragraph-max-duration: 7.000)
-
-Then, the structure: is price holding and building beyond it, or moving away?
-
-(pause-until: 00:00:47,000)
-
-(next-paragraph-max-duration: 4.000)
-
-Think of it like a landmark on a road trip.
-
-(pause-until: 00:00:51,000)
-
-(next-paragraph-max-duration: 4.000)
-
-Passing the big water tower tells you where you are.
-
-(pause-until: 00:00:55,000)
-
-(next-paragraph-max-duration: 6.000)
-
-It doesn't tell you which turn you'll take next.
-
-(pause-until: 00:01:01,000)
-
-(next-paragraph-max-duration: 2.000)
-
-Here's what to remember.
-
-(pause-until: 00:01:03,000)
+(pause-until: 00:00:16,000)
 
 (next-paragraph-max-duration: 3.000)
 
-Level. Then candle behavior. Then structure.
+It tells you where something meaningful happened before.
 
-(pause-until: 00:01:06,000)
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Now price flies back toward it.
+
+(pause-until: 00:00:22,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Will it reverse there? A landmark doesn't say.
+
+(pause-until: 00:00:25,000)
+
+(next-paragraph-max-duration: 7.000)
+
+It tells you where something happened. Not what must happen next.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Read it in order, like marks on a door frame.
+
+(pause-until: 00:00:36,000)
+
+(next-paragraph-max-duration: 2.000)
+
+The old mark is the level.
+
+(pause-until: 00:00:38,000)
+
+(next-paragraph-max-duration: 6.000)
+
+On tiptoes, she pokes above it, but that's a wick. She didn't finish there.
+
+(pause-until: 00:00:44,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Next, she really stands above it. A close through.
+
+(pause-until: 00:00:47,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Then she stays there, and a new, higher mark appears. Structure.
+
+(pause-until: 00:00:52,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Level, then candle behavior, then structure.
+
+(pause-until: 00:00:57,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's the big takeaway.
+
+(pause-until: 00:00:59,000)
 
 (next-paragraph-max-duration: 8.000)
 
 A landmark tells you where something happened. Not what must happen next.
 
-(pause-until: 00:01:14,000)
+(pause-until: 00:01:07,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 2.000)
 
 So here's your mission for this lesson.
 
-(pause-until: 00:01:17,000)
+(pause-until: 00:01:09,000)
 
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 5.000)
 
 Price is back at an old high. What has to happen next?
 
-(pause-until: 00:01:25,000)
+(pause-until: 00:01:14,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 5.000)
 
 Let's find out.

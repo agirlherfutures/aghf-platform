@@ -2,112 +2,112 @@
 
 (next-paragraph-max-duration: 4.000)
 
-Welcome to Lesson Nineteen of A Girl & Her Futures.
+Welcome to Lesson Nineteen: Zones versus Lines.
 
 (pause-until: 00:00:04,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 4.000)
 
-Today: zones versus lines.
+Did price really miss your level?
 
-(pause-until: 00:00:07,000)
-
-(next-paragraph-max-duration: 5.000)
-
-You draw an exact line at nineteen thousand, nine hundred eighty.
-
-(pause-until: 00:00:12,000)
-
-(next-paragraph-max-duration: 5.000)
-
-Price turns a little above it. Then a little below it.
-
-(pause-until: 00:00:17,000)
+(pause-until: 00:00:08,000)
 
 (next-paragraph-max-duration: 4.000)
 
-Did the level fail?
+Here's an exact line, like a wire across the sky.
 
-(pause-until: 00:00:21,000)
+(pause-until: 00:00:12,000)
 
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 4.000)
 
-Not necessarily. Price kept reacting in the same small area, just not at one exact price.
+Watch where each bird turns. A little above. A little below.
 
-(pause-until: 00:00:29,000)
+(pause-until: 00:00:16,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Did the level fail because they missed the exact line?
+
+(pause-until: 00:00:20,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Not necessarily. They kept turning in the same small area.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Switch to a zone, and the reaction makes sense.
+
+(pause-until: 00:00:28,000)
 
 (next-paragraph-max-duration: 6.000)
 
-A line is a specific price reference, like a prior high to close above.
+A line is an exact price reference. A zone is a small area where price reacted.
 
-(pause-until: 00:00:35,000)
+(pause-until: 00:00:34,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 2.000)
 
-A zone is a small area where price reacted. Not one exact tick.
+So which tool do you pick?
 
-(pause-until: 00:00:40,000)
+(pause-until: 00:00:36,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 7.000)
 
-Pick the tool that matches what price actually did.
+Use a line when you need an exact reference, like a prior high to close above.
 
-(pause-until: 00:00:46,000)
+(pause-until: 00:00:43,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 4.000)
 
-Think of it like a parking space.
+Use a zone when price reacted across a small area.
+
+(pause-until: 00:00:47,000)
+
+(next-paragraph-max-duration: 2.000)
+
+But don't make it too big.
 
 (pause-until: 00:00:49,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 5.000)
 
-You don't have to park on the exact center line to be in the spot.
+A giant box can mean anything, so it tells you nothing.
 
-(pause-until: 00:00:55,000)
+(pause-until: 00:00:54,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Keep it tight enough to describe the reaction.
+
+(pause-until: 00:00:58,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's the big takeaway.
+
+(pause-until: 00:01:00,000)
 
 (next-paragraph-max-duration: 8.000)
 
-But if the space is the whole parking lot, it doesn't tell anyone where you are.
-
-(pause-until: 00:01:03,000)
-
-(next-paragraph-max-duration: 5.000)
-
-So keep your zones tight enough to describe the reaction.
+Give price room to behave. But don't build a giant mystery box.
 
 (pause-until: 00:01:08,000)
 
 (next-paragraph-max-duration: 2.000)
 
-Here's what to remember.
+So here's your mission for this lesson.
 
 (pause-until: 00:01:10,000)
 
-(next-paragraph-max-duration: 2.000)
-
-Give price room to behave.
-
-(pause-until: 00:01:12,000)
-
-(next-paragraph-max-duration: 6.000)
-
-But don't build a giant mystery box.
-
-(pause-until: 00:01:18,000)
-
-(next-paragraph-max-duration: 3.000)
-
-So here's your mission for this lesson.
-
-(pause-until: 00:01:21,000)
-
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 5.000)
 
 If price misses your line by a few points, did the level fail?
 
-(pause-until: 00:01:29,000)
+(pause-until: 00:01:15,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 5.000)
 
 Let's find out.

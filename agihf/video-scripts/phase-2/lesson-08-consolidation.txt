@@ -1,119 +1,89 @@
 (pause-until: 00:00:00,000)
 
-(next-paragraph-max-duration: 4.000)
-
-Welcome to Lesson Eight of A Girl & Her Futures.
-
-(pause-until: 00:00:04,000)
-
 (next-paragraph-max-duration: 3.000)
 
-Today: consolidation.
+Welcome to Lesson Eight of How Markets Move.
 
-(pause-until: 00:00:07,000)
-
-(next-paragraph-max-duration: 3.000)
-
-You know bullish structure: walking up the stairs.
-
-(pause-until: 00:00:10,000)
+(pause-until: 00:00:03,000)
 
 (next-paragraph-max-duration: 5.000)
 
-You know bearish structure: walking down the stairs.
+Sometimes price isn't walking up or down the stairs at all.
 
-(pause-until: 00:00:15,000)
+(pause-until: 00:00:08,000)
 
-(next-paragraph-max-duration: 4.000)
+(next-paragraph-max-duration: 5.000)
 
-But sometimes price isn't walking up or down the stairs.
+Consolidation is when price trades within a relatively contained area, without clear, sustained directional progression.
 
-(pause-until: 00:00:19,000)
-
-(next-paragraph-max-duration: 4.000)
-
-It's walking around the room.
-
-(pause-until: 00:00:23,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Consolidation is when price trades within a contained area, without clear, sustained directional progress.
-
-(pause-until: 00:00:29,000)
+(pause-until: 00:00:13,000)
 
 (next-paragraph-max-duration: 8.000)
 
-Instead of new highs and new lows, price keeps returning to similar highs and similar lows.
+Instead of higher highs and higher lows, or lower lows and lower highs, price keeps returning to similar highs and similar lows.
 
-(pause-until: 00:00:37,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Here are some clues you might see.
-
-(pause-until: 00:00:40,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Overlapping candles covering the same ground.
-
-(pause-until: 00:00:43,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Back-and-forth movement in both directions.
-
-(pause-until: 00:00:46,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Lots of movement, but not much distance.
-
-(pause-until: 00:00:49,000)
+(pause-until: 00:00:21,000)
 
 (next-paragraph-max-duration: 6.000)
 
-And the same nearby areas tested again and again.
+The top of that area is the range high. The bottom is the range low.
 
-(pause-until: 00:00:55,000)
+(pause-until: 00:00:27,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 7.000)
 
-Later, you'll learn how consolidation affects setup quality in the AGHF framework.
+Price is moving. It just isn't making clean directional progress. It's walking around the room.
 
-(pause-until: 00:01:00,000)
-
-(next-paragraph-max-duration: 6.000)
-
-For now, your job is simply to recognize it.
-
-(pause-until: 00:01:06,000)
+(pause-until: 00:00:34,000)
 
 (next-paragraph-max-duration: 2.000)
 
+So when you look at a chart, ask:
+
+(pause-until: 00:00:36,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Is it walking up the stairs? Down the stairs? Or around the room?
+
+(pause-until: 00:00:43,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Overlapping candles. Back and forth. Lots of movement, not much distance. The same areas tested again and again.
+
+(pause-until: 00:00:51,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Later, you'll learn how market condition affects a setup. For now, your job is simply to recognize it.
+
+(pause-until: 00:00:58,000)
+
+(next-paragraph-max-duration: 1.000)
+
 Here's what to remember.
 
-(pause-until: 00:01:08,000)
+(pause-until: 00:00:59,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 8.000)
 
 Price can be moving without making progress.
 
-(pause-until: 00:01:14,000)
+(pause-until: 00:01:07,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 2.000)
 
 So here's your mission for this lesson.
 
-(pause-until: 00:01:17,000)
+(pause-until: 00:01:09,000)
 
-(next-paragraph-max-duration: 9.000)
+(next-paragraph-max-duration: 7.000)
 
 If price keeps trading between similar highs and lows, how would you describe it?
 
-(pause-until: 00:01:26,000)
+(pause-until: 00:01:16,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 4.000)
 
 Let's find out.

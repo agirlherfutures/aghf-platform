@@ -2,124 +2,100 @@
 
 (next-paragraph-max-duration: 4.000)
 
-Welcome to Lesson Sixteen of A Girl & Her Futures.
+Welcome to Lesson Sixteen: False Breaks and Fakeouts.
 
 (pause-until: 00:00:04,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 4.000)
 
-Today: false breaks and fakeouts.
+Let's describe what price actually does.
 
-(pause-until: 00:00:07,000)
+(pause-until: 00:00:08,000)
 
-(next-paragraph-max-duration: 2.000)
+(next-paragraph-max-duration: 6.000)
 
-Resistance sits at twenty thousand.
+Resistance sits at twenty thousand. Our cat is at nineteen thousand nine ninety.
 
-(pause-until: 00:00:09,000)
+(pause-until: 00:00:14,000)
 
 (next-paragraph-max-duration: 4.000)
 
-Price closes at twenty thousand and five. Above the level.
+Jump! Twenty thousand and five. The candle closed above.
 
-(pause-until: 00:00:13,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Breakout confirmed? For now, it's above. That's all it has shown.
-
-(pause-until: 00:00:19,000)
+(pause-until: 00:00:18,000)
 
 (next-paragraph-max-duration: 6.000)
 
-Next candle: nineteen thousand, nine hundred eighty-five. Back below.
+Breakout confirmed forever? No. What happens next still matters.
 
-(pause-until: 00:00:25,000)
+(pause-until: 00:00:24,000)
 
-(next-paragraph-max-duration: 2.000)
+(next-paragraph-max-duration: 3.000)
 
-So what happened?
+Next candle: nineteen thousand nine eighty-five.
 
 (pause-until: 00:00:27,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 7.000)
 
-You'll hear people say "big money trapped the buyers," or "they hunted the stops."
+Price moved above the level and failed to hold above it. That's false break behavior.
 
-(pause-until: 00:00:33,000)
-
-(next-paragraph-max-duration: 6.000)
-
-But the chart can't show you who traded, or why.
-
-(pause-until: 00:00:39,000)
+(pause-until: 00:00:34,000)
 
 (next-paragraph-max-duration: 2.000)
 
-Here's what it can show.
+Now, how would you describe that?
 
-(pause-until: 00:00:41,000)
+(pause-until: 00:00:36,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 3.000)
 
-Price moved above the level, and failed to hold above it.
+One option: big money trapped retail.
+
+(pause-until: 00:00:39,000)
+
+(next-paragraph-max-duration: 7.000)
+
+But look at the footage. The chart can't show who traded, or why. That's an assumption.
 
 (pause-until: 00:00:46,000)
 
 (next-paragraph-max-duration: 6.000)
 
-That's the whole description. Failed breakout. False break behavior.
+The other option: price moved above the prior high, then returned below it.
 
 (pause-until: 00:00:52,000)
 
-(next-paragraph-max-duration: 4.000)
+(next-paragraph-max-duration: 6.000)
 
-Think of it like a witness on the stand.
+That's what the chart actually shows.
 
-(pause-until: 00:00:56,000)
+(pause-until: 00:00:58,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 1.000)
 
-A good witness describes what they saw.
+Here's the rule.
 
 (pause-until: 00:00:59,000)
 
-(next-paragraph-max-duration: 5.000)
-
-Not what they imagine someone else was thinking.
-
-(pause-until: 00:01:04,000)
-
-(next-paragraph-max-duration: 2.000)
-
-Here's what to remember.
-
-(pause-until: 00:01:06,000)
-
-(next-paragraph-max-duration: 4.000)
-
-Describe what the chart shows before guessing who did what.
-
-(pause-until: 00:01:10,000)
-
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 9.000)
 
 Observation before interpretation.
 
-(pause-until: 00:01:15,000)
+(pause-until: 00:01:08,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 2.000)
 
-So here's your mission for this lesson.
+Here's your mission.
 
-(pause-until: 00:01:18,000)
+(pause-until: 00:01:10,000)
 
 (next-paragraph-max-duration: 6.000)
 
 Price closed above resistance. Is the breakout confirmed?
 
-(pause-until: 00:01:24,000)
+(pause-until: 00:01:16,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 4.000)
 
 Let's find out.

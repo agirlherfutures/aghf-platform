@@ -2,115 +2,109 @@
 
 (pause-until: 00:00:00,000)
 
-(next-paragraph-max-duration: 4.000)
+(next-paragraph-max-duration: 3.000)
 
-Welcome to Lesson One of A Girl & Her Futures.
+Welcome to Phase Two of A Girl & Her Futures.
 
-(pause-until: 00:00:04,000)
-
-(next-paragraph-max-duration: 4.000)
-
-Today: what market structure actually is.
-
-(pause-until: 00:00:08,000)
+(pause-until: 00:00:03,000)
 
 (next-paragraph-max-duration: 6.000)
 
-Zoomed all the way in on a one-minute chart, price can look like chaos.
+You learned how to read one candle. Now, we zoom out.
 
-(pause-until: 00:00:14,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Up, down, up, down. Every candle feels like it matters.
-
-(pause-until: 00:00:20,000)
-
-(next-paragraph-max-duration: 5.000)
-
-Now zoom out. The same candles start to form a shape.
-
-(pause-until: 00:00:25,000)
+(pause-until: 00:00:09,000)
 
 (next-paragraph-max-duration: 3.000)
 
-Push. Pullback. Push. Pullback.
+Start with a one-minute chart, zoomed all the way in.
 
-(pause-until: 00:00:28,000)
+(pause-until: 00:00:12,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 4.000)
 
-Price doesn't move in straight lines. It moves in swings.
+It looks like chaos. Every candle feels like it matters.
 
-(pause-until: 00:00:34,000)
+(pause-until: 00:00:16,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 3.000)
 
-Every swing ends at a turn. Those turns are the meaningful highs and lows.
+Now slowly zoom out.
 
-(pause-until: 00:00:40,000)
+(pause-until: 00:00:19,000)
 
-(next-paragraph-max-duration: 9.000)
+(next-paragraph-max-duration: 4.000)
 
-Market structure is a way of organizing price by those highs and lows, and the relationship between them.
+Connect the turns, and something appears.
 
-(pause-until: 00:00:49,000)
+(pause-until: 00:00:23,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Push, pullback, push, pullback. Price doesn't move in straight lines. It moves in swings.
+
+(pause-until: 00:00:31,000)
 
 (next-paragraph-max-duration: 2.000)
 
-Think of it like reading.
+Here's the idea.
 
-(pause-until: 00:00:51,000)
+(pause-until: 00:00:33,000)
 
 (next-paragraph-max-duration: 2.000)
 
 Candles are the words.
 
-(pause-until: 00:00:53,000)
+(pause-until: 00:00:35,000)
 
-(next-paragraph-max-duration: 2.000)
+(next-paragraph-max-duration: 4.000)
+
+Looked at one by one, they don't tell you much.
+
+(pause-until: 00:00:39,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Market structure organizes price movement by its meaningful highs and lows, and the relationship between them.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 6.000)
 
 Structure is the sentence.
 
-(pause-until: 00:00:55,000)
+(pause-until: 00:00:52,000)
 
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 1.000)
 
-Three green candles in a row? That's a few words. Not the whole sentence.
+Here's the habit I want you to build.
 
-(pause-until: 00:01:03,000)
+(pause-until: 00:00:53,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Don't start by asking, where is price going?
+
+(pause-until: 00:00:58,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Start with: what has price already shown me?
+
+(pause-until: 00:01:04,000)
 
 (next-paragraph-max-duration: 2.000)
 
-Here's what to remember.
-
-(pause-until: 00:01:05,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Don't start by asking, "Where is price going?"
-
-(pause-until: 00:01:08,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Start with: "What has price already shown me?"
-
-(pause-until: 00:01:14,000)
-
-(next-paragraph-max-duration: 3.000)
-
 So here's your mission for this lesson.
 
-(pause-until: 00:01:17,000)
-
-(next-paragraph-max-duration: 10.000)
-
-If a trader sees three green candles in a row, is that enough to call the structure bullish?
-
-(pause-until: 00:01:27,000)
+(pause-until: 00:01:06,000)
 
 (next-paragraph-max-duration: 6.000)
+
+A trader sees three green candles and says, bullish structure. What's missing?
+
+(pause-until: 00:01:12,000)
+
+(next-paragraph-max-duration: 5.000)
 
 Let's find out.
 
@@ -118,109 +112,97 @@ Let's find out.
 
 (pause-until: 00:00:00,000)
 
-(next-paragraph-max-duration: 4.000)
+(next-paragraph-max-duration: 3.000)
 
-Welcome to Lesson Two of A Girl & Her Futures.
+Welcome to Lesson Two of How Markets Move.
 
-(pause-until: 00:00:04,000)
+(pause-until: 00:00:03,000)
 
-(next-paragraph-max-duration: 4.000)
+(next-paragraph-max-duration: 5.000)
 
-Today: swing highs and swing lows.
+Before you can read structure, you need to find the turns.
 
 (pause-until: 00:00:08,000)
 
 (next-paragraph-max-duration: 7.000)
 
-Before you can read structure, you need to find the turns.
+A swing high is where price pushes upward, forms a local turning point, and then moves lower.
 
 (pause-until: 00:00:15,000)
 
+(next-paragraph-max-duration: 4.000)
+
+Think of it as the heel. Price walks up, reaches a high point, then turns.
+
+(pause-until: 00:00:19,000)
+
 (next-paragraph-max-duration: 6.000)
 
-A swing high: price pushes up, forms a local turning point, then moves lower.
+A swing low is the opposite. Price pushes down, forms a local turning point, then moves higher.
 
-(pause-until: 00:00:21,000)
+(pause-until: 00:00:25,000)
 
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 5.000)
 
-A swing low: price pushes down, forms a local turning point, then moves higher.
+That's the valley. Just a memory trick, not the technical definition.
 
-(pause-until: 00:00:29,000)
+(pause-until: 00:00:30,000)
 
 (next-paragraph-max-duration: 3.000)
 
-Here's an easy way to remember them.
+Now, here's the thing.
 
-(pause-until: 00:00:32,000)
+(pause-until: 00:00:33,000)
 
-(next-paragraph-max-duration: 6.000)
-
-A swing high is the heel. Price walks up, reaches a high point, then turns.
-
-(pause-until: 00:00:38,000)
-
-(next-paragraph-max-duration: 9.000)
-
-A swing low is the valley. Price travels down, reaches a low point, then turns back up.
-
-(pause-until: 00:00:47,000)
-
-(next-paragraph-max-duration: 2.000)
-
-But here's the thing.
-
-(pause-until: 00:00:49,000)
-
-(next-paragraph-max-duration: 7.000)
+(next-paragraph-max-duration: 8.000)
 
 On a one-minute chart, there can be lots of little highs and lows inside one larger move.
 
-(pause-until: 00:00:56,000)
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Every one of them is real. But not every tiny wiggle deserves equal structural importance.
+
+(pause-until: 00:00:47,000)
+
+(next-paragraph-max-duration: 4.000)
+
+This will matter later.
+
+(pause-until: 00:00:51,000)
 
 (next-paragraph-max-duration: 3.000)
 
-Every one of them is a real turn.
+Swings are going to become very important later.
 
-(pause-until: 00:00:59,000)
-
-(next-paragraph-max-duration: 8.000)
-
-But they don't all carry the same structural weight. That's going to matter later.
-
-(pause-until: 00:01:07,000)
+(pause-until: 00:00:54,000)
 
 (next-paragraph-max-duration: 2.000)
 
-Here's what to remember.
+For now, your job isn't to trade them.
 
-(pause-until: 00:01:09,000)
+(pause-until: 00:00:56,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 6.000)
 
-Swings are going to become very important.
+Your job is to learn how to see them.
 
-(pause-until: 00:01:12,000)
+(pause-until: 00:01:02,000)
 
-(next-paragraph-max-duration: 9.000)
-
-But for now, your job isn't to trade them. It's to learn to see them.
-
-(pause-until: 00:01:21,000)
-
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 2.000)
 
 So here's your mission for this lesson.
 
-(pause-until: 00:01:24,000)
+(pause-until: 00:01:04,000)
 
-(next-paragraph-max-duration: 10.000)
+(next-paragraph-max-duration: 7.000)
 
 Should every tiny high and low on a one-minute chart be treated as equally important structure?
 
-(pause-until: 00:01:34,000)
+(pause-until: 00:01:11,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 4.000)
 
 Let's find out.
 
@@ -228,109 +210,103 @@ Let's find out.
 
 (pause-until: 00:00:00,000)
 
+(next-paragraph-max-duration: 3.000)
+
+Welcome to Lesson Three of How Markets Move.
+
+(pause-until: 00:00:03,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Four labels. They turn movement into readable structure.
+
+(pause-until: 00:00:08,000)
+
 (next-paragraph-max-duration: 4.000)
-
-Welcome to Lesson Three of A Girl & Her Futures.
-
-(pause-until: 00:00:04,000)
-
-(next-paragraph-max-duration: 5.000)
-
-Today: the four labels that turn movement into readable structure.
-
-(pause-until: 00:00:09,000)
-
-(next-paragraph-max-duration: 5.000)
 
 Every swing gets compared to the previous relevant swing of the same kind.
 
-(pause-until: 00:00:14,000)
+(pause-until: 00:00:12,000)
 
 (next-paragraph-max-duration: 5.000)
 
-Highs to highs. Lows to lows.
+A higher high forms above the previous relevant swing high.
 
-(pause-until: 00:00:19,000)
+(pause-until: 00:00:17,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 6.000)
 
-A higher high: a swing high that forms above the previous relevant high.
+A higher low forms above the previous relevant swing low.
 
-(pause-until: 00:00:24,000)
-
-(next-paragraph-max-duration: 7.000)
-
-A higher low: a swing low that forms above the previous relevant low.
-
-(pause-until: 00:00:31,000)
+(pause-until: 00:00:23,000)
 
 (next-paragraph-max-duration: 5.000)
 
-A lower low: a swing low that forms below the previous relevant low.
+A lower high forms below the previous relevant swing high.
+
+(pause-until: 00:00:28,000)
+
+(next-paragraph-max-duration: 8.000)
+
+And a lower low forms below the previous relevant swing low.
 
 (pause-until: 00:00:36,000)
 
-(next-paragraph-max-duration: 7.000)
+(next-paragraph-max-duration: 5.000)
 
-A lower high: a swing high that forms below the previous relevant high.
+Now put them together.
 
-(pause-until: 00:00:43,000)
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Higher low, higher high, higher low, higher high. Price is generally walking up the stairs.
+
+(pause-until: 00:00:49,000)
 
 (next-paragraph-max-duration: 3.000)
 
-Think of it like a staircase.
-
-(pause-until: 00:00:46,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Higher low, higher high, higher low, higher high. Price is walking up the stairs.
+Flip it around.
 
 (pause-until: 00:00:52,000)
 
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 12.000)
 
 Lower high, lower low, lower high, lower low. Price is walking down the stairs.
 
-(pause-until: 00:01:00,000)
+(pause-until: 00:01:04,000)
 
-(next-paragraph-max-duration: 7.000)
+(next-paragraph-max-duration: 1.000)
 
-And if a new high forms at twenty thousand and thirty, above a high at twenty thousand?
+Quick one.
 
-(pause-until: 00:01:07,000)
+(pause-until: 00:01:05,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Previous high: twenty thousand. New high: twenty thousand thirty.
+
+(pause-until: 00:01:09,000)
 
 (next-paragraph-max-duration: 6.000)
 
-That's a higher high. Compare the numbers. Not the feeling.
-
-(pause-until: 00:01:13,000)
-
-(next-paragraph-max-duration: 2.000)
-
-Here's what to remember.
+It formed above the previous high, so it's a higher high.
 
 (pause-until: 00:01:15,000)
 
-(next-paragraph-max-duration: 8.000)
-
-Compare every swing to the previous relevant swing of the same kind.
-
-(pause-until: 00:01:23,000)
-
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 2.000)
 
 So here's your mission for this lesson.
 
-(pause-until: 00:01:26,000)
+(pause-until: 00:01:17,000)
 
-(next-paragraph-max-duration: 10.000)
+(next-paragraph-max-duration: 6.000)
 
 If a new swing low forms above the previous relevant swing low, what do you call it?
 
-(pause-until: 00:01:36,000)
+(pause-until: 00:01:23,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 5.000)
 
 Let's find out.
 
@@ -338,115 +314,85 @@ Let's find out.
 
 (pause-until: 00:00:00,000)
 
-(next-paragraph-max-duration: 4.000)
-
-Welcome to Lesson Four of A Girl & Her Futures.
-
-(pause-until: 00:00:04,000)
-
 (next-paragraph-max-duration: 3.000)
 
-Today: bullish structure.
+Welcome to Lesson Four of How Markets Move.
 
-(pause-until: 00:00:07,000)
+(pause-until: 00:00:03,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 5.000)
 
-Let's build it one move at a time.
+Today we put the labels together: bullish structure.
 
-(pause-until: 00:00:10,000)
+(pause-until: 00:00:08,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 5.000)
 
-Price pushes up and creates a high.
+In basic bullish structure, price generally creates higher highs and higher lows.
 
 (pause-until: 00:00:13,000)
 
-(next-paragraph-max-duration: 6.000)
-
-It pulls back, and the low forms above the previous low. A higher low.
-
-(pause-until: 00:00:19,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Then it pushes past the previous high. A higher high.
-
-(pause-until: 00:00:25,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Higher highs and higher lows. That's basic bullish structure.
-
-(pause-until: 00:00:31,000)
-
 (next-paragraph-max-duration: 3.000)
 
-But bullish structure isn't a straight line up.
+Push up to a new high. Plant a flag.
 
-(pause-until: 00:00:34,000)
-
-(next-paragraph-max-duration: 3.000)
-
-It still has red candles. Pullbacks. Corrections.
-
-(pause-until: 00:00:37,000)
+(pause-until: 00:00:16,000)
 
 (next-paragraph-max-duration: 6.000)
 
-Push, pullback, push. Expansion, then correction, then expansion again.
+Pull back a little. Rest. Then climb to the next high.
 
-(pause-until: 00:00:43,000)
+(pause-until: 00:00:22,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 5.000)
 
-Think of it like climbing a mountain trail.
+But bullish structure doesn't mean every candle is bullish.
 
-(pause-until: 00:00:46,000)
+(pause-until: 00:00:27,000)
 
-(next-paragraph-max-duration: 4.000)
+(next-paragraph-max-duration: 5.000)
 
-Sometimes the path dips down before it climbs again.
+There will be red candles. There will be pullbacks. There will be corrections.
 
-(pause-until: 00:00:50,000)
+(pause-until: 00:00:32,000)
 
-(next-paragraph-max-duration: 7.000)
+(next-paragraph-max-duration: 8.000)
 
-A dip in the trail doesn't mean you're walking back down the mountain.
+That's how price moves. Push, pullback, next push.
 
-(pause-until: 00:00:57,000)
+(pause-until: 00:00:40,000)
 
-(next-paragraph-max-duration: 2.000)
+(next-paragraph-max-duration: 1.000)
 
 Here's what to remember.
 
-(pause-until: 00:00:59,000)
+(pause-until: 00:00:41,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 5.000)
 
 Red candles inside bullish structure aren't automatically bearish.
 
-(pause-until: 00:01:02,000)
+(pause-until: 00:00:46,000)
 
 (next-paragraph-max-duration: 7.000)
 
 Ask what the pullback is doing inside the larger structure.
 
-(pause-until: 00:01:09,000)
+(pause-until: 00:00:53,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 2.000)
 
 So here's your mission for this lesson.
 
-(pause-until: 00:01:12,000)
+(pause-until: 00:00:55,000)
 
-(next-paragraph-max-duration: 12.000)
+(next-paragraph-max-duration: 7.000)
 
-If price makes a higher high, a higher low, another higher high, and then starts moving lower, has bullish structure automatically reversed?
+Price makes a higher high, a higher low, another higher high, then starts moving lower. Has bullish structure automatically reversed?
 
-(pause-until: 00:01:24,000)
+(pause-until: 00:01:02,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 5.000)
 
 Let's find out.
 
@@ -454,115 +400,73 @@ Let's find out.
 
 (pause-until: 00:00:00,000)
 
-(next-paragraph-max-duration: 4.000)
-
-Welcome to Lesson Five of A Girl & Her Futures.
-
-(pause-until: 00:00:04,000)
-
 (next-paragraph-max-duration: 3.000)
 
-Today: bearish structure.
+Welcome to Lesson Five of How Markets Move.
 
-(pause-until: 00:00:07,000)
+(pause-until: 00:00:03,000)
 
-(next-paragraph-max-duration: 2.000)
+(next-paragraph-max-duration: 5.000)
 
-Now the mirror image.
+Now the mirror image: bearish structure.
 
-(pause-until: 00:00:09,000)
+(pause-until: 00:00:08,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 5.000)
 
-Price pushes down and creates a low.
+In basic bearish structure, price creates lower highs and lower lows.
 
-(pause-until: 00:00:12,000)
-
-(next-paragraph-max-duration: 6.000)
-
-It corrects upward, and the high forms below the previous high. A lower high.
-
-(pause-until: 00:00:18,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Then it pushes below the previous low. A lower low.
-
-(pause-until: 00:00:24,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Lower highs and lower lows. That's basic bearish structure.
-
-(pause-until: 00:00:30,000)
+(pause-until: 00:00:13,000)
 
 (next-paragraph-max-duration: 4.000)
 
-And just like bullish structure, it isn't a straight line.
+Price pushes down to a lower low.
 
-(pause-until: 00:00:34,000)
-
-(next-paragraph-max-duration: 4.000)
-
-Bearish structure still has green candles and upward corrections.
-
-(pause-until: 00:00:38,000)
+(pause-until: 00:00:17,000)
 
 (next-paragraph-max-duration: 5.000)
 
-Downward push. Upward correction. Then the push resumes.
+It corrects upward, a bounce. But the bounce tops out lower than the last one.
 
-(pause-until: 00:00:43,000)
+(pause-until: 00:00:22,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 7.000)
 
-Think of it like a ball bouncing down a flight of stairs.
+Then it continues down. Push, correction, continuation.
 
-(pause-until: 00:00:48,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Every bounce goes up a little.
-
-(pause-until: 00:00:51,000)
-
-(next-paragraph-max-duration: 5.000)
-
-But each one lands lower than the last.
-
-(pause-until: 00:00:56,000)
-
-(next-paragraph-max-duration: 2.000)
-
-Here's what to remember.
-
-(pause-until: 00:00:58,000)
-
-(next-paragraph-max-duration: 5.000)
-
-Short-term candle direction is not the same as a structural change.
-
-(pause-until: 00:01:03,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Stop letting candle color override structure.
-
-(pause-until: 00:01:09,000)
-
-(next-paragraph-max-duration: 3.000)
-
-So here's your mission for this lesson.
-
-(pause-until: 00:01:12,000)
+(pause-until: 00:00:29,000)
 
 (next-paragraph-max-duration: 11.000)
 
+Those bounces are the green candles. They're real. But they don't automatically make the market bullish.
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's the line I want you to keep.
+
+(pause-until: 00:00:42,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Stop letting candle color override structure.
+
+(pause-until: 00:00:50,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:00:52,000)
+
+(next-paragraph-max-duration: 7.000)
+
 Price makes a lower low, a lower high, another lower low. Then three bullish candles form. Is the trend bullish now?
 
-(pause-until: 00:01:23,000)
+(pause-until: 00:00:59,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 5.000)
 
 Let's find out.
 
@@ -570,115 +474,91 @@ Let's find out.
 
 (pause-until: 00:00:00,000)
 
-(next-paragraph-max-duration: 4.000)
-
-Welcome to Lesson Six of A Girl & Her Futures.
-
-(pause-until: 00:00:04,000)
-
 (next-paragraph-max-duration: 3.000)
 
-Today: valid versus minor swings.
+Welcome to Lesson Six of How Markets Move.
 
-(pause-until: 00:00:07,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Every turn on a chart exists.
-
-(pause-until: 00:00:10,000)
-
-(next-paragraph-max-duration: 6.000)
-
-But not every turn carries the same structural weight.
-
-(pause-until: 00:00:16,000)
+(pause-until: 00:00:03,000)
 
 (next-paragraph-max-duration: 5.000)
 
-Major, or relevant, swings define the structure or range you're analyzing.
+Every turn exists. Not every turn carries the same weight.
 
-(pause-until: 00:00:21,000)
-
-(next-paragraph-max-duration: 7.000)
-
-Minor, or internal, swings are the smaller swings developing inside that move.
-
-(pause-until: 00:00:28,000)
-
-(next-paragraph-max-duration: 2.000)
-
-And minor doesn't mean fake.
-
-(pause-until: 00:00:30,000)
-
-(next-paragraph-max-duration: 7.000)
-
-Minor swings are real. They just live inside a larger structural leg.
-
-(pause-until: 00:00:37,000)
+(pause-until: 00:00:08,000)
 
 (next-paragraph-max-duration: 3.000)
 
-Think of it like a road trip.
+Look at one large move.
 
-(pause-until: 00:00:40,000)
-
-(next-paragraph-max-duration: 4.000)
-
-The major swings are the cities you drive through.
-
-(pause-until: 00:00:44,000)
-
-(next-paragraph-max-duration: 4.000)
-
-The minor swings are the stoplights along the way.
-
-(pause-until: 00:00:48,000)
-
-(next-paragraph-max-duration: 7.000)
-
-Both are real. But only one tells you where the trip is going.
-
-(pause-until: 00:00:55,000)
-
-(next-paragraph-max-duration: 5.000)
-
-That's also why two traders can mark different swings on the same chart.
-
-(pause-until: 00:01:00,000)
-
-(next-paragraph-max-duration: 6.000)
-
-They may just be reading different scales, or different timeframes.
-
-(pause-until: 00:01:06,000)
-
-(next-paragraph-max-duration: 2.000)
-
-Here's what to remember.
-
-(pause-until: 00:01:08,000)
+(pause-until: 00:00:11,000)
 
 (next-paragraph-max-duration: 8.000)
 
-A swing can exist without being the swing that answers your current question.
+The major, relevant swings define the structure or range you're analyzing.
 
-(pause-until: 00:01:16,000)
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Zoom in on the slope, and there are smaller highs and lows inside it.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Those minor swings are completely real. They just exist inside a larger structural leg.
+
+(pause-until: 00:00:32,000)
 
 (next-paragraph-max-duration: 3.000)
 
+So two traders can look at the same chart, and mark different swings.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 5.000)
+
+One is reading the big picture.
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 6.000)
+
+The other is reading the details inside it.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 8.000)
+
+They're analyzing different scales. Neither one is necessarily wrong.
+
+(pause-until: 00:00:54,000)
+
+(next-paragraph-max-duration: 1.000)
+
+Here's what to remember.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 10.000)
+
+A swing can exist without being the swing that answers your current question.
+
+(pause-until: 00:01:05,000)
+
+(next-paragraph-max-duration: 2.000)
+
 So here's your mission for this lesson.
 
-(pause-until: 00:01:19,000)
+(pause-until: 00:01:07,000)
 
-(next-paragraph-max-duration: 9.000)
+(next-paragraph-max-duration: 7.000)
 
 Can two traders mark different swings on the same chart without either of them being wrong?
 
-(pause-until: 00:01:28,000)
+(pause-until: 00:01:14,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 4.000)
 
 Let's find out.
 
@@ -686,115 +566,91 @@ Let's find out.
 
 (pause-until: 00:00:00,000)
 
+(next-paragraph-max-duration: 3.000)
+
+Welcome to Lesson Seven of How Markets Move.
+
+(pause-until: 00:00:03,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Here's a big one: structure exists inside structure.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 5.000)
+
+External structure is the larger swing boundaries defining the range you're analyzing. Think of it as the room.
+
+(pause-until: 00:00:13,000)
+
 (next-paragraph-max-duration: 4.000)
-
-Welcome to Lesson Seven of A Girl & Her Futures.
-
-(pause-until: 00:00:04,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Today: internal versus external structure.
-
-(pause-until: 00:00:07,000)
-
-(next-paragraph-max-duration: 4.000)
-
-Structure exists inside structure.
-
-(pause-until: 00:00:11,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Think of it like a room.
-
-(pause-until: 00:00:14,000)
-
-(next-paragraph-max-duration: 3.000)
-
-External structure is the room itself.
-
-(pause-until: 00:00:17,000)
-
-(next-paragraph-max-duration: 6.000)
 
 The external high and the external low are the doors.
 
-(pause-until: 00:00:23,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Internal structure is everything inside the room.
-
-(pause-until: 00:00:26,000)
-
-(next-paragraph-max-duration: 2.000)
-
-Furniture. Pictures. Mirrors. Tables.
-
-(pause-until: 00:00:28,000)
+(pause-until: 00:00:17,000)
 
 (next-paragraph-max-duration: 7.000)
 
-Things are happening inside, but you're still in the same room.
+Internal structure is the smaller swings developing inside those boundaries. Furniture. Pictures. Mirrors. Tables.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 10.000)
+
+Things can change inside the room, while you're still inside the room.
+
+(pause-until: 00:00:34,000)
+
+(next-paragraph-max-duration: 1.000)
+
+Here's the same idea on a chart.
 
 (pause-until: 00:00:35,000)
 
 (next-paragraph-max-duration: 6.000)
 
-On a chart, the external structure might be bullish: a higher low, then a higher high.
+The external structure: a higher low, then a higher high. The room is bullish.
 
 (pause-until: 00:00:41,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 8.000)
 
-Meanwhile, the smaller swings inside can start making lower highs and lower lows.
+Inside it, the smaller swings start making lower highs and lower lows.
 
-(pause-until: 00:00:46,000)
+(pause-until: 00:00:49,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 9.000)
 
-Internal structure turned bearish. But price hasn't left the room.
+Internal structure is bearish, while price is still inside the larger external range. Both are true.
 
-(pause-until: 00:00:52,000)
+(pause-until: 00:00:58,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 1.000)
 
-The furniture moved. The room didn't.
-
-(pause-until: 00:00:57,000)
-
-(next-paragraph-max-duration: 2.000)
-
-Here's what to remember.
+So remember this.
 
 (pause-until: 00:00:59,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 10.000)
 
-Internal structure can change while price is still inside the larger external range.
+One little lower low doesn't automatically mean the entire higher-timeframe story changed.
 
-(pause-until: 00:01:04,000)
+(pause-until: 00:01:09,000)
 
-(next-paragraph-max-duration: 8.000)
-
-One little lower low doesn't automatically mean the whole story changed.
-
-(pause-until: 00:01:12,000)
-
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 2.000)
 
 So here's your mission for this lesson.
 
-(pause-until: 00:01:15,000)
+(pause-until: 00:01:11,000)
 
-(next-paragraph-max-duration: 10.000)
+(next-paragraph-max-duration: 7.000)
 
 If smaller swings turn bearish while price stays inside a larger range, has the bigger story changed?
 
-(pause-until: 00:01:25,000)
+(pause-until: 00:01:18,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 4.000)
 
 Let's find out.
 
@@ -802,121 +658,91 @@ Let's find out.
 
 (pause-until: 00:00:00,000)
 
-(next-paragraph-max-duration: 4.000)
-
-Welcome to Lesson Eight of A Girl & Her Futures.
-
-(pause-until: 00:00:04,000)
-
 (next-paragraph-max-duration: 3.000)
 
-Today: consolidation.
+Welcome to Lesson Eight of How Markets Move.
 
-(pause-until: 00:00:07,000)
-
-(next-paragraph-max-duration: 3.000)
-
-You know bullish structure: walking up the stairs.
-
-(pause-until: 00:00:10,000)
+(pause-until: 00:00:03,000)
 
 (next-paragraph-max-duration: 5.000)
 
-You know bearish structure: walking down the stairs.
+Sometimes price isn't walking up or down the stairs at all.
 
-(pause-until: 00:00:15,000)
+(pause-until: 00:00:08,000)
 
-(next-paragraph-max-duration: 4.000)
+(next-paragraph-max-duration: 5.000)
 
-But sometimes price isn't walking up or down the stairs.
+Consolidation is when price trades within a relatively contained area, without clear, sustained directional progression.
 
-(pause-until: 00:00:19,000)
-
-(next-paragraph-max-duration: 4.000)
-
-It's walking around the room.
-
-(pause-until: 00:00:23,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Consolidation is when price trades within a contained area, without clear, sustained directional progress.
-
-(pause-until: 00:00:29,000)
+(pause-until: 00:00:13,000)
 
 (next-paragraph-max-duration: 8.000)
 
-Instead of new highs and new lows, price keeps returning to similar highs and similar lows.
+Instead of higher highs and higher lows, or lower lows and lower highs, price keeps returning to similar highs and similar lows.
 
-(pause-until: 00:00:37,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Here are some clues you might see.
-
-(pause-until: 00:00:40,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Overlapping candles covering the same ground.
-
-(pause-until: 00:00:43,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Back-and-forth movement in both directions.
-
-(pause-until: 00:00:46,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Lots of movement, but not much distance.
-
-(pause-until: 00:00:49,000)
+(pause-until: 00:00:21,000)
 
 (next-paragraph-max-duration: 6.000)
 
-And the same nearby areas tested again and again.
+The top of that area is the range high. The bottom is the range low.
 
-(pause-until: 00:00:55,000)
+(pause-until: 00:00:27,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 7.000)
 
-Later, you'll learn how consolidation affects setup quality in the AGHF framework.
+Price is moving. It just isn't making clean directional progress. It's walking around the room.
 
-(pause-until: 00:01:00,000)
-
-(next-paragraph-max-duration: 6.000)
-
-For now, your job is simply to recognize it.
-
-(pause-until: 00:01:06,000)
+(pause-until: 00:00:34,000)
 
 (next-paragraph-max-duration: 2.000)
 
+So when you look at a chart, ask:
+
+(pause-until: 00:00:36,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Is it walking up the stairs? Down the stairs? Or around the room?
+
+(pause-until: 00:00:43,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Overlapping candles. Back and forth. Lots of movement, not much distance. The same areas tested again and again.
+
+(pause-until: 00:00:51,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Later, you'll learn how market condition affects a setup. For now, your job is simply to recognize it.
+
+(pause-until: 00:00:58,000)
+
+(next-paragraph-max-duration: 1.000)
+
 Here's what to remember.
 
-(pause-until: 00:01:08,000)
+(pause-until: 00:00:59,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 8.000)
 
 Price can be moving without making progress.
 
-(pause-until: 00:01:14,000)
+(pause-until: 00:01:07,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 2.000)
 
 So here's your mission for this lesson.
 
-(pause-until: 00:01:17,000)
+(pause-until: 00:01:09,000)
 
-(next-paragraph-max-duration: 9.000)
+(next-paragraph-max-duration: 7.000)
 
 If price keeps trading between similar highs and lows, how would you describe it?
 
-(pause-until: 00:01:26,000)
+(pause-until: 00:01:16,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 4.000)
 
 Let's find out.
 
@@ -926,119 +752,89 @@ Let's find out.
 
 (next-paragraph-max-duration: 4.000)
 
-Welcome to Lesson Nine of A Girl & Her Futures.
+Welcome to Lesson Nine, the last lesson of How Markets Move.
 
 (pause-until: 00:00:04,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 4.000)
 
-Today: expansion, pullbacks, and progression.
+Price pushes. Price pulls back. Then we see what it does next.
 
-(pause-until: 00:00:07,000)
+(pause-until: 00:00:08,000)
 
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 2.000)
 
-Price pushes. Price pauses. Price pulls back. Then we see what it does next.
+Think of price like a road trip.
 
-(pause-until: 00:00:15,000)
-
-(next-paragraph-max-duration: 3.000)
-
-There are three behaviors to know.
-
-(pause-until: 00:00:18,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Expansion: price makes meaningful directional progress.
-
-(pause-until: 00:00:21,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Pullback: price temporarily moves against the current move.
-
-(pause-until: 00:00:24,000)
-
-(next-paragraph-max-duration: 8.000)
-
-And progression: what price builds after the pullback, which maintains or changes the larger pattern.
-
-(pause-until: 00:00:32,000)
+(pause-until: 00:00:10,000)
 
 (next-paragraph-max-duration: 7.000)
 
-So when a bullish move starts pulling back and the candles turn red, has the market reversed?
+Expansion: price makes meaningful directional progress.
 
-(pause-until: 00:00:39,000)
-
-(next-paragraph-max-duration: 4.000)
-
-Honestly? Not enough information yet.
-
-(pause-until: 00:00:43,000)
-
-(next-paragraph-max-duration: 4.000)
-
-A pullback alone doesn't tell you whether the structure changed.
-
-(pause-until: 00:00:47,000)
+(pause-until: 00:00:17,000)
 
 (next-paragraph-max-duration: 6.000)
 
-So we don't guess. We wait for more information.
+Pullback: price temporarily moves against the current move.
 
-(pause-until: 00:00:53,000)
+(pause-until: 00:00:23,000)
 
-(next-paragraph-max-duration: 2.000)
+(next-paragraph-max-duration: 7.000)
 
-Think of it like breathing.
+Structural progression: after the pullback, price continues developing, here to a higher high.
 
-(pause-until: 00:00:55,000)
+(pause-until: 00:00:30,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 6.000)
 
-Breathe in. Breathe out. Breathe in again.
+A pullback does not automatically equal reversal.
 
-(pause-until: 00:00:58,000)
-
-(next-paragraph-max-duration: 5.000)
-
-A breath out doesn't mean the breathing stopped.
-
-(pause-until: 00:01:03,000)
-
-(next-paragraph-max-duration: 2.000)
-
-Here's what to remember.
-
-(pause-until: 00:01:05,000)
-
-(next-paragraph-max-duration: 4.000)
-
-A pullback alone doesn't tell you whether structure changed.
-
-(pause-until: 00:01:09,000)
+(pause-until: 00:00:36,000)
 
 (next-paragraph-max-duration: 5.000)
 
-What price breaks does.
+So bullish structure starts pulling back. Has it reversed?
 
-(pause-until: 00:01:14,000)
-
-(next-paragraph-max-duration: 3.000)
-
-So here's your mission for this lesson.
-
-(pause-until: 00:01:17,000)
+(pause-until: 00:00:41,000)
 
 (next-paragraph-max-duration: 9.000)
 
+Honestly? Not enough information. The existence of a pullback doesn't tell us whether the larger structure changed.
+
+(pause-until: 00:00:50,000)
+
+(next-paragraph-max-duration: 10.000)
+
+To know more, we need to study what price breaks. And that's exactly where Section 5 begins.
+
+(pause-until: 00:01:00,000)
+
+(next-paragraph-max-duration: 1.000)
+
+So here's the big takeaway.
+
+(pause-until: 00:01:01,000)
+
+(next-paragraph-max-duration: 10.000)
+
+A pullback alone doesn't tell you whether structure changed. What price breaks does.
+
+(pause-until: 00:01:11,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:13,000)
+
+(next-paragraph-max-duration: 7.000)
+
 When bullish structure starts pulling back, how do you know whether it has reversed?
 
-(pause-until: 00:01:26,000)
+(pause-until: 00:01:20,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 4.000)
 
 Let's find out.
 

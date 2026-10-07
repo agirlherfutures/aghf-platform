@@ -2,112 +2,100 @@
 
 (next-paragraph-max-duration: 4.000)
 
-Welcome to Lesson Twelve of A Girl & Her Futures.
+Welcome to Lesson Twelve: Market Structure Shift, or MSS.
 
 (pause-until: 00:00:04,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 4.000)
 
-Today: the Market Structure Shift, or M-S-S.
+Price moving down is not the same as structure changing.
 
-(pause-until: 00:00:09,000)
+(pause-until: 00:00:08,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 3.000)
 
-Here's the trap. Price starts moving lower inside a bullish structure.
+Think of bullish structure as a block tower.
 
-(pause-until: 00:00:14,000)
-
-(next-paragraph-max-duration: 5.000)
-
-Red candles. A pullback. Maybe even a tiny internal low breaks.
-
-(pause-until: 00:00:19,000)
+(pause-until: 00:00:11,000)
 
 (next-paragraph-max-duration: 5.000)
 
-None of that is a shift by itself.
+This block is the supporting low. It's holding the whole thing up.
 
-(pause-until: 00:00:24,000)
+(pause-until: 00:00:16,000)
 
-(next-paragraph-max-duration: 2.000)
+(next-paragraph-max-duration: 6.000)
 
-So what is?
+Price starts moving lower. The tower wobbles. Is that a shift? Not yet.
 
-(pause-until: 00:00:26,000)
+(pause-until: 00:00:22,000)
 
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 6.000)
 
-A potential M-S-S is a close through the relevant supporting swing, against the prior progression.
+Now a tiny internal low breaks. Still standing. The supporting low is intact.
 
-(pause-until: 00:00:34,000)
-
-(next-paragraph-max-duration: 5.000)
-
-In a bullish structure, that's the higher low holding the structure up.
-
-(pause-until: 00:00:39,000)
+(pause-until: 00:00:28,000)
 
 (next-paragraph-max-duration: 7.000)
 
-In a bearish structure, it's the lower high holding it down.
+Then price closes through the supporting low. That's a potential MSS.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 6.000)
+
+So what is an MSS, really? Think of a traffic light turning amber.
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 5.000)
+
+It tells you something may be changing. That's change information.
 
 (pause-until: 00:00:46,000)
 
 (next-paragraph-max-duration: 3.000)
 
-Think of it like a weather warning.
+It's not a confirmed reversal.
 
 (pause-until: 00:00:49,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 5.000)
 
-A warning tells you conditions may be changing.
+And it's definitely not an instruction to hit the gas and enter.
 
-(pause-until: 00:00:52,000)
+(pause-until: 00:00:54,000)
 
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 5.000)
 
-It doesn't mean the storm has arrived. And it doesn't tell you to run outside.
+The word may matters.
+
+(pause-until: 00:00:59,000)
+
+(next-paragraph-max-duration: 1.000)
+
+As Dayli says.
 
 (pause-until: 00:01:00,000)
 
-(next-paragraph-max-duration: 2.000)
-
-Here's what to remember.
-
-(pause-until: 00:01:02,000)
-
-(next-paragraph-max-duration: 3.000)
-
-M-S-S is change information.
-
-(pause-until: 00:01:05,000)
-
-(next-paragraph-max-duration: 6.000)
-
-It tells you the old structure may no longer be behaving the same way.
-
-(pause-until: 00:01:11,000)
-
-(next-paragraph-max-duration: 8.000)
-
-The word "may" matters. And it does not mean enter immediately.
-
-(pause-until: 00:01:19,000)
-
-(next-paragraph-max-duration: 3.000)
-
-So here's your mission for this lesson.
-
-(pause-until: 00:01:22,000)
-
 (next-paragraph-max-duration: 10.000)
 
-If a bullish structure starts moving lower and breaks a small low, has the market structure shifted?
+MSS tells you the old structure may no longer be behaving the same way. It does not mean enter immediately.
 
-(pause-until: 00:01:32,000)
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's your mission.
+
+(pause-until: 00:01:12,000)
 
 (next-paragraph-max-duration: 6.000)
+
+If bullish structure starts moving lower and breaks a small low, has the market structure shifted?
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 4.000)
 
 Let's find out.

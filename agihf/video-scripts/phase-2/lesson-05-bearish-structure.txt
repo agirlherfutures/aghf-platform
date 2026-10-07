@@ -1,113 +1,71 @@
 (pause-until: 00:00:00,000)
 
-(next-paragraph-max-duration: 4.000)
-
-Welcome to Lesson Five of A Girl & Her Futures.
-
-(pause-until: 00:00:04,000)
-
 (next-paragraph-max-duration: 3.000)
 
-Today: bearish structure.
+Welcome to Lesson Five of How Markets Move.
 
-(pause-until: 00:00:07,000)
+(pause-until: 00:00:03,000)
 
-(next-paragraph-max-duration: 2.000)
+(next-paragraph-max-duration: 5.000)
 
-Now the mirror image.
+Now the mirror image: bearish structure.
 
-(pause-until: 00:00:09,000)
+(pause-until: 00:00:08,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 5.000)
 
-Price pushes down and creates a low.
+In basic bearish structure, price creates lower highs and lower lows.
 
-(pause-until: 00:00:12,000)
-
-(next-paragraph-max-duration: 6.000)
-
-It corrects upward, and the high forms below the previous high. A lower high.
-
-(pause-until: 00:00:18,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Then it pushes below the previous low. A lower low.
-
-(pause-until: 00:00:24,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Lower highs and lower lows. That's basic bearish structure.
-
-(pause-until: 00:00:30,000)
+(pause-until: 00:00:13,000)
 
 (next-paragraph-max-duration: 4.000)
 
-And just like bullish structure, it isn't a straight line.
+Price pushes down to a lower low.
 
-(pause-until: 00:00:34,000)
-
-(next-paragraph-max-duration: 4.000)
-
-Bearish structure still has green candles and upward corrections.
-
-(pause-until: 00:00:38,000)
+(pause-until: 00:00:17,000)
 
 (next-paragraph-max-duration: 5.000)
 
-Downward push. Upward correction. Then the push resumes.
+It corrects upward, a bounce. But the bounce tops out lower than the last one.
 
-(pause-until: 00:00:43,000)
+(pause-until: 00:00:22,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 7.000)
 
-Think of it like a ball bouncing down a flight of stairs.
+Then it continues down. Push, correction, continuation.
 
-(pause-until: 00:00:48,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Every bounce goes up a little.
-
-(pause-until: 00:00:51,000)
-
-(next-paragraph-max-duration: 5.000)
-
-But each one lands lower than the last.
-
-(pause-until: 00:00:56,000)
-
-(next-paragraph-max-duration: 2.000)
-
-Here's what to remember.
-
-(pause-until: 00:00:58,000)
-
-(next-paragraph-max-duration: 5.000)
-
-Short-term candle direction is not the same as a structural change.
-
-(pause-until: 00:01:03,000)
-
-(next-paragraph-max-duration: 6.000)
-
-Stop letting candle color override structure.
-
-(pause-until: 00:01:09,000)
-
-(next-paragraph-max-duration: 3.000)
-
-So here's your mission for this lesson.
-
-(pause-until: 00:01:12,000)
+(pause-until: 00:00:29,000)
 
 (next-paragraph-max-duration: 11.000)
 
+Those bounces are the green candles. They're real. But they don't automatically make the market bullish.
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's the line I want you to keep.
+
+(pause-until: 00:00:42,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Stop letting candle color override structure.
+
+(pause-until: 00:00:50,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:00:52,000)
+
+(next-paragraph-max-duration: 7.000)
+
 Price makes a lower low, a lower high, another lower low. Then three bullish candles form. Is the trend bullish now?
 
-(pause-until: 00:01:23,000)
+(pause-until: 00:00:59,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 5.000)
 
 Let's find out.

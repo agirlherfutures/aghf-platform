@@ -1,137 +1,119 @@
 (pause-until: 00:00:00,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 4.000)
 
-Welcome to Lesson Twenty-One of A Girl & Her Futures.
+Welcome to Lesson Twenty-One: What Makes a Level Stronger?
 
-(pause-until: 00:00:05,000)
+(pause-until: 00:00:04,000)
 
 (next-paragraph-max-duration: 4.000)
 
-Today: what makes a level stronger?
+Not all levels deserve the same attention.
 
-(pause-until: 00:00:09,000)
+(pause-until: 00:00:08,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 3.000)
 
-Two levels on your chart. Which one deserves more attention?
+Two levels. Which one deserves more attention?
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Level A sits at a random price. No swing ever formed there.
 
 (pause-until: 00:00:15,000)
 
+(next-paragraph-max-duration: 5.000)
+
+Level B is the higher low the bullish structure is built on.
+
+(pause-until: 00:00:20,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Price clearly reacted there, in a meaningful location.
+
+(pause-until: 00:00:23,000)
+
+(next-paragraph-max-duration: 5.000)
+
+So B gets more weight. Not from a score. From context.
+
+(pause-until: 00:00:28,000)
+
+(next-paragraph-max-duration: 5.000)
+
+No level gets a ninety-three percent. You weigh it.
+
+(pause-until: 00:00:33,000)
+
 (next-paragraph-max-duration: 4.000)
 
-There's no formula. No level gets a ninety-three percent.
+And the answer depends on the question you ask.
 
-(pause-until: 00:00:19,000)
+(pause-until: 00:00:37,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 4.000)
 
-Instead, you weigh the context.
+Four levels on one chart. Think of them like keys.
 
-(pause-until: 00:00:22,000)
+(pause-until: 00:00:41,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 6.000)
 
-Is it a structurally relevant swing?
+Question one: which level would price need to close through to challenge the current bullish structure?
 
-(pause-until: 00:00:25,000)
-
-(next-paragraph-max-duration: 2.000)
-
-Did price react there clearly?
-
-(pause-until: 00:00:27,000)
+(pause-until: 00:00:47,000)
 
 (next-paragraph-max-duration: 3.000)
 
-Does it line up with a prior swing?
-
-(pause-until: 00:00:30,000)
-
-(next-paragraph-max-duration: 5.000)
-
-What timeframe is it from, and where does it sit in the range?
-
-(pause-until: 00:00:35,000)
-
-(next-paragraph-max-duration: 5.000)
-
-And how has price behaved there before?
-
-(pause-until: 00:00:40,000)
-
-(next-paragraph-max-duration: 2.000)
-
-Careful with the shortcuts.
-
-(pause-until: 00:00:42,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Three touches doesn't automatically make a level strong.
-
-(pause-until: 00:00:45,000)
-
-(next-paragraph-max-duration: 5.000)
-
-Fresh doesn't mean guaranteed. Tested doesn't mean useless.
+C. The higher low supporting it.
 
 (pause-until: 00:00:50,000)
 
-(next-paragraph-max-duration: 4.000)
-
-And the best level depends on the question you're asking.
-
-(pause-until: 00:00:54,000)
-
-(next-paragraph-max-duration: 9.000)
-
-The higher low supporting the current structure, or the bottom of the larger range? Different questions. Different answers.
-
-(pause-until: 00:01:03,000)
-
 (next-paragraph-max-duration: 3.000)
 
-Think of it like picking a witness.
+Question two: where's the bottom of the larger range?
 
-(pause-until: 00:01:06,000)
-
-(next-paragraph-max-duration: 10.000)
-
-The best witness isn't the one who talks the most. It's the one who saw what you're asking about.
-
-(pause-until: 00:01:16,000)
+(pause-until: 00:00:53,000)
 
 (next-paragraph-max-duration: 2.000)
 
-Here's what to remember.
+That's D, the external boundary.
 
-(pause-until: 00:01:18,000)
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 5.000)
+
+And no, three touches alone doesn't make a level strong.
+
+(pause-until: 00:01:00,000)
 
 (next-paragraph-max-duration: 2.000)
 
-There's no strength score.
+So here's the big takeaway.
 
-(pause-until: 00:01:20,000)
+(pause-until: 00:01:02,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 8.000)
 
-Weigh the context. Ask what the level answers.
+There's no strength score. Weigh the context.
 
-(pause-until: 00:01:26,000)
+(pause-until: 00:01:10,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 2.000)
 
 So here's your mission for this lesson.
 
-(pause-until: 00:01:29,000)
+(pause-until: 00:01:12,000)
 
-(next-paragraph-max-duration: 7.000)
+(next-paragraph-max-duration: 5.000)
 
 Two levels on your chart. Which one deserves more attention?
 
-(pause-until: 00:01:36,000)
+(pause-until: 00:01:17,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 5.000)
 
 Let's find out.

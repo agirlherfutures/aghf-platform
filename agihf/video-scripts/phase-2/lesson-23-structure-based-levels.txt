@@ -1,113 +1,125 @@
 (pause-until: 00:00:00,000)
 
-(next-paragraph-max-duration: 5.000)
+(next-paragraph-max-duration: 4.000)
 
-Welcome to Lesson Twenty-Three of A Girl & Her Futures.
+Welcome to Lesson Twenty-Three: Structure-Based Levels.
 
-(pause-until: 00:00:05,000)
+(pause-until: 00:00:04,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 4.000)
 
-Today: structure-based levels.
+Every level needs a job.
 
 (pause-until: 00:00:08,000)
 
 (next-paragraph-max-duration: 2.000)
 
-Stop saying, "That's support."
+Stop saying, that's support.
 
 (pause-until: 00:00:10,000)
 
-(next-paragraph-max-duration: 4.000)
-
-Support isn't a job.
-
-(pause-until: 00:00:14,000)
-
 (next-paragraph-max-duration: 3.000)
 
-Give the level a job instead.
+Every level on your chart needs a job.
 
-(pause-until: 00:00:17,000)
+(pause-until: 00:00:13,000)
 
-(next-paragraph-max-duration: 4.000)
+(next-paragraph-max-duration: 5.000)
 
-"This is the swing low supporting the current bullish structure."
+This one? It's the swing low supporting the current bullish structure.
 
-(pause-until: 00:00:21,000)
+(pause-until: 00:00:18,000)
 
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 6.000)
 
-"This is the prior high price would need to overcome for continued bullish progression."
+This one is the prior high price would need to overcome for bullish progression.
 
-(pause-until: 00:00:29,000)
-
-(next-paragraph-max-duration: 9.000)
-
-Swing highs and lows that hold up, or cap, the current structure are the levels with jobs.
-
-(pause-until: 00:00:38,000)
+(pause-until: 00:00:24,000)
 
 (next-paragraph-max-duration: 4.000)
 
-Now picture a chart with twelve lines on it.
+And this one? No swing formed here. Price never reacted.
 
-(pause-until: 00:00:42,000)
+(pause-until: 00:00:28,000)
+
+(next-paragraph-max-duration: 6.000)
+
+If you can't explain it, it doesn't need to be on your chart.
+
+(pause-until: 00:00:34,000)
 
 (next-paragraph-max-duration: 2.000)
 
-Most of them are noise.
+Now look at this chart.
+
+(pause-until: 00:00:36,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Twelve markings. Most of them are noise.
+
+(pause-until: 00:00:39,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Clean out every line that doesn't answer the structural question.
+
+(pause-until: 00:00:43,000)
+
+(next-paragraph-max-duration: 1.000)
+
+Three lines are left.
 
 (pause-until: 00:00:44,000)
 
-(next-paragraph-max-duration: 7.000)
+(next-paragraph-max-duration: 4.000)
 
-Clean it down to the few that answer your structural question.
+The external low the whole move started from.
 
-(pause-until: 00:00:51,000)
-
-(next-paragraph-max-duration: 3.000)
-
-Think of it like cleaning out your closet.
-
-(pause-until: 00:00:54,000)
-
-(next-paragraph-max-duration: 8.000)
-
-If you can't remember why you kept it, and you never wear it, it goes.
-
-(pause-until: 00:01:02,000)
+(pause-until: 00:00:48,000)
 
 (next-paragraph-max-duration: 2.000)
 
-Here's what to remember.
+The higher low supporting the current structure.
 
-(pause-until: 00:01:04,000)
+(pause-until: 00:00:50,000)
 
 (next-paragraph-max-duration: 4.000)
 
-Every line on your chart should have a reason.
+And the prior high that continuation needs to clear.
 
-(pause-until: 00:01:08,000)
+(pause-until: 00:00:54,000)
 
-(next-paragraph-max-duration: 7.000)
+(next-paragraph-max-duration: 4.000)
 
-If you can't explain why it's there, delete it.
+That's context. Not an entry signal.
 
-(pause-until: 00:01:15,000)
+(pause-until: 00:00:58,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 2.000)
 
-So here's your mission for this lesson.
+So here's the big takeaway.
 
-(pause-until: 00:01:18,000)
+(pause-until: 00:01:00,000)
 
 (next-paragraph-max-duration: 8.000)
 
+Every line on your chart needs a reason. If you can't explain why it's there, delete it.
+
+(pause-until: 00:01:08,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 5.000)
+
 Can you explain why every line on your chart is there?
 
-(pause-until: 00:01:26,000)
+(pause-until: 00:01:15,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 5.000)
 
 Let's find out.

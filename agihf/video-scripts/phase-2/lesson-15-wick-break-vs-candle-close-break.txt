@@ -1,113 +1,101 @@
 (pause-until: 00:00:00,000)
 
-(next-paragraph-max-duration: 4.000)
-
-Welcome to Lesson Fifteen of A Girl & Her Futures.
-
-(pause-until: 00:00:04,000)
-
 (next-paragraph-max-duration: 5.000)
 
-Today: a wick break versus a candle-close break.
+Welcome to Lesson Fifteen: Wick Break versus Candle-Close Break.
 
-(pause-until: 00:00:09,000)
-
-(next-paragraph-max-duration: 5.000)
-
-Price pokes through a level. But did it actually break it?
-
-(pause-until: 00:00:14,000)
-
-(next-paragraph-max-duration: 4.000)
-
-Look at how the candle finished.
-
-(pause-until: 00:00:18,000)
-
-(next-paragraph-max-duration: 6.000)
-
-A wick through: price traded beyond the level, then the candle closed back inside.
-
-(pause-until: 00:00:24,000)
-
-(next-paragraph-max-duration: 6.000)
-
-A close through: the candle body finished beyond the level.
-
-(pause-until: 00:00:30,000)
-
-(next-paragraph-max-duration: 2.000)
-
-A wick isn't nothing.
-
-(pause-until: 00:00:32,000)
-
-(next-paragraph-max-duration: 5.000)
-
-It can show rejection, a quick excursion, or price interacting with liquidity.
-
-(pause-until: 00:00:37,000)
-
-(next-paragraph-max-duration: 6.000)
-
-But it isn't the same confirmation as a close.
-
-(pause-until: 00:00:43,000)
-
-(next-paragraph-max-duration: 8.000)
-
-Here at AGHF, a candle close carries more weight when deciding if a structural level actually broke.
-
-(pause-until: 00:00:51,000)
+(pause-until: 00:00:05,000)
 
 (next-paragraph-max-duration: 3.000)
 
-Think of it like visiting a new city.
+Did price really break that level?
 
-(pause-until: 00:00:54,000)
-
-(next-paragraph-max-duration: 6.000)
-
-A wick is a day trip. You went, you looked around, you came home.
-
-(pause-until: 00:01:00,000)
+(pause-until: 00:00:08,000)
 
 (next-paragraph-max-duration: 5.000)
 
-A close is signing the lease.
+Think of a level as the floor between two stories of a house.
 
-(pause-until: 00:01:05,000)
+(pause-until: 00:00:13,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Version one: the candle's wick pokes upstairs, takes a look, and the body stays below.
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 6.000)
+
+That's a wick through. Price traded above the level, but closed back below.
+
+(pause-until: 00:00:25,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Version two: the whole body moves upstairs and finishes there.
+
+(pause-until: 00:00:29,000)
+
+(next-paragraph-max-duration: 5.000)
+
+That's a close through. Same level, different ending.
+
+(pause-until: 00:00:34,000)
 
 (next-paragraph-max-duration: 2.000)
 
-Here's what to remember.
+Now think of a photo finish.
+
+(pause-until: 00:00:36,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Runner one reaches a hand across the line, but her body stays behind.
+
+(pause-until: 00:00:42,000)
+
+(next-paragraph-max-duration: 4.000)
+
+That's a wick. It isn't nothing: price did trade beyond the level.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Runner two's whole body crosses and finishes there.
+
+(pause-until: 00:00:50,000)
+
+(next-paragraph-max-duration: 7.000)
+
+In the framework we're learning, the close carries more weight.
+
+(pause-until: 00:00:57,000)
+
+(next-paragraph-max-duration: 1.000)
+
+Dayli says.
+
+(pause-until: 00:00:58,000)
+
+(next-paragraph-max-duration: 9.000)
+
+A wick can visit. A close gives stronger confirmation that price finished beyond the level.
 
 (pause-until: 00:01:07,000)
 
 (next-paragraph-max-duration: 2.000)
 
-A wick can visit.
+Here's your mission.
 
 (pause-until: 00:01:09,000)
 
-(next-paragraph-max-duration: 8.000)
-
-A close gives stronger confirmation that price finished beyond the level.
-
-(pause-until: 00:01:17,000)
-
-(next-paragraph-max-duration: 3.000)
-
-So here's your mission for this lesson.
-
-(pause-until: 00:01:20,000)
-
-(next-paragraph-max-duration: 7.000)
+(next-paragraph-max-duration: 6.000)
 
 Price poked above the level. Did it break it?
 
-(pause-until: 00:01:27,000)
+(pause-until: 00:01:15,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 4.000)
 
 Let's find out.

@@ -2,112 +2,106 @@
 
 (next-paragraph-max-duration: 4.000)
 
-Welcome to Lesson Thirteen of A Girl & Her Futures.
+Welcome to Lesson Thirteen: Continuation versus Reversal.
 
 (pause-until: 00:00:04,000)
 
-(next-paragraph-max-duration: 3.000)
-
-Today: continuation versus reversal.
-
-(pause-until: 00:00:07,000)
-
 (next-paragraph-max-duration: 4.000)
 
-Price moves against the structure. So what does it mean?
+Not every pullback is a reversal.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Welcome to the game show of honest reads.
 
 (pause-until: 00:00:11,000)
 
-(next-paragraph-max-duration: 3.000)
-
-There are three honest answers.
-
-(pause-until: 00:00:14,000)
-
 (next-paragraph-max-duration: 4.000)
 
-Continuation: price closed through the prior high, with the structure.
+Price pulls back in a bullish structure. Is it a reversal?
 
-(pause-until: 00:00:18,000)
+(pause-until: 00:00:15,000)
 
 (next-paragraph-max-duration: 5.000)
 
-Potential shift: price closed through the supporting swing, against the structure.
+Buzz! Not so fast. Neither key level has broken.
 
-(pause-until: 00:00:23,000)
+(pause-until: 00:00:20,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 4.000)
 
-And not enough information: nothing relevant has broken yet.
+The honest answer: not enough information yet.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Then price closes above the prior high. Now that's continuation information.
 
 (pause-until: 00:00:29,000)
 
-(next-paragraph-max-duration: 3.000)
+(next-paragraph-max-duration: 6.000)
 
-That third answer isn't a cop-out.
-
-(pause-until: 00:00:32,000)
-
-(next-paragraph-max-duration: 3.000)
-
-A pullback alone is not a reversal.
+A close through the supporting low instead would be a potential shift.
 
 (pause-until: 00:00:35,000)
 
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 3.000)
 
-Until a relevant level breaks, you don't have to force a call price hasn't earned.
+Think of yourself as the judge, not the lawyer.
+
+(pause-until: 00:00:38,000)
+
+(next-paragraph-max-duration: 5.000)
+
+The lawyer shouts: it pulled back, so it's a reversal!
 
 (pause-until: 00:00:43,000)
 
 (next-paragraph-max-duration: 3.000)
 
-Think of it like a detective.
+But a pullback alone isn't evidence of a reversal.
 
 (pause-until: 00:00:46,000)
 
 (next-paragraph-max-duration: 5.000)
 
-A good detective doesn't name a suspect before the evidence comes in.
+The evidence is which level price actually closes through.
 
 (pause-until: 00:00:51,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 7.000)
 
-She waits, she watches, and she lets the clues decide.
+Until then, the honest verdict is: I don't know yet.
 
-(pause-until: 00:00:57,000)
+(pause-until: 00:00:58,000)
 
-(next-paragraph-max-duration: 2.000)
+(next-paragraph-max-duration: 1.000)
 
-Here's what to remember.
+The takeaway?
 
 (pause-until: 00:00:59,000)
 
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 9.000)
 
-A close through the prior high is continuation information. A close through the supporting swing is change information.
+I don't know yet is sometimes the most technically correct answer.
 
-(pause-until: 00:01:07,000)
+(pause-until: 00:01:08,000)
 
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 2.000)
 
-And "I don't know yet" is sometimes the most technically correct answer.
+Here's your mission.
 
-(pause-until: 00:01:15,000)
+(pause-until: 00:01:10,000)
 
-(next-paragraph-max-duration: 3.000)
-
-So here's your mission for this lesson.
-
-(pause-until: 00:01:18,000)
-
-(next-paragraph-max-duration: 8.000)
+(next-paragraph-max-duration: 6.000)
 
 Price is pulling back in a bullish structure. Is it a reversal?
 
-(pause-until: 00:01:26,000)
+(pause-until: 00:01:16,000)
 
-(next-paragraph-max-duration: 6.000)
+(next-paragraph-max-duration: 4.000)
 
 Let's find out.
