@@ -1,0 +1,315 @@
+{
+ "phase": "p7",
+ "section": "s18",
+ "lessonNumber": 2,
+ "title": "Fear",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Fear wants certainty.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Feel fear in a live trade, see what it pushes you toward, and separate a planned exit from a fearful one.",
+  "missionQuestion": "Why did you exit?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "manage_sim",
+   "kicker": "Valid ICC · correct risk · correct entry",
+   "title": "Feel it first",
+   "plan": {
+    "entryPrice": 20000,
+    "stopPrice": 19970,
+    "targetPrice": 20060,
+    "contractCount": 2,
+    "managementModel": "fixed",
+    "partialRules": "None",
+    "runnerRules": "None",
+    "breakEvenRules": "None",
+    "structuralRules": "None",
+    "earlyInterventionRules": "A 1M close below the 1H HL"
+   },
+   "bars": [
+    {
+     "o": 20018.0,
+     "h": 20019.0,
+     "l": 20012.5,
+     "c": 20014.0
+    },
+    {
+     "o": 20014.0,
+     "h": 20015.0,
+     "l": 20010.75,
+     "c": 20011.5
+    },
+    {
+     "o": 20011.5,
+     "h": 20012.5,
+     "l": 20008.5,
+     "c": 20009.5
+    },
+    {
+     "o": 20009.5,
+     "h": 20010.75,
+     "l": 20006.5,
+     "c": 20007.25
+    },
+    {
+     "o": 20007.25,
+     "h": 20008.0,
+     "l": 20002.0,
+     "c": 20003.0
+    },
+    {
+     "o": 20003.0,
+     "h": 20004.0,
+     "l": 19999.75,
+     "c": 20002.5
+    },
+    {
+     "o": 20002.5,
+     "h": 20008.5,
+     "l": 20001.0,
+     "c": 20008.0
+    },
+    {
+     "o": 20008.0,
+     "h": 20017.5,
+     "l": 20007.0,
+     "c": 20015.0
+    },
+    {
+     "o": 20015.0,
+     "h": 20023.5,
+     "l": 20014.0,
+     "c": 20022.0
+    },
+    {
+     "o": 20022.0,
+     "h": 20024.0,
+     "l": 20015.25,
+     "c": 20017.0
+    },
+    {
+     "o": 20017.0,
+     "h": 20018.5,
+     "l": 20009.5,
+     "c": 20012.0
+    },
+    {
+     "o": 20012.0,
+     "h": 20013.75,
+     "l": 20008.0,
+     "c": 20009.0
+    },
+    {
+     "o": 20009.0,
+     "h": 20017.0,
+     "l": 20007.25,
+     "c": 20016.0
+    },
+    {
+     "o": 20016.0,
+     "h": 20025.75,
+     "l": 20015.25,
+     "c": 20024.0
+    },
+    {
+     "o": 20024.0,
+     "h": 20033.0,
+     "l": 20022.75,
+     "c": 20031.0
+    },
+    {
+     "o": 20031.0,
+     "h": 20040.0,
+     "l": 20030.5,
+     "c": 20038.0
+    }
+   ],
+   "entryAt": 5,
+   "checkpoints": [
+    {
+     "at": 6,
+     "kind": "note",
+     "text": "<b>+8.</b>",
+     "hold": 900
+    },
+    {
+     "at": 7,
+     "kind": "note",
+     "text": "<b>+15.</b>",
+     "hold": 900
+    },
+    {
+     "at": 8,
+     "kind": "note",
+     "text": "<b>+22.</b> 😌",
+     "hold": 1100
+    },
+    {
+     "at": 10,
+     "prompt": "Pullback. Nothing in your plan triggered. What do you do?",
+     "thought": "“I DON’T WANT THIS TO TURN INTO A LOSER.”",
+     "expect": "follow",
+     "mind": {
+      "close": "fearDrivenManagementCount",
+      "move-stop": "fearDrivenManagementCount",
+      "follow": "ruleBasedResponses"
+     },
+     "after": "Nothing in the plan triggered. The pullback stayed a pullback.",
+     "goal": true
+    }
+   ],
+   "actions": [
+    "close",
+    "move-stop",
+    "follow"
+   ],
+   "labels": {
+    "close": "CLOSE",
+    "move-stop": "MOVE TO BE",
+    "follow": "FOLLOW PLAN"
+   },
+   "intro": "Your plan: SL −30, TP +60. No break-even rule. No partials.",
+   "end": {
+    "ask": {
+     "prompt": "WHAT WAS FEAR TRYING TO MAKE YOU DO?",
+     "options": [
+      {
+       "label": "Protect unrealized profit by abandoning the management plan",
+       "correct": true,
+       "why": "That’s fear’s whole pitch: make the discomfort stop, even if it costs the plan."
+      },
+      {
+       "label": "Read new structure",
+       "feedback": "Structure didn’t change. The candle color did."
+      },
+      {
+       "label": "Follow a break-even rule",
+       "feedback": "There was no break-even rule. That’s why it would have been fear."
+      }
+     ],
+     "stack": true
+    }
+   }
+  },
+  {
+   "type": "p7_split",
+   "kicker": "Two kinds of fear",
+   "title": "They push you toward different things",
+   "left": {
+    "h": "FEAR OF LOSING",
+    "lines": [
+     "“What if it stops out?”",
+     "Premature exit.",
+     "Premature break even."
+    ],
+    "tone": "mind"
+   },
+   "right": {
+    "h": "FEAR OF BEING WRONG",
+    "lines": [
+     "“What if my analysis was wrong?”",
+     "Skips the valid trade.",
+     "Asks for extra confirmations."
+    ],
+    "tone": "mind"
+   },
+   "verdict": "Same emotion family. Different behavior. Name which one is talking."
+  },
+  {
+   "type": "p7_map",
+   "kicker": "Fear behavior map",
+   "title": "What fear may produce",
+   "emotion": "FEAR",
+   "icon": "😰",
+   "behaviors": [
+    "premature exit",
+    "premature BE",
+    "skipped valid trade",
+    "unplanned size reduction",
+    "tick watching",
+    "extra confirmations",
+    "avoidance after losses"
+   ],
+   "note": "May produce. Not always. Every exit isn’t fear, and every skipped trade isn’t either."
+  },
+  {
+   "type": "p6_sort",
+   "kicker": "Why did you exit?",
+   "title": "Three early exits. Same price. Different reasons.",
+   "buckets": [
+    {
+     "key": "rule",
+     "label": "MANAGEMENT RULE",
+     "tone": "ink",
+     "short": "📐 RULE"
+    },
+    {
+     "key": "info",
+     "label": "NEW VALID INFO",
+     "tone": "ink",
+     "short": "📊 NEW INFO"
+    },
+    {
+     "key": "fear",
+     "label": "FEAR CHANGED THE PLAN",
+     "tone": "ink",
+     "short": "😰 FEAR"
+    }
+   ],
+   "items": [
+    {
+     "text": "Her written plan: move to BE after a 1M close above +30. That close printed. She moved it.",
+     "bucket": "rule",
+     "why": "Planned and triggered. Not fear."
+    },
+    {
+     "text": "Her early-intervention rule: exit on a 1M close below the 1H HL. That close printed. She exited.",
+     "bucket": "info",
+     "why": "New valid information her plan defined in advance."
+    },
+    {
+     "text": "“It felt like it might come back.” No rule triggered. She closed.",
+     "bucket": "fear",
+     "why": "The plan didn’t change. Her comfort did."
+    }
+   ],
+   "track": false,
+   "punch": "Taking profit early isn’t automatically wrong. The question is WHY DID YOU EXIT?"
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "FEAR WANTS CERTAINTY.",
+    "TRADING GIVES YOU PROBABILITIES + RULES.",
+    "You can’t get certainty. You can follow the rules while you’re uncertain."
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Fear doesn’t need to leave the room. <em>It just doesn’t get to hold the mouse.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What does fear look like in your trading decisions?",
+   "modelAnswer": "It looks like closing a planned trade to make the discomfort stop, moving to break even without a rule, or skipping a valid setup because the last one lost. I ask: management rule, new valid information, or fear?"
+  }
+ ],
+ "takeaways": [
+  "Fear wants certainty.",
+  "Fear of losing ≠ fear of being wrong.",
+  "Ask: why did I exit?"
+ ],
+ "remember": "FEAR WANTS CERTAINTY. TRADING GIVES YOU PROBABILITIES + RULES."
+}

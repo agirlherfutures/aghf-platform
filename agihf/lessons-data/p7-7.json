@@ -1,0 +1,399 @@
+{
+ "phase": "p7",
+ "section": "s18",
+ "lessonNumber": 7,
+ "title": "Hesitation & Loss of Confidence",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Waiting FOR the criteria is patience.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Separate patience from hesitation, and catch the confidence loop before it spins.",
+  "missionQuestion": "Am I waiting for the criteria, or after them?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_split",
+   "kicker": "Same button. Different problem.",
+   "title": "Patience vs hesitation",
+   "left": {
+    "h": "PATIENCE",
+    "lines": [
+     "Criteria incomplete.",
+     "Trader waits.",
+     "Correct. ✓"
+    ],
+    "tone": "ok"
+   },
+   "right": {
+    "h": "HESITATION",
+    "lines": [
+     "Criteria complete. Risk valid.",
+     "Trader refuses entry because:",
+     "“I lost the last two.”"
+    ],
+    "tone": "mind"
+   },
+   "verdict": "Waiting FOR the criteria ≠ waiting AFTER the criteria."
+  },
+  {
+   "type": "trigger_sim",
+   "mode": "decide",
+   "kicker": "Valid setup · risk valid · rules allow",
+   "title": "After two losses",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20986.5,
+      "l": 20981.25,
+      "c": 20985.5
+     },
+     {
+      "o": 20985.5,
+      "h": 20990.75,
+      "l": 20984.25,
+      "c": 20990.25
+     },
+     {
+      "o": 20990.25,
+      "h": 20996.0,
+      "l": 20989.25,
+      "c": 20995.0
+     },
+     {
+      "o": 20995.0,
+      "h": 20998.75,
+      "l": 20994.75,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.25,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21003.0,
+      "l": 20997.5,
+      "c": 20998.0
+     },
+     {
+      "o": 20998.0,
+      "h": 20998.25,
+      "l": 20994.25,
+      "c": 20995.75
+     },
+     {
+      "o": 20995.75,
+      "h": 20997.0,
+      "l": 20993.5,
+      "c": 20994.5
+     },
+     {
+      "o": 20994.5,
+      "h": 20994.75,
+      "l": 20990.5,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20995.0,
+      "l": 20989.75,
+      "c": 20994.5
+     },
+     {
+      "o": 20994.5,
+      "h": 20998.0,
+      "l": 20993.25,
+      "c": 20997.5
+     },
+     {
+      "o": 20997.5,
+      "h": 21001.75,
+      "l": 20996.0,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21007.75,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21011.5,
+      "l": 21006.0,
+      "c": 21011.0
+     },
+     {
+      "o": 21011.0,
+      "h": 21013.5,
+      "l": 21009.75,
+      "c": 21012.0
+     },
+     {
+      "o": 21012.0,
+      "h": 21017.5,
+      "l": 21011.0,
+      "c": 21016.25
+     },
+     {
+      "o": 21016.25,
+      "h": 21019.5,
+      "l": 21015.75,
+      "c": 21018.25
+     },
+     {
+      "o": 21018.25,
+      "h": 21019.5,
+      "l": 21014.0,
+      "c": 21014.5
+     },
+     {
+      "o": 21014.5,
+      "h": 21015.75,
+      "l": 21011.25,
+      "c": 21012.0
+     },
+     {
+      "o": 21012.0,
+      "h": 21012.75,
+      "l": 21006.5,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21008.0,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21006.5,
+      "l": 21005.5,
+      "c": 21006.25
+     },
+     {
+      "o": 21006.25,
+      "h": 21009.5,
+      "l": 21005.5,
+      "c": 21008.0
+     },
+     {
+      "o": 21008.0,
+      "h": 21009.25,
+      "l": 21006.75,
+      "c": 21008.25
+     },
+     {
+      "o": 21008.25,
+      "h": 21009.25,
+      "l": 21007.25,
+      "c": 21008.25
+     },
+     {
+      "o": 21008.25,
+      "h": 21010.5,
+      "l": 21007.75,
+      "c": 21010.0
+     },
+     {
+      "o": 21010.0,
+      "h": 21011.75,
+      "l": 21009.25,
+      "c": 21010.25
+     },
+     {
+      "o": 21010.25,
+      "h": 21012.5,
+      "l": 21009.75,
+      "c": 21011.75
+     },
+     {
+      "o": 21011.75,
+      "h": 21012.5,
+      "l": 21010.5,
+      "c": 21012.25
+     }
+    ],
+    "start": 10,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish"
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis"
+     },
+     {
+      "label": "15M",
+      "value": "Pulling back into the map"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ],
+    "risk": "1R · within daily limits"
+   },
+   "setups": [
+    {
+     "pil": 21004.25,
+     "pilAt": 4
+    }
+   ],
+   "checkpoints": [
+    {
+     "at": 12,
+     "kind": "decide",
+     "expect": "wait",
+     "prompt": "Indication closed. What do you do?",
+     "mind": {
+      "wait": "patienceSuccessCount"
+     }
+    },
+    {
+     "at": 22,
+     "kind": "decide",
+     "expect": "enter",
+     "prompt": "First valid retest. Everything is complete.",
+     "thought": "“I lost the last two… what if this loses too?”",
+     "mind": {
+      "wait": "hesitationCount",
+      "pass": "hesitationCount",
+      "enter": "ruleBasedResponses"
+     },
+     "after": "Criteria complete, risk valid, rules allow. Executing was the process.",
+     "goal": true
+    }
+   ],
+   "actions": [
+    "wait",
+    "enter",
+    "pass"
+   ],
+   "intro": "Trades 1 and 2 today: valid losses. Daily stop: not reached."
+  },
+  {
+   "type": "p7_loop",
+   "kicker": "The confidence loop",
+   "title": "Watch it spin",
+   "nodes": [
+    "INSUFFICIENT EVIDENCE",
+    "LOSS",
+    "DOUBT THE METHOD",
+    "SKIP A VALID SETUP",
+    "SETUP WINS",
+    "FOMO",
+    "CHASE THE NEXT",
+    "LOSS",
+    "MORE DOUBT"
+   ],
+   "breakAt": 3,
+   "step": 0.6,
+   "center": "Confidence borrowed from the last trade.",
+   "asks": [
+    {
+     "prompt": "WHAT WOULD STOP IT AT “SKIP A VALID SETUP”?",
+     "options": [
+      {
+       "label": "Waiting for a feeling of confidence",
+       "feedback": "Feelings follow evidence. They don’t lead it."
+      },
+      {
+       "label": "Letting the current setup + current rules decide",
+       "correct": true,
+       "why": "Not the last trade. The current setup and the current rules."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "p7_ask",
+   "kicker": "Not every skip is hesitation",
+   "title": "Evaluate hesitation only after the gates",
+   "asks": [
+    {
+     "prompt": "Valid setup. Risk fits. But her daily stop is already reached. She skips it. Hesitation?",
+     "options": [
+      {
+       "label": "Yes",
+       "feedback": "Her session rules didn’t allow it. That’s a rule, not hesitation."
+      },
+      {
+       "label": "No: the session rules blocked it",
+       "correct": true,
+       "why": "Hesitation is only on the table when the setup is valid, risk is allowed AND session rules allow the trade."
+      }
+     ]
+    }
+   ],
+   "facts": [
+    [
+     "Valid setup",
+     "✓"
+    ],
+    [
+     "Risk allowed",
+     "✓"
+    ],
+    [
+     "Session rules allow",
+     "?"
+    ]
+   ]
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "CONFIDENCE SHOULD COME FROM",
+    "EVIDENCE + REPETITION.",
+    "NOT YOUR LAST TRADE."
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "You don’t need to feel confident to execute. <em>You need the criteria to be complete.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What’s the difference between patience and hesitation?",
+   "modelAnswer": "Patience waits for criteria that aren’t complete yet. Hesitation refuses a setup after the criteria are complete, risk is valid and my rules allow it, usually because of the last trade."
+  }
+ ],
+ "takeaways": [
+  "Patience waits FOR the criteria.",
+  "Hesitation waits AFTER them.",
+  "Confidence = evidence + repetition."
+ ],
+ "remember": "CONFIDENCE SHOULD COME FROM EVIDENCE + REPETITION. NOT YOUR LAST TRADE."
+}

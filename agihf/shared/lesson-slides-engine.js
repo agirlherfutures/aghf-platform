@@ -44,6 +44,9 @@ import { ICC_EXEC_RENDERERS } from './icc-exec.js';
 import { TRIGGER_RENDERERS } from './trigger.js';
 import { MANAGE_RENDERERS } from './manage.js';
 import { RISK_RENDERERS } from './risk.js';
+import { MIND_RENDERERS } from './mind.js';
+import { RULES_RENDERERS } from './rules.js';
+import { ENV_RENDERERS } from './env.js';
 import { LEVEL_RENDERERS } from './level-tools.js';
 
 // Temporary: everything unlocked while the Academy is being built (see preview.js).
@@ -962,6 +965,9 @@ export const SLIDE_RENDERERS = {
   ...TRIGGER_RENDERERS,
   ...MANAGE_RENDERERS,
   ...RISK_RENDERERS,
+  ...MIND_RENDERERS,
+  ...RULES_RENDERERS,
+  ...ENV_RENDERERS,
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
   chart_tap: renderChartTapSlide,

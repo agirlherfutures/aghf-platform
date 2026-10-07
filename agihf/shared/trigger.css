@@ -10,7 +10,9 @@
 .tx-side { display: flex; flex-direction: column; gap: 10px; }
 .tx-h { font-size: 10.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
 .tx-ticker { margin-left: auto; font-size: 11px; letter-spacing: .04em; text-transform: none; color: var(--muted); }
-.tx-ticker b { color: var(--icc-ink); margin-left: 4px; }
+.tx-ticker b { color: #fff; margin-left: 4px; }
+.tx-clock { font-size: 11px; color: var(--muted); }
+.tx-clock b { color: #fff; margin-left: 2px; }
 
 /* execution status */
 .tx-status-box, .tx-panel, .pe-card { padding: 10px 12px; border-left: 3px solid var(--icc-line); }

@@ -24,6 +24,8 @@ import { askQuestion } from './price-lab.js';
 import { wrapGuide } from './guide.js';
 import { mountExecChart, partialBar } from './icc-exec.js';
 import { session } from './trigger-core.js';
+import { mindOn, mindOff, pauseButton } from './mind-ui.js';
+import { trackAll } from './mind-core.js';
 import { makePlan, pnlAt, rMultiple, money, MA, MA_META, MEVENT, WHY_CHANGED, classifyTouch, trackManagement, managementReview } from './manage-core.js';
 
 const reduced = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -135,7 +137,7 @@ export function renderManageSim(el0, slide, satisfy, helpers = {}) {
 
     const entryAt = sc.entryAt ?? 0;
     let k = Math.min(entryAt + 1, total);
-    let forming = null, timer = null, blocked = false, done = false;
+    let forming = null, timer = null, blocked = false, done = false, keepMind = false;
     let open = plan.contractCount, closed = 0, realized = 0;
     let stop = plan.stopPrice, target = plan.targetPrice;
     const touches = { stopChanges: 0, targetChanges: 0, partials: 0, sizeChanges: 0, manualExit: false, unplanned: 0, ruleBased: 0, violations: [] };
@@ -206,6 +208,7 @@ export function renderManageSim(el0, slide, satisfy, helpers = {}) {
     }
     function close() {
       forming = null; k += 1; refresh();
+      if (!keepMind) mindOff(host);
       const b = bars[k - 1];
       const hitStop = long ? b.l <= stop : b.h >= stop;
       const hitTarget = long ? b.h >= target : b.l <= target;
@@ -249,11 +252,18 @@ export function renderManageSim(el0, slide, satisfy, helpers = {}) {
 
     function checkpoint(cp, then) {
       if (cp.text) say(cp.text);
+      if (cp.thought) { mindOn(host, cp.thought, cp); keepMind = !!cp.thoughtStay; }
+      if (cp.pause) pauseButton(asks, cp.pause, { open: cp.pauseOpen });
       if (sc.mode === 'watch') {
         if (cp.unplanned) { touches.unplanned += 1; touches.violations.push(MA_META[cp.expect]?.label); }
         if (cp.expect && cp.expect !== MA.FOLLOW) applyAction(cp.expect, cp);
         blocked = true;
         setTimeout(() => { blocked = false; then(); }, reduced() ? 0 : (cp.hold || 1500));
+        return;
+      }
+      if (cp.kind === 'note') {
+        blocked = true;
+        setTimeout(() => { blocked = false; if (cp.after) say(cp.after); then(); }, reduced() ? 0 : (cp.hold || 1400));
         return;
       }
       if (cp.kind === 'ask') {
@@ -290,6 +300,7 @@ export function renderManageSim(el0, slide, satisfy, helpers = {}) {
       const cls = classifyTouch(a, ok ? cp.event : MEVENT.NO_ACTION_REQUIRED);
       helpers.onPick?.({ prompt: `${slide.title || 'manage'}:${cp.at}` }, { label: MA_META[a].label }, ok);
       helpers.handleStreak?.(ok);
+      if (cp.mind && !pending.tracked) { trackAll(cp.mind[a]); pending.tracked = true; }
       if (ok) {
         trackManagement(a, a === MA.FOLLOW ? 'none' : 'rule-based');
         pending = null; clearTempt();
