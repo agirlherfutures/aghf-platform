@@ -2,17 +2,17 @@
  "phase": "p7",
  "section": "s18",
  "lessonNumber": 8,
- "title": "Winning Streaks & Losing Streaks",
+ "title": "The Candle You Can’t Stop Watching",
  "videoUrl": null,
  "videoDuration": "",
  "xpValue": 85,
  "completeStyle": "v2",
  "passThreshold": 0.6,
- "hook": "Both pull you off baseline.",
+ "hook": "When protecting the green costs you the trade.",
  "format": "slides",
  "launchpad": {
-  "outcome": "Hold your baseline through a losing streak and a winning streak, and read your emotional temperature.",
-  "missionQuestion": "Did the plan change, or did my streak change?",
+  "outcome": "Feel fear inside a winning trade and separate a planned exit from a frightened one.",
+  "missionQuestion": "Why did I exit: a rule, new information, or fear?",
   "estMinutes": 8
  },
  "watch": {
@@ -20,184 +20,794 @@
  },
  "slides": [
   {
-   "type": "p7_split",
-   "kicker": "Two brains",
-   "title": "Same trader. Different week.",
-   "left": {
-    "h": "LOSING STREAK BRAIN",
-    "lines": [
-     "“I can’t win.”",
-     "“I need it back.”",
-     "“Maybe the method stopped working.”",
-     "“I should skip this.”"
-    ],
-    "tone": "mind"
-   },
-   "right": {
-    "h": "WINNING STREAK BRAIN",
-    "lines": [
-     "“I can’t miss.”",
-     "“I can size up.”",
-     "“I’m seeing everything.”",
-     "“One more trade.”"
-    ],
-    "tone": "mind"
-   },
-   "verdict": "BOTH CAN PULL YOU AWAY FROM BASELINE.",
-   "together": true
-  },
-  {
-   "type": "p7_baseline",
-   "kicker": "The baseline card",
-   "title": "Written before the streak",
-   "baseline": [
-    [
-     "Risk",
-     "1R"
-    ],
-    [
-     "Max trades",
-     "2"
-    ],
-    [
-     "Entry rules",
-     "Unchanged"
-    ],
-    [
-     "Management",
-     "Unchanged"
-    ]
-   ],
-   "runs": [
+   "type": "p7_scene",
+   "kicker": "The Candle You Can’t Stop Watching",
+   "title": "In the trade",
+   "beats": [
     {
-     "label": "5 LOSSES",
-     "seq": "LLLLL",
-     "thoughts": [
-      "“Maybe the method stopped working.”"
-     ],
-     "ask": {
-      "prompt": "DID THE TESTED PLAN CHANGE?",
-      "options": [
+     "chart": {
+      "bars": [
        {
-        "label": "Yes, rewrite it",
-        "feedback": "Five losses can happen inside a working edge. Review execution and sample first."
+        "o": 20018.0,
+        "h": 20019.0,
+        "l": 20012.5,
+        "c": 20014.0
        },
        {
-        "label": "Not automatically",
-        "correct": true,
-        "why": "Review execution + sample. Don’t rewrite the method after a streak."
+        "o": 20014.0,
+        "h": 20015.0,
+        "l": 20010.75,
+        "c": 20011.5
+       },
+       {
+        "o": 20011.5,
+        "h": 20012.5,
+        "l": 20008.5,
+        "c": 20009.5
+       },
+       {
+        "o": 20009.5,
+        "h": 20010.75,
+        "l": 20006.5,
+        "c": 20007.25
+       },
+       {
+        "o": 20007.25,
+        "h": 20008.0,
+        "l": 20002.0,
+        "c": 20003.0
+       },
+       {
+        "o": 20003.0,
+        "h": 20004.0,
+        "l": 19999.75,
+        "c": 20002.5
+       },
+       {
+        "o": 20002.5,
+        "h": 20008.5,
+        "l": 20001.0,
+        "c": 20008.0
+       },
+       {
+        "o": 20008.0,
+        "h": 20017.5,
+        "l": 20007.0,
+        "c": 20015.0
+       },
+       {
+        "o": 20015.0,
+        "h": 20023.5,
+        "l": 20014.0,
+        "c": 20022.0
+       },
+       {
+        "o": 20022.0,
+        "h": 20024.0,
+        "l": 20015.25,
+        "c": 20017.0
+       },
+       {
+        "o": 20017.0,
+        "h": 20018.5,
+        "l": 20007.5,
+        "c": 20010.0
+       },
+       {
+        "o": 20010.0,
+        "h": 20011.75,
+        "l": 20002.0,
+        "c": 20003.0
+       },
+       {
+        "o": 20003.0,
+        "h": 20004.0,
+        "l": 19992.25,
+        "c": 19994.0
+       },
+       {
+        "o": 19994.0,
+        "h": 19998.75,
+        "l": 19993.25,
+        "c": 19997.0
+       },
+       {
+        "o": 19997.0,
+        "h": 20010.0,
+        "l": 19995.75,
+        "c": 20008.0
+       },
+       {
+        "o": 20008.0,
+        "h": 20021.0,
+        "l": 20007.5,
+        "c": 20019.0
+       },
+       {
+        "o": 20019.0,
+        "h": 20031.0,
+        "l": 20018.75,
+        "c": 20030.0
+       },
+       {
+        "o": 20030.0,
+        "h": 20043.25,
+        "l": 20029.25,
+        "c": 20042.0
+       },
+       {
+        "o": 20042.0,
+        "h": 20052.0,
+        "l": 20041.25,
+        "c": 20051.0
+       },
+       {
+        "o": 20051.0,
+        "h": 20059.0,
+        "l": 20049.25,
+        "c": 20057.0
+       },
+       {
+        "o": 20057.0,
+        "h": 20061.5,
+        "l": 20056.0,
+        "c": 20060.5
+       }
+      ],
+      "pil": null,
+      "pilAt": null,
+      "head": {
+       "tf": "1M",
+       "label": "Long 2 MNQ"
+      },
+      "lines": [
+       {
+        "price": 20000,
+        "label": "ENTRY",
+        "tone": "ink",
+        "at": 5
+       },
+       {
+        "price": 19970,
+        "label": "STOP −30",
+        "tone": "warn",
+        "at": 5
+       },
+       {
+        "price": 20060,
+        "label": "TP +60",
+        "tone": "ok",
+        "at": 5
+       }
+      ],
+      "play": {
+       "from": 5,
+       "to": 11,
+       "speed": 300
+      }
+     }
+    },
+    {
+     "say": [
+      "+8. +15. <b>+22.</b> 😌",
+      "Then a red candle.",
+      "Your plan: stop −30, target +60. No break-even rule. Nothing has triggered."
+     ]
+    },
+    {
+     "thoughts": [
+      "“I DON’T want this to turn into a loser.”",
+      "“Just lock something in.”"
+     ]
+    },
+    {
+     "say": [
+      "You’re not watching the chart anymore. You’re watching your P&amp;L."
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "What do you do?",
+      "options": [
+       {
+        "label": "Close it now. Bank the green.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20018.0,
+            "h": 20019.0,
+            "l": 20012.5,
+            "c": 20014.0
+           },
+           {
+            "o": 20014.0,
+            "h": 20015.0,
+            "l": 20010.75,
+            "c": 20011.5
+           },
+           {
+            "o": 20011.5,
+            "h": 20012.5,
+            "l": 20008.5,
+            "c": 20009.5
+           },
+           {
+            "o": 20009.5,
+            "h": 20010.75,
+            "l": 20006.5,
+            "c": 20007.25
+           },
+           {
+            "o": 20007.25,
+            "h": 20008.0,
+            "l": 20002.0,
+            "c": 20003.0
+           },
+           {
+            "o": 20003.0,
+            "h": 20004.0,
+            "l": 19999.75,
+            "c": 20002.5
+           },
+           {
+            "o": 20002.5,
+            "h": 20008.5,
+            "l": 20001.0,
+            "c": 20008.0
+           },
+           {
+            "o": 20008.0,
+            "h": 20017.5,
+            "l": 20007.0,
+            "c": 20015.0
+           },
+           {
+            "o": 20015.0,
+            "h": 20023.5,
+            "l": 20014.0,
+            "c": 20022.0
+           },
+           {
+            "o": 20022.0,
+            "h": 20024.0,
+            "l": 20015.25,
+            "c": 20017.0
+           },
+           {
+            "o": 20017.0,
+            "h": 20018.5,
+            "l": 20007.5,
+            "c": 20010.0
+           },
+           {
+            "o": 20010.0,
+            "h": 20011.75,
+            "l": 20002.0,
+            "c": 20003.0
+           },
+           {
+            "o": 20003.0,
+            "h": 20004.0,
+            "l": 19992.25,
+            "c": 19994.0
+           },
+           {
+            "o": 19994.0,
+            "h": 19998.75,
+            "l": 19993.25,
+            "c": 19997.0
+           },
+           {
+            "o": 19997.0,
+            "h": 20010.0,
+            "l": 19995.75,
+            "c": 20008.0
+           },
+           {
+            "o": 20008.0,
+            "h": 20021.0,
+            "l": 20007.5,
+            "c": 20019.0
+           },
+           {
+            "o": 20019.0,
+            "h": 20031.0,
+            "l": 20018.75,
+            "c": 20030.0
+           },
+           {
+            "o": 20030.0,
+            "h": 20043.25,
+            "l": 20029.25,
+            "c": 20042.0
+           },
+           {
+            "o": 20042.0,
+            "h": 20052.0,
+            "l": 20041.25,
+            "c": 20051.0
+           },
+           {
+            "o": 20051.0,
+            "h": 20059.0,
+            "l": 20049.25,
+            "c": 20057.0
+           },
+           {
+            "o": 20057.0,
+            "h": 20061.5,
+            "l": 20056.0,
+            "c": 20060.5
+           }
+          ],
+          "pil": null,
+          "pilAt": null,
+          "head": {
+           "tf": "1M",
+           "label": "Long 2 MNQ"
+          },
+          "lines": [
+           {
+            "price": 20000,
+            "label": "ENTRY",
+            "tone": "ink",
+            "at": 5
+           },
+           {
+            "price": 19970,
+            "label": "STOP −30",
+            "tone": "warn",
+            "at": 5
+           },
+           {
+            "price": 20060,
+            "label": "TP +60",
+            "tone": "ok",
+            "at": 5
+           }
+          ],
+          "play": {
+           "from": 11,
+           "to": 21,
+           "speed": 300
+          }
+         },
+         "say": [
+          "+10 banked.",
+          "Then it went to your target. <b>Without you.</b>"
+         ],
+         "tally": [
+          [
+           "YOU KEPT",
+           "+10 pts",
+           "neutral"
+          ],
+          [
+           "YOUR PLAN",
+           "+60 pts",
+           "ok"
+          ]
+         ]
+        },
+        "track": "fearDrivenManagementCount"
+       },
+       {
+        "label": "Move the stop to break even",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20018.0,
+            "h": 20019.0,
+            "l": 20012.5,
+            "c": 20014.0
+           },
+           {
+            "o": 20014.0,
+            "h": 20015.0,
+            "l": 20010.75,
+            "c": 20011.5
+           },
+           {
+            "o": 20011.5,
+            "h": 20012.5,
+            "l": 20008.5,
+            "c": 20009.5
+           },
+           {
+            "o": 20009.5,
+            "h": 20010.75,
+            "l": 20006.5,
+            "c": 20007.25
+           },
+           {
+            "o": 20007.25,
+            "h": 20008.0,
+            "l": 20002.0,
+            "c": 20003.0
+           },
+           {
+            "o": 20003.0,
+            "h": 20004.0,
+            "l": 19999.75,
+            "c": 20002.5
+           },
+           {
+            "o": 20002.5,
+            "h": 20008.5,
+            "l": 20001.0,
+            "c": 20008.0
+           },
+           {
+            "o": 20008.0,
+            "h": 20017.5,
+            "l": 20007.0,
+            "c": 20015.0
+           },
+           {
+            "o": 20015.0,
+            "h": 20023.5,
+            "l": 20014.0,
+            "c": 20022.0
+           },
+           {
+            "o": 20022.0,
+            "h": 20024.0,
+            "l": 20015.25,
+            "c": 20017.0
+           },
+           {
+            "o": 20017.0,
+            "h": 20018.5,
+            "l": 20007.5,
+            "c": 20010.0
+           },
+           {
+            "o": 20010.0,
+            "h": 20011.75,
+            "l": 20002.0,
+            "c": 20003.0
+           },
+           {
+            "o": 20003.0,
+            "h": 20004.0,
+            "l": 19992.25,
+            "c": 19994.0
+           },
+           {
+            "o": 19994.0,
+            "h": 19998.75,
+            "l": 19993.25,
+            "c": 19997.0
+           },
+           {
+            "o": 19997.0,
+            "h": 20010.0,
+            "l": 19995.75,
+            "c": 20008.0
+           },
+           {
+            "o": 20008.0,
+            "h": 20021.0,
+            "l": 20007.5,
+            "c": 20019.0
+           },
+           {
+            "o": 20019.0,
+            "h": 20031.0,
+            "l": 20018.75,
+            "c": 20030.0
+           },
+           {
+            "o": 20030.0,
+            "h": 20043.25,
+            "l": 20029.25,
+            "c": 20042.0
+           },
+           {
+            "o": 20042.0,
+            "h": 20052.0,
+            "l": 20041.25,
+            "c": 20051.0
+           },
+           {
+            "o": 20051.0,
+            "h": 20059.0,
+            "l": 20049.25,
+            "c": 20057.0
+           },
+           {
+            "o": 20057.0,
+            "h": 20061.5,
+            "l": 20056.0,
+            "c": 20060.5
+           }
+          ],
+          "pil": null,
+          "pilAt": null,
+          "tags": [
+           {
+            "at": 12,
+            "text": "STOPPED AT BE",
+            "tone": "warn"
+           }
+          ],
+          "head": {
+           "tf": "1M",
+           "label": "Long 2 MNQ"
+          },
+          "lines": [
+           {
+            "price": 20000,
+            "label": "ENTRY",
+            "tone": "ink",
+            "at": 5
+           },
+           {
+            "price": 19970,
+            "label": "STOP −30",
+            "tone": "warn",
+            "at": 5
+           },
+           {
+            "price": 20060,
+            "label": "TP +60",
+            "tone": "ok",
+            "at": 5
+           }
+          ],
+          "play": {
+           "from": 11,
+           "to": 21,
+           "speed": 300
+          }
+         },
+         "say": [
+          "The pullback dipped one candle below your entry. Stopped at break even.",
+          "Then the target. <b>Without you.</b>"
+         ],
+         "tally": [
+          [
+           "YOU KEPT",
+           "$0",
+           "neutral"
+          ],
+          [
+           "YOUR PLAN",
+           "+60 pts",
+           "ok"
+          ]
+         ]
+        },
+        "track": "fearDrivenManagementCount"
+       },
+       {
+        "label": "Follow the plan",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20018.0,
+            "h": 20019.0,
+            "l": 20012.5,
+            "c": 20014.0
+           },
+           {
+            "o": 20014.0,
+            "h": 20015.0,
+            "l": 20010.75,
+            "c": 20011.5
+           },
+           {
+            "o": 20011.5,
+            "h": 20012.5,
+            "l": 20008.5,
+            "c": 20009.5
+           },
+           {
+            "o": 20009.5,
+            "h": 20010.75,
+            "l": 20006.5,
+            "c": 20007.25
+           },
+           {
+            "o": 20007.25,
+            "h": 20008.0,
+            "l": 20002.0,
+            "c": 20003.0
+           },
+           {
+            "o": 20003.0,
+            "h": 20004.0,
+            "l": 19999.75,
+            "c": 20002.5
+           },
+           {
+            "o": 20002.5,
+            "h": 20008.5,
+            "l": 20001.0,
+            "c": 20008.0
+           },
+           {
+            "o": 20008.0,
+            "h": 20017.5,
+            "l": 20007.0,
+            "c": 20015.0
+           },
+           {
+            "o": 20015.0,
+            "h": 20023.5,
+            "l": 20014.0,
+            "c": 20022.0
+           },
+           {
+            "o": 20022.0,
+            "h": 20024.0,
+            "l": 20015.25,
+            "c": 20017.0
+           },
+           {
+            "o": 20017.0,
+            "h": 20018.5,
+            "l": 20007.5,
+            "c": 20010.0
+           },
+           {
+            "o": 20010.0,
+            "h": 20011.75,
+            "l": 20002.0,
+            "c": 20003.0
+           },
+           {
+            "o": 20003.0,
+            "h": 20004.0,
+            "l": 19992.25,
+            "c": 19994.0
+           },
+           {
+            "o": 19994.0,
+            "h": 19998.75,
+            "l": 19993.25,
+            "c": 19997.0
+           },
+           {
+            "o": 19997.0,
+            "h": 20010.0,
+            "l": 19995.75,
+            "c": 20008.0
+           },
+           {
+            "o": 20008.0,
+            "h": 20021.0,
+            "l": 20007.5,
+            "c": 20019.0
+           },
+           {
+            "o": 20019.0,
+            "h": 20031.0,
+            "l": 20018.75,
+            "c": 20030.0
+           },
+           {
+            "o": 20030.0,
+            "h": 20043.25,
+            "l": 20029.25,
+            "c": 20042.0
+           },
+           {
+            "o": 20042.0,
+            "h": 20052.0,
+            "l": 20041.25,
+            "c": 20051.0
+           },
+           {
+            "o": 20051.0,
+            "h": 20059.0,
+            "l": 20049.25,
+            "c": 20057.0
+           },
+           {
+            "o": 20057.0,
+            "h": 20061.5,
+            "l": 20056.0,
+            "c": 20060.5
+           }
+          ],
+          "pil": null,
+          "pilAt": null,
+          "head": {
+           "tf": "1M",
+           "label": "Long 2 MNQ"
+          },
+          "lines": [
+           {
+            "price": 20000,
+            "label": "ENTRY",
+            "tone": "ink",
+            "at": 5
+           },
+           {
+            "price": 19970,
+            "label": "STOP −30",
+            "tone": "warn",
+            "at": 5
+           },
+           {
+            "price": 20060,
+            "label": "TP +60",
+            "tone": "ok",
+            "at": 5
+           }
+          ],
+          "play": {
+           "from": 11,
+           "to": 21,
+           "speed": 300
+          }
+         },
+         "say": [
+          "Target. +60.",
+          "Some days the stop gets hit instead. That’s a valid loss, and it still beats a plan you abandon every time a candle scares you."
+         ]
+        },
+        "track": "ruleBasedResponses"
        }
       ]
      }
     },
     {
-     "label": "5 WINS",
-     "seq": "WWWWW",
-     "thoughts": [
-      "“I can’t miss.”",
-      "“Triple size?”"
-     ],
-     "ask": {
-      "prompt": "DID RISK DISAPPEAR?",
-      "options": [
-       {
-        "label": "Yes, triple size",
-        "feedback": "Your confidence changed. Did your risk plan?",
-        "track": "overconfidenceCount"
-       },
-       {
-        "label": "NO",
-        "correct": true,
-        "why": "Same risk. Same baseline. Wins don’t make the next trade safer."
-       }
-      ]
+     "say": [
+      "Taking profit early isn’t automatically wrong.",
+      "<b>The question is: why did you exit?</b>"
+     ]
+    },
+    {
+     "cards": [
+      "📐 A MANAGEMENT RULE",
+      "📊 NEW VALID INFORMATION",
+      "😰 FEAR CHANGED THE PLAN"
+     ]
+    },
+    {
+     "who": {
+      "before": {
+       "h": "THE TRADER",
+       "lines": [
+        "Wrote the exit plan while calm."
+       ]
+      },
+      "after": {
+       "h": "THE FEAR",
+       "lines": [
+        "Wants the discomfort to stop.",
+        "Will pay the whole target for it."
+       ]
+      }
      }
+    },
+    {
+     "principle": "FEAR WANTS CERTAINTY. TRADING GIVES YOU PROBABILITIES AND RULES."
     }
-   ],
-   "punch": "DON’T LET LOSSES CONVINCE YOU THE EDGE DISAPPEARED. DON’T LET WINS CONVINCE YOU RISK DISAPPEARED."
-  },
-  {
-   "type": "p7_temp",
-   "kicker": "A new tool",
-   "title": "Emotional temperature",
-   "body": "Where would you put each thought? This is for noticing, not grading yourself.",
-   "items": [
-    {
-     "thought": "Ready. Plan’s clear.",
-     "state": "calm"
-    },
-    {
-     "thought": "Ooh, it’s moving fast.",
-     "state": "elevated"
-    },
-    {
-     "thought": "Ugh. Third loss this week.",
-     "state": "frustrated"
-    },
-    {
-     "thought": "I NEED that back. Now.",
-     "state": "red"
-    }
-   ],
-   "asks": [
-    {
-     "prompt": "She’s 🔴 in a revenge state. A fully valid setup begins forming. Does her emotional state make the MARKET SETUP invalid?",
-     "options": [
-      {
-       "label": "YES",
-       "feedback": "The setup is about price. Her state is about her. Two different dimensions.",
-       "track": "feelingAsReason"
-      },
-      {
-       "label": "NO",
-       "correct": true,
-       "why": "Market setup and trader readiness are different dimensions."
-      }
-     ]
-    },
-    {
-     "prompt": "Then does her personal trading plan need a rule for what she does when she’s in this state?",
-     "options": [
-      {
-       "label": "YES",
-       "correct": true,
-       "why": "Exactly. Not invented now. Section 2 is where you build it."
-      },
-      {
-       "label": "NO, she’ll just be careful",
-       "feedback": "“Be careful” isn’t a rule. 😂"
-      }
-     ]
-    }
-   ],
-   "punch": "A RED STATE DOESN’T MAKE THE SETUP INVALID. IT MAKES YOUR PERSONAL RULE MATTER MORE."
-  },
-  {
-   "type": "p7_monologue",
-   "lines": [
-    "DON’T LET LOSSES CONVINCE YOU",
-    "THE EDGE DISAPPEARED.",
-    "DON’T LET WINS CONVINCE YOU",
-    "RISK DISAPPEARED."
    ]
   },
   {
    "type": "v2_dayli",
    "kicker": "Dayli says",
-   "quote": "Your baseline is the version of you that wrote the plan. <em>Trade like her.</em>",
+   "quote": "Stop staring at the P&amp;L. <em>Look at what price is actually doing.</em>",
    "pose": "point"
   },
   {
    "type": "reflect",
    "kicker": "Tell me what you know",
-   "prompt": "Why can winning trades reinforce bad habits?",
-   "modelAnswer": "Because a win feels like proof. After a streak I might size up or loosen my rules, and if it works, the bad habit gets rewarded. My baseline risk didn’t change just because I won."
+   "prompt": "When do you most want to close a trade early?",
+   "modelAnswer": "When I’m green and a red candle shows up. I ask: is it a management rule, new valid information, or fear? If it’s fear, nothing needs to change."
   }
  ],
  "takeaways": [
-  "Streaks pull you off baseline.",
-  "Losses ≠ broken edge. Wins ≠ no risk.",
-  "Temperature is self-observation, not a signal."
+  "Watch price, not your P&L.",
+  "Ask: why did I exit?",
+  "Fear wants certainty. There isn’t any."
  ],
- "remember": "DON’T LET WINS CONVINCE YOU RISK DISAPPEARED."
+ "remember": "FEAR WANTS CERTAINTY. TRADING GIVES YOU PROBABILITIES AND RULES."
 }

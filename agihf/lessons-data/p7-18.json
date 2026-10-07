@@ -2,17 +2,17 @@
  "phase": "p7",
  "section": "s19",
  "lessonNumber": 18,
- "title": "What Counts as a Rule Violation?",
+ "title": "Done Means Done",
  "videoUrl": null,
  "videoDuration": "",
  "xpValue": 85,
  "completeStyle": "v2",
  "passThreshold": 0.6,
- "hook": "Outcome ≠ adherence.",
+ "hook": "Stopping is an execution skill.",
  "format": "slides",
  "launchpad": {
-  "outcome": "Grade rule adherence separately from the outcome, and name the violation types.",
-  "missionQuestion": "Did I follow the rule, regardless of the result?",
+  "outcome": "Treat your maximum trades and daily stop as part of executing, and set your own daily stop.",
+  "missionQuestion": "Is my session over, according to my plan?",
   "estMinutes": 8
  },
  "watch": {
@@ -20,194 +20,912 @@
  },
  "slides": [
   {
-   "type": "p7_ask",
-   "kicker": "Start here",
-   "title": "TRADE LOST.",
-   "asks": [
+   "type": "p7_scene",
+   "kicker": "Done Means Done",
+   "title": "10:12",
+   "beats": [
     {
-     "prompt": "VIOLATION?",
-     "options": [
-      {
-       "label": "Yes",
-       "feedback": "You’re grading the rule by the outcome.",
-       "rinc": "validLossAsViolation"
+     "cards": [
+      "TRADE 1 · −1R · valid",
+      "TRADE 2 · −1R · valid",
+      "DAILY STOP · −2R · REACHED"
+     ]
+    },
+    {
+     "say": [
+      "Two valid losses. Your daily stop.",
+      "And then…"
+     ]
+    },
+    {
+     "chart": {
+      "bars": [
+       {
+        "o": 20982.25,
+        "h": 20986.5,
+        "l": 20981.5,
+        "c": 20985.5
+       },
+       {
+        "o": 20985.5,
+        "h": 20991.5,
+        "l": 20985.25,
+        "c": 20990.5
+       },
+       {
+        "o": 20990.5,
+        "h": 20994.25,
+        "l": 20990.0,
+        "c": 20993.0
+       },
+       {
+        "o": 20993.0,
+        "h": 20998.75,
+        "l": 20991.5,
+        "c": 20998.25
+       },
+       {
+        "o": 20998.25,
+        "h": 21004.25,
+        "l": 20997.0,
+        "c": 21001.75
+       },
+       {
+        "o": 21001.75,
+        "h": 21002.75,
+        "l": 20998.5,
+        "c": 20999.0
+       },
+       {
+        "o": 20999.0,
+        "h": 21000.25,
+        "l": 20995.75,
+        "c": 20996.75
+       },
+       {
+        "o": 20996.75,
+        "h": 20997.75,
+        "l": 20994.25,
+        "c": 20994.5
+       },
+       {
+        "o": 20994.5,
+        "h": 20995.75,
+        "l": 20990.25,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20994.25,
+        "l": 20990.0,
+        "c": 20994.0
+       },
+       {
+        "o": 20994.0,
+        "h": 20999.0,
+        "l": 20992.75,
+        "c": 20997.75
+       },
+       {
+        "o": 20997.75,
+        "h": 21002.5,
+        "l": 20996.25,
+        "c": 21001.25
+       },
+       {
+        "o": 21001.25,
+        "h": 21007.75,
+        "l": 21001.25,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21007.0,
+        "l": 21001.25,
+        "c": 21002.0
+       },
+       {
+        "o": 21002.0,
+        "h": 21008.5,
+        "l": 21002.0,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21012.5,
+        "l": 21005.75,
+        "c": 21012.0
+       },
+       {
+        "o": 21012.0,
+        "h": 21019.5,
+        "l": 21011.25,
+        "c": 21018.5
+       },
+       {
+        "o": 21018.5,
+        "h": 21025.25,
+        "l": 21017.75,
+        "c": 21024.5
+       },
+       {
+        "o": 21024.5,
+        "h": 21031.25,
+        "l": 21023.5,
+        "c": 21030.25
+       },
+       {
+        "o": 21030.25,
+        "h": 21031.25,
+        "l": 21022.0,
+        "c": 21023.5
+       },
+       {
+        "o": 21023.5,
+        "h": 21025.0,
+        "l": 21014.75,
+        "c": 21015.75
+       },
+       {
+        "o": 21015.75,
+        "h": 21016.25,
+        "l": 21006.0,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21008.75,
+        "l": 21003.75,
+        "c": 21005.75
+       },
+       {
+        "o": 21005.75,
+        "h": 21007.75,
+        "l": 21005.25,
+        "c": 21006.5
+       },
+       {
+        "o": 21006.5,
+        "h": 21009.0,
+        "l": 21006.0,
+        "c": 21008.0
+       },
+       {
+        "o": 21008.0,
+        "h": 21009.25,
+        "l": 21005.0,
+        "c": 21006.5
+       },
+       {
+        "o": 21006.5,
+        "h": 21008.5,
+        "l": 21005.75,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21008.75,
+        "l": 21006.0,
+        "c": 21008.25
+       },
+       {
+        "o": 21008.25,
+        "h": 21010.75,
+        "l": 21007.25,
+        "c": 21010.5
+       },
+       {
+        "o": 21010.5,
+        "h": 21011.75,
+        "l": 21008.5,
+        "c": 21009.25
+       },
+       {
+        "o": 21009.25,
+        "h": 21013.5,
+        "l": 21008.25,
+        "c": 21012.0
+       },
+       {
+        "o": 21012.0,
+        "h": 21013.5,
+        "l": 21011.75,
+        "c": 21012.75
+       },
+       {
+        "o": 21012.75,
+        "h": 21013.75,
+        "l": 21012.0,
+        "c": 21012.25
+       }
+      ],
+      "pil": 21004.25,
+      "pilAt": 4,
+      "head": {
+       "tf": "1M",
+       "label": "The cleanest setup of the day"
       },
-      {
-       "label": "No",
-       "feedback": "You don’t know that either. Yet."
-      },
-      {
-       "label": "NOT ENOUGH INFORMATION",
-       "correct": true,
-       "why": "A result tells you nothing about adherence."
+      "play": {
+       "from": 10,
+       "to": 23,
+       "speed": 300
       }
-     ],
-     "rcat": "violation"
-    },
-    {
-     "prompt": "Now the execution: valid PIL, candle-close Indication, Correction, Continuation, first retest, planned size, stop untouched. VIOLATION?",
-     "options": [
-      {
-       "label": "Yes, it lost",
-       "feedback": "A loss isn’t a violation.",
-       "rinc": "validLossAsViolation"
-      },
-      {
-       "label": "No: VALID LOSS",
-       "correct": true,
-       "why": "Every rule followed."
-      }
-     ],
-     "rcat": "violation"
-    },
-    {
-     "prompt": "Another trade WINS. But she entered before Continuation closed. VIOLATION?",
-     "options": [
-      {
-       "label": "No, it won",
-       "feedback": "The trade paid you. But did the process?",
-       "rinc": "excusedWinningViolation"
-      },
-      {
-       "label": "YES",
-       "correct": true,
-       "why": "Early entry. The win doesn’t erase it."
-      }
-     ],
-     "rcat": "violation"
-    }
-   ]
-  },
-  {
-   "type": "p7_monologue",
-   "kicker": "Violation types",
-   "cards": [
-    "Early entry",
-    "Wick counted as Indication",
-    "Chase",
-    "Max trades exceeded",
-    "Daily loss exceeded",
-    "Unauthorized size",
-    "News rule broken",
-    "Stop moved outside plan",
-    "Prohibited environment",
-    "Outside session"
-   ]
-  },
-  {
-   "type": "p6_sort",
-   "kicker": "Violation or not?",
-   "title": "Read the behavior, not the result",
-   "buckets": [
-    {
-     "key": "v",
-     "label": "VIOLATION",
-     "tone": "ink",
-     "short": "⚠ VIOLATION"
-    },
-    {
-     "key": "ok",
-     "label": "NOT A VIOLATION",
-     "tone": "ink",
-     "short": "✓ NOT A VIOLATION"
-    }
-   ],
-   "items": [
-    {
-     "text": "Counted a wick through the PIL as Indication",
-     "bucket": "v"
-    },
-    {
-     "text": "Stop hit after a valid entry",
-     "bucket": "ok",
-     "why": "A valid loss."
-    },
-    {
-     "text": "Third trade when her maximum is 2",
-     "bucket": "v"
-    },
-    {
-     "text": "Exited on her pre-written early-intervention rule",
-     "bucket": "ok",
-     "why": "Planned management."
-    },
-    {
-     "text": "Moved the stop with no rule",
-     "bucket": "v"
-    },
-    {
-     "text": "New entry at 11:17, window ends 11:00",
-     "bucket": "v",
-     "why": "Outside session."
-    },
-    {
-     "text": "Missed the retest and didn’t enter",
-     "bucket": "ok",
-     "why": "That’s the no-chase rule working."
-    }
-   ],
-   "track": false,
-   "punch": "OUTCOME and RULE ADHERENCE are separate dimensions."
-  },
-  {
-   "type": "p7_process",
-   "kicker": "Process result",
-   "title": "It should feel uncomfortable. Good.",
-   "rcat": "violation",
-   "trades": [
-    {
-     "name": "TRADE 1",
-     "facts": [
-      "Entered before Continuation.",
-      "Closed at +2R."
-     ],
-     "result": "+2R WIN",
-     "violations": [
-      "Early entry"
-     ],
-     "answers": {
-      "outcome": "WIN",
-      "process": "VIOLATION"
      }
     },
     {
-     "name": "TRADE 2",
-     "facts": [
-      "Every rule followed.",
-      "Stop hit."
-     ],
-     "result": "−1R LOSS",
-     "answers": {
-      "outcome": "LOSS",
-      "process": "FOLLOWED"
+     "thoughts": [
+      "“Of COURSE it shows up now.”",
+      "“One trade gets the whole day back.”"
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "What do you do?",
+      "options": [
+       {
+        "label": "Take it. It’s A+.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.5,
+            "c": 20985.5
+           },
+           {
+            "o": 20985.5,
+            "h": 20991.5,
+            "l": 20985.25,
+            "c": 20990.5
+           },
+           {
+            "o": 20990.5,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20993.0
+           },
+           {
+            "o": 20993.0,
+            "h": 20998.75,
+            "l": 20991.5,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.0,
+            "c": 21001.75
+           },
+           {
+            "o": 21001.75,
+            "h": 21002.75,
+            "l": 20998.5,
+            "c": 20999.0
+           },
+           {
+            "o": 20999.0,
+            "h": 21000.25,
+            "l": 20995.75,
+            "c": 20996.75
+           },
+           {
+            "o": 20996.75,
+            "h": 20997.75,
+            "l": 20994.25,
+            "c": 20994.5
+           },
+           {
+            "o": 20994.5,
+            "h": 20995.75,
+            "l": 20990.25,
+            "c": 20991.25
+           },
+           {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20994.0
+           },
+           {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20992.75,
+            "c": 20997.75
+           },
+           {
+            "o": 20997.75,
+            "h": 21002.5,
+            "l": 20996.25,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21008.5,
+            "l": 21002.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21012.5,
+            "l": 21005.75,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21019.5,
+            "l": 21011.25,
+            "c": 21018.5
+           },
+           {
+            "o": 21018.5,
+            "h": 21025.25,
+            "l": 21017.75,
+            "c": 21024.5
+           },
+           {
+            "o": 21024.5,
+            "h": 21031.25,
+            "l": 21023.5,
+            "c": 21030.25
+           },
+           {
+            "o": 21030.25,
+            "h": 21031.25,
+            "l": 21022.0,
+            "c": 21023.5
+           },
+           {
+            "o": 21023.5,
+            "h": 21025.0,
+            "l": 21014.75,
+            "c": 21015.75
+           },
+           {
+            "o": 21015.75,
+            "h": 21016.25,
+            "l": 21006.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21003.75,
+            "c": 21005.75
+           },
+           {
+            "o": 21005.75,
+            "h": 21007.75,
+            "l": 21005.25,
+            "c": 21006.5
+           },
+           {
+            "o": 21006.5,
+            "h": 21009.0,
+            "l": 21006.0,
+            "c": 21008.0
+           },
+           {
+            "o": 21008.0,
+            "h": 21009.25,
+            "l": 21005.0,
+            "c": 21006.5
+           },
+           {
+            "o": 21006.5,
+            "h": 21008.5,
+            "l": 21005.75,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21006.0,
+            "c": 21008.25
+           },
+           {
+            "o": 21008.25,
+            "h": 21010.75,
+            "l": 21007.25,
+            "c": 21010.5
+           },
+           {
+            "o": 21010.5,
+            "h": 21011.75,
+            "l": 21008.5,
+            "c": 21009.25
+           },
+           {
+            "o": 21009.25,
+            "h": 21013.5,
+            "l": 21008.25,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21013.5,
+            "l": 21011.75,
+            "c": 21012.75
+           },
+           {
+            "o": 21012.75,
+            "h": 21013.75,
+            "l": 21012.0,
+            "c": 21012.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 4,
+          "head": {
+           "tf": "1M",
+           "label": "It worked"
+          },
+          "play": {
+           "from": 23,
+           "to": 33,
+           "speed": 300
+          }
+         },
+         "say": [
+          "It worked. +2R. Day back to flat.",
+          "So tomorrow the daily stop is −2R… <b>unless the setup is good.</b>",
+          "Which is every setup, when you’re down."
+         ]
+        },
+        "track": [
+         "overtradeCount",
+         "emotionalTradesTaken"
+        ]
+       },
+       {
+        "label": "Done. The plan already decided.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.5,
+            "c": 20985.5
+           },
+           {
+            "o": 20985.5,
+            "h": 20991.5,
+            "l": 20985.25,
+            "c": 20990.5
+           },
+           {
+            "o": 20990.5,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20993.0
+           },
+           {
+            "o": 20993.0,
+            "h": 20998.75,
+            "l": 20991.5,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.0,
+            "c": 21001.75
+           },
+           {
+            "o": 21001.75,
+            "h": 21002.75,
+            "l": 20998.5,
+            "c": 20999.0
+           },
+           {
+            "o": 20999.0,
+            "h": 21000.25,
+            "l": 20995.75,
+            "c": 20996.75
+           },
+           {
+            "o": 20996.75,
+            "h": 20997.75,
+            "l": 20994.25,
+            "c": 20994.5
+           },
+           {
+            "o": 20994.5,
+            "h": 20995.75,
+            "l": 20990.25,
+            "c": 20991.25
+           },
+           {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20994.0
+           },
+           {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20992.75,
+            "c": 20997.75
+           },
+           {
+            "o": 20997.75,
+            "h": 21002.5,
+            "l": 20996.25,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21008.5,
+            "l": 21002.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21012.5,
+            "l": 21005.75,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21019.5,
+            "l": 21011.25,
+            "c": 21018.5
+           },
+           {
+            "o": 21018.5,
+            "h": 21025.25,
+            "l": 21017.75,
+            "c": 21024.5
+           },
+           {
+            "o": 21024.5,
+            "h": 21031.25,
+            "l": 21023.5,
+            "c": 21030.25
+           },
+           {
+            "o": 21030.25,
+            "h": 21031.25,
+            "l": 21022.0,
+            "c": 21023.5
+           },
+           {
+            "o": 21023.5,
+            "h": 21025.0,
+            "l": 21014.75,
+            "c": 21015.75
+           },
+           {
+            "o": 21015.75,
+            "h": 21016.25,
+            "l": 21006.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21003.75,
+            "c": 21005.75
+           },
+           {
+            "o": 21005.75,
+            "h": 21007.75,
+            "l": 21005.25,
+            "c": 21006.5
+           },
+           {
+            "o": 21006.5,
+            "h": 21009.0,
+            "l": 21006.0,
+            "c": 21008.0
+           },
+           {
+            "o": 21008.0,
+            "h": 21009.25,
+            "l": 21005.0,
+            "c": 21006.5
+           },
+           {
+            "o": 21006.5,
+            "h": 21008.5,
+            "l": 21005.75,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21006.0,
+            "c": 21008.25
+           },
+           {
+            "o": 21008.25,
+            "h": 21010.75,
+            "l": 21007.25,
+            "c": 21010.5
+           },
+           {
+            "o": 21010.5,
+            "h": 21011.75,
+            "l": 21008.5,
+            "c": 21009.25
+           },
+           {
+            "o": 21009.25,
+            "h": 21013.5,
+            "l": 21008.25,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21013.5,
+            "l": 21011.75,
+            "c": 21012.75
+           },
+           {
+            "o": 21012.75,
+            "h": 21013.75,
+            "l": 21012.0,
+            "c": 21012.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 4,
+          "head": {
+           "tf": "1M",
+           "label": "Replay mode"
+          },
+          "play": {
+           "from": 23,
+           "to": 33,
+           "speed": 300
+          }
+         },
+         "say": [
+          "It worked. You watched it in replay.",
+          "You lost the trade. <b>You kept the rule.</b> The rule is worth more over a year."
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
      }
+    },
+    {
+     "principle": "WHEN YOUR TRADING DAY IS OVER, BEING DONE IS THE EXECUTION."
     }
    ]
   },
   {
-   "type": "p7_monologue",
-   "lines": [
-    "A LOSS IS NOT AUTOMATICALLY A MISTAKE.",
-    "A MISTAKE IS A MISTAKE."
-   ]
+   "type": "p7_rule_form",
+   "kicker": "Write it calm",
+   "title": "Your daily stop",
+   "form": "dailyStop",
+   "punch": "Example: stop after −2R or 2 full losses, whichever comes first. An example, not a prescription."
+  },
+  {
+   "type": "daily_stop",
+   "kicker": "Session lock",
+   "title": "When the stop is reached, the session changes",
+   "setup": {
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20987.25,
+      "l": 20981.5,
+      "c": 20986.0
+     },
+     {
+      "o": 20986.0,
+      "h": 20990.75,
+      "l": 20985.0,
+      "c": 20990.25
+     },
+     {
+      "o": 20990.25,
+      "h": 20995.25,
+      "l": 20989.75,
+      "c": 20993.75
+     },
+     {
+      "o": 20993.75,
+      "h": 20999.75,
+      "l": 20993.5,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.25,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21003.0,
+      "l": 20999.5,
+      "c": 21000.25
+     },
+     {
+      "o": 21000.25,
+      "h": 21001.5,
+      "l": 20996.25,
+      "c": 20996.75
+     },
+     {
+      "o": 20996.75,
+      "h": 20998.0,
+      "l": 20993.25,
+      "c": 20994.75
+     },
+     {
+      "o": 20994.75,
+      "h": 20995.25,
+      "l": 20990.0,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20996.0,
+      "l": 20990.0,
+      "c": 20994.5
+     },
+     {
+      "o": 20994.5,
+      "h": 20998.25,
+      "l": 20993.25,
+      "c": 20996.75
+     },
+     {
+      "o": 20996.75,
+      "h": 21001.75,
+      "l": 20995.25,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21008.5,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21010.0,
+      "l": 21007.0,
+      "c": 21009.5
+     },
+     {
+      "o": 21009.5,
+      "h": 21014.25,
+      "l": 21008.0,
+      "c": 21013.75
+     },
+     {
+      "o": 21013.75,
+      "h": 21017.25,
+      "l": 21013.5,
+      "c": 21016.75
+     },
+     {
+      "o": 21016.75,
+      "h": 21021.5,
+      "l": 21016.25,
+      "c": 21020.25
+     },
+     {
+      "o": 21020.25,
+      "h": 21021.5,
+      "l": 21016.0,
+      "c": 21017.0
+     },
+     {
+      "o": 21017.0,
+      "h": 21017.5,
+      "l": 21010.25,
+      "c": 21011.75
+     },
+     {
+      "o": 21011.75,
+      "h": 21012.5,
+      "l": 21006.75,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21008.25,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21009.25,
+      "l": 21005.25,
+      "c": 21008.5
+     },
+     {
+      "o": 21008.5,
+      "h": 21009.5,
+      "l": 21007.5,
+      "c": 21009.0
+     },
+     {
+      "o": 21009.0,
+      "h": 21010.5,
+      "l": 21007.75,
+      "c": 21010.0
+     },
+     {
+      "o": 21010.0,
+      "h": 21013.75,
+      "l": 21009.0,
+      "c": 21012.25
+     }
+    ],
+    "pil": 21004.25,
+    "pilAt": 4,
+    "showTo": 23,
+    "tags": [
+     {
+      "at": 22,
+      "text": "RETEST",
+      "where": "below"
+     }
+    ]
+   },
+   "punch": "TAKE TRADE disabled. REVIEW · JOURNAL · REPLAY · STUDY."
   },
   {
    "type": "v2_dayli",
    "kicker": "Dayli says",
-   "quote": "Your journal needs two columns: <em>what happened to the money</em>, and <em>what happened to the rules</em>.",
+   "quote": "Some days the best trade I take is <em>closing the platform</em>.",
    "pose": "point"
   },
   {
    "type": "reflect",
    "kicker": "Tell me what you know",
-   "prompt": "Why can’t a win prove you followed your rules?",
-   "modelAnswer": "Because the outcome and rule adherence are separate. A trade can win after an early entry, and a valid trade can lose. I grade the process by the rules, not the P&L."
+   "prompt": "What is your daily stop, and what happens when you hit it?",
+   "modelAnswer": "My daily stop is decided in advance. When it’s reached, the session is over, even if an A+ setup appears. I switch to review, journal and replay."
   }
  ],
  "takeaways": [
-  "Outcome and adherence are separate.",
-  "Valid loss ≠ violation.",
-  "Winning violation is still a violation."
+  "Your max and your daily stop end the session.",
+  "An A+ setup doesn’t reopen it.",
+  "Done is part of execution."
  ],
- "remember": "A LOSS IS NOT AUTOMATICALLY A MISTAKE. A MISTAKE IS A MISTAKE."
+ "remember": "WHEN YOUR TRADING DAY IS OVER, BEING DONE IS THE EXECUTION."
 }

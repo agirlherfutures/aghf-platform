@@ -2,16 +2,16 @@
  "phase": "p7",
  "section": "s18",
  "lessonNumber": 1,
- "title": "Emotional Control Isn’t Emotional Suppression",
+ "title": "The Moment Between",
  "videoUrl": null,
  "videoDuration": "",
  "xpValue": 85,
  "completeStyle": "v2",
  "passThreshold": 0.6,
- "hook": "Feel the emotion. Follow the rule anyway.",
+ "hook": "You know the model. So why do you still break it?",
  "format": "slides",
  "launchpad": {
-  "outcome": "Separate what you feel from what you do, and learn the PAUSE that sits between them.",
+  "outcome": "Notice the gap between seeing the chart and clicking, and learn the PAUSE that lives there.",
   "missionQuestion": "Did price change, or did my emotion change?",
   "estMinutes": 8
  },
@@ -20,265 +20,299 @@
  },
  "slides": [
   {
-   "type": "p7_monologue",
+   "type": "p7_scene",
    "kicker": "Phase 7 · The Mindset Behind the Model",
-   "checks": [
-    "ANALYSIS ✓",
-    "ENTRY ✓",
-    "MANAGEMENT ✓",
-    "RISK ✓"
-   ],
-   "chart": {
-    "bars": [
-     {
-      "o": 20982.25,
-      "h": 20988.0,
-      "l": 20981.25,
-      "c": 20986.75
-     },
-     {
-      "o": 20986.75,
-      "h": 20991.0,
-      "l": 20985.25,
-      "c": 20990.25
-     },
-     {
-      "o": 20990.25,
-      "h": 20994.25,
-      "l": 20989.75,
-      "c": 20993.75
-     },
-     {
-      "o": 20993.75,
-      "h": 20998.75,
-      "l": 20993.0,
-      "c": 20998.25
-     },
-     {
-      "o": 20998.25,
-      "h": 21004.25,
-      "l": 20997.75,
-      "c": 21001.75
-     },
-     {
-      "o": 21001.75,
-      "h": 21002.5,
-      "l": 20997.75,
-      "c": 20998.75
-     },
-     {
-      "o": 20998.75,
-      "h": 20999.0,
-      "l": 20995.25,
-      "c": 20995.75
-     },
-     {
-      "o": 20995.75,
-      "h": 20996.5,
-      "l": 20992.75,
-      "c": 20994.0
-     },
-     {
-      "o": 20994.0,
-      "h": 20995.25,
-      "l": 20990.5,
-      "c": 20991.25
-     },
-     {
-      "o": 20991.25,
-      "h": 20994.75,
-      "l": 20990.0,
-      "c": 20993.5
-     },
-     {
-      "o": 20993.5,
-      "h": 20998.75,
-      "l": 20993.0,
-      "c": 20997.75
-     },
-     {
-      "o": 20997.75,
-      "h": 21002.75,
-      "l": 20996.5,
-      "c": 21001.25
-     },
-     {
-      "o": 21001.25,
-      "h": 21007.75,
-      "l": 21001.25,
-      "c": 21007.0
-     },
-     {
-      "o": 21007.0,
-      "h": 21010.25,
-      "l": 21006.25,
-      "c": 21009.5
+   "title": "",
+   "beats": [
+    {
+     "say": [
+      "You can read structure.",
+      "You can find the PIL.",
+      "You can wait for the close, take the retest, size the trade, place the stop."
+     ]
+    },
+    {
+     "say": [
+      "So here’s a question nobody asks in Phases 1 through 6:"
+     ]
+    },
+    {
+     "say": [
+      "<b>If you know all of that… why do you still break your own rules?</b>"
+     ],
+     "big": true
+    },
+    {
+     "chart": {
+      "bars": [
+       {
+        "o": 20982.25,
+        "h": 20986.25,
+        "l": 20981.25,
+        "c": 20985.75
+       },
+       {
+        "o": 20985.75,
+        "h": 20990.25,
+        "l": 20985.0,
+        "c": 20989.25
+       },
+       {
+        "o": 20989.25,
+        "h": 20994.25,
+        "l": 20989.0,
+        "c": 20993.25
+       },
+       {
+        "o": 20993.25,
+        "h": 20999.0,
+        "l": 20993.0,
+        "c": 20998.25
+       },
+       {
+        "o": 20998.25,
+        "h": 21004.25,
+        "l": 20997.5,
+        "c": 21001.75
+       },
+       {
+        "o": 21001.75,
+        "h": 21002.25,
+        "l": 20999.5,
+        "c": 21000.0
+       },
+       {
+        "o": 21000.0,
+        "h": 21001.5,
+        "l": 20995.75,
+        "c": 20996.75
+       },
+       {
+        "o": 20996.75,
+        "h": 20998.25,
+        "l": 20993.25,
+        "c": 20993.5
+       },
+       {
+        "o": 20993.5,
+        "h": 20994.75,
+        "l": 20990.75,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20994.25,
+        "l": 20990.5,
+        "c": 20993.75
+       },
+       {
+        "o": 20993.75,
+        "h": 20999.25,
+        "l": 20992.75,
+        "c": 20998.75
+       },
+       {
+        "o": 20998.75,
+        "h": 21002.25,
+        "l": 20998.0,
+        "c": 21001.25
+       },
+       {
+        "o": 21001.25,
+        "h": 21007.75,
+        "l": 21001.25,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21007.0,
+        "l": 21001.25,
+        "c": 21002.0
+       },
+       {
+        "o": 21002.0,
+        "h": 21008.25,
+        "l": 21002.0,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21010.0,
+        "l": 21006.5,
+        "c": 21009.0
+       },
+       {
+        "o": 21009.0,
+        "h": 21012.5,
+        "l": 21008.0,
+        "c": 21011.25
+       },
+       {
+        "o": 21011.25,
+        "h": 21014.25,
+        "l": 21010.25,
+        "c": 21013.25
+       },
+       {
+        "o": 21013.25,
+        "h": 21017.5,
+        "l": 21012.0,
+        "c": 21016.25
+       },
+       {
+        "o": 21016.25,
+        "h": 21017.75,
+        "l": 21012.25,
+        "c": 21012.75
+       },
+       {
+        "o": 21012.75,
+        "h": 21014.0,
+        "l": 21009.5,
+        "c": 21010.0
+       },
+       {
+        "o": 21010.0,
+        "h": 21010.75,
+        "l": 21007.0,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21008.25,
+        "l": 21003.75,
+        "c": 21005.75
+       },
+       {
+        "o": 21005.75,
+        "h": 21006.0,
+        "l": 21000.0,
+        "c": 21000.5
+       },
+       {
+        "o": 21000.5,
+        "h": 21000.75,
+        "l": 20996.75,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 20998.75,
+        "l": 20991.75,
+        "c": 20992.25
+       },
+       {
+        "o": 20992.25,
+        "h": 20993.0,
+        "l": 20987.25,
+        "c": 20988.0
+       },
+       {
+        "o": 20988.0,
+        "h": 20988.5,
+        "l": 20981.75,
+        "c": 20983.0
+       },
+       {
+        "o": 20983.0,
+        "h": 20983.25,
+        "l": 20977.75,
+        "c": 20978.25
+       },
+       {
+        "o": 20978.25,
+        "h": 20979.0,
+        "l": 20971.25,
+        "c": 20972.75
+       }
+      ],
+      "pil": null,
+      "pilAt": null,
+      "head": {
+       "tf": "1M",
+       "label": "You’re in a valid long"
+      },
+      "lines": [
+       {
+        "price": 21005.75,
+        "label": "ENTRY",
+        "tone": "ink",
+        "at": 22
+       },
+       {
+        "price": 20975.75,
+        "label": "STOP −30",
+        "tone": "warn",
+        "at": 22
+       },
+       {
+        "price": 21065.75,
+        "label": "TP +60",
+        "tone": "ok",
+        "at": 22
+       }
+      ],
+      "play": {
+       "from": 10,
+       "to": 26,
+       "speed": 300
+      }
      }
-    ],
-    "pil": 21004.25,
-    "pilAt": 4,
-    "head": {
-     "tf": "1M",
-     "label": "New session · after a loss"
+    },
+    {
+     "say": [
+      "Valid setup. First retest. You’re in. Stop −30. Target +60.",
+      "Price pulls back a little."
+     ]
+    },
+    {
+     "thoughts": [
+      "“I don’t like this candle.”",
+      "“What if it turns?”",
+      "“Maybe I should just get out.”"
+     ]
+    },
+    {
+     "say": [
+      "Look at what just happened.",
+      "The chart printed one red candle.",
+      "<b>Your plan didn’t change. Something in you did.</b>"
+     ]
+    },
+    {
+     "clear": true
+    },
+    {
+     "say": [
+      "That space between what you <em>see</em> and what you <em>do</em>?",
+      "That’s where every trade in Phase 7 is decided."
+     ]
+    },
+    {
+     "say": [
+      "<b>PHASES 1–6 TAUGHT YOU HOW TO READ THE MARKET.</b>",
+      "<b>PHASE 7 TEACHES YOU HOW TO READ YOURSELF WHILE YOU’RE READING IT.</b>"
+     ]
+    },
+    {
+     "cards": [
+      "FEEL",
+      "NOTICE",
+      "NAME IT",
+      "CHECK THE RULE",
+      "CHOOSE THE BEHAVIOR"
+     ]
+    },
+    {
+     "principle": "YOU DON’T HAVE TO CONTROL EVERY FEELING. YOU HAVE TO CONTROL WHAT THE FEELING GETS PERMISSION TO CHANGE."
     }
-   },
-   "thoughts": [
-    "“I need that back.”",
-    "“This one better work.”",
-    "“Maybe I’ll size up.”",
-    "“I knew I should’ve taken that last trade.”",
-    "“Just this once.”"
    ],
-   "freeze": true,
-   "lines": [
-    "YOU KNOW THE RULES.",
-    "SO WHY DO YOU STILL WANT TO BREAK THEM?"
-   ],
-   "reveal": {
-    "eyebrow": "PHASE 7 · THE MINDSET BEHIND THE MODEL",
-    "title": "Section 1: Your Mind Is the Market 🪞",
-    "sub": "Phase 6 executed the plan. Phase 7 governs the trader.",
-    "mission": "FEEL THE EMOTION. FOLLOW THE RULE ANYWAY."
-   },
    "cta": "Start →"
   },
   {
-   "type": "p7_ask",
-   "kicker": "Feeling or problem?",
-   "title": "“I’M NERVOUS.”",
-   "asks": [
-    {
-     "prompt": "PROBLEM?",
-     "options": [
-      {
-       "label": "YES",
-       "feedback": "Nervous is information. It isn’t a decision yet.",
-       "track": "feelingAsReason"
-      },
-      {
-       "label": "NO",
-       "feedback": "Close. It can become one, depending on what it gets to change."
-      },
-      {
-       "label": "NOT BY ITSELF",
-       "correct": true,
-       "why": "A feeling is not a mistake. Nothing has happened yet."
-      }
-     ],
-     "recog": true
-    },
-    {
-     "prompt": "“I’M NERVOUS, SO I’M MOVING MY STOP.” NOW WHAT CHANGED?",
-     "options": [
-      {
-       "label": "THE FEELING",
-       "feedback": "Same feeling as before. Look at the second half of the sentence."
-      },
-      {
-       "label": "THE BEHAVIOR",
-       "correct": true,
-       "why": "The feeling got permission to change the plan. That’s the moment that matters."
-      },
-      {
-       "label": "THE MARKET",
-       "feedback": "Nothing in that sentence is about price."
-      }
-     ],
-     "recog": true
-    }
-   ],
-   "thought": null
-  },
-  {
-   "type": "p7_split",
-   "kicker": "Split screen",
-   "title": "Two different things",
-   "left": {
-    "h": "FEELING",
-    "lines": [
-     "“I think this might reverse.”"
-    ],
-    "tone": "mind"
-   },
-   "right": {
-    "h": "BEHAVIOR",
-    "lines": [
-     "Moves the stop 20 points closer.",
-     "No management rule said to."
-    ],
-    "tone": "bad"
-   },
-   "verdict": "THESE ARE NOT THE SAME THING."
-  },
-  {
-   "type": "p7_monologue",
-   "kicker": "The Phase 7 framework",
-   "cards": [
-    "FEEL",
-    "NOTICE",
-    "NAME",
-    "CHECK THE RULE",
-    "CHOOSE THE BEHAVIOR"
-   ],
-   "lines": [
-    "Not: FEEL → REMOVE THE EMOTION.",
-    "FEEL → NOTICE → DON’T AUTOMATICALLY ACT.",
-    "<b>YOU DON’T HAVE TO CONTROL EVERY FEELING. YOU HAVE TO CONTROL WHAT THE FEELING GETS PERMISSION TO CHANGE.</b>"
-   ]
-  },
-  {
-   "type": "p6_sort",
-   "kicker": "Rapid fire",
-   "title": "FEELING OR ACTION?",
-   "buckets": [
-    {
-     "key": "feeling",
-     "label": "FEELING",
-     "tone": "ink",
-     "short": "💭 FEELING"
-    },
-    {
-     "key": "action",
-     "label": "ACTION",
-     "tone": "ink",
-     "short": "✋ ACTION"
-    }
-   ],
-   "items": [
-    {
-     "text": "“I feel nervous.”",
-     "bucket": "feeling"
-    },
-    {
-     "text": "“I close early.”",
-     "bucket": "action"
-    },
-    {
-     "text": "“I feel excited.”",
-     "bucket": "feeling"
-    },
-    {
-     "text": "“I add contracts outside the plan.”",
-     "bucket": "action",
-     "why": "An action the plan didn’t authorize."
-    },
-    {
-     "text": "“I’m disappointed about the last loss.”",
-     "bucket": "feeling"
-    },
-    {
-     "text": "“I immediately enter a mediocre setup.”",
-     "bucket": "action",
-     "why": "Disappointment didn’t do that. A click did."
-    }
-   ],
-   "track": false,
-   "punch": "Feelings happen to you. Actions are chosen. Train the gap between them."
-  },
-  {
    "type": "p7_pause",
-   "kicker": "The PAUSE",
-   "title": "A decision interrupt. Not a motivational quote.",
+   "kicker": "Your new button",
+   "title": "⏸ PAUSE",
    "facts": [
     [
      "Trade",
@@ -296,207 +330,175 @@
    "chart": {
     "bars": [
      {
-      "o": 20982.25,
-      "h": 20986.5,
-      "l": 20981.5,
-      "c": 20985.5
+      "o": 20018.0,
+      "h": 20019.0,
+      "l": 20012.5,
+      "c": 20014.0
      },
      {
-      "o": 20985.5,
-      "h": 20991.5,
-      "l": 20985.25,
-      "c": 20990.5
+      "o": 20014.0,
+      "h": 20015.0,
+      "l": 20010.75,
+      "c": 20011.5
      },
      {
-      "o": 20990.5,
-      "h": 20994.25,
-      "l": 20990.0,
-      "c": 20993.0
+      "o": 20011.5,
+      "h": 20012.5,
+      "l": 20008.5,
+      "c": 20009.5
      },
      {
-      "o": 20993.0,
-      "h": 20998.75,
-      "l": 20991.5,
-      "c": 20998.25
+      "o": 20009.5,
+      "h": 20010.75,
+      "l": 20006.5,
+      "c": 20007.25
      },
      {
-      "o": 20998.25,
-      "h": 21004.25,
-      "l": 20997.0,
-      "c": 21001.75
+      "o": 20007.25,
+      "h": 20008.0,
+      "l": 20002.0,
+      "c": 20003.0
      },
      {
-      "o": 21001.75,
-      "h": 21002.75,
-      "l": 20998.5,
-      "c": 20999.0
+      "o": 20003.0,
+      "h": 20004.0,
+      "l": 19999.75,
+      "c": 20002.5
      },
      {
-      "o": 20999.0,
-      "h": 21000.25,
-      "l": 20995.75,
-      "c": 20996.75
+      "o": 20002.5,
+      "h": 20008.5,
+      "l": 20001.0,
+      "c": 20008.0
      },
      {
-      "o": 20996.75,
-      "h": 20997.75,
-      "l": 20994.25,
-      "c": 20994.5
+      "o": 20008.0,
+      "h": 20017.5,
+      "l": 20007.0,
+      "c": 20015.0
      },
      {
-      "o": 20994.5,
-      "h": 20995.75,
-      "l": 20990.25,
-      "c": 20991.25
+      "o": 20015.0,
+      "h": 20023.5,
+      "l": 20014.0,
+      "c": 20022.0
      },
      {
-      "o": 20991.25,
-      "h": 20994.25,
-      "l": 20990.0,
-      "c": 20994.0
+      "o": 20022.0,
+      "h": 20024.0,
+      "l": 20015.25,
+      "c": 20017.0
      },
      {
-      "o": 20994.0,
-      "h": 20999.0,
-      "l": 20992.75,
-      "c": 20997.75
+      "o": 20017.0,
+      "h": 20018.5,
+      "l": 20007.5,
+      "c": 20010.0
      },
      {
-      "o": 20997.75,
-      "h": 21002.5,
-      "l": 20996.25,
-      "c": 21001.25
+      "o": 20010.0,
+      "h": 20011.75,
+      "l": 20002.0,
+      "c": 20003.0
      },
      {
-      "o": 21001.25,
-      "h": 21007.75,
-      "l": 21001.25,
-      "c": 21007.0
+      "o": 20003.0,
+      "h": 20004.0,
+      "l": 19992.25,
+      "c": 19994.0
      },
      {
-      "o": 21007.0,
-      "h": 21007.0,
-      "l": 21001.25,
-      "c": 21002.0
+      "o": 19994.0,
+      "h": 19998.75,
+      "l": 19993.25,
+      "c": 19997.0
      },
      {
-      "o": 21002.0,
-      "h": 21008.5,
-      "l": 21002.0,
-      "c": 21007.25
+      "o": 19997.0,
+      "h": 20010.0,
+      "l": 19995.75,
+      "c": 20008.0
      },
      {
-      "o": 21007.25,
-      "h": 21009.0,
-      "l": 21005.75,
-      "c": 21008.5
+      "o": 20008.0,
+      "h": 20021.0,
+      "l": 20007.5,
+      "c": 20019.0
      },
      {
-      "o": 21008.5,
-      "h": 21012.5,
-      "l": 21007.75,
-      "c": 21011.5
+      "o": 20019.0,
+      "h": 20031.0,
+      "l": 20018.75,
+      "c": 20030.0
      },
      {
-      "o": 21011.5,
-      "h": 21014.75,
-      "l": 21010.75,
-      "c": 21014.0
+      "o": 20030.0,
+      "h": 20043.25,
+      "l": 20029.25,
+      "c": 20042.0
      },
      {
-      "o": 21014.0,
-      "h": 21017.25,
-      "l": 21013.0,
-      "c": 21016.25
+      "o": 20042.0,
+      "h": 20052.0,
+      "l": 20041.25,
+      "c": 20051.0
      },
      {
-      "o": 21016.25,
-      "h": 21017.25,
-      "l": 21012.75,
-      "c": 21014.25
+      "o": 20051.0,
+      "h": 20059.0,
+      "l": 20049.25,
+      "c": 20057.0
      },
      {
-      "o": 21014.25,
-      "h": 21015.75,
-      "l": 21010.25,
-      "c": 21011.25
-     },
-     {
-      "o": 21011.25,
-      "h": 21011.75,
-      "l": 21006.0,
-      "c": 21007.25
-     },
-     {
-      "o": 21007.25,
-      "h": 21008.75,
-      "l": 21003.75,
-      "c": 21005.75
-     },
-     {
-      "o": 21005.75,
-      "h": 21008.75,
-      "l": 21005.25,
-      "c": 21007.5
-     },
-     {
-      "o": 21007.5,
-      "h": 21010.75,
-      "l": 21007.0,
-      "c": 21009.75
-     },
-     {
-      "o": 21009.75,
-      "h": 21011.0,
-      "l": 21008.0,
-      "c": 21009.5
-     },
-     {
-      "o": 21009.5,
-      "h": 21012.5,
-      "l": 21008.25,
-      "c": 21012.25
+      "o": 20057.0,
+      "h": 20061.5,
+      "l": 20056.0,
+      "c": 20060.5
      }
     ],
-    "pil": 21004.25,
-    "pilAt": 4,
-    "show": 25,
+    "pil": null,
+    "pilAt": null,
+    "show": 11,
     "head": {
      "tf": "1M",
      "label": "In the trade"
-    }
+    },
+    "lines": [
+     {
+      "price": 20000,
+      "label": "ENTRY",
+      "tone": "ink",
+      "at": 5
+     },
+     {
+      "price": 19970,
+      "label": "STOP −30",
+      "tone": "warn",
+      "at": 5
+     },
+     {
+      "price": 20060,
+      "label": "TP +60",
+      "tone": "ok",
+      "at": 5
+     }
+    ]
    },
    "thought": "“I don’t like this candle.”",
    "action": "Move my stop closer",
    "pause": {
-    "market": "A normal pullback. No structural change, no close below the 1H HL.",
+    "market": "A normal pullback. Nothing structural changed.",
     "plan": "No management rule triggered. Hold to SL / TP.",
     "mind": "Nervous. I want the discomfort to stop.",
-    "action": "No. Nothing needs to change."
+    "action": "Nothing needs to change."
    },
    "asks": [
     {
-     "prompt": "DOES ANYTHING ACTUALLY NEED TO CHANGE?",
-     "options": [
-      {
-       "label": "Yes, move the stop",
-       "feedback": "Which quadrant gave you a reason? Only MIND did.",
-       "track": "fearDrivenManagementCount"
-      },
-      {
-       "label": "No. The plan already handles this.",
-       "correct": true,
-       "why": "The PAUSE lets the feeling be there without letting it drive.",
-       "track": "ruleBasedResponses"
-      }
-     ]
-    },
-    {
-     "prompt": "Your signature question: DID PRICE CHANGE… OR DID MY EMOTION CHANGE?",
+     "prompt": "DID PRICE CHANGE… OR DID MY EMOTION CHANGE?",
      "options": [
       {
        "label": "Price changed",
-       "feedback": "Price did a normal pullback the plan already expected."
+       "feedback": "Price did a normal pullback your plan already expected."
       },
       {
        "label": "My emotion changed",
@@ -507,25 +509,25 @@
      "recog": true
     }
    ],
-   "punch": "PAUSE · MARKET · PLAN · MIND · ACTION. You’ll find this button in every simulator from here on."
+   "punch": "MARKET · PLAN · MIND · ACTION. This button lives in every simulator from here on."
   },
   {
    "type": "v2_dayli",
    "kicker": "Dayli says",
-   "quote": "You don’t have to control every feeling. <em>You have to control what the feeling gets permission to change.</em>",
+   "quote": "Fear doesn’t have to leave the room. <em>It just doesn’t get to hold the mouse.</em>",
    "pose": "point"
   },
   {
    "type": "reflect",
    "kicker": "Tell me what you know",
-   "prompt": "What’s the difference between feeling nervous and acting nervous?",
-   "modelAnswer": "Feeling nervous is information about me. Acting nervous is when the feeling changes the plan, like moving a stop with no rule. I can feel it and still follow the rule."
+   "prompt": "Think of a time you broke a rule you knew. What were you feeling right before you clicked?",
+   "modelAnswer": "I knew the rule. Right before I clicked I felt something (rushed, scared, excited) and the feeling made the decision instead of the plan."
   }
  ],
  "takeaways": [
-  "Emotion is information.",
-  "Behavior is the decision.",
-  "Feel it. Don’t automatically act on it."
+  "Feel it. Notice it. Name it.",
+  "Check the rule before you act.",
+  "Did price change, or did I?"
  ],
- "remember": "FEEL THE EMOTION. FOLLOW THE RULE ANYWAY."
+ "remember": "YOU DON’T HAVE TO CONTROL EVERY FEELING. YOU HAVE TO CONTROL WHAT IT GETS TO CHANGE."
 }

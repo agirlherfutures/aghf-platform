@@ -2,17 +2,17 @@
  "phase": "p7",
  "section": "s18",
  "lessonNumber": 9,
- "title": "Process, Outcome & Self-Worth",
+ "title": "Just One More",
  "videoUrl": null,
  "videoDuration": "",
  "xpValue": 85,
  "completeStyle": "v2",
  "passThreshold": 0.6,
- "hook": "Three different things.",
+ "hook": "Your day was over. You weren’t ready to be done.",
  "format": "slides",
  "launchpad": {
-  "outcome": "Grade outcome, process and strategy separately, and keep one trade as one observation.",
-  "missionQuestion": "What does this trade actually tell me?",
+  "outcome": "Feel the pull to keep trading after your plan says done, and treat stopping as an execution skill.",
+  "missionQuestion": "Is my trading day over, according to my plan?",
   "estMinutes": 8
  },
  "watch": {
@@ -20,137 +20,703 @@
  },
  "slides": [
   {
-   "type": "p7_monologue",
-   "kicker": "Don’t collapse them",
-   "cards": [
-    "1 · TRADE OUTCOME<br><small>win / loss</small>",
-    "2 · PROCESS QUALITY<br><small>did I follow my rules?</small>",
-    "3 · STRATEGY PERFORMANCE<br><small>across a meaningful sample</small>"
-   ],
-   "lines": [
-    "THREE DIFFERENT THINGS.",
-    "WIN ≠ GOOD TRADE. LOSS ≠ BAD TRADE."
-   ]
-  },
-  {
-   "type": "p7_process",
-   "kicker": "Classify it",
-   "title": "Two trades",
-   "trades": [
+   "type": "p7_scene",
+   "kicker": "Just One More",
+   "title": "10:48",
+   "beats": [
     {
-     "name": "TRADE A",
-     "facts": [
-      "Valid Dayli ICC.",
-      "Entered at the first valid retest.",
-      "Perfect execution, plan followed.",
-      "Stop hit."
-     ],
-     "result": "−1R LOSS",
-     "answers": {
-      "outcome": "LOSS",
-      "process": "FOLLOWED",
-      "strategy": "NOT ENOUGH"
-     },
-     "why": "One valid loss says nothing about the strategy yet."
+     "cards": [
+      "TRADE 1 · −1R",
+      "TRADE 2 · +2R",
+      "MAX TRADES · 2 / 2"
+     ]
     },
     {
-     "name": "TRADE B",
-     "facts": [
-      "Entered before Continuation.",
-      "Rule violation.",
-      "Won +2R."
-     ],
-     "result": "+2R WIN",
-     "violations": [
-      "Early entry"
-     ],
-     "answers": {
-      "outcome": "WIN",
-      "process": "VIOLATION",
-      "strategy": "NOT USEFUL"
-     },
-     "why": "A win from a rule violation isn’t evidence that the method was executed."
-    }
-   ],
-   "punch": "JUDGE THE BEHAVIOR QUICKLY. JUDGE THE STRATEGY SLOWLY."
-  },
-  {
-   "type": "p7_state_card",
-   "kicker": "Trader State Card",
-   "title": "Write the state down, not just the trade",
-   "example": {
-    "emotion": "Frustrated",
-    "intensity": "High",
-    "trigger": "Previous valid loss",
-    "urge": "Take the next setup early",
-    "ruleAtRisk": "Wait for Continuation",
-    "plannedResponse": "Pause and require the full checklist"
-   },
-   "asks": [
-    {
-     "prompt": "In this example, which field turns the feeling into a decision?",
-     "options": [
-      {
-       "label": "CURRENT EMOTION",
-       "feedback": "That’s the information."
-      },
-      {
-       "label": "PLANNED RESPONSE",
-       "correct": true,
-       "why": "Decided now, used later: in the journal, the pre-trade planner and the simulator."
-      }
+     "say": [
+      "Two trades. Both by the plan. +1R on the day.",
+      "Your plan says <b>maximum 2</b>. You’re done."
      ]
-    }
-   ],
-   "own": true,
-   "punch": "Private to you. Never shared, never ranked."
-  },
-  {
-   "type": "p7_tally",
-   "kicker": "One trade",
-   "title": "Self-worth, kept simple",
-   "rows": [
-    [
-     "SAMPLE SIZE",
-     "1",
-     "big"
-    ]
-   ],
-   "asks": [
+    },
     {
-     "prompt": "IS THIS ENOUGH DATA TO DEFINE YOUR SKILL?",
-     "options": [
-      {
-       "label": "Yes",
-       "feedback": "One trade is one observation."
-      },
-      {
-       "label": "NO",
-       "correct": true,
-       "why": "Not your skill, and definitely not who you are."
-      }
+     "thoughts": [
+      "“It’s still early.”",
+      "“Just one more.”",
+      "“I’m not ready to be done.”"
      ]
+    },
+    {
+     "chart": {
+      "bars": [
+       {
+        "o": 20982.25,
+        "h": 20987.0,
+        "l": 20981.0,
+        "c": 20986.25
+       },
+       {
+        "o": 20986.25,
+        "h": 20990.75,
+        "l": 20985.5,
+        "c": 20989.75
+       },
+       {
+        "o": 20989.75,
+        "h": 20995.5,
+        "l": 20989.25,
+        "c": 20994.0
+       },
+       {
+        "o": 20994.0,
+        "h": 20999.0,
+        "l": 20993.5,
+        "c": 20998.25
+       },
+       {
+        "o": 20998.25,
+        "h": 21004.25,
+        "l": 20996.75,
+        "c": 21001.75
+       },
+       {
+        "o": 21001.75,
+        "h": 21002.75,
+        "l": 20998.0,
+        "c": 20998.75
+       },
+       {
+        "o": 20998.75,
+        "h": 20999.5,
+        "l": 20996.5,
+        "c": 20997.0
+       },
+       {
+        "o": 20997.0,
+        "h": 20997.75,
+        "l": 20992.5,
+        "c": 20993.75
+       },
+       {
+        "o": 20993.75,
+        "h": 20994.75,
+        "l": 20990.75,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20995.5,
+        "l": 20990.25,
+        "c": 20995.0
+       },
+       {
+        "o": 20995.0,
+        "h": 20998.0,
+        "l": 20993.75,
+        "c": 20997.25
+       },
+       {
+        "o": 20997.25,
+        "h": 21002.25,
+        "l": 20996.0,
+        "c": 21001.25
+       },
+       {
+        "o": 21001.25,
+        "h": 21007.75,
+        "l": 21001.25,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21007.0,
+        "l": 21001.25,
+        "c": 21002.0
+       },
+       {
+        "o": 21002.0,
+        "h": 21008.25,
+        "l": 21002.0,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21008.75,
+        "l": 21006.25,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21008.25,
+        "l": 21006.25,
+        "c": 21007.75
+       },
+       {
+        "o": 21007.75,
+        "h": 21009.25,
+        "l": 21007.0,
+        "c": 21008.5
+       },
+       {
+        "o": 21008.5,
+        "h": 21011.25,
+        "l": 21007.75,
+        "c": 21010.25
+       },
+       {
+        "o": 21010.25,
+        "h": 21011.25,
+        "l": 21009.5,
+        "c": 21010.25
+       },
+       {
+        "o": 21010.25,
+        "h": 21011.25,
+        "l": 21007.75,
+        "c": 21009.25
+       },
+       {
+        "o": 21009.25,
+        "h": 21010.5,
+        "l": 21005.75,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21007.75,
+        "l": 21003.75,
+        "c": 21005.75
+       }
+      ],
+      "pil": 21004.25,
+      "pilAt": 4,
+      "head": {
+       "tf": "1M",
+       "label": "Something small"
+      },
+      "play": {
+       "from": 10,
+       "to": 23,
+       "speed": 300
+      }
+     }
+    },
+    {
+     "say": [
+      "Something small and technical forms."
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "What do you do?",
+      "options": [
+       {
+        "label": "One more. It’s right there.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20982.25,
+            "h": 20987.0,
+            "l": 20981.0,
+            "c": 20986.25
+           },
+           {
+            "o": 20986.25,
+            "h": 20990.75,
+            "l": 20985.5,
+            "c": 20989.75
+           },
+           {
+            "o": 20989.75,
+            "h": 20995.5,
+            "l": 20989.25,
+            "c": 20994.0
+           },
+           {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20993.5,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20996.75,
+            "c": 21001.75
+           },
+           {
+            "o": 21001.75,
+            "h": 21002.75,
+            "l": 20998.0,
+            "c": 20998.75
+           },
+           {
+            "o": 20998.75,
+            "h": 20999.5,
+            "l": 20996.5,
+            "c": 20997.0
+           },
+           {
+            "o": 20997.0,
+            "h": 20997.75,
+            "l": 20992.5,
+            "c": 20993.75
+           },
+           {
+            "o": 20993.75,
+            "h": 20994.75,
+            "l": 20990.75,
+            "c": 20991.25
+           },
+           {
+            "o": 20991.25,
+            "h": 20995.5,
+            "l": 20990.25,
+            "c": 20995.0
+           },
+           {
+            "o": 20995.0,
+            "h": 20998.0,
+            "l": 20993.75,
+            "c": 20997.25
+           },
+           {
+            "o": 20997.25,
+            "h": 21002.25,
+            "l": 20996.0,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21008.25,
+            "l": 21002.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21006.25,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.25,
+            "l": 21006.25,
+            "c": 21007.75
+           },
+           {
+            "o": 21007.75,
+            "h": 21009.25,
+            "l": 21007.0,
+            "c": 21008.5
+           },
+           {
+            "o": 21008.5,
+            "h": 21011.25,
+            "l": 21007.75,
+            "c": 21010.25
+           },
+           {
+            "o": 21010.25,
+            "h": 21011.25,
+            "l": 21009.5,
+            "c": 21010.25
+           },
+           {
+            "o": 21010.25,
+            "h": 21011.25,
+            "l": 21007.75,
+            "c": 21009.25
+           },
+           {
+            "o": 21009.25,
+            "h": 21010.5,
+            "l": 21005.75,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21007.75,
+            "l": 21003.75,
+            "c": 21005.75
+           },
+           {
+            "o": 21005.75,
+            "h": 21006.25,
+            "l": 21001.75,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21002.5,
+            "l": 20998.0,
+            "c": 20998.5
+           },
+           {
+            "o": 20998.5,
+            "h": 20999.25,
+            "l": 20993.25,
+            "c": 20994.25
+           },
+           {
+            "o": 20994.25,
+            "h": 20995.0,
+            "l": 20990.0,
+            "c": 20991.5
+           },
+           {
+            "o": 20991.5,
+            "h": 20992.0,
+            "l": 20987.25,
+            "c": 20987.5
+           },
+           {
+            "o": 20987.5,
+            "h": 20988.0,
+            "l": 20981.0,
+            "c": 20982.25
+           },
+           {
+            "o": 20982.25,
+            "h": 20983.75,
+            "l": 20977.0,
+            "c": 20978.5
+           },
+           {
+            "o": 20978.5,
+            "h": 20979.5,
+            "l": 20973.25,
+            "c": 20974.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 4,
+          "tags": [
+           {
+            "at": 30,
+            "text": "−1R",
+            "tone": "warn"
+           }
+          ],
+          "head": {
+           "tf": "1M",
+           "label": "Trade 3"
+          },
+          "play": {
+           "from": 23,
+           "to": 31,
+           "speed": 300
+          }
+         },
+         "say": [
+          "A good day became a flat day.",
+          "And if it had won? Your maximum would mean a little less tomorrow."
+         ],
+         "tally": [
+          [
+           "DAY",
+           "+1R → 0R",
+           "neutral"
+          ],
+          [
+           "RULES BROKEN",
+           "1 · max trades",
+           "mind"
+          ]
+         ]
+        },
+        "track": [
+         "overtradeCount",
+         "emotionalTradesTaken"
+        ]
+       },
+       {
+        "label": "Done. Close the platform.",
+        "path": {
+         "say": [
+          "You journal both trades and close the chart."
+         ],
+         "tally": [
+          [
+           "DAY",
+           "+1R",
+           "ok"
+          ],
+          [
+           "RULES BROKEN",
+           "0",
+           "ok"
+          ]
+         ],
+         "stamp": "SESSION COMPLETE ✓"
+        },
+        "track": "ruleBasedResponses"
+       },
+       {
+        "label": "Keep watching. Replay mode only.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20982.25,
+            "h": 20987.0,
+            "l": 20981.0,
+            "c": 20986.25
+           },
+           {
+            "o": 20986.25,
+            "h": 20990.75,
+            "l": 20985.5,
+            "c": 20989.75
+           },
+           {
+            "o": 20989.75,
+            "h": 20995.5,
+            "l": 20989.25,
+            "c": 20994.0
+           },
+           {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20993.5,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20996.75,
+            "c": 21001.75
+           },
+           {
+            "o": 21001.75,
+            "h": 21002.75,
+            "l": 20998.0,
+            "c": 20998.75
+           },
+           {
+            "o": 20998.75,
+            "h": 20999.5,
+            "l": 20996.5,
+            "c": 20997.0
+           },
+           {
+            "o": 20997.0,
+            "h": 20997.75,
+            "l": 20992.5,
+            "c": 20993.75
+           },
+           {
+            "o": 20993.75,
+            "h": 20994.75,
+            "l": 20990.75,
+            "c": 20991.25
+           },
+           {
+            "o": 20991.25,
+            "h": 20995.5,
+            "l": 20990.25,
+            "c": 20995.0
+           },
+           {
+            "o": 20995.0,
+            "h": 20998.0,
+            "l": 20993.75,
+            "c": 20997.25
+           },
+           {
+            "o": 20997.25,
+            "h": 21002.25,
+            "l": 20996.0,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21008.25,
+            "l": 21002.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21006.25,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.25,
+            "l": 21006.25,
+            "c": 21007.75
+           },
+           {
+            "o": 21007.75,
+            "h": 21009.25,
+            "l": 21007.0,
+            "c": 21008.5
+           },
+           {
+            "o": 21008.5,
+            "h": 21011.25,
+            "l": 21007.75,
+            "c": 21010.25
+           },
+           {
+            "o": 21010.25,
+            "h": 21011.25,
+            "l": 21009.5,
+            "c": 21010.25
+           },
+           {
+            "o": 21010.25,
+            "h": 21011.25,
+            "l": 21007.75,
+            "c": 21009.25
+           },
+           {
+            "o": 21009.25,
+            "h": 21010.5,
+            "l": 21005.75,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21007.75,
+            "l": 21003.75,
+            "c": 21005.75
+           },
+           {
+            "o": 21005.75,
+            "h": 21006.25,
+            "l": 21001.75,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21002.5,
+            "l": 20998.0,
+            "c": 20998.5
+           },
+           {
+            "o": 20998.5,
+            "h": 20999.25,
+            "l": 20993.25,
+            "c": 20994.25
+           },
+           {
+            "o": 20994.25,
+            "h": 20995.0,
+            "l": 20990.0,
+            "c": 20991.5
+           },
+           {
+            "o": 20991.5,
+            "h": 20992.0,
+            "l": 20987.25,
+            "c": 20987.5
+           },
+           {
+            "o": 20987.5,
+            "h": 20988.0,
+            "l": 20981.0,
+            "c": 20982.25
+           },
+           {
+            "o": 20982.25,
+            "h": 20983.75,
+            "l": 20977.0,
+            "c": 20978.5
+           },
+           {
+            "o": 20978.5,
+            "h": 20979.5,
+            "l": 20973.25,
+            "c": 20974.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 4,
+          "head": {
+           "tf": "1M",
+           "label": "Replay mode"
+          },
+          "play": {
+           "from": 23,
+           "to": 31,
+           "speed": 300
+          }
+         },
+         "say": [
+          "You watched it fail without paying for it.",
+          "Studying the market after your day is done is learning. <b>Trading it is not.</b>"
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "who": {
+      "before": {
+       "h": "THE TRADER",
+       "lines": [
+        "Planned two trades.",
+        "Took two."
+       ]
+      },
+      "after": {
+       "h": "THE RESTLESSNESS",
+       "lines": [
+        "Wants the feeling of trading.",
+        "Calls it “one more”."
+       ]
+      }
+     }
+    },
+    {
+     "principle": "WHEN YOUR TRADING DAY IS OVER, BEING DONE IS THE EXECUTION."
     }
-   ],
-   "punch": "One trade is one observation. Not identity."
+   ]
   },
   {
    "type": "v2_dayli",
    "kicker": "Dayli says",
-   "quote": "Your P&amp;L grades the trade. <em>Your journal grades the process. Neither one grades you.</em>",
+   "quote": "The third trade always looks like the one that fixes everything. 😂 <em>That’s why the maximum exists.</em>",
    "pose": "point"
   },
   {
    "type": "reflect",
    "kicker": "Tell me what you know",
-   "prompt": "What does “judge behavior quickly, judge strategy slowly” mean?",
-   "modelAnswer": "After every trade I can say right away whether I followed my rules. But whether the strategy works takes a meaningful sample. One win or loss can’t answer that."
+   "prompt": "What does “one more” usually mean for you?",
+   "modelAnswer": "It means I want the feeling of trading, not that the plan allows a trade. When my max or my daily stop is reached, being done is the execution."
   }
  ],
  "takeaways": [
-  "Outcome · process · strategy: three things.",
-  "Judge behavior quickly.",
-  "Judge strategy slowly."
+  "Your plan defines the end of the day.",
+  "“One more” is a feeling, not a setup.",
+  "Done is an execution skill."
  ],
- "remember": "JUDGE THE BEHAVIOR QUICKLY. JUDGE THE STRATEGY SLOWLY."
+ "remember": "WHEN YOUR TRADING DAY IS OVER, BEING DONE IS THE EXECUTION."
 }

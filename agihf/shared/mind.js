@@ -64,12 +64,27 @@ export function chartBlock(host, c) {
   host.appendChild(box);
   const el = box.querySelector('.p7-chart');
   if (c.bars) {
-    const ch = mountExecChart(el, { bars: c.bars, total: c.slots || c.bars.length, pil: null, dir: c.dir || 'bullish' });
+    const ch = mountExecChart(el, { bars: c.bars, total: c.slots || c.bars.length, pil: null, dir: c.dir || 'bullish', range: c.range });
     if (c.pil != null) ch.setPil(c.pil, c.pilAt);
-    ch.draw(c.show ?? c.bars.length);
-    (c.tags || []).forEach((t) => ch.tag(t.at, t.text, t.tone || 'gold', t.pos || 'auto', `t${t.at}`));
+    const tags = () => (c.tags || []).forEach((t) => { if (t.at < shown) ch.tag(t.at, t.text, t.tone || 'gold', t.pos || 'auto', `t${t.at}`); });
+    let shown = c.play ? c.play.from : (c.show ?? c.bars.length);
+    ch.draw(shown);
     if (c.lines) ch.lines(c.lines);
-  } else mountChart(el, c, { height: c.height || 200 });
+    tags();
+    box.chart = ch;
+    // c.play = { from, to, speed }: candles print one by one; box.played resolves at the end.
+    box.played = new Promise((res) => {
+      if (!c.play) { res(); return; }
+      const to = c.play.to ?? c.bars.length;
+      const step = () => {
+        if (!box.isConnected) { res(); return; }
+        if (shown >= to) { res(); return; }
+        shown += 1; ch.draw(shown); (c.tags || []).filter((t) => t.at === shown - 1).forEach((t) => ch.tag(t.at, t.text, t.tone || 'gold', t.pos || 'auto', `t${t.at}`));
+        setTimeout(step, reduced() ? 0 : (c.play.speed || 260));
+      };
+      setTimeout(step, reduced() ? 0 : 500);
+    });
+  } else { mountChart(el, c, { height: c.height || 200 }); box.played = Promise.resolve(); }
   return box;
 }
 

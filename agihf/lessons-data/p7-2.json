@@ -2,17 +2,17 @@
  "phase": "p7",
  "section": "s18",
  "lessonNumber": 2,
- "title": "Fear",
+ "title": "After the Win",
  "videoUrl": null,
  "videoDuration": "",
  "xpValue": 85,
  "completeStyle": "v2",
  "passThreshold": 0.6,
- "hook": "Fear wants certainty.",
+ "hook": "Why your best trade can become the reason you take your worst one.",
  "format": "slides",
  "launchpad": {
-  "outcome": "Feel fear in a live trade, see what it pushes you toward, and separate a planned exit from a fearful one.",
-  "missionQuestion": "Why did you exit?",
+  "outcome": "Feel what a clean win does to your judgment, and learn why confidence is not confirmation.",
+  "missionQuestion": "Did the market give me a setup, or did the win give me permission?",
   "estMinutes": 8
  },
  "watch": {
@@ -20,296 +20,799 @@
  },
  "slides": [
   {
-   "type": "manage_sim",
-   "kicker": "Valid ICC · correct risk · correct entry",
-   "title": "Feel it first",
-   "plan": {
-    "entryPrice": 20000,
-    "stopPrice": 19970,
-    "targetPrice": 20060,
-    "contractCount": 2,
-    "managementModel": "fixed",
-    "partialRules": "None",
-    "runnerRules": "None",
-    "breakEvenRules": "None",
-    "structuralRules": "None",
-    "earlyInterventionRules": "A 1M close below the 1H HL"
-   },
-   "bars": [
+   "type": "p7_scene",
+   "kicker": "After the Win",
+   "title": "You just hit TP.",
+   "beats": [
     {
-     "o": 20018.0,
-     "h": 20019.0,
-     "l": 20012.5,
-     "c": 20014.0
-    },
-    {
-     "o": 20014.0,
-     "h": 20015.0,
-     "l": 20010.75,
-     "c": 20011.5
-    },
-    {
-     "o": 20011.5,
-     "h": 20012.5,
-     "l": 20008.5,
-     "c": 20009.5
-    },
-    {
-     "o": 20009.5,
-     "h": 20010.75,
-     "l": 20006.5,
-     "c": 20007.25
-    },
-    {
-     "o": 20007.25,
-     "h": 20008.0,
-     "l": 20002.0,
-     "c": 20003.0
-    },
-    {
-     "o": 20003.0,
-     "h": 20004.0,
-     "l": 19999.75,
-     "c": 20002.5
-    },
-    {
-     "o": 20002.5,
-     "h": 20008.5,
-     "l": 20001.0,
-     "c": 20008.0
-    },
-    {
-     "o": 20008.0,
-     "h": 20017.5,
-     "l": 20007.0,
-     "c": 20015.0
-    },
-    {
-     "o": 20015.0,
-     "h": 20023.5,
-     "l": 20014.0,
-     "c": 20022.0
-    },
-    {
-     "o": 20022.0,
-     "h": 20024.0,
-     "l": 20015.25,
-     "c": 20017.0
-    },
-    {
-     "o": 20017.0,
-     "h": 20018.5,
-     "l": 20009.5,
-     "c": 20012.0
-    },
-    {
-     "o": 20012.0,
-     "h": 20013.75,
-     "l": 20008.0,
-     "c": 20009.0
-    },
-    {
-     "o": 20009.0,
-     "h": 20017.0,
-     "l": 20007.25,
-     "c": 20016.0
-    },
-    {
-     "o": 20016.0,
-     "h": 20025.75,
-     "l": 20015.25,
-     "c": 20024.0
-    },
-    {
-     "o": 20024.0,
-     "h": 20033.0,
-     "l": 20022.75,
-     "c": 20031.0
-    },
-    {
-     "o": 20031.0,
-     "h": 20040.0,
-     "l": 20030.5,
-     "c": 20038.0
-    }
-   ],
-   "entryAt": 5,
-   "checkpoints": [
-    {
-     "at": 6,
-     "kind": "note",
-     "text": "<b>+8.</b>",
-     "hold": 900
-    },
-    {
-     "at": 7,
-     "kind": "note",
-     "text": "<b>+15.</b>",
-     "hold": 900
-    },
-    {
-     "at": 8,
-     "kind": "note",
-     "text": "<b>+22.</b> 😌",
-     "hold": 1100
-    },
-    {
-     "at": 10,
-     "prompt": "Pullback. Nothing in your plan triggered. What do you do?",
-     "thought": "“I DON’T WANT THIS TO TURN INTO A LOSER.”",
-     "expect": "follow",
-     "mind": {
-      "close": "fearDrivenManagementCount",
-      "move-stop": "fearDrivenManagementCount",
-      "follow": "ruleBasedResponses"
-     },
-     "after": "Nothing in the plan triggered. The pullback stayed a pullback.",
-     "goal": true
-    }
-   ],
-   "actions": [
-    "close",
-    "move-stop",
-    "follow"
-   ],
-   "labels": {
-    "close": "CLOSE",
-    "move-stop": "MOVE TO BE",
-    "follow": "FOLLOW PLAN"
-   },
-   "intro": "Your plan: SL −30, TP +60. No break-even rule. No partials.",
-   "end": {
-    "ask": {
-     "prompt": "WHAT WAS FEAR TRYING TO MAKE YOU DO?",
-     "options": [
-      {
-       "label": "Protect unrealized profit by abandoning the management plan",
-       "correct": true,
-       "why": "That’s fear’s whole pitch: make the discomfort stop, even if it costs the plan."
+     "chart": {
+      "bars": [
+       {
+        "o": 20018.0,
+        "h": 20019.25,
+        "l": 20014.75,
+        "c": 20015.0
+       },
+       {
+        "o": 20015.0,
+        "h": 20015.25,
+        "l": 20010.75,
+        "c": 20011.75
+       },
+       {
+        "o": 20011.75,
+        "h": 20012.5,
+        "l": 20007.0,
+        "c": 20008.25
+       },
+       {
+        "o": 20008.25,
+        "h": 20008.75,
+        "l": 20004.25,
+        "c": 20005.0
+       },
+       {
+        "o": 20005.0,
+        "h": 20006.25,
+        "l": 20002.25,
+        "c": 20003.0
+       },
+       {
+        "o": 20003.0,
+        "h": 20004.0,
+        "l": 19999.75,
+        "c": 20002.5
+       },
+       {
+        "o": 20002.5,
+        "h": 20013.25,
+        "l": 20000.25,
+        "c": 20012.0
+       },
+       {
+        "o": 20012.0,
+        "h": 20024.5,
+        "l": 20011.0,
+        "c": 20024.0
+       },
+       {
+        "o": 20024.0,
+        "h": 20033.25,
+        "l": 20022.25,
+        "c": 20033.0
+       },
+       {
+        "o": 20033.0,
+        "h": 20041.75,
+        "l": 20032.0,
+        "c": 20041.0
+       },
+       {
+        "o": 20041.0,
+        "h": 20052.0,
+        "l": 20040.75,
+        "c": 20050.0
+       },
+       {
+        "o": 20050.0,
+        "h": 20057.5,
+        "l": 20049.0,
+        "c": 20057.0
+       },
+       {
+        "o": 20057.0,
+        "h": 20061.5,
+        "l": 20056.0,
+        "c": 20060.5
+       }
+      ],
+      "pil": null,
+      "pilAt": null,
+      "head": {
+       "tf": "1M",
+       "label": "Long 2 MNQ"
       },
-      {
-       "label": "Read new structure",
-       "feedback": "Structure didn’t change. The candle color did."
-      },
-      {
-       "label": "Follow a break-even rule",
-       "feedback": "There was no break-even rule. That’s why it would have been fear."
+      "lines": [
+       {
+        "price": 20000,
+        "label": "ENTRY",
+        "tone": "ink",
+        "at": 5
+       },
+       {
+        "price": 19970,
+        "label": "STOP −30",
+        "tone": "warn",
+        "at": 5
+       },
+       {
+        "price": 20060,
+        "label": "TP +60",
+        "tone": "ok",
+        "at": 5
+       }
+      ],
+      "play": {
+       "from": 5,
+       "to": 13,
+       "speed": 300
       }
-     ],
-     "stack": true
+     }
+    },
+    {
+     "say": [
+      "Clean entry. Clean execution.",
+      "<b>You followed your plan perfectly.</b> +2R."
+     ]
+    },
+    {
+     "say": [
+      "Then you look back at the chart.",
+      "Price is still moving."
+     ]
+    },
+    {
+     "thoughts": [
+      "“I’m locked in today.”",
+      "“I could probably catch one more.”",
+      "“I’m seeing the market so clearly.”"
+     ]
+    },
+    {
+     "say": [
+      "Nothing about the market changed.",
+      "<b>But something changed in you.</b>"
+     ]
+    },
+    {
+     "chart": {
+      "bars": [
+       {
+        "o": 20982.25,
+        "h": 20985.5,
+        "l": 20981.5,
+        "c": 20985.0
+       },
+       {
+        "o": 20985.0,
+        "h": 20991.25,
+        "l": 20984.5,
+        "c": 20990.75
+       },
+       {
+        "o": 20990.75,
+        "h": 20994.75,
+        "l": 20990.25,
+        "c": 20993.5
+       },
+       {
+        "o": 20993.5,
+        "h": 20999.5,
+        "l": 20992.5,
+        "c": 20998.25
+       },
+       {
+        "o": 20998.25,
+        "h": 21004.25,
+        "l": 20997.25,
+        "c": 21001.75
+       },
+       {
+        "o": 21001.75,
+        "h": 21002.5,
+        "l": 20997.5,
+        "c": 20999.0
+       },
+       {
+        "o": 20999.0,
+        "h": 20999.25,
+        "l": 20994.0,
+        "c": 20995.5
+       },
+       {
+        "o": 20995.5,
+        "h": 20996.0,
+        "l": 20993.0,
+        "c": 20993.75
+       },
+       {
+        "o": 20993.75,
+        "h": 20994.5,
+        "l": 20989.75,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20994.25,
+        "l": 20990.25,
+        "c": 20993.75
+       },
+       {
+        "o": 20993.75,
+        "h": 20999.5,
+        "l": 20992.5,
+        "c": 20998.0
+       },
+       {
+        "o": 20998.0,
+        "h": 21002.0,
+        "l": 20997.5,
+        "c": 21001.25
+       },
+       {
+        "o": 21001.25,
+        "h": 21006.75,
+        "l": 20999.75,
+        "c": 21002.75,
+        "path": [
+         21001.25,
+         21006.75,
+         21002.75
+        ]
+       },
+       {
+        "o": 21002.75,
+        "h": 21003.0,
+        "l": 20999.0,
+        "c": 21000.25
+       },
+       {
+        "o": 21000.25,
+        "h": 21006.75,
+        "l": 20999.25,
+        "c": 21001.75,
+        "path": [
+         21000.25,
+         21006.75,
+         21001.75
+        ]
+       },
+       {
+        "o": 21001.75,
+        "h": 21002.25,
+        "l": 20999.0,
+        "c": 21000.25
+       }
+      ],
+      "pil": 21004.25,
+      "pilAt": 4,
+      "head": {
+       "tf": "1M",
+       "label": "The next chart"
+      }
+     },
+     "caption": "Price wicked through the PIL. It never closed through it."
+    },
+    {
+     "say": [
+      "There is no valid setup here. Your model is clear about that.",
+      "You <em>know</em> there’s no trade.",
+      "<b>So why do you suddenly want one?</b>"
+     ]
+    },
+    {
+     "thoughts": [
+      "“It’s basically the same move.”",
+      "“I’m on today.”"
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "Your cursor is over BUY. What do you do?",
+      "options": [
+       {
+        "label": "Take it. You’re on.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20982.25,
+            "h": 20985.5,
+            "l": 20981.5,
+            "c": 20985.0
+           },
+           {
+            "o": 20985.0,
+            "h": 20991.25,
+            "l": 20984.5,
+            "c": 20990.75
+           },
+           {
+            "o": 20990.75,
+            "h": 20994.75,
+            "l": 20990.25,
+            "c": 20993.5
+           },
+           {
+            "o": 20993.5,
+            "h": 20999.5,
+            "l": 20992.5,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.25,
+            "c": 21001.75
+           },
+           {
+            "o": 21001.75,
+            "h": 21002.5,
+            "l": 20997.5,
+            "c": 20999.0
+           },
+           {
+            "o": 20999.0,
+            "h": 20999.25,
+            "l": 20994.0,
+            "c": 20995.5
+           },
+           {
+            "o": 20995.5,
+            "h": 20996.0,
+            "l": 20993.0,
+            "c": 20993.75
+           },
+           {
+            "o": 20993.75,
+            "h": 20994.5,
+            "l": 20989.75,
+            "c": 20991.25
+           },
+           {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.25,
+            "c": 20993.75
+           },
+           {
+            "o": 20993.75,
+            "h": 20999.5,
+            "l": 20992.5,
+            "c": 20998.0
+           },
+           {
+            "o": 20998.0,
+            "h": 21002.0,
+            "l": 20997.5,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21006.75,
+            "l": 20999.75,
+            "c": 21002.75,
+            "path": [
+             21001.25,
+             21006.75,
+             21002.75
+            ]
+           },
+           {
+            "o": 21002.75,
+            "h": 21003.0,
+            "l": 20999.0,
+            "c": 21000.25
+           },
+           {
+            "o": 21000.25,
+            "h": 21006.75,
+            "l": 20999.25,
+            "c": 21001.75,
+            "path": [
+             21000.25,
+             21006.75,
+             21001.75
+            ]
+           },
+           {
+            "o": 21001.75,
+            "h": 21002.25,
+            "l": 20999.0,
+            "c": 21000.25
+           },
+           {
+            "o": 21000.25,
+            "h": 21000.75,
+            "l": 20995.75,
+            "c": 20996.5
+           },
+           {
+            "o": 20996.5,
+            "h": 20997.25,
+            "l": 20994.75,
+            "c": 20996.0
+           },
+           {
+            "o": 20996.0,
+            "h": 20996.5,
+            "l": 20991.25,
+            "c": 20992.25
+           },
+           {
+            "o": 20992.25,
+            "h": 20993.25,
+            "l": 20987.5,
+            "c": 20989.0
+           },
+           {
+            "o": 20989.0,
+            "h": 20989.75,
+            "l": 20985.0,
+            "c": 20985.25
+           },
+           {
+            "o": 20985.25,
+            "h": 20986.5,
+            "l": 20979.75,
+            "c": 20980.25
+           },
+           {
+            "o": 20980.25,
+            "h": 20981.5,
+            "l": 20974.25,
+            "c": 20975.5
+           },
+           {
+            "o": 20975.5,
+            "h": 20976.75,
+            "l": 20971.75,
+            "c": 20973.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 4,
+          "tags": [
+           {
+            "at": 23,
+            "text": "−1R",
+            "tone": "warn"
+           }
+          ],
+          "head": {
+           "tf": "1M",
+           "label": "You bought the wick"
+          },
+          "play": {
+           "from": 16,
+           "to": 24,
+           "speed": 300
+          }
+         },
+         "say": [
+          "It never closed through. It never had to.",
+          "The win didn’t change the chart. It changed how much you trusted yourself.",
+          "And if it had worked? <b>You’d have learned the wrong lesson faster.</b>"
+         ],
+         "tally": [
+          [
+           "TRADE 1",
+           "+2R ✓ PLAN"
+          ],
+          [
+           "TRADE 2",
+           "−1R · NO SETUP",
+           "mind"
+          ],
+          [
+           "DAY",
+           "+1R",
+           "neutral"
+          ]
+         ]
+        },
+        "track": [
+         "greedDrivenDecisionCount",
+         "emotionalTradesTaken"
+        ]
+       },
+       {
+        "label": "Wait for a real close through the PIL",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20982.25,
+            "h": 20985.5,
+            "l": 20981.5,
+            "c": 20985.0
+           },
+           {
+            "o": 20985.0,
+            "h": 20991.25,
+            "l": 20984.5,
+            "c": 20990.75
+           },
+           {
+            "o": 20990.75,
+            "h": 20994.75,
+            "l": 20990.25,
+            "c": 20993.5
+           },
+           {
+            "o": 20993.5,
+            "h": 20999.5,
+            "l": 20992.5,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.25,
+            "c": 21001.75
+           },
+           {
+            "o": 21001.75,
+            "h": 21002.5,
+            "l": 20997.5,
+            "c": 20999.0
+           },
+           {
+            "o": 20999.0,
+            "h": 20999.25,
+            "l": 20994.0,
+            "c": 20995.5
+           },
+           {
+            "o": 20995.5,
+            "h": 20996.0,
+            "l": 20993.0,
+            "c": 20993.75
+           },
+           {
+            "o": 20993.75,
+            "h": 20994.5,
+            "l": 20989.75,
+            "c": 20991.25
+           },
+           {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.25,
+            "c": 20993.75
+           },
+           {
+            "o": 20993.75,
+            "h": 20999.5,
+            "l": 20992.5,
+            "c": 20998.0
+           },
+           {
+            "o": 20998.0,
+            "h": 21002.0,
+            "l": 20997.5,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21006.75,
+            "l": 20999.75,
+            "c": 21002.75,
+            "path": [
+             21001.25,
+             21006.75,
+             21002.75
+            ]
+           },
+           {
+            "o": 21002.75,
+            "h": 21003.0,
+            "l": 20999.0,
+            "c": 21000.25
+           },
+           {
+            "o": 21000.25,
+            "h": 21006.75,
+            "l": 20999.25,
+            "c": 21001.75,
+            "path": [
+             21000.25,
+             21006.75,
+             21001.75
+            ]
+           },
+           {
+            "o": 21001.75,
+            "h": 21002.25,
+            "l": 20999.0,
+            "c": 21000.25
+           },
+           {
+            "o": 21000.25,
+            "h": 21001.25,
+            "l": 20998.5,
+            "c": 20999.75
+           },
+           {
+            "o": 20999.75,
+            "h": 21000.75,
+            "l": 20997.0,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 20999.75,
+            "l": 20997.75,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21001.25,
+            "l": 20997.25,
+            "c": 21000.25
+           },
+           {
+            "o": 21000.25,
+            "h": 21002.75,
+            "l": 20999.25,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21002.75,
+            "l": 20998.0,
+            "c": 20999.0
+           },
+           {
+            "o": 20999.0,
+            "h": 20999.75,
+            "l": 20996.0,
+            "c": 20996.75
+           },
+           {
+            "o": 20996.75,
+            "h": 20997.0,
+            "l": 20994.25,
+            "c": 20995.25
+           },
+           {
+            "o": 20995.25,
+            "h": 20998.0,
+            "l": 20994.0,
+            "c": 20997.25
+           },
+           {
+            "o": 20997.25,
+            "h": 21000.0,
+            "l": 20996.25,
+            "c": 20999.0
+           },
+           {
+            "o": 20999.0,
+            "h": 20999.75,
+            "l": 20998.75,
+            "c": 20999.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 4,
+          "head": {
+           "tf": "1M",
+           "label": "You waited"
+          },
+          "play": {
+           "from": 16,
+           "to": 27,
+           "speed": 300
+          }
+         },
+         "say": [
+          "It never closed through.",
+          "No setup ever formed. Nothing for your model to do."
+         ],
+         "tally": [
+          [
+           "DAY",
+           "+2R",
+           "ok"
+          ],
+          [
+           "RULES BROKEN",
+           "0",
+           "ok"
+          ]
+         ]
+        },
+        "track": "ruleBasedResponses"
+       },
+       {
+        "label": "Close the platform. The plan said done after +2R.",
+        "path": {
+         "say": [
+          "You logged the trade, wrote one line in your journal, and closed the chart.",
+          "Maybe it moved after. You’ll never know. <b>That’s fine.</b>"
+         ],
+         "tally": [
+          [
+           "DAY",
+           "+2R",
+           "ok"
+          ],
+          [
+           "SESSION",
+           "COMPLETE ✓",
+           "big"
+          ]
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "<b>The first win gave you permission you never actually had.</b>"
+     ]
+    },
+    {
+     "who": {
+      "before": {
+       "h": "THE TRADER",
+       "lines": [
+        "She waited.",
+        "She followed confirmation.",
+        "She executed her model."
+       ]
+      },
+      "after": {
+       "h": "THE FEELING",
+       "lines": [
+        "She feels sharp.",
+        "Confident.",
+        "Maybe even invincible."
+       ]
+      },
+      "verdict": "Before the win, the trader. After the win, the feeling.",
+      "title": "WHO’S TRADING NOW?"
+     }
+    },
+    {
+     "principle": "CONFIDENCE IS NOT CONFIRMATION."
     }
-   }
+   ]
   },
   {
    "type": "p7_split",
-   "kicker": "Two kinds of fear",
-   "title": "They push you toward different things",
+   "kicker": "Not every runner is greed",
+   "title": "Same position. Different source.",
    "left": {
-    "h": "FEAR OF LOSING",
+    "h": "PLANNED RUNNER",
     "lines": [
-     "“What if it stops out?”",
-     "Premature exit.",
-     "Premature break even."
+     "Written before entry.",
+     "Trail rule defined.",
+     "Follows the plan."
     ],
-    "tone": "mind"
+    "tone": "ok"
    },
    "right": {
-    "h": "FEAR OF BEING WRONG",
+    "h": "EXCITEMENT RUNNER",
     "lines": [
-     "“What if my analysis was wrong?”",
-     "Skips the valid trade.",
-     "Asks for extra confirmations."
+     "Added at the target.",
+     "“It looks so bullish.”",
+     "The plan, rewritten by a feeling."
     ],
     "tone": "mind"
    },
-   "verdict": "Same emotion family. Different behavior. Name which one is talking."
-  },
-  {
-   "type": "p7_map",
-   "kicker": "Fear behavior map",
-   "title": "What fear may produce",
-   "emotion": "FEAR",
-   "icon": "😰",
-   "behaviors": [
-    "premature exit",
-    "premature BE",
-    "skipped valid trade",
-    "unplanned size reduction",
-    "tick watching",
-    "extra confirmations",
-    "avoidance after losses"
-   ],
-   "note": "May produce. Not always. Every exit isn’t fear, and every skipped trade isn’t either."
-  },
-  {
-   "type": "p6_sort",
-   "kicker": "Why did you exit?",
-   "title": "Three early exits. Same price. Different reasons.",
-   "buckets": [
-    {
-     "key": "rule",
-     "label": "MANAGEMENT RULE",
-     "tone": "ink",
-     "short": "📐 RULE"
-    },
-    {
-     "key": "info",
-     "label": "NEW VALID INFO",
-     "tone": "ink",
-     "short": "📊 NEW INFO"
-    },
-    {
-     "key": "fear",
-     "label": "FEAR CHANGED THE PLAN",
-     "tone": "ink",
-     "short": "😰 FEAR"
-    }
-   ],
-   "items": [
-    {
-     "text": "Her written plan: move to BE after a 1M close above +30. That close printed. She moved it.",
-     "bucket": "rule",
-     "why": "Planned and triggered. Not fear."
-    },
-    {
-     "text": "Her early-intervention rule: exit on a 1M close below the 1H HL. That close printed. She exited.",
-     "bucket": "info",
-     "why": "New valid information her plan defined in advance."
-    },
-    {
-     "text": "“It felt like it might come back.” No rule triggered. She closed.",
-     "bucket": "fear",
-     "why": "The plan didn’t change. Her comfort did."
-    }
-   ],
-   "track": false,
-   "punch": "Taking profit early isn’t automatically wrong. The question is WHY DID YOU EXIT?"
-  },
-  {
-   "type": "p7_monologue",
-   "lines": [
-    "FEAR WANTS CERTAINTY.",
-    "TRADING GIVES YOU PROBABILITIES + RULES.",
-    "You can’t get certainty. You can follow the rules while you’re uncertain."
-   ]
+   "verdict": "Ask: was it in the plan, or did excitement add it?"
   },
   {
    "type": "v2_dayli",
    "kicker": "Dayli says",
-   "quote": "Fear doesn’t need to leave the room. <em>It just doesn’t get to hold the mouse.</em>",
+   "quote": "Enough is a number you decide <em>before</em> the trade feels amazing.",
    "pose": "point"
   },
   {
    "type": "reflect",
    "kicker": "Tell me what you know",
-   "prompt": "What does fear look like in your trading decisions?",
-   "modelAnswer": "It looks like closing a planned trade to make the discomfort stop, moving to break even without a rule, or skipping a valid setup because the last one lost. I ask: management rule, new valid information, or fear?"
+   "prompt": "What does a win do to you? What do you want to do right after one?",
+   "modelAnswer": "After a win I feel sharp and want one more, or a bigger size, or a farther target. The win didn’t give me a setup. Confidence is not confirmation."
   }
  ],
  "takeaways": [
-  "Fear wants certainty.",
-  "Fear of losing ≠ fear of being wrong.",
-  "Ask: why did I exit?"
+  "A win changes you, not the chart.",
+  "Greed is refusing to respect “enough”.",
+  "Confidence is not confirmation."
  ],
- "remember": "FEAR WANTS CERTAINTY. TRADING GIVES YOU PROBABILITIES + RULES."
+ "remember": "CONFIDENCE IS NOT CONFIRMATION."
 }

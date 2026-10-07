@@ -1,18 +1,18 @@
 {
  "phase": "p7",
- "section": "s19",
+ "section": "s18",
  "lessonNumber": 13,
- "title": "The No-Chasing Rule",
+ "title": "Who’s Trading Now?",
  "videoUrl": null,
  "videoDuration": "",
  "xpValue": 85,
  "completeStyle": "v2",
  "passThreshold": 0.6,
- "hook": "Missing it isn’t permission.",
+ "hook": "Before you read the chart, read you.",
  "format": "slides",
  "launchpad": {
-  "outcome": "Write a no-chase rule with no loophole, and recognize the loophole when it talks.",
-  "missionQuestion": "Is my rule specific enough that live-trading-me can’t argue with it?",
+  "outcome": "Check your own state before a session, and catch who is making the decision in the moment.",
+  "missionQuestion": "Who is trading right now: the trader, or the feeling?",
   "estMinutes": 8
  },
  "watch": {
@@ -20,152 +20,164 @@
  },
  "slides": [
   {
-   "type": "p7_timeline",
-   "kicker": "Phase 6, again",
-   "title": "The retest you missed",
-   "rows": [
+   "type": "p7_scene",
+   "kicker": "Who’s Trading Now?",
+   "title": "Three moments. One question.",
+   "beats": [
     {
-     "t": "20,000",
-     "text": "PIL. The retest happens. You miss it.",
-     "state": "PLANNED ENTRY",
-     "tone": "ok"
+     "say": [
+      "By now you’ve met them all.",
+      "The win. The heater. The loss. The streak. “I knew it.” Frozen. The candle you can’t stop watching. One more. Boredom. The bills."
+     ]
     },
     {
-     "t": "20,006",
-     "text": "Price lifts.",
-     "tone": "ink"
+     "say": [
+      "They don’t show up one at a time. <b>They show up in the middle of a normal Tuesday.</b>"
+     ]
     },
     {
-     "t": "20,012",
-     "text": "Still going.",
-     "tone": "warn"
+     "choice": {
+      "prompt": "9:58. You lost yesterday. A valid setup forms. Your stomach drops.",
+      "options": [
+       {
+        "label": "Notice it, check the rule, take it",
+        "path": {
+         "say": [
+          "The feeling came along. <b>The trader made the decision.</b>"
+         ]
+        },
+        "track": "ruleBasedResponses"
+       },
+       {
+        "label": "Skip it. Not today.",
+        "path": {
+         "say": [
+          "That wasn’t a decision about this chart. <b>Yesterday made it.</b>"
+         ]
+        },
+        "track": "hesitationCount"
+       }
+      ]
+     }
     },
     {
-     "t": "20,020",
-     "text": "“But it’s going to 20,060.”",
-     "state": "EMOTION ↑",
-     "tone": "mind"
-    }
-   ],
-   "asks": [
+     "choice": {
+      "prompt": "10:20. +2R on the day. Your plan says done.",
+      "options": [
+       {
+        "label": "One more. You’re on.",
+        "path": {
+         "say": [
+          "The heater made that one."
+         ]
+        },
+        "track": "overtradeCount"
+       },
+       {
+        "label": "Done. Journal and close.",
+        "path": {
+         "say": [
+          "The trader."
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
     {
-     "prompt": "WHAT CHANGED?",
-     "options": [
-      {
-       "label": "Only the price",
-       "feedback": "The price changed everything else too."
-      },
-      {
-       "label": "Entry, risk/reward and execution, and the emotion is rising",
-       "correct": true,
-       "why": "Planned entry 20,000. Current price 20,020. The trade you planned no longer exists."
-      }
-     ],
-     "rcat": "noChase"
+     "choice": {
+      "prompt": "10:41. You’re in a trade, +15, and a red candle prints.",
+      "options": [
+       {
+        "label": "Close it to protect the green",
+        "path": {
+         "say": [
+          "Fear made that one. No rule triggered."
+         ]
+        },
+        "track": "fearDrivenManagementCount"
+       },
+       {
+        "label": "Hold. Nothing in the plan changed.",
+        "path": {
+         "say": [
+          "The trader."
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Same person. Same morning. <b>Different traders, minute to minute.</b>",
+      "The skill isn’t never feeling it. It’s noticing who just took the mouse."
+     ]
+    },
+    {
+     "principle": "BEFORE EVERY CLICK: WHO’S TRADING NOW?"
     }
    ]
   },
   {
-   "type": "p7_rule_write",
-   "kicker": "Build the rule",
-   "title": "Close the loophole",
-   "weak": "I won’t chase too much.",
-   "critique": [
-    "TOO MUCH = HOW MUCH? 😂",
-    "“I’ll try not to enter late.”",
-    "TRY? 😭"
-   ],
-   "options": [
+   "type": "p7_temp",
+   "kicker": "Your emotional temperature",
+   "title": "Read you first",
+   "body": "Where would you put each thought? This is for noticing, not grading yourself.",
+   "items": [
     {
-     "text": "I’ll only chase if it really looks strong.",
-     "feedback": "“Really” is a loophole with a bow on it. 😂"
+     "thought": "Ready. Plan’s clear.",
+     "state": "calm"
     },
     {
-     "text": "If my valid Dayli ICC retest entry is missed and price moves away, I do not market-enter late. I wait for a new valid setup.",
-     "correct": true,
-     "why": "CLEAR · TRIGGERED · ACTIONABLE · DECIDED IN ADVANCE."
+     "thought": "Ooh, it’s moving fast.",
+     "state": "elevated"
     },
     {
-     "text": "I’ll be more patient next time.",
-     "feedback": "Nothing triggers it and nothing tells you what to do instead."
+     "thought": "Ugh. Third loss this week.",
+     "state": "frustrated"
+    },
+    {
+     "thought": "I NEED that back. Now.",
+     "state": "red"
     }
    ],
-   "rcat": "noChase",
-   "allowCustom": true,
-   "save": "noChase",
-   "customLabel": "Keep this one, or write it in your words. It saves to MY AGHF RULEBOOK."
+   "punch": "A red state doesn’t make the setup invalid. It makes your personal rules matter more. (That’s Section 2.)"
   },
   {
-   "type": "p7_mirror",
-   "title": "The loophole talking",
-   "thought": "“I’m not chasing. I’m just entering a little late.”",
-   "asks": [
-    {
-     "prompt": "GIRL. 😭 Was the planned execution opportunity missed?",
-     "options": [
-      {
-       "label": "YES",
-       "correct": true
-      },
-      {
-       "label": "No",
-       "feedback": "The retest came and went."
-      }
-     ],
-     "focus": "market"
-    },
-    {
-     "prompt": "Are you entering because price is leaving?",
-     "options": [
-      {
-       "label": "YES",
-       "correct": true,
-       "why": "THAT’S THE LOOPHOLE TALKING.",
-       "track": "fomoRecognized"
-      },
-      {
-       "label": "No, it’s analysis",
-       "feedback": "The analysis was the retest. This is the leaving.",
-       "rinc": "exceptions"
-      }
-     ],
-     "focus": "mind"
-    }
-   ],
-   "market": {
-    "state": "Retest missed · price +20"
+   "type": "p7_state_card",
+   "kicker": "Trader State Card",
+   "title": "Write the state down, not just the trade",
+   "example": {
+    "emotion": "Frustrated",
+    "intensity": "High",
+    "trigger": "Previous valid loss",
+    "urge": "Take the next setup early",
+    "ruleAtRisk": "Wait for Continuation",
+    "plannedResponse": "Pause and require the full checklist"
    },
-   "action": "Market-buy now",
-   "rule": {
-    "label": "MY NO-CHASE RULE",
-    "text": "If my retest entry is missed and price moves away, I do not market-enter late."
-   }
-  },
-  {
-   "type": "p7_monologue",
-   "lines": [
-    "MISSING THE ENTRY",
-    "DOES NOT GIVE YOU PERMISSION",
-    "TO INVENT A NEW ONE."
-   ]
+   "own": true,
+   "punch": "Private to you. Never shared, never ranked."
   },
   {
    "type": "v2_dayli",
    "kicker": "Dayli says",
-   "quote": "“A little late” is still late. <em>Your rule already decided.</em>",
+   "quote": "I check my chart before every session. <em>I check myself first.</em>",
    "pose": "point"
   },
   {
    "type": "reflect",
    "kicker": "Tell me what you know",
-   "prompt": "Write your no-chase rule in one sentence.",
-   "modelAnswer": "If my valid Dayli ICC retest entry is missed and price moves away, I do not market-enter late. I wait for a new valid setup."
+   "prompt": "Which version of you shows up most often, and when?",
+   "modelAnswer": "I notice which feeling shows up and when: after a loss, after a win, when I’m bored, when money is tight. Before every click I ask who is trading right now."
   }
  ],
  "takeaways": [
-  "A strong rule: clear, triggered, actionable, decided in advance.",
-  "“Too much” and “try” are loopholes.",
-  "Missed entry ≠ permission."
+  "Different traders, minute to minute.",
+  "Read yourself before the chart.",
+  "Before every click: who’s trading now?"
  ],
- "remember": "MISSING THE ENTRY DOES NOT GIVE YOU PERMISSION TO INVENT A NEW ONE."
+ "remember": "BEFORE EVERY CLICK: WHO’S TRADING NOW?"
 }

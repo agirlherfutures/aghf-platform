@@ -1,18 +1,18 @@
 {
  "phase": "p7",
- "section": "s19",
+ "section": "s18",
  "lessonNumber": 11,
- "title": "Why Trading Rules Exist",
+ "title": "The Trade You Need to Work",
  "videoUrl": null,
  "videoDuration": "",
  "xpValue": 85,
  "completeStyle": "v2",
  "passThreshold": 0.6,
- "hook": "Awareness is step one.",
+ "hook": "When your bills get in the trade with you.",
  "format": "slides",
  "launchpad": {
-  "outcome": "See why rules beyond the entry model exist, and meet the AGHF Decision Hierarchy.",
-  "missionQuestion": "What does my rulebook say?",
+  "outcome": "Feel money pressure ride along in a trade, and keep the size and the stop where your plan put them.",
+  "missionQuestion": "Am I trading the chart, or what I need from it?",
   "estMinutes": 8
  },
  "watch": {
@@ -20,137 +20,681 @@
  },
  "slides": [
   {
-   "type": "p7_monologue",
-   "kicker": "Phase 7 · Section 19",
-   "thoughts": [
-    "“I’M FOMOING.”"
-   ],
-   "lines": [
-    "GREAT. 👏",
-    "The cursor is still hovering over <span class=\"p7-buy\">BUY 🖱️</span>",
-    "“I know I’m revenge trading.” GREAT. But she still has to decide: TAKE TRADE?",
-    "“I know I’m overconfident.” GREAT. But the size selector still says <b>2X</b>.",
-    "AWARENESS IS STEP ONE.",
-    "<b>RULES ARE WHAT PROTECT YOU NEXT.</b>"
-   ],
-   "reveal": {
-    "eyebrow": "PHASE 7 · SECTION 2",
-    "title": "Rules That Protect You 📕",
-    "sub": "Section 1 recognized the trader. Section 2 governs her.",
-    "mission": "DECIDE YOUR RULES BEFORE YOUR EMOTIONS NEED THEM."
-   },
-   "cta": "Start →"
-  },
-  {
-   "type": "p7_split",
-   "kicker": "Same uncertain market",
-   "title": "Trader A vs Trader B",
-   "left": {
-    "h": "TRADER A",
-    "lines": [
-     "Setup appears. “Should I take it?”",
-     "Price runs. “Can I enter late?”",
-     "Loss. “Should I take another?”",
-     "Winner. “Should I size up?”",
-     "News soon. “Maybe this one is okay.”",
-     "<b>Every candle: a new negotiation.</b>"
-    ],
-    "tone": "mind",
-    "counter": {
-     "label": "LIVE DECISIONS INVENTED",
-     "value": 12
-    }
-   },
-   "right": {
-    "h": "TRADER B",
-    "lines": [
-     "Entry rule ✓",
-     "No-chase rule ✓",
-     "Risk ✓",
-     "Daily stop ✓",
-     "News rule ✓",
-     "Max trades ✓"
-    ],
-    "tone": "ok",
-    "counter": {
-     "label": "LIVE DECISIONS INVENTED",
-     "value": 3
-    },
-    "sub": "Same uncertainty. She isn’t inventing an operating system every five minutes."
-   },
-   "verdict": "RULES DON’T REMOVE MARKET UNCERTAINTY. THEY REMOVE UNNECESSARY DECISION-MAKING.",
-   "together": true,
-   "punch": "Illustrative counts, not science. The point: fewer decisions invented live."
-  },
-  {
-   "type": "p7_gate",
-   "kicker": "The AGHF Decision Hierarchy",
-   "title": "Four gates. In order.",
-   "layers": [
+   "type": "p7_scene",
+   "kicker": "The Trade You Need to Work",
+   "title": "Thursday",
+   "beats": [
     {
-     "key": "strategy",
-     "label": "STRATEGY",
-     "q": "Is the Dayli ICC setup actually valid?",
-     "state": "yes"
+     "cards": [
+      "EVAL RENEWAL · FRIDAY",
+      "RENT · THE 1ST",
+      "THIS WEEK · −3R"
+     ]
     },
     {
-     "key": "risk",
-     "label": "MY ACCOUNT",
-     "q": "Risk fits? Daily stop? Position size?",
-     "state": "yes"
+     "say": [
+      "None of that is on the chart.",
+      "<b>All of it is in the trade with you.</b>"
+     ]
     },
     {
-     "key": "rulebook",
-     "label": "MY PERSONAL RULEBOOK",
-     "q": "Session · news · max trades · no chase · environment",
-     "state": "no",
-     "note": "News in 3 minutes. Her rule: no new entries within 5."
-    }
-   ],
-   "status": "PASS",
-   "verdict": "VALID SETUP. INVALID PARTICIPATION.",
-   "asks": [
-    {
-     "prompt": "Does a trade become allowable as soon as gate 1 (strategy) says YES?",
-     "options": [
-      {
-       "label": "Yes",
-       "feedback": "Gate 1 only answers “does the setup exist?”."
+     "chart": {
+      "bars": [
+       {
+        "o": 20018.0,
+        "h": 20018.5,
+        "l": 20013.0,
+        "c": 20014.0
+       },
+       {
+        "o": 20014.0,
+        "h": 20015.5,
+        "l": 20010.0,
+        "c": 20011.25
+       },
+       {
+        "o": 20011.25,
+        "h": 20012.0,
+        "l": 20008.25,
+        "c": 20009.5
+       },
+       {
+        "o": 20009.5,
+        "h": 20010.5,
+        "l": 20004.5,
+        "c": 20005.25
+       },
+       {
+        "o": 20005.25,
+        "h": 20006.0,
+        "l": 20001.5,
+        "c": 20003.0
+       },
+       {
+        "o": 20003.0,
+        "h": 20003.5,
+        "l": 19999.75,
+        "c": 20002.5
+       },
+       {
+        "o": 20002.5,
+        "h": 20006.5,
+        "l": 20001.75,
+        "c": 20006.0
+       },
+       {
+        "o": 20006.0,
+        "h": 20012.75,
+        "l": 20005.5,
+        "c": 20011.0
+       },
+       {
+        "o": 20011.0,
+        "h": 20013.5,
+        "l": 20001.75,
+        "c": 20004.0
+       },
+       {
+        "o": 20004.0,
+        "h": 20006.0,
+        "l": 19995.75,
+        "c": 19997.0
+       },
+       {
+        "o": 19997.0,
+        "h": 19999.0,
+        "l": 19990.25,
+        "c": 19991.0
+       },
+       {
+        "o": 19991.0,
+        "h": 19992.5,
+        "l": 19984.0,
+        "c": 19985.0
+       },
+       {
+        "o": 19985.0,
+        "h": 19986.25,
+        "l": 19976.5,
+        "c": 19979.0
+       },
+       {
+        "o": 19979.0,
+        "h": 19979.75,
+        "l": 19972.0,
+        "c": 19974.0
+       }
+      ],
+      "pil": null,
+      "pilAt": null,
+      "head": {
+       "tf": "1M",
+       "label": "Long 2 MNQ"
       },
-      {
-       "label": "No",
-       "correct": true,
-       "why": "Setup validity and participation eligibility are separate. Every gate has to clear."
+      "lines": [
+       {
+        "price": 20000,
+        "label": "ENTRY",
+        "tone": "ink",
+        "at": 5
+       },
+       {
+        "price": 19970,
+        "label": "STOP −30",
+        "tone": "warn",
+        "at": 5
+       },
+       {
+        "price": 20060,
+        "label": "TP +60",
+        "tone": "ok",
+        "at": 5
+       }
+      ],
+      "play": {
+       "from": 5,
+       "to": 9,
+       "speed": 300
       }
-     ],
-     "rcat": "strategy"
+     }
+    },
+    {
+     "say": [
+      "Valid entry. +6. +11. Then it starts to slip."
+     ]
+    },
+    {
+     "thoughts": [
+      "“This one HAS to work.”",
+      "“If it stops out, I’m done for the month.”"
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "It’s heading toward your stop. What do you do?",
+      "options": [
+       {
+        "label": "Move the stop lower so it can’t stop out",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20018.0,
+            "h": 20018.5,
+            "l": 20013.0,
+            "c": 20014.0
+           },
+           {
+            "o": 20014.0,
+            "h": 20015.5,
+            "l": 20010.0,
+            "c": 20011.25
+           },
+           {
+            "o": 20011.25,
+            "h": 20012.0,
+            "l": 20008.25,
+            "c": 20009.5
+           },
+           {
+            "o": 20009.5,
+            "h": 20010.5,
+            "l": 20004.5,
+            "c": 20005.25
+           },
+           {
+            "o": 20005.25,
+            "h": 20006.0,
+            "l": 20001.5,
+            "c": 20003.0
+           },
+           {
+            "o": 20003.0,
+            "h": 20003.5,
+            "l": 19999.75,
+            "c": 20002.5
+           },
+           {
+            "o": 20002.5,
+            "h": 20006.5,
+            "l": 20001.75,
+            "c": 20006.0
+           },
+           {
+            "o": 20006.0,
+            "h": 20012.75,
+            "l": 20005.5,
+            "c": 20011.0
+           },
+           {
+            "o": 20011.0,
+            "h": 20013.5,
+            "l": 20001.75,
+            "c": 20004.0
+           },
+           {
+            "o": 20004.0,
+            "h": 20006.0,
+            "l": 19995.75,
+            "c": 19997.0
+           },
+           {
+            "o": 19997.0,
+            "h": 19999.0,
+            "l": 19990.25,
+            "c": 19991.0
+           },
+           {
+            "o": 19991.0,
+            "h": 19992.5,
+            "l": 19984.0,
+            "c": 19985.0
+           },
+           {
+            "o": 19985.0,
+            "h": 19986.25,
+            "l": 19976.5,
+            "c": 19979.0
+           },
+           {
+            "o": 19979.0,
+            "h": 19979.75,
+            "l": 19972.0,
+            "c": 19974.0
+           },
+           {
+            "o": 19974.0,
+            "h": 19975.0,
+            "l": 19968.75,
+            "c": 19969.75
+           },
+           {
+            "o": 19969.75,
+            "h": 19971.0,
+            "l": 19964.75,
+            "c": 19966.25
+           },
+           {
+            "o": 19966.25,
+            "h": 19967.25,
+            "l": 19960.75,
+            "c": 19962.0
+           },
+           {
+            "o": 19962.0,
+            "h": 19962.75,
+            "l": 19957.0,
+            "c": 19958.25
+           },
+           {
+            "o": 19958.25,
+            "h": 19959.25,
+            "l": 19954.25,
+            "c": 19955.25
+           },
+           {
+            "o": 19955.25,
+            "h": 19955.5,
+            "l": 19948.75,
+            "c": 19950.0
+           },
+           {
+            "o": 19950.0,
+            "h": 19951.0,
+            "l": 19944.75,
+            "c": 19945.25
+           },
+           {
+            "o": 19945.25,
+            "h": 19946.25,
+            "l": 19939.0,
+            "c": 19940.0
+           }
+          ],
+          "pil": null,
+          "pilAt": null,
+          "head": {
+           "tf": "1M",
+           "label": "Long 2 MNQ"
+          },
+          "lines": [
+           {
+            "price": 20000,
+            "label": "ENTRY",
+            "tone": "ink",
+            "at": 5
+           },
+           {
+            "price": 19970,
+            "label": "STOP −30 (moved)",
+            "tone": "warn",
+            "at": 5
+           },
+           {
+            "price": 20060,
+            "label": "TP +60",
+            "tone": "ok",
+            "at": 5
+           }
+          ],
+          "play": {
+           "from": 9,
+           "to": 22,
+           "speed": 300
+          }
+         },
+         "say": [
+          "It kept going.",
+          "The trade you needed to work cost <b>twice</b> what your plan allowed."
+         ],
+         "tally": [
+          [
+           "RESULT",
+           "−2R",
+           "mind"
+          ],
+          [
+           "RULES BROKEN",
+           "1 · stop moved",
+           "mind"
+          ]
+         ]
+        },
+        "track": [
+         "fearDrivenManagementCount",
+         "emotionalTradesTaken"
+        ]
+       },
+       {
+        "label": "Close it now. Save what’s left.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20018.0,
+            "h": 20018.5,
+            "l": 20013.0,
+            "c": 20014.0
+           },
+           {
+            "o": 20014.0,
+            "h": 20015.5,
+            "l": 20010.0,
+            "c": 20011.25
+           },
+           {
+            "o": 20011.25,
+            "h": 20012.0,
+            "l": 20008.25,
+            "c": 20009.5
+           },
+           {
+            "o": 20009.5,
+            "h": 20010.5,
+            "l": 20004.5,
+            "c": 20005.25
+           },
+           {
+            "o": 20005.25,
+            "h": 20006.0,
+            "l": 20001.5,
+            "c": 20003.0
+           },
+           {
+            "o": 20003.0,
+            "h": 20003.5,
+            "l": 19999.75,
+            "c": 20002.5
+           },
+           {
+            "o": 20002.5,
+            "h": 20006.5,
+            "l": 20001.75,
+            "c": 20006.0
+           },
+           {
+            "o": 20006.0,
+            "h": 20012.75,
+            "l": 20005.5,
+            "c": 20011.0
+           },
+           {
+            "o": 20011.0,
+            "h": 20013.5,
+            "l": 20001.75,
+            "c": 20004.0
+           },
+           {
+            "o": 20004.0,
+            "h": 20006.0,
+            "l": 19995.75,
+            "c": 19997.0
+           },
+           {
+            "o": 19997.0,
+            "h": 19999.0,
+            "l": 19990.25,
+            "c": 19991.0
+           },
+           {
+            "o": 19991.0,
+            "h": 19992.5,
+            "l": 19984.0,
+            "c": 19985.0
+           },
+           {
+            "o": 19985.0,
+            "h": 19986.25,
+            "l": 19976.5,
+            "c": 19979.0
+           },
+           {
+            "o": 19979.0,
+            "h": 19979.75,
+            "l": 19972.0,
+            "c": 19974.0
+           },
+           {
+            "o": 19974.0,
+            "h": 19975.0,
+            "l": 19968.5,
+            "c": 19969.5
+           }
+          ],
+          "pil": null,
+          "pilAt": null,
+          "head": {
+           "tf": "1M",
+           "label": "Long 2 MNQ"
+          },
+          "lines": [
+           {
+            "price": 20000,
+            "label": "ENTRY",
+            "tone": "ink",
+            "at": 5
+           },
+           {
+            "price": 19970,
+            "label": "STOP −30",
+            "tone": "warn",
+            "at": 5
+           },
+           {
+            "price": 20060,
+            "label": "TP +60",
+            "tone": "ok",
+            "at": 5
+           }
+          ],
+          "play": {
+           "from": 9,
+           "to": 15,
+           "speed": 300
+          }
+         },
+         "say": [
+          "−0.3R instead of −1R. This time, closing early “worked”.",
+          "That’s exactly how it becomes a habit. <b>Next time it closes you out of a winner.</b>"
+         ]
+        },
+        "track": "fearDrivenManagementCount"
+       },
+       {
+        "label": "Leave it. The stop is the plan.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20018.0,
+            "h": 20018.5,
+            "l": 20013.0,
+            "c": 20014.0
+           },
+           {
+            "o": 20014.0,
+            "h": 20015.5,
+            "l": 20010.0,
+            "c": 20011.25
+           },
+           {
+            "o": 20011.25,
+            "h": 20012.0,
+            "l": 20008.25,
+            "c": 20009.5
+           },
+           {
+            "o": 20009.5,
+            "h": 20010.5,
+            "l": 20004.5,
+            "c": 20005.25
+           },
+           {
+            "o": 20005.25,
+            "h": 20006.0,
+            "l": 20001.5,
+            "c": 20003.0
+           },
+           {
+            "o": 20003.0,
+            "h": 20003.5,
+            "l": 19999.75,
+            "c": 20002.5
+           },
+           {
+            "o": 20002.5,
+            "h": 20006.5,
+            "l": 20001.75,
+            "c": 20006.0
+           },
+           {
+            "o": 20006.0,
+            "h": 20012.75,
+            "l": 20005.5,
+            "c": 20011.0
+           },
+           {
+            "o": 20011.0,
+            "h": 20013.5,
+            "l": 20001.75,
+            "c": 20004.0
+           },
+           {
+            "o": 20004.0,
+            "h": 20006.0,
+            "l": 19995.75,
+            "c": 19997.0
+           },
+           {
+            "o": 19997.0,
+            "h": 19999.0,
+            "l": 19990.25,
+            "c": 19991.0
+           },
+           {
+            "o": 19991.0,
+            "h": 19992.5,
+            "l": 19984.0,
+            "c": 19985.0
+           },
+           {
+            "o": 19985.0,
+            "h": 19986.25,
+            "l": 19976.5,
+            "c": 19979.0
+           },
+           {
+            "o": 19979.0,
+            "h": 19979.75,
+            "l": 19972.0,
+            "c": 19974.0
+           },
+           {
+            "o": 19974.0,
+            "h": 19975.0,
+            "l": 19968.5,
+            "c": 19969.5
+           }
+          ],
+          "pil": null,
+          "pilAt": null,
+          "head": {
+           "tf": "1M",
+           "label": "Long 2 MNQ"
+          },
+          "lines": [
+           {
+            "price": 20000,
+            "label": "ENTRY",
+            "tone": "ink",
+            "at": 5
+           },
+           {
+            "price": 19970,
+            "label": "STOP −30",
+            "tone": "warn",
+            "at": 5
+           },
+           {
+            "price": 20060,
+            "label": "TP +60",
+            "tone": "ok",
+            "at": 5
+           }
+          ],
+          "play": {
+           "from": 9,
+           "to": 15,
+           "speed": 300
+          }
+         },
+         "say": [
+          "−1R. It didn’t work.",
+          "Your rent didn’t decide the outcome. <b>Your rules decided the size of it.</b>"
+         ],
+         "tally": [
+          [
+           "RESULT",
+           "−1R · valid",
+           "neutral"
+          ],
+          [
+           "RULES BROKEN",
+           "0",
+           "ok"
+          ]
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "who": {
+      "before": {
+       "h": "THE TRADER",
+       "lines": [
+        "Sized the trade for her account."
+       ]
+      },
+      "after": {
+       "h": "THE PRESSURE",
+       "lines": [
+        "Needs this trade to pay a bill.",
+        "Will break any rule to protect it."
+       ]
+      }
+     }
+    },
+    {
+     "say": [
+      "If one trade decides your month, the size is too big for your situation right now.",
+      "That’s a review decision, made calmly. Not a live one."
+     ]
+    },
+    {
+     "principle": "THE MARKET DOESN’T KNOW WHAT YOU NEED."
     }
-   ]
-  },
-  {
-   "type": "p7_monologue",
-   "lines": [
-    "GOOD RULES DON’T PREDICT THE MARKET.",
-    "THEY CONTROL YOUR RESPONSE TO IT."
    ]
   },
   {
    "type": "v2_dayli",
    "kicker": "Dayli says",
-   "quote": "The market is allowed to be uncertain. <em>Your operating system isn’t.</em>",
+   "quote": "If you can’t afford the loss, you can’t afford the trade. <em>Size for your life, not your hopes.</em>",
    "pose": "point"
   },
   {
    "type": "reflect",
    "kicker": "Tell me what you know",
-   "prompt": "Why do you need rules beyond the entry model?",
-   "modelAnswer": "Because the entry model only answers whether the setup exists. Rules for risk, session, news, max trades and no chasing decide whether I’m allowed to participate, so I’m not inventing decisions live."
+   "prompt": "What pressure comes into the trade with you?",
+   "modelAnswer": "Bills, an eval fee, a payout goal, a bad week. When I need a trade to work, I move stops, cut winners or size up. I size for what I can actually afford to lose."
   }
  ],
  "takeaways": [
-  "Awareness is step one. Rules protect you next.",
-  "Rules remove live decisions, not uncertainty.",
-  "Strategy → account → rulebook → execute or pass."
+  "The market doesn’t know what you need.",
+  "Pressure moves stops. Rules keep them.",
+  "Size for your life, decided in review."
  ],
- "remember": "DECIDE YOUR RULES BEFORE YOUR EMOTIONS NEED THEM."
+ "remember": "THE MARKET DOESN’T KNOW WHAT YOU NEED."
 }
