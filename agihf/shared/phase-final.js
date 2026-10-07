@@ -176,7 +176,9 @@ export function renderPhaseFinal(slide, final, onPass, helpers) {
           <div class="pf-bar"><div style="width:${(k / set.length) * 100}%"></div></div></div><div class="pf-body"></div>`;
       const body = slide.querySelector('.pf-body');
       let wrong = false;
-      const itemHelpers = { ...helpers, onPick(q, opt, correct) { if (!correct) wrong = true; }, handleStreak: () => {}, burst: () => {} };
+      // A long item (e.g. the Phase 6 trading session) can report per-skill decisions itself.
+      const extra = [];
+      const itemHelpers = { ...helpers, onPick(q, opt, correct) { if (!correct) wrong = true; }, handleStreak: () => {}, burst: () => {}, report(skill, correct) { extra.push({ skill, correct }); } };
       const advance = () => { k += 1; if (k < set.length) { show(); window.scrollTo({ top: 0, behavior: 'smooth' }); } else finish(); };
       const nextLabel = k + 1 < set.length ? 'Next question →' : 'See my results →';
       const done = () => {
@@ -210,7 +212,7 @@ export function renderPhaseFinal(slide, final, onPass, helpers) {
         const renderer = SLIDE_RENDERERS[it.slide.type];
         // A chart item shows its own continue button when solved; that button moves on.
         // Quiz items always start fresh, each in its own save slot.
-        renderer(body, { ...it.slide, kicker: it.slide.kicker ?? '', cta: nextLabel, ephemeral: true, save: `${final.storeId || 'final'}-q${k}` }, () => { results.push({ skill: it.skill, correct: !wrong }); advance(); }, itemHelpers);
+        renderer(body, { ...it.slide, kicker: it.slide.kicker ?? '', cta: nextLabel, ephemeral: true, save: `${final.storeId || 'final'}-q${k}` }, () => { if (extra.length) results.push(...extra); else results.push({ skill: it.skill, correct: !wrong }); advance(); }, itemHelpers);
       }
     }
 

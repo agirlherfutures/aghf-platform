@@ -1,0 +1,147 @@
+{
+ "phase": "p6",
+ "section": "s17",
+ "lessonNumber": 17,
+ "title": "What Is Risk Per Trade?",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "A 30-point stop is not a $30 loss.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Turn a stop distance into approximate dollar risk: points × $ per point × contracts.",
+  "missionQuestion": "How much am I actually risking?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p6_pause",
+   "kicker": "Phase 6 · Section 17 · Protecting Your Account 🛡️",
+   "lines": [
+    "You know how to take a trade.",
+    "But can your account survive the way you’re taking them?",
+    "KNOW THE LOSS BEFORE YOU CHASE THE PROFIT."
+   ]
+  },
+  {
+   "type": "teach",
+   "kicker": "Start simple",
+   "heading": "Entry 20,000 · Stop 19,970",
+   "body": "",
+   "beats": [
+    {
+     "icon": "?",
+     "title": "How much are you risking?",
+     "line": "“30!”"
+    },
+    {
+     "icon": "…",
+     "title": "30 WHAT?",
+     "line": "30 points. Not necessarily $30."
+    }
+   ],
+   "punch": "PRICE RISK = the distance between entry and stop."
+  },
+  {
+   "type": "teach",
+   "kicker": "But what does that cost?",
+   "heading": "The formula",
+   "body": "",
+   "beats": [
+    {
+     "icon": "↕",
+     "title": "Stop distance",
+     "line": "in points"
+    },
+    {
+     "icon": "×",
+     "title": "$ per point",
+     "line": "MNQ: $2 per point per contract"
+    },
+    {
+     "icon": "×",
+     "title": "Contracts",
+     "line": "how many"
+    }
+   ],
+   "punch": "= APPROXIMATE PRICE RISK, before fees and slippage."
+  },
+  {
+   "type": "risk_ladder",
+   "kicker": "Build the risk",
+   "title": "Same chart stop. Different account exposure.",
+   "max": 5,
+   "plan": {
+    "entryPrice": 20000,
+    "stopPrice": 19970,
+    "targetPrice": 20060,
+    "contractCount": 1
+   },
+   "asks": [
+    {
+     "prompt": "1 MNQ, 30-point stop. Price risk?",
+     "options": [
+      {
+       "label": "$30",
+       "feedback": "That’s the points, read as dollars."
+      },
+      {
+       "label": "$60",
+       "correct": true,
+       "why": "30 × $2 × 1."
+      },
+      {
+       "label": "$120",
+       "feedback": "That’s 2 contracts."
+      }
+     ],
+     "skill": "dollar"
+    },
+    {
+     "prompt": "4 MNQ, same stop?",
+     "options": [
+      {
+       "label": "$60",
+       "feedback": "That’s one."
+      },
+      {
+       "label": "$240",
+       "correct": true,
+       "why": "30 × $2 × 4. The stop line didn’t move."
+      },
+      {
+       "label": "$120",
+       "feedback": "That’s two."
+      }
+     ],
+     "skill": "dollar",
+     "thenContracts": 4
+    }
+   ],
+   "punch": "A 30-POINT STOP IS NOT A $30 LOSS."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "A 30-point stop <em>is not a $30 loss.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What three things decide your dollar risk?",
+   "modelAnswer": "The stop distance in points, the dollar value per point of the instrument, and how many contracts. Together they give the approximate price risk, before fees and slippage."
+  }
+ ],
+ "takeaways": [
+  "Points ≠ dollars.",
+  "Points × $/pt × contracts.",
+  "Before fees and slippage."
+ ],
+ "remember": "A 30-point stop is not a $30 loss."
+}

@@ -1,0 +1,183 @@
+{
+ "phase": "p6",
+ "section": "s16",
+ "lessonNumber": 15,
+ "title": "Stop Watching Dollars. Read the Trade.",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "P&L is an outcome display. It is not market structure.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Notice how P&L distorts decisions, and practice managing from the chart and the plan.",
+  "missionQuestion": "Did the plan change, or just the number?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "pnl_blind",
+   "kicker": "",
+   "shots": [
+    "+$186",
+    "−$80"
+   ]
+  },
+  {
+   "type": "manage_sim",
+   "kicker": "Live",
+   "title": "Practice mode: hide the P&L",
+   "plan": {
+    "entryPrice": 20000,
+    "stopPrice": 19970,
+    "targetPrice": 20060,
+    "contractCount": 4,
+    "managementModel": "fixed",
+    "partialRules": "None",
+    "runnerRules": "None",
+    "breakEvenRules": "None",
+    "structuralRules": "None",
+    "earlyInterventionRules": "None"
+   },
+   "bars": [
+    {
+     "o": 20018.0,
+     "h": 20019.25,
+     "l": 20014.0,
+     "c": 20015.5
+    },
+    {
+     "o": 20015.5,
+     "h": 20016.0,
+     "l": 20010.75,
+     "c": 20012.25
+    },
+    {
+     "o": 20012.25,
+     "h": 20013.25,
+     "l": 20009.25,
+     "c": 20010.0
+    },
+    {
+     "o": 20010.0,
+     "h": 20010.75,
+     "l": 20005.0,
+     "c": 20006.25
+    },
+    {
+     "o": 20006.25,
+     "h": 20007.5,
+     "l": 20002.0,
+     "c": 20003.0
+    },
+    {
+     "o": 20003.0,
+     "h": 20004.0,
+     "l": 19999.75,
+     "c": 20002.5
+    },
+    {
+     "o": 20002.5,
+     "h": 20007.75,
+     "l": 20000.25,
+     "c": 20006.0
+    },
+    {
+     "o": 20006.0,
+     "h": 20015.5,
+     "l": 20004.25,
+     "c": 20013.0
+    },
+    {
+     "o": 20013.0,
+     "h": 20013.75,
+     "l": 19993.5,
+     "c": 19996.0
+    },
+    {
+     "o": 19996.0,
+     "h": 19998.25,
+     "l": 19989.5,
+     "c": 19991.0
+    },
+    {
+     "o": 19991.0,
+     "h": 20004.25,
+     "l": 19989.5,
+     "c": 20003.0
+    },
+    {
+     "o": 20003.0,
+     "h": 20013.25,
+     "l": 20001.0,
+     "c": 20012.0
+    },
+    {
+     "o": 20012.0,
+     "h": 20022.0,
+     "l": 20010.25,
+     "c": 20020.0
+    },
+    {
+     "o": 20020.0,
+     "h": 20021.5,
+     "l": 20013.5,
+     "c": 20015.0
+    },
+    {
+     "o": 20015.0,
+     "h": 20024.5,
+     "l": 20014.0,
+     "c": 20024.0
+    }
+   ],
+   "entryAt": 5,
+   "checkpoints": [
+    {
+     "at": 9,
+     "prompt": "Price pulled back below entry. Anything structural change?",
+     "tempt": "close",
+     "temptLabel": "CLOSE IT?"
+    },
+    {
+     "at": 12,
+     "prompt": "Back in profit. Anything to do?",
+     "tempt": "partial",
+     "goal": true
+    }
+   ],
+   "actions": [
+    "follow",
+    "move-stop",
+    "partial",
+    "close",
+    "move-target"
+   ],
+   "hidePnl": true,
+   "pnlToggle": true,
+   "intro": "P&L is hidden. Manage from the chart and the plan."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "P&L tells you a financial result at this moment. <em>It doesn’t tell you structure, target, invalidation or your rules.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why shouldn’t P&L alone determine decisions?",
+   "modelAnswer": "Because it’s an outcome display, not market structure. It makes me want green to stop moving and red to keep moving. The chart and the plan tell me whether anything actually changed."
+  }
+ ],
+ "takeaways": [
+  "P&L ≠ structure.",
+  "Money view vs process view.",
+  "Try managing with P&L hidden."
+ ],
+ "remember": "P&L is an outcome display. It is not market structure."
+}

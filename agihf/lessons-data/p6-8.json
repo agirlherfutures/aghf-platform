@@ -1,0 +1,335 @@
+{
+ "phase": "p6",
+ "section": "s15",
+ "lessonNumber": 8,
+ "title": "When the Best Entry Is No Entry",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Pulling the trigger is a skill. So is keeping your finger off it.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Choose EXECUTE, WAIT, PASS, REASSESS or NO TRADE, and stop believing analysis must end in an entry.",
+  "missionQuestion": "Does this analysis actually end in an entry?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p6_sort",
+   "kicker": "Possible outputs",
+   "title": "What’s the right call?",
+   "buckets": [
+    {
+     "key": "exe",
+     "label": "EXECUTE",
+     "tone": "teal"
+    },
+    {
+     "key": "wait",
+     "label": "WAIT",
+     "tone": "gold"
+    },
+    {
+     "key": "pass",
+     "label": "PASS / NO TRADE",
+     "tone": "pink"
+    },
+    {
+     "key": "re",
+     "label": "REASSESS",
+     "tone": "purple"
+    }
+   ],
+   "items": [
+    {
+     "text": "The PIL is unclear.",
+     "bucket": "pass",
+     "why": "No PIL, nothing to prove. No trade."
+    },
+    {
+     "text": "PIL clear. No indication yet.",
+     "bucket": "wait"
+    },
+    {
+     "text": "Indication closed. No correction yet.",
+     "bucket": "wait"
+    },
+    {
+     "text": "Correction closed, then price broke the 1H HL.",
+     "bucket": "pass",
+     "why": "The model failed. Pass."
+    },
+    {
+     "text": "Continuation closed. No retest yet.",
+     "bucket": "wait",
+     "why": "Confirmed, not executable. Wait for the retest."
+    },
+    {
+     "text": "The only way in now would be chasing.",
+     "bucket": "pass"
+    },
+    {
+     "text": "A new swing replaced the structure your setup came from.",
+     "bucket": "re"
+    },
+    {
+     "text": "Messy chop: three possible PILs.",
+     "bucket": "pass"
+    },
+    {
+     "text": "The 4H thesis just changed.",
+     "bucket": "re"
+    },
+    {
+     "text": "You can’t define the risk.",
+     "bucket": "pass",
+     "why": "If you can’t define it, you can’t take it."
+    },
+    {
+     "text": "I · C · C closed and price is back at the PIL for the first time.",
+     "bucket": "exe"
+    }
+   ],
+   "track": true,
+   "concept": "No-trade decisions"
+  },
+  {
+   "type": "p6_pause",
+   "kicker": "Before every entry",
+   "lines": [
+    "AM I TAKING THIS TRADE",
+    "BECAUSE THE MODEL IS COMPLETE…",
+    "or",
+    "BECAUSE I’M AFRAID PRICE IS ABOUT TO LEAVE ME?"
+   ]
+  },
+  {
+   "type": "trigger_sim",
+   "mode": "decide",
+   "kicker": "Live",
+   "title": "A whole session",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20987.5,
+      "l": 20980.75,
+      "c": 20986.25
+     },
+     {
+      "o": 20986.25,
+      "h": 20991.0,
+      "l": 20985.0,
+      "c": 20989.75
+     },
+     {
+      "o": 20989.75,
+      "h": 20995.25,
+      "l": 20989.5,
+      "c": 20994.75
+     },
+     {
+      "o": 20994.75,
+      "h": 20999.0,
+      "l": 20993.5,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.25,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21003.0,
+      "l": 20997.25,
+      "c": 20998.75
+     },
+     {
+      "o": 20998.75,
+      "h": 21000.25,
+      "l": 20996.0,
+      "c": 20996.25
+     },
+     {
+      "o": 20996.25,
+      "h": 20997.5,
+      "l": 20994.25,
+      "c": 20994.75
+     },
+     {
+      "o": 20994.75,
+      "h": 20996.0,
+      "l": 20990.25,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20996.25,
+      "l": 20990.25,
+      "c": 20995.75
+     },
+     {
+      "o": 20995.75,
+      "h": 20999.75,
+      "l": 20995.0,
+      "c": 20998.75
+     },
+     {
+      "o": 20998.75,
+      "h": 21001.5,
+      "l": 20997.25,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21003.0,
+      "l": 20998.25,
+      "c": 20999.0
+     },
+     {
+      "o": 20999.0,
+      "h": 20999.75,
+      "l": 20996.0,
+      "c": 20996.75
+     },
+     {
+      "o": 20996.75,
+      "h": 20997.5,
+      "l": 20994.5,
+      "c": 20995.25
+     },
+     {
+      "o": 20995.25,
+      "h": 20995.75,
+      "l": 20990.75,
+      "c": 20991.75
+     },
+     {
+      "o": 20991.75,
+      "h": 20992.75,
+      "l": 20987.5,
+      "c": 20988.75
+     },
+     {
+      "o": 20988.75,
+      "h": 20990.0,
+      "l": 20984.75,
+      "c": 20986.25
+     }
+    ],
+    "start": 11,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish"
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis"
+     },
+     {
+      "label": "15M",
+      "value": "Pulling back into the map"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ],
+    "preEntry": {
+     "context": {
+      "state": "defined",
+      "value": "4H bullish"
+     },
+     "structure": {
+      "state": "defined",
+      "value": "1H HL holding"
+     },
+     "location": {
+      "state": "defined",
+      "value": "4H discount"
+     },
+     "direction": {
+      "state": "defined",
+      "value": "Long only"
+     },
+     "pil": {
+      "state": "defined",
+      "value": "21,004.25"
+     },
+     "invalidation": {
+      "state": "defined",
+      "value": "Close below the 1H HL"
+     }
+    }
+   },
+   "setups": [
+    {
+     "pil": 21004.25,
+     "pilAt": 4,
+     "invalidAt": 19
+    }
+   ],
+   "checkpoints": [
+    {
+     "at": 12,
+     "after": "Developing."
+    },
+    {
+     "at": 13,
+     "after": "Still developing. Continuation hasn’t closed."
+    },
+    {
+     "at": 19,
+     "prompt": "Price broke below the structure that created the setup. What now?",
+     "noTrade": true,
+     "after": "The model failed. Nothing to execute."
+    }
+   ],
+   "end": {
+    "text": "<b>PERFECT.</b> Zero trades, and every decision followed the model.",
+    "card": "PULLING THE TRIGGER IS A SKILL.<br>SO IS KEEPING YOUR FINGER OFF IT."
+   }
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Pulling the trigger is a skill. <em>So is keeping your finger off it.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What does “no trade is still a decision” mean to you?",
+   "modelAnswer": "It means a session where I don’t enter can be a perfect session. If the model doesn’t complete, passing is the correct execution, not a failure to find a trade."
+  }
+ ],
+ "takeaways": [
+  "Outputs: execute, wait, pass, reassess, no trade.",
+  "Analysis doesn’t have to end in an entry.",
+  "Model complete, or afraid to miss it?"
+ ],
+ "remember": "Pulling the trigger is a skill. So is keeping your finger off it."
+}

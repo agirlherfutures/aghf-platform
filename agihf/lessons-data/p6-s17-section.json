@@ -1,0 +1,3888 @@
+{
+ "phase": "p6",
+ "section": "s17",
+ "title": "Protecting Your Account",
+ "steps": [
+  "game",
+  "knowledge",
+  "final",
+  "reflection",
+  "phase-complete"
+ ],
+ "hook": "Clear the Risk Control Lab, pass the Knowledge Check, then run the Phase 6 trading session to complete Phase 6.",
+ "game": {
+  "title": "Risk Control Lab 🛡️",
+  "save": "p6-s17",
+  "xp": 0,
+  "tagline": "Fast, visual risk decisions. Size the account, not the chart.",
+  "doneHeading": "RISK CONTROL LAB COMPLETE ✓",
+  "doneBadge": "Risk Control Lab: all levels cleared",
+  "doneLine": "You priced the stop, sized from risk, read R and expectancy, stopped at the daily limit, respected frequency, read drawdown, sized the account and refused revenge sizing.",
+  "readout": "YOUR RISK READ",
+  "review": {
+   "Dollar risk": [
+    "p6",
+    17,
+    "Risk per trade"
+   ],
+   "Position sizing": [
+    "p6",
+    19,
+    "Position sizing"
+   ],
+   "R multiples": [
+    "p6",
+    20,
+    "Understanding R"
+   ],
+   "Expectancy": [
+    "p6",
+    21,
+    "1:1 vs 1:2"
+   ],
+   "Daily stop": [
+    "p6",
+    23,
+    "Daily loss limits"
+   ],
+   "Frequency": [
+    "p6",
+    24,
+    "Max trades"
+   ],
+   "Drawdown": [
+    "p6",
+    25,
+    "Drawdown"
+   ],
+   "Revenge sizing": [
+    "p6",
+    25,
+    "Losing streaks"
+   ],
+   "Account constraints": [
+    "p6",
+    26,
+    "Prop vs personal"
+   ],
+   "Survival": [
+    "p6",
+    25,
+    "Survival"
+   ],
+   "Risk ceiling": [
+    "p6",
+    19,
+    "Position sizing"
+   ]
+  },
+  "levels": [
+   {
+    "type": "r_normalizer",
+    "traders": [],
+    "asks": [
+     {
+      "prompt": "Price risk?",
+      "options": [
+       {
+        "label": "$30",
+        "feedback": "Points read as dollars."
+       },
+       {
+        "label": "$120",
+        "feedback": "That’s 2."
+       },
+       {
+        "label": "$240",
+        "correct": true,
+        "why": "30 × $2 × 4."
+       }
+      ],
+      "skill": "dollar"
+     }
+    ],
+    "sessionStart": "risk-lab",
+    "name": "What’s the real risk?",
+    "concept": "Dollar risk",
+    "brief": "MNQ · 30-point stop · 4 contracts."
+   },
+   {
+    "type": "size_fit",
+    "steps": [
+     {
+      "cap": 180,
+      "stop": 30
+     }
+    ],
+    "name": "Size it",
+    "concept": "Position sizing",
+    "brief": "Max risk $180. MNQ stop 30 points."
+   },
+   {
+    "type": "r_normalizer",
+    "traders": [],
+    "asks": [
+     {
+      "prompt": "R?",
+      "options": [
+       {
+        "label": "+1R",
+        "feedback": "300 ÷ 150."
+       },
+       {
+        "label": "+2R",
+        "correct": true,
+        "why": "Right."
+       },
+       {
+        "label": "+3R",
+        "feedback": "300 ÷ 150."
+       }
+      ],
+      "skill": "r"
+     }
+    ],
+    "name": "What’s the R?",
+    "concept": "R multiples",
+    "brief": "Risk $150. Profit $300."
+   },
+   {
+    "type": "r_normalizer",
+    "traders": [],
+    "asks": [
+     {
+      "prompt": "Positive theoretical expectancy before costs?",
+      "options": [
+       {
+        "label": "Yes",
+        "correct": true,
+        "why": "0.4 × 2 − 0.6 × 1 = +0.2R."
+       },
+       {
+        "label": "No",
+        "feedback": "Run the formula."
+       }
+      ],
+      "skill": "r"
+     },
+     {
+      "prompt": "DOES THAT GUARANTEE FUTURE PROFIT?",
+      "options": [
+       {
+        "label": "Yes",
+        "feedback": "Theory, if the assumptions hold. No guarantee."
+       },
+       {
+        "label": "No",
+        "correct": true,
+        "why": "Real win rate, costs, execution and sample size decide."
+       }
+      ],
+      "skill": "r"
+     }
+    ],
+    "name": "Win rate trap",
+    "concept": "Expectancy",
+    "brief": "40% win rate · +2R average win · −1R average loss."
+   },
+   {
+    "type": "daily_stop",
+    "revenge": false,
+    "setup": {
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20987.25,
+       "l": 20981.5,
+       "c": 20986.0
+      },
+      {
+       "o": 20986.0,
+       "h": 20990.75,
+       "l": 20985.0,
+       "c": 20990.25
+      },
+      {
+       "o": 20990.25,
+       "h": 20995.25,
+       "l": 20989.75,
+       "c": 20993.75
+      },
+      {
+       "o": 20993.75,
+       "h": 20999.75,
+       "l": 20993.5,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.25,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21003.0,
+       "l": 20999.5,
+       "c": 21000.25
+      },
+      {
+       "o": 21000.25,
+       "h": 21001.5,
+       "l": 20996.25,
+       "c": 20996.75
+      },
+      {
+       "o": 20996.75,
+       "h": 20998.0,
+       "l": 20993.25,
+       "c": 20994.75
+      },
+      {
+       "o": 20994.75,
+       "h": 20995.25,
+       "l": 20990.0,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20996.0,
+       "l": 20990.0,
+       "c": 20994.5
+      },
+      {
+       "o": 20994.5,
+       "h": 20998.25,
+       "l": 20993.25,
+       "c": 20996.75
+      },
+      {
+       "o": 20996.75,
+       "h": 21001.75,
+       "l": 20995.25,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21008.5,
+       "l": 21002.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21010.0,
+       "l": 21007.0,
+       "c": 21009.5
+      },
+      {
+       "o": 21009.5,
+       "h": 21014.25,
+       "l": 21008.0,
+       "c": 21013.75
+      },
+      {
+       "o": 21013.75,
+       "h": 21017.25,
+       "l": 21013.5,
+       "c": 21016.75
+      },
+      {
+       "o": 21016.75,
+       "h": 21021.5,
+       "l": 21016.25,
+       "c": 21020.25
+      },
+      {
+       "o": 21020.25,
+       "h": 21021.5,
+       "l": 21016.0,
+       "c": 21017.0
+      },
+      {
+       "o": 21017.0,
+       "h": 21017.5,
+       "l": 21010.25,
+       "c": 21011.75
+      },
+      {
+       "o": 21011.75,
+       "h": 21012.5,
+       "l": 21006.75,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21008.25,
+       "l": 21003.75,
+       "c": 21005.75
+      },
+      {
+       "o": 21005.75,
+       "h": 21009.25,
+       "l": 21005.25,
+       "c": 21008.5
+      },
+      {
+       "o": 21008.5,
+       "h": 21009.5,
+       "l": 21007.5,
+       "c": 21009.0
+      },
+      {
+       "o": 21009.0,
+       "h": 21010.5,
+       "l": 21007.75,
+       "c": 21010.0
+      },
+      {
+       "o": 21010.0,
+       "h": 21013.75,
+       "l": 21009.0,
+       "c": 21012.25
+      }
+     ],
+     "pil": 21004.25,
+     "pilAt": 4,
+     "showTo": 23
+    },
+    "punch": "THE RULE WAS STILL CORRECT.",
+    "name": "Daily stop",
+    "concept": "Daily stop",
+    "brief": "Daily max −2R. You’re at −2R."
+   },
+   {
+    "type": "r_normalizer",
+    "traders": [],
+    "asks": [
+     {
+      "prompt": "“I only risk $100 per trade.” A complete daily risk plan?",
+      "options": [
+       {
+        "label": "Yes",
+        "feedback": "−$600 in one day."
+       },
+       {
+        "label": "No",
+        "correct": true,
+        "why": "It needs a daily cap and max trades."
+       }
+      ],
+      "skill": "frequency"
+     }
+    ],
+    "name": "Frequency trap",
+    "concept": "Frequency",
+    "brief": "$100 per trade. 6 full-loss trades."
+   },
+   {
+    "type": "drawdown",
+    "mode": "define",
+    "peak": 25000,
+    "current": 24000,
+    "path": [
+     23800,
+     24300,
+     24900,
+     25000,
+     24600,
+     24200,
+     24000
+    ],
+    "asks": [
+     {
+      "prompt": "Drawdown?",
+      "options": [
+       {
+        "label": "$1,000 · 4%",
+        "correct": true,
+        "why": "Right."
+       },
+       {
+        "label": "$24,000",
+        "feedback": "That’s the balance."
+       },
+       {
+        "label": "$1,000 · 1%",
+        "feedback": "1,000 ÷ 25,000."
+       }
+      ],
+      "skill": "drawdown"
+     }
+    ],
+    "name": "Drawdown",
+    "concept": "Drawdown",
+    "brief": "Peak $25,000. Current $24,000."
+   },
+   {
+    "type": "r_normalizer",
+    "traders": [],
+    "asks": [
+     {
+      "prompt": "Classification?",
+      "options": [
+       {
+        "label": "Smart recovery",
+        "feedback": "The account didn’t change. Her feelings did."
+       },
+       {
+        "label": "REVENGE SIZING / RISK VIOLATION",
+        "correct": true,
+        "why": "Risk changed because of the last outcome."
+       }
+      ],
+      "stack": true,
+      "skill": "revenge"
+     }
+    ],
+    "name": "Size-up after loss",
+    "concept": "Revenge sizing",
+    "brief": "Loss: −1R. “I just need one winner.” She doubles size."
+   },
+   {
+    "type": "account_compare",
+    "accounts": [
+     {
+      "title": "Personal",
+      "accountType": "Personal",
+      "riskCapacity": "Substantial"
+     },
+     {
+      "title": "Prop evaluation",
+      "accountType": "Prop evaluation",
+      "remainingDrawdown": 250
+     }
+    ],
+    "asks": [
+     {
+      "prompt": "Same contract size automatically?",
+      "options": [
+       {
+        "label": "Yes",
+        "feedback": "Size the account."
+       },
+       {
+        "label": "No",
+        "correct": true,
+        "why": "Different constraints, different size."
+       }
+      ],
+      "skill": "account"
+     }
+    ],
+    "name": "Same setup. Different account.",
+    "concept": "Account constraints",
+    "brief": "Personal account with capacity · prop evaluation with limited drawdown left."
+   },
+   {
+    "type": "drawdown",
+    "mode": "compare",
+    "asks": [
+     {
+      "prompt": "Takeaway?",
+      "options": [
+       {
+        "label": "Raising risk recovers faster",
+        "feedback": "Look at Plan B’s low."
+       },
+       {
+        "label": "CHANGING RISK TO CHASE RECOVERY INCREASES FRAGILITY",
+        "correct": true,
+        "why": "Same outcomes, deeper hole."
+       }
+      ],
+      "stack": true,
+      "skill": "revenge"
+     }
+    ],
+    "name": "Survival test",
+    "concept": "Survival",
+    "brief": "L L W L L L W W L W. Plan A fixed risk vs Plan B raising risk after losses."
+   },
+   {
+    "type": "r_normalizer",
+    "traders": [],
+    "asks": [
+     {
+      "prompt": "DID YOUR RISK CEILING CHANGE?",
+      "options": [
+       {
+        "label": "No",
+        "correct": true,
+        "why": "Setup quality doesn’t override the ceiling."
+       },
+       {
+        "label": "Yes, for A+ setups",
+        "feedback": "The account sets the ceiling."
+       }
+      ],
+      "skill": "sizing"
+     }
+    ],
+    "name": "The A+ setup trap",
+    "concept": "Risk ceiling",
+    "brief": "Normal max $100. “BEST SETUP EVER.” Proposed $400."
+   },
+   {
+    "type": "size_table",
+    "account": {
+     "accountType": "Prop evaluation",
+     "balance": 25000,
+     "remainingDrawdown": 700,
+     "dailyLoss": 360,
+     "stop": 30,
+     "options": [
+      2,
+      4,
+      6,
+      8
+     ],
+     "reasonableMax": 4,
+     "note": "More than one size can fit. What matters is that you compared the trade risk, your daily rule and the account’s remaining drawdown."
+    },
+    "name": "FINAL BOSS: Protect the account",
+    "concept": "Account constraints",
+    "brief": "Prop evaluation · $25,000 displayed · $700 drawdown left · personal daily loss $360 · 30-pt MNQ stop."
+   },
+   {
+    "type": "r_review",
+    "name": "Your risk control review",
+    "concept": "Review",
+    "brief": "Behavior, not identity."
+   }
+  ]
+ },
+ "knowledgeCheck": {
+  "questionCount": 13,
+  "passPct": 0.8,
+  "xp": 0,
+  "shuffleOptions": true,
+  "questionBank": [
+   {
+    "concept": "Dollar risk",
+    "question": "MNQ, 30-point stop, 1 contract. Approximate price risk?",
+    "options": [
+     "$30",
+     "$60",
+     "$120",
+     "$240"
+    ],
+    "correctIndex": 1,
+    "why": "30 × $2 × 1, before costs."
+   },
+   {
+    "concept": "Dollar risk",
+    "question": "MNQ, 30-point stop, 4 contracts?",
+    "options": [
+     "$60",
+     "$120",
+     "$240",
+     "$480"
+    ],
+    "correctIndex": 2,
+    "why": "30 × $2 × 4."
+   },
+   {
+    "concept": "Position sizing",
+    "question": "Max risk $150. 25-point MNQ stop. Max whole contracts?",
+    "options": [
+     "2",
+     "3",
+     "4",
+     "6"
+    ],
+    "correctIndex": 1,
+    "why": "$50 each → 3."
+   },
+   {
+    "concept": "Position sizing",
+    "question": "Max risk $150. 40-point MNQ stop. Max whole contracts?",
+    "options": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "correctIndex": 0,
+    "why": "$80 each → 1. Never round up to 2."
+   },
+   {
+    "concept": "Position sizing",
+    "question": "No whole contract fits your cap at the required stop. Correct call?",
+    "options": [
+     "Tighten the stop until it fits",
+     "Pass: the trade doesn’t fit the risk plan",
+     "Use 1 anyway",
+     "Double the cap"
+    ],
+    "correctIndex": 1,
+    "why": "The stop isn’t shrunk to manufacture a fit."
+   },
+   {
+    "concept": "R",
+    "question": "Risk $100. Profit $200. R?",
+    "options": [
+     "+1R",
+     "+2R",
+     "+0.5R",
+     "+200R"
+    ],
+    "correctIndex": 1,
+    "why": "200 ÷ 100."
+   },
+   {
+    "concept": "Expectancy",
+    "question": "A 1:2 strategy is automatically profitable?",
+    "options": [
+     "Yes",
+     "No"
+    ],
+    "correctIndex": 1,
+    "why": "Win rate, costs, execution and sample decide."
+   },
+   {
+    "concept": "Daily stop",
+    "question": "Daily limit −2R. You’re at −2R. A beautiful setup appears.",
+    "options": [
+     "Take it",
+     "Half size",
+     "Done for the day",
+     "Move the limit"
+    ],
+    "correctIndex": 2,
+    "why": "Done means done."
+   },
+   {
+    "concept": "Frequency",
+    "question": "1R per trade, 8 trades. What’s true?",
+    "options": [
+     "Day risk is 1R",
+     "Risk per trade alone doesn’t describe the day",
+     "More trades lower risk",
+     "It averages out"
+    ],
+    "correctIndex": 1,
+    "why": "Up to 8R of planned loss."
+   },
+   {
+    "concept": "Drawdown",
+    "question": "Five losses at 1% vs 10% risk. What’s true?",
+    "options": [
+     "Same damage",
+     "Very different drawdown",
+     "10% is safer",
+     "Only win rate matters"
+    ],
+    "correctIndex": 1,
+    "why": "~4.9% vs ~41%, before costs."
+   },
+   {
+    "concept": "Account constraints",
+    "question": "Prop evaluation has little drawdown left. Normal size would risk nearly all of it.",
+    "options": [
+     "Use normal size",
+     "Don’t automatically use normal size",
+     "Double up to finish fast",
+     "Ignore the drawdown"
+    ],
+    "correctIndex": 1,
+    "why": "Size the account."
+   },
+   {
+    "concept": "Risk ceiling",
+    "question": "A+ setup. She quadruples normal risk.",
+    "options": [
+     "Fine for A+",
+     "Setup quality doesn’t override the risk ceiling",
+     "Only if 4H agrees",
+     "Fine on Fridays"
+    ],
+    "correctIndex": 1,
+    "why": "The ceiling is the account’s."
+   },
+   {
+    "concept": "Revenge sizing",
+    "question": "After −1R she doubles size to “get it back”.",
+    "options": [
+     "Recovery plan",
+     "Revenge sizing / risk violation",
+     "Normal",
+     "Smart"
+    ],
+    "correctIndex": 1,
+    "why": "The account’s capacity didn’t change."
+   },
+   {
+    "concept": "Dollar risk",
+    "question": "“My stop is only 20 points, so it’s low risk.”",
+    "options": [
+     "True",
+     "Can’t know without instrument and contracts",
+     "True on MNQ",
+     "False always"
+    ],
+    "correctIndex": 1,
+    "why": "Points describe the chart."
+   },
+   {
+    "concept": "Copy the process",
+    "question": "From the Dayli 4 MNQ example, what should you copy?",
+    "options": [
+     "4 contracts",
+     "$240 risk",
+     "The risk process",
+     "The 60-point target"
+    ],
+    "correctIndex": 2,
+    "why": "Copy the process before the size."
+   }
+  ],
+  "reviewLessons": {
+   "Dollar risk": [
+    "p6",
+    17
+   ],
+   "Position sizing": [
+    "p6",
+    19
+   ],
+   "R": [
+    "p6",
+    20
+   ],
+   "Expectancy": [
+    "p6",
+    21
+   ],
+   "Daily stop": [
+    "p6",
+    23
+   ],
+   "Frequency": [
+    "p6",
+    24
+   ],
+   "Drawdown": [
+    "p6",
+    25
+   ],
+   "Account constraints": [
+    "p6",
+    26
+   ],
+   "Risk ceiling": [
+    "p6",
+    19
+   ],
+   "Revenge sizing": [
+    "p6",
+    25
+   ],
+   "Copy the process": [
+    "p6",
+    22
+   ]
+  }
+ },
+ "final": {
+  "title": "Pulling the Trigger: Final Quiz",
+  "eyebrow": "Phase 6 final gate",
+  "stepLabel": "Phase 6 Final",
+  "passPct": 0.8,
+  "storeId": "p6-final",
+  "notesId": "p6-final",
+  "intro": [
+   "This isn’t twenty multiple-choice questions. It ends with the first true start-to-finish trading session in the Academy: context, PIL, risk, size, daily capacity, entry, management and account control.",
+   "Sometimes there’s no entry. Sometimes a valid entry loses. Sometimes the right answer is to do nothing. The session is the test, not the number of trades. 80% to pass."
+  ],
+  "covers": [
+   "How to Actually Enter",
+   "Managing the Trade",
+   "Protecting Your Account"
+  ],
+  "mix": {
+   "visual": 2,
+   "mcq": 8,
+   "written": 1
+  },
+  "capstone": [
+   15
+  ],
+  "bank": [
+   {
+    "kind": "mcq",
+    "skill": "analysis",
+    "prompt": "Where does the 1M sit in the process?",
+    "options": [
+     {
+      "label": "At the start",
+      "feedback": "4H → 1H → 15M → 1M."
+     },
+     {
+      "label": "At the end: execution",
+      "correct": true,
+      "why": "4H → 1H → 15M → 1M."
+     },
+     {
+      "label": "Instead of the 1H",
+      "feedback": "4H → 1H → 15M → 1M."
+     },
+     {
+      "label": "Only for exits",
+      "feedback": "4H → 1H → 15M → 1M."
+     }
+    ]
+   },
+   {
+    "kind": "mcq",
+    "skill": "analysis",
+    "prompt": "Pre-entry card: everything defined except the PIL. Status?",
+    "options": [
+     {
+      "label": "Ready",
+      "feedback": "Any undefined field = not ready."
+     },
+     {
+      "label": "Not ready: PIL undefined",
+      "correct": true,
+      "why": "Any undefined field = not ready."
+     },
+     {
+      "label": "Half size",
+      "feedback": "Any undefined field = not ready."
+     },
+     {
+      "label": "Enter on feel",
+      "feedback": "Any undefined field = not ready."
+     }
+    ]
+   },
+   {
+    "kind": "mcq",
+    "skill": "execution",
+    "prompt": "Continuation candle strongly bullish, still open. Action?",
+    "options": [
+     {
+      "label": "Enter",
+      "feedback": "Open candles confirm nothing."
+     },
+     {
+      "label": "Wait for the close",
+      "correct": true,
+      "why": "Open candles confirm nothing."
+     },
+     {
+      "label": "Enter half",
+      "feedback": "Open candles confirm nothing."
+     },
+     {
+      "label": "Prepare and enter",
+      "feedback": "Open candles confirm nothing."
+     }
+    ]
+   },
+   {
+    "kind": "mcq",
+    "skill": "execution",
+    "prompt": "I · C · C closed, no retest. Status?",
+    "options": [
+     {
+      "label": "Executable",
+      "feedback": "Wait for the retest."
+     },
+     {
+      "label": "Confirmed, not executable",
+      "correct": true,
+      "why": "Wait for the retest."
+     },
+     {
+      "label": "Missed",
+      "feedback": "Wait for the retest."
+     },
+     {
+      "label": "Invalid",
+      "feedback": "Wait for the retest."
+     }
+    ]
+   },
+   {
+    "kind": "mcq",
+    "skill": "execution",
+    "prompt": "Retest happened 3 candles ago, price is 20 points away.",
+    "options": [
+     {
+      "label": "Enter, bias is valid",
+      "feedback": "Valid thesis ≠ valid entry."
+     },
+     {
+      "label": "Too late: don’t chase",
+      "correct": true,
+      "why": "Valid thesis ≠ valid entry."
+     },
+     {
+      "label": "Move the PIL",
+      "feedback": "Valid thesis ≠ valid entry."
+     },
+     {
+      "label": "Market in half",
+      "feedback": "Valid thesis ≠ valid entry."
+     }
+    ]
+   },
+   {
+    "kind": "mcq",
+    "skill": "management",
+    "prompt": "+8, one bearish candle, nothing in the plan triggered.",
+    "options": [
+     {
+      "label": "Close",
+      "feedback": "Price moved; the plan didn’t."
+     },
+     {
+      "label": "Move SL",
+      "feedback": "Price moved; the plan didn’t."
+     },
+     {
+      "label": "Follow plan",
+      "correct": true,
+      "why": "Price moved; the plan didn’t."
+     },
+     {
+      "label": "Take half",
+      "feedback": "Price moved; the plan didn’t."
+     }
+    ]
+   },
+   {
+    "kind": "mcq",
+    "skill": "management",
+    "prompt": "Plan says trail after a new 1M HL. It forms. She trails.",
+    "options": [
+     {
+      "label": "Violation",
+      "feedback": "Touching isn’t the problem. Unplanned touching is."
+     },
+     {
+      "label": "Rule-based management",
+      "correct": true,
+      "why": "Touching isn’t the problem. Unplanned touching is."
+     },
+     {
+      "label": "Over-managing",
+      "feedback": "Touching isn’t the problem. Unplanned touching is."
+     },
+     {
+      "label": "Emotional",
+      "feedback": "Touching isn’t the problem. Unplanned touching is."
+     }
+    ]
+   },
+   {
+    "kind": "mcq",
+    "skill": "management",
+    "prompt": "Perfect management, stop hit.",
+    "options": [
+     {
+      "label": "Bad trade",
+      "feedback": "Two facts."
+     },
+     {
+      "label": "Good process + loss",
+      "correct": true,
+      "why": "Two facts."
+     },
+     {
+      "label": "Bad process + loss",
+      "feedback": "Two facts."
+     },
+     {
+      "label": "Ungradeable",
+      "feedback": "Two facts."
+     }
+    ]
+   },
+   {
+    "kind": "mcq",
+    "skill": "risk",
+    "prompt": "Max risk $150, 40-point MNQ stop. Contracts?",
+    "options": [
+     {
+      "label": "1",
+      "correct": true,
+      "why": "$80 each → 1."
+     },
+     {
+      "label": "2",
+      "feedback": "$80 each → 1."
+     },
+     {
+      "label": "3",
+      "feedback": "$80 each → 1."
+     },
+     {
+      "label": "0",
+      "feedback": "$80 each → 1."
+     }
+    ]
+   },
+   {
+    "kind": "mcq",
+    "skill": "risk",
+    "prompt": "Daily −2R reached. Beautiful setup.",
+    "options": [
+     {
+      "label": "Take it",
+      "feedback": "Done means done."
+     },
+     {
+      "label": "Done",
+      "correct": true,
+      "why": "Done means done."
+     },
+     {
+      "label": "Half size",
+      "feedback": "Done means done."
+     },
+     {
+      "label": "Move the limit",
+      "feedback": "Done means done."
+     }
+    ]
+   },
+   {
+    "kind": "mcq",
+    "skill": "risk",
+    "prompt": "Prop eval, $300 drawdown left, normal size risks $240.",
+    "options": [
+     {
+      "label": "Normal size",
+      "feedback": "Size the account."
+     },
+     {
+      "label": "Don’t automatically use normal size",
+      "correct": true,
+      "why": "Size the account."
+     },
+     {
+      "label": "Double to pass",
+      "feedback": "Size the account."
+     },
+     {
+      "label": "Ignore it",
+      "feedback": "Size the account."
+     }
+    ]
+   },
+   {
+    "kind": "mcq",
+    "skill": "risk",
+    "prompt": "After a loss she doubles size to get it back.",
+    "options": [
+     {
+      "label": "Recovery",
+      "feedback": "Capacity didn’t change."
+     },
+     {
+      "label": "Revenge sizing",
+      "correct": true,
+      "why": "Capacity didn’t change."
+     },
+     {
+      "label": "Fine",
+      "feedback": "Capacity didn’t change."
+     },
+     {
+      "label": "Smart",
+      "feedback": "Capacity didn’t change."
+     }
+    ]
+   },
+   {
+    "kind": "slide",
+    "skill": "execution",
+    "slide": {
+     "type": "r_normalizer",
+     "traders": [],
+     "asks": [
+      {
+       "prompt": "ENTER button pulsing, continuation forming. You…",
+       "options": [
+        {
+         "label": "Click",
+         "feedback": "Still open."
+        },
+        {
+         "label": "Wait for the close",
+         "correct": true,
+         "why": "Let price earn the entry."
+        }
+       ],
+       "cat": "execution"
+      }
+     ]
+    }
+   },
+   {
+    "kind": "slide",
+    "skill": "risk",
+    "slide": {
+     "type": "size_fit",
+     "steps": [
+      {
+       "cap": 200,
+       "stop": 40
+      }
+     ]
+    }
+   },
+   {
+    "kind": "written",
+    "prompt": "Describe your process from pre-trade to review in one paragraph.",
+    "model": "Context and PIL first, then risk and size from my cap, then wait for I · C · C closes and the first retest, follow the locked plan, update my daily risk, and stop when a limit is reached. Grade the process separately from the outcome.",
+    "min": 40
+   },
+   {
+    "kind": "capstone",
+    "skill": "execution",
+    "slide": {
+     "type": "session_sim",
+     "kicker": "The Phase 6 trading session",
+     "title": "Run the process",
+     "variants": [
+      {
+       "name": "no-entry",
+       "account": {
+        "accountType": "Prop evaluation",
+        "displayedBalance": 25000,
+        "remainingDrawdown": 700,
+        "dailyLossLimit": 240,
+        "personalRiskRule": "$150 max per trade"
+       },
+       "rules": {
+        "dailyLoss": 240,
+        "maxTrades": 3
+       },
+       "context": {
+        "h4": {
+         "swings": [
+          [
+           20,
+           270
+          ],
+          [
+           140,
+           160
+          ],
+          [
+           230,
+           205
+          ],
+          [
+           380,
+           90
+          ],
+          [
+           470,
+           150
+          ],
+          [
+           600,
+           120
+          ]
+         ],
+         "seed": 4,
+         "hlines": [
+          {
+           "y": 150,
+           "label": "discount",
+           "tone": "muted"
+          }
+         ]
+        },
+        "h1": {
+         "swings": [
+          [
+           20,
+           120
+          ],
+          [
+           140,
+           210
+          ],
+          [
+           260,
+           160
+          ],
+          [
+           360,
+           240
+          ],
+          [
+           480,
+           170
+          ],
+          [
+           600,
+           200
+          ]
+         ],
+         "seed": 6,
+         "hlines": [
+          {
+           "y": 240,
+           "label": "1H HL",
+           "tone": "muted"
+          }
+         ]
+        },
+        "m15": "Pulling back into the 1H map. Watch, don’t act."
+       },
+       "pre": [
+        {
+         "prompt": "Which level must price prove itself through?",
+         "options": [
+          {
+           "label": "The newest wiggle",
+           "feedback": "Not structural."
+          },
+          {
+           "label": "21,004.25: the swing the pullback came from",
+           "correct": true,
+           "why": "Your PIL."
+          },
+          {
+           "label": "The 4H discount line",
+           "feedback": "Context, not the PIL."
+          }
+         ],
+         "stack": true,
+         "cat": "analysis"
+        },
+        {
+         "prompt": "30-point MNQ stop. Risk of one contract?",
+         "options": [
+          {
+           "label": "$30",
+           "feedback": "Points read as dollars."
+          },
+          {
+           "label": "$60",
+           "correct": true,
+           "why": "30 × $2."
+          },
+          {
+           "label": "$120",
+           "feedback": "That’s two."
+          }
+         ],
+         "skill": "dollar",
+         "cat": "risk"
+        },
+        {
+         "prompt": "$150 max per trade. How many contracts?",
+         "options": [
+          {
+           "label": "1",
+           "feedback": "2 still fit: $120."
+          },
+          {
+           "label": "2",
+           "correct": true,
+           "why": "$120. A third would be $180.",
+           "value": 2
+          },
+          {
+           "label": "3",
+           "feedback": "$180 is over $150."
+          }
+         ],
+         "skill": "sizing",
+         "cat": "risk",
+         "setsSize": true
+        },
+        {
+         "prompt": "Daily loss limit $240. Does a $120 trade fit today?",
+         "options": [
+          {
+           "label": "Yes, two full losses fit",
+           "correct": true,
+           "why": "Capacity confirmed."
+          },
+          {
+           "label": "No",
+           "feedback": "$120 < $240."
+          }
+         ],
+         "skill": "daily",
+         "cat": "risk"
+        }
+       ],
+       "setups": [
+        {
+         "title": "Setup 1",
+         "trigger": {
+          "type": "trigger_sim",
+          "mode": "decide",
+          "kicker": "",
+          "title": "",
+          "scenario": {
+           "dir": "bullish",
+           "tf": "1M",
+           "symbol": "MNQ",
+           "bars": [
+            {
+             "o": 20982.25,
+             "h": 20986.25,
+             "l": 20981.0,
+             "c": 20985.5
+            },
+            {
+             "o": 20985.5,
+             "h": 20992.75,
+             "l": 20984.25,
+             "c": 20991.25
+            },
+            {
+             "o": 20991.25,
+             "h": 20995.75,
+             "l": 20990.0,
+             "c": 20994.25
+            },
+            {
+             "o": 20994.25,
+             "h": 20999.5,
+             "l": 20993.0,
+             "c": 20998.25
+            },
+            {
+             "o": 20998.25,
+             "h": 21004.25,
+             "l": 20997.5,
+             "c": 21001.75
+            },
+            {
+             "o": 21001.75,
+             "h": 21003.25,
+             "l": 20998.5,
+             "c": 20999.5
+            },
+            {
+             "o": 20999.5,
+             "h": 21001.0,
+             "l": 20997.0,
+             "c": 20997.5
+            },
+            {
+             "o": 20997.5,
+             "h": 20998.75,
+             "l": 20991.5,
+             "c": 20993.0
+            },
+            {
+             "o": 20993.0,
+             "h": 20994.0,
+             "l": 20990.0,
+             "c": 20991.25
+            },
+            {
+             "o": 20991.25,
+             "h": 20996.0,
+             "l": 20990.0,
+             "c": 20995.25
+            },
+            {
+             "o": 20995.25,
+             "h": 21000.0,
+             "l": 20994.0,
+             "c": 20998.5
+            },
+            {
+             "o": 20998.5,
+             "h": 21001.5,
+             "l": 20997.5,
+             "c": 21001.25
+            },
+            {
+             "o": 21001.25,
+             "h": 21007.75,
+             "l": 21001.25,
+             "c": 21007.0
+            },
+            {
+             "o": 21007.0,
+             "h": 21007.0,
+             "l": 21001.25,
+             "c": 21002.0
+            },
+            {
+             "o": 21002.0,
+             "h": 21002.75,
+             "l": 20998.5,
+             "c": 20998.75
+            },
+            {
+             "o": 20998.75,
+             "h": 20999.75,
+             "l": 20995.75,
+             "c": 20996.5
+            },
+            {
+             "o": 20996.5,
+             "h": 20997.25,
+             "l": 20994.75,
+             "c": 20995.25
+            },
+            {
+             "o": 20995.25,
+             "h": 20996.25,
+             "l": 20992.5,
+             "c": 20993.25
+            },
+            {
+             "o": 20993.25,
+             "h": 20993.75,
+             "l": 20988.25,
+             "c": 20989.25
+            },
+            {
+             "o": 20989.25,
+             "h": 20990.5,
+             "l": 20985.75,
+             "c": 20986.25
+            }
+           ],
+           "start": 11,
+           "context": [
+            {
+             "label": "4H",
+             "value": "Bullish"
+            },
+            {
+             "label": "1H",
+             "value": "Bullish thesis"
+            },
+            {
+             "label": "15M",
+             "value": "Pulling back into the map"
+            },
+            {
+             "label": "Location",
+             "value": "4H discount"
+            }
+           ],
+           "preEntry": {
+            "context": {
+             "state": "defined",
+             "value": "4H bullish"
+            },
+            "structure": {
+             "state": "defined",
+             "value": "1H HL holding"
+            },
+            "location": {
+             "state": "defined",
+             "value": "4H discount"
+            },
+            "direction": {
+             "state": "defined",
+             "value": "Long only"
+            },
+            "pil": {
+             "state": "defined",
+             "value": "21,004.25"
+            },
+            "invalidation": {
+             "state": "defined",
+             "value": "Close below the 1H HL"
+            }
+           }
+          },
+          "setups": [
+           {
+            "pil": 21004.25,
+            "pilAt": 4,
+            "invalidAt": 19
+           }
+          ],
+          "checkpoints": [
+           {
+            "at": 13
+           },
+           {
+            "at": 19,
+            "noTrade": true
+           }
+          ],
+          "speed": 800
+         }
+        },
+        {
+         "title": "Setup 2",
+         "trigger": {
+          "type": "trigger_sim",
+          "mode": "decide",
+          "kicker": "",
+          "title": "",
+          "scenario": {
+           "dir": "bullish",
+           "tf": "1M",
+           "symbol": "MNQ",
+           "bars": [
+            {
+             "o": 20982.25,
+             "h": 20986.5,
+             "l": 20981.0,
+             "c": 20985.0
+            },
+            {
+             "o": 20985.0,
+             "h": 20992.25,
+             "l": 20984.0,
+             "c": 20991.0
+            },
+            {
+             "o": 20991.0,
+             "h": 20995.0,
+             "l": 20990.25,
+             "c": 20994.75
+            },
+            {
+             "o": 20994.75,
+             "h": 20999.25,
+             "l": 20994.25,
+             "c": 20998.25
+            },
+            {
+             "o": 20998.25,
+             "h": 21004.25,
+             "l": 20997.5,
+             "c": 21001.75
+            },
+            {
+             "o": 21001.75,
+             "h": 21002.75,
+             "l": 20997.0,
+             "c": 20998.0
+            },
+            {
+             "o": 20998.0,
+             "h": 20998.5,
+             "l": 20994.75,
+             "c": 20996.0
+            },
+            {
+             "o": 20996.0,
+             "h": 20996.75,
+             "l": 20993.5,
+             "c": 20994.5
+            },
+            {
+             "o": 20994.5,
+             "h": 20995.5,
+             "l": 20990.5,
+             "c": 20991.25
+            },
+            {
+             "o": 20991.25,
+             "h": 20996.5,
+             "l": 20990.25,
+             "c": 20995.75
+            },
+            {
+             "o": 20995.75,
+             "h": 20999.25,
+             "l": 20994.75,
+             "c": 20998.5
+            },
+            {
+             "o": 20998.5,
+             "h": 21002.25,
+             "l": 20997.5,
+             "c": 21001.25
+            },
+            {
+             "o": 21001.25,
+             "h": 21007.75,
+             "l": 21001.25,
+             "c": 21007.0
+            },
+            {
+             "o": 21007.0,
+             "h": 21007.0,
+             "l": 21001.25,
+             "c": 21002.0
+            },
+            {
+             "o": 21002.0,
+             "h": 21008.75,
+             "l": 21002.0,
+             "c": 21007.25
+            },
+            {
+             "o": 21007.25,
+             "h": 21011.5,
+             "l": 21007.0,
+             "c": 21011.0
+            },
+            {
+             "o": 21011.0,
+             "h": 21017.25,
+             "l": 21009.75,
+             "c": 21015.75
+            },
+            {
+             "o": 21015.75,
+             "h": 21019.25,
+             "l": 21014.5,
+             "c": 21018.25
+            },
+            {
+             "o": 21018.25,
+             "h": 21022.5,
+             "l": 21017.25,
+             "c": 21022.25
+            },
+            {
+             "o": 21022.25,
+             "h": 21023.0,
+             "l": 21022.0,
+             "c": 21022.75
+            },
+            {
+             "o": 21022.75,
+             "h": 21027.25,
+             "l": 21022.0,
+             "c": 21026.25
+            },
+            {
+             "o": 21026.25,
+             "h": 21027.0,
+             "l": 21024.0,
+             "c": 21025.25
+            },
+            {
+             "o": 21025.25,
+             "h": 21029.0,
+             "l": 21024.75,
+             "c": 21028.75
+            },
+            {
+             "o": 21028.75,
+             "h": 21030.0,
+             "l": 21026.75,
+             "c": 21027.75
+            }
+           ],
+           "start": 12,
+           "context": [
+            {
+             "label": "4H",
+             "value": "Bullish"
+            },
+            {
+             "label": "1H",
+             "value": "Bullish thesis"
+            },
+            {
+             "label": "15M",
+             "value": "Pulling back into the map"
+            },
+            {
+             "label": "Location",
+             "value": "4H discount"
+            }
+           ],
+           "preEntry": {
+            "context": {
+             "state": "defined",
+             "value": "4H bullish"
+            },
+            "structure": {
+             "state": "defined",
+             "value": "1H HL holding"
+            },
+            "location": {
+             "state": "defined",
+             "value": "4H discount"
+            },
+            "direction": {
+             "state": "defined",
+             "value": "Long only"
+            },
+            "pil": {
+             "state": "defined",
+             "value": "21,004.25"
+            },
+            "invalidation": {
+             "state": "defined",
+             "value": "Close below the 1H HL"
+            }
+           }
+          },
+          "setups": [
+           {
+            "pil": 21004.25,
+            "pilAt": 4,
+            "missedAt": 23
+           }
+          ],
+          "checkpoints": [
+           {
+            "at": 14
+           },
+           {
+            "at": 23,
+            "noTrade": true
+           }
+          ],
+          "speed": 800
+         },
+         "afterAsks": [
+          {
+           "prompt": "No trades today. How was the session?",
+           "options": [
+            {
+             "label": "Wasted, nothing happened",
+             "feedback": "Every pass followed the model."
+            },
+            {
+             "label": "PERFECT. Nothing met the model.",
+             "correct": true,
+             "why": "The session is the test, not the number of trades."
+            }
+           ],
+           "stack": true,
+           "cat": "execution"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "loss-then-limit",
+       "account": {
+        "accountType": "Prop evaluation",
+        "displayedBalance": 25000,
+        "remainingDrawdown": 700,
+        "dailyLossLimit": 120,
+        "personalRiskRule": "$150 max per trade"
+       },
+       "rules": {
+        "dailyLoss": 120,
+        "maxTrades": 3
+       },
+       "context": {
+        "h4": {
+         "swings": [
+          [
+           20,
+           270
+          ],
+          [
+           140,
+           160
+          ],
+          [
+           230,
+           205
+          ],
+          [
+           380,
+           90
+          ],
+          [
+           470,
+           150
+          ],
+          [
+           600,
+           120
+          ]
+         ],
+         "seed": 4,
+         "hlines": [
+          {
+           "y": 150,
+           "label": "discount",
+           "tone": "muted"
+          }
+         ]
+        },
+        "h1": {
+         "swings": [
+          [
+           20,
+           120
+          ],
+          [
+           140,
+           210
+          ],
+          [
+           260,
+           160
+          ],
+          [
+           360,
+           240
+          ],
+          [
+           480,
+           170
+          ],
+          [
+           600,
+           200
+          ]
+         ],
+         "seed": 6,
+         "hlines": [
+          {
+           "y": 240,
+           "label": "1H HL",
+           "tone": "muted"
+          }
+         ]
+        },
+        "m15": "Pulling back into the 1H map. Watch, don’t act."
+       },
+       "pre": [
+        {
+         "prompt": "Which level must price prove itself through?",
+         "options": [
+          {
+           "label": "The newest wiggle",
+           "feedback": "Not structural."
+          },
+          {
+           "label": "21,004.25: the swing the pullback came from",
+           "correct": true,
+           "why": "Your PIL."
+          },
+          {
+           "label": "The 4H discount line",
+           "feedback": "Context, not the PIL."
+          }
+         ],
+         "stack": true,
+         "cat": "analysis"
+        },
+        {
+         "prompt": "30-point MNQ stop. Risk of one contract?",
+         "options": [
+          {
+           "label": "$30",
+           "feedback": "Points read as dollars."
+          },
+          {
+           "label": "$60",
+           "correct": true,
+           "why": "30 × $2."
+          },
+          {
+           "label": "$120",
+           "feedback": "That’s two."
+          }
+         ],
+         "skill": "dollar",
+         "cat": "risk"
+        },
+        {
+         "prompt": "$150 max per trade. How many contracts?",
+         "options": [
+          {
+           "label": "1",
+           "feedback": "2 still fit: $120."
+          },
+          {
+           "label": "2",
+           "correct": true,
+           "why": "$120. A third would be $180.",
+           "value": 2
+          },
+          {
+           "label": "3",
+           "feedback": "$180 is over $150."
+          }
+         ],
+         "skill": "sizing",
+         "cat": "risk",
+         "setsSize": true
+        },
+        {
+         "prompt": "Daily loss limit $120. How many full losses fit today at $120?",
+         "options": [
+          {
+           "label": "One",
+           "correct": true,
+           "why": "One full loss reaches the daily stop."
+          },
+          {
+           "label": "Two",
+           "feedback": "$240 > $120."
+          }
+         ],
+         "skill": "daily",
+         "cat": "risk"
+        }
+       ],
+       "setups": [
+        {
+         "title": "Setup 1",
+         "trigger": {
+          "type": "trigger_sim",
+          "mode": "decide",
+          "kicker": "",
+          "title": "",
+          "scenario": {
+           "dir": "bullish",
+           "tf": "1M",
+           "symbol": "MNQ",
+           "bars": [
+            {
+             "o": 20982.25,
+             "h": 20987.0,
+             "l": 20981.0,
+             "c": 20986.25
+            },
+            {
+             "o": 20986.25,
+             "h": 20992.25,
+             "l": 20985.5,
+             "c": 20991.0
+            },
+            {
+             "o": 20991.0,
+             "h": 20996.0,
+             "l": 20989.75,
+             "c": 20995.5
+            },
+            {
+             "o": 20995.5,
+             "h": 20999.25,
+             "l": 20995.0,
+             "c": 20998.25
+            },
+            {
+             "o": 20998.25,
+             "h": 21004.25,
+             "l": 20997.25,
+             "c": 21001.75
+            },
+            {
+             "o": 21001.75,
+             "h": 21003.0,
+             "l": 20997.0,
+             "c": 20998.0
+            },
+            {
+             "o": 20998.0,
+             "h": 20998.25,
+             "l": 20995.5,
+             "c": 20996.5
+            },
+            {
+             "o": 20996.5,
+             "h": 20998.0,
+             "l": 20994.5,
+             "c": 20995.0
+            },
+            {
+             "o": 20995.0,
+             "h": 20996.0,
+             "l": 20990.75,
+             "c": 20991.25
+            },
+            {
+             "o": 20991.25,
+             "h": 20995.25,
+             "l": 20990.25,
+             "c": 20994.75
+            },
+            {
+             "o": 20994.75,
+             "h": 20997.75,
+             "l": 20994.0,
+             "c": 20997.0
+            },
+            {
+             "o": 20997.0,
+             "h": 21001.75,
+             "l": 20995.75,
+             "c": 21001.25
+            },
+            {
+             "o": 21001.25,
+             "h": 21007.75,
+             "l": 21001.25,
+             "c": 21007.0
+            },
+            {
+             "o": 21007.0,
+             "h": 21007.0,
+             "l": 21001.25,
+             "c": 21002.0
+            },
+            {
+             "o": 21002.0,
+             "h": 21008.5,
+             "l": 21002.0,
+             "c": 21007.25
+            },
+            {
+             "o": 21007.25,
+             "h": 21009.75,
+             "l": 21006.25,
+             "c": 21009.0
+            },
+            {
+             "o": 21009.0,
+             "h": 21013.25,
+             "l": 21007.75,
+             "c": 21011.75
+            },
+            {
+             "o": 21011.75,
+             "h": 21014.25,
+             "l": 21010.5,
+             "c": 21013.5
+            },
+            {
+             "o": 21013.5,
+             "h": 21017.5,
+             "l": 21013.25,
+             "c": 21016.25
+            },
+            {
+             "o": 21016.25,
+             "h": 21016.5,
+             "l": 21012.0,
+             "c": 21013.0
+            },
+            {
+             "o": 21013.0,
+             "h": 21013.5,
+             "l": 21010.5,
+             "c": 21011.5
+            },
+            {
+             "o": 21011.5,
+             "h": 21013.0,
+             "l": 21006.5,
+             "c": 21007.25
+            },
+            {
+             "o": 21007.25,
+             "h": 21007.5,
+             "l": 21003.75,
+             "c": 21005.75
+            },
+            {
+             "o": 21005.75,
+             "h": 21008.5,
+             "l": 21005.0,
+             "c": 21007.5
+            }
+           ],
+           "start": 11,
+           "context": [
+            {
+             "label": "4H",
+             "value": "Bullish"
+            },
+            {
+             "label": "1H",
+             "value": "Bullish thesis"
+            },
+            {
+             "label": "15M",
+             "value": "Pulling back into the map"
+            },
+            {
+             "label": "Location",
+             "value": "4H discount"
+            }
+           ],
+           "preEntry": {
+            "context": {
+             "state": "defined",
+             "value": "4H bullish"
+            },
+            "structure": {
+             "state": "defined",
+             "value": "1H HL holding"
+            },
+            "location": {
+             "state": "defined",
+             "value": "4H discount"
+            },
+            "direction": {
+             "state": "defined",
+             "value": "Long only"
+            },
+            "pil": {
+             "state": "defined",
+             "value": "21,004.25"
+            },
+            "invalidation": {
+             "state": "defined",
+             "value": "Close below the 1H HL"
+            }
+           }
+          },
+          "setups": [
+           {
+            "pil": 21004.25,
+            "pilAt": 4
+           }
+          ],
+          "checkpoints": [
+           {
+            "at": 14
+           },
+           {
+            "at": 22,
+            "goal": true
+           }
+          ],
+          "speed": 800
+         },
+         "manage": {
+          "plan": {
+           "entryPrice": 21004.25,
+           "stopPrice": 20974.25,
+           "targetPrice": 21064.25,
+           "managementModel": "fixed",
+           "partialRules": "None",
+           "runnerRules": "None",
+           "breakEvenRules": "None",
+           "structuralRules": "None",
+           "earlyInterventionRules": "None"
+          },
+          "bars": [
+           {
+            "o": 21022.25,
+            "h": 21023.25,
+            "l": 21019.25,
+            "c": 21020.0
+           },
+           {
+            "o": 21020.0,
+            "h": 21021.25,
+            "l": 21014.75,
+            "c": 21015.25
+           },
+           {
+            "o": 21015.25,
+            "h": 21015.75,
+            "l": 21012.5,
+            "c": 21013.75
+           },
+           {
+            "o": 21013.75,
+            "h": 21014.75,
+            "l": 21009.25,
+            "c": 21009.75
+           },
+           {
+            "o": 21009.75,
+            "h": 21011.0,
+            "l": 21006.25,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.0,
+            "l": 21004.0,
+            "c": 21006.75
+           },
+           {
+            "o": 21006.75,
+            "h": 21011.25,
+            "l": 21005.0,
+            "c": 21009.25
+           },
+           {
+            "o": 21009.25,
+            "h": 21017.5,
+            "l": 21008.75,
+            "c": 21016.25
+           },
+           {
+            "o": 21016.25,
+            "h": 21018.0,
+            "l": 21007.25,
+            "c": 21008.25
+           },
+           {
+            "o": 21008.25,
+            "h": 21010.0,
+            "l": 20997.75,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21000.25,
+            "l": 20989.25,
+            "c": 20990.25
+           },
+           {
+            "o": 20990.25,
+            "h": 20991.75,
+            "l": 20982.5,
+            "c": 20983.25
+           },
+           {
+            "o": 20983.25,
+            "h": 20985.25,
+            "l": 20976.75,
+            "c": 20978.25
+           },
+           {
+            "o": 20978.25,
+            "h": 20979.25,
+            "l": 20972.75,
+            "c": 20973.75
+           }
+          ],
+          "entryAt": 5,
+          "speed": 700,
+          "actions": [
+           "follow",
+           "move-stop",
+           "close"
+          ],
+          "checkpoints": [
+           {
+            "at": 9,
+            "tempt": "close",
+            "temptLabel": "GET OUT?"
+           },
+           {
+            "at": 11,
+            "tempt": "move-stop",
+            "temptLabel": "WIDEN STOP?"
+           }
+          ]
+         },
+         "afterAsks": [
+          {
+           "prompt": "Valid trade, valid management, −1R. Grade?",
+           "options": [
+            {
+             "label": "Bad trade",
+             "feedback": "Process and outcome are separate."
+            },
+            {
+             "label": "Good process + loss",
+             "correct": true,
+             "why": "Accept it. Update the day."
+            }
+           ],
+           "cat": "management"
+          }
+         ]
+        },
+        {
+         "title": "Setup 2",
+         "lockedAsk": {
+          "prompt": "Daily stop reached. A beautiful A+ setup appears. TAKE / WAIT / PASS / DONE FOR DAY?",
+          "options": [
+           {
+            "label": "TAKE: it’s A+",
+            "feedback": "A valid setup doesn’t override a reached daily stop."
+           },
+           {
+            "label": "WAIT for a better one",
+            "feedback": "There is no next one today."
+           },
+           {
+            "label": "DONE FOR DAY",
+            "correct": true,
+            "why": "Done means done."
+           }
+          ],
+          "stack": true,
+          "skill": "daily",
+          "cat": "risk"
+         }
+        }
+       ]
+      },
+      {
+       "name": "win-then-smaller",
+       "account": {
+        "accountType": "Prop evaluation",
+        "displayedBalance": 25000,
+        "remainingDrawdown": 700,
+        "dailyLossLimit": 240,
+        "personalRiskRule": "$150 max per trade"
+       },
+       "rules": {
+        "dailyLoss": 240,
+        "maxTrades": 2
+       },
+       "context": {
+        "h4": {
+         "swings": [
+          [
+           20,
+           270
+          ],
+          [
+           140,
+           160
+          ],
+          [
+           230,
+           205
+          ],
+          [
+           380,
+           90
+          ],
+          [
+           470,
+           150
+          ],
+          [
+           600,
+           120
+          ]
+         ],
+         "seed": 4,
+         "hlines": [
+          {
+           "y": 150,
+           "label": "discount",
+           "tone": "muted"
+          }
+         ]
+        },
+        "h1": {
+         "swings": [
+          [
+           20,
+           120
+          ],
+          [
+           140,
+           210
+          ],
+          [
+           260,
+           160
+          ],
+          [
+           360,
+           240
+          ],
+          [
+           480,
+           170
+          ],
+          [
+           600,
+           200
+          ]
+         ],
+         "seed": 6,
+         "hlines": [
+          {
+           "y": 240,
+           "label": "1H HL",
+           "tone": "muted"
+          }
+         ]
+        },
+        "m15": "Pulling back into the 1H map. Watch, don’t act."
+       },
+       "pre": [
+        {
+         "prompt": "Which level must price prove itself through?",
+         "options": [
+          {
+           "label": "The newest wiggle",
+           "feedback": "Not structural."
+          },
+          {
+           "label": "21,004.25: the swing the pullback came from",
+           "correct": true,
+           "why": "Your PIL."
+          },
+          {
+           "label": "The 4H discount line",
+           "feedback": "Context, not the PIL."
+          }
+         ],
+         "stack": true,
+         "cat": "analysis"
+        },
+        {
+         "prompt": "30-point MNQ stop. Risk of one contract?",
+         "options": [
+          {
+           "label": "$30",
+           "feedback": "Points read as dollars."
+          },
+          {
+           "label": "$60",
+           "correct": true,
+           "why": "30 × $2."
+          },
+          {
+           "label": "$120",
+           "feedback": "That’s two."
+          }
+         ],
+         "skill": "dollar",
+         "cat": "risk"
+        },
+        {
+         "prompt": "$150 max per trade. How many contracts?",
+         "options": [
+          {
+           "label": "1",
+           "feedback": "2 still fit: $120."
+          },
+          {
+           "label": "2",
+           "correct": true,
+           "why": "$120. A third would be $180.",
+           "value": 2
+          },
+          {
+           "label": "3",
+           "feedback": "$180 is over $150."
+          }
+         ],
+         "skill": "sizing",
+         "cat": "risk",
+         "setsSize": true
+        },
+        {
+         "prompt": "Daily loss limit $240. Does a $120 trade fit today?",
+         "options": [
+          {
+           "label": "Yes, two full losses fit",
+           "correct": true,
+           "why": "Capacity confirmed."
+          },
+          {
+           "label": "No",
+           "feedback": "$120 < $240."
+          }
+         ],
+         "skill": "daily",
+         "cat": "risk"
+        }
+       ],
+       "setups": [
+        {
+         "title": "Setup 1",
+         "trigger": {
+          "type": "trigger_sim",
+          "mode": "decide",
+          "kicker": "",
+          "title": "",
+          "scenario": {
+           "dir": "bullish",
+           "tf": "1M",
+           "symbol": "MNQ",
+           "bars": [
+            {
+             "o": 20982.25,
+             "h": 20987.0,
+             "l": 20981.0,
+             "c": 20986.25
+            },
+            {
+             "o": 20986.25,
+             "h": 20992.25,
+             "l": 20985.5,
+             "c": 20991.0
+            },
+            {
+             "o": 20991.0,
+             "h": 20996.0,
+             "l": 20989.75,
+             "c": 20995.5
+            },
+            {
+             "o": 20995.5,
+             "h": 20999.25,
+             "l": 20995.0,
+             "c": 20998.25
+            },
+            {
+             "o": 20998.25,
+             "h": 21004.25,
+             "l": 20997.25,
+             "c": 21001.75
+            },
+            {
+             "o": 21001.75,
+             "h": 21003.0,
+             "l": 20997.0,
+             "c": 20998.0
+            },
+            {
+             "o": 20998.0,
+             "h": 20998.25,
+             "l": 20995.5,
+             "c": 20996.5
+            },
+            {
+             "o": 20996.5,
+             "h": 20998.0,
+             "l": 20994.5,
+             "c": 20995.0
+            },
+            {
+             "o": 20995.0,
+             "h": 20996.0,
+             "l": 20990.75,
+             "c": 20991.25
+            },
+            {
+             "o": 20991.25,
+             "h": 20995.25,
+             "l": 20990.25,
+             "c": 20994.75
+            },
+            {
+             "o": 20994.75,
+             "h": 20997.75,
+             "l": 20994.0,
+             "c": 20997.0
+            },
+            {
+             "o": 20997.0,
+             "h": 21001.75,
+             "l": 20995.75,
+             "c": 21001.25
+            },
+            {
+             "o": 21001.25,
+             "h": 21007.75,
+             "l": 21001.25,
+             "c": 21007.0
+            },
+            {
+             "o": 21007.0,
+             "h": 21007.0,
+             "l": 21001.25,
+             "c": 21002.0
+            },
+            {
+             "o": 21002.0,
+             "h": 21008.5,
+             "l": 21002.0,
+             "c": 21007.25
+            },
+            {
+             "o": 21007.25,
+             "h": 21009.75,
+             "l": 21006.25,
+             "c": 21009.0
+            },
+            {
+             "o": 21009.0,
+             "h": 21013.25,
+             "l": 21007.75,
+             "c": 21011.75
+            },
+            {
+             "o": 21011.75,
+             "h": 21014.25,
+             "l": 21010.5,
+             "c": 21013.5
+            },
+            {
+             "o": 21013.5,
+             "h": 21017.5,
+             "l": 21013.25,
+             "c": 21016.25
+            },
+            {
+             "o": 21016.25,
+             "h": 21016.5,
+             "l": 21012.0,
+             "c": 21013.0
+            },
+            {
+             "o": 21013.0,
+             "h": 21013.5,
+             "l": 21010.5,
+             "c": 21011.5
+            },
+            {
+             "o": 21011.5,
+             "h": 21013.0,
+             "l": 21006.5,
+             "c": 21007.25
+            },
+            {
+             "o": 21007.25,
+             "h": 21007.5,
+             "l": 21003.75,
+             "c": 21005.75
+            },
+            {
+             "o": 21005.75,
+             "h": 21008.5,
+             "l": 21005.0,
+             "c": 21007.5
+            }
+           ],
+           "start": 11,
+           "context": [
+            {
+             "label": "4H",
+             "value": "Bullish"
+            },
+            {
+             "label": "1H",
+             "value": "Bullish thesis"
+            },
+            {
+             "label": "15M",
+             "value": "Pulling back into the map"
+            },
+            {
+             "label": "Location",
+             "value": "4H discount"
+            }
+           ],
+           "preEntry": {
+            "context": {
+             "state": "defined",
+             "value": "4H bullish"
+            },
+            "structure": {
+             "state": "defined",
+             "value": "1H HL holding"
+            },
+            "location": {
+             "state": "defined",
+             "value": "4H discount"
+            },
+            "direction": {
+             "state": "defined",
+             "value": "Long only"
+            },
+            "pil": {
+             "state": "defined",
+             "value": "21,004.25"
+            },
+            "invalidation": {
+             "state": "defined",
+             "value": "Close below the 1H HL"
+            }
+           }
+          },
+          "setups": [
+           {
+            "pil": 21004.25,
+            "pilAt": 4
+           }
+          ],
+          "checkpoints": [
+           {
+            "at": 14
+           },
+           {
+            "at": 22,
+            "goal": true
+           }
+          ],
+          "speed": 800
+         },
+         "manage": {
+          "plan": {
+           "entryPrice": 21004.25,
+           "stopPrice": 20974.25,
+           "targetPrice": 21064.25,
+           "managementModel": "fixed",
+           "partialRules": "None",
+           "runnerRules": "None",
+           "breakEvenRules": "None",
+           "structuralRules": "None",
+           "earlyInterventionRules": "None"
+          },
+          "bars": [
+           {
+            "o": 21022.25,
+            "h": 21023.0,
+            "l": 21017.5,
+            "c": 21018.5
+           },
+           {
+            "o": 21018.5,
+            "h": 21019.75,
+            "l": 21014.75,
+            "c": 21015.5
+           },
+           {
+            "o": 21015.5,
+            "h": 21015.75,
+            "l": 21011.0,
+            "c": 21012.5
+           },
+           {
+            "o": 21012.5,
+            "h": 21013.75,
+            "l": 21009.5,
+            "c": 21010.75
+           },
+           {
+            "o": 21010.75,
+            "h": 21012.0,
+            "l": 21006.75,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.5,
+            "l": 21004.0,
+            "c": 21006.75
+           },
+           {
+            "o": 21006.75,
+            "h": 21011.0,
+            "l": 21005.75,
+            "c": 21010.25
+           },
+           {
+            "o": 21010.25,
+            "h": 21019.75,
+            "l": 21009.5,
+            "c": 21018.25
+           },
+           {
+            "o": 21018.25,
+            "h": 21028.5,
+            "l": 21017.0,
+            "c": 21026.25
+           },
+           {
+            "o": 21026.25,
+            "h": 21027.0,
+            "l": 21013.0,
+            "c": 21013.25
+           },
+           {
+            "o": 21013.25,
+            "h": 21023.5,
+            "l": 21011.5,
+            "c": 21021.25
+           },
+           {
+            "o": 21021.25,
+            "h": 21037.25,
+            "l": 21019.25,
+            "c": 21035.25
+           },
+           {
+            "o": 21035.25,
+            "h": 21037.25,
+            "l": 21027.5,
+            "c": 21028.25
+           },
+           {
+            "o": 21028.25,
+            "h": 21044.5,
+            "l": 21026.75,
+            "c": 21042.25
+           },
+           {
+            "o": 21042.25,
+            "h": 21055.0,
+            "l": 21040.5,
+            "c": 21053.25
+           },
+           {
+            "o": 21053.25,
+            "h": 21062.25,
+            "l": 21051.75,
+            "c": 21060.25
+           },
+           {
+            "o": 21060.25,
+            "h": 21065.75,
+            "l": 21059.25,
+            "c": 21064.75
+           }
+          ],
+          "entryAt": 5,
+          "speed": 700,
+          "actions": [
+           "follow",
+           "move-stop",
+           "partial",
+           "close",
+           "move-target"
+          ],
+          "checkpoints": [
+           {
+            "at": 8,
+            "tempt": "close",
+            "temptLabel": "TAKE PROFIT NOW"
+           },
+           {
+            "at": 9,
+            "tempt": "move-stop",
+            "temptLabel": "MOVE TO BE?"
+           },
+           {
+            "at": 13,
+            "tempt": "partial",
+            "temptLabel": "CLOSE HALF"
+           }
+          ]
+         },
+         "afterAsks": [
+          {
+           "prompt": "Max 2 trades today, 1 taken. Another valid setup forms. Can you take it?",
+           "options": [
+            {
+             "label": "Yes: within trades, daily capacity and drawdown",
+             "correct": true,
+             "why": "Checked against every rule, not just the setup."
+            },
+            {
+             "label": "No, I already won today",
+             "feedback": "Winning isn’t a rule. Your limits are."
+            }
+           ],
+           "stack": true,
+           "skill": "daily",
+           "cat": "risk"
+          },
+          {
+           "prompt": "Would doubling size now be OK, since you’re up?",
+           "options": [
+            {
+             "label": "Yes, playing with house money",
+             "feedback": "The risk ceiling didn’t change."
+            },
+            {
+             "label": "No: same risk ceiling",
+             "correct": true,
+             "why": "Results don’t change capacity."
+            }
+           ],
+           "skill": "revenge",
+           "cat": "risk"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "runs-no-retest",
+       "account": {
+        "accountType": "Prop evaluation",
+        "displayedBalance": 25000,
+        "remainingDrawdown": 700,
+        "dailyLossLimit": 240,
+        "personalRiskRule": "$150 max per trade"
+       },
+       "rules": {
+        "dailyLoss": 240,
+        "maxTrades": 3
+       },
+       "context": {
+        "h4": {
+         "swings": [
+          [
+           20,
+           270
+          ],
+          [
+           140,
+           160
+          ],
+          [
+           230,
+           205
+          ],
+          [
+           380,
+           90
+          ],
+          [
+           470,
+           150
+          ],
+          [
+           600,
+           120
+          ]
+         ],
+         "seed": 4,
+         "hlines": [
+          {
+           "y": 150,
+           "label": "discount",
+           "tone": "muted"
+          }
+         ]
+        },
+        "h1": {
+         "swings": [
+          [
+           20,
+           120
+          ],
+          [
+           140,
+           210
+          ],
+          [
+           260,
+           160
+          ],
+          [
+           360,
+           240
+          ],
+          [
+           480,
+           170
+          ],
+          [
+           600,
+           200
+          ]
+         ],
+         "seed": 6,
+         "hlines": [
+          {
+           "y": 240,
+           "label": "1H HL",
+           "tone": "muted"
+          }
+         ]
+        },
+        "m15": "Pulling back into the 1H map. Watch, don’t act."
+       },
+       "pre": [
+        {
+         "prompt": "Which level must price prove itself through?",
+         "options": [
+          {
+           "label": "The newest wiggle",
+           "feedback": "Not structural."
+          },
+          {
+           "label": "21,004.25: the swing the pullback came from",
+           "correct": true,
+           "why": "Your PIL."
+          },
+          {
+           "label": "The 4H discount line",
+           "feedback": "Context, not the PIL."
+          }
+         ],
+         "stack": true,
+         "cat": "analysis"
+        },
+        {
+         "prompt": "30-point MNQ stop. Risk of one contract?",
+         "options": [
+          {
+           "label": "$30",
+           "feedback": "Points read as dollars."
+          },
+          {
+           "label": "$60",
+           "correct": true,
+           "why": "30 × $2."
+          },
+          {
+           "label": "$120",
+           "feedback": "That’s two."
+          }
+         ],
+         "skill": "dollar",
+         "cat": "risk"
+        },
+        {
+         "prompt": "$150 max per trade. How many contracts?",
+         "options": [
+          {
+           "label": "1",
+           "feedback": "2 still fit: $120."
+          },
+          {
+           "label": "2",
+           "correct": true,
+           "why": "$120. A third would be $180.",
+           "value": 2
+          },
+          {
+           "label": "3",
+           "feedback": "$180 is over $150."
+          }
+         ],
+         "skill": "sizing",
+         "cat": "risk",
+         "setsSize": true
+        },
+        {
+         "prompt": "Daily loss limit $240. Does a $120 trade fit today?",
+         "options": [
+          {
+           "label": "Yes, two full losses fit",
+           "correct": true,
+           "why": "Capacity confirmed."
+          },
+          {
+           "label": "No",
+           "feedback": "$120 < $240."
+          }
+         ],
+         "skill": "daily",
+         "cat": "risk"
+        }
+       ],
+       "setups": [
+        {
+         "title": "Setup 1",
+         "trigger": {
+          "type": "trigger_sim",
+          "mode": "decide",
+          "kicker": "",
+          "title": "",
+          "scenario": {
+           "dir": "bullish",
+           "tf": "1M",
+           "symbol": "MNQ",
+           "bars": [
+            {
+             "o": 20982.25,
+             "h": 20986.5,
+             "l": 20981.0,
+             "c": 20985.0
+            },
+            {
+             "o": 20985.0,
+             "h": 20992.25,
+             "l": 20984.0,
+             "c": 20991.0
+            },
+            {
+             "o": 20991.0,
+             "h": 20995.0,
+             "l": 20990.25,
+             "c": 20994.75
+            },
+            {
+             "o": 20994.75,
+             "h": 20999.25,
+             "l": 20994.25,
+             "c": 20998.25
+            },
+            {
+             "o": 20998.25,
+             "h": 21004.25,
+             "l": 20997.5,
+             "c": 21001.75
+            },
+            {
+             "o": 21001.75,
+             "h": 21002.75,
+             "l": 20997.0,
+             "c": 20998.0
+            },
+            {
+             "o": 20998.0,
+             "h": 20998.5,
+             "l": 20994.75,
+             "c": 20996.0
+            },
+            {
+             "o": 20996.0,
+             "h": 20996.75,
+             "l": 20993.5,
+             "c": 20994.5
+            },
+            {
+             "o": 20994.5,
+             "h": 20995.5,
+             "l": 20990.5,
+             "c": 20991.25
+            },
+            {
+             "o": 20991.25,
+             "h": 20996.5,
+             "l": 20990.25,
+             "c": 20995.75
+            },
+            {
+             "o": 20995.75,
+             "h": 20999.25,
+             "l": 20994.75,
+             "c": 20998.5
+            },
+            {
+             "o": 20998.5,
+             "h": 21002.25,
+             "l": 20997.5,
+             "c": 21001.25
+            },
+            {
+             "o": 21001.25,
+             "h": 21007.75,
+             "l": 21001.25,
+             "c": 21007.0
+            },
+            {
+             "o": 21007.0,
+             "h": 21007.0,
+             "l": 21001.25,
+             "c": 21002.0
+            },
+            {
+             "o": 21002.0,
+             "h": 21008.75,
+             "l": 21002.0,
+             "c": 21007.25
+            },
+            {
+             "o": 21007.25,
+             "h": 21011.5,
+             "l": 21007.0,
+             "c": 21011.0
+            },
+            {
+             "o": 21011.0,
+             "h": 21017.25,
+             "l": 21009.75,
+             "c": 21015.75
+            },
+            {
+             "o": 21015.75,
+             "h": 21019.25,
+             "l": 21014.5,
+             "c": 21018.25
+            },
+            {
+             "o": 21018.25,
+             "h": 21022.5,
+             "l": 21017.25,
+             "c": 21022.25
+            },
+            {
+             "o": 21022.25,
+             "h": 21023.0,
+             "l": 21022.0,
+             "c": 21022.75
+            },
+            {
+             "o": 21022.75,
+             "h": 21027.25,
+             "l": 21022.0,
+             "c": 21026.25
+            },
+            {
+             "o": 21026.25,
+             "h": 21027.0,
+             "l": 21024.0,
+             "c": 21025.25
+            },
+            {
+             "o": 21025.25,
+             "h": 21029.0,
+             "l": 21024.75,
+             "c": 21028.75
+            },
+            {
+             "o": 21028.75,
+             "h": 21030.0,
+             "l": 21026.75,
+             "c": 21027.75
+            }
+           ],
+           "start": 12,
+           "context": [
+            {
+             "label": "4H",
+             "value": "Bullish"
+            },
+            {
+             "label": "1H",
+             "value": "Bullish thesis"
+            },
+            {
+             "label": "15M",
+             "value": "Pulling back into the map"
+            },
+            {
+             "label": "Location",
+             "value": "4H discount"
+            }
+           ],
+           "preEntry": {
+            "context": {
+             "state": "defined",
+             "value": "4H bullish"
+            },
+            "structure": {
+             "state": "defined",
+             "value": "1H HL holding"
+            },
+            "location": {
+             "state": "defined",
+             "value": "4H discount"
+            },
+            "direction": {
+             "state": "defined",
+             "value": "Long only"
+            },
+            "pil": {
+             "state": "defined",
+             "value": "21,004.25"
+            },
+            "invalidation": {
+             "state": "defined",
+             "value": "Close below the 1H HL"
+            }
+           }
+          },
+          "setups": [
+           {
+            "pil": 21004.25,
+            "pilAt": 4,
+            "missedAt": 23
+           }
+          ],
+          "checkpoints": [
+           {
+            "at": 14
+           },
+           {
+            "at": 23,
+            "noTrade": true
+           }
+          ],
+          "speed": 800
+         },
+         "afterAsks": [
+          {
+           "prompt": "The move went to target without you. What did that cost the account?",
+           "options": [
+            {
+             "label": "$480 of missed profit",
+             "feedback": "A missed opportunity isn’t a loss."
+            },
+            {
+             "label": "Nothing. No capital lost, no rule broken.",
+             "correct": true,
+             "why": "Missing the move doesn’t cost your account."
+            }
+           ],
+           "stack": true,
+           "cat": "execution"
+          }
+         ]
+        },
+        {
+         "title": "Setup 2",
+         "trigger": {
+          "type": "trigger_sim",
+          "mode": "decide",
+          "kicker": "",
+          "title": "",
+          "scenario": {
+           "dir": "bullish",
+           "tf": "1M",
+           "symbol": "MNQ",
+           "bars": [
+            {
+             "o": 20982.25,
+             "h": 20987.0,
+             "l": 20981.0,
+             "c": 20986.25
+            },
+            {
+             "o": 20986.25,
+             "h": 20992.25,
+             "l": 20985.5,
+             "c": 20991.0
+            },
+            {
+             "o": 20991.0,
+             "h": 20996.0,
+             "l": 20989.75,
+             "c": 20995.5
+            },
+            {
+             "o": 20995.5,
+             "h": 20999.25,
+             "l": 20995.0,
+             "c": 20998.25
+            },
+            {
+             "o": 20998.25,
+             "h": 21004.25,
+             "l": 20997.25,
+             "c": 21001.75
+            },
+            {
+             "o": 21001.75,
+             "h": 21003.0,
+             "l": 20997.0,
+             "c": 20998.0
+            },
+            {
+             "o": 20998.0,
+             "h": 20998.25,
+             "l": 20995.5,
+             "c": 20996.5
+            },
+            {
+             "o": 20996.5,
+             "h": 20998.0,
+             "l": 20994.5,
+             "c": 20995.0
+            },
+            {
+             "o": 20995.0,
+             "h": 20996.0,
+             "l": 20990.75,
+             "c": 20991.25
+            },
+            {
+             "o": 20991.25,
+             "h": 20995.25,
+             "l": 20990.25,
+             "c": 20994.75
+            },
+            {
+             "o": 20994.75,
+             "h": 20997.75,
+             "l": 20994.0,
+             "c": 20997.0
+            },
+            {
+             "o": 20997.0,
+             "h": 21001.75,
+             "l": 20995.75,
+             "c": 21001.25
+            },
+            {
+             "o": 21001.25,
+             "h": 21007.75,
+             "l": 21001.25,
+             "c": 21007.0
+            },
+            {
+             "o": 21007.0,
+             "h": 21007.0,
+             "l": 21001.25,
+             "c": 21002.0
+            },
+            {
+             "o": 21002.0,
+             "h": 21008.5,
+             "l": 21002.0,
+             "c": 21007.25
+            },
+            {
+             "o": 21007.25,
+             "h": 21009.75,
+             "l": 21006.25,
+             "c": 21009.0
+            },
+            {
+             "o": 21009.0,
+             "h": 21013.25,
+             "l": 21007.75,
+             "c": 21011.75
+            },
+            {
+             "o": 21011.75,
+             "h": 21014.25,
+             "l": 21010.5,
+             "c": 21013.5
+            },
+            {
+             "o": 21013.5,
+             "h": 21017.5,
+             "l": 21013.25,
+             "c": 21016.25
+            },
+            {
+             "o": 21016.25,
+             "h": 21016.5,
+             "l": 21012.0,
+             "c": 21013.0
+            },
+            {
+             "o": 21013.0,
+             "h": 21013.5,
+             "l": 21010.5,
+             "c": 21011.5
+            },
+            {
+             "o": 21011.5,
+             "h": 21013.0,
+             "l": 21006.5,
+             "c": 21007.25
+            },
+            {
+             "o": 21007.25,
+             "h": 21007.5,
+             "l": 21003.75,
+             "c": 21005.75
+            },
+            {
+             "o": 21005.75,
+             "h": 21008.5,
+             "l": 21005.0,
+             "c": 21007.5
+            }
+           ],
+           "start": 11,
+           "context": [
+            {
+             "label": "4H",
+             "value": "Bullish"
+            },
+            {
+             "label": "1H",
+             "value": "Bullish thesis"
+            },
+            {
+             "label": "15M",
+             "value": "Pulling back into the map"
+            },
+            {
+             "label": "Location",
+             "value": "4H discount"
+            }
+           ],
+           "preEntry": {
+            "context": {
+             "state": "defined",
+             "value": "4H bullish"
+            },
+            "structure": {
+             "state": "defined",
+             "value": "1H HL holding"
+            },
+            "location": {
+             "state": "defined",
+             "value": "4H discount"
+            },
+            "direction": {
+             "state": "defined",
+             "value": "Long only"
+            },
+            "pil": {
+             "state": "defined",
+             "value": "21,004.25"
+            },
+            "invalidation": {
+             "state": "defined",
+             "value": "Close below the 1H HL"
+            }
+           }
+          },
+          "setups": [
+           {
+            "pil": 21004.25,
+            "pilAt": 4
+           }
+          ],
+          "checkpoints": [
+           {
+            "at": 14
+           },
+           {
+            "at": 22,
+            "goal": true
+           }
+          ],
+          "speed": 800
+         },
+         "manage": {
+          "plan": {
+           "entryPrice": 21004.25,
+           "stopPrice": 20974.25,
+           "targetPrice": 21064.25,
+           "managementModel": "fixed",
+           "partialRules": "None",
+           "runnerRules": "None",
+           "breakEvenRules": "None",
+           "structuralRules": "None",
+           "earlyInterventionRules": "None"
+          },
+          "bars": [
+           {
+            "o": 21022.25,
+            "h": 21023.25,
+            "l": 21019.25,
+            "c": 21020.0
+           },
+           {
+            "o": 21020.0,
+            "h": 21021.25,
+            "l": 21014.75,
+            "c": 21015.25
+           },
+           {
+            "o": 21015.25,
+            "h": 21015.75,
+            "l": 21012.5,
+            "c": 21013.75
+           },
+           {
+            "o": 21013.75,
+            "h": 21014.75,
+            "l": 21009.25,
+            "c": 21009.75
+           },
+           {
+            "o": 21009.75,
+            "h": 21011.0,
+            "l": 21006.25,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.0,
+            "l": 21004.0,
+            "c": 21006.75
+           },
+           {
+            "o": 21006.75,
+            "h": 21011.25,
+            "l": 21005.0,
+            "c": 21009.25
+           },
+           {
+            "o": 21009.25,
+            "h": 21017.5,
+            "l": 21008.75,
+            "c": 21016.25
+           },
+           {
+            "o": 21016.25,
+            "h": 21018.0,
+            "l": 21007.25,
+            "c": 21008.25
+           },
+           {
+            "o": 21008.25,
+            "h": 21010.0,
+            "l": 20997.75,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21000.25,
+            "l": 20989.25,
+            "c": 20990.25
+           },
+           {
+            "o": 20990.25,
+            "h": 20991.75,
+            "l": 20982.5,
+            "c": 20983.25
+           },
+           {
+            "o": 20983.25,
+            "h": 20985.25,
+            "l": 20976.75,
+            "c": 20978.25
+           },
+           {
+            "o": 20978.25,
+            "h": 20979.25,
+            "l": 20972.75,
+            "c": 20973.75
+           }
+          ],
+          "entryAt": 5,
+          "speed": 700,
+          "actions": [
+           "follow",
+           "move-stop",
+           "close"
+          ],
+          "checkpoints": [
+           {
+            "at": 9,
+            "tempt": "close",
+            "temptLabel": "GET OUT?"
+           },
+           {
+            "at": 11,
+            "tempt": "move-stop",
+            "temptLabel": "WIDEN STOP?"
+           }
+          ]
+         }
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "skills": [
+   {
+    "key": "analysis",
+    "label": "Analysis",
+    "review": [
+     "p6",
+     1
+    ],
+    "keys": [
+     "analysis",
+     "1M role",
+     "Pre-entry"
+    ]
+   },
+   {
+    "key": "execution",
+    "label": "Execution",
+    "review": [
+     "p6",
+     4
+    ],
+    "keys": [
+     "execution",
+     "Confirmation vs anticipation",
+     "Retest timing",
+     "No chase",
+     "No trade"
+    ]
+   },
+   {
+    "key": "management",
+    "label": "Management",
+    "review": [
+     "p6",
+     14
+    ],
+    "keys": [
+     "management",
+     "Over-management",
+     "Break even",
+     "Partials",
+     "P&L distortion"
+    ]
+   },
+   {
+    "key": "risk",
+    "label": "Risk control",
+    "review": [
+     "p6",
+     19
+    ],
+    "keys": [
+     "risk",
+     "Position sizing",
+     "Daily stop",
+     "Dollar risk",
+     "Account constraints"
+    ]
+   }
+  ],
+  "adaptive": true,
+  "reviewTitle": "Your review, by category"
+ },
+ "reflection": {
+  "eyebrow": "📓 Phase 6 Final Reflection",
+  "heading": "Before Phase 7 🧠",
+  "fields": [
+   {
+    "type": "text",
+    "label": "The biggest execution mistake I now know how to avoid"
+   },
+   {
+    "type": "text",
+    "label": "What protecting my account means beyond using a stop"
+   },
+   {
+    "type": "text",
+    "label": "One risk rule every version of my plan needs"
+   },
+   {
+    "type": "choice",
+    "label": "Confidence",
+    "profile": "confidence",
+    "options": [
+     "Still shaky",
+     "Getting there",
+     "Pretty confident",
+     "Let me at it 🛡️"
+    ]
+   }
+  ],
+  "saveLabel": "Save to My Academy Notes →",
+  "savedLabel": "✓ Saved to My Academy Notes"
+ },
+ "phaseComplete": {
+  "phaseKey": "p6",
+  "eyebrow": "Phase 6 complete",
+  "heading": "✦ YOU CAN PULL THE TRIGGER WITHOUT BLOWING UP THE PLAN.",
+  "sub": "Pulling the Trigger · Complete",
+  "framework": {
+   "groups": [
+    {
+     "title": "PROCESS",
+     "items": [
+      "ANALYZE",
+      "WAIT",
+      "ENTER / PASS",
+      "MANAGE",
+      "PROTECT",
+      "REVIEW"
+     ]
+    }
+   ]
+  },
+  "stats": [
+   {
+    "value": "3",
+    "label": "Sections mastered"
+   },
+   {
+    "value": "26",
+    "label": "Lessons completed"
+   },
+   {
+    "value": "✓",
+    "label": "Execution Timing Lab"
+   },
+   {
+    "value": "✓",
+    "label": "Trade Management Simulator"
+   },
+   {
+    "value": "✓",
+    "label": "Risk Control Lab"
+   },
+   {
+    "value": "✓",
+    "label": "Phase 6 Trading Session"
+   },
+   {
+    "value": "{final}%",
+    "label": "Final Gate (80%+)"
+   }
+  ],
+  "badge": {
+   "id": "risk-keeper",
+   "title": "Risk Keeper",
+   "emoji": "🛡️",
+   "mark": "diamond",
+   "quote": "“You learned that the goal isn’t to avoid every loss. It’s to make sure the losses stay survivable.”"
+  },
+  "skills": [
+   {
+    "key": "analysis",
+    "label": "Analysis",
+    "review": [
+     "p6",
+     1
+    ],
+    "keys": [
+     "analysis",
+     "1M role",
+     "Pre-entry"
+    ]
+   },
+   {
+    "key": "execution",
+    "label": "Execution",
+    "review": [
+     "p6",
+     4
+    ],
+    "keys": [
+     "execution",
+     "Confirmation vs anticipation",
+     "Retest timing",
+     "No chase",
+     "No trade"
+    ]
+   },
+   {
+    "key": "management",
+    "label": "Management",
+    "review": [
+     "p6",
+     14
+    ],
+    "keys": [
+     "management",
+     "Over-management",
+     "Break even",
+     "Partials",
+     "P&L distortion"
+    ]
+   },
+   {
+    "key": "risk",
+    "label": "Risk control",
+    "review": [
+     "p6",
+     19
+    ],
+    "keys": [
+     "risk",
+     "Position sizing",
+     "Daily stop",
+     "Dollar risk",
+     "Account constraints"
+    ]
+   }
+  ],
+  "masteryTitle": "My learning · Your execution skills",
+  "masteryNote": "Based on your answers across Phase 6. Skills without enough answers yet say so instead of guessing.",
+  "pause": {
+   "lines": [
+    "Phases 1–3: learn to read price.",
+    "Phase 4: build the thesis.",
+    "Phase 5: learn the method.",
+    "Phase 6: execute the plan.",
+    "You know what to look for, where to look, when to enter, when not to, how to manage, how much to risk and when to stop.",
+    "So what’s left?",
+    "THE PERSON CLICKING THE BUTTON.",
+    "Your perfect written plan. A live loss. Another setup. “I need that back.” “What if I miss it?” “This one looks better.” “Maybe I’ll just bend the rule once.”"
+   ],
+   "ready": "YOU KNOW THE RULES. NOW COMES THE HARDER PART: FOLLOWING THEM WHEN YOUR EMOTIONS WANT SOMETHING ELSE."
+  },
+  "next": {
+   "eyebrow": "Phase 7 unlocked",
+   "title": "The Mindset Behind the Model 🧠",
+   "lines": [
+    "The rules are written. Now: following them."
+   ],
+   "topics": [
+    "Your Mind Is the Market",
+    "Rules That Protect You",
+    "Reading the Environment"
+   ],
+   "cta": "Enter Phase 7 →",
+   "href": "lessons.html"
+  }
+ }
+}

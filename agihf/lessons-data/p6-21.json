@@ -1,0 +1,79 @@
+{
+ "phase": "p6",
+ "section": "s17",
+ "lessonNumber": 21,
+ "title": "1:1 vs 1:2",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Win rate is not the whole edge.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Compare risk-to-reward structures and read a simple expectancy, without turning it into a promise.",
+  "missionQuestion": "Does a strategy need to win most trades?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "expectancy",
+   "kicker": "Two ladders, one formula",
+   "title": "Move the sliders",
+   "asks": [
+    {
+     "prompt": "DOES A STRATEGY NEED TO WIN MOST OF ITS TRADES TO HAVE POSITIVE EXPECTANCY?",
+     "options": [
+      {
+       "label": "Yes",
+       "feedback": "40% wins at +2R vs −1R is +0.20R per trade, in theory."
+      },
+      {
+       "label": "No",
+       "correct": true,
+       "why": "Win rate and payoff work together."
+      }
+     ],
+     "skill": "r"
+    },
+    {
+     "prompt": "DOES USING 1:2 AUTOMATICALLY GIVE A STRATEGY POSITIVE EXPECTANCY?",
+     "options": [
+      {
+       "label": "Yes",
+       "feedback": "Only if the win rate, average win and average loss actually support it."
+      },
+      {
+       "label": "No",
+       "correct": true,
+       "why": "You need real win rate, average win and loss, consistent execution, costs and a big enough sample."
+      }
+     ],
+     "skill": "r"
+    }
+   ],
+   "punch": "WIN RATE IS NOT THE WHOLE EDGE."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "1:2 isn’t an edge by itself. <em>It’s a structure. The edge is in what actually happens over a real sample.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why isn’t win rate the whole story?",
+   "modelAnswer": "Because expectancy depends on how much I win when I win and lose when I lose. A 40% win rate can be positive at 1:2, and a 1:2 structure can still be negative if the real win rate, costs or execution don’t support it."
+  }
+ ],
+ "takeaways": [
+  "1:1 = 1R → 1R. 1:2 = 1R → 2R.",
+  "Expectancy = win% × win − loss% × loss.",
+  "Theory, before costs, over a real sample."
+ ],
+ "remember": "Win rate is not the whole edge."
+}

@@ -86,6 +86,7 @@ export function mountExecChart(container, cfg) {
     if (formingBar) vis.push(formingBar);
     const ps = vis.flatMap((b) => [b.h, b.l]);
     if (pil != null) ps.push(pil);
+    (api._lines || []).forEach((l) => ps.push(l.price));
     if (preview != null) ps.push(preview);
     (cfg.markersList || []).forEach((m) => { if (m.at < k && m.at >= off) ps.push(m.price); });
     if (!ps.length) ps.push(cfg.bars[0].o);
@@ -119,6 +120,8 @@ export function mountExecChart(container, cfg) {
     };
     if (preview != null) line(preview, 'ex-prev', `${fmt(preview)}?`, previewAt);
     if (pil != null) line(pil, 'ex-pilline', `PIL ${fmt(pil)}`, pilAt);
+    // Trade lines (Phase 6): entry / stop / target, each from the bar it was placed on.
+    (api._lines || []).forEach((l) => line(l.price, `ex-tl-line ex-tl-${l.tone || 'ink'}`, l.label, l.at));
   }
 
   const api = {
@@ -141,10 +144,20 @@ export function mountExecChart(container, cfg) {
         t.textContent = forming.label || 'OPEN';
       }
       drawPil();
+      // Outcome-blind review: everything after `curtainAt` stays covered.
+      if (api._curtain != null && api._curtain < k + 1) {
+        const x = X(api._curtain) - step / 2;
+        const g = el('g', { class: 'ex-curtain' }, live);
+        el('rect', { x, y: 0, width: Math.max(0, W - PAD_R - x), height: H }, g);
+        const t = el('text', { x: x + (W - PAD_R - x) / 2, y: H / 2, 'text-anchor': 'middle' }, g);
+        t.textContent = 'OUTCOME HIDDEN';
+      }
       api.redrawMarks();
       api.redrawTags();
       if (Object.keys(api._views).length) api.redrawViews();
     },
+    lines(list) { api._lines = list; api.draw(shownK); },
+    curtain(at) { api._curtain = at; api.draw(shownK); },
     setPil(p, at = null) { pil = p; pilAt = at; preview = null; api.draw(shownK); },
     previewPil(p, at = null) { preview = p; previewAt = at; api.draw(shownK); },
     clearPreview() { preview = null; api.draw(shownK); },
@@ -958,7 +971,7 @@ export function renderExecClassify(el0, slide, satisfy, helpers = {}) {
   });
 }
 
-export { SKILL, METHOD, EXEC };
+export { SKILL, METHOD, EXEC, partialBar };
 
 export const ICC_EXEC_RENDERERS = {
   exec_sim: renderExec,

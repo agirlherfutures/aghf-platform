@@ -1,0 +1,131 @@
+{
+ "phase": "p6",
+ "section": "s16",
+ "lessonNumber": 14,
+ "title": "Over-Managing the Trade",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Activity is not the same as management.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Feel the pull of micromanagement, then compare what was planned with what was done.",
+  "missionQuestion": "What plan am I actually trading?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "micromanage",
+   "kicker": "The micromanagement simulator 😂",
+   "title": "Price moves. Buttons appear.",
+   "steps": [
+    {
+     "pnl": "+$80",
+     "prompt": "+10 points.",
+     "button": "MOVE STOP!"
+    },
+    {
+     "pnl": "−$24",
+     "prompt": "−3 points.",
+     "button": "CLOSE?"
+    },
+    {
+     "pnl": "+$64",
+     "prompt": "+8 points.",
+     "button": "TAKE PARTIAL?"
+    },
+    {
+     "pnl": "+$16",
+     "prompt": "Pullback.",
+     "button": "MOVE TARGET?"
+    },
+    {
+     "pnl": "+$152",
+     "prompt": "Rally!",
+     "button": "ADD CONTRACT?"
+    }
+   ],
+   "scripted": {
+    "Stop moves": 4,
+    "Target moves": 2,
+    "Partials": 1,
+    "Contracts added": 1,
+    "Manual closes": 1
+   }
+  },
+  {
+   "type": "p6_sort",
+   "kicker": "Touch counter",
+   "title": "Planned, rule-based or unplanned?",
+   "buckets": [
+    {
+     "key": "pl",
+     "label": "PLANNED",
+     "tone": "teal"
+    },
+    {
+     "key": "rb",
+     "label": "RULE-BASED",
+     "tone": "purple"
+    },
+    {
+     "key": "un",
+     "label": "UNPLANNED",
+     "tone": "pink"
+    }
+   ],
+   "items": [
+    {
+     "text": "Holding to the fixed target the plan set.",
+     "bucket": "pl"
+    },
+    {
+     "text": "Trailing the stop because the plan’s HL condition triggered.",
+     "bucket": "rb"
+    },
+    {
+     "text": "Moving the stop because the candle looked scary.",
+     "bucket": "un"
+    },
+    {
+     "text": "Taking the partial the plan scheduled at +30.",
+     "bucket": "rb"
+    },
+    {
+     "text": "Adding a contract because it’s “clearly going”.",
+     "bucket": "un"
+    },
+    {
+     "text": "Moving the target because you’re greedy.",
+     "bucket": "un"
+    }
+   ],
+   "track": true,
+   "punch": "SOMETIMES THE BEST MANAGEMENT DECISION IS TO STOP TOUCHING THINGS.",
+   "concept": "Over-management"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Not every touch is bad. <em>Unplanned touching is.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What does over-managing look like?",
+   "modelAnswer": "Moving the stop, the target and the size again and again, taking random partials and closing manually, until the trade no longer resembles the plan I locked."
+  }
+ ],
+ "takeaways": [
+  "Activity ≠ management.",
+  "Count touches: planned, rule-based, unplanned.",
+  "Stop touching things."
+ ],
+ "remember": "Sometimes the best management decision is to stop touching things."
+}

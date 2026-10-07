@@ -1,0 +1,103 @@
+{
+ "phase": "p6",
+ "section": "s17",
+ "lessonNumber": 26,
+ "title": "Prop-Firm Risk vs Personal Capital",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "The chart can be the same. The account decision can be different.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Size the account, not just the chart, and write your own risk framework.",
+  "missionQuestion": "Does this trade fit THIS account?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "Account constraints",
+   "heading": "Two kinds of account",
+   "body": "",
+   "beats": [
+    {
+     "icon": "👤",
+     "title": "Personal account",
+     "line": "Available capital, your risk tolerance, broker margin, your rules."
+    },
+    {
+     "icon": "🏢",
+     "title": "Prop / evaluation",
+     "line": "Also: max drawdown, daily loss rules, trailing drawdown, consistency, contract limits, payout and time rules."
+    }
+   ],
+   "punch": "CHECK CURRENT RULES FOR THE ACTUAL PROGRAM YOU TRADE. Firms change them."
+  },
+  {
+   "type": "account_compare",
+   "kicker": "Same chart. Different account.",
+   "title": "Same PIL, same ICC, same 30-point stop",
+   "accounts": [
+    {
+     "title": "Account A",
+     "accountType": "Personal",
+     "riskCapacity": "Enough for the normal size",
+     "personalRiskRule": "$240 max per trade"
+    },
+    {
+     "title": "Account B",
+     "accountType": "Prop evaluation",
+     "displayedBalance": 50000,
+     "remainingDrawdown": 300,
+     "personalRiskRule": "$240 max per trade"
+    }
+   ],
+   "asks": [
+    {
+     "prompt": "Same contract size in both, automatically?",
+     "options": [
+      {
+       "label": "Yes, same chart",
+       "feedback": "Account B would lose most of its remaining drawdown on one full loss."
+      },
+      {
+       "label": "No",
+       "correct": true,
+       "why": "The account decides the size. Account B needs a smaller size, or no trade."
+      }
+     ],
+     "skill": "account"
+    }
+   ],
+   "punch": "THE CHART CAN BE THE SAME. THE ACCOUNT DECISION CAN BE DIFFERENT."
+  },
+  {
+   "type": "risk_profile",
+   "kicker": "Make it yours",
+   "title": "MY AGHF RISK FRAMEWORK"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "The chart can be the same. <em>The account decision can be different.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What does protecting your account mean beyond using a stop?",
+   "modelAnswer": "Sizing from my risk cap, respecting a daily limit and a maximum number of trades, keeping room for losing streaks, and checking the real constraints of the account I’m trading."
+  }
+ ],
+ "takeaways": [
+  "Size the account, not the chart.",
+  "Check the real program rules.",
+  "Your framework, your numbers."
+ ],
+ "remember": "The chart can be the same. The account decision can be different."
+}

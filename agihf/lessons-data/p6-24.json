@@ -1,0 +1,114 @@
+{
+ "phase": "p6",
+ "section": "s17",
+ "lessonNumber": 24,
+ "title": "Maximum Trades & Frequency Risk",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Risk per trade controls one decision. Maximum trades controls the day.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "See how risk per trade multiplies with frequency.",
+  "missionQuestion": "How much can the whole day lose?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "frequency",
+   "kicker": "Frequency as math",
+   "title": "1R per trade. Now add trades.",
+   "perR": 100,
+   "asks": [
+    {
+     "prompt": "“I only risk 1%.” PER WHAT?",
+     "options": [
+      {
+       "label": "Per day",
+       "feedback": "She said per trade. Ten trades is up to 10%."
+      },
+      {
+       "label": "Per trade, so the day depends on how many she takes",
+       "correct": true,
+       "why": "1% per trade alone doesn’t describe session exposure."
+      }
+     ],
+     "stack": true,
+     "skill": "frequency"
+    },
+    {
+     "prompt": "$100 per trade. 6 full losses. Was “I only risk $100 per trade” a complete daily plan?",
+     "options": [
+      {
+       "label": "Yes",
+       "feedback": "−$600 says otherwise."
+      },
+      {
+       "label": "No",
+       "correct": true,
+       "why": "It needs a daily limit and a maximum number of trades."
+      }
+     ],
+     "skill": "frequency"
+    }
+   ],
+   "punch": "RISK PER TRADE CONTROLS ONE DECISION. MAXIMUM TRADES CONTROLS THE DAY."
+  },
+  {
+   "type": "teach",
+   "kicker": "More trades can mean more…",
+   "heading": "Overtrading, as math",
+   "body": "",
+   "beats": [
+    {
+     "icon": "$",
+     "title": "Commission",
+     "line": ""
+    },
+    {
+     "icon": "↯",
+     "title": "Slippage",
+     "line": ""
+    },
+    {
+     "icon": "⏱",
+     "title": "Exposure",
+     "line": ""
+    },
+    {
+     "icon": "⚠",
+     "title": "Chances to deviate",
+     "line": ""
+    },
+    {
+     "icon": "−",
+     "title": "Potential cumulative loss",
+     "line": ""
+    }
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Risk per trade controls one decision. <em>Maximum trades controls the day.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why isn’t risk per trade a complete daily plan?",
+   "modelAnswer": "Because the day’s exposure is risk per trade times the number of trades. Without a daily limit and a maximum number of trades, “1% per trade” can become 10% in a session."
+  }
+ ],
+ "takeaways": [
+  "Per trade ≠ per day.",
+  "Exposure = risk × trades.",
+  "Cap the number of trades."
+ ],
+ "remember": "Risk per trade controls one decision. Maximum trades controls the day."
+}

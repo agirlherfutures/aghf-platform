@@ -41,6 +41,9 @@ import { PRICE_REPLAY_RENDERERS } from './price-replay.js';
 import { TOPDOWN_RENDERERS } from './topdown.js';
 import { ICC_RENDERERS } from './icc.js';
 import { ICC_EXEC_RENDERERS } from './icc-exec.js';
+import { TRIGGER_RENDERERS } from './trigger.js';
+import { MANAGE_RENDERERS } from './manage.js';
+import { RISK_RENDERERS } from './risk.js';
 import { LEVEL_RENDERERS } from './level-tools.js';
 
 // Temporary: everything unlocked while the Academy is being built (see preview.js).
@@ -956,6 +959,9 @@ export const SLIDE_RENDERERS = {
   ...TOPDOWN_RENDERERS,
   ...ICC_RENDERERS,
   ...ICC_EXEC_RENDERERS,
+  ...TRIGGER_RENDERERS,
+  ...MANAGE_RENDERERS,
+  ...RISK_RENDERERS,
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
   chart_tap: renderChartTapSlide,

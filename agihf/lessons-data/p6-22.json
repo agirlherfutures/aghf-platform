@@ -1,0 +1,106 @@
+{
+ "phase": "p6",
+ "section": "s17",
+ "lessonNumber": 22,
+ "title": "The Dayli ICC Risk Example",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Copy the process before you copy the size.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Read the Dayli MNQ example as a process, then size the same method to your own cap.",
+  "missionQuestion": "What should I actually copy?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "Current Dayli ICC MNQ example",
+   "heading": "4 MNQ · 30-pt stop · 60-pt target",
+   "body": "",
+   "beats": [
+    {
+     "icon": "−",
+     "title": "Risk",
+     "line": "30 × $2 × 4 = $240"
+    },
+    {
+     "icon": "+",
+     "title": "Potential gross reward",
+     "line": "60 × $2 × 4 = $480"
+    },
+    {
+     "icon": "R",
+     "title": "R:R",
+     "line": "1:2, before trading costs"
+    }
+   ],
+   "punch": "The teaching example from the current framework. Not a recommendation."
+  },
+  {
+   "type": "r_normalizer",
+   "kicker": "Copycat check",
+   "title": "WHAT SHOULD YOU COPY?",
+   "traders": [],
+   "asks": [
+    {
+     "prompt": "From the Dayli example, copy…",
+     "options": [
+      {
+       "label": "4 contracts",
+       "feedback": "That’s her size, for her account."
+      },
+      {
+       "label": "$240 risk",
+       "feedback": "That’s her dollar amount."
+      },
+      {
+       "label": "THE RISK PROCESS",
+       "correct": true,
+       "why": "Stop in points, risk per contract, size from your own cap."
+      }
+     ],
+     "stack": true,
+     "skill": "sizing"
+    }
+   ],
+   "punch": "COPY THE PROCESS BEFORE YOU COPY THE SIZE."
+  },
+  {
+   "type": "size_fit",
+   "kicker": "Personalize it",
+   "title": "Your cap is $60. Same 30-point MNQ stop.",
+   "steps": [
+    {
+     "cap": 60,
+     "stop": 30
+    }
+   ],
+   "punch": "SAME METHOD. DIFFERENT ACCOUNT-SIZED EXPOSURE."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Copy the process <em>before you copy the size.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What part of the Dayli example should you copy?",
+   "modelAnswer": "The process: a defined stop in points, the risk per contract, and a size that comes from my own risk cap. Not her contract count or her dollar amount."
+  }
+ ],
+ "takeaways": [
+  "4 MNQ is the example, not advice.",
+  "Copy the process.",
+  "Size it to your cap."
+ ],
+ "remember": "Copy the process before you copy the size."
+}
