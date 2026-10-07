@@ -14,7 +14,8 @@
  * (up to MAX_TEMPO) and reported, so you can shorten it or slow the video.
  *
  * Provider (env VOICE_PROVIDER, default narakeet):
- *   narakeet    NARAKEET_API_KEY, NARAKEET_VOICE (e.g. "Hannah")
+ *   narakeet    NARAKEET_VOICE (e.g. "Harmony"), plus NARAKEET_API_KEY unless the
+ *               environment's network secret adds the x-api-key header itself
  *   elevenlabs  ELEVENLABS_API_KEY, ELEVENLABS_VOICE_ID, optional ELEVENLABS_MODEL
  *   fake        no network: a tone the length of the line, to test the timing
  * Optional VOICE_SPEED (e.g. 1.1) asks the service to read faster, which
@@ -56,7 +57,8 @@ const PROVIDERS = {
       const speed = process.env.VOICE_SPEED ? `&voice-speed=${process.env.VOICE_SPEED}` : '';
       const url = `https://api.narakeet.com/text-to-speech/mp3?voice=${encodeURIComponent(need('NARAKEET_VOICE'))}${speed}`;
       return fetchAudio(url, {
-        'x-api-key': need('NARAKEET_API_KEY'),
+        // A cloud environment's network secret can inject this header instead.
+        ...(process.env.NARAKEET_API_KEY ? { 'x-api-key': process.env.NARAKEET_API_KEY } : {}),
         'Content-Type': 'text/plain; charset=utf-8',
         Accept: 'application/octet-stream',
       }, text);
