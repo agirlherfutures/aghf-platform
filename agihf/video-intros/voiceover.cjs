@@ -21,6 +21,10 @@
  * Optional VOICE_SPEED (e.g. 1.1) asks the service to read faster, which
  * helps when lines are flagged as running into the next one.
  *
+ * With --mux, music/background.m4a (if present) plays under the narration,
+ * faded in and out and ducked while the voice speaks. MUSIC=<file> swaps the
+ * track, MUSIC=none leaves it out, MUSIC_VOLUME=0.7 makes it quieter.
+ *
  * Generated clips are cached in out/voice/<slug>/, so re-running only pays for
  * lines whose text or voice changed. --mux needs the silent render at
  * out/<slug>.mp4 (node render.cjs <slug>). Needs ffmpeg and Node 18+.
@@ -44,6 +48,14 @@ if ((process.env.HTTPS_PROXY || process.env.https_proxy) && !process.env.NODE_US
 const MAX_TEMPO = 1.25;  // fastest we'll speed a line up to fit its slot
 const GAP = 0.15;        // breathing room kept before the next line starts
 const outDir = path.join(__dirname, 'out');
+
+// Background music for --mux: MUSIC=<file> to use another track, MUSIC=none
+// for none. MUSIC_VOLUME scales it (1 = as stored, already set to -30 LUFS).
+const MUSIC_DEFAULT = path.join(__dirname, 'music', 'background.m4a');
+const music = process.env.MUSIC === 'none' ? null
+  : process.env.MUSIC ? path.resolve(process.env.MUSIC)
+  : fs.existsSync(MUSIC_DEFAULT) ? MUSIC_DEFAULT : null;
+const MUSIC_VOLUME = Number(process.env.MUSIC_VOLUME || 1);
 
 const args = process.argv.slice(2);
 const mux = args.includes('--mux');
@@ -197,9 +209,23 @@ async function voiceLesson(slug) {
       warnings.push(`no ${path.relative(__dirname, video)} to add the voice to. Run: node render.cjs ${slug}`);
     } else {
       const narrated = path.join(outDir, `${slug}-narrated.mp4`);
-      ffmpeg(['-i', video, '-i', voice, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'copy',
-        '-shortest', '-movflags', '+faststart', narrated]);
-      console.log(`✓ ${narrated}`);
+      if (music) {
+        // Loop the bed to the video's length, fade it in and out, and duck it
+        // under the voice so the narration always sits on top.
+        const fadeOut = Math.max(0, duration - 2.5).toFixed(2);
+        const filter =
+          `[2:a]volume=${MUSIC_VOLUME},atrim=end=${duration},afade=t=in:d=1.5,afade=t=out:st=${fadeOut}:d=2.5[bed];` +
+          `[1:a]asplit[v][key];` +
+          `[bed][key]sidechaincompress=threshold=0.02:ratio=4:attack=20:release=400[ducked];` +
+          `[v][ducked]amix=inputs=2:normalize=0:duration=first[out]`;
+        ffmpeg(['-i', video, '-i', voice, '-stream_loop', '-1', '-i', music,
+          '-filter_complex', filter, '-map', '0:v', '-map', '[out]', '-c:v', 'copy',
+          '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', narrated]);
+      } else {
+        ffmpeg(['-i', video, '-i', voice, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'copy',
+          '-shortest', '-movflags', '+faststart', narrated]);
+      }
+      console.log(`✓ ${narrated}${music ? ` (with ${path.relative(__dirname, music)})` : ''}`);
     }
   }
   warnings.forEach(w => console.log(`  ⚠ ${w}`));
