@@ -115,7 +115,7 @@ export function renderExplain(el, slide, satisfy, helpers = {}) {
   for (let k = 0; k < 3; k++) add();
   card.querySelector('.p7-exp-add').addEventListener('click', () => { if (list.children.length < 8) add(); });
   done.addEventListener('click', () => {
-    done.disabled = true;
+    done.remove();
     const obs = [...list.querySelectorAll('textarea')].map((t) => t.value.trim()).filter(Boolean);
     list.querySelectorAll('textarea').forEach((t) => { t.disabled = true; });
     card.querySelector('.p7-exp-add').remove();
@@ -168,6 +168,7 @@ export function renderSnapshot(el, slide, satisfy, helpers = {}) {
       helpers.onPick?.({ prompt: `snap:${f.key}` }, { label: b.textContent }, ok, tries);
       helpers.handleStreak?.(ok);
       if (tries === 0 && slide.ecat?.[f.key]) E.trackEnv(slide.ecat[f.key], ok);
+      if (tries === 0 && slide.skill) helpers.report?.(slide.skill, ok);
       if (!ok) { tries += 1; b.disabled = true; row.querySelector('.p7-sf-fb').textContent = (slide.why || {})[f.key] || 'Read that layer again.'; return; }
       b.classList.add('on'); got[f.key] = b.textContent; row.querySelector('.p7-sf-fb').textContent = '';
       row.querySelectorAll('.tx-chip').forEach((x) => { x.disabled = true; });
@@ -212,7 +213,7 @@ export function renderParticipation(el, slide, satisfy, helpers = {}) {
     const d = slide.decision;
     const opts = d.options || ['TAKE', 'WAIT', 'PASS', 'SESSION OVER'];
     askQuestion(asks, { prompt: d.prompt || 'WHAT DO I DO?', options: opts.map((o) => ({ label: o, correct: o === d.correct, why: d.why, feedback: (d.feedback || {})[o] || 'Go back through the layers. Which one decides it?' })) },
-      { ...helpers, onPick(q, o, c, w) { helpers.onPick?.(q, o, c, w); if (w === 0 && d.ecat) E.trackEnv(d.ecat, c); if (w === 0 && !c && o.label === 'TAKE') E.trackEnv('forcedTrades'); } }, () => {
+      { ...helpers, onPick(q, o, c, w) { helpers.onPick?.(q, o, c, w); if (w === 0 && d.ecat) E.trackEnv(d.ecat, c); if (w === 0 && d.skill) helpers.report?.(d.skill, c); if (w === 0 && !c && o.label === 'TAKE') E.trackEnv('forcedTrades'); } }, () => {
         const dl = card.querySelector('.p7-ly-d'); dl.classList.remove('is-cur'); dl.classList.add('is-set', `is-${d.correct.toLowerCase().replace(/\s+/g, '-')}`); dl.querySelector('b').textContent = d.correct;
         why();
       });
@@ -234,7 +235,7 @@ export function renderParticipation(el, slide, satisfy, helpers = {}) {
     btn.addEventListener('click', () => {
       btn.disabled = true; inp.disabled = true;
       const w = inp.value.trim() || chosen;
-      if (slide.decision.correct === 'PASS' || slide.decision.correct === 'SESSION OVER') E.recordValidPass({ reason: slide.passReason || w, setupState: slide.setupState || null, studentExplanation: w, rulebookContext: slide.rulebookContext || null });
+      if (/PASS|SESSION OVER/.test(slide.decision.correct)) E.recordValidPass({ reason: slide.passReason || w, setupState: slide.setupState || null, studentExplanation: w, rulebookContext: slide.rulebookContext || null });
       box.insertAdjacentHTML('beforeend', `<div class="p7-rule p7-rule-sharp"><small>${slide.decision.correct}</small><b>${esc(w)}</b></div>`);
       principle(card, slide.punch); continueBtn(card, satisfy, slide.cta);
     });

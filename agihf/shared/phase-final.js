@@ -334,7 +334,7 @@ export function renderPhaseComplete(slide, data, { flagKey, backHref, results })
         ${review.items.map((it) => `<div class="pc-review-row"><p>${it.text}</p><a href="lesson.html?phase=${it.review[0]}&n=${it.review[1]}">Review ${it.label} →</a></div>`).join('')}</div>` : ''}
     </div>
     ${c.pause ? pauseHtml(c.pause) : ''}
-    <div class="lw-card pc-next${c.next.method ? ' pc-method' : ''}">
+    <div class="lw-card pc-next${c.next.method ? ' pc-method' : ''}${c.next.huge ? ' pc-huge' : ''}">
       <div class="lw-eyebrow">🔓 ${c.next.eyebrow}</div>
       <h2>${c.next.title}</h2>
       ${c.next.lines.map((l) => `<p>${l}</p>`).join('')}

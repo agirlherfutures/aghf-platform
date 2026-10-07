@@ -1,0 +1,473 @@
+{
+ "phase": "p7",
+ "section": "s20",
+ "lessonNumber": 22,
+ "title": "Consolidation Quality",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Not all consolidation looks the same.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Tell orderly consolidation from messy chop, and notice when every level starts to look important.",
+  "missionQuestion": "If every level looks important, which one actually matters?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_split",
+   "kicker": "Side by side",
+   "title": "NOT ALL CONSOLIDATION LOOKS THE SAME",
+   "left": {
+    "h": "ORDERLY",
+    "lines": [
+     "Clear boundaries",
+     "Readable reactions",
+     "Structure understandable"
+    ],
+    "tone": "ok"
+   },
+   "right": {
+    "h": "MESSY",
+    "lines": [
+     "Overlapping candles",
+     "Tiny competing swings",
+     "Close-through, close-back, again",
+     "PIL candidates keep changing",
+     "Weak progression"
+    ],
+    "tone": "mind"
+   },
+   "together": true
+  },
+  {
+   "type": "p7_pil_click",
+   "kicker": "Mark the PIL",
+   "title": "Tap the level that matters",
+   "clean": {
+    "chart": {
+     "swings": [
+      [
+       20,
+       290
+      ],
+      [
+       90,
+       220
+      ],
+      [
+       130,
+       250
+      ],
+      [
+       220,
+       160
+      ],
+      [
+       260,
+       195
+      ],
+      [
+       350,
+       110
+      ],
+      [
+       390,
+       145
+      ],
+      [
+       480,
+       60
+      ],
+      [
+       520,
+       90
+      ],
+      [
+       600,
+       40
+      ]
+     ],
+     "seed": 21
+    },
+    "label": "CLEAN STRUCTURE",
+    "levels": [
+     {
+      "y": 160,
+      "label": "swing high"
+     },
+     {
+      "y": 250,
+      "label": "pullback low"
+     }
+    ],
+    "after": "One or two levels stand out. Easy. Next."
+   },
+   "messy": {
+    "chart": {
+     "swings": [
+      [
+       20,
+       150
+      ],
+      [
+       60,
+       185
+      ],
+      [
+       95,
+       140
+      ],
+      [
+       130,
+       178
+      ],
+      [
+       165,
+       150
+      ],
+      [
+       200,
+       190
+      ],
+      [
+       235,
+       145
+      ],
+      [
+       270,
+       175
+      ],
+      [
+       305,
+       152
+      ],
+      [
+       340,
+       188
+      ],
+      [
+       375,
+       142
+      ],
+      [
+       410,
+       180
+      ],
+      [
+       445,
+       155
+      ],
+      [
+       480,
+       186
+      ],
+      [
+       515,
+       147
+      ],
+      [
+       550,
+       176
+      ],
+      [
+       600,
+       160
+      ]
+     ],
+     "seed": 33,
+     "density": 1.3
+    },
+    "label": "MESSY CONSOLIDATION",
+    "need": 3,
+    "levels": [
+     {
+      "y": 140,
+      "label": "this one?"
+     },
+     {
+      "y": 147,
+      "label": "or this?"
+     },
+     {
+      "y": 155,
+      "label": "this?"
+     },
+     {
+      "y": 176,
+      "label": "maybe?"
+     },
+     {
+      "y": 186,
+      "label": "this one?"
+     }
+    ],
+    "more": "And another one that could be argued as important?",
+    "after": "<b>NOTICE THE PROBLEM?</b>"
+   },
+   "asks": [
+    {
+     "prompt": "If every tiny swing can be argued as important… which one actually matters?",
+     "options": [
+      {
+       "label": "The first one I tapped",
+       "feedback": "Why that one over the other two?",
+       "einc": "manyPils"
+      },
+      {
+       "label": "Maybe none of them is clear enough yet",
+       "correct": true,
+       "why": "That’s a read, not a failure."
+      }
+     ],
+     "ecat": "clarity"
+    }
+   ],
+   "punch": "IF THE CHART MAKES EVERY LEVEL LOOK IMPORTANT, NONE OF THEM MAY BE CLEAR ENOUGH YET."
+  },
+  {
+   "type": "p7_monologue",
+   "kicker": "ICC in chop",
+   "chart": {
+    "bars": [
+     {
+      "o": 20998.25,
+      "h": 21000.75,
+      "l": 20997.0,
+      "c": 20999.75
+     },
+     {
+      "o": 20999.75,
+      "h": 21002.0,
+      "l": 20999.0,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21004.25,
+      "l": 21000.5,
+      "c": 21002.25
+     },
+     {
+      "o": 21002.25,
+      "h": 21007.0,
+      "l": 21000.75,
+      "c": 21005.5
+     },
+     {
+      "o": 21005.5,
+      "h": 21007.0,
+      "l": 21000.75,
+      "c": 21002.25
+     },
+     {
+      "o": 21002.25,
+      "h": 21008.5,
+      "l": 21000.75,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21008.5,
+      "l": 21004.0,
+      "c": 21005.5
+     },
+     {
+      "o": 21005.5,
+      "h": 21007.0,
+      "l": 21000.75,
+      "c": 21002.25
+     },
+     {
+      "o": 21002.25,
+      "h": 21008.5,
+      "l": 21000.75,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21008.5,
+      "l": 21001.5,
+      "c": 21003.0
+     },
+     {
+      "o": 21003.0,
+      "h": 21004.5,
+      "l": 21000.75,
+      "c": 21002.25
+     },
+     {
+      "o": 21002.25,
+      "h": 21008.5,
+      "l": 21000.75,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21008.5,
+      "l": 21001.5,
+      "c": 21003.0
+     },
+     {
+      "o": 21003.0,
+      "h": 21007.75,
+      "l": 21001.5,
+      "c": 21006.25
+     },
+     {
+      "o": 21006.25,
+      "h": 21007.75,
+      "l": 21000.0,
+      "c": 21001.5
+     },
+     {
+      "o": 21001.5,
+      "h": 21004.5,
+      "l": 21000.0,
+      "c": 21003.0
+     },
+     {
+      "o": 21003.0,
+      "h": 21007.75,
+      "l": 21001.5,
+      "c": 21006.25
+     },
+     {
+      "o": 21006.25,
+      "h": 21007.75,
+      "l": 21000.0,
+      "c": 21001.5
+     },
+     {
+      "o": 21001.5,
+      "h": 21004.5,
+      "l": 21000.0,
+      "c": 21003.0
+     }
+    ],
+    "pil": 21004.25,
+    "pilAt": 2,
+    "tags": [
+     {
+      "at": 3,
+      "text": "I?",
+      "tone": "gold"
+     },
+     {
+      "at": 4,
+      "text": "C?",
+      "tone": "gold"
+     },
+     {
+      "at": 5,
+      "text": "C?",
+      "tone": "gold"
+     },
+     {
+      "at": 7,
+      "text": "I?",
+      "tone": "gold"
+     },
+     {
+      "at": 8,
+      "text": "C?",
+      "tone": "gold"
+     },
+     {
+      "at": 9,
+      "text": "C?",
+      "tone": "gold"
+     },
+     {
+      "at": 11,
+      "text": "↓ I?",
+      "tone": "warn"
+     },
+     {
+      "at": 12,
+      "text": "↑ again?",
+      "tone": "warn"
+     },
+     {
+      "at": 13,
+      "text": "C?",
+      "tone": "warn"
+     },
+     {
+      "at": 14,
+      "text": "???",
+      "tone": "warn"
+     }
+    ],
+    "head": {
+     "tf": "1M",
+     "label": "Tight chop around a level"
+    }
+   },
+   "lines": [
+    "Indication? Correction? Continuation?",
+    "Then another.",
+    "Then another.",
+    "Then the opposite sequence.",
+    "<b>REPEATED OVERLAP CAN REDUCE STRUCTURAL CLARITY.</b>"
+   ]
+  },
+  {
+   "type": "p7_ask",
+   "kicker": "Careful",
+   "title": "Not “never trade consolidation”",
+   "asks": [
+    {
+     "prompt": "Tight chop. A sequence that technically reads I → C → C. What’s the honest takeaway?",
+     "options": [
+      {
+       "label": "Never trade consolidation",
+       "feedback": "That’s not the lesson. Your rulebook decides participation."
+      },
+      {
+       "label": "Repeated overlap can reduce structural clarity",
+       "correct": true,
+       "why": "Clarity drops. Your environment rule (Section 2) decides what you do about it."
+      },
+      {
+       "label": "The ICC model doesn’t work",
+       "feedback": "The model is fine. The structure is unclear."
+      }
+     ],
+     "ecat": "clarity"
+    }
+   ]
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "IF THE CHART MAKES",
+    "EVERY LEVEL LOOK IMPORTANT,",
+    "<b>NONE OF THEM MAY BE CLEAR ENOUGH YET.</b>"
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "When I’m drawing my fourth “PIL” in the same box, <em>the chart is telling me something.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What’s the difference between orderly and messy consolidation?",
+   "modelAnswer": "Orderly has clear boundaries and readable reactions. Messy has overlapping candles, tiny competing swings and PIL candidates that keep changing. If every level looks important, none may be clear enough yet."
+  }
+ ],
+ "takeaways": [
+  "Orderly vs messy consolidation.",
+  "Many “important” levels = low clarity.",
+  "Overlap reduces clarity. It doesn’t ban trading."
+ ],
+ "remember": "IF EVERY LEVEL LOOKS IMPORTANT, NONE MAY BE CLEAR ENOUGH YET."
+}

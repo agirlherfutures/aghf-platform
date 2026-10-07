@@ -24,6 +24,7 @@ import { continueBtn, head, principle, factsHtml, chartBlock, runAsks, processRe
 import { reduced } from './mind-ui.js';
 import * as R from './rules-core.js';
 import { topPatterns, loadProfile } from './mind-core.js';
+import { trackEnv } from './env-core.js';
 
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -258,7 +259,7 @@ export function renderRuleCheck(el, slide, satisfy, helpers = {}) {
   askQuestion(card.querySelector('.pl-asks'), {
     prompt: slide.prompt || 'WHAT DOES YOUR RULEBOOK SAY?', stack: true,
     options: list.map(([k, l, why]) => ({ label: l, correct: k === correct, why, feedback: k === 'take' ? (res.verdict === 'undefined' ? 'Your rulebook doesn’t say. Don’t invent permission in the moment.' : 'Is that what YOUR rule says, or what the setup makes you feel?') : k === 'flag' ? 'Your rulebook does define this one. Read it again.' : 'Read your rule again, exactly as written.' })),
-  }, { ...helpers, onPick(q, o, c, w) { helpers.onPick?.(q, o, c, w); if (w === 0 && slide.rcat) R.trackRules(slide.rcat, c); if (w === 0 && !c && o.label === 'TAKE IT') R.trackRules('exceptions'); } }, () => {
+  }, { ...helpers, onPick(q, o, c, w) { helpers.onPick?.(q, o, c, w); if (w === 0 && slide.rcat) R.trackRules(slide.rcat, c); if (w === 0 && slide.ecat) trackEnv(slide.ecat, c); if (w === 0 && slide.skill) helpers.report?.(slide.skill, c); if (w === 0 && !c && o.label === 'TAKE IT') R.trackRules('exceptions'); } }, () => {
     if (res.verdict === 'undefined') card.insertAdjacentHTML('beforeend', '<div class="p7-loophole">FLAGGED FOR REVIEW MODE: define this response before your next session.</div>');
     principle(card, slide.punch); continueBtn(card, satisfy, slide.cta);
   });

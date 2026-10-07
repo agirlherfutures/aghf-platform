@@ -92,6 +92,7 @@ export function runAsks(box, qs, helpers = {}, done = () => {}, { onAsk, onFirst
         if (w !== 0) return;
         onFirst?.(q, o, c);
         if (q.rcat) trackRules(q.rcat, c);
+        if (q.skill) helpers.report?.(q.skill, c);
         if (q.ecat) trackEnv(q.ecat, c);
         if (q.recog) { M.trackMind('recognitionTries'); if (c) M.trackMind('recognitionRight'); }
         if (o.track) M.trackAll(o.track);
@@ -454,6 +455,42 @@ export function renderScore(el, slide, satisfy) {
   continueBtn(el.querySelector('.p7-score'), satisfy, slide.cta);
 }
 
+/* ── p7_transition: the Phase 8 hand-off ──────────────────────────────── */
+/**
+ * { old: ['LESSON', …], learned: ['concepts', …], pause: 'TRAINING COMPLETE.', prove: 'NOW PROVE YOU CAN USE IT.',
+ *   flow: ['CASE FILE', …], reveal: { eyebrow, title, sub, mission }, close: [lines] }
+ * The lesson structure fades out, the chart workspace expands, the capstone flow takes its place.
+ */
+export function renderTransition(el, slide, satisfy) {
+  let d = 0.3;
+  const at = (step = 0.6) => { const v = d; d += reduced() ? 0 : step; return reduced() ? 0 : v; };
+  const old = (slide.old || []).map((o) => `<span style="--d:${at(0.35)}s">${o}</span>`).join('<i>→</i>');
+  const fade = at(1.2);
+  const learned = (slide.learned || []).map((l) => `<span style="--d:${at(0.28)}s">You’ve learned ${l}. ✓</span>`).join('');
+  const lines = [slide.pause, slide.prove].filter(Boolean).map((l, i) => `<div class="p7-line is-big" style="--d:${at(i ? 1.0 : 1.4)}s">${l}</div>`).join('');
+  const ws = at(0.8);
+  const flow = (slide.flow || []).map((f) => `<span style="--d:${at(0.32)}s">${f}</span>`).join('<i>→</i>');
+  const close = (slide.close || []).map((l) => `<div class="p7-line${/^<b>|^[A-Z0-9 .,’'!?:…“”🔥]+$/.test(l) ? ' is-big' : ''}" style="--d:${at(1.0)}s">${l}</div>`).join('');
+  const r = slide.reveal || {};
+  el.innerHTML = `<div class="lw-card p7-mono is-dark p7-trans">${slide.kicker ? `<div class="lw-eyebrow">${slide.kicker}</div>` : ''}
+    <div class="p7-tr-old" style="--f:${fade}s">${old}</div>
+    <div class="p7-tr-learned">${learned}</div>
+    ${lines}
+    <div class="p7-tr-ws" style="--d:${ws}s"><div class="p7-tr-grid"></div><div class="p7-tr-flow">${flow}</div></div>
+    ${close}
+    <div class="p7-reveal" style="--d:${at(1.2)}s">${r.eyebrow ? `<small>${r.eyebrow}</small>` : ''}<b>${r.title || ''}</b>${r.sub ? `<span>${r.sub}</span>` : ''}${r.mission ? `<em>${r.mission}</em>` : ''}</div></div>`;
+  const card = el.querySelector('.p7-trans');
+  card.classList.add('p7-wait');
+  const play = () => {
+    card.classList.add('p7-play');
+    if (satisfy) setTimeout(() => { if (card.isConnected) continueBtn(card, satisfy, slide.cta || 'Continue →'); }, reduced() ? 0 : d * 1000 + 300);
+  };
+  if ('IntersectionObserver' in window && !reduced()) {
+    const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); play(); } }, { threshold: 0.25 });
+    io.observe(card);
+  } else play();
+}
+
 /* ── p7_random ─────────────────────────────────────────────────────────── */
 export function renderRandom(el, slide, satisfy, helpers = {}) {
   const vs = slide.variants;
@@ -540,6 +577,7 @@ export const MIND_RENDERERS = {
   p7_seen: renderSeen,
   p7_score: renderScore,
   p7_random: renderRandom,
+  p7_transition: renderTransition,
   p7_session: renderSession,
 };
 // A lab can open a fresh practice session on its first level (sessionStart + sessionKind).

@@ -33,6 +33,7 @@ import { mountExecChart, partialBar } from './icc-exec.js';
 import { mountChart } from './structure-charts.js';
 import { mindOn, mindOff, pauseButton } from './mind-ui.js';
 import { trackAll } from './mind-core.js';
+import { trackEnv } from './env-core.js';
 import {
   XS, XS_META, XA, XA_META, STATUS_CHOICES, TIMING, readExecution, timingIndex,
   PRE_ENTRY_FIELDS, PE, preEntryResult, trackP6, executionReview, startSession,
@@ -120,7 +121,7 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
       </div>
       <aside class="tx-side">
         ${sc.preEntry ? `<div class="tx-pe">${preEntryCardHtml(sc.preEntry)}</div>` : ''}
-        <div class="tx-status-box"><div class="tx-h">Execution status</div><div class="tx-status"></div></div>
+        <div class="tx-status-box"${slide.noStatus ? ' hidden' : ''}><div class="tx-h">Execution status</div><div class="tx-status"></div></div>
         <div class="tx-panel" hidden></div>
       </aside>
     </div>
@@ -130,7 +131,7 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
   </div>`;
 
   const card = el0.querySelector('.tx-card');
-  const chart = mountExecChart(card.querySelector('.ex-chart'), { bars: sc.bars, total: sc.slots || total, pil: null, dir });
+  const chart = mountExecChart(card.querySelector('.ex-chart'), { bars: sc.bars, total: sc.slots || total, pil: null, dir, range: sc.range });
   const cap = card.querySelector('.pl-caption');
   wrapGuide(cap);
   const asks = card.querySelector('.pl-asks');
@@ -457,6 +458,8 @@ export function renderTriggerSim(el0, slide, satisfy, helpers = {}) {
       helpers.onPick?.(q, o, correct, w);
       if (src.track) { trackP6('decisions'); if (correct) trackP6('correctDecisions'); }
       if (o.track) { trackP6(o.track); if (!w) trackAll(o.track); }
+      if (!w && q?.ecat) trackEnv(q.ecat, correct);
+      if (!w && o.einc) trackEnv(o.einc);
       if (!correct && o.bias) trackP6('outcomeBiasErrors');
       if (correct && o.patience) gpToast(card, '<b>+5</b> PATIENCE GP');
     } };
