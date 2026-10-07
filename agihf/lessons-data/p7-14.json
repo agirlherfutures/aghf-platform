@@ -1,0 +1,162 @@
+{
+ "phase": "p7",
+ "section": "s19",
+ "lessonNumber": 14,
+ "title": "Your News Rule",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Known ahead of time.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Decide your response to scheduled events before the session, and never invent one live.",
+  "missionQuestion": "What does my rule say when an event is scheduled?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_timeline",
+   "kicker": "The calendar",
+   "title": "Scheduled. Known ahead of time.",
+   "rule": "news",
+   "example": "No new entries within 5 minutes before selected high-impact events.",
+   "rows": [
+    {
+     "t": "9:55",
+     "text": "Normal conditions."
+    },
+    {
+     "t": "9:57",
+     "text": "A valid Dayli ICC setup forms.",
+     "state": "VALID",
+     "tone": "ok"
+    },
+    {
+     "t": "10:00",
+     "text": "High-impact scheduled release.",
+     "state": "EVENT",
+     "tone": "warn"
+    }
+   ],
+   "asks": [
+    {
+     "prompt": "Under that rule, the 9:57 setup is…",
+     "options": [
+      {
+       "label": "TAKE: it’s valid",
+       "feedback": "Valid setup, 3 minutes before the event. The rule says no new entries within 5.",
+       "rinc": "exceptions"
+      },
+      {
+       "label": "PASS",
+       "correct": true,
+       "why": "Valid setup. The news rule blocks participation."
+      }
+     ],
+     "rcat": "news"
+    },
+    {
+     "prompt": "10:04: it went on to win. Was passing wrong?",
+     "options": [
+      {
+       "label": "Yes, it won",
+       "feedback": "Rule following doesn’t need the market to punish the trade you skipped."
+      },
+      {
+       "label": "No",
+       "correct": true,
+       "why": "RULE FOLLOWING DOES NOT REQUIRE THE MARKET TO PUNISH THE TRADE YOU SKIPPED."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "p7_split",
+   "kicker": "Not “never trade news”",
+   "title": "Define your response in advance",
+   "left": {
+    "h": "NOT",
+    "lines": [
+     "“Never trade news.” (unless that’s your tested rule)",
+     "“I’ll see how it looks.”"
+    ],
+    "tone": "bad"
+   },
+   "right": {
+    "h": "INSTEAD",
+    "lines": [
+     "Scheduled event",
+     "→ known ahead of time",
+     "→ your personal rule already exists"
+    ],
+    "tone": "ok"
+   },
+   "together": true
+  },
+  {
+   "type": "p7_rule_form",
+   "kicker": "News rule builder",
+   "title": "Build YOUR news rule",
+   "form": "news",
+   "punch": "No template is universally correct. Use the one you’ll actually follow, then test it."
+  },
+  {
+   "type": "p7_ask",
+   "kicker": "If you hadn’t built one",
+   "title": "An event in 3 minutes. No news rule defined.",
+   "asks": [
+    {
+     "prompt": "What does the simulator do?",
+     "options": [
+      {
+       "label": "Invent a 5-minute blackout for you",
+       "feedback": "The Academy never invents your rules."
+      },
+      {
+       "label": "Flag it: NEWS RESPONSE NOT DEFINED",
+       "correct": true,
+       "why": "Something to resolve in Review Mode, before the next session."
+      },
+      {
+       "label": "Assume news is fine",
+       "feedback": "Undefined isn’t permission either."
+      }
+     ],
+     "rcat": "news"
+    }
+   ]
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "“I FORGOT NEWS WAS COMING OUT”",
+    "IS NOT A MARKET CONDITION.",
+    "<b>THAT’S A PREPARATION PROBLEM.</b>"
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "The calendar is public. <em>Your response to it should be too, at least to you.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What is your news rule, and why that one?",
+   "modelAnswer": "My rule is decided before the session, for the events I selected. I don’t invent it live, and I follow it even when the skipped setup wins."
+  }
+ ],
+ "takeaways": [
+  "Scheduled events are known in advance.",
+  "Define your response, don’t improvise it.",
+  "Undefined → flag it, never invent it."
+ ],
+ "remember": "“I FORGOT NEWS WAS COMING OUT” IS A PREPARATION PROBLEM."
+}

@@ -126,8 +126,17 @@ export function renderRuleWrite(el, slide, satisfy, helpers = {}) {
 
 /* ── p7_rule_form: personal rule builders ──────────────────────────────── */
 /** { form: 'news' | 'dailyStop' | 'window' | 'environment', templates, intro } */
+const FORM_FIELD = { news: 'newsRule', dailyStop: 'dailyStop', window: 'sessionRule', environment: 'environmentRule' };
 export function renderRuleForm(el, slide, satisfy, helpers = {}) {
   const rb = R.draftRulebook();
+  // In a lab: only build it if she hasn't already. Never make her define a rule twice.
+  if (slide.onlyIfMissing && rb[FORM_FIELD[slide.form]]) {
+    const v = rb[FORM_FIELD[slide.form]];
+    const text = slide.form === 'news' ? R.newsRuleText(v) : slide.form === 'dailyStop' ? R.dailyStopText(v) : slide.form === 'window' ? `Trading window ${v.start}–${v.end}` : v.text;
+    el.innerHTML = `<div class="lw-card p7-card">${head({ ...slide, title: slide.savedTitle || 'Your saved rule' }, 'Your rulebook')}<div class="p7-rule p7-rule-sharp"><small>ALREADY IN MY RULEBOOK</small><b>${text}</b></div><p class="p7-fine">Loaded from your rulebook. You don’t define it twice.</p></div>`;
+    continueBtn(el.querySelector('.p7-card'), satisfy, slide.cta);
+    return;
+  }
   el.innerHTML = `<div class="lw-card p7-card p7-form">${head(slide, 'Build your rule')}<div class="p7-form-b"></div>
     <div class="p7-rule p7-rule-sharp p7-form-out"><small>MY RULE</small><b>·</b></div>
     <div class="p7-form-warn"></div><button type="button" class="lw-continue-btn p7-form-save" disabled>Save to my rulebook →</button><div class="pl-asks"></div></div>`;
@@ -208,6 +217,7 @@ export function renderRuleForm(el, slide, satisfy, helpers = {}) {
     const conflicts = R.ruleConflicts(next);
     R.saveRulebook(next);
     save.disabled = true; save.textContent = '✓ Saved to MY AGHF RULEBOOK';
+    save.classList.remove('lw-continue-btn'); save.classList.add('p7-saved-btn');
     if (conflicts.length) warn.innerHTML = conflicts.map((c) => `<div class="p7-loophole">⚠ ${c.text}</div>`).join('');
     b.querySelectorAll('input, textarea, button').forEach((x) => { x.disabled = true; });
     runAsks(card.querySelector('.pl-asks'), slide.asks, helpers, () => { principle(card, slide.punch); continueBtn(card, satisfy, slide.cta); });
@@ -221,7 +231,9 @@ export function renderRuleForm(el, slide, satisfy, helpers = {}) {
  * The correct answer comes from HER rulebook. Undefined → flag it for Review Mode.
  */
 export function renderRuleCheck(el, slide, satisfy, helpers = {}) {
-  const res = R.checkRulebook({ ...slide.situation, check: slide.check });
+  let res = R.checkRulebook({ ...slide.situation, check: slide.check });
+  // situation.atLimit: she is exactly at HER limit, whatever number she chose.
+  if (slide.situation?.atLimit && res.defined) res = { ...res, verdict: 'blocked', rule: `${res.rule} · REACHED` };
   const setup = slide.setup || 'valid';
   let correct;
   if (setup === 'invalid') correct = 'pass';

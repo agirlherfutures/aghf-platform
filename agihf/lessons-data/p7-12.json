@@ -1,0 +1,386 @@
+{
+ "phase": "p7",
+ "section": "s19",
+ "lessonNumber": 12,
+ "title": "Strategy Rules vs Personal Rules",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Two questions. Two rulebooks.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Separate rules that define the setup from rules that decide whether you participate.",
+  "missionQuestion": "Does the setup exist? Am I allowed to participate?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_split",
+   "kicker": "One of the most important lessons in the Academy",
+   "title": "Two kinds of rules",
+   "left": {
+    "h": "DAYLI ICC STRATEGY RULES",
+    "lines": [
+     "Correct PIL",
+     "Candle-close Indication",
+     "Correction",
+     "Continuation",
+     "Valid retest",
+     "Reset / invalidation"
+    ],
+    "tone": "ink",
+    "sub": "Answer: DOES THE SETUP EXIST?"
+   },
+   "right": {
+    "h": "PERSONAL TRADING RULES",
+    "lines": [
+     "Risk per trade",
+     "Daily loss",
+     "Maximum trades",
+     "Session",
+     "No chasing",
+     "News",
+     "Environment",
+     "Response after a violation"
+    ],
+    "tone": "mind",
+    "sub": "Answer: AM I ALLOWED TO PARTICIPATE?"
+   },
+   "together": true
+  },
+  {
+   "type": "p6_sort",
+   "kicker": "Who owns the rule?",
+   "title": "Drag it to its owner",
+   "buckets": [
+    {
+     "key": "method",
+     "label": "DAYLI ICC",
+     "tone": "ink",
+     "short": "📐 DAYLI ICC"
+    },
+    {
+     "key": "personal",
+     "label": "PERSONAL",
+     "tone": "ink",
+     "short": "📕 PERSONAL"
+    }
+   ],
+   "items": [
+    {
+     "text": "1M close through the PIL",
+     "bucket": "method",
+     "why": "Indication. The method defines it."
+    },
+    {
+     "text": "Maximum 2 trades",
+     "bucket": "personal",
+     "why": "Her number, from her plan."
+    },
+    {
+     "text": "Correction required",
+     "bucket": "method"
+    },
+    {
+     "text": "No new entries during my selected news window",
+     "bucket": "personal"
+    },
+    {
+     "text": "Entry at the first valid retest",
+     "bucket": "method"
+    },
+    {
+     "text": "Daily loss limit",
+     "bucket": "personal"
+    },
+    {
+     "text": "Dayli’s 30-point stop / 60-point target",
+     "bucket": "personal",
+     "why": "That’s Dayli’s current teaching example for her account. Your risk rules decide yours."
+    },
+    {
+     "text": "No market entry after a missed retest",
+     "bucket": "personal",
+     "why": "Your personal rule that protects the method’s “no invented entry”."
+    }
+   ],
+   "track": false,
+   "punch": "Personal rules can’t rewrite Dayli ICC definitions. And Dayli ICC can’t override your account."
+  },
+  {
+   "type": "p7_gate",
+   "kicker": "The signature scenario",
+   "title": "Perfect Dayli ICC. Daily loss limit: reached.",
+   "interactive": true,
+   "rcat": "daily",
+   "chart": {
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20986.5,
+      "l": 20981.5,
+      "c": 20985.5
+     },
+     {
+      "o": 20985.5,
+      "h": 20991.5,
+      "l": 20985.25,
+      "c": 20990.5
+     },
+     {
+      "o": 20990.5,
+      "h": 20994.25,
+      "l": 20990.0,
+      "c": 20993.0
+     },
+     {
+      "o": 20993.0,
+      "h": 20998.75,
+      "l": 20991.5,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.0,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.75,
+      "l": 20998.5,
+      "c": 20999.0
+     },
+     {
+      "o": 20999.0,
+      "h": 21000.25,
+      "l": 20995.75,
+      "c": 20996.75
+     },
+     {
+      "o": 20996.75,
+      "h": 20997.75,
+      "l": 20994.25,
+      "c": 20994.5
+     },
+     {
+      "o": 20994.5,
+      "h": 20995.75,
+      "l": 20990.25,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20994.25,
+      "l": 20990.0,
+      "c": 20994.0
+     },
+     {
+      "o": 20994.0,
+      "h": 20999.0,
+      "l": 20992.75,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 21002.5,
+      "l": 20996.25,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21008.5,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21012.5,
+      "l": 21005.75,
+      "c": 21012.0
+     },
+     {
+      "o": 21012.0,
+      "h": 21019.5,
+      "l": 21011.25,
+      "c": 21018.5
+     },
+     {
+      "o": 21018.5,
+      "h": 21025.25,
+      "l": 21017.75,
+      "c": 21024.5
+     },
+     {
+      "o": 21024.5,
+      "h": 21031.25,
+      "l": 21023.5,
+      "c": 21030.25
+     },
+     {
+      "o": 21030.25,
+      "h": 21031.25,
+      "l": 21022.0,
+      "c": 21023.5
+     },
+     {
+      "o": 21023.5,
+      "h": 21025.0,
+      "l": 21014.75,
+      "c": 21015.75
+     },
+     {
+      "o": 21015.75,
+      "h": 21016.25,
+      "l": 21006.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21008.75,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21007.75,
+      "l": 21005.25,
+      "c": 21006.5
+     },
+     {
+      "o": 21006.5,
+      "h": 21009.0,
+      "l": 21006.0,
+      "c": 21008.0
+     },
+     {
+      "o": 21008.0,
+      "h": 21009.25,
+      "l": 21005.0,
+      "c": 21006.5
+     },
+     {
+      "o": 21006.5,
+      "h": 21008.5,
+      "l": 21005.75,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21008.75,
+      "l": 21006.0,
+      "c": 21008.25
+     },
+     {
+      "o": 21008.25,
+      "h": 21010.75,
+      "l": 21007.25,
+      "c": 21010.5
+     },
+     {
+      "o": 21010.5,
+      "h": 21011.75,
+      "l": 21008.5,
+      "c": 21009.25
+     },
+     {
+      "o": 21009.25,
+      "h": 21013.5,
+      "l": 21008.25,
+      "c": 21012.0
+     },
+     {
+      "o": 21012.0,
+      "h": 21013.5,
+      "l": 21011.75,
+      "c": 21012.75
+     },
+     {
+      "o": 21012.75,
+      "h": 21013.75,
+      "l": 21012.0,
+      "c": 21012.25
+     }
+    ],
+    "pil": 21004.25,
+    "pilAt": 4,
+    "show": 23,
+    "head": {
+     "tf": "1M",
+     "label": "Everything valid"
+    }
+   },
+   "layers": [
+    {
+     "key": "strategy",
+     "label": "STRATEGY",
+     "q": "Is the setup valid?",
+     "state": "yes",
+     "allowIncomplete": false
+    },
+    {
+     "key": "risk",
+     "label": "MY ACCOUNT",
+     "q": "Daily loss limit?",
+     "state": "no",
+     "allowIncomplete": false,
+     "note": "Reached.",
+     "feedback": "The daily loss limit is reached. The account gate is closed."
+    },
+    {
+     "key": "rulebook",
+     "label": "MY RULEBOOK",
+     "q": "Anything else?",
+     "state": "yes",
+     "allowIncomplete": false
+    }
+   ],
+   "status": "SESSION OVER",
+   "statusWhy": "Both can be true: VALID SETUP, and you can’t take it.",
+   "verdict": "IS THE SETUP VALID? YES. CAN YOU TAKE IT? NO.<br>BOTH CAN BE TRUE."
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "A VALID SETUP",
+    "DOES NOT OUTRANK",
+    "YOUR RISK RULES."
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "My rules define the setup. <em>Your rules define your participation.</em> You need both.",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What’s the difference between a Dayli ICC rule and a personal rule?",
+   "modelAnswer": "A Dayli ICC rule decides whether the setup exists, like a candle-close Indication. A personal rule decides whether I’m allowed to participate, like my max trades or daily loss. A valid setup doesn’t outrank my risk rules."
+  }
+ ],
+ "takeaways": [
+  "Strategy rules: does the setup exist?",
+  "Personal rules: am I allowed to participate?",
+  "Valid setup + invalid participation is real."
+ ],
+ "remember": "A VALID SETUP DOES NOT OUTRANK YOUR RISK RULES."
+}

@@ -246,7 +246,7 @@ button.p7-rcard { cursor: pointer; transition: transform .15s ease, box-shadow .
 button.p7-rcard:hover { transform: translateY(-1px); }
 .p7-rcard.is-on { border-color: var(--mind-ink); background: var(--mind-pale); box-shadow: 0 4px 0 var(--mind-ink); }
 .p7-rcard.is-on em { color: var(--mind-ink); }
-.p7-five { border: 2px solid var(--mind-ink); border-radius: 16px; padding: 10px 12px; background: #fff; position: sticky; top: 8px; z-index: 3; }
+.p7-five { border: 2px solid var(--mind-ink); border-radius: 16px; padding: 10px 12px; background: #fff; }
 .p7-five-n { float: right; color: var(--mind-ink); }
 .p7-five-slots { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
 .p7-slot { font: 700 13px var(--font-body); color: var(--icc-ink); background: var(--mind-pale); border-radius: 10px; padding: 6px 10px; }
@@ -329,3 +329,4 @@ button.p7-rcard:hover { transform: translateY(-1px); }
 .p7-mx-thought .p7-bubble:not(:last-child)::after, .p7-mx-thought .p7-bubble:not(:last-child)::before { display: none; }
 .p7-buy { display: inline-block; margin-left: 6px; border: 2px solid #3FAE73; color: #1E7A4D; border-radius: 999px; padding: 2px 12px; font: 900 13px var(--font-body); letter-spacing: .1em; animation: txTempt 1s ease-in-out infinite; }
 .p7-mono.p7-wait:not(.p7-play) *, .p7-mono.p7-wait:not(.p7-play) *::before, .p7-mono.p7-wait:not(.p7-play) *::after { animation-play-state: paused !important; }
+.p7-saved-btn { align-self: center; border: none; background: #EAF7F4; color: #1F7A6E; font: 800 13px var(--font-body); border-radius: 999px; padding: 10px 20px; }

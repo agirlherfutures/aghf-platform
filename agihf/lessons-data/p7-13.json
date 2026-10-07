@@ -1,0 +1,171 @@
+{
+ "phase": "p7",
+ "section": "s19",
+ "lessonNumber": 13,
+ "title": "The No-Chasing Rule",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Missing it isn’t permission.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Write a no-chase rule with no loophole, and recognize the loophole when it talks.",
+  "missionQuestion": "Is my rule specific enough that live-trading-me can’t argue with it?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_timeline",
+   "kicker": "Phase 6, again",
+   "title": "The retest you missed",
+   "rows": [
+    {
+     "t": "20,000",
+     "text": "PIL. The retest happens. You miss it.",
+     "state": "PLANNED ENTRY",
+     "tone": "ok"
+    },
+    {
+     "t": "20,006",
+     "text": "Price lifts.",
+     "tone": "ink"
+    },
+    {
+     "t": "20,012",
+     "text": "Still going.",
+     "tone": "warn"
+    },
+    {
+     "t": "20,020",
+     "text": "“But it’s going to 20,060.”",
+     "state": "EMOTION ↑",
+     "tone": "mind"
+    }
+   ],
+   "asks": [
+    {
+     "prompt": "WHAT CHANGED?",
+     "options": [
+      {
+       "label": "Only the price",
+       "feedback": "The price changed everything else too."
+      },
+      {
+       "label": "Entry, risk/reward and execution, and the emotion is rising",
+       "correct": true,
+       "why": "Planned entry 20,000. Current price 20,020. The trade you planned no longer exists."
+      }
+     ],
+     "rcat": "noChase"
+    }
+   ]
+  },
+  {
+   "type": "p7_rule_write",
+   "kicker": "Build the rule",
+   "title": "Close the loophole",
+   "weak": "I won’t chase too much.",
+   "critique": [
+    "TOO MUCH = HOW MUCH? 😂",
+    "“I’ll try not to enter late.”",
+    "TRY? 😭"
+   ],
+   "options": [
+    {
+     "text": "I’ll only chase if it really looks strong.",
+     "feedback": "“Really” is a loophole with a bow on it. 😂"
+    },
+    {
+     "text": "If my valid Dayli ICC retest entry is missed and price moves away, I do not market-enter late. I wait for a new valid setup.",
+     "correct": true,
+     "why": "CLEAR · TRIGGERED · ACTIONABLE · DECIDED IN ADVANCE."
+    },
+    {
+     "text": "I’ll be more patient next time.",
+     "feedback": "Nothing triggers it and nothing tells you what to do instead."
+    }
+   ],
+   "rcat": "noChase",
+   "allowCustom": true,
+   "save": "noChase",
+   "customLabel": "Keep this one, or write it in your words. It saves to MY AGHF RULEBOOK."
+  },
+  {
+   "type": "p7_mirror",
+   "title": "The loophole talking",
+   "thought": "“I’m not chasing. I’m just entering a little late.”",
+   "asks": [
+    {
+     "prompt": "GIRL. 😭 Was the planned execution opportunity missed?",
+     "options": [
+      {
+       "label": "YES",
+       "correct": true
+      },
+      {
+       "label": "No",
+       "feedback": "The retest came and went."
+      }
+     ],
+     "focus": "market"
+    },
+    {
+     "prompt": "Are you entering because price is leaving?",
+     "options": [
+      {
+       "label": "YES",
+       "correct": true,
+       "why": "THAT’S THE LOOPHOLE TALKING.",
+       "track": "fomoRecognized"
+      },
+      {
+       "label": "No, it’s analysis",
+       "feedback": "The analysis was the retest. This is the leaving.",
+       "rinc": "exceptions"
+      }
+     ],
+     "focus": "mind"
+    }
+   ],
+   "market": {
+    "state": "Retest missed · price +20"
+   },
+   "action": "Market-buy now",
+   "rule": {
+    "label": "MY NO-CHASE RULE",
+    "text": "If my retest entry is missed and price moves away, I do not market-enter late."
+   }
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "MISSING THE ENTRY",
+    "DOES NOT GIVE YOU PERMISSION",
+    "TO INVENT A NEW ONE."
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "“A little late” is still late. <em>Your rule already decided.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Write your no-chase rule in one sentence.",
+   "modelAnswer": "If my valid Dayli ICC retest entry is missed and price moves away, I do not market-enter late. I wait for a new valid setup."
+  }
+ ],
+ "takeaways": [
+  "A strong rule: clear, triggered, actionable, decided in advance.",
+  "“Too much” and “try” are loopholes.",
+  "Missed entry ≠ permission."
+ ],
+ "remember": "MISSING THE ENTRY DOES NOT GIVE YOU PERMISSION TO INVENT A NEW ONE."
+}

@@ -1,0 +1,355 @@
+{
+ "phase": "p7",
+ "section": "s19",
+ "lessonNumber": 16,
+ "title": "Maximum Trades",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "What does maximum mean?",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Respect a maximum you set in advance, and change it only in review.",
+  "missionQuestion": "How many trades does my plan allow?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_ask",
+   "kicker": "Two questions",
+   "title": "Only one has an answer",
+   "asks": [
+    {
+     "prompt": "HOW MANY TRADES DOES IT TAKE TO HAVE A GOOD DAY?",
+     "options": [
+      {
+       "label": "3",
+       "feedback": "For whom?"
+      },
+      {
+       "label": "Not a fixed universal number",
+       "correct": true,
+       "why": "There’s no universal number."
+      }
+     ]
+    },
+    {
+     "prompt": "HOW MANY TRADES DOES YOUR PLAN ALLOW?",
+     "options": [
+      {
+       "label": "THAT one is answerable",
+       "correct": true,
+       "why": "1, 2, or another tested limit. Yours."
+      },
+      {
+       "label": "As many as there are setups",
+       "feedback": "That’s not a plan. That’s a mood."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "p7_mirror",
+   "title": "Trade 3",
+   "thought": "“What if it’s A+?”",
+   "asks": [
+    {
+     "prompt": "TAKE IT?",
+     "options": [
+      {
+       "label": "Yes, it’s A+",
+       "feedback": "WHAT DOES MAXIMUM MEAN? 😂",
+       "rinc": "exceptions",
+       "track": "overtradeCount"
+      },
+      {
+       "label": "NO",
+       "correct": true,
+       "why": "Maximum means maximum."
+      }
+     ],
+     "rcat": "maxTrades",
+     "focus": "rule"
+    }
+   ],
+   "chart": {
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20986.5,
+      "l": 20981.5,
+      "c": 20985.5
+     },
+     {
+      "o": 20985.5,
+      "h": 20991.5,
+      "l": 20985.25,
+      "c": 20990.5
+     },
+     {
+      "o": 20990.5,
+      "h": 20994.25,
+      "l": 20990.0,
+      "c": 20993.0
+     },
+     {
+      "o": 20993.0,
+      "h": 20998.75,
+      "l": 20991.5,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.0,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.75,
+      "l": 20998.5,
+      "c": 20999.0
+     },
+     {
+      "o": 20999.0,
+      "h": 21000.25,
+      "l": 20995.75,
+      "c": 20996.75
+     },
+     {
+      "o": 20996.75,
+      "h": 20997.75,
+      "l": 20994.25,
+      "c": 20994.5
+     },
+     {
+      "o": 20994.5,
+      "h": 20995.75,
+      "l": 20990.25,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20994.25,
+      "l": 20990.0,
+      "c": 20994.0
+     },
+     {
+      "o": 20994.0,
+      "h": 20999.0,
+      "l": 20992.75,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 21002.5,
+      "l": 20996.25,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21008.5,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21012.5,
+      "l": 21005.75,
+      "c": 21012.0
+     },
+     {
+      "o": 21012.0,
+      "h": 21019.5,
+      "l": 21011.25,
+      "c": 21018.5
+     },
+     {
+      "o": 21018.5,
+      "h": 21025.25,
+      "l": 21017.75,
+      "c": 21024.5
+     },
+     {
+      "o": 21024.5,
+      "h": 21031.25,
+      "l": 21023.5,
+      "c": 21030.25
+     },
+     {
+      "o": 21030.25,
+      "h": 21031.25,
+      "l": 21022.0,
+      "c": 21023.5
+     },
+     {
+      "o": 21023.5,
+      "h": 21025.0,
+      "l": 21014.75,
+      "c": 21015.75
+     },
+     {
+      "o": 21015.75,
+      "h": 21016.25,
+      "l": 21006.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21008.75,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21007.75,
+      "l": 21005.25,
+      "c": 21006.5
+     },
+     {
+      "o": 21006.5,
+      "h": 21009.0,
+      "l": 21006.0,
+      "c": 21008.0
+     },
+     {
+      "o": 21008.0,
+      "h": 21009.25,
+      "l": 21005.0,
+      "c": 21006.5
+     },
+     {
+      "o": 21006.5,
+      "h": 21008.5,
+      "l": 21005.75,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21008.75,
+      "l": 21006.0,
+      "c": 21008.25
+     },
+     {
+      "o": 21008.25,
+      "h": 21010.75,
+      "l": 21007.25,
+      "c": 21010.5
+     },
+     {
+      "o": 21010.5,
+      "h": 21011.75,
+      "l": 21008.5,
+      "c": 21009.25
+     },
+     {
+      "o": 21009.25,
+      "h": 21013.5,
+      "l": 21008.25,
+      "c": 21012.0
+     },
+     {
+      "o": 21012.0,
+      "h": 21013.5,
+      "l": 21011.75,
+      "c": 21012.75
+     },
+     {
+      "o": 21012.75,
+      "h": 21013.75,
+      "l": 21012.0,
+      "c": 21012.25
+     }
+    ],
+    "pil": 21004.25,
+    "pilAt": 4,
+    "show": 23,
+    "head": {
+     "tf": "1M",
+     "label": "The prettiest setup ever"
+    }
+   },
+   "market": {
+    "state": "Beautiful. Valid."
+   },
+   "mind": {
+    "history": [
+     "Trade 1 · complete",
+     "Trade 2 · complete"
+    ],
+    "daily": "MAX: 2"
+   },
+   "rule": {
+    "label": "HER RULE",
+    "text": "Maximum 2 trades per day."
+   },
+   "action": "Take trade 3"
+  },
+  {
+   "type": "p7_ask",
+   "kicker": "Rule review principle",
+   "title": "But maybe two is too restrictive…",
+   "asks": [
+    {
+     "prompt": "She genuinely thinks two may be too restrictive. When does that change happen?",
+     "options": [
+      {
+       "label": "Right now, while staring at trade 3",
+       "feedback": "That’s the worst possible moment to judge a rule.",
+       "rinc": "exceptions"
+      },
+      {
+       "label": "During review, with evidence",
+       "correct": true,
+       "why": "Valid information. Changed during review, not mid-session."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "p7_monologue",
+   "lines": [
+    "YOUR TRADE LIMIT PROTECTS THE VERSION OF YOU",
+    "THAT THINKS THE NEXT SETUP",
+    "WILL FIX THE WHOLE DAY."
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "The third trade always looks like the one that fixes everything. 😂 <em>That’s why the limit exists.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What’s your maximum, and when could it change?",
+   "modelAnswer": "My maximum comes from my plan. Even if the next setup looks A+, maximum means maximum. If the limit feels wrong, I flag it and change it during review with evidence."
+  }
+ ],
+ "takeaways": [
+  "No universal number. Your plan has one.",
+  "Maximum means maximum.",
+  "Rules change in review."
+ ],
+ "remember": "YOUR TRADE LIMIT PROTECTS YOU FROM THE NEXT “FIX-IT” TRADE."
+}

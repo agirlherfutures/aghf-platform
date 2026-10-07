@@ -1,0 +1,71 @@
+{
+ "phase": "p7",
+ "section": "s19",
+ "lessonNumber": 20,
+ "title": "Build Your Personal Rulebook",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "You earned this document.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Assemble MY AGHF RULEBOOK: method rules, risk, session, behavior and your five non-negotiables.",
+  "missionQuestion": "How do I actually operate?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_rulebook",
+   "kicker": "A milestone",
+   "title": "📕 MY AGHF RULEBOOK",
+   "intro": [
+    "PHASE 1: MARKET FOUNDATIONS ✓",
+    "PHASE 2: STRUCTURE ✓",
+    "PHASE 3: PRICE READING ✓",
+    "PHASE 4: DIRECTION ✓",
+    "PHASE 5: DAYLI ICC ✓",
+    "PHASE 6: EXECUTION ✓",
+    "PHASE 7: MINDSET ✓"
+   ],
+   "parts": [
+    "intro",
+    "method",
+    "risk",
+    "session",
+    "behavior",
+    "five",
+    "when"
+   ]
+  },
+  {
+   "type": "p7_rulebook_view",
+   "kicker": "Your artifact",
+   "title": "MY AGHF RULEBOOK",
+   "mode": "review",
+   "punch": "REVIEW MODE: editable. SESSION MODE: read-only. You can open it any time from your Academy."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Dayli ICC has rules. <em>Your trading plan needs its own, too.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What are your five non-negotiables?",
+   "modelAnswer": "My five are the rules I don’t negotiate during a live session. They change only during structured review, with evidence."
+  }
+ ],
+ "takeaways": [
+  "Method rules are prefilled.",
+  "Your risk rules came from Phase 6.",
+  "Five non-negotiables, changed only in review."
+ ],
+ "remember": "DAYLI ICC HAS RULES. YOUR TRADING PLAN NEEDS ITS OWN, TOO."
+}
