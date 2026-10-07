@@ -31,7 +31,7 @@
     <button type="button" class="tx-mini" id="rbReview">✎ Review Mode</button>
     <button type="button" class="tx-mini" id="rbSession">▶ Before a session (read-only)</button>
     <button type="button" class="tx-mini" onclick="window.print()">🖨 Print</button>
-    <a class="tx-mini" href="lesson.html?phase=p7&n=20">Build / rebuild →</a>
+    <a class="tx-mini" href="lesson.html?phase=p7&n=22">Build / rebuild →</a>
   </div>
   <div class="lw-wrap" id="rbWrap"></div>
 </main>
@@ -42,7 +42,7 @@
   function show(mode) {
     wrap.innerHTML = '';
     if (!hasRulebook()) {
-      wrap.innerHTML = '<div class="lw-card"><h2>No rulebook saved yet</h2><p>Build it in Phase 7, Lesson 20: Build Your Personal Rulebook.</p><a class="lw-continue-btn" href="lesson.html?phase=p7&n=20">Build my rulebook →</a></div>';
+      wrap.innerHTML = '<div class="lw-card"><h2>No rulebook saved yet</h2><p>Build it in Phase 7, Lesson 22: Your Rulebook.</p><a class="lw-continue-btn" href="lesson.html?phase=p7&n=22">Build my rulebook →</a></div>';
       return;
     }
     const a = document.createElement('div'); wrap.appendChild(a);

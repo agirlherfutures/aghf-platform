@@ -345,11 +345,11 @@ export function rulebookReview(s = rulesSession()) {
   });
   rows.push(['Real-time exceptions created', s.exceptions || 0]);
   const review = [];
-  if ((s.exceptions || 0) >= 2) review.push({ line: `You’ve rewritten a rule ${s.exceptions} times after the scenario became emotionally uncomfortable. WHAT WAS THE RULE BEFORE PRICE STARTED MOVING?`, cta: 'Rules that hold →', href: 'lesson.html?phase=p7&n=17' });
+  if ((s.exceptions || 0) >= 2) review.push({ line: `You’ve rewritten a rule ${s.exceptions} times after the scenario became emotionally uncomfortable. WHAT WAS THE RULE BEFORE PRICE STARTED MOVING?`, cta: 'Rules that hold →', href: 'lesson.html?phase=p7&n=20' });
   const miss = (k) => (s[`${k}:tries`] || 0) - (s[`${k}:right`] || 0);
-  if ((s['strategy:right'] || 0) >= 1 && miss('maxTrades') + miss('daily') + miss('news') + miss('noChase') >= 2) review.push({ line: 'Your Dayli ICC recognition is strong. The breakdown is happening AFTER setup validation.', cta: 'Personal rules practice →', href: 'lesson.html?phase=p7&n=12' });
-  if ((s.validLossAsViolation || 0) >= 1) review.push({ line: 'You’re grading the rule by the outcome again.', cta: 'Outcome vs process →', href: 'lesson.html?phase=p7&n=18' });
-  if ((s.excusedWinningViolation || 0) >= 1) review.push({ line: 'The trade paid you. But did the process?', cta: 'Review winning violation →', href: 'lesson.html?phase=p7&n=18' });
-  if ((s.vagueRules || 0) >= 1) review.push({ line: 'Could live-trading-you find a loophole in this sentence? 😂', cta: 'Make it specific →', href: 'lesson.html?phase=p7&n=13' });
+  if ((s['strategy:right'] || 0) >= 1 && miss('maxTrades') + miss('daily') + miss('news') + miss('noChase') >= 2) review.push({ line: 'Your setup recognition is strong. The breakdown is happening AFTER setup validation.', cta: 'Personal rules practice →', href: 'lesson.html?phase=p7&n=14' });
+  if ((s.validLossAsViolation || 0) >= 1) review.push({ line: 'You’re grading the rule by the outcome again.', cta: 'Outcome vs process →', href: 'lesson.html?phase=p7&n=12' });
+  if ((s.excusedWinningViolation || 0) >= 1) review.push({ line: 'The trade paid you. But did the process?', cta: 'Review winning violation →', href: 'lesson.html?phase=p7&n=12' });
+  if ((s.vagueRules || 0) >= 1) review.push({ line: 'Could live-trading-you find a loophole in this sentence? 😂', cta: 'Make it specific →', href: 'lesson.html?phase=p7&n=20' });
   return { followed: right, decisions: tries, rows, review: review.slice(0, 3) };
 }
