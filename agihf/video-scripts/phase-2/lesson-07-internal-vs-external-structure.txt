@@ -1,0 +1,113 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Seven of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: internal versus external structure.
+
+(pause-until: 00:00:07,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Structure exists inside structure.
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a room.
+
+(pause-until: 00:00:14,000)
+
+(next-paragraph-max-duration: 3.000)
+
+External structure is the room itself.
+
+(pause-until: 00:00:17,000)
+
+(next-paragraph-max-duration: 6.000)
+
+The external high and the external low are the doors.
+
+(pause-until: 00:00:23,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Internal structure is everything inside the room.
+
+(pause-until: 00:00:26,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Furniture. Pictures. Mirrors. Tables.
+
+(pause-until: 00:00:28,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Things are happening inside, but you're still in the same room.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 6.000)
+
+On a chart, the external structure might be bullish: a higher low, then a higher high.
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Meanwhile, the smaller swings inside can start making lower highs and lower lows.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Internal structure turned bearish. But price hasn't left the room.
+
+(pause-until: 00:00:52,000)
+
+(next-paragraph-max-duration: 5.000)
+
+The furniture moved. The room didn't.
+
+(pause-until: 00:00:57,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:00:59,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Internal structure can change while price is still inside the larger external range.
+
+(pause-until: 00:01:04,000)
+
+(next-paragraph-max-duration: 8.000)
+
+One little lower low doesn't automatically mean the whole story changed.
+
+(pause-until: 00:01:12,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:15,000)
+
+(next-paragraph-max-duration: 10.000)
+
+If smaller swings turn bearish while price stays inside a larger range, has the bigger story changed?
+
+(pause-until: 00:01:25,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.

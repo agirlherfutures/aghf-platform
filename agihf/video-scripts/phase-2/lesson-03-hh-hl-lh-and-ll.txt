@@ -1,0 +1,107 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Three of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Today: the four labels that turn movement into readable structure.
+
+(pause-until: 00:00:09,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Every swing gets compared to the previous relevant swing of the same kind.
+
+(pause-until: 00:00:14,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Highs to highs. Lows to lows.
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A higher high: a swing high that forms above the previous relevant high.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 7.000)
+
+A higher low: a swing low that forms above the previous relevant low.
+
+(pause-until: 00:00:31,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A lower low: a swing low that forms below the previous relevant low.
+
+(pause-until: 00:00:36,000)
+
+(next-paragraph-max-duration: 7.000)
+
+A lower high: a swing high that forms below the previous relevant high.
+
+(pause-until: 00:00:43,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a staircase.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Higher low, higher high, higher low, higher high. Price is walking up the stairs.
+
+(pause-until: 00:00:52,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Lower high, lower low, lower high, lower low. Price is walking down the stairs.
+
+(pause-until: 00:01:00,000)
+
+(next-paragraph-max-duration: 7.000)
+
+And if a new high forms at twenty thousand and thirty, above a high at twenty thousand?
+
+(pause-until: 00:01:07,000)
+
+(next-paragraph-max-duration: 6.000)
+
+That's a higher high. Compare the numbers. Not the feeling.
+
+(pause-until: 00:01:13,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:15,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Compare every swing to the previous relevant swing of the same kind.
+
+(pause-until: 00:01:23,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:26,000)
+
+(next-paragraph-max-duration: 10.000)
+
+If a new swing low forms above the previous relevant swing low, what do you call it?
+
+(pause-until: 00:01:36,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.

@@ -1,0 +1,107 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Two of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Today: swing highs and swing lows.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Before you can read structure, you need to find the turns.
+
+(pause-until: 00:00:15,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A swing high: price pushes up, forms a local turning point, then moves lower.
+
+(pause-until: 00:00:21,000)
+
+(next-paragraph-max-duration: 8.000)
+
+A swing low: price pushes down, forms a local turning point, then moves higher.
+
+(pause-until: 00:00:29,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Here's an easy way to remember them.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A swing high is the heel. Price walks up, reaches a high point, then turns.
+
+(pause-until: 00:00:38,000)
+
+(next-paragraph-max-duration: 9.000)
+
+A swing low is the valley. Price travels down, reaches a low point, then turns back up.
+
+(pause-until: 00:00:47,000)
+
+(next-paragraph-max-duration: 2.000)
+
+But here's the thing.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 7.000)
+
+On a one-minute chart, there can be lots of little highs and lows inside one larger move.
+
+(pause-until: 00:00:56,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Every one of them is a real turn.
+
+(pause-until: 00:00:59,000)
+
+(next-paragraph-max-duration: 8.000)
+
+But they don't all carry the same structural weight. That's going to matter later.
+
+(pause-until: 00:01:07,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:09,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Swings are going to become very important.
+
+(pause-until: 00:01:12,000)
+
+(next-paragraph-max-duration: 9.000)
+
+But for now, your job isn't to trade them. It's to learn to see them.
+
+(pause-until: 00:01:21,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:24,000)
+
+(next-paragraph-max-duration: 10.000)
+
+Should every tiny high and low on a one-minute chart be treated as equally important structure?
+
+(pause-until: 00:01:34,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.

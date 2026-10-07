@@ -1,0 +1,113 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson One of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Today: what market structure actually is.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Zoomed all the way in on a one-minute chart, price can look like chaos.
+
+(pause-until: 00:00:14,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Up, down, up, down. Every candle feels like it matters.
+
+(pause-until: 00:00:20,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Now zoom out. The same candles start to form a shape.
+
+(pause-until: 00:00:25,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Push. Pullback. Push. Pullback.
+
+(pause-until: 00:00:28,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Price doesn't move in straight lines. It moves in swings.
+
+(pause-until: 00:00:34,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Every swing ends at a turn. Those turns are the meaningful highs and lows.
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 9.000)
+
+Market structure is a way of organizing price by those highs and lows, and the relationship between them.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Think of it like reading.
+
+(pause-until: 00:00:51,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Candles are the words.
+
+(pause-until: 00:00:53,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Structure is the sentence.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Three green candles in a row? That's a few words. Not the whole sentence.
+
+(pause-until: 00:01:03,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:05,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Don't start by asking, "Where is price going?"
+
+(pause-until: 00:01:08,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Start with: "What has price already shown me?"
+
+(pause-until: 00:01:14,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:17,000)
+
+(next-paragraph-max-duration: 10.000)
+
+If a trader sees three green candles in a row, is that enough to call the structure bullish?
+
+(pause-until: 00:01:27,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.

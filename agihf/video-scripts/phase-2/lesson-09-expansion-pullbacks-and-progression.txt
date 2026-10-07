@@ -1,0 +1,119 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Nine of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: expansion, pullbacks, and progression.
+
+(pause-until: 00:00:07,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Price pushes. Price pauses. Price pulls back. Then we see what it does next.
+
+(pause-until: 00:00:15,000)
+
+(next-paragraph-max-duration: 3.000)
+
+There are three behaviors to know.
+
+(pause-until: 00:00:18,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Expansion: price makes meaningful directional progress.
+
+(pause-until: 00:00:21,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Pullback: price temporarily moves against the current move.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 8.000)
+
+And progression: what price builds after the pullback, which maintains or changes the larger pattern.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 7.000)
+
+So when a bullish move starts pulling back and the candles turn red, has the market reversed?
+
+(pause-until: 00:00:39,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Honestly? Not enough information yet.
+
+(pause-until: 00:00:43,000)
+
+(next-paragraph-max-duration: 4.000)
+
+A pullback alone doesn't tell you whether the structure changed.
+
+(pause-until: 00:00:47,000)
+
+(next-paragraph-max-duration: 6.000)
+
+So we don't guess. We wait for more information.
+
+(pause-until: 00:00:53,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Think of it like breathing.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Breathe in. Breathe out. Breathe in again.
+
+(pause-until: 00:00:58,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A breath out doesn't mean the breathing stopped.
+
+(pause-until: 00:01:03,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:05,000)
+
+(next-paragraph-max-duration: 4.000)
+
+A pullback alone doesn't tell you whether structure changed.
+
+(pause-until: 00:01:09,000)
+
+(next-paragraph-max-duration: 5.000)
+
+What price breaks does.
+
+(pause-until: 00:01:14,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:17,000)
+
+(next-paragraph-max-duration: 9.000)
+
+When bullish structure starts pulling back, how do you know whether it has reversed?
+
+(pause-until: 00:01:26,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
