@@ -1,0 +1,137 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Welcome to Lesson Twenty-One of A Girl & Her Futures.
+
+(pause-until: 00:00:05,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Today: what makes a level stronger?
+
+(pause-until: 00:00:09,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Two levels on your chart. Which one deserves more attention?
+
+(pause-until: 00:00:15,000)
+
+(next-paragraph-max-duration: 4.000)
+
+There's no formula. No level gets a ninety-three percent.
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Instead, you weigh the context.
+
+(pause-until: 00:00:22,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Is it a structurally relevant swing?
+
+(pause-until: 00:00:25,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Did price react there clearly?
+
+(pause-until: 00:00:27,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Does it line up with a prior swing?
+
+(pause-until: 00:00:30,000)
+
+(next-paragraph-max-duration: 5.000)
+
+What timeframe is it from, and where does it sit in the range?
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 5.000)
+
+And how has price behaved there before?
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Careful with the shortcuts.
+
+(pause-until: 00:00:42,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Three touches doesn't automatically make a level strong.
+
+(pause-until: 00:00:45,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Fresh doesn't mean guaranteed. Tested doesn't mean useless.
+
+(pause-until: 00:00:50,000)
+
+(next-paragraph-max-duration: 4.000)
+
+And the best level depends on the question you're asking.
+
+(pause-until: 00:00:54,000)
+
+(next-paragraph-max-duration: 9.000)
+
+The higher low supporting the current structure, or the bottom of the larger range? Different questions. Different answers.
+
+(pause-until: 00:01:03,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like picking a witness.
+
+(pause-until: 00:01:06,000)
+
+(next-paragraph-max-duration: 10.000)
+
+The best witness isn't the one who talks the most. It's the one who saw what you're asking about.
+
+(pause-until: 00:01:16,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 2.000)
+
+There's no strength score.
+
+(pause-until: 00:01:20,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Weigh the context. Ask what the level answers.
+
+(pause-until: 00:01:26,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:29,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Two levels on your chart. Which one deserves more attention?
+
+(pause-until: 00:01:36,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.

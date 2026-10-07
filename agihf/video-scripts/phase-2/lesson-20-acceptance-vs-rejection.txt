@@ -1,0 +1,119 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Twenty of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: acceptance versus rejection.
+
+(pause-until: 00:00:07,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Price trades into a resistance area. What do we know?
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Only that price is in the area. Nothing more yet.
+
+(pause-until: 00:00:17,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Rejection-like behavior: price interacts with the area, closes back inside, and moves away.
+
+(pause-until: 00:00:23,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Acceptance-like behavior: price closes beyond the area, holds beyond it, and starts building structure there.
+
+(pause-until: 00:00:31,000)
+
+(next-paragraph-max-duration: 4.000)
+
+The difference isn't candle color, and it isn't speed.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 6.000)
+
+It's whether price stayed beyond the area, and built there.
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 3.000)
+
+And it isn't a one-candle rule.
+
+(pause-until: 00:00:44,000)
+
+(next-paragraph-max-duration: 4.000)
+
+One close above resistance is a start, not a verdict.
+
+(pause-until: 00:00:48,000)
+
+(next-paragraph-max-duration: 7.000)
+
+While the behavior is still developing, "not enough information" is a real answer.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a new job.
+
+(pause-until: 00:00:58,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Showing up for one day doesn't mean you work there.
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Staying, settling in, and building something does.
+
+(pause-until: 00:01:07,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:09,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Watch the behavior develop.
+
+(pause-until: 00:01:11,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Did price interact and move away, or start holding beyond?
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:21,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Price poked through resistance. Did the market accept or reject it?
+
+(pause-until: 00:01:29,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.

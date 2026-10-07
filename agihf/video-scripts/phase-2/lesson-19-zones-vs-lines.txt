@@ -1,0 +1,113 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Nineteen of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: zones versus lines.
+
+(pause-until: 00:00:07,000)
+
+(next-paragraph-max-duration: 5.000)
+
+You draw an exact line at nineteen thousand, nine hundred eighty.
+
+(pause-until: 00:00:12,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Price turns a little above it. Then a little below it.
+
+(pause-until: 00:00:17,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Did the level fail?
+
+(pause-until: 00:00:21,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Not necessarily. Price kept reacting in the same small area, just not at one exact price.
+
+(pause-until: 00:00:29,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A line is a specific price reference, like a prior high to close above.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A zone is a small area where price reacted. Not one exact tick.
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Pick the tool that matches what price actually did.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a parking space.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 6.000)
+
+You don't have to park on the exact center line to be in the spot.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 8.000)
+
+But if the space is the whole parking lot, it doesn't tell anyone where you are.
+
+(pause-until: 00:01:03,000)
+
+(next-paragraph-max-duration: 5.000)
+
+So keep your zones tight enough to describe the reaction.
+
+(pause-until: 00:01:08,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Give price room to behave.
+
+(pause-until: 00:01:12,000)
+
+(next-paragraph-max-duration: 6.000)
+
+But don't build a giant mystery box.
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:21,000)
+
+(next-paragraph-max-duration: 8.000)
+
+If price misses your line by a few points, did the level fail?
+
+(pause-until: 00:01:29,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.

@@ -1,0 +1,137 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Welcome to Lesson Twenty-Four of A Girl & Her Futures.
+
+(pause-until: 00:00:05,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Today: why a level's name matters less than its context.
+
+(pause-until: 00:00:10,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Here's one area on a chart.
+
+(pause-until: 00:00:13,000)
+
+(next-paragraph-max-duration: 4.000)
+
+One trader calls it support. Another calls it demand.
+
+(pause-until: 00:00:17,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Someone else calls it the previous swing low. Another calls it discount.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Four labels. Same area.
+
+(pause-until: 00:00:26,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Different frameworks use different names for overlapping price areas.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So the question isn't, "Which label is correct?"
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 7.000)
+
+It's, "Why does this area matter to the structure I'm reading?"
+
+(pause-until: 00:00:42,000)
+
+(next-paragraph-max-duration: 2.000)
+
+And stacking labels doesn't help.
+
+(pause-until: 00:00:44,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Support, demand, a fair value gap, three Fibonacci levels, an order block, a trendline.
+
+(pause-until: 00:00:50,000)
+
+(next-paragraph-max-duration: 7.000)
+
+The chart got harder to read. The structure didn't get any clearer.
+
+(pause-until: 00:00:57,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Think of it like a person with a few nicknames.
+
+(pause-until: 00:01:01,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Calling her by three names doesn't make her three people.
+
+(pause-until: 00:01:05,000)
+
+(next-paragraph-max-duration: 5.000)
+
+What matters is knowing who she is.
+
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 5.000)
+
+One more thing. Knowing a concept isn't the same as trading it.
+
+(pause-until: 00:01:15,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Learning these ideas makes you market-literate. It doesn't make them all entry requirements.
+
+(pause-until: 00:01:23,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:25,000)
+
+(next-paragraph-max-duration: 3.000)
+
+More markings don't mean more understanding.
+
+(pause-until: 00:01:28,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Context over label.
+
+(pause-until: 00:01:33,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:36,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Support, demand, previous low, discount. Four different levels?
+
+(pause-until: 00:01:42,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.

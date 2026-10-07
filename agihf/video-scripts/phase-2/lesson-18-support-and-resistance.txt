@@ -1,0 +1,113 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Eighteen of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: support and resistance.
+
+(pause-until: 00:00:07,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Before we name anything, just look.
+
+(pause-until: 00:00:10,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Price comes down into the same lower area, and turns up. Again. And again.
+
+(pause-until: 00:00:18,000)
+
+(next-paragraph-max-duration: 6.000)
+
+That's a support area: where price has shown buying interest, or difficulty continuing lower.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 8.000)
+
+And resistance is the mirror: where price has shown selling interest, or difficulty continuing higher.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 3.000)
+
+But here's the part people skip.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Support doesn't mean price must go up.
+
+(pause-until: 00:00:38,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Resistance doesn't mean price must go down.
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 8.000)
+
+They tell you what price did before. Not what it has to do next.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Think of it like a restaurant you've been to.
+
+(pause-until: 00:00:53,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Your last three meals there were great.
+
+(pause-until: 00:00:56,000)
+
+(next-paragraph-max-duration: 6.000)
+
+That's useful information. It's not a guarantee about tonight.
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+It's an area of interest. Not a guaranteed bounce.
+
+(pause-until: 00:01:08,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A level is information. Not permission to enter.
+
+(pause-until: 00:01:14,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:17,000)
+
+(next-paragraph-max-duration: 8.000)
+
+If price is at support, does it have to go up?
+
+(pause-until: 00:01:25,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.

@@ -1,0 +1,866 @@
+==================== lesson-18-support-and-resistance ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Eighteen of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: support and resistance.
+
+(pause-until: 00:00:07,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Before we name anything, just look.
+
+(pause-until: 00:00:10,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Price comes down into the same lower area, and turns up. Again. And again.
+
+(pause-until: 00:00:18,000)
+
+(next-paragraph-max-duration: 6.000)
+
+That's a support area: where price has shown buying interest, or difficulty continuing lower.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 8.000)
+
+And resistance is the mirror: where price has shown selling interest, or difficulty continuing higher.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 3.000)
+
+But here's the part people skip.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Support doesn't mean price must go up.
+
+(pause-until: 00:00:38,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Resistance doesn't mean price must go down.
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 8.000)
+
+They tell you what price did before. Not what it has to do next.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Think of it like a restaurant you've been to.
+
+(pause-until: 00:00:53,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Your last three meals there were great.
+
+(pause-until: 00:00:56,000)
+
+(next-paragraph-max-duration: 6.000)
+
+That's useful information. It's not a guarantee about tonight.
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+It's an area of interest. Not a guaranteed bounce.
+
+(pause-until: 00:01:08,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A level is information. Not permission to enter.
+
+(pause-until: 00:01:14,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:17,000)
+
+(next-paragraph-max-duration: 8.000)
+
+If price is at support, does it have to go up?
+
+(pause-until: 00:01:25,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
+==================== lesson-19-zones-vs-lines ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Nineteen of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: zones versus lines.
+
+(pause-until: 00:00:07,000)
+
+(next-paragraph-max-duration: 5.000)
+
+You draw an exact line at nineteen thousand, nine hundred eighty.
+
+(pause-until: 00:00:12,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Price turns a little above it. Then a little below it.
+
+(pause-until: 00:00:17,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Did the level fail?
+
+(pause-until: 00:00:21,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Not necessarily. Price kept reacting in the same small area, just not at one exact price.
+
+(pause-until: 00:00:29,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A line is a specific price reference, like a prior high to close above.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A zone is a small area where price reacted. Not one exact tick.
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Pick the tool that matches what price actually did.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a parking space.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 6.000)
+
+You don't have to park on the exact center line to be in the spot.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 8.000)
+
+But if the space is the whole parking lot, it doesn't tell anyone where you are.
+
+(pause-until: 00:01:03,000)
+
+(next-paragraph-max-duration: 5.000)
+
+So keep your zones tight enough to describe the reaction.
+
+(pause-until: 00:01:08,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Give price room to behave.
+
+(pause-until: 00:01:12,000)
+
+(next-paragraph-max-duration: 6.000)
+
+But don't build a giant mystery box.
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:21,000)
+
+(next-paragraph-max-duration: 8.000)
+
+If price misses your line by a few points, did the level fail?
+
+(pause-until: 00:01:29,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
+==================== lesson-20-acceptance-vs-rejection ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Twenty of A Girl & Her Futures.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: acceptance versus rejection.
+
+(pause-until: 00:00:07,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Price trades into a resistance area. What do we know?
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Only that price is in the area. Nothing more yet.
+
+(pause-until: 00:00:17,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Rejection-like behavior: price interacts with the area, closes back inside, and moves away.
+
+(pause-until: 00:00:23,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Acceptance-like behavior: price closes beyond the area, holds beyond it, and starts building structure there.
+
+(pause-until: 00:00:31,000)
+
+(next-paragraph-max-duration: 4.000)
+
+The difference isn't candle color, and it isn't speed.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 6.000)
+
+It's whether price stayed beyond the area, and built there.
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 3.000)
+
+And it isn't a one-candle rule.
+
+(pause-until: 00:00:44,000)
+
+(next-paragraph-max-duration: 4.000)
+
+One close above resistance is a start, not a verdict.
+
+(pause-until: 00:00:48,000)
+
+(next-paragraph-max-duration: 7.000)
+
+While the behavior is still developing, "not enough information" is a real answer.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like a new job.
+
+(pause-until: 00:00:58,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Showing up for one day doesn't mean you work there.
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Staying, settling in, and building something does.
+
+(pause-until: 00:01:07,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:09,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Watch the behavior develop.
+
+(pause-until: 00:01:11,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Did price interact and move away, or start holding beyond?
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:21,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Price poked through resistance. Did the market accept or reject it?
+
+(pause-until: 00:01:29,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
+==================== lesson-21-what-makes-a-level-stronger ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Welcome to Lesson Twenty-One of A Girl & Her Futures.
+
+(pause-until: 00:00:05,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Today: what makes a level stronger?
+
+(pause-until: 00:00:09,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Two levels on your chart. Which one deserves more attention?
+
+(pause-until: 00:00:15,000)
+
+(next-paragraph-max-duration: 4.000)
+
+There's no formula. No level gets a ninety-three percent.
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Instead, you weigh the context.
+
+(pause-until: 00:00:22,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Is it a structurally relevant swing?
+
+(pause-until: 00:00:25,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Did price react there clearly?
+
+(pause-until: 00:00:27,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Does it line up with a prior swing?
+
+(pause-until: 00:00:30,000)
+
+(next-paragraph-max-duration: 5.000)
+
+What timeframe is it from, and where does it sit in the range?
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 5.000)
+
+And how has price behaved there before?
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Careful with the shortcuts.
+
+(pause-until: 00:00:42,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Three touches doesn't automatically make a level strong.
+
+(pause-until: 00:00:45,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Fresh doesn't mean guaranteed. Tested doesn't mean useless.
+
+(pause-until: 00:00:50,000)
+
+(next-paragraph-max-duration: 4.000)
+
+And the best level depends on the question you're asking.
+
+(pause-until: 00:00:54,000)
+
+(next-paragraph-max-duration: 9.000)
+
+The higher low supporting the current structure, or the bottom of the larger range? Different questions. Different answers.
+
+(pause-until: 00:01:03,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like picking a witness.
+
+(pause-until: 00:01:06,000)
+
+(next-paragraph-max-duration: 10.000)
+
+The best witness isn't the one who talks the most. It's the one who saw what you're asking about.
+
+(pause-until: 00:01:16,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 2.000)
+
+There's no strength score.
+
+(pause-until: 00:01:20,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Weigh the context. Ask what the level answers.
+
+(pause-until: 00:01:26,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:29,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Two levels on your chart. Which one deserves more attention?
+
+(pause-until: 00:01:36,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
+==================== lesson-22-previous-highs-and-lows ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Welcome to Lesson Twenty-Two of A Girl & Her Futures.
+
+(pause-until: 00:00:05,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: previous highs and lows.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Previous highs and lows are landmarks.
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 4.000)
+
+They tell you where something structurally meaningful happened before.
+
+(pause-until: 00:00:15,000)
+
+(next-paragraph-max-duration: 5.000)
+
+They do not predict what must happen next.
+
+(pause-until: 00:00:20,000)
+
+(next-paragraph-max-duration: 7.000)
+
+So when price comes back to an old high, don't predict. Watch.
+
+(pause-until: 00:00:27,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Read it in order.
+
+(pause-until: 00:00:29,000)
+
+(next-paragraph-max-duration: 5.000)
+
+First, the level: is price approaching it, or has it actually broken?
+
+(pause-until: 00:00:34,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Then, the candle behavior: did it wick through and close back below, or close through?
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Then, the structure: is price holding and building beyond it, or moving away?
+
+(pause-until: 00:00:47,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Think of it like a landmark on a road trip.
+
+(pause-until: 00:00:51,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Passing the big water tower tells you where you are.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 6.000)
+
+It doesn't tell you which turn you'll take next.
+
+(pause-until: 00:01:01,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:03,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Level. Then candle behavior. Then structure.
+
+(pause-until: 00:01:06,000)
+
+(next-paragraph-max-duration: 8.000)
+
+A landmark tells you where something happened. Not what must happen next.
+
+(pause-until: 00:01:14,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:17,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Price is back at an old high. What has to happen next?
+
+(pause-until: 00:01:25,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
+==================== lesson-23-structure-based-levels ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Welcome to Lesson Twenty-Three of A Girl & Her Futures.
+
+(pause-until: 00:00:05,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Today: structure-based levels.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Stop saying, "That's support."
+
+(pause-until: 00:00:10,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Support isn't a job.
+
+(pause-until: 00:00:14,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Give the level a job instead.
+
+(pause-until: 00:00:17,000)
+
+(next-paragraph-max-duration: 4.000)
+
+"This is the swing low supporting the current bullish structure."
+
+(pause-until: 00:00:21,000)
+
+(next-paragraph-max-duration: 8.000)
+
+"This is the prior high price would need to overcome for continued bullish progression."
+
+(pause-until: 00:00:29,000)
+
+(next-paragraph-max-duration: 9.000)
+
+Swing highs and lows that hold up, or cap, the current structure are the levels with jobs.
+
+(pause-until: 00:00:38,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Now picture a chart with twelve lines on it.
+
+(pause-until: 00:00:42,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Most of them are noise.
+
+(pause-until: 00:00:44,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Clean it down to the few that answer your structural question.
+
+(pause-until: 00:00:51,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of it like cleaning out your closet.
+
+(pause-until: 00:00:54,000)
+
+(next-paragraph-max-duration: 8.000)
+
+If you can't remember why you kept it, and you never wear it, it goes.
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Every line on your chart should have a reason.
+
+(pause-until: 00:01:08,000)
+
+(next-paragraph-max-duration: 7.000)
+
+If you can't explain why it's there, delete it.
+
+(pause-until: 00:01:15,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Can you explain why every line on your chart is there?
+
+(pause-until: 00:01:26,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
+==================== lesson-24-why-the-levels-name-matters-less-than-its-context ====================
+
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Welcome to Lesson Twenty-Four of A Girl & Her Futures.
+
+(pause-until: 00:00:05,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Today: why a level's name matters less than its context.
+
+(pause-until: 00:00:10,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Here's one area on a chart.
+
+(pause-until: 00:00:13,000)
+
+(next-paragraph-max-duration: 4.000)
+
+One trader calls it support. Another calls it demand.
+
+(pause-until: 00:00:17,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Someone else calls it the previous swing low. Another calls it discount.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Four labels. Same area.
+
+(pause-until: 00:00:26,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Different frameworks use different names for overlapping price areas.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So the question isn't, "Which label is correct?"
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 7.000)
+
+It's, "Why does this area matter to the structure I'm reading?"
+
+(pause-until: 00:00:42,000)
+
+(next-paragraph-max-duration: 2.000)
+
+And stacking labels doesn't help.
+
+(pause-until: 00:00:44,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Support, demand, a fair value gap, three Fibonacci levels, an order block, a trendline.
+
+(pause-until: 00:00:50,000)
+
+(next-paragraph-max-duration: 7.000)
+
+The chart got harder to read. The structure didn't get any clearer.
+
+(pause-until: 00:00:57,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Think of it like a person with a few nicknames.
+
+(pause-until: 00:01:01,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Calling her by three names doesn't make her three people.
+
+(pause-until: 00:01:05,000)
+
+(next-paragraph-max-duration: 5.000)
+
+What matters is knowing who she is.
+
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 5.000)
+
+One more thing. Knowing a concept isn't the same as trading it.
+
+(pause-until: 00:01:15,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Learning these ideas makes you market-literate. It doesn't make them all entry requirements.
+
+(pause-until: 00:01:23,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's what to remember.
+
+(pause-until: 00:01:25,000)
+
+(next-paragraph-max-duration: 3.000)
+
+More markings don't mean more understanding.
+
+(pause-until: 00:01:28,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Context over label.
+
+(pause-until: 00:01:33,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:36,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Support, demand, previous low, discount. Four different levels?
+
+(pause-until: 00:01:42,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Let's find out.
+
