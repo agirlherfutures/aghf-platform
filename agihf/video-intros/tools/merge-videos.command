@@ -6,8 +6,9 @@
 # Folder layout (next to this file):
 #   Videos/   the intro videos (.mp4), subfolders are fine
 #   Audio/    the voiceovers (.mp3, .m4a or .wav), subfolders are fine
-#   Music/    optional: one soft background track (.mp3), played under
-#             every video, looped if it's short, faded in and out
+#   Music/    optional: one soft background track, played under every
+#             video, looped if it's short, faded in and out. It can be an
+#             audio file (.mp3) or a video (.mp4, .mov): only its sound is used.
 #   Final/    finished videos are saved here (created for you)
 #
 # A video and its voiceover match by file name:
@@ -93,12 +94,18 @@ while IFS= read -r -d '' a; do
   printf '%s\t%s\n' "$(lower "${b%.*}")" "$a"
 done > "$AUDIO_LIST"
 
-# Background music: the first audio file in Music/, if any.
-MUSIC="$(find "$MUSICDIR" -type f \( -iname '*.mp3' -o -iname '*.m4a' -o -iname '*.wav' -o -iname '*.aac' \) ! -name '._*' 2>/dev/null | sort | head -n 1)"
+# Background music: the first audio or video file in Music/, if any.
+# For a video, only its sound is used.
+MUSIC="$(find "$MUSICDIR" -type f \( -iname '*.mp3' -o -iname '*.m4a' -o -iname '*.wav' -o -iname '*.aac' \
+  -o -iname '*.mp4' -o -iname '*.mov' -o -iname '*.m4v' \) ! -name '._*' 2>/dev/null | sort | head -n 1)"
+if [ -n "$MUSIC" ] && ! "$FFMPEG" -nostdin -i "$MUSIC" 2>&1 | grep -q 'Audio:'; then
+  say "The file in Music ($(basename "$MUSIC")) has no sound, so I'll skip background music."
+  MUSIC=""
+fi
 if [ -n "$MUSIC" ]; then
   say "Background music: $(basename "$MUSIC") at ${MUSIC_VOLUME}% volume"
 else
-  say "No background music (add an mp3 to the Music folder if you want some)."
+  say "No background music (add an mp3 or a video to the Music folder if you want some)."
 fi
 MVOL="$(awk -v p="$MUSIC_VOLUME" 'BEGIN { printf "%.3f", p / 100 }')"
 
