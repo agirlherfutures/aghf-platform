@@ -11,7 +11,7 @@
   "hook": "You know the model. So why do you still break it?",
   "format": "slides",
   "launchpad": {
-    "outcome": "Notice the gap between seeing the chart and clicking, and learn the PAUSE that lives there.",
+    "outcome": "Notice the gap between seeing the chart and placing the trade, and learn the PAUSE that lives there.",
     "missionQuestion": "Did price change, or did my emotion change?",
     "estMinutes": 8
   },
@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 1",
-      "headline": "You know the rules. <em>So why break them?</em>",
-      "line": "Phases 1–6 taught you to read the market. Now you read yourself.",
+      "headline": "You already know the rules, so <em>why do you still break them?</em>",
+      "line": "Phases 1–6 taught you how to read the market. Now you’ll learn how to read yourself while you trade.",
       "pose": "wave",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "The moment",
-      "headline": "One red candle. <em>Same plan.</em>",
-      "line": "Valid long. Stop −30. Target +60.",
+      "headline": "One red candle shows up, and <em>your plan is still the same.</em>",
+      "line": "You’re in a valid long trade. Your stop loss is 30 points below, and your target is 60 points above.",
       "chart": {
         "bars": [
           {
@@ -253,15 +253,15 @@
         "“Maybe I should just get out.”"
       ],
       "check": {
-        "prompt": "So what changed?",
+        "prompt": "So what actually changed in this moment?",
         "options": [
           {
-            "label": "The chart",
+            "label": "The chart changed on me",
             "correct": false,
-            "feedback": "One normal pullback. Your stop and target didn’t move."
+            "feedback": "It was one normal pullback. Your stop loss and your target didn’t move at all."
           },
           {
-            "label": "Something in me",
+            "label": "Something changed inside me",
             "correct": true,
             "feedback": "Exactly. The plan didn’t change. <strong>You did.</strong>"
           }
@@ -271,88 +271,89 @@
     {
       "type": "v2_compare",
       "kicker": "Where trades are decided",
-      "headline": "Between what you <em>see</em> and what you <em>do.</em>",
+      "headline": "Every trade is decided in the gap <em>between seeing and doing.</em>",
       "cards": [
         {
           "label": "Phases 1–6",
-          "sub": "Read the market",
+          "sub": "You learned how to read the market.",
           "spark": "up",
           "tag": "THE CHART",
           "tone": "purple"
         },
         {
           "label": "Phase 7",
-          "sub": "Read yourself while you read it",
+          "sub": "You learn to read yourself while you read the chart.",
           "spark": "chop",
           "tag": "YOU",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Which one breaks more rules?",
+        "prompt": "Which one makes you break more of your rules?",
         "options": [
           {
-            "label": "Not knowing the chart",
+            "label": "Not knowing the chart well enough",
             "correct": false,
-            "feedback": "You already know the chart. That’s not where it goes wrong."
+            "feedback": "You already know the chart. That usually isn’t where things go wrong."
           },
           {
-            "label": "A feeling taking over",
+            "label": "A feeling taking over my decision",
             "correct": true,
-            "feedback": "Yes. That’s what Phase 7 trains."
+            "feedback": "Yes. Catching a feeling before it takes over is exactly what Phase 7 trains."
           }
         ]
-      }
+      },
+      "line": "Phases 1–6 trained your eyes on the chart. Phase 7 trains what happens inside you before you click."
     },
     {
       "type": "v2_steps",
       "kicker": "Your new routine",
-      "headline": "Feel it. <em>Then choose.</em>",
-      "line": "Tap each step.",
+      "headline": "First you feel it, and <em>then you choose.</em>",
+      "line": "This is your new routine for every trade. Tap each step to see what it looks like.",
       "steps": [
         {
           "label": "Feel",
-          "sub": "Something shows up"
+          "sub": "A feeling shows up while you’re in a trade."
         },
         {
           "label": "Notice",
-          "sub": "Catch it happening"
+          "sub": "You catch yourself in the middle of feeling it."
         },
         {
           "label": "Name it",
-          "sub": "Fear. FOMO. Greed."
+          "sub": "You call it what it is: fear, greed, or FOMO (fear of missing out)."
         },
         {
           "label": "Check the rule",
-          "sub": "What does my plan say?"
+          "sub": "You ask yourself, “What does my plan say here?”"
         },
         {
           "label": "Choose",
-          "sub": "Act on the plan, not the feeling"
+          "sub": "You act on the plan, not on the feeling."
         }
       ]
     },
     {
       "type": "v2_steps",
       "kicker": "Your new button",
-      "headline": "⏸ Hit <em>PAUSE.</em>",
-      "line": "Before you click, check all four. Tap each one.",
+      "headline": "⏸ Before you enter or exit, <em>hit PAUSE first.</em>",
+      "line": "Pausing means you check four things before you act: the market, your plan, your mind, and your action. Tap each one.",
       "steps": [
         {
           "label": "Market",
-          "sub": "A normal pullback. Nothing changed."
+          "sub": "It’s a normal pullback, and nothing important has changed."
         },
         {
           "label": "Plan",
-          "sub": "No rule triggered. Hold to stop or target."
+          "sub": "No rule was triggered, so you hold to your stop or target."
         },
         {
           "label": "Mind",
-          "sub": "Nervous. I want the feeling to stop."
+          "sub": "You feel nervous, and you just want that feeling to stop."
         },
         {
           "label": "Action",
-          "sub": "Nothing needs to change."
+          "sub": "Nothing needs to change, so you stay in the trade."
         }
       ],
       "cta": "Next →"
@@ -366,8 +367,8 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "The last rule you broke: <em>what were you feeling</em> right before you clicked?",
-      "modelAnswer": "I knew the rule. Right before I clicked I felt something (rushed, scared, excited) and the feeling made the decision instead of the plan."
+      "prompt": "Think about the last trading rule you broke. <em>What were you feeling</em> right before you broke it?",
+      "modelAnswer": "I knew the rule. Right before I broke it I felt something (rushed, scared, excited) and the feeling made the decision instead of the plan."
     }
   ],
   "takeaways": [

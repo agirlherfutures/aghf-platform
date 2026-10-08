@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 10",
-      "headline": "Analysis done. <em>Nothing’s formed.</em>",
-      "line": "9:45. You know exactly what you’re waiting for.",
+      "headline": "Your analysis is done, but <em>nothing has formed yet.</em>",
+      "line": "It’s 9:45, and you know exactly what you’re waiting for.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "10:21",
-      "headline": "Still <em>nothing.</em>",
-      "line": "Waiting can feel like doing nothing. It isn’t.",
+      "headline": "It’s 10:21, and there’s <em>still nothing.</em>",
+      "line": "Waiting can feel like doing nothing, but it isn’t nothing. It’s part of the job.",
       "chart": {
         "bars": [
           {
@@ -120,12 +120,12 @@
         "“Let me check the 30-second chart.”"
       ],
       "check": {
-        "prompt": "10:21. What do you do?",
+        "prompt": "It’s 10:21. What would you do?",
         "options": [
           {
-            "label": "Take the almost-setup",
+            "label": "Take the almost-setup anyway",
             "correct": false,
-            "feedback": "Boredom doesn’t complete a setup. Indication alone isn’t the trade.",
+            "feedback": "Boredom doesn’t complete a setup. An Indication on its own isn’t the trade.",
             "track": [
               "boredomCount",
               "emotionalTradesTaken"
@@ -134,15 +134,15 @@
           {
             "label": "Drop to a smaller timeframe",
             "correct": false,
-            "feedback": "On a small enough chart there’s always “something”. That’s searching for permission.",
+            "feedback": "On a small enough chart, there’s always “something.” That’s searching for permission to trade.",
             "track": [
               "boredomCount"
             ]
           },
           {
-            "label": "Keep waiting",
+            "label": "Keep waiting for my setup",
             "correct": true,
-            "feedback": "Yes. Waiting is the work. Let’s see what happened.",
+            "feedback": "Yes. Waiting is the work. Let’s see what happened next.",
             "track": "patienceSuccessCount"
           }
         ]
@@ -151,8 +151,8 @@
     {
       "type": "v2_moment",
       "kicker": "The almost-setup",
-      "headline": "Indication only. <em>It never became anything.</em>",
-      "line": "−1R. Boredom doesn’t complete a setup.",
+      "headline": "There was only an Indication, and <em>it never became anything.</em>",
+      "line": "You lost −1R, which is exactly the amount you planned to risk. Boredom doesn’t complete a setup.",
       "chart": {
         "bars": [
           {
@@ -376,9 +376,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "Keep waiting",
-      "headline": "10:31. <em>It formed.</em>",
-      "line": "Indication, Correction, Continuation, first retest. Some days it never does.",
+      "kicker": "If you kept waiting",
+      "headline": "At 10:31, <em>your setup formed.</em>",
+      "line": "You got the Indication, Correction, Continuation, and first retest. On some days it never forms, and that’s okay too.",
       "chart": {
         "bars": [
           {
@@ -632,28 +632,28 @@
     {
       "type": "v2_steps",
       "kicker": "Active patience",
-      "headline": "Active patience <em>knows five things.</em>",
-      "line": "Tap each one.",
+      "headline": "Active patience means <em>knowing five things.</em>",
+      "line": "Tap each one to see what you should know while you wait.",
       "steps": [
         {
           "label": "🎯 What",
-          "sub": "The setup you’re waiting for"
+          "sub": "You know the exact setup you’re waiting for."
         },
         {
           "label": "🧭 Why",
-          "sub": "The reason you’re waiting for it"
+          "sub": "You know the reason you’re waiting for it."
         },
         {
           "label": "⏳ What’s missing",
-          "sub": "What hasn’t happened yet"
+          "sub": "You know which piece hasn’t happened yet."
         },
         {
           "label": "✗ What cancels it",
-          "sub": "What would kill the idea"
+          "sub": "You know what would kill the idea."
         },
         {
           "label": "🕒 When",
-          "sub": "When your session ends"
+          "sub": "You know when your session ends."
         }
       ],
       "cta": "Next →"
@@ -661,35 +661,35 @@
     {
       "type": "v2_compare",
       "kicker": "The trader vs the boredom",
-      "headline": "Waiting <em>is part of</em> executing.",
+      "headline": "Waiting is <em>part of executing</em> your plan.",
       "cards": [
         {
           "label": "The trader",
-          "sub": "Knows what she’s waiting for",
+          "sub": "She knows what she’s waiting for.",
           "spark": "slow",
           "tag": "THE TRADER",
           "tone": "teal"
         },
         {
           "label": "The boredom",
-          "sub": "Wants something to do",
+          "sub": "It just wants something to do.",
           "spark": "chop",
           "tag": "THE BOREDOM",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Nothing formed. Zero trades. That session…",
+        "prompt": "Nothing formed and you took zero trades. Was that session wasted?",
         "options": [
           {
-            "label": "Was wasted",
+            "label": "Yes, that session was wasted",
             "correct": false,
-            "feedback": "Not at all. You did the whole job: you waited."
+            "feedback": "Not at all. You did the whole job, and today the job was waiting."
           },
           {
-            "label": "Counts. I did the job.",
+            "label": "No, it counts because I waited",
             "correct": true,
-            "feedback": "Yes. When nothing forms, the waiting was the whole job."
+            "feedback": "Exactly. When nothing forms, the waiting is the whole job."
           }
         ]
       }

@@ -22,50 +22,50 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 21",
-      "headline": "You broke one. <em>Now what?</em>",
-      "line": "Missed a winner. Chased the next. It lost.",
+      "headline": "You broke one of your rules. <em>What happens now?</em>",
+      "line": "You missed a winner, so you chased the next trade, and it lost. Let’s look at what to do next.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_compare",
-      "kicker": "Stop there",
-      "headline": "Investigate. <em>Don’t punish.</em>",
+      "kicker": "Stop right there",
+      "headline": "Investigate what happened, and <em>don’t punish yourself.</em>",
       "cards": [
         {
           "label": "Shame spiral",
-          "sub": "“What is wrong with me?”",
+          "sub": "You ask yourself, “What is wrong with me?”",
           "spark": "down",
           "tag": "PUNISH",
           "tone": "pink"
         },
         {
           "label": "Detective mode",
-          "sub": "Find the trigger. Plan next time.",
+          "sub": "You find the trigger and plan for next time.",
           "spark": "up",
           "tag": "INVESTIGATE",
           "tone": "teal"
         }
       ],
       "check": {
-        "prompt": "What do you do now?",
+        "prompt": "What would you do now that you’ve broken a rule?",
         "options": [
           {
-            "label": "No trading for a week",
+            "label": "Stop trading for a whole week",
             "correct": false,
-            "feedback": "Feels responsible. Teaches nothing about next Tuesday at 10:04.",
+            "feedback": "It feels responsible, but it teaches you nothing about what to do next Tuesday at 10:04.",
             "track": "feelingAsReason"
           },
           {
-            "label": "Ignore it. New day.",
+            "label": "Ignore it, because it’s a new day",
             "correct": false,
-            "feedback": "Then the trigger stays right where it is, waiting for you.",
+            "feedback": "Then the trigger stays right where it is, waiting for you next time.",
             "track": "feelingAsReason"
           },
           {
-            "label": "Investigate like a detective",
+            "label": "Investigate it like a detective",
             "correct": true,
-            "feedback": "Yes. A broken rule is a clue, not a verdict.",
+            "feedback": "Yes. A broken rule is a clue to study, not a verdict on you.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -74,24 +74,24 @@
     {
       "type": "v2_steps",
       "kicker": "Detective mode",
-      "headline": "Four questions. <em>Then a plan.</em>",
-      "line": "Tap each one.",
+      "headline": "Answer four questions, and <em>then make a plan.</em>",
+      "line": "Tap each question to see what you’re looking for.",
       "steps": [
         {
           "label": "Which rule?",
-          "sub": "Name the one you broke"
+          "sub": "Name the exact rule that you broke."
         },
         {
           "label": "What came before?",
-          "sub": "The trigger right before you clicked"
+          "sub": "Find the trigger that happened right before you broke it."
         },
         {
           "label": "What did you want?",
-          "sub": "To get something, or avoid it"
+          "sub": "Ask whether you wanted to get something or avoid something."
         },
         {
           "label": "Next time?",
-          "sub": "IF this trigger, THEN this action"
+          "sub": "Write “If this trigger happens, then I will do this.”"
         }
       ],
       "cta": "Let’s try it →"

@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 8",
-      "headline": "Green trade. <em>Shaky hands.</em>",
-      "line": "When you stop watching the chart and start watching your P&amp;L.",
+      "headline": "Your trade is green, but <em>your hands are shaky.</em>",
+      "line": "This is what happens when you stop watching the chart and start watching your P&amp;L (your profit and loss).",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "In the trade",
-      "headline": "+22. Then <em>one red candle.</em>",
-      "line": "Stop −30. Target +60. No break-even rule. Nothing triggered.",
+      "headline": "You’re up 22 points, and then <em>one red candle prints.</em>",
+      "line": "Your stop loss (SL) is 30 points away and your target (TP) is +60. There’s no break-even (BE) rule, and nothing in your plan has triggered.",
       "chart": {
         "bars": [
           {
@@ -198,24 +198,24 @@
         "“Just lock something in.”"
       ],
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "Close it. Bank the green.",
+            "label": "Close it and bank the green",
             "correct": false,
-            "feedback": "Feels safe. But no rule asked for that exit. Fear did.",
+            "feedback": "It feels safe. But no rule asked for that exit. Fear did.",
             "track": "fearDrivenManagementCount"
           },
           {
-            "label": "Move stop to break even",
+            "label": "Move my stop to break even",
             "correct": false,
-            "feedback": "Feels like protection. With no rule for it, it’s fear managing the trade.",
+            "feedback": "It feels like protection. But with no rule for it, that’s fear managing the trade.",
             "track": "fearDrivenManagementCount"
           },
           {
-            "label": "Follow the plan",
+            "label": "Follow the plan I already wrote",
             "correct": true,
-            "feedback": "Yes. Stop or target decides. Not one red candle.",
+            "feedback": "Yes. Your stop or your target decides how this ends, not one red candle.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -224,8 +224,8 @@
     {
       "type": "v2_moment",
       "kicker": "If you closed it",
-      "headline": "You kept +10. <em>The plan made +60.</em>",
-      "line": "It went to your target. Without you.",
+      "headline": "You kept 10 points, but <em>the plan made 60.</em>",
+      "line": "Price went all the way to your target. It just went there without you.",
       "chart": {
         "bars": [
           {
@@ -391,8 +391,8 @@
     {
       "type": "v2_moment",
       "kicker": "If you moved to break even",
-      "headline": "Stopped at break even. <em>Then the target.</em>",
-      "line": "One dip below entry. You kept $0. The plan kept +60.",
+      "headline": "You got stopped at break even, and <em>then it hit the target.</em>",
+      "line": "Price dipped below your entry just once. You kept $0, while the plan would have made 60 points.",
       "chart": {
         "bars": [
           {
@@ -565,20 +565,20 @@
     {
       "type": "v2_steps",
       "kicker": "Early exit?",
-      "headline": "Ask: <em>why</em> did you exit?",
-      "line": "Taking profit early isn’t automatically wrong. Tap each reason.",
+      "headline": "Ask yourself: <em>why</em> did you exit early?",
+      "line": "Taking profit early isn’t automatically wrong. Tap each reason to see which ones are valid.",
       "steps": [
         {
           "label": "📐 A management rule",
-          "sub": "Written while calm. Valid."
+          "sub": "You wrote this rule while calm, so it’s valid."
         },
         {
           "label": "📊 New valid information",
-          "sub": "The chart actually changed. Valid."
+          "sub": "The chart actually changed, so the exit is valid."
         },
         {
           "label": "😰 Fear changed it",
-          "sub": "You wanted the discomfort to stop."
+          "sub": "You just wanted the uncomfortable feeling to stop."
         }
       ],
       "cta": "Next →"
@@ -586,35 +586,35 @@
     {
       "type": "v2_compare",
       "kicker": "The trader vs the fear",
-      "headline": "Fear wants certainty. <em>Trading gives probabilities.</em>",
+      "headline": "Fear wants certainty, but <em>trading only gives probabilities.</em>",
       "cards": [
         {
           "label": "The trader",
-          "sub": "Wrote the exit plan while calm",
+          "sub": "She wrote her exit plan while she was calm.",
           "spark": "up",
           "tag": "THE PLAN",
           "tone": "teal"
         },
         {
           "label": "The fear",
-          "sub": "Pays the whole target to feel safe",
+          "sub": "It gives up the whole target just to feel safe.",
           "spark": "chop",
           "tag": "THE FEAR",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Green, red candle, no rule triggered. Now?",
+        "prompt": "You’re green, a red candle prints, and no rule triggered. What now?",
         "options": [
           {
-            "label": "Lock something in",
+            "label": "Lock something in now",
             "correct": false,
-            "feedback": "That’s the discomfort talking. No rule triggered, so the plan stands."
+            "feedback": "That’s the discomfort talking. No rule triggered, so your plan still stands."
           },
           {
-            "label": "Nothing needs to change",
+            "label": "Nothing needs to change yet",
             "correct": true,
-            "feedback": "Exactly. Some days the stop hits. Still beats abandoning the plan."
+            "feedback": "Exactly. Some days the stop will hit, and that still beats abandoning your plan."
           }
         ]
       }

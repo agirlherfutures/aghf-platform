@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 18",
-      "headline": "Two valid losses. <em>Daily stop reached.</em>",
-      "line": "Trade 1: −1R. Trade 2: −1R. Then…",
+      "headline": "You took two valid losses, and you <em>reached your daily stop.</em>",
+      "line": "Your first trade lost −1R and your second lost −1R. 1R is the amount you planned to risk on one trade, so you’re down twice that.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
-      "kicker": "10:12",
-      "headline": "Then the <em>cleanest setup</em> of the day.",
-      "line": "Your daily stop is −2R. You’re there.",
+      "kicker": "10:12 · The temptation",
+      "headline": "Then the <em>cleanest setup</em> of the day shows up.",
+      "line": "Your daily stop is −2R, the most you allow yourself to lose in one day. You’re already there.",
       "chart": {
         "bars": [
           {
@@ -250,21 +250,21 @@
         "“One trade gets the whole day back.”"
       ],
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "Take it. It’s A+.",
+            "label": "Take it, because it’s an A+ setup",
             "correct": false,
-            "feedback": "It might work. Then tomorrow’s stop quietly means “unless it’s good.”",
+            "feedback": "It might work. But then tomorrow your daily stop quietly turns into “stop, unless it looks good.”",
             "track": [
               "overtradeCount",
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Done. The plan decided.",
+            "label": "I’m done, because the plan decided",
             "correct": true,
-            "feedback": "Yes. You lose the trade, you keep the rule. Worth more over a year.",
+            "feedback": "Yes. You might miss this one trade, but you keep the rule. Over a year, that rule is worth far more.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -273,8 +273,8 @@
     {
       "type": "v2_moment",
       "kicker": "Replay mode",
-      "headline": "It worked. <em>You kept the rule.</em>",
-      "line": "You watched it in replay. That’s still a win.",
+      "headline": "The trade worked, and <em>you still kept your rule.</em>",
+      "line": "You watched it play out in replay instead of trading it live. That still counts as a win for you.",
       "chart": {
         "bars": [
           {
@@ -492,35 +492,35 @@
     {
       "type": "v2_compare",
       "kicker": "What the A+ costs",
-      "headline": "Being done <em>is the execution.</em>",
+      "headline": "Being done for the day <em>is part of your execution.</em>",
       "cards": [
         {
           "label": "Took the A+",
-          "sub": "+2R today, a bendy stop forever",
+          "sub": "You made +2R today, but now your stop bends forever.",
           "spark": "up",
           "tag": "RULE BENT",
           "tone": "pink"
         },
         {
           "label": "Closed the platform",
-          "sub": "Stop still means stop tomorrow",
+          "sub": "Your stop will still mean stop tomorrow.",
           "spark": "slow",
           "tag": "DONE",
           "tone": "teal"
         }
       ],
       "check": {
-        "prompt": "Does an A+ setup reopen the session?",
+        "prompt": "Should an A+ setup reopen your trading session after your daily stop?",
         "options": [
           {
-            "label": "Yes, if it’s clean",
+            "label": "Yes, if the setup is clean",
             "correct": false,
-            "feedback": "When you’re down, every setup looks clean. That’s the trap."
+            "feedback": "When you’re down for the day, every setup starts to look clean. That’s exactly the trap."
           },
           {
-            "label": "No. Done means done.",
+            "label": "No, because done means done",
             "correct": true,
-            "feedback": "Exactly. Stopping is an execution skill."
+            "feedback": "Exactly. Knowing when to stop is an execution skill, just like entering a trade."
           }
         ]
       }

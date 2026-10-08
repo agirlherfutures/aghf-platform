@@ -22,32 +22,32 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 20",
-      "headline": "The rule you keep <em>negotiating.</em>",
-      "line": "Optional rules don’t protect you.",
+      "headline": "This is the rule you <em>keep negotiating with.</em>",
+      "line": "A rule you can talk yourself out of is really just optional. Optional rules can’t protect you.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_steps",
       "kicker": "Your journal, this week",
-      "headline": "Four days. <em>Same rule.</em>",
-      "line": "Four different reasons. Tap each day.",
+      "headline": "You broke the same rule <em>four days in a row.</em>",
+      "line": "Each day you had a different reason. Tap each day to see what you told yourself.",
       "steps": [
         {
-          "label": "MON",
-          "sub": "Chased “just a little”"
+          "label": "Monday",
+          "sub": "You chased an entry, but only “just a little.”"
         },
         {
-          "label": "TUE",
-          "sub": "3rd trade, “it was A+”"
+          "label": "Tuesday",
+          "sub": "You took a third trade because “it was A+.”"
         },
         {
-          "label": "WED",
-          "sub": "Moved stop “just this once”"
+          "label": "Wednesday",
+          "sub": "You moved your stop loss “just this once.”"
         },
         {
-          "label": "THU",
-          "sub": "Chased, “it was different”"
+          "label": "Thursday",
+          "sub": "You chased again because “this one was different.”"
         }
       ],
       "cta": "I see it →"
@@ -55,36 +55,36 @@
     {
       "type": "v2_compare",
       "kicker": "Protect or decorate",
-      "headline": "Optional rules are <em>just decoration.</em>",
+      "headline": "A rule you treat as optional is <em>just decoration.</em>",
       "cards": [
         {
           "label": "Rule as written",
-          "sub": "Holds when you’re emotional",
+          "sub": "It holds even when you feel emotional.",
           "spark": "slow",
           "tag": "PROTECTS",
           "tone": "teal"
         },
         {
           "label": "Rule you negotiate",
-          "sub": "“It doesn’t fit this situation”",
+          "sub": "You tell yourself it doesn’t fit this situation.",
           "spark": "chop",
           "tag": "DECORATES",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "It’s Thursday, mid-chase. What do you do with the rule?",
+        "prompt": "It’s Thursday and you’re mid-chase. What would you do with the rule?",
         "options": [
           {
-            "label": "Delete it. Doesn’t fit me.",
+            "label": "Delete it, because it doesn’t fit me",
             "correct": false,
-            "feedback": "Maybe it doesn’t. But mid-chase is the worst moment to judge a rule.",
+            "feedback": "Maybe it really doesn’t fit. But the middle of a chase is the worst moment to judge a rule.",
             "track": "feelingAsReason"
           },
           {
-            "label": "Flag it. Follow it till review.",
+            "label": "Flag it and follow it until review",
             "correct": true,
-            "feedback": "Yes. Changes happen in review, calm, journal open. Not mid-session.",
+            "feedback": "Yes. You change rules in your review, when you’re calm and your journal is open. You never change them mid-session.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -93,24 +93,24 @@
     {
       "type": "v2_steps",
       "kicker": "Close the loophole",
-      "headline": "Find the <em>escape word.</em>",
-      "line": "Tap each step.",
+      "headline": "Find the <em>escape word</em> hiding in your rule.",
+      "line": "Small words like “just” give you a way out. Tap each step to see how to close that gap.",
       "steps": [
         {
           "label": "Spot the word",
-          "sub": "“Really.” “Basically.” “Just.”"
+          "sub": "Look for words like “really,” “basically,” or “just.”"
         },
         {
           "label": "Cut it out",
-          "sub": "Write it so live-you can’t argue"
+          "sub": "Rewrite the rule so the live you can’t argue with it."
         },
         {
           "label": "Keep the rule",
-          "sub": "Follow it, every session"
+          "sub": "Follow the rule exactly as written, every single session."
         },
         {
           "label": "Change in review",
-          "sub": "Calm, journal open, never live"
+          "sub": "Change rules only when you’re calm, journal open, never live."
         }
       ],
       "cta": "Next →"

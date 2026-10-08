@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 12",
-      "headline": "A red day is <em>not a verdict.</em>",
-      "line": "Your P&amp;L grades trades. It never grades you.",
+      "headline": "A red day is <em>not a verdict</em> on you as a trader.",
+      "line": "Your P&amp;L (profit and loss) grades your trades. It never grades you as a person.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "Trade A",
-      "headline": "Entered early. <em>+2R anyway.</em>",
-      "line": "Continuation hadn’t closed. It ran anyway.",
+      "headline": "You entered too early and <em>still made +2R.</em>",
+      "line": "1R is the amount you planned to risk on one trade, so +2R means you made twice that. The Continuation hadn’t closed yet, but price ran anyway.",
       "chart": {
         "bars": [
           {
@@ -285,8 +285,8 @@
     {
       "type": "v2_moment",
       "kicker": "Trade B · same day",
-      "headline": "Every rule followed. <em>−1R.</em>",
-      "line": "Valid first retest. Stopped out.",
+      "headline": "You followed every rule <em>and still lost −1R.</em>",
+      "line": "It was a valid first retest, and you got stopped out. −1R means you lost exactly what you planned to risk, no more.",
       "chart": {
         "bars": [
           {
@@ -493,18 +493,18 @@
         "“I’m so bad at this.”"
       ],
       "check": {
-        "prompt": "Which trade made you a better trader?",
+        "prompt": "Which of these two trades actually made you a better trader?",
         "options": [
           {
-            "label": "Trade A. It made money.",
+            "label": "Trade A, because it made money",
             "correct": false,
-            "feedback": "It paid you for a habit. A win from an early entry teaches early entries.",
+            "feedback": "Trade A paid you for a bad habit. A win from an early entry teaches you to keep entering early.",
             "track": "feelingAsReason"
           },
           {
-            "label": "Trade B. It followed process.",
+            "label": "Trade B, because it followed my process",
             "correct": true,
-            "feedback": "Yes. It cost 1R, and it’s the trade you want a hundred more of.",
+            "feedback": "Yes. It cost you 1R, but it’s exactly the kind of trade you want a hundred more of.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -513,35 +513,35 @@
     {
       "type": "v2_compare",
       "kicker": "Your journal, two columns",
-      "headline": "Grade every trade <em>two ways.</em>",
+      "headline": "Grade every trade <em>in two different ways.</em>",
       "cards": [
         {
           "label": "Outcome",
-          "sub": "What happened to the money",
+          "sub": "This is what happened to your money.",
           "spark": "up",
           "tag": "P&amp;L",
           "tone": "peach"
         },
         {
           "label": "Process",
-          "sub": "What happened to the rules",
+          "sub": "This is what happened to your rules.",
           "spark": "slow",
           "tag": "JOURNAL",
           "tone": "teal"
         }
       ],
       "check": {
-        "prompt": "Trade A: +2R, early entry. Its process?",
+        "prompt": "Trade A made +2R with an early entry. Did it follow your process?",
         "options": [
           {
-            "label": "Followed",
+            "label": "Yes, it followed the process",
             "correct": false,
-            "feedback": "The money was green, but the entry was early. That’s a rule broken."
+            "feedback": "The money was green, but the entry was early. That means a rule was broken, even though it paid."
           },
           {
-            "label": "Violation",
+            "label": "No, it broke a rule",
             "correct": true,
-            "feedback": "Right. Outcome: WIN. Process: VIOLATION. Both are true at once."
+            "feedback": "Right. The outcome was a win, and the process was a violation. Both are true at the same time."
           }
         ]
       }
@@ -549,20 +549,20 @@
     {
       "type": "v2_steps",
       "kicker": "Three separate things",
-      "headline": "Neither one <em>grades you.</em>",
-      "line": "Your P&amp;L is information about trades. Tap each.",
+      "headline": "Neither your P&amp;L nor your journal <em>grades you.</em>",
+      "line": "Your P&amp;L is just information about your trades. Tap each one to see what it grades.",
       "steps": [
         {
           "label": "Outcome",
-          "sub": "Your P&amp;L grades the trade"
+          "sub": "Your P&amp;L grades how the trade turned out."
         },
         {
           "label": "Process",
-          "sub": "Your journal grades the rules"
+          "sub": "Your journal grades whether you followed your rules."
         },
         {
           "label": "You",
-          "sub": "Not up for grading. Ever."
+          "sub": "You are never up for grading, not ever."
         }
       ],
       "cta": "Next →"

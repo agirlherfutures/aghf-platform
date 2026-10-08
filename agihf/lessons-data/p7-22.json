@@ -22,32 +22,32 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 22",
-      "headline": "Write it calm. <em>Read it hot.</em>",
-      "line": "Everything you felt this phase, you’ll feel again.",
+      "headline": "Write your rules while you’re calm, and <em>read them when you’re not.</em>",
+      "line": "Everything you felt during this phase, you’ll feel again. Your rulebook is how calm-you helps you in those moments.",
       "pose": "wave",
-      "cta": "Build it →"
+      "cta": "Build my rulebook →"
     },
     {
       "type": "v2_steps",
       "kicker": "When you’ll need it",
-      "headline": "You’ll feel it <em>again.</em>",
-      "line": "Tap each one. These are the moments your rulebook is for.",
+      "headline": "You will feel these emotions <em>again and again.</em>",
+      "line": "Tap each moment below. These are the exact moments your rulebook is written for.",
       "steps": [
         {
           "label": "After a win",
-          "sub": "“I’m on fire. One more.”"
+          "sub": "You think, “I’m on fire, so I’ll take one more.”"
         },
         {
           "label": "After a loss",
-          "sub": "“I need it back.”"
+          "sub": "You think, “I need that money back right now.”"
         },
         {
           "label": "A slow Tuesday",
-          "sub": "“Anything. Just something.”"
+          "sub": "You think, “Any trade will do. Just give me something.”"
         },
         {
-          "label": "Rent due",
-          "sub": "“This one has to work.”"
+          "label": "Rent is due",
+          "sub": "You think, “This trade has to work, no matter what.”"
         }
       ],
       "cta": "Next →"
@@ -55,35 +55,35 @@
     {
       "type": "v2_compare",
       "kicker": "What this really is",
-      "headline": "A letter from <em>calm-you.</em>",
+      "headline": "Your rulebook is a letter <em>from calm-you</em> to future you.",
       "cards": [
         {
           "label": "Calm-you",
-          "sub": "Writes the rules today",
+          "sub": "You write the rules today, before the session.",
           "spark": "up",
           "tag": "WRITES",
           "tone": "purple"
         },
         {
           "label": "Emotional-you",
-          "sub": "Reads them mid-session",
+          "sub": "You read them in the middle of a session.",
           "spark": "chop",
           "tag": "READS",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Who should decide your rules?",
+        "prompt": "Which version of you should decide your trading rules?",
         "options": [
           {
-            "label": "Calm-you, before the session",
+            "label": "Calm-you, before the session starts",
             "correct": true,
-            "feedback": "Yes. Calm-you speaks for you when emotional-you can’t."
+            "feedback": "Yes. Calm-you can think clearly, so calm-you writes the rules that speak for you when emotional-you can’t."
           },
           {
-            "label": "Whoever’s trading right now",
+            "label": "Whoever is trading in the moment",
             "correct": false,
-            "feedback": "Mid-session you is the one who needs the letter, not the pen."
+            "feedback": "In the middle of a session, you’re the one who needs to read the letter, not the one who should be writing it."
           }
         ]
       }
@@ -127,7 +127,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "What are your <em>five non-negotiables?</em>",
+      "prompt": "What are the <em>five non-negotiable rules</em> you will never break?",
       "modelAnswer": "My five are the rules I don’t negotiate during a session. They change only in review, with evidence."
     }
   ],

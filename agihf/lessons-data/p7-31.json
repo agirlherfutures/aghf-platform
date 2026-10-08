@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 31",
-      "headline": "Nothing <em>is a position.</em>",
-      "line": "This should feel like freedom.",
+      "headline": "Choosing to do nothing <em>is a position too.</em>",
+      "line": "A day with no trades can be a successful day. This lesson should feel like freedom.",
       "pose": "wave",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "9:40 → 11:00",
-      "headline": "All that work. <em>Nothing showed up.</em>",
-      "line": "10:00 nothing. 10:30 messy. 11:00 no clarity. Session closes.",
+      "headline": "You did all that work, and <em>nothing showed up.</em>",
+      "line": "Nothing set up at 10:00, things were messy at 10:30, and there was still no clarity at 11:00. Then your session closed.",
       "chart": {
         "bars": [
           {
@@ -118,15 +118,15 @@
         "“I did all that work for nothing?”"
       ],
       "check": {
-        "prompt": "How do you describe today?",
+        "prompt": "How would you describe today?",
         "options": [
           {
-            "label": "“I didn’t trade today.”",
+            "label": "“I just didn’t trade today.”",
             "correct": false,
-            "feedback": "True. But it leaves out the part you did right."
+            "feedback": "That’s true, but it leaves out the part you did right."
           },
           {
-            "label": "“A wasted day.”",
+            "label": "“Today was a wasted day.”",
             "correct": false,
             "feedback": "Nothing was wasted. You read the market, and the market said no.",
             "track": "feelingAsReason"
@@ -134,7 +134,7 @@
           {
             "label": "“I read today right: no position.”",
             "correct": true,
-            "feedback": "<strong>That’s it.</strong> You read the environment correctly. Your execution was no position.",
+            "feedback": "<strong>That’s it.</strong> You read the environment correctly, and your execution was to hold no position.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -143,24 +143,24 @@
     {
       "type": "v2_steps",
       "kicker": "Your session card",
-      "headline": "Zero trades. <em>Session complete ✓</em>",
-      "line": "Sometimes protecting the day is the trade. Tap each line.",
+      "headline": "You took zero trades, and <em>your session is complete ✓</em>",
+      "line": "Sometimes protecting the day is the trade. Tap each line of your session card.",
       "steps": [
         {
           "label": "Trades",
-          "sub": "0"
+          "sub": "You took 0 trades today."
         },
         {
           "label": "Rule violations",
-          "sub": "0"
+          "sub": "You broke 0 rules."
         },
         {
           "label": "Forced setups",
-          "sub": "0"
+          "sub": "You forced 0 trades that weren’t there."
         },
         {
           "label": "Valid pass",
-          "sub": "✓"
+          "sub": "You passed for the right reasons ✓"
         }
       ],
       "cta": "Next →"
@@ -168,20 +168,20 @@
     {
       "type": "v2_steps",
       "kicker": "Three good process outcomes",
-      "headline": "Three ways to <em>get it right.</em>",
-      "line": "All three are process-complete.",
+      "headline": "There are three ways to <em>get your process right.</em>",
+      "line": "All three of these outcomes mean you followed your process completely.",
       "steps": [
         {
           "label": "Valid win",
-          "sub": "Process followed. Trade wins."
+          "sub": "You followed your process, and the trade won."
         },
         {
           "label": "Valid loss",
-          "sub": "Process followed. Trade loses."
+          "sub": "You followed your process, and the trade lost."
         },
         {
           "label": "Valid pass",
-          "sub": "Process followed. No trade taken."
+          "sub": "You followed your process, and you took no trade."
         }
       ],
       "cta": "Your turn →"
