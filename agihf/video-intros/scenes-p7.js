@@ -331,265 +331,272 @@
       return o;
     },
 
-    /* ════ Phase 7 · Lesson 1 · The Moment Between ════════════════════ */
-    // A loss, the urge, the hand on the mouse… then everything FREEZES.
+    /* ════ Phase 7 · Lesson 1 · The Moment Between ════════════════════
+       Beats are named: s.b.<name> = when that line starts. */
+
+    // 45 minutes of prep, the setup, stopped out… then it goes your way. Hand on the mouse. FREEZE.
     'p7m-moment': (s, t) => {
-      const T = s.at, frz = seg(t, T[8], T[8] + 0.5);
+      const B = s.b, frz = seg(t, B.wait, B.wait + 0.5);
+      const tt = t * (1 - frz) + B.wait * frz; // the world stops when she does
       let o = grad('mm', '#1C1528', '#2E2142') + bg('url(#mm)');
-      const loss = vals(31, 10, -0.05, 0.03, 0.8), again = vals(33, 14, 0.03, 0.05, 0.35);
-      const n2 = t < T[3] ? 0 : Math.floor(seg(t, T[3], T[8]) * 14) + 1;
-      const series = loss.concat(again.slice(0, n2));
-      o += `<rect x="200" y="200" width="1080" height="560" rx="28" fill="#120D1C" stroke="#3A2F55" stroke-width="6"/>` + candles(230, 260, 1020, 440, series, series.length + 1, { slots: 24 });
-      // the red number, slammed
-      const slam = pop(t, T[0] + 0.2, 0.4);
-      o += scaleAt(740, 880, slam, `<rect x="560" y="820" width="360" height="110" rx="24" fill="#E2556F"/>${txt(740, 900, '−$300', 64, '#fff', { f: 'JetBrains Mono, monospace' })}`);
-      // frustration: heat + steam
-      if (t > T[1]) { const h = seg(t, T[1], T[1] + 1); o += `<circle cx="1580" cy="520" r="${f1(260 + 20 * Math.sin(t * 4))}" fill="#E2556F" opacity="${f1(0.18 * h * (1 - frz))}"/>`; for (let j = 0; j < 3; j++) { const p = ((t * 0.8 + j * 0.33) % 1); o += `<path d="M${1540 + j * 40},${f1(300 - p * 140)} q14,-20 0,-40 q-14,-20 0,-40" stroke="#fff" stroke-width="6" fill="none" opacity="${f1(Math.sin(p * Math.PI) * 0.6 * h * (1 - frz))}"/>`; } }
-      o += you(t * (1 - frz) + T[8] * frz, { x: 1580, y: 1050, scale: 1.25, flip: true, mood: 'sad', frontArm: t > T[5] ? { a1: -175, a2: -170 } : { a1: 100, a2: 95 } });
-      o += thought(1500, 230, 'maybe I can get back in…', between(t, T[4] + 0.6, T[8] - 0.1), { size: 40 });
-      // cursor heading to BUY
-      const bp = pop(t, T[5], 0.5);
-      if (bp > 0) { const cx = lerp(1180, 1080, ease(seg(t, T[5], T[7] + 1))), cy = lerp(900, 830, ease(seg(t, T[5], T[7] + 1))); const pul = t > T[7] && t < T[8] ? 1 + 0.06 * Math.sin(t * 9) : 1;
+      // clock + levels
+      const mins = Math.min(45, Math.floor(seg(t, s.start, B.levels) * 45));
+      o += txt(240, 150, `MNQ · watching ${mins} min`, 34, '#CFC8FA', { a: 'start', f: 'JetBrains Mono, monospace' });
+      o += `<rect x="200" y="200" width="1080" height="560" rx="28" fill="#120D1C" stroke="#3A2F55" stroke-width="6"/>`;
+      const lv = seg(t, B.levels, B.levels + 1.2);
+      o += `<line x1="230" x2="${f1(230 + 1020 * lv)}" y1="430" y2="430" stroke="#E2B04A" stroke-width="4" stroke-dasharray="14 10"/><line x1="230" x2="${f1(230 + 1020 * lv)}" y1="600" y2="600" stroke="#7F77DD" stroke-width="4" stroke-dasharray="14 10"/>`;
+      // the story in candles: build-up → setup → entry → stop → back the original way
+      const build = vals(51, 8, 0.01, 0.03, 0.45), drop = [0.5, 0.42, 0.33, 0.26, 0.2], back_ = [0.27, 0.36, 0.45, 0.53, 0.6, 0.68, 0.74];
+      let n = 0;
+      if (tt > B.setup) n = 8 + Math.floor(seg(tt, B.setup, B.take) * 2);
+      if (tt > B.take) n = 10 + Math.floor(seg(tt, B.take + 0.5, B.stopped) * 5);
+      if (tt > B.back) n = 15 + Math.floor(seg(tt, B.back + 0.5, B.hand + 1) * 7);
+      const series = build.concat([0.47, 0.5], drop, back_);
+      if (n > 0) o += candles(230, 260, 1020, 440, series, n, { slots: 24 });
+      if (tt > B.take) o += pill(230 + 10 * 1020 / 24, 300, 'ENTRY', '#2AA594', pop(t, B.take, 0.4), 22);
+      if (tt > B.stopped) o += scaleAt(740, 880, pop(t, B.stopped, 0.4), `<rect x="540" y="820" width="400" height="110" rx="24" fill="#E2556F"/>${txt(740, 900, 'STOPPED · −1R', 46, '#fff', { f: 'JetBrains Mono, monospace' })}`);
+      // irritated
+      if (t > B.irritated) { const h = seg(t, B.irritated, B.irritated + 1) * (1 - frz); o += `<circle cx="1580" cy="520" r="${f1(260 + 20 * Math.sin(t * 4))}" fill="#E2556F" opacity="${f1(0.18 * h)}"/>`; for (let j = 0; j < 3; j++) { const p = ((t * 0.8 + j * 0.33) % 1); o += `<path d="M${1540 + j * 40},${f1(300 - p * 140)} q14,-20 0,-40 q-14,-20 0,-40" stroke="#fff" stroke-width="6" fill="none" opacity="${f1(Math.sin(p * Math.PI) * 0.6 * h)}"/>`; } }
+      o += you(tt, { x: 1580, y: 1050, scale: 1.25, flip: true, mood: t > B.stopped ? 'sad' : undefined, frontArm: t > B.hand ? { a1: -175, a2: -170 } : { a1: 100, a2: 95 } });
+      o += thought(1440, 200, 'Are you serious?', between(t, B.serious, B.serious2 - 0.1), { size: 44 });
+      o += thought(1380, 200, 'you had to stop ME out first?', between(t, B.serious2, B.hand - 0.1), { size: 38 });
+      o += txt(1250, 160, '2 min later', 30, '#F9D89A', { op: f1(between(t, B.back, B.serious) ? 1 : 0), f: 'JetBrains Mono, monospace' });
+      // hand → BUY
+      const bp = pop(t, B.hand, 0.5);
+      if (bp > 0) { const k = ease(seg(tt, B.hand, B.ready + 1)), cx = lerp(1180, 1080, k), cy = lerp(900, 830, k), pul = t > B.ready && t < B.wait ? 1 + 0.06 * Math.sin(t * 9) : 1;
         o += scaleAt(1040, 830, bp * pul, `<rect x="960" y="790" width="160" height="80" rx="40" fill="#2AA594"/>${txt(1040, 842, 'BUY', 36, '#fff')}`) + `<path d="M${f1(cx)},${f1(cy)} l24,70 l10,-28 l28,-10 z" fill="#fff" stroke="#1C1528" stroke-width="4"/>`; }
-      // FREEZE: grey wash, "hold on"
+      // FREEZE: "wait a minute"
+      const q = seg(t, B.setupQ - 0.3, B.setupQ + 0.3), gapIn = seg(t, B.between - 0.3, B.between + 0.4);
       if (frz > 0) {
-        o += `<rect width="1920" height="1080" fill="#EDE8F6" opacity="${f1(0.82 * frz * (1 - seg(t, T[9] - 0.2, T[9] + 0.4)))}"/>`;
-        o += fade(frz * (1 - seg(t, T[9] - 0.2, T[9] + 0.3)), `<rect x="760" y="420" width="400" height="160" rx="80" fill="#2C1810"/><rect x="900" y="455" width="30" height="90" rx="8" fill="#fff"/><rect x="990" y="455" width="30" height="90" rx="8" fill="#fff"/>` + txt(960, 660, 'hold on.', 64, C.dark, { f: 'Playfair Display', it: true }));
+        o += `<rect width="1920" height="1080" fill="#EDE8F6" opacity="${f1(0.85 * frz)}"/>`;
+        o += fade(frz * (1 - q), `<rect x="760" y="380" width="400" height="160" rx="80" fill="#2C1810"/><rect x="900" y="415" width="30" height="90" rx="8" fill="#fff"/><rect x="990" y="415" width="30" height="90" rx="8" fill="#fff"/>` + txt(960, 640, 'wait a minute.', 64, C.dark, { f: 'Playfair Display', it: true }));
+        // two honest answers
+        o += fade(q * (1 - gapIn), `<rect x="260" y="360" width="620" height="260" rx="40" fill="#fff" stroke="#2AA594" stroke-width="8"/>${txt(570, 470, 'another setup?', 54, C.dark, { f: 'Playfair Display' })}${txt(570, 540, 'what price is doing', 30, '#2AA594', { w: 700 })}
+          <rect x="1040" y="360" width="620" height="260" rx="40" fill="#fff" stroke="#E2556F" stroke-width="8"/>${txt(1350, 470, 'or just frustrated?', 54, C.dark, { f: 'Playfair Display' })}${txt(1350, 540, 'how the last trade felt', 30, '#E2556F', { w: 700 })}`);
+        o += fade(seg(t, B.frustQ, B.frustQ + 0.4) * (1 - gapIn), pill(1350, 700, 'be honest 😂', '#E2556F', 1, 30));
       }
-      // FEEL ── the moment between ── DO
-      if (t > T[9] - 0.2) {
-        const k = seg(t, T[9] - 0.2, T[9] + 0.6), gap = ease(seg(t, T[11], T[11] + 1.6));
-        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(k)}"/>`;
-        const lx = 960 - 120 - gap * 300, rx = 960 + 120 + gap * 300;
-        o += fade(k, `<rect x="${f1(lx - 380)}" y="440" width="380" height="200" rx="100" fill="#E2556F"/>${txt(lx - 190, 560, 'FEEL', 64, '#fff', { ls: 6 })}<rect x="${f1(rx)}" y="440" width="380" height="200" rx="100" fill="#2C1810"/>${txt(rx + 190, 560, 'DO', 64, '#fff', { ls: 6 })}`);
-        if (gap > 0) o += `<rect x="${f1(lx + 20)}" y="470" width="${f1(rx - lx - 40)}" height="140" rx="70" fill="#F9D89A" opacity="${f1(0.5 + 0.3 * Math.sin(t * 3))}"/>`;
-        o += fade(seg(t, T[12], T[12] + 0.6), txt(960, 820, 'the moment between', 86, C.dark, { f: 'Playfair Display', it: true }));
+      if (gapIn > 0) {
+        const gap = ease(seg(t, B.between + 0.4, B.between + 2));
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(gapIn)}"/>`;
+        const lx = 840 - gap * 300, rx = 1080 + gap * 300;
+        o += fade(gapIn, `<rect x="${f1(lx - 380)}" y="420" width="380" height="200" rx="100" fill="#E2556F"/>${txt(lx - 190, 540, 'FEEL', 64, '#fff', { ls: 6 })}<rect x="${f1(rx)}" y="420" width="380" height="200" rx="100" fill="#2C1810"/>${txt(rx + 190, 540, 'DO', 64, '#fff', { ls: 6 })}`);
+        if (gap > 0) o += `<rect x="${f1(lx + 20)}" y="450" width="${f1(rx - lx - 40)}" height="140" rx="70" fill="#F9D89A" opacity="${f1(0.5 + 0.3 * Math.sin(t * 3))}"/>`;
+        o += fade(seg(t, B.between + 1.6, B.between + 2.2), txt(960, 800, 'the moment between', 86, C.dark, { f: 'Playfair Display', it: true }));
       }
       return o;
     },
 
-    // "Girl, you're human." Feelings are normal; the problem is who's driving.
+    // "You're human." Feelings are normal, including "what in the world is going on?" 😂
     'p7m-human': (s, t) => {
-      const T = s.at;
+      const B = s.b;
       let o = grad('hm', '#FDF8F5', '#FDE8ED') + bg('url(#hm)');
-      // a robot "never emotional", crossed out
-      const rk = between(t, T[1], T[2] + 0.2);
-      if (rk > 0) o += scaleAt(1460, 520, rk, `<rect x="1360" y="380" width="200" height="180" rx="24" fill="#B8B3C9"/><rect x="1395" y="430" width="40" height="30" rx="6" fill="#2C1810"/><rect x="1485" y="430" width="40" height="30" rx="6" fill="#2C1810"/><rect x="1410" y="500" width="100" height="12" rx="6" fill="#2C1810"/><rect x="1380" y="570" width="160" height="200" rx="20" fill="#B8B3C9"/>${txt(1460, 830, '“never emotional”', 34, C.muted, { f: 'Playfair Display', it: true, w: 700 })}`) + cross(1460, 600, pop(t, T[1] + 1.5, 0.4) * rk, '#E2556F', 70);
-      o += you(t, { x: 760, y: 1000, scale: 1.4 });
-      o += fade(seg(t, T[2], T[2] + 0.4), txt(760, 200, 'you’re human 😂', 70, C.dark, { f: 'Playfair Display', it: true }));
-      const feels = [['😤', 'frustrated', 0], ['🤩', 'excited', 1.6], ['😞', 'disappointed', 3.2]];
-      const drive = seg(t, T[5], T[5] + 1.5);
-      feels.forEach(([e, l, dt], j) => {
-        const k = pop(t, T[3] + dt, 0.5); if (k <= 0) return;
-        const a = -2.4 + j * 1.1 + t * 0.25, ox = 760 + Math.cos(a) * 380, oy = 560 + Math.sin(a) * 260;
-        const x = lerp(ox, 1380 + j * 120, drive), y = lerp(oy, 470, drive);
-        o += scaleAt(x, y, k, `<circle cx="${f1(x)}" cy="${f1(y)}" r="74" fill="#fff"/>${txt(x, y + 22, e, 64, C.dark)}${drive < 0.3 ? txt(x, y + 112, l, 28, C.muted, { w: 700 }) : ''}`) + (drive < 0.3 ? check(x + 56, y - 56, pop(t, T[4], 0.4), '#2AA594', 24) : '');
+      const rk = between(t, B.notproblem, B.human + 0.2);
+      if (rk > 0) o += scaleAt(1460, 520, rk, `<rect x="1360" y="380" width="200" height="180" rx="24" fill="#B8B3C9"/><rect x="1395" y="430" width="40" height="30" rx="6" fill="#2C1810"/><rect x="1485" y="430" width="40" height="30" rx="6" fill="#2C1810"/><rect x="1410" y="500" width="100" height="12" rx="6" fill="#2C1810"/><rect x="1380" y="570" width="160" height="200" rx="20" fill="#B8B3C9"/>${txt(1460, 830, '“feel nothing”', 34, C.muted, { f: 'Playfair Display', it: true, w: 700 })}`) + cross(1460, 600, pop(t, B.notproblem + 1.6, 0.4) * rk, '#E2556F', 70);
+      const cx = 760 - 200 * ease(seg(t, B.diff, B.diff + 0.8));
+      o += you(t, { x: cx, y: 1000, scale: 1.4 });
+      o += fade(seg(t, B.human, B.human + 0.4), txt(cx, 190, 'you’re human.', 70, C.dark, { f: 'Playfair Display', it: true }));
+      const feels = [['😤', 'frustrated', B.f1], ['🤩', 'excited', B.f2], ['😞', 'disappointed', B.f3], ['🤨', '“what in the world?”', B.f4]];
+      feels.forEach(([e, l, at], j) => {
+        const k = pop(t, at, 0.5); if (k <= 0) return;
+        const a = [-2.95, -2.15, -1.0, -0.2][j], x = cx + Math.cos(a) * 380, y = 600 + Math.sin(a) * 300 + 12 * Math.sin(t * 1.6 + j);
+        o += scaleAt(x, y, k, `<circle cx="${f1(x)}" cy="${f1(y)}" r="74" fill="#fff"/>${txt(x, y + 22, e, 64, C.dark)}${txt(x, y + 112, l, 26, C.muted, { w: 700 })}`) + check(x + 56, y - 56, pop(t, B.normal, 0.4), '#2AA594', 24);
       });
-      if (drive > 0) {
-        o += fade(drive, `<rect x="1300" y="560" width="440" height="200" rx="40" fill="#2C1810"/><circle cx="1520" cy="560" r="70" fill="none" stroke="#2C1810" stroke-width="22"/>${txt(1520, 690, 'DECISIONS', 34, '#fff', { ls: 4 })}`);
-        o += pill(1520, 880, 'that’s where we run into problems', '#E2556F', pop(t, T[6], 0.5), 30);
+      o += pill(cx, 960, 'normal ✓', '#2AA594', pop(t, B.normal, 0.5), 34);
+      // experiencing ≠ letting it decide
+      if (t > B.diff) {
+        const k = seg(t, B.diff, B.diff + 0.6);
+        o += `<rect x="1180" y="300" width="640" height="460" rx="40" fill="#fff" opacity="${f1(k)}"/>` + fade(k, `${txt(1500, 420, 'EXPERIENCING', 40, '#2AA594', { ls: 3 })}${txt(1500, 480, 'an emotion', 34, C.dark, { w: 700 })}${txt(1500, 560, '≠', 64, C.muted)}${txt(1500, 640, 'LETTING IT DECIDE', 40, '#E2556F', { ls: 3 })}${txt(1500, 700, 'for you', 34, C.dark, { w: 700 })}`);
       }
       return o;
     },
 
-    // Three rows: the feeling (fine) vs the action because of it (the mistake). Then: so fast.
-    'p7m-difference': (s, t) => {
-      const T = s.at;
+    // Back to that trade: evaluating price vs reacting to a feeling. Feel → think → act. What if…
+    'p7m-shift': (s, t) => {
+      const B = s.b;
       let o = bg('#FBF4EF');
-      const rows = [['frustrated after a loss', 'another trade BECAUSE you’re frustrated'], ['excited after a win', 'more contracts BECAUSE you’re excited'], ['you missed an opportunity', 'chasing price BECAUSE of it']];
-      const fast = seg(t, T[4], T[4] + 0.3) * (1 - seg(t, T[6] - 0.2, T[6] + 0.3));
-      rows.forEach(([a, b], j) => {
-        const k = pop(t, T[j] + 0.3, 0.5); if (k <= 0) return;
-        const y = 250 + j * 210;
-        o += scaleAt(960, y, k, `<rect x="160" y="${y - 70}" width="700" height="140" rx="70" fill="#E6F5F2"/>${txt(510, y + 12, a, 34, C.dark, { w: 700 })}<rect x="1060" y="${y - 70}" width="700" height="140" rx="70" fill="#FDE8ED"/>${txt(1410, y + 12, b, 30, C.dark, { w: 700 })}${txt(960, y + 18, '≠', 70, C.muted)}`);
-        if (t > T[3] + 1) o += check(860, y - 60, pop(t, T[3] + 1 + j * 0.25, 0.4), '#2AA594', 26) + cross(1760, y - 60, pop(t, T[3] + 2.4 + j * 0.25, 0.4), '#E2556F', 26);
-      });
-      o += fade(seg(t, T[3], T[3] + 0.5) * (1 - fast), txt(960, 920, 'The emotion isn’t the mistake. What you do with it can be.', 44, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
-      // so fast: a lightning bolt, FEEL → REACT
-      if (fast > 0) {
-        o += `<rect width="1920" height="1080" fill="#1C1528" opacity="${f1(0.9 * fast)}"/>`;
-        o += fade(fast, `${pill(560, 540, 'FEEL', '#E2556F', 1, 56)}${pill(1360, 540, 'REACT', '#2C1810', 1, 56)}<path d="M740,540 L940,500 L900,560 L1170,520" stroke="#F9D89A" stroke-width="16" fill="none" stroke-linejoin="round"/>${txt(960, 700, '0.2 seconds', 44, '#F9D89A', { f: 'JetBrains Mono, monospace' })}`);
+      const part2 = seg(t, B.fast - 0.3, B.fast + 0.3), part3 = seg(t, B.whatif - 0.3, B.whatif + 0.3);
+      // the two questions
+      o += fade(1 - part2, `<rect x="140" y="240" width="760" height="520" rx="40" fill="#E6F5F2"/><rect x="1020" y="240" width="760" height="520" rx="40" fill="#FDE8ED"/>
+        ${txt(520, 320, 'EVALUATING PRICE', 36, '#2AA594', { ls: 3 })}${txt(1400, 320, 'REACTING TO A FEELING', 36, '#E2556F', { ls: 3 })}`);
+      if (part2 < 1) {
+        o += fade((1 - part2) * seg(t, B.should, B.should + 0.6), thought(520, 470, 'Do I have another valid setup?', 1, { size: 36 }));
+        o += fade((1 - part2) * seg(t, B.instead, B.instead + 0.6), thought(1400, 470, 'I knew I was right. Get back in.', 1, { size: 36 }));
+        const arrow = seg(t, B.went, B.went + 1.4);
+        o += fade((1 - part2) * arrow, `<path d="M${f1(520)},640 Q960,${f1(760)} ${f1(520 + 880 * arrow)},640" stroke="#2C1810" stroke-width="8" fill="none" stroke-dasharray="16 12"/>${txt(960, 860, 'see the difference?', 46, C.dark, { f: 'Playfair Display', it: true, w: 700 })}`);
       }
-      if (t > T[6] - 0.2) {
-        const k = seg(t, T[6] - 0.2, T[6] + 0.5);
-        o += `<rect width="1920" height="1080" fill="#EEEBFB" opacity="${f1(k)}"/>`;
-        o += fade(k, `${pill(480, 300, 'FEEL', '#E2556F', 1, 50)}<path d="M600,300 Q900,300 1200,300" stroke="#2C1810" stroke-width="8" fill="none" stroke-dasharray="14 12"/>${pill(1380, 300, 'REACT', '#2C1810', 1, 50)}
-          <path d="M600,330 Q820,600 1120,640" stroke="#7F77DD" stroke-width="12" fill="none"/>`);
-        o += scaleAt(1320, 650, pop(t, T[6] + 1.2, 0.6), `<rect x="1150" y="580" width="340" height="140" rx="70" fill="#7F77DD"/>${txt(1320, 666, 'NOTICE ⏸', 50, '#fff', { ls: 3 })}`);
-        o += fade(seg(t, T[7], T[7] + 0.6), txt(960, 900, 'Feel something. Don’t immediately do something.', 50, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+      // feel → thought → act, so fast
+      if (part2 > 0 && part3 < 1) {
+        const k = part2 * (1 - part3);
+        o += `<rect width="1920" height="1080" fill="#1C1528" opacity="${f1(0.94 * k)}"/>`;
+        [['FEEL', '#E2556F', B.feel], ['THOUGHT', '#F5A857', B.thought], ['ACT', '#fff', B.act]].forEach(([l, c, at], j) => { o += fade(k, pill(420 + j * 540, 520, l, c, pop(t, at, 0.3), 56, j === 2 ? '#1C1528' : '#fff')); });
+        o += fade(k * seg(t, B.act, B.act + 0.3), `<path d="M560,520 L700,490 L680,550 L880,520" stroke="#F9D89A" stroke-width="10" fill="none"/><path d="M1100,520 L1240,490 L1220,550 L1420,520" stroke="#F9D89A" stroke-width="10" fill="none"/>${txt(960, 720, 'so fast you don’t even notice', 44, '#F9D89A', { f: 'Playfair Display', it: true, w: 700 })}`);
+      }
+      // what if…
+      if (part3 > 0) {
+        o += `<rect width="1920" height="1080" fill="#EEEBFB" opacity="${f1(part3)}"/>`;
+        o += fade(part3, txt(960, 170, 'what if you didn’t have to act on every thought?', 50, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+        [['feel frustrated', 'still wait', B.w1], ['feel excited', 'still follow your risk rules', B.w2], ['feel FOMO', 'still let the trade go', B.w3]].forEach(([a, b2, at], j) => {
+          const y = 330 + j * 170;
+          o += scaleAt(960, y, pop(t, at, 0.5), `<rect x="260" y="${y - 60}" width="1400" height="120" rx="60" fill="#fff"/>${txt(560, y + 14, a, 40, C.dark, { w: 800 })}${txt(860, y + 16, '→', 44, C.muted)}${txt(1220, y + 14, b2, 40, '#7F77DD', { w: 800 })}`);
+        });
+        o += pill(960, 870, 'THAT’S EMOTIONAL CONTROL', '#2C1810', pop(t, B.control, 0.5), 38);
+        o += fade(seg(t, B.recog, B.recog + 0.6), txt(960, 990, 'feeling something ≠ having to do something', 44, '#7F77DD', { f: 'Playfair Display', it: true, w: 700 }));
       }
       return o;
     },
 
-    // Dayli at home: I knew the rules… "Dayli, why did you do that?"
+    // Dayli: I knew… and still. "Dayli, you literally knew better." Knowing ≠ doing.
     'p7m-knew': (s, t) => {
-      const T = s.at;
+      const B = s.b;
       let o = grad('kn', '#F3E3D6', '#FBF4EF') + bg('url(#kn)');
-      o += host(t, { x: 120, y: 330, w: 520, pose: t > T[5] ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
-      const list = [[T[1], 'my trading rules'], [T[2], 'what to wait for'], [T[3], 'when to be done']];
-      o += `<rect x="900" y="180" width="760" height="460" rx="28" fill="#fff"/>` + txt(1280, 260, 'I KNEW…', 40, '#7F77DD', { ls: 6 });
-      list.forEach(([at, l], j) => { const y = 350 + j * 100; o += fade(seg(t, at, at + 0.5), txt(1000, y + 12, l, 42, C.dark, { a: 'start', w: 700 })) + check(1560, y, pop(t, at + 0.3, 0.4), '#2AA594', 30); });
-      if (t > T[4]) {
-        const k = seg(t, T[4], T[4] + 0.6);
-        ['frustration', 'excitement', 'whatever'].forEach((w, j) => { o += pill(1000 + j * 230, 730, w, ['#E2556F', '#F5A857', '#7F77DD'][j], pop(t, T[4] + 0.5 + j * 0.6, 0.4), 28); });
-        o += fade(k, `<path d="M1280,800 L1280,900" stroke="#2C1810" stroke-width="8"/>${txt(1280, 960, 'a decision that didn’t line up', 40, '#E2556F', { f: 'Playfair Display', it: true, w: 700 })}`);
+      o += host(t, { x: 120, y: 330, w: 520, pose: t > B.literally ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
+      const two = seg(t, B.twothings - 0.2, B.twothings + 0.5);
+      o += fade(1 - two, `<rect x="900" y="180" width="760" height="460" rx="28" fill="#fff"/>` + txt(1280, 260, 'I KNEW…', 40, '#7F77DD', { ls: 6 }));
+      [[B.k1, 'my rules'], [B.k2, 'my setup'], [B.k3, 'what I was waiting for']].forEach(([at, l], j) => { const y = 350 + j * 100; o += fade((1 - two) * seg(t, at, at + 0.5), txt(1000, y + 12, l, 42, C.dark, { a: 'start', w: 700 })) + (two < 1 ? check(1560, y, pop(t, at + 0.3, 0.4) * (1 - two), '#2AA594', 30) : ''); });
+      o += fade((1 - two) * seg(t, B.different, B.different + 0.5), txt(1280, 740, '…and did something completely different 😂', 40, '#E2556F', { f: 'Playfair Display', it: true, w: 700 }));
+      o += thought(1280, 110, 'Dayli, you literally knew better.', between(t, B.literally + 0.3, B.twothings - 0.3), { size: 40 });
+      if (two > 0) {
+        o += fade(two, `<rect x="860" y="300" width="400" height="300" rx="36" fill="#2AA594"/>${txt(1060, 470, 'KNOWING', 48, '#fff', { ls: 4 })}<rect x="1400" y="300" width="400" height="300" rx="36" fill="#7F77DD"/>${txt(1600, 470, 'DOING', 48, '#fff', { ls: 4 })}${txt(1330, 470, '≠', 80, C.dark)}${txt(1330, 720, 'two different things', 50, C.dark, { f: 'Playfair Display', it: true, w: 700 })}`);
       }
-      o += thought(1280, 120, 'Dayli, why did you do that? 😂', pop(t, T[5] + 0.5), { size: 40 });
       return o;
     },
 
-    // The decision didn't start at the click. Rewind the tape into her head.
-    'p7m-rewind': (s, t) => {
-      const T = s.at;
+    // Right before the click: setup… or feeling? And the market doesn't care.
+    'p7m-reason': (s, t) => {
+      const B = s.b;
       let o = bg('#141026');
-      const rw = seg(t, T[1] + 0.5, T[2] + 0.5);
-      // tape frame
-      o += `<rect x="140" y="140" width="1640" height="800" rx="36" fill="#1E1834" stroke="#3A2F55" stroke-width="8"/>`;
-      o += txt(260, 220, rw > 0 && rw < 1 ? '◀◀ REWIND' : t > T[2] ? '▌▌ BEFORE THE CLICK' : '▶ PLAY', 34, rw > 0 && rw < 1 ? '#F9D89A' : '#CFC8FA', { a: 'start', f: 'JetBrains Mono, monospace' });
-      if (rw > 0 && rw < 1) for (let j = 0; j < 12; j++) o += `<rect x="140" y="${f1(160 + ((j * 67 + t * 900) % 760))}" width="1640" height="3" fill="#fff" opacity=".12"/>`;
-      // the click (in the past)
-      const clickK = 1 - seg(t, T[2] - 0.3, T[2] + 0.4);
-      o += fade(clickK, `${pill(960, 560, 'BUY', '#2AA594', 1 + 0.08 * Math.sin(t * 6), 70)}<path d="M1040,600 l30,86 l12,-34 l34,-12 z" fill="#fff" stroke="#141026" stroke-width="5"/>${txt(960, 760, 'the click', 40, '#CFC8FA', { f: 'Playfair Display', it: true, w: 700 })}`);
-      // inside her head
-      if (t > T[2] - 0.3) {
-        const k = seg(t, T[2] - 0.3, T[2] + 0.5);
-        o += fade(k, `<ellipse cx="960" cy="560" rx="560" ry="330" fill="#2A2142" stroke="#7F77DD" stroke-width="6"/>`);
-        const th = [[T[3], 'make the money back', 700, 420], [T[4], 'don’t miss the move', 1220, 480], [T[5], 'I’m overly confident', 860, 660]];
-        th.forEach(([at, l, x, y]) => { o += thought(x, y, l, pop(t, at + 0.2, 0.5), { size: 40 }); });
-        o += fade(seg(t, T[6], T[6] + 0.6) * (1 - seg(t, T[7] - 0.3, T[7])), txt(960, 900, 'recognize it… or just act on it?', 44, '#F9D89A', { f: 'Playfair Display', it: true, w: 700 }));
+      const care = seg(t, B.care - 0.3, B.care + 0.4);
+      // before the click: three feelings
+      o += fade(1 - seg(t, B.ask - 0.3, B.ask + 0.3), `<ellipse cx="960" cy="540" rx="620" ry="330" fill="#2A2142" stroke="#7F77DD" stroke-width="6"/>${txt(960, 170, 'right before the decision', 40, '#CFC8FA', { f: 'Playfair Display', it: true, w: 700 })}`);
+      [[B.r1, 'frustrated about a loss', 660, 430], [B.r2, 'excited, I just won', 1260, 470], [B.r3, 'what I could’ve made', 900, 660]].forEach(([at, l, x, y]) => { o += fade(1 - seg(t, B.ask - 0.3, B.ask + 0.3), thought(x, y, l, pop(t, at, 0.5), { size: 38 })); });
+      // two reasons to click
+      const q = seg(t, B.ask - 0.3, B.ask + 0.3) * (1 - care);
+      if (q > 0) {
+        o += fade(q, `${txt(960, 200, 'why am I clicking?', 56, '#fff', { f: 'Playfair Display', it: true })}
+          <rect x="250" y="320" width="640" height="300" rx="40" fill="#1E3A36" stroke="#2AA594" stroke-width="8"/>${txt(570, 450, 'my setup', 60, '#fff', { f: 'Playfair Display' })}${txt(570, 530, 'is here', 40, '#7ECFC0', { w: 700 })}
+          <rect x="1030" y="320" width="640" height="300" rx="40" fill="#3A1420" stroke="#E2556F" stroke-width="8" opacity="${f1(seg(t, B.ask2, B.ask2 + 0.5))}"/>`);
+        o += fade(q * seg(t, B.ask2, B.ask2 + 0.5), `${txt(1350, 450, 'how I feel', 60, '#fff', { f: 'Playfair Display' })}${txt(1350, 530, 'right now', 40, '#FF8DA3', { w: 700 })}`);
+        o += fade(q * seg(t, B.verydiff, B.verydiff + 0.5), txt(960, 780, 'two very different reasons to click Buy or Sell', 44, '#F9D89A', { f: 'Playfair Display', it: true, w: 700 }));
       }
-      // pause: the opportunity to recognize why
-      if (t > T[7] - 0.3) {
-        const k = seg(t, T[7] - 0.3, T[7] + 0.5);
-        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(k)}"/>`;
-        o += scaleAt(960, 470, pop(t, T[7], 0.7), `<circle cx="960" cy="470" r="170" fill="#7F77DD"/><rect x="895" y="390" width="44" height="160" rx="10" fill="#fff"/><rect x="981" y="390" width="44" height="160" rx="10" fill="#fff"/>`);
-        o += fade(seg(t, T[8], T[8] + 0.5), txt(960, 760, 'not a guarantee', 46, C.muted, { f: 'Playfair Display', it: true, w: 700 }));
-        o += fade(seg(t, T[9], T[9] + 0.5), txt(960, 850, 'a chance to see WHY', 64, C.dark, { f: 'Playfair Display' }));
+      // the market doesn't care
+      if (care > 0) {
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(care)}"/>`;
+        o += fade(care, `<rect x="660" y="330" width="600" height="380" rx="30" fill="#120D1C"/>${candles(690, 370, 540, 300, vals(61, 16, 0.005, 0.06, 0.5), 16)}${txt(960, 790, 'THE MARKET', 40, C.dark, { ls: 6 })}`);
+        [[B.care, 'I’m frustrated', 330, 300], [B.c2, 'I want my money back', 1580, 330], [B.c3, 'I should’ve made more 😂', 960, 940]].forEach(([at, l, x, y], j) => {
+          const k = pop(t, at + 0.2, 0.5), bounce = ease(seg(t, at + 1.2, at + 1.9));
+          o += fade(k * (1 - bounce * 0.6), thought(x + (x < 960 ? -1 : 1) * bounce * 60, y, l, 1, { size: 34 }));
+        });
+        o += pill(960, 210, 'doesn’t care', '#2C1810', pop(t, B.care + 0.6, 0.5), 34);
+        o += fade(seg(t, B.why, B.why + 0.6), txt(960, 1040, 'so why let those feelings pick your next trade?', 40, '#7F77DD', { f: 'Playfair Display', it: true, w: 700 }));
       }
       return o;
     },
 
-    // "Not meditate for 30 minutes 😂" → just a moment. The pause button.
+    // The pause: not 20 minutes, just enough space. After a loss, the urge…
     'p7m-pause': (s, t) => {
-      const T = s.at;
+      const B = s.b;
       let o = grad('pz', '#E6F5F2', '#FDF8F5') + bg('url(#pz)');
-      const med = between(t, T[2], T[3] - 0.2);
-      if (med > 0) {
-        o += scaleAt(960, 700, med, `<ellipse cx="960" cy="930" rx="260" ry="40" fill="#CFE9E4"/>${A.person(t, { x: 960, y: 940, scale: 1.1, look: YOU, seed: 3, frontArm: { a1: 30, a2: -20 } })}${txt(960, 300, '30:00', 120, C.dark, { f: 'JetBrains Mono, monospace' })}`);
-        o += cross(1240, 260, pop(t, T[2] + 2, 0.4), '#E2556F', 60) + fade(med, txt(960, 140, '😂', 70, C.dark));
+      const gag = between(t, B.notmin, B.space - 0.2);
+      if (gag > 0) {
+        o += scaleAt(960, 540, gag, `${txt(960, 360, '20:00', 140, C.dark, { f: 'JetBrains Mono, monospace' })}${[0, 1, 2].map(j => { const x = ((t - B.notmin) * 260 + j * 520) % 1800 + 60; return `<g transform="translate(${f1(x)},640)"><rect x="-120" y="-60" width="240" height="120" rx="20" fill="#fff" stroke="#2AA594" stroke-width="5"/>${txt(0, 12, 'setup', 34, '#2AA594')}</g>`; }).join('')}${txt(960, 860, 'missing every setup? no.', 48, C.muted, { f: 'Playfair Display', it: true, w: 700 })}`);
       }
-      const pk = seg(t, T[3] - 0.2, T[3] + 0.5);
+      const pk = seg(t, B.space - 0.2, B.space + 0.5) * (1 - seg(t, B.loss - 0.3, B.loss + 0.2));
       if (pk > 0) {
-        const press = t > T[3] + 1.5 && t < T[3] + 1.8 ? 0.92 : 1;
-        o += fade(pk, scaleAt(960, 480, press, `<circle cx="960" cy="480" r="220" fill="#2C1810"/><circle cx="960" cy="480" r="190" fill="#7F77DD"/><rect x="880" y="380" width="56" height="200" rx="12" fill="#fff"/><rect x="984" y="380" width="56" height="200" rx="12" fill="#fff"/>`));
-        o += fade(seg(t, T[3] + 1, T[3] + 1.6), txt(960, 830, 'stop · check yourself', 64, C.dark, { f: 'Playfair Display', it: true }));
-        o += pill(960, 960, 'three questions', '#7F77DD', pop(t, T[4], 0.5), 40);
+        o += fade(pk, `<circle cx="960" cy="480" r="220" fill="#2C1810"/><circle cx="960" cy="480" r="190" fill="#7F77DD"/><rect x="880" y="380" width="56" height="200" rx="12" fill="#fff"/><rect x="984" y="380" width="56" height="200" rx="12" fill="#fff"/>`);
+        o += fade(pk, txt(960, 140, 'THE PAUSE', 50, '#7F77DD', { ls: 8 }));
+        o += fade(pk * seg(t, B.space + 0.6, B.space + 1.2), txt(960, 830, 'just enough space to see what’s influencing you', 48, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      if (t > B.loss - 0.3) {
+        const k = seg(t, B.loss - 0.3, B.loss + 0.3);
+        o += fade(k, `<rect x="560" y="300" width="800" height="380" rx="30" fill="#120D1C"/>${candles(590, 340, 740, 300, [0.7, 0.62, 0.5, 0.38, 0.3, 0.36, 0.45, 0.52], 8)}<rect x="770" y="740" width="380" height="100" rx="24" fill="#E2556F"/>${txt(960, 808, 'just took a loss', 36, '#fff')}`);
+        o += fade(seg(t, B.urge, B.urge + 0.5), thought(1450, 260, 'get back in!', 1, { size: 44 }));
+        o += pill(960, 950, 'before you do anything: 3 questions', '#7F77DD', pop(t, B.three, 0.5), 34);
       }
       return o;
     },
 
-    // The three questions, one card at a time; a mismatch means STOP.
+    // Q1 what am I feeling · Q2 what is it making me want to do · Q3 what does my plan say.
     'p7m-questions': (s, t) => {
-      const T = s.at;
+      const B = s.b;
       let o = bg('#FBF4EF');
-      const cards = [[T[0], '1', 'What am I feeling?', '#E2556F'], [T[3], '2', 'What is it making me want to do?', '#F5A857'], [T[6], '3', 'What does my plan say?', '#7F77DD']];
-      cards.forEach(([at, n, q, col], j) => {
-        const k = pop(t, at, 0.6); if (k <= 0) return;
-        const x = 340 + j * 620;
-        o += scaleAt(x, 380, k, `<rect x="${x - 270}" y="160" width="540" height="440" rx="34" fill="#fff" stroke="${col}" stroke-width="6"/><circle cx="${x}" cy="240" r="48" fill="${col}"/>${txt(x, 258, n, 52, '#fff')}${txt(x, 360, q.length > 22 ? q.slice(0, q.indexOf(' ', 14)) : q, 34, C.dark, { w: 800 })}${q.length > 22 ? txt(x, 404, q.slice(q.indexOf(' ', 14) + 1), 34, C.dark, { w: 800 }) : ''}`);
-      });
-      // card 1 contents: emotions → NAME IT tag
-      ['frustrated', 'excited', 'scared', 'impatient'].forEach((e, j) => { o += pill(340 + (j % 2 ? 110 : -110), 470 + Math.floor(j / 2) * 70, e, '#FDE8ED', pop(t, T[1] + j * 0.35, 0.4), 24, C.dark); });
-      o += pill(340, 650, 'NAME IT', '#E2556F', pop(t, T[2], 0.5), 30);
-      ['enter early', 'another trade', 'bigger size', 'move my stop'].forEach((e, j) => { o += pill(960 + (j % 2 ? 115 : -115), 470 + Math.floor(j / 2) * 70, e, '#FFF1DA', pop(t, T[4] + j * 0.45, 0.4), 24, C.dark); });
-      o += fade(seg(t, T[5], T[5] + 0.5), txt(960, 670, 'the behavior matters more', 30, '#B86E12', { f: 'Playfair Display', it: true, w: 700 }));
-      // plan: what I want ✗, what might happen ✗, the plan ✓
-      [[T[7], 'what I want'], [T[8], 'what might happen']].forEach(([at, l], j) => { const y = 470 + j * 60; o += fade(seg(t, at, at + 0.4), txt(1580, y, l, 28, C.muted, { w: 700 }) + `<line x1="1470" x2="${f1(1470 + 220 * seg(t, at + 0.5, at + 0.9))}" y1="${y - 9}" y2="${y - 9}" stroke="#E2556F" stroke-width="5"/>`); });
-      o += pill(1580, 600, 'MY PLAN ✓', '#7F77DD', pop(t, T[9], 0.5), 30);
-      // mismatch → STOP
-      if (t > T[10]) {
-        const k = pop(t, T[10] + 1.6, 0.6);
-        o += `<line x1="610" y1="820" x2="1310" y2="820" stroke="#2C1810" stroke-width="6" stroke-dasharray="14 12" opacity="${f1(seg(t, T[10], T[10] + 1))}"/>` + txt(960, 790, 'doesn’t line up?', 36, C.dark, { op: f1(seg(t, T[10], T[10] + 1)), f: 'Playfair Display', it: true, w: 700 });
-        o += scaleAt(960, 920, k, `<polygon points="${[0, 1, 2, 3, 4, 5, 6, 7].map(i => { const a = Math.PI / 8 + i * Math.PI / 4; return `${f1(960 + Math.cos(a) * 92)},${f1(920 + Math.sin(a) * 92)}`; }).join(' ')}" fill="#E2556F"/>${txt(960, 934, 'STOP', 40, '#fff')}`);
-      }
+      const showQ = (at, end, n, q, col, body) => {
+        const k = seg(t, at - 0.3, at + 0.3) * (1 - seg(t, end - 0.3, end));
+        if (k <= 0) return '';
+        return fade(k, `<circle cx="960" cy="170" r="64" fill="${col}"/>${txt(960, 194, n, 70, '#fff')}${txt(960, 320, q, 60, C.dark, { f: 'Playfair Display' })}${body}`);
+      };
+      o += showQ(B.q1, B.q2, '1', 'What am I feeling right now?', '#E2556F',
+        ['frustrated?', 'scared?', 'excited?', 'trying to make something back?'].map((e, j) => pill(960 + (j % 2 ? 330 : -330), 480 + Math.floor(j / 2) * 120, e, '#FDE8ED', pop(t, B.q1 + 1.2 + j * 0.7, 0.4), 34, C.dark)).join('') + pill(960, 800, 'just recognize it', '#E2556F', pop(t, B.recog1, 0.5), 34));
+      const pairs = [['frustration', 'revenge trade', B.p1], ['excitement', 'more contracts', B.p2], ['fear', 'close a valid trade early', B.p3], ['FOMO', 'enter before confirmation', B.p4]];
+      o += showQ(B.q2, B.q3, '2', 'What is it making me want to do?', '#F5A857',
+        pairs.map(([a, b2, at], j) => { const y = 450 + j * 100; return fade(seg(t, at, at + 0.4), `<rect x="380" y="${y - 40}" width="1160" height="80" rx="40" fill="#fff"/>${txt(640, y + 12, a, 36, C.dark, { w: 800 })}${txt(900, y + 14, '→', 40, C.muted)}${txt(1220, y + 12, b2, 36, '#B86E12', { w: 800 })}`); }).join('') + pill(960, 900, 'identify the behavior', '#F5A857', pop(t, B.identify, 0.5), 32));
+      const planEnd = s.end + 1;
+      o += showQ(B.q3, planEnd, '3', 'What does my plan actually say?', '#7F77DD',
+        fade(seg(t, B.n1, B.n1 + 0.4), txt(700, 470, 'what I feel like doing', 36, C.muted, { w: 700 }) + `<line x1="520" x2="${f1(520 + 360 * seg(t, B.n1 + 0.5, B.n1 + 0.9))}" y1="458" y2="458" stroke="#E2556F" stroke-width="6"/>`) +
+        fade(seg(t, B.n2, B.n2 + 0.4), txt(700, 540, 'what I hope happens', 36, C.muted, { w: 700 }) + `<line x1="540" x2="${f1(540 + 330 * seg(t, B.n2 + 0.5, B.n2 + 0.9))}" y1="528" y2="528" stroke="#E2556F" stroke-width="6"/>`) +
+        [['my setup', B.c1], ['my confirmation', B.c2], ['within my risk rules', B.c3]].map(([l, at], j) => fade(seg(t, at, at + 0.4), `<rect x="1080" y="${430 + j * 90}" width="520" height="70" rx="35" fill="#fff"/>${txt(1340, 476 + j * 90, l, 32, C.dark, { w: 800 })}`) + check(1640, 465 + j * 90, pop(t, at + (t > B.align ? 0 : 99), 0.4), '#2AA594', 26)).join('') +
+        fade(seg(t, B.only, B.only + 0.5), `<rect x="560" y="790" width="800" height="110" rx="55" fill="#E2556F"/>${txt(960, 860, 'only clicking because I’m frustrated?', 38, '#fff')}`) +
+        fade(seg(t, B.catch, B.catch + 0.6), txt(960, 990, 'catch the decision before it becomes a mistake', 44, C.dark, { f: 'Playfair Display', it: true, w: 700 })));
       return o;
     },
 
-    // Pausing isn't second-guessing; and it's okay to step away.
-    'p7m-stepaway': (s, t) => {
-      const T = s.at;
-      let o = bg('#FDF8F5');
-      const s1 = 1 - seg(t, T[2] - 0.3, T[2] + 0.2);
-      if (s1 > 0) { // hourglass of second-guessing, crossed
-        o += fade(s1, `${candles(300, 300, 700, 360, vals(5, 14, 0.03, 0.035, 0.2), 14)}${pill(650, 260, 'VALID SETUP', '#2AA594', 1, 28)}`);
-        const sand = seg(t, T[1], T[1] + 4);
-        o += fade(s1, `<path d="M1300,280 L1520,280 L1430,480 L1520,680 L1300,680 L1390,480 Z" fill="#fff" stroke="#2C1810" stroke-width="8"/><path d="M${1320 + sand * 60},${300 + sand * 140} L${1500 - sand * 60},${300 + sand * 140} L1410,470 Z" fill="#F5A857"/><path d="M1340,660 L1480,660 L${1410 + 70 * (1 - sand)},${660 - sand * 150} L${1410 - 70 * (1 - sand)},${660 - sand * 150} Z" fill="#F5A857"/>`);
-        o += fade(s1, txt(1410, 780, 'second-guessing…', 40, C.muted, { f: 'Playfair Display', it: true, w: 700 })) + cross(1580, 300, pop(t, T[1] + 3, 0.4) * s1, '#E2556F', 50);
-      }
-      // part of the process
-      const s2 = seg(t, T[2] - 0.3, T[2] + 0.3) * (1 - seg(t, T[3] - 0.3, T[3] + 0.2));
-      if (s2 > 0) { const steps = [['ANALYZE', '#7ECEC4'], ['CHECK YOURSELF', '#7F77DD'], ['EXECUTE', '#2AA594']]; o += fade(s2, steps.map(([l, c], j) => `<rect x="${200 + j * 540}" y="420" width="440" height="160" rx="80" fill="${c}"/>${txt(420 + j * 540, 515, l, 38, '#fff', { ls: 3 })}${j < 2 ? txt(690 + j * 540, 520, '→', 60, C.dark) : ''}`).join('') + txt(960, 760, 'part of the process', 54, C.dark, { f: 'Playfair Display', it: true })); }
-      // step away: candles keep moving, she walks out
-      if (t > T[3] - 0.3) {
-        const k = seg(t, T[3] - 0.3, T[3] + 0.3), walk = seg(t, T[3] + 1.5, T[4] + 3);
-        o += fade(k, `<rect x="220" y="240" width="760" height="480" rx="24" fill="#120D1C"/>${candles(250, 290, 700, 380, vals(41, 30, 0, 0.08, 0.5), Math.floor(8 + (t - T[3]) * 3), { slots: 30 })}<rect x="1500" y="220" width="220" height="560" rx="10" fill="#E9D6C6"/><circle cx="1690" cy="520" r="12" fill="#B8835A"/>`);
-        o += fade(k, A.person(t, { x: lerp(1080, 1600, walk), y: 1000, scale: 1.2, look: YOU, seed: 3, walking: walk > 0 && walk < 1 }));
-        o += fade(seg(t, T[4], T[4] + 0.6), txt(960, 140, 'price moving ≠ you have to participate', 50, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
-      }
-      return o;
-    },
-
-    // The rule: emotions roll in like waves; she stays standing.
+    // The rule: feelings roll in like waves; she stays standing.
     'p7m-rule': (s, t) => {
-      const T = s.at;
+      const B = s.b;
       let o = grad('rw', '#EEEBFB', '#DDF1EE') + bg('url(#rw)');
-      o += txt(960, 130, 'YOUR TRADING RULE', 32, '#7F77DD', { ls: 6 });
+      o += txt(960, 130, '🧠 YOUR RULE', 32, '#7F77DD', { ls: 6 });
       o += scaleAt(960, 230, pop(t, s.start + 0.4, 0.8), txt(960, 250, 'I can feel it without acting on it.', 74, C.dark, { f: 'Playfair Display' }));
-      const waves = [[T[0], 'frustrated', 'revenge trading'], [T[1], 'excited', 'increasing my risk'], [T[2], 'FOMO', 'chasing price'], [T[3], 'afraid', 'abandoning my plan']];
-      // rock + figure
+      const waves = [[B.w1, 'frustrated', 'another trade'], [B.w2, 'excited', 'more risk'], [B.w3, 'afraid', 'abandon my setup'], [B.w4, 'missed it', 'chase it']];
       o += `<path d="M1180,1080 Q1260,820 1440,800 Q1620,820 1700,1080 Z" fill="#8B7B72"/>` + you(t, { x: 1440, y: 820, scale: 0.95 });
       waves.forEach(([at, f, a], j) => {
         const p = seg(t, at, at + 3.2); if (p <= 0) return;
         const x = lerp(-300, 1500, p), op = p < 0.85 ? 1 : 1 - seg(p, 0.85, 1);
-        o += `<g opacity="${f1(op)}"><path d="M${f1(x - 300)},1000 Q${f1(x - 150)},${f1(820 - 40 * Math.sin(p * 6))} ${f1(x)},900 Q${f1(x + 150)},${f1(980)} ${f1(x + 300)},1000 L${f1(x + 300)},1080 L${f1(x - 300)},1080 Z" fill="#7ECEC4" opacity=".75"/>${txt(x, 950, f, 40, '#fff')}</g>`;
+        o += `<g opacity="${f1(op)}"><path d="M${f1(x - 300)},960 Q${f1(x - 150)},${f1(760 - 40 * Math.sin(p * 6))} ${f1(x)},850 Q${f1(x + 150)},930 ${f1(x + 300)},960 L${f1(x + 300)},1080 L${f1(x - 300)},1080 Z" fill="#7ECEC4" opacity=".75"/>${txt(x, 920, f, 40, '#fff')}</g>`;
         const y = 400 + j * 80;
-        o += fade(seg(t, at + 0.4, at + 0.9), txt(240, y, `feel ${f}`, 34, C.dark, { a: 'start', w: 700 }) + txt(600, y, `without ${a}`, 34, C.muted, { a: 'start', w: 700 }));
+        o += fade(seg(t, at + 0.4, at + 0.9), txt(220, y, f, 34, C.dark, { a: 'start', w: 800 }) + txt(520, y, `≠ ${a}`, 34, C.muted, { a: 'start', w: 700 }));
       });
-      o += fade(seg(t, T[4], T[4] + 0.6), txt(960, 790, 'information, not instructions', 50, '#7F77DD', { f: 'Playfair Display', it: true, w: 700 }));
-      o += fade(seg(t, T[5] + 1, T[5] + 1.8), `<rect x="0" y="0" width="1920" height="1080" fill="#FDF8F5" opacity=".92"/>` + txt(960, 500, 'Sometimes the most important trading decision', 56, C.dark, { f: 'Playfair Display' }) + txt(960, 590, 'is the one you choose not to make.', 56, C.pink, { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.internal, B.internal + 0.6) * (1 - seg(t, B.info - 0.2, B.info + 0.2)), txt(960, 790, 'they tell me what’s happening inside', 46, '#7F77DD', { f: 'Playfair Display', it: true, w: 700 }));
+      o += fade(seg(t, B.info, B.info + 0.6), txt(960, 790, 'information, not instructions', 54, '#7F77DD', { f: 'Playfair Display', it: true, w: 700 }));
       return o;
     },
 
-    // Reflection: replay your last emotional decision; find the frame where you knew.
+    // Reflection: replay your last emotional decision. The little voice. Catch it BEFORE the click.
     'p7m-replay': (s, t) => {
-      const T = s.at;
+      const B = s.b;
       let o = bg('#1A1424');
-      const frames = ['the setup', 'the feeling', 'the urge', 'you knew', 'the click', 'the result'];
-      const scroll = (t - s.start) * 40 % 300;
+      const frames = [['revenge trade', B.m1], ['chased an entry', B.m2], ['moved my stop', B.m3], ['closed a winner early', B.m4]];
       o += `<rect x="0" y="330" width="1920" height="420" fill="#0E0A14"/>`;
-      for (let x = -300; x < 2200; x += 60) o += `<rect x="${f1(x - scroll)}" y="345" width="30" height="22" rx="4" fill="#3A2F55"/><rect x="${f1(x - scroll)}" y="713" width="30" height="22" rx="4" fill="#3A2F55"/>`;
-      frames.forEach((f, j) => {
-        const x = 160 + j * 300 - scroll * 0.0, hot = j === 3 && t > T[4];
-        o += fade(pop(t, T[0] + 0.5 + j * 0.3, 0.5), `<rect x="${x}" y="390" width="260" height="300" rx="10" fill="${hot ? '#F4829A' : '#2A2142'}" stroke="${hot ? '#fff' : '#3A2F55'}" stroke-width="${hot ? 8 : 4}"/>${txt(x + 130, 550, f, 32, hot ? '#fff' : '#CFC8FA', { w: 800 })}`);
-      });
-      [[T[1], 'What were you feeling?', 1], [T[2], 'What did it make you want to do?', 2]].forEach(([at, q, j]) => { o += fade(seg(t, at, at + 0.5) * (1 - seg(t, T[4] - 0.4, T[4])), txt(960, 180 + (j - 1) * 70, q, 46, '#fff', { f: 'Playfair Display', it: true, w: 700 })); });
-      o += fade(seg(t, T[4], T[4] + 0.5), txt(960, 220, 'the moment you knew… and did it anyway', 52, '#F9D89A', { f: 'Playfair Display', it: true, w: 700 }));
-      o += pill(1210, 860, 'start recognizing THIS moment', '#F4829A', pop(t, T[5], 0.5), 34);
+      const sc = (t * 30) % 60;
+      for (let x = -60; x < 2000; x += 60) o += `<rect x="${f1(x - sc)}" y="345" width="30" height="22" rx="4" fill="#3A2F55"/><rect x="${f1(x - sc)}" y="713" width="30" height="22" rx="4" fill="#3A2F55"/>`;
+      frames.forEach(([f, at], j) => { const x = 170 + j * 420, hot = t > B.goback && t < B.feel - 0.2; o += fade(pop(t, at, 0.5), `<rect x="${x}" y="390" width="360" height="300" rx="10" fill="${hot ? '#2A2142' : '#2A2142'}" stroke="#3A2F55" stroke-width="4"/>${txt(x + 180, 552, f, 32, '#CFC8FA', { w: 800 })}`); });
+      o += fade(seg(t, B.feel, B.feel + 0.5) * (1 - seg(t, B.recognize - 0.3, B.recognize)), ['frustrated?', 'scared?', 'excited?', 'impatient?'].map((e, j) => pill(330 + j * 420, 230, e, '#F4829A', pop(t, B.feel + 1 + j * 0.5, 0.4), 34)).join('') + txt(960, 140, 'right before: what was I feeling?', 46, '#fff', { f: 'Playfair Display', it: true, w: 700 }));
+      o += fade(seg(t, B.recognize, B.recognize + 0.5) * (1 - seg(t, B.voice - 0.3, B.voice)), txt(960, 200, 'did I know I was about to go against my plan?', 50, '#F9D89A', { f: 'Playfair Display', it: true, w: 700 }));
+      o += thought(960, 190, 'Girl, you know you’re not supposed to be doing this. 😂', between(t, B.voice + 0.3, B.catch - 0.2), { size: 38 });
+      // not after… BEFORE WE CLICK
+      if (t > B.catch - 0.3) {
+        const k = seg(t, B.catch - 0.3, B.catch + 0.3);
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(k)}"/>`;
+        [['after the trade', B.na1], ['after the account is blown', B.na2], ['after giving back profits', B.na3]].forEach(([l, at], j) => { const y = 330 + j * 110; o += fade(k * seg(t, at, at + 0.4), txt(960, y, `not ${l}`, 46, C.muted, { f: 'Playfair Display', it: true, w: 700 }) + `<line x1="${960 - l.length * 13 - 70}" x2="${f1(960 - l.length * 13 - 70 + (l.length * 26 + 140) * seg(t, at + 0.5, at + 0.9))}" y1="${y - 14}" y2="${y - 14}" stroke="#E2556F" stroke-width="5"/>`); });
+        o += scaleAt(960, 760, pop(t, B.before, 0.6), `<rect x="560" y="680" width="800" height="160" rx="80" fill="#2C1810"/>${txt(960, 782, 'BEFORE WE CLICK', 58, '#fff', { ls: 4 })}`);
+      }
       return o;
     },
 
-    // Feelings pass like clouds. Notice it, and let it pass.
+    // The goal: recognize it without letting it control you. One moment.
     'p7m-clouds': (s, t) => {
-      const T = s.at;
+      const B = s.b;
       let o = grad('sk', '#BFE3F5', '#FDF8F5') + bg('url(#sk)');
-      o += `<rect x="0" y="880" width="1920" height="200" fill="#CFE9C8"/>` + you(t, { x: 960, y: 940, scale: 1.2 });
+      o += `<rect x="0" y="880" width="1920" height="200" fill="#CFE9C8"/>` + you(t, { x: 1480, y: 940, scale: 1.2 });
       const cl = (x, y, w, label) => `<g transform="translate(${f1(x)},${f1(y)})"><ellipse rx="${w}" ry="${w * 0.42}" fill="#fff"/><ellipse cx="${-w * 0.55}" cy="${w * 0.1}" rx="${w * 0.6}" ry="${w * 0.33}" fill="#fff"/><ellipse cx="${w * 0.6}" cy="${w * 0.08}" rx="${w * 0.62}" ry="${w * 0.34}" fill="#fff"/>${txt(0, 12, label, 36, C.muted, { w: 800 })}</g>`;
-      const feels = ['frustrated', 'FOMO', 'excited', 'scared', 'impatient', 'confident'];
-      feels.forEach((f, j) => { const sp = 70 + (j % 3) * 18, x = ((t - s.start) * sp + j * 420) % 2600 - 340, y = 170 + (j % 3) * 150; o += cl(x, y, 150, f); });
-      o += fade(seg(t, T[0], T[0] + 0.6) * (1 - seg(t, T[3] - 0.3, T[3])), txt(960, 720, 'never feel anything? ✗', 50, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
-      o += fade(seg(t, T[1], T[1] + 0.6) * (1 - seg(t, T[3] - 0.3, T[3])), txt(960, 800, 'recognize it before it’s a decision ✓', 50, '#2AA594', { f: 'Playfair Display', it: true, w: 700 }));
-      o += fade(seg(t, T[5], T[5] + 0.6), txt(960, 760, 'Notice it.', 72, C.dark, { f: 'Playfair Display', it: true }));
-      o += fade(seg(t, T[6], T[6] + 0.6), txt(960, 850, 'And let it pass.', 72, C.pink, { f: 'Playfair Display', it: true }));
+      ['frustrated', 'FOMO', 'excited', 'scared', 'impatient', 'confident'].forEach((f, j) => { const sp = 70 + (j % 3) * 18, x = ((t - s.start) * sp + j * 420) % 2600 - 340, y = 170 + (j % 3) * 150; o += cl(x, y, 150, f); });
+      const end = seg(t, B.one - 0.3, B.one + 0.3);
+      o += fade(seg(t, B.goal1, B.goal1 + 0.6) * (1 - end), txt(760, 640, 'never feel anything ✗', 50, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+      o += fade(seg(t, B.goal2, B.goal2 + 0.6) * (1 - end), txt(760, 730, 'recognize it, without letting it control you ✓', 50, '#2AA594', { f: 'Playfair Display', it: true, w: 700 }));
+      if (end > 0) {
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(end * 0.9)}"/>`;
+        o += fade(end, txt(960, 420, 'one moment.', 90, C.dark, { f: 'Playfair Display', it: true }));
+        const gap = ease(seg(t, B.last, B.last + 1.8));
+        o += fade(seg(t, B.last, B.last + 0.5), `<rect x="${f1(560 - gap * 160)}" y="560" width="300" height="140" rx="70" fill="#E2556F"/>${txt(710 - gap * 160, 646, 'FEEL', 50, '#fff', { ls: 5 })}<rect x="${f1(1060 + gap * 160)}" y="560" width="300" height="140" rx="70" fill="#2C1810"/>${txt(1210 + gap * 160, 646, 'CHOOSE', 50, '#fff', { ls: 5 })}<rect x="${f1(870 - gap * 160)}" y="585" width="${f1(180 + gap * 320)}" height="90" rx="45" fill="#F9D89A" opacity="${f1(0.5 + 0.3 * Math.sin(t * 3))}"/>`);
+      }
       return o;
     },
   };

@@ -4,8 +4,8 @@
 window.LESSON_VIDEO = {
   "slug": "p7-lesson-1",
   "eyebrow": "Phase 7 · Lesson 1",
-  "duration": 433.06,
-  "sources": "Creator script: Phase 7, Lesson 1, The Moment Between (put them in the moment, what is happening, my experience, what we do instead, your rule, trader reflection).",
+  "duration": 562.89,
+  "sources": "Creator script: Phase 7, Lesson 1, The Moment Between (updated script; six segments, spoken verbatim).",
   "scenes": [
     {
       "type": "host-title",
@@ -20,519 +20,906 @@ window.LESSON_VIDEO = {
     {
       "type": "p7m-moment",
       "start": 5.8,
-      "end": 60.28,
+      "end": 79.77,
       "at": [
         6.0,
-        8.98,
-        10.82,
-        21.02,
-        23.62,
-        28.88,
-        31.86,
-        34.08,
-        37.82,
-        40.66,
-        45.54,
-        50.42,
-        55.3
+        9.88,
+        15.61,
+        17.64,
+        19.67,
+        24.32,
+        25.91,
+        29.92,
+        36.76,
+        39.16,
+        41.22,
+        48.8,
+        53.79,
+        56.56,
+        59.39,
+        62.16,
+        67.55,
+        74.02
       ],
+      "b": {
+        "levels": 9.88,
+        "setup": 15.61,
+        "take": 17.64,
+        "stopped": 19.67,
+        "irritated": 25.91,
+        "back": 29.92,
+        "serious": 39.16,
+        "serious2": 41.22,
+        "hand": 48.8,
+        "ready": 53.79,
+        "wait": 56.56,
+        "setupQ": 59.39,
+        "frustQ": 62.16,
+        "between": 67.55
+      },
       "lines": [
         {
           "at": 6.0,
-          "text": "Okay. You just took a loss."
+          "text": "Okay. You've been watching MNQ for about 45 minutes."
         },
         {
-          "at": 8.98,
-          "text": "And you’re frustrated."
+          "at": 9.88,
+          "text": "You've done your analysis. You've marked your levels. You know what you're looking for."
         },
         {
-          "at": 10.82,
-          "text": "Maybe you followed your plan perfectly. Maybe you didn’t. But either way, you’re sitting there looking at that red number, and you don’t like it."
+          "at": 15.61,
+          "text": "Finally, your setup appears."
         },
         {
-          "at": 21.02,
-          "text": "Now price starts moving again."
+          "at": 17.64,
+          "text": "You take the trade."
         },
         {
-          "at": 23.62,
-          "text": "And almost immediately, you’re thinking, ‘Okay, maybe I can get back in.’"
+          "at": 19.67,
+          "text": "And almost immediately… price turns around and stops you out."
         },
         {
-          "at": 28.88,
-          "text": "Your hand is on the mouse."
+          "at": 24.32,
+          "text": "Okay. Cool."
         },
         {
-          "at": 31.86,
-          "text": "You’re watching the candles."
+          "at": 25.91,
+          "text": "Well, not really cool, because now you're irritated."
         },
         {
-          "at": 34.08,
-          "text": "And you’re getting ready to take another trade."
+          "at": 29.92,
+          "text": "And then, not even two minutes later, price starts moving back in the direction you originally anticipated."
         },
         {
-          "at": 37.82,
-          "text": "But hold on."
+          "at": 36.76,
+          "text": "Now you're sitting there like…"
         },
         {
-          "at": 40.66,
-          "text": "What happened between feeling frustrated and deciding to enter another trade?"
+          "at": 39.16,
+          "text": "Are you serious?"
         },
         {
-          "at": 45.54,
-          "text": "Because that’s the part I want us to talk about today."
+          "at": 41.22,
+          "text": "So you're telling me I was right about the direction, but you just had to stop ME out first?"
         },
         {
-          "at": 50.42,
-          "text": "That little moment between what you feel and what you do."
+          "at": 48.8,
+          "text": "And before you know it, your hand is back on the mouse."
         },
         {
-          "at": 55.3,
-          "text": "I call it the moment between."
+          "at": 53.79,
+          "text": "You're getting ready to enter again."
+        },
+        {
+          "at": 56.56,
+          "text": "But wait a minute."
+        },
+        {
+          "at": 59.39,
+          "text": "Did you actually get another setup?"
+        },
+        {
+          "at": 62.16,
+          "text": "Or are you just frustrated about what happened on the last trade?"
+        },
+        {
+          "at": 67.55,
+          "text": "Because there's a moment between feeling something and deciding what you're going to do about it."
+        },
+        {
+          "at": 74.02,
+          "text": "And that's what I want us to talk about today."
         }
       ]
     },
     {
       "type": "p7m-human",
-      "start": 60.08,
-      "end": 96.74,
+      "start": 79.57,
+      "end": 121.61,
       "at": [
-        60.28,
-        63.26,
-        68.14,
-        71.16,
-        81.74,
-        86.24,
-        92.26
+        79.77,
+        84.02,
+        86.79,
+        88.85,
+        92.36,
+        95.87,
+        100.12,
+        108.47,
+        109.76,
+        113.27
       ],
+      "b": {
+        "notproblem": 84.02,
+        "human": 86.79,
+        "f1": 88.85,
+        "f2": 92.36,
+        "f3": 95.87,
+        "f4": 100.12,
+        "normal": 108.47,
+        "diff": 113.27
+      },
       "lines": [
         {
-          "at": 60.28,
-          "text": "Here’s the thing about trading psychology."
+          "at": 79.77,
+          "text": "Here's something I want you to understand about trading psychology."
         },
         {
-          "at": 63.26,
-          "text": "I don’t think the goal should be to never get emotional."
+          "at": 84.02,
+          "text": "Your emotions aren't necessarily the problem."
         },
         {
-          "at": 68.14,
-          "text": "Because, girl, you’re human."
+          "at": 86.79,
+          "text": "Because you're human."
         },
         {
-          "at": 71.16,
-          "text": "You’re going to get frustrated when you lose. You’re going to get excited when you win. You’re going to feel disappointed when price moves without you."
+          "at": 88.85,
+          "text": "You're going to feel frustrated when you lose."
         },
         {
-          "at": 81.74,
-          "text": "None of those feelings automatically make you a bad trader."
+          "at": 92.36,
+          "text": "You're going to feel excited when you win."
         },
         {
-          "at": 86.24,
-          "text": "But what happens when you allow those feelings to start making decisions for you?"
+          "at": 95.87,
+          "text": "You're going to feel disappointed when you miss a trade."
         },
         {
-          "at": 92.26,
-          "text": "That’s where we run into problems."
+          "at": 100.12,
+          "text": "And sometimes you're going to be sitting there looking at the chart like, What in the world is going on?"
+        },
+        {
+          "at": 108.47,
+          "text": "That's normal."
+        },
+        {
+          "at": 109.76,
+          "text": "But here's where things start to get interesting."
+        },
+        {
+          "at": 113.27,
+          "text": "There's a difference between experiencing an emotion and allowing that emotion to make a decision for you."
         }
       ]
     },
     {
-      "type": "p7m-difference",
-      "start": 96.54,
-      "end": 147.76,
+      "type": "p7m-shift",
+      "start": 121.41,
+      "end": 195.01,
       "at": [
-        96.74,
-        103.9,
-        110.68,
-        120.88,
-        127.28,
-        133.3,
-        136.88,
-        141.76
+        121.61,
+        124.38,
+        126.41,
+        128.07,
+        131.95,
+        136.57,
+        141.93,
+        143.59,
+        150.8,
+        155.79,
+        157.45,
+        159.48,
+        161.91,
+        168.38,
+        172.26,
+        177.25,
+        182.24,
+        183.9,
+        186.67
       ],
+      "b": {
+        "should": 131.95,
+        "instead": 136.57,
+        "went": 143.59,
+        "fast": 150.8,
+        "feel": 155.79,
+        "thought": 157.45,
+        "act": 159.48,
+        "whatif": 161.91,
+        "w1": 168.38,
+        "w2": 172.26,
+        "w3": 177.25,
+        "control": 182.24,
+        "recog": 186.67
+      },
       "lines": [
         {
-          "at": 96.74,
-          "text": "Because there’s a difference between feeling frustrated after a loss and taking another trade because you’re frustrated."
+          "at": 121.61,
+          "text": "Let's go back to that trade."
         },
         {
-          "at": 103.9,
-          "text": "There’s a difference between feeling excited after a win and increasing your contracts because you’re excited."
+          "at": 124.38,
+          "text": "You got stopped out."
         },
         {
-          "at": 110.68,
-          "text": "And there’s a difference between feeling like you missed an opportunity and chasing price because you don’t want to miss any more of the move."
+          "at": 126.41,
+          "text": "You felt frustrated."
         },
         {
-          "at": 120.88,
-          "text": "The emotion isn’t necessarily the mistake. What you do with it can become the mistake."
+          "at": 128.07,
+          "text": "And then price started moving in your original direction."
         },
         {
-          "at": 127.28,
-          "text": "And sometimes that entire decision happens so quickly that we don’t even recognize it."
+          "at": 131.95,
+          "text": "Now, instead of asking yourself, Do I have another valid setup?"
         },
         {
-          "at": 133.3,
-          "text": "We feel something, and we react."
+          "at": 136.57,
+          "text": "You're thinking, I knew I was right. I need to get back in."
         },
         {
-          "at": 136.88,
-          "text": "But I want you to start noticing that there’s another option."
+          "at": 141.93,
+          "text": "See the difference?"
         },
         {
-          "at": 141.76,
-          "text": "You can feel something without immediately doing something about it."
+          "at": 143.59,
+          "text": "You went from evaluating what price was doing to reacting to how the previous trade made you feel."
+        },
+        {
+          "at": 150.8,
+          "text": "And sometimes that happens so quickly that you don't even realize it."
+        },
+        {
+          "at": 155.79,
+          "text": "You feel something."
+        },
+        {
+          "at": 157.45,
+          "text": "You have a thought."
+        },
+        {
+          "at": 159.48,
+          "text": "And then you act."
+        },
+        {
+          "at": 161.91,
+          "text": "But what if you didn't have to immediately act on every thought that crossed your mind?"
+        },
+        {
+          "at": 168.38,
+          "text": "What if you could feel frustrated and still wait?"
+        },
+        {
+          "at": 172.26,
+          "text": "What if you could feel excited and still follow your risk rules?"
+        },
+        {
+          "at": 177.25,
+          "text": "What if you could feel FOMO and still let the trade go?"
+        },
+        {
+          "at": 182.24,
+          "text": "That's emotional control."
+        },
+        {
+          "at": 183.9,
+          "text": "Not pretending you don't feel anything."
+        },
+        {
+          "at": 186.67,
+          "text": "But recognizing that just because you feel something doesn't mean you have to do something about it."
         }
       ]
     },
     {
       "type": "p7m-knew",
-      "start": 147.56,
-      "end": 182.84,
+      "start": 194.81,
+      "end": 231.47,
       "at": [
-        147.76,
-        150.74,
-        156.0,
-        160.12,
-        164.24,
-        175.58
+        195.01,
+        199.26,
+        206.1,
+        208.13,
+        210.16,
+        213.3,
+        218.05,
+        221.19,
+        223.99,
+        226.02
       ],
+      "b": {
+        "k1": 206.1,
+        "k2": 208.13,
+        "k3": 210.16,
+        "different": 213.3,
+        "literally": 221.19,
+        "twothings": 226.02
+      },
       "lines": [
         {
-          "at": 147.76,
-          "text": "And I’m speaking from experience here."
+          "at": 195.01,
+          "text": "Now, I've had to learn this in my own trading."
         },
         {
-          "at": 150.74,
-          "text": "I’ve had moments where I knew exactly what my trading rules were."
+          "at": 199.26,
+          "text": "Because there have been plenty of times where I've known exactly what I was supposed to do."
         },
         {
-          "at": 156.0,
-          "text": "I knew what I was supposed to wait for."
+          "at": 206.1,
+          "text": "I knew my rules."
         },
         {
-          "at": 160.12,
-          "text": "I knew when I was supposed to be done."
+          "at": 208.13,
+          "text": "I knew my setup."
         },
         {
-          "at": 164.24,
-          "text": "But I would feel something, frustration, excitement, whatever, and suddenly I was making a decision that didn’t line up with what I said I was going to do."
+          "at": 210.16,
+          "text": "I knew what I was waiting for."
         },
         {
-          "at": 175.58,
-          "text": "And afterward, I’m sitting there thinking, ‘Dayli, why did you do that?’"
+          "at": 213.3,
+          "text": "And somehow, I still found myself doing something completely different."
+        },
+        {
+          "at": 218.05,
+          "text": "And afterward, I'd be sitting there thinking…"
+        },
+        {
+          "at": 221.19,
+          "text": "Dayli, you literally knew better."
+        },
+        {
+          "at": 223.99,
+          "text": "But that's the thing."
+        },
+        {
+          "at": 226.02,
+          "text": "Knowing better and actually doing better are two different things."
         }
       ]
     },
     {
-      "type": "p7m-rewind",
-      "start": 182.64,
-      "end": 230.86,
+      "type": "p7m-reason",
+      "start": 231.27,
+      "end": 297.78,
       "at": [
-        182.84,
-        187.34,
-        192.22,
-        197.48,
-        201.22,
-        204.96,
-        207.94,
-        213.58,
-        218.08,
-        222.58
+        231.47,
+        238.31,
+        242.93,
+        246.07,
+        249.21,
+        253.46,
+        258.45,
+        261.96,
+        266.21,
+        271.57,
+        278.04,
+        281.55,
+        285.43,
+        291.66
       ],
+      "b": {
+        "r1": 242.93,
+        "r2": 246.07,
+        "r3": 249.21,
+        "ask": 261.96,
+        "ask2": 266.21,
+        "verydiff": 271.57,
+        "care": 278.04,
+        "c2": 281.55,
+        "c3": 285.43,
+        "why": 291.66
+      },
       "lines": [
         {
-          "at": 182.84,
-          "text": "But here’s what I’ve had to start paying attention to."
+          "at": 231.47,
+          "text": "And what I've started paying more attention to is what happens right before I make those decisions."
         },
         {
-          "at": 187.34,
-          "text": "The decision didn’t necessarily start when I clicked Buy or Sell."
+          "at": 238.31,
+          "text": "Because sometimes the issue isn't that I don't understand the market."
         },
         {
-          "at": 192.22,
-          "text": "It started with what was happening in my head before I clicked."
+          "at": 242.93,
+          "text": "It's that I'm frustrated about a loss."
         },
         {
-          "at": 197.48,
-          "text": "Maybe I was trying to make money back."
+          "at": 246.07,
+          "text": "Or I'm excited because I just won."
         },
         {
-          "at": 201.22,
-          "text": "Maybe I didn’t want to miss the move."
+          "at": 249.21,
+          "text": "Or I'm looking at how much money I could've made."
         },
         {
-          "at": 204.96,
-          "text": "Maybe I was feeling overly confident."
+          "at": 253.46,
+          "text": "And suddenly, I'm allowing that feeling to influence what I do next."
         },
         {
-          "at": 207.94,
-          "text": "And instead of recognizing what I was feeling, I just acted on it."
+          "at": 258.45,
+          "text": "So I've had to start asking myself something."
         },
         {
-          "at": 213.58,
-          "text": "That’s why I think learning to pause is so important."
+          "at": 261.96,
+          "text": "Am I making this decision because my setup is here?"
         },
         {
-          "at": 218.08,
-          "text": "Not because pausing guarantees that you’ll make the right decision."
+          "at": 266.21,
+          "text": "Or am I making this decision because of how I'm feeling right now?"
         },
         {
-          "at": 222.58,
-          "text": "But because it gives you an opportunity to recognize why you’re about to make that decision."
+          "at": 271.57,
+          "text": "And let me tell you, those are two very different reasons to click Buy or Sell."
+        },
+        {
+          "at": 278.04,
+          "text": "Because the market doesn't care that I'm frustrated."
+        },
+        {
+          "at": 281.55,
+          "text": "It doesn't care that I want my money back."
+        },
+        {
+          "at": 285.43,
+          "text": "And it definitely doesn't care that I feel like I should've made more money."
+        },
+        {
+          "at": 291.66,
+          "text": "So why would I let those feelings determine my next trade?"
         }
       ]
     },
     {
       "type": "p7m-pause",
-      "start": 230.66,
-      "end": 257.26,
+      "start": 297.58,
+      "end": 333.01,
       "at": [
-        230.86,
-        234.98,
-        241.76,
-        248.78,
-        254.04
+        297.78,
+        301.66,
+        304.06,
+        305.95,
+        315.01,
+        320.0,
+        323.14,
+        327.02
       ],
+      "b": {
+        "notmin": 305.95,
+        "space": 315.01,
+        "loss": 320.0,
+        "urge": 323.14,
+        "three": 327.02
+      },
       "lines": [
         {
-          "at": 230.86,
-          "text": "So here’s something I want you to start practicing."
+          "at": 297.78,
+          "text": "So here's what I want you to start practicing."
         },
         {
-          "at": 234.98,
-          "text": "Before you make a trading decision, especially when you’re feeling emotional, I want you to pause."
+          "at": 301.66,
+          "text": "And it's something really simple."
         },
         {
-          "at": 241.76,
-          "text": "And I don’t mean you need to sit there and meditate for 30 minutes."
+          "at": 304.06,
+          "text": "The pause."
         },
         {
-          "at": 248.78,
-          "text": "I mean literally create a moment where you stop and check yourself."
+          "at": 305.95,
+          "text": "Now, when I say pause, I'm not telling you to sit there for 20 minutes and miss every setup that comes your way."
         },
         {
-          "at": 254.04,
-          "text": "Ask yourself three questions."
+          "at": 315.01,
+          "text": "I'm talking about creating enough space to recognize what's influencing your decision."
+        },
+        {
+          "at": 320.0,
+          "text": "Let's say you just took a loss."
+        },
+        {
+          "at": 323.14,
+          "text": "And you immediately feel the urge to enter again."
+        },
+        {
+          "at": 327.02,
+          "text": "Before you do anything, I want you to ask yourself three questions."
         }
       ]
     },
     {
       "type": "p7m-questions",
-      "start": 257.06,
-      "end": 306.86,
+      "start": 332.81,
+      "end": 427.38,
       "at": [
-        257.26,
-        261.0,
-        263.98,
-        265.44,
-        270.32,
-        277.48,
-        284.26,
-        288.76,
-        291.74,
-        294.72,
-        297.32
+        333.01,
+        336.15,
+        337.81,
+        339.47,
+        341.13,
+        344.27,
+        345.93,
+        350.18,
+        352.21,
+        356.09,
+        360.34,
+        365.7,
+        370.69,
+        373.46,
+        377.71,
+        380.48,
+        382.88,
+        385.28,
+        393.23,
+        395.63,
+        398.03,
+        402.28,
+        408.01,
+        411.89,
+        416.51,
+        419.65
       ],
+      "b": {
+        "q1": 333.01,
+        "recog1": 344.27,
+        "q2": 345.93,
+        "p1": 352.21,
+        "p2": 356.09,
+        "p3": 360.34,
+        "p4": 365.7,
+        "identify": 370.69,
+        "q3": 373.46,
+        "n1": 377.71,
+        "n2": 380.48,
+        "c1": 393.23,
+        "c2": 395.63,
+        "c3": 398.03,
+        "align": 402.28,
+        "only": 408.01,
+        "catch": 419.65
+      },
       "lines": [
         {
-          "at": 257.26,
-          "text": "Number one: What am I feeling right now?"
+          "at": 333.01,
+          "text": "First: What am I feeling right now?"
         },
         {
-          "at": 261.0,
-          "text": "Am I frustrated? Excited? Scared? Impatient?"
+          "at": 336.15,
+          "text": "Am I frustrated?"
         },
         {
-          "at": 263.98,
-          "text": "Name it."
+          "at": 337.81,
+          "text": "Am I scared?"
         },
         {
-          "at": 265.44,
-          "text": "Number two: What is that feeling making me want to do?"
+          "at": 339.47,
+          "text": "Am I excited?"
         },
         {
-          "at": 270.32,
-          "text": "Is it making me want to enter early? Take another trade? Increase my size? Move my stop?"
+          "at": 341.13,
+          "text": "Am I trying to make something back?"
         },
         {
-          "at": 277.48,
-          "text": "Because sometimes the emotion itself isn’t nearly as important as the behavior it’s pushing you toward."
+          "at": 344.27,
+          "text": "Just recognize it."
         },
         {
-          "at": 284.26,
-          "text": "And number three: What does my trading plan actually say?"
+          "at": 345.93,
+          "text": "Second: What is that feeling making me want to do?"
         },
         {
-          "at": 288.76,
-          "text": "Not what I want to do."
+          "at": 350.18,
+          "text": "Because this is important."
         },
         {
-          "at": 291.74,
-          "text": "Not what I think might happen."
+          "at": 352.21,
+          "text": "Maybe frustration is making you want to revenge trade."
         },
         {
-          "at": 294.72,
+          "at": 356.09,
+          "text": "Maybe excitement is making you want to increase your contracts."
+        },
+        {
+          "at": 360.34,
+          "text": "Maybe fear is making you want to close a perfectly valid trade early."
+        },
+        {
+          "at": 365.7,
+          "text": "Or maybe FOMO is making you want to enter before your confirmation."
+        },
+        {
+          "at": 370.69,
+          "text": "Whatever it is, identify the behavior."
+        },
+        {
+          "at": 373.46,
+          "text": "And then third: What does my trading plan actually say?"
+        },
+        {
+          "at": 377.71,
+          "text": "Not what I feel like doing."
+        },
+        {
+          "at": 380.48,
+          "text": "Not what I hope happens."
+        },
+        {
+          "at": 382.88,
           "text": "What does my plan say?"
         },
         {
-          "at": 297.32,
-          "text": "And if the decision you’re about to make doesn’t align with your plan, that’s your opportunity to stop."
-        }
-      ]
-    },
-    {
-      "type": "p7m-stepaway",
-      "start": 306.66,
-      "end": 337.06,
-      "at": [
-        306.86,
-        310.6,
-        316.62,
-        323.02,
-        330.56
-      ],
-      "lines": [
-        {
-          "at": 306.86,
-          "text": "Now, I want to be clear about something."
+          "at": 385.28,
+          "text": "Because if I just took a loss and price is moving again, that doesn't automatically mean I have another entry."
         },
         {
-          "at": 310.6,
-          "text": "Pausing doesn’t mean you have to second-guess every valid setup until the opportunity disappears."
+          "at": 393.23,
+          "text": "I still need my setup."
         },
         {
-          "at": 316.62,
-          "text": "The goal is to practice this enough that checking yourself becomes part of your process."
+          "at": 395.63,
+          "text": "I still need my confirmation."
         },
         {
-          "at": 323.02,
-          "text": "And if you recognize that you’re too emotional to evaluate the market clearly, it’s okay to step away."
+          "at": 398.03,
+          "text": "And I still need to be within my risk rules."
         },
         {
-          "at": 330.56,
-          "text": "You don’t have to participate just because price is moving."
+          "at": 402.28,
+          "text": "Now, if everything aligns and I'm emotionally able to execute my plan, that's different."
+        },
+        {
+          "at": 408.01,
+          "text": "But if I'm only clicking because I feel frustrated?"
+        },
+        {
+          "at": 411.89,
+          "text": "That's something I need to recognize before it becomes another trade."
+        },
+        {
+          "at": 416.51,
+          "text": "And this is why the pause matters."
+        },
+        {
+          "at": 419.65,
+          "text": "It gives you the opportunity to catch a decision before it becomes a mistake."
         }
       ]
     },
     {
       "type": "p7m-rule",
-      "start": 336.86,
-      "end": 365.16,
+      "start": 427.18,
+      "end": 462.72,
       "at": [
-        337.06,
-        340.42,
-        344.16,
-        347.52,
-        352.02,
-        355.0
+        427.38,
+        431.63,
+        436.62,
+        441.61,
+        448.45,
+        451.96,
+        456.95
       ],
+      "b": {
+        "w1": 427.38,
+        "w2": 431.63,
+        "w3": 436.62,
+        "w4": 441.61,
+        "internal": 448.45,
+        "info": 456.95
+      },
       "lines": [
         {
-          "at": 337.06,
-          "text": "I can feel frustrated without revenge trading."
+          "at": 427.38,
+          "text": "Just because I'm frustrated doesn't mean I need another trade."
         },
         {
-          "at": 340.42,
-          "text": "I can feel excited without increasing my risk."
+          "at": 431.63,
+          "text": "Just because I'm excited doesn't mean I need to increase my risk."
         },
         {
-          "at": 344.16,
-          "text": "I can feel FOMO without chasing price."
+          "at": 436.62,
+          "text": "Just because I'm afraid doesn't mean I need to abandon my setup."
         },
         {
-          "at": 347.52,
-          "text": "And I can feel afraid without automatically abandoning my plan."
+          "at": 441.61,
+          "text": "And just because I feel like I missed an opportunity doesn't mean I need to chase it."
         },
         {
-          "at": 352.02,
+          "at": 448.45,
+          "text": "My feelings can tell me what's happening internally."
+        },
+        {
+          "at": 451.96,
+          "text": "But they don't get to determine what I do in the market."
+        },
+        {
+          "at": 456.95,
           "text": "My emotions are information, not instructions."
-        },
-        {
-          "at": 355.0,
-          "text": "And sometimes the most important trading decision I make is the one I choose not to make."
         }
       ]
     },
     {
       "type": "p7m-replay",
-      "start": 364.96,
-      "end": 398.6,
+      "start": 462.52,
+      "end": 532.6,
       "at": [
-        365.16,
-        373.46,
-        377.58,
-        382.08,
-        384.68,
-        392.6
+        462.72,
+        469.19,
+        471.22,
+        473.62,
+        476.02,
+        479.16,
+        482.67,
+        484.33,
+        488.58,
+        490.24,
+        491.16,
+        492.08,
+        493.0,
+        497.99,
+        504.83,
+        506.86,
+        511.11,
+        515.86,
+        518.26,
+        521.4,
+        523.43,
+        526.2,
+        529.34
       ],
+      "b": {
+        "m1": 469.19,
+        "m2": 471.22,
+        "m3": 473.62,
+        "m4": 476.02,
+        "goback": 479.16,
+        "feel": 484.33,
+        "recognize": 497.99,
+        "voice": 506.86,
+        "catch": 518.26,
+        "na1": 521.4,
+        "na2": 523.43,
+        "na3": 526.2,
+        "before": 529.34
+      },
       "lines": [
         {
-          "at": 365.16,
-          "text": "Before you move on to the next lesson, I want you to think about your most recent emotional trading decision."
+          "at": 462.72,
+          "text": "Now I want you to think about the last time you made an emotional trading decision."
         },
         {
-          "at": 373.46,
-          "text": "What were you feeling right before you made it?"
+          "at": 469.19,
+          "text": "Maybe you revenge traded."
         },
         {
-          "at": 377.58,
-          "text": "And what did that feeling make you want to do?"
+          "at": 471.22,
+          "text": "Maybe you chased an entry."
         },
         {
-          "at": 382.08,
-          "text": "Now here’s the important question:"
+          "at": 473.62,
+          "text": "Maybe you moved your stop."
         },
         {
-          "at": 384.68,
-          "text": "Was there a moment when you knew you were about to go against your plan, but did it anyway?"
+          "at": 476.02,
+          "text": "Maybe you closed a winner too early."
         },
         {
-          "at": 392.6,
-          "text": "Because that’s the moment I want you to start recognizing."
+          "at": 479.16,
+          "text": "Whatever it was, go back to that moment."
+        },
+        {
+          "at": 482.67,
+          "text": "And ask yourself:"
+        },
+        {
+          "at": 484.33,
+          "text": "What was I feeling right before I made that decision?"
+        },
+        {
+          "at": 488.58,
+          "text": "Was I frustrated?"
+        },
+        {
+          "at": 490.24,
+          "text": "Scared?"
+        },
+        {
+          "at": 491.16,
+          "text": "Excited?"
+        },
+        {
+          "at": 492.08,
+          "text": "Impatient?"
+        },
+        {
+          "at": 493.0,
+          "text": "And then here's the question I really want you to think about."
+        },
+        {
+          "at": 497.99,
+          "text": "Did I recognize that I was about to go against my plan before I actually did it?"
+        },
+        {
+          "at": 504.83,
+          "text": "Because sometimes we know."
+        },
+        {
+          "at": 506.86,
+          "text": "We literally have that little voice in our head saying…"
+        },
+        {
+          "at": 511.11,
+          "text": "Girl, you know you're not supposed to be doing this."
+        },
+        {
+          "at": 515.86,
+          "text": "And we do it anyway."
+        },
+        {
+          "at": 518.26,
+          "text": "That's the moment we're learning to catch."
+        },
+        {
+          "at": 521.4,
+          "text": "Not after the trade."
+        },
+        {
+          "at": 523.43,
+          "text": "Not after the account is blown."
+        },
+        {
+          "at": 526.2,
+          "text": "Not after we've given back our profits."
+        },
+        {
+          "at": 529.34,
+          "text": "Before we click."
         }
       ]
     },
     {
       "type": "p7m-clouds",
-      "start": 398.4,
-      "end": 432.56,
+      "start": 532.4,
+      "end": 562.39,
       "at": [
-        398.6,
-        403.1,
-        410.26,
-        417.42,
-        418.88,
-        423.38,
-        427.34
+        532.6,
+        537.96,
+        546.28,
+        551.27,
+        553.53
       ],
+      "b": {
+        "goal1": 532.6,
+        "goal2": 537.96,
+        "one": 551.27,
+        "last": 553.53
+      },
       "lines": [
         {
-          "at": 398.6,
-          "text": "We’re not trying to become traders who never feel anything."
+          "at": 532.6,
+          "text": "And remember, the goal isn't to become a trader who never feels anything."
         },
         {
-          "at": 403.1,
-          "text": "We’re trying to become traders who can recognize what they’re feeling before it turns into a decision."
+          "at": 537.96,
+          "text": "The goal is to become a trader who can recognize what they're feeling without automatically allowing it to control their decisions."
         },
         {
-          "at": 410.26,
-          "text": "And the more you practice recognizing that moment, the more opportunities you give yourself to choose differently."
+          "at": 546.28,
+          "text": "Because sometimes the difference between following your plan and completely abandoning it…"
         },
         {
-          "at": 417.42,
-          "text": "Because remember:"
+          "at": 551.27,
+          "text": "Is one moment."
         },
         {
-          "at": 418.88,
-          "text": "You don’t have to act on every feeling you experience."
-        },
-        {
-          "at": 423.38,
-          "text": "Sometimes you just need to notice it."
-        },
-        {
-          "at": 427.34,
-          "text": "And let it pass."
+          "at": 553.53,
+          "text": "The moment between what you feel and what you choose to do next."
         }
       ]
     }
