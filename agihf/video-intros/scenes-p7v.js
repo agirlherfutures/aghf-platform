@@ -1509,6 +1509,236 @@
       return o;
     },
 
+    /* ════ Psychology 15 · Build Your Trading Rules ════════════════════ */
+
+    // Everything we covered, tile by tile. Recognizing isn't enough. Rules come in.
+    'v15-recap': (s, t) => {
+      const B = s.b;
+      let o = grad('rc', '#1C1528', '#2E2142') + bg('url(#rc)');
+      const p2 = seg(t, B.thing - 0.3, B.thing + 0.3), p3 = seg(t, B.rules - 0.4, B.rules + 0.2);
+      const topics = [['FOMO', '#F4829A'], ['revenge trading', '#E2556F'], ['overtrading', '#E2B04A'], ['fear', '#7F77DD'], ['greed', '#B38A2E'], ['losing', '#E2556F'], ['winning', '#2AA594'], ['blowing accounts', '#E2556F'], ['money', '#B38A2E'], ['confidence', '#2AA594'], ['your routine', '#7F77DD']];
+      const a = 1 - p2;
+      if (a > 0) {
+        o += fade(a, txt(960, 170, 'we talked about a LOT', 56, '#fff', { f: 'Playfair Display', it: true }));
+        topics.forEach(([l, col], j) => {
+          const x = 330 + (j % 4) * 420, y = 330 + Math.floor(j / 4) * 190, at = B['t' + (j + 1)];
+          const me = [0, 1, 2, 9].includes(j) ? seg(t, B.recog + 1 + j * 0.15, B.recog + 1.5 + j * 0.15) : 0;
+          o += fade(a, scaleAt(x, y, pop(t, at, 0.4), `<rect x="${x - 190}" y="${y - 70}" width="380" height="140" rx="26" fill="#2A2142" stroke="${me > 0 ? '#F9D89A' : col}" stroke-width="${me > 0 ? 10 : 5}"/>${txt(x, y + 14, l, 38, '#fff')}`));
+          if (me > 0) o += pill(x + 150, y - 70, 'me', '#F9D89A', a * pop(t, B.recog + 1 + j * 0.15, 0.4), 24, '#1C1528');
+        });
+      }
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        o += fade(b * seg(t, B.enough, B.enough + 0.4), txt(960, 240, 'recognizing it isn’t enough', 60, '#fff', { f: 'Playfair Display', it: true }));
+        o += fade(b, sticky(960, 470, '“Yeah, I revenge trade.”', pop(t, B.know, 0.5), -3));
+        o += fade(b * seg(t, B.okay, B.okay + 0.3), txt(960, 640, 'okay…', 54, '#CFC8FA', { f: 'Playfair Display', it: true }));
+        o += fade(b * seg(t, B.next, B.next + 0.5), `<rect x="460" y="720" width="1000" height="200" rx="30" fill="#2A2142"/>${txt(960, 800, 'next loss. the urge to make it back.', 40, '#FF8DA3', { w: 800 })}${txt(960, 870, 'what are you going to DO?', 48, '#F9D89A', { f: 'Playfair Display', it: true })}`);
+      }
+      if (p3 > 0) {
+        // the rulebook opens
+        const op = ease(seg(t, B.rules, B.rules + 1.2));
+        o += fade(p3, `<rect x="560" y="260" width="800" height="560" rx="20" fill="#7F77DD"/><rect x="580" y="280" width="${f1(380 * op)}" height="520" rx="12" fill="#FFF8E6"/><rect x="${f1(960 + 380 * (1 - op))}" y="280" width="${f1(380 * op)}" height="520" rx="12" fill="#FFF8E6"/><line x1="960" x2="960" y1="280" y2="800" stroke="#5A4C9A" stroke-width="8"/>`);
+        o += fade(p3 * op, txt(770, 420, 'MY', 40, '#7F77DD', { ls: 6 }) + txt(770, 480, 'TRADING', 40, '#7F77DD', { ls: 6 }) + txt(770, 540, 'RULES', 40, '#7F77DD', { ls: 6 }));
+        o += fade(seg(t, B.final, B.final + 0.6), txt(1150, 440, 'instructions', 40, C.dark, { f: 'Playfair Display', it: true }) + txt(1150, 500, 'for the trader', 40, C.dark, { f: 'Playfair Display', it: true }) + txt(1150, 560, 'I’m becoming', 40, '#2AA594', { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    // The feelings stay. The plan "be disciplined" means nothing. IF this happens → I do THIS.
+    'v15-ifthen': (s, t) => {
+      const B = s.b;
+      let o = bg('#FBF4EF');
+      const p2 = seg(t, B.g1 - 0.3, B.g1 + 0.3), p3 = seg(t, B.plan - 0.3, B.plan + 0.3), p4 = seg(t, B.beh - 0.3, B.beh + 0.3);
+      const a = 1 - p2;
+      if (a > 0) {
+        o += fade(a, txt(960, 200, 'not about getting rid of emotions', 54, C.dark, { f: 'Playfair Display', it: true }));
+        ['you’ll still feel FOMO', 'still get frustrated after a loss', 'still get excited when winning', 'still be scared to enter some days'].forEach((l, j) => { o += fade(a * seg(t, B.notrid + 2.5 + j * 0.5, B.notrid + 2.9 + j * 0.5), `<rect x="460" y="${330 + j * 140}" width="1000" height="100" rx="50" fill="#fff"/>${txt(960, 393 + j * 140, l, 40, C.dark, { w: 700 })}`); });
+      }
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        o += fade(b, `<rect x="200" y="320" width="680" height="320" rx="40" fill="#fff"/>${txt(540, 500, 'feel nothing', 60, C.muted, { f: 'Playfair Display', it: true })}`) + cross(540, 600, b * pop(t, B.g1 + 1, 0.4), '#E2556F', 34);
+        o += fade(b * seg(t, B.g2, B.g2 + 0.4), `<rect x="1040" y="320" width="680" height="320" rx="40" fill="#fff" stroke="#2AA594" stroke-width="6"/>${txt(1380, 470, 'know what you DO', 52, '#2AA594', { f: 'Playfair Display', it: true })}${txt(1380, 540, 'when feelings show up', 38, C.dark, { w: 700 })}`) + check(1380, 610, b * pop(t, B.g2 + 1, 0.4), '#2AA594', 34);
+      }
+      const c = p3 * (1 - p4);
+      if (c > 0) {
+        o += fade(c, txt(960, 230, 'if my whole psychology plan is…', 50, C.dark, { f: 'Playfair Display', it: true }) + sticky(960, 440, '“Dayli, just be disciplined today.”', pop(t, B.just, 0.5) * 1.3, -3));
+        o += fade(c * seg(t, B.mean, B.mean + 0.4), txt(960, 720, 'what does that actually mean?', 54, C.dark, { f: 'Playfair Display', it: true }) + [0, 1, 2].map(i => txt(700 + i * 260, 880, '?', 80, '#B8B3C9', { op: f1(0.5 + 0.5 * Math.sin(t * 4 + i)) })).join(''));
+      }
+      if (p4 > 0) {
+        o += fade(p4, txt(960, 170, 'IF this happens → I do THIS', 56, C.dark, { f: 'Playfair Display', it: true }));
+        [['I take a full stop', 'I reset'], ['I miss my entry', 'I don’t chase'], ['I hit my daily loss limit', 'my session is over'], ['I’m green and want more', 'I check my stopping rules'], ['I’m scared after a loss', 'I judge this setup on its own']].forEach(([a2, b2], j) => {
+          const y = 300 + j * 135, at = B.ifthis + 0.6 + j * 0.8;
+          o += fade(p4 * seg(t, at, at + 0.4), `<rect x="160" y="${y - 52}" width="760" height="104" rx="52" fill="#fff"/>${txt(210, y + 14, 'IF', 30, '#7F77DD', { a: 'start', ls: 3 })}${txt(270, y + 14, a2, 36, C.dark, { a: 'start', w: 700 })}${txt(960, y + 16, '→', 56, C.dark)}<rect x="1000" y="${y - 52}" width="760" height="104" rx="52" fill="#2AA594"/>${txt(1050, y + 14, 'I', 30, '#fff', { a: 'start', ls: 3 })}${txt(1090, y + 14, b2, 36, '#fff', { a: 'start' })}`);
+        });
+        o += fade(seg(t, B.use, B.use + 0.5), txt(960, 1000, 'psychology you can actually use', 44, '#2AA594', { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      return o;
+    },
+
+    // Knowing ≠ doing. No magic. Rules as a shield, written by calm-you, outside the trade.
+    'v15-protect': (s, t) => {
+      const B = s.b;
+      let o = grad('pt', '#F3E3D6', '#FBF4EF') + bg('url(#pt)');
+      const p2 = seg(t, B.magic - 0.3, B.magic + 0.3), p3 = seg(t, B.calm - 0.4, B.calm + 0.2);
+      o += host(t, { x: 100, y: 330, w: 520, pose: t > B.k1 && t < B.magic ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
+      const a = 1 - p2;
+      if (a > 0) {
+        o += fade(a * seg(t, B.learning, B.learning + 0.4), `<rect x="820" y="160" width="380" height="140" rx="30" fill="#2AA594"/>${txt(1010, 248, 'KNOWING', 40, '#fff', { ls: 4 })}${txt(1290, 248, '≠', 60, C.dark)}<rect x="1380" y="160" width="380" height="140" rx="30" fill="#7F77DD"/>${txt(1570, 248, 'DOING', 40, '#fff', { ls: 4 })}`);
+        [[B.k1, 'shouldn’t take another trade'], [B.k2, 'I was overtrading'], [B.k3, 'my risk was out of control'], [B.k4, 'I should’ve been done']].forEach(([at, l], j) => { const y = 420 + j * 110; o += fade(a * seg(t, at, at + 0.4), `<rect x="820" y="${y - 45}" width="940" height="90" rx="45" fill="#fff"/>${txt(870, y + 12, 'I knew ' + l, 36, C.dark, { a: 'start', w: 700 })}${txt(1720, y + 12, '…did it anyway', 28, '#E2556F', { a: 'end', w: 800, op: f1(seg(t, at + 0.8, at + 1.2)) })}`); });
+      }
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        o += fade(b, `<g transform="rotate(-30 1080 360)"><rect x="1050" y="240" width="40" height="300" rx="10" fill="#2C1810"/><path d="M1070,200 l14,30 l32,4 l-24,22 l6,32 l-28,-16 l-28,16 l6,-32 l-24,-22 l32,-4 z" fill="#F9D89A"/></g>${txt(1080, 640, 'the perfect decision, every time', 36, C.muted, { f: 'Playfair Display', it: true, w: 700 })}`) + cross(1200, 300, b * pop(t, B.magic + 2, 0.4), '#E2556F', 40);
+        const sk = seg(t, B.protect, B.protect + 0.6);
+        if (sk > 0) {
+          o += fade(b * sk, `<path d="M1500,260 L1700,320 L1700,520 C1700,640 1600,720 1500,770 C1400,720 1300,640 1300,520 L1300,320 Z" fill="#2AA594"/>${txt(1500, 520, 'RULES', 44, '#fff', { ls: 4 })}`);
+          ['frustrated', 'excited', 'scared', 'overconfident', 'too damn much'].forEach((l, j) => { const at = B.protect + 1 + j * 1.1, k = seg(t, at, at + 1.2), bo = k > 0.6 ? (k - 0.6) / 0.4 : 0, x = lerp(860, 1270, Math.min(1, k / 0.6)) - bo * 200, y = 320 + j * 90 - bo * 60; if (k > 0 && k < 1) o += fade(b * (1 - bo), pill(x, y, l, '#E2556F', 1, 26)); });
+        }
+      }
+      if (p3 > 0) {
+        o += fade(p3, `<rect x="760" y="640" width="1000" height="40" rx="10" fill="#8B6A55"/><rect x="900" y="480" width="340" height="170" rx="10" fill="#FFF8E6" stroke="#E6DDD3" stroke-width="4"/>${[0, 1, 2, 3].map(i => `<line x1="930" x2="${f1(930 + 260 * seg(t, B.calm + 1 + i * 0.7, B.calm + 1.6 + i * 0.7))}" y1="${520 + i * 32}" y2="${520 + i * 32}" stroke="#7F77DD" stroke-width="5"/>`).join('')}`);
+        o += fade(p3, you(t, { x: 1460, y: 800, scale: 0.9, flip: true }) + pill(1460, 360, 'calm you', '#2AA594', 1, 30));
+        o += fade(p3 * seg(t, B.outside, B.outside + 0.4), `<rect x="1580" y="200" width="220" height="150" rx="14" fill="#120D1C" opacity=".5"/>${txt(1690, 290, 'trade: closed', 24, '#CFC8FA', { w: 700 })}${txt(1280, 160, 'deciding now, outside the trade', 40, C.dark, { f: 'Playfair Display', it: true, w: 700 })}`);
+        o += fade(seg(t, B.outside + 5, B.outside + 5.6), txt(1280, 960, 'not punishment. protection.', 50, '#2AA594', { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    // Build your rules: pause the video, open the notebook, fill in the blanks.
+    'v15-build': (s, t) => {
+      const B = s.b;
+      let o = grad('bd', '#EEEBFB', '#FDF8F5') + bg('url(#bd)');
+      const head = seg(t, B.r1 - 0.4, B.r1 + 0.2);
+      if (head < 1) {
+        o += fade(1 - head, `<rect x="660" y="260" width="600" height="560" rx="24" fill="#7F77DD"/><rect x="690" y="290" width="540" height="500" rx="12" fill="#FFF8E6"/>${txt(960, 470, '✍🏽', 110, C.dark)}${txt(960, 620, 'pause the video', 44, '#7F77DD', { f: 'Playfair Display', it: true })}${txt(960, 180, 'grab your journal · notes app', 46, C.dark, { f: 'Playfair Display', it: true, w: 700 })}`);
+        o += fade((1 - head) * seg(t, B.build, B.build + 0.4), txt(960, 920, 'we’re building your rules', 54, '#2AA594', { f: 'Playfair Display', it: true }));
+      }
+      if (head > 0) {
+        const items = [
+          [B.r1, 'When I experience FOMO…', 'If I miss my planned entry, I don’t chase. I wait for another valid setup.', null],
+          [B.r2, 'After I take a loss…', 'I ______ before evaluating another trade.', ['10 minutes away', 'leave the chart', 'check if the loss was valid']],
+          [B.r3, 'When I’m having a winning day…', 'I don’t increase size unless my scaling rules say so.', null],
+          [B.r4, 'When I’m afraid to take a setup…', 'I check my criteria and risk, not whether it “will win”.', null],
+          [B.r5, 'When I’m in profit…', 'I manage according to ______.', ['partials', 'breakeven rule', 'base hits']],
+          [B.r6, 'My daily stopping conditions…', 'max trades · max loss · profit protection · mental stop', null],
+          [B.r7, 'If I break a major rule…', 'I ______.', ['done for the day', 'document it', 'review before next session']],
+          [B.r8, 'When I feel like I “need” money…', 'My financial needs don’t decide whether a setup exists.', null],
+        ];
+        let cur = 0; items.forEach(([at], i) => { if (t > at - 0.3) cur = i; });
+        // the index of all eight on the left
+        o += fade(head, `<rect x="100" y="150" width="640" height="830" rx="24" fill="#fff"/>${txt(420, 215, 'MY PSYCHOLOGY RULES', 30, '#7F77DD', { ls: 4 })}`);
+        items.forEach(([at, h], i) => { const y = 280 + i * 85; o += fade(head * seg(t, at - 0.3, at), `${txt(140, y + 10, h, 26, i === cur ? '#7F77DD' : C.dark, { a: 'start', w: i === cur ? 900 : 700 })}`) + (i < cur ? check(700, y, head * 1, '#2AA594', 18) : ''); });
+        // the focus card
+        const [at, h, rule, opts] = items[cur], k = seg(t, at - 0.3, at + 0.3);
+        o += fade(head * k, `<rect x="820" y="230" width="1000" height="${opts ? 560 : 420}" rx="36" fill="#fff" stroke="#7F77DD" stroke-width="6"/>${txt(1320, 320, h, 42, '#7F77DD', { f: 'Playfair Display', it: true })}`);
+        const words = rule.split(' '), lines = []; let ln = '';
+        words.forEach(w => { if ((ln + ' ' + w).length > 34) { lines.push(ln); ln = w; } else ln = ln ? ln + ' ' + w : w; }); lines.push(ln);
+        lines.forEach((l, j) => { o += fade(head * k, txt(1320, 420 + j * 62, l, 44, C.dark, { w: 800 })); });
+        if (opts) {
+          const blink = Math.sin(t * 6) > 0 ? 1 : 0.2;
+          o += fade(head * k * blink, `<rect x="1060" y="${400 + lines.length * 62}" width="4" height="40" fill="#7F77DD"/>`);
+          opts.forEach((p, j) => { o += pill(1000 + j * 330 + (j === 2 ? 20 : 0), 660 + (lines.length - 1) * 20, p, '#B8B3C9', head * pop(t, at + 2 + j * 0.5, 0.4), 26); });
+          o += fade(head * seg(t, at + 1.5, at + 2), txt(1320, 740 + (lines.length - 1) * 20, 'fill in your own', 30, C.muted, { w: 700 }));
+        }
+        o += fade(head * seg(t, B.r8 + 3, B.r8 + 3.6), txt(1320, 900, 'your emergency manual', 48, '#2AA594', { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    // The big rule. Feelings arrive as messages. They don't press the button. Full circle.
+    'v15-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('r15', '#EEEBFB', '#DDF1EE') + bg('url(#r15)');
+      o += txt(960, 120, '🧠 YOUR RULE', 32, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 230, pop(t, s.start + 0.4, 0.8), txt(960, 215, 'I don’t rely on how I feel to decide how I trade.', 52, C.dark, { f: 'Playfair Display' }) + txt(960, 285, 'I rely on the rules I created when I was thinking clearly.', 46, '#2AA594', { f: 'Playfair Display' }));
+      const fin = seg(t, B.line - 0.3, B.line + 0.3), a = 1 - fin;
+      if (a > 0) {
+        o += fade(a * seg(t, B.e0, B.e0 + 0.4), `<rect x="200" y="380" width="740" height="560" rx="30" fill="#fff"/>${txt(570, 450, 'INBOX: INFORMATION', 30, '#7F77DD', { ls: 4 })}`);
+        [[B.e1, 'I’m frustrated'], [B.e2, 'I’m scared'], [B.e3, 'I’m getting overconfident']].forEach(([at, l], j) => { const k = ease(seg(t, at, at + 0.5)); o += fade(a * k, `<rect x="240" y="${f1(500 + j * 130 - (1 - k) * 40)}" width="660" height="100" rx="20" fill="#F3F0FF"/>${txt(290, 562 + j * 130 - (1 - k) * 40, '📩  ' + l, 36, C.dark, { a: 'start', w: 700 })}`); });
+        const lock = seg(t, B.e4, B.e4 + 0.5);
+        o += fade(a * seg(t, B.e0 + 1, B.e0 + 1.5), `<rect x="1080" y="480" width="640" height="300" rx="150" fill="${lock > 0.5 ? '#2C1810' : '#E2556F'}"/>${txt(1400, 650, 'DECIDE', 60, '#fff', { ls: 8 })}`);
+        o += fade(a * lock, `${txt(1400, 860, 'emotions don’t press this button', 38, '#E2556F', { w: 800 })}${txt(1400, 920, 'my rules do', 44, '#2AA594', { f: 'Playfair Display', it: true })}`);
+      }
+      if (fin > 0) {
+        o += fade(fin, pill(960, 470, 'remember where we started: lesson 1', '#7F77DD', 1, 32));
+        o += fade(seg(t, B.line + 1.5, B.line + 2.1), txt(960, 640, 'my emotions are information,', 70, C.dark, { f: 'Playfair Display', it: true }) + txt(960, 750, 'not instructions.', 80, '#2AA594', { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    // The Psychology Check-In: five questions. Improvement = felt it, didn't act on it.
+    'v15-checkin': (s, t) => {
+      const B = s.b;
+      let o = bg('#1A1424');
+      const p2 = seg(t, B.notnever - 0.3, B.notnever + 0.3), p3 = seg(t, B.w1 - 0.4, B.w1 + 0.2);
+      const a = 1 - p2;
+      if (a > 0) {
+        o += fade(a, txt(960, 170, '✍🏽 your psychology check-in', 52, '#fff', { f: 'Playfair Display', it: true }));
+        ['What emotion causes me the most problems?', 'What behavior usually follows it?', 'What situations trigger it most?', 'What rule will interrupt that pattern?', 'How will I know I’m improving?'].forEach((l, j) => {
+          const y = 300 + j * 140, at = B.five + 0.8 + j * 0.7;
+          o += fade(a * seg(t, at, at + 0.4), `<rect x="260" y="${y - 55}" width="1400" height="110" rx="24" fill="${j === 4 ? '#3A2F55' : '#2A2142'}" stroke="${j === 4 ? '#F9D89A' : 'none'}" stroke-width="4"/><circle cx="330" cy="${y}" r="34" fill="#7F77DD"/>${txt(330, y + 13, String(j + 1), 36, '#fff')}${txt(400, y + 13, l, 40, '#fff', { a: 'start', w: 700 })}`);
+        });
+      }
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        o += fade(b, `<rect x="200" y="300" width="700" height="360" rx="40" fill="#2A2142"/>${txt(550, 400, 'improvement isn’t…', 34, '#CFC8FA', { w: 700 })}${txt(550, 500, '“I never feel FOMO again”', 44, '#CFC8FA', { f: 'Playfair Display', it: true })}`) + cross(550, 590, b * pop(t, B.notnever + 2, 0.4), '#E2556F', 34);
+        o += fade(b * seg(t, B.felt, B.felt + 0.4), `<rect x="1020" y="300" width="700" height="360" rx="40" fill="#1E3A36" stroke="#2AA594" stroke-width="6"/>${txt(1370, 400, 'maybe it’s…', 34, '#7ECFC0', { w: 700 })}${txt(1370, 500, '“I felt FOMO and didn’t chase”', 44, '#fff', { f: 'Playfair Display', it: true })}`) + check(1370, 590, b * pop(t, B.felt + 2, 0.4), '#2AA594', 34);
+        o += fade(b * seg(t, B.growth, B.growth + 0.4), txt(960, 800, 'that’s growth.', 70, '#2AA594', { f: 'Playfair Display', it: true }));
+      }
+      if (p3 > 0) {
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(p3)}"/>`;
+        const story = (x, y, at, beats, col) => beats.forEach((l, j) => { o += fade(p3 * seg(t, at + j * 1.3, at + j * 1.3 + 0.4), `<rect x="${x + j * 290 - 130}" y="${y - 50}" width="260" height="100" rx="20" fill="${j === beats.length - 1 ? col : '#fff'}" stroke="${col}" stroke-width="4"/>${txt(x + j * 290, y + 10, l, 24, j === beats.length - 1 ? '#fff' : C.dark, { w: 800 })}`) + (j < beats.length - 1 ? fade(p3 * seg(t, at + j * 1.3 + 0.6, at + j * 1.3 + 1), txt(x + j * 290 + 145, y + 14, '›', 40, C.muted)) : ''); });
+        story(330, 360, B.w1, ['frustrated', 'stepped away', 'came back', 'setup there?', 'took it ✓'], '#2AA594');
+        story(330, 600, B.w2, ['up $500', 'urge to keep going', 'recognized it', 'closed TradingView ✓'], '#7F77DD');
+        o += fade(seg(t, B.dev, B.dev + 0.5), txt(960, 860, 'THAT is psychological development.', 64, C.dark, { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    // Close out: catch yourself sooner. "Wait." You have a rule. Know yourself. Execute. Self-aware.
+    'v15-close': (s, t) => {
+      const B = s.b;
+      let o = grad('cl', '#FDF8F5', '#F3E3D6') + bg('url(#cl)');
+      const p2 = seg(t, B.recog - 0.3, B.recog + 0.3), p3 = seg(t, B.skills - 0.4, B.skills + 0.2), p4 = seg(t, B.beside - 0.4, B.beside + 0.2), fin = seg(t, B.last - 0.3, B.last + 0.3);
+      const a = 1 - p2;
+      if (a > 0) {
+        o += fade(a, you(t, { x: 960, y: 960, scale: 1.3 }));
+        o += fade(a * seg(t, B.never, B.never + 0.4), txt(960, 220, 'you’ll still get emotional', 54, C.dark, { f: 'Playfair Display', it: true }));
+        o += fade(a * seg(t, B.human, B.human + 0.4), txt(960, 310, 'human · trading money · you’ll feel things', 38, C.muted, { w: 700 }));
+        o += fade(a * seg(t, B.sooner, B.sooner + 0.4), pill(960, 420, 'the difference: catching it sooner', '#2AA594', 1, 36));
+      }
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        o += fade(b, you(t, { x: 960, y: 960, scale: 1.3, frontArm: t > B.rule ? { a1: -100, a2: -60 } : undefined }));
+        [[B.w1, 'I’m chasing.', 420, 260], [B.w2, 'trying to make my money back.', 1500, 260], [B.w3, 'I’m overtrading.', 380, 480], [B.w4, 'scared because my last trade lost.', 1520, 480], [B.w5, 'overconfident from winning.', 960, 150]].forEach(([at, l, x, y]) => { o += fade(b * (1 - seg(t, B.rule, B.rule + 0.5) * 0.6), scaleAt(x, y, pop(t, at, 0.5), `<rect x="${x - 270}" y="${y - 60}" width="540" height="120" rx="30" fill="#fff"/>${txt(x, y - 8, 'WAIT.', 32, '#E2556F', { ls: 6 })}${txt(x, y + 36, l, 28, C.dark, { w: 800 })}`)); });
+        o += scaleAt(1240, 700, pop(t, B.rule, 0.6) * b, `<rect x="1140" y="620" width="200" height="160" rx="12" fill="#7F77DD"/><rect x="1155" y="635" width="170" height="130" rx="8" fill="#FFF8E6"/>${txt(1240, 715, 'RULE', 34, '#7F77DD', { ls: 4 })}`);
+        o += fade(b * seg(t, B.trader, B.trader + 0.5), txt(960, 1040, 'that’s the trader we’re building', 40, '#2AA594', { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      const c = p3 * (1 - p4);
+      if (c > 0) {
+        ['structure', 'liquidity', 'higher timeframes', 'ICC setups'].forEach((l, j) => { o += pill(360 + j * 400, 190, l, '#B8B3C9', c * pop(t, B.skills + 1 + j * 0.8, 0.4), 32); });
+        o += fade(c * seg(t, B.yourself, B.yourself + 0.5), `<ellipse cx="960" cy="660" rx="170" ry="220" fill="#E6F5F2" stroke="#8B6A55" stroke-width="16"/>`) + fade(c * seg(t, B.yourself, B.yourself + 0.5), you(t, { x: 960, y: 840, scale: 0.75 }));
+        o += fade(c * seg(t, B.yourself, B.yourself + 0.5), txt(960, 310, 'understand yourself as a trader', 46, C.dark, { f: 'Playfair Display', it: true }));
+        [[B.q1, 'what I trade'], [B.q2, 'what I wait for'], [B.q3, 'how I manage risk'], [B.q4, 'when I lose'], [B.q5, 'when I win'], [B.q6, 'my weaknesses'], [B.q7, 'the rules that ground me']].forEach(([at, l], j) => {
+          const ang = -Math.PI * 0.9 + j * (Math.PI * 1.8 / 6), x = 960 + Math.cos(ang) * 600, y = 680 + Math.sin(ang) * 260;
+          o += pill(x, y, l, j === 6 ? '#2AA594' : '#7F77DD', c * pop(t, at, 0.4), 30);
+        });
+      }
+      if (p4 > 0) {
+        const a2 = 1 - fin;
+        o += fade(p4 * a2, `<rect x="1380" y="560" width="160" height="200" rx="16" fill="#E8D5C4"/><rect x="1380" y="480" width="160" height="100" rx="16" fill="#E8D5C4"/>${txt(1460, 830, 'no one beside you', 30, C.muted, { w: 700 })}`);
+        o += fade(p4 * a2, you(t, { x: 760, y: 840, scale: 1.1 }));
+        [[B.p1, 'a process'], [B.p2, 'you understand it'], [B.p3, 'you’ve tested it'], [B.p4, 'rules around it']].forEach(([at, l], j) => { o += fade(p4 * a2, scaleAt(1060, 820 - j * 110, pop(t, at, 0.5), `<rect x="900" y="${770 - j * 110}" width="320" height="96" rx="16" fill="${['#7F77DD', '#2AA594', '#E2B04A', '#F4829A'][j]}"/>${txt(1060, 830 - j * 110, l, 30, '#fff')}`)); });
+        o += fade(p4 * a2 * seg(t, B.exec, B.exec + 0.5), txt(960, 200, 'now your job is to execute it.', 56, C.dark, { f: 'Playfair Display', it: true }));
+        if (fin > 0) {
+          o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(fin)}"/>`;
+          o += fade(fin, txt(960, 430, 'You don’t need to become', 60, C.muted, { f: 'Playfair Display', it: true }) + txt(960, 520, 'an emotionless trader.', 60, C.muted, { f: 'Playfair Display', it: true }));
+          o += fade(seg(t, B.last + 3, B.last + 3.6), txt(960, 680, 'You need to become', 72, C.dark, { f: 'Playfair Display', it: true }) + txt(960, 790, 'a self-aware one.', 90, '#2AA594', { f: 'Playfair Display', it: true }));
+        }
+      }
+      return o;
+    },
+
     /*@@V@@*/
   };
 
