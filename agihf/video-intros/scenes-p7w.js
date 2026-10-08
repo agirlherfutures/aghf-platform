@@ -1823,6 +1823,277 @@
       return o;
     },
 
+    /* ════ Psychology 14 · Your Trading Routine ════════════════════════ */
+
+    // Still in bed, phone glowing in her face: the 1-minute chart is already moving.
+    'w14-bed': (s, t) => {
+      const B = s.b;
+      let o = wall('w14a', '#3B2F55', '#6A5A8C', 860, '#2A2142');
+      o += windowBox(1400, 140, 380, 340, '#F7B98E', `<circle cx="1590" cy="${f1(420 - 80 * seg(t, s.start, s.end))}" r="60" fill="#FFF1C9"/>`);
+      o += `<rect x="260" y="640" width="1000" height="200" rx="30" fill="#fff"/><rect x="260" y="700" width="1000" height="160" rx="20" fill="#7F77DD"/><rect x="280" y="600" width="220" height="80" rx="34" fill="#fff"/>`;
+      o += `<g transform="rotate(-80 520 640)">${you(t, { x: 520, y: 640, scale: 1.0, frontArm: { a1: -100, a2: -120 } })}</g>`;
+      o += `<ellipse cx="560" cy="520" rx="200" ry="120" fill="#7F77DD" opacity="${f1(0.2 + 0.05 * Math.sin(t * 4))}"/>`;
+      o += phone(640, 500, 1.6, candles(-36, -60, 72, 110, vals(5, 10, 0.01, 0.06, 0.4), 4 + Math.floor(seg(t, B.wake, s.end) * 6)));
+      o += thought(900, 300, 'kinda looks like my setup…', between(t, B.kinda, s.end), { size: 38 });
+      return o;
+    },
+
+    // Juggling: levels, bias, higher timeframe… and she's in a trade before she knows it.
+    'w14-juggle': (s, t) => {
+      const B = s.b;
+      let o = grad('w14b', '#FFF4DE', '#F6E7DA') + bg('url(#w14b)') + `<rect y="880" width="1920" height="200" fill="#E8D5C4"/>`;
+      const items = [['📏', '#E2B04A'], ['🧭', '#7F77DD'], ['🔭', '#2AA594'], ['⏱️', '#F4829A']];
+      items.forEach(([e, col], j) => { const a = (t - B.scramble) * 3.2 + j * Math.PI / 2, x = 960 + Math.cos(a) * 220, y = 380 - Math.abs(Math.sin(a)) * 220; if (t > B.scramble + j * 0.6) o += `<circle cx="${f1(x)}" cy="${f1(y)}" r="56" fill="${col}"/>${txt(x, y + 18, e, 46, '#fff')}`; });
+      const fall = seg(t, B.intrade, B.intrade + 1);
+      o += you(t, { x: 960, y: 960, scale: 1.3, frontArm: { a1: -120 + Math.sin(t * 9) * 20, a2: -150 }, backArm: { a1: -60 - Math.sin(t * 9) * 20, a2: -30 }, mood: fall > 0 ? 'sad' : undefined });
+      o += scaleAt(1400, 700, pop(t, B.intrade + 0.3, 0.5), `<rect x="1240" y="640" width="320" height="110" rx="55" fill="#E2556F"/>${txt(1400, 712, 'IN A TRADE', 38, '#fff', { ls: 2 })}`);
+      return o;
+    },
+
+    // An empty planner: three blank lines get a "?" each.
+    'w14-noplan': (s, t) => {
+      const B = s.b;
+      let o = grad('w14c', '#EEEBFB', '#FDF8F5') + bg('url(#w14c)');
+      o += `<rect x="560" y="140" width="800" height="820" rx="20" fill="#fff" stroke="#EADFD8" stroke-width="6"/><rect x="560" y="140" width="800" height="110" rx="20" fill="#7F77DD"/>${txt(960, 215, 'TODAY’S PLAN', 46, '#fff', { ls: 6 })}`;
+      [[B.n1, '📋 plan'], [B.n2, '🛑 max loss'], [B.n3, '🎯 waiting for']].forEach(([at, l], j) => { const y = 360 + j * 170; o += `${txt(640, y, l, 40, C.muted, { a: 'start', w: 800 })}<line x1="640" x2="1280" y1="${y + 50}" y2="${y + 50}" stroke="#EADFD8" stroke-width="4"/>` + fade(seg(t, at, at + 0.4), txt(1220, y + 30, '?', 80, '#E2556F')); });
+      o += fade(seg(t, B.n4, B.n4 + 0.5), pill(960, 880, 'just opened the chart', '#2C1810', 1, 34));
+      return o;
+    },
+
+    // Laptop slams shut; trades get swept into a drawer, never seen again.
+    'w14-drawer': (s, t) => {
+      const B = s.b;
+      let o = wall('w14d', '#F3E7DD', '#EADFD8', 860, '#B78F72');
+      const cl = ease(seg(t, B.close, B.close + 0.6));
+      o += `<rect x="380" y="${f1(500 + 300 * cl)}" width="560" height="${f1(300 * (1 - cl) + 20)}" rx="12" fill="#120D1C" stroke="#3A2F55" stroke-width="8"/><rect x="340" y="820" width="640" height="24" rx="10" fill="#3A2F55"/>` + desk(200, 840, 1000, '#8B6A55');
+      const dr = ease(seg(t, B.close + 0.6, B.close + 1.4)), shut = ease(seg(t, B.close + 3, B.close + 3.6));
+      o += `<rect x="${f1(640 + 200 * dr * (1 - shut))}" y="900" width="420" height="120" rx="10" fill="#A07A5F" stroke="#6A4A35" stroke-width="6"/><rect x="${f1(820 + 200 * dr * (1 - shut))}" y="950" width="60" height="16" rx="8" fill="#6A4A35"/>`;
+      for (let i = 0; i < 5; i++) { const k = ease(seg(t, B.close + 1 + i * 0.3, B.close + 1.6 + i * 0.3)); if (k > 0 && k < 1) o += `<rect x="${f1(lerp(500 + i * 80, 900, k))}" y="${f1(lerp(700, 940, k))}" width="90" height="56" rx="8" fill="${i % 2 ? '#E2556F' : '#2AA594'}"/>`; }
+      o += you(t, { x: 1400, y: 1000, scale: 1.2, flip: true, walking: t > B.close + 3.5 });
+      return o;
+    },
+
+    // Deciding while the river rushes: she tries to build a raft mid-current.
+    'w14-river': (s, t) => {
+      const B = s.b;
+      let o = grad('w14e', '#CDEBF7', '#7FC3E0') + bg('url(#w14e)');
+      for (let j = 0; j < 14; j++) { const x = ((t * 320 + j * 170) % 2200) - 140, y = 300 + (j % 7) * 100; o += `<path d="M${f1(x)},${y} q40,-20 80,0 t80,0" fill="none" stroke="#fff" stroke-width="5" opacity=".6"/>`; }
+      const bob = Math.sin(t * 3) * 14;
+      o += `<g transform="translate(0,${f1(bob)}) rotate(${f1(Math.sin(t * 2) * 6)} 960 680)"><rect x="760" y="660" width="400" height="40" rx="10" fill="#C98B6B"/><rect x="800" y="640" width="60" height="40" rx="8" fill="#C98B6B" transform="rotate(20 830 660)"/></g>`;
+      o += you(t, { x: 960, y: 670 + bob, scale: 1.1, mood: t > B.emo ? 'sad' : undefined, frontArm: { a1: -40 + Math.sin(t * 8) * 20, a2: -60 } });
+      ['risk?', 'size?', 'entry?', 'stop?'].forEach((l, j) => { const a = t * 1.2 + j * 1.6; o += pill(960 + Math.cos(a) * 420, 300 + Math.sin(a) * 120, l, t > B.emo ? '#E2556F' : '#7F77DD', pop(t, B.every + 1 + j * 0.5, 0.4), 30); });
+      return o;
+    },
+
+    // The "aesthetic" morning: 5am, journal, meditate, green juice, books, all crossed out.
+    'w14-juice': (s, t) => {
+      const B = s.b;
+      let o = grad('w14f', '#FFF4DE', '#FDE8ED') + bg('url(#w14f)');
+      [['⏰', '5:00 AM'], ['📓', 'journal'], ['🧘🏾‍♀️', 'meditate'], ['🥤', 'green juice'], ['📚', '3 chapters']].forEach(([e, l], j) => { const x = 330 + j * 315; o += fade(seg(t, B.list + j * 0.8, B.list + j * 0.8 + 0.4), `<circle cx="${x}" cy="480" r="120" fill="#fff"/>${txt(x, 512, e, 90, C.dark)}${txt(x, 650, l, 34, C.muted, { w: 700 })}`); });
+      o += fade(seg(t, B.aesthetic, B.aesthetic + 0.4), txt(960, 200, '✨ the aesthetic routine ✨', 52, C.dark, { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.not, B.not + 0.3), `<line x1="160" x2="1760" y1="480" y2="480" stroke="#E2556F" stroke-width="12"/>${txt(960, 860, 'not that.', 70, '#E2556F', { f: 'Playfair Display', it: true })}`);
+      return o;
+    },
+
+    // A simple three-panel strip: sunrise desk (before), screen (during), notebook + sunset (after).
+    'w14-three': (s, t) => {
+      const B = s.b;
+      let o = bg('#FDF8F5');
+      const p = (x, at, sky, inner, l) => fade(seg(t, at, at + 0.5), `<rect x="${x - 270}" y="200" width="540" height="620" rx="30" fill="${sky}"/>${inner}${txt(x, 900, l, 44, C.dark, { ls: 6 })}`);
+      o += p(380, B.bda, '#FFE3C7', sun(380, 320, 60, t) + `<rect x="250" y="560" width="260" height="190" rx="10" fill="#fff"/>${[0, 1, 2].map(j => `<rect x="280" y="${600 + j * 44}" width="200" height="12" rx="6" fill="#7F77DD"/>`).join('')}`, 'BEFORE');
+      o += p(960, B.bda + 2, '#DDF1EE', `<rect x="760" y="380" width="400" height="260" rx="14" fill="#120D1C"/>${candles(780, 410, 360, 200, [0.3, 0.34, 0.32, 0.42, 0.4, 0.52, 0.6], 7)}`, 'DURING');
+      o += p(1540, B.bda + 4, '#F7B98E', `<circle cx="1540" cy="${f1(380 + 40 * seg(t, B.bda + 4, s.end))}" r="60" fill="#FFD8A8"/><rect x="1410" y="560" width="260" height="190" rx="10" fill="#fff"/>${check(1540, 655, pop(t, B.bda + 5, 0.4), '#2AA594', 40)}`, 'AFTER');
+      return o;
+    },
+
+    // Pre-packed decisions: three labeled jars on a shelf, made in advance.
+    'w14-prepacked': (s, t) => {
+      const B = s.b;
+      let o = wall('w14h', '#FDF8F5', '#F3E7DD', 860, '#C9A27E');
+      o += `<rect x="200" y="620" width="1520" height="30" rx="10" fill="#8B6A55"/>`;
+      [[B.d1, '🛑', 'risk', '#E2556F'], [B.d2, '📏', 'levels', '#E2B04A'], [B.d3, '🎯', 'setup', '#2AA594']].forEach(([at, e, l, col], j) => {
+        const x = 460 + j * 500, k = ease(seg(t, at, at + 0.8));
+        o += `<g transform="translate(0,${f1((1 - k) * -500)})" opacity="${f1(k)}"><rect x="${x - 140}" y="320" width="280" height="300" rx="40" fill="#fff" opacity=".7" stroke="#C9B8A8" stroke-width="8"/><rect x="${x - 120}" y="290" width="240" height="40" rx="12" fill="${col}"/>${txt(x, 500, e, 90, C.dark)}<rect x="${x - 100}" y="540" width="200" height="50" rx="10" fill="${col}"/>${txt(x, 576, l, 30, '#fff', { ls: 2 })}</g>`;
+      });
+      o += you(t, { x: 1700, y: 960, scale: 1.1, flip: true });
+      o += fade(seg(t, B.d1 + 1, B.d1 + 1.5), txt(960, 200, 'decided before the session', 52, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Calm-you writes a letter at dawn; emotional-you opens it at 10:17.
+    'w14-letter': (s, t) => {
+      const B = s.b;
+      let o = grad('w14i', '#FFE7C7', '#FDF8F5') + `<rect width="960" height="1080" fill="url(#w14i)"/>` + grad('w14j', '#3A1420', '#1D0B12') + `<rect x="960" width="960" height="1080" fill="url(#w14j)"/>`;
+      o += txt(480, 160, '8:30 AM', 54, C.dark, { f: 'JetBrains Mono, monospace' }) + txt(1440, 160, '10:17 AM', 54, '#FF8DA3', { f: 'JetBrains Mono, monospace' });
+      o += you(t, { x: 420, y: 980, scale: 1.2, frontArm: { a1: 20, a2: -10 } }) + you(t, { x: 1500, y: 980, scale: 1.2, flip: true, mood: 'sad', frontArm: { a1: -60, a2: -100 } });
+      const fly = ease(seg(t, B.calm + 1, B.calm + 3.5));
+      o += `<g transform="translate(${f1(lerp(600, 1340, fly))},${f1(lerp(700, 620, fly) - Math.sin(fly * Math.PI) * 200)})">${envelope(0, 0, 1)}</g>`;
+      return o;
+    },
+
+    // Split: scramble day vs prepared day.
+    'w14-twodays': (s, t) => {
+      const B = s.b;
+      let o = grad('w14k', '#F3E3D6', '#FBF4EF') + bg('url(#w14k)');
+      o += host(t, { x: 60, y: 360, w: 480, pose: t > B.notright && t < B.figuring ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
+      o += fade(seg(t, B.just, B.just + 0.4), `<rect x="680" y="200" width="560" height="560" rx="30" fill="#fff"/>${txt(960, 270, 'just got on', 34, '#E2556F', { ls: 2 })}${[0, 1, 2, 3, 4, 5].map(i => `<line x1="${720 + (i * 61) % 400}" y1="${330 + (i * 47) % 300}" x2="${1180 - (i * 83) % 400}" y2="${380 + (i * 71) % 300}" stroke="${['#F9D89A', '#7F77DD', '#FF8DA3'][i % 3]}" stroke-width="6"/>`).join('')}${txt(960, 720, '🌀', 60, C.dark)}`);
+      o += fade(seg(t, B.prepared, B.prepared + 0.4), `<rect x="1300" y="200" width="560" height="560" rx="30" fill="#fff" stroke="#2AA594" stroke-width="8"/>${txt(1580, 270, 'top-down done', 34, '#2AA594', { ls: 2 })}<line x1="1340" x2="1820" y1="400" y2="400" stroke="#E2B04A" stroke-width="6" stroke-dasharray="16 10"/><line x1="1340" x2="1820" y1="560" y2="560" stroke="#7F77DD" stroke-width="6" stroke-dasharray="16 10"/>${txt(1580, 720, '🎯', 60, C.dark)}`);
+      o += fade(seg(t, B.figuring, B.figuring + 0.5), pill(1270, 860, 'not figuring it out mid-trade', '#2AA594', 1, 32));
+      return o;
+    },
+
+    // Walking into the room: she looks around (HTF) before sitting at the screen.
+    'w14-room': (s, t) => {
+      const B = s.b;
+      let o = wall('w14l', '#E9E1F5', '#D9CFEA', 880, '#9C8CB8');
+      const zoom = ease(seg(t, B.htf, B.room + 2)), sc = lerp(0.45, 1, zoom);
+      o += `<g transform="translate(960,480) scale(${f1(sc)}) translate(-960,-480)"><rect x="260" y="140" width="1400" height="680" rx="20" fill="#120D1C"/>${candles(300, 180, 1320, 600, vals(71, 40, 0.006, 0.04, 0.3), 40)}</g>`;
+      ['1m', '15m', '1h', 'daily'].forEach((l, j) => { o += pill(660 + j * 200, 960, l, j <= Math.floor(zoom * 3.99) ? '#7F77DD' : '#B8B3C9', 1, 30); });
+      o += you(t, { x: 1720, y: 1000, scale: 1.0, flip: true, frontArm: { a1: -40, a2: -60 } });
+      o += fade(seg(t, B.room, B.room + 0.5), txt(960, 100, 'understand the room first', 50, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // At the door, coat on… she peeks back: "ooh, wait…" and gets pulled back in.
+    'w14-oops': (s, t) => {
+      const B = s.b;
+      let o = wall('w14m', '#3B2F55', '#2A2142', 900, '#1E1730');
+      o += monitor(220, 220, 700, 420, candles(260, 280, 620, 300, vals(3, 18, 0.012, 0.05, 0.4), 18)) + desk(120, 900, 960);
+      o += `<rect x="1460" y="320" width="260" height="580" rx="8" fill="#B27A5A"/><circle cx="1490" cy="620" r="12" fill="#F9D89A"/>`;
+      const back = ease(seg(t, B.back, B.back + 1.5)), x = t < B.ooh ? lerp(900, 1400, ease(seg(t, B.bedone, B.watching + 2))) : lerp(1400, 1100, back);
+      o += you(t, { x, y: 1000, scale: 1.2, flip: t > B.ooh, walking: (t < B.ooh && t > B.bedone) || (back > 0 && back < 1) });
+      o += thought(x + (t > B.ooh ? -60 : 60), 320, '“ooh, wait… this looks good”', between(t, B.ooh, B.back + 1), { size: 36 });
+      o += pill(570, 700, 'a trade we never planned', '#E2556F', pop(t, B.back + 1.5, 0.4), 30);
+      return o;
+    },
+
+    // Packing a suitcase before the trip: HTF, levels, setup, risk, max trades, daily stop.
+    'w14-suitcase': (s, t) => {
+      const B = s.b;
+      let o = grad('w14n', '#E6F5F2', '#FDF8F5') + bg('url(#w14n)') + `<rect y="900" width="1920" height="180" fill="#E8D5C4"/>`;
+      o += `<rect x="560" y="520" width="800" height="380" rx="30" fill="#7F77DD"/><rect x="560" y="520" width="800" height="60" rx="20" fill="#5A4C9A"/><rect x="900" y="470" width="120" height="60" rx="20" fill="none" stroke="#5A4C9A" stroke-width="14"/>`;
+      ['🔭', '📏', '🎯', '🛑', '#', '📅'].forEach((e, j) => { const at = B.before + 0.6 + j * 0.55, k = ease(seg(t, at, at + 0.5)), tx = 640 + (j % 3) * 260, ty = 640 + Math.floor(j / 3) * 120; o += `<g transform="translate(${f1(lerp(tx, tx, k))},${f1(lerp(ty - 400, ty, k))})" opacity="${f1(k)}"><rect x="-90" y="-50" width="180" height="100" rx="16" fill="#fff"/>${txt(0, 18, e, 50, C.dark)}</g>`; });
+      o += you(t, { x: 1560, y: 960, scale: 1.2, flip: true });
+      o += fade(seg(t, B.before, B.before + 0.5), txt(960, 260, 'BEFORE', 70, '#7F77DD', { ls: 10 }));
+      return o;
+    },
+
+    // The mirror check-in: how is she showing up? Mood tags pop around her reflection.
+    'w14-mirror': (s, t) => {
+      const B = s.b;
+      let o = wall('w14o', '#EEEBFB', '#E0DAF2', 900, '#B8B3C9');
+      o += `<ellipse cx="960" cy="500" rx="260" ry="360" fill="#fff" stroke="#C9B8A8" stroke-width="18"/><ellipse cx="960" cy="500" rx="235" ry="335" fill="#E6F5F2"/>`;
+      o += you(t, { x: 960, y: 820, scale: 1.0 });
+      ['😴 tired', '😤 frustrated', '📱 distracted', '💸 desperate', '📉 big loss', '📈 huge win'].forEach((l, j) => { const a = -Math.PI / 2 + j * (Math.PI * 2 / 6), x = 960 + Math.cos(a) * 560, y = 500 + Math.sin(a) * 320; o += pill(x, y, l, '#F4829A', pop(t, B.showing + 0.8 + j * 0.4, 0.4), 30); });
+      o += fade(seg(t, B.showing, B.showing + 0.4), txt(960, 100, 'how am I showing up today?', 52, C.dark, { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.you, B.you + 0.5), pill(960, 1000, 'where YOU are = as important as where price is', '#7F77DD', 1, 30));
+      return o;
+    },
+
+    // A train on rails: during the session, she follows the track she already laid.
+    'w14-train': (s, t) => {
+      const B = s.b;
+      let o = grad('w14p', '#CDEBF7', '#FDF8F5') + bg('url(#w14p)') + `<rect y="780" width="1920" height="300" fill="#B9DDB0"/>`;
+      o += `<rect y="760" width="1920" height="16" fill="#8B6A55"/><rect y="800" width="1920" height="16" fill="#8B6A55"/>${[...Array(24)].map((_, i) => `<rect x="${i * 84}" y="756" width="20" height="64" fill="#6A4A35"/>`).join('')}`;
+      const stops = ['wait', 'confirm', 'risk', 'manage'];
+      stops.forEach((l, j) => { o += `<rect x="${360 + j * 400}" y="560" width="10" height="200" fill="#2C1810"/>` + pill(365 + j * 400, 540, l, '#2AA594', pop(t, B.execute + 0.6 + j * 0.6, 0.4), 30); });
+      const tx = 200 + ((t - s.start) * 120) % 1900;
+      o += `<rect x="${f1(tx - 160)}" y="600" width="320" height="160" rx="40" fill="#7F77DD"/><rect x="${f1(tx - 120)}" y="630" width="90" height="70" rx="10" fill="#E6F5F2"/>${you(t, { x: tx + 60, y: 700, scale: 0.55 })}`;
+      o += fade(seg(t, B.during, B.during + 0.4) * (1 - seg(t, B.execute, B.execute + 0.4)), txt(960, 260, 'no new plans', 56, C.dark, { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.execute, B.execute + 0.4), txt(960, 260, 'run the one you made', 56, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // A smoke alarm: frustration, chasing, sizing up… the alarm is information. Step away.
+    'w14-alarm': (s, t) => {
+      const B = s.b;
+      let o = wall('w14q', '#FDF8F5', '#F3E7DD', 880, '#D9C3B0');
+      const on = t > B.notice + 3, fl = on && Math.sin(t * 10) > 0;
+      o += `<ellipse cx="960" cy="140" rx="160" ry="44" fill="#fff" stroke="#C9B8A8" stroke-width="6"/><circle cx="960" cy="140" r="16" fill="${fl ? '#E2556F' : '#B8B3C9'}"/>`;
+      if (on) for (let j = 0; j < 3; j++) o += `<path d="M${880 - j * 40},${200 + j * 20} q80,40 160,0" fill="none" stroke="#E2556F" stroke-width="5" opacity="${f1(0.6 - j * 0.15)}"/>`;
+      ['😤', '🏃', '🎚️', '💪'].forEach((e, j) => { const p = ((t - B.notice) * 0.4 + j * 0.25) % 1; if (t > B.notice + j * 0.8) o += `<circle cx="${f1(560 + j * 260)}" cy="${f1(700 - p * 420)}" r="${f1(40 + p * 30)}" fill="#B8B3C9" opacity="${f1(0.6 * (1 - p))}"/>${txt(560 + j * 260, 716 - p * 420, e, 40, C.dark, { op: f1(1 - p) })}`; });
+      o += you(t, { x: 1500, y: 1000, scale: 1.2, flip: true, frontArm: on ? { a1: -100, a2: -150 } : undefined });
+      o += fade(seg(t, B.notice + 4, B.notice + 4.6), pill(960, 960, 'that’s information → step away', '#7F77DD', 1, 34));
+      return o;
+    },
+
+    // After: the scoreboard (+$500 / −$300) slides away; the review notebook opens.
+    'w14-review': (s, t) => {
+      const B = s.b;
+      let o = grad('w14r', '#F7B98E', '#FDF8F5') + bg('url(#w14r)') + `<rect y="880" width="1920" height="200" fill="#E8D5C4"/>`;
+      const sl = ease(seg(t, B.after + 0.8, B.after + 1.6));
+      o += `<g transform="translate(0,${f1(-sl * 500)})">${bigNum(700, 260, '+$500', 80, '#2AA594')}${bigNum(1220, 260, '−$300', 80, '#E2556F')}</g>`;
+      o += `<rect x="560" y="320" width="800" height="560" rx="16" fill="#fff"/><line x1="960" x2="960" y1="320" y2="880" stroke="#EADFD8" stroke-width="6"/>`;
+      ['📋', '✅❌', '🛑', '💭', '🔁', '🔧'].forEach((e, j) => { const at = B.after + 1.2 + j * 0.5, x = j < 3 ? 660 : 1060, y = 420 + (j % 3) * 150; o += fade(seg(t, at, at + 0.3), txt(x, y + 18, e, 46, C.dark) + `<rect x="${x + 70}" y="${y}" width="${f1(170 * seg(t, at, at + 0.8))}" height="14" rx="7" fill="#EADFD8"/>`) + check(x + 260, y + 6, pop(t, at + 0.5, 0.4), '#2AA594', 20); });
+      o += fade(seg(t, B.after, B.after + 0.4), txt(960, 200, 'AFTER: the part people skip', 52, C.dark, { f: 'Playfair Display', it: true, op: f1(sl) }));
+      return o;
+    },
+
+    // Leave. Laptop closes, she grabs her bag, heads out into the day.
+    'w14-leave': (s, t) => {
+      const B = s.b;
+      let o = grad('w14s', '#CDEBF7', '#FDF8F5') + bg('url(#w14s)') + `<rect y="880" width="1920" height="200" fill="#B9DDB0"/>`;
+      o += sun(1600, 220, 80, t) + `<rect x="300" y="320" width="360" height="560" rx="10" fill="#B27A5A"/><rect x="320" y="340" width="320" height="540" fill="#FFF3D6"/>`;
+      const out = ease(seg(t, B.leave, B.leave + 2.5));
+      o += you(t, { x: lerp(480, 1300, out), y: 960, scale: 1.2, walking: out > 0 && out < 1, frontArm: { a1: 80, a2: 80 }, hold: `<path d="M-30,0 L30,0 L40,70 L-40,70 Z" fill="#F4829A"/>` });
+      o += fade(seg(t, B.leave, B.leave + 0.3), txt(960, 200, 'Leave.', 110, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // The rule: four stepping stones across the day. Then the line.
+    'w14-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('w14t', '#EEEBFB', '#DDF1EE') + bg('url(#w14t)');
+      o += txt(960, 120, '🧠 YOUR RULE', 30, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 220, pop(t, s.start + 0.4, 0.8), txt(960, 230, 'I follow a process before, during, and after every session.', 52, C.dark, { f: 'Playfair Display' }));
+      const fin = seg(t, B.line - 0.3, B.line + 0.3), a = 1 - fin;
+      [[B.r1, '📋', '#7F77DD'], [B.r2, '▶️', '#2AA594'], [B.r3, '🔍', '#E2B04A'], [B.r4, '🚪', '#F4829A']].forEach(([at, e, col], j) => {
+        const x = 330 + j * 420; o += fade(a, scaleAt(x, 580, pop(t, at, 0.5), `<circle cx="${x}" cy="580" r="140" fill="${col}"/>${txt(x, 616, e, 100, '#fff')}`));
+        if (j < 3) o += fade(a * seg(t, at + 0.5, at + 0.9), txt(x + 210, 600, '→', 60, C.dark));
+      });
+      o += fade(a * seg(t, B.r0, B.r0 + 0.4) * (1 - seg(t, B.r1, B.r1 + 0.3)), txt(960, 580, '“open the chart and see what happens”', 46, C.muted, { f: 'Playfair Display', it: true, w: 700 }) + cross(1420, 540, pop(t, B.r0 + 1.5, 0.4), '#E2556F', 34));
+      if (fin > 0) o += fade(fin, txt(960, 520, 'Discipline gets easier when you stop', 62, C.dark, { f: 'Playfair Display', it: true }) + txt(960, 630, 'making every decision in the moment.', 62, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // A blueprint of her trading day: four rooms. "I open TradingView" is just a door.
+    'w14-blueprint': (s, t) => {
+      const B = s.b;
+      let o = bg('#1E3A5F');
+      for (let x = 0; x < 1920; x += 60) o += `<line x1="${x}" x2="${x}" y1="0" y2="1080" stroke="#2C4C75" stroke-width="2"/>`;
+      for (let y = 0; y < 1080; y += 60) o += `<line x1="0" x2="1920" y1="${y}" y2="${y}" stroke="#2C4C75" stroke-width="2"/>`;
+      o += fade(seg(t, B.open, B.open + 0.4) * (1 - seg(t, B.q1 - 0.3, B.q1)), `<rect x="760" y="380" width="400" height="320" fill="none" stroke="#fff" stroke-width="6"/>${txt(960, 560, '🚪 open TradingView', 34, '#fff', { w: 800 })}${txt(960, 780, '…that’s it?', 44, '#F9D89A', { f: 'Playfair Display', it: true })}`);
+      [[B.q1, 'BEFORE'], [B.q2, 'DURING'], [B.q3, 'ENDING IT'], [B.q4, 'AFTER']].forEach(([at, l], j) => { const x = 220 + j * 380; o += fade(seg(t, at, at + 0.5), `<rect x="${x}" y="300" width="340" height="460" fill="none" stroke="#fff" stroke-width="6" stroke-dasharray="${j === 2 ? '20 14' : '0'}"/>${txt(x + 170, 370, l, 34, '#fff', { ls: 4 })}${txt(x + 170, 560, '?', 100, '#F9D89A')}`); });
+      return o;
+    },
+
+    // Four pillars hold up her trading day; one is cracked. Start there.
+    'w14-weak': (s, t) => {
+      const B = s.b;
+      let o = grad('w14u', '#EEEBFB', '#FDF8F5') + bg('url(#w14u)') + `<rect y="880" width="1920" height="200" fill="#E8D5C4"/>`;
+      const tilt = Math.sin(t * 2) * 2 * seg(t, B.least + 1.5, B.least + 2.5);
+      o += `<g transform="rotate(${f1(tilt)} 960 300)"><rect x="300" y="260" width="1320" height="60" rx="10" fill="#C98B6B"/></g>`;
+      ['before', 'during', 'ending', 'after'].forEach((l, j) => { const x = 420 + j * 360, weak = j === 2, sh = weak ? seg(t, B.least + 1.5, B.least + 2.5) : 0; o += `<rect x="${x - 50}" y="320" width="100" height="560" fill="${weak && sh > 0 ? '#E8C9C9' : '#fff'}" stroke="#C9B8A8" stroke-width="6"/>${weak && sh > 0 ? `<path d="M${x - 20},400 l30,80 l-30,60 l40,90 l-20,80" fill="none" stroke="#E2556F" stroke-width="6"/>` : ''}${txt(x, 940, l, 32, C.dark, { w: 800 })}`; });
+      o += pill(1140, 200, 'start building here', '#E2556F', pop(t, B.weak, 0.5), 34);
+      o += fade(seg(t, B.least, B.least + 0.5) * (1 - seg(t, B.weak, B.weak + 0.4)), txt(960, 180, 'which part has the least structure?', 52, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // The loop: prepare → execute → review → walk away, spinning gently like a wheel.
+    'w14-loop': (s, t) => {
+      const B = s.b;
+      let o = grad('w14v', '#FFE7C7', '#FDF8F5') + bg('url(#w14v)');
+      o += fade(seg(t, B.perfect, B.perfect + 0.4) * (1 - seg(t, B.repeat, B.repeat + 0.4)), `${txt(960, 480, '⏰ 2-hour perfect routine', 54, C.muted, { f: 'Playfair Display', it: true, w: 700 })}<line x1="560" x2="${f1(560 + 800 * seg(t, B.perfect + 2, B.perfect + 2.6))}" y1="462" y2="462" stroke="#E2556F" stroke-width="7"/>`);
+      if (t > B.repeat - 0.3) {
+        const k = seg(t, B.repeat - 0.3, B.repeat + 0.3), rot = (t - B.repeat) * 0.4;
+        o += fade(k, `<circle cx="960" cy="560" r="300" fill="none" stroke="#EADFD8" stroke-width="20"/>`);
+        [['📋', '#7F77DD'], ['▶️', '#2AA594'], ['🔍', '#E2B04A'], ['🚪', '#F4829A']].forEach(([e, col], j) => { const a = rot + j * Math.PI / 2 - Math.PI / 2, x = 960 + Math.cos(a) * 300, y = 560 + Math.sin(a) * 300; o += fade(k, scaleAt(x, y, pop(t, B.pera + j * 0.5, 0.4), `<circle cx="${f1(x)}" cy="${f1(y)}" r="90" fill="${col}"/>${txt(x, y + 30, e, 70, '#fff')}`)); });
+        o += fade(k, you(t, { x: 960, y: 700, scale: 0.8 }));
+      }
+      o += fade(seg(t, B.last + 1, B.last + 1.6), `<rect x="0" y="80" width="1920" height="150" fill="#FDF8F5" opacity=".9"/>${txt(960, 175, 'make discipline the easiest thing to do', 54, '#2AA594', { f: 'Playfair Display', it: true })}`);
+      return o;
+    },
+
     /*@@W@@*/
   };
 

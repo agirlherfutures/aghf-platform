@@ -11,9 +11,13 @@ Price is moving.
 
 You see something that kinda looks like your setup.
 
+## 2
+
 So now you're marking levels while price is moving, trying to figure out your bias, checking the higher timeframe…
 
 and before you know it, you're in a trade.
+
+## 3
 
 There's no real plan.
 
@@ -23,15 +27,19 @@ You don't know what you're waiting for.
 
 You just opened the chart and started trading.
 
+## 4
+
 And then when you're done?
 
 Close TradingView. Walk away. Never look at those trades again.
+
+## 5
 
 If that's your routine, you're asking yourself to make almost every trading decision while the market is actively moving.
 
 And that's exactly when emotions can start getting involved.
 
-## 2
+## 6
 
 When people hear ‘trading routine,’ I think they imagine some super aesthetic morning routine.
 
@@ -39,7 +47,11 @@ Wake up at 5:00 AM. Journal. Meditate. Drink green juice. Read three chapters of
 
 That's not what I'm talking about.
 
+## 7
+
 What do I consistently do before I trade, while I'm trading, and after I'm done?
+
+## 8
 
 If I've already determined my risk before the session, I don't have to decide how much I'm willing to lose while I'm frustrated.
 
@@ -47,9 +59,11 @@ If I've already marked my important levels, I'm not creating levels because I de
 
 If I already know what my setup requires, I don't have to negotiate with myself while price is running.
 
+## 9
+
 Your routine gives calm-you a chance to make decisions for emotional-you.
 
-## 3
+## 10
 
 I've definitely had days where I just got on the chart and started trading.
 
@@ -59,9 +73,13 @@ And the biggest difference isn't that my analysis is guaranteed to be right.
 
 It's that I'm not figuring everything out while I'm also trying to execute.
 
+## 11
+
 For me, I want to know what's happening on my higher timeframes first.
 
 I want to understand the room before I'm trying to take the trade.
+
+## 12
 
 And I've also learned that when I'm done, I need to actually be done.
 
@@ -71,27 +89,37 @@ Because sitting there watching price after you've finished trading can turn into
 
 And now we're back in a trade we never planned on taking.
 
-## 4
+## 13
 
 Before I take a trade, I need to know what I'm walking into.
+
+## 14
 
 How am I showing up today?
 
 Because knowing where YOU are mentally can be just as important as knowing where price is.
 
+## 15
+
 During the session, my job isn't to keep creating new plans.
 
 My job is to execute the one I already made.
 
+## 16
+
 If I notice myself getting frustrated, chasing, increasing size, forcing trades, or doing any of the things we've talked about throughout this section, that's information.
 
+## 17
+
 And this is the part people skip.
+
+## 18
 
 And once you've reviewed it?
 
 Leave.
 
-## 5
+## 19
 
 I don't just open the chart and see what happens.
 
@@ -105,7 +133,7 @@ And then I walk away.
 
 Discipline gets easier when you stop making every decision in the moment.
 
-## 6
+## 20
 
 I want you to think about your current trading routine.
 
@@ -119,9 +147,13 @@ How do I know when my session is over?
 
 And what do I do after I'm finished?
 
+## 21
+
 Which part of my trading day currently has the least structure?
 
 Whatever that weak point is, that's where I want you to start building more structure.
+
+## 22
 
 You don't need some perfect two-hour morning routine to become a disciplined trader.
 
