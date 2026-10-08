@@ -22,6 +22,7 @@
 
 import { wireRetryOptions } from './lesson-engine.js';
 import { saveLessonReflection } from './journal-service.js';
+import { trackAll } from './mind-core.js';
 
 /* ── Aristella (the same drawing as the videos) ───────────────────────── */
 
@@ -120,6 +121,15 @@ export function check(container, chk, helpers, onSolved) {
     </div><div class="lw-feedback"></div>`;
   container.appendChild(box);
   wireRetryOptions(box.querySelectorAll('.v2-chip'), chk.options, box.querySelector('.lw-feedback'), onSolved, helpers.handleStreak);
+  // Phase 7 options can carry `track` (mind counters): her first instinct is what gets remembered.
+  if (chk.options.some((o) => o.track)) {
+    let tracked = false;
+    box.querySelectorAll('.v2-chip').forEach((chip, i) => chip.addEventListener('click', () => {
+      if (tracked) return;
+      tracked = true;
+      trackAll(chk.options[i].track);
+    }));
+  }
 }
 
 /* ── Screens ───────────────────────────────────────────────────────────── */

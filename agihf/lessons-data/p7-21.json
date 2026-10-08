@@ -1,166 +1,178 @@
 {
- "phase": "p7",
- "section": "s19",
- "lessonNumber": 21,
- "title": "When You Break One",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "Investigate. Don’t punish.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Break a rule (it happens), skip the shame spiral, and turn it into an IF / THEN response.",
-  "missionQuestion": "What will I do when this trigger shows up again?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "When You Break One",
-   "title": "It happened",
-   "beats": [
+  "phase": "p7",
+  "section": "s19",
+  "lessonNumber": 21,
+  "title": "When You Break One",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Investigate. Don’t punish.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Break a rule (it happens), skip the shame spiral, and turn it into an IF / THEN response.",
+    "missionQuestion": "What will I do when this trigger shows up again?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "say": [
-      "You missed a winner this morning.",
-      "Then you chased the next one.",
-      "It lost."
-     ]
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 21",
+      "headline": "You broke one. <em>Now what?</em>",
+      "line": "Missed a winner. Chased the next. It lost.",
+      "pose": "think",
+      "cta": "Show me →"
     },
     {
-     "thoughts": [
-      "“I’m SO undisciplined.”",
-      "“What is wrong with me?”",
-      "“I don’t deserve to trade.”"
-     ]
-    },
-    {
-     "say": [
-      "Stop there."
-     ]
-    },
-    {
-     "choice": {
-      "prompt": "What do you do now?",
-      "options": [
-       {
-        "label": "Punish yourself: no trading for a week",
-        "path": {
-         "say": [
-          "Punishment feels like responsibility.",
-          "But it teaches you nothing about <b>next Tuesday at 10:04</b>, when the same trigger shows up."
-         ]
+      "type": "v2_compare",
+      "kicker": "Stop there",
+      "headline": "Investigate. <em>Don’t punish.</em>",
+      "cards": [
+        {
+          "label": "Shame spiral",
+          "sub": "“What is wrong with me?”",
+          "spark": "down",
+          "tag": "PUNISH",
+          "tone": "pink"
         },
-        "track": "feelingAsReason"
-       },
-       {
-        "label": "Ignore it. Tomorrow’s a new day.",
-        "path": {
-         "say": [
-          "Then the trigger stays exactly where it is, waiting for you."
-         ]
-        },
-        "track": "feelingAsReason"
-       },
-       {
-        "label": "Investigate it like a detective",
-        "path": {
-         "say": [
-          "Which rule? What happened right before? What were you trying to get or avoid?",
-          "What will you do <b>next time</b> that trigger shows up?"
-         ]
-        },
-        "track": "ruleBasedResponses"
-       }
-      ]
-     }
+        {
+          "label": "Detective mode",
+          "sub": "Find the trigger. Plan next time.",
+          "spark": "up",
+          "tag": "INVESTIGATE",
+          "tone": "teal"
+        }
+      ],
+      "check": {
+        "prompt": "What do you do now?",
+        "options": [
+          {
+            "label": "No trading for a week",
+            "correct": false,
+            "feedback": "Feels responsible. Teaches nothing about next Tuesday at 10:04.",
+            "track": "feelingAsReason"
+          },
+          {
+            "label": "Ignore it. New day.",
+            "correct": false,
+            "feedback": "Then the trigger stays right where it is, waiting for you.",
+            "track": "feelingAsReason"
+          },
+          {
+            "label": "Investigate like a detective",
+            "correct": true,
+            "feedback": "Yes. A broken rule is a clue, not a verdict.",
+            "track": "ruleBasedResponses"
+          }
+        ]
+      }
     },
     {
-     "principle": "DON’T JUST JOURNAL WHAT YOU DID WRONG. JOURNAL WHAT YOU’LL DO WHEN THE TRIGGER RETURNS."
+      "type": "v2_steps",
+      "kicker": "Detective mode",
+      "headline": "Four questions. <em>Then a plan.</em>",
+      "line": "Tap each one.",
+      "steps": [
+        {
+          "label": "Which rule?",
+          "sub": "Name the one you broke"
+        },
+        {
+          "label": "What came before?",
+          "sub": "The trigger right before you clicked"
+        },
+        {
+          "label": "What did you want?",
+          "sub": "To get something, or avoid it"
+        },
+        {
+          "label": "Next time?",
+          "sub": "IF this trigger, THEN this action"
+        }
+      ],
+      "cta": "Let’s try it →"
+    },
+    {
+      "type": "p7_violation",
+      "kicker": "Your violation review",
+      "title": "You chased.",
+      "scenario": [
+        "You missed the previous winner (no retest).",
+        "Thought: “I can’t miss another.”",
+        "Next move: you market-entered late."
+      ],
+      "thought": "I can’t miss another.",
+      "violationType": "Chase",
+      "behavior": "chase",
+      "steps": {
+        "rule": {
+          "options": [
+            "No-chase rule",
+            "Daily stop",
+            "News rule",
+            "Max trades"
+          ],
+          "correct": "No-chase rule"
+        },
+        "before": {
+          "options": [
+            "Missed a winner",
+            "A big win",
+            "News",
+            "Boredom"
+          ],
+          "correct": "Missed a winner"
+        },
+        "goal": {
+          "options": [
+            "Avoid missing out",
+            "Recover money",
+            "Protect profit",
+            "Avoid a loss"
+          ],
+          "correct": "Avoid missing out"
+        },
+        "action": {
+          "options": [
+            "No market entry after a missed retest",
+            "Enter smaller",
+            "Wait one candle, then enter"
+          ],
+          "correct": "No market entry after a missed retest"
+        }
+      },
+      "ifPrefill": "I miss a winner",
+      "thenPrefill": "screenshot it, mark it MISSED ACCORDING TO PLAN, and wait for a new valid setup",
+      "punch": "Saved. The next time a missed winner shows up, your answer is already written."
+    },
+    {
+      "type": "p7_seen",
+      "kicker": "The electric part ⚡",
+      "source": "trigger",
+      "fallbackLine": "A missed winner often creates an urge to chase the next one.",
+      "punch": "This is what the Academy shows you whenever this trigger comes back."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "A broken rule is data about a trigger. <em>Turn it into a plan, not a punishment.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What will you do the next time <em>your trigger</em> shows up?",
+      "modelAnswer": "I review it: which rule, what happened right before, what I wanted, and IF this trigger happens again THEN what I’ll do. No shame, just a plan."
     }
-   ]
-  },
-  {
-   "type": "p7_violation",
-   "kicker": "Your violation review",
-   "title": "You chased.",
-   "scenario": [
-    "You missed the previous winner (no retest).",
-    "Thought: “I can’t miss another.”",
-    "Next move: you market-entered late."
-   ],
-   "thought": "I can’t miss another.",
-   "violationType": "Chase",
-   "behavior": "chase",
-   "steps": {
-    "rule": {
-     "options": [
-      "No-chase rule",
-      "Daily stop",
-      "News rule",
-      "Max trades"
-     ],
-     "correct": "No-chase rule"
-    },
-    "before": {
-     "options": [
-      "Missed a winner",
-      "A big win",
-      "News",
-      "Boredom"
-     ],
-     "correct": "Missed a winner"
-    },
-    "goal": {
-     "options": [
-      "Avoid missing out",
-      "Recover money",
-      "Protect profit",
-      "Avoid a loss"
-     ],
-     "correct": "Avoid missing out"
-    },
-    "action": {
-     "options": [
-      "No market entry after a missed retest",
-      "Enter smaller",
-      "Wait one candle, then enter"
-     ],
-     "correct": "No market entry after a missed retest"
-    }
-   },
-   "ifPrefill": "I miss a winner",
-   "thenPrefill": "screenshot it, mark it MISSED ACCORDING TO PLAN, and wait for a new valid setup",
-   "punch": "Saved. The next time a missed winner shows up, your answer is already written."
-  },
-  {
-   "type": "p7_seen",
-   "kicker": "The electric part ⚡",
-   "source": "trigger",
-   "fallbackLine": "A missed winner often creates an urge to chase the next one.",
-   "punch": "This is what the Academy shows you whenever this trigger comes back."
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "A broken rule is data about a trigger. <em>Turn it into a plan, not a punishment.</em>",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "What will you do the next time your trigger shows up?",
-   "modelAnswer": "I review it: which rule, what happened right before, what I wanted, and IF this trigger happens again THEN what I’ll do. No shame, just a plan."
-  }
- ],
- "takeaways": [
-  "Investigate, don’t punish.",
-  "Find the trigger.",
-  "Finish with IF / THEN."
- ],
- "remember": "JOURNAL WHAT YOU’LL DO WHEN THE TRIGGER RETURNS."
+  ],
+  "takeaways": [
+    "Investigate, don’t punish.",
+    "Find the trigger.",
+    "Finish with IF / THEN."
+  ],
+  "remember": "JOURNAL WHAT YOU’LL DO WHEN THE TRIGGER RETURNS."
 }
