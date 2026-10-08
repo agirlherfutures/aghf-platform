@@ -3339,6 +3339,324 @@
     },
 
 
+    /* ════ Psychology 6 · Fear of Giving Back Profit ════════════════ */
+
+    // In a trade: the entry arrow, and price starts climbing her way.
+    'w6-entry': (s, t) => {
+      const B = s.b;
+      let o = wall('w6a', '#FFF4DE', '#F6E7DA', 900, '#E8D5C4');
+      const v = [0.4, 0.36, 0.32, 0.3, 0.33, 0.38, 0.45, 0.52, 0.6, 0.66, 0.72, 0.78];
+      const n = Math.floor(6 + 6 * seg(t, B.move, B.move + 3));
+      o += monitor(220, 160, 1060, 600, candles(260, 210, 980, 500, v, n, { slots: 14 })) + desk(120, 860, 1300);
+      o += fade(seg(t, B.good, B.good + 0.4), `<path d="M${f1(260 + 4.5 * 980 / 14)},${f1(210 + 500 * 0.62 + 70)} l0,-50 m-18,18 l18,-18 l18,18" stroke="#F9D89A" stroke-width="8" fill="none" stroke-linecap="round"/>${txt(260 + 4.5 * 980 / 14, 210 + 500 * 0.62 + 110, 'entry', 28, '#F9D89A')}`);
+      o += pill(750, 120, 'IN A TRADE', '#2AA594', pop(t, B.in, 0.5), 30);
+      o += you(t, { x: 1600, y: 1020, scale: 1.25, flip: true });
+      return o;
+    },
+
+    // A giant P&L counter ticks up. Her eyes are glued to it.
+    'w6-ticker': (s, t) => {
+      const B = s.b;
+      let o = grad('w6b', '#2A2142', '#3B2F55') + bg('url(#w6b)');
+      const val = t < B.up + 1.1 ? 100 : t < B.up + 2.2 ? 200 : 300;
+      o += `<rect x="460" y="200" width="900" height="300" rx="30" fill="#120D1C" stroke="#2AA594" stroke-width="8"/>${txt(910, 270, 'P&amp;L', 30, '#9DB4D6', { ls: 6 })}${bigNum(910, 430, '+$' + val, 130, '#2AA594')}`;
+      o += `<rect x="460" y="560" width="900" height="300" rx="20" fill="#120D1C"/>` + candles(500, 590, 820, 240, [0.2, 0.28, 0.36, 0.44, 0.52, 0.6, 0.68, 0.76], Math.floor(3 + 5 * seg(t, B.up, B.up + 2.5)), { slots: 9 });
+      o += you(t, { x: 1620, y: 1020, scale: 1.2, flip: true });
+      o += fade(seg(t, B.watch, B.watch + 0.4), `<path d="M1580,560 L1380,360" stroke="#F9D89A" stroke-width="5" stroke-dasharray="10 10"/>` + txt(1640, 470, '👀', 70, C.dark));
+      return o;
+    },
+
+    // The number slides 300 → 250 → 220, turning amber and dripping. She starts to sweat.
+    'w6-drip': (s, t) => {
+      const B = s.b;
+      let o = grad('w6c', '#2A2142', '#3B2F55') + bg('url(#w6c)');
+      const val = t < B.p250 ? 300 : t < B.p220 ? 250 : 220, col = val === 300 ? '#2AA594' : val === 250 ? '#E2B04A' : '#F08A4B';
+      o += `<rect x="460" y="200" width="900" height="300" rx="30" fill="#120D1C" stroke="${col}" stroke-width="8"/>${txt(910, 270, 'P&amp;L', 30, '#9DB4D6', { ls: 6 })}${bigNum(910, 430, '+$' + val, 130, col)}`;
+      if (t > B.p250) [0, 1, 2].forEach(j => { const ph = ((t - B.p250) * 0.8 + j * 0.33) % 1; o += `<ellipse cx="${760 + j * 160}" cy="${f1(500 + ph * 120)}" rx="12" ry="18" fill="${col}" opacity="${f1(1 - ph)}"/>`; });
+      o += `<rect x="460" y="620" width="900" height="260" rx="20" fill="#120D1C"/>` + candles(500, 640, 820, 220, [0.2, 0.36, 0.52, 0.68, 0.76, 0.66, 0.6, 0.56], Math.floor(5 + 3 * seg(t, B.pull, B.p220 + 1)), { slots: 9 });
+      o += you(t, { x: 1620, y: 1020, scale: 1.2, flip: true, mood: t > B.p250 ? 'sad' : undefined });
+      if (t > B.p250) [0, 1].forEach(j => { o += `<path d="M${1560 + j * 120},${600 + j * 10} q-12,22 0,30 q12,-8 0,-30" fill="#7FB5E6"/>`; });
+      return o;
+    },
+
+    // "Nope." She scoops up the money bag and slams CLOSE.
+    'w6-grab': (s, t) => {
+      const B = s.b;
+      let o = wall('w6d', '#FDE8ED', '#F6E7DA', 900, '#E8D5C4');
+      o += thought(1000, 220, 'Nope. Give me my money. 😂', pop(t, B.nope, 0.5), { size: 44 });
+      const pr = pop(t, B.close, 0.4), down = t > B.close && t < B.close + 0.4 ? 10 : 0;
+      o += scaleAt(1400, 560, pr, `<rect x="1220" y="${490 + down}" width="360" height="150" rx="26" fill="#E2556F"/>${txt(1400, 590 + down, 'CLOSE', 58, '#fff', { ls: 6 })}`);
+      o += scaleAt(1400, 760, pop(t, B.close + 1, 0.5), `<g transform="rotate(-8 1400 760)"><rect x="1210" y="710" width="380" height="100" rx="12" fill="#fff" stroke="#2AA594" stroke-width="6"/>${txt(1400, 778, 'CLOSED +$220', 40, '#2AA594')}</g>`);
+      const hug = t > B.nope + 1;
+      o += you(t, { x: 640, y: 1000, scale: 1.25, frontArm: hug ? { a1: 50, a2: -30 } : undefined });
+      if (hug) o += scaleAt(780, 760, pop(t, B.nope + 1, 0.5), `<path d="M700,680 Q690,640 730,630 L830,630 Q870,640 860,680 Q900,780 860,840 L700,840 Q660,780 700,680 Z" fill="#C98A1F"/><rect x="730" y="620" width="100" height="20" rx="8" fill="#8B6A55"/>${txt(780, 780, '$', 70, '#FFF1A8')}`);
+      return o;
+    },
+
+    // The trade she closed keeps going: straight to her original target. Steam rises.
+    'w6-runs': (s, t) => {
+      const B = s.b;
+      let o = wall('w6e', '#FFF4DE', '#F6E7DA', 900, '#E8D5C4');
+      const v = [0.3, 0.38, 0.46, 0.55, 0.62, 0.56, 0.52, 0.5, 0.58, 0.66, 0.74, 0.82, 0.88, 0.92];
+      const n = 8 + Math.floor(6 * seg(t, B.turn + 0.8, B.turn + 4));
+      const Y = v => 190 + 500 * (1 - v);
+      o += monitor(180, 140, 1060, 600, candles(220, 190, 980, 500, v, n, { slots: 15 }) + `<line x1="220" x2="1200" y1="${f1(Y(0.92))}" y2="${f1(Y(0.92))}" stroke="#2AA594" stroke-width="4" stroke-dasharray="14 10"/>${txt(1140, Y(0.92) - 14, 'TP', 26, '#2AA594')}`);
+      o += `<circle cx="${f1(220 + 7.5 * 980 / 15)}" cy="${f1(Y(0.5))}" r="18" fill="#E2556F"/>${txt(220 + 7.5 * 980 / 15, Y(0.5) + 56, 'you left', 26, '#E2556F')}`;
+      const mad = t > B.mad;
+      o += you(t, { x: 1560, y: 1020, scale: 1.25, flip: true, mood: mad ? 'sad' : undefined, frontArm: mad ? { a1: 80, a2: 60 } : undefined, backArm: mad ? { a1: 100, a2: 120 } : undefined });
+      if (mad) [0, 1, 2].forEach(j => { const ph = ((t - B.mad) * 0.9 + j * 0.33) % 1; o += `<circle cx="${f1(1560 + Math.sin(ph * 7 + j) * 30)}" cy="${f1(560 - ph * 200)}" r="${f1(20 + ph * 26)}" fill="#fff" opacity="${f1(0.8 * (1 - ph))}"/>`; });
+      o += fade(seg(t, B.mad + 0.6, B.mad + 1), txt(1560, 280, '💢', 80, C.dark));
+      return o;
+    },
+
+    // The question, split in two: did the chart change, or did the number make her uneasy?
+    'w6-question': (s, t) => {
+      const B = s.b;
+      let o = grad('w6f', '#EEEBFB', '#FDF8F5') + bg('url(#w6f)');
+      o += txt(960, 170, '?', 120, '#7F77DD', { op: f1(pop(t, B.q, 0.5)) });
+      o += scaleAt(520, 480, pop(t, B.change, 0.5), `<rect x="240" y="300" width="560" height="340" rx="20" fill="#120D1C"/>${candles(270, 330, 500, 270, [0.3, 0.4, 0.5, 0.6, 0.55, 0.52, 0.6, 0.66], 8)}<circle cx="640" cy="420" r="90" fill="#fff" opacity=".15" stroke="#F9D89A" stroke-width="14"/><line x1="705" y1="485" x2="780" y2="560" stroke="#F9D89A" stroke-width="20" stroke-linecap="round"/>`) + fade(seg(t, B.change + 0.5, B.change + 1), txt(520, 710, 'did the trade change?', 40, '#2AA594', { f: 'Playfair Display', it: true }));
+      const v = Math.round(300 - 80 * seg(t, B.change + 3, B.change + 6));
+      o += scaleAt(1400, 480, pop(t, B.change + 2.5, 0.5), `<rect x="1120" y="340" width="560" height="260" rx="26" fill="#120D1C" stroke="#E2B04A" stroke-width="6"/>${bigNum(1400, 510, '+$' + v, 100, '#E2B04A')}`) + fade(seg(t, B.change + 3, B.change + 3.5), txt(1400, 710, 'or did the number shrink?', 40, '#C98A1F', { f: 'Playfair Display', it: true }));
+      o += scaleAt(960, 900, pop(t, B.title + 2.5, 0.6), pill(960, 900, 'the fear of giving back profit', '#7F77DD', 1, 42));
+      return o;
+    },
+
+    // An open toolbox. Out come partials, breakeven, and a base hit, each with a green check.
+    'w6-tools': (s, t) => {
+      const B = s.b;
+      let o = grad('w6g', '#E6F5F2', '#FDF8F5') + bg('url(#w6g)') + `<rect y="900" width="1920" height="180" fill="#E8D5C4"/>`;
+      o += `<rect x="700" y="700" width="520" height="220" rx="16" fill="#E2556F"/><rect x="680" y="680" width="560" height="50" rx="12" fill="#C94560"/><rect x="900" y="640" width="120" height="40" rx="14" fill="none" stroke="#8B2A40" stroke-width="12"/>`;
+      o += pill(960, 170, 'taking profit early ≠ bad trading', '#2AA594', pop(t, B.early, 0.5), 34);
+      const tool = (x, y, at, inner, lbl) => scaleAt(x, y, pop(t, at, 0.6), `<g transform="translate(0,${f1(-40 * Math.sin(t * 2 + x))})">${inner}${txt(x, y + 150, lbl, 34, C.dark)}</g>`) + check(x + 110, y - 90, pop(t, at + 0.8, 0.4), '#2AA594', 30);
+      o += tool(520, 420, B.t1, `<circle cx="520" cy="420" r="110" fill="#F9D89A"/><path d="M520,420 L520,310 A110,110 0 0 1 630,420 Z" fill="#2AA594"/>`, 'partials');
+      o += tool(960, 400, B.t2, `<path d="M960,290 L1060,330 L1050,440 Q1030,500 960,530 Q890,500 870,440 L860,330 Z" fill="#7F77DD"/>${txt(960, 440, 'BE', 60, '#fff')}`, 'breakeven');
+      o += tool(1400, 420, B.t3, `<circle cx="1400" cy="420" r="90" fill="#fff" stroke="#EADFD8" stroke-width="4"/><path d="M1340,370 Q1370,420 1340,470 M1460,370 Q1430,420 1460,470" stroke="#E2556F" stroke-width="6" fill="none"/>`, 'base hits');
+      o += fade(seg(t, B.legit, B.legit + 0.5), txt(960, 1000, 'all legit ways to manage a trade', 44, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Who's driving? First her plan holds the wheel. Then a sweaty, shrinking $ number grabs it.
+    'w6-why': (s, t) => {
+      const B = s.b;
+      let o = grad('w6h', '#CDEBF7', '#FDF8F5') + bg('url(#w6h)') + `<rect y="760" width="1920" height="320" fill="#9AA3B8"/><rect y="890" width="1920" height="14" fill="#fff" opacity=".6"/>`;
+      o += pill(960, 140, 'WHY are you exiting?', '#7F77DD', pop(t, B.why, 0.5), 38);
+      const shake = t > B.watch ? Math.sin(t * 25) * 4 : 0;
+      o += `<g transform="translate(${f1(shake)},0)"><path d="M480,760 L520,560 Q560,460 700,450 L1220,450 Q1360,460 1420,600 L1460,760 Z" fill="#F4829A"/><path d="M620,560 Q640,490 720,485 L930,485 L930,600 L620,600 Z" fill="#E6F5F2"/><path d="M990,485 L1200,485 Q1290,495 1320,600 L990,600 Z" fill="#E6F5F2"/><circle cx="660" cy="780" r="70" fill="#2C1810"/><circle cx="1260" cy="780" r="70" fill="#2C1810"/><circle cx="660" cy="780" r="28" fill="#B8B3C9"/><circle cx="1260" cy="780" r="28" fill="#B8B3C9"/></g>`;
+      const swap = seg(t, B.watch + 1, B.watch + 2);
+      o += fade(1 - swap, `<rect x="1080" y="${f1(500 + swap * 60)}" width="80" height="100" rx="8" fill="#7F77DD"/>${txt(1120, 565 + swap * 60, '📋', 40, '#fff')}`);
+      o += fade(seg(t, B.plan + 1, B.plan + 1.5) * (1 - swap), pill(1120, 380, 'trade management ✓', '#2AA594', 1, 28));
+      const nums = ['$400', '$350', '$300', '$275'], k = Math.min(3, Math.floor(Math.max(0, t - B.watch - 1) / 1.6));
+      o += fade(swap, `<circle cx="1120" cy="545" r="58" fill="#E2B04A"/>${txt(1120, 560, nums[k], 30, '#fff')}<path d="M1085,520 q-6,14 0,20 q6,-6 0,-20" fill="#7FB5E6"/>`);
+      o += fade(seg(t, B.decide, B.decide + 0.5), txt(960, 1010, 'what’s actually making the decision?', 44, '#fff', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Unrealized profit floats above the chart as see-through coins. She sticks a MINE flag in them.
+    'w6-claim': (s, t) => {
+      const B = s.b;
+      let o = wall('w6i', '#FFF4DE', '#F6E7DA', 900, '#E8D5C4');
+      o += `<rect x="760" y="380" width="960" height="420" rx="20" fill="#120D1C"/>` + candles(800, 420, 880, 340, [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.78], 7, { slots: 8 });
+      const solid = seg(t, B.feel, B.feel + 1.5);
+      [[1460, 330], [1540, 290], [1620, 330], [1500, 250], [1580, 230]].forEach(([x, y], j) => { o += fade(seg(t, s.start + 0.5 + j * 0.3, s.start + 0.9 + j * 0.3), `<g opacity="${f1(0.45 + 0.55 * solid)}">${coin(x, y + Math.sin(t * 2 + j) * 8, 40)}</g>${solid < 1 ? `<circle cx="${x}" cy="${f1(y + Math.sin(t * 2 + j) * 8)}" r="44" fill="none" stroke="#F9D89A" stroke-width="3" stroke-dasharray="6 6"/>` : ''}`); });
+      o += fade(seg(t, B.psych, B.psych + 0.4) * (1 - solid), txt(1240, 340, 'unrealized', 34, '#C98A1F', { f: 'Playfair Display', it: true }));
+      o += scaleAt(1540, 230, pop(t, B.claim + 1, 0.5), `<line x1="1540" y1="290" x2="1540" y2="150" stroke="#2C1810" stroke-width="8"/><path d="M1540,150 L1680,175 L1540,200 Z" fill="#F4829A"/>${txt(1600, 186, 'MINE', 22, '#fff')}`);
+      o += you(t, { x: 440, y: 1000, scale: 1.25, frontArm: t > B.claim ? { a1: -30, a2: -50 } : undefined });
+      o += fade(seg(t, B.claim + 2, B.claim + 2.5), txt(480, 300, 'already claimed it', 44, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Two views of the same pullback: on the chart a gentle dip; in her head a leaking piggy jar.
+    'w6-leak': (s, t) => {
+      const B = s.b;
+      let o = grad('w6j', '#FDF8F5', '#F3E3D6') + bg('url(#w6j)');
+      o += scaleAt(520, 480, pop(t, B.pull, 0.5), `<rect x="200" y="280" width="640" height="400" rx="20" fill="#120D1C"/>${candles(230, 310, 580, 330, [0.2, 0.32, 0.44, 0.56, 0.68, 0.62, 0.58, 0.66, 0.74], 9)}`) + fade(seg(t, B.pull + 0.5, B.pull + 1), txt(520, 750, 'the chart: a pullback', 40, '#2AA594', { f: 'Playfair Display', it: true }));
+      const lk = seg(t, B.losing, s.end);
+      o += scaleAt(1400, 480, pop(t, B.losing, 0.5), `<path d="M1240,300 L1560,300 L1580,640 Q1580,700 1520,700 L1280,700 Q1220,700 1220,640 Z" fill="#E6F5F2" stroke="#9DB4D6" stroke-width="8"/><rect x="1230" y="${f1(380 + 260 * lk)}" width="340" height="${f1(310 - 260 * lk)}" rx="10" fill="#2AA594" opacity=".7"/>${txt(1400, 360, 'MY $', 40, '#5A4C7A')}<path d="M1560,560 l20,10 l-10,14 l18,10" stroke="#5A4C7A" stroke-width="5" fill="none"/>`);
+      if (t > B.losing + 0.5) [0, 1, 2].forEach(j => { const ph = ((t - B.losing) * 0.7 + j * 0.33) % 1; o += `<g opacity="${f1(1 - ph)}">${coin(1600 + ph * 60, 590 + ph * 260, 22)}</g>`; });
+      o += fade(seg(t, B.losing + 0.6, B.losing + 1.1), txt(1400, 780, 'the feeling: losing MY money', 40, '#E2556F', { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.uncomf, B.uncomf + 0.5), pill(960, 940, 'that’s why it’s so uncomfortable', '#7F77DD', 1, 34));
+      return o;
+    },
+
+    // Dayli: a scoreboard of base hits, each one a little green, and a happy face.
+    'w6-basehits': (s, t) => {
+      const B = s.b;
+      let o = grad('w6k', '#F3E3D6', '#FBF4EF') + bg('url(#w6k)');
+      o += host(t, { x: 80, y: 340, w: 500, pose: t > B.days ? 'idle' : 'think', talk: true, enterAt: s.start + 0.1 });
+      o += `<rect x="760" y="200" width="1000" height="440" rx="24" fill="#1F3B2E"/><rect x="780" y="220" width="960" height="400" rx="16" fill="none" stroke="#F9D89A" stroke-width="4"/>${txt(1260, 290, 'TODAY', 34, '#F9D89A', { ls: 8 })}`;
+      [0, 1, 2, 3].forEach(j => { const x = 880 + j * 230, at = B.days + j * 1.2; o += fade(seg(t, at, at + 0.4), `<rect x="${x - 90}" y="340" width="180" height="230" rx="14" fill="#2A4F3E"/>${txt(x, 430, '1B', 54, '#fff')}${bigNum(x, 520, '+$', 44, '#7FE0C8')}`); });
+      o += scaleAt(1260, 760, pop(t, B.days + 6, 0.5), pill(1260, 760, 'happy with that 😊', '#2AA594', 1, 36));
+      return o;
+    },
+
+    // The FULL TP trophy gets crossed out. What matters: a reason tag on the exit door.
+    'w6-know': (s, t) => {
+      const B = s.b;
+      let o = wall('w6l', '#EEEBFB', '#E0DAF2', 900, '#B8B3C9');
+      o += check(400, 200, pop(t, B.nothing, 0.5), '#2AA594', 40) + fade(seg(t, B.nothing, B.nothing + 0.4), txt(460, 214, 'nothing wrong with base hits', 40, '#2AA594', { a: 'start', f: 'Playfair Display', it: true }));
+      o += scaleAt(560, 560, pop(t, B.full, 0.5), `<path d="M460,420 L660,420 L640,560 Q560,620 480,560 Z" fill="#F9D89A" stroke="#C98A1F" stroke-width="6"/><rect x="530" y="590" width="60" height="70" fill="#C98A1F"/><rect x="480" y="660" width="160" height="30" rx="8" fill="#8B6A55"/>${txt(560, 520, 'FULL TP', 30, '#7A4E0F')}${txt(560, 760, 'every. single. time.', 30, C.muted, { f: 'Playfair Display', it: true })}`) + cross(680, 420, pop(t, B.full + 2.5, 0.4), '#E2556F', 40);
+      o += `<rect x="1260" y="320" width="300" height="560" rx="10" fill="#8B6A55"/><rect x="1280" y="340" width="260" height="540" fill="#C98B6B"/><circle cx="1500" cy="620" r="14" fill="#F9D89A"/>${txt(1410, 300, 'EXIT', 36, '#E2556F', { ls: 6 })}`;
+      o += scaleAt(1410, 470, pop(t, B.why, 0.5), `<rect x="1290" y="430" width="240" height="90" rx="12" fill="#fff" stroke="#7F77DD" stroke-width="6"/>${txt(1410, 488, 'WHY?', 44, '#7F77DD')}`);
+      const w = seg(t, B.why + 0.5, B.why + 2.5);
+      o += you(t, { x: lerp(960, 1160, w), y: 1000, scale: 1.2, walking: w > 0 && w < 1, frontArm: { a1: 30, a2: -20 }, hold: `<rect x="0" y="-30" width="90" height="60" rx="8" fill="#FFF8E6" stroke="#2AA594" stroke-width="4"/><path d="M20,0 l15,14 l30,-28" stroke="#2AA594" stroke-width="7" fill="none"/>` });
+      return o;
+    },
+
+    // She out, price to target, "should've held it". Then a giant rear-view mirror: hindsight.
+    'w6-hindsight': (s, t) => {
+      const B = s.b;
+      let o = wall('w6m', '#FFF4DE', '#F6E7DA', 900, '#E8D5C4');
+      const v = [0.3, 0.38, 0.46, 0.55, 0.62, 0.56, 0.52, 0.58, 0.66, 0.74, 0.82, 0.9];
+      const ob = seg(t, B.obvious, B.obvious + 0.6);
+      o += `<rect x="200" y="200" width="900" height="520" rx="20" fill="#120D1C"/>` + candles(240, 240, 820, 440, v, 12, { slots: 13 }) + `<line x1="240" x2="1060" y1="${f1(240 + 440 * 0.1)}" y2="${f1(240 + 440 * 0.1)}" stroke="#2AA594" stroke-width="4" stroke-dasharray="14 10"/><circle cx="${f1(240 + 6.5 * 820 / 13)}" cy="${f1(240 + 440 * 0.48)}" r="16" fill="#E2556F"/>`;
+      if (ob > 0) o += fade(ob, `<path d="M${f1(240 + 6.5 * 820 / 13)},${f1(240 + 440 * 0.48)} Q800,500 1040,${f1(240 + 440 * 0.1)}" stroke="#F9D89A" stroke-width="10" fill="none" stroke-dasharray="20 12"/><rect x="200" y="200" width="900" height="520" rx="20" fill="#F9D89A" opacity=".08"/>`) + fade(ob, pill(650, 790, 'hindsight: everything looks obvious', '#C98A1F', 1, 32));
+      o += you(t, { x: 1500, y: 1020, scale: 1.25, flip: true, mood: t > B.held + 3 ? 'sad' : undefined });
+      o += thought(1440, 300, 'Damn, I should’ve held it 😩', pop(t, B.held + 4, 0.5) * (1 - seg(t, B.obvious + 1.5, B.obvious + 2)), { size: 40 });
+      return o;
+    },
+
+    // A balance: "what price did after" weighs nothing; "did I follow my plan?" weighs it all.
+    'w6-judge': (s, t) => {
+      const B = s.b;
+      let o = grad('w6n', '#EEEBFB', '#FDF8F5') + bg('url(#w6n)');
+      const tilt = ease(seg(t, B.follow, B.follow + 1.2)) * 14;
+      o += `<rect x="940" y="300" width="40" height="560" fill="#8B6A55"/><rect x="820" y="850" width="280" height="40" rx="10" fill="#8B6A55"/><circle cx="960" cy="300" r="26" fill="#C98A1F"/>`;
+      const ang = tilt * Math.PI / 180, L = 480, lx = 960 - L * Math.cos(ang), ly = 300 - L * Math.sin(ang), rx = 960 + L * Math.cos(ang), ry = 300 + L * Math.sin(ang);
+      o += `<line x1="${f1(lx)}" y1="${f1(ly)}" x2="${f1(rx)}" y2="${f1(ry)}" stroke="#C98A1F" stroke-width="16" stroke-linecap="round"/>`;
+      const pan = (x, y, inner) => `<path d="M${f1(x - 140)},${f1(y + 200)} L${f1(x)},${f1(y)} L${f1(x + 140)},${f1(y + 200)}" fill="none" stroke="#C98A1F" stroke-width="4"/><path d="M${f1(x - 170)},${f1(y + 200)} Q${f1(x)},${f1(y + 280)} ${f1(x + 170)},${f1(y + 200)} Z" fill="#E2B04A"/>${inner}`;
+      o += pan(lx, ly, fade(seg(t, B.after, B.after + 0.5), `<rect x="${f1(lx - 100)}" y="${f1(ly + 80)}" width="200" height="120" rx="12" fill="#120D1C"/>${candles(lx - 90, ly + 90, 180, 100, [0.2, 0.4, 0.6, 0.8], 4)}`) + fade(seg(t, B.after + 1, B.after + 1.5), txt(lx, ly + 340, 'what price did after', 34, C.muted, { f: 'Playfair Display', it: true })));
+      o += pan(rx, ry, fade(seg(t, B.follow, B.follow + 0.5), `<rect x="${f1(rx - 70)}" y="${f1(ry + 60)}" width="140" height="150" rx="10" fill="#7F77DD"/>${txt(rx, ry + 160, '📋', 60, '#fff')}`) + fade(seg(t, B.follow + 0.5, B.follow + 1), txt(rx, ry + 340, 'did I follow my plan?', 38, '#2AA594', { f: 'Playfair Display', it: true })));
+      o += cross(lx + 120, ly + 60, pop(t, B.after + 3, 0.4), '#E2556F', 28) + check(rx + 120, ry + 40, pop(t, B.follow + 1.5, 0.4), '#2AA594', 32);
+      return o;
+    },
+
+    // Two cards. Planned exit + price ran: still right. Panic close + reversal: still not a system.
+    'w6-vice': (s, t) => {
+      const B = s.b;
+      let o = grad('w6o', '#FDF8F5', '#E6F5F2') + bg('url(#w6o)');
+      const card = (x, at, title, v, n, good, verdict, vAt) => scaleAt(x, 480, pop(t, at, 0.5), `<rect x="${x - 380}" y="200" width="760" height="600" rx="24" fill="#fff" stroke="#EADFD8" stroke-width="4"/>${txt(x, 270, title, 38, C.dark)}<rect x="${x - 320}" y="310" width="640" height="300" rx="14" fill="#120D1C"/>${candles(x - 300, 330, 600, 260, v, n, { slots: v.length })}<circle cx="${f1(x - 300 + 4.5 * 600 / v.length)}" cy="${f1(330 + 260 * (1 - v[4]))}" r="14" fill="#F9D89A"/>`) + (t > vAt ? (good ? check(x, 690, pop(t, vAt, 0.4), '#2AA594', 40) : cross(x, 690, pop(t, vAt, 0.4), '#E2556F', 40)) + fade(seg(t, vAt, vAt + 0.4), txt(x, 770, verdict, 32, good ? '#2AA594' : '#E2556F', { w: 700 })) : '');
+      const up = [0.3, 0.4, 0.5, 0.58, 0.62, 0.7, 0.78, 0.86, 0.92], dn = [0.3, 0.4, 0.5, 0.58, 0.62, 0.55, 0.45, 0.35, 0.25];
+      o += card(520, B.ran, 'planned base hit ⚾', up, 5 + Math.floor(4 * seg(t, B.ran + 1, B.ran + 3)), true, 'exit still right', B.notwrong + 0.5);
+      o += card(1400, B.panic, 'panic close 😱', dn, 5 + Math.floor(4 * seg(t, B.panic + 2, B.panic + 4)), false, 'still not a system', B.panic + 5);
+      o += fade(seg(t, B.vice, B.vice + 0.4), txt(960, 500, '⇄', 80, '#7F77DD'));
+      o += fade(seg(t, B.panic + 6, B.panic + 6.5), txt(960, 900, 'outcome ≠ execution', 54, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // $0 on the screen: calm. +$500 on the screen: not calm. So the plan gets written first.
+    'w6-before': (s, t) => {
+      const B = s.b;
+      let o = wall('w6p', '#FFF4DE', '#F6E7DA', 900, '#E8D5C4');
+      const nb = seg(t, B.decide, B.decide + 0.8);
+      o += fade(1 - nb, `<rect x="240" y="200" width="560" height="300" rx="24" fill="#120D1C"/>${bigNum(520, 390, '$0', 120, '#B8B3C9')}` + you(t, { x: 520, y: 980, scale: 1.0 }) + fade(seg(t, B.feels, B.feels + 0.4), `<rect x="1120" y="200" width="560" height="300" rx="24" fill="#120D1C" stroke="#2AA594" stroke-width="6"/>${bigNum(1400, 390, '+$500', 110, '#2AA594')}` + you(t, { x: 1400, y: 980, scale: 1.0, mood: 'sad' }) + `<path d="M1450,600 q-12,22 0,30 q12,-8 0,-30" fill="#7FB5E6"/><path d="M1350,610 q-12,22 0,30 q12,-8 0,-30" fill="#7FB5E6"/>`));
+      o += fade(seg(t, B.before, B.before + 0.5) * (1 - nb), txt(960, 140, 'before you’re staring at green money', 44, C.dark, { f: 'Playfair Display', it: true }));
+      if (nb > 0) o += scaleAt(960, 520, ease(nb), `<rect x="560" y="200" width="800" height="640" rx="20" fill="#7F77DD"/><rect x="590" y="230" width="740" height="580" rx="10" fill="#FFF8E6"/>${txt(960, 340, 'MY MANAGEMENT PLAN', 40, '#7F77DD', { ls: 4 })}${txt(960, 420, 'written before the trade', 32, C.muted, { f: 'Playfair Display', it: true, w: 700 })}${[0, 1, 2, 3].map(j => `<rect x="660" y="${500 + j * 70}" width="${520 + (j % 2) * 60}" height="18" rx="9" fill="#CECBF6"/>`).join('')}`);
+      return o;
+    },
+
+    // The plan, row by row: partials, breakeven, base hit, weakening, full TP.
+    'w6-plan': (s, t) => {
+      const B = s.b;
+      let o = grad('w6q', '#EEEBFB', '#FDF8F5') + bg('url(#w6q)');
+      o += `<rect x="300" y="110" width="1320" height="880" rx="24" fill="#fff" stroke="#7F77DD" stroke-width="8"/>${txt(960, 190, 'MY MANAGEMENT PLAN', 36, '#7F77DD', { ls: 6 })}`;
+      [['🍰', 'When do I take partials?'], ['🛡️', 'When do I move to breakeven?'], ['⚾', 'What condition lets me secure a base hit?'], ['📉', 'What tells me the trade is weakening?'], ['🏁', 'When will I hold for full TP?']].forEach(([e, l], j) => {
+        const at = B['q' + (j + 1)], y = 300 + j * 145;
+        o += fade(seg(t, at - 0.2, at + 0.3), txt(420, y + 20, e, 56, C.dark) + txt(500, y + 16, l, 42, C.dark, { a: 'start', w: 700 }) + `<line x1="500" x2="1500" y1="${y + 60}" y2="${y + 60}" stroke="#EADFD8" stroke-width="3"/>`) + check(1530, y, pop(t, at + 1, 0.4), '#2AA594', 26);
+      });
+      return o;
+    },
+
+    // Two signals. A structure break on the chart: a reason. A jittery, sweating P&L: not one.
+    'w6-reason': (s, t) => {
+      const B = s.b;
+      let o = grad('w6r', '#FDF8F5', '#F3E3D6') + bg('url(#w6r)');
+      o += fade(seg(t, B.change, B.change + 0.5) * (1 - seg(t, B.price, B.price + 0.3)), txt(960, 500, 'new information is allowed 📰', 54, C.dark, { f: 'Playfair Display', it: true }));
+      o += scaleAt(520, 470, pop(t, B.price, 0.5), `<rect x="220" y="240" width="600" height="420" rx="20" fill="#120D1C"/>${candles(250, 270, 540, 360, [0.3, 0.45, 0.6, 0.75, 0.7, 0.66, 0.5, 0.36], 8)}<line x1="250" x2="790" y1="${f1(270 + 360 * 0.4)}" y2="${f1(270 + 360 * 0.4)}" stroke="#F9D89A" stroke-width="4" stroke-dasharray="12 8"/>${txt(720, 270 + 360 * 0.4 - 12, 'structure', 22, '#F9D89A')}`) + fade(seg(t, B.price + 0.5, B.price + 1), txt(520, 740, '“price gave me a reason”', 40, '#2AA594', { f: 'Playfair Display', it: true }));
+      const j = t > B.pnl ? Math.sin(t * 28) * 6 : 0;
+      o += scaleAt(1400, 470, pop(t, B.pnl, 0.5), `<g transform="translate(${f1(j)},0)"><rect x="1120" y="320" width="560" height="260" rx="26" fill="#120D1C" stroke="#E2B04A" stroke-width="6"/>${bigNum(1400, 490, '+$' + (280 + Math.round(Math.sin(t * 9) * 40)), 100, '#E2B04A')}</g><path d="M1680,330 q-12,22 0,30 q12,-8 0,-30" fill="#7FB5E6"/>`) + fade(seg(t, B.pnl + 0.5, B.pnl + 1), txt(1400, 740, '“the P&amp;L made me nervous”', 40, '#E2556F', { f: 'Playfair Display', it: true }));
+      o += check(800, 260, pop(t, B.pnl + 1.5, 0.4), '#2AA594', 36) + cross(1660, 300, pop(t, B.pnl + 2, 0.4), '#E2556F', 36);
+      return o;
+    },
+
+    // She covers the P&L box with a sticky note. The chart takes over the screen.
+    'w6-cover': (s, t) => {
+      const B = s.b;
+      let o = wall('w6s', '#2A2142', '#3B2F55', 900, '#1E1730');
+      o += monitor(220, 140, 1100, 620, candles(260, 260, 1020, 460, [0.2, 0.32, 0.44, 0.4, 0.5, 0.62, 0.58, 0.66, 0.74, 0.7], 10)) + desk(120, 880, 1360);
+      o += `<rect x="1030" y="170" width="260" height="90" rx="12" fill="#2A2142"/>${bigNum(1160, 232, '+$' + (t < B.valid ? 347 + Math.round(Math.sin(t * 7) * 25) : 347), 44, '#E2B04A')}`;
+      o += sticky(1160, 215, 'watch the chart 👀', pop(t, B.stop + 3, 0.5), -4);
+      o += fade(seg(t, B.chart, B.chart + 0.4), `<line x1="260" x2="1280" y1="${f1(260 + 460 * 0.58)}" y2="${f1(260 + 460 * 0.58)}" stroke="#2AA594" stroke-width="4" stroke-dasharray="12 8"/>`) + fade(seg(t, B.valid + 1, B.valid + 1.5), pill(770, 820, 'trade still valid ✓', '#2AA594', 1, 32));
+      o += you(t, { x: 1600, y: 1020, scale: 1.25, flip: true, frontArm: t > B.stop + 2 && t < B.stop + 4 ? { a1: -20, a2: -40 } : undefined });
+      return o;
+    },
+
+    // YOUR RULE: base hit, partials, breakeven, hold. Each one because the plan says so.
+    'w6-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('w6t', '#EEEBFB', '#DDF1EE') + bg('url(#w6t)');
+      o += txt(960, 120, '🧠 YOUR RULE', 30, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 220, pop(t, s.start + 0.4, 0.8), txt(960, 240, 'I manage the trade by my plan, not my P&amp;L.', 64, C.dark, { f: 'Playfair Display' }));
+      const fin = seg(t, B.line - 0.3, B.line + 0.3), a = 1 - fin;
+      [[B.r1, '⚾', 'base hit'], [B.r2, '🍰', 'partials'], [B.r3, '🛡️', 'breakeven'], [B.r4, '⏳', 'hold']].forEach(([at, e, l], j) => {
+        const x = 330 + j * 420;
+        o += fade(a, scaleAt(x, 580, pop(t, at, 0.4), `<circle cx="${x}" cy="580" r="120" fill="#fff" stroke="#2AA594" stroke-width="8"/>${txt(x, 612, e, 80, C.dark)}${txt(x, 760, l, 34, C.dark)}${txt(x, 806, 'when the plan says', 24, C.muted, { w: 700 })}`) + check(x + 90, 490, pop(t, at + 1, 0.4), '#2AA594', 28));
+      });
+      if (fin > 0) o += fade(fin, txt(960, 540, 'Profit protection should be a strategy,', 58, C.dark, { f: 'Playfair Display', it: true }) + txt(960, 660, 'not a panic response.', 66, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Journal: "Why did I exit when I exited?" Four honest options.
+    'w6-reflect': (s, t) => {
+      const B = s.b;
+      let o = wall('w6u', '#FFF4DE', '#F6E7DA', 900, '#C98B6B');
+      o += `<rect x="220" y="140" width="1100" height="760" rx="20" fill="#7F77DD"/><rect x="250" y="170" width="1040" height="700" rx="10" fill="#FFF8E6"/>`;
+      o += txt(770, 250, '✍🏽 Trader Reflection', 30, '#7F77DD', { ls: 4 });
+      o += fade(seg(t, B.last, B.last + 0.5), txt(770, 320, 'the last trade I closed early…', 36, C.muted, { f: 'Playfair Display', it: true, w: 700 }));
+      o += fade(seg(t, B.tp, B.tp + 0.4) * (1 - seg(t, B.why - 0.4, B.why)), txt(770, 420, '“did it hit TP?”', 44, '#B8B3C9', { f: 'Playfair Display', it: true }) + cross(1010, 400, pop(t, B.tp + 1.5, 0.4), '#E2556F', 26));
+      o += fade(seg(t, B.why, B.why + 0.4), txt(770, 420, 'Why did I exit when I exited?', 46, C.dark, { f: 'Playfair Display' }));
+      ['🏗️ a structural reason', '❌ my idea was invalidated', '📋 securing profit was the plan', '😱 “give me my money!”'].forEach((l, j) => {
+        const at = B['a' + (j + 1)], y = 520 + j * 80;
+        o += fade(seg(t, at - 0.2, at + 0.2), `<rect x="340" y="${y - 30}" width="40" height="40" rx="8" fill="#fff" stroke="#7F77DD" stroke-width="4"/>` + txt(410, y + 2, l, 36, C.dark, { a: 'start', w: 700 }));
+      });
+      o += you(t, { x: 1600, y: 1000, scale: 1.2, flip: true, frontArm: { a1: 60, a2: -60 }, hold: `<rect x="0" y="-8" width="90" height="14" rx="6" fill="#E2B04A"/>` });
+      return o;
+    },
+
+    // Plan, or a pulse line of feelings? She looks from one to the other.
+    'w6-ask': (s, t) => {
+      const B = s.b;
+      let o = grad('w6v', '#EEEBFB', '#FDF8F5') + bg('url(#w6v)') + `<rect y="900" width="1920" height="180" fill="#E8D5C4"/>`;
+      o += scaleAt(480, 480, pop(t, B.ask, 0.5), `<rect x="320" y="260" width="320" height="420" rx="16" fill="#C98B6B"/><rect x="345" y="300" width="270" height="360" rx="8" fill="#fff"/><rect x="420" y="240" width="120" height="44" rx="12" fill="#8B6A55"/>${[0, 1, 2, 3].map(j => `<rect x="375" y="${350 + j * 70}" width="210" height="16" rx="8" fill="#CECBF6"/>`).join('')}`) + fade(seg(t, B.plan + 0.5, B.plan + 1), txt(480, 760, 'a management plan', 40, '#7F77DD', { f: 'Playfair Display', it: true }));
+      let d = 'M1180,480'; for (let i = 0; i < 18; i++) { const x = 1180 + i * 30, y = 480 + (i % 4 === 2 ? -120 * Math.sin(t * 3 + i) : i % 4 === 3 ? 90 : 0); d += ` L${x},${f1(y)}`; }
+      o += scaleAt(1450, 480, pop(t, B.plan + 4, 0.5), `<rect x="1140" y="300" width="620" height="360" rx="20" fill="#120D1C"/><path d="${d}" stroke="#F4829A" stroke-width="6" fill="none"/>${txt(1450, 360, '+$ 💗', 40, '#F4829A')}`) + fade(seg(t, B.plan + 4.5, B.plan + 5), txt(1450, 760, 'or how I feel in profit?', 40, '#E2556F', { f: 'Playfair Display', it: true }));
+      o += you(t, { x: 960, y: 1000, scale: 1.15, flip: t > B.plan + 4 });
+      return o;
+    },
+
+    // She doesn't have to swing for the fences every time; she just has to know why she's leaving.
+    'w6-close': (s, t) => {
+      const B = s.b;
+      let o = grad('w6w', '#CDEBF7', '#FDF8F5') + bg('url(#w6w)') + `<rect y="820" width="1920" height="260" fill="#B9DDB0"/>`;
+      o += fade(seg(t, B.hold, B.hold + 0.4), txt(960, 170, 'hold every trade to full TP', 44, '#B8B3C9', { f: 'Playfair Display', it: true }) + `<line x1="660" x2="1260" y1="158" y2="158" stroke="#E2556F" stroke-width="6" opacity="${f1(seg(t, B.hold + 2.5, B.hold + 3))}"/>`);
+      o += fade(seg(t, B.why, B.why + 0.5), txt(960, 270, 'understand why you’re exiting', 54, '#2AA594', { f: 'Playfair Display', it: true }));
+      o += you(t, { x: 760, y: 900, scale: 1.2 });
+      o += scaleAt(1200, 620, pop(t, B.notprob, 0.6), coin(1200, 620, 90)) + check(1300, 540, pop(t, B.notprob + 0.8, 0.4), '#2AA594', 36) + fade(seg(t, B.notprob + 0.6, B.notprob + 1), txt(1220, 770, 'taking profit isn’t the problem', 34, C.dark, { w: 700 }));
+      return o;
+    },
+
+    // Last frame: sunrise, her plan in hand.
+    'w6-end': (s, t) => {
+      const B = s.b;
+      const k = seg(t, s.start, s.end);
+      let o = grad('w6x', '#FDE8ED', '#FFE7C7') + bg('url(#w6x)') + `<rect y="820" width="1920" height="260" fill="#B9DDB0"/>`;
+      o += `<circle cx="960" cy="${f1(820 - 240 * ease(k))}" r="200" fill="#F9D89A" opacity=".9"/>`;
+      o += you(t, { x: 960, y: 900, scale: 1.2, frontArm: { a1: 40, a2: -30 }, hold: `<rect x="-10" y="-50" width="70" height="90" rx="6" fill="#7F77DD"/>` });
+      o += fade(seg(t, B.last + 0.3, B.last + 0.9), txt(960, 160, 'Breaking your plan out of fear', 56, C.dark, { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.last + 3, B.last + 3.6), txt(960, 260, 'is what we’re working on.', 64, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+
     /*@@W@@*/
   };
 
