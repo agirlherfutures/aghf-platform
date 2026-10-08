@@ -1545,6 +1545,284 @@
       return o;
     },
 
+    /* ════ Psychology 13 · Building Confidence Through Data ════════════ */
+
+    // The setup glows. Three green checks. Her hand hovers over BUY… and stops.
+    'w13-freeze': (s, t) => {
+      const B = s.b;
+      let o = wall('w13a', '#2A2142', '#3B2F55', 900, '#1E1730');
+      const glow = 0.5 + 0.5 * Math.sin(t * 3);
+      o += monitor(300, 180, 820, 460, candles(340, 240, 740, 360, [0.3, 0.32, 0.28, 0.34, 0.31, 0.38, 0.36, 0.44, 0.42, 0.5], Math.floor(4 + seg(t, B.appears - 2, B.appears + 1) * 6), { slots: 12 }) + `<rect x="300" y="180" width="820" height="460" rx="14" fill="none" stroke="#2AA594" stroke-width="${f1(4 + 6 * glow * seg(t, B.appears, B.appears + 0.5))}"/>`);
+      ['✓', '✓', '✓'].forEach((c, j) => { o += check(420 + j * 120, 700, pop(t, B.checks + j * 1, 0.4), '#2AA594', 30); });
+      o += desk(160, 900, 1600);
+      o += pill(900, 830, 'BUY', '#2AA594', 1, 40);
+      const hov = t > B.stare ? Math.sin(t * 4) * 10 : 0;
+      o += you(t, { x: 1340, y: 1080, scale: 1.3, flip: true, frontArm: t > B.stare ? { a1: -175, a2: -178 + hov * 0.3 } : { a1: 160, a2: 150 } });
+      o += thought(1360, 330, 'I don’t know…', between(t, B.idk, B.whatif - 0.1), { size: 44 });
+      o += thought(1360, 330, 'what if it doesn’t work?', between(t, B.whatif, s.end), { size: 38 });
+      return o;
+    },
+
+    // The stall: the setup walks away while she checks Discord, adds lines, flips timeframes.
+    'w13-stall': (s, t) => {
+      const B = s.b, beats = [B.h1, B.h2, B.h3, B.h4, B.h5], i = sceneOf(t, beats);
+      let o = wall('w13b', '#2A2142', '#3B2F55', 900, '#1E1730');
+      const n = 10 + Math.floor(seg(t, B.h2, s.end) * 8);
+      o += monitor(300, 180, 820, 460, candles(340, 240, 740, 360, [0.3, 0.32, 0.28, 0.34, 0.31, 0.38, 0.36, 0.44, 0.42, 0.5, 0.58, 0.66, 0.72, 0.78, 0.84, 0.88, 0.9, 0.94], n, { slots: 18 }));
+      if (i >= 2) for (let j = 0; j < 4; j++) o += fade(seg(t, B.h3 + j * 0.4, B.h3 + j * 0.4 + 0.3), `<path d="M340,${520 - j * 50} ${[...Array(18)].map((_, x) => `L${340 + x * 42},${f1(520 - j * 50 + 16 * Math.sin(x * 0.9 + j * 2))}`).join(' ')}" fill="none" stroke="${['#F9D89A', '#7ECFC0', '#FF8DA3', '#CFC8FA'][j]}" stroke-width="4"/>`);
+      if (i === 3) o += `<rect x="1220" y="160" width="540" height="300" rx="20" fill="#36393F"/><rect x="1220" y="160" width="540" height="56" rx="20" fill="#5865F2"/>${txt(1260, 198, '# chat', 28, '#fff', { a: 'start' })}${txt(1260, 270, 'you: thoughts??', 28, '#fff', { a: 'start', w: 700 })}${txt(1260, 330, '…typing', 28, '#B9BBBE', { a: 'start', w: 700 })}${txt(1260, 390, '🤷', 34, '#fff', { a: 'start' })}`;
+      if (i === 4) ['1m', '5m', '15m', '1h', '4h'].forEach((l, j) => { o += pill(420 + j * 120, 680, l, j === Math.floor(t * 3) % 5 ? '#7F77DD' : '#3A2F55', 1, 26); });
+      o += desk(160, 900, 1600) + you(t, { x: 1500, y: 1080, scale: 1.3, flip: true, mood: 'sad', frontArm: i === 3 ? { a1: -110, a2: -150 } : { a1: 160, a2: 150 }, hold: i === 3 ? `<rect x="-24" y="-60" width="48" height="84" rx="10" fill="#2C1810"/>` : '' });
+      o += pill(800, 130, ['hesitate', 'skip', '+1 confirmation', 'ask Discord', 'another timeframe'][i], '#F9D89A', pop(t, beats[i], 0.4), 30, '#2C1810');
+      return o;
+    },
+
+    // A rope bridge. Does she trust it to hold her? What has she done to test it?
+    'w13-bridge': (s, t) => {
+      const B = s.b;
+      let o = grad('w13c', '#CDEBF7', '#FDF8F5') + bg('url(#w13c)');
+      o += `<path d="M0,620 L520,620 L520,1080 L0,1080 Z" fill="#9C7458"/><path d="M1400,620 L1920,620 L1920,1080 L1400,1080 Z" fill="#9C7458"/><rect x="520" y="900" width="880" height="180" fill="#7FC3E0"/>`;
+      const sag = 40 + 6 * Math.sin(t * 2);
+      o += `<path d="M520,610 Q960,${f1(610 + sag * 2)} 1400,610" fill="none" stroke="#8B6A55" stroke-width="10"/><path d="M520,520 Q960,${f1(520 + sag * 2)} 1400,520" fill="none" stroke="#8B6A55" stroke-width="6"/>`;
+      for (let x = 560; x < 1400; x += 60) { const y = 610 + sag * 2 * (1 - Math.pow((x - 960) / 440, 2)); o += `<rect x="${x - 22}" y="${f1(y - 8)}" width="44" height="16" rx="4" fill="#C98B6B"/><line x1="${x}" y1="${f1(y)}" x2="${x}" y2="${f1(y - 90)}" stroke="#8B6A55" stroke-width="3"/>`; }
+      o += you(t, { x: 440, y: 620, scale: 1.0, mood: t > B.trust ? 'sad' : undefined, frontArm: t > B.reason ? { a1: -10, a2: 0 } : undefined });
+      o += thought(560, 300, 'will it hold me?', between(t, B.trust, B.reason - 0.1), { size: 40 });
+      o += fade(seg(t, B.reason + 1, B.reason + 1.6), `${txt(960, 220, 'did you ever test it?', 56, C.dark, { f: 'Playfair Display', it: true })}`);
+      return o;
+    },
+
+    // Bricks stack into a wall labeled CONFIDENCE.
+    'w13-bricks': (s, t) => {
+      const B = s.b;
+      let o = grad('w13d', '#FFF4DE', '#FDF8F5') + bg('url(#w13d)') + `<rect y="860" width="1920" height="220" fill="#E8D5C4"/>`;
+      for (let i = 0; i < 24; i++) { const row = Math.floor(i / 6), col = i % 6, k = ease(seg(t, B.build + 0.5 + i * 0.18, B.build + 0.9 + i * 0.18)); const x = 600 + col * 120 + (row % 2) * 60, y = 800 - row * 70; o += `<rect x="${f1(x)}" y="${f1(y - (1 - k) * 400)}" width="112" height="62" rx="8" fill="${['#2AA594', '#7F77DD', '#E2B04A', '#F4829A'][row]}" opacity="${f1(k)}"/>`; }
+      o += you(t, { x: 380, y: 920, scale: 1.2, frontArm: { a1: -30, a2: -40 } });
+      o += fade(seg(t, B.build + 4.5, B.build + 5), txt(1020, 450, 'built.', 90, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // A crystal ball says WIN. It cracks. Nobody knows the next trade.
+    'w13-ball': (s, t) => {
+      const B = s.b;
+      let o = grad('w13e', '#2B2752', '#5B4E9A') + bg('url(#w13e)');
+      const crack = seg(t, B.not, B.not + 0.6);
+      o += `<ellipse cx="960" cy="860" rx="200" ry="40" fill="#1E1834"/><rect x="820" y="780" width="280" height="90" rx="20" fill="#8B6A55"/><circle cx="960" cy="560" r="240" fill="#CFC8FA" opacity=".55"/><circle cx="900" cy="490" r="60" fill="#fff" opacity=".4"/>`;
+      o += fade((1 - crack) * seg(t, B.know, B.know + 0.6), txt(960, 590, 'WIN', 110, '#fff', { op: f1(0.6 + 0.4 * Math.sin(t * 4)) }));
+      if (crack > 0) o += `<path d="M960,320 l-40,90 l60,50 l-50,110 l70,70 l-30,120" fill="none" stroke="#fff" stroke-width="8" opacity="${f1(crack)}"/>`;
+      o += fade(seg(t, B.next, B.next + 0.6), txt(960, 590, '?', 200, '#fff', { f: 'Playfair Display' }));
+      o += you(t, { x: 360, y: 1000, scale: 1.2, frontArm: { a1: -20, a2: -30 } });
+      return o;
+    },
+
+    // A recipe card she's written herself, items checking off. A pot of results simmering.
+    'w13-recipe': (s, t) => {
+      const B = s.b;
+      let o = wall('w13f', '#FFF4DE', '#F6E7DA', 860, '#C98B6B');
+      o += `<rect x="260" y="160" width="620" height="760" rx="16" fill="#fff" stroke="#EADFD8" stroke-width="6"/>${txt(570, 240, 'MY SETUP', 40, '#7F77DD', { ls: 6 })}`;
+      ['👀', '🧪', '📓', '✅', '❌', '📉', '📊'].forEach((e, j) => { const at = [B.c1, B.c2, B.c3, B.c4, B.c5, B.c6, B.c7][j], y = 320 + j * 85; o += fade(seg(t, at, at + 0.4), txt(330, y + 16, e, 44, C.dark) + `<rect x="400" y="${y}" width="${f1(380 * seg(t, at, at + 0.8))}" height="14" rx="7" fill="#EADFD8"/>`) + check(830, y + 6, pop(t, at + 0.4, 0.4), '#2AA594', 22); });
+      o += `<rect x="1180" y="620" width="380" height="240" rx="30" fill="#3A2F55"/><ellipse cx="1370" cy="620" rx="190" ry="36" fill="#5A4C7A"/>`;
+      for (let j = 0; j < 3; j++) { const p = (t * 0.5 + j / 3) % 1; o += `<path d="M${1300 + j * 60},${f1(590 - p * 120)} q12,-18 0,-36" stroke="#fff" stroke-width="6" fill="none" opacity="${f1(Math.sin(p * Math.PI) * 0.6)}"/>`; }
+      o += you(t, { x: 1600, y: 960, scale: 1.1, flip: true });
+      return o;
+    },
+
+    // Five trades. A yo-yo between "amazing" and "this doesn't work".
+    'w13-yoyo': (s, t) => {
+      const B = s.b;
+      let o = grad('w13g', '#F4C2CE', '#FDE8ED') + bg('url(#w13g)');
+      const ph = t < B.win ? 0 : t < B.loss ? 1 : -1;
+      const yy = 560 + (ph === 1 ? -220 : ph === -1 ? 220 : 160 * Math.sin(t * 3));
+      o += `<line x1="960" y1="0" x2="960" y2="${f1(yy)}" stroke="#2C1810" stroke-width="4"/><circle cx="960" cy="${f1(yy)}" r="70" fill="${ph === -1 ? '#E2556F' : '#2AA594'}"/>`;
+      [1, -1, 1, 1, -1].forEach((r, i) => { o += pill(360 + i * 300, 980, r > 0 ? 'W' : 'L', r > 0 ? '#2AA594' : '#E2556F', pop(t, B.five + 0.5 + i * 0.4, 0.3), 34); });
+      o += you(t, { x: 1500, y: 900, scale: 1.1, flip: true, mood: ph === -1 ? 'sad' : undefined, frontArm: ph === 1 ? { a1: -160, a2: -170 } : undefined });
+      o += thought(1500, 280, ph === 1 ? 'AMAZING!' : 'this doesn’t work!', ph ? 1 : 0, { size: 44 });
+      return o;
+    },
+
+    // A jar of 100 marbles. One marble rolls out; the jar barely notices.
+    'w13-jar': (s, t) => {
+      const B = s.b;
+      let o = wall('w13h', '#E6F5F2', '#DDF1EE', 860, '#9DBFB9');
+      o += `<rect x="700" y="260" width="520" height="600" rx="70" fill="#fff" opacity=".5" stroke="#B8C8D6" stroke-width="10"/><rect x="740" y="220" width="440" height="60" rx="16" fill="#8B6A55"/>`;
+      for (let i = 0; i < 100; i++) { const x = 750 + (i % 10) * 44, y = 820 - Math.floor(i / 10) * 44; o += `<circle cx="${x + 20}" cy="${y}" r="18" fill="${((i * 37) % 100) < 43 ? '#2AA594' : '#E2556F'}"/>`; }
+      const r = seg(t, B.weight + 0.5, B.weight + 2.5);
+      o += `<circle cx="${f1(1240 + r * 400)}" cy="${f1(840)}" r="18" fill="#E2556F"/>`;
+      o += you(t, { x: 380, y: 960, scale: 1.2 });
+      o += fade(seg(t, B.weight + 2, B.weight + 2.6), txt(960, 160, 'one trade. not the whole jar.', 52, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Dayli at her desk with a stack of old charts, running the numbers. The win-rate gauge settles at 43%.
+    'w13-desk': (s, t) => {
+      const B = s.b;
+      let o = grad('w13i', '#F3E3D6', '#FBF4EF') + bg('url(#w13i)');
+      o += host(t, { x: 80, y: 340, w: 500, pose: t > B.ninety ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
+      for (let i = 0; i < 6; i++) o += `<rect x="${760 + i * 14}" y="${700 - i * 18}" width="300" height="200" rx="10" fill="#120D1C" stroke="#3A2F55" stroke-width="4"/>`;
+      const v = t < B.ninety ? 0.9 : 0.9 - 0.47 * ease(seg(t, B.ninety + 1, B.ninety + 3)), ang = Math.PI * (1 - v);
+      o += `<path d="M1220,620 A300,300 0 0 1 1820,620" fill="none" stroke="#fff" stroke-width="60"/><path d="M1220,620 A300,300 0 0 1 ${f1(1520 + 300 * Math.cos(ang))},${f1(620 - 300 * Math.sin(ang))}" fill="none" stroke="#7F77DD" stroke-width="60"/>${bigNum(1520, 600, Math.round(v * 100) + '%', 90, C.dark)}`;
+      o += fade(seg(t, B.need, B.need + 0.5), pill(1520, 720, 'and that’s okay', '#2AA594', 1, 32));
+      return o;
+    },
+
+    // Seesaw: small green wins outweigh lots of little red losses.
+    'w13-seesaw': (s, t) => {
+      const B = s.b;
+      let o = grad('w13j', '#CDEBF7', '#FDF8F5') + bg('url(#w13j)') + `<rect y="860" width="1920" height="220" fill="#B9DDB0"/>`;
+      o += thought(560, 260, '“Girl, that’s terrible.”', between(t, B.forty + 1.5, B.rr), { size: 40 });
+      const nL = Math.min(6, Math.floor(seg(t, B.rr + 0.5, B.rr + 3) * 7)), nW = Math.min(4, Math.floor(seg(t, B.rr + 1, B.rr + 3.5) * 5));
+      const tipv = (nW * 2.5 - nL) * 1.6;
+      o += `<path d="M960,640 L880,860 L1040,860 Z" fill="#8B6A55"/><g transform="rotate(${f1(-tipv)} 960 640)"><rect x="360" y="620" width="1200" height="30" rx="14" fill="#C98B6B"/>`;
+      for (let i = 0; i < nL; i++) o += `<rect x="${1180 + (i % 3) * 70}" y="${560 - Math.floor(i / 3) * 60}" width="60" height="60" rx="10" fill="#E2556F"/>`;
+      for (let i = 0; i < nW; i++) o += `<rect x="${420 + (i % 2) * 140}" y="${470 - Math.floor(i / 2) * 150}" width="130" height="150" rx="14" fill="#2AA594"/>`;
+      o += `</g>`;
+      o += fade(seg(t, B.rr + 0.3, B.rr + 0.8), `${pill(560, 200, 'bigger wins', '#2AA594', 1, 30)}${pill(1360, 200, 'smaller losses', '#E2556F', 1, 30)}`);
+      o += fade(seg(t, B.rr, B.rr + 0.5), txt(960, 980, 'risk-to-reward', 46, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Rain was in the forecast. She already has the umbrella.
+    'w13-rain': (s, t) => {
+      const B = s.b;
+      let o = grad('w13k', '#C9D3E2', '#E9EEF5') + bg('url(#w13k)') + `<rect y="860" width="1920" height="220" fill="#9AA3B8"/>` + rain(0, 1920, 0, 860, t, 34, '#7F92B8');
+      o += `<rect x="1200" y="220" width="520" height="300" rx="24" fill="#fff"/>${txt(1460, 290, 'FORECAST', 30, C.muted, { ls: 6 })}${cloud(1460, 400, 0.6, '#9AA3B8')}${txt(1460, 490, 'some losses', 30, '#E2556F', { w: 800 })}`;
+      o += you(t, { x: 600, y: 980, scale: 1.25, frontArm: { a1: -60, a2: -80 } }) + `<path d="M440,520 A250,170 0 0 1 940,520 Z" fill="#2AA594"/><line x1="690" y1="520" x2="690" y2="700" stroke="#2C1810" stroke-width="10"/>`;
+      o += thought(560, 260, '😱 shocked?', between(t, B.shocked + 1, B.shocked + 4), { size: 38 });
+      o += fade(seg(t, B.shocked + 4.5, B.shocked + 5), thought(560, 260, 'expected.', 1, { size: 44 }));
+      return o;
+    },
+
+    // A sturdy bridge of 100 planks: some planks are red, it still carries her across.
+    'w13-bridge2': (s, t) => {
+      const B = s.b;
+      let o = grad('w13l', '#CDEBF7', '#FDF8F5') + bg('url(#w13l)');
+      o += `<path d="M0,640 L240,640 L240,1080 L0,1080 Z" fill="#9C7458"/><path d="M1680,640 L1920,640 L1920,1080 L1680,1080 Z" fill="#9C7458"/><rect x="240" y="900" width="1440" height="180" fill="#7FC3E0"/><rect x="240" y="640" width="1440" height="24" fill="#8B6A55"/>`;
+      for (let x = 250; x < 1680; x += 44) o += `<rect x="${x}" y="612" width="38" height="28" rx="4" fill="${((x * 7) % 100) < 55 ? '#E2556F' : '#2AA594'}"/>`;
+      for (let x = 300; x < 1680; x += 240) o += `<rect x="${x}" y="664" width="20" height="240" fill="#8B6A55"/>`;
+      const w = seg(t, B.dontneed, s.end);
+      o += you(t, { x: 200 + w * 1500, y: 612, scale: 0.9, walking: w > 0 && w < 1 });
+      o += fade(seg(t, B.data, B.data + 0.5) * (1 - seg(t, B.dontneed, B.dontneed + 0.4)), thought(960, 300, 'is THIS plank safe?', 1, { size: 40 }));
+      o += fade(seg(t, B.dontneed + 1, B.dontneed + 1.6), txt(960, 260, 'the whole bridge holds', 56, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // A folder labeled EVIDENCE gets fatter; the confirmation lines get crossed out.
+    'w13-folder': (s, t) => {
+      const B = s.b;
+      let o = grad('w13m', '#FFF4DE', '#FDF8F5') + bg('url(#w13m)');
+      o += `<rect x="220" y="260" width="620" height="420" rx="24" fill="#120D1C"/>${candles(250, 300, 560, 340, vals(9, 14, 0.01, 0.04, 0.4), 14)}`;
+      for (let j = 0; j < 4; j++) o += fade(seg(t, B.more + j * 0.4, B.more + j * 0.4 + 0.3), `<path d="M250,${520 - j * 40} ${[...Array(14)].map((_, x) => `L${250 + x * 40},${f1(520 - j * 40 + 18 * Math.sin(x + j))}`).join(' ')}" fill="none" stroke="${['#F9D89A', '#7ECFC0', '#FF8DA3', '#CFC8FA'][j]}" stroke-width="4"/>`);
+      o += cross(820, 280, pop(t, B.evidence, 0.4), '#E2556F', 40);
+      const fat = ease(seg(t, B.evidence, B.evidence + 2));
+      o += `<rect x="1100" y="${f1(360 - fat * 60)}" width="560" height="${f1(320 + fat * 60)}" rx="20" fill="#F9D89A"/><rect x="1100" y="${f1(320 - fat * 60)}" width="220" height="70" rx="16" fill="#F9D89A"/>${[...Array(Math.floor(fat * 8))].map((_, i) => `<rect x="1130" y="${f1(380 - fat * 60 + i * 12)}" width="500" height="8" fill="#fff" opacity=".7"/>`).join('')}${txt(1380, 580, 'EVIDENCE', 50, '#B38A2E', { ls: 6 })}`;
+      return o;
+    },
+
+    // The library: she pulls chart after chart off endless shelves.
+    'w13-library': (s, t) => {
+      const B = s.b;
+      let o = wall('w13n', '#8B5A3C', '#6A3F26', 900, '#4A2A18');
+      for (let r = 0; r < 4; r++) { o += `<rect x="100" y="${180 + r * 180}" width="1720" height="16" fill="#3A2418"/>`; for (let c = 0; c < 26; c++) { const lit = r * 26 + c < seg(t, B.backtest, B.backtest + 5) * 104; o += `<rect x="${120 + c * 66}" y="${60 + r * 180}" width="54" height="120" rx="6" fill="${lit ? (((r * 26 + c) * 37) % 100 < 43 ? '#2AA594' : '#E2556F') : '#F6EFEA'}"/>`; } }
+      o += you(t, { x: 960 + 400 * Math.sin((t - B.backtest) * 0.7), y: 1040, scale: 1.0, walking: true });
+      o += fade(seg(t, B.backtest + 1, B.backtest + 1.6), pill(960, 980, 'again… and again… and again', '#2C1810', 1, 34));
+      return o;
+    },
+
+    // A thought bubble "I feel like it works" pops; three stamped proof cards slide in.
+    'w13-proof': (s, t) => {
+      const B = s.b;
+      let o = grad('w13o', '#EEEBFB', '#FDF8F5') + bg('url(#w13o)');
+      const popd = seg(t, B.e1 - 0.4, B.e1);
+      if (popd < 1) o += fade(1 - popd, scaleAt(960, 260, 1 + popd * 0.4, thought(960, 260, 'I feel like it works…', 1, { size: 44 })));
+      [[B.e1, '🧪', 'TESTED'], [B.e2, '📓', 'TRACKED'], [B.e3, '📊', 'UNDERSTOOD']].forEach(([at, e, l], j) => { const x = 460 + j * 500, k = ease(seg(t, at, at + 0.6)); o += fade(k, `<g transform="translate(${f1(x)},${f1(lerp(1200, 600, k))}) rotate(${-4 + j * 4})"><rect x="-200" y="-200" width="400" height="400" rx="24" fill="#fff"/>${txt(0, -20, e, 110, C.dark)}<rect x="-150" y="80" width="300" height="70" rx="10" fill="none" stroke="#2AA594" stroke-width="6"/>${txt(0, 128, l, 34, '#2AA594', { ls: 4 })}</g>`); });
+      return o;
+    },
+
+    // Bonsai: she keeps snipping branches (each a losing trade) until the tree is a twig.
+    'w13-bonsai': (s, t) => {
+      const B = s.b;
+      let o = grad('w13p', '#E6F5F2', '#FDF8F5') + bg('url(#w13p)') + `<rect y="860" width="1920" height="220" fill="#E8D5C4"/>`;
+      const cut = Math.min(7, Math.floor(seg(t, B.rules, B.rules + 9) * 8));
+      o += `<rect x="760" y="760" width="400" height="110" rx="20" fill="#C98B6B"/><path d="M960,760 C940,620 980,520 960,380" stroke="#8B6A55" stroke-width="30" fill="none"/>`;
+      const br = [[-1, 640], [1, 600], [-1, 540], [1, 500], [-1, 450], [1, 420], [-1, 390]];
+      br.forEach(([d, y], i) => { if (i < cut) return; o += `<line x1="960" y1="${y}" x2="${960 + d * 200}" y2="${y - 80}" stroke="#8B6A55" stroke-width="16"/><circle cx="${960 + d * 220}" cy="${y - 90}" r="60" fill="#7CC79A"/>`; });
+      o += you(t, { x: 1340, y: 960, scale: 1.1, flip: true, frontArm: { a1: -150 + Math.sin(t * 8) * 10, a2: -160 }, hold: `<path d="M0,0 l40,-12 M0,0 l40,12" stroke="#B8B3C9" stroke-width="8"/>` });
+      o += fade(seg(t, B.rules + 6, B.rules + 6.6), pill(560, 260, 'perfect in hindsight', '#2AA594', 1, 32));
+      o += fade(seg(t, B.rules + 9, B.rules + 9.6), pill(560, 360, 'impossible in real time', '#E2556F', 1, 32));
+      o += fade(seg(t, B.perfect, B.perfect + 0.5) * (1 - seg(t, B.rules, B.rules + 0.5)), txt(960, 200, 'don’t hunt for perfection', 54, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // The rule: streaks don't decide. Test, track, journal, review. Then the line.
+    'w13-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('w13q', '#EEEBFB', '#DDF1EE') + bg('url(#w13q)');
+      o += txt(960, 120, '🧠 YOUR RULE', 30, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 220, pop(t, s.start + 0.4, 0.8), txt(960, 230, 'I build confidence through evidence, not emotion.', 58, C.dark, { f: 'Playfair Display' }));
+      const fin = seg(t, B.line - 0.3, B.line + 0.3), a = 1 - fin;
+      o += fade(a * seg(t, B.r1, B.r1 + 0.4), `${[0, 1, 2, 3].map(i => `<circle cx="${420 + i * 70}" cy="460" r="26" fill="#2AA594"/>`).join('')}${txt(530, 560, '≠ valid', 36, C.dark, { w: 800 })}`);
+      o += fade(a * seg(t, B.r2, B.r2 + 0.4), `${[0, 1, 2, 3].map(i => `<circle cx="${1290 + i * 70}" cy="460" r="26" fill="#E2556F"/>`).join('')}${txt(1400, 560, '≠ invalid', 36, C.dark, { w: 800 })}`);
+      ['🧪', '📈', '📓', '🔍'].forEach((e, j) => { o += fade(a, scaleAt(510 + j * 300, 760, pop(t, B.r3 + j * 0.5, 0.4), `<circle cx="${510 + j * 300}" cy="760" r="90" fill="#fff"/>${txt(510 + j * 300, 790, e, 70, C.dark)}`)); });
+      if (fin > 0) o += fade(fin, txt(960, 500, 'Confidence isn’t believing my next trade will win.', 52, C.muted, { f: 'Playfair Display', it: true })) + fade(seg(t, B.line + 3.5, B.line + 4.1), txt(960, 640, 'It’s having enough evidence that I don’t need it to.', 54, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // The courtroom: three flimsy exhibits get thrown out.
+    'w13-court': (s, t) => {
+      const B = s.b;
+      let o = wall('w13r', '#6A3F26', '#4A2A18', 860, '#3A2418');
+      o += `<rect x="620" y="260" width="680" height="360" rx="10" fill="#8B5A3C"/><rect x="580" y="600" width="760" height="40" fill="#6A3F26"/>${txt(960, 340, 'EXHIBITS', 40, '#F9D89A', { ls: 8 })}`;
+      [['👀 “saw someone trade it”', 0], ['📱 “looked good on TikTok”', 1], ['🏆 “won 3 last week”', 2]].forEach(([l, j]) => { const at = B.what + 1 + j * 1, k = pop(t, at, 0.4), out = seg(t, at + 0.8, at + 1.4); if (k <= 0) return; o += `<g transform="translate(${f1(960 + out * (j - 1) * 900)},${f1(440 + j * 50 - out * 300)}) rotate(${f1(out * (j - 1) * 60)})" opacity="${f1(1 - out)}"><rect x="-260" y="-40" width="520" height="80" rx="12" fill="#fff"/>${txt(0, 14, l, 30, C.dark, { w: 800 })}</g>`; });
+      o += you(t, { x: 1560, y: 960, scale: 1.2, flip: true });
+      o += fade(seg(t, B.what, B.what + 0.5), txt(960, 170, 'what evidence do I actually have?', 52, '#fff', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // A car dashboard of evidence gauges: each one blinks "?" until she knows the number.
+    'w13-gauges': (s, t) => {
+      const B = s.b;
+      let o = grad('w13s', '#1D2433', '#2B3550') + bg('url(#w13s)');
+      ['🧪 #', '📓 #', '% win', 'avg W : L', 'conditions', 'losers'].forEach((l, j) => {
+        const at = [B.q1, B.q2, B.q3, B.q4, B.q5, B.q6][j], x = 360 + (j % 3) * 600, y = 360 + Math.floor(j / 3) * 380, k = seg(t, at, at + 0.4), blink = Math.sin(t * 5 + j) > 0;
+        o += fade(k, `<circle cx="${x}" cy="${y}" r="150" fill="#141A26" stroke="#3A4560" stroke-width="10"/>${txt(x, y + 30, '?', 110, blink ? '#F9D89A' : '#5A6580')}${txt(x, y + 210, l, 34, '#CFC8FA')}`);
+      });
+      return o;
+    },
+
+    // A seed in the dirt: "not enough evidence… yet." It sprouts.
+    'w13-seed': (s, t) => {
+      const B = s.b;
+      let o = grad('w13t', '#FFE7C7', '#FDF8F5') + bg('url(#w13t)') + `<rect y="760" width="1920" height="320" fill="#9C7458"/>`;
+      const g = ease(seg(t, B.yet, B.yet + 3));
+      o += `<ellipse cx="960" cy="780" rx="40" ry="24" fill="#6A3F26"/><path d="M960,780 L960,${f1(780 - 260 * g)}" stroke="#2AA594" stroke-width="12" stroke-linecap="round"/>${g > 0.4 ? `<ellipse cx="${f1(1000)}" cy="${f1(780 - 180 * g)}" rx="${f1(50 * g)}" ry="${f1(22 * g)}" fill="#2AA594"/><ellipse cx="${f1(920)}" cy="${f1(780 - 230 * g)}" rx="${f1(50 * g)}" ry="${f1(22 * g)}" fill="#2AA594"/>` : ''}`;
+      o += you(t, { x: 1400, y: 840, scale: 1.1, flip: true, frontArm: { a1: -40, a2: -60 } });
+      o += fade(seg(t, B.unconf, B.unconf + 0.5) * (1 - seg(t, B.yet, B.yet + 0.4)), pill(960, 300, '“unconfident trader”', '#B8B3C9', 1, 34) + cross(1180, 280, pop(t, B.unconf + 1.5, 0.4), '#E2556F', 30));
+      o += fade(seg(t, B.yet + 0.5, B.yet + 1.1), txt(960, 260, 'not enough evidence… yet.', 60, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Her toolbox: test, journal, review, collect. Building, not feeling.
+    'w13-tools': (s, t) => {
+      const B = s.b;
+      let o = grad('w13u', '#E6F5F2', '#FDF8F5') + bg('url(#w13u)') + `<rect y="860" width="1920" height="220" fill="#E8D5C4"/>`;
+      o += fade(seg(t, B.stop, B.stop + 0.4) * (1 - seg(t, B.buildit, B.buildit + 0.4)), heart(960, 420, 3, '#F4829A') + cross(1080, 300, pop(t, B.stop + 1.5, 0.4), '#E2556F', 40));
+      [[B.b1, '🧪', '#2AA594'], [B.b2, '📓', '#7F77DD'], [B.b3, '🔍', '#E2B04A'], [B.b4, '📊', '#F4829A']].forEach(([at, e, col], j) => { const x = 420 + j * 360, k = pop(t, at, 0.5); o += scaleAt(x, 560, k, `<rect x="${x - 130}" y="${560 - 60 - j * 40}" width="260" height="${300 + j * 40}" rx="20" fill="${col}"/>${txt(x, 640, e, 90, '#fff')}`); });
+      o += fade(seg(t, B.buildit, B.buildit + 0.4), txt(960, 200, 'build it.', 80, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // She rides solo: training wheels (Dayli, Discord) come off. She knows why she takes it.
+    'w13-solo': (s, t) => {
+      const B = s.b;
+      let o = grad('w13v', '#CDEBF7', '#FDF8F5') + bg('url(#w13v)') + `<rect y="820" width="1920" height="260" fill="#B9DDB0"/><rect y="860" width="1920" height="60" fill="#E8D5C4"/>`;
+      const ride = seg(t, B.you, s.end), x = 400 + ride * 1000;
+      const w1 = seg(t, B.dayli + 1.5, B.dayli + 2.5), w2 = seg(t, B.discord + 1.5, B.discord + 2.5);
+      o += `<g transform="translate(${f1(x)},0)"><circle cx="-90" cy="850" r="60" fill="none" stroke="#2C1810" stroke-width="10"/><circle cx="110" cy="850" r="60" fill="none" stroke="#2C1810" stroke-width="10"/><path d="M-90,850 L0,760 L110,850 M0,760 L40,700" stroke="#E2556F" stroke-width="12" fill="none"/>${w1 < 1 ? `<g opacity="${f1(1 - w1)}" transform="translate(${f1(-w1 * 200)},${f1(w1 * 80)})"><circle cx="-130" cy="870" r="24" fill="#7F77DD"/>${txt(-130, 930, 'Dayli', 22, C.dark)}</g>` : ''}${w2 < 1 ? `<g opacity="${f1(1 - w2)}" transform="translate(${f1(-w2 * 200)},${f1(w2 * 80)})"><circle cx="150" cy="870" r="24" fill="#5865F2"/>${txt(150, 930, 'Discord', 22, C.dark)}</g>` : ''}</g>`;
+      o += you(t, { x: x + 10, y: 770, scale: 0.8, frontArm: { a1: -20, a2: 0 } });
+      o += fade(seg(t, B.you, B.you + 0.5), txt(960, 220, 'you know why YOU take it', 60, '#2AA594', { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.indep, B.indep + 0.5), pill(960, 340, 'independence', '#2C1810', 1, 40));
+      return o;
+    },
+
     /*@@W@@*/
   };
 

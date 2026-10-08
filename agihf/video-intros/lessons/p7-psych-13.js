@@ -4,7 +4,7 @@
 window.LESSON_VIDEO = {
   "slug": "p7-psych-13",
   "eyebrow": "Phase 7 · Psychology 13",
-  "duration": 345.83,
+  "duration": 362.43,
   "sources": "Creator script: Psychology 13, Building Confidence Through Data (spoken lines only; coaching notes left out).",
   "scenes": [
     {
@@ -18,25 +18,16 @@ window.LESSON_VIDEO = {
       "lines": []
     },
     {
-      "type": "v13-hesitate",
+      "type": "w13-freeze",
       "start": 5.8,
-      "end": 61.14,
+      "end": 26.84,
       "at": [
         6.0,
         8.03,
         11.91,
         16.9,
         20.78,
-        22.84,
-        25.64,
-        27.67,
-        29.7,
-        32.84,
-        37.46,
-        40.63,
-        44.14,
-        47.31,
-        53.91
+        23.04
       ],
       "b": {
         "appears": 6.0,
@@ -44,16 +35,7 @@ window.LESSON_VIDEO = {
         "checks": 11.91,
         "stare": 16.9,
         "idk": 20.78,
-        "whatif": 22.84,
-        "h1": 25.64,
-        "h2": 27.67,
-        "h3": 29.7,
-        "h4": 32.84,
-        "h5": 37.46,
-        "ask": 40.63,
-        "trust": 44.14,
-        "reason": 47.31,
-        "build": 53.91
+        "whatif": 23.04
       },
       "lines": [
         {
@@ -77,451 +59,645 @@ window.LESSON_VIDEO = {
           "text": "I don't know."
         },
         {
-          "at": 22.84,
+          "at": 23.04,
           "text": "What if this doesn't work?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-stall",
+      "start": 26.64,
+      "end": 42.63,
+      "at": [
+        26.84,
+        28.87,
+        30.9,
+        34.04,
+        38.66
+      ],
+      "b": {
+        "h1": 26.84,
+        "h2": 28.87,
+        "h3": 30.9,
+        "h4": 34.04,
+        "h5": 38.66
+      },
+      "lines": [
         {
-          "at": 25.64,
+          "at": 26.84,
           "text": "So maybe you hesitate."
         },
         {
-          "at": 27.67,
+          "at": 28.87,
           "text": "Maybe you skip it."
         },
         {
-          "at": 29.7,
+          "at": 30.9,
           "text": "Maybe you start looking for another confirmation."
         },
         {
-          "at": 32.84,
+          "at": 34.04,
           "text": "Maybe you go into Discord to see what somebody else thinks."
         },
         {
-          "at": 37.46,
+          "at": 38.66,
           "text": "Maybe you pull up another timeframe."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-bridge",
+      "start": 42.43,
+      "end": 57.01,
+      "at": [
+        42.63,
+        46.14,
+        49.51
+      ],
+      "b": {
+        "ask": 42.63,
+        "trust": 46.14,
+        "reason": 49.51
+      },
+      "lines": [
         {
-          "at": 40.63,
+          "at": 42.63,
           "text": "And at some point, I have to ask:"
         },
         {
-          "at": 44.14,
+          "at": 46.14,
           "text": "Do you actually trust your setup?"
         },
         {
-          "at": 47.31,
+          "at": 49.51,
           "text": "And more importantly, what have you done to give yourself a reason to trust it?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-bricks",
+      "start": 56.81,
+      "end": 64.84,
+      "at": [
+        57.01
+      ],
+      "b": {
+        "build": 57.01
+      },
+      "lines": [
         {
-          "at": 53.91,
+          "at": 57.01,
           "text": "Because confidence in trading isn't something you just talk yourself into. You build it."
         }
       ]
     },
     {
-      "type": "v13-sample",
-      "start": 60.94,
-      "end": 125.32,
+      "type": "w13-ball",
+      "start": 64.64,
+      "end": 89.76,
       "at": [
-        61.14,
-        68.72,
-        77.44,
-        79.1,
-        84.96,
-        87.36,
-        89.02,
-        90.68,
-        94.19,
-        97.7,
-        100.1,
-        106.33,
-        113.17,
-        115.57,
-        118.57
+        64.84,
+        72.42,
+        81.34,
+        83.0
       ],
       "b": {
-        "nervous": 61.14,
-        "know": 68.72,
-        "not": 77.44,
-        "next": 79.1,
-        "c1": 84.96,
-        "c2": 87.36,
-        "c3": 89.02,
-        "c4": 90.68,
-        "c5": 94.19,
-        "c6": 97.7,
-        "c7": 100.1,
-        "five": 106.33,
-        "win": 113.17,
-        "loss": 115.57,
-        "weight": 118.57
+        "nervous": 64.84,
+        "know": 72.42,
+        "not": 81.34,
+        "next": 83.0
       },
       "lines": [
         {
-          "at": 61.14,
+          "at": 64.84,
           "text": "I think a lot of traders think confidence means getting to a point where you don't feel nervous anymore."
         },
         {
-          "at": 68.72,
+          "at": 72.42,
           "text": "Like one day you're going to sit down, see your setup, and just KNOW: Oh yeah. This is going to win."
         },
         {
-          "at": 77.44,
+          "at": 81.34,
           "text": "That's not confidence."
         },
         {
-          "at": 79.1,
+          "at": 83.0,
           "text": "Because you still don't know what's going to happen on the next trade."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-recipe",
+      "start": 89.56,
+      "end": 112.03,
+      "at": [
+        89.76,
+        92.16,
+        93.82,
+        95.48,
+        98.99,
+        102.5,
+        104.9
+      ],
+      "b": {
+        "c1": 89.76,
+        "c2": 92.16,
+        "c3": 93.82,
+        "c4": 95.48,
+        "c5": 98.99,
+        "c6": 102.5,
+        "c7": 104.9
+      },
+      "lines": [
         {
-          "at": 84.96,
+          "at": 89.76,
           "text": "I've seen this setup before."
         },
         {
-          "at": 87.36,
+          "at": 92.16,
           "text": "I've tested it."
         },
         {
-          "at": 89.02,
+          "at": 93.82,
           "text": "I've documented it."
         },
         {
-          "at": 90.68,
+          "at": 95.48,
           "text": "I know what a valid version looks like."
         },
         {
-          "at": 94.19,
+          "at": 98.99,
           "text": "I know what an invalid version looks like."
         },
         {
-          "at": 97.7,
+          "at": 102.5,
           "text": "I know it loses sometimes."
         },
         {
-          "at": 100.1,
+          "at": 104.9,
           "text": "And I know what happens over a larger sample when I execute it consistently."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-yoyo",
+      "start": 111.83,
+      "end": 125.47,
+      "at": [
+        112.03,
+        118.87,
+        121.67
+      ],
+      "b": {
+        "five": 112.03,
+        "win": 118.87,
+        "loss": 121.67
+      },
+      "lines": [
         {
-          "at": 106.33,
+          "at": 112.03,
           "text": "If you've taken your setup five times, you're probably going to be emotionally attached to every result."
         },
         {
-          "at": 113.17,
+          "at": 118.87,
           "text": "Win: This strategy is amazing."
         },
         {
-          "at": 115.57,
+          "at": 121.67,
           "text": "Loss: This shit doesn't work."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-jar",
+      "start": 125.27,
+      "end": 132.32,
+      "at": [
+        125.47
+      ],
+      "b": {
+        "weight": 125.47
+      },
+      "lines": [
         {
-          "at": 118.57,
+          "at": 125.47,
           "text": "Now one trade doesn't have to carry so much weight."
         }
       ]
     },
     {
-      "type": "v13-numbers",
-      "start": 125.12,
-      "end": 183.42,
+      "type": "w13-desk",
+      "start": 132.12,
+      "end": 151.31,
       "at": [
-        125.32,
-        132.9,
-        139.74,
-        142.91,
-        148.67,
-        155.68,
-        159.19,
-        168.75,
-        173.74
+        132.32,
+        140.3,
+        147.14
       ],
       "b": {
-        "test": 125.32,
-        "ninety": 132.9,
-        "need": 139.74,
-        "forty": 142.91,
-        "rr": 148.67,
-        "changes": 155.68,
-        "shocked": 159.19,
-        "data": 168.75,
-        "dontneed": 173.74
+        "test": 132.32,
+        "ninety": 140.3,
+        "need": 147.14
       },
       "lines": [
         {
-          "at": 125.32,
+          "at": 132.32,
           "text": "One of the things that's helped me understand my own trading better is actually going back and testing it."
         },
         {
-          "at": 132.9,
+          "at": 140.3,
           "text": "I've had periods where I've gone back through trades and realized, okay, my win rate isn't 90%."
         },
         {
-          "at": 139.74,
+          "at": 147.14,
           "text": "And it doesn't need to be."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-seesaw",
+      "start": 151.11,
+      "end": 165.38,
+      "at": [
+        151.31,
+        157.27
+      ],
+      "b": {
+        "forty": 151.31,
+        "rr": 157.27
+      },
+      "lines": [
         {
-          "at": 142.91,
+          "at": 151.31,
           "text": "And at first somebody might hear 40-something percent and think, ‘Girl, that's terrible.’"
         },
         {
-          "at": 148.67,
+          "at": 157.27,
           "text": "But that's why you need to understand risk-to-reward."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-rain",
+      "start": 165.18,
+      "end": 179.55,
+      "at": [
+        165.38,
+        168.89
+      ],
+      "b": {
+        "changes": 165.38,
+        "shocked": 168.89
+      },
+      "lines": [
         {
-          "at": 155.68,
+          "at": 165.38,
           "text": "Knowing that changes the way I experience losses."
         },
         {
-          "at": 159.19,
+          "at": 168.89,
           "text": "Because if I already know my system is going to have losing trades, why am I acting shocked every single time one happens?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-bridge2",
+      "start": 179.35,
+      "end": 193.92,
+      "at": [
+        179.55,
+        184.54
+      ],
+      "b": {
+        "data": 179.55,
+        "dontneed": 184.54
+      },
+      "lines": [
         {
-          "at": 168.75,
+          "at": 179.55,
           "text": "The data doesn't tell me my next trade is going to win."
         },
         {
-          "at": 173.74,
+          "at": 184.54,
           "text": "It tells me I don't need my next trade to win for my entire process to still make sense."
         }
       ]
     },
     {
-      "type": "v13-evidence",
-      "start": 183.22,
-      "end": 237.1,
+      "type": "w13-folder",
+      "start": 193.72,
+      "end": 204.19,
       "at": [
-        183.42,
-        189.52,
-        192.69,
-        200.7,
-        207.54,
-        209.2,
-        210.86,
-        216.35,
-        220.23
+        193.92,
+        200.02
       ],
       "b": {
-        "more": 183.42,
-        "evidence": 189.52,
-        "backtest": 192.69,
-        "feel": 200.7,
-        "e1": 207.54,
-        "e2": 209.2,
-        "e3": 210.86,
-        "perfect": 216.35,
-        "rules": 220.23
+        "more": 193.92,
+        "evidence": 200.02
       },
       "lines": [
         {
-          "at": 183.42,
+          "at": 193.92,
           "text": "So if you're constantly questioning your setup, I don't necessarily want you adding more confirmations."
         },
         {
-          "at": 189.52,
+          "at": 200.02,
           "text": "I want you gathering more evidence."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-library",
+      "start": 203.99,
+      "end": 213.3,
+      "at": [
+        204.19
+      ],
+      "b": {
+        "backtest": 204.19
+      },
+      "lines": [
         {
-          "at": 192.69,
+          "at": 204.19,
           "text": "Go find your setup over and over again."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-proof",
+      "start": 213.1,
+      "end": 229.85,
+      "at": [
+        213.3,
+        220.14,
+        221.8,
+        223.46
+      ],
+      "b": {
+        "feel": 213.3,
+        "e1": 220.14,
+        "e2": 221.8,
+        "e3": 223.46
+      },
+      "lines": [
         {
-          "at": 200.7,
+          "at": 213.3,
           "text": "Because eventually I want you to be able to say more than: I feel like this works."
         },
         {
-          "at": 207.54,
+          "at": 220.14,
           "text": "I've tested this."
         },
         {
-          "at": 209.2,
+          "at": 221.8,
           "text": "I've tracked this."
         },
         {
-          "at": 210.86,
+          "at": 223.46,
           "text": "I've seen this across enough examples that I understand how it behaves."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-bonsai",
+      "start": 229.65,
+      "end": 249.4,
+      "at": [
+        229.85,
+        233.73
+      ],
+      "b": {
+        "perfect": 229.85,
+        "rules": 233.73
+      },
+      "lines": [
         {
-          "at": 216.35,
+          "at": 229.85,
           "text": "But don't use backtesting to hunt for perfection either."
         },
         {
-          "at": 220.23,
+          "at": 233.73,
           "text": "Because if every time you find a losing trade you add another rule to eliminate it, eventually you're going to create a strategy that looks amazing in hindsight and is impossible to execute in real time."
         }
       ]
     },
     {
-      "type": "v13-rule",
-      "start": 236.9,
-      "end": 260.02,
+      "type": "w13-rule",
+      "start": 249.2,
+      "end": 272.22,
       "at": [
-        237.1,
-        240.61,
-        244.12,
-        249.51
+        249.4,
+        252.91,
+        256.42,
+        262.01
       ],
       "b": {
-        "r1": 237.1,
-        "r2": 240.61,
-        "r3": 244.12,
-        "line": 249.51
+        "r1": 249.4,
+        "r2": 252.91,
+        "r3": 256.42,
+        "line": 262.01
       },
       "lines": [
         {
-          "at": 237.1,
+          "at": 249.4,
           "text": "A winning streak doesn't make my strategy valid."
         },
         {
-          "at": 240.61,
+          "at": 252.91,
           "text": "A losing streak doesn't automatically make it invalid."
         },
         {
-          "at": 244.12,
+          "at": 256.42,
           "text": "I'm going to test it, track it, journal it, and review it."
         },
         {
-          "at": 249.51,
+          "at": 262.01,
           "text": "Confidence isn't believing my next trade will win. It's having enough evidence that I don't need it to."
         }
       ]
     },
     {
-      "type": "v13-reflect",
-      "start": 259.82,
-      "end": 345.33,
+      "type": "w13-court",
+      "start": 272.02,
+      "end": 284.58,
       "at": [
-        260.02,
-        263.53,
-        271.28,
-        274.42,
-        278.3,
-        281.44,
-        286.06,
-        290.31,
-        295.06,
-        298.57,
-        302.82,
-        307.94,
-        311.45,
-        313.04,
-        314.7,
-        316.36,
-        318.02,
-        320.08,
-        326.18,
-        331.17,
-        335.45,
-        337.48
+        272.22,
+        275.73
       ],
       "b": {
-        "what": 263.53,
-        "q1": 271.28,
-        "q2": 274.42,
-        "q3": 278.3,
-        "q4": 281.44,
-        "q5": 286.06,
-        "q6": 290.31,
-        "okay": 295.06,
-        "unconf": 298.57,
-        "yet": 302.82,
-        "stop": 307.94,
-        "buildit": 311.45,
-        "b1": 313.04,
-        "b2": 314.7,
-        "b3": 316.36,
-        "b4": 318.02,
-        "dayli": 320.08,
-        "discord": 326.18,
-        "you": 331.17,
-        "indep": 335.45,
-        "last": 337.48
+        "what": 275.73
       },
       "lines": [
         {
-          "at": 260.02,
+          "at": 272.22,
           "text": "I want you to ask yourself something honestly:"
         },
         {
-          "at": 263.53,
+          "at": 275.73,
           "text": "What evidence do I actually have that my setup works?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-gauges",
+      "start": 284.38,
+      "end": 309.06,
+      "at": [
+        284.58,
+        287.72,
+        291.6,
+        294.74,
+        299.36,
+        303.61
+      ],
+      "b": {
+        "q1": 284.58,
+        "q2": 287.72,
+        "q3": 291.6,
+        "q4": 294.74,
+        "q5": 299.36,
+        "q6": 303.61
+      },
+      "lines": [
         {
-          "at": 271.28,
+          "at": 284.58,
           "text": "How many examples have you actually tested?"
         },
         {
-          "at": 274.42,
+          "at": 287.72,
           "text": "How many of your live trades have you journaled?"
         },
         {
-          "at": 278.3,
+          "at": 291.6,
           "text": "Do you know your approximate win rate?"
         },
         {
-          "at": 281.44,
+          "at": 294.74,
           "text": "Do you know your average winner compared to your average loser?"
         },
         {
-          "at": 286.06,
+          "at": 299.36,
           "text": "Do you know what conditions your setup performs well in?"
         },
         {
-          "at": 290.31,
+          "at": 303.61,
           "text": "Do you know what your losing trades actually look like?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-seed",
+      "start": 308.86,
+      "end": 322.84,
+      "at": [
+        309.06,
+        312.57,
+        316.82
+      ],
+      "b": {
+        "okay": 309.06,
+        "unconf": 312.57,
+        "yet": 316.82
+      },
+      "lines": [
         {
-          "at": 295.06,
+          "at": 309.06,
           "text": "And if the answer is no, that's okay."
         },
         {
-          "at": 298.57,
+          "at": 312.57,
           "text": "But maybe the problem isn't that you're an unconfident trader."
         },
         {
-          "at": 302.82,
+          "at": 316.82,
           "text": "Maybe you haven't given yourself enough evidence to be confident yet."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-tools",
+      "start": 322.64,
+      "end": 335.88,
+      "at": [
+        322.84,
+        326.35,
+        328.04,
+        329.7,
+        331.36,
+        333.02
+      ],
+      "b": {
+        "stop": 322.84,
+        "buildit": 326.35,
+        "b1": 328.04,
+        "b2": 329.7,
+        "b3": 331.36,
+        "b4": 333.02
+      },
+      "lines": [
         {
-          "at": 307.94,
+          "at": 322.84,
           "text": "Stop trying to feel your way into confidence."
         },
         {
-          "at": 311.45,
+          "at": 326.35,
           "text": "Build it."
         },
         {
-          "at": 313.04,
+          "at": 328.04,
           "text": "Test your setup."
         },
         {
-          "at": 314.7,
+          "at": 329.7,
           "text": "Journal your trades."
         },
         {
-          "at": 316.36,
+          "at": 331.36,
           "text": "Review your execution."
         },
         {
-          "at": 318.02,
+          "at": 333.02,
           "text": "Collect your data."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w13-solo",
+      "start": 335.68,
+      "end": 361.93,
+      "at": [
+        335.88,
+        341.98,
+        346.97,
+        351.45,
+        353.48
+      ],
+      "b": {
+        "dayli": 335.88,
+        "discord": 341.98,
+        "you": 346.97,
+        "indep": 351.45,
+        "last": 353.48
+      },
+      "lines": [
         {
-          "at": 320.08,
+          "at": 335.88,
           "text": "Because eventually, I don't want you taking a trade because Dayli said it looks good."
         },
         {
-          "at": 326.18,
+          "at": 341.98,
           "text": "I don't want you taking it because somebody in Discord is bullish."
         },
         {
-          "at": 331.17,
+          "at": 346.97,
           "text": "I want you to know why YOU take it."
         },
         {
-          "at": 335.45,
+          "at": 351.45,
           "text": "That's where independence starts."
         },
         {
-          "at": 337.48,
+          "at": 353.48,
           "text": "And that's the kind of confidence we're trying to build."
         }
       ]
