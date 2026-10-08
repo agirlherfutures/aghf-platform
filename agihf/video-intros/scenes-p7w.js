@@ -978,6 +978,290 @@
       return o;
     },
 
+    /* ════ Psychology 4 · Overtrading ══════════════════════════════════ */
+
+    // Tally marks on the wall keep growing. She's still at the chart.
+    'w4-tally': (s, t) => {
+      const B = s.b;
+      let o = wall('w4a', '#3B2F55', '#2A2142', 900, '#1E1730');
+      let n = 3; if (t > B.another + 1) n = 4; if (t > B.closes + 1.5) n = 5; if (t > B.six) n = 6 + Math.min(2, Math.floor((t - B.six) / 1.2));
+      for (let i = 0; i < n; i++) { const g = Math.floor(i / 5), j = i % 5, x = 1260 + g * 220 + j * 34; o += j < 4 ? `<line x1="${x}" y1="160" x2="${x + 6}" y2="300" stroke="#F9D89A" stroke-width="10" stroke-linecap="round"/>` : `<line x1="${x - 150}" y1="290" x2="${x + 10}" y2="170" stroke="#F9D89A" stroke-width="10" stroke-linecap="round"/>`; }
+      const lights = ['#2AA594', '#E2556F', '#B8B3C9'];
+      lights.forEach((c, j) => { o += `<circle cx="${220 + j * 90}" cy="220" r="34" fill="${c}" opacity="${f1(between(t, B.states + j * 1.2, B.still) ? 1 : 0.2)}"/>`; });
+      o += monitor(360, 330, 760, 420, candles(400, 390, 680, 300, vals(91, 30, 0, 0.045, 0.5), Math.min(30, 6 + Math.floor(seg(t, s.start, s.end) * 24)), { slots: 30 }));
+      o += you(t, { x: 1380, y: 1060, scale: 1.25, flip: true, frontArm: t > B.another ? { a1: -175 + Math.sin(t * 6) * 5, a2: -170 } : { a1: 160, a2: 150 } });
+      o += desk(200, 900, 1500);
+      o += fade(seg(t, B.still, B.still + 0.5) * (1 - seg(t, B.another, B.another + 0.5)), pill(1380, 620, 'still here', '#7F77DD', 1, 30));
+      return o;
+    },
+
+    // Night. A flashlight beam sweeps the chart. What is she looking for?
+    'w4-flashlight': (s, t) => {
+      const B = s.b;
+      let o = bg('#0E0A14');
+      o += `<rect x="260" y="200" width="1400" height="600" rx="28" fill="#120D1C"/>${candles(300, 250, 1320, 500, vals(66, 40, 0, 0.05, 0.5), 40)}`;
+      const bx = 960 + 520 * Math.sin((t - s.start) * 0.9), by = 500 + 100 * Math.cos((t - s.start) * 1.3);
+      o += `<defs><radialGradient id="w4fl"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#0E0A14" stop-opacity=".95"/></radialGradient></defs><rect width="1920" height="1080" fill="#0E0A14" opacity=".75"/><circle cx="${f1(bx)}" cy="${f1(by)}" r="200" fill="#FFF8E6" opacity=".18"/>`;
+      o += `<path d="M300,1000 L${f1(bx - 120)},${f1(by)} L${f1(bx + 120)},${f1(by)} Z" fill="#FFF8E6" opacity=".07"/>`;
+      o += you(t, { x: 240, y: 1080, scale: 1.1, frontArm: { a1: -30, a2: -40 }, hold: `<rect x="-10" y="-20" width="70" height="36" rx="10" fill="#F9D89A"/>` });
+      o += fade(seg(t, B.looking, B.looking + 0.5), txt(960, 140, 'what am I still looking for?', 56, '#fff', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Fishing: when the fish bite vs casting into an empty pond, again and again.
+    'w4-pond': (s, t) => {
+      const B = s.b;
+      let o = grad('w4c', '#CDEBF7', '#FDF8F5') + bg('url(#w4c)') + `<rect y="700" width="1920" height="380" fill="#B9DDB0"/><line x1="960" x2="960" y1="0" y2="1080" stroke="#fff" stroke-width="10"/>`;
+      // left: fish jumping at the right times
+      o += `<ellipse cx="560" cy="820" rx="360" ry="110" fill="#7FC3E0"/>`;
+      for (let j = 0; j < 3; j++) { const p = ((t - s.start) * 0.35 + j / 3) % 1; if (p < 0.3) { const q = p / 0.3; o += `<g transform="translate(${420 + j * 140},${f1(820 - Math.sin(q * Math.PI) * 160)}) rotate(${f1(-40 + q * 80)})"><ellipse rx="40" ry="20" fill="#E2B04A"/><path d="M36,0 l26,-16 l0,32 z" fill="#E2B04A"/></g>`; } }
+      o += you(t, { x: 220, y: 760, scale: 0.9, frontArm: { a1: -40, a2: -50 } }) + check(560, 600, pop(t, B.diff + 1.5, 0.5), '#2AA594', 34);
+      // right: empty pond, casting again and again
+      o += `<ellipse cx="1400" cy="820" rx="360" ry="110" fill="#9AB8C9"/>`;
+      const cast = ((t - s.start) * 0.8) % 1;
+      o += you(t, { x: 1760, y: 760, scale: 0.9, flip: true, frontArm: { a1: -150 + cast * 120, a2: -160 + cast * 120 } }) + `<path d="M1700,520 Q${f1(1500 - cast * 100)},${f1(500)} ${f1(1450 - cast * 150)},820" fill="none" stroke="#2C1810" stroke-width="3"/>`;
+      o += fade(seg(t, B.diff + 3, B.diff + 3.5), txt(1400, 980, 'just… sitting there', 34, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+      o += fade(seg(t, B.today + 1, B.today + 1.6), `<rect x="560" y="120" width="800" height="120" rx="60" fill="#2C1810"/>${txt(960, 200, 'overtrading', 60, '#fff', { f: 'Playfair Display', it: true })}`);
+      return o;
+    },
+
+    // A doorman's clicker counting trades: 3 ✓, 7 ✗… then "not that simple".
+    'w4-clicker': (s, t) => {
+      const B = s.b;
+      let o = grad('w4d', '#FFF4DE', '#F6E7DA') + bg('url(#w4d)');
+      const cnt = t < B.three ? 3 : Math.min(7, 3 + Math.floor((t - B.three) * 2));
+      o += `<circle cx="960" cy="520" r="230" fill="#B8B3C9"/><circle cx="960" cy="520" r="190" fill="#E9E1F5"/><rect x="860" y="430" width="200" height="120" rx="14" fill="#2C1810"/>${bigNum(960, 520, String(cnt).padStart(3, '0'), 64, '#F9D89A')}<rect x="930" y="250" width="60" height="60" rx="14" fill="#7F77DD"/>`;
+      o += you(t, { x: 1500, y: 1000, scale: 1.2, flip: true, frontArm: { a1: -120 + Math.sin(t * 8) * 6, a2: -150 } });
+      o += pill(960, 820, cnt < 7 ? '3 = okay?' : '7 = overtrading?', cnt < 7 ? '#2AA594' : '#E2556F', pop(t, B.three, 0.4), 34);
+      o += fade(seg(t, B.simple, B.simple + 0.4), `<rect width="1920" height="1080" fill="#FDF8F5" opacity=".85"/>${txt(960, 540, 'not that simple.', 90, C.dark, { f: 'Playfair Display', it: true })}`);
+      return o;
+    },
+
+    // A seesaw: my plan on one side, what I want to FEEL on the other. It tips.
+    'w4-seesaw': (s, t) => {
+      const B = s.b;
+      let o = grad('w4e', '#CDEBF7', '#FDF8F5') + bg('url(#w4e)') + `<rect y="820" width="1920" height="260" fill="#B9DDB0"/>`;
+      const tip = ease(seg(t, B.reason + 4, B.reason + 7)) * 14;
+      o += `<path d="M960,600 L880,820 L1040,820 Z" fill="#8B6A55"/><g transform="rotate(${f1(tip)} 960 600)"><rect x="460" y="580" width="1000" height="30" rx="14" fill="#C98B6B"/><rect x="500" y="460" width="260" height="120" rx="14" fill="#fff" stroke="#2AA594" stroke-width="6"/>${txt(630, 535, '📋 my plan', 34, '#2AA594')}${heart(1300, 500, 1.6, '#E2556F')}<circle cx="1300" cy="520" r="${f1(60 + 20 * seg(t, B.reason + 2, B.reason + 6))}" fill="#E2556F" opacity=".25"/></g>`;
+      o += fade(seg(t, B.reason + 4, B.reason + 5), pill(1300, 300, 'what I’m trying to feel', '#E2556F', 1, 32));
+      return o;
+    },
+
+    // Red day, sun going down, she won't get up: "one more."
+    'w4-red': (s, t) => {
+      const B = s.b;
+      let o = wall('w4f', '#7A2F3A', '#3A1420', 900, '#2A0F18');
+      o += windowBox(1400, 160, 380, 360, '#C4566A', `<circle cx="1590" cy="${f1(420 + 120 * seg(t, s.start, s.end))}" r="70" fill="#F9A88A"/>`);
+      o += monitor(300, 260, 760, 420, candles(340, 320, 680, 300, vals(8, 20, -0.015, 0.05, 0.75), 20, { dn: '#FF6F8A' })) + desk(160, 900, 1100);
+      o += you(t, { x: 1200, y: 1060, scale: 1.25, flip: true, mood: 'sad', frontArm: { a1: -175, a2: -170 } });
+      o += thought(1240, 340, 'one more.', pop(t, B.red + 1, 0.5), { size: 48 });
+      return o;
+    },
+
+    // Football: she kicks… and the goalposts slide back. $400 → $500 → $600.
+    'w4-goal': (s, t) => {
+      const B = s.b;
+      let o = grad('w4g', '#CDEBF7', '#FDF8F5') + bg('url(#w4g)') + `<rect y="700" width="1920" height="380" fill="#7CC79A"/>`;
+      for (let x = 0; x < 1920; x += 240) o += `<line x1="${x}" x2="${x + 120}" y1="1080" y2="700" stroke="#fff" stroke-width="5" opacity=".5"/>`;
+      const back1 = ease(seg(t, B.green + 1.5, B.green + 2.5)), back2 = ease(seg(t, B.six00, B.six00 + 1));
+      const gx = 1300 + back1 * 200 + back2 * 200, sc = 1 - back1 * 0.2 - back2 * 0.2, amt = t < B.green + 1.5 ? '$400' : t < B.six00 ? '$500' : '$600';
+      o += `<g transform="translate(${f1(gx)},700) scale(${f1(sc)})"><rect x="-10" y="-420" width="20" height="420" fill="#fff"/><rect x="-160" y="-300" width="320" height="16" fill="#fff"/><rect x="-160" y="-560" width="16" height="276" fill="#fff"/><rect x="144" y="-560" width="16" height="276" fill="#fff"/>${bigNum(0, -600, amt, 70, '#2AA594')}</g>`;
+      const kick = ((t - s.start) % 3) / 3;
+      o += you(t, { x: 400, y: 900, scale: 1.2, frontArm: { a1: -60, a2: -60 } }) + `<g transform="translate(${f1(500 + kick * 700)},${f1(840 - Math.sin(kick * Math.PI) * 300)})"><ellipse rx="40" ry="26" fill="#8B5A3C"/><line x1="-14" x2="14" y1="0" y2="0" stroke="#fff" stroke-width="4"/></g>`;
+      return o;
+    },
+
+    // Bored. Chin on hand. A net swiped at random candles.
+    'w4-bored': (s, t) => {
+      const B = s.b;
+      let o = wall('w4h', '#E9E1F5', '#D9CFEA', 900, '#9C8CB8');
+      o += monitor(260, 200, 820, 460, candles(300, 260, 740, 360, vals(73, 26, 0, 0.05, 0.5), 26));
+      const sw = Math.sin((t - s.start) * 2.4);
+      o += `<g transform="rotate(${f1(sw * 30)} 1200 700)"><line x1="1200" y1="700" x2="900" y2="420" stroke="#8B6A55" stroke-width="12"/><ellipse cx="880" cy="400" rx="90" ry="60" fill="none" stroke="#2C1810" stroke-width="6"/><path d="M800,400 Q880,520 960,400" fill="#fff" opacity=".4"/></g>`;
+      o += you(t, { x: 1460, y: 1060, scale: 1.25, flip: true, frontArm: { a1: -80, a2: -40 } }) + desk(160, 900, 1600);
+      o += thought(1500, 330, 'catch something…?', pop(t, B.bored + 2, 0.5), { size: 40 });
+      return o;
+    },
+
+    // A shop sign flips: WAITING → HUNTING.
+    'w4-sign': (s, t) => {
+      const B = s.b;
+      let o = grad('w4i', '#FDF8F5', '#F3E7DD') + bg('url(#w4i)');
+      const fl = seg(t, B.shift + 2, B.shift + 3), sy = Math.abs(Math.cos(fl * Math.PI)), hunt = fl > 0.5;
+      o += `<line x1="760" y1="160" x2="960" y2="320" stroke="#8B6A55" stroke-width="6"/><line x1="1160" y1="160" x2="960" y2="320" stroke="#8B6A55" stroke-width="6"/><circle cx="960" cy="160" r="12" fill="#8B6A55"/>`;
+      o += `<g transform="translate(960,520) scale(1,${f1(Math.max(0.03, sy))})"><rect x="-420" y="-200" width="840" height="400" rx="30" fill="${hunt ? '#E2556F' : '#2AA594'}"/>${txt(0, -40, hunt ? 'LOOKING FOR' : 'WAITING FOR', 46, '#fff', { ls: 6 })}${txt(0, 70, hunt ? 'REASONS' : 'OPPORTUNITIES', 70, '#fff', { ls: 4 })}</g>`;
+      return o;
+    },
+
+    // Jenga: a solid green day built from base hits… then she keeps pulling blocks.
+    'w4-jenga': (s, t) => {
+      const B = s.b;
+      let o = grad('w4j', '#F3E3D6', '#FBF4EF') + bg('url(#w4j)') + `<rect y="880" width="1920" height="200" fill="#C9A27E"/>`;
+      o += host(t, { x: 60, y: 360, w: 480, pose: t > B.ask ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
+      const built = Math.min(9, Math.floor(seg(t, B.kept, B.kept + 4) * 10));
+      const pulled = Math.floor(seg(t, B.kept + 5, B.ask) * 6);
+      const fall = seg(t, B.ask - 0.3, B.ask + 1.5);
+      for (let r = 0; r < built; r++) {
+        const y = 860 - r * 60, missing = r < 6 && r % 2 === 1 && Math.floor(r / 2) < pulled;
+        for (let c = 0; c < 3; c++) {
+          if (missing && c === 1) continue;
+          const dx = fall * (r * 30 + c * 20) * (c - 1 + 0.5), dy = fall * fall * (r * 40), rot = fall * (r * 8) * (c - 1 + 0.3);
+          o += `<g transform="translate(${f1(dx)},${f1(dy)}) rotate(${f1(rot)} ${1100 + c * 130} ${y})"><rect x="${1040 + c * 130}" y="${y - 54}" width="122" height="54" rx="8" fill="${r < 5 ? '#7CC79A' : '#E2B04A'}" stroke="#fff" stroke-width="4"/></g>`;
+        }
+      }
+      o += fade(seg(t, B.kept + 2, B.kept + 2.5), pill(1230, 200, 'base hits ✓', '#2AA594', 1, 30));
+      o += thought(1230, 320, 'what was I trying to do?', between(t, B.ask + 2, s.end), { size: 38 });
+      return o;
+    },
+
+    // Sunglasses and a crown. The confidence balloon swells; every setup flies at her: "mine!"
+    'w4-crown': (s, t) => {
+      const B = s.b;
+      let o = grad('w4k', '#FFF4DE', '#F9D89A') + bg('url(#w4k)');
+      o += fade(seg(t, B.sneaky, B.sneaky + 0.4) * (1 - seg(t, B.winning, B.winning + 0.4)), txt(960, 300, 'you don’t have to be losing', 60, C.dark, { f: 'Playfair Display', it: true }) + bigNum(960, 450, '+$', 120, '#2AA594'));
+      if (t > B.winning) {
+        const conf = seg(t, B.good, B.every + 2);
+        o += you(t, { x: 760, y: 1000, scale: 1.3, frontArm: t > B.onit ? { a1: -160, a2: -170 } : undefined });
+        if (t > B.reading) o += `<rect x="712" y="${612}" width="96" height="26" rx="10" fill="#2C1810"/>`;
+        if (t > B.onit) o += `<path d="M700,560 L720,500 L750,540 L760,490 L770,540 L800,500 L820,560 Z" fill="#F9D89A" stroke="#C98A1F" stroke-width="4"/>`;
+        o += `<circle cx="1300" cy="${f1(560 - conf * 80)}" r="${f1(60 + conf * 180)}" fill="#E2556F" opacity="${f1(0.25 + conf * 0.35)}"/>`;
+        o += fade(seg(t, B.good, B.good + 0.4), txt(1300, 570 - conf * 80, 'confidence', 34, '#fff', { w: 800 }));
+        if (t > B.every) for (let j = 0; j < 4; j++) { const p = seg(t, B.every + 0.5 + j * 0.6, B.every + 1.5 + j * 0.6); if (p > 0 && p < 1) o += `<rect x="${f1(lerp(1900, 820, p))}" y="${f1(300 + j * 120 + Math.sin(p * 6) * 20)}" width="110" height="70" rx="10" fill="#120D1C"/>`; }
+        o += thought(760, 340, 'mine. mine. MINE.', between(t, B.every + 1, s.end), { size: 40 });
+      }
+      return o;
+    },
+
+    // The permission slip: "I'm green, so I can get careless" — DENIED.
+    'w4-slip': (s, t) => {
+      const B = s.b;
+      let o = grad('w4l', '#EEEBFB', '#FDF8F5') + bg('url(#w4l)');
+      o += `<g transform="rotate(-4 960 460)"><rect x="560" y="230" width="800" height="460" rx="12" fill="#FFF8E6" stroke="#E2B04A" stroke-width="6"/>${txt(960, 320, 'PERMISSION SLIP', 38, '#B38A2E', { ls: 6 })}${bigNum(960, 450, '+$', 90, '#2AA594')}${txt(960, 560, '= be careless?', 46, C.dark, { f: 'Playfair Display', it: true })}</g>`;
+      o += scaleAt(960, 460, pop(t, B.permission + 2.5, 0.5), `<g transform="rotate(-14 960 460)"><rect x="680" y="400" width="560" height="130" rx="14" fill="none" stroke="#E2556F" stroke-width="12"/>${txt(960, 495, 'DENIED', 84, '#E2556F', { ls: 10 })}</g>`);
+      o += fade(seg(t, B.deserves, B.deserves + 0.5), `${pill(680, 850, 'more risk ✗', '#E2556F', 1, 34)}${pill(1240, 850, 'lower standards ✗', '#E2556F', 1, 34)}`);
+      return o;
+    },
+
+    // Poker table: she pushes her own green chips back to the center.
+    'w4-chips': (s, t) => {
+      const B = s.b;
+      let o = grad('w4m', '#2A1A12', '#3A2418') + bg('url(#w4m)');
+      o += `<ellipse cx="960" cy="700" rx="820" ry="260" fill="#2E6B4F"/><ellipse cx="960" cy="690" rx="780" ry="230" fill="#3C8A66"/><ellipse cx="960" cy="200" rx="300" ry="120" fill="#F9D89A" opacity=".1"/>`;
+      o += you(t, { x: 1500, y: 980, scale: 1.2, flip: true, mood: t > B.table ? 'sad' : undefined, frontArm: { a1: -170 + Math.sin(t * 5) * 6, a2: -175 } });
+      for (let i = 0; i < 12; i++) { const at = B.gave + 0.5 + i * 0.5, k = ease(seg(t, at, at + 0.6)), x = lerp(1340, 820 + (i % 4) * 70, k), y = lerp(720, 650 + Math.floor(i / 4) * 34, k); o += `<ellipse cx="${f1(x)}" cy="${f1(y)}" rx="42" ry="16" fill="#2AA594" stroke="#fff" stroke-width="5"/>`; }
+      o += fade(seg(t, B.table, B.table + 0.5), txt(960, 200, 'I kept putting it back on the table.', 54, '#fff', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // The ladder keeps growing: $300, $400, $500… then she plants her own flag.
+    'w4-ladder': (s, t) => {
+      const B = s.b;
+      let o = grad('w4n', '#CDEBF7', '#FDF8F5') + bg('url(#w4n)') + `<rect y="920" width="1920" height="160" fill="#B9DDB0"/>`;
+      const top = 760 - 160 * ease(seg(t, B.u300 + 1, B.u300 + 2)) - 160 * ease(seg(t, B.u500, B.u500 + 1)) - 120 * ease(seg(t, B.finish - 1, B.finish));
+      o += `<rect x="820" y="${f1(top - 200)}" width="16" height="${f1(1120 - top)}" fill="#8B6A55"/><rect x="1084" y="${f1(top - 200)}" width="16" height="${f1(1120 - top)}" fill="#8B6A55"/>`;
+      for (let y = 900; y > top - 200; y -= 70) o += `<rect x="836" y="${y}" width="248" height="12" fill="#8B6A55"/>`;
+      const lbl = t < B.u300 + 1 ? '$300' : t < B.u500 ? '$400' : '$500';
+      o += pill(960, top - 240, lbl, '#2AA594', pop(t, B.u300, 0.4) * (1 - seg(t, B.finish + 1, B.finish + 1.5)), 40);
+      o += you(t, { x: 960, y: Math.max(top + 120, 400), scale: 0.9 });
+      o += fade(seg(t, B.done, B.done + 0.4) * (1 - seg(t, B.u300, B.u300 + 0.3)), thought(1360, 360, 'I’ll stop when I feel done…', 1, { size: 36 }));
+      const flag = seg(t, B.finish + 1.5, B.finish + 2.5);
+      if (flag > 0) o += scaleAt(1500, 900, flag, `<rect x="1496" y="560" width="10" height="360" fill="#2C1810"/><path d="M1506,560 L1700,600 L1506,640 Z" fill="#E2556F"/>${txt(1500, 980, 'MY finish line', 34, C.dark, { w: 800 })}`);
+      return o;
+    },
+
+    // A car dashboard of stop rules: trade counter, loss gauge, profit lock, the mental fuel gauge.
+    'w4-dashboard': (s, t) => {
+      const B = s.b;
+      let o = grad('w4o', '#1D2433', '#2B3550') + bg('url(#w4o)');
+      o += `<path d="M120,1080 Q960,520 1800,1080 Z" fill="#141A26"/><rect x="200" y="300" width="1520" height="520" rx="60" fill="#232B3D" stroke="#3A4560" stroke-width="10"/>`;
+      const g = (x, label, v, col, k) => { const a = (-210 + 240 * v) * Math.PI / 180; return fade(k, `<circle cx="${x}" cy="560" r="150" fill="#141A26" stroke="#3A4560" stroke-width="8"/><path d="M${x - 120},620 A130,130 0 1 1 ${x + 120},620" fill="none" stroke="#3A4560" stroke-width="16"/><line x1="${x}" y1="560" x2="${f1(x + 110 * Math.cos(a))}" y2="${f1(560 + 110 * Math.sin(a))}" stroke="${col}" stroke-width="12" stroke-linecap="round"/><circle cx="${x}" cy="560" r="16" fill="${col}"/>${txt(x, 760, label, 36, '#CFC8FA')}`); };
+      const tt = seg(t, B.quality, s.end);
+      o += g(480, '# 🔁', 0.3 + 0.5 * tt, '#F9D89A', seg(t, B.quality + 0.5, B.quality + 1));
+      o += g(840, '🛑 $', 0.2 + 0.4 * tt, '#E2556F', seg(t, B.quality + 1.5, B.quality + 2));
+      o += g(1200, '🔒 +$', 0.6, '#2AA594', seg(t, B.quality + 2.5, B.quality + 3));
+      o += g(1560, '🧠 ⛽', 0.9 - 0.8 * tt, '#7F77DD', seg(t, B.quality + 3.5, B.quality + 4));
+      o += fade(seg(t, B.quality + 5, B.quality + 5.6), txt(960, 200, 'decide these before you start', 52, '#fff', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Journal: trade 1 ★★★★★ … trade 5 ★. Better or worse the longer you trade?
+    'w4-stars': (s, t) => {
+      const B = s.b;
+      let o = grad('w4p', '#F6EDE6', '#EADFD8') + bg('url(#w4p)');
+      o += `<rect x="360" y="160" width="1200" height="760" rx="20" fill="#fff"/><line x1="960" x2="960" y1="160" y2="920" stroke="#EADFD8" stroke-width="6"/>`;
+      const stars = [5, 4, 3, 2, 1];
+      stars.forEach((n, i) => {
+        const at = B.tr + i * 0.9, y = 280 + i * 130;
+        o += fade(seg(t, at, at + 0.3), txt(420, y + 12, '#' + (i + 1), 44, C.dark, { a: 'start', f: 'JetBrains Mono, monospace' }) + [0, 1, 2, 3, 4].map(k => txt(560 + k * 70, y + 18, '★', 56, k < n ? '#E2B04A' : '#EADFD8')).join(''));
+      });
+      o += fade(seg(t, B.worse, B.worse + 0.5), `<path d="M1100,300 Q1300,500 1440,820" fill="none" stroke="#E2556F" stroke-width="10" stroke-dasharray="20 12"/><path d="M1440,820 l-36,-14 l30,-30 z" fill="#E2556F"/>${txt(1260, 260, 'longer = worse?', 40, '#E2556F', { f: 'Playfair Display', it: true, w: 700 })}`);
+      return o;
+    },
+
+    // The rule. Decided in the calm morning. OPEN sign ≠ "I need to trade". The laptop closes.
+    'w4-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('w4q', '#EEEBFB', '#DDF1EE') + bg('url(#w4q)');
+      o += txt(960, 120, '🧠 YOUR RULE', 30, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 220, pop(t, s.start + 0.4, 0.8), txt(960, 230, 'I decide my stopping conditions before the session starts.', 52, C.dark, { f: 'Playfair Display' }));
+      const p2 = seg(t, B.line - 0.3, B.line + 0.3), p3 = seg(t, B.close - 0.3, B.close + 0.3);
+      if (p2 < 1) {
+        o += fade(1 - p2, sun(500, 520, 90, t) + you(t, { x: 900, y: 920, scale: 1.1, frontArm: { a1: 20, a2: -10 } }) + `<rect x="980" y="620" width="240" height="300" rx="10" fill="#fff" stroke="#EADFD8" stroke-width="5"/>` + [0, 1, 2].map(j => `<rect x="1010" y="${670 + j * 60}" width="${f1(170 * seg(t, B.r2 + j * 0.6, B.r2 + j * 0.6 + 0.5))}" height="14" rx="7" fill="#7F77DD"/>`).join('') + txt(1100, 990, 'before trade #1', 32, C.muted, { w: 700 }));
+      }
+      if (p2 > 0 && p3 < 1) {
+        const glow = 0.6 + 0.4 * Math.sin(t * 5);
+        o += fade(p2 * (1 - p3), `<rect x="460" y="400" width="520" height="220" rx="30" fill="#2C1810"/>${txt(720, 540, 'OPEN', 110, '#FF6F8A', { op: f1(glow), ls: 10 })}${txt(1120, 540, '≠', 100, C.dark)}` + you(t, { x: 1460, y: 920, scale: 1.1, frontArm: { a1: 60, a2: 40 } }));
+      }
+      if (p3 > 0) {
+        const cl = ease(seg(t, B.close + 1, B.close + 1.8));
+        o += fade(p3, `<rect x="560" y="${f1(380 + 320 * cl)}" width="800" height="${f1(320 * (1 - cl) + 20)}" rx="14" fill="#120D1C" stroke="#3A2F55" stroke-width="8"/><rect x="520" y="720" width="880" height="24" rx="10" fill="#3A2F55"/>`);
+        o += fade(seg(t, B.close + 1.8, B.close + 2.4), txt(960, 880, 'sometimes discipline is closing TradingView', 50, '#2AA594', { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    // Five ribbons, five sessions, dots fading from green to red as the day goes on.
+    'w4-ribbons': (s, t) => {
+      const B = s.b;
+      let o = wall('w4r', '#1A1424', '#2A2142', 940, '#141026');
+      const Q = [[0.9, 0.85, 0.6, 0.4], [0.9, 0.8], [0.85, 0.9, 0.7, 0.5, 0.35, 0.25], [0.9, 0.88, 0.8], [0.8, 0.75, 0.5, 0.3, 0.2]];
+      Q.forEach((row, r) => {
+        const y = 250 + r * 130, k = seg(t, B.five + r * 0.4, B.five + r * 0.4 + 0.4);
+        o += fade(k, `<rect x="260" y="${y - 40}" width="1400" height="80" rx="40" fill="#2A2142"/>`);
+        row.forEach((v, i) => { o += scaleAt(380 + i * 150, y, pop(t, B.order + r * 0.2 + i * 0.25, 0.4), `<circle cx="${380 + i * 150}" cy="${y}" r="30" fill="${v > 0.6 ? '#2AA594' : v > 0.4 ? '#F9D89A' : '#E2556F'}"/>`); });
+      });
+      o += fade(seg(t, B.q3, B.q3 + 0.5), `<path d="M380,940 L1300,940" stroke="#F9D89A" stroke-width="6" stroke-dasharray="16 12"/><path d="M1300,940 l-30,-16 l0,32 z" fill="#F9D89A"/>${txt(1360, 952, 'later', 36, '#F9D89A', { a: 'start', w: 700 })}`);
+      return o;
+    },
+
+    // Four doors: what was she really looking for?
+    'w4-doors': (s, t) => {
+      const B = s.b;
+      let o = wall('w4s', '#E9E1F5', '#D9CFEA', 900, '#9C8CB8');
+      o += fade(seg(t, B.big, B.big + 0.5), txt(960, 150, 'what were you actually looking for?', 52, C.dark, { f: 'Playfair Display', it: true }));
+      [[B.w1, '🎯', '#2AA594'], [B.w2, '↩️$', '#E2556F'], [B.w3, '⭐', '#E2B04A'], [B.w4, '🚪', '#7F77DD']].forEach(([at, e, col], j) => {
+        const x = 330 + j * 420, op = seg(t, at, at + 0.8);
+        o += `<rect x="${x - 140}" y="300" width="280" height="600" rx="10" fill="#2A2142"/><rect x="${x - 140}" y="300" width="${f1(280 * (1 - op * 0.8))}" height="600" rx="10" fill="${col}"/><circle cx="${f1(x + 100 - op * 220)}" cy="620" r="12" fill="#F9D89A"/>`;
+        o += fade(op, txt(x + 30, 640, e, 80, '#fff'));
+      });
+      return o;
+    },
+
+    // End: the juicer squeezing every dollar (crossed). She closes the chart and walks into the sunset.
+    'w4-sunset': (s, t) => {
+      const B = s.b;
+      let o = wall('w4t', '#F7B98E', '#F6D6BD', 880, '#B27A5A');
+      o += windowBox(1300, 140, 480, 420, '#F59E7A', `<circle cx="1540" cy="${f1(380 + 80 * seg(t, s.start, s.end))}" r="90" fill="#FFD8A8"/>`);
+      const sq = between(t, B.squeeze, B.job - 0.2);
+      o += scaleAt(560, 420, sq, `<path d="M440,520 L680,520 L640,680 L480,680 Z" fill="#fff" stroke="#EADFD8" stroke-width="6"/><circle cx="560" cy="440" r="80" fill="#2AA594"/>${txt(560, 462, '$', 70, '#fff')}${[0, 1, 2].map(j => `<circle cx="${520 + j * 40}" cy="${f1(560 + ((t * 2 + j * 0.3) % 1) * 90)}" r="10" fill="#7CC79A"/>`).join('')}`) + cross(700, 380, sq * pop(t, B.squeeze + 2, 0.4), '#E2556F', 40);
+      const cl = ease(seg(t, B.last + 1, B.last + 2)), walk = seg(t, B.last + 2.5, s.end);
+      o += `<rect x="420" y="${f1(560 + 260 * cl)}" width="600" height="${f1(260 * (1 - cl) + 20)}" rx="14" fill="#120D1C" stroke="#3A2F55" stroke-width="8" opacity="${f1(1 - sq)}"/><rect x="380" y="836" width="680" height="24" rx="10" fill="#3A2F55" opacity="${f1(1 - sq)}"/>` + desk(300, 860, 900);
+      o += you(t, { x: lerp(1160, 1500, ease(walk)), y: 1000, scale: 1.2, flip: walk < 0.01, walking: walk > 0 && walk < 1 });
+      o += fade(seg(t, B.job, B.job + 0.5) * (1 - seg(t, B.last, B.last + 0.4)), txt(960, 200, 'execute your plan while you can do it well', 50, C.dark, { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.last + 2, B.last + 2.6), txt(760, 200, 'the best trade might be closing the chart.', 52, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
     /*@@W@@*/
   };
 

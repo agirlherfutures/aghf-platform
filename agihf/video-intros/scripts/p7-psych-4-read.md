@@ -17,15 +17,19 @@ That one closes. You see something else. Take another one.
 
 Next thing you know, you're on trade number six… seven… eight.
 
+## 2
+
 And at some point you have to ask yourself:
 
 What am I still looking for?
+
+## 3
 
 Because there's a difference between taking multiple valid setups and trading simply because you're still sitting in front of the chart.
 
 That's what we're talking about today: overtrading.
 
-## 2
+## 4
 
 I think when people hear overtrading, they automatically think it means taking a certain number of trades.
 
@@ -33,23 +37,35 @@ Like three trades is okay, but seven trades means you're overtrading.
 
 I don't necessarily think it's that simple.
 
+## 5
+
 To me, overtrading starts when the reason you're continuing to trade has less to do with your actual trading plan and more to do with what you're trying to feel or accomplish.
 
+## 6
+
 ‘I can't end the day like this. Let me take one more.’
+
+## 7
 
 ‘I'm up $400. I could probably get to $500.’
 
 ‘Well… $600 would be nice.’
 
+## 8
+
 ‘I'm already here. The market is moving. Let me see if I can catch something.’
+
+## 9
 
 At some point, you stopped waiting for opportunities and started looking for reasons to trade.
 
-## 3
+## 10
 
 I've literally had profitable days where I took base hits, secured profits, did perfectly fine, and kept trading.
 
 And I've had to look back afterward and ask myself: What exactly was I trying to accomplish at that point?
+
+## 11
 
 Because that's the sneaky part about overtrading.
 
@@ -65,15 +81,19 @@ You're like, ‘Oh, I'm on it today.’
 
 And that confidence can slowly turn into feeling like every setup is yours.
 
+## 12
+
 I've had to learn that being green doesn't mean the market gave me permission to become careless.
 
 And just because I made money on the first few trades doesn't mean the next trade deserves more risk or lower standards.
+
+## 13
 
 If I was already profitable and I gave it all back because I couldn't stop trading, the market didn't take my green day from me.
 
 I kept putting it back on the table.
 
-## 4
+## 14
 
 This is why I think you need to decide some of your stopping rules before you start trading.
 
@@ -85,7 +105,11 @@ Then $500 sounds better.
 
 There's no natural finish line unless you create one.
 
+## 15
+
 And I also want you to start paying attention to the quality of your trades throughout the session.
+
+## 16
 
 Go back through your journal.
 
@@ -93,7 +117,7 @@ Trade one. Trade two. Trade three. Trade four. Trade five.
 
 Does your execution get better or worse the longer you trade?
 
-## 5
+## 17
 
 I'm not going to wait until I'm emotional, frustrated, overly confident, or chasing a dollar amount to decide when enough is enough.
 
@@ -103,7 +127,7 @@ The fact that the market is still open doesn't mean I still need to be trading.
 
 Sometimes discipline is literally closing TradingView.
 
-## 6
+## 18
 
 Go look at your last five trading sessions.
 
@@ -119,6 +143,8 @@ What happened as the session went on?
 
 Did your later trades get better, or did your standards start dropping?
 
+## 19
+
 On the days you kept trading, what were you actually looking for?
 
 Were you waiting for your setup?
@@ -128,6 +154,8 @@ Were you trying to make back a loss?
 Were you trying to turn a good day into a great day?
 
 Or were you just having a hard time being done?
+
+## 20
 
 Your goal isn't to squeeze every possible dollar out of every trading session.
 
