@@ -84,13 +84,15 @@ const SPARKS = {
   chop: '<polyline points="4,40 18,26 28,34 44,14 56,30 70,20 84,44 98,28 116,10" />',
 };
 
-/** The screen shell: words on the left, the visual on the right. */
+const plainLen = (h) => String(h).replace(/<[^>]+>/g, '').length;
+
+/** The screen shell: words on the left, the visual on the right. A long headline drops to the smaller size. */
 export function shell(el, slide, rightHtml, extraLeft = '', opts = {}) {
   el.innerHTML = `
     <div class="v2${opts.cls ? ` ${opts.cls}` : ''}">
       <div class="v2-l">
         ${slide.kicker ? `<div class="v2-kick">${slide.kicker}</div>` : ''}
-        ${slide.headline ? `<h2 class="v2-big${slide.small ? ' v2-big-sm' : ''}">${slide.headline}</h2>` : ''}
+        ${slide.headline ? `<h2 class="v2-big${plainLen(slide.headline) > 70 ? ' v2-big-xs' : slide.small || plainLen(slide.headline) > 44 ? ' v2-big-sm' : ''}">${slide.headline}</h2>` : ''}
         ${slide.line ? `<p class="v2-line">${slide.line}</p>` : ''}
         ${extraLeft}
         <div class="v2-spacer"></div>

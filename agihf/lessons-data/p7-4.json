@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 4",
-      "headline": "You did it right. <em>Still stopped out.</em>",
-      "line": "Valid setup. First retest. The market still said no.",
+      "headline": "You did everything right, and you <em>still got stopped out.</em>",
+      "line": "It was a valid setup on the first retest, and the market still said no. That happens to every trader.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
-      "kicker": "9:52",
-      "headline": "Valid trade. <em>Valid loss.</em>",
-      "line": "You did everything right. −1R happens.",
+      "kicker": "9:52 · The loss",
+      "headline": "This was a valid trade, and <em>a valid loss.</em>",
+      "line": "You followed your plan and lost −1R. That means you lost exactly the amount you planned to risk on this trade, no more.",
       "chart": {
         "bars": [
           {
@@ -248,8 +248,8 @@
     {
       "type": "v2_moment",
       "kicker": "Two minutes later",
-      "headline": "It’s moving. <em>Is it a setup?</em>",
-      "line": "Indication. No Correction. No Continuation. But it’s moving.",
+      "headline": "Price is moving again. <em>Is this actually a setup?</em>",
+      "line": "You can see an Indication, but there’s no Correction and no Continuation yet. It’s moving, and you feel the pull.",
       "chart": {
         "bars": [
           {
@@ -345,30 +345,30 @@
         }
       },
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "Get in. Make it back.",
+            "label": "Jump in to win my money back",
             "correct": false,
-            "feedback": "That’s the last trade talking. This chart isn’t a setup yet.",
+            "feedback": "That’s the last trade making the decision. This chart isn’t a complete setup yet, so there’s nothing to take.",
             "track": [
               "revengeDecisionCount",
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Double size. Faster.",
+            "label": "Double my size to recover faster",
             "correct": false,
-            "feedback": "Totally human urge. It’s how −1R turns into −3R.",
+            "feedback": "That urge is completely human. It’s also exactly how one −1R loss turns into a −3R day.",
             "track": [
               "revengeDecisionCount",
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Wait. Model isn’t complete.",
+            "label": "Wait, because the model isn’t complete",
             "correct": true,
-            "feedback": "Yes. It never completed. Your day stays −1R, a valid loss.",
+            "feedback": "Yes. The setup never completed, so you didn’t trade it. Your day stays at −1R, one valid loss.",
             "track": "revengeAvoided"
           }
         ]
@@ -376,9 +376,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "If you chased it",
-      "headline": "This is how <em>−1R becomes −3R.</em>",
-      "line": "Not one bad trade. One bad decision about the last one.",
+      "kicker": "If you had chased it",
+      "headline": "This is how a −1R loss <em>turns into −3R.</em>",
+      "line": "Chasing with double size turns one planned loss into three times your risk. It isn’t one bad trade. It’s one bad decision made because of the last trade.",
       "chart": {
         "bars": [
           {
@@ -536,69 +536,70 @@
     },
     {
       "type": "v2_compare",
-      "kicker": "Who’s trading now?",
-      "headline": "The market <em>took nothing</em> from you.",
+      "kicker": "Who’s trading right now?",
+      "headline": "The market <em>didn’t take anything</em> from you.",
       "cards": [
         {
           "label": "The trader",
-          "sub": "Took a valid trade. Accepted a valid loss.",
+          "sub": "Took a valid trade and accepted a valid loss.",
           "spark": "slow",
           "tag": "PLAN",
           "tone": "purple"
         },
         {
           "label": "The wound",
-          "sub": "Wants it back. Right now.",
+          "sub": "Wants that money back right now.",
           "spark": "down",
           "tag": "REVENGE",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Would you take it if the last trade never happened?",
+        "prompt": "If your last trade had never happened, would you take this one?",
         "options": [
           {
-            "label": "No, but I need it back",
+            "label": "No, but I need that money back",
             "correct": false,
-            "feedback": "Then the last trade is still trading you. Log it, don’t avenge it."
+            "feedback": "Then the last trade is still trading for you. Write the loss in your journal instead of trying to avenge it."
           },
           {
-            "label": "Only if it’s a setup",
+            "label": "Only if it’s a complete setup",
             "correct": true,
-            "feedback": "Exactly. Each trade gets judged fresh."
+            "feedback": "Exactly. Every trade gets judged on its own, as if the last one never happened."
           }
         ]
-      }
+      },
+      "line": "You risked an amount you agreed to lose, and you lost it. The loss was part of the plan."
     },
     {
       "type": "v2_steps",
       "kicker": "The revenge loop",
-      "headline": "It keeps going <em>around.</em>",
-      "line": "Break it at Urgency: check the rule before standards drop.",
+      "headline": "Revenge trading <em>keeps going around in a circle.</em>",
+      "line": "Tap each step to see how it builds. The best place to break the loop is at Urgency, by checking your rule before your standards drop.",
       "steps": [
         {
           "label": "Loss",
-          "sub": "A valid one"
+          "sub": "You take a valid loss that was part of the plan."
         },
         {
           "label": "Frustration",
-          "sub": "“That shouldn’t have stopped me.”"
+          "sub": "You think, “That shouldn’t have stopped me out.”"
         },
         {
           "label": "Urgency",
-          "sub": "“I need that back.”"
+          "sub": "You feel like you need that money back now."
         },
         {
           "label": "Lower standards",
-          "sub": "Half a setup looks fine"
+          "sub": "Half a setup suddenly starts to look good enough."
         },
         {
-          "label": "Bigger, faster",
-          "sub": "Size up, jump in"
+          "label": "Bigger and faster",
+          "sub": "You size up and jump in without your full model."
         },
         {
           "label": "More damage",
-          "sub": "Then more urgency"
+          "sub": "The loss grows, and the urgency gets even stronger."
         }
       ],
       "cta": "Next →"
@@ -612,7 +613,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "How do you know you’re trading to <em>get something back</em>?",
+      "prompt": "How can you tell when you’re trading to <em>get money back</em> instead of trading your plan?",
       "modelAnswer": "When I wouldn’t take this exact setup if the last trade never happened. Urgency, lower standards and bigger size are the signs. A valid loss is logged, not avenged."
     }
   ],

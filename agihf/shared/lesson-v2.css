@@ -11,6 +11,7 @@
 .v2-kick{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--pink);margin-bottom:10px;}
 .v2-big{font-family:var(--font-display);font-weight:900;font-size:2.15rem;line-height:1.06;color:var(--dark);margin:0;}
 .v2-big-sm{font-size:1.75rem;}
+.v2-big-xs{font-size:1.5rem;}
 .v2-big em{font-style:normal;background:linear-gradient(transparent 62%,var(--peach-light) 62%);}
 .v2-line{font-size:1.02rem;line-height:1.55;color:var(--text);margin:12px 0 0;max-width:30em;}
 .v2-spacer{flex:1;min-height:6px;}
@@ -120,6 +121,7 @@
   .v2-r{flex:1;padding:40px;background:linear-gradient(160deg,#FFF6F2,#FBF3FF);}
   .v2-big{font-size:3.1rem;}
   .v2-big-sm{font-size:2.4rem;}
+  .v2-big-xs{font-size:2rem;}
   .v2-line{font-size:1.12rem;}
   .v2-host-box{width:280px;}
   .v2-tile{min-height:280px;}
