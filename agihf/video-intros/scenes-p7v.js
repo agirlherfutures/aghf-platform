@@ -1313,6 +1313,202 @@
       return o;
     },
 
+    /* ════ Psychology 14 · Your Trading Routine ════════════════════════ */
+
+    // Wake up, open the 1-minute, scramble, in a trade. No plan. Close it. Never look back.
+    'v14-morning': (s, t) => {
+      const B = s.b;
+      let o = grad('mo', '#2B2340', '#4A3A5E') + bg('url(#mo)');
+      const endk = seg(t, B.every - 0.4, B.every + 0.3);
+      // sunrise + laptop
+      o += fade(1 - endk, `<circle cx="1700" cy="${f1(320 - 60 * seg(t, s.start, B.moving))}" r="90" fill="#F9D89A" opacity=".9"/>`);
+      const closed = ease(seg(t, B.close, B.close + 0.8));
+      o += fade(1 - endk, `<rect x="260" y="160" width="1100" height="${f1(620 * (1 - closed) + 20)}" rx="24" fill="#120D1C" stroke="#3A2F55" stroke-width="6"/><rect x="200" y="${f1(780 - 620 * closed + 0)}" width="1220" height="40" rx="14" fill="#8B7FA8"/>`);
+      if (closed < 0.9) {
+        const n = 4 + Math.floor(seg(t, B.wake, B.intrade + 1) * 26);
+        o += fade((1 - endk) * (1 - closed), `${candles(290, 220, 1040, 480, vals(33, 30, 0.004, 0.05, 0.5), n, { slots: 30 })}${txt(300, 760, 'MNQ · 1m', 26, '#CFC8FA', { a: 'start', f: 'JetBrains Mono, monospace' })}`);
+        // scrambling levels
+        if (t > B.scramble) for (let i = 0; i < 5; i++) { const at = B.scramble + 0.5 + i * 0.8, y = 300 + ((i * 97) % 380) + 6 * Math.sin(t * 9 + i); o += fade((1 - endk) * (1 - closed) * seg(t, at, at + 0.2), `<line x1="300" x2="${f1(300 + 1000 * seg(t, at, at + 0.4))}" y1="${f1(y)}" y2="${f1(y)}" stroke="${['#F9D89A', '#7F77DD', '#FF8DA3'][i % 3]}" stroke-width="4" stroke-dasharray="12 8"/>`); }
+        o += pill(800, 470, 'IN A TRADE', '#E2556F', (1 - endk) * (1 - closed) * pop(t, B.intrade, 0.4), 44);
+        ['bias?', 'HTF?', 'levels?'].forEach((l, j) => { o += pill(1520, 360 + j * 100, l, '#3A2F55', (1 - endk) * between(t, B.scramble + j * 1.2, B.intrade), 32, '#F9D89A'); });
+      }
+      [[B.n1, 'no real plan'], [B.n2, 'no max loss'], [B.n3, 'waiting for… what?']].forEach(([at, l], j) => { o += fade((1 - endk) * (1 - closed) * seg(t, at, at + 0.4), `<rect x="1460" y="${560 + j * 110}" width="420" height="80" rx="40" fill="#fff"/>${txt(1500, 612 + j * 110, l, 28, C.dark, { a: 'start', w: 800 })}`) + cross(1850, 600 + j * 110, (1 - endk) * (1 - closed) * pop(t, at + 0.3, 0.4), '#E2556F', 24); });
+      // after: trades into the "never again" box
+      if (closed > 0) {
+        o += fade((1 - endk) * closed, `<rect x="660" y="560" width="400" height="260" rx="20" fill="#3A2F55"/>${txt(860, 860, 'never looked at again', 34, '#CFC8FA', { f: 'Playfair Display', it: true, w: 700 })}`);
+        for (let i = 0; i < 5; i++) { const k = ease(seg(t, B.close + 1 + i * 0.4, B.close + 1.6 + i * 0.4)); o += fade((1 - endk) * closed * seg(t, B.close + 1 + i * 0.4, B.close + 1.1 + i * 0.4), `<rect x="${f1(lerp(300 + i * 180, 760 + (i % 3) * 60, k))}" y="${f1(lerp(260, 640 + (i % 2) * 40, k))}" width="140" height="70" rx="10" fill="${i % 2 ? '#E2556F' : '#2AA594'}"/>${txt(lerp(370 + i * 180, 830 + (i % 3) * 60, k), lerp(305, 685 + (i % 2) * 40, k), 'trade', 26, '#fff')}`); }
+      }
+      if (endk > 0) {
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(endk)}"/>`;
+        o += fade(endk, `<rect x="560" y="320" width="800" height="360" rx="30" fill="#120D1C"/>${candles(590, 360, 740, 280, vals(57, 20, 0, 0.05, 0.5), 20)}${txt(960, 170, 'every decision… while it’s moving', 50, C.dark, { f: 'Playfair Display', it: true })}`);
+        ['risk?', 'size?', 'entry?', 'bias?', 'levels?', 'stop?'].forEach((l, j) => { const a = j * 1.05, hot = seg(t, B.emo, B.emo + 0.6); o += pill(960 + Math.cos(a) * 560, 560 + Math.sin(a) * 260, l, hot > 0.5 ? '#E2556F' : '#7F77DD', pop(t, B.every + 1 + j * 0.4, 0.4), 34); });
+        o += fade(seg(t, B.emo + 1, B.emo + 1.6), txt(960, 960, 'that’s when emotions get involved', 44, '#E2556F', { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      return o;
+    },
+
+    // Not the aesthetic routine. Before / during / after. Calm you decides for emotional you.
+    'v14-calm': (s, t) => {
+      const B = s.b;
+      let o = bg('#FBF4EF');
+      const p2 = seg(t, B.bda - 0.3, B.bda + 0.3), p3 = seg(t, B.calm - 0.4, B.calm + 0.2);
+      const a = 1 - p2;
+      if (a > 0) {
+        const items = [['⏰', '5:00 AM'], ['📓', 'journal'], ['🧘🏾‍♀️', 'meditate'], ['🥤', 'green juice'], ['📚', '3 chapters']];
+        items.forEach(([e, l], j) => { const x = 330 + j * 315; o += fade(a * seg(t, B.list + j * 0.7, B.list + j * 0.7 + 0.4), `<circle cx="${x}" cy="460" r="110" fill="#fff"/>${txt(x, 490, e, 80, C.dark)}${txt(x, 630, l, 34, C.muted, { w: 700 })}`); });
+        o += fade(a * seg(t, B.aesthetic, B.aesthetic + 0.4), txt(960, 220, 'the “aesthetic” morning routine', 52, C.dark, { f: 'Playfair Display', it: true }));
+        o += fade(a * seg(t, B.not, B.not + 0.3), `<line x1="200" x2="1720" y1="460" y2="460" stroke="#E2556F" stroke-width="10"/>${txt(960, 820, 'not what I’m talking about', 54, '#E2556F', { f: 'Playfair Display', it: true })}`);
+      }
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        const cols = [['BEFORE', '#7F77DD', 'I trade'], ['DURING', '#2AA594', 'I’m trading'], ['AFTER', '#E2B04A', 'I’m done']];
+        cols.forEach(([h, col, sub], j) => { const x = 380 + j * 580; o += fade(b * seg(t, B.bda + j * 0.8, B.bda + j * 0.8 + 0.4), `<rect x="${x - 250}" y="170" width="500" height="150" rx="30" fill="${col}"/>${txt(x, 245, h, 50, '#fff', { ls: 8 })}${txt(x, 295, sub, 30, '#fff', { w: 700 })}`); });
+        [[B.d1, 'risk decided', 'not deciding it while frustrated'], [B.d2, 'levels marked', 'not inventing them for an entry'], [B.d3, 'setup defined', 'not negotiating while it runs']].forEach(([at, a2, b2], j) => {
+          const y = 440 + j * 170;
+          o += fade(b * seg(t, at, at + 0.5), `<rect x="200" y="${y - 60}" width="1520" height="120" rx="30" fill="#fff"/>${txt(260, y + 14, a2, 40, '#7F77DD', { a: 'start' })}${txt(1660, y + 14, b2, 36, C.dark, { a: 'end', w: 700 })}`) + check(700, y, b * pop(t, at + 0.4, 0.4), '#2AA594', 26);
+        });
+      }
+      if (p3 > 0) {
+        // calm-you hands the plan to emotional-you
+        const hand = ease(seg(t, B.calm + 1, B.calm + 3));
+        o += fade(p3, you(t, { x: 560, y: 920, scale: 1.25 }) + pill(560, 300, 'calm you', '#2AA594', 1, 38) + you(t, { x: 1360, y: 920, scale: 1.25, flip: true, mood: 'sad' }) + pill(1360, 300, 'emotional you', '#E2556F', 1, 38));
+        o += fade(p3, `<g transform="translate(${f1(lerp(680, 1180, hand))},${f1(lerp(560, 470, hand) - 80 * Math.sin(hand * Math.PI))})"><rect x="-80" y="-55" width="160" height="110" rx="10" fill="#fff" stroke="#2C1810" stroke-width="5"/><path d="M-80,-55 L0,10 L80,-55" fill="none" stroke="#2C1810" stroke-width="5"/>${txt(0, 40, 'the plan', 24, C.dark)}</g>`);
+        o += fade(seg(t, B.calm + 3, B.calm + 3.6), txt(960, 1010, 'decisions made before the moment', 44, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      return o;
+    },
+
+    // Two kinds of days. Understand the room first. When you're done, be done.
+    'v14-room': (s, t) => {
+      const B = s.b;
+      let o = grad('rm', '#F3E3D6', '#FBF4EF') + bg('url(#rm)');
+      const p2 = seg(t, B.htf - 0.4, B.htf + 0.2), p3 = seg(t, B.bedone - 0.4, B.bedone + 0.2);
+      o += host(t, { x: 100, y: 330, w: 520, pose: t > B.ooh && t < B.back + 2 ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
+      const a = 1 - p2;
+      if (a > 0) {
+        o += fade(a * seg(t, B.just, B.just + 0.4), `<rect x="760" y="200" width="480" height="420" rx="30" fill="#fff"/>${txt(1000, 270, 'just got on', 36, '#E2556F')}${[0, 1, 2, 3, 4].map(i => `<line x1="${800 + i * 30}" y1="${320 + i * 50}" x2="${1200 - i * 40}" y2="${360 + ((i * 73) % 200)}" stroke="${['#F9D89A', '#7F77DD', '#FF8DA3'][i % 3]}" stroke-width="5"/>`).join('')}${txt(1000, 580, 'figuring it out live', 30, C.muted, { w: 700 })}`);
+        o += fade(a * seg(t, B.prepared, B.prepared + 0.4), `<rect x="1300" y="200" width="480" height="420" rx="30" fill="#fff" stroke="#2AA594" stroke-width="6"/>${txt(1540, 270, 'did my top-down', 36, '#2AA594')}<line x1="1340" x2="1740" y1="380" y2="380" stroke="#E2B04A" stroke-width="5" stroke-dasharray="14 10"/><line x1="1340" x2="1740" y1="500" y2="500" stroke="#7F77DD" stroke-width="5" stroke-dasharray="14 10"/>${txt(1540, 450, 'knew what I wanted', 28, C.dark, { w: 700 })}${txt(1540, 580, 'levels · setup · bias', 30, C.muted, { w: 700 })}`);
+        o += fade(a * seg(t, B.notright, B.notright + 0.4), txt(1280, 730, 'not “guaranteed right”', 44, C.muted, { f: 'Playfair Display', it: true, w: 700 }) + `<line x1="1060" x2="${f1(1060 + 440 * seg(t, B.notright + 1, B.notright + 1.5))}" y1="714" y2="714" stroke="#E2556F" stroke-width="6"/>`);
+        o += fade(a * seg(t, B.figuring, B.figuring + 0.4), txt(1280, 830, 'just not figuring it out while executing', 44, '#2AA594', { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      // understand the room: zoom out
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        const z = ease(seg(t, B.htf + 0.5, B.htf + 3));
+        o += fade(b, `<rect x="760" y="180" width="1040" height="620" rx="28" fill="#120D1C"/>${candles(790, 220, 980, 540, vals(71, 30, 0.006, 0.04, 0.3), 30, { slots: 30 })}`);
+        o += fade(b, `<rect x="${f1(lerp(1660, 790, z))}" y="${f1(lerp(560, 220, z))}" width="${f1(lerp(100, 980, z))}" height="${f1(lerp(80, 540, z))}" fill="none" stroke="#F9D89A" stroke-width="6"/>`);
+        ['1m', '15m', '1h', 'daily'].forEach((l, j) => { o += pill(900 + j * 150, 860, l, j <= Math.floor(z * 3.99) ? '#7F77DD' : '#B8B3C9', b, 30); });
+        o += fade(b * seg(t, B.room, B.room + 0.5), txt(1280, 960, 'understand the room first', 50, '#2AA594', { f: 'Playfair Display', it: true }));
+      }
+      if (p3 > 0) {
+        const pull = seg(t, B.ooh, B.ooh + 0.4), lean = ease(seg(t, B.ooh, B.ooh + 1.2));
+        o += fade(p3, `<rect x="760" y="240" width="560" height="380" rx="24" fill="#120D1C"/>${candles(790, 280, 500, 300, vals(3, 16, 0.01, 0.05, 0.4), 16)}${txt(1040, 690, 'session over', 34, C.muted, { w: 700 })}`);
+        o += fade(p3, you(t, { x: lerp(1600, 1420, lean), y: 900, scale: 1.05, flip: lean < 0.5, walking: t > B.bedone && t < B.ooh }));
+        o += thought(1440, 300, '“Ooh, wait… this looks good.”', pull * p3, { size: 36 });
+        o += fade(seg(t, B.back, B.back + 0.5), pill(1040, 780, 'a trade we never planned', '#E2556F', 1, 32));
+        o += fade(p3 * seg(t, B.bedone, B.bedone + 0.4) * (1 - pull), txt(1280, 160, 'when I’m done, I need to be done', 46, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      return o;
+    },
+
+    // The three-part routine: BEFORE (and how am I showing up?), DURING, AFTER. Then leave.
+    'v14-three': (s, t) => {
+      const B = s.b;
+      let o = grad('th', '#E6F5F2', '#FDF8F5') + bg('url(#th)');
+      const stage = t < B.during - 0.3 ? 0 : t < B.after - 0.3 ? 1 : t < B.leave - 0.3 ? 2 : 3;
+      const tabs = [['BEFORE', '#7F77DD'], ['DURING', '#2AA594'], ['AFTER', '#E2B04A']];
+      if (stage < 3) tabs.forEach(([l, col], j) => { o += `<rect x="${360 + j * 420}" y="130" width="360" height="90" rx="45" fill="${j === stage ? col : '#fff'}" stroke="${col}" stroke-width="5"/>${txt(540 + j * 420, 190, l, 40, j === stage ? '#fff' : col, { ls: 6 })}`; });
+      if (stage === 0) {
+        const mental = seg(t, B.showing - 0.3, B.showing + 0.3);
+        ['higher-timeframe context', 'important levels', 'the setup I’m waiting for', 'risk per trade', 'max number of trades', 'daily stop'].forEach((l, j) => {
+          const x = j < 3 ? 560 : 1360, y = 330 + (j % 3) * 120, at = B.before + 0.6 + j * 0.5;
+          o += fade((1 - mental * 0.6) * seg(t, at, at + 0.3), `<rect x="${x - 360}" y="${y - 48}" width="720" height="96" rx="48" fill="#fff"/>${txt(x - 300, y + 13, l, 34, C.dark, { a: 'start', w: 700 })}`) + check(x + 310, y, pop(t, at + 0.2, 0.4) * (1 - mental * 0.6), '#7F77DD', 24);
+        });
+        if (mental > 0) {
+          o += fade(mental, `<rect x="360" y="700" width="1200" height="300" rx="36" fill="#fff" stroke="#7F77DD" stroke-width="6"/>${txt(960, 770, 'how am I showing up today?', 46, '#7F77DD', { f: 'Playfair Display', it: true })}`);
+          ['tired', 'frustrated', 'distracted', 'desperate for money', 'after a big loss', 'after a huge win'].forEach((l, j) => { o += pill(560 + (j % 3) * 400, 860 + Math.floor(j / 3) * 80, l, '#F4829A', mental * pop(t, B.showing + 0.5 + j * 0.35, 0.4), 28); });
+          o += fade(seg(t, B.you, B.you + 0.5), `<rect width="1920" height="1080" fill="#FDF8F5" opacity=".85"/>${txt(960, 500, 'where YOU are', 70, '#7F77DD', { f: 'Playfair Display', it: true })}${txt(960, 600, 'matters as much as where price is', 50, C.dark, { f: 'Playfair Display', it: true, w: 700 })}`);
+        }
+      }
+      if (stage === 1) {
+        o += fade(seg(t, B.during - 0.3, B.during + 0.3), txt(960, 330, 'not new plans', 54, C.muted, { f: 'Playfair Display', it: true }) + `<line x1="780" x2="${f1(780 + 360 * seg(t, B.during + 1.5, B.during + 2))}" y1="314" y2="314" stroke="#E2556F" stroke-width="6"/>`);
+        o += fade(seg(t, B.execute, B.execute + 0.4), txt(960, 430, 'execute the one I already made', 54, '#2AA594', { f: 'Playfair Display', it: true }));
+        ['wait for the setup', 'confirm the criteria', 'appropriate risk', 'manage by my rules'].forEach((l, j) => { o += pill(330 + j * 420, 560, l, '#2AA594', pop(t, B.execute + 1 + j * 0.4, 0.4), 30); });
+        const sg = seg(t, B.notice, B.notice + 0.5);
+        o += fade(sg, `<rect x="260" y="680" width="1400" height="300" rx="36" fill="#fff"/>${txt(960, 750, 'and watch yourself', 40, C.dark, { f: 'Playfair Display', it: true, w: 700 })}`);
+        ['frustrated', 'chasing', 'sizing up', 'forcing'].forEach((l, j) => { o += pill(480 + j * 320, 840, l, '#E2556F', sg * pop(t, B.notice + 1 + j * 0.6, 0.4), 30); });
+        o += fade(seg(t, B.notice + 4, B.notice + 4.6), txt(960, 940, '= information (maybe step away)', 38, '#7F77DD', { w: 800 }));
+      }
+      if (stage === 2) {
+        const sk = seg(t, B.after + 0.8, B.after + 1.6);
+        o += fade(seg(t, B.after - 0.3, B.after + 0.3), `${txt(960 - 260 * sk, 360, '+$500', 90 - 40 * sk, '#2AA594', { f: 'JetBrains Mono, monospace', op: f1(1 - sk * 0.6) })}${txt(960 + 260 * sk, 360, '−$300', 90 - 40 * sk, '#E2556F', { f: 'JetBrains Mono, monospace', op: f1(1 - sk * 0.6) })}`);
+        o += fade(sk, txt(960, 300, 'the part people skip', 46, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+        ['did I follow my plan?', 'which trades were valid? which weren’t?', 'did I follow my risk?', 'any emotional decisions?', 'one thing to repeat tomorrow', 'one thing to correct tomorrow'].forEach((l, j) => {
+          const y = 440 + j * 92, at = B.after + 1.2 + j * 0.45;
+          o += fade(seg(t, at, at + 0.3), `<rect x="460" y="${y - 40}" width="1000" height="80" rx="40" fill="#fff"/><rect x="490" y="${y - 18}" width="36" height="36" rx="8" fill="none" stroke="#E2B04A" stroke-width="4"/>${txt(550, y + 12, l, 32, C.dark, { a: 'start', w: 700 })}`);
+        });
+        o += fade(seg(t, B.reviewed, B.reviewed + 0.4), `<rect width="1920" height="1080" fill="#FDF8F5" opacity=".9"/>${txt(960, 540, 'and once you’ve reviewed it?', 56, C.dark, { f: 'Playfair Display', it: true })}`);
+      }
+      if (stage === 3) {
+        const op = ease(seg(t, B.leave, B.leave + 1));
+        o += `<rect x="760" y="240" width="400" height="640" rx="16" fill="#8B6A55"/><rect x="790" y="270" width="340" height="610" fill="#FFF3D6"/><g transform="translate(790,270) scale(${f1(1 - op * 0.85)},1)"><rect width="340" height="610" fill="#C98B6B"/><circle cx="290" cy="320" r="16" fill="#F9D89A"/></g>`;
+        o += you(t, { x: lerp(1500, 960, ease(seg(t, B.leave + 0.6, B.leave + 2.2))), y: 880, scale: 1, flip: true, walking: t > B.leave + 0.6 && t < B.leave + 2.2 });
+        o += fade(seg(t, B.leave, B.leave + 0.3), txt(960, 170, 'Leave.', 90, '#2AA594', { f: 'Playfair Display', it: true }));
+        o += fade(seg(t, B.leave + 1.5, B.leave + 2), txt(960, 990, 'trading doesn’t get the rest of your day', 40, C.muted, { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      return o;
+    },
+
+    // Prepare · execute · review · walk away. Fewer decisions in the moment.
+    'v14-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('r14', '#EEEBFB', '#DDF1EE') + bg('url(#r14)');
+      o += txt(960, 130, '🧠 YOUR RULE', 32, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 230, pop(t, s.start + 0.4, 0.8), txt(960, 255, 'I follow a process before, during, and after every session.', 54, C.dark, { f: 'Playfair Display' }));
+      const fin = seg(t, B.line - 0.3, B.line + 0.3), a = 1 - fin;
+      o += fade(a * seg(t, B.r0, B.r0 + 0.4), txt(960, 360, 'not “open the chart and see what happens”', 40, C.muted, { f: 'Playfair Display', it: true, w: 700 }));
+      const steps = [[B.r1, 'PREPARE', '#7F77DD'], [B.r2, 'EXECUTE', '#2AA594'], [B.r3, 'REVIEW', '#E2B04A'], [B.r4, 'WALK AWAY', '#F4829A']];
+      steps.forEach(([at, l, col], j) => {
+        const x = 330 + j * 420, k = pop(t, at, 0.5);
+        o += fade(a, scaleAt(x, 600, k, `<circle cx="${x}" cy="600" r="150" fill="${col}"/>${txt(x, 614, l, j === 3 ? 34 : 38, '#fff', { ls: 3 })}`));
+        if (j < 3) o += fade(a * seg(t, at + 0.4, at + 0.8), txt(x + 210, 620, '→', 60, C.dark));
+      });
+      if (fin > 0) o += fade(fin, txt(960, 520, 'Discipline gets easier', 74, C.dark, { f: 'Playfair Display', it: true }) + txt(960, 640, 'when you stop making every decision in the moment.', 54, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Reflection: your day in four parts. Which has the least structure? Simple enough to repeat.
+    'v14-reflect': (s, t) => {
+      const B = s.b;
+      let o = bg('#1A1424');
+      const p2 = seg(t, B.least - 0.3, B.least + 0.3), end = seg(t, B.perfect - 0.4, B.perfect + 0.3);
+      const parts = [['before', B.q1, 0.8], ['during', B.q2, 0.6], ['ending it', B.q3, 0.15], ['after', B.q4, 0.4]];
+      const a = 1 - end;
+      if (a > 0) {
+        o += fade(a * (1 - p2) * seg(t, B.open, B.open + 0.4), txt(960, 180, '“I open TradingView” …we have some work to do', 44, '#F9D89A', { f: 'Playfair Display', it: true, w: 700 }));
+        parts.forEach(([l, at, h], j) => {
+          const x = 330 + j * 420, k = seg(t, at, at + 0.4), lvl = ease(seg(t, B.least + 0.5 + j * 0.3, B.least + 1.5 + j * 0.3));
+          o += fade(a * k, `<rect x="${x - 170}" y="300" width="340" height="560" rx="30" fill="#2A2142"/>${txt(x, 380, l.toUpperCase(), 34, '#CFC8FA', { ls: 4 })}`);
+          o += fade(a * k * (1 - lvl), txt(x, 620, '?', 120, '#F9D89A'));
+          if (lvl > 0) o += fade(a * lvl, `<rect x="${x - 120}" y="${f1(820 - 380 * h * lvl)}" width="240" height="${f1(380 * h * lvl)}" rx="16" fill="${h < 0.3 ? '#E2556F' : '#2AA594'}"/>`);
+        });
+        o += fade(a * p2, txt(960, 200, 'which part has the least structure?', 54, '#fff', { f: 'Playfair Display', it: true }));
+        o += pill(330 + 2 * 420, 920, 'start here', '#E2556F', a * pop(t, B.weak, 0.5), 34);
+      }
+      if (end > 0) {
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(end)}"/>`;
+        const fin = seg(t, B.force - 0.3, B.force + 0.3);
+        o += fade(end * (1 - fin), txt(960, 240, 'not a perfect two-hour routine', 50, C.muted, { f: 'Playfair Display', it: true }) + `<line x1="640" x2="${f1(640 + 640 * seg(t, B.perfect + 2, B.perfect + 2.6))}" y1="222" y2="222" stroke="#E2556F" stroke-width="6"/>`);
+        o += fade(end * (1 - fin) * seg(t, B.repeat, B.repeat + 0.5), txt(960, 340, 'simple enough to repeat', 62, '#2AA594', { f: 'Playfair Display', it: true }));
+        // the loop
+        const L = [['PREPARE', '#7F77DD'], ['EXECUTE', '#2AA594'], ['REVIEW', '#E2B04A'], ['WALK AWAY', '#F4829A']];
+        L.forEach(([l, col], j) => { const ang = -Math.PI / 2 + j * Math.PI / 2 + (t - B.pera) * 0.3, x = 960 + Math.cos(ang) * 260, y = 680 + Math.sin(ang) * 160; o += fade(end * (1 - fin), pill(x, y, l, col, pop(t, B.pera + j * 0.5, 0.4), 34)); });
+        o += fade(fin, txt(960, 420, 'discipline you have to force', 52, C.muted, { f: 'Playfair Display', it: true }) + `<line x1="640" x2="${f1(640 + 640 * seg(t, B.force + 2, B.force + 2.6))}" y1="402" y2="402" stroke="#E2556F" stroke-width="6"/>`);
+        o += fade(seg(t, B.last, B.last + 0.5), txt(960, 580, 'a routine that makes discipline', 62, C.dark, { f: 'Playfair Display', it: true }) + txt(960, 680, 'the easiest thing to do', 70, '#2AA594', { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
     /*@@V@@*/
   };
 
