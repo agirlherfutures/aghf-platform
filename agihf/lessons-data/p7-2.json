@@ -8,10 +8,10 @@
  "xpValue": 85,
  "completeStyle": "v2",
  "passThreshold": 0.6,
- "hook": "Why your best trade can become the reason you take your worst one.",
+ "hook": "Your best trade can become the reason you take your worst one.",
  "format": "slides",
  "launchpad": {
-  "outcome": "Feel what a clean win does to your judgment, and learn why confidence is not confirmation.",
+  "outcome": "Notice what a win does to your judgment.",
   "missionQuestion": "Did the market give me a setup, or did the win give me permission?",
   "estMinutes": 8
  },
@@ -22,7 +22,7 @@
   {
    "type": "p7_scene",
    "kicker": "After the Win",
-   "title": "You just hit TP.",
+   "title": "",
    "beats": [
     {
      "chart": {
@@ -137,31 +137,13 @@
        "to": 13,
        "speed": 300
       }
-     }
-    },
-    {
-     "say": [
-      "Clean entry. Clean execution.",
-      "<b>You followed your plan perfectly.</b> +2R."
-     ]
-    },
-    {
-     "say": [
-      "Then you look back at the chart.",
-      "Price is still moving."
-     ]
+     },
+     "caption": "TP. +2R. Perfect execution."
     },
     {
      "thoughts": [
       "“I’m locked in today.”",
-      "“I could probably catch one more.”",
-      "“I’m seeing the market so clearly.”"
-     ]
-    },
-    {
-     "say": [
-      "Nothing about the market changed.",
-      "<b>But something changed in you.</b>"
+      "“One more.”"
      ]
     },
     {
@@ -281,27 +263,19 @@
        "label": "The next chart"
       }
      },
-     "caption": "Price wicked through the PIL. It never closed through it."
+     "caption": "Wicks through the level. No close."
     },
     {
      "say": [
-      "There is no valid setup here. Your model is clear about that.",
-      "You <em>know</em> there’s no trade.",
-      "<b>So why do you suddenly want one?</b>"
-     ]
-    },
-    {
-     "thoughts": [
-      "“It’s basically the same move.”",
-      "“I’m on today.”"
+      "No setup. So why do you want one?"
      ]
     },
     {
      "choice": {
-      "prompt": "Your cursor is over BUY. What do you do?",
+      "prompt": "What do you do?",
       "options": [
        {
-        "label": "Take it. You’re on.",
+        "label": "Take it",
         "path": {
          "chart": {
           "bars": [
@@ -471,7 +445,7 @@
           ],
           "head": {
            "tf": "1M",
-           "label": "You bought the wick"
+           "label": "You took it"
           },
           "play": {
            "from": 16,
@@ -480,25 +454,7 @@
           }
          },
          "say": [
-          "It never closed through. It never had to.",
-          "The win didn’t change the chart. It changed how much you trusted yourself.",
-          "And if it had worked? <b>You’d have learned the wrong lesson faster.</b>"
-         ],
-         "tally": [
-          [
-           "TRADE 1",
-           "+2R ✓ PLAN"
-          ],
-          [
-           "TRADE 2",
-           "−1R · NO SETUP",
-           "mind"
-          ],
-          [
-           "DAY",
-           "+1R",
-           "neutral"
-          ]
+          "−1R. There was never a setup."
          ]
         },
         "track": [
@@ -507,7 +463,7 @@
         ]
        },
        {
-        "label": "Wait for a real close through the PIL",
+        "label": "Wait for a close",
         "path": {
          "chart": {
           "bars": [
@@ -697,8 +653,16 @@
           }
          },
          "say": [
-          "It never closed through.",
-          "No setup ever formed. Nothing for your model to do."
+          "It never closed through. Nothing to do."
+         ]
+        },
+        "track": "ruleBasedResponses"
+       },
+       {
+        "label": "Done for the day",
+        "path": {
+         "say": [
+          "+2R. Day complete."
          ],
          "tally": [
           [
@@ -711,29 +675,8 @@
            "0",
            "ok"
           ]
-         ]
-        },
-        "track": "ruleBasedResponses"
-       },
-       {
-        "label": "Close the platform. The plan said done after +2R.",
-        "path": {
-         "say": [
-          "You logged the trade, wrote one line in your journal, and closed the chart.",
-          "Maybe it moved after. You’ll never know. <b>That’s fine.</b>"
          ],
-         "tally": [
-          [
-           "DAY",
-           "+2R",
-           "ok"
-          ],
-          [
-           "SESSION",
-           "COMPLETE ✓",
-           "big"
-          ]
-         ]
+         "stamp": "SESSION COMPLETE ✓"
         },
         "track": "ruleBasedResponses"
        }
@@ -741,60 +684,24 @@
      }
     },
     {
-     "say": [
-      "<b>The first win gave you permission you never actually had.</b>"
-     ]
-    },
-    {
      "who": {
       "before": {
        "h": "THE TRADER",
-       "lines": [
-        "She waited.",
-        "She followed confirmation.",
-        "She executed her model."
-       ]
+       "lines": []
       },
       "after": {
        "h": "THE FEELING",
-       "lines": [
-        "She feels sharp.",
-        "Confident.",
-        "Maybe even invincible."
-       ]
+       "lines": []
       },
-      "verdict": "Before the win, the trader. After the win, the feeling.",
-      "title": "WHO’S TRADING NOW?"
+      "beforeLabel": "BEFORE THE WIN",
+      "afterLabel": "AFTER THE WIN"
      }
     },
     {
      "principle": "CONFIDENCE IS NOT CONFIRMATION."
     }
-   ]
-  },
-  {
-   "type": "p7_split",
-   "kicker": "Not every runner is greed",
-   "title": "Same position. Different source.",
-   "left": {
-    "h": "PLANNED RUNNER",
-    "lines": [
-     "Written before entry.",
-     "Trail rule defined.",
-     "Follows the plan."
-    ],
-    "tone": "ok"
-   },
-   "right": {
-    "h": "EXCITEMENT RUNNER",
-    "lines": [
-     "Added at the target.",
-     "“It looks so bullish.”",
-     "The plan, rewritten by a feeling."
-    ],
-    "tone": "mind"
-   },
-   "verdict": "Ask: was it in the plan, or did excitement add it?"
+   ],
+   "stage": true
   },
   {
    "type": "v2_dayli",
@@ -805,13 +712,12 @@
   {
    "type": "reflect",
    "kicker": "Tell me what you know",
-   "prompt": "What does a win do to you? What do you want to do right after one?",
-   "modelAnswer": "After a win I feel sharp and want one more, or a bigger size, or a farther target. The win didn’t give me a setup. Confidence is not confirmation."
+   "prompt": "What do you want to do right after a win?",
+   "modelAnswer": "One more trade, bigger size, a farther target. The win didn’t give me a setup."
   }
  ],
  "takeaways": [
   "A win changes you, not the chart.",
-  "Greed is refusing to respect “enough”.",
   "Confidence is not confirmation."
  ],
  "remember": "CONFIDENCE IS NOT CONFIRMATION."
