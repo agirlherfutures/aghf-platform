@@ -74,7 +74,7 @@ export function newStudyVersion(id, patch) {
 }
 
 // ── PracticeRep ───────────────────────────────────────────────────────────
-export const SOURCES = ['ACADEMY_CASE', 'BACKTEST', 'REPLAY', 'PAPER', 'LIVE', 'MANUAL'];
+export const SOURCES = ['ACADEMY_CASE', 'BACKTEST', 'REPLAY', 'PAPER', 'LIVE', 'MANUAL', 'CAPSTONE'];
 export function reps() { return store.get(K.reps, []); }
 export function saveRep(rep) {
   const all = reps();
@@ -105,7 +105,7 @@ export function saveShot(s) {
 /** Academy case entries are mapped into the rep shape so every tool reads one format. */
 export function journalEntries({ extra = [] } = {}) {
   const fromCases = practiceJournal().map((e) => ({
-    repId: e.id, entrySource: 'ACADEMY_CASE', caseId: e.caseId, date: e.date, instrument: e.instrument, decision: e.participationDecision,
+    repId: e.id, entrySource: e.entrySource === 'CAPSTONE' ? 'CAPSTONE' : 'ACADEMY_CASE', caseId: e.caseId, date: e.date, instrument: e.instrument, decision: e.participationDecision,
     outcome: e.participationDecision === 'TAKE' ? (e.outcome === 'WIN' ? 'WIN' : e.outcome === 'LOSS' ? 'LOSS' : 'OPEN') : e.missedOpportunity ? 'MISSED' : 'NO_TRADE',
     realizedR: e.rResult, setupValidity: e.setupValidity, setupQuality: e.setupQuality, violations: (e.ruleViolations || []).map((t) => ({ tag: t, category: 'ENTRY' })),
     ruleAdherence: null, studentLesson: e.studentLesson, createdAt: Date.parse(e.createdAt) || Date.now(), pil: e.pil, methodVersionUsed: e.methodVersionUsed, academy: true,

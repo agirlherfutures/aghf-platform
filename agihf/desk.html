@@ -64,7 +64,7 @@
   }
   window.addEventListener('hashchange', show);
   async function boot() {
-    try { const p = await window.AGHF_FETCH_PROFILE?.(); name = (p?.display_name || p?.first_name || p?.name || '').split(' ')[0]; } catch { /* no profile */ }
+    try { const p = await window.AGHF_FETCH_PROFILE?.(); const pr = p?.profile || p || {}; name = (pr.display_name || pr.first_name || pr.full_name || pr.name || '').split(' ')[0]; } catch { /* no profile */ }
     try { show(); } finally { window.AGHF_HIDE_LOADER?.(); }
   }
   if (window.AGHF_USER) boot(); else document.addEventListener('aghf-auth-ready', boot, { once: true });

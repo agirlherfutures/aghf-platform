@@ -381,7 +381,7 @@ export async function renderJournal(el, opts = {}) {
     const es = all.filter((e) => (filter.source === 'ALL' || e.entrySource === filter.source) && (filter.kind === 'ALL' || (filter.kind === 'TRADE' ? e.decision === 'TAKE' : filter.kind === 'PASS' ? e.decision === 'PASS' : e.outcome === 'MISSED' || e.decision === 'MISSED')));
     el.innerHTML = `<div class="dk-journal">
       <div class="dk-head"><div><div class="p8-kicker">AGHF TRADE JOURNAL</div><h3 class="p8-h">Every rep, every source ${nTag(all.length)}</h3></div>${btn('+ New entry', 'is-primary dk-new')}</div>
-      <div class="dk-filters">${chips('source', ['ALL', 'ACADEMY_CASE', 'BACKTEST', 'REPLAY', 'PAPER', 'LIVE', 'MANUAL'], filter.source)}${chips('kind', [['ALL', 'All'], ['TRADE', 'Trades'], ['PASS', 'Passes'], ['MISSED', 'Missed']], filter.kind)}</div>
+      <div class="dk-filters">${chips('source', ['ALL', 'ACADEMY_CASE', 'BACKTEST', 'REPLAY', 'PAPER', 'LIVE', 'MANUAL', 'CAPSTONE'], filter.source)}${chips('kind', [['ALL', 'All'], ['TRADE', 'Trades'], ['PASS', 'Passes'], ['MISSED', 'Missed']], filter.kind)}</div>
       <div class="dk-list">${es.length ? es.map((e) => `<div class="dk-row-e" data-id="${esc(e.repId)}">
           <span class="dk-src">${esc(e.entrySource.replace('_', ' '))}</span><span>${esc(e.date || '')}</span><b>${esc(e.decision || '·')}</b>
           <span class="dk-oc is-${(e.outcome || '').toLowerCase()}">${esc(e.outcome || '·')}${e.realizedR != null ? ` · ${fmtR(e.realizedR)}` : ''}</span>

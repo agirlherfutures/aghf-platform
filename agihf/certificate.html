@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate of Completion — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<style>
+  .cert-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 16px;}
+  .cert-bar a,.cert-bar button{font:600 .86rem 'DM Sans',sans-serif;border:0;border-radius:999px;padding:10px 18px;cursor:pointer;text-decoration:none;background:#1C1929;color:#fff;}
+  .cert-bar .is-alt{background:#fff;color:#1C1929;border:1px solid #E4DCEA;}
+  .cert{max-width:980px;margin:0 auto;background:#FFFCF7;border-radius:6px;padding:14px;box-shadow:0 18px 50px rgba(28,25,41,.18);}
+  .cert-in{border:2px solid #C9A45C;outline:1px solid #C9A45C;outline-offset:-10px;padding:clamp(28px,6vw,64px) clamp(18px,5vw,56px);text-align:center;color:#1C1929;}
+  .cert-brand{font:700 .72rem 'DM Sans',sans-serif;letter-spacing:.32em;color:#9C7A3C;}
+  .cert-title{font:900 clamp(1.5rem,4.4vw,2.7rem)/1.1 'Playfair Display',serif;margin:14px 0 4px;letter-spacing:.02em;}
+  .cert-sub{font:italic 400 1rem 'Playfair Display',serif;color:#6B6478;margin:0 0 26px;}
+  .cert-name{font:700 italic clamp(1.9rem,6vw,3.4rem)/1.1 'Playfair Display',serif;color:#2A2240;border-bottom:1px solid #C9A45C;display:inline-block;padding:0 18px 8px;min-width:50%;}
+  .cert-body{font:400 clamp(.92rem,2.2vw,1.06rem)/1.6 'DM Sans',sans-serif;color:#3A3448;max-width:640px;margin:20px auto 22px;}
+  .cert-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 30px;}
+  .cert-pills span{font:700 .68rem 'DM Sans',sans-serif;letter-spacing:.14em;border:1px solid #E1CFA6;color:#7C5F2C;border-radius:999px;padding:6px 12px;}
+  .cert-foot{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:end;margin-top:8px;}
+  .cert-sig{border-top:1px solid #1C1929;padding-top:6px;font:400 .78rem 'DM Sans',sans-serif;color:#6B6478;}
+  .cert-sig b{display:block;font:italic 700 1.1rem 'Playfair Display',serif;color:#1C1929;margin-bottom:2px;}
+  .cert-seal{width:86px;height:86px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#F3DFA9,#C9A45C 60%,#9C7A3C);display:flex;align-items:center;justify-content:center;font-size:2rem;box-shadow:0 0 0 4px #FFFCF7,0 0 0 5px #C9A45C;}
+  .cert-id{font:400 .7rem 'DM Sans',sans-serif;color:#8C8598;margin-top:22px;}
+  .cert-disc{max-width:720px;margin:16px auto 0;font:400 .74rem/1.5 'DM Sans',sans-serif;color:#7A7388;text-align:center;}
+  .cert-lock{max-width:620px;margin:40px auto;text-align:center;font-family:'DM Sans',sans-serif;}
+  .cert-lock h1{font-family:'Playfair Display',serif;}
+  @media (max-width:640px){.cert-foot{grid-template-columns:1fr;justify-items:center;}.cert-sig{width:80%;}}
+  @media print{
+    @page{size:landscape;margin:10mm;}
+    body{background:#fff!important;} .cert-bar,aside.sb,.mb-bar{display:none!important;}
+    .main{margin:0!important;padding:0!important;max-width:none!important;}
+    .cert{box-shadow:none;max-width:none;}
+  }
+</style>
+</head>
+<body>
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="desk"></script>
+<main class="main"><div id="certView"></div></main>
+<script type="module">
+  import { alumni } from './shared/desk-core.js';
+  import { UNLOCK_ALL } from './shared/preview.js';
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const view = document.getElementById('certView');
+  async function boot() {
+    let full = '';
+    try { const p = await window.AGHF_FETCH_PROFILE?.(); const pr = p?.profile || p || {}; full = pr.display_name || pr.full_name || [pr.first_name, pr.last_name].filter(Boolean).join(' ') || pr.name || ''; } catch { /* no profile */ }
+    try {
+      let a = alumni();
+      if (!a && UNLOCK_ALL && new URLSearchParams(location.search).has('preview')) a = { graduatedAt: Date.now(), attemptId: 'PREVIEW', name: full };
+      if (!a) {
+        view.innerHTML = `<div class="cert-lock"><h1>Your certificate is waiting 🎓</h1><p>It appears here once you pass the capstone.</p><div class="cert-bar"><a href="capstone.html">Go to the capstone →</a></div></div>`;
+        return;
+      }
+      const name = full || a.name || 'AGHF Graduate';
+      const date = new Date(a.graduatedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+      document.title = `Certificate of Completion · ${name}`;
+      view.innerHTML = `
+        <div class="cert-bar"><button type="button" id="certPrint">Print or save as PDF</button><a class="is-alt" href="desk.html">My Trader Desk →</a></div>
+        <div class="cert"><div class="cert-in">
+          <div class="cert-brand">A GIRL &amp; HER FUTURES · AGHF ACADEMY</div>
+          <div class="cert-title">CERTIFICATE OF COMPLETION</div>
+          <p class="cert-sub">This recognizes that</p>
+          <div class="cert-name">${esc(name)}</div>
+          <p class="cert-body">completed every phase and section of the AGHF Academy curriculum, from reading her first candle to building, testing and locking her own trading plan, and passed the She’s In Structure capstone: one full trading day, scored on process, not profit.</p>
+          <div class="cert-pills"><span>8 PHASES</span><span>22 SECTIONS</span><span>CAPSTONE COMPLETED</span>${a.planVersion ? `<span>TRADING PLAN v${esc(a.planVersion)}</span>` : ''}</div>
+          <div class="cert-foot">
+            <div class="cert-sig"><b>${esc(date)}</b>Date of completion</div>
+            <div class="cert-seal" aria-hidden="true">✦</div>
+            <div class="cert-sig"><b>Dayli</b>Founder, A Girl &amp; Her Futures</div>
+          </div>
+          <div class="cert-id">Record ${esc(a.attemptId || '')} · ${esc(a.methodVersion || 'Dayli ICC 1.0')}</div>
+        </div></div>
+        <p class="cert-disc">This certificate recognizes completion of an educational program. It is not a license, a professional certification or an accreditation, and it does not qualify the holder to give financial advice or manage money for others. Trading futures involves substantial risk of loss.</p>`;
+      document.getElementById('certPrint').addEventListener('click', () => window.print());
+    } finally { window.AGHF_HIDE_LOADER?.(); }
+  }
+  if (window.AGHF_USER) boot(); else document.addEventListener('aghf-auth-ready', boot, { once: true });
+</script>
+</body>
+</html>
