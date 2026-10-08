@@ -109,7 +109,7 @@ body.captions .scene{padding-bottom:230px;}
 const params = new URLSearchParams(location.search);
 const lessonSlug = params.get('lesson') || 'lesson-01';
 if (params.get('captions') === '1') document.body.classList.add('captions');
-document.write('<script src="illustrations.js"><\/script><script src="scenes-illustrated.js"><\/script><script src="scenes-s2.js"><\/script>' + [5,6,7,8,9,10,11,12,13,15,16,17].map(n => '<script src="scenes-s' + n + '.js"><\/script>').join('') + '<script src="scenes-p7.js"><\/script><script src="scenes-p7v.js"><\/script><script src="scenes-p7w.js"><\/script>');
+document.write('<script src="illustrations.js"><\/script><script src="scenes-illustrated.js"><\/script><script src="scenes-s2.js"><\/script>' + [5,6,7,8,9,10,11,12,13,15,16,17].map(n => '<script src="scenes-s' + n + '.js"><\/script>').join('') + '<script src="scenes-p7.js"><\/script><script src="scenes-p7v.js"><\/script><script src="scenes-p7w.js"><\/script>' + ['s21', 's21b', 's22', 's22b'].map(n => '<script src="scenes-' + n + '.js"><\/script>').join(''));
 document.write('<script src="lessons/' + lessonSlug + '.js"><\/script>');
 </script>
 <script>
