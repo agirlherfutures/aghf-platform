@@ -5,12 +5,14 @@
  *   { type: 'v2_moment', kicker, headline, line, chart, thoughts, check?, cta }
  *       The chart plays (Phase 7 exec bars), her thoughts pop over it, then
  *       either a tap question or a Next button.
+ *       Check options may carry `track` (mind counters), recorded on the first pick.
  *   { type: 'v2_steps', kicker, headline, line, steps: [{ label, sub }], cta }
  *       Numbered steps; tap each to light it up.
  */
 import { shell, nextBtn, check } from './lesson-v2.js';
 import { chartBlock } from './mind.js';
 import { mindOn } from './mind-ui.js';
+import { trackAll } from './mind-core.js';
 
 export function renderV2Moment(el, slide, satisfy, helpers) {
   const { act, right } = shell(el, slide, '<div class="p7v2-chart"></div>', slide.check ? '<div class="v2-check-slot"></div>' : '', { cls: 'p7v2-moment' });
@@ -19,8 +21,17 @@ export function renderV2Moment(el, slide, satisfy, helpers) {
     if (slide.thoughts?.length && box) mindOn(box, slide.thoughts, { gap: 0.8 });
     const wait = slide.thoughts ? 800 * slide.thoughts.length + 300 : 0;
     setTimeout(() => {
-      if (slide.check) check(el.querySelector('.v2-check-slot'), slide.check, helpers, () => nextBtn(act, satisfy, slide.cta || 'Next →'));
-      else nextBtn(act, satisfy, slide.cta || 'Next →');
+      if (slide.check) {
+        const slot = el.querySelector('.v2-check-slot');
+        check(slot, slide.check, helpers, () => nextBtn(act, satisfy, slide.cta || 'Next →'));
+        // Her first instinct is what Phase 7 remembers, right or not.
+        let tracked = false;
+        slot.querySelectorAll('.v2-chip').forEach((chip, i) => chip.addEventListener('click', () => {
+          if (tracked) return;
+          tracked = true;
+          trackAll(slide.check.options[i].track);
+        }));
+      } else nextBtn(act, satisfy, slide.cta || 'Next →');
     }, wait);
   };
   (box?.played || Promise.resolve()).then(after);
