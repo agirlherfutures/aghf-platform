@@ -35,12 +35,12 @@ export const P7_PARTS = {
   s20: { n: 3, name: 'Trust Your Judgment', line: 'Learn when your setup deserves participation, and when doing nothing is the better decision.' },
 };
 
-const HANDS_ON_S19 = 'No video for this one. You’ll step into the moment, feel the pull, and decide what your rules say.';
-const HANDS_ON_S20 = 'You already know the model. This lesson is about whether today’s market deserves it. The scenario is the lesson.';
+const HANDS_ON_S19 = 'Feel the pull. Check your rules. Decide.';
+const HANDS_ON_S20 = 'You know the model. Does today’s market deserve it?';
 
 // What each lesson's first step teaches.
 //   video   — this lesson is the video's home (`also` adds a supporting video)
-//   recap   — a short reminder of a video whose home is an earlier lesson
+//   recap   — the rule from a video whose home is an earlier lesson
 //   preview — a taste of a video whose home is a later lesson
 //   handsOn — no video; the scenario does the teaching
 export const P7_LEARN = {
@@ -53,15 +53,15 @@ export const P7_LEARN = {
   7: { mode: 'video', video: 5 },
   8: { mode: 'video', video: 6 },
   9: { mode: 'video', video: 4 },
-  10: { mode: 'handsOn', note: 'No video for this one. Waiting is a skill, and the only way to learn it is to sit in it. The scenario is the lesson.' },
+  10: { mode: 'handsOn', note: 'Waiting is a skill. Sit in it.' },
   11: { mode: 'video', video: 11 },
   12: { mode: 'video', video: 10 },
   13: { mode: 'video', video: 14, also: 13 },
-  14: { mode: 'preview', video: 15, home: 22, note: 'Your rules work because you write them while you’re calm, not while you’re in the trade. You’ll build your full rulebook with me in Lesson 22. For now, notice which decisions you make better before the session than during it.' },
+  14: { mode: 'preview', video: 15, home: 22, note: 'Write your rules while you’re calm.' },
   15: { mode: 'handsOn', note: HANDS_ON_S19 },
-  16: { mode: 'recap', video: 9, home: 5, note: 'When a trade goes against you, the question isn’t “Will this lose?” It’s “Did I follow my plan?” Your stop was part of the plan. One trade doesn’t tell you whether your system works.' },
-  17: { mode: 'recap', video: 2, home: 6, note: 'The money from the move you missed was never yours. Ask one question: does my setup exist right now? The next trade has to stand on its own merit, not on how mad you are about the last one.' },
-  18: { mode: 'recap', video: 4, home: 9, note: 'There’s no natural finish line unless you create one. Your max trades, your daily stop and what “mentally done” looks like get decided before the session starts.' },
+  16: { mode: 'recap', video: 9, home: 5 },
+  17: { mode: 'recap', video: 2, home: 6 },
+  18: { mode: 'recap', video: 4, home: 9 },
   19: { mode: 'handsOn', note: HANDS_ON_S19 },
   20: { mode: 'handsOn', note: HANDS_ON_S19 },
   21: { mode: 'video', video: 12 },
@@ -72,9 +72,9 @@ export const P7_LEARN = {
   26: { mode: 'handsOn', note: HANDS_ON_S20 },
   27: { mode: 'handsOn', note: HANDS_ON_S20 },
   28: { mode: 'handsOn', note: HANDS_ON_S20 },
-  29: { mode: 'recap', video: 14, home: 13, note: 'Your routine covers before, during and after every session, and that includes when you trade. Know your window before the market opens, not once it’s already moving.' },
+  29: { mode: 'recap', video: 14, home: 13 },
   30: { mode: 'handsOn', note: HANDS_ON_S20 },
-  31: { mode: 'handsOn', finale: true, note: 'Your final challenge. Everything comes together here: how you’re feeling, the rules you wrote, and your read of the market. One of the right answers might be no trade at all.' },
+  31: { mode: 'handsOn', finale: true, note: 'Your state. Your rules. Your read. No trade can be the right answer.' },
 };
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -98,19 +98,20 @@ export function p7RuleCardHtml(lessonNumber) {
 
 function videoCardHtml(n, id, { supporting = false } = {}) {
   const v = PSYCH_VIDEOS[n];
+  const num = String(n).padStart(2, '0');
+  if (v.url) {
+    return `
+      <div class="p7-video${supporting ? ' is-supporting' : ''}">
+        <div class="lw-video-block p7-video-frame">${videoPlayerHtml(v.url).replace('id="dlVideo"', `id="${id}"`)}</div>
+        <div class="p7-video-cap"><span class="p7-chip">Video ${n}</span> ${esc(v.title)}</div>
+      </div>`;
+  }
   return `
-    <div class="p7-video${supporting ? ' is-supporting' : ''}">
-      <div class="p7-video-head">
-        <div class="p7-video-num">${supporting ? 'Also watch · ' : ''}Psychology Video ${n}</div>
-        <div class="p7-video-title">${esc(v.title)} <span>${esc(v.tagline)}</span></div>
-        <div class="p7-video-meta">Video lesson · about 5–8 minutes</div>
-      </div>
-      <div class="lw-video-block p7-video-frame" data-video="${id}">
-        ${v.url ? videoPlayerHtml(v.url).replace('id="dlVideo"', `id="${id}"`) : `
-          <div class="lw-video-bg"></div>
-          <div class="lw-video-play">▶</div>
-          <div class="lw-video-soon">Dayli is recording this one. Coming soon</div>`}
-      </div>
+    <div class="p7-video p7-poster${supporting ? ' is-supporting' : ''}">
+      <div class="p7-poster-num">${num}</div>
+      <div class="p7-poster-top"><span class="p7-chip">${supporting ? '+ ' : ''}Video ${n}</span><span class="p7-chip is-soon">Coming soon</span></div>
+      <div class="p7-poster-play">▶</div>
+      <div class="p7-poster-title"><b>${esc(v.title)}</b><i>${esc(v.tagline)}</i></div>
     </div>`;
 }
 
@@ -119,34 +120,38 @@ export function renderP7Learn(slide, data, satisfy) {
   const lp = data.launchpad || {};
   const part = P7_PARTS[data.section];
   const learn = P7_LEARN[data.lessonNumber] || { mode: 'handsOn', note: HANDS_ON_S20 };
-  const rule = p7Rule(data.lessonNumber);
 
   let body = '';
   let cta = 'Continue';
   if (learn.mode === 'video') {
-    const ready = !!PSYCH_VIDEOS[learn.video].url;
-    body = videoCardHtml(learn.video, 'p7Video') + (learn.also ? videoCardHtml(learn.also, 'p7VideoAlso', { supporting: true }) : '');
-    cta = ready ? '✓ Watched, Continue' : 'Continue';
-  } else if (learn.mode === 'recap' || learn.mode === 'preview') {
+    body = `<div class="p7-videos${learn.also ? ' is-pair' : ''}">${videoCardHtml(learn.video, 'p7Video')}${learn.also ? videoCardHtml(learn.also, 'p7VideoAlso', { supporting: true }) : ''}</div>`;
+    if (PSYCH_VIDEOS[learn.video].url) cta = '✓ Watched, Continue';
+  } else if (learn.mode === 'recap') {
     const v = PSYCH_VIDEOS[learn.video];
-    const where = learn.mode === 'recap'
-      ? `<a class="p7-recap-link" href="${lessonHref(learn.home)}">Rewatch it in Lesson ${learn.home} →</a>`
-      : `<span class="p7-recap-link is-later">The full video is in Lesson ${learn.home}</span>`;
     body = `
-      <div class="p7-recap">
-        <div class="p7-recap-label">${learn.mode === 'recap' ? 'Quick recap' : 'Coming up'} · Psychology Video ${learn.video}: ${esc(v.title)}</div>
-        <p class="p7-recap-note">${esc(learn.note)}</p>
-        ${where}
+      <div class="p7-quote">
+        <span class="p7-chip">↺ Remember · Video ${learn.video} · ${esc(v.title)}</span>
+        <div class="p7-quote-text">“${esc(v.rule)}”</div>
+        <a class="p7-quote-link" href="${lessonHref(learn.home)}">▶ Rewatch · Lesson ${learn.home}</a>
+      </div>`;
+  } else if (learn.mode === 'preview') {
+    body = `
+      <div class="p7-quote">
+        <span class="p7-chip">Coming up · Video ${learn.video} · Lesson ${learn.home}</span>
+        <div class="p7-quote-text">${esc(learn.note)}</div>
       </div>`;
   } else {
-    body = `<div class="p7-recap is-hands-on"><div class="p7-recap-label">${learn.finale ? 'Final challenge' : 'Hands-on lesson'}</div><p class="p7-recap-note">${esc(learn.note)}</p></div>`;
+    body = `
+      <div class="p7-handson${learn.finale ? ' is-finale' : ''}">
+        <div class="p7-handson-icon">${learn.finale ? '🏁' : '🎯'}</div>
+        <div><span class="p7-chip">${learn.finale ? 'Final challenge' : 'Hands-on'}</span><div class="p7-handson-text">${esc(learn.note)}</div></div>
+      </div>`;
   }
 
   slide.innerHTML = `
     <div class="dl-launchpad">
       <div class="lw-eyebrow">${part ? `Part ${part.n} · ${esc(part.name)}` : 'Lesson Launchpad'}</div>
       <h2>${data.title}</h2>
-      ${lp.outcome ? `<p class="dl-outcome"><strong>By the end, you'll be able to:</strong> ${lp.outcome}</p>` : ''}
       <div class="dl-launchpad-meta">
         ${lp.estMinutes ? `<span class="lw-pill dur">~${lp.estMinutes} min</span>` : ''}
         <span class="lw-pill gp">+${data.xpValue} GP</span>
@@ -154,9 +159,8 @@ export function renderP7Learn(slide, data, satisfy) {
       ${lp.missionQuestion ? `<div class="dl-mission-q"><div class="dl-mission-q-label">Your mission question</div><div class="dl-mission-q-text">${lp.missionQuestion}</div></div>` : ''}
     </div>
     <div class="p7-learn">
-      <div class="p7-step-label"><span>01</span> Learn with Dayli</div>
+      <div class="p7-step-label">✦ Learn with Dayli</div>
       ${body}
-      ${rule && learn.mode !== 'handsOn' ? `<div class="p7-rule-inline">The rule: <strong>“${esc(rule.text)}”</strong></div>` : ''}
     </div>
     <button type="button" class="lw-continue-btn lw-watched-btn" id="lwWatchedBtn">${cta}</button>
   `;
