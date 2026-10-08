@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="shared/icc.css">
 <link rel="stylesheet" href="shared/trigger.css">
 <link rel="stylesheet" href="shared/mind.css">
+<link rel="stylesheet" href="shared/casefile.css">
 </head>
 <body>
 
@@ -58,6 +59,7 @@
 
   const params = new URLSearchParams(window.location.search);
   const phaseKey = params.get('phase') || 'p1';
+  if (phaseKey === 'p8') document.body.classList.add('p8-on');
   const sectionKey = params.get('section') || 's1';
   const step = params.get('step') || 'welcome';
 

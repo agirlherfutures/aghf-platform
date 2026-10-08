@@ -9244,9 +9244,8 @@
      "mission": "SHOW ME HOW YOU THINK. 🔥"
     }
    },
-   "note": "Phase 8 is on its way. It appears on your Academy map the moment it opens.",
-   "cta": "Back to my Academy →",
-   "href": "lessons.html"
+   "cta": "Open my first case file →",
+   "href": "lesson.html?phase=p8&n=1"
   }
  }
 }

@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="shared/icc.css">
 <link rel="stylesheet" href="shared/trigger.css">
 <link rel="stylesheet" href="shared/mind.css">
+<link rel="stylesheet" href="shared/casefile.css">
 <link rel="stylesheet" href="shared/loop-engine.css">
 <link rel="stylesheet" href="shared/lesson-slides.css">
 <link rel="stylesheet" href="shared/lesson-v2.css">
@@ -114,6 +115,7 @@
 
   const params = new URLSearchParams(window.location.search);
   const phaseKey = params.get('phase') || 'p1';
+  if (phaseKey === 'p8') document.body.classList.add('p8-on');
   const n = parseInt(params.get('n'), 10);
   const phase = phaseByKey(phaseKey);
   const allLessons = phase.sections.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s })));
