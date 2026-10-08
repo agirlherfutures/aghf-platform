@@ -4,36 +4,54 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Certificate of Completion — A Girl & Her Futures</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/tokens.css">
 <link rel="stylesheet" href="shared/sidebar.css">
 <style>
-  .cert-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 16px;}
-  .cert-bar a,.cert-bar button{font:600 .86rem 'DM Sans',sans-serif;border:0;border-radius:999px;padding:10px 18px;cursor:pointer;text-decoration:none;background:#1C1929;color:#fff;}
-  .cert-bar .is-alt{background:#fff;color:#1C1929;border:1px solid #E4DCEA;}
-  .cert{max-width:980px;margin:0 auto;background:#FFFCF7;border-radius:6px;padding:14px;box-shadow:0 18px 50px rgba(28,25,41,.18);}
-  .cert-in{border:2px solid #C9A45C;outline:1px solid #C9A45C;outline-offset:-10px;padding:clamp(28px,6vw,64px) clamp(18px,5vw,56px);text-align:center;color:#1C1929;}
-  .cert-brand{font:700 .72rem 'DM Sans',sans-serif;letter-spacing:.32em;color:#9C7A3C;}
-  .cert-title{font:900 clamp(1.5rem,4.4vw,2.7rem)/1.1 'Playfair Display',serif;margin:14px 0 4px;letter-spacing:.02em;}
-  .cert-sub{font:italic 400 1rem 'Playfair Display',serif;color:#6B6478;margin:0 0 26px;}
-  .cert-name{font:700 italic clamp(1.9rem,6vw,3.4rem)/1.1 'Playfair Display',serif;color:#2A2240;border-bottom:1px solid #C9A45C;display:inline-block;padding:0 18px 8px;min-width:50%;}
-  .cert-body{font:400 clamp(.92rem,2.2vw,1.06rem)/1.6 'DM Sans',sans-serif;color:#3A3448;max-width:640px;margin:20px auto 22px;}
-  .cert-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 30px;}
-  .cert-pills span{font:700 .68rem 'DM Sans',sans-serif;letter-spacing:.14em;border:1px solid #E1CFA6;color:#7C5F2C;border-radius:999px;padding:6px 12px;}
-  .cert-foot{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:end;margin-top:8px;}
-  .cert-sig{border-top:1px solid #1C1929;padding-top:6px;font:400 .78rem 'DM Sans',sans-serif;color:#6B6478;}
-  .cert-sig b{display:block;font:italic 700 1.1rem 'Playfair Display',serif;color:#1C1929;margin-bottom:2px;}
-  .cert-seal{width:86px;height:86px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#F3DFA9,#C9A45C 60%,#9C7A3C);display:flex;align-items:center;justify-content:center;font-size:2rem;box-shadow:0 0 0 4px #FFFCF7,0 0 0 5px #C9A45C;}
-  .cert-id{font:400 .7rem 'DM Sans',sans-serif;color:#8C8598;margin-top:22px;}
-  .cert-disc{max-width:720px;margin:16px auto 0;font:400 .74rem/1.5 'DM Sans',sans-serif;color:#7A7388;text-align:center;}
-  .cert-lock{max-width:620px;margin:40px auto;text-align:center;font-family:'DM Sans',sans-serif;}
-  .cert-lock h1{font-family:'Playfair Display',serif;}
-  @media (max-width:640px){.cert-foot{grid-template-columns:1fr;justify-items:center;}.cert-sig{width:80%;}}
+  .cert-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 18px;}
+  .cert-bar a,.cert-bar button{font:700 .86rem var(--font-body);border:0;border-radius:999px;padding:11px 20px;cursor:pointer;text-decoration:none;background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;box-shadow:0 8px 20px rgba(244,130,154,.3);}
+  .cert-bar .is-alt{background:#fff;color:var(--dark);border:1px solid var(--border);box-shadow:none;}
+  /* gradient frame: pink → peach → teal → purple, the same palette as the logo */
+  .cert{max-width:1000px;margin:0 auto;padding:10px;border-radius:30px;background:linear-gradient(135deg,var(--pink) 0%,var(--peach) 35%,var(--teal) 70%,var(--purple-light) 100%);box-shadow:0 24px 60px rgba(244,130,154,.28);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .cert-in{position:relative;overflow:hidden;border-radius:22px;text-align:center;color:var(--dark);padding:clamp(26px,5vw,52px) clamp(18px,5vw,64px) clamp(22px,4vw,38px);
+    background:radial-gradient(45% 38% at 0% 0%,var(--pink-pale) 0%,transparent 70%),radial-gradient(40% 36% at 100% 0%,var(--teal-pale) 0%,transparent 70%),radial-gradient(55% 40% at 50% 100%,var(--peach-pale) 0%,transparent 70%),var(--warm);}
+  .cert-in::before{content:'';position:absolute;inset:12px;border:1.5px dashed var(--pink-light);border-radius:16px;pointer-events:none;}
+  .cert-spark{position:absolute;font-size:var(--sz,22px);color:var(--c,var(--pink));opacity:.85;line-height:1;}
+  .cert-logo{width:clamp(92px,13vw,124px);height:auto;filter:drop-shadow(0 10px 22px rgba(244,130,154,.35));position:relative;}
+  .cert-brand{font:700 .72rem var(--font-body);letter-spacing:.34em;color:var(--pink);margin-top:10px;}
+  .cert-title{font:italic 900 clamp(2.4rem,7vw,4.4rem)/1 var(--font-display);margin:10px 0 0;background:linear-gradient(100deg,var(--pink) 10%,var(--peach) 55%,#E8925A 90%);-webkit-background-clip:text;background-clip:text;color:transparent;padding:0 .1em;}
+  .cert-title2{font:700 clamp(.78rem,1.8vw,.98rem) var(--font-body);letter-spacing:.42em;color:var(--dark);margin:8px 0 20px;}
+  .cert-sub{font:italic 400 1.02rem var(--font-display);color:var(--muted);margin:0 0 8px;}
+  .cert-name{font:900 italic clamp(2rem,6.4vw,3.6rem)/1.1 var(--font-display);color:var(--dark);display:inline-block;padding:0 22px 12px;min-width:52%;position:relative;}
+  .cert-name::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--pink),var(--peach),var(--teal));}
+  .cert-body{font:400 clamp(.92rem,2.2vw,1.06rem)/1.65 var(--font-body);color:var(--text);max-width:650px;margin:20px auto 20px;}
+  .cert-body b{color:var(--pink);font-weight:700;}
+  .cert-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 18px;}
+  .cert-pills span{font:700 .68rem var(--font-body);letter-spacing:.14em;border-radius:999px;padding:7px 14px;}
+  .cert-pills .p1{background:var(--pink-pale);color:#D45C78;} .cert-pills .p2{background:var(--teal-pale);color:#3E9C91;}
+  .cert-pills .p3{background:var(--peach-pale);color:#C47A26;} .cert-pills .p4{background:var(--purple-pale);color:#5E56B8;}
+  .cert-tag{display:inline-block;font:700 .8rem var(--font-body);letter-spacing:.3em;color:#fff;background:linear-gradient(135deg,var(--pink),var(--peach));border-radius:999px;padding:9px 20px;margin:2px 0 28px;box-shadow:0 8px 18px rgba(245,168,87,.3);}
+  .cert-foot{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:end;}
+  .cert-sig{padding-top:8px;font:400 .78rem var(--font-body);color:var(--muted);position:relative;}
+  .cert-sig::before{content:'';position:absolute;top:0;left:8%;right:8%;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--pink-light),transparent);}
+  .cert-sig b{display:block;font:italic 700 1.15rem var(--font-display);color:var(--dark);margin-bottom:2px;}
+  .cert-sig .sign{font:600 2.3rem/1 var(--font-script);color:var(--pink);font-style:normal;margin-bottom:4px;}
+  .cert-heart{width:74px;height:74px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.9rem;background:radial-gradient(circle at 35% 30%,#fff,var(--pink-pale) 70%);box-shadow:0 0 0 3px var(--warm),0 0 0 5px var(--pink-light),0 10px 22px rgba(244,130,154,.25);}
+  .cert-id{font:400 .7rem var(--font-body);color:var(--placeholder);margin-top:22px;letter-spacing:.04em;}
+  .cert-disc{max-width:740px;margin:16px auto 0;font:400 .74rem/1.5 var(--font-body);color:var(--muted);text-align:center;}
+  .cert-lock{max-width:620px;margin:40px auto;text-align:center;font-family:var(--font-body);}
+  .cert-lock h1{font-family:var(--font-display);margin-bottom:8px;}
+  @media (max-width:640px){.cert-foot{grid-template-columns:1fr;justify-items:center;}.cert-sig{width:80%;}.cert-spark{display:none;}.cert-title2{letter-spacing:.26em;}}
   @media print{
-    @page{size:landscape;margin:10mm;}
-    body{background:#fff!important;} .cert-bar,aside.sb,.mb-bar{display:none!important;}
-    .main{margin:0!important;padding:0!important;max-width:none!important;}
-    .cert{box-shadow:none;max-width:none;}
+    @page{size:letter landscape;margin:6mm;}
+    html,body{background:#fff!important;}
+    .cert-bar,aside.sb,.mb-bar,.demo-banner{display:none!important;}
+    .main{margin:0!important;padding:0!important;max-width:none!important;min-height:0!important;}
+    .cert{box-shadow:none;max-width:none;zoom:.8;break-inside:avoid;page-break-inside:avoid;}
+    .cert-title{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--pink);}
+    .cert-logo,.cert-tag,.cert-heart{filter:none;box-shadow:none;}
+    .cert-heart{box-shadow:0 0 0 3px var(--warm),0 0 0 5px var(--pink-light);}
+    .cert-disc{margin-top:4px;font-size:.62rem;}
   }
 </style>
 </head>
@@ -62,16 +80,20 @@
       view.innerHTML = `
         <div class="cert-bar"><button type="button" id="certPrint">Print or save as PDF</button><a class="is-alt" href="desk.html">My Trader Desk →</a></div>
         <div class="cert"><div class="cert-in">
-          <div class="cert-brand">A GIRL &amp; HER FUTURES · AGHF ACADEMY</div>
-          <div class="cert-title">CERTIFICATE OF COMPLETION</div>
+          <span class="cert-spark" style="left:5%;top:7%;--c:var(--pink);--sz:28px" aria-hidden="true">✦</span><span class="cert-spark" style="left:10%;top:16%;--c:var(--peach);--sz:16px" aria-hidden="true">✦</span><span class="cert-spark" style="right:6%;top:8%;--c:var(--teal);--sz:26px" aria-hidden="true">✦</span><span class="cert-spark" style="right:11%;top:18%;--c:var(--pink);--sz:14px" aria-hidden="true">♡</span><span class="cert-spark" style="left:6%;bottom:20%;--c:var(--teal);--sz:18px" aria-hidden="true">✦</span><span class="cert-spark" style="right:6%;bottom:22%;--c:var(--peach);--sz:22px" aria-hidden="true">✦</span><span class="cert-spark" style="left:15%;top:44%;--c:var(--purple-light);--sz:12px" aria-hidden="true">✦</span><span class="cert-spark" style="right:15%;top:46%;--c:var(--pink-light);--sz:14px" aria-hidden="true">✦</span>
+          <img class="cert-logo" src="shared/img/aghf-logo.png" alt="A Girl &amp; Her Futures">
+          <div class="cert-brand">A GIRL &amp; HER FUTURES ✦ ACADEMY</div>
+          <div class="cert-title">Certificate</div>
+          <div class="cert-title2">OF COMPLETION</div>
           <p class="cert-sub">This recognizes that</p>
           <div class="cert-name">${esc(name)}</div>
-          <p class="cert-body">completed every phase and section of the AGHF Academy curriculum, from reading her first candle to building, testing and locking her own trading plan, and passed the She’s In Structure capstone: one full trading day, scored on process, not profit.</p>
-          <div class="cert-pills"><span>8 PHASES</span><span>22 SECTIONS</span><span>CAPSTONE COMPLETED</span>${a.planVersion ? `<span>TRADING PLAN v${esc(a.planVersion)}</span>` : ''}</div>
+          <p class="cert-body">completed every phase and section of the AGHF Academy, from reading her first candle to building, testing and locking her own trading plan, and passed the <b>She’s In Structure</b> capstone: one full trading day, scored on process, not profit.</p>
+          <div class="cert-pills"><span class="p1">8 PHASES</span><span class="p2">22 SECTIONS</span><span class="p3">CAPSTONE PASSED</span>${a.planVersion ? `<span class="p4">TRADING PLAN v${esc(a.planVersion)}</span>` : ''}</div>
+          <div class="cert-tag">✦ SHE’S IN STRUCTURE ✦</div>
           <div class="cert-foot">
             <div class="cert-sig"><b>${esc(date)}</b>Date of completion</div>
-            <div class="cert-seal" aria-hidden="true">✦</div>
-            <div class="cert-sig"><b>Dayli</b>Founder, A Girl &amp; Her Futures</div>
+            <div class="cert-heart" aria-hidden="true">🎓</div>
+            <div class="cert-sig"><div class="sign">Dayli</div>Founder, A Girl &amp; Her Futures</div>
           </div>
           <div class="cert-id">Record ${esc(a.attemptId || '')} · ${esc(a.methodVersion || 'Dayli ICC 1.0')}</div>
         </div></div>
