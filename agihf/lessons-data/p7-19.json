@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 19",
-      "headline": "It was <em>on the calendar.</em>",
-      "line": "High-impact release at 10:00. You saw it this morning.",
+      "headline": "The news release <em>was on the calendar.</em>",
+      "line": "A high-impact news release was scheduled for 10:00. You even saw it on the calendar this morning.",
       "pose": "point",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
-      "kicker": "9:57",
-      "headline": "Valid setup. <em>Release in three minutes.</em>",
-      "line": "First retest. The calendar says 10:00.",
+      "kicker": "9:57 · Three minutes out",
+      "headline": "You have a valid setup, but <em>the release is in three minutes.</em>",
+      "line": "It’s a first retest and it looks good. The calendar still says the release hits at 10:00.",
       "chart": {
         "bars": [
           {
@@ -190,20 +190,20 @@
         "“I’ll be in and out before it hits.”"
       ],
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "Take it",
+            "label": "Take it and hope it’s fine",
             "correct": false,
-            "feedback": "One candle at 10:00 went straight through your stop.",
+            "feedback": "At 10:00, one fast candle went straight through your stop. The news moved price faster than your plan could handle.",
             "track": [
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Pass. Let it settle.",
+            "label": "Pass and let the news settle",
             "correct": true,
-            "feedback": "Yes. Some days the setup survives. You don’t need it to.",
+            "feedback": "Yes. Some days the setup survives the news anyway. You don’t need it to, because your rule already decided.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -211,9 +211,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "10:00",
-      "headline": "Fast candles fill <em>worse than your stop.</em>",
-      "line": "It wasn’t bad luck. It was on the calendar.",
+      "kicker": "10:00 · The release",
+      "headline": "Fast candles can fill you <em>worse than your stop.</em>",
+      "line": "When news hits, price can jump past your stop before you get out. This wasn’t bad luck, because it was on the calendar.",
       "chart": {
         "bars": [
           {
@@ -426,35 +426,35 @@
     {
       "type": "v2_compare",
       "kicker": "News isn’t the problem",
-      "headline": "News isn’t bad. <em>Surprise is.</em>",
+      "headline": "News isn’t the problem. <em>Being surprised by it is.</em>",
       "cards": [
         {
           "label": "Checked the calendar",
-          "sub": "Rule decided before the bell",
+          "sub": "You decided your rule before the session opened.",
           "spark": "slow",
           "tag": "PREPARED",
           "tone": "teal"
         },
         {
           "label": "Forgot the release",
-          "sub": "Rule invented mid-candle",
+          "sub": "You made up a rule in the middle of a candle.",
           "spark": "down",
           "tag": "SURPRISED",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "“I forgot news was coming out” is…",
+        "prompt": "If you say “I forgot news was coming out,” what kind of problem is that?",
         "options": [
           {
-            "label": "A market condition",
+            "label": "It’s a market condition",
             "correct": false,
-            "feedback": "The calendar was public. News doesn’t kill every setup, but forgetting it is on you."
+            "feedback": "The calendar was public. News doesn’t ruin every setup, but forgetting to check it is on you."
           },
           {
-            "label": "A preparation problem",
+            "label": "It’s a preparation problem",
             "correct": true,
-            "feedback": "Yes. And preparation is fully in your hands."
+            "feedback": "Yes. And the good news is that preparation is completely in your hands."
           }
         ]
       }

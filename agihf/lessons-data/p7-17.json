@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 17",
-      "headline": "You did everything right. <em>No fill.</em>",
-      "line": "Your limit sat right at the retest.",
+      "headline": "You did everything right, and you <em>still didn’t get filled.</em>",
+      "line": "Your limit order was sitting right at the retest level. Let’s see what happened next.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
-      "kicker": "10:12",
-      "headline": "Price stops <em>one tick</em> above you.",
-      "line": "You did everything right. You just didn’t get filled.",
+      "kicker": "10:12 · The near miss",
+      "headline": "Price stopped <em>one tick</em> above your entry.",
+      "line": "Your plan was right and your order was in the right place. The market just never came down far enough to fill you.",
       "chart": {
         "bars": [
           {
@@ -233,8 +233,8 @@
     {
       "type": "v2_moment",
       "kicker": "The sting",
-      "headline": "And it <em>leaves without you.</em>",
-      "line": "Price is now +26 from your level.",
+      "headline": "Then the move <em>left without you.</em>",
+      "line": "Price is now 26 points away from your level, and it feels like your trade is running without you.",
       "chart": {
         "bars": [
           {
@@ -430,21 +430,21 @@
         "“It’s only a few points.”"
       ],
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "Market-buy. It was mine.",
+            "label": "Buy at market, because it was mine",
             "correct": false,
-            "feedback": "The trade you planned had a stop. The one you chase has a worse one.",
+            "feedback": "The trade you planned had a clear stop. The trade you chase gets a worse entry and a worse stop, so it’s a different, weaker trade.",
             "track": [
               "fomoDecisionCount",
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Let it go. Missed per plan.",
+            "label": "Let it go, because I missed it per plan",
             "correct": true,
-            "feedback": "Yes. Account change $0. Rules broken 0. That’s a clean day.",
+            "feedback": "Yes. Your account changed by $0 and you broke zero rules. That’s a clean day, even if it doesn’t feel like one.",
             "track": "fomoRecognized"
           }
         ]
@@ -452,9 +452,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "If you chase",
-      "headline": "The chase <em>costs −1R.</em>",
-      "line": "It came back to your level. Right through your new stop.",
+      "kicker": "If you had chased it",
+      "headline": "Chasing that move <em>would have cost you −1R.</em>",
+      "line": "Price came back to your level and ran right through your new stop. −1R means you lose exactly the amount you planned to risk on one trade.",
       "chart": {
         "bars": [
           {
@@ -703,35 +703,35 @@
     {
       "type": "v2_compare",
       "kicker": "Two endings",
-      "headline": "Missing it isn’t <em>permission.</em>",
+      "headline": "Missing a trade <em>isn’t permission</em> to chase it.",
       "cards": [
         {
           "label": "Missed per plan",
-          "sub": "$0 change · 0 rules broken",
+          "sub": "Your account is unchanged, and you broke no rules.",
           "spark": "slow",
           "tag": "LET GO",
           "tone": "teal"
         },
         {
           "label": "Chased it",
-          "sub": "Worse entry, worse stop, −1R",
+          "sub": "You got a worse entry, a worse stop, and −1R.",
           "spark": "down",
           "tag": "CHASED",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "A missed fill is…",
+        "prompt": "Is a missed fill really a loss?",
         "options": [
           {
-            "label": "A loss to win back",
+            "label": "Yes, it’s a loss to win back",
             "correct": false,
-            "feedback": "No money left your account. Nothing needs winning back."
+            "feedback": "No money left your account, so there’s nothing to win back. It only feels like a loss because you saw the move."
           },
           {
-            "label": "Not a loss at all",
+            "label": "No, it isn’t a loss at all",
             "correct": true,
-            "feedback": "Exactly. It just stings. Wait for a new valid setup."
+            "feedback": "Exactly. It stings, but it costs you nothing. Your job now is to wait for a new valid setup."
           }
         ]
       }
