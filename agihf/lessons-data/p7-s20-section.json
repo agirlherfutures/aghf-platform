@@ -22,53 +22,53 @@
   "review": {
    "Trend / range recognition": [
     "p7",
-    21,
-    "Trending vs ranging"
+    23,
+    "Same Model, Different Day"
    ],
    "Structural clarity": [
     "p7",
-    22,
-    "Consolidation quality"
+    25,
+    "Chop: Protect"
    ],
    "Volatility recognition": [
     "p7",
-    23,
-    "Volatility"
+    28,
+    "The Fast Market"
    ],
    "News awareness": [
     "p7",
-    24,
-    "News conditions"
+    19,
+    "The News You Already Knew About"
    ],
    "Session awareness": [
     "p7",
-    25,
-    "Session behavior"
+    29,
+    "Outside Your Window"
    ],
    "Valid pass decisions": [
     "p7",
-    29,
-    "Sitting out"
+    31,
+    "Nothing Is a Position"
    ],
    "Room-to-objective awareness": [
     "p7",
-    27,
-    "Valid vs high-quality"
+    26,
+    "Between Structure: Wait"
    ],
    "Mid-session reassessment": [
     "p7",
-    28,
-    "Conditions change"
+    30,
+    "The Morning You Had"
    ],
    "Snapshot": [
     "p7",
-    26,
-    "Clean vs messy"
+    24,
+    "Clean Market: Participate"
    ],
    "Full session": [
     "p7",
     27,
-    "Participation check"
+    "Almost Right: Do Nothing"
    ]
   },
   "levels": [
@@ -1219,7 +1219,7 @@
          "bucket": "sup"
         },
         {
-         "text": "Volatility far beyond her usual",
+         "text": "Volatility far beyond your usual",
          "bucket": "weak"
         }
        ],
@@ -2914,7 +2914,7 @@
     "facts": [
      [
       "Volatility",
-      "Elevated vs her plan"
+      "Elevated vs your plan"
      ],
      [
       "Calendar",
@@ -2922,7 +2922,7 @@
      ],
      [
       "Clock",
-      "10:18 · in her window"
+      "10:18 · in your window"
      ],
      [
       "Objective",
@@ -6514,7 +6514,7 @@
    },
    {
     "concept": "News",
-    "question": "Valid ICC. Event in 4 minutes. Her rule blocks entries within 5. Decision?",
+    "question": "Valid ICC. Event in 4 minutes. Your rule blocks entries within 5. Decision?",
     "options": [
      "TAKE",
      "PASS",
@@ -6522,11 +6522,11 @@
      "Wait 1 minute, then take"
     ],
     "correctIndex": 1,
-    "why": "Her saved news rule decides."
+    "why": "Your saved news rule decides."
    },
    {
     "concept": "Session",
-    "question": "Valid ICC at 11:17. Her window ends at 11:00. What’s true?",
+    "question": "Valid ICC at 11:17. Your window ends at 11:00. What’s true?",
     "options": [
      "Setup invalid",
      "Setup may be valid · participation blocked",
@@ -6534,7 +6534,7 @@
      "Extend the window today"
     ],
     "correctIndex": 1,
-    "why": "The market may be open. Her window is closed."
+    "why": "The market may be open. Your window is closed."
    },
    {
     "concept": "Valid vs quality",
@@ -6660,7 +6660,7 @@
    },
    {
     "concept": "Valid pass",
-    "question": "She took no trades and broke no rules. The session is…",
+    "question": "You took no trades and broke no rules. The session is…",
     "options": [
      "Incomplete",
      "Complete",
@@ -6696,10 +6696,10 @@
    },
    {
     "concept": "Participation",
-    "question": "ICC completes. Environment MIXED. Her rulebook still allows it. What should the Academy do?",
+    "question": "ICC completes. Environment MIXED. Your rulebook still allows it. What should the Academy do?",
     "options": [
      "Block it automatically",
-     "Let her reason from her own framework",
+     "Let you reason from your own framework",
      "Force a pass",
      "Score it 26/30"
     ],
@@ -6708,7 +6708,7 @@
    },
    {
     "concept": "Participation",
-    "question": "She wants to trade. Environment supportive. ICC incomplete. Decision?",
+    "question": "You want to trade. Environment supportive. ICC incomplete. Decision?",
     "options": [
      "TAKE",
      "WAIT",
@@ -6734,19 +6734,19 @@
   "reviewLessons": {
    "Trend vs range": [
     "p7",
-    21
+    23
    ],
    "Volatility": [
     "p7",
-    23
+    28
    ],
    "News": [
     "p7",
-    24
+    19
    ],
    "Session": [
     "p7",
-    25
+    29
    ],
    "Valid vs quality": [
     "p7",
@@ -6754,15 +6754,15 @@
    ],
    "Clean vs messy": [
     "p7",
-    26
+    24
    ],
    "Mid-session change": [
     "p7",
-    28
+    30
    ],
    "Valid pass": [
     "p7",
-    29
+    31
    ],
    "Participation": [
     "p7",
@@ -6771,10 +6771,14 @@
   }
  },
  "checkin": {
-  "eyebrow": "📓 My Section 20 Check-In · private to you",
+  "eyebrow": "📓 My Section 3 Check-In · private to you",
   "heading": "How I read the conditions 🌡️",
   "intro": "<p class=\"p7-fine\">Saved to your private Academy Notes. Never shared, never ranked.</p>",
   "fields": [
+   {
+    "type": "text",
+    "label": "What does “nothing is a position” mean to me now?"
+   },
    {
     "type": "text",
     "label": "How do I recognize trend vs range?"
@@ -6804,15 +6808,15 @@
     "type": "choice",
     "label": "Which area needs another look?",
     "options": [
-     "Trend vs range",
-     "Consolidation quality",
-     "Volatility",
-     "News conditions",
-     "Session behavior",
-     "Clean vs messy",
-     "Valid vs high-quality",
-     "Mid-session change",
-     "Sitting out"
+     "Same Model, Different Day",
+     "Clean Market: Participate",
+     "Chop: Protect",
+     "Between Structure: Wait",
+     "Almost Right: Do Nothing",
+     "The Fast Market",
+     "Outside Your Window",
+     "The Morning You Had",
+     "Nothing Is a Position"
     ]
    }
   ],
@@ -6827,7 +6831,7 @@
   "storeId": "p7-final",
   "notesId": "p7-final",
   "intro": [
-   "Not twenty disconnected questions. Twelve supporting questions, then a five-part scenario and the Phase 7 Final Simulation: 4H → 1H → 15M → 1M, with her thoughts, her rulebook, the clock and a changing environment.",
+   "Not twenty disconnected questions. Twelve supporting questions, then a five-part scenario and the Phase 7 Final Simulation: 4H → 1H → 15M → 1M, with your thoughts, your rulebook, the clock and a changing environment.",
    "Ask what is TRUE RIGHT NOW. Not what was true this morning, not what you want, not what the last trade did. 80% to pass."
   ],
   "covers": [
@@ -6944,7 +6948,7 @@
    {
     "kind": "mcq",
     "skill": "rules",
-    "prompt": "Mid-session she thinks her max trades should be 3. What does she do?",
+    "prompt": "Mid-session you think your max trades should be 3. What do you do?",
     "options": [
      {
       "label": "Change it now",
@@ -7092,20 +7096,20 @@
     "options": [
      {
       "label": "Take it",
-      "feedback": "Psychological readiness doesn’t create technical validity."
+      "feedback": "Feeling ready doesn’t create technical validity."
      },
      {
       "label": "No trade",
       "correct": true,
-      "why": "Psychological readiness doesn’t create technical validity."
+      "why": "Feeling ready doesn’t create technical validity."
      },
      {
       "label": "Half size",
-      "feedback": "Psychological readiness doesn’t create technical validity."
+      "feedback": "Feeling ready doesn’t create technical validity."
      },
      {
       "label": "Wait for news",
-      "feedback": "Psychological readiness doesn’t create technical validity."
+      "feedback": "Feeling ready doesn’t create technical validity."
      }
     ]
    },
@@ -7552,7 +7556,7 @@
         "facts": [
          [
           "Volatility",
-          "Typical for her plan"
+          "Typical for your plan"
          ],
          [
           "Clock",
@@ -8002,7 +8006,7 @@
         "facts": [
          [
           "Calendar",
-          "A release at 11:30, after her window"
+          "A release at 11:30, after your window"
          ],
          [
           "Clock",
@@ -8888,7 +8892,7 @@
     "label": "Rules",
     "review": [
      "p7",
-     12
+     14
     ]
    },
    {
@@ -8912,7 +8916,7 @@
     "label": "Decision",
     "review": [
      "p7",
-     29
+     31
     ]
    }
   ],
@@ -9051,6 +9055,10 @@
   },
   "stats": [
    {
+    "value": "31",
+    "label": "Lessons lived"
+   },
+   {
     "value": "✓",
     "label": "Mindset Mirror"
    },
@@ -9100,7 +9108,8 @@
      "Patience",
      "Patience vs hesitation",
      "Revenge",
-     "Streaks"
+     "Streaks",
+     "Pressure"
     ]
    },
    {
@@ -9108,7 +9117,7 @@
     "label": "Rules",
     "review": [
      "p7",
-     12
+     14
     ],
     "keys": [
      "rules",
@@ -9162,7 +9171,7 @@
     "label": "Participation decisions",
     "review": [
      "p7",
-     29
+     31
     ],
     "keys": [
      "decision",
@@ -9180,11 +9189,8 @@
   "masteryNote": "Observable decisions across Phase 7. Not a mindset score, and private to you. Skills without enough answers yet say so instead of guessing.",
   "pause": {
    "lines": [
-    "Phases 1–3: read price.",
-    "Phase 4: build the thesis.",
-    "Phase 5: learn the method.",
-    "Phase 6: execute the plan.",
-    "Phase 7: govern the trader.",
+    "Phases 1–6 taught you how to read the market.",
+    "Phase 7 taught you how to read yourself while you’re reading it.",
     "You know how to read yourself, your rulebook, the conditions and the model.",
     "TRAINING COMPLETE."
    ],

@@ -82,10 +82,10 @@ export function envReview(s = envSession()) {
   rows.push(['Forced-trade errors', s.forcedTrades || 0]);
   const miss = (k) => (s[`${k}:tries`] || 0) - (s[`${k}:right`] || 0);
   const review = [];
-  if (miss('clarity') >= 2) review.push({ line: 'You’re identifying ICC correctly. The difficulty is deciding whether the surrounding structure is clear enough to participate.', cta: 'Environment drill →', href: 'lesson.html?phase=p7&n=22' });
+  if (miss('clarity') >= 2) review.push({ line: 'You’re identifying ICC correctly. The difficulty is deciding whether the surrounding structure is clear enough to participate.', cta: 'Environment drill →', href: 'lesson.html?phase=p7&n=25' });
   if ((s.manyPils || 0) >= 1) review.push({ line: 'You’ve selected multiple competing levels in unclear structure before.', cta: 'Level relevance review →', href: 'lesson.html?phase=p4&n=6' });
-  if (miss('reassess') >= 1) review.push({ line: 'The morning thesis was clear. But price has already reached the objective and conditions changed.', cta: 'Reassess current market →', href: 'lesson.html?phase=p7&n=28' });
-  if ((s.forcedTrades || 0) >= 1) review.push({ line: 'You completed the analysis correctly. The error happened when you assumed the session had to produce a trade.', cta: 'Valid pass practice →', href: 'lesson.html?phase=p7&n=29' });
-  if ((s.volAsDirection || 0) >= 1) review.push({ line: 'Price is moving FAST. That answers speed. What answers direction?', cta: 'Structure review →', href: 'lesson.html?phase=p7&n=23' });
+  if (miss('reassess') >= 1) review.push({ line: 'The morning thesis was clear. But price has already reached the objective and conditions changed.', cta: 'Reassess current market →', href: 'lesson.html?phase=p7&n=30' });
+  if ((s.forcedTrades || 0) >= 1) review.push({ line: 'You completed the analysis correctly. The error happened when you assumed the session had to produce a trade.', cta: 'Valid pass practice →', href: 'lesson.html?phase=p7&n=31' });
+  if ((s.volAsDirection || 0) >= 1) review.push({ line: 'Price is moving FAST. That answers speed. What answers direction?', cta: 'Structure review →', href: 'lesson.html?phase=p7&n=28' });
   return { rows, review: review.slice(0, 3) };
 }

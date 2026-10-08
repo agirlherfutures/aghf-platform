@@ -351,3 +351,32 @@ button.p7-rcard:hover { transform: translateY(-1px); }
 @media (max-width: 600px) { .p7-tr-flow span, .p7-tr-old span { font-size: 10px; padding: 6px 9px; } @keyframes p7TrWs { 0% { opacity: 0; width: 60%; height: 70px; } 40% { opacity: 1; } 100% { opacity: 1; width: 100%; height: 190px; } } }
 @media (prefers-reduced-motion: reduce) { .p7-tr-old { animation: none; opacity: .3; } .p7-tr-ws { animation: none; opacity: 1; width: 100%; height: auto; min-height: 120px; } }
 .pc-next.pc-huge .pc-distinction { background: #3A3052; color: #F1ECFF; border-color: #F4829A; }
+
+/* ── p7_scene: the lived moment ─────────────────────────────────────── */
+.p7-scene-flow { display: flex; flex-direction: column; gap: 14px; }
+.p7-beat { animation: txIn .5s ease both; }
+.p7-say { display: flex; flex-direction: column; gap: 6px; }
+.p7-say .p7-line { text-align: left; }
+.p7-say .p7-line.is-big { text-align: left; }
+.p7-scene-chart .p7-chart-wrap { position: relative; }
+.p7-caption { font: 600 12.5px var(--font-body); color: var(--muted); margin-top: 6px; }
+.p7-tap { align-self: flex-start; border: 0; background: none; font: 800 13px var(--font-body); letter-spacing: .08em; color: var(--mind-ink); padding: 8px 2px; cursor: pointer; text-transform: uppercase; }
+.p7-tap span { display: inline-block; animation: p7Nudge 1.2s ease-in-out infinite; }
+@keyframes p7Nudge { 50% { transform: translateX(4px); } }
+.p7-choice-q { font: 700 clamp(19px, 3vw, 24px)/1.3 var(--font-display); color: var(--icc-ink); margin-bottom: 10px; }
+.p7-choice-opts { display: grid; gap: 8px; }
+.p7-opt { text-align: left; border: 1.5px solid var(--icc-line); background: #fff; border-radius: 14px; padding: 14px 16px; font: 700 15px var(--font-body); color: var(--icc-ink); cursor: pointer; box-shadow: 0 3px 0 var(--icc-line); transition: transform .15s ease; }
+.p7-opt:hover:not(:disabled) { transform: translateY(-1px); border-color: var(--mind-soft); }
+.p7-opt:disabled { cursor: default; opacity: .5; }
+.p7-opt.is-on { opacity: 1; border-color: var(--mind-ink); background: var(--mind-pale); box-shadow: 0 3px 0 var(--mind-ink); }
+.p7-paths { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
+.p7-path { border-left: 3px solid var(--icc-line); padding: 4px 0 4px 14px; display: flex; flex-direction: column; gap: 10px; animation: txIn .5s ease both; }
+.p7-path.is-mine { border-left-color: var(--mind); }
+.p7-path-h { font: 800 11px var(--font-body); letter-spacing: .14em; color: var(--muted); }
+.p7-path-h b { color: var(--icc-ink); letter-spacing: .04em; font-size: 13px; }
+.p7-path-say { display: flex; flex-direction: column; gap: 5px; }
+.p7-path-say .p7-line { text-align: left; }
+.p7-path-more { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.p7-alt { border: 1.5px dashed var(--mind-soft); background: none; border-radius: 999px; padding: 8px 14px; font: 700 13px var(--font-body); color: var(--mind-ink); cursor: pointer; }
+.p7-who-t { text-align: center; font: 900 clamp(22px, 4vw, 32px)/1.2 var(--font-display); color: var(--icc-ink); margin-bottom: 10px; }
+.p7-pausebeat .p7-pause-btn { display: inline-block; margin-bottom: 8px; }

@@ -2,17 +2,17 @@
  "phase": "p7",
  "section": "s20",
  "lessonNumber": 25,
- "title": "Session Behavior",
+ "title": "Chop: Protect",
  "videoUrl": null,
  "videoDuration": "",
  "xpValue": 85,
  "completeStyle": "v2",
  "passThreshold": 0.6,
- "hook": "Open market. Closed window.",
+ "hook": "Indication? Correction? Continuation? Again?",
  "format": "slides",
  "launchpad": {
-  "outcome": "Apply market sessions to your own trading window, without session stereotypes.",
-  "missionQuestion": "How does my strategy behave during the time I actually trade?",
+  "outcome": "Feel how chop keeps producing almost-setups, and protect your account instead of feeding it.",
+  "missionQuestion": "Is price clear enough for my model right now?",
   "estMinutes": 8
  },
  "watch": {
@@ -20,360 +20,797 @@
  },
  "slides": [
   {
-   "type": "p7_timeline",
-   "kicker": "Phase 1, applied",
-   "title": "Participation changes through the day",
-   "rule": "session",
-   "useMine": true,
-   "example": "My trading window: 9:45–11:00",
-   "rows": [
+   "type": "p7_scene",
+   "kicker": "Chop: Protect",
+   "title": "10:14",
+   "beats": [
     {
-     "t": "PREMARKET",
-     "text": "Participation building.",
-     "tone": "ink"
-    },
-    {
-     "t": "OPEN",
-     "text": "Activity often expands around opens.",
-     "tone": "warn"
-    },
-    {
-     "t": "MID-MORNING",
-     "text": "Can stay active, can settle.",
-     "tone": "ok"
-    },
-    {
-     "t": "MIDDAY",
-     "text": "Participation can thin out.",
-     "tone": "ink"
-    },
-    {
-     "t": "AFTERNOON",
-     "text": "Can pick back up. Or not.",
-     "tone": "ink"
-    }
-   ],
-   "asks": [
-    {
-     "prompt": "Which session ALWAYS trends?",
-     "options": [
-      {
-       "label": "New York",
-       "feedback": "“Always” is a stereotype. Sessions vary day to day."
+     "chart": {
+      "bars": [
+       {
+        "o": 20998.25,
+        "h": 21000.75,
+        "l": 20997.0,
+        "c": 20999.75
+       },
+       {
+        "o": 20999.75,
+        "h": 21002.0,
+        "l": 20999.0,
+        "c": 21001.25
+       },
+       {
+        "o": 21001.25,
+        "h": 21004.25,
+        "l": 21000.5,
+        "c": 21002.25
+       },
+       {
+        "o": 21002.25,
+        "h": 21007.0,
+        "l": 21000.75,
+        "c": 21005.5
+       },
+       {
+        "o": 21005.5,
+        "h": 21007.0,
+        "l": 21000.75,
+        "c": 21002.25
+       },
+       {
+        "o": 21002.25,
+        "h": 21008.5,
+        "l": 21000.75,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21008.5,
+        "l": 21004.0,
+        "c": 21005.5
+       },
+       {
+        "o": 21005.5,
+        "h": 21007.0,
+        "l": 21000.75,
+        "c": 21002.25
+       },
+       {
+        "o": 21002.25,
+        "h": 21008.5,
+        "l": 21000.75,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21008.5,
+        "l": 21001.5,
+        "c": 21003.0
+       },
+       {
+        "o": 21003.0,
+        "h": 21004.5,
+        "l": 21000.75,
+        "c": 21002.25
+       },
+       {
+        "o": 21002.25,
+        "h": 21008.5,
+        "l": 21000.75,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21008.5,
+        "l": 21001.5,
+        "c": 21003.0
+       },
+       {
+        "o": 21003.0,
+        "h": 21007.75,
+        "l": 21001.5,
+        "c": 21006.25
+       },
+       {
+        "o": 21006.25,
+        "h": 21007.75,
+        "l": 21000.0,
+        "c": 21001.5
+       },
+       {
+        "o": 21001.5,
+        "h": 21004.5,
+        "l": 21000.0,
+        "c": 21003.0
+       },
+       {
+        "o": 21003.0,
+        "h": 21007.75,
+        "l": 21001.5,
+        "c": 21006.25
+       },
+       {
+        "o": 21006.25,
+        "h": 21007.75,
+        "l": 21000.0,
+        "c": 21001.5
+       },
+       {
+        "o": 21001.5,
+        "h": 21004.5,
+        "l": 21000.0,
+        "c": 21003.0
+       }
+      ],
+      "pil": 21004.25,
+      "pilAt": 2,
+      "tags": [
+       {
+        "at": 3,
+        "text": "I?",
+        "tone": "gold"
+       },
+       {
+        "at": 4,
+        "text": "C?",
+        "tone": "gold"
+       },
+       {
+        "at": 5,
+        "text": "C?",
+        "tone": "gold"
+       },
+       {
+        "at": 7,
+        "text": "I?",
+        "tone": "gold"
+       },
+       {
+        "at": 8,
+        "text": "C?",
+        "tone": "gold"
+       },
+       {
+        "at": 9,
+        "text": "C?",
+        "tone": "gold"
+       }
+      ],
+      "head": {
+       "tf": "1M",
+       "label": "Around one level"
       },
-      {
-       "label": "London",
-       "feedback": "Same problem: “always”."
-      },
-      {
-       "label": "None of them always does anything",
-       "correct": true,
-       "why": "Times differ in participation, volume and volatility. Not in guarantees."
+      "play": {
+       "from": 1,
+       "to": 10,
+       "speed": 480
       }
-     ],
-     "ecat": "session"
-    }
-   ],
-   "punch": "Not “trade here”. Just: the market you trade at 9:50 isn’t the market at 12:30."
-  },
-  {
-   "type": "p7_monologue",
-   "lines": [
-    "THE REAL QUESTION:",
-    "<b>HOW DOES YOUR STRATEGY BEHAVE DURING THE TIME YOU ACTUALLY TRADE?</b>"
-   ]
-  },
-  {
-   "type": "p7_ask",
-   "kicker": "Example plan",
-   "title": "MY TRADING WINDOW: 9:45–11:00. Valid setup at 11:17.",
-   "asks": [
+     }
+    },
     {
-     "prompt": "VALID DAYLI ICC?",
-     "options": [
-      {
-       "label": "Potentially, yes",
-       "correct": true,
-       "why": "Time doesn’t change the candle-close story."
-      },
-      {
-       "label": "No, it’s late",
-       "feedback": "The model doesn’t check the clock. Your plan does."
-      }
+     "say": [
+      "Close through. Close back. Close through. Close back.",
+      "Technically, that reads like a sequence.",
+      "<b>Then another one. Then the opposite one.</b>"
      ]
     },
     {
-     "prompt": "ALLOWED BY MY PLAN?",
-     "options": [
-      {
-       "label": "Yes, it’s valid",
-       "feedback": "Valid setup. The window closed 17 minutes ago."
-      },
-      {
-       "label": "NO",
-       "correct": true,
-       "why": "Valid setup. Window closed."
-      }
-     ],
-     "ecat": "session"
+     "thoughts": [
+      "“Technically it’s valid…”",
+      "“Which PIL is it even?”"
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "What do you do?",
+      "options": [
+       {
+        "label": "Take the latest sequence. Technically valid.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20998.25,
+            "h": 21000.75,
+            "l": 20997.0,
+            "c": 20999.75
+           },
+           {
+            "o": 20999.75,
+            "h": 21002.0,
+            "l": 20999.0,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21004.25,
+            "l": 21000.5,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21005.5
+           },
+           {
+            "o": 21005.5,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21004.0,
+            "c": 21005.5
+           },
+           {
+            "o": 21005.5,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21001.5,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21004.5,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21001.5,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21007.75,
+            "l": 21001.5,
+            "c": 21006.25
+           },
+           {
+            "o": 21006.25,
+            "h": 21007.75,
+            "l": 21000.0,
+            "c": 21001.5
+           },
+           {
+            "o": 21001.5,
+            "h": 21004.5,
+            "l": 21000.0,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21007.75,
+            "l": 21001.5,
+            "c": 21006.25
+           },
+           {
+            "o": 21006.25,
+            "h": 21007.75,
+            "l": 21000.0,
+            "c": 21001.5
+           },
+           {
+            "o": 21001.5,
+            "h": 21004.5,
+            "l": 21000.0,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21003.75,
+            "l": 21000.75,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21002.5,
+            "l": 20998.75,
+            "c": 20999.0
+           },
+           {
+            "o": 20999.0,
+            "h": 21000.0,
+            "l": 20995.75,
+            "c": 20996.25
+           },
+           {
+            "o": 20996.25,
+            "h": 20997.5,
+            "l": 20990.75,
+            "c": 20992.0
+           },
+           {
+            "o": 20992.0,
+            "h": 20992.25,
+            "l": 20986.75,
+            "c": 20987.25
+           },
+           {
+            "o": 20987.25,
+            "h": 20988.5,
+            "l": 20984.0,
+            "c": 20984.25
+           },
+           {
+            "o": 20984.25,
+            "h": 20984.75,
+            "l": 20978.5,
+            "c": 20979.0
+           },
+           {
+            "o": 20979.0,
+            "h": 20980.0,
+            "l": 20974.75,
+            "c": 20975.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 2,
+          "tags": [
+           {
+            "at": 26,
+            "text": "−1R",
+            "tone": "warn"
+           }
+          ],
+          "head": {
+           "tf": "1M",
+           "label": "Technically valid"
+          },
+          "play": {
+           "from": 10,
+           "to": 27,
+           "speed": 300
+          }
+         },
+         "say": [
+          "The chop picked a direction. Not yours.",
+          "Your model didn’t fail. <b>It just had nothing clear to read.</b>"
+         ]
+        },
+        "track": [
+         "emotionalTradesTaken"
+        ]
+       },
+       {
+        "label": "Protect. Wait for clarity.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20998.25,
+            "h": 21000.75,
+            "l": 20997.0,
+            "c": 20999.75
+           },
+           {
+            "o": 20999.75,
+            "h": 21002.0,
+            "l": 20999.0,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21004.25,
+            "l": 21000.5,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21005.5
+           },
+           {
+            "o": 21005.5,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21004.0,
+            "c": 21005.5
+           },
+           {
+            "o": 21005.5,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21001.5,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21004.5,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21001.5,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21007.75,
+            "l": 21001.5,
+            "c": 21006.25
+           },
+           {
+            "o": 21006.25,
+            "h": 21007.75,
+            "l": 21000.0,
+            "c": 21001.5
+           },
+           {
+            "o": 21001.5,
+            "h": 21004.5,
+            "l": 21000.0,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21007.75,
+            "l": 21001.5,
+            "c": 21006.25
+           },
+           {
+            "o": 21006.25,
+            "h": 21007.75,
+            "l": 21000.0,
+            "c": 21001.5
+           },
+           {
+            "o": 21001.5,
+            "h": 21004.5,
+            "l": 21000.0,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21006.5,
+            "l": 21001.75,
+            "c": 21005.25
+           },
+           {
+            "o": 21005.25,
+            "h": 21006.0,
+            "l": 21003.25,
+            "c": 21004.5
+           },
+           {
+            "o": 21004.5,
+            "h": 21007.5,
+            "l": 21004.25,
+            "c": 21006.25
+           },
+           {
+            "o": 21006.25,
+            "h": 21007.5,
+            "l": 21003.25,
+            "c": 21003.75
+           },
+           {
+            "o": 21003.75,
+            "h": 21004.5,
+            "l": 21002.25,
+            "c": 21003.25
+           },
+           {
+            "o": 21003.25,
+            "h": 21004.5,
+            "l": 21000.25,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21003.0,
+            "l": 21000.25,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21005.0,
+            "l": 21001.5,
+            "c": 21004.25
+           },
+           {
+            "o": 21004.25,
+            "h": 21006.25,
+            "l": 21003.75,
+            "c": 21005.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 2,
+          "head": {
+           "tf": "1M",
+           "label": "You protected"
+          },
+          "play": {
+           "from": 10,
+           "to": 28,
+           "speed": 300
+          }
+         },
+         "say": [
+          "More chop. Nothing lost.",
+          "In choppy conditions, <b>protecting the account is the position.</b>"
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "principle": "REPEATED OVERLAP REDUCES CLARITY. IF EVERY LEVEL LOOKS IMPORTANT, NONE OF THEM MAY BE CLEAR ENOUGH YET."
     }
-   ],
-   "chart": {
-    "bars": [
+   ]
+  },
+  {
+   "type": "p7_pil_click",
+   "kicker": "Mark the PIL",
+   "title": "Tap the level that matters",
+   "clean": {
+    "chart": {
+     "swings": [
+      [
+       20,
+       290
+      ],
+      [
+       90,
+       220
+      ],
+      [
+       130,
+       250
+      ],
+      [
+       220,
+       160
+      ],
+      [
+       260,
+       195
+      ],
+      [
+       350,
+       110
+      ],
+      [
+       390,
+       145
+      ],
+      [
+       480,
+       60
+      ],
+      [
+       520,
+       90
+      ],
+      [
+       600,
+       40
+      ]
+     ],
+     "seed": 21
+    },
+    "label": "CLEAN STRUCTURE",
+    "levels": [
      {
-      "o": 20982.25,
-      "h": 20986.5,
-      "l": 20981.5,
-      "c": 20985.5
+      "y": 160,
+      "label": "swing high"
      },
      {
-      "o": 20985.5,
-      "h": 20991.5,
-      "l": 20985.25,
-      "c": 20990.5
-     },
-     {
-      "o": 20990.5,
-      "h": 20994.25,
-      "l": 20990.0,
-      "c": 20993.0
-     },
-     {
-      "o": 20993.0,
-      "h": 20998.75,
-      "l": 20991.5,
-      "c": 20998.25
-     },
-     {
-      "o": 20998.25,
-      "h": 21004.25,
-      "l": 20997.0,
-      "c": 21001.75
-     },
-     {
-      "o": 21001.75,
-      "h": 21002.75,
-      "l": 20998.5,
-      "c": 20999.0
-     },
-     {
-      "o": 20999.0,
-      "h": 21000.25,
-      "l": 20995.75,
-      "c": 20996.75
-     },
-     {
-      "o": 20996.75,
-      "h": 20997.75,
-      "l": 20994.25,
-      "c": 20994.5
-     },
-     {
-      "o": 20994.5,
-      "h": 20995.75,
-      "l": 20990.25,
-      "c": 20991.25
-     },
-     {
-      "o": 20991.25,
-      "h": 20994.25,
-      "l": 20990.0,
-      "c": 20994.0
-     },
-     {
-      "o": 20994.0,
-      "h": 20999.0,
-      "l": 20992.75,
-      "c": 20997.75
-     },
-     {
-      "o": 20997.75,
-      "h": 21002.5,
-      "l": 20996.25,
-      "c": 21001.25
-     },
-     {
-      "o": 21001.25,
-      "h": 21007.75,
-      "l": 21001.25,
-      "c": 21007.0
-     },
-     {
-      "o": 21007.0,
-      "h": 21007.0,
-      "l": 21001.25,
-      "c": 21002.0
-     },
-     {
-      "o": 21002.0,
-      "h": 21008.5,
-      "l": 21002.0,
-      "c": 21007.25
-     },
-     {
-      "o": 21007.25,
-      "h": 21012.5,
-      "l": 21005.75,
-      "c": 21012.0
-     },
-     {
-      "o": 21012.0,
-      "h": 21019.5,
-      "l": 21011.25,
-      "c": 21018.5
-     },
-     {
-      "o": 21018.5,
-      "h": 21025.25,
-      "l": 21017.75,
-      "c": 21024.5
-     },
-     {
-      "o": 21024.5,
-      "h": 21031.25,
-      "l": 21023.5,
-      "c": 21030.25
-     },
-     {
-      "o": 21030.25,
-      "h": 21031.25,
-      "l": 21022.0,
-      "c": 21023.5
-     },
-     {
-      "o": 21023.5,
-      "h": 21025.0,
-      "l": 21014.75,
-      "c": 21015.75
-     },
-     {
-      "o": 21015.75,
-      "h": 21016.25,
-      "l": 21006.0,
-      "c": 21007.25
-     },
-     {
-      "o": 21007.25,
-      "h": 21008.75,
-      "l": 21003.75,
-      "c": 21005.75
-     },
-     {
-      "o": 21005.75,
-      "h": 21007.75,
-      "l": 21005.25,
-      "c": 21006.5
-     },
-     {
-      "o": 21006.5,
-      "h": 21009.0,
-      "l": 21006.0,
-      "c": 21008.0
-     },
-     {
-      "o": 21008.0,
-      "h": 21009.25,
-      "l": 21005.0,
-      "c": 21006.5
-     },
-     {
-      "o": 21006.5,
-      "h": 21008.5,
-      "l": 21005.75,
-      "c": 21007.25
-     },
-     {
-      "o": 21007.25,
-      "h": 21008.75,
-      "l": 21006.0,
-      "c": 21008.25
-     },
-     {
-      "o": 21008.25,
-      "h": 21010.75,
-      "l": 21007.25,
-      "c": 21010.5
-     },
-     {
-      "o": 21010.5,
-      "h": 21011.75,
-      "l": 21008.5,
-      "c": 21009.25
-     },
-     {
-      "o": 21009.25,
-      "h": 21013.5,
-      "l": 21008.25,
-      "c": 21012.0
-     },
-     {
-      "o": 21012.0,
-      "h": 21013.5,
-      "l": 21011.75,
-      "c": 21012.75
-     },
-     {
-      "o": 21012.75,
-      "h": 21013.75,
-      "l": 21012.0,
-      "c": 21012.25
+      "y": 250,
+      "label": "pullback low"
      }
     ],
-    "pil": 21004.25,
-    "pilAt": 4,
-    "show": 23,
-    "head": {
-     "tf": "1M",
-     "label": "MNQ",
-     "time": "11:17"
-    }
-   }
-  },
-  {
-   "type": "p7_rulecheck",
-   "kicker": "Now with YOUR rulebook",
-   "title": "Valid setup at 11:17",
-   "check": "session",
-   "situation": {
-    "time": "11:17"
+    "after": "One or two levels stand out. Easy. Next."
    },
-   "rcat": "session",
-   "ecat": "session",
-   "facts": [
-    [
-     "Clock",
-     "11:17"
+   "messy": {
+    "chart": {
+     "swings": [
+      [
+       20,
+       150
+      ],
+      [
+       60,
+       185
+      ],
+      [
+       95,
+       140
+      ],
+      [
+       130,
+       178
+      ],
+      [
+       165,
+       150
+      ],
+      [
+       200,
+       190
+      ],
+      [
+       235,
+       145
+      ],
+      [
+       270,
+       175
+      ],
+      [
+       305,
+       152
+      ],
+      [
+       340,
+       188
+      ],
+      [
+       375,
+       142
+      ],
+      [
+       410,
+       180
+      ],
+      [
+       445,
+       155
+      ],
+      [
+       480,
+       186
+      ],
+      [
+       515,
+       147
+      ],
+      [
+       550,
+       176
+      ],
+      [
+       600,
+       160
+      ]
+     ],
+     "seed": 33,
+     "density": 1.3
+    },
+    "label": "MESSY CONSOLIDATION",
+    "need": 3,
+    "levels": [
+     {
+      "y": 140,
+      "label": "this one?"
+     },
+     {
+      "y": 147,
+      "label": "or this?"
+     },
+     {
+      "y": 155,
+      "label": "this?"
+     },
+     {
+      "y": 176,
+      "label": "maybe?"
+     },
+     {
+      "y": 186,
+      "label": "this one?"
+     }
     ],
-    [
-     "Setup",
-     "valid Dayli ICC"
-    ]
-   ]
+    "more": "And another one that could be argued as important?",
+    "after": "<b>NOTICE THE PROBLEM?</b>"
+   },
+   "asks": [
+    {
+     "prompt": "If every tiny swing can be argued as important… which one actually matters?",
+     "options": [
+      {
+       "label": "The first one I tapped",
+       "feedback": "Why that one over the other two?",
+       "einc": "manyPils"
+      },
+      {
+       "label": "Maybe none of them is clear enough yet",
+       "correct": true,
+       "why": "That’s a read, not a failure."
+      }
+     ],
+     "ecat": "clarity"
+    }
+   ],
+   "punch": "IF THE CHART MAKES EVERY LEVEL LOOK IMPORTANT, NONE OF THEM MAY BE CLEAR ENOUGH YET."
   },
   {
-   "type": "p7_monologue",
-   "lines": [
-    "THE MARKET MAY BE OPEN.",
-    "<b>YOUR TRADING WINDOW CAN STILL BE CLOSED.</b>"
-   ]
+   "type": "p7_rule_form",
+   "kicker": "Write it calm",
+   "title": "Your chop / environment rule",
+   "form": "environment",
+   "onlyIfMissing": true,
+   "punch": "Example: “I don’t take setups inside tight consolidation when direction and the level are unclear.” Yours can differ. Not “never trade ranges”."
   },
   {
    "type": "v2_dayli",
    "kicker": "Dayli says",
-   "quote": "The market trades almost all day. <em>I don’t have to.</em>",
+   "quote": "When I’m drawing my fourth “PIL” in the same box, <em>the chart is telling me something.</em>",
    "pose": "point"
   },
   {
    "type": "reflect",
    "kicker": "Tell me what you know",
-   "prompt": "How does time of day affect your trading?",
-   "modelAnswer": "Participation, volume and volatility can change around opens and through the day, without guarantees. My plan defines my window. A valid setup outside it is still outside my plan."
+   "prompt": "What does chop look like to you, and what do you do in it?",
+   "modelAnswer": "Overlapping candles, closes flipping across a level, PIL candidates that keep changing. My model can technically fire, but clarity is low. My environment rule decides, and usually I protect."
   }
  ],
  "takeaways": [
-  "Sessions differ in participation, not guarantees.",
-  "No session stereotypes.",
-  "Market open ≠ window open."
+  "Chop keeps producing almost-setups.",
+  "Many “important” levels = low clarity.",
+  "In chop, protect."
  ],
- "remember": "THE MARKET MAY BE OPEN. YOUR TRADING WINDOW CAN STILL BE CLOSED."
+ "remember": "IN CHOPPY CONDITIONS, PROTECTING THE ACCOUNT IS THE POSITION."
 }

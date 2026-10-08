@@ -243,9 +243,9 @@ export function adaptiveSupport(s = session() || {}) {
   const out = [];
   if (n('fearDrivenManagementCount') >= 1) out.push({ line: 'You know the management rule. Fear seems to be changing the exit.', cta: 'Replay without P&L →', href: 'lesson.html?phase=p6&n=15' });
   if (n('fomoDecisionCount') >= 1) out.push({ line: 'You recognized the setup. The challenge is accepting when the entry opportunity is already gone.', cta: 'No retest drill →', href: 'lesson.html?phase=p6&n=6' });
-  if (n('revengeDecisionCount') >= 1) out.push({ line: 'The next setup keeps getting judged through the previous loss.', cta: 'Reset previous outcome →', href: 'lesson.html?phase=p7&n=5' });
+  if (n('revengeDecisionCount') >= 1) out.push({ line: 'The next setup keeps getting judged through the previous loss.', cta: 'Reset previous outcome →', href: 'lesson.html?phase=p7&n=4' });
   if (n('hesitationCount') >= 1) out.push({ line: 'You’re waiting after the criteria are complete. That’s different from waiting FOR the criteria.', cta: 'Patience vs hesitation →', href: 'lesson.html?phase=p7&n=7' });
-  if (n('overconfidenceCount') >= 1) out.push({ line: 'Your confidence changed. Did your risk plan?', cta: 'Baseline risk →', href: 'lesson.html?phase=p7&n=8' });
+  if (n('overconfidenceCount') >= 1) out.push({ line: 'Your confidence changed. Did your risk plan?', cta: 'Baseline risk →', href: 'lesson.html?phase=p7&n=3' });
   if (n('feelingAsReason') >= 1) out.push({ line: 'Feeling something doesn’t automatically make the setup invalid.', cta: 'Feeling vs behavior →', href: 'lesson.html?phase=p7&n=1' });
   return out.slice(0, 3);
 }

@@ -2,17 +2,17 @@
  "phase": "p7",
  "section": "s19",
  "lessonNumber": 14,
- "title": "Your News Rule",
+ "title": "Written While Calm",
  "videoUrl": null,
  "videoDuration": "",
  "xpValue": 85,
  "completeStyle": "v2",
  "passThreshold": 0.6,
- "hook": "Known ahead of time.",
+ "hook": "Your rules weren’t written for the disciplined you.",
  "format": "slides",
  "launchpad": {
-  "outcome": "Decide your response to scheduled events before the session, and never invent one live.",
-  "missionQuestion": "What does my rule say when an event is scheduled?",
+  "outcome": "See why you write rules while calm that you’ll want to break while emotional, and how strategy rules differ from personal ones.",
+  "missionQuestion": "Who was this rule written for?",
   "estMinutes": 8
  },
  "watch": {
@@ -20,143 +20,825 @@
  },
  "slides": [
   {
-   "type": "p7_timeline",
-   "kicker": "The calendar",
-   "title": "Scheduled. Known ahead of time.",
-   "rule": "news",
-   "example": "No new entries within 5 minutes before selected high-impact events.",
-   "rows": [
+   "type": "p7_scene",
+   "kicker": "Phase 7 · Section 2",
+   "title": "Sunday night",
+   "beats": [
     {
-     "t": "9:55",
-     "text": "Normal conditions."
+     "say": [
+      "Sunday night. Coffee. Calm.",
+      "You write three lines in your plan:"
+     ]
     },
     {
-     "t": "9:57",
-     "text": "A valid Dayli ICC setup forms.",
-     "state": "VALID",
-     "tone": "ok"
+     "cards": [
+      "MAXIMUM 2 TRADES",
+      "STOP FOR THE DAY AT −2R",
+      "NO CHASING"
+     ]
     },
     {
-     "t": "10:00",
-     "text": "High-impact scheduled release.",
-     "state": "EVENT",
-     "tone": "warn"
+     "say": [
+      "Easy. Obviously. Who would ever break those?"
+     ]
+    },
+    {
+     "say": [
+      "<b>Thursday. 10:40.</b>",
+      "Two valid losses. −2R. Your daily stop."
+     ]
+    },
+    {
+     "chart": {
+      "bars": [
+       {
+        "o": 20982.25,
+        "h": 20986.5,
+        "l": 20981.5,
+        "c": 20985.5
+       },
+       {
+        "o": 20985.5,
+        "h": 20991.5,
+        "l": 20985.25,
+        "c": 20990.5
+       },
+       {
+        "o": 20990.5,
+        "h": 20994.25,
+        "l": 20990.0,
+        "c": 20993.0
+       },
+       {
+        "o": 20993.0,
+        "h": 20998.75,
+        "l": 20991.5,
+        "c": 20998.25
+       },
+       {
+        "o": 20998.25,
+        "h": 21004.25,
+        "l": 20997.0,
+        "c": 21001.75
+       },
+       {
+        "o": 21001.75,
+        "h": 21002.75,
+        "l": 20998.5,
+        "c": 20999.0
+       },
+       {
+        "o": 20999.0,
+        "h": 21000.25,
+        "l": 20995.75,
+        "c": 20996.75
+       },
+       {
+        "o": 20996.75,
+        "h": 20997.75,
+        "l": 20994.25,
+        "c": 20994.5
+       },
+       {
+        "o": 20994.5,
+        "h": 20995.75,
+        "l": 20990.25,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20994.25,
+        "l": 20990.0,
+        "c": 20994.0
+       },
+       {
+        "o": 20994.0,
+        "h": 20999.0,
+        "l": 20992.75,
+        "c": 20997.75
+       },
+       {
+        "o": 20997.75,
+        "h": 21002.5,
+        "l": 20996.25,
+        "c": 21001.25
+       },
+       {
+        "o": 21001.25,
+        "h": 21007.75,
+        "l": 21001.25,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21007.0,
+        "l": 21001.25,
+        "c": 21002.0
+       },
+       {
+        "o": 21002.0,
+        "h": 21008.5,
+        "l": 21002.0,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21012.5,
+        "l": 21005.75,
+        "c": 21012.0
+       },
+       {
+        "o": 21012.0,
+        "h": 21019.5,
+        "l": 21011.25,
+        "c": 21018.5
+       },
+       {
+        "o": 21018.5,
+        "h": 21025.25,
+        "l": 21017.75,
+        "c": 21024.5
+       },
+       {
+        "o": 21024.5,
+        "h": 21031.25,
+        "l": 21023.5,
+        "c": 21030.25
+       },
+       {
+        "o": 21030.25,
+        "h": 21031.25,
+        "l": 21022.0,
+        "c": 21023.5
+       },
+       {
+        "o": 21023.5,
+        "h": 21025.0,
+        "l": 21014.75,
+        "c": 21015.75
+       },
+       {
+        "o": 21015.75,
+        "h": 21016.25,
+        "l": 21006.0,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21008.75,
+        "l": 21003.75,
+        "c": 21005.75
+       },
+       {
+        "o": 21005.75,
+        "h": 21007.75,
+        "l": 21005.25,
+        "c": 21006.5
+       },
+       {
+        "o": 21006.5,
+        "h": 21009.0,
+        "l": 21006.0,
+        "c": 21008.0
+       },
+       {
+        "o": 21008.0,
+        "h": 21009.25,
+        "l": 21005.0,
+        "c": 21006.5
+       },
+       {
+        "o": 21006.5,
+        "h": 21008.5,
+        "l": 21005.75,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21008.75,
+        "l": 21006.0,
+        "c": 21008.25
+       },
+       {
+        "o": 21008.25,
+        "h": 21010.75,
+        "l": 21007.25,
+        "c": 21010.5
+       },
+       {
+        "o": 21010.5,
+        "h": 21011.75,
+        "l": 21008.5,
+        "c": 21009.25
+       },
+       {
+        "o": 21009.25,
+        "h": 21013.5,
+        "l": 21008.25,
+        "c": 21012.0
+       },
+       {
+        "o": 21012.0,
+        "h": 21013.5,
+        "l": 21011.75,
+        "c": 21012.75
+       },
+       {
+        "o": 21012.75,
+        "h": 21013.75,
+        "l": 21012.0,
+        "c": 21012.25
+       }
+      ],
+      "pil": 21004.25,
+      "pilAt": 4,
+      "head": {
+       "tf": "1M",
+       "label": "10:40"
+      },
+      "play": {
+       "from": 10,
+       "to": 23,
+       "speed": 300
+      }
+     }
+    },
+    {
+     "say": [
+      "And now the cleanest setup you’ve seen all week."
+     ]
+    },
+    {
+     "thoughts": [
+      "“That rule was for a normal day.”",
+      "“This one is different.”",
+      "“Just this once.”"
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "What do you do?",
+      "options": [
+       {
+        "label": "Just this once",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.5,
+            "c": 20985.5
+           },
+           {
+            "o": 20985.5,
+            "h": 20991.5,
+            "l": 20985.25,
+            "c": 20990.5
+           },
+           {
+            "o": 20990.5,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20993.0
+           },
+           {
+            "o": 20993.0,
+            "h": 20998.75,
+            "l": 20991.5,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.0,
+            "c": 21001.75
+           },
+           {
+            "o": 21001.75,
+            "h": 21002.75,
+            "l": 20998.5,
+            "c": 20999.0
+           },
+           {
+            "o": 20999.0,
+            "h": 21000.25,
+            "l": 20995.75,
+            "c": 20996.75
+           },
+           {
+            "o": 20996.75,
+            "h": 20997.75,
+            "l": 20994.25,
+            "c": 20994.5
+           },
+           {
+            "o": 20994.5,
+            "h": 20995.75,
+            "l": 20990.25,
+            "c": 20991.25
+           },
+           {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20994.0
+           },
+           {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20992.75,
+            "c": 20997.75
+           },
+           {
+            "o": 20997.75,
+            "h": 21002.5,
+            "l": 20996.25,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21008.5,
+            "l": 21002.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21012.5,
+            "l": 21005.75,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21019.5,
+            "l": 21011.25,
+            "c": 21018.5
+           },
+           {
+            "o": 21018.5,
+            "h": 21025.25,
+            "l": 21017.75,
+            "c": 21024.5
+           },
+           {
+            "o": 21024.5,
+            "h": 21031.25,
+            "l": 21023.5,
+            "c": 21030.25
+           },
+           {
+            "o": 21030.25,
+            "h": 21031.25,
+            "l": 21022.0,
+            "c": 21023.5
+           },
+           {
+            "o": 21023.5,
+            "h": 21025.0,
+            "l": 21014.75,
+            "c": 21015.75
+           },
+           {
+            "o": 21015.75,
+            "h": 21016.25,
+            "l": 21006.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21003.75,
+            "c": 21005.75
+           },
+           {
+            "o": 21005.75,
+            "h": 21006.25,
+            "l": 21001.25,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21002.25,
+            "l": 20997.75,
+            "c": 20998.5
+           },
+           {
+            "o": 20998.5,
+            "h": 21000.0,
+            "l": 20995.0,
+            "c": 20996.25
+           },
+           {
+            "o": 20996.25,
+            "h": 20996.75,
+            "l": 20991.25,
+            "c": 20992.25
+           },
+           {
+            "o": 20992.25,
+            "h": 20992.75,
+            "l": 20985.75,
+            "c": 20986.25
+           },
+           {
+            "o": 20986.25,
+            "h": 20986.75,
+            "l": 20980.75,
+            "c": 20982.25
+           },
+           {
+            "o": 20982.25,
+            "h": 20983.5,
+            "l": 20978.25,
+            "c": 20979.5
+           },
+           {
+            "o": 20979.5,
+            "h": 20980.0,
+            "l": 20974.5,
+            "c": 20975.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 4,
+          "tags": [
+           {
+            "at": 30,
+            "text": "−1R",
+            "tone": "warn"
+           }
+          ],
+          "head": {
+           "tf": "1M",
+           "label": "Just this once"
+          },
+          "play": {
+           "from": 23,
+           "to": 31,
+           "speed": 300
+          }
+         },
+         "say": [
+          "−3R. A day your plan capped at −2.",
+          "And if it had won? “Just this once” would become “just this kind of day”."
+         ],
+         "tally": [
+          [
+           "DAY",
+           "−3R",
+           "mind"
+          ],
+          [
+           "RULES BROKEN",
+           "1",
+           "mind"
+          ]
+         ]
+        },
+        "track": [
+         "overtradeCount",
+         "emotionalTradesTaken"
+        ]
+       },
+       {
+        "label": "Session over. Close the platform.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.5,
+            "c": 20985.5
+           },
+           {
+            "o": 20985.5,
+            "h": 20991.5,
+            "l": 20985.25,
+            "c": 20990.5
+           },
+           {
+            "o": 20990.5,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20993.0
+           },
+           {
+            "o": 20993.0,
+            "h": 20998.75,
+            "l": 20991.5,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.0,
+            "c": 21001.75
+           },
+           {
+            "o": 21001.75,
+            "h": 21002.75,
+            "l": 20998.5,
+            "c": 20999.0
+           },
+           {
+            "o": 20999.0,
+            "h": 21000.25,
+            "l": 20995.75,
+            "c": 20996.75
+           },
+           {
+            "o": 20996.75,
+            "h": 20997.75,
+            "l": 20994.25,
+            "c": 20994.5
+           },
+           {
+            "o": 20994.5,
+            "h": 20995.75,
+            "l": 20990.25,
+            "c": 20991.25
+           },
+           {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20994.0
+           },
+           {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20992.75,
+            "c": 20997.75
+           },
+           {
+            "o": 20997.75,
+            "h": 21002.5,
+            "l": 20996.25,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21008.5,
+            "l": 21002.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21012.5,
+            "l": 21005.75,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21019.5,
+            "l": 21011.25,
+            "c": 21018.5
+           },
+           {
+            "o": 21018.5,
+            "h": 21025.25,
+            "l": 21017.75,
+            "c": 21024.5
+           },
+           {
+            "o": 21024.5,
+            "h": 21031.25,
+            "l": 21023.5,
+            "c": 21030.25
+           },
+           {
+            "o": 21030.25,
+            "h": 21031.25,
+            "l": 21022.0,
+            "c": 21023.5
+           },
+           {
+            "o": 21023.5,
+            "h": 21025.0,
+            "l": 21014.75,
+            "c": 21015.75
+           },
+           {
+            "o": 21015.75,
+            "h": 21016.25,
+            "l": 21006.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21003.75,
+            "c": 21005.75
+           },
+           {
+            "o": 21005.75,
+            "h": 21007.75,
+            "l": 21005.25,
+            "c": 21006.5
+           },
+           {
+            "o": 21006.5,
+            "h": 21009.0,
+            "l": 21006.0,
+            "c": 21008.0
+           },
+           {
+            "o": 21008.0,
+            "h": 21009.25,
+            "l": 21005.0,
+            "c": 21006.5
+           },
+           {
+            "o": 21006.5,
+            "h": 21008.5,
+            "l": 21005.75,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21006.0,
+            "c": 21008.25
+           },
+           {
+            "o": 21008.25,
+            "h": 21010.75,
+            "l": 21007.25,
+            "c": 21010.5
+           },
+           {
+            "o": 21010.5,
+            "h": 21011.75,
+            "l": 21008.5,
+            "c": 21009.25
+           },
+           {
+            "o": 21009.25,
+            "h": 21013.5,
+            "l": 21008.25,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21013.5,
+            "l": 21011.75,
+            "c": 21012.75
+           },
+           {
+            "o": 21012.75,
+            "h": 21013.75,
+            "l": 21012.0,
+            "c": 21012.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 4,
+          "head": {
+           "tf": "1M",
+           "label": "Without you"
+          },
+          "play": {
+           "from": 23,
+           "to": 33,
+           "speed": 300
+          }
+         },
+         "say": [
+          "It worked. Without you.",
+          "You followed a rule while the chart made it look wrong. <b>That’s the only time a rule is ever tested.</b>"
+         ],
+         "tally": [
+          [
+           "DAY",
+           "−2R · capped",
+           "neutral"
+          ],
+          [
+           "RULES BROKEN",
+           "0",
+           "ok"
+          ]
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Sunday-you saw this coming.",
+      "She knew Thursday-you would feel exactly like this."
+     ]
+    },
+    {
+     "principle": "YOUR TRADING RULES WEREN’T WRITTEN FOR THE VERSION OF YOU WHO FEELS DISCIPLINED. THEY WERE WRITTEN FOR THE VERSION OF YOU WHO DOESN’T."
     }
    ],
-   "asks": [
-    {
-     "prompt": "Under that rule, the 9:57 setup is…",
-     "options": [
-      {
-       "label": "TAKE: it’s valid",
-       "feedback": "Valid setup, 3 minutes before the event. The rule says no new entries within 5.",
-       "rinc": "exceptions"
-      },
-      {
-       "label": "PASS",
-       "correct": true,
-       "why": "Valid setup. The news rule blocks participation."
-      }
-     ],
-     "rcat": "news"
-    },
-    {
-     "prompt": "10:04: it went on to win. Was passing wrong?",
-     "options": [
-      {
-       "label": "Yes, it won",
-       "feedback": "Rule following doesn’t need the market to punish the trade you skipped."
-      },
-      {
-       "label": "No",
-       "correct": true,
-       "why": "RULE FOLLOWING DOES NOT REQUIRE THE MARKET TO PUNISH THE TRADE YOU SKIPPED."
-      }
-     ]
-    }
-   ]
+   "cta": "Start →"
   },
   {
    "type": "p7_split",
-   "kicker": "Not “never trade news”",
-   "title": "Define your response in advance",
+   "kicker": "Two kinds of rules",
+   "title": "Two different questions",
    "left": {
-    "h": "NOT",
+    "h": "YOUR MODEL’S RULES",
     "lines": [
-     "“Never trade news.” (unless that’s your tested rule)",
-     "“I’ll see how it looks.”"
+     "Correct PIL",
+     "Candle-close Indication",
+     "Correction",
+     "Continuation",
+     "Valid retest"
     ],
-    "tone": "bad"
+    "tone": "ink",
+    "sub": "Does the setup exist?"
    },
    "right": {
-    "h": "INSTEAD",
+    "h": "YOUR PERSONAL RULES",
     "lines": [
-     "Scheduled event",
-     "→ known ahead of time",
-     "→ your personal rule already exists"
+     "Risk per trade",
+     "Daily stop",
+     "Maximum trades",
+     "Session",
+     "No chasing",
+     "News"
     ],
-    "tone": "ok"
+    "tone": "mind",
+    "sub": "Am I allowed to participate?"
    },
-   "together": true
+   "together": true,
+   "verdict": "A VALID SETUP DOESN’T OUTRANK YOUR RISK RULES."
   },
   {
-   "type": "p7_rule_form",
-   "kicker": "News rule builder",
-   "title": "Build YOUR news rule",
-   "form": "news",
-   "punch": "No template is universally correct. Use the one you’ll actually follow, then test it."
-  },
-  {
-   "type": "p7_ask",
-   "kicker": "If you hadn’t built one",
-   "title": "An event in 3 minutes. No news rule defined.",
-   "asks": [
+   "type": "p7_gate",
+   "kicker": "Before every trade",
+   "title": "The gates, in order",
+   "layers": [
     {
-     "prompt": "What does the simulator do?",
-     "options": [
-      {
-       "label": "Invent a 5-minute blackout for you",
-       "feedback": "The Academy never invents your rules."
-      },
-      {
-       "label": "Flag it: NEWS RESPONSE NOT DEFINED",
-       "correct": true,
-       "why": "Something to resolve in Review Mode, before the next session."
-      },
-      {
-       "label": "Assume news is fine",
-       "feedback": "Undefined isn’t permission either."
-      }
-     ],
-     "rcat": "news"
+     "key": "strategy",
+     "label": "MY MODEL",
+     "q": "Is the setup actually valid?",
+     "state": "yes"
+    },
+    {
+     "key": "risk",
+     "label": "MY ACCOUNT",
+     "q": "Risk fits? Daily stop? Size?",
+     "state": "no",
+     "note": "Daily stop reached."
+    },
+    {
+     "key": "rulebook",
+     "label": "MY RULEBOOK",
+     "q": "Session · news · max trades · no chase · environment",
+     "state": "yes"
     }
-   ]
-  },
-  {
-   "type": "p7_monologue",
-   "lines": [
-    "“I FORGOT NEWS WAS COMING OUT”",
-    "IS NOT A MARKET CONDITION.",
-    "<b>THAT’S A PREPARATION PROBLEM.</b>"
-   ]
+   ],
+   "status": "SESSION OVER",
+   "verdict": "VALID SETUP. NO PARTICIPATION."
   },
   {
    "type": "v2_dayli",
    "kicker": "Dayli says",
-   "quote": "The calendar is public. <em>Your response to it should be too, at least to you.</em>",
+   "quote": "Calm-you is smarter than heated-you. <em>Let her write the rules. Let them speak when you can’t.</em>",
    "pose": "point"
   },
   {
    "type": "reflect",
    "kicker": "Tell me what you know",
-   "prompt": "What is your news rule, and why that one?",
-   "modelAnswer": "My rule is decided before the session, for the events I selected. I don’t invent it live, and I follow it even when the skipped setup wins."
+   "prompt": "Which rule do you most want to break when you’re emotional?",
+   "modelAnswer": "The one that stops me: my daily stop or my max trades. I wrote it calm for exactly the moment I’ll want to break it."
   }
  ],
  "takeaways": [
-  "Scheduled events are known in advance.",
-  "Define your response, don’t improvise it.",
-  "Undefined → flag it, never invent it."
+  "Rules are written for the emotional you.",
+  "Model rules: does the setup exist?",
+  "Personal rules: may I participate?"
  ],
- "remember": "“I FORGOT NEWS WAS COMING OUT” IS A PREPARATION PROBLEM."
+ "remember": "YOUR RULES WERE WRITTEN FOR THE VERSION OF YOU WHO DOESN’T FEEL DISCIPLINED."
 }

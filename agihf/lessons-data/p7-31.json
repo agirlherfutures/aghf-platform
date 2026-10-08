@@ -1,0 +1,403 @@
+{
+ "phase": "p7",
+ "section": "s20",
+ "lessonNumber": 31,
+ "title": "Nothing Is a Position",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "This should feel like freedom.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Finish a session with no trades and recognize it as a complete, correct execution.",
+  "missionQuestion": "Did I read today correctly?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_scene",
+   "kicker": "Nothing Is a Position",
+   "title": "9:40 → 11:00",
+   "beats": [
+    {
+     "say": [
+      "9:40. Full top-down analysis. Done."
+     ]
+    },
+    {
+     "chart": {
+      "bars": [
+       {
+        "o": 20995.25,
+        "h": 20996.0,
+        "l": 20990.75,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20999.75,
+        "l": 20989.75,
+        "c": 20999.25
+       },
+       {
+        "o": 20999.25,
+        "h": 21000.25,
+        "l": 20990.25,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 21000.25,
+        "l": 20990.5,
+        "c": 20999.25
+       },
+       {
+        "o": 20999.25,
+        "h": 21000.5,
+        "l": 20990.25,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 21000.5,
+        "l": 20990.25,
+        "c": 20999.25
+       },
+       {
+        "o": 20999.25,
+        "h": 21000.5,
+        "l": 20990.5,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20999.75,
+        "l": 20990.75,
+        "c": 20999.25
+       },
+       {
+        "o": 20999.25,
+        "h": 21000.5,
+        "l": 20990.75,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 21000.25,
+        "l": 20990.25,
+        "c": 20999.25
+       },
+       {
+        "o": 20999.25,
+        "h": 20999.5,
+        "l": 20990.0,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20999.5,
+        "l": 20990.0,
+        "c": 20999.25
+       }
+      ],
+      "pil": 21004.25,
+      "pilAt": null,
+      "head": {
+       "tf": "1M",
+       "label": "10:00 · nothing"
+      }
+     }
+    },
+    {
+     "say": [
+      "10:00. Nothing.",
+      "10:30. Messy.",
+      "11:00. No clarity. The session closes."
+     ]
+    },
+    {
+     "thoughts": [
+      "“I did all that work for nothing?”"
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "How do you describe today?",
+      "options": [
+       {
+        "label": "“I didn’t trade today.”",
+        "path": {
+         "say": [
+          "True. But it leaves out the part you did right."
+         ]
+        }
+       },
+       {
+        "label": "“A wasted day.”",
+        "path": {
+         "say": [
+          "Nothing was wasted. You read the market, and the market said no."
+         ]
+        },
+        "track": "feelingAsReason"
+       },
+       {
+        "label": "“I read today’s environment correctly, and my execution was no position.”",
+        "path": {
+         "say": [
+          "<b>That’s it.</b>"
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "tally": [
+      [
+       "TRADES",
+       "0",
+       "neutral"
+      ],
+      [
+       "RULE VIOLATIONS",
+       "0",
+       "ok"
+      ],
+      [
+       "FORCED SETUPS",
+       "0",
+       "ok"
+      ],
+      [
+       "VALID PASS",
+       "✓",
+       "big"
+      ]
+     ],
+     "stamp": "SESSION COMPLETE ✓"
+    },
+    {
+     "principle": "NOTHING IS A POSITION. SOMETIMES PROTECTING THE DAY IS THE TRADE."
+    }
+   ]
+  },
+  {
+   "type": "p7_monologue",
+   "kicker": "Three good process outcomes",
+   "cards": [
+    "VALID WIN",
+    "VALID LOSS",
+    "VALID PASS"
+   ],
+   "lines": [
+    "Process followed. Trade wins.",
+    "Process followed. Trade loses.",
+    "Process followed. No trade taken.",
+    "<b>ALL THREE: PROCESS-COMPLETE.</b>"
+   ]
+  },
+  {
+   "type": "p7_participation",
+   "kicker": "Your turn",
+   "title": "10:48. Nothing has met your framework all session.",
+   "chart": {
+    "swings": [
+     [
+      20,
+      150
+     ],
+     [
+      60,
+      185
+     ],
+     [
+      95,
+      140
+     ],
+     [
+      130,
+      178
+     ],
+     [
+      165,
+      150
+     ],
+     [
+      200,
+      190
+     ],
+     [
+      235,
+      145
+     ],
+     [
+      270,
+      175
+     ],
+     [
+      305,
+      152
+     ],
+     [
+      340,
+      188
+     ],
+     [
+      375,
+      142
+     ],
+     [
+      410,
+      180
+     ],
+     [
+      445,
+      155
+     ],
+     [
+      480,
+      186
+     ],
+     [
+      515,
+      147
+     ],
+     [
+      550,
+      176
+     ],
+     [
+      600,
+      160
+     ]
+    ],
+    "seed": 33,
+    "density": 1.3
+   },
+   "facts": [
+    [
+     "4H",
+     "Mixed"
+    ],
+    [
+     "1H",
+     "Messy overlap"
+    ],
+    [
+     "1M",
+     "Nothing formed"
+    ],
+    [
+     "Clock",
+     "10:48 · window ends 11:00"
+    ]
+   ],
+   "thought": [
+    "“I did all that analysis for nothing?”"
+   ],
+   "steps": [
+    {
+     "key": "feel",
+     "ask": {
+      "prompt": "WHAT AM I FEELING?",
+      "options": [
+       {
+        "label": "Pressure to make the analysis “pay”",
+        "correct": true,
+        "short": "PRESSURE",
+        "why": "Noticed. It doesn’t get to choose."
+       },
+       {
+        "label": "Nothing",
+        "feedback": "The thought bubble says otherwise. 😂"
+       }
+      ]
+     }
+    },
+    {
+     "key": "environment",
+     "ask": {
+      "prompt": "ENVIRONMENT?",
+      "options": [
+       {
+        "label": "SUPPORTIVE",
+        "feedback": "Messy overlap, mixed 4H."
+       },
+       {
+        "label": "POORLY DEFINED",
+        "correct": true
+       }
+      ],
+      "ecat": "clarity"
+     }
+    },
+    {
+     "key": "setup",
+     "ask": {
+      "prompt": "SETUP?",
+      "options": [
+       {
+        "label": "VALID",
+        "feedback": "Nothing formed."
+       },
+       {
+        "label": "NOT FORMED",
+        "correct": true
+       }
+      ]
+     }
+    }
+   ],
+   "decision": {
+    "correct": "PASS",
+    "options": [
+     "TAKE LEAST-BAD",
+     "DROP A TIMEFRAME",
+     "FORCE A TRADE",
+     "PASS"
+    ],
+    "ecat": "pass",
+    "why": "VALID PASS.",
+    "feedback": {
+     "TAKE LEAST-BAD": "Least bad is still not your framework.",
+     "DROP A TIMEFRAME": "Zooming in until ICC appears is forcing it.",
+     "FORCE A TRADE": "The session doesn’t have to produce a trade."
+    }
+   },
+   "whys": [
+    "Nothing met my full participation framework",
+    "I was bored",
+    "The analysis has to pay"
+   ],
+   "whyCorrect": 0,
+   "setupState": "NOT FORMED",
+   "passReason": "Nothing met the framework all session",
+   "punch": "Saved as a VALID PASS. Your journal counts it."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Some of my favorite sessions ended with my hands in my lap. <em>They count.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What does a successful no-trade day mean to you now?",
+   "modelAnswer": "It means I read the environment correctly and nothing met my framework. My execution was no position. A valid pass is as process-complete as a valid win or loss."
+  }
+ ],
+ "takeaways": [
+  "Valid win, valid loss, valid pass.",
+  "Nothing is a position.",
+  "Protecting the day can be the trade."
+ ],
+ "remember": "NOTHING IS A POSITION."
+}

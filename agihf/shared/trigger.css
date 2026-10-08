@@ -409,3 +409,5 @@ g[class*="ex-tl-line"][class$="-tag"] text { font: 800 10px 'DM Sans', sans-seri
   .rk-exp label { grid-template-columns: 1fr 50px; } .rk-exp label input { grid-column: 1 / -1; grid-row: 2; }
 }
 .rk-saved { align-self: flex-start; border: none; background: #E8F8F6; color: #1F8A7E; font: 800 14px var(--font-body); padding: 12px 20px; border-radius: 999px; }
+.ex-tl-warn { stroke: #C8455F; } .ex-tl-mind { stroke: var(--mind, #7F77DD); }
+.ex-tl-warn-tag rect, .ex-tl-mind-tag rect { fill: #fff; } .ex-tl-warn-tag rect { stroke: #C8455F; }

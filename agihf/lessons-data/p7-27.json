@@ -2,16 +2,16 @@
  "phase": "p7",
  "section": "s20",
  "lessonNumber": 27,
- "title": "Technically Valid vs High-Quality",
+ "title": "Almost Right: Do Nothing",
  "videoUrl": null,
  "videoDuration": "",
  "xpValue": 85,
  "completeStyle": "v2",
  "passThreshold": 0.6,
- "hook": "Same model. Different context.",
+ "hook": "Technically valid isn’t the same as worth it.",
  "format": "slides",
  "launchpad": {
-  "outcome": "Separate setup validity, the environment read and your rulebook, then decide.",
+  "outcome": "Feel a setup that technically completes in a weak context, and separate validity from participation.",
   "missionQuestion": "Did the model complete? And what surrounds it?",
   "estMinutes": 8
  },
@@ -20,78 +20,683 @@
  },
  "slides": [
   {
-   "type": "p7_split",
-   "kicker": "One of the most important lessons",
-   "title": "Setup A vs Setup B",
-   "left": {
-    "h": "SETUP A",
-    "lines": [
-     "PIL ✓ · Indication ✓",
-     "Correction ✓ · Continuation ✓",
-     "Retest ✓",
-     "<b>But:</b> tight chop",
-     "Objective close",
-     "News imminent",
-     "Conflicting HTF"
-    ],
-    "tone": "mind"
-   },
-   "right": {
-    "h": "SETUP B",
-    "lines": [
-     "PIL ✓ · Indication ✓",
-     "Correction ✓ · Continuation ✓",
-     "Retest ✓",
-     "<b>And:</b> clear thesis",
-     "Readable structure",
-     "Room to objective",
-     "Within plan"
-    ],
-    "tone": "ok"
-   },
-   "together": true,
-   "asks": [
+   "type": "p7_scene",
+   "kicker": "Almost Right: Do Nothing",
+   "title": "9:58",
+   "beats": [
     {
-     "prompt": "SAME MODEL?",
-     "options": [
-      {
-       "label": "YES",
-       "correct": true
+     "chart": {
+      "bars": [
+       {
+        "o": 20982.25,
+        "h": 20986.5,
+        "l": 20981.5,
+        "c": 20985.5
+       },
+       {
+        "o": 20985.5,
+        "h": 20991.5,
+        "l": 20985.25,
+        "c": 20990.5
+       },
+       {
+        "o": 20990.5,
+        "h": 20994.25,
+        "l": 20990.0,
+        "c": 20993.0
+       },
+       {
+        "o": 20993.0,
+        "h": 20998.75,
+        "l": 20991.5,
+        "c": 20998.25
+       },
+       {
+        "o": 20998.25,
+        "h": 21004.25,
+        "l": 20997.0,
+        "c": 21001.75
+       },
+       {
+        "o": 21001.75,
+        "h": 21002.75,
+        "l": 20998.5,
+        "c": 20999.0
+       },
+       {
+        "o": 20999.0,
+        "h": 21000.25,
+        "l": 20995.75,
+        "c": 20996.75
+       },
+       {
+        "o": 20996.75,
+        "h": 20997.75,
+        "l": 20994.25,
+        "c": 20994.5
+       },
+       {
+        "o": 20994.5,
+        "h": 20995.75,
+        "l": 20990.25,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20994.25,
+        "l": 20990.0,
+        "c": 20994.0
+       },
+       {
+        "o": 20994.0,
+        "h": 20999.0,
+        "l": 20992.75,
+        "c": 20997.75
+       },
+       {
+        "o": 20997.75,
+        "h": 21002.5,
+        "l": 20996.25,
+        "c": 21001.25
+       },
+       {
+        "o": 21001.25,
+        "h": 21007.75,
+        "l": 21001.25,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21007.0,
+        "l": 21001.25,
+        "c": 21002.0
+       },
+       {
+        "o": 21002.0,
+        "h": 21008.5,
+        "l": 21002.0,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21012.5,
+        "l": 21005.75,
+        "c": 21012.0
+       },
+       {
+        "o": 21012.0,
+        "h": 21019.5,
+        "l": 21011.25,
+        "c": 21018.5
+       },
+       {
+        "o": 21018.5,
+        "h": 21025.25,
+        "l": 21017.75,
+        "c": 21024.5
+       },
+       {
+        "o": 21024.5,
+        "h": 21031.25,
+        "l": 21023.5,
+        "c": 21030.25
+       },
+       {
+        "o": 21030.25,
+        "h": 21031.25,
+        "l": 21022.0,
+        "c": 21023.5
+       },
+       {
+        "o": 21023.5,
+        "h": 21025.0,
+        "l": 21014.75,
+        "c": 21015.75
+       },
+       {
+        "o": 21015.75,
+        "h": 21016.25,
+        "l": 21006.0,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21008.75,
+        "l": 21003.75,
+        "c": 21005.75
+       },
+       {
+        "o": 21005.75,
+        "h": 21007.75,
+        "l": 21005.25,
+        "c": 21006.5
+       },
+       {
+        "o": 21006.5,
+        "h": 21009.0,
+        "l": 21006.0,
+        "c": 21008.0
+       },
+       {
+        "o": 21008.0,
+        "h": 21009.25,
+        "l": 21005.0,
+        "c": 21006.5
+       },
+       {
+        "o": 21006.5,
+        "h": 21008.5,
+        "l": 21005.75,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21008.75,
+        "l": 21006.0,
+        "c": 21008.25
+       },
+       {
+        "o": 21008.25,
+        "h": 21010.75,
+        "l": 21007.25,
+        "c": 21010.5
+       },
+       {
+        "o": 21010.5,
+        "h": 21011.75,
+        "l": 21008.5,
+        "c": 21009.25
+       },
+       {
+        "o": 21009.25,
+        "h": 21013.5,
+        "l": 21008.25,
+        "c": 21012.0
+       },
+       {
+        "o": 21012.0,
+        "h": 21013.5,
+        "l": 21011.75,
+        "c": 21012.75
+       },
+       {
+        "o": 21012.75,
+        "h": 21013.75,
+        "l": 21012.0,
+        "c": 21012.25
+       }
+      ],
+      "pil": 21004.25,
+      "pilAt": 4,
+      "head": {
+       "tf": "1M",
+       "label": "9:58"
       },
-      {
-       "label": "No",
-       "feedback": "Both completed every step."
+      "play": {
+       "from": 10,
+       "to": 23,
+       "speed": 300
       }
+     }
+    },
+    {
+     "say": [
+      "Every step of your model closed. Technically perfect."
      ]
     },
     {
-     "prompt": "SAME CONTEXT?",
-     "options": [
-      {
-       "label": "Yes",
-       "feedback": "Look at what surrounds each one."
-      },
-      {
-       "label": "NO",
-       "correct": true
-      }
+     "cards": [
+      "1H · MESSY",
+      "4H HIGH · 12 POINTS ABOVE",
+      "RELEASE · 10:00"
      ]
     },
     {
-     "prompt": "DOES TECHNICAL VALIDITY FORCE PARTICIPATION?",
-     "options": [
-      {
-       "label": "Yes, valid is valid",
-       "feedback": "Valid answers “did the model complete?”. Not “should I participate?”.",
-       "einc": "forcedTrades"
-      },
-      {
-       "label": "NO",
-       "correct": true,
-       "why": "Same technical model ≠ identical opportunity."
-      }
-     ],
-     "ecat": "pass"
+     "say": [
+      "Everything <b>technically</b> looks almost right."
+     ]
+    },
+    {
+     "thoughts": [
+      "“It’s valid though.”",
+      "“I can’t skip a valid setup.”"
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "What do you do?",
+      "options": [
+       {
+        "label": "Take it. Valid is valid.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.5,
+            "c": 20985.5
+           },
+           {
+            "o": 20985.5,
+            "h": 20991.5,
+            "l": 20985.25,
+            "c": 20990.5
+           },
+           {
+            "o": 20990.5,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20993.0
+           },
+           {
+            "o": 20993.0,
+            "h": 20998.75,
+            "l": 20991.5,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.0,
+            "c": 21001.75
+           },
+           {
+            "o": 21001.75,
+            "h": 21002.75,
+            "l": 20998.5,
+            "c": 20999.0
+           },
+           {
+            "o": 20999.0,
+            "h": 21000.25,
+            "l": 20995.75,
+            "c": 20996.75
+           },
+           {
+            "o": 20996.75,
+            "h": 20997.75,
+            "l": 20994.25,
+            "c": 20994.5
+           },
+           {
+            "o": 20994.5,
+            "h": 20995.75,
+            "l": 20990.25,
+            "c": 20991.25
+           },
+           {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20994.0
+           },
+           {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20992.75,
+            "c": 20997.75
+           },
+           {
+            "o": 20997.75,
+            "h": 21002.5,
+            "l": 20996.25,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21008.5,
+            "l": 21002.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21012.5,
+            "l": 21005.75,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21019.5,
+            "l": 21011.25,
+            "c": 21018.5
+           },
+           {
+            "o": 21018.5,
+            "h": 21025.25,
+            "l": 21017.75,
+            "c": 21024.5
+           },
+           {
+            "o": 21024.5,
+            "h": 21031.25,
+            "l": 21023.5,
+            "c": 21030.25
+           },
+           {
+            "o": 21030.25,
+            "h": 21031.25,
+            "l": 21022.0,
+            "c": 21023.5
+           },
+           {
+            "o": 21023.5,
+            "h": 21025.0,
+            "l": 21014.75,
+            "c": 21015.75
+           },
+           {
+            "o": 21015.75,
+            "h": 21016.25,
+            "l": 21006.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21003.75,
+            "c": 21005.75
+           },
+           {
+            "o": 21005.75,
+            "h": 21008.25,
+            "l": 21004.75,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21011.25,
+            "l": 20960.25,
+            "c": 20968.25
+           },
+           {
+            "o": 20968.25,
+            "h": 20978.0,
+            "l": 20967.0,
+            "c": 20977.25
+           },
+           {
+            "o": 20977.25,
+            "h": 20985.75,
+            "l": 20976.5,
+            "c": 20984.25
+           },
+           {
+            "o": 20984.25,
+            "h": 20994.25,
+            "l": 20983.75,
+            "c": 20993.5
+           },
+           {
+            "o": 20993.5,
+            "h": 21002.5,
+            "l": 20993.0,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21011.25,
+            "l": 21000.5,
+            "c": 21010.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 4,
+          "tags": [
+           {
+            "at": 24,
+            "text": "RELEASE",
+            "tone": "warn"
+           }
+          ],
+          "head": {
+           "tf": "1M",
+           "label": "10:00"
+          },
+          "play": {
+           "from": 23,
+           "to": 30,
+           "speed": 300
+          }
+         },
+         "say": [
+          "The release went straight through the setup.",
+          "<b>Valid asked “did the model complete?”. It never asked what surrounded it.</b>"
+         ]
+        },
+        "track": [
+         "emotionalTradesTaken"
+        ]
+       },
+       {
+        "label": "Do nothing",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.5,
+            "c": 20985.5
+           },
+           {
+            "o": 20985.5,
+            "h": 20991.5,
+            "l": 20985.25,
+            "c": 20990.5
+           },
+           {
+            "o": 20990.5,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20993.0
+           },
+           {
+            "o": 20993.0,
+            "h": 20998.75,
+            "l": 20991.5,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.0,
+            "c": 21001.75
+           },
+           {
+            "o": 21001.75,
+            "h": 21002.75,
+            "l": 20998.5,
+            "c": 20999.0
+           },
+           {
+            "o": 20999.0,
+            "h": 21000.25,
+            "l": 20995.75,
+            "c": 20996.75
+           },
+           {
+            "o": 20996.75,
+            "h": 20997.75,
+            "l": 20994.25,
+            "c": 20994.5
+           },
+           {
+            "o": 20994.5,
+            "h": 20995.75,
+            "l": 20990.25,
+            "c": 20991.25
+           },
+           {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20994.0
+           },
+           {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20992.75,
+            "c": 20997.75
+           },
+           {
+            "o": 20997.75,
+            "h": 21002.5,
+            "l": 20996.25,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21008.5,
+            "l": 21002.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21012.5,
+            "l": 21005.75,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21019.5,
+            "l": 21011.25,
+            "c": 21018.5
+           },
+           {
+            "o": 21018.5,
+            "h": 21025.25,
+            "l": 21017.75,
+            "c": 21024.5
+           },
+           {
+            "o": 21024.5,
+            "h": 21031.25,
+            "l": 21023.5,
+            "c": 21030.25
+           },
+           {
+            "o": 21030.25,
+            "h": 21031.25,
+            "l": 21022.0,
+            "c": 21023.5
+           },
+           {
+            "o": 21023.5,
+            "h": 21025.0,
+            "l": 21014.75,
+            "c": 21015.75
+           },
+           {
+            "o": 21015.75,
+            "h": 21016.25,
+            "l": 21006.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21003.75,
+            "c": 21005.75
+           },
+           {
+            "o": 21005.75,
+            "h": 21008.25,
+            "l": 21004.75,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21011.25,
+            "l": 20960.25,
+            "c": 20968.25
+           },
+           {
+            "o": 20968.25,
+            "h": 20978.0,
+            "l": 20967.0,
+            "c": 20977.25
+           },
+           {
+            "o": 20977.25,
+            "h": 20985.75,
+            "l": 20976.5,
+            "c": 20984.25
+           },
+           {
+            "o": 20984.25,
+            "h": 20994.25,
+            "l": 20983.75,
+            "c": 20993.5
+           },
+           {
+            "o": 20993.5,
+            "h": 21002.5,
+            "l": 20993.0,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21011.25,
+            "l": 21000.5,
+            "c": 21010.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 4,
+          "tags": [
+           {
+            "at": 24,
+            "text": "RELEASE",
+            "tone": "warn"
+           }
+          ],
+          "head": {
+           "tf": "1M",
+           "label": "From the sidelines"
+          },
+          "play": {
+           "from": 23,
+           "to": 30,
+           "speed": 300
+          }
+         },
+         "say": [
+          "You watched it from the sidelines.",
+          "Doing nothing when almost everything is right <b>is a skill.</b>"
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "principle": "VALID ASKS: “DID THE MODEL COMPLETE?” QUALITY ASKS: “WHAT SURROUNDS THE MODEL?”"
     }
    ]
   },
@@ -336,7 +941,7 @@
      "High-impact in 2 minutes"
     ],
     [
-     "Her news rule",
+     "Your news rule",
      "No new entries within 5 minutes"
     ]
    ],
@@ -353,7 +958,7 @@
        },
        {
         "label": "I need this trade",
-        "feedback": "Not in this scenario. She’s calm."
+        "feedback": "Not in this scenario. You’re calm."
        }
       ]
      }
@@ -361,16 +966,16 @@
     {
      "key": "rulebook",
      "ask": {
-      "prompt": "RULEBOOK: her news rule blocks entries within 5 minutes. Event in 2.",
+      "prompt": "RULEBOOK: your news rule blocks entries within 5 minutes. Event in 2.",
       "options": [
        {
         "label": "Within rules",
-        "feedback": "2 minutes is inside her 5-minute window."
+        "feedback": "2 minutes is inside your 5-minute window."
        },
        {
         "label": "BLOCKED",
         "correct": true,
-        "why": "Her news rule."
+        "why": "Your news rule."
        }
       ],
       "rcat": "news",
@@ -427,7 +1032,7 @@
      "PASS"
     ],
     "ecat": "pass",
-    "why": "Valid setup. Blocked by her rule, in a poorly defined environment.",
+    "why": "Valid setup. Blocked by your rule, in a poorly defined environment.",
     "feedback": {
      "TAKE": "Did the model complete? Yes. Does that force participation? No.",
      "WAIT": "Nothing is left to form. The question is participation."
@@ -435,334 +1040,13 @@
    },
    "whys": [
     "ICC valid, HTF clear, within rules, room available",
-    "Technically valid, but her news rule blocks entry",
+    "Technically valid, but your news rule blocks entry",
     "ICC developing, Continuation not confirmed"
    ],
    "whyCorrect": 1,
    "setupState": "VALID",
    "passReason": "News rule + poorly defined environment",
    "rulebookContext": "News rule blocks entries within 5 minutes"
-  },
-  {
-   "type": "p7_participation",
-   "kicker": "The AGHF Participation Check",
-   "title": "Setup B",
-   "chart": {
-    "bars": [
-     {
-      "o": 20982.25,
-      "h": 20986.5,
-      "l": 20981.5,
-      "c": 20985.5
-     },
-     {
-      "o": 20985.5,
-      "h": 20991.5,
-      "l": 20985.25,
-      "c": 20990.5
-     },
-     {
-      "o": 20990.5,
-      "h": 20994.25,
-      "l": 20990.0,
-      "c": 20993.0
-     },
-     {
-      "o": 20993.0,
-      "h": 20998.75,
-      "l": 20991.5,
-      "c": 20998.25
-     },
-     {
-      "o": 20998.25,
-      "h": 21004.25,
-      "l": 20997.0,
-      "c": 21001.75
-     },
-     {
-      "o": 21001.75,
-      "h": 21002.75,
-      "l": 20998.5,
-      "c": 20999.0
-     },
-     {
-      "o": 20999.0,
-      "h": 21000.25,
-      "l": 20995.75,
-      "c": 20996.75
-     },
-     {
-      "o": 20996.75,
-      "h": 20997.75,
-      "l": 20994.25,
-      "c": 20994.5
-     },
-     {
-      "o": 20994.5,
-      "h": 20995.75,
-      "l": 20990.25,
-      "c": 20991.25
-     },
-     {
-      "o": 20991.25,
-      "h": 20994.25,
-      "l": 20990.0,
-      "c": 20994.0
-     },
-     {
-      "o": 20994.0,
-      "h": 20999.0,
-      "l": 20992.75,
-      "c": 20997.75
-     },
-     {
-      "o": 20997.75,
-      "h": 21002.5,
-      "l": 20996.25,
-      "c": 21001.25
-     },
-     {
-      "o": 21001.25,
-      "h": 21007.75,
-      "l": 21001.25,
-      "c": 21007.0
-     },
-     {
-      "o": 21007.0,
-      "h": 21007.0,
-      "l": 21001.25,
-      "c": 21002.0
-     },
-     {
-      "o": 21002.0,
-      "h": 21008.5,
-      "l": 21002.0,
-      "c": 21007.25
-     },
-     {
-      "o": 21007.25,
-      "h": 21012.5,
-      "l": 21005.75,
-      "c": 21012.0
-     },
-     {
-      "o": 21012.0,
-      "h": 21019.5,
-      "l": 21011.25,
-      "c": 21018.5
-     },
-     {
-      "o": 21018.5,
-      "h": 21025.25,
-      "l": 21017.75,
-      "c": 21024.5
-     },
-     {
-      "o": 21024.5,
-      "h": 21031.25,
-      "l": 21023.5,
-      "c": 21030.25
-     },
-     {
-      "o": 21030.25,
-      "h": 21031.25,
-      "l": 21022.0,
-      "c": 21023.5
-     },
-     {
-      "o": 21023.5,
-      "h": 21025.0,
-      "l": 21014.75,
-      "c": 21015.75
-     },
-     {
-      "o": 21015.75,
-      "h": 21016.25,
-      "l": 21006.0,
-      "c": 21007.25
-     },
-     {
-      "o": 21007.25,
-      "h": 21008.75,
-      "l": 21003.75,
-      "c": 21005.75
-     },
-     {
-      "o": 21005.75,
-      "h": 21007.75,
-      "l": 21005.25,
-      "c": 21006.5
-     },
-     {
-      "o": 21006.5,
-      "h": 21009.0,
-      "l": 21006.0,
-      "c": 21008.0
-     },
-     {
-      "o": 21008.0,
-      "h": 21009.25,
-      "l": 21005.0,
-      "c": 21006.5
-     },
-     {
-      "o": 21006.5,
-      "h": 21008.5,
-      "l": 21005.75,
-      "c": 21007.25
-     },
-     {
-      "o": 21007.25,
-      "h": 21008.75,
-      "l": 21006.0,
-      "c": 21008.25
-     },
-     {
-      "o": 21008.25,
-      "h": 21010.75,
-      "l": 21007.25,
-      "c": 21010.5
-     },
-     {
-      "o": 21010.5,
-      "h": 21011.75,
-      "l": 21008.5,
-      "c": 21009.25
-     },
-     {
-      "o": 21009.25,
-      "h": 21013.5,
-      "l": 21008.25,
-      "c": 21012.0
-     },
-     {
-      "o": 21012.0,
-      "h": 21013.5,
-      "l": 21011.75,
-      "c": 21012.75
-     },
-     {
-      "o": 21012.75,
-      "h": 21013.75,
-      "l": 21012.0,
-      "c": 21012.25
-     }
-    ],
-    "pil": 21004.25,
-    "pilAt": 4,
-    "show": 23,
-    "head": {
-     "tf": "1M",
-     "label": "Setup B"
-    }
-   },
-   "facts": [
-    [
-     "4H",
-     "Clear bullish story"
-    ],
-    [
-     "1H",
-     "Readable progression"
-    ],
-    [
-     "Objective",
-     "Plenty of room"
-    ],
-    [
-     "Calendar",
-     "Nothing scheduled"
-    ],
-    [
-     "Clock",
-     "10:06 · in window"
-    ]
-   ],
-   "steps": [
-    {
-     "key": "trader",
-     "ask": {
-      "prompt": "TRADER?",
-      "options": [
-       {
-        "label": "Calm. No personal stop triggered.",
-        "correct": true,
-        "short": "CLEARED"
-       }
-      ]
-     }
-    },
-    {
-     "key": "rulebook",
-     "ask": {
-      "prompt": "RULEBOOK: first trade, in her window, nothing scheduled, risk within plan.",
-      "options": [
-       {
-        "label": "ALLOWED",
-        "correct": true
-       },
-       {
-        "label": "BLOCKED",
-        "feedback": "Which rule would block it?"
-       }
-      ],
-      "ecat": "pass"
-     }
-    },
-    {
-     "key": "environment",
-     "ask": {
-      "prompt": "ENVIRONMENT: clear 4H, readable 1H, room to the objective.",
-      "options": [
-       {
-        "label": "SUPPORTIVE",
-        "correct": true
-       },
-       {
-        "label": "POORLY DEFINED",
-        "feedback": "Everything here is readable."
-       }
-      ]
-     }
-    },
-    {
-     "key": "setup",
-     "ask": {
-      "prompt": "SETUP: the same closed sequence.",
-      "options": [
-       {
-        "label": "VALID",
-        "correct": true
-       },
-       {
-        "label": "INVALID",
-        "feedback": "Same sequence as Setup A."
-       }
-      ]
-     }
-    }
-   ],
-   "decision": {
-    "correct": "TAKE",
-    "options": [
-     "TAKE",
-     "WAIT",
-     "PASS"
-    ],
-    "ecat": "pass",
-    "why": "TAKE can be an appropriate process decision. Still not a guaranteed win.",
-    "feedback": {
-     "PASS": "Every layer cleared. Passing here isn’t selectivity, it’s hesitation.",
-     "WAIT": "What are you waiting for? The retest printed."
-    }
-   },
-   "whys": [
-    "ICC valid, HTF clear, within rules, room available",
-    "Technically valid, but the news rule blocks entry",
-    "Structure too unclear for my consolidation rule"
-   ],
-   "whyCorrect": 0,
-   "punch": "A process decision. Not a guaranteed win."
   },
   {
    "type": "p7_ask",
@@ -803,13 +1087,6 @@
    ]
   },
   {
-   "type": "p7_monologue",
-   "lines": [
-    "VALID ASKS: “DID THE MODEL COMPLETE?”",
-    "<b>QUALITY ASKS: “WHAT SURROUNDS THE MODEL?”</b>"
-   ]
-  },
-  {
    "type": "v2_dayli",
    "kicker": "Dayli says",
    "quote": "Same candles, different neighborhood. 😂 <em>The neighborhood matters.</em>",
@@ -818,14 +1095,14 @@
   {
    "type": "reflect",
    "kicker": "Tell me what you know",
-   "prompt": "What’s the difference between technically valid and high-quality?",
-   "modelAnswer": "Valid means the model completed: PIL, Indication, Correction, Continuation, retest. Quality is what surrounds it: HTF, structure, room, news, session and my rules. Technical validity doesn’t force participation."
+   "prompt": "When would you pass on a setup that technically completed?",
+   "modelAnswer": "When my rulebook blocks it, or the context is poorly defined: messy structure, no room, news right on top of it. Technical validity doesn’t force participation."
   }
  ],
  "takeaways": [
+  "Technically valid ≠ worth participating.",
   "Validity, environment and rulebook are separate reads.",
-  "Same model ≠ same opportunity.",
-  "TAKE is a process decision, not a guarantee."
+  "Doing nothing is a skill."
  ],
- "remember": "VALID ASKS “DID THE MODEL COMPLETE?” QUALITY ASKS “WHAT SURROUNDS THE MODEL?”"
+ "remember": "TECHNICAL VALIDITY DOESN’T FORCE PARTICIPATION."
 }

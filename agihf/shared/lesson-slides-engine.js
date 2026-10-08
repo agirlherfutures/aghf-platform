@@ -47,6 +47,7 @@ import { RISK_RENDERERS } from './risk.js';
 import { MIND_RENDERERS } from './mind.js';
 import { RULES_RENDERERS } from './rules.js';
 import { ENV_RENDERERS } from './env.js';
+import { SCENE_RENDERERS } from './scene.js';
 import { LEVEL_RENDERERS } from './level-tools.js';
 
 // Temporary: everything unlocked while the Academy is being built (see preview.js).
@@ -968,6 +969,7 @@ export const SLIDE_RENDERERS = {
   ...MIND_RENDERERS,
   ...RULES_RENDERERS,
   ...ENV_RENDERERS,
+  ...SCENE_RENDERERS,
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
   chart_tap: renderChartTapSlide,

@@ -2,17 +2,17 @@
  "phase": "p7",
  "section": "s18",
  "lessonNumber": 5,
- "title": "Revenge Trading",
+ "title": "Three in a Row",
  "videoUrl": null,
  "videoDuration": "",
  "xpValue": 85,
  "completeStyle": "v2",
  "passThreshold": 0.6,
- "hook": "The next trade does not owe you.",
+ "hook": "When losing starts to feel like who you are.",
  "format": "slides",
  "launchpad": {
-  "outcome": "Watch a valid loss turn into urgency, and use the revenge test before the next trade.",
-  "missionQuestion": "Would I take this exact trade if the previous trade never happened?",
+  "outcome": "Feel a losing streak shake your trust, and keep judging the model slowly and the next setup on its own.",
+  "missionQuestion": "Did my model stop working, or did my confidence?",
   "estMinutes": 8
  },
  "watch": {
@@ -20,503 +20,1123 @@
  },
  "slides": [
   {
-   "type": "trigger_sim",
-   "mode": "watch",
-   "kicker": "A valid setup",
-   "title": "Trade 1",
-   "scenario": {
-    "dir": "bullish",
-    "tf": "1M",
-    "symbol": "MNQ",
-    "bars": [
-     {
-      "o": 20982.25,
-      "h": 20986.25,
-      "l": 20981.25,
-      "c": 20985.75
-     },
-     {
-      "o": 20985.75,
-      "h": 20990.25,
-      "l": 20985.0,
-      "c": 20989.25
-     },
-     {
-      "o": 20989.25,
-      "h": 20994.25,
-      "l": 20989.0,
-      "c": 20993.25
-     },
-     {
-      "o": 20993.25,
-      "h": 20999.0,
-      "l": 20993.0,
-      "c": 20998.25
-     },
-     {
-      "o": 20998.25,
-      "h": 21004.25,
-      "l": 20997.5,
-      "c": 21001.75
-     },
-     {
-      "o": 21001.75,
-      "h": 21002.25,
-      "l": 20999.5,
-      "c": 21000.0
-     },
-     {
-      "o": 21000.0,
-      "h": 21001.5,
-      "l": 20995.75,
-      "c": 20996.75
-     },
-     {
-      "o": 20996.75,
-      "h": 20998.25,
-      "l": 20993.25,
-      "c": 20993.5
-     },
-     {
-      "o": 20993.5,
-      "h": 20994.75,
-      "l": 20990.75,
-      "c": 20991.25
-     },
-     {
-      "o": 20991.25,
-      "h": 20994.25,
-      "l": 20990.5,
-      "c": 20993.75
-     },
-     {
-      "o": 20993.75,
-      "h": 20999.25,
-      "l": 20992.75,
-      "c": 20998.75
-     },
-     {
-      "o": 20998.75,
-      "h": 21002.25,
-      "l": 20998.0,
-      "c": 21001.25
-     },
-     {
-      "o": 21001.25,
-      "h": 21007.75,
-      "l": 21001.25,
-      "c": 21007.0
-     },
-     {
-      "o": 21007.0,
-      "h": 21007.0,
-      "l": 21001.25,
-      "c": 21002.0
-     },
-     {
-      "o": 21002.0,
-      "h": 21008.25,
-      "l": 21002.0,
-      "c": 21007.25
-     },
-     {
-      "o": 21007.25,
-      "h": 21010.0,
-      "l": 21006.5,
-      "c": 21009.0
-     },
-     {
-      "o": 21009.0,
-      "h": 21012.5,
-      "l": 21008.0,
-      "c": 21011.25
-     },
-     {
-      "o": 21011.25,
-      "h": 21014.25,
-      "l": 21010.25,
-      "c": 21013.25
-     },
-     {
-      "o": 21013.25,
-      "h": 21017.5,
-      "l": 21012.0,
-      "c": 21016.25
-     },
-     {
-      "o": 21016.25,
-      "h": 21017.75,
-      "l": 21012.25,
-      "c": 21012.75
-     },
-     {
-      "o": 21012.75,
-      "h": 21014.0,
-      "l": 21009.5,
-      "c": 21010.0
-     },
-     {
-      "o": 21010.0,
-      "h": 21010.75,
-      "l": 21007.0,
-      "c": 21007.25
-     },
-     {
-      "o": 21007.25,
-      "h": 21008.25,
-      "l": 21003.75,
-      "c": 21005.75
-     },
-     {
-      "o": 21005.75,
-      "h": 21006.0,
-      "l": 21000.0,
-      "c": 21000.5
-     },
-     {
-      "o": 21000.5,
-      "h": 21000.75,
-      "l": 20996.75,
-      "c": 20997.25
-     },
-     {
-      "o": 20997.25,
-      "h": 20998.75,
-      "l": 20991.75,
-      "c": 20992.25
-     },
-     {
-      "o": 20992.25,
-      "h": 20993.0,
-      "l": 20987.25,
-      "c": 20988.0
-     },
-     {
-      "o": 20988.0,
-      "h": 20988.5,
-      "l": 20981.75,
-      "c": 20983.0
-     },
-     {
-      "o": 20983.0,
-      "h": 20983.25,
-      "l": 20977.75,
-      "c": 20978.25
-     },
-     {
-      "o": 20978.25,
-      "h": 20978.5,
-      "l": 20971.25,
-      "c": 20972.75
-     }
-    ],
-    "start": 10,
-    "context": [
-     {
-      "label": "4H",
-      "value": "Bullish"
-     },
-     {
-      "label": "1H",
-      "value": "Bullish thesis"
-     },
-     {
-      "label": "15M",
-      "value": "Pulling back into the map"
-     },
-     {
-      "label": "Location",
-      "value": "4H discount"
-     }
-    ]
-   },
-   "setups": [
+   "type": "p7_scene",
+   "kicker": "Three in a Row",
+   "title": "Tuesday, Wednesday, Thursday",
+   "beats": [
     {
-     "pil": 21004.25,
-     "pilAt": 4
-    }
-   ],
-   "checkpoints": [
+     "cards": [
+      "TUE · valid · −1R",
+      "WED · valid · −1R",
+      "THU · valid · −1R"
+     ]
+    },
     {
-     "at": 22,
-     "kind": "note",
-     "expect": "enter",
-     "text": "First valid retest. <b>She executes.</b>",
-     "hold": 1400
-    }
-   ],
-   "trade": {
-    "stopPts": 30,
-    "targetPts": 60
-   },
-   "timeline": false,
-   "end": {
-    "text": "<b>−1R.</b> Valid trade. Valid loss.",
-    "card": "WHAT HAPPENS NEXT?"
-   }
-  },
-  {
-   "type": "p7_mirror",
-   "title": "Trade 2, immediately",
-   "thought": [
-    "“I need that back.”"
-   ],
-   "asks": [
+     "say": [
+      "Three trades. Three losses.",
+      "Every one by the plan."
+     ]
+    },
     {
-     "prompt": "WAIT, ENTER, OR SIZE UP?",
-     "options": [
-      {
-       "label": "WAIT",
-       "correct": true,
-       "why": "The setup isn’t complete. The previous loss doesn’t complete it.",
-       "track": "revengeAvoided"
+     "thoughts": [
+      "“Maybe the model doesn’t work.”",
+      "“Maybe I’m not cut out for this.”",
+      "“I’ll wait for a REALLY perfect one.”"
+     ]
+    },
+    {
+     "chart": {
+      "bars": [
+       {
+        "o": 20982.25,
+        "h": 20986.5,
+        "l": 20981.25,
+        "c": 20985.5
+       },
+       {
+        "o": 20985.5,
+        "h": 20990.75,
+        "l": 20984.25,
+        "c": 20990.25
+       },
+       {
+        "o": 20990.25,
+        "h": 20996.0,
+        "l": 20989.25,
+        "c": 20995.0
+       },
+       {
+        "o": 20995.0,
+        "h": 20998.75,
+        "l": 20994.75,
+        "c": 20998.25
+       },
+       {
+        "o": 20998.25,
+        "h": 21004.25,
+        "l": 20997.25,
+        "c": 21001.75
+       },
+       {
+        "o": 21001.75,
+        "h": 21003.0,
+        "l": 20997.5,
+        "c": 20998.0
+       },
+       {
+        "o": 20998.0,
+        "h": 20998.25,
+        "l": 20994.25,
+        "c": 20995.75
+       },
+       {
+        "o": 20995.75,
+        "h": 20997.0,
+        "l": 20993.5,
+        "c": 20994.5
+       },
+       {
+        "o": 20994.5,
+        "h": 20994.75,
+        "l": 20990.5,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20995.0,
+        "l": 20989.75,
+        "c": 20994.5
+       },
+       {
+        "o": 20994.5,
+        "h": 20998.0,
+        "l": 20993.25,
+        "c": 20997.5
+       },
+       {
+        "o": 20997.5,
+        "h": 21001.75,
+        "l": 20996.0,
+        "c": 21001.25
+       },
+       {
+        "o": 21001.25,
+        "h": 21007.75,
+        "l": 21001.25,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21007.0,
+        "l": 21001.25,
+        "c": 21002.0
+       },
+       {
+        "o": 21002.0,
+        "h": 21007.75,
+        "l": 21002.0,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21011.5,
+        "l": 21006.0,
+        "c": 21011.0
+       },
+       {
+        "o": 21011.0,
+        "h": 21013.5,
+        "l": 21009.75,
+        "c": 21012.0
+       },
+       {
+        "o": 21012.0,
+        "h": 21017.5,
+        "l": 21011.0,
+        "c": 21016.25
+       },
+       {
+        "o": 21016.25,
+        "h": 21019.5,
+        "l": 21015.75,
+        "c": 21018.25
+       },
+       {
+        "o": 21018.25,
+        "h": 21019.5,
+        "l": 21014.0,
+        "c": 21014.5
+       },
+       {
+        "o": 21014.5,
+        "h": 21015.75,
+        "l": 21011.25,
+        "c": 21012.0
+       },
+       {
+        "o": 21012.0,
+        "h": 21012.75,
+        "l": 21006.5,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21008.0,
+        "l": 21003.75,
+        "c": 21005.75
+       },
+       {
+        "o": 21005.75,
+        "h": 21008.0,
+        "l": 21005.5,
+        "c": 21007.75
+       },
+       {
+        "o": 21007.75,
+        "h": 21012.25,
+        "l": 21007.0,
+        "c": 21010.75
+       },
+       {
+        "o": 21010.75,
+        "h": 21013.0,
+        "l": 21009.75,
+        "c": 21012.25
+       },
+       {
+        "o": 21012.25,
+        "h": 21018.0,
+        "l": 21012.0,
+        "c": 21017.5
+       },
+       {
+        "o": 21017.5,
+        "h": 21022.0,
+        "l": 21017.0,
+        "c": 21021.5
+       },
+       {
+        "o": 21021.5,
+        "h": 21025.5,
+        "l": 21020.25,
+        "c": 21024.75
+       },
+       {
+        "o": 21024.75,
+        "h": 21028.75,
+        "l": 21023.25,
+        "c": 21028.25
+       },
+       {
+        "o": 21028.25,
+        "h": 21033.25,
+        "l": 21026.75,
+        "c": 21032.25
+       },
+       {
+        "o": 21032.25,
+        "h": 21039.25,
+        "l": 21031.0,
+        "c": 21037.75
+       },
+       {
+        "o": 21037.75,
+        "h": 21041.75,
+        "l": 21036.75,
+        "c": 21040.5
+       },
+       {
+        "o": 21040.5,
+        "h": 21047.0,
+        "l": 21040.0,
+        "c": 21046.25
+       },
+       {
+        "o": 21046.25,
+        "h": 21053.25,
+        "l": 21044.75,
+        "c": 21052.25
+       },
+       {
+        "o": 21052.25,
+        "h": 21059.0,
+        "l": 21051.25,
+        "c": 21057.5
+       },
+       {
+        "o": 21057.5,
+        "h": 21063.5,
+        "l": 21057.0,
+        "c": 21062.5
+       },
+       {
+        "o": 21062.5,
+        "h": 21068.75,
+        "l": 21061.75,
+        "c": 21067.25
+       }
+      ],
+      "pil": 21004.25,
+      "pilAt": 4,
+      "head": {
+       "tf": "1M",
+       "label": "Friday"
       },
-      {
-       "label": "ENTER",
-       "feedback": "YOU ARE NO LONGER TRADING THIS SETUP. You are trying to repair THE PREVIOUS OUTCOME.",
-       "track": [
-        "revengeDecisionCount",
-        "emotionalTradesTaken"
+      "play": {
+       "from": 10,
+       "to": 23,
+       "speed": 300
+      }
+     }
+    },
+    {
+     "say": [
+      "Indication. Correction. Continuation. First retest.",
+      "<b>Your model, start to finish.</b>"
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "Your hand is shaking a little. What do you do?",
+      "options": [
+       {
+        "label": "Skip it. You can’t take another loss.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.25,
+            "c": 20985.5
+           },
+           {
+            "o": 20985.5,
+            "h": 20990.75,
+            "l": 20984.25,
+            "c": 20990.25
+           },
+           {
+            "o": 20990.25,
+            "h": 20996.0,
+            "l": 20989.25,
+            "c": 20995.0
+           },
+           {
+            "o": 20995.0,
+            "h": 20998.75,
+            "l": 20994.75,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.25,
+            "c": 21001.75
+           },
+           {
+            "o": 21001.75,
+            "h": 21003.0,
+            "l": 20997.5,
+            "c": 20998.0
+           },
+           {
+            "o": 20998.0,
+            "h": 20998.25,
+            "l": 20994.25,
+            "c": 20995.75
+           },
+           {
+            "o": 20995.75,
+            "h": 20997.0,
+            "l": 20993.5,
+            "c": 20994.5
+           },
+           {
+            "o": 20994.5,
+            "h": 20994.75,
+            "l": 20990.5,
+            "c": 20991.25
+           },
+           {
+            "o": 20991.25,
+            "h": 20995.0,
+            "l": 20989.75,
+            "c": 20994.5
+           },
+           {
+            "o": 20994.5,
+            "h": 20998.0,
+            "l": 20993.25,
+            "c": 20997.5
+           },
+           {
+            "o": 20997.5,
+            "h": 21001.75,
+            "l": 20996.0,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21007.75,
+            "l": 21002.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21011.5,
+            "l": 21006.0,
+            "c": 21011.0
+           },
+           {
+            "o": 21011.0,
+            "h": 21013.5,
+            "l": 21009.75,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21017.5,
+            "l": 21011.0,
+            "c": 21016.25
+           },
+           {
+            "o": 21016.25,
+            "h": 21019.5,
+            "l": 21015.75,
+            "c": 21018.25
+           },
+           {
+            "o": 21018.25,
+            "h": 21019.5,
+            "l": 21014.0,
+            "c": 21014.5
+           },
+           {
+            "o": 21014.5,
+            "h": 21015.75,
+            "l": 21011.25,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21012.75,
+            "l": 21006.5,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.0,
+            "l": 21003.75,
+            "c": 21005.75
+           },
+           {
+            "o": 21005.75,
+            "h": 21008.0,
+            "l": 21005.5,
+            "c": 21007.75
+           },
+           {
+            "o": 21007.75,
+            "h": 21012.25,
+            "l": 21007.0,
+            "c": 21010.75
+           },
+           {
+            "o": 21010.75,
+            "h": 21013.0,
+            "l": 21009.75,
+            "c": 21012.25
+           },
+           {
+            "o": 21012.25,
+            "h": 21018.0,
+            "l": 21012.0,
+            "c": 21017.5
+           },
+           {
+            "o": 21017.5,
+            "h": 21022.0,
+            "l": 21017.0,
+            "c": 21021.5
+           },
+           {
+            "o": 21021.5,
+            "h": 21025.5,
+            "l": 21020.25,
+            "c": 21024.75
+           },
+           {
+            "o": 21024.75,
+            "h": 21028.75,
+            "l": 21023.25,
+            "c": 21028.25
+           },
+           {
+            "o": 21028.25,
+            "h": 21033.25,
+            "l": 21026.75,
+            "c": 21032.25
+           },
+           {
+            "o": 21032.25,
+            "h": 21039.25,
+            "l": 21031.0,
+            "c": 21037.75
+           },
+           {
+            "o": 21037.75,
+            "h": 21041.75,
+            "l": 21036.75,
+            "c": 21040.5
+           },
+           {
+            "o": 21040.5,
+            "h": 21047.0,
+            "l": 21040.0,
+            "c": 21046.25
+           },
+           {
+            "o": 21046.25,
+            "h": 21053.25,
+            "l": 21044.75,
+            "c": 21052.25
+           },
+           {
+            "o": 21052.25,
+            "h": 21059.0,
+            "l": 21051.25,
+            "c": 21057.5
+           },
+           {
+            "o": 21057.5,
+            "h": 21063.5,
+            "l": 21057.0,
+            "c": 21062.5
+           },
+           {
+            "o": 21062.5,
+            "h": 21068.75,
+            "l": 21061.75,
+            "c": 21067.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 4,
+          "head": {
+           "tf": "1M",
+           "label": "Without you"
+          },
+          "play": {
+           "from": 23,
+           "to": 38,
+           "speed": 300
+          }
+         },
+         "say": [
+          "It worked.",
+          "Without you.",
+          "And now the next one is harder, because you’ve added “I missed it” to “I keep losing”."
+         ]
+        },
+        "track": "hesitationCount"
+       },
+       {
+        "label": "Take it at half size. Just to be safe.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.25,
+            "c": 20985.5
+           },
+           {
+            "o": 20985.5,
+            "h": 20990.75,
+            "l": 20984.25,
+            "c": 20990.25
+           },
+           {
+            "o": 20990.25,
+            "h": 20996.0,
+            "l": 20989.25,
+            "c": 20995.0
+           },
+           {
+            "o": 20995.0,
+            "h": 20998.75,
+            "l": 20994.75,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.25,
+            "c": 21001.75
+           },
+           {
+            "o": 21001.75,
+            "h": 21003.0,
+            "l": 20997.5,
+            "c": 20998.0
+           },
+           {
+            "o": 20998.0,
+            "h": 20998.25,
+            "l": 20994.25,
+            "c": 20995.75
+           },
+           {
+            "o": 20995.75,
+            "h": 20997.0,
+            "l": 20993.5,
+            "c": 20994.5
+           },
+           {
+            "o": 20994.5,
+            "h": 20994.75,
+            "l": 20990.5,
+            "c": 20991.25
+           },
+           {
+            "o": 20991.25,
+            "h": 20995.0,
+            "l": 20989.75,
+            "c": 20994.5
+           },
+           {
+            "o": 20994.5,
+            "h": 20998.0,
+            "l": 20993.25,
+            "c": 20997.5
+           },
+           {
+            "o": 20997.5,
+            "h": 21001.75,
+            "l": 20996.0,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21007.75,
+            "l": 21002.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21011.5,
+            "l": 21006.0,
+            "c": 21011.0
+           },
+           {
+            "o": 21011.0,
+            "h": 21013.5,
+            "l": 21009.75,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21017.5,
+            "l": 21011.0,
+            "c": 21016.25
+           },
+           {
+            "o": 21016.25,
+            "h": 21019.5,
+            "l": 21015.75,
+            "c": 21018.25
+           },
+           {
+            "o": 21018.25,
+            "h": 21019.5,
+            "l": 21014.0,
+            "c": 21014.5
+           },
+           {
+            "o": 21014.5,
+            "h": 21015.75,
+            "l": 21011.25,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21012.75,
+            "l": 21006.5,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.0,
+            "l": 21003.75,
+            "c": 21005.75
+           },
+           {
+            "o": 21005.75,
+            "h": 21008.0,
+            "l": 21005.5,
+            "c": 21007.75
+           },
+           {
+            "o": 21007.75,
+            "h": 21012.25,
+            "l": 21007.0,
+            "c": 21010.75
+           },
+           {
+            "o": 21010.75,
+            "h": 21013.0,
+            "l": 21009.75,
+            "c": 21012.25
+           },
+           {
+            "o": 21012.25,
+            "h": 21018.0,
+            "l": 21012.0,
+            "c": 21017.5
+           },
+           {
+            "o": 21017.5,
+            "h": 21022.0,
+            "l": 21017.0,
+            "c": 21021.5
+           },
+           {
+            "o": 21021.5,
+            "h": 21025.5,
+            "l": 21020.25,
+            "c": 21024.75
+           },
+           {
+            "o": 21024.75,
+            "h": 21028.75,
+            "l": 21023.25,
+            "c": 21028.25
+           },
+           {
+            "o": 21028.25,
+            "h": 21033.25,
+            "l": 21026.75,
+            "c": 21032.25
+           },
+           {
+            "o": 21032.25,
+            "h": 21039.25,
+            "l": 21031.0,
+            "c": 21037.75
+           },
+           {
+            "o": 21037.75,
+            "h": 21041.75,
+            "l": 21036.75,
+            "c": 21040.5
+           },
+           {
+            "o": 21040.5,
+            "h": 21047.0,
+            "l": 21040.0,
+            "c": 21046.25
+           },
+           {
+            "o": 21046.25,
+            "h": 21053.25,
+            "l": 21044.75,
+            "c": 21052.25
+           },
+           {
+            "o": 21052.25,
+            "h": 21059.0,
+            "l": 21051.25,
+            "c": 21057.5
+           },
+           {
+            "o": 21057.5,
+            "h": 21063.5,
+            "l": 21057.0,
+            "c": 21062.5
+           },
+           {
+            "o": 21062.5,
+            "h": 21068.75,
+            "l": 21061.75,
+            "c": 21067.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 4,
+          "head": {
+           "tf": "1M",
+           "label": "Half size"
+          },
+          "play": {
+           "from": 23,
+           "to": 38,
+           "speed": 300
+          }
+         },
+         "say": [
+          "+1R instead of +2R.",
+          "The streak didn’t just change your mood. <b>It quietly rewrote your risk plan.</b>"
+         ]
+        },
+        "track": "hesitationCount"
+       },
+       {
+        "label": "Take it. Standard size.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.25,
+            "c": 20985.5
+           },
+           {
+            "o": 20985.5,
+            "h": 20990.75,
+            "l": 20984.25,
+            "c": 20990.25
+           },
+           {
+            "o": 20990.25,
+            "h": 20996.0,
+            "l": 20989.25,
+            "c": 20995.0
+           },
+           {
+            "o": 20995.0,
+            "h": 20998.75,
+            "l": 20994.75,
+            "c": 20998.25
+           },
+           {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.25,
+            "c": 21001.75
+           },
+           {
+            "o": 21001.75,
+            "h": 21003.0,
+            "l": 20997.5,
+            "c": 20998.0
+           },
+           {
+            "o": 20998.0,
+            "h": 20998.25,
+            "l": 20994.25,
+            "c": 20995.75
+           },
+           {
+            "o": 20995.75,
+            "h": 20997.0,
+            "l": 20993.5,
+            "c": 20994.5
+           },
+           {
+            "o": 20994.5,
+            "h": 20994.75,
+            "l": 20990.5,
+            "c": 20991.25
+           },
+           {
+            "o": 20991.25,
+            "h": 20995.0,
+            "l": 20989.75,
+            "c": 20994.5
+           },
+           {
+            "o": 20994.5,
+            "h": 20998.0,
+            "l": 20993.25,
+            "c": 20997.5
+           },
+           {
+            "o": 20997.5,
+            "h": 21001.75,
+            "l": 20996.0,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21007.75,
+            "l": 21002.0,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21011.5,
+            "l": 21006.0,
+            "c": 21011.0
+           },
+           {
+            "o": 21011.0,
+            "h": 21013.5,
+            "l": 21009.75,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21017.5,
+            "l": 21011.0,
+            "c": 21016.25
+           },
+           {
+            "o": 21016.25,
+            "h": 21019.5,
+            "l": 21015.75,
+            "c": 21018.25
+           },
+           {
+            "o": 21018.25,
+            "h": 21019.5,
+            "l": 21014.0,
+            "c": 21014.5
+           },
+           {
+            "o": 21014.5,
+            "h": 21015.75,
+            "l": 21011.25,
+            "c": 21012.0
+           },
+           {
+            "o": 21012.0,
+            "h": 21012.75,
+            "l": 21006.5,
+            "c": 21007.25
+           },
+           {
+            "o": 21007.25,
+            "h": 21008.0,
+            "l": 21003.75,
+            "c": 21005.75
+           },
+           {
+            "o": 21005.75,
+            "h": 21008.0,
+            "l": 21005.5,
+            "c": 21007.75
+           },
+           {
+            "o": 21007.75,
+            "h": 21012.25,
+            "l": 21007.0,
+            "c": 21010.75
+           },
+           {
+            "o": 21010.75,
+            "h": 21013.0,
+            "l": 21009.75,
+            "c": 21012.25
+           },
+           {
+            "o": 21012.25,
+            "h": 21018.0,
+            "l": 21012.0,
+            "c": 21017.5
+           },
+           {
+            "o": 21017.5,
+            "h": 21022.0,
+            "l": 21017.0,
+            "c": 21021.5
+           },
+           {
+            "o": 21021.5,
+            "h": 21025.5,
+            "l": 21020.25,
+            "c": 21024.75
+           },
+           {
+            "o": 21024.75,
+            "h": 21028.75,
+            "l": 21023.25,
+            "c": 21028.25
+           },
+           {
+            "o": 21028.25,
+            "h": 21033.25,
+            "l": 21026.75,
+            "c": 21032.25
+           },
+           {
+            "o": 21032.25,
+            "h": 21039.25,
+            "l": 21031.0,
+            "c": 21037.75
+           },
+           {
+            "o": 21037.75,
+            "h": 21041.75,
+            "l": 21036.75,
+            "c": 21040.5
+           },
+           {
+            "o": 21040.5,
+            "h": 21047.0,
+            "l": 21040.0,
+            "c": 21046.25
+           },
+           {
+            "o": 21046.25,
+            "h": 21053.25,
+            "l": 21044.75,
+            "c": 21052.25
+           },
+           {
+            "o": 21052.25,
+            "h": 21059.0,
+            "l": 21051.25,
+            "c": 21057.5
+           },
+           {
+            "o": 21057.5,
+            "h": 21063.5,
+            "l": 21057.0,
+            "c": 21062.5
+           },
+           {
+            "o": 21062.5,
+            "h": 21068.75,
+            "l": 21061.75,
+            "c": 21067.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 4,
+          "head": {
+           "tf": "1M",
+           "label": "Standard size"
+          },
+          "play": {
+           "from": 23,
+           "to": 38,
+           "speed": 300
+          }
+         },
+         "say": [
+          "+2R.",
+          "And if it had lost? Four in a row. Still the right decision.",
+          "<b>Losing streaks happen inside working models.</b> Three trades can’t tell you which one you have."
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "who": {
+      "before": {
+       "h": "THE TRADER",
+       "lines": [
+        "Judges each setup on its own.",
+        "Judges the model over many trades."
        ]
       },
-      {
-       "label": "SIZE UP",
-       "feedback": "Revenge + a risk violation. Bigger size to get it back faster is how −1R becomes −3R.",
-       "track": [
-        "revengeDecisionCount",
-        "emotionalTradesTaken"
+      "after": {
+       "h": "THE STREAK",
+       "lines": [
+        "Wants proof before it trusts you again.",
+        "Treats three trades like a verdict."
        ]
       }
-     ],
-     "focus": "market"
-    }
-   ],
-   "who": {
-    "correct": "revenge",
-    "options": [
-     "process",
-     "fomo",
-     "revenge",
-     "hesitation"
-    ],
-    "why": "The next setup is being judged through the previous loss."
-   },
-   "chart": {
-    "bars": [
-     {
-      "o": 20982.25,
-      "h": 20988.0,
-      "l": 20981.25,
-      "c": 20986.75
-     },
-     {
-      "o": 20986.75,
-      "h": 20991.0,
-      "l": 20985.25,
-      "c": 20990.25
-     },
-     {
-      "o": 20990.25,
-      "h": 20994.25,
-      "l": 20989.75,
-      "c": 20993.75
-     },
-     {
-      "o": 20993.75,
-      "h": 20998.75,
-      "l": 20993.0,
-      "c": 20998.25
-     },
-     {
-      "o": 20998.25,
-      "h": 21004.25,
-      "l": 20997.75,
-      "c": 21001.75
-     },
-     {
-      "o": 21001.75,
-      "h": 21002.5,
-      "l": 20997.75,
-      "c": 20998.75
-     },
-     {
-      "o": 20998.75,
-      "h": 20999.0,
-      "l": 20995.25,
-      "c": 20995.75
-     },
-     {
-      "o": 20995.75,
-      "h": 20996.5,
-      "l": 20992.75,
-      "c": 20994.0
-     },
-     {
-      "o": 20994.0,
-      "h": 20995.25,
-      "l": 20990.5,
-      "c": 20991.25
-     },
-     {
-      "o": 20991.25,
-      "h": 20994.75,
-      "l": 20990.0,
-      "c": 20993.5
-     },
-     {
-      "o": 20993.5,
-      "h": 20998.75,
-      "l": 20993.0,
-      "c": 20997.75
-     },
-     {
-      "o": 20997.75,
-      "h": 21002.75,
-      "l": 20996.5,
-      "c": 21001.25
-     },
-     {
-      "o": 21001.25,
-      "h": 21007.75,
-      "l": 21001.25,
-      "c": 21007.0
-     },
-     {
-      "o": 21007.0,
-      "h": 21010.25,
-      "l": 21006.25,
-      "c": 21009.5
      }
-    ],
-    "pil": 21004.25,
-    "pilAt": 4,
-    "head": {
-     "tf": "1M",
-     "label": "Two minutes later"
+    },
+    {
+     "principle": "A LOSING STREAK CHANGES HOW YOU FEEL ABOUT THE MODEL. IT DOESN’T CHANGE THE MODEL."
     }
-   },
-   "market": {
-    "state": "Indication only",
-    "facts": [
-     [
-      "Correction",
-      "not yet"
-     ],
-     [
-      "Continuation",
-      "not yet"
-     ]
-    ]
-   },
-   "mind": {
-    "history": [
-     "Trade 1 · −1R (valid)"
-    ],
-    "daily": "−1R"
-   },
-   "action": "Get in now",
-   "rule": {
-    "text": "Entry only at the first valid retest after Continuation."
-   }
+   ]
   },
   {
    "type": "p7_loop",
-   "kicker": "The revenge loop",
-   "title": "It keeps going around",
+   "kicker": "The confidence loop",
+   "title": "Watch it spin",
    "nodes": [
     "LOSS",
-    "FRUSTRATION",
-    "URGENCY",
-    "LOWER STANDARDS",
-    "LARGER RISK / FAST ENTRY",
-    "MORE DAMAGE",
-    "MORE URGENCY"
+    "DOUBT THE MODEL",
+    "SKIP A VALID SETUP",
+    "IT WINS",
+    "FOMO",
+    "CHASE THE NEXT",
+    "LOSS",
+    "MORE DOUBT"
    ],
-   "center": "The next trade becomes about the last one.",
+   "breakAt": 2,
+   "step": 0.6,
+   "center": "Confidence borrowed from the last trade.",
    "asks": [
     {
-     "prompt": "WHERE CAN THE LOOP BREAK MOST EASILY?",
+     "prompt": "WHAT STOPS IT AT “SKIP A VALID SETUP”?",
      "options": [
       {
-       "label": "After MORE DAMAGE",
-       "feedback": "It can, but by then the day is expensive."
+       "label": "Waiting until I feel confident",
+       "feedback": "Feelings follow evidence. They don’t lead it."
       },
       {
-       "label": "Between URGENCY and LOWER STANDARDS",
+       "label": "Letting the current setup and my rules decide",
        "correct": true,
-       "why": "Notice the urgency, then check the rule before standards drop. That’s FEEL → NOTICE → NAME → CHECK THE RULE."
-      },
-      {
-       "label": "It can’t break",
-       "feedback": "It breaks every time you let the rule decide."
+       "why": "Not the streak. The setup and the rules."
       }
      ]
     }
-   ]
-  },
-  {
-   "type": "p7_ask",
-   "kicker": "The signature revenge test",
-   "title": "WOULD I TAKE THIS EXACT SETUP IF THE PREVIOUS TRADE NEVER HAPPENED?",
-   "asks": [
-    {
-     "prompt": "After −1R: Indication only, no Correction, no Continuation. Would you take it if the loss never happened?",
-     "options": [
-      {
-       "label": "YES",
-       "feedback": "Without the loss, an Indication-only chart is just a WAIT."
-      },
-      {
-       "label": "NO",
-       "correct": true,
-       "why": "Then the previous outcome is influencing this decision. That’s revenge."
-      }
-     ],
-     "recog": true
-    },
-    {
-     "prompt": "After −1R: a full valid ICC, first retest, risk fits, your daily rules still allow a trade. Would you take it if the loss never happened?",
-     "options": [
-      {
-       "label": "YES",
-       "correct": true,
-       "why": "Then evaluate it on its own. A valid setup after a loss is still a valid setup.",
-       "track": "ruleBasedResponses"
-      },
-      {
-       "label": "NO, I just lost",
-       "feedback": "That’s the loss deciding the next trade, from the other side. (Lesson 7 has a name for it.)",
-       "track": "hesitationCount"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "type": "p7_monologue",
-   "lines": [
-    "THE NEXT TRADE",
-    "DOES NOT OWE YOU",
-    "THE MONEY FROM THE LAST ONE."
    ]
   },
   {
    "type": "v2_dayli",
    "kicker": "Dayli says",
-   "quote": "Revenge feels like action. <em>It’s actually the last trade still trading you.</em>",
+   "quote": "Judge your behavior after every trade. <em>Judge the model after a lot of them.</em>",
    "pose": "point"
   },
   {
    "type": "reflect",
    "kicker": "Tell me what you know",
-   "prompt": "How would you know the next trade is revenge-driven?",
-   "modelAnswer": "If I wouldn’t take this exact setup without the previous loss, the previous outcome is choosing for me. Urgency, lower standards and bigger size are the signs."
+   "prompt": "What do you tell yourself during a losing streak?",
+   "modelAnswer": "That the model stopped working or that I’m not good enough. Three trades can’t answer that. I judge my behavior quickly and the model slowly, over a real sample."
   }
  ],
  "takeaways": [
-  "Loss → urgency → lower standards is a loop.",
-  "Use the revenge test.",
-  "The next trade owes you nothing."
+  "Losing streaks happen inside working models.",
+  "Skipping and shrinking are the streak deciding.",
+  "Judge behavior fast, the model slowly."
  ],
- "remember": "WOULD I TAKE THIS EXACT TRADE IF THE PREVIOUS TRADE NEVER HAPPENED?"
+ "remember": "A LOSING STREAK DOESN’T CHANGE THE MODEL."
 }
