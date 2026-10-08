@@ -22,104 +22,105 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 13",
-      "headline": "Before the chart, <em>read you.</em>",
-      "line": "Same person. Same morning. Different traders, minute to minute.",
+      "headline": "Before you read the chart, <em>read yourself first.</em>",
+      "line": "You’re the same person on the same morning, but a different trader can show up from minute to minute.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_compare",
-      "kicker": "9:58 · you lost yesterday",
-      "headline": "Valid setup. <em>Your stomach drops.</em>",
+      "kicker": "9:58 · You lost yesterday",
+      "headline": "A valid setup appears, and <em>your stomach drops.</em>",
       "cards": [
         {
           "label": "The trader",
-          "sub": "Notice it, check the rule, take it",
+          "sub": "You notice the feeling, check your rule, and take it.",
           "spark": "up",
           "tag": "PLAN",
           "tone": "teal"
         },
         {
           "label": "Yesterday",
-          "sub": "Skip it. Not today.",
+          "sub": "It says, “Skip it, not today.”",
           "spark": "slow",
           "tag": "FEAR",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Who should make this decision?",
+        "prompt": "Who should be making this decision right now?",
         "options": [
           {
-            "label": "Skip it. Not today.",
+            "label": "Skip it, I can’t lose again today",
             "correct": false,
-            "feedback": "That wasn’t about this chart. Yesterday made that call."
+            "feedback": "That decision wasn’t about this chart. Yesterday’s loss made that call for you."
           },
           {
-            "label": "Notice, check, take it",
+            "label": "Notice the feeling, check, then take it",
             "correct": true,
-            "feedback": "The feeling came along. The trader made the decision."
+            "feedback": "Yes. The feeling came along for the ride, but the trader made the decision."
           }
         ]
       }
     },
     {
       "type": "v2_compare",
-      "kicker": "10:20 · +2R on the day",
-      "headline": "Your plan says done. <em>You’re on.</em>",
+      "kicker": "10:20 · You’re up +2R today",
+      "headline": "Your plan says you’re done, but <em>you feel unstoppable.</em>",
       "cards": [
         {
           "label": "The heater",
-          "sub": "One more. You’re hot.",
+          "sub": "It says, “One more, you’re hot.”",
           "spark": "chop",
           "tag": "GREED",
           "tone": "peach"
         },
         {
           "label": "The trader",
-          "sub": "Done. Journal and close.",
+          "sub": "You’re done, so you journal and close.",
           "spark": "up",
           "tag": "PLAN",
           "tone": "purple"
         }
       ],
       "check": {
-        "prompt": "Who’s trading now?",
+        "prompt": "Who’s doing the trading right now?",
         "options": [
           {
-            "label": "One more. You’re on.",
+            "label": "One more trade, I’m on fire",
             "correct": false,
-            "feedback": "That one’s the heater talking, not the plan."
+            "feedback": "That’s the heater talking, not your plan. Your plan already said you were done."
           },
           {
-            "label": "Done. Journal and close.",
+            "label": "I’m done, so I journal and close",
             "correct": true,
-            "feedback": "That’s the trader. The plan said done."
+            "feedback": "That’s the trader. The plan said you were done, so you listened."
           }
         ]
-      }
+      },
+      "line": "1R is the amount you planned to risk on one trade. You’re up +2R, twice that, and your plan says stop for the day."
     },
     {
       "type": "v2_steps",
       "kicker": "A normal Tuesday",
-      "headline": "Before every trade: <em>who’s trading now?</em>",
-      "line": "They show up mid-morning, not one at a time.",
+      "headline": "Before every trade, ask yourself, <em>“Who’s trading right now?”</em>",
+      "line": "These versions of you all show up in one morning, not one at a time.",
       "steps": [
         {
           "label": "9:58 · after loss",
-          "sub": "Yesterday wants to skip it"
+          "sub": "Yesterday’s loss wants you to skip a valid setup."
         },
         {
           "label": "10:20 · +2R",
-          "sub": "The heater wants one more"
+          "sub": "The heater wants you to take one more trade."
         },
         {
           "label": "10:41 · red candle",
-          "sub": "Fear wants to close at +15"
+          "sub": "Fear wants you to grab a small +15 profit and close early."
         },
         {
           "label": "The skill",
-          "sub": "Notice who just took the mouse"
+          "sub": "You notice which version of you just took the mouse."
         }
       ],
       "cta": "Next →"
@@ -173,7 +174,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Which version of you <em>shows up most</em>, and when?",
+      "prompt": "Which version of you <em>shows up most</em>, and when does she show up?",
       "modelAnswer": "I notice which feeling shows up and when: after a loss, after a win, when I’m bored, when money is tight. Before every trade I ask who is trading right now."
     }
   ],

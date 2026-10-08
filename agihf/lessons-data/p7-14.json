@@ -22,28 +22,28 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 14",
-      "headline": "Rules for the you who <em>doesn’t feel disciplined.</em>",
-      "line": "Written Sunday, calm. Tested Thursday at 10:40.",
+      "headline": "These rules are for the you who <em>doesn’t feel disciplined.</em>",
+      "line": "You write them on Sunday while you’re calm. They get tested on Thursday at 10:40.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_steps",
       "kicker": "Sunday night · coffee · calm",
-      "headline": "Three rules. <em>Obviously easy.</em>",
-      "line": "Who would ever break these? Tap each.",
+      "headline": "These three rules <em>look obviously easy.</em>",
+      "line": "Who would ever break rules like these? Tap each one. Remember, 1R is the amount you planned to risk on one trade.",
       "steps": [
         {
           "label": "Maximum 2 trades",
-          "sub": "Then you’re done"
+          "sub": "After two trades, you’re done for the day."
         },
         {
           "label": "Stop at −2R",
-          "sub": "Your daily stop. Session over."
+          "sub": "Once you’re down twice your planned risk, the session is over."
         },
         {
           "label": "No chasing",
-          "sub": "Missed it? Let it go."
+          "sub": "If you missed a move, you let it go."
         }
       ],
       "cta": "Then Thursday →"
@@ -51,8 +51,8 @@
     {
       "type": "v2_moment",
       "kicker": "Thursday · 10:40",
-      "headline": "Daily stop hit. <em>Then the perfect setup.</em>",
-      "line": "Two valid losses. −2R. The cleanest setup all week.",
+      "headline": "You hit your daily stop, <em>then the perfect setup appears.</em>",
+      "line": "You took two valid losses, so you’re down −2R. Then the cleanest setup of the whole week shows up.",
       "chart": {
         "bars": [
           {
@@ -272,21 +272,21 @@
         "“Just this once.”"
       ],
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "Just this once",
+            "label": "Take it, just this once",
             "correct": false,
-            "feedback": "−3R on a day your plan capped at −2. Rules hold the hardest moments.",
+            "feedback": "That puts you at −3R on a day your plan capped at −2R. Rules exist for exactly these hardest moments.",
             "track": [
               "overtradeCount",
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Session over. Close it.",
+            "label": "The session is over, so I close it",
             "correct": true,
-            "feedback": "Yes. You followed a rule while the chart made it look wrong.",
+            "feedback": "Yes. You followed your rule even while the chart made it look wrong.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -294,9 +294,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "If you took it",
-      "headline": "“Just this once.” <em>−3R.</em>",
-      "line": "And if it won, it becomes “just this kind of day.”",
+      "kicker": "If you had taken it",
+      "headline": "“Just this once” <em>turns into −3R.</em>",
+      "line": "And if it had won, “just this once” would quietly become “just this kind of day.”",
       "chart": {
         "bars": [
           {
@@ -509,8 +509,8 @@
     {
       "type": "v2_moment",
       "kicker": "If you closed the platform",
-      "headline": "It worked. <em>Without you.</em>",
-      "line": "−2R, capped. Zero rules broken. Sunday-you saw this coming.",
+      "headline": "Your rule did its job <em>without needing your willpower.</em>",
+      "line": "Your loss stayed capped at −2R, and you broke zero rules. Sunday-you saw this moment coming.",
       "chart": {
         "bars": [
           {
@@ -728,35 +728,35 @@
     {
       "type": "v2_compare",
       "kicker": "Two kinds of rules",
-      "headline": "Two rulebooks. <em>Two different questions.</em>",
+      "headline": "Your two rulebooks <em>answer two different questions.</em>",
       "cards": [
         {
           "label": "Model rules",
-          "sub": "Does the setup exist?",
+          "sub": "Does the setup actually exist?",
           "spark": "up",
           "tag": "PIL · CLOSE · RETEST",
           "tone": "purple"
         },
         {
           "label": "Personal rules",
-          "sub": "Am I allowed to participate?",
+          "sub": "Am I allowed to trade right now?",
           "spark": "slow",
           "tag": "RISK · STOP · MAX",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Valid setup, daily stop hit. Which wins?",
+        "prompt": "The setup is valid, but you hit your daily stop. Which rule wins?",
         "options": [
           {
-            "label": "The valid setup",
+            "label": "The valid setup wins",
             "correct": false,
-            "feedback": "A valid setup doesn’t outrank your risk rules."
+            "feedback": "A valid setup never outranks your risk rules. The chart can be right while you still sit out."
           },
           {
-            "label": "Your personal rules",
+            "label": "My personal rules win",
             "correct": true,
-            "feedback": "Yes. Valid setup. No participation."
+            "feedback": "Yes. The setup is valid, but you’re not allowed to participate today."
           }
         ]
       }
@@ -798,7 +798,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Which rule do you <em>most want to break</em> when emotional?",
+      "prompt": "Which rule do you <em>most want to break</em> when you’re emotional?",
       "modelAnswer": "The one that stops me: my daily stop or my max trades. I wrote it calm for exactly the moment I’ll want to break it."
     }
   ],

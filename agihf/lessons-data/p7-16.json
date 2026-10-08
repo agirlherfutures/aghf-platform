@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 16",
-      "headline": "−1R is the <em>price of being wrong.</em>",
-      "line": "A moved stop makes that price unlimited.",
+      "headline": "Losing −1R is <em>the price of being wrong.</em>",
+      "line": "1R is the amount you planned to risk on one trade. Moving your stop makes that price unlimited.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "Long 2 MNQ",
-      "headline": "−24 and sliding. <em>Stop at −30.</em>",
-      "line": "Valid entry. It never got going. −1R suddenly feels unbearable.",
+      "headline": "You’re down 24 points, and <em>your stop is at 30.</em>",
+      "line": "It was a valid entry that never got going. Now taking your full −1R loss suddenly feels unbearable.",
       "chart": {
         "bars": [
           {
@@ -157,29 +157,29 @@
         "“I can’t take another loss today.”"
       ],
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "Move the stop. Give room.",
+            "label": "Move my stop to give it room",
             "correct": false,
-            "feedback": "It kept going: −2R. That stop was your only floor.",
+            "feedback": "Price kept going, and you lost −2R, twice what you planned. That stop was the only floor you had.",
             "track": [
               "fearDrivenManagementCount",
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Move it. It comes back.",
+            "label": "Move it, because it’ll come back",
             "correct": false,
-            "feedback": "The most dangerous outcome. Now your stop is only a suggestion.",
+            "feedback": "This is the most dangerous outcome. If it comes back, your stop becomes only a suggestion.",
             "track": [
               "fearDrivenManagementCount"
             ]
           },
           {
-            "label": "Let the stop work",
+            "label": "Leave the stop and let it work",
             "correct": true,
-            "feedback": "−1R. Exactly what you planned to risk. Not fun. Completely survivable.",
+            "feedback": "You lose −1R, exactly what you planned to risk. It’s not fun, but it’s completely survivable.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -188,8 +188,8 @@
     {
       "type": "v2_moment",
       "kicker": "If you moved it",
-      "headline": "It kept going. <em>−2R.</em>",
-      "line": "The stop you moved was the only thing in the way.",
+      "headline": "Price kept going, and <em>you lost −2R.</em>",
+      "line": "The stop you moved was the only thing standing between you and a bigger loss.",
       "chart": {
         "bars": [
           {
@@ -361,8 +361,8 @@
     {
       "type": "v2_moment",
       "kicker": "If you moved it and it came back",
-      "headline": "It came back. <em>That’s the danger.</em>",
-      "line": "Now your stop is a suggestion. One day, there’s no floor.",
+      "headline": "Price came back, and <em>that’s the real danger.</em>",
+      "line": "Now your stop feels like a suggestion. One day, price won’t come back, and there will be no floor.",
       "chart": {
         "bars": [
           {
@@ -552,35 +552,35 @@
     {
       "type": "v2_compare",
       "kicker": "Who sets the price?",
-      "headline": "Decide the cost <em>before you enter.</em>",
+      "headline": "Decide what being wrong costs <em>before you enter.</em>",
       "cards": [
         {
           "label": "The trader",
-          "sub": "Decides the price of being wrong before entry",
+          "sub": "You decide the price of being wrong before you enter.",
           "spark": "slow",
           "tag": "−1R",
           "tone": "teal"
         },
         {
           "label": "The hope",
-          "sub": "Renegotiates it every tick",
+          "sub": "It renegotiates that price with every tick.",
           "spark": "down",
           "tag": "UNLIMITED",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Price at −24, stop at −30. Who decides?",
+        "prompt": "Price is down 24 points and your stop is at 30. Who decides?",
         "options": [
           {
-            "label": "Hope, in the moment",
+            "label": "Hope decides, in the moment",
             "correct": false,
-            "feedback": "Hope renegotiates every tick. That’s how −1R becomes −2R."
+            "feedback": "Hope renegotiates with every tick, and that’s how a −1R loss becomes −2R."
           },
           {
-            "label": "The plan, before entry",
+            "label": "The plan I made before entry",
             "correct": true,
-            "feedback": "Yes. −1R, decided calm. Not fun. Completely survivable."
+            "feedback": "Yes. You decided on −1R while you were calm. It’s not fun, but it’s completely survivable."
           }
         ]
       }

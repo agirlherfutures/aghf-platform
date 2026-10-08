@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 15",
-      "headline": "Almost meeting your rules <em>isn’t meeting them.</em>",
-      "line": "The setup that almost qualifies, and the word that tempts you.",
+      "headline": "Almost meeting your rules <em>isn’t the same as meeting them.</em>",
+      "line": "This lesson is about the setup that almost qualifies, and the one word that tempts you to take it.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "10:09",
-      "headline": "A wick through. <em>No close.</em>",
-      "line": "Your model needs a close for Continuation. You don’t have one.",
+      "headline": "A wick pokes through, but <em>there’s no close.</em>",
+      "line": "Your model needs a candle to close through for a Continuation. Right now, you don’t have one.",
       "chart": {
         "bars": [
           {
@@ -161,20 +161,20 @@
         "“But this one looks GOOD.”"
       ],
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "Take it. Basically there.",
+            "label": "Take it, it’s basically there",
             "correct": false,
-            "feedback": "“Basically” isn’t in your model. It’s in your mood.",
+            "feedback": "“Basically” isn’t part of your model. It’s coming from your mood, not your rules.",
             "track": [
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Wait for the close",
+            "label": "Wait for the candle to close",
             "correct": true,
-            "feedback": "Yes. The rule decides, not the look.",
+            "feedback": "Yes. The rule decides whether you trade, not how good it looks.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -182,9 +182,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "If you took it",
-      "headline": "“Basically there” <em>never closed.</em>",
-      "line": "It never closed through. Stopped out, −1R.",
+      "kicker": "If you had taken it",
+      "headline": "“Basically there” <em>never actually closed.</em>",
+      "line": "Price never closed through, and you got stopped out for −1R. That means you lost exactly the amount you planned to risk on this trade.",
       "chart": {
         "bars": [
           {
@@ -360,8 +360,8 @@
     {
       "type": "v2_moment",
       "kicker": "If you waited",
-      "headline": "You waited. <em>The rule decided.</em>",
-      "line": "This time it closed and retested. Some days it never closes.",
+      "headline": "You waited, and <em>the rule made the decision.</em>",
+      "line": "This time it closed and retested. Some days it never closes, and waiting saves you a loss.",
       "chart": {
         "bars": [
           {
@@ -614,24 +614,24 @@
     {
       "type": "v2_steps",
       "kicker": "The exception trap",
-      "headline": "Unless <em>what?</em> 😂",
-      "line": "Your plan has no rule called “it looks good.”",
+      "headline": "The rule is clear, so why does your brain whisper <em>“unless”</em>?",
+      "line": "Your plan doesn’t have a rule called “it looks good.”",
       "steps": [
         {
           "label": "The rule",
-          "sub": "Only enter after a Continuation close"
+          "sub": "You only enter after a Continuation candle closes."
         },
         {
           "label": "The setup",
-          "sub": "A beautiful one appears"
+          "sub": "A beautiful setup appears that doesn’t quite qualify."
         },
         {
           "label": "Freeze",
-          "sub": "Your brain starts negotiating"
+          "sub": "Your brain starts negotiating with your rule."
         },
         {
           "label": "“Unless…”",
-          "sub": "Now every setup would qualify"
+          "sub": "Once you make one exception, every setup could qualify."
         }
       ],
       "cta": "Next →"
@@ -639,18 +639,18 @@
     {
       "type": "v2_compare",
       "kicker": "When can an exception exist?",
-      "headline": "Exceptions are <em>written in advance.</em>",
+      "headline": "Real exceptions are <em>written down in advance.</em>",
       "cards": [
         {
           "label": "Invented live",
-          "sub": "This one feels special",
+          "sub": "This one just feels special.",
           "spark": "chop",
           "tag": "MOOD",
           "tone": "pink"
         },
         {
           "label": "Written beforehand",
-          "sub": "In your rulebook before the session",
+          "sub": "It’s in your rulebook before the session starts.",
           "spark": "up",
           "tag": "RULEBOOK",
           "tone": "teal"
@@ -662,12 +662,12 @@
           {
             "label": "When the setup feels special",
             "correct": false,
-            "feedback": "That’s the exception being invented in real time."
+            "feedback": "That’s an exception being invented in real time, because of how the chart feels."
           },
           {
-            "label": "Written in my rulebook beforehand",
+            "label": "When it’s written in my rulebook beforehand",
             "correct": true,
-            "feedback": "Yes. Defined in advance, not created because this one looks good."
+            "feedback": "Yes. A real exception is defined in advance, not created because this one looks good."
           }
         ]
       }
