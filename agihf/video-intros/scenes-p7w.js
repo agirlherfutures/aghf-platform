@@ -1620,8 +1620,8 @@
       let o = wall('w13f', '#FFF4DE', '#F6E7DA', 860, '#C98B6B');
       o += `<rect x="260" y="160" width="620" height="760" rx="16" fill="#fff" stroke="#EADFD8" stroke-width="6"/>${txt(570, 240, 'MY SETUP', 40, '#7F77DD', { ls: 6 })}`;
       ['👀', '🧪', '📓', '✅', '❌', '📉', '📊'].forEach((e, j) => { const at = [B.c1, B.c2, B.c3, B.c4, B.c5, B.c6, B.c7][j], y = 320 + j * 85; o += fade(seg(t, at, at + 0.4), txt(330, y + 16, e, 44, C.dark) + `<rect x="400" y="${y}" width="${f1(380 * seg(t, at, at + 0.8))}" height="14" rx="7" fill="#EADFD8"/>`) + check(830, y + 6, pop(t, at + 0.4, 0.4), '#2AA594', 22); });
-      o += `<rect x="1180" y="620" width="380" height="240" rx="30" fill="#3A2F55"/><ellipse cx="1370" cy="620" rx="190" ry="36" fill="#5A4C7A"/>`;
-      for (let j = 0; j < 3; j++) { const p = (t * 0.5 + j / 3) % 1; o += `<path d="M${1300 + j * 60},${f1(590 - p * 120)} q12,-18 0,-36" stroke="#fff" stroke-width="6" fill="none" opacity="${f1(Math.sin(p * Math.PI) * 0.6)}"/>`; }
+      o += `<rect x="1000" y="620" width="380" height="240" rx="30" fill="#3A2F55"/><ellipse cx="1190" cy="620" rx="190" ry="36" fill="#5A4C7A"/>`;
+      for (let j = 0; j < 3; j++) { const p = (t * 0.5 + j / 3) % 1; o += `<path d="M${1120 + j * 60},${f1(590 - p * 120)} q12,-18 0,-36" stroke="#fff" stroke-width="6" fill="none" opacity="${f1(Math.sin(p * Math.PI) * 0.6)}"/>`; }
       o += you(t, { x: 1600, y: 960, scale: 1.1, flip: true });
       return o;
     },
@@ -1771,7 +1771,7 @@
       const B = s.b;
       let o = wall('w13r', '#6A3F26', '#4A2A18', 860, '#3A2418');
       o += `<rect x="620" y="260" width="680" height="360" rx="10" fill="#8B5A3C"/><rect x="580" y="600" width="760" height="40" fill="#6A3F26"/>${txt(960, 340, 'EXHIBITS', 40, '#F9D89A', { ls: 8 })}`;
-      [['👀 “saw someone trade it”', 0], ['📱 “looked good on TikTok”', 1], ['🏆 “won 3 last week”', 2]].forEach(([l, j]) => { const at = B.what + 1 + j * 1, k = pop(t, at, 0.4), out = seg(t, at + 0.8, at + 1.4); if (k <= 0) return; o += `<g transform="translate(${f1(960 + out * (j - 1) * 900)},${f1(440 + j * 50 - out * 300)}) rotate(${f1(out * (j - 1) * 60)})" opacity="${f1(1 - out)}"><rect x="-260" y="-40" width="520" height="80" rx="12" fill="#fff"/>${txt(0, 14, l, 30, C.dark, { w: 800 })}</g>`; });
+      [['👀 “saw someone trade it”', 0], ['📱 “looked good on TikTok”', 1], ['🏆 “won 3 last week”', 2]].forEach(([l, j]) => { const at = B.what + 1 + j * 1, k = pop(t, at, 0.4), out = seg(t, at + 0.8, at + 1.4); if (k <= 0 || out >= 1) return; o += `<g transform="translate(${f1(960 + out * (j - 1) * 900)},${f1(440 + j * 50 - out * 300)}) rotate(${f1(out * (j - 1) * 60)})" opacity="${f1(1 - out)}"><rect x="-260" y="-40" width="520" height="80" rx="12" fill="#fff"/>${txt(0, 14, l, 30, C.dark, { w: 800 })}</g>`; });
       o += you(t, { x: 1560, y: 960, scale: 1.2, flip: true });
       o += fade(seg(t, B.what, B.what + 0.5), txt(960, 170, 'what evidence do I actually have?', 52, '#fff', { f: 'Playfair Display', it: true }));
       return o;
@@ -1816,8 +1816,8 @@
       let o = grad('w13v', '#CDEBF7', '#FDF8F5') + bg('url(#w13v)') + `<rect y="820" width="1920" height="260" fill="#B9DDB0"/><rect y="860" width="1920" height="60" fill="#E8D5C4"/>`;
       const ride = seg(t, B.you, s.end), x = 400 + ride * 1000;
       const w1 = seg(t, B.dayli + 1.5, B.dayli + 2.5), w2 = seg(t, B.discord + 1.5, B.discord + 2.5);
-      o += `<g transform="translate(${f1(x)},0)"><circle cx="-90" cy="850" r="60" fill="none" stroke="#2C1810" stroke-width="10"/><circle cx="110" cy="850" r="60" fill="none" stroke="#2C1810" stroke-width="10"/><path d="M-90,850 L0,760 L110,850 M0,760 L40,700" stroke="#E2556F" stroke-width="12" fill="none"/>${w1 < 1 ? `<g opacity="${f1(1 - w1)}" transform="translate(${f1(-w1 * 200)},${f1(w1 * 80)})"><circle cx="-130" cy="870" r="24" fill="#7F77DD"/>${txt(-130, 930, 'Dayli', 22, C.dark)}</g>` : ''}${w2 < 1 ? `<g opacity="${f1(1 - w2)}" transform="translate(${f1(-w2 * 200)},${f1(w2 * 80)})"><circle cx="150" cy="870" r="24" fill="#5865F2"/>${txt(150, 930, 'Discord', 22, C.dark)}</g>` : ''}</g>`;
-      o += you(t, { x: x + 10, y: 770, scale: 0.8, frontArm: { a1: -20, a2: 0 } });
+      o += `<g transform="translate(${f1(x)},0)"><circle cx="-90" cy="850" r="60" fill="none" stroke="#2C1810" stroke-width="10"/><circle cx="110" cy="850" r="60" fill="none" stroke="#2C1810" stroke-width="10"/><path d="M-90,850 L0,780 L110,850 M0,780 L60,720" stroke="#E2556F" stroke-width="12" fill="none"/>${w1 < 1 ? `<g opacity="${f1(1 - w1)}" transform="translate(${f1(-w1 * 200)},${f1(w1 * 80)})"><circle cx="-130" cy="870" r="24" fill="#7F77DD"/>${txt(-130, 930, 'Dayli', 22, C.dark)}</g>` : ''}${w2 < 1 ? `<g opacity="${f1(1 - w2)}" transform="translate(${f1(-w2 * 200)},${f1(w2 * 80)})"><circle cx="150" cy="870" r="24" fill="#5865F2"/>${txt(150, 930, 'Discord', 22, C.dark)}</g>` : ''}</g>`;
+      o += you(t, { x: x + 10, y: 860, scale: 0.8, frontArm: { a1: -20, a2: 0 } });
       o += fade(seg(t, B.you, B.you + 0.5), txt(960, 220, 'you know why YOU take it', 60, '#2AA594', { f: 'Playfair Display', it: true }));
       o += fade(seg(t, B.indep, B.indep + 0.5), pill(960, 340, 'independence', '#2C1810', 1, 40));
       return o;
