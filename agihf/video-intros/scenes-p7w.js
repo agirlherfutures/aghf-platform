@@ -1262,6 +1262,289 @@
       return o;
     },
 
+    /* ════ Psychology 12 · Blowing an Account ══════════════════════════ */
+
+    // The balance drains to zero. FAILED stamp. Dark room.
+    'w12-zero': (s, t) => {
+      const B = s.b;
+      let o = bg('#140C12');
+      const dd = 1 - ease(seg(t, s.start, B.blew + 0.5));
+      o += `<rect x="460" y="220" width="1000" height="520" rx="30" fill="#120D1C" stroke="#3A2F55" stroke-width="10"/>${bigNum(960, 450, '$' + Math.round(47500 + 2500 * dd).toLocaleString('en-US'), 110, dd > 0.05 ? '#fff' : '#FF6F8A')}<rect x="560" y="540" width="800" height="40" rx="20" fill="#2A2142"/><rect x="560" y="540" width="${f1(800 * dd)}" height="40" rx="20" fill="#E2556F"/>`;
+      o += scaleAt(960, 470, pop(t, B.blew + 0.4, 0.6), `<g transform="rotate(-10 960 470)"><rect x="660" y="380" width="600" height="170" rx="16" fill="#140C12" stroke="#E2556F" stroke-width="12"/>${txt(960, 500, 'FAILED', 100, '#E2556F', { ls: 12 })}</g>`);
+      return o;
+    },
+
+    // Head in hands at the desk.
+    'w12-hands': (s, t) => {
+      const B = s.b;
+      let o = wall('w12b', '#2A1A22', '#3A2230', 900, '#1E1218');
+      o += monitor(300, 220, 760, 440, `<rect x="320" y="240" width="720" height="400" fill="#2A0F18"/>${bigNum(680, 470, '$0', 120, '#FF6F8A')}`) + desk(160, 900, 1300);
+      o += you(t, { x: 1280, y: 1080, scale: 1.3, flip: true, mood: 'sad', frontArm: { a1: -95, a2: -150 }, backArm: { a1: -85, a2: -30 } });
+      o += thought(1280, 330, 'what did I just do?', between(t, B.hell, B.worst - 0.1), { size: 42 });
+      o += fade(seg(t, B.knew, B.knew + 0.5), txt(1300, 220, 'you knew better.', 50, '#F9D89A', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Polaroids of the day pin up one by one on a corkboard.
+    'w12-polaroids': (s, t) => {
+      const B = s.b;
+      let o = grad('w12c', '#B78F72', '#9C7458') + bg('url(#w12c)');
+      o += `<rect x="160" y="120" width="1600" height="840" rx="20" fill="#C9A27E" stroke="#8B6A55" stroke-width="16"/>`;
+      const pics = [
+        [B.m1, 380, 380, -6, candles(300, 300, 160, 120, [0.2, 0.35, 0.5, 0.62, 0.7], 5), 'green'],
+        [B.m2, 760, 340, 4, `<rect x="690" y="270" width="140" height="120" fill="#2A0F18"/><line x1="690" x2="830" y1="330" y2="330" stroke="#E2556F" stroke-width="6" stroke-dasharray="10 8"/>${txt(760, 380, 'LIMIT', 22, '#FF8DA3', { ls: 2 })}`, 'kept going'],
+        [B.m3, 1140, 390, -3, `<rect x="1080" y="320" width="40" height="70" fill="#7F77DD"/><rect x="1130" y="290" width="40" height="100" fill="#7F77DD"/><rect x="1180" y="250" width="40" height="140" fill="#E2556F"/>`, 'size up'],
+        [B.m4, 1520, 350, 6, `<ellipse cx="1520" cy="320" rx="44" ry="38" fill="#E2556F"/><rect x="1492" y="348" width="56" height="26" rx="8" fill="#fff"/>`, 'revenge'],
+        [B.m5, 960, 700, -2, [0, 1, 2, 3, 4].map(i => `<rect x="${880 + i * 34}" y="${620 + i * 8}" width="22" height="80" rx="4" fill="#fff" stroke="#2C1810" stroke-width="3" transform="rotate(${i * 14} ${891 + i * 34} 700)"/>`).join(''), '1 → 5'],
+      ];
+      pics.forEach(([at, x, y, r, art, cap]) => { const k = pop(t, at, 0.5); if (k <= 0) return; o += `<g transform="translate(${x},${y}) rotate(${r}) scale(${k}) translate(${-x},${-y})"><rect x="${x - 110}" y="${y - 120}" width="220" height="250" fill="#fff"/><rect x="${x - 95}" y="${y - 105}" width="190" height="160" fill="#F4ECE6"/>${art}${txt(x, y + 100, cap, 26, C.dark, { f: 'Playfair Display', it: true, w: 700 })}<circle cx="${x}" cy="${y - 112}" r="10" fill="#E2556F"/></g>`; });
+      return o;
+    },
+
+    // Lying awake, staring at the ceiling. The day replays in a loop above her.
+    'w12-ceiling': (s, t) => {
+      const B = s.b;
+      let o = bg('#141026');
+      o += `<rect x="260" y="700" width="1400" height="160" rx="30" fill="#3A2F55"/><rect x="260" y="640" width="300" height="100" rx="40" fill="#CFC8FA"/>`;
+      o += `<g transform="rotate(-90 760 720)">${you(t, { x: 760, y: 720, scale: 1.0, mood: 'sad' })}</g>`;
+      const ring = (t - B.replay) * 0.6;
+      ['−$', '⚡', '🎚️', '🥊', '$0'].forEach((e, j) => { const a = ring + j * (Math.PI * 2 / 5), x = 960 + Math.cos(a) * 360, y = 330 + Math.sin(a) * 140; o += fade(seg(t, B.replay, B.replay + 1), `<circle cx="${f1(x)}" cy="${f1(y)}" r="56" fill="#2A2142"/>${txt(x, y + 18, e, 46, '#FF8DA3')}`); });
+      o += fade(seg(t, B.now, B.now + 0.5), txt(960, 1000, 'so… now what?', 56, '#fff', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // A balance scale: HOW YOU GOT THERE vs WHAT YOU DO AFTER. Level.
+    'w12-scale': (s, t) => {
+      const B = s.b;
+      let o = grad('w12e', '#EEEBFB', '#FDF8F5') + bg('url(#w12e)');
+      const wob = Math.sin(t * 2) * 8 * (1 - seg(t, B.after + 2, B.after + 5));
+      o += `<rect x="950" y="300" width="20" height="560" fill="#8B6A55"/><rect x="820" y="850" width="280" height="30" rx="10" fill="#8B6A55"/><g transform="rotate(${f1(wob)} 960 320)"><rect x="460" y="310" width="1000" height="20" rx="10" fill="#8B6A55"/><line x1="560" y1="330" x2="560" y2="520" stroke="#8B6A55" stroke-width="4"/><line x1="1360" y1="330" x2="1360" y2="520" stroke="#8B6A55" stroke-width="4"/><path d="M420,520 L700,520 Q560,600 420,520 Z" fill="#E8D5C4"/><path d="M1220,520 L1500,520 Q1360,600 1220,520 Z" fill="#E8D5C4"/><rect x="480" y="420" width="160" height="100" rx="14" fill="#B8B3C9"/>${txt(560, 480, 'how', 30, '#fff')}<rect x="1280" y="420" width="160" height="100" rx="14" fill="#2AA594"/>${txt(1360, 480, 'AFTER', 30, '#fff', { ls: 2 })}</g>`;
+      o += fade(seg(t, B.after + 3, B.after + 3.6), txt(960, 990, 'just as much', 50, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // A spotlight hunts for THE trade.
+    'w12-spotlight': (s, t) => {
+      const B = s.b;
+      let o = bg('#100B16');
+      const v = [0.6, 0.62, 0.58, 0.5, 0.45, 0.4, 0.36, 0.3, 0.22, 0.12];
+      o += `<rect x="260" y="260" width="1400" height="560" rx="20" fill="#120D1C"/>${candles(300, 300, 1320, 480, v, 10, { slots: 10 })}`;
+      const sx = t < B.this ? 600 + 800 * seg(t, B.find, B.this) : 300 + 9 * 132;
+      o += `<rect width="1920" height="1080" fill="#100B16" opacity=".45"/><ellipse cx="${f1(sx)}" cy="560" rx="160" ry="260" fill="#FFF8E6" opacity=".22"/><path d="M${f1(sx - 30)},0 L${f1(sx - 160)},300 L${f1(sx + 160)},300 L${f1(sx + 30)},0 Z" fill="#FFF8E6" opacity=".06"/>`;
+      o += pill(sx, 220, 'THE trade?', '#E2556F', pop(t, B.this, 0.5), 36);
+      return o;
+    },
+
+    // Dominoes: loss → again → size → stop → limit → ignored → need it back → BLOWN.
+    'w12-dominoes': (s, t) => {
+      const B = s.b;
+      let o = grad('w12g', '#FDF8F5', '#F3E7DD') + bg('url(#w12g)') + `<rect y="800" width="1920" height="280" fill="#E8D5C4"/>`;
+      const icons = ['−$', '↻', '🎚️', '⤵', '🛑', '🙈', '💸', '$0'];
+      icons.forEach((e, i) => {
+        const x = 220 + i * 210, at = B.chain + 1.2 + i * 0.6, fall = ease(seg(t, at, at + 0.45)), last = i === 7;
+        o += `<g transform="rotate(${f1(fall * 70)} ${x + 40} 800)"><rect x="${x}" y="${last ? 520 : 560}" width="80" height="${last ? 280 : 240}" rx="12" fill="${last ? '#E2556F' : i === 0 ? '#F9D89A' : '#fff'}" stroke="#2C1810" stroke-width="5"/>${txt(x + 40, last ? 680 : 700, e, 38, last ? '#fff' : C.dark)}</g>`;
+      });
+      o += fade(seg(t, B.chain + 0.3, B.chain + 0.8) * (1 - seg(t, B.final - 0.3, B.final)), txt(960, 260, 'a chain of decisions', 56, C.dark, { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.final, B.final + 0.5), pill(1690, 440, 'the outcome', '#E2556F', 1, 30));
+      o += fade(seg(t, B.before, B.before + 0.5), pill(260, 440, 'it started here', '#2C1810', 1, 30) + `<circle cx="260" cy="680" r="90" fill="none" stroke="#F9D89A" stroke-width="8"/>`);
+      return o;
+    },
+
+    // Zoom on the first domino. She points to it.
+    'w12-first': (s, t) => {
+      const B = s.b;
+      let o = grad('w12h', '#FFF4DE', '#FDF8F5') + bg('url(#w12h)');
+      o += `<circle cx="760" cy="520" r="${f1(260 + 10 * Math.sin(t * 3))}" fill="#F9D89A" opacity=".3"/><rect x="680" y="300" width="160" height="440" rx="20" fill="#F9D89A" stroke="#2C1810" stroke-width="8"/>${txt(760, 540, '−$', 70, C.dark)}`;
+      o += you(t, { x: 1300, y: 960, scale: 1.25, flip: true, frontArm: { a1: -175, a2: -175 } });
+      o += fade(seg(t, B.first + 1, B.first + 1.6), txt(960, 170, 'the first moment you knew', 56, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Dayli's confession, warm lamp-lit room, a stack of old account cards.
+    'w12-scar': (s, t) => {
+      const B = s.b;
+      let o = grad('w12i', '#3B2418', '#6A3F26') + bg('url(#w12i)');
+      o += `<ellipse cx="420" cy="420" rx="520" ry="420" fill="#F5A857" opacity=".16"/>`;
+      o += host(t, { x: 120, y: 340, w: 520, pose: t > B.done ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
+      for (let i = 0; i < 4; i++) { const k = pop(t, B.real + 0.8 + i * 0.4, 0.4); if (k > 0) o += scaleAt(1300, 500, k, `<g transform="rotate(${-8 + i * 6} 1300 500)"><rect x="${1120 + i * 20}" y="${380 + i * 16}" width="360" height="220" rx="18" fill="#fff"/>${txt(1300 + i * 20, 470 + i * 16, 'EVAL', 30, C.muted, { ls: 6 })}${txt(1300 + i * 20, 540 + i * 16, 'FAILED', 40, '#E2556F', { ls: 4 })}</g>`); }
+      if (t > B.prof) o += fade(seg(t, B.prof, B.prof + 0.5), pill(1300, 800, 'profitable first 💔', '#2AA594', 1, 32));
+      return o;
+    },
+
+    // A hill: up with base hits, a flag where she could've stopped… then over the cliff.
+    'w12-hill': (s, t) => {
+      const B = s.b;
+      let o = grad('w12j', '#CDEBF7', '#FDF8F5') + bg('url(#w12j)');
+      const H = x => x < 900 ? 900 - (x / 900) * 420 : x < 1300 ? 480 - (x - 900) * 0.1 : 440 + (x - 1300) * 1.4;
+      let p = 'M0,900'; for (let x = 0; x <= 1920; x += 40) p += ` L${x},${f1(Math.min(1080, H(x)))}`;
+      o += `<path d="${p} L1920,1080 L0,1080 Z" fill="#B9DDB0"/>`;
+      o += `<rect x="1046" y="270" width="8" height="200" fill="#2C1810"/><path d="M1054,270 L1180,300 L1054,330 Z" fill="#2AA594"/>${txt(1100, 250, 'could’ve been done', 28, '#2AA594', { w: 800 })}`;
+      const steps = [[s.start, 500], [B.shift, 1050], [B.s1, 1180], [B.s2, 1280], [B.s3, 1360], [B.s4, 1440], [B.gone, 1560]];
+      let x = 300; steps.forEach(([at, xx], j) => { if (t > at) x = lerp(j ? steps[j - 1][1] : 300, xx, ease(seg(t, at, at + 1))); });
+      const y = Math.min(1060, H(x));
+      o += you(t, { x, y, scale: 0.9, walking: true, mood: x > 1300 ? 'sad' : undefined });
+      return o;
+    },
+
+    // A bandaid labeled "discipline" on a cracked chart. It falls off. A magnifier finds the crack.
+    'w12-bandaid': (s, t) => {
+      const B = s.b;
+      let o = grad('w12k', '#F3E3D6', '#FBF4EF') + bg('url(#w12k)');
+      o += `<rect x="460" y="220" width="1000" height="560" rx="30" fill="#120D1C"/>${candles(500, 260, 920, 480, vals(5, 22, -0.01, 0.05, 0.7), 22)}<path d="M960,240 l-30,120 l50,80 l-40,120 l60,100 l-30,100" fill="none" stroke="#FF8DA3" stroke-width="8"/>`;
+      const off = seg(t, B.teach + 0.5, B.teach + 1.6);
+      if (off < 1) o += `<g opacity="${f1(1 - off)}" transform="translate(${f1(960 + off * 200)},${f1(500 + off * off * 600)}) rotate(${f1(-20 + off * 120)})"><rect x="-170" y="-50" width="340" height="100" rx="40" fill="#F6D2B5"/><rect x="-60" y="-50" width="120" height="100" fill="#E8B898"/>${txt(0, 12, 'discipline', 30, '#8B5A3C', { w: 800 })}</g>`;
+      const mg = seg(t, B.where, B.where + 1.5);
+      if (mg > 0) { const mx = lerp(1500, 970, ease(mg)), my = lerp(820, 380, ease(mg)); o += `<circle cx="${f1(mx)}" cy="${f1(my)}" r="100" fill="#fff" opacity=".25" stroke="#2C1810" stroke-width="14"/><line x1="${f1(mx + 72)}" y1="${f1(my + 72)}" x2="${f1(mx + 170)}" y2="${f1(my + 170)}" stroke="#2C1810" stroke-width="24" stroke-linecap="round"/>`; }
+      ['trade 3?', 'first full stop?', 'gave back profit?', 'sized up?'].forEach((l, j) => { o += pill(360 + j * 400, 900, l, '#7F77DD', pop(t, B.where + 1.5 + j * 0.5, 0.4), 30); });
+      return o;
+    },
+
+    // The account store: she buys a shiny new box… and climbs in exactly the same.
+    'w12-store': (s, t) => {
+      const B = s.b;
+      let o = wall('w12l', '#E9F2F8', '#D6E6F0', 880, '#B8C8D6');
+      for (let i = 0; i < 4; i++) o += `<rect x="${300 + i * 360}" y="260" width="260" height="320" rx="20" fill="#fff" stroke="#7F77DD" stroke-width="6"/>${txt(430 + i * 360, 380, 'NEW', 34, '#7F77DD', { ls: 6 })}${txt(430 + i * 360, 440, 'ACCOUNT', 30, '#7F77DD', { ls: 4 })}`;
+      const walk = ease(seg(t, B.same + 2, B.same + 5));
+      o += you(t, { x: lerp(200, 790, walk), y: 1000, scale: 1.2, walking: walk > 0 && walk < 1, mood: 'sad' });
+      o += fade(seg(t, B.same + 5, B.same + 5.6), txt(960, 180, 'the exact same trader', 52, '#E2556F', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // The checkout cart: she reaches for BUY NEW ACCOUNT while feelings swirl; the button dims.
+    'w12-cart': (s, t) => {
+      const B = s.b;
+      let o = wall('w12m', '#3A1420', '#5A2233', 900, '#2A0F18');
+      const dim = seg(t, B.button, B.button + 1);
+      o += monitor(360, 200, 800, 460, `<rect x="380" y="220" width="760" height="420" fill="#FDF8F5"/>${txt(760, 330, 'CHECKOUT', 30, C.muted, { ls: 6 })}<rect x="510" y="420" width="500" height="130" rx="65" fill="${dim > 0.5 ? '#B8B3C9' : '#7F77DD'}"/>${txt(760, 500, 'BUY NEW ACCOUNT', 34, '#fff', { ls: 2 })}`);
+      o += desk(160, 900, 1300) + you(t, { x: 1400, y: 1080, scale: 1.3, flip: true, mood: 'sad', frontArm: dim < 0.5 ? { a1: -175 + Math.sin(t * 9) * 8, a2: -170 } : undefined });
+      [[B.f1, 'embarrassed'], [B.f2, 'frustrated'], [B.f3, 'another chance'], [B.f4, 'prove it wasn’t me']].forEach(([at, l], j) => { const a = (t - at) * 0.8 + j * 1.6; o += pill(1400 + Math.cos(a) * 280, 380 + Math.sin(a) * 120, l, '#E2556F', pop(t, at, 0.4) * (1 - dim), 28); });
+      o += fade(dim, txt(760, 790, 'not tonight.', 60, '#fff', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // The autopsy lab: lamp on, clipboard, magnifier over the trade log.
+    'w12-lab': (s, t) => {
+      const B = s.b;
+      let o = wall('w12n', '#DDF1EE', '#CFE6E2', 880, '#9DBFB9');
+      o += `<path d="M960,0 L960,140" stroke="#2C1810" stroke-width="6"/><path d="M860,140 L1060,140 L1000,220 L920,220 Z" fill="#2AA594"/><path d="M820,220 L1100,220 L1300,820 L620,820 Z" fill="#FFF8E6" opacity=".35"/>`;
+      o += `<rect x="560" y="500" width="800" height="340" rx="20" fill="#fff" stroke="#B8C8D6" stroke-width="6"/>`;
+      for (let i = 0; i < 9; i++) { const y = 540 + i * 32, k = seg(t, B.autopsy + 0.6 + i * 0.6, B.autopsy + 1 + i * 0.6); o += `<rect x="600" y="${y}" width="22" height="22" rx="4" fill="none" stroke="#2AA594" stroke-width="3"/><rect x="640" y="${y + 6}" width="${f1(560 * k * (0.6 + (i % 3) * 0.15))}" height="10" rx="5" fill="${i === 1 || i === 8 ? '#E2556F' : '#CFE6E2'}"/>`; }
+      const mx = 760 + 300 * Math.sin((t - B.autopsy) * 0.8), my = 640 + 80 * Math.cos((t - B.autopsy) * 1.1);
+      o += `<circle cx="${f1(mx)}" cy="${f1(my)}" r="70" fill="#fff" opacity=".3" stroke="#2C1810" stroke-width="10"/><line x1="${f1(mx + 50)}" y1="${f1(my + 50)}" x2="${f1(mx + 120)}" y2="${f1(my + 120)}" stroke="#2C1810" stroke-width="18" stroke-linecap="round"/>`;
+      o += you(t, { x: 1560, y: 980, scale: 1.2, flip: true, frontArm: { a1: -120, a2: -150 } });
+      o += fade(seg(t, B.autopsy + 0.3, B.autopsy + 0.8), txt(960, 330, 'account autopsy', 60, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // An indicator wrench can't fix a broken daily-limit dam.
+    'w12-wrench': (s, t) => {
+      const B = s.b;
+      let o = grad('w12o', '#CDEBF7', '#FDF8F5') + bg('url(#w12o)') + `<rect y="820" width="1920" height="260" fill="#7FC3E0"/>`;
+      o += `<rect x="700" y="400" width="520" height="440" fill="#9AA3B8"/>${txt(960, 470, 'DAILY LIMIT', 32, '#fff', { ls: 4 })}<path d="M960,500 l-40,100 l60,60 l-40,180" fill="none" stroke="#2C1810" stroke-width="8"/>`;
+      if (t > B.fixing) for (let j = 0; j < 8; j++) { const p = ((t * 0.8) + j * 0.12) % 1; o += `<circle cx="${f1(990 + p * 300)}" cy="${f1(620 + p * p * 220)}" r="10" fill="#7FB8D6"/>`; }
+      o += you(t, { x: 460, y: 960, scale: 1.2, frontArm: { a1: -40 + Math.sin(t * 6) * 20, a2: -50 }, hold: `<g transform="rotate(-30)"><rect x="0" y="-10" width="140" height="20" rx="8" fill="#B8B3C9"/><circle cx="150" cy="0" r="24" fill="none" stroke="#B8B3C9" stroke-width="12"/></g>` });
+      o += fade(seg(t, B.indicator, B.indicator + 0.4), pill(460, 360, '+1 indicator', '#7F77DD', 1, 30)) + cross(620, 330, pop(t, B.fixing + 1, 0.4), '#E2556F', 30);
+      return o;
+    },
+
+    // Three corrections, each a lock that matches the leak.
+    'w12-locks': (s, t) => {
+      const B = s.b;
+      let o = grad('w12p', '#E6F5F2', '#FDF8F5') + bg('url(#w12p)');
+      const lock = (x, k) => `<g transform="translate(${x},0)" opacity="${f1(k)}"><rect x="-50" y="620" width="100" height="90" rx="14" fill="#2AA594"/><path d="M-30,620 v-30 a30,30 0 0 1 60,0 v30" fill="none" stroke="#2AA594" stroke-width="14"/></g>`;
+      const row = (x, at, top, bottom) => { const k = seg(t, at, at + 0.5), lk = seg(t, at + 2, at + 2.6); return fade(k, `<rect x="${x - 220}" y="230" width="440" height="280" rx="30" fill="#fff"/>${top}${txt(x, 470, bottom, 30, C.dark, { w: 800 })}`) + lock(x, lk) + (lk > 0.5 ? txt(x, 790, '', 1, '#000') : ''); };
+      o += row(400, B.p1, `${[0, 1, 2].map(i => `<rect x="${330 + i * 50}" y="290" width="36" height="110" rx="8" fill="#7F77DD"/>`).join('')}<rect x="480" y="290" width="36" height="110" rx="8" fill="#E2556F" opacity=".35"/>`, 'max 3 trades');
+      o += row(960, B.p2, `<rect x="900" y="300" width="120" height="90" rx="14" fill="#F9D89A"/>${txt(960, 360, '🎚️', 46, C.dark)}`, 'size locked');
+      o += row(1520, B.p3, `<rect x="1440" y="290" width="160" height="110" rx="14" fill="#120D1C"/>${txt(1520, 360, '🔒', 46, '#fff')}`, 'platform lockout');
+      o += fade(seg(t, B.p3 + 3, B.p3 + 3.6), txt(960, 900, 'the fix matches the behavior', 50, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // The rule: three things she won't do, crossed; then the line.
+    'w12-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('w12q', '#EEEBFB', '#DDF1EE') + bg('url(#w12q)');
+      o += txt(960, 120, '🧠 YOUR RULE', 30, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 220, pop(t, s.start + 0.4, 0.8), txt(960, 230, 'I don’t restart until I understand what broke.', 62, C.dark, { f: 'Playfair Display' }));
+      const fin = seg(t, B.line - 0.3, B.line + 0.3), a = 1 - fin;
+      const ic = [[B.r1, 400, `<rect x="320" y="420" width="160" height="200" rx="14" fill="#fff" stroke="#7F77DD" stroke-width="6"/>${txt(400, 540, '🛒', 60, C.dark)}`], [B.r2, 960, `<rect x="880" y="420" width="160" height="200" rx="14" fill="#fff" stroke="#7F77DD" stroke-width="6"/>${txt(960, 540, '👉📈', 50, C.dark)}`], [B.r3, 1520, `<rect x="1440" y="420" width="160" height="200" rx="14" fill="#fff" stroke="#7F77DD" stroke-width="6"/>${txt(1520, 540, '🤞', 60, C.dark)}`]];
+      ic.forEach(([at, x, art]) => { o += fade(a * seg(t, at, at + 0.4), art) + cross(x + 80, 430, a * pop(t, at + 1, 0.4), '#E2556F', 30); });
+      o += fade(a * seg(t, B.r4, B.r4 + 0.5), pill(960, 760, 'identify it → measurable fix', '#2AA594', 1, 36));
+      if (fin > 0) o += fade(fin, txt(960, 560, 'A new account does not', 76, C.dark, { f: 'Playfair Display', it: true }) + txt(960, 670, 'create a new trader.', 76, '#E2556F', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Ten doors, ten evaluations. She walks through each the same way, same sad result.
+    'w12-doors': (s, t) => {
+      const B = s.b;
+      let o = wall('w12r', '#E9E1F5', '#D9CFEA', 880, '#9C8CB8');
+      for (let i = 0; i < 6; i++) o += `<rect x="${140 + i * 290}" y="360" width="220" height="520" rx="10" fill="#7F77DD"/>${txt(250 + i * 290, 330, 'EVAL ' + (i + 1), 28, C.dark, { ls: 2 })}<circle cx="${330 + i * 290}" cy="640" r="10" fill="#F9D89A"/>`;
+      const w = seg(t, B.same, s.end);
+      o += you(t, { x: 200 + w * 1500, y: 960, scale: 1.1, walking: true, mood: 'sad' });
+      for (let i = 0; i < Math.floor(w * 6); i++) o += cross(250 + i * 290, 560, 1, '#E2556F', 34);
+      return o;
+    },
+
+    // Rewind tape: the day plays backwards until the first broken rule lights up.
+    'w12-rewind': (s, t) => {
+      const B = s.b;
+      let o = wall('w12s', '#1A1424', '#2A2142', 920, '#141026');
+      const day = ['open', '+', '+', 'skipped wait', 'full stop', 'sized up', 'limit hit', 'kept going', '$0'];
+      const rw = ease(seg(t, B.rewind, B.firstq + 1)), cur = 8 - Math.floor(rw * 5.99);
+      o += `<rect x="80" y="380" width="1760" height="240" fill="#0E0A14"/>`;
+      for (let x = 100; x < 1840; x += 60) o += `<rect x="${x}" y="392" width="30" height="20" rx="4" fill="#3A2F55"/><rect x="${x}" y="588" width="30" height="20" rx="4" fill="#3A2F55"/>`;
+      day.forEach((l, i) => {
+        const x = 180 + i * 195, lit = i === 3 ? seg(t, B.theone, B.theone + 0.5) : 0, big = i === 6 ? between(t, B.biggest, B.theone) : 0;
+        o += `<rect x="${x - 85}" y="430" width="170" height="140" rx="10" fill="${i >= 7 ? '#3A1420' : '#2A2142'}" stroke="${lit > 0 ? '#F9D89A' : i === cur && t > B.rewind ? '#fff' : '#3A2F55'}" stroke-width="${lit > 0 ? 10 : 4}"/>${txt(x, 510, l, l.length > 6 ? 20 : 30, '#fff', { w: 800 })}`;
+        if (big > 0) o += pill(x, 680, 'biggest', '#B8B3C9', big, 26);
+        if (lit > 0) o += pill(x, 680, 'FIRST', '#F9D89A', pop(t, B.theone, 0.5), 32, '#1A1424');
+      });
+      o += fade(seg(t, B.rewind, B.rewind + 0.4), txt(960, 260, '◀◀', 80, '#F9D89A'));
+      const bf = seg(t, B.before, B.before + 0.4);
+      if (bf > 0) { o += `<line x1="${180 + 2 * 195}" x2="${180 + 3 * 195 - 90}" y1="740" y2="740" stroke="#F9D89A" stroke-width="6"/>`; ['a loss', 'a win', 'gave back', 'missed entry', 'payout', 'daily goal'].forEach((l, j) => { o += pill(260 + j * 280, 860, l, '#3A2F55', pop(t, B.before + 0.6 + j * 0.3, 0.4), 28, '#FF8DA3'); }); }
+      return o;
+    },
+
+    // One candle in the dark. One rule that would've stopped the rest.
+    'w12-candle': (s, t) => {
+      const B = s.b;
+      let o = bg('#0E0A14');
+      const fl = 1 + 0.06 * Math.sin(t * 9) + 0.03 * Math.sin(t * 23);
+      o += `<ellipse cx="960" cy="520" rx="${f1(420 * fl)}" ry="${f1(360 * fl)}" fill="#F9D89A" opacity=".12"/><rect x="900" y="560" width="120" height="260" rx="14" fill="#FFF8E6"/><path d="M960,${f1(470 - 20 * fl)} Q1000,530 960,560 Q920,530 960,${f1(470 - 20 * fl)} Z" fill="#F9A857"/>`;
+      o += you(t, { x: 1400, y: 1000, scale: 1.2, flip: true });
+      o += fade(seg(t, B.big + 3, B.big + 3.6), `<rect x="660" y="860" width="600" height="90" rx="16" fill="none" stroke="#CFC8FA" stroke-width="4" stroke-dasharray="14 10"/>${txt(960, 920, 'the one rule: ______', 34, '#CFC8FA', { w: 700 })}`);
+      return o;
+    },
+
+    // Tuition receipt. Identity → information. Find, find, build. COLLECTED.
+    'w12-tuition': (s, t) => {
+      const B = s.b;
+      let o = grad('w12t', '#FDF8F5', '#F3E7DD') + bg('url(#w12t)');
+      const sw = seg(t, B.info, B.info + 0.8);
+      o += `<rect x="260" y="260" width="520" height="360" rx="30" fill="#fff"/>${txt(520, 420, 'IDENTITY', 50, C.muted, { ls: 4, op: f1(1 - sw * 0.6) })}${txt(520, 520, '“I’m a bad trader”', 30, C.muted, { f: 'Playfair Display', it: true, w: 700, op: f1(1 - sw * 0.6) })}<line x1="300" x2="${f1(300 + 440 * seg(t, B.identity + 2, B.identity + 2.6))}" y1="440" y2="440" stroke="#E2556F" stroke-width="7"/>`;
+      o += fade(sw, `<rect x="1140" y="260" width="520" height="360" rx="30" fill="#E6F5F2"/>${txt(1400, 420, 'INFORMATION', 50, '#2AA594', { ls: 4 })}${txt(1400, 520, '📋', 70, C.dark)}`);
+      [[B.e1, '🔍', '#E2556F'], [B.e2, '⚡', '#7F77DD'], [B.e3, '🛠️', '#2AA594']].forEach(([at, e, col], j) => { o += scaleAt(560 + j * 400, 780, pop(t, at, 0.5) * (1 - seg(t, B.tuition - 0.3, B.tuition)), `<circle cx="${560 + j * 400}" cy="780" r="90" fill="${col}"/>${txt(560 + j * 400, 805, e, 70, '#fff')}`); });
+      const tu = seg(t, B.tuition - 0.3, B.tuition + 0.3);
+      if (tu > 0) {
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(tu * 0.95)}"/>`;
+        o += fade(tu, `<g transform="rotate(-3 960 540)"><rect x="660" y="230" width="600" height="600" rx="10" fill="#fff" stroke="#E6DDD3" stroke-width="4"/>${txt(960, 320, 'TUITION', 44, C.muted, { ls: 8 })}${txt(960, 380, 'paid to the market', 30, C.muted, { w: 700 })}<line x1="720" x2="1200" y1="430" y2="430" stroke="#E6DDD3" stroke-width="4" stroke-dasharray="10 8"/>${bigNum(960, 540, '$$$', 90, '#E2556F')}</g>`);
+        o += scaleAt(960, 690, pop(t, B.tuition + 3, 0.5), `<rect x="700" y="630" width="520" height="120" rx="16" fill="none" stroke="#2AA594" stroke-width="10" transform="rotate(-8 960 690)"/>${txt(960, 715, 'LESSON ✓', 64, '#2AA594', { ls: 6 })}`);
+      }
+      return o;
+    },
+
+    // She closes the old account folder and walks out a new way.
+    'w12-new': (s, t) => {
+      const B = s.b;
+      let o = grad('w12u', '#FFE7C7', '#FDF8F5') + bg('url(#w12u)') + `<rect y="880" width="1920" height="200" fill="#B9DDB0"/>`;
+      o += sun(1720, 640, 70, t);
+      const walk = seg(t, B.l2, s.end);
+      o += you(t, { x: 600 + walk * 500, y: 960, scale: 1.25, walking: walk > 0 && walk < 1 });
+      o += fade(seg(t, B.l1, B.l1 + 0.5), txt(960, 300, 'A new account doesn’t create a new trader.', 56, C.dark, { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.l2, B.l2 + 0.6), txt(960, 430, 'New behavior does.', 90, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
     /*@@W@@*/
   };
 
