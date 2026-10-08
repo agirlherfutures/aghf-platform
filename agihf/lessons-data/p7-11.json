@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 11",
-      "headline": "This trade <em>has to work.</em>",
-      "line": "Eval renewal Friday. Rent on the 1st. −3R this week.",
+      "headline": "This feels like a trade that <em>has to work.</em>",
+      "line": "Your evaluation renewal is due Friday, rent is due on the 1st, and you’re down −3R this week. That’s three times what you planned to risk per trade.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "Thursday",
-      "headline": "Not on the chart. <em>In the trade.</em>",
-      "line": "Valid entry. +6. +11. Then it starts to slip.",
+      "headline": "The pressure isn’t on the chart. <em>It’s in the trade with you.</em>",
+      "line": "You took a valid entry with your target (TP) at +60. It went up 6 points, then 11, and then it started to slip.",
       "chart": {
         "bars": [
           {
@@ -156,27 +156,27 @@
         "“If it stops out, I’m done for the month.”"
       ],
       "check": {
-        "prompt": "It’s heading toward your stop. Now?",
+        "prompt": "It’s heading toward your stop loss. What would you do now?",
         "options": [
           {
-            "label": "Move the stop lower",
+            "label": "Move my stop lower",
             "correct": false,
-            "feedback": "That protects the feeling, not the account. Watch what it costs.",
+            "feedback": "That protects the feeling, not your account. Watch what it costs you.",
             "track": [
               "fearDrivenManagementCount",
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Close it. Save what’s left.",
+            "label": "Close it and save what’s left",
             "correct": false,
-            "feedback": "It might “work” today. That’s how it becomes a habit that cuts winners.",
+            "feedback": "It might “work” today. That’s how it becomes a habit that cuts your winners short.",
             "track": "fearDrivenManagementCount"
           },
           {
-            "label": "Leave it. Stop is the plan.",
+            "label": "Leave it, because the stop is the plan",
             "correct": true,
-            "feedback": "Yes. Your rules decide the size of the loss. Not your rent.",
+            "feedback": "Yes. Your rules decide the size of the loss, not your rent.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -185,8 +185,8 @@
     {
       "type": "v2_moment",
       "kicker": "If you moved the stop",
-      "headline": "Stop moved. <em>Loss doubled.</em>",
-      "line": "−2R. The trade you needed cost twice what your plan allowed.",
+      "headline": "You moved your stop, and <em>your loss doubled.</em>",
+      "line": "You lost −2R instead of −1R. The trade you “needed” cost twice what your plan allowed.",
       "chart": {
         "bars": [
           {
@@ -358,8 +358,8 @@
     {
       "type": "v2_moment",
       "kicker": "If you left it",
-      "headline": "−1R. <em>Valid. Zero rules broken.</em>",
-      "line": "Your rent didn’t decide the outcome. Your rules decided its size.",
+      "headline": "You lost −1R, and <em>you broke zero rules.</em>",
+      "line": "It was a valid loss. Your rent didn’t decide the outcome, but your rules decided its size.",
       "chart": {
         "bars": [
           {
@@ -489,35 +489,35 @@
     {
       "type": "v2_compare",
       "kicker": "The trader vs the pressure",
-      "headline": "The market doesn’t know <em>what you need.</em>",
+      "headline": "The market doesn’t know <em>what you need</em> from it.",
       "cards": [
         {
           "label": "The trader",
-          "sub": "Sized the trade for her account",
+          "sub": "She sized the trade for her account.",
           "spark": "slow",
           "tag": "THE TRADER",
           "tone": "teal"
         },
         {
           "label": "The pressure",
-          "sub": "Needs this trade to pay a bill",
+          "sub": "It needs this trade to pay a bill.",
           "spark": "down",
           "tag": "THE PRESSURE",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "One trade decides your month. What’s off?",
+        "prompt": "If one trade can decide your month, what’s off?",
         "options": [
           {
-            "label": "The setup",
+            "label": "The setup is the problem",
             "correct": false,
-            "feedback": "The setup was valid. The size made it feel life-or-death."
+            "feedback": "The setup was valid. The size is what made it feel life-or-death."
           },
           {
-            "label": "The size",
+            "label": "My size is too big",
             "correct": true,
-            "feedback": "Yes. Too big for right now. Fix it in review, calmly."
+            "feedback": "Yes. Your size is too big for right now. Fix it calmly in your review, not mid-trade."
           }
         ]
       }

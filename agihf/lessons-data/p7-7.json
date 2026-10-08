@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 7",
-      "headline": "Every box is checked. <em>You still freeze.</em>",
-      "line": "The day after a loss, a perfect setup can feel scary.",
+      "headline": "Every box is checked, and <em>you still freeze.</em>",
+      "line": "The day after a loss, even a perfect setup can feel scary to take.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "The retest",
-      "headline": "Criteria complete. <em>Rules allow it.</em>",
-      "line": "PIL. Indication. Correction. Continuation. First retest.",
+      "headline": "Your criteria are complete, and <em>your rules allow this trade.</em>",
+      "line": "You have the PIL (Pre-Indication Level), an Indication, a Correction, a Continuation, and now the first retest.",
       "chart": {
         "bars": [
           {
@@ -281,24 +281,24 @@
         "“Just a little more confirmation.”"
       ],
       "check": {
-        "prompt": "The retest is printing. What do you do?",
+        "prompt": "The retest is printing right now. What would you do?",
         "options": [
           {
-            "label": "Enter on the retest",
+            "label": "Enter the trade on the retest",
             "correct": true,
-            "feedback": "Yes. The criteria are complete. That’s the trade, win or lose.",
+            "feedback": "Yes. Every criterion is complete, so this is the trade, whether it wins or loses.",
             "track": "ruleBasedResponses"
           },
           {
-            "label": "Wait for one more candle",
+            "label": "Wait for one more candle first",
             "correct": false,
-            "feedback": "So human after a loss. But one more candle can turn a plan into a chase.",
+            "feedback": "That’s so human after a loss. But one more candle can turn a planned entry into a chase.",
             "track": "hesitationCount"
           },
           {
-            "label": "Skip it",
+            "label": "Skip this trade completely",
             "correct": false,
-            "feedback": "That’s the fear of being wrong, dressed up as caution. Totally normal to feel.",
+            "feedback": "That’s the fear of being wrong, dressed up as caution. It’s totally normal to feel, but it isn’t your plan.",
             "track": "hesitationCount"
           }
         ]
@@ -307,8 +307,8 @@
     {
       "type": "v2_moment",
       "kicker": "One more candle",
-      "headline": "You waited. <em>Now it’s a chase.</em>",
-      "line": "Price is +12 from your level. The trade you planned is gone.",
+      "headline": "You waited one more candle, and <em>now it’s a chase.</em>",
+      "line": "Price is already 12 points past your level. The trade you planned isn’t there anymore.",
       "chart": {
         "bars": [
           {
@@ -558,9 +558,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "You executed",
-      "headline": "It could have lost. <em>It was still the trade.</em>",
-      "line": "+2R this time. Executing complete criteria is the job.",
+      "kicker": "If you executed",
+      "headline": "It could have lost, but <em>it was still the right trade.</em>",
+      "line": "This time it made +2R, which means twice the amount you planned to risk. Executing complete criteria is your job, whatever the result.",
       "chart": {
         "bars": [
           {
@@ -808,35 +808,35 @@
     {
       "type": "v2_compare",
       "kicker": "Patience vs hesitation",
-      "headline": "Caution wants info. <em>Fear wants a guarantee.</em>",
+      "headline": "Caution wants more information, but <em>fear wants a guarantee.</em>",
       "cards": [
         {
           "label": "Patience",
-          "sub": "Waits FOR the criteria",
+          "sub": "It waits for the criteria to complete.",
           "spark": "slow",
           "tag": "THE TRADER",
           "tone": "teal"
         },
         {
           "label": "Hesitation",
-          "sub": "Waits AFTER them. “One more candle.”",
+          "sub": "It waits after they’re complete, for “one more candle.”",
           "spark": "chop",
           "tag": "FEAR OF BEING WRONG",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Criteria complete, you still wait. That’s…",
+        "prompt": "Your criteria are complete and you still wait. What is that?",
         "options": [
           {
-            "label": "Patience",
+            "label": "That’s patience doing its job",
             "correct": false,
-            "feedback": "Patience waits for criteria that aren’t done yet. These already are."
+            "feedback": "Patience waits for criteria that aren’t complete yet. These already are, so waiting now is something else."
           },
           {
-            "label": "Hesitation",
+            "label": "That’s hesitation, not patience",
             "correct": true,
-            "feedback": "Exactly. Once the criteria are complete, waiting is fear, not caution."
+            "feedback": "Exactly. Once the criteria are complete, waiting is fear talking, not caution."
           }
         ]
       }
@@ -850,7 +850,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Patience or hesitation: <em>what’s the difference</em> for you?",
+      "prompt": "What’s the difference between <em>patience and hesitation</em> for you?",
       "modelAnswer": "Patience waits for criteria that aren’t complete yet. Hesitation refuses a setup after the criteria are complete and my rules allow it, usually because of the last trade."
     }
   ],

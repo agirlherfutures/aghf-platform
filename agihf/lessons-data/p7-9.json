@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 9",
-      "headline": "Max trades hit. <em>Just one more?</em>",
-      "line": "10:48. Trade 1: −1R. Trade 2: +2R. Max: 2 of 2.",
+      "headline": "You’ve hit your max trades, but <em>you want just one more.</em>",
+      "line": "It’s 10:48. Trade 1 lost −1R, the amount you planned to risk. Trade 2 made +2R, twice that. You’ve taken both of your 2 trades.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "10:48",
-      "headline": "Something small <em>forms.</em>",
-      "line": "Both trades by the plan. +1R on the day. You’re done.",
+      "headline": "Something small <em>starts to form</em> on the chart.",
+      "line": "You took both trades by the plan, and you’re up +1R for the day. You’re done.",
       "chart": {
         "bars": [
           {
@@ -191,21 +191,21 @@
         "“I’m not ready to be done.”"
       ],
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "One more. It’s right there.",
+            "label": "Take one more, it’s right there",
             "correct": false,
-            "feedback": "So tempting. But your max already answered this one.",
+            "feedback": "That’s so tempting. But your max trade limit already answered this question for you.",
             "track": [
               "overtradeCount",
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Done. Close the platform.",
+            "label": "I’m done, so I close the platform",
             "correct": true,
-            "feedback": "Yes. Journal both trades. <strong>Session complete ✓</strong>",
+            "feedback": "Yes. Journal both trades and call it a day. <strong>Session complete ✓</strong>",
             "track": "ruleBasedResponses"
           }
         ]
@@ -213,9 +213,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "Trade 3",
-      "headline": "One more. <em>+1R becomes 0R.</em>",
-      "line": "And if it had won? Your max means less tomorrow.",
+      "kicker": "If you took trade 3",
+      "headline": "You took one more, and <em>+1R became 0R.</em>",
+      "line": "It lost, so your +1R day dropped to 0R, right back to even. And if it had won, your max trade rule would mean a little less tomorrow.",
       "chart": {
         "bars": [
           {
@@ -425,17 +425,17 @@
         }
       },
       "check": {
-        "prompt": "Watching it in replay mode is…",
+        "prompt": "Is watching this setup in replay mode learning or trading?",
         "options": [
           {
-            "label": "Learning",
+            "label": "It’s learning, not trading",
             "correct": true,
-            "feedback": "Yes. Studying after your day is done is learning. Trading it is not."
+            "feedback": "Yes. Studying the chart after your day is done is learning. Trading it is not."
           },
           {
-            "label": "Basically trading",
+            "label": "It’s basically still trading",
             "correct": false,
-            "feedback": "Not if you don’t take it. Replay costs nothing and teaches plenty."
+            "feedback": "Not if you don’t take the trade. Replay costs nothing and teaches you plenty."
           }
         ]
       }
@@ -443,30 +443,30 @@
     {
       "type": "v2_compare",
       "kicker": "The trader vs the restlessness",
-      "headline": "Being done <em>is the execution.</em>",
+      "headline": "Being done for the day <em>is part of the execution.</em>",
       "cards": [
         {
           "label": "The trader",
-          "sub": "Planned two trades. Took two.",
+          "sub": "She planned two trades and took two.",
           "spark": "up",
           "tag": "THE TRADER",
           "tone": "teal"
         },
         {
           "label": "Restlessness",
-          "sub": "Wants the feeling of trading",
+          "sub": "It just wants the feeling of trading.",
           "spark": "chop",
           "tag": "RESTLESSNESS",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Max reached. What is “one more” really?",
+        "prompt": "You’ve reached your max. What is “one more” really about?",
         "options": [
           {
             "label": "A new valid setup",
             "correct": false,
-            "feedback": "Your plan already closed the day. No setup reopens it."
+            "feedback": "Your plan already closed the day. No setup can reopen it."
           },
           {
             "label": "Wanting the feeling of trading",
