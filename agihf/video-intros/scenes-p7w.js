@@ -695,6 +695,289 @@
       return o;
     },
 
+    /* ════ Psychology 3 · Revenge Trading ══════════════════════════════ */
+
+    // Clipboard: four ticks, done right. Then the trade goes red anyway.
+    'w3-plan': (s, t) => {
+      const B = s.b;
+      let o = wall('w3a', '#FDF8F5', '#F3E7DD', 880, '#D9C3B0');
+      o += `<rect x="260" y="220" width="460" height="600" rx="24" fill="#C98B6B"/><rect x="290" y="270" width="400" height="530" rx="12" fill="#fff"/><rect x="400" y="200" width="180" height="60" rx="16" fill="#8B6A55"/>`;
+      ['⌛', '🔍', '🎯', '🛑'].forEach((e, j) => { const y = 350 + j * 115, at = B.plan + j * 1.6; o += txt(360, y + 18, e, 50, C.dark) + `<rect x="430" y="${y - 6}" width="${f1(170 * seg(t, at, at + 0.6))}" height="16" rx="8" fill="#EADFD8"/>` + check(640, y, pop(t, at + 0.4, 0.4), '#2AA594', 30); });
+      o += `<rect x="900" y="260" width="760" height="460" rx="28" fill="#120D1C"/>${candles(930, 300, 700, 380, [0.5, 0.52, 0.5, 0.56, 0.6, 0.55, 0.48, 0.4, 0.33], Math.floor(4 + seg(t, B.plan, B.lost) * 5), { slots: 9 })}`;
+      if (t > B.lost) o += scaleAt(1280, 640, pop(t, B.lost, 0.5), `<rect x="1080" y="590" width="400" height="100" rx="20" fill="#E2556F"/>${bigNum(1280, 662, 'STOPPED', 50, '#fff')}`);
+      o += you(t, { x: 820, y: 1000, scale: 1.1, mood: t > B.lost ? 'sad' : undefined });
+      return o;
+    },
+
+    // The red number lights her face.
+    'w3-red': (s, t) => {
+      const B = s.b;
+      let o = bg('#1A0F14');
+      o += `<ellipse cx="960" cy="600" rx="700" ry="420" fill="#E2556F" opacity="${f1(0.12 + 0.05 * Math.sin(t * 3))}"/>`;
+      o += scaleAt(960, 330, 1 + 0.02 * Math.sin(t * 4), bigNum(960, 380, '−$200', 170, '#FF6F8A'));
+      o += you(t, { x: 960, y: 1080, scale: 1.4, mood: 'sad' });
+      o += thought(1350, 560, 'damn.', pop(t, B.red + 2, 0.5), { size: 50 });
+      return o;
+    },
+
+    // Boxing gloves on. A punching bag called THE MARKET.
+    'w3-gloves': (s, t) => {
+      const B = s.b;
+      let o = wall('w3b', '#3A1420', '#5A2233', 880, '#2A0F18');
+      const swing = t > B.back ? Math.sin(t * 9) : 0;
+      o += `<line x1="1300" y1="0" x2="1300" y2="200" stroke="#B8B3C9" stroke-width="8"/><g transform="rotate(${f1(swing * 6)} 1300 200)"><rect x="1190" y="200" width="220" height="520" rx="100" fill="#7F3A5A"/>${txt(1300, 480, 'THE', 36, '#fff', { ls: 4 })}${txt(1300, 530, 'MARKET', 36, '#fff', { ls: 4 })}</g>`;
+      const glove = `<ellipse cx="0" cy="0" rx="46" ry="40" fill="#E2556F"/><rect x="-30" y="26" width="60" height="30" rx="8" fill="#fff"/>`;
+      const punch = Math.max(0, swing);
+      o += you(t, { x: 760, y: 980, scale: 1.3, frontArm: t > B.back ? { a1: -10 + punch * 10, a2: -10 } : { a1: 100, a2: 95 }, backArm: t > B.back ? { a1: -40, a2: -100 } : undefined, hold: t > B.five + 2 ? glove : '' });
+      o += fade(seg(t, B.five, B.five + 0.5), `<rect x="200" y="160" width="420" height="240" rx="20" fill="#120D1C"/>${candles(220, 190, 380, 180, [0.3, 0.25, 0.3, 0.38, 0.46, 0.55], Math.floor(2 + seg(t, B.five, B.back) * 4))}`);
+      o += thought(760, 300, 'I can make that back.', between(t, B.back + 0.3, s.end), { size: 40 });
+      return o;
+    },
+
+    // Caution tape across the screen. She holds a sign: WHY?
+    'w3-tape': (s, t) => {
+      const B = s.b;
+      let o = wall('w3c', '#FFF4DE', '#F6E7DA', 880, '#E8D5C4');
+      o += monitor(560, 200, 800, 460, candles(600, 260, 720, 340, vals(7, 18, 0.01, 0.05, 0.4), 18));
+      const tape = (y, rot, k) => `<g transform="rotate(${rot} 960 ${y})"><rect x="${f1(960 - 1200 * k)}" y="${y - 40}" width="${f1(2400 * k)}" height="80" fill="#F9D89A"/>${[...Array(14)].map((_, i) => `<path d="M${f1(-300 + i * 180)},${y - 40} l60,0 l-60,80 l-60,0 z" fill="#2C1810" opacity="${f1(k)}"/>`).join('')}</g>`;
+      o += tape(420, -8, ease(seg(t, B.careful, B.careful + 0.8))) + tape(500, 6, ease(seg(t, B.careful + 0.5, B.careful + 1.3)));
+      o += fade(seg(t, B.notauto, B.notauto + 0.5) * (1 - seg(t, B.why - 0.3, B.why)), pill(960, 800, 'another trade ≠ revenge (by itself)', '#2AA594', 1, 32));
+      if (t > B.why - 0.3) {
+        o += you(t, { x: 1500, y: 1000, scale: 1.2, flip: true, frontArm: { a1: -100, a2: -140 } });
+        o += scaleAt(1390, 400, pop(t, B.why, 0.5), `<rect x="1386" y="420" width="10" height="200" fill="#8B6A55"/><rect x="1240" y="300" width="300" height="140" rx="16" fill="#fff" stroke="#2C1810" stroke-width="6"/>${txt(1390, 400, 'WHY?', 70, '#E2556F')}`);
+      }
+      return o;
+    },
+
+    // The loss becomes a shadow behind her. Its hands creep to the size dial and the mouse.
+    'w3-shadow': (s, t) => {
+      const B = s.b;
+      let o = wall('w3d', '#2A2142', '#3B2F55', 900, '#1E1730');
+      o += monitor(300, 200, 700, 420, candles(340, 260, 620, 300, vals(9, 16, 0.006, 0.05, 0.4), 16)) + desk(160, 860, 1100);
+      const grow = ease(seg(t, B.isnt, B.infl + 2));
+      o += `<g opacity="${f1(0.25 + 0.35 * grow)}"><ellipse cx="1420" cy="${f1(560 - grow * 60)}" rx="${f1(170 + grow * 80)}" ry="${f1(330 + grow * 80)}" fill="#120A18"/><circle cx="1380" cy="${f1(330 - grow * 60)}" r="10" fill="#E2556F"/><circle cx="1450" cy="${f1(330 - grow * 60)}" r="10" fill="#E2556F"/></g>`;
+      o += you(t, { x: 1300, y: 1060, scale: 1.25, flip: true, mood: 'sad', frontArm: { a1: 160, a2: 150 } });
+      const icons = [['🎚️', 600, 800, 'size'], ['⚡', 820, 800, 'faster'], ['🔍', 380, 800, 'standards']];
+      icons.forEach(([e, x, y, l], j) => { const k = pop(t, B.infl + 0.6 + j * 0.9, 0.5); if (k <= 0) return; o += scaleAt(x, y, k, `<circle cx="${x}" cy="${y}" r="52" fill="#3A2F55" stroke="#E2556F" stroke-width="5"/>${txt(x, y + 18, e, 46, '#fff')}`) + `<path d="M${1250},${f1(500)} Q${(x + 1250) / 2},${300} ${x},${y - 60}" fill="none" stroke="#120A18" stroke-width="18" stroke-linecap="round" opacity="${f1(0.6 * k)}"/>`; });
+      return o;
+    },
+
+    // A giant eraser scrubbing the red number, never quite clean.
+    'w3-eraser': (s, t) => {
+      const B = s.b;
+      let o = grad('w3e', '#FDF8F5', '#FDE8ED') + bg('url(#w3e)');
+      const rub = t > B.erase ? Math.sin((t - B.erase) * 7) * 260 * seg(t, B.erase, B.erase + 0.6) : 0;
+      o += bigNum(960, 520, '−$100', 220, '#E2556F');
+      o += fade(seg(t, B.erase, B.erase + 0.5), `<g transform="translate(${f1(960 + rub)},${f1(470 + Math.abs(rub) * 0.05)}) rotate(-18)"><rect x="-140" y="-70" width="280" height="140" rx="20" fill="#F4829A"/><rect x="-140" y="10" width="280" height="60" rx="12" fill="#7F77DD"/></g>`);
+      for (let j = 0; j < 8; j++) { const p = ((t * 1.4) + j * 0.13) % 1; if (t > B.erase + 0.6) o += `<circle cx="${f1(960 + rub + (j - 4) * 30)}" cy="${f1(620 + p * 300)}" r="8" fill="#F4829A" opacity="${f1(1 - p)}"/>`; }
+      o += you(t, { x: 300, y: 1060, scale: 1.1, mood: 'sad' });
+      o += fade(seg(t, B.bothers, B.bothers + 0.5), pill(960, 820, 'it bothers you', '#2C1810', 1, 34));
+      return o;
+    },
+
+    // Scoreboard: +$400 becomes +$300. Then 0 becomes −$300.
+    'w3-score': (s, t) => {
+      const B = s.b;
+      let o = grad('w3f', '#1D2433', '#34405A') + bg('url(#w3f)');
+      o += `<rect x="460" y="160" width="1000" height="420" rx="30" fill="#120D1C" stroke="#3A2F55" stroke-width="12"/>`;
+      let val, col;
+      if (t < B.d300) { const k = seg(t, B.u400 + 0.5, B.u400 + 2); val = Math.round(400 - 100 * k); col = '#2AA594'; }
+      else { const k = seg(t, B.d300 + 0.5, B.d300 + 2.5); val = -Math.round(300 * k); col = val < 0 ? '#FF6F8A' : '#fff'; }
+      o += bigNum(960, 420, (val >= 0 ? '+$' : '−$') + Math.abs(val), 170, col);
+      o += you(t, { x: 960, y: 1060, scale: 1.25, mood: 'sad' });
+      o += thought(1450, 700, 'my $100 back', between(t, B.u400 + 2.5, B.d300 - 0.2), { size: 40 });
+      o += thought(1450, 700, 'one good trade', between(t, B.d300 + 3, s.end), { size: 40 });
+      return o;
+    },
+
+    // GPS: "Rerouting… to where you were."
+    'w3-gps': (s, t) => {
+      const B = s.b;
+      let o = grad('w3g', '#E9E1F5', '#FDF8F5') + bg('url(#w3g)');
+      o += `<rect x="460" y="140" width="1000" height="700" rx="50" fill="#2C1810"/><rect x="500" y="180" width="920" height="560" rx="24" fill="#DDF1EE"/>`;
+      o += `<path d="M560,640 C760,560 760,400 960,380 S1200,300 1360,240" fill="none" stroke="#fff" stroke-width="40"/><path d="M560,640 C760,560 760,400 960,380" fill="none" stroke="#2AA594" stroke-width="16"/>`;
+      const re = seg(t, B.getback, B.getback + 1.2);
+      o += fade(re, `<path d="M960,380 C900,500 700,560 600,700" fill="none" stroke="#E2556F" stroke-width="16" stroke-dasharray="20 14"/><circle cx="600" cy="700" r="24" fill="#E2556F"/>`);
+      o += `<circle cx="960" cy="380" r="26" fill="#7F77DD" stroke="#fff" stroke-width="8"/>`;
+      o += `<rect x="500" y="680" width="920" height="60" rx="0" fill="#2C1810" opacity=".85"/>${txt(960, 722, re > 0.3 ? 'rerouting… to where you were' : 'what’s actually happening →', 32, re > 0.3 ? '#FF8DA3' : '#7ECFC0', { w: 800 })}`;
+      return o;
+    },
+
+    // The market has headphones on. It has no idea about your last trade.
+    'w3-headphones': (s, t) => {
+      const B = s.b;
+      let o = grad('w3h', '#FFF4DE', '#FDE8ED') + bg('url(#w3h)');
+      const bob = Math.sin(t * 4) * 8;
+      o += `<g transform="translate(0,${f1(bob)})"><rect x="660" y="260" width="600" height="420" rx="40" fill="#120D1C"/>${candles(700, 310, 520, 300, vals(44, 14, 0.004, 0.05, 0.5), 14)}<path d="M640,470 C640,140 1280,140 1280,470" fill="none" stroke="#2C1810" stroke-width="30"/><rect x="600" y="400" width="80" height="150" rx="30" fill="#E2556F"/><rect x="1240" y="400" width="80" height="150" rx="30" fill="#E2556F"/></g>`;
+      for (let j = 0; j < 3; j++) { const p = (t * 0.6 + j / 3) % 1; o += txt(1420 + p * 120, 360 - p * 160, '♪', 60, '#7F77DD', { op: f1(1 - p) }); }
+      o += you(t, { x: 300, y: 1000, scale: 1.1, mood: 'sad', frontArm: { a1: -40, a2: -60 } });
+      o += thought(380, 360, 'I just lost!', pop(t, B.know + 0.8, 0.5), { size: 40 });
+      return o;
+    },
+
+    // Not button-mashing. Three quiet dials slide: wait → quicker, clean → make it work, normal → bigger.
+    'w3-dials': (s, t) => {
+      const B = s.b;
+      let o = grad('w3i', '#F3E3D6', '#FBF4EF') + bg('url(#w3i)');
+      o += host(t, { x: 80, y: 340, w: 500, pose: t > B.s1 && t < B.s3 + 4 ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
+      const mash = between(t, B.dramatic + 1, B.subtle - 0.2);
+      if (mash > 0) {
+        for (let i = 0; i < 8; i++) { const x = 760 + (i % 4) * 260, y = 300 + Math.floor(i / 4) * 240, hit = Math.sin(t * 16 + i * 1.7) > 0.5; o += fade(mash, `<rect x="${x}" y="${y + (hit ? 12 : 0)}" width="200" height="${hit ? 110 : 122}" rx="24" fill="${i % 2 ? '#2AA594' : '#E2556F'}"/>${txt(x + 100, y + 76, i % 2 ? 'BUY' : 'SELL', 36, '#fff')}`); }
+        o += cross(1280, 860, mash * pop(t, B.slam + 2, 0.4), '#E2556F', 50);
+      }
+      const sub = seg(t, B.subtle, B.subtle + 0.5);
+      if (sub > 0) {
+        [[B.s1, '⌛', 'patience'], [B.s2, '🔍', 'standards'], [B.s3, '🎚️', 'size']].forEach(([at, e, l], j) => {
+          const y = 320 + j * 230, sl = ease(seg(t, at + 1, at + 3.5));
+          o += fade(sub * seg(t, at - 0.2, at + 0.3), `${txt(760, y + 20, e, 60, C.dark)}<rect x="860" y="${y - 6}" width="880" height="24" rx="12" fill="#fff"/><rect x="860" y="${y - 6}" width="${f1(880 * lerp(0.15, 0.85, sl))}" height="24" rx="12" fill="${sl > 0.5 ? '#E2556F' : '#2AA594'}" opacity=".5"/><circle cx="${f1(860 + 880 * lerp(0.15, 0.85, sl))}" cy="${y + 6}" r="34" fill="${sl > 0.5 ? '#E2556F' : '#2AA594'}" stroke="#fff" stroke-width="8"/>${txt(860, y + 80, l, 30, C.muted, { a: 'start', w: 700 })}`);
+        });
+      }
+      return o;
+    },
+
+    // Lying on the grass: the clouds start looking like setups.
+    'w3-clouds': (s, t) => {
+      const B = s.b;
+      let o = grad('w3j', '#9FD3F0', '#E6F5F2') + bg('url(#w3j)') + `<rect y="820" width="1920" height="260" fill="#9ED39A"/>`;
+      o += `<g transform="rotate(-90 760 900)">${you(t, { x: 760, y: 900, scale: 1.1 })}</g>`;
+      const morph = ease(seg(t, B.make, B.make + 3));
+      [[500, 260], [960, 200], [1420, 280]].forEach(([x, y], j) => { o += cloud(x + Math.sin(t * 0.3 + j) * 20, y, 0.9, '#fff', 0.95); });
+      // the middle cloud shapes into candles
+      if (morph > 0) for (let i = 0; i < 6; i++) { const h = [60, 90, 70, 120, 100, 150][i] * morph; o += `<rect x="${880 + i * 30}" y="${f1(220 - h / 2)}" width="20" height="${f1(h)}" rx="6" fill="${i % 3 === 1 ? '#F4829A' : '#7ECFC0'}" opacity="${f1(morph)}"/>`; }
+      o += thought(1200, 560, 'that’s… a setup, right?', between(t, B.make + 3, s.end), { size: 38 });
+      o += fade(seg(t, B.whyt, B.whyt + 0.4) * (1 - seg(t, B.make, B.make + 0.4)), pill(960, 980, 'what… and WHY', '#7F77DD', 1, 34));
+      return o;
+    },
+
+    // A hammock. Doing nothing, on purpose.
+    'w3-hammock': (s, t) => {
+      const B = s.b;
+      let o = grad('w3k', '#FFE7C7', '#FDF8F5') + bg('url(#w3k)') + `<rect y="860" width="1920" height="220" fill="#B9DDB0"/>`;
+      o += `<rect x="440" y="300" width="40" height="580" fill="#8B6A55"/><rect x="1440" y="300" width="40" height="580" fill="#8B6A55"/><circle cx="460" cy="300" r="120" fill="#7CC79A"/><circle cx="1460" cy="300" r="120" fill="#7CC79A"/>`;
+      const sw = Math.sin(t * 1.4) * 20;
+      o += `<path d="M480,520 Q960,${f1(760 + sw)} 1440,520" fill="none" stroke="#E2B04A" stroke-width="30"/>`;
+      o += `<g transform="translate(0,${f1(sw * 0.5)}) rotate(-84 960 700)">${you(t, { x: 960, y: 700, scale: 1.0 })}</g>`;
+      o += fade(seg(t, B.nothing + 1.5, B.nothing + 2), txt(960, 200, 'sometimes: nothing.', 60, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Rain is normal. Umbrella up. A stop loss isn't a mistake.
+    'w3-umbrella': (s, t) => {
+      const B = s.b;
+      let o = grad('w3l', '#C9D3E2', '#E9EEF5') + bg('url(#w3l)') + `<rect y="860" width="1920" height="220" fill="#9AA3B8"/>` + rain(0, 1920, 0, 860, t, 40, '#7F92B8');
+      o += you(t, { x: 600, y: 980, scale: 1.25, frontArm: { a1: -60, a2: -80 } });
+      o += `<path d="M440,520 A250,170 0 0 1 940,520 Z" fill="#7F77DD"/><line x1="690" y1="520" x2="690" y2="700" stroke="#2C1810" stroke-width="10"/>`;
+      o += fade(seg(t, B.stop, B.stop + 0.5), `<rect x="1080" y="300" width="640" height="200" rx="30" fill="#fff"/>${txt(1400, 380, 'STOP HIT', 40, '#E2556F', { ls: 6 })}${['⌛', '🎯', '📋'].map((e, j) => txt(1300 + j * 100, 460, e, 40, C.dark)).join('')}`);
+      o += fade(seg(t, B.mistake, B.mistake + 0.4), `<rect x="1080" y="560" width="300" height="160" rx="24" fill="#fff"/>${txt(1230, 650, 'mistake?', 36, C.muted, { f: 'Playfair Display', it: true, w: 700 })}`) + cross(1340, 580, pop(t, B.mistake + 0.8, 0.4), '#E2556F', 26);
+      o += fade(seg(t, B.tlost, B.tlost + 0.4), `<rect x="1420" y="560" width="300" height="160" rx="24" fill="#fff" stroke="#2AA594" stroke-width="6"/>${txt(1570, 650, 'just a loss', 36, '#2AA594', { f: 'Playfair Display', it: true, w: 700 })}`) + check(1680, 580, pop(t, B.tlost + 0.5, 0.4), '#2AA594', 26);
+      return o;
+    },
+
+    // Two islands: THE LOSS and THE NEXT DECISION. The water between them widens.
+    'w3-islands': (s, t) => {
+      const B = s.b;
+      let o = grad('w3m', '#CDEBF7', '#7FC3E0') + bg('url(#w3m)');
+      for (let j = 0; j < 6; j++) o += `<path d="M${(j * 340 + t * 30) % 2200 - 200},${760 + (j % 3) * 70} q40,-20 80,0 t80,0" fill="none" stroke="#fff" stroke-width="5" opacity=".6"/>`;
+      const gap = ease(seg(t, B.space + 1, B.space + 5));
+      const lx = 560 - gap * 220, rx = 1360 + gap * 220;
+      o += `<ellipse cx="${f1(lx)}" cy="760" rx="300" ry="90" fill="#E8D5C4"/><ellipse cx="${f1(rx)}" cy="760" rx="300" ry="90" fill="#E8D5C4"/>`;
+      o += `<rect x="${f1(lx - 120)}" y="560" width="240" height="140" rx="20" fill="#E2556F"/>${txt(lx, 645, 'the loss', 36, '#fff')}`;
+      o += `<rect x="${f1(rx - 120)}" y="560" width="240" height="140" rx="20" fill="#2C1810"/>${txt(rx, 625, 'next', 32, '#fff')}${txt(rx, 665, 'decision', 32, '#fff')}`;
+      o += you(t, { x: lx + 180, y: 760, scale: 0.9 });
+      o += fade(gap, txt(960, 260, 'create space', 64, '#fff', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Calm you vs give-me-my-damn-money-back you.
+    'w3-twoyou': (s, t) => {
+      const B = s.b;
+      let o = grad('w3n', '#E6F5F2', '#FDF8F5') + `<rect width="960" height="1080" fill="url(#w3n)"/>` + grad('w3o', '#3A1420', '#1D0B12') + `<rect x="960" width="960" height="1080" fill="url(#w3o)"/>`;
+      o += you(t, { x: 480, y: 980, scale: 1.3 }) + `<circle cx="480" cy="560" r="300" fill="#2AA594" opacity=".08"/>`;
+      o += pill(480, 240, 'calm you', '#2AA594', pop(t, B.calm, 0.5), 40);
+      const d = seg(t, B.damn, B.damn + 0.4), shake = d > 0 ? Math.sin(t * 30) * 6 : 0;
+      o += fade(d, `<g transform="translate(${f1(shake)},0)">${you(t, { x: 1440, y: 980, scale: 1.3, flip: true, mood: 'sad', frontArm: { a1: -150, a2: -160 } })}</g>`);
+      if (d > 0) for (let j = 0; j < 3; j++) { const p = ((t * 0.8 + j * 0.33) % 1); o += `<path d="M${1400 + j * 40},${f1(520 - p * 140)} q14,-20 0,-40 q-14,-20 0,-40" stroke="#FF8DA3" stroke-width="6" fill="none" opacity="${f1(Math.sin(p * Math.PI) * 0.8)}"/>`; }
+      o += thought(1440, 240, '“give me my damn money back”', pop(t, B.damn + 0.4, 0.5), { size: 34 });
+      return o;
+    },
+
+    // The flip test: the last card flips from LOSS to WIN. Does the next trade still look the same?
+    'w3-flip': (s, t) => {
+      const B = s.b;
+      let o = grad('w3p', '#EEEBFB', '#FDF8F5') + bg('url(#w3p)');
+      const fl = seg(t, B.would + 1, B.would + 2), sx = Math.abs(Math.cos(fl * Math.PI)), won = fl > 0.5;
+      o += `<g transform="translate(560,540) scale(${f1(Math.max(0.02, sx))},1)"><rect x="-200" y="-260" width="400" height="520" rx="30" fill="${won ? '#2AA594' : '#E2556F'}"/>${txt(0, -150, 'LAST TRADE', 32, '#fff', { ls: 4 })}${txt(0, 40, won ? 'WON' : 'LOST', 90, '#fff')}</g>`;
+      o += txt(960, 560, '→', 100, C.dark);
+      o += `<rect x="1160" y="280" width="400" height="520" rx="30" fill="#120D1C"/>${candles(1190, 340, 340, 360, [0.3, 0.36, 0.33, 0.44, 0.4, 0.5, 0.48], 7)}${txt(1360, 760, 'this trade', 32, '#CFC8FA', { w: 700 })}`;
+      o += fade(seg(t, B.would + 2.5, B.would + 3), txt(960, 940, 'still take it?', 60, '#7F77DD', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // The rule: step away (timer), water, a break, same stamp either way. The bill bounces off.
+    'w3-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('w3q', '#EEEBFB', '#DDF1EE') + bg('url(#w3q)');
+      o += txt(960, 120, '🧠 YOUR RULE', 30, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 220, pop(t, s.start + 0.4, 0.8), txt(960, 230, 'After a full stop loss, I reset before I re-enter.', 56, C.dark, { f: 'Playfair Display' }));
+      const fin = seg(t, B.line - 0.3, B.line + 0.3), a = 1 - fin;
+      const secs = Math.max(0, 600 - Math.floor(seg(t, B.r1, B.r1 + 8) * 600));
+      o += fade(a * seg(t, B.r1, B.r1 + 0.4), `<circle cx="420" cy="560" r="150" fill="#fff"/>${bigNum(420, 585, `${String(Math.floor(secs / 60)).padStart(2, '0')}:${String(secs % 60).padStart(2, '0')}`, 60, '#7F77DD')}`);
+      o += fade(a * seg(t, B.r2, B.r2 + 0.4), `<circle cx="960" cy="560" r="150" fill="#fff"/><path d="M900,470 L915,650 L1005,650 L1020,470 Z" fill="#BFE3F5" stroke="#7FB8D6" stroke-width="6"/>`);
+      o += fade(a * seg(t, B.r3, B.r3 + 0.4), `<circle cx="1500" cy="560" r="150" fill="#fff"/><rect x="1400" y="530" width="70" height="60" rx="10" fill="#E2556F"/><rect x="1530" y="530" width="70" height="60" rx="10" fill="#2C1810"/><line x1="1475" x2="1525" y1="560" y2="560" stroke="#F9D89A" stroke-width="10" stroke-dasharray="8 8"/>`);
+      o += fade(a * seg(t, B.r4, B.r4 + 0.5), `${pill(960, 830, 'same criteria as if I hadn’t lost', '#2C1810', 1, 34)}`);
+      if (fin > 0) {
+        o += fade(fin, `<rect x="380" y="400" width="420" height="300" rx="30" fill="#E2556F"/>${txt(590, 540, 'LAST TRADE', 40, '#fff', { ls: 4 })}${bigNum(590, 610, '−$200', 44, '#fff')}<rect x="1120" y="400" width="420" height="300" rx="30" fill="#2AA594"/>${txt(1330, 560, 'NEXT TRADE', 40, '#fff', { ls: 4 })}`);
+        const slide = ease(seg(t, B.line + 0.5, B.line + 1.5)), bounce = ease(seg(t, B.line + 1.6, B.line + 2.4));
+        o += fade(fin, `<g transform="translate(${f1(lerp(800, 1080, slide) - bounce * 240)},550) rotate(${f1(-6 + bounce * 12)})"><rect x="-90" y="-60" width="180" height="120" rx="10" fill="#FFF3D6" stroke="#B38A2E" stroke-width="4"/>${txt(0, 12, 'BILL', 32, '#B38A2E', { ls: 4 })}</g>`) + cross(1330, 400, pop(t, B.line + 2, 0.4), '#E2556F', 36);
+        o += fade(seg(t, B.line + 0.2, B.line + 0.8), txt(960, 850, 'My next trade’s job is not to pay for my last trade.', 50, C.dark, { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    // Replay: the same four dials, but this time she checks what moved after her loss.
+    'w3-replay': (s, t) => {
+      const B = s.b;
+      let o = wall('w3r', '#1A1424', '#2A2142', 920, '#141026');
+      o += txt(960, 180, 'after the loss…', 52, '#fff', { f: 'Playfair Display', it: true });
+      [[B.q1, '🎚️'], [B.q2, '⚡'], [B.q3, '🔍'], [B.q4, '💸']].forEach(([at, e], j) => {
+        const x = 330 + j * 420, k = pop(t, at, 0.5), turn = ease(seg(t, at + 0.6, at + 1.6));
+        o += scaleAt(x, 520, k, `<circle cx="${x}" cy="520" r="150" fill="#2A2142" stroke="#3A2F55" stroke-width="10"/><line x1="${x}" y1="520" x2="${f1(x + 110 * Math.sin((-120 + 220 * turn) * Math.PI / 180))}" y2="${f1(520 - 110 * Math.cos((-120 + 220 * turn) * Math.PI / 180))}" stroke="#E2556F" stroke-width="14" stroke-linecap="round"/>${txt(x, 760, e, 70, '#fff')}`);
+      });
+      return o;
+    },
+
+    // Two paths: WIN → next trade and LOSS → next trade. Do they look the same?
+    'w3-paths': (s, t) => {
+      const B = s.b;
+      let o = grad('w3s', '#EEEBFB', '#FDF8F5') + bg('url(#w3s)');
+      const lane = (y, col, lbl, k, beh) => fade(k, `<circle cx="300" cy="${y}" r="80" fill="${col}"/>${txt(300, y + 14, lbl, 34, '#fff')}<line x1="400" x2="1300" y1="${y}" y2="${y}" stroke="${col}" stroke-width="10" stroke-dasharray="20 14"/><rect x="1320" y="${y - 90}" width="360" height="180" rx="24" fill="#120D1C"/>${candles(1340, y - 70, 320, 140, [0.3, 0.4, 0.36, 0.5, 0.46, 0.6], 6)}${beh}`);
+      o += lane(360, '#2AA594', 'WIN', seg(t, B.big, B.big + 0.6), '');
+      o += lane(720, '#E2556F', 'LOSS', seg(t, B.big + 1.5, B.big + 2.1), seg(t, B.big + 4, B.big + 4.5) > 0 ? `<g opacity="${f1(seg(t, B.big + 4, B.big + 4.5))}">${pill(1500, 860, 'bigger · faster · looser', '#E2556F', 1, 26)}</g>` : '');
+      o += fade(seg(t, B.big + 3, B.big + 3.5), txt(1500, 560, '= ?', 70, C.dark));
+      o += fade(seg(t, B.bigq, B.bigq + 0.4) * (1 - seg(t, B.big, B.big + 0.4)), txt(960, 540, 'the biggest question…', 70, C.dark, { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.changed, B.changed + 0.5), txt(800, 560, 'what changed?', 56, '#7F77DD', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // End: drop the loss, breathe, open the rules. The market doesn't owe you.
+    'w3-end': (s, t) => {
+      const B = s.b;
+      let o = grad('w3t', '#FFE7C7', '#FDF8F5') + bg('url(#w3t)') + `<rect y="880" width="1920" height="200" fill="#E8D5C4"/>`;
+      const a = 1 - seg(t, B.steps - 0.3, B.steps);
+      o += fade(a * seg(t, B.c1, B.c1 + 0.4), `<rect x="260" y="300" width="600" height="300" rx="36" fill="#fff"/>${txt(560, 430, 'trade after a loss', 44, C.dark, { f: 'Playfair Display', it: true })}`) + check(560, 530, a * pop(t, B.c1 + 1, 0.4), '#2AA594', 34);
+      o += fade(a * seg(t, B.c2, B.c2 + 0.4), `<rect x="1060" y="300" width="600" height="300" rx="36" fill="#fff" stroke="#E2556F" stroke-width="6"/>${txt(1360, 430, 'trade BECAUSE you lost', 44, '#E2556F', { f: 'Playfair Display', it: true })}`) + cross(1360, 530, a * pop(t, B.c2 + 1.5, 0.4), '#E2556F', 34);
+      if (a < 1) {
+        const k = 1 - a, st = Math.min(2, Math.floor(seg(t, B.steps, B.steps + 3.6) * 3));
+        const drop = st >= 0 ? ease(seg(t, B.steps, B.steps + 1)) : 0;
+        o += fade(k, you(t, { x: 960, y: 980, scale: 1.3, frontArm: st >= 2 ? { a1: -40, a2: -60 } : undefined, hold: st >= 2 ? `<rect x="-10" y="-90" width="120" height="90" rx="8" fill="#7F77DD"/><rect x="0" y="-80" width="100" height="70" rx="6" fill="#FFF8E6"/>` : '' }));
+        o += fade(k * (1 - seg(t, B.steps + 1, B.steps + 1.4)), `<rect x="${f1(760)}" y="${f1(lerp(620, 900, drop))}" width="160" height="90" rx="12" fill="#E2556F"/>${txt(840, lerp(675, 955, drop), '−$', 40, '#fff')}`);
+        if (st >= 1) o += `<circle cx="960" cy="560" r="${f1(120 + 60 * Math.sin(t * 2))}" fill="#7ECFC0" opacity=".2"/>`;
+        ['TAKE THE LOSS', 'RESET', 'YOUR RULES'].forEach((l, j) => { o += fade(k * (1 - seg(t, B.owe + 0.5, B.owe + 1)), pill(520 + j * 440, 220, l, ['#E2556F', '#7F77DD', '#2AA594'][j], pop(t, B.steps + j * 1.2, 0.5), 34)); });
+        o += fade(seg(t, B.owe + 1, B.owe + 1.6), `<rect x="0" y="130" width="1920" height="220" fill="#FDF8F5" opacity=".9"/>${txt(960, 220, 'The market doesn’t owe you your money back.', 54, C.dark, { f: 'Playfair Display', it: true })}${txt(960, 310, 'Your next trade doesn’t have to get it back.', 54, '#2AA594', { f: 'Playfair Display', it: true })}`);
+      }
+      return o;
+    },
+
     /*@@W@@*/
   };
 
