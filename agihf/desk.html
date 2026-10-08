@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Trader Desk — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/lesson-engine.css">
+<link rel="stylesheet" href="shared/casefile.css">
+<link rel="stylesheet" href="shared/desk.css">
+<style>
+  .dk-tabs{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 12px;background:var(--dk-bg);border-radius:14px;padding:5px;}
+  .dk-tabs a{color:var(--dk-dim);text-decoration:none;font-size:.78rem;font-weight:600;padding:8px 12px;border-radius:10px;}
+  .dk-tabs a.on{background:var(--dk-panel2);color:#fff;box-shadow:inset 0 -2px 0 var(--dk-pink);}
+  .dk-page-h{background:linear-gradient(135deg,#1C1929,#2A2240);color:var(--dk-text);border-radius:22px;padding:18px 22px;margin-bottom:12px;}
+  .dk-page-h h1{font-family:var(--font-display);color:#fff;margin:4px 0 2px;font-size:1.6rem;}
+  .dk-page-h p{margin:0;color:var(--dk-dim);font-size:.86rem;}
+  .dk-studies{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-bottom:10px;}
+  .dk-studies .dk-card{margin:0;cursor:pointer;}
+  .dk-studies .dk-card b{display:block;color:#fff;} .dk-studies .dk-card span{font-size:.74rem;color:var(--dk-dim);}
+</style>
+</head>
+<body class="p8-on">
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="desk"></script>
+<main class="main">
+  <div class="dk-page-h"><div class="p8-kicker">A GIRL &amp; HER FUTURES</div><h1>My Trader Desk ▣</h1><p>Practice → record → review → find the pattern → choose one focus → practice again.</p></div>
+  <nav class="dk-tabs" id="dkTabs"></nav>
+  <div id="dkView"></div>
+</main>
+<script type="module">
+  import { TOOLS, renderStudyConfig, renderPracticeLab } from './shared/desk.js';
+  import { studies, study, reps } from './shared/desk-core.js';
+  const TABS = [['home', 'Home'], ['practice', 'Practice Lab'], ['backtest', 'Backtesting'], ['journal', 'Trade Journal'], ['screenshots', 'Screenshots'], ['performance', 'Performance'], ['weekly', 'Weekly Review'], ['monthly', 'Monthly Review'], ['diagnostic', 'Strategy or Trader?'], ['plan', 'Trading Plan']];
+  const view = document.getElementById('dkView');
+  let name = '';
+  function show() {
+    const tab = (location.hash || '#home').slice(1);
+    document.getElementById('dkTabs').innerHTML = TABS.map(([k, l]) => `<a href="#${k}" class="${k === tab ? 'on' : ''}">${l}</a>`).join('');
+    view.innerHTML = '';
+    const host = document.createElement('div'); view.appendChild(host);
+    if (tab === 'backtest') return backtest(host);
+    if (tab === 'practice') return renderPracticeLab(host, { reps: 10, title: 'PRACTICE SESSION' });
+    (TOOLS[tab] || TOOLS.home)(host, { name });
+  }
+  function backtest(host) {
+    const list = studies();
+    host.innerHTML = `<div class="dk-review"><div class="dk-head"><div><div class="p8-kicker">BACKTESTING LAB</div><h3 class="p8-h">Your studies</h3></div><button type="button" class="p8-btn is-primary" id="dkNew" style="width:auto">+ New study</button></div>
+      <div class="dk-studies">${list.map((s) => `<div class="dk-card" data-id="${s.studyId}"><b>${s.title} v${s.version}</b><span>${s.status} · ${s.completedRepCount}/${s.targetRepCount} reps${s.kind === 'RESEARCH' ? ' · research' : ''}</span></div>`).join('') || '<div class="dk-empty">No studies yet. Define the rules, lock them, then run reps.</div>'}</div><div id="dkStudy"></div></div>`;
+    const box = host.querySelector('#dkStudy');
+    const open = (id) => {
+      box.innerHTML = '<div id="dkCfg"></div><div id="dkRun"></div>';
+      const s = renderStudyConfig(box.querySelector('#dkCfg'), { studyId: id, onLocked: () => backtest(host) });
+      if (s.status !== 'DRAFT') {
+        const b = document.createElement('button'); b.className = 'p8-btn is-primary'; b.textContent = `Run reps in this study →`;
+        b.addEventListener('click', () => renderPracticeLab(box.querySelector('#dkRun'), { study: study(s.studyId), reps: Math.max(1, s.targetRepCount - s.completedRepCount), title: s.title }));
+        box.querySelector('#dkRun').appendChild(b);
+      }
+    };
+    host.querySelector('#dkNew').addEventListener('click', () => open(null));
+    host.querySelectorAll('.dk-studies .dk-card').forEach((c) => c.addEventListener('click', () => open(c.dataset.id)));
+  }
+  window.addEventListener('hashchange', show);
+  async function boot() {
+    try { const p = await window.AGHF_FETCH_PROFILE?.(); name = (p?.display_name || p?.first_name || p?.name || '').split(' ')[0]; } catch { /* no profile */ }
+    try { show(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  }
+  if (window.AGHF_USER) boot(); else document.addEventListener('aghf-auth-ready', boot, { once: true });
+</script>
+</body>
+</html>

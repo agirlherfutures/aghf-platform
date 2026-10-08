@@ -5,8 +5,8 @@
 }
 body.p8-on .main{max-width:1600px;padding:28px 28px 96px;}
 body.p8-on .lw-wrap, body.p8-on #lwWrap{max-width:none;}
-body.p8-on .sg-stage{background:transparent;box-shadow:none;padding:0;}
-body.p8-on .sg-stage .sg-head, body.p8-on .sg-stage .sg-level, body.p8-on .sg-stage .sg-restart{display:none;}
+body.p8-on .sg-stage:has(.p8-lab){background:transparent;box-shadow:none;padding:0;}
+body.p8-on .sg-stage:has(.p8-lab) .sg-head, body.p8-on .sg-stage:has(.p8-lab) .sg-level, body.p8-on .sg-stage:has(.p8-lab) .sg-restart{display:none;}
 body.p8-on .lh-header{background:linear-gradient(135deg,#1C1929,#2A2240);color:var(--dk-text);border-radius:22px;padding:18px 22px;}
 body.p8-on .lh-header strong, body.p8-on .lh-sp-row, body.p8-on .lh-nav-link{color:var(--dk-text);}
 body.p8-on .lh-sp-track{background:#332E4A;}

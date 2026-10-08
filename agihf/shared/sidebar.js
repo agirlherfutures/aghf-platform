@@ -27,6 +27,7 @@
     { section: 'Trade', key: 'eval-calculator', icon: '✓', label: 'Pass Your Eval', href: 'eval-calculator.html' },
     { section: 'Mindset', key: 'agent', icon: '♡', label: 'AGHF Agent', href: 'psychology.html' },
     { section: 'Learn', key: 'lessons', icon: '✦', label: 'Academy', href: 'lessons.html', mobileIcon: '✦', mobileLabel: 'Academy' },
+    { section: 'Learn', key: 'desk', icon: '▣', label: 'My Trader Desk', href: 'desk.html' },
     { section: 'Learn', key: 'games', icon: '◈', label: 'Games', href: 'games.html' },
     // Chart Lab nav entry temporarily removed — the feature isn't working
     // correctly and is hidden from members until it's fixed.

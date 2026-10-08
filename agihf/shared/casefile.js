@@ -645,7 +645,23 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
           box.querySelector('.p8-flags').innerHTML = S.rec.reassess.map((r) => `<div class="p8-tip">⚑ ${r.time}${r.note ? ` · ${esc(r.note)}` : ''}</div>`).join('');
           play();
         });
-        S.onCursor = () => { if (S.lock.cursor >= c.m1.length) { stopPlay(); drawReplay(); showOutcome(); } };
+        const tempt = st.tempt && S.rec.decision?.choice === 'TAKE' ? { ...st.tempt, at: c.decisionIndex + 1 + (st.tempt.after || 3) } : null;
+        S.onCursor = () => {
+          if (tempt && !tempt.done && S.lock.cursor >= tempt.at) {
+            tempt.done = true; stopPlay(); drawReplay();
+            const tb = document.createElement('div'); tb.className = 'p8-tempt';
+            tb.innerHTML = `<div class="p8-pause">${tempt.text}</div><div class="p8-opts">${tempt.options.map((o, i) => `<button type="button" class="p8-opt" data-i="${i}">${esc(o.label)}</button>`).join('')}</div>`;
+            box.querySelector('.p8-outcome').before(tb);
+            tb.querySelectorAll('.p8-opt').forEach((b) => b.addEventListener('click', () => {
+              const o = tempt.options[+b.dataset.i];
+              S.rec.temptation = { choice: o.label, followedPlan: !!o.plan, at: S.lock.cursor - 1 };
+              tb.innerHTML = `<div class="p8-tip">Noted: ${esc(o.label)}. Replay continues.</div>`;
+              play();
+            }));
+            return;
+          }
+          if (S.lock.cursor >= c.m1.length) { stopPlay(); drawReplay(); showOutcome(); }
+        };
         S.speed = 2; play(); drawReplay();
       });
       function showOutcome() {
@@ -815,6 +831,17 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
           <p class="p8-dim">A / B / C are review labels, never automatic signals.</p>${btn('Next setup →', 'is-primary')}`;
         box.querySelector('.p8-after .p8-btn').addEventListener('click', next);
       });
+    },
+
+    pregrade(box, st, next) {
+      const g = S.rec.pregrade || (S.rec.pregrade = {});
+      box.innerHTML = `<div class="p8-kicker">BEFORE THE OUTCOME</div><h3 class="p8-h">${esc(st.title || 'Grade the setup now')}</h3>
+        <p class="p8-dim">This is your original grade. It gets compared with how you review the trade after the outcome.</p>
+        <div class="p8-gr"><div class="p8-gr-l">Setup validity</div>${chips('validity', VALIDITY, g.validity)}</div>
+        <div class="p8-gr"><div class="p8-gr-l">Setup quality</div>${chips('quality', QUALITY, g.quality)}</div>${btn('Record my grade', 'is-primary p8-rec')}`;
+      const b = box.querySelector('.p8-rec'); b.disabled = true;
+      bindChips(box, (k, v) => { g[k] = v; b.disabled = !(g.validity && g.quality); });
+      b.addEventListener('click', next);
     },
 
     assist(box, st, next) {
