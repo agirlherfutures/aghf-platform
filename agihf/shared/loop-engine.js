@@ -217,7 +217,7 @@ function videoEmbed(url) {
   return { kind: 'file' };
 }
 
-function videoPlayerHtml(url) {
+export function videoPlayerHtml(url) {
   const embed = videoEmbed(url);
   if (embed.kind === 'file') {
     return `<video class="dl-video" id="dlVideo" src="${url}" controls playsinline preload="metadata"></video>`;
@@ -227,8 +227,8 @@ function videoPlayerHtml(url) {
 
 // Returns { seek(seconds) }. For a hosted file the marker rail also follows
 // along, highlighting the chapter that's playing.
-function wireVideoPlayer(slide, url, markers) {
-  const el = slide.querySelector('#dlVideo');
+export function wireVideoPlayer(slide, url, markers, id = 'dlVideo') {
+  const el = slide.querySelector(`#${id}`);
   const embed = videoEmbed(url);
   const btns = [...slide.querySelectorAll('.dl-marker')];
   const times = markers.map((m) => markerSeconds(m.t));
