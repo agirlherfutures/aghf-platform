@@ -2748,6 +2748,260 @@
       return o;
     },
 
+    /* ════ Psychology 15 · Build Your Trading Rules ════════════════════ */
+
+    // A gallery: framed pictures of every lesson light up one by one. She walks past them.
+    'w15-museum': (s, t) => {
+      const B = s.b;
+      let o = wall('w15a', '#F3E7DD', '#EADFD8', 880, '#B78F72');
+      const icons = ['🏃', '🥊', '🔁', '😨', '🤑', '📉', '👑', '💥', '💸', '📊', '☀️'];
+      const pan = seg(t, B.t1, B.t11 + 2) * 1300;
+      icons.forEach((e, j) => { const x = 260 + j * 260 - pan, at = B['t' + (j + 1)], lit = t > at; if (x < -100 || x > 2020) return; o += `<rect x="${f1(x - 80)}" y="240" width="160" height="200" rx="6" fill="#C98A1F"/><rect x="${f1(x - 64)}" y="256" width="128" height="168" fill="${lit ? '#FFF8E6' : '#D9C3B0'}"/>${lit ? txt(x, 362, e, 70, C.dark) : ''}${lit ? `<path d="M${f1(x - 60)},140 L${f1(x + 60)},140 L${f1(x + 100)},260 L${f1(x - 100)},260 Z" fill="#FFF8E6" opacity=".18"/>` : ''}`; });
+      o += you(t, { x: 960, y: 1000, scale: 1.25, walking: t < B.recog, flip: false });
+      o += fade(seg(t, B.recog, B.recog + 0.5), thought(960, 560, 'that’s… me 😅', 1, { size: 42 }));
+      return o;
+    },
+
+    // She stares at her reflection with a "revenge trader" name tag. Okay… then what?
+    'w15-mirror': (s, t) => {
+      const B = s.b;
+      let o = wall('w15b', '#EEEBFB', '#E0DAF2', 900, '#B8B3C9');
+      o += `<ellipse cx="1220" cy="500" rx="240" ry="340" fill="#fff" stroke="#C9B8A8" stroke-width="18"/><ellipse cx="1220" cy="500" rx="215" ry="315" fill="#E6F5F2"/>`;
+      o += you(t, { x: 1220, y: 800, scale: 0.9, flip: true }) + you(t, { x: 640, y: 1000, scale: 1.25 });
+      o += fade(seg(t, B.know, B.know + 0.4), `<rect x="560" y="660" width="160" height="60" rx="10" fill="#fff" stroke="#E2556F" stroke-width="4"/>${txt(640, 700, 'REVENGE', 22, '#E2556F', { w: 900 })}`);
+      o += fade(seg(t, B.enough, B.enough + 0.4) * (1 - seg(t, B.next, B.next + 0.3)), pill(960, 150, 'recognizing isn’t enough', '#7F77DD', 1, 34));
+      o += thought(1000, 160, 'next loss… then what?', between(t, B.next, s.end), { size: 40 });
+      return o;
+    },
+
+    // An instruction manual with her name on the cover opens up.
+    'w15-manual': (s, t) => {
+      const B = s.b;
+      let o = grad('w15c', '#FFF4DE', '#FDF8F5') + bg('url(#w15c)');
+      const op = ease(seg(t, B.rules, B.rules + 1.4));
+      o += `<rect x="560" y="200" width="800" height="640" rx="16" fill="#7F77DD"/><rect x="580" y="220" width="${f1(380 * op)}" height="600" rx="10" fill="#FFF8E6"/><rect x="${f1(960 + 380 * (1 - op))}" y="220" width="${f1(380 * op)}" height="600" rx="10" fill="#FFF8E6"/><line x1="960" x2="960" y1="220" y2="820" stroke="#5A4C9A" stroke-width="8"/>`;
+      o += fade(1 - op, txt(960, 500, 'MY TRADING', 54, '#fff', { ls: 6 }) + txt(960, 580, 'RULES', 54, '#fff', { ls: 6 }));
+      if (op > 0.5) [0, 1, 2, 3, 4].forEach(j => { o += `<rect x="620" y="${300 + j * 90}" width="${f1(300 * seg(t, B.final + j * 0.6, B.final + j * 0.6 + 0.6))}" height="16" rx="8" fill="#CECBF6"/>`; });
+      o += fade(op, you(t, { x: 1150, y: 760, scale: 0.75, frontArm: { a1: -60, a2: -100 } }));
+      o += fade(seg(t, B.final + 2, B.final + 2.6), txt(960, 930, 'instructions for the trader you’re becoming', 44, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+      return o;
+    },
+
+    // Weather doesn't stop. She has an umbrella, sunglasses, a coat: tools for each feeling.
+    'w15-weather': (s, t) => {
+      const B = s.b;
+      let o = grad('w15d', '#CDEBF7', '#FDF8F5') + bg('url(#w15d)') + `<rect y="880" width="1920" height="200" fill="#B9DDB0"/>`;
+      const zones = [[400, '#9AA3B8', '😤'], [960, '#F9D89A', '🤩'], [1520, '#CFC8FA', '😨']];
+      zones.forEach(([x, col, e], j) => { o += fade(seg(t, B.notrid + j * 1, B.notrid + j * 1 + 0.5), cloud(x, 230, 0.8, col) + txt(x, 250, e, 60, C.dark)); });
+      o += rain(220, 360, 300, 880, t, 8, '#7F92B8');
+      o += you(t, { x: 960, y: 960, scale: 1.25 });
+      o += fade(seg(t, B.g1, B.g1 + 0.4) * (1 - seg(t, B.g2, B.g2 + 0.4)), pill(960, 500, 'feel nothing?', '#B8B3C9', 1, 34) + cross(1110, 480, pop(t, B.g1 + 1, 0.4), '#E2556F', 24));
+      o += fade(seg(t, B.g2, B.g2 + 0.5), [['☂️', 300], ['🕶️', 560], ['🧥', 1360], ['🧣', 1620]].map(([e, x], j) => scaleAt(x, 600, pop(t, B.g2 + 0.5 + j * 0.5, 0.4), `<circle cx="${x}" cy="600" r="70" fill="#fff"/>${txt(x, 625, e, 64, C.dark)}`)).join('') + pill(960, 760, 'know what you DO when they show up', '#2AA594', 1, 32));
+      return o;
+    },
+
+    // A sticky note "be disciplined" flutters off the monitor. What does that MEAN?
+    'w15-sticky': (s, t) => {
+      const B = s.b;
+      let o = wall('w15e', '#2A2142', '#3B2F55', 900, '#1E1730');
+      o += monitor(460, 200, 820, 460, candles(500, 260, 740, 360, vals(5, 18, 0.004, 0.05, 0.5), 18)) + desk(300, 900, 1300);
+      const fall = seg(t, B.mean + 0.5, B.mean + 2.5);
+      o += scaleAt(1180, 240, pop(t, B.just, 0.5), `<g transform="translate(0,${f1(fall * fall * 700)}) rotate(${f1(8 + fall * 90)} 1180 240)"><rect x="1040" y="170" width="280" height="140" fill="#FFF1A8"/>${txt(1180, 230, 'just be', 30, '#4A3A10', { w: 800 })}${txt(1180, 275, 'disciplined', 30, '#4A3A10', { w: 800 })}</g>`);
+      o += you(t, { x: 1560, y: 1080, scale: 1.3, flip: true, frontArm: t > B.mean ? { a1: -60, a2: -110 } : undefined, backArm: t > B.mean ? { a1: -120, a2: -70 } : undefined });
+      o += thought(1500, 300, '…meaning what?', between(t, B.mean + 0.3, s.end), { size: 40 });
+      return o;
+    },
+
+    // A wall of light switches: IF (situation) → flip → THEN (action) lights up.
+    'w15-switches': (s, t) => {
+      const B = s.b;
+      let o = grad('w15f', '#FDF8F5', '#F3E7DD') + bg('url(#w15f)');
+      o += fade(seg(t, B.beh, B.beh + 0.4), txt(960, 160, 'IF this happens → I do THIS', 56, C.dark, { f: 'Playfair Display', it: true }));
+      [['🛑 full stop', '🔄 reset'], ['🏃 missed entry', '🚫 don’t chase'], ['📉 daily limit', '🚪 done'], ['💚 green, want more', '📋 check stop rules'], ['😨 scared after loss', '🔍 judge this setup']].forEach(([a, b], j) => {
+        const y = 280 + j * 140, at = B.ifthis + 0.6 + j * 1.1, on = seg(t, at + 0.6, at + 0.8) > 0;
+        o += fade(seg(t, at, at + 0.4), `<rect x="200" y="${y - 50}" width="620" height="100" rx="50" fill="#fff"/>${txt(510, y + 12, a, 34, C.dark, { w: 800 })}<rect x="900" y="${y - 44}" width="60" height="88" rx="14" fill="#fff" stroke="#2C1810" stroke-width="4"/><rect x="914" y="${on ? y - 34 : y + 2}" width="32" height="32" rx="6" fill="#2C1810"/><rect x="1040" y="${y - 50}" width="680" height="100" rx="50" fill="${on ? '#2AA594' : '#E6DDD3'}"/>${txt(1380, y + 12, b, 34, on ? '#fff' : C.muted, { w: 800 })}`);
+      });
+      o += fade(seg(t, B.use, B.use + 0.5), pill(960, 1000, 'psychology you can actually use', '#7F77DD', 1, 32));
+      return o;
+    },
+
+    // Dayli confesses: four "I knew…" cards, each followed by "…did it anyway".
+    'w15-knew': (s, t) => {
+      const B = s.b;
+      let o = grad('w15g', '#F3E3D6', '#FBF4EF') + bg('url(#w15g)');
+      o += host(t, { x: 80, y: 340, w: 500, pose: t > B.k1 ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
+      o += fade(seg(t, B.learning, B.learning + 0.4), `<rect x="760" y="170" width="420" height="120" rx="24" fill="#2AA594"/>${txt(970, 250, 'KNOWING', 44, '#fff', { ls: 4 })}${txt(1290, 250, '≠', 60, C.dark)}<rect x="1400" y="170" width="420" height="120" rx="24" fill="#7F77DD"/>${txt(1610, 250, 'DOING', 44, '#fff', { ls: 4 })}`);
+      ['🔁', '➕', '🎚️', '🚪'].forEach((e, j) => { const at = B['k' + (j + 1)], x = 880 + (j % 2) * 560, y = 470 + Math.floor(j / 2) * 270; o += scaleAt(x + 120, y, pop(t, at, 0.4), `<rect x="${x - 100}" y="${y - 100}" width="440" height="200" rx="20" fill="#fff"/>${txt(x - 20, y + 24, e, 70, C.dark)}${txt(x + 190, y - 10, 'I knew', 30, '#2AA594', { w: 800 })}${txt(x + 190, y + 40, '…did it anyway', 26, '#E2556F', { w: 800, op: f1(seg(t, at + 0.8, at + 1.2)) })}`); });
+      return o;
+    },
+
+    // Guardrails on a winding mountain road. Her car bumps into them and stays on the road.
+    'w15-guardrails': (s, t) => {
+      const B = s.b;
+      let o = grad('w15h', '#CDEBF7', '#FDF8F5') + bg('url(#w15h)');
+      o += `<path d="M0,900 C400,860 600,640 960,640 S1500,500 1920,420 L1920,1080 L0,1080 Z" fill="#9C8CB8"/><path d="M0,900 C400,860 600,640 960,640 S1500,500 1920,420" fill="none" stroke="#E8D5C4" stroke-width="80"/>`;
+      const rails = seg(t, B.protect, B.protect + 1.5);
+      if (rails > 0) for (let x = 100; x < 1920 * rails; x += 120) { const y = x < 960 ? 900 - (x / 960) * 260 - 40 : 640 - (x - 960) * 0.23 - 40; o += `<rect x="${x}" y="${f1(y - 70)}" width="100" height="20" rx="6" fill="#2AA594"/><rect x="${x + 40}" y="${f1(y - 50)}" width="12" height="50" fill="#2AA594"/>`; }
+      const cx = 200 + seg(t, s.start, s.end) * 1400, cy = cx < 960 ? 900 - (cx / 960) * 260 : 640 - (cx - 960) * 0.23, wob = Math.sin(t * 5) * 10;
+      o += `<g transform="translate(${f1(cx)},${f1(cy - 40 + wob * 0.3)}) rotate(${f1(wob * 0.5)})"><rect x="-80" y="-50" width="160" height="70" rx="20" fill="#E2556F"/><circle cx="-50" cy="24" r="20" fill="#2C1810"/><circle cx="50" cy="24" r="20" fill="#2C1810"/></g>`;
+      ['😤', '🤩', '😨', '😎', '🌀'].forEach((e, j) => { o += txt(300 + j * 300, 200 + (j % 2) * 80, e, 60, C.dark, { op: f1(seg(t, B.protect + 2 + j * 0.8, B.protect + 2.4 + j * 0.8)) }); });
+      o += fade(seg(t, B.magic, B.magic + 0.4) * (1 - seg(t, B.protect, B.protect + 0.4)), txt(960, 300, '“just make the perfect decision every time”', 44, C.muted, { f: 'Playfair Display', it: true, w: 700 }) + cross(1460, 280, pop(t, B.magic + 2, 0.4), '#E2556F', 30));
+      return o;
+    },
+
+    // Calm-you at a sunny desk writes the rulebook, while a stormy trade waits in a window.
+    'w15-calm': (s, t) => {
+      const B = s.b;
+      let o = wall('w15i', '#FFE7C7', '#FDF8F5', 880, '#C98B6B');
+      o += windowBox(1340, 160, 440, 360, '#3A1420', rain(1340, 440, 160, 520, t, 10, '#9AA3B8') + candles(1380, 260, 360, 200, vals(8, 12, -0.01, 0.06, 0.6), 12));
+      o += fade(seg(t, B.outside, B.outside + 0.5), txt(1560, 580, 'the trade, later', 30, C.muted, { w: 800 }));
+      o += desk(300, 860, 900) + you(t, { x: 700, y: 1000, scale: 1.25, frontArm: { a1: 20, a2: -10 } });
+      o += `<rect x="780" y="740" width="260" height="120" rx="8" fill="#fff" stroke="#7F77DD" stroke-width="5"/>${[0, 1, 2].map(j => `<rect x="800" y="${764 + j * 30}" width="${f1(220 * seg(t, B.calm + 1 + j * 1.2, B.calm + 2 + j * 1.2))}" height="12" rx="6" fill="#7F77DD"/>`).join('')}`;
+      o += sun(300, 220, 70, t);
+      o += fade(seg(t, B.exactly, B.exactly + 0.4), pill(700, 520, 'calm you, writing the rules', '#2AA594', 1, 30));
+      return o;
+    },
+
+    // Pause button appears big on screen; journal and pen slide in.
+    'w15-pause': (s, t) => {
+      const B = s.b;
+      let o = grad('w15j', '#EEEBFB', '#FDF8F5') + bg('url(#w15j)');
+      o += scaleAt(560, 460, pop(t, B.grab, 0.6), `<circle cx="560" cy="460" r="170" fill="#2C1810"/><rect x="500" y="380" width="40" height="160" rx="10" fill="#fff"/><rect x="580" y="380" width="40" height="160" rx="10" fill="#fff"/>${txt(560, 720, 'pause the video', 40, C.dark, { f: 'Playfair Display', it: true, w: 700 })}`);
+      const k = ease(seg(t, B.grab + 1, B.grab + 2));
+      o += `<g transform="translate(${f1(lerp(2100, 1300, k))},460) rotate(-6)"><rect x="-200" y="-260" width="400" height="520" rx="16" fill="#7F77DD"/><rect x="-180" y="-240" width="360" height="480" rx="8" fill="#FFF8E6"/>${txt(0, -150, 'MY RULES', 40, '#7F77DD', { ls: 4 })}<rect x="140" y="-80" width="16" height="220" rx="6" fill="#E2B04A" transform="rotate(20 148 30)"/></g>`;
+      o += fade(seg(t, B.build, B.build + 0.5), txt(960, 940, 'let’s build them', 56, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Rule cards drop into her rulebook one by one (FOMO, after a loss, winning day, afraid).
+    'w15-cards': (s, t) => {
+      const B = s.b;
+      let o = wall('w15k', '#FDF8F5', '#F3E7DD', 880, '#D9C3B0');
+      o += `<rect x="1180" y="300" width="560" height="560" rx="16" fill="#7F77DD"/><rect x="1200" y="320" width="520" height="520" rx="10" fill="#FFF8E6"/>`;
+      const cards = [[B.r1, '🏃', 'missed entry → don’t chase', '#F4829A'], [B.r2, '🛑', 'after a loss → I ____', '#E2556F'], [B.r3, '👑', 'winning day → size stays', '#E2B04A'], [B.r4, '😨', 'afraid → check criteria', '#7F77DD']];
+      cards.forEach(([at, e, l, col], j) => {
+        const k = ease(seg(t, at, at + 1)), x = lerp(500, 1460, k), y = lerp(500, 400 + j * 110, k), sc = lerp(1.6, 1, k);
+        o += fade(seg(t, at - 0.2, at + 0.1), `<g transform="translate(${f1(x)},${f1(y)}) scale(${f1(sc)})"><rect x="-240" y="-44" width="480" height="88" rx="14" fill="#fff" stroke="${col}" stroke-width="5"/>${txt(-190, 14, e, 40, C.dark)}${txt(-140, 12, l, 24, C.dark, { a: 'start', w: 800 })}</g>`);
+      });
+      if (t > B.r2 && t < B.r3) ['10 min away', 'leave the chart', 'check if valid'].forEach((l, j) => { o += pill(500, 760 + j * 70, l, '#B8B3C9', pop(t, B.r2 + 1.5 + j * 0.4, 0.3), 26); });
+      o += you(t, { x: 300, y: 1000, scale: 1.1, frontArm: { a1: -30, a2: -40 } });
+      return o;
+    },
+
+    // More cards: in profit, daily stops, broke a rule, needing money. Book closes: emergency manual.
+    'w15-cards2': (s, t) => {
+      const B = s.b;
+      let o = wall('w15l', '#FDF8F5', '#F3E7DD', 880, '#D9C3B0');
+      const shut = ease(seg(t, B.r8 + 2, B.r8 + 3));
+      o += `<rect x="1180" y="300" width="560" height="560" rx="16" fill="#7F77DD"/><rect x="1200" y="320" width="${f1(520 * (1 - shut))}" height="520" rx="10" fill="#FFF8E6"/>`;
+      const cards = [[B.r5, '💰', 'in profit → manage by ____', '#2AA594'], [B.r6, '🚪', 'daily stops → trades · loss · mind', '#7F77DD'], [B.r7, '⚠️', 'broke a rule → I ____', '#E2556F'], [B.r8, '💸', 'need money ≠ a setup', '#E2B04A']];
+      if (shut < 0.5) cards.forEach(([at, e, l, col], j) => { const k = ease(seg(t, at, at + 1)), x = lerp(500, 1460, k), y = lerp(500, 400 + j * 110, k), sc = lerp(1.6, 1, k); o += fade(seg(t, at - 0.2, at + 0.1), `<g transform="translate(${f1(x)},${f1(y)}) scale(${f1(sc)})"><rect x="-240" y="-44" width="480" height="88" rx="14" fill="#fff" stroke="${col}" stroke-width="5"/>${txt(-190, 14, e, 40, C.dark)}${txt(-140, 12, l, 22, C.dark, { a: 'start', w: 800 })}</g>`); });
+      if (t > B.r5 && t < B.r6) ['partials', 'breakeven', 'base hits'].forEach((l, j) => { o += pill(500, 760 + j * 70, l, '#B8B3C9', pop(t, B.r5 + 1, 0.3), 26); });
+      o += fade(shut, `${txt(1460, 560, '🚨', 90, C.dark)}${txt(1460, 680, 'EMERGENCY', 36, '#fff', { ls: 4 })}${txt(1460, 730, 'MANUAL', 36, '#fff', { ls: 4 })}`);
+      o += you(t, { x: 300, y: 1000, scale: 1.1, frontArm: { a1: -30, a2: -40 } });
+      return o;
+    },
+
+    // The rule: feelings arrive as letters in an inbox; the DECIDE button is wired to the rulebook.
+    'w15-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('w15m', '#EEEBFB', '#DDF1EE') + bg('url(#w15m)');
+      o += txt(960, 110, '🧠 YOUR RULE', 30, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 210, pop(t, s.start + 0.4, 0.8), txt(960, 200, 'I don’t rely on how I feel to decide how I trade.', 50, C.dark, { f: 'Playfair Display' }) + txt(960, 265, 'I rely on the rules I created when I was thinking clearly.', 42, '#2AA594', { f: 'Playfair Display' }));
+      const fin = seg(t, B.line - 0.3, B.line + 0.3), a = 1 - fin;
+      o += fade(a, `<rect x="260" y="380" width="560" height="460" rx="24" fill="#fff"/>${txt(540, 440, '📥 feelings', 34, '#7F77DD', { w: 800 })}`);
+      [[B.e1, '😤 frustrated'], [B.e2, '😨 scared'], [B.e3, '😎 overconfident']].forEach(([at, l], j) => { const k = ease(seg(t, at, at + 0.5)); o += fade(a * k, envelope(400, 530 + j * 100 - (1 - k) * 60, 0.45) + txt(560, 545 + j * 100, l, 30, C.dark, { a: 'start', w: 800 })); });
+      const wired = seg(t, B.e4, B.e4 + 0.6);
+      o += fade(a, `<rect x="1120" y="500" width="520" height="220" rx="110" fill="${wired > 0.5 ? '#2C1810' : '#E2556F'}"/>${txt(1380, 630, 'DECIDE', 60, '#fff', { ls: 8 })}`);
+      o += fade(a * wired, `<path d="M1380,720 L1380,830" stroke="#2AA594" stroke-width="10"/><rect x="1300" y="830" width="160" height="80" rx="10" fill="#7F77DD"/>${txt(1380, 882, '📋', 40, '#fff')}`);
+      if (fin > 0) o += fade(fin, pill(960, 440, 'remember where we started', '#7F77DD', 1, 32) + txt(960, 600, 'my emotions are information,', 70, C.dark, { f: 'Playfair Display', it: true }) + txt(960, 710, 'not instructions.', 80, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Five glowing question cards on a nightstand: her psychology check-in.
+    'w15-checkin': (s, t) => {
+      const B = s.b;
+      let o = wall('w15n', '#1A1424', '#2A2142', 920, '#141026');
+      o += `<ellipse cx="960" cy="300" rx="600" ry="200" fill="#F9D89A" opacity=".08"/>`;
+      ['😤', '➡️', '⚡', '📋', '📈'].forEach((e, j) => { const x = 320 + j * 320, k = pop(t, B.five + 0.6 + j * 0.8, 0.5); o += scaleAt(x, 520, k, `<rect x="${x - 130}" y="380" width="260" height="300" rx="24" fill="#2A2142" stroke="#F9D89A" stroke-width="${j === 4 ? 8 : 3}"/><circle cx="${x}" cy="440" r="30" fill="#7F77DD"/>${txt(x, 452, String(j + 1), 30, '#fff')}${txt(x, 600, e, 80, '#fff')}`); });
+      o += fade(seg(t, B.five, B.five + 0.5), txt(960, 220, '✍🏽 five questions', 52, '#fff', { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.five + 5, B.five + 5.5), pill(1600, 760, 'how will I know I’m improving?', '#F9D89A', 1, 26, '#1A1424'));
+      return o;
+    },
+
+    // Growth: FOMO knocks; she waves it off and stays put. A sprout grows.
+    'w15-growth': (s, t) => {
+      const B = s.b;
+      let o = grad('w15o', '#E6F5F2', '#FDF8F5') + bg('url(#w15o)') + `<rect y="880" width="1920" height="200" fill="#B9DDB0"/>`;
+      o += fade(seg(t, B.notnever, B.notnever + 0.4) * (1 - seg(t, B.felt, B.felt + 0.4)), pill(960, 260, '“never feel FOMO again”', '#B8B3C9', 1, 36) + cross(1240, 240, pop(t, B.notnever + 2, 0.4), '#E2556F', 28));
+      const run = (t - B.felt) * 300;
+      if (t > B.felt) o += `<g transform="translate(${f1(1900 - (run % 2400))},560)"><rect x="-150" y="-100" width="300" height="200" rx="40" fill="#E2556F"/>${txt(0, 20, 'FOMO 🏃', 40, '#fff')}</g>`;
+      o += you(t, { x: 600, y: 960, scale: 1.25, frontArm: t > B.felt ? { a1: -40, a2: -60 } : undefined });
+      const g = ease(seg(t, B.growth, B.growth + 2));
+      if (t > B.growth) o += `<rect x="780" y="840" width="100" height="60" rx="10" fill="#C98B6B" opacity="${f1(seg(t, B.growth, B.growth + 0.4))}"/><path d="M830,840 L830,${f1(840 - 200 * g)}" stroke="#2AA594" stroke-width="10"/>${g > 0.5 ? `<ellipse cx="860" cy="${f1(840 - 150 * g)}" rx="${f1(40 * g)}" ry="${f1(18 * g)}" fill="#2AA594"/>` : ''}`;
+      o += fade(seg(t, B.growth, B.growth + 0.5), txt(960, 200, 'felt it. didn’t chase. that’s growth.', 52, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Two short comic strips of her own wins.
+    'w15-wins': (s, t) => {
+      const B = s.b;
+      let o = grad('w15p', '#FDF8F5', '#F3E7DD') + bg('url(#w15p)');
+      const strip = (y, at, panels, col) => panels.forEach(([e, l], j) => { const x = 280 + j * 340; o += fade(seg(t, at + j * 1.3, at + j * 1.3 + 0.4), `<rect x="${x - 150}" y="${y - 110}" width="300" height="220" rx="16" fill="#fff" stroke="${j === panels.length - 1 ? col : '#EADFD8'}" stroke-width="${j === panels.length - 1 ? 8 : 4}"/>${txt(x, y + 10, e, 70, C.dark)}${txt(x, y + 80, l, 24, C.muted, { w: 800 })}`); });
+      strip(320, B.w1, [['🛑', 'stopped out'], ['😤', 'frustrated'], ['🚶🏾‍♀️', 'stepped away'], ['🔍', 'setup there?'], ['✅', 'took it']], '#2AA594');
+      strip(700, B.w2, [['💰', 'up $500'], ['🔁', 'urge to keep going'], ['👀', 'noticed it'], ['💻', 'closed TradingView']], '#7F77DD');
+      o += fade(seg(t, B.dev, B.dev + 0.5), `<rect x="0" y="900" width="1920" height="140" fill="#FDF8F5" opacity=".95"/>${txt(960, 985, 'THAT is psychological development.', 54, C.dark, { f: 'Playfair Display', it: true })}`);
+      return o;
+    },
+
+    // "WAIT." stop signs pop up around her as she catches herself, then she holds up her rulebook.
+    'w15-wait': (s, t) => {
+      const B = s.b;
+      let o = grad('w15q', '#FFE7C7', '#FDF8F5') + bg('url(#w15q)') + `<rect y="880" width="1920" height="200" fill="#E8D5C4"/>`;
+      o += fade(seg(t, B.never, B.never + 0.4) * (1 - seg(t, B.recog, B.recog + 0.4)), ['😤', '🤩', '😨', '😔'].map((e, j) => txt(500 + j * 300, 260, e, 80, C.dark, { op: f1(0.5 + 0.5 * Math.sin(t * 3 + j)) })).join('') + txt(960, 400, 'you’ll still feel things', 50, C.dark, { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.sooner, B.sooner + 0.4) * (1 - seg(t, B.recog, B.recog + 0.4)), pill(960, 500, 'catch yourself sooner', '#2AA594', 1, 36));
+      [[B.w1, '🏃', 380, 240], [B.w2, '💸', 1540, 240], [B.w3, '🔁', 360, 560], [B.w4, '😨', 1560, 560], [B.w5, '😎', 960, 180]].forEach(([at, e, x, y]) => { o += scaleAt(x, y, pop(t, at, 0.5) * (1 - seg(t, B.trader, B.trader + 0.5) * 0.5), `<path d="M${x - 70},${y - 30} L${x - 30},${y - 70} L${x + 30},${y - 70} L${x + 70},${y - 30} L${x + 70},${y + 30} L${x + 30},${y + 70} L${x - 30},${y + 70} L${x - 70},${y + 30} Z" fill="#E2556F"/>${txt(x, y - 4, 'WAIT', 26, '#fff', { ls: 2 })}${txt(x, y + 40, e, 34, '#fff')}`); });
+      o += you(t, { x: 960, y: 980, scale: 1.3, frontArm: t > B.rule ? { a1: -100, a2: -60 } : undefined });
+      o += scaleAt(1180, 700, pop(t, B.rule, 0.6), `<rect x="1100" y="620" width="160" height="200" rx="12" fill="#7F77DD"/><rect x="1115" y="635" width="130" height="170" rx="8" fill="#FFF8E6"/>${txt(1180, 730, 'RULE', 30, '#7F77DD', { ls: 4 })}`);
+      return o;
+    },
+
+    // A mirror again, this time with the whole map around her reflection: structure, liquidity… and herself.
+    'w15-self': (s, t) => {
+      const B = s.b;
+      let o = wall('w15r', '#EEEBFB', '#E0DAF2', 900, '#B8B3C9');
+      ['structure', 'liquidity', 'HTF', 'ICC'].forEach((l, j) => { o += pill(360 + j * 400, 150, l, '#B8B3C9', pop(t, B.skills + 1 + j * 0.8, 0.4), 30); });
+      o += fade(seg(t, B.yourself, B.yourself + 0.5), `<ellipse cx="960" cy="560" rx="190" ry="270" fill="#fff" stroke="#C9B8A8" stroke-width="16"/><ellipse cx="960" cy="560" rx="170" ry="250" fill="#E6F5F2"/>` + you(t, { x: 960, y: 780, scale: 0.75 }));
+      [[B.q1, '🎯'], [B.q2, '⌛'], [B.q3, '🛑'], [B.q4, '📉'], [B.q5, '📈'], [B.q6, '🩹'], [B.q7, '📋']].forEach(([at, e], j) => { const ang = -Math.PI * 0.95 + j * (Math.PI * 1.9 / 6), x = 960 + Math.cos(ang) * 470, y = 560 + Math.sin(ang) * 300; o += scaleAt(x, y, pop(t, at, 0.4), `<circle cx="${f1(x)}" cy="${f1(y)}" r="62" fill="${j === 6 ? '#2AA594' : '#fff'}" stroke="#7F77DD" stroke-width="5"/>${txt(x, y + 22, e, 54, C.dark)}`); });
+      return o;
+    },
+
+    // Training wheels off: no one beside her. Four pillars under her feet; she rides.
+    'w15-solo': (s, t) => {
+      const B = s.b;
+      let o = grad('w15s', '#CDEBF7', '#FDF8F5') + bg('url(#w15s)') + `<rect y="820" width="1920" height="260" fill="#B9DDB0"/><rect y="860" width="1920" height="60" fill="#E8D5C4"/>`;
+      const empty = seg(t, B.beside, B.beside + 1);
+      o += fade(1 - empty, you(t, { x: 300, y: 880, scale: 0.9, flip: true }));
+      [[B.p1, '📋', '#7F77DD'], [B.p2, '🧠', '#2AA594'], [B.p3, '🧪', '#E2B04A'], [B.p4, '🛡️', '#F4829A']].forEach(([at, e, col], j) => { o += scaleAt(560 + j * 260, 320, pop(t, at, 0.5), `<rect x="${500 + j * 260}" y="240" width="120" height="160" rx="16" fill="${col}"/>${txt(560 + j * 260, 345, e, 60, '#fff')}`); });
+      const ride = seg(t, B.exec, s.end), x = 600 + ride * 900;
+      o += `<g transform="translate(${f1(x)},0)"><circle cx="-90" cy="850" r="60" fill="none" stroke="#2C1810" stroke-width="10"/><circle cx="110" cy="850" r="60" fill="none" stroke="#2C1810" stroke-width="10"/><path d="M-90,850 L0,780 L110,850 M0,780 L60,720" stroke="#E2556F" stroke-width="12" fill="none"/></g>`;
+      o += you(t, { x: x + 10, y: 860, scale: 0.8, frontArm: { a1: -20, a2: 0 } });
+      o += fade(seg(t, B.exec, B.exec + 0.5), txt(960, 160, 'now your job is to execute it', 52, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // The last frame: sunrise. "You need to become a self-aware one."
+    'w15-end': (s, t) => {
+      const B = s.b;
+      const k = seg(t, s.start, s.end);
+      let o = grad('w15t', '#FDE8ED', '#FFE7C7') + bg('url(#w15t)') + `<rect y="820" width="1920" height="260" fill="#B9DDB0"/>`;
+      o += `<circle cx="960" cy="${f1(820 - 240 * ease(k))}" r="200" fill="#F9D89A" opacity=".9"/>`;
+      o += you(t, { x: 960, y: 900, scale: 1.2 });
+      o += fade(seg(t, B.last + 0.3, B.last + 0.9), txt(960, 160, 'You don’t need to become an emotionless trader.', 52, C.muted, { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.last + 3.5, B.last + 4.1), txt(960, 260, 'You need to become a self-aware one.', 68, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
     /*@@W@@*/
   };
 

@@ -4,7 +4,7 @@
 window.LESSON_VIDEO = {
   "slug": "p7-psych-15",
   "eyebrow": "Phase 7 · Psychology 15",
-  "duration": 389.55,
+  "duration": 404.85,
   "sources": "Creator script: Psychology 15, Build Your Trading Rules (spoken lines only; coaching notes left out).",
   "scenes": [
     {
@@ -18,9 +18,9 @@ window.LESSON_VIDEO = {
       "lines": []
     },
     {
-      "type": "v15-recap",
+      "type": "w15-museum",
       "start": 5.8,
-      "end": 61.64,
+      "end": 30.86,
       "at": [
         6.0,
         9.88,
@@ -34,14 +34,7 @@ window.LESSON_VIDEO = {
         17.98,
         20.01,
         20.93,
-        22.99,
-        29.96,
-        31.99,
-        34.39,
-        37.53,
-        38.75,
-        47.94,
-        51.08
+        22.99
       ],
       "b": {
         "lot": 6.0,
@@ -56,14 +49,7 @@ window.LESSON_VIDEO = {
         "t9": 17.98,
         "t10": 20.01,
         "t11": 20.93,
-        "recog": 22.99,
-        "thing": 29.96,
-        "enough": 31.99,
-        "know": 34.39,
-        "okay": 37.53,
-        "next": 38.75,
-        "rules": 47.94,
-        "final": 51.08
+        "recog": 22.99
       },
       "lines": [
         {
@@ -117,525 +103,682 @@ window.LESSON_VIDEO = {
         {
           "at": 22.99,
           "text": "And at this point, you probably recognize yourself in at least a few of these lessons."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w15-mirror",
+      "start": 30.66,
+      "end": 50.04,
+      "at": [
+        30.86,
+        32.89,
+        35.29,
+        38.43,
+        39.75
+      ],
+      "b": {
+        "thing": 30.86,
+        "enough": 32.89,
+        "know": 35.29,
+        "okay": 38.43,
+        "next": 39.75
+      },
+      "lines": [
         {
-          "at": 29.96,
+          "at": 30.86,
           "text": "But here's the thing:"
         },
         {
-          "at": 31.99,
+          "at": 32.89,
           "text": "Recognizing your problem isn't enough."
         },
         {
-          "at": 34.39,
+          "at": 35.29,
           "text": "You can know, ‘Yeah, I revenge trade.’"
         },
         {
-          "at": 37.53,
+          "at": 38.43,
           "text": "Okay."
         },
         {
-          "at": 38.75,
+          "at": 39.75,
           "text": "What are you going to do the next time you take a loss and feel the urge to make your money back?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w15-manual",
+      "start": 49.84,
+      "end": 64.04,
+      "at": [
+        50.04,
+        53.18
+      ],
+      "b": {
+        "rules": 50.04,
+        "final": 53.18
+      },
+      "lines": [
         {
-          "at": 47.94,
+          "at": 50.04,
           "text": "That's where your trading rules come in."
         },
         {
-          "at": 51.08,
+          "at": 53.18,
           "text": "This final lesson is about taking everything you've learned about yourself and turning it into instructions for the trader you're trying to become."
         }
       ]
     },
     {
-      "type": "v15-ifthen",
-      "start": 61.44,
-      "end": 103.33,
+      "type": "w15-weather",
+      "start": 63.84,
+      "end": 83.98,
       "at": [
-        61.64,
-        70.24,
-        74.12,
-        79.98,
-        83.12,
-        85.52,
-        88.52,
-        90.18,
-        97.95
+        64.04,
+        73.14,
+        77.02
       ],
       "b": {
-        "notrid": 61.64,
-        "g1": 70.24,
-        "g2": 74.12,
-        "plan": 79.98,
-        "just": 83.12,
-        "mean": 85.52,
-        "beh": 88.52,
-        "ifthis": 90.18,
-        "use": 97.95
+        "notrid": 64.04,
+        "g1": 73.14,
+        "g2": 77.02
       },
       "lines": [
         {
-          "at": 61.64,
+          "at": 64.04,
           "text": "Throughout this section, you've probably noticed that psychology isn't really about getting rid of emotions."
         },
         {
-          "at": 70.24,
+          "at": 73.14,
           "text": "The goal isn't to become somebody who feels nothing."
         },
         {
-          "at": 74.12,
+          "at": 77.02,
           "text": "The goal is to know what you do when those feelings show up."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w15-sticky",
+      "start": 83.78,
+      "end": 93.92,
+      "at": [
+        83.98,
+        87.12,
+        89.92
+      ],
+      "b": {
+        "plan": 83.98,
+        "just": 87.12,
+        "mean": 89.92
+      },
+      "lines": [
         {
-          "at": 79.98,
+          "at": 83.98,
           "text": "Because if my entire psychology plan is:"
         },
         {
-          "at": 83.12,
+          "at": 87.12,
           "text": "‘Dayli, just be disciplined today.’"
         },
         {
-          "at": 85.52,
+          "at": 89.92,
           "text": "What does that actually mean?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w15-switches",
+      "start": 93.72,
+      "end": 109.83,
+      "at": [
+        93.92,
+        95.58,
+        104.35
+      ],
+      "b": {
+        "beh": 93.92,
+        "ifthis": 95.58,
+        "use": 104.35
+      },
+      "lines": [
         {
-          "at": 88.52,
+          "at": 93.92,
           "text": "I need behaviors."
         },
         {
-          "at": 90.18,
+          "at": 95.58,
           "text": "If this happens, I do this."
         },
         {
-          "at": 97.95,
+          "at": 104.35,
           "text": "That's how psychology becomes something you can actually use."
         }
       ]
     },
     {
-      "type": "v15-protect",
-      "start": 103.13,
-      "end": 162.81,
+      "type": "w15-knew",
+      "start": 109.63,
+      "end": 134.36,
       "at": [
-        103.33,
-        112.79,
-        117.41,
-        119.81,
-        123.69,
-        126.86,
-        134.44,
-        145.58,
-        149.46,
-        152.23
+        109.83,
+        119.29,
+        123.91,
+        126.31,
+        130.19
       ],
       "b": {
-        "learning": 103.33,
-        "k1": 112.79,
-        "k2": 117.41,
-        "k3": 119.81,
-        "k4": 123.69,
-        "magic": 126.86,
-        "protect": 134.44,
-        "calm": 145.58,
-        "exactly": 149.46,
-        "outside": 152.23
+        "learning": 109.83,
+        "k1": 119.29,
+        "k2": 123.91,
+        "k3": 126.31,
+        "k4": 130.19
       },
       "lines": [
         {
-          "at": 103.33,
+          "at": 109.83,
           "text": "One of the biggest things I'm learning in my own trading is that knowing better doesn't automatically mean I'm going to do better."
         },
         {
-          "at": 112.79,
+          "at": 119.29,
           "text": "I've known I shouldn't take another trade and taken it anyway."
         },
         {
-          "at": 117.41,
+          "at": 123.91,
           "text": "I've known I was overtrading."
         },
         {
-          "at": 119.81,
+          "at": 126.31,
           "text": "I've known my risk was getting out of control."
         },
         {
-          "at": 123.69,
+          "at": 130.19,
           "text": "I've known I should've been done."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w15-guardrails",
+      "start": 134.16,
+      "end": 154.48,
+      "at": [
+        134.36,
+        142.34
+      ],
+      "b": {
+        "magic": 134.36,
+        "protect": 142.34
+      },
+      "lines": [
         {
-          "at": 126.86,
+          "at": 134.36,
           "text": "That's why I'm trying to move away from relying on myself to magically make the perfect decision every time."
         },
         {
-          "at": 134.44,
+          "at": 142.34,
           "text": "I want rules that protect me from the version of myself that shows up when I'm frustrated, excited, scared, overly confident, or just doing too damn much."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w15-calm",
+      "start": 154.28,
+      "end": 170.81,
+      "at": [
+        154.48,
+        158.36,
+        161.13
+      ],
+      "b": {
+        "calm": 154.48,
+        "exactly": 158.36,
+        "outside": 161.13
+      },
+      "lines": [
         {
-          "at": 145.58,
+          "at": 154.48,
           "text": "We talked about letting calm-you make decisions for emotional-you."
         },
         {
-          "at": 149.46,
+          "at": 158.36,
           "text": "That's exactly what your rules are."
         },
         {
-          "at": 152.23,
+          "at": 161.13,
           "text": "You're sitting here right now, outside of the trade, deciding how you're going to respond when those moments happen."
         }
       ]
     },
     {
-      "type": "v15-build",
-      "start": 162.61,
-      "end": 219.21,
+      "type": "w15-pause",
+      "start": 170.61,
+      "end": 180.0,
       "at": [
-        162.81,
-        167.43,
-        170.8,
-        178.98,
-        183.75,
-        190.08,
-        197.89,
-        202.29,
-        207.69,
-        210.98
+        170.81,
+        175.43
       ],
       "b": {
-        "grab": 162.81,
-        "build": 167.43,
-        "r1": 170.8,
-        "r2": 178.98,
-        "r3": 183.75,
-        "r4": 190.08,
-        "r5": 197.89,
-        "r6": 202.29,
-        "r7": 207.69,
-        "r8": 210.98
+        "grab": 170.81,
+        "build": 175.43
       },
       "lines": [
         {
-          "at": 162.81,
+          "at": 170.81,
           "text": "Grab your journal, notes app, whatever you're using for this University."
         },
         {
-          "at": 167.43,
+          "at": 175.43,
           "text": "We're going to build your rules."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w15-cards",
+      "start": 179.8,
+      "end": 207.69,
+      "at": [
+        180.0,
+        188.18,
+        192.95,
+        199.28
+      ],
+      "b": {
+        "r1": 180.0,
+        "r2": 188.18,
+        "r3": 192.95,
+        "r4": 199.28
+      },
+      "lines": [
         {
-          "at": 170.8,
+          "at": 180.0,
           "text": "If I miss my planned entry, I do not chase the original trade. I wait for another valid setup."
         },
         {
-          "at": 178.98,
+          "at": 188.18,
           "text": "I ______ before evaluating another trade."
         },
         {
-          "at": 183.75,
+          "at": 192.95,
           "text": "I do not increase my size unless my predefined scaling rules tell me to."
         },
         {
-          "at": 190.08,
+          "at": 199.28,
           "text": "I check my criteria and my risk instead of asking myself whether I think the trade will win."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w15-cards2",
+      "start": 207.49,
+      "end": 228.61,
+      "at": [
+        207.69,
+        212.09,
+        217.49,
+        220.78
+      ],
+      "b": {
+        "r5": 207.69,
+        "r6": 212.09,
+        "r7": 217.49,
+        "r8": 220.78
+      },
+      "lines": [
         {
-          "at": 197.89,
+          "at": 207.69,
           "text": "I manage according to ______."
         },
         {
-          "at": 202.29,
+          "at": 212.09,
           "text": "My daily stopping conditions are…"
         },
         {
-          "at": 207.69,
+          "at": 217.49,
           "text": "I ______."
         },
         {
-          "at": 210.98,
+          "at": 220.78,
           "text": "I remind myself that my financial needs do not determine whether a setup exists."
         }
       ]
     },
     {
-      "type": "v15-rule",
-      "start": 219.01,
-      "end": 243.26,
+      "type": "w15-rule",
+      "start": 228.41,
+      "end": 252.56,
       "at": [
-        219.21,
-        221.98,
-        224.75,
-        227.52,
-        231.03,
-        235.51
+        228.61,
+        231.38,
+        234.15,
+        236.92,
+        240.43,
+        245.11
       ],
       "b": {
-        "e0": 219.21,
-        "e1": 221.98,
-        "e2": 224.75,
-        "e3": 227.52,
-        "e4": 231.03,
-        "line": 235.51
+        "e0": 228.61,
+        "e1": 231.38,
+        "e2": 234.15,
+        "e3": 236.92,
+        "e4": 240.43,
+        "line": 245.11
       },
       "lines": [
         {
-          "at": 219.21,
+          "at": 228.61,
           "text": "My emotions can tell me something."
         },
         {
-          "at": 221.98,
+          "at": 231.38,
           "text": "They can tell me I'm frustrated."
         },
         {
-          "at": 224.75,
+          "at": 234.15,
           "text": "They can tell me I'm scared."
         },
         {
-          "at": 227.52,
+          "at": 236.92,
           "text": "They can tell me I'm getting overly confident."
         },
         {
-          "at": 231.03,
+          "at": 240.43,
           "text": "But they don't automatically get to make the decision."
         },
         {
-          "at": 235.51,
+          "at": 245.11,
           "text": "Remember where we started: my emotions are information, not instructions."
         }
       ]
     },
     {
-      "type": "v15-checkin",
-      "start": 243.06,
-      "end": 281.95,
+      "type": "w15-checkin",
+      "start": 252.36,
+      "end": 263.15,
       "at": [
-        243.26,
-        252.75,
-        257.03,
-        260.91,
-        262.7,
-        271.39,
-        277.62
+        252.56
       ],
       "b": {
-        "five": 243.26,
-        "notnever": 252.75,
-        "felt": 257.03,
-        "growth": 260.91,
-        "w1": 262.7,
-        "w2": 271.39,
-        "dev": 277.62
+        "five": 252.56
       },
       "lines": [
         {
-          "at": 243.26,
+          "at": 252.56,
           "text": "Before you finish this section, I want you to answer five things."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w15-growth",
+      "start": 262.95,
+      "end": 274.0,
+      "at": [
+        263.15,
+        267.43,
+        271.31
+      ],
+      "b": {
+        "notnever": 263.15,
+        "felt": 267.43,
+        "growth": 271.31
+      },
+      "lines": [
         {
-          "at": 252.75,
+          "at": 263.15,
           "text": "Because improvement isn't necessarily: ‘I never feel FOMO again.’"
         },
         {
-          "at": 257.03,
+          "at": 267.43,
           "text": "Maybe improvement is: ‘I felt FOMO and didn't chase.’"
         },
         {
-          "at": 260.91,
+          "at": 271.31,
           "text": "That's growth."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w15-wins",
+      "start": 273.8,
+      "end": 293.05,
+      "at": [
+        274.0,
+        283.09,
+        289.42
+      ],
+      "b": {
+        "w1": 274.0,
+        "w2": 283.09,
+        "dev": 289.42
+      },
+      "lines": [
         {
-          "at": 262.7,
+          "at": 274.0,
           "text": "I got frustrated after my stop loss, stepped away, came back, and only took the next trade because my setup was there."
         },
         {
-          "at": 271.39,
+          "at": 283.09,
           "text": "I was up $500, felt myself wanting to overtrade, recognized it, and closed TradingView."
         },
         {
-          "at": 277.62,
+          "at": 289.42,
           "text": "THAT is psychological development."
         }
       ]
     },
     {
-      "type": "v15-close",
-      "start": 281.75,
-      "end": 389.05,
+      "type": "w15-wait",
+      "start": 292.85,
+      "end": 338.92,
       "at": [
-        281.95,
-        287.31,
-        292.67,
-        297.32,
-        301.57,
-        302.86,
-        304.52,
-        308.03,
-        309.69,
-        313.2,
-        317.11,
-        320.25,
-        322.78,
-        326.52,
-        336.32,
-        340.6,
-        342.63,
-        345.03,
-        347.43,
-        349.83,
-        352.23,
-        354.26,
-        359.38,
-        366.59,
-        368.62,
-        370.28,
-        371.94,
-        374.34,
-        378.45
+        293.05,
+        298.41,
+        303.77,
+        308.62,
+        312.87,
+        314.16,
+        315.82,
+        319.33,
+        320.99,
+        324.5,
+        328.61,
+        331.75,
+        334.38
       ],
       "b": {
-        "take": 281.95,
-        "never": 287.31,
-        "human": 292.67,
-        "sooner": 297.32,
-        "recog": 301.57,
-        "w1": 302.86,
-        "w2": 304.52,
-        "w3": 308.03,
-        "w4": 309.69,
-        "w5": 313.2,
-        "instead": 317.11,
-        "rule": 320.25,
-        "trader": 322.78,
-        "skills": 326.52,
-        "yourself": 336.32,
-        "q1": 340.6,
-        "q2": 342.63,
-        "q3": 345.03,
-        "q4": 347.43,
-        "q5": 349.83,
-        "q6": 352.23,
-        "q7": 354.26,
-        "beside": 359.38,
-        "p1": 366.59,
-        "p2": 368.62,
-        "p3": 370.28,
-        "p4": 371.94,
-        "exec": 374.34,
-        "last": 378.45
+        "take": 293.05,
+        "never": 298.41,
+        "human": 303.77,
+        "sooner": 308.62,
+        "recog": 312.87,
+        "w1": 314.16,
+        "w2": 315.82,
+        "w3": 319.33,
+        "w4": 320.99,
+        "w5": 324.5,
+        "instead": 328.61,
+        "rule": 331.75,
+        "trader": 334.38
       },
       "lines": [
         {
-          "at": 281.95,
+          "at": 293.05,
           "text": "And that's what I want you to take away from this entire section."
         },
         {
-          "at": 287.31,
+          "at": 298.41,
           "text": "Becoming a better trader doesn't mean you're never going to get emotional again."
         },
         {
-          "at": 292.67,
+          "at": 303.77,
           "text": "You're human. You're trading money. You're going to feel things."
         },
         {
-          "at": 297.32,
+          "at": 308.62,
           "text": "The difference is that eventually, you start catching yourself sooner."
         },
         {
-          "at": 301.57,
+          "at": 312.87,
           "text": "You recognize:"
         },
         {
-          "at": 302.86,
+          "at": 314.16,
           "text": "Wait. I'm chasing."
         },
         {
-          "at": 304.52,
+          "at": 315.82,
           "text": "Wait. I'm trying to make my money back."
         },
         {
-          "at": 308.03,
+          "at": 319.33,
           "text": "Wait. I'm overtrading."
         },
         {
-          "at": 309.69,
+          "at": 320.99,
           "text": "Wait. I'm scared because my last trade lost."
         },
         {
-          "at": 313.2,
+          "at": 324.5,
           "text": "Wait. I'm getting overconfident because I've been winning."
         },
         {
-          "at": 317.11,
+          "at": 328.61,
           "text": "And instead of automatically acting on it…"
         },
         {
-          "at": 320.25,
+          "at": 331.75,
           "text": "you have a rule."
         },
         {
-          "at": 322.78,
+          "at": 334.38,
           "text": "That's the trader we're trying to build."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w15-self",
+      "start": 338.72,
+      "end": 372.68,
+      "at": [
+        338.92,
+        348.72,
+        353.0,
+        355.03,
+        357.43,
+        359.83,
+        362.23,
+        364.63,
+        366.66
+      ],
+      "b": {
+        "skills": 338.92,
+        "yourself": 348.72,
+        "q1": 353.0,
+        "q2": 355.03,
+        "q3": 357.43,
+        "q4": 359.83,
+        "q5": 362.23,
+        "q6": 364.63,
+        "q7": 366.66
+      },
+      "lines": [
         {
-          "at": 326.52,
+          "at": 338.92,
           "text": "Because I don't want you to leave AGHF University just knowing how to identify structure, mark liquidity, do higher-timeframe analysis, or find an ICC setup."
         },
         {
-          "at": 336.32,
+          "at": 348.72,
           "text": "I want you to understand yourself as a trader."
         },
         {
-          "at": 340.6,
+          "at": 353.0,
           "text": "What do you trade?"
         },
         {
-          "at": 342.63,
+          "at": 355.03,
           "text": "What are you waiting for?"
         },
         {
-          "at": 345.03,
+          "at": 357.43,
           "text": "How do you manage risk?"
         },
         {
-          "at": 347.43,
+          "at": 359.83,
           "text": "What happens when you lose?"
         },
         {
-          "at": 349.83,
+          "at": 362.23,
           "text": "What happens when you win?"
         },
         {
-          "at": 352.23,
+          "at": 364.63,
           "text": "What are your weaknesses?"
         },
         {
-          "at": 354.26,
+          "at": 366.66,
           "text": "And what rules keep you grounded when those weaknesses show up?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w15-solo",
+      "start": 372.48,
+      "end": 392.75,
+      "at": [
+        372.68,
+        379.89,
+        381.92,
+        383.58,
+        385.24,
+        387.64
+      ],
+      "b": {
+        "beside": 372.68,
+        "p1": 379.89,
+        "p2": 381.92,
+        "p3": 383.58,
+        "p4": 385.24,
+        "exec": 387.64
+      },
+      "lines": [
         {
-          "at": 359.38,
+          "at": 372.68,
           "text": "Because eventually, the goal is that you don't need somebody sitting beside you telling you what to do."
         },
         {
-          "at": 366.59,
+          "at": 379.89,
           "text": "You have a process."
         },
         {
-          "at": 368.62,
+          "at": 381.92,
           "text": "You understand it."
         },
         {
-          "at": 370.28,
+          "at": 383.58,
           "text": "You've tested it."
         },
         {
-          "at": 371.94,
+          "at": 385.24,
           "text": "You've built rules around it."
         },
         {
-          "at": 374.34,
+          "at": 387.64,
           "text": "And now your job is to execute it."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w15-end",
+      "start": 392.55,
+      "end": 404.35,
+      "at": [
+        392.75
+      ],
+      "b": {
+        "last": 392.75
+      },
+      "lines": [
         {
-          "at": 378.45,
+          "at": 392.75,
           "text": "You don't need to become an emotionless trader. You need to become a self-aware one."
         }
       ]

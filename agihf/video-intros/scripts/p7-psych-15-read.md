@@ -31,6 +31,8 @@ Your trading routine.
 
 And at this point, you probably recognize yourself in at least a few of these lessons.
 
+## 2
+
 But here's the thing:
 
 Recognizing your problem isn't enough.
@@ -41,11 +43,13 @@ Okay.
 
 What are you going to do the next time you take a loss and feel the urge to make your money back?
 
+## 3
+
 That's where your trading rules come in.
 
 This final lesson is about taking everything you've learned about yourself and turning it into instructions for the trader you're trying to become.
 
-## 2
+## 4
 
 Throughout this section, you've probably noticed that psychology isn't really about getting rid of emotions.
 
@@ -53,11 +57,15 @@ The goal isn't to become somebody who feels nothing.
 
 The goal is to know what you do when those feelings show up.
 
+## 5
+
 Because if my entire psychology plan is:
 
 ‘Dayli, just be disciplined today.’
 
 What does that actually mean?
+
+## 6
 
 I need behaviors.
 
@@ -65,7 +73,7 @@ If this happens, I do this.
 
 That's how psychology becomes something you can actually use.
 
-## 3
+## 7
 
 One of the biggest things I'm learning in my own trading is that knowing better doesn't automatically mean I'm going to do better.
 
@@ -77,9 +85,13 @@ I've known my risk was getting out of control.
 
 I've known I should've been done.
 
+## 8
+
 That's why I'm trying to move away from relying on myself to magically make the perfect decision every time.
 
 I want rules that protect me from the version of myself that shows up when I'm frustrated, excited, scared, overly confident, or just doing too damn much.
+
+## 9
 
 We talked about letting calm-you make decisions for emotional-you.
 
@@ -87,11 +99,13 @@ That's exactly what your rules are.
 
 You're sitting here right now, outside of the trade, deciding how you're going to respond when those moments happen.
 
-## 4
+## 10
 
 Grab your journal, notes app, whatever you're using for this University.
 
 We're going to build your rules.
+
+## 11
 
 If I miss my planned entry, I do not chase the original trade. I wait for another valid setup.
 
@@ -101,6 +115,8 @@ I do not increase my size unless my predefined scaling rules tell me to.
 
 I check my criteria and my risk instead of asking myself whether I think the trade will win.
 
+## 12
+
 I manage according to ______.
 
 My daily stopping conditions are…
@@ -109,7 +125,7 @@ I ______.
 
 I remind myself that my financial needs do not determine whether a setup exists.
 
-## 5
+## 13
 
 My emotions can tell me something.
 
@@ -123,9 +139,11 @@ But they don't automatically get to make the decision.
 
 Remember where we started: my emotions are information, not instructions.
 
-## 6
+## 14
 
 Before you finish this section, I want you to answer five things.
+
+## 15
 
 Because improvement isn't necessarily: ‘I never feel FOMO again.’
 
@@ -133,13 +151,15 @@ Maybe improvement is: ‘I felt FOMO and didn't chase.’
 
 That's growth.
 
+## 16
+
 I got frustrated after my stop loss, stepped away, came back, and only took the next trade because my setup was there.
 
 I was up $500, felt myself wanting to overtrade, recognized it, and closed TradingView.
 
 THAT is psychological development.
 
-## 7
+## 17
 
 And that's what I want you to take away from this entire section.
 
@@ -167,6 +187,8 @@ you have a rule.
 
 That's the trader we're trying to build.
 
+## 18
+
 Because I don't want you to leave AGHF University just knowing how to identify structure, mark liquidity, do higher-timeframe analysis, or find an ICC setup.
 
 I want you to understand yourself as a trader.
@@ -185,6 +207,8 @@ What are your weaknesses?
 
 And what rules keep you grounded when those weaknesses show up?
 
+## 19
+
 Because eventually, the goal is that you don't need somebody sitting beside you telling you what to do.
 
 You have a process.
@@ -196,5 +220,7 @@ You've tested it.
 You've built rules around it.
 
 And now your job is to execute it.
+
+## 20
 
 You don't need to become an emotionless trader. You need to become a self-aware one.
