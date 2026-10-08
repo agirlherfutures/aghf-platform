@@ -1,1359 +1,856 @@
 {
- "phase": "p7",
- "section": "s20",
- "lessonNumber": 24,
- "title": "Clean Market: Participate",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "When everything lines up, you’re allowed to act.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Recognize a clean, readable environment and participate without second-guessing it.",
-  "missionQuestion": "Can I explain what matters here without forcing it?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "Clean Market: Participate",
-   "title": "10:06",
-   "beats": [
+  "phase": "p7",
+  "section": "s20",
+  "lessonNumber": 24,
+  "title": "Clean Market: Participate",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "When everything lines up, you’re allowed to act.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Recognize a clean, readable environment and participate without second-guessing it.",
+    "missionQuestion": "Can I explain what matters here without forcing it?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "chart": {
-      "swings": [
-       [
-        20,
-        290
-       ],
-       [
-        90,
-        220
-       ],
-       [
-        130,
-        250
-       ],
-       [
-        220,
-        160
-       ],
-       [
-        260,
-        195
-       ],
-       [
-        350,
-        110
-       ],
-       [
-        390,
-        145
-       ],
-       [
-        480,
-        60
-       ],
-       [
-        520,
-        90
-       ],
-       [
-        600,
-        40
-       ]
-      ],
-      "seed": 21,
-      "head": {
-       "tf": "4H",
-       "label": "Clear story"
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 24",
+      "headline": "Clean market? <em>Participate.</em>",
+      "line": "Being selective doesn’t mean skipping the good ones.",
+      "pose": "point",
+      "cta": "Show me →"
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "10:06",
+      "headline": "Explain it in <em>one breath.</em>",
+      "line": "4H clear. 1H progressing. Room above. Clean means understandable, not flawless.",
+      "chart": {
+        "swings": [
+          [
+            20,
+            290
+          ],
+          [
+            90,
+            220
+          ],
+          [
+            130,
+            250
+          ],
+          [
+            220,
+            160
+          ],
+          [
+            260,
+            195
+          ],
+          [
+            350,
+            110
+          ],
+          [
+            390,
+            145
+          ],
+          [
+            480,
+            60
+          ],
+          [
+            520,
+            90
+          ],
+          [
+            600,
+            40
+          ]
+        ],
+        "seed": 21,
+        "head": {
+          "tf": "4H",
+          "label": "Clear story"
+        }
       }
-     }
     },
     {
-     "say": [
-      "4H: clear. 1H: progressing. Nothing on the calendar. Room to the objective.",
-      "You can explain this chart in one breath."
-     ]
-    },
-    {
-     "chart": {
-      "bars": [
-       {
-        "o": 20982.25,
-        "h": 20986.5,
-        "l": 20981.25,
-        "c": 20985.5
-       },
-       {
-        "o": 20985.5,
-        "h": 20990.75,
-        "l": 20984.25,
-        "c": 20990.25
-       },
-       {
-        "o": 20990.25,
-        "h": 20996.0,
-        "l": 20989.25,
-        "c": 20995.0
-       },
-       {
-        "o": 20995.0,
-        "h": 20998.75,
-        "l": 20994.75,
-        "c": 20998.25
-       },
-       {
-        "o": 20998.25,
-        "h": 21004.25,
-        "l": 20997.25,
-        "c": 21001.75
-       },
-       {
-        "o": 21001.75,
-        "h": 21003.0,
-        "l": 20997.5,
-        "c": 20998.0
-       },
-       {
-        "o": 20998.0,
-        "h": 20998.25,
-        "l": 20994.25,
-        "c": 20995.75
-       },
-       {
-        "o": 20995.75,
-        "h": 20997.0,
-        "l": 20993.5,
-        "c": 20994.5
-       },
-       {
-        "o": 20994.5,
-        "h": 20994.75,
-        "l": 20990.5,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20995.0,
-        "l": 20989.75,
-        "c": 20994.5
-       },
-       {
-        "o": 20994.5,
-        "h": 20998.0,
-        "l": 20993.25,
-        "c": 20997.5
-       },
-       {
-        "o": 20997.5,
-        "h": 21001.75,
-        "l": 20996.0,
-        "c": 21001.25
-       },
-       {
-        "o": 21001.25,
-        "h": 21007.75,
-        "l": 21001.25,
-        "c": 21007.0
-       },
-       {
-        "o": 21007.0,
-        "h": 21007.0,
-        "l": 21001.25,
-        "c": 21002.0
-       },
-       {
-        "o": 21002.0,
-        "h": 21007.75,
-        "l": 21002.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21011.5,
-        "l": 21006.0,
-        "c": 21011.0
-       },
-       {
-        "o": 21011.0,
-        "h": 21013.5,
-        "l": 21009.75,
-        "c": 21012.0
-       },
-       {
-        "o": 21012.0,
-        "h": 21017.5,
-        "l": 21011.0,
-        "c": 21016.25
-       },
-       {
-        "o": 21016.25,
-        "h": 21019.5,
-        "l": 21015.75,
-        "c": 21018.25
-       },
-       {
-        "o": 21018.25,
-        "h": 21019.5,
-        "l": 21014.0,
-        "c": 21014.5
-       },
-       {
-        "o": 21014.5,
-        "h": 21015.75,
-        "l": 21011.25,
-        "c": 21012.0
-       },
-       {
-        "o": 21012.0,
-        "h": 21012.75,
-        "l": 21006.5,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21008.0,
-        "l": 21003.75,
-        "c": 21005.75
-       },
-       {
-        "o": 21005.75,
-        "h": 21008.0,
-        "l": 21005.5,
-        "c": 21007.75
-       },
-       {
-        "o": 21007.75,
-        "h": 21012.25,
-        "l": 21007.0,
-        "c": 21010.75
-       },
-       {
-        "o": 21010.75,
-        "h": 21013.0,
-        "l": 21009.75,
-        "c": 21012.25
-       },
-       {
-        "o": 21012.25,
-        "h": 21018.0,
-        "l": 21012.0,
-        "c": 21017.5
-       },
-       {
-        "o": 21017.5,
-        "h": 21022.0,
-        "l": 21017.0,
-        "c": 21021.5
-       },
-       {
-        "o": 21021.5,
-        "h": 21025.5,
-        "l": 21020.25,
-        "c": 21024.75
-       },
-       {
-        "o": 21024.75,
-        "h": 21028.75,
-        "l": 21023.25,
-        "c": 21028.25
-       },
-       {
-        "o": 21028.25,
-        "h": 21033.25,
-        "l": 21026.75,
-        "c": 21032.25
-       },
-       {
-        "o": 21032.25,
-        "h": 21039.25,
-        "l": 21031.0,
-        "c": 21037.75
-       },
-       {
-        "o": 21037.75,
-        "h": 21041.75,
-        "l": 21036.75,
-        "c": 21040.5
-       },
-       {
-        "o": 21040.5,
-        "h": 21047.0,
-        "l": 21040.0,
-        "c": 21046.25
-       },
-       {
-        "o": 21046.25,
-        "h": 21053.25,
-        "l": 21044.75,
-        "c": 21052.25
-       },
-       {
-        "o": 21052.25,
-        "h": 21059.0,
-        "l": 21051.25,
-        "c": 21057.5
-       },
-       {
-        "o": 21057.5,
-        "h": 21063.5,
-        "l": 21057.0,
-        "c": 21062.5
-       },
-       {
-        "o": 21062.5,
-        "h": 21068.75,
-        "l": 21061.75,
-        "c": 21067.25
-       }
-      ],
-      "pil": 21004.25,
-      "pilAt": 4,
-      "head": {
-       "tf": "1M",
-       "label": "10:06"
-      },
-      "play": {
-       "from": 10,
-       "to": 23,
-       "speed": 300
-      }
-     }
-    },
-    {
-     "say": [
-      "And now your setup, complete."
-     ]
-    },
-    {
-     "thoughts": [
-      "“It looks too easy.”",
-      "“What’s the catch?”"
-     ]
-    },
-    {
-     "choice": {
-      "prompt": "What do you do?",
-      "options": [
-       {
-        "label": "Take it",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+      "type": "v2_moment",
+      "kicker": "Your setup",
+      "headline": "Complete. <em>Almost too easy.</em>",
+      "line": "Indication. Correction. Continuation. Retest. All closed.",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
             "h": 20986.5,
             "l": 20981.25,
             "c": 20985.5
-           },
-           {
+          },
+          {
             "o": 20985.5,
             "h": 20990.75,
             "l": 20984.25,
             "c": 20990.25
-           },
-           {
+          },
+          {
             "o": 20990.25,
             "h": 20996.0,
             "l": 20989.25,
             "c": 20995.0
-           },
-           {
+          },
+          {
             "o": 20995.0,
             "h": 20998.75,
             "l": 20994.75,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.25,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21003.0,
             "l": 20997.5,
             "c": 20998.0
-           },
-           {
+          },
+          {
             "o": 20998.0,
             "h": 20998.25,
             "l": 20994.25,
             "c": 20995.75
-           },
-           {
+          },
+          {
             "o": 20995.75,
             "h": 20997.0,
             "l": 20993.5,
             "c": 20994.5
-           },
-           {
+          },
+          {
             "o": 20994.5,
             "h": 20994.75,
             "l": 20990.5,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20995.0,
             "l": 20989.75,
             "c": 20994.5
-           },
-           {
+          },
+          {
             "o": 20994.5,
             "h": 20998.0,
             "l": 20993.25,
             "c": 20997.5
-           },
-           {
+          },
+          {
             "o": 20997.5,
             "h": 21001.75,
             "l": 20996.0,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21007.0,
             "l": 21001.25,
             "c": 21002.0
-           },
-           {
+          },
+          {
             "o": 21002.0,
             "h": 21007.75,
             "l": 21002.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21011.5,
             "l": 21006.0,
             "c": 21011.0
-           },
-           {
+          },
+          {
             "o": 21011.0,
             "h": 21013.5,
             "l": 21009.75,
             "c": 21012.0
-           },
-           {
+          },
+          {
             "o": 21012.0,
             "h": 21017.5,
             "l": 21011.0,
             "c": 21016.25
-           },
-           {
+          },
+          {
             "o": 21016.25,
             "h": 21019.5,
             "l": 21015.75,
             "c": 21018.25
-           },
-           {
+          },
+          {
             "o": 21018.25,
             "h": 21019.5,
             "l": 21014.0,
             "c": 21014.5
-           },
-           {
+          },
+          {
             "o": 21014.5,
             "h": 21015.75,
             "l": 21011.25,
             "c": 21012.0
-           },
-           {
+          },
+          {
             "o": 21012.0,
             "h": 21012.75,
             "l": 21006.5,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21008.0,
             "l": 21003.75,
             "c": 21005.75
-           },
-           {
+          },
+          {
             "o": 21005.75,
             "h": 21008.0,
             "l": 21005.5,
             "c": 21007.75
-           },
-           {
+          },
+          {
             "o": 21007.75,
             "h": 21012.25,
             "l": 21007.0,
             "c": 21010.75
-           },
-           {
+          },
+          {
             "o": 21010.75,
             "h": 21013.0,
             "l": 21009.75,
             "c": 21012.25
-           },
-           {
+          },
+          {
             "o": 21012.25,
             "h": 21018.0,
             "l": 21012.0,
             "c": 21017.5
-           },
-           {
+          },
+          {
             "o": 21017.5,
             "h": 21022.0,
             "l": 21017.0,
             "c": 21021.5
-           },
-           {
+          },
+          {
             "o": 21021.5,
             "h": 21025.5,
             "l": 21020.25,
             "c": 21024.75
-           },
-           {
+          },
+          {
             "o": 21024.75,
             "h": 21028.75,
             "l": 21023.25,
             "c": 21028.25
-           },
-           {
+          },
+          {
             "o": 21028.25,
             "h": 21033.25,
             "l": 21026.75,
             "c": 21032.25
-           },
-           {
+          },
+          {
             "o": 21032.25,
             "h": 21039.25,
             "l": 21031.0,
             "c": 21037.75
-           },
-           {
+          },
+          {
             "o": 21037.75,
             "h": 21041.75,
             "l": 21036.75,
             "c": 21040.5
-           },
-           {
+          },
+          {
             "o": 21040.5,
             "h": 21047.0,
             "l": 21040.0,
             "c": 21046.25
-           },
-           {
+          },
+          {
             "o": 21046.25,
             "h": 21053.25,
             "l": 21044.75,
             "c": 21052.25
-           },
-           {
+          },
+          {
             "o": 21052.25,
             "h": 21059.0,
             "l": 21051.25,
             "c": 21057.5
-           },
-           {
+          },
+          {
             "o": 21057.5,
             "h": 21063.5,
             "l": 21057.0,
             "c": 21062.5
-           },
-           {
+          },
+          {
             "o": 21062.5,
             "h": 21068.75,
             "l": 21061.75,
             "c": 21067.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "head": {
-           "tf": "1M",
-           "label": "You participated"
-          },
-          "play": {
-           "from": 23,
-           "to": 38,
-           "speed": 300
           }
-         },
-         "say": [
-          "It worked this time. Some clean setups lose.",
-          "<b>Participating here was the process either way.</b>"
-         ]
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "head": {
+          "tf": "1M",
+          "label": "10:06"
         },
-        "track": "ruleBasedResponses"
-       },
-       {
-        "label": "Skip it. It feels too easy.",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+        "play": {
+          "from": 10,
+          "to": 23,
+          "speed": 300
+        }
+      },
+      "thoughts": [
+        "“It looks too easy.”",
+        "“What’s the catch?”"
+      ],
+      "check": {
+        "prompt": "What do you do?",
+        "options": [
+          {
+            "label": "Take it",
+            "correct": true,
+            "feedback": "Process, either way. It worked this time; some clean setups lose.",
+            "track": "ruleBasedResponses"
+          },
+          {
+            "label": "Skip it. Too easy.",
+            "correct": false,
+            "feedback": "When every layer clears, passing is hesitation in a selective outfit.",
+            "track": "hesitationCount"
+          }
+        ]
+      }
+    },
+    {
+      "type": "p7_participation",
+      "kicker": "The AGHF Participation Check",
+      "title": "Setup B",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
             "h": 20986.5,
-            "l": 20981.25,
+            "l": 20981.5,
             "c": 20985.5
-           },
-           {
+          },
+          {
             "o": 20985.5,
-            "h": 20990.75,
-            "l": 20984.25,
-            "c": 20990.25
-           },
-           {
-            "o": 20990.25,
-            "h": 20996.0,
-            "l": 20989.25,
-            "c": 20995.0
-           },
-           {
-            "o": 20995.0,
+            "h": 20991.5,
+            "l": 20985.25,
+            "c": 20990.5
+          },
+          {
+            "o": 20990.5,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20993.0
+          },
+          {
+            "o": 20993.0,
             "h": 20998.75,
-            "l": 20994.75,
+            "l": 20991.5,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
-            "l": 20997.25,
+            "l": 20997.0,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
-            "h": 21003.0,
-            "l": 20997.5,
-            "c": 20998.0
-           },
-           {
-            "o": 20998.0,
-            "h": 20998.25,
+            "h": 21002.75,
+            "l": 20998.5,
+            "c": 20999.0
+          },
+          {
+            "o": 20999.0,
+            "h": 21000.25,
+            "l": 20995.75,
+            "c": 20996.75
+          },
+          {
+            "o": 20996.75,
+            "h": 20997.75,
             "l": 20994.25,
-            "c": 20995.75
-           },
-           {
-            "o": 20995.75,
-            "h": 20997.0,
-            "l": 20993.5,
             "c": 20994.5
-           },
-           {
+          },
+          {
             "o": 20994.5,
-            "h": 20994.75,
-            "l": 20990.5,
+            "h": 20995.75,
+            "l": 20990.25,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
-            "h": 20995.0,
-            "l": 20989.75,
-            "c": 20994.5
-           },
-           {
-            "o": 20994.5,
-            "h": 20998.0,
-            "l": 20993.25,
-            "c": 20997.5
-           },
-           {
-            "o": 20997.5,
-            "h": 21001.75,
-            "l": 20996.0,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20994.0
+          },
+          {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20992.75,
+            "c": 20997.75
+          },
+          {
+            "o": 20997.75,
+            "h": 21002.5,
+            "l": 20996.25,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21007.0,
             "l": 21001.25,
             "c": 21002.0
-           },
-           {
+          },
+          {
             "o": 21002.0,
-            "h": 21007.75,
+            "h": 21008.5,
             "l": 21002.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
-            "h": 21011.5,
-            "l": 21006.0,
-            "c": 21011.0
-           },
-           {
-            "o": 21011.0,
-            "h": 21013.5,
-            "l": 21009.75,
+            "h": 21012.5,
+            "l": 21005.75,
             "c": 21012.0
-           },
-           {
+          },
+          {
             "o": 21012.0,
-            "h": 21017.5,
-            "l": 21011.0,
-            "c": 21016.25
-           },
-           {
-            "o": 21016.25,
             "h": 21019.5,
-            "l": 21015.75,
-            "c": 21018.25
-           },
-           {
-            "o": 21018.25,
-            "h": 21019.5,
-            "l": 21014.0,
-            "c": 21014.5
-           },
-           {
-            "o": 21014.5,
-            "h": 21015.75,
             "l": 21011.25,
-            "c": 21012.0
-           },
-           {
-            "o": 21012.0,
-            "h": 21012.75,
-            "l": 21006.5,
+            "c": 21018.5
+          },
+          {
+            "o": 21018.5,
+            "h": 21025.25,
+            "l": 21017.75,
+            "c": 21024.5
+          },
+          {
+            "o": 21024.5,
+            "h": 21031.25,
+            "l": 21023.5,
+            "c": 21030.25
+          },
+          {
+            "o": 21030.25,
+            "h": 21031.25,
+            "l": 21022.0,
+            "c": 21023.5
+          },
+          {
+            "o": 21023.5,
+            "h": 21025.0,
+            "l": 21014.75,
+            "c": 21015.75
+          },
+          {
+            "o": 21015.75,
+            "h": 21016.25,
+            "l": 21006.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
-            "h": 21008.0,
+            "h": 21008.75,
             "l": 21003.75,
             "c": 21005.75
-           },
-           {
-            "o": 21005.75,
-            "h": 21008.0,
-            "l": 21005.5,
-            "c": 21007.75
-           },
-           {
-            "o": 21007.75,
-            "h": 21012.25,
-            "l": 21007.0,
-            "c": 21010.75
-           },
-           {
-            "o": 21010.75,
-            "h": 21013.0,
-            "l": 21009.75,
-            "c": 21012.25
-           },
-           {
-            "o": 21012.25,
-            "h": 21018.0,
-            "l": 21012.0,
-            "c": 21017.5
-           },
-           {
-            "o": 21017.5,
-            "h": 21022.0,
-            "l": 21017.0,
-            "c": 21021.5
-           },
-           {
-            "o": 21021.5,
-            "h": 21025.5,
-            "l": 21020.25,
-            "c": 21024.75
-           },
-           {
-            "o": 21024.75,
-            "h": 21028.75,
-            "l": 21023.25,
-            "c": 21028.25
-           },
-           {
-            "o": 21028.25,
-            "h": 21033.25,
-            "l": 21026.75,
-            "c": 21032.25
-           },
-           {
-            "o": 21032.25,
-            "h": 21039.25,
-            "l": 21031.0,
-            "c": 21037.75
-           },
-           {
-            "o": 21037.75,
-            "h": 21041.75,
-            "l": 21036.75,
-            "c": 21040.5
-           },
-           {
-            "o": 21040.5,
-            "h": 21047.0,
-            "l": 21040.0,
-            "c": 21046.25
-           },
-           {
-            "o": 21046.25,
-            "h": 21053.25,
-            "l": 21044.75,
-            "c": 21052.25
-           },
-           {
-            "o": 21052.25,
-            "h": 21059.0,
-            "l": 21051.25,
-            "c": 21057.5
-           },
-           {
-            "o": 21057.5,
-            "h": 21063.5,
-            "l": 21057.0,
-            "c": 21062.5
-           },
-           {
-            "o": 21062.5,
-            "h": 21068.75,
-            "l": 21061.75,
-            "c": 21067.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "head": {
-           "tf": "1M",
-           "label": "Without you"
           },
-          "play": {
-           "from": 23,
-           "to": 38,
-           "speed": 300
+          {
+            "o": 21005.75,
+            "h": 21007.75,
+            "l": 21005.25,
+            "c": 21006.5
+          },
+          {
+            "o": 21006.5,
+            "h": 21009.0,
+            "l": 21006.0,
+            "c": 21008.0
+          },
+          {
+            "o": 21008.0,
+            "h": 21009.25,
+            "l": 21005.0,
+            "c": 21006.5
+          },
+          {
+            "o": 21006.5,
+            "h": 21008.5,
+            "l": 21005.75,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21006.0,
+            "c": 21008.25
+          },
+          {
+            "o": 21008.25,
+            "h": 21010.75,
+            "l": 21007.25,
+            "c": 21010.5
+          },
+          {
+            "o": 21010.5,
+            "h": 21011.75,
+            "l": 21008.5,
+            "c": 21009.25
+          },
+          {
+            "o": 21009.25,
+            "h": 21013.5,
+            "l": 21008.25,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21013.5,
+            "l": 21011.75,
+            "c": 21012.75
+          },
+          {
+            "o": 21012.75,
+            "h": 21013.75,
+            "l": 21012.0,
+            "c": 21012.25
           }
-         },
-         "say": [
-          "Selectivity isn’t skipping the good ones.",
-          "When every layer clears, <b>passing is hesitation wearing a selective outfit.</b>"
-         ]
-        },
-        "track": "hesitationCount"
-       }
-      ]
-     }
-    },
-    {
-     "principle": "CLEAN MEANS UNDERSTANDABLE. NOT FLAWLESS. AND NOT GUARANTEED."
-    }
-   ]
-  },
-  {
-   "type": "p7_participation",
-   "kicker": "The AGHF Participation Check",
-   "title": "Setup B",
-   "chart": {
-    "bars": [
-     {
-      "o": 20982.25,
-      "h": 20986.5,
-      "l": 20981.5,
-      "c": 20985.5
-     },
-     {
-      "o": 20985.5,
-      "h": 20991.5,
-      "l": 20985.25,
-      "c": 20990.5
-     },
-     {
-      "o": 20990.5,
-      "h": 20994.25,
-      "l": 20990.0,
-      "c": 20993.0
-     },
-     {
-      "o": 20993.0,
-      "h": 20998.75,
-      "l": 20991.5,
-      "c": 20998.25
-     },
-     {
-      "o": 20998.25,
-      "h": 21004.25,
-      "l": 20997.0,
-      "c": 21001.75
-     },
-     {
-      "o": 21001.75,
-      "h": 21002.75,
-      "l": 20998.5,
-      "c": 20999.0
-     },
-     {
-      "o": 20999.0,
-      "h": 21000.25,
-      "l": 20995.75,
-      "c": 20996.75
-     },
-     {
-      "o": 20996.75,
-      "h": 20997.75,
-      "l": 20994.25,
-      "c": 20994.5
-     },
-     {
-      "o": 20994.5,
-      "h": 20995.75,
-      "l": 20990.25,
-      "c": 20991.25
-     },
-     {
-      "o": 20991.25,
-      "h": 20994.25,
-      "l": 20990.0,
-      "c": 20994.0
-     },
-     {
-      "o": 20994.0,
-      "h": 20999.0,
-      "l": 20992.75,
-      "c": 20997.75
-     },
-     {
-      "o": 20997.75,
-      "h": 21002.5,
-      "l": 20996.25,
-      "c": 21001.25
-     },
-     {
-      "o": 21001.25,
-      "h": 21007.75,
-      "l": 21001.25,
-      "c": 21007.0
-     },
-     {
-      "o": 21007.0,
-      "h": 21007.0,
-      "l": 21001.25,
-      "c": 21002.0
-     },
-     {
-      "o": 21002.0,
-      "h": 21008.5,
-      "l": 21002.0,
-      "c": 21007.25
-     },
-     {
-      "o": 21007.25,
-      "h": 21012.5,
-      "l": 21005.75,
-      "c": 21012.0
-     },
-     {
-      "o": 21012.0,
-      "h": 21019.5,
-      "l": 21011.25,
-      "c": 21018.5
-     },
-     {
-      "o": 21018.5,
-      "h": 21025.25,
-      "l": 21017.75,
-      "c": 21024.5
-     },
-     {
-      "o": 21024.5,
-      "h": 21031.25,
-      "l": 21023.5,
-      "c": 21030.25
-     },
-     {
-      "o": 21030.25,
-      "h": 21031.25,
-      "l": 21022.0,
-      "c": 21023.5
-     },
-     {
-      "o": 21023.5,
-      "h": 21025.0,
-      "l": 21014.75,
-      "c": 21015.75
-     },
-     {
-      "o": 21015.75,
-      "h": 21016.25,
-      "l": 21006.0,
-      "c": 21007.25
-     },
-     {
-      "o": 21007.25,
-      "h": 21008.75,
-      "l": 21003.75,
-      "c": 21005.75
-     },
-     {
-      "o": 21005.75,
-      "h": 21007.75,
-      "l": 21005.25,
-      "c": 21006.5
-     },
-     {
-      "o": 21006.5,
-      "h": 21009.0,
-      "l": 21006.0,
-      "c": 21008.0
-     },
-     {
-      "o": 21008.0,
-      "h": 21009.25,
-      "l": 21005.0,
-      "c": 21006.5
-     },
-     {
-      "o": 21006.5,
-      "h": 21008.5,
-      "l": 21005.75,
-      "c": 21007.25
-     },
-     {
-      "o": 21007.25,
-      "h": 21008.75,
-      "l": 21006.0,
-      "c": 21008.25
-     },
-     {
-      "o": 21008.25,
-      "h": 21010.75,
-      "l": 21007.25,
-      "c": 21010.5
-     },
-     {
-      "o": 21010.5,
-      "h": 21011.75,
-      "l": 21008.5,
-      "c": 21009.25
-     },
-     {
-      "o": 21009.25,
-      "h": 21013.5,
-      "l": 21008.25,
-      "c": 21012.0
-     },
-     {
-      "o": 21012.0,
-      "h": 21013.5,
-      "l": 21011.75,
-      "c": 21012.75
-     },
-     {
-      "o": 21012.75,
-      "h": 21013.75,
-      "l": 21012.0,
-      "c": 21012.25
-     }
-    ],
-    "pil": 21004.25,
-    "pilAt": 4,
-    "show": 23,
-    "head": {
-     "tf": "1M",
-     "label": "Setup B"
-    }
-   },
-   "facts": [
-    [
-     "4H",
-     "Clear bullish story"
-    ],
-    [
-     "1H",
-     "Readable progression"
-    ],
-    [
-     "Objective",
-     "Plenty of room"
-    ],
-    [
-     "Calendar",
-     "Nothing scheduled"
-    ],
-    [
-     "Clock",
-     "10:06 · in window"
-    ]
-   ],
-   "steps": [
-    {
-     "key": "trader",
-     "ask": {
-      "prompt": "TRADER?",
-      "options": [
-       {
-        "label": "Calm. No personal stop triggered.",
-        "correct": true,
-        "short": "CLEARED"
-       }
-      ]
-     }
-    },
-    {
-     "key": "rulebook",
-     "ask": {
-      "prompt": "RULEBOOK: first trade, in your window, nothing scheduled, risk within plan.",
-      "options": [
-       {
-        "label": "ALLOWED",
-        "correct": true
-       },
-       {
-        "label": "BLOCKED",
-        "feedback": "Which rule would block it?"
-       }
-      ],
-      "ecat": "pass"
-     }
-    },
-    {
-     "key": "environment",
-     "ask": {
-      "prompt": "ENVIRONMENT: clear 4H, readable 1H, room to the objective.",
-      "options": [
-       {
-        "label": "SUPPORTIVE",
-        "correct": true
-       },
-       {
-        "label": "POORLY DEFINED",
-        "feedback": "Everything here is readable."
-       }
-      ]
-     }
-    },
-    {
-     "key": "setup",
-     "ask": {
-      "prompt": "SETUP: the same closed sequence.",
-      "options": [
-       {
-        "label": "VALID",
-        "correct": true
-       },
-       {
-        "label": "INVALID",
-        "feedback": "Same sequence as Setup A."
-       }
-      ]
-     }
-    }
-   ],
-   "decision": {
-    "correct": "TAKE",
-    "options": [
-     "TAKE",
-     "WAIT",
-     "PASS"
-    ],
-    "ecat": "pass",
-    "why": "TAKE can be an appropriate process decision. Still not a guaranteed win.",
-    "feedback": {
-     "PASS": "Every layer cleared. Passing here isn’t selectivity, it’s hesitation.",
-     "WAIT": "What are you waiting for? The retest printed."
-    }
-   },
-   "whys": [
-    "ICC valid, HTF clear, within rules, room available",
-    "Technically valid, but the news rule blocks entry",
-    "Structure too unclear for my consolidation rule"
-   ],
-   "whyCorrect": 0,
-   "punch": "A process decision. Not a guaranteed win."
-  },
-  {
-   "type": "p7_snapshot",
-   "kicker": "Environment Snapshot",
-   "title": "Describe it. Don’t score it.",
-   "charts": [
-    {
-     "label": "4H",
-     "chart": {
-      "swings": [
-       [
-        20,
-        290
-       ],
-       [
-        90,
-        220
-       ],
-       [
-        130,
-        250
-       ],
-       [
-        220,
-        160
-       ],
-       [
-        260,
-        195
-       ],
-       [
-        350,
-        110
-       ],
-       [
-        390,
-        145
-       ],
-       [
-        480,
-        60
-       ],
-       [
-        520,
-        90
-       ],
-       [
-        600,
-        40
-       ]
-      ],
-      "seed": 21
-     }
-    },
-    {
-     "label": "1H",
-     "chart": {
-      "swings": [
-       [
-        20,
-        270
-       ],
-       [
-        110,
-        200
-       ],
-       [
-        160,
-        235
-       ],
-       [
-        250,
-        150
-       ],
-       [
-        290,
-        190
-       ],
-       [
-        380,
-        105
-       ],
-       [
-        440,
-        140
-       ],
-       [
-        530,
-        70
-       ],
-       [
-        600,
-        85
-       ]
-      ],
-      "seed": 27
-     }
-    }
-   ],
-   "facts": [
-    [
-     "Volatility",
-     "Typical for your tested plan"
-    ],
-    [
-     "Calendar",
-     "Nothing scheduled in your window"
-    ],
-    [
-     "Clock",
-     "9:58 · your window 9:45–11:00"
-    ],
-    [
-     "Objective",
-     "4H high, well above"
-    ],
-    [
-     "1M",
-     "Indication closed. Correction not yet."
-    ]
-   ],
-   "expect": {
-    "htfClarity": "CLEAR",
-    "oneHourStructure": "PROGRESSING",
-    "volatilityState": "NORMAL FOR PLAN",
-    "newsContext": "CLEAR",
-    "sessionContext": "IN MY WINDOW",
-    "roomToObjective": "AVAILABLE",
-    "setupCleanliness": "DEVELOPING"
-   },
-   "ecat": {
-    "htfClarity": "clarity",
-    "oneHourStructure": "trendRange",
-    "volatilityState": "volatility",
-    "newsContext": "news",
-    "sessionContext": "session",
-    "roomToObjective": "room"
-   },
-   "why": {
-    "setupCleanliness": "Indication only. It’s still developing.",
-    "roomToObjective": "The 4H high is well above.",
-    "volatilityState": "Typical for your plan."
-   },
-   "asks": [
-    {
-     "prompt": "Supportive environment, ICC still developing. Entry?",
-     "options": [
-      {
-       "label": "Yes, the environment is great",
-       "feedback": "The environment can’t create an entry."
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "show": 23,
+        "head": {
+          "tf": "1M",
+          "label": "Setup B"
+        }
       },
-      {
-       "label": "WAIT",
-       "correct": true,
-       "why": "ENVIRONMENT CANNOT CREATE AN ENTRY. The model still has to complete."
-      }
-     ],
-     "ecat": "pass"
+      "facts": [
+        [
+          "4H",
+          "Clear bullish story"
+        ],
+        [
+          "1H",
+          "Readable progression"
+        ],
+        [
+          "Objective",
+          "Plenty of room"
+        ],
+        [
+          "Calendar",
+          "Nothing scheduled"
+        ],
+        [
+          "Clock",
+          "10:06 · in window"
+        ]
+      ],
+      "steps": [
+        {
+          "key": "trader",
+          "ask": {
+            "prompt": "TRADER?",
+            "options": [
+              {
+                "label": "Calm. No personal stop triggered.",
+                "correct": true,
+                "short": "CLEARED"
+              }
+            ]
+          }
+        },
+        {
+          "key": "rulebook",
+          "ask": {
+            "prompt": "RULEBOOK: first trade, in your window, nothing scheduled, risk within plan.",
+            "options": [
+              {
+                "label": "ALLOWED",
+                "correct": true
+              },
+              {
+                "label": "BLOCKED",
+                "feedback": "Which rule would block it?"
+              }
+            ],
+            "ecat": "pass"
+          }
+        },
+        {
+          "key": "environment",
+          "ask": {
+            "prompt": "ENVIRONMENT: clear 4H, readable 1H, room to the objective.",
+            "options": [
+              {
+                "label": "SUPPORTIVE",
+                "correct": true
+              },
+              {
+                "label": "POORLY DEFINED",
+                "feedback": "Everything here is readable."
+              }
+            ]
+          }
+        },
+        {
+          "key": "setup",
+          "ask": {
+            "prompt": "SETUP: the same closed sequence.",
+            "options": [
+              {
+                "label": "VALID",
+                "correct": true
+              },
+              {
+                "label": "INVALID",
+                "feedback": "Same sequence as Setup A."
+              }
+            ]
+          }
+        }
+      ],
+      "decision": {
+        "correct": "TAKE",
+        "options": [
+          "TAKE",
+          "WAIT",
+          "PASS"
+        ],
+        "ecat": "pass",
+        "why": "TAKE can be an appropriate process decision. Still not a guaranteed win.",
+        "feedback": {
+          "PASS": "Every layer cleared. Passing here isn’t selectivity, it’s hesitation.",
+          "WAIT": "What are you waiting for? The retest printed."
+        }
+      },
+      "whys": [
+        "ICC valid, HTF clear, within rules, room available",
+        "Technically valid, but the news rule blocks entry",
+        "Structure too unclear for my consolidation rule"
+      ],
+      "whyCorrect": 0,
+      "punch": "A process decision. Not a guaranteed win."
+    },
+    {
+      "type": "p7_snapshot",
+      "kicker": "Environment Snapshot",
+      "title": "Describe it. Don’t score it.",
+      "charts": [
+        {
+          "label": "4H",
+          "chart": {
+            "swings": [
+              [
+                20,
+                290
+              ],
+              [
+                90,
+                220
+              ],
+              [
+                130,
+                250
+              ],
+              [
+                220,
+                160
+              ],
+              [
+                260,
+                195
+              ],
+              [
+                350,
+                110
+              ],
+              [
+                390,
+                145
+              ],
+              [
+                480,
+                60
+              ],
+              [
+                520,
+                90
+              ],
+              [
+                600,
+                40
+              ]
+            ],
+            "seed": 21
+          }
+        },
+        {
+          "label": "1H",
+          "chart": {
+            "swings": [
+              [
+                20,
+                270
+              ],
+              [
+                110,
+                200
+              ],
+              [
+                160,
+                235
+              ],
+              [
+                250,
+                150
+              ],
+              [
+                290,
+                190
+              ],
+              [
+                380,
+                105
+              ],
+              [
+                440,
+                140
+              ],
+              [
+                530,
+                70
+              ],
+              [
+                600,
+                85
+              ]
+            ],
+            "seed": 27
+          }
+        }
+      ],
+      "facts": [
+        [
+          "Volatility",
+          "Typical for your tested plan"
+        ],
+        [
+          "Calendar",
+          "Nothing scheduled in your window"
+        ],
+        [
+          "Clock",
+          "9:58 · your window 9:45–11:00"
+        ],
+        [
+          "Objective",
+          "4H high, well above"
+        ],
+        [
+          "1M",
+          "Indication closed. Correction not yet."
+        ]
+      ],
+      "expect": {
+        "htfClarity": "CLEAR",
+        "oneHourStructure": "PROGRESSING",
+        "volatilityState": "NORMAL FOR PLAN",
+        "newsContext": "CLEAR",
+        "sessionContext": "IN MY WINDOW",
+        "roomToObjective": "AVAILABLE",
+        "setupCleanliness": "DEVELOPING"
+      },
+      "ecat": {
+        "htfClarity": "clarity",
+        "oneHourStructure": "trendRange",
+        "volatilityState": "volatility",
+        "newsContext": "news",
+        "sessionContext": "session",
+        "roomToObjective": "room"
+      },
+      "why": {
+        "setupCleanliness": "Indication only. It’s still developing.",
+        "roomToObjective": "The 4H high is well above.",
+        "volatilityState": "Typical for your plan."
+      },
+      "asks": [
+        {
+          "prompt": "Supportive environment, ICC still developing. Entry?",
+          "options": [
+            {
+              "label": "Yes, the environment is great",
+              "feedback": "The environment can’t create an entry."
+            },
+            {
+              "label": "WAIT",
+              "correct": true,
+              "why": "ENVIRONMENT CANNOT CREATE AN ENTRY. The model still has to complete."
+            }
+          ],
+          "ecat": "pass"
+        }
+      ],
+      "punch": "Descriptive states, one honest sentence. More useful than “Environment score 87”."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Reading the environment isn’t about finding reasons not to trade. <em>It’s about knowing when you’re allowed to.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What makes an environment <em>clean enough</em> for you?",
+      "modelAnswer": "I can explain the HTF story, the structure, the level and the room without forcing it, and nothing in my rulebook blocks it. Clean isn’t perfect, and it isn’t a guarantee."
     }
-   ],
-   "punch": "Descriptive states, one honest sentence. More useful than “Environment score 87”."
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "Reading the environment isn’t about finding reasons not to trade. <em>It’s about knowing when you’re allowed to.</em>",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "What makes an environment clean enough for you?",
-   "modelAnswer": "I can explain the HTF story, the structure, the level and the room without forcing it, and nothing in my rulebook blocks it. Clean isn’t perfect, and it isn’t a guarantee."
-  }
- ],
- "takeaways": [
-  "Clean = understandable without forcing.",
-  "When every layer clears, participate.",
-  "Still not a guaranteed win."
- ],
- "remember": "CLEAN MEANS UNDERSTANDABLE. NOT FLAWLESS."
+  ],
+  "takeaways": [
+    "Clean = understandable without forcing.",
+    "When every layer clears, participate.",
+    "Still not a guaranteed win."
+  ],
+  "remember": "CLEAN MEANS UNDERSTANDABLE. NOT FLAWLESS."
 }

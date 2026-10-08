@@ -1,685 +1,716 @@
 {
- "phase": "p7",
- "section": "s18",
- "lessonNumber": 10,
- "title": "Waiting Is the Work",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "Nothing yet. That’s not nothing.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Sit through a quiet session without inventing a trade, and practice patience as an execution skill.",
-  "missionQuestion": "Did my setup form, or did my patience run out?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "Waiting Is the Work",
-   "title": "9:45",
-   "beats": [
+  "phase": "p7",
+  "section": "s18",
+  "lessonNumber": 10,
+  "title": "Waiting Is the Work",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Nothing yet. That’s not nothing.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Sit through a quiet session without inventing a trade, and practice patience as an execution skill.",
+    "missionQuestion": "Did my setup form, or did my patience run out?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "say": [
-      "9:45. Analysis done. You know what you’re waiting for.",
-      "Nothing has formed."
-     ]
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 10",
+      "headline": "Analysis done. <em>Nothing’s formed.</em>",
+      "line": "9:45. You know exactly what you’re waiting for.",
+      "pose": "think",
+      "cta": "Show me →"
     },
     {
-     "chart": {
-      "bars": [
-       {
-        "o": 20995.25,
-        "h": 20996.0,
-        "l": 20990.75,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20999.75,
-        "l": 20989.75,
-        "c": 20999.25
-       },
-       {
-        "o": 20999.25,
-        "h": 21000.25,
-        "l": 20990.25,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 21000.25,
-        "l": 20990.5,
-        "c": 20999.25
-       },
-       {
-        "o": 20999.25,
-        "h": 21000.5,
-        "l": 20990.25,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 21000.5,
-        "l": 20990.25,
-        "c": 20999.25
-       },
-       {
-        "o": 20999.25,
-        "h": 21000.5,
-        "l": 20990.5,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20999.75,
-        "l": 20990.75,
-        "c": 20999.25
-       },
-       {
-        "o": 20999.25,
-        "h": 21000.5,
-        "l": 20990.75,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 21000.25,
-        "l": 20990.25,
-        "c": 20999.25
-       },
-       {
-        "o": 20999.25,
-        "h": 20999.5,
-        "l": 20990.0,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20999.5,
-        "l": 20990.0,
-        "c": 20999.25
-       }
-      ],
-      "pil": 21004.25,
-      "pilAt": null,
-      "head": {
-       "tf": "1M",
-       "label": "10:21 · still nothing"
-      }
-     }
-    },
-    {
-     "thoughts": [
-      "“This is so boring.”",
-      "“Maybe that counts?”",
-      "“Let me check the 30-second chart.”"
-     ]
-    },
-    {
-     "choice": {
-      "prompt": "10:21. What do you do?",
-      "options": [
-       {
-        "label": "Take the almost-setup",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+      "type": "v2_moment",
+      "kicker": "10:21",
+      "headline": "Still <em>nothing.</em>",
+      "line": "Waiting can feel like doing nothing. It isn’t.",
+      "chart": {
+        "bars": [
+          {
             "o": 20995.25,
             "h": 20996.0,
             "l": 20990.75,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20999.75,
             "l": 20989.75,
             "c": 20999.25
-           },
-           {
+          },
+          {
             "o": 20999.25,
             "h": 21000.25,
             "l": 20990.25,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 21000.25,
             "l": 20990.5,
             "c": 20999.25
-           },
-           {
+          },
+          {
             "o": 20999.25,
             "h": 21000.5,
             "l": 20990.25,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 21000.5,
             "l": 20990.25,
             "c": 20999.25
-           },
-           {
+          },
+          {
             "o": 20999.25,
             "h": 21000.5,
             "l": 20990.5,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20999.75,
             "l": 20990.75,
             "c": 20999.25
-           },
-           {
+          },
+          {
             "o": 20999.25,
             "h": 21000.5,
             "l": 20990.75,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 21000.25,
             "l": 20990.25,
             "c": 20999.25
-           },
-           {
+          },
+          {
             "o": 20999.25,
             "h": 20999.5,
             "l": 20990.0,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20999.5,
             "l": 20990.0,
             "c": 20999.25
-           },
-           {
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": null,
+        "head": {
+          "tf": "1M",
+          "label": "10:21 · still nothing"
+        }
+      },
+      "thoughts": [
+        "“This is so boring.”",
+        "“Maybe that counts?”",
+        "“Let me check the 30-second chart.”"
+      ],
+      "check": {
+        "prompt": "10:21. What do you do?",
+        "options": [
+          {
+            "label": "Take the almost-setup",
+            "correct": false,
+            "feedback": "Boredom doesn’t complete a setup. Indication alone isn’t the trade.",
+            "track": [
+              "boredomCount",
+              "emotionalTradesTaken"
+            ]
+          },
+          {
+            "label": "Drop to a smaller timeframe",
+            "correct": false,
+            "feedback": "On a small enough chart there’s always “something”. That’s searching for permission.",
+            "track": [
+              "boredomCount"
+            ]
+          },
+          {
+            "label": "Keep waiting",
+            "correct": true,
+            "feedback": "Yes. Waiting is the work. Let’s see what happened.",
+            "track": "patienceSuccessCount"
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "The almost-setup",
+      "headline": "Indication only. <em>It never became anything.</em>",
+      "line": "−1R. Boredom doesn’t complete a setup.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20995.25,
+            "h": 20996.0,
+            "l": 20990.75,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20999.75,
+            "l": 20989.75,
+            "c": 20999.25
+          },
+          {
+            "o": 20999.25,
+            "h": 21000.25,
+            "l": 20990.25,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 21000.25,
+            "l": 20990.5,
+            "c": 20999.25
+          },
+          {
+            "o": 20999.25,
+            "h": 21000.5,
+            "l": 20990.25,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 21000.5,
+            "l": 20990.25,
+            "c": 20999.25
+          },
+          {
+            "o": 20999.25,
+            "h": 21000.5,
+            "l": 20990.5,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20999.75,
+            "l": 20990.75,
+            "c": 20999.25
+          },
+          {
+            "o": 20999.25,
+            "h": 21000.5,
+            "l": 20990.75,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 21000.25,
+            "l": 20990.25,
+            "c": 20999.25
+          },
+          {
+            "o": 20999.25,
+            "h": 20999.5,
+            "l": 20990.0,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20999.5,
+            "l": 20990.0,
+            "c": 20999.25
+          },
+          {
             "o": 20982.25,
             "h": 20986.75,
             "l": 20981.5,
             "c": 20986.0
-           },
-           {
+          },
+          {
             "o": 20986.0,
             "h": 20990.75,
             "l": 20985.25,
             "c": 20989.75
-           },
-           {
+          },
+          {
             "o": 20989.75,
             "h": 20993.75,
             "l": 20989.5,
             "c": 20993.0
-           },
-           {
+          },
+          {
             "o": 20993.0,
             "h": 20998.75,
             "l": 20992.5,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.5,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21003.25,
             "l": 20998.0,
             "c": 20999.25
-           },
-           {
+          },
+          {
             "o": 20999.25,
             "h": 20999.75,
             "l": 20995.75,
             "c": 20996.75
-           },
-           {
+          },
+          {
             "o": 20996.75,
             "h": 20998.25,
             "l": 20993.25,
             "c": 20993.5
-           },
-           {
+          },
+          {
             "o": 20993.5,
             "h": 20994.25,
             "l": 20990.25,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20995.75,
             "l": 20990.0,
             "c": 20994.75
-           },
-           {
+          },
+          {
             "o": 20994.75,
             "h": 20998.5,
             "l": 20993.25,
             "c": 20997.25
-           },
-           {
+          },
+          {
             "o": 20997.25,
             "h": 21001.5,
             "l": 20996.5,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21007.5,
             "l": 21002.25,
             "c": 21003.5
-           },
-           {
+          },
+          {
             "o": 21003.5,
             "h": 21005.0,
             "l": 20998.75,
             "c": 20999.25
-           },
-           {
+          },
+          {
             "o": 20999.25,
             "h": 21000.5,
             "l": 20995.75,
             "c": 20996.25
-           },
-           {
+          },
+          {
             "o": 20996.25,
             "h": 20997.5,
             "l": 20993.0,
             "c": 20993.5
-           },
-           {
+          },
+          {
             "o": 20993.5,
             "h": 20994.0,
             "l": 20987.5,
             "c": 20988.5
-           },
-           {
+          },
+          {
             "o": 20988.5,
             "h": 20989.75,
             "l": 20983.75,
             "c": 20984.25
-           },
-           {
+          },
+          {
             "o": 20984.25,
             "h": 20984.5,
             "l": 20979.25,
             "c": 20979.5
-           },
-           {
+          },
+          {
             "o": 20979.5,
             "h": 20980.25,
             "l": 20975.75,
             "c": 20976.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 16,
-          "tags": [
-           {
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 16,
+        "tags": [
+          {
             "at": 32,
             "text": "−1R",
             "tone": "warn"
-           }
-          ],
-          "head": {
-           "tf": "1M",
-           "label": "The almost-setup"
-          },
-          "play": {
-           "from": 12,
-           "to": 33,
-           "speed": 300
           }
-         },
-         "say": [
-          "Indication only. It didn’t become anything.",
-          "Boredom doesn’t complete a setup."
-         ]
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "The almost-setup"
         },
-        "track": [
-         "boredomCount",
-         "emotionalTradesTaken"
-        ]
-       },
-       {
-        "label": "Drop to a smaller timeframe until something shows up",
-        "path": {
-         "say": [
-          "On a small enough chart, you can always find “something”.",
-          "That isn’t finding a setup. <b>That’s searching for permission.</b>"
-         ]
-        },
-        "track": [
-         "boredomCount"
-        ]
-       },
-       {
-        "label": "Keep waiting",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+        "play": {
+          "from": 12,
+          "to": 33,
+          "speed": 300
+        }
+      }
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "Keep waiting",
+      "headline": "10:31. <em>It formed.</em>",
+      "line": "Indication, Correction, Continuation, first retest. Some days it never does.",
+      "chart": {
+        "bars": [
+          {
             "o": 20995.25,
             "h": 20996.0,
             "l": 20990.75,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20999.75,
             "l": 20989.75,
             "c": 20999.25
-           },
-           {
+          },
+          {
             "o": 20999.25,
             "h": 21000.25,
             "l": 20990.25,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 21000.25,
             "l": 20990.5,
             "c": 20999.25
-           },
-           {
+          },
+          {
             "o": 20999.25,
             "h": 21000.5,
             "l": 20990.25,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 21000.5,
             "l": 20990.25,
             "c": 20999.25
-           },
-           {
+          },
+          {
             "o": 20999.25,
             "h": 21000.5,
             "l": 20990.5,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20999.75,
             "l": 20990.75,
             "c": 20999.25
-           },
-           {
+          },
+          {
             "o": 20999.25,
             "h": 21000.5,
             "l": 20990.75,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 21000.25,
             "l": 20990.25,
             "c": 20999.25
-           },
-           {
+          },
+          {
             "o": 20999.25,
             "h": 20999.5,
             "l": 20990.0,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20999.5,
             "l": 20990.0,
             "c": 20999.25
-           },
-           {
+          },
+          {
             "o": 20982.25,
             "h": 20986.0,
             "l": 20981.75,
             "c": 20985.0
-           },
-           {
+          },
+          {
             "o": 20985.0,
             "h": 20991.25,
             "l": 20983.75,
             "c": 20990.25
-           },
-           {
+          },
+          {
             "o": 20990.25,
             "h": 20995.0,
             "l": 20990.0,
             "c": 20994.25
-           },
-           {
+          },
+          {
             "o": 20994.25,
             "h": 20999.0,
             "l": 20993.5,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.25,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21002.5,
             "l": 20999.25,
             "c": 20999.75
-           },
-           {
+          },
+          {
             "o": 20999.75,
             "h": 21001.0,
             "l": 20996.75,
             "c": 20997.5
-           },
-           {
+          },
+          {
             "o": 20997.5,
             "h": 20998.5,
             "l": 20992.0,
             "c": 20992.75
-           },
-           {
+          },
+          {
             "o": 20992.75,
             "h": 20994.0,
             "l": 20990.25,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20995.5,
             "l": 20990.5,
             "c": 20994.5
-           },
-           {
+          },
+          {
             "o": 20994.5,
             "h": 20997.0,
             "l": 20993.0,
             "c": 20996.75
-           },
-           {
+          },
+          {
             "o": 20996.75,
             "h": 21002.5,
             "l": 20996.25,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21007.0,
             "l": 21001.25,
             "c": 21002.0
-           },
-           {
+          },
+          {
             "o": 21002.0,
             "h": 21008.25,
             "l": 21002.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21011.25,
             "l": 21006.25,
             "c": 21011.0
-           },
-           {
+          },
+          {
             "o": 21011.0,
             "h": 21015.75,
             "l": 21010.25,
             "c": 21014.5
-           },
-           {
+          },
+          {
             "o": 21014.5,
             "h": 21018.25,
             "l": 21014.0,
             "c": 21017.0
-           },
-           {
+          },
+          {
             "o": 21017.0,
             "h": 21021.5,
             "l": 21015.75,
             "c": 21020.25
-           },
-           {
+          },
+          {
             "o": 21020.25,
             "h": 21021.25,
             "l": 21014.0,
             "c": 21014.75
-           },
-           {
+          },
+          {
             "o": 21014.75,
             "h": 21015.75,
             "l": 21009.25,
             "c": 21010.75
-           },
-           {
+          },
+          {
             "o": 21010.75,
             "h": 21011.75,
             "l": 21006.75,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21008.0,
             "l": 21003.75,
             "c": 21005.75
-           },
-           {
+          },
+          {
             "o": 21005.75,
             "h": 21009.75,
             "l": 21005.5,
             "c": 21008.5
-           },
-           {
+          },
+          {
             "o": 21008.5,
             "h": 21011.25,
             "l": 21008.25,
             "c": 21010.25
-           },
-           {
+          },
+          {
             "o": 21010.25,
             "h": 21010.5,
             "l": 21008.75,
             "c": 21009.75
-           },
-           {
+          },
+          {
             "o": 21009.75,
             "h": 21012.75,
             "l": 21008.5,
             "c": 21012.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 16,
-          "head": {
-           "tf": "1M",
-           "label": "10:31"
-          },
-          "play": {
-           "from": 12,
-           "to": 37,
-           "speed": 300
           }
-         },
-         "say": [
-          "10:31. It formed. Indication, Correction, Continuation, first retest.",
-          "And some days it never does. <b>Then the waiting was the whole job, and you did it.</b>"
-         ]
+        ],
+        "pil": 21004.25,
+        "pilAt": 16,
+        "head": {
+          "tf": "1M",
+          "label": "10:31"
         },
-        "track": "patienceSuccessCount"
-       }
-      ]
-     }
-    },
-    {
-     "cards": [
-      "🎯 WHAT you’re waiting for",
-      "🧭 WHY you’re waiting",
-      "⏳ WHAT hasn’t happened yet",
-      "✗ WHAT would cancel it",
-      "🕒 WHEN your session ends"
-     ]
-    },
-    {
-     "who": {
-      "before": {
-       "h": "THE TRADER",
-       "lines": [
-        "Knows what she’s waiting for."
-       ]
-      },
-      "after": {
-       "h": "THE BOREDOM",
-       "lines": [
-        "Wants something to do.",
-        "Will find “something” on any chart."
-       ]
+        "play": {
+          "from": 12,
+          "to": 37,
+          "speed": 300
+        }
       }
-     }
     },
     {
-     "principle": "WAITING FOR THE SETUP IS PART OF EXECUTING THE SETUP."
+      "type": "v2_steps",
+      "kicker": "Active patience",
+      "headline": "Active patience <em>knows five things.</em>",
+      "line": "Tap each one.",
+      "steps": [
+        {
+          "label": "🎯 What",
+          "sub": "The setup you’re waiting for"
+        },
+        {
+          "label": "🧭 Why",
+          "sub": "The reason you’re waiting for it"
+        },
+        {
+          "label": "⏳ What’s missing",
+          "sub": "What hasn’t happened yet"
+        },
+        {
+          "label": "✗ What cancels it",
+          "sub": "What would kill the idea"
+        },
+        {
+          "label": "🕒 When",
+          "sub": "When your session ends"
+        }
+      ],
+      "cta": "Next →"
+    },
+    {
+      "type": "v2_compare",
+      "kicker": "The trader vs the boredom",
+      "headline": "Waiting <em>is part of</em> executing.",
+      "cards": [
+        {
+          "label": "The trader",
+          "sub": "Knows what she’s waiting for",
+          "spark": "slow",
+          "tag": "THE TRADER",
+          "tone": "teal"
+        },
+        {
+          "label": "The boredom",
+          "sub": "Wants something to do",
+          "spark": "chop",
+          "tag": "THE BOREDOM",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "Nothing formed. Zero trades. That session…",
+        "options": [
+          {
+            "label": "Was wasted",
+            "correct": false,
+            "feedback": "Not at all. You did the whole job: you waited."
+          },
+          {
+            "label": "Counts. I did the job.",
+            "correct": true,
+            "feedback": "Yes. When nothing forms, the waiting was the whole job."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Some of my best sessions had zero trades. <em>They count.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What does <em>active patience</em> look like for you?",
+      "modelAnswer": "I know what I’m waiting for, why, what hasn’t happened yet, what would cancel it and when my session ends. If nothing forms, the waiting was the job."
     }
-   ]
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "Some of my best sessions had zero trades. <em>They count.</em>",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "What does active patience look like for you?",
-   "modelAnswer": "I know what I’m waiting for, why, what hasn’t happened yet, what would cancel it and when my session ends. If nothing forms, the waiting was the job."
-  }
- ],
- "takeaways": [
-  "Patience is an execution skill.",
-  "Boredom doesn’t complete a setup.",
-  "Did my setup form, or did my patience run out?"
- ],
- "remember": "DID MY SETUP FORM… OR DID MY PATIENCE RUN OUT?"
+  ],
+  "takeaways": [
+    "Patience is an execution skill.",
+    "Boredom doesn’t complete a setup.",
+    "Did my setup form, or did my patience run out?"
+  ],
+  "remember": "DID MY SETUP FORM… OR DID MY PATIENCE RUN OUT?"
 }

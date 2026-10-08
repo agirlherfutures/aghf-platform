@@ -22,6 +22,7 @@
 
 import { wireRetryOptions } from './lesson-engine.js';
 import { saveLessonReflection } from './journal-service.js';
+import { trackAll } from './mind-core.js';
 
 /* ── Aristella (the same drawing as the videos) ───────────────────────── */
 
@@ -84,7 +85,7 @@ const SPARKS = {
 };
 
 /** The screen shell: words on the left, the visual on the right. */
-function shell(el, slide, rightHtml, extraLeft = '', opts = {}) {
+export function shell(el, slide, rightHtml, extraLeft = '', opts = {}) {
   el.innerHTML = `
     <div class="v2${opts.cls ? ` ${opts.cls}` : ''}">
       <div class="v2-l">
@@ -100,7 +101,7 @@ function shell(el, slide, rightHtml, extraLeft = '', opts = {}) {
   return { card: el.querySelector('.v2'), act: el.querySelector('.v2-act'), right: el.querySelector('.v2-r') };
 }
 
-function nextBtn(act, satisfy, label = 'Next →', pink = false) {
+export function nextBtn(act, satisfy, label = 'Next →', pink = false) {
   if (act.querySelector('.v2-btn')) return;
   const b = document.createElement('button');
   b.type = 'button';
@@ -111,7 +112,7 @@ function nextBtn(act, satisfy, label = 'Next →', pink = false) {
 }
 
 /** A tap question; `onSolved` runs once the right option is picked. */
-function check(container, chk, helpers, onSolved) {
+export function check(container, chk, helpers, onSolved) {
   const box = document.createElement('div');
   box.className = 'v2-check';
   box.innerHTML = `${chk.prompt ? `<div class="v2-q">${chk.prompt}</div>` : ''}
@@ -120,6 +121,15 @@ function check(container, chk, helpers, onSolved) {
     </div><div class="lw-feedback"></div>`;
   container.appendChild(box);
   wireRetryOptions(box.querySelectorAll('.v2-chip'), chk.options, box.querySelector('.lw-feedback'), onSolved, helpers.handleStreak);
+  // Phase 7 options can carry `track` (mind counters): her first instinct is what gets remembered.
+  if (chk.options.some((o) => o.track)) {
+    let tracked = false;
+    box.querySelectorAll('.v2-chip').forEach((chip, i) => chip.addEventListener('click', () => {
+      if (tracked) return;
+      tracked = true;
+      trackAll(chk.options[i].track);
+    }));
+  }
 }
 
 /* ── Screens ───────────────────────────────────────────────────────────── */
@@ -238,7 +248,7 @@ export function renderV2Dayli(el, slide, satisfy) {
 
 export function renderV2Reflect(el, slide, satisfy, helpers) {
   const { act, right } = shell(el, { ...slide, headline: slide.prompt, small: true, line: slide.hint || 'One or two sentences is perfect. It saves to your Lesson Notes.' },
-    `<div class="v2-write"><textarea class="v2-textarea" rows="5" placeholder="Type it how YOU understand it…"></textarea>
+    `<div class="v2-write">${slide.beforeHtml || ''}<textarea class="v2-textarea" rows="5" placeholder="Type it how YOU understand it…"></textarea>
       <div class="v2-answer" hidden><strong>💡 Dayli’s answer:</strong> ${slide.modelAnswer}</div></div>`);
   const input = right.querySelector('textarea');
   const save = document.createElement('button');
