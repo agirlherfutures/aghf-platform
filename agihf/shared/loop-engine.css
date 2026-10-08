@@ -122,3 +122,17 @@
 .p7-rule-text{font-family:var(--font-display);font-style:italic;font-size:1.08rem;line-height:1.5;}
 .p7-rule-from{font-size:.72rem;color:rgba(255,255,255,.6);margin-top:8px;}
 @media (max-width:640px){.p7-videos.is-pair{grid-template-columns:1fr;}.p7-poster-title b{font-size:1.5rem;}.p7-quote-text{font-size:1.3rem;}.p7-poster-num{font-size:9rem;}}
+
+/* ── Phase 7 screens in the Phase 1 look (see p7-v2.js) ───────────── */
+.p7v2-chart{width:100%;align-self:center;}
+.p7v2-chart .p7-chart-wrap{background:#fff;border-radius:18px;padding:12px;box-shadow:0 10px 30px rgba(30,26,28,.10);}
+.p7v2-steps{display:flex;flex-direction:column;gap:10px;width:100%;}
+.p7v2-step{display:flex;align-items:center;gap:14px;text-align:left;font-family:var(--font-body);background:#fff;border:1px solid var(--border);border-radius:16px;padding:12px 14px;cursor:pointer;opacity:.55;transition:.25s;box-shadow:0 4px 14px rgba(30,26,28,.05);}
+.p7v2-step:hover{opacity:.8;}
+.p7v2-step.is-on{opacity:1;border-color:var(--pink-light);transform:translateX(4px);}
+.p7v2-step-n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--pink-pale);color:var(--pink);font-family:var(--font-display);font-weight:900;display:flex;align-items:center;justify-content:center;}
+.p7v2-step.is-on .p7v2-step-n{background:var(--pink);color:#fff;}
+.p7v2-step-txt{display:flex;flex-direction:column;gap:2px;}
+.p7v2-step-txt b{font-family:var(--font-display);font-size:1.05rem;color:var(--dark);}
+.p7v2-step-txt span{font-size:.82rem;color:var(--muted);}
+.v2-r .p7-rule-card{width:100%;margin:0 0 10px;}

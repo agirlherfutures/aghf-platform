@@ -49,6 +49,7 @@ import { MIND_RENDERERS } from './mind.js';
 import { RULES_RENDERERS } from './rules.js';
 import { ENV_RENDERERS } from './env.js';
 import { SCENE_RENDERERS } from './scene.js';
+import { P7_V2_RENDERERS } from './p7-v2.js';
 import { LEVEL_RENDERERS } from './level-tools.js';
 
 // Temporary: everything unlocked while the Academy is being built (see preview.js).
@@ -198,6 +199,8 @@ function appendContinue(el, satisfy, label = 'Continue →') {
 
 function renderSlideBlock(el, slide, satisfy, helpers) {
   const renderer = SLIDE_RENDERERS[slide.type];
+  // Phase 7 reflections carry the lesson's rule above the writing box.
+  if (slide.type === 'v2_reflect' && helpers.lessonId.startsWith('p7-')) slide = { ...slide, beforeHtml: p7RuleCardHtml(+helpers.lessonId.slice(3)) };
   if (renderer) renderer(el, slide, satisfy, helpers);
   else satisfy();
 }
@@ -973,6 +976,7 @@ export const SLIDE_RENDERERS = {
   ...RULES_RENDERERS,
   ...ENV_RENDERERS,
   ...SCENE_RENDERERS,
+  ...P7_V2_RENDERERS,
   teach: renderTeachSlide,
   chart_direction: renderChartDirectionSlide,
   chart_tap: renderChartTapSlide,
