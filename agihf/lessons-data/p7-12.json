@@ -1,598 +1,589 @@
 {
- "phase": "p7",
- "section": "s18",
- "lessonNumber": 12,
- "title": "You Are Not Your P&L",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "A red day is not a verdict on you.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Separate the outcome of a trade from the quality of your process, and both from your worth.",
-  "missionQuestion": "Did I follow my process, whatever the result?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "You Are Not Your P&L",
-   "title": "Two trades. Same day.",
-   "beats": [
+  "phase": "p7",
+  "section": "s18",
+  "lessonNumber": 12,
+  "title": "You Are Not Your P&L",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "A red day is not a verdict on you.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Separate the outcome of a trade from the quality of your process, and both from your worth.",
+    "missionQuestion": "Did I follow my process, whatever the result?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "chart": {
-      "bars": [
-       {
-        "o": 20982.25,
-        "h": 20986.5,
-        "l": 20981.25,
-        "c": 20985.5
-       },
-       {
-        "o": 20985.5,
-        "h": 20990.75,
-        "l": 20984.25,
-        "c": 20990.25
-       },
-       {
-        "o": 20990.25,
-        "h": 20996.0,
-        "l": 20989.25,
-        "c": 20995.0
-       },
-       {
-        "o": 20995.0,
-        "h": 20998.75,
-        "l": 20994.75,
-        "c": 20998.25
-       },
-       {
-        "o": 20998.25,
-        "h": 21004.25,
-        "l": 20997.25,
-        "c": 21001.75
-       },
-       {
-        "o": 21001.75,
-        "h": 21003.0,
-        "l": 20997.5,
-        "c": 20998.0
-       },
-       {
-        "o": 20998.0,
-        "h": 20998.25,
-        "l": 20994.25,
-        "c": 20995.75
-       },
-       {
-        "o": 20995.75,
-        "h": 20997.0,
-        "l": 20993.5,
-        "c": 20994.5
-       },
-       {
-        "o": 20994.5,
-        "h": 20994.75,
-        "l": 20990.5,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20995.0,
-        "l": 20989.75,
-        "c": 20994.5
-       },
-       {
-        "o": 20994.5,
-        "h": 20998.0,
-        "l": 20993.25,
-        "c": 20997.5
-       },
-       {
-        "o": 20997.5,
-        "h": 21001.75,
-        "l": 20996.0,
-        "c": 21001.25
-       },
-       {
-        "o": 21001.25,
-        "h": 21007.75,
-        "l": 21001.25,
-        "c": 21007.0
-       },
-       {
-        "o": 21007.0,
-        "h": 21007.0,
-        "l": 21001.25,
-        "c": 21002.0
-       },
-       {
-        "o": 21002.0,
-        "h": 21007.75,
-        "l": 21002.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21011.5,
-        "l": 21006.0,
-        "c": 21011.0
-       },
-       {
-        "o": 21011.0,
-        "h": 21013.5,
-        "l": 21009.75,
-        "c": 21012.0
-       },
-       {
-        "o": 21012.0,
-        "h": 21017.5,
-        "l": 21011.0,
-        "c": 21016.25
-       },
-       {
-        "o": 21016.25,
-        "h": 21019.5,
-        "l": 21015.75,
-        "c": 21018.25
-       },
-       {
-        "o": 21018.25,
-        "h": 21019.5,
-        "l": 21014.0,
-        "c": 21014.5
-       },
-       {
-        "o": 21014.5,
-        "h": 21015.75,
-        "l": 21011.25,
-        "c": 21012.0
-       },
-       {
-        "o": 21012.0,
-        "h": 21012.75,
-        "l": 21006.5,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21008.0,
-        "l": 21003.75,
-        "c": 21005.75
-       },
-       {
-        "o": 21005.75,
-        "h": 21008.0,
-        "l": 21005.5,
-        "c": 21007.75
-       },
-       {
-        "o": 21007.75,
-        "h": 21012.25,
-        "l": 21007.0,
-        "c": 21010.75
-       },
-       {
-        "o": 21010.75,
-        "h": 21013.0,
-        "l": 21009.75,
-        "c": 21012.25
-       },
-       {
-        "o": 21012.25,
-        "h": 21018.0,
-        "l": 21012.0,
-        "c": 21017.5
-       },
-       {
-        "o": 21017.5,
-        "h": 21022.0,
-        "l": 21017.0,
-        "c": 21021.5
-       },
-       {
-        "o": 21021.5,
-        "h": 21025.5,
-        "l": 21020.25,
-        "c": 21024.75
-       },
-       {
-        "o": 21024.75,
-        "h": 21028.75,
-        "l": 21023.25,
-        "c": 21028.25
-       },
-       {
-        "o": 21028.25,
-        "h": 21033.25,
-        "l": 21026.75,
-        "c": 21032.25
-       },
-       {
-        "o": 21032.25,
-        "h": 21039.25,
-        "l": 21031.0,
-        "c": 21037.75
-       },
-       {
-        "o": 21037.75,
-        "h": 21041.75,
-        "l": 21036.75,
-        "c": 21040.5
-       },
-       {
-        "o": 21040.5,
-        "h": 21047.0,
-        "l": 21040.0,
-        "c": 21046.25
-       },
-       {
-        "o": 21046.25,
-        "h": 21053.25,
-        "l": 21044.75,
-        "c": 21052.25
-       },
-       {
-        "o": 21052.25,
-        "h": 21059.0,
-        "l": 21051.25,
-        "c": 21057.5
-       },
-       {
-        "o": 21057.5,
-        "h": 21063.5,
-        "l": 21057.0,
-        "c": 21062.5
-       },
-       {
-        "o": 21062.5,
-        "h": 21068.75,
-        "l": 21061.75,
-        "c": 21067.25
-       }
-      ],
-      "pil": 21004.25,
-      "pilAt": 4,
-      "show": 14,
-      "tags": [
-       {
-        "at": 13,
-        "text": "EARLY",
-        "tone": "warn"
-       }
-      ],
-      "head": {
-       "tf": "1M",
-       "label": "Trade A · you entered before Continuation closed"
-      }
-     }
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 12",
+      "headline": "A red day is <em>not a verdict.</em>",
+      "line": "Your P&amp;L grades trades. It never grades you.",
+      "pose": "think",
+      "cta": "Show me →"
     },
     {
-     "say": [
-      "Trade A: you entered early. Continuation hadn’t closed.",
-      "It ran anyway. <b>+2R.</b>"
-     ]
-    },
-    {
-     "thoughts": [
-      "“I’m a genius.”"
-     ]
-    },
-    {
-     "chart": {
-      "bars": [
-       {
-        "o": 20982.25,
-        "h": 20986.25,
-        "l": 20981.25,
-        "c": 20985.75
-       },
-       {
-        "o": 20985.75,
-        "h": 20990.25,
-        "l": 20985.0,
-        "c": 20989.25
-       },
-       {
-        "o": 20989.25,
-        "h": 20994.25,
-        "l": 20989.0,
-        "c": 20993.25
-       },
-       {
-        "o": 20993.25,
-        "h": 20999.0,
-        "l": 20993.0,
-        "c": 20998.25
-       },
-       {
-        "o": 20998.25,
-        "h": 21004.25,
-        "l": 20997.5,
-        "c": 21001.75
-       },
-       {
-        "o": 21001.75,
-        "h": 21002.25,
-        "l": 20999.5,
-        "c": 21000.0
-       },
-       {
-        "o": 21000.0,
-        "h": 21001.5,
-        "l": 20995.75,
-        "c": 20996.75
-       },
-       {
-        "o": 20996.75,
-        "h": 20998.25,
-        "l": 20993.25,
-        "c": 20993.5
-       },
-       {
-        "o": 20993.5,
-        "h": 20994.75,
-        "l": 20990.75,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20994.25,
-        "l": 20990.5,
-        "c": 20993.75
-       },
-       {
-        "o": 20993.75,
-        "h": 20999.25,
-        "l": 20992.75,
-        "c": 20998.75
-       },
-       {
-        "o": 20998.75,
-        "h": 21002.25,
-        "l": 20998.0,
-        "c": 21001.25
-       },
-       {
-        "o": 21001.25,
-        "h": 21007.75,
-        "l": 21001.25,
-        "c": 21007.0
-       },
-       {
-        "o": 21007.0,
-        "h": 21007.0,
-        "l": 21001.25,
-        "c": 21002.0
-       },
-       {
-        "o": 21002.0,
-        "h": 21008.25,
-        "l": 21002.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21010.0,
-        "l": 21006.5,
-        "c": 21009.0
-       },
-       {
-        "o": 21009.0,
-        "h": 21012.5,
-        "l": 21008.0,
-        "c": 21011.25
-       },
-       {
-        "o": 21011.25,
-        "h": 21014.25,
-        "l": 21010.25,
-        "c": 21013.25
-       },
-       {
-        "o": 21013.25,
-        "h": 21017.5,
-        "l": 21012.0,
-        "c": 21016.25
-       },
-       {
-        "o": 21016.25,
-        "h": 21017.75,
-        "l": 21012.25,
-        "c": 21012.75
-       },
-       {
-        "o": 21012.75,
-        "h": 21014.0,
-        "l": 21009.5,
-        "c": 21010.0
-       },
-       {
-        "o": 21010.0,
-        "h": 21010.75,
-        "l": 21007.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21008.25,
-        "l": 21003.75,
-        "c": 21005.75
-       },
-       {
-        "o": 21005.75,
-        "h": 21006.0,
-        "l": 21000.0,
-        "c": 21000.5
-       },
-       {
-        "o": 21000.5,
-        "h": 21000.75,
-        "l": 20996.75,
-        "c": 20997.25
-       },
-       {
-        "o": 20997.25,
-        "h": 20998.75,
-        "l": 20991.75,
-        "c": 20992.25
-       },
-       {
-        "o": 20992.25,
-        "h": 20993.0,
-        "l": 20987.25,
-        "c": 20988.0
-       },
-       {
-        "o": 20988.0,
-        "h": 20988.5,
-        "l": 20981.75,
-        "c": 20983.0
-       },
-       {
-        "o": 20983.0,
-        "h": 20983.25,
-        "l": 20977.75,
-        "c": 20978.25
-       },
-       {
-        "o": 20978.25,
-        "h": 20979.0,
-        "l": 20971.25,
-        "c": 20972.75
-       }
-      ],
-      "pil": 21004.25,
-      "pilAt": 4,
-      "tags": [
-       {
-        "at": 22,
-        "text": "FIRST RETEST",
-        "tone": "gold"
-       },
-       {
-        "at": 29,
-        "text": "−1R",
-        "tone": "warn"
-       }
-      ],
-      "head": {
-       "tf": "1M",
-       "label": "Trade B · every rule followed"
-      }
-     }
-    },
-    {
-     "say": [
-      "Trade B: every rule followed. Stopped out. <b>−1R.</b>"
-     ]
-    },
-    {
-     "thoughts": [
-      "“I’m so bad at this.”"
-     ]
-    },
-    {
-     "choice": {
-      "prompt": "Which trade made you a better trader?",
-      "options": [
-       {
-        "label": "Trade A. It made money.",
-        "path": {
-         "say": [
-          "It paid you for a habit that will cost you later.",
-          "A win from an early entry teaches you to enter early."
-         ]
-        },
-        "track": "feelingAsReason"
-       },
-       {
-        "label": "Trade B. It followed the process.",
-        "path": {
-         "say": [
-          "It cost you 1R and it’s the trade you want a hundred more of.",
-          "That’s what a model is: many of these, over time."
-         ]
-        },
-        "track": "ruleBasedResponses"
-       }
+      "type": "v2_moment",
+      "kicker": "Trade A",
+      "headline": "Entered early. <em>+2R anyway.</em>",
+      "line": "Continuation hadn’t closed. It ran anyway.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.25,
+            "c": 20985.5
+          },
+          {
+            "o": 20985.5,
+            "h": 20990.75,
+            "l": 20984.25,
+            "c": 20990.25
+          },
+          {
+            "o": 20990.25,
+            "h": 20996.0,
+            "l": 20989.25,
+            "c": 20995.0
+          },
+          {
+            "o": 20995.0,
+            "h": 20998.75,
+            "l": 20994.75,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.25,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21003.0,
+            "l": 20997.5,
+            "c": 20998.0
+          },
+          {
+            "o": 20998.0,
+            "h": 20998.25,
+            "l": 20994.25,
+            "c": 20995.75
+          },
+          {
+            "o": 20995.75,
+            "h": 20997.0,
+            "l": 20993.5,
+            "c": 20994.5
+          },
+          {
+            "o": 20994.5,
+            "h": 20994.75,
+            "l": 20990.5,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20995.0,
+            "l": 20989.75,
+            "c": 20994.5
+          },
+          {
+            "o": 20994.5,
+            "h": 20998.0,
+            "l": 20993.25,
+            "c": 20997.5
+          },
+          {
+            "o": 20997.5,
+            "h": 21001.75,
+            "l": 20996.0,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21007.75,
+            "l": 21002.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21011.5,
+            "l": 21006.0,
+            "c": 21011.0
+          },
+          {
+            "o": 21011.0,
+            "h": 21013.5,
+            "l": 21009.75,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21017.5,
+            "l": 21011.0,
+            "c": 21016.25
+          },
+          {
+            "o": 21016.25,
+            "h": 21019.5,
+            "l": 21015.75,
+            "c": 21018.25
+          },
+          {
+            "o": 21018.25,
+            "h": 21019.5,
+            "l": 21014.0,
+            "c": 21014.5
+          },
+          {
+            "o": 21014.5,
+            "h": 21015.75,
+            "l": 21011.25,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21012.75,
+            "l": 21006.5,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21008.0,
+            "l": 21003.75,
+            "c": 21005.75
+          },
+          {
+            "o": 21005.75,
+            "h": 21008.0,
+            "l": 21005.5,
+            "c": 21007.75
+          },
+          {
+            "o": 21007.75,
+            "h": 21012.25,
+            "l": 21007.0,
+            "c": 21010.75
+          },
+          {
+            "o": 21010.75,
+            "h": 21013.0,
+            "l": 21009.75,
+            "c": 21012.25
+          },
+          {
+            "o": 21012.25,
+            "h": 21018.0,
+            "l": 21012.0,
+            "c": 21017.5
+          },
+          {
+            "o": 21017.5,
+            "h": 21022.0,
+            "l": 21017.0,
+            "c": 21021.5
+          },
+          {
+            "o": 21021.5,
+            "h": 21025.5,
+            "l": 21020.25,
+            "c": 21024.75
+          },
+          {
+            "o": 21024.75,
+            "h": 21028.75,
+            "l": 21023.25,
+            "c": 21028.25
+          },
+          {
+            "o": 21028.25,
+            "h": 21033.25,
+            "l": 21026.75,
+            "c": 21032.25
+          },
+          {
+            "o": 21032.25,
+            "h": 21039.25,
+            "l": 21031.0,
+            "c": 21037.75
+          },
+          {
+            "o": 21037.75,
+            "h": 21041.75,
+            "l": 21036.75,
+            "c": 21040.5
+          },
+          {
+            "o": 21040.5,
+            "h": 21047.0,
+            "l": 21040.0,
+            "c": 21046.25
+          },
+          {
+            "o": 21046.25,
+            "h": 21053.25,
+            "l": 21044.75,
+            "c": 21052.25
+          },
+          {
+            "o": 21052.25,
+            "h": 21059.0,
+            "l": 21051.25,
+            "c": 21057.5
+          },
+          {
+            "o": 21057.5,
+            "h": 21063.5,
+            "l": 21057.0,
+            "c": 21062.5
+          },
+          {
+            "o": 21062.5,
+            "h": 21068.75,
+            "l": 21061.75,
+            "c": 21067.25
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "show": 14,
+        "tags": [
+          {
+            "at": 13,
+            "text": "EARLY",
+            "tone": "warn"
+          }
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "Trade A · you entered before Continuation closed"
+        }
+      },
+      "thoughts": [
+        "“I’m a genius.”"
       ]
-     }
     },
     {
-     "cards": [
-      "OUTCOME · what happened to the money",
-      "PROCESS · what happened to the rules",
-      "YOU · neither one"
-     ]
+      "type": "v2_moment",
+      "kicker": "Trade B · same day",
+      "headline": "Every rule followed. <em>−1R.</em>",
+      "line": "Valid first retest. Stopped out.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20986.25,
+            "l": 20981.25,
+            "c": 20985.75
+          },
+          {
+            "o": 20985.75,
+            "h": 20990.25,
+            "l": 20985.0,
+            "c": 20989.25
+          },
+          {
+            "o": 20989.25,
+            "h": 20994.25,
+            "l": 20989.0,
+            "c": 20993.25
+          },
+          {
+            "o": 20993.25,
+            "h": 20999.0,
+            "l": 20993.0,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.5,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21002.25,
+            "l": 20999.5,
+            "c": 21000.0
+          },
+          {
+            "o": 21000.0,
+            "h": 21001.5,
+            "l": 20995.75,
+            "c": 20996.75
+          },
+          {
+            "o": 20996.75,
+            "h": 20998.25,
+            "l": 20993.25,
+            "c": 20993.5
+          },
+          {
+            "o": 20993.5,
+            "h": 20994.75,
+            "l": 20990.75,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.5,
+            "c": 20993.75
+          },
+          {
+            "o": 20993.75,
+            "h": 20999.25,
+            "l": 20992.75,
+            "c": 20998.75
+          },
+          {
+            "o": 20998.75,
+            "h": 21002.25,
+            "l": 20998.0,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21008.25,
+            "l": 21002.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21010.0,
+            "l": 21006.5,
+            "c": 21009.0
+          },
+          {
+            "o": 21009.0,
+            "h": 21012.5,
+            "l": 21008.0,
+            "c": 21011.25
+          },
+          {
+            "o": 21011.25,
+            "h": 21014.25,
+            "l": 21010.25,
+            "c": 21013.25
+          },
+          {
+            "o": 21013.25,
+            "h": 21017.5,
+            "l": 21012.0,
+            "c": 21016.25
+          },
+          {
+            "o": 21016.25,
+            "h": 21017.75,
+            "l": 21012.25,
+            "c": 21012.75
+          },
+          {
+            "o": 21012.75,
+            "h": 21014.0,
+            "l": 21009.5,
+            "c": 21010.0
+          },
+          {
+            "o": 21010.0,
+            "h": 21010.75,
+            "l": 21007.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21008.25,
+            "l": 21003.75,
+            "c": 21005.75
+          },
+          {
+            "o": 21005.75,
+            "h": 21006.0,
+            "l": 21000.0,
+            "c": 21000.5
+          },
+          {
+            "o": 21000.5,
+            "h": 21000.75,
+            "l": 20996.75,
+            "c": 20997.25
+          },
+          {
+            "o": 20997.25,
+            "h": 20998.75,
+            "l": 20991.75,
+            "c": 20992.25
+          },
+          {
+            "o": 20992.25,
+            "h": 20993.0,
+            "l": 20987.25,
+            "c": 20988.0
+          },
+          {
+            "o": 20988.0,
+            "h": 20988.5,
+            "l": 20981.75,
+            "c": 20983.0
+          },
+          {
+            "o": 20983.0,
+            "h": 20983.25,
+            "l": 20977.75,
+            "c": 20978.25
+          },
+          {
+            "o": 20978.25,
+            "h": 20979.0,
+            "l": 20971.25,
+            "c": 20972.75
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "tags": [
+          {
+            "at": 22,
+            "text": "FIRST RETEST",
+            "tone": "gold"
+          },
+          {
+            "at": 29,
+            "text": "−1R",
+            "tone": "warn"
+          }
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "Trade B · every rule followed"
+        }
+      },
+      "thoughts": [
+        "“I’m so bad at this.”"
+      ],
+      "check": {
+        "prompt": "Which trade made you a better trader?",
+        "options": [
+          {
+            "label": "Trade A. It made money.",
+            "correct": false,
+            "feedback": "It paid you for a habit. A win from an early entry teaches early entries.",
+            "track": "feelingAsReason"
+          },
+          {
+            "label": "Trade B. It followed process.",
+            "correct": true,
+            "feedback": "Yes. It cost 1R, and it’s the trade you want a hundred more of.",
+            "track": "ruleBasedResponses"
+          }
+        ]
+      }
     },
     {
-     "say": [
-      "Your P&amp;L grades the trade. Your journal grades the process.",
-      "<b>Neither one grades you.</b>"
-     ]
+      "type": "v2_compare",
+      "kicker": "Your journal, two columns",
+      "headline": "Grade every trade <em>two ways.</em>",
+      "cards": [
+        {
+          "label": "Outcome",
+          "sub": "What happened to the money",
+          "spark": "up",
+          "tag": "P&amp;L",
+          "tone": "peach"
+        },
+        {
+          "label": "Process",
+          "sub": "What happened to the rules",
+          "spark": "slow",
+          "tag": "JOURNAL",
+          "tone": "teal"
+        }
+      ],
+      "check": {
+        "prompt": "Trade A: +2R, early entry. Its process?",
+        "options": [
+          {
+            "label": "Followed",
+            "correct": false,
+            "feedback": "The money was green, but the entry was early. That’s a rule broken."
+          },
+          {
+            "label": "Violation",
+            "correct": true,
+            "feedback": "Right. Outcome: WIN. Process: VIOLATION. Both are true at once."
+          }
+        ]
+      }
     },
     {
-     "principle": "YOUR P&L IS INFORMATION ABOUT TRADES. IT ISN’T A VERDICT ABOUT YOU."
+      "type": "v2_steps",
+      "kicker": "Three separate things",
+      "headline": "Neither one <em>grades you.</em>",
+      "line": "Your P&amp;L is information about trades. Tap each.",
+      "steps": [
+        {
+          "label": "Outcome",
+          "sub": "Your P&amp;L grades the trade"
+        },
+        {
+          "label": "Process",
+          "sub": "Your journal grades the rules"
+        },
+        {
+          "label": "You",
+          "sub": "Not up for grading. Ever."
+        }
+      ],
+      "cta": "Next →"
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Some of my best trades lost money. <em>Some of my worst ones paid me.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "After a red day, <em>how do you talk</em> to yourself?",
+      "modelAnswer": "I want to separate it: what happened to the money, what happened to the rules, and me. A red day with every rule followed is a good day of process. It isn’t a verdict on who I am."
     }
-   ]
-  },
-  {
-   "type": "p7_process",
-   "kicker": "Your journal, two columns",
-   "title": "Grade it the way it actually happened",
-   "trades": [
-    {
-     "name": "TRADE A",
-     "facts": [
-      "Entered before Continuation.",
-      "Closed at +2R."
-     ],
-     "result": "+2R WIN",
-     "violations": [
-      "Early entry"
-     ],
-     "answers": {
-      "outcome": "WIN",
-      "process": "VIOLATION"
-     }
-    },
-    {
-     "name": "TRADE B",
-     "facts": [
-      "Every rule followed.",
-      "Stop hit."
-     ],
-     "result": "−1R LOSS",
-     "answers": {
-      "outcome": "LOSS",
-      "process": "FOLLOWED"
-     }
-    }
-   ]
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "Some of my best trades lost money. <em>Some of my worst ones paid me.</em>",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "How do you talk to yourself after a red day?",
-   "modelAnswer": "I want to separate it: what happened to the money, what happened to the rules, and me. A red day with every rule followed is a good day of process. It isn’t a verdict on who I am."
-  }
- ],
- "takeaways": [
-  "Outcome and process are different columns.",
-  "A win can teach a bad habit.",
-  "Neither column grades you."
- ],
- "remember": "YOUR P&L IS INFORMATION ABOUT TRADES. IT ISN’T A VERDICT ABOUT YOU."
+  ],
+  "takeaways": [
+    "Outcome and process are different columns.",
+    "A win can teach a bad habit.",
+    "Neither column grades you."
+  ],
+  "remember": "YOUR P&L IS INFORMATION ABOUT TRADES. IT ISN’T A VERDICT ABOUT YOU."
 }

@@ -1,93 +1,140 @@
 {
- "phase": "p7",
- "section": "s19",
- "lessonNumber": 22,
- "title": "Your Rulebook",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "Calm-you, writing for emotional-you.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Assemble MY AGHF RULEBOOK: your model’s rules, your risk, your session and your five non-negotiables.",
-  "missionQuestion": "What will I read before every session?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "Your Rulebook",
-   "title": "",
-   "beats": [
+  "phase": "p7",
+  "section": "s19",
+  "lessonNumber": 22,
+  "title": "Your Rulebook",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Calm-you, writing for emotional-you.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Assemble MY AGHF RULEBOOK: your model’s rules, your risk, your session and your five non-negotiables.",
+    "missionQuestion": "What will I read before every session?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "say": [
-      "Everything you’ve felt in this phase, you’ll feel again.",
-      "After a win. After a loss. On a slow Tuesday. With rent due."
-     ]
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 22",
+      "headline": "Write it calm. <em>Read it hot.</em>",
+      "line": "Everything you felt this phase, you’ll feel again.",
+      "pose": "wave",
+      "cta": "Build it →"
     },
     {
-     "say": [
-      "So right now, while you’re calm, you’re going to write the voice that speaks for you then."
-     ]
+      "type": "v2_steps",
+      "kicker": "When you’ll need it",
+      "headline": "You’ll feel it <em>again.</em>",
+      "line": "Tap each one. These are the moments your rulebook is for.",
+      "steps": [
+        {
+          "label": "After a win",
+          "sub": "“I’m on fire. One more.”"
+        },
+        {
+          "label": "After a loss",
+          "sub": "“I need it back.”"
+        },
+        {
+          "label": "A slow Tuesday",
+          "sub": "“Anything. Just something.”"
+        },
+        {
+          "label": "Rent due",
+          "sub": "“This one has to work.”"
+        }
+      ],
+      "cta": "Next →"
     },
     {
-     "principle": "THIS ISN’T A LIST OF RULES. IT’S A LETTER FROM CALM-YOU TO EMOTIONAL-YOU."
+      "type": "v2_compare",
+      "kicker": "What this really is",
+      "headline": "A letter from <em>calm-you.</em>",
+      "cards": [
+        {
+          "label": "Calm-you",
+          "sub": "Writes the rules today",
+          "spark": "up",
+          "tag": "WRITES",
+          "tone": "purple"
+        },
+        {
+          "label": "Emotional-you",
+          "sub": "Reads them mid-session",
+          "spark": "chop",
+          "tag": "READS",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "Who should decide your rules?",
+        "options": [
+          {
+            "label": "Calm-you, before the session",
+            "correct": true,
+            "feedback": "Yes. Calm-you speaks for you when emotional-you can’t."
+          },
+          {
+            "label": "Whoever’s trading right now",
+            "correct": false,
+            "feedback": "Mid-session you is the one who needs the letter, not the pen."
+          }
+        ]
+      }
+    },
+    {
+      "type": "p7_rulebook",
+      "kicker": "A milestone",
+      "title": "📕 MY AGHF RULEBOOK",
+      "intro": [
+        "PHASE 1: MARKET FOUNDATIONS ✓",
+        "PHASE 2: STRUCTURE ✓",
+        "PHASE 3: PRICE READING ✓",
+        "PHASE 4: DIRECTION ✓",
+        "PHASE 5: YOUR MODEL ✓",
+        "PHASE 6: EXECUTION ✓",
+        "PHASE 7: THE TRADER ✓"
+      ],
+      "parts": [
+        "intro",
+        "method",
+        "risk",
+        "session",
+        "behavior",
+        "five",
+        "when"
+      ]
+    },
+    {
+      "type": "p7_rulebook_view",
+      "kicker": "Your rulebook",
+      "title": "MY AGHF RULEBOOK",
+      "mode": "review",
+      "punch": "REVIEW MODE: editable. SESSION MODE: read-only. Open it any time from your Academy."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Read it before every session. <em>Out loud, if you have to.</em> 😂",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What are your <em>five non-negotiables?</em>",
+      "modelAnswer": "My five are the rules I don’t negotiate during a session. They change only in review, with evidence."
     }
-   ],
-   "cta": "Build it →"
-  },
-  {
-   "type": "p7_rulebook",
-   "kicker": "A milestone",
-   "title": "📕 MY AGHF RULEBOOK",
-   "intro": [
-    "PHASE 1: MARKET FOUNDATIONS ✓",
-    "PHASE 2: STRUCTURE ✓",
-    "PHASE 3: PRICE READING ✓",
-    "PHASE 4: DIRECTION ✓",
-    "PHASE 5: YOUR MODEL ✓",
-    "PHASE 6: EXECUTION ✓",
-    "PHASE 7: THE TRADER ✓"
-   ],
-   "parts": [
-    "intro",
-    "method",
-    "risk",
-    "session",
-    "behavior",
-    "five",
-    "when"
-   ]
-  },
-  {
-   "type": "p7_rulebook_view",
-   "kicker": "Your rulebook",
-   "title": "MY AGHF RULEBOOK",
-   "mode": "review",
-   "punch": "REVIEW MODE: editable. SESSION MODE: read-only. Open it any time from your Academy."
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "Read it before every session. <em>Out loud, if you have to.</em> 😂",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "What are your five non-negotiables?",
-   "modelAnswer": "My five are the rules I don’t negotiate during a session. They change only in review, with evidence."
-  }
- ],
- "takeaways": [
-  "Your rulebook speaks when you can’t.",
-  "Five non-negotiables.",
-  "Read it before every session."
- ],
- "remember": "A LETTER FROM CALM-YOU TO EMOTIONAL-YOU."
+  ],
+  "takeaways": [
+    "Your rulebook speaks when you can’t.",
+    "Five non-negotiables.",
+    "Read it before every session."
+  ],
+  "remember": "A LETTER FROM CALM-YOU TO EMOTIONAL-YOU."
 }

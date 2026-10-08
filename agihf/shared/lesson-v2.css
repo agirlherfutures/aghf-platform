@@ -80,6 +80,10 @@
 .v2-card-purple .v2-spark polyline{stroke:var(--purple);}
 .v2-card-pink{border-color:var(--pink-light);}
 .v2-card-pink .v2-spark polyline{stroke:var(--pink);}
+.v2-card-teal{border-color:var(--teal-light);}
+.v2-card-teal .v2-spark polyline{stroke:#2F8A7F;}
+.v2-card-peach{border-color:#F6C99B;}
+.v2-card-peach .v2-spark polyline{stroke:#E08E2E;}
 .v2-card b{font-family:var(--font-display);font-size:1.5rem;color:var(--dark);margin-top:6px;}
 .v2-card span{font-size:.85rem;color:var(--muted);font-weight:600;line-height:1.35;}
 .v2-card .v2-card-tag{font-size:.64rem;font-weight:800;letter-spacing:.14em;color:var(--muted);margin-bottom:4px;}

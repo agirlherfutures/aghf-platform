@@ -1,844 +1,811 @@
 {
- "phase": "p7",
- "section": "s19",
- "lessonNumber": 14,
- "title": "Written While Calm",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "Your rules weren’t written for the disciplined you.",
- "format": "slides",
- "launchpad": {
-  "outcome": "See why you write rules while calm that you’ll want to break while emotional, and how strategy rules differ from personal ones.",
-  "missionQuestion": "Who was this rule written for?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "Phase 7 · Section 2",
-   "title": "Sunday night",
-   "beats": [
+  "phase": "p7",
+  "section": "s19",
+  "lessonNumber": 14,
+  "title": "Written While Calm",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Your rules weren’t written for the disciplined you.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "See why you write rules while calm that you’ll want to break while emotional, and how strategy rules differ from personal ones.",
+    "missionQuestion": "Who was this rule written for?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "say": [
-      "Sunday night. Coffee. Calm.",
-      "You write three lines in your plan:"
-     ]
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 14",
+      "headline": "Rules for the you who <em>doesn’t feel disciplined.</em>",
+      "line": "Written Sunday, calm. Tested Thursday at 10:40.",
+      "pose": "think",
+      "cta": "Show me →"
     },
     {
-     "cards": [
-      "MAXIMUM 2 TRADES",
-      "STOP FOR THE DAY AT −2R",
-      "NO CHASING"
-     ]
-    },
-    {
-     "say": [
-      "Easy. Obviously. Who would ever break those?"
-     ]
-    },
-    {
-     "say": [
-      "<b>Thursday. 10:40.</b>",
-      "Two valid losses. −2R. Your daily stop."
-     ]
-    },
-    {
-     "chart": {
-      "bars": [
-       {
-        "o": 20982.25,
-        "h": 20986.5,
-        "l": 20981.5,
-        "c": 20985.5
-       },
-       {
-        "o": 20985.5,
-        "h": 20991.5,
-        "l": 20985.25,
-        "c": 20990.5
-       },
-       {
-        "o": 20990.5,
-        "h": 20994.25,
-        "l": 20990.0,
-        "c": 20993.0
-       },
-       {
-        "o": 20993.0,
-        "h": 20998.75,
-        "l": 20991.5,
-        "c": 20998.25
-       },
-       {
-        "o": 20998.25,
-        "h": 21004.25,
-        "l": 20997.0,
-        "c": 21001.75
-       },
-       {
-        "o": 21001.75,
-        "h": 21002.75,
-        "l": 20998.5,
-        "c": 20999.0
-       },
-       {
-        "o": 20999.0,
-        "h": 21000.25,
-        "l": 20995.75,
-        "c": 20996.75
-       },
-       {
-        "o": 20996.75,
-        "h": 20997.75,
-        "l": 20994.25,
-        "c": 20994.5
-       },
-       {
-        "o": 20994.5,
-        "h": 20995.75,
-        "l": 20990.25,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20994.25,
-        "l": 20990.0,
-        "c": 20994.0
-       },
-       {
-        "o": 20994.0,
-        "h": 20999.0,
-        "l": 20992.75,
-        "c": 20997.75
-       },
-       {
-        "o": 20997.75,
-        "h": 21002.5,
-        "l": 20996.25,
-        "c": 21001.25
-       },
-       {
-        "o": 21001.25,
-        "h": 21007.75,
-        "l": 21001.25,
-        "c": 21007.0
-       },
-       {
-        "o": 21007.0,
-        "h": 21007.0,
-        "l": 21001.25,
-        "c": 21002.0
-       },
-       {
-        "o": 21002.0,
-        "h": 21008.5,
-        "l": 21002.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21012.5,
-        "l": 21005.75,
-        "c": 21012.0
-       },
-       {
-        "o": 21012.0,
-        "h": 21019.5,
-        "l": 21011.25,
-        "c": 21018.5
-       },
-       {
-        "o": 21018.5,
-        "h": 21025.25,
-        "l": 21017.75,
-        "c": 21024.5
-       },
-       {
-        "o": 21024.5,
-        "h": 21031.25,
-        "l": 21023.5,
-        "c": 21030.25
-       },
-       {
-        "o": 21030.25,
-        "h": 21031.25,
-        "l": 21022.0,
-        "c": 21023.5
-       },
-       {
-        "o": 21023.5,
-        "h": 21025.0,
-        "l": 21014.75,
-        "c": 21015.75
-       },
-       {
-        "o": 21015.75,
-        "h": 21016.25,
-        "l": 21006.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21008.75,
-        "l": 21003.75,
-        "c": 21005.75
-       },
-       {
-        "o": 21005.75,
-        "h": 21007.75,
-        "l": 21005.25,
-        "c": 21006.5
-       },
-       {
-        "o": 21006.5,
-        "h": 21009.0,
-        "l": 21006.0,
-        "c": 21008.0
-       },
-       {
-        "o": 21008.0,
-        "h": 21009.25,
-        "l": 21005.0,
-        "c": 21006.5
-       },
-       {
-        "o": 21006.5,
-        "h": 21008.5,
-        "l": 21005.75,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21008.75,
-        "l": 21006.0,
-        "c": 21008.25
-       },
-       {
-        "o": 21008.25,
-        "h": 21010.75,
-        "l": 21007.25,
-        "c": 21010.5
-       },
-       {
-        "o": 21010.5,
-        "h": 21011.75,
-        "l": 21008.5,
-        "c": 21009.25
-       },
-       {
-        "o": 21009.25,
-        "h": 21013.5,
-        "l": 21008.25,
-        "c": 21012.0
-       },
-       {
-        "o": 21012.0,
-        "h": 21013.5,
-        "l": 21011.75,
-        "c": 21012.75
-       },
-       {
-        "o": 21012.75,
-        "h": 21013.75,
-        "l": 21012.0,
-        "c": 21012.25
-       }
-      ],
-      "pil": 21004.25,
-      "pilAt": 4,
-      "head": {
-       "tf": "1M",
-       "label": "10:40"
-      },
-      "play": {
-       "from": 10,
-       "to": 23,
-       "speed": 300
-      }
-     }
-    },
-    {
-     "say": [
-      "And now the cleanest setup you’ve seen all week."
-     ]
-    },
-    {
-     "thoughts": [
-      "“That rule was for a normal day.”",
-      "“This one is different.”",
-      "“Just this once.”"
-     ]
-    },
-    {
-     "choice": {
-      "prompt": "What do you do?",
-      "options": [
-       {
-        "label": "Just this once",
-        "path": {
-         "chart": {
-          "bars": [
-           {
-            "o": 20982.25,
-            "h": 20986.5,
-            "l": 20981.5,
-            "c": 20985.5
-           },
-           {
-            "o": 20985.5,
-            "h": 20991.5,
-            "l": 20985.25,
-            "c": 20990.5
-           },
-           {
-            "o": 20990.5,
-            "h": 20994.25,
-            "l": 20990.0,
-            "c": 20993.0
-           },
-           {
-            "o": 20993.0,
-            "h": 20998.75,
-            "l": 20991.5,
-            "c": 20998.25
-           },
-           {
-            "o": 20998.25,
-            "h": 21004.25,
-            "l": 20997.0,
-            "c": 21001.75
-           },
-           {
-            "o": 21001.75,
-            "h": 21002.75,
-            "l": 20998.5,
-            "c": 20999.0
-           },
-           {
-            "o": 20999.0,
-            "h": 21000.25,
-            "l": 20995.75,
-            "c": 20996.75
-           },
-           {
-            "o": 20996.75,
-            "h": 20997.75,
-            "l": 20994.25,
-            "c": 20994.5
-           },
-           {
-            "o": 20994.5,
-            "h": 20995.75,
-            "l": 20990.25,
-            "c": 20991.25
-           },
-           {
-            "o": 20991.25,
-            "h": 20994.25,
-            "l": 20990.0,
-            "c": 20994.0
-           },
-           {
-            "o": 20994.0,
-            "h": 20999.0,
-            "l": 20992.75,
-            "c": 20997.75
-           },
-           {
-            "o": 20997.75,
-            "h": 21002.5,
-            "l": 20996.25,
-            "c": 21001.25
-           },
-           {
-            "o": 21001.25,
-            "h": 21007.75,
-            "l": 21001.25,
-            "c": 21007.0
-           },
-           {
-            "o": 21007.0,
-            "h": 21007.0,
-            "l": 21001.25,
-            "c": 21002.0
-           },
-           {
-            "o": 21002.0,
-            "h": 21008.5,
-            "l": 21002.0,
-            "c": 21007.25
-           },
-           {
-            "o": 21007.25,
-            "h": 21012.5,
-            "l": 21005.75,
-            "c": 21012.0
-           },
-           {
-            "o": 21012.0,
-            "h": 21019.5,
-            "l": 21011.25,
-            "c": 21018.5
-           },
-           {
-            "o": 21018.5,
-            "h": 21025.25,
-            "l": 21017.75,
-            "c": 21024.5
-           },
-           {
-            "o": 21024.5,
-            "h": 21031.25,
-            "l": 21023.5,
-            "c": 21030.25
-           },
-           {
-            "o": 21030.25,
-            "h": 21031.25,
-            "l": 21022.0,
-            "c": 21023.5
-           },
-           {
-            "o": 21023.5,
-            "h": 21025.0,
-            "l": 21014.75,
-            "c": 21015.75
-           },
-           {
-            "o": 21015.75,
-            "h": 21016.25,
-            "l": 21006.0,
-            "c": 21007.25
-           },
-           {
-            "o": 21007.25,
-            "h": 21008.75,
-            "l": 21003.75,
-            "c": 21005.75
-           },
-           {
-            "o": 21005.75,
-            "h": 21006.25,
-            "l": 21001.25,
-            "c": 21002.0
-           },
-           {
-            "o": 21002.0,
-            "h": 21002.25,
-            "l": 20997.75,
-            "c": 20998.5
-           },
-           {
-            "o": 20998.5,
-            "h": 21000.0,
-            "l": 20995.0,
-            "c": 20996.25
-           },
-           {
-            "o": 20996.25,
-            "h": 20996.75,
-            "l": 20991.25,
-            "c": 20992.25
-           },
-           {
-            "o": 20992.25,
-            "h": 20992.75,
-            "l": 20985.75,
-            "c": 20986.25
-           },
-           {
-            "o": 20986.25,
-            "h": 20986.75,
-            "l": 20980.75,
-            "c": 20982.25
-           },
-           {
-            "o": 20982.25,
-            "h": 20983.5,
-            "l": 20978.25,
-            "c": 20979.5
-           },
-           {
-            "o": 20979.5,
-            "h": 20980.0,
-            "l": 20974.5,
-            "c": 20975.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "tags": [
-           {
-            "at": 30,
-            "text": "−1R",
-            "tone": "warn"
-           }
-          ],
-          "head": {
-           "tf": "1M",
-           "label": "Just this once"
-          },
-          "play": {
-           "from": 23,
-           "to": 31,
-           "speed": 300
-          }
-         },
-         "say": [
-          "−3R. A day your plan capped at −2.",
-          "And if it had won? “Just this once” would become “just this kind of day”."
-         ],
-         "tally": [
-          [
-           "DAY",
-           "−3R",
-           "mind"
-          ],
-          [
-           "RULES BROKEN",
-           "1",
-           "mind"
-          ]
-         ]
+      "type": "v2_steps",
+      "kicker": "Sunday night · coffee · calm",
+      "headline": "Three rules. <em>Obviously easy.</em>",
+      "line": "Who would ever break these? Tap each.",
+      "steps": [
+        {
+          "label": "Maximum 2 trades",
+          "sub": "Then you’re done"
         },
-        "track": [
-         "overtradeCount",
-         "emotionalTradesTaken"
-        ]
-       },
-       {
-        "label": "Session over. Close the platform.",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+        {
+          "label": "Stop at −2R",
+          "sub": "Your daily stop. Session over."
+        },
+        {
+          "label": "No chasing",
+          "sub": "Missed it? Let it go."
+        }
+      ],
+      "cta": "Then Thursday →"
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "Thursday · 10:40",
+      "headline": "Daily stop hit. <em>Then the perfect setup.</em>",
+      "line": "Two valid losses. −2R. The cleanest setup all week.",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
             "h": 20986.5,
             "l": 20981.5,
             "c": 20985.5
-           },
-           {
+          },
+          {
             "o": 20985.5,
             "h": 20991.5,
             "l": 20985.25,
             "c": 20990.5
-           },
-           {
+          },
+          {
             "o": 20990.5,
             "h": 20994.25,
             "l": 20990.0,
             "c": 20993.0
-           },
-           {
+          },
+          {
             "o": 20993.0,
             "h": 20998.75,
             "l": 20991.5,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.0,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21002.75,
             "l": 20998.5,
             "c": 20999.0
-           },
-           {
+          },
+          {
             "o": 20999.0,
             "h": 21000.25,
             "l": 20995.75,
             "c": 20996.75
-           },
-           {
+          },
+          {
             "o": 20996.75,
             "h": 20997.75,
             "l": 20994.25,
             "c": 20994.5
-           },
-           {
+          },
+          {
             "o": 20994.5,
             "h": 20995.75,
             "l": 20990.25,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20994.25,
             "l": 20990.0,
             "c": 20994.0
-           },
-           {
+          },
+          {
             "o": 20994.0,
             "h": 20999.0,
             "l": 20992.75,
             "c": 20997.75
-           },
-           {
+          },
+          {
             "o": 20997.75,
             "h": 21002.5,
             "l": 20996.25,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21007.0,
             "l": 21001.25,
             "c": 21002.0
-           },
-           {
+          },
+          {
             "o": 21002.0,
             "h": 21008.5,
             "l": 21002.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21012.5,
             "l": 21005.75,
             "c": 21012.0
-           },
-           {
+          },
+          {
             "o": 21012.0,
             "h": 21019.5,
             "l": 21011.25,
             "c": 21018.5
-           },
-           {
+          },
+          {
             "o": 21018.5,
             "h": 21025.25,
             "l": 21017.75,
             "c": 21024.5
-           },
-           {
+          },
+          {
             "o": 21024.5,
             "h": 21031.25,
             "l": 21023.5,
             "c": 21030.25
-           },
-           {
+          },
+          {
             "o": 21030.25,
             "h": 21031.25,
             "l": 21022.0,
             "c": 21023.5
-           },
-           {
+          },
+          {
             "o": 21023.5,
             "h": 21025.0,
             "l": 21014.75,
             "c": 21015.75
-           },
-           {
+          },
+          {
             "o": 21015.75,
             "h": 21016.25,
             "l": 21006.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21008.75,
             "l": 21003.75,
             "c": 21005.75
-           },
-           {
+          },
+          {
             "o": 21005.75,
             "h": 21007.75,
             "l": 21005.25,
             "c": 21006.5
-           },
-           {
+          },
+          {
             "o": 21006.5,
             "h": 21009.0,
             "l": 21006.0,
             "c": 21008.0
-           },
-           {
+          },
+          {
             "o": 21008.0,
             "h": 21009.25,
             "l": 21005.0,
             "c": 21006.5
-           },
-           {
+          },
+          {
             "o": 21006.5,
             "h": 21008.5,
             "l": 21005.75,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21008.75,
             "l": 21006.0,
             "c": 21008.25
-           },
-           {
+          },
+          {
             "o": 21008.25,
             "h": 21010.75,
             "l": 21007.25,
             "c": 21010.5
-           },
-           {
+          },
+          {
             "o": 21010.5,
             "h": 21011.75,
             "l": 21008.5,
             "c": 21009.25
-           },
-           {
+          },
+          {
             "o": 21009.25,
             "h": 21013.5,
             "l": 21008.25,
             "c": 21012.0
-           },
-           {
+          },
+          {
             "o": 21012.0,
             "h": 21013.5,
             "l": 21011.75,
             "c": 21012.75
-           },
-           {
+          },
+          {
             "o": 21012.75,
             "h": 21013.75,
             "l": 21012.0,
             "c": 21012.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "head": {
-           "tf": "1M",
-           "label": "Without you"
-          },
-          "play": {
-           "from": 23,
-           "to": 33,
-           "speed": 300
           }
-         },
-         "say": [
-          "It worked. Without you.",
-          "You followed a rule while the chart made it look wrong. <b>That’s the only time a rule is ever tested.</b>"
-         ],
-         "tally": [
-          [
-           "DAY",
-           "−2R · capped",
-           "neutral"
-          ],
-          [
-           "RULES BROKEN",
-           "0",
-           "ok"
-          ]
-         ]
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "head": {
+          "tf": "1M",
+          "label": "10:40"
         },
-        "track": "ruleBasedResponses"
-       }
-      ]
-     }
+        "play": {
+          "from": 10,
+          "to": 23,
+          "speed": 300
+        }
+      },
+      "thoughts": [
+        "“That rule was for a normal day.”",
+        "“This one is different.”",
+        "“Just this once.”"
+      ],
+      "check": {
+        "prompt": "What do you do?",
+        "options": [
+          {
+            "label": "Just this once",
+            "correct": false,
+            "feedback": "−3R on a day your plan capped at −2. Rules hold the hardest moments.",
+            "track": [
+              "overtradeCount",
+              "emotionalTradesTaken"
+            ]
+          },
+          {
+            "label": "Session over. Close it.",
+            "correct": true,
+            "feedback": "Yes. You followed a rule while the chart made it look wrong.",
+            "track": "ruleBasedResponses"
+          }
+        ]
+      }
     },
     {
-     "say": [
-      "Sunday-you saw this coming.",
-      "She knew Thursday-you would feel exactly like this."
-     ]
+      "type": "v2_moment",
+      "kicker": "If you took it",
+      "headline": "“Just this once.” <em>−3R.</em>",
+      "line": "And if it won, it becomes “just this kind of day.”",
+      "chart": {
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.5,
+            "c": 20985.5
+          },
+          {
+            "o": 20985.5,
+            "h": 20991.5,
+            "l": 20985.25,
+            "c": 20990.5
+          },
+          {
+            "o": 20990.5,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20993.0
+          },
+          {
+            "o": 20993.0,
+            "h": 20998.75,
+            "l": 20991.5,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.0,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21002.75,
+            "l": 20998.5,
+            "c": 20999.0
+          },
+          {
+            "o": 20999.0,
+            "h": 21000.25,
+            "l": 20995.75,
+            "c": 20996.75
+          },
+          {
+            "o": 20996.75,
+            "h": 20997.75,
+            "l": 20994.25,
+            "c": 20994.5
+          },
+          {
+            "o": 20994.5,
+            "h": 20995.75,
+            "l": 20990.25,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20994.0
+          },
+          {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20992.75,
+            "c": 20997.75
+          },
+          {
+            "o": 20997.75,
+            "h": 21002.5,
+            "l": 20996.25,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21008.5,
+            "l": 21002.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21012.5,
+            "l": 21005.75,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21019.5,
+            "l": 21011.25,
+            "c": 21018.5
+          },
+          {
+            "o": 21018.5,
+            "h": 21025.25,
+            "l": 21017.75,
+            "c": 21024.5
+          },
+          {
+            "o": 21024.5,
+            "h": 21031.25,
+            "l": 21023.5,
+            "c": 21030.25
+          },
+          {
+            "o": 21030.25,
+            "h": 21031.25,
+            "l": 21022.0,
+            "c": 21023.5
+          },
+          {
+            "o": 21023.5,
+            "h": 21025.0,
+            "l": 21014.75,
+            "c": 21015.75
+          },
+          {
+            "o": 21015.75,
+            "h": 21016.25,
+            "l": 21006.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21003.75,
+            "c": 21005.75
+          },
+          {
+            "o": 21005.75,
+            "h": 21006.25,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21002.25,
+            "l": 20997.75,
+            "c": 20998.5
+          },
+          {
+            "o": 20998.5,
+            "h": 21000.0,
+            "l": 20995.0,
+            "c": 20996.25
+          },
+          {
+            "o": 20996.25,
+            "h": 20996.75,
+            "l": 20991.25,
+            "c": 20992.25
+          },
+          {
+            "o": 20992.25,
+            "h": 20992.75,
+            "l": 20985.75,
+            "c": 20986.25
+          },
+          {
+            "o": 20986.25,
+            "h": 20986.75,
+            "l": 20980.75,
+            "c": 20982.25
+          },
+          {
+            "o": 20982.25,
+            "h": 20983.5,
+            "l": 20978.25,
+            "c": 20979.5
+          },
+          {
+            "o": 20979.5,
+            "h": 20980.0,
+            "l": 20974.5,
+            "c": 20975.25
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "tags": [
+          {
+            "at": 30,
+            "text": "−1R",
+            "tone": "warn"
+          }
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "Just this once"
+        },
+        "play": {
+          "from": 23,
+          "to": 31,
+          "speed": 300
+        }
+      }
     },
     {
-     "principle": "YOUR TRADING RULES WEREN’T WRITTEN FOR THE VERSION OF YOU WHO FEELS DISCIPLINED. THEY WERE WRITTEN FOR THE VERSION OF YOU WHO DOESN’T."
+      "type": "v2_moment",
+      "kicker": "If you closed the platform",
+      "headline": "It worked. <em>Without you.</em>",
+      "line": "−2R, capped. Zero rules broken. Sunday-you saw this coming.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.5,
+            "c": 20985.5
+          },
+          {
+            "o": 20985.5,
+            "h": 20991.5,
+            "l": 20985.25,
+            "c": 20990.5
+          },
+          {
+            "o": 20990.5,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20993.0
+          },
+          {
+            "o": 20993.0,
+            "h": 20998.75,
+            "l": 20991.5,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.0,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21002.75,
+            "l": 20998.5,
+            "c": 20999.0
+          },
+          {
+            "o": 20999.0,
+            "h": 21000.25,
+            "l": 20995.75,
+            "c": 20996.75
+          },
+          {
+            "o": 20996.75,
+            "h": 20997.75,
+            "l": 20994.25,
+            "c": 20994.5
+          },
+          {
+            "o": 20994.5,
+            "h": 20995.75,
+            "l": 20990.25,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20994.0
+          },
+          {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20992.75,
+            "c": 20997.75
+          },
+          {
+            "o": 20997.75,
+            "h": 21002.5,
+            "l": 20996.25,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21008.5,
+            "l": 21002.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21012.5,
+            "l": 21005.75,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21019.5,
+            "l": 21011.25,
+            "c": 21018.5
+          },
+          {
+            "o": 21018.5,
+            "h": 21025.25,
+            "l": 21017.75,
+            "c": 21024.5
+          },
+          {
+            "o": 21024.5,
+            "h": 21031.25,
+            "l": 21023.5,
+            "c": 21030.25
+          },
+          {
+            "o": 21030.25,
+            "h": 21031.25,
+            "l": 21022.0,
+            "c": 21023.5
+          },
+          {
+            "o": 21023.5,
+            "h": 21025.0,
+            "l": 21014.75,
+            "c": 21015.75
+          },
+          {
+            "o": 21015.75,
+            "h": 21016.25,
+            "l": 21006.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21003.75,
+            "c": 21005.75
+          },
+          {
+            "o": 21005.75,
+            "h": 21007.75,
+            "l": 21005.25,
+            "c": 21006.5
+          },
+          {
+            "o": 21006.5,
+            "h": 21009.0,
+            "l": 21006.0,
+            "c": 21008.0
+          },
+          {
+            "o": 21008.0,
+            "h": 21009.25,
+            "l": 21005.0,
+            "c": 21006.5
+          },
+          {
+            "o": 21006.5,
+            "h": 21008.5,
+            "l": 21005.75,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21006.0,
+            "c": 21008.25
+          },
+          {
+            "o": 21008.25,
+            "h": 21010.75,
+            "l": 21007.25,
+            "c": 21010.5
+          },
+          {
+            "o": 21010.5,
+            "h": 21011.75,
+            "l": 21008.5,
+            "c": 21009.25
+          },
+          {
+            "o": 21009.25,
+            "h": 21013.5,
+            "l": 21008.25,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21013.5,
+            "l": 21011.75,
+            "c": 21012.75
+          },
+          {
+            "o": 21012.75,
+            "h": 21013.75,
+            "l": 21012.0,
+            "c": 21012.25
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "head": {
+          "tf": "1M",
+          "label": "Without you"
+        },
+        "play": {
+          "from": 23,
+          "to": 33,
+          "speed": 300
+        }
+      }
+    },
+    {
+      "type": "v2_compare",
+      "kicker": "Two kinds of rules",
+      "headline": "Two rulebooks. <em>Two different questions.</em>",
+      "cards": [
+        {
+          "label": "Model rules",
+          "sub": "Does the setup exist?",
+          "spark": "up",
+          "tag": "PIL · CLOSE · RETEST",
+          "tone": "purple"
+        },
+        {
+          "label": "Personal rules",
+          "sub": "Am I allowed to participate?",
+          "spark": "slow",
+          "tag": "RISK · STOP · MAX",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "Valid setup, daily stop hit. Which wins?",
+        "options": [
+          {
+            "label": "The valid setup",
+            "correct": false,
+            "feedback": "A valid setup doesn’t outrank your risk rules."
+          },
+          {
+            "label": "Your personal rules",
+            "correct": true,
+            "feedback": "Yes. Valid setup. No participation."
+          }
+        ]
+      }
+    },
+    {
+      "type": "p7_gate",
+      "kicker": "Before every trade",
+      "title": "The gates, in order",
+      "layers": [
+        {
+          "key": "strategy",
+          "label": "MY MODEL",
+          "q": "Is the setup actually valid?",
+          "state": "yes"
+        },
+        {
+          "key": "risk",
+          "label": "MY ACCOUNT",
+          "q": "Risk fits? Daily stop? Size?",
+          "state": "no",
+          "note": "Daily stop reached."
+        },
+        {
+          "key": "rulebook",
+          "label": "MY RULEBOOK",
+          "q": "Session · news · max trades · no chase · environment",
+          "state": "yes"
+        }
+      ],
+      "status": "SESSION OVER",
+      "verdict": "VALID SETUP. NO PARTICIPATION."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Calm-you is smarter than heated-you. <em>Let her write the rules. Let them speak when you can’t.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Which rule do you <em>most want to break</em> when emotional?",
+      "modelAnswer": "The one that stops me: my daily stop or my max trades. I wrote it calm for exactly the moment I’ll want to break it."
     }
-   ],
-   "cta": "Start →"
-  },
-  {
-   "type": "p7_split",
-   "kicker": "Two kinds of rules",
-   "title": "Two different questions",
-   "left": {
-    "h": "YOUR MODEL’S RULES",
-    "lines": [
-     "Correct PIL",
-     "Candle-close Indication",
-     "Correction",
-     "Continuation",
-     "Valid retest"
-    ],
-    "tone": "ink",
-    "sub": "Does the setup exist?"
-   },
-   "right": {
-    "h": "YOUR PERSONAL RULES",
-    "lines": [
-     "Risk per trade",
-     "Daily stop",
-     "Maximum trades",
-     "Session",
-     "No chasing",
-     "News"
-    ],
-    "tone": "mind",
-    "sub": "Am I allowed to participate?"
-   },
-   "together": true,
-   "verdict": "A VALID SETUP DOESN’T OUTRANK YOUR RISK RULES."
-  },
-  {
-   "type": "p7_gate",
-   "kicker": "Before every trade",
-   "title": "The gates, in order",
-   "layers": [
-    {
-     "key": "strategy",
-     "label": "MY MODEL",
-     "q": "Is the setup actually valid?",
-     "state": "yes"
-    },
-    {
-     "key": "risk",
-     "label": "MY ACCOUNT",
-     "q": "Risk fits? Daily stop? Size?",
-     "state": "no",
-     "note": "Daily stop reached."
-    },
-    {
-     "key": "rulebook",
-     "label": "MY RULEBOOK",
-     "q": "Session · news · max trades · no chase · environment",
-     "state": "yes"
-    }
-   ],
-   "status": "SESSION OVER",
-   "verdict": "VALID SETUP. NO PARTICIPATION."
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "Calm-you is smarter than heated-you. <em>Let her write the rules. Let them speak when you can’t.</em>",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "Which rule do you most want to break when you’re emotional?",
-   "modelAnswer": "The one that stops me: my daily stop or my max trades. I wrote it calm for exactly the moment I’ll want to break it."
-  }
- ],
- "takeaways": [
-  "Rules are written for the emotional you.",
-  "Model rules: does the setup exist?",
-  "Personal rules: may I participate?"
- ],
- "remember": "YOUR RULES WERE WRITTEN FOR THE VERSION OF YOU WHO DOESN’T FEEL DISCIPLINED."
+  ],
+  "takeaways": [
+    "Rules are written for the emotional you.",
+    "Model rules: does the setup exist?",
+    "Personal rules: may I participate?"
+  ],
+  "remember": "YOUR RULES WERE WRITTEN FOR THE VERSION OF YOU WHO DOESN’T FEEL DISCIPLINED."
 }
