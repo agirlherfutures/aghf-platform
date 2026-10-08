@@ -65,7 +65,7 @@ window.LESSON_VIDEO = {
       "start": 62,
       "end": 72,
       "pointAt": 66.6,
-      "size": 52,
+      "size": 46,
       "kicker": "Dayli says",
       "parts": [
         { "at": 63.4, "text": "A pass is a decision. A miss is an execution gap." },

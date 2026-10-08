@@ -579,7 +579,7 @@
       out += slip(t, BAYS[0] - 150, 520, 'TRIGGER', 'FOMO', C.purple, pop(t, T.tk3 + 0.9, 0.6), 4);
       out += slip(t, BAYS[0] + 150, 560, 'VIOLATION', 'CHASED', C.pink, pop(t, T.tk3, 0.6), -5);
       out += bub(BAYS[2] - 120, 760, 'Too early!', between(t, T.c1 + 1.2, T.tk1 + 0.6), { size: 26 });
-      out += bub(BAYS[0] + 300, 780, 'Window closed!', between(t, T.c3 + 1, T.tk3 + 0.6), { size: 26 });
+      out += bub(BAYS[0] + 90, 640, 'Window closed!', between(t, T.c3 + 0.9, T.tk3 - 0.1), { size: 26 });
       out += A.sparkle(BAYS[1] + 130, 470, T.ok2 + 0.8, t, C.teal);
       // Summary legend.
       if (t > T.sum) out += A.sparkle(BAYS[0] - 150, 470, T.sum, t, C.purple) + A.sparkle(BAYS[0] + 150, 500, T.sum + 0.3, t, C.pink);
@@ -643,6 +643,583 @@
       out += A.sparkle(CX + 120, 860 - lift, T.fixed, t, C.teal) + pill(1590, 735, 'practice: wait for continuation', DK.teal, pop(t, T.fixed + 0.2, 0.5), 24);
       // Cat napping on a tyre stack.
       out += fade(bk, `<ellipse cx="1760" cy="975" rx="70" ry="26" fill="${C.dark}"/><ellipse cx="1760" cy="975" rx="30" ry="10" fill="#555"/><ellipse cx="1760" cy="935" rx="70" ry="26" fill="${C.dark}"/><ellipse cx="1760" cy="935" rx="30" ry="10" fill="#555"/>`) + crit(t, 'cat', { x: 1760, y: 915, scale: 0.75, seed: 5, at: T.set + 1.6, sleep: t < T.fixed });
+      return out;
+    },
+  });
+
+  /* ================= Lesson 19: Performance Tracking ================= */
+  // A round gauge: centre (x, y), radius r, value v in 0..1 (needle), label, readout.
+  const gauge = (x, y, r, v, label, read, col, k = 1) => {
+    if (k <= 0) return '';
+    const a0 = 150, a1 = 390, ang = a0 + (a1 - a0) * clamp(v);
+    const arc = (from, to, c, w) => { const p = q => [x + Math.cos(rad(q)) * r * 0.82, y + Math.sin(rad(q)) * r * 0.82]; const [sx, sy] = p(from), [ex, ey] = p(to); return `<path d="M${f1(sx)},${f1(sy)} A${r * 0.82},${r * 0.82} 0 ${to - from > 180 ? 1 : 0} 1 ${f1(ex)},${f1(ey)}" stroke="${c}" stroke-width="${w}" fill="none" stroke-linecap="round"/>`; };
+    let ticks = '';
+    for (let i = 0; i <= 8; i++) { const q = rad(a0 + (a1 - a0) * i / 8); ticks += `<line x1="${f1(x + Math.cos(q) * r * 0.62)}" y1="${f1(y + Math.sin(q) * r * 0.62)}" x2="${f1(x + Math.cos(q) * r * 0.7)}" y2="${f1(y + Math.sin(q) * r * 0.7)}" stroke="#fff" stroke-width="4" opacity=".6"/>`; }
+    return scaleAt(x, y, k, `<circle cx="${x}" cy="${y}" r="${r}" fill="#2F2A3E" stroke="${C.muted}" stroke-width="8"/>${arc(a0, a1, '#4A4458', 14)}${arc(a0, ang, col, 14)}${ticks}
+      <line x1="${x}" y1="${y}" x2="${f1(x + Math.cos(rad(ang)) * r * 0.66)}" y2="${f1(y + Math.sin(rad(ang)) * r * 0.66)}" stroke="${C.pink}" stroke-width="7" stroke-linecap="round"/><circle cx="${x}" cy="${y}" r="12" fill="${C.pink}"/>
+      ${txt(x, y + r * 0.42, read, r * 0.26, '#fff')}${txt(x, y + r + 40, label, 26, C.dark, { ls: 2 })}`);
+  };
+
+  Object.assign(LIVE, {
+    // Driving: the gauges you control sit on top. The fuel-price sign (P&L) flickers underneath. A cat can't stop staring at it.
+    's22b-gauge-dash': (s, t, ctx) => {
+      const T = s.beats;
+      let out = grad('road', '#CDEBF0', '#FBEFF2');
+      const bk = ease(seg(t, T.set - 0.3, T.set + 0.7));
+      // Windshield view: sky, hills, road to the horizon, passing posts.
+      let v = `<rect x="0" y="370" width="1920" height="330" fill="url(#s22broad)"/>` + cloud(300 + (t * 20) % 300, 440, 0.6) + cloud(1500 - (t * 14) % 260, 420, 0.5);
+      v += `<path d="M0,620 Q400,560 900,600 Q1400,640 1920,590 L1920,700 L0,700 Z" fill="#CFE6C9"/>`;
+      v += `<path d="M900,600 L1020,600 L1500,700 L420,700 Z" fill="#9C94A6"/>`;
+      for (let i = 0; i < 4; i++) { const p = ((t * 0.9 + i / 4) % 1), y = 600 + p * p * 100, w = 4 + p * 14; v += `<rect x="${f1(960 - w / 2)}" y="${f1(y)}" width="${f1(w)}" height="${f1(4 + p * 14)}" fill="#fff" opacity=".85"/>`; }
+      for (let i = 0; i < 3; i++) { const p = ((t * 0.45 + i / 3) % 1), x = 1040 + p * p * 700, y = 596 + p * p * 70; v += `<rect x="${f1(x)}" y="${f1(y - 20 - p * 60)}" width="${f1(3 + p * 8)}" height="${f1(20 + p * 60)}" fill="${C.muted}"/>`; }
+      out += fade(bk, v);
+      // Fuel-price style sign on the roadside (the P&L), approaching, then held in view.
+      const fp = ease(seg(t, T.sign, T.sign + 2));
+      const sx = lerp(1060, 1560, fp), sy = lerp(600, 520, fp), ss = lerp(0.3, 1, fp);
+      if (t > T.sign) {
+        const r = (Math.sin(t * 3.1) * 1.6 + Math.sin(t * 7.3) * 0.9);
+        const val = (r >= 0 ? '+' : '') + r.toFixed(1) + 'R';
+        out += `<g transform="translate(${f1(sx)},${f1(sy)}) scale(${f1(ss)})"><rect x="-10" y="0" width="20" height="170" fill="${C.muted}"/><rect x="-120" y="-130" width="240" height="140" rx="16" fill="#fff" stroke="${C.peach}" stroke-width="8"/>${txt(0, -90, 'P&amp;L', 28, C.muted)}${txt(0, -30, val, 52, r >= 0 ? DK.teal : DK.pink, { f: 'Playfair Display' })}</g>`;
+      }
+      // Dashboard.
+      const dk = pop(t, T.set + 0.2, 0.8);
+      out += scaleAt(960, 1080, dk, `<path d="M0,700 Q960,640 1920,700 L1920,1080 L0,1080 Z" fill="#E9DDF0"/><path d="M0,700 Q960,640 1920,700 L1920,722 Q960,664 0,722 Z" fill="${C.purpleL}"/>
+        <rect x="380" y="738" width="1160" height="320" rx="40" fill="#F7F1FA" stroke="${C.purpleL}" stroke-width="5"/>`);
+      out += pill(960, 770, 'PROCESS · you control this', C.purple, pop(t, T.g1 - 0.4, 0.5), 22);
+      const g1v = 0.82 * ease(seg(t, T.g1, T.g1 + 1.6)) + (t > T.g1 + 1.6 ? Math.sin(t * 3) * 0.01 : 0);
+      out += gauge(640, 880, 100, g1v, 'RULES FOLLOWED', `${Math.round(g1v * 100)}%`, C.teal, pop(t, T.g1 - 0.3, 0.6));
+      // Quality mix: a segmented donut.
+      const qk = pop(t, T.g2 - 0.3, 0.6);
+      if (qk > 0) {
+        const mix = [[0.42, C.purple, 'A'], [0.33, C.teal, 'B'], [0.25, C.peach, 'C']], R = 78;
+        const grow = ease(seg(t, T.g2, T.g2 + 1.6));
+        let a = -90, g = `<circle cx="1280" cy="880" r="100" fill="#2F2A3E" stroke="${C.muted}" stroke-width="8"/>`;
+        mix.forEach(([p, c, l]) => {
+          const sweep = p * 360 * grow, e = a + sweep;
+          if (sweep > 0.5) g += `<path d="M${f1(1280 + Math.cos(rad(a)) * R)},${f1(880 + Math.sin(rad(a)) * R)} A${R},${R} 0 ${sweep > 180 ? 1 : 0} 1 ${f1(1280 + Math.cos(rad(e - 1)) * R)},${f1(880 + Math.sin(rad(e - 1)) * R)}" stroke="${c}" stroke-width="26" fill="none"/>`;
+          const m = rad(a + sweep / 2);
+          if (grow > 0.9) g += txt(1280 + Math.cos(m) * R, 880 + Math.sin(m) * R + 8, l, 24, '#fff');
+          a = e;
+        });
+        g += txt(1280, 1020, 'QUALITY MIX', 26, C.dark, { ls: 2 });
+        out += scaleAt(1280, 880, qk, g);
+      }
+      // N badges on each gauge.
+      out += pill(735, 790, 'N = 24', C.dark, pop(t, T.n, 0.5), 20) + pill(1375, 790, 'N = 24', C.dark, pop(t, T.n + 0.3, 0.5), 20);
+      // Little P&L strip underneath, smaller.
+      const lk = pop(t, T.pnl, 0.6);
+      out += scaleAt(960, 950, lk, `<rect x="830" y="905" width="260" height="90" rx="14" fill="#2F2A3E"/>${txt(960, 938, 'P&amp;L · underneath', 18, C.tealL, { ls: 1 })}${txt(960, 978, '+2.4R', 32, '#fff')}`);
+      out += pill(960, 1030, 'early sample', DK.peach, pop(t, T.n + 0.6, 0.5), 22);
+      // Bobblehead dog on the dash (nods with the road).
+      const nod = Math.sin(t * 6) * 10;
+      out += scaleAt(1490, 742, pop(t, T.set + 1.2, 0.6), `<rect x="1460" y="724" width="60" height="22" rx="6" fill="${C.purple}"/><g transform="rotate(${f1(nod)} 1490 714)">${critter(t, 'dog', { x: 1460, y: 730, scale: 0.42, seed: 3 })}</g>`);
+      // Driving instructor pointing at the top gauges.
+      const io = { x: 200, y: 1060, scale: 0.98, look: A.LOOKS.e, seed: 6, at: T.set + 0.8, hat: 'cap', talk: ctx.talking && t > T.tap && t < T.tap + 2.4 };
+      io.frontArm = t > T.tap - 0.2 ? aim(io, 330 + Math.sin(t * 8) * 6, 810) : { a1: 100, a2: 95 };
+      out += who(t, io);
+      out += bub(310, 560, 'Eyes up here 👆', between(t, T.tap, T.tap + 3.4), { size: 28 });
+      // Cat passenger glued to the sign.
+      const stare = t > T.cat && t < T.tap + 0.6;
+      const co = { x: 1720, y: 1000, scale: 1, seed: 4, at: T.set + 1.4, flip: !stare && t > T.tap + 0.6, hop: stare ? 10 : 0, hopH: 22, talk: ctx.talking && t > T.cat && t < T.cat + 1.6 };
+      out += crit(t, 'cat', co);
+      out += bub(1640, 600, 'Ooh, the number!', between(t, T.cat, T.tap + 0.4), { size: 28, tail: 'right' });
+      return out;
+    },
+
+    // Two water tanks run ten trades each. 60% wins can still drain; 40% wins can still fill. Win rate alone can't tell.
+    's22b-coin-pipes': (s, t, ctx) => {
+      const T = s.beats;
+      let out = '';
+      const bk = ease(seg(t, T.set - 0.3, T.set + 0.7));
+      out += fade(bk, `<rect x="0" y="380" width="1920" height="620" fill="#EAF6F4"/>` + ground(1000, '#DCEFEA', '#C4E2DB'));
+      // Pipes along the top feeding both tanks.
+      out += fade(bk, `<rect x="300" y="430" width="1320" height="22" rx="11" fill="${C.muted}"/>`);
+      const TK = [
+        { x: 620, seq: [1, 1, 0, 1, 0, 1, 1, 0, 1, 0], win: 0.5, wr: '60%', col: C.pink, exp: '−0.1R per trade', duck: C.peachL },
+        { x: 1300, seq: [0, 1, 0, 0, 1, 0, 1, 0, 0, 1], win: 2, wr: '40%', col: C.teal, exp: '+0.2R per trade', duck: C.gold },
+      ];
+      const W = 300, TOP = 600, BOT = 960, H = BOT - TOP, U = 0.1;
+      const at = i => T.trades + i * T.step;
+      TK.forEach((tk, j) => {
+        const k = pop(t, T.set + 0.3 + j * 0.3, 0.7);
+        // Level: start 0.5, each trade eases its change in.
+        let lv = 0.5;
+        tk.seq.forEach((w, i) => { lv += (w ? tk.win : -1) * U * ease(seg(t, at(i) + 0.3, at(i) + 0.8)); });
+        const ly = BOT - lv * H;
+        let g = `<rect x="${tk.x - W / 2 - 10}" y="${TOP - 10}" width="${W + 20}" height="${H + 20}" rx="26" fill="#fff" stroke="${C.muted}" stroke-width="6"/>`;
+        const wav = Array.from({ length: 6 }, (_, q) => `Q${f1(tk.x - W / 2 + q * W / 6 + W / 12)},${f1(ly + Math.sin(t * 4 + q) * 8)} ${f1(tk.x - W / 2 + (q + 1) * W / 6)},${f1(ly)}`).join(' ');
+        g += `<path d="M${tk.x - W / 2},${f1(ly)} ${wav} L${tk.x + W / 2},${BOT} L${tk.x - W / 2},${BOT} Z" fill="${C.tealL}" opacity=".9"/>`;
+        g += `<line x1="${tk.x - W / 2 - 10}" y1="${BOT - 0.5 * H}" x2="${tk.x + W / 2 + 10}" y2="${BOT - 0.5 * H}" stroke="${C.muted}" stroke-width="3" stroke-dasharray="10 8"/>`;
+        // Tap from the pipe, and a drain spout at the bottom.
+        g += `<rect x="${tk.x + 96}" y="452" width="28" height="${TOP - 462}" fill="${C.muted}"/><rect x="${tk.x + 80}" y="${TOP - 26}" width="60" height="20" rx="8" fill="${C.muted}"/>`;
+        g += `<rect x="${tk.x + W / 2 + 6}" y="${BOT - 50}" width="60" height="26" rx="8" fill="${C.muted}"/>`;
+        out += scaleAt(tk.x, BOT, k, g);
+        // Duck floating on the surface.
+        if (k >= 1) out += critter(t, 'duck', { x: tk.x - 40, y: ly + 18, scale: 0.9, seed: j + 2, talk: false });
+        // Trade effects.
+        tk.seq.forEach((w, i) => {
+          const p = seg(t, at(i), at(i) + 0.9);
+          if (p <= 0 || p >= 1) return;
+          if (w) {
+            const n = tk.win >= 2 ? 6 : 2;
+            for (let q = 0; q < n; q++) { const y = lerp(TOP - 10, ly, clamp(p * 1.6 - q * 0.08)); out += `<ellipse cx="${tk.x + 110 + (q - n / 2) * 10}" cy="${f1(y)}" rx="${tk.win >= 2 ? 12 : 8}" ry="${tk.win >= 2 ? 18 : 12}" fill="${C.teal}" opacity="${(1 - p).toFixed(2)}"/>`; }
+            out += pill(tk.x + 210, TOP - 40, `+${tk.win}R`, DK.teal, Math.sin(p * Math.PI) * 1.1, 24);
+          } else {
+            const sx = tk.x + W / 2 + 66;
+            out += `<path d="M${sx},${BOT - 37} Q${sx + 60},${BOT - 30} ${sx + 70 + p * 20},${BOT + 30}" stroke="${C.tealL}" stroke-width="${f1(22 * Math.sin(p * Math.PI))}" fill="none" stroke-linecap="round"/>`;
+            out += pill(tk.x + W / 2 + 120, BOT - 90, '−1R', DK.pink, Math.sin(p * Math.PI) * 1.1, 24);
+          }
+        });
+        // Trade chips row under the tank title.
+        const chips = tk.seq.map((w, i) => { const ck = pop(t, at(i), 0.4); return ck > 0 ? scaleAt(tk.x - W / 2 - 46, TOP + 24 + i * 36, ck, `<circle cx="${tk.x - W / 2 - 46}" cy="${TOP + 24 + i * 36}" r="14" fill="${w ? C.teal : C.pink}"/>`) : `<circle cx="${tk.x - W / 2 - 46}" cy="${TOP + 24 + i * 36}" r="14" fill="#fff" stroke="${C.muted}" stroke-width="2"/>`; }).join('');
+        out += fade(k, chips);
+        // Win rate sign.
+        out += pill(tk.x - 40, 520, `win rate ${tk.wr}`, j ? DK.purple : C.purple, pop(t, T.rate + j * 0.5, 0.5), 22);
+        // Result.
+        out += pill(tk.x, 1036, tk.exp, j ? DK.teal : C.pink, pop(t, T.result + j * 0.6, 0.5), 28);
+        if (t > T.result + j * 0.6) out += A.sparkle(tk.x, ly, T.result + j * 0.6, t, j ? C.teal : C.pink);
+      });
+      // Parrot on the pipe, cheering for the 60% tank, then confused.
+      const confused = t > T.result;
+      out += crit(t, 'parrot', { x: 960, y: 1000, scale: 1.1, seed: 2, at: T.set + 1, hop: !confused && t > T.rate ? 7 : 0, hopH: 18, talk: ctx.talking && t > T.rate && t < T.rate + 2, flip: true });
+      out += bub(960, 780, '60%! Amazing!', between(t, T.rate + 0.4, T.trades + 4.4), { size: 26 });
+      out += bub(960, 780, 'Wait... what?', between(t, T.result + 0.2, s.end), { size: 26 });
+      out += pill(960, 1036, 'before trading costs', C.muted, pop(t, T.costs, 0.5), 22);
+      return out;
+    },
+  });
+
+  /* ================= Lesson 20: Weekly Review ================= */
+  // A weed with a cheeky face, root at (x, y), scale k.
+  const weed = (t, x, y, k, seed) => k <= 0 ? '' : scaleAt(x, y, k, `<g transform="rotate(${f1(Math.sin(t * 3 + seed) * 6)} ${x} ${y})">
+      <path d="M${x},${y} L${x - 26},${y - 40} L${x - 8},${y - 34} L${x - 14},${y - 70} L${x},${y - 50} L${x + 14},${y - 74} L${x + 10},${y - 36} L${x + 28},${y - 44} Z" fill="#7BAF5E" stroke="#4F8A3A" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="${x - 5}" cy="${y - 30}" r="3" fill="${C.dark}"/><circle cx="${x + 6}" cy="${y - 30}" r="3" fill="${C.dark}"/><path d="M${x - 6},${y - 20} l12,0" stroke="${C.dark}" stroke-width="2.5" stroke-linecap="round"/></g>`);
+  const flower = (t, x, y, k, col) => k <= 0 ? '' : `<line x1="${x}" y1="${y}" x2="${x}" y2="${f1(y - 60 * k)}" stroke="#4F8A3A" stroke-width="5"/>` + scaleAt(x, y - 60 * k, k, `<g transform="rotate(${f1(t * 30)} ${x} ${f1(y - 60 * k)})">${[0, 1, 2, 3, 4].map(i => `<ellipse cx="${f1(x + Math.cos(rad(i * 72)) * 14)}" cy="${f1(y - 60 * k + Math.sin(rad(i * 72)) * 14)}" rx="11" ry="9" fill="${col}"/>`).join('')}</g><circle cx="${x}" cy="${f1(y - 60 * k)}" r="9" fill="${C.gold}"/>`);
+
+  Object.assign(LIVE, {
+    // Seven weedy beds. Running between all of them fixes nothing. One bed per week actually blooms.
+    's22b-weed-beds': (s, t, ctx) => {
+      const T = s.beats;
+      let out = grad('garden', '#DDF1F4', '#F4FAEF');
+      const bk = ease(seg(t, T.set - 0.3, T.set + 0.7));
+      let st = `<rect x="0" y="370" width="1920" height="340" fill="url(#s22bgarden)"/>` + cloud(260 + (t * 14) % 240, 450, 0.6) + cloud(1500 - (t * 10) % 200, 430, 0.5);
+      st += `<rect x="0" y="700" width="1920" height="380" fill="#D6EBC4"/><rect x="0" y="700" width="1920" height="6" fill="#BCD9A6"/>`;
+      // Fence.
+      for (let i = 0; i < 25; i++) st += `<rect x="${i * 80 + 10}" y="610" width="24" height="100" rx="6" fill="#fff" opacity=".9"/>`;
+      st += `<rect x="0" y="640" width="1920" height="12" fill="#fff" opacity=".9"/><rect x="0" y="680" width="1920" height="12" fill="#fff" opacity=".9"/>`;
+      out += fade(bk, st);
+      const LAB = ['chased', 'oversized', 'early entry', 'moved stop', 'hesitation', 'extra trade', 'fear exit'];
+      const BX = i => 200 + i * 253, BY = 960, F = 2;
+      // Gardener path: frantic dash between beds, then focus.
+      const hops = [[T.frantic, 3], [T.frantic + 1, 0], [T.frantic + 2, 5], [T.frantic + 3, 1], [T.frantic + 4, 6], [T.frantic + 5, 4]];
+      let gx = BX(3) - 30, gw = false, gflip = false, prevX = BX(3) - 30;
+      hops.forEach(([a, b]) => { if (t > a) { const r = walkX(t, a, a + 0.55, prevX, BX(b) - 30); gx = r.x; gw = r.walking; gflip = BX(b) - 30 < prevX; } prevX = BX(b) - 30; });
+      if (t > T.pick) { const r = walkX(t, T.pick, T.pick + 1.4, prevX, BX(F) - 110); gx = r.x; gw = r.walking; gflip = BX(F) - 110 < prevX; }
+      const frantic = t > T.frantic && t < T.stop;
+      const weeding = t > T.weed && t < T.bloom;
+      const go = { x: gx, y: 935, scale: 1, look: A.LOOKS.d, seed: 3, hat: 'beret', walking: gw || (frantic && Math.floor(t * 2) % 2 === 0 && false), flip: gflip, at: T.set + 0.5, mood: t > T.stop - 0.6 && t < T.pick ? 'sad' : undefined, talk: ctx.talking && t > T.stop && t < T.pick };
+      if (weeding) { const yy = 900 + Math.sin(t * 9) * 26; go.frontArm = aim(go, BX(F) - 30 + Math.sin(t * 2.3) * 40, yy); }
+      else if (frantic) go.frontArm = { a1: -60 + Math.sin(t * 12) * 30, a2: -90 };
+      else if (t > T.bloom) go.frontArm = { a1: -120 + Math.sin(t * 6) * 10, a2: -100 };
+      if (weeding || (t > T.pick + 1.4 && t < T.weed)) go.hold = `<rect x="-5" y="-6" width="10" height="44" rx="4" fill="#9B6A45"/><path d="M-14,38 L14,38 L10,60 L-10,60 Z" fill="${C.muted}"/>`;
+      out += who(t, go);
+      // Sweat drops while frantic.
+      if (frantic) { const h = headAt(t, go); [0, 1].forEach(q => { const p = (t * 1.6 + q * 0.5) % 1; out += `<ellipse cx="${f1(h.x + (q ? 50 : -50) * (1 + p * 0.4))}" cy="${f1(h.y - 40 + p * 50)}" rx="7" ry="11" fill="${C.tealL}" opacity="${(1 - p).toFixed(2)}"/>`; }); }
+      // Beds.
+      LAB.forEach((lab, i) => {
+        const x = BX(i), k = pop(t, T.set + 0.4 + i * 0.12, 0.5);
+        const focus = i === F && t > T.sign;
+        const dim = t > T.sign && i !== F ? 0.45 : 1;
+        let g = `<ellipse cx="${x}" cy="${BY}" rx="118" ry="38" fill="#8B5E3C"/><ellipse cx="${x}" cy="${BY - 6}" rx="108" ry="27" fill="#A47148"/>`;
+        // Weeds: 4 per bed. In frantic mode, pulled weeds pop back.
+        for (let w = 0; w < 4; w++) {
+          const wx = x - 72 + w * 48, grow = ease(seg(t, T.grow + i * 0.15 + w * 0.1, T.grow + i * 0.15 + w * 0.1 + 0.8));
+          let wk = grow;
+          // Frantic tug: when she visits, one weed dips then regrows.
+          hops.forEach(([a, b]) => { if (b === i && w === 1) wk *= 1 - Math.sin(clamp((t - a - 0.5) / 0.6) * Math.PI) * 0.8; });
+          if (i === F) { const pull = T.weed + w * 1.1; if (t > pull) wk *= 1 - ease(seg(t, pull, pull + 0.5)); }
+          g += weed(t, wx, BY - 4, wk * 1.25, i * 4 + w);
+          if (i === F && t > T.weed + w * 1.1 && t < T.weed + w * 1.1 + 0.9) { const p = seg(t, T.weed + w * 1.1, T.weed + w * 1.1 + 0.9); g += fade(1 - p, weed(t, wx - p * 80, BY - 4 - Math.sin(p * Math.PI) * 140, 0.7, w)); }
+        }
+        if (i === F) [[-60, C.pink], [-20, C.purple], [20, C.peach], [60, C.pink]].forEach(([dx, c], q) => g += flower(t, x + dx, BY - 8, back(seg(t, T.bloom + q * 0.25, T.bloom + q * 0.25 + 0.7)), c));
+        g += `<rect x="${x + 96}" y="${BY - 90}" width="8" height="70" fill="#9B6A45"/>`;
+        out += scaleAt(x, BY, k, `<g opacity="${dim}">${g}</g>`);
+        out += pill(x, 1040, lab, focus ? C.pink : C.muted, k, focus ? 25 : 22);
+      });
+      // Sign: THIS WEEK.
+      const sk = pop(t, T.sign, 0.6);
+      out += scaleAt(BX(F) + 110, 900, sk, `<rect x="${BX(F) + 104}" y="740" width="12" height="160" fill="#9B6A45"/><rect x="${BX(F) + 20}" y="690" width="180" height="70" rx="12" fill="${C.pink}"/>${txt(BX(F) + 110, 735, 'THIS WEEK', 24, '#fff', { ls: 1 })}`);
+      // Squirrel on the fence and a bird.
+      out += crit(t, 'squirrel', { x: 1560, y: 640, scale: 0.85, seed: 2, at: T.set + 1, flip: true, hop: t > T.bloom ? 9 : 0, hopH: 20 });
+      const bp = ((t - T.set) * 0.12) % 1;
+      out += critter(t, 'bird', { x: lerp(-80, 2000, bp), y: 480 + Math.sin(t * 2) * 20, scale: 0.7, seed: 5, fly: true });
+      out += bub(gx + 40, 560, 'Too many! 😵', between(t, T.stop - 0.4, T.pick), { size: 28 });
+      out += bub(1560, 520, 'One bed!', between(t, T.sign + 0.4, T.weed), { size: 26, tail: 'right' });
+      if (t > T.bloom) out += A.sparkle(BX(F), 860, T.bloom + 0.8, t, C.pink);
+      return out;
+    },
+
+    // Piano lesson: the teacher circles ONE bar. The student loops it until 8 of 10 reps are clean.
+    's22b-piano-bar': (s, t, ctx) => {
+      const T = s.beats;
+      let out = '';
+      const bk = ease(seg(t, T.set - 0.3, T.set + 0.7));
+      let st = `<rect x="0" y="370" width="1920" height="630" fill="#F6EEF8"/>`;
+      for (let i = 0; i < 12; i++) st += `<rect x="${i * 170}" y="370" width="85" height="630" fill="#fff" opacity=".35"/>`;
+      st += ground(1000, '#E8D9C9', '#D6C2AE');
+      // Rug.
+      st += `<ellipse cx="860" cy="1030" rx="520" ry="34" fill="${C.purpleL}" opacity=".6"/>`;
+      out += fade(bk, st);
+      // Sheet music board with 7 bars.
+      const SX = 300, SY = 400, SW = 1120, SH = 200, bw = SW / 7;
+      const sk = pop(t, T.set + 0.3, 0.7);
+      let sh = `<rect x="${SX - 20}" y="${SY - 20}" width="${SW + 40}" height="${SH + 40}" rx="18" fill="#fff" stroke="#EADFD8" stroke-width="4"/>`;
+      for (let l = 0; l < 5; l++) sh += `<line x1="${SX}" y1="${SY + 50 + l * 22}" x2="${SX + SW}" y2="${SY + 50 + l * 22}" stroke="${C.muted}" stroke-width="2" opacity=".6"/>`;
+      for (let b = 0; b <= 7; b++) sh += `<line x1="${f1(SX + b * bw)}" y1="${SY + 50}" x2="${f1(SX + b * bw)}" y2="${SY + 138}" stroke="${C.muted}" stroke-width="3"/>`;
+      const FB = 2;
+      const weak = [1, 2, 4, 5];
+      for (let b = 0; b < 7; b++) {
+        const dim = t > T.circle + 0.8 && b !== FB ? 0.3 : 1;
+        let nb = '';
+        for (let n = 0; n < 4; n++) {
+          const nx = SX + b * bw + 26 + n * 30, ny = SY + 128 - ((b * 3 + n * 5) % 7) * 11;
+          const hop = t > T.play && b === FB ? Math.max(0, Math.sin((t - T.play) * 5.2 - n * 1.3)) * 10 : 0;
+          nb += `<ellipse cx="${nx}" cy="${f1(ny - hop)}" rx="11" ry="8" fill="${C.dark}" transform="rotate(-20 ${nx} ${f1(ny - hop)})"/><line x1="${nx + 10}" y1="${f1(ny - hop)}" x2="${nx + 10}" y2="${f1(ny - hop - 46)}" stroke="${C.dark}" stroke-width="3"/>`;
+        }
+        // Red pencil marks on weak bars.
+        if (weak.includes(b)) nb += fade(ease(seg(t, T.weak + weak.indexOf(b) * 0.3, T.weak + weak.indexOf(b) * 0.3 + 0.4)), `<path d="M${f1(SX + b * bw + 20)},${SY + 30} q20,-14 40,0 t40,0 t40,0" stroke="${C.pink}" stroke-width="5" fill="none" stroke-linecap="round"/>`);
+        sh += `<g opacity="${dim}">${nb}</g>`;
+      }
+      out += scaleAt(SX + SW / 2, SY + SH, sk, sh);
+      // Teacher's circle round bar 3.
+      const ck = ease(seg(t, T.circle, T.circle + 0.9));
+      if (ck > 0) { const cx = SX + FB * bw + bw / 2, r = bw * 0.62, c = 2 * Math.PI * r; out += `<ellipse cx="${f1(cx)}" cy="${SY + 92}" rx="${f1(r)}" ry="88" fill="none" stroke="${C.pink}" stroke-width="8" stroke-dasharray="${f1(c * ck)} ${f1(c)}" transform="rotate(-80 ${f1(cx)} ${SY + 92})"/>`; }
+      out += pill(SX + FB * bw + bw / 2, SY + SH + 46, 'THIS WEEK’S FOCUS', C.pink, pop(t, T.circle + 0.8, 0.5), 22);
+      // Keyboard.
+      const KX = 520, KY = 840, KW = 620;
+      const kk = pop(t, T.set + 0.5, 0.6);
+      let kb = `<rect x="${KX - 10}" y="${KY - 20}" width="${KW + 20}" height="90" rx="14" fill="${C.dark}"/>`;
+      const playing = t > T.play && t < T.reps;
+      for (let i = 0; i < 20; i++) { const down = playing && Math.floor(t * 6 + i * 7) % 9 === 0; kb += `<rect x="${KX + i * KW / 20 + 2}" y="${KY + (down ? 4 : 0)}" width="${KW / 20 - 4}" height="60" rx="4" fill="#fff"/>`; }
+      for (let i = 0; i < 19; i++) if (i % 7 !== 2 && i % 7 !== 6) kb += `<rect x="${f1(KX + (i + 1) * KW / 20 - 9)}" y="${KY}" width="18" height="36" rx="3" fill="${C.dark}"/>`;
+      kb += `<rect x="${KX + 20}" y="${KY + 70}" width="20" height="90" fill="${C.dark}"/><rect x="${KX + KW - 40}" y="${KY + 70}" width="20" height="90" fill="${C.dark}"/>`;
+      // Student behind the keyboard.
+      const so = { x: 830, y: 1000, scale: 0.95, look: A.LOOKS.b, seed: 4, at: T.set + 0.7, talk: false };
+      if (playing) { so.frontArm = { a1: 70 + Math.sin(t * 12) * 8, a2: -10 }; so.backArm = { a1: 100 + Math.sin(t * 11) * 8, a2: 190 }; }
+      else if (t > T.reps + 0.6) so.frontArm = { a1: -120 + Math.sin(t * 6) * 10, a2: -100 };
+      out += who(t, so);
+      out += scaleAt(KX + KW / 2, KY + 160, kk, kb);
+      // Notes flying out while playing.
+      if (playing) for (let q = 0; q < 4; q++) { const p = ((t - T.play) * 0.8 + q / 4) % 1; const x = 700 + q * 70 + Math.sin(p * 6 + q) * 30, y = 800 - p * 170; out += `<g opacity="${(1 - p).toFixed(2)}"><ellipse cx="${f1(x)}" cy="${f1(y)}" rx="12" ry="9" fill="${[C.purple, C.pink, C.teal, C.peach][q]}"/><line x1="${f1(x + 11)}" y1="${f1(y)}" x2="${f1(x + 11)}" y2="${f1(y - 34)}" stroke="${[C.purple, C.pink, C.teal, C.peach][q]}" stroke-width="4"/></g>`; }
+      // Metronome with a face on the keyboard lid.
+      const mk = pop(t, T.set + 1, 0.6);
+      const sw = Math.sin(t * Math.PI * 2) * 26;
+      out += scaleAt(1230, 1000, mk, `<path d="M1170,1000 L1200,820 L1260,820 L1290,1000 Z" fill="${C.peach}" stroke="${DK.peach}" stroke-width="5"/><line x1="1230" y1="960" x2="${f1(1230 + Math.sin(rad(sw)) * 140)}" y2="${f1(960 - Math.cos(rad(sw)) * 140)}" stroke="${C.dark}" stroke-width="6"/><circle cx="${f1(1230 + Math.sin(rad(sw)) * 100)}" cy="${f1(960 - Math.cos(rad(sw)) * 100)}" r="11" fill="${C.gold}"/>` + face(t, 1230, 930, 0.8, 6));
+      // Teacher with a baton.
+      const to = { x: 1750, y: 1000, scale: 0.95, look: A.LOOKS.a, seed: 2, flip: true, at: T.set + 0.9, hat: 'shades', talk: ctx.talking && t > T.circle && t < T.circle + 2.6 };
+      to.frontArm = t > T.circle - 0.6 && t < T.play ? { a1: -140 + Math.sin(t * 5) * 6, a2: -150 } : { a1: 70, a2: 40 };
+      to.hold = `<line x1="0" y1="0" x2="0" y2="-90" stroke="${C.dark}" stroke-width="5" stroke-linecap="round"/>`;
+      out += who(t, to);
+      // Rep counter: 10 dots, clean (teal) or wobbly (pink). Final: 8 of 10 clean.
+      const REPS = [0, 1, 1, 0, 1, 1, 1, 1, 1, 1];
+      const dur = (T.reps - T.play) / 10;
+      const rk = pop(t, T.play - 0.4, 0.5);
+      if (rk > 0) {
+        let g = '';
+        const n = REPS.filter((r, i) => t > T.play + (i + 1) * dur).length, clean = REPS.filter((r, i) => r && t > T.play + (i + 1) * dur).length;
+        REPS.forEach((r, i) => { const dk2 = pop(t, T.play + (i + 1) * dur, 0.4); g += `<circle cx="${1180 + i * 52}" cy="690" r="18" fill="#fff" stroke="${C.muted}" stroke-width="2"/>` + scaleAt(1180 + i * 52, 690, dk2, `<circle cx="${1180 + i * 52}" cy="690" r="18" fill="${r ? C.teal : C.pink}"/>`); });
+        g += txt(1414, 750, `clean reps: ${clean}/${n}`, 28, C.dark);
+        out += fade(rk, g);
+      }
+      out += pill(1414, 790, 'measure: 8 of 10 clean', DK.teal, pop(t, T.reps + 0.2, 0.5), 24);
+      // Cat napping on the keyboard end.
+      out += crit(t, 'cat', { x: 470, y: KY - 20, scale: 0.7, seed: 3, at: T.set + 1.2, sleep: !(t > T.reps && t < T.reps + 3) });
+      if (t > T.reps) out += A.sparkle(1414, 690, T.reps + 0.2, t, C.teal);
+      return out;
+    },
+  });
+
+  /* ================= Lesson 21: Monthly Review ================= */
+  // A walking rule-card character, feet at (x, y).
+  const ruleCard = (t, x, y, o = {}) => {
+    const sw = o.walking ? Math.sin(t * 9) * 12 : 0, bob = o.walking ? -Math.abs(Math.sin(t * 9)) * 6 : Math.sin(t * 2.2) * 3;
+    return `<g transform="translate(${f1(x)},${f1(y)}) scale(${o.s || 1})">
+      <path d="M-20,-60 L${f1(-20 - sw)},-4 M20,-60 L${f1(20 + sw)},-4" stroke="${C.dark}" stroke-width="8" stroke-linecap="round"/>
+      <g transform="translate(0,${f1(bob)})">
+      <path d="M-70,-150 l-40,${f1(30 + Math.sin(t * 5) * 8)} M70,-150 l40,${f1(30 - Math.sin(t * 5) * 8)}" stroke="${C.dark}" stroke-width="8" stroke-linecap="round"/>
+      <rect x="-80" y="-250" width="160" height="200" rx="16" fill="#fff" stroke="${C.purple}" stroke-width="6"/>
+      <rect x="-80" y="-250" width="160" height="48" rx="16" fill="${C.purple}"/><rect x="-80" y="-216" width="160" height="14" fill="${C.purple}"/>
+      ${txt(0, -216, 'NEW RULE', 24, '#fff', { ls: 1 })}
+      ${face(t, 0, -150, 1.3, 7, { talk: o.talk })}
+      ${o.veil ? `<path d="M-70,-250 Q0,-300 70,-250 L96,-120 Q0,-100 -96,-120 Z" fill="#fff" opacity=".55" stroke="#EADFD8" stroke-width="2"/>` : ''}
+      </g></g>`;
+  };
+
+  Object.assign(LIVE, {
+    // A trader rushes to marry a new rule. The owl officiant objects: write it as a hypothesis and test it first.
+    's22b-proposal': (s, t, ctx) => {
+      const T = s.beats;
+      let out = '';
+      const bk = ease(seg(t, T.set - 0.3, T.set + 0.7));
+      let st = `<rect x="0" y="370" width="1920" height="630" fill="#FDF0F3"/>`;
+      // Bunting + aisle.
+      st += `<path d="M0,420 ${Array.from({ length: 12 }, (_, i) => `Q${80 + i * 160},${450 + Math.sin(t * 2 + i) * 5} ${160 + i * 160},420`).join(' ')}" stroke="${C.muted}" stroke-width="3" fill="none"/>`;
+      for (let i = 0; i < 24; i++) { const x = 40 + i * 80, y = 424 + Math.abs(Math.sin((x / 160) * Math.PI)) * 22; st += `<path d="M${x - 14},${f1(y)} L${x + 14},${f1(y)} L${x},${f1(y + 30 + Math.sin(t * 4 + i) * 4)} Z" fill="${[C.pinkL, C.purpleL, C.peachL, C.tealL][i % 4]}"/>`; }
+      st += ground(1000, '#F3E4EA', '#E6D2DA') + `<path d="M760,1000 L1160,1000 L1300,1080 L620,1080 Z" fill="${C.pinkL}" opacity=".6"/>`;
+      out += fade(bk, st);
+      // Floral arch.
+      const ak = pop(t, T.set + 0.2, 0.8);
+      let arch = `<path d="M720,1000 L720,640 Q720,470 960,470 Q1200,470 1200,640 L1200,1000" stroke="#C9B2A0" stroke-width="22" fill="none"/>`;
+      for (let i = 0; i < 18; i++) { const a = rad(180 + i * 10), x = 960 + Math.cos(a) * 240, y = 640 + Math.sin(a) * 170; arch += `<circle cx="${f1(x)}" cy="${f1(y)}" r="${16 + (i % 3) * 4}" fill="${[C.pink, C.peach, C.purpleL][i % 3]}"/>`; }
+      for (let i = 0; i < 6; i++) arch += `<circle cx="${i % 2 ? 720 : 1200}" cy="${700 + i * 50}" r="15" fill="${[C.pink, C.peach, C.purpleL][i % 3]}"/>`;
+      out += scaleAt(960, 1000, ak, arch);
+      // Owl officiant at a lectern under the arch.
+      out += scaleAt(960, 1000, pop(t, T.set + 0.6, 0.6), `<path d="M900,1000 L915,860 L1005,860 L1020,1000 Z" fill="#B4855E"/><rect x="895" y="848" width="130" height="20" rx="6" fill="#9B6A45"/>`);
+      const object = t > T.object && t < T.object + 3;
+      out += crit(t, 'owl', { x: 960, y: 850, scale: 0.95, seed: 4, at: T.set + 0.6, monocle: true, hop: object ? 10 : 0, hopH: 14, talk: ctx.talking && object });
+      out += bub(960, 560, 'Objection! Test it first.', between(t, T.object, T.write + 0.6), { size: 30 });
+      // The trader walks up the aisle from the left; the rule card from the right.
+      const tr = walkX(t, T.walk, T.walk + 1.8, -120, 560);
+      const rc = walkX(t, T.walk + 0.4, T.walk + 2.2, 2040, 1380);
+      // Exit together toward the STUDY door.
+      const ex = walkX(t, T.exit, T.exit + 2.4, 0, 1);
+      const trX = tr.x + ex.x * 1040, rcX = rc.x + ex.x * 260;
+      const trader = { x: trX, y: 1000, scale: 1, look: A.LOOKS.c, seed: 2, walking: tr.walking || ex.walking, talk: ctx.talking && t > T.ring && t < T.object };
+      const ringOut = t > T.ring && t < T.write;
+      if (ringOut) trader.frontArm = aim(trader, trX + 110, 790), trader.hold = `<g transform="translate(8,-10)"><rect x="-26" y="-30" width="52" height="36" rx="6" fill="${C.pink}"/><path d="M-26,-30 L26,-30 L20,-60 L-20,-60 Z" fill="${DK.pink}"/><circle cx="0" cy="-34" r="11" fill="none" stroke="${C.gold}" stroke-width="5"/></g>`;
+      else if (t > T.write && t < T.exit) { trader.frontArm = { a1: 30, a2: -60 }; trader.hold = `<rect x="-6" y="-70" width="70" height="90" rx="8" fill="#fff" stroke="${C.teal}" stroke-width="4"/><rect x="10" y="-76" width="38" height="12" rx="4" fill="${C.muted}"/>${[0, 1, 2].map(q => `<line x1="6" y1="${-46 + q * 20}" x2="${f1(6 + 46 * ease(seg(t, T.write + q * 0.4, T.write + q * 0.4 + 0.5)))}" y2="${-46 + q * 20}" stroke="${C.dark}" stroke-width="4"/>`).join('')}`; }
+      const gone = 1 - seg(t, T.exit + 2.2, T.exit + 2.8);
+      out += fade(gone, who(t, trader));
+      if (t > T.walk) out += fade(gone, ruleCard(t, rcX, 1000, { walking: rc.walking || ex.walking, veil: t < T.write + 1, talk: ctx.talking && t > T.ring + 1 && t < T.ring + 2.6 }));
+      out += A.sparkle(trX + 110, 760, T.ring + 0.2, t, C.gold);
+      out += bub(trX + 60, 600, 'Let’s make it official! 💍', between(t, T.ring + 0.2, T.object - 0.2), { size: 28 });
+      // Hypothesis card pops.
+      out += pill(560, 600, 'HYPOTHESIS · written', DK.teal, between(t, T.write + 1.2, T.exit + 0.6), 26);
+      // STUDY door at the right edge.
+      const dk2 = pop(t, T.door, 0.6);
+      out += scaleAt(1760, 1000, dk2, `<rect x="1660" y="640" width="200" height="360" rx="16" fill="${C.tealL}" stroke="${DK.teal}" stroke-width="6"/><circle cx="1690" cy="830" r="10" fill="${DK.teal}"/><rect x="1680" y="600" width="160" height="50" rx="12" fill="${DK.teal}"/>${txt(1760, 636, 'STUDY', 28, '#fff', { ls: 2 })}`);
+      // Once inside: the study is running (glow + dots).
+      if (t > T.exit + 2.6) {
+        const g2 = (t * 0.8) % 1;
+        out += `<rect x="${f1(1660 - g2 * 30)}" y="${f1(640 - g2 * 30)}" width="${f1(200 + g2 * 60)}" height="${f1(360 + g2 * 30)}" rx="20" fill="none" stroke="${C.teal}" stroke-width="5" opacity="${(1 - g2).toFixed(2)}"/>`;
+        out += bub(1620, 540, ['study running .', 'study running ..', 'study running ...'][Math.floor(t * 2.5) % 3], pop(t, T.exit + 2.8, 0.5), { size: 26, w: 270, tail: 'right' });
+        out += A.sparkle(1760, 820, T.exit + 2.6, t, C.teal);
+      }
+      // Dove carrying a little banner.
+      const dp = seg(t, T.set + 1, s.end);
+      out += critter(t, 'bird', { x: 300 + Math.sin(dp * 12) * 120, y: 520 + Math.cos(dp * 9) * 30, scale: 0.8, seed: 3, fly: true, col: '#fff' });
+      // The three steps along the bottom.
+      [['PROPOSE', T.write + 1], ['TEST', T.exit + 1.6], ['DECIDE', 1e9]].forEach(([lab, on], i) => {
+        const x = 700 + i * 260, lit = t > on;
+        out += pill(x, 1046, (lit ? '✓ ' : '') + lab, lit ? (i === 1 ? C.purple : DK.teal) : '#CBB8C0', pop(t, T.steps + i * 0.2, 0.5), 24);
+      });
+      return out;
+    },
+
+    // Bakery: house recipe vs one change, baked side by side as CONTROL and TEST. Decide only after the batches are in.
+    's22b-test-batches': (s, t, ctx) => {
+      const T = s.beats;
+      let out = '';
+      const bk = ease(seg(t, T.set - 0.3, T.set + 0.7));
+      let st = `<rect x="0" y="370" width="1920" height="630" fill="#FFF6EC"/>`;
+      for (let i = 0; i < 16; i++) for (let j = 0; j < 5; j++) st += `<rect x="${i * 120 + (j % 2) * 60}" y="${380 + j * 70}" width="114" height="64" fill="#fff" opacity=".5"/>`;
+      st += ground(1000, '#EAD9C6', '#D7C1A8');
+      out += fade(bk, st);
+      // Oven with a face, centre back.
+      const OX = 960, ok = pop(t, T.set + 0.3, 0.7);
+      const batchI = Math.floor((t - T.bake) / T.step), inBatch = t > T.bake && batchI < T.n;
+      const doorOpen = inBatch ? Math.sin(clamp(((t - T.bake) % T.step) / T.step) * Math.PI) : 0;
+      out += scaleAt(OX, 840, ok, `<rect x="${OX - 170}" y="470" width="340" height="370" rx="30" fill="${C.peachL}" stroke="${DK.peach}" stroke-width="6"/>
+        <rect x="${OX - 130}" y="600" width="260" height="${f1(190 - doorOpen * 120)}" rx="16" fill="${C.dark}"/>
+        <rect x="${OX - 110}" y="${f1(620)}" width="220" height="${f1(Math.max(0, 150 - doorOpen * 120))}" rx="10" fill="${C.gold}" opacity="${(0.5 + Math.sin(t * 6) * 0.15).toFixed(2)}"/>
+        ${[0, 1, 2].map(i => `<circle cx="${OX - 80 + i * 80}" cy="510" r="14" fill="${DK.peach}"/>`).join('')}` + face(t, OX, 555, 1.1, 9, { talk: doorOpen > 0.5 }));
+      // Recipe card on the wall (left).
+      const rk = pop(t, T.recipe, 0.6);
+      out += scaleAt(330, 560, rk, `<g transform="rotate(-3 330 560)"><rect x="180" y="440" width="300" height="230" rx="14" fill="#fff" stroke="${C.pinkL}" stroke-width="5"/><rect x="180" y="440" width="300" height="50" rx="14" fill="${C.pink}"/><rect x="180" y="474" width="300" height="16" fill="${C.pink}"/>${txt(330, 476, 'HOUSE RECIPE', 24, '#fff', { ls: 1 })}${[0, 1, 2, 3].map(q => `<line x1="210" y1="${525 + q * 34}" x2="${q === 2 ? 380 : 450}" y2="${525 + q * 34}" stroke="${C.muted}" stroke-width="5" opacity=".5"/>`).join('')}</g>`);
+      // Chalkboard (right): two columns of results with N.
+      const ck = pop(t, T.board, 0.6);
+      if (ck > 0) {
+        const done = Math.max(0, Math.min(T.n, Math.floor((t - T.bake) / T.step + 0.5)));
+        const nc = Math.ceil(done / 2), nt = Math.floor(done / 2);
+        let g = `<rect x="1380" y="430" width="440" height="300" rx="16" fill="#3E4A44" stroke="#9B6A45" stroke-width="10"/>`;
+        g += txt(1500, 480, 'CONTROL', 24, '#fff', { ls: 1 }) + txt(1700, 480, 'TEST', 24, '#fff', { ls: 1 });
+        const CR = [0.5, 0.6, 0.45, 0.55, 0.5], TR = [0.6, 0.7, 0.55, 0.65, 0.68];
+        const hC = nc ? CR.slice(0, nc).reduce((a, b) => a + b) / nc : 0, hT = nt ? TR.slice(0, nt).reduce((a, b) => a + b) / nt : 0;
+        g += `<rect x="1460" y="${f1(680 - hC * 160)}" width="80" height="${f1(hC * 160)}" rx="8" fill="${C.tealL}"/><rect x="1660" y="${f1(680 - hT * 160)}" width="80" height="${f1(hT * 160)}" rx="8" fill="${C.peachL}"/>`;
+        g += `<line x1="1410" y1="682" x2="1790" y2="682" stroke="#fff" stroke-width="3" opacity=".6"/>`;
+        g += txt(1500, 715, `N = ${nc}`, 22, '#fff') + txt(1700, 715, `N = ${nt}`, 22, '#fff');
+        out += scaleAt(1600, 730, ck, g);
+      }
+      // Counter.
+      const CY = 830;
+      // Baker and apprentice behind the counter.
+      const baker = { x: 560, y: 1000, scale: 0.98, look: A.LOOKS.buyer, seed: 3, at: T.set + 0.5, hat: 'chef', talk: ctx.talking && t > T.decide - 0.4 && t < T.decide + 2.4 };
+      baker.frontArm = t > T.decide ? { a1: -120 + Math.sin(t * 6) * 10, a2: -100 } : inBatch && batchI % 2 === 0 ? aim(baker, 760, CY - 30) : { a1: 70, a2: 40 };
+      out += who(t, baker);
+      const app = { x: 1360, y: 1000, scale: 0.92, look: A.LOOKS.e, seed: 6, at: T.set + 0.8, flip: true, hat: 'chef' };
+      app.frontArm = inBatch && batchI % 2 === 1 ? aim(app, 1160, CY - 30) : { a1: 70, a2: 40 };
+      out += who(t, app);
+      out += fade(bk, `<rect x="420" y="${CY}" width="1080" height="36" rx="10" fill="#C89A72"/><rect x="440" y="${CY + 36}" width="1040" height="${1000 - CY - 36}" fill="#E1BC93"/>`);
+      // Two trays with signs.
+      const TRAYS = [[760, 'CONTROL', C.teal], [1160, 'TEST', C.peach]];
+      TRAYS.forEach(([x, lab, col], j) => {
+        const k = pop(t, T.trays + j * 0.4, 0.6);
+        let g = `<rect x="${x - 150}" y="${CY - 12}" width="300" height="14" rx="6" fill="${C.muted}"/>`;
+        const batches = Math.max(0, Math.min(T.n, Math.floor((t - T.bake) / T.step + 0.5)));
+        const mine = j === 0 ? Math.ceil(batches / 2) : Math.floor(batches / 2);
+        for (let b = 0; b < mine; b++) {
+          const at = T.bake + (b * 2 + j) * T.step + T.step * 0.5;
+          const ck2 = pop(t, at, 0.4), cx = x - 116 + b * 58, cy = CY - 28;
+          g += scaleAt(cx, cy, ck2, `<ellipse cx="${cx}" cy="${cy}" rx="26" ry="14" fill="${j ? '#E8A65C' : '#D9A066'}" stroke="#B4733A" stroke-width="3"/>${[0, 1, 2].map(q => `<circle cx="${cx - 10 + q * 10}" cy="${cy - 2 + (q % 2) * 5}" r="3" fill="${C.dark}"/>`).join('')}`);
+        }
+        out += scaleAt(x, CY, k, g);
+        out += pill(x, 940, lab, j ? DK.peach : DK.teal, k, 28);
+        if (j === 1) out += pill(x, 990, 'one change', C.muted, k, 20);
+        if (j === 0) out += pill(x, 990, 'current recipe', C.muted, k, 20);
+      });
+      // Mouse sneaking a cookie off the counter end.
+      const mp = seg(t, T.mouse, T.mouse + 3);
+      if (mp > 0 && mp < 1) {
+        const mx = mp < 0.5 ? lerp(1560, 1340, ease(mp * 2)) : lerp(1340, 1600, ease(mp * 2 - 1));
+        out += critter(t, 'mouse', { x: mx, y: CY, scale: 0.8, seed: 2, flip: mp < 0.5, hop: 14, hopH: 6 }) + (mp > 0.5 ? `<ellipse cx="${f1(mx + 40)}" cy="${CY - 40}" rx="18" ry="8" fill="#D9A066"/>` : '');
+      }
+      // Decide.
+      out += stamp(1600, 840, 'DECIDE', DK.purple, pop(t, T.decide, 0.5), -8, 80, 30);
+      out += bub(600, 420, 'Now we decide.', between(t, T.decide + 0.2, s.end), { size: 28 });
+      if (t > T.decide) out += A.sparkle(1600, 840, T.decide + 0.3, t, C.purple);
+      return out;
+    },
+  });
+
+  /* ================= Lesson 22: Strategy Problem or Trader Problem? ================= */
+  // A laundry T-shirt centred at (x, y), optional stain.
+  const shirt = (x, y, col, stain, rot = 0, sc = 1) => `<g transform="translate(${f1(x)},${f1(y)}) rotate(${f1(rot)}) scale(${sc})">
+      <path d="M-22,-30 L-50,-16 L-40,6 L-28,0 L-28,34 L28,34 L28,0 L40,6 L50,-16 L22,-30 Q0,-16 -22,-30 Z" fill="${col}" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+      ${stain ? `<path d="M-8,4 q8,-10 16,-2 q10,4 4,12 q-4,10 -14,6 q-12,-2 -6,-16 Z" fill="#8B5E3C" opacity=".85"/>` : ''}</g>`;
+
+  Object.assign(LIVE, {
+    // Clinic: "the medicine stopped working!" The doctor opens a 4-day pill organizer: how was it taken?
+    's22b-clinic': (s, t, ctx) => {
+      const T = s.beats;
+      let out = '';
+      const bk = ease(seg(t, T.set - 0.3, T.set + 0.7));
+      let st = `<rect x="0" y="370" width="1920" height="630" fill="#EAF4F8"/><rect x="0" y="760" width="1920" height="240" fill="#DDEBF1"/><rect x="0" y="756" width="1920" height="8" fill="#C8DCE5"/>`;
+      // Eye chart.
+      st += `<rect x="1700" y="420" width="170" height="250" rx="12" fill="#fff" stroke="#C8DCE5" stroke-width="4"/>${txt(1785, 490, 'I', 54, C.dark, { f: 'Playfair Display' })}${txt(1785, 560, 'C C', 38, C.dark, { f: 'Playfair Display' })}${txt(1785, 620, 'P I L', 26, C.dark, { f: 'Playfair Display' })}`;
+      // Hanging lamp.
+      st += `<line x1="960" y1="370" x2="960" y2="440" stroke="${C.muted}" stroke-width="4"/><path d="M900,480 Q960,420 1020,480 Z" fill="${C.peach}"/>`;
+      st += ground(1000, '#D3E3EA', '#BFD3DC');
+      out += fade(bk, st);
+      // Pill organizer: 4 compartments.
+      const CX = [675, 865, 1055, 1245], OY = 700;
+      const LAB = [['METHOD', 'early entry', 0], ['SETUPS', 'chased', 0], ['RISK', 'oversized', 0], ['MANAGEMENT', 'as directed', 1]];
+      const ok = pop(t, T.box, 0.7);
+      let box = `<rect x="560" y="${OY - 10}" width="800" height="140" rx="24" fill="${C.purple}"/>`;
+      CX.forEach((x, i) => {
+        box += `<rect x="${x - 80}" y="${OY}" width="160" height="110" rx="16" fill="#fff"/>`;
+        const open = ease(seg(t, T.lids[i], T.lids[i] + 0.6));
+        // Contents.
+        if (open > 0.3) {
+          if (i === 0) box += `<ellipse cx="${x - 20}" cy="${OY + 60}" rx="26" ry="14" fill="${C.pink}"/><ellipse cx="${x + 46}" cy="${OY - 40 + Math.sin(t * 4) * 4}" rx="20" ry="11" fill="${C.pink}" opacity=".5"/>`;
+          if (i === 1) box += `<ellipse cx="${x}" cy="${OY + 60}" rx="26" ry="14" fill="${C.peach}"/><path d="M${x + 30},${OY + 46} l30,-14 m-8,-6 l8,6 l-6,8" stroke="${C.muted}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+          if (i === 2) box += `<ellipse cx="${x - 22}" cy="${OY + 60}" rx="26" ry="14" fill="${C.pink}"/><ellipse cx="${x + 22}" cy="${OY + 60}" rx="26" ry="14" fill="${C.pink}"/>`;
+          if (i === 3) box += `<ellipse cx="${x}" cy="${OY + 60}" rx="26" ry="14" fill="${C.teal}"/>`;
+        }
+        box += `<g transform="rotate(${f1(-open * 100)} ${x - 80} ${OY})"><rect x="${x - 84}" y="${OY - 14}" width="168" height="22" rx="8" fill="${DK.purple}"/></g>`;
+        box += txt(x, OY + 158, LAB[i][0], 22, DK.purple, { ls: 1 });
+      });
+      out += scaleAt(960, OY + 130, ok, box);
+      CX.forEach((x, i) => {
+        const k = pop(t, T.lids[i] + 0.5, 0.5);
+        out += pill(x, OY - 80 - (i % 2) * 54, LAB[i][1], LAB[i][2] ? DK.teal : C.pink, k, 22);
+        out += LAB[i][2] ? check(x + 70, OY - 20, pop(t, T.lids[i] + 0.8, 0.5), C.teal, 22) : cross(x + 70, OY - 20, pop(t, T.lids[i] + 0.8, 0.5), C.pink, 22);
+      });
+      out += pill(960, 920, '3 of 4: how it was taken', C.pink, pop(t, T.verdict, 0.5), 28);
+      // Patient walks in with a big bottle.
+      const pw = walkX(t, T.set + 0.4, T.set + 2, -100, 360);
+      const po = { x: pw.x, y: 1000, scale: 1, look: A.LOOKS.seller, seed: 5, walking: pw.walking, talk: ctx.talking && t > T.complain && t < T.complain + 2.4, mood: t > T.verdict && t < T.rx + 1.5 ? 'sad' : undefined };
+      po.frontArm = t > T.complain && t < T.complain + 2.6 ? { a1: -60 + Math.sin(t * 8) * 14, a2: -100 } : { a1: 40, a2: -30 };
+      po.hold = `<g transform="rotate(${t > T.complain && t < T.complain + 2.6 ? 0 : 10})"><rect x="-24" y="-74" width="48" height="76" rx="10" fill="${C.peachL}" stroke="${DK.peach}" stroke-width="4"/><rect x="-18" y="-90" width="36" height="18" rx="5" fill="${C.pink}"/><rect x="-20" y="-56" width="40" height="34" rx="4" fill="#fff"/>${txt(0, -42, 'DAYLI', 11, DK.peach)}${txt(0, -28, 'ICC', 13, DK.peach)}</g>`;
+      out += who(t, po);
+      out += bub(380, 560, 'Dayli ICC stopped working!', between(t, T.complain, T.check), { size: 28 });
+      // Parrot on the lamp.
+      out += crit(t, 'parrot', { x: 960, y: 470, scale: 0.75, seed: 3, at: T.set + 1, hop: t > T.did && t < T.did + 2 ? 8 : 0, hopH: 14, talk: ctx.talking && t > T.did && t < T.did + 1.4 });
+      out += bub(1110, 470, 'Did it? 😂', between(t, T.did, T.did + 2.6), { size: 28 });
+      // Doctor with a head mirror and a clipboard.
+      const dO = { x: 1550, y: 1000, scale: 1, look: A.LOOKS.c, seed: 2, flip: true, at: T.set + 0.8, talk: ctx.talking && t > T.check && t < T.verdict + 4 };
+      dO.frontArm = t > T.lids[0] - 0.4 && t < T.lids[3] + 0.6 ? aim(dO, CX[Math.min(3, Math.max(0, Math.floor((t - T.lids[0] + 0.4) / (T.lids[1] - T.lids[0]))))] + 200, OY + 40) : { a1: 50, a2: -40 };
+      if (!(t > T.lids[0] - 0.4 && t < T.lids[3] + 0.6)) dO.hold = `<rect x="-6" y="-60" width="64" height="84" rx="8" fill="#fff" stroke="${C.teal}" stroke-width="4"/><rect x="12" y="-66" width="30" height="12" rx="4" fill="${C.muted}"/>`;
+      out += who(t, dO);
+      // Lab coat + head mirror.
+      if (pop(t, dO.at) >= 1) { const h = headAt(t, dO); out += `<path d="M${f1(h.x - 38)},${f1(h.y + 80)} L${f1(h.x - 42)},${f1(h.y + 190)} L${f1(h.x + 42)},${f1(h.y + 190)} L${f1(h.x + 38)},${f1(h.y + 80)} L${f1(h.x + 12)},${f1(h.y + 66)} L${f1(h.x)},${f1(h.y + 140)} L${f1(h.x - 12)},${f1(h.y + 66)} Z" fill="#fff" opacity=".9"/><circle cx="${f1(h.x - 4)}" cy="${f1(h.y - 46)}" r="16" fill="#E8F8F6" stroke="${C.muted}" stroke-width="4"/>`; }
+      out += bub(1450, 560, 'Let’s check, in order.', between(t, T.check, T.lids[0] + 0.6), { size: 26, tail: 'right' });
+      out += bub(1450, 560, 'Rx: take it as directed', between(t, T.rx, s.end), { size: 26, tail: 'right' });
+      // Robot heart monitor beeping.
+      const beat = (t * 1.6) % 1;
+      out += crit(t, 'robot', { x: 150, y: 1000, scale: 0.8, seed: 4, at: T.set + 1.2, screen: beat < 0.2 ? '♥' : '·' });
+      if (t > T.rx) out += A.sparkle(960, 600, T.rx, t, C.teal);
+      return out;
+    },
+
+    // Laundromat: 20 practice reps tumble out. Stained shirts (rule broken) go in one basket, clean ones in another.
+    's22b-laundry-sort': (s, t, ctx) => {
+      const T = s.beats;
+      let out = '';
+      const bk = ease(seg(t, T.set - 0.3, T.set + 0.7));
+      let st = `<rect x="0" y="370" width="1920" height="630" fill="#F2F0FA"/>`;
+      for (let i = 0; i < 10; i++) st += `<rect x="${i * 200}" y="370" width="100" height="630" fill="#fff" opacity=".35"/>`;
+      st += ground(1000, '#E3DDF0', '#D0C8E4');
+      out += fade(bk, st);
+      // Dryer with a spinning window.
+      const DX = 330, DY = 770;
+      const spin = t * (t < T.sort + 12 ? 6 : 1.5);
+      out += scaleAt(DX, 1000, pop(t, T.set + 0.2, 0.7), `<rect x="${DX - 170}" y="520" width="340" height="480" rx="30" fill="#fff" stroke="${C.purpleL}" stroke-width="6"/><rect x="${DX - 150}" y="545" width="300" height="40" rx="10" fill="${C.purpleL}"/>
+        <circle cx="${DX - 110}" cy="565" r="10" fill="${C.pink}"/><circle cx="${DX - 76}" cy="565" r="10" fill="${C.teal}"/>
+        <circle cx="${DX}" cy="${DY}" r="120" fill="${C.purpleL}"/><circle cx="${DX}" cy="${DY}" r="98" fill="#E8F8F6"/>
+        <g transform="rotate(${f1(spin * 57)} ${DX} ${DY})">${shirt(DX - 30, DY - 20, C.pink, 1, 20, 0.9)}${shirt(DX + 34, DY + 24, C.teal, 0, -40, 0.9)}${shirt(DX - 10, DY + 50, C.pink, 0, 80, 0.8)}</g>`);
+      // Baskets.
+      const BK = [[1080, 'RULES FOLLOWED', DK.teal], [1600, 'RULES BROKEN', C.pink]];
+      // Data: 20 reps. [won, stained]. 9 stained losses, 5 clean losses, 6 clean wins.
+      const REPS = [[0, 1], [1, 0], [0, 1], [0, 0], [1, 0], [0, 1], [0, 1], [0, 0], [1, 0], [0, 1], [0, 0], [0, 1], [1, 0], [0, 1], [0, 0], [1, 0], [0, 1], [0, 0], [1, 0], [0, 1]];
+      const at = i => T.sort + i * T.step;
+      const cnt = [0, 0], lossB = [0, 0];
+      REPS.forEach(([w, st2], i) => { if (t > at(i) + 0.6) { cnt[st2]++; if (!w) lossB[st2]++; } });
+      BK.forEach(([x, lab, col], j) => {
+        const k = pop(t, T.set + 0.6 + j * 0.3, 0.6);
+        let g = '';
+        // Heap of shirts inside.
+        for (let q = 0; q < cnt[j]; q++) { const hx = x - 90 + (q * 47) % 180, hy = 900 - Math.floor(q / 4) * 22; g += shirt(hx, hy, REPS.filter(r => r[1] === j)[q][0] ? C.teal : C.pink, j, (q * 37) % 60 - 30, 0.8); }
+        g += `<path d="M${x - 150},860 L${x + 150},860 L${x + 125},1000 L${x - 125},1000 Z" fill="${j ? C.pinkL : C.tealL}" stroke="${col}" stroke-width="6"/>`;
+        for (let q = 0; q < 5; q++) g += `<line x1="${x - 120 + q * 60}" y1="870" x2="${x - 100 + q * 50}" y2="990" stroke="${col}" stroke-width="3" opacity=".4"/>`;
+        g += txt(x, 950, String(cnt[j]), 46, col, { f: 'Playfair Display' });
+        out += scaleAt(x, 1000, k, g);
+        out += pill(x, 820, lab, col, k, 22);
+      });
+      // Flying shirts.
+      REPS.forEach(([w, st2], i) => {
+        const p = seg(t, at(i), at(i) + 0.6);
+        if (p <= 0 || p >= 1) return;
+        const tx = BK[st2][0], x = lerp(DX + 110, tx, p), y = lerp(DY, 880, p) - Math.sin(p * Math.PI) * 300;
+        out += shirt(x, y, w ? C.teal : C.pink, st2, p * 360, 1);
+      });
+      // Attendant pointing the sort.
+      const sorting = t > T.sort && t < T.sort + 20 * T.step;
+      const ao = { x: 760, y: 1000, scale: 1, look: A.LOOKS.a, seed: 3, at: T.set + 0.8, talk: ctx.talking && t > T.ninety && t < T.ninety + 3 };
+      if (sorting) { const cur = REPS[Math.min(19, Math.floor((t - T.sort) / T.step))]; ao.frontArm = cur[1] ? { a1: -30, a2: -10 } : { a1: -50, a2: -30 }; }
+      else if (t > T.verdict) ao.frontArm = { a1: -120 + Math.sin(t * 6) * 10, a2: -100 };
+      out += who(t, ao);
+      // Legend.
+      out += fade(pop(t, T.legend, 0.5), shirt(560, 470, C.teal, 0, 0, 0.8) + txt(600, 480, 'won', 24, C.dark, { a: 'start' }) + shirt(720, 470, C.pink, 0, 0, 0.8) + txt(760, 480, 'lost', 24, C.dark, { a: 'start' }) + shirt(880, 470, C.pink, 1, 0, 0.8) + txt(920, 480, 'rule broken', 24, C.dark, { a: 'start' }));
+      // Findings.
+      out += pill(1600, 640, '9 of 14 losses', C.pink, pop(t, T.ninety, 0.5), 28);
+      out += pill(1600, 700, 'early entry · chased', C.muted, pop(t, T.ninety + 0.5, 0.5), 22);
+      out += pill(1080, 640, 'N = 11 · too few to judge', DK.peach, pop(t, T.few, 0.5), 26);
+      out += pill(1340, 540, 'points to: execution first', DK.purple, pop(t, T.verdict, 0.5), 30);
+      // Cat napping on top of the dryer; a sock creature hopping.
+      out += crit(t, 'cat', { x: DX + 60, y: 520, scale: 0.7, seed: 6, at: T.set + 1.2, sleep: t < T.verdict });
+      const sp = (t - T.set) * 0.09 % 1;
+      const sx = lerp(1880, 420, sp), sy = 1000 - Math.abs(Math.sin(t * 6)) * 30;
+      if (t > T.set + 1.5) out += `<g transform="translate(${f1(sx)},${f1(sy)})"><path d="M-14,-90 L14,-90 L14,-26 Q14,0 -12,0 L-40,0 Q-52,-14 -36,-24 L-14,-30 Z" fill="${C.peachL}" stroke="${DK.peach}" stroke-width="3"/><rect x="-14" y="-90" width="28" height="16" fill="${C.pink}"/>${face(t, 0, -54, 0.6, 9)}</g>`;
       return out;
     },
   });

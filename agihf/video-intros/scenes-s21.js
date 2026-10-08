@@ -509,7 +509,7 @@
       const ed = { x: 500, y: 1000, scale: 0.86, look: A.LOOKS.e, seed: 4, at: T.room + 0.5, hat: 'headset', talk: ctx.talking && t > T.scold && t < T.scold + 3 };
       ed.frontArm = t > T.scold && t < T.scold + 2.4 ? { a1: -40 + Math.sin(t * 8) * 10, a2: -60 } : t > T.snip - 0.4 && t < T.snip + 0.8 ? aim(ed, 790, 610) : { a1: 40 + Math.sin(t * 3) * 10, a2: 10 };
       out += who(t, ed);
-      out += fade(shk, `<rect x="300" y="820" width="580" height="22" rx="8" fill="#B8743C"/><rect x="330" y="842" width="16" height="158" fill="#9B6A45"/><rect x="834" y="842" width="16" height="158" fill="#9B6A45"/>`);
+      out += fade(shk, `<rect x="300" y="820" width="580" height="22" rx="8" fill="#B8743C"/><rect x="346" y="842" width="488" height="96" fill="#C98A4E"/><rect x="330" y="842" width="16" height="158" fill="#9B6A45"/><rect x="834" y="842" width="16" height="158" fill="#9B6A45"/>`);
       if (shk > 0) {
         const sp = t > T.play && t < T.snip + 2 ? t * 400 : t * 30;
         out += `<g transform="rotate(${f1(sp % 360)} 770 772)"><circle cx="770" cy="772" r="48" fill="${C.pink}"/>${[0, 1, 2].map(j => `<circle cx="${f1(770 + Math.cos(rad(j * 120)) * 24)}" cy="${f1(772 + Math.sin(rad(j * 120)) * 24)}" r="12" fill="#F3EEF7"/>`).join('')}<circle cx="770" cy="772" r="8" fill="${C.gold}"/></g>`;
@@ -570,6 +570,531 @@
       // A mouse projectionist on the projector, munching popcorn.
       const mk = pop(t, T.room + 1.8, 0.6);
       out += scaleAt(950, 740, mk, critter(t, 'mouse', { x: 940, y: 740, scale: 0.7, seed: 3 }) + `<g transform="translate(${975},${716 + Math.sin(t * 6) * 3})"><path d="M-10,-6 L10,-6 L8,14 L-8,14 Z" fill="${C.pinkL}"/><circle cx="-5" cy="-8" r="5" fill="#FFF6E0"/><circle cx="4" cy="-10" r="5" fill="#FFF6E0"/></g>`);
+      return out;
+    },
+  });
+
+  /* ================= Lesson 2: A Valid Winning Trade ================= */
+  const studioLights = (t, y = 392, n = 14) => Array.from({ length: n }, (_, i) => {
+    const x = 70 + i * (1780 / (n - 1)), on = Math.sin(t * 4 + i * 0.9) > -0.2;
+    return `<circle cx="${f1(x)}" cy="${y}" r="11" fill="${on ? C.gold : '#EADFD8'}"/>${on ? `<circle cx="${f1(x)}" cy="${y}" r="20" fill="${C.gold}" opacity=".18"/>` : ''}`;
+  }).join('');
+  // Paper plane shape: k = 0 (flat sheet) .. 1 (folded plane). Facing right, centred at 0,0.
+  const PLANE0 = [[80, -50], [-80, -50], [-80, 0], [-80, 50], [80, 50]];
+  const PLANE1 = [[92, 0], [-70, -34], [-82, -4], [-66, 22], [2, 8]];
+  const paperPlane = (x, y, k, ang = 0, sc = 1) => {
+    const P = PLANE0.map((p, i) => [lerp(p[0], PLANE1[i][0], k), lerp(p[1], PLANE1[i][1], k)]);
+    const crease = k > 0.25 ? `<path d="M${f1(P[0][0])},${f1(P[0][1])} L${f1(P[2][0])},${f1(P[2][1])}" stroke="${C.purpleL}" stroke-width="4"/>` : '';
+    const crease2 = k > 0.6 ? `<path d="M${f1(P[0][0])},${f1(P[0][1])} L${f1(lerp(P[2][0], P[3][0], 0.5))},${f1(lerp(P[2][1], P[3][1], 0.5) + 6)}" stroke="${C.purpleL}" stroke-width="3"/>` : '';
+    return `<g transform="translate(${f1(x)},${f1(y)}) rotate(${f1(ang)}) scale(${sc},${f1(sc * lerp(0.5, 1, k))})"><path d="M${P.map(p => `${f1(p[0])},${f1(p[1])}`).join(' L')} Z" fill="#fff" stroke="${C.purple}" stroke-width="4" stroke-linejoin="round"/>${crease}${crease2}</g>`;
+  };
+
+  Object.assign(LIVE, {
+    // A cooking show: the dish arrives with a gold "+2R" price tag. The judge slides the tag aside and grades the recipe card.
+    's21-cook-off': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="372" width="1920" height="628" fill="#FBEFF3"/>` + ground(1000, '#EFE3F3', '#D9CFE9');
+      out += fade(ease(seg(t, T.set - 0.2, T.set + 0.6)), studioLights(t) + `<path d="M0,410 L1920,410" stroke="#EADFD8" stroke-width="4"/>`);
+      for (let i = 0; i < 10; i++) out += `<rect x="${i * 200}" y="1000" width="100" height="80" fill="#E5D9EE" opacity=".6"/>`;
+      // Chef behind the counter.
+      const chef = { x: 470, y: 1000, scale: 1.0, look: A.LOOKS.c, seed: 2, at: T.set + 0.3, hat: 'chef', talk: ctx.talking && t > T.reveal && t < T.reveal + 1.5 };
+      chef.frontArm = t > T.reveal - 0.5 && t < T.reveal + 1.2 ? aim(chef, 640, 730 - ease(seg(t, T.reveal, T.reveal + 0.6)) * 120) : t > T.stamp ? { a1: -110 + Math.sin(t * 7) * 12, a2: -100 } : { a1: 70, a2: 30 };
+      out += who(t, chef);
+      // Counter.
+      const ck = ease(seg(t, T.set, T.set + 0.6));
+      out += fade(ck, `<rect x="240" y="870" width="680" height="26" rx="10" fill="${C.purple}"/><rect x="260" y="896" width="640" height="104" fill="${C.purpleL}"/>${[0, 1, 2].map(i => `<rect x="${300 + i * 210}" y="914" width="160" height="70" rx="12" fill="#fff" opacity=".5"/>`).join('')}`);
+      // The dish: plate, food, and the cloche lifting off.
+      const lift = ease(seg(t, T.reveal, T.reveal + 0.7));
+      const dk = pop(t, T.set + 0.8, 0.6);
+      out += '<g transform="translate(0,80)">' + scaleAt(700, 790, dk, `<ellipse cx="700" cy="782" rx="120" ry="18" fill="#fff" stroke="#EADFD8" stroke-width="4"/>
+        <ellipse cx="660" cy="760" rx="34" ry="22" fill="${C.peach}"/><ellipse cx="730" cy="758" rx="40" ry="24" fill="${C.pink}"/><circle cx="696" cy="740" r="14" fill="${C.teal}"/>
+        <g transform="translate(${f1(lift * 40)},${f1(-lift * 150)}) rotate(${f1(lift * 18)} 700 780)"><path d="M590,780 Q590,670 700,664 Q810,670 810,780 Z" fill="#DCD6E2" stroke="#B9B2C4" stroke-width="5"/><circle cx="700" cy="656" r="12" fill="#B9B2C4"/><path d="M630,740 Q640,700 680,690" stroke="#fff" stroke-width="8" fill="none" opacity=".7" stroke-linecap="round"/></g>`);
+      if (lift > 0) out += `<g opacity="${f1(lift)}">${[0, 1, 2].map(i => `<path d="M${670 + i * 30},${730 - ((t * 40 + i * 20) % 60)} q10,-15 0,-30" stroke="#EADFD8" stroke-width="5" fill="none" stroke-linecap="round"/>`).join('')}</g>`;
+      out += '</g>';
+      // The gold "+2R" price tag, then slid aside by the judge.
+      const slide = ease(seg(t, T.slide, T.slide + 1));
+      const tagK = pop(t, T.reveal + 0.5, 0.6);
+      if (tagK > 0) {
+        const tx = 820 + slide * -560, ty = 740 + slide * 200, sw = Math.sin(t * 3) * 8;
+        out += fade(1 - slide * 0.6, scaleAt(tx, ty, tagK, `<g transform="rotate(${f1(sw - slide * 30)} ${tx - 50} ${ty})"><line x1="${tx - 120}" y1="${ty - 40}" x2="${tx - 60}" y2="${ty}" stroke="${C.muted}" stroke-width="3"/><path d="M${tx - 60},${ty} L${tx - 30},${ty - 40} L${tx + 90},${ty - 40} L${tx + 90},${ty + 40} L${tx - 30},${ty + 40} Z" fill="${C.gold}" stroke="#C98A1F" stroke-width="5"/><circle cx="${tx - 34}" cy="${ty}" r="8" fill="#FFF6E0"/>${txt(tx + 30, ty + 16, '+2R', 46, '#fff')}</g>`));
+        if (t > T.reveal + 0.6 && t < T.slide) out += A.sparkle(tx + 30, ty - 30, T.reveal + 0.8, t, C.gold) + A.sparkle(tx - 10, ty + 20, T.reveal + 1.5, t, C.gold);
+        out += cross(tx + 100, ty - 50, between(t, T.slide + 0.6, s.end), C.pink, 26);
+        out += pill(tx + 20, ty + 76, 'not the reason', C.pink, between(t, T.slide + 0.8, s.end), 20);
+      }
+      // Parrot on a stand, losing it.
+      const pk = pop(t, T.set + 1.2, 0.6);
+      out += scaleAt(1000, 1000, pk, `<rect x="994" y="620" width="12" height="380" fill="${C.muted}"/><rect x="940" y="612" width="120" height="12" rx="6" fill="${C.muted}"/><ellipse cx="1000" cy="996" rx="60" ry="10" fill="${C.muted}"/>`
+        + critter(t, 'parrot', { x: 990, y: 614, scale: 0.85, seed: 3, hop: t > T.parrot && t < T.slide ? 12 : 0, hopH: 18, talk: ctx.talking && t > T.parrot && t < T.slide }));
+      out += bub(1060, 470, 'It won! It won!', between(t, T.parrot, T.slide), { size: 30 });
+      // Judge's table with the recipe card.
+      const jd = { x: 1500, y: 1000, scale: 1.0, look: A.LOOKS.a, seed: 7, at: T.set + 0.6, flip: true, hat: 'glasses', talk: ctx.talking && t > T.taste + 0.6 };
+      jd.frontArm = t > T.slide - 0.3 && t < T.slide + 1.1 ? aim(jd, 1240, 700) : t > T.taste && t < T.taste + 1.4 ? { a1: -60 + Math.sin(t * 6) * 8, a2: -150 } : t > T.card && t < T.taste ? aim(jd, 1330, 720 + Math.sin(t * 3) * 10) : { a1: 80, a2: 60 };
+      if (t > T.taste && t < T.taste + 1.4) jd.hold = `<rect x="-4" y="-30" width="8" height="40" rx="3" fill="#B9B2C4" transform="rotate(30)"/><ellipse cx="-10" cy="-30" rx="12" ry="8" fill="#B9B2C4"/>`;
+      out += who(t, jd);
+      out += fade(ck, `<rect x="1120" y="880" width="640" height="24" rx="10" fill="${C.teal}"/><rect x="1140" y="904" width="600" height="96" fill="${C.tealL}"/>` + txt(1440, 966, 'JUDGE', 40, '#fff', { ls: 6 }));
+      const ckk = pop(t, T.card, 0.7);
+      const items = ['Thesis agreed', 'I-C-C closed', 'Retest entry', 'Risk set', 'Plan made first'];
+      out += scaleAt(1260, 830, ckk, `<rect x="1150" y="470" width="250" height="330" rx="16" fill="#FFF8EC" stroke="${C.peach}" stroke-width="5" transform="rotate(-3 1275 640)"/>`
+        + txt(1275, 518, 'RECIPE', 30, DK.peach, { f: 'Playfair Display', ls: 2 })
+        + items.map((it, i) => {
+          const y = 568 + i * 48, k = pop(t, T.checks[i], 0.5);
+          return `<rect x="1176" y="${y - 14}" width="26" height="26" rx="6" fill="#fff" stroke="${C.peach}" stroke-width="3"/>` + (k > 0 ? scaleAt(1189, y, k, `<path d="M1180,${y} l7,8 l13,-16" stroke="${C.tealD}" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`) : '') + txt(1214, y + 9, it, 22, C.text, { a: 'start', w: 700 });
+        }).join(''));
+      out += bstamp(1510, 560, 'GOOD', DK.teal, pop(t, T.stamp, 0.6), -14, 64, 26);
+      out += bub(1700, 440, 'Good before it won', between(t, T.stamp + 0.6, s.end), { size: 26, tail: 'right' });
+      if (t > T.stamp) out += A.sparkle(1510, 560, T.stamp + 0.2, t, C.teal);
+      return out;
+    },
+
+    // A paper plane contest: folded by the plan, lands on target. "Because it flew far" is not the reason; rewind to before the throw.
+    's21-paper-plane': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="372" width="1920" height="600" fill="#E4F3F1" opacity=".75"/>` + cloud(400 + (t * 14) % 300, 440, 0.6) + cloud(1400 - (t * 9) % 260, 470, 0.5);
+      out += `<path d="M0,900 Q300,820 640,880 Q980,930 1300,860 Q1620,800 1920,870 L1920,980 L0,980 Z" fill="#CFE6C4"/>` + ground(960, '#E3EED9', '#CFE0C2');
+      // Target on the ground with a flag.
+      const tg = pop(t, T.set + 0.6, 0.6);
+      out += scaleAt(1660, 975, tg, `<ellipse cx="1660" cy="975" rx="150" ry="34" fill="${C.pinkL}"/><ellipse cx="1660" cy="975" rx="100" ry="23" fill="#fff"/><ellipse cx="1660" cy="975" rx="52" ry="12" fill="${C.pink}"/>
+        <rect x="1780" y="760" width="8" height="216" fill="${C.muted}"/><path d="M1788,766 L${1870 + Math.sin(t * 5) * 6},790 L1788,814 Z" fill="${C.teal}"/>`);
+      out += pill(1784, 726, 'target', DK.teal, pop(t, T.land + 0.3, 0.5), 20);
+      // Folding table and the engineer.
+      const en = { x: 320, y: 980, scale: 0.92, look: A.LOOKS.d, seed: 4, at: T.set + 0.2, hat: 'bow', talk: ctx.talking && t > T.rewind + 2 };
+      const foldK = T.folds.reduce((k, a) => k + ease(seg(t, a, a + 0.6)) / T.folds.length, 0);
+      const throwing = t > T.throw - 0.6 && t < T.throw + 0.4;
+      const holdP = t > T.folds[3] + 0.7 && t < T.throw;
+      const back = t > T.rewind + 1.6;
+      if (t < T.folds[3] + 0.7) en.frontArm = aim(en, 470 + Math.sin(t * 9) * 16, 760);
+      else if (throwing) en.frontArm = { a1: lerp(-160, -20, ease(seg(t, T.throw - 0.3, T.throw + 0.1))), a2: lerp(-170, -10, ease(seg(t, T.throw - 0.3, T.throw + 0.1))) };
+      else if (holdP || back) en.frontArm = { a1: -30, a2: -60 };
+      else en.frontArm = { a1: -120 + Math.sin(t * 6) * 10, a2: -100 };
+      out += who(t, en);
+      const tk = ease(seg(t, T.set, T.set + 0.6));
+      out += fade(tk, `<rect x="380" y="790" width="220" height="14" rx="6" fill="#B8743C"/><path d="M400,804 L384,980 M580,804 L596,980" stroke="#9B6A45" stroke-width="8"/>`);
+      // The plane: on the table (folding), in the hand, in flight, then rewound.
+      const P0 = [470, 768], P1 = [1640, 950], PC = [1050, 340];
+      const qb = (u) => [lerp(lerp(P0[0], PC[0], u), lerp(PC[0], P1[0], u), u), lerp(lerp(P0[1], PC[1], u), lerp(PC[1], P1[1], u), u)];
+      const handPos = () => { const sx = en.x + 18 * en.scale, sy = en.y - 196 * en.scale; return [sx + 90, sy - 50]; };
+      if (t > T.set + 0.6) {
+        let u = null;
+        if (t >= T.throw && t < T.rewind) u = ease(seg(t, T.throw, T.land));
+        if (t >= T.rewind) u = 1 - ease(seg(t, T.rewind, T.rewind + 1.4));
+        if (u === null || (t >= T.rewind && u <= 0)) {
+          const [hx, hy] = holdP || back ? handPos() : [470, 776];
+          out += paperPlane(hx, hy, foldK, holdP || back ? -10 : 0, holdP || back ? 0.9 : 1.05);
+        } else {
+          const [x, y] = qb(u), [x2, y2] = qb(Math.min(1, u + 0.01));
+          const ang = u >= 1 ? 8 : Math.atan2(y2 - y, x2 - x) * 180 / Math.PI;
+          // Dashed trail.
+          const tr = Array.from({ length: 24 }, (_, i) => qb(u * i / 23)).map(p => `${f1(p[0])},${f1(p[1])}`).join(' L');
+          out += `<path d="M${tr}" stroke="${t > T.rewind ? C.purple : C.purpleL}" stroke-width="5" fill="none" stroke-dasharray="4 14" stroke-linecap="round"/>`;
+          out += paperPlane(x, y - (u >= 1 ? 10 : 0), 1, ang, 1.4);
+        }
+      }
+      if (t > T.land && t < T.rewind) out += A.sparkle(1660, 940, T.land, t, C.gold) + A.sparkle(1600, 900, T.land + 0.3, t, C.teal);
+      if (t > T.rewind && t < T.rewind + 1.4) out += `<g transform="translate(960,640)" opacity="${f1(0.6 + Math.sin(t * 12) * 0.3)}"><path d="M0,-40 L-50,0 L0,40 Z M50,-40 L0,0 L50,40 Z" fill="${C.purple}"/></g>`;
+      // The crease checks glow after the rewind.
+      const glowK = pop(t, T.rewind + 1.8, 0.6);
+      const labs = ['thesis', 'sequence', 'retest', 'risk', 'plan'];
+      if (glowK > 0) labs.forEach((l, i) => out += pill(520 + (i % 3) * 200 + (i > 2 ? 100 : 0), 450 + (i > 2 ? 70 : 0), l, [C.purple, DK.teal, DK.pink, C.pink, DK.peach][i], pop(t, T.rewind + 1.8 + i * 0.35, 0.5), 28));
+      out += pill(720, 610, 'all true before the throw', DK.teal, pop(t, T.rewind + 3.8, 0.6), 30);
+      // Two flying gulls, a dog fan by the target.
+      out += critter(t, 'bird', { x: ((t - s.start) * 90) % 2200 - 100, y: 450 + Math.sin(t * 2) * 14, scale: 0.55, seed: 1, fly: true });
+      out += beast(t, 'gull', { x: 1980 - ((t - s.start) * 70) % 2300, y: 520 + Math.sin(t * 1.6) * 16, scale: 0.7, seed: 4, fly: true, flip: true });
+      const cheer = t > T.land && t < T.rewind;
+      out += crit(t, 'dog', { x: 1300, y: 970, scale: 1.0, seed: 5, at: T.set + 1, hop: cheer ? 10 : 0, hopH: 30, tongue: cheer, talk: ctx.talking && t > T.dog && t < T.nope });
+      out += bub(1360, 700, 'It flew far, so it was good!', between(t, T.dog, T.nope), { size: 26 });
+      out += cross(1530, 640, between(t, T.nope, T.rewind + 1.2), C.pink, 30);
+      out += bub(1330, 700, 'Because it won? No.', between(t, T.nope + 0.2, T.rewind + 1.2), { size: 26 });
+      // A robot judge with a clipboard nods at the end.
+      out += crit(t, 'robot', { x: 1060, y: 975, scale: 1.0, seed: 3, at: T.set + 1.4, screen: 'PLAN', talk: ctx.talking && t > T.rewind + 2 && t < s.end - 1 });
+      return out;
+    },
+  });
+
+  /* ================= Lesson 3: A Valid Losing Trade ================= */
+  // A sprout: (x, y) = soil level, h 0..1 height, bend 0..1 (flattened).
+  const sprout = (x, y, h, bend = 0, sw = 0) => {
+    if (h <= 0) return '';
+    const H = 150 * h, a = bend * 78 + sw;
+    const tx = x + Math.sin(rad(a)) * H, ty = y - Math.cos(rad(a)) * H;
+    const mx = x + Math.sin(rad(a * 0.5)) * H * 0.5, my = y - Math.cos(rad(a * 0.5)) * H * 0.5;
+    const lf = (cx, cy, ang, s) => `<ellipse cx="${f1(cx)}" cy="${f1(cy)}" rx="${f1(28 * s)}" ry="${f1(12 * s)}" fill="#7CB46B" transform="rotate(${f1(ang)} ${f1(cx)} ${f1(cy)})"/>`;
+    return `<path d="M${x},${y} Q${f1(mx)},${f1(my)} ${f1(tx)},${f1(ty)}" stroke="#5E9E4E" stroke-width="9" fill="none" stroke-linecap="round"/>`
+      + lf(tx - 22, ty, -20 + a, h) + lf(tx + 22, ty, 20 + a, h) + (h > 0.7 ? `<circle cx="${f1(tx)}" cy="${f1(ty - 10)}" r="${f1(14 * (h - 0.7) / 0.3)}" fill="${bend > 0.5 ? '#C9B8A6' : C.pink}"/>` : '');
+  };
+
+  Object.assign(LIVE, {
+    // A gardener plants by the book; the sprout comes up; hail flattens it. The snail says change everything; she plants the next row the same way.
+    's21-hail-garden': (s, t, ctx) => {
+      const T = s.beats;
+      const dark = ease(seg(t, T.cloud, T.hail)) * (1 - ease(seg(t, T.flat + 2.4, T.flat + 3.6)));
+      let out = `<rect x="0" y="372" width="1920" height="560" fill="${dark > 0 ? '#DCD6E2' : '#E4F3F1'}" opacity="${f1(0.6 + dark * 0.3)}"/>`;
+      out += cloud(300 + (t * 10) % 240, 440, 0.55) + cloud(1600 - (t * 8) % 200, 420, 0.5);
+      // Sun peeking.
+      out += `<g opacity="${f1(1 - dark)}"><circle cx="1720" cy="470" r="46" fill="${C.gold}"/>${Array.from({ length: 8 }, (_, i) => { const a = rad(i * 45 + t * 20); return `<line x1="${f1(1720 + Math.cos(a) * 60)}" y1="${f1(470 + Math.sin(a) * 60)}" x2="${f1(1720 + Math.cos(a) * 80)}" y2="${f1(470 + Math.sin(a) * 80)}" stroke="${C.gold}" stroke-width="7" stroke-linecap="round"/>`; }).join('')}</g>`;
+      out += ground(900, '#E3EED9', '#CFE0C2');
+      // Fence.
+      for (let i = 0; i < 13; i++) out += `<rect x="${30 + i * 150}" y="780" width="18" height="122" rx="6" fill="#E7CDA1"/>`;
+      out += `<rect x="0" y="806" width="1920" height="12" fill="#E7CDA1"/><rect x="0" y="852" width="1920" height="12" fill="#E7CDA1"/>`;
+      // Soil bed.
+      out += `<path d="M560,904 Q600,872 700,870 L1500,870 Q1600,872 1640,904 Z" fill="#9B6A45"/>`;
+      // Main seed, then the sprout.
+      const MX = 940, MY = 880;
+      const seedDrop = seg(t, T.plant, T.plant + 0.6);
+      if (t > T.plant && t < T.grow) out += `<ellipse cx="${MX}" cy="${f1(lerp(700, MY, ease(seedDrop)))}" rx="10" ry="7" fill="#7A4A2A"/>`;
+      if (t > T.plant + 0.6) out += `<ellipse cx="${MX}" cy="${MY - 2}" rx="40" ry="12" fill="#7A4A2A"/>`;
+      const h = ease(seg(t, T.grow, T.grow + 1.6)), bend = ease(seg(t, T.flat - 0.4, T.flat + 0.4));
+      out += sprout(MX, MY - 6, h, bend, Math.sin(t * 2) * 4 * (1 - bend));
+      // The check stakes.
+      const stakes = ['thesis', 'I-C-C', 'retest', 'risk'];
+      stakes.forEach((lab, i) => {
+        const k = pop(t, T.stakes[i], 0.5), x = 700 + i * 120 + (i > 1 ? 120 : 0), y = 880;
+        if (k <= 0) return;
+        out += scaleAt(x, y, k, `<rect x="${x - 4}" y="${y - 120}" width="8" height="120" fill="#B8743C"/><rect x="${x - 50}" y="${y - 150}" width="100" height="44" rx="8" fill="#fff" stroke="${C.tealD}" stroke-width="3"/>` + txt(x - 6, y - 120, lab, 20, C.text) + `<circle cx="${x + 36}" cy="${y - 128}" r="11" fill="${C.teal}"/><path d="M${x + 31},${y - 128} l4,4 l7,-8" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/>`);
+      });
+      // Hail cloud and hailstones.
+      const cx = lerp(2200, 980, ease(seg(t, T.cloud, T.hail))) + ease(seg(t, T.flat + 2.4, T.flat + 3.6)) * -1500;
+      if (t > T.cloud && cx > -400) {
+        out += `<g transform="translate(${f1(cx)},470)"><ellipse cx="0" cy="0" rx="190" ry="60" fill="#8E8AA0"/><ellipse cx="-110" cy="16" rx="110" ry="50" fill="#8E8AA0"/><ellipse cx="110" cy="14" rx="120" ry="52" fill="#8E8AA0"/><ellipse cx="10" cy="-40" rx="110" ry="60" fill="#9C98AE"/>
+          <ellipse cx="-40" cy="0" rx="8" ry="${f1(10 * (1 - blinkAmt(t, 3)))}" fill="${C.dark}"/><ellipse cx="40" cy="0" rx="8" ry="${f1(10 * (1 - blinkAmt(t, 3)))}" fill="${C.dark}"/><path d="M-36,-22 L-18,-14 M36,-22 L18,-14" stroke="${C.dark}" stroke-width="5" stroke-linecap="round"/></g>`;
+        if (t > T.hail && t < T.flat + 2.6) for (let i = 0; i < 26; i++) {
+          const p = ((t - T.hail) * 1.6 + i * 0.137) % 1, hx = cx - 260 + (i * 97) % 520;
+          out += `<circle cx="${f1(hx - p * 40)}" cy="${f1(520 + p * 370)}" r="${7 + (i % 3) * 2}" fill="#fff" stroke="#B9B2C4" stroke-width="2"/>`;
+        }
+      }
+      out += pill(MX + 150, 690, 'stop hit · -1R', C.pink, between(t, T.flat + 0.4, T.calm - 0.2), 24);
+      // Next row, planted the same way.
+      [1350, 1470, 1590].forEach((x, i) => {
+        const a = T.row + i * 0.8;
+        if (t > a) out += `<ellipse cx="${x}" cy="${MY - 2}" rx="30" ry="10" fill="#7A4A2A"/>` + sprout(x, MY - 6, ease(seg(t, a + 0.4, a + 1.8)), 0, Math.sin(t * 2 + i) * 4);
+      });
+      out += pill(1440, 540, 'same method · next row', DK.teal, pop(t, T.row + 1.2, 0.6), 24);
+      // Gardener.
+      const walkTo = t < T.row ? 600 : lerp(600, 1268, ease(seg(t, T.row - 0.6, T.row + 0.4)));
+      const gd = { x: t < T.row - 0.6 ? 600 : walkTo, y: 900, scale: 0.92, look: A.LOOKS.buyer, seed: 3, at: T.set + 0.2, hat: 'sun', walking: t > T.row - 0.6 && t < T.row + 0.4, mood: t > T.flat && t < T.calm - 0.4 ? 'sad' : undefined, talk: ctx.talking && t > T.calm && t < T.row };
+      const planting = (t > T.plant - 0.4 && t < T.plant + 0.6) || (t > T.row && t < T.row + 2.6);
+      gd.frontArm = planting ? { a1: 40 + Math.sin(t * 10) * 10, a2: 70 } : t > T.calm && t < T.row - 0.6 ? { a1: -40, a2: -70 } : { a1: 90, a2: 80 };
+      if (t > T.set + 1 && t < T.row - 0.6) gd.hold = `<rect x="-5" y="-6" width="10" height="70" rx="4" fill="#9B6A45" transform="rotate(10)"/><path d="M8,58 L-14,58 L-20,86 L14,86 Z" fill="${C.muted}" transform="rotate(10)"/>`;
+      out += who(t, gd);
+      // Snail panics; a bee buzzes around.
+      out += bst(t, 'snail', { x: 1700, y: 900, scale: 0.9, seed: 2, at: T.snail - 0.6, talk: ctx.talking && t > T.snail && t < T.calm, flip: true });
+      out += bub(1600, 640, 'Change everything!', between(t, T.snail, T.calm), { size: 28, tail: 'right' });
+      out += bub(600, 480, 'Based on what?', between(t, T.calm, T.row - 0.2), { size: 28 });
+      const bx = 1100 + Math.sin(t * 1.3) * 300, by = 600 + Math.sin(t * 2.6) * 60;
+      if (t < T.cloud || t > T.flat + 3) out += beast(t, 'bee', { x: bx, y: by, scale: 1.1, seed: 1, flip: Math.cos(t * 1.3) < 0 });
+      return out;
+    },
+
+    // A sample jar: every trade is one marble. The raccoon goes for the "rewrite" button after one loss; the scientist covers it.
+    's21-sample-jar': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="372" width="1920" height="590" fill="#EEF3F8"/>` + ground(960, '#E5E1EE', '#D2CCE0');
+      for (let i = 0; i < 9; i++) out += `<rect x="${i * 220}" y="372" width="2" height="588" fill="#E1E6EE"/>`;
+      // Chalkboard with the sample count, a mouse on top.
+      const JX = 960, JB = 940, JW = 300, JT = 520;
+      const slot = j => { const row = Math.floor(j / 6), col = j % 6; return [JX - JW / 2 + 32 + col * 47 + (row % 2 ? 14 : 0), JB - 26 - row * 40]; };
+      const colOf = j => [1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0][j % 14] ? C.pink : C.teal;
+      const N0 = 14, NEW = 14, POUR = 28;
+      const dropT = j => j < N0 ? -1 : j === NEW ? T.drop : T.pour + (j - NEW - 1) * 0.14;
+      let count = 0;
+      for (let j = 0; j < N0 + 1 + POUR; j++) if (t > dropT(j) + 0.5) count++;
+      const bk = pop(t, T.set + 0.4, 0.6);
+      out += scaleAt(340, 720, bk, `<rect x="160" y="520" width="360" height="230" rx="14" fill="#3D5A55" stroke="#9B6A45" stroke-width="10"/>` + txt(340, 590, 'SAMPLE', 30, '#E8F8F6', { ls: 4 }) + txt(340, 690, 'n = ' + count, 72, '#fff', { f: 'Playfair Display' }));
+      out += crit(t, 'mouse', { x: 300, y: 516, scale: 0.9, seed: 4, at: T.set + 1 });
+      if (t > T.drop + 0.5) out += `<g transform="translate(400,${490 + Math.sin(t * 8) * 4})"><rect x="-4" y="-30" width="8" height="30" fill="${C.gold}"/><rect x="-14" y="-40" width="28" height="12" rx="4" fill="${C.gold}"/></g>`;
+      // Chute.
+      const ck = pop(t, T.set + 0.3, 0.6);
+      out += scaleAt(JX, 400, ck, `<path d="M${JX - 40},372 L${JX - 40},440 L${JX + 40},440 L${JX + 40},372" fill="#D9CFE9"/><rect x="${JX - 60}" y="436" width="120" height="16" rx="8" fill="${C.purple}"/>`);
+      // Jar back, marbles, jar front.
+      const jk = pop(t, T.set, 0.7);
+      let marbles = '';
+      for (let j = 0; j < N0 + 1 + POUR; j++) {
+        const [mx, my] = slot(j), dt = dropT(j);
+        if (dt > 0 && t < dt) continue;
+        const k = dt < 0 ? 1 : seg(t, dt, dt + 0.5);
+        const y = dt < 0 ? my : lerp(450, my, k * k) - (k >= 1 ? Math.max(0, Math.sin((t - dt - 0.5) * 12) * 10 * Math.exp(-(t - dt - 0.5) * 6)) : 0);
+        const col = j === NEW ? C.pink : colOf(j + 3);
+        marbles += `<circle cx="${f1(mx)}" cy="${f1(y)}" r="${j === NEW ? 24 : 21}" fill="${col}"/><circle cx="${f1(mx - 7)}" cy="${f1(y - 7)}" r="6" fill="#fff" opacity=".6"/>`;
+        if (j === NEW && k >= 1) marbles += `<circle cx="${f1(mx)}" cy="${f1(y)}" r="30" fill="none" stroke="${C.gold}" stroke-width="4" opacity="${f1(0.5 + Math.sin(t * 6) * 0.4)}"/>`;
+      }
+      out += scaleAt(JX, JB, jk, `<rect x="${JX - JW / 2}" y="${JT}" width="${JW}" height="${JB - JT + 10}" rx="40" fill="#F4FBFF" opacity=".55"/>` + marbles
+        + `<rect x="${JX - JW / 2}" y="${JT}" width="${JW}" height="${JB - JT + 10}" rx="40" fill="none" stroke="#B2C8D6" stroke-width="7"/><rect x="${JX - JW / 2 + 20}" y="${JT - 30}" width="${JW - 40}" height="34" rx="10" fill="#B2C8D6"/><path d="M${JX - JW / 2 + 26},${JT + 60} L${JX - JW / 2 + 26},${JT + 200}" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".7"/>`);
+      out += pill(JX - 260, slot(NEW)[1] - 40, 'this loss', C.pink, between(t, T.drop + 0.6, T.pour + 1.4), 24);
+      out += pill(JX, 1010, 'one marble in the sample', C.purple, pop(t, T.pour + 2.4, 0.6), 24);
+      // The rewrite button on a pedestal; then a glass cover.
+      const BX = 1560;
+      const pk = pop(t, T.set + 0.8, 0.6);
+      out += scaleAt(BX, 960, pk, `<rect x="${BX - 60}" y="790" width="120" height="170" rx="10" fill="${C.purpleL}"/><rect x="${BX - 80}" y="776" width="160" height="22" rx="8" fill="${C.purple}"/>
+        <ellipse cx="${BX}" cy="${t > T.raccoon + 1 && t < T.cover ? 770 : 762}" rx="46" ry="20" fill="${C.pink}"/><rect x="${BX - 46}" y="${t > T.raccoon + 1 && t < T.cover ? 770 : 762}" width="92" height="12" fill="${DK.pink}"/>`);
+      out += pill(BX, 880, 'REWRITE METHOD', DK.pink, pop(t, T.set + 1.2, 0.5) * (t < T.cover + 0.6 ? 1 : 1), 22);
+      const cov = ease(seg(t, T.cover, T.cover + 0.7));
+      if (t > T.cover) out += `<path d="M${BX - 90},${f1(782 - (1 - cov) * 300)} L${BX - 90},${f1(700 - (1 - cov) * 300)} Q${BX},${f1(630 - (1 - cov) * 300)} ${BX + 90},${f1(700 - (1 - cov) * 300)} L${BX + 90},${f1(782 - (1 - cov) * 300)} Z" fill="#E8F8F6" opacity=".55" stroke="#9FC2D0" stroke-width="5"/>`;
+      out += pill(BX, 590, 'not on one valid loss', DK.teal, pop(t, T.cover + 0.6, 0.5), 22);
+      // Raccoon dashes in from the right; sulks after the cover.
+      const rx = t < T.raccoon ? 2060 : lerp(2060, BX + 110, ease(seg(t, T.raccoon, T.raccoon + 0.9))) + ease(seg(t, T.cover + 1.2, T.cover + 2.2)) * 120;
+      out += beast(t, 'raccoon', { x: rx, y: 960, scale: 1.0, seed: 3, flip: true, hop: t > T.raccoon && t < T.raccoon + 0.9 ? 14 : 0, hopH: 14, mood: t > T.cover ? 'sad' : undefined, talk: ctx.talking && t > T.raccoon && t < T.cover });
+      out += bub(1700, 560, 'One loss! Rewrite it!', between(t, T.raccoon + 0.8, T.cover), { size: 26, tail: 'right' });
+      // Scientist.
+      const sc = { x: 1300, y: 960, scale: 0.92, look: A.LOOKS.a, seed: 5, at: T.set + 0.5, hat: 'goggles', talk: ctx.talking && ((t > T.cover && t < T.cover + 2.4) || t > T.stamp) };
+      sc.frontArm = t > T.cover - 0.4 && t < T.cover + 1 ? aim(sc, BX - 80, 700) : t > T.stamp ? { a1: -100 + Math.sin(t * 6) * 10, a2: -110 } : t > T.drop && t < T.drop + 1.4 ? aim(sc, JX + 170, 640) : { a1: 85, a2: 80 };
+      out += who(t, sc);
+      out += bstamp(JX, 640, 'VALID', DK.teal, pop(t, T.stamp, 0.6), -10, 80, 30);
+      if (t > T.stamp) out += A.sparkle(JX, 640, T.stamp + 0.2, t, C.teal);
+      return out;
+    },
+  });
+
+  /* ================= Lesson 4: An Invalid Winning Trade ================= */
+  const trophy = (x, y, sc = 1) => `<g transform="translate(${f1(x)},${f1(y)}) scale(${sc})"><rect x="-34" y="-14" width="68" height="14" rx="4" fill="#C98A1F"/><rect x="-10" y="-44" width="20" height="32" fill="${C.gold}"/>
+      <path d="M-44,-120 L44,-120 Q44,-50 0,-44 Q-44,-50 -44,-120 Z" fill="${C.gold}"/><path d="M-44,-110 Q-74,-110 -66,-84 Q-60,-66 -40,-70" stroke="${C.gold}" stroke-width="8" fill="none"/><path d="M44,-110 Q74,-110 66,-84 Q60,-66 40,-70" stroke="${C.gold}" stroke-width="8" fill="none"/>
+      <path d="M-28,-108 Q-26,-76 -10,-62" stroke="#fff" stroke-width="6" fill="none" opacity=".6" stroke-linecap="round"/></g>`;
+  const warnSign = (x, y, sc = 1) => `<g transform="translate(${f1(x)},${f1(y)}) scale(${sc})"><rect x="-6" y="-60" width="12" height="60" fill="${C.muted}"/><path d="M0,-170 L70,-50 L-70,-50 Z" fill="${C.pink}" stroke="${DK.pink}" stroke-width="6" stroke-linejoin="round"/>
+      <rect x="-7" y="-140" width="14" height="50" rx="6" fill="#fff"/><circle cx="0" cy="-74" r="8" fill="#fff"/></g>`;
+
+  Object.assign(LIVE, {
+    // A frozen pond: two of the three ice lights are on, continuation is not. She skates anyway, makes it, gets paid. The penguin learns the wrong lesson.
+    's21-thin-ice': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="372" width="1920" height="600" fill="#E8F1F8"/>`;
+      // Snowy hills, falling snow.
+      out += `<path d="M0,760 Q260,640 560,720 Q860,800 1160,700 Q1460,610 1920,720 L1920,980 L0,980 Z" fill="#F8FBFF"/>`;
+      for (let i = 0; i < 40; i++) { const p = ((t * 0.12 + i * 0.173) % 1); out += `<circle cx="${f1((i * 211) % 1920 + Math.sin(t + i) * 20)}" cy="${f1(380 + p * 600)}" r="${3 + (i % 3)}" fill="#fff" opacity=".9"/>`; }
+      out += [[90, 720], [1820, 700], [1500, 660]].map(([x, y]) => `<path d="M${x},${y} L${x - 50},${y + 110} L${x + 50},${y + 110} Z M${x},${y + 50} L${x - 64},${y + 170} L${x + 64},${y + 170} Z" fill="#9FCBB8"/><path d="M${x - 30},${y + 100} L${x + 30},${y + 100}" stroke="#fff" stroke-width="8" stroke-linecap="round"/>`).join('');
+      out += ground(950, '#F3F7FB', '#DCE6F0');
+      // The pond.
+      const PX = 1040, PY = 900;
+      out += `<ellipse cx="${PX}" cy="${PY}" rx="520" ry="76" fill="#CFE6F2" stroke="#fff" stroke-width="10"/><ellipse cx="${PX - 120}" cy="${PY - 20}" rx="220" ry="16" fill="#fff" opacity=".5"/>`;
+      // Skater path and cracks behind her.
+      const go = ease(seg(t, T.go, T.arrive));
+      const kx = t < T.go ? 380 : lerp(380, 1640, go) + Math.sin(go * Math.PI * 6) * 10 * (go < 1 ? 1 : 0);
+      for (let i = 0; i < 12; i++) {
+        const cx = 560 + i * 86, cy = PY + ((i * 37) % 30) - 12;
+        if (kx < cx + 60 || t < T.go) continue;
+        const k = ease(seg(kx, cx + 60, cx + 160));
+        out += `<path d="M${cx},${cy} l${f1(-30 * k)},${f1(-14 * k)} M${cx},${cy} l${f1(26 * k)},${f1(-18 * k)} l${f1(16 * k)},${f1(10 * k)} M${cx},${cy} l${f1(8 * k)},${f1(26 * k)} M${cx},${cy} l${f1(-22 * k)},${f1(16 * k)}" stroke="#6E8FB0" stroke-width="4" stroke-linecap="round" fill="none"/>`;
+      }
+      // The ice-light board and the ranger.
+      const bk = pop(t, T.set + 0.3, 0.6);
+      const lamps = [['IND', T.lamps[0], true], ['CORR', T.lamps[1], true], ['CONT', T.lamps[1] + 0.8, false]];
+      out += scaleAt(200, 950, bk, `<g transform="translate(-50,0)"><rect x="244" y="760" width="12" height="190" fill="${C.muted}"/><rect x="160" y="530" width="190" height="236" rx="18" fill="#3D3550"/>` + lamps.map(([lab, at, on], i) => {
+        const y = 580 + i * 70, lit = on && t > at, blink = !on && t > at ? 0.35 + Math.abs(Math.sin(t * 4)) * 0.25 : 0;
+        return `<circle cx="206" cy="${y}" r="22" fill="${lit ? C.teal : '#5C5470'}"/>${lit ? `<circle cx="206" cy="${y}" r="34" fill="${C.teal}" opacity=".25"/>` : ''}${blink ? `<circle cx="206" cy="${y}" r="22" fill="none" stroke="${C.pink}" stroke-width="4" opacity="${f1(blink * 2)}"/>` : ''}` + txt(240, y + 9, lab, 24, lit ? '#fff' : '#B9B2C4', { a: 'start' });
+      }).join('') + '</g>');
+      out += pill(205, 488, 'not closed: wait', C.pink, between(t, T.lamps[1] + 1, T.arrive), 22);
+      const rg = { x: 66, y: 960, scale: 0.78, look: A.LOOKS.c, seed: 6, at: T.set + 0.5, hat: 'ranger', talk: ctx.talking && ((t > T.verdict && t < T.verdict + 2.4) || (t > T.whistle && t < T.whistle + 1)) };
+      rg.frontArm = (t > T.go - 0.4 && t < T.go + 1.6) || (t > T.whistle - 0.2 && t < T.whistle + 1.2) ? { a1: -60 + Math.sin(t * 10) * 14, a2: -90 } : { a1: 70, a2: 40 };
+      out += who(t, rg);
+      // The prize on the far bank.
+      const open = ease(seg(t, T.open, T.open + 0.6));
+      const prk = pop(t, T.set + 1, 0.6);
+      out += scaleAt(1760, 960, prk, `<rect x="1700" y="880" width="120" height="80" rx="8" fill="${C.purple}"/><rect x="1752" y="880" width="16" height="80" fill="${C.gold}"/>
+        <g transform="rotate(${f1(-open * 60)} 1700 880)"><rect x="1690" y="860" width="140" height="26" rx="8" fill="${C.purpleL}"/><path d="M1760,860 q-30,-30 -40,-4 M1760,860 q30,-30 40,-4" stroke="${C.gold}" stroke-width="7" fill="none"/></g>`);
+      if (t > T.tempt && t < T.go) out += A.sparkle(1760, 860, T.tempt, t, C.gold) + A.sparkle(1760, 860, T.tempt + 1.2, t, C.gold);
+      if (open > 0) {
+        for (let i = 0; i < 7; i++) { const p = seg(t, T.open + i * 0.08, T.open + 0.8 + i * 0.08); out += `<circle cx="${f1(1760 + (i - 3) * 22 * p)}" cy="${f1(870 - Math.sin(p * Math.PI) * 120 - p * 10)}" r="14" fill="${C.gold}" stroke="#C98A1F" stroke-width="3" opacity="${f1(p > 0 ? 1 : 0)}"/>`; }
+        out += pill(1760, 760, '+$464', C.cashD, pop(t, T.open + 0.4, 0.5), 30);
+      }
+      // The skater.
+      const sk = { x: kx, y: t < T.go || t > T.arrive ? 950 : PY + 30, scale: 0.8, look: A.LOOKS.seller, seed: 2, at: T.set + 0.4, hat: 'bow', walking: t > T.go && t < T.arrive, talk: ctx.talking && t > T.tempt && t < T.go, mood: undefined };
+      sk.frontArm = t > T.go && t < T.arrive ? { a1: -30 + Math.sin(t * 9) * 20, a2: -10 } : t > T.open ? { a1: -120 + Math.sin(t * 7) * 10, a2: -110 } : { a1: 80, a2: 60 };
+      sk.backArm = t > T.go && t < T.arrive ? { a1: 160 + Math.sin(t * 9) * 20, a2: 190 } : undefined;
+      out += who(t, sk);
+      out += bub(kx + 60, 600, 'It wants to go!', between(t, T.tempt, T.go), { size: 26 });
+      out += cross(1600, 640, between(t, T.verdict, s.end), C.pink, 30);
+      out += bub(1380, 620, 'Made it. Still invalid.', between(t, T.verdict, s.end), { size: 26 });
+      // Penguin copies her.
+      const pg = t < T.penguin ? 500 : lerp(500, 680, ease(seg(t, T.penguin, T.penguin + 1.6))) - ease(seg(t, T.whistle + 0.2, T.whistle + 1)) * 170;
+      const onIce = pg > 580;
+      out += bst(t, 'penguin', { x: pg, y: onIce ? PY + 10 : 955, scale: 0.9, seed: 4, at: T.set + 1.4, waddle: t > T.penguin && t < T.whistle + 1, flap: t > T.crack && t < T.whistle + 1, scarf: true, talk: ctx.talking && t > T.penguin && t < T.crack });
+      if (t > T.crack && t < T.whistle + 1.4) { const k = ease(seg(t, T.crack, T.crack + 0.4)); out += `<path d="M680,${PY + 10} l-60,${f1(-14 * k)} m60,${f1(14 * k)} l70,${f1(-20 * k)} m-70,${f1(20 * k)} l20,${f1(30 * k)} m-20,${f1(-30 * k)} l-40,${f1(26 * k)}" stroke="#6E8FB0" stroke-width="5" stroke-linecap="round" fill="none"/>`; }
+      out += bub(560, 640, 'Early works! Me next!', between(t, T.penguin, T.whistle), { size: 26 });
+      out += pill(560, 600, 'a paid violation teaches habits', DK.pink, pop(t, T.habit, 0.6), 24);
+      return out;
+    },
+
+    // A museum curator files the case: the win in one display case, the violation in another. The peacock's confetti is swept away.
+    's21-warning-museum': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="372" width="1920" height="610" fill="#F6EFE6"/>` + ground(980, '#E6D6C4', '#D2BFA8');
+      for (let i = 0; i < 14; i++) out += `<rect x="${i * 140}" y="984" width="70" height="96" fill="#DCC8B2" opacity=".6"/>`;
+      // Columns and two framed paintings.
+      [70, 1850].forEach(x => { out += `<rect x="${x - 30}" y="400" width="60" height="580" fill="#EDE2D3"/><rect x="${x - 44}" y="392" width="88" height="20" fill="#E0D2BF"/><rect x="${x - 44}" y="960" width="88" height="20" fill="#E0D2BF"/>`; });
+      [[250, 'up'], [1660, 'chop']].forEach(([x, kind]) => {
+        out += `<rect x="${x - 100}" y="440" width="200" height="150" rx="6" fill="#fff" stroke="${C.gold}" stroke-width="10"/>`;
+        const ys = kind === 'up' ? [560, 540, 550, 520, 500, 480] : [520, 540, 510, 545, 515, 535];
+        ys.forEach((y, i) => out += `<rect x="${x - 72 + i * 26}" y="${y - 20}" width="14" height="34" rx="3" fill="${i % 2 ? C.pink : C.teal}"/>`);
+      });
+      // Two display cases.
+      const cases = [{ x: 680, lab: 'OUTCOME · WIN', col: DK.teal, at: T.set + 0.4 }, { x: 1240, lab: 'PROCESS · VIOLATION', col: DK.pink, at: T.set + 0.6 }];
+      cases.forEach((c, i) => {
+        const k = pop(t, c.at, 0.7);
+        out += scaleAt(c.x, 980, k, `<rect x="${c.x - 120}" y="800" width="240" height="180" fill="#E7DCCB"/><rect x="${c.x - 136}" y="784" width="272" height="22" rx="6" fill="#D9C8B0"/>`);
+        // Item inside.
+        const ik = ease(seg(t, i === 0 ? T.trophy : T.warn, (i === 0 ? T.trophy : T.warn) + 0.7));
+        if (ik > 0) out += i === 0 ? trophy(c.x, lerp(560, 782, ik), 1.1) : warnSign(c.x, lerp(560, 782, ik), 1.0);
+        out += scaleAt(c.x, 980, k, `<rect x="${c.x - 120}" y="560" width="240" height="226" rx="8" fill="#E8F8F6" opacity=".35" stroke="#B2D6E0" stroke-width="5"/><path d="M${c.x - 96},590 L${c.x - 96},740" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".7"/>`);
+        out += pill(c.x, 890, c.lab, c.col, pop(t, (i === 0 ? T.trophy : T.warn) + 0.6, 0.5), 22);
+      });
+      out += pill(1240, 940, 'early entry · no continuation', C.muted, pop(t, T.warn + 1, 0.5), 18);
+      // The curator between the cases.
+      const cu = { x: 960, y: 980, scale: 0.86, look: A.LOOKS.e, seed: 3, at: T.set + 0.2, hat: 'glasses', talk: ctx.talking && ((t > T.trophy && t < T.warn + 2) || (t > T.stop && t < T.stop + 2)) };
+      cu.frontArm = t > T.trophy - 0.4 && t < T.trophy + 1 ? aim(cu, 760, 700) : t > T.stop - 0.2 && t < T.stop + 1.6 ? { a1: -20, a2: -80 } : t > T.plaque ? { a1: -100, a2: -120 } : { a1: 80, a2: 70 };
+      cu.backArm = t > T.warn - 0.4 && t < T.warn + 1 ? { a1: -10, a2: -20 } : undefined;
+      cu.flip = t > T.warn - 0.4 && t < T.warn + 1 || (t > T.stop - 0.4 && t < T.sweep);
+      out += who(t, cu);
+      // Peacock with a confetti cannon.
+      const px = t < T.peacock ? 2100 : lerp(2100, 1700, ease(seg(t, T.peacock, T.peacock + 1.2)));
+      const fan = t < T.peacock + 0.8 ? 0.2 : t < T.stop ? ease(seg(t, T.peacock + 0.8, T.peacock + 1.4)) : 1 - ease(seg(t, T.stop, T.stop + 0.8)) * 0.8;
+      out += beast(t, 'peacock', { x: px, y: 980, scale: 0.95, seed: 5, flip: true, fan, waddle: true, talk: ctx.talking && t > T.peacock && t < T.stop, mood: t > T.stop ? 'sad' : undefined });
+      if (t > T.peacock) out += `<g transform="translate(${f1(px - 150)},960)"><circle cx="-30" cy="10" r="20" fill="${C.muted}"/><circle cx="30" cy="10" r="20" fill="${C.muted}"/><g transform="rotate(-40)"><rect x="-20" y="-70" width="40" height="80" rx="8" fill="${C.pink}"/><rect x="-26" y="-80" width="52" height="16" rx="6" fill="${DK.pink}"/></g></g>`;
+      out += bub(1520, 660, 'Party time!', between(t, T.peacock + 0.8, T.fire + 0.6), { size: 28, tail: 'right' });
+      // Confetti: sprays, falls, then is swept.
+      const cols = [C.pink, C.teal, C.gold, C.purple, C.peach];
+      if (t > T.fire) for (let i = 0; i < 46; i++) {
+        const p = seg(t, T.fire + (i % 8) * 0.04, T.fire + 1.8 + (i % 5) * 0.2);
+        const vx = -(160 + (i * 53) % 900), vy = -(420 + (i * 37) % 260);
+        let x = px - 190 + vx * p, y = 880 + vy * p + 1400 * p * p * 0.5;
+        y = Math.min(y, 974 - (i % 4) * 3);
+        const swept = t > T.sweep && x < lerp(-100, 1700, seg(t, T.sweep, T.sweep + 3.2)) - 40;
+        if (swept) continue;
+        out += `<rect x="${f1(x)}" y="${f1(y)}" width="12" height="7" fill="${cols[i % 5]}" transform="rotate(${f1((t * 300 + i * 40) % 360 * (y < 970 ? 1 : 0))} ${f1(x + 6)} ${f1(y + 3)})"/>`;
+      }
+      out += bstamp(1240, 520, 'NO PARTY', DK.pink, between(t, T.stop, T.sweep + 1), -12, 70, 22);
+      // Mouse janitor with a broom.
+      if (t > T.sweep) {
+        const mx = lerp(-100, 1700, seg(t, T.sweep, T.sweep + 3.2));
+        out += critter(t, 'mouse', { x: mx, y: 980, scale: 1.0, seed: 2, hop: 10, hopH: 8 }) + `<g transform="translate(${f1(mx - 30)},940) rotate(${f1(-30 + Math.sin(t * 14) * 14)})"><rect x="-4" y="-70" width="8" height="80" fill="#9B6A45"/><path d="M-20,10 L20,10 L26,40 L-26,40 Z" fill="${C.gold}"/></g>`;
+      }
+      // The plaque above.
+      const pk = pop(t, T.plaque, 0.7);
+      out += scaleAt(960, 470, pk, `<line x1="760" y1="372" x2="760" y2="430" stroke="${C.muted}" stroke-width="4"/><line x1="1160" y1="372" x2="1160" y2="430" stroke="${C.muted}" stroke-width="4"/><rect x="620" y="424" width="680" height="84" rx="12" fill="#3D3550" stroke="${C.gold}" stroke-width="6"/>` + txt(960, 480, 'A winner can still be a warning', 36, '#fff', { f: 'Playfair Display' }));
+      if (t > T.plaque) out += A.sparkle(1300, 430, T.plaque + 0.3, t, C.gold);
+      return out;
+    },
+  });
+
+  /* ================= Lesson 5: Clean vs Messy Setups ================= */
+  // A scallop shell, (x, y) = bottom centre. kind: 'clean' | 'chip' | 'messy'.
+  const shell = (x, y, sc, kind, rot = 0) => {
+    const col = kind === 'messy' ? '#E3C9B8' : kind === 'chip' ? C.peachL : C.pinkL, rib = kind === 'messy' ? '#C9AE9A' : kind === 'chip' ? C.peach : C.pink;
+    let g = `<path d="M-60,-20 Q-66,-90 0,-100 Q66,-90 60,-20 L14,0 L-14,0 Z" fill="${col}" stroke="${rib}" stroke-width="4" stroke-linejoin="round"/>`;
+    for (let i = -2; i <= 2; i++) g += `<path d="M0,-4 L${i * 26},-92" stroke="${rib}" stroke-width="4" opacity=".8"/>`;
+    g += `<path d="M-18,0 L-24,10 L24,10 L18,0 Z" fill="${rib}"/>`;
+    if (kind === 'chip') g += `<path d="M40,-86 L60,-60 L46,-58 Z" fill="#F6E7D3"/>`;
+    if (kind === 'messy') g += `<path d="M-40,-70 L-10,-40 L-20,-20 M10,-90 L20,-60" stroke="${C.muted}" stroke-width="4" fill="none"/><path d="M-70,-30 Q-40,-70 -10,-30 Q20,-70 50,-20 Q70,-50 80,-10" stroke="#7CB46B" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="-30" cy="-50" r="6" fill="#D6B78E"/><circle cx="22" cy="-30" r="5" fill="#D6B78E"/><circle cx="36" cy="-70" r="4" fill="#D6B78E"/>`;
+    return `<g transform="translate(${f1(x)},${f1(y)}) rotate(${f1(rot)}) scale(${sc})">${g}</g>`;
+  };
+  const vase = (x, y, sc, messy) => `<g transform="translate(${f1(x)},${f1(y)}) scale(${sc})">
+      <path d="M-30,-200 L30,-200 L26,-170 Q80,-120 64,-50 Q50,0 0,0 Q-50,0 -64,-50 Q-80,-120 -26,-170 Z" fill="${messy ? '#C9B8A6' : C.purple}" stroke="${messy ? C.muted : DK.purple}" stroke-width="5"/>
+      <path d="M-58,-90 Q0,-70 58,-90" stroke="${messy ? '#E7CDA1' : C.gold}" stroke-width="10" fill="none"/>
+      ${messy ? `<path d="M30,-200 L44,-178 L22,-172 Z" fill="#F6EFE6"/><path d="M-20,-150 L-6,-120 L-22,-96 L-8,-70" stroke="${C.dark}" stroke-width="3" fill="none"/><ellipse cx="20" cy="-30" rx="40" ry="14" fill="#9B6A45" opacity=".55"/><ellipse cx="-40" cy="-120" rx="14" ry="20" fill="#9B6A45" opacity=".45"/>`
+      : `<path d="M-40,-140 Q-50,-100 -40,-60" stroke="#fff" stroke-width="9" fill="none" opacity=".5" stroke-linecap="round"/>`}</g>`;
+
+  Object.assign(LIVE, {
+    // A beach after the tide: four real shells, but only the clean one goes in the basket. Messy and drifting ones get a pass.
+    's21-shell-beach': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="372" width="1920" height="100" fill="#E4F3F1" opacity=".8"/>` + cloud(400 + (t * 12) % 200, 420, 0.5);
+      // Sea with moving waves.
+      out += `<rect x="0" y="470" width="1920" height="230" fill="#9FD8D0"/>`;
+      for (let r = 0; r < 4; r++) out += `<path d="M${-200 + ((t * (30 + r * 10)) % 200)},${500 + r * 50} ${Array.from({ length: 13 }, (_, j) => `q50,-14 100,0 q50,14 100,0`).join(' ')}" stroke="#fff" stroke-width="5" fill="none" opacity=".55"/>`;
+      // Wet edge then sand.
+      const surf = Math.sin(t * 1.3) * 16;
+      out += `<path d="M0,${700 + surf} ${Array.from({ length: 10 }, (_, j) => `Q${96 + j * 192},${720 + surf + (j % 2 ? 14 : -10)} ${192 + j * 192},${700 + surf}`).join(' ')} L1920,1080 L0,1080 Z" fill="#F3E2C4"/>`;
+      out += `<path d="M0,${704 + surf} ${Array.from({ length: 10 }, (_, j) => `Q${96 + j * 192},${724 + surf + (j % 2 ? 14 : -10)} ${192 + j * 192},${704 + surf}`).join(' ')}" stroke="#fff" stroke-width="8" fill="none" opacity=".8"/>`;
+      for (let i = 0; i < 30; i++) out += `<circle cx="${(i * 173) % 1900 + 10}" cy="${760 + (i * 61) % 300}" r="3" fill="#E1C9A2"/>`;
+      // Basket.
+      const bk = pop(t, T.set + 0.4, 0.6);
+      out += scaleAt(300, 960, bk, `<path d="M220,880 L380,880 L360,960 L240,960 Z" fill="#D9B98A" stroke="#9B6A45" stroke-width="5"/><path d="M228,906 L372,906 M234,932 L366,932" stroke="#9B6A45" stroke-width="3"/><path d="M240,880 Q300,800 360,880" stroke="#9B6A45" stroke-width="7" fill="none"/>`);
+      // Rock overhang over shell B.
+      const rk = pop(t, T.set + 0.6, 0.6);
+      out += scaleAt(900, 960, rk, `<path d="M790,960 L800,780 Q860,730 960,740 Q1040,740 1050,800 L1010,812 Q920,800 860,820 L850,960 Z" fill="#B9B2C4" stroke="#8E8AA0" stroke-width="5"/>`);
+      out += pill(930, 720, '4H ceiling', C.muted, pop(t, T.B + 0.6, 0.5), 20);
+      // Shells.
+      const SH = [{ x: 620, kind: 'clean', at: T.A, lab: 'A · clean', col: DK.teal }, { x: 930, kind: 'chip', at: T.B, lab: 'B · room limited', col: DK.peach }, { x: 1240, kind: 'messy', at: T.C, lab: 'C · messy', col: DK.pink }];
+      SH.forEach((h, i) => {
+        const k = pop(t, T.set + 0.8 + i * 0.25, 0.6);
+        let x = h.x, y = 940, sc = 0.9 * k;
+        if (i === 0 && t > T.A + 1.2) { const p = ease(seg(t, T.A + 1.2, T.A + 2)); x = lerp(h.x, 300, p); y = lerp(940, 900, p) - Math.sin(p * Math.PI) * 220; sc = lerp(0.9, 0.6, p); }
+        if (k > 0) out += shell(x, y, sc, h.kind, Math.sin(t * 2 + i) * 3);
+        out += pill(h.x, 1000, h.lab, h.col, pop(t, h.at + 0.2, 0.5), 22);
+        if (i === 0) out += check(h.x, 790, between(t, h.at + 0.6, T.D), C.teal, 30);
+        if (i === 1) out += pill(h.x + 30, 1046, 'take or wait', C.peach, pop(t, h.at + 1.6, 0.5), 18);
+        if (i === 2) out += cross(h.x, 800, pop(t, h.at + 1.6, 0.5), C.pink, 30) + pill(h.x, 1046, 'pass', C.pink, pop(t, h.at + 1.8, 0.5), 18);
+      });
+      // Shell D drifts off in the surf.
+      const dx = 1560 + ease(seg(t, T.D - 1, T.D + 3)) * 200, dy = 690 + Math.sin(t * 2.4) * 12;
+      out += fade(pop(t, T.set + 1.6, 0.6), shell(dx, dy, 0.7, 'clean', Math.sin(t * 2) * 16));
+      out += pill(1620, 1000, 'D · no retest', DK.purple, pop(t, T.D + 0.2, 0.5), 22);
+      out += cross(1700, 610, pop(t, T.D + 1.6, 0.5), C.pink, 28) + pill(1620, 1046, 'chasing · pass', C.pink, pop(t, T.D + 1.8, 0.5), 18);
+      // The collector walks shell to shell.
+      const stops = [[T.set + 0.4, 420], [T.A - 0.6, 480], [T.B - 0.6, 1100], [T.C - 0.6, 1390], [T.D - 0.6, 1470]];
+      let cx = 420, walking = false;
+      stops.forEach(([a, x], i) => { if (i === 0) return; const p = seg(t, a - 1, a); if (p > 0) { cx = lerp(stops[i - 1][1], x, ease(p)); if (p < 1) walking = true; } });
+      const co = { x: cx, y: 960, scale: 0.9, look: A.LOOKS.b, seed: 4, at: T.set + 0.2, hat: 'shades', walking, talk: ctx.talking && t > T.end, flip: false };
+      const near = SH.findIndex(h => t > h.at - 0.2 && t < h.at + 1.6);
+      co.flip = near > 0 && SH[near].x < cx;
+      co.frontArm = near === 0 && t < T.A + 1.4 ? aim(co, 600, 900) : near >= 0 ? aim(co, SH[near].x - 40, 860) : t > T.D && t < T.D + 2 ? { a1: -20, a2: -30 } : t > T.end ? { a1: -100 + Math.sin(t * 6) * 10, a2: -110 } : { a1: 80, a2: 70 };
+      out += who(t, co);
+      out += bub(cx - 150, 590, 'Not chasing that one', between(t, T.D + 0.6, T.end - 0.2), { size: 24 });
+      // Crab and gull.
+      const crabX = 1820 + Math.sin(t * 0.9) * 50;
+      out += crit(t, 'crab', { x: crabX, y: 1040, scale: 0.7, seed: 3, at: T.set + 1.2 });
+      out += beast(t, 'gull', { x: 2050 - ((t - s.start) * 110) % 2400, y: 430 + Math.sin(t * 1.8) * 20, scale: 0.8, seed: 5, fly: true, flip: true });
+      if (t > T.A + 2) out += A.sparkle(300, 880, T.A + 2, t, C.teal);
+      return out;
+    },
+
+    // An antiques appraiser hangs three separate tags on every piece: validity, quality, decision.
+    's21-appraiser': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="372" width="1920" height="610" fill="#FBF3EA"/>` + ground(980, '#EAD9C6', '#D6C2AA');
+      // Striped tent canopy.
+      const ck = ease(seg(t, T.set - 0.2, T.set + 0.6));
+      let can = '';
+      for (let i = 0; i < 16; i++) can += `<path d="M${i * 120},380 L${i * 120 + 120},380 L${i * 120 + 120},430 Q${i * 120 + 60},${456 + Math.sin(t * 2 + i) * 4} ${i * 120},430 Z" fill="${i % 2 ? '#fff' : C.pinkL}"/>`;
+      out += fade(ck, can);
+      // The appraiser with a loupe.
+      const ap = { x: 1060, y: 925, scale: 0.92, look: A.LOOKS.d, seed: 5, at: T.set + 0.4, hat: 'loupe', flip: true, talk: ctx.talking && t > T.item1 + 1 };
+      const tagT = [...T.tags1, ...T.tags2];
+      const tagging = tagT.findIndex(a => t > a - 0.5 && t < a + 0.3);
+      ap.frontArm = tagging >= 0 ? aim(ap, 1180 + 0, 600) : aim(ap, 900, 700 + Math.sin(t * 3) * 20);
+      out += who(t, ap);
+      // Table and turntable.
+      out += fade(ck, `<rect x="420" y="800" width="800" height="26" rx="10" fill="#B8743C"/><rect x="440" y="826" width="760" height="154" fill="#C98A4E"/><rect x="470" y="850" width="700" height="100" rx="8" fill="#B8743C" opacity=".5"/>`);
+      const spin = Math.sin(t * 1.5) * 0.06;
+      out += fade(ck, `<ellipse cx="800" cy="796" rx="120" ry="18" fill="#9B6A45"/>`);
+      // Vases: the clean one, then the messy one.
+      const in1 = ease(seg(t, T.item1, T.item1 + 0.8)), out1 = ease(seg(t, T.swap, T.swap + 0.7));
+      if (in1 > 0 && out1 < 1) out += vase(lerp(800, -200, out1) + (1 - in1) * -900, 790, 1.05 + spin, false);
+      const in2 = ease(seg(t, T.swap + 0.3, T.swap + 1.1));
+      if (in2 > 0) out += vase(800 + (1 - in2) * -1000, 790, 1.05 + spin, true);
+      if (t > T.tags1[2] && t < T.swap) out += A.sparkle(840, 640, T.tags1[2], t, C.gold);
+      // Tag rail and three tags.
+      const rk = pop(t, T.set + 0.6, 0.6);
+      out += scaleAt(1540, 470, rk, `<rect x="1260" y="466" width="580" height="12" rx="6" fill="${C.muted}"/><rect x="1270" y="466" width="10" height="514" fill="${C.muted}"/><rect x="1820" y="466" width="10" height="514" fill="${C.muted}"/>`);
+      const cats = ['VALIDITY', 'QUALITY', 'DECISION'];
+      const v1 = [['VALID', DK.teal], ['A', DK.teal], ['TAKE', DK.teal]], v2 = [['VALID', DK.teal], ['C', DK.pink], ['PASS', DK.pink]];
+      const combo = ease(seg(t, T.combo, T.combo + 0.5));
+      cats.forEach((c, i) => {
+        const x = 1360 + i * 180, sw = Math.sin(t * 2 + i) * 4;
+        const k = pop(t, T.set + 0.9 + i * 0.2, 0.6);
+        if (k <= 0) return;
+        const val = t > T.tags2[i] ? v2[i] : t > T.tags1[i] && t < T.swap ? v1[i] : null;
+        const vk = val ? pop(t, t > T.tags2[i] ? T.tags2[i] : T.tags1[i], 0.5) : 0;
+        const hi = combo > 0 ? 1 : 0;
+        out += scaleAt(x, 478, k, `<g transform="rotate(${f1(sw)} ${x} 478)"><line x1="${x}" y1="478" x2="${x}" y2="560" stroke="${C.muted}" stroke-width="3"/>
+          <path d="M${x - 70},570 L${x - 50},552 L${x + 70},552 L${x + 70},740 L${x - 70},740 Z" fill="#fff" stroke="${hi && val ? val[1] : '#E1D3C2'}" stroke-width="${hi ? 6 : 4}"/><circle cx="${x - 46}" cy="572" r="7" fill="#EADFD8"/>`
+          + txt(x, 610, c, 20, C.muted, { ls: 1 }) + (vk > 0 ? scaleAt(x, 680, vk, txt(x, 696, val[0], val[0].length > 2 ? 40 : 64, val[1], { f: 'Playfair Display' })) : '') + '</g>');
+      });
+      out += pill(1540, 800, 'a real combination', DK.pink, pop(t, T.combo + 0.3, 0.5), 24);
+      out += pill(1540, 870, 'labels, not signals', C.purple, pop(t, T.note, 0.5), 24);
+      // Customer and a sniffing dog.
+      const cu = { x: 230, y: 980, scale: 0.9, look: A.LOOKS.buyer, seed: 2, at: T.set + 0.3, talk: ctx.talking && t > T.swap && t < T.swap + 1 };
+      cu.frontArm = t > T.swap - 0.6 && t < T.swap + 1.4 ? aim(cu, 400, 720) : { a1: 80, a2: 70 };
+      out += who(t, cu);
+      out += crit(t, 'dog', { x: 380, y: 980, scale: 0.75, seed: 6, at: T.set + 1, hop: t > T.swap + 1 && t < T.swap + 2.6 ? 8 : 0, hopH: 14, tongue: t > T.item1 + 1 });
+      out += bub(470, 560, 'Still genuine!', between(t, T.swap + 0.6, T.tags2[0] + 0.8), { size: 26 });
+      out += crit(t, 'cat', { x: 490, y: 800, scale: 0.55, seed: 4, at: T.set + 1.6, flip: true, sleep: t < T.combo });
       return out;
     },
   });

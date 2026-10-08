@@ -622,7 +622,7 @@
       // Cat asleep on her window sill.
       out += crit(t, 'cat', { x: 250, y: 790, scale: 0.6, seed: 4, sleep: true, at: T.houses + 0.6 });
       out += pill(320, 460, 'Pass: chose not to', DK.purple, pop(t, T.pass, 0.6), 24);
-      out += bub(340, 560, 'Not my night.', between(t, T.pass + 0.4, T.plan), { size: 26 });
+      out += bub(420, 592, 'Not my night.', between(t, T.pass + 0.4, T.plan), { size: 26 });
       // Right house: the stargazer's. Phone lies on the table inside.
       out += house(1340, 440, '#FDE8ED', C.pink, true, hk);
       out += fade(hk, `<rect x="1560" y="680" width="180" height="120" rx="10" fill="#FFF3C4"/><rect x="1570" y="770" width="160" height="12" fill="#C98A1F"/>`);
@@ -634,12 +634,12 @@
       out += scaleAt(1060, 900, tk, `<path d="M1060,760 L1020,900 M1060,760 L1100,900 M1060,760 L1060,900" stroke="${C.muted}" stroke-width="8" stroke-linecap="round"/>
         <g transform="rotate(-28 1060 750)"><rect x="1000" y="732" width="150" height="40" rx="14" fill="${C.purple}"/><rect x="1140" y="726" width="26" height="52" rx="8" fill="${DK.purple}"/></g>
         <rect x="1150" y="830" width="90" height="16" rx="6" fill="${C.peach}"/><rect x="1156" y="846" width="10" height="54" fill="${C.peach}"/><rect x="1224" y="846" width="10" height="54" fill="${C.peach}"/><rect x="1226" y="760" width="14" height="80" rx="6" fill="${C.peach}"/>`);
-      out += pill(1060, 600, 'Alert: at the retest', DK.teal, between(t, T.plan + 0.6, T.comet), 24);
+      out += pill(1240, 520, 'Alert: at the retest', DK.teal, between(t, T.plan + 0.6, T.comet), 24);
       // The stargazer: by the telescope, walks inside, comes back too late.
       let sx = 960, walking = false, flip = false, vis = 1;
       if (t > T.inside) { const k = seg(t, T.inside, T.inside + 1.8); sx = lerp(960, 1420, k); walking = k < 1; vis = 1 - seg(t, T.inside + 1.5, T.inside + 1.9); }
       if (t > T.back) { const k = seg(t, T.back, T.back + 1.6); sx = lerp(1420, 1180, k); walking = k < 1; flip = true; vis = seg(t, T.back, T.back + 0.3); }
-      const sg = { x: sx, y: 900, scale: 0.86, look: A.LOOKS.d, seed: 6, walking, flip, at: T.houses + 0.5, mood: t > T.back + 1.2 ? 'sad' : undefined };
+      const sg = { x: sx, y: 900, scale: 1, look: A.LOOKS.d, seed: 6, walking, flip, at: T.houses + 0.5, mood: t > T.back + 1.2 ? 'sad' : undefined };
       if (t > T.back) sg.hold = `<rect x="-14" y="-30" width="28" height="34" rx="6" fill="#fff" stroke="${C.pink}" stroke-width="4"/><path d="M14,-20 q12,4 0,16" stroke="${C.pink}" stroke-width="4" fill="none"/>${[0, 1].map(i => `<path d="M${-6 + i * 10},-38 q-6,-10 0,-20" stroke="#fff" stroke-width="3" fill="none" opacity=".7"/>`).join('')}`;
       if (!walking && t < T.inside) sg.frontArm = aim(sg, 1010, 700);
       out += fade(vis, who(t, sg));
@@ -746,6 +746,460 @@
       out += pill(1240, 990, 'Alert on, at the desk', DK.teal, pop(t, T.fix + 2.6, 0.5), 22);
       out += pill(780, 990, 'Rules unchanged', DK.purple, pop(t, T.keep, 0.5), 22);
       out += check(925, 990, pop(t, T.keep + 0.3, 0.5), C.teal, 20);
+      return out;
+    },
+  });
+
+  /* ================= Lesson 8: Right Analysis. Wrong Execution. ================= */
+  // A little fruit with a face. (x, y) = centre.
+  const fruit = (t, x, y, col, r = 40, seed = 1, mood) => {
+    const bl = blinkAmt(t, seed);
+    const leaf = `<path d="M${x},${y - r} q8,-22 26,-20 q-6,18 -26,20" fill="${C.cash}"/>`;
+    const mouth = mood === 'sad' ? `<path d="M${x - 8},${y + 14} Q${x},${y + 8} ${x + 8},${y + 14}" stroke="${C.dark}" stroke-width="3" fill="none" stroke-linecap="round"/>`
+      : `<path d="M${x - 8},${y + 8} Q${x},${y + 16} ${x + 8},${y + 8}" stroke="${C.dark}" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+    return `${leaf}<circle cx="${f1(x)}" cy="${f1(y)}" r="${r}" fill="${col}"/><circle cx="${f1(x - r * 0.4)}" cy="${f1(y - r * 0.4)}" r="${r * 0.2}" fill="#fff" opacity=".5"/>
+      <ellipse cx="${f1(x - 10)}" cy="${f1(y - 4)}" rx="4" ry="${f1(5 * (1 - bl * 0.9))}" fill="${C.dark}"/><ellipse cx="${f1(x + 10)}" cy="${f1(y - 4)}" rx="4" ry="${f1(5 * (1 - bl * 0.9))}" fill="${C.dark}"/>${mouth}`;
+  };
+  Object.assign(LIVE, {
+    // A navigator reads the chart perfectly, then loads six crates (plan: two), leaves on red
+    // (skips the green light = the retest), moves her safety line once, and still reaches the island.
+    's21b-harbour-lights': (s, t, ctx) => {
+      const T = s.beats;
+      let out = vgrad('s21bSkyH', '#FDE8ED', '#FFFDF8') + `<rect x="0" y="360" width="1920" height="300" fill="url(#s21bSkyH)"/>`;
+      out += cloud(400 + (t * 10) % 300, 430, 0.55) + cloud(1500 - (t * 7) % 240, 410, 0.45);
+      // Sea.
+      out += `<rect x="0" y="650" width="1920" height="430" fill="#9AD9D1"/>`;
+      for (let r = 0; r < 5; r++) {
+        const y0 = 680 + r * 80;
+        for (let x = -100 + ((t * (30 + r * 8)) % 200); x < 1980; x += 200) out += `<path d="M${f1(x)},${y0 + Math.sin(t * 2 + x) * 4} q25,-14 50,0 q25,14 50,0" stroke="#fff" stroke-width="4" fill="none" opacity="${0.35 + r * 0.08}" stroke-linecap="round"/>`;
+      }
+      // Island with the target flag.
+      const ik = pop(t, T.harbour + 0.4, 0.7);
+      out += scaleAt(1760, 760, ik, `<ellipse cx="1760" cy="770" rx="230" ry="70" fill="#F8E7CF"/><path d="M1780,760 Q1770,640 1800,560" stroke="#9B6A45" stroke-width="16" fill="none" stroke-linecap="round"/>
+        ${[0, 1, 2, 3, 4].map(i => `<path d="M1800,560 q${f1(Math.cos(rad(-160 + i * 35 + Math.sin(t * 2) * 4)) * 90)},${f1(Math.sin(rad(-160 + i * 35)) * 50 + 30)} ${f1(Math.cos(rad(-160 + i * 35)) * 140)},${f1(Math.sin(rad(-160 + i * 35)) * 30 + 70)}" stroke="${C.cashD}" stroke-width="16" fill="none" stroke-linecap="round"/>`).join('')}
+        <rect x="1660" y="600" width="8" height="160" fill="${C.muted}"/><path d="M1668,${606 + Math.sin(t * 5) * 3} l70,16 l-70,18 Z" fill="${C.gold}"/>`);
+      out += pill(1664, 570, 'Target', '#C98A1F', pop(t, T.harbour + 1, 0.5), 20);
+      out += crit(t, 'crab', { x: 1880, y: 790, scale: 0.6, seed: 2, at: T.harbour + 1.2, hop: t > T.arrive ? 9 : 0, hopH: 14 });
+      // Pier and signal mast.
+      const pk = pop(t, T.harbour, 0.6);
+      out += scaleAt(220, 780, pk, `<rect x="0" y="760" width="440" height="30" fill="#B98A64"/>${[40, 160, 280, 400].map(x => `<rect x="${x}" y="790" width="22" height="200" fill="#9B6A45"/>`).join('')}
+        <rect x="352" y="470" width="16" height="290" fill="${C.muted}"/><rect x="320" y="420" width="80" height="150" rx="16" fill="${C.dark}"/>`);
+      const green = t > T.green;
+      if (pk > 0) out += `<circle cx="360" cy="460" r="26" fill="${green ? '#5C4A6E' : C.pink}"/>${green ? '' : `<circle cx="360" cy="460" r="${32 + Math.sin(t * 6) * 4}" fill="${C.pink}" opacity=".3"/>`}<circle cx="360" cy="530" r="26" fill="${green ? C.cash : '#5C4A6E'}"/>${green ? `<circle cx="360" cy="530" r="${32 + Math.sin(t * 6) * 4}" fill="${C.cash}" opacity=".35"/>` : ''}`;
+      out += pill(250, 640, 'Plan: wait for green', DK.teal, between(t, T.plan, T.leave + 1), 22);
+      out += pill(210, 640, 'Green: the retest', C.cashD, between(t, T.green, s.end), 22);
+      // Harbour master duck with whistle.
+      out += crit(t, 'duck', { x: 160, y: 760, scale: 0.85, seed: 3, at: T.harbour + 0.7, talk: ctx.talking && t > T.leave && t < T.leave + 2, hop: t > T.leave && t < T.leave + 2 ? 10 : 0, hopH: 14 });
+      out += bub(260, 520, 'Still red!', between(t, T.leave + 0.2, T.green - 0.4), { size: 28 });
+      // Chart board: the read.
+      const ck = pop(t, T.chart, 0.7);
+      if (ck > 0) {
+        const route = partial([[960, 520], [1100, 470], [1250, 500], [1360, 450]], ease(seg(t, T.chart + 0.5, T.chart + 1.8)));
+        out += scaleAt(1110, 480, ck, `<rect x="890" y="400" width="520" height="160" rx="14" fill="#FFF8EC" stroke="#E7C9A5" stroke-width="5"/><circle cx="950" cy="520" r="12" fill="${C.purple}"/><circle cx="1360" cy="450" r="14" fill="${C.gold}"/>`);
+        if (ck >= 1) out += `<path d="${route.d}" stroke="${C.pink}" stroke-width="5" fill="none" stroke-dasharray="12 9"/>`;
+        out += pill(1150, 610, 'Chart: right', DK.teal, pop(t, T.chart + 1.6, 0.5), 22) + check(1290, 610, pop(t, T.chart + 2, 0.5), C.teal, 20);
+      }
+      // The boat.
+      const go = ease(seg(t, T.leave, T.arrive));
+      const bx = lerp(620, 1450, go), crates = t > T.crates ? 2 + Math.min(4, Math.floor((t - T.crates) / 0.35) + 1) : 2;
+      const sink = (crates - 2) * 7, by = 800 + sink + Math.sin(t * 2.4) * 5, tilt = Math.sin(t * 2) * 2 + (go > 0 && go < 1 ? -3 : 0);
+      if (pk > 0) {
+        let boat = '';
+        // Safety line + buoy trailing behind.
+        const moved = t > T.line + 0.6;
+        const buoyX = bx - (moved ? 170 : 290), buoyY = 820 + Math.sin(t * 3) * 6;
+        boat += `<path d="M${f1(bx - 150)},${f1(by - 40)} Q${f1((bx - 150 + buoyX) / 2)},${f1(by + 10)} ${f1(buoyX)},${f1(buoyY - 18)}" stroke="${C.muted}" stroke-width="4" fill="none"/>
+          <circle cx="${f1(buoyX)}" cy="${f1(buoyY - 18)}" r="20" fill="#fff" stroke="${C.pink}" stroke-width="10"/>`;
+        // Hull.
+        let deck = `<path d="M${-170},-60 L170,-60 L130,10 L-130,10 Z" fill="${C.purple}" stroke="${DK.purple}" stroke-width="5"/><rect x="-170" y="-66" width="340" height="12" rx="6" fill="#fff"/>`;
+        // Crates on deck.
+        for (let i = 0; i < crates; i++) {
+          const cx = 20 + (i % 3) * 52, cy = -92 - Math.floor(i / 3) * 52;
+          const k = i < 2 ? 1 : pop(t, T.crates + (i - 2) * 0.35, 0.4);
+          deck += scaleAt(cx, cy + 26, k, `<rect x="${cx - 24}" y="${cy - 24}" width="48" height="48" rx="5" fill="${BOX}" stroke="${BOXD}" stroke-width="3"/><path d="M${cx - 24},${cy} L${cx + 24},${cy}" stroke="${BOXD}" stroke-width="3"/>`);
+        }
+        boat += `<g transform="translate(${f1(bx)},${f1(by)}) rotate(${f1(tilt)})">${deck}</g>`;
+        // Navigator on deck.
+        const nv = { x: bx - 80, y: by - 60, scale: 0.62, look: A.LOOKS.a, seed: 8, hat: 'cap', talk: ctx.talking && t > T.crates && t < T.leave + 1 };
+        if (t > T.line && t < T.line + 1.2) nv.frontArm = aim(nv, bx - 170, by - 60);
+        else if (t > T.arrive) nv.frontArm = { a1: -110 + Math.sin(t * 6) * 10, a2: -90 };
+        else if (go > 0) nv.frontArm = aim(nv, bx + 100, by - 220);
+        boat = A.person(t, nv) + hat(t, nv, 'cap') + boat;
+        out += scaleAt(bx, by, pk, boat);
+        // Foam behind the moving boat.
+        if (go > 0 && go < 1) out += [0, 1, 2].map(i => `<circle cx="${f1(bx - 190 - i * 40 - (t * 80) % 40)}" cy="${f1(by + 4)}" r="${10 - i * 2}" fill="#fff" opacity=".8"/>`).join('');
+      }
+      out += pill(bx + 20, by + 80, crates > 2 ? `${crates} crates · plan: 2` : 'Plan: 2 crates', crates > 2 ? DK.pink : DK.teal, pop(t, T.plan + 0.6, 0.5), 22);
+      out += pill(bx - 230, by + 150, 'Moved the stop', DK.purple, between(t, T.line + 0.6, T.arrive + 0.5), 20);
+      // Seagull follows the boat.
+      out += critter(t, 'bird', { x: bx + 120 + Math.sin(t * 1.3) * 60, y: 450 + Math.sin(t * 2.6) * 20, scale: 0.9, seed: 4, fly: true, col: '#fff' });
+      if (t > T.arrive) out += sparkAt(1664, 600, T.arrive + 0.2, t, C.gold);
+      out += pill(960, 1030, 'Arrived ≠ good trip', DK.pink, pop(t, T.verdict, 0.6), 26);
+      return out;
+    },
+
+    // Five fruits (analysis, execution, risk, management, outcome) tossed in a blender with the win.
+    // The lid pops, they fly back into five bowls, and each gets its own grade.
+    's21b-blender': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="360" width="1920" height="480" fill="#EAF6F4"/>`;
+      // Tiled wall, shelves with jars.
+      for (let x = 0; x < 1920; x += 80) for (let y = 380; y < 840; y += 80) out += `<rect x="${x + 4}" y="${y}" width="72" height="72" rx="8" fill="#fff" opacity=".55"/>`;
+      out += `<rect x="1640" y="470" width="260" height="14" rx="6" fill="#B98A64"/>` + [0, 1, 2].map(i => `<rect x="${1662 + i * 80}" y="${410 + (i % 2) * 6}" width="50" height="60" rx="10" fill="${[C.pinkL, C.peachL, C.purpleL][i]}"/>`).join('');
+      // Bowls along the counter.
+      const BX = [240, 480, 720, 960, 1200], FY = 790;
+      const F = [['Analysis', C.teal], ['Execution', C.pink], ['Risk', C.peach], ['Management', C.purple], ['Outcome', C.gold]];
+      const BLX = 1480, BLY = 840;
+      // Chef behind the counter.
+      const chef = { x: 1730, y: 1000, scale: 1.05, look: A.LOOKS.buyer, seed: 3, at: T.kitchen + 0.3, hat: 'chef', talk: ctx.talking && t > T.blend && t < T.pop };
+      if (t > T.blend && t < T.pop) chef.frontArm = aim(chef, BLX + 60, 800);
+      else if (t > T.verdict) chef.frontArm = { a1: -50, a2: -100 + Math.sin(t * 5) * 10 };
+      else if (t > T.toss - 0.6 && t < T.blend) chef.frontArm = { a1: -150 + Math.sin(t * 9) * 20, a2: -120 };
+      out += who(t, chef);
+      // Counter.
+      out += `<rect x="0" y="840" width="1920" height="26" fill="#D9C2AE"/><rect x="0" y="866" width="1920" height="214" fill="#F1E2D3"/>`;
+      for (let x = 60; x < 1920; x += 320) out += `<rect x="${x}" y="900" width="260" height="150" rx="12" fill="#fff" opacity=".45"/><circle cx="${x + 130}" cy="920" r="6" fill="#D9C2AE"/>`;
+      // Blender.
+      const bk = pop(t, T.kitchen + 0.5, 0.6);
+      const shaking = t > T.blend && t < T.pop ? Math.sin(t * 40) * 5 : 0;
+      const lidUp = t > T.pop ? Math.min(1, (t - T.pop) / 0.3) : 0;
+      let bl = `<rect x="${BLX - 90}" y="${BLY - 70}" width="180" height="70" rx="16" fill="${C.purple}"/><circle cx="${BLX}" cy="${BLY - 35}" r="16" fill="#fff"/>
+        <path d="M${BLX - 80},${BLY - 70} L${BLX - 100},${BLY - 330} L${BLX + 100},${BLY - 330} L${BLX + 80},${BLY - 70} Z" fill="#fff" opacity=".7" stroke="${C.purpleL}" stroke-width="6"/>`;
+      if (t > T.blend && t < T.pop + 0.2) {
+        const sw = seg(t, T.blend, T.blend + 1);
+        bl += `<path d="M${BLX - 82},${BLY - 80} L${BLX - 96},${BLY - 80 - 220 * sw} L${BLX + 96},${BLY - 80 - 220 * sw} L${BLX + 82},${BLY - 80} Z" fill="${C.peachL}" opacity=".9"/>${spiral(BLX, BLY - 180, 70, t * 12)}`;
+      }
+      bl += `<g transform="translate(${f1(lidUp * 150)},${f1(-lidUp * 110)}) rotate(${f1(lidUp * 30)} ${BLX} ${BLY - 340})"><rect x="${BLX - 110}" y="${BLY - 352}" width="220" height="26" rx="10" fill="${C.purple}"/><rect x="${BLX - 20}" y="${BLY - 372}" width="40" height="22" rx="6" fill="${DK.purple}"/></g>`;
+      out += scaleAt(BLX, BLY, bk, `<g transform="translate(${f1(shaking)},0)">${bl}</g>`);
+      if (t > T.pop && t < T.pop + 0.9) out += A.sparkle(BLX, BLY - 360, T.pop, t, C.purple);
+      out += pill(BLX, BLY - 400, 'WIN', '#C98A1F', between(t, T.blend + 0.4, T.pop), 28);
+      out += bub(1640, 450, 'It won, so all good!', between(t, T.blend + 0.6, T.pop), { size: 26, tail: 'right' });
+      // Fruits: on the counter, into the blender, then back out into their own bowls.
+      F.forEach(([lab, col], i) => {
+        const home = [BX[i], FY], inB = [BLX - 40 + (i % 3) * 40, BLY - 120 - Math.floor(i / 3) * 70];
+        const k1 = ease(seg(t, T.toss + i * 0.25, T.toss + i * 0.25 + 0.9)), k2 = ease(seg(t, T.pop + i * 0.15, T.pop + i * 0.15 + 1.1));
+        let x, y, show = true;
+        if (t < T.toss + i * 0.25) { x = home[0]; y = home[1]; }
+        else if (k2 <= 0) { x = lerp(home[0], inB[0], k1); y = lerp(home[1], inB[1], k1) - Math.sin(k1 * Math.PI) * 220; show = !(t > T.blend + 0.6); }
+        else { x = lerp(BLX, home[0], k2); y = lerp(BLY - 360, home[1], k2) - Math.sin(k2 * Math.PI) * 260; }
+        const fk = pop(t, T.kitchen + 0.6 + i * 0.15, 0.5);
+        if (show) out += scaleAt(x, y, fk, fruit(t, x, y + Math.sin(t * 3 + i) * (t > T.pop + 1.5 ? 4 : 0), col, 40, i + 2, (i > 0 && i < 4 && t > T.grades[i]) ? 'sad' : undefined));
+        // Bowl in front.
+        out += fade(fk, `<path d="M${BX[i] - 80},${FY + 10} Q${BX[i]},${FY + 90} ${BX[i] + 80},${FY + 10} Z" fill="#fff" stroke="#EADFD8" stroke-width="4"/>`);
+        out += pill(BX[i], FY + 92, lab, i === 4 ? '#C98A1F' : [DK.teal, DK.pink, DK.peach, DK.purple][i], fk, 20);
+        // Grades.
+        const gk = pop(t, T.grades[i], 0.5);
+        if (i === 0) out += check(BX[i], FY - 92, gk, C.teal, 26);
+        else if (i < 4) out += cross(BX[i], FY - 92, gk, C.pink, 26);
+        else out += pill(BX[i], FY - 92, 'Target hit', '#C98A1F', gk, 20);
+      });
+      const notes = ['', 'chased', '6 vs 2', 'moved stop', ''];
+      notes.forEach((n, i) => { if (n) out += pill(BX[i], FY - 150, n, C.muted, pop(t, T.grades[i] + 0.3, 0.4), 18); });
+      // Squirrel taster and cat.
+      out += crit(t, 'squirrel', { x: 80, y: 840, scale: 0.75, seed: 6, at: T.kitchen + 0.9, hop: t > T.pop && t < T.pop + 1.6 ? 10 : 0, hopH: 20 });
+      out += crit(t, 'cat', { x: 1300, y: 840, scale: 0.7, seed: 1, at: T.kitchen + 1.1, talk: ctx.talking && t > T.pop && t < T.pop + 2, flip: true });
+      out += bub(1230, 560, 'They don’t blend!', between(t, T.pop + 0.4, T.grades[0] + 0.4), { size: 26 });
+      out += bub(1380, 460, 'Analysis good. Trade not.', between(t, T.verdict, s.end), { size: 26, tail: 'right' });
+      return out;
+    },
+  });
+
+  /* ================= Lesson 9: Indicator vs No Indicator ================= */
+  Object.assign(LIVE, {
+    // A hiker at a fork reads the land with map and compass first, picks the big ridge (the 1H swing),
+    // locks it, then switches on the GPS. It points at a little hill (an internal swing). She reasons it through.
+    's21b-compass-trail': (s, t, ctx) => {
+      const T = s.beats;
+      let out = vgrad('s21bSkyC', '#E8F8F6', '#FFFDF8') + `<rect x="0" y="360" width="1920" height="720" fill="url(#s21bSkyC)"/>`;
+      out += cloud(300 + (t * 12) % 300, 430, 0.5) + cloud(1000 - (t * 8) % 200, 400, 0.4);
+      // Far hills.
+      out += `<path d="M0,760 Q300,640 600,740 Q900,660 1200,730 Q1500,650 1920,720 L1920,1080 L0,1080 Z" fill="#DCEFD9"/>`;
+      // The big ridge (1H swing) and the little hill (internal swing).
+      const rk = pop(t, T.trail, 0.8), hk = pop(t, T.trail + 0.3, 0.8);
+      out += scaleAt(1500, 960, rk, `<path d="M1080,960 L1500,500 L1920,960 Z" fill="#B9D9B0"/><path d="M1500,500 L1420,590 L1460,580 L1500,610 L1540,580 L1580,590 Z" fill="#fff"/>`);
+      out += scaleAt(880, 960, hk, `<path d="M660,960 Q880,560 1100,960 Z" fill="#A9CF9E"/><path d="M800,780 Q880,700 960,780" stroke="#fff" stroke-width="6" fill="none" opacity=".5"/>`);
+      // Ground and the forked trail.
+      out += `<rect x="0" y="940" width="1920" height="140" fill="#E3EED9"/>`;
+      out += fade(rk, `<path d="M420,1080 Q440,990 520,960 Q700,900 860,760" stroke="#F1E2D3" stroke-width="22" fill="none" stroke-linecap="round" stroke-dasharray="1 0"/>
+        <path d="M520,960 Q900,960 1200,820 Q1380,720 1480,540" stroke="#F1E2D3" stroke-width="22" fill="none" stroke-linecap="round"/>`);
+      // Signpost at the fork.
+      out += scaleAt(600, 960, pop(t, T.trail + 0.8, 0.5), `<rect x="592" y="800" width="16" height="160" fill="#9B6A45"/><path d="M608,812 L700,812 L720,830 L700,848 L608,848 Z" fill="#B98A64"/><path d="M592,856 L520,856 L500,874 L520,892 L592,892 Z" fill="#B98A64"/>`);
+      // Hiker.
+      const hk2 = { x: 380, y: 1000, scale: 1, look: A.LOOKS.e, seed: 5, at: T.trail + 0.5, talk: ctx.talking && t > T.reason && t < T.decide + 2 };
+      if (t < T.mark) hk2.frontArm = aim(hk2, 470, 770 + Math.sin(t * 2) * 6);
+      else if (t < T.lock + 0.6) hk2.frontArm = aim(hk2, 520, 640);
+      else if (t > T.gps && t < T.reason) hk2.frontArm = aim(hk2, 480, 820);
+      else hk2.frontArm = aim(hk2, 520, 620 + Math.sin(t * 3) * 6);
+      // Backpack behind her.
+      out += fade(pop(t, hk2.at), `<rect x="${330}" y="${1000 - 230}" width="70" height="110" rx="20" fill="${C.peach}" stroke="${DK.peach}" stroke-width="4"/>`);
+      out += who(t, hk2);
+      if (pop(t, hk2.at) >= 1 && t < T.mark) {
+        // Map and compass in hand.
+        out += `<g transform="translate(470,${f1(770 + Math.sin(t * 2) * 6)}) rotate(-8)"><rect x="-60" y="-44" width="120" height="84" rx="6" fill="#FFF8EC" stroke="#E7C9A5" stroke-width="4"/><path d="M-44,20 L-10,-20 L20,4 L44,-28" stroke="${C.pink}" stroke-width="4" fill="none" stroke-dasharray="7 5"/></g>`;
+        const na = Math.sin(t * 3) * 30 + 20;
+        out += `<circle cx="540" cy="840" r="30" fill="#fff" stroke="${C.gold}" stroke-width="6"/><path d="M540,840 L${f1(540 + Math.cos(rad(na - 90)) * 22)},${f1(840 + Math.sin(rad(na - 90)) * 22)}" stroke="${C.pink}" stroke-width="5" stroke-linecap="round"/>`;
+      }
+      out += pill(470, 650, 'Eyes first', DK.purple, between(t, T.eyes, T.mark - 0.2), 24);
+      // Her mark: a flag on the ridge.
+      const fk = pop(t, T.mark + 0.6, 0.6);
+      out += scaleAt(1500, 500, fk, `<rect x="1496" y="400" width="8" height="100" fill="${C.dark}"/><path d="M1504,${404 + Math.sin(t * 5) * 3} l70,18 l-70,20 Z" fill="${C.purple}"/>`);
+      out += pill(1500, 380, 'My read: 1H swing', DK.purple, pop(t, T.mark + 1, 0.5), 22);
+      // Lock.
+      const lk = pop(t, T.lock, 0.5);
+      out += scaleAt(1680, 420, lk, `<rect x="1652" y="414" width="56" height="44" rx="8" fill="${C.gold}"/><path d="M1662,414 L1662,398 Q1680,376 1698,398 L1698,414" stroke="#C98A1F" stroke-width="7" fill="none"/>`);
+      out += pill(1760, 470, 'locked', '#C98A1F', pop(t, T.lock + 0.3, 0.5), 18);
+      // GPS robot pops out of the backpack.
+      const gk = pop(t, T.gps, 0.6);
+      if (gk > 0) {
+        const pointing = t > T.hill;
+        out += scaleAt(250, 1000, gk, critter(t, 'robot', { x: 250, y: 1000, scale: 0.75, seed: 3, screen: 'GPS', col: C.peachL, talk: ctx.talking && t > T.hill && t < T.reason, hop: t > T.decide ? 6 : 0, hopH: 10 }));
+        if (pointing) {
+          const k = ease(seg(t, T.hill, T.hill + 0.8));
+          out += `<path d="M300,780 Q${f1(lerp(300, 600, k))},${f1(lerp(780, 640, k))} ${f1(lerp(300, 860, k))},${f1(lerp(780, 740, k))}" stroke="${C.peach}" stroke-width="6" fill="none" stroke-dasharray="12 9"/>`;
+          if (k >= 1) out += `<circle cx="880" cy="730" r="${16 + Math.sin(t * 6) * 3}" fill="${C.peach}"/>`;
+          out += pill(880, 670, 'GPS: internal swing', DK.peach, pop(t, T.hill + 0.6, 0.5), 22);
+        }
+      }
+      out += bub(250, 560, 'Over here!', between(t, T.hill, T.reason), { size: 26 });
+      // Reasoning: compare, then decide.
+      out += bub(470, 530, 'Hmm. Which one is on my map?', between(t, T.reason, T.decide), { size: 26 });
+      out += check(1600, 560, pop(t, T.decide, 0.5), C.teal, 28) + sparkAt(1600, 560, T.decide + 0.2, t, C.teal);
+      out += pill(960, 1040, 'GPS assists. She decides.', DK.teal, pop(t, T.decide + 0.6, 0.6), 26);
+      // A goat on the ridge and a bird.
+      out += bst(t, 'goat', { x: 1720, y: 760, scale: 0.6, seed: 2, at: T.trail + 1.1, flip: true });
+      out += critter(t, 'bird', { x: 1100 + Math.sin(t * 0.9) * 300, y: 470 + Math.sin(t * 2) * 30, scale: 0.7, seed: 6, fly: true, col: C.purpleL, flip: Math.cos(t * 0.9) < 0 });
+      return out;
+    },
+
+    // A dance class with a big mirror. One student only copies the mirror, the other learns the steps.
+    // The curtain closes: the copier freezes, the learner keeps dancing. The indicator is the mirror.
+    's21b-dance-curtain': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="360" width="1920" height="720" fill="#FBEFF3"/>` + ground(960, '#E8CFB8', '#D6B79C');
+      for (let x = 0; x < 1920; x += 48) out += `<rect x="${x}" y="964" width="2" height="116" fill="#D6B79C"/>`;
+      // Barre.
+      out += `<rect x="0" y="740" width="1920" height="10" rx="5" fill="#B98A64"/>`;
+      // Mirror.
+      const MX0 = 420, MX1 = 1500, MY0 = 390, MY1 = 930;
+      const mk = pop(t, T.studio, 0.7);
+      out += scaleAt(960, 930, mk, `<rect x="${MX0 - 14}" y="${MY0 - 14}" width="${MX1 - MX0 + 28}" height="${MY1 - MY0 + 28}" rx="16" fill="${C.gold}"/><rect x="${MX0}" y="${MY0}" width="${MX1 - MX0}" height="${MY1 - MY0}" rx="8" fill="#EAF6F4"/>`);
+      // Dance moves (both in sync until the curtain).
+      const beat = t * 4;
+      const moves = (i, frozen) => {
+        if (frozen) return { frontArm: { a1: 60, a2: 80 }, backArm: { a1: 110, a2: 100 } };
+        const a = Math.sin(beat + i * 0.2);
+        return { frontArm: { a1: -60 + a * 50, a2: -90 + a * 40 }, backArm: { a1: -120 - a * 40, a2: -100 - a * 30 } };
+      };
+      const frozenB = t > T.freeze;
+      const dancers = [
+        { x: 760, look: A.LOOKS.a, seed: 2, label: 'Copies the mirror', at: T.copier, col: DK.pink, frozen: frozenB },
+        { x: 1160, look: A.LOOKS.b, seed: 4, label: 'Knows the steps', at: T.learner, col: DK.teal, frozen: false },
+      ];
+      const dancing = t > T.dance;
+      // Reflections inside the mirror (behind the curtain later).
+      let refl = '';
+      dancers.forEach((d, i) => {
+        const sway = dancing && !d.frozen ? Math.sin(beat * 0.5 + i) * 40 : 0;
+        const o = Object.assign({ x: d.x + 140 + sway, y: 900, scale: 0.74, look: d.look, seed: d.seed, flip: true, walking: dancing && !d.frozen }, dancing ? moves(i, d.frozen) : {});
+        refl += A.person(t, o);
+      });
+      if (mk >= 1) out += `<g opacity=".45">${refl}</g>`;
+      // Curtain: closes at T.curtain, reopens at T.mirror.
+      const cc = ease(seg(t, T.curtain, T.curtain + 1.2)) * (1 - ease(seg(t, T.mirror, T.mirror + 1.2)));
+      if (cc > 0) {
+        const half = (MX1 - MX0) / 2 * cc;
+        const drape = (x0, w) => {
+          let g = `<rect x="${f1(x0)}" y="${MY0 - 10}" width="${f1(w)}" height="${MY1 - MY0 + 20}" fill="${C.purple}"/>`;
+          for (let x = x0 + 20; x < x0 + w - 10; x += 44) g += `<path d="M${f1(x)},${MY0 - 10} Q${f1(x + Math.sin(t * 2 + x) * 6)},${(MY0 + MY1) / 2} ${f1(x)},${MY1 + 10}" stroke="${DK.purple}" stroke-width="6" fill="none" opacity=".6"/>`;
+          return g;
+        };
+        out += drape(MX0, half) + drape(MX1 - half, half);
+      }
+      out += `<rect x="${MX0 - 30}" y="${MY0 - 26}" width="${MX1 - MX0 + 60}" height="22" rx="10" fill="${C.muted}"/>`;
+      // Dancers.
+      dancers.forEach((d, i) => {
+        const sway = dancing && !d.frozen ? Math.sin(beat * 0.5 + i) * 40 : 0;
+        const o = Object.assign({ x: d.x + sway, y: 1030, scale: 0.92, look: d.look, seed: d.seed, at: T.studio + 0.4 + i * 0.3, walking: dancing && !d.frozen, mood: d.frozen ? 'sad' : undefined }, dancing ? moves(i, d.frozen) : {});
+        out += who(t, o);
+        out += pill(d.x, 1052, d.label, d.col, pop(t, d.at, 0.5), 20);
+      });
+      // The copier's gaze line to the mirror.
+      if (t > T.copier && t < T.curtain + 1) out += `<path d="M790,${1030 - 0.92 * 282} L880,${900 - 0.74 * 282}" stroke="${C.pink}" stroke-width="4" stroke-dasharray="8 8" opacity=".7"/>`;
+      if (frozenB) out += txt(800, 1030 - 0.92 * 340, '?', 70, DK.pink, { op: f1(0.6 + 0.4 * Math.sin(t * 5)) });
+      out += bub(620, 640, 'Wait, what comes next?', between(t, T.freeze + 0.3, T.mirror), { size: 26 });
+      // Teacher with a beret, clapping the count.
+      const tc = { x: 1690, y: 1000, scale: 0.95, look: A.LOOKS.c, seed: 7, at: T.studio + 0.7, hat: 'beret', flip: true, talk: ctx.talking && t > T.curtain && t < T.curtain + 2 };
+      const clap = Math.abs(Math.sin(t * 6));
+      tc.frontArm = t > T.curtain - 0.4 && t < T.curtain + 1.4 ? aim(tc, 1500, 620) : { a1: -20 - clap * 30, a2: -60 - clap * 40 };
+      out += who(t, tc);
+      out += bub(1640, 560, 'Curtain!', between(t, T.curtain, T.freeze + 0.6), { size: 28, tail: 'right' });
+      // Piano with an owl keeping the beat; a mouse peeking.
+      const pk = pop(t, T.studio + 0.5, 0.6);
+      out += scaleAt(200, 1000, pk, `<rect x="70" y="780" width="270" height="220" rx="14" fill="${C.dark}"/><rect x="86" y="860" width="238" height="40" fill="#fff"/>${[0, 1, 2, 3, 4, 5, 6].map(i => `<rect x="${108 + i * 32}" y="860" width="16" height="24" fill="${C.dark}"/>`).join('')}`);
+      out += crit(t, 'owl', { x: 200, y: 780, scale: 0.75, seed: 4, at: T.studio + 0.9, hop: dancing ? 4 : 0, hopH: 8 });
+      if (dancing && t > T.studio + 1.2) out += [0, 1].map(i => { const p = ((t * 0.7) + i * 0.5) % 1; return txt(320 + p * 60, 760 - p * 120, '♪', 36, [C.pink, C.purple][i], { op: f1(1 - p) }); }).join('');
+      out += crit(t, 'mouse', { x: 1530, y: 960, scale: 0.8, seed: 5, at: T.dance + 0.8, hop: 4, hopH: 10, flip: true });
+      // The mirror is the indicator: great for checking form after.
+      out += pill(960, 470, 'Indicator = the mirror', DK.purple, pop(t, T.mirror + 0.6, 0.5), 26);
+      out += pill(960, 540, 'Check your form after', DK.teal, pop(t, T.faster, 0.5), 24);
+      out += check(1175, 540, pop(t, T.faster + 0.4, 0.5), C.teal, 22);
+      return out;
+    },
+  });
+
+  /* ================= Lesson 10: Full Top-to-Bottom Breakdown ================= */
+  Object.assign(LIVE, {
+    // A magic show where the trick is only revealed after the audience guesses. The student fills six
+    // cards in order (4H, 1H, 15M, 1M, risk, management); the outcome cabinet stays locked until she's done.
+    's21b-magic-cabinet': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="360" width="1920" height="720" fill="#3B2A55"/>`;
+      // Spotlight cones.
+      out += `<path d="M560,360 L300,900 L900,900 Z" fill="#fff" opacity="${f1(0.05 + 0.03 * Math.sin(t * 2))}"/><path d="M1360,360 L1050,900 L1650,900 Z" fill="#fff" opacity="${f1(0.06 + 0.03 * Math.sin(t * 2 + 1))}"/>`;
+      // Stage floor.
+      out += `<rect x="0" y="900" width="1920" height="180" fill="#9B6A45"/><rect x="0" y="900" width="1920" height="12" fill="#B98A64"/>`;
+      for (let x = 0; x < 1920; x += 120) out += `<rect x="${x}" y="912" width="3" height="168" fill="#7E5435" opacity=".6"/>`;
+      // Curtains + valance.
+      const cw = 170 + Math.sin(t * 1.2) * 6;
+      out += `<path d="M0,360 L${f1(cw)},360 Q${f1(cw - 50)},640 ${f1(cw + 10)},1000 L0,1000 Z" fill="${DK.pink}"/><path d="M1920,360 L${f1(1920 - cw)},360 Q${f1(1970 - cw)},640 ${f1(1910 - cw)},1000 L1920,1000 Z" fill="${DK.pink}"/>`;
+      out += `<path d="M0,360 L1920,360 L1920,400 ${Array.from({ length: 12 }, (_, i) => `Q${f1(1920 - i * 160 - 80)},450 ${f1(1920 - (i + 1) * 160)},400`).join(' ')} Z" fill="${C.pink}"/>`;
+      // Card board (easel).
+      const bk = pop(t, T.stage + 0.4, 0.7);
+      out += scaleAt(600, 900, bk, `<path d="M400,900 L460,820 M800,900 L740,820" stroke="#7E5435" stroke-width="12" stroke-linecap="round"/><rect x="250" y="470" width="700" height="370" rx="18" fill="#FFF8EC" stroke="${C.gold}" stroke-width="8"/>`);
+      const LAB = ['4H', '1H', '15M', '1M', 'RISK', 'MGMT'];
+      const SL = LAB.map((_, i) => [370 + (i % 3) * 230, 560 + Math.floor(i / 3) * 170]);
+      if (bk >= 1) SL.forEach(([x, y]) => { out += `<rect x="${x - 90}" y="${y - 60}" width="180" height="120" rx="12" fill="none" stroke="#E7C9A5" stroke-width="4" stroke-dasharray="10 8"/>`; });
+      // Student in the front row, filling cards in order.
+      const st = { x: 230, y: 1080, scale: 1, look: A.LOOKS.buyer, seed: 2, at: T.stage + 0.6, talk: ctx.talking && t > T.cards[0] && t < T.cards[5] + 1 };
+      const cur = T.cards.findIndex((c, i) => t >= c - 0.6 && t < c + 0.3);
+      if (cur >= 0) st.frontArm = aim(st, 330, 760);
+      else if (t > T.open) st.frontArm = { a1: -110 + Math.sin(t * 7) * 12, a2: -95 };
+      // Cards flying from her hand into the slots.
+      LAB.forEach((lab, i) => {
+        const at = T.cards[i];
+        if (t < at - 0.6) return;
+        const k = ease(seg(t, at - 0.6, at));
+        const [sx, sy] = SL[i], x = lerp(330, sx, k), y = lerp(760, sy, k) - Math.sin(k * Math.PI) * 120;
+        const col = [C.purple, C.teal, C.peach, C.pink, DK.purple, DK.teal][i];
+        out += rotAt(x, y, (1 - k) * -30, `<rect x="${f1(x - 84)}" y="${f1(y - 56)}" width="168" height="112" rx="12" fill="#fff" stroke="${col}" stroke-width="6"/>${txt(x, y + 2, lab, 34, col)}<path d="M${f1(x - 50)},${f1(y + 28)} q12,-8 24,0 t24,0 t24,0" stroke="${C.muted}" stroke-width="3" fill="none"/>`);
+        if (k >= 1) out += check(x + 70, y - 46, pop(t, at + 0.1, 0.4), C.teal, 16);
+      });
+      out += pill(600, 870, 'Your read, in order', DK.purple, pop(t, T.cards[0] + 0.2, 0.5), 22);
+      out += who(t, st);
+      // The outcome cabinet.
+      const CX = 1300, cbk = pop(t, T.cabinet, 0.7);
+      const op = ease(seg(t, T.open, T.open + 1));
+      let cab = `<rect x="${CX - 140}" y="500" width="280" height="400" rx="16" fill="${DK.purple}"/>`;
+      // Inside: the outcome (a short that played out), revealed only when open.
+      if (op > 0) {
+        cab += `<rect x="${CX - 120}" y="520" width="240" height="360" rx="10" fill="#fff"/>`;
+        const pp = partial([[CX - 100, 600], [CX - 60, 580], [CX - 30, 640], [CX, 620], [CX + 40, 720], [CX + 70, 700], [CX + 100, 800]], ease(seg(t, T.open + 0.4, T.open + 1.8)));
+        cab += `<path d="${pp.d}" stroke="${C.pink}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+        cab += pill(CX, 850, 'Outcome', '#C98A1F', pop(t, T.open + 0.8, 0.5), 22);
+      }
+      // Doors swing open.
+      const door = (side) => {
+        const w = 140 * (1 - op * 0.85), x0 = side < 0 ? CX - 140 : CX + 140 - w;
+        let d = `<rect x="${f1(x0)}" y="500" width="${f1(w)}" height="400" rx="12" fill="${C.purple}" stroke="${DK.purple}" stroke-width="4"/>`;
+        if (op < 0.5) d += `<path d="${starPath(x0 + w / 2, 600, 22, t * 30 * side)}" fill="${C.gold}"/><path d="${starPath(x0 + w / 2, 800, 16, -t * 30 * side)}" fill="${C.gold}"/>`;
+        return d;
+      };
+      cab += door(-1) + door(1);
+      cab += `<rect x="${CX - 150}" y="480" width="300" height="30" rx="10" fill="${C.gold}"/>${txt(CX, 470, 'OUTCOME', 26, C.gold, { ls: 3 })}`;
+      out += scaleAt(CX, 900, cbk, cab);
+      // Padlock: shakes when the cat tries it, drops when the read is done.
+      if (cbk >= 1 && t < T.open + 0.8) {
+        const drop = seg(t, T.open - 0.4, T.open + 0.8), sh = t > T.peek && t < T.peek + 1.6 ? Math.sin(t * 40) * 6 : 0;
+        const ly = 700 + drop * drop * 240, open = t > T.open - 0.4;
+        out += fade(1 - drop, `<g transform="translate(${f1(CX + sh)},${f1(ly)}) rotate(${f1(drop * 50)})"><path d="M-22,0 L-22,${open ? -50 : -30} Q0,${open ? -76 : -60} 22,${open ? -50 : -30} L22,${open ? -36 : 0}" stroke="#C98A1F" stroke-width="10" fill="none"/><rect x="-36" y="-6" width="72" height="60" rx="10" fill="${C.gold}"/><circle cx="0" cy="18" r="8" fill="${C.dark}"/><rect x="-3" y="18" width="6" height="18" fill="${C.dark}"/></g>`);
+      }
+      // Doves fly out.
+      if (t > T.open + 0.4) [0, 1, 2].forEach(i => {
+        const k = seg(t, T.open + 0.4 + i * 0.25, T.open + 3.4 + i * 0.25);
+        if (k <= 0 || k >= 1) return;
+        out += critter(t, 'bird', { x: CX + (i - 1) * 40 + k * (i - 1) * 500, y: 640 - k * 240, scale: 0.8, seed: i + 3, fly: true, col: '#fff', flip: i === 0 });
+      });
+      // Magician with a top hat and wand.
+      const mg = { x: 1610, y: 900, scale: 0.98, look: A.LOOKS.c, seed: 7, at: T.stage + 0.8, hat: 'top', flip: true, talk: ctx.talking && t > T.peek && t < T.peek + 2 };
+      const wandTo = t > T.peek && t < T.peek + 1.8 ? [1440, 640] : t > T.open - 0.6 && t < T.open + 1 ? [1420, 560] : [1500 + Math.sin(t * 2) * 20, 700];
+      mg.frontArm = aim(mg, wandTo[0], wandTo[1]);
+      mg.hold = `<g transform="rotate(${t > T.peek && t < T.peek + 1.8 ? 0 : -40})"><rect x="-4" y="-80" width="8" height="90" rx="3" fill="${C.dark}"/><rect x="-4" y="-80" width="8" height="16" fill="#fff"/></g>`;
+      out += who(t, mg);
+      // Twinkles from the wand tip.
+      for (let i = 0; i < 3; i++) { const p = ((t * 0.8) + i / 3) % 1; out += `<path d="${starPath(wandTo[0] + Math.sin(i * 2 + t) * 40 * p, wandTo[1] - 70 - p * 80, 12 * (1 - p) + 2, t * 90)}" fill="${C.gold}" opacity="${f1(1 - p)}"/>`; }
+      out += bub(1640, 450, 'Not yet!', between(t, T.peek + 0.3, T.peek + 2.4), { size: 30, tail: 'right' });
+      if (t > T.open - 0.6 && t < T.open + 0.6) out += A.sparkle(1420, 560, T.open - 0.6, t, C.gold);
+      // A cat sneaks up to peek.
+      const ck = seg(t, T.peek - 1.2, T.peek), cb = seg(t, T.peek + 1.6, T.peek + 2.8);
+      const catX = t < T.peek + 1.6 ? lerp(1040, 1150, ease(ck)) : lerp(1150, 1040, ease(cb));
+      out += crit(t, 'cat', { x: catX, y: 900, scale: 0.7, seed: 3, at: T.cabinet + 0.6, flip: t > T.peek + 1.6 && t < T.peek + 2.8, talk: false, hop: ck > 0 && ck < 1 ? 6 : 0, hopH: 8 });
+      out += pill(1300, 950, 'Locked until your read is done', C.muted, between(t, T.cabinet + 0.8, T.open - 0.4), 20);
+      out += pill(960, 1040, 'Read. Lock. Then reveal.', DK.teal, pop(t, T.final, 0.6), 26);
+      return out;
+    },
+
+    // A sunny window as a lightbox. Her sheet goes up first; Dayli's tracing paper slides on top.
+    // Lines that match glow teal, one differs (purple), one she missed (peach). Then: explain every decision.
+    's21b-lightbox': (s, t, ctx) => {
+      const T = s.beats;
+      let out = `<rect x="0" y="360" width="1920" height="720" fill="#FDF3E9"/>` + ground(980, '#EAD7C6', '#D9C2AE');
+      // Window with sunshine.
+      const WX0 = 560, WX1 = 1380, WY0 = 390, WY1 = 900;
+      const wk = pop(t, T.window, 0.7);
+      out += scaleAt(970, 900, wk, `<rect x="${WX0 - 20}" y="${WY0 - 20}" width="${WX1 - WX0 + 40}" height="${WY1 - WY0 + 40}" rx="14" fill="#fff" stroke="#E7C9A5" stroke-width="6"/>
+        <rect x="${WX0}" y="${WY0}" width="${WX1 - WX0}" height="${WY1 - WY0}" fill="#FFF3C4"/><circle cx="${WX1 - 90}" cy="${WY0 + 90}" r="${54 + Math.sin(t * 2) * 4}" fill="${C.gold}" opacity=".5"/>
+        <rect x="${WX0 - 40}" y="${WY1 + 14}" width="${WX1 - WX0 + 80}" height="24" rx="8" fill="#E7C9A5"/>`);
+      // Sun rays.
+      if (wk >= 1) for (let i = 0; i < 6; i++) { const a = rad(i * 60 + t * 20); out += `<line x1="${f1(WX1 - 90 + Math.cos(a) * 70)}" y1="${f1(WY0 + 90 + Math.sin(a) * 70)}" x2="${f1(WX1 - 90 + Math.cos(a) * 100)}" y2="${f1(WY0 + 90 + Math.sin(a) * 100)}" stroke="${C.gold}" stroke-width="6" stroke-linecap="round" opacity=".6"/>`; }
+      // Her sheet.
+      const PX0 = 620, PY0 = 430, PW = 700, PH = 430;
+      const sk = pop(t, T.mine, 0.6);
+      out += scaleAt(PX0 + PW / 2, PY0 + PH / 2, sk, `<rect x="${PX0}" y="${PY0}" width="${PW}" height="${PH}" rx="6" fill="#fff" opacity=".93"/><rect x="${PX0 + PW / 2 - 40}" y="${PY0 - 14}" width="80" height="26" rx="4" fill="${C.peachL}" opacity=".9"/>`);
+      // Her marks (a short): swings, the level, the plan arrow.
+      const sw = [[PX0 + 50, PY0 + 330], [PX0 + 150, PY0 + 120], [PX0 + 250, PY0 + 230], [PX0 + 350, PY0 + 100], [PX0 + 440, PY0 + 270], [PX0 + 520, PY0 + 200], [PX0 + 640, PY0 + 360]];
+      const mk = (a, b) => ease(seg(t, a, b));
+      if (sk >= 1) {
+        const p1 = partial(sw, mk(T.mine + 0.4, T.mine + 2));
+        out += `<path d="${p1.d}" stroke="${C.dark}" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+        const lv = mk(T.mine + 1.8, T.mine + 2.6);
+        if (lv > 0) out += `<line x1="${PX0 + 300}" x2="${f1(PX0 + 300 + 360 * lv)}" y1="${PY0 + 250}" y2="${PY0 + 250}" stroke="${C.dark}" stroke-width="5" stroke-dasharray="12 8"/>`;
+        const ar = mk(T.mine + 2.6, T.mine + 3.4);
+        if (ar > 0) out += `<path d="M${PX0 + 520},${PY0 + 200} L${f1(PX0 + 520 + 60 * ar)},${f1(PY0 + 200 + 120 * ar)}" stroke="${C.dark}" stroke-width="5"/>` + (ar >= 1 ? `<path d="M${PX0 + 566},${PY0 + 316} l14,10 l2,-18 Z" fill="${C.dark}"/>` : '');
+        out += pill(PX0 + 110, PY0 + 40, 'My read', C.dark, pop(t, T.mine + 0.3, 0.5), 20);
+      }
+      // Dayli's tracing paper slides on, carried by a parrot.
+      const ov = ease(seg(t, T.overlay, T.overlay + 1.4));
+      if (ov > 0) {
+        const dx = (1 - ov) * 900;
+        let tr = `<rect x="${PX0 + 10}" y="${PY0 + 10}" width="${PW - 20}" height="${PH - 20}" rx="6" fill="${C.pinkP}" opacity=".45" stroke="${C.pink}" stroke-width="3"/>`;
+        // Dayli's lines: same swings (matched), the level a little lower (differed), plus an objective (missed).
+        tr += `<path d="${partial(sw, 1).d}" stroke="${C.pink}" stroke-width="4" fill="none" stroke-dasharray="3 9" stroke-linecap="round"/>`;
+        tr += `<line x1="${PX0 + 300}" x2="${PX0 + 660}" y1="${PY0 + 210}" y2="${PY0 + 210}" stroke="${C.purple}" stroke-width="5" stroke-dasharray="12 8"/>`;
+        tr += `<line x1="${PX0 + 420}" x2="${PX0 + 680}" y1="${PY0 + 385}" y2="${PY0 + 385}" stroke="${C.peach}" stroke-width="6"/>`;
+        tr += txt(PX0 + PW - 70, PY0 + 50, 'Dayli', 28, C.pink, { f: 'Playfair Display', w: 700 });
+        out += `<g transform="translate(${f1(dx)},0)">${tr}</g>`;
+        if (ov < 1) out += critter(t, 'parrot', { x: PX0 + PW + dx + 30, y: PY0 + 60 - Math.sin(ov * Math.PI) * 30, scale: 0.8, seed: 5, fly: true, flip: true });
+      }
+      if (t > T.overlay + 1.4) out += crit(t, 'parrot', { x: WX1 + 120, y: WY1 + 14, scale: 0.8, seed: 5, flip: true, at: T.overlay + 1.4, talk: ctx.talking && t > T.matched && t < T.notright });
+      // Compare labels.
+      const glow = k => k > 0 ? `<path d="${partial(sw, 1).d}" stroke="${C.teal}" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="${f1(0.35 * k + 0.1 * Math.sin(t * 5))}"/>` : '';
+      out += glow(pop(t, T.matched, 0.5));
+      out += pill(PX0 + 150, PY0 + 165, 'Matched', DK.teal, pop(t, T.matched + 0.2, 0.5), 22);
+      out += pill(PX0 + 540, PY0 + 168, 'Differed', DK.purple, pop(t, T.differed, 0.5), 22);
+      out += pill(PX0 + 540, PY0 + 420 - 2, 'Missed', DK.peach, pop(t, T.missed, 0.5), 22);
+      // The student at the window, pencil in hand.
+      const wlk = seg(t, T.window + 0.4, T.window + 2.6);
+      const st = { x: lerp(120, 390, ease(wlk)), walking: wlk > 0 && wlk < 1, y: 1020, scale: 1.05, look: A.LOOKS.a, seed: 4, at: T.window + 0.2, talk: ctx.talking && t > T.explain };
+      if (t > T.mine + 0.3 && t < T.mine + 3.6) st.frontArm = aim(st, 600 + Math.sin(t * 8) * 10, 650 + Math.cos(t * 7) * 30);
+      else if (t > T.matched && t < T.notright) st.frontArm = aim(st, [PX0 + 30, PX0 + 30, PX0 + 30][0], 600 + Math.sin(t * 2) * 30);
+      else if (t > T.explain) st.frontArm = { a1: -50, a2: -100 + Math.sin(t * 6) * 10 };
+      if (t < T.mine + 3.6) st.hold = `<rect x="-4" y="-44" width="8" height="48" rx="3" fill="${C.gold}"/>`;
+      out += who(t, st);
+      // Cat on the sill and a snail.
+      out += crit(t, 'cat', { x: 1460, y: WY1 + 14, scale: 0.7, seed: 6, at: T.window + 0.8, sleep: t < T.overlay, flip: true });
+      out += bst(t, 'snail', { x: 700, y: WY1 + 14, scale: 0.45, seed: 2, at: T.window + 1 });
+      out += pill(970, 1035, 'Matched · differed · why it matters', C.dark, pop(t, T.notright, 0.6), 24);
+      out += bub(390, 560, 'I can explain it.', between(t, T.explain, s.end), { size: 28 });
       return out;
     },
   });
