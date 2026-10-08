@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 23",
-      "headline": "Same model. <em>Different day.</em>",
-      "line": "Rulebook ✓. Risk ✓. Session ✓. Calm ✓. One thing left.",
+      "headline": "It’s the same model, but <em>a different day.</em>",
+      "line": "Your rulebook, your risk, your session and your mindset are all ready. There’s one more thing to check before you trade.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "Everything’s ready",
-      "headline": "You checked you. <em>Did you check it?</em>",
-      "line": "Indication. Correction. Continuation. First retest.",
+      "headline": "You checked yourself, but <em>did you check the market?</em>",
+      "line": "On the 1-minute chart, you can see an Indication, a Correction, a Continuation and the first retest. The setup looks complete.",
       "chart": {
         "bars": [
           {
@@ -246,15 +246,15 @@
         }
       },
       "thoughts": [
-        "“So… I take it?”"
+        "“So… do I just take it?”"
       ],
       "cta": "Zoom out →"
     },
     {
       "type": "v2_moment",
       "kicker": "Zoom out",
-      "headline": "The 1H. <em>Still a yes?</em>",
-      "line": "Overlapping swings. A 4H high above. News in 2 minutes.",
+      "headline": "Now look at the 1-hour chart. <em>Is it still a yes?</em>",
+      "line": "The 1-hour swings overlap each other, a 4-hour high sits just above you, and news comes out in 2 minutes.",
       "chart": {
         "swings": [
           [
@@ -305,17 +305,17 @@
         }
       },
       "check": {
-        "prompt": "The 1M is valid. Take it?",
+        "prompt": "Your 1-minute setup is valid. Would you take this trade?",
         "options": [
           {
-            "label": "Yes, it’s valid",
+            "label": "Yes, because the setup is valid",
             "correct": false,
-            "feedback": "Valid, yes. But a messy 1H, a wall above, and news in 2 minutes."
+            "feedback": "The setup is valid, yes. But the 1-hour chart is messy, there’s a wall right above, and news hits in 2 minutes."
           },
           {
-            "label": "Not in this environment",
+            "label": "No, not in this environment",
             "correct": true,
-            "feedback": "Yes. Your model says what to look for. The environment says whether to."
+            "feedback": "Yes. Your model tells you what to look for. The environment tells you whether it’s worth taking right now."
           }
         ]
       }
@@ -323,8 +323,8 @@
     {
       "type": "v2_moment",
       "kicker": "Tuesday",
-      "headline": "Higher highs. <em>Going somewhere.</em>",
-      "line": "Trend gives you progression.",
+      "headline": "On Tuesday, price kept making <em>higher highs.</em>",
+      "line": "That’s a trending market. A trend gives you progression, which means price has somewhere to go.",
       "chart": {
         "swings": [
           [
@@ -374,8 +374,8 @@
     {
       "type": "v2_moment",
       "kicker": "Wednesday",
-      "headline": "Same walls. <em>Again and again.</em>",
-      "line": "Range gives you boundaries. Same 1M setup on both days.",
+      "headline": "On Wednesday, price hit <em>the same walls again and again.</em>",
+      "line": "That’s a ranging market. A range gives you boundaries. Both days showed the exact same 1-minute setup.",
       "chart": {
         "swings": [
           [
@@ -434,17 +434,17 @@
         }
       },
       "check": {
-        "prompt": "Which day had a wall above?",
+        "prompt": "Which day had a wall sitting right above your setup?",
         "options": [
           {
-            "label": "Tuesday",
+            "label": "It was Tuesday’s chart",
             "correct": false,
-            "feedback": "Tuesday kept making higher highs. It had somewhere to go."
+            "feedback": "Not quite. Tuesday kept making higher highs, so price had somewhere to go."
           },
           {
-            "label": "Wednesday",
+            "label": "It was Wednesday’s chart",
             "correct": true,
-            "feedback": "Right. The range top sat right above the setup."
+            "feedback": "Right. On Wednesday, the top of the range sat right above your setup."
           }
         ]
       }
@@ -452,8 +452,8 @@
     {
       "type": "v2_moment",
       "kicker": "Wednesday",
-      "headline": "Same candles. <em>Not the same market.</em>",
-      "line": "It walked into the top of the range and turned.",
+      "headline": "The candles looked the same, but <em>the market wasn’t.</em>",
+      "line": "Price walked into the top of the range and turned, for a −1R loss. That means you lost exactly the amount you planned to risk.",
       "chart": {
         "bars": [
           {
@@ -707,17 +707,17 @@
         }
       },
       "check": {
-        "prompt": "Same setup. Same trade?",
+        "prompt": "If two days show the same setup, is it the same trade?",
         "options": [
           {
-            "label": "Same setup, same trade",
+            "label": "Yes, same setup means same trade",
             "correct": false,
-            "feedback": "The candles matched. The market didn’t. Read each day on its own."
+            "feedback": "The candles matched, but the market didn’t. You need to read each day on its own."
           },
           {
-            "label": "Same setup, different market",
+            "label": "No, it’s a different market",
             "correct": true,
-            "feedback": "Yes. Not automatically a trade or a pass. You just read them differently.",
+            "feedback": "Yes. That doesn’t make it an automatic trade or an automatic pass. It just means you read each day differently.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -981,7 +981,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "How do you recognize <em>trending vs ranging?</em>",
+      "prompt": "How do you recognize whether a market is <em>trending or ranging?</em>",
       "modelAnswer": "Trending shows progression: higher highs and higher lows, distinct pullbacks. Ranging shows the same boundaries again and again. If it’s neither, I call it unclear. The label isn’t a trade decision."
     }
   ],

@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 24",
-      "headline": "Clean market? <em>Participate.</em>",
-      "line": "Being selective doesn’t mean skipping the good ones.",
+      "headline": "When the market is clean, <em>you participate.</em>",
+      "line": "Being selective doesn’t mean skipping the good setups. When everything is clear, you take the trade.",
       "pose": "point",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "10:06",
-      "headline": "Explain it in <em>one breath.</em>",
-      "line": "4H clear. 1H progressing. Room above. Clean means understandable, not flawless.",
+      "headline": "Can you explain this chart <em>in one breath?</em>",
+      "line": "The 4-hour chart is clear, the 1-hour chart is moving up, and there’s room above. Clean means easy to understand, not perfect.",
       "chart": {
         "swings": [
           [
@@ -85,8 +85,8 @@
     {
       "type": "v2_moment",
       "kicker": "Your setup",
-      "headline": "Complete. <em>Almost too easy.</em>",
-      "line": "Indication. Correction. Continuation. Retest. All closed.",
+      "headline": "Your setup is complete, and it looks <em>almost too easy.</em>",
+      "line": "You have an Indication, a Correction, a Continuation and a retest, and every candle has closed.",
       "chart": {
         "bars": [
           {
@@ -335,18 +335,18 @@
         "“What’s the catch?”"
       ],
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "Take it",
+            "label": "Take it, because it’s complete",
             "correct": true,
-            "feedback": "Process, either way. It worked this time; some clean setups lose.",
+            "feedback": "Yes. You followed your process. It worked this time, and some clean setups still lose, which is okay.",
             "track": "ruleBasedResponses"
           },
           {
-            "label": "Skip it. Too easy.",
+            "label": "Skip it, because it seems too easy",
             "correct": false,
-            "feedback": "When every layer clears, passing is hesitation in a selective outfit.",
+            "feedback": "When every layer checks out, passing isn’t being selective. It’s hesitation dressed up as being selective.",
             "track": "hesitationCount"
           }
         ]

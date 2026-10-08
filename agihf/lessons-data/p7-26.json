@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 26",
-      "headline": "Between walls? <em>Wait.</em>",
-      "line": "Price between meaningful structure is a reason to wait, not guess.",
+      "headline": "When price is stuck between walls, <em>you wait.</em>",
+      "line": "When price sits between two important levels, that’s a reason to wait, not a reason to guess.",
       "pose": "point",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "10:22",
-      "headline": "Valid setup. <em>Wall above.</em>",
-      "line": "The 4H high is 29 points up. Your target is +60.",
+      "headline": "The setup is valid, but <em>there’s a wall above.</em>",
+      "line": "The 4-hour (4H) high is only 29 points up, and your target, also called take profit, is 60 points away.",
       "chart": {
         "bars": [
           {
@@ -250,23 +250,23 @@
         ]
       },
       "thoughts": [
-        "“It’ll probably break it.”"
+        "“It’ll probably break through it.”"
       ],
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "Take it. It’ll break.",
+            "label": "Take it, because it’ll probably break",
             "correct": false,
-            "feedback": "Maybe. But the trade has to go through a wall to work.",
+            "feedback": "Maybe it will. But this trade has to push through a wall before it can work.",
             "track": [
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Wait for a side",
+            "label": "Wait to see which side wins",
             "correct": true,
-            "feedback": "Yes. Between two walls, waiting is the read.",
+            "feedback": "Yes. When price is stuck between two walls, waiting is the right read.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -274,9 +274,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "If you’d taken it",
-      "headline": "It tagged the high. <em>Then turned.</em>",
-      "line": "Some days it breaks through. Room was the context either way.",
+      "kicker": "If you had taken it",
+      "headline": "Price touched the high, <em>and then it turned.</em>",
+      "line": "That’s a −1R loss, exactly the amount you planned to risk. Some days it breaks through, but the lack of room mattered either way.",
       "chart": {
         "bars": [
           {

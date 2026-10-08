@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 25",
-      "headline": "Chop? <em>Protect.</em>",
-      "line": "Some charts are technically valid and still say nothing.",
+      "headline": "When the market is choppy, <em>you protect your account.</em>",
+      "line": "Some charts are technically valid and still don’t tell you anything clear.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "10:14",
-      "headline": "Through. Back. <em>Through. Back.</em>",
-      "line": "It reads like a sequence. Then another. Then the opposite one.",
+      "headline": "Price goes through, comes back, <em>and goes through again.</em>",
+      "line": "It looks like a sequence, then another, then the opposite. Even your PIL, your Pre-Indication Level, keeps moving.",
       "chart": {
         "bars": [
           {
@@ -194,24 +194,24 @@
         }
       },
       "thoughts": [
-        "“Technically it’s valid…”",
+        "“Technically, it’s valid…”",
         "“Which PIL is it even?”"
       ],
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "Take the latest sequence",
+            "label": "Take the latest sequence I see",
             "correct": false,
-            "feedback": "Technically valid, but there was nothing clear to read.",
+            "feedback": "It’s technically valid, but there was nothing clear to read, so the trade is really a guess.",
             "track": [
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Protect. Wait for clarity.",
+            "label": "Protect my account and wait",
             "correct": true,
-            "feedback": "Yes. More chop, nothing lost. Protecting the account is the position.",
+            "feedback": "Yes. The chop keeps going and you lose nothing. Protecting your account is your position right now.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -219,9 +219,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "If you’d taken it",
-      "headline": "The chop picked a direction. <em>Not yours.</em>",
-      "line": "Your model didn’t fail. It just had nothing clear to read.",
+      "kicker": "If you had taken it",
+      "headline": "The chop picked a direction, but <em>it wasn’t yours.</em>",
+      "line": "You would have lost −1R, exactly the amount you planned to risk. Your model didn’t fail. It just had nothing clear to read.",
       "chart": {
         "bars": [
           {
@@ -595,24 +595,24 @@
     {
       "type": "v2_steps",
       "kicker": "What chop looks like",
-      "headline": "Every level important? <em>None is clear.</em>",
-      "line": "Repeated overlap reduces clarity. Tap each sign.",
+      "headline": "When every level looks important, <em>none of them is clear.</em>",
+      "line": "Lots of overlap makes a chart harder to read. Tap each sign of chop below.",
       "steps": [
         {
           "label": "Overlap",
-          "sub": "Candles stacked on candles"
+          "sub": "Candles keep stacking on top of each other."
         },
         {
           "label": "Flipping closes",
-          "sub": "Through, back, through, back"
+          "sub": "Candles close above the level, then below, then above again."
         },
         {
           "label": "Shifting PILs",
-          "sub": "A new “PIL” every few minutes"
+          "sub": "You find a new “PIL” every few minutes."
         },
         {
           "label": "Your move",
-          "sub": "Protect until clarity returns"
+          "sub": "You protect your account until clarity returns."
         }
       ],
       "cta": "Next →"
@@ -634,7 +634,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "What does <em>chop</em> look like to you, and what do you do in it?",
+      "prompt": "What does <em>chop</em> look like to you, and what do you do when you see it?",
       "modelAnswer": "Overlapping candles, closes flipping across a level, PIL candidates that keep changing. My model can technically fire, but clarity is low. My environment rule decides, and usually I protect."
     }
   ],
