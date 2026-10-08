@@ -1,1103 +1,846 @@
 {
- "phase": "p7",
- "section": "s18",
- "lessonNumber": 3,
- "title": "On a Heater",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "Four green days. Your journal looks incredible.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Feel a winning streak push your size up, and keep your risk where your calm self put it.",
-  "missionQuestion": "Did my risk plan change, or did my streak?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "On a Heater",
-   "title": "Monday to Thursday",
-   "beats": [
+  "phase": "p7",
+  "section": "s18",
+  "lessonNumber": 3,
+  "title": "On a Heater",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Four green days. Your journal looks incredible.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Feel a winning streak push your size up, and keep your risk where your calm self put it.",
+    "missionQuestion": "Did my risk plan change, or did my streak?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "cards": [
-      "MON · +2R ✓",
-      "TUE · +1R ✓",
-      "WED · +2R ✓",
-      "THU · +1.5R ✓"
-     ]
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 3",
+      "headline": "Four green days. <em>Then Friday.</em>",
+      "line": "Mon +2R. Tue +1R. Wed +2R. Thu +1.5R. All by the plan.",
+      "pose": "wave",
+      "cta": "Show me →"
     },
     {
-     "say": [
-      "Four green days in a row.",
-      "Every trade by the plan. Your journal looks incredible."
-     ]
-    },
-    {
-     "thoughts": [
-      "“I’ve figured this out.”",
-      "“My size is too small for how good I am.”",
-      "“Let’s go bigger today.”"
-     ]
-    },
-    {
-     "say": [
-      "Friday. A valid setup. Your plan says <b>2 contracts</b>.",
-      "Your cursor is on <b>4</b>."
-     ]
-    },
-    {
-     "chart": {
-      "bars": [
-       {
-        "o": 20982.25,
-        "h": 20986.5,
-        "l": 20981.25,
-        "c": 20985.5
-       },
-       {
-        "o": 20985.5,
-        "h": 20990.75,
-        "l": 20984.25,
-        "c": 20990.25
-       },
-       {
-        "o": 20990.25,
-        "h": 20996.0,
-        "l": 20989.25,
-        "c": 20995.0
-       },
-       {
-        "o": 20995.0,
-        "h": 20998.75,
-        "l": 20994.75,
-        "c": 20998.25
-       },
-       {
-        "o": 20998.25,
-        "h": 21004.25,
-        "l": 20997.25,
-        "c": 21001.75
-       },
-       {
-        "o": 21001.75,
-        "h": 21003.0,
-        "l": 20997.5,
-        "c": 20998.0
-       },
-       {
-        "o": 20998.0,
-        "h": 20998.25,
-        "l": 20994.25,
-        "c": 20995.75
-       },
-       {
-        "o": 20995.75,
-        "h": 20997.0,
-        "l": 20993.5,
-        "c": 20994.5
-       },
-       {
-        "o": 20994.5,
-        "h": 20994.75,
-        "l": 20990.5,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20995.0,
-        "l": 20989.75,
-        "c": 20994.5
-       },
-       {
-        "o": 20994.5,
-        "h": 20998.0,
-        "l": 20993.25,
-        "c": 20997.5
-       },
-       {
-        "o": 20997.5,
-        "h": 21001.75,
-        "l": 20996.0,
-        "c": 21001.25
-       },
-       {
-        "o": 21001.25,
-        "h": 21007.75,
-        "l": 21001.25,
-        "c": 21007.0
-       },
-       {
-        "o": 21007.0,
-        "h": 21007.0,
-        "l": 21001.25,
-        "c": 21002.0
-       },
-       {
-        "o": 21002.0,
-        "h": 21007.75,
-        "l": 21002.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21011.5,
-        "l": 21006.0,
-        "c": 21011.0
-       },
-       {
-        "o": 21011.0,
-        "h": 21013.5,
-        "l": 21009.75,
-        "c": 21012.0
-       },
-       {
-        "o": 21012.0,
-        "h": 21017.5,
-        "l": 21011.0,
-        "c": 21016.25
-       },
-       {
-        "o": 21016.25,
-        "h": 21019.5,
-        "l": 21015.75,
-        "c": 21018.25
-       },
-       {
-        "o": 21018.25,
-        "h": 21019.5,
-        "l": 21014.0,
-        "c": 21014.5
-       },
-       {
-        "o": 21014.5,
-        "h": 21015.75,
-        "l": 21011.25,
-        "c": 21012.0
-       },
-       {
-        "o": 21012.0,
-        "h": 21012.75,
-        "l": 21006.5,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21008.0,
-        "l": 21003.75,
-        "c": 21005.75
-       },
-       {
-        "o": 21005.75,
-        "h": 21008.0,
-        "l": 21005.5,
-        "c": 21007.75
-       },
-       {
-        "o": 21007.75,
-        "h": 21012.25,
-        "l": 21007.0,
-        "c": 21010.75
-       },
-       {
-        "o": 21010.75,
-        "h": 21013.0,
-        "l": 21009.75,
-        "c": 21012.25
-       },
-       {
-        "o": 21012.25,
-        "h": 21018.0,
-        "l": 21012.0,
-        "c": 21017.5
-       },
-       {
-        "o": 21017.5,
-        "h": 21022.0,
-        "l": 21017.0,
-        "c": 21021.5
-       },
-       {
-        "o": 21021.5,
-        "h": 21025.5,
-        "l": 21020.25,
-        "c": 21024.75
-       },
-       {
-        "o": 21024.75,
-        "h": 21028.75,
-        "l": 21023.25,
-        "c": 21028.25
-       },
-       {
-        "o": 21028.25,
-        "h": 21033.25,
-        "l": 21026.75,
-        "c": 21032.25
-       },
-       {
-        "o": 21032.25,
-        "h": 21039.25,
-        "l": 21031.0,
-        "c": 21037.75
-       },
-       {
-        "o": 21037.75,
-        "h": 21041.75,
-        "l": 21036.75,
-        "c": 21040.5
-       },
-       {
-        "o": 21040.5,
-        "h": 21047.0,
-        "l": 21040.0,
-        "c": 21046.25
-       },
-       {
-        "o": 21046.25,
-        "h": 21053.25,
-        "l": 21044.75,
-        "c": 21052.25
-       },
-       {
-        "o": 21052.25,
-        "h": 21059.0,
-        "l": 21051.25,
-        "c": 21057.5
-       },
-       {
-        "o": 21057.5,
-        "h": 21063.5,
-        "l": 21057.0,
-        "c": 21062.5
-       },
-       {
-        "o": 21062.5,
-        "h": 21068.75,
-        "l": 21061.75,
-        "c": 21067.25
-       }
-      ],
-      "pil": 21004.25,
-      "pilAt": 4,
-      "show": 23,
-      "head": {
-       "tf": "1M",
-       "label": "Friday · first retest"
-      }
-     }
-    },
-    {
-     "choice": {
-      "prompt": "How many?",
-      "options": [
-       {
-        "label": "4 contracts. You’ve earned it.",
-        "path": {
-         "chart": {
-          "bars": [
-           {
-            "o": 20982.25,
-            "h": 20986.25,
-            "l": 20981.25,
-            "c": 20985.75
-           },
-           {
-            "o": 20985.75,
-            "h": 20990.25,
-            "l": 20985.0,
-            "c": 20989.25
-           },
-           {
-            "o": 20989.25,
-            "h": 20994.25,
-            "l": 20989.0,
-            "c": 20993.25
-           },
-           {
-            "o": 20993.25,
-            "h": 20999.0,
-            "l": 20993.0,
-            "c": 20998.25
-           },
-           {
-            "o": 20998.25,
-            "h": 21004.25,
-            "l": 20997.5,
-            "c": 21001.75
-           },
-           {
-            "o": 21001.75,
-            "h": 21002.25,
-            "l": 20999.5,
-            "c": 21000.0
-           },
-           {
-            "o": 21000.0,
-            "h": 21001.5,
-            "l": 20995.75,
-            "c": 20996.75
-           },
-           {
-            "o": 20996.75,
-            "h": 20998.25,
-            "l": 20993.25,
-            "c": 20993.5
-           },
-           {
-            "o": 20993.5,
-            "h": 20994.75,
-            "l": 20990.75,
-            "c": 20991.25
-           },
-           {
-            "o": 20991.25,
-            "h": 20994.25,
-            "l": 20990.5,
-            "c": 20993.75
-           },
-           {
-            "o": 20993.75,
-            "h": 20999.25,
-            "l": 20992.75,
-            "c": 20998.75
-           },
-           {
-            "o": 20998.75,
-            "h": 21002.25,
-            "l": 20998.0,
-            "c": 21001.25
-           },
-           {
-            "o": 21001.25,
-            "h": 21007.75,
-            "l": 21001.25,
-            "c": 21007.0
-           },
-           {
-            "o": 21007.0,
-            "h": 21007.0,
-            "l": 21001.25,
-            "c": 21002.0
-           },
-           {
-            "o": 21002.0,
-            "h": 21008.25,
-            "l": 21002.0,
-            "c": 21007.25
-           },
-           {
-            "o": 21007.25,
-            "h": 21010.0,
-            "l": 21006.5,
-            "c": 21009.0
-           },
-           {
-            "o": 21009.0,
-            "h": 21012.5,
-            "l": 21008.0,
-            "c": 21011.25
-           },
-           {
-            "o": 21011.25,
-            "h": 21014.25,
-            "l": 21010.25,
-            "c": 21013.25
-           },
-           {
-            "o": 21013.25,
-            "h": 21017.5,
-            "l": 21012.0,
-            "c": 21016.25
-           },
-           {
-            "o": 21016.25,
-            "h": 21017.75,
-            "l": 21012.25,
-            "c": 21012.75
-           },
-           {
-            "o": 21012.75,
-            "h": 21014.0,
-            "l": 21009.5,
-            "c": 21010.0
-           },
-           {
-            "o": 21010.0,
-            "h": 21010.75,
-            "l": 21007.0,
-            "c": 21007.25
-           },
-           {
-            "o": 21007.25,
-            "h": 21008.25,
-            "l": 21003.75,
-            "c": 21005.75
-           },
-           {
-            "o": 21005.75,
-            "h": 21006.0,
-            "l": 21000.0,
-            "c": 21000.5
-           },
-           {
-            "o": 21000.5,
-            "h": 21000.75,
-            "l": 20996.75,
-            "c": 20997.25
-           },
-           {
-            "o": 20997.25,
-            "h": 20998.75,
-            "l": 20991.75,
-            "c": 20992.25
-           },
-           {
-            "o": 20992.25,
-            "h": 20993.0,
-            "l": 20987.25,
-            "c": 20988.0
-           },
-           {
-            "o": 20988.0,
-            "h": 20988.5,
-            "l": 20981.75,
-            "c": 20983.0
-           },
-           {
-            "o": 20983.0,
-            "h": 20983.25,
-            "l": 20977.75,
-            "c": 20978.25
-           },
-           {
-            "o": 20978.25,
-            "h": 20979.0,
-            "l": 20971.25,
-            "c": 20972.75
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "tags": [
-           {
-            "at": 29,
-            "text": "STOP",
-            "tone": "warn"
-           }
-          ],
-          "head": {
-           "tf": "1M",
-           "label": "Same model. Different day."
-          },
-          "play": {
-           "from": 23,
-           "to": 30,
-           "speed": 300
-          }
-         },
-         "say": [
-          "It was valid. It lost. That happens.",
-          "At double size, one valid loss took <b>2R</b> instead of 1."
-         ],
-         "tally": [
-          [
-           "THIS TRADE",
-           "−2R",
-           "mind"
-          ],
-          [
-           "THE WEEK",
-           "+6.5R → +4.5R",
-           "neutral"
-          ],
-          [
-           "RULES BROKEN",
-           "1 · size",
-           "mind"
-          ]
-         ]
-        },
-        "track": [
-         "overconfidenceCount",
-         "emotionalTradesTaken"
-        ]
-       },
-       {
-        "label": "4 contracts (and this time it wins)",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+      "type": "v2_moment",
+      "kicker": "Friday · first retest",
+      "headline": "Plan says 2. <em>Cursor’s on 4.</em>",
+      "line": "A valid setup. Your journal looks incredible.",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
             "h": 20986.5,
             "l": 20981.25,
             "c": 20985.5
-           },
-           {
+          },
+          {
             "o": 20985.5,
             "h": 20990.75,
             "l": 20984.25,
             "c": 20990.25
-           },
-           {
+          },
+          {
             "o": 20990.25,
             "h": 20996.0,
             "l": 20989.25,
             "c": 20995.0
-           },
-           {
+          },
+          {
             "o": 20995.0,
             "h": 20998.75,
             "l": 20994.75,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.25,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21003.0,
             "l": 20997.5,
             "c": 20998.0
-           },
-           {
+          },
+          {
             "o": 20998.0,
             "h": 20998.25,
             "l": 20994.25,
             "c": 20995.75
-           },
-           {
+          },
+          {
             "o": 20995.75,
             "h": 20997.0,
             "l": 20993.5,
             "c": 20994.5
-           },
-           {
+          },
+          {
             "o": 20994.5,
             "h": 20994.75,
             "l": 20990.5,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20995.0,
             "l": 20989.75,
             "c": 20994.5
-           },
-           {
+          },
+          {
             "o": 20994.5,
             "h": 20998.0,
             "l": 20993.25,
             "c": 20997.5
-           },
-           {
+          },
+          {
             "o": 20997.5,
             "h": 21001.75,
             "l": 20996.0,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21007.0,
             "l": 21001.25,
             "c": 21002.0
-           },
-           {
+          },
+          {
             "o": 21002.0,
             "h": 21007.75,
             "l": 21002.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21011.5,
             "l": 21006.0,
             "c": 21011.0
-           },
-           {
+          },
+          {
             "o": 21011.0,
             "h": 21013.5,
             "l": 21009.75,
             "c": 21012.0
-           },
-           {
+          },
+          {
             "o": 21012.0,
             "h": 21017.5,
             "l": 21011.0,
             "c": 21016.25
-           },
-           {
+          },
+          {
             "o": 21016.25,
             "h": 21019.5,
             "l": 21015.75,
             "c": 21018.25
-           },
-           {
+          },
+          {
             "o": 21018.25,
             "h": 21019.5,
             "l": 21014.0,
             "c": 21014.5
-           },
-           {
+          },
+          {
             "o": 21014.5,
             "h": 21015.75,
             "l": 21011.25,
             "c": 21012.0
-           },
-           {
+          },
+          {
             "o": 21012.0,
             "h": 21012.75,
             "l": 21006.5,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21008.0,
             "l": 21003.75,
             "c": 21005.75
-           },
-           {
+          },
+          {
             "o": 21005.75,
             "h": 21008.0,
             "l": 21005.5,
             "c": 21007.75
-           },
-           {
+          },
+          {
             "o": 21007.75,
             "h": 21012.25,
             "l": 21007.0,
             "c": 21010.75
-           },
-           {
+          },
+          {
             "o": 21010.75,
             "h": 21013.0,
             "l": 21009.75,
             "c": 21012.25
-           },
-           {
+          },
+          {
             "o": 21012.25,
             "h": 21018.0,
             "l": 21012.0,
             "c": 21017.5
-           },
-           {
+          },
+          {
             "o": 21017.5,
             "h": 21022.0,
             "l": 21017.0,
             "c": 21021.5
-           },
-           {
+          },
+          {
             "o": 21021.5,
             "h": 21025.5,
             "l": 21020.25,
             "c": 21024.75
-           },
-           {
+          },
+          {
             "o": 21024.75,
             "h": 21028.75,
             "l": 21023.25,
             "c": 21028.25
-           },
-           {
+          },
+          {
             "o": 21028.25,
             "h": 21033.25,
             "l": 21026.75,
             "c": 21032.25
-           },
-           {
+          },
+          {
             "o": 21032.25,
             "h": 21039.25,
             "l": 21031.0,
             "c": 21037.75
-           },
-           {
+          },
+          {
             "o": 21037.75,
             "h": 21041.75,
             "l": 21036.75,
             "c": 21040.5
-           },
-           {
+          },
+          {
             "o": 21040.5,
             "h": 21047.0,
             "l": 21040.0,
             "c": 21046.25
-           },
-           {
+          },
+          {
             "o": 21046.25,
             "h": 21053.25,
             "l": 21044.75,
             "c": 21052.25
-           },
-           {
+          },
+          {
             "o": 21052.25,
             "h": 21059.0,
             "l": 21051.25,
             "c": 21057.5
-           },
-           {
+          },
+          {
             "o": 21057.5,
             "h": 21063.5,
             "l": 21057.0,
             "c": 21062.5
-           },
-           {
+          },
+          {
             "o": 21062.5,
             "h": 21068.75,
             "l": 21061.75,
             "c": 21067.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "head": {
-           "tf": "1M",
-           "label": "It worked"
-          },
-          "play": {
-           "from": 23,
-           "to": 38,
-           "speed": 300
           }
-         },
-         "say": [
-          "+4R. It worked.",
-          "<b>This is the dangerous version.</b>",
-          "Now 4 feels normal. Your size grew. Your rules never did."
-         ]
-        },
-        "track": [
-         "overconfidenceCount"
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "show": 23,
+        "head": {
+          "tf": "1M",
+          "label": "Friday · first retest"
+        }
+      },
+      "thoughts": [
+        "“I’ve figured this out.”",
+        "“My size is too small for how good I am.”",
+        "“Let’s go bigger today.”"
+      ],
+      "check": {
+        "prompt": "How many contracts?",
+        "options": [
+          {
+            "label": "4. I’ve earned it.",
+            "correct": false,
+            "feedback": "The streak earned you a great week. Not a new risk plan.",
+            "track": [
+              "overconfidenceCount",
+              "emotionalTradesTaken"
+            ]
+          },
+          {
+            "label": "4, and it wins",
+            "correct": false,
+            "feedback": "The dangerous version. Now 4 feels normal. Your rules never grew.",
+            "track": [
+              "overconfidenceCount"
+            ]
+          },
+          {
+            "label": "2. The plan.",
+            "correct": true,
+            "feedback": "Yes. Same size Monday, same size Friday.",
+            "track": "ruleBasedResponses"
+          }
         ]
-       },
-       {
-        "label": "2 contracts. The plan.",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+      }
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "If it loses",
+      "headline": "Valid loss. <em>Double the damage.</em>",
+      "line": "At 4 contracts: −2R. At 2: −1R, and still +5.5R for the week.",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
             "h": 20986.25,
             "l": 20981.25,
             "c": 20985.75
-           },
-           {
+          },
+          {
             "o": 20985.75,
             "h": 20990.25,
             "l": 20985.0,
             "c": 20989.25
-           },
-           {
+          },
+          {
             "o": 20989.25,
             "h": 20994.25,
             "l": 20989.0,
             "c": 20993.25
-           },
-           {
+          },
+          {
             "o": 20993.25,
             "h": 20999.0,
             "l": 20993.0,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.5,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21002.25,
             "l": 20999.5,
             "c": 21000.0
-           },
-           {
+          },
+          {
             "o": 21000.0,
             "h": 21001.5,
             "l": 20995.75,
             "c": 20996.75
-           },
-           {
+          },
+          {
             "o": 20996.75,
             "h": 20998.25,
             "l": 20993.25,
             "c": 20993.5
-           },
-           {
+          },
+          {
             "o": 20993.5,
             "h": 20994.75,
             "l": 20990.75,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20994.25,
             "l": 20990.5,
             "c": 20993.75
-           },
-           {
+          },
+          {
             "o": 20993.75,
             "h": 20999.25,
             "l": 20992.75,
             "c": 20998.75
-           },
-           {
+          },
+          {
             "o": 20998.75,
             "h": 21002.25,
             "l": 20998.0,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21007.0,
             "l": 21001.25,
             "c": 21002.0
-           },
-           {
+          },
+          {
             "o": 21002.0,
             "h": 21008.25,
             "l": 21002.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21010.0,
             "l": 21006.5,
             "c": 21009.0
-           },
-           {
+          },
+          {
             "o": 21009.0,
             "h": 21012.5,
             "l": 21008.0,
             "c": 21011.25
-           },
-           {
+          },
+          {
             "o": 21011.25,
             "h": 21014.25,
             "l": 21010.25,
             "c": 21013.25
-           },
-           {
+          },
+          {
             "o": 21013.25,
             "h": 21017.5,
             "l": 21012.0,
             "c": 21016.25
-           },
-           {
+          },
+          {
             "o": 21016.25,
             "h": 21017.75,
             "l": 21012.25,
             "c": 21012.75
-           },
-           {
+          },
+          {
             "o": 21012.75,
             "h": 21014.0,
             "l": 21009.5,
             "c": 21010.0
-           },
-           {
+          },
+          {
             "o": 21010.0,
             "h": 21010.75,
             "l": 21007.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21008.25,
             "l": 21003.75,
             "c": 21005.75
-           },
-           {
+          },
+          {
             "o": 21005.75,
             "h": 21006.0,
             "l": 21000.0,
             "c": 21000.5
-           },
-           {
+          },
+          {
             "o": 21000.5,
             "h": 21000.75,
             "l": 20996.75,
             "c": 20997.25
-           },
-           {
+          },
+          {
             "o": 20997.25,
             "h": 20998.75,
             "l": 20991.75,
             "c": 20992.25
-           },
-           {
+          },
+          {
             "o": 20992.25,
             "h": 20993.0,
             "l": 20987.25,
             "c": 20988.0
-           },
-           {
+          },
+          {
             "o": 20988.0,
             "h": 20988.5,
             "l": 20981.75,
             "c": 20983.0
-           },
-           {
+          },
+          {
             "o": 20983.0,
             "h": 20983.25,
             "l": 20977.75,
             "c": 20978.25
-           },
-           {
+          },
+          {
             "o": 20978.25,
             "h": 20979.0,
             "l": 20971.25,
             "c": 20972.75
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "head": {
-           "tf": "1M",
-           "label": "Same model. Different day."
-          },
-          "play": {
-           "from": 23,
-           "to": 30,
-           "speed": 300
           }
-         },
-         "say": [
-          "Valid loss. −1R.",
-          "Still +5.5R for the week. Monday you’ll trade the same size again."
-         ],
-         "tally": [
-          [
-           "THIS TRADE",
-           "−1R",
-           "neutral"
-          ],
-          [
-           "THE WEEK",
-           "+5.5R",
-           "ok"
-          ],
-          [
-           "RULES BROKEN",
-           "0",
-           "ok"
-          ]
-         ]
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "tags": [
+          {
+            "at": 29,
+            "text": "STOP",
+            "tone": "warn"
+          }
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "Same model. Different day."
         },
-        "track": "ruleBasedResponses"
-       }
-      ]
-     }
-    },
-    {
-     "who": {
-      "before": {
-       "h": "THE TRADER",
-       "lines": [
-        "Sizes from her risk plan.",
-        "Wrote it when she was calm."
-       ]
-      },
-      "after": {
-       "h": "THE STREAK",
-       "lines": [
-        "Sizes from the last four days.",
-        "Calls it “earned”."
-       ]
+        "play": {
+          "from": 23,
+          "to": 30,
+          "speed": 300
+        }
       }
-     }
     },
     {
-     "principle": "A STREAK IS A RESULT. IT ISN’T A NEW RISK PLAN."
-    }
-   ]
-  },
-  {
-   "type": "p7_baseline",
-   "kicker": "Your baseline card",
-   "title": "Written before the streak",
-   "baseline": [
-    [
-     "Risk",
-     "1R"
-    ],
-    [
-     "Max trades",
-     "2"
-    ],
-    [
-     "Entry rules",
-     "Unchanged"
-    ],
-    [
-     "Management",
-     "Unchanged"
-    ]
-   ],
-   "runs": [
+      "type": "v2_moment",
+      "kicker": "If it wins",
+      "headline": "+4R? <em>That’s the dangerous one.</em>",
+      "line": "Now 4 feels normal. Your size grew. Your rules never did.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.25,
+            "c": 20985.5
+          },
+          {
+            "o": 20985.5,
+            "h": 20990.75,
+            "l": 20984.25,
+            "c": 20990.25
+          },
+          {
+            "o": 20990.25,
+            "h": 20996.0,
+            "l": 20989.25,
+            "c": 20995.0
+          },
+          {
+            "o": 20995.0,
+            "h": 20998.75,
+            "l": 20994.75,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.25,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21003.0,
+            "l": 20997.5,
+            "c": 20998.0
+          },
+          {
+            "o": 20998.0,
+            "h": 20998.25,
+            "l": 20994.25,
+            "c": 20995.75
+          },
+          {
+            "o": 20995.75,
+            "h": 20997.0,
+            "l": 20993.5,
+            "c": 20994.5
+          },
+          {
+            "o": 20994.5,
+            "h": 20994.75,
+            "l": 20990.5,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20995.0,
+            "l": 20989.75,
+            "c": 20994.5
+          },
+          {
+            "o": 20994.5,
+            "h": 20998.0,
+            "l": 20993.25,
+            "c": 20997.5
+          },
+          {
+            "o": 20997.5,
+            "h": 21001.75,
+            "l": 20996.0,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21007.75,
+            "l": 21002.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21011.5,
+            "l": 21006.0,
+            "c": 21011.0
+          },
+          {
+            "o": 21011.0,
+            "h": 21013.5,
+            "l": 21009.75,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21017.5,
+            "l": 21011.0,
+            "c": 21016.25
+          },
+          {
+            "o": 21016.25,
+            "h": 21019.5,
+            "l": 21015.75,
+            "c": 21018.25
+          },
+          {
+            "o": 21018.25,
+            "h": 21019.5,
+            "l": 21014.0,
+            "c": 21014.5
+          },
+          {
+            "o": 21014.5,
+            "h": 21015.75,
+            "l": 21011.25,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21012.75,
+            "l": 21006.5,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21008.0,
+            "l": 21003.75,
+            "c": 21005.75
+          },
+          {
+            "o": 21005.75,
+            "h": 21008.0,
+            "l": 21005.5,
+            "c": 21007.75
+          },
+          {
+            "o": 21007.75,
+            "h": 21012.25,
+            "l": 21007.0,
+            "c": 21010.75
+          },
+          {
+            "o": 21010.75,
+            "h": 21013.0,
+            "l": 21009.75,
+            "c": 21012.25
+          },
+          {
+            "o": 21012.25,
+            "h": 21018.0,
+            "l": 21012.0,
+            "c": 21017.5
+          },
+          {
+            "o": 21017.5,
+            "h": 21022.0,
+            "l": 21017.0,
+            "c": 21021.5
+          },
+          {
+            "o": 21021.5,
+            "h": 21025.5,
+            "l": 21020.25,
+            "c": 21024.75
+          },
+          {
+            "o": 21024.75,
+            "h": 21028.75,
+            "l": 21023.25,
+            "c": 21028.25
+          },
+          {
+            "o": 21028.25,
+            "h": 21033.25,
+            "l": 21026.75,
+            "c": 21032.25
+          },
+          {
+            "o": 21032.25,
+            "h": 21039.25,
+            "l": 21031.0,
+            "c": 21037.75
+          },
+          {
+            "o": 21037.75,
+            "h": 21041.75,
+            "l": 21036.75,
+            "c": 21040.5
+          },
+          {
+            "o": 21040.5,
+            "h": 21047.0,
+            "l": 21040.0,
+            "c": 21046.25
+          },
+          {
+            "o": 21046.25,
+            "h": 21053.25,
+            "l": 21044.75,
+            "c": 21052.25
+          },
+          {
+            "o": 21052.25,
+            "h": 21059.0,
+            "l": 21051.25,
+            "c": 21057.5
+          },
+          {
+            "o": 21057.5,
+            "h": 21063.5,
+            "l": 21057.0,
+            "c": 21062.5
+          },
+          {
+            "o": 21062.5,
+            "h": 21068.75,
+            "l": 21061.75,
+            "c": 21067.25
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "head": {
+          "tf": "1M",
+          "label": "It worked"
+        },
+        "play": {
+          "from": 23,
+          "to": 38,
+          "speed": 300
+        }
+      }
+    },
     {
-     "label": "5 WINS",
-     "seq": "WWWWW",
-     "thoughts": [
-      "“I can’t miss.”",
-      "“Triple size?”"
-     ],
-     "ask": {
-      "prompt": "DID RISK DISAPPEAR?",
-      "options": [
-       {
-        "label": "Yes, triple it",
-        "feedback": "Your confidence changed. Did your risk plan?",
-        "track": "overconfidenceCount"
-       },
-       {
-        "label": "NO",
-        "correct": true,
-        "why": "Same risk. Same baseline. Wins don’t make the next trade safer."
-       }
-      ]
-     }
+      "type": "v2_compare",
+      "kicker": "Who’s sizing?",
+      "headline": "A streak is a result. <em>Not a plan.</em>",
+      "cards": [
+        {
+          "label": "The trader",
+          "sub": "Sizes from the risk plan she wrote calm.",
+          "spark": "slow",
+          "tag": "PLAN",
+          "tone": "purple"
+        },
+        {
+          "label": "The streak",
+          "sub": "Sizes from the last four days.",
+          "spark": "up",
+          "tag": "“EARNED”",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "Five wins in a row. Did risk disappear?",
+        "options": [
+          {
+            "label": "Yes, triple it",
+            "correct": false,
+            "feedback": "Your confidence changed. Did your risk plan?",
+            "track": "overconfidenceCount"
+          },
+          {
+            "label": "No. Same risk.",
+            "correct": true,
+            "feedback": "Same baseline. Wins don’t make the next trade safer."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_steps",
+      "kicker": "Your baseline card",
+      "headline": "Written <em>before</em> the streak.",
+      "line": "Size grows in review, with evidence. Not because Thursday felt good.",
+      "steps": [
+        {
+          "label": "Risk",
+          "sub": "1R"
+        },
+        {
+          "label": "Max trades",
+          "sub": "2"
+        },
+        {
+          "label": "Entry rules",
+          "sub": "Unchanged"
+        },
+        {
+          "label": "Management",
+          "sub": "Unchanged"
+        }
+      ],
+      "cta": "Next →"
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Trade like the version of you who wrote the plan. <em>Not the version who just read her P&amp;L.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What changes in you during a <em>winning streak</em>?",
+      "modelAnswer": "I feel like I can’t miss, so I want to size up or loosen my rules. If it works, the habit gets rewarded. My risk plan didn’t change because I won."
     }
-   ],
-   "punch": "If size should grow, it grows in review, with evidence. Not on a Friday because Thursday felt good."
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "Trade like the version of you who wrote the plan. <em>Not the version who just read her P&amp;L.</em>",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "What changes in you during a winning streak?",
-   "modelAnswer": "I feel like I can’t miss, so I want to size up or loosen my rules. If it works, the habit gets rewarded. My risk plan didn’t change because I won."
-  }
- ],
- "takeaways": [
-  "A streak changes how you feel, not your risk.",
-  "The dangerous version is when it works.",
-  "Size changes in review, not on a heater."
- ],
- "remember": "A STREAK IS A RESULT. IT ISN’T A NEW RISK PLAN."
+  ],
+  "takeaways": [
+    "A streak changes how you feel, not your risk.",
+    "The dangerous version is when it works.",
+    "Size changes in review, not on a heater."
+  ],
+  "remember": "A STREAK IS A RESULT. IT ISN’T A NEW RISK PLAN."
 }
