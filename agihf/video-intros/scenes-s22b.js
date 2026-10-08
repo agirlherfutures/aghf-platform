@@ -1120,19 +1120,19 @@
         const open = ease(seg(t, T.lids[i], T.lids[i] + 0.6));
         // Contents.
         if (open > 0.3) {
-          if (i === 0) box += `<ellipse cx="${x - 20}" cy="${OY + 60}" rx="26" ry="14" fill="${C.pink}"/><ellipse cx="${x + 46}" cy="${OY - 40 + Math.sin(t * 4) * 4}" rx="20" ry="11" fill="${C.pink}" opacity=".5"/>`;
+          if (i === 0) box += `<ellipse cx="${x - 20}" cy="${OY + 60}" rx="26" ry="14" fill="${C.pink}"/><ellipse cx="${x + 30}" cy="${OY + 90 + Math.sin(t * 4) * 3}" rx="20" ry="11" fill="${C.pink}" opacity=".5"/>`;
           if (i === 1) box += `<ellipse cx="${x}" cy="${OY + 60}" rx="26" ry="14" fill="${C.peach}"/><path d="M${x + 30},${OY + 46} l30,-14 m-8,-6 l8,6 l-6,8" stroke="${C.muted}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
           if (i === 2) box += `<ellipse cx="${x - 22}" cy="${OY + 60}" rx="26" ry="14" fill="${C.pink}"/><ellipse cx="${x + 22}" cy="${OY + 60}" rx="26" ry="14" fill="${C.pink}"/>`;
           if (i === 3) box += `<ellipse cx="${x}" cy="${OY + 60}" rx="26" ry="14" fill="${C.teal}"/>`;
         }
-        box += `<g transform="rotate(${f1(-open * 100)} ${x - 80} ${OY})"><rect x="${x - 84}" y="${OY - 14}" width="168" height="22" rx="8" fill="${DK.purple}"/></g>`;
+        if (open < 1) box += `<g opacity="${(1 - open).toFixed(2)}" transform="translate(0,${f1(-open * 60)}) rotate(${f1(-open * 12)} ${x} ${OY})"><rect x="${x - 84}" y="${OY - 14}" width="168" height="22" rx="8" fill="${DK.purple}"/></g>`;
         box += txt(x, OY + 158, LAB[i][0], 22, DK.purple, { ls: 1 });
       });
       out += scaleAt(960, OY + 130, ok, box);
       CX.forEach((x, i) => {
         const k = pop(t, T.lids[i] + 0.5, 0.5);
-        out += pill(x, OY - 80 - (i % 2) * 54, LAB[i][1], LAB[i][2] ? DK.teal : C.pink, k, 22);
-        out += LAB[i][2] ? check(x + 70, OY - 20, pop(t, T.lids[i] + 0.8, 0.5), C.teal, 22) : cross(x + 70, OY - 20, pop(t, T.lids[i] + 0.8, 0.5), C.pink, 22);
+        out += pill(x, OY - 46, LAB[i][1], LAB[i][2] ? DK.teal : C.pink, k, 22);
+        out += LAB[i][2] ? check(x + 58, OY + 22, pop(t, T.lids[i] + 0.8, 0.5), C.teal, 18) : cross(x + 58, OY + 22, pop(t, T.lids[i] + 0.8, 0.5), C.pink, 18);
       });
       out += pill(960, 920, '3 of 4: how it was taken', C.pink, pop(t, T.verdict, 0.5), 28);
       // Patient walks in with a big bottle.
@@ -1152,8 +1152,8 @@
       out += who(t, dO);
       // Lab coat + head mirror.
       if (pop(t, dO.at) >= 1) { const h = headAt(t, dO); out += `<path d="M${f1(h.x - 38)},${f1(h.y + 80)} L${f1(h.x - 42)},${f1(h.y + 190)} L${f1(h.x + 42)},${f1(h.y + 190)} L${f1(h.x + 38)},${f1(h.y + 80)} L${f1(h.x + 12)},${f1(h.y + 66)} L${f1(h.x)},${f1(h.y + 140)} L${f1(h.x - 12)},${f1(h.y + 66)} Z" fill="#fff" opacity=".9"/><circle cx="${f1(h.x - 4)}" cy="${f1(h.y - 46)}" r="16" fill="#E8F8F6" stroke="${C.muted}" stroke-width="4"/>`; }
-      out += bub(1450, 560, 'Let’s check, in order.', between(t, T.check, T.lids[0] + 0.6), { size: 26, tail: 'right' });
-      out += bub(1450, 560, 'Rx: take it as directed', between(t, T.rx, s.end), { size: 26, tail: 'right' });
+      out += bub(1430, 470, 'Let’s check, in order.', between(t, T.check, T.lids[0] + 0.6), { size: 26, tail: 'right' });
+      out += bub(1430, 470, 'Rx: take it as directed', between(t, T.rx, s.end), { size: 26, tail: 'right' });
       // Robot heart monitor beeping.
       const beat = (t * 1.6) % 1;
       out += crit(t, 'robot', { x: 150, y: 1000, scale: 0.8, seed: 4, at: T.set + 1.2, screen: beat < 0.2 ? '♥' : '·' });
