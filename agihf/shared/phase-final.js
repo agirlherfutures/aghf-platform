@@ -176,7 +176,9 @@ export function renderPhaseFinal(slide, final, onPass, helpers) {
           <div class="pf-bar"><div style="width:${(k / set.length) * 100}%"></div></div></div><div class="pf-body"></div>`;
       const body = slide.querySelector('.pf-body');
       let wrong = false;
-      const itemHelpers = { ...helpers, onPick(q, opt, correct) { if (!correct) wrong = true; }, handleStreak: () => {}, burst: () => {} };
+      // A long item (e.g. the Phase 6 trading session) can report per-skill decisions itself.
+      const extra = [];
+      const itemHelpers = { ...helpers, onPick(q, opt, correct) { if (!correct) wrong = true; }, handleStreak: () => {}, burst: () => {}, report(skill, correct) { extra.push({ skill, correct }); } };
       const advance = () => { k += 1; if (k < set.length) { show(); window.scrollTo({ top: 0, behavior: 'smooth' }); } else finish(); };
       const nextLabel = k + 1 < set.length ? 'Next question →' : 'See my results →';
       const done = () => {
@@ -210,7 +212,7 @@ export function renderPhaseFinal(slide, final, onPass, helpers) {
         const renderer = SLIDE_RENDERERS[it.slide.type];
         // A chart item shows its own continue button when solved; that button moves on.
         // Quiz items always start fresh, each in its own save slot.
-        renderer(body, { ...it.slide, kicker: it.slide.kicker ?? '', cta: nextLabel, ephemeral: true, save: `${final.storeId || 'final'}-q${k}` }, () => { results.push({ skill: it.skill, correct: !wrong }); advance(); }, itemHelpers);
+        renderer(body, { ...it.slide, kicker: it.slide.kicker ?? '', cta: nextLabel, ephemeral: true, save: `${final.storeId || 'final'}-q${k}` }, () => { if (extra.length) results.push(...extra); else results.push({ skill: it.skill, correct: !wrong }); advance(); }, itemHelpers);
       }
     }
 
@@ -303,6 +305,7 @@ export function renderPhaseComplete(slide, data, { flagKey, backHref, results })
   const review = nextBestReview(mastery, { ...MISTAKE_INSIGHTS, ...(c.insights || {}) });
   const fill = (s) => String(s).replace('{final}', results.finalPct ?? '80+');
   slide.innerHTML = `
+    ${c.cinema ? '<div class="pc-cinema"></div>' : ''}
     <div class="pc-hero">
       <div class="pc-rays"></div>
       ${c.framework ? frameworkHtml(c.framework) : c.cleanChart ? CLEAN_CHART : ''}
@@ -331,7 +334,7 @@ export function renderPhaseComplete(slide, data, { flagKey, backHref, results })
         ${review.items.map((it) => `<div class="pc-review-row"><p>${it.text}</p><a href="lesson.html?phase=${it.review[0]}&n=${it.review[1]}">Review ${it.label} →</a></div>`).join('')}</div>` : ''}
     </div>
     ${c.pause ? pauseHtml(c.pause) : ''}
-    <div class="lw-card pc-next${c.next.method ? ' pc-method' : ''}">
+    <div class="lw-card pc-next${c.next.method ? ' pc-method' : ''}${c.next.huge ? ' pc-huge' : ''}">
       <div class="lw-eyebrow">🔓 ${c.next.eyebrow}</div>
       <h2>${c.next.title}</h2>
       ${c.next.lines.map((l) => `<p>${l}</p>`).join('')}
@@ -339,11 +342,17 @@ export function renderPhaseComplete(slide, data, { flagKey, backHref, results })
       ${c.next.distinction ? `<div class="pc-distinction">${c.next.distinction}</div>` : ''}
       ${c.next.note ? `<div class="pc-distinction">${c.next.note}</div>` : ''}
       ${c.next.preview ? `<div class="pc-preview">${c.next.preview.map((p) => `<div>${p}</div>`).join('')}</div>` : ''}
+      ${c.next.cinema ? '<div class="pc-next-cinema"></div>' : ''}
       ${c.next.sections ? `<div class="pc-msec">${c.next.sections.map((sec) => `<div class="pc-msec-c"><small>${sec.label}</small><b>${sec.title}</b><span>${sec.items.join(' <i>→</i> ')}</span></div>`).join('')}</div>` : ''}
       <button type="button" class="lw-cc-next" id="pcNext">${c.next.cta}</button>
     </div>
     <div class="lw-back-link"><a href="${backHref}">← Back to all lessons</a></div>`;
   slide.querySelector('#pcNext').addEventListener('click', () => { window.location.href = c.next.href || backHref; });
+  [[c.cinema, '.pc-cinema'], [c.next.cinema, '.pc-next-cinema']].forEach(([cin, sel]) => {
+    if (!cin) return;
+    const r = SLIDE_RENDERERS[cin.type];
+    if (r) r(slide.querySelector(sel), cin, null, {});
+  });
   const pz = slide.querySelector('.pc-pause');
   if (pz) {
     const go = () => pz.classList.add('go');

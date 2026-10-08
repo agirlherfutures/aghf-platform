@@ -1,0 +1,130 @@
+{
+ "phase": "p6",
+ "section": "s17",
+ "lessonNumber": 18,
+ "title": "Stop Distance vs Dollar Risk",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Points describe the chart. Dollars describe the account.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Separate how far the stop is from what the stop costs.",
+  "missionQuestion": "Same stop, same risk?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "Same stop. Different risk.",
+   "heading": "Two traders, one sentence",
+   "body": "",
+   "beats": [
+    {
+     "icon": "A",
+     "title": "Trader A",
+     "line": "MNQ · 30 points · 1 contract = $60"
+    },
+    {
+     "icon": "B",
+     "title": "Trader B",
+     "line": "MNQ · 30 points · 5 contracts = $300"
+    }
+   ],
+   "punch": "“They both said they use a 30-point stop.” True."
+  },
+  {
+   "type": "p6_sort",
+   "kicker": "Three questions",
+   "title": "Which question does each one answer?",
+   "buckets": [
+    {
+     "key": "far",
+     "label": "HOW FAR IS MY STOP?",
+     "tone": "gold"
+    },
+    {
+     "key": "worth",
+     "label": "WHAT IS THE CONTRACT WORTH?",
+     "tone": "purple"
+    },
+    {
+     "key": "many",
+     "label": "HOW MANY CONTRACTS?",
+     "tone": "teal"
+    }
+   ],
+   "items": [
+    {
+     "text": "30 points",
+     "bucket": "far"
+    },
+    {
+     "text": "$2 per point (MNQ)",
+     "bucket": "worth"
+    },
+    {
+     "text": "5 MNQ",
+     "bucket": "many"
+    },
+    {
+     "text": "Position size",
+     "bucket": "many"
+    },
+    {
+     "text": "Instrument value",
+     "bucket": "worth"
+    }
+   ],
+   "punch": "TOGETHER: DOLLAR RISK."
+  },
+  {
+   "type": "r_normalizer",
+   "kicker": "Catch the mistake",
+   "title": "“My stop is only 20 points, so this is low risk.”",
+   "traders": [],
+   "asks": [
+    {
+     "prompt": "CAN WE KNOW THAT YET?",
+     "options": [
+      {
+       "label": "Yes, 20 points is small",
+       "feedback": "Small in points. Unknown in dollars."
+      },
+      {
+       "label": "No: missing the instrument and the contracts",
+       "correct": true,
+       "why": "20 points on 1 MNQ = $40. On 10 NQ = $4,000."
+      }
+     ],
+     "stack": true,
+     "skill": "dollar"
+    }
+   ],
+   "punch": "POINTS DESCRIBE THE CHART. DOLLARS DESCRIBE THE ACCOUNT."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Points describe the chart. <em>Dollars describe the account.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why doesn’t “I use a 30-point stop” describe your risk?",
+   "modelAnswer": "Because the dollar risk also depends on the instrument’s value per point and the number of contracts. Two traders with the same stop can risk completely different amounts."
+  }
+ ],
+ "takeaways": [
+  "Same stop ≠ same risk.",
+  "Ask: how far, what’s it worth, how many.",
+  "Dollars describe the account."
+ ],
+ "remember": "Points describe the chart. Dollars describe the account."
+}

@@ -1,0 +1,567 @@
+{
+ "phase": "p7",
+ "section": "s20",
+ "lessonNumber": 29,
+ "title": "Outside Your Window",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Open market. Closed window.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Feel a beautiful setup appear after your trading window, and let your window stay closed.",
+  "missionQuestion": "Is this inside the time I actually trade?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_scene",
+   "kicker": "Outside Your Window",
+   "title": "11:17",
+   "beats": [
+    {
+     "say": [
+      "Your window closed at 11:00. You were cleaning up your journal."
+     ]
+    },
+    {
+     "chart": {
+      "bars": [
+       {
+        "o": 20982.25,
+        "h": 20986.5,
+        "l": 20981.5,
+        "c": 20985.5
+       },
+       {
+        "o": 20985.5,
+        "h": 20991.5,
+        "l": 20985.25,
+        "c": 20990.5
+       },
+       {
+        "o": 20990.5,
+        "h": 20994.25,
+        "l": 20990.0,
+        "c": 20993.0
+       },
+       {
+        "o": 20993.0,
+        "h": 20998.75,
+        "l": 20991.5,
+        "c": 20998.25
+       },
+       {
+        "o": 20998.25,
+        "h": 21004.25,
+        "l": 20997.0,
+        "c": 21001.75
+       },
+       {
+        "o": 21001.75,
+        "h": 21002.75,
+        "l": 20998.5,
+        "c": 20999.0
+       },
+       {
+        "o": 20999.0,
+        "h": 21000.25,
+        "l": 20995.75,
+        "c": 20996.75
+       },
+       {
+        "o": 20996.75,
+        "h": 20997.75,
+        "l": 20994.25,
+        "c": 20994.5
+       },
+       {
+        "o": 20994.5,
+        "h": 20995.75,
+        "l": 20990.25,
+        "c": 20991.25
+       },
+       {
+        "o": 20991.25,
+        "h": 20994.25,
+        "l": 20990.0,
+        "c": 20994.0
+       },
+       {
+        "o": 20994.0,
+        "h": 20999.0,
+        "l": 20992.75,
+        "c": 20997.75
+       },
+       {
+        "o": 20997.75,
+        "h": 21002.5,
+        "l": 20996.25,
+        "c": 21001.25
+       },
+       {
+        "o": 21001.25,
+        "h": 21007.75,
+        "l": 21001.25,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21007.0,
+        "l": 21001.25,
+        "c": 21002.0
+       },
+       {
+        "o": 21002.0,
+        "h": 21008.5,
+        "l": 21002.0,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21012.5,
+        "l": 21005.75,
+        "c": 21012.0
+       },
+       {
+        "o": 21012.0,
+        "h": 21019.5,
+        "l": 21011.25,
+        "c": 21018.5
+       },
+       {
+        "o": 21018.5,
+        "h": 21025.25,
+        "l": 21017.75,
+        "c": 21024.5
+       },
+       {
+        "o": 21024.5,
+        "h": 21031.25,
+        "l": 21023.5,
+        "c": 21030.25
+       },
+       {
+        "o": 21030.25,
+        "h": 21031.25,
+        "l": 21022.0,
+        "c": 21023.5
+       },
+       {
+        "o": 21023.5,
+        "h": 21025.0,
+        "l": 21014.75,
+        "c": 21015.75
+       },
+       {
+        "o": 21015.75,
+        "h": 21016.25,
+        "l": 21006.0,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21008.75,
+        "l": 21003.75,
+        "c": 21005.75
+       },
+       {
+        "o": 21005.75,
+        "h": 21007.75,
+        "l": 21005.25,
+        "c": 21006.5
+       },
+       {
+        "o": 21006.5,
+        "h": 21009.0,
+        "l": 21006.0,
+        "c": 21008.0
+       },
+       {
+        "o": 21008.0,
+        "h": 21009.25,
+        "l": 21005.0,
+        "c": 21006.5
+       },
+       {
+        "o": 21006.5,
+        "h": 21008.5,
+        "l": 21005.75,
+        "c": 21007.25
+       },
+       {
+        "o": 21007.25,
+        "h": 21008.75,
+        "l": 21006.0,
+        "c": 21008.25
+       },
+       {
+        "o": 21008.25,
+        "h": 21010.75,
+        "l": 21007.25,
+        "c": 21010.5
+       },
+       {
+        "o": 21010.5,
+        "h": 21011.75,
+        "l": 21008.5,
+        "c": 21009.25
+       },
+       {
+        "o": 21009.25,
+        "h": 21013.5,
+        "l": 21008.25,
+        "c": 21012.0
+       },
+       {
+        "o": 21012.0,
+        "h": 21013.5,
+        "l": 21011.75,
+        "c": 21012.75
+       },
+       {
+        "o": 21012.75,
+        "h": 21013.75,
+        "l": 21012.0,
+        "c": 21012.25
+       }
+      ],
+      "pil": 21004.25,
+      "pilAt": 4,
+      "head": {
+       "tf": "1M",
+       "label": "MNQ",
+       "time": "11:17"
+      },
+      "play": {
+       "from": 10,
+       "to": 23,
+       "speed": 300
+      }
+     }
+    },
+    {
+     "say": [
+      "11:17. The cleanest setup of the day."
+     ]
+    },
+    {
+     "thoughts": [
+      "“The market’s still open.”",
+      "“17 minutes doesn’t matter.”"
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "What do you do?",
+      "options": [
+       {
+        "label": "Take it. The market is open.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20998.25,
+            "h": 21000.75,
+            "l": 20997.0,
+            "c": 20999.75
+           },
+           {
+            "o": 20999.75,
+            "h": 21002.0,
+            "l": 20999.0,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21004.25,
+            "l": 21000.5,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21005.5
+           },
+           {
+            "o": 21005.5,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21004.0,
+            "c": 21005.5
+           },
+           {
+            "o": 21005.5,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21001.5,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21004.5,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21001.5,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21007.75,
+            "l": 21001.5,
+            "c": 21006.25
+           },
+           {
+            "o": 21006.25,
+            "h": 21007.75,
+            "l": 21000.0,
+            "c": 21001.5
+           },
+           {
+            "o": 21001.5,
+            "h": 21004.5,
+            "l": 21000.0,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21007.75,
+            "l": 21001.5,
+            "c": 21006.25
+           },
+           {
+            "o": 21006.25,
+            "h": 21007.75,
+            "l": 21000.0,
+            "c": 21001.5
+           },
+           {
+            "o": 21001.5,
+            "h": 21004.5,
+            "l": 21000.0,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21003.75,
+            "l": 21000.75,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21002.5,
+            "l": 20998.75,
+            "c": 20999.0
+           },
+           {
+            "o": 20999.0,
+            "h": 21000.0,
+            "l": 20995.75,
+            "c": 20996.25
+           },
+           {
+            "o": 20996.25,
+            "h": 20997.5,
+            "l": 20990.75,
+            "c": 20992.0
+           },
+           {
+            "o": 20992.0,
+            "h": 20992.25,
+            "l": 20986.75,
+            "c": 20987.25
+           },
+           {
+            "o": 20987.25,
+            "h": 20988.5,
+            "l": 20984.0,
+            "c": 20984.25
+           },
+           {
+            "o": 20984.25,
+            "h": 20984.75,
+            "l": 20978.5,
+            "c": 20979.0
+           },
+           {
+            "o": 20979.0,
+            "h": 20980.0,
+            "l": 20974.75,
+            "c": 20975.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 2,
+          "head": {
+           "tf": "1M",
+           "label": "11:30"
+          },
+          "play": {
+           "from": 10,
+           "to": 27,
+           "speed": 300
+          }
+         },
+         "say": [
+          "Midday participation thinned out and it chopped you out.",
+          "Some days it works. <b>Your window exists because of the days it doesn’t.</b>"
+         ]
+        },
+        "track": [
+         "emotionalTradesTaken"
+        ]
+       },
+       {
+        "label": "Window’s closed",
+        "path": {
+         "say": [
+          "You screenshot it for your journal and close the platform.",
+          "You traded your plan’s session. <b>That’s the whole job.</b>"
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "principle": "THE MARKET MAY BE OPEN. YOUR TRADING WINDOW CAN STILL BE CLOSED."
+    }
+   ]
+  },
+  {
+   "type": "p7_timeline",
+   "kicker": "Phase 1, applied",
+   "title": "Participation changes through the day",
+   "rule": "session",
+   "useMine": true,
+   "example": "My trading window: 9:45–11:00",
+   "rows": [
+    {
+     "t": "PREMARKET",
+     "text": "Participation building.",
+     "tone": "ink"
+    },
+    {
+     "t": "OPEN",
+     "text": "Activity often expands around opens.",
+     "tone": "warn"
+    },
+    {
+     "t": "MID-MORNING",
+     "text": "Can stay active, can settle.",
+     "tone": "ok"
+    },
+    {
+     "t": "MIDDAY",
+     "text": "Participation can thin out.",
+     "tone": "ink"
+    },
+    {
+     "t": "AFTERNOON",
+     "text": "Can pick back up. Or not.",
+     "tone": "ink"
+    }
+   ],
+   "asks": [
+    {
+     "prompt": "Which session ALWAYS trends?",
+     "options": [
+      {
+       "label": "New York",
+       "feedback": "“Always” is a stereotype. Sessions vary day to day."
+      },
+      {
+       "label": "London",
+       "feedback": "Same problem: “always”."
+      },
+      {
+       "label": "None of them always does anything",
+       "correct": true,
+       "why": "Times differ in participation, volume and volatility. Not in guarantees."
+      }
+     ],
+     "ecat": "session"
+    }
+   ],
+   "punch": "Not “trade here”. Just: the market you trade at 9:50 isn’t the market at 12:30."
+  },
+  {
+   "type": "p7_rulecheck",
+   "kicker": "Now with YOUR rulebook",
+   "title": "Valid setup at 11:17",
+   "check": "session",
+   "situation": {
+    "time": "11:17"
+   },
+   "rcat": "session",
+   "ecat": "session",
+   "facts": [
+    [
+     "Clock",
+     "11:17"
+    ],
+    [
+     "Setup",
+     "valid Dayli ICC"
+    ]
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "The market trades almost all day. <em>I don’t have to.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why does your trading window exist?",
+   "modelAnswer": "Because my strategy behaves best during the time I tested and actually trade. A valid setup outside my window is still outside my plan."
+  }
+ ],
+ "takeaways": [
+  "Sessions differ in participation, not guarantees.",
+  "Market open ≠ window open.",
+  "Trade your plan’s session."
+ ],
+ "remember": "THE MARKET MAY BE OPEN. YOUR WINDOW CAN STILL BE CLOSED."
+}

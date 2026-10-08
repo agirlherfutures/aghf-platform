@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My AGHF Rulebook — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/lesson-engine.css">
+<link rel="stylesheet" href="shared/structure-charts.css">
+<link rel="stylesheet" href="shared/icc.css">
+<link rel="stylesheet" href="shared/trigger.css">
+<link rel="stylesheet" href="shared/mind.css">
+<link rel="stylesheet" href="shared/lesson-slides.css">
+<style>
+  .rb-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
+  @media print { .sidebar, .rb-actions, .p7-edit, .p7-modebar, .lh-header .lh-crumb-row { display: none !important; } .main { margin: 0 !important; } }
+</style>
+</head>
+<body>
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="lessons"></script>
+<main class="main">
+  <div class="lh-header">
+    <div class="lh-crumb-row"><div class="lh-crumb">Phase 7 · Rules That Protect You</div></div>
+    <h1 class="lh-title">📕 My AGHF Rulebook</h1>
+    <p class="lh-hook">Private to you. Edit in Review Mode. Read it before every session.</p>
+  </div>
+  <div class="rb-actions">
+    <button type="button" class="tx-mini" id="rbReview">✎ Review Mode</button>
+    <button type="button" class="tx-mini" id="rbSession">▶ Before a session (read-only)</button>
+    <button type="button" class="tx-mini" onclick="window.print()">🖨 Print</button>
+    <a class="tx-mini" href="lesson.html?phase=p7&n=22">Build / rebuild →</a>
+  </div>
+  <div class="lw-wrap" id="rbWrap"></div>
+</main>
+<script type="module">
+  import { renderRulebookView, renderRuleQueue } from './shared/rules.js';
+  import { hasRulebook, ruleQueue } from './shared/rules-core.js';
+  const wrap = document.getElementById('rbWrap');
+  function show(mode) {
+    wrap.innerHTML = '';
+    if (!hasRulebook()) {
+      wrap.innerHTML = '<div class="lw-card"><h2>No rulebook saved yet</h2><p>Build it in Phase 7, Lesson 22: Your Rulebook.</p><a class="lw-continue-btn" href="lesson.html?phase=p7&n=22">Build my rulebook →</a></div>';
+      return;
+    }
+    const a = document.createElement('div'); wrap.appendChild(a);
+    renderRulebookView(a, { kicker: '', title: '', mode }, null, {});
+    if (mode === 'review' && ruleQueue().length) {
+      const b = document.createElement('div'); wrap.appendChild(b);
+      renderRuleQueue(b, { kicker: 'Flagged for review', title: 'Rules you flagged during a session' }, null, {});
+    }
+  }
+  document.getElementById('rbReview').addEventListener('click', () => show('review'));
+  document.getElementById('rbSession').addEventListener('click', () => show('session'));
+  show(new URLSearchParams(location.search).get('mode') === 'session' ? 'session' : 'review');
+</script>
+</body>
+</html>

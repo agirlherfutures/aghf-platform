@@ -1,0 +1,816 @@
+{
+ "phase": "p7",
+ "section": "s20",
+ "lessonNumber": 25,
+ "title": "Chop: Protect",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Indication? Correction? Continuation? Again?",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Feel how chop keeps producing almost-setups, and protect your account instead of feeding it.",
+  "missionQuestion": "Is price clear enough for my model right now?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_scene",
+   "kicker": "Chop: Protect",
+   "title": "10:14",
+   "beats": [
+    {
+     "chart": {
+      "bars": [
+       {
+        "o": 20998.25,
+        "h": 21000.75,
+        "l": 20997.0,
+        "c": 20999.75
+       },
+       {
+        "o": 20999.75,
+        "h": 21002.0,
+        "l": 20999.0,
+        "c": 21001.25
+       },
+       {
+        "o": 21001.25,
+        "h": 21004.25,
+        "l": 21000.5,
+        "c": 21002.25
+       },
+       {
+        "o": 21002.25,
+        "h": 21007.0,
+        "l": 21000.75,
+        "c": 21005.5
+       },
+       {
+        "o": 21005.5,
+        "h": 21007.0,
+        "l": 21000.75,
+        "c": 21002.25
+       },
+       {
+        "o": 21002.25,
+        "h": 21008.5,
+        "l": 21000.75,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21008.5,
+        "l": 21004.0,
+        "c": 21005.5
+       },
+       {
+        "o": 21005.5,
+        "h": 21007.0,
+        "l": 21000.75,
+        "c": 21002.25
+       },
+       {
+        "o": 21002.25,
+        "h": 21008.5,
+        "l": 21000.75,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21008.5,
+        "l": 21001.5,
+        "c": 21003.0
+       },
+       {
+        "o": 21003.0,
+        "h": 21004.5,
+        "l": 21000.75,
+        "c": 21002.25
+       },
+       {
+        "o": 21002.25,
+        "h": 21008.5,
+        "l": 21000.75,
+        "c": 21007.0
+       },
+       {
+        "o": 21007.0,
+        "h": 21008.5,
+        "l": 21001.5,
+        "c": 21003.0
+       },
+       {
+        "o": 21003.0,
+        "h": 21007.75,
+        "l": 21001.5,
+        "c": 21006.25
+       },
+       {
+        "o": 21006.25,
+        "h": 21007.75,
+        "l": 21000.0,
+        "c": 21001.5
+       },
+       {
+        "o": 21001.5,
+        "h": 21004.5,
+        "l": 21000.0,
+        "c": 21003.0
+       },
+       {
+        "o": 21003.0,
+        "h": 21007.75,
+        "l": 21001.5,
+        "c": 21006.25
+       },
+       {
+        "o": 21006.25,
+        "h": 21007.75,
+        "l": 21000.0,
+        "c": 21001.5
+       },
+       {
+        "o": 21001.5,
+        "h": 21004.5,
+        "l": 21000.0,
+        "c": 21003.0
+       }
+      ],
+      "pil": 21004.25,
+      "pilAt": 2,
+      "tags": [
+       {
+        "at": 3,
+        "text": "I?",
+        "tone": "gold"
+       },
+       {
+        "at": 4,
+        "text": "C?",
+        "tone": "gold"
+       },
+       {
+        "at": 5,
+        "text": "C?",
+        "tone": "gold"
+       },
+       {
+        "at": 7,
+        "text": "I?",
+        "tone": "gold"
+       },
+       {
+        "at": 8,
+        "text": "C?",
+        "tone": "gold"
+       },
+       {
+        "at": 9,
+        "text": "C?",
+        "tone": "gold"
+       }
+      ],
+      "head": {
+       "tf": "1M",
+       "label": "Around one level"
+      },
+      "play": {
+       "from": 1,
+       "to": 10,
+       "speed": 480
+      }
+     }
+    },
+    {
+     "say": [
+      "Close through. Close back. Close through. Close back.",
+      "Technically, that reads like a sequence.",
+      "<b>Then another one. Then the opposite one.</b>"
+     ]
+    },
+    {
+     "thoughts": [
+      "“Technically it’s valid…”",
+      "“Which PIL is it even?”"
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "What do you do?",
+      "options": [
+       {
+        "label": "Take the latest sequence. Technically valid.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20998.25,
+            "h": 21000.75,
+            "l": 20997.0,
+            "c": 20999.75
+           },
+           {
+            "o": 20999.75,
+            "h": 21002.0,
+            "l": 20999.0,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21004.25,
+            "l": 21000.5,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21005.5
+           },
+           {
+            "o": 21005.5,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21004.0,
+            "c": 21005.5
+           },
+           {
+            "o": 21005.5,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21001.5,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21004.5,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21001.5,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21007.75,
+            "l": 21001.5,
+            "c": 21006.25
+           },
+           {
+            "o": 21006.25,
+            "h": 21007.75,
+            "l": 21000.0,
+            "c": 21001.5
+           },
+           {
+            "o": 21001.5,
+            "h": 21004.5,
+            "l": 21000.0,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21007.75,
+            "l": 21001.5,
+            "c": 21006.25
+           },
+           {
+            "o": 21006.25,
+            "h": 21007.75,
+            "l": 21000.0,
+            "c": 21001.5
+           },
+           {
+            "o": 21001.5,
+            "h": 21004.5,
+            "l": 21000.0,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21003.75,
+            "l": 21000.75,
+            "c": 21002.0
+           },
+           {
+            "o": 21002.0,
+            "h": 21002.5,
+            "l": 20998.75,
+            "c": 20999.0
+           },
+           {
+            "o": 20999.0,
+            "h": 21000.0,
+            "l": 20995.75,
+            "c": 20996.25
+           },
+           {
+            "o": 20996.25,
+            "h": 20997.5,
+            "l": 20990.75,
+            "c": 20992.0
+           },
+           {
+            "o": 20992.0,
+            "h": 20992.25,
+            "l": 20986.75,
+            "c": 20987.25
+           },
+           {
+            "o": 20987.25,
+            "h": 20988.5,
+            "l": 20984.0,
+            "c": 20984.25
+           },
+           {
+            "o": 20984.25,
+            "h": 20984.75,
+            "l": 20978.5,
+            "c": 20979.0
+           },
+           {
+            "o": 20979.0,
+            "h": 20980.0,
+            "l": 20974.75,
+            "c": 20975.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 2,
+          "tags": [
+           {
+            "at": 26,
+            "text": "−1R",
+            "tone": "warn"
+           }
+          ],
+          "head": {
+           "tf": "1M",
+           "label": "Technically valid"
+          },
+          "play": {
+           "from": 10,
+           "to": 27,
+           "speed": 300
+          }
+         },
+         "say": [
+          "The chop picked a direction. Not yours.",
+          "Your model didn’t fail. <b>It just had nothing clear to read.</b>"
+         ]
+        },
+        "track": [
+         "emotionalTradesTaken"
+        ]
+       },
+       {
+        "label": "Protect. Wait for clarity.",
+        "path": {
+         "chart": {
+          "bars": [
+           {
+            "o": 20998.25,
+            "h": 21000.75,
+            "l": 20997.0,
+            "c": 20999.75
+           },
+           {
+            "o": 20999.75,
+            "h": 21002.0,
+            "l": 20999.0,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21004.25,
+            "l": 21000.5,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21005.5
+           },
+           {
+            "o": 21005.5,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21004.0,
+            "c": 21005.5
+           },
+           {
+            "o": 21005.5,
+            "h": 21007.0,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21001.5,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21004.5,
+            "l": 21000.75,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21008.5,
+            "l": 21000.75,
+            "c": 21007.0
+           },
+           {
+            "o": 21007.0,
+            "h": 21008.5,
+            "l": 21001.5,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21007.75,
+            "l": 21001.5,
+            "c": 21006.25
+           },
+           {
+            "o": 21006.25,
+            "h": 21007.75,
+            "l": 21000.0,
+            "c": 21001.5
+           },
+           {
+            "o": 21001.5,
+            "h": 21004.5,
+            "l": 21000.0,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21007.75,
+            "l": 21001.5,
+            "c": 21006.25
+           },
+           {
+            "o": 21006.25,
+            "h": 21007.75,
+            "l": 21000.0,
+            "c": 21001.5
+           },
+           {
+            "o": 21001.5,
+            "h": 21004.5,
+            "l": 21000.0,
+            "c": 21003.0
+           },
+           {
+            "o": 21003.0,
+            "h": 21006.5,
+            "l": 21001.75,
+            "c": 21005.25
+           },
+           {
+            "o": 21005.25,
+            "h": 21006.0,
+            "l": 21003.25,
+            "c": 21004.5
+           },
+           {
+            "o": 21004.5,
+            "h": 21007.5,
+            "l": 21004.25,
+            "c": 21006.25
+           },
+           {
+            "o": 21006.25,
+            "h": 21007.5,
+            "l": 21003.25,
+            "c": 21003.75
+           },
+           {
+            "o": 21003.75,
+            "h": 21004.5,
+            "l": 21002.25,
+            "c": 21003.25
+           },
+           {
+            "o": 21003.25,
+            "h": 21004.5,
+            "l": 21000.25,
+            "c": 21001.25
+           },
+           {
+            "o": 21001.25,
+            "h": 21003.0,
+            "l": 21000.25,
+            "c": 21002.25
+           },
+           {
+            "o": 21002.25,
+            "h": 21005.0,
+            "l": 21001.5,
+            "c": 21004.25
+           },
+           {
+            "o": 21004.25,
+            "h": 21006.25,
+            "l": 21003.75,
+            "c": 21005.25
+           }
+          ],
+          "pil": 21004.25,
+          "pilAt": 2,
+          "head": {
+           "tf": "1M",
+           "label": "You protected"
+          },
+          "play": {
+           "from": 10,
+           "to": 28,
+           "speed": 300
+          }
+         },
+         "say": [
+          "More chop. Nothing lost.",
+          "In choppy conditions, <b>protecting the account is the position.</b>"
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "principle": "REPEATED OVERLAP REDUCES CLARITY. IF EVERY LEVEL LOOKS IMPORTANT, NONE OF THEM MAY BE CLEAR ENOUGH YET."
+    }
+   ]
+  },
+  {
+   "type": "p7_pil_click",
+   "kicker": "Mark the PIL",
+   "title": "Tap the level that matters",
+   "clean": {
+    "chart": {
+     "swings": [
+      [
+       20,
+       290
+      ],
+      [
+       90,
+       220
+      ],
+      [
+       130,
+       250
+      ],
+      [
+       220,
+       160
+      ],
+      [
+       260,
+       195
+      ],
+      [
+       350,
+       110
+      ],
+      [
+       390,
+       145
+      ],
+      [
+       480,
+       60
+      ],
+      [
+       520,
+       90
+      ],
+      [
+       600,
+       40
+      ]
+     ],
+     "seed": 21
+    },
+    "label": "CLEAN STRUCTURE",
+    "levels": [
+     {
+      "y": 160,
+      "label": "swing high"
+     },
+     {
+      "y": 250,
+      "label": "pullback low"
+     }
+    ],
+    "after": "One or two levels stand out. Easy. Next."
+   },
+   "messy": {
+    "chart": {
+     "swings": [
+      [
+       20,
+       150
+      ],
+      [
+       60,
+       185
+      ],
+      [
+       95,
+       140
+      ],
+      [
+       130,
+       178
+      ],
+      [
+       165,
+       150
+      ],
+      [
+       200,
+       190
+      ],
+      [
+       235,
+       145
+      ],
+      [
+       270,
+       175
+      ],
+      [
+       305,
+       152
+      ],
+      [
+       340,
+       188
+      ],
+      [
+       375,
+       142
+      ],
+      [
+       410,
+       180
+      ],
+      [
+       445,
+       155
+      ],
+      [
+       480,
+       186
+      ],
+      [
+       515,
+       147
+      ],
+      [
+       550,
+       176
+      ],
+      [
+       600,
+       160
+      ]
+     ],
+     "seed": 33,
+     "density": 1.3
+    },
+    "label": "MESSY CONSOLIDATION",
+    "need": 3,
+    "levels": [
+     {
+      "y": 140,
+      "label": "this one?"
+     },
+     {
+      "y": 147,
+      "label": "or this?"
+     },
+     {
+      "y": 155,
+      "label": "this?"
+     },
+     {
+      "y": 176,
+      "label": "maybe?"
+     },
+     {
+      "y": 186,
+      "label": "this one?"
+     }
+    ],
+    "more": "And another one that could be argued as important?",
+    "after": "<b>NOTICE THE PROBLEM?</b>"
+   },
+   "asks": [
+    {
+     "prompt": "If every tiny swing can be argued as important… which one actually matters?",
+     "options": [
+      {
+       "label": "The first one I tapped",
+       "feedback": "Why that one over the other two?",
+       "einc": "manyPils"
+      },
+      {
+       "label": "Maybe none of them is clear enough yet",
+       "correct": true,
+       "why": "That’s a read, not a failure."
+      }
+     ],
+     "ecat": "clarity"
+    }
+   ],
+   "punch": "IF THE CHART MAKES EVERY LEVEL LOOK IMPORTANT, NONE OF THEM MAY BE CLEAR ENOUGH YET."
+  },
+  {
+   "type": "p7_rule_form",
+   "kicker": "Write it calm",
+   "title": "Your chop / environment rule",
+   "form": "environment",
+   "onlyIfMissing": true,
+   "punch": "Example: “I don’t take setups inside tight consolidation when direction and the level are unclear.” Yours can differ. Not “never trade ranges”."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "When I’m drawing my fourth “PIL” in the same box, <em>the chart is telling me something.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What does chop look like to you, and what do you do in it?",
+   "modelAnswer": "Overlapping candles, closes flipping across a level, PIL candidates that keep changing. My model can technically fire, but clarity is low. My environment rule decides, and usually I protect."
+  }
+ ],
+ "takeaways": [
+  "Chop keeps producing almost-setups.",
+  "Many “important” levels = low clarity.",
+  "In chop, protect."
+ ],
+ "remember": "IN CHOPPY CONDITIONS, PROTECTING THE ACCOUNT IS THE POSITION."
+}

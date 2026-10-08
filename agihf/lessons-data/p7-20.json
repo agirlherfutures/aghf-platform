@@ -1,0 +1,144 @@
+{
+ "phase": "p7",
+ "section": "s19",
+ "lessonNumber": 20,
+ "title": "The Rule You Keep Negotiating",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Optional rules don’t protect you.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Spot the rule you keep bending, close its loophole, and change rules only in review.",
+  "missionQuestion": "Is this rule protecting me, or am I negotiating with it?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_scene",
+   "kicker": "The Rule You Keep Negotiating",
+   "title": "Your journal, this week",
+   "beats": [
+    {
+     "cards": [
+      "MON · chased “just a little”",
+      "TUE · 3rd trade “it was A+”",
+      "WED · stop moved “just this once”",
+      "THU · chased “it was different”"
+     ]
+    },
+    {
+     "say": [
+      "Four days. Four different reasons.",
+      "<b>The same rule, every time.</b>"
+     ]
+    },
+    {
+     "thoughts": [
+      "“It’s not really breaking it.”",
+      "“The rule doesn’t fit this situation.”"
+     ]
+    },
+    {
+     "say": [
+      "If a rule becomes optional when you’re emotional, it isn’t protecting you.",
+      "It’s just decorating your plan."
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "What do you do with this rule?",
+      "options": [
+       {
+        "label": "Delete it. It doesn’t fit me.",
+        "path": {
+         "say": [
+          "Maybe it really doesn’t fit. But you decided that on Thursday, mid-chase.",
+          "That’s the worst possible moment to judge a rule."
+         ]
+        },
+        "track": "feelingAsReason"
+       },
+       {
+        "label": "Close the loophole and keep it",
+        "path": {
+         "say": [
+          "Find the word you keep hiding behind. “Really”. “Basically”. “Just”.",
+          "Write the rule so live-trading-you can’t argue with it."
+         ]
+        },
+        "track": "ruleBasedResponses"
+       },
+       {
+        "label": "Flag it for review. Follow it until then.",
+        "path": {
+         "say": [
+          "Maybe it needs changing. That happens in review, calm, with your journal open.",
+          "<b>Not mid-session.</b>"
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "principle": "IF A RULE BECOMES OPTIONAL WHEN YOU’RE EMOTIONAL, IT ISN’T PROTECTING YOU."
+    }
+   ]
+  },
+  {
+   "type": "p7_rule_write",
+   "kicker": "Close the loophole",
+   "title": "Find the escape hatch",
+   "weak": "I won’t chase unless it looks really good.",
+   "critique": [
+    "“UNLESS IT LOOKS REALLY GOOD” 😭",
+    "Every setup looks really good when you want in."
+   ],
+   "options": [
+    {
+     "text": "I won’t chase unless I’m really sure.",
+     "feedback": "Same loophole, new outfit. 😂"
+    },
+    {
+     "text": "If my planned entry is missed and price moves away, I do not market-enter late. I wait for a new valid setup.",
+     "correct": true,
+     "why": "No loophole left."
+    }
+   ],
+   "rcat": "noChase",
+   "allowCustom": true,
+   "save": "noChase"
+  },
+  {
+   "type": "p7_rule_queue",
+   "kicker": "Rules change in review",
+   "title": "Flagged rules wait here",
+   "body": "In a session, rules are read-only. Flag a rule and it waits here until you review it calmly."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "If I have to argue with my rule, <em>the rule already won the argument. I wrote it for this.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Which rule do you negotiate with most, and what’s your favorite excuse?",
+   "modelAnswer": "I notice the word I use to escape it. I close the loophole, and if the rule truly needs changing I flag it and change it in review, never mid-session."
+  }
+ ],
+ "takeaways": [
+  "Optional rules don’t protect you.",
+  "Find the loophole word.",
+  "Change rules in review, never live."
+ ],
+ "remember": "IF A RULE BECOMES OPTIONAL WHEN YOU’RE EMOTIONAL, IT ISN’T PROTECTING YOU."
+}

@@ -1,0 +1,260 @@
+{
+ "phase": "p6",
+ "section": "s16",
+ "lessonNumber": 9,
+ "title": "Plan the Trade Before You’re In It",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Manage the plan. Not the emotion.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Write and lock a management plan before the position exists, and notice when you try to change it.",
+  "missionQuestion": "What is my plan once I’m in?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p6_pnl_tease",
+   "seq": [
+    "+$40",
+    "+$86",
+    "+$124",
+    "+$61",
+    "+$18",
+    "−$12"
+   ],
+   "line": "YOU’RE IN. 🎉 …and then the money starts moving.",
+   "sub": "TAKE PROFIT? MOVE STOP? CLOSE? MOVE TARGET? NOW WHAT? 😭"
+  },
+  {
+   "type": "p6_pause",
+   "kicker": "Phase 6 · Section 16",
+   "lines": [
+    "MANAGING THE TRADE",
+    "MANAGE THE PLAN.",
+    "NOT THE EMOTION."
+   ]
+  },
+  {
+   "type": "plan_card",
+   "kicker": "Pre-trade management card",
+   "title": "Fill it in. Then lock it.",
+   "plan": {
+    "entryPrice": 20000,
+    "stopPrice": 19970,
+    "targetPrice": 20060,
+    "contractCount": 4,
+    "managementModel": "fixed",
+    "partialRules": "None",
+    "runnerRules": "None",
+    "breakEvenRules": "None",
+    "structuralRules": "None",
+    "earlyInterventionRules": "None"
+   },
+   "choices": [
+    {
+     "field": "managementModel",
+     "prompt": "MANAGEMENT PLAN: how will you manage it?",
+     "options": [
+      {
+       "label": "Fixed: hold to the 60-point target or the 30-point stop",
+       "value": "fixed",
+       "correct": true,
+       "why": "Defined before the trade."
+      },
+      {
+       "label": "I’ll see how it feels",
+       "feedback": "You have an entry plan. You don’t have a trade plan."
+      }
+     ]
+    },
+    {
+     "field": "earlyInterventionRules",
+     "prompt": "WHAT WOULD MAKE YOU INTERVENE EARLY?",
+     "options": [
+      {
+       "label": "A 1M close below the 1H HL (thesis invalidated)",
+       "value": "1M close below the 1H HL",
+       "correct": true,
+       "why": "A structural reason, written down now."
+      },
+      {
+       "label": "If I’m up and get nervous",
+       "feedback": "That’s an emotion, not a condition."
+      },
+      {
+       "label": "If I lose $100",
+       "feedback": "That’s P&L, not structure. Your stop already defines the loss."
+      }
+     ]
+    }
+   ],
+   "ask": {
+    "prompt": "Another trader enters with an EMPTY management plan: “I’ll see how it feels.” What does she have?",
+    "options": [
+     {
+      "label": "A trade plan",
+      "feedback": "She has an entry. Nothing for after it."
+     },
+     {
+      "label": "An entry plan, not a trade plan",
+      "correct": true,
+      "why": "YOU HAVE AN ENTRY PLAN. YOU DON’T HAVE A TRADE PLAN."
+     }
+    ],
+    "stack": true
+   }
+  },
+  {
+   "type": "manage_sim",
+   "kicker": "Locked",
+   "title": "Now try to change it",
+   "plan": {
+    "entryPrice": 20000,
+    "stopPrice": 19970,
+    "targetPrice": 20060,
+    "contractCount": 4,
+    "managementModel": "fixed",
+    "partialRules": "None",
+    "runnerRules": "None",
+    "breakEvenRules": "None",
+    "structuralRules": "None",
+    "earlyInterventionRules": "None"
+   },
+   "bars": [
+    {
+     "o": 20018.0,
+     "h": 20018.5,
+     "l": 20013.0,
+     "c": 20014.0
+    },
+    {
+     "o": 20014.0,
+     "h": 20015.5,
+     "l": 20010.0,
+     "c": 20011.25
+    },
+    {
+     "o": 20011.25,
+     "h": 20012.0,
+     "l": 20008.25,
+     "c": 20009.5
+    },
+    {
+     "o": 20009.5,
+     "h": 20010.5,
+     "l": 20004.5,
+     "c": 20005.25
+    },
+    {
+     "o": 20005.25,
+     "h": 20006.0,
+     "l": 20001.5,
+     "c": 20003.0
+    },
+    {
+     "o": 20003.0,
+     "h": 20003.5,
+     "l": 19999.75,
+     "c": 20002.5
+    },
+    {
+     "o": 20002.5,
+     "h": 20005.5,
+     "l": 20001.75,
+     "c": 20005.0
+    },
+    {
+     "o": 20005.0,
+     "h": 20012.75,
+     "l": 20004.5,
+     "c": 20011.0
+    },
+    {
+     "o": 20011.0,
+     "h": 20017.5,
+     "l": 20008.75,
+     "c": 20015.0
+    },
+    {
+     "o": 20015.0,
+     "h": 20017.0,
+     "l": 20006.75,
+     "c": 20008.0
+    },
+    {
+     "o": 20008.0,
+     "h": 20010.0,
+     "l": 20001.25,
+     "c": 20002.0
+    },
+    {
+     "o": 20002.0,
+     "h": 20003.5,
+     "l": 19997.5,
+     "c": 19998.5
+    },
+    {
+     "o": 19998.5,
+     "h": 20007.25,
+     "l": 19996.0,
+     "c": 20006.0
+    },
+    {
+     "o": 20006.0,
+     "h": 20012.75,
+     "l": 20004.0,
+     "c": 20012.0
+    }
+   ],
+   "entryAt": 5,
+   "checkpoints": [
+    {
+     "at": 8,
+     "prompt": "+$120 and climbing. Anything to do?",
+     "tempt": "close",
+     "temptLabel": "TAKE PROFIT NOW?"
+    },
+    {
+     "at": 11,
+     "prompt": "It gave some back. Now red. Anything to do?",
+     "tempt": "move-stop",
+     "temptLabel": "MOVE STOP?",
+     "goal": true
+    }
+   ],
+   "actions": [
+    "follow",
+    "move-stop",
+    "partial",
+    "close",
+    "move-target"
+   ],
+   "intro": "Your plan is locked. Try touching it and see what happens."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Your calmest decisions should happen <em>before money starts moving.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why should management exist before entry?",
+   "modelAnswer": "Because once I’m in, P&L starts talking. If the plan is written and locked before that, I only have to follow it, and any change has to answer: what changed?"
+  }
+ ],
+ "takeaways": [
+  "Plan management before entry.",
+  "Lock it.",
+  "Any change answers: WHAT CHANGED?"
+ ],
+ "remember": "Your calmest decisions should happen before money starts moving."
+}

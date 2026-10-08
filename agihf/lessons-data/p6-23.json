@@ -1,0 +1,252 @@
+{
+ "phase": "p6",
+ "section": "s17",
+ "lessonNumber": 23,
+ "title": "Daily Loss Limits",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Your daily stop exists before the revenge-trading version of you shows up.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Stop at the daily limit, even when the next setup is beautiful.",
+  "missionQuestion": "Is the day already over?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "daily_stop",
+   "kicker": "One trade → one day",
+   "title": "Daily max: −2R",
+   "setup": {
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20987.25,
+      "l": 20981.5,
+      "c": 20986.0
+     },
+     {
+      "o": 20986.0,
+      "h": 20990.75,
+      "l": 20985.0,
+      "c": 20990.25
+     },
+     {
+      "o": 20990.25,
+      "h": 20995.25,
+      "l": 20989.75,
+      "c": 20993.75
+     },
+     {
+      "o": 20993.75,
+      "h": 20999.75,
+      "l": 20993.5,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.25,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21003.0,
+      "l": 20999.5,
+      "c": 21000.25
+     },
+     {
+      "o": 21000.25,
+      "h": 21001.5,
+      "l": 20996.25,
+      "c": 20996.75
+     },
+     {
+      "o": 20996.75,
+      "h": 20998.0,
+      "l": 20993.25,
+      "c": 20994.75
+     },
+     {
+      "o": 20994.75,
+      "h": 20995.25,
+      "l": 20990.0,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20996.0,
+      "l": 20990.0,
+      "c": 20994.5
+     },
+     {
+      "o": 20994.5,
+      "h": 20998.25,
+      "l": 20993.25,
+      "c": 20996.75
+     },
+     {
+      "o": 20996.75,
+      "h": 21001.75,
+      "l": 20995.25,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21008.5,
+      "l": 21002.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21010.0,
+      "l": 21007.0,
+      "c": 21009.5
+     },
+     {
+      "o": 21009.5,
+      "h": 21014.25,
+      "l": 21008.0,
+      "c": 21013.75
+     },
+     {
+      "o": 21013.75,
+      "h": 21017.25,
+      "l": 21013.5,
+      "c": 21016.75
+     },
+     {
+      "o": 21016.75,
+      "h": 21021.5,
+      "l": 21016.25,
+      "c": 21020.25
+     },
+     {
+      "o": 21020.25,
+      "h": 21021.5,
+      "l": 21016.0,
+      "c": 21017.0
+     },
+     {
+      "o": 21017.0,
+      "h": 21017.5,
+      "l": 21010.25,
+      "c": 21011.75
+     },
+     {
+      "o": 21011.75,
+      "h": 21012.5,
+      "l": 21006.75,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21008.25,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21009.25,
+      "l": 21005.25,
+      "c": 21008.5
+     },
+     {
+      "o": 21008.5,
+      "h": 21009.5,
+      "l": 21007.5,
+      "c": 21009.0
+     },
+     {
+      "o": 21009.0,
+      "h": 21010.5,
+      "l": 21007.75,
+      "c": 21010.0
+     },
+     {
+      "o": 21010.0,
+      "h": 21013.75,
+      "l": 21009.0,
+      "c": 21012.25
+     }
+    ],
+    "pil": 21004.25,
+    "pilAt": 4,
+    "showTo": 23,
+    "tags": [
+     {
+      "at": 22,
+      "text": "RETEST",
+      "where": "below"
+     }
+    ]
+   },
+   "punch": "A VALID SETUP DOES NOT OVERRIDE A REACHED DAILY STOP."
+  },
+  {
+   "type": "teach",
+   "kicker": "Daily risk card",
+   "heading": "Your limits, decided in advance",
+   "body": "",
+   "beats": [
+    {
+     "icon": "$",
+     "title": "Dollar loss",
+     "line": "e.g. −$240"
+    },
+    {
+     "icon": "R",
+     "title": "R loss",
+     "line": "e.g. −2R"
+    },
+    {
+     "icon": "✗",
+     "title": "Number of losses",
+     "line": "e.g. 2"
+    },
+    {
+     "icon": "#",
+     "title": "Number of trades",
+     "line": "e.g. 3"
+    }
+   ],
+   "punch": "When it’s reached: SESSION LOCKED. Take Trade turns off. Review, journal, replay and study stay on."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Your daily stop exists <em>before the revenge-trading version of you shows up.</em> 😂",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Why should a valid setup not override a reached daily stop?",
+   "modelAnswer": "Because the daily stop protects the day, not one trade. If I’ve hit it, the next setup is someone else’s, even if it would have won. The rule is still correct."
+  }
+ ],
+ "takeaways": [
+  "Daily stop = done.",
+  "Even for a beautiful setup.",
+  "Execute → learn mode."
+ ],
+ "remember": "A valid setup does not override a reached daily stop."
+}

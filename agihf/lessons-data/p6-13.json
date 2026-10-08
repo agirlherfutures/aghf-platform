@@ -1,0 +1,354 @@
+{
+ "phase": "p6",
+ "section": "s16",
+ "lessonNumber": 13,
+ "title": "Moving Your Stop & Break Even",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Why did the stop move?",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Judge a stop move by its reason, and know that break even reduces risk and room at the same time.",
+  "missionQuestion": "Why am I moving my stop?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "manage_sim",
+   "kicker": "Watch",
+   "title": "She moved it to break even",
+   "plan": {
+    "entryPrice": 20000,
+    "stopPrice": 19970,
+    "targetPrice": 20060,
+    "contractCount": 4,
+    "managementModel": "fixed",
+    "partialRules": "None",
+    "runnerRules": "None",
+    "breakEvenRules": "None",
+    "structuralRules": "None",
+    "earlyInterventionRules": "None"
+   },
+   "bars": [
+    {
+     "o": 20018.0,
+     "h": 20019.25,
+     "l": 20014.25,
+     "c": 20014.5
+    },
+    {
+     "o": 20014.5,
+     "h": 20015.25,
+     "l": 20010.25,
+     "c": 20011.5
+    },
+    {
+     "o": 20011.5,
+     "h": 20012.5,
+     "l": 20008.0,
+     "c": 20008.5
+    },
+    {
+     "o": 20008.5,
+     "h": 20009.5,
+     "l": 20004.25,
+     "c": 20005.25
+    },
+    {
+     "o": 20005.25,
+     "h": 20006.5,
+     "l": 20002.25,
+     "c": 20003.0
+    },
+    {
+     "o": 20003.0,
+     "h": 20003.75,
+     "l": 19999.75,
+     "c": 20002.5
+    },
+    {
+     "o": 20002.5,
+     "h": 20009.0,
+     "l": 20000.5,
+     "c": 20008.0
+    },
+    {
+     "o": 20008.0,
+     "h": 20017.5,
+     "l": 20007.0,
+     "c": 20017.0
+    },
+    {
+     "o": 20017.0,
+     "h": 20027.25,
+     "l": 20014.75,
+     "c": 20026.0
+    },
+    {
+     "o": 20026.0,
+     "h": 20027.0,
+     "l": 20016.5,
+     "c": 20018.0
+    },
+    {
+     "o": 20018.0,
+     "h": 20018.5,
+     "l": 20008.25,
+     "c": 20009.0
+    },
+    {
+     "o": 20009.0,
+     "h": 20010.75,
+     "l": 19999.5,
+     "c": 20001.0
+    },
+    {
+     "o": 20001.0,
+     "h": 20002.75,
+     "l": 19998.0,
+     "c": 19999.25
+    },
+    {
+     "o": 19999.25,
+     "h": 20008.25,
+     "l": 19998.5,
+     "c": 20007.0
+    },
+    {
+     "o": 20007.0,
+     "h": 20019.75,
+     "l": 20006.75,
+     "c": 20019.0
+    },
+    {
+     "o": 20019.0,
+     "h": 20033.75,
+     "l": 20017.75,
+     "c": 20033.0
+    },
+    {
+     "o": 20033.0,
+     "h": 20048.5,
+     "l": 20031.0,
+     "c": 20047.0
+    },
+    {
+     "o": 20047.0,
+     "h": 20059.0,
+     "l": 20045.0,
+     "c": 20058.0
+    },
+    {
+     "o": 20058.0,
+     "h": 20061.5,
+     "l": 20057.0,
+     "c": 20060.5
+    }
+   ],
+   "entryAt": 5,
+   "checkpoints": [
+    {
+     "at": 8,
+     "expect": "move-stop",
+     "stopTo": 20000,
+     "unplanned": true,
+     "text": "+26. No BE rule in her plan. She moves the stop to entry anyway."
+    }
+   ],
+   "mode": "watch",
+   "playAfterExit": true,
+   "origTpSay": "Then price went to the <b>original target</b>. Without her.",
+   "afterResult": {
+    "prompt": "WAS THAT BE MOVE PART OF THE PLAN?",
+    "options": [
+     {
+      "label": "Doesn’t matter, it protected her",
+      "feedback": "It also removed the room the trade needed. The question is why it moved."
+     },
+     {
+      "label": "No: it was an emotional intervention",
+      "correct": true,
+      "why": "No BE rule. It wasn’t “never move to BE”. It was “that move wasn’t in the plan”."
+     }
+    ],
+    "stack": true
+   }
+  },
+  {
+   "type": "manage_sim",
+   "kicker": "Live",
+   "title": "This time it’s in the plan",
+   "plan": {
+    "entryPrice": 20000,
+    "stopPrice": 19970,
+    "targetPrice": 20060,
+    "contractCount": 4,
+    "managementModel": "fixed",
+    "partialRules": "None",
+    "runnerRules": "None",
+    "breakEvenRules": "Move SL to entry after a 1M close above +30",
+    "structuralRules": "None",
+    "earlyInterventionRules": "None"
+   },
+   "bars": [
+    {
+     "o": 20018.0,
+     "h": 20018.75,
+     "l": 20013.75,
+     "c": 20015.0
+    },
+    {
+     "o": 20015.0,
+     "h": 20015.75,
+     "l": 20011.75,
+     "c": 20012.75
+    },
+    {
+     "o": 20012.75,
+     "h": 20014.0,
+     "l": 20007.75,
+     "c": 20009.25
+    },
+    {
+     "o": 20009.25,
+     "h": 20010.5,
+     "l": 20005.5,
+     "c": 20006.5
+    },
+    {
+     "o": 20006.5,
+     "h": 20007.0,
+     "l": 20002.5,
+     "c": 20003.0
+    },
+    {
+     "o": 20003.0,
+     "h": 20003.25,
+     "l": 19999.75,
+     "c": 20002.5
+    },
+    {
+     "o": 20002.5,
+     "h": 20009.25,
+     "l": 20001.25,
+     "c": 20008.0
+    },
+    {
+     "o": 20008.0,
+     "h": 20019.0,
+     "l": 20006.0,
+     "c": 20017.0
+    },
+    {
+     "o": 20017.0,
+     "h": 20027.0,
+     "l": 20015.5,
+     "c": 20026.0
+    },
+    {
+     "o": 20026.0,
+     "h": 20032.75,
+     "l": 20024.25,
+     "c": 20031.0
+    },
+    {
+     "o": 20031.0,
+     "h": 20033.5,
+     "l": 20025.0,
+     "c": 20027.0
+    },
+    {
+     "o": 20027.0,
+     "h": 20036.25,
+     "l": 20025.25,
+     "c": 20034.0
+    },
+    {
+     "o": 20034.0,
+     "h": 20040.75,
+     "l": 20033.0,
+     "c": 20040.0
+    },
+    {
+     "o": 20040.0,
+     "h": 20040.25,
+     "l": 20034.5,
+     "c": 20036.0
+    }
+   ],
+   "entryAt": 5,
+   "checkpoints": [
+    {
+     "at": 8,
+     "prompt": "+26. Anything to do?",
+     "tempt": "move-stop"
+    },
+    {
+     "at": 9,
+     "event": "PLANNED_STOP_ADJUSTMENT_TRIGGERED",
+     "eventText": "A 1M candle closed above +30: your BE rule triggered.",
+     "expect": "move-stop",
+     "stopTo": 20000,
+     "prompt": "Price just closed above +30.",
+     "goal": true,
+     "after": "Rule-based management. The plan said so."
+    }
+   ],
+   "actions": [
+    "follow",
+    "move-stop",
+    "partial",
+    "close",
+    "move-target"
+   ]
+  },
+  {
+   "type": "teach",
+   "kicker": "“Break even” isn’t $0",
+   "heading": "What BE really means",
+   "body": "",
+   "beats": [
+    {
+     "icon": "$",
+     "title": "Fees",
+     "line": "Commissions still apply."
+    },
+    {
+     "icon": "↯",
+     "title": "Fills & slippage",
+     "line": "The stop can fill worse than entry."
+    },
+    {
+     "icon": "⇕",
+     "title": "Less room",
+     "line": "The trade loses space to move."
+    }
+   ],
+   "punch": "BREAK EVEN CAN REDUCE RISK. IT CAN ALSO REDUCE THE ROOM THE TRADE HAS TO MOVE."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Good: “My tested management rule was triggered.” <em>Poor: “I was up $100 and got scared of giving it back.”</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "When can moving to break even become a problem?",
+   "modelAnswer": "When it isn’t part of my plan and I do it because I’m scared of giving profit back. It can remove the room the trade needs, and BE rarely means exactly $0 after fees and fills."
+  }
+ ],
+ "takeaways": [
+  "Ask: why did the stop move?",
+  "Planned BE = rule-based.",
+  "Unplanned BE = emotional intervention."
+ ],
+ "remember": "Break even can reduce risk. It can also reduce the room the trade has to move."
+}

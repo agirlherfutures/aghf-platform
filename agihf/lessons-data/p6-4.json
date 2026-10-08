@@ -1,0 +1,841 @@
+{
+ "phase": "p6",
+ "section": "s15",
+ "lessonNumber": 4,
+ "title": "Confirmation vs Anticipation",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "A trade can work after you broke your rules.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Hear the difference between anticipating and confirming, and grade a trade before you know how it ended.",
+  "missionQuestion": "Did price confirm it, or did I predict it?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p6_sort",
+   "kicker": "Two voices",
+   "title": "Anticipation or confirmation?",
+   "buckets": [
+    {
+     "key": "ant",
+     "label": "ANTICIPATION",
+     "tone": "pink"
+    },
+    {
+     "key": "conf",
+     "label": "CONFIRMATION",
+     "tone": "teal"
+    }
+   ],
+   "items": [
+    {
+     "text": "“It looks like it’s going to indicate.”",
+     "bucket": "ant"
+    },
+    {
+     "text": "“The candle closed through the PIL.”",
+     "bucket": "conf"
+    },
+    {
+     "text": "“This correction is probably done.”",
+     "bucket": "ant"
+    },
+    {
+     "text": "“Correction closed back through.”",
+     "bucket": "conf"
+    },
+    {
+     "text": "“This candle should close above.”",
+     "bucket": "ant"
+    },
+    {
+     "text": "“Continuation confirmed.”",
+     "bucket": "conf"
+    },
+    {
+     "text": "“If I enter now, I’ll get a better price.”",
+     "bucket": "ant",
+     "why": "A better price for a setup that doesn’t exist yet."
+    },
+    {
+     "text": "“The valid retest is now present.”",
+     "bucket": "conf"
+    }
+   ],
+   "track": true,
+   "concept": "Confirmation vs anticipation"
+  },
+  {
+   "type": "trigger_sim",
+   "mode": "review",
+   "kicker": "Watch two traders",
+   "title": "Trader A vs Trader B",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20987.25,
+      "l": 20980.75,
+      "c": 20986.25
+     },
+     {
+      "o": 20986.25,
+      "h": 20991.25,
+      "l": 20985.25,
+      "c": 20990.25
+     },
+     {
+      "o": 20990.25,
+      "h": 20994.5,
+      "l": 20989.25,
+      "c": 20993.5
+     },
+     {
+      "o": 20993.5,
+      "h": 20999.5,
+      "l": 20993.25,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20998.0,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.75,
+      "l": 20999.75,
+      "c": 21000.0
+     },
+     {
+      "o": 21000.0,
+      "h": 21001.5,
+      "l": 20996.75,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 20998.25,
+      "l": 20994.0,
+      "c": 20994.25
+     },
+     {
+      "o": 20994.25,
+      "h": 20995.25,
+      "l": 20991.0,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20994.25,
+      "l": 20991.0,
+      "c": 20993.75
+     },
+     {
+      "o": 20993.75,
+      "h": 20998.5,
+      "l": 20992.5,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 21002.25,
+      "l": 20996.75,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21006.75,
+      "l": 21001.75,
+      "c": 21003.25,
+      "path": [
+       21002.0,
+       21006.75,
+       21003.25
+      ]
+     },
+     {
+      "o": 21003.25,
+      "h": 21008.5,
+      "l": 21002.5,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21009.5,
+      "l": 21006.75,
+      "c": 21009.0
+     },
+     {
+      "o": 21009.0,
+      "h": 21012.0,
+      "l": 21008.25,
+      "c": 21010.75
+     },
+     {
+      "o": 21010.75,
+      "h": 21015.5,
+      "l": 21009.25,
+      "c": 21014.75
+     },
+     {
+      "o": 21014.75,
+      "h": 21017.5,
+      "l": 21014.5,
+      "c": 21016.25
+     },
+     {
+      "o": 21016.25,
+      "h": 21017.75,
+      "l": 21011.75,
+      "c": 21012.5
+     },
+     {
+      "o": 21012.5,
+      "h": 21013.25,
+      "l": 21011.25,
+      "c": 21011.5
+     },
+     {
+      "o": 21011.5,
+      "h": 21012.5,
+      "l": 21006.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21007.75,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21008.5,
+      "l": 21005.0,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21008.5,
+      "l": 21006.5,
+      "c": 21008.0
+     },
+     {
+      "o": 21008.0,
+      "h": 21010.75,
+      "l": 21007.5,
+      "c": 21009.5
+     },
+     {
+      "o": 21009.5,
+      "h": 21013.25,
+      "l": 21008.75,
+      "c": 21012.25
+     }
+    ],
+    "start": 12,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish"
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis"
+     },
+     {
+      "label": "15M",
+      "value": "Pulling back into the map"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ]
+   },
+   "setups": [
+    {
+     "pil": 21004.25,
+     "pilAt": 4
+    }
+   ],
+   "checkpoints": [
+    {
+     "at": 14,
+     "ask": {
+      "prompt": "Trader A clicked while that candle was still open. Trader B waited. WHO FOLLOWED THE MODEL?",
+      "options": [
+       {
+        "label": "Trader A: it looked perfect",
+        "feedback": "It looked perfect while it was open. It closed on the wrong side.",
+        "bias": true
+       },
+       {
+        "label": "Trader B",
+        "correct": true,
+        "why": "No close, no continuation. Trader B’s patience was the model."
+       },
+       {
+        "label": "Both, they just had different styles",
+        "feedback": "Only one of them waited for the close the model requires."
+       }
+      ],
+      "stack": true
+     },
+     "after": "Keep watching. What happens next is the important part."
+    }
+   ],
+   "traders": [
+    {
+     "name": "A",
+     "at": 14,
+     "label": "A ENTERS (OPEN)",
+     "trade": true
+    }
+   ],
+   "trade": {
+    "stopPts": 30,
+    "targetPts": 12,
+    "winLabel": "IN PROFIT",
+    "winSay": "<b>It worked.</b> Trader A is in profit."
+   },
+   "afterResult": {
+    "prompt": "Price rallied anyway, and Trader A hit a target. DID TRADER A NOW HAVE GOOD EXECUTION?",
+    "options": [
+     {
+      "label": "Yes, it worked",
+      "feedback": "It worked. That’s the outcome. The entry still came before continuation existed.",
+      "bias": true
+     },
+     {
+      "label": "No",
+      "correct": true,
+      "why": "A trade can work after you broke your rules. That doesn’t make the rule break good execution."
+     }
+    ],
+    "stack": true
+   },
+   "timeline": false
+  },
+  {
+   "type": "trigger_sim",
+   "mode": "decide",
+   "kicker": "Live",
+   "title": "Your turn: the anticipation trap",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20987.25,
+      "l": 20980.75,
+      "c": 20986.25
+     },
+     {
+      "o": 20986.25,
+      "h": 20991.25,
+      "l": 20985.25,
+      "c": 20990.25
+     },
+     {
+      "o": 20990.25,
+      "h": 20994.5,
+      "l": 20989.25,
+      "c": 20993.5
+     },
+     {
+      "o": 20993.5,
+      "h": 20999.5,
+      "l": 20993.25,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20998.0,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21002.75,
+      "l": 20999.75,
+      "c": 21000.0
+     },
+     {
+      "o": 21000.0,
+      "h": 21001.5,
+      "l": 20996.75,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 20998.25,
+      "l": 20994.0,
+      "c": 20994.25
+     },
+     {
+      "o": 20994.25,
+      "h": 20995.25,
+      "l": 20991.0,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20994.25,
+      "l": 20991.0,
+      "c": 20993.75
+     },
+     {
+      "o": 20993.75,
+      "h": 20998.5,
+      "l": 20992.5,
+      "c": 20997.75
+     },
+     {
+      "o": 20997.75,
+      "h": 21002.25,
+      "l": 20996.75,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21006.75,
+      "l": 21001.75,
+      "c": 21003.25,
+      "path": [
+       21002.0,
+       21006.75,
+       21003.25
+      ]
+     },
+     {
+      "o": 21003.25,
+      "h": 21008.5,
+      "l": 21002.5,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21009.5,
+      "l": 21006.75,
+      "c": 21009.0
+     },
+     {
+      "o": 21009.0,
+      "h": 21012.0,
+      "l": 21008.25,
+      "c": 21010.75
+     },
+     {
+      "o": 21010.75,
+      "h": 21015.5,
+      "l": 21009.25,
+      "c": 21014.75
+     },
+     {
+      "o": 21014.75,
+      "h": 21017.5,
+      "l": 21014.5,
+      "c": 21016.25
+     },
+     {
+      "o": 21016.25,
+      "h": 21017.75,
+      "l": 21011.75,
+      "c": 21012.5
+     },
+     {
+      "o": 21012.5,
+      "h": 21013.25,
+      "l": 21011.25,
+      "c": 21011.5
+     },
+     {
+      "o": 21011.5,
+      "h": 21012.5,
+      "l": 21006.0,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21007.75,
+      "l": 21003.75,
+      "c": 21005.75
+     },
+     {
+      "o": 21005.75,
+      "h": 21008.5,
+      "l": 21005.0,
+      "c": 21007.0
+     }
+    ],
+    "start": 12,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish"
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis"
+     },
+     {
+      "label": "15M",
+      "value": "Pulling back into the map"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ],
+    "preEntry": {
+     "context": {
+      "state": "defined",
+      "value": "4H bullish"
+     },
+     "structure": {
+      "state": "defined",
+      "value": "1H HL holding"
+     },
+     "location": {
+      "state": "defined",
+      "value": "4H discount"
+     },
+     "direction": {
+      "state": "defined",
+      "value": "Long only"
+     },
+     "pil": {
+      "state": "defined",
+      "value": "21,004.25"
+     },
+     "invalidation": {
+      "state": "defined",
+      "value": "Close below the 1H HL"
+     }
+    }
+   },
+   "setups": [
+    {
+     "pil": 21004.25,
+     "pilAt": 4
+    }
+   ],
+   "checkpoints": [
+    {
+     "at": 14,
+     "intrabar": 0.42,
+     "prompt": "That candle looks strong, and it’s still open. What do you do?",
+     "after": "Watch it finish."
+    },
+    {
+     "at": 14,
+     "after": "<b>GOOD WAIT.</b> What looked like continuation never confirmed."
+    },
+    {
+     "at": 15,
+     "after": "Now it closed. Prepare. Still not executable."
+    },
+    {
+     "at": 23,
+     "after": "First valid retest. That’s the entry.",
+     "goal": true
+    }
+   ],
+   "tempts": [
+    {
+     "at": 14
+    }
+   ]
+  },
+  {
+   "type": "trigger_sim",
+   "mode": "review",
+   "kicker": "Outcome-blind review",
+   "title": "Grade it blind",
+   "scenario": {
+    "dir": "bullish",
+    "tf": "1M",
+    "symbol": "MNQ",
+    "bars": [
+     {
+      "o": 20982.25,
+      "h": 20986.5,
+      "l": 20981.25,
+      "c": 20985.5
+     },
+     {
+      "o": 20985.5,
+      "h": 20990.75,
+      "l": 20984.25,
+      "c": 20990.25
+     },
+     {
+      "o": 20990.25,
+      "h": 20996.0,
+      "l": 20989.25,
+      "c": 20995.0
+     },
+     {
+      "o": 20995.0,
+      "h": 20998.75,
+      "l": 20994.75,
+      "c": 20998.25
+     },
+     {
+      "o": 20998.25,
+      "h": 21004.25,
+      "l": 20997.25,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21003.0,
+      "l": 20997.5,
+      "c": 20998.0
+     },
+     {
+      "o": 20998.0,
+      "h": 20998.25,
+      "l": 20994.25,
+      "c": 20995.75
+     },
+     {
+      "o": 20995.75,
+      "h": 20997.0,
+      "l": 20993.5,
+      "c": 20994.5
+     },
+     {
+      "o": 20994.5,
+      "h": 20994.75,
+      "l": 20990.5,
+      "c": 20991.25
+     },
+     {
+      "o": 20991.25,
+      "h": 20995.0,
+      "l": 20989.75,
+      "c": 20994.5
+     },
+     {
+      "o": 20994.5,
+      "h": 20998.0,
+      "l": 20993.25,
+      "c": 20997.5
+     },
+     {
+      "o": 20997.5,
+      "h": 21001.75,
+      "l": 20996.0,
+      "c": 21001.25
+     },
+     {
+      "o": 21001.25,
+      "h": 21007.75,
+      "l": 21001.25,
+      "c": 21007.0
+     },
+     {
+      "o": 21007.0,
+      "h": 21007.0,
+      "l": 21001.25,
+      "c": 21002.0
+     },
+     {
+      "o": 21002.0,
+      "h": 21003.0,
+      "l": 21001.5,
+      "c": 21002.75
+     },
+     {
+      "o": 21002.75,
+      "h": 21003.0,
+      "l": 21001.5,
+      "c": 21001.75
+     },
+     {
+      "o": 21001.75,
+      "h": 21008.5,
+      "l": 21001.75,
+      "c": 21007.25
+     },
+     {
+      "o": 21007.25,
+      "h": 21023.75,
+      "l": 21005.75,
+      "c": 21023.25
+     },
+     {
+      "o": 21023.25,
+      "h": 21040.0,
+      "l": 21022.0,
+      "c": 21038.75
+     },
+     {
+      "o": 21038.75,
+      "h": 21054.5,
+      "l": 21038.25,
+      "c": 21053.25
+     },
+     {
+      "o": 21053.25,
+      "h": 21069.0,
+      "l": 21052.0,
+      "c": 21068.25
+     },
+     {
+      "o": 21068.25,
+      "h": 21073.0,
+      "l": 21067.0,
+      "c": 21071.5
+     },
+     {
+      "o": 21071.5,
+      "h": 21077.0,
+      "l": 21070.75,
+      "c": 21076.25
+     }
+    ],
+    "start": 11,
+    "context": [
+     {
+      "label": "4H",
+      "value": "Bullish"
+     },
+     {
+      "label": "1H",
+      "value": "Bullish thesis"
+     },
+     {
+      "label": "15M",
+      "value": "Pulling back into the map"
+     },
+     {
+      "label": "Location",
+      "value": "4H discount"
+     }
+    ]
+   },
+   "setups": [
+    {
+     "pil": 21004.25,
+     "pilAt": 4
+    }
+   ],
+   "checkpoints": [
+    {
+     "at": 14,
+     "blind": true,
+     "ask": {
+      "prompt": "Trader C entered here, right after the correction closed. Grade the EXECUTION before you see the outcome.",
+      "options": [
+       {
+        "label": "Good execution",
+        "feedback": "Continuation hadn’t closed. Nothing about the outcome can change that.",
+        "bias": true
+       },
+       {
+        "label": "Poor execution: she anticipated continuation",
+        "correct": true,
+        "why": "Graded on process, before the outcome could bias you."
+       },
+       {
+        "label": "Depends how it ends",
+        "feedback": "That’s outcome bias. The process is already decided.",
+        "bias": true
+       }
+      ],
+      "stack": true
+     },
+     "after": "Now the outcome."
+    }
+   ],
+   "traders": [
+    {
+     "name": "C",
+     "at": 14,
+     "label": "C ENTERS",
+     "trade": true
+    }
+   ],
+   "trade": {
+    "stopPts": 30,
+    "targetPts": 60
+   },
+   "afterResult": {
+    "prompt": "It hit the target. Does that change your grade?",
+    "options": [
+     {
+      "label": "Yes, upgrade it",
+      "feedback": "The win is real. The rule break is still a rule break.",
+      "bias": true
+     },
+     {
+      "label": "No: winning outcome, poor execution",
+      "correct": true,
+      "why": "A trade can work after you broke your rules. That does not make the rule break good execution."
+     }
+    ],
+    "stack": true
+   },
+   "timeline": false
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "A trade can work after you broke your rules. <em>That does not make the rule break good execution.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What’s the difference between confirmation and anticipation?",
+   "modelAnswer": "Anticipation acts on what price looks like it will do. Confirmation acts on what price already closed and proved. Only confirmation follows the model, even when anticipation happens to win."
+  }
+ ],
+ "takeaways": [
+  "Anticipation predicts. Confirmation proves.",
+  "Open candles confirm nothing.",
+  "Grade the process before the outcome."
+ ],
+ "remember": "A trade can work after you broke your rules. That does not make the rule break good execution."
+}

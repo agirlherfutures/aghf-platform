@@ -1,0 +1,93 @@
+{
+ "phase": "p7",
+ "section": "s19",
+ "lessonNumber": 22,
+ "title": "Your Rulebook",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Calm-you, writing for emotional-you.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Assemble MY AGHF RULEBOOK: your model’s rules, your risk, your session and your five non-negotiables.",
+  "missionQuestion": "What will I read before every session?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_scene",
+   "kicker": "Your Rulebook",
+   "title": "",
+   "beats": [
+    {
+     "say": [
+      "Everything you’ve felt in this phase, you’ll feel again.",
+      "After a win. After a loss. On a slow Tuesday. With rent due."
+     ]
+    },
+    {
+     "say": [
+      "So right now, while you’re calm, you’re going to write the voice that speaks for you then."
+     ]
+    },
+    {
+     "principle": "THIS ISN’T A LIST OF RULES. IT’S A LETTER FROM CALM-YOU TO EMOTIONAL-YOU."
+    }
+   ],
+   "cta": "Build it →"
+  },
+  {
+   "type": "p7_rulebook",
+   "kicker": "A milestone",
+   "title": "📕 MY AGHF RULEBOOK",
+   "intro": [
+    "PHASE 1: MARKET FOUNDATIONS ✓",
+    "PHASE 2: STRUCTURE ✓",
+    "PHASE 3: PRICE READING ✓",
+    "PHASE 4: DIRECTION ✓",
+    "PHASE 5: YOUR MODEL ✓",
+    "PHASE 6: EXECUTION ✓",
+    "PHASE 7: THE TRADER ✓"
+   ],
+   "parts": [
+    "intro",
+    "method",
+    "risk",
+    "session",
+    "behavior",
+    "five",
+    "when"
+   ]
+  },
+  {
+   "type": "p7_rulebook_view",
+   "kicker": "Your rulebook",
+   "title": "MY AGHF RULEBOOK",
+   "mode": "review",
+   "punch": "REVIEW MODE: editable. SESSION MODE: read-only. Open it any time from your Academy."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Read it before every session. <em>Out loud, if you have to.</em> 😂",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What are your five non-negotiables?",
+   "modelAnswer": "My five are the rules I don’t negotiate during a session. They change only in review, with evidence."
+  }
+ ],
+ "takeaways": [
+  "Your rulebook speaks when you can’t.",
+  "Five non-negotiables.",
+  "Read it before every session."
+ ],
+ "remember": "A LETTER FROM CALM-YOU TO EMOTIONAL-YOU."
+}

@@ -1,0 +1,129 @@
+{
+ "phase": "p6",
+ "section": "s16",
+ "lessonNumber": 16,
+ "title": "Follow the Plan, Then Grade the Trade",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Your P&L grades the outcome. Your journal grades the trader.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Grade management quality separately from the outcome, starting with the plan, not the money.",
+  "missionQuestion": "Did I manage it according to my plan?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p6_matrix",
+   "kicker": "Management × outcome",
+   "title": "Grade the management",
+   "outcomeLabel": "Outcome",
+   "items": [
+    {
+     "text": "Trade A: correct entry, correct management, target hit.",
+     "quad": "gw",
+     "why": "Good process + win."
+    },
+    {
+     "text": "Trade B: correct entry, correct management, stop hit.",
+     "quad": "gl",
+     "why": "Good process + loss.",
+     "miss": "The management was right. The outcome was a loss."
+    },
+    {
+     "text": "Trade C: correct entry, panics, takes +10. The original target hits later.",
+     "quad": "bw",
+     "why": "Profitable outcome + management violation.",
+     "miss": "It made money. It still broke the plan."
+    },
+    {
+     "text": "Trade D: removes the stop, price reverses, large loss.",
+     "quad": "bl",
+     "why": "Risk + management violation."
+    }
+   ],
+   "punch": "BAD PROCESS + WIN IS STILL DANGEROUS REINFORCEMENT."
+  },
+  {
+   "type": "p6_sort",
+   "kicker": "After every trade",
+   "title": "Which question comes first?",
+   "buckets": [
+    {
+     "key": "first",
+     "label": "ASK FIRST",
+     "tone": "teal"
+    },
+    {
+     "key": "then",
+     "label": "THEN, SEPARATELY",
+     "tone": "gold"
+    }
+   ],
+   "items": [
+    {
+     "text": "Did I manage the trade according to my plan?",
+     "bucket": "first"
+    },
+    {
+     "text": "What was the outcome?",
+     "bucket": "then"
+    },
+    {
+     "text": "Did I make money?",
+     "bucket": "then"
+    }
+   ],
+   "track": true,
+   "concept": "Process vs outcome"
+  },
+  {
+   "type": "teach",
+   "kicker": "Your future journal",
+   "heading": "Planned, actual, outcome: stored apart",
+   "body": "",
+   "beats": [
+    {
+     "icon": "📝",
+     "title": "Planned",
+     "line": "Entry, stop, target, contracts, model, partial / runner / BE rules, early intervention."
+    },
+    {
+     "icon": "✋",
+     "title": "Actual",
+     "line": "Stop changes, target changes, partials, size changes, manual exit, violations, adherence."
+    },
+    {
+     "icon": "🎯",
+     "title": "Outcome",
+     "line": "Result, realized R, realized P&L, reflection."
+    }
+   ],
+   "punch": "A GOOD TRADE IS NEVER CALCULATED FROM PROFIT > 0."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Your P&L grades the outcome. <em>Your journal grades the trader.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What’s the difference between outcome and management quality?",
+   "modelAnswer": "The outcome is what the market gave me. Management quality is whether I followed the plan I locked. A trade can lose with perfect management, or win with a violation."
+  }
+ ],
+ "takeaways": [
+  "Ask “did I follow the plan?” first.",
+  "Then, separately, the outcome.",
+  "Never grade management from P&L."
+ ],
+ "remember": "Your P&L grades the outcome. Your journal grades the trader."
+}

@@ -1,0 +1,128 @@
+{
+ "phase": "p6",
+ "section": "s16",
+ "lessonNumber": 11,
+ "title": "Understanding the Dayli ICC Management Example",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Don’t memorize my dollar amount. Understand my risk structure.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Read the 30/60 MNQ example as a structure: points stay put, dollar exposure changes with contracts.",
+  "missionQuestion": "What changes when I change the size?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "risk_ladder",
+   "kicker": "Risk ladder",
+   "title": "Change the contracts. Watch what moves.",
+   "plan": {
+    "entryPrice": 20000,
+    "stopPrice": 19970,
+    "targetPrice": 20060,
+    "contractCount": 4,
+    "managementModel": "fixed",
+    "partialRules": "None",
+    "runnerRules": "None",
+    "breakEvenRules": "None",
+    "structuralRules": "None",
+    "earlyInterventionRules": "None"
+   },
+   "note": "These numbers are examples from the Dayli ICC MNQ framework being taught in the Academy. They are not universal numbers for every futures product, account size, or trader.",
+   "asks": [
+    {
+     "prompt": "2 MNQ. What’s the risk and reward?",
+     "options": [
+      {
+       "label": "$60 / $120",
+       "feedback": "That’s 1 contract."
+      },
+      {
+       "label": "$120 / $240",
+       "correct": true,
+       "why": "30 × $2 × 2 = $120 · 60 × $2 × 2 = $240."
+      },
+      {
+       "label": "$240 / $480",
+       "feedback": "That’s 4 contracts."
+      }
+     ]
+    },
+    {
+     "prompt": "5 MNQ. What’s the risk and reward?",
+     "options": [
+      {
+       "label": "$300 / $600",
+       "correct": true,
+       "why": "30 × $2 × 5 = $300 · 60 × $2 × 5 = $600."
+      },
+      {
+       "label": "$150 / $300",
+       "feedback": "Check the contract count."
+      },
+      {
+       "label": "$30 / $60",
+       "feedback": "That’s points, not dollars."
+      }
+     ]
+    },
+    {
+     "prompt": "4 → 8 contracts. DID THE SETUP CHANGE?",
+     "options": [
+      {
+       "label": "Yes",
+       "feedback": "The stop is still 30 points. The target is still 60."
+      },
+      {
+       "label": "No",
+       "correct": true,
+       "why": "The chart didn’t move."
+      }
+     ],
+     "setContracts": 4,
+     "thenContracts": 8
+    },
+    {
+     "prompt": "DID THE FINANCIAL EXPOSURE CHANGE?",
+     "options": [
+      {
+       "label": "No",
+       "feedback": "$240 just became $480 of risk."
+      },
+      {
+       "label": "Yes: it doubled",
+       "correct": true,
+       "why": "Same setup. Double the dollars. Section 17 starts here."
+      }
+     ]
+    }
+   ],
+   "punch": "DON’T MEMORIZE MY DOLLAR AMOUNT. UNDERSTAND MY RISK STRUCTURE."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Points describe the chart. <em>Contracts decide what the chart costs you.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What does the 30/60 MNQ example teach, if not the numbers?",
+   "modelAnswer": "The structure: a defined stop and target in points, a 1:2 relationship, and dollar exposure that comes from points × $2 × contracts. The setup stays the same when the size changes; the exposure doesn’t."
+  }
+ ],
+ "takeaways": [
+  "30-pt SL · 60-pt TP · 1:2 is an example.",
+  "Points don’t move with size.",
+  "Dollar exposure does."
+ ],
+ "remember": "Don’t memorize my dollar amount. Understand my risk structure."
+}

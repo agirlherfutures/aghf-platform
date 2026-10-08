@@ -1,0 +1,281 @@
+{
+ "phase": "p6",
+ "section": "s16",
+ "lessonNumber": 10,
+ "title": "Fixed Targets vs Structure-Based Targets",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "More flexible does not automatically mean more advanced.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Understand fixed and structure-based management, and judge actions against the plan each trader started with.",
+  "missionQuestion": "Did the action match the predefined model?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "teach",
+   "kicker": "Model A",
+   "heading": "Fixed management",
+   "body": "",
+   "beats": [
+    {
+     "icon": "MNQ",
+     "title": "Current Dayli ICC MNQ example",
+     "line": "30-point SL · 60-point TP · 1:2."
+    },
+    {
+     "icon": "$",
+     "title": "With 4 MNQ",
+     "line": "30 × $2 × 4 = $240 risk · 60 × $2 × 4 = $480 gross reward."
+    },
+    {
+     "icon": "!",
+     "title": "An example, not a rule",
+     "line": "Not universal futures risk. Not what every student should risk."
+    }
+   ],
+   "punch": "Before fees and slippage."
+  },
+  {
+   "type": "teach",
+   "kicker": "Model B",
+   "heading": "Structure-based management",
+   "body": "",
+   "beats": [
+    {
+     "icon": "↑",
+     "title": "Uses market information",
+     "line": "Previous highs and lows, external swings, liquidity, new structure."
+    },
+    {
+     "icon": "⇄",
+     "title": "More adaptive",
+     "line": "It can respond to what price builds."
+    },
+    {
+     "icon": "⚠",
+     "title": "More discretion",
+     "line": "Undefined discretion is where emotion gets in."
+    }
+   ],
+   "punch": "MORE FLEXIBLE DOES NOT AUTOMATICALLY MEAN MORE ADVANCED."
+  },
+  {
+   "type": "manage_compare",
+   "kicker": "Same trade · two plans",
+   "title": "Watch both traders",
+   "bars": [
+    {
+     "o": 20018.0,
+     "h": 20018.5,
+     "l": 20013.75,
+     "c": 20015.25
+    },
+    {
+     "o": 20015.25,
+     "h": 20016.0,
+     "l": 20012.0,
+     "c": 20013.0
+    },
+    {
+     "o": 20013.0,
+     "h": 20013.5,
+     "l": 20007.75,
+     "c": 20008.25
+    },
+    {
+     "o": 20008.25,
+     "h": 20008.75,
+     "l": 20005.0,
+     "c": 20006.5
+    },
+    {
+     "o": 20006.5,
+     "h": 20006.75,
+     "l": 20002.5,
+     "c": 20003.0
+    },
+    {
+     "o": 20003.0,
+     "h": 20003.25,
+     "l": 19999.75,
+     "c": 20002.5
+    },
+    {
+     "o": 20002.5,
+     "h": 20007.5,
+     "l": 20001.75,
+     "c": 20006.0
+    },
+    {
+     "o": 20006.0,
+     "h": 20016.5,
+     "l": 20003.75,
+     "c": 20014.0
+    },
+    {
+     "o": 20014.0,
+     "h": 20023.25,
+     "l": 20012.25,
+     "c": 20022.0
+    },
+    {
+     "o": 20022.0,
+     "h": 20031.75,
+     "l": 20021.25,
+     "c": 20031.0
+    },
+    {
+     "o": 20031.0,
+     "h": 20032.0,
+     "l": 20022.25,
+     "c": 20024.0
+    },
+    {
+     "o": 20024.0,
+     "h": 20024.75,
+     "l": 20016.5,
+     "c": 20019.0
+    },
+    {
+     "o": 20019.0,
+     "h": 20027.5,
+     "l": 20018.25,
+     "c": 20027.0
+    },
+    {
+     "o": 20027.0,
+     "h": 20036.5,
+     "l": 20025.0,
+     "c": 20036.0
+    },
+    {
+     "o": 20036.0,
+     "h": 20043.0,
+     "l": 20034.75,
+     "c": 20042.0
+    },
+    {
+     "o": 20042.0,
+     "h": 20043.0,
+     "l": 20031.25,
+     "c": 20033.0
+    },
+    {
+     "o": 20033.0,
+     "h": 20034.25,
+     "l": 20027.25,
+     "c": 20028.0
+    }
+   ],
+   "entryAt": 5,
+   "tabs": [
+    {
+     "name": "FIXED MODEL",
+     "plan": {
+      "entryPrice": 20000,
+      "stopPrice": 19970,
+      "targetPrice": 20060,
+      "contractCount": 4,
+      "managementModel": "fixed",
+      "partialRules": "None",
+      "runnerRules": "None",
+      "breakEvenRules": "None",
+      "structuralRules": "None",
+      "earlyInterventionRules": "None"
+     },
+     "events": [
+      {
+       "at": 9,
+       "tag": "·",
+       "text": "+31: nothing in a fixed plan triggers. She holds."
+      },
+      {
+       "at": 14,
+       "tag": "·",
+       "text": "+42: still holding for +60."
+      }
+     ],
+     "result": "Held the whole time, exactly as planned."
+    },
+    {
+     "name": "STRUCTURE MODEL",
+     "plan": {
+      "entryPrice": 20000,
+      "stopPrice": 19970,
+      "targetPrice": 20060,
+      "contractCount": 4,
+      "managementModel": "structure",
+      "partialRules": "None",
+      "runnerRules": "None",
+      "breakEvenRules": "None",
+      "structuralRules": "Trail SL under each new 1M HL above +20",
+      "earlyInterventionRules": "None"
+     },
+     "stops": [
+      19970,
+      20018
+     ],
+     "events": [
+      {
+       "at": 11,
+       "tag": "◆",
+       "text": "+19 after a push to +31: a new 1M higher low. Her rule: trail the stop to 20,018."
+      },
+      {
+       "at": 14,
+       "tag": "·",
+       "text": "+42: holding, stop trailed per rule."
+      }
+     ],
+     "result": "Trailed once, exactly as planned."
+    }
+   ],
+   "ask": {
+    "prompt": "They managed the same price differently. Is one of them wrong?",
+    "options": [
+     {
+      "label": "Yes, the fixed trader ignored new structure",
+      "feedback": "Her plan never said to use structure. She followed it."
+     },
+     {
+      "label": "Yes, the structure trader touched her stop",
+      "feedback": "Her plan said to trail after a new HL. Rule-based."
+     },
+     {
+      "label": "No: each action matched her predefined model",
+      "correct": true,
+      "why": "Different plans can make different legitimate decisions."
+     }
+    ],
+    "stack": true
+   },
+   "punch": "DID THE ACTION MATCH THE PREDEFINED MODEL?"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Different action doesn’t mean somebody’s wrong. <em>Ask whether it matched the plan she started with.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "What’s the difference between fixed and structure-based management?",
+   "modelAnswer": "Fixed management holds to a predefined stop and target. Structure-based management adapts to new market information, which needs more discretion, so its rules have to be defined just as clearly."
+  }
+ ],
+ "takeaways": [
+  "Fixed: predefined SL and TP.",
+  "Structure: adapts, with more discretion.",
+  "Judge the action against the plan."
+ ],
+ "remember": "More flexible does not automatically mean more advanced."
+}

@@ -1,0 +1,183 @@
+{
+ "phase": "p7",
+ "section": "s18",
+ "lessonNumber": 13,
+ "title": "Who’s Trading Now?",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 85,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "Before you read the chart, read you.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Check your own state before a session, and catch who is making the decision in the moment.",
+  "missionQuestion": "Who is trading right now: the trader, or the feeling?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "p7_scene",
+   "kicker": "Who’s Trading Now?",
+   "title": "Three moments. One question.",
+   "beats": [
+    {
+     "say": [
+      "By now you’ve met them all.",
+      "The win. The heater. The loss. The streak. “I knew it.” Frozen. The candle you can’t stop watching. One more. Boredom. The bills."
+     ]
+    },
+    {
+     "say": [
+      "They don’t show up one at a time. <b>They show up in the middle of a normal Tuesday.</b>"
+     ]
+    },
+    {
+     "choice": {
+      "prompt": "9:58. You lost yesterday. A valid setup forms. Your stomach drops.",
+      "options": [
+       {
+        "label": "Notice it, check the rule, take it",
+        "path": {
+         "say": [
+          "The feeling came along. <b>The trader made the decision.</b>"
+         ]
+        },
+        "track": "ruleBasedResponses"
+       },
+       {
+        "label": "Skip it. Not today.",
+        "path": {
+         "say": [
+          "That wasn’t a decision about this chart. <b>Yesterday made it.</b>"
+         ]
+        },
+        "track": "hesitationCount"
+       }
+      ]
+     }
+    },
+    {
+     "choice": {
+      "prompt": "10:20. +2R on the day. Your plan says done.",
+      "options": [
+       {
+        "label": "One more. You’re on.",
+        "path": {
+         "say": [
+          "The heater made that one."
+         ]
+        },
+        "track": "overtradeCount"
+       },
+       {
+        "label": "Done. Journal and close.",
+        "path": {
+         "say": [
+          "The trader."
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "choice": {
+      "prompt": "10:41. You’re in a trade, +15, and a red candle prints.",
+      "options": [
+       {
+        "label": "Close it to protect the green",
+        "path": {
+         "say": [
+          "Fear made that one. No rule triggered."
+         ]
+        },
+        "track": "fearDrivenManagementCount"
+       },
+       {
+        "label": "Hold. Nothing in the plan changed.",
+        "path": {
+         "say": [
+          "The trader."
+         ]
+        },
+        "track": "ruleBasedResponses"
+       }
+      ]
+     }
+    },
+    {
+     "say": [
+      "Same person. Same morning. <b>Different traders, minute to minute.</b>",
+      "The skill isn’t never feeling it. It’s noticing who just took the mouse."
+     ]
+    },
+    {
+     "principle": "BEFORE EVERY CLICK: WHO’S TRADING NOW?"
+    }
+   ]
+  },
+  {
+   "type": "p7_temp",
+   "kicker": "Your emotional temperature",
+   "title": "Read you first",
+   "body": "Where would you put each thought? This is for noticing, not grading yourself.",
+   "items": [
+    {
+     "thought": "Ready. Plan’s clear.",
+     "state": "calm"
+    },
+    {
+     "thought": "Ooh, it’s moving fast.",
+     "state": "elevated"
+    },
+    {
+     "thought": "Ugh. Third loss this week.",
+     "state": "frustrated"
+    },
+    {
+     "thought": "I NEED that back. Now.",
+     "state": "red"
+    }
+   ],
+   "punch": "A red state doesn’t make the setup invalid. It makes your personal rules matter more. (That’s Section 2.)"
+  },
+  {
+   "type": "p7_state_card",
+   "kicker": "Trader State Card",
+   "title": "Write the state down, not just the trade",
+   "example": {
+    "emotion": "Frustrated",
+    "intensity": "High",
+    "trigger": "Previous valid loss",
+    "urge": "Take the next setup early",
+    "ruleAtRisk": "Wait for Continuation",
+    "plannedResponse": "Pause and require the full checklist"
+   },
+   "own": true,
+   "punch": "Private to you. Never shared, never ranked."
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "I check my chart before every session. <em>I check myself first.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Which version of you shows up most often, and when?",
+   "modelAnswer": "I notice which feeling shows up and when: after a loss, after a win, when I’m bored, when money is tight. Before every click I ask who is trading right now."
+  }
+ ],
+ "takeaways": [
+  "Different traders, minute to minute.",
+  "Read yourself before the chart.",
+  "Before every click: who’s trading now?"
+ ],
+ "remember": "BEFORE EVERY CLICK: WHO’S TRADING NOW?"
+}
