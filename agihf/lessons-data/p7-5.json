@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 5",
-      "headline": "Three valid losses. <em>Then Friday.</em>",
-      "line": "Tue −1R. Wed −1R. Thu −1R. Every one by the plan.",
+      "headline": "You took three valid losses. <em>Then Friday came.</em>",
+      "line": "You lost −1R on Tuesday, Wednesday, and Thursday, all by the plan. −1R means you lost exactly the amount you planned to risk.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "Friday",
-      "headline": "Your model, <em>start to finish.</em>",
-      "line": "Indication. Correction. Continuation. First retest.",
+      "headline": "On Friday, your model shows up <em>from start to finish.</em>",
+      "line": "You see an Indication, a Correction, a Continuation, and then the first retest. It’s a complete setup.",
       "chart": {
         "bars": [
           {
@@ -281,22 +281,22 @@
         "“I’ll wait for a REALLY perfect one.”"
       ],
       "check": {
-        "prompt": "Your hand shakes a little. Now?",
+        "prompt": "Your hand shakes a little. What would you do now?",
         "options": [
           {
-            "label": "Skip it. No more losses.",
+            "label": "Skip it so I stop losing",
             "correct": false,
-            "feedback": "Makes sense after three. But the setup didn’t lose. Those trades did.",
+            "feedback": "That makes sense after three losses. But the setup didn’t lose. Those three trades did.",
             "track": "hesitationCount"
           },
           {
-            "label": "Half size, to be safe.",
+            "label": "Take it at half size, to be safe",
             "correct": false,
-            "feedback": "Gentle, but the streak just quietly rewrote your risk plan.",
+            "feedback": "That feels gentle, but the losing streak just quietly rewrote your risk plan.",
             "track": "hesitationCount"
           },
           {
-            "label": "Take it. Standard size.",
+            "label": "Take it at my standard size",
             "correct": true,
             "feedback": "Yes. Win or lose, that’s the right decision.",
             "track": "ruleBasedResponses"
@@ -307,8 +307,8 @@
     {
       "type": "v2_moment",
       "kicker": "How it played out",
-      "headline": "It worked. <em>Without you?</em>",
-      "line": "Skipped: “I missed it.” Half size: +1R. Standard: +2R.",
+      "headline": "The trade worked. <em>Were you in it?</em>",
+      "line": "If you skipped, you thought, “I missed it.” At half size you made +1R. At standard size you made +2R, twice what you risked.",
       "chart": {
         "bars": [
           {
@@ -556,35 +556,35 @@
     {
       "type": "v2_compare",
       "kicker": "Who’s judging?",
-      "headline": "Three trades are <em>not a verdict.</em>",
+      "headline": "Three trades are <em>not a verdict on your model.</em>",
       "cards": [
         {
           "label": "The trader",
-          "sub": "Judges the model over many trades.",
+          "sub": "She judges the model over many trades.",
           "spark": "slow",
           "tag": "SAMPLE",
           "tone": "purple"
         },
         {
           "label": "The streak",
-          "sub": "Wants proof before it trusts you again.",
+          "sub": "It wants proof before it trusts you again.",
           "spark": "down",
           "tag": "VERDICT",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Did the streak change the model?",
+        "prompt": "Did the losing streak actually change your model?",
         "options": [
           {
-            "label": "Yes, it’s broken",
+            "label": "Yes, my model is broken",
             "correct": false,
-            "feedback": "It feels that way. Three trades can’t tell you that."
+            "feedback": "It feels that way. Three trades just can’t tell you that."
           },
           {
-            "label": "No. Just how I feel.",
+            "label": "No, it only changed how I feel",
             "correct": true,
-            "feedback": "Right. Losing streaks happen inside working models."
+            "feedback": "Right. Losing streaks happen inside models that work."
           }
         ]
       }
@@ -592,32 +592,32 @@
     {
       "type": "v2_steps",
       "kicker": "The confidence loop",
-      "headline": "Watch it <em>spin.</em>",
-      "line": "Break it at Skip: let the setup and your rules decide.",
+      "headline": "Watch how the confidence loop <em>keeps spinning.</em>",
+      "line": "Tap each step to see how it builds. You break the loop at Skip, by letting the setup and your rules decide.",
       "steps": [
         {
           "label": "Loss",
-          "sub": "Three in a row"
+          "sub": "You take three valid losses in a row."
         },
         {
           "label": "Doubt",
-          "sub": "“Maybe the model doesn’t work.”"
+          "sub": "You think, “Maybe the model doesn’t work.”"
         },
         {
           "label": "Skip",
-          "sub": "Pass on a valid setup"
+          "sub": "You pass on a valid setup."
         },
         {
           "label": "It wins",
-          "sub": "Without you"
+          "sub": "The setup wins without you in it."
         },
         {
           "label": "FOMO",
-          "sub": "Chase the next one"
+          "sub": "Fear of missing out makes you chase the next one."
         },
         {
           "label": "More doubt",
-          "sub": "Another loss, around again"
+          "sub": "Another loss comes, and the loop goes around again."
         }
       ],
       "cta": "Next →"

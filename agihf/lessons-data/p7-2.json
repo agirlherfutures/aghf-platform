@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 2",
-      "headline": "You just hit TP. <em>Now what?</em>",
-      "line": "Clean entry. Clean execution. +2R. This lesson is about the next trade.",
+      "headline": "You just hit your take profit (TP). <em>Now what do you do?</em>",
+      "line": "Your entry was clean, and you made +2R. 1R is the amount you planned to risk, so +2R means you made twice that.",
       "pose": "wave",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "After the win",
-      "headline": "+2R. <em>Plan followed.</em>",
-      "line": "Then you look back at the chart. Price is still moving.",
+      "headline": "You made +2R, and <em>you followed your plan.</em>",
+      "line": "Then you look back at the chart, and price is still moving.",
       "chart": {
         "bars": [
           {
@@ -154,8 +154,8 @@
     {
       "type": "v2_moment",
       "kicker": "The next chart",
-      "headline": "A wick. <em>No close through.</em>",
-      "line": "Your model is clear: there’s no trade here.",
+      "headline": "Price wicked through the level, but <em>no candle closed through it.</em>",
+      "line": "Your model needs a candle to close through the level, so the answer is clear: there’s no trade here.",
       "chart": {
         "bars": [
           {
@@ -277,21 +277,21 @@
         "“I’m on today.”"
       ],
       "check": {
-        "prompt": "Your cursor is over BUY. What now?",
+        "prompt": "Your cursor is hovering over BUY. What would you do now?",
         "options": [
           {
-            "label": "Take it. I’m on.",
+            "label": "Take it, because I’m on today",
             "correct": false,
-            "feedback": "That’s the win talking. The chart never gave you a setup.",
+            "feedback": "That’s the win talking. The chart never gave you a complete setup.",
             "track": [
               "greedDrivenDecisionCount",
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Stick to the plan",
+            "label": "Stick to my plan and wait",
             "correct": true,
-            "feedback": "Yes. Wait for a real close, or call it a day at +2R.",
+            "feedback": "Yes. Wait for a real candle close, or call it a day at +2R.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -299,9 +299,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "If you took it",
-      "headline": "Bought the wick? <em>−1R.</em>",
-      "line": "The win didn’t change the chart. It changed how much you trusted yourself.",
+      "kicker": "If you had taken it",
+      "headline": "If you bought the wick, <em>you just lost −1R.</em>",
+      "line": "−1R means you lost exactly what you planned to risk. The win didn’t change the chart. It changed how much you trusted yourself.",
       "chart": {
         "bars": [
           {
@@ -479,17 +479,17 @@
         }
       },
       "check": {
-        "prompt": "And if it had worked?",
+        "prompt": "And what if that trade had actually worked?",
         "options": [
           {
-            "label": "Then it was smart",
+            "label": "Then it was a smart trade",
             "correct": false,
-            "feedback": "Then you’d have learned the wrong lesson faster."
+            "feedback": "Then you would have learned the wrong lesson, only faster."
           },
           {
-            "label": "Still no setup",
+            "label": "It still wasn’t a setup",
             "correct": true,
-            "feedback": "Exactly. The first win gave you permission you never had."
+            "feedback": "Exactly. The first win gave you a permission that you never really had."
           }
         ]
       }
@@ -497,33 +497,33 @@
     {
       "type": "v2_compare",
       "kicker": "Who’s trading now?",
-      "headline": "Confidence is <em>not confirmation.</em>",
+      "headline": "Feeling confident is <em>not the same as confirmation.</em>",
       "cards": [
         {
           "label": "The trader",
-          "sub": "Waited. Followed confirmation. Executed.",
+          "sub": "She waited for confirmation, then executed.",
           "spark": "slow",
           "tag": "BEFORE THE WIN",
           "tone": "purple"
         },
         {
           "label": "The feeling",
-          "sub": "Sharp. Confident. Maybe invincible.",
+          "sub": "It feels sharp, confident, maybe even invincible.",
           "spark": "up",
           "tag": "AFTER THE WIN",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Who should take trade two?",
+        "prompt": "Who should take your second trade of the day?",
         "options": [
           {
-            "label": "The trader, with a setup",
+            "label": "The trader, but only with a setup",
             "correct": true,
-            "feedback": "Yes. Same model, same rules, win or no win."
+            "feedback": "Yes. You use the same model and the same rules, whether you just won or not."
           },
           {
-            "label": "The feeling. I’m hot.",
+            "label": "The feeling, because I’m hot",
             "correct": false,
             "feedback": "Feeling sharp is lovely. It just isn’t a setup."
           }
@@ -533,38 +533,39 @@
     {
       "type": "v2_compare",
       "kicker": "Not every runner is greed",
-      "headline": "Same runner. <em>Different source.</em>",
+      "headline": "Two runners can look the same but <em>come from different places.</em>",
       "cards": [
         {
           "label": "Planned runner",
-          "sub": "Written before entry. Trail rule set.",
+          "sub": "You wrote it down before entry, with a trail rule.",
           "spark": "up",
           "tag": "PLAN",
           "tone": "purple"
         },
         {
           "label": "Excitement runner",
-          "sub": "Added at the target: “so bullish.”",
+          "sub": "You added it at the target because it felt “so bullish.”",
           "spark": "chop",
           "tag": "FEELING",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Which runner follows your plan?",
+        "prompt": "Which runner actually follows your plan?",
         "options": [
           {
-            "label": "Written before entry",
+            "label": "The one written before entry",
             "correct": true,
-            "feedback": "Yes. Same position, but the plan chose it."
+            "feedback": "Yes. It’s the same position, but your plan chose it."
           },
           {
-            "label": "Added at the target",
+            "label": "The one added at the target",
             "correct": false,
-            "feedback": "That’s the plan, rewritten by a feeling. Ask: was it in the plan?"
+            "feedback": "That’s your plan being rewritten by a feeling. Ask yourself, “Was this in my plan?”"
           }
         ]
-      }
+      },
+      "line": "A runner is the part of your position you keep open past your target, hoping to catch a bigger move."
     },
     {
       "type": "v2_dayli",
@@ -575,7 +576,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Right after a win, <em>what do you want</em> to do next?",
+      "prompt": "Right after a win, <em>what do you usually want</em> to do next?",
       "modelAnswer": "After a win I feel sharp and want one more, or a bigger size, or a farther target. The win didn’t give me a setup. Confidence is not confirmation."
     }
   ],

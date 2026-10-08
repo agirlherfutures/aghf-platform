@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 3",
-      "headline": "Four green days. <em>Then Friday.</em>",
-      "line": "Mon +2R. Tue +1R. Wed +2R. Thu +1.5R. All by the plan.",
+      "headline": "You had four green days in a row. <em>Then Friday came.</em>",
+      "line": "From Monday to Thursday you made +2R, +1R, +2R, and +1.5R, all by the plan. 1R is the amount you planned to risk on one trade.",
       "pose": "wave",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "Friday · first retest",
-      "headline": "Plan says 2. <em>Cursor’s on 4.</em>",
-      "line": "A valid setup. Your journal looks incredible.",
+      "headline": "Your plan says 2 contracts, but <em>your cursor is on 4.</em>",
+      "line": "Your position size is how many contracts you trade. Your plan uses 2, so a normal loss costs exactly 1R. The setup is valid.",
       "chart": {
         "bars": [
           {
@@ -277,29 +277,29 @@
         "“Let’s go bigger today.”"
       ],
       "check": {
-        "prompt": "How many contracts?",
+        "prompt": "How many contracts are you going to trade today?",
         "options": [
           {
-            "label": "4. I’ve earned it.",
+            "label": "4, because I’ve earned it",
             "correct": false,
-            "feedback": "The streak earned you a great week. Not a new risk plan.",
+            "feedback": "The streak earned you a great week. It didn’t earn you a new risk plan.",
             "track": [
               "overconfidenceCount",
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "4, and it wins",
+            "label": "4, and the trade wins",
             "correct": false,
-            "feedback": "The dangerous version. Now 4 feels normal. Your rules never grew.",
+            "feedback": "This is the dangerous version. Now 4 contracts start to feel normal, even though your rules never grew.",
             "track": [
               "overconfidenceCount"
             ]
           },
           {
-            "label": "2. The plan.",
+            "label": "2, because that’s my plan",
             "correct": true,
-            "feedback": "Yes. Same size Monday, same size Friday.",
+            "feedback": "Yes. You trade the same size on Monday that you trade on Friday.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -308,8 +308,8 @@
     {
       "type": "v2_moment",
       "kicker": "If it loses",
-      "headline": "Valid loss. <em>Double the damage.</em>",
-      "line": "At 4 contracts: −2R. At 2: −1R, and still +5.5R for the week.",
+      "headline": "The loss is valid, but <em>the damage is doubled.</em>",
+      "line": "With 4 contracts you lose −2R, twice your planned risk. With 2 contracts you lose −1R and are still up +5.5R this week.",
       "chart": {
         "bars": [
           {
@@ -516,8 +516,8 @@
     {
       "type": "v2_moment",
       "kicker": "If it wins",
-      "headline": "+4R? <em>That’s the dangerous one.</em>",
-      "line": "Now 4 feels normal. Your size grew. Your rules never did.",
+      "headline": "If it wins +4R, <em>that’s actually the dangerous outcome.</em>",
+      "line": "Now 4 contracts start to feel normal. Your size grew, but your rules never did.",
       "chart": {
         "bars": [
           {
@@ -765,61 +765,62 @@
     {
       "type": "v2_compare",
       "kicker": "Who’s sizing?",
-      "headline": "A streak is a result. <em>Not a plan.</em>",
+      "headline": "Your winning streak is a result, <em>not a plan for your next trade.</em>",
       "cards": [
         {
           "label": "The trader",
-          "sub": "Sizes from the risk plan she wrote calm.",
+          "sub": "She sizes from the risk plan she wrote while calm.",
           "spark": "slow",
           "tag": "PLAN",
           "tone": "purple"
         },
         {
           "label": "The streak",
-          "sub": "Sizes from the last four days.",
+          "sub": "It wants to size from the last four days.",
           "spark": "up",
           "tag": "“EARNED”",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Five wins in a row. Did risk disappear?",
+        "prompt": "After five wins in a row, did the risk on your next trade disappear?",
         "options": [
           {
-            "label": "Yes, triple it",
+            "label": "Yes, so I’d triple my size",
             "correct": false,
-            "feedback": "Your confidence changed. Did your risk plan?",
+            "feedback": "Your confidence changed, but the market didn’t. Tripling your size means a normal loss now costs −3R instead of −1R.",
             "track": "overconfidenceCount"
           },
           {
-            "label": "No. Same risk.",
+            "label": "No, I’d keep the same risk",
             "correct": true,
-            "feedback": "Same baseline. Wins don’t make the next trade safer."
+            "feedback": "Yes. Every trade can still lose, so you keep risking the same 1R no matter how many wins came before."
           }
         ]
-      }
+      },
+      "line": "A result tells you what already happened. A plan tells you how much to risk next, and you wrote it before the streak."
     },
     {
       "type": "v2_steps",
       "kicker": "Your baseline card",
-      "headline": "Written <em>before</em> the streak.",
-      "line": "Size grows in review, with evidence. Not because Thursday felt good.",
+      "headline": "You wrote your baseline card <em>before the streak started.</em>",
+      "line": "Your size only grows in a calm review, with evidence. It doesn’t grow just because Thursday felt good.",
       "steps": [
         {
           "label": "Risk",
-          "sub": "1R"
+          "sub": "You risk 1R, the amount you planned, on every trade."
         },
         {
           "label": "Max trades",
-          "sub": "2"
+          "sub": "You take a maximum of two trades a day."
         },
         {
           "label": "Entry rules",
-          "sub": "Unchanged"
+          "sub": "Your entry rules stay exactly the same."
         },
         {
           "label": "Management",
-          "sub": "Unchanged"
+          "sub": "You manage each trade exactly the same way."
         }
       ],
       "cta": "Next →"
@@ -833,7 +834,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "What changes in you during a <em>winning streak</em>?",
+      "prompt": "What changes inside you <em>during a winning streak</em>?",
       "modelAnswer": "I feel like I can’t miss, so I want to size up or loosen my rules. If it works, the habit gets rewarded. My risk plan didn’t change because I won."
     }
   ],

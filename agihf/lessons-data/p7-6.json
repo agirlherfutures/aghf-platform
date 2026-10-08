@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 6",
-      "headline": "It never came back. <em>“I knew it.”</em>",
-      "line": "You waited for your retest. Price left without you.",
+      "headline": "Price never came back, and <em>you thought, “I knew it.”</em>",
+      "line": "You waited for your retest like the plan says, and price left without you.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
       "kicker": "10:04",
-      "headline": "No retest. <em>It’s leaving.</em>",
-      "line": "Indication. Correction. Continuation. Then it never comes back.",
+      "headline": "There’s no retest, and <em>price is leaving.</em>",
+      "line": "You saw an Indication, a Correction, and a Continuation. Then price never came back to your level.",
       "chart": {
         "bars": [
           {
@@ -233,19 +233,19 @@
         "“I should’ve just gotten in.”"
       ],
       "check": {
-        "prompt": "Price is +25 from your level. Now?",
+        "prompt": "Price is now 25 points above your level. What would you do?",
         "options": [
           {
-            "label": "Buy before it’s gone",
+            "label": "Buy now before it’s gone",
             "correct": false,
-            "feedback": "Every candle feels like a chance now. That’s FOMO, not a setup.",
+            "feedback": "Every candle feels like a chance now. That’s FOMO, the fear of missing out, not a setup.",
             "track": [
               "fomoDecisionCount",
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Let it go",
+            "label": "Let this one go",
             "correct": true,
             "feedback": "Yes. No retest, no entry. Your account stays exactly where it was.",
             "track": "fomoRecognized"
@@ -255,9 +255,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "If you chased",
-      "headline": "You chased? <em>Back through your stop.</em>",
-      "line": "Entry +25 above plan. −1R. That’s how chasing becomes a habit.",
+      "kicker": "If you had chased it",
+      "headline": "You chased it, and <em>price came back through your stop.</em>",
+      "line": "You entered 25 points above your plan and lost −1R, exactly the amount you planned to risk. That’s how chasing becomes a habit.",
       "chart": {
         "bars": [
           {
@@ -452,8 +452,8 @@
     {
       "type": "v2_moment",
       "kicker": "If you let it go",
-      "headline": "It ran. <em>You lost $0.</em>",
-      "line": "Missed profit is gray, not red. It isn’t a loss.",
+      "headline": "Price ran without you, and <em>you lost $0.</em>",
+      "line": "Missed profit is gray, not red. It was never in your account, so it isn’t a loss.",
       "chart": {
         "bars": [
           {
@@ -653,35 +653,35 @@
     {
       "type": "v2_compare",
       "kicker": "Who’s trading now?",
-      "headline": "Moving without you <em>takes nothing</em> from you.",
+      "headline": "When price moves without you, <em>it takes nothing</em> from you.",
       "cards": [
         {
           "label": "The trader",
-          "sub": "Waits for the retest the model requires.",
+          "sub": "She waits for the retest her model requires.",
           "spark": "slow",
           "tag": "PLAN",
           "tone": "purple"
         },
         {
           "label": "FOMO",
-          "sub": "Sees an entry in every candle.",
+          "sub": "It sees an entry in every single candle.",
           "spark": "up",
           "tag": "“I KNEW IT”",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "It ran to your target. Is that a loss?",
+        "prompt": "Price ran all the way to your target. Is that a loss?",
         "options": [
           {
-            "label": "Yes, I lost $500",
+            "label": "Yes, I just lost $500",
             "correct": false,
-            "feedback": "That $500 was never in your account. Missed isn’t lost."
+            "feedback": "That $500 was never in your account. Missing a profit isn’t the same as losing money."
           },
           {
-            "label": "No. Account change: $0.",
+            "label": "No, my account didn’t change",
             "correct": true,
-            "feedback": "Exactly. The market moved without your entry. That’s all."
+            "feedback": "Exactly. The market moved without your entry, and that’s all that happened."
           }
         ]
       }
@@ -705,7 +705,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "What does <em>FOMO</em> make you want to do?",
+      "prompt": "What does <em>FOMO</em> (fear of missing out) make you want to do?",
       "modelAnswer": "Chase: buy after the retest is gone, invent a new entry, size up to catch up. The market moved without my entry. That’s all."
     }
   ],
