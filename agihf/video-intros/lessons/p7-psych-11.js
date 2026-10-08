@@ -4,7 +4,7 @@
 window.LESSON_VIDEO = {
   "slug": "p7-psych-11",
   "eyebrow": "Phase 7 · Psychology 11",
-  "duration": 320.97,
+  "duration": 340.87,
   "sources": "Creator script: Psychology 11, Your Relationship With Money (spoken lines only; coaching notes left out).",
   "scenes": [
     {
@@ -18,37 +18,26 @@ window.LESSON_VIDEO = {
       "lines": []
     },
     {
-      "type": "v11-number",
+      "type": "w11-bedroom",
       "start": 5.8,
-      "end": 62.06,
+      "end": 38.46,
       "at": [
         6.0,
         12.84,
-        16.11,
-        19.25,
-        21.65,
-        28.49,
-        31.63,
-        37.36,
-        40.13,
-        42.96,
-        46.47,
-        49.24,
-        51.87
+        16.21,
+        19.35,
+        21.75,
+        28.59,
+        31.73
       ],
       "b": {
+        "sit": 6.0,
         "num": 12.84,
-        "m1": 16.11,
-        "m2": 19.25,
-        "m3": 21.65,
-        "m4": 28.49,
-        "decided": 31.63,
-        "open": 37.36,
-        "nothing": 40.13,
-        "chop": 42.96,
-        "still": 46.47,
-        "what": 49.24,
-        "today": 51.87
+        "m1": 16.21,
+        "m2": 19.35,
+        "m3": 21.75,
+        "m4": 28.59,
+        "decided": 31.73
       },
       "lines": [
         {
@@ -60,419 +49,581 @@ window.LESSON_VIDEO = {
           "text": "I need to make $500 today."
         },
         {
-          "at": 16.11,
+          "at": 16.21,
           "text": "Maybe you have a bill coming up."
         },
         {
-          "at": 19.25,
+          "at": 19.35,
           "text": "Maybe you need a payout."
         },
         {
-          "at": 21.65,
+          "at": 21.75,
           "text": "Maybe you lost money earlier this week and you're trying to get back to a certain number."
         },
         {
-          "at": 28.49,
+          "at": 28.59,
           "text": "Maybe there's something you want to buy."
         },
         {
-          "at": 31.63,
+          "at": 31.73,
           "text": "Whatever it is, you've already decided what the market needs to give you today."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w11-nothing",
+      "start": 38.26,
+      "end": 54.17,
+      "at": [
+        38.46,
+        41.23,
+        44.26,
+        47.77,
+        50.54
+      ],
+      "b": {
+        "open": 38.46,
+        "nothing": 41.23,
+        "chop": 44.26,
+        "still": 47.77,
+        "what": 50.54
+      },
+      "lines": [
         {
-          "at": 37.36,
+          "at": 38.46,
           "text": "So now you open the chart…"
         },
         {
-          "at": 40.13,
+          "at": 41.23,
           "text": "and nothing is happening."
         },
         {
-          "at": 42.96,
+          "at": 44.26,
           "text": "No setup. Price is choppy. Nothing looks good."
         },
         {
-          "at": 46.47,
+          "at": 47.77,
           "text": "But you still need that $500."
         },
         {
-          "at": 49.24,
+          "at": 50.54,
           "text": "So what happens now?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w11-tug",
+      "start": 53.97,
+      "end": 64.36,
+      "at": [
+        54.17
+      ],
+      "b": {
+        "today": 54.17
+      },
+      "lines": [
         {
-          "at": 51.87,
+          "at": 54.17,
           "text": "That's what we're talking about today, your relationship with money and what happens when you start needing the market to pay you."
         }
       ]
     },
     {
-      "type": "v11-objective",
-      "start": 61.86,
-      "end": 120.59,
+      "type": "w11-split",
+      "start": 64.16,
+      "end": 85.18,
       "at": [
-        62.06,
-        65.94,
-        71.3,
-        77.03,
-        81.68,
-        85.19,
-        87.72,
-        91.26,
-        94.8,
-        97.43,
-        99.46,
-        101.72,
-        105.97,
-        109.11,
-        112.62
+        64.36,
+        68.24,
+        73.6,
+        79.33
       ],
       "b": {
-        "want": 71.3,
-        "need": 77.03,
-        "look": 81.68,
-        "look500": 85.19,
-        "good": 87.72,
-        "more": 91.26,
-        "n700": 94.8,
-        "changed": 97.43,
-        "desp": 99.46,
-        "mort": 101.72,
-        "pay": 105.97,
-        "goal": 109.11,
-        "owe": 112.62
+        "want": 64.36,
+        "matter": 68.24,
+        "diff": 73.6,
+        "need": 79.33
       },
       "lines": [
         {
-          "at": 62.06,
+          "at": 64.36,
           "text": "Obviously, we trade because we want to make money."
         },
         {
-          "at": 65.94,
+          "at": 68.24,
           "text": "I'm not going to sit here and act like the money doesn't matter."
         },
         {
-          "at": 71.3,
+          "at": 73.6,
           "text": "But there's a difference between wanting trading to become profitable and sitting down believing:"
         },
         {
-          "at": 77.03,
+          "at": 79.33,
           "text": "‘I need the market to give me this amount today.’"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w11-target",
+      "start": 84.98,
+      "end": 92.72,
+      "at": [
+        85.18,
+        88.69
+      ],
+      "b": {
+        "look": 85.18,
+        "look500": 88.69
+      },
+      "lines": [
         {
-          "at": 81.68,
+          "at": 85.18,
           "text": "Now you're not just looking for your setup."
         },
         {
-          "at": 85.19,
+          "at": 88.69,
           "text": "You're looking for $500."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w11-track",
+      "start": 92.52,
+      "end": 104.03,
+      "at": [
+        92.72,
+        96.46,
+        100.2
+      ],
+      "b": {
+        "good": 92.72,
+        "more": 96.46,
+        "n700": 100.2
+      },
+      "lines": [
         {
-          "at": 87.72,
+          "at": 92.72,
           "text": "Well… maybe this one is good enough."
         },
         {
-          "at": 91.26,
+          "at": 96.46,
           "text": "That's not enough. I need $300 more."
         },
         {
-          "at": 94.8,
+          "at": 100.2,
           "text": "Now I need $700."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w11-storm",
+      "start": 103.83,
+      "end": 110.12,
+      "at": [
+        104.03,
+        106.46
+      ],
+      "b": {
+        "changed": 104.03,
+        "desp": 106.46
+      },
+      "lines": [
         {
-          "at": 97.43,
+          "at": 104.03,
           "text": "The market hasn't changed."
         },
         {
-          "at": 99.46,
+          "at": 106.46,
           "text": "Your desperation has."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w11-mail",
+      "start": 109.92,
+      "end": 129.49,
+      "at": [
+        110.12,
+        114.37,
+        117.51,
+        121.02
+      ],
+      "b": {
+        "mort": 110.12,
+        "pay": 114.37,
+        "goal": 117.51,
+        "owe": 121.02
+      },
+      "lines": [
         {
-          "at": 101.72,
+          "at": 110.12,
           "text": "Because the market does not know your mortgage is due."
         },
         {
-          "at": 105.97,
+          "at": 114.37,
           "text": "It doesn't know you need a payout."
         },
         {
-          "at": 109.11,
+          "at": 117.51,
           "text": "It doesn't know what your financial goal is."
         },
         {
-          "at": 112.62,
+          "at": 121.02,
           "text": "And it definitely doesn't owe you the amount you decided you needed before you opened TradingView."
         }
       ]
     },
     {
-      "type": "v11-heavy",
-      "start": 120.39,
-      "end": 176.71,
+      "type": "w11-backpack",
+      "start": 129.29,
+      "end": 160.15,
       "at": [
-        120.59,
-        125.95,
-        130.57,
-        135.56,
-        141.66,
-        147.05,
-        149.85,
-        155.21,
-        166.15
+        129.49,
+        134.85,
+        139.47,
+        144.46,
+        150.56,
+        155.95
       ],
       "b": {
-        "t1": 130.57,
-        "t2": 135.56,
-        "t3": 141.66,
-        "heavy": 147.05,
-        "loss": 149.85,
-        "win": 155.21,
-        "learn": 166.15
+        "exp": 129.49,
+        "feel": 134.85,
+        "t1": 139.47,
+        "t2": 144.46,
+        "t3": 150.56,
+        "heavy": 155.95
       },
       "lines": [
         {
-          "at": 120.59,
+          "at": 129.49,
           "text": "I've definitely experienced trading differently when I felt like I needed the money."
         },
         {
-          "at": 125.95,
+          "at": 134.85,
           "text": "There's a completely different feeling when you're trading and you're thinking:"
         },
         {
-          "at": 130.57,
+          "at": 139.47,
           "text": "‘Okay, if I make this much today, then I can do this.’"
         },
         {
-          "at": 135.56,
+          "at": 144.46,
           "text": "‘I need this account to get to this amount so I can request this payout.’"
         },
         {
-          "at": 141.66,
+          "at": 150.56,
           "text": "‘I'm short this amount, so if I can just make this today…’"
         },
         {
-          "at": 147.05,
+          "at": 155.95,
           "text": "Now every trade feels heavier."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w11-jar",
+      "start": 159.95,
+      "end": 178.05,
+      "at": [
+        160.15,
+        165.91
+      ],
+      "b": {
+        "loss": 160.15,
+        "win": 165.91
+      },
+      "lines": [
         {
-          "at": 149.85,
+          "at": 160.15,
           "text": "Now it feels like: Damn, now I'm further away from what I need."
         },
         {
-          "at": 155.21,
+          "at": 165.91,
           "text": "Because if I needed $1,000 and I made $400, instead of being able to evaluate that $400 objectively, my brain is saying: Okay, I still need $600."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w11-door",
+      "start": 177.85,
+      "end": 189.31,
+      "at": [
+        178.05
+      ],
+      "b": {
+        "learn": 178.05
+      },
+      "lines": [
         {
-          "at": 166.15,
+          "at": 178.05,
           "text": "And I've had to learn that I cannot make the market responsible for solving whatever financial situation I walked into the room with."
         }
       ]
     },
     {
-      "type": "v11-goals",
-      "start": 176.51,
-      "end": 209.66,
+      "type": "w11-mountain",
+      "start": 189.11,
+      "end": 210.23,
       "at": [
-        176.71,
-        181.33,
-        182.62,
-        189.32,
-        193.2,
-        195.83,
-        203.41
+        189.31,
+        193.93,
+        195.62,
+        202.72,
+        206.6
       ],
       "b": {
-        "sep": 182.62,
-        "ctrl": 189.32,
-        "not": 193.2,
-        "zero": 195.83,
-        "notrade": 203.41
+        "nottell": 189.31,
+        "unreal": 193.93,
+        "sep": 195.62,
+        "ctrl": 202.72,
+        "not": 206.6
       },
       "lines": [
         {
-          "at": 176.71,
+          "at": 189.31,
           "text": "So I'm not going to tell you, ‘Don't care about money.’"
         },
         {
-          "at": 181.33,
+          "at": 193.93,
           "text": "That's unrealistic."
         },
         {
-          "at": 182.62,
+          "at": 195.62,
           "text": "What I want you to do is separate your financial goals from your execution goals."
         },
         {
-          "at": 189.32,
+          "at": 202.72,
           "text": "One of those things is completely within your control."
         },
         {
-          "at": 193.2,
+          "at": 206.6,
           "text": "The other one isn't."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w11-zero",
+      "start": 210.03,
+      "end": 224.66,
+      "at": [
+        210.23,
+        218.21
+      ],
+      "b": {
+        "zero": 210.23,
+        "notrade": 218.21
+      },
+      "lines": [
         {
-          "at": 195.83,
+          "at": 210.23,
           "text": "And some days, the correct amount for you to make is literally $0 because your setup never showed up."
         },
         {
-          "at": 203.41,
+          "at": 218.21,
           "text": "A no-trade day can still be a successful trading day."
         }
       ]
     },
     {
-      "type": "v11-rule",
-      "start": 209.46,
-      "end": 237.0,
+      "type": "w11-rule",
+      "start": 224.46,
+      "end": 251.8,
       "at": [
-        209.66,
-        212.8,
-        217.05,
-        221.67,
-        227.9
+        224.66,
+        227.8,
+        232.05,
+        236.67,
+        242.9
       ],
       "b": {
-        "r1": 209.66,
-        "r2": 212.8,
-        "r3": 217.05,
-        "r4": 221.67,
-        "line": 227.9
+        "r1": 224.66,
+        "r2": 227.8,
+        "r3": 232.05,
+        "r4": 236.67,
+        "line": 242.9
       },
       "lines": [
         {
-          "at": 209.66,
+          "at": 224.66,
           "text": "My bills don't determine my position size."
         },
         {
-          "at": 212.8,
+          "at": 227.8,
           "text": "My income goal doesn't determine how many trades I take."
         },
         {
-          "at": 217.05,
+          "at": 232.05,
           "text": "The payout I want doesn't determine whether a setup is valid."
         },
         {
-          "at": 221.67,
+          "at": 236.67,
           "text": "And the amount I need doesn't change what the market is actually giving me."
         },
         {
-          "at": 227.9,
+          "at": 242.9,
           "text": "I trade the setup in front of me, not the dollar amount in my head."
         }
       ]
     },
     {
-      "type": "v11-reflect",
-      "start": 236.8,
-      "end": 320.47,
+      "type": "w11-sitdown",
+      "start": 251.6,
+      "end": 266.69,
       "at": [
-        237.0,
-        243.1,
-        246.24,
-        250.89,
-        255.88,
-        260.5,
-        265.49,
-        272.19,
-        280.29,
-        284.17,
-        289.16,
-        292.3,
-        295.07,
-        299.69,
-        304.31,
-        309.67,
-        311.33,
-        312.99
+        251.8,
+        257.9,
+        261.04
       ],
       "b": {
-        "q1": 243.1,
-        "q2": 246.24,
-        "h1": 250.89,
-        "h2": 255.88,
-        "h3": 260.5,
-        "h4": 265.49,
-        "big": 272.19,
-        "income": 280.29,
-        "demand": 284.17,
-        "s1": 289.16,
-        "s2": 292.3,
-        "s3": 295.07,
-        "force": 299.69,
-        "resp": 304.31,
-        "e1": 309.67,
-        "e2": 311.33,
-        "e3": 312.99
+        "think": 251.8,
+        "q1": 257.9,
+        "q2": 261.04
       },
       "lines": [
         {
-          "at": 237.0,
+          "at": 251.8,
           "text": "I want you to think about how you feel when you sit down to trade."
         },
         {
-          "at": 243.1,
+          "at": 257.9,
           "text": "Are you simply looking for your setup?"
         },
         {
-          "at": 246.24,
+          "at": 261.04,
           "text": "Or are you already calculating what you need to make?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w11-everyou",
+      "start": 266.49,
+      "end": 288.79,
+      "at": [
+        266.69,
+        271.68,
+        276.3,
+        281.29
+      ],
+      "b": {
+        "h1": 266.69,
+        "h2": 271.68,
+        "h3": 276.3,
+        "h4": 281.29
+      },
+      "lines": [
         {
-          "at": 250.89,
+          "at": 266.69,
           "text": "Have you ever taken another trade because the first winner wasn't enough?"
         },
         {
-          "at": 255.88,
+          "at": 271.68,
           "text": "Increased your risk because you were trying to hit a payout?"
         },
         {
-          "at": 260.5,
+          "at": 276.3,
           "text": "Continued trading because you were trying to make back money you spent?"
         },
         {
-          "at": 265.49,
+          "at": 281.29,
           "text": "Forced a setup because you felt like you couldn't afford to have a $0 day?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w11-window",
+      "start": 288.59,
+      "end": 298.39,
+      "at": [
+        288.79
+      ],
+      "b": {
+        "big": 288.79
+      },
+      "lines": [
         {
-          "at": 272.19,
+          "at": 288.79,
           "text": "If you knew you didn't need to make any money today, would you trade differently?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w11-weather",
+      "start": 298.19,
+      "end": 319.19,
+      "at": [
+        298.39,
+        302.27,
+        307.26,
+        310.4,
+        313.17
+      ],
+      "b": {
+        "income": 298.39,
+        "demand": 302.27,
+        "s1": 307.26,
+        "s2": 310.4,
+        "s3": 313.17
+      },
+      "lines": [
         {
-          "at": 280.29,
+          "at": 298.39,
           "text": "Trading can absolutely be something you build income from."
         },
         {
-          "at": 284.17,
+          "at": 302.27,
           "text": "But you still can't demand that today's market solve today's financial problem."
         },
         {
-          "at": 289.16,
+          "at": 307.26,
           "text": "Some days you're going to make money."
         },
         {
-          "at": 292.3,
+          "at": 310.4,
           "text": "Some days you're going to lose."
         },
         {
-          "at": 295.07,
+          "at": 313.17,
           "text": "Some days there won't be a trade worth taking at all."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w11-result",
+      "start": 318.99,
+      "end": 340.37,
+      "at": [
+        319.19,
+        323.81,
+        329.17,
+        330.83,
+        332.49
+      ],
+      "b": {
+        "force": 319.19,
+        "resp": 323.81,
+        "e1": 329.17,
+        "e2": 330.83,
+        "e3": 332.49
+      },
+      "lines": [
         {
-          "at": 299.69,
+          "at": 319.19,
           "text": "Your responsibility is not to force the market to pay you."
         },
         {
-          "at": 304.31,
+          "at": 323.81,
           "text": "Your responsibility is to execute your process when your opportunity actually shows up."
         },
         {
-          "at": 309.67,
+          "at": 329.17,
           "text": "Trade the setup."
         },
         {
-          "at": 311.33,
+          "at": 330.83,
           "text": "Manage the risk."
         },
         {
-          "at": 312.99,
+          "at": 332.49,
           "text": "Let the money be the result, not the instruction."
         }
       ]
