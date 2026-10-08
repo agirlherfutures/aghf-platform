@@ -273,6 +273,646 @@
       return o;
     },
 
+    /* ════ Psychology 2 · FOMO ═════════════════════════════════════════ */
+
+    // Waiting… you look away… you come back and it's GONE. Keep going, keep going.
+    'v2-missed': (s, t) => {
+      const B = s.b;
+      let o = grad('fm', '#1C1528', '#2E2142') + bg('url(#fm)');
+      const endk = seg(t, B.problem - 0.4, B.problem + 0.3);
+      const run = [0.28, 0.3, 0.27, 0.29, 0.28, 0.3, 0.29, 0.27, 0.3, 0.29, 0.34, 0.42, 0.5, 0.56, 0.62, 0.7, 0.75, 0.82, 0.86, 0.9, 0.93, 0.95];
+      // how many candles you see: slow while waiting, then the run appears while you're away
+      let n = 2 + Math.floor(seg(t, s.start, B.away) * 8);
+      if (t > B.moved) n = 22;
+      const away = between(t, B.away + 0.2, B.moved - 0.2, 0.6);
+      const mins = Math.min(45, 30 + Math.floor(seg(t, s.start, B.patient + 3) * 15));
+      o += fade(1 - endk, `${txt(200, 150, `MNQ · waiting ${mins} min`, 34, '#CFC8FA', { a: 'start', f: 'JetBrains Mono, monospace' })}<rect x="160" y="190" width="1080" height="640" rx="28" fill="#120D1C" stroke="#3A2F55" stroke-width="6"/>`);
+      if (away > 0 && away < 1) o += fade((1 - endk) * away, `<rect x="160" y="190" width="1080" height="640" rx="28" fill="#120D1C"/>${txt(700, 520, 'you’re not watching…', 46, '#5A4C7A', { f: 'Playfair Display', it: true, w: 700 })}`);
+      if (t < B.away + 0.3 || t > B.moved - 0.2) o += fade(1 - endk, candles(200, 230, 1000, 560, run, n, { slots: 24 }));
+      // your setup was back there
+      if (t > B.missed) o += fade((1 - endk) * seg(t, B.missed + 0.5, B.missed + 1), `<line x1="${200 + 10 * 1000 / 24}" x2="${200 + 10 * 1000 / 24}" y1="240" y2="790" stroke="#2AA594" stroke-width="4" stroke-dasharray="10 8"/>`) + pill(200 + 10 * 1000 / 24, 790, 'your entry', '#2AA594', pop(t, B.missed + 0.6, 0.4) * (1 - endk), 24);
+      // keep going and going: extra candles beyond the box edge feel
+      if (t > B.going) { const g = seg(t, B.going, B.going + 6); o += fade(1 - endk, `<path d="M1150,${f1(300 - 40 * g)} l40,-40 l-60,0 z" fill="#2AA594" opacity="${f1(0.5 + 0.5 * Math.sin(t * 6))}"/>`); }
+      // her: present, away, back
+      const walk = seg(t, B.away, B.away + 1.2), back_ = seg(t, B.moved - 1.2, B.moved);
+      const x = t < B.moved - 1.2 ? lerp(1560, 2150, ease(walk)) : lerp(2150, 1560, ease(back_));
+      o += fade(1 - endk, you(t, { x, y: 1020, scale: 1.2, flip: true, walking: (walk > 0 && walk < 1) || (back_ > 0 && back_ < 1), mood: t > B.missed ? 'sad' : undefined }));
+      if (away > 0) o += fade(away * (1 - endk), `<g transform="translate(1560,560)"><rect x="-70" y="-120" width="140" height="240" rx="24" fill="#3A2F55"/><rect x="-58" y="-100" width="116" height="190" rx="10" fill="#7F77DD" opacity=".6"/></g>${txt(1560, 760, 'bathroom · phone · anything', 30, '#CFC8FA', { w: 700 })}`);
+      o += fade((1 - endk) * seg(t, B.moved, B.moved + 0.3), scaleAt(1500, 160, pop(t, B.moved, 0.4), txt(1500, 190, 'MOVED.', 90, '#F9D89A')));
+      o += thought(1500, 330, 'damn. I missed it.', between(t, B.missed + 0.4, B.going - 0.2), { size: 42 });
+      const th = ['maybe I can still get in', 'maybe it’ll keep running', 'I don’t want to miss this whole move'];
+      th.forEach((l, j) => { const a = B.going + 1.5 + j * 3; o += thought(1500, 330 + (j % 2) * 30, l, between(t, a, a + 2.8) * (1 - endk), { size: 36 }); });
+      o += fade((1 - endk) * seg(t, B.expensive, B.expensive + 0.5), scaleAt(1500, 480, pop(t, B.expensive, 0.5), `<g transform="rotate(-8 1500 480)"><rect x="1340" y="420" width="320" height="120" rx="16" fill="#E2556F"/>${txt(1500, 500, 'FOMO: $$$', 52, '#fff', { ls: 2 })}</g>`));
+      if (endk > 0) {
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(endk)}"/>`;
+        o += fade(endk, `<rect x="200" y="300" width="680" height="400" rx="40" fill="#fff"/>${txt(540, 440, 'missing a trade', 52, C.dark, { f: 'Playfair Display', it: true })}${txt(540, 520, 'you’re going to miss trades', 34, C.muted, { w: 700 })}`) + check(540, 620, pop(t, B.problem + 2, 0.5), '#2AA594', 40);
+        o += fade(seg(t, B.decide, B.decide + 0.6), `<rect x="1040" y="300" width="680" height="400" rx="40" fill="#FDE8ED" stroke="#E2556F" stroke-width="6"/>${txt(1380, 440, 'what you decide', 52, '#E2556F', { f: 'Playfair Display', it: true })}${txt(1380, 520, 'because you missed it', 34, C.dark, { w: 700 })}`);
+        o += fade(seg(t, B.decide + 1, B.decide + 1.6), txt(1380, 800, 'that’s the problem', 44, '#E2556F', { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      return o;
+    },
+
+    // Not the setup, the money. The math. Then the question quietly changes.
+    'v2-math': (s, t) => {
+      const B = s.b;
+      let o = bg('#FBF4EF');
+      const m = seg(t, B.math - 0.3, B.math + 0.3), q = seg(t, B.changes - 0.4, B.changes + 0.2);
+      // what are you afraid of missing?
+      const a = 1 - m;
+      if (a > 0) {
+        o += fade(a, txt(960, 260, 'afraid of missing…', 64, C.dark, { f: 'Playfair Display', it: true }));
+        o += fade(a * seg(t, B.notsetup, B.notsetup + 0.4), `<rect x="360" y="400" width="480" height="240" rx="36" fill="#E6F5F2"/>${txt(600, 545, 'the setup', 54, '#2AA594')}`) + cross(820, 410, a * pop(t, B.notsetup + 0.8, 0.4), '#E2556F', 40);
+        o += fade(a * seg(t, B.money, B.money + 0.4), scaleAt(1320, 520, pop(t, B.money, 0.6), `<rect x="1080" y="400" width="480" height="240" rx="36" fill="#FFF3D6" stroke="#E2B04A" stroke-width="6"/>${txt(1320, 545, 'the money', 54, '#B38A2E')}`));
+      }
+      // the math: a chalkboard over the move you never took
+      const b = m * (1 - q);
+      if (b > 0) {
+        o += fade(b, `<rect x="120" y="160" width="1000" height="700" rx="30" fill="#120D1C"/>${candles(150, 200, 940, 620, [0.2, 0.22, 0.21, 0.24, 0.3, 0.38, 0.46, 0.55, 0.6, 0.68, 0.74, 0.8, 0.86, 0.9], 14)}`);
+        const meas = seg(t, B.m3, B.m3 + 1.2);
+        o += fade(b * meas, `<line x1="1080" x2="1080" y1="${f1(700 - 520 * meas)}" y2="700" stroke="#F9D89A" stroke-width="6"/><path d="M1060,${f1(720 - 520 * meas)} l20,-30 l20,30 z" fill="#F9D89A"/>`);
+        o += fade(b * seg(t, B.m1, B.m1 + 0.4), `<line x1="${150 + 4 * 940 / 14}" x2="${150 + 4 * 940 / 14}" y1="200" y2="820" stroke="#7F77DD" stroke-width="4" stroke-dasharray="10 8"/>${txt(150 + 4 * 940 / 14, 850, 'right there', 28, '#CFC8FA', { w: 700 })}`);
+        [[B.m1, '+$300', '#2AA594'], [B.m2, '× 4 contracts = $600', '#2AA594'], [B.m3, 'look how far it went', '#F9D89A']].forEach(([at, l, col], j) => { o += fade(b * seg(t, at, at + 0.4), txt(1480, 300 + j * 120, l, 46, col, { f: j < 2 ? 'JetBrains Mono, monospace' : 'Playfair Display', it: j === 2, w: j === 2 ? 700 : 900 })); });
+        const tally = t < B.assign ? 0 : 600 + Math.floor(ease(seg(t, B.assign, B.assign + 5)) * 1400);
+        o += fade(b * seg(t, B.assign, B.assign + 0.4), `<rect x="1260" y="640" width="440" height="200" rx="30" fill="#fff" stroke="#E6DDD3" stroke-width="4"/>${txt(1480, 720, '$' + tally.toLocaleString('en-US'), 64, '#B38A2E', { f: 'JetBrains Mono, monospace' })}${txt(1480, 790, 'from a trade you never took', 28, C.muted, { w: 700 })}`);
+      }
+      // the question changes
+      if (q > 0) {
+        const flip = seg(t, B.q2 - 0.2, B.q2 + 0.4), rec = seg(t, B.recog, B.recog + 0.6);
+        o += fade(q * seg(t, B.q1, B.q1 + 0.4), `<rect x="200" y="260" width="660" height="300" rx="40" fill="#E6F5F2" stroke="#2AA594" stroke-width="6"/>${txt(530, 340, 'FIVE MINUTES AGO', 30, '#2AA594', { ls: 4 })}${txt(530, 440, '“Is my setup here?”', 50, C.dark, { f: 'Playfair Display', it: true })}`);
+        o += fade(q * flip, `<rect x="1060" y="260" width="660" height="300" rx="40" fill="#FDE8ED" stroke="#E2556F" stroke-width="6"/>${txt(1390, 340, 'NOW', 30, '#E2556F', { ls: 4 })}${txt(1390, 440, '“How can I get in?”', 50, C.dark, { f: 'Playfair Display', it: true })}`);
+        o += fade(q * seg(t, B.same, B.same + 0.4), txt(960, 440, '≠', 110, C.dark));
+        o += fade(q * seg(t, B.same + 0.5, B.same + 1), txt(960, 660, 'not the same question', 54, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+        o += fade(q * rec, `${pill(560, 820, 'trading my system', '#B8B3C9', 1, 34)}${txt(960, 832, '→', 50, C.muted)}${pill(1360, 820, 'reacting to FOMO', '#E2556F', 1, 34)}`);
+      }
+      return o;
+    },
+
+    // Dayli's late entry. It worked… which made it worse. Outcome ≠ execution.
+    'v2-chased': (s, t) => {
+      const B = s.b;
+      let o = grad('ch', '#F3E3D6', '#FBF4EF') + bg('url(#ch)');
+      const g = seg(t, B.remember - 0.4, B.remember + 0.3);
+      o += host(t, { x: 100, y: 330, w: 520, pose: t > B.worse && t < B.one ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
+      const a = 1 - g;
+      if (a > 0) {
+        const series = [0.2, 0.22, 0.21, 0.25, 0.33, 0.42, 0.5, 0.58, 0.66, 0.74, 0.8, 0.84, 0.8, 0.86, 0.9, 0.94];
+        const n = t < B.works ? 13 : 13 + Math.floor(seg(t, B.works, B.works + 2) * 3);
+        o += fade(a, `<rect x="760" y="150" width="1040" height="560" rx="28" fill="#120D1C"/>${candles(790, 190, 980, 480, series, n, { slots: 16 })}`);
+        o += fade(a * seg(t, B.watch, B.watch + 0.4), `<line x1="${790 + 3 * 980 / 16}" x2="${790 + 3 * 980 / 16}" y1="190" y2="670" stroke="#2AA594" stroke-width="4" stroke-dasharray="10 8"/>`) + pill(790 + 3 * 980 / 16, 690, 'the setup', '#2AA594', a * pop(t, B.watch + 0.3, 0.4), 24);
+        const ey = 190 + 480 - 0.84 * 480;
+        o += pill(790 + 12 * 980 / 16, ey - 50, 'ME, late', '#E2556F', a * pop(t, B.never, 0.5), 26);
+        o += fade(a * seg(t, B.never + 2, B.never + 2.6) * (1 - seg(t, B.works, B.works + 0.4)), txt(1280, 790, 'somewhere I would’ve NEVER entered', 42, '#E2556F', { f: 'Playfair Display', it: true, w: 700 }));
+        // it works… the brain files it as evidence
+        const w = seg(t, B.works + 1.5, B.works + 2);
+        o += fade(a * w * (1 - seg(t, B.evidence - 0.3, B.evidence)), txt(1280, 880, '+$ … it worked?!', 48, '#2AA594', { f: 'JetBrains Mono, monospace' }));
+        const ev = seg(t, B.evidence, B.evidence + 0.5);
+        if (ev > 0) {
+          o += fade(a * ev, `<rect x="900" y="780" width="760" height="150" rx="24" fill="#fff"/><rect x="930" y="810" width="90" height="90" rx="12" fill="#F9D89A"/>${txt(975, 870, '📁', 50, C.dark)}${txt(1050, 850, 'EVIDENCE', 30, '#B38A2E', { a: 'start', ls: 4 })}${txt(1050, 900, 'chasing can pay me', 36, C.dark, { a: 'start', w: 700 })}`);
+        }
+        o += thought(1280, 110, '“last time I got in late and it still went”', between(t, B.next + 0.2, B.one - 0.2), { size: 34 });
+        o += fade(a * seg(t, B.one, B.one + 0.5), `<rect x="760" y="760" width="1040" height="200" rx="30" fill="#2C1810"/>${txt(1280, 850, '1 winning trade', 44, '#fff')}${txt(1280, 910, '≠ a good decision', 44, '#F9D89A')}`);
+      }
+      if (g > 0) {
+        o += fade(g, txt(1280, 170, 'outcome ≠ execution', 56, C.dark, { f: 'Playfair Display', it: true }));
+        const cell = (x, y, top, bot, col, k) => fade(g * k, `<rect x="${x}" y="${y}" width="480" height="300" rx="30" fill="#fff" stroke="${col}" stroke-width="6"/>${txt(x + 240, y + 130, top, 44, col)}${txt(x + 240, y + 200, bot, 34, C.dark, { w: 700 })}`);
+        o += cell(780, 300, 'made money', 'on a bad decision', '#E2556F', seg(t, B.bad, B.bad + 0.5));
+        o += cell(1300, 300, 'lost money', 'on a good decision', '#2AA594', seg(t, B.good, B.good + 0.5));
+        o += fade(g * seg(t, B.good + 2, B.good + 2.6), txt(1280, 760, 'the money doesn’t grade the decision', 42, '#7F77DD', { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      return o;
+    },
+
+    // The money was never yours. Back to the system. Hand. Off. The. Mouse.
+    'v2-hands': (s, t) => {
+      const B = s.b;
+      let o = grad('hd', '#E6F5F2', '#FDF8F5') + bg('url(#hd)');
+      const p2 = seg(t, B.system - 0.3, B.system + 0.3), p3 = seg(t, B.later - 0.4, B.later + 0.2), p4 = seg(t, B.hand - 0.4, B.hand + 0.2);
+      // the money that was never yours dissolves
+      const a = 1 - p2;
+      if (a > 0) {
+        const d = seg(t, B.never, B.never + 2);
+        for (let i = 0; i < 14; i++) { const ang = i * 0.9, r = 40 + d * (200 + (i % 4) * 60); o += fade(a * (1 - d * 0.9), `<text x="${f1(960 + Math.cos(ang) * r)}" y="${f1(520 + Math.sin(ang) * r * 0.6 - d * 80)}" font-size="${60 - (i % 3) * 10}" font-weight="900" text-anchor="middle" fill="#B38A2E" font-family="JetBrains Mono, monospace">$</text>`); }
+        o += fade(a * seg(t, B.stop, B.stop + 0.4) * (1 - d), txt(960, 300, 'what you could’ve made', 50, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+        o += fade(a * seg(t, B.never, B.never + 0.5), txt(960, 820, 'that money was never yours.', 66, C.dark, { f: 'Playfair Display', it: true }));
+      }
+      // back to the system
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        o += fade(b, txt(960, 170, 'come back to your system', 54, '#2AA594', { f: 'Playfair Display', it: true }));
+        [[B.n1, 'can I justify getting in?'], [B.n2, 'will price keep running?'], [B.n3, 'can I catch 30 more points?']].forEach(([at, l], j) => { const y = 330 + j * 110, k = seg(t, at, at + 0.4); o += fade(b * k, txt(960, y, l, 42, C.muted, { f: 'Playfair Display', it: true, w: 700 }) + `<line x1="${960 - l.length * 11 - 30}" x2="${f1(960 - l.length * 11 - 30 + (l.length * 22 + 60) * seg(t, at + 0.8, at + 1.3))}" y1="${y - 14}" y2="${y - 14}" stroke="#E2556F" stroke-width="5"/>`); });
+        o += scaleAt(960, 780, b * pop(t, B.exist, 0.6), `<rect x="460" y="700" width="1000" height="160" rx="80" fill="#2AA594"/>${txt(960, 800, 'Does my setup exist right now?', 50, '#fff')}`);
+        o += fade(b * seg(t, B.valid, B.valid + 0.3) * (1 - seg(t, B.n1, B.n1 + 0.3)), txt(960, 450, 'is there a valid setup?', 60, C.dark, { f: 'Playfair Display', it: true }));
+      }
+      // missing one doesn't end the day; the next one stands on its own
+      const c = p3 * (1 - p4);
+      if (c > 0) {
+        o += fade(c, `<line x1="200" x2="1720" y1="500" y2="500" stroke="#B8B3C9" stroke-width="8" stroke-linecap="round"/>${txt(200, 560, 'open', 30, C.muted, { a: 'start', w: 700 })}${txt(1720, 560, 'close', 30, C.muted, { a: 'end', w: 700 })}`);
+        o += fade(c, `<circle cx="560" cy="500" r="50" fill="#fff" stroke="#E2556F" stroke-width="6"/>${txt(560, 420, 'missed', 34, '#E2556F')}`) + cross(560, 500, c, '#E2556F', 30);
+        o += fade(c * seg(t, B.later + 2, B.later + 2.6), `<circle cx="1260" cy="500" r="50" fill="#fff" stroke="#2AA594" stroke-width="6"/>${txt(1260, 420, 'a later setup', 34, '#2AA594')}`) + check(1260, 500, c * pop(t, B.later + 2.4, 0.4), '#2AA594', 30);
+        o += fade(c * seg(t, B.merit, B.merit + 0.5), txt(1260, 640, 'stands on its own', 40, '#2AA594', { f: 'Playfair Display', it: true, w: 700 }));
+        // the standards bar refuses to drop
+        const tug = seg(t, B.lower, B.lower + 3), drop = 18 * Math.sin(tug * Math.PI * 3) * (1 - tug);
+        o += fade(c * seg(t, B.lower, B.lower + 0.4), `<rect x="560" y="${f1(780 + drop)}" width="800" height="70" rx="35" fill="#2C1810"/>${txt(960, 828 + drop, 'MY STANDARDS', 34, '#fff', { ls: 6 })}${txt(960, 940, 'don’t drop because I’m mad I missed one', 36, C.muted, { f: 'Playfair Display', it: true, w: 700 })}`);
+      }
+      // hand off the mouse
+      if (p4 > 0) {
+        const lift = ease(seg(t, B.lit, B.lit + 0.8)), sit = ease(seg(t, B.sit, B.sit + 0.8));
+        o += fade(p4, `<rect x="0" y="760" width="1920" height="320" fill="#E8D5C4"/><ellipse cx="960" cy="800" rx="110" ry="70" fill="#fff" stroke="#B8B3C9" stroke-width="6"/><line x1="960" y1="730" x2="960" y2="790" stroke="#B8B3C9" stroke-width="5"/><path d="M960,730 C960,640 1100,660 1120,560" stroke="#B8B3C9" stroke-width="6" fill="none"/>`);
+        // the hand
+        const hy = 760 - lift * 380, hx = 960 + lift * 260, hr = -lift * 25;
+        o += fade(p4 * (1 - sit), `<g transform="translate(${f1(hx)},${f1(hy)}) rotate(${f1(hr)})"><rect x="-80" y="-60" width="160" height="110" rx="50" fill="#9A6244"/>${[0, 1, 2, 3].map(i => `<rect x="${-72 + i * 38}" y="-110" width="32" height="80" rx="16" fill="#9A6244"/>`).join('')}<rect x="-60" y="40" width="120" height="300" rx="40" fill="#F4829A"/></g>`);
+        const chant = t > B.hand && t < B.lit ? Math.floor((t - B.hand) * 1.6) % 3 : -1;
+        if (chant >= 0) ['I need to get in', 'I need to get in!', 'I NEED TO GET IN'].forEach((l, j) => { if (j <= chant) o += thought(560 + j * 400, 220 + (j % 2) * 120, l, 1, { size: 34 + j * 4 }); });
+        o += fade(seg(t, B.lit, B.lit + 0.3) * (1 - sit), txt(960, 260, 'hand. off. the mouse.', 70, C.dark, { f: 'Playfair Display', it: true }));
+        if (sit > 0) {
+          o += fade(sit, you(t, { x: 1500, y: 740, scale: 1 }));
+          o += fade(seg(t, B.ask, B.ask + 0.5), txt(800, 240, 'what exactly am I waiting to see', 50, C.dark, { f: 'Playfair Display', it: true }) + txt(800, 320, 'before I’m allowed to enter?', 50, C.dark, { f: 'Playfair Display', it: true }));
+          o += fade(seg(t, B.cant, B.cant + 0.5), pill(800, 470, 'can’t answer from your written system? don’t click.', '#E2556F', 1, 32));
+        }
+      }
+      return o;
+    },
+
+    // If the entry is gone, the trade is gone. $0 vs −$.
+    'v2-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('r2', '#EEEBFB', '#DDF1EE') + bg('url(#r2)');
+      o += txt(960, 130, '🧠 YOUR RULE', 32, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 230, pop(t, s.start + 0.4, 0.8), txt(960, 255, 'If my entry is gone, the trade is gone.', 72, C.dark, { f: 'Playfair Display' }));
+      const fin = seg(t, B.line - 0.3, B.line + 0.3);
+      [[B.r1, 'the original trade', 'I don’t chase it', '#E2556F'], [B.r2, 'a new valid setup', 'evaluated on its own', '#2AA594'], [B.r3, 'one missed opportunity', '≠ a bad trade', '#7F77DD']].forEach(([at, a, b, col], j) => {
+        const y = 440 + j * 120;
+        o += fade(seg(t, at, at + 0.5) * (1 - fin), `<rect x="360" y="${y - 50}" width="1200" height="96" rx="48" fill="#fff"/>${txt(420, y + 12, a, 38, C.dark, { a: 'start' })}${txt(1500, y + 12, b, 38, col, { a: 'end' })}`);
+      });
+      if (fin > 0) {
+        const rc = (x, title, amt, col, k) => scaleAt(x, 640, k, `<g transform="rotate(${x < 960 ? -3 : 3} ${x} 640)"><rect x="${x - 260}" y="420" width="520" height="460" rx="12" fill="#fff"/>${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => `<path d="M${x - 260 + i * 52},880 l26,24 l26,-24" fill="#fff"/>`).join('')}${txt(x, 500, 'RECEIPT', 28, C.muted, { ls: 6 })}${txt(x, 600, title, 44, C.dark, { f: 'Playfair Display', it: true })}<line x1="${x - 200}" x2="${x + 200}" y1="660" y2="660" stroke="#E6DDD3" stroke-width="4" stroke-dasharray="10 8"/>${txt(x, 790, amt, 110, col, { f: 'JetBrains Mono, monospace' })}</g>`);
+        o += rc(620, 'missing a trade', '$0', '#2AA594', fin * pop(t, B.line + 0.2, 0.6));
+        o += rc(1300, 'chasing one', '−$$$', '#E2556F', pop(t, B.line + 2.2, 0.6));
+      }
+      return o;
+    },
+
+    // Reflection: what made you enter? Cover the move. Always another candle.
+    'v2-reflect': (s, t) => {
+      const B = s.b;
+      let o = bg('#1A1424');
+      const cov = seg(t, B.bigq - 0.3, B.bigq + 0.3), end = seg(t, B.g1 - 0.4, B.g1 + 0.3);
+      const a = 1 - cov;
+      if (a > 0) {
+        o += fade(a, txt(960, 200, 'the last trade you chased', 56, '#fff', { f: 'Playfair Display', it: true }));
+        o += fade(a * seg(t, B.what, B.what + 0.5), txt(960, 330, 'what actually made you enter?', 64, '#F9D89A', { f: 'Playfair Display', it: true }));
+        o += fade(a * seg(t, B.q1, B.q1 + 0.4), `<rect x="260" y="470" width="620" height="260" rx="36" fill="#1E3A36" stroke="#2AA594" stroke-width="6"/>${txt(570, 620, 'my setup was there', 44, '#fff')}`);
+        o += fade(a * seg(t, B.q2, B.q2 + 0.4), `<rect x="1040" y="470" width="620" height="260" rx="36" fill="#3A1420" stroke="#E2556F" stroke-width="6"/>${txt(1350, 590, 'uncomfortable', 44, '#fff')}${txt(1350, 650, 'watching it move without me', 32, '#FF8DA3', { w: 700 })}`);
+      }
+      const b = cov * (1 - end);
+      if (b > 0) {
+        const series = [0.15, 0.17, 0.16, 0.22, 0.3, 0.4, 0.5, 0.58, 0.66, 0.74, 0.8, 0.85, 0.82];
+        o += fade(b, `<rect x="360" y="220" width="1200" height="560" rx="28" fill="#120D1C"/>${candles(390, 260, 1140, 480, series, 13, { slots: 13 })}`);
+        const cover = ease(seg(t, B.big + 1, B.big + 2.2));
+        o += fade(b, `<rect x="380" y="240" width="${f1(860 * cover)}" height="520" rx="16" fill="#3A2F55"/>`);
+        o += fade(b * cover, txt(380 + 430 * cover, 520, 'the move you saw', 40, '#CFC8FA', { f: 'Playfair Display', it: true, w: 700 }));
+        o += pill(390 + 11 * 1140 / 13, 230, 'your entry', '#E2556F', b * pop(t, B.big + 0.3, 0.4), 26);
+        o += fade(b * seg(t, B.big + 3, B.big + 3.6), txt(960, 880, 'would you still take this exact trade?', 52, '#F9D89A', { f: 'Playfair Display', it: true }));
+        o += fade(b * seg(t, B.tells, B.tells + 0.5), txt(960, 970, 'if not… that tells you something.', 40, '#FF8DA3', { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      if (end > 0) {
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(end)}"/>`;
+        const fin = seg(t, B.last - 0.3, B.last + 0.3);
+        o += fade(end * (1 - fin), txt(960, 230, 'not every move', 56, C.muted, { f: 'Playfair Display', it: true }) + `<line x1="740" x2="${f1(740 + 440 * seg(t, B.g1 + 1, B.g1 + 1.5))}" y1="212" y2="212" stroke="#E2556F" stroke-width="6"/>`);
+        o += fade(end * (1 - fin) * seg(t, B.g2, B.g2 + 0.5), txt(960, 340, 'your moves.', 80, '#2AA594', { f: 'Playfair Display', it: true }));
+        // the conveyor: always another one
+        if (t > B.always - 0.3) {
+          const k = seg(t, B.always - 0.3, B.always + 0.3) * (1 - fin);
+          ['another candle', 'another session', 'another opportunity', 'another candle', 'another session', 'another opportunity'].forEach((l, j) => { const x = ((t - B.always) * 170 + j * 420) % 2520 - 300; o += fade(k * seg(t, B.always + Math.min(j, 2) * 2, B.always + Math.min(j, 2) * 2 + 0.5), `<g transform="translate(${f1(x)},640)"><rect x="-180" y="-70" width="360" height="140" rx="30" fill="#fff" stroke="#E6DDD3" stroke-width="4"/>${txt(0, 12, l, 32, '#7F77DD')}</g>`); });
+        }
+        o += fade(fin, txt(960, 480, 'You don’t have to turn every move you see', 60, C.dark, { f: 'Playfair Display', it: true }) + txt(960, 580, 'into a trade you take.', 60, '#E2556F', { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    /* ════ Psychology 3 · Revenge Trading ══════════════════════════════ */
+
+    // You did everything right. It lost anyway. Five minutes later: "I can make that back."
+    'v3-loss': (s, t) => {
+      const B = s.b;
+      let o = grad('rl', '#1C1528', '#2B1A26') + bg('url(#rl)');
+      const endk = seg(t, B.notauto - 0.4, B.notauto + 0.3);
+      // the plan, ticked
+      ['setup', 'confirmation', 'entry', 'stop respected'].forEach((l, j) => {
+        const y = 260 + j * 110, at = B.plan + j * 1.6;
+        o += fade((1 - endk) * seg(t, at, at + 0.4) * (1 - seg(t, B.five - 0.3, B.five)), `<rect x="180" y="${y - 45}" width="560" height="90" rx="45" fill="#2A2142"/>${txt(240, y + 12, l, 38, '#fff', { a: 'start', w: 700 })}`) + (t < B.five ? check(680, y, (1 - endk) * pop(t, at + 0.3, 0.4), '#2AA594', 28) : '');
+      });
+      // the red number
+      const rk = pop(t, B.lost, 0.6), throb = t > B.red ? 1 + 0.03 * Math.sin((t - B.red) * 5) : 1;
+      o += fade(1 - endk, scaleAt(1000, 520, rk * throb * (1 - seg(t, B.five - 0.3, B.five) * 0.4), `${txt(1000, 560, '−$200', 150, '#E2556F', { f: 'JetBrains Mono, monospace' })}${txt(1000, 640, 'STOPPED OUT', 36, '#FF8DA3', { ls: 6 })}`));
+      o += fade(1 - endk, you(t, { x: 1560, y: 1020, scale: 1.2, flip: true, mood: t > B.lost ? 'sad' : undefined, frontArm: t > B.back && t < B.careful ? { a1: -60, a2: -150 } : undefined }));
+      o += thought(1500, 330, 'damn.', between(t, B.red + 2, B.five - 0.2) * (1 - endk), { size: 50 });
+      // price moves again
+      const mv = seg(t, B.five - 0.3, B.five + 0.3) * (1 - endk);
+      if (mv > 0) {
+        const n = 2 + Math.floor(seg(t, B.five, B.back + 2) * 12);
+        o += fade(mv, `<rect x="180" y="200" width="1000" height="560" rx="28" fill="#120D1C" stroke="#3A2F55" stroke-width="6"/>${candles(210, 240, 940, 480, [0.6, 0.45, 0.32, 0.25, 0.3, 0.38, 0.46, 0.44, 0.52, 0.6, 0.58, 0.66, 0.72, 0.78], n, { slots: 14 })}${txt(210, 780, '5 minutes later', 30, '#F9D89A', { a: 'start', f: 'JetBrains Mono, monospace' })}`);
+        o += thought(1480, 330, '“Okay. I can make that back.”', between(t, B.back, B.careful - 0.1), { size: 38 });
+        o += scaleAt(1460, 380, pop(t, B.careful, 0.5), `<path d="M1460,240 L1590,470 L1330,470 Z" fill="#F9D89A" stroke="#2C1810" stroke-width="8" stroke-linejoin="round"/>${txt(1460, 445, '!', 120, '#2C1810')}`);
+      }
+      if (endk > 0) {
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(endk)}"/>`;
+        o += fade(endk, `<rect x="200" y="260" width="680" height="300" rx="40" fill="#fff"/>${txt(540, 390, 'another trade', 50, C.dark, { f: 'Playfair Display', it: true })}${txt(540, 460, 'after a loss', 50, C.dark, { f: 'Playfair Display', it: true })}`) + check(860, 270, endk * pop(t, B.notauto + 2, 0.5), '#2AA594', 36);
+        o += fade(endk * seg(t, B.notauto + 2.5, B.notauto + 3.1), txt(540, 640, 'not automatically revenge', 34, '#2AA594', { w: 700 }));
+        o += fade(seg(t, B.why, B.why + 0.5), `<rect x="1040" y="260" width="680" height="300" rx="40" fill="#2C1810"/>${txt(1380, 400, 'WHY', 90, '#F9D89A', { ls: 10 })}${txt(1380, 480, 'are you taking the next one?', 36, '#fff', { w: 700 })}`);
+      }
+      return o;
+    },
+
+    // The loss reaches into the next decision. Erasing a feeling. The market doesn't know.
+    'v3-erase': (s, t) => {
+      const B = s.b;
+      let o = bg('#FBF4EF');
+      const p2 = seg(t, B.here - 0.3, B.here + 0.3), p3 = seg(t, B.eval - 0.4, B.eval + 0.2), p4 = seg(t, B.know - 0.3, B.know + 0.3);
+      // the loss reaches into what you do next
+      const a = 1 - p2;
+      if (a > 0) {
+        o += fade(a, txt(960, 170, 'when the loss starts deciding what you do next', 48, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+        const chips = [['more contracts', 360, 320], ['entering faster', 1560, 320], ['“good enough” setups', 380, 760], ['3 back-to-back', 1540, 760]];
+        chips.forEach(([l, x, y], j) => {
+          const k = seg(t, B.infl + j * 1, B.infl + j * 1 + 0.5);
+          o += fade(a * k, `<line x1="960" y1="520" x2="${f1(lerp(960, x, k))}" y2="${f1(lerp(520, y, k))}" stroke="#E2556F" stroke-width="6" stroke-dasharray="14 10"/>`) + pill(x, y, l, '#2C1810', a * pop(t, B.infl + j + 0.3, 0.4), 34);
+        });
+        o += fade(a * seg(t, B.isnt, B.isnt + 0.4), `<rect x="760" y="420" width="400" height="200" rx="30" fill="#E2556F"/>${txt(960, 540, 'LAST LOSS', 46, '#fff', { ls: 4 })}`);
+      }
+      // erase the feeling: an eraser scrubbing the red number
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        const ex = 960 + 220 * Math.sin((t - B.erase) * 6) * seg(t, B.erase + 0.5, B.erase + 1);
+        o += fade(b * seg(t, B.erase, B.erase + 0.5), `${txt(960, 470, '−$100', 160, '#E2556F', { f: 'JetBrains Mono, monospace', op: f1(1 - 0.2 * seg(t, B.erase, B.erase + 6)) })}<g transform="translate(${f1(ex)},530) rotate(-20)"><rect x="-90" y="-50" width="180" height="100" rx="14" fill="#F4829A"/><rect x="-90" y="10" width="180" height="40" rx="8" fill="#7F77DD"/></g>${txt(960, 650, 'trying to erase the feeling of losing', 46, C.dark, { f: 'Playfair Display', it: true, w: 700 })}`);
+        // the math of getting back
+        o += fade(b * seg(t, B.u400, B.u400 + 0.4), `<rect x="260" y="760" width="620" height="190" rx="30" fill="#fff"/>${txt(570, 830, 'up $400 → lost $100', 36, C.dark, { f: 'JetBrains Mono, monospace' })}${txt(570, 900, '“I want my $100 back”', 36, '#E2556F', { f: 'Playfair Display', it: true, w: 700 })}`);
+        o += fade(b * seg(t, B.d300, B.d300 + 0.4), `<rect x="1040" y="760" width="620" height="190" rx="30" fill="#fff"/>${txt(1350, 830, 'down $300', 36, C.dark, { f: 'JetBrains Mono, monospace' })}${txt(1350, 900, '“I just need one good trade”', 36, '#E2556F', { f: 'Playfair Display', it: true, w: 700 })}`);
+      }
+      // the compass points the wrong way
+      const c = p3 * (1 - p4);
+      if (c > 0) {
+        const sw = ease(seg(t, B.getback, B.getback + 1.2)), ang = lerp(-90, 90, sw) * Math.PI / 180;
+        o += fade(c, `<circle cx="960" cy="540" r="260" fill="#fff" stroke="#2C1810" stroke-width="10"/>${txt(960, 250, 'what’s actually happening', 36, '#2AA594')}${txt(960, 860, 'back to where I was', 36, '#E2556F')}<line x1="960" y1="540" x2="${f1(960 + 210 * Math.cos(ang))}" y2="${f1(540 + 210 * Math.sin(ang))}" stroke="${sw > 0.5 ? '#E2556F' : '#2AA594'}" stroke-width="18" stroke-linecap="round"/><circle cx="960" cy="540" r="26" fill="#2C1810"/>`);
+        o += fade(c, txt(260, 540, 'evaluating', 40, C.muted, { a: 'start', f: 'Playfair Display', it: true, w: 700 }));
+      }
+      // the market doesn't know
+      if (p4 > 0) {
+        o += fade(p4, `<rect x="560" y="220" width="800" height="460" rx="30" fill="#120D1C"/>${candles(590, 260, 740, 380, vals(23, 18, 0.004, 0.05, 0.5), 18)}<rect x="1020" y="700" width="340" height="80" rx="16" fill="#fff" stroke="#E6DDD3" stroke-width="4"/>${txt(1190, 752, 'your last trade: ???', 30, C.muted, { f: 'JetBrains Mono, monospace' })}`);
+        o += fade(seg(t, B.know, B.know + 0.5), txt(960, 870, 'the market doesn’t know you lost', 54, C.dark, { f: 'Playfair Display', it: true }));
+        o += fade(seg(t, B.know + 2.5, B.know + 3.1), txt(960, 950, 'your next setup isn’t more likely to win because you need it to', 34, '#E2556F', { w: 700 }));
+      }
+      return o;
+    },
+
+    // Not dramatic. Subtle. Three little dials turn. You can make a chart look like a setup.
+    'v3-subtle': (s, t) => {
+      const B = s.b;
+      let o = grad('sb', '#F3E3D6', '#FBF4EF') + bg('url(#sb)');
+      const p2 = seg(t, B.subtle - 0.3, B.subtle + 0.3), p3 = seg(t, B.whyt - 0.4, B.whyt + 0.2), p4 = seg(t, B.nothing - 0.3, B.nothing + 0.3);
+      o += host(t, { x: 100, y: 330, w: 520, pose: t > B.make && t < B.nothing ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
+      // dramatic: button mashing (crossed out)
+      const a = seg(t, B.dramatic, B.dramatic + 0.4) * (1 - p2);
+      if (a > 0) {
+        for (let i = 0; i < 10; i++) { const x = 820 + (i % 5) * 190, y = 300 + Math.floor(i / 5) * 220, hit = Math.sin(t * 14 + i * 1.7) > 0.6; o += fade(a, `<rect x="${x}" y="${y + (hit ? 10 : 0)}" width="150" height="${hit ? 90 : 100}" rx="20" fill="${i % 2 ? '#2AA594' : '#E2556F'}"/>${txt(x + 75, y + 62, i % 2 ? 'BUY' : 'SELL', 30, '#fff')}`); }
+        o += fade(a, txt(1280, 790, '10 trades in 5 minutes', 44, C.dark, { f: 'Playfair Display', it: true, w: 700 })) + cross(1640, 770, a * pop(t, B.slam + 2, 0.4), '#E2556F', 36);
+      }
+      // subtle: three dials slide
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        o += fade(b, txt(1280, 190, 'sometimes it’s subtle', 54, C.dark, { f: 'Playfair Display', it: true }));
+        [[B.s1, 'confirmation', 'wait', 'quicker'], [B.s2, 'standards', 'clean', 'make it work'], [B.s3, 'size', 'normal', 'bigger']].forEach(([at, l, from, to], j) => {
+          const y = 360 + j * 190, k = seg(t, at, at + 0.4), sl = ease(seg(t, at + 1.2, at + 2.4));
+          o += fade(b * k, `${txt(780, y - 30, l.toUpperCase(), 30, C.muted, { a: 'start', ls: 4 })}<rect x="780" y="${y}" width="960" height="24" rx="12" fill="#fff"/>${txt(780, y + 80, from, 32, '#2AA594', { a: 'start' })}${txt(1740, y + 80, to, 32, '#E2556F', { a: 'end' })}<circle cx="${f1(800 + 920 * lerp(0.1, 0.8, sl))}" cy="${y + 12}" r="30" fill="${sl > 0.5 ? '#E2556F' : '#2AA594'}" stroke="#fff" stroke-width="6"/>`);
+        });
+      }
+      // why — and making a chart look like a setup
+      const c = p3 * (1 - p4);
+      if (c > 0) {
+        o += fade(c, `${txt(1000, 200, 'what', 50, C.muted, { f: 'Playfair Display', it: true })}${txt(1480, 200, 'WHY', 60, '#E2556F', { ls: 6 })}<line x1="920" x2="1080" y1="182" y2="182" stroke="#B8B3C9" stroke-width="4"/>`);
+        const mk = seg(t, B.make, B.make + 0.4);
+        o += fade(c * mk, `<rect x="760" y="300" width="1000" height="460" rx="28" fill="#120D1C"/>${candles(790, 340, 940, 380, vals(5, 20, 0, 0.05, 0.5), 20)}`);
+        const draw = seg(t, B.make + 1, B.make + 3.5);
+        o += fade(c * mk, `<path d="M820,600 L1000,450 L1180,560 L1360,420 L1540,520 L1720,400" fill="none" stroke="#F9D89A" stroke-width="6" stroke-dasharray="${f1(1200 * draw)} 1400"/>`);
+        o += pill(1260, 820, '“looks like a setup to me…”', '#F9D89A', c * pop(t, B.make + 3.6, 0.4), 32, '#2C1810');
+      }
+      // the best thing: nothing
+      if (p4 > 0) {
+        o += fade(p4, `<rect x="900" y="300" width="760" height="420" rx="30" fill="#fff"/><rect x="960" y="350" width="640" height="300" rx="16" fill="#E6F5F2"/>${txt(1280, 520, '…', 120, '#2AA594')}${txt(1280, 820, 'sometimes the best trade is nothing', 48, '#2AA594', { f: 'Playfair Display', it: true, w: 700 })}`);
+      }
+      return o;
+    },
+
+    // A loss isn't a mistake. Space before the next decision. Calm you or damn-money-back you?
+    'v3-reset': (s, t) => {
+      const B = s.b;
+      let o = grad('rs', '#E6F5F2', '#FDF8F5') + bg('url(#rs)');
+      const p2 = seg(t, B.mistake - 0.3, B.mistake + 0.3), p3 = seg(t, B.space - 0.3, B.space + 0.3), p4 = seg(t, B.calm - 0.3, B.calm + 0.3), p5 = seg(t, B.would - 0.3, B.would + 0.3);
+      const a = 1 - p2;
+      if (a > 0) {
+        o += fade(a * seg(t, B.norm, B.norm + 0.4), txt(960, 200, 'normalize losing trades', 60, C.dark, { f: 'Playfair Display', it: true }));
+        o += fade(a * seg(t, B.stop, B.stop + 0.4), `<rect x="610" y="300" width="700" height="460" rx="40" fill="#fff"/>${txt(960, 380, 'STOP LOSS HIT', 36, '#E2556F', { ls: 6 })}`);
+        ['valid setup', 'correct risk', 'followed the plan'].forEach((l, j) => { const y = 480 + j * 90, at = B.stop + 1 + j * 0.6; o += fade(a * seg(t, at, at + 0.3), txt(700, y + 12, l, 38, C.dark, { a: 'start', w: 700 })) + check(1200, y, a * pop(t, at + 0.2, 0.4), '#2AA594', 28); });
+      }
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        o += fade(b, `<rect x="200" y="300" width="680" height="380" rx="40" fill="#fff"/>${txt(540, 470, 'I made a mistake', 50, C.muted, { f: 'Playfair Display', it: true })}`) + cross(540, 570, b * pop(t, B.mistake + 1, 0.4), '#E2556F', 36);
+        o += fade(b * seg(t, B.tlost, B.tlost + 0.4), `<rect x="1040" y="300" width="680" height="380" rx="40" fill="#fff" stroke="#2AA594" stroke-width="6"/>${txt(1380, 470, 'my trade lost', 50, '#2AA594', { f: 'Playfair Display', it: true })}`) + check(1380, 570, b * pop(t, B.tlost + 0.5, 0.4), '#2AA594', 36);
+        o += fade(b * seg(t, B.diff, B.diff + 0.4), txt(960, 820, 'two completely different things', 50, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      const c = p3 * (1 - p4);
+      if (c > 0) {
+        const gap = ease(seg(t, B.space + 1, B.space + 4));
+        o += fade(c, `<rect x="${f1(660 - gap * 400)}" y="400" width="360" height="200" rx="30" fill="#E2556F"/>${txt(840 - gap * 400, 520, 'the loss', 44, '#fff')}<rect x="${f1(900 + gap * 400)}" y="400" width="360" height="200" rx="30" fill="#2C1810"/>${txt(1080 + gap * 400, 500, 'the next', 40, '#fff')}${txt(1080 + gap * 400, 550, 'decision', 40, '#fff')}`);
+        o += fade(c * gap, `<rect x="${f1(1020 - gap * 400)}" y="470" width="${f1(gap * 800 - 120)}" height="60" rx="30" fill="#F9D89A" opacity=".7"/>${txt(960, 700, 'create space', 54, '#2AA594', { f: 'Playfair Display', it: true })}`);
+      }
+      const d = p4 * (1 - p5);
+      if (d > 0) {
+        o += fade(d, txt(960, 170, 'who’s making the next decision?', 54, C.dark, { f: 'Playfair Display', it: true }));
+        o += fade(d, you(t, { x: 560, y: 940, scale: 1.25 }) + pill(560, 300, 'calm you', '#2AA594', 1, 38));
+        const dk = seg(t, B.damn, B.damn + 0.5);
+        if (dk > 0) {
+          o += fade(d * dk, you(t, { x: 1360, y: 940, scale: 1.25, flip: true, mood: 'sad' }) + `<circle cx="1360" cy="540" r="${f1(230 + 15 * Math.sin(t * 6))}" fill="#E2556F" opacity=".15"/>`);
+          for (let j = 0; j < 3; j++) { const p = ((t * 0.8 + j * 0.33) % 1); o += `<path d="M${1320 + j * 40},${f1(420 - p * 120)} q14,-20 0,-40 q-14,-20 0,-40" stroke="#E2556F" stroke-width="6" fill="none" opacity="${f1(Math.sin(p * Math.PI) * 0.6 * d * dk)}"/>`; }
+          o += thought(1360, 300, '“give me my damn money back”', d * pop(t, B.damn + 0.3, 0.5), { size: 34 });
+        }
+      }
+      if (p5 > 0) {
+        o += fade(p5, txt(960, 160, 'before another trade, ask:', 48, C.muted, { f: 'Playfair Display', it: true, w: 700 }));
+        [['is this actually my setup?', 0], ['would I take this trade if my last one had WON?', 1], ['am I using my normal size?', 0], ['is this risk about THIS trade, or the last one?', 0]].forEach(([l, hot], j) => {
+          const y = 300 + j * 150, k = seg(t, B.would + j * 0.5, B.would + j * 0.5 + 0.4), hk = hot ? 1 + 0.06 * seg(t, B.would + 2.5, B.would + 3) : 1;
+          o += fade(p5 * k, scaleAt(960, y, hk, `<rect x="300" y="${y - 55}" width="1320" height="110" rx="55" fill="${hot ? '#2C1810' : '#fff'}"/>${txt(960, y + 14, l, hot ? 42 : 38, hot ? '#F9D89A' : C.dark)}`));
+        });
+      }
+      return o;
+    },
+
+    // Reset before re-entering. The next trade's job is not to pay for the last one.
+    'v3-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('r3', '#EEEBFB', '#DDF1EE') + bg('url(#r3)');
+      o += txt(960, 130, '🧠 YOUR RULE', 32, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 230, pop(t, s.start + 0.4, 0.8), txt(960, 255, 'After a full stop loss, I reset before I re-enter.', 62, C.dark, { f: 'Playfair Display' }));
+      const fin = seg(t, B.line - 0.3, B.line + 0.3), a = 1 - fin;
+      if (a > 0) {
+        const secs = Math.max(0, 600 - Math.floor(seg(t, B.r1, B.r1 + 8) * 600));
+        o += fade(a * seg(t, B.r1, B.r1 + 0.4), `<rect x="200" y="380" width="460" height="300" rx="36" fill="#fff"/>${txt(430, 560, `${String(Math.floor(secs / 60)).padStart(2, '0')}:${String(secs % 60).padStart(2, '0')}`, 90, '#7F77DD', { f: 'JetBrains Mono, monospace' })}${txt(430, 640, 'step away', 32, C.muted, { w: 700 })}`);
+        o += fade(a * seg(t, B.r2, B.r2 + 0.4), `<rect x="730" y="380" width="460" height="300" rx="36" fill="#fff"/><path d="M890,450 L910,620 L1010,620 L1030,450 Z" fill="#BFE3F5" stroke="#7FB8D6" stroke-width="6"/>${txt(960, 660, 'water · whatever', 32, C.muted, { w: 700 })}`);
+        o += fade(a * seg(t, B.r3, B.r3 + 0.4), `<rect x="1260" y="380" width="460" height="300" rx="36" fill="#fff"/><rect x="1300" y="500" width="120" height="70" rx="14" fill="#E2556F"/><rect x="1560" y="500" width="120" height="70" rx="14" fill="#2C1810"/><line x1="1430" x2="1550" y1="535" y2="535" stroke="#F9D89A" stroke-width="10" stroke-dasharray="12 10"/>${txt(1490, 640, 'a break between', 32, C.muted, { w: 700 })}`);
+        o += fade(a * seg(t, B.r4, B.r4 + 0.5), `<rect x="360" y="760" width="1200" height="140" rx="70" fill="#2C1810"/>${txt(960, 845, 'same criteria as if I hadn’t lost', 44, '#fff')}`);
+      }
+      if (fin > 0) {
+        // the next trade refuses the bill
+        o += fade(fin, `<rect x="380" y="420" width="420" height="300" rx="30" fill="#E2556F"/>${txt(590, 560, 'LAST TRADE', 40, '#fff', { ls: 4 })}${txt(590, 620, '−$200', 44, '#fff', { f: 'JetBrains Mono, monospace' })}<rect x="1120" y="420" width="420" height="300" rx="30" fill="#2AA594"/>${txt(1330, 580, 'NEXT TRADE', 40, '#fff', { ls: 4 })}`);
+        const slide = ease(seg(t, B.line + 0.5, B.line + 1.5)), bounce = ease(seg(t, B.line + 1.6, B.line + 2.4));
+        const bx = lerp(800, 1080, slide) - bounce * 240;
+        o += fade(fin, `<g transform="translate(${f1(bx)},560) rotate(${f1(-6 + bounce * 12)})"><rect x="-90" y="-60" width="180" height="120" rx="10" fill="#FFF3D6" stroke="#B38A2E" stroke-width="4"/>${txt(0, 12, 'BILL', 32, '#B38A2E', { ls: 4 })}</g>`) + cross(1330, 420, pop(t, B.line + 2, 0.4), '#E2556F', 36);
+        o += fade(seg(t, B.line + 0.2, B.line + 0.8), txt(960, 850, 'My next trade’s job is not to pay for my last trade.', 50, C.dark, { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    // Reflection: what changed after the loss? Win → next vs loss → next. Take the loss. Reset. Rules.
+    'v3-reflect': (s, t) => {
+      const B = s.b;
+      let o = bg('#1A1424');
+      const p2 = seg(t, B.bigq - 0.3, B.bigq + 0.3), end = seg(t, B.c1 - 0.4, B.c1 + 0.3);
+      const a = 1 - p2;
+      if (a > 0) {
+        o += fade(a, txt(960, 180, 'after the loss, what changed?', 56, '#fff', { f: 'Playfair Display', it: true }));
+        [[B.q1, 'my size'], [B.q2, 'how fast I entered'], [B.q3, 'my standards'], [B.q4, 'what I “needed” to make back']].forEach(([at, l], j) => {
+          const x = 500 + (j % 2) * 920, y = 420 + Math.floor(j / 2) * 260;
+          o += fade(a * seg(t, at, at + 0.4), `<rect x="${x - 380}" y="${y - 90}" width="760" height="180" rx="30" fill="#2A2142"/>${txt(x, y + 14, l, 44, '#fff')}`) + `<g opacity="${f1(a * seg(t, at + 0.6, at + 1))}">${txt(x + 330, y - 50, '?', 50, '#F9D89A')}</g>`;
+        });
+      }
+      const b = p2 * (1 - end);
+      if (b > 0) {
+        const card = (x, top, col, k) => fade(b * k, `<rect x="${x - 340}" y="300" width="680" height="420" rx="36" fill="#2A2142"/>${txt(x, 380, 'FIRST TRADE', 30, '#CFC8FA', { ls: 6 })}${pill(x, 470, top, col, 1, 48)}${txt(x, 580, '↓', 60, '#CFC8FA')}<rect x="${x - 220}" y="610" width="440" height="80" rx="20" fill="#3A2F55"/>${txt(x, 663, 'the next trade', 34, '#fff', { w: 700 })}`);
+        o += card(560, 'WON', '#2AA594', seg(t, B.big, B.big + 0.5));
+        o += card(1360, 'LOST', '#E2556F', seg(t, B.big + 1.5, B.big + 2));
+        o += fade(b * seg(t, B.big + 3.5, B.big + 4), txt(960, 530, '=?', 80, '#F9D89A'));
+        o += fade(b * seg(t, B.big + 3.5, B.big + 4), txt(960, 860, 'exactly the same way?', 56, '#F9D89A', { f: 'Playfair Display', it: true }));
+        o += fade(b * seg(t, B.changed, B.changed + 0.5), txt(960, 960, 'if not, figure out what changed.', 40, '#FF8DA3', { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      if (end > 0) {
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(end)}"/>`;
+        const fin = seg(t, B.owe - 0.3, B.owe + 0.3);
+        o += fade(end * (1 - fin), `${txt(960, 260, 'another trade after a loss', 52, C.dark, { f: 'Playfair Display', it: true })}${txt(960, 400, 'another trade because you lost', 52, '#E2556F', { f: 'Playfair Display', it: true, op: f1(seg(t, B.c2, B.c2 + 0.5)) })}`) + check(1360, 240, end * (1 - fin) * pop(t, B.c1 + 1, 0.4), '#2AA594', 30) + cross(1440, 380, (1 - fin) * pop(t, B.c2 + 1.5, 0.4), '#E2556F', 30);
+        ['TAKE THE LOSS.', 'RESET.', 'BACK TO YOUR RULES.'].forEach((l, j) => { o += fade(1 - fin, pill([520, 960, 1400][j], 640, l, ['#E2556F', '#7F77DD', '#2AA594'][j], pop(t, B.steps + j * 0.8, 0.5), 38)); });
+        o += fade(fin, txt(960, 430, 'The market doesn’t owe you your money back.', 58, C.dark, { f: 'Playfair Display', it: true }) + txt(960, 540, 'Your next trade doesn’t have to get it back.', 58, '#2AA594', { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    /* ════ Psychology 4 · Overtrading ══════════════════════════════════ */
+
+    // Trade… trade… trade… #6, #7, #8. What am I still looking for?
+    'v4-count': (s, t) => {
+      const B = s.b;
+      let o = grad('oc', '#1C1528', '#2E2142') + bg('url(#oc)');
+      const endk = seg(t, B.diff - 0.4, B.diff + 0.3);
+      // trades counter
+      let n = 3;
+      if (t > B.another) n = 4;
+      if (t > B.closes + 1.2) n = 5;
+      if (t > B.six) n = 6 + Math.min(2, Math.floor((t - B.six) / 1.1));
+      const series = vals(91, 40, 0, 0.045, 0.5);
+      const cn = Math.min(40, 6 + Math.floor(seg(t, s.start, B.looking) * 34));
+      o += fade(1 - endk, `<rect x="160" y="200" width="1100" height="560" rx="28" fill="#120D1C" stroke="#3A2F55" stroke-width="6"/>${candles(190, 240, 1040, 480, series, cn, { slots: 40 })}`);
+      for (let i = 0; i < n; i++) { const x = 190 + (2 + i * 4.4) * 1040 / 40; o += fade((1 - endk) * pop(t, i < 3 ? s.start + 0.3 * i : [B.another, B.closes + 1.2, B.six, B.six + 1.1, B.six + 2.2][i - 3], 0.4), `<circle cx="${f1(x)}" cy="740" r="18" fill="${i < 3 ? '#7F77DD' : '#F9D89A'}"/>`); }
+      o += fade(1 - endk, `${txt(1600, 300, 'TRADE', 40, '#CFC8FA', { ls: 8 })}`) + fade(1 - endk, scaleAt(1600, 440, 1 + 0.15 * (t > B.six ? Math.max(0, 1 - ((t - B.six) % 1.1) / 0.3) : 0), txt(1600, 480, '#' + n, 170, n >= 6 ? '#F9D89A' : '#fff', { f: 'JetBrains Mono, monospace' })));
+      ['green', 'red', 'breakeven'].forEach((l, j) => { o += pill(360 + j * 280, 150, l, ['#2AA594', '#E2556F', '#7F77DD'][j], (1 - endk) * pop(t, B.states + j * 1.2, 0.4) * (1 - seg(t, B.still, B.still + 0.5)), 28); });
+      o += fade((1 - endk) * seg(t, B.still, B.still + 0.4), txt(710, 150, 'still at the chart', 40, '#F9D89A', { f: 'Playfair Display', it: true, w: 700 }));
+      // the search: a magnifier sweeps the chart
+      if (t > B.looking) {
+        const sx = 700 + 400 * Math.sin((t - B.looking) * 1.4);
+        o += fade((1 - endk) * seg(t, B.looking, B.looking + 0.4), `<circle cx="${f1(sx)}" cy="470" r="110" fill="#fff" opacity=".08" stroke="#F9D89A" stroke-width="12"/><line x1="${f1(sx + 78)}" y1="548" x2="${f1(sx + 170)}" y2="640" stroke="#F9D89A" stroke-width="22" stroke-linecap="round"/>${txt(1600, 700, 'what am I still', 44, '#fff', { f: 'Playfair Display', it: true })}${txt(1600, 770, 'looking for?', 44, '#fff', { f: 'Playfair Display', it: true })}`);
+      }
+      if (endk > 0) {
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(endk)}"/>`;
+        o += fade(endk, `<rect x="200" y="280" width="680" height="380" rx="40" fill="#E6F5F2"/>${txt(540, 420, 'multiple', 50, '#2AA594', { f: 'Playfair Display', it: true })}${txt(540, 490, 'valid setups', 50, '#2AA594', { f: 'Playfair Display', it: true })}`) + check(540, 590, endk * pop(t, B.diff + 2, 0.4), '#2AA594', 34);
+        o += fade(seg(t, B.diff + 3, B.diff + 3.6), `<rect x="1040" y="280" width="680" height="380" rx="40" fill="#FDE8ED"/>${txt(1380, 420, 'still sitting', 50, '#E2556F', { f: 'Playfair Display', it: true })}${txt(1380, 490, 'in front of the chart', 50, '#E2556F', { f: 'Playfair Display', it: true })}`) + cross(1380, 590, pop(t, B.diff + 4, 0.4), '#E2556F', 34);
+        o += fade(seg(t, B.today, B.today + 0.6), txt(960, 820, 'overtrading', 90, C.dark, { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    // Not a number. A reason. Red, green, bored. Then the shift.
+    'v4-reasons': (s, t) => {
+      const B = s.b;
+      let o = bg('#FBF4EF');
+      const p2 = seg(t, B.reason - 0.3, B.reason + 0.3), p3 = seg(t, B.red - 0.4, B.red + 0.2), p4 = seg(t, B.shift - 0.4, B.shift + 0.2);
+      const a = 1 - p2;
+      if (a > 0) {
+        o += fade(a * seg(t, B.three, B.three + 0.4), `${txt(560, 470, '3 trades', 70, '#2AA594', { f: 'JetBrains Mono, monospace' })}${txt(560, 560, 'okay', 40, C.muted, { w: 700 })}${txt(1360, 470, '7 trades', 70, '#E2556F', { f: 'JetBrains Mono, monospace' })}${txt(1360, 560, 'overtrading', 40, C.muted, { w: 700 })}`);
+        o += fade(a * seg(t, B.simple, B.simple + 0.4), `<line x1="300" x2="1620" y1="490" y2="490" stroke="#2C1810" stroke-width="10"/>${txt(960, 720, 'not that simple', 56, C.dark, { f: 'Playfair Display', it: true })}`);
+      }
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        // the scale tips toward feelings
+        const tip = ease(seg(t, B.reason + 3, B.reason + 6)) * 14;
+        o += fade(b, `<g transform="rotate(${f1(-tip)} 960 400)"><line x1="560" x2="1360" y1="400" y2="400" stroke="#2C1810" stroke-width="12" stroke-linecap="round"/><rect x="400" y="420" width="320" height="140" rx="20" fill="#E6F5F2"/>${txt(560, 505, 'my trading plan', 34, '#2AA594')}<rect x="1200" y="420" width="320" height="140" rx="20" fill="#FDE8ED"/>${txt(1360, 485, 'what I’m trying', 32, '#E2556F')}${txt(1360, 530, 'to feel', 32, '#E2556F')}</g><path d="M960,400 L900,760 L1020,760 Z" fill="#B8B3C9"/>${txt(960, 200, 'why are you still trading?', 52, C.dark, { f: 'Playfair Display', it: true })}`);
+      }
+      const c = p3 * (1 - p4);
+      if (c > 0) {
+        const col = (x, title, colr, k, inner) => fade(c * k, `<rect x="${x - 280}" y="180" width="560" height="720" rx="36" fill="#fff"/><rect x="${x - 280}" y="180" width="560" height="100" rx="36" fill="${colr}"/><rect x="${x - 280}" y="240" width="560" height="40" fill="${colr}"/>${txt(x, 248, title, 40, '#fff', { ls: 6 })}${inner}`);
+        o += col(380, 'RED', '#E2556F', seg(t, B.red, B.red + 0.4), `${txt(380, 480, '−$', 120, '#E2556F', { f: 'JetBrains Mono, monospace' })}${txt(380, 640, '“can’t end the', 32, C.dark, { f: 'Playfair Display', it: true, w: 700 })}${txt(380, 690, 'day like this”', 32, C.dark, { f: 'Playfair Display', it: true, w: 700 })}${txt(380, 790, 'one more…', 30, C.muted, { w: 700 })}`);
+        // the goalpost keeps moving
+        const goal = t < B.six00 ? (t < B.green + 2 ? 400 : 500) : 600, gp = ease(seg(t, B.green + 2, B.green + 2.6)) + ease(seg(t, B.six00, B.six00 + 0.6));
+        o += col(960, 'GREEN', '#2AA594', seg(t, B.green, B.green + 0.4), `<rect x="${f1(810 + gp * 50)}" y="380" width="14" height="200" fill="#2C1810"/><rect x="${f1(950 + gp * 50)}" y="380" width="14" height="200" fill="#2C1810"/><rect x="${f1(810 + gp * 50)}" y="380" width="154" height="14" fill="#2C1810"/>${txt(887 + gp * 50, 360, '$' + goal, 40, '#2AA594', { f: 'JetBrains Mono, monospace' })}${txt(960, 680, 'the finish line', 32, C.dark, { f: 'Playfair Display', it: true, w: 700 })}${txt(960, 730, 'keeps moving', 32, C.dark, { f: 'Playfair Display', it: true, w: 700 })}`);
+        const yawn = 1 + 0.15 * Math.max(0, Math.sin((t - B.bored) * 2));
+        o += col(1540, 'BORED', '#7F77DD', seg(t, B.bored, B.bored + 0.4), `<circle cx="1540" cy="470" r="110" fill="#F9D89A"/><ellipse cx="1500" cy="440" rx="22" ry="6" fill="#2C1810"/><ellipse cx="1580" cy="440" rx="22" ry="6" fill="#2C1810"/><ellipse cx="1540" cy="510" rx="${f1(24 * yawn)}" ry="${f1(30 * yawn)}" fill="#2C1810"/>${txt(1540, 680, '“I’m already here…”', 32, C.dark, { f: 'Playfair Display', it: true, w: 700 })}${txt(1540, 730, 'catch something?', 32, C.muted, { w: 700 })}`);
+      }
+      if (p4 > 0) {
+        const sw = ease(seg(t, B.shift + 1.5, B.shift + 3));
+        o += fade(p4, `${txt(960, 300, 'stopped waiting for', 44, C.muted, { f: 'Playfair Display', it: true, w: 700 })}${txt(960, 420, 'opportunities', 80, '#2AA594', { f: 'Playfair Display', it: true, op: f1(1 - sw * 0.7) })}<line x1="680" x2="${f1(680 + 560 * sw)}" y1="395" y2="395" stroke="#E2556F" stroke-width="8"/>`);
+        o += fade(p4 * sw, `${txt(960, 600, 'started looking for', 44, C.muted, { f: 'Playfair Display', it: true, w: 700 })}${txt(960, 720, 'reasons to trade', 80, '#E2556F', { f: 'Playfair Display', it: true })}`);
+      }
+      return o;
+    },
+
+    // A green day, given back. Not taken: put back on the table.
+    'v4-table': (s, t) => {
+      const B = s.b;
+      let o = grad('tb', '#F3E3D6', '#FBF4EF') + bg('url(#tb)');
+      const p2 = seg(t, B.sneaky - 0.3, B.sneaky + 0.3), p3 = seg(t, B.permission - 0.4, B.permission + 0.2), p4 = seg(t, B.gave - 0.4, B.gave + 0.2);
+      o += host(t, { x: 100, y: 330, w: 520, pose: t > B.ask && t < B.sneaky ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
+      // the equity curve: base hits… then kept trading
+      const a = 1 - p2;
+      if (a > 0) {
+        const pts = [0, 0.15, 0.3, 0.42, 0.55, 0.6, 0.52, 0.56, 0.4, 0.44, 0.28, 0.2, 0.05];
+        const n = Math.max(2, Math.floor(seg(t, B.kept, B.kept + 9) * pts.length));
+        const P = pts.slice(0, n).map((v, i) => `${f1(820 + i * 75)},${f1(700 - v * 480)}`).join(' ');
+        o += fade(a, `<rect x="760" y="160" width="1040" height="620" rx="28" fill="#fff"/><line x1="800" x2="1760" y1="700" y2="700" stroke="#E6DDD3" stroke-width="4"/><polyline points="${P}" fill="none" stroke="${n > 6 ? '#E2556F' : '#2AA594'}" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>`);
+        o += pill(820 + 4 * 75, 700 - 0.55 * 480 - 60, 'could’ve been done', '#2AA594', a * pop(t, B.kept + 4, 0.4), 26);
+        o += fade(a * seg(t, B.ask, B.ask + 0.5), txt(1280, 880, 'what was I trying to accomplish?', 46, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      // you don't have to be losing: confidence meter climbs
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        o += fade(b, txt(1280, 180, 'you don’t have to be losing to overtrade', 44, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+        const lv = seg(t, B.good, B.every + 3);
+        o += fade(b * seg(t, B.winning, B.winning + 0.4), `<rect x="1080" y="300" width="120" height="520" rx="60" fill="#fff"/><rect x="1080" y="${f1(820 - 520 * lv)}" width="120" height="${f1(520 * lv)}" rx="60" fill="${lv > 0.75 ? '#E2556F' : '#F9D89A'}"/>${txt(1140, 870, 'confidence', 30, C.muted, { w: 700 })}`);
+        [[B.good, 'feeling good'], [B.reading, 'reading price well'], [B.onit, '“I’m on it today”'], [B.every, 'every setup is MINE']].forEach(([at, l], j) => { o += fade(b * seg(t, at, at + 0.4), txt(1280, 760 - j * 140, l, j === 3 ? 46 : 40, j === 3 ? '#E2556F' : C.dark, { a: 'start', f: 'Playfair Display', it: true, w: 700 })); });
+      }
+      const c = p3 * (1 - p4);
+      if (c > 0) {
+        o += fade(c, `<g transform="rotate(-4 1280 440)"><rect x="940" y="240" width="680" height="400" rx="12" fill="#FFF8E6" stroke="#E2B04A" stroke-width="6"/>${txt(1280, 320, 'PERMISSION SLIP', 34, '#B38A2E', { ls: 6 })}${txt(1280, 430, 'I’m green, so I can', 40, C.dark, { f: 'Playfair Display', it: true, w: 700 })}${txt(1280, 490, 'get careless', 40, C.dark, { f: 'Playfair Display', it: true, w: 700 })}</g>`);
+        o += scaleAt(1280, 440, pop(t, B.permission + 2.5, 0.5) * c, `<g transform="rotate(-14 1280 440)"><rect x="1030" y="390" width="500" height="110" rx="14" fill="none" stroke="#E2556F" stroke-width="10"/>${txt(1280, 470, 'DENIED', 70, '#E2556F', { ls: 8 })}</g>`);
+        o += fade(c * seg(t, B.deserves, B.deserves + 0.5), txt(1280, 780, 'the next trade doesn’t deserve more risk', 40, C.dark, { w: 700 }) + txt(1280, 840, 'or lower standards', 40, C.dark, { w: 700 }));
+      }
+      if (p4 > 0) {
+        // chips pushed back on the table
+        o += fade(p4, `<ellipse cx="1280" cy="700" rx="560" ry="150" fill="#2E6B4F"/><ellipse cx="1280" cy="690" rx="530" ry="130" fill="#3C8A66"/>`);
+        for (let i = 0; i < 8; i++) { const at = B.gave + 1 + i * 0.6, k = ease(seg(t, at, at + 0.6)), x = lerp(780, 1100 + (i % 4) * 90, k), y = lerp(560, 660 + Math.floor(i / 4) * 30, k); o += fade(p4 * seg(t, at, at + 0.1), `<ellipse cx="${f1(x)}" cy="${f1(y)}" rx="40" ry="16" fill="#E2B04A" stroke="#fff" stroke-width="4"/>`); }
+        o += fade(p4 * seg(t, B.gave + 2, B.gave + 2.6), txt(1280, 260, 'the market didn’t take my green day', 46, C.dark, { f: 'Playfair Display', it: true, w: 700 }));
+        o += fade(seg(t, B.table, B.table + 0.5), txt(1280, 360, 'I kept putting it back on the table.', 52, '#E2556F', { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    // There's no finish line unless you build one. Then: does quality fall the longer you trade?
+    'v4-finish': (s, t) => {
+      const B = s.b;
+      let o = grad('fn', '#E6F5F2', '#FDF8F5') + bg('url(#fn)');
+      const p2 = seg(t, B.finish - 0.3, B.finish + 0.3), p3 = seg(t, B.quality - 0.4, B.quality + 0.2);
+      const a = 1 - p2;
+      if (a > 0) {
+        o += fade(a, txt(960, 170, 'decide before you start', 56, C.dark, { f: 'Playfair Display', it: true }));
+        o += fade(a * seg(t, B.done, B.done + 0.4), txt(960, 260, '“I’ll stop when I feel done”… what’s done?', 40, C.muted, { f: 'Playfair Display', it: true, w: 700 }));
+        // the runner and the receding finish line
+        const fx = 1100 + 200 * ease(seg(t, B.u300 + 1.5, B.u300 + 2.2)) + 200 * ease(seg(t, B.u500, B.u500 + 0.7));
+        const lbl = t < B.u300 + 1.5 ? '$300' : t < B.u500 ? '$400' : '$500';
+        o += fade(a, `<rect x="0" y="780" width="1920" height="40" fill="#E8D5C4"/><rect x="${f1(fx)}" y="460" width="12" height="320" fill="#2C1810"/><rect x="${f1(fx + 180)}" y="460" width="12" height="320" fill="#2C1810"/><rect x="${f1(fx)}" y="460" width="192" height="60" fill="#fff" stroke="#2C1810" stroke-width="6"/>${txt(fx + 96, 503, lbl, 38, '#2AA594', { f: 'JetBrains Mono, monospace' })}`);
+        o += fade(a, you(t, { x: 600 + 120 * seg(t, B.done, B.finish), y: 780, scale: 1.1, walking: true }));
+      }
+      // build one: the stopping rules
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        o += fade(b, txt(960, 170, 'create your finish line', 56, '#2AA594', { f: 'Playfair Display', it: true }));
+        ['max number of trades', 'daily loss limit', 'profit-protection rule', 'what tells me I’m mentally done', 'signs I’m starting to force it'].forEach((l, j) => {
+          const y = 300 + j * 120, at = B.finish + 0.4 + j * 0.7;
+          o += fade(b * seg(t, at, at + 0.4), `<rect x="460" y="${y - 48}" width="1000" height="96" rx="48" fill="#fff"/>${txt(520, y + 13, l, 38, C.dark, { a: 'start', w: 700 })}`) + check(1400, y, b * pop(t, at + 0.3, 0.4), '#2AA594', 26);
+        });
+      }
+      // trade quality through the session
+      if (p3 > 0) {
+        o += fade(p3, txt(960, 170, 'your journal, in order', 52, C.dark, { f: 'Playfair Display', it: true }));
+        const q = [0.92, 0.85, 0.7, 0.48, 0.3];
+        q.forEach((v, i) => {
+          const at = B.tr + i * 0.9, k = ease(seg(t, at, at + 0.6)), x = 520 + i * 220;
+          o += fade(p3 * seg(t, at, at + 0.2), `<rect x="${x - 70}" y="${f1(820 - 480 * v * k)}" width="140" height="${f1(480 * v * k)}" rx="16" fill="${v > 0.6 ? '#2AA594' : v > 0.4 ? '#F9D89A' : '#E2556F'}"/>${txt(x, 880, 'trade ' + (i + 1), 30, C.muted, { w: 700 })}`);
+        });
+        o += fade(p3 * seg(t, B.worse, B.worse + 0.5), txt(960, 990, 'better or worse the longer you trade?', 48, '#E2556F', { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      return o;
+    },
+
+    // Decide what ends the session first. Market open ≠ I need to trade. Close the app.
+    'v4-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('r4', '#EEEBFB', '#DDF1EE') + bg('url(#r4)');
+      o += txt(960, 130, '🧠 YOUR RULE', 32, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 230, pop(t, s.start + 0.4, 0.8), txt(960, 255, 'I decide my stopping conditions before the session starts.', 56, C.dark, { f: 'Playfair Display' }));
+      const p2 = seg(t, B.line - 0.3, B.line + 0.3), p3 = seg(t, B.close - 0.3, B.close + 0.3);
+      const a = 1 - p2;
+      if (a > 0) {
+        ['emotional', 'frustrated', 'overconfident', 'chasing a number'].forEach((l, j) => { o += fade(a * seg(t, B.r1 + j * 0.9, B.r1 + j * 0.9 + 0.4), pill(j % 2 ? 1260 : 660, 400 + Math.floor(j / 2) * 80, 'not while ' + l, '#B8B3C9', 1, 30)); });
+        o += fade(a * seg(t, B.r2, B.r2 + 0.5), `<rect x="460" y="560" width="1000" height="260" rx="40" fill="#fff"/>${txt(960, 660, 'what ends my session', 46, '#2AA594')}${txt(960, 740, 'is known before trade #1', 40, C.dark, { w: 700 })}`);
+      }
+      const b = p2 * (1 - p3);
+      if (b > 0) {
+        const sw = Math.sin(t * 2) * 4;
+        o += fade(b, `<line x1="560" y1="360" x2="760" y2="440" stroke="#8B6A55" stroke-width="6"/><line x1="960" y1="360" x2="760" y2="440" stroke="#8B6A55" stroke-width="6"/><g transform="rotate(${f1(sw)} 760 440)"><rect x="520" y="440" width="480" height="200" rx="20" fill="#E2556F"/>${txt(760, 520, 'MARKET', 46, '#fff', { ls: 6 })}${txt(760, 590, 'OPEN', 60, '#fff', { ls: 8 })}</g>${txt(1180, 560, '≠', 100, C.dark)}<rect x="1340" y="440" width="420" height="200" rx="20" fill="#fff" stroke="#B8B3C9" stroke-width="6"/>${txt(1550, 530, 'I need to', 40, C.dark, { w: 700 })}${txt(1550, 590, 'be trading', 40, C.dark, { w: 700 })}`);
+      }
+      if (p3 > 0) {
+        // the app window closes
+        const cl = ease(seg(t, B.close + 1.5, B.close + 2.2));
+        o += fade(p3 * (1 - cl), scaleAt(960, 600, 1 - cl * 0.9, `<rect x="460" y="380" width="1000" height="460" rx="20" fill="#120D1C"/><rect x="460" y="380" width="1000" height="60" rx="20" fill="#2A2142"/><rect x="460" y="420" width="1000" height="20" fill="#2A2142"/><circle cx="1420" cy="410" r="16" fill="#E2556F"/>${candles(490, 470, 940, 330, vals(17, 22, 0, 0.05, 0.5), 22)}`));
+        o += fade(p3 * seg(t, B.close + 0.8, B.close + 1.2) * (1 - cl), `<circle cx="1420" cy="410" r="${f1(30 + 6 * Math.sin(t * 10))}" fill="none" stroke="#fff" stroke-width="4"/>`);
+        o += fade(cl, txt(960, 600, 'Sometimes discipline is literally', 58, C.dark, { f: 'Playfair Display', it: true }) + txt(960, 700, 'closing TradingView.', 58, '#2AA594', { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    // Reflection: five sessions, in order. What were you looking for? Close the chart.
+    'v4-reflect': (s, t) => {
+      const B = s.b;
+      let o = bg('#1A1424');
+      const p2 = seg(t, B.big - 0.3, B.big + 0.3), end = seg(t, B.squeeze - 0.4, B.squeeze + 0.3);
+      const a = 1 - p2;
+      if (a > 0) {
+        o += fade(a, txt(960, 150, 'your last five sessions, in order', 52, '#fff', { f: 'Playfair Display', it: true }));
+        const Q = [[0.9, 0.85, 0.6, 0.4], [0.9, 0.8], [0.85, 0.9, 0.7, 0.5, 0.35, 0.25], [0.9, 0.88, 0.8], [0.8, 0.75, 0.5, 0.3, 0.2]];
+        Q.forEach((row, r) => {
+          const y = 270 + r * 100;
+          o += fade(a * seg(t, B.five + r * 0.4, B.five + r * 0.4 + 0.3), txt(300, y + 12, 'day ' + (r + 1), 32, '#CFC8FA', { a: 'start', w: 700 }));
+          row.forEach((v, i) => { o += fade(a * seg(t, B.order + i * 0.25, B.order + i * 0.25 + 0.3), `<circle cx="${480 + i * 110}" cy="${y}" r="34" fill="${v > 0.6 ? '#2AA594' : v > 0.4 ? '#F9D89A' : '#E2556F'}"/>${txt(480 + i * 110, y + 11, String(i + 1), 28, '#1A1424')}`); });
+        });
+        [[B.q1, 'cleanest?'], [B.q2, 'followed the plan?'], [B.q3, 'as the session went on?'], [B.q4, 'standards dropping?']].forEach(([at, l], j) => { o += fade(a * seg(t, at, at + 0.4), txt(1300, 300 + j * 120, l, 42, '#F9D89A', { a: 'start', f: 'Playfair Display', it: true, w: 700 })); });
+      }
+      const b = p2 * (1 - end);
+      if (b > 0) {
+        o += fade(b, txt(960, 220, 'on the days you kept trading,', 50, '#fff', { f: 'Playfair Display', it: true }) + txt(960, 300, 'what were you actually looking for?', 56, '#F9D89A', { f: 'Playfair Display', it: true }));
+        [[B.w1, 'my setup', '#2AA594'], [B.w2, 'a loss back', '#E2556F'], [B.w3, 'a good day → great day', '#E2B04A'], [B.w4, 'hard time being done', '#7F77DD']].forEach(([at, l, col], j) => {
+          const x = 560 + (j % 2) * 800, y = 500 + Math.floor(j / 2) * 220;
+          o += fade(b * seg(t, at, at + 0.4), `<rect x="${x - 340}" y="${y - 80}" width="680" height="160" rx="30" fill="#2A2142" stroke="${col}" stroke-width="6"/>${txt(x, y + 14, l, 42, '#fff')}`);
+        });
+      }
+      if (end > 0) {
+        o += `<rect width="1920" height="1080" fill="#FDF8F5" opacity="${f1(end)}"/>`;
+        const fin = seg(t, B.last - 0.3, B.last + 0.3);
+        o += fade(end * (1 - fin), txt(960, 360, 'squeeze every possible dollar', 60, C.muted, { f: 'Playfair Display', it: true }) + `<line x1="560" x2="${f1(560 + 800 * seg(t, B.squeeze + 1.5, B.squeeze + 2.2))}" y1="342" y2="342" stroke="#E2556F" stroke-width="7"/>`);
+        o += fade(end * (1 - fin) * seg(t, B.job, B.job + 0.5), txt(960, 540, 'execute your plan', 72, '#2AA594', { f: 'Playfair Display', it: true }) + txt(960, 630, 'while you can execute it well', 44, C.dark, { w: 700 }));
+        if (fin > 0) {
+          const cl = ease(seg(t, B.last + 2.5, B.last + 3.3));
+          o += fade(fin * (1 - cl), scaleAt(960, 440, 1 - cl * 0.9, `<rect x="560" y="260" width="800" height="360" rx="20" fill="#120D1C"/>${candles(590, 300, 740, 280, vals(41, 18, 0, 0.05, 0.5), 18)}`));
+          o += fade(fin, txt(960, 800, 'the best trade might be', 52, C.dark, { f: 'Playfair Display', it: true }) + txt(960, 890, 'closing the chart.', 60, '#2AA594', { f: 'Playfair Display', it: true }));
+        }
+      }
+      return o;
+    },
+
     /*@@V@@*/
   };
 
