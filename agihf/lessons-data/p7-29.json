@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 29",
-      "headline": "The market’s open. <em>Your window isn’t.</em>",
-      "line": "A beautiful setup shows up after your window closes.",
+      "headline": "The market is still open, but <em>your window isn’t.</em>",
+      "line": "A beautiful setup shows up after your trading window has already closed. What do you do with it?",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
-      "kicker": "11:17",
-      "headline": "The cleanest setup <em>of the day.</em>",
-      "line": "Your window closed at 11:00. You were cleaning up your journal.",
+      "kicker": "11:17 · After your window",
+      "headline": "This is the cleanest setup <em>of the whole day.</em>",
+      "line": "Your trading window closed at 11:00, and you were busy cleaning up your journal when it appeared.",
       "chart": {
         "bars": [
           {
@@ -248,23 +248,23 @@
       },
       "thoughts": [
         "“The market’s still open.”",
-        "“17 minutes doesn’t matter.”"
+        "“Seventeen minutes can’t matter.”"
       ],
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "Take it. Market’s open.",
+            "label": "Take it, the market’s still open",
             "correct": false,
-            "feedback": "Some days it works. Your window exists because of the days it doesn’t.",
+            "feedback": "Some days that works. Your window exists because of all the days it doesn’t.",
             "track": [
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Window’s closed",
+            "label": "Let it go, my window’s closed",
             "correct": true,
-            "feedback": "Screenshot it for your journal. You traded your plan’s session. <strong>That’s the job.</strong>",
+            "feedback": "Take a screenshot for your journal. You traded your plan’s session, and <strong>that’s the job.</strong>",
             "track": "ruleBasedResponses"
           }
         ]
@@ -272,9 +272,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "11:30 · the other ending",
-      "headline": "Midday thinned out. <em>It chopped.</em>",
-      "line": "Same setup, taken after the window. Participation was gone.",
+      "kicker": "11:30 · The other ending",
+      "headline": "The midday market thinned out, and <em>price started to chop.</em>",
+      "line": "This is the same setup, taken after the window closed. The buyers and sellers who make it work had already left.",
       "chart": {
         "bars": [
           {
@@ -453,7 +453,7 @@
         }
       },
       "thoughts": [
-        "“17 minutes did matter.”"
+        "“Seventeen minutes did matter.”"
       ],
       "cta": "Next →"
     },
@@ -544,7 +544,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Why does your <em>trading window</em> exist?",
+      "prompt": "Why does your <em>trading window</em> exist in the first place?",
       "modelAnswer": "Because my strategy behaves best during the time I tested and actually trade. A valid setup outside my window is still outside my plan."
     }
   ],

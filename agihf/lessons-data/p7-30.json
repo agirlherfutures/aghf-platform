@@ -22,8 +22,8 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 30",
-      "headline": "Don’t trade <em>the morning you had.</em>",
-      "line": "Great morning. Clear thesis. Now watch the market change.",
+      "headline": "Don’t keep trading <em>the morning you already had.</em>",
+      "line": "You had a great morning with a clear idea of where price was going. Now watch how the market changes.",
       "pose": "point",
       "cta": "Watch the session →"
     },
@@ -291,41 +291,41 @@
     {
       "type": "v2_steps",
       "kicker": "Environment check-in",
-      "headline": "Check in <em>when something changes.</em>",
-      "line": "Not every five minutes. Tap each trigger.",
+      "headline": "Check in on the market <em>whenever something changes.</em>",
+      "line": "You don’t need to check every five minutes. Tap each trigger to see when a fresh look is worth it.",
       "steps": [
         {
           "label": "Objective reached",
-          "sub": "The target got hit"
+          "sub": "Price hits the target you were aiming for."
         },
         {
           "label": "Structure shifts",
-          "sub": "A major structural change"
+          "sub": "The structure of the chart changes in a big way."
         },
         {
           "label": "New setup",
-          "sub": "After a long gap"
+          "sub": "A new setup appears after a long quiet gap."
         },
         {
           "label": "Volatility changes",
-          "sub": "Speed picks up or fades"
+          "sub": "The market speeds up or slows down noticeably."
         },
         {
           "label": "News approaching",
-          "sub": "A scheduled release is near"
+          "sub": "A scheduled news release is coming up soon."
         },
         {
           "label": "Session transition",
-          "sub": "One part of the day ends"
+          "sub": "One part of the trading day ends and another begins."
         }
       ],
       "cta": "Next →"
     },
     {
       "type": "v2_moment",
-      "kicker": "11:00 · check-in",
-      "headline": "Does your thesis <em>still fit?</em>",
-      "line": "Objective hit at 10:15. Then overlap. Then a tight range.",
+      "kicker": "11:00 · Check-in",
+      "headline": "Does your morning idea <em>still fit the chart?</em>",
+      "line": "Price hit your objective at 10:15. Then it moved through the overlap and settled into a tight range.",
       "chart": {
         "bars": [
           {
@@ -505,17 +505,17 @@
         "“But the morning was so clean.”"
       ],
       "check": {
-        "prompt": "Does my morning thesis still describe price?",
+        "prompt": "Does your morning thesis still describe what price is doing?",
         "options": [
           {
             "label": "Yes, the morning was bullish",
             "correct": false,
-            "feedback": "The morning was. Is now?"
+            "feedback": "The morning was bullish, but is the market bullish right now? That’s the only question that counts."
           },
           {
-            "label": "Not anymore. Reassess.",
+            "label": "Not anymore, so I reassess",
             "correct": true,
-            "feedback": "Yes. New conditions get a new read."
+            "feedback": "Yes. New conditions deserve a fresh read of the market."
           }
         ]
       }
@@ -523,38 +523,39 @@
     {
       "type": "v2_compare",
       "kicker": "Memory vs. market",
-      "headline": "It’s not <em>9:45 anymore.</em>",
+      "headline": "It isn’t <em>9:45 anymore.</em>",
       "cards": [
         {
           "label": "9:45",
-          "sub": "Clean trend. Supportive.",
+          "sub": "It was a clean, supportive trend.",
           "spark": "up",
           "tag": "THE MEMORY",
           "tone": "purple"
         },
         {
           "label": "11:00",
-          "sub": "Objective hit. Tight range.",
+          "sub": "The objective hit, and price is stuck in a range.",
           "spark": "chop",
           "tag": "THE MARKET NOW",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Which one do you trade?",
+        "prompt": "Which one should you trade?",
         "options": [
           {
-            "label": "The 9:45 read",
+            "label": "The read I had at 9:45",
             "correct": false,
-            "feedback": "That’s trading the memory of the market. Easy to do!"
+            "feedback": "That’s trading your memory of the market. It’s an easy mistake to make!"
           },
           {
-            "label": "What’s in front of me",
+            "label": "The market in front of me",
             "correct": true,
-            "feedback": "Yes. Trade the market in front of you now."
+            "feedback": "Yes. You trade the market that’s in front of you right now."
           }
         ]
-      }
+      },
+      "line": "Your memory of the morning and the market in front of you are now two different things."
     },
     {
       "type": "v2_dayli",
@@ -565,7 +566,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "How do you know when <em>conditions have changed?</em>",
+      "prompt": "How can you tell when <em>conditions have changed?</em>",
       "modelAnswer": "When price reaches the objective, structure shifts, volatility changes, news approaches or the session transitions. I ask whether my morning thesis still describes current price."
     }
   ],

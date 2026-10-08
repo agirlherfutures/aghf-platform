@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 27",
-      "headline": "Almost right. <em>Do nothing.</em>",
-      "line": "Technically valid isn’t the same as worth it.",
+      "headline": "This setup is almost right, so you <em>do nothing.</em>",
+      "line": "A setup can be technically valid and still not be worth taking. Today you’ll learn to tell the difference.",
       "pose": "think",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
-      "kicker": "9:58",
-      "headline": "Every step closed. <em>Technically perfect.</em>",
-      "line": "1H messy. 4H high 12 points above. Release at 10:00.",
+      "kicker": "9:58 · Everything closed",
+      "headline": "Every step of your model closed, and it looks <em>technically perfect.</em>",
+      "line": "But the 1-hour chart is messy, the 4-hour high sits just 12 points above, and a news release drops at 10:00.",
       "chart": {
         "bars": [
           {
@@ -247,23 +247,23 @@
       },
       "thoughts": [
         "“It’s valid though.”",
-        "“I can’t skip a valid setup.”"
+        "“I can’t skip a valid setup, can I?”"
       ],
       "check": {
-        "prompt": "What do you do?",
+        "prompt": "What would you do right now?",
         "options": [
           {
-            "label": "Take it. Valid is valid.",
+            "label": "Take it, because valid is valid",
             "correct": false,
-            "feedback": "The release went straight through it. Valid never asked what surrounded it.",
+            "feedback": "The 10:00 release went straight through it. “Valid” only checks the model, and it never asked what was around it.",
             "track": [
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Do nothing",
+            "label": "Do nothing and just watch",
             "correct": true,
-            "feedback": "Doing nothing when almost everything is right <strong>is a skill.</strong>",
+            "feedback": "Exactly. Doing nothing when almost everything is right <strong>is a real skill.</strong>",
             "track": "ruleBasedResponses"
           }
         ]
@@ -271,9 +271,9 @@
     },
     {
       "type": "v2_moment",
-      "kicker": "10:00",
-      "headline": "Valid never asked <em>what surrounded it.</em>",
-      "line": "The release went straight through the setup.",
+      "kicker": "10:00 · The release",
+      "headline": "Valid never asked <em>what was surrounding the setup.</em>",
+      "line": "The news release pushed price straight through the setup. Watching from the sidelines was the right call.",
       "chart": {
         "bars": [
           {
@@ -477,67 +477,68 @@
         }
       },
       "thoughts": [
-        "“Glad I watched this one.”"
+        "“I’m so glad I just watched this one.”"
       ],
       "cta": "Next →"
     },
     {
       "type": "v2_compare",
       "kicker": "Two different questions",
-      "headline": "Valid vs. <em>worth it.</em>",
+      "headline": "A valid setup and a <em>setup worth taking</em> are different things.",
       "cards": [
         {
           "label": "Valid",
-          "sub": "Did the model complete?",
+          "sub": "Did the model actually complete?",
           "spark": "up",
           "tag": "THE MODEL",
           "tone": "purple"
         },
         {
           "label": "Quality",
-          "sub": "What surrounds the model?",
+          "sub": "What is happening around the model?",
           "spark": "chop",
           "tag": "THE CONTEXT",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "Does valid force you to trade?",
+        "prompt": "Does a valid setup mean you have to trade it?",
         "options": [
           {
-            "label": "Yes, valid is valid",
+            "label": "Yes, valid means I take it",
             "correct": false,
-            "feedback": "Valid only means the model completed. Participation is a separate call."
+            "feedback": "Valid only means the model completed. Whether you take part is a separate decision you still get to make."
           },
           {
-            "label": "No, it doesn’t",
+            "label": "No, I still get to decide",
             "correct": true,
-            "feedback": "Right. Technical validity doesn’t force participation."
+            "feedback": "Right. A technically valid setup never forces you to participate."
           }
         ]
-      }
+      },
+      "line": "Valid asks whether your model completed. Quality asks what surrounds it."
     },
     {
       "type": "v2_steps",
       "kicker": "Not A / B / C grades",
-      "headline": "Three reads. <em>Then you decide.</em>",
-      "line": "No grade does it for you. Tap each one.",
+      "headline": "You make three reads, and <em>then you decide.</em>",
+      "line": "No grade makes the decision for you. Tap each step to see what you check.",
       "steps": [
         {
           "label": "Setup validity",
-          "sub": "Valid / invalid / incomplete"
+          "sub": "You check whether the setup is valid, invalid or incomplete."
         },
         {
           "label": "Environment read",
-          "sub": "Supportive / mixed / poorly defined"
+          "sub": "You read the conditions as supportive, mixed or poorly defined."
         },
         {
           "label": "My rulebook",
-          "sub": "Allowed / blocked"
+          "sub": "You check whether your own rules allow it or block it."
         },
         {
           "label": "You decide",
-          "sub": "Take · Wait · Pass"
+          "sub": "You choose to take it, wait for more, or pass."
         }
       ],
       "cta": "Try it →"
@@ -879,74 +880,76 @@
     {
       "type": "v2_compare",
       "kicker": "Edge case 1",
-      "headline": "Environment can’t <em>do the model’s job.</em>",
+      "headline": "A good environment <em>can’t do your model’s job.</em>",
       "cards": [
         {
           "label": "Supportive",
-          "sub": "Great conditions",
+          "sub": "The market conditions look great.",
           "spark": "up",
           "tag": "ENVIRONMENT",
           "tone": "teal"
         },
         {
           "label": "ICC never completes",
-          "sub": "No model, no trigger",
+          "sub": "There’s no complete model and no trigger.",
           "spark": "slow",
           "tag": "SETUP",
           "tone": "peach"
         }
       ],
       "check": {
-        "prompt": "Entry?",
+        "prompt": "Should you enter a trade here?",
         "options": [
           {
-            "label": "Yes, conditions are great",
+            "label": "Yes, because conditions look great",
             "correct": false,
-            "feedback": "Conditions can’t complete the model."
+            "feedback": "Great conditions can’t complete the model for you. Without a complete setup, there’s nothing to enter."
           },
           {
-            "label": "No entry",
+            "label": "No, there’s no entry here",
             "correct": true,
-            "feedback": "Exactly. The environment can’t create an entry."
+            "feedback": "Exactly. The environment can support a trade, but it can’t create an entry on its own."
           }
         ]
-      }
+      },
+      "line": "The conditions look great, but your ICC model never completes, so there’s no trigger to act on."
     },
     {
       "type": "v2_compare",
       "kicker": "Edge case 2",
-      "headline": "MIXED is a description, <em>not a block.</em>",
+      "headline": "MIXED describes the market, <em>but it doesn’t block you.</em>",
       "cards": [
         {
           "label": "ICC completes",
-          "sub": "The model is done",
+          "sub": "Your model is done.",
           "spark": "up",
           "tag": "SETUP",
           "tone": "purple"
         },
         {
           "label": "Environment: MIXED",
-          "sub": "Your rulebook still allows it",
+          "sub": "Your rulebook still allows it.",
           "spark": "chop",
           "tag": "CONTEXT",
           "tone": "pink"
         }
       ],
       "check": {
-        "prompt": "What now?",
+        "prompt": "What decides whether you take this trade?",
         "options": [
           {
-            "label": "Automatic PASS",
+            "label": "MIXED means an automatic pass",
             "correct": false,
-            "feedback": "MIXED is a description, not a block. Reason from your framework."
+            "feedback": "MIXED is a description, not a block. You still reason it through with your own framework."
           },
           {
-            "label": "My framework decides",
+            "label": "My own framework makes the call",
             "correct": true,
-            "feedback": "Yes. The label doesn’t decide. Your plan and your read do."
+            "feedback": "Yes. The label doesn’t decide for you. Your plan and your read of the market do."
           }
         ]
-      }
+      },
+      "line": "Your ICC model completed, the environment reads as mixed, and your rulebook still allows the trade."
     },
     {
       "type": "v2_dayli",

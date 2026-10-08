@@ -22,16 +22,16 @@
     {
       "type": "v2_hero",
       "kicker": "Phase 7 · Lesson 28",
-      "headline": "Speed isn’t <em>direction.</em>",
-      "line": "A fast market speeds up your heart rate too.",
+      "headline": "A fast market tells you speed, <em>not direction.</em>",
+      "line": "When the market speeds up, your heart rate usually speeds up too. This lesson helps you keep the two apart.",
       "pose": "point",
       "cta": "Show me →"
     },
     {
       "type": "v2_moment",
-      "kicker": "9:41",
-      "headline": "Slow, slow… then <em>one giant candle.</em>",
-      "line": "After a slow drift down.",
+      "kicker": "9:41 · Out of nowhere",
+      "headline": "Price drifts slowly, and then <em>one giant candle appears.</em>",
+      "line": "Price had been slowly drifting down. Then one huge green candle shot up out of nowhere.",
       "chart": {
         "bars": [
           {
@@ -124,20 +124,20 @@
         "“Get in, get in, get in.”"
       ],
       "check": {
-        "prompt": "What does that candle tell you?",
+        "prompt": "What does that giant candle actually tell you?",
         "options": [
           {
-            "label": "Bullish. Get in.",
+            "label": "It’s bullish, so I get in",
             "correct": false,
-            "feedback": "It told you how <strong>fast</strong> price moved. Structure tells you where.",
+            "feedback": "That candle told you how <strong>fast</strong> price moved. Your structure is what tells you where it’s going.",
             "track": [
               "emotionalTradesTaken"
             ]
           },
           {
-            "label": "Speed. Not direction.",
+            "label": "It shows speed, not direction",
             "correct": true,
-            "feedback": "Exactly. Your model still decides direction and entry.",
+            "feedback": "Exactly. The candle shows speed. Your model still decides the direction and the entry.",
             "track": "ruleBasedResponses"
           }
         ]
@@ -654,43 +654,44 @@
     {
       "type": "v2_compare",
       "kicker": "Your plan, not a universal rule",
-      "headline": "Does this speed <em>fit your plan?</em>",
+      "headline": "Does this kind of speed <em>fit your tested plan?</em>",
       "cards": [
         {
           "label": "High volatility",
-          "sub": "Not a direction",
+          "sub": "A fast market doesn’t tell you direction.",
           "spark": "chop",
           "tag": "FAST",
           "tone": "pink"
         },
         {
           "label": "Low volatility",
-          "sub": "Not a safety signal",
+          "sub": "A slow market isn’t automatically safe.",
           "spark": "slow",
           "tag": "SLOW",
           "tone": "teal"
         }
       ],
       "check": {
-        "prompt": "High volatility. Valid setup. Now?",
+        "prompt": "Volatility is high and you have a valid setup. What do you do?",
         "options": [
           {
-            "label": "Always cut size",
+            "label": "I always cut my size",
             "correct": false,
-            "feedback": "Only if your tested plan defines that. There’s no universal rule here."
+            "feedback": "Only if your tested plan says so. There’s no universal rule here, so your plan decides."
           },
           {
-            "label": "Check my tested plan",
+            "label": "I check what my tested plan says",
             "correct": true,
-            "feedback": "Yes. Follow its adjustment if defined. Otherwise, reassess."
+            "feedback": "Yes. If your plan defines an adjustment for fast markets, follow it. If it doesn’t, step back and reassess."
           },
           {
-            "label": "Size up, it’s moving",
+            "label": "I size up because it’s moving",
             "correct": false,
-            "feedback": "Movement isn’t edge. And size comes from your risk plan."
+            "feedback": "Movement isn’t an edge. Your position size should always come from your risk plan, not from how fast price is moving."
           }
         ]
-      }
+      },
+      "line": "Fast markets and slow markets each need a check against your plan. Neither one tells you which way to trade."
     },
     {
       "type": "p7_timeline",
@@ -777,7 +778,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "In a fast market, what changes, and <em>what doesn’t?</em>",
+      "prompt": "In a fast market, what changes, and <em>what stays the same?</em>",
       "modelAnswer": "Speed, candle size, fills and pressure change. Direction doesn’t come from speed. I check whether the speed fits my tested plan, and around scheduled news my news rule decides."
     }
   ],
