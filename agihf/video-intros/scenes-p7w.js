@@ -3002,6 +3002,343 @@
       return o;
     },
 
+    /* ════ Psychology 5 · Fear of Losing ════════════════════════════ */
+
+    // Evening at the desk: the chart builds into her setup and the zone lights up.
+    'w5-ready': (s, t) => {
+      const B = s.b;
+      let o = wall('w5a', '#2A2142', '#3B2F55', 900, '#1E1730');
+      o += windowBox(1500, 160, 300, 240, '#1A1530', `<circle cx="1720" cy="220" r="34" fill="#F9D89A"/>`);
+      const v = [0.3, 0.38, 0.46, 0.55, 0.62, 0.56, 0.5, 0.45, 0.48, 0.44, 0.47];
+      const n = Math.floor(4 + 7 * seg(t, s.start, B.here));
+      o += monitor(300, 180, 900, 520, candles(340, 230, 820, 420, v, n, { slots: 14 })) + desk(160, 820, 1200);
+      const z = seg(t, B.here, B.here + 0.6);
+      o += fade(z, `<rect x="900" y="${f1(230 + 420 * (1 - 0.52))}" width="260" height="90" rx="10" fill="#2AA594" opacity=".28" stroke="#2AA594" stroke-width="4"/>`) + pill(1030, 220, 'your setup', '#2AA594', pop(t, B.here + 0.3, 0.5), 28);
+      o += fade(seg(t, B.every, B.every + 0.5), `<circle cx="1030" cy="${f1(230 + 420 * 0.48)}" r="${f1(70 + 20 * Math.sin(t * 4))}" fill="none" stroke="#F9D89A" stroke-width="5" opacity=".7"/>`);
+      o += you(t, { x: 1500, y: 1020, scale: 1.25, flip: true });
+      return o;
+    },
+
+    // Her checklist ticks itself off next to the chart: structure, confirmation, entry.
+    'w5-checks': (s, t) => {
+      const B = s.b;
+      let o = grad('w5b', '#EEEBFB', '#FDF8F5') + bg('url(#w5b)');
+      o += `<rect x="160" y="200" width="900" height="600" rx="22" fill="#120D1C"/>` + candles(200, 250, 820, 500, [0.3, 0.38, 0.46, 0.55, 0.62, 0.56, 0.5, 0.45, 0.48, 0.44, 0.47, 0.55], 12, { slots: 14 });
+      o += `<rect x="1180" y="200" width="580" height="600" rx="22" fill="#fff" stroke="#EADFD8" stroke-width="4"/>${txt(1470, 280, 'MY SETUP', 30, '#7F77DD', { ls: 6 })}`;
+      [[B.c1, '🏗️', 'structure'], [B.c2, '✅', 'confirmation'], [B.c3, '🎯', 'entry']].forEach(([at, e, l], j) => {
+        const y = 400 + j * 130;
+        o += fade(seg(t, at - 0.2, at + 0.2), txt(1260, y + 18, e, 46, C.dark) + txt(1310, y + 16, l, 40, C.dark, { a: 'start', w: 700 })) + check(1680, y, pop(t, at + 0.5, 0.4), '#2AA594', 32);
+      });
+      o += fade(seg(t, B.c1, B.c1 + 0.4), `<path d="M240,${f1(250 + 500 * 0.62)} L560,${f1(250 + 500 * 0.62)}" stroke="#F9D89A" stroke-width="4" stroke-dasharray="14 10"/>`);
+      o += fade(seg(t, B.c3, B.c3 + 0.4), `<circle cx="${f1(200 + 11.5 * 820 / 14)}" cy="${f1(250 + 500 * 0.45)}" r="26" fill="none" stroke="#2AA594" stroke-width="6"/>`);
+      return o;
+    },
+
+    // Close-up: her hand on the mouse, the cursor shaking over BUY.
+    'w5-hover': (s, t) => {
+      const B = s.b;
+      let o = grad('w5c', '#2A2142', '#3B2F55') + bg('url(#w5c)') + `<rect y="700" width="1920" height="380" fill="#8B6A55"/>`;
+      o += `<rect x="360" y="70" width="1200" height="500" rx="20" fill="#120D1C" stroke="#3A2F55" stroke-width="10"/>` + candles(400, 110, 700, 420, [0.3, 0.38, 0.46, 0.55, 0.62, 0.56, 0.5, 0.45, 0.48, 0.44], 10);
+      o += `<rect x="1180" y="220" width="300" height="120" rx="18" fill="#2AA594"/>${txt(1330, 300, 'BUY', 54, '#fff', { ls: 4 })}`;
+      const sh = t > B.hand ? Math.sin(t * 31) * 7 + Math.sin(t * 17) * 4 : 0;
+      o += `<g transform="translate(${f1(1300 + sh)},${f1(320 + sh * 0.6)})"><path d="M0,0 L0,64 L16,48 L28,76 L40,70 L28,44 L50,44 Z" fill="#fff" stroke="#120D1C" stroke-width="4"/></g>`;
+      o += `<ellipse cx="960" cy="870" rx="190" ry="250" fill="#E6DDD3"/><line x1="960" y1="640" x2="960" y2="790" stroke="#C9B8A8" stroke-width="6"/>`;
+      o += `<g transform="translate(${f1(sh * 0.5)},0)"><rect x="830" y="900" width="260" height="200" fill="#F4829A"/><ellipse cx="960" cy="830" rx="150" ry="120" fill="#9A6244"/>${[-90, -30, 30, 90].map((dx, j) => `<ellipse cx="${960 + dx}" cy="${730 - (j === 1 || j === 2 ? 20 : 0)}" rx="30" ry="62" fill="#9A6244"/>`).join('')}</g>`;
+      o += thought(1500, 760, 'What if this one loses too?', pop(t, B.what, 0.6), { size: 44 });
+      o += fade(seg(t, B.think, B.think + 0.4) * (1 - seg(t, B.what, B.what + 0.3)), txt(1500, 780, '…', 80, '#fff'));
+      return o;
+    },
+
+    // Behind her: one red trade, a week of red days, then a little rain cloud of her own.
+    'w5-ghosts': (s, t) => {
+      const B = s.b;
+      let o = wall('w5d', '#F3E7DD', '#EADFD8', 880, '#C9B8A8');
+      o += scaleAt(420, 320, pop(t, B.m1, 0.5), `<rect x="260" y="200" width="320" height="240" rx="18" fill="#fff" stroke="#E2556F" stroke-width="6"/>${candles(290, 230, 260, 140, [0.8, 0.7, 0.55, 0.3], 4)}${bigNum(420, 420, '−$', 46, '#E2556F')}`);
+      ['M', 'T', 'W', 'T', 'F'].forEach((d, j) => { const x = 1180 + j * 130, red = j < 3; o += fade(seg(t, B.m2 + j * 0.35, B.m2 + j * 0.35 + 0.3), `<rect x="${x - 55}" y="220" width="110" height="140" rx="12" fill="#fff" stroke="#EADFD8" stroke-width="4"/>${txt(x, 260, d, 26, C.muted)}`) + (red ? cross(x, 315, pop(t, B.m2 + 0.4 + j * 0.4, 0.4), '#E2556F', 26) : ''); });
+      const rk = seg(t, B.m3, B.m3 + 0.6);
+      o += fade(rk, cloud(960, 300, 0.6, '#9AA3B8') + (rk > 0.5 ? rain(870, 200, 360, 520, t, 7, '#7F92B8') : ''));
+      o += you(t, { x: 960, y: 1000, scale: 1.25, mood: t > B.m2 ? 'sad' : undefined });
+      return o;
+    },
+
+    // A giant pair of glasses: one lens shows today's setup, the other is tinted red by the past.
+    'w5-lens': (s, t) => {
+      const B = s.b;
+      let o = grad('w5e', '#FDF8F5', '#F3E3D6') + bg('url(#w5e)');
+      const tint = seg(t, B.lens + 2, B.lens + 5);
+      o += `<defs><clipPath id="w5l1"><circle cx="620" cy="480" r="250"/></clipPath><clipPath id="w5l2"><circle cx="1300" cy="480" r="250"/></clipPath></defs>`;
+      o += `<g clip-path="url(#w5l1)"><rect x="370" y="230" width="500" height="500" fill="#120D1C"/>${candles(400, 300, 440, 340, [0.3, 0.4, 0.5, 0.45, 0.55, 0.65, 0.6, 0.72], 8)}</g>`;
+      o += `<g clip-path="url(#w5l2)"><rect x="1050" y="230" width="500" height="500" fill="#120D1C"/>${tint < 0.5 ? candles(1080, 300, 440, 340, [0.3, 0.4, 0.5, 0.45, 0.55, 0.65, 0.6, 0.72], 8) : candles(1080, 300, 440, 340, [0.8, 0.7, 0.72, 0.55, 0.5, 0.35, 0.38, 0.2], 8)}<rect x="1050" y="230" width="500" height="500" fill="#E2556F" opacity="${f1(tint * 0.45)}"/></g>`;
+      o += `<circle cx="620" cy="480" r="250" fill="none" stroke="#2C1810" stroke-width="30"/><circle cx="1300" cy="480" r="250" fill="none" stroke="#2C1810" stroke-width="30"/><path d="M870,450 Q960,390 1050,450" fill="none" stroke="#2C1810" stroke-width="26"/><path d="M370,440 L180,380 M1550,440 L1740,380" stroke="#2C1810" stroke-width="26" stroke-linecap="round"/>`;
+      o += fade(seg(t, B.lens + 0.8, B.lens + 1.3), txt(620, 800, 'what’s in front of you', 38, '#2AA594', { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.lens + 4, B.lens + 4.5), txt(1300, 800, 'everything before it', 38, '#E2556F', { f: 'Playfair Display', it: true }));
+      o += scaleAt(960, 930, pop(t, B.title + 2, 0.6), pill(960, 930, 'the fear of losing', '#7F77DD', 1, 44));
+      return o;
+    },
+
+    // BUY and SELL are easy to press. What she's scared of is the fog on the other side.
+    'w5-button': (s, t) => {
+      const B = s.b;
+      let o = grad('w5f', '#EEEBFB', '#FDF8F5') + bg('url(#w5f)');
+      const up = ease(seg(t, B.after, B.after + 1));
+      o += `<g transform="translate(0,${f1(-140 * up)})">`;
+      o += scaleAt(700, 400, pop(t, B.int, 0.5), `<rect x="520" y="320" width="360" height="160" rx="26" fill="#2AA594"/>${txt(700, 425, 'BUY', 64, '#fff', { ls: 6 })}`);
+      o += scaleAt(1220, 400, pop(t, B.int + 0.3, 0.5), `<rect x="1040" y="320" width="360" height="160" rx="26" fill="#E2556F"/>${txt(1220, 425, 'SELL', 64, '#fff', { ls: 6 })}`);
+      o += fade(seg(t, B.say, B.say + 0.4) * (1 - seg(t, B.click, B.click + 0.3)), txt(960, 220, '“I’m scared to take the trade”', 44, C.muted, { f: 'Playfair Display', it: true }));
+      o += check(900, 330, pop(t, B.click + 1, 0.4), '#2AA594', 34) + check(1420, 330, pop(t, B.click + 1.3, 0.4), '#2AA594', 34);
+      o += fade(seg(t, B.click + 0.5, B.click + 1) * (1 - up), txt(960, 590, 'clicking isn’t the scary part', 40, '#2AA594', { f: 'Playfair Display', it: true }));
+      o += `</g>`;
+      if (up > 0) o += fade(up, `<path d="M960,380 L960,560" stroke="#B8B3C9" stroke-width="8" stroke-dasharray="16 12"/>` + cloud(960, 740, 1.3, '#B8B3C9', 0.9) + cloud(780, 790, 0.7, '#CFC8FA', 0.8) + cloud(1150, 800, 0.7, '#CFC8FA', 0.8) + txt(960, 790, '?', 140, '#fff') + txt(960, 1010, 'what happens AFTER the click', 40, C.dark, { f: 'Playfair Display', it: true }));
+      o += you(t, { x: 1700, y: 1020, scale: 1.0, flip: true });
+      return o;
+    },
+
+    // Four little storms around her: red trade, money flying off, "wrong", stop hit.
+    'w5-fears': (s, t) => {
+      const B = s.b;
+      let o = grad('w5g', '#3A1420', '#5A2233') + bg('url(#w5g)');
+      const card = (x, y, at, inner) => scaleAt(x, y, pop(t, at, 0.5), `<rect x="${x - 190}" y="${y - 130}" width="380" height="260" rx="20" fill="#fff"/>${inner}`);
+      o += card(400, 290, B.f1, candles(250, 190, 300, 200, [0.85, 0.7, 0.75, 0.5, 0.35, 0.15], 6));
+      const fly = seg(t, B.f2 + 0.5, B.f2 + 3);
+      o += card(1520, 290, B.f2, [0, 1, 2].map(j => `<g transform="translate(${f1(1430 + j * 80 + fly * 40)},${f1(330 - j * 25 - fly * 60)})" opacity="${f1(1 - fly * 0.4)}"><rect x="-40" y="-24" width="80" height="48" rx="6" fill="#2AA594"/>${txt(0, 12, '$', 32, '#fff')}<path d="M-40,-10 q-30,-30 -50,0 M40,-10 q30,-30 50,0" stroke="#B8B3C9" stroke-width="6" fill="none"/></g>`).join(''));
+      o += card(400, 720, B.f3, cross(400, 700, pop(t, B.f3 + 0.4, 0.4), '#E2556F', 70) + txt(400, 820, 'wrong again', 32, '#E2556F'));
+      const hit = seg(t, B.f4 + 0.4, B.f4 + 2);
+      o += card(1520, 720, B.f4, `<line x1="1350" x2="1690" y1="780" y2="780" stroke="#E2556F" stroke-width="5" stroke-dasharray="12 8"/>${txt(1640, 770, 'STOP', 22, '#E2556F')}<path d="M1360,640 L1430,${f1(lerp(640, 720, hit))} L1500,${f1(lerp(650, 760, hit))} L${f1(lerp(1500, 1580, hit))},${f1(lerp(650, 790, hit))}" fill="none" stroke="#120D1C" stroke-width="6"/>${hit >= 1 ? `<circle cx="1580" cy="780" r="16" fill="#E2556F"/>` : ''}`);
+      o += you(t, { x: 960, y: 1020, scale: 1.15, mood: 'sad' });
+      return o;
+    },
+
+    // The voice in her head, in three bubbles. Then one loss swells into something bigger.
+    'w5-voice': (s, t) => {
+      const B = s.b;
+      let o = wall('w5h', '#2A2142', '#3B2F55', 900, '#1E1730');
+      o += fade(seg(t, B.confirm, B.confirm + 0.6), cloud(960, 330, 0.55, '#5A4C7A'));
+      o += thought(560, 260, 'Maybe I don’t know what I’m doing.', pop(t, B.v1, 0.5), { size: 38 });
+      o += thought(1380, 400, 'Maybe my strategy doesn’t work.', pop(t, B.v2, 0.5), { size: 38 });
+      o += thought(540, 560, 'Maybe I’m not good at this.', pop(t, B.v3, 0.5), { size: 38 });
+      const g = ease(seg(t, B.bigger, B.bigger + 2.5));
+      if (t > B.bigger) o += `<circle cx="1500" cy="${f1(860 - 200 * g)}" r="${f1(50 + 190 * g)}" fill="#E2556F" opacity=".92"/>${txt(1500, 860 - 200 * g + 14, '1 loss', 30 + 40 * g, '#fff')}`;
+      o += you(t, { x: 960, y: 1020, scale: 1.1, mood: 'sad' });
+      return o;
+    },
+
+    // Three red ghosts of old trades sit at the desk with her. Then she carries them toward the next setup.
+    'w5-carry': (s, t) => {
+      const B = s.b;
+      let o = wall('w5i', '#F3E7DD', '#EADFD8', 880, '#C9B8A8');
+      const ghost = (x, y, k, lbl) => k <= 0 ? '' : `<g opacity="${f1(0.85 * k)}"><path d="M${x - 70},${y + 80} L${x - 70},${y - 40} Q${x},${y - 140} ${x + 70},${y - 40} L${x + 70},${y + 80} L${x + 45},${y + 60} L${x + 23},${y + 80} L${x},${y + 60} L${x - 23},${y + 80} L${x - 45},${y + 60} Z" fill="#F4A3B3"/><circle cx="${x - 22}" cy="${y - 30}" r="9" fill="#5A2233"/><circle cx="${x + 22}" cy="${y - 30}" r="9" fill="#5A2233"/>${txt(x, y + 30, lbl, 26, '#5A2233')}</g>`;
+      const ph = t > B.eval - 0.3 ? 1 : 0;
+      if (!ph) {
+        o += monitor(640, 260, 640, 380, candles(680, 300, 560, 300, [0.3, 0.4, 0.5, 0.45, 0.55, 0.65], 6)) + desk(380, 760, 1160);
+        o += you(t, { x: 960, y: 1040, scale: 1.1 });
+        o += ghost(500, 600, seg(t, B.sit + 0.3, B.sit + 0.9), '−1') + ghost(1440, 600, seg(t, B.sit + 0.9, B.sit + 1.5), '−2') + ghost(1640, 540, seg(t, B.sit + 1.5, B.sit + 2.1), '−3');
+        o += fade(seg(t, B.sit + 2, B.sit + 2.5), txt(960, 160, 'your last trades pulled up a chair', 46, C.dark, { f: 'Playfair Display', it: true }));
+      } else {
+        o += monitor(1200, 240, 560, 360, candles(1240, 280, 480, 280, [0.3, 0.4, 0.5, 0.45, 0.55], 5) + `<rect x="1560" y="360" width="140" height="70" rx="8" fill="#2AA594" opacity=".3" stroke="#2AA594" stroke-width="3"/>`) + desk(1120, 760, 720);
+        o += txt(1480, 200, 'THIS trade', 30, '#2AA594', { ls: 4 });
+        const w = seg(t, B.eval, B.carry + 3);
+        const cx = lerp(380, 860, w);
+        o += you(t, { x: cx, y: 1000, scale: 1.2, walking: w > 0 && w < 1, mood: 'sad', frontArm: { a1: 40, a2: -20 } });
+        [0, 1, 2].forEach(j => { o += `<rect x="${f1(cx + 100)}" y="${752 - j * 50}" width="110" height="48" rx="8" fill="#E2556F" stroke="#fff" stroke-width="3"/>` + txt(cx + 155, 785 - j * 50, '−' + (j + 1), 24, '#fff'); });
+        o += fade(seg(t, B.prob, B.prob + 0.5), pill(700, 180, 'the psychological problem', '#7F77DD', 1, 34));
+      }
+      return o;
+    },
+
+    // Dayli: a couple of stormy days, and the questions start piling up.
+    'w5-rough': (s, t) => {
+      const B = s.b;
+      let o = grad('w5j', '#F3E3D6', '#FBF4EF') + bg('url(#w5j)');
+      o += host(t, { x: 80, y: 340, w: 500, pose: t > B.rough ? 'think' : 'idle', talk: true, enterAt: s.start + 0.1 });
+      [0, 1].forEach(j => { const x = 1000 + j * 380; o += scaleAt(x, 340, pop(t, B.rough + j * 0.6, 0.5), `<rect x="${x - 150}" y="180" width="300" height="320" rx="20" fill="#fff" stroke="#EADFD8" stroke-width="4"/><rect x="${x - 150}" y="180" width="300" height="60" rx="20" fill="#9AA3B8"/>${txt(x, 225, j ? 'DAY 2' : 'DAY 1', 26, '#fff', { ls: 4 })}${cloud(x, 340, 0.55, '#9AA3B8')}${rain(x - 80, 160, 380, 480, t, 6, '#7F92B8')}`); });
+      [[1600, 300], [1700, 520], [1150, 640], [1450, 700], [1720, 760]].forEach(([x, y], j) => { o += scaleAt(x, y, pop(t, B.rough + 2 + j * 0.7, 0.4), txt(x, y + 30, '?', 90, '#7F77DD')); });
+      o += pill(1200, 860, 'really frustrating 😤', '#E2556F', pop(t, B.frus, 0.5), 32);
+      return o;
+    },
+
+    // She hesitates and skips. Price runs straight to her target without her.
+    'w5-skip': (s, t) => {
+      const B = s.b;
+      let o = wall('w5k', '#FFF4DE', '#F6E7DA', 900, '#E8D5C4');
+      const v = [0.3, 0.38, 0.46, 0.55, 0.62, 0.56, 0.5, 0.45, 0.48, 0.55, 0.62, 0.7, 0.68, 0.78, 0.86, 0.84, 0.92];
+      const n = 9 + Math.floor(8 * seg(t, B.then + 0.6, B.goes + 2.5));
+      o += monitor(180, 140, 1060, 600, candles(220, 190, 980, 500, v, n, { slots: 18 }) + `<line x1="220" x2="1200" y1="${f1(190 + 500 * (1 - 0.92))}" y2="${f1(190 + 500 * (1 - 0.92))}" stroke="#2AA594" stroke-width="4" stroke-dasharray="14 10"/>${txt(1150, 190 + 500 * 0.08 - 14, 'TP', 26, '#2AA594')}`);
+      o += fade(seg(t, B.hes, B.hes + 0.4), `<circle cx="${f1(220 + 8.5 * 980 / 18)}" cy="${f1(190 + 500 * 0.52)}" r="34" fill="none" stroke="#F9D89A" stroke-width="6"/>`);
+      o += pill(1000, 840, 'skipped', '#B8B3C9', pop(t, B.skip, 0.4), 32);
+      o += you(t, { x: 1560, y: 1020, scale: 1.25, flip: true, mood: t > B.irr ? 'sad' : undefined, frontArm: t > B.irr ? { a1: -150, a2: -175 } : undefined });
+      o += thought(1440, 300, 'See! I KNEW it! 😤', pop(t, B.knew, 0.5), { size: 44 });
+      return o;
+    },
+
+    // A crystal ball gets crossed out. The real problem: old trades leaning on her execution dial.
+    'w5-hindsight': (s, t) => {
+      const B = s.b;
+      let o = grad('w5l', '#EEEBFB', '#FDF8F5') + bg('url(#w5l)');
+      const ph2 = seg(t, B.allowed - 0.2, B.allowed + 0.4);
+      o += fade(1 - ph2, scaleAt(960, 460, pop(t, B.thing, 0.6), `<circle cx="960" cy="440" r="200" fill="#CFC8FA" opacity=".85"/><circle cx="900" cy="380" r="50" fill="#fff" opacity=".6"/><rect x="820" y="620" width="280" height="70" rx="16" fill="#7F77DD"/>${txt(960, 470, '“it’ll win”', 44, '#5A4C9A', { f: 'Playfair Display', it: true })}`) + cross(1180, 280, pop(t, B.didnt + 2.5, 0.4), '#E2556F', 50) + fade(seg(t, B.didnt + 2.5, B.didnt + 3), txt(960, 840, 'nobody knows that', 44, C.dark, { f: 'Playfair Display', it: true })));
+      if (ph2 > 0) {
+        [0, 1, 2].forEach(j => { o += fade(seg(t, B.allowed + j * 0.5, B.allowed + j * 0.5 + 0.4), `<rect x="${200 + j * 60}" y="${360 + j * 50}" width="260" height="180" rx="16" fill="#fff" stroke="#E2556F" stroke-width="6"/>${bigNum(330 + j * 60, 470 + j * 50, '−$', 50, '#E2556F')}`); });
+        const push = ease(seg(t, B.allowed + 3, B.allowed + 5));
+        o += fade(seg(t, B.allowed + 2, B.allowed + 2.5), `<path d="M640,520 L${f1(900 + 100 * push)},520" stroke="#E2556F" stroke-width="14" stroke-linecap="round"/><path d="M${f1(900 + 100 * push)},490 L${f1(950 + 100 * push)},520 L${f1(900 + 100 * push)},550 Z" fill="#E2556F"/>`);
+        o += `<circle cx="1380" cy="520" r="230" fill="#fff" stroke="#7F77DD" stroke-width="12"/><path d="M1200,520 A180,180 0 0 1 1560,520" fill="none" stroke="#2AA594" stroke-width="22"/><line x1="1380" y1="520" x2="${f1(1380 + 160 * Math.cos(-Math.PI / 2 - push * 1.1))}" y2="${f1(520 + 160 * Math.sin(-Math.PI / 2 - push * 1.1))}" stroke="#2C1810" stroke-width="14" stroke-linecap="round"/><circle cx="1380" cy="520" r="20" fill="#2C1810"/>${txt(1380, 640, 'how I execute', 34, '#7F77DD')}`;
+      }
+      return o;
+    },
+
+    // A fork in the road: a win path and a loss path. Both end at the same sign: followed my process.
+    'w5-paths': (s, t) => {
+      const B = s.b;
+      let o = grad('w5m', '#CDEBF7', '#FDF8F5') + bg('url(#w5m)') + `<rect y="560" width="1920" height="520" fill="#B9DDB0"/>`;
+      o += `<path d="M960,1100 L960,720 L520,380 M960,720 L1400,380" fill="none" stroke="#E8D5C4" stroke-width="110" stroke-linecap="round" stroke-linejoin="round"/>`;
+      o += `<circle cx="520" cy="340" r="80" fill="#2AA594"/>${txt(520, 365, 'WIN', 34, '#fff')}<circle cx="1400" cy="340" r="80" fill="#E2556F"/>${txt(1400, 365, 'LOSS', 34, '#fff')}`;
+      o += fade(seg(t, B.lost, B.lost + 0.5), `<line x1="1400" y1="240" x2="1400" y2="420" stroke="#fff" stroke-width="0"/>`) + scaleAt(1400, 340, pop(t, B.lost, 0.5), `<circle cx="1400" cy="340" r="96" fill="none" stroke="#E2556F" stroke-width="8"/>`);
+      o += check(620, 260, pop(t, B.ifit + 1.5, 0.4), '#2AA594', 34) + check(1500, 260, pop(t, B.ifit + 2, 0.4), '#2AA594', 34);
+      o += fade(seg(t, B.ifit + 2.4, B.ifit + 3) * (1 - seg(t, B.ability, B.ability + 0.5)), txt(960, 180, 'either way: I followed my process', 48, C.dark, { f: 'Playfair Display', it: true }));
+      const sp = Math.abs(Math.cos(t * 5));
+      o += fade(seg(t, B.notknow, B.notknow + 0.5), `<g transform="translate(960,560) scale(${f1(Math.max(0.05, sp))},1)">${coin(0, 0, 60)}</g>` + txt(960, 470, '?', 60, '#7F77DD'));
+      o += you(t, { x: 960, y: 1020, scale: 0.95 });
+      o += fade(seg(t, B.ability + 1, B.ability + 1.6), `<rect x="560" y="140" width="800" height="80" rx="40" fill="#7F77DD"/>${txt(960, 192, 'confidence in my process', 38, '#fff')}`);
+      return o;
+    },
+
+    // A pep-talk bubble ("definitely going to win!") pops. In its place: the circle of what she controls.
+    'w5-convince': (s, t) => {
+      const B = s.b;
+      let o = grad('w5n', '#FFF4DE', '#FDF8F5') + bg('url(#w5n)') + `<rect y="900" width="1920" height="180" fill="#E8D5C4"/>`;
+      const popd = seg(t, B.dont + 0.6, B.dont + 1.2);
+      o += fade(1 - popd, scaleAt(1180, 360, pop(t, B.def, 0.6), `<rect x="760" y="240" width="840" height="200" rx="100" fill="#F9D89A"/><path d="M820,420 L700,520 L900,430 Z" fill="#F9D89A"/>${txt(1180, 360, '“definitely going to win!” ✨', 46, '#7A4E0F', { f: 'Playfair Display', it: true })}`) + cross(1560, 260, pop(t, B.dont, 0.4), '#E2556F', 40));
+      const c = seg(t, B.control, B.control + 0.8);
+      if (c > 0) {
+        o += scaleAt(1250, 520, ease(c), `<circle cx="1250" cy="520" r="280" fill="#E6F5F2" stroke="#2AA594" stroke-width="10"/>${txt(1250, 480, 'what I', 42, '#2AA594')}${txt(1250, 540, 'control', 56, '#2AA594')}`);
+        [['the outcome', 1700, 250], ['the market', 1720, 780], ['the last trade', 780, 220]].forEach(([l, x, y], j) => { o += fade(seg(t, B.control + 1 + j * 0.5, B.control + 1.5 + j * 0.5), pill(x, y, l, '#B8B3C9', 1, 26)); });
+      }
+      o += you(t, { x: 460, y: 1000, scale: 1.25, frontArm: t > B.def && t < B.dont + 1 ? { a1: -40, a2: -60 } : undefined });
+      return o;
+    },
+
+    // Four question cards. The last one, can I accept the loss, glows.
+    'w5-control': (s, t) => {
+      const B = s.b;
+      let o = grad('w5o', '#E6F5F2', '#FDF8F5') + bg('url(#w5o)');
+      [[B.q1, '🎯', 'Is my setup', 'present?'], [B.q2, '📋', 'Does this meet my', 'written criteria?'], [B.q3, '🛡️', 'Is my risk', 'appropriate?'], [B.q4, '🤲🏾', 'Can I accept this amount', 'if the trade loses?']].forEach(([at, e, l1, l2], j) => {
+        const x = j % 2 ? 1380 : 540, y = j < 2 ? 330 : 700, hl = j === 3 && t > B.last;
+        o += scaleAt(x, y, pop(t, at, 0.5), `<rect x="${x - 380}" y="${y - 140}" width="760" height="280" rx="24" fill="#fff" stroke="${hl ? '#E2B04A' : '#EADFD8'}" stroke-width="${hl ? 12 : 4}"/>${txt(x - 280, y + 24, e, 70, C.dark)}${txt(x - 190, y - 10, l1, 38, C.dark, { a: 'start', w: 700 })}${txt(x - 190, y + 46, l2, 38, C.dark, { a: 'start' })}`) + check(x + 320, y - 100, pop(t, at + 1, 0.4), '#2AA594', 26);
+      });
+      return o;
+    },
+
+    // She strains under a giant barbell labelled SIZE. A sticky-note pep talk doesn't help. Smaller plates do.
+    'w5-size': (s, t) => {
+      const B = s.b;
+      let o = wall('w5p', '#EEEBFB', '#E0DAF2', 900, '#B8B3C9');
+      o += pill(600, 150, 'psychology problem', '#B8B3C9', pop(t, B.risk, 0.4), 32) + fade(seg(t, B.risk + 1.5, B.risk + 2), `<path d="M860,150 L1010,150" stroke="#7F77DD" stroke-width="8"/><path d="M1000,130 L1030,150 L1000,170 Z" fill="#7F77DD"/>`) + pill(1260, 150, 'risk problem', '#7F77DD', pop(t, B.risk + 2, 0.4), 32);
+      const sh = ease(seg(t, B.big, B.big + 1.2)), r = lerp(190, 80, sh), y = lerp(897, 825, sh);
+      o += you(t, { x: 960, y: 1000, scale: 1.2, mood: sh < 0.5 ? 'sad' : undefined, frontArm: sh > 0.5 ? { a1: 60, a2: 0 } : { a1: 80, a2: 85 }, backArm: sh > 0.5 ? { a1: 120, a2: 180 } : { a1: 100, a2: 95 } });
+      o += `<rect x="520" y="${f1(y - 12)}" width="880" height="24" rx="12" fill="#5A4C7A"/><circle cx="${f1(560)}" cy="${f1(y)}" r="${f1(r)}" fill="#2C1810"/><circle cx="1360" cy="${f1(y)}" r="${f1(r)}" fill="#2C1810"/>${txt(560, y + 14, 'SIZE', r * 0.32, '#fff')}${txt(1360, y + 14, 'SIZE', r * 0.32, '#fff')}`;
+      o += fade(seg(t, B.terr, B.terr + 0.4) * (1 - sh), [0, 1, 2].map(j => `<path d="M${880 + j * 60},${470 + (j % 2) * 20} q10,30 0,50" stroke="#7FB5E6" stroke-width="8" fill="none" stroke-linecap="round"/>`).join(''));
+      o += fade(1 - sh, sticky(1620, 420, 'you got this! ✨', pop(t, B.aff, 0.5), 6) + cross(1760, 360, pop(t, B.aff + 1.5, 0.4), '#E2556F', 30));
+      o += fade(seg(t, B.big + 1.4, B.big + 1.9), txt(960, 260, 'right-sized', 48, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Calm with a small stop. Then the ballot box: the old loss tries to vote, and the slot is closed.
+    'w5-accept': (s, t) => {
+      const B = s.b;
+      let o = grad('w5q', '#E6F5F2', '#FDF8F5') + bg('url(#w5q)') + `<rect y="900" width="1920" height="180" fill="#E8D5C4"/>`;
+      if (t < B.vote - 0.2) {
+        o += `<rect x="1000" y="200" width="760" height="460" rx="20" fill="#120D1C"/>${candles(1040, 240, 680, 360, [0.5, 0.56, 0.52, 0.46, 0.4, 0.36], 6)}<line x1="1040" x2="1720" y1="${f1(240 + 360 * 0.68)}" y2="${f1(240 + 360 * 0.68)}" stroke="#E2556F" stroke-width="4" stroke-dasharray="12 8"/>${txt(1660, 240 + 360 * 0.68 - 12, 'STOP', 24, '#E2556F')}`;
+        o += pill(1380, 720, 'a loss I can live with', '#2AA594', pop(t, B.allow + 1, 0.5), 30);
+        o += fade(seg(t, B.enjoy, B.enjoy + 0.4) * (1 - seg(t, B.accept, B.accept + 0.3)), thought(600, 260, 'enjoy losing? 😍', 1, { size: 40 }) + cross(820, 230, pop(t, B.enjoy + 1.2, 0.4), '#E2556F', 26));
+        o += check(600, 300, pop(t, B.accept, 0.5), '#2AA594', 50) + fade(seg(t, B.accept, B.accept + 0.4), txt(600, 420, 'accept it', 44, '#2AA594', { f: 'Playfair Display', it: true }));
+        o += you(t, { x: 600, y: 1000, scale: 1.2 });
+      } else {
+        o += `<rect x="780" y="480" width="440" height="380" rx="16" fill="#7F77DD"/><rect x="900" y="470" width="200" height="26" rx="8" fill="#2C1810"/>${txt(1000, 700, 'VOTE', 60, '#fff', { ls: 8 })}`;
+        o += you(t, { x: 480, y: 1000, scale: 1.2, frontArm: { a1: 20, a2: -40 }, hold: `<rect x="-10" y="-50" width="60" height="80" rx="6" fill="#fff" stroke="#7F77DD" stroke-width="4"/>` });
+        const gx = 1520 + Math.sin(t * 2) * 10;
+        o += `<g opacity=".88"><path d="M${gx - 90},880 L${gx - 90},620 Q${gx},480 ${gx + 90},620 L${gx + 90},880 L${gx + 60},850 L${gx + 30},880 L${gx},850 L${gx - 30},880 L${gx - 60},850 Z" fill="#F4A3B3"/><circle cx="${gx - 28}" cy="640" r="11" fill="#5A2233"/><circle cx="${gx + 28}" cy="640" r="11" fill="#5A2233"/>${txt(gx, 740, 'last trade', 26, '#5A2233')}<rect x="${gx - 200}" y="690" width="90" height="60" rx="6" fill="#fff" stroke="#E2556F" stroke-width="4"/></g>`;
+        o += scaleAt(1000, 470, pop(t, B.vote + 3.5, 0.5), `<g transform="rotate(-8 1000 470)"><rect x="770" y="420" width="460" height="90" rx="12" fill="#fff" stroke="#E2556F" stroke-width="8"/>${txt(1000, 480, 'NO VOTE', 52, '#E2556F', { ls: 6 })}</g>`);
+        o += fade(seg(t, B.vote + 4.5, B.vote + 5), txt(960, 180, 'the previous trade doesn’t get a vote', 50, C.dark, { f: 'Playfair Display', it: true }));
+      }
+      return o;
+    },
+
+    // YOUR RULE: execute the plan, and three things this trade is NOT being asked to do.
+    'w5-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('w5r', '#EEEBFB', '#DDF1EE') + bg('url(#w5r)');
+      o += txt(960, 120, '🧠 YOUR RULE', 30, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 220, pop(t, s.start + 0.4, 0.8), txt(960, 240, 'The previous trade doesn’t get a vote.', 70, C.dark, { f: 'Playfair Display' }));
+      const fin = seg(t, B.line - 0.3, B.line + 0.3), a = 1 - fin;
+      [[B.r1, '▶️', 'execute my plan', 1], [B.r2, '🏅', 'prove I’m good', 0], [B.r3, '💸', 'make back the loss', 0], [B.r4, '⏭️', 'skip out of fear', 0]].forEach(([at, e, l, ok], j) => {
+        const x = 330 + j * 420;
+        o += fade(a, scaleAt(x, 600, pop(t, at, 0.4), `<circle cx="${x}" cy="580" r="120" fill="#fff" stroke="${ok ? '#2AA594' : '#B8B3C9'}" stroke-width="8"/>${txt(x, 612, e, 80, C.dark)}${txt(x, 760, l, 32, C.dark, { w: 700 })}`) + (ok ? check(x + 90, 490, pop(t, at + 1, 0.4), '#2AA594', 30) : cross(x + 90, 490, pop(t, at + 1, 0.4), '#E2556F', 30)));
+      });
+      if (fin > 0) o += fade(fin, txt(960, 540, 'Confidence isn’t knowing this trade will win.', 56, C.dark, { f: 'Playfair Display', it: true }) + txt(960, 660, 'It’s knowing what I’ll do either way.', 62, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Her journal: "What was I actually afraid of?" with five boxes to tick.
+    'w5-reflect': (s, t) => {
+      const B = s.b;
+      let o = wall('w5s', '#FFF4DE', '#F6E7DA', 900, '#C98B6B');
+      o += `<rect x="220" y="140" width="1100" height="760" rx="20" fill="#7F77DD"/><rect x="250" y="170" width="1040" height="700" rx="10" fill="#FFF8E6"/>`;
+      o += txt(770, 250, '✍🏽 Trader Reflection', 30, '#7F77DD', { ls: 4 });
+      o += fade(seg(t, B.think, B.think + 0.5), txt(770, 320, 'the last setup I was scared to take…', 36, C.muted, { f: 'Playfair Display', it: true, w: 700 }));
+      o += fade(seg(t, B.afraid, B.afraid + 0.4), txt(770, 400, 'What was I actually afraid of?', 46, C.dark, { f: 'Playfair Display' }));
+      ['💸 losing money', '✗ being wrong', '🔁 another loss after a streak', '🏦 losing an eval / funded account', '📉 giving back profits'].forEach((l, j) => {
+        const at = B['a' + (j + 1)], y = 480 + j * 76;
+        o += fade(seg(t, at - 0.2, at + 0.2), `<rect x="340" y="${y - 30}" width="40" height="40" rx="8" fill="#fff" stroke="#7F77DD" stroke-width="4"/>` + txt(410, y + 2, l, 34, C.dark, { a: 'start', w: 700 }));
+      });
+      o += you(t, { x: 1600, y: 1000, scale: 1.2, flip: true, frontArm: { a1: 60, a2: -60 }, hold: `<rect x="0" y="-8" width="90" height="14" rx="6" fill="#E2B04A"/>` });
+      return o;
+    },
+
+    // Magnifying glass on the setup vs. a rear-view mirror full of old trades. Then: fear, or size?
+    'w5-ask': (s, t) => {
+      const B = s.b;
+      let o = grad('w5t', '#EEEBFB', '#FDF8F5') + bg('url(#w5t)');
+      if (t < B.stop - 0.2) {
+        o += scaleAt(560, 460, pop(t, B.ask, 0.5), `<rect x="300" y="300" width="520" height="320" rx="18" fill="#120D1C"/>${candles(330, 330, 460, 260, [0.3, 0.4, 0.5, 0.45, 0.55, 0.65, 0.6, 0.72], 8)}<circle cx="640" cy="420" r="120" fill="#fff" opacity=".18" stroke="#F9D89A" stroke-width="16"/><line x1="725" y1="505" x2="820" y2="600" stroke="#F9D89A" stroke-width="24" stroke-linecap="round"/>`) + fade(seg(t, B.ask, B.ask + 0.4), txt(560, 720, 'the setup', 42, '#2AA594', { f: 'Playfair Display', it: true }));
+        o += fade(seg(t, B.wrong + 2.5, B.wrong + 3), `<rect x="1100" y="320" width="560" height="260" rx="130" fill="#2C1810"/><rect x="1130" y="350" width="500" height="200" rx="100" fill="#F4A3B3"/>${candles(1200, 370, 360, 160, [0.8, 0.7, 0.72, 0.5, 0.4, 0.3], 6)}<rect x="1360" y="580" width="40" height="80" fill="#2C1810"/>` + txt(1380, 720, 'what happened before', 42, '#E2556F', { f: 'Playfair Display', it: true }));
+        o += fade(seg(t, B.wrong + 4, B.wrong + 4.4), txt(960, 480, 'or', 50, C.muted, { f: 'Playfair Display', it: true }));
+      } else {
+        o += `<rect x="300" y="160" width="1320" height="300" rx="20" fill="#120D1C"/>${candles(340, 190, 1100, 240, [0.6, 0.55, 0.58, 0.5, 0.52, 0.47, 0.5, 0.44], 8)}<line x1="340" x2="1580" y1="${f1(190 + 240 * 0.72)}" y2="${f1(190 + 240 * 0.72)}" stroke="#E2556F" stroke-width="5" stroke-dasharray="14 10"/>${txt(1520, 190 + 240 * 0.72 - 14, 'my normal stop', 24, '#E2556F')}`;
+        o += scaleAt(620, 700, pop(t, B.fear, 0.5), `<rect x="340" y="580" width="560" height="240" rx="30" fill="#fff" stroke="#CFC8FA" stroke-width="8"/>${txt(620, 690, '😨', 90, C.dark)}${txt(620, 780, 'fear?', 44, '#7F77DD', { f: 'Playfair Display', it: true })}`);
+        o += scaleAt(1300, 700, pop(t, B.fear + 1.2, 0.5), `<rect x="1020" y="580" width="560" height="240" rx="30" fill="#fff" stroke="#E2B04A" stroke-width="8"/>${txt(1300, 690, '🏋🏾‍♀️', 90, C.dark)}${txt(1300, 780, 'or risking too much?', 44, '#C98A1F', { f: 'Playfair Display', it: true })}`);
+      }
+      return o;
+    },
+
+    // A hundred little trades. Erasing the red ones doesn't work; zoomed out, one loss is just one dot.
+    'w5-sample': (s, t) => {
+      const B = s.b;
+      let o = grad('w5u', '#FDF8F5', '#E6F5F2') + bg('url(#w5u)');
+      const red = new Set([3, 7, 12, 18, 22, 29, 33, 41, 47, 52, 58, 61, 67, 74, 79, 83, 88, 95]);
+      const shown = t < B.sample ? 1 : Math.floor(1 + 99 * seg(t, B.sample, B.sample + 3));
+      const zoom = lerp(4, 1, ease(seg(t, B.sample, B.sample + 3)));
+      o += `<g transform="translate(960,520) scale(${f1(zoom)}) translate(-960,-520)">`;
+      for (let i = 0; i < shown; i++) { const k = i === 0 ? 3 : i, x = 420 + (i % 20) * 57, y = 400 + Math.floor(i / 20) * 60; o += `<circle cx="${i === 0 ? 960 : x}" cy="${i === 0 ? 520 : y}" r="20" fill="${i === 0 || red.has(k) ? '#E2556F' : '#2AA594'}"/>`; }
+      o += `</g>`;
+      const er = seg(t, B.elim + 0.5, B.cant);
+      o += fade(seg(t, B.elim, B.elim + 0.4) * (1 - seg(t, B.cant + 1, B.cant + 1.4)), `<g transform="translate(${f1(1080 + Math.sin(er * 12) * 50)},${f1(560 + Math.cos(er * 12) * 20)}) rotate(-30)"><rect x="-40" y="-90" width="80" height="180" rx="14" fill="#F4829A"/><rect x="-40" y="30" width="80" height="60" rx="10" fill="#fff"/></g>`) + cross(1200, 380, pop(t, B.cant, 0.4), '#E2556F', 40);
+      o += fade(seg(t, B.sample + 3.5, B.sample + 4), txt(960, 860, 'one loss = one outcome', 54, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Last frame: just her and the setup in front of her, sun coming up.
+    'w5-end': (s, t) => {
+      const B = s.b;
+      const k = seg(t, s.start, s.end);
+      let o = grad('w5v', '#FDE8ED', '#FFE7C7') + bg('url(#w5v)') + `<rect y="820" width="1920" height="260" fill="#B9DDB0"/>`;
+      o += `<circle cx="1500" cy="${f1(820 - 240 * ease(k))}" r="180" fill="#F9D89A" opacity=".9"/>`;
+      o += `<rect x="1160" y="420" width="560" height="320" rx="18" fill="#120D1C"/>${candles(1190, 450, 500, 260, [0.3, 0.4, 0.5, 0.45, 0.55, 0.65, 0.6], 7)}`;
+      o += you(t, { x: 760, y: 900, scale: 1.2 });
+      o += fade(seg(t, B.last + 0.3, B.last + 0.9), txt(960, 160, 'Evaluate the setup in front of you,', 56, C.dark, { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.last + 3, B.last + 3.6), txt(960, 260, 'not the one that happened before it.', 60, '#2AA594', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+
     /*@@W@@*/
   };
 
