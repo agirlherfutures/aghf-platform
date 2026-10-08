@@ -102,7 +102,7 @@
     {
       "type": "v2_steps",
       "kicker": "A normal Tuesday",
-      "headline": "Before every click: <em>who’s trading now?</em>",
+      "headline": "Before every trade: <em>who’s trading now?</em>",
       "line": "They show up mid-morning, not one at a time.",
       "steps": [
         {
@@ -174,13 +174,13 @@
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
       "prompt": "Which version of you <em>shows up most</em>, and when?",
-      "modelAnswer": "I notice which feeling shows up and when: after a loss, after a win, when I’m bored, when money is tight. Before every click I ask who is trading right now."
+      "modelAnswer": "I notice which feeling shows up and when: after a loss, after a win, when I’m bored, when money is tight. Before every trade I ask who is trading right now."
     }
   ],
   "takeaways": [
     "Different traders, minute to minute.",
     "Read yourself before the chart.",
-    "Before every click: who’s trading now?"
+    "Before every trade: who’s trading now?"
   ],
-  "remember": "BEFORE EVERY CLICK: WHO’S TRADING NOW?"
+  "remember": "BEFORE EVERY TRADE: WHO’S TRADING NOW?"
 }

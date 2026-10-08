@@ -11,7 +11,7 @@
   "hook": "You know the model. So why do you still break it?",
   "format": "slides",
   "launchpad": {
-    "outcome": "Notice the gap between seeing the chart and clicking, and learn the PAUSE that lives there.",
+    "outcome": "Notice the gap between seeing the chart and placing the trade, and learn the PAUSE that lives there.",
     "missionQuestion": "Did price change, or did my emotion change?",
     "estMinutes": 8
   },
@@ -336,7 +336,7 @@
       "type": "v2_steps",
       "kicker": "Your new button",
       "headline": "⏸ Hit <em>PAUSE.</em>",
-      "line": "Before you click, check all four. Tap each one.",
+      "line": "Before you enter or exit, check all four. Tap each one.",
       "steps": [
         {
           "label": "Market",
@@ -366,8 +366,8 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "The last rule you broke: <em>what were you feeling</em> right before you clicked?",
-      "modelAnswer": "I knew the rule. Right before I clicked I felt something (rushed, scared, excited) and the feeling made the decision instead of the plan."
+      "prompt": "The last trading rule you broke: <em>what were you feeling</em> right before you did it?",
+      "modelAnswer": "I knew the rule. Right before I broke it I felt something (rushed, scared, excited) and the feeling made the decision instead of the plan."
     }
   ],
   "takeaways": [
