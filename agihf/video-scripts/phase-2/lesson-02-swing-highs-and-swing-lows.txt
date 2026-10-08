@@ -1,0 +1,95 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Welcome to Lesson Two of How Markets Move.
+
+(pause-until: 00:00:03,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Before you can read structure, you need to find the turns.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 7.000)
+
+A swing high is where price pushes upward, forms a local turning point, and then moves lower.
+
+(pause-until: 00:00:15,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Think of it as the heel. Price walks up, reaches a high point, then turns.
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A swing low is the opposite. Price pushes down, forms a local turning point, then moves higher.
+
+(pause-until: 00:00:25,000)
+
+(next-paragraph-max-duration: 5.000)
+
+That's the valley. Just a memory trick, not the technical definition.
+
+(pause-until: 00:00:30,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Now, here's the thing.
+
+(pause-until: 00:00:33,000)
+
+(next-paragraph-max-duration: 8.000)
+
+On a one-minute chart, there can be lots of little highs and lows inside one larger move.
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Every one of them is real. But not every tiny wiggle deserves equal structural importance.
+
+(pause-until: 00:00:47,000)
+
+(next-paragraph-max-duration: 4.000)
+
+This will matter later.
+
+(pause-until: 00:00:51,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Swings are going to become very important later.
+
+(pause-until: 00:00:54,000)
+
+(next-paragraph-max-duration: 2.000)
+
+For now, your job isn't to trade them.
+
+(pause-until: 00:00:56,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Your job is to learn how to see them.
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:04,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Should every tiny high and low on a one-minute chart be treated as equally important structure?
+
+(pause-until: 00:01:11,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Let's find out.

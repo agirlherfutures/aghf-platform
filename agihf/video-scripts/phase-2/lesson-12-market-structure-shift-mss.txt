@@ -1,0 +1,101 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Twelve: Market Structure Shift, or MSS.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Price moving down is not the same as structure changing.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of bullish structure as a block tower.
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 5.000)
+
+This block is the supporting low. It's holding the whole thing up.
+
+(pause-until: 00:00:16,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Price starts moving lower. The tower wobbles. Is that a shift? Not yet.
+
+(pause-until: 00:00:22,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Now a tiny internal low breaks. Still standing. The supporting low is intact.
+
+(pause-until: 00:00:28,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Then price closes through the supporting low. That's a potential MSS.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 6.000)
+
+So what is an MSS, really? Think of a traffic light turning amber.
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 5.000)
+
+It tells you something may be changing. That's change information.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 3.000)
+
+It's not a confirmed reversal.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 5.000)
+
+And it's definitely not an instruction to hit the gas and enter.
+
+(pause-until: 00:00:54,000)
+
+(next-paragraph-max-duration: 5.000)
+
+The word may matters.
+
+(pause-until: 00:00:59,000)
+
+(next-paragraph-max-duration: 1.000)
+
+As Dayli says.
+
+(pause-until: 00:01:00,000)
+
+(next-paragraph-max-duration: 10.000)
+
+MSS tells you the old structure may no longer be behaving the same way. It does not mean enter immediately.
+
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's your mission.
+
+(pause-until: 00:01:12,000)
+
+(next-paragraph-max-duration: 6.000)
+
+If bullish structure starts moving lower and breaks a small low, has the market structure shifted?
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Let's find out.

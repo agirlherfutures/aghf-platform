@@ -5,7 +5,7 @@
 window.LESSON_VIDEO = {
   "slug": "p5-lesson-16",
   "eyebrow": "Phase 5 · Section 13 · Lesson 16",
-  "duration": 84,
+  "duration": 87.7,
   "sources": "From Phase 5, Section 13, Lesson 16 (\"Continuation\"), continuation = the close back in the original direction (bullish: close above → close below → close back ABOVE; bearish: the mirror); while price stays on the wrong side, continuation is not confirmed; wicks don’t complete anything; anticipating it is guessing; \"You know what you’re waiting for. That doesn’t mean price has done it yet.\"",
   "scenes": [
     {
@@ -31,25 +31,25 @@ window.LESSON_VIDEO = {
     {
       "type": "s13-traffic-light",
       "start": 8,
-      "end": 34,
+      "end": 37.7,
       "kicker": "Restraint",
       "beats": {
         "road": 8.4,
         "chart": 8.6,
-        "wrong": 11.2,
-        "rev": 19.8,
-        "close": 23.4,
-        "green": 24.6,
-        "go": 26.8
+        "wrong": 13,
+        "rev": 21.6,
+        "close": 25.2,
+        "green": 26.4,
+        "go": 28.6
       },
       "headlines": [
         {
           "at": 8.4,
           "html": "Wrong side? <span class=\"mark\">Not confirmed.</span>",
-          "out": 26.4
+          "out": 28.2
         },
         {
-          "at": 26.6,
+          "at": 28.4,
           "html": "Close back above = <span class=\"mark\">continuation.</span>"
         }
       ],
@@ -60,86 +60,86 @@ window.LESSON_VIDEO = {
           "screen": "Mini chart with I ✓ and C ✓; a car at a red light"
         },
         {
-          "at": 11,
+          "at": 12.8,
           "text": "Now we wait for continuation: a close back above the PIL.",
           "screen": "\"CONTINUATION NOT CONFIRMED\""
         },
         {
-          "at": 15.4,
+          "at": 17.2,
           "text": "While price stays on the wrong side, the light stays red."
         },
         {
-          "at": 19.8,
+          "at": 21.6,
           "text": "Revving the engine doesn’t help. Almost above isn’t above.",
           "screen": "Driver: \"It’s basically above 😤\" Crossing guard: \"Almost isn’t above.\""
         },
         {
-          "at": 23.4,
+          "at": 25.2,
           "text": "Then a candle closes back above the PIL.",
           "screen": "The continuation candle prints: CONT ✓"
         },
         {
-          "at": 26.6,
+          "at": 28.4,
           "text": "Green. Continuation confirmed. Price is trying again.",
           "screen": "Green light; the car drives on"
         },
         {
-          "at": 29.2,
+          "at": 32.9,
           "text": "Close above, close below, close back above."
         }
       ]
     },
     {
       "type": "s13-bobber",
-      "start": 34,
-      "end": 62,
+      "start": 37.7,
+      "end": 65.7,
       "kicker": "Wicks don’t complete anything",
       "beats": {
-        "dock": 34.4,
-        "cast": 35.2,
-        "wiggle": 42,
-        "cat": 42.6,
-        "dunk": 51,
-        "done": 55.2
+        "dock": 38.1,
+        "cast": 38.9,
+        "wiggle": 45.7,
+        "cat": 46.3,
+        "dunk": 54.7,
+        "done": 58.9
       },
       "headlines": [
         {
-          "at": 34.4,
+          "at": 38.1,
           "html": "Know what you’re <span class=\"mark\">waiting for.</span>",
-          "out": 50.8
+          "out": 54.5
         },
         {
-          "at": 51,
+          "at": 54.7,
           "html": "Then <span class=\"mark\">wait for the close.</span>"
         }
       ],
       "lines": [
         {
-          "at": 34.4,
+          "at": 38.1,
           "text": "Here’s the hard part: you know exactly what you’re waiting for.",
           "screen": "A dock, a fisher, a bobber on the waterline (PIL)"
         },
         {
-          "at": 38.8,
+          "at": 42.5,
           "text": "That doesn’t mean price has done it yet."
         },
         {
-          "at": 42.2,
+          "at": 45.9,
           "text": "The bobber wiggles. The cat is ready to pull.",
           "screen": "Cat: \"Now?! Pull!! 🐟\" · a wiggle = a wick"
         },
         {
-          "at": 45.8,
+          "at": 49.5,
           "text": "But a wiggle isn’t a bite. A wick doesn’t complete anything.",
           "screen": "Fisher: \"A wiggle isn’t a bite.\""
         },
         {
-          "at": 50.2,
+          "at": 53.9,
           "text": "Wait for the real thing. In this bearish example, a close back below.",
           "screen": "The bobber goes under and stays: close back BELOW ✓"
         },
         {
-          "at": 55.2,
+          "at": 58.9,
           "text": "That’s continuation. Anticipating it is just guessing.",
           "screen": "\"bearish continuation\""
         }
@@ -147,29 +147,29 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-hook",
-      "start": 62,
-      "end": 72,
-      "pointAt": 66.2,
+      "start": 65.7,
+      "end": 75.7,
+      "pointAt": 69.9,
       "size": 52,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 63.4,
+          "at": 67.1,
           "text": "You know what you’re waiting for."
         },
         {
-          "at": 66.2,
+          "at": 69.9,
           "html": "That doesn’t mean <span class=\"mark\">price has done it yet.</span>"
         }
       ],
       "lines": [
         {
-          "at": 62.2,
+          "at": 65.9,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 63.6,
+          "at": 67.3,
           "text": "You know what you’re waiting for. That doesn’t mean price has done it yet.",
           "screen": "Aristella points"
         }
@@ -177,30 +177,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 72,
-      "end": 84,
+      "start": 75.7,
+      "end": 87.7,
       "kicker": "Your mission",
       "question": {
-        "at": 74.4,
+        "at": 78.1,
         "text": "Has price closed back in the original direction yet?"
       },
       "cta": {
-        "at": 80,
+        "at": 83.7,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 72.2,
+          "at": 75.9,
           "text": "Here’s your mission.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 74.4,
+          "at": 78.1,
           "text": "Indication, correction. Now ask: has price closed back in the original direction yet?",
           "screen": "Mission question"
         },
         {
-          "at": 80,
+          "at": 83.7,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

@@ -1,0 +1,119 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Twenty-One: What Makes a Level Stronger?
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Not all levels deserve the same attention.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Two levels. Which one deserves more attention?
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Level A sits at a random price. No swing ever formed there.
+
+(pause-until: 00:00:15,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Level B is the higher low the bullish structure is built on.
+
+(pause-until: 00:00:20,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Price clearly reacted there, in a meaningful location.
+
+(pause-until: 00:00:23,000)
+
+(next-paragraph-max-duration: 5.000)
+
+So B gets more weight. Not from a score. From context.
+
+(pause-until: 00:00:28,000)
+
+(next-paragraph-max-duration: 5.000)
+
+No level gets a ninety-three percent. You weigh it.
+
+(pause-until: 00:00:33,000)
+
+(next-paragraph-max-duration: 4.000)
+
+And the answer depends on the question you ask.
+
+(pause-until: 00:00:37,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Four levels on one chart. Think of them like keys.
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Question one: which level would price need to close through to challenge the current bullish structure?
+
+(pause-until: 00:00:47,000)
+
+(next-paragraph-max-duration: 3.000)
+
+C. The higher low supporting it.
+
+(pause-until: 00:00:50,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Question two: where's the bottom of the larger range?
+
+(pause-until: 00:00:53,000)
+
+(next-paragraph-max-duration: 2.000)
+
+That's D, the external boundary.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 5.000)
+
+And no, three touches alone doesn't make a level strong.
+
+(pause-until: 00:01:00,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's the big takeaway.
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 8.000)
+
+There's no strength score. Weigh the context.
+
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:12,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Two levels on your chart. Which one deserves more attention?
+
+(pause-until: 00:01:17,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Let's find out.

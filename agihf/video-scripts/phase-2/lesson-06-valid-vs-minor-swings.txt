@@ -1,0 +1,89 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Welcome to Lesson Six of How Markets Move.
+
+(pause-until: 00:00:03,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Every turn exists. Not every turn carries the same weight.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Look at one large move.
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 8.000)
+
+The major, relevant swings define the structure or range you're analyzing.
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Zoom in on the slope, and there are smaller highs and lows inside it.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Those minor swings are completely real. They just exist inside a larger structural leg.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 3.000)
+
+So two traders can look at the same chart, and mark different swings.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 5.000)
+
+One is reading the big picture.
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 6.000)
+
+The other is reading the details inside it.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 8.000)
+
+They're analyzing different scales. Neither one is necessarily wrong.
+
+(pause-until: 00:00:54,000)
+
+(next-paragraph-max-duration: 1.000)
+
+Here's what to remember.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 10.000)
+
+A swing can exist without being the swing that answers your current question.
+
+(pause-until: 00:01:05,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:07,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Can two traders mark different swings on the same chart without either of them being wrong?
+
+(pause-until: 00:01:14,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Let's find out.

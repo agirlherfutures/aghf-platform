@@ -1,0 +1,107 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Welcome to Phase Two of A Girl & Her Futures.
+
+(pause-until: 00:00:03,000)
+
+(next-paragraph-max-duration: 6.000)
+
+You learned how to read one candle. Now, we zoom out.
+
+(pause-until: 00:00:09,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Start with a one-minute chart, zoomed all the way in.
+
+(pause-until: 00:00:12,000)
+
+(next-paragraph-max-duration: 4.000)
+
+It looks like chaos. Every candle feels like it matters.
+
+(pause-until: 00:00:16,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Now slowly zoom out.
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Connect the turns, and something appears.
+
+(pause-until: 00:00:23,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Push, pullback, push, pullback. Price doesn't move in straight lines. It moves in swings.
+
+(pause-until: 00:00:31,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's the idea.
+
+(pause-until: 00:00:33,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Candles are the words.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Looked at one by one, they don't tell you much.
+
+(pause-until: 00:00:39,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Market structure organizes price movement by its meaningful highs and lows, and the relationship between them.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Structure is the sentence.
+
+(pause-until: 00:00:52,000)
+
+(next-paragraph-max-duration: 1.000)
+
+Here's the habit I want you to build.
+
+(pause-until: 00:00:53,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Don't start by asking, where is price going?
+
+(pause-until: 00:00:58,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Start with: what has price already shown me?
+
+(pause-until: 00:01:04,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:06,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A trader sees three green candles and says, bullish structure. What's missing?
+
+(pause-until: 00:01:12,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Let's find out.

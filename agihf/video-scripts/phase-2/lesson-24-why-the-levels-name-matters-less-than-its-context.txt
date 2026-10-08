@@ -1,0 +1,113 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Welcome to Lesson Twenty-Four: Why the Level's Name Matters Less Than Its Context.
+
+(pause-until: 00:00:05,000)
+
+(next-paragraph-max-duration: 3.000)
+
+The last lesson of Phase Two.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 4.000)
+
+One area on the chart. Now meet the guests.
+
+(pause-until: 00:00:12,000)
+
+(next-paragraph-max-duration: 3.000)
+
+One trader calls it support. Another calls it demand.
+
+(pause-until: 00:00:15,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Someone says previous swing low. Someone else says discount.
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Are these four different areas? Not necessarily.
+
+(pause-until: 00:00:22,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Different frameworks can use different names for the same price area.
+
+(pause-until: 00:00:26,000)
+
+(next-paragraph-max-duration: 7.000)
+
+What matters is why this area matters to the structure you're reading.
+
+(pause-until: 00:00:33,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Now watch what happens when we keep adding labels.
+
+(pause-until: 00:00:37,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Support. Demand. An FVG. Three fib levels.
+
+(pause-until: 00:00:39,000)
+
+(next-paragraph-max-duration: 4.000)
+
+A previous low. An order block. A trendline.
+
+(pause-until: 00:00:43,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Did all of that make the analysis better? No. You can't even see the structure.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Clear it away, and come back to the reason this area matters.
+
+(pause-until: 00:00:53,000)
+
+(next-paragraph-max-duration: 7.000)
+
+And remember: knowing a concept isn't the same as trading it.
+
+(pause-until: 00:01:00,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's the big takeaway.
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Context over label. More markings don't mean more understanding.
+
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:12,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Support, demand, previous low, discount. Four different levels?
+
+(pause-until: 00:01:16,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Let's find out. And then, Phase Three begins with Understanding Liquidity.

@@ -1,0 +1,113 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Twenty-Two: Previous Highs and Lows.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+The chart has landmarks.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Price made a high, then pulled back.
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 5.000)
+
+That previous high is a landmark, like a lighthouse on the coast.
+
+(pause-until: 00:00:16,000)
+
+(next-paragraph-max-duration: 3.000)
+
+It tells you where something meaningful happened before.
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Now price flies back toward it.
+
+(pause-until: 00:00:22,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Will it reverse there? A landmark doesn't say.
+
+(pause-until: 00:00:25,000)
+
+(next-paragraph-max-duration: 7.000)
+
+It tells you where something happened. Not what must happen next.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Read it in order, like marks on a door frame.
+
+(pause-until: 00:00:36,000)
+
+(next-paragraph-max-duration: 2.000)
+
+The old mark is the level.
+
+(pause-until: 00:00:38,000)
+
+(next-paragraph-max-duration: 6.000)
+
+On tiptoes, she pokes above it, but that's a wick. She didn't finish there.
+
+(pause-until: 00:00:44,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Next, she really stands above it. A close through.
+
+(pause-until: 00:00:47,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Then she stays there, and a new, higher mark appears. Structure.
+
+(pause-until: 00:00:52,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Level, then candle behavior, then structure.
+
+(pause-until: 00:00:57,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's the big takeaway.
+
+(pause-until: 00:00:59,000)
+
+(next-paragraph-max-duration: 8.000)
+
+A landmark tells you where something happened. Not what must happen next.
+
+(pause-until: 00:01:07,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:09,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Price is back at an old high. What has to happen next?
+
+(pause-until: 00:01:14,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Let's find out.

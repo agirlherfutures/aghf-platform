@@ -1,0 +1,71 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Welcome to Lesson Five of How Markets Move.
+
+(pause-until: 00:00:03,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Now the mirror image: bearish structure.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 5.000)
+
+In basic bearish structure, price creates lower highs and lower lows.
+
+(pause-until: 00:00:13,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Price pushes down to a lower low.
+
+(pause-until: 00:00:17,000)
+
+(next-paragraph-max-duration: 5.000)
+
+It corrects upward, a bounce. But the bounce tops out lower than the last one.
+
+(pause-until: 00:00:22,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Then it continues down. Push, correction, continuation.
+
+(pause-until: 00:00:29,000)
+
+(next-paragraph-max-duration: 11.000)
+
+Those bounces are the green candles. They're real. But they don't automatically make the market bullish.
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's the line I want you to keep.
+
+(pause-until: 00:00:42,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Stop letting candle color override structure.
+
+(pause-until: 00:00:50,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:00:52,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Price makes a lower low, a lower high, another lower low. Then three bullish candles form. Is the trend bullish now?
+
+(pause-until: 00:00:59,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Let's find out.

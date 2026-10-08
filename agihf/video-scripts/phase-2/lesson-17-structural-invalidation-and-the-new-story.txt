@@ -1,0 +1,113 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Welcome to Lesson Seventeen: Structural Invalidation and The New Story.
+
+(pause-until: 00:00:05,000)
+
+(next-paragraph-max-duration: 3.000)
+
+When the story changes, so does your chart.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Your bullish story is a bridge. HH, HL, HH.
+
+(pause-until: 00:00:12,000)
+
+(next-paragraph-max-duration: 4.000)
+
+This pillar, the higher low, is the one holding the story up.
+
+(pause-until: 00:00:16,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Then price closes through it. The old bullish story is materially challenged.
+
+(pause-until: 00:00:22,000)
+
+(next-paragraph-max-duration: 6.000)
+
+So, now what? Short immediately? Ignore it? Move the level?
+
+(pause-until: 00:00:28,000)
+
+(next-paragraph-max-duration: 3.000)
+
+None of those. Watch what price builds next.
+
+(pause-until: 00:00:31,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Invalidation does not mean an instant opposite bias.
+
+(pause-until: 00:00:37,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Now let's update the map.
+
+(pause-until: 00:00:39,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A pigeon brings news: price closed through the old higher low.
+
+(pause-until: 00:00:44,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Then it builds new swings: a lower high, and a lower low.
+
+(pause-until: 00:00:50,000)
+
+(next-paragraph-max-duration: 4.000)
+
+That new lower high is the swing that matters more now.
+
+(pause-until: 00:00:54,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A level isn't important forever just because you marked it.
+
+(pause-until: 00:00:59,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Next up, Section Six: Reading Key Levels.
+
+(pause-until: 00:01:03,000)
+
+(next-paragraph-max-duration: 1.000)
+
+So remember.
+
+(pause-until: 00:01:04,000)
+
+(next-paragraph-max-duration: 9.000)
+
+Your chart updates because price updates.
+
+(pause-until: 00:01:13,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's your mission.
+
+(pause-until: 00:01:15,000)
+
+(next-paragraph-max-duration: 6.000)
+
+The level holding up your bullish story just broke. Now what?
+
+(pause-until: 00:01:21,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Let's find out.

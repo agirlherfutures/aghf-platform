@@ -5,7 +5,7 @@
 window.LESSON_VIDEO = {
   "slug": "p5-lesson-17",
   "eyebrow": "Phase 5 · Section 13 · Lesson 17",
-  "duration": 84,
+  "duration": 88,
   "sources": "From Phase 5, Section 13, Lesson 17 (\"The Full Candle-Close Sequence\"), the close sequence: bullish BELOW → ABOVE → BELOW → ABOVE, bearish ABOVE → BELOW → ABOVE → BELOW (start · indication · correction · continuation); build it both ways, then confirm all three on live price; partial = no ICC; \"All three or no ICC. No ‘basically’. No ‘almost’. No ‘the wick counted’.\"; \"Rules remove the need to negotiate with the chart.\"",
   "scenes": [
     {
@@ -31,7 +31,7 @@ window.LESSON_VIDEO = {
     {
       "type": "s13-dance-steps",
       "start": 8,
-      "end": 34,
+      "end": 36.3,
       "kicker": "Memorize it",
       "beats": {
         "floor": 8.4,
@@ -98,100 +98,100 @@ window.LESSON_VIDEO = {
           "screen": "START · INDICATION · CORRECTION · CONTINUATION"
         },
         {
-          "at": 28.4,
+          "at": 30.7,
           "text": "Memorize it, and you’ll never have to negotiate with the chart."
         }
       ]
     },
     {
       "type": "s13-combo-lock",
-      "start": 34,
-      "end": 62,
+      "start": 36.3,
+      "end": 66,
       "kicker": "Partial = no ICC",
       "beats": {
-        "safe": 34.4,
-        "d1": 39.2,
-        "d2": 40.4,
-        "try": 41.2,
-        "b1": 43.6,
-        "b2": 44.8,
-        "b3": 45.8,
-        "d3": 49.4,
-        "open": 50.4
+        "safe": 36.7,
+        "d1": 41.5,
+        "d2": 42.7,
+        "try": 43.5,
+        "b1": 45.9,
+        "b2": 47.1,
+        "b3": 49.8,
+        "d3": 53.4,
+        "open": 54.4
       },
       "headlines": [
         {
-          "at": 34.4,
+          "at": 36.7,
           "html": "All three, <span class=\"mark\">or no ICC.</span>",
-          "out": 51.4
+          "out": 55.4
         },
         {
-          "at": 51.6,
+          "at": 55.6,
           "html": "Partial = <span class=\"mark\">no ICC.</span>"
         }
       ],
       "lines": [
         {
-          "at": 34.4,
+          "at": 36.7,
           "text": "Think of a Dayli ICC like a lock with three numbers.",
           "screen": "A safe with three dials: I, C, C; a cat asleep on top"
         },
         {
-          "at": 38.6,
+          "at": 40.9,
           "text": "Indication, click. Correction, click.",
           "screen": "Two lights turn green"
         },
         {
-          "at": 41,
+          "at": 43.3,
           "text": "Two out of three? Still locked.",
           "screen": "The door rattles: LOCKED 🔒"
         },
         {
-          "at": 43.6,
+          "at": 45.9,
           "text": "Basically there? Locked. Almost? Locked.",
           "screen": "\"Basically? 🥺\" ✗ \"Almost? 🙏\" ✗"
         },
         {
-          "at": 45.8,
+          "at": 49.8,
           "text": "The wick counted? Definitely locked.",
           "screen": "\"The wick counted? 😅\" ✗"
         },
         {
-          "at": 48.2,
+          "at": 52.2,
           "text": "Only when continuation clicks in does it open.",
           "screen": "Third dial; the door swings open: ICC ✓ · ALL THREE ✓"
         },
         {
-          "at": 51.6,
+          "at": 55.6,
           "text": "All three, or no ICC. Partial means no ICC."
         }
       ]
     },
     {
       "type": "host-hook",
-      "start": 62,
-      "end": 72,
-      "pointAt": 66.2,
+      "start": 66,
+      "end": 76,
+      "pointAt": 70.2,
       "size": 52,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 63.4,
+          "at": 67.4,
           "text": "All three or no ICC."
         },
         {
-          "at": 66.2,
+          "at": 70.2,
           "html": "No “basically”. <span class=\"mark\">No “almost”.</span>"
         }
       ],
       "lines": [
         {
-          "at": 62.2,
+          "at": 66.2,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 63.6,
+          "at": 67.6,
           "text": "All three or no ICC. No basically. No almost. No, the wick counted.",
           "screen": "Aristella points"
         }
@@ -199,30 +199,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 72,
-      "end": 84,
+      "start": 76,
+      "end": 88,
       "kicker": "Your mission",
       "question": {
-        "at": 74.4,
+        "at": 78.4,
         "text": "Can you say the full close sequence, both ways?"
       },
       "cta": {
-        "at": 79.4,
+        "at": 83.4,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 72.2,
+          "at": 76.2,
           "text": "Here’s your mission.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 74.4,
+          "at": 78.4,
           "text": "Build it both ways. Below, above, below, above. Then the mirror.",
           "screen": "Mission question"
         },
         {
-          "at": 79.4,
+          "at": 83.4,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

@@ -32,6 +32,7 @@ import {
 } from './lesson-engine.js';
 import { isPreviewAll } from './preview.js';
 import { renderLoopWatch } from './loop-engine.js';
+import { renderP7Learn, p7RuleCardHtml } from './p7-learn.js';
 import { saveLessonReflection } from './journal-service.js';
 import { STRUCTURE_RENDERERS } from './structure-slides.js';
 import { V2_RENDERERS, renderV2Complete, renderV2Dayli } from './lesson-v2.js';
@@ -126,14 +127,14 @@ export function renderSlideWizard(data, opts) {
 
   function stepLabel(i) {
     const step = steps[i];
-    if (step.type === 'watch') return 'Watch';
+    if (step.type === 'watch') return data.phase === 'p7' ? 'Learn with Dayli' : 'Watch';
     if (step.type === 'complete') return 'Complete';
     return step.slide.kicker || step.slide.title || 'Learn It';
   }
 
   function stepPrompt(i) {
     const step = steps[i];
-    if (step.type === 'watch') return 'Watch first';
+    if (step.type === 'watch') return data.phase === 'p7' ? 'Start here' : 'Watch first';
     if (step.type === 'slide' && (step.slide.type === 'reflect' || step.slide.type === 'v2_reflect')) return 'Save your answer';
     return 'Keep going';
   }
@@ -161,7 +162,8 @@ export function renderSlideWizard(data, opts) {
     slideEl.className = 'lw-slide active';
     wrap.appendChild(slideEl);
 
-    if (step.type === 'watch') renderLoopWatch(slideEl, data, () => completeStepAndAdvance(i));
+    if (step.type === 'watch' && data.phase === 'p7') renderP7Learn(slideEl, data, () => completeStepAndAdvance(i));
+    else if (step.type === 'watch') renderLoopWatch(slideEl, data, () => completeStepAndAdvance(i));
     else if (step.type === 'slide') {
       // The most recent chart in this lesson, so a follow-up activity can keep it in view.
       const ctx = steps.slice(0, i).reverse().find((st) => st.type === 'slide' && st.slide.chart);
@@ -509,6 +511,7 @@ function renderReflectSlide(el, slide, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
       <div class="lw-eyebrow">${slide.kicker || 'Tell me what you know'}</div>
+      ${helpers.lessonId.startsWith('p7-') ? p7RuleCardHtml(+helpers.lessonId.slice(3)) : ''}
       <p class="ls-reflect-prompt">${slide.prompt}</p>
       <textarea class="lw-reflect-textarea" id="lsReflectInput" rows="4" placeholder="Type it how YOU understand it..."></textarea>
       <button type="button" class="lw-continue-btn" id="lsReflectSave" disabled>Save to My Notes →</button>
