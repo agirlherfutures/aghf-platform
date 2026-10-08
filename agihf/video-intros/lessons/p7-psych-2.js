@@ -4,7 +4,7 @@
 window.LESSON_VIDEO = {
   "slug": "p7-psych-2",
   "eyebrow": "Phase 7 · Psychology 2",
-  "duration": 343.67,
+  "duration": 358.07,
   "sources": "Creator script: Psychology 2, FOMO (spoken lines only; coaching notes left out).",
   "scenes": [
     {
@@ -18,29 +18,16 @@ window.LESSON_VIDEO = {
       "lines": []
     },
     {
-      "type": "v2-missed",
+      "type": "w2-wait",
       "start": 5.8,
-      "end": 60.74,
+      "end": 17.72,
       "at": [
         6.0,
-        11.73,
-        16.72,
-        24.3,
-        29.05,
-        32.96,
-        44.98,
-        48.52,
-        54.25
+        11.73
       ],
       "b": {
-        "patient": 11.73,
-        "away": 16.72,
-        "moved": 24.3,
-        "missed": 29.05,
-        "going": 32.96,
-        "expensive": 44.98,
-        "problem": 48.52,
-        "decide": 54.25
+        "sit": 6.0,
+        "patient": 11.73
       },
       "lines": [
         {
@@ -50,420 +37,559 @@ window.LESSON_VIDEO = {
         {
           "at": 11.73,
           "text": "You're waiting. You're being patient. You're doing everything you're supposed to do."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w2-away",
+      "start": 17.52,
+      "end": 26.7,
+      "at": [
+        17.72
+      ],
+      "b": {
+        "away": 17.72
+      },
+      "lines": [
         {
-          "at": 16.72,
+          "at": 17.72,
           "text": "Then maybe you look away. Maybe you went to the bathroom. Maybe you were doing something on your phone."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w2-moved",
+      "start": 26.5,
+      "end": 36.66,
+      "at": [
+        26.7,
+        31.75
+      ],
+      "b": {
+        "moved": 26.7,
+        "missed": 31.75
+      },
+      "lines": [
         {
-          "at": 24.3,
+          "at": 26.7,
           "text": "You come back to the chart and price has MOVED."
         },
         {
-          "at": 29.05,
+          "at": 31.75,
           "text": "And immediately you're like… damn. I missed it."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w2-train",
+      "start": 36.46,
+      "end": 53.82,
+      "at": [
+        36.66,
+        49.28
+      ],
+      "b": {
+        "going": 36.66,
+        "expensive": 49.28
+      },
+      "lines": [
         {
-          "at": 32.96,
+          "at": 36.66,
           "text": "And now you're watching that candle keep going and going and you're thinking, ‘Maybe I can still get in. Maybe it'll keep running. I don't want to miss this whole move.’"
         },
         {
-          "at": 44.98,
+          "at": 49.28,
           "text": "And that's where FOMO starts getting expensive."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w2-fork",
+      "start": 53.62,
+      "end": 66.34,
+      "at": [
+        53.82,
+        59.55
+      ],
+      "b": {
+        "problem": 53.82,
+        "decide": 59.55
+      },
+      "lines": [
         {
-          "at": 48.52,
+          "at": 53.82,
           "text": "Because the problem isn't that you missed a trade. You're going to miss trades."
         },
         {
-          "at": 54.25,
+          "at": 59.55,
           "text": "The problem is what you decide to do because you missed it."
         }
       ]
     },
     {
-      "type": "v2-math",
-      "start": 60.54,
-      "end": 126.56,
+      "type": "w2-ghost",
+      "start": 66.14,
+      "end": 104.76,
       "at": [
-        60.74,
-        69.06,
-        71.83,
-        76.85,
-        79.25,
-        83.87,
-        87.75,
-        90.15,
-        97.76,
-        99.79,
-        104.04,
-        108.29,
-        111.56
+        66.34,
+        74.66,
+        77.43,
+        82.45,
+        84.85,
+        89.47,
+        93.35,
+        96.15
       ],
       "b": {
-        "notsetup": 69.06,
-        "money": 71.83,
-        "math": 76.85,
-        "m1": 79.25,
-        "m2": 83.87,
-        "m3": 87.75,
-        "assign": 90.15,
-        "changes": 97.76,
-        "q1": 99.79,
-        "q2": 104.04,
-        "same": 108.29,
-        "recog": 111.56
+        "fomo": 66.34,
+        "notsetup": 74.66,
+        "money": 77.43,
+        "math": 82.45,
+        "m1": 84.85,
+        "m2": 89.47,
+        "m3": 93.35,
+        "assign": 96.15
       },
       "lines": [
         {
-          "at": 60.74,
+          "at": 66.34,
           "text": "FOMO is fear of missing out. But in trading, I think it's important to understand what you're actually afraid of missing."
         },
         {
-          "at": 69.06,
+          "at": 74.66,
           "text": "Sometimes it's not even the setup."
         },
         {
-          "at": 71.83,
+          "at": 77.43,
           "text": "You're afraid of missing the money you think you could've made."
         },
         {
-          "at": 76.85,
+          "at": 82.45,
           "text": "Now you're doing the math."
         },
         {
-          "at": 79.25,
+          "at": 84.85,
           "text": "‘If I would've gotten in right there, I'd be up $300.’"
         },
         {
-          "at": 83.87,
+          "at": 89.47,
           "text": "‘If I had four contracts, that would've been $600.’"
         },
         {
-          "at": 87.75,
+          "at": 93.35,
           "text": "‘Look how far it went.’"
         },
         {
-          "at": 90.15,
+          "at": 96.15,
           "text": "And the longer price runs, the more money you mentally assign to a trade you never even took."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w2-lasso",
+      "start": 104.56,
+      "end": 133.36,
+      "at": [
+        104.76,
+        106.79,
+        111.04,
+        115.29,
+        118.66
+      ],
+      "b": {
+        "changes": 104.76,
+        "q1": 106.79,
+        "q2": 111.04,
+        "same": 115.29,
+        "recog": 118.66
+      },
+      "lines": [
         {
-          "at": 97.76,
+          "at": 104.76,
           "text": "And now something changes."
         },
         {
-          "at": 99.79,
+          "at": 106.79,
           "text": "Five minutes ago you were asking: ‘Is my setup here?’"
         },
         {
-          "at": 104.04,
+          "at": 111.04,
           "text": "Now you're asking: ‘How can I get into this move?’"
         },
         {
-          "at": 108.29,
+          "at": 115.29,
           "text": "Those are not the same question."
         },
         {
-          "at": 111.56,
+          "at": 118.66,
           "text": "Once your goal changes from finding your setup to finding some way into the move, that's when you need to recognize: okay, I'm not necessarily trading my system anymore. I may be reacting to FOMO."
         }
       ]
     },
     {
-      "type": "v2-chased",
-      "start": 126.36,
-      "end": 184.86,
+      "type": "w2-coaster",
+      "start": 133.16,
+      "end": 152.52,
       "at": [
-        126.56,
-        129.33,
-        135.43,
-        144.52,
-        149.51,
-        153.39,
-        158.01,
-        164.48,
-        170.24,
-        175.97,
-        179.48
+        133.36,
+        136.13,
+        142.23
       ],
       "b": {
-        "watch": 129.33,
-        "never": 135.43,
-        "works": 144.52,
-        "worse": 149.51,
-        "evidence": 153.39,
-        "next": 158.01,
-        "one": 164.48,
-        "remember": 170.24,
-        "bad": 175.97,
-        "good": 179.48
+        "done": 133.36,
+        "watch": 136.13,
+        "never": 142.23
       },
       "lines": [
         {
-          "at": 126.56,
+          "at": 133.36,
           "text": "I've done this plenty of times."
         },
         {
-          "at": 129.33,
+          "at": 136.13,
           "text": "I've watched price move without me and thought, okay, maybe I can still catch it."
         },
         {
-          "at": 135.43,
+          "at": 142.23,
           "text": "And then I enter somewhere I would've NEVER entered if I had been sitting there watching the setup develop from the beginning."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w2-slot",
+      "start": 152.32,
+      "end": 174.08,
+      "at": [
+        152.52,
+        157.91,
+        161.79,
+        166.41
+      ],
+      "b": {
+        "works": 152.52,
+        "worse": 157.91,
+        "evidence": 161.79,
+        "next": 166.41
+      },
+      "lines": [
         {
-          "at": 144.52,
+          "at": 152.52,
           "text": "And here's the crazy part. Sometimes you chase it and it works."
         },
         {
-          "at": 149.51,
+          "at": 157.91,
           "text": "And I actually think that can make FOMO worse."
         },
         {
-          "at": 153.39,
+          "at": 161.79,
           "text": "Because now your brain has evidence that chasing can pay you."
         },
         {
-          "at": 158.01,
+          "at": 166.41,
           "text": "So next time you're like, ‘Well, last time I got in late and it still went.’"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w2-crosswalk",
+      "start": 173.88,
+      "end": 194.76,
+      "at": [
+        174.08,
+        179.84,
+        185.57,
+        189.48
+      ],
+      "b": {
+        "one": 174.08,
+        "remember": 179.84,
+        "bad": 185.57,
+        "good": 189.48
+      },
+      "lines": [
         {
-          "at": 164.48,
+          "at": 174.08,
           "text": "But one winning trade doesn't suddenly make breaking your rules a good decision."
         },
         {
-          "at": 170.24,
+          "at": 179.84,
           "text": "Remember what we just talked about: outcome and execution are not the same thing."
         },
         {
-          "at": 175.97,
+          "at": 185.57,
           "text": "You can make money on a bad decision."
         },
         {
-          "at": 179.48,
+          "at": 189.48,
           "text": "And you can lose money on a good decision."
         }
       ]
     },
     {
-      "type": "v2-hands",
-      "start": 184.66,
-      "end": 265.54,
+      "type": "w2-balloons",
+      "start": 194.56,
+      "end": 208.96,
       "at": [
-        184.86,
-        194.66,
-        197.66,
-        200.06,
-        202.83,
-        205.97,
-        210.22,
-        213.36,
-        216.26,
-        225.32,
-        229.94,
-        236.44,
-        248.09,
-        249.31,
-        251.1,
-        256.83
+        194.76,
+        204.56
       ],
       "b": {
-        "stop": 184.86,
-        "never": 194.66,
-        "system": 197.66,
-        "valid": 200.06,
-        "n1": 202.83,
-        "n2": 205.97,
-        "n3": 210.22,
-        "exist": 213.36,
-        "later": 216.26,
-        "merit": 225.32,
-        "lower": 229.94,
-        "hand": 236.44,
-        "lit": 248.09,
-        "sit": 249.31,
-        "ask": 251.1,
-        "cant": 256.83
+        "stop": 194.76,
+        "never": 204.56
       },
       "lines": [
         {
-          "at": 184.86,
+          "at": 194.76,
           "text": "So the first thing I want you to do when you feel FOMO is stop trying to figure out how much money you could've made."
         },
         {
-          "at": 194.66,
+          "at": 204.56,
           "text": "That money was never yours."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w2-puzzle",
+      "start": 208.76,
+      "end": 228.66,
+      "at": [
+        208.96,
+        211.36,
+        214.13,
+        217.27,
+        221.52,
+        224.66
+      ],
+      "b": {
+        "system": 208.96,
+        "valid": 211.36,
+        "n1": 214.13,
+        "n2": 217.27,
+        "n3": 221.52,
+        "exist": 224.66
+      },
+      "lines": [
         {
-          "at": 197.66,
+          "at": 208.96,
           "text": "Come back to your system."
         },
         {
-          "at": 200.06,
+          "at": 211.36,
           "text": "Is there currently a valid setup?"
         },
         {
-          "at": 202.83,
+          "at": 214.13,
           "text": "Not, ‘Can I somehow justify getting in?’"
         },
         {
-          "at": 205.97,
+          "at": 217.27,
           "text": "Not, ‘Do I think price is going to keep running?’"
         },
         {
-          "at": 210.22,
+          "at": 221.52,
           "text": "Not, ‘Can I catch another 30 points?’"
         },
         {
-          "at": 213.36,
+          "at": 224.66,
           "text": "Does my setup currently exist?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "w2-bus",
+      "start": 228.46,
+      "end": 249.84,
+      "at": [
+        228.66,
+        237.72,
+        242.34
+      ],
+      "b": {
+        "later": 228.66,
+        "merit": 237.72,
+        "lower": 242.34
+      },
+      "lines": [
         {
-          "at": 216.26,
+          "at": 228.66,
           "text": "Missing one entry doesn't necessarily mean you can't trade for the rest of the day. There may be another completely valid setup later."
         },
         {
-          "at": 225.32,
+          "at": 237.72,
           "text": "But that next setup needs to stand on its own merit."
         },
         {
-          "at": 229.94,
+          "at": 242.34,
           "text": "You don't get to lower your standards because you're mad you missed the first one."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w2-hands",
+      "start": 249.64,
+      "end": 278.94,
+      "at": [
+        249.84,
+        261.49,
+        262.71,
+        264.6,
+        270.33
+      ],
+      "b": {
+        "hand": 249.84,
+        "lit": 261.49,
+        "sit": 262.71,
+        "ask": 264.6,
+        "cant": 270.33
+      },
+      "lines": [
         {
-          "at": 236.44,
+          "at": 249.84,
           "text": "If you catch yourself staring at a move thinking, ‘I need to get in, I need to get in, I need to get in,’ take your hand off the mouse."
         },
         {
-          "at": 248.09,
+          "at": 261.49,
           "text": "Literally."
         },
         {
-          "at": 249.31,
+          "at": 262.71,
           "text": "Sit back."
         },
         {
-          "at": 251.1,
+          "at": 264.6,
           "text": "And ask: What exactly am I waiting to see before I'm allowed to enter?"
         },
         {
-          "at": 256.83,
+          "at": 270.33,
           "text": "If you can't answer that based on your written system, you probably don't need to be clicking anything."
         }
       ]
     },
     {
-      "type": "v2-rule",
-      "start": 265.34,
-      "end": 287.52,
+      "type": "w2-rule",
+      "start": 278.74,
+      "end": 300.62,
       "at": [
-        265.54,
-        268.31,
-        272.93,
-        279.06
+        278.94,
+        281.71,
+        286.33,
+        292.46
       ],
       "b": {
-        "r1": 265.54,
-        "r2": 268.31,
-        "r3": 272.93,
-        "line": 279.06
+        "r1": 278.94,
+        "r2": 281.71,
+        "r3": 286.33,
+        "line": 292.46
       },
       "lines": [
         {
-          "at": 265.54,
+          "at": 278.94,
           "text": "I don't chase the original trade."
         },
         {
-          "at": 268.31,
+          "at": 281.71,
           "text": "If another valid setup develops, I can evaluate that setup separately."
         },
         {
-          "at": 272.93,
+          "at": 286.33,
           "text": "But I'm not going to turn missing one opportunity into taking a bad trade."
         },
         {
-          "at": 279.06,
+          "at": 292.46,
           "text": "Missing a trade costs me $0. Chasing one can actually cost me money."
         }
       ]
     },
     {
-      "type": "v2-reflect",
-      "start": 287.32,
-      "end": 343.17,
+      "type": "w2-curtain",
+      "start": 300.42,
+      "end": 333.95,
       "at": [
-        287.52,
-        290.66,
-        293.06,
-        295.46,
-        297.49,
-        303.99,
-        306.39,
-        315.57,
-        319.95,
-        323.09,
-        326.63,
-        333.84
+        300.62,
+        303.76,
+        306.16,
+        308.56,
+        310.59,
+        317.09,
+        319.49,
+        328.67
       ],
       "b": {
-        "what": 293.06,
-        "q1": 295.46,
-        "q2": 297.49,
-        "bigq": 303.99,
-        "big": 306.39,
-        "tells": 315.57,
-        "g1": 319.95,
-        "g2": 323.09,
-        "always": 326.63,
-        "last": 333.84
+        "think": 300.62,
+        "real": 303.76,
+        "what": 306.16,
+        "q1": 308.56,
+        "q2": 310.59,
+        "bigq": 317.09,
+        "big": 319.49,
+        "tells": 328.67
       },
       "lines": [
         {
-          "at": 287.52,
+          "at": 300.62,
           "text": "Think about the last trade you chased."
         },
         {
-          "at": 290.66,
+          "at": 303.76,
           "text": "And be real with yourself."
         },
         {
-          "at": 293.06,
+          "at": 306.16,
           "text": "What actually made you enter?"
         },
         {
-          "at": 295.46,
+          "at": 308.56,
           "text": "Was your setup there?"
         },
         {
-          "at": 297.49,
+          "at": 310.59,
           "text": "Or were you watching price move without you and getting uncomfortable because you weren't participating?"
         },
         {
-          "at": 303.99,
+          "at": 317.09,
           "text": "And here's the bigger question:"
         },
         {
-          "at": 306.39,
+          "at": 319.49,
           "text": "If you hadn't seen the move that happened before your entry, would you still have taken that exact trade?"
         },
         {
-          "at": 315.57,
+          "at": 328.67,
           "text": "If the answer is no, that tells you something."
-        },
+        }
+      ]
+    },
+    {
+      "type": "w2-station",
+      "start": 333.75,
+      "end": 357.57,
+      "at": [
+        333.95,
+        337.09,
+        340.63,
+        347.84
+      ],
+      "b": {
+        "g1": 333.95,
+        "g2": 337.09,
+        "always": 340.63,
+        "last": 347.84
+      },
+      "lines": [
         {
-          "at": 319.95,
+          "at": 333.95,
           "text": "The goal isn't to catch every move."
         },
         {
-          "at": 323.09,
+          "at": 337.09,
           "text": "The goal is to execute your moves."
         },
         {
-          "at": 326.63,
+          "at": 340.63,
           "text": "There will always be another candle. There will always be another session. There will always be another opportunity."
         },
         {
-          "at": 333.84,
+          "at": 347.84,
           "text": "You don't have to turn every move you see into a trade you take."
         }
       ]

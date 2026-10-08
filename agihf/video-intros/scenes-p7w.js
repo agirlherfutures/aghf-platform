@@ -415,6 +415,286 @@
       return o;
     },
 
+    /* ════ Psychology 2 · FOMO ═════════════════════════════════════════ */
+
+    // Waiting: coffee steam, the clock creeping from :30 to :45, a flat chart.
+    'w2-wait': (s, t) => {
+      const B = s.b;
+      let o = wall('w2a', '#3B2F55', '#2A2142', 900, '#1E1730');
+      const m = 30 + Math.floor(seg(t, s.start, s.end) * 15);
+      o += `<rect x="160" y="150" width="240" height="110" rx="20" fill="#120D1C"/>${bigNum(280, 228, '0:' + m, 60, '#F9D89A')}`;
+      o += monitor(560, 180, 820, 480, candles(600, 250, 740, 340, flat(19, 28), 6 + Math.floor(seg(t, s.start, s.end) * 10), { slots: 28 }));
+      o += you(t, { x: 1600, y: 1060, scale: 1.25, flip: true, frontArm: { a1: 160, a2: 150 } });
+      o += desk(420, 860, 1500);
+      o += `<rect x="1360" y="790" width="70" height="80" rx="10" fill="#fff"/><path d="M1430,810 q30,10 0,40" fill="none" stroke="#fff" stroke-width="8"/>`;
+      for (let j = 0; j < 3; j++) { const p = (t * 0.5 + j / 3) % 1; o += `<path d="M${1380 + j * 15},${f1(780 - p * 90)} q10,-15 0,-30" stroke="#fff" stroke-width="5" fill="none" opacity="${f1(Math.sin(p * Math.PI) * 0.6)}"/>`; }
+      return o;
+    },
+
+    // She walks away. The chair spins empty. Behind her back, the screen takes off.
+    'w2-away': (s, t) => {
+      const B = s.b;
+      let o = wall('w2b', '#3B2F55', '#2A2142', 900, '#1E1730');
+      const run = [0.3, 0.32, 0.29, 0.31, 0.3, 0.32, 0.31, 0.3, 0.36, 0.44, 0.52, 0.6, 0.68, 0.75, 0.82, 0.88, 0.92];
+      o += monitor(300, 180, 820, 480, candles(340, 250, 740, 340, run, 6 + Math.floor(seg(t, B.away + 1.5, s.end) * 11), { slots: 17 }));
+      o += desk(160, 860, 1200);
+      o += `<rect x="1380" y="300" width="240" height="560" rx="8" fill="#B27A5A"/><circle cx="1590" cy="590" r="12" fill="#F9D89A"/>`;
+      const w = ease(seg(t, B.away, B.away + 3));
+      o += you(t, { x: lerp(900, 1500, w), y: 1000, scale: 1.2, walking: w > 0 && w < 1, frontArm: { a1: -120, a2: -150 }, hold: `<rect x="-24" y="-60" width="48" height="84" rx="10" fill="#2C1810"/><rect x="-18" y="-52" width="36" height="66" rx="5" fill="#7F77DD"/>` });
+      return o;
+    },
+
+    // Back at the desk: MOVED. She freezes. "damn. I missed it."
+    'w2-moved': (s, t) => {
+      const B = s.b;
+      let o = wall('w2c', '#3B2F55', '#2A2142', 900, '#1E1730');
+      const run = [0.3, 0.32, 0.29, 0.31, 0.3, 0.32, 0.31, 0.3, 0.36, 0.44, 0.52, 0.6, 0.68, 0.75, 0.82, 0.88, 0.92, 0.95];
+      const zoom = 1 + 0.08 * ease(seg(t, B.moved, B.moved + 0.6));
+      o += scaleAt(840, 420, zoom, monitor(430, 160, 820, 480, candles(470, 230, 740, 340, run, 18, { slots: 18 }) + `<line x1="${470 + 8 * 740 / 18}" x2="${470 + 8 * 740 / 18}" y1="230" y2="570" stroke="#2AA594" stroke-width="4" stroke-dasharray="10 8"/>`));
+      o += pill(470 + 8 * 740 / 18, 610, 'your entry', '#2AA594', pop(t, B.missed + 1, 0.4), 24);
+      o += desk(160, 860, 1700);
+      o += you(t, { x: 1520, y: 1060, scale: 1.25, flip: true, mood: t > B.missed ? 'sad' : undefined, frontArm: t > B.missed ? { a1: -60, a2: -150 } : { a1: 160, a2: 150 } });
+      o += thought(1500, 380, 'damn. I missed it.', between(t, B.missed + 0.3, s.end), { size: 44 });
+      return o;
+    },
+
+    // The train is leaving. She runs down the platform after it.
+    'w2-train': (s, t) => {
+      const B = s.b;
+      let o = grad('w2d', '#CFE3F2', '#F6EFEA') + bg('url(#w2d)') + `<rect y="720" width="1920" height="60" fill="#6B6B7B"/><rect y="780" width="1920" height="300" fill="#C9C2B8"/><rect y="780" width="1920" height="16" fill="#E2B04A"/>`;
+      const tx = 700 + 1200 * Math.pow(seg(t, B.going, s.end), 1.6);
+      for (let c = 0; c < 4; c++) { const x = tx - c * 380; o += `<rect x="${f1(x - 170)}" y="460" width="340" height="250" rx="${c === 0 ? 60 : 24}" fill="${c === 0 ? '#2AA594' : '#7ECFC0'}"/><rect x="${f1(x - 130)}" y="500" width="100" height="80" rx="10" fill="#E6F5F2"/><rect x="${f1(x + 10)}" y="500" width="100" height="80" rx="10" fill="#E6F5F2"/>${[-110, 110].map(d => `<circle cx="${f1(x + d)}" cy="715" r="28" fill="#2C1810"/>`).join('')}`; }
+      o += txt(tx, 660, '▲ THE MOVE', 36, '#fff', { ls: 3 });
+      const rx = 260 + 420 * seg(t, B.going + 1, s.end);
+      o += you(t, { x: rx, y: 960, scale: 1.2, walking: true, frontArm: { a1: -10, a2: -20 } });
+      ['still get in?', 'keep running?', 'don’t miss it!'].forEach((l, j) => { const at = B.going + 2 + j * 3; o += thought(rx + 180, 300, l, between(t, at, at + 2.6), { size: 40 }); });
+      if (t > B.expensive) o += scaleAt(rx + 260, 520, pop(t, B.expensive, 0.5), `<g transform="rotate(-6 ${rx + 260} 520)"><rect x="${f1(rx + 150)}" y="470" width="220" height="100" rx="12" fill="#E2556F"/>${txt(rx + 260, 537, '$$$', 54, '#fff', { f: 'JetBrains Mono, monospace' })}</g>`);
+      return o;
+    },
+
+    // A fork in the road. "missed it" is fine. What you do next is the real choice.
+    'w2-fork': (s, t) => {
+      const B = s.b;
+      let o = grad('w2e', '#E6F5F2', '#FDF8F5') + bg('url(#w2e)') + `<rect y="620" width="1920" height="460" fill="#B9DDB0"/>`;
+      o += `<path d="M900,1080 L1020,1080 L980,620 L940,620 Z" fill="#E8D5C4"/><path d="M960,640 Q700,560 300,520 L300,580 Q680,620 940,700 Z" fill="#E8D5C4"/><path d="M960,640 Q1220,560 1620,520 L1620,580 Q1240,620 980,700 Z" fill="#E8D5C4"/>`;
+      o += you(t, { x: 960, y: 1000, scale: 1.2, frontArm: t > B.decide ? { a1: -40, a2: -40 } : undefined });
+      o += fade(seg(t, B.problem + 2, B.problem + 2.6), `<rect x="280" y="380" width="260" height="90" rx="14" fill="#2AA594"/>${txt(410, 440, 'let it go', 36, '#fff')}<rect x="400" y="470" width="14" height="80" fill="#8B6A55"/>`);
+      o += fade(seg(t, B.decide, B.decide + 0.5), `<rect x="1380" y="380" width="260" height="90" rx="14" fill="#E2556F"/>${txt(1510, 440, 'chase it', 36, '#fff')}<rect x="1500" y="470" width="14" height="80" fill="#8B6A55"/>`);
+      o += thought(960, 330, 'missed one. okay.', between(t, B.problem + 0.5, B.decide - 0.2), { size: 40 });
+      return o;
+    },
+
+    // Ghost money: bills float out of the chart into her head while she counts.
+    'w2-ghost': (s, t) => {
+      const B = s.b;
+      let o = wall('w2f', '#2A2142', '#3B2F55', 900, '#1E1730');
+      o += monitor(220, 200, 760, 460, candles(260, 260, 680, 360, [0.2, 0.22, 0.21, 0.26, 0.34, 0.44, 0.54, 0.62, 0.7, 0.78, 0.84, 0.9], 12));
+      o += you(t, { x: 1460, y: 1040, scale: 1.25, flip: true, frontArm: t > B.math ? { a1: -120 + Math.sin(t * 6) * 10, a2: -150 } : undefined });
+      // first beat: setup crossed, money circled
+      const a = between(t, B.notsetup, B.math - 0.2);
+      o += scaleAt(1460, 300, a, cloud(1460, 300, 1.1, '#fff') + candles(1340, 250, 120, 80, [0.3, 0.4, 0.5, 0.6], 4) + cross(1420, 250, pop(t, B.notsetup + 1, 0.4), '#E2556F', 24) + (t > B.money ? coin(1560, 300, 40) : ''));
+      // the math: bills flying from the chart into a growing pile in her head
+      if (t > B.math) {
+        const pile = seg(t, B.math, B.assign + 6);
+        o += cloud(1460, 290, 1.2, '#fff');
+        for (let j = 0; j < Math.floor(pile * 14); j++) o += `<rect x="${1360 + (j % 5) * 40}" y="${330 - Math.floor(j / 5) * 22}" width="70" height="34" rx="6" fill="#7CC79A" stroke="#2AA594" stroke-width="3" transform="rotate(${(j * 37) % 20 - 10} ${1395 + (j % 5) * 40} ${347 - Math.floor(j / 5) * 22})"/>`;
+        for (let j = 0; j < 4; j++) { const p = ((t - B.math) * 0.6 + j * 0.25) % 1; o += `<rect x="${f1(lerp(800, 1400, p))}" y="${f1(lerp(320, 300, p) - Math.sin(p * Math.PI) * 160)}" width="70" height="34" rx="6" fill="#7CC79A" opacity="${f1(0.4 + 0.6 * Math.sin(p * Math.PI))}"/>`; }
+        o += pill(600, 140, '+$300', '#2AA594', between(t, B.m1, B.m2 - 0.1), 40);
+        o += pill(600, 140, '×4 = $600', '#2AA594', between(t, B.m2, B.m3 - 0.1), 40);
+        o += fade(seg(t, B.m3, B.m3 + 0.6), `<line x1="950" x2="950" y1="${f1(640 - 360 * seg(t, B.m3, B.m3 + 1))}" y2="640" stroke="#F9D89A" stroke-width="8"/><path d="M930,${f1(660 - 360 * seg(t, B.m3, B.m3 + 1))} l20,-34 l20,34 z" fill="#F9D89A"/>`);
+        o += fade(seg(t, B.assign + 2, B.assign + 2.6), txt(600, 760, 'a trade you never took', 40, '#CFC8FA', { f: 'Playfair Display', it: true, w: 700 }));
+      }
+      return o;
+    },
+
+    // Magnifying glass → lasso. She stops looking for a setup and starts trying to rope the move.
+    'w2-lasso': (s, t) => {
+      const B = s.b;
+      let o = grad('w2g', '#FFF4DE', '#F6E7DA') + bg('url(#w2g)') + `<rect y="860" width="1920" height="220" fill="#E8D5C4"/>`;
+      const lasso = t > B.q2;
+      // the running candle
+      const cx = lasso ? 1300 + 220 * Math.sin((t - B.q2) * 1.2) : 1300, cy = 520;
+      o += `<line x1="${f1(cx)}" x2="${f1(cx)}" y1="${cy - 230}" y2="${cy + 230}" stroke="#2AA594" stroke-width="10"/><rect x="${f1(cx - 60)}" y="${cy - 180}" width="120" height="360" rx="14" fill="#2AA594"/>`;
+      if (lasso) for (let j = 0; j < 3; j++) o += `<line x1="${f1(cx + 90 + j * 20)}" x2="${f1(cx + 150 + j * 30)}" y1="${cy - 60 + j * 60}" y2="${cy - 60 + j * 60}" stroke="#2AA594" stroke-width="6" opacity=".5"/>`;
+      o += you(t, { x: 480, y: 960, scale: 1.25, frontArm: lasso ? { a1: -100 + Math.sin(t * 8) * 30, a2: -140 } : { a1: -10, a2: -20 }, hold: lasso ? '' : `<circle cx="60" cy="-10" r="50" fill="#fff" opacity=".4" stroke="#2C1810" stroke-width="10"/><line x1="20" y1="20" x2="-10" y2="50" stroke="#2C1810" stroke-width="14" stroke-linecap="round"/>` });
+      if (lasso) { const sw = (t - B.q2) * 6; o += `<ellipse cx="${f1(520 + 40 * Math.cos(sw))}" cy="${f1(560 + 15 * Math.sin(sw))}" rx="90" ry="30" fill="none" stroke="#C98A1F" stroke-width="8"/><path d="M560,680 Q${f1(800 + 100 * Math.sin(sw))},${f1(560)} ${f1(cx - 60)},${cy}" fill="none" stroke="#C98A1F" stroke-width="6" stroke-dasharray="${f1(800 * seg(t, B.q2 + 1, B.q2 + 3))} 900"/>`; }
+      o += thought(480, 280, 'is my setup here?', between(t, B.q1, B.q2 - 0.2), { size: 40 });
+      o += thought(560, 280, 'how do I get IN?', between(t, B.q2, B.recog - 0.2), { size: 40, col: '#E2556F' });
+      o += fade(seg(t, B.recog + 2, B.recog + 2.6), pill(960, 1000, 'reacting to FOMO', '#E2556F', 1, 36));
+      return o;
+    },
+
+    // Rollercoaster: she jumps on at the very top.
+    'w2-coaster': (s, t) => {
+      const B = s.b;
+      let o = grad('w2h', '#CDEBF7', '#FDF8F5') + bg('url(#w2h)');
+      const P = x => 920 - 420 * Math.sin(Math.min(Math.PI, x / 1600 * Math.PI)) * (x < 1000 ? 0.4 + 0.6 * x / 1000 : 1);
+      let path = `M0,${f1(P(0))}`; for (let x = 0; x <= 1920; x += 40) path += ` L${x},${f1(P(x))}`;
+      o += `<path d="${path} L1920,1080 L0,1080 Z" fill="#B9DDB0"/><path d="${path}" fill="none" stroke="#E2556F" stroke-width="14"/>`;
+      for (let x = 80; x < 1920; x += 160) o += `<line x1="${x}" x2="${x}" y1="${f1(P(x))}" y2="1080" stroke="#E2556F" stroke-width="6" opacity=".4"/>`;
+      const cart = 200 + 1000 * seg(t, s.start, B.never + 1);
+      o += `<rect x="${f1(cart - 60)}" y="${f1(P(cart) - 60)}" width="120" height="60" rx="14" fill="#7F77DD"/>`;
+      o += fade(seg(t, B.watch, B.watch + 0.5), pill(260, P(260) + 70, 'the beginning', '#2AA594', 1, 28));
+      const jump = seg(t, B.never, B.never + 1.5), top = 1000;
+      const hx = lerp(1300, top, ease(jump));
+      o += you(t, { x: hx, y: P(hx) - Math.sin(jump * Math.PI) * 120, scale: 0.8, flip: true, walking: jump > 0 && jump < 1 });
+      o += fade(seg(t, B.never + 1.5, B.never + 2), pill(top, P(top) - 320, 'ME, at the top', '#E2556F', 1, 30));
+      return o;
+    },
+
+    // The slot machine pays out… and her brain files it as proof.
+    'w2-slot': (s, t) => {
+      const B = s.b;
+      let o = grad('w2i', '#2B2752', '#5B4E9A') + bg('url(#w2i)');
+      o += `<rect x="560" y="200" width="560" height="700" rx="40" fill="#E2556F"/><rect x="620" y="300" width="440" height="200" rx="20" fill="#fff"/><rect x="1120" y="360" width="30" height="200" rx="15" fill="#B8B3C9"/><circle cx="1135" cy="350" r="34" fill="#F9D89A"/>`;
+      const spin = t < B.works + 1.5;
+      ['🍒', '7', '💰'].forEach((g, j) => { const sym = spin ? ['🍒', '7', '💰', '🍋'][Math.floor(t * 12 + j) % 4] : '💰'; o += txt(700 + j * 140, 430, sym, 90, C.dark); });
+      if (!spin && t < B.worse + 1) for (let j = 0; j < 10; j++) { const p = ((t - B.works - 1.5) * 0.8 + j * 0.1) % 1; o += coin(700 + (j * 73) % 300, 900 + p * 200, 26); }
+      o += you(t, { x: 1500, y: 1040, scale: 1.25, flip: true, frontArm: t > B.works + 1.5 && t < B.worse ? { a1: -160, a2: -170 } : undefined });
+      o += scaleAt(1500, 300, pop(t, B.evidence, 0.5) * (1 - seg(t, B.next - 0.3, B.next)), cloud(1500, 300, 1, '#fff') + `<g transform="rotate(-6 1500 300)"><rect x="1400" y="250" width="200" height="100" rx="12" fill="#F9D89A"/>${txt(1500, 315, 'PROOF', 40, '#7A4E0F', { ls: 4 })}</g>`);
+      o += thought(1500, 300, '“last time it still went”', between(t, B.next, s.end), { size: 36 });
+      return o;
+    },
+
+    // Two crossings: one runs the red light and makes it; one waits for green and still gets splashed.
+    'w2-crosswalk': (s, t) => {
+      const B = s.b;
+      let o = grad('w2j', '#E9E1F5', '#FDF8F5') + bg('url(#w2j)') + `<rect y="700" width="1920" height="380" fill="#6B6B7B"/>`;
+      for (let x = 100; x < 1900; x += 120) o += `<rect x="${x}" y="860" width="70" height="20" fill="#fff" opacity=".8"/>`;
+      o += `<line x1="960" x2="960" y1="0" y2="1080" stroke="#fff" stroke-width="10"/>`;
+      // left: red light, she darts, coin
+      const L = seg(t, B.bad, B.bad + 2.5);
+      o += `<rect x="200" y="200" width="80" height="200" rx="16" fill="#2C1810"/><circle cx="240" cy="250" r="26" fill="#E2556F"/><circle cx="240" cy="340" r="26" fill="#3A3A3A"/><rect x="232" y="400" width="16" height="300" fill="#2C1810"/>`;
+      o += you(t, { x: lerp(380, 820, ease(L)), y: 1000, scale: 0.95, walking: L > 0 && L < 1 });
+      if (L >= 1) o += coin(820, 560, 40) + check(900, 520, 1, '#2AA594', 26);
+      o += fade(seg(t, B.bad + 1, B.bad + 1.5), pill(480, 160, 'made money · bad decision', '#E2556F', 1, 28));
+      // right: green light, she waits, still loses
+      const R = seg(t, B.good, B.good + 2.5);
+      o += `<rect x="1640" y="200" width="80" height="200" rx="16" fill="#2C1810"/><circle cx="1680" cy="250" r="26" fill="#3A3A3A"/><circle cx="1680" cy="340" r="26" fill="#2AA594"/><rect x="1672" y="400" width="16" height="300" fill="#2C1810"/>`;
+      o += you(t, { x: lerp(1060, 1480, ease(R)), y: 1000, scale: 0.95, walking: R > 0 && R < 1, mood: R >= 1 ? 'sad' : undefined });
+      if (R >= 0.7) o += `<path d="M1300,960 q60,-120 120,-40 q40,-80 100,20" fill="#7FB8D6" opacity=".7"/>`;
+      if (R >= 1) o += cross(1560, 520, 1, '#E2556F', 26);
+      o += fade(seg(t, B.good + 1, B.good + 1.5), pill(1440, 160, 'lost money · good decision', '#2AA594', 1, 28));
+      o += fade(seg(t, B.one, B.one + 0.5) * (1 - seg(t, B.bad - 0.3, B.bad)), txt(960, 560, 'outcome ≠ execution', 70, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Money balloons. She lets go of the strings; they drift off.
+    'w2-balloons': (s, t) => {
+      const B = s.b;
+      let o = grad('w2k', '#CDEBF7', '#FDF8F5') + bg('url(#w2k)') + `<rect y="880" width="1920" height="200" fill="#B9DDB0"/>`;
+      const go = ease(seg(t, B.never, B.never + 4));
+      o += you(t, { x: 960, y: 960, scale: 1.3, frontArm: { a1: -110 + go * 80, a2: -120 + go * 80 } });
+      for (let j = 0; j < 6; j++) {
+        const bx = 900 + (j - 2.5) * 70 + go * (j - 2.5) * 120, by = 330 - j % 2 * 60 - go * (500 + j * 60);
+        o += `<path d="M1000,${f1(640 + go * 300)} Q${f1(bx)},${f1(by + 200)} ${f1(bx)},${f1(by + 80)}" fill="none" stroke="#8B6A55" stroke-width="3" opacity="${f1(1 - go)}"/><ellipse cx="${f1(bx)}" cy="${f1(by)}" rx="60" ry="76" fill="${['#7CC79A', '#E2B04A', '#7CC79A', '#E2B04A', '#7CC79A', '#E2B04A'][j]}"/>${txt(bx, by + 16, '$', 50, '#fff')}`;
+      }
+      o += fade(seg(t, B.never + 1, B.never + 1.6), txt(960, 200, 'that money was never yours', 60, C.dark, { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // Her setup is a puzzle piece. Distracting voices pop. Does the piece fit right now?
+    'w2-puzzle': (s, t) => {
+      const B = s.b;
+      let o = grad('w2l', '#EEEBFB', '#FDF8F5') + bg('url(#w2l)');
+      o += `<rect x="280" y="220" width="900" height="560" rx="30" fill="#120D1C"/>${candles(310, 260, 840, 480, vals(15, 22, 0.012, 0.05, 0.4), 22)}`;
+      const piece = (x, y, col) => `<path d="M${x},${y} h60 a30,30 0 1 1 60,0 h60 v60 a30,30 0 1 0 0,60 v60 h-180 Z" fill="${col}"/>`;
+      o += `<rect x="760" y="420" width="180" height="180" fill="none" stroke="#F9D89A" stroke-width="5" stroke-dasharray="12 10"/>`;
+      const tryIt = seg(t, B.exist, B.exist + 1.5), px = lerp(1380, 800, ease(tryIt)) + (tryIt >= 1 ? Math.sin(t * 20) * 8 : 0);
+      o += `<g transform="rotate(${tryIt >= 1 ? 25 : 0} ${px + 90} 510)">${piece(px, 420, '#2AA594')}</g>`;
+      o += fade(seg(t, B.system, B.system + 0.4), txt(1470, 380, 'my setup', 32, '#2AA594', { w: 800 }));
+      o += you(t, { x: 1560, y: 1000, scale: 1.15, flip: true, frontArm: { a1: -170, a2: -170 } });
+      [[B.n1, 'justify it?', 380, 160], [B.n2, 'it’ll keep running!', 820, 120], [B.n3, '30 more points!', 1260, 160]].forEach(([at, l, x, y]) => { const k = pop(t, at, 0.4), popped = seg(t, at + 1.8, at + 2.1); if (k > 0 && popped < 1) o += fade(1 - popped, scaleAt(x, y, 1 + popped * 0.5, thought(x, y, l, k, { size: 32, col: '#E2556F' }))); });
+      if (tryIt >= 1) o += fade(seg(t, B.exist + 1.6, B.exist + 2), pill(870, 860, 'not here. not now.', '#E2556F', 1, 34));
+      return o;
+    },
+
+    // Bus stop: one bus pulls away. She doesn't jump on just any bus. Hers comes later.
+    'w2-bus': (s, t) => {
+      const B = s.b;
+      let o = grad('w2m', '#FFE7C7', '#FDF8F5') + bg('url(#w2m)') + `<rect y="760" width="1920" height="320" fill="#8C8C9C"/><rect y="760" width="1920" height="40" fill="#C9C2B8"/>`;
+      o += `<rect x="1500" y="420" width="14" height="340" fill="#2C1810"/><rect x="1440" y="380" width="140" height="70" rx="12" fill="#2AA594"/>${txt(1510, 428, 'MY BUS', 26, '#fff', { ls: 2 })}`;
+      const bus = (x, col, label) => `<rect x="${f1(x - 260)}" y="520" width="520" height="240" rx="36" fill="${col}"/>${[0, 1, 2, 3].map(i => `<rect x="${f1(x - 230 + i * 120)}" y="550" width="100" height="80" rx="10" fill="#E6F5F2"/>`).join('')}<circle cx="${f1(x - 160)}" cy="770" r="34" fill="#2C1810"/><circle cx="${f1(x + 160)}" cy="770" r="34" fill="#2C1810"/>${txt(x, 710, label, 34, '#fff', { ls: 2 })}`;
+      const b1 = seg(t, s.start, B.later + 2);
+      if (b1 < 1) o += bus(lerp(800, 2300, ease(b1)), '#9AA3B8', 'MISSED');
+      const b2 = seg(t, B.lower, B.lower + 2);
+      if (b2 > 0 && b2 < 1) o += bus(lerp(-300, 700, ease(b2)) + (b2 > 0.5 ? 0 : 0), '#E2556F', 'ANY BUS');
+      if (b2 >= 1) o += bus(lerp(700, 2400, seg(t, B.lower + 2, B.lower + 4)), '#E2556F', 'ANY BUS');
+      const b3 = seg(t, s.end - 4, s.end - 1.5);
+      if (b3 > 0) o += bus(lerp(-300, 1000, ease(b3)), '#2AA594', 'MY SETUP');
+      o += you(t, { x: 1300, y: 1000, scale: 1.2, flip: true, frontArm: b2 > 0 && b2 < 1 ? { a1: 90, a2: 90 } : { a1: 100, a2: 95 } });
+      o += fade(seg(t, B.merit, B.merit + 0.4) * (1 - seg(t, B.lower, B.lower + 0.4)), thought(1300, 300, 'it has to be mine', 1, { size: 40 }));
+      o += thought(1300, 300, 'nope.', between(t, B.lower + 0.8, B.lower + 3), { size: 44 });
+      return o;
+    },
+
+    // Hand off the mouse. Literally. Sit back.
+    'w2-hands': (s, t) => {
+      const B = s.b;
+      let o = grad('w2n', '#E6F5F2', '#FDF8F5') + bg('url(#w2n)');
+      const lift = ease(seg(t, B.lit, B.lit + 0.8)), sit = ease(seg(t, B.sit, B.sit + 0.8));
+      o += `<rect x="0" y="760" width="1920" height="320" fill="#E8D5C4"/><ellipse cx="960" cy="800" rx="110" ry="70" fill="#fff" stroke="#B8B3C9" stroke-width="6"/><line x1="960" y1="730" x2="960" y2="790" stroke="#B8B3C9" stroke-width="5"/><path d="M960,730 C960,640 1100,660 1120,560" stroke="#B8B3C9" stroke-width="6" fill="none"/>`;
+      const hy = 760 - lift * 380, hx = 960 + lift * 260;
+      o += fade(1 - sit, `<g transform="translate(${f1(hx)},${f1(hy)}) rotate(${f1(-lift * 25)})"><rect x="-80" y="-60" width="160" height="110" rx="50" fill="#9A6244"/>${[0, 1, 2, 3].map(i => `<rect x="${-72 + i * 38}" y="-110" width="32" height="80" rx="16" fill="#9A6244"/>`).join('')}<rect x="-60" y="40" width="120" height="300" rx="40" fill="#F4829A"/></g>`);
+      const chant = t > B.hand && t < B.lit ? Math.floor((t - B.hand) * 1.4) % 3 : -1;
+      if (chant >= 0) ['I need to get in', 'I need to get in!', 'I NEED TO GET IN'].forEach((l, j) => { if (j <= chant) o += thought(560 + j * 400, 220 + (j % 2) * 120, l, 1, { size: 34 + j * 4 }); });
+      if (sit > 0) {
+        o += fade(sit, `<rect x="1360" y="520" width="260" height="300" rx="30" fill="#7F77DD"/><rect x="1340" y="760" width="300" height="60" rx="20" fill="#5A4C9A"/>`) + fade(sit, you(t, { x: 1490, y: 900, scale: 1, frontArm: { a1: 60, a2: 30 } }));
+        o += thought(1100, 280, 'what am I waiting to see?', between(t, B.ask, s.end), { size: 40 });
+        o += fade(seg(t, B.cant + 2, B.cant + 2.6), pill(800, 520, 'no answer? don’t click.', '#E2556F', 1, 36));
+      }
+      return o;
+    },
+
+    // The rule: two receipts. Missing a trade: $0. Chasing one: −$$$.
+    'w2-rule': (s, t) => {
+      const B = s.b;
+      let o = grad('w2o', '#EEEBFB', '#DDF1EE') + bg('url(#w2o)');
+      o += txt(960, 130, '🧠 YOUR RULE', 32, '#7F77DD', { ls: 6 });
+      o += scaleAt(960, 230, pop(t, s.start + 0.4, 0.8), txt(960, 255, 'If my entry is gone, the trade is gone.', 72, C.dark, { f: 'Playfair Display' }));
+      // a train door closing on the original trade; a new train later
+      const shut = ease(seg(t, B.r1, B.r1 + 1));
+      o += fade(1 - seg(t, B.line - 0.3, B.line), `<rect x="560" y="380" width="800" height="400" rx="30" fill="#7ECFC0"/><rect x="${f1(760 - 200 * (1 - shut))}" y="440" width="${f1(200 * (1 - shut) + 0)}" height="340" fill="#E6F5F2"/><rect x="760" y="440" width="${f1(400 * shut)}" height="340" fill="#5FB5A8"/><line x1="960" x2="960" y1="440" y2="780" stroke="#2C1810" stroke-width="${shut >= 1 ? 6 : 0}"/>${txt(960, 860, 'the original trade', 34, C.muted, { w: 700 })}`);
+      o += fade(seg(t, B.r2, B.r2 + 0.5) * (1 - seg(t, B.line - 0.3, B.line)), pill(1580, 600, 'new setup? judge it fresh', '#2AA594', 1, 28));
+      const fin = seg(t, B.line - 0.3, B.line + 0.3);
+      if (fin > 0) {
+        const rc = (x, title, amt, col, k) => scaleAt(x, 640, k, `<g transform="rotate(${x < 960 ? -3 : 3} ${x} 640)"><rect x="${x - 260}" y="400" width="520" height="480" rx="12" fill="#fff"/>${[...Array(10)].map((_, i) => `<path d="M${x - 260 + i * 52},880 l26,24 l26,-24" fill="#fff"/>`).join('')}${txt(x, 480, 'RECEIPT', 28, C.muted, { ls: 6 })}${txt(x, 580, title, 44, C.dark, { f: 'Playfair Display', it: true })}<line x1="${x - 200}" x2="${x + 200}" y1="640" y2="640" stroke="#E6DDD3" stroke-width="4" stroke-dasharray="10 8"/>${txt(x, 780, amt, 110, col, { f: 'JetBrains Mono, monospace' })}</g>`);
+        o += rc(620, 'missing a trade', '$0', '#2AA594', fin * pop(t, B.line + 0.2, 0.6));
+        o += rc(1300, 'chasing one', '−$$$', '#E2556F', pop(t, B.line + 2.2, 0.6));
+      }
+      return o;
+    },
+
+    // A curtain slides over the move you saw. Would you still take that entry?
+    'w2-curtain': (s, t) => {
+      const B = s.b;
+      let o = wall('w2p', '#1A1424', '#2A2142', 920, '#141026');
+      const series = [0.15, 0.17, 0.16, 0.22, 0.3, 0.4, 0.5, 0.58, 0.66, 0.74, 0.8, 0.85, 0.82];
+      o += `<rect x="360" y="200" width="1200" height="580" rx="28" fill="#120D1C" stroke="#3A2F55" stroke-width="8"/>${candles(390, 240, 1140, 500, series, 13, { slots: 13 })}`;
+      o += pill(390 + 11 * 1140 / 13, 200, 'your entry', '#E2556F', pop(t, B.what, 0.4), 26);
+      o += thought(1700, 420, 'setup?', between(t, B.q1, B.q2 - 0.2), { size: 40 });
+      o += thought(1700, 420, 'or just… uneasy?', between(t, B.q2, B.bigq - 0.2), { size: 36 });
+      const cov = ease(seg(t, B.big + 1, B.big + 2.5));
+      o += `<rect x="380" y="200" width="${f1(860 * cov)}" height="580" fill="#7F3A5A"/>${[...Array(8)].map((_, i) => `<line x1="${f1(380 + i * 110 * cov)}" x2="${f1(380 + i * 110 * cov)}" y1="200" y2="780" stroke="#5A2A44" stroke-width="10" opacity="${f1(cov)}"/>`).join('')}<rect x="360" y="180" width="1220" height="30" rx="10" fill="#C98A1F"/>`;
+      o += fade(seg(t, B.big + 3, B.big + 3.6), txt(960, 900, 'still take it?', 60, '#F9D89A', { f: 'Playfair Display', it: true }));
+      return o;
+    },
+
+    // The station: trains keep coming. She waits calmly for hers.
+    'w2-station': (s, t) => {
+      const B = s.b;
+      let o = grad('w2q', '#FFE7C7', '#FDF8F5') + bg('url(#w2q)') + `<rect y="720" width="1920" height="60" fill="#6B6B7B"/><rect y="780" width="1920" height="300" fill="#C9C2B8"/><rect y="780" width="1920" height="16" fill="#E2B04A"/>`;
+      const train = (x, col) => [0, 1, 2].map(c => `<rect x="${f1(x - c * 380 - 170)}" y="460" width="340" height="250" rx="${c === 0 ? 60 : 24}" fill="${col}"/><rect x="${f1(x - c * 380 - 130)}" y="500" width="100" height="80" rx="10" fill="#fff" opacity=".8"/><rect x="${f1(x - c * 380 + 10)}" y="500" width="100" height="80" rx="10" fill="#fff" opacity=".8"/>`).join('');
+      const tt = (t - B.g1) * 300;
+      o += train(((tt) % 3600) - 400, '#B8B3C9') + (t > B.always ? train((((t - B.always) * 420) % 3600) - 600, '#CFC8FA') : '');
+      o += you(t, { x: 1500, y: 960, scale: 1.2, flip: true });
+      o += fade(seg(t, B.g1, B.g1 + 0.5) * (1 - seg(t, B.g2, B.g2 + 0.4)), txt(960, 200, 'not every move', 56, C.muted, { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.g2, B.g2 + 0.5) * (1 - seg(t, B.last - 0.3, B.last)), txt(960, 200, 'your moves', 70, '#2AA594', { f: 'Playfair Display', it: true }));
+      o += fade(seg(t, B.always + 1, B.always + 1.5) * (1 - seg(t, B.last - 0.3, B.last)), pill(960, 320, 'there’s always another one', '#7F77DD', 1, 34));
+      o += fade(seg(t, B.last, B.last + 0.6), `<rect x="0" y="120" width="1920" height="260" fill="#FDF8F5" opacity=".85"/>${txt(960, 230, 'You don’t have to turn every move you see', 54, C.dark, { f: 'Playfair Display', it: true })}${txt(960, 320, 'into a trade you take.', 60, '#E2556F', { f: 'Playfair Display', it: true })}`);
+      return o;
+    },
+
     /*@@W@@*/
   };
 
