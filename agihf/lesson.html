@@ -219,6 +219,8 @@
       const res = await fetch(`lessons-data/${phaseKey}-${n}.json`);
       if (!res.ok) throw new Error('not found');
       data = await res.json();
+      // Hosted intro video (shared/lesson-videos.js), unless the lesson sets its own.
+      try { const { videoFor } = await import('./shared/lesson-videos.js'); data.videoUrl = data.videoUrl || videoFor(`${phaseKey}-${n}`); } catch { /* no video: keep the coming-soon card */ }
     } catch (err) {
       document.getElementById('lwWrap').innerHTML = '<p style="padding:20px;color:var(--muted)">This lesson isn\'t available yet.</p>';
       return;
