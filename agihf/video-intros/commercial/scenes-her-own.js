@@ -2025,5 +2025,8 @@
     { at: 56.0, end: 57.95, text: 'without becoming your entire life.' },
   ];
 
+  // Caption times follow the voiceover take (vo-*.js, written by place-voiceover.py).
+  if (window.VO_CAPTIONS && window.VO_CAPTIONS.length === CAPTIONS.length) window.VO_CAPTIONS.forEach((v, i) => Object.assign(CAPTIONS[i], v));
+
   window.HO = { DURATION, CAP_BOTTOM, CAPTIONS, draw, logo, castSheet, SHOTS };
 })();

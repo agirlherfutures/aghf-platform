@@ -1,38 +1,56 @@
 #!/usr/bin/env python3
-"""place-voiceover.py: put a voiceover on a commercial, each line on its caption.
+"""place-voiceover.py: put a voiceover on a commercial and time the captions to it.
 
-The owner records the read script in one take with a short pause between lines.
-This finds the pauses, splits the take into lines at the N-1 longest pauses (so
-pauses inside a sentence stay inside it), and places each line at its caption
-time. Voice only: no music is added. The video stream is copied, not re-encoded.
+The owner records the read script in one take with a short pause between
+phrases. This finds the spoken parts, groups them into one phrase per caption,
+places each phrase on its shot, and writes vo-<spot>.js so each caption shows
+exactly while its words are spoken. Voice only: no music is added.
 
-    python3 place-voiceover.py her-own   <voice file> [--with-last-line]
-    python3 place-voiceover.py waitlist  <voice file> [--with-last-line]
+    python3 place-voiceover.py her-own   <voice file>
+    python3 place-voiceover.py waitlist  <voice file>
+    python3 place-voiceover.py waitlist  <voice file> --parts   # list the spoken parts found
 
---with-last-line: the take includes the optional end-card line.
---groups 1,2,2,...: how many spoken parts make up each line, when the longest
-  pauses don't fall between lines (print the parts with --parts to check).
-Output: ../out/<video>-voice.mp4
+Steps for a new take:
+  1. Run with --parts and check the count matches the phrase list in SPOTS
+     (a take can split a phrase on a breath; adjust the part counts if so).
+  2. Run it: writes vo-<spot>.js and ../out/<video>-voice.mp4.
+  3. Re-render the video (node render-<spot>.cjs) so its captions pick up
+     vo-<spot>.js, then run step 2 again to put the voice on the new render.
 """
-import json, os, re, subprocess, sys
+import os, re, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, '..', 'out')
 
+# One entry per caption, in CAPTIONS order:
+#   (earliest start in the video, spoken parts in the take[, split points])
+# A phrase that carries two captions with no pause between them lists the
+# take time (s) where the second caption's words begin.
 SPOTS = {
-    # caption start times in seconds, one per read-script line, in order
     'her-own': {
         'video': 'aghf-a-life-of-her-own-60s.mp4',
-        'times': [0.3, 3, 7, 10.3, 13, 16, 20.3, 24, 27, 30.3, 35, 42.3, 45, 49, 53, 56],
-        'last': 58.2,
+        'duration': 60,
+        'phrases': [
+            (0.3, 1), (2.3, 1), (4.1, 1), (5.6, 1), (8.2, 1),   # mother, shots 1A-1C
+            (10.3, 1), (13.1, 1), (16.1, 1),                   # student, shots 2A-2C
+            (20.3, 1), (24.1, 1), (27.1, 1),                   # career, shots 3A-3C
+            (30.1, 1), (31.1, 1), (32.1, 1),                   # three women
+            (35.1, 1, [33.64]),                                # "...on hold" / "just to learn..."
+            (42.3, 1), (45.1, 2), (49.1, 1), (53.1, 1), (56.0, 1),
+        ],
+        'end': (58.2, 2),  # "Go live your life, girl." over the end card, no caption
     },
     'waitlist': {
         'video': 'aghf-waitlist-45s.mp4',
-        'times': [0.3, 2, 4.3, 7, 10, 14, 18, 21.2, 24, 27, 30.2, 33, 35],
-        'last': 39.8,
+        'duration': 45,
+        'phrases': [(0.3, 1), (2.1, 1), (4.3, 1), (7.1, 1), (10.1, 1), (14.1, 1), (18.1, 1),
+                    (21.2, 1), (24.1, 1), (27.1, 1), (30.2, 1), (33.1, 1), (35.1, 1)],
+        'end': (39.8, 2),  # "HER future. HER way." over the end card, no caption
     },
 }
-GAP = 0.15  # minimum gap kept between two placed lines
+GAP = 0.15    # minimum gap kept between two placed phrases
+LEAD = 0.12   # caption appears this long before its first word
+HOLD = 0.9    # caption stays up this long after its last word, unless the next one starts
 
 
 def run(cmd):
@@ -59,75 +77,61 @@ def speech_spans(path, total):
     return [sp for sp in spans if sp[1] - sp[0] >= 0.1]  # drop clicks and breaths
 
 
-def group_by(spans, counts):
-    """Merge sound spans into lines with the given number of spans per line."""
-    if sum(counts) != len(spans):
-        sys.exit(f'--groups adds up to {sum(counts)} parts but the take has {len(spans)}.')
-    lines, i = [], 0
-    for c in counts:
-        lines.append([spans[i][0], spans[i + c - 1][1]])
-        i += c
-    return lines
-
-
-def group(spans, n):
-    """Merge sound spans into n lines by cutting at the n-1 longest pauses."""
-    if len(spans) < n:
-        sys.exit(f'Found {len(spans)} spoken parts but the script has {n} lines. '
-                 'Leave a clear pause (about half a second) between lines and try again.')
-    gaps = sorted(range(len(spans) - 1), key=lambda i: spans[i + 1][0] - spans[i][1], reverse=True)[:n - 1]
-    cuts = sorted(gaps)
-    lines, start = [], 0
-    for c in cuts + [len(spans) - 1]:
-        lines.append([spans[start][0], spans[c][1]])
-        start = c + 1
-    return lines
-
-
 def main():
     if len(sys.argv) < 3 or sys.argv[1] not in SPOTS:
         sys.exit(__doc__)
-    spot, voice = SPOTS[sys.argv[1]], sys.argv[2]
-    times = spot['times'] + ([spot['last']] if '--with-last-line' in sys.argv else [])
-    video = os.path.join(OUT, spot['video'])
-    vlen = duration(video)
+    name, voice = sys.argv[1], sys.argv[2]
+    spot = SPOTS[name]
     spans = speech_spans(voice, duration(voice))
     if '--parts' in sys.argv:
         for i, (a, b) in enumerate(spans):
             print(f'{i + 1:2d}  {a:6.2f}  {b:6.2f}')
         return
-    if '--groups' in sys.argv:
-        counts = [int(x) for x in sys.argv[sys.argv.index('--groups') + 1].split(',')]
-        if len(counts) != len(times):
-            sys.exit(f'--groups lists {len(counts)} lines but the script has {len(times)}.')
-        lines = group_by(spans, counts)
-    else:
-        lines = group(spans, len(times))
+    plan = [(p + ([],))[:3] for p in spot['phrases']] + [spot['end'] + ([],)]
+    want = sum(p[1] for p in plan)
+    if want != len(spans):
+        sys.exit(f'Found {len(spans)} spoken parts but expected {want}. Run with --parts and '
+                 'compare against the phrase list in SPOTS.')
 
-    placed, prev_end, parts = [], 0.0, []
-    for i, ((s, e), t) in enumerate(zip(lines, times)):
-        s, e = max(0.0, s - 0.06), e + 0.12          # keep breaths and tails
+    placed, parts, prev_end, i = [], [], 0.0, 0
+    for k, (t, n, splits) in enumerate(plan):
+        first, last = spans[i], spans[i + n - 1]
+        i += n
+        s, e = max(0.0, first[0] - 0.06), last[1] + 0.12   # keep breaths and tails
         at = max(t, prev_end + GAP)
         prev_end = at + (e - s)
-        placed.append({'line': i + 1, 'caption': t, 'starts': round(at, 2), 'length': round(e - s, 2)})
+        shift = at - s
+        bounds = [first[0]] + splits + [last[1]]           # each caption's words, in take time
+        placed.append({'at': at, 'end': prev_end, 'late': at - t,
+                       'words': [(a + shift, b + shift) for a, b in zip(bounds, bounds[1:])]})
         ms = int(at * 1000)
-        parts.append(f'[0:a]atrim={s:.3f}:{e:.3f},asetpts=PTS-STARTPTS,adelay={ms}|{ms}[a{i}]')
-    if prev_end > vlen:
-        sys.exit(f'The voiceover runs to {prev_end:.1f} s but the video is {vlen:.0f} s. '
-                 'Read a little faster or shorten the pauses inside lines.')
+        parts.append(f'[0:a]atrim={s:.3f}:{e:.3f},asetpts=PTS-STARTPTS,adelay={ms}|{ms}[a{k}]')
+    if prev_end > spot['duration']:
+        sys.exit(f'The voiceover runs to {prev_end:.1f} s but the video is {spot["duration"]} s.')
 
-    mix = ''.join(f'[a{i}]' for i in range(len(lines)))
-    graph = ';'.join(parts) + f';{mix}amix=inputs={len(lines)}:normalize=0,apad,atrim=0:{vlen:.3f},loudnorm=I=-14:TP=-1.5:LRA=11[v]'
+    # Caption timings: each caption is up while its own words are spoken.
+    words = [w for p in placed[:-1] for w in p['words']]
+    nexts = [w[0] for w in words[1:]] + [placed[-1]['at']]
+    caps = [(round(a - LEAD, 2), round(min(nx - LEAD - 0.04, b + HOLD), 2)) for (a, b), nx in zip(words, nexts)]
+    js = os.path.join(HERE, f'vo-{name}.js')
+    with open(js, 'w') as f:
+        f.write('// Generated by place-voiceover.py from the voiceover take: caption i shows from at to end.\n'
+                'window.VO_CAPTIONS = [\n' + ''.join(f'  {{ at: {a}, end: {b} }},\n' for a, b in caps) + '];\n')
+
+    video = os.path.join(OUT, spot['video'])
+    vlen = duration(video)
+    mix = ''.join(f'[a{k}]' for k in range(len(plan)))
+    graph = ';'.join(parts) + f';{mix}amix=inputs={len(plan)}:normalize=0,apad,atrim=0:{vlen:.3f},loudnorm=I=-14:TP=-1.5:LRA=11[v]'
     out = os.path.join(OUT, spot['video'].replace('.mp4', '-voice.mp4'))
     r = run(['ffmpeg', '-y', '-v', 'error', '-i', voice, '-i', video, '-filter_complex', graph,
              '-map', '1:v', '-map', '[v]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-ar', '48000',
              '-shortest', '-movflags', '+faststart', out])
     if r.returncode:
         sys.exit(r.stderr)
-    late = [p for p in placed if p['starts'] - p['caption'] > 0.6]
-    print(json.dumps({'output': out, 'lines': placed}, indent=1))
-    if late:
-        print(f'Note: {len(late)} line(s) start more than 0.6 s after their caption because the line before ran long.')
+    for k, p in enumerate(placed):
+        flag = f'  (+{p["late"]:.2f} s late)' if p['late'] > 0.6 else ''
+        print(f'phrase {k + 1:2d}  {p["at"]:6.2f} - {p["end"]:6.2f}{flag}')
+    print(f'captions -> {js}\nvideo    -> {out}')
 
 
 if __name__ == '__main__':

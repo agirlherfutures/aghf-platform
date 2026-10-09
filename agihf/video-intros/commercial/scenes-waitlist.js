@@ -2339,5 +2339,8 @@
     { at: 35.0, end: 37.9, text: 'and be the first to know.' },
   ];
 
+  // Caption times follow the voiceover take (vo-*.js, written by place-voiceover.py).
+  if (window.VO_CAPTIONS && window.VO_CAPTIONS.length === CAPTIONS.length) window.VO_CAPTIONS.forEach((v, i) => Object.assign(CAPTIONS[i], v));
+
   window.WL = { DURATION, CAP_BOTTOM, CAPTIONS, draw, logo, fx, castSheet, SHOTS };
 })();
