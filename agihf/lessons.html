@@ -35,7 +35,7 @@
   // would silently kill this entire script before any of it (including
   // this file's own error-handling code) ever ran, exactly the bug
   // already fixed on this page's sibling pages this session.
-  let PHASES, isSectionCleared, UNLOCK = false;
+  let PHASES, isSectionCleared, icon, UNLOCK = false;
 
   const BADGE_PHASE_CLASS = { p: 'pb-p', t: 'pb-t', u: 'pb-u', d: 'pb-d' };
   const BADGE_SECTION_CLASS = { p: 'sb-badge-p', t: 'sb-badge-t', c: 'sb-badge-c', u: 'sb-badge-u' };
@@ -141,13 +141,33 @@
     const w = section.welcome;
     const built = section.lessons.filter((l) => l.n);
     const done = built.filter((l) => completedIds.has(`${phase.key}-${l.n}`)).length;
+    const progress = `<div class="sec-welcome-progress"><div class="sec-welcome-dots">${built.map((l) => `<i class="${completedIds.has(`${phase.key}-${l.n}`) ? 'on' : ''}"></i>`).join('')}</div>${done} of ${built.length} lessons complete</div>`;
+    const goals = w.goals ? `<details><summary class="sec-welcome-eyebrow" style="cursor:pointer;margin-top:8px">🎯 By the end of this section</summary><ul class="sec-welcome-goals">${w.goals.map((g) => `<li>${g}</li>`).join('')}</ul></details>` : '';
+    // The visual intro: heading + one-line hook on the left, what you'll learn as icon tiles on the right.
+    if (w.learn && icon) {
+      return `<div class="sec-welcome sec-vis">
+        <div class="sec-vis-top">
+          <div class="sec-vis-l">
+            <div class="sec-welcome-eyebrow">${w.eyebrow}</div>
+            <h3>${w.heading}</h3>
+            ${w.hook ? `<p class="sec-vis-hook">${w.hook}</p>` : ''}
+            <div class="sec-welcome-mission"><span>🎀 Your mission</span>${w.mission}</div>
+          </div>
+          <div class="sec-vis-r">
+            <div class="sec-vis-label">What you’ll learn</div>
+            <div class="sec-vis-tiles">${w.learn.map((t) => `<div class="sec-vis-tile">${icon(t.icon, t.tone || 'pink', 20)}<span>${t.label}</span></div>`).join('')}</div>
+          </div>
+        </div>
+        ${progress}${goals}
+      </div>`;
+    }
     return `<div class="sec-welcome">
       <div class="sec-welcome-eyebrow">${w.eyebrow}</div>
       <h3>${w.heading}</h3>
       ${w.paragraphs.map((p) => `<p class="${p.cls || ''}">${p.text}</p>`).join('')}
-      ${w.goals ? `<details><summary class="sec-welcome-eyebrow" style="cursor:pointer;margin-top:8px">🎯 By the end of this section</summary><ul class="sec-welcome-goals">${w.goals.map((g) => `<li>${g}</li>`).join('')}</ul></details>` : ''}
+      ${goals}
       <div class="sec-welcome-mission"><span>🎀 Your mission</span>${w.mission}</div>
-      <div class="sec-welcome-progress"><div class="sec-welcome-dots">${built.map((l) => `<i class="${completedIds.has(`${phase.key}-${l.n}`) ? 'on' : ''}"></i>`).join('')}</div>${done} of ${built.length} lessons complete</div>
+      ${progress}
     </div>`;
   }
 
@@ -224,6 +244,7 @@
     try {
       ({ PHASES, isSectionCleared } = await import('./shared/curriculum-data.js'));
       ({ UNLOCK_ALL: UNLOCK } = await import('./shared/preview.js'));
+      ({ icon } = await import('./shared/icons.js'));
     } catch (err) {
       renderLoadError(err);
       return;

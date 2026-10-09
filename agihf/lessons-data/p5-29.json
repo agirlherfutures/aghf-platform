@@ -1,0 +1,1476 @@
+{
+  "phase": "p5",
+  "section": "s14",
+  "lessonNumber": 29,
+  "title": "How HTF ICC and 1M ICC Work Together",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 80,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "The same sequence, nested inside itself.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Identify the 4H ICC phase, find the 1H phase inside it, and explain how a 1M ICC fits within the larger story.",
+    "missionQuestion": "The same sequence, nested inside itself.",
+    "estMinutes": 10
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "v2_hero",
+      "kicker": "Phase 5 · Lesson 29",
+      "headline": "The same sequence, <em>nested inside itself.</em>",
+      "line": "ICC is not only a 1-minute entry pattern. It is a way of reading price across every timeframe.",
+      "pose": "wave",
+      "cta": "Let’s zoom in →"
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 1 · ICC on every timeframe",
+      "headline": "You can see ICC on the 4H and the 1H <em>too.</em>",
+      "line": "Tap each timeframe. The story is the same, but the higher the timeframe, the longer each phase takes to form.",
+      "visual": {
+        "cards": [
+          {
+            "icon": "up",
+            "tone": "purple",
+            "label": "4H",
+            "sub": "Indication, correction and continuation can each take many 4H candles to form."
+          },
+          {
+            "icon": "up",
+            "tone": "teal",
+            "label": "1H",
+            "sub": "The same phases, built from smaller swings, so they form faster than on the 4H."
+          },
+          {
+            "icon": "up",
+            "tone": "pink",
+            "label": "1M",
+            "sub": "The same sequence again, at the scale where you look for your entry."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 2 · The 4H phase",
+      "headline": "First, locate the <em>current 4H ICC phase.</em>",
+      "line": "On the 4H, each phase can take many candles. Watch the story build before you zoom in.",
+      "visual": {
+        "chart": {
+          "swings": [
+            [
+              40,
+              122
+            ],
+            [
+              112.0,
+              44
+            ],
+            [
+              240.0,
+              292
+            ],
+            [
+              336.0,
+              160
+            ],
+            [
+              400.0,
+              236
+            ],
+            [
+              496.0,
+              92
+            ],
+            [
+              544.0,
+              152
+            ],
+            [
+              576.0,
+              132
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 48.0,
+              "o": 122,
+              "c": 102.7,
+              "h": 100.7,
+              "l": 125.5,
+              "w": 9.6
+            },
+            {
+              "x": 64.0,
+              "o": 102.7,
+              "c": 86.0,
+              "h": 84.1,
+              "l": 106.2,
+              "w": 9.6
+            },
+            {
+              "x": 80.0,
+              "o": 86.0,
+              "c": 81.1,
+              "h": 75.6,
+              "l": 91.3,
+              "w": 9.6
+            },
+            {
+              "x": 96.0,
+              "o": 81.1,
+              "c": 55.7,
+              "h": 51.5,
+              "l": 84.0,
+              "w": 9.6
+            },
+            {
+              "x": 112.0,
+              "o": 55.7,
+              "c": 50.7,
+              "h": 44,
+              "l": 58.1,
+              "w": 9.6
+            },
+            {
+              "x": 128.0,
+              "o": 50.7,
+              "c": 68.4,
+              "h": 44.6,
+              "l": 74.1,
+              "w": 9.6
+            },
+            {
+              "x": 144.0,
+              "o": 68.4,
+              "c": 124.3,
+              "h": 62.9,
+              "l": 126.8,
+              "w": 9.6
+            },
+            {
+              "x": 160.0,
+              "o": 124.3,
+              "c": 132.9,
+              "h": 119.7,
+              "l": 138.1,
+              "w": 9.6
+            },
+            {
+              "x": 176.0,
+              "o": 132.9,
+              "c": 186.7,
+              "h": 127.0,
+              "l": 188.7,
+              "w": 9.6
+            },
+            {
+              "x": 192.0,
+              "o": 186.7,
+              "c": 206.1,
+              "h": 181.9,
+              "l": 210.1,
+              "w": 9.6
+            },
+            {
+              "x": 208.0,
+              "o": 206.1,
+              "c": 217.7,
+              "h": 202.2,
+              "l": 219.6,
+              "w": 9.6
+            },
+            {
+              "x": 224.0,
+              "o": 217.7,
+              "c": 280.7,
+              "h": 211.8,
+              "l": 285.0,
+              "w": 9.6
+            },
+            {
+              "x": 240.0,
+              "o": 280.7,
+              "c": 284.8,
+              "h": 275.1,
+              "l": 292,
+              "w": 9.6
+            },
+            {
+              "x": 256.0,
+              "o": 284.8,
+              "c": 265.6,
+              "h": 259.7,
+              "l": 290.5,
+              "w": 9.6
+            },
+            {
+              "x": 272.0,
+              "o": 265.6,
+              "c": 243.4,
+              "h": 239.8,
+              "l": 270.1,
+              "w": 9.6
+            },
+            {
+              "x": 288.0,
+              "o": 243.4,
+              "c": 220.9,
+              "h": 218.5,
+              "l": 246.4,
+              "w": 9.6
+            },
+            {
+              "x": 304.0,
+              "o": 220.9,
+              "c": 208.6,
+              "h": 206.9,
+              "l": 222.6,
+              "w": 9.6
+            },
+            {
+              "x": 320.0,
+              "o": 208.6,
+              "c": 183.6,
+              "h": 180.7,
+              "l": 212.8,
+              "w": 9.6
+            },
+            {
+              "x": 336.0,
+              "o": 183.6,
+              "c": 167.9,
+              "h": 160,
+              "l": 187.0,
+              "w": 9.6
+            },
+            {
+              "x": 352.0,
+              "o": 167.9,
+              "c": 191.0,
+              "h": 165.4,
+              "l": 194.6,
+              "w": 9.6
+            },
+            {
+              "x": 368.0,
+              "o": 191.0,
+              "c": 198.3,
+              "h": 186.3,
+              "l": 201.2,
+              "w": 9.6
+            },
+            {
+              "x": 384.0,
+              "o": 198.3,
+              "c": 217.2,
+              "h": 193.1,
+              "l": 220.3,
+              "w": 9.6
+            },
+            {
+              "x": 400.0,
+              "o": 217.2,
+              "c": 227.8,
+              "h": 211.6,
+              "l": 236,
+              "w": 9.6
+            },
+            {
+              "x": 416.0,
+              "o": 227.8,
+              "c": 195.4,
+              "h": 193.6,
+              "l": 230.4,
+              "w": 9.6
+            },
+            {
+              "x": 432.0,
+              "o": 195.4,
+              "c": 189.0,
+              "h": 184.4,
+              "l": 198.1,
+              "w": 9.6
+            },
+            {
+              "x": 448.0,
+              "o": 189.0,
+              "c": 155.8,
+              "h": 153.4,
+              "l": 192.8,
+              "w": 9.6
+            },
+            {
+              "x": 464.0,
+              "o": 155.8,
+              "c": 126.1,
+              "h": 121.1,
+              "l": 161.7,
+              "w": 9.6
+            },
+            {
+              "x": 480.0,
+              "o": 126.1,
+              "c": 125.7,
+              "h": 120.6,
+              "l": 132.4,
+              "w": 9.6
+            },
+            {
+              "x": 496.0,
+              "o": 125.7,
+              "c": 98.1,
+              "h": 92,
+              "l": 128.9,
+              "w": 9.6
+            },
+            {
+              "x": 512.0,
+              "o": 98.1,
+              "c": 120.6,
+              "h": 92.7,
+              "l": 124.1,
+              "w": 9.6
+            },
+            {
+              "x": 528.0,
+              "o": 120.6,
+              "c": 138.3,
+              "h": 116.0,
+              "l": 143.9,
+              "w": 9.6
+            },
+            {
+              "x": 544.0,
+              "o": 138.3,
+              "c": 144.8,
+              "h": 135.6,
+              "l": 152,
+              "w": 9.6
+            },
+            {
+              "x": 560.0,
+              "o": 144.8,
+              "c": 138.3,
+              "h": 136.1,
+              "l": 148.2,
+              "w": 9.6
+            },
+            {
+              "x": 576.0,
+              "o": 138.3,
+              "c": 141.8,
+              "h": 132,
+              "l": 145.2,
+              "w": 9.6
+            },
+            {
+              "x": 592.0,
+              "o": 141.8,
+              "c": 150.2,
+              "h": 140.1,
+              "l": 152.6,
+              "w": 9.6
+            },
+            {
+              "x": 608.0,
+              "o": 150.2,
+              "c": 166.4,
+              "h": 146.9,
+              "l": 169.3,
+              "w": 9.6
+            },
+            {
+              "x": 624.0,
+              "o": 166.4,
+              "c": 176.0,
+              "h": 164.4,
+              "l": 182.4,
+              "w": 9.6
+            }
+          ],
+          "hlines": [
+            {
+              "y": 92,
+              "label": "EXTERNAL HIGH · 21,040",
+              "tone": "purple",
+              "x1": 392.0,
+              "x2": 692,
+              "size": 13,
+              "id": "doorH",
+              "labelX": 470,
+              "door": true
+            },
+            {
+              "y": 236,
+              "label": "EXTERNAL LOW · 20,610",
+              "tone": "purple",
+              "x1": 392.0,
+              "x2": 692,
+              "size": 13,
+              "id": "doorL",
+              "below": true,
+              "labelX": 470,
+              "door": true
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 392.0,
+              "y1": 92,
+              "x2": 692,
+              "y2": 236,
+              "tone": "purple",
+              "id": "room",
+              "op": 0.45,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6
+            }
+          ],
+          "notes": [
+            {
+              "x": 650.0,
+              "y": 180.0,
+              "text": "● now",
+              "tone": "dark",
+              "size": 13,
+              "anchor": "middle",
+              "id": "now"
+            },
+            {
+              "x": 470,
+              "y": 60,
+              "text": "INDICATION",
+              "tone": "up",
+              "id": "indL",
+              "anchor": "middle",
+              "size": 13
+            },
+            {
+              "x": 600,
+              "y": 215,
+              "text": "CORRECTION",
+              "tone": "gold",
+              "id": "corrL",
+              "anchor": "middle",
+              "size": 13
+            }
+          ],
+          "paths": [
+            {
+              "swings": [
+                [
+                  400,
+                  236
+                ],
+                [
+                  496,
+                  92
+                ]
+              ],
+              "tone": "up",
+              "id": "ind",
+              "width": 5
+            },
+            {
+              "swings": [
+                [
+                  496,
+                  92
+                ],
+                [
+                  544,
+                  152
+                ],
+                [
+                  576,
+                  132
+                ],
+                [
+                  650,
+                  180
+                ]
+              ],
+              "tone": "gold",
+              "id": "corr",
+              "width": 5,
+              "dashed": true
+            }
+          ],
+          "marks": [
+            {
+              "i": 3,
+              "label": "Prior high",
+              "tone": "muted",
+              "id": "ph",
+              "pos": "high"
+            },
+            {
+              "i": 4,
+              "label": "Higher low",
+              "tone": "up",
+              "id": "hl",
+              "pos": "low"
+            },
+            {
+              "i": 5,
+              "label": "Higher high",
+              "tone": "up",
+              "id": "hh",
+              "pos": "high"
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "doorH",
+              "doorL",
+              "ph",
+              "hl"
+            ],
+            "text": "Price made a higher low, then pushed toward the prior high.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "ind",
+              "indL",
+              "hh"
+            ],
+            "text": "<strong>Indication:</strong> price broke through the prior high and made a higher high.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "corr",
+              "corrL",
+              "now"
+            ],
+            "text": "<strong>Correction:</strong> price is pulling back now. That is the current 4H phase. <strong>Continuation</strong> has not happened yet."
+          }
+        ]
+      }
+    },
+    {
+      "type": "icc_read",
+      "kicker": "Your turn",
+      "title": "Locate the 4H phase on this chart.",
+      "tf": "4H",
+      "chart": {
+        "swings": [
+          [
+            30,
+            270
+          ],
+          [
+            110,
+            175
+          ],
+          [
+            180,
+            230
+          ],
+          [
+            300,
+            70
+          ],
+          [
+            400,
+            185
+          ],
+          [
+            440,
+            168
+          ]
+        ],
+        "seed": 5,
+        "hlines": [
+          {
+            "y": 270,
+            "label": "external low",
+            "tone": "muted",
+            "id": "xl"
+          },
+          {
+            "y": 70,
+            "label": "external high",
+            "tone": "muted",
+            "id": "xh"
+          },
+          {
+            "y": 170,
+            "label": "equilibrium",
+            "tone": "gold",
+            "id": "eq"
+          }
+        ]
+      },
+      "segments": [
+        {
+          "key": "indication",
+          "from": 2,
+          "to": 3
+        },
+        {
+          "key": "correction",
+          "from": 3,
+          "to": 4
+        }
+      ],
+      "dir": "bullish",
+      "rows": [
+        {
+          "key": "structure",
+          "label": "4H structure"
+        }
+      ],
+      "steps": [
+        {
+          "kind": "ask",
+          "ask": {
+            "prompt": "What is the 4H structure?",
+            "options": [
+              {
+                "label": "Bullish",
+                "correct": true,
+                "why": "Price made a higher high above the previous high, and the higher low held."
+              },
+              {
+                "label": "Bearish",
+                "feedback": "Look at the swings. The last high is above the previous high, and the low before it held."
+              }
+            ]
+          },
+          "set": {
+            "structure": "Bullish",
+            "direction": "bullish"
+          }
+        },
+        {
+          "kind": "stage",
+          "prompt": "Which 4H ICC phase is price in right now?",
+          "answer": "correction",
+          "choices": [
+            "waiting",
+            "indication",
+            "correction",
+            "continuation"
+          ],
+          "why": "The bullish indication already happened. Price is moving back now, and continuation has not been proven.",
+          "miss": "Not quite. Read what price has done since the higher high.",
+          "reveal": "correction"
+        },
+        {
+          "kind": "clarity",
+          "prompt": "How clear is the 4H sequence?",
+          "answer": "developing",
+          "why": "Indication and correction are there, but continuation has not formed yet. The sequence is still developing."
+        }
+      ],
+      "foot": "This is the 4H phase. It is not an entry.",
+      "final": {
+        "prompt": "The 4H is bullish and correcting. Does that tell you exactly where to enter?",
+        "options": [
+          {
+            "label": "Yes, buy the correction now",
+            "feedback": "The 4H phase is the story. The specific entry still comes from the 1M ICC.",
+            "mistake": "icc-as-entry"
+          },
+          {
+            "label": "No, it’s the story, not the entry",
+            "correct": true,
+            "why": "Exactly. The 4H phase tells you what chapter you are in, nothing more."
+          }
+        ]
+      },
+      "principle": "WHAT CHAPTER IS THE 4H IN?"
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 3 · The 1H phase",
+      "headline": "Next, locate the <em>1H phase</em> inside that 4H move.",
+      "line": "Zoom into the 4H correction. The 1H draws the same pullback with much more detail.",
+      "visual": {
+        "chart": {
+          "swings": [
+            [
+              30,
+              60
+            ],
+            [
+              100,
+              140
+            ],
+            [
+              160,
+              105
+            ],
+            [
+              250,
+              190
+            ],
+            [
+              320,
+              160
+            ],
+            [
+              410,
+              250
+            ],
+            [
+              480,
+              222
+            ]
+          ],
+          "seed": 6,
+          "boxes": [
+            {
+              "x1": 16,
+              "y1": 36,
+              "x2": 690,
+              "y2": 296,
+              "tone": "gold",
+              "id": "box",
+              "label": "INSIDE THE 4H CORRECTION",
+              "op": 0.5
+            }
+          ],
+          "marks": [
+            {
+              "i": 2,
+              "label": "Lower high",
+              "tone": "down",
+              "id": "lh1",
+              "pos": "high"
+            },
+            {
+              "i": 3,
+              "label": "Lower low",
+              "tone": "down",
+              "id": "ll1",
+              "pos": "low"
+            },
+            {
+              "i": 4,
+              "label": "Lower high",
+              "tone": "down",
+              "id": "lh2",
+              "pos": "high"
+            },
+            {
+              "i": 5,
+              "label": "Lower low",
+              "tone": "down",
+              "id": "ll2",
+              "pos": "low"
+            }
+          ],
+          "paths": [
+            {
+              "swings": [
+                [
+                  160,
+                  105
+                ],
+                [
+                  250,
+                  190
+                ]
+              ],
+              "tone": "down",
+              "id": "ind",
+              "width": 5
+            },
+            {
+              "swings": [
+                [
+                  250,
+                  190
+                ],
+                [
+                  320,
+                  160
+                ]
+              ],
+              "tone": "gold",
+              "id": "corr",
+              "width": 5,
+              "dashed": true
+            },
+            {
+              "swings": [
+                [
+                  320,
+                  160
+                ],
+                [
+                  410,
+                  250
+                ]
+              ],
+              "tone": "purple",
+              "id": "cont",
+              "width": 5
+            }
+          ],
+          "notes": [
+            {
+              "x": 560,
+              "y": 110,
+              "text": "1H: BEARISH",
+              "tone": "down",
+              "size": 15,
+              "anchor": "middle",
+              "id": "tag"
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "box"
+            ],
+            "text": "This whole 1H chart sits inside one 4H correction.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "lh1",
+              "ll1",
+              "lh2",
+              "ll2",
+              "tag"
+            ],
+            "text": "On the 1H, price is making lower highs and lower lows. The 1H is bearish.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "ind",
+              "corr",
+              "cont"
+            ],
+            "text": "<strong>1H phase:</strong> a bearish indication, a correction, then a bearish continuation, all inside the 4H correction."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_compare",
+      "kicker": "Step 4 · ICC inside ICC",
+      "headline": "A bearish 1H can live <em>inside a bullish 4H.</em>",
+      "line": "When the 4H is correcting, a bearish 1H move can be part of that correction. It is not automatically a full reversal.",
+      "cards": [
+        {
+          "label": "Part of the 4H correction",
+          "sub": "The 1H is bearish, but the 4H structure has not changed.",
+          "spark": "down",
+          "tag": "POSSIBLE",
+          "tone": "purple"
+        },
+        {
+          "label": "A full 4H reversal",
+          "sub": "You cannot assume this just because the 1H turned bearish.",
+          "spark": "down",
+          "tag": "NOT AUTOMATIC",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "The 4H is bullish and correcting. The 1H just made a lower low. Is the 4H bullish story over?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Yes, the 1H turned it bearish",
+            "correct": false,
+            "feedback": "The 1H move can be part of the larger 4H correction. A bearish 1H does not automatically mean the 4H reversed."
+          },
+          {
+            "label": "Not automatically, it can be the 4H correction",
+            "correct": true,
+            "why": "Right. A smaller bearish sequence can sit inside a larger bullish correction."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 5 · Connect the 15M",
+      "headline": "The 15M shows <em>more detail</em> of the developing move.",
+      "line": "It shows the breaks, the corrections and any potential shift. It is recommended for extra confluence, not required.",
+      "visual": {
+        "chart": {
+          "swings": [
+            [
+              30,
+              70
+            ],
+            [
+              100,
+              150
+            ],
+            [
+              150,
+              115
+            ],
+            [
+              230,
+              210
+            ],
+            [
+              290,
+              170
+            ],
+            [
+              360,
+              250
+            ],
+            [
+              430,
+              200
+            ],
+            [
+              490,
+              232
+            ],
+            [
+              580,
+              140
+            ],
+            [
+              640,
+              165
+            ]
+          ],
+          "seed": 7,
+          "hlines": [
+            {
+              "y": 262,
+              "label": "4H LEVEL",
+              "tone": "purple",
+              "x1": 300,
+              "x2": 692,
+              "id": "lvl",
+              "labelX": 560,
+              "below": true
+            }
+          ],
+          "marks": [
+            {
+              "i": 3,
+              "label": "Break",
+              "tone": "down",
+              "id": "brk",
+              "pos": "low"
+            },
+            {
+              "i": 4,
+              "label": "Correction",
+              "tone": "gold",
+              "id": "cor",
+              "pos": "high"
+            },
+            {
+              "i": 6,
+              "label": "Lower high",
+              "tone": "muted",
+              "id": "lh",
+              "pos": "high"
+            },
+            {
+              "i": 7,
+              "label": "Higher low",
+              "tone": "up",
+              "id": "hl",
+              "pos": "low"
+            },
+            {
+              "i": 8,
+              "label": "Potential shift",
+              "tone": "up",
+              "id": "sh",
+              "pos": "high"
+            }
+          ],
+          "paths": [
+            {
+              "swings": [
+                [
+                  430,
+                  200
+                ],
+                [
+                  600,
+                  200
+                ]
+              ],
+              "tone": "up",
+              "id": "brkline",
+              "width": 3,
+              "dashed": true
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "brk",
+              "cor"
+            ],
+            "text": "On the 15M, you can see each break lower and each small correction inside the 1H drop.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "lvl",
+              "hl"
+            ],
+            "text": "Price reaches the 4H level. This time, it makes a higher low instead of a lower low.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "lh",
+              "brkline",
+              "sh"
+            ],
+            "text": "Then price breaks above the last lower high. That is a <strong>potential shift</strong>, not a guarantee."
+          }
+        ]
+      },
+      "check": {
+        "prompt": "Do you need the 15M before you can look for a 1M ICC setup?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Yes, the 15M is required",
+            "correct": false,
+            "feedback": "The 15M adds detail and extra confluence. It is recommended, but it is not a requirement."
+          },
+          {
+            "label": "No, it’s recommended extra confluence",
+            "correct": true,
+            "why": "Exactly. The 15M helps you see the developing move more clearly, but it is optional."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_steps",
+      "kicker": "Step 6 · The 1M opportunity",
+      "headline": "Only now do you <em>look at the 1M.</em>",
+      "line": "Tap each step. The 1M ICC opportunity comes after price reaches the area and the context supports a setup.",
+      "steps": [
+        {
+          "label": "Price reaches the area",
+          "sub": "Price is at the relevant level from your 4H and 1H map."
+        },
+        {
+          "label": "Context supports a setup",
+          "sub": "The higher timeframe story gives you a reason to watch for a trade here."
+        },
+        {
+          "label": "Look for the 1M ICC",
+          "sub": "PIL (Pre-Indication Level) → Indication → Correction → Continuation → Retest → Entry."
+        },
+        {
+          "label": "Entry or no trade",
+          "sub": "If the 1M never earns the entry, there is no trade. No trade is a decision too."
+        }
+      ]
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 7 · Context vs confirmation",
+      "headline": "HTF ICC is the context. <em>1M ICC is the confirmation.</em>",
+      "line": "The higher timeframe explains the story. The 1M gives you the specific entry model, and it has to qualify on its own.",
+      "visual": {
+        "versus": [
+          {
+            "label": "HTF ICC = context",
+            "tone": "purple",
+            "icon": "check",
+            "points": [
+              "Explains the developing story.",
+              "Shows which phase price is in.",
+              "Tells you where to pay attention."
+            ]
+          },
+          {
+            "label": "1M ICC = confirmation",
+            "tone": "teal",
+            "icon": "check",
+            "points": [
+              "Provides the specific entry model.",
+              "PIL → I → C → C → Retest → Entry.",
+              "Must earn the entry by itself."
+            ]
+          }
+        ]
+      },
+      "check": {
+        "prompt": "Your 4H thesis is bullish. A bullish 1M setup appears, but price never broke a clear PIL. Is the setup valid because the 4H is bullish?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Yes, the 4H thesis backs it up",
+            "correct": false,
+            "feedback": "A bullish HTF thesis does not make every bullish 1M setup valid. Without a clear PIL, there is no valid indication."
+          },
+          {
+            "label": "No, the 1M still has to qualify",
+            "correct": true,
+            "why": "Exactly. The HTF gives you context. Only the 1M ICC confirms the entry."
+          }
+        ]
+      }
+    },
+    {
+      "type": "icc_nested",
+      "kicker": "Your turn · Step 8",
+      "title": "Zoom from the 4H all the way down to the 1M.",
+      "tfs": [
+        {
+          "tf": "4H",
+          "role": "The larger story",
+          "zoomLabel": "Zoom into the 1H ↓",
+          "chart": {
+            "swings": [
+              [
+                30,
+                260
+              ],
+              [
+                130,
+                170
+              ],
+              [
+                200,
+                220
+              ],
+              [
+                330,
+                70
+              ],
+              [
+                400,
+                130
+              ],
+              [
+                430,
+                115
+              ],
+              [
+                500,
+                165
+              ]
+            ],
+            "seed": 5,
+            "hlines": [
+              {
+                "y": 172,
+                "label": "4H LEVEL",
+                "tone": "purple",
+                "x1": 120,
+                "x2": 692,
+                "labelX": 540,
+                "below": true
+              }
+            ]
+          },
+          "segments": [
+            {
+              "key": "indication",
+              "from": 2,
+              "to": 3
+            },
+            {
+              "key": "correction",
+              "from": 3,
+              "to": 6
+            }
+          ],
+          "show": [
+            "indication",
+            "correction"
+          ],
+          "dir": "bullish",
+          "stage": "correction",
+          "note": "The 4H is bullish. Price made its indication and is now <b>correcting</b> toward a 4H level."
+        },
+        {
+          "tf": "1H",
+          "role": "Inside the 4H correction",
+          "zoomLabel": "Zoom into the 15M ↓",
+          "chart": {
+            "swings": [
+              [
+                30,
+                60
+              ],
+              [
+                100,
+                140
+              ],
+              [
+                160,
+                105
+              ],
+              [
+                250,
+                190
+              ],
+              [
+                320,
+                160
+              ],
+              [
+                410,
+                250
+              ],
+              [
+                480,
+                222
+              ]
+            ],
+            "seed": 6
+          },
+          "segments": [
+            {
+              "key": "indication",
+              "from": 2,
+              "to": 3
+            },
+            {
+              "key": "correction",
+              "from": 3,
+              "to": 4
+            },
+            {
+              "key": "continuation",
+              "from": 4,
+              "to": 5
+            }
+          ],
+          "dir": "bearish",
+          "stage": "continuation",
+          "note": "Inside that 4H correction, the 1H shows a <b>bearish</b> sequence. It is part of the 4H pullback."
+        },
+        {
+          "tf": "15M",
+          "role": "More detail",
+          "zoomLabel": "Zoom into the 1M ↓",
+          "chart": {
+            "swings": [
+              [
+                30,
+                70
+              ],
+              [
+                100,
+                150
+              ],
+              [
+                150,
+                115
+              ],
+              [
+                230,
+                210
+              ],
+              [
+                290,
+                170
+              ],
+              [
+                360,
+                250
+              ],
+              [
+                430,
+                200
+              ],
+              [
+                490,
+                232
+              ],
+              [
+                580,
+                140
+              ],
+              [
+                640,
+                165
+              ]
+            ],
+            "seed": 7,
+            "hlines": [
+              {
+                "y": 262,
+                "label": "4H LEVEL",
+                "tone": "purple",
+                "x1": 300,
+                "x2": 692,
+                "labelX": 560,
+                "below": true
+              }
+            ]
+          },
+          "stage": "waiting",
+          "note": "At the 4H level, the 15M shows a higher low and a <b>potential shift</b>. Extra confluence, not required."
+        },
+        {
+          "tf": "1M",
+          "role": "Where the entry is earned",
+          "chart": {
+            "swings": [
+              [
+                20,
+                170
+              ],
+              [
+                50,
+                140
+              ],
+              [
+                80,
+                178
+              ],
+              [
+                110,
+                124
+              ],
+              [
+                140,
+                162
+              ],
+              [
+                170,
+                132
+              ],
+              [
+                200,
+                146
+              ],
+              [
+                230,
+                116
+              ],
+              [
+                260,
+                154
+              ],
+              [
+                290,
+                100
+              ],
+              [
+                320,
+                138
+              ],
+              [
+                350,
+                108
+              ],
+              [
+                380,
+                122
+              ],
+              [
+                410,
+                92
+              ],
+              [
+                440,
+                130
+              ],
+              [
+                470,
+                76
+              ],
+              [
+                500,
+                114
+              ],
+              [
+                530,
+                84
+              ],
+              [
+                560,
+                98
+              ],
+              [
+                590,
+                68
+              ]
+            ],
+            "seed": 9
+          },
+          "stage": "waiting",
+          "note": "Price is at the area and the context supports a setup. Now the <b>1M ICC</b> has to earn the entry."
+        }
+      ],
+      "asks": [
+        {
+          "prompt": "The 4H is correcting and the 1H is bearish. What can the 1H move be?",
+          "options": [
+            {
+              "label": "Part of the 4H correction",
+              "correct": true,
+              "why": "Yes. A smaller bearish move can sit inside a larger bullish correction."
+            },
+            {
+              "label": "Proof the 4H has reversed",
+              "feedback": "A bearish 1H does not automatically reverse the 4H. Only a change in 4H structure does that.",
+              "mistake": "tf-confusion"
+            }
+          ]
+        },
+        {
+          "prompt": "The 4H, 1H and 15M all support a long. Is that enough to enter?",
+          "options": [
+            {
+              "label": "Yes, the context is strong",
+              "feedback": "Strong context is still only context. The 1M ICC has to confirm the entry.",
+              "mistake": "icc-as-entry"
+            },
+            {
+              "label": "No, the 1M ICC must confirm it",
+              "correct": true,
+              "why": "Exactly. The HTF tells the story. The 1M earns the entry."
+            }
+          ]
+        }
+      ],
+      "principle": "HTF ICC IS CONTEXT. 1M ICC IS CONFIRMATION."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "The analysis gets me interested. <em>The 1-minute ICC earns the entry.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "In your own words, how does a <em>1M ICC</em> fit inside the 4H ICC phase?",
+      "modelAnswer": "First I find the 4H phase, for example a bullish correction. Then I find the 1H phase inside it, which can be bearish and still be part of that 4H correction. The 15M adds detail if I want it. When price reaches the relevant area and the context supports a setup, I look for the 1M ICC. The HTF gives me context, but the 1M ICC has to confirm the entry on its own."
+    }
+  ],
+  "takeaways": [
+    "ICC can be read on the 4H and 1H, and each phase takes longer to form.",
+    "A bearish 1H can be part of a bullish 4H correction, not automatically a reversal.",
+    "The 15M adds detail, as extra confluence, not a requirement.",
+    "HTF ICC is context. The 1M ICC is the confirmation that earns the entry."
+  ],
+  "remember": "HTF ICC IS CONTEXT. 1M ICC IS CONFIRMATION."
+}

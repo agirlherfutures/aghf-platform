@@ -43,6 +43,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 1 \u00b7 Section 1 \u00b7 Introduction to Trading',
         heading: 'Welcome to the Market',
+        hook: 'Before charts and setups, you learn the language of trading and how a move turns into dollars.',
+        learn: [
+          { icon: 'swap', tone: 'pink', label: 'Long vs. short' },
+          { icon: 'globe', tone: 'teal', label: 'Why markets move' },
+          { icon: 'bars', tone: 'purple', label: 'Futures, minis and micros' },
+          { icon: 'coin', tone: 'peach', label: 'Points into P&L' },
+        ],
         paragraphs: [
           { text: 'Before charts. Before setups. Before Dayli ICC. You need to understand the world you\u2019re stepping into.' },
           { text: 'What you\u2019re actually buying and selling. Why price moves at all. What a futures contract is. And how a move on your chart turns into real dollars.' },
@@ -73,6 +80,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 1 \u00b7 Section 2 \u00b7 Before You Touch a Chart',
         heading: 'Before You Touch a Chart',
+        hook: 'You set up your chart and your account, and you decide your exit before you ever enter.',
+        learn: [
+          { icon: 'layout', tone: 'purple', label: 'A clean chart setup' },
+          { icon: 'doc', tone: 'teal', label: 'Market, limit and stop orders' },
+          { icon: 'stop', tone: 'pink', label: 'Stops based on structure' },
+          { icon: 'scale', tone: 'peach', label: 'Sizing from your risk plan' },
+        ],
         paragraphs: [
           { text: 'Most new traders start with the setup. We start with everything that keeps you in the game.' },
           { text: 'A clean workspace. Knowing which account you\u2019re in. Knowing how your orders actually fill. Knowing your exit before your entry, your size before your click, and what time it is in the market.' },
@@ -101,6 +115,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 1 \u00b7 Section 3 \u00b7 Candles & Timeframes',
         heading: 'Candles & Timeframes',
+        hook: 'Every candle tells a story, and every timeframe shows a different part of it.',
+        learn: [
+          { icon: 'candle', tone: 'pink', label: 'Every part of a candle' },
+          { icon: 'eye', tone: 'teal', label: 'Reaching vs. accepting a level' },
+          { icon: 'layers', tone: 'purple', label: 'How timeframes stack' },
+          { icon: 'zoom', tone: 'peach', label: 'Zoom out before you zoom in' },
+        ],
         paragraphs: [
           { text: 'Every candle is a tiny record of a fight between buyers and sellers. Most people only read its color.' },
           { text: 'You\u2019re going to read the whole thing: the body, the wicks, and most of all, the close. Then you\u2019ll learn to zoom out before you zoom in.' },
@@ -137,6 +158,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 2 · Section 4 · How Markets Move',
         heading: 'How Markets Move',
+        hook: 'You stop guessing direction and start describing what price is actually doing.',
+        learn: [
+          { icon: 'up', tone: 'teal', label: 'Swing highs and lows' },
+          { icon: 'flag', tone: 'pink', label: 'HH, HL, LH and LL' },
+          { icon: 'swap', tone: 'purple', label: 'Trending vs. ranging' },
+          { icon: 'layers', tone: 'peach', label: 'Internal vs. external structure' },
+        ],
         paragraphs: [
           { text: 'You learned how to read one candle. Now zoom out. Because the market isn\u2019t one candle.' },
           { text: 'Candles move together. They create pushes and pullbacks. Those pushes and pullbacks create swings. And those swings begin forming something much bigger:' },
@@ -171,6 +199,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 2 \u00b7 Section 5 \u00b7 Breaks, Shifts & Fakeouts',
         heading: 'Breaks, Shifts & Fakeouts',
+        hook: 'Not every broken level matters, so you learn to investigate what actually changed.',
+        learn: [
+          { icon: 'bolt', tone: 'pink', label: 'Break of structure (BOS)' },
+          { icon: 'swap', tone: 'purple', label: 'Market structure shift (MSS)' },
+          { icon: 'candle', tone: 'teal', label: 'A wick vs. a close' },
+          { icon: 'eye', tone: 'peach', label: 'Spotting a fakeout' },
+        ],
         paragraphs: [
           { text: 'You can see the structure. Now price starts interacting with it.' },
           { text: 'Highs break. Lows break. Wicks poke through levels. Some of those breaks change the story. Many of them don\u2019t.' },
@@ -205,6 +240,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 2 \u00b7 Section 6 \u00b7 Reading Key Levels',
         heading: 'Reading Key Levels',
+        hook: 'You learn to mark levels with purpose instead of covering your chart in lines.',
+        learn: [
+          { icon: 'ruler', tone: 'purple', label: 'Lines vs. zones' },
+          { icon: 'shield', tone: 'teal', label: 'Support and resistance areas' },
+          { icon: 'flag', tone: 'pink', label: 'Highs and lows as landmarks' },
+          { icon: 'check', tone: 'peach', label: 'A clean, purposeful chart' },
+        ],
         paragraphs: [
           { text: 'You can see the structure. You can interpret what changed. Now: which parts of the chart actually deserve your attention?' },
           { text: 'Most charts aren\u2019t missing levels. They\u2019re drowning in them.' },
@@ -246,6 +288,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 3 \u00b7 Section 7 \u00b7 Understanding Liquidity',
         heading: 'Understanding Liquidity',
+        hook: 'Liquidity is where orders may be sitting, and you learn to read it as context, not an entry rule.',
+        learn: [
+          { icon: 'coin', tone: 'peach', label: 'Buy-side and sell-side liquidity' },
+          { icon: 'stop', tone: 'pink', label: 'Why stops cluster' },
+          { icon: 'scale', tone: 'purple', label: 'Equal highs and lows' },
+          { icon: 'eye', tone: 'teal', label: 'Sweeps vs. breaks' },
+        ],
         paragraphs: [
           { text: 'You can read structure. Now we\u2019re going to investigate the chart: where might orders be concentrated, and what did price actually do there?' },
           { text: 'Phase 3 is market literacy. You\u2019ll learn the language traders use everywhere, without turning every new word into an entry rule.' },
@@ -282,6 +331,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 3 \u00b7 Section 8 \u00b7 Gaps, Imbalances & Price Delivery',
         heading: 'Gaps, Imbalances & Price Delivery',
+        hook: 'You start asking how price got somewhere, not just where it went.',
+        learn: [
+          { icon: 'bolt', tone: 'pink', label: 'Displacement' },
+          { icon: 'candle', tone: 'purple', label: 'Building an FVG' },
+          { icon: 'scale', tone: 'teal', label: 'Balanced vs. imbalanced delivery' },
+          { icon: 'zoom', tone: 'peach', label: 'When a gap actually matters' },
+        ],
         paragraphs: [
           { text: 'You can see where orders may be sitting. Now: how did price travel to get there?' },
           { text: 'Two moves can reach the same place in completely different ways. This section is about the trip.' },
@@ -317,6 +373,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 3 \u00b7 Section 9 \u00b7 Understanding Market Participation',
         heading: 'Understanding Market Participation',
+        hook: 'You read who seems to be pushing price, and you hold that read lightly.',
+        learn: [
+          { icon: 'bars', tone: 'teal', label: 'Buying vs. selling pressure' },
+          { icon: 'layers', tone: 'purple', label: 'Supply and demand zones' },
+          { icon: 'eye', tone: 'pink', label: 'Observation vs. interpretation' },
+          { icon: 'doc', tone: 'peach', label: 'Your Market Read' },
+        ],
         paragraphs: [
           { text: 'You can see where orders may sit and how price delivered. Now the hardest question of Phase 3: what can I actually claim from this chart?' },
           { text: 'Evidence first. Interpretation carefully. Stories never.' },
@@ -362,6 +425,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 4 · Section 10 · Finding Your Bias',
         heading: 'Finding Your Bias',
+        hook: 'You build a thesis you can explain, and you define what would prove it wrong.',
+        learn: [
+          { icon: 'globe', tone: 'purple', label: 'Reading the 4H room' },
+          { icon: 'zoom', tone: 'teal', label: 'The 1H swing that matters' },
+          { icon: 'target', tone: 'pink', label: 'Naming an objective' },
+          { icon: 'stop', tone: 'peach', label: 'What invalidates your thesis' },
+        ],
         paragraphs: [
           { text: 'Phases 1 to 3 taught you to recognize, read and filter. Now you start building something: <strong>a market thesis.</strong>' },
           { cls: 'sec-welcome-big', text: 'WHAT IS THE MARKET TELLING ME?' },
@@ -398,6 +468,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 4 · Section 11 · Location Within the Range',
         heading: 'Location Within the Range',
+        hook: 'Direction without location is incomplete, so you learn where price sits inside its range.',
+        learn: [
+          { icon: 'ruler', tone: 'purple', label: 'Finding equilibrium' },
+          { icon: 'scale', tone: 'pink', label: 'Premium vs. discount' },
+          { icon: 'target', tone: 'teal', label: 'Room to your objective' },
+          { icon: 'check', tone: 'peach', label: 'A complete 4H to 1H thesis' },
+        ],
         paragraphs: [
           { text: 'You know the doors. You know the room. You know the 1H movement inside it.' },
           { cls: 'sec-welcome-big', text: 'WHERE ARE YOU STANDING?' },
@@ -439,6 +516,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 5 · Section 12 · ICC Across the Market',
         heading: 'You Earned Your Way Here.',
+        hook: 'You learn ICC, the story price tells in three chapters: Indication, Correction and Continuation.',
+        learn: [
+          { icon: 'bolt', tone: 'teal', label: 'Meaningful indication' },
+          { icon: 'swap', tone: 'pink', label: 'Correction vs. reversal' },
+          { icon: 'up', tone: 'purple', label: 'Waiting for continuation' },
+          { icon: 'layers', tone: 'peach', label: 'ICC on any timeframe' },
+        ],
         paragraphs: [
           { text: '4H: Read the Room ✓ · 1H: Build the Map ✓ · Thesis ✓' },
           { text: 'You know how to read the market. Now Dayli shows you how she <strong>organizes the story</strong> price is telling.' },
@@ -481,6 +565,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 5 · Section 13 · The Dayli ICC 1-Minute Entry Model™',
         heading: 'Now… How Do I Actually Enter?',
+        hook: 'This is the 1-minute entry model, where price has to prove every step before you act.',
+        learn: [
+          { icon: 'flag', tone: 'purple', label: 'Choosing your PIL' },
+          { icon: 'candle', tone: 'pink', label: 'Counting closes, not wicks' },
+          { icon: 'check', tone: 'teal', label: 'Indication, Correction, Continuation' },
+          { icon: 'target', tone: 'peach', label: 'Entering on the first retest' },
+        ],
         paragraphs: [
           { text: '4H: Read the Room ✓ · 1H: Build the Map ✓ · HTF ICC: Read the Story ✓' },
           { cls: 'sec-welcome-big', text: '1M · EXECUTE.' },
@@ -500,12 +591,12 @@ export const PHASES = [
       },
       checkpoint: { title: 'ICC Execution Lab 🎯', xp: 0, firstStep: 'game', desc: 'ICC Execution Lab + Knowledge Check + Check-In. Clear this to unlock Section 14.' } },
       { key: 's14', n: 14, badge: 't', title: 'Making the Timeframes Work Together', lessons: [
-        { title: '4H: Read the Room', quote: 'Where is price within the larger structure?', xp: 80 },
-        { title: '1H: Build the Map', quote: 'What structure and swings are actually relevant?', xp: 80 },
-        { title: 'The 15M Checkpoint', quote: 'The bridge between the higher-timeframe story and execution.', xp: 80 },
-        { title: '1M: Execute Dayli ICC', quote: 'Is the entry model actually present? Then, and only then, you act.', xp: 80 },
-        { title: 'How HTF ICC and 1M ICC Work Together', quote: 'The same sequence, nested inside itself.', xp: 80 },
-        { title: 'Conflicting Information Across Timeframes', quote: 'The higher timeframe provides context, but lower-timeframe structure shows what price is doing right now. Learn which question each timeframe is answering.', xp: 80 },
+        { n: 25, title: '4H: Read the Room', quote: 'Where is price within the larger structure?', xp: 80 },
+        { n: 26, title: '1H: Build the Map', quote: 'What structure and swings are actually relevant?', xp: 80 },
+        { n: 27, title: 'The 15M Checkpoint', quote: 'The bridge between the higher-timeframe story and execution.', xp: 80 },
+        { n: 28, title: '1M: Execute Dayli ICC', quote: 'Is the entry model actually present? Then, and only then, you act.', xp: 80 },
+        { n: 29, title: 'How HTF ICC and 1M ICC Work Together', quote: 'The same sequence, nested inside itself.', xp: 80 },
+        { n: 30, title: 'Conflicting Information Across Timeframes', quote: 'The higher timeframe provides context, but lower-timeframe structure shows what price is doing right now. Learn which question each timeframe is answering.', xp: 80 },
       ], game: { title: 'ICC Sequence Game', quote: 'Level 1: spot Indication. Level 5: full HTF analysis into 1M execution.', xp: 100 } },
     ],
   },
@@ -527,6 +618,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 6 · Section 15 · How to Actually Enter',
         heading: 'Pulling the Trigger.',
+        hook: 'Knowing where price may go is not the same as having permission to enter.',
+        learn: [
+          { icon: 'doc', tone: 'purple', label: 'Your pre-entry card' },
+          { icon: 'eye', tone: 'teal', label: 'Developing vs. confirmed' },
+          { icon: 'clock', tone: 'pink', label: 'Timing the first retest' },
+          { icon: 'stop', tone: 'peach', label: 'Choosing no trade' },
+        ],
         paragraphs: [
           { text: 'PIL → Indication → Correction → Continuation → Retest → Entry.' },
           { text: 'You know the model. But knowing the sequence on a screenshot and watching it form candle by candle are two different things. 😂' },
@@ -561,6 +659,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 6 · Section 16 · Managing the Trade',
         heading: 'You’re In. Now What? 😭',
+        hook: 'Once you’re in, your job is to follow the plan you wrote before you entered.',
+        learn: [
+          { icon: 'lock', tone: 'purple', label: 'Locking your management plan' },
+          { icon: 'layers', tone: 'teal', label: 'Partials and runners' },
+          { icon: 'shield', tone: 'pink', label: 'Moving a stop for a reason' },
+          { icon: 'scale', tone: 'peach', label: 'Grading management fairly' },
+        ],
         paragraphs: [
           { text: '+$40 · +$86 · +$124 · +$61 · +$18 · −$12' },
           { cls: 'sec-welcome-big', text: 'MANAGE THE PLAN. NOT THE EMOTION.' },
@@ -597,6 +702,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 6 · Section 17 · Protecting Your Account 🛡️',
         heading: 'One Trade Isn’t the Game.',
+        hook: 'You make sure every trade fits your account before you take it.',
+        learn: [
+          { icon: 'coin', tone: 'peach', label: 'Stop distance into dollars' },
+          { icon: 'scale', tone: 'purple', label: 'Sizing from your risk' },
+          { icon: 'ruler', tone: 'teal', label: 'Speaking in R' },
+          { icon: 'stop', tone: 'pink', label: 'Respecting your daily limit' },
+        ],
         paragraphs: [
           { text: 'Trade 1 · Trade 2 · Trade 3 · Trade 4 · Trade 5. Some wins. Some losses.' },
           { text: 'You know how to take a trade. <strong>But can your account survive the way you’re taking them?</strong>' },
@@ -642,6 +754,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 7 · Section 1 · Your Mind Is the Market 🪞',
         heading: 'She Already Knows the Chart. Now the Lesson Is Her.',
+        hook: 'You already know how to read the chart, so now you learn to read yourself while you trade.',
+        learn: [
+          { icon: 'heart', tone: 'pink', label: 'The moment before you act' },
+          { icon: 'up', tone: 'teal', label: 'What wins and losses do to you' },
+          { icon: 'clock', tone: 'purple', label: 'Waiting is the work' },
+          { icon: 'user', tone: 'peach', label: 'Your worth isn’t your P&L' },
+        ],
         paragraphs: [
           { text: 'ANALYSIS ✓ · ENTRY ✓ · MANAGEMENT ✓ · RISK ✓' },
           { text: 'New session. A loss. The next setup begins forming. <span class="sec-welcome-quote">“I need that back.”</span> <span class="sec-welcome-quote">“This one better work.”</span> <span class="sec-welcome-quote">“Maybe I’ll size up.”</span> <span class="sec-welcome-quote">“Just this once.”</span>' },
@@ -676,6 +795,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 7 · Section 2 · Rules That Protect You 📕',
         heading: 'Your Rules Weren’t Written for the Disciplined You.',
+        hook: 'You write rules while you’re calm so they protect you when you’re not.',
+        learn: [
+          { icon: 'doc', tone: 'purple', label: 'Rules written while calm' },
+          { icon: 'stop', tone: 'pink', label: 'Leaving your stop alone' },
+          { icon: 'lock', tone: 'teal', label: 'No-chase rules with no loopholes' },
+          { icon: 'check', tone: 'peach', label: 'Building your rulebook' },
+        ],
         paragraphs: [
           { text: '<span class="sec-welcome-quote">“I’m FOMOing.”</span> Great. The cursor is still hovering over BUY. <strong>Now what?</strong>' },
           { cls: 'sec-welcome-big', text: 'THEY WERE WRITTEN FOR THE VERSION OF YOU WHO DOESN’T FEEL DISCIPLINED.' },
@@ -711,6 +837,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 7 · Section 3 · Reading the Environment 🌡️',
         heading: 'Your Model Tells You What. The Environment Tells You Whether.',
+        hook: 'Your model tells you what to look for, and the market tells you whether today is the day.',
+        learn: [
+          { icon: 'up', tone: 'teal', label: 'Clean markets: participate' },
+          { icon: 'shield', tone: 'pink', label: 'Choppy markets: protect' },
+          { icon: 'clock', tone: 'purple', label: 'Between structure: wait' },
+          { icon: 'target', tone: 'peach', label: 'When nothing is the right call' },
+        ],
         paragraphs: [
           { text: 'RULEBOOK ✓ · RISK ✓ · SESSION ✓ · EMOTIONAL STATE: NEUTRAL. A perfect-looking ICC. <span class="sec-welcome-quote">“So I take it?”</span> Zoom out: messy 1H, competing PILs, a major objective right above, news in two minutes.' },
           { cls: 'sec-welcome-big', text: 'DON’T JUST ASK “IS IT VALID?” ASK “WHAT KIND OF ENVIRONMENT IS IT FORMING IN?”' },
@@ -752,6 +885,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 8 · Section 1 · Real Trade Breakdown Lab 📊',
         heading: 'Stop Judging the Trade by the Ending.',
+        hook: 'You break down every trade in order and grade the decision before you look at the outcome.',
+        learn: [
+          { icon: 'doc', tone: 'purple', label: 'A full trade breakdown' },
+          { icon: 'check', tone: 'teal', label: 'Valid vs. quality trades' },
+          { icon: 'swap', tone: 'pink', label: 'A pass vs. a miss' },
+          { icon: 'eye', tone: 'peach', label: 'Chart before indicator' },
+        ],
         paragraphs: [
           { text: 'CASE FILE · CHART WORKSPACE · BUILD YOUR READ · MAKE YOUR DECISION · REVEAL OUTCOME · REVIEW WITH DAYLI' },
           { cls: 'sec-welcome-big', text: 'BREAK DOWN THE WHOLE STORY.' },
@@ -780,6 +920,13 @@ export const PHASES = [
       welcome: {
         eyebrow: 'Phase 8 · Section 2 · Practice Like a Pro 📈',
         heading: 'Stop Guessing About Your Trading. Build Evidence.',
+        hook: 'You build real evidence about your trading through practice, journaling and honest reviews.',
+        learn: [
+          { icon: 'clock', tone: 'purple', label: 'Replay with the future locked' },
+          { icon: 'bars', tone: 'teal', label: 'Building a real sample' },
+          { icon: 'doc', tone: 'pink', label: 'Fast, honest journaling' },
+          { icon: 'flask', tone: 'peach', label: 'Strategy vs. trader problems' },
+        ],
         paragraphs: [
           { text: 'LESSONS COMPLETED: 100+ · CASE STUDIES: COMPLETE · BADGES: many. <span class="sec-welcome-quote">“So… am I ready?”</span>' },
           { text: 'BACKTESTS: 0 · PERSONAL REPS: 0 · SCREENSHOT LIBRARY: EMPTY · WEEKLY REVIEWS: 0 · PERSONAL DATA: NOT ENOUGH YET' },
