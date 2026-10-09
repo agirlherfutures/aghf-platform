@@ -55,7 +55,7 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
   el.innerHTML = `
     <div class="p8-desk">
       <div class="p8-topbar">
-        <div class="p8-brand"><span class="p8-dot"></span>AGHF TRADER DESK<span class="p8-sep">·</span><span class="p8-case-no">${esc(c.caseNo || 'CASE')}</span></div>
+        <div class="p8-brand"><span class="p8-dot"></span><span class="p8-case-no">${esc(c.caseNo || 'CASE')}</span></div>
         <div class="p8-timeline">${STAGES.map((s) => `<div class="p8-tl" data-st="${s.key}"><i></i><span>${s.label}</span></div>`).join('<b class="p8-tl-arrow">→</b>')}</div>
       </div>
       <div class="p8-grid">
@@ -82,29 +82,15 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
   let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { if (el.isConnected) drawChart(); }, 120); });
 
   // ── case file ──────────────────────────────────────────────────────────
+  // The case file is a short row of chips: what you need, nothing you don't.
   function drawFile() {
     const ctx = c.context || [];
-    const statusTone = { OPEN: 'open', 'READ LOCKED': 'locked', 'OUTCOME REVEALED': 'revealed', REVIEWED: 'done' }[S.status];
-    fileEl.innerHTML = `
-      <div class="p8-f-no">${esc(c.caseNo || '')}</div>
-      <div class="p8-f-title">${esc(c.title || '')}</div>
-      <dl class="p8-f-dl">
-        <dt>Instrument</dt><dd>${esc(c.instrument || 'MNQ')}</dd>
-        <dt>Date</dt><dd>${esc(c.historicalDate || '·')}</dd>
-        <dt>Session</dt><dd>${esc(c.session || 'NY AM')}</dd>
-        <dt>Direction</dt><dd>${S.lock.outcomeHidden && c.hideDir ? '🔒 your read' : esc(c.dir === 'short' ? 'Short bias' : 'Long bias')}</dd>
-        <dt>Outcome</dt><dd>${S.lock.outcomeHidden ? '<span class="p8-hidden">🔒 HIDDEN</span>' : `<b>${esc(outcomeLabel(c))}</b>`}</dd>
-        <dt>Indicator</dt><dd>${S.view.indicator ? 'ON' : c.indicatorAvailable ? (indicatorAssist() === 'ON' ? 'ON' : 'REVEAL AFTER ANALYSIS') : 'OFF'}</dd>
-        <dt>Difficulty</dt><dd>${esc(c.difficulty || 'APPRENTICE')}</dd>
-        <dt>Status</dt><dd><span class="p8-status is-${statusTone}">${S.status}</span></dd>
-      </dl>
-      ${ctx.length ? `<div class="p8-f-ctx"><div class="p8-f-h">CONTEXT</div>${ctx.map((x) => `<div class="p8-ctx ${x.tone ? `is-${x.tone}` : ''}">${esc(x.text)}</div>`).join('')}</div>` : ''}
-      <div class="p8-f-h">TIMEFRAMES</div>
-      <div class="p8-f-tfs">${TF_LIST.map((t) => `<button type="button" data-tf="${t}" class="${S.tf === t ? 'on' : ''}">${t}</button>`).join('')}</div>
-      <div class="p8-f-h">MY NOTES</div>
-      <textarea class="p8-notes" rows="4" placeholder="Anything you noticed…">${esc(S.rec.notes.free || '')}</textarea>`;
-    fileEl.querySelectorAll('.p8-f-tfs button').forEach((b) => b.addEventListener('click', () => { S.tf = b.dataset.tf; draw(); }));
-    fileEl.querySelector('.p8-notes').addEventListener('input', (e) => { S.rec.notes.free = e.target.value; });
+    const chip = (t, cls = '') => `<span class="p8-chip ${cls}">${t}</span>`;
+    fileEl.innerHTML = `<div class="p8-chiprow">
+      ${chip(esc(c.instrument || 'MNQ'))}${chip(esc(c.session || 'NY AM'))}
+      ${S.lock.outcomeHidden ? chip('🔒 Outcome hidden', 'is-lock') : chip(`Outcome: <b>${esc(outcomeLabel(c))}</b>`, 'is-out')}
+      ${ctx.map((x) => chip(esc(x.text), x.tone ? `is-${x.tone}` : '')).join('')}
+    </div>`;
   }
 
   function drawTimeline() {
@@ -138,7 +124,7 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
   function drawChart() {
     const tf = S.tf;
     W = Math.max(340, Math.round(chartEl.clientWidth || 900));
-    H = Math.round(Math.min(560, Math.max(300, W * (W < 640 ? 0.78 : 0.52))));
+    H = Math.round(Math.min(440, Math.max(300, W * (W < 640 ? 0.78 : 0.42))));
     let cursor = S.lock.cursor;
     if (!S.lock.outcomeHidden) cursor = S.view.scrub != null ? S.view.scrub : S.view.hindsight ? c.m1.length : Math.max(S.lock.cursor, c.decisionIndex + 1);
     const bars = visibleBars(c, tf, Math.min(cursor, S.lock.max));
@@ -156,8 +142,10 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
       const def = MARKS[m.type]; if (!def) return;
       if (def.kind === 'level') {
         const ownTf = def.tf === tf || (tf === '1M' && ['ENTRY', 'STOP', 'TARGET'].includes(m.type));
-        if (ownTf) { hi = Math.max(hi, m.price); lo = Math.min(lo, m.price); }
-        levels.push({ ...m, src, own: ownTf });
+        // A level only shows on the timeframe it was marked on.
+        if (!ownTf) return;
+        hi = Math.max(hi, m.price); lo = Math.min(lo, m.price);
+        levels.push({ ...m, src, own: true });
       } else if (tf === '1M') cmarks.push({ ...m, src });
     }));
     const pos = S.rec.decision?.choice === 'TAKE' && tf === '1M' ? S.rec.decision : null;
@@ -403,10 +391,9 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
       box.innerHTML = `
         <div class="p8-kicker">STEP ${stageIndex(stg.key) + 1} · ${stg.key}</div>
         <h3 class="p8-h">${esc(st.title || `${stg.key} · ${stg.verb}`)}</h3>
-        ${st.prompts ? `<ul class="p8-prompts">${st.prompts.map((p) => `<li>${p}</li>`).join('')}</ul>` : ''}
         ${demo ? `<div class="p8-demo"><div class="p8-dayli">DAYLI MARKS IT</div><div class="p8-demo-lines"></div>${btn('Watch Dayli mark it ▶', 'p8-demo-go')}</div>` : ''}
         ${S.allowed.length && !demo ? `<div class="p8-need"></div>` : ''}
-        <div class="p8-asks">${asks.map((a) => `<div class="p8-ask" data-k="${a.key}"><div class="p8-q">${a.q}</div>${chips(a.key, a.options, S.rec.asks[a.key])}<div class="p8-fb"></div></div>`).join('')}</div>
+        <div class="p8-asks">${asks.map((a, i) => `<div class="p8-ask${i && S.rec.asks[asks[i - 1].key] == null ? ' is-later' : ''}" data-k="${a.key}"><div class="p8-q">${a.q}</div>${chips(a.key, a.options, S.rec.asks[a.key])}<div class="p8-fb"></div></div>`).join('')}</div>
         ${st.note ? `<label class="p8-lbl">${esc(st.note)}</label><textarea class="p8-ta" rows="2" placeholder="${esc(st.notePh || 'In your own words…')}"></textarea>` : ''}
         ${st.confidence ? `<div class="p8-q">How confident are you in this read?</div>${chips('confidence', CONFIDENCE, null)}` : ''}
         <div class="p8-after"></div>
@@ -435,6 +422,8 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
       bindChips(box, (k, v) => {
         if (k === 'confidence') { S.rec.confidence = v; return refresh(); }
         picks[k] = v; S.rec.asks[k] = v;
+        // One question at a time: answering one shows the next.
+        box.querySelector('.p8-ask.is-later')?.classList.remove('is-later');
         const a = asks.find((x) => x.key === k);
         if ((demo || st.feedback === 'instant') && a.expert != null) {
           const s = compareChoice(a, v);
@@ -480,7 +469,6 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
       const pauses = [...(st.pauses || [])];
       box.innerHTML = `
         <div class="p8-kicker">STEP 4 · 1M</div><h3 class="p8-h">${esc(st.title || '1M · EXECUTE')}</h3>
-        ${st.prompts ? `<ul class="p8-prompts">${st.prompts.map((p) => `<li>${p}</li>`).join('')}</ul>` : ''}
         <div class="p8-replay-hint">${demo ? 'Press <b>Play</b>. Dayli labels each event as it closes.' : 'Press <b>Play</b> or <b>Next</b> to advance. Mark each event once its candle has <b>closed</b>.'}</div>
         <div class="p8-pausebox"></div>
         ${demo ? '' : '<div class="p8-need"></div>'}

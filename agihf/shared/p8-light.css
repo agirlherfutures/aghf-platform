@@ -1,0 +1,78 @@
+/* p8-light.css — Phase 8 cases (and everything built on casefile.js) in the light lesson style.
+   Same content and steps; only the look changes: light colours, a centered column,
+   the chart full width with the analysis panel under it, a short chip row instead of the case file. */
+body.p8-on{
+  --dk-bg:#FDF8F5; --dk-panel:#FFFFFF; --dk-panel2:#FFFFFF; --dk-line:#F1E7E1; --dk-text:#3D2B20; --dk-dim:#7A5C50;
+  --dk-pink:#C8455F; --dk-mint:#1F8A7E; --dk-peach:#C4741F; --dk-gold:#9A6B00; --dk-purple:#5E56B8;
+}
+/* centered column (same width the rest of the Academy uses, so it lines up with the sidebar centering) */
+body.p8-on .main{max-width:1100px;padding:28px 28px 96px;}
+/* lesson header back to the normal light header */
+body.p8-on .lh-header{background:#fff;color:var(--text);border:1px solid var(--border);box-shadow:0 10px 40px rgba(44,24,16,.06);}
+body.p8-on .lh-header strong, body.p8-on .lh-sp-row, body.p8-on .lh-nav-link{color:var(--dark);}
+body.p8-on .lh-sp-track{background:var(--pink-pale);}
+body.p8-on .lh-header .lh-title{color:var(--dark);}
+body.p8-on .lh-header .lh-hook, body.p8-on .lh-header .lh-crumb, body.p8-on .lh-header .lh-count{color:var(--muted);}
+
+/* the desk card */
+body.p8-on .p8-desk{background:#fff;border:1px solid var(--border);box-shadow:0 10px 40px rgba(44,24,16,.06);border-radius:24px;padding:clamp(12px,2.4vw,24px);}
+body.p8-on .p8-topbar{justify-content:center;border-bottom:0;padding-bottom:6px;}
+body.p8-on .p8-timeline{margin-left:0;justify-content:center;}
+body.p8-on .p8-tl{font-size:.7rem;padding:5px 11px;background:var(--cream);border-color:transparent;}
+body.p8-on .p8-tl.is-cur{background:var(--dark);color:#fff;border-color:var(--dark);} body.p8-on .p8-tl.is-cur i{background:#fff;box-shadow:none;}
+body.p8-on .p8-tl.is-done{background:var(--teal-pale);border-color:transparent;}
+body.p8-on .p8-brand{display:none;}
+body.p8-on .p8-tl-arrow{display:none;}
+
+/* one column: chips → chart → panel */
+body.p8-on .p8-grid{grid-template-columns:minmax(0,1fr);gap:14px;}
+body.p8-on .p8-file{order:0;position:static;background:none;border:0;padding:0;}
+body.p8-on .p8-chartcol{order:1;border-radius:18px;}
+body.p8-on .p8-panel{order:2;position:static;max-height:none;overflow:visible;width:100%;max-width:760px;margin:0 auto;border-radius:18px;padding:18px 20px;}
+body.p8-on .p8-handle{display:none;}
+.p8-chiprow{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
+.p8-chip{background:var(--cream);border-radius:999px;padding:4px 12px;font-size:.78rem;font-weight:700;color:var(--muted);}
+.p8-chip.is-lock{background:#FFF6DC;color:#8a6100;}
+.p8-chip.is-out b{color:var(--dark);}
+.p8-chip.is-stop,.p8-chip.is-warn{background:var(--pink-pale);color:#8a2f45;}
+
+/* questions: one at a time */
+.p8-ask.is-later{display:none;}
+body.p8-on .p8-q{font-size:1rem;font-weight:800;}
+body.p8-on .p8-chips{gap:8px;}
+body.p8-on .p8-chips button{background:#fff;border:1.5px solid var(--border);color:var(--dark);border-radius:14px;padding:10px 14px;font-weight:700;}
+body.p8-on .p8-chips button.on{border-color:var(--dark);box-shadow:inset 0 0 0 1.5px var(--dark);background:var(--cream);}
+body.p8-on .p8-h{font-size:1.4rem;}
+body.p8-on .p8-say{background:#FFF6DC;border-radius:12px;padding:10px 12px;color:var(--dark);}
+
+/* text that was white on dark */
+body.p8-on :is(.dk-m b,.dk-verdict b,.dk-hello h2,.dk-hc b,.dl-card b,.p8-h,.p8-say b,.p8-q,.p8-f-title,.p8-rp-t,.p8-card-f,.p8-cf-t,.p8-principle,.p8-ev-l,.dk-studies .dk-card b){color:var(--dark);}
+body.p8-on :is(.p8-tf.on,.p8-rv-g button.on){color:var(--dark);background:var(--cream);}
+body.p8-on .p8-form input, body.p8-on .p8-desk input, body.p8-on .p8-desk select, body.p8-on .p8-desk textarea{color:var(--dark);background:#fff;}
+body.p8-on .p8-btn{background:#fff;color:var(--dark);border:1.5px solid var(--border);border-radius:999px;}
+body.p8-on .p8-btn.is-primary, body.p8-on .p8-btn.is-lock{background:var(--dark);color:#fff;border-color:var(--dark);letter-spacing:0;}
+body.p8-on .p8-btn:disabled{opacity:.4;}
+body.p8-on .p8-dayli{color:#fff;}
+body.p8-on .p8-principle{background:#FFF6DC;border-color:#F1D78A;}
+body.p8-on .p8-ev, body.p8-on .p8-eight{background:#fff;border:1px solid var(--border);}
+body.p8-on .p8-e{background:var(--cream);border-color:var(--border);}
+body.p8-on .p8-e b{color:var(--dark);}
+
+/* charts: light paper */
+body.p8-on .p8-bg{fill:#FFFFFF;}
+body.p8-on .p8-grid-l{stroke:#F1E7E1;}
+body.p8-on .p8-ax{fill:#7A5C50;}
+body.p8-on .p8-mini{background:#FDF8F5;}
+body.p8-on svg rect[fill="#100E18"]{fill:#FDF8F5;}
+body.p8-on svg [stroke="#221E33"]{stroke:#F1E7E1;}
+body.p8-on .p8-replay .p8-play{color:#fff;}
+
+@media (max-width:820px){
+  body.p8-on .p8-panel{position:static;max-height:none;box-shadow:none;border-radius:18px;}
+  body.p8-on .p8-desk{margin-bottom:0;}
+}
+
+/* main buttons sit on the right, like every other lesson */
+body.p8-on .p8-panel .p8-btn.is-primary, body.p8-on .p8-panel .p8-btn.is-lock{width:fit-content;min-width:220px;margin-left:auto;display:block;padding:13px 24px;}
+@media (max-width:600px){ body.p8-on .p8-panel .p8-btn.is-primary, body.p8-on .p8-panel .p8-btn.is-lock{width:100%;} }
+body.p8-on .p8-tl.is-cur.is-done{background:var(--dark);color:#fff;}
