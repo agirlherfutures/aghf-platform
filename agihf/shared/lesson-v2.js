@@ -314,7 +314,7 @@ export function renderV2Screen(el, slide, satisfy, helpers) {
       ${v.schedule.note ? `<div class="v2-sched-note">${v.schedule.note}</div>` : ''}
     </div>`;
 
-  const { act, card } = shell(el, slide, right, slide.check ? '<div class="v2-check-slot"></div>' : '', { cls: right ? '' : 'v2-solo' });
+  const { act, card } = shell(el, slide, right, slide.check ? '<div class="v2-check-slot"></div>' : '', { cls: !right ? 'v2-solo' : v.chart ? 'v2-wide' : '' });
   const gates = [];
   const ready = () => { if (gates.every((g) => g.done)) nextBtn(act, satisfy, slide.cta || 'Next →', !!slide.ctaPink); };
 
@@ -388,11 +388,11 @@ export function renderV2Complete(el, data, { nextHref, backHref, nextTitle, next
         <div class="v2-quote">${data.doneHeading || `${data.title} ✦`}</div>
         ${data.remember ? `<p class="v2-line">${data.remember}</p>` : ''}
         ${(data.takeaways || []).length ? `<ul class="v2-takeaways">${data.takeaways.map((t) => `<li>${t}</li>`).join('')}</ul>` : ''}
-        <div class="v2-gp">+${data.xpValue} GP</div>
+        ${data.xpValue ? `<div class="v2-gp">+${data.xpValue} GP</div>` : ''}
         <div class="v2-act"><button type="button" class="v2-btn v2-btn-pink" id="v2NextBtn">${nextTitle ? `Next: ${nextTitle} →` : (nextCtaLabel || 'Back to lessons →')}</button></div>
       </div>
     </div>
-    <div class="lw-back-link"><a href="${backHref}">← Back to all lessons</a></div>`;
+    <div class="lw-back-link"><a href="${backHref}">${data.backLabel || '← Back to all lessons'}</a></div>`;
   mountHost(el.querySelector('.v2-host-box'), 'cheer');
   el.querySelector('#v2NextBtn').addEventListener('click', () => { window.location.href = nextHref || backHref; });
 }

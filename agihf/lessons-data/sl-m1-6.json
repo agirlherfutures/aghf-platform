@@ -1,0 +1,217 @@
+{
+ "phase": "sl",
+ "section": "m1",
+ "lessonNumber": "m1-6",
+ "title": "The 5M: BOS #2",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "Correction #1 is over when the 5M breaks again. That break is BOS #2, and it still isn’t your entry.",
+ "launchpad": {
+  "outcome": "Identify BOS #2 on the 5M: the first candle close through the high (bullish) or low (bearish) that Correction #1 pulled back from.",
+  "missionQuestion": "Why is BOS #2 a step in the sequence, not a signal to trade?",
+  "estMinutes": 7
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "BOS #2 is a 5M continuation break in the intended direction.",
+  "Bullish: a 5M candle closes above the high Correction #1 pulled back from. Bearish: a 5M candle closes below the low Correction #1 pulled back from.",
+  "Wicks don’t count. BOS #2 needs a 5M candle close.",
+  "You still don’t enter on BOS #2. Correction #2, BOS #3 and the retest come next."
+ ],
+ "remember": "BOS #2 CONTINUES THE STORY. IT DOESN’T START THE TRADE.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 1 · Lesson 6",
+   "headline": "Correction #1 is done. <em>Now the 5M breaks again.</em>",
+   "line": "That second break is BOS #2 (the second break of structure). It confirms the move is continuing, and it still isn’t your entry.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · What BOS #2 is",
+   "headline": "BOS #2 is a <em>5M continuation close.</em>",
+   "line": "Tap each card. Three things make a BOS #2.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "clock",
+      "tone": "teal",
+      "label": "On the 5M",
+      "sub": "BOS #1 happens on the 15M. BOS #2 happens on the 5M, after Correction #1."
+     },
+     {
+      "icon": "ruler",
+      "tone": "purple",
+      "label": "Through the Correction #1 swing",
+      "sub": "Bullish: a close above the high Correction #1 pulled back from. Bearish: a close below the low it pulled back from."
+     },
+     {
+      "icon": "candle",
+      "tone": "peach",
+      "label": "A candle close",
+      "sub": "Wicks don’t count. A 5M candle has to close through the level."
+     }
+    ]
+   },
+   "cta": "Watch one print →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 2 · BOS #2 on a chart",
+   "headline": "Watch Correction #1 end <em>and BOS #2 print.</em>",
+   "line": "Bullish example. Press the button to print each part.",
+   "scenario": "bull-valid",
+   "tf": "15M",
+   "start": "bos1",
+   "toggle": false,
+   "show": [
+    "bos1"
+   ],
+   "steps": [
+    {
+     "tf": "5M",
+     "until": "c1",
+     "show": [
+      "c1"
+     ],
+     "caption": "<b>Correction #1.</b> After BOS #1, the 5M pulls back from a high. Mark that high: it’s the level BOS #2 has to close through."
+    },
+    {
+     "until": "bos2",
+     "show": [
+      "bos2"
+     ],
+     "caption": "<b>BOS #2.</b> The first 5M candle to close above the high Correction #1 pulled back from. The move is continuing."
+    },
+    {
+     "until": "bos2+2",
+     "caption": "<b>Still no entry.</b> There’s no zone yet. Correction #2 hasn’t formed, and BOS #3 hasn’t happened."
+    }
+   ],
+   "cta": "Your turn →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 3 · Your turn",
+   "headline": "Bearish this time. <em>Find BOS #2.</em>",
+   "line": "Correction #1 is marked. In a bearish model it bounces up from a low.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "until": "bos2+2",
+   "show": [
+    "bos1",
+    "c1"
+   ],
+   "within": [
+    "c1",
+    "bos2+2"
+   ],
+   "ask": "Tap the first 5M candle that closes below the low Correction #1 pulled back from.",
+   "target": "bos2",
+   "why": "That’s the first 5M candle close below the low Correction #1 pulled back from. That’s BOS #2.",
+   "after": {
+    "show": [
+     "bos2"
+    ],
+    "caption": "<b>BOS #2 is in.</b> You still don’t enter. Next you wait for Correction #2."
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 4 · Check yourself",
+   "headline": "A wick pokes through. <em>Is that BOS #2?</em>",
+   "line": "Bullish model. A 5M candle trades above the Correction #1 high, then closes back below it.",
+   "visual": {
+    "icon": "candle",
+    "tone": "peach",
+    "caption": "Wick or close?"
+   },
+   "check": {
+    "prompt": "Is that candle BOS #2?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, price traded above the high",
+      "correct": false,
+      "feedback": "Trading through isn’t enough. BOS #2 needs a 5M candle to close above the high Correction #1 pulled back from."
+     },
+     {
+      "label": "No, BOS #2 needs a 5M candle close above the high",
+      "correct": true,
+      "why": "Right. Wicks don’t count. Wait for a 5M candle that closes through the level."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 5 · When BOS #2 never comes",
+   "headline": "No BOS #2. <em>No sequence.</em>",
+   "line": "Bearish example. Watch what happens after Correction #1.",
+   "scenario": "bear-no-bos2",
+   "tf": "15M",
+   "start": "start",
+   "toggle": false,
+   "steps": [
+    {
+     "until": "bos1",
+     "show": [
+      "bos1"
+     ],
+     "caption": "<b>BOS #1.</b> A 15M candle closes below the 15M level, in the direction of the higher-timeframe story.",
+     "next": "Switch to the 5M →"
+    },
+    {
+     "tf": "5M",
+     "until": "c1",
+     "show": [
+      "c1"
+     ],
+     "caption": "<b>Correction #1.</b> The 5M bounces up from a low. BOS #2 would be a 5M close below that low."
+    },
+    {
+     "until": "end",
+     "caption": "<b>No 5M candle closes below that low.</b> BOS #2 never happens, so the sequence is incomplete."
+    }
+   ],
+   "check": {
+    "prompt": "BOS #1 and Correction #1 are done, but BOS #2 never came. What do you do?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Enter short, BOS #1 already confirmed the direction",
+      "correct": false,
+      "feedback": "Don’t enter simply because BOS #1 occurred. Without BOS #2 there’s no Correction #2, no zone and no BOS #3."
+     },
+     {
+      "label": "No trade, the sequence is incomplete",
+      "correct": true,
+      "why": "Right. The sequence needs all of its parts. With no BOS #2, there’s nothing to trade."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "BOS #2 tells you the story is still going. <em>It doesn’t tell you to trade.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, what is BOS #2, and why don’t you enter on it?",
+   "modelAnswer": "BOS #2 is the first 5M candle that closes through the high (bullish) or the low (bearish) that Correction #1 pulled back from. A wick through the level doesn’t count. I don’t enter on BOS #2 because the zone doesn’t exist yet: Correction #2 has to create it, BOS #3 has to activate it, and then I wait for price to return to it."
+  }
+ ]
+}

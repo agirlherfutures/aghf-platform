@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategy Lab — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/lesson-engine.css">
+<link rel="stylesheet" href="shared/structure-charts.css">
+<link rel="stylesheet" href="shared/topdown.css">
+<link rel="stylesheet" href="shared/icc.css">
+<link rel="stylesheet" href="shared/trigger.css">
+<link rel="stylesheet" href="shared/mind.css">
+<link rel="stylesheet" href="shared/casefile.css">
+<link rel="stylesheet" href="shared/desk.css">
+<link rel="stylesheet" href="shared/loop-engine.css">
+<link rel="stylesheet" href="shared/lesson-slides.css">
+<link rel="stylesheet" href="shared/lesson-v2.css">
+<link rel="stylesheet" href="shared/strategy-lab.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="strategy-lab"></script>
+
+<main class="main">
+  <div class="lh-header">
+    <div class="lh-crumb-row">
+      <div class="lh-crumb" id="lhCrumb">Strategy Lab</div>
+      <a class="lh-map-toggle" href="strategy-lab.html">☰ Strategy Lab</a>
+    </div>
+    <h1 class="lh-title" id="lhTitle">Strategy Lab</h1>
+    <div class="lh-meta-row">
+      <span class="lh-count" id="lhCount"></span>
+      <span class="lh-pill dur">Optional</span>
+    </div>
+    <div class="lh-section-progress">
+      <div class="lh-sp-row"><strong id="lhSectionName">Module</strong><span id="lhSectionPct">0%</span></div>
+      <div class="lh-sp-track"><div class="lh-sp-fill" id="lhSectionFill"></div></div>
+    </div>
+    <div class="lh-nav-row">
+      <a class="lh-nav-link" id="lhPrevLink">← Previous</a>
+      <a class="lh-nav-link" id="lhNextLink">Next →</a>
+    </div>
+  </div>
+
+  <div class="lw-wrap" id="lwWrap"></div>
+</main>
+
+<div class="lw-bottom">
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="lw-dots" id="lwDots"></div>
+    <div class="lw-stepname" id="lwStepname"></div>
+  </div>
+  <div style="display:flex;gap:9px">
+    <button type="button" class="lw-prev" id="lwPrev">← Back</button>
+    <button type="button" class="lw-next" id="lwNext">Next →</button>
+  </div>
+</div>
+
+<div class="lw-streak" id="lwStreak"><span id="lwStreakIcon">🔥</span><span id="lwStreakText"></span></div>
+<div class="lw-toast" id="lwToast">
+  <span>✦</span>
+  <div>
+    <div style="font-size:.85rem;font-weight:700" id="lwToastTitle"></div>
+    <div style="font-size:.7rem;color:rgba(255,255,255,.5)" id="lwToastSub"></div>
+  </div>
+</div>
+
+<script type="module">
+  /*
+   * Strategy Lab player. Reuses the Academy slide engine, but progress goes
+   * only to the Strategy Lab store (shared/sd-progress.js). It never calls
+   * /api/complete-lesson, so GP, level, lesson counts and graduation are untouched.
+   *   ?id=m1-3            a module lesson (lessons-data/sl-m1-3.json)
+   *   ?id=zone-builder    the Zone Builder
+   *   ?id=execution-lab   the Execution Lab
+   */
+  const wrap = document.getElementById('lwWrap');
+  const fail = (msg) => { wrap.innerHTML = `<div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;color:#7A5C50">${msg}</div>`; };
+
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } catch (err) { console.error(err); fail(`Something went wrong loading this lesson. ${err?.message || ''}`); } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
+
+  async function boot() {
+    const { PHASES } = await import('./shared/curriculum-data.js');
+    const { UNLOCK_ALL } = await import('./shared/preview.js');
+    const { STRATEGY_LAB, allLabLessons } = await import('./shared/strategy-lab-data.js');
+    const { recordLesson, lessonDone, phase5Complete } = await import('./shared/sd-progress.js');
+    const { renderSlideWizard } = await import('./shared/lesson-slides-engine.js');
+
+    const id = new URLSearchParams(location.search).get('id') || 'm1-1';
+    const lessons = allLabLessons();
+    const tool = STRATEGY_LAB.tools.find((t) => t.id === id);
+    const idx = lessons.findIndex((l) => l.id === id);
+    const item = tool || lessons[idx];
+    if (!item) { location.href = 'strategy-lab.html'; return; }
+
+    let completed = new Set();
+    try {
+      const profile = await window.AGHF_FETCH_PROFILE();
+      completed = new Set((profile.lessons_completed || []).map((l) => l.lesson_id));
+    } catch (err) { console.error('Profile load error:', err); }
+    if (!UNLOCK_ALL && !phase5Complete(completed, PHASES)) { location.href = 'strategy-lab.html'; return; }
+
+    let data;
+    try {
+      const res = await fetch(`lessons-data/sl-${id}.json`);
+      if (!res.ok) throw new Error('missing');
+      data = await res.json();
+    } catch {
+      fail('This Strategy Lab lesson isn’t available yet.');
+      return;
+    }
+
+    // Header.
+    document.getElementById('lhCrumb').textContent = tool ? 'Strategy Lab · Practice' : `Strategy Lab · Module ${item.module.n} · ${item.module.title}`;
+    document.getElementById('lhTitle').textContent = item.title;
+    const prev = document.getElementById('lhPrevLink'), next = document.getElementById('lhNextLink');
+    const nextItem = tool ? null : lessons[idx + 1];
+    if (!tool && idx > 0) prev.href = `strategy-lab-lesson.html?id=${lessons[idx - 1].id}`; else { prev.classList.add('disabled'); prev.removeAttribute('href'); }
+    if (nextItem) next.href = `strategy-lab-lesson.html?id=${nextItem.id}`; else { next.textContent = 'Strategy Lab →'; next.href = 'strategy-lab.html'; }
+    if (tool) {
+      document.getElementById('lhCount').textContent = tool.title;
+      document.querySelector('.lh-section-progress').hidden = true;
+    } else {
+      const ml = item.module.lessons;
+      document.getElementById('lhCount').textContent = `Lesson ${ml.findIndex((l) => l.id === id) + 1} of ${ml.length}`;
+      const done = ml.filter((l) => lessonDone(l.id)).length;
+      document.getElementById('lhSectionName').textContent = `Module ${item.module.n} · ${item.module.title}`;
+      document.getElementById('lhSectionPct').textContent = `${Math.round(done / ml.length * 100)}%`;
+      document.getElementById('lhSectionFill').style.width = `${done / ml.length * 100}%`;
+    }
+
+    renderSlideWizard({ ...data, xpValue: 0, backLabel: '← Back to the Strategy Lab' }, {
+      nextHref: nextItem ? `strategy-lab-lesson.html?id=${nextItem.id}` : 'strategy-lab.html',
+      backHref: 'strategy-lab.html',
+      nextTitle: nextItem ? nextItem.title : null,
+      nextCtaLabel: 'Back to the Strategy Lab →',
+      onAward: async () => { if (!tool) recordLesson(id); },
+    });
+  }
+</script>
+
+</body>
+</html>

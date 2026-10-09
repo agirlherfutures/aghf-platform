@@ -1,0 +1,273 @@
+{
+ "phase": "sl",
+ "section": "m2",
+ "lessonNumber": "m2-1",
+ "title": "The Three-BOS Execution Sequence",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "Three breaks, three different jobs. None of them is an entry on its own.",
+ "launchpad": {
+  "outcome": "Name the job of BOS #1, BOS #2 and BOS #3, find BOS #2 and BOS #3 on a chart, and explain why entering after BOS #1 or BOS #2 is premature.",
+  "missionQuestion": "Why isn’t the first strong break your entry?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "BOS #1 is a 15M candle close. It confirms direction in line with the higher-timeframe story.",
+  "BOS #2 is a 5M candle close after Correction #1. It confirms continuation and leads to Correction #2.",
+  "BOS #3 is a 5M candle close after Correction #2. It activates the zone.",
+  "Wicks don’t count. Don’t enter simply because BOS #1 or BOS #2 occurred."
+ ],
+ "remember": "THREE BREAKS. THREE JOBS. NO SHORTCUTS.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 2 · Lesson 1",
+   "headline": "Three breaks. <em>Three different jobs.</em>",
+   "line": "BOS (break of structure) #1, #2 and #3 each do one thing. Only all three together set up the trade.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · The three breaks",
+   "headline": "Every break needs <em>a candle close.</em>",
+   "line": "Tap each card. A wick through a level doesn’t count as a break.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "bolt",
+      "tone": "purple",
+      "label": "BOS #1 · 15M close",
+      "sub": "Confirms direction on the 15M, in line with the HTF (higher-timeframe) story."
+     },
+     {
+      "icon": "swap",
+      "tone": "teal",
+      "label": "BOS #2 · 5M close",
+      "sub": "Confirms continuation after Correction #1. Correction #2 comes next."
+     },
+     {
+      "icon": "lock",
+      "tone": "pink",
+      "label": "BOS #3 · 5M close",
+      "sub": "Activates the zone that Correction #2 created."
+     }
+    ]
+   },
+   "cta": "Watch them print →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 2 · The breaks on a chart",
+   "headline": "Watch each break <em>do its job.</em>",
+   "line": "Bullish example. Press the button to print each part.",
+   "scenario": "bull-valid",
+   "tf": "15M",
+   "start": "start",
+   "toggle": false,
+   "steps": [
+    {
+     "until": "bos1",
+     "show": [
+      "bos1"
+     ],
+     "caption": "<b>BOS #1.</b> A 15M candle closes above the 15M level. Direction is confirmed, but there’s no zone yet.",
+     "next": "Switch to the 5M →"
+    },
+    {
+     "tf": "5M",
+     "until": "c1",
+     "show": [
+      "c1"
+     ],
+     "caption": "<b>Correction #1.</b> On the 5M, price pulls back after BOS #1."
+    },
+    {
+     "until": "bos2",
+     "show": [
+      "bos2"
+     ],
+     "caption": "<b>BOS #2.</b> A 5M candle closes above the high Correction #1 pulled back from. Continuation is confirmed."
+    },
+    {
+     "until": "c2",
+     "show": [
+      "c2",
+      "zone",
+      "zoneCandle"
+     ],
+     "caption": "<b>Correction #2</b> creates the zone from its last bearish candle. It’s only a <b>potential</b> zone.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    },
+    {
+     "until": "bos3",
+     "show": [
+      "bos3"
+     ],
+     "caption": "<b>BOS #3.</b> A 5M candle closes above the high Correction #2 pulled back from. <b>The zone is now active.</b>",
+     "provisional": [
+      "zoneBounds"
+     ]
+    }
+   ],
+   "cta": "Your turn →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 3 · Find BOS #2",
+   "headline": "Which candle is <em>BOS #2?</em>",
+   "line": "BOS #2 is the first 5M candle to close above the high that Correction #1 pulled back from.",
+   "scenario": "bull-valid",
+   "tf": "5M",
+   "until": "bos2+2",
+   "show": [
+    "bos1",
+    "c1"
+   ],
+   "within": [
+    "c1",
+    "bos2+2"
+   ],
+   "ask": "Tap the candle that is BOS #2.",
+   "target": "bos2",
+   "why": "That’s the first 5M candle to close above the high Correction #1 pulled back from.",
+   "after": {
+    "show": [
+     "bos2"
+    ],
+    "caption": "<b>BOS #2</b> confirms continuation. It is not an entry. Correction #2 hasn’t even started."
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 4 · Why BOS #1 isn’t enough",
+   "headline": "BOS #1 printed. <em>Then it stopped.</em>",
+   "line": "Bearish example. Watch what happens after the first break.",
+   "scenario": "bear-no-bos2",
+   "tf": "15M",
+   "start": "start",
+   "toggle": false,
+   "steps": [
+    {
+     "until": "bos1",
+     "show": [
+      "bos1"
+     ],
+     "caption": "<b>BOS #1.</b> A 15M candle closes below the 15M level. It looks strong.",
+     "next": "Switch to the 5M →"
+    },
+    {
+     "tf": "5M",
+     "until": "c1",
+     "show": [
+      "c1"
+     ],
+     "caption": "<b>Correction #1.</b> Price pulls back on the 5M."
+    },
+    {
+     "until": "end",
+     "caption": "<b>No BOS #2.</b> No 5M candle closes below the low Correction #1 pulled back from. No Correction #2, no zone, no BOS #3."
+    }
+   ],
+   "check": {
+    "prompt": "Someone sold right after BOS #1 on this chart. What was missing?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Nothing. BOS #1 confirmed the direction.",
+      "correct": false,
+      "feedback": "BOS #1 only confirms direction. Don’t enter simply because BOS #1 occurred. BOS #2 never came, so the sequence never completed."
+     },
+     {
+      "label": "BOS #2, Correction #2, the zone, BOS #3 and the retest",
+      "correct": true,
+      "why": "Right. BOS #1 is the start of the sequence, not the entry. Here the sequence stopped, so there is no trade."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 5 · Find BOS #3",
+   "headline": "Which candle <em>activates the zone?</em>",
+   "line": "Bearish example. BOS #3 is the first 5M candle to close below the low that Correction #2 pulled back from.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "until": "bos3+2",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2",
+    "zone"
+   ],
+   "within": [
+    "c2",
+    "bos3+2"
+   ],
+   "ask": "Tap the candle that is BOS #3.",
+   "target": "bos3",
+   "why": "That’s the first 5M candle to close below the low Correction #2 pulled back from. It activates the supply zone.",
+   "after": {
+    "show": [
+     "bos3"
+    ],
+    "caption": "<b>BOS #3</b> turns the potential zone into an active one. Next, you wait for price to come back."
+   },
+   "provisional": [
+    "zoneBounds"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 6 · Check yourself",
+   "headline": "BOS #2 just closed. <em>Is it time?</em>",
+   "line": "The move is fast and every candle is green.",
+   "visual": {
+    "icon": "stop",
+    "tone": "pink",
+    "caption": "Not yet."
+   },
+   "check": {
+    "prompt": "BOS #2 just closed on the 5M. What do you do?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Enter now, before price runs away",
+      "correct": false,
+      "feedback": "Don’t enter simply because BOS #2 occurred. Correction #2 hasn’t created the zone, and BOS #3 hasn’t activated it."
+     },
+     {
+      "label": "Wait for Correction #2, BOS #3 and the retest",
+      "correct": true,
+      "why": "Right. BOS #2 confirms continuation. The zone, its activation and the retest are still to come."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "One break is a clue. <em>Three breaks are the plan.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, what does each BOS do, and why isn’t BOS #1 or BOS #2 an entry?",
+   "modelAnswer": "BOS #1 is a 15M candle close that confirms direction in line with the higher-timeframe story. BOS #2 is a 5M candle close that confirms continuation after Correction #1. BOS #3 is a 5M candle close after Correction #2 that activates the zone. BOS #1 and BOS #2 aren’t entries because the zone doesn’t exist or isn’t active yet, and the entry waits for the retest after BOS #3."
+  }
+ ]
+}

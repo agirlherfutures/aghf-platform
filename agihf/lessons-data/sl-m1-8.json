@@ -1,0 +1,220 @@
+{
+ "phase": "sl",
+ "section": "m1",
+ "lessonNumber": "m1-8",
+ "title": "Identifying the Zone-Forming Candle",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "Correction #2 creates the zone, but the zone isn’t the whole correction. It’s one candle.",
+ "launchpad": {
+  "outcome": "Pick the zone-forming candle: the last opposite-colour candle of Correction #2 before BOS #3, for both demand and supply.",
+  "missionQuestion": "Why is the zone one candle and not the whole correction?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "Demand: the last bearish candle of Correction #2 before buyers produce BOS #3.",
+  "Supply: the last bullish candle of Correction #2 before sellers produce BOS #3.",
+  "Don’t mark the whole correction as the zone.",
+  "The working model uses that candle’s full high-to-low range for the zone boundaries. RULE REQUIRES DAYLI CONFIRMATION."
+ ],
+ "remember": "ONE CANDLE. THE LAST ONE. BEFORE BOS #3.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 1 · Lesson 8",
+   "headline": "The zone is <em>one candle.</em>",
+   "line": "Correction #2 creates the zone. Inside it, you’re looking for one specific candle, not the whole pullback.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_steps",
+   "kicker": "Step 1 · How to find it",
+   "headline": "Three steps to <em>the zone candle.</em>",
+   "line": "Tap each step.",
+   "steps": [
+    {
+     "label": "Find Correction #2",
+     "sub": "The second 5M pullback, after BOS #2."
+    },
+    {
+     "label": "Find the opposite-colour candles in it",
+     "sub": "Bearish candles for demand (bullish model). Bullish candles for supply (bearish model)."
+    },
+    {
+     "label": "Take the LAST one before BOS #3",
+     "sub": "That one candle creates the zone. Not the first one, and not the whole correction."
+    }
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 2 · Watch it on a chart",
+   "headline": "More than one bearish candle. <em>Take the last.</em>",
+   "line": "Bullish example, on the 5M. BOS #1, Correction #1 and BOS #2 are already marked.",
+   "scenario": "bull-valid",
+   "tf": "5M",
+   "start": "bos2",
+   "toggle": false,
+   "show": [
+    "bos1",
+    "c1",
+    "bos2"
+   ],
+   "steps": [
+    {
+     "until": "c2",
+     "show": [
+      "c2"
+     ],
+     "caption": "<b>Correction #2</b> has more than one bearish candle. The zone comes from the <b>last</b> one."
+    },
+    {
+     "show": [
+      "zoneCandle",
+      "zone"
+     ],
+     "caption": "<b>The zone candle.</b> The last bearish candle of Correction #2. Its full high-to-low range marks a <b>potential</b> demand zone.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    },
+    {
+     "until": "bos3",
+     "show": [
+      "bos3"
+     ],
+     "caption": "<b>BOS #3.</b> Buyers close a 5M candle above the high Correction #2 pulled back from. <b>Now the zone is active.</b>",
+     "provisional": [
+      "zoneBounds"
+     ]
+    }
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 3 · One candle, not the correction",
+   "headline": "Mark the candle, <em>not the whole pullback.</em>",
+   "line": "Correction #2 creates the zone. The zone itself is one candle.",
+   "visual": {
+    "versus": [
+     {
+      "label": "The zone candle",
+      "tone": "teal",
+      "icon": "check",
+      "points": [
+       "The last opposite-colour candle of Correction #2.",
+       "It comes right before BOS #3.",
+       "This is what you mark."
+      ]
+     },
+     {
+      "label": "The whole correction",
+      "tone": "pink",
+      "icon": "stop",
+      "points": [
+       "Every candle of Correction #2.",
+       "It’s where the zone comes from.",
+       "Don’t mark all of it as the zone."
+      ]
+     }
+    ]
+   },
+   "check": {
+    "prompt": "Correction #2 has five candles. What do you mark as the zone?",
+    "stack": true,
+    "options": [
+     {
+      "label": "All five candles of Correction #2",
+      "correct": false,
+      "feedback": "Don’t mark the whole correction as the zone. Correction #2 creates the zone, but the zone is one candle."
+     },
+     {
+      "label": "The last opposite-colour candle before BOS #3",
+      "correct": true,
+      "why": "Right. That one candle creates the zone."
+     }
+    ]
+   },
+   "cta": "Your turn →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 4 · Your turn · Demand",
+   "headline": "Bullish model. <em>Find the demand candle.</em>",
+   "line": "Correction #2 is marked. The last candle on the chart is BOS #3.",
+   "scenario": "bull-invalid",
+   "tf": "5M",
+   "until": "bos3",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2"
+   ],
+   "ask": "Tap the last bearish candle of Correction #2 before BOS #3.",
+   "target": "zone",
+   "why": "That’s the last bearish candle of Correction #2 before buyers produce BOS #3. It creates the demand zone.",
+   "after": {
+    "show": [
+     "zoneCandle",
+     "bos3"
+    ],
+    "caption": "<b>Demand zone.</b> The working model uses this candle’s full high-to-low range. BOS #3 activated it."
+   },
+   "provisional": [
+    "zoneBounds"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 5 · Your turn · Supply",
+   "headline": "Bearish model. <em>Find the supply candle.</em>",
+   "line": "Correction #2 is marked. The last candle on the chart is BOS #3.",
+   "scenario": "bear-missed",
+   "tf": "5M",
+   "until": "bos3",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2"
+   ],
+   "ask": "Tap the last bullish candle of Correction #2 before BOS #3.",
+   "target": "zone",
+   "why": "That’s the last bullish candle of Correction #2 before sellers produce BOS #3. It creates the supply zone.",
+   "after": {
+    "show": [
+     "zoneCandle",
+     "bos3"
+    ],
+    "caption": "<b>Supply zone.</b> The working model uses this candle’s full high-to-low range. BOS #3 activated it."
+   },
+   "provisional": [
+    "zoneBounds"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Don’t mark the whole correction. <em>Find the last candle.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, how do you find the zone-forming candle for demand and for supply?",
+   "modelAnswer": "First I find Correction #2, the pullback after BOS #2. For demand, I take the last bearish candle of Correction #2 before buyers produce BOS #3. For supply, I take the last bullish candle of Correction #2 before sellers produce BOS #3. I mark that one candle, not the whole correction. The working model uses its full high-to-low range, and that detail still needs Dayli’s confirmation."
+  }
+ ]
+}

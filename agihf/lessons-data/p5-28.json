@@ -1,0 +1,2236 @@
+{
+  "phase": "p5",
+  "section": "s14",
+  "lessonNumber": 28,
+  "title": "1M: Execute Dayli ICC",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 80,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Is the entry model actually present? Then, and only then, you act.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Mark the PIL, confirm Indication, Correction and Continuation with closes, plan the limit entry at the retest, and spot a setup you must skip.",
+    "missionQuestion": "Is the entry model actually present?",
+    "estMinutes": 12
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "v2_hero",
+      "kicker": "Phase 5 · Lesson 28",
+      "headline": "Is the entry model actually present? <em>Then you act.</em>",
+      "line": "This is where your plan meets the 1-minute chart. You act only when price completes every step of Dayli ICC.",
+      "pose": "wave",
+      "cta": "Let’s execute →"
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 1 · Higher timeframes first",
+      "headline": "Finish your higher timeframe work <em>before</em> you open the 1M.",
+      "line": "HTF means higher timeframe. The 1M doesn’t create the whole trade idea, so it always comes last.",
+      "visual": {
+        "cards": [
+          {
+            "icon": "layers",
+            "tone": "purple",
+            "label": "4H: read the room",
+            "sub": "The range, the structure, and the current ICC chapter."
+          },
+          {
+            "icon": "target",
+            "tone": "teal",
+            "label": "1H: build the map",
+            "sub": "The relevant swings and levels price is trading around."
+          },
+          {
+            "icon": "zoom",
+            "tone": "peach",
+            "label": "15M: the checkpoint",
+            "sub": "Recommended for extra confluence, but not required."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 2 · Mark the PIL",
+      "headline": "Mark your PIL <em>before</em> you look for the sequence.",
+      "line": "The PIL, or Pre-Indication Level, is the swing price has to prove itself through. You choose it by structural relevance, exactly as Section 13 taught.",
+      "visual": {
+        "chart": {
+          "candles": false,
+          "bars": [
+            {
+              "x": 30,
+              "o": 290.0,
+              "c": 274.0,
+              "h": 266.0,
+              "l": 296.0,
+              "w": 14
+            },
+            {
+              "x": 55,
+              "o": 274.0,
+              "c": 234.0,
+              "h": 230.0,
+              "l": 278.0,
+              "w": 14
+            },
+            {
+              "x": 80,
+              "o": 234.0,
+              "c": 202.0,
+              "h": 196.0,
+              "l": 238.0,
+              "w": 14
+            },
+            {
+              "x": 105,
+              "o": 202.0,
+              "c": 174.0,
+              "h": 154.0,
+              "l": 204.0,
+              "w": 14
+            },
+            {
+              "x": 130,
+              "o": 174.0,
+              "c": 204.0,
+              "h": 164.0,
+              "l": 210.0,
+              "w": 14
+            },
+            {
+              "x": 155,
+              "o": 204.0,
+              "c": 216.0,
+              "h": 194.0,
+              "l": 222.0,
+              "w": 14
+            },
+            {
+              "x": 180,
+              "o": 216.0,
+              "c": 246.0,
+              "h": 206.0,
+              "l": 254.0,
+              "w": 14
+            },
+            {
+              "x": 205,
+              "o": 246.0,
+              "c": 258.0,
+              "h": 238.0,
+              "l": 266.0,
+              "w": 14
+            },
+            {
+              "x": 230,
+              "o": 258.0,
+              "c": 222.0,
+              "h": 216.0,
+              "l": 268.0,
+              "w": 14
+            },
+            {
+              "x": 255,
+              "o": 222.0,
+              "c": 208.0,
+              "h": 200.0,
+              "l": 230.0,
+              "w": 14
+            },
+            {
+              "x": 280,
+              "o": 208.0,
+              "c": 178.0,
+              "h": 172.0,
+              "l": 210.0,
+              "w": 14
+            }
+          ],
+          "hlines": [
+            {
+              "y": 154.0,
+              "label": "PIL · 21,004.25",
+              "tone": "purple",
+              "x1": 105,
+              "x2": 692,
+              "size": 20,
+              "labelX": 105,
+              "id": "pil"
+            }
+          ],
+          "notes": [
+            {
+              "x": 105,
+              "y": 118.0,
+              "text": "swing high",
+              "tone": "muted",
+              "size": 19,
+              "id": "sw"
+            },
+            {
+              "x": 305,
+              "y": 112.0,
+              "text": "I",
+              "tone": "up",
+              "size": 30,
+              "id": "nI"
+            },
+            {
+              "x": 330,
+              "y": 210.0,
+              "text": "C",
+              "tone": "purple",
+              "size": 30,
+              "id": "nC1"
+            },
+            {
+              "x": 355,
+              "y": 108.0,
+              "text": "C",
+              "tone": "up",
+              "size": 30,
+              "id": "nC2"
+            },
+            {
+              "x": 555,
+              "y": 180.0,
+              "text": "RETEST",
+              "tone": "purple",
+              "size": 20,
+              "id": "nR"
+            },
+            {
+              "x": 632,
+              "y": 142.0,
+              "text": "◆ LIMIT ENTRY",
+              "tone": "gold",
+              "size": 20,
+              "id": "nE"
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "sw"
+            ],
+            "text": "Price made a swing high, then pulled back below it.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "pil"
+            ],
+            "text": "That swing high is the PIL. To resume upward, price has to prove itself through it. <strong>No PIL, no valid indication.</strong>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 3 · Indication",
+      "headline": "Indication is a 1M candle that <em>closes</em> through the PIL.",
+      "line": "Bullish means a 1M candle closes above the PIL. Bearish means a 1M candle closes below it.",
+      "visual": {
+        "chart": {
+          "candles": false,
+          "bars": [
+            {
+              "x": 30,
+              "o": 290.0,
+              "c": 274.0,
+              "h": 266.0,
+              "l": 296.0,
+              "w": 14
+            },
+            {
+              "x": 55,
+              "o": 274.0,
+              "c": 234.0,
+              "h": 230.0,
+              "l": 278.0,
+              "w": 14
+            },
+            {
+              "x": 80,
+              "o": 234.0,
+              "c": 202.0,
+              "h": 196.0,
+              "l": 238.0,
+              "w": 14
+            },
+            {
+              "x": 105,
+              "o": 202.0,
+              "c": 174.0,
+              "h": 154.0,
+              "l": 204.0,
+              "w": 14
+            },
+            {
+              "x": 130,
+              "o": 174.0,
+              "c": 204.0,
+              "h": 164.0,
+              "l": 210.0,
+              "w": 14
+            },
+            {
+              "x": 155,
+              "o": 204.0,
+              "c": 216.0,
+              "h": 194.0,
+              "l": 222.0,
+              "w": 14
+            },
+            {
+              "x": 180,
+              "o": 216.0,
+              "c": 246.0,
+              "h": 206.0,
+              "l": 254.0,
+              "w": 14
+            },
+            {
+              "x": 205,
+              "o": 246.0,
+              "c": 258.0,
+              "h": 238.0,
+              "l": 266.0,
+              "w": 14
+            },
+            {
+              "x": 230,
+              "o": 258.0,
+              "c": 222.0,
+              "h": 216.0,
+              "l": 268.0,
+              "w": 14
+            },
+            {
+              "x": 255,
+              "o": 222.0,
+              "c": 208.0,
+              "h": 200.0,
+              "l": 230.0,
+              "w": 14
+            },
+            {
+              "x": 280,
+              "o": 208.0,
+              "c": 178.0,
+              "h": 172.0,
+              "l": 210.0,
+              "w": 14
+            },
+            {
+              "x": 305,
+              "o": 178.0,
+              "c": 132.0,
+              "h": 126.0,
+              "l": 178.0,
+              "w": 14,
+              "id": "bI"
+            }
+          ],
+          "hlines": [
+            {
+              "y": 154.0,
+              "label": "PIL · 21,004.25",
+              "tone": "purple",
+              "x1": 105,
+              "x2": 692,
+              "size": 20,
+              "labelX": 105
+            }
+          ],
+          "notes": [
+            {
+              "x": 105,
+              "y": 118.0,
+              "text": "swing high",
+              "tone": "muted",
+              "size": 19
+            },
+            {
+              "x": 305,
+              "y": 112.0,
+              "text": "I",
+              "tone": "up",
+              "size": 30,
+              "id": "nI"
+            },
+            {
+              "x": 330,
+              "y": 210.0,
+              "text": "C",
+              "tone": "purple",
+              "size": 30,
+              "id": "nC1"
+            },
+            {
+              "x": 355,
+              "y": 108.0,
+              "text": "C",
+              "tone": "up",
+              "size": 30,
+              "id": "nC2"
+            },
+            {
+              "x": 555,
+              "y": 180.0,
+              "text": "RETEST",
+              "tone": "purple",
+              "size": 20,
+              "id": "nR"
+            },
+            {
+              "x": 632,
+              "y": 142.0,
+              "text": "◆ LIMIT ENTRY",
+              "tone": "gold",
+              "size": 20,
+              "id": "nE"
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "bI",
+              "nI"
+            ],
+            "text": "<strong>Indication:</strong> this 1M candle closed above the PIL. Price proved it with the close."
+          }
+        ]
+      },
+      "check": {
+        "prompt": "A 1M candle’s wick pokes above the PIL, but the candle closes below it. Is that indication?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Yes, price went above the level",
+            "correct": false,
+            "feedback": "The wick only shows where price traveled. Indication needs the 1M candle to close above the PIL."
+          },
+          {
+            "label": "No, a wick alone doesn’t count",
+            "correct": true,
+            "why": "Right. Wicks don’t vote. Price visiting the level proves nothing until a candle closes through it."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 4 · Correction",
+      "headline": "Correction is a candle that <em>closes back</em> through the PIL.",
+      "line": "After a bullish indication, the correction is a close back below the PIL. It is part of the model, not a failure.",
+      "visual": {
+        "chart": {
+          "candles": false,
+          "bars": [
+            {
+              "x": 30,
+              "o": 290.0,
+              "c": 274.0,
+              "h": 266.0,
+              "l": 296.0,
+              "w": 14
+            },
+            {
+              "x": 55,
+              "o": 274.0,
+              "c": 234.0,
+              "h": 230.0,
+              "l": 278.0,
+              "w": 14
+            },
+            {
+              "x": 80,
+              "o": 234.0,
+              "c": 202.0,
+              "h": 196.0,
+              "l": 238.0,
+              "w": 14
+            },
+            {
+              "x": 105,
+              "o": 202.0,
+              "c": 174.0,
+              "h": 154.0,
+              "l": 204.0,
+              "w": 14
+            },
+            {
+              "x": 130,
+              "o": 174.0,
+              "c": 204.0,
+              "h": 164.0,
+              "l": 210.0,
+              "w": 14
+            },
+            {
+              "x": 155,
+              "o": 204.0,
+              "c": 216.0,
+              "h": 194.0,
+              "l": 222.0,
+              "w": 14
+            },
+            {
+              "x": 180,
+              "o": 216.0,
+              "c": 246.0,
+              "h": 206.0,
+              "l": 254.0,
+              "w": 14
+            },
+            {
+              "x": 205,
+              "o": 246.0,
+              "c": 258.0,
+              "h": 238.0,
+              "l": 266.0,
+              "w": 14
+            },
+            {
+              "x": 230,
+              "o": 258.0,
+              "c": 222.0,
+              "h": 216.0,
+              "l": 268.0,
+              "w": 14
+            },
+            {
+              "x": 255,
+              "o": 222.0,
+              "c": 208.0,
+              "h": 200.0,
+              "l": 230.0,
+              "w": 14
+            },
+            {
+              "x": 280,
+              "o": 208.0,
+              "c": 178.0,
+              "h": 172.0,
+              "l": 210.0,
+              "w": 14
+            },
+            {
+              "x": 305,
+              "o": 178.0,
+              "c": 132.0,
+              "h": 126.0,
+              "l": 178.0,
+              "w": 14
+            },
+            {
+              "x": 330,
+              "o": 132.0,
+              "c": 172.0,
+              "h": 132.0,
+              "l": 178.0,
+              "w": 14,
+              "id": "bC1"
+            }
+          ],
+          "hlines": [
+            {
+              "y": 154.0,
+              "label": "PIL · 21,004.25",
+              "tone": "purple",
+              "x1": 105,
+              "x2": 692,
+              "size": 20,
+              "labelX": 105
+            }
+          ],
+          "notes": [
+            {
+              "x": 105,
+              "y": 118.0,
+              "text": "swing high",
+              "tone": "muted",
+              "size": 19
+            },
+            {
+              "x": 305,
+              "y": 112.0,
+              "text": "I",
+              "tone": "up",
+              "size": 30
+            },
+            {
+              "x": 330,
+              "y": 210.0,
+              "text": "C",
+              "tone": "purple",
+              "size": 30,
+              "id": "nC1"
+            },
+            {
+              "x": 355,
+              "y": 108.0,
+              "text": "C",
+              "tone": "up",
+              "size": 30,
+              "id": "nC2"
+            },
+            {
+              "x": 555,
+              "y": 180.0,
+              "text": "RETEST",
+              "tone": "purple",
+              "size": 20,
+              "id": "nR"
+            },
+            {
+              "x": 632,
+              "y": 142.0,
+              "text": "◆ LIMIT ENTRY",
+              "tone": "gold",
+              "size": 20,
+              "id": "nE"
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "bC1",
+              "nC1"
+            ],
+            "text": "<strong>Correction:</strong> this candle closed back below the PIL. The correction is complete."
+          }
+        ]
+      },
+      "check": {
+        "prompt": "After indication, price stalls just above the PIL for three candles but never closes below it. Is that a correction?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Yes, price is clearly pulling back",
+            "correct": false,
+            "feedback": "Price is only hesitating. A correction needs a candle to close back below the PIL, and we don’t invent the correction."
+          },
+          {
+            "label": "No, nothing has closed back below yet",
+            "correct": true,
+            "why": "Exactly. Hesitating is not correcting. You wait for the close back through the PIL."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 5 · Continuation",
+      "headline": "Continuation closes back through the PIL <em>in the original direction.</em>",
+      "line": "For a bullish setup, that is a close back above the PIL. Now all three stages are complete.",
+      "visual": {
+        "chart": {
+          "candles": false,
+          "bars": [
+            {
+              "x": 30,
+              "o": 290.0,
+              "c": 274.0,
+              "h": 266.0,
+              "l": 296.0,
+              "w": 14
+            },
+            {
+              "x": 55,
+              "o": 274.0,
+              "c": 234.0,
+              "h": 230.0,
+              "l": 278.0,
+              "w": 14
+            },
+            {
+              "x": 80,
+              "o": 234.0,
+              "c": 202.0,
+              "h": 196.0,
+              "l": 238.0,
+              "w": 14
+            },
+            {
+              "x": 105,
+              "o": 202.0,
+              "c": 174.0,
+              "h": 154.0,
+              "l": 204.0,
+              "w": 14
+            },
+            {
+              "x": 130,
+              "o": 174.0,
+              "c": 204.0,
+              "h": 164.0,
+              "l": 210.0,
+              "w": 14
+            },
+            {
+              "x": 155,
+              "o": 204.0,
+              "c": 216.0,
+              "h": 194.0,
+              "l": 222.0,
+              "w": 14
+            },
+            {
+              "x": 180,
+              "o": 216.0,
+              "c": 246.0,
+              "h": 206.0,
+              "l": 254.0,
+              "w": 14
+            },
+            {
+              "x": 205,
+              "o": 246.0,
+              "c": 258.0,
+              "h": 238.0,
+              "l": 266.0,
+              "w": 14
+            },
+            {
+              "x": 230,
+              "o": 258.0,
+              "c": 222.0,
+              "h": 216.0,
+              "l": 268.0,
+              "w": 14
+            },
+            {
+              "x": 255,
+              "o": 222.0,
+              "c": 208.0,
+              "h": 200.0,
+              "l": 230.0,
+              "w": 14
+            },
+            {
+              "x": 280,
+              "o": 208.0,
+              "c": 178.0,
+              "h": 172.0,
+              "l": 210.0,
+              "w": 14
+            },
+            {
+              "x": 305,
+              "o": 178.0,
+              "c": 132.0,
+              "h": 126.0,
+              "l": 178.0,
+              "w": 14
+            },
+            {
+              "x": 330,
+              "o": 132.0,
+              "c": 172.0,
+              "h": 132.0,
+              "l": 178.0,
+              "w": 14
+            },
+            {
+              "x": 355,
+              "o": 172.0,
+              "c": 130.0,
+              "h": 122.0,
+              "l": 172.0,
+              "w": 14,
+              "id": "bC2"
+            }
+          ],
+          "hlines": [
+            {
+              "y": 154.0,
+              "label": "PIL · 21,004.25",
+              "tone": "purple",
+              "x1": 105,
+              "x2": 692,
+              "size": 20,
+              "labelX": 105
+            }
+          ],
+          "notes": [
+            {
+              "x": 105,
+              "y": 118.0,
+              "text": "swing high",
+              "tone": "muted",
+              "size": 19
+            },
+            {
+              "x": 305,
+              "y": 112.0,
+              "text": "I",
+              "tone": "up",
+              "size": 30
+            },
+            {
+              "x": 330,
+              "y": 210.0,
+              "text": "C",
+              "tone": "purple",
+              "size": 30
+            },
+            {
+              "x": 355,
+              "y": 108.0,
+              "text": "C",
+              "tone": "up",
+              "size": 30,
+              "id": "nC2"
+            },
+            {
+              "x": 555,
+              "y": 180.0,
+              "text": "RETEST",
+              "tone": "purple",
+              "size": 20,
+              "id": "nR"
+            },
+            {
+              "x": 632,
+              "y": 142.0,
+              "text": "◆ LIMIT ENTRY",
+              "tone": "gold",
+              "size": 20,
+              "id": "nE"
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "bC2",
+              "nC2"
+            ],
+            "text": "<strong>Continuation:</strong> this candle closed back above the PIL. Indication, Correction, Continuation: the sequence is complete."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_steps",
+      "kicker": "Step 6 · Plan the entry",
+      "headline": "A complete ICC <em>doesn’t guarantee</em> an entry.",
+      "line": "Tap each step. Your planned limit entry sits at the PIL, and it only fills if price comes back to it.",
+      "steps": [
+        {
+          "label": "I · Indication",
+          "sub": "A 1M candle closes through the PIL."
+        },
+        {
+          "label": "C · Correction",
+          "sub": "A candle closes back through the PIL."
+        },
+        {
+          "label": "C · Continuation",
+          "sub": "A candle closes back through in the original direction."
+        },
+        {
+          "label": "Wait for the retest",
+          "sub": "Price has to come back to the PIL. You do nothing until it does."
+        },
+        {
+          "label": "Limit entry at the PIL",
+          "sub": "Your planned entry is the PIL price, not wherever price is now."
+        }
+      ]
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 7 · Risk and target",
+      "headline": "In the MNQ example, the stop is 30 points and the target <em>60.</em>",
+      "line": "You risk 30 points to make 60, so the risk-to-reward is 1:2. These numbers are an example from the Dayli ICC MNQ framework, not a rule for every product or account.",
+      "visual": {
+        "chart": {
+          "candles": false,
+          "bars": [
+            {
+              "x": 20,
+              "o": 251.0,
+              "c": 245.0,
+              "h": 242.0,
+              "l": 253.2,
+              "w": 9
+            },
+            {
+              "x": 34,
+              "o": 245.0,
+              "c": 230.0,
+              "h": 228.5,
+              "l": 246.5,
+              "w": 9
+            },
+            {
+              "x": 48,
+              "o": 230.0,
+              "c": 218.0,
+              "h": 215.8,
+              "l": 231.5,
+              "w": 9
+            },
+            {
+              "x": 62,
+              "o": 218.0,
+              "c": 207.5,
+              "h": 200.0,
+              "l": 218.8,
+              "w": 9
+            },
+            {
+              "x": 76,
+              "o": 207.5,
+              "c": 218.8,
+              "h": 203.8,
+              "l": 221.0,
+              "w": 9
+            },
+            {
+              "x": 90,
+              "o": 218.8,
+              "c": 223.2,
+              "h": 215.0,
+              "l": 225.5,
+              "w": 9
+            },
+            {
+              "x": 104,
+              "o": 223.2,
+              "c": 234.5,
+              "h": 219.5,
+              "l": 237.5,
+              "w": 9
+            },
+            {
+              "x": 118,
+              "o": 234.5,
+              "c": 239.0,
+              "h": 231.5,
+              "l": 242.0,
+              "w": 9
+            },
+            {
+              "x": 132,
+              "o": 239.0,
+              "c": 225.5,
+              "h": 223.2,
+              "l": 242.8,
+              "w": 9
+            },
+            {
+              "x": 146,
+              "o": 225.5,
+              "c": 220.2,
+              "h": 217.2,
+              "l": 228.5,
+              "w": 9
+            },
+            {
+              "x": 160,
+              "o": 220.2,
+              "c": 209.0,
+              "h": 206.8,
+              "l": 221.0,
+              "w": 9
+            },
+            {
+              "x": 174,
+              "o": 209.0,
+              "c": 191.8,
+              "h": 189.5,
+              "l": 209.0,
+              "w": 9
+            },
+            {
+              "x": 188,
+              "o": 191.8,
+              "c": 206.8,
+              "h": 191.8,
+              "l": 209.0,
+              "w": 9
+            },
+            {
+              "x": 202,
+              "o": 206.8,
+              "c": 191.0,
+              "h": 188.0,
+              "l": 206.8,
+              "w": 9
+            },
+            {
+              "x": 216,
+              "o": 191.0,
+              "c": 184.2,
+              "h": 182.0,
+              "l": 194.8,
+              "w": 9
+            },
+            {
+              "x": 230,
+              "o": 184.2,
+              "c": 175.2,
+              "h": 173.8,
+              "l": 185.0,
+              "w": 9
+            },
+            {
+              "x": 244,
+              "o": 175.2,
+              "c": 167.8,
+              "h": 166.2,
+              "l": 178.2,
+              "w": 9
+            },
+            {
+              "x": 258,
+              "o": 167.8,
+              "c": 155.0,
+              "h": 151.2,
+              "l": 170.0,
+              "w": 9
+            },
+            {
+              "x": 272,
+              "o": 155.0,
+              "c": 167.8,
+              "h": 153.5,
+              "l": 170.0,
+              "w": 9
+            },
+            {
+              "x": 286,
+              "o": 167.8,
+              "c": 176.8,
+              "h": 164.8,
+              "l": 178.2,
+              "w": 9
+            },
+            {
+              "x": 300,
+              "o": 176.8,
+              "c": 191.0,
+              "h": 175.2,
+              "l": 194.8,
+              "w": 9
+            },
+            {
+              "x": 314,
+              "o": 191.0,
+              "c": 195.5,
+              "h": 187.2,
+              "l": 201.5,
+              "w": 9
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 324,
+              "y1": 200,
+              "x2": 692,
+              "y2": 290,
+              "tone": "down",
+              "id": "riskBox",
+              "op": 0.55,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6
+            },
+            {
+              "x1": 324,
+              "y1": 20,
+              "x2": 692,
+              "y2": 200,
+              "tone": "up",
+              "id": "rewBox",
+              "op": 0.55,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6
+            }
+          ],
+          "hlines": [
+            {
+              "y": 200,
+              "label": "ENTRY · PIL 21,004.25",
+              "tone": "gold",
+              "x1": 324,
+              "x2": 692,
+              "size": 20,
+              "labelX": 338
+            },
+            {
+              "y": 290,
+              "label": "STOP · 30 points · 20,974.25",
+              "tone": "down",
+              "x1": 324,
+              "x2": 692,
+              "size": 20,
+              "labelX": 338,
+              "id": "stop"
+            },
+            {
+              "y": 20,
+              "label": "TARGET · 60 points · 21,064.25",
+              "tone": "up",
+              "x1": 324,
+              "x2": 692,
+              "size": 20,
+              "labelX": 338,
+              "below": true,
+              "id": "tgt"
+            }
+          ],
+          "notes": [
+            {
+              "x": 314,
+              "y": 223.5,
+              "text": "RETEST",
+              "tone": "purple",
+              "size": 14
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "stop",
+              "riskBox"
+            ],
+            "text": "<strong>Stop loss:</strong> 30 points below the entry. MNQ moves $2 per point per contract, so that is $60 of risk on 1 contract.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "tgt",
+              "rewBox"
+            ],
+            "text": "<strong>Take profit:</strong> 60 points above the entry. That is $120 on 1 contract, twice what you risked."
+          }
+        ]
+      },
+      "check": {
+        "prompt": "Same plan, but you trade 2 MNQ contracts instead of 1. What are the risk and the reward?",
+        "stack": true,
+        "options": [
+          {
+            "label": "$60 risk and $120 reward",
+            "correct": false,
+            "feedback": "That is 1 contract. The points stay the same, but every extra contract adds the same dollar exposure again."
+          },
+          {
+            "label": "$120 risk and $240 reward",
+            "correct": true,
+            "why": "Right. 30 × $2 × 2 = $120 and 60 × $2 × 2 = $240. Points don’t move with size, but your dollar exposure does."
+          },
+          {
+            "label": "$240 risk and $480 reward",
+            "correct": false,
+            "feedback": "That would be 4 contracts. Multiply points by $2, then by the number of contracts."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 8 · Wait for the retest",
+      "headline": "After the sequence, <em>wait for price to come back</em> to you.",
+      "line": "If price returns to the PIL, your planned limit entry can be considered. If it never returns, that is a missed trade.",
+      "visual": {
+        "chart": {
+          "candles": false,
+          "bars": [
+            {
+              "x": 30,
+              "o": 290.0,
+              "c": 274.0,
+              "h": 266.0,
+              "l": 296.0,
+              "w": 14
+            },
+            {
+              "x": 55,
+              "o": 274.0,
+              "c": 234.0,
+              "h": 230.0,
+              "l": 278.0,
+              "w": 14
+            },
+            {
+              "x": 80,
+              "o": 234.0,
+              "c": 202.0,
+              "h": 196.0,
+              "l": 238.0,
+              "w": 14
+            },
+            {
+              "x": 105,
+              "o": 202.0,
+              "c": 174.0,
+              "h": 154.0,
+              "l": 204.0,
+              "w": 14
+            },
+            {
+              "x": 130,
+              "o": 174.0,
+              "c": 204.0,
+              "h": 164.0,
+              "l": 210.0,
+              "w": 14
+            },
+            {
+              "x": 155,
+              "o": 204.0,
+              "c": 216.0,
+              "h": 194.0,
+              "l": 222.0,
+              "w": 14
+            },
+            {
+              "x": 180,
+              "o": 216.0,
+              "c": 246.0,
+              "h": 206.0,
+              "l": 254.0,
+              "w": 14
+            },
+            {
+              "x": 205,
+              "o": 246.0,
+              "c": 258.0,
+              "h": 238.0,
+              "l": 266.0,
+              "w": 14
+            },
+            {
+              "x": 230,
+              "o": 258.0,
+              "c": 222.0,
+              "h": 216.0,
+              "l": 268.0,
+              "w": 14
+            },
+            {
+              "x": 255,
+              "o": 222.0,
+              "c": 208.0,
+              "h": 200.0,
+              "l": 230.0,
+              "w": 14
+            },
+            {
+              "x": 280,
+              "o": 208.0,
+              "c": 178.0,
+              "h": 172.0,
+              "l": 210.0,
+              "w": 14
+            },
+            {
+              "x": 305,
+              "o": 178.0,
+              "c": 132.0,
+              "h": 126.0,
+              "l": 178.0,
+              "w": 14
+            },
+            {
+              "x": 330,
+              "o": 132.0,
+              "c": 172.0,
+              "h": 132.0,
+              "l": 178.0,
+              "w": 14
+            },
+            {
+              "x": 355,
+              "o": 172.0,
+              "c": 130.0,
+              "h": 122.0,
+              "l": 172.0,
+              "w": 14
+            },
+            {
+              "x": 380,
+              "o": 130.0,
+              "c": 112.0,
+              "h": 106.0,
+              "l": 140.0,
+              "w": 14,
+              "id": "run"
+            },
+            {
+              "x": 405,
+              "o": 112.0,
+              "c": 88.0,
+              "h": 84.0,
+              "l": 114.0,
+              "w": 14,
+              "id": "run"
+            },
+            {
+              "x": 430,
+              "o": 88.0,
+              "c": 68.0,
+              "h": 64.0,
+              "l": 96.0,
+              "w": 14,
+              "id": "run"
+            },
+            {
+              "x": 455,
+              "o": 68.0,
+              "c": 34.0,
+              "h": 24.0,
+              "l": 74.0,
+              "w": 14,
+              "id": "run"
+            },
+            {
+              "x": 480,
+              "o": 34.0,
+              "c": 68.0,
+              "h": 30.0,
+              "l": 74.0,
+              "w": 14,
+              "id": "run"
+            },
+            {
+              "x": 505,
+              "o": 68.0,
+              "c": 92.0,
+              "h": 60.0,
+              "l": 96.0,
+              "w": 14,
+              "id": "run"
+            },
+            {
+              "x": 530,
+              "o": 92.0,
+              "c": 130.0,
+              "h": 88.0,
+              "l": 140.0,
+              "w": 14,
+              "id": "back"
+            },
+            {
+              "x": 555,
+              "o": 130.0,
+              "c": 142.0,
+              "h": 120.0,
+              "l": 158.0,
+              "w": 14,
+              "id": "back"
+            }
+          ],
+          "hlines": [
+            {
+              "y": 154.0,
+              "label": "PIL · 21,004.25",
+              "tone": "purple",
+              "x1": 105,
+              "x2": 692,
+              "size": 20,
+              "labelX": 105
+            }
+          ],
+          "notes": [
+            {
+              "x": 105,
+              "y": 118.0,
+              "text": "swing high",
+              "tone": "muted",
+              "size": 19
+            },
+            {
+              "x": 305,
+              "y": 112.0,
+              "text": "I",
+              "tone": "up",
+              "size": 30
+            },
+            {
+              "x": 330,
+              "y": 210.0,
+              "text": "C",
+              "tone": "purple",
+              "size": 30
+            },
+            {
+              "x": 355,
+              "y": 108.0,
+              "text": "C",
+              "tone": "up",
+              "size": 30
+            },
+            {
+              "x": 555,
+              "y": 180.0,
+              "text": "RETEST",
+              "tone": "purple",
+              "size": 20,
+              "id": "nR"
+            },
+            {
+              "x": 632,
+              "y": 142.0,
+              "text": "◆ LIMIT ENTRY",
+              "tone": "gold",
+              "size": 20,
+              "id": "nE"
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "run"
+            ],
+            "text": "Price runs away from the PIL. You don’t chase it. You wait.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "back",
+              "nR"
+            ],
+            "text": "Price comes back down to the PIL. <strong>That is the first retest.</strong>",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "nE"
+            ],
+            "text": "Now your planned limit entry at the PIL can be considered. If price had gone to target without coming back, it would be a <strong>missed trade, not a bad trade.</strong>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 9 · Skip these",
+      "headline": "Which setups are incomplete or invalid, and <em>must be skipped?</em>",
+      "line": "Tap each one. If any of these is true, there is no entry for you.",
+      "visual": {
+        "cards": [
+          {
+            "icon": "stop",
+            "tone": "pink",
+            "label": "Indication, no correction",
+            "sub": "Price closed through and never closed back. The sequence isn’t complete."
+          },
+          {
+            "icon": "stop",
+            "tone": "pink",
+            "label": "Correction, no continuation",
+            "sub": "Price closed back but never closed through again in the original direction."
+          },
+          {
+            "icon": "candle",
+            "tone": "pink",
+            "label": "Wick-only breaks",
+            "sub": "A wick through the PIL is a visit, not proof. Only closes count."
+          },
+          {
+            "icon": "clock",
+            "tone": "pink",
+            "label": "Entry already missed",
+            "sub": "The retest came and went, or never came. Don’t chase."
+          },
+          {
+            "icon": "swap",
+            "tone": "pink",
+            "label": "Against your thesis",
+            "sub": "An entry that conflicts with your planned structural thesis is skipped."
+          }
+        ]
+      },
+      "check": {
+        "prompt": "Price closed above the PIL, then closed back below, then only wicked back above it. Is the sequence complete?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Yes, all three steps happened",
+            "correct": false,
+            "feedback": "Wicks don’t complete anything. Continuation needs a candle to close back above the PIL."
+          },
+          {
+            "label": "No, continuation isn’t confirmed",
+            "correct": true,
+            "why": "Right. While the closes stay on the wrong side, continuation is not confirmed, so there is no entry."
+          }
+        ]
+      }
+    },
+    {
+      "type": "exec_sim",
+      "kicker": "Your turn",
+      "title": "Mark every step, then take the entry.",
+      "body": "Read the HTF context first. Then mark the PIL and confirm each step only after a candle closes.",
+      "goal": "entry",
+      "scenario": {
+        "dir": "bullish",
+        "tf": "1M",
+        "symbol": "MNQ",
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20988.75,
+            "l": 20981.0,
+            "c": 20987.25
+          },
+          {
+            "o": 20987.25,
+            "h": 20990.25,
+            "l": 20986.5,
+            "c": 20989.25
+          },
+          {
+            "o": 20989.25,
+            "h": 20994.75,
+            "l": 20988.75,
+            "c": 20994.25
+          },
+          {
+            "o": 20994.25,
+            "h": 20999.0,
+            "l": 20993.75,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20998.0,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21003.0,
+            "l": 20997.25,
+            "c": 20998.0
+          },
+          {
+            "o": 20998.0,
+            "h": 20999.25,
+            "l": 20995.75,
+            "c": 20996.5
+          },
+          {
+            "o": 20996.5,
+            "h": 20997.75,
+            "l": 20991.75,
+            "c": 20992.75
+          },
+          {
+            "o": 20992.75,
+            "h": 20993.75,
+            "l": 20990.25,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20996.5,
+            "l": 20990.0,
+            "c": 20995.75
+          },
+          {
+            "o": 20995.75,
+            "h": 20998.5,
+            "l": 20994.75,
+            "c": 20997.5
+          },
+          {
+            "o": 20997.5,
+            "h": 21002.0,
+            "l": 20997.25,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21008.25,
+            "l": 21002.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21010.25,
+            "l": 21006.0,
+            "c": 21009.5
+          },
+          {
+            "o": 21009.5,
+            "h": 21013.0,
+            "l": 21009.25,
+            "c": 21012.5
+          },
+          {
+            "o": 21012.5,
+            "h": 21015.5,
+            "l": 21011.5,
+            "c": 21015.0
+          },
+          {
+            "o": 21015.0,
+            "h": 21020.5,
+            "l": 21014.25,
+            "c": 21019.25
+          },
+          {
+            "o": 21019.25,
+            "h": 21019.75,
+            "l": 21014.25,
+            "c": 21015.0
+          },
+          {
+            "o": 21015.0,
+            "h": 21016.0,
+            "l": 21011.5,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21012.5,
+            "l": 21006.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21008.5,
+            "l": 21003.75,
+            "c": 21005.75
+          },
+          {
+            "o": 21005.75,
+            "h": 21007.75,
+            "l": 21005.0,
+            "c": 21006.75
+          },
+          {
+            "o": 21006.75,
+            "h": 21010.75,
+            "l": 21006.25,
+            "c": 21009.25
+          },
+          {
+            "o": 21009.25,
+            "h": 21012.0,
+            "l": 21008.5,
+            "c": 21011.75
+          },
+          {
+            "o": 21011.75,
+            "h": 21012.5,
+            "l": 21010.5,
+            "c": 21012.25
+          }
+        ],
+        "pil": null,
+        "context": [
+          {
+            "label": "4H",
+            "value": "Bullish",
+            "ok": true
+          },
+          {
+            "label": "1H",
+            "value": "Bullish thesis",
+            "ok": true
+          },
+          {
+            "label": "15M",
+            "value": "Higher lows (optional)",
+            "ok": true
+          },
+          {
+            "label": "HTF ICC",
+            "value": "Correction"
+          },
+          {
+            "label": "Location",
+            "value": "4H discount"
+          }
+        ],
+        "structure": "Pullback from a 1M swing high. Price is below it.",
+        "start": 11,
+        "pick": {
+          "candidates": [
+            {
+              "id": "A",
+              "label": "A",
+              "at": 4,
+              "price": 21004.25,
+              "valid": true,
+              "why": "The swing high this pullback came from. To resume upward, price has to prove itself through it."
+            },
+            {
+              "id": "B",
+              "label": "B",
+              "at": 9,
+              "price": 20990.0,
+              "valid": false,
+              "mistake": "tiny-pil",
+              "why": "That is the low of the pullback. A bullish sequence starts below the PIL and proves itself up through the swing high."
+            }
+          ],
+          "ask": {
+            "prompt": "Why this one?",
+            "stack": true,
+            "options": [
+              {
+                "label": "It’s structurally relevant to the current move",
+                "correct": true,
+                "why": "Exactly: it’s the swing the current pullback came from.",
+                "track": "pil-structural-relevance"
+              },
+              {
+                "label": "It’s the newest swing",
+                "feedback": "Newest isn’t the test. Relevance is.",
+                "mistake": "tiny-pil"
+              },
+              {
+                "label": "It’s closest to current price",
+                "feedback": "Closest isn’t the test either.",
+                "mistake": "tiny-pil"
+              }
+            ]
+          }
+        }
+      },
+      "chase": {
+        "from": 15
+      },
+      "intro": "Tap the swing that is your PIL. Then press Play or Next candle, and confirm each step as price earns it.",
+      "end": {
+        "card": "I · C · C → RETEST → ENTRY.<br><small>Price earned every step before you acted.</small>"
+      }
+    },
+    {
+      "type": "exec_sim",
+      "kicker": "Your turn · Skip it",
+      "title": "The sequence completed. Does the entry ever come?",
+      "goal": "pass",
+      "scenario": {
+        "dir": "bullish",
+        "tf": "1M",
+        "symbol": "MNQ",
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20987.0,
+            "l": 20981.0,
+            "c": 20986.25
+          },
+          {
+            "o": 20986.25,
+            "h": 20990.75,
+            "l": 20985.5,
+            "c": 20989.75
+          },
+          {
+            "o": 20989.75,
+            "h": 20995.5,
+            "l": 20989.25,
+            "c": 20994.0
+          },
+          {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20993.5,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20996.75,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21002.75,
+            "l": 20998.0,
+            "c": 20998.75
+          },
+          {
+            "o": 20998.75,
+            "h": 20999.5,
+            "l": 20996.5,
+            "c": 20997.0
+          },
+          {
+            "o": 20997.0,
+            "h": 20997.75,
+            "l": 20992.5,
+            "c": 20993.75
+          },
+          {
+            "o": 20993.75,
+            "h": 20994.75,
+            "l": 20990.75,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20995.5,
+            "l": 20990.25,
+            "c": 20995.0
+          },
+          {
+            "o": 20995.0,
+            "h": 20998.0,
+            "l": 20993.75,
+            "c": 20997.25
+          },
+          {
+            "o": 20997.25,
+            "h": 21002.25,
+            "l": 20996.0,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21008.25,
+            "l": 21002.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21009.5,
+            "l": 21006.5,
+            "c": 21008.0
+          },
+          {
+            "o": 21008.0,
+            "h": 21010.25,
+            "l": 21007.25,
+            "c": 21009.75
+          },
+          {
+            "o": 21009.75,
+            "h": 21012.25,
+            "l": 21009.0,
+            "c": 21011.5
+          },
+          {
+            "o": 21011.5,
+            "h": 21015.25,
+            "l": 21010.75,
+            "c": 21014.25
+          },
+          {
+            "o": 21014.25,
+            "h": 21017.75,
+            "l": 21013.5,
+            "c": 21016.75
+          },
+          {
+            "o": 21016.75,
+            "h": 21018.75,
+            "l": 21015.25,
+            "c": 21017.75
+          },
+          {
+            "o": 21017.75,
+            "h": 21020.25,
+            "l": 21017.25,
+            "c": 21018.75
+          },
+          {
+            "o": 21018.75,
+            "h": 21020.5,
+            "l": 21018.5,
+            "c": 21019.0
+          },
+          {
+            "o": 21019.0,
+            "h": 21023.5,
+            "l": 21018.5,
+            "c": 21022.0
+          },
+          {
+            "o": 21022.0,
+            "h": 21022.75,
+            "l": 21020.5,
+            "c": 21022.25
+          }
+        ],
+        "pil": 21004.25,
+        "context": [
+          {
+            "label": "4H",
+            "value": "Bullish",
+            "ok": true
+          },
+          {
+            "label": "1H",
+            "value": "Bullish thesis",
+            "ok": true
+          },
+          {
+            "label": "15M",
+            "value": "Higher lows (optional)",
+            "ok": true
+          },
+          {
+            "label": "HTF ICC",
+            "value": "Correction"
+          },
+          {
+            "label": "Location",
+            "value": "4H discount"
+          }
+        ],
+        "structure": "Pullback from the swing high at the PIL. Price is below it.",
+        "pilAt": 4,
+        "start": 15
+      },
+      "preMarks": [
+        "indication",
+        "correction",
+        "continuation"
+      ],
+      "chase": {
+        "from": 16
+      },
+      "passOk": {
+        "after": 18
+      },
+      "passText": "Skip it: missed trade",
+      "passLabel": "SETUP VALID · ENTRY MISSED",
+      "passWhy": "<strong>MISSED TRADE ✓</strong> The setup was valid, but price never came back to the PIL. You don’t chase, so you skip it.",
+      "passMiss": "Give price a chance to come back to the PIL first.",
+      "intro": "Indication, Correction and Continuation are already in. Place your planned limit entry, then watch what price does.",
+      "end": {
+        "card": "A MISSED TRADE IS NOT A BAD TRADE.<br><small>It’s just a trade you didn’t get.</small>"
+      }
+    },
+    {
+      "type": "exec_sim",
+      "kicker": "Step 10 · Replay it",
+      "title": "Replay a bearish setup and check each requirement.",
+      "body": "Bearish mirrors bullish: close below, close back above, close back below, then the retest.",
+      "demo": true,
+      "scenario": {
+        "dir": "bearish",
+        "tf": "1M",
+        "symbol": "MNQ",
+        "bars": [
+          {
+            "o": 21026.25,
+            "c": 21022.25,
+            "h": 21027.75,
+            "l": 21021.0
+          },
+          {
+            "o": 21022.25,
+            "c": 21018.75,
+            "h": 21023.5,
+            "l": 21017.5
+          },
+          {
+            "o": 21018.75,
+            "c": 21013.75,
+            "h": 21019.0,
+            "l": 21013.25
+          },
+          {
+            "o": 21013.75,
+            "c": 21010.25,
+            "h": 21015.0,
+            "l": 21009.5
+          },
+          {
+            "o": 21010.25,
+            "c": 21006.75,
+            "h": 21011.25,
+            "l": 21004.25
+          },
+          {
+            "o": 21006.75,
+            "c": 21009.75,
+            "h": 21011.25,
+            "l": 21005.5
+          },
+          {
+            "o": 21009.75,
+            "c": 21012.25,
+            "h": 21012.5,
+            "l": 21008.25
+          },
+          {
+            "o": 21012.25,
+            "c": 21013.75,
+            "h": 21014.25,
+            "l": 21011.0
+          },
+          {
+            "o": 21013.75,
+            "c": 21017.25,
+            "h": 21018.25,
+            "l": 21012.5
+          },
+          {
+            "o": 21017.25,
+            "c": 21012.75,
+            "h": 21018.25,
+            "l": 21012.25
+          },
+          {
+            "o": 21012.75,
+            "c": 21009.75,
+            "h": 21013.5,
+            "l": 21008.75
+          },
+          {
+            "o": 21009.75,
+            "c": 21007.25,
+            "h": 21011.25,
+            "l": 21007.0
+          },
+          {
+            "o": 21007.25,
+            "c": 21001.5,
+            "h": 21007.25,
+            "l": 21000.75
+          },
+          {
+            "o": 21001.5,
+            "c": 21006.5,
+            "h": 21007.25,
+            "l": 21001.5
+          },
+          {
+            "o": 21006.5,
+            "c": 21001.25,
+            "h": 21006.5,
+            "l": 21000.0
+          },
+          {
+            "o": 21001.25,
+            "c": 21000.25,
+            "h": 21001.5,
+            "l": 20999.5
+          },
+          {
+            "o": 21000.25,
+            "c": 20996.0,
+            "h": 21001.75,
+            "l": 20995.25
+          },
+          {
+            "o": 20996.0,
+            "c": 20994.75,
+            "h": 20997.25,
+            "l": 20993.5
+          },
+          {
+            "o": 20994.75,
+            "c": 20992.25,
+            "h": 20995.75,
+            "l": 20991.75
+          },
+          {
+            "o": 20992.25,
+            "c": 20994.0,
+            "h": 20994.75,
+            "l": 20991.25
+          },
+          {
+            "o": 20994.0,
+            "c": 20998.75,
+            "h": 20999.25,
+            "l": 20992.75
+          },
+          {
+            "o": 20998.75,
+            "c": 21001.25,
+            "h": 21002.25,
+            "l": 20997.75
+          },
+          {
+            "o": 21001.25,
+            "c": 21002.75,
+            "h": 21004.75,
+            "l": 21000.25
+          },
+          {
+            "o": 21002.75,
+            "c": 21000.75,
+            "h": 21003.5,
+            "l": 20999.25
+          },
+          {
+            "o": 21000.75,
+            "c": 21000.0,
+            "h": 21001.75,
+            "l": 20998.5
+          },
+          {
+            "o": 21000.0,
+            "c": 20998.5,
+            "h": 21001.25,
+            "l": 20998.25
+          },
+          {
+            "o": 20998.5,
+            "c": 20996.25,
+            "h": 20999.25,
+            "l": 20995.5
+          }
+        ],
+        "pil": 21004.25,
+        "context": [
+          {
+            "label": "4H",
+            "value": "Bearish",
+            "ok": true
+          },
+          {
+            "label": "1H",
+            "value": "Bearish thesis",
+            "ok": true
+          },
+          {
+            "label": "15M",
+            "value": "Lower highs (optional)",
+            "ok": true
+          },
+          {
+            "label": "HTF ICC",
+            "value": "Correction"
+          },
+          {
+            "label": "Location",
+            "value": "4H premium"
+          }
+        ],
+        "structure": "Bounce into the swing low at the PIL. Price is above it.",
+        "pilAt": 4,
+        "start": 11
+      },
+      "pauses": [
+        {
+          "at": 11,
+          "text": "This candle closed <b>above</b> the PIL.",
+          "resume": true,
+          "ask": {
+            "prompt": "Has bearish indication happened yet?",
+            "stack": true,
+            "options": [
+              {
+                "label": "No, nothing has closed below the PIL",
+                "correct": true,
+                "why": "Right. Bearish indication needs a 1M candle to close below the PIL."
+              },
+              {
+                "label": "Yes, price is close enough",
+                "feedback": "Close enough isn’t a close. Wait for a candle to close below the PIL."
+              }
+            ]
+          }
+        },
+        {
+          "at": 12,
+          "text": "<b>INDICATION ✓</b> This candle closed below the PIL.",
+          "resume": true,
+          "ask": {
+            "prompt": "What does price need to do next?",
+            "stack": true,
+            "options": [
+              {
+                "label": "Close back above the PIL",
+                "correct": true,
+                "why": "Yes. That close back above is the correction."
+              },
+              {
+                "label": "Keep falling so I can sell",
+                "feedback": "Not yet. The model still needs a correction: a close back above the PIL."
+              }
+            ]
+          }
+        },
+        {
+          "at": 14,
+          "text": "<b>CONTINUATION ✓</b> Closed below, back above, back below. The sequence is complete.",
+          "resume": true,
+          "ask": {
+            "prompt": "Do you sell right now?",
+            "stack": true,
+            "options": [
+              {
+                "label": "No, I wait for the retest of the PIL",
+                "correct": true,
+                "why": "Exactly. Your planned limit entry is at the PIL, so you wait for price to come back to you."
+              },
+              {
+                "label": "Yes, before it gets away",
+                "feedback": "That’s chasing. Price moving without you doesn’t create a new rule. Your plan was the retest."
+              }
+            ]
+          }
+        }
+      ],
+      "end": {
+        "card": "SAME RULES, MIRRORED.<br><small>Has the next ICC requirement been satisfied? If not, wait.</small>"
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Is the entry model actually present? <em>Then, and only then, you act.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "In your own words, what has to happen <em>before</em> you place a 1M entry?",
+      "modelAnswer": "My 4H and 1H work is done, and the 15M if I use it. I mark the PIL first. Then a 1M candle closes through it (Indication), a candle closes back through it (Correction), and a candle closes through it again in the original direction (Continuation). Then I wait for price to retest the PIL, where my planned limit entry sits, with a defined stop and target like the 30-point stop and 60-point target in the MNQ example. If any step is missing, or the retest never comes, I skip it."
+    }
+  ],
+  "takeaways": [
+    "Finish the 4H and 1H first, and mark the PIL before anything else.",
+    "Indication, Correction and Continuation all need candle closes through the PIL.",
+    "A complete ICC still needs the retest before the planned limit entry.",
+    "No retest, a wick-only break or a missing step means you skip it."
+  ],
+  "remember": "NO COMPLETE MODEL, NO RETEST, NO ENTRY."
+}

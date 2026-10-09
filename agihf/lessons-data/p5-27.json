@@ -1,0 +1,2544 @@
+{
+ "phase": "p5",
+ "section": "s14",
+ "lessonNumber": 27,
+ "title": "The 15M Checkpoint",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 80,
+ "completeStyle": "v2",
+ "passThreshold": 0.6,
+ "hook": "The bridge between the higher-timeframe story and execution.",
+ "format": "slides",
+ "launchpad": {
+  "outcome": "Read 15M structure with your 4H and 1H levels in view, tell a candle-body break from a wick, and decide whether price is ready for the 1M.",
+  "missionQuestion": "What is the 15M showing, and does it support moving to the execution timeframe?",
+  "estMinutes": 9
+ },
+ "watch": {
+  "markers": []
+ },
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Phase 5 · Lesson 27",
+   "headline": "The 15-minute chart is your bridge from the story <em>to execution.</em>",
+   "line": "The 15-minute (15M) chart is recommended for extra confluence, but it is not a requirement. It lets you watch structure develop before you move to the 1-minute (1M) chart.",
+   "pose": "wave",
+   "cta": "Let’s take a closer look →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · Keep your levels",
+   "headline": "Move to the 15M and keep your <em>higher-timeframe levels</em> visible.",
+   "line": "The 15M is a closer look at price. You do not throw away the 4H and 1H analysis you already did.",
+   "visual": {
+    "chart": {
+     "swings": [
+      [
+       30,
+       50
+      ],
+      [
+       100,
+       110
+      ],
+      [
+       150,
+       80
+      ],
+      [
+       230,
+       150
+      ],
+      [
+       280,
+       120
+      ],
+      [
+       370,
+       200
+      ],
+      [
+       420,
+       170
+      ],
+      [
+       500,
+       226
+      ]
+     ],
+     "candles": false,
+     "bars": [
+      {
+       "x": 38.8,
+       "o": 50,
+       "c": 66.3,
+       "h": 50,
+       "l": 68.0,
+       "w": 10.8
+      },
+      {
+       "x": 56.2,
+       "o": 66.3,
+       "c": 80.1,
+       "h": 63.2,
+       "l": 82.2,
+       "w": 10.8
+      },
+      {
+       "x": 73.8,
+       "o": 80.1,
+       "c": 93.1,
+       "h": 76.2,
+       "l": 96.4,
+       "w": 10.8
+      },
+      {
+       "x": 91.2,
+       "o": 93.1,
+       "c": 110,
+       "h": 91.4,
+       "l": 110,
+       "w": 10.8
+      },
+      {
+       "x": 108.3,
+       "o": 110,
+       "c": 101.8,
+       "h": 99.5,
+       "l": 110,
+       "w": 10.3
+      },
+      {
+       "x": 125.0,
+       "o": 101.8,
+       "c": 86.6,
+       "h": 83.5,
+       "l": 105.1,
+       "w": 10.3
+      },
+      {
+       "x": 141.7,
+       "o": 86.6,
+       "c": 80,
+       "h": 80,
+       "l": 90.3,
+       "w": 10.3
+      },
+      {
+       "x": 158.0,
+       "o": 80,
+       "c": 86.4,
+       "h": 80,
+       "l": 90.4,
+       "w": 9.9
+      },
+      {
+       "x": 174.0,
+       "o": 86.4,
+       "c": 102.6,
+       "h": 82.3,
+       "l": 104.5,
+       "w": 9.9
+      },
+      {
+       "x": 190.0,
+       "o": 102.6,
+       "c": 115.4,
+       "h": 100.4,
+       "l": 116.5,
+       "w": 9.9
+      },
+      {
+       "x": 206.0,
+       "o": 115.4,
+       "c": 142.7,
+       "h": 113.5,
+       "l": 143.1,
+       "w": 9.9
+      },
+      {
+       "x": 222.0,
+       "o": 142.7,
+       "c": 150,
+       "h": 140.4,
+       "l": 150,
+       "w": 9.9
+      },
+      {
+       "x": 238.3,
+       "o": 150,
+       "c": 139.7,
+       "h": 136.9,
+       "l": 150,
+       "w": 10.3
+      },
+      {
+       "x": 255.0,
+       "o": 139.7,
+       "c": 132.7,
+       "h": 131.7,
+       "l": 141.4,
+       "w": 10.3
+      },
+      {
+       "x": 271.7,
+       "o": 132.7,
+       "c": 120,
+       "h": 120,
+       "l": 133.0,
+       "w": 10.3
+      },
+      {
+       "x": 289.0,
+       "o": 120,
+       "c": 133.5,
+       "h": 120,
+       "l": 141.0,
+       "w": 11.2
+      },
+      {
+       "x": 307.0,
+       "o": 133.5,
+       "c": 147.1,
+       "h": 130.5,
+       "l": 149.8,
+       "w": 11.2
+      },
+      {
+       "x": 325.0,
+       "o": 147.1,
+       "c": 177.5,
+       "h": 144.4,
+       "l": 179.1,
+       "w": 11.2
+      },
+      {
+       "x": 343.0,
+       "o": 177.5,
+       "c": 176.6,
+       "h": 175.5,
+       "l": 179.7,
+       "w": 11.2
+      },
+      {
+       "x": 361.0,
+       "o": 176.6,
+       "c": 200,
+       "h": 169.4,
+       "l": 200,
+       "w": 11.2
+      },
+      {
+       "x": 378.3,
+       "o": 200,
+       "c": 194.5,
+       "h": 187.7,
+       "l": 200,
+       "w": 10.3
+      },
+      {
+       "x": 395.0,
+       "o": 194.5,
+       "c": 180.6,
+       "h": 179.5,
+       "l": 195.6,
+       "w": 10.3
+      },
+      {
+       "x": 411.7,
+       "o": 180.6,
+       "c": 170,
+       "h": 170,
+       "l": 183.7,
+       "w": 10.3
+      },
+      {
+       "x": 428.0,
+       "o": 170,
+       "c": 185.8,
+       "h": 170,
+       "l": 185.9,
+       "w": 9.9
+      },
+      {
+       "x": 444.0,
+       "o": 185.8,
+       "c": 189.7,
+       "h": 182.7,
+       "l": 190.3,
+       "w": 9.9
+      },
+      {
+       "x": 460.0,
+       "o": 189.7,
+       "c": 213.2,
+       "h": 184.2,
+       "l": 216.9,
+       "w": 9.9
+      },
+      {
+       "x": 476.0,
+       "o": 213.2,
+       "c": 214.2,
+       "h": 210.1,
+       "l": 217.7,
+       "w": 9.9
+      },
+      {
+       "x": 492.0,
+       "o": 214.2,
+       "c": 226,
+       "h": 214.1,
+       "l": 226,
+       "w": 9.9
+      }
+     ],
+     "hlines": [
+      {
+       "y": 240,
+       "label": "1H SWING LOW",
+       "tone": "purple",
+       "x1": 8,
+       "x2": 692,
+       "size": 13,
+       "id": "h1",
+       "labelX": 520,
+       "below": true
+      },
+      {
+       "y": 292,
+       "label": "4H SWING LOW",
+       "tone": "gold",
+       "x1": 8,
+       "x2": 692,
+       "size": 13,
+       "id": "h4",
+       "labelX": 520,
+       "below": true
+      }
+     ],
+     "marks": [],
+     "notes": [
+      {
+       "x": 560,
+       "y": 222,
+       "text": "● now",
+       "tone": "dark",
+       "size": 13,
+       "anchor": "middle",
+       "id": "now"
+      }
+     ]
+    },
+    "steps": [
+     {
+      "show": [
+       "h4"
+      ],
+      "text": "Your 4H level stays on the chart. This is the 4H swing low from your 4H read.",
+      "next": "Next →"
+     },
+     {
+      "show": [
+       "h1"
+      ],
+      "text": "Your 1H level stays too. This is the previous 1H swing low from your 1H map.",
+      "next": "Next →"
+     },
+     {
+      "show": [
+       "now"
+      ],
+      "text": "Now you read the 15M candles between those levels. Same story, closer look."
+     }
+    ]
+   }
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 2 · 15M structure",
+   "headline": "What is the <em>15M structure</em> doing right now?",
+   "line": "Tap each one. You read the 15M from its own swings, the same way you read every timeframe.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "up",
+      "tone": "teal",
+      "label": "Bullish",
+      "sub": "Higher highs and higher lows."
+     },
+     {
+      "icon": "down",
+      "tone": "pink",
+      "label": "Bearish",
+      "sub": "Lower highs and lower lows."
+     },
+     {
+      "icon": "swap",
+      "tone": "purple",
+      "label": "Consolidation",
+      "sub": "Price moves inside a range with no clear progress."
+     },
+     {
+      "icon": "bolt",
+      "tone": "gold",
+      "label": "Possible transition",
+      "sub": "Structure may be starting to change direction."
+     }
+    ]
+   },
+   "check": {
+    "prompt": "The 1H is bullish, but the 15M is making lower highs and lower lows. What is the 15M structure?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Bullish, because the 1H is bullish",
+      "correct": false,
+      "feedback": "Read the 15M from its own swings. Lower highs and lower lows are bearish on this timeframe, even while the 1H is bullish."
+     },
+     {
+      "label": "Bearish on the 15M",
+      "correct": true,
+      "why": "Right. Each timeframe has its own structure, and you read it from its own swings."
+     }
+    ]
+   }
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 3 · Approaching a level",
+   "headline": "As price nears your level, <em>watch how it moves.</em>",
+   "line": "Is price moving with direction, is it correcting, or is structure beginning to change?",
+   "visual": {
+    "chart": {
+     "swings": [
+      [
+       30,
+       50
+      ],
+      [
+       100,
+       110
+      ],
+      [
+       150,
+       80
+      ],
+      [
+       230,
+       150
+      ],
+      [
+       280,
+       120
+      ],
+      [
+       370,
+       200
+      ],
+      [
+       420,
+       170
+      ],
+      [
+       500,
+       226
+      ]
+     ],
+     "candles": false,
+     "bars": [
+      {
+       "x": 38.8,
+       "o": 50,
+       "c": 66.3,
+       "h": 50,
+       "l": 68.0,
+       "w": 10.8
+      },
+      {
+       "x": 56.2,
+       "o": 66.3,
+       "c": 80.1,
+       "h": 63.2,
+       "l": 82.2,
+       "w": 10.8
+      },
+      {
+       "x": 73.8,
+       "o": 80.1,
+       "c": 93.1,
+       "h": 76.2,
+       "l": 96.4,
+       "w": 10.8
+      },
+      {
+       "x": 91.2,
+       "o": 93.1,
+       "c": 110,
+       "h": 91.4,
+       "l": 110,
+       "w": 10.8
+      },
+      {
+       "x": 108.3,
+       "o": 110,
+       "c": 101.8,
+       "h": 99.5,
+       "l": 110,
+       "w": 10.3
+      },
+      {
+       "x": 125.0,
+       "o": 101.8,
+       "c": 86.6,
+       "h": 83.5,
+       "l": 105.1,
+       "w": 10.3
+      },
+      {
+       "x": 141.7,
+       "o": 86.6,
+       "c": 80,
+       "h": 80,
+       "l": 90.3,
+       "w": 10.3
+      },
+      {
+       "x": 158.0,
+       "o": 80,
+       "c": 86.4,
+       "h": 80,
+       "l": 90.4,
+       "w": 9.9
+      },
+      {
+       "x": 174.0,
+       "o": 86.4,
+       "c": 102.6,
+       "h": 82.3,
+       "l": 104.5,
+       "w": 9.9
+      },
+      {
+       "x": 190.0,
+       "o": 102.6,
+       "c": 115.4,
+       "h": 100.4,
+       "l": 116.5,
+       "w": 9.9
+      },
+      {
+       "x": 206.0,
+       "o": 115.4,
+       "c": 142.7,
+       "h": 113.5,
+       "l": 143.1,
+       "w": 9.9
+      },
+      {
+       "x": 222.0,
+       "o": 142.7,
+       "c": 150,
+       "h": 140.4,
+       "l": 150,
+       "w": 9.9
+      },
+      {
+       "x": 238.3,
+       "o": 150,
+       "c": 139.7,
+       "h": 136.9,
+       "l": 150,
+       "w": 10.3
+      },
+      {
+       "x": 255.0,
+       "o": 139.7,
+       "c": 132.7,
+       "h": 131.7,
+       "l": 141.4,
+       "w": 10.3
+      },
+      {
+       "x": 271.7,
+       "o": 132.7,
+       "c": 120,
+       "h": 120,
+       "l": 133.0,
+       "w": 10.3
+      },
+      {
+       "x": 289.0,
+       "o": 120,
+       "c": 133.5,
+       "h": 120,
+       "l": 141.0,
+       "w": 11.2
+      },
+      {
+       "x": 307.0,
+       "o": 133.5,
+       "c": 147.1,
+       "h": 130.5,
+       "l": 149.8,
+       "w": 11.2
+      },
+      {
+       "x": 325.0,
+       "o": 147.1,
+       "c": 177.5,
+       "h": 144.4,
+       "l": 179.1,
+       "w": 11.2
+      },
+      {
+       "x": 343.0,
+       "o": 177.5,
+       "c": 176.6,
+       "h": 175.5,
+       "l": 179.7,
+       "w": 11.2
+      },
+      {
+       "x": 361.0,
+       "o": 176.6,
+       "c": 200,
+       "h": 169.4,
+       "l": 200,
+       "w": 11.2
+      },
+      {
+       "x": 378.3,
+       "o": 200,
+       "c": 194.5,
+       "h": 187.7,
+       "l": 200,
+       "w": 10.3
+      },
+      {
+       "x": 395.0,
+       "o": 194.5,
+       "c": 180.6,
+       "h": 179.5,
+       "l": 195.6,
+       "w": 10.3
+      },
+      {
+       "x": 411.7,
+       "o": 180.6,
+       "c": 170,
+       "h": 170,
+       "l": 183.7,
+       "w": 10.3
+      },
+      {
+       "x": 428.0,
+       "o": 170,
+       "c": 185.8,
+       "h": 170,
+       "l": 185.9,
+       "w": 9.9
+      },
+      {
+       "x": 444.0,
+       "o": 185.8,
+       "c": 189.7,
+       "h": 182.7,
+       "l": 190.3,
+       "w": 9.9
+      },
+      {
+       "x": 460.0,
+       "o": 189.7,
+       "c": 213.2,
+       "h": 184.2,
+       "l": 216.9,
+       "w": 9.9
+      },
+      {
+       "x": 476.0,
+       "o": 213.2,
+       "c": 214.2,
+       "h": 210.1,
+       "l": 217.7,
+       "w": 9.9
+      },
+      {
+       "x": 492.0,
+       "o": 214.2,
+       "c": 226,
+       "h": 214.1,
+       "l": 226,
+       "w": 9.9
+      }
+     ],
+     "hlines": [
+      {
+       "y": 240,
+       "label": "1H SWING LOW",
+       "tone": "purple",
+       "x1": 8,
+       "x2": 692,
+       "size": 13,
+       "labelX": 520,
+       "below": true
+      },
+      {
+       "y": 292,
+       "label": "4H SWING LOW",
+       "tone": "gold",
+       "x1": 8,
+       "x2": 692,
+       "size": 13,
+       "labelX": 520,
+       "below": true
+      }
+     ],
+     "marks": [
+      {
+       "i": 4,
+       "label": "Lower high",
+       "tone": "down",
+       "id": "lh1",
+       "pos": "high"
+      },
+      {
+       "i": 5,
+       "label": "Lower low",
+       "tone": "down",
+       "id": "ll1",
+       "pos": "low"
+      },
+      {
+       "i": 6,
+       "label": "Lower high",
+       "tone": "down",
+       "id": "lh2",
+       "pos": "high"
+      }
+     ],
+     "notes": [
+      {
+       "x": 560,
+       "y": 222,
+       "text": "● now",
+       "tone": "dark",
+       "size": 13,
+       "anchor": "middle",
+       "id": "now"
+      },
+      {
+       "x": 600,
+       "y": 120,
+       "text": "NO 15M HIGH BROKEN YET",
+       "tone": "muted",
+       "size": 13,
+       "anchor": "middle",
+       "id": "nobreak"
+      }
+     ]
+    },
+    "steps": [
+     {
+      "show": [
+       "lh1",
+       "ll1",
+       "lh2"
+      ],
+      "text": "<strong>Directional movement?</strong> Yes. The 15M keeps making lower highs and lower lows toward the 1H level.",
+      "next": "Next →"
+     },
+     {
+      "show": [
+       "now"
+      ],
+      "text": "<strong>Correcting?</strong> On the bigger charts, this drop may be a pullback toward your 1H level.",
+      "next": "Next →"
+     },
+     {
+      "show": [
+       "nobreak"
+      ],
+      "text": "<strong>Structure changing?</strong> Not yet. The 15M has not broken any of its lower highs."
+     }
+    ]
+   }
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 4 · Break of structure",
+   "headline": "Did the candle body close beyond the level, <em>or only the wick?</em>",
+   "line": "A bullish break of structure (BOS) breaks a relevant previous swing high. A bearish BOS breaks a relevant previous swing low.",
+   "visual": {
+    "chart": {
+     "swings": [
+      [
+       30,
+       270
+      ],
+      [
+       120,
+       160
+      ],
+      [
+       200,
+       220
+      ],
+      [
+       290,
+       120
+      ],
+      [
+       370,
+       196
+      ]
+     ],
+     "candles": false,
+     "bars": [
+      {
+       "x": 41.2,
+       "o": 270,
+       "c": 258.1,
+       "h": 257.5,
+       "l": 270,
+       "w": 10
+      },
+      {
+       "x": 63.8,
+       "o": 258.1,
+       "c": 225.0,
+       "h": 223.6,
+       "l": 261.6,
+       "w": 10
+      },
+      {
+       "x": 86.2,
+       "o": 225.0,
+       "c": 181.3,
+       "h": 175.1,
+       "l": 232.0,
+       "w": 10
+      },
+      {
+       "x": 108.8,
+       "o": 181.3,
+       "c": 160,
+       "h": 160,
+       "l": 184.3,
+       "w": 10
+      },
+      {
+       "x": 130.0,
+       "o": 160,
+       "c": 173.8,
+       "h": 160,
+       "l": 179.6,
+       "w": 10
+      },
+      {
+       "x": 150.0,
+       "o": 173.8,
+       "c": 182.0,
+       "h": 173.5,
+       "l": 184.6,
+       "w": 10
+      },
+      {
+       "x": 170.0,
+       "o": 182.0,
+       "c": 203.8,
+       "h": 177.9,
+       "l": 208.2,
+       "w": 10
+      },
+      {
+       "x": 190.0,
+       "o": 203.8,
+       "c": 220,
+       "h": 200.7,
+       "l": 220,
+       "w": 10
+      },
+      {
+       "x": 211.2,
+       "o": 220,
+       "c": 178.8,
+       "h": 177.4,
+       "l": 220,
+       "w": 10
+      },
+      {
+       "x": 233.8,
+       "o": 178.8,
+       "c": 155.5,
+       "h": 150.1,
+       "l": 186.1,
+       "w": 10
+      },
+      {
+       "x": 256.2,
+       "o": 155.5,
+       "c": 140.6,
+       "h": 134.0,
+       "l": 160.5,
+       "w": 10
+      },
+      {
+       "x": 278.8,
+       "o": 140.6,
+       "c": 120,
+       "h": 120,
+       "l": 147.4,
+       "w": 10
+      },
+      {
+       "x": 300.0,
+       "o": 120,
+       "c": 146.1,
+       "h": 120,
+       "l": 150.3,
+       "w": 10
+      },
+      {
+       "x": 320.0,
+       "o": 146.1,
+       "c": 164.5,
+       "h": 145.1,
+       "l": 167.0,
+       "w": 10
+      },
+      {
+       "x": 340.0,
+       "o": 164.5,
+       "c": 169.6,
+       "h": 161.6,
+       "l": 174.6,
+       "w": 10
+      },
+      {
+       "x": 360.0,
+       "o": 169.6,
+       "c": 196,
+       "h": 168.5,
+       "l": 196,
+       "w": 10
+      },
+      {
+       "x": 388,
+       "o": 196,
+       "c": 178,
+       "h": 175,
+       "l": 200,
+       "w": 10
+      },
+      {
+       "x": 404,
+       "o": 178,
+       "c": 160,
+       "h": 156,
+       "l": 182,
+       "w": 10
+      },
+      {
+       "x": 420,
+       "o": 160,
+       "c": 150,
+       "h": 146,
+       "l": 165,
+       "w": 10
+      },
+      {
+       "x": 436,
+       "o": 150,
+       "c": 132,
+       "h": 128,
+       "l": 153,
+       "w": 10
+      },
+      {
+       "x": 452,
+       "o": 132,
+       "c": 128,
+       "h": 104,
+       "l": 136,
+       "w": 10,
+       "id": "candA"
+      },
+      {
+       "x": 468,
+       "o": 128,
+       "c": 138,
+       "h": 125,
+       "l": 141,
+       "w": 10,
+       "id": "candA2"
+      },
+      {
+       "x": 484,
+       "o": 138,
+       "c": 100,
+       "h": 97,
+       "l": 140,
+       "w": 10,
+       "id": "candB"
+      },
+      {
+       "x": 500,
+       "o": 100,
+       "c": 94,
+       "h": 90,
+       "l": 104,
+       "w": 10,
+       "id": "after"
+      }
+     ],
+     "hlines": [
+      {
+       "y": 120,
+       "label": "PREVIOUS 15M SWING HIGH",
+       "tone": "purple",
+       "x1": 290,
+       "x2": 692,
+       "size": 13,
+       "id": "lvl",
+       "labelX": 516,
+       "below": true
+      }
+     ],
+     "marks": [
+      {
+       "i": 3,
+       "label": "Swing high",
+       "tone": "muted",
+       "id": "ph",
+       "pos": "high"
+      }
+     ],
+     "notes": [
+      {
+       "x": 452,
+       "y": 86,
+       "text": "WICK ONLY",
+       "tone": "gold",
+       "size": 13,
+       "anchor": "middle",
+       "id": "wickL"
+      },
+      {
+       "x": 580,
+       "y": 100,
+       "text": "BODY CLOSED ABOVE",
+       "tone": "up",
+       "size": 13,
+       "anchor": "middle",
+       "id": "closeL"
+      },
+      {
+       "x": 600,
+       "y": 175,
+       "text": "BULLISH BOS",
+       "tone": "up",
+       "size": 15,
+       "anchor": "middle",
+       "id": "bosL"
+      }
+     ]
+    },
+    "steps": [
+     {
+      "show": [
+       "lvl",
+       "ph"
+      ],
+      "text": "This is the previous 15M swing high. A bullish BOS has to break it.",
+      "next": "Next →"
+     },
+     {
+      "show": [
+       "candA",
+       "wickL"
+      ],
+      "text": "This wick crossed the level, but the body closed back below. <strong>A wick can visit.</strong>",
+      "next": "Next →"
+     },
+     {
+      "show": [
+       "candA2",
+       "candB",
+       "after",
+       "closeL",
+       "bosL"
+      ],
+      "text": "This candle’s body closed above the level. Price finished beyond it, so <strong>that is the bullish BOS.</strong>"
+     }
+    ]
+   },
+   "check": {
+    "prompt": "A 15M candle wicks below the previous swing low, then its body closes back above it. Is that a bearish break of structure?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, price traded below the low",
+      "correct": false,
+      "feedback": "The wick only visited. The body closed back above the low, so price did not finish beyond the level."
+     },
+     {
+      "label": "No, only the wick crossed",
+      "correct": true,
+      "why": "Right. A bearish BOS needs a candle body to close below the relevant previous swing low."
+     }
+    ]
+   }
+  },
+  {
+   "type": "swing_tap",
+   "kicker": "Your turn",
+   "title": "Find the real break of structure.",
+   "body": "Tap the candle whose body closed beyond the previous swing. A wick that only crosses is a visit, not a break.",
+   "concept": "15m-bos-close-vs-wick",
+   "rounds": [
+    {
+     "tag": "Bullish",
+     "prompt": "<strong>Tap the candle that breaks bullish structure.</strong> The dashed line is the previous 15M swing high.",
+     "chart": {
+      "swings": [
+       [
+        30,
+        250
+       ],
+       [
+        130,
+        150
+       ],
+       [
+        220,
+        210
+       ],
+       [
+        310,
+        130
+       ],
+       [
+        390,
+        200
+       ],
+       [
+        438,
+        148
+       ],
+       [
+        486,
+        112
+       ],
+       [
+        534,
+        111
+       ]
+      ],
+      "candles": false,
+      "bars": [
+       {
+        "x": 40.0,
+        "o": 250,
+        "c": 243.6,
+        "h": 238.2,
+        "l": 250,
+        "w": 10
+       },
+       {
+        "x": 60.0,
+        "o": 243.6,
+        "c": 205.8,
+        "h": 205.3,
+        "l": 246.7,
+        "w": 10
+       },
+       {
+        "x": 80.0,
+        "o": 205.8,
+        "c": 188.1,
+        "h": 185.3,
+        "l": 207.7,
+        "w": 10
+       },
+       {
+        "x": 100.0,
+        "o": 188.1,
+        "c": 182.4,
+        "h": 180.1,
+        "l": 191.0,
+        "w": 10
+       },
+       {
+        "x": 120.0,
+        "o": 182.4,
+        "c": 150,
+        "h": 150,
+        "l": 184.4,
+        "w": 10
+       },
+       {
+        "x": 141.2,
+        "o": 150,
+        "c": 158.8,
+        "h": 150,
+        "l": 165.0,
+        "w": 10
+       },
+       {
+        "x": 163.8,
+        "o": 158.8,
+        "c": 179.2,
+        "h": 152.9,
+        "l": 188.0,
+        "w": 10
+       },
+       {
+        "x": 186.2,
+        "o": 179.2,
+        "c": 200.5,
+        "h": 176.8,
+        "l": 204.1,
+        "w": 10
+       },
+       {
+        "x": 208.8,
+        "o": 200.5,
+        "c": 210,
+        "h": 194.2,
+        "l": 210,
+        "w": 10
+       },
+       {
+        "x": 231.2,
+        "o": 210,
+        "c": 198.6,
+        "h": 192.1,
+        "l": 210,
+        "w": 10
+       },
+       {
+        "x": 253.8,
+        "o": 198.6,
+        "c": 169.2,
+        "h": 168.7,
+        "l": 201.9,
+        "w": 10
+       },
+       {
+        "x": 276.2,
+        "o": 169.2,
+        "c": 151.5,
+        "h": 149.8,
+        "l": 170.7,
+        "w": 10
+       },
+       {
+        "x": 298.8,
+        "o": 151.5,
+        "c": 130,
+        "h": 130,
+        "l": 156.8,
+        "w": 10
+       },
+       {
+        "x": 320.0,
+        "o": 130,
+        "c": 141.8,
+        "h": 130,
+        "l": 142.5,
+        "w": 10
+       },
+       {
+        "x": 340.0,
+        "o": 141.8,
+        "c": 166.6,
+        "h": 138.7,
+        "l": 168.3,
+        "w": 10
+       },
+       {
+        "x": 360.0,
+        "o": 166.6,
+        "c": 178.0,
+        "h": 166.1,
+        "l": 178.7,
+        "w": 10
+       },
+       {
+        "x": 380.0,
+        "o": 178.0,
+        "c": 200,
+        "h": 172.3,
+        "l": 200,
+        "w": 10
+       },
+       {
+        "x": 406,
+        "o": 200,
+        "c": 182,
+        "h": 178,
+        "l": 204,
+        "w": 10
+       },
+       {
+        "x": 422,
+        "o": 182,
+        "c": 166,
+        "h": 162,
+        "l": 186,
+        "w": 10
+       },
+       {
+        "x": 438,
+        "o": 166,
+        "c": 152,
+        "h": 148,
+        "l": 170,
+        "w": 10
+       },
+       {
+        "x": 454,
+        "o": 152,
+        "c": 156,
+        "h": 149,
+        "l": 160,
+        "w": 10
+       },
+       {
+        "x": 470,
+        "o": 156,
+        "c": 140,
+        "h": 136,
+        "l": 159,
+        "w": 10
+       },
+       {
+        "x": 486,
+        "o": 140,
+        "c": 136,
+        "h": 112,
+        "l": 144,
+        "w": 10
+       },
+       {
+        "x": 502,
+        "o": 136,
+        "c": 146,
+        "h": 133,
+        "l": 150,
+        "w": 10
+       },
+       {
+        "x": 518,
+        "o": 146,
+        "c": 140,
+        "h": 137,
+        "l": 152,
+        "w": 10
+       },
+       {
+        "x": 534,
+        "o": 140,
+        "c": 116,
+        "h": 112,
+        "l": 143,
+        "w": 10
+       },
+       {
+        "x": 550,
+        "o": 116,
+        "c": 108,
+        "h": 103,
+        "l": 120,
+        "w": 10
+       }
+      ],
+      "hlines": [
+       {
+        "y": 130,
+        "label": "PREVIOUS SWING HIGH",
+        "tone": "purple",
+        "x1": 310,
+        "x2": 692,
+        "size": 13,
+        "labelX": 320
+       }
+      ],
+      "notes": [
+       {
+        "x": 438,
+        "y": 190,
+        "text": "A",
+        "tone": "purple",
+        "size": 16
+       },
+       {
+        "x": 486,
+        "y": 164,
+        "text": "B",
+        "tone": "purple",
+        "size": 16
+       },
+       {
+        "x": 534,
+        "y": 163,
+        "text": "C",
+        "tone": "purple",
+        "size": 16
+       }
+      ]
+     },
+     "only": [
+      5,
+      6,
+      7
+     ],
+     "answer": 7,
+     "reveal": {
+      "7": {
+       "label": "BOS ✓",
+       "tone": "up"
+      }
+     },
+     "why": "Candle C’s body closed above the previous swing high. Price finished beyond the level, so that is the bullish break of structure.",
+     "notes": {
+      "5": "Candle A never reached the previous swing high. Nothing has been broken yet.",
+      "6": "Candle B’s wick crossed the line, but its body closed back below. A wick can visit; it did not finish above the level."
+     }
+    },
+    {
+     "tag": "Bearish",
+     "prompt": "<strong>Now tap the candle that breaks bearish structure.</strong> The dashed line is the previous 15M swing low.",
+     "chart": {
+      "swings": [
+       [
+        30,
+        60
+       ],
+       [
+        130,
+        170
+       ],
+       [
+        220,
+        110
+       ],
+       [
+        310,
+        200
+       ],
+       [
+        390,
+        120
+       ],
+       [
+        438,
+        190
+       ],
+       [
+        486,
+        220
+       ],
+       [
+        534,
+        221
+       ]
+      ],
+      "candles": false,
+      "bars": [
+       {
+        "x": 40.0,
+        "o": 60,
+        "c": 71.7,
+        "h": 60,
+        "l": 74.4,
+        "w": 10
+       },
+       {
+        "x": 60.0,
+        "o": 71.7,
+        "c": 109.1,
+        "h": 69.3,
+        "l": 109.9,
+        "w": 10
+       },
+       {
+        "x": 80.0,
+        "o": 109.1,
+        "c": 121.2,
+        "h": 104.1,
+        "l": 126.1,
+        "w": 10
+       },
+       {
+        "x": 100.0,
+        "o": 121.2,
+        "c": 140.2,
+        "h": 113.3,
+        "l": 145.4,
+        "w": 10
+       },
+       {
+        "x": 120.0,
+        "o": 140.2,
+        "c": 170,
+        "h": 131.9,
+        "l": 170,
+        "w": 10
+       },
+       {
+        "x": 141.2,
+        "o": 170,
+        "c": 147.6,
+        "h": 141.7,
+        "l": 170,
+        "w": 10
+       },
+       {
+        "x": 163.8,
+        "o": 147.6,
+        "c": 145.9,
+        "h": 143.2,
+        "l": 151.8,
+        "w": 10
+       },
+       {
+        "x": 186.2,
+        "o": 145.9,
+        "c": 116.1,
+        "h": 110,
+        "l": 152.3,
+        "w": 10
+       },
+       {
+        "x": 208.8,
+        "o": 116.1,
+        "c": 110,
+        "h": 110,
+        "l": 117.3,
+        "w": 10
+       },
+       {
+        "x": 231.2,
+        "o": 110,
+        "c": 137.5,
+        "h": 110,
+        "l": 139.6,
+        "w": 10
+       },
+       {
+        "x": 253.8,
+        "o": 137.5,
+        "c": 141.6,
+        "h": 133.6,
+        "l": 143.9,
+        "w": 10
+       },
+       {
+        "x": 276.2,
+        "o": 141.6,
+        "c": 171.2,
+        "h": 139.7,
+        "l": 174.2,
+        "w": 10
+       },
+       {
+        "x": 298.8,
+        "o": 171.2,
+        "c": 200,
+        "h": 169.2,
+        "l": 200,
+        "w": 10
+       },
+       {
+        "x": 320.0,
+        "o": 200,
+        "c": 173.0,
+        "h": 168.8,
+        "l": 200,
+        "w": 10
+       },
+       {
+        "x": 340.0,
+        "o": 173.0,
+        "c": 155.4,
+        "h": 151.8,
+        "l": 176.0,
+        "w": 10
+       },
+       {
+        "x": 360.0,
+        "o": 155.4,
+        "c": 127.3,
+        "h": 120,
+        "l": 160.3,
+        "w": 10
+       },
+       {
+        "x": 380.0,
+        "o": 127.3,
+        "c": 120,
+        "h": 120,
+        "l": 127.6,
+        "w": 10
+       },
+       {
+        "x": 406,
+        "o": 120,
+        "c": 140,
+        "h": 116,
+        "l": 143,
+        "w": 10
+       },
+       {
+        "x": 422,
+        "o": 140,
+        "c": 160,
+        "h": 137,
+        "l": 164,
+        "w": 10
+       },
+       {
+        "x": 438,
+        "o": 160,
+        "c": 186,
+        "h": 157,
+        "l": 190,
+        "w": 10
+       },
+       {
+        "x": 454,
+        "o": 186,
+        "c": 176,
+        "h": 172,
+        "l": 189,
+        "w": 10
+       },
+       {
+        "x": 470,
+        "o": 176,
+        "c": 190,
+        "h": 173,
+        "l": 194,
+        "w": 10
+       },
+       {
+        "x": 486,
+        "o": 190,
+        "c": 194,
+        "h": 187,
+        "l": 220,
+        "w": 10
+       },
+       {
+        "x": 502,
+        "o": 194,
+        "c": 184,
+        "h": 180,
+        "l": 197,
+        "w": 10
+       },
+       {
+        "x": 518,
+        "o": 184,
+        "c": 188,
+        "h": 181,
+        "l": 192,
+        "w": 10
+       },
+       {
+        "x": 534,
+        "o": 188,
+        "c": 214,
+        "h": 185,
+        "l": 218,
+        "w": 10
+       },
+       {
+        "x": 550,
+        "o": 214,
+        "c": 222,
+        "h": 210,
+        "l": 227,
+        "w": 10
+       }
+      ],
+      "hlines": [
+       {
+        "y": 200,
+        "label": "PREVIOUS SWING LOW",
+        "tone": "purple",
+        "x1": 310,
+        "x2": 692,
+        "size": 13,
+        "labelX": 320,
+        "below": true
+       }
+      ],
+      "notes": [
+       {
+        "x": 438,
+        "y": 147,
+        "text": "A",
+        "tone": "purple",
+        "size": 16
+       },
+       {
+        "x": 486,
+        "y": 177,
+        "text": "B",
+        "tone": "purple",
+        "size": 16
+       },
+       {
+        "x": 534,
+        "y": 175,
+        "text": "C",
+        "tone": "purple",
+        "size": 16
+       }
+      ]
+     },
+     "only": [
+      5,
+      6,
+      7
+     ],
+     "answer": 7,
+     "reveal": {
+      "7": {
+       "label": "BOS ✓",
+       "tone": "down"
+      }
+     },
+     "why": "Candle C’s body closed below the previous swing low. That close is the bearish break of structure.",
+     "notes": {
+      "5": "Candle A stopped above the previous swing low. It never reached the level.",
+      "6": "Candle B’s wick dipped below the line, but its body closed back above. Price visited the level and did not finish beyond it."
+     }
+    }
+   ],
+   "cta": "Continue →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 5 · Market structure shift",
+   "headline": "The 15M can change direction <em>before the 1H confirms.</em>",
+   "line": "A market structure shift (MSS) on the 15M is useful information. It does not automatically override the 1H or 4H context.",
+   "visual": {
+    "chart": {
+     "swings": [
+      [
+       30,
+       50
+      ],
+      [
+       100,
+       110
+      ],
+      [
+       150,
+       80
+      ],
+      [
+       230,
+       150
+      ],
+      [
+       280,
+       120
+      ],
+      [
+       370,
+       200
+      ],
+      [
+       420,
+       170
+      ],
+      [
+       500,
+       228
+      ]
+     ],
+     "candles": false,
+     "bars": [
+      {
+       "x": 38.8,
+       "o": 50,
+       "c": 66.3,
+       "h": 50,
+       "l": 68.0,
+       "w": 10.8
+      },
+      {
+       "x": 56.2,
+       "o": 66.3,
+       "c": 80.1,
+       "h": 63.2,
+       "l": 82.2,
+       "w": 10.8
+      },
+      {
+       "x": 73.8,
+       "o": 80.1,
+       "c": 93.1,
+       "h": 76.2,
+       "l": 96.4,
+       "w": 10.8
+      },
+      {
+       "x": 91.2,
+       "o": 93.1,
+       "c": 110,
+       "h": 91.4,
+       "l": 110,
+       "w": 10.8
+      },
+      {
+       "x": 108.3,
+       "o": 110,
+       "c": 101.8,
+       "h": 99.5,
+       "l": 110,
+       "w": 10.3
+      },
+      {
+       "x": 125.0,
+       "o": 101.8,
+       "c": 86.6,
+       "h": 83.5,
+       "l": 105.1,
+       "w": 10.3
+      },
+      {
+       "x": 141.7,
+       "o": 86.6,
+       "c": 80,
+       "h": 80,
+       "l": 90.3,
+       "w": 10.3
+      },
+      {
+       "x": 158.0,
+       "o": 80,
+       "c": 86.4,
+       "h": 80,
+       "l": 90.4,
+       "w": 9.9
+      },
+      {
+       "x": 174.0,
+       "o": 86.4,
+       "c": 102.6,
+       "h": 82.3,
+       "l": 104.5,
+       "w": 9.9
+      },
+      {
+       "x": 190.0,
+       "o": 102.6,
+       "c": 115.4,
+       "h": 100.4,
+       "l": 116.5,
+       "w": 9.9
+      },
+      {
+       "x": 206.0,
+       "o": 115.4,
+       "c": 142.7,
+       "h": 113.5,
+       "l": 143.1,
+       "w": 9.9
+      },
+      {
+       "x": 222.0,
+       "o": 142.7,
+       "c": 150,
+       "h": 140.4,
+       "l": 150,
+       "w": 9.9
+      },
+      {
+       "x": 238.3,
+       "o": 150,
+       "c": 139.7,
+       "h": 136.9,
+       "l": 150,
+       "w": 10.3
+      },
+      {
+       "x": 255.0,
+       "o": 139.7,
+       "c": 132.7,
+       "h": 131.7,
+       "l": 141.4,
+       "w": 10.3
+      },
+      {
+       "x": 271.7,
+       "o": 132.7,
+       "c": 120,
+       "h": 120,
+       "l": 133.0,
+       "w": 10.3
+      },
+      {
+       "x": 289.0,
+       "o": 120,
+       "c": 133.5,
+       "h": 120,
+       "l": 141.0,
+       "w": 11.2
+      },
+      {
+       "x": 307.0,
+       "o": 133.5,
+       "c": 147.1,
+       "h": 130.5,
+       "l": 149.8,
+       "w": 11.2
+      },
+      {
+       "x": 325.0,
+       "o": 147.1,
+       "c": 177.5,
+       "h": 144.4,
+       "l": 179.1,
+       "w": 11.2
+      },
+      {
+       "x": 343.0,
+       "o": 177.5,
+       "c": 176.6,
+       "h": 175.5,
+       "l": 179.7,
+       "w": 11.2
+      },
+      {
+       "x": 361.0,
+       "o": 176.6,
+       "c": 200,
+       "h": 169.4,
+       "l": 200,
+       "w": 11.2
+      },
+      {
+       "x": 378.3,
+       "o": 200,
+       "c": 194.5,
+       "h": 187.7,
+       "l": 200,
+       "w": 10.3
+      },
+      {
+       "x": 395.0,
+       "o": 194.5,
+       "c": 180.6,
+       "h": 179.5,
+       "l": 195.6,
+       "w": 10.3
+      },
+      {
+       "x": 411.7,
+       "o": 180.6,
+       "c": 170,
+       "h": 170,
+       "l": 183.7,
+       "w": 10.3
+      },
+      {
+       "x": 428.0,
+       "o": 170,
+       "c": 186.4,
+       "h": 170,
+       "l": 186.5,
+       "w": 9.9
+      },
+      {
+       "x": 444.0,
+       "o": 186.4,
+       "c": 190.4,
+       "h": 183.3,
+       "l": 191.0,
+       "w": 9.9
+      },
+      {
+       "x": 460.0,
+       "o": 190.4,
+       "c": 214.8,
+       "h": 185.0,
+       "l": 218.4,
+       "w": 9.9
+      },
+      {
+       "x": 476.0,
+       "o": 214.8,
+       "c": 215.8,
+       "h": 211.7,
+       "l": 219.2,
+       "w": 9.9
+      },
+      {
+       "x": 492.0,
+       "o": 215.8,
+       "c": 228,
+       "h": 215.7,
+       "l": 228,
+       "w": 9.9
+      },
+      {
+       "x": 514,
+       "o": 228,
+       "c": 212,
+       "h": 209,
+       "l": 231,
+       "w": 10,
+       "id": "rally"
+      },
+      {
+       "x": 528,
+       "o": 212,
+       "c": 200,
+       "h": 196,
+       "l": 216,
+       "w": 10,
+       "id": "rally"
+      },
+      {
+       "x": 542,
+       "o": 200,
+       "c": 204,
+       "h": 194,
+       "l": 208,
+       "w": 10,
+       "id": "rally"
+      },
+      {
+       "x": 556,
+       "o": 204,
+       "c": 184,
+       "h": 181,
+       "l": 207,
+       "w": 10,
+       "id": "rally"
+      },
+      {
+       "x": 570,
+       "o": 184,
+       "c": 178,
+       "h": 173,
+       "l": 188,
+       "w": 10,
+       "id": "rally"
+      },
+      {
+       "x": 584,
+       "o": 178,
+       "c": 156,
+       "h": 152,
+       "l": 181,
+       "w": 10,
+       "id": "mss"
+      }
+     ],
+     "hlines": [
+      {
+       "y": 240,
+       "label": "1H SWING LOW",
+       "tone": "purple",
+       "x1": 8,
+       "x2": 692,
+       "size": 13,
+       "labelX": 520,
+       "below": true
+      },
+      {
+       "y": 170,
+       "tone": "down",
+       "x1": 420,
+       "x2": 692,
+       "id": "lhLine"
+      }
+     ],
+     "marks": [
+      {
+       "i": 4,
+       "label": "Lower high",
+       "tone": "down",
+       "id": "lhA",
+       "pos": "high",
+       "size": "sm"
+      },
+      {
+       "i": 5,
+       "label": "Lower low",
+       "tone": "down",
+       "id": "llA",
+       "pos": "low",
+       "size": "sm"
+      },
+      {
+       "i": 6,
+       "label": "Lower high",
+       "tone": "down",
+       "id": "lh",
+       "pos": "high"
+      }
+     ],
+     "notes": [
+      {
+       "x": 625,
+       "y": 140,
+       "text": "15M MSS",
+       "tone": "up",
+       "size": 15,
+       "anchor": "middle",
+       "id": "mssL"
+      },
+      {
+       "x": 250,
+       "y": 300,
+       "text": "1H STRUCTURE: NOT CONFIRMED YET",
+       "tone": "purple",
+       "size": 13,
+       "anchor": "middle",
+       "id": "htf"
+      }
+     ]
+    },
+    "steps": [
+     {
+      "show": [
+       "lhA",
+       "llA",
+       "lh",
+       "lhLine"
+      ],
+      "text": "The 15M has been bearish into the 1H level. This is its last lower high.",
+      "next": "Next →"
+     },
+     {
+      "show": [
+       "rally",
+       "mss",
+       "mssL"
+      ],
+      "text": "A 15M candle body closes above that lower high. The 15M structure may be shifting bullish.",
+      "next": "Next →"
+     },
+     {
+      "show": [
+       "htf"
+      ],
+      "text": "The 1H has not confirmed this shift. You note the 15M information without letting it override the bigger picture."
+     }
+    ]
+   },
+   "check": {
+    "prompt": "The 15M just shifted bullish, but the 1H has not confirmed anything yet. What does the 15M shift give you?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Proof that the 1H is bullish now",
+      "correct": false,
+      "feedback": "The 15M can begin changing direction before the 1H confirms. The 1H read only changes when the 1H swings change."
+     },
+     {
+      "label": "Useful information, not an override",
+      "correct": true,
+      "why": "Exactly. You add it to your read, and the 1H and 4H context still stands."
+     },
+     {
+      "label": "A signal to enter right away",
+      "correct": false,
+      "feedback": "A 15M shift is not an entry. Your entry still has to come from the 1M ICC sequence."
+     }
+    ]
+   }
+  },
+  {
+   "type": "v2_steps",
+   "kicker": "Step 6 · Ready or not?",
+   "headline": "Is price ready for <em>closer observation?</em>",
+   "line": "Tap each question. Answer them honestly before you move down to the 1M.",
+   "steps": [
+    {
+     "label": "At a marked level?",
+     "sub": "Is price approaching or reacting to a level you marked?"
+    },
+    {
+     "label": "Useful context?",
+     "sub": "Does the 15M structure give you useful context?"
+    },
+    {
+     "label": "Still on its way?",
+     "sub": "Is price still moving toward the level?"
+    },
+    {
+     "label": "Forcing it?",
+     "sub": "Am I trying to force an entry before price reaches a meaningful location?"
+    }
+   ]
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Your turn · Make the call",
+   "headline": "Price just broke a 15M swing high. <em>Is it ready?</em>",
+   "line": "Look at where price is trading compared with the 1H levels you marked.",
+   "visual": {
+    "chart": {
+     "swings": [
+      [
+       30,
+       200
+      ],
+      [
+       110,
+       150
+      ],
+      [
+       170,
+       180
+      ],
+      [
+       250,
+       140
+      ],
+      [
+       310,
+       175
+      ],
+      [
+       390,
+       150
+      ],
+      [
+       440,
+       170
+      ]
+     ],
+     "candles": false,
+     "bars": [
+      {
+       "x": 40.0,
+       "o": 200,
+       "c": 179.7,
+       "h": 174.8,
+       "l": 200,
+       "w": 10
+      },
+      {
+       "x": 60.0,
+       "o": 179.7,
+       "c": 171.8,
+       "h": 169.9,
+       "l": 180.8,
+       "w": 10
+      },
+      {
+       "x": 80.0,
+       "o": 171.8,
+       "c": 161.9,
+       "h": 156.9,
+       "l": 178.1,
+       "w": 10
+      },
+      {
+       "x": 100.0,
+       "o": 161.9,
+       "c": 150,
+       "h": 150,
+       "l": 164.5,
+       "w": 10
+      },
+      {
+       "x": 120.0,
+       "o": 150,
+       "c": 158.3,
+       "h": 150,
+       "l": 163.6,
+       "w": 10
+      },
+      {
+       "x": 140.0,
+       "o": 158.3,
+       "c": 172.3,
+       "h": 156.0,
+       "l": 173.7,
+       "w": 10
+      },
+      {
+       "x": 160.0,
+       "o": 172.3,
+       "c": 180,
+       "h": 169.9,
+       "l": 180,
+       "w": 10
+      },
+      {
+       "x": 180.0,
+       "o": 180,
+       "c": 167.8,
+       "h": 158.9,
+       "l": 180,
+       "w": 10
+      },
+      {
+       "x": 200.0,
+       "o": 167.8,
+       "c": 163.0,
+       "h": 162.5,
+       "l": 168.9,
+       "w": 10
+      },
+      {
+       "x": 220.0,
+       "o": 163.0,
+       "c": 144.3,
+       "h": 141.7,
+       "l": 167.6,
+       "w": 10
+      },
+      {
+       "x": 240.0,
+       "o": 144.3,
+       "c": 140,
+       "h": 140,
+       "l": 144.4,
+       "w": 10
+      },
+      {
+       "x": 260.0,
+       "o": 140,
+       "c": 154.0,
+       "h": 140,
+       "l": 155.2,
+       "w": 10
+      },
+      {
+       "x": 280.0,
+       "o": 154.0,
+       "c": 160.2,
+       "h": 153.7,
+       "l": 162.2,
+       "w": 10
+      },
+      {
+       "x": 300.0,
+       "o": 160.2,
+       "c": 175,
+       "h": 154.0,
+       "l": 175,
+       "w": 10
+      },
+      {
+       "x": 320.0,
+       "o": 175,
+       "c": 168.9,
+       "h": 165.5,
+       "l": 175,
+       "w": 10
+      },
+      {
+       "x": 340.0,
+       "o": 168.9,
+       "c": 158.6,
+       "h": 153.1,
+       "l": 170.1,
+       "w": 10
+      },
+      {
+       "x": 360.0,
+       "o": 158.6,
+       "c": 152.1,
+       "h": 150,
+       "l": 162.8,
+       "w": 10
+      },
+      {
+       "x": 380.0,
+       "o": 152.1,
+       "c": 150,
+       "h": 150,
+       "l": 153.6,
+       "w": 10
+      },
+      {
+       "x": 398.3,
+       "o": 150,
+       "c": 159.9,
+       "h": 150,
+       "l": 166.1,
+       "w": 10
+      },
+      {
+       "x": 415.0,
+       "o": 159.9,
+       "c": 163.6,
+       "h": 158.9,
+       "l": 167.3,
+       "w": 10
+      },
+      {
+       "x": 431.7,
+       "o": 163.6,
+       "c": 170,
+       "h": 162.0,
+       "l": 170,
+       "w": 10
+      },
+      {
+       "x": 456,
+       "o": 170,
+       "c": 158,
+       "h": 155,
+       "l": 173,
+       "w": 10
+      },
+      {
+       "x": 472,
+       "o": 158,
+       "c": 152,
+       "h": 148,
+       "l": 162,
+       "w": 10
+      },
+      {
+       "x": 488,
+       "o": 152,
+       "c": 136,
+       "h": 133,
+       "l": 155,
+       "w": 10
+      },
+      {
+       "x": 504,
+       "o": 136,
+       "c": 130,
+       "h": 126,
+       "l": 139,
+       "w": 10
+      }
+     ],
+     "hlines": [
+      {
+       "y": 40,
+       "label": "1H SWING HIGH",
+       "tone": "purple",
+       "x1": 8,
+       "x2": 692,
+       "size": 13,
+       "labelX": 520
+      },
+      {
+       "y": 285,
+       "label": "1H SWING LOW",
+       "tone": "purple",
+       "x1": 8,
+       "x2": 692,
+       "size": 13,
+       "labelX": 520,
+       "below": true
+      },
+      {
+       "y": 140,
+       "label": "15M SWING HIGH",
+       "tone": "muted",
+       "x1": 250,
+       "x2": 560,
+       "size": 12,
+       "labelX": 330
+      }
+     ],
+     "notes": [
+      {
+       "x": 560,
+       "y": 128,
+       "text": "● now",
+       "tone": "dark",
+       "size": 13,
+       "anchor": "middle"
+      },
+      {
+       "x": 600,
+       "y": 210,
+       "text": "MIDDLE OF THE 1H RANGE",
+       "tone": "muted",
+       "size": 12,
+       "anchor": "middle"
+      }
+     ]
+    }
+   },
+   "check": {
+    "prompt": "A 15M candle closed above a swing high, but price is in the middle of the 1H range. Is price ready for closer observation on the 1M?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, the 15M just broke structure",
+      "correct": false,
+      "feedback": "The break is real information, but price is far from any level you marked. Moving to the 1M now would be forcing an entry before price reaches a meaningful location."
+     },
+     {
+      "label": "Not yet, price isn’t near a marked level",
+      "correct": true,
+      "why": "Right. Keep observing until price approaches or reacts to a level you marked."
+     }
+    ]
+   }
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 7 · On to the 1M",
+   "headline": "The checkpoint is done when you <em>understand the environment.</em>",
+   "line": "Once you have read the local structure, you move to the 1M, where a Dayli ICC setup may or may not form.",
+   "visual": {
+    "versus": [
+     {
+      "label": "What the 15M gives you",
+      "tone": "teal",
+      "icon": "check",
+      "points": [
+       "You know the current 15M structure.",
+       "You know where price is compared with your 4H and 1H levels.",
+       "You understand the setting a 1M ICC setup could form in."
+      ]
+     },
+     {
+      "label": "What it doesn’t give you",
+      "tone": "pink",
+      "icon": "stop",
+      "points": [
+       "It does not give you an entry.",
+       "It does not override the 1H or 4H.",
+       "It does not replace the 1M ICC sequence."
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "The 15M doesn’t give you the entry. <em>It shows you what price is doing on its way to your level.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, what does the 15M show you, and <em>how do you know</em> price is ready for the 1M?",
+   "modelAnswer": "The 15M shows me the local structure while my 4H and 1H levels stay on the chart: whether price is moving with direction, correcting, or starting to change. I only count a break of structure when a candle body closes beyond the swing, not a wick. A 15M shift is useful information but does not override the 1H or 4H. Price is ready for closer observation when it is approaching or reacting to a level I marked, and I am not forcing an entry."
+  }
+ ],
+ "takeaways": [
+  "Keep your 4H and 1H levels on the chart when you move to the 15M.",
+  "A 15M break of structure needs a candle body to close beyond the swing. A wick only visits.",
+  "A 15M shift is useful information, but it does not override the 1H or 4H.",
+  "Move to the 1M only when price is approaching or reacting to a level you marked."
+ ],
+ "remember": "THE 15M IS A CHECKPOINT, NOT AN ENTRY."
+}

@@ -1,0 +1,692 @@
+{
+ "phase": "sl",
+ "section": "m1",
+ "lessonNumber": "m1-2",
+ "title": "The 4H: Establish the Story",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "Before any break or zone, the 4H tells you what story you’re trading with.",
+ "launchpad": {
+  "outcome": "Explain that the 4H gives the higher-timeframe context, and use the 4H story to decide whether you look for demand or supply.",
+  "missionQuestion": "What story is the 4H telling, and which side does it point you to?",
+  "estMinutes": 7
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "The 4H gives the higher-timeframe context: the story behind the setup.",
+  "A bullish 4H story points you to demand. A bearish 4H story points you to supply.",
+  "The 4H is context, not an entry. The full sequence still has to complete."
+ ],
+ "remember": "THE 4H TELLS THE STORY. THE SEQUENCE DOES THE REST.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 1 · Lesson 2",
+   "headline": "Every setup starts with <em>the 4H story.</em>",
+   "line": "The 4-hour chart gives you the higher-timeframe context. Read it before you look at anything smaller.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · Read the story",
+   "headline": "The 4H gives you <em>the bigger picture.</em>",
+   "line": "Watch the 4H story build, one chapter at a time.",
+   "visual": {
+    "chart": {
+     "swings": [
+      [
+       40,
+       122
+      ],
+      [
+       112.0,
+       44
+      ],
+      [
+       240.0,
+       292
+      ],
+      [
+       336.0,
+       160
+      ],
+      [
+       400.0,
+       236
+      ],
+      [
+       496.0,
+       92
+      ],
+      [
+       544.0,
+       152
+      ],
+      [
+       576.0,
+       132
+      ]
+     ],
+     "candles": false,
+     "bars": [
+      {
+       "x": 48.0,
+       "o": 122,
+       "c": 102.7,
+       "h": 100.7,
+       "l": 125.5,
+       "w": 9.6
+      },
+      {
+       "x": 64.0,
+       "o": 102.7,
+       "c": 86.0,
+       "h": 84.1,
+       "l": 106.2,
+       "w": 9.6
+      },
+      {
+       "x": 80.0,
+       "o": 86.0,
+       "c": 81.1,
+       "h": 75.6,
+       "l": 91.3,
+       "w": 9.6
+      },
+      {
+       "x": 96.0,
+       "o": 81.1,
+       "c": 55.7,
+       "h": 51.5,
+       "l": 84.0,
+       "w": 9.6
+      },
+      {
+       "x": 112.0,
+       "o": 55.7,
+       "c": 50.7,
+       "h": 44,
+       "l": 58.1,
+       "w": 9.6
+      },
+      {
+       "x": 128.0,
+       "o": 50.7,
+       "c": 68.4,
+       "h": 44.6,
+       "l": 74.1,
+       "w": 9.6
+      },
+      {
+       "x": 144.0,
+       "o": 68.4,
+       "c": 124.3,
+       "h": 62.9,
+       "l": 126.8,
+       "w": 9.6
+      },
+      {
+       "x": 160.0,
+       "o": 124.3,
+       "c": 132.9,
+       "h": 119.7,
+       "l": 138.1,
+       "w": 9.6
+      },
+      {
+       "x": 176.0,
+       "o": 132.9,
+       "c": 186.7,
+       "h": 127.0,
+       "l": 188.7,
+       "w": 9.6
+      },
+      {
+       "x": 192.0,
+       "o": 186.7,
+       "c": 206.1,
+       "h": 181.9,
+       "l": 210.1,
+       "w": 9.6
+      },
+      {
+       "x": 208.0,
+       "o": 206.1,
+       "c": 217.7,
+       "h": 202.2,
+       "l": 219.6,
+       "w": 9.6
+      },
+      {
+       "x": 224.0,
+       "o": 217.7,
+       "c": 280.7,
+       "h": 211.8,
+       "l": 285.0,
+       "w": 9.6
+      },
+      {
+       "x": 240.0,
+       "o": 280.7,
+       "c": 284.8,
+       "h": 275.1,
+       "l": 292,
+       "w": 9.6
+      },
+      {
+       "x": 256.0,
+       "o": 284.8,
+       "c": 265.6,
+       "h": 259.7,
+       "l": 290.5,
+       "w": 9.6
+      },
+      {
+       "x": 272.0,
+       "o": 265.6,
+       "c": 243.4,
+       "h": 239.8,
+       "l": 270.1,
+       "w": 9.6
+      },
+      {
+       "x": 288.0,
+       "o": 243.4,
+       "c": 220.9,
+       "h": 218.5,
+       "l": 246.4,
+       "w": 9.6
+      },
+      {
+       "x": 304.0,
+       "o": 220.9,
+       "c": 208.6,
+       "h": 206.9,
+       "l": 222.6,
+       "w": 9.6
+      },
+      {
+       "x": 320.0,
+       "o": 208.6,
+       "c": 183.6,
+       "h": 180.7,
+       "l": 212.8,
+       "w": 9.6
+      },
+      {
+       "x": 336.0,
+       "o": 183.6,
+       "c": 167.9,
+       "h": 160,
+       "l": 187.0,
+       "w": 9.6
+      },
+      {
+       "x": 352.0,
+       "o": 167.9,
+       "c": 191.0,
+       "h": 165.4,
+       "l": 194.6,
+       "w": 9.6
+      },
+      {
+       "x": 368.0,
+       "o": 191.0,
+       "c": 198.3,
+       "h": 186.3,
+       "l": 201.2,
+       "w": 9.6
+      },
+      {
+       "x": 384.0,
+       "o": 198.3,
+       "c": 217.2,
+       "h": 193.1,
+       "l": 220.3,
+       "w": 9.6
+      },
+      {
+       "x": 400.0,
+       "o": 217.2,
+       "c": 227.8,
+       "h": 211.6,
+       "l": 236,
+       "w": 9.6
+      },
+      {
+       "x": 416.0,
+       "o": 227.8,
+       "c": 195.4,
+       "h": 193.6,
+       "l": 230.4,
+       "w": 9.6
+      },
+      {
+       "x": 432.0,
+       "o": 195.4,
+       "c": 189.0,
+       "h": 184.4,
+       "l": 198.1,
+       "w": 9.6
+      },
+      {
+       "x": 448.0,
+       "o": 189.0,
+       "c": 155.8,
+       "h": 153.4,
+       "l": 192.8,
+       "w": 9.6
+      },
+      {
+       "x": 464.0,
+       "o": 155.8,
+       "c": 126.1,
+       "h": 121.1,
+       "l": 161.7,
+       "w": 9.6
+      },
+      {
+       "x": 480.0,
+       "o": 126.1,
+       "c": 125.7,
+       "h": 120.6,
+       "l": 132.4,
+       "w": 9.6
+      },
+      {
+       "x": 496.0,
+       "o": 125.7,
+       "c": 98.1,
+       "h": 92,
+       "l": 128.9,
+       "w": 9.6
+      },
+      {
+       "x": 512.0,
+       "o": 98.1,
+       "c": 120.6,
+       "h": 92.7,
+       "l": 124.1,
+       "w": 9.6
+      },
+      {
+       "x": 528.0,
+       "o": 120.6,
+       "c": 138.3,
+       "h": 116.0,
+       "l": 143.9,
+       "w": 9.6
+      },
+      {
+       "x": 544.0,
+       "o": 138.3,
+       "c": 144.8,
+       "h": 135.6,
+       "l": 152,
+       "w": 9.6
+      },
+      {
+       "x": 560.0,
+       "o": 144.8,
+       "c": 138.3,
+       "h": 136.1,
+       "l": 148.2,
+       "w": 9.6
+      },
+      {
+       "x": 576.0,
+       "o": 138.3,
+       "c": 141.8,
+       "h": 132,
+       "l": 145.2,
+       "w": 9.6
+      },
+      {
+       "x": 592.0,
+       "o": 141.8,
+       "c": 150.2,
+       "h": 140.1,
+       "l": 152.6,
+       "w": 9.6
+      },
+      {
+       "x": 608.0,
+       "o": 150.2,
+       "c": 166.4,
+       "h": 146.9,
+       "l": 169.3,
+       "w": 9.6
+      },
+      {
+       "x": 624.0,
+       "o": 166.4,
+       "c": 176.0,
+       "h": 164.4,
+       "l": 182.4,
+       "w": 9.6
+      }
+     ],
+     "hlines": [
+      {
+       "y": 92,
+       "label": "EXTERNAL HIGH · 21,040",
+       "tone": "purple",
+       "x1": 392.0,
+       "x2": 692,
+       "size": 13,
+       "id": "doorH",
+       "labelX": 470,
+       "door": true
+      },
+      {
+       "y": 236,
+       "label": "EXTERNAL LOW · 20,610",
+       "tone": "purple",
+       "x1": 392.0,
+       "x2": 692,
+       "size": 13,
+       "id": "doorL",
+       "below": true,
+       "labelX": 470,
+       "door": true
+      }
+     ],
+     "boxes": [
+      {
+       "x1": 392.0,
+       "y1": 92,
+       "x2": 692,
+       "y2": 236,
+       "tone": "purple",
+       "id": "room",
+       "op": 0.45,
+       "dashed": false,
+       "stroke": false,
+       "rx": 6
+      }
+     ],
+     "notes": [
+      {
+       "x": 650.0,
+       "y": 180.0,
+       "text": "● now",
+       "tone": "dark",
+       "size": 13,
+       "anchor": "middle",
+       "id": "now"
+      },
+      {
+       "x": 470,
+       "y": 60,
+       "text": "INDICATION",
+       "tone": "up",
+       "id": "indL",
+       "anchor": "middle",
+       "size": 13
+      },
+      {
+       "x": 600,
+       "y": 215,
+       "text": "CORRECTION",
+       "tone": "gold",
+       "id": "corrL",
+       "anchor": "middle",
+       "size": 13
+      }
+     ],
+     "paths": [
+      {
+       "swings": [
+        [
+         400,
+         236
+        ],
+        [
+         496,
+         92
+        ]
+       ],
+       "tone": "up",
+       "id": "ind",
+       "width": 5
+      },
+      {
+       "swings": [
+        [
+         496,
+         92
+        ],
+        [
+         544,
+         152
+        ],
+        [
+         576,
+         132
+        ],
+        [
+         650,
+         180
+        ]
+       ],
+       "tone": "gold",
+       "id": "corr",
+       "width": 5,
+       "dashed": true
+      }
+     ],
+     "marks": [
+      {
+       "i": 3,
+       "label": "Prior high",
+       "tone": "muted",
+       "id": "ph",
+       "pos": "high"
+      },
+      {
+       "i": 4,
+       "label": "Higher low",
+       "tone": "up",
+       "id": "hl",
+       "pos": "low"
+      },
+      {
+       "i": 5,
+       "label": "Higher high",
+       "tone": "up",
+       "id": "hh",
+       "pos": "high"
+      }
+     ]
+    },
+    "steps": [
+     {
+      "show": [
+       "doorH",
+       "doorL",
+       "ph",
+       "hl"
+      ],
+      "text": "Price made a higher low, then pushed back toward the prior high.",
+      "next": "Next →"
+     },
+     {
+      "show": [
+       "ind",
+       "indL"
+      ],
+      "text": "Price broke the prior high and made a higher high. This 4H story is bullish.",
+      "next": "Next →"
+     },
+     {
+      "show": [
+       "corr",
+       "corrL",
+       "now"
+      ],
+      "text": "Now price is pulling back. That is where the 4H story stands right now."
+     }
+    ]
+   }
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 2 · Pick your side",
+   "headline": "The story tells you <em>which side to look for.</em>",
+   "line": "Tap each card. The 4H story decides whether you look for demand or supply.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "up",
+      "tone": "teal",
+      "label": "Bullish 4H story",
+      "sub": "You look for demand: a bullish sequence and a demand zone."
+     },
+     {
+      "icon": "down",
+      "tone": "pink",
+      "label": "Bearish 4H story",
+      "sub": "You look for supply: a bearish sequence and a supply zone."
+     }
+    ]
+   },
+   "check": {
+    "prompt": "The 4H story is bullish. Which side do you look for?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Demand",
+      "correct": true,
+      "why": "Right. A bullish story points you to demand."
+     },
+     {
+      "label": "Supply",
+      "correct": false,
+      "feedback": "Supply belongs to a bearish story. A bullish 4H story points you to demand."
+     }
+    ]
+   }
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 3 · Context, not entry",
+   "headline": "The 4H is context, <em>not an entry.</em>",
+   "line": "The story sets the direction. It never replaces the sequence.",
+   "visual": {
+    "versus": [
+     {
+      "label": "What the 4H gives you",
+      "tone": "teal",
+      "icon": "check",
+      "points": [
+       "The higher-timeframe story.",
+       "The direction you look to trade with.",
+       "Which side to look for: demand or supply."
+      ]
+     },
+     {
+      "label": "What it doesn’t give you",
+      "tone": "pink",
+      "icon": "stop",
+      "points": [
+       "An entry.",
+       "A zone.",
+       "A reason to skip the sequence."
+      ]
+     }
+    ]
+   },
+   "check": {
+    "prompt": "Your 4H story is bullish and correcting. Do you buy now?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, the story is bullish",
+      "correct": false,
+      "feedback": "The 4H is context. You still need the 1H read, BOS (break of structure) #1 on the 15M, and the full 5M sequence through the retest."
+     },
+     {
+      "label": "No, I carry the story down and wait for the sequence",
+      "correct": true,
+      "why": "Exactly. The 4H tells you the story. The sequence tells you if there’s a trade."
+     }
+    ]
+   }
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 4 · The story on a chart",
+   "headline": "A bearish story. <em>Watch where it leads.</em>",
+   "line": "4H read: bearish, upper half of the range, correcting. Press the button to see what follows.",
+   "scenario": "bear-valid",
+   "tf": "15M",
+   "start": "start",
+   "toggle": false,
+   "steps": [
+    {
+     "until": "bos1-3",
+     "caption": "The 4H story is bearish, so you watch for the 15M to break <b>lower</b>."
+    },
+    {
+     "until": "bos1",
+     "show": [
+      "bos1"
+     ],
+     "caption": "<b>BOS #1.</b> A 15M candle closes below the 15M level, in the direction of the 4H story.",
+     "next": "Switch to the 5M →"
+    },
+    {
+     "tf": "5M",
+     "until": "bos3",
+     "show": [
+      "c1",
+      "bos2",
+      "c2",
+      "zone",
+      "zoneCandle",
+      "bos3"
+     ],
+     "caption": "On the 5M, the sequence completes and builds a <b>supply</b> zone, the side the 4H story pointed to.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    }
+   ],
+   "check": {
+    "prompt": "This 4H story was bearish. Which kind of zone did the sequence build?",
+    "stack": true,
+    "options": [
+     {
+      "label": "A supply zone",
+      "correct": true,
+      "why": "Right. A bearish story points you to supply, and the bearish sequence built a supply zone."
+     },
+     {
+      "label": "A demand zone",
+      "correct": false,
+      "feedback": "Demand comes from a bullish story and a bullish sequence. This story was bearish, so the zone is supply."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Read the 4H first. <em>The story decides which side you’re on.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, what does the 4H do in this strategy, and what <em>doesn’t</em> it do?",
+   "modelAnswer": "The 4H gives the higher-timeframe context, the story behind the setup. A bullish 4H story points me to demand and a bearish one points me to supply. It doesn’t give me an entry or a zone, so I still carry the story down and wait for the full sequence."
+  }
+ ]
+}

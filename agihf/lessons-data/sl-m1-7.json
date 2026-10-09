@@ -1,0 +1,223 @@
+{
+ "phase": "sl",
+ "section": "m1",
+ "lessonNumber": "m1-7",
+ "title": "Correction #2: Where Zones Begin",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "There are two corrections in the sequence. Only the second one creates the zone.",
+ "launchpad": {
+  "outcome": "Tell Correction #1 from Correction #2, and explain why Correction #2 is where the zone begins.",
+  "missionQuestion": "Why does the zone come from Correction #2 and not Correction #1?",
+  "estMinutes": 7
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "Correction #1 comes after BOS #1. Correction #2 comes after BOS #2.",
+  "Correction #2 creates the zone.",
+  "A zone from Correction #2 is only potential until BOS #3 occurs.",
+  "If BOS #3 never happens, there’s no trade."
+ ],
+ "remember": "CORRECTION #2 CREATES THE ZONE.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 1 · Lesson 7",
+   "headline": "Two corrections. <em>Only one makes the zone.</em>",
+   "line": "After BOS #2 (the second break of structure), price pulls back again. That second pullback is where the zone begins.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · Two corrections",
+   "headline": "Correction #1 ≠ <em>Correction #2.</em>",
+   "line": "They look alike on a chart. What sets them apart is where they sit in the sequence.",
+   "visual": {
+    "versus": [
+     {
+      "label": "Correction #1",
+      "tone": "peach",
+      "icon": "swap",
+      "points": [
+       "It comes after BOS #1.",
+       "It moves preferably back toward the original 15M break.",
+       "It doesn’t create the zone."
+      ]
+     },
+     {
+      "label": "Correction #2",
+      "tone": "pink",
+      "icon": "layers",
+      "points": [
+       "It comes after BOS #2.",
+       "It creates the supply or demand zone.",
+       "Its zone stays potential until BOS #3."
+      ]
+     }
+    ]
+   },
+   "cta": "See both →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 2 · Both corrections on a chart",
+   "headline": "Count the pullbacks: <em>first, then second.</em>",
+   "line": "Bullish example. Press the button to print each part.",
+   "scenario": "bull-valid",
+   "tf": "15M",
+   "start": "bos1",
+   "toggle": false,
+   "show": [
+    "bos1"
+   ],
+   "steps": [
+    {
+     "tf": "5M",
+     "until": "c1",
+     "show": [
+      "c1"
+     ],
+     "caption": "<b>Correction #1.</b> The first 5M pullback, right after BOS #1. It doesn’t create the zone."
+    },
+    {
+     "until": "bos2",
+     "show": [
+      "bos2"
+     ],
+     "caption": "<b>BOS #2.</b> A 5M close above the high Correction #1 pulled back from. Now watch for the next pullback."
+    },
+    {
+     "until": "c2",
+     "show": [
+      "c2"
+     ],
+     "caption": "<b>Correction #2.</b> The second pullback, after BOS #2. <b>This is where the zone begins.</b>"
+    }
+   ],
+   "cta": "Your turn →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 3 · Your turn",
+   "headline": "Both corrections are here. <em>Find the second.</em>",
+   "line": "Bearish example. BOS #1 and BOS #2 are marked. In a bearish model, the corrections bounce up.",
+   "scenario": "bear-missed",
+   "tf": "5M",
+   "until": "c2+1",
+   "show": [
+    "bos1",
+    "bos2"
+   ],
+   "ask": "Tap any candle in Correction #2.",
+   "target": "c2",
+   "why": "That candle is in the pullback after BOS #2. That’s Correction #2, and it’s where the supply zone will come from.",
+   "after": {
+    "show": [
+     "c1",
+     "c2"
+    ],
+    "caption": "Correction #1 came after BOS #1. Correction #2 came after BOS #2. <b>Correction #2 creates the zone.</b>"
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 4 · Check yourself",
+   "headline": "Correction #2 is here. <em>Can you trade it yet?</em>",
+   "line": "Bullish model. Correction #2 just printed its last bearish candle.",
+   "visual": {
+    "icon": "lock",
+    "tone": "purple",
+    "caption": "Potential, not active."
+   },
+   "check": {
+    "prompt": "Is the demand zone ready to trade?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, the bearish candle has appeared",
+      "correct": false,
+      "feedback": "Not yet. A zone isn’t activated just because the opposite-colour candle appeared. BOS #3 must occur."
+     },
+     {
+      "label": "No, it’s a potential zone until BOS #3",
+      "correct": true,
+      "why": "Right. Correction #2 creates the zone, and BOS #3 activates it."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 5 · A zone that never activates",
+   "headline": "Correction #2 forms. <em>BOS #3 doesn’t.</em>",
+   "line": "Bullish example. Watch what happens after Correction #2.",
+   "scenario": "bull-no-bos3",
+   "tf": "15M",
+   "start": "bos1",
+   "toggle": false,
+   "show": [
+    "bos1"
+   ],
+   "steps": [
+    {
+     "tf": "5M",
+     "until": "c2",
+     "show": [
+      "c1",
+      "bos2",
+      "c2",
+      "zone"
+     ],
+     "caption": "<b>Correction #1, BOS #2, then Correction #2.</b> Correction #2 leaves a <b>potential</b> demand zone.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    },
+    {
+     "until": "end",
+     "caption": "<b>No 5M candle closes above the high Correction #2 pulled back from.</b> BOS #3 never happens, so the zone never activates.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    }
+   ],
+   "check": {
+    "prompt": "Correction #2 made a potential zone, but BOS #3 never came. What do you do?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Buy when price comes back to the zone",
+      "correct": false,
+      "feedback": "This zone was never activated. A zone needs BOS #3 before the entry model applies."
+     },
+     {
+      "label": "No trade, the sequence is incomplete",
+      "correct": true,
+      "why": "Right. Without BOS #3 the zone stays potential, and there’s no trade."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "The first pullback gets you ready. <em>The second one builds the zone.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, how do you tell Correction #1 from Correction #2, and what does Correction #2 do?",
+   "modelAnswer": "Correction #1 is the first 5M pullback, after BOS #1. Correction #2 is the second 5M pullback, after BOS #2. Correction #2 creates the zone, but that zone is only potential until BOS #3 occurs. If BOS #3 never happens, there’s no trade."
+  }
+ ]
+}
