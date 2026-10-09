@@ -35,7 +35,7 @@
   // would silently kill this entire script before any of it (including
   // this file's own error-handling code) ever ran, exactly the bug
   // already fixed on this page's sibling pages this session.
-  let PHASES, isSectionCleared, UNLOCK = false;
+  let PHASES, isSectionCleared, icon, UNLOCK = false;
 
   const BADGE_PHASE_CLASS = { p: 'pb-p', t: 'pb-t', u: 'pb-u', d: 'pb-d' };
   const BADGE_SECTION_CLASS = { p: 'sb-badge-p', t: 'sb-badge-t', c: 'sb-badge-c', u: 'sb-badge-u' };
@@ -59,16 +59,21 @@
     return `<a class="${rowClass}" href="lesson.html?phase=${phase.key}&n=${lesson.n}">${inner}</a>`;
   }
 
-  function gameRowHtml(game, locked) {
-    return `<div class="lc lc-lk">
-      <div class="lc-n n-lk">▶</div>
+  // A section game. It links once built (game.href) and the section's lessons are done; it never gates progress.
+  function gameRowHtml(phase, section, state) {
+    const game = section.game;
+    let played = false;
+    try { played = !!localStorage.getItem(`aghf_game:${phase.key}-${section.key}`); } catch { /* storage blocked */ }
+    const st = state === 'locked' ? 'locked' : played ? 'done' : 'active';
+    const inner = `
+      <div class="lc-n ${st === 'done' ? 'n-dn' : st === 'active' ? 'n-act' : 'n-lk'}">${st === 'done' ? '✓' : '▶'}</div>
       <div class="lc-inf">
         <div class="lc-ttl">${game.title}</div>
         <div class="lc-qt">${game.quote}</div>
-        <div class="lc-tags"><span class="t-gm">Game</span><span class="t-xp">+${game.xp} GP</span></div>
+        <div class="lc-tags"><span class="t-gm">Game</span>${game.xp ? `<span class="t-xp">+${game.xp} GP</span>` : ''}</div>
       </div>
-      <div class="lc-st st-lk">🔒 ${locked ? 'Complete lessons first' : ''}</div>
-    </div>`;
+      ${st === 'done' ? '<div class="lc-st st-dn">Played ✓ · Play again →</div>' : st === 'active' ? '<div class="lc-st st-go">Play →</div>' : `<div class="lc-st st-lk">🔒 ${game.href ? 'Complete lessons first' : 'Coming soon'}</div>`}`;
+    return st === 'locked' ? `<div class="lc lc-lk">${inner}</div>` : `<a class="lc" href="${game.href}">${inner}</a>`;
   }
 
   function checkpointRowHtml(phase, section, state) {
@@ -109,7 +114,8 @@
       const cleared = phaseUnlocked && isSectionCleared(phase.key, section.key, completedIds);
       checkpointHtml = checkpointRowHtml(phase, section, cleared ? 'done' : (allLessonsDone || (UNLOCK && section.lessons.some((l) => l.n))) ? 'active' : 'locked');
     }
-    const gameHtml = section.game ? gameRowHtml(section.game, true) : '';
+    const gameOpen = !!section.game?.href && (UNLOCK || (phaseUnlocked && sectionGateOk && section.lessons.every((l) => !l.n || completedIds.has(`${phase.key}-${l.n}`))));
+    const gameHtml = section.game ? gameRowHtml(phase, section, gameOpen ? 'active' : 'locked') : '';
     const badgeClass = BADGE_SECTION_CLASS[section.badge] || 'sb-badge-p';
     const closed = sectionIdx > 0 ? ' sec-closed' : '';
     const chev = sectionIdx > 0 ? '▼' : '▲';
@@ -141,13 +147,33 @@
     const w = section.welcome;
     const built = section.lessons.filter((l) => l.n);
     const done = built.filter((l) => completedIds.has(`${phase.key}-${l.n}`)).length;
+    const progress = `<div class="sec-welcome-progress"><div class="sec-welcome-dots">${built.map((l) => `<i class="${completedIds.has(`${phase.key}-${l.n}`) ? 'on' : ''}"></i>`).join('')}</div>${done} of ${built.length} lessons complete</div>`;
+    const goals = w.goals ? `<details><summary class="sec-welcome-eyebrow" style="cursor:pointer;margin-top:8px">🎯 By the end of this section</summary><ul class="sec-welcome-goals">${w.goals.map((g) => `<li>${g}</li>`).join('')}</ul></details>` : '';
+    // The visual intro: heading + one-line hook on the left, what you'll learn as icon tiles on the right.
+    if (w.learn && icon) {
+      return `<div class="sec-welcome sec-vis">
+        <div class="sec-vis-top">
+          <div class="sec-vis-l">
+            <div class="sec-welcome-eyebrow">${w.eyebrow}</div>
+            <h3>${w.heading}</h3>
+            ${w.hook ? `<p class="sec-vis-hook">${w.hook}</p>` : ''}
+            <div class="sec-welcome-mission"><span>🎀 Your mission</span>${w.mission}</div>
+          </div>
+          <div class="sec-vis-r">
+            <div class="sec-vis-label">What you’ll learn</div>
+            <div class="sec-vis-tiles">${w.learn.map((t) => `<div class="sec-vis-tile">${icon(t.icon, t.tone || 'pink', 20)}<span>${t.label}</span></div>`).join('')}</div>
+          </div>
+        </div>
+        ${progress}${goals}
+      </div>`;
+    }
     return `<div class="sec-welcome">
       <div class="sec-welcome-eyebrow">${w.eyebrow}</div>
       <h3>${w.heading}</h3>
       ${w.paragraphs.map((p) => `<p class="${p.cls || ''}">${p.text}</p>`).join('')}
-      ${w.goals ? `<details><summary class="sec-welcome-eyebrow" style="cursor:pointer;margin-top:8px">🎯 By the end of this section</summary><ul class="sec-welcome-goals">${w.goals.map((g) => `<li>${g}</li>`).join('')}</ul></details>` : ''}
+      ${goals}
       <div class="sec-welcome-mission"><span>🎀 Your mission</span>${w.mission}</div>
-      <div class="sec-welcome-progress"><div class="sec-welcome-dots">${built.map((l) => `<i class="${completedIds.has(`${phase.key}-${l.n}`) ? 'on' : ''}"></i>`).join('')}</div>${done} of ${built.length} lessons complete</div>
+      ${progress}
     </div>`;
   }
 
@@ -224,6 +250,7 @@
     try {
       ({ PHASES, isSectionCleared } = await import('./shared/curriculum-data.js'));
       ({ UNLOCK_ALL: UNLOCK } = await import('./shared/preview.js'));
+      ({ icon } = await import('./shared/icons.js'));
     } catch (err) {
       renderLoadError(err);
       return;
@@ -256,7 +283,11 @@
       const grad = !!ls('aghf_alumni');
       const capReady = grad || ls('aghf_section_clear:p8-s22') === 'true' || UNLOCK;
       const capCard = capReady ? `<a href="${grad ? 'certificate.html' : 'capstone.html'}" style="display:block;text-decoration:none;margin-top:14px;background:linear-gradient(135deg,#1C1929,#2A2240);color:#fff;border-radius:18px;padding:18px 22px;"><div style="font-size:.7rem;letter-spacing:.16em;color:#F7A8C8;font-weight:700">${grad ? 'ALUMNI ✦' : 'OUTSIDE THE 8 PHASES'}</div><div style="font-family:var(--font-display);font-size:1.25rem;margin:4px 0">🎓 She’s In Structure Capstone</div><div style="font-size:.86rem;color:#CFC8E3">${grad ? 'Passed. View your certificate →' : 'One full trading day, scored on process. Begin →'}</div></a>` : '';
-      document.getElementById('phaseList').innerHTML = unlockNote + PHASES.map((phase, i) => phaseHtml(phase, i, completedIds)).join('') + capCard;
+      // Strategy Lab: optional, outside the 8 phases, unlocks after Phase 5. Never part of graduation.
+      const p5 = PHASES.find((p) => p.key === 'p5');
+      const labOpen = UNLOCK || (p5 && phaseComplete(p5, completedIds));
+      const labCard = `<a href="strategy-lab.html" class="sl-acad-card" style="display:block;text-decoration:none;margin-top:14px;background:linear-gradient(135deg,#2C1810,#5E56B8);color:#fff;border-radius:18px;padding:18px 22px;${labOpen ? '' : 'opacity:.75;'}"><div style="font-size:.7rem;letter-spacing:.16em;color:#FFB8C8;font-weight:700">OPTIONAL · ${labOpen ? 'STRATEGY LAB' : 'UNLOCKS AFTER PHASE 5'}</div><div style="font-family:var(--font-display);font-size:1.25rem;margin:4px 0">⚗ Supply &amp; Demand, Powered by Higher-Timeframe ICC™</div><div style="font-size:.86rem;color:#E6DFF5">${labOpen ? '3 Breaks. 2 Corrections. 1 Zone. 1 Retest. Open the Strategy Lab →' : '🔒 Finish Phase 5 to unlock. It never blocks graduation.'}</div></a>`;
+      document.getElementById('phaseList').innerHTML = unlockNote + PHASES.map((phase, i) => phaseHtml(phase, i, completedIds)).join('') + capCard + labCard;
       wireToggles();
     } catch (err) {
       renderLoadError(err);

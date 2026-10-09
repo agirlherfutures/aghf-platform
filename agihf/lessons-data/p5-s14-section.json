@@ -1,0 +1,1202 @@
+{
+ "phase": "p5",
+ "section": "s14",
+ "title": "ICC Sequence Game",
+ "pageTitle": "ICC Sequence Game",
+ "hook": "Five levels, from spotting Indication to full higher-timeframe analysis into 1M execution.",
+ "steps": [
+  "game"
+ ],
+ "game": {
+  "title": "ICC Sequence Game 🎯",
+  "save": "p5-s14-game",
+  "xp": 0,
+  "tagline": "Level 1: spot Indication. Level 5: full HTF analysis into 1M execution.",
+  "doneHeading": "ICC SEQUENCE GAME COMPLETE ✓",
+  "doneLine": "You spotted Indication, found the Correction, built the full 1M sequence, read the HTF ICC story, and carried it all the way into 1M execution.",
+  "readout": "YOUR SEQUENCE READ",
+  "review": {
+   "Indication": [
+    "p5",
+    14,
+    "Indication: the close"
+   ],
+   "Correction": [
+    "p5",
+    15,
+    "Correction"
+   ],
+   "Full sequence": [
+    "p5",
+    17,
+    "The full sequence"
+   ],
+   "HTF ICC": [
+    "p5",
+    29,
+    "How HTF ICC and 1M ICC work together"
+   ],
+   "Full execution": [
+    "p5",
+    28,
+    "1M: Execute Dayli ICC"
+   ]
+  },
+  "levels": [
+   {
+    "type": "exec_drill",
+    "items": [
+     {
+      "bars": [
+       {
+        "o": 21000.25,
+        "h": 21002.75,
+        "l": 20999.25,
+        "c": 21002.25
+       },
+       {
+        "o": 21002.25,
+        "h": 21007.75,
+        "l": 21001.75,
+        "c": 21007.0
+       }
+      ],
+      "pil": 21004.25,
+      "answer": "valid",
+      "why": "Closed above the PIL. Valid indication."
+     },
+     {
+      "bars": [
+       {
+        "o": 21000.25,
+        "h": 21002.75,
+        "l": 20999.25,
+        "c": 21002.25
+       },
+       {
+        "o": 21002.25,
+        "h": 21007.25,
+        "l": 21001.75,
+        "c": 21003.25
+       }
+      ],
+      "pil": 21004.25,
+      "answer": "wick",
+      "why": "The wick traveled above. The close stayed below."
+     },
+     {
+      "bars": [
+       {
+        "o": 20998.25,
+        "h": 21001.25,
+        "l": 20997.25,
+        "c": 21000.25
+       },
+       {
+        "o": 21000.25,
+        "h": 21002.75,
+        "l": 20999.25,
+        "c": 21001.75
+       }
+      ],
+      "pil": 21004.25,
+      "answer": "none",
+      "why": "Never reached the PIL."
+     },
+     {
+      "bars": [
+       {
+        "o": 21001.25,
+        "h": 21003.25,
+        "l": 21000.25,
+        "c": 21002.75
+       },
+       {
+        "o": 21002.75,
+        "h": 21010.25,
+        "l": 21002.25,
+        "c": 21009.5
+       }
+      ],
+      "pil": 21004.25,
+      "answer": "valid",
+      "why": "Big candle, and it CLOSED above. Valid."
+     },
+     {
+      "bars": [
+       {
+        "o": 21001.25,
+        "h": 21003.25,
+        "l": 21000.25,
+        "c": 21002.75
+       },
+       {
+        "o": 21002.75,
+        "h": 21005.5,
+        "l": 21002.25,
+        "c": 21004.0
+       }
+      ],
+      "pil": 21004.25,
+      "answer": "wick",
+      "why": "So close. Still a wick. The close is below."
+     },
+     {
+      "bars": [
+       {
+        "o": 21002.25,
+        "h": 21003.75,
+        "l": 21001.25,
+        "c": 21003.25
+       },
+       {
+        "o": 21003.25,
+        "h": 21004.75,
+        "l": 21002.75,
+        "c": 21004.25
+       }
+      ],
+      "pil": 21004.25,
+      "answer": "wick",
+      "why": "Closed exactly ON the PIL. Not through it."
+     },
+     {
+      "bars": [
+       {
+        "o": 20999.25,
+        "h": 21002.25,
+        "l": 20998.25,
+        "c": 21001.25
+       },
+       {
+        "o": 21001.25,
+        "h": 21003.5,
+        "l": 20996.25,
+        "c": 20997.25
+       }
+      ],
+      "pil": 21004.25,
+      "answer": "none",
+      "why": "Moved away from the PIL entirely."
+     },
+     {
+      "bars": [
+       {
+        "o": 21002.25,
+        "h": 21006.25,
+        "l": 21001.25,
+        "c": 21005.75
+       },
+       {
+        "o": 21005.75,
+        "h": 21008.25,
+        "l": 21005.25,
+        "c": 21007.75
+       }
+      ],
+      "pil": 21004.25,
+      "answer": "valid",
+      "why": "The first candle already closed above: that’s the indication."
+     }
+    ],
+    "save": "p5-L14",
+    "name": "Spot the Indication",
+    "concept": "Indication",
+    "brief": "Did the candle CLOSE through the PIL, or only wick through it?"
+   },
+   {
+    "type": "exec_sim",
+    "name": "Find the Correction",
+    "brief": "Indication is in. Wait for a candle to close back through the PIL.",
+    "concept": "Correction",
+    "goal": "correction",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20988.25,
+       "l": 20981.0,
+       "c": 20987.5
+      },
+      {
+       "o": 20987.5,
+       "h": 20991.25,
+       "l": 20987.25,
+       "c": 20990.75
+      },
+      {
+       "o": 20990.75,
+       "h": 20995.0,
+       "l": 20990.0,
+       "c": 20994.5
+      },
+      {
+       "o": 20994.5,
+       "h": 20999.5,
+       "l": 20993.25,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20998.0,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21003.0,
+       "l": 20998.25,
+       "c": 20998.5
+      },
+      {
+       "o": 20998.5,
+       "h": 20999.0,
+       "l": 20995.25,
+       "c": 20995.75
+      },
+      {
+       "o": 20995.75,
+       "h": 20996.25,
+       "l": 20993.25,
+       "c": 20994.0
+      },
+      {
+       "o": 20994.0,
+       "h": 20995.25,
+       "l": 20990.0,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20995.5,
+       "l": 20990.25,
+       "c": 20994.25
+      },
+      {
+       "o": 20994.25,
+       "h": 20999.25,
+       "l": 20993.5,
+       "c": 20998.75
+      },
+      {
+       "o": 20998.75,
+       "h": 21002.25,
+       "l": 20997.25,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.25,
+       "l": 21002.0,
+       "c": 21005.5,
+       "path": [
+        21007.0,
+        21007.25,
+        21002.0,
+        21005.5
+       ]
+      },
+      {
+       "o": 21005.5,
+       "h": 21005.75,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21008.5,
+       "l": 21002.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21010.75,
+       "l": 21006.75,
+       "c": 21009.5
+      },
+      {
+       "o": 21009.5,
+       "h": 21012.25,
+       "l": 21008.75,
+       "c": 21011.75
+      },
+      {
+       "o": 21011.75,
+       "h": 21013.75,
+       "l": 21010.25,
+       "c": 21013.5
+      },
+      {
+       "o": 21013.5,
+       "h": 21016.5,
+       "l": 21012.25,
+       "c": 21016.25
+      },
+      {
+       "o": 21016.25,
+       "h": 21016.5,
+       "l": 21013.0,
+       "c": 21013.75
+      },
+      {
+       "o": 21013.75,
+       "h": 21015.25,
+       "l": 21010.5,
+       "c": 21011.5
+      },
+      {
+       "o": 21011.5,
+       "h": 21012.75,
+       "l": 21006.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21007.75,
+       "l": 21003.75,
+       "c": 21005.75
+      },
+      {
+       "o": 21005.75,
+       "h": 21008.25,
+       "l": 21005.0,
+       "c": 21007.5
+      },
+      {
+       "o": 21007.5,
+       "h": 21010.0,
+       "l": 21007.25,
+       "c": 21008.75
+      },
+      {
+       "o": 21008.75,
+       "h": 21010.75,
+       "l": 21007.75,
+       "c": 21010.5
+      },
+      {
+       "o": 21010.5,
+       "h": 21013.5,
+       "l": 21009.5,
+       "c": 21012.25
+      }
+     ],
+     "pil": 21004.25,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish",
+       "ok": true
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis",
+       "ok": true
+      },
+      {
+       "label": "HTF ICC",
+       "value": "Correction"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ],
+     "structure": "Pullback from the swing high at the PIL. Price is below it.",
+     "pilAt": 4,
+     "start": 13
+    },
+    "preMarks": [
+     "indication"
+    ]
+   },
+   {
+    "type": "exec_sim",
+    "name": "Build the full 1M sequence",
+    "brief": "PIL · Indication · Correction · Continuation · Retest · Entry.",
+    "concept": "Full sequence",
+    "goal": "entry",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20986.5,
+       "l": 20981.25,
+       "c": 20985.75
+      },
+      {
+       "o": 20985.75,
+       "h": 20990.25,
+       "l": 20984.25,
+       "c": 20989.25
+      },
+      {
+       "o": 20989.25,
+       "h": 20995.5,
+       "l": 20988.0,
+       "c": 20994.5
+      },
+      {
+       "o": 20994.5,
+       "h": 20999.0,
+       "l": 20994.0,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20997.75,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21003.0,
+       "l": 20999.0,
+       "c": 21000.0
+      },
+      {
+       "o": 21000.0,
+       "h": 21000.25,
+       "l": 20996.0,
+       "c": 20996.5
+      },
+      {
+       "o": 20996.5,
+       "h": 20997.75,
+       "l": 20993.5,
+       "c": 20994.5
+      },
+      {
+       "o": 20994.5,
+       "h": 20995.0,
+       "l": 20990.0,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20997.0,
+       "l": 20990.25,
+       "c": 20995.75
+      },
+      {
+       "o": 20995.75,
+       "h": 20998.5,
+       "l": 20995.25,
+       "c": 20997.75
+      },
+      {
+       "o": 20997.75,
+       "h": 21001.5,
+       "l": 20996.25,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21008.75,
+       "l": 21002.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21011.25,
+       "l": 21006.25,
+       "c": 21010.25
+      },
+      {
+       "o": 21010.25,
+       "h": 21013.5,
+       "l": 21010.0,
+       "c": 21012.5
+      },
+      {
+       "o": 21012.5,
+       "h": 21015.0,
+       "l": 21011.5,
+       "c": 21014.0
+      },
+      {
+       "o": 21014.0,
+       "h": 21017.75,
+       "l": 21012.75,
+       "c": 21016.25
+      },
+      {
+       "o": 21016.25,
+       "h": 21017.0,
+       "l": 21011.75,
+       "c": 21013.0
+      },
+      {
+       "o": 21013.0,
+       "h": 21013.75,
+       "l": 21010.25,
+       "c": 21011.0
+      },
+      {
+       "o": 21011.0,
+       "h": 21012.0,
+       "l": 21006.5,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21008.25,
+       "l": 21003.75,
+       "c": 21005.75
+      },
+      {
+       "o": 21005.75,
+       "h": 21008.25,
+       "l": 21005.25,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21010.75,
+       "l": 21006.25,
+       "c": 21009.75
+      },
+      {
+       "o": 21009.75,
+       "h": 21010.5,
+       "l": 21009.25,
+       "c": 21010.25
+      },
+      {
+       "o": 21010.25,
+       "h": 21012.75,
+       "l": 21009.0,
+       "c": 21012.25
+      }
+     ],
+     "pil": 21004.25,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish",
+       "ok": true
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis",
+       "ok": true
+      },
+      {
+       "label": "HTF ICC",
+       "value": "Correction"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ],
+     "structure": "Pullback from the swing high at the PIL. Price is below it.",
+     "pilAt": 4,
+     "start": 11
+    }
+   },
+   {
+    "type": "icc_nested",
+    "title": "Zoom from the 4H all the way down to the 1M.",
+    "tfs": [
+     {
+      "tf": "4H",
+      "role": "The larger story",
+      "zoomLabel": "Zoom into the 1H ↓",
+      "chart": {
+       "swings": [
+        [
+         30,
+         260
+        ],
+        [
+         130,
+         170
+        ],
+        [
+         200,
+         220
+        ],
+        [
+         330,
+         70
+        ],
+        [
+         400,
+         130
+        ],
+        [
+         430,
+         115
+        ],
+        [
+         500,
+         165
+        ]
+       ],
+       "seed": 5,
+       "hlines": [
+        {
+         "y": 172,
+         "label": "4H LEVEL",
+         "tone": "purple",
+         "x1": 120,
+         "x2": 692,
+         "labelX": 540,
+         "below": true
+        }
+       ]
+      },
+      "segments": [
+       {
+        "key": "indication",
+        "from": 2,
+        "to": 3
+       },
+       {
+        "key": "correction",
+        "from": 3,
+        "to": 6
+       }
+      ],
+      "show": [
+       "indication",
+       "correction"
+      ],
+      "dir": "bullish",
+      "stage": "correction",
+      "note": "The 4H is bullish. Price made its indication and is now <b>correcting</b> toward a 4H level."
+     },
+     {
+      "tf": "1H",
+      "role": "Inside the 4H correction",
+      "zoomLabel": "Zoom into the 15M ↓",
+      "chart": {
+       "swings": [
+        [
+         30,
+         60
+        ],
+        [
+         100,
+         140
+        ],
+        [
+         160,
+         105
+        ],
+        [
+         250,
+         190
+        ],
+        [
+         320,
+         160
+        ],
+        [
+         410,
+         250
+        ],
+        [
+         480,
+         222
+        ]
+       ],
+       "seed": 6
+      },
+      "segments": [
+       {
+        "key": "indication",
+        "from": 2,
+        "to": 3
+       },
+       {
+        "key": "correction",
+        "from": 3,
+        "to": 4
+       },
+       {
+        "key": "continuation",
+        "from": 4,
+        "to": 5
+       }
+      ],
+      "dir": "bearish",
+      "stage": "continuation",
+      "note": "Inside that 4H correction, the 1H shows a <b>bearish</b> sequence. It is part of the 4H pullback."
+     },
+     {
+      "tf": "15M",
+      "role": "More detail",
+      "zoomLabel": "Zoom into the 1M ↓",
+      "chart": {
+       "swings": [
+        [
+         30,
+         70
+        ],
+        [
+         100,
+         150
+        ],
+        [
+         150,
+         115
+        ],
+        [
+         230,
+         210
+        ],
+        [
+         290,
+         170
+        ],
+        [
+         360,
+         250
+        ],
+        [
+         430,
+         200
+        ],
+        [
+         490,
+         232
+        ],
+        [
+         580,
+         140
+        ],
+        [
+         640,
+         165
+        ]
+       ],
+       "seed": 7,
+       "hlines": [
+        {
+         "y": 262,
+         "label": "4H LEVEL",
+         "tone": "purple",
+         "x1": 300,
+         "x2": 692,
+         "labelX": 560,
+         "below": true
+        }
+       ]
+      },
+      "stage": "waiting",
+      "note": "At the 4H level, the 15M shows a higher low and a <b>potential shift</b>. Extra confluence, not required."
+     },
+     {
+      "tf": "1M",
+      "role": "Where the entry is earned",
+      "chart": {
+       "swings": [
+        [
+         20,
+         170
+        ],
+        [
+         50,
+         140
+        ],
+        [
+         80,
+         178
+        ],
+        [
+         110,
+         124
+        ],
+        [
+         140,
+         162
+        ],
+        [
+         170,
+         132
+        ],
+        [
+         200,
+         146
+        ],
+        [
+         230,
+         116
+        ],
+        [
+         260,
+         154
+        ],
+        [
+         290,
+         100
+        ],
+        [
+         320,
+         138
+        ],
+        [
+         350,
+         108
+        ],
+        [
+         380,
+         122
+        ],
+        [
+         410,
+         92
+        ],
+        [
+         440,
+         130
+        ],
+        [
+         470,
+         76
+        ],
+        [
+         500,
+         114
+        ],
+        [
+         530,
+         84
+        ],
+        [
+         560,
+         98
+        ],
+        [
+         590,
+         68
+        ]
+       ],
+       "seed": 9
+      },
+      "stage": "waiting",
+      "note": "Price is at the area and the context supports a setup. Now the <b>1M ICC</b> has to earn the entry."
+     }
+    ],
+    "asks": [
+     {
+      "prompt": "The 4H is correcting and the 1H is bearish. What can the 1H move be?",
+      "options": [
+       {
+        "label": "Part of the 4H correction",
+        "correct": true,
+        "why": "Yes. A smaller bearish move can sit inside a larger bullish correction."
+       },
+       {
+        "label": "Proof the 4H has reversed",
+        "feedback": "A bearish 1H does not automatically reverse the 4H. Only a change in 4H structure does that.",
+        "mistake": "tf-confusion"
+       }
+      ]
+     },
+     {
+      "prompt": "The 4H, 1H and 15M all support a long. Is that enough to enter?",
+      "options": [
+       {
+        "label": "Yes, the context is strong",
+        "feedback": "Strong context is still only context. The 1M ICC has to confirm the entry.",
+        "mistake": "icc-as-entry"
+       },
+       {
+        "label": "No, the 1M ICC must confirm it",
+        "correct": true,
+        "why": "Exactly. The HTF tells the story. The 1M earns the entry."
+       }
+      ]
+     }
+    ],
+    "principle": "HTF ICC IS CONTEXT. 1M ICC IS CONFIRMATION.",
+    "name": "Read the HTF ICC story",
+    "concept": "HTF ICC",
+    "brief": "Zoom from the 4H to the 1H to the 1M. The same sequence, nested inside itself."
+   },
+   {
+    "type": "exec_sim",
+    "title": "Mark every step, then take the entry.",
+    "body": "Read the HTF context first. Then mark the PIL and confirm each step only after a candle closes.",
+    "goal": "entry",
+    "scenario": {
+     "dir": "bullish",
+     "tf": "1M",
+     "symbol": "MNQ",
+     "bars": [
+      {
+       "o": 20982.25,
+       "h": 20988.75,
+       "l": 20981.0,
+       "c": 20987.25
+      },
+      {
+       "o": 20987.25,
+       "h": 20990.25,
+       "l": 20986.5,
+       "c": 20989.25
+      },
+      {
+       "o": 20989.25,
+       "h": 20994.75,
+       "l": 20988.75,
+       "c": 20994.25
+      },
+      {
+       "o": 20994.25,
+       "h": 20999.0,
+       "l": 20993.75,
+       "c": 20998.25
+      },
+      {
+       "o": 20998.25,
+       "h": 21004.25,
+       "l": 20998.0,
+       "c": 21001.75
+      },
+      {
+       "o": 21001.75,
+       "h": 21003.0,
+       "l": 20997.25,
+       "c": 20998.0
+      },
+      {
+       "o": 20998.0,
+       "h": 20999.25,
+       "l": 20995.75,
+       "c": 20996.5
+      },
+      {
+       "o": 20996.5,
+       "h": 20997.75,
+       "l": 20991.75,
+       "c": 20992.75
+      },
+      {
+       "o": 20992.75,
+       "h": 20993.75,
+       "l": 20990.25,
+       "c": 20991.25
+      },
+      {
+       "o": 20991.25,
+       "h": 20996.5,
+       "l": 20990.0,
+       "c": 20995.75
+      },
+      {
+       "o": 20995.75,
+       "h": 20998.5,
+       "l": 20994.75,
+       "c": 20997.5
+      },
+      {
+       "o": 20997.5,
+       "h": 21002.0,
+       "l": 20997.25,
+       "c": 21001.25
+      },
+      {
+       "o": 21001.25,
+       "h": 21007.75,
+       "l": 21001.25,
+       "c": 21007.0
+      },
+      {
+       "o": 21007.0,
+       "h": 21007.0,
+       "l": 21001.25,
+       "c": 21002.0
+      },
+      {
+       "o": 21002.0,
+       "h": 21008.25,
+       "l": 21002.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21010.25,
+       "l": 21006.0,
+       "c": 21009.5
+      },
+      {
+       "o": 21009.5,
+       "h": 21013.0,
+       "l": 21009.25,
+       "c": 21012.5
+      },
+      {
+       "o": 21012.5,
+       "h": 21015.5,
+       "l": 21011.5,
+       "c": 21015.0
+      },
+      {
+       "o": 21015.0,
+       "h": 21020.5,
+       "l": 21014.25,
+       "c": 21019.25
+      },
+      {
+       "o": 21019.25,
+       "h": 21019.75,
+       "l": 21014.25,
+       "c": 21015.0
+      },
+      {
+       "o": 21015.0,
+       "h": 21016.0,
+       "l": 21011.5,
+       "c": 21012.0
+      },
+      {
+       "o": 21012.0,
+       "h": 21012.5,
+       "l": 21006.0,
+       "c": 21007.25
+      },
+      {
+       "o": 21007.25,
+       "h": 21008.5,
+       "l": 21003.75,
+       "c": 21005.75
+      },
+      {
+       "o": 21005.75,
+       "h": 21007.75,
+       "l": 21005.0,
+       "c": 21006.75
+      },
+      {
+       "o": 21006.75,
+       "h": 21010.75,
+       "l": 21006.25,
+       "c": 21009.25
+      },
+      {
+       "o": 21009.25,
+       "h": 21012.0,
+       "l": 21008.5,
+       "c": 21011.75
+      },
+      {
+       "o": 21011.75,
+       "h": 21012.5,
+       "l": 21010.5,
+       "c": 21012.25
+      }
+     ],
+     "pil": null,
+     "context": [
+      {
+       "label": "4H",
+       "value": "Bullish",
+       "ok": true
+      },
+      {
+       "label": "1H",
+       "value": "Bullish thesis",
+       "ok": true
+      },
+      {
+       "label": "15M",
+       "value": "Higher lows (optional)",
+       "ok": true
+      },
+      {
+       "label": "HTF ICC",
+       "value": "Correction"
+      },
+      {
+       "label": "Location",
+       "value": "4H discount"
+      }
+     ],
+     "structure": "Pullback from a 1M swing high. Price is below it.",
+     "start": 11,
+     "pick": {
+      "candidates": [
+       {
+        "id": "A",
+        "label": "A",
+        "at": 4,
+        "price": 21004.25,
+        "valid": true,
+        "why": "The swing high this pullback came from. To resume upward, price has to prove itself through it."
+       },
+       {
+        "id": "B",
+        "label": "B",
+        "at": 9,
+        "price": 20990.0,
+        "valid": false,
+        "mistake": "tiny-pil",
+        "why": "That is the low of the pullback. A bullish sequence starts below the PIL and proves itself up through the swing high."
+       }
+      ],
+      "ask": {
+       "prompt": "Why this one?",
+       "stack": true,
+       "options": [
+        {
+         "label": "It’s structurally relevant to the current move",
+         "correct": true,
+         "why": "Exactly: it’s the swing the current pullback came from.",
+         "track": "pil-structural-relevance"
+        },
+        {
+         "label": "It’s the newest swing",
+         "feedback": "Newest isn’t the test. Relevance is.",
+         "mistake": "tiny-pil"
+        },
+        {
+         "label": "It’s closest to current price",
+         "feedback": "Closest isn’t the test either.",
+         "mistake": "tiny-pil"
+        }
+       ]
+      }
+     }
+    },
+    "chase": {
+     "from": 15
+    },
+    "intro": "Tap the swing that is your PIL. Then press Play or Next candle, and confirm each step as price earns it.",
+    "end": {
+     "card": "I · C · C → RETEST → ENTRY.<br><small>Price earned every step before you acted.</small>"
+    },
+    "name": "Full HTF analysis into 1M execution",
+    "concept": "Full execution",
+    "brief": "Read the higher-timeframe context, then execute the Dayli ICC on a blank 1M chart."
+   }
+  ]
+ }
+}

@@ -1,724 +1,589 @@
 {
- "phase": "p7",
- "section": "s18",
- "lessonNumber": 2,
- "title": "After the Win",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "Your best trade can become the reason you take your worst one.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Notice what a win does to your judgment.",
-  "missionQuestion": "Did the market give me a setup, or did the win give me permission?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "After the Win",
-   "title": "",
-   "beats": [
+  "phase": "p7",
+  "section": "s18",
+  "lessonNumber": 2,
+  "title": "After the Win",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Why your best trade can become the reason you take your worst one.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Feel what a clean win does to your judgment, and learn why confidence is not confirmation.",
+    "missionQuestion": "Did the market give me a setup, or did the win give me permission?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "chart": {
-      "bars": [
-       {
-        "o": 20018.0,
-        "h": 20019.25,
-        "l": 20014.75,
-        "c": 20015.0
-       },
-       {
-        "o": 20015.0,
-        "h": 20015.25,
-        "l": 20010.75,
-        "c": 20011.75
-       },
-       {
-        "o": 20011.75,
-        "h": 20012.5,
-        "l": 20007.0,
-        "c": 20008.25
-       },
-       {
-        "o": 20008.25,
-        "h": 20008.75,
-        "l": 20004.25,
-        "c": 20005.0
-       },
-       {
-        "o": 20005.0,
-        "h": 20006.25,
-        "l": 20002.25,
-        "c": 20003.0
-       },
-       {
-        "o": 20003.0,
-        "h": 20004.0,
-        "l": 19999.75,
-        "c": 20002.5
-       },
-       {
-        "o": 20002.5,
-        "h": 20013.25,
-        "l": 20000.25,
-        "c": 20012.0
-       },
-       {
-        "o": 20012.0,
-        "h": 20024.5,
-        "l": 20011.0,
-        "c": 20024.0
-       },
-       {
-        "o": 20024.0,
-        "h": 20033.25,
-        "l": 20022.25,
-        "c": 20033.0
-       },
-       {
-        "o": 20033.0,
-        "h": 20041.75,
-        "l": 20032.0,
-        "c": 20041.0
-       },
-       {
-        "o": 20041.0,
-        "h": 20052.0,
-        "l": 20040.75,
-        "c": 20050.0
-       },
-       {
-        "o": 20050.0,
-        "h": 20057.5,
-        "l": 20049.0,
-        "c": 20057.0
-       },
-       {
-        "o": 20057.0,
-        "h": 20061.5,
-        "l": 20056.0,
-        "c": 20060.5
-       }
-      ],
-      "pil": null,
-      "pilAt": null,
-      "head": {
-       "tf": "1M",
-       "label": "Long 2 MNQ"
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 2",
+      "headline": "You just hit your take profit (TP). <em>Now what do you do?</em>",
+      "line": "Your entry was clean, and you made +2R. 1R is the amount you planned to risk, so +2R means you made twice that.",
+      "pose": "wave",
+      "cta": "Show me →"
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "After the win",
+      "headline": "You made +2R, and <em>you followed your plan.</em>",
+      "line": "Then you look back at the chart, and price is still moving.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20018.0,
+            "h": 20019.25,
+            "l": 20014.75,
+            "c": 20015.0
+          },
+          {
+            "o": 20015.0,
+            "h": 20015.25,
+            "l": 20010.75,
+            "c": 20011.75
+          },
+          {
+            "o": 20011.75,
+            "h": 20012.5,
+            "l": 20007.0,
+            "c": 20008.25
+          },
+          {
+            "o": 20008.25,
+            "h": 20008.75,
+            "l": 20004.25,
+            "c": 20005.0
+          },
+          {
+            "o": 20005.0,
+            "h": 20006.25,
+            "l": 20002.25,
+            "c": 20003.0
+          },
+          {
+            "o": 20003.0,
+            "h": 20004.0,
+            "l": 19999.75,
+            "c": 20002.5
+          },
+          {
+            "o": 20002.5,
+            "h": 20013.25,
+            "l": 20000.25,
+            "c": 20012.0
+          },
+          {
+            "o": 20012.0,
+            "h": 20024.5,
+            "l": 20011.0,
+            "c": 20024.0
+          },
+          {
+            "o": 20024.0,
+            "h": 20033.25,
+            "l": 20022.25,
+            "c": 20033.0
+          },
+          {
+            "o": 20033.0,
+            "h": 20041.75,
+            "l": 20032.0,
+            "c": 20041.0
+          },
+          {
+            "o": 20041.0,
+            "h": 20052.0,
+            "l": 20040.75,
+            "c": 20050.0
+          },
+          {
+            "o": 20050.0,
+            "h": 20057.5,
+            "l": 20049.0,
+            "c": 20057.0
+          },
+          {
+            "o": 20057.0,
+            "h": 20061.5,
+            "l": 20056.0,
+            "c": 20060.5
+          }
+        ],
+        "pil": null,
+        "pilAt": null,
+        "head": {
+          "tf": "1M",
+          "label": "Long 2 MNQ"
+        },
+        "lines": [
+          {
+            "price": 20000,
+            "label": "ENTRY",
+            "tone": "ink",
+            "at": 5
+          },
+          {
+            "price": 19970,
+            "label": "STOP −30",
+            "tone": "warn",
+            "at": 5
+          },
+          {
+            "price": 20060,
+            "label": "TP +60",
+            "tone": "ok",
+            "at": 5
+          }
+        ],
+        "play": {
+          "from": 5,
+          "to": 13,
+          "speed": 300
+        }
       },
-      "lines": [
-       {
-        "price": 20000,
-        "label": "ENTRY",
-        "tone": "ink",
-        "at": 5
-       },
-       {
-        "price": 19970,
-        "label": "STOP −30",
-        "tone": "warn",
-        "at": 5
-       },
-       {
-        "price": 20060,
-        "label": "TP +60",
-        "tone": "ok",
-        "at": 5
-       }
-      ],
-      "play": {
-       "from": 5,
-       "to": 13,
-       "speed": 300
-      }
-     },
-     "caption": "TP. +2R. Perfect execution."
+      "thoughts": [
+        "“I’m locked in today.”",
+        "“I could probably catch one more.”",
+        "“I’m seeing the market so clearly.”"
+      ]
     },
     {
-     "thoughts": [
-      "“I’m locked in today.”",
-      "“One more.”"
-     ]
-    },
-    {
-     "chart": {
-      "bars": [
-       {
-        "o": 20982.25,
-        "h": 20985.5,
-        "l": 20981.5,
-        "c": 20985.0
-       },
-       {
-        "o": 20985.0,
-        "h": 20991.25,
-        "l": 20984.5,
-        "c": 20990.75
-       },
-       {
-        "o": 20990.75,
-        "h": 20994.75,
-        "l": 20990.25,
-        "c": 20993.5
-       },
-       {
-        "o": 20993.5,
-        "h": 20999.5,
-        "l": 20992.5,
-        "c": 20998.25
-       },
-       {
-        "o": 20998.25,
-        "h": 21004.25,
-        "l": 20997.25,
-        "c": 21001.75
-       },
-       {
-        "o": 21001.75,
-        "h": 21002.5,
-        "l": 20997.5,
-        "c": 20999.0
-       },
-       {
-        "o": 20999.0,
-        "h": 20999.25,
-        "l": 20994.0,
-        "c": 20995.5
-       },
-       {
-        "o": 20995.5,
-        "h": 20996.0,
-        "l": 20993.0,
-        "c": 20993.75
-       },
-       {
-        "o": 20993.75,
-        "h": 20994.5,
-        "l": 20989.75,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20994.25,
-        "l": 20990.25,
-        "c": 20993.75
-       },
-       {
-        "o": 20993.75,
-        "h": 20999.5,
-        "l": 20992.5,
-        "c": 20998.0
-       },
-       {
-        "o": 20998.0,
-        "h": 21002.0,
-        "l": 20997.5,
-        "c": 21001.25
-       },
-       {
-        "o": 21001.25,
-        "h": 21006.75,
-        "l": 20999.75,
-        "c": 21002.75,
-        "path": [
-         21001.25,
-         21006.75,
-         21002.75
-        ]
-       },
-       {
-        "o": 21002.75,
-        "h": 21003.0,
-        "l": 20999.0,
-        "c": 21000.25
-       },
-       {
-        "o": 21000.25,
-        "h": 21006.75,
-        "l": 20999.25,
-        "c": 21001.75,
-        "path": [
-         21000.25,
-         21006.75,
-         21001.75
-        ]
-       },
-       {
-        "o": 21001.75,
-        "h": 21002.25,
-        "l": 20999.0,
-        "c": 21000.25
-       }
-      ],
-      "pil": 21004.25,
-      "pilAt": 4,
-      "head": {
-       "tf": "1M",
-       "label": "The next chart"
-      }
-     },
-     "caption": "Wicks through the level. No close."
-    },
-    {
-     "say": [
-      "No setup. So why do you want one?"
-     ]
-    },
-    {
-     "choice": {
-      "prompt": "What do you do?",
-      "options": [
-       {
-        "label": "Take it",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+      "type": "v2_moment",
+      "kicker": "The next chart",
+      "headline": "Price wicked through the level, but <em>no candle closed through it.</em>",
+      "line": "Your model needs a candle to close through the level, so the answer is clear: there’s no trade here.",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
             "h": 20985.5,
             "l": 20981.5,
             "c": 20985.0
-           },
-           {
+          },
+          {
             "o": 20985.0,
             "h": 20991.25,
             "l": 20984.5,
             "c": 20990.75
-           },
-           {
+          },
+          {
             "o": 20990.75,
             "h": 20994.75,
             "l": 20990.25,
             "c": 20993.5
-           },
-           {
+          },
+          {
             "o": 20993.5,
             "h": 20999.5,
             "l": 20992.5,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.25,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21002.5,
             "l": 20997.5,
             "c": 20999.0
-           },
-           {
+          },
+          {
             "o": 20999.0,
             "h": 20999.25,
             "l": 20994.0,
             "c": 20995.5
-           },
-           {
+          },
+          {
             "o": 20995.5,
             "h": 20996.0,
             "l": 20993.0,
             "c": 20993.75
-           },
-           {
+          },
+          {
             "o": 20993.75,
             "h": 20994.5,
             "l": 20989.75,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20994.25,
             "l": 20990.25,
             "c": 20993.75
-           },
-           {
+          },
+          {
             "o": 20993.75,
             "h": 20999.5,
             "l": 20992.5,
             "c": 20998.0
-           },
-           {
+          },
+          {
             "o": 20998.0,
             "h": 21002.0,
             "l": 20997.5,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21006.75,
             "l": 20999.75,
             "c": 21002.75,
             "path": [
-             21001.25,
-             21006.75,
-             21002.75
+              21001.25,
+              21006.75,
+              21002.75
             ]
-           },
-           {
+          },
+          {
             "o": 21002.75,
             "h": 21003.0,
             "l": 20999.0,
             "c": 21000.25
-           },
-           {
+          },
+          {
             "o": 21000.25,
             "h": 21006.75,
             "l": 20999.25,
             "c": 21001.75,
             "path": [
-             21000.25,
-             21006.75,
-             21001.75
+              21000.25,
+              21006.75,
+              21001.75
             ]
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21002.25,
             "l": 20999.0,
             "c": 21000.25
-           },
-           {
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "head": {
+          "tf": "1M",
+          "label": "The next chart"
+        }
+      },
+      "thoughts": [
+        "“It’s basically the same move.”",
+        "“I’m on today.”"
+      ],
+      "check": {
+        "prompt": "Your cursor is hovering over BUY. What would you do now?",
+        "options": [
+          {
+            "label": "Take it, because I’m on today",
+            "correct": false,
+            "feedback": "That’s the win talking. The chart never gave you a complete setup.",
+            "track": [
+              "greedDrivenDecisionCount",
+              "emotionalTradesTaken"
+            ]
+          },
+          {
+            "label": "Stick to my plan and wait",
+            "correct": true,
+            "feedback": "Yes. Wait for a real candle close, or call it a day at +2R.",
+            "track": "ruleBasedResponses"
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "If you had taken it",
+      "headline": "If you bought the wick, <em>you just lost −1R.</em>",
+      "line": "−1R means you lost exactly what you planned to risk. The win didn’t change the chart. It changed how much you trusted yourself.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20985.5,
+            "l": 20981.5,
+            "c": 20985.0
+          },
+          {
+            "o": 20985.0,
+            "h": 20991.25,
+            "l": 20984.5,
+            "c": 20990.75
+          },
+          {
+            "o": 20990.75,
+            "h": 20994.75,
+            "l": 20990.25,
+            "c": 20993.5
+          },
+          {
+            "o": 20993.5,
+            "h": 20999.5,
+            "l": 20992.5,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.25,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21002.5,
+            "l": 20997.5,
+            "c": 20999.0
+          },
+          {
+            "o": 20999.0,
+            "h": 20999.25,
+            "l": 20994.0,
+            "c": 20995.5
+          },
+          {
+            "o": 20995.5,
+            "h": 20996.0,
+            "l": 20993.0,
+            "c": 20993.75
+          },
+          {
+            "o": 20993.75,
+            "h": 20994.5,
+            "l": 20989.75,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.25,
+            "c": 20993.75
+          },
+          {
+            "o": 20993.75,
+            "h": 20999.5,
+            "l": 20992.5,
+            "c": 20998.0
+          },
+          {
+            "o": 20998.0,
+            "h": 21002.0,
+            "l": 20997.5,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21006.75,
+            "l": 20999.75,
+            "c": 21002.75,
+            "path": [
+              21001.25,
+              21006.75,
+              21002.75
+            ]
+          },
+          {
+            "o": 21002.75,
+            "h": 21003.0,
+            "l": 20999.0,
+            "c": 21000.25
+          },
+          {
+            "o": 21000.25,
+            "h": 21006.75,
+            "l": 20999.25,
+            "c": 21001.75,
+            "path": [
+              21000.25,
+              21006.75,
+              21001.75
+            ]
+          },
+          {
+            "o": 21001.75,
+            "h": 21002.25,
+            "l": 20999.0,
+            "c": 21000.25
+          },
+          {
             "o": 21000.25,
             "h": 21000.75,
             "l": 20995.75,
             "c": 20996.5
-           },
-           {
+          },
+          {
             "o": 20996.5,
             "h": 20997.25,
             "l": 20994.75,
             "c": 20996.0
-           },
-           {
+          },
+          {
             "o": 20996.0,
             "h": 20996.5,
             "l": 20991.25,
             "c": 20992.25
-           },
-           {
+          },
+          {
             "o": 20992.25,
             "h": 20993.25,
             "l": 20987.5,
             "c": 20989.0
-           },
-           {
+          },
+          {
             "o": 20989.0,
             "h": 20989.75,
             "l": 20985.0,
             "c": 20985.25
-           },
-           {
+          },
+          {
             "o": 20985.25,
             "h": 20986.5,
             "l": 20979.75,
             "c": 20980.25
-           },
-           {
+          },
+          {
             "o": 20980.25,
             "h": 20981.5,
             "l": 20974.25,
             "c": 20975.5
-           },
-           {
+          },
+          {
             "o": 20975.5,
             "h": 20976.75,
             "l": 20971.75,
             "c": 20973.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "tags": [
-           {
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "tags": [
+          {
             "at": 23,
             "text": "−1R",
             "tone": "warn"
-           }
-          ],
-          "head": {
-           "tf": "1M",
-           "label": "You took it"
-          },
-          "play": {
-           "from": 16,
-           "to": 24,
-           "speed": 300
           }
-         },
-         "say": [
-          "−1R. There was never a setup."
-         ]
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "You bought the wick"
         },
-        "track": [
-         "greedDrivenDecisionCount",
-         "emotionalTradesTaken"
+        "play": {
+          "from": 16,
+          "to": 24,
+          "speed": 300
+        }
+      },
+      "check": {
+        "prompt": "And what if that trade had actually worked?",
+        "options": [
+          {
+            "label": "Then it was a smart trade",
+            "correct": false,
+            "feedback": "Then you would have learned the wrong lesson, only faster."
+          },
+          {
+            "label": "It still wasn’t a setup",
+            "correct": true,
+            "feedback": "Exactly. The first win gave you a permission that you never really had."
+          }
         ]
-       },
-       {
-        "label": "Wait for a close",
-        "path": {
-         "chart": {
-          "bars": [
-           {
-            "o": 20982.25,
-            "h": 20985.5,
-            "l": 20981.5,
-            "c": 20985.0
-           },
-           {
-            "o": 20985.0,
-            "h": 20991.25,
-            "l": 20984.5,
-            "c": 20990.75
-           },
-           {
-            "o": 20990.75,
-            "h": 20994.75,
-            "l": 20990.25,
-            "c": 20993.5
-           },
-           {
-            "o": 20993.5,
-            "h": 20999.5,
-            "l": 20992.5,
-            "c": 20998.25
-           },
-           {
-            "o": 20998.25,
-            "h": 21004.25,
-            "l": 20997.25,
-            "c": 21001.75
-           },
-           {
-            "o": 21001.75,
-            "h": 21002.5,
-            "l": 20997.5,
-            "c": 20999.0
-           },
-           {
-            "o": 20999.0,
-            "h": 20999.25,
-            "l": 20994.0,
-            "c": 20995.5
-           },
-           {
-            "o": 20995.5,
-            "h": 20996.0,
-            "l": 20993.0,
-            "c": 20993.75
-           },
-           {
-            "o": 20993.75,
-            "h": 20994.5,
-            "l": 20989.75,
-            "c": 20991.25
-           },
-           {
-            "o": 20991.25,
-            "h": 20994.25,
-            "l": 20990.25,
-            "c": 20993.75
-           },
-           {
-            "o": 20993.75,
-            "h": 20999.5,
-            "l": 20992.5,
-            "c": 20998.0
-           },
-           {
-            "o": 20998.0,
-            "h": 21002.0,
-            "l": 20997.5,
-            "c": 21001.25
-           },
-           {
-            "o": 21001.25,
-            "h": 21006.75,
-            "l": 20999.75,
-            "c": 21002.75,
-            "path": [
-             21001.25,
-             21006.75,
-             21002.75
-            ]
-           },
-           {
-            "o": 21002.75,
-            "h": 21003.0,
-            "l": 20999.0,
-            "c": 21000.25
-           },
-           {
-            "o": 21000.25,
-            "h": 21006.75,
-            "l": 20999.25,
-            "c": 21001.75,
-            "path": [
-             21000.25,
-             21006.75,
-             21001.75
-            ]
-           },
-           {
-            "o": 21001.75,
-            "h": 21002.25,
-            "l": 20999.0,
-            "c": 21000.25
-           },
-           {
-            "o": 21000.25,
-            "h": 21001.25,
-            "l": 20998.5,
-            "c": 20999.75
-           },
-           {
-            "o": 20999.75,
-            "h": 21000.75,
-            "l": 20997.0,
-            "c": 20998.25
-           },
-           {
-            "o": 20998.25,
-            "h": 20999.75,
-            "l": 20997.75,
-            "c": 20998.25
-           },
-           {
-            "o": 20998.25,
-            "h": 21001.25,
-            "l": 20997.25,
-            "c": 21000.25
-           },
-           {
-            "o": 21000.25,
-            "h": 21002.75,
-            "l": 20999.25,
-            "c": 21001.25
-           },
-           {
-            "o": 21001.25,
-            "h": 21002.75,
-            "l": 20998.0,
-            "c": 20999.0
-           },
-           {
-            "o": 20999.0,
-            "h": 20999.75,
-            "l": 20996.0,
-            "c": 20996.75
-           },
-           {
-            "o": 20996.75,
-            "h": 20997.0,
-            "l": 20994.25,
-            "c": 20995.25
-           },
-           {
-            "o": 20995.25,
-            "h": 20998.0,
-            "l": 20994.0,
-            "c": 20997.25
-           },
-           {
-            "o": 20997.25,
-            "h": 21000.0,
-            "l": 20996.25,
-            "c": 20999.0
-           },
-           {
-            "o": 20999.0,
-            "h": 20999.75,
-            "l": 20998.75,
-            "c": 20999.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "head": {
-           "tf": "1M",
-           "label": "You waited"
+      }
+    },
+    {
+      "type": "v2_compare",
+      "kicker": "Who’s trading now?",
+      "headline": "Feeling confident is <em>not the same as confirmation.</em>",
+      "cards": [
+        {
+          "label": "The trader",
+          "sub": "She waited for confirmation, then executed.",
+          "spark": "slow",
+          "tag": "BEFORE THE WIN",
+          "tone": "purple"
+        },
+        {
+          "label": "The feeling",
+          "sub": "It feels sharp, confident, maybe even invincible.",
+          "spark": "up",
+          "tag": "AFTER THE WIN",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "Who should take your second trade of the day?",
+        "options": [
+          {
+            "label": "The trader, but only with a setup",
+            "correct": true,
+            "feedback": "Yes. You use the same model and the same rules, whether you just won or not."
           },
-          "play": {
-           "from": 16,
-           "to": 27,
-           "speed": 300
+          {
+            "label": "The feeling, because I’m hot",
+            "correct": false,
+            "feedback": "Feeling sharp is lovely. It just isn’t a setup."
           }
-         },
-         "say": [
-          "It never closed through. Nothing to do."
-         ]
-        },
-        "track": "ruleBasedResponses"
-       },
-       {
-        "label": "Done for the day",
-        "path": {
-         "say": [
-          "+2R. Day complete."
-         ],
-         "tally": [
-          [
-           "DAY",
-           "+2R",
-           "ok"
-          ],
-          [
-           "RULES BROKEN",
-           "0",
-           "ok"
-          ]
-         ],
-         "stamp": "SESSION COMPLETE ✓"
-        },
-        "track": "ruleBasedResponses"
-       }
-      ]
-     }
+        ]
+      }
     },
     {
-     "who": {
-      "before": {
-       "h": "THE TRADER",
-       "lines": []
+      "type": "v2_compare",
+      "kicker": "Not every runner is greed",
+      "headline": "Two runners can look the same but <em>come from different places.</em>",
+      "cards": [
+        {
+          "label": "Planned runner",
+          "sub": "You wrote it down before entry, with a trail rule.",
+          "spark": "up",
+          "tag": "PLAN",
+          "tone": "purple"
+        },
+        {
+          "label": "Excitement runner",
+          "sub": "You added it at the target because it felt “so bullish.”",
+          "spark": "chop",
+          "tag": "FEELING",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "Which runner actually follows your plan?",
+        "options": [
+          {
+            "label": "The one written before entry",
+            "correct": true,
+            "feedback": "Yes. It’s the same position, but your plan chose it."
+          },
+          {
+            "label": "The one added at the target",
+            "correct": false,
+            "feedback": "That’s your plan being rewritten by a feeling. Ask yourself, “Was this in my plan?”"
+          }
+        ]
       },
-      "after": {
-       "h": "THE FEELING",
-       "lines": []
-      },
-      "beforeLabel": "BEFORE THE WIN",
-      "afterLabel": "AFTER THE WIN"
-     }
+      "line": "A runner is the part of your position you keep open past your target, hoping to catch a bigger move."
     },
     {
-     "principle": "CONFIDENCE IS NOT CONFIRMATION."
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Enough is a number you decide <em>before</em> the trade feels amazing.",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Right after a win, <em>what do you usually want</em> to do next?",
+      "modelAnswer": "After a win I feel sharp and want one more, or a bigger size, or a farther target. The win didn’t give me a setup. Confidence is not confirmation."
     }
-   ],
-   "stage": true
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "Enough is a number you decide <em>before</em> the trade feels amazing.",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "What do you want to do right after a win?",
-   "modelAnswer": "One more trade, bigger size, a farther target. The win didn’t give me a setup."
-  }
- ],
- "takeaways": [
-  "A win changes you, not the chart.",
-  "Confidence is not confirmation."
- ],
- "remember": "CONFIDENCE IS NOT CONFIRMATION."
+  ],
+  "takeaways": [
+    "A win changes you, not the chart.",
+    "Greed is refusing to respect “enough”.",
+    "Confidence is not confirmation."
+  ],
+  "remember": "CONFIDENCE IS NOT CONFIRMATION."
 }

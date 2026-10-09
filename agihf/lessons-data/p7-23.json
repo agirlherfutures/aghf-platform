@@ -1,1026 +1,994 @@
 {
- "phase": "p7",
- "section": "s20",
- "lessonNumber": 23,
- "title": "Same Model, Different Day",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "Same candles. Different market.",
- "format": "slides",
- "launchpad": {
-  "outcome": "See the same setup form on a trending day and a ranging day, and read which market you’re actually in.",
-  "missionQuestion": "What kind of market is my setup forming in?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "Phase 7 · Section 3",
-   "title": "Everything about you is ready",
-   "beats": [
-    {
-     "cards": [
-      "RULEBOOK ✓",
-      "RISK ✓",
-      "SESSION ✓",
-      "EMOTIONAL STATE: CALM"
-     ]
-    },
-    {
-     "chart": {
-      "bars": [
-       {
-        "o": 20982.25,
-        "h": 20986.5,
-        "l": 20981.5,
-        "c": 20985.5
-       },
-       {
-        "o": 20985.5,
-        "h": 20991.5,
-        "l": 20985.25,
-        "c": 20990.5
-       },
-       {
-        "o": 20990.5,
-        "h": 20994.25,
-        "l": 20990.0,
-        "c": 20993.0
-       },
-       {
-        "o": 20993.0,
-        "h": 20998.75,
-        "l": 20991.5,
-        "c": 20998.25
-       },
-       {
-        "o": 20998.25,
-        "h": 21004.25,
-        "l": 20997.0,
-        "c": 21001.75
-       },
-       {
-        "o": 21001.75,
-        "h": 21002.75,
-        "l": 20998.5,
-        "c": 20999.0
-       },
-       {
-        "o": 20999.0,
-        "h": 21000.25,
-        "l": 20995.75,
-        "c": 20996.75
-       },
-       {
-        "o": 20996.75,
-        "h": 20997.75,
-        "l": 20994.25,
-        "c": 20994.5
-       },
-       {
-        "o": 20994.5,
-        "h": 20995.75,
-        "l": 20990.25,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20994.25,
-        "l": 20990.0,
-        "c": 20994.0
-       },
-       {
-        "o": 20994.0,
-        "h": 20999.0,
-        "l": 20992.75,
-        "c": 20997.75
-       },
-       {
-        "o": 20997.75,
-        "h": 21002.5,
-        "l": 20996.25,
-        "c": 21001.25
-       },
-       {
-        "o": 21001.25,
-        "h": 21007.75,
-        "l": 21001.25,
-        "c": 21007.0
-       },
-       {
-        "o": 21007.0,
-        "h": 21007.0,
-        "l": 21001.25,
-        "c": 21002.0
-       },
-       {
-        "o": 21002.0,
-        "h": 21008.5,
-        "l": 21002.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21012.5,
-        "l": 21005.75,
-        "c": 21012.0
-       },
-       {
-        "o": 21012.0,
-        "h": 21019.5,
-        "l": 21011.25,
-        "c": 21018.5
-       },
-       {
-        "o": 21018.5,
-        "h": 21025.25,
-        "l": 21017.75,
-        "c": 21024.5
-       },
-       {
-        "o": 21024.5,
-        "h": 21031.25,
-        "l": 21023.5,
-        "c": 21030.25
-       },
-       {
-        "o": 21030.25,
-        "h": 21031.25,
-        "l": 21022.0,
-        "c": 21023.5
-       },
-       {
-        "o": 21023.5,
-        "h": 21025.0,
-        "l": 21014.75,
-        "c": 21015.75
-       },
-       {
-        "o": 21015.75,
-        "h": 21016.25,
-        "l": 21006.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21008.75,
-        "l": 21003.75,
-        "c": 21005.75
-       },
-       {
-        "o": 21005.75,
-        "h": 21007.75,
-        "l": 21005.25,
-        "c": 21006.5
-       },
-       {
-        "o": 21006.5,
-        "h": 21009.0,
-        "l": 21006.0,
-        "c": 21008.0
-       },
-       {
-        "o": 21008.0,
-        "h": 21009.25,
-        "l": 21005.0,
-        "c": 21006.5
-       },
-       {
-        "o": 21006.5,
-        "h": 21008.5,
-        "l": 21005.75,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21008.75,
-        "l": 21006.0,
-        "c": 21008.25
-       },
-       {
-        "o": 21008.25,
-        "h": 21010.75,
-        "l": 21007.25,
-        "c": 21010.5
-       },
-       {
-        "o": 21010.5,
-        "h": 21011.75,
-        "l": 21008.5,
-        "c": 21009.25
-       },
-       {
-        "o": 21009.25,
-        "h": 21013.5,
-        "l": 21008.25,
-        "c": 21012.0
-       },
-       {
-        "o": 21012.0,
-        "h": 21013.5,
-        "l": 21011.75,
-        "c": 21012.75
-       },
-       {
-        "o": 21012.75,
-        "h": 21013.75,
-        "l": 21012.0,
-        "c": 21012.25
-       }
-      ],
-      "pil": 21004.25,
-      "pilAt": 4,
-      "head": {
-       "tf": "1M",
-       "label": "A perfect-looking setup"
-      },
-      "play": {
-       "from": 10,
-       "to": 23,
-       "speed": 300
-      }
-     }
-    },
-    {
-     "say": [
-      "Indication. Correction. Continuation. First retest.",
-      "You checked yourself. You checked your rules."
-     ]
-    },
-    {
-     "thoughts": [
-      "“So… I take it?”"
-     ]
-    },
-    {
-     "say": [
-      "Zoom out."
-     ]
-    },
-    {
-     "chart": {
-      "swings": [
-       [
-        20,
-        250
-       ],
-       [
-        100,
-        150
-       ],
-       [
-        150,
-        210
-       ],
-       [
-        210,
-        140
-       ],
-       [
-        260,
-        200
-       ],
-       [
-        320,
-        150
-       ],
-       [
-        370,
-        205
-       ],
-       [
-        430,
-        145
-       ],
-       [
-        500,
-        195
-       ],
-       [
-        600,
-        160
-       ]
-      ],
-      "seed": 43,
-      "head": {
-       "tf": "1H",
-       "label": "MNQ"
-      }
-     },
-     "caption": "The 1H: overlapping, competing swings. A 4H high right above. A release in 2 minutes."
-    },
-    {
-     "say": [
-      "<b>You checked yourself. You checked your rules. Did you check the environment?</b>"
-     ]
-    },
-    {
-     "principle": "YOUR MODEL TELLS YOU WHAT YOU’RE LOOKING FOR. THE ENVIRONMENT TELLS YOU WHETHER YOU SHOULD BE LOOKING FOR IT AT ALL."
-    }
-   ],
-   "cta": "Start →"
+  "phase": "p7",
+  "section": "s20",
+  "lessonNumber": 23,
+  "title": "Same Model, Different Day",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Same candles. Different market.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "See the same setup form on a trending day and a ranging day, and read which market you’re actually in.",
+    "missionQuestion": "What kind of market is my setup forming in?",
+    "estMinutes": 8
   },
-  {
-   "type": "p7_scene",
-   "kicker": "Same Model, Different Day",
-   "title": "Tuesday and Wednesday",
-   "beats": [
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "chart": {
-      "swings": [
-       [
-        20,
-        270
-       ],
-       [
-        110,
-        200
-       ],
-       [
-        160,
-        235
-       ],
-       [
-        250,
-        150
-       ],
-       [
-        290,
-        190
-       ],
-       [
-        380,
-        105
-       ],
-       [
-        440,
-        140
-       ],
-       [
-        530,
-        70
-       ],
-       [
-        600,
-        85
-       ]
-      ],
-      "seed": 27,
-      "head": {
-       "tf": "1H",
-       "label": "Tuesday"
-      }
-     },
-     "caption": "Higher highs. Higher lows. Price is going somewhere."
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 23",
+      "headline": "It’s the same model, but <em>a different day.</em>",
+      "line": "Your rulebook, your risk, your session and your mindset are all ready. There’s one more thing to check before you trade.",
+      "pose": "think",
+      "cta": "Show me →"
     },
     {
-     "chart": {
-      "swings": [
-       [
-        20,
-        120
-       ],
-       [
-        90,
-        240
-       ],
-       [
-        160,
-        115
-       ],
-       [
-        230,
-        245
-       ],
-       [
-        300,
-        120
-       ],
-       [
-        370,
-        240
-       ],
-       [
-        440,
-        118
-       ],
-       [
-        510,
-        242
-       ],
-       [
-        600,
-        130
-       ]
-      ],
-      "seed": 25,
-      "hlines": [
-       {
-        "y": 115,
-        "label": "boundary",
-        "tone": "muted"
-       },
-       {
-        "y": 244,
-        "label": "boundary",
-        "tone": "muted"
-       }
-      ],
-      "head": {
-       "tf": "1H",
-       "label": "Wednesday"
-      }
-     },
-     "caption": "High, low, high, low. Price keeps hitting the same walls."
-    },
-    {
-     "say": [
-      "On both days, the 1M printed the exact same setup, near the top of the 1H."
-     ]
-    },
-    {
-     "choice": {
-      "prompt": "Same setup. Same trade?",
-      "options": [
-       {
-        "label": "Same setup, same trade",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+      "type": "v2_moment",
+      "kicker": "Everything’s ready",
+      "headline": "You checked yourself, but <em>did you check the market?</em>",
+      "line": "On the 1-minute chart, you can see an Indication, a Correction, a Continuation and the first retest. The setup looks complete.",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
             "h": 20986.5,
             "l": 20981.5,
             "c": 20985.5
-           },
-           {
+          },
+          {
             "o": 20985.5,
             "h": 20991.5,
             "l": 20985.25,
             "c": 20990.5
-           },
-           {
+          },
+          {
             "o": 20990.5,
             "h": 20994.25,
             "l": 20990.0,
             "c": 20993.0
-           },
-           {
+          },
+          {
             "o": 20993.0,
             "h": 20998.75,
             "l": 20991.5,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.0,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21002.75,
             "l": 20998.5,
             "c": 20999.0
-           },
-           {
+          },
+          {
             "o": 20999.0,
             "h": 21000.25,
             "l": 20995.75,
             "c": 20996.75
-           },
-           {
+          },
+          {
             "o": 20996.75,
             "h": 20997.75,
             "l": 20994.25,
             "c": 20994.5
-           },
-           {
+          },
+          {
             "o": 20994.5,
             "h": 20995.75,
             "l": 20990.25,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20994.25,
             "l": 20990.0,
             "c": 20994.0
-           },
-           {
+          },
+          {
             "o": 20994.0,
             "h": 20999.0,
             "l": 20992.75,
             "c": 20997.75
-           },
-           {
+          },
+          {
             "o": 20997.75,
             "h": 21002.5,
             "l": 20996.25,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21007.0,
             "l": 21001.25,
             "c": 21002.0
-           },
-           {
+          },
+          {
             "o": 21002.0,
             "h": 21008.5,
             "l": 21002.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21012.5,
             "l": 21005.75,
             "c": 21012.0
-           },
-           {
+          },
+          {
             "o": 21012.0,
             "h": 21019.5,
             "l": 21011.25,
             "c": 21018.5
-           },
-           {
+          },
+          {
             "o": 21018.5,
             "h": 21025.25,
             "l": 21017.75,
             "c": 21024.5
-           },
-           {
+          },
+          {
             "o": 21024.5,
             "h": 21031.25,
             "l": 21023.5,
             "c": 21030.25
-           },
-           {
+          },
+          {
             "o": 21030.25,
             "h": 21031.25,
             "l": 21022.0,
             "c": 21023.5
-           },
-           {
+          },
+          {
             "o": 21023.5,
             "h": 21025.0,
             "l": 21014.75,
             "c": 21015.75
-           },
-           {
+          },
+          {
             "o": 21015.75,
             "h": 21016.25,
             "l": 21006.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21008.75,
             "l": 21003.75,
             "c": 21005.75
-           },
-           {
+          },
+          {
+            "o": 21005.75,
+            "h": 21007.75,
+            "l": 21005.25,
+            "c": 21006.5
+          },
+          {
+            "o": 21006.5,
+            "h": 21009.0,
+            "l": 21006.0,
+            "c": 21008.0
+          },
+          {
+            "o": 21008.0,
+            "h": 21009.25,
+            "l": 21005.0,
+            "c": 21006.5
+          },
+          {
+            "o": 21006.5,
+            "h": 21008.5,
+            "l": 21005.75,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21006.0,
+            "c": 21008.25
+          },
+          {
+            "o": 21008.25,
+            "h": 21010.75,
+            "l": 21007.25,
+            "c": 21010.5
+          },
+          {
+            "o": 21010.5,
+            "h": 21011.75,
+            "l": 21008.5,
+            "c": 21009.25
+          },
+          {
+            "o": 21009.25,
+            "h": 21013.5,
+            "l": 21008.25,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21013.5,
+            "l": 21011.75,
+            "c": 21012.75
+          },
+          {
+            "o": 21012.75,
+            "h": 21013.75,
+            "l": 21012.0,
+            "c": 21012.25
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "head": {
+          "tf": "1M",
+          "label": "A perfect-looking setup"
+        },
+        "play": {
+          "from": 10,
+          "to": 23,
+          "speed": 300
+        }
+      },
+      "thoughts": [
+        "“So… do I just take it?”"
+      ],
+      "cta": "Zoom out →"
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "Zoom out",
+      "headline": "Now look at the 1-hour chart. <em>Is it still a yes?</em>",
+      "line": "The 1-hour swings overlap each other, a 4-hour high sits just above you, and news comes out in 2 minutes.",
+      "chart": {
+        "swings": [
+          [
+            20,
+            250
+          ],
+          [
+            100,
+            150
+          ],
+          [
+            150,
+            210
+          ],
+          [
+            210,
+            140
+          ],
+          [
+            260,
+            200
+          ],
+          [
+            320,
+            150
+          ],
+          [
+            370,
+            205
+          ],
+          [
+            430,
+            145
+          ],
+          [
+            500,
+            195
+          ],
+          [
+            600,
+            160
+          ]
+        ],
+        "seed": 43,
+        "head": {
+          "tf": "1H",
+          "label": "MNQ"
+        }
+      },
+      "check": {
+        "prompt": "Your 1-minute setup is valid. Would you take this trade?",
+        "options": [
+          {
+            "label": "Yes, because the setup is valid",
+            "correct": false,
+            "feedback": "The setup is valid, yes. But the 1-hour chart is messy, there’s a wall right above, and news hits in 2 minutes."
+          },
+          {
+            "label": "No, not in this environment",
+            "correct": true,
+            "feedback": "Yes. Your model tells you what to look for. The environment tells you whether it’s worth taking right now."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "Tuesday",
+      "headline": "On Tuesday, price kept making <em>higher highs.</em>",
+      "line": "That’s a trending market. A trend gives you progression, which means price has somewhere to go.",
+      "chart": {
+        "swings": [
+          [
+            20,
+            270
+          ],
+          [
+            110,
+            200
+          ],
+          [
+            160,
+            235
+          ],
+          [
+            250,
+            150
+          ],
+          [
+            290,
+            190
+          ],
+          [
+            380,
+            105
+          ],
+          [
+            440,
+            140
+          ],
+          [
+            530,
+            70
+          ],
+          [
+            600,
+            85
+          ]
+        ],
+        "seed": 27,
+        "head": {
+          "tf": "1H",
+          "label": "Tuesday"
+        }
+      }
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "Wednesday",
+      "headline": "On Wednesday, price hit <em>the same walls again and again.</em>",
+      "line": "That’s a ranging market. A range gives you boundaries. Both days showed the exact same 1-minute setup.",
+      "chart": {
+        "swings": [
+          [
+            20,
+            120
+          ],
+          [
+            90,
+            240
+          ],
+          [
+            160,
+            115
+          ],
+          [
+            230,
+            245
+          ],
+          [
+            300,
+            120
+          ],
+          [
+            370,
+            240
+          ],
+          [
+            440,
+            118
+          ],
+          [
+            510,
+            242
+          ],
+          [
+            600,
+            130
+          ]
+        ],
+        "seed": 25,
+        "hlines": [
+          {
+            "y": 115,
+            "label": "boundary",
+            "tone": "muted"
+          },
+          {
+            "y": 244,
+            "label": "boundary",
+            "tone": "muted"
+          }
+        ],
+        "head": {
+          "tf": "1H",
+          "label": "Wednesday"
+        }
+      },
+      "check": {
+        "prompt": "Which day had a wall sitting right above your setup?",
+        "options": [
+          {
+            "label": "It was Tuesday’s chart",
+            "correct": false,
+            "feedback": "Not quite. Tuesday kept making higher highs, so price had somewhere to go."
+          },
+          {
+            "label": "It was Wednesday’s chart",
+            "correct": true,
+            "feedback": "Right. On Wednesday, the top of the range sat right above your setup."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "Wednesday",
+      "headline": "The candles looked the same, but <em>the market wasn’t.</em>",
+      "line": "Price walked into the top of the range and turned, for a −1R loss. That means you lost exactly the amount you planned to risk.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.5,
+            "c": 20985.5
+          },
+          {
+            "o": 20985.5,
+            "h": 20991.5,
+            "l": 20985.25,
+            "c": 20990.5
+          },
+          {
+            "o": 20990.5,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20993.0
+          },
+          {
+            "o": 20993.0,
+            "h": 20998.75,
+            "l": 20991.5,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.0,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21002.75,
+            "l": 20998.5,
+            "c": 20999.0
+          },
+          {
+            "o": 20999.0,
+            "h": 21000.25,
+            "l": 20995.75,
+            "c": 20996.75
+          },
+          {
+            "o": 20996.75,
+            "h": 20997.75,
+            "l": 20994.25,
+            "c": 20994.5
+          },
+          {
+            "o": 20994.5,
+            "h": 20995.75,
+            "l": 20990.25,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20994.0
+          },
+          {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20992.75,
+            "c": 20997.75
+          },
+          {
+            "o": 20997.75,
+            "h": 21002.5,
+            "l": 20996.25,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21008.5,
+            "l": 21002.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21012.5,
+            "l": 21005.75,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21019.5,
+            "l": 21011.25,
+            "c": 21018.5
+          },
+          {
+            "o": 21018.5,
+            "h": 21025.25,
+            "l": 21017.75,
+            "c": 21024.5
+          },
+          {
+            "o": 21024.5,
+            "h": 21031.25,
+            "l": 21023.5,
+            "c": 21030.25
+          },
+          {
+            "o": 21030.25,
+            "h": 21031.25,
+            "l": 21022.0,
+            "c": 21023.5
+          },
+          {
+            "o": 21023.5,
+            "h": 21025.0,
+            "l": 21014.75,
+            "c": 21015.75
+          },
+          {
+            "o": 21015.75,
+            "h": 21016.25,
+            "l": 21006.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21003.75,
+            "c": 21005.75
+          },
+          {
             "o": 21005.75,
             "h": 21012.0,
             "l": 21004.25,
             "c": 21011.5
-           },
-           {
+          },
+          {
             "o": 21011.5,
             "h": 21018.5,
             "l": 21010.5,
             "c": 21017.75
-           },
-           {
+          },
+          {
             "o": 21017.75,
             "h": 21022.75,
             "l": 21017.25,
             "c": 21022.25
-           },
-           {
+          },
+          {
             "o": 21022.25,
             "h": 21027.25,
             "l": 21021.75,
             "c": 21026.25
-           },
-           {
+          },
+          {
             "o": 21026.25,
             "h": 21032.75,
             "l": 21026.0,
             "c": 21031.25
-           },
-           {
+          },
+          {
             "o": 21031.25,
             "h": 21031.5,
             "l": 21024.25,
             "c": 21025.5
-           },
-           {
+          },
+          {
             "o": 21025.5,
             "h": 21026.25,
             "l": 21020.25,
             "c": 21021.0
-           },
-           {
+          },
+          {
             "o": 21021.0,
             "h": 21022.0,
             "l": 21015.5,
             "c": 21016.25
-           },
-           {
+          },
+          {
             "o": 21016.25,
             "h": 21017.0,
             "l": 21008.0,
             "c": 21008.75
-           },
-           {
+          },
+          {
             "o": 21008.75,
             "h": 21010.0,
             "l": 21001.0,
             "c": 21002.0
-           },
-           {
+          },
+          {
             "o": 21002.0,
             "h": 21003.0,
             "l": 20995.0,
             "c": 20996.25
-           },
-           {
+          },
+          {
             "o": 20996.25,
             "h": 20997.0,
             "l": 20988.25,
             "c": 20989.0
-           },
-           {
+          },
+          {
             "o": 20989.0,
             "h": 20990.0,
             "l": 20981.75,
             "c": 20982.0
-           },
-           {
+          },
+          {
             "o": 20982.0,
             "h": 20982.75,
             "l": 20974.25,
             "c": 20975.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "tags": [
-           {
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "tags": [
+          {
             "at": 36,
             "text": "−1R",
             "tone": "warn"
-           }
-          ],
-          "head": {
-           "tf": "1M",
-           "label": "Wednesday"
-          },
-          "lines": [
-           {
+          }
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "Wednesday"
+        },
+        "lines": [
+          {
             "price": 21033.25,
             "label": "RANGE TOP",
             "tone": "warn",
             "at": 0
-           }
-          ],
-          "play": {
-           "from": 23,
-           "to": 37,
-           "speed": 300
           }
-         },
-         "say": [
-          "On Wednesday it walked into the top of the range and turned around.",
-          "The candles were the same. <b>The market wasn’t.</b>"
-         ]
+        ],
+        "play": {
+          "from": 23,
+          "to": 37,
+          "speed": 300
         }
-       },
-       {
-        "label": "Same setup, different market",
-        "path": {
-         "say": [
-          "Tuesday’s setup had somewhere to go. Wednesday’s had a wall right above it.",
-          "Neither one is automatically a trade or a pass. <b>But you read them differently.</b>"
-         ]
-        },
-        "track": "ruleBasedResponses"
-       }
-      ]
-     }
-    },
-    {
-     "principle": "TREND GIVES YOU PROGRESSION. RANGE GIVES YOU BOUNDARIES. KNOW WHICH PROBLEM YOU’RE SOLVING."
-    }
-   ]
-  },
-  {
-   "type": "p7_chart_sort",
-   "kicker": "Environment classifier",
-   "title": "What is price doing?",
-   "ecat": "trendRange",
-   "buckets": [
-    [
-     "bull",
-     "📈 TRENDING BULLISH"
-    ],
-    [
-     "bear",
-     "📉 TRENDING BEARISH"
-    ],
-    [
-     "range",
-     "↔ RANGING"
-    ],
-    [
-     "unclear",
-     "❓ UNCLEAR"
-    ]
-   ],
-   "items": [
-    {
-     "chart": {
-      "swings": [
-       [
-        20,
-        270
-       ],
-       [
-        110,
-        200
-       ],
-       [
-        160,
-        235
-       ],
-       [
-        250,
-        150
-       ],
-       [
-        290,
-        190
-       ],
-       [
-        380,
-        105
-       ],
-       [
-        440,
-        140
-       ],
-       [
-        530,
-        70
-       ],
-       [
-        600,
-        85
-       ]
-      ],
-      "seed": 27
-     },
-     "tf": "1H",
-     "answer": "bull",
-     "why": "Higher highs, higher lows, distinct pullbacks.",
-     "wrong": {
-      "range": "Do the highs repeat, or keep getting higher?"
-     }
-    },
-    {
-     "chart": {
-      "swings": [
-       [
-        20,
-        230
-       ],
-       [
-        100,
-        110
-       ],
-       [
-        180,
-        225
-       ],
-       [
-        250,
-        105
-       ],
-       [
-        330,
-        235
-       ],
-       [
-        410,
-        112
-       ],
-       [
-        480,
-        228
-       ],
-       [
-        600,
-        150
-       ]
-      ],
-      "seed": 29
-     },
-     "tf": "1H",
-     "answer": "range",
-     "why": "Repeated boundaries. Back and forth.",
-     "wrong": {
-      "bull": "Is each high higher, or about the same?",
-      "bear": "Is each low lower, or about the same?"
-     }
-    },
-    {
-     "chart": {
-      "swings": [
-       [
-        20,
-        30
-       ],
-       [
-        90,
-        100
-       ],
-       [
-        130,
-        70
-       ],
-       [
-        220,
-        160
-       ],
-       [
-        260,
-        125
-       ],
-       [
-        350,
-        210
-       ],
-       [
-        390,
-        175
-       ],
-       [
-        480,
-        260
-       ],
-       [
-        520,
-        230
-       ],
-       [
-        600,
-        280
-       ]
-      ],
-      "seed": 23
-     },
-     "tf": "1H",
-     "answer": "bear",
-     "why": "Lower highs, lower lows."
-    },
-    {
-     "chart": {
-      "swings": [
-       [
-        20,
-        200
-       ],
-       [
-        80,
-        120
-       ],
-       [
-        140,
-        230
-       ],
-       [
-        190,
-        150
-       ],
-       [
-        240,
-        260
-       ],
-       [
-        300,
-        90
-       ],
-       [
-        350,
-        210
-       ],
-       [
-        400,
-        170
-       ],
-       [
-        460,
-        240
-       ],
-       [
-        520,
-        110
-       ],
-       [
-        600,
-        190
-       ]
-      ],
-      "seed": 31
-     },
-     "tf": "1H",
-     "answer": "unclear",
-     "accept": [],
-     "why": "Neither progression nor clean boundaries. UNCLEAR is an honest answer.",
-     "wrong": {
-      "bull": "Is there a clear sequence of higher highs AND higher lows?",
-      "bear": "Is there a clear sequence of lower highs AND lower lows?",
-      "range": "Are the boundaries actually repeating?"
-     }
-    }
-   ],
-   "asks": [
-    {
-     "prompt": "Chart 1 was TRENDING BULLISH. So… TAKE THE TRADE?",
-     "options": [
-      {
-       "label": "Yes, it’s trending",
-       "feedback": "Trending is a classification. It isn’t a setup and it isn’t permission."
       },
-      {
-       "label": "No: that’s a classification, not a decision",
-       "correct": true,
-       "why": "TREND ≠ TRADE. RANGE ≠ NO TRADE. Participation comes from your plan and the setup."
+      "check": {
+        "prompt": "If two days show the same setup, is it the same trade?",
+        "options": [
+          {
+            "label": "Yes, same setup means same trade",
+            "correct": false,
+            "feedback": "The candles matched, but the market didn’t. You need to read each day on its own."
+          },
+          {
+            "label": "No, it’s a different market",
+            "correct": true,
+            "feedback": "Yes. That doesn’t make it an automatic trade or an automatic pass. It just means you read each day differently.",
+            "track": "ruleBasedResponses"
+          }
+        ]
       }
-     ],
-     "ecat": "trendRange"
+    },
+    {
+      "type": "p7_chart_sort",
+      "kicker": "Environment classifier",
+      "title": "What is price doing?",
+      "ecat": "trendRange",
+      "buckets": [
+        [
+          "bull",
+          "📈 TRENDING BULLISH"
+        ],
+        [
+          "bear",
+          "📉 TRENDING BEARISH"
+        ],
+        [
+          "range",
+          "↔ RANGING"
+        ],
+        [
+          "unclear",
+          "❓ UNCLEAR"
+        ]
+      ],
+      "items": [
+        {
+          "chart": {
+            "swings": [
+              [
+                20,
+                270
+              ],
+              [
+                110,
+                200
+              ],
+              [
+                160,
+                235
+              ],
+              [
+                250,
+                150
+              ],
+              [
+                290,
+                190
+              ],
+              [
+                380,
+                105
+              ],
+              [
+                440,
+                140
+              ],
+              [
+                530,
+                70
+              ],
+              [
+                600,
+                85
+              ]
+            ],
+            "seed": 27
+          },
+          "tf": "1H",
+          "answer": "bull",
+          "why": "Higher highs, higher lows, distinct pullbacks.",
+          "wrong": {
+            "range": "Do the highs repeat, or keep getting higher?"
+          }
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                20,
+                230
+              ],
+              [
+                100,
+                110
+              ],
+              [
+                180,
+                225
+              ],
+              [
+                250,
+                105
+              ],
+              [
+                330,
+                235
+              ],
+              [
+                410,
+                112
+              ],
+              [
+                480,
+                228
+              ],
+              [
+                600,
+                150
+              ]
+            ],
+            "seed": 29
+          },
+          "tf": "1H",
+          "answer": "range",
+          "why": "Repeated boundaries. Back and forth.",
+          "wrong": {
+            "bull": "Is each high higher, or about the same?",
+            "bear": "Is each low lower, or about the same?"
+          }
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                20,
+                30
+              ],
+              [
+                90,
+                100
+              ],
+              [
+                130,
+                70
+              ],
+              [
+                220,
+                160
+              ],
+              [
+                260,
+                125
+              ],
+              [
+                350,
+                210
+              ],
+              [
+                390,
+                175
+              ],
+              [
+                480,
+                260
+              ],
+              [
+                520,
+                230
+              ],
+              [
+                600,
+                280
+              ]
+            ],
+            "seed": 23
+          },
+          "tf": "1H",
+          "answer": "bear",
+          "why": "Lower highs, lower lows."
+        },
+        {
+          "chart": {
+            "swings": [
+              [
+                20,
+                200
+              ],
+              [
+                80,
+                120
+              ],
+              [
+                140,
+                230
+              ],
+              [
+                190,
+                150
+              ],
+              [
+                240,
+                260
+              ],
+              [
+                300,
+                90
+              ],
+              [
+                350,
+                210
+              ],
+              [
+                400,
+                170
+              ],
+              [
+                460,
+                240
+              ],
+              [
+                520,
+                110
+              ],
+              [
+                600,
+                190
+              ]
+            ],
+            "seed": 31
+          },
+          "tf": "1H",
+          "answer": "unclear",
+          "accept": [],
+          "why": "Neither progression nor clean boundaries. UNCLEAR is an honest answer.",
+          "wrong": {
+            "bull": "Is there a clear sequence of higher highs AND higher lows?",
+            "bear": "Is there a clear sequence of lower highs AND lower lows?",
+            "range": "Are the boundaries actually repeating?"
+          }
+        }
+      ],
+      "asks": [
+        {
+          "prompt": "Chart 1 was TRENDING BULLISH. So… TAKE THE TRADE?",
+          "options": [
+            {
+              "label": "Yes, it’s trending",
+              "feedback": "Trending is a classification. It isn’t a setup and it isn’t permission."
+            },
+            {
+              "label": "No: that’s a classification, not a decision",
+              "correct": true,
+              "why": "TREND ≠ TRADE. RANGE ≠ NO TRADE. Participation comes from your plan and the setup."
+            }
+          ],
+          "ecat": "trendRange"
+        }
+      ],
+      "punch": "❓ UNCLEAR is always allowed. You never have to force ambiguity into a box because a quiz wants an answer."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "I don’t ask “is it trending?” to get permission. <em>I ask it to know what I’m looking at.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "How do you recognize whether a market is <em>trending or ranging?</em>",
+      "modelAnswer": "Trending shows progression: higher highs and higher lows, distinct pullbacks. Ranging shows the same boundaries again and again. If it’s neither, I call it unclear. The label isn’t a trade decision."
     }
-   ],
-   "punch": "❓ UNCLEAR is always allowed. You never have to force ambiguity into a box because a quiz wants an answer."
-  },
-  {
-   "type": "p7_split",
-   "kicker": "What each one may include",
-   "title": "Two different problems",
-   "left": {
-    "h": "📈 TRENDING",
-    "lines": [
-     "Clearer progression",
-     "Directional expansion",
-     "Distinct pullbacks",
-     "Relevant swings easier to find"
-    ],
-    "tone": "ok"
-   },
-   "right": {
-    "h": "↔ RANGING",
-    "lines": [
-     "Repeated boundaries",
-     "Overlap",
-     "Weaker progression",
-     "False breaks",
-     "Back and forth"
-    ],
-    "tone": "ink"
-   },
-   "verdict": "TREND GIVES YOU PROGRESSION. RANGE GIVES YOU BOUNDARIES.",
-   "together": true
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "I don’t ask “is it trending?” to get permission. <em>I ask it to know what I’m looking at.</em>",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "How do you recognize trending vs ranging?",
-   "modelAnswer": "Trending shows progression: higher highs and higher lows, distinct pullbacks. Ranging shows the same boundaries again and again. If it’s neither, I call it unclear. The label isn’t a trade decision."
-  }
- ],
- "takeaways": [
-  "Same setup, different market.",
-  "Trend = progression. Range = boundaries.",
-  "UNCLEAR is an honest answer."
- ],
- "remember": "YOUR MODEL TELLS YOU WHAT. THE ENVIRONMENT TELLS YOU WHETHER."
+  ],
+  "takeaways": [
+    "Same setup, different market.",
+    "Trend = progression. Range = boundaries.",
+    "UNCLEAR is an honest answer."
+  ],
+  "remember": "YOUR MODEL TELLS YOU WHAT. THE ENVIRONMENT TELLS YOU WHETHER."
 }

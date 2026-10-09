@@ -11,6 +11,7 @@
 .v2-kick{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--pink);margin-bottom:10px;}
 .v2-big{font-family:var(--font-display);font-weight:900;font-size:2.15rem;line-height:1.06;color:var(--dark);margin:0;}
 .v2-big-sm{font-size:1.75rem;}
+.v2-big-xs{font-size:1.5rem;}
 .v2-big em{font-style:normal;background:linear-gradient(transparent 62%,var(--peach-light) 62%);}
 .v2-line{font-size:1.02rem;line-height:1.55;color:var(--text);margin:12px 0 0;max-width:30em;}
 .v2-spacer{flex:1;min-height:6px;}
@@ -80,6 +81,10 @@
 .v2-card-purple .v2-spark polyline{stroke:var(--purple);}
 .v2-card-pink{border-color:var(--pink-light);}
 .v2-card-pink .v2-spark polyline{stroke:var(--pink);}
+.v2-card-teal{border-color:var(--teal-light);}
+.v2-card-teal .v2-spark polyline{stroke:#2F8A7F;}
+.v2-card-peach{border-color:#F6C99B;}
+.v2-card-peach .v2-spark polyline{stroke:#E08E2E;}
 .v2-card b{font-family:var(--font-display);font-size:1.5rem;color:var(--dark);margin-top:6px;}
 .v2-card span{font-size:.85rem;color:var(--muted);font-weight:600;line-height:1.35;}
 .v2-card .v2-card-tag{font-size:.64rem;font-weight:800;letter-spacing:.14em;color:var(--muted);margin-bottom:4px;}
@@ -116,6 +121,7 @@
   .v2-r{flex:1;padding:40px;background:linear-gradient(160deg,#FFF6F2,#FBF3FF);}
   .v2-big{font-size:3.1rem;}
   .v2-big-sm{font-size:2.4rem;}
+  .v2-big-xs{font-size:2rem;}
   .v2-line{font-size:1.12rem;}
   .v2-host-box{width:280px;}
   .v2-tile{min-height:280px;}
@@ -182,6 +188,21 @@
 .v2-chart-cap{margin-top:12px;font-size:.95rem;line-height:1.5;color:var(--text);min-height:0;}
 .v2-chart-cap:empty{display:none;}
 .v2-stepbtn{margin-top:12px;border:none;border-radius:999px;padding:11px 20px;background:var(--purple);color:#fff;font-weight:800;font-family:var(--font-body);cursor:pointer;}
+
+/* Chart screens on desktop: headline on top, chart across the full card. */
+@media (min-width:900px){
+  .v2-wide{flex-direction:column;padding:42px 48px 36px;}
+  .v2-wide .v2-l{display:contents;}
+  .v2-wide .v2-kick{order:1;}
+  .v2-wide .v2-big{order:2;max-width:22em;}
+  .v2-wide .v2-line{order:3;max-width:46em;}
+  .v2-wide .v2-r{order:4;padding:24px 0 4px;background:none;}
+  .v2-wide .v2-check-slot,.v2-wide .v2-fb{order:5;}
+  .v2-wide .v2-spacer{order:6;}
+  .v2-wide .v2-act{order:7;}
+  .v2-wide .v2-chartbox{max-width:none;}
+  .v2-wide .v2-chart-cap{font-size:1.05rem;}
+}
 
 /* ── Tools under a v2 header (v2_tool) ──────────────────────────────── */
 .v2-toolwrap{flex-direction:column!important;min-height:0!important;}

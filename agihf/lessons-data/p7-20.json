@@ -1,144 +1,167 @@
 {
- "phase": "p7",
- "section": "s19",
- "lessonNumber": 20,
- "title": "The Rule You Keep Negotiating",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "Optional rules don’t protect you.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Spot the rule you keep bending, close its loophole, and change rules only in review.",
-  "missionQuestion": "Is this rule protecting me, or am I negotiating with it?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "The Rule You Keep Negotiating",
-   "title": "Your journal, this week",
-   "beats": [
+  "phase": "p7",
+  "section": "s19",
+  "lessonNumber": 20,
+  "title": "The Rule You Keep Negotiating",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "Optional rules don’t protect you.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Spot the rule you keep bending, close its loophole, and change rules only in review.",
+    "missionQuestion": "Is this rule protecting me, or am I negotiating with it?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "cards": [
-      "MON · chased “just a little”",
-      "TUE · 3rd trade “it was A+”",
-      "WED · stop moved “just this once”",
-      "THU · chased “it was different”"
-     ]
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 20",
+      "headline": "This is the rule you <em>keep negotiating with.</em>",
+      "line": "A rule you can talk yourself out of is really just optional. Optional rules can’t protect you.",
+      "pose": "think",
+      "cta": "Show me →"
     },
     {
-     "say": [
-      "Four days. Four different reasons.",
-      "<b>The same rule, every time.</b>"
-     ]
+      "type": "v2_steps",
+      "kicker": "Your journal, this week",
+      "headline": "You broke the same rule <em>four days in a row.</em>",
+      "line": "Each day you had a different reason. Tap each day to see what you told yourself.",
+      "steps": [
+        {
+          "label": "Monday",
+          "sub": "You chased an entry, but only “just a little.”"
+        },
+        {
+          "label": "Tuesday",
+          "sub": "You took a third trade because “it was A+.”"
+        },
+        {
+          "label": "Wednesday",
+          "sub": "You moved your stop loss “just this once.”"
+        },
+        {
+          "label": "Thursday",
+          "sub": "You chased again because “this one was different.”"
+        }
+      ],
+      "cta": "I see it →"
     },
     {
-     "thoughts": [
-      "“It’s not really breaking it.”",
-      "“The rule doesn’t fit this situation.”"
-     ]
+      "type": "v2_compare",
+      "kicker": "Protect or decorate",
+      "headline": "A rule you treat as optional is <em>just decoration.</em>",
+      "cards": [
+        {
+          "label": "Rule as written",
+          "sub": "It holds even when you feel emotional.",
+          "spark": "slow",
+          "tag": "PROTECTS",
+          "tone": "teal"
+        },
+        {
+          "label": "Rule you negotiate",
+          "sub": "You tell yourself it doesn’t fit this situation.",
+          "spark": "chop",
+          "tag": "DECORATES",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "It’s Thursday and you’re mid-chase. What would you do with the rule?",
+        "options": [
+          {
+            "label": "Delete it, because it doesn’t fit me",
+            "correct": false,
+            "feedback": "Maybe it really doesn’t fit. But the middle of a chase is the worst moment to judge a rule.",
+            "track": "feelingAsReason"
+          },
+          {
+            "label": "Flag it and follow it until review",
+            "correct": true,
+            "feedback": "Yes. You change rules in your review, when you’re calm and your journal is open. You never change them mid-session.",
+            "track": "ruleBasedResponses"
+          }
+        ]
+      }
     },
     {
-     "say": [
-      "If a rule becomes optional when you’re emotional, it isn’t protecting you.",
-      "It’s just decorating your plan."
-     ]
+      "type": "v2_steps",
+      "kicker": "Close the loophole",
+      "headline": "Find the <em>escape word</em> hiding in your rule.",
+      "line": "Small words like “just” give you a way out. Tap each step to see how to close that gap.",
+      "steps": [
+        {
+          "label": "Spot the word",
+          "sub": "Look for words like “really,” “basically,” or “just.”"
+        },
+        {
+          "label": "Cut it out",
+          "sub": "Rewrite the rule so the live you can’t argue with it."
+        },
+        {
+          "label": "Keep the rule",
+          "sub": "Follow the rule exactly as written, every single session."
+        },
+        {
+          "label": "Change in review",
+          "sub": "Change rules only when you’re calm, journal open, never live."
+        }
+      ],
+      "cta": "Next →"
     },
     {
-     "choice": {
-      "prompt": "What do you do with this rule?",
+      "type": "p7_rule_write",
+      "kicker": "Close the loophole",
+      "title": "Find the escape hatch",
+      "weak": "I won’t chase unless it looks really good.",
+      "critique": [
+        "“UNLESS IT LOOKS REALLY GOOD” 😭",
+        "Every setup looks really good when you want in."
+      ],
       "options": [
-       {
-        "label": "Delete it. It doesn’t fit me.",
-        "path": {
-         "say": [
-          "Maybe it really doesn’t fit. But you decided that on Thursday, mid-chase.",
-          "That’s the worst possible moment to judge a rule."
-         ]
+        {
+          "text": "I won’t chase unless I’m really sure.",
+          "feedback": "Same loophole, new outfit. 😂"
         },
-        "track": "feelingAsReason"
-       },
-       {
-        "label": "Close the loophole and keep it",
-        "path": {
-         "say": [
-          "Find the word you keep hiding behind. “Really”. “Basically”. “Just”.",
-          "Write the rule so live-trading-you can’t argue with it."
-         ]
-        },
-        "track": "ruleBasedResponses"
-       },
-       {
-        "label": "Flag it for review. Follow it until then.",
-        "path": {
-         "say": [
-          "Maybe it needs changing. That happens in review, calm, with your journal open.",
-          "<b>Not mid-session.</b>"
-         ]
-        },
-        "track": "ruleBasedResponses"
-       }
-      ]
-     }
+        {
+          "text": "If my planned entry is missed and price moves away, I do not market-enter late. I wait for a new valid setup.",
+          "correct": true,
+          "why": "No loophole left."
+        }
+      ],
+      "rcat": "noChase",
+      "allowCustom": true,
+      "save": "noChase"
     },
     {
-     "principle": "IF A RULE BECOMES OPTIONAL WHEN YOU’RE EMOTIONAL, IT ISN’T PROTECTING YOU."
-    }
-   ]
-  },
-  {
-   "type": "p7_rule_write",
-   "kicker": "Close the loophole",
-   "title": "Find the escape hatch",
-   "weak": "I won’t chase unless it looks really good.",
-   "critique": [
-    "“UNLESS IT LOOKS REALLY GOOD” 😭",
-    "Every setup looks really good when you want in."
-   ],
-   "options": [
-    {
-     "text": "I won’t chase unless I’m really sure.",
-     "feedback": "Same loophole, new outfit. 😂"
+      "type": "p7_rule_queue",
+      "kicker": "Rules change in review",
+      "title": "Flagged rules wait here",
+      "body": "In a session, rules are read-only. Flag a rule and it waits here until you review it calmly."
     },
     {
-     "text": "If my planned entry is missed and price moves away, I do not market-enter late. I wait for a new valid setup.",
-     "correct": true,
-     "why": "No loophole left."
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "If I have to argue with my rule, <em>the rule already won the argument. I wrote it for this.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "Which rule do you <em>negotiate with</em> most, and what’s your favorite excuse?",
+      "modelAnswer": "I notice the word I use to escape it. I close the loophole, and if the rule truly needs changing I flag it and change it in review, never mid-session."
     }
-   ],
-   "rcat": "noChase",
-   "allowCustom": true,
-   "save": "noChase"
-  },
-  {
-   "type": "p7_rule_queue",
-   "kicker": "Rules change in review",
-   "title": "Flagged rules wait here",
-   "body": "In a session, rules are read-only. Flag a rule and it waits here until you review it calmly."
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "If I have to argue with my rule, <em>the rule already won the argument. I wrote it for this.</em>",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "Which rule do you negotiate with most, and what’s your favorite excuse?",
-   "modelAnswer": "I notice the word I use to escape it. I close the loophole, and if the rule truly needs changing I flag it and change it in review, never mid-session."
-  }
- ],
- "takeaways": [
-  "Optional rules don’t protect you.",
-  "Find the loophole word.",
-  "Change rules in review, never live."
- ],
- "remember": "IF A RULE BECOMES OPTIONAL WHEN YOU’RE EMOTIONAL, IT ISN’T PROTECTING YOU."
+  ],
+  "takeaways": [
+    "Optional rules don’t protect you.",
+    "Find the loophole word.",
+    "Change rules in review, never live."
+  ],
+  "remember": "IF A RULE BECOMES OPTIONAL WHEN YOU’RE EMOTIONAL, IT ISN’T PROTECTING YOU."
 }

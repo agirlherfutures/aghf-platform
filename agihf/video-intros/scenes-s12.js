@@ -403,8 +403,9 @@
       <rect x="440" y="890" width="1040" height="64" rx="8" fill="#C98A5A"/><rect x="440" y="890" width="1040" height="12" fill="#9B6A45"/>
       ${[0, 1, 2, 3, 4, 5, 6].map(i => `<circle cx="${520 + i * 147}" cy="402" r="9" fill="${C.gold}" opacity="${0.6 + 0.4 * Math.sin(t * 4 + i)}"/>`).join('')}`;
     out += scaleAt(960, 980, sk, st);
-    // Path of the story.
-    const pts = [[520, 860], [640, 770], [730, 830], [905, 660], [1010, 750], [1360, 600]];
+    // Path of the story. The meaningful high sits at y=770: indication closes above it,
+    // correction closes back below it, continuation closes back above it.
+    const pts = [[520, 860], [640, 770], [730, 830], [905, 660], [1010, 815], [1360, 600]];
     const run1 = seg(t, T.run1, T.run1 + 5.4);
     const replay = t >= T.replay;
     // progress along the path in "index" units
@@ -415,12 +416,12 @@
     if (pi > 0) {
       if (!replay) out += polyPart(idxPts(0, pi), 1, C.muted, 8, 0.6, '14 10');
       else {
-        out += hline(500, 1200, 770, C.muted, seg(t, T.replay + 0.8, T.replay + 1.6), 'meaningful high', 1130, 18);
+        out += hline(500, 1380, 770, C.muted, seg(t, T.replay + 0.8, T.replay + 1.6), 'meaningful high', 1285, 18);
         out += polyPart(idxPts(0, Math.min(pi, 2)), 1, '#C9B9AE', 8, 0.8);
         if (pi > 2) out += polyPart(idxPts(2, Math.min(pi, 3)), 1, CH.I, 12);
         if (pi > 3) out += polyPart(idxPts(3, Math.min(pi, 4)), 1, CH.C, 12);
         if (pi > 4) out += polyPart(idxPts(4, Math.min(pi, 5)), 1, CH.C2, 12);
-        out += tag(770, 720, 'I', CH.I, pop(t, T.I + 1), 30) + tag(990, 650, 'C', CH.C, pop(t, T.C + 1), 30) + tag(1180, 610, 'C', CH.C2, pop(t, T.C2 + 1.4), 30);
+        out += tag(770, 720, 'I', CH.I, pop(t, T.I + 1), 30) + tag(1010, 870, 'C', CH.C, pop(t, T.C + 1), 30) + tag(1180, 610, 'C', CH.C2, pop(t, T.C2 + 1.4), 30);
       }
     }
     // Puppet on strings.

@@ -1,0 +1,49 @@
+{
+ "phase": "sl",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "watch": {
+  "markers": []
+ },
+ "section": "tools",
+ "lessonNumber": "zone-builder",
+ "title": "Zone Builder",
+ "hook": "Correction #2 creates the zone. Find the one candle that forms it.",
+ "launchpad": {
+  "outcome": "Separate Correction #1 from Correction #2, pick the zone-forming candle, set its boundaries, and tell a potential zone from an active or invalid one.",
+  "missionQuestion": "Which candle actually forms the zone?",
+  "estMinutes": 8
+ },
+ "takeaways": [
+  "Correction #1 never creates the execution zone. Correction #2 does.",
+  "The zone is one candle: the last opposite-colour candle of Correction #2 before BOS #3.",
+  "A zone is only potential until BOS #3 occurs.",
+  "If price violates the far edge of the zone, the setup is invalid."
+ ],
+ "remember": "CORRECTION #2 CREATES THE ZONE. BOS #3 ACTIVATES IT.",
+ "slides": [
+  {
+   "type": "sd_zone",
+   "kicker": "Zone Builder",
+   "headline": "Build the zone, <em>one decision at a time.</em>",
+   "line": "Three rounds: demand, supply, and a zone that gets invalidated.",
+   "rounds": [
+    {
+     "scenario": "bull-valid",
+     "validity": true
+    },
+    {
+     "scenario": "bear-valid"
+    },
+    {
+     "scenario": "bull-invalid",
+     "validity": true
+    }
+   ],
+   "cta": "Finish →"
+  }
+ ]
+}

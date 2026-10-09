@@ -1,0 +1,195 @@
+{
+ "phase": "sl",
+ "section": "m1",
+ "lessonNumber": "m1-4",
+ "title": "The 15M: First Directional Break",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "BOS #1 is where the sequence starts, and it has to close on the 15M.",
+ "launchpad": {
+  "outcome": "Identify BOS #1 as a 15M candle close through the 15M level in the direction of the HTF story, and explain why BOS #1 is not an entry.",
+  "missionQuestion": "What has to happen on the 15M before the sequence can start?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "BOS #1 is a 15M directional break, or a qualifying MSS.",
+  "It needs a 15M candle close. A wick doesn’t count.",
+  "A correction toward the original 15M break is preferred. A reclaim of the level is extra confirmation, not a requirement.",
+  "Don’t enter simply because BOS #1 occurred."
+ ],
+ "remember": "BOS #1 = A 15M CLOSE. NOT A WICK. NOT AN ENTRY.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 1 · Lesson 4",
+   "headline": "The sequence starts <em>on the 15M.</em>",
+   "line": "BOS (break of structure) #1 is the first directional break. It happens on the 15-minute chart.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · Close, not wick",
+   "headline": "A close counts. <em>A wick doesn’t.</em>",
+   "line": "BOS #1 needs a 15M candle to close through the 15M level.",
+   "visual": {
+    "versus": [
+     {
+      "label": "Counts as BOS #1",
+      "tone": "teal",
+      "icon": "check",
+      "points": [
+       "A 15M candle closes through the 15M level.",
+       "The break is in the direction of the HTF (higher timeframe) story."
+      ]
+     },
+     {
+      "label": "Doesn’t count",
+      "tone": "pink",
+      "icon": "stop",
+      "points": [
+       "A wick pokes through, and the candle closes back.",
+       "The 15M candle hasn’t closed yet."
+      ]
+     }
+    ]
+   },
+   "check": {
+    "prompt": "A 15M candle wicks above the level, then closes back below it. Is that BOS #1?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, price traded above it",
+      "correct": false,
+      "feedback": "Wicks don’t count. BOS #1 needs a 15M candle close through the level."
+     },
+     {
+      "label": "No, it didn’t close above",
+      "correct": true,
+      "why": "Right. BOS #1 is confirmed by a 15M candle close, not a wick."
+     }
+    ]
+   }
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 2 · BOS #1 on a chart",
+   "headline": "Watch BOS #1 <em>close on the 15M.</em>",
+   "line": "Bullish example. The HTF story is bullish. Press the button to print each 15M candle.",
+   "scenario": "bull-valid",
+   "tf": "15M",
+   "start": "start",
+   "toggle": false,
+   "steps": [
+    {
+     "until": "bos1-3",
+     "caption": "Price is pushing higher. No 15M candle has closed above the 15M level yet."
+    },
+    {
+     "until": "bos1",
+     "show": [
+      "bos1"
+     ],
+     "caption": "<b>BOS #1.</b> This 15M candle closes above the 15M level, in the direction of the HTF story."
+    },
+    {
+     "until": "bos1+3",
+     "caption": "BOS #1 starts the sequence. <b>It isn’t an entry.</b> Next, the 5M has to build the rest."
+    },
+    {
+     "until": "bos1+3",
+     "caption": "BOS #1 can also be a qualifying <b>MSS (market structure shift)</b> on the 15M. It counts only when it agrees with the HTF ICC direction.",
+     "provisional": [
+      "mssAsBos1"
+     ]
+    }
+   ],
+   "check": {
+    "prompt": "BOS #1 just closed. What do you do next?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Enter now, the break is strong",
+      "correct": false,
+      "feedback": "Don’t enter simply because BOS #1 occurred. The 5M still has to build Correction #1, BOS #2, Correction #2 and BOS #3."
+     },
+     {
+      "label": "Switch to the 5M and wait for the sequence",
+      "correct": true,
+      "why": "Right. BOS #1 starts the sequence. The 5M builds the rest."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 3 · The 15M level after the break",
+   "headline": "The 15M break level <em>still matters.</em>",
+   "line": "Tap each card. This rule is conditional and still being tested.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "target",
+      "tone": "teal",
+      "label": "Preferred",
+      "sub": "The correction after BOS #1 comes back toward the original 15M break."
+     },
+     {
+      "icon": "shield",
+      "tone": "purple",
+      "label": "Extra confirmation",
+      "sub": "A reclaim of the 15M BOS or MSS level can add structural confirmation."
+     },
+     {
+      "icon": "scale",
+      "tone": "peach",
+      "label": "Not mandatory",
+      "sub": "Don’t reject an otherwise valid setup just because a reclaim didn’t happen."
+     }
+    ]
+   },
+   "provisional": [
+    "reclaim"
+   ]
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 4 · Your turn",
+   "headline": "Bearish story. <em>Find BOS #1.</em>",
+   "line": "The HTF story is bearish. The 15M level is the low of the third 15M candle, the small one. Find the first 15M candle that closes below it.",
+   "scenario": "bear-valid",
+   "tf": "15M",
+   "until": "bos1+6",
+   "show": [],
+   "ask": "Tap the 15M candle that is BOS #1.",
+   "target": "bos1",
+   "why": "That’s the first 15M candle to close below the 15M level. That close is BOS #1.",
+   "after": {
+    "show": [
+     "bos1"
+    ],
+    "caption": "<b>BOS #1.</b> A 15M close below the level, with the bearish story. Now the 5M takes over."
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "BOS #1 starts the sequence. <em>It doesn’t start the trade.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, what counts as BOS #1, and why isn’t it an entry?",
+   "modelAnswer": "BOS #1 is a 15M directional break, or a qualifying MSS, in the direction of the HTF story, and it needs a 15M candle close, not a wick. It only starts the sequence. I still wait for the 5M to build Correction #1, BOS #2, Correction #2, BOS #3 and the retest."
+  }
+ ]
+}

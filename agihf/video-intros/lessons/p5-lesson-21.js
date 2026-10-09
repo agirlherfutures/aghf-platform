@@ -5,7 +5,7 @@
 window.LESSON_VIDEO = {
   "slug": "p5-lesson-21",
   "eyebrow": "Phase 5 · Section 13 · Lesson 21",
-  "duration": 84,
+  "duration": 86.6,
   "sources": "From Phase 5, Section 13, Lesson 21 (\"When the Sequence Resets\"), old setup: PIL A, I ✓ C ✓ C ✓, no retest, while price builds new structure; a new swing means reassess, not \"always cancel\": keep the current PIL if the new swing doesn’t change what matters, reassess the PIL if a newer reference now controls the move, mark the setup replaced if a newer sequence took over; \"Don’t wait forever for an old setup while price builds a new one in front of you.\"",
   "scenes": [
     {
@@ -31,24 +31,24 @@ window.LESSON_VIDEO = {
     {
       "type": "s13-deli-ticket",
       "start": 8,
-      "end": 34,
+      "end": 36.6,
       "kicker": "Old setup",
       "beats": {
         "counter": 8.4,
-        "wait": 15.4,
-        "cobweb": 18.6,
-        "flip": 21.6,
-        "realize": 25.4,
-        "newt": 28.4
+        "wait": 18,
+        "cobweb": 21.2,
+        "flip": 24.2,
+        "realize": 28,
+        "newt": 31
       },
       "headlines": [
         {
           "at": 8.4,
           "html": "Don’t wait forever <span class=\"mark\">for an old setup.</span>",
-          "out": 25.2
+          "out": 27.8
         },
         {
-          "at": 25.4,
+          "at": 28,
           "html": "Execution is <span class=\"mark\">dynamic.</span>"
         }
       ],
@@ -64,27 +64,27 @@ window.LESSON_VIDEO = {
           "screen": "NOW SERVING: SETUP A"
         },
         {
-          "at": 15.4,
+          "at": 18,
           "text": "But the retest never comes. So you wait…",
           "screen": "The clock spins: \"Still waiting for PIL A… 😴\""
         },
         {
-          "at": 18.6,
+          "at": 21.2,
           "text": "and wait. Meanwhile, price keeps building structure.",
           "screen": "Cobwebs grow"
         },
         {
-          "at": 21.6,
+          "at": 24.2,
           "text": "A new relevant swing forms. A newer sequence takes over.",
           "screen": "The board flips: SETUP B · new swing"
         },
         {
-          "at": 25.4,
+          "at": 28,
           "text": "Execution is dynamic. Your old ticket may not be served anymore.",
           "screen": "Butcher: \"That one’s been replaced!\""
         },
         {
-          "at": 29.8,
+          "at": 32.4,
           "text": "So you reassess.",
           "screen": "Old ticket tossed; new ticket: REASSESS"
         }
@@ -92,59 +92,59 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "s13-weigh-dial",
-      "start": 34,
-      "end": 62,
+      "start": 36.6,
+      "end": 64.6,
       "kicker": "Principles, not a switch",
       "beats": {
-        "sw": 34.4,
-        "xsw": 38,
-        "scale": 39.6,
+        "sw": 37,
+        "xsw": 40.6,
+        "scale": 42.2,
         "w": [
           42,
           46.8,
           51.2
         ],
-        "done": 55.8
+        "done": 58.4
       },
       "headlines": [
         {
-          "at": 34.4,
+          "at": 37,
           "html": "Not <span class=\"mark\">a switch.</span>",
-          "out": 55.6
+          "out": 58.2
         },
         {
-          "at": 55.8,
+          "at": 58.4,
           "html": "A new swing means: <span class=\"mark\">reassess.</span>"
         }
       ],
       "lines": [
         {
-          "at": 34.4,
+          "at": 37,
           "text": "But careful: a new swing doesn’t automatically cancel everything.",
           "screen": "A light switch: new swing = cancel"
         },
         {
-          "at": 38,
+          "at": 40.6,
           "text": "It’s not a switch. It’s a judgment, made with principles.",
           "screen": "The switch is crossed out; a weighing scale with a dial appears"
         },
         {
-          "at": 42,
+          "at": 44.6,
           "text": "Does the new swing change what matters? No? Keep the current PIL.",
           "screen": "Small block: dial → KEEP PIL"
         },
         {
-          "at": 46.8,
+          "at": 49.4,
           "text": "Does a newer reference now control the move? Reassess the PIL.",
           "screen": "Medium block: dial → REASSESS"
         },
         {
-          "at": 51.2,
+          "at": 53.8,
           "text": "Did a newer sequence take over? Then the old setup is replaced.",
           "screen": "Big block: dial → REPLACED"
         },
         {
-          "at": 55.8,
+          "at": 58.4,
           "text": "New structure means: reassess.",
           "screen": "principles, not a switch"
         }
@@ -152,29 +152,29 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-hook",
-      "start": 62,
-      "end": 72,
-      "pointAt": 66.2,
+      "start": 64.6,
+      "end": 74.6,
+      "pointAt": 68.8,
       "size": 52,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 63.4,
+          "at": 66,
           "text": "Don’t wait forever for an old setup"
         },
         {
-          "at": 66.2,
+          "at": 68.8,
           "html": "while price <span class=\"mark\">builds a new one.</span>"
         }
       ],
       "lines": [
         {
-          "at": 62.2,
+          "at": 64.8,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 63.6,
+          "at": 66.2,
           "text": "Don’t wait forever for an old setup while price builds a new one in front of you.",
           "screen": "Aristella points"
         }
@@ -182,30 +182,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 72,
-      "end": 84,
+      "start": 74.6,
+      "end": 86.6,
       "kicker": "Your mission",
       "question": {
-        "at": 74.4,
+        "at": 77,
         "text": "Did the new swing change what price must prove itself through?"
       },
       "cta": {
-        "at": 80,
+        "at": 82.6,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 72.2,
+          "at": 74.8,
           "text": "Here’s your mission.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 74.4,
+          "at": 77,
           "text": "When a new swing forms, ask: did it change what price must prove itself through?",
           "screen": "Mission question"
         },
         {
-          "at": 80,
+          "at": 82.6,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let's find out →\""
         }

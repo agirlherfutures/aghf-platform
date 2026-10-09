@@ -1,562 +1,579 @@
 {
- "phase": "p7",
- "section": "s20",
- "lessonNumber": 30,
- "title": "The Morning You Had",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "It’s not 9:45 anymore.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Notice when the market changes mid-session, and trade what’s in front of you instead of the memory.",
-  "missionQuestion": "Does my morning thesis still describe current price?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "The Morning You Had",
-   "title": "",
-   "beats": [
-    {
-     "say": [
-      "You had a great morning.",
-      "The thesis was clear. The trend was clean. You read it perfectly."
-     ]
-    },
-    {
-     "say": [
-      "Now watch what happens to the market while you’re still in love with your morning."
-     ]
-    }
-   ],
-   "cta": "Watch the session →"
+  "phase": "p7",
+  "section": "s20",
+  "lessonNumber": 30,
+  "title": "The Morning You Had",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "It’s not 9:45 anymore.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Notice when the market changes mid-session, and trade what’s in front of you instead of the memory.",
+    "missionQuestion": "Does my morning thesis still describe current price?",
+    "estMinutes": 8
   },
-  {
-   "type": "trigger_sim",
-   "mode": "decide",
-   "kicker": "9:45 · the session begins",
-   "title": "Live time",
-   "scenario": {
-    "dir": "bullish",
-    "tf": "1M",
-    "symbol": "MNQ",
-    "bars": [
-     {
-      "o": 20974.25,
-      "h": 20983.25,
-      "l": 20973.5,
-      "c": 20982.25
-     },
-     {
-      "o": 20982.25,
-      "h": 20983.25,
-      "l": 20977.5,
-      "c": 20978.25
-     },
-     {
-      "o": 20978.25,
-      "h": 20991.5,
-      "l": 20977.75,
-      "c": 20990.25
-     },
-     {
-      "o": 20990.25,
-      "h": 20991.0,
-      "l": 20985.0,
-      "c": 20986.25
-     },
-     {
-      "o": 20986.25,
-      "h": 21001.25,
-      "l": 20984.75,
-      "c": 21000.25
-     },
-     {
-      "o": 21000.25,
-      "h": 21000.75,
-      "l": 20995.5,
-      "c": 20996.25
-     },
-     {
-      "o": 20996.25,
-      "h": 21011.0,
-      "l": 20995.75,
-      "c": 21010.25
-     },
-     {
-      "o": 21010.25,
-      "h": 21010.5,
-      "l": 21005.25,
-      "c": 21006.25
-     },
-     {
-      "o": 21006.25,
-      "h": 21018.75,
-      "l": 21005.25,
-      "c": 21018.25
-     },
-     {
-      "o": 21018.25,
-      "h": 21027.75,
-      "l": 21016.75,
-      "c": 21026.25
-     },
-     {
-      "o": 21026.25,
-      "h": 21027.5,
-      "l": 21021.5,
-      "c": 21022.25
-     },
-     {
-      "o": 21022.25,
-      "h": 21025.0,
-      "l": 21021.0,
-      "c": 21024.25
-     },
-     {
-      "o": 21024.25,
-      "h": 21024.75,
-      "l": 21019.0,
-      "c": 21020.25
-     },
-     {
-      "o": 21020.25,
-      "h": 21023.75,
-      "l": 21019.5,
-      "c": 21023.25
-     },
-     {
-      "o": 21023.25,
-      "h": 21024.25,
-      "l": 21015.75,
-      "c": 21017.25
-     },
-     {
-      "o": 21017.25,
-      "h": 21024.5,
-      "l": 21016.0,
-      "c": 21023.25
-     },
-     {
-      "o": 21023.25,
-      "h": 21024.0,
-      "l": 21015.5,
-      "c": 21016.25
-     },
-     {
-      "o": 21016.25,
-      "h": 21023.5,
-      "l": 21015.25,
-      "c": 21022.25
-     },
-     {
-      "o": 21022.25,
-      "h": 21023.5,
-      "l": 21018.0,
-      "c": 21018.25
-     },
-     {
-      "o": 21018.25,
-      "h": 21020.0,
-      "l": 21017.5,
-      "c": 21019.25
-     },
-     {
-      "o": 21019.25,
-      "h": 21022.0,
-      "l": 21018.5,
-      "c": 21021.25
-     },
-     {
-      "o": 21021.25,
-      "h": 21022.0,
-      "l": 21017.5,
-      "c": 21018.25
-     },
-     {
-      "o": 21018.25,
-      "h": 21021.5,
-      "l": 21017.5,
-      "c": 21020.75
-     },
-     {
-      "o": 21020.75,
-      "h": 21021.5,
-      "l": 21018.5,
-      "c": 21019.25
-     },
-     {
-      "o": 21019.25,
-      "h": 21021.0,
-      "l": 21018.5,
-      "c": 21020.25
-     },
-     {
-      "o": 21020.25,
-      "h": 21021.0,
-      "l": 21018.0,
-      "c": 21018.75
-     }
-    ],
-    "start": 1,
-    "context": [
-     {
-      "label": "4H",
-      "value": "Bullish"
-     },
-     {
-      "label": "1H",
-      "value": "Bullish thesis"
-     },
-     {
-      "label": "15M",
-      "value": "Pulling back into the map"
-     },
-     {
-      "label": "Location",
-      "value": "4H discount"
-     }
-    ]
-   },
-   "setups": [
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "pil": null,
-     "pilAt": null
-    }
-   ],
-   "checkpoints": [
-    {
-     "at": 2,
-     "kind": "note",
-     "text": "<b>9:51.</b> Clear bullish progression. Readable structure. ENVIRONMENT: <b>SUPPORTIVE</b>.",
-     "hold": 1700
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 30",
+      "headline": "Don’t keep trading <em>the morning you already had.</em>",
+      "line": "You had a great morning with a clear idea of where price was going. Now watch how the market changes.",
+      "pose": "point",
+      "cta": "Watch the session →"
     },
     {
-     "at": 10,
-     "kind": "note",
-     "text": "<b>10:15.</b> Objective reached. 🎯",
-     "hold": 1700
-    },
-    {
-     "at": 14,
-     "kind": "note",
-     "text": "<b>10:27.</b> Movement slows.",
-     "hold": 1700
-    },
-    {
-     "at": 19,
-     "kind": "note",
-     "text": "<b>10:42.</b> Overlap.",
-     "hold": 1700
-    },
-    {
-     "at": 25,
-     "kind": "ask",
-     "ask": {
-      "prompt": "<b>11:00.</b> Tight consolidation. CURRENT ENVIRONMENT?",
-      "options": [
-       {
-        "label": "STILL TRENDING: the morning was trending",
-        "feedback": "YOU’RE TRADING THE MEMORY OF THE MARKET. 😭",
-        "einc": "forcedTrades"
-       },
-       {
-        "label": "Changed: objective reached, now consolidating. REASSESS.",
-        "correct": true,
-        "why": "Don’t trade the morning you had."
-       },
-       {
-        "label": "Bearish now",
-        "feedback": "Slowing and overlapping isn’t bearish. It’s different."
-       }
+      "type": "trigger_sim",
+      "mode": "decide",
+      "kicker": "9:45 · the session begins",
+      "title": "Live time",
+      "scenario": {
+        "dir": "bullish",
+        "tf": "1M",
+        "symbol": "MNQ",
+        "bars": [
+          {
+            "o": 20974.25,
+            "h": 20983.25,
+            "l": 20973.5,
+            "c": 20982.25
+          },
+          {
+            "o": 20982.25,
+            "h": 20983.25,
+            "l": 20977.5,
+            "c": 20978.25
+          },
+          {
+            "o": 20978.25,
+            "h": 20991.5,
+            "l": 20977.75,
+            "c": 20990.25
+          },
+          {
+            "o": 20990.25,
+            "h": 20991.0,
+            "l": 20985.0,
+            "c": 20986.25
+          },
+          {
+            "o": 20986.25,
+            "h": 21001.25,
+            "l": 20984.75,
+            "c": 21000.25
+          },
+          {
+            "o": 21000.25,
+            "h": 21000.75,
+            "l": 20995.5,
+            "c": 20996.25
+          },
+          {
+            "o": 20996.25,
+            "h": 21011.0,
+            "l": 20995.75,
+            "c": 21010.25
+          },
+          {
+            "o": 21010.25,
+            "h": 21010.5,
+            "l": 21005.25,
+            "c": 21006.25
+          },
+          {
+            "o": 21006.25,
+            "h": 21018.75,
+            "l": 21005.25,
+            "c": 21018.25
+          },
+          {
+            "o": 21018.25,
+            "h": 21027.75,
+            "l": 21016.75,
+            "c": 21026.25
+          },
+          {
+            "o": 21026.25,
+            "h": 21027.5,
+            "l": 21021.5,
+            "c": 21022.25
+          },
+          {
+            "o": 21022.25,
+            "h": 21025.0,
+            "l": 21021.0,
+            "c": 21024.25
+          },
+          {
+            "o": 21024.25,
+            "h": 21024.75,
+            "l": 21019.0,
+            "c": 21020.25
+          },
+          {
+            "o": 21020.25,
+            "h": 21023.75,
+            "l": 21019.5,
+            "c": 21023.25
+          },
+          {
+            "o": 21023.25,
+            "h": 21024.25,
+            "l": 21015.75,
+            "c": 21017.25
+          },
+          {
+            "o": 21017.25,
+            "h": 21024.5,
+            "l": 21016.0,
+            "c": 21023.25
+          },
+          {
+            "o": 21023.25,
+            "h": 21024.0,
+            "l": 21015.5,
+            "c": 21016.25
+          },
+          {
+            "o": 21016.25,
+            "h": 21023.5,
+            "l": 21015.25,
+            "c": 21022.25
+          },
+          {
+            "o": 21022.25,
+            "h": 21023.5,
+            "l": 21018.0,
+            "c": 21018.25
+          },
+          {
+            "o": 21018.25,
+            "h": 21020.0,
+            "l": 21017.5,
+            "c": 21019.25
+          },
+          {
+            "o": 21019.25,
+            "h": 21022.0,
+            "l": 21018.5,
+            "c": 21021.25
+          },
+          {
+            "o": 21021.25,
+            "h": 21022.0,
+            "l": 21017.5,
+            "c": 21018.25
+          },
+          {
+            "o": 21018.25,
+            "h": 21021.5,
+            "l": 21017.5,
+            "c": 21020.75
+          },
+          {
+            "o": 21020.75,
+            "h": 21021.5,
+            "l": 21018.5,
+            "c": 21019.25
+          },
+          {
+            "o": 21019.25,
+            "h": 21021.0,
+            "l": 21018.5,
+            "c": 21020.25
+          },
+          {
+            "o": 21020.25,
+            "h": 21021.0,
+            "l": 21018.0,
+            "c": 21018.75
+          }
+        ],
+        "start": 1,
+        "context": [
+          {
+            "label": "4H",
+            "value": "Bullish"
+          },
+          {
+            "label": "1H",
+            "value": "Bullish thesis"
+          },
+          {
+            "label": "15M",
+            "value": "Pulling back into the map"
+          },
+          {
+            "label": "Location",
+            "value": "4H discount"
+          }
+        ]
+      },
+      "setups": [
+        {
+          "pil": null,
+          "pilAt": null
+        }
       ],
-      "ecat": "reassess",
-      "stack": true
-     },
-     "goal": true
+      "checkpoints": [
+        {
+          "at": 2,
+          "kind": "note",
+          "text": "<b>9:51.</b> Clear bullish progression. Readable structure. ENVIRONMENT: <b>SUPPORTIVE</b>.",
+          "hold": 1700
+        },
+        {
+          "at": 10,
+          "kind": "note",
+          "text": "<b>10:15.</b> Objective reached. 🎯",
+          "hold": 1700
+        },
+        {
+          "at": 14,
+          "kind": "note",
+          "text": "<b>10:27.</b> Movement slows.",
+          "hold": 1700
+        },
+        {
+          "at": 19,
+          "kind": "note",
+          "text": "<b>10:42.</b> Overlap.",
+          "hold": 1700
+        },
+        {
+          "at": 25,
+          "kind": "ask",
+          "ask": {
+            "prompt": "<b>11:00.</b> Tight consolidation. CURRENT ENVIRONMENT?",
+            "options": [
+              {
+                "label": "STILL TRENDING: the morning was trending",
+                "feedback": "YOU’RE TRADING THE MEMORY OF THE MARKET. 😭",
+                "einc": "forcedTrades"
+              },
+              {
+                "label": "Changed: objective reached, now consolidating. REASSESS.",
+                "correct": true,
+                "why": "Don’t trade the morning you had."
+              },
+              {
+                "label": "Bearish now",
+                "feedback": "Slowing and overlapping isn’t bearish. It’s different."
+              }
+            ],
+            "ecat": "reassess",
+            "stack": true
+          },
+          "goal": true
+        }
+      ],
+      "actions": [
+        "wait"
+      ],
+      "timeline": false,
+      "intro": "9:45. Watch the environment. Not just the candles.",
+      "end": {
+        "card": "DON’T TRADE THE MORNING YOU HAD. TRADE THE MARKET IN FRONT OF YOU NOW."
+      },
+      "clock": {
+        "start": "9:45",
+        "step": 3,
+        "from": 0
+      },
+      "speed": 750,
+      "noStatus": true
+    },
+    {
+      "type": "v2_steps",
+      "kicker": "Environment check-in",
+      "headline": "Check in on the market <em>whenever something changes.</em>",
+      "line": "You don’t need to check every five minutes. Tap each trigger to see when a fresh look is worth it.",
+      "steps": [
+        {
+          "label": "Objective reached",
+          "sub": "Price hits the target you were aiming for."
+        },
+        {
+          "label": "Structure shifts",
+          "sub": "The structure of the chart changes in a big way."
+        },
+        {
+          "label": "New setup",
+          "sub": "A new setup appears after a long quiet gap."
+        },
+        {
+          "label": "Volatility changes",
+          "sub": "The market speeds up or slows down noticeably."
+        },
+        {
+          "label": "News approaching",
+          "sub": "A scheduled news release is coming up soon."
+        },
+        {
+          "label": "Session transition",
+          "sub": "One part of the trading day ends and another begins."
+        }
+      ],
+      "cta": "Next →"
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "11:00 · Check-in",
+      "headline": "Does your morning idea <em>still fit the chart?</em>",
+      "line": "Price hit your objective at 10:15. Then it moved through the overlap and settled into a tight range.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20974.25,
+            "h": 20983.25,
+            "l": 20973.5,
+            "c": 20982.25
+          },
+          {
+            "o": 20982.25,
+            "h": 20983.25,
+            "l": 20977.5,
+            "c": 20978.25
+          },
+          {
+            "o": 20978.25,
+            "h": 20991.5,
+            "l": 20977.75,
+            "c": 20990.25
+          },
+          {
+            "o": 20990.25,
+            "h": 20991.0,
+            "l": 20985.0,
+            "c": 20986.25
+          },
+          {
+            "o": 20986.25,
+            "h": 21001.25,
+            "l": 20984.75,
+            "c": 21000.25
+          },
+          {
+            "o": 21000.25,
+            "h": 21000.75,
+            "l": 20995.5,
+            "c": 20996.25
+          },
+          {
+            "o": 20996.25,
+            "h": 21011.0,
+            "l": 20995.75,
+            "c": 21010.25
+          },
+          {
+            "o": 21010.25,
+            "h": 21010.5,
+            "l": 21005.25,
+            "c": 21006.25
+          },
+          {
+            "o": 21006.25,
+            "h": 21018.75,
+            "l": 21005.25,
+            "c": 21018.25
+          },
+          {
+            "o": 21018.25,
+            "h": 21027.75,
+            "l": 21016.75,
+            "c": 21026.25
+          },
+          {
+            "o": 21026.25,
+            "h": 21027.5,
+            "l": 21021.5,
+            "c": 21022.25
+          },
+          {
+            "o": 21022.25,
+            "h": 21025.0,
+            "l": 21021.0,
+            "c": 21024.25
+          },
+          {
+            "o": 21024.25,
+            "h": 21024.75,
+            "l": 21019.0,
+            "c": 21020.25
+          },
+          {
+            "o": 21020.25,
+            "h": 21023.75,
+            "l": 21019.5,
+            "c": 21023.25
+          },
+          {
+            "o": 21023.25,
+            "h": 21024.25,
+            "l": 21015.75,
+            "c": 21017.25
+          },
+          {
+            "o": 21017.25,
+            "h": 21024.5,
+            "l": 21016.0,
+            "c": 21023.25
+          },
+          {
+            "o": 21023.25,
+            "h": 21024.0,
+            "l": 21015.5,
+            "c": 21016.25
+          },
+          {
+            "o": 21016.25,
+            "h": 21023.5,
+            "l": 21015.25,
+            "c": 21022.25
+          },
+          {
+            "o": 21022.25,
+            "h": 21023.5,
+            "l": 21018.0,
+            "c": 21018.25
+          },
+          {
+            "o": 21018.25,
+            "h": 21020.0,
+            "l": 21017.5,
+            "c": 21019.25
+          },
+          {
+            "o": 21019.25,
+            "h": 21022.0,
+            "l": 21018.5,
+            "c": 21021.25
+          },
+          {
+            "o": 21021.25,
+            "h": 21022.0,
+            "l": 21017.5,
+            "c": 21018.25
+          },
+          {
+            "o": 21018.25,
+            "h": 21021.5,
+            "l": 21017.5,
+            "c": 21020.75
+          },
+          {
+            "o": 21020.75,
+            "h": 21021.5,
+            "l": 21018.5,
+            "c": 21019.25
+          },
+          {
+            "o": 21019.25,
+            "h": 21021.0,
+            "l": 21018.5,
+            "c": 21020.25
+          },
+          {
+            "o": 21020.25,
+            "h": 21021.0,
+            "l": 21018.0,
+            "c": 21018.75
+          }
+        ],
+        "pil": null,
+        "pilAt": null,
+        "head": {
+          "tf": "1M",
+          "label": "MNQ",
+          "time": "11:00"
+        },
+        "lines": [
+          {
+            "price": 21027.75,
+            "label": "OBJECTIVE",
+            "tone": "ok",
+            "at": 9
+          }
+        ]
+      },
+      "thoughts": [
+        "“But the morning was so clean.”"
+      ],
+      "check": {
+        "prompt": "Does your morning thesis still describe what price is doing?",
+        "options": [
+          {
+            "label": "Yes, the morning was bullish",
+            "correct": false,
+            "feedback": "The morning was bullish, but is the market bullish right now? That’s the only question that counts."
+          },
+          {
+            "label": "Not anymore, so I reassess",
+            "correct": true,
+            "feedback": "Yes. New conditions deserve a fresh read of the market."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_compare",
+      "kicker": "Memory vs. market",
+      "headline": "It isn’t <em>9:45 anymore.</em>",
+      "cards": [
+        {
+          "label": "9:45",
+          "sub": "It was a clean, supportive trend.",
+          "spark": "up",
+          "tag": "THE MEMORY",
+          "tone": "purple"
+        },
+        {
+          "label": "11:00",
+          "sub": "The objective hit, and price is stuck in a range.",
+          "spark": "chop",
+          "tag": "THE MARKET NOW",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "Which one should you trade?",
+        "options": [
+          {
+            "label": "The read I had at 9:45",
+            "correct": false,
+            "feedback": "That’s trading your memory of the market. It’s an easy mistake to make!"
+          },
+          {
+            "label": "The market in front of me",
+            "correct": true,
+            "feedback": "Yes. You trade the market that’s in front of you right now."
+          }
+        ]
+      },
+      "line": "Your memory of the morning and the market in front of you are now two different things."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "The 9:45 chart was beautiful. <em>It’s 11:00.</em> 😂",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "How can you tell when <em>conditions have changed?</em>",
+      "modelAnswer": "When price reaches the objective, structure shifts, volatility changes, news approaches or the session transitions. I ask whether my morning thesis still describes current price."
     }
-   ],
-   "actions": [
-    "wait"
-   ],
-   "timeline": false,
-   "intro": "9:45. Watch the environment. Not just the candles.",
-   "end": {
-    "card": "DON’T TRADE THE MORNING YOU HAD. TRADE THE MARKET IN FRONT OF YOU NOW."
-   },
-   "clock": {
-    "start": "9:45",
-    "step": 3,
-    "from": 0
-   },
-   "speed": 750,
-   "noStatus": true
-  },
-  {
-   "type": "p7_monologue",
-   "kicker": "Environment Check-In",
-   "cards": [
-    "Objective reached",
-    "Major structural change",
-    "New setup after a long gap",
-    "Volatility change",
-    "News approaching",
-    "Session transition"
-   ],
-   "lines": [
-    "Not every five minutes.",
-    "<b>When something changes.</b>"
-   ]
-  },
-  {
-   "type": "p7_ask",
-   "kicker": "Environment Check-In",
-   "title": "After the objective was reached",
-   "asks": [
-    {
-     "prompt": "HAS PRICE REACHED THE OBJECTIVE?",
-     "options": [
-      {
-       "label": "YES",
-       "correct": true
-      },
-      {
-       "label": "No",
-       "feedback": "10:15. 🎯"
-      }
-     ],
-     "ecat": "reassess"
-    },
-    {
-     "prompt": "DID WE ENTER CONSOLIDATION?",
-     "options": [
-      {
-       "label": "YES",
-       "correct": true
-      },
-      {
-       "label": "No",
-       "feedback": "Overlap, then a tight range."
-      }
-     ]
-    },
-    {
-     "prompt": "DOES MY ORIGINAL THESIS STILL DESCRIBE CURRENT PRICE?",
-     "options": [
-      {
-       "label": "Yes, the morning was bullish",
-       "feedback": "The morning was. Is now?",
-       "einc": "forcedTrades"
-      },
-      {
-       "label": "Not anymore: REASSESS",
-       "correct": true,
-       "why": "New conditions get a new read."
-      }
-     ],
-     "ecat": "reassess"
-    }
-   ],
-   "chart": {
-    "bars": [
-     {
-      "o": 20974.25,
-      "h": 20983.25,
-      "l": 20973.5,
-      "c": 20982.25
-     },
-     {
-      "o": 20982.25,
-      "h": 20983.25,
-      "l": 20977.5,
-      "c": 20978.25
-     },
-     {
-      "o": 20978.25,
-      "h": 20991.5,
-      "l": 20977.75,
-      "c": 20990.25
-     },
-     {
-      "o": 20990.25,
-      "h": 20991.0,
-      "l": 20985.0,
-      "c": 20986.25
-     },
-     {
-      "o": 20986.25,
-      "h": 21001.25,
-      "l": 20984.75,
-      "c": 21000.25
-     },
-     {
-      "o": 21000.25,
-      "h": 21000.75,
-      "l": 20995.5,
-      "c": 20996.25
-     },
-     {
-      "o": 20996.25,
-      "h": 21011.0,
-      "l": 20995.75,
-      "c": 21010.25
-     },
-     {
-      "o": 21010.25,
-      "h": 21010.5,
-      "l": 21005.25,
-      "c": 21006.25
-     },
-     {
-      "o": 21006.25,
-      "h": 21018.75,
-      "l": 21005.25,
-      "c": 21018.25
-     },
-     {
-      "o": 21018.25,
-      "h": 21027.75,
-      "l": 21016.75,
-      "c": 21026.25
-     },
-     {
-      "o": 21026.25,
-      "h": 21027.5,
-      "l": 21021.5,
-      "c": 21022.25
-     },
-     {
-      "o": 21022.25,
-      "h": 21025.0,
-      "l": 21021.0,
-      "c": 21024.25
-     },
-     {
-      "o": 21024.25,
-      "h": 21024.75,
-      "l": 21019.0,
-      "c": 21020.25
-     },
-     {
-      "o": 21020.25,
-      "h": 21023.75,
-      "l": 21019.5,
-      "c": 21023.25
-     },
-     {
-      "o": 21023.25,
-      "h": 21024.25,
-      "l": 21015.75,
-      "c": 21017.25
-     },
-     {
-      "o": 21017.25,
-      "h": 21024.5,
-      "l": 21016.0,
-      "c": 21023.25
-     },
-     {
-      "o": 21023.25,
-      "h": 21024.0,
-      "l": 21015.5,
-      "c": 21016.25
-     },
-     {
-      "o": 21016.25,
-      "h": 21023.5,
-      "l": 21015.25,
-      "c": 21022.25
-     },
-     {
-      "o": 21022.25,
-      "h": 21023.5,
-      "l": 21018.0,
-      "c": 21018.25
-     },
-     {
-      "o": 21018.25,
-      "h": 21020.0,
-      "l": 21017.5,
-      "c": 21019.25
-     },
-     {
-      "o": 21019.25,
-      "h": 21022.0,
-      "l": 21018.5,
-      "c": 21021.25
-     },
-     {
-      "o": 21021.25,
-      "h": 21022.0,
-      "l": 21017.5,
-      "c": 21018.25
-     },
-     {
-      "o": 21018.25,
-      "h": 21021.5,
-      "l": 21017.5,
-      "c": 21020.75
-     },
-     {
-      "o": 21020.75,
-      "h": 21021.5,
-      "l": 21018.5,
-      "c": 21019.25
-     },
-     {
-      "o": 21019.25,
-      "h": 21021.0,
-      "l": 21018.5,
-      "c": 21020.25
-     },
-     {
-      "o": 21020.25,
-      "h": 21021.0,
-      "l": 21018.0,
-      "c": 21018.75
-     }
-    ],
-    "pil": null,
-    "pilAt": null,
-    "head": {
-     "tf": "1M",
-     "label": "MNQ",
-     "time": "11:00"
-    },
-    "lines": [
-     {
-      "price": 21027.75,
-      "label": "OBJECTIVE",
-      "tone": "ok",
-      "at": 9
-     }
-    ]
-   }
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "The 9:45 chart was beautiful. <em>It’s 11:00.</em> 😂",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "How do you know when conditions have changed?",
-   "modelAnswer": "When price reaches the objective, structure shifts, volatility changes, news approaches or the session transitions. I ask whether my morning thesis still describes current price."
-  }
- ],
- "takeaways": [
-  "Markets change during a session.",
-  "Check in when something changes.",
-  "Don’t trade the memory of the market."
- ],
- "remember": "DON’T TRADE THE MORNING YOU HAD. TRADE THE MARKET IN FRONT OF YOU NOW."
+  ],
+  "takeaways": [
+    "Markets change during a session.",
+    "Check in when something changes.",
+    "Don’t trade the memory of the market."
+  ],
+  "remember": "DON’T TRADE THE MORNING YOU HAD. TRADE THE MARKET IN FRONT OF YOU NOW."
 }

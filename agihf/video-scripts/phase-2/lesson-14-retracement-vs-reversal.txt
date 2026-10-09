@@ -1,0 +1,101 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Fourteen: Retracement versus Reversal.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+A big move down isn't automatically a reversal.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Scenario A. Our acrobat takes a big drop. Lots of red candles.
+
+(pause-until: 00:00:13,000)
+
+(next-paragraph-max-duration: 6.000)
+
+But the net, the supporting higher low, holds. Price never closes through it.
+
+(pause-until: 00:00:19,000)
+
+(next-paragraph-max-duration: 5.000)
+
+She bounces back up. That reads as a possible retracement.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Scenario B. Same drop. This time price closes through the supporting low.
+
+(pause-until: 00:00:30,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Then it builds a lower high and a lower low. A potential reversal.
+
+(pause-until: 00:00:36,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Now picture walking toward the back of a moving train.
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 5.000)
+
+You're moving backward. The train is still heading forward.
+
+(pause-until: 00:00:45,000)
+
+(next-paragraph-max-duration: 4.000)
+
+That's the current move versus the larger structure.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Red candles show the current move. They don't tell you the structure changed.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Only the levels can tell you that.
+
+(pause-until: 00:01:00,000)
+
+(next-paragraph-max-duration: 1.000)
+
+So remember.
+
+(pause-until: 00:01:01,000)
+
+(next-paragraph-max-duration: 9.000)
+
+Levels decide it. Not candle color.
+
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's your mission.
+
+(pause-until: 00:01:12,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Price dropped hard. Retracement or reversal?
+
+(pause-until: 00:01:17,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Let's find out.

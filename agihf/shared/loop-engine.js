@@ -164,7 +164,7 @@ export function renderLoopWatch(slide, data, satisfy) {
       ${lp.outcome ? `<p class="dl-outcome"><strong>By the end, you'll be able to:</strong> ${lp.outcome}</p>` : ''}
       <div class="dl-launchpad-meta">
         ${lp.estMinutes ? `<span class="lw-pill dur">~${lp.estMinutes} min</span>` : ''}
-        <span class="lw-pill gp">+${data.xpValue} GP</span>
+        ${data.xpValue ? `<span class="lw-pill gp">+${data.xpValue} GP</span>` : ''}
       </div>
       ${lp.missionQuestion ? `<div class="dl-mission-q"><div class="dl-mission-q-label">Your mission question</div><div class="dl-mission-q-text">${lp.missionQuestion}</div></div>` : ''}
     </div>
@@ -217,7 +217,7 @@ function videoEmbed(url) {
   return { kind: 'file' };
 }
 
-function videoPlayerHtml(url) {
+export function videoPlayerHtml(url) {
   const embed = videoEmbed(url);
   if (embed.kind === 'file') {
     return `<video class="dl-video" id="dlVideo" src="${url}" controls playsinline preload="metadata"></video>`;
@@ -227,8 +227,8 @@ function videoPlayerHtml(url) {
 
 // Returns { seek(seconds) }. For a hosted file the marker rail also follows
 // along, highlighting the chapter that's playing.
-function wireVideoPlayer(slide, url, markers) {
-  const el = slide.querySelector('#dlVideo');
+export function wireVideoPlayer(slide, url, markers, id = 'dlVideo') {
+  const el = slide.querySelector(`#${id}`);
   const embed = videoEmbed(url);
   const btns = [...slide.querySelectorAll('.dl-marker')];
   const times = markers.map((m) => markerSeconds(m.t));

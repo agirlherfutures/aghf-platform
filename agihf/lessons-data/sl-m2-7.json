@@ -1,0 +1,291 @@
+{
+ "phase": "sl",
+ "section": "m2",
+ "lessonNumber": "m2-7",
+ "title": "Executing Bearish Supply",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "The bearish sequence, walked from the 4H story to the 5M retest, one decision at a time.",
+ "launchpad": {
+  "outcome": "Execute a bearish supply setup step by step: read the HTF story, confirm the 15M break, follow the 5M sequence, mark the zone, wait for BOS #3 and the retest.",
+  "missionQuestion": "What has to be true before a bearish retest becomes an entry?",
+  "estMinutes": 10
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "The HTF story sets the direction. For a supply trade it has to be bearish.",
+  "BOS #1 and BOS #2 are not entries. They are steps in the sequence.",
+  "Correction #2’s last bullish candle forms the supply zone. BOS #3 activates it.",
+  "After BOS #3, wait for the retest. If price never comes back, don’t chase."
+ ],
+ "remember": "STORY. BREAK. ZONE. BOS #3. RETEST.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 2 · Lesson 7",
+   "headline": "Now the mirror image: <em>bearish supply.</em>",
+   "line": "You’ll walk a full bearish setup, from the higher-timeframe story to the 5M retest, and make the call at every step.",
+   "pose": "wave",
+   "cta": "Let’s go →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · Read the HTF story",
+   "headline": "Start with the story, <em>not the 5M.</em>",
+   "line": "Tap each card. This is the HTF (higher timeframe) context for this setup.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "globe",
+      "tone": "purple",
+      "label": "4H context",
+      "sub": "Bearish. Price is in the upper half of the 4H range and correcting."
+     },
+     {
+      "icon": "layers",
+      "tone": "teal",
+      "label": "1H structure",
+      "sub": "Bearish 1H structure. Price is reacting from a 1H lower high."
+     },
+     {
+      "icon": "down",
+      "tone": "pink",
+      "label": "HTF ICC",
+      "sub": "HTF ICC: bearish Indication, Correction in progress."
+     }
+    ]
+   },
+   "check": {
+    "prompt": "Which direction does this context support?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Bearish. Look for a supply setup.",
+      "correct": true,
+      "why": "Right. The 4H, the 1H and the HTF ICC are all bearish, so you look for a bearish sequence and a supply zone."
+     },
+     {
+      "label": "Bullish. Look for a demand setup.",
+      "correct": false,
+      "feedback": "Read the cards again. The 4H, the 1H and the HTF ICC are all bearish. Higher-timeframe ICC supplies the direction."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 2 · The 15M break",
+   "headline": "Wait for the 15M to <em>break with the story.</em>",
+   "line": "Press the button. Watch for a 15M candle to close below the 15M level.",
+   "scenario": "bear-valid",
+   "tf": "15M",
+   "start": "start",
+   "toggle": false,
+   "steps": [
+    {
+     "until": "bos1",
+     "show": [
+      "bos1"
+     ],
+     "caption": "<b>BOS #1 (break of structure).</b> A 15M candle closes below the 15M level, in the direction of the HTF story."
+    }
+   ],
+   "check": {
+    "prompt": "BOS #1 just closed. What’s your next move?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Sell now, the break is confirmed",
+      "correct": false,
+      "feedback": "Don’t enter simply because BOS #1 occurred. It’s the first of three breaks, and there’s no zone yet."
+     },
+     {
+      "label": "Switch to the 5M and wait for Correction #1",
+      "correct": true,
+      "why": "Yes. BOS #1 starts the sequence. The 5M still has to build two corrections, the zone and two more breaks."
+     }
+    ]
+   },
+   "cta": "Switch to the 5M →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 3 · BOS #2 on the 5M",
+   "headline": "Find the 5M close that <em>continues the move.</em>",
+   "line": "Correction #1 is marked in peach. Now find BOS #2.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "until": "bos2+2",
+   "show": [
+    "bos1",
+    "c1"
+   ],
+   "ask": "Tap the first 5M candle that closes below the low Correction #1 pulled back from.",
+   "target": "bos2",
+   "why": "That’s BOS #2: the first 5M close below the low Correction #1 pulled back from. A wick alone wouldn’t count.",
+   "after": {
+    "show": [
+     "bos2"
+    ],
+    "caption": "<b>BOS #2.</b> The move continued. It’s still not an entry. Now you wait for Correction #2."
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 4 · The zone-forming candle",
+   "headline": "Correction #2 creates <em>the supply zone.</em>",
+   "line": "Correction #2 has just ended. Find the one candle that forms the zone, not the whole correction.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "until": "c2+1",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2"
+   ],
+   "ask": "Tap the last bullish candle of Correction #2.",
+   "target": "zone",
+   "why": "That’s the last bullish candle of Correction #2. It forms the supply zone.",
+   "after": {
+    "show": [
+     "zone",
+     "zoneCandle"
+    ],
+    "caption": "The zone uses this candle’s full high-to-low range. It’s only a <b>potential</b> zone until BOS #3 happens."
+   },
+   "provisional": [
+    "zoneBounds"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 5 · BOS #3",
+   "headline": "Wait for BOS #3 to <em>activate the zone.</em>",
+   "line": "Press the button. Sellers need a 5M close below the low Correction #2 pulled back from.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "start": "c2+1",
+   "toggle": false,
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2",
+    "zone",
+    "zoneCandle"
+   ],
+   "provisional": [
+    "zoneBounds"
+   ],
+   "steps": [
+    {
+     "until": "bos3",
+     "show": [
+      "bos3"
+     ],
+     "caption": "<b>BOS #3.</b> A 5M candle closes below the low Correction #2 pulled back from. <b>The zone is now active.</b>"
+    }
+   ],
+   "check": {
+    "prompt": "BOS #3 just closed and price is moving down fast. What do you do?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Wait for price to return to the zone",
+      "correct": true,
+      "why": "Right. After BOS #3, you wait for the retest. If price never comes back, you don’t chase it."
+     },
+     {
+      "label": "Sell now, before it runs away",
+      "correct": false,
+      "feedback": "That’s chasing. BOS #3 activates the zone, but the entry model only applies when price returns to it."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 6 · The retest",
+   "headline": "Spot the moment price <em>comes back.</em>",
+   "line": "The zone is active. Watch for the first return to it.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "until": "retest+2",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2",
+    "zone",
+    "zoneCandle",
+    "bos3"
+   ],
+   "ask": "Tap the first candle that trades back up into the supply zone.",
+   "target": "retest",
+   "why": "That’s the retest: the first time price returns to the active zone after BOS #3.",
+   "after": {
+    "show": [
+     "retest",
+     "entry"
+    ],
+    "caption": "The working model places a limit at the zone’s low, its near edge. A bearish candle closing out of the zone is the additional-confirmation option."
+   },
+   "provisional": [
+    "zoneBounds",
+    "limitEntry"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_steps",
+   "kicker": "Step 7 · Your bearish checklist",
+   "headline": "Every bearish trade <em>passes every step.</em>",
+   "line": "Tap each step. If one is missing, there is no trade.",
+   "steps": [
+    {
+     "label": "The HTF story is bearish",
+     "sub": "The 4H context, the 1H structure and the HTF ICC point down."
+    },
+    {
+     "label": "BOS #1 on the 15M",
+     "sub": "A 15M candle closes below the 15M level."
+    },
+    {
+     "label": "Correction #1, then BOS #2",
+     "sub": "A 5M pullback, then a 5M close below the low it pulled back from."
+    },
+    {
+     "label": "Correction #2 creates the zone",
+     "sub": "Its last bullish candle forms the supply zone."
+    },
+    {
+     "label": "BOS #3, then the retest",
+     "sub": "A 5M close activates the zone. Then price has to come back to it."
+    }
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Supply is demand in the mirror. <em>The sequence never changes.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, walk through a bearish supply trade from the 4H to the entry.",
+   "modelAnswer": "First the HTF story has to be bearish. Then a 15M candle closes below the 15M level for BOS #1. On the 5M, Correction #1 pulls back and BOS #2 closes below the low it pulled back from. Correction #2 follows, and its last bullish candle forms the supply zone. BOS #3 activates the zone, and then I wait for price to return to it. If price never comes back, I don’t chase it."
+  }
+ ]
+}

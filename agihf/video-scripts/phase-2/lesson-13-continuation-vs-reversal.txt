@@ -1,0 +1,107 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Thirteen: Continuation versus Reversal.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Not every pullback is a reversal.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Welcome to the game show of honest reads.
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Price pulls back in a bullish structure. Is it a reversal?
+
+(pause-until: 00:00:15,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Buzz! Not so fast. Neither key level has broken.
+
+(pause-until: 00:00:20,000)
+
+(next-paragraph-max-duration: 4.000)
+
+The honest answer: not enough information yet.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Then price closes above the prior high. Now that's continuation information.
+
+(pause-until: 00:00:29,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A close through the supporting low instead would be a potential shift.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of yourself as the judge, not the lawyer.
+
+(pause-until: 00:00:38,000)
+
+(next-paragraph-max-duration: 5.000)
+
+The lawyer shouts: it pulled back, so it's a reversal!
+
+(pause-until: 00:00:43,000)
+
+(next-paragraph-max-duration: 3.000)
+
+But a pullback alone isn't evidence of a reversal.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 5.000)
+
+The evidence is which level price actually closes through.
+
+(pause-until: 00:00:51,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Until then, the honest verdict is: I don't know yet.
+
+(pause-until: 00:00:58,000)
+
+(next-paragraph-max-duration: 1.000)
+
+The takeaway?
+
+(pause-until: 00:00:59,000)
+
+(next-paragraph-max-duration: 9.000)
+
+I don't know yet is sometimes the most technically correct answer.
+
+(pause-until: 00:01:08,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's your mission.
+
+(pause-until: 00:01:10,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Price is pulling back in a bullish structure. Is it a reversal?
+
+(pause-until: 00:01:16,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Let's find out.

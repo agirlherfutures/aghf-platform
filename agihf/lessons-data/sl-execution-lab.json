@@ -1,0 +1,44 @@
+{
+ "phase": "sl",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "watch": {
+  "markers": []
+ },
+ "section": "tools",
+ "lessonNumber": "execution-lab",
+ "title": "Execution Lab",
+ "hook": "Candle by candle, from the higher-timeframe story to the decision.",
+ "launchpad": {
+  "outcome": "Read the context, mark every step of the sequence as it prints, and make the right entry or no-trade decision.",
+  "missionQuestion": "Has price earned the entry?",
+  "estMinutes": 15
+ },
+ "takeaways": [
+  "Don’t enter just because BOS #1 or BOS #2 occurred.",
+  "Mark the zone from Correction #2, then wait for BOS #3 to activate it.",
+  "No retest means no trade. Don’t chase.",
+  "An invalidated zone is not an entry opportunity, even if price comes back."
+ ],
+ "remember": "3 BREAKS. 2 CORRECTIONS. 1 ZONE. 1 RETEST.",
+ "slides": [
+  {
+   "type": "sd_exec",
+   "kicker": "Execution Lab",
+   "headline": "Trade the sequence, <em>not the feeling.</em>",
+   "line": "Six scenarios. Some are entries. Some are not.",
+   "scenarios": [
+    "bull-valid",
+    "bear-missed",
+    "bull-invalid",
+    "bear-no-bos2",
+    "bear-valid",
+    "bull-no-bos3"
+   ],
+   "cta": "Finish →"
+  }
+ ]
+}

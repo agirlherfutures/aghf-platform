@@ -1,992 +1,626 @@
 {
- "phase": "p7",
- "section": "s18",
- "lessonNumber": 4,
- "title": "After the Loss",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "The market didn’t take anything from you.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Feel a valid loss turn into urgency, and catch the revenge trade before it catches you.",
-  "missionQuestion": "Would I take this exact trade if the last one never happened?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "After the Loss",
-   "title": "9:52",
-   "beats": [
+  "phase": "p7",
+  "section": "s18",
+  "lessonNumber": 4,
+  "title": "After the Loss",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "The market didn’t take anything from you.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Feel a valid loss turn into urgency, and catch the revenge trade before it catches you.",
+    "missionQuestion": "Would I take this exact trade if the last one never happened?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "chart": {
-      "bars": [
-       {
-        "o": 20982.25,
-        "h": 20986.25,
-        "l": 20981.25,
-        "c": 20985.75
-       },
-       {
-        "o": 20985.75,
-        "h": 20990.25,
-        "l": 20985.0,
-        "c": 20989.25
-       },
-       {
-        "o": 20989.25,
-        "h": 20994.25,
-        "l": 20989.0,
-        "c": 20993.25
-       },
-       {
-        "o": 20993.25,
-        "h": 20999.0,
-        "l": 20993.0,
-        "c": 20998.25
-       },
-       {
-        "o": 20998.25,
-        "h": 21004.25,
-        "l": 20997.5,
-        "c": 21001.75
-       },
-       {
-        "o": 21001.75,
-        "h": 21002.25,
-        "l": 20999.5,
-        "c": 21000.0
-       },
-       {
-        "o": 21000.0,
-        "h": 21001.5,
-        "l": 20995.75,
-        "c": 20996.75
-       },
-       {
-        "o": 20996.75,
-        "h": 20998.25,
-        "l": 20993.25,
-        "c": 20993.5
-       },
-       {
-        "o": 20993.5,
-        "h": 20994.75,
-        "l": 20990.75,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20994.25,
-        "l": 20990.5,
-        "c": 20993.75
-       },
-       {
-        "o": 20993.75,
-        "h": 20999.25,
-        "l": 20992.75,
-        "c": 20998.75
-       },
-       {
-        "o": 20998.75,
-        "h": 21002.25,
-        "l": 20998.0,
-        "c": 21001.25
-       },
-       {
-        "o": 21001.25,
-        "h": 21007.75,
-        "l": 21001.25,
-        "c": 21007.0
-       },
-       {
-        "o": 21007.0,
-        "h": 21007.0,
-        "l": 21001.25,
-        "c": 21002.0
-       },
-       {
-        "o": 21002.0,
-        "h": 21008.25,
-        "l": 21002.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21010.0,
-        "l": 21006.5,
-        "c": 21009.0
-       },
-       {
-        "o": 21009.0,
-        "h": 21012.5,
-        "l": 21008.0,
-        "c": 21011.25
-       },
-       {
-        "o": 21011.25,
-        "h": 21014.25,
-        "l": 21010.25,
-        "c": 21013.25
-       },
-       {
-        "o": 21013.25,
-        "h": 21017.5,
-        "l": 21012.0,
-        "c": 21016.25
-       },
-       {
-        "o": 21016.25,
-        "h": 21017.75,
-        "l": 21012.25,
-        "c": 21012.75
-       },
-       {
-        "o": 21012.75,
-        "h": 21014.0,
-        "l": 21009.5,
-        "c": 21010.0
-       },
-       {
-        "o": 21010.0,
-        "h": 21010.75,
-        "l": 21007.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21008.25,
-        "l": 21003.75,
-        "c": 21005.75
-       },
-       {
-        "o": 21005.75,
-        "h": 21006.0,
-        "l": 21000.0,
-        "c": 21000.5
-       },
-       {
-        "o": 21000.5,
-        "h": 21000.75,
-        "l": 20996.75,
-        "c": 20997.25
-       },
-       {
-        "o": 20997.25,
-        "h": 20998.75,
-        "l": 20991.75,
-        "c": 20992.25
-       },
-       {
-        "o": 20992.25,
-        "h": 20993.0,
-        "l": 20987.25,
-        "c": 20988.0
-       },
-       {
-        "o": 20988.0,
-        "h": 20988.5,
-        "l": 20981.75,
-        "c": 20983.0
-       },
-       {
-        "o": 20983.0,
-        "h": 20983.25,
-        "l": 20977.75,
-        "c": 20978.25
-       },
-       {
-        "o": 20978.25,
-        "h": 20979.0,
-        "l": 20971.25,
-        "c": 20972.75
-       }
-      ],
-      "pil": 21004.25,
-      "pilAt": 4,
-      "tags": [
-       {
-        "at": 22,
-        "text": "YOU’RE IN",
-        "tone": "gold"
-       },
-       {
-        "at": 29,
-        "text": "−1R",
-        "tone": "warn"
-       }
-      ],
-      "head": {
-       "tf": "1M",
-       "label": "A valid setup"
-      },
-      "play": {
-       "from": 10,
-       "to": 30,
-       "speed": 300
-      }
-     }
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 4",
+      "headline": "You did everything right, and you <em>still got stopped out.</em>",
+      "line": "It was a valid setup on the first retest, and the market still said no. That happens to every trader.",
+      "pose": "think",
+      "cta": "Show me →"
     },
     {
-     "say": [
-      "Valid setup. You took it at the first retest. Stopped out.",
-      "<b>You did everything right. And the market still said no.</b>"
-     ]
-    },
-    {
-     "thoughts": [
-      "“That shouldn’t have stopped me.”",
-      "“I need that back.”",
-      "“Okay. Next one.”"
-     ]
-    },
-    {
-     "chart": {
-      "bars": [
-       {
-        "o": 20982.25,
-        "h": 20988.0,
-        "l": 20981.25,
-        "c": 20986.75
-       },
-       {
-        "o": 20986.75,
-        "h": 20991.0,
-        "l": 20985.25,
-        "c": 20990.25
-       },
-       {
-        "o": 20990.25,
-        "h": 20994.25,
-        "l": 20989.75,
-        "c": 20993.75
-       },
-       {
-        "o": 20993.75,
-        "h": 20998.75,
-        "l": 20993.0,
-        "c": 20998.25
-       },
-       {
-        "o": 20998.25,
-        "h": 21004.25,
-        "l": 20997.75,
-        "c": 21001.75
-       },
-       {
-        "o": 21001.75,
-        "h": 21002.5,
-        "l": 20997.75,
-        "c": 20998.75
-       },
-       {
-        "o": 20998.75,
-        "h": 20999.0,
-        "l": 20995.25,
-        "c": 20995.75
-       },
-       {
-        "o": 20995.75,
-        "h": 20996.5,
-        "l": 20992.75,
-        "c": 20994.0
-       },
-       {
-        "o": 20994.0,
-        "h": 20995.25,
-        "l": 20990.5,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20994.75,
-        "l": 20990.0,
-        "c": 20993.5
-       },
-       {
-        "o": 20993.5,
-        "h": 20998.75,
-        "l": 20993.0,
-        "c": 20997.75
-       },
-       {
-        "o": 20997.75,
-        "h": 21002.75,
-        "l": 20996.5,
-        "c": 21001.25
-       },
-       {
-        "o": 21001.25,
-        "h": 21007.75,
-        "l": 21001.25,
-        "c": 21007.0
-       },
-       {
-        "o": 21007.0,
-        "h": 21010.25,
-        "l": 21006.25,
-        "c": 21009.5
-       }
-      ],
-      "pil": 21004.25,
-      "pilAt": 4,
-      "head": {
-       "tf": "1M",
-       "label": "Two minutes later"
-      }
-     },
-     "caption": "Indication. No Correction. No Continuation. But it’s moving."
-    },
-    {
-     "say": [
-      "If you’d never taken the last trade, would this chart even be interesting?"
-     ]
-    },
-    {
-     "choice": {
-      "prompt": "What do you do?",
-      "options": [
-       {
-        "label": "Get in now. Make it back.",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+      "type": "v2_moment",
+      "kicker": "9:52 · The loss",
+      "headline": "This was a valid trade, and <em>a valid loss.</em>",
+      "line": "You followed your plan and lost −1R. That means you lost exactly the amount you planned to risk on this trade, no more.",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
-            "h": 20988.0,
+            "h": 20986.25,
             "l": 20981.25,
-            "c": 20986.75
-           },
-           {
-            "o": 20986.75,
-            "h": 20991.0,
-            "l": 20985.25,
-            "c": 20990.25
-           },
-           {
-            "o": 20990.25,
+            "c": 20985.75
+          },
+          {
+            "o": 20985.75,
+            "h": 20990.25,
+            "l": 20985.0,
+            "c": 20989.25
+          },
+          {
+            "o": 20989.25,
             "h": 20994.25,
-            "l": 20989.75,
-            "c": 20993.75
-           },
-           {
-            "o": 20993.75,
-            "h": 20998.75,
+            "l": 20989.0,
+            "c": 20993.25
+          },
+          {
+            "o": 20993.25,
+            "h": 20999.0,
             "l": 20993.0,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
-            "l": 20997.75,
+            "l": 20997.5,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
-            "h": 21002.5,
-            "l": 20997.75,
-            "c": 20998.75
-           },
-           {
-            "o": 20998.75,
-            "h": 20999.0,
-            "l": 20995.25,
-            "c": 20995.75
-           },
-           {
-            "o": 20995.75,
-            "h": 20996.5,
-            "l": 20992.75,
-            "c": 20994.0
-           },
-           {
-            "o": 20994.0,
-            "h": 20995.25,
-            "l": 20990.5,
-            "c": 20991.25
-           },
-           {
-            "o": 20991.25,
-            "h": 20994.75,
-            "l": 20990.0,
+            "h": 21002.25,
+            "l": 20999.5,
+            "c": 21000.0
+          },
+          {
+            "o": 21000.0,
+            "h": 21001.5,
+            "l": 20995.75,
+            "c": 20996.75
+          },
+          {
+            "o": 20996.75,
+            "h": 20998.25,
+            "l": 20993.25,
             "c": 20993.5
-           },
-           {
+          },
+          {
             "o": 20993.5,
-            "h": 20998.75,
-            "l": 20993.0,
-            "c": 20997.75
-           },
-           {
-            "o": 20997.75,
-            "h": 21002.75,
-            "l": 20996.5,
+            "h": 20994.75,
+            "l": 20990.75,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.5,
+            "c": 20993.75
+          },
+          {
+            "o": 20993.75,
+            "h": 20999.25,
+            "l": 20992.75,
+            "c": 20998.75
+          },
+          {
+            "o": 20998.75,
+            "h": 21002.25,
+            "l": 20998.0,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
-            "h": 21010.25,
-            "l": 21006.25,
-            "c": 21009.5
-           },
-           {
-            "o": 21009.5,
-            "h": 21010.0,
-            "l": 21005.5,
-            "c": 21006.75
-           },
-           {
-            "o": 21006.75,
-            "h": 21007.25,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21008.25,
             "l": 21002.0,
-            "c": 21003.0
-           },
-           {
-            "o": 21003.0,
-            "h": 21004.5,
-            "l": 20997.0,
-            "c": 20998.25
-           },
-           {
-            "o": 20998.25,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21010.0,
+            "l": 21006.5,
+            "c": 21009.0
+          },
+          {
+            "o": 21009.0,
+            "h": 21012.5,
+            "l": 21008.0,
+            "c": 21011.25
+          },
+          {
+            "o": 21011.25,
+            "h": 21014.25,
+            "l": 21010.25,
+            "c": 21013.25
+          },
+          {
+            "o": 21013.25,
+            "h": 21017.5,
+            "l": 21012.0,
+            "c": 21016.25
+          },
+          {
+            "o": 21016.25,
+            "h": 21017.75,
+            "l": 21012.25,
+            "c": 21012.75
+          },
+          {
+            "o": 21012.75,
+            "h": 21014.0,
+            "l": 21009.5,
+            "c": 21010.0
+          },
+          {
+            "o": 21010.0,
+            "h": 21010.75,
+            "l": 21007.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21008.25,
+            "l": 21003.75,
+            "c": 21005.75
+          },
+          {
+            "o": 21005.75,
+            "h": 21006.0,
+            "l": 21000.0,
+            "c": 21000.5
+          },
+          {
+            "o": 21000.5,
+            "h": 21000.75,
+            "l": 20996.75,
+            "c": 20997.25
+          },
+          {
+            "o": 20997.25,
             "h": 20998.75,
-            "l": 20993.75,
-            "c": 20994.5
-           },
-           {
-            "o": 20994.5,
-            "h": 20995.0,
-            "l": 20990.75,
-            "c": 20991.5
-           },
-           {
-            "o": 20991.5,
+            "l": 20991.75,
+            "c": 20992.25
+          },
+          {
+            "o": 20992.25,
             "h": 20993.0,
-            "l": 20985.5,
-            "c": 20986.25
-           },
-           {
-            "o": 20986.25,
-            "h": 20987.0,
-            "l": 20979.0,
-            "c": 20980.5
-           },
-           {
-            "o": 20980.5,
-            "h": 20981.25,
-            "l": 20975.5,
-            "c": 20976.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "tags": [
-           {
-            "at": 21,
+            "l": 20987.25,
+            "c": 20988.0
+          },
+          {
+            "o": 20988.0,
+            "h": 20988.5,
+            "l": 20981.75,
+            "c": 20983.0
+          },
+          {
+            "o": 20983.0,
+            "h": 20983.25,
+            "l": 20977.75,
+            "c": 20978.25
+          },
+          {
+            "o": 20978.25,
+            "h": 20979.0,
+            "l": 20971.25,
+            "c": 20972.75
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "tags": [
+          {
+            "at": 22,
+            "text": "YOU’RE IN",
+            "tone": "gold"
+          },
+          {
+            "at": 29,
             "text": "−1R",
             "tone": "warn"
-           }
-          ],
-          "head": {
-           "tf": "1M",
-           "label": "You got in"
-          },
-          "play": {
-           "from": 14,
-           "to": 22,
-           "speed": 300
           }
-         },
-         "say": [
-          "Two losses. One was the market. <b>One was the last trade.</b>"
-         ],
-         "tally": [
-          [
-           "TRADE 1",
-           "−1R · valid",
-           "neutral"
-          ],
-          [
-           "TRADE 2",
-           "−1R · revenge",
-           "mind"
-          ],
-          [
-           "DAY",
-           "−2R",
-           "neutral"
-          ]
-         ]
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "A valid setup"
         },
-        "track": [
-         "revengeDecisionCount",
-         "emotionalTradesTaken"
-        ]
-       },
-       {
-        "label": "Get in now, double size. Faster.",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+        "play": {
+          "from": 10,
+          "to": 30,
+          "speed": 300
+        }
+      },
+      "thoughts": [
+        "“That shouldn’t have stopped me.”",
+        "“I need that back.”",
+        "“Okay. Next one.”"
+      ]
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "Two minutes later",
+      "headline": "Price is moving again. <em>Is this actually a setup?</em>",
+      "line": "You can see an Indication, but there’s no Correction and no Continuation yet. It’s moving, and you feel the pull.",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
             "h": 20988.0,
             "l": 20981.25,
             "c": 20986.75
-           },
-           {
+          },
+          {
             "o": 20986.75,
             "h": 20991.0,
             "l": 20985.25,
             "c": 20990.25
-           },
-           {
+          },
+          {
             "o": 20990.25,
             "h": 20994.25,
             "l": 20989.75,
             "c": 20993.75
-           },
-           {
+          },
+          {
             "o": 20993.75,
             "h": 20998.75,
             "l": 20993.0,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.75,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21002.5,
             "l": 20997.75,
             "c": 20998.75
-           },
-           {
+          },
+          {
             "o": 20998.75,
             "h": 20999.0,
             "l": 20995.25,
             "c": 20995.75
-           },
-           {
+          },
+          {
             "o": 20995.75,
             "h": 20996.5,
             "l": 20992.75,
             "c": 20994.0
-           },
-           {
+          },
+          {
             "o": 20994.0,
             "h": 20995.25,
             "l": 20990.5,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20994.75,
             "l": 20990.0,
             "c": 20993.5
-           },
-           {
+          },
+          {
             "o": 20993.5,
             "h": 20998.75,
             "l": 20993.0,
             "c": 20997.75
-           },
-           {
+          },
+          {
             "o": 20997.75,
             "h": 21002.75,
             "l": 20996.5,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21010.25,
             "l": 21006.25,
             "c": 21009.5
-           },
-           {
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "head": {
+          "tf": "1M",
+          "label": "Two minutes later"
+        }
+      },
+      "check": {
+        "prompt": "What would you do right now?",
+        "options": [
+          {
+            "label": "Jump in to win my money back",
+            "correct": false,
+            "feedback": "That’s the last trade making the decision. This chart isn’t a complete setup yet, so there’s nothing to take.",
+            "track": [
+              "revengeDecisionCount",
+              "emotionalTradesTaken"
+            ]
+          },
+          {
+            "label": "Double my size to recover faster",
+            "correct": false,
+            "feedback": "That urge is completely human. It’s also exactly how one −1R loss turns into a −3R day.",
+            "track": [
+              "revengeDecisionCount",
+              "emotionalTradesTaken"
+            ]
+          },
+          {
+            "label": "Wait, because the model isn’t complete",
+            "correct": true,
+            "feedback": "Yes. The setup never completed, so you didn’t trade it. Your day stays at −1R, one valid loss.",
+            "track": "revengeAvoided"
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "If you had chased it",
+      "headline": "This is how a −1R loss <em>turns into −3R.</em>",
+      "line": "Chasing with double size turns one planned loss into three times your risk. It isn’t one bad trade. It’s one bad decision made because of the last trade.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20988.0,
+            "l": 20981.25,
+            "c": 20986.75
+          },
+          {
+            "o": 20986.75,
+            "h": 20991.0,
+            "l": 20985.25,
+            "c": 20990.25
+          },
+          {
+            "o": 20990.25,
+            "h": 20994.25,
+            "l": 20989.75,
+            "c": 20993.75
+          },
+          {
+            "o": 20993.75,
+            "h": 20998.75,
+            "l": 20993.0,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.75,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21002.5,
+            "l": 20997.75,
+            "c": 20998.75
+          },
+          {
+            "o": 20998.75,
+            "h": 20999.0,
+            "l": 20995.25,
+            "c": 20995.75
+          },
+          {
+            "o": 20995.75,
+            "h": 20996.5,
+            "l": 20992.75,
+            "c": 20994.0
+          },
+          {
+            "o": 20994.0,
+            "h": 20995.25,
+            "l": 20990.5,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20994.75,
+            "l": 20990.0,
+            "c": 20993.5
+          },
+          {
+            "o": 20993.5,
+            "h": 20998.75,
+            "l": 20993.0,
+            "c": 20997.75
+          },
+          {
+            "o": 20997.75,
+            "h": 21002.75,
+            "l": 20996.5,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21010.25,
+            "l": 21006.25,
+            "c": 21009.5
+          },
+          {
             "o": 21009.5,
             "h": 21010.0,
             "l": 21005.5,
             "c": 21006.75
-           },
-           {
+          },
+          {
             "o": 21006.75,
             "h": 21007.25,
             "l": 21002.0,
             "c": 21003.0
-           },
-           {
+          },
+          {
             "o": 21003.0,
             "h": 21004.5,
             "l": 20997.0,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 20998.75,
             "l": 20993.75,
             "c": 20994.5
-           },
-           {
+          },
+          {
             "o": 20994.5,
             "h": 20995.0,
             "l": 20990.75,
             "c": 20991.5
-           },
-           {
+          },
+          {
             "o": 20991.5,
             "h": 20993.0,
             "l": 20985.5,
             "c": 20986.25
-           },
-           {
+          },
+          {
             "o": 20986.25,
             "h": 20987.0,
             "l": 20979.0,
             "c": 20980.5
-           },
-           {
+          },
+          {
             "o": 20980.5,
             "h": 20981.25,
             "l": 20975.5,
             "c": 20976.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "tags": [
-           {
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "tags": [
+          {
             "at": 21,
             "text": "−2R",
             "tone": "warn"
-           }
-          ],
-          "head": {
-           "tf": "1M",
-           "label": "Double size"
-          },
-          "play": {
-           "from": 14,
-           "to": 22,
-           "speed": 300
           }
-         },
-         "say": [
-          "This is how −1R becomes −3R.",
-          "Not one bad trade. <b>One bad decision about the last one.</b>"
-         ],
-         "tally": [
-          [
-           "DAY",
-           "−3R",
-           "mind"
-          ],
-          [
-           "RULES BROKEN",
-           "2 · entry + size",
-           "mind"
-          ]
-         ]
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "Double size"
         },
-        "track": [
-         "revengeDecisionCount",
-         "emotionalTradesTaken"
+        "play": {
+          "from": 14,
+          "to": 22,
+          "speed": 300
+        }
+      }
+    },
+    {
+      "type": "v2_compare",
+      "kicker": "Who’s trading right now?",
+      "headline": "The market <em>didn’t take anything</em> from you.",
+      "cards": [
+        {
+          "label": "The trader",
+          "sub": "Took a valid trade and accepted a valid loss.",
+          "spark": "slow",
+          "tag": "PLAN",
+          "tone": "purple"
+        },
+        {
+          "label": "The wound",
+          "sub": "Wants that money back right now.",
+          "spark": "down",
+          "tag": "REVENGE",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "If your last trade had never happened, would you take this one?",
+        "options": [
+          {
+            "label": "No, but I need that money back",
+            "correct": false,
+            "feedback": "Then the last trade is still trading for you. Write the loss in your journal instead of trying to avenge it."
+          },
+          {
+            "label": "Only if it’s a complete setup",
+            "correct": true,
+            "feedback": "Exactly. Every trade gets judged on its own, as if the last one never happened."
+          }
         ]
-       },
-       {
-        "label": "Wait. The model isn’t complete.",
-        "path": {
-         "chart": {
-          "bars": [
-           {
-            "o": 20982.25,
-            "h": 20988.0,
-            "l": 20981.25,
-            "c": 20986.75
-           },
-           {
-            "o": 20986.75,
-            "h": 20991.0,
-            "l": 20985.25,
-            "c": 20990.25
-           },
-           {
-            "o": 20990.25,
-            "h": 20994.25,
-            "l": 20989.75,
-            "c": 20993.75
-           },
-           {
-            "o": 20993.75,
-            "h": 20998.75,
-            "l": 20993.0,
-            "c": 20998.25
-           },
-           {
-            "o": 20998.25,
-            "h": 21004.25,
-            "l": 20997.75,
-            "c": 21001.75
-           },
-           {
-            "o": 21001.75,
-            "h": 21002.5,
-            "l": 20997.75,
-            "c": 20998.75
-           },
-           {
-            "o": 20998.75,
-            "h": 20999.0,
-            "l": 20995.25,
-            "c": 20995.75
-           },
-           {
-            "o": 20995.75,
-            "h": 20996.5,
-            "l": 20992.75,
-            "c": 20994.0
-           },
-           {
-            "o": 20994.0,
-            "h": 20995.25,
-            "l": 20990.5,
-            "c": 20991.25
-           },
-           {
-            "o": 20991.25,
-            "h": 20994.75,
-            "l": 20990.0,
-            "c": 20993.5
-           },
-           {
-            "o": 20993.5,
-            "h": 20998.75,
-            "l": 20993.0,
-            "c": 20997.75
-           },
-           {
-            "o": 20997.75,
-            "h": 21002.75,
-            "l": 20996.5,
-            "c": 21001.25
-           },
-           {
-            "o": 21001.25,
-            "h": 21007.75,
-            "l": 21001.25,
-            "c": 21007.0
-           },
-           {
-            "o": 21007.0,
-            "h": 21010.25,
-            "l": 21006.25,
-            "c": 21009.5
-           },
-           {
-            "o": 21009.5,
-            "h": 21008.0,
-            "l": 21004.5,
-            "c": 21005.5
-           },
-           {
-            "o": 21005.5,
-            "h": 21006.0,
-            "l": 21002.0,
-            "c": 21003.25
-           },
-           {
-            "o": 21003.25,
-            "h": 21004.5,
-            "l": 20999.25,
-            "c": 21000.25
-           },
-           {
-            "o": 21000.25,
-            "h": 21000.75,
-            "l": 20998.0,
-            "c": 20998.25
-           },
-           {
-            "o": 20998.25,
-            "h": 20999.25,
-            "l": 20995.75,
-            "c": 20996.0
-           },
-           {
-            "o": 20996.0,
-            "h": 20997.25,
-            "l": 20993.75,
-            "c": 20994.25
-           },
-           {
-            "o": 20994.25,
-            "h": 20995.25,
-            "l": 20992.75,
-            "c": 20995.0
-           },
-           {
-            "o": 20995.0,
-            "h": 20998.75,
-            "l": 20994.0,
-            "c": 20997.5
-           },
-           {
-            "o": 20997.5,
-            "h": 20998.5,
-            "l": 20996.75,
-            "c": 20998.25
-           },
-           {
-            "o": 20998.25,
-            "h": 20998.75,
-            "l": 20994.75,
-            "c": 20996.25
-           },
-           {
-            "o": 20996.25,
-            "h": 20996.75,
-            "l": 20992.75,
-            "c": 20994.0
-           },
-           {
-            "o": 20994.0,
-            "h": 20994.5,
-            "l": 20990.75,
-            "c": 20992.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "head": {
-           "tf": "1M",
-           "label": "You waited"
-          },
-          "play": {
-           "from": 14,
-           "to": 26,
-           "speed": 300
-          }
-         },
-         "say": [
-          "It never completed.",
-          "Your day is still −1R. A valid loss. <b>That’s the whole damage.</b>"
-         ],
-         "tally": [
-          [
-           "DAY",
-           "−1R · valid",
-           "neutral"
-          ],
-          [
-           "RULES BROKEN",
-           "0",
-           "ok"
-          ]
-         ]
+      },
+      "line": "You risked an amount you agreed to lose, and you lost it. The loss was part of the plan."
+    },
+    {
+      "type": "v2_steps",
+      "kicker": "The revenge loop",
+      "headline": "Revenge trading <em>keeps going around in a circle.</em>",
+      "line": "Tap each step to see how it builds. The best place to break the loop is at Urgency, by checking your rule before your standards drop.",
+      "steps": [
+        {
+          "label": "Loss",
+          "sub": "You take a valid loss that was part of the plan."
         },
-        "track": "revengeAvoided"
-       }
-      ]
-     }
+        {
+          "label": "Frustration",
+          "sub": "You think, “That shouldn’t have stopped me out.”"
+        },
+        {
+          "label": "Urgency",
+          "sub": "You feel like you need that money back now."
+        },
+        {
+          "label": "Lower standards",
+          "sub": "Half a setup suddenly starts to look good enough."
+        },
+        {
+          "label": "Bigger and faster",
+          "sub": "You size up and jump in without your full model."
+        },
+        {
+          "label": "More damage",
+          "sub": "The loss grows, and the urgency gets even stronger."
+        }
+      ],
+      "cta": "Next →"
     },
     {
-     "who": {
-      "before": {
-       "h": "THE TRADER",
-       "lines": [
-        "Took a valid trade.",
-        "Accepted a valid loss."
-       ]
-      },
-      "after": {
-       "h": "THE WOUND",
-       "lines": [
-        "Wants the market to give it back.",
-        "Right now."
-       ]
-      }
-     }
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Revenge feels like action. <em>It’s really the last trade still trading you.</em>",
+      "pose": "point"
     },
     {
-     "say": [
-      "<b>Would you take this exact trade if the previous trade never happened?</b>",
-      "If the answer is no, the last trade is still trading you."
-     ]
-    },
-    {
-     "principle": "THE MARKET DIDN’T TAKE ANYTHING FROM YOU. SO WHAT ARE YOU TRYING TO GET BACK?"
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "How can you tell when you’re trading to <em>get money back</em> instead of trading your plan?",
+      "modelAnswer": "When I wouldn’t take this exact setup if the last trade never happened. Urgency, lower standards and bigger size are the signs. A valid loss is logged, not avenged."
     }
-   ]
-  },
-  {
-   "type": "p7_loop",
-   "kicker": "The revenge loop",
-   "title": "It keeps going around",
-   "nodes": [
-    "LOSS",
-    "FRUSTRATION",
-    "URGENCY",
-    "LOWER STANDARDS",
-    "BIGGER SIZE / FAST ENTRY",
-    "MORE DAMAGE",
-    "MORE URGENCY"
-   ],
-   "center": "The next trade becomes about the last one.",
-   "asks": [
-    {
-     "prompt": "WHERE DOES IT BREAK MOST EASILY?",
-     "options": [
-      {
-       "label": "After more damage",
-       "feedback": "It can. By then the day is expensive."
-      },
-      {
-       "label": "Between URGENCY and LOWER STANDARDS",
-       "correct": true,
-       "why": "Notice the urgency. Check the rule before the standards drop."
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "Revenge feels like action. <em>It’s really the last trade still trading you.</em>",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "How do you know when you’re trading to get something back?",
-   "modelAnswer": "When I wouldn’t take this exact setup if the last trade never happened. Urgency, lower standards and bigger size are the signs. A valid loss is logged, not avenged."
-  }
- ],
- "takeaways": [
-  "A valid loss isn’t a debt.",
-  "Ask: would I take this if the last trade never happened?",
-  "Urgency is the tell."
- ],
- "remember": "THE MARKET DIDN’T TAKE ANYTHING FROM YOU."
+  ],
+  "takeaways": [
+    "A valid loss isn’t a debt.",
+    "Ask: would I take this if the last trade never happened?",
+    "Urgency is the tell."
+  ],
+  "remember": "THE MARKET DIDN’T TAKE ANYTHING FROM YOU."
 }

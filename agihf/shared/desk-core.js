@@ -308,7 +308,7 @@ export function proposeChange(x) {
 // ── TradingPlan + versions ────────────────────────────────────────────────
 export const METHOD_DEFINITIONS = {
   topDown: [['4H', 'READ THE ROOM', 'External range, structure, location, HTF ICC.'], ['1H', 'BUILD THE MAP', 'Relevant swings, MSS, the level that gives the PIL its context.'], ['15M', 'OBSERVE', 'Correcting, sweeping, consolidating, continuing or changing.'], ['1M', 'EXECUTE', 'PIL, indication, correction, continuation, retest, entry.']],
-  icc: [['PIL', 'The level the pullback came from. No PIL, nothing to wait for.'], ['Indication', 'A candle CLOSE through the PIL. A wick is not an indication.'], ['Correction', 'After indication, price pulls back toward the PIL.'], ['Continuation', 'A close beyond the indication’s extreme confirms the move.'], ['Retest', 'The first valid retest of the PIL after continuation.'], ['Entry', 'On the retest. If the model doesn’t give the entry, there is no entry.'], ['Reset', 'If the sequence breaks, start over at the PIL. No invented entries.']],
+  icc: [['PIL', 'The level the pullback came from. No PIL, nothing to wait for.'], ['Indication', 'A candle CLOSE through the PIL. A wick is not an indication.'], ['Correction', 'After indication, a candle CLOSES back through the PIL. A wick back doesn’t count.'], ['Continuation', 'A candle CLOSES back through the PIL in the original direction.'], ['Retest', 'The first valid retest of the PIL after continuation.'], ['Entry', 'On the retest. If the model doesn’t give the entry, there is no entry.'], ['Reset', 'If the sequence breaks, start over at the PIL. No invented entries.']],
 };
 export function plans() { return store.get(K.plan, []); }
 export function currentPlan() { return plans().slice(-1)[0] || null; }

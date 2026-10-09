@@ -1,0 +1,199 @@
+{
+ "phase": "sl",
+ "section": "m1",
+ "lessonNumber": "m1-1",
+ "title": "Supply & Demand Through the ICC Lens",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "This isn’t stand-alone supply and demand. The higher-timeframe ICC tells the story first.",
+ "launchpad": {
+  "outcome": "Explain what each timeframe does in this strategy and name the full sequence: 3 Breaks, 2 Corrections, 1 Zone, 1 Retest.",
+  "missionQuestion": "Why does the zone only matter after the story and the sequence?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "Higher-timeframe ICC gives the direction. The 15M sets directional structure. The 5M builds the sequence, the zone and the entry.",
+  "The sequence is 3 Breaks, 2 Corrections, 1 Zone, 1 Retest.",
+  "Correction #2 creates the zone. BOS #3 activates it.",
+  "Don’t enter simply because BOS #1 or BOS #2 occurred."
+ ],
+ "remember": "3 BREAKS. 2 CORRECTIONS. 1 ZONE. 1 RETEST.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 1 · Lesson 1",
+   "headline": "This isn’t stand-alone <em>supply and demand.</em>",
+   "line": "Here, a zone only matters when the higher-timeframe story and a full confirmation sequence stand behind it.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_steps",
+   "kicker": "Step 1 · Four timeframes",
+   "headline": "Each timeframe <em>has one job.</em>",
+   "line": "Tap each one. Every timeframe answers a different question.",
+   "steps": [
+    {
+     "label": "4H · Higher-timeframe context",
+     "sub": "What story is the bigger picture telling?"
+    },
+    {
+     "label": "1H · ICC, structure and location",
+     "sub": "Where is price inside the structure, and what is the HTF ICC doing?"
+    },
+    {
+     "label": "15M · Directional BOS or MSS",
+     "sub": "Has the 15M broken in the direction of the story?"
+    },
+    {
+     "label": "5M · Corrections, continuation, the zone and execution",
+     "sub": "Does the sequence complete, and where is the zone?"
+    }
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 2 · The core sequence",
+   "headline": "3 Breaks. 2 Corrections. <em>1 Zone. 1 Retest.</em>",
+   "line": "Tap each card. This is the whole strategy in four lines.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "bolt",
+      "tone": "purple",
+      "label": "3 Breaks",
+      "sub": "BOS #1 on the 15M, then BOS #2 and BOS #3 on the 5M."
+     },
+     {
+      "icon": "swap",
+      "tone": "peach",
+      "label": "2 Corrections",
+      "sub": "Correction #1 after BOS #1. Correction #2 after BOS #2."
+     },
+     {
+      "icon": "layers",
+      "tone": "teal",
+      "label": "1 Zone",
+      "sub": "Correction #2 creates it. BOS #3 activates it."
+     },
+     {
+      "icon": "target",
+      "tone": "pink",
+      "label": "1 Retest",
+      "sub": "Price returns to the zone. That’s where the entry lives."
+     }
+    ]
+   },
+   "cta": "Watch it build →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 3 · The sequence on a chart",
+   "headline": "Watch the full sequence <em>build, candle by candle.</em>",
+   "line": "Bullish example. Press the button to print each part.",
+   "scenario": "bull-valid",
+   "tf": "15M",
+   "start": "start",
+   "toggle": false,
+   "steps": [
+    {
+     "until": "bos1",
+     "show": [
+      "bos1"
+     ],
+     "caption": "<b>BOS #1.</b> A 15M candle closes above the 15M level, in the direction of the higher-timeframe story.",
+     "next": "Switch to the 5M →"
+    },
+    {
+     "tf": "5M",
+     "until": "c1",
+     "show": [
+      "c1"
+     ],
+     "caption": "<b>Correction #1.</b> On the 5M, price pulls back, preferably toward the original 15M break."
+    },
+    {
+     "until": "bos2",
+     "show": [
+      "bos2"
+     ],
+     "caption": "<b>BOS #2.</b> A 5M candle closes above the high Correction #1 pulled back from."
+    },
+    {
+     "until": "c2",
+     "show": [
+      "c2",
+      "zone",
+      "zoneCandle"
+     ],
+     "caption": "<b>Correction #2</b> creates the zone: its last bearish candle. It’s only a <b>potential</b> zone for now.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    },
+    {
+     "until": "bos3",
+     "show": [
+      "bos3"
+     ],
+     "caption": "<b>BOS #3.</b> A 5M close above the high Correction #2 pulled back from. <b>Now the zone is active.</b>"
+    },
+    {
+     "until": "retest",
+     "show": [
+      "retest"
+     ],
+     "caption": "<b>The retest.</b> Price comes back to the zone. Only now does the entry model apply."
+    }
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 4 · Check yourself",
+   "headline": "BOS #2 just printed. <em>Is that your entry?</em>",
+   "line": "Price is moving fast and it looks strong.",
+   "visual": {
+    "icon": "stop",
+    "tone": "pink",
+    "caption": "Not yet."
+   },
+   "check": {
+    "prompt": "BOS #2 just closed. What do you do?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Enter now, the move is strong",
+      "correct": false,
+      "feedback": "Don’t enter simply because BOS #1 or BOS #2 occurred. Correction #2 hasn’t created the zone yet, and BOS #3 hasn’t activated it."
+     },
+     {
+      "label": "Wait for Correction #2, the zone, BOS #3 and the retest",
+      "correct": true,
+      "why": "Right. The zone comes from Correction #2, BOS #3 activates it, and the entry waits for the retest."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "The zone isn’t the strategy. <em>The sequence is.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, what does each timeframe do, and what is the full sequence?",
+   "modelAnswer": "The 4H gives the higher-timeframe context, the 1H gives ICC, structure and location, the 15M gives the directional break, and the 5M builds the corrections, the zone and the entry. The sequence is BOS #1, Correction #1, BOS #2, Correction #2 (which creates the zone), BOS #3 (which activates it), then the retest."
+  }
+ ]
+}

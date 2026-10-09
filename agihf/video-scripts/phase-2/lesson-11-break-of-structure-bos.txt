@@ -1,0 +1,101 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Eleven: Break of Structure, or BOS.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Price just proved something. Let's see what.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Think of a BOS like a high jump.
+
+(pause-until: 00:00:11,000)
+
+(next-paragraph-max-duration: 5.000)
+
+In a bullish structure, the bar sits at the relevant prior high.
+
+(pause-until: 00:00:16,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Price closes above it. Cleared! That's a bullish break of structure.
+
+(pause-until: 00:00:20,000)
+
+(next-paragraph-max-duration: 5.000)
+
+It broke with the existing structure, so it's continuation information.
+
+(pause-until: 00:00:25,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Bearish is the mirror, like limbo: a close below the relevant prior low.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Now, watch your words.
+
+(pause-until: 00:00:34,000)
+
+(next-paragraph-max-duration: 5.000)
+
+A BOS is like a receipt. It records what already happened.
+
+(pause-until: 00:00:39,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Price progressed with the existing structure, and closed above the relevant high.
+
+(pause-until: 00:00:45,000)
+
+(next-paragraph-max-duration: 4.000)
+
+But a receipt can't tell you what you'll buy tomorrow.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 8.000)
+
+A BOS doesn't tell you what price will do next. Proved is not will.
+
+(pause-until: 00:00:57,000)
+
+(next-paragraph-max-duration: 1.000)
+
+Here's the takeaway.
+
+(pause-until: 00:00:58,000)
+
+(next-paragraph-max-duration: 9.000)
+
+A BOS tells you what price just proved. Not what price will do.
+
+(pause-until: 00:01:07,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Here's your mission.
+
+(pause-until: 00:01:09,000)
+
+(next-paragraph-max-duration: 6.000)
+
+If price closes above the relevant prior high in a bullish structure, what did it just prove?
+
+(pause-until: 00:01:15,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Let's find out.

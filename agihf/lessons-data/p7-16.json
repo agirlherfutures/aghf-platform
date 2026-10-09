@@ -1,751 +1,607 @@
 {
- "phase": "p7",
- "section": "s19",
- "lessonNumber": 16,
- "title": "Moving the Stop",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "When −1R feels harder than abandoning the plan.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Feel the urge to give a losing trade more room, and see what a moved stop really costs.",
-  "missionQuestion": "Is my stop a plan, or a suggestion?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "Moving the Stop",
-   "title": "In a valid long",
-   "beats": [
+  "phase": "p7",
+  "section": "s19",
+  "lessonNumber": 16,
+  "title": "Moving the Stop",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "When −1R feels harder than abandoning the plan.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Feel the urge to give a losing trade more room, and see what a moved stop really costs.",
+    "missionQuestion": "Is my stop a plan, or a suggestion?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "chart": {
-      "bars": [
-       {
-        "o": 20018.0,
-        "h": 20019.0,
-        "l": 20014.25,
-        "c": 20015.75
-       },
-       {
-        "o": 20015.75,
-        "h": 20017.25,
-        "l": 20011.5,
-        "c": 20012.0
-       },
-       {
-        "o": 20012.0,
-        "h": 20012.5,
-        "l": 20008.75,
-        "c": 20009.0
-       },
-       {
-        "o": 20009.0,
-        "h": 20009.5,
-        "l": 20004.5,
-        "c": 20005.0
-       },
-       {
-        "o": 20005.0,
-        "h": 20006.0,
-        "l": 20002.0,
-        "c": 20003.0
-       },
-       {
-        "o": 20003.0,
-        "h": 20003.5,
-        "l": 19999.75,
-        "c": 20002.5
-       },
-       {
-        "o": 20002.5,
-        "h": 20007.0,
-        "l": 20001.0,
-        "c": 20005.0
-       },
-       {
-        "o": 20005.0,
-        "h": 20011.5,
-        "l": 20003.5,
-        "c": 20009.0
-       },
-       {
-        "o": 20009.0,
-        "h": 20011.25,
-        "l": 20001.5,
-        "c": 20002.0
-       },
-       {
-        "o": 20002.0,
-        "h": 20003.25,
-        "l": 19993.5,
-        "c": 19994.0
-       },
-       {
-        "o": 19994.0,
-        "h": 19994.25,
-        "l": 19986.5,
-        "c": 19987.0
-       },
-       {
-        "o": 19987.0,
-        "h": 19987.75,
-        "l": 19980.25,
-        "c": 19981.0
-       },
-       {
-        "o": 19981.0,
-        "h": 19982.5,
-        "l": 19974.5,
-        "c": 19976.0
-       },
-       {
-        "o": 19976.0,
-        "h": 19976.75,
-        "l": 19971.0,
-        "c": 19972.0
-       }
-      ],
-      "pil": null,
-      "pilAt": null,
-      "head": {
-       "tf": "1M",
-       "label": "Long 2 MNQ"
-      },
-      "lines": [
-       {
-        "price": 20000,
-        "label": "ENTRY",
-        "tone": "ink",
-        "at": 5
-       },
-       {
-        "price": 19970,
-        "label": "STOP −30",
-        "tone": "warn",
-        "at": 5
-       },
-       {
-        "price": 20060,
-        "label": "TP +60",
-        "tone": "ok",
-        "at": 5
-       }
-      ],
-      "play": {
-       "from": 5,
-       "to": 13,
-       "speed": 300
-      }
-     }
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 16",
+      "headline": "Losing −1R is <em>the price of being wrong.</em>",
+      "line": "1R is the amount you planned to risk on one trade. Moving your stop makes that price unlimited.",
+      "pose": "think",
+      "cta": "Show me →"
     },
     {
-     "say": [
-      "Valid entry. It never really got going.",
-      "−13. −19. <b>−24.</b>",
-      "Your stop is at −30."
-     ]
-    },
-    {
-     "thoughts": [
-      "“Just give it a little more room.”",
-      "“It’s going to come back.”",
-      "“I can’t take another loss today.”"
-     ]
-    },
-    {
-     "say": [
-      "Accepting −1R suddenly feels harder than abandoning the entire plan."
-     ]
-    },
-    {
-     "choice": {
-      "prompt": "What do you do?",
-      "options": [
-       {
-        "label": "Move the stop down. Give it room.",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+      "type": "v2_moment",
+      "kicker": "Long 2 MNQ",
+      "headline": "You’re down 24 points, and <em>your stop is at 30.</em>",
+      "line": "It was a valid entry that never got going. Now taking your full −1R loss suddenly feels unbearable.",
+      "chart": {
+        "bars": [
+          {
             "o": 20018.0,
             "h": 20019.0,
             "l": 20014.25,
             "c": 20015.75
-           },
-           {
+          },
+          {
             "o": 20015.75,
             "h": 20017.25,
             "l": 20011.5,
             "c": 20012.0
-           },
-           {
+          },
+          {
             "o": 20012.0,
             "h": 20012.5,
             "l": 20008.75,
             "c": 20009.0
-           },
-           {
+          },
+          {
             "o": 20009.0,
             "h": 20009.5,
             "l": 20004.5,
             "c": 20005.0
-           },
-           {
+          },
+          {
             "o": 20005.0,
             "h": 20006.0,
             "l": 20002.0,
             "c": 20003.0
-           },
-           {
+          },
+          {
             "o": 20003.0,
             "h": 20003.5,
             "l": 19999.75,
             "c": 20002.5
-           },
-           {
+          },
+          {
             "o": 20002.5,
             "h": 20007.0,
             "l": 20001.0,
             "c": 20005.0
-           },
-           {
+          },
+          {
             "o": 20005.0,
             "h": 20011.5,
             "l": 20003.5,
             "c": 20009.0
-           },
-           {
+          },
+          {
             "o": 20009.0,
             "h": 20011.25,
             "l": 20001.5,
             "c": 20002.0
-           },
-           {
+          },
+          {
             "o": 20002.0,
             "h": 20003.25,
             "l": 19993.5,
             "c": 19994.0
-           },
-           {
+          },
+          {
             "o": 19994.0,
             "h": 19994.25,
             "l": 19986.5,
             "c": 19987.0
-           },
-           {
+          },
+          {
             "o": 19987.0,
             "h": 19987.75,
             "l": 19980.25,
             "c": 19981.0
-           },
-           {
+          },
+          {
             "o": 19981.0,
             "h": 19982.5,
             "l": 19974.5,
             "c": 19976.0
-           },
-           {
+          },
+          {
             "o": 19976.0,
             "h": 19976.75,
             "l": 19971.0,
             "c": 19972.0
-           },
-           {
-            "o": 19972.0,
-            "h": 19973.5,
-            "l": 19967.0,
-            "c": 19967.75
-           },
-           {
-            "o": 19967.75,
-            "h": 19969.0,
-            "l": 19962.0,
-            "c": 19963.25
-           },
-           {
-            "o": 19963.25,
-            "h": 19964.25,
-            "l": 19959.75,
-            "c": 19960.0
-           },
-           {
-            "o": 19960.0,
-            "h": 19960.75,
-            "l": 19955.25,
-            "c": 19955.75
-           },
-           {
-            "o": 19955.75,
-            "h": 19956.25,
-            "l": 19950.5,
-            "c": 19951.5
-           },
-           {
-            "o": 19951.5,
-            "h": 19951.75,
-            "l": 19947.0,
-            "c": 19948.0
-           },
-           {
-            "o": 19948.0,
-            "h": 19948.75,
-            "l": 19944.0,
-            "c": 19944.75
-           },
-           {
-            "o": 19944.75,
-            "h": 19945.75,
-            "l": 19938.25,
-            "c": 19939.0
-           }
-          ],
-          "pil": null,
-          "pilAt": null,
-          "head": {
-           "tf": "1M",
-           "label": "Long 2 MNQ"
-          },
-          "lines": [
-           {
-            "price": 20000,
-            "label": "ENTRY",
-            "tone": "ink",
-            "at": 5
-           },
-           {
-            "price": 19970,
-            "label": "STOP −30 (moved)",
-            "tone": "warn",
-            "at": 5
-           },
-           {
-            "price": 20060,
-            "label": "TP +60",
-            "tone": "ok",
-            "at": 5
-           }
-          ],
-          "play": {
-           "from": 13,
-           "to": 22,
-           "speed": 300
           }
-         },
-         "say": [
-          "It kept going.",
-          "<b>−2R.</b> The stop you moved was the only thing between you and this."
-         ],
-         "tally": [
-          [
-           "RESULT",
-           "−2R",
-           "mind"
-          ],
-          [
-           "RULES BROKEN",
-           "1 · stop moved",
-           "mind"
-          ]
-         ]
+        ],
+        "pil": null,
+        "pilAt": null,
+        "head": {
+          "tf": "1M",
+          "label": "Long 2 MNQ"
         },
-        "track": [
-         "fearDrivenManagementCount",
-         "emotionalTradesTaken"
-        ]
-       },
-       {
-        "label": "Move the stop down (and this time it comes back)",
-        "path": {
-         "chart": {
-          "bars": [
-           {
-            "o": 20018.0,
-            "h": 20019.0,
-            "l": 20014.25,
-            "c": 20015.75
-           },
-           {
-            "o": 20015.75,
-            "h": 20017.25,
-            "l": 20011.5,
-            "c": 20012.0
-           },
-           {
-            "o": 20012.0,
-            "h": 20012.5,
-            "l": 20008.75,
-            "c": 20009.0
-           },
-           {
-            "o": 20009.0,
-            "h": 20009.5,
-            "l": 20004.5,
-            "c": 20005.0
-           },
-           {
-            "o": 20005.0,
-            "h": 20006.0,
-            "l": 20002.0,
-            "c": 20003.0
-           },
-           {
-            "o": 20003.0,
-            "h": 20003.5,
-            "l": 19999.75,
-            "c": 20002.5
-           },
-           {
-            "o": 20002.5,
-            "h": 20007.0,
-            "l": 20001.0,
-            "c": 20005.0
-           },
-           {
-            "o": 20005.0,
-            "h": 20011.5,
-            "l": 20003.5,
-            "c": 20009.0
-           },
-           {
-            "o": 20009.0,
-            "h": 20011.25,
-            "l": 20001.5,
-            "c": 20002.0
-           },
-           {
-            "o": 20002.0,
-            "h": 20003.25,
-            "l": 19993.5,
-            "c": 19994.0
-           },
-           {
-            "o": 19994.0,
-            "h": 19994.25,
-            "l": 19986.5,
-            "c": 19987.0
-           },
-           {
-            "o": 19987.0,
-            "h": 19987.75,
-            "l": 19980.25,
-            "c": 19981.0
-           },
-           {
-            "o": 19981.0,
-            "h": 19982.5,
-            "l": 19974.5,
-            "c": 19976.0
-           },
-           {
-            "o": 19976.0,
-            "h": 19976.75,
-            "l": 19971.0,
-            "c": 19972.0
-           },
-           {
-            "o": 19972.0,
-            "h": 19973.25,
-            "l": 19966.5,
-            "c": 19967.25
-           },
-           {
-            "o": 19967.25,
-            "h": 19968.5,
-            "l": 19962.75,
-            "c": 19964.0
-           },
-           {
-            "o": 19964.0,
-            "h": 19970.5,
-            "l": 19963.75,
-            "c": 19969.5
-           },
-           {
-            "o": 19969.5,
-            "h": 19977.0,
-            "l": 19968.75,
-            "c": 19975.75
-           },
-           {
-            "o": 19975.75,
-            "h": 19980.25,
-            "l": 19975.0,
-            "c": 19980.0
-           },
-           {
-            "o": 19980.0,
-            "h": 19987.75,
-            "l": 19979.5,
-            "c": 19986.5
-           },
-           {
-            "o": 19986.5,
-            "h": 19992.0,
-            "l": 19985.75,
-            "c": 19991.5
-           },
-           {
-            "o": 19991.5,
-            "h": 19998.5,
-            "l": 19990.25,
-            "c": 19998.0
-           },
-           {
-            "o": 19998.0,
-            "h": 20003.75,
-            "l": 19997.75,
-            "c": 20002.75
-           },
-           {
-            "o": 20002.75,
-            "h": 20009.75,
-            "l": 20002.5,
-            "c": 20009.25
-           },
-           {
-            "o": 20009.25,
-            "h": 20015.0,
-            "l": 20007.75,
-            "c": 20014.0
-           }
-          ],
-          "pil": null,
-          "pilAt": null,
-          "head": {
-           "tf": "1M",
-           "label": "Long 2 MNQ"
-          },
-          "lines": [
-           {
+        "lines": [
+          {
             "price": 20000,
             "label": "ENTRY",
             "tone": "ink",
             "at": 5
-           },
-           {
-            "price": 19970,
-            "label": "STOP −30 (moved)",
-            "tone": "warn",
-            "at": 5
-           },
-           {
-            "price": 20060,
-            "label": "TP +60",
-            "tone": "ok",
-            "at": 5
-           }
-          ],
-          "play": {
-           "from": 13,
-           "to": 25,
-           "speed": 300
-          }
-         },
-         "say": [
-          "It came back. +14.",
-          "<b>This is the most dangerous outcome in this lesson.</b>",
-          "Now your stop is a suggestion. The day it doesn’t come back, there’s no floor."
-         ]
-        },
-        "track": [
-         "fearDrivenManagementCount"
-        ]
-       },
-       {
-        "label": "Let the stop do its job",
-        "path": {
-         "chart": {
-          "bars": [
-           {
-            "o": 20018.0,
-            "h": 20019.0,
-            "l": 20014.25,
-            "c": 20015.75
-           },
-           {
-            "o": 20015.75,
-            "h": 20017.25,
-            "l": 20011.5,
-            "c": 20012.0
-           },
-           {
-            "o": 20012.0,
-            "h": 20012.5,
-            "l": 20008.75,
-            "c": 20009.0
-           },
-           {
-            "o": 20009.0,
-            "h": 20009.5,
-            "l": 20004.5,
-            "c": 20005.0
-           },
-           {
-            "o": 20005.0,
-            "h": 20006.0,
-            "l": 20002.0,
-            "c": 20003.0
-           },
-           {
-            "o": 20003.0,
-            "h": 20003.5,
-            "l": 19999.75,
-            "c": 20002.5
-           },
-           {
-            "o": 20002.5,
-            "h": 20007.0,
-            "l": 20001.0,
-            "c": 20005.0
-           },
-           {
-            "o": 20005.0,
-            "h": 20011.5,
-            "l": 20003.5,
-            "c": 20009.0
-           },
-           {
-            "o": 20009.0,
-            "h": 20011.25,
-            "l": 20001.5,
-            "c": 20002.0
-           },
-           {
-            "o": 20002.0,
-            "h": 20003.25,
-            "l": 19993.5,
-            "c": 19994.0
-           },
-           {
-            "o": 19994.0,
-            "h": 19994.25,
-            "l": 19986.5,
-            "c": 19987.0
-           },
-           {
-            "o": 19987.0,
-            "h": 19987.75,
-            "l": 19980.25,
-            "c": 19981.0
-           },
-           {
-            "o": 19981.0,
-            "h": 19982.5,
-            "l": 19974.5,
-            "c": 19976.0
-           },
-           {
-            "o": 19976.0,
-            "h": 19976.75,
-            "l": 19971.0,
-            "c": 19972.0
-           },
-           {
-            "o": 19972.0,
-            "h": 19973.0,
-            "l": 19968.5,
-            "c": 19969.5
-           }
-          ],
-          "pil": null,
-          "pilAt": null,
-          "head": {
-           "tf": "1M",
-           "label": "Long 2 MNQ"
           },
-          "lines": [
-           {
-            "price": 20000,
-            "label": "ENTRY",
-            "tone": "ink",
-            "at": 5
-           },
-           {
+          {
             "price": 19970,
             "label": "STOP −30",
             "tone": "warn",
             "at": 5
-           },
-           {
+          },
+          {
             "price": 20060,
             "label": "TP +60",
             "tone": "ok",
             "at": 5
-           }
-          ],
-          "play": {
-           "from": 13,
-           "to": 15,
-           "speed": 300
           }
-         },
-         "say": [
-          "−1R. Exactly what you planned to risk.",
-          "Not fun. <b>Completely survivable.</b>"
-         ],
-         "tally": [
-          [
-           "RESULT",
-           "−1R · valid",
-           "neutral"
-          ],
-          [
-           "RULES BROKEN",
-           "0",
-           "ok"
-          ]
-         ]
-        },
-        "track": "ruleBasedResponses"
-       }
-      ]
-     }
-    },
-    {
-     "who": {
-      "before": {
-       "h": "THE TRADER",
-       "lines": [
-        "Decided the price of being wrong before entry."
-       ]
+        ],
+        "play": {
+          "from": 5,
+          "to": 13,
+          "speed": 300
+        }
       },
-      "after": {
-       "h": "THE HOPE",
-       "lines": [
-        "Renegotiates it every tick."
-       ]
+      "thoughts": [
+        "“Just give it a little more room.”",
+        "“It’s going to come back.”",
+        "“I can’t take another loss today.”"
+      ],
+      "check": {
+        "prompt": "What would you do right now?",
+        "options": [
+          {
+            "label": "Move my stop to give it room",
+            "correct": false,
+            "feedback": "Price kept going, and you lost −2R, twice what you planned. That stop was the only floor you had.",
+            "track": [
+              "fearDrivenManagementCount",
+              "emotionalTradesTaken"
+            ]
+          },
+          {
+            "label": "Move it, because it’ll come back",
+            "correct": false,
+            "feedback": "This is the most dangerous outcome. If it comes back, your stop becomes only a suggestion.",
+            "track": [
+              "fearDrivenManagementCount"
+            ]
+          },
+          {
+            "label": "Leave the stop and let it work",
+            "correct": true,
+            "feedback": "You lose −1R, exactly what you planned to risk. It’s not fun, but it’s completely survivable.",
+            "track": "ruleBasedResponses"
+          }
+        ]
       }
-     }
     },
     {
-     "principle": "−1R IS THE PRICE OF BEING WRONG. A MOVED STOP MAKES THE PRICE UNLIMITED."
+      "type": "v2_moment",
+      "kicker": "If you moved it",
+      "headline": "Price kept going, and <em>you lost −2R.</em>",
+      "line": "The stop you moved was the only thing standing between you and a bigger loss.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20018.0,
+            "h": 20019.0,
+            "l": 20014.25,
+            "c": 20015.75
+          },
+          {
+            "o": 20015.75,
+            "h": 20017.25,
+            "l": 20011.5,
+            "c": 20012.0
+          },
+          {
+            "o": 20012.0,
+            "h": 20012.5,
+            "l": 20008.75,
+            "c": 20009.0
+          },
+          {
+            "o": 20009.0,
+            "h": 20009.5,
+            "l": 20004.5,
+            "c": 20005.0
+          },
+          {
+            "o": 20005.0,
+            "h": 20006.0,
+            "l": 20002.0,
+            "c": 20003.0
+          },
+          {
+            "o": 20003.0,
+            "h": 20003.5,
+            "l": 19999.75,
+            "c": 20002.5
+          },
+          {
+            "o": 20002.5,
+            "h": 20007.0,
+            "l": 20001.0,
+            "c": 20005.0
+          },
+          {
+            "o": 20005.0,
+            "h": 20011.5,
+            "l": 20003.5,
+            "c": 20009.0
+          },
+          {
+            "o": 20009.0,
+            "h": 20011.25,
+            "l": 20001.5,
+            "c": 20002.0
+          },
+          {
+            "o": 20002.0,
+            "h": 20003.25,
+            "l": 19993.5,
+            "c": 19994.0
+          },
+          {
+            "o": 19994.0,
+            "h": 19994.25,
+            "l": 19986.5,
+            "c": 19987.0
+          },
+          {
+            "o": 19987.0,
+            "h": 19987.75,
+            "l": 19980.25,
+            "c": 19981.0
+          },
+          {
+            "o": 19981.0,
+            "h": 19982.5,
+            "l": 19974.5,
+            "c": 19976.0
+          },
+          {
+            "o": 19976.0,
+            "h": 19976.75,
+            "l": 19971.0,
+            "c": 19972.0
+          },
+          {
+            "o": 19972.0,
+            "h": 19973.5,
+            "l": 19967.0,
+            "c": 19967.75
+          },
+          {
+            "o": 19967.75,
+            "h": 19969.0,
+            "l": 19962.0,
+            "c": 19963.25
+          },
+          {
+            "o": 19963.25,
+            "h": 19964.25,
+            "l": 19959.75,
+            "c": 19960.0
+          },
+          {
+            "o": 19960.0,
+            "h": 19960.75,
+            "l": 19955.25,
+            "c": 19955.75
+          },
+          {
+            "o": 19955.75,
+            "h": 19956.25,
+            "l": 19950.5,
+            "c": 19951.5
+          },
+          {
+            "o": 19951.5,
+            "h": 19951.75,
+            "l": 19947.0,
+            "c": 19948.0
+          },
+          {
+            "o": 19948.0,
+            "h": 19948.75,
+            "l": 19944.0,
+            "c": 19944.75
+          },
+          {
+            "o": 19944.75,
+            "h": 19945.75,
+            "l": 19938.25,
+            "c": 19939.0
+          }
+        ],
+        "pil": null,
+        "pilAt": null,
+        "head": {
+          "tf": "1M",
+          "label": "Long 2 MNQ"
+        },
+        "lines": [
+          {
+            "price": 20000,
+            "label": "ENTRY",
+            "tone": "ink",
+            "at": 5
+          },
+          {
+            "price": 19970,
+            "label": "STOP −30 (moved)",
+            "tone": "warn",
+            "at": 5
+          },
+          {
+            "price": 20060,
+            "label": "TP +60",
+            "tone": "ok",
+            "at": 5
+          }
+        ],
+        "play": {
+          "from": 13,
+          "to": 22,
+          "speed": 300
+        }
+      }
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "If you moved it and it came back",
+      "headline": "Price came back, and <em>that’s the real danger.</em>",
+      "line": "Now your stop feels like a suggestion. One day, price won’t come back, and there will be no floor.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20018.0,
+            "h": 20019.0,
+            "l": 20014.25,
+            "c": 20015.75
+          },
+          {
+            "o": 20015.75,
+            "h": 20017.25,
+            "l": 20011.5,
+            "c": 20012.0
+          },
+          {
+            "o": 20012.0,
+            "h": 20012.5,
+            "l": 20008.75,
+            "c": 20009.0
+          },
+          {
+            "o": 20009.0,
+            "h": 20009.5,
+            "l": 20004.5,
+            "c": 20005.0
+          },
+          {
+            "o": 20005.0,
+            "h": 20006.0,
+            "l": 20002.0,
+            "c": 20003.0
+          },
+          {
+            "o": 20003.0,
+            "h": 20003.5,
+            "l": 19999.75,
+            "c": 20002.5
+          },
+          {
+            "o": 20002.5,
+            "h": 20007.0,
+            "l": 20001.0,
+            "c": 20005.0
+          },
+          {
+            "o": 20005.0,
+            "h": 20011.5,
+            "l": 20003.5,
+            "c": 20009.0
+          },
+          {
+            "o": 20009.0,
+            "h": 20011.25,
+            "l": 20001.5,
+            "c": 20002.0
+          },
+          {
+            "o": 20002.0,
+            "h": 20003.25,
+            "l": 19993.5,
+            "c": 19994.0
+          },
+          {
+            "o": 19994.0,
+            "h": 19994.25,
+            "l": 19986.5,
+            "c": 19987.0
+          },
+          {
+            "o": 19987.0,
+            "h": 19987.75,
+            "l": 19980.25,
+            "c": 19981.0
+          },
+          {
+            "o": 19981.0,
+            "h": 19982.5,
+            "l": 19974.5,
+            "c": 19976.0
+          },
+          {
+            "o": 19976.0,
+            "h": 19976.75,
+            "l": 19971.0,
+            "c": 19972.0
+          },
+          {
+            "o": 19972.0,
+            "h": 19973.25,
+            "l": 19966.5,
+            "c": 19967.25
+          },
+          {
+            "o": 19967.25,
+            "h": 19968.5,
+            "l": 19962.75,
+            "c": 19964.0
+          },
+          {
+            "o": 19964.0,
+            "h": 19970.5,
+            "l": 19963.75,
+            "c": 19969.5
+          },
+          {
+            "o": 19969.5,
+            "h": 19977.0,
+            "l": 19968.75,
+            "c": 19975.75
+          },
+          {
+            "o": 19975.75,
+            "h": 19980.25,
+            "l": 19975.0,
+            "c": 19980.0
+          },
+          {
+            "o": 19980.0,
+            "h": 19987.75,
+            "l": 19979.5,
+            "c": 19986.5
+          },
+          {
+            "o": 19986.5,
+            "h": 19992.0,
+            "l": 19985.75,
+            "c": 19991.5
+          },
+          {
+            "o": 19991.5,
+            "h": 19998.5,
+            "l": 19990.25,
+            "c": 19998.0
+          },
+          {
+            "o": 19998.0,
+            "h": 20003.75,
+            "l": 19997.75,
+            "c": 20002.75
+          },
+          {
+            "o": 20002.75,
+            "h": 20009.75,
+            "l": 20002.5,
+            "c": 20009.25
+          },
+          {
+            "o": 20009.25,
+            "h": 20015.0,
+            "l": 20007.75,
+            "c": 20014.0
+          }
+        ],
+        "pil": null,
+        "pilAt": null,
+        "head": {
+          "tf": "1M",
+          "label": "Long 2 MNQ"
+        },
+        "lines": [
+          {
+            "price": 20000,
+            "label": "ENTRY",
+            "tone": "ink",
+            "at": 5
+          },
+          {
+            "price": 19970,
+            "label": "STOP −30 (moved)",
+            "tone": "warn",
+            "at": 5
+          },
+          {
+            "price": 20060,
+            "label": "TP +60",
+            "tone": "ok",
+            "at": 5
+          }
+        ],
+        "play": {
+          "from": 13,
+          "to": 25,
+          "speed": 300
+        }
+      }
+    },
+    {
+      "type": "v2_compare",
+      "kicker": "Who sets the price?",
+      "headline": "Decide what being wrong costs <em>before you enter.</em>",
+      "cards": [
+        {
+          "label": "The trader",
+          "sub": "You decide the price of being wrong before you enter.",
+          "spark": "slow",
+          "tag": "−1R",
+          "tone": "teal"
+        },
+        {
+          "label": "The hope",
+          "sub": "It renegotiates that price with every tick.",
+          "spark": "down",
+          "tag": "UNLIMITED",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "Price is down 24 points and your stop is at 30. Who decides?",
+        "options": [
+          {
+            "label": "Hope decides, in the moment",
+            "correct": false,
+            "feedback": "Hope renegotiates with every tick, and that’s how a −1R loss becomes −2R."
+          },
+          {
+            "label": "The plan I made before entry",
+            "correct": true,
+            "feedback": "Yes. You decided on −1R while you were calm. It’s not fun, but it’s completely survivable."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "A stop you move isn’t a stop. <em>It’s a wish with a number on it.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What makes you <em>want to move</em> a stop?",
+      "modelAnswer": "Hope that it comes back, not wanting another loss, not wanting to be wrong. My stop is the price of being wrong, decided before entry. Moving it removes the limit."
     }
-   ]
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "A stop you move isn’t a stop. <em>It’s a wish with a number on it.</em>",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "What makes you want to move a stop?",
-   "modelAnswer": "Hope that it comes back, not wanting another loss, not wanting to be wrong. My stop is the price of being wrong, decided before entry. Moving it removes the limit."
-  }
- ],
- "takeaways": [
-  "The stop is decided before entry.",
-  "The worst outcome is when moving it works.",
-  "−1R is survivable. Unlimited isn’t."
- ],
- "remember": "A MOVED STOP MAKES THE PRICE OF BEING WRONG UNLIMITED."
+  ],
+  "takeaways": [
+    "The stop is decided before entry.",
+    "The worst outcome is when moving it works.",
+    "−1R is survivable. Unlimited isn’t."
+  ],
+  "remember": "A MOVED STOP MAKES THE PRICE OF BEING WRONG UNLIMITED."
 }

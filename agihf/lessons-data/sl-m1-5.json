@@ -1,0 +1,242 @@
+{
+ "phase": "sl",
+ "section": "m1",
+ "lessonNumber": "m1-5",
+ "title": "The 5M: Correction #1",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "After BOS #1, price pulls back. That pullback is Correction #1, and it never creates the zone.",
+ "launchpad": {
+  "outcome": "Identify Correction #1 on the 5M after BOS #1, and explain why it never creates the execution zone.",
+  "missionQuestion": "What is Correction #1, and why isn’t it the zone?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "Correction #1 is the 5M corrective move after BOS #1.",
+  "Preferably, it pulls back toward the original 15M break.",
+  "Correction #1 never creates the execution zone. Correction #2 does.",
+  "If BOS #2 never happens, the sequence is incomplete. No trade."
+ ],
+ "remember": "CORRECTION #1 IS A PULLBACK. NEVER THE ZONE.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 1 · Lesson 5",
+   "headline": "After BOS #1, <em>the 5M takes over.</em>",
+   "line": "The first 5M pullback after BOS #1 is Correction #1. Learn to spot it, and learn what it’s not.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 1 · Correction #1 on a chart",
+   "headline": "Watch Correction #1 <em>form on the 5M.</em>",
+   "line": "Bullish example. BOS #1 has already closed on the 15M.",
+   "scenario": "bull-valid",
+   "tf": "15M",
+   "start": "bos1",
+   "toggle": false,
+   "show": [
+    "bos1"
+   ],
+   "steps": [
+    {
+     "tf": "5M",
+     "until": "c1-5",
+     "caption": "On the 5M, price keeps pushing higher after BOS #1."
+    },
+    {
+     "until": "c1",
+     "show": [
+      "c1"
+     ],
+     "caption": "<b>Correction #1.</b> Price pulls back on the 5M, toward the original 15M break."
+    },
+    {
+     "until": "c1",
+     "caption": "Correction #1 <b>never</b> creates the execution zone. It’s only the first pullback."
+    }
+   ],
+   "check": {
+    "prompt": "Correction #1 has a clear last bearish candle. Is that your demand zone?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, mark it as demand",
+      "correct": false,
+      "feedback": "Correction #1 never creates the execution zone. The zone comes from Correction #2, and BOS #3 has to activate it."
+     },
+     {
+      "label": "No, Correction #1 never creates the zone",
+      "correct": true,
+      "why": "Right. The zone comes later, from Correction #2."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 2 · What it is",
+   "headline": "What Correction #1 <em>is, and isn’t.</em>",
+   "line": "Tap each card.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "swap",
+      "tone": "peach",
+      "label": "A 5M pullback",
+      "sub": "The corrective move on the 5M right after BOS #1."
+     },
+     {
+      "icon": "target",
+      "tone": "teal",
+      "label": "Toward the 15M break",
+      "sub": "Preferably, price pulls back toward the original 15M break."
+     },
+     {
+      "icon": "stop",
+      "tone": "pink",
+      "label": "Never the zone",
+      "sub": "Correction #1 never creates the execution zone. Correction #2 does."
+     }
+    ]
+   }
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 3 · Your turn",
+   "headline": "Bearish setup. <em>Find Correction #1.</em>",
+   "line": "BOS #1 has closed below the 15M level. Now read the 5M.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "until": "c1+1",
+   "show": [
+    "bos1"
+   ],
+   "ask": "Tap any candle in Correction #1.",
+   "target": "c1",
+   "why": "That candle is part of Correction #1, the first 5M pullback after BOS #1.",
+   "after": {
+    "show": [
+     "c1"
+    ],
+    "caption": "<b>Correction #1.</b> A pullback back up toward the 15M break. It never creates the execution zone."
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 4 · Two corrections",
+   "headline": "Correction #1 or #2? <em>Know the difference.</em>",
+   "line": "The sequence has two corrections. Only one of them creates the zone.",
+   "visual": {
+    "versus": [
+     {
+      "label": "Correction #1",
+      "tone": "peach",
+      "icon": "swap",
+      "points": [
+       "Comes after BOS #1.",
+       "Preferably pulls back toward the 15M break.",
+       "Never creates the execution zone."
+      ]
+     },
+     {
+      "label": "Correction #2",
+      "tone": "teal",
+      "icon": "layers",
+      "points": [
+       "Comes after BOS #2.",
+       "Creates the zone.",
+       "BOS #3 has to activate it."
+      ]
+     }
+    ]
+   },
+   "check": {
+    "prompt": "Which correction creates the zone?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Correction #1",
+      "correct": false,
+      "feedback": "Correction #1 never creates the execution zone. It comes before BOS #2."
+     },
+     {
+      "label": "Correction #2",
+      "correct": true,
+      "why": "Right. Correction #2 creates the zone, and BOS #3 activates it."
+     }
+    ]
+   }
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 5 · An incomplete sequence",
+   "headline": "Correction #1 formed. <em>Then what?</em>",
+   "line": "Bearish example. Press the button and watch what the 5M does after Correction #1.",
+   "scenario": "bear-no-bos2",
+   "tf": "15M",
+   "start": "start",
+   "toggle": false,
+   "steps": [
+    {
+     "until": "bos1",
+     "show": [
+      "bos1"
+     ],
+     "caption": "<b>BOS #1.</b> A 15M candle closes below the 15M level.",
+     "next": "Switch to the 5M →"
+    },
+    {
+     "tf": "5M",
+     "until": "c1",
+     "show": [
+      "c1"
+     ],
+     "caption": "<b>Correction #1.</b> Price pulls back up toward the 15M break."
+    },
+    {
+     "until": "end",
+     "caption": "Price never closes below the low Correction #1 pulled back from. <b>BOS #2 never happens.</b>"
+    }
+   ],
+   "check": {
+    "prompt": "BOS #2 never happened. Is there a trade here?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, sell from Correction #1",
+      "correct": false,
+      "feedback": "Correction #1 never creates the execution zone, and BOS #2 never happened. The sequence is incomplete."
+     },
+     {
+      "label": "No, the sequence is incomplete",
+      "correct": true,
+      "why": "Right. Without BOS #2, there’s no Correction #2, no zone and no trade."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Correction #1 is a pullback. <em>It’s never the zone.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, what is Correction #1, and why don’t you trade from it?",
+   "modelAnswer": "Correction #1 is the 5M corrective move after BOS #1, preferably back toward the original 15M break. It never creates the execution zone. The zone comes from Correction #2, after BOS #2, and BOS #3 has to activate it before the retest matters."
+  }
+ ]
+}

@@ -1,0 +1,83 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Welcome to Lesson Four of How Markets Move.
+
+(pause-until: 00:00:03,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Today we put the labels together: bullish structure.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 5.000)
+
+In basic bullish structure, price generally creates higher highs and higher lows.
+
+(pause-until: 00:00:13,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Push up to a new high. Plant a flag.
+
+(pause-until: 00:00:16,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Pull back a little. Rest. Then climb to the next high.
+
+(pause-until: 00:00:22,000)
+
+(next-paragraph-max-duration: 5.000)
+
+But bullish structure doesn't mean every candle is bullish.
+
+(pause-until: 00:00:27,000)
+
+(next-paragraph-max-duration: 5.000)
+
+There will be red candles. There will be pullbacks. There will be corrections.
+
+(pause-until: 00:00:32,000)
+
+(next-paragraph-max-duration: 8.000)
+
+That's how price moves. Push, pullback, next push.
+
+(pause-until: 00:00:40,000)
+
+(next-paragraph-max-duration: 1.000)
+
+Here's what to remember.
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Red candles inside bullish structure aren't automatically bearish.
+
+(pause-until: 00:00:46,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Ask what the pullback is doing inside the larger structure.
+
+(pause-until: 00:00:53,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:00:55,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Price makes a higher high, a higher low, another higher high, then starts moving lower. Has bullish structure automatically reversed?
+
+(pause-until: 00:01:02,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Let's find out.

@@ -1,0 +1,1221 @@
+{
+ "phase": "sl",
+ "section": "m1",
+ "lessonNumber": "m1-3",
+ "title": "The 1H: Find the Relevant Structure",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "The 1H shows you where price is inside the story, and when not to force a trade.",
+ "launchpad": {
+  "outcome": "Read the 1H for ICC, market structure and location, mark the previous 1H swing high and swing low, and apply the 1H rule.",
+  "missionQuestion": "Is price in a place where a trade makes sense, or is it stuck between the swings?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "The 1H gives you ICC, market structure and location.",
+  "Mark the previous 1H swing high and swing low.",
+  "If price is between them without meaningful directional confirmation, don’t force a trade."
+ ],
+ "remember": "BETWEEN THE 1H SWINGS WITH NO DIRECTION? DON’T FORCE IT.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 1 · Lesson 3",
+   "headline": "Carry the story down. <em>Map the 1H.</em>",
+   "line": "The 4H gave you the story. The 1H shows you the structure and where price sits inside it.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · Three jobs",
+   "headline": "The 1H has <em>three jobs.</em>",
+   "line": "Tap each card. Each one answers a different question.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "flag",
+      "tone": "purple",
+      "label": "ICC",
+      "sub": "Which chapter is the HTF (higher timeframe) ICC in?"
+     },
+     {
+      "icon": "bars",
+      "tone": "teal",
+      "label": "Market structure",
+      "sub": "Is the 1H bullish, bearish or consolidating?"
+     },
+     {
+      "icon": "target",
+      "tone": "peach",
+      "label": "Location",
+      "sub": "Where is price against the previous 1H swing high and swing low?"
+     }
+    ]
+   }
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 2 · The previous 1H swings",
+   "headline": "Find the previous 1H swing high <em>and swing low.</em>",
+   "line": "Look for the major structural swings, not the small internal moves between them.",
+   "visual": {
+    "chart": {
+     "swings": [
+      [
+       40,
+       50
+      ],
+      [
+       95,
+       112
+      ],
+      [
+       140,
+       84
+      ],
+      [
+       180,
+       124
+      ],
+      [
+       200,
+       112
+      ],
+      [
+       245,
+       160
+      ],
+      [
+       295,
+       130
+      ],
+      [
+       330,
+       162
+      ],
+      [
+       350,
+       150
+      ],
+      [
+       400,
+       204
+      ],
+      [
+       450,
+       170
+      ],
+      [
+       500,
+       192
+      ]
+     ],
+     "candles": false,
+     "hlines": [
+      {
+       "y": 38,
+       "label": "4H swing high · 21,040",
+       "tone": "purple",
+       "x1": 8,
+       "x2": 692,
+       "size": 12,
+       "below": true,
+       "labelX": 520,
+       "id": "h4"
+      },
+      {
+       "y": 296,
+       "label": "4H swing low · 20,610",
+       "tone": "purple",
+       "x1": 8,
+       "x2": 692,
+       "size": 12,
+       "labelX": 520,
+       "id": "l4"
+      },
+      {
+       "y": 170,
+       "label": "1H swing high · 20,820",
+       "tone": "gold",
+       "x1": 442,
+       "x2": 692,
+       "size": 12,
+       "labelX": 540,
+       "id": "rHl"
+      },
+      {
+       "y": 204,
+       "label": "1H swing low · 20,765",
+       "tone": "gold",
+       "x1": 392,
+       "x2": 692,
+       "size": 12,
+       "below": true,
+       "labelX": 540,
+       "id": "rLl"
+      }
+     ],
+     "boxes": [
+      {
+       "x1": 8,
+       "y1": 38,
+       "x2": 692,
+       "y2": 296,
+       "tone": "purple",
+       "op": 0.18,
+       "dashed": false,
+       "stroke": false,
+       "rx": 6,
+       "id": "room"
+      }
+     ],
+     "marks": [
+      {
+       "i": 3,
+       "label": "internal",
+       "tone": "muted",
+       "size": "sm",
+       "id": "mi"
+      },
+      {
+       "i": 4,
+       "label": "internal",
+       "tone": "muted",
+       "size": "sm",
+       "id": "mi"
+      },
+      {
+       "i": 7,
+       "label": "internal",
+       "tone": "muted",
+       "size": "sm",
+       "id": "mi"
+      },
+      {
+       "i": 8,
+       "label": "internal",
+       "tone": "muted",
+       "size": "sm",
+       "id": "mi"
+      },
+      {
+       "i": 3,
+       "tone": "muted",
+       "size": "sm",
+       "strike": true,
+       "id": "ms"
+      },
+      {
+       "i": 4,
+       "tone": "muted",
+       "size": "sm",
+       "strike": true,
+       "id": "ms"
+      },
+      {
+       "i": 7,
+       "tone": "muted",
+       "size": "sm",
+       "strike": true,
+       "id": "ms"
+      },
+      {
+       "i": 8,
+       "tone": "muted",
+       "size": "sm",
+       "strike": true,
+       "id": "ms"
+      },
+      {
+       "i": 10,
+       "label": "Swing high",
+       "tone": "gold",
+       "id": "rH"
+      },
+      {
+       "i": 9,
+       "label": "Swing low",
+       "tone": "gold",
+       "id": "rL"
+      }
+     ],
+     "notes": [
+      {
+       "x": 250,
+       "y": 250,
+       "text": "4H: bullish · lower area of the range · correcting",
+       "tone": "purple",
+       "size": 13,
+       "anchor": "middle",
+       "id": "ctx"
+      },
+      {
+       "x": 540,
+       "y": 188,
+       "text": "● now",
+       "tone": "dark",
+       "size": 13,
+       "anchor": "middle",
+       "id": "now"
+      }
+     ],
+     "bars": [
+      {
+       "x": 53.8,
+       "o": 50,
+       "c": 63.7,
+       "h": 48.4,
+       "l": 67.3,
+       "w": 9.6
+      },
+      {
+       "x": 67.5,
+       "o": 63.7,
+       "c": 76.7,
+       "h": 60.6,
+       "l": 79.2,
+       "w": 9.6
+      },
+      {
+       "x": 81.2,
+       "o": 76.7,
+       "c": 92.1,
+       "h": 73.7,
+       "l": 93.2,
+       "w": 9.6
+      },
+      {
+       "x": 95.0,
+       "o": 92.1,
+       "c": 108.6,
+       "h": 89.3,
+       "l": 112,
+       "w": 9.6
+      },
+      {
+       "x": 110.0,
+       "o": 108.6,
+       "c": 101.9,
+       "h": 97.6,
+       "l": 110.1,
+       "w": 9.6
+      },
+      {
+       "x": 125.0,
+       "o": 101.9,
+       "c": 90.6,
+       "h": 87.1,
+       "l": 106.7,
+       "w": 9.6
+      },
+      {
+       "x": 140.0,
+       "o": 90.6,
+       "c": 90.9,
+       "h": 84,
+       "l": 93.2,
+       "w": 9.6
+      },
+      {
+       "x": 153.3,
+       "o": 90.9,
+       "c": 92.8,
+       "h": 86.5,
+       "l": 95.0,
+       "w": 9.6
+      },
+      {
+       "x": 166.7,
+       "o": 92.8,
+       "c": 107.1,
+       "h": 91.3,
+       "l": 109.3,
+       "w": 9.6
+      },
+      {
+       "x": 180.0,
+       "o": 107.1,
+       "c": 118.7,
+       "h": 102.8,
+       "l": 124,
+       "w": 9.6
+      },
+      {
+       "x": 190.0,
+       "o": 118.7,
+       "c": 119.4,
+       "h": 116.2,
+       "l": 122.6,
+       "w": 9.6
+      },
+      {
+       "x": 200.0,
+       "o": 119.4,
+       "c": 115.8,
+       "h": 112,
+       "l": 120.6,
+       "w": 9.6
+      },
+      {
+       "x": 215.0,
+       "o": 115.8,
+       "c": 129.8,
+       "h": 113.1,
+       "l": 132.1,
+       "w": 9.6
+      },
+      {
+       "x": 230.0,
+       "o": 129.8,
+       "c": 144.9,
+       "h": 127.0,
+       "l": 147.1,
+       "w": 9.6
+      },
+      {
+       "x": 245.0,
+       "o": 144.9,
+       "c": 156.0,
+       "h": 140.7,
+       "l": 160,
+       "w": 9.6
+      },
+      {
+       "x": 257.5,
+       "o": 156.0,
+       "c": 153.2,
+       "h": 150.1,
+       "l": 160.5,
+       "w": 9.6
+      },
+      {
+       "x": 270.0,
+       "o": 153.2,
+       "c": 147.3,
+       "h": 145.1,
+       "l": 158.2,
+       "w": 9.6
+      },
+      {
+       "x": 282.5,
+       "o": 147.3,
+       "c": 133.7,
+       "h": 131.0,
+       "l": 151.3,
+       "w": 9.6
+      },
+      {
+       "x": 295.0,
+       "o": 133.7,
+       "c": 133.2,
+       "h": 130,
+       "l": 136.6,
+       "w": 9.6
+      },
+      {
+       "x": 312.5,
+       "o": 133.2,
+       "c": 147.7,
+       "h": 129.1,
+       "l": 151.0,
+       "w": 9.6
+      },
+      {
+       "x": 330.0,
+       "o": 147.7,
+       "c": 156.2,
+       "h": 143.2,
+       "l": 162,
+       "w": 9.6
+      },
+      {
+       "x": 340.0,
+       "o": 156.2,
+       "c": 156.9,
+       "h": 152.9,
+       "l": 159.8,
+       "w": 9.6
+      },
+      {
+       "x": 350.0,
+       "o": 156.9,
+       "c": 154.9,
+       "h": 150,
+       "l": 161.7,
+       "w": 9.6
+      },
+      {
+       "x": 362.5,
+       "o": 154.9,
+       "c": 165.1,
+       "h": 153.7,
+       "l": 168.9,
+       "w": 9.6
+      },
+      {
+       "x": 375.0,
+       "o": 165.1,
+       "c": 178.5,
+       "h": 160.2,
+       "l": 182.8,
+       "w": 9.6
+      },
+      {
+       "x": 387.5,
+       "o": 178.5,
+       "c": 188.3,
+       "h": 175.9,
+       "l": 192.0,
+       "w": 9.6
+      },
+      {
+       "x": 400.0,
+       "o": 188.3,
+       "c": 200.3,
+       "h": 187.3,
+       "l": 204,
+       "w": 9.6
+      },
+      {
+       "x": 412.5,
+       "o": 200.3,
+       "c": 191.7,
+       "h": 190.4,
+       "l": 204.4,
+       "w": 9.6
+      },
+      {
+       "x": 425.0,
+       "o": 191.7,
+       "c": 183.3,
+       "h": 181.3,
+       "l": 194.2,
+       "w": 9.6
+      },
+      {
+       "x": 437.5,
+       "o": 183.3,
+       "c": 182.2,
+       "h": 180.9,
+       "l": 186.1,
+       "w": 9.6
+      },
+      {
+       "x": 450.0,
+       "o": 182.2,
+       "c": 176.3,
+       "h": 170,
+       "l": 186.7,
+       "w": 9.6
+      },
+      {
+       "x": 462.5,
+       "o": 176.3,
+       "c": 179.1,
+       "h": 174.2,
+       "l": 181.8,
+       "w": 9.6
+      },
+      {
+       "x": 475.0,
+       "o": 179.1,
+       "c": 179.6,
+       "h": 174.6,
+       "l": 184.4,
+       "w": 9.6
+      },
+      {
+       "x": 487.5,
+       "o": 179.6,
+       "c": 183.0,
+       "h": 177.9,
+       "l": 184.9,
+       "w": 9.6
+      },
+      {
+       "x": 500.0,
+       "o": 183.0,
+       "c": 186.6,
+       "h": 181.1,
+       "l": 192,
+       "w": 9.6
+      }
+     ]
+    },
+    "steps": [
+     {
+      "show": [
+       "h4",
+       "l4",
+       "room",
+       "mi"
+      ],
+      "text": "These small wiggles are internal moves. They don’t define the structure.",
+      "next": "Next →"
+     },
+     {
+      "show": [
+       "rL",
+       "rLl"
+      ],
+      "text": "This is the previous 1H swing low.",
+      "next": "Next →"
+     },
+     {
+      "show": [
+       "rH",
+       "rHl",
+       "now"
+      ],
+      "text": "This is the previous 1H swing high. Right now, price is trading between the two."
+     }
+    ]
+   }
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 3 · The 1H rule",
+   "headline": "Stuck between the swings? <em>Don’t force it.</em>",
+   "line": "This is an established rule of the strategy.",
+   "visual": {
+    "chart": {
+     "swings": [
+      [
+       40,
+       50
+      ],
+      [
+       95,
+       112
+      ],
+      [
+       140,
+       84
+      ],
+      [
+       180,
+       124
+      ],
+      [
+       200,
+       112
+      ],
+      [
+       245,
+       160
+      ],
+      [
+       295,
+       130
+      ],
+      [
+       330,
+       162
+      ],
+      [
+       350,
+       150
+      ],
+      [
+       400,
+       204
+      ],
+      [
+       450,
+       170
+      ],
+      [
+       500,
+       192
+      ]
+     ],
+     "candles": false,
+     "hlines": [
+      {
+       "y": 38,
+       "label": "4H swing high · 21,040",
+       "tone": "purple",
+       "x1": 8,
+       "x2": 692,
+       "size": 12,
+       "below": true,
+       "labelX": 520,
+       "id": "h4"
+      },
+      {
+       "y": 296,
+       "label": "4H swing low · 20,610",
+       "tone": "purple",
+       "x1": 8,
+       "x2": 692,
+       "size": 12,
+       "labelX": 520,
+       "id": "l4"
+      },
+      {
+       "y": 170,
+       "label": "1H swing high · 20,820",
+       "tone": "gold",
+       "x1": 442,
+       "x2": 692,
+       "size": 12,
+       "labelX": 540,
+       "id": "rHl"
+      },
+      {
+       "y": 204,
+       "label": "1H swing low · 20,765",
+       "tone": "gold",
+       "x1": 392,
+       "x2": 692,
+       "size": 12,
+       "below": true,
+       "labelX": 540,
+       "id": "rLl"
+      }
+     ],
+     "boxes": [
+      {
+       "x1": 8,
+       "y1": 38,
+       "x2": 692,
+       "y2": 296,
+       "tone": "purple",
+       "op": 0.18,
+       "dashed": false,
+       "stroke": false,
+       "rx": 6,
+       "id": "room"
+      },
+      {
+       "x1": 392,
+       "y1": 170,
+       "x2": 692,
+       "y2": 204,
+       "tone": "gold",
+       "op": 0.7,
+       "dashed": false,
+       "stroke": false,
+       "rx": 6,
+       "id": "mid"
+      }
+     ],
+     "marks": [
+      {
+       "i": 3,
+       "label": "internal",
+       "tone": "muted",
+       "size": "sm",
+       "id": "mi"
+      },
+      {
+       "i": 4,
+       "label": "internal",
+       "tone": "muted",
+       "size": "sm",
+       "id": "mi"
+      },
+      {
+       "i": 7,
+       "label": "internal",
+       "tone": "muted",
+       "size": "sm",
+       "id": "mi"
+      },
+      {
+       "i": 8,
+       "label": "internal",
+       "tone": "muted",
+       "size": "sm",
+       "id": "mi"
+      },
+      {
+       "i": 3,
+       "tone": "muted",
+       "size": "sm",
+       "strike": true,
+       "id": "ms"
+      },
+      {
+       "i": 4,
+       "tone": "muted",
+       "size": "sm",
+       "strike": true,
+       "id": "ms"
+      },
+      {
+       "i": 7,
+       "tone": "muted",
+       "size": "sm",
+       "strike": true,
+       "id": "ms"
+      },
+      {
+       "i": 8,
+       "tone": "muted",
+       "size": "sm",
+       "strike": true,
+       "id": "ms"
+      },
+      {
+       "i": 10,
+       "label": "Swing high",
+       "tone": "gold",
+       "id": "rH"
+      },
+      {
+       "i": 9,
+       "label": "Swing low",
+       "tone": "gold",
+       "id": "rL"
+      }
+     ],
+     "notes": [
+      {
+       "x": 250,
+       "y": 250,
+       "text": "4H: bullish · lower area of the range · correcting",
+       "tone": "purple",
+       "size": 13,
+       "anchor": "middle",
+       "id": "ctx"
+      },
+      {
+       "x": 540,
+       "y": 188,
+       "text": "● now",
+       "tone": "dark",
+       "size": 13,
+       "anchor": "middle",
+       "id": "now"
+      },
+      {
+       "x": 560,
+       "y": 268,
+       "text": "between the swings · no directional confirmation",
+       "tone": "down",
+       "size": 13,
+       "anchor": "middle",
+       "id": "noconf"
+      }
+     ],
+     "bars": [
+      {
+       "x": 53.8,
+       "o": 50,
+       "c": 63.7,
+       "h": 48.4,
+       "l": 67.3,
+       "w": 9.6
+      },
+      {
+       "x": 67.5,
+       "o": 63.7,
+       "c": 76.7,
+       "h": 60.6,
+       "l": 79.2,
+       "w": 9.6
+      },
+      {
+       "x": 81.2,
+       "o": 76.7,
+       "c": 92.1,
+       "h": 73.7,
+       "l": 93.2,
+       "w": 9.6
+      },
+      {
+       "x": 95.0,
+       "o": 92.1,
+       "c": 108.6,
+       "h": 89.3,
+       "l": 112,
+       "w": 9.6
+      },
+      {
+       "x": 110.0,
+       "o": 108.6,
+       "c": 101.9,
+       "h": 97.6,
+       "l": 110.1,
+       "w": 9.6
+      },
+      {
+       "x": 125.0,
+       "o": 101.9,
+       "c": 90.6,
+       "h": 87.1,
+       "l": 106.7,
+       "w": 9.6
+      },
+      {
+       "x": 140.0,
+       "o": 90.6,
+       "c": 90.9,
+       "h": 84,
+       "l": 93.2,
+       "w": 9.6
+      },
+      {
+       "x": 153.3,
+       "o": 90.9,
+       "c": 92.8,
+       "h": 86.5,
+       "l": 95.0,
+       "w": 9.6
+      },
+      {
+       "x": 166.7,
+       "o": 92.8,
+       "c": 107.1,
+       "h": 91.3,
+       "l": 109.3,
+       "w": 9.6
+      },
+      {
+       "x": 180.0,
+       "o": 107.1,
+       "c": 118.7,
+       "h": 102.8,
+       "l": 124,
+       "w": 9.6
+      },
+      {
+       "x": 190.0,
+       "o": 118.7,
+       "c": 119.4,
+       "h": 116.2,
+       "l": 122.6,
+       "w": 9.6
+      },
+      {
+       "x": 200.0,
+       "o": 119.4,
+       "c": 115.8,
+       "h": 112,
+       "l": 120.6,
+       "w": 9.6
+      },
+      {
+       "x": 215.0,
+       "o": 115.8,
+       "c": 129.8,
+       "h": 113.1,
+       "l": 132.1,
+       "w": 9.6
+      },
+      {
+       "x": 230.0,
+       "o": 129.8,
+       "c": 144.9,
+       "h": 127.0,
+       "l": 147.1,
+       "w": 9.6
+      },
+      {
+       "x": 245.0,
+       "o": 144.9,
+       "c": 156.0,
+       "h": 140.7,
+       "l": 160,
+       "w": 9.6
+      },
+      {
+       "x": 257.5,
+       "o": 156.0,
+       "c": 153.2,
+       "h": 150.1,
+       "l": 160.5,
+       "w": 9.6
+      },
+      {
+       "x": 270.0,
+       "o": 153.2,
+       "c": 147.3,
+       "h": 145.1,
+       "l": 158.2,
+       "w": 9.6
+      },
+      {
+       "x": 282.5,
+       "o": 147.3,
+       "c": 133.7,
+       "h": 131.0,
+       "l": 151.3,
+       "w": 9.6
+      },
+      {
+       "x": 295.0,
+       "o": 133.7,
+       "c": 133.2,
+       "h": 130,
+       "l": 136.6,
+       "w": 9.6
+      },
+      {
+       "x": 312.5,
+       "o": 133.2,
+       "c": 147.7,
+       "h": 129.1,
+       "l": 151.0,
+       "w": 9.6
+      },
+      {
+       "x": 330.0,
+       "o": 147.7,
+       "c": 156.2,
+       "h": 143.2,
+       "l": 162,
+       "w": 9.6
+      },
+      {
+       "x": 340.0,
+       "o": 156.2,
+       "c": 156.9,
+       "h": 152.9,
+       "l": 159.8,
+       "w": 9.6
+      },
+      {
+       "x": 350.0,
+       "o": 156.9,
+       "c": 154.9,
+       "h": 150,
+       "l": 161.7,
+       "w": 9.6
+      },
+      {
+       "x": 362.5,
+       "o": 154.9,
+       "c": 165.1,
+       "h": 153.7,
+       "l": 168.9,
+       "w": 9.6
+      },
+      {
+       "x": 375.0,
+       "o": 165.1,
+       "c": 178.5,
+       "h": 160.2,
+       "l": 182.8,
+       "w": 9.6
+      },
+      {
+       "x": 387.5,
+       "o": 178.5,
+       "c": 188.3,
+       "h": 175.9,
+       "l": 192.0,
+       "w": 9.6
+      },
+      {
+       "x": 400.0,
+       "o": 188.3,
+       "c": 200.3,
+       "h": 187.3,
+       "l": 204,
+       "w": 9.6
+      },
+      {
+       "x": 412.5,
+       "o": 200.3,
+       "c": 191.7,
+       "h": 190.4,
+       "l": 204.4,
+       "w": 9.6
+      },
+      {
+       "x": 425.0,
+       "o": 191.7,
+       "c": 183.3,
+       "h": 181.3,
+       "l": 194.2,
+       "w": 9.6
+      },
+      {
+       "x": 437.5,
+       "o": 183.3,
+       "c": 182.2,
+       "h": 180.9,
+       "l": 186.1,
+       "w": 9.6
+      },
+      {
+       "x": 450.0,
+       "o": 182.2,
+       "c": 176.3,
+       "h": 170,
+       "l": 186.7,
+       "w": 9.6
+      },
+      {
+       "x": 462.5,
+       "o": 176.3,
+       "c": 179.1,
+       "h": 174.2,
+       "l": 181.8,
+       "w": 9.6
+      },
+      {
+       "x": 475.0,
+       "o": 179.1,
+       "c": 179.6,
+       "h": 174.6,
+       "l": 184.4,
+       "w": 9.6
+      },
+      {
+       "x": 487.5,
+       "o": 179.6,
+       "c": 183.0,
+       "h": 177.9,
+       "l": 184.9,
+       "w": 9.6
+      },
+      {
+       "x": 500.0,
+       "o": 183.0,
+       "c": 186.6,
+       "h": 181.1,
+       "l": 192,
+       "w": 9.6
+      }
+     ]
+    },
+    "steps": [
+     {
+      "show": [
+       "rH",
+       "rL",
+       "rHl",
+       "rLl"
+      ],
+      "text": "Start with the previous 1H swing high and swing low.",
+      "next": "Next →"
+     },
+     {
+      "show": [
+       "mid",
+       "now",
+       "noconf"
+      ],
+      "text": "Price is between them, without meaningful directional confirmation. <strong>Don’t force a trade here.</strong>"
+     }
+    ]
+   },
+   "check": {
+    "prompt": "Price is between the previous 1H swing high and swing low, with no meaningful directional confirmation. What do you do?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Pick a direction and trade it",
+      "correct": false,
+      "feedback": "That’s forcing a trade. Between the previous 1H swings, without meaningful directional confirmation, you wait."
+     },
+     {
+      "label": "Don’t force a trade. Wait.",
+      "correct": true,
+      "why": "Right. Without meaningful directional confirmation between the 1H swings, there’s no trade to force."
+     }
+    ]
+   }
+  },
+  {
+   "type": "v2_compare",
+   "kicker": "Step 4 · Two 1H reads",
+   "headline": "Two 1H reads, <em>two different answers.</em>",
+   "line": "Same 1H swings. What price does between them changes your next step.",
+   "cards": [
+    {
+     "label": "Between the swings, no direction",
+     "sub": "Price is inside the previous 1H swing high and low, with no meaningful directional confirmation.",
+     "spark": "chop",
+     "tag": "DON’T FORCE IT",
+     "tone": "pink"
+    },
+    {
+     "label": "Direction that agrees with the story",
+     "sub": "The 1H shows direction in line with the HTF ICC. Now you watch the 15M for BOS #1.",
+     "spark": "up",
+     "tag": "WATCH THE 15M",
+     "tone": "teal"
+    }
+   ],
+   "check": {
+    "prompt": "The 1H is chopping between its previous swing high and swing low. Your 4H story is bullish. Do you look for a long anyway?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, the 4H is bullish",
+      "correct": false,
+      "feedback": "The 4H story doesn’t override the 1H rule. Between the previous 1H swings, without meaningful directional confirmation, don’t force a trade."
+     },
+     {
+      "label": "No, I don’t force a trade there",
+      "correct": true,
+      "why": "Right. The story sets the direction, but the 1H location still has to make sense."
+     }
+    ]
+   }
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 5 · From the 1H to the 15M",
+   "headline": "The 1H has direction. <em>Now the 15M.</em>",
+   "line": "1H read: bullish structure, price reacting from a 1H higher low. HTF ICC: bullish Indication, Correction in progress.",
+   "scenario": "bull-valid",
+   "tf": "15M",
+   "start": "start",
+   "toggle": false,
+   "steps": [
+    {
+     "until": "bos1-3",
+     "caption": "The 1H read agrees with the bullish story, so you watch the 15M for a break <b>higher</b>."
+    },
+    {
+     "until": "bos1",
+     "show": [
+      "bos1"
+     ],
+     "caption": "<b>BOS #1.</b> A 15M candle closes above the 15M level. The sequence has started."
+    }
+   ],
+   "check": {
+    "prompt": "The 1H read is bullish and BOS #1 just closed. Is that your entry?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, everything lines up",
+      "correct": false,
+      "feedback": "Don’t enter simply because BOS #1 occurred. BOS #1 only starts the sequence. The 5M still has to build the corrections, the zone and BOS #3."
+     },
+     {
+      "label": "No, the sequence has only started",
+      "correct": true,
+      "why": "Right. BOS #1 starts the sequence. The entry waits for the zone, BOS #3 and the retest."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Price stuck between the 1H swings isn’t a setup. <em>Don’t force a trade.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, what does the 1H give you, and what is the <em>1H rule?</em>",
+   "modelAnswer": "The 1H gives me the HTF ICC, the market structure and price’s location. I mark the previous 1H swing high and swing low. If price is between them without meaningful directional confirmation, I don’t force a trade. When the 1H shows direction that agrees with the story, I watch the 15M for BOS #1."
+  }
+ ]
+}

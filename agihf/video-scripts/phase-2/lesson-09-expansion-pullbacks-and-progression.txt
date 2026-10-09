@@ -1,0 +1,89 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Welcome to Lesson Nine, the last lesson of How Markets Move.
+
+(pause-until: 00:00:04,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Price pushes. Price pulls back. Then we see what it does next.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 2.000)
+
+Think of price like a road trip.
+
+(pause-until: 00:00:10,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Expansion: price makes meaningful directional progress.
+
+(pause-until: 00:00:17,000)
+
+(next-paragraph-max-duration: 6.000)
+
+Pullback: price temporarily moves against the current move.
+
+(pause-until: 00:00:23,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Structural progression: after the pullback, price continues developing, here to a higher high.
+
+(pause-until: 00:00:30,000)
+
+(next-paragraph-max-duration: 6.000)
+
+A pullback does not automatically equal reversal.
+
+(pause-until: 00:00:36,000)
+
+(next-paragraph-max-duration: 5.000)
+
+So bullish structure starts pulling back. Has it reversed?
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 9.000)
+
+Honestly? Not enough information. The existence of a pullback doesn't tell us whether the larger structure changed.
+
+(pause-until: 00:00:50,000)
+
+(next-paragraph-max-duration: 10.000)
+
+To know more, we need to study what price breaks. And that's exactly where Section 5 begins.
+
+(pause-until: 00:01:00,000)
+
+(next-paragraph-max-duration: 1.000)
+
+So here's the big takeaway.
+
+(pause-until: 00:01:01,000)
+
+(next-paragraph-max-duration: 10.000)
+
+A pullback alone doesn't tell you whether structure changed. What price breaks does.
+
+(pause-until: 00:01:11,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:13,000)
+
+(next-paragraph-max-duration: 7.000)
+
+When bullish structure starts pulling back, how do you know whether it has reversed?
+
+(pause-until: 00:01:20,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Let's find out.

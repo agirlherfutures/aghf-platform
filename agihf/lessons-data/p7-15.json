@@ -1,681 +1,694 @@
 {
- "phase": "p7",
- "section": "s19",
- "lessonNumber": 15,
- "title": "“But This One Looks Good.”",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "The setup that almost meets your rules.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Feel the pull of an almost-valid setup and see why “almost” isn’t a rule.",
-  "missionQuestion": "Does it meet my rules, or does it just look good?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "“But This One Looks Good.”",
-   "title": "10:09",
-   "beats": [
+  "phase": "p7",
+  "section": "s19",
+  "lessonNumber": 15,
+  "title": "“But This One Looks Good.”",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "The setup that almost meets your rules.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Feel the pull of an almost-valid setup and see why “almost” isn’t a rule.",
+    "missionQuestion": "Does it meet my rules, or does it just look good?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "chart": {
-      "bars": [
-       {
-        "o": 20982.25,
-        "h": 20986.75,
-        "l": 20981.75,
-        "c": 20985.25
-       },
-       {
-        "o": 20985.25,
-        "h": 20992.0,
-        "l": 20984.0,
-        "c": 20990.75
-       },
-       {
-        "o": 20990.75,
-        "h": 20994.5,
-        "l": 20989.5,
-        "c": 20993.75
-       },
-       {
-        "o": 20993.75,
-        "h": 20999.75,
-        "l": 20992.75,
-        "c": 20998.25
-       },
-       {
-        "o": 20998.25,
-        "h": 21004.25,
-        "l": 20997.5,
-        "c": 21001.75
-       },
-       {
-        "o": 21001.75,
-        "h": 21003.0,
-        "l": 20998.25,
-        "c": 20999.0
-       },
-       {
-        "o": 20999.0,
-        "h": 21000.0,
-        "l": 20995.5,
-        "c": 20996.5
-       },
-       {
-        "o": 20996.5,
-        "h": 20997.0,
-        "l": 20991.5,
-        "c": 20992.75
-       },
-       {
-        "o": 20992.75,
-        "h": 20993.75,
-        "l": 20990.0,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20994.0,
-        "l": 20990.25,
-        "c": 20993.5
-       },
-       {
-        "o": 20993.5,
-        "h": 20999.0,
-        "l": 20992.25,
-        "c": 20998.5
-       },
-       {
-        "o": 20998.5,
-        "h": 21002.0,
-        "l": 20997.75,
-        "c": 21001.25
-       },
-       {
-        "o": 21001.25,
-        "h": 21007.75,
-        "l": 21001.25,
-        "c": 21007.0
-       },
-       {
-        "o": 21007.0,
-        "h": 21007.0,
-        "l": 21001.25,
-        "c": 21002.0
-       },
-       {
-        "o": 21002.0,
-        "h": 21003.0,
-        "l": 21001.25,
-        "c": 21002.75
-       },
-       {
-        "o": 21002.75,
-        "h": 21006.75,
-        "l": 21001.75,
-        "c": 21003.25,
-        "path": [
-         21002.75,
-         21006.75,
-         21003.25
-        ]
-       }
-      ],
-      "pil": 21004.25,
-      "pilAt": 4,
-      "tags": [
-       {
-        "at": 15,
-        "text": "WICK, NO CLOSE",
-        "tone": "warn"
-       }
-      ],
-      "head": {
-       "tf": "1M",
-       "label": "10:09"
-      },
-      "play": {
-       "from": 10,
-       "to": 16,
-       "speed": 300
-      }
-     }
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 15",
+      "headline": "Almost meeting your rules <em>isn’t the same as meeting them.</em>",
+      "line": "This lesson is about the setup that almost qualifies, and the one word that tempts you to take it.",
+      "pose": "think",
+      "cta": "Show me →"
     },
     {
-     "say": [
-      "Indication. Correction.",
-      "Then a candle spikes through the PIL… and closes back below."
-     ]
-    },
-    {
-     "say": [
-      "Your model needs a <b>close</b> for Continuation. You don’t have one."
-     ]
-    },
-    {
-     "thoughts": [
-      "“It’s basically there.”",
-      "“That wick counts. Kind of.”",
-      "“But this one looks GOOD.”"
-     ]
-    },
-    {
-     "choice": {
-      "prompt": "What do you do?",
-      "options": [
-       {
-        "label": "Take it. It’s basically there.",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+      "type": "v2_moment",
+      "kicker": "10:09",
+      "headline": "A wick pokes through, but <em>there’s no close.</em>",
+      "line": "Your model needs a candle to close through for a Continuation. Right now, you don’t have one.",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
             "h": 20986.75,
             "l": 20981.75,
             "c": 20985.25
-           },
-           {
+          },
+          {
             "o": 20985.25,
             "h": 20992.0,
             "l": 20984.0,
             "c": 20990.75
-           },
-           {
+          },
+          {
             "o": 20990.75,
             "h": 20994.5,
             "l": 20989.5,
             "c": 20993.75
-           },
-           {
+          },
+          {
             "o": 20993.75,
             "h": 20999.75,
             "l": 20992.75,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.5,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21003.0,
             "l": 20998.25,
             "c": 20999.0
-           },
-           {
+          },
+          {
             "o": 20999.0,
             "h": 21000.0,
             "l": 20995.5,
             "c": 20996.5
-           },
-           {
+          },
+          {
             "o": 20996.5,
             "h": 20997.0,
             "l": 20991.5,
             "c": 20992.75
-           },
-           {
+          },
+          {
             "o": 20992.75,
             "h": 20993.75,
             "l": 20990.0,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20994.0,
             "l": 20990.25,
             "c": 20993.5
-           },
-           {
+          },
+          {
             "o": 20993.5,
             "h": 20999.0,
             "l": 20992.25,
             "c": 20998.5
-           },
-           {
+          },
+          {
             "o": 20998.5,
             "h": 21002.0,
             "l": 20997.75,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21007.0,
             "l": 21001.25,
             "c": 21002.0
-           },
-           {
+          },
+          {
             "o": 21002.0,
             "h": 21003.0,
             "l": 21001.25,
             "c": 21002.75
-           },
-           {
+          },
+          {
             "o": 21002.75,
             "h": 21006.75,
             "l": 21001.75,
             "c": 21003.25,
             "path": [
-             21002.75,
-             21006.75,
-             21003.25
+              21002.75,
+              21006.75,
+              21003.25
             ]
-           },
-           {
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "tags": [
+          {
+            "at": 15,
+            "text": "WICK, NO CLOSE",
+            "tone": "warn"
+          }
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "10:09"
+        },
+        "play": {
+          "from": 10,
+          "to": 16,
+          "speed": 300
+        }
+      },
+      "thoughts": [
+        "“It’s basically there.”",
+        "“That wick counts. Kind of.”",
+        "“But this one looks GOOD.”"
+      ],
+      "check": {
+        "prompt": "What would you do right now?",
+        "options": [
+          {
+            "label": "Take it, it’s basically there",
+            "correct": false,
+            "feedback": "“Basically” isn’t part of your model. It’s coming from your mood, not your rules.",
+            "track": [
+              "emotionalTradesTaken"
+            ]
+          },
+          {
+            "label": "Wait for the candle to close",
+            "correct": true,
+            "feedback": "Yes. The rule decides whether you trade, not how good it looks.",
+            "track": "ruleBasedResponses"
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "If you had taken it",
+      "headline": "“Basically there” <em>never actually closed.</em>",
+      "line": "Price never closed through, and you got stopped out for −1R. That means you lost exactly the amount you planned to risk on this trade.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20986.75,
+            "l": 20981.75,
+            "c": 20985.25
+          },
+          {
+            "o": 20985.25,
+            "h": 20992.0,
+            "l": 20984.0,
+            "c": 20990.75
+          },
+          {
+            "o": 20990.75,
+            "h": 20994.5,
+            "l": 20989.5,
+            "c": 20993.75
+          },
+          {
+            "o": 20993.75,
+            "h": 20999.75,
+            "l": 20992.75,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.5,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21003.0,
+            "l": 20998.25,
+            "c": 20999.0
+          },
+          {
+            "o": 20999.0,
+            "h": 21000.0,
+            "l": 20995.5,
+            "c": 20996.5
+          },
+          {
+            "o": 20996.5,
+            "h": 20997.0,
+            "l": 20991.5,
+            "c": 20992.75
+          },
+          {
+            "o": 20992.75,
+            "h": 20993.75,
+            "l": 20990.0,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20994.0,
+            "l": 20990.25,
+            "c": 20993.5
+          },
+          {
+            "o": 20993.5,
+            "h": 20999.0,
+            "l": 20992.25,
+            "c": 20998.5
+          },
+          {
+            "o": 20998.5,
+            "h": 21002.0,
+            "l": 20997.75,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21003.0,
+            "l": 21001.25,
+            "c": 21002.75
+          },
+          {
+            "o": 21002.75,
+            "h": 21006.75,
+            "l": 21001.75,
+            "c": 21003.25,
+            "path": [
+              21002.75,
+              21006.75,
+              21003.25
+            ]
+          },
+          {
             "o": 21003.25,
             "h": 21004.0,
             "l": 20999.25,
             "c": 20999.5
-           },
-           {
+          },
+          {
             "o": 20999.5,
             "h": 21001.0,
             "l": 20997.5,
             "c": 20998.0
-           },
-           {
+          },
+          {
             "o": 20998.0,
             "h": 20999.5,
             "l": 20994.25,
             "c": 20995.25
-           },
-           {
+          },
+          {
             "o": 20995.25,
             "h": 20995.5,
             "l": 20991.25,
             "c": 20992.5
-           },
-           {
+          },
+          {
             "o": 20992.5,
             "h": 20993.5,
             "l": 20987.25,
             "c": 20988.0
-           },
-           {
+          },
+          {
             "o": 20988.0,
             "h": 20989.5,
             "l": 20983.25,
             "c": 20984.25
-           },
-           {
+          },
+          {
             "o": 20984.25,
             "h": 20985.25,
             "l": 20979.75,
             "c": 20980.75
-           },
-           {
+          },
+          {
             "o": 20980.75,
             "h": 20982.0,
             "l": 20975.25,
             "c": 20976.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "tags": [
-           {
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "tags": [
+          {
             "at": 23,
             "text": "−1R",
             "tone": "warn"
-           }
-          ],
-          "head": {
-           "tf": "1M",
-           "label": "Basically there"
-          },
-          "play": {
-           "from": 16,
-           "to": 24,
-           "speed": 300
           }
-         },
-         "say": [
-          "It never closed through.",
-          "“Basically” isn’t in your model. <b>It’s in your mood.</b>"
-         ]
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "Basically there"
         },
-        "track": [
-         "emotionalTradesTaken"
-        ]
-       },
-       {
-        "label": "Wait for the close",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+        "play": {
+          "from": 16,
+          "to": 24,
+          "speed": 300
+        }
+      }
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "If you waited",
+      "headline": "You waited, and <em>the rule made the decision.</em>",
+      "line": "This time it closed and retested. Some days it never closes, and waiting saves you a loss.",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
             "h": 20986.75,
             "l": 20981.75,
             "c": 20985.25
-           },
-           {
+          },
+          {
             "o": 20985.25,
             "h": 20992.0,
             "l": 20984.0,
             "c": 20990.75
-           },
-           {
+          },
+          {
             "o": 20990.75,
             "h": 20994.5,
             "l": 20989.5,
             "c": 20993.75
-           },
-           {
+          },
+          {
             "o": 20993.75,
             "h": 20999.75,
             "l": 20992.75,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.5,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21003.0,
             "l": 20998.25,
             "c": 20999.0
-           },
-           {
+          },
+          {
             "o": 20999.0,
             "h": 21000.0,
             "l": 20995.5,
             "c": 20996.5
-           },
-           {
+          },
+          {
             "o": 20996.5,
             "h": 20997.0,
             "l": 20991.5,
             "c": 20992.75
-           },
-           {
+          },
+          {
             "o": 20992.75,
             "h": 20993.75,
             "l": 20990.0,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20994.0,
             "l": 20990.25,
             "c": 20993.5
-           },
-           {
+          },
+          {
             "o": 20993.5,
             "h": 20999.0,
             "l": 20992.25,
             "c": 20998.5
-           },
-           {
+          },
+          {
             "o": 20998.5,
             "h": 21002.0,
             "l": 20997.75,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21007.0,
             "l": 21001.25,
             "c": 21002.0
-           },
-           {
+          },
+          {
             "o": 21002.0,
             "h": 21003.0,
             "l": 21001.25,
             "c": 21002.75
-           },
-           {
+          },
+          {
             "o": 21002.75,
             "h": 21006.75,
             "l": 21001.75,
             "c": 21003.25,
             "path": [
-             21002.75,
-             21006.75,
-             21003.25
+              21002.75,
+              21006.75,
+              21003.25
             ]
-           },
-           {
+          },
+          {
             "o": 21003.25,
             "h": 21008.5,
             "l": 21002.5,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21012.0,
             "l": 21006.5,
             "c": 21011.25
-           },
-           {
+          },
+          {
             "o": 21011.25,
             "h": 21014.75,
             "l": 21010.5,
             "c": 21013.75
-           },
-           {
+          },
+          {
             "o": 21013.75,
             "h": 21019.5,
             "l": 21013.25,
             "c": 21018.5
-           },
-           {
+          },
+          {
             "o": 21018.5,
             "h": 21023.5,
             "l": 21017.25,
             "c": 21022.25
-           },
-           {
+          },
+          {
             "o": 21022.25,
             "h": 21023.5,
             "l": 21015.75,
             "c": 21016.75
-           },
-           {
+          },
+          {
             "o": 21016.75,
             "h": 21017.25,
             "l": 21011.5,
             "c": 21011.75
-           },
-           {
+          },
+          {
             "o": 21011.75,
             "h": 21012.5,
             "l": 21006.5,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21008.0,
             "l": 21003.75,
             "c": 21005.75
-           },
-           {
+          },
+          {
             "o": 21005.75,
             "h": 21007.75,
             "l": 21005.25,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21009.25,
             "l": 21006.75,
             "c": 21008.5
-           },
-           {
+          },
+          {
             "o": 21008.5,
             "h": 21010.5,
             "l": 21007.25,
             "c": 21009.0
-           },
-           {
+          },
+          {
             "o": 21009.0,
             "h": 21012.25,
             "l": 21008.25,
             "c": 21011.5
-           },
-           {
+          },
+          {
             "o": 21011.5,
             "h": 21013.5,
             "l": 21010.5,
             "c": 21012.25
-           },
-           {
+          },
+          {
             "o": 21012.25,
             "h": 21021.75,
             "l": 21011.5,
             "c": 21020.75
-           },
-           {
+          },
+          {
             "o": 21020.75,
             "h": 21028.25,
             "l": 21019.25,
             "c": 21027.0
-           },
-           {
+          },
+          {
             "o": 21027.0,
             "h": 21035.0,
             "l": 21026.5,
             "c": 21034.25
-           },
-           {
+          },
+          {
             "o": 21034.25,
             "h": 21039.25,
             "l": 21033.25,
             "c": 21039.0
-           },
-           {
+          },
+          {
             "o": 21039.0,
             "h": 21046.0,
             "l": 21037.75,
             "c": 21045.5
-           },
-           {
+          },
+          {
             "o": 21045.5,
             "h": 21049.75,
             "l": 21044.0,
             "c": 21049.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "tags": [
-           {
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "tags": [
+          {
             "at": 16,
             "text": "CLOSED",
             "tone": "gold"
-           },
-           {
+          },
+          {
             "at": 24,
             "text": "RETEST",
             "tone": "gold"
-           }
-          ],
-          "head": {
-           "tf": "1M",
-           "label": "You waited"
-          },
-          "play": {
-           "from": 16,
-           "to": 36,
-           "speed": 300
           }
-         },
-         "say": [
-          "This time it closed, retested, and became the trade.",
-          "Some days it never closes. Either way, <b>the rule decided, not the look.</b>"
-         ]
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "You waited"
         },
-        "track": "ruleBasedResponses"
-       }
-      ]
-     }
-    },
-    {
-     "say": [
-      "Your plan doesn’t have a rule called “it looks good”.",
-      "If it did, every setup would qualify."
-     ]
-    },
-    {
-     "principle": "ALMOST MEETING YOUR RULES IS NOT MEETING YOUR RULES."
-    }
-   ]
-  },
-  {
-   "type": "p7_monologue",
-   "kicker": "The exception trap",
-   "lines": [
-    "Rule: “I only enter after a Continuation close.”",
-    "A beautiful setup appears.",
-    "FREEZE.",
-    "<b>UNLESS WHAT? 😂</b>"
-   ]
-  },
-  {
-   "type": "p7_ask",
-   "kicker": "When can an exception exist?",
-   "title": "UNLESS WHAT?",
-   "asks": [
-    {
-     "prompt": "When is a legitimate exception to your rule allowed?",
-     "options": [
-      {
-       "label": "When the setup feels special",
-       "feedback": "That’s the exception being invented in real time.",
-       "rinc": "exceptions"
-      },
-      {
-       "label": "Only if it was written into your rulebook before the session",
-       "correct": true,
-       "why": "Defined in advance. Not created because this one looks good."
+        "play": {
+          "from": 16,
+          "to": 36,
+          "speed": 300
+        }
       }
-     ],
-     "rcat": "daily"
+    },
+    {
+      "type": "v2_steps",
+      "kicker": "The exception trap",
+      "headline": "The rule is clear, so why does your brain whisper <em>“unless”</em>?",
+      "line": "Your plan doesn’t have a rule called “it looks good.”",
+      "steps": [
+        {
+          "label": "The rule",
+          "sub": "You only enter after a Continuation candle closes."
+        },
+        {
+          "label": "The setup",
+          "sub": "A beautiful setup appears that doesn’t quite qualify."
+        },
+        {
+          "label": "Freeze",
+          "sub": "Your brain starts negotiating with your rule."
+        },
+        {
+          "label": "“Unless…”",
+          "sub": "Once you make one exception, every setup could qualify."
+        }
+      ],
+      "cta": "Next →"
+    },
+    {
+      "type": "v2_compare",
+      "kicker": "When can an exception exist?",
+      "headline": "Real exceptions are <em>written down in advance.</em>",
+      "cards": [
+        {
+          "label": "Invented live",
+          "sub": "This one just feels special.",
+          "spark": "chop",
+          "tag": "MOOD",
+          "tone": "pink"
+        },
+        {
+          "label": "Written beforehand",
+          "sub": "It’s in your rulebook before the session starts.",
+          "spark": "up",
+          "tag": "RULEBOOK",
+          "tone": "teal"
+        }
+      ],
+      "check": {
+        "prompt": "When is a real exception allowed?",
+        "options": [
+          {
+            "label": "When the setup feels special",
+            "correct": false,
+            "feedback": "That’s an exception being invented in real time, because of how the chart feels."
+          },
+          {
+            "label": "When it’s written in my rulebook beforehand",
+            "correct": true,
+            "feedback": "Yes. A real exception is defined in advance, not created because this one looks good."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "“Unless” is the most expensive word in trading. 😂",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What does <em>“but this one looks good”</em> usually mean for you?",
+      "modelAnswer": "It means the setup is almost there and I want it to count. Almost meeting my rules is not meeting them. Exceptions only exist if I wrote them in advance."
     }
-   ]
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "“Unless” is the most expensive word in trading. 😂",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "What does “but this one looks good” usually mean for you?",
-   "modelAnswer": "It means the setup is almost there and I want it to count. Almost meeting my rules is not meeting them. Exceptions only exist if I wrote them in advance."
-  }
- ],
- "takeaways": [
-  "Almost isn’t a rule.",
-  "A wick isn’t a close.",
-  "Exceptions are written in advance, never live."
- ],
- "remember": "ALMOST MEETING YOUR RULES IS NOT MEETING YOUR RULES."
+  ],
+  "takeaways": [
+    "Almost isn’t a rule.",
+    "A wick isn’t a close.",
+    "Exceptions are written in advance, never live."
+  ],
+  "remember": "ALMOST MEETING YOUR RULES IS NOT MEETING YOUR RULES."
 }

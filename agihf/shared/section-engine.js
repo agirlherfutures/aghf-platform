@@ -124,7 +124,8 @@ export function renderSectionWizard(data, opts) {
 
     if (step.type === 'welcome') renderWelcome(slide, data.welcome, () => completeStepAndAdvance(i));
     else if (step.type === 'challenge') renderChallenge(slide, data.challenge, () => completeStepAndAdvance(i), { handleStreak, burst });
-    else if (step.type === 'game') renderGame(slide, data.game, () => completeStepAndAdvance(i), { handleStreak, burst, sectionId });
+    // A game-only flow (e.g. the Phase 5 ICC Sequence Game) returns to the Academy when it's done.
+    else if (step.type === 'game') renderGame(slide, data.game, () => (i === steps.length - 1 ? window.location.assign(backHref) : completeStepAndAdvance(i)), { handleStreak, burst, sectionId });
     else if (step.type === 'knowledge') renderKnowledge(slide, data.knowledgeCheck, (pct) => { results.knowledgePct = pct; completeStepAndAdvance(i); }, { handleStreak, burst, sectionId });
     else if (step.type === 'checkin') renderCheckin(slide, data.checkin, sectionId, () => completeStepAndAdvance(i));
     else if (step.type === 'final') renderPhaseFinal(slide, data.final, (pct) => { results.finalPct = pct; completeStepAndAdvance(i); }, { handleStreak, burst, sectionId });

@@ -1,0 +1,89 @@
+(pause-until: 00:00:00,000)
+
+(next-paragraph-max-duration: 3.000)
+
+Welcome to Lesson Seven of How Markets Move.
+
+(pause-until: 00:00:03,000)
+
+(next-paragraph-max-duration: 5.000)
+
+Here's a big one: structure exists inside structure.
+
+(pause-until: 00:00:08,000)
+
+(next-paragraph-max-duration: 5.000)
+
+External structure is the larger swing boundaries defining the range you're analyzing. Think of it as the room.
+
+(pause-until: 00:00:13,000)
+
+(next-paragraph-max-duration: 4.000)
+
+The external high and the external low are the doors.
+
+(pause-until: 00:00:17,000)
+
+(next-paragraph-max-duration: 7.000)
+
+Internal structure is the smaller swings developing inside those boundaries. Furniture. Pictures. Mirrors. Tables.
+
+(pause-until: 00:00:24,000)
+
+(next-paragraph-max-duration: 10.000)
+
+Things can change inside the room, while you're still inside the room.
+
+(pause-until: 00:00:34,000)
+
+(next-paragraph-max-duration: 1.000)
+
+Here's the same idea on a chart.
+
+(pause-until: 00:00:35,000)
+
+(next-paragraph-max-duration: 6.000)
+
+The external structure: a higher low, then a higher high. The room is bullish.
+
+(pause-until: 00:00:41,000)
+
+(next-paragraph-max-duration: 8.000)
+
+Inside it, the smaller swings start making lower highs and lower lows.
+
+(pause-until: 00:00:49,000)
+
+(next-paragraph-max-duration: 9.000)
+
+Internal structure is bearish, while price is still inside the larger external range. Both are true.
+
+(pause-until: 00:00:58,000)
+
+(next-paragraph-max-duration: 1.000)
+
+So remember this.
+
+(pause-until: 00:00:59,000)
+
+(next-paragraph-max-duration: 10.000)
+
+One little lower low doesn't automatically mean the entire higher-timeframe story changed.
+
+(pause-until: 00:01:09,000)
+
+(next-paragraph-max-duration: 2.000)
+
+So here's your mission for this lesson.
+
+(pause-until: 00:01:11,000)
+
+(next-paragraph-max-duration: 7.000)
+
+If smaller swings turn bearish while price stays inside a larger range, has the bigger story changed?
+
+(pause-until: 00:01:18,000)
+
+(next-paragraph-max-duration: 4.000)
+
+Let's find out.

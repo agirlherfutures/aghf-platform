@@ -18,6 +18,7 @@
 .sc-point .sc-dot{fill:#fff;stroke:var(--purple);stroke-width:2.5;opacity:0;transition:opacity .2s, r .2s;}
 .sc-point .sc-hit{fill:transparent;}
 .sc-tappable .sc-point.sc-tap{cursor:pointer;}
+.sc-tappable .sc-mark{pointer-events:none;}
 .sc-tappable .sc-point.sc-tap .sc-dot{opacity:1;animation:scPulse 1.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
 .sc-tappable .sc-point.sc-tap:hover .sc-dot{fill:var(--purple-pale);}
 .sc-point.is-good .sc-dot{fill:var(--teal);stroke:#2F8A7F;animation:none;opacity:1;}
@@ -646,3 +647,17 @@ body.sg-lab .lw-wrap,body.sg-lab #lwWrap{max-width:980px;}
 .pc-msec-c i{font-style:normal;color:var(--pink-light,#F9B8C6);}
 @media (max-width:700px){.pc-msec{grid-template-columns:1fr;}}
 @media (prefers-reduced-motion: reduce){.pc-fw-chart .pc-fw-ovl,.pc-fw-list,.pc-fw-g span,.pc-fw-head,.pc-pause .pc-pz{animation:none!important;opacity:1;}.pc-fw-list{display:none;}}
+
+/* Visual section intro: heading + hook left, what-you'll-learn icon tiles right. */
+.sec-vis-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:20px;align-items:center;}
+.sec-vis h3{font-size:1.55rem;line-height:1.15;margin-bottom:6px;}
+.sec-vis-hook{font-size:.95rem !important;color:var(--muted) !important;margin-bottom:12px !important;}
+.sec-vis .sec-welcome-mission{margin:0;}
+.sec-vis-label{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.sec-vis-tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.sec-vis-tile{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:10px 12px;box-shadow:0 4px 14px rgba(44,24,16,.05);}
+.sec-vis-tile .v2-icon{display:inline-flex;align-items:center;justify-content:center;border-radius:30%;flex:none;}
+.sec-vis-tile span:last-child{font-family:var(--font-display);font-weight:700;font-size:.92rem;line-height:1.25;color:var(--dark);}
+.sec-vis .sec-welcome-progress{margin-top:14px;}
+@media (max-width:720px){.sec-vis-top{grid-template-columns:1fr;}}
+@media (max-width:480px){.sec-vis-tiles{grid-template-columns:1fr;gap:8px;}.sec-vis-tile{padding:8px 12px;}}

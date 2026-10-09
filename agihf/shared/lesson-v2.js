@@ -22,6 +22,8 @@
 
 import { wireRetryOptions } from './lesson-engine.js';
 import { saveLessonReflection } from './journal-service.js';
+import { trackAll } from './mind-core.js';
+import { icon, TONES } from './icons.js';
 
 /* ── Aristella (the same drawing as the videos) ───────────────────────── */
 
@@ -83,13 +85,15 @@ const SPARKS = {
   chop: '<polyline points="4,40 18,26 28,34 44,14 56,30 70,20 84,44 98,28 116,10" />',
 };
 
-/** The screen shell: words on the left, the visual on the right. */
-function shell(el, slide, rightHtml, extraLeft = '', opts = {}) {
+const plainLen = (h) => String(h).replace(/<[^>]+>/g, '').length;
+
+/** The screen shell: words on the left, the visual on the right. A long headline drops to the smaller size. */
+export function shell(el, slide, rightHtml, extraLeft = '', opts = {}) {
   el.innerHTML = `
     <div class="v2${opts.cls ? ` ${opts.cls}` : ''}">
       <div class="v2-l">
         ${slide.kicker ? `<div class="v2-kick">${slide.kicker}</div>` : ''}
-        ${slide.headline ? `<h2 class="v2-big${slide.small ? ' v2-big-sm' : ''}">${slide.headline}</h2>` : ''}
+        ${slide.headline ? `<h2 class="v2-big${plainLen(slide.headline) > 70 ? ' v2-big-xs' : slide.small || plainLen(slide.headline) > 44 ? ' v2-big-sm' : ''}">${slide.headline}</h2>` : ''}
         ${slide.line ? `<p class="v2-line">${slide.line}</p>` : ''}
         ${extraLeft}
         <div class="v2-spacer"></div>
@@ -100,7 +104,7 @@ function shell(el, slide, rightHtml, extraLeft = '', opts = {}) {
   return { card: el.querySelector('.v2'), act: el.querySelector('.v2-act'), right: el.querySelector('.v2-r') };
 }
 
-function nextBtn(act, satisfy, label = 'Next →', pink = false) {
+export function nextBtn(act, satisfy, label = 'Next →', pink = false) {
   if (act.querySelector('.v2-btn')) return;
   const b = document.createElement('button');
   b.type = 'button';
@@ -111,7 +115,7 @@ function nextBtn(act, satisfy, label = 'Next →', pink = false) {
 }
 
 /** A tap question; `onSolved` runs once the right option is picked. */
-function check(container, chk, helpers, onSolved) {
+export function check(container, chk, helpers, onSolved) {
   const box = document.createElement('div');
   box.className = 'v2-check';
   box.innerHTML = `${chk.prompt ? `<div class="v2-q">${chk.prompt}</div>` : ''}
@@ -120,6 +124,15 @@ function check(container, chk, helpers, onSolved) {
     </div><div class="lw-feedback"></div>`;
   container.appendChild(box);
   wireRetryOptions(box.querySelectorAll('.v2-chip'), chk.options, box.querySelector('.lw-feedback'), onSolved, helpers.handleStreak);
+  // Phase 7 options can carry `track` (mind counters): her first instinct is what gets remembered.
+  if (chk.options.some((o) => o.track)) {
+    let tracked = false;
+    box.querySelectorAll('.v2-chip').forEach((chip, i) => chip.addEventListener('click', () => {
+      if (tracked) return;
+      tracked = true;
+      trackAll(chk.options[i].track);
+    }));
+  }
 }
 
 /* ── Screens ───────────────────────────────────────────────────────────── */
@@ -238,7 +251,7 @@ export function renderV2Dayli(el, slide, satisfy) {
 
 export function renderV2Reflect(el, slide, satisfy, helpers) {
   const { act, right } = shell(el, { ...slide, headline: slide.prompt, small: true, line: slide.hint || 'One or two sentences is perfect. It saves to your Lesson Notes.' },
-    `<div class="v2-write"><textarea class="v2-textarea" rows="5" placeholder="Type it how YOU understand it…"></textarea>
+    `<div class="v2-write">${slide.beforeHtml || ''}<textarea class="v2-textarea" rows="5" placeholder="Type it how YOU understand it…"></textarea>
       <div class="v2-answer" hidden><strong>💡 Dayli’s answer:</strong> ${slide.modelAnswer}</div></div>`);
   const input = right.querySelector('textarea');
   const save = document.createElement('button');
@@ -263,43 +276,6 @@ export function renderV2Reflect(el, slide, satisfy, helpers) {
   });
 }
 
-
-/* ── Drawn icons (no emoji): 24×24, two-tone ───────────────────────────── */
-
-const IC = {
-  up: '<path d="M4 17 L10 11 L13 14 L20 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7 H20 V12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
-  down: '<path d="M4 7 L10 13 L13 10 L20 17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 17 H20 V12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
-  clock: '<circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 7 V12 L15.5 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
-  shield: '<path d="M12 3 L19 6 C19 13 16 18 12 21 C8 18 5 13 5 6 Z" fill="currentColor" opacity=".9"/>',
-  coin: '<circle cx="12" cy="12" r="8.5" fill="currentColor"/><text x="12" y="16.2" font-size="11" font-weight="900" text-anchor="middle" fill="#fff" font-family="DM Sans, sans-serif">$</text>',
-  bars: '<rect x="4" y="11" width="3.4" height="9" rx="1" fill="currentColor"/><rect x="10.3" y="5" width="3.4" height="15" rx="1" fill="currentColor"/><rect x="16.6" y="8" width="3.4" height="12" rx="1" fill="currentColor"/>',
-  target: '<circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/>',
-  layers: '<path d="M12 4 L21 9 L12 14 L3 9 Z" fill="currentColor"/><path d="M3 13 L12 18 L21 13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>',
-  globe: '<circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M3.5 12 H20.5 M12 3.5 C8 8 8 16 12 20.5 C16 16 16 8 12 3.5" fill="none" stroke="currentColor" stroke-width="1.8"/>',
-  scale: '<path d="M12 4 V20 M6 20 H18 M5 8 H19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M5 8 L2.5 14 H7.5 Z M19 8 L16.5 14 H21.5 Z" fill="currentColor"/>',
-  bolt: '<path d="M13 2 L5 13 H11 L10 22 L19 10 H13 Z" fill="currentColor"/>',
-  swap: '<path d="M4 8 H18 M14 4 L18 8 L14 12 M20 16 H6 M10 12 L6 16 L10 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
-  user: '<circle cx="12" cy="8" r="4" fill="currentColor"/><path d="M4 20 C5 15 8.5 13 12 13 C15.5 13 19 15 20 20 Z" fill="currentColor"/>',
-  bank: '<path d="M3 9 L12 4 L21 9 Z" fill="currentColor"/><path d="M5 10 V17 M9.5 10 V17 M14.5 10 V17 M19 10 V17 M3 19 H21" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
-  flask: '<path d="M9 3 H15 M10 3 V9 L4.5 18.5 C4 19.5 4.6 21 6 21 H18 C19.4 21 20 19.5 19.5 18.5 L14 9 V3" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><path d="M7 16 H17 L18.5 19 H5.5 Z" fill="currentColor"/>',
-  flag: '<path d="M5 21 V4" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><path d="M5 4 H18 L15.5 8 L18 12 H5 Z" fill="currentColor"/>',
-  eye: '<path d="M2 12 C5 6.5 8.5 4.5 12 4.5 C15.5 4.5 19 6.5 22 12 C19 17.5 15.5 19.5 12 19.5 C8.5 19.5 5 17.5 2 12 Z" fill="none" stroke="currentColor" stroke-width="2.1"/><circle cx="12" cy="12" r="3.4" fill="currentColor"/>',
-  zoom: '<circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.3"/><path d="M15.5 15.5 L20.5 20.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>',
-  candle: '<path d="M12 2.5 V21.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="8" y="7" width="8" height="10" rx="1.5" fill="currentColor"/>',
-  calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M3.5 10 H20.5 M8 3 V7 M16 3 V7" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>',
-  lock: '<rect x="5" y="10.5" width="14" height="10" rx="2.2" fill="currentColor"/><path d="M8 10.5 V7.5 C8 5 10 3.5 12 3.5 C14 3.5 16 5 16 7.5 V10.5" fill="none" stroke="currentColor" stroke-width="2.2"/>',
-  stop: '<path d="M8 3 H16 L21 8 V16 L16 21 H8 L3 16 V8 Z" fill="currentColor"/><path d="M8 12 H16" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>',
-  check: '<circle cx="12" cy="12" r="9" fill="currentColor"/><path d="M7.5 12.5 L10.5 15.5 L16.5 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>',
-  layout: '<rect x="3" y="4" width="18" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M3 9 H21 M9 9 V20" stroke="currentColor" stroke-width="2.1"/>',
-  ruler: '<rect x="2.5" y="8" width="19" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M6.5 8 V11.5 M10.5 8 V12.5 M14.5 8 V11.5 M18.5 8 V12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
-  heart: '<path d="M12 20 C5 15 3 11.5 3 8.5 C3 6 5 4 7.5 4 C9.5 4 11 5 12 6.8 C13 5 14.5 4 16.5 4 C19 4 21 6 21 8.5 C21 11.5 19 15 12 20 Z" fill="currentColor"/>',
-  doc: '<path d="M6 3 H14 L19 8 V21 H6 Z" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><path d="M9 12 H16 M9 16 H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
-};
-const TONES = { pink: ['#F4829A', '#FDE8ED'], teal: ['#2F8A7F', '#E8F8F6'], purple: ['#7F77DD', '#EEEDFE'], peach: ['#E08E2E', '#FEF3E4'], dark: ['#2C1810', '#F6EDE6'] };
-function icon(name, tone = 'pink', size = 26) {
-  const [fg, bg] = TONES[tone] || TONES.pink;
-  return `<span class="v2-icon" style="background:${bg};color:${fg};width:${size * 1.9}px;height:${size * 1.9}px"><svg viewBox="0 0 24 24" width="${size}" height="${size}" aria-hidden="true">${IC[name] || IC.check}</svg></span>`;
-}
 
 /* ── v2_screen: the general screen. A headline, one line, one visual, an optional quick check.
  *   visual: { host: pose }
@@ -338,7 +314,7 @@ export function renderV2Screen(el, slide, satisfy, helpers) {
       ${v.schedule.note ? `<div class="v2-sched-note">${v.schedule.note}</div>` : ''}
     </div>`;
 
-  const { act, card } = shell(el, slide, right, slide.check ? '<div class="v2-check-slot"></div>' : '', { cls: right ? '' : 'v2-solo' });
+  const { act, card } = shell(el, slide, right, slide.check ? '<div class="v2-check-slot"></div>' : '', { cls: !right ? 'v2-solo' : v.chart ? 'v2-wide' : '' });
   const gates = [];
   const ready = () => { if (gates.every((g) => g.done)) nextBtn(act, satisfy, slide.cta || 'Next →', !!slide.ctaPink); };
 
@@ -412,11 +388,11 @@ export function renderV2Complete(el, data, { nextHref, backHref, nextTitle, next
         <div class="v2-quote">${data.doneHeading || `${data.title} ✦`}</div>
         ${data.remember ? `<p class="v2-line">${data.remember}</p>` : ''}
         ${(data.takeaways || []).length ? `<ul class="v2-takeaways">${data.takeaways.map((t) => `<li>${t}</li>`).join('')}</ul>` : ''}
-        <div class="v2-gp">+${data.xpValue} GP</div>
+        ${data.xpValue ? `<div class="v2-gp">+${data.xpValue} GP</div>` : ''}
         <div class="v2-act"><button type="button" class="v2-btn v2-btn-pink" id="v2NextBtn">${nextTitle ? `Next: ${nextTitle} →` : (nextCtaLabel || 'Back to lessons →')}</button></div>
       </div>
     </div>
-    <div class="lw-back-link"><a href="${backHref}">← Back to all lessons</a></div>`;
+    <div class="lw-back-link"><a href="${backHref}">${data.backLabel || '← Back to all lessons'}</a></div>`;
   mountHost(el.querySelector('.v2-host-box'), 'cheer');
   el.querySelector('#v2NextBtn').addEventListener('click', () => { window.location.href = nextHref || backHref; });
 }

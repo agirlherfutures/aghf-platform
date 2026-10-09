@@ -5,7 +5,7 @@
 window.LESSON_VIDEO = {
   "slug": "p5-lesson-7",
   "eyebrow": "Phase 5 · Section 12 · Lesson 7",
-  "duration": 80,
+  "duration": 82.9,
   "sources": "From Phase 5, Section 12, Lesson 7 (\"Higher-Timeframe ICC\"): the 4H Read the Room workspace already holds structure, range and location, and objective; ICC status is new: where is price in the sequence?; stage and clarity are separate; read the 4H story: structure bullish, location discount, ICC status correction (bullish indication happened, price is moving back, continuation hasn’t been proven), potential objective external high; \"That’s not a buy. That’s a market read.\"; HTF ICC is context, not a buy; \"What chapter of the story are we in?\"",
   "scenes": [
     {
@@ -94,16 +94,16 @@ window.LESSON_VIDEO = {
     {
       "type": "s12-reading-nook",
       "start": 32,
-      "end": 58,
+      "end": 60.9,
       "kicker": "HTF ICC status",
       "beats": {
         "book": 32.6,
         "chart": 33.4,
         "mark": 37,
         "card": 41.6,
-        "buy": 45,
-        "no": 46.8,
-        "rule": 50.2
+        "buy": 47.9,
+        "no": 49.7,
+        "rule": 53.1
       },
       "headlines": [
         {
@@ -112,7 +112,7 @@ window.LESSON_VIDEO = {
           "out": 44.8
         },
         {
-          "at": 45,
+          "at": 47.9,
           "html": "A market read, <span class=\"mark\">not a buy.</span>"
         }
       ],
@@ -137,17 +137,17 @@ window.LESSON_VIDEO = {
           "screen": "The read card fills in, row by row"
         },
         {
-          "at": 45,
+          "at": 47.9,
           "text": "So, buy now?",
           "screen": "A robot rolls in with a BUY button"
         },
         {
-          "at": 46.8,
+          "at": 49.7,
           "text": "No. That’s not a buy. That’s a market read.",
           "screen": "\"That’s a market read.\" ✗ on BUY"
         },
         {
-          "at": 50.2,
+          "at": 53.1,
           "text": "Higher-timeframe ICC is context. It is not an entry.",
           "screen": "HTF ICC = context, not an entry"
         }
@@ -155,29 +155,29 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-hook",
-      "start": 58,
-      "end": 68,
-      "pointAt": 60.6,
+      "start": 60.9,
+      "end": 70.9,
+      "pointAt": 63.5,
       "size": 66,
       "kicker": "Dayli says",
       "parts": [
         {
-          "at": 59.2,
+          "at": 62.1,
           "text": "That’s not a buy."
         },
         {
-          "at": 60.6,
+          "at": 63.5,
           "html": "<span class=\"mark\">That’s a market read.</span>"
         }
       ],
       "lines": [
         {
-          "at": 58.2,
+          "at": 61.1,
           "text": "Here’s the big takeaway.",
           "screen": "Aristella thinks"
         },
         {
-          "at": 59.8,
+          "at": 62.7,
           "text": "4H structure bullish. Discount. ICC: correction. That’s not a buy. That’s a market read.",
           "screen": "Aristella points"
         }
@@ -185,30 +185,30 @@ window.LESSON_VIDEO = {
     },
     {
       "type": "host-mission",
-      "start": 68,
-      "end": 80,
+      "start": 70.9,
+      "end": 82.9,
       "kicker": "Your mission",
       "question": {
-        "at": 70.4,
+        "at": 73.3,
         "text": "Why isn’t a higher-timeframe ICC read an entry?"
       },
       "cta": {
-        "at": 76.4,
+        "at": 79.3,
         "text": "Let’s find out"
       },
       "lines": [
         {
-          "at": 68.2,
+          "at": 71.1,
           "text": "Here’s your mission for this lesson.",
           "screen": "\"Your mission\""
         },
         {
-          "at": 70.4,
+          "at": 73.3,
           "text": "Why isn’t a higher-timeframe ICC read an entry?",
           "screen": "Mission question"
         },
         {
-          "at": 76.4,
+          "at": 79.3,
           "text": "Let’s find out.",
           "screen": "Aristella cheers; \"Let’s find out →\""
         }

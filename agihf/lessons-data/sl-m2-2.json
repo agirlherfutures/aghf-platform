@@ -1,0 +1,263 @@
+{
+ "phase": "sl",
+ "section": "m2",
+ "lessonNumber": "m2-2",
+ "title": "Recognizing the First Correction",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "The first pullback after BOS #1 sets the stage. It never holds the zone.",
+ "launchpad": {
+  "outcome": "Find Correction #1 on bullish and bearish charts, explain why it is never the execution zone, and apply the 15M reclaim rule as conditional, not mandatory.",
+  "missionQuestion": "How do you tell the first correction from everything around it?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "Correction #1 is the 5M pullback right after BOS #1.",
+  "A correction back toward the original 15M break is preferred.",
+  "Correction #1 never creates the execution zone. Correction #2 does.",
+  "A reclaim of the 15M level can add confirmation, but it is conditional, not mandatory."
+ ],
+ "remember": "CORRECTION #1 SETS THE STAGE. IT NEVER HOLDS THE ZONE.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 2 · Lesson 2",
+   "headline": "Find the <em>first pullback.</em>",
+   "line": "Correction #1 is the 5M pullback right after BOS (break of structure) #1. You’ll practise finding it on bullish and bearish charts.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · What Correction #1 is",
+   "headline": "Three things to know <em>about Correction #1.</em>",
+   "line": "Tap each card.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "clock",
+      "tone": "purple",
+      "label": "When",
+      "sub": "Right after BOS #1, on the 5M."
+     },
+     {
+      "icon": "target",
+      "tone": "teal",
+      "label": "Where",
+      "sub": "Preferably back toward the original 15M break."
+     },
+     {
+      "icon": "stop",
+      "tone": "pink",
+      "label": "What it isn’t",
+      "sub": "It never creates the execution zone. That’s Correction #2’s job."
+     }
+    ]
+   },
+   "cta": "Practise →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 2 · Bullish",
+   "headline": "Find <em>Correction #1.</em>",
+   "line": "BOS #1 has closed above the 15M level. Now find the first 5M pullback.",
+   "scenario": "bull-valid",
+   "tf": "5M",
+   "until": "c1+2",
+   "show": [
+    "bos1"
+   ],
+   "within": [
+    "bos1",
+    "c1+2"
+   ],
+   "ask": "Tap any candle in Correction #1.",
+   "target": "c1",
+   "why": "That candle is part of the first 5M pullback after BOS #1.",
+   "after": {
+    "show": [
+     "c1"
+    ],
+    "caption": "<b>Correction #1</b> pulls back toward the 15M level before buyers push on."
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 3 · Bearish",
+   "headline": "Same job, <em>other direction.</em>",
+   "line": "BOS #1 has closed below the 15M level. In a bearish setup, Correction #1 pulls back up.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "until": "c1+2",
+   "show": [
+    "bos1"
+   ],
+   "within": [
+    "bos1",
+    "c1+2"
+   ],
+   "ask": "Tap any candle in Correction #1.",
+   "target": "c1",
+   "why": "That candle is part of the first 5M pullback after BOS #1, back up toward the 15M break.",
+   "after": {
+    "show": [
+     "c1"
+    ],
+    "caption": "<b>Correction #1</b> in a bearish setup is a move up, back toward the original 15M break."
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 4 · One more",
+   "headline": "Find it, then <em>watch what follows.</em>",
+   "line": "Bearish again. Find Correction #1, then see whether the sequence continues.",
+   "scenario": "bear-no-bos2",
+   "tf": "5M",
+   "until": "c1+1",
+   "show": [
+    "bos1"
+   ],
+   "within": [
+    "bos1",
+    "c1+1"
+   ],
+   "ask": "Tap any candle in Correction #1.",
+   "target": "c1",
+   "why": "That candle is part of the first 5M pullback after BOS #1.",
+   "after": {
+    "show": [
+     "c1"
+    ],
+    "until": "end",
+    "caption": "<b>No BOS #2.</b> Correction #1 formed, but no 5M candle closed below the low it pulled back from. The sequence is incomplete, so there is no trade."
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 5 · Never the zone",
+   "headline": "Correction #1 is <em>never the zone.</em>",
+   "line": "Bullish example. Watch where the zone actually comes from.",
+   "scenario": "bull-valid",
+   "tf": "5M",
+   "start": "bos1",
+   "toggle": false,
+   "show": [
+    "bos1"
+   ],
+   "steps": [
+    {
+     "until": "c1",
+     "show": [
+      "c1"
+     ],
+     "caption": "<b>Correction #1.</b> A pullback, but not a zone. The sequence still needs BOS #2."
+    },
+    {
+     "until": "bos2",
+     "show": [
+      "bos2"
+     ],
+     "caption": "<b>BOS #2.</b> A 5M close above the high Correction #1 pulled back from."
+    },
+    {
+     "until": "c2",
+     "show": [
+      "c2",
+      "zone",
+      "zoneCandle"
+     ],
+     "caption": "<b>Correction #2</b> creates the zone from its last bearish candle. This is where the zone lives.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    }
+   ],
+   "check": {
+    "prompt": "Price later trades back into a Correction #1 candle. Is that your entry zone?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, it’s a bearish candle in a pullback",
+      "correct": false,
+      "feedback": "Correction #1 never creates the execution zone. The zone comes from the last bearish candle of Correction #2."
+     },
+     {
+      "label": "No, the zone comes from Correction #2",
+      "correct": true,
+      "why": "Right. Correction #1 sets the stage. Correction #2 creates the zone."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 6 · The 15M reclaim rule",
+   "headline": "Preferred, <em>not mandatory.</em>",
+   "line": "The reclaim rule is conditional and still under testing.",
+   "visual": {
+    "versus": [
+     {
+      "label": "Preferred",
+      "tone": "teal",
+      "icon": "check",
+      "points": [
+       "Correction #1 pulls back toward the original 15M break.",
+       "A reclaim of the 15M BOS or MSS (market structure shift) level can add structural confirmation."
+      ]
+     },
+     {
+      "label": "Not a requirement",
+      "tone": "peach",
+      "icon": "scale",
+      "points": [
+       "The reclaim is a conditional rule, not a universal one.",
+       "Don’t reject an otherwise valid setup only because a reclaim didn’t happen."
+      ]
+     }
+    ]
+   },
+   "check": {
+    "prompt": "Correction #1 pulled back toward the 15M break, but there was no reclaim of the 15M level. What do you do?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Reject the setup. The reclaim is required.",
+      "correct": false,
+      "feedback": "The reclaim can add confirmation, but it isn’t mandatory. Don’t reject an otherwise valid setup only because it didn’t happen."
+     },
+     {
+      "label": "Keep following the sequence",
+      "correct": true,
+      "why": "Right. A reclaim is extra confirmation when it happens. Keep reading for BOS #2, Correction #2 and BOS #3."
+     }
+    ]
+   },
+   "cta": "Next →",
+   "provisional": [
+    "reclaim"
+   ]
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Correction #1 sets the stage. <em>It never holds the zone.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, how do you recognize Correction #1, and what role does the 15M reclaim play?",
+   "modelAnswer": "Correction #1 is the first 5M pullback right after BOS #1, preferably back toward the original 15M break. In a bullish setup it pulls down, and in a bearish setup it pulls up. It never creates the execution zone, because the zone comes from Correction #2. A reclaim of the 15M level can add confirmation, but it is conditional, so I don’t reject an otherwise valid setup just because it didn’t happen."
+  }
+ ]
+}

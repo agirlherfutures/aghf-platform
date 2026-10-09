@@ -1,683 +1,488 @@
 {
- "phase": "p7",
- "section": "s19",
- "lessonNumber": 19,
- "title": "The News You Already Knew About",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "It was on the calendar.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Feel a valid setup three minutes before a scheduled release, and build the news rule you’ll follow.",
-  "missionQuestion": "What does my rule say when an event is scheduled?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "The News You Already Knew About",
-   "title": "9:57",
-   "beats": [
+  "phase": "p7",
+  "section": "s19",
+  "lessonNumber": 19,
+  "title": "The News You Already Knew About",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "It was on the calendar.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Feel a valid setup three minutes before a scheduled release, and build the news rule you’ll follow.",
+    "missionQuestion": "What does my rule say when an event is scheduled?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "cards": [
-      "CALENDAR · HIGH-IMPACT RELEASE · 10:00",
-      "YOU SAW IT THIS MORNING"
-     ]
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 19",
+      "headline": "The news release <em>was on the calendar.</em>",
+      "line": "A high-impact news release was scheduled for 10:00. You even saw it on the calendar this morning.",
+      "pose": "point",
+      "cta": "Show me →"
     },
     {
-     "chart": {
-      "bars": [
-       {
-        "o": 20982.25,
-        "h": 20986.5,
-        "l": 20981.5,
-        "c": 20985.5
-       },
-       {
-        "o": 20985.5,
-        "h": 20991.5,
-        "l": 20985.25,
-        "c": 20990.5
-       },
-       {
-        "o": 20990.5,
-        "h": 20994.25,
-        "l": 20990.0,
-        "c": 20993.0
-       },
-       {
-        "o": 20993.0,
-        "h": 20998.75,
-        "l": 20991.5,
-        "c": 20998.25
-       },
-       {
-        "o": 20998.25,
-        "h": 21004.25,
-        "l": 20997.0,
-        "c": 21001.75
-       },
-       {
-        "o": 21001.75,
-        "h": 21002.75,
-        "l": 20998.5,
-        "c": 20999.0
-       },
-       {
-        "o": 20999.0,
-        "h": 21000.25,
-        "l": 20995.75,
-        "c": 20996.75
-       },
-       {
-        "o": 20996.75,
-        "h": 20997.75,
-        "l": 20994.25,
-        "c": 20994.5
-       },
-       {
-        "o": 20994.5,
-        "h": 20995.75,
-        "l": 20990.25,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20994.25,
-        "l": 20990.0,
-        "c": 20994.0
-       },
-       {
-        "o": 20994.0,
-        "h": 20999.0,
-        "l": 20992.75,
-        "c": 20997.75
-       },
-       {
-        "o": 20997.75,
-        "h": 21002.5,
-        "l": 20996.25,
-        "c": 21001.25
-       },
-       {
-        "o": 21001.25,
-        "h": 21007.75,
-        "l": 21001.25,
-        "c": 21007.0
-       },
-       {
-        "o": 21007.0,
-        "h": 21007.0,
-        "l": 21001.25,
-        "c": 21002.0
-       },
-       {
-        "o": 21002.0,
-        "h": 21008.5,
-        "l": 21002.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21012.5,
-        "l": 21005.75,
-        "c": 21012.0
-       },
-       {
-        "o": 21012.0,
-        "h": 21019.5,
-        "l": 21011.25,
-        "c": 21018.5
-       },
-       {
-        "o": 21018.5,
-        "h": 21025.25,
-        "l": 21017.75,
-        "c": 21024.5
-       },
-       {
-        "o": 21024.5,
-        "h": 21031.25,
-        "l": 21023.5,
-        "c": 21030.25
-       },
-       {
-        "o": 21030.25,
-        "h": 21031.25,
-        "l": 21022.0,
-        "c": 21023.5
-       },
-       {
-        "o": 21023.5,
-        "h": 21025.0,
-        "l": 21014.75,
-        "c": 21015.75
-       },
-       {
-        "o": 21015.75,
-        "h": 21016.25,
-        "l": 21006.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21008.75,
-        "l": 21003.75,
-        "c": 21005.75
-       }
-      ],
-      "pil": 21004.25,
-      "pilAt": 4,
-      "head": {
-       "tf": "1M",
-       "label": "9:57"
+      "type": "v2_moment",
+      "kicker": "9:57 · Three minutes out",
+      "headline": "You have a valid setup, but <em>the release is in three minutes.</em>",
+      "line": "It’s a first retest and it looks good. The calendar still says the release hits at 10:00.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.5,
+            "c": 20985.5
+          },
+          {
+            "o": 20985.5,
+            "h": 20991.5,
+            "l": 20985.25,
+            "c": 20990.5
+          },
+          {
+            "o": 20990.5,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20993.0
+          },
+          {
+            "o": 20993.0,
+            "h": 20998.75,
+            "l": 20991.5,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.0,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21002.75,
+            "l": 20998.5,
+            "c": 20999.0
+          },
+          {
+            "o": 20999.0,
+            "h": 21000.25,
+            "l": 20995.75,
+            "c": 20996.75
+          },
+          {
+            "o": 20996.75,
+            "h": 20997.75,
+            "l": 20994.25,
+            "c": 20994.5
+          },
+          {
+            "o": 20994.5,
+            "h": 20995.75,
+            "l": 20990.25,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20994.25,
+            "l": 20990.0,
+            "c": 20994.0
+          },
+          {
+            "o": 20994.0,
+            "h": 20999.0,
+            "l": 20992.75,
+            "c": 20997.75
+          },
+          {
+            "o": 20997.75,
+            "h": 21002.5,
+            "l": 20996.25,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21008.5,
+            "l": 21002.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21012.5,
+            "l": 21005.75,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21019.5,
+            "l": 21011.25,
+            "c": 21018.5
+          },
+          {
+            "o": 21018.5,
+            "h": 21025.25,
+            "l": 21017.75,
+            "c": 21024.5
+          },
+          {
+            "o": 21024.5,
+            "h": 21031.25,
+            "l": 21023.5,
+            "c": 21030.25
+          },
+          {
+            "o": 21030.25,
+            "h": 21031.25,
+            "l": 21022.0,
+            "c": 21023.5
+          },
+          {
+            "o": 21023.5,
+            "h": 21025.0,
+            "l": 21014.75,
+            "c": 21015.75
+          },
+          {
+            "o": 21015.75,
+            "h": 21016.25,
+            "l": 21006.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21008.75,
+            "l": 21003.75,
+            "c": 21005.75
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "head": {
+          "tf": "1M",
+          "label": "9:57"
+        },
+        "play": {
+          "from": 10,
+          "to": 23,
+          "speed": 300
+        }
       },
-      "play": {
-       "from": 10,
-       "to": 23,
-       "speed": 300
-      }
-     }
-    },
-    {
-     "say": [
-      "9:57. A valid setup. First retest.",
-      "The release is in three minutes."
-     ]
-    },
-    {
-     "thoughts": [
-      "“It’ll probably be fine.”",
-      "“I’ll be in and out before it hits.”"
-     ]
-    },
-    {
-     "choice": {
-      "prompt": "What do you do?",
-      "options": [
-       {
-        "label": "Take it",
-        "path": {
-         "chart": {
-          "bars": [
-           {
-            "o": 20982.25,
-            "h": 20986.5,
-            "l": 20981.5,
-            "c": 20985.5
-           },
-           {
-            "o": 20985.5,
-            "h": 20991.5,
-            "l": 20985.25,
-            "c": 20990.5
-           },
-           {
-            "o": 20990.5,
-            "h": 20994.25,
-            "l": 20990.0,
-            "c": 20993.0
-           },
-           {
-            "o": 20993.0,
-            "h": 20998.75,
-            "l": 20991.5,
-            "c": 20998.25
-           },
-           {
-            "o": 20998.25,
-            "h": 21004.25,
-            "l": 20997.0,
-            "c": 21001.75
-           },
-           {
-            "o": 21001.75,
-            "h": 21002.75,
-            "l": 20998.5,
-            "c": 20999.0
-           },
-           {
-            "o": 20999.0,
-            "h": 21000.25,
-            "l": 20995.75,
-            "c": 20996.75
-           },
-           {
-            "o": 20996.75,
-            "h": 20997.75,
-            "l": 20994.25,
-            "c": 20994.5
-           },
-           {
-            "o": 20994.5,
-            "h": 20995.75,
-            "l": 20990.25,
-            "c": 20991.25
-           },
-           {
-            "o": 20991.25,
-            "h": 20994.25,
-            "l": 20990.0,
-            "c": 20994.0
-           },
-           {
-            "o": 20994.0,
-            "h": 20999.0,
-            "l": 20992.75,
-            "c": 20997.75
-           },
-           {
-            "o": 20997.75,
-            "h": 21002.5,
-            "l": 20996.25,
-            "c": 21001.25
-           },
-           {
-            "o": 21001.25,
-            "h": 21007.75,
-            "l": 21001.25,
-            "c": 21007.0
-           },
-           {
-            "o": 21007.0,
-            "h": 21007.0,
-            "l": 21001.25,
-            "c": 21002.0
-           },
-           {
-            "o": 21002.0,
-            "h": 21008.5,
-            "l": 21002.0,
-            "c": 21007.25
-           },
-           {
-            "o": 21007.25,
-            "h": 21012.5,
-            "l": 21005.75,
-            "c": 21012.0
-           },
-           {
-            "o": 21012.0,
-            "h": 21019.5,
-            "l": 21011.25,
-            "c": 21018.5
-           },
-           {
-            "o": 21018.5,
-            "h": 21025.25,
-            "l": 21017.75,
-            "c": 21024.5
-           },
-           {
-            "o": 21024.5,
-            "h": 21031.25,
-            "l": 21023.5,
-            "c": 21030.25
-           },
-           {
-            "o": 21030.25,
-            "h": 21031.25,
-            "l": 21022.0,
-            "c": 21023.5
-           },
-           {
-            "o": 21023.5,
-            "h": 21025.0,
-            "l": 21014.75,
-            "c": 21015.75
-           },
-           {
-            "o": 21015.75,
-            "h": 21016.25,
-            "l": 21006.0,
-            "c": 21007.25
-           },
-           {
-            "o": 21007.25,
-            "h": 21008.75,
-            "l": 21003.75,
-            "c": 21005.75
-           },
-           {
-            "o": 21005.75,
-            "h": 21008.25,
-            "l": 21004.75,
-            "c": 21007.25
-           },
-           {
-            "o": 21007.25,
-            "h": 21008.25,
-            "l": 21005.25,
-            "c": 21006.25
-           },
-           {
-            "o": 21006.25,
-            "h": 21010.25,
-            "l": 20958.25,
-            "c": 20966.25
-           },
-           {
-            "o": 20966.25,
-            "h": 20976.5,
-            "l": 20965.0,
-            "c": 20976.0
-           },
-           {
-            "o": 20976.0,
-            "h": 20987.0,
-            "l": 20975.0,
-            "c": 20986.25
-           },
-           {
-            "o": 20986.25,
-            "h": 20996.5,
-            "l": 20985.25,
-            "c": 20995.75
-           },
-           {
-            "o": 20995.75,
-            "h": 21006.25,
-            "l": 20994.75,
-            "c": 21006.0
-           },
-           {
-            "o": 21006.0,
-            "h": 21014.75,
-            "l": 21005.0,
-            "c": 21014.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "tags": [
-           {
-            "at": 25,
-            "text": "RELEASE",
-            "tone": "warn"
-           }
-          ],
-          "head": {
-           "tf": "1M",
-           "label": "10:00"
+      "thoughts": [
+        "“It’ll probably be fine.”",
+        "“I’ll be in and out before it hits.”"
+      ],
+      "check": {
+        "prompt": "What would you do right now?",
+        "options": [
+          {
+            "label": "Take it and hope it’s fine",
+            "correct": false,
+            "feedback": "At 10:00, one fast candle went straight through your stop. The news moved price faster than your plan could handle.",
+            "track": [
+              "emotionalTradesTaken"
+            ]
           },
-          "play": {
-           "from": 23,
-           "to": 31,
-           "speed": 300
+          {
+            "label": "Pass and let the news settle",
+            "correct": true,
+            "feedback": "Yes. Some days the setup survives the news anyway. You don’t need it to, because your rule already decided.",
+            "track": "ruleBasedResponses"
           }
-         },
-         "say": [
-          "10:00. One candle went straight through your stop.",
-          "Fast candles around a release can fill you <b>worse</b> than your stop price.",
-          "It wasn’t bad luck. <b>It was on the calendar.</b>"
-         ]
-        },
-        "track": [
-         "emotionalTradesTaken"
         ]
-       },
-       {
-        "label": "Pass. Wait for the release to settle.",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+      }
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "10:00 · The release",
+      "headline": "Fast candles can fill you <em>worse than your stop.</em>",
+      "line": "When news hits, price can jump past your stop before you get out. This wasn’t bad luck, because it was on the calendar.",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
             "h": 20986.5,
             "l": 20981.5,
             "c": 20985.5
-           },
-           {
+          },
+          {
             "o": 20985.5,
             "h": 20991.5,
             "l": 20985.25,
             "c": 20990.5
-           },
-           {
+          },
+          {
             "o": 20990.5,
             "h": 20994.25,
             "l": 20990.0,
             "c": 20993.0
-           },
-           {
+          },
+          {
             "o": 20993.0,
             "h": 20998.75,
             "l": 20991.5,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.0,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21002.75,
             "l": 20998.5,
             "c": 20999.0
-           },
-           {
+          },
+          {
             "o": 20999.0,
             "h": 21000.25,
             "l": 20995.75,
             "c": 20996.75
-           },
-           {
+          },
+          {
             "o": 20996.75,
             "h": 20997.75,
             "l": 20994.25,
             "c": 20994.5
-           },
-           {
+          },
+          {
             "o": 20994.5,
             "h": 20995.75,
             "l": 20990.25,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20994.25,
             "l": 20990.0,
             "c": 20994.0
-           },
-           {
+          },
+          {
             "o": 20994.0,
             "h": 20999.0,
             "l": 20992.75,
             "c": 20997.75
-           },
-           {
+          },
+          {
             "o": 20997.75,
             "h": 21002.5,
             "l": 20996.25,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21007.0,
             "l": 21001.25,
             "c": 21002.0
-           },
-           {
+          },
+          {
             "o": 21002.0,
             "h": 21008.5,
             "l": 21002.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21012.5,
             "l": 21005.75,
             "c": 21012.0
-           },
-           {
+          },
+          {
             "o": 21012.0,
             "h": 21019.5,
             "l": 21011.25,
             "c": 21018.5
-           },
-           {
+          },
+          {
             "o": 21018.5,
             "h": 21025.25,
             "l": 21017.75,
             "c": 21024.5
-           },
-           {
+          },
+          {
             "o": 21024.5,
             "h": 21031.25,
             "l": 21023.5,
             "c": 21030.25
-           },
-           {
+          },
+          {
             "o": 21030.25,
             "h": 21031.25,
             "l": 21022.0,
             "c": 21023.5
-           },
-           {
+          },
+          {
             "o": 21023.5,
             "h": 21025.0,
             "l": 21014.75,
             "c": 21015.75
-           },
-           {
+          },
+          {
             "o": 21015.75,
             "h": 21016.25,
             "l": 21006.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21008.75,
             "l": 21003.75,
             "c": 21005.75
-           },
-           {
+          },
+          {
             "o": 21005.75,
             "h": 21008.25,
             "l": 21004.75,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21008.25,
             "l": 21005.25,
             "c": 21006.25
-           },
-           {
+          },
+          {
             "o": 21006.25,
             "h": 21010.25,
             "l": 20958.25,
             "c": 20966.25
-           },
-           {
+          },
+          {
             "o": 20966.25,
             "h": 20976.5,
             "l": 20965.0,
             "c": 20976.0
-           },
-           {
+          },
+          {
             "o": 20976.0,
             "h": 20987.0,
             "l": 20975.0,
             "c": 20986.25
-           },
-           {
+          },
+          {
             "o": 20986.25,
             "h": 20996.5,
             "l": 20985.25,
             "c": 20995.75
-           },
-           {
+          },
+          {
             "o": 20995.75,
             "h": 21006.25,
             "l": 20994.75,
             "c": 21006.0
-           },
-           {
+          },
+          {
             "o": 21006.0,
             "h": 21014.75,
             "l": 21005.0,
             "c": 21014.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "tags": [
-           {
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "tags": [
+          {
             "at": 25,
             "text": "RELEASE",
             "tone": "warn"
-           }
-          ],
-          "head": {
-           "tf": "1M",
-           "label": "From the sidelines"
-          },
-          "play": {
-           "from": 23,
-           "to": 31,
-           "speed": 300
           }
-         },
-         "say": [
-          "You watched it from the sidelines.",
-          "Some days the setup survives the release. You don’t need it to. <b>Your rule already decided.</b>"
-         ]
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "10:00"
         },
-        "track": "ruleBasedResponses"
-       }
-      ]
-     }
+        "play": {
+          "from": 23,
+          "to": 31,
+          "speed": 300
+        }
+      }
     },
     {
-     "say": [
-      "News doesn’t automatically make every setup invalid.",
-      "But a scheduled event shouldn’t surprise you <b>just because the candle did</b>."
-     ]
+      "type": "v2_compare",
+      "kicker": "News isn’t the problem",
+      "headline": "News isn’t the problem. <em>Being surprised by it is.</em>",
+      "cards": [
+        {
+          "label": "Checked the calendar",
+          "sub": "You decided your rule before the session opened.",
+          "spark": "slow",
+          "tag": "PREPARED",
+          "tone": "teal"
+        },
+        {
+          "label": "Forgot the release",
+          "sub": "You made up a rule in the middle of a candle.",
+          "spark": "down",
+          "tag": "SURPRISED",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "If you say “I forgot news was coming out,” what kind of problem is that?",
+        "options": [
+          {
+            "label": "It’s a market condition",
+            "correct": false,
+            "feedback": "The calendar was public. News doesn’t ruin every setup, but forgetting to check it is on you."
+          },
+          {
+            "label": "It’s a preparation problem",
+            "correct": true,
+            "feedback": "Yes. And the good news is that preparation is completely in your hands."
+          }
+        ]
+      }
     },
     {
-     "principle": "“I FORGOT NEWS WAS COMING OUT” IS NOT A MARKET CONDITION. IT’S A PREPARATION PROBLEM."
+      "type": "p7_rule_form",
+      "kicker": "Write it calm",
+      "title": "Your news rule",
+      "form": "news",
+      "punch": "No template is universally correct. Use the one you’ll actually follow. The Academy never invents news events or rules for you."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "The calendar is public. <em>Read it before the bell, not after the candle.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What is your <em>news rule</em>, and why that one?",
+      "modelAnswer": "My rule is decided before the session for the events I check on the calendar. I don’t invent it live, and I follow it even when the skipped setup wins."
     }
-   ]
-  },
-  {
-   "type": "p7_rule_form",
-   "kicker": "Write it calm",
-   "title": "Your news rule",
-   "form": "news",
-   "punch": "No template is universally correct. Use the one you’ll actually follow. The Academy never invents news events or rules for you."
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "The calendar is public. <em>Read it before the bell, not after the candle.</em>",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "What is your news rule, and why that one?",
-   "modelAnswer": "My rule is decided before the session for the events I check on the calendar. I don’t invent it live, and I follow it even when the skipped setup wins."
-  }
- ],
- "takeaways": [
-  "Scheduled events are known in advance.",
-  "Your response is decided before the session.",
-  "Fast candles can fill worse than your stop."
- ],
- "remember": "A SCHEDULED EVENT SHOULDN’T SURPRISE YOU JUST BECAUSE THE CANDLE DID."
+  ],
+  "takeaways": [
+    "Scheduled events are known in advance.",
+    "Your response is decided before the session.",
+    "Fast candles can fill worse than your stop."
+  ],
+  "remember": "A SCHEDULED EVENT SHOULDN’T SURPRISE YOU JUST BECAUSE THE CANDLE DID."
 }

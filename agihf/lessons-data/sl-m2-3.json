@@ -1,0 +1,221 @@
+{
+ "phase": "sl",
+ "section": "m2",
+ "lessonNumber": "m2-3",
+ "title": "Recognizing the Second Correction",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "Correction #2 creates the zone. BOS #3 still has to activate it.",
+ "launchpad": {
+  "outcome": "Tell Correction #2 from Correction #1, find the zone-forming candle inside it, and explain why a potential zone without BOS #3 is not a trade.",
+  "missionQuestion": "Which correction creates the zone, and which candle inside it?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "Correction #2 is the pullback after BOS #2. Correction #1 comes after BOS #1.",
+  "Correction #2 creates the zone: its last bearish candle (demand) or last bullish candle (supply) before BOS #3.",
+  "Don’t mark the whole correction as the zone.",
+  "Until BOS #3 occurs, the zone is only potential."
+ ],
+ "remember": "CORRECTION #2 CREATES THE ZONE.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 2 · Lesson 3",
+   "headline": "Correction #2 is <em>where the zone begins.</em>",
+   "line": "Two pullbacks, two very different jobs. Here you learn to tell them apart and find the one candle that matters.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · Two corrections",
+   "headline": "Correction #1 or <em>Correction #2?</em>",
+   "line": "The order of the breaks tells you which correction you’re looking at.",
+   "visual": {
+    "versus": [
+     {
+      "label": "Correction #1",
+      "tone": "peach",
+      "icon": "swap",
+      "points": [
+       "Comes right after BOS (break of structure) #1.",
+       "Preferably pulls back toward the 15M break.",
+       "Never creates the execution zone."
+      ]
+     },
+     {
+      "label": "Correction #2",
+      "tone": "pink",
+      "icon": "layers",
+      "points": [
+       "Comes after BOS #2.",
+       "Creates the zone.",
+       "Its last opposite-colour candle before BOS #3 forms the zone."
+      ]
+     }
+    ]
+   },
+   "cta": "Practise →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 2 · Find Correction #2",
+   "headline": "Find the <em>second pullback.</em>",
+   "line": "Bullish example. BOS #1, Correction #1 and BOS #2 are marked.",
+   "scenario": "bull-valid",
+   "tf": "5M",
+   "until": "c2+1",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2"
+   ],
+   "within": [
+    "bos1",
+    "c2+1"
+   ],
+   "ask": "Tap any candle in Correction #2.",
+   "target": "c2",
+   "why": "That candle is part of the second pullback, the one after BOS #2.",
+   "after": {
+    "show": [
+     "c2"
+    ],
+    "caption": "<b>Correction #2</b> comes after BOS #2. This is the correction that creates the zone."
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 3 · Find the zone candle",
+   "headline": "One candle <em>creates the zone.</em>",
+   "line": "Bearish example. In a supply setup, the zone comes from the last bullish candle of Correction #2.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "until": "c2+1",
+   "show": [
+    "c1",
+    "bos2",
+    "c2"
+   ],
+   "within": [
+    "bos1",
+    "c2+1"
+   ],
+   "ask": "Tap the candle that creates the supply zone.",
+   "target": "zone",
+   "why": "That’s the last bullish candle of Correction #2, the one right before sellers take over.",
+   "after": {
+    "show": [
+     "zone",
+     "zoneCandle"
+    ],
+    "caption": "The supply zone is drawn from that one candle. It’s a <b>potential</b> zone until BOS #3."
+   },
+   "provisional": [
+    "zoneBounds"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 4 · One candle",
+   "headline": "Don’t box <em>the whole correction.</em>",
+   "line": "Correction #2 creates the zone, but the zone is one candle, not the whole pullback.",
+   "visual": {
+    "icon": "ruler",
+    "tone": "teal",
+    "caption": "One candle."
+   },
+   "check": {
+    "prompt": "Correction #2 has four candles. What do you mark as the zone?",
+    "stack": true,
+    "options": [
+     {
+      "label": "The whole of Correction #2",
+      "correct": false,
+      "feedback": "Don’t mark the entire correction as the zone. Find the last opposite-colour candle of Correction #2."
+     },
+     {
+      "label": "Its last opposite-colour candle before BOS #3",
+      "correct": true,
+      "why": "Right. For demand it’s the last bearish candle. For supply it’s the last bullish candle."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 5 · A zone that never activates",
+   "headline": "A potential zone <em>isn’t a trade.</em>",
+   "line": "Bullish example. Correction #2 forms a zone. Watch what happens next.",
+   "scenario": "bull-no-bos3",
+   "tf": "5M",
+   "start": "bos2",
+   "toggle": false,
+   "show": [
+    "bos1",
+    "c1",
+    "bos2"
+   ],
+   "steps": [
+    {
+     "until": "c2",
+     "show": [
+      "c2",
+      "zone",
+      "zoneCandle"
+     ],
+     "caption": "<b>Correction #2</b> creates a potential demand zone from its last bearish candle.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    },
+    {
+     "until": "end",
+     "caption": "<b>No BOS #3.</b> No 5M candle closes above the high Correction #2 pulled back from. The zone never activates.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    }
+   ],
+   "check": {
+    "prompt": "Price keeps trading in this potential zone. Is that a trade?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, price is back in the demand zone",
+      "correct": false,
+      "feedback": "The zone was never activated. BOS #3 must occur before the retest-entry model applies."
+     },
+     {
+      "label": "No, BOS #3 never happened",
+      "correct": true,
+      "why": "Right. Correction #2 created a potential zone, but without BOS #3 it never becomes active. No trade."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Correction #2 creates the zone. <em>BOS #3 decides if it counts.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, how do you tell Correction #2 from Correction #1, and which candle forms the zone?",
+   "modelAnswer": "Correction #1 comes right after BOS #1, and Correction #2 comes after BOS #2. Correction #2 creates the zone. For demand, the zone is the last bearish candle of Correction #2 before BOS #3. For supply, it’s the last bullish candle. I don’t mark the whole correction, and the zone stays potential until BOS #3 occurs."
+  }
+ ]
+}

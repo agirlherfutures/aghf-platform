@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategy Lab — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/strategy-lab.css">
+</head>
+<body>
+
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="strategy-lab"></script>
+
+<main class="main">
+  <section class="sl-hero">
+    <div class="sl-hero-kick">AGHF Strategy Lab · Optional</div>
+    <h1>Supply &amp; Demand, Powered by Higher-Timeframe ICC™</h1>
+    <p>This isn’t traditional stand-alone supply and demand. The higher-timeframe ICC tells the story, the 15M sets the direction, and the 5M builds the confirmation sequence, creates the zone and gives the entry.</p>
+    <div class="sl-seq"><span>3 Breaks</span><span>2 Corrections</span><span>1 Zone</span><span>1 Retest</span></div>
+    <div class="sl-meta"><span class="sl-pill opt">Optional</span><span class="sl-pill">Unlocks after Phase 5</span><span class="sl-pill">Doesn’t affect graduation</span></div>
+  </section>
+  <div id="slBody"></div>
+</main>
+
+<script type="module">
+  const body = document.getElementById('slBody');
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await load(); } catch (err) { console.error(err); body.innerHTML = '<div class="sl-lock">Something went wrong loading the Strategy Lab. Please reload.</div>'; } finally { window.AGHF_HIDE_LOADER?.(); }
+  });
+
+  async function load() {
+    const { PHASES } = await import('./shared/curriculum-data.js');
+    const { UNLOCK_ALL } = await import('./shared/preview.js');
+    const { STRATEGY_LAB } = await import('./shared/strategy-lab-data.js');
+    const { lessonDone, toolDone, phase5Complete } = await import('./shared/sd-progress.js');
+    const { STRATEGY_VERSION } = await import('./shared/sd-core.js');
+
+    let completed = new Set();
+    try {
+      const profile = await window.AGHF_FETCH_PROFILE();
+      completed = new Set((profile.lessons_completed || []).map((l) => l.lesson_id));
+    } catch (err) { console.error('Profile load error:', err); }
+    const p5Done = phase5Complete(completed, PHASES);
+    const open = UNLOCK_ALL || p5Done;
+
+    // Which lessons are built (have a data file).
+    const built = new Set();
+    await Promise.all(STRATEGY_LAB.modules.flatMap((m) => m.lessons).map(async (l) => {
+      try { const r = await fetch(`lessons-data/sl-${l.id}.json`, { method: 'HEAD' }); if (r.ok) built.add(l.id); } catch { /* not built */ }
+    }));
+
+    const lock = open ? (UNLOCK_ALL && !p5Done ? '<div class="sl-lock">👀 <b>Build mode:</b> the Strategy Lab is unlocked so you can preview it. Students see it after they finish Phase 5.</div>' : '') : `
+      <div class="sl-lock">🔒 <b>Finish Phase 5 to unlock the Strategy Lab.</b><br>It’s optional and builds on the Dayli ICC Method, so the higher-timeframe story has to come first. Skipping it never blocks your progress or graduation.</div>`;
+
+    const row = (l, i) => {
+      const done = lessonDone(l.id);
+      const isBuilt = built.has(l.id);
+      const inner = `<span class="sl-n">${done ? '✓' : i + 1}</span>${l.title}${isBuilt ? '' : '<span class="sl-soon">Coming soon</span>'}`;
+      return open && isBuilt ? `<a class="sl-row${done ? ' done' : ''}" href="strategy-lab-lesson.html?id=${l.id}">${inner}</a>` : `<div class="sl-row${done ? ' done' : ''}${isBuilt ? '' : ' soon'}">${inner}</div>`;
+    };
+    const modules = STRATEGY_LAB.modules.map((m) => {
+      const done = m.lessons.filter((l) => lessonDone(l.id)).length;
+      return `<div class="sl-card"><div class="sl-card-kick">Module ${m.n}</div><h2>${m.title}</h2><div class="sl-prog">${done} of ${m.lessons.length} lessons complete</div><div class="sl-list">${m.lessons.map(row).join('')}</div></div>`;
+    }).join('');
+    const tools = STRATEGY_LAB.tools.map((t) => {
+      const inner = `<div class="sl-card-kick">Practice</div><b>${t.title}</b><p>${t.line}</p>${toolDone(t.key) ? '<span class="sl-done">✓ Completed</span>' : ''}`;
+      return open ? `<a class="sl-tool" href="strategy-lab-lesson.html?id=${t.id}">${inner}</a>` : `<div class="sl-tool">${inner}</div>`;
+    }).join('');
+
+    body.innerHTML = `${lock}<div class="sl-grid">${modules}</div><div class="sl-tools">${tools}</div>
+      <p class="sl-note">Rules come from Dayli’s Supply &amp; Demand strategy document. Anything still being tested is marked <b>RULE REQUIRES DAYLI CONFIRMATION</b>. Your Strategy Lab progress is saved separately from your Academy progress (rules version ${STRATEGY_VERSION}).</p>`;
+  }
+</script>
+
+</body>
+</html>

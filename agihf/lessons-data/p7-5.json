@@ -1,1142 +1,644 @@
 {
- "phase": "p7",
- "section": "s18",
- "lessonNumber": 5,
- "title": "Three in a Row",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "When losing starts to feel like who you are.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Feel a losing streak shake your trust, and keep judging the model slowly and the next setup on its own.",
-  "missionQuestion": "Did my model stop working, or did my confidence?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "Three in a Row",
-   "title": "Tuesday, Wednesday, Thursday",
-   "beats": [
+  "phase": "p7",
+  "section": "s18",
+  "lessonNumber": 5,
+  "title": "Three in a Row",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "When losing starts to feel like who you are.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Feel a losing streak shake your trust, and keep judging the model slowly and the next setup on its own.",
+    "missionQuestion": "Did my model stop working, or did my confidence?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "cards": [
-      "TUE · valid · −1R",
-      "WED · valid · −1R",
-      "THU · valid · −1R"
-     ]
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 5",
+      "headline": "You took three valid losses. <em>Then Friday came.</em>",
+      "line": "You lost −1R on Tuesday, Wednesday, and Thursday, all by the plan. −1R means you lost exactly the amount you planned to risk.",
+      "pose": "think",
+      "cta": "Show me →"
     },
     {
-     "say": [
-      "Three trades. Three losses.",
-      "Every one by the plan."
-     ]
-    },
-    {
-     "thoughts": [
-      "“Maybe the model doesn’t work.”",
-      "“Maybe I’m not cut out for this.”",
-      "“I’ll wait for a REALLY perfect one.”"
-     ]
-    },
-    {
-     "chart": {
-      "bars": [
-       {
-        "o": 20982.25,
-        "h": 20986.5,
-        "l": 20981.25,
-        "c": 20985.5
-       },
-       {
-        "o": 20985.5,
-        "h": 20990.75,
-        "l": 20984.25,
-        "c": 20990.25
-       },
-       {
-        "o": 20990.25,
-        "h": 20996.0,
-        "l": 20989.25,
-        "c": 20995.0
-       },
-       {
-        "o": 20995.0,
-        "h": 20998.75,
-        "l": 20994.75,
-        "c": 20998.25
-       },
-       {
-        "o": 20998.25,
-        "h": 21004.25,
-        "l": 20997.25,
-        "c": 21001.75
-       },
-       {
-        "o": 21001.75,
-        "h": 21003.0,
-        "l": 20997.5,
-        "c": 20998.0
-       },
-       {
-        "o": 20998.0,
-        "h": 20998.25,
-        "l": 20994.25,
-        "c": 20995.75
-       },
-       {
-        "o": 20995.75,
-        "h": 20997.0,
-        "l": 20993.5,
-        "c": 20994.5
-       },
-       {
-        "o": 20994.5,
-        "h": 20994.75,
-        "l": 20990.5,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20995.0,
-        "l": 20989.75,
-        "c": 20994.5
-       },
-       {
-        "o": 20994.5,
-        "h": 20998.0,
-        "l": 20993.25,
-        "c": 20997.5
-       },
-       {
-        "o": 20997.5,
-        "h": 21001.75,
-        "l": 20996.0,
-        "c": 21001.25
-       },
-       {
-        "o": 21001.25,
-        "h": 21007.75,
-        "l": 21001.25,
-        "c": 21007.0
-       },
-       {
-        "o": 21007.0,
-        "h": 21007.0,
-        "l": 21001.25,
-        "c": 21002.0
-       },
-       {
-        "o": 21002.0,
-        "h": 21007.75,
-        "l": 21002.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21011.5,
-        "l": 21006.0,
-        "c": 21011.0
-       },
-       {
-        "o": 21011.0,
-        "h": 21013.5,
-        "l": 21009.75,
-        "c": 21012.0
-       },
-       {
-        "o": 21012.0,
-        "h": 21017.5,
-        "l": 21011.0,
-        "c": 21016.25
-       },
-       {
-        "o": 21016.25,
-        "h": 21019.5,
-        "l": 21015.75,
-        "c": 21018.25
-       },
-       {
-        "o": 21018.25,
-        "h": 21019.5,
-        "l": 21014.0,
-        "c": 21014.5
-       },
-       {
-        "o": 21014.5,
-        "h": 21015.75,
-        "l": 21011.25,
-        "c": 21012.0
-       },
-       {
-        "o": 21012.0,
-        "h": 21012.75,
-        "l": 21006.5,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21008.0,
-        "l": 21003.75,
-        "c": 21005.75
-       },
-       {
-        "o": 21005.75,
-        "h": 21008.0,
-        "l": 21005.5,
-        "c": 21007.75
-       },
-       {
-        "o": 21007.75,
-        "h": 21012.25,
-        "l": 21007.0,
-        "c": 21010.75
-       },
-       {
-        "o": 21010.75,
-        "h": 21013.0,
-        "l": 21009.75,
-        "c": 21012.25
-       },
-       {
-        "o": 21012.25,
-        "h": 21018.0,
-        "l": 21012.0,
-        "c": 21017.5
-       },
-       {
-        "o": 21017.5,
-        "h": 21022.0,
-        "l": 21017.0,
-        "c": 21021.5
-       },
-       {
-        "o": 21021.5,
-        "h": 21025.5,
-        "l": 21020.25,
-        "c": 21024.75
-       },
-       {
-        "o": 21024.75,
-        "h": 21028.75,
-        "l": 21023.25,
-        "c": 21028.25
-       },
-       {
-        "o": 21028.25,
-        "h": 21033.25,
-        "l": 21026.75,
-        "c": 21032.25
-       },
-       {
-        "o": 21032.25,
-        "h": 21039.25,
-        "l": 21031.0,
-        "c": 21037.75
-       },
-       {
-        "o": 21037.75,
-        "h": 21041.75,
-        "l": 21036.75,
-        "c": 21040.5
-       },
-       {
-        "o": 21040.5,
-        "h": 21047.0,
-        "l": 21040.0,
-        "c": 21046.25
-       },
-       {
-        "o": 21046.25,
-        "h": 21053.25,
-        "l": 21044.75,
-        "c": 21052.25
-       },
-       {
-        "o": 21052.25,
-        "h": 21059.0,
-        "l": 21051.25,
-        "c": 21057.5
-       },
-       {
-        "o": 21057.5,
-        "h": 21063.5,
-        "l": 21057.0,
-        "c": 21062.5
-       },
-       {
-        "o": 21062.5,
-        "h": 21068.75,
-        "l": 21061.75,
-        "c": 21067.25
-       }
+      "type": "v2_moment",
+      "kicker": "Friday",
+      "headline": "On Friday, your model shows up <em>from start to finish.</em>",
+      "line": "You see an Indication, a Correction, a Continuation, and then the first retest. It’s a complete setup.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20986.5,
+            "l": 20981.25,
+            "c": 20985.5
+          },
+          {
+            "o": 20985.5,
+            "h": 20990.75,
+            "l": 20984.25,
+            "c": 20990.25
+          },
+          {
+            "o": 20990.25,
+            "h": 20996.0,
+            "l": 20989.25,
+            "c": 20995.0
+          },
+          {
+            "o": 20995.0,
+            "h": 20998.75,
+            "l": 20994.75,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.25,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21003.0,
+            "l": 20997.5,
+            "c": 20998.0
+          },
+          {
+            "o": 20998.0,
+            "h": 20998.25,
+            "l": 20994.25,
+            "c": 20995.75
+          },
+          {
+            "o": 20995.75,
+            "h": 20997.0,
+            "l": 20993.5,
+            "c": 20994.5
+          },
+          {
+            "o": 20994.5,
+            "h": 20994.75,
+            "l": 20990.5,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20995.0,
+            "l": 20989.75,
+            "c": 20994.5
+          },
+          {
+            "o": 20994.5,
+            "h": 20998.0,
+            "l": 20993.25,
+            "c": 20997.5
+          },
+          {
+            "o": 20997.5,
+            "h": 21001.75,
+            "l": 20996.0,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21007.75,
+            "l": 21002.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21011.5,
+            "l": 21006.0,
+            "c": 21011.0
+          },
+          {
+            "o": 21011.0,
+            "h": 21013.5,
+            "l": 21009.75,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21017.5,
+            "l": 21011.0,
+            "c": 21016.25
+          },
+          {
+            "o": 21016.25,
+            "h": 21019.5,
+            "l": 21015.75,
+            "c": 21018.25
+          },
+          {
+            "o": 21018.25,
+            "h": 21019.5,
+            "l": 21014.0,
+            "c": 21014.5
+          },
+          {
+            "o": 21014.5,
+            "h": 21015.75,
+            "l": 21011.25,
+            "c": 21012.0
+          },
+          {
+            "o": 21012.0,
+            "h": 21012.75,
+            "l": 21006.5,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21008.0,
+            "l": 21003.75,
+            "c": 21005.75
+          },
+          {
+            "o": 21005.75,
+            "h": 21008.0,
+            "l": 21005.5,
+            "c": 21007.75
+          },
+          {
+            "o": 21007.75,
+            "h": 21012.25,
+            "l": 21007.0,
+            "c": 21010.75
+          },
+          {
+            "o": 21010.75,
+            "h": 21013.0,
+            "l": 21009.75,
+            "c": 21012.25
+          },
+          {
+            "o": 21012.25,
+            "h": 21018.0,
+            "l": 21012.0,
+            "c": 21017.5
+          },
+          {
+            "o": 21017.5,
+            "h": 21022.0,
+            "l": 21017.0,
+            "c": 21021.5
+          },
+          {
+            "o": 21021.5,
+            "h": 21025.5,
+            "l": 21020.25,
+            "c": 21024.75
+          },
+          {
+            "o": 21024.75,
+            "h": 21028.75,
+            "l": 21023.25,
+            "c": 21028.25
+          },
+          {
+            "o": 21028.25,
+            "h": 21033.25,
+            "l": 21026.75,
+            "c": 21032.25
+          },
+          {
+            "o": 21032.25,
+            "h": 21039.25,
+            "l": 21031.0,
+            "c": 21037.75
+          },
+          {
+            "o": 21037.75,
+            "h": 21041.75,
+            "l": 21036.75,
+            "c": 21040.5
+          },
+          {
+            "o": 21040.5,
+            "h": 21047.0,
+            "l": 21040.0,
+            "c": 21046.25
+          },
+          {
+            "o": 21046.25,
+            "h": 21053.25,
+            "l": 21044.75,
+            "c": 21052.25
+          },
+          {
+            "o": 21052.25,
+            "h": 21059.0,
+            "l": 21051.25,
+            "c": 21057.5
+          },
+          {
+            "o": 21057.5,
+            "h": 21063.5,
+            "l": 21057.0,
+            "c": 21062.5
+          },
+          {
+            "o": 21062.5,
+            "h": 21068.75,
+            "l": 21061.75,
+            "c": 21067.25
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "head": {
+          "tf": "1M",
+          "label": "Friday"
+        },
+        "play": {
+          "from": 10,
+          "to": 23,
+          "speed": 300
+        }
+      },
+      "thoughts": [
+        "“Maybe the model doesn’t work.”",
+        "“Maybe I’m not cut out for this.”",
+        "“I’ll wait for a REALLY perfect one.”"
       ],
-      "pil": 21004.25,
-      "pilAt": 4,
-      "head": {
-       "tf": "1M",
-       "label": "Friday"
-      },
-      "play": {
-       "from": 10,
-       "to": 23,
-       "speed": 300
+      "check": {
+        "prompt": "Your hand shakes a little. What would you do now?",
+        "options": [
+          {
+            "label": "Skip it so I stop losing",
+            "correct": false,
+            "feedback": "That makes sense after three losses. But the setup didn’t lose. Those three trades did.",
+            "track": "hesitationCount"
+          },
+          {
+            "label": "Take it at half size, to be safe",
+            "correct": false,
+            "feedback": "That feels gentle, but the losing streak just quietly rewrote your risk plan.",
+            "track": "hesitationCount"
+          },
+          {
+            "label": "Take it at my standard size",
+            "correct": true,
+            "feedback": "Yes. Win or lose, that’s the right decision.",
+            "track": "ruleBasedResponses"
+          }
+        ]
       }
-     }
     },
     {
-     "say": [
-      "Indication. Correction. Continuation. First retest.",
-      "<b>Your model, start to finish.</b>"
-     ]
-    },
-    {
-     "choice": {
-      "prompt": "Your hand is shaking a little. What do you do?",
-      "options": [
-       {
-        "label": "Skip it. You can’t take another loss.",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+      "type": "v2_moment",
+      "kicker": "How it played out",
+      "headline": "The trade worked. <em>Were you in it?</em>",
+      "line": "If you skipped, you thought, “I missed it.” At half size you made +1R. At standard size you made +2R, twice what you risked.",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
             "h": 20986.5,
             "l": 20981.25,
             "c": 20985.5
-           },
-           {
+          },
+          {
             "o": 20985.5,
             "h": 20990.75,
             "l": 20984.25,
             "c": 20990.25
-           },
-           {
+          },
+          {
             "o": 20990.25,
             "h": 20996.0,
             "l": 20989.25,
             "c": 20995.0
-           },
-           {
+          },
+          {
             "o": 20995.0,
             "h": 20998.75,
             "l": 20994.75,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.25,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21003.0,
             "l": 20997.5,
             "c": 20998.0
-           },
-           {
+          },
+          {
             "o": 20998.0,
             "h": 20998.25,
             "l": 20994.25,
             "c": 20995.75
-           },
-           {
+          },
+          {
             "o": 20995.75,
             "h": 20997.0,
             "l": 20993.5,
             "c": 20994.5
-           },
-           {
+          },
+          {
             "o": 20994.5,
             "h": 20994.75,
             "l": 20990.5,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20995.0,
             "l": 20989.75,
             "c": 20994.5
-           },
-           {
+          },
+          {
             "o": 20994.5,
             "h": 20998.0,
             "l": 20993.25,
             "c": 20997.5
-           },
-           {
+          },
+          {
             "o": 20997.5,
             "h": 21001.75,
             "l": 20996.0,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21007.0,
             "l": 21001.25,
             "c": 21002.0
-           },
-           {
+          },
+          {
             "o": 21002.0,
             "h": 21007.75,
             "l": 21002.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21011.5,
             "l": 21006.0,
             "c": 21011.0
-           },
-           {
+          },
+          {
             "o": 21011.0,
             "h": 21013.5,
             "l": 21009.75,
             "c": 21012.0
-           },
-           {
+          },
+          {
             "o": 21012.0,
             "h": 21017.5,
             "l": 21011.0,
             "c": 21016.25
-           },
-           {
+          },
+          {
             "o": 21016.25,
             "h": 21019.5,
             "l": 21015.75,
             "c": 21018.25
-           },
-           {
+          },
+          {
             "o": 21018.25,
             "h": 21019.5,
             "l": 21014.0,
             "c": 21014.5
-           },
-           {
+          },
+          {
             "o": 21014.5,
             "h": 21015.75,
             "l": 21011.25,
             "c": 21012.0
-           },
-           {
+          },
+          {
             "o": 21012.0,
             "h": 21012.75,
             "l": 21006.5,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21008.0,
             "l": 21003.75,
             "c": 21005.75
-           },
-           {
+          },
+          {
             "o": 21005.75,
             "h": 21008.0,
             "l": 21005.5,
             "c": 21007.75
-           },
-           {
+          },
+          {
             "o": 21007.75,
             "h": 21012.25,
             "l": 21007.0,
             "c": 21010.75
-           },
-           {
+          },
+          {
             "o": 21010.75,
             "h": 21013.0,
             "l": 21009.75,
             "c": 21012.25
-           },
-           {
+          },
+          {
             "o": 21012.25,
             "h": 21018.0,
             "l": 21012.0,
             "c": 21017.5
-           },
-           {
+          },
+          {
             "o": 21017.5,
             "h": 21022.0,
             "l": 21017.0,
             "c": 21021.5
-           },
-           {
+          },
+          {
             "o": 21021.5,
             "h": 21025.5,
             "l": 21020.25,
             "c": 21024.75
-           },
-           {
+          },
+          {
             "o": 21024.75,
             "h": 21028.75,
             "l": 21023.25,
             "c": 21028.25
-           },
-           {
+          },
+          {
             "o": 21028.25,
             "h": 21033.25,
             "l": 21026.75,
             "c": 21032.25
-           },
-           {
+          },
+          {
             "o": 21032.25,
             "h": 21039.25,
             "l": 21031.0,
             "c": 21037.75
-           },
-           {
+          },
+          {
             "o": 21037.75,
             "h": 21041.75,
             "l": 21036.75,
             "c": 21040.5
-           },
-           {
+          },
+          {
             "o": 21040.5,
             "h": 21047.0,
             "l": 21040.0,
             "c": 21046.25
-           },
-           {
+          },
+          {
             "o": 21046.25,
             "h": 21053.25,
             "l": 21044.75,
             "c": 21052.25
-           },
-           {
+          },
+          {
             "o": 21052.25,
             "h": 21059.0,
             "l": 21051.25,
             "c": 21057.5
-           },
-           {
+          },
+          {
             "o": 21057.5,
             "h": 21063.5,
             "l": 21057.0,
             "c": 21062.5
-           },
-           {
+          },
+          {
             "o": 21062.5,
             "h": 21068.75,
             "l": 21061.75,
             "c": 21067.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "head": {
-           "tf": "1M",
-           "label": "Without you"
-          },
-          "play": {
-           "from": 23,
-           "to": 38,
-           "speed": 300
           }
-         },
-         "say": [
-          "It worked.",
-          "Without you.",
-          "And now the next one is harder, because you’ve added “I missed it” to “I keep losing”."
-         ]
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "head": {
+          "tf": "1M",
+          "label": "Without you"
         },
-        "track": "hesitationCount"
-       },
-       {
-        "label": "Take it at half size. Just to be safe.",
-        "path": {
-         "chart": {
-          "bars": [
-           {
-            "o": 20982.25,
-            "h": 20986.5,
-            "l": 20981.25,
-            "c": 20985.5
-           },
-           {
-            "o": 20985.5,
-            "h": 20990.75,
-            "l": 20984.25,
-            "c": 20990.25
-           },
-           {
-            "o": 20990.25,
-            "h": 20996.0,
-            "l": 20989.25,
-            "c": 20995.0
-           },
-           {
-            "o": 20995.0,
-            "h": 20998.75,
-            "l": 20994.75,
-            "c": 20998.25
-           },
-           {
-            "o": 20998.25,
-            "h": 21004.25,
-            "l": 20997.25,
-            "c": 21001.75
-           },
-           {
-            "o": 21001.75,
-            "h": 21003.0,
-            "l": 20997.5,
-            "c": 20998.0
-           },
-           {
-            "o": 20998.0,
-            "h": 20998.25,
-            "l": 20994.25,
-            "c": 20995.75
-           },
-           {
-            "o": 20995.75,
-            "h": 20997.0,
-            "l": 20993.5,
-            "c": 20994.5
-           },
-           {
-            "o": 20994.5,
-            "h": 20994.75,
-            "l": 20990.5,
-            "c": 20991.25
-           },
-           {
-            "o": 20991.25,
-            "h": 20995.0,
-            "l": 20989.75,
-            "c": 20994.5
-           },
-           {
-            "o": 20994.5,
-            "h": 20998.0,
-            "l": 20993.25,
-            "c": 20997.5
-           },
-           {
-            "o": 20997.5,
-            "h": 21001.75,
-            "l": 20996.0,
-            "c": 21001.25
-           },
-           {
-            "o": 21001.25,
-            "h": 21007.75,
-            "l": 21001.25,
-            "c": 21007.0
-           },
-           {
-            "o": 21007.0,
-            "h": 21007.0,
-            "l": 21001.25,
-            "c": 21002.0
-           },
-           {
-            "o": 21002.0,
-            "h": 21007.75,
-            "l": 21002.0,
-            "c": 21007.25
-           },
-           {
-            "o": 21007.25,
-            "h": 21011.5,
-            "l": 21006.0,
-            "c": 21011.0
-           },
-           {
-            "o": 21011.0,
-            "h": 21013.5,
-            "l": 21009.75,
-            "c": 21012.0
-           },
-           {
-            "o": 21012.0,
-            "h": 21017.5,
-            "l": 21011.0,
-            "c": 21016.25
-           },
-           {
-            "o": 21016.25,
-            "h": 21019.5,
-            "l": 21015.75,
-            "c": 21018.25
-           },
-           {
-            "o": 21018.25,
-            "h": 21019.5,
-            "l": 21014.0,
-            "c": 21014.5
-           },
-           {
-            "o": 21014.5,
-            "h": 21015.75,
-            "l": 21011.25,
-            "c": 21012.0
-           },
-           {
-            "o": 21012.0,
-            "h": 21012.75,
-            "l": 21006.5,
-            "c": 21007.25
-           },
-           {
-            "o": 21007.25,
-            "h": 21008.0,
-            "l": 21003.75,
-            "c": 21005.75
-           },
-           {
-            "o": 21005.75,
-            "h": 21008.0,
-            "l": 21005.5,
-            "c": 21007.75
-           },
-           {
-            "o": 21007.75,
-            "h": 21012.25,
-            "l": 21007.0,
-            "c": 21010.75
-           },
-           {
-            "o": 21010.75,
-            "h": 21013.0,
-            "l": 21009.75,
-            "c": 21012.25
-           },
-           {
-            "o": 21012.25,
-            "h": 21018.0,
-            "l": 21012.0,
-            "c": 21017.5
-           },
-           {
-            "o": 21017.5,
-            "h": 21022.0,
-            "l": 21017.0,
-            "c": 21021.5
-           },
-           {
-            "o": 21021.5,
-            "h": 21025.5,
-            "l": 21020.25,
-            "c": 21024.75
-           },
-           {
-            "o": 21024.75,
-            "h": 21028.75,
-            "l": 21023.25,
-            "c": 21028.25
-           },
-           {
-            "o": 21028.25,
-            "h": 21033.25,
-            "l": 21026.75,
-            "c": 21032.25
-           },
-           {
-            "o": 21032.25,
-            "h": 21039.25,
-            "l": 21031.0,
-            "c": 21037.75
-           },
-           {
-            "o": 21037.75,
-            "h": 21041.75,
-            "l": 21036.75,
-            "c": 21040.5
-           },
-           {
-            "o": 21040.5,
-            "h": 21047.0,
-            "l": 21040.0,
-            "c": 21046.25
-           },
-           {
-            "o": 21046.25,
-            "h": 21053.25,
-            "l": 21044.75,
-            "c": 21052.25
-           },
-           {
-            "o": 21052.25,
-            "h": 21059.0,
-            "l": 21051.25,
-            "c": 21057.5
-           },
-           {
-            "o": 21057.5,
-            "h": 21063.5,
-            "l": 21057.0,
-            "c": 21062.5
-           },
-           {
-            "o": 21062.5,
-            "h": 21068.75,
-            "l": 21061.75,
-            "c": 21067.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "head": {
-           "tf": "1M",
-           "label": "Half size"
-          },
-          "play": {
-           "from": 23,
-           "to": 38,
-           "speed": 300
-          }
-         },
-         "say": [
-          "+1R instead of +2R.",
-          "The streak didn’t just change your mood. <b>It quietly rewrote your risk plan.</b>"
-         ]
-        },
-        "track": "hesitationCount"
-       },
-       {
-        "label": "Take it. Standard size.",
-        "path": {
-         "chart": {
-          "bars": [
-           {
-            "o": 20982.25,
-            "h": 20986.5,
-            "l": 20981.25,
-            "c": 20985.5
-           },
-           {
-            "o": 20985.5,
-            "h": 20990.75,
-            "l": 20984.25,
-            "c": 20990.25
-           },
-           {
-            "o": 20990.25,
-            "h": 20996.0,
-            "l": 20989.25,
-            "c": 20995.0
-           },
-           {
-            "o": 20995.0,
-            "h": 20998.75,
-            "l": 20994.75,
-            "c": 20998.25
-           },
-           {
-            "o": 20998.25,
-            "h": 21004.25,
-            "l": 20997.25,
-            "c": 21001.75
-           },
-           {
-            "o": 21001.75,
-            "h": 21003.0,
-            "l": 20997.5,
-            "c": 20998.0
-           },
-           {
-            "o": 20998.0,
-            "h": 20998.25,
-            "l": 20994.25,
-            "c": 20995.75
-           },
-           {
-            "o": 20995.75,
-            "h": 20997.0,
-            "l": 20993.5,
-            "c": 20994.5
-           },
-           {
-            "o": 20994.5,
-            "h": 20994.75,
-            "l": 20990.5,
-            "c": 20991.25
-           },
-           {
-            "o": 20991.25,
-            "h": 20995.0,
-            "l": 20989.75,
-            "c": 20994.5
-           },
-           {
-            "o": 20994.5,
-            "h": 20998.0,
-            "l": 20993.25,
-            "c": 20997.5
-           },
-           {
-            "o": 20997.5,
-            "h": 21001.75,
-            "l": 20996.0,
-            "c": 21001.25
-           },
-           {
-            "o": 21001.25,
-            "h": 21007.75,
-            "l": 21001.25,
-            "c": 21007.0
-           },
-           {
-            "o": 21007.0,
-            "h": 21007.0,
-            "l": 21001.25,
-            "c": 21002.0
-           },
-           {
-            "o": 21002.0,
-            "h": 21007.75,
-            "l": 21002.0,
-            "c": 21007.25
-           },
-           {
-            "o": 21007.25,
-            "h": 21011.5,
-            "l": 21006.0,
-            "c": 21011.0
-           },
-           {
-            "o": 21011.0,
-            "h": 21013.5,
-            "l": 21009.75,
-            "c": 21012.0
-           },
-           {
-            "o": 21012.0,
-            "h": 21017.5,
-            "l": 21011.0,
-            "c": 21016.25
-           },
-           {
-            "o": 21016.25,
-            "h": 21019.5,
-            "l": 21015.75,
-            "c": 21018.25
-           },
-           {
-            "o": 21018.25,
-            "h": 21019.5,
-            "l": 21014.0,
-            "c": 21014.5
-           },
-           {
-            "o": 21014.5,
-            "h": 21015.75,
-            "l": 21011.25,
-            "c": 21012.0
-           },
-           {
-            "o": 21012.0,
-            "h": 21012.75,
-            "l": 21006.5,
-            "c": 21007.25
-           },
-           {
-            "o": 21007.25,
-            "h": 21008.0,
-            "l": 21003.75,
-            "c": 21005.75
-           },
-           {
-            "o": 21005.75,
-            "h": 21008.0,
-            "l": 21005.5,
-            "c": 21007.75
-           },
-           {
-            "o": 21007.75,
-            "h": 21012.25,
-            "l": 21007.0,
-            "c": 21010.75
-           },
-           {
-            "o": 21010.75,
-            "h": 21013.0,
-            "l": 21009.75,
-            "c": 21012.25
-           },
-           {
-            "o": 21012.25,
-            "h": 21018.0,
-            "l": 21012.0,
-            "c": 21017.5
-           },
-           {
-            "o": 21017.5,
-            "h": 21022.0,
-            "l": 21017.0,
-            "c": 21021.5
-           },
-           {
-            "o": 21021.5,
-            "h": 21025.5,
-            "l": 21020.25,
-            "c": 21024.75
-           },
-           {
-            "o": 21024.75,
-            "h": 21028.75,
-            "l": 21023.25,
-            "c": 21028.25
-           },
-           {
-            "o": 21028.25,
-            "h": 21033.25,
-            "l": 21026.75,
-            "c": 21032.25
-           },
-           {
-            "o": 21032.25,
-            "h": 21039.25,
-            "l": 21031.0,
-            "c": 21037.75
-           },
-           {
-            "o": 21037.75,
-            "h": 21041.75,
-            "l": 21036.75,
-            "c": 21040.5
-           },
-           {
-            "o": 21040.5,
-            "h": 21047.0,
-            "l": 21040.0,
-            "c": 21046.25
-           },
-           {
-            "o": 21046.25,
-            "h": 21053.25,
-            "l": 21044.75,
-            "c": 21052.25
-           },
-           {
-            "o": 21052.25,
-            "h": 21059.0,
-            "l": 21051.25,
-            "c": 21057.5
-           },
-           {
-            "o": 21057.5,
-            "h": 21063.5,
-            "l": 21057.0,
-            "c": 21062.5
-           },
-           {
-            "o": 21062.5,
-            "h": 21068.75,
-            "l": 21061.75,
-            "c": 21067.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "head": {
-           "tf": "1M",
-           "label": "Standard size"
-          },
-          "play": {
-           "from": 23,
-           "to": 38,
-           "speed": 300
-          }
-         },
-         "say": [
-          "+2R.",
-          "And if it had lost? Four in a row. Still the right decision.",
-          "<b>Losing streaks happen inside working models.</b> Three trades can’t tell you which one you have."
-         ]
-        },
-        "track": "ruleBasedResponses"
-       }
-      ]
-     }
-    },
-    {
-     "who": {
-      "before": {
-       "h": "THE TRADER",
-       "lines": [
-        "Judges each setup on its own.",
-        "Judges the model over many trades."
-       ]
-      },
-      "after": {
-       "h": "THE STREAK",
-       "lines": [
-        "Wants proof before it trusts you again.",
-        "Treats three trades like a verdict."
-       ]
+        "play": {
+          "from": 23,
+          "to": 38,
+          "speed": 300
+        }
       }
-     }
     },
     {
-     "principle": "A LOSING STREAK CHANGES HOW YOU FEEL ABOUT THE MODEL. IT DOESN’T CHANGE THE MODEL."
+      "type": "v2_compare",
+      "kicker": "Who’s judging?",
+      "headline": "Three trades are <em>not a verdict on your model.</em>",
+      "cards": [
+        {
+          "label": "The trader",
+          "sub": "She judges the model over many trades.",
+          "spark": "slow",
+          "tag": "SAMPLE",
+          "tone": "purple"
+        },
+        {
+          "label": "The streak",
+          "sub": "It wants proof before it trusts you again.",
+          "spark": "down",
+          "tag": "VERDICT",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "Did the losing streak actually change your model?",
+        "options": [
+          {
+            "label": "Yes, my model is broken",
+            "correct": false,
+            "feedback": "It feels that way. Three trades just can’t tell you that."
+          },
+          {
+            "label": "No, it only changed how I feel",
+            "correct": true,
+            "feedback": "Right. Losing streaks happen inside models that work."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_steps",
+      "kicker": "The confidence loop",
+      "headline": "Watch how the confidence loop <em>keeps spinning.</em>",
+      "line": "Tap each step to see how it builds. You break the loop at Skip, by letting the setup and your rules decide.",
+      "steps": [
+        {
+          "label": "Loss",
+          "sub": "You take three valid losses in a row."
+        },
+        {
+          "label": "Doubt",
+          "sub": "You think, “Maybe the model doesn’t work.”"
+        },
+        {
+          "label": "Skip",
+          "sub": "You pass on a valid setup."
+        },
+        {
+          "label": "It wins",
+          "sub": "The setup wins without you in it."
+        },
+        {
+          "label": "FOMO",
+          "sub": "Fear of missing out makes you chase the next one."
+        },
+        {
+          "label": "More doubt",
+          "sub": "Another loss comes, and the loop goes around again."
+        }
+      ],
+      "cta": "Next →"
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Judge your behavior after every trade. <em>Judge the model after a lot of them.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What do you <em>tell yourself</em> during a losing streak?",
+      "modelAnswer": "That the model stopped working or that I’m not good enough. Three trades can’t answer that. I judge my behavior quickly and the model slowly, over a real sample."
     }
-   ]
-  },
-  {
-   "type": "p7_loop",
-   "kicker": "The confidence loop",
-   "title": "Watch it spin",
-   "nodes": [
-    "LOSS",
-    "DOUBT THE MODEL",
-    "SKIP A VALID SETUP",
-    "IT WINS",
-    "FOMO",
-    "CHASE THE NEXT",
-    "LOSS",
-    "MORE DOUBT"
-   ],
-   "breakAt": 2,
-   "step": 0.6,
-   "center": "Confidence borrowed from the last trade.",
-   "asks": [
-    {
-     "prompt": "WHAT STOPS IT AT “SKIP A VALID SETUP”?",
-     "options": [
-      {
-       "label": "Waiting until I feel confident",
-       "feedback": "Feelings follow evidence. They don’t lead it."
-      },
-      {
-       "label": "Letting the current setup and my rules decide",
-       "correct": true,
-       "why": "Not the streak. The setup and the rules."
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "Judge your behavior after every trade. <em>Judge the model after a lot of them.</em>",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "What do you tell yourself during a losing streak?",
-   "modelAnswer": "That the model stopped working or that I’m not good enough. Three trades can’t answer that. I judge my behavior quickly and the model slowly, over a real sample."
-  }
- ],
- "takeaways": [
-  "Losing streaks happen inside working models.",
-  "Skipping and shrinking are the streak deciding.",
-  "Judge behavior fast, the model slowly."
- ],
- "remember": "A LOSING STREAK DOESN’T CHANGE THE MODEL."
+  ],
+  "takeaways": [
+    "Losing streaks happen inside working models.",
+    "Skipping and shrinking are the streak deciding.",
+    "Judge behavior fast, the model slowly."
+  ],
+  "remember": "A LOSING STREAK DOESN’T CHANGE THE MODEL."
 }

@@ -1,0 +1,348 @@
+{
+ "phase": "sl",
+ "section": "m2",
+ "lessonNumber": "m2-8",
+ "title": "Recognizing Invalid Setups",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "Not every setup becomes a trade. Some fail after BOS #3, and some never finish.",
+ "launchpad": {
+  "outcome": "Recognize an invalidated zone (a 5M close beyond its far edge) and an incomplete sequence (no BOS #2 or no BOS #3), and make the no-trade decision.",
+  "missionQuestion": "When does a zone stop being an entry opportunity?",
+  "estMinutes": 9
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "After BOS #3, a 5M candle closing beyond the zone’s far edge makes the setup invalid.",
+  "For demand, the far edge is the zone’s low. For supply, it’s the zone’s high.",
+  "If price returns to an invalidated zone, it’s still not an entry.",
+  "If BOS #2 or BOS #3 never happens, the sequence is incomplete. No trade."
+ ],
+ "remember": "INVALID OR INCOMPLETE = NO TRADE.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 2 · Lesson 8",
+   "headline": "Some setups <em>never become trades.</em>",
+   "line": "A setup can fail after BOS #3, or never finish at all. Knowing when to walk away is part of the strategy.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · Three ways a setup fails",
+   "headline": "Invalid or incomplete <em>means no trade.</em>",
+   "line": "Tap each card. Each one stops the setup for a different reason.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "stop",
+      "tone": "pink",
+      "label": "Invalidated",
+      "sub": "After BOS #3, a 5M candle closes beyond the zone’s far edge."
+     },
+     {
+      "icon": "bars",
+      "tone": "peach",
+      "label": "No BOS #2",
+      "sub": "BOS #1 and Correction #1 happen, but the 5M never continues."
+     },
+     {
+      "icon": "lock",
+      "tone": "purple",
+      "label": "No BOS #3",
+      "sub": "Correction #2 forms a potential zone, but BOS #3 never comes."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 2 · A demand zone fails",
+   "headline": "A close below the demand zone <em>ends it.</em>",
+   "line": "BOS #3 has activated this demand zone. Press the button and watch what happens next.",
+   "scenario": "bull-invalid",
+   "tf": "5M",
+   "start": "bos3",
+   "toggle": false,
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2",
+    "zone",
+    "zoneCandle",
+    "bos3"
+   ],
+   "provisional": [
+    "zoneBounds"
+   ],
+   "steps": [
+    {
+     "until": "invalid-1",
+     "caption": "Price pulls back toward the active demand zone."
+    },
+    {
+     "until": "invalid",
+     "show": [
+      "invalid"
+     ],
+     "caption": "A 5M candle <b>closes below the zone’s low</b>, its far edge. <b>The setup is invalid.</b>",
+     "provisional": [
+      "invalidation"
+     ]
+    },
+    {
+     "until": "end",
+     "caption": "Later, price drifts back into the old zone. It’s a dead zone now, so this is <b>still not an entry</b>.",
+     "provisional": [
+      "invalidation"
+     ]
+    }
+   ],
+   "check": {
+    "prompt": "Price is back inside the old demand zone. Do you enter?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes. Price returned to the zone, so that’s the retest",
+      "correct": false,
+      "feedback": "A retest only counts while the zone is still valid. A 5M candle already closed below its low, so you don’t keep treating it as an entry."
+     },
+     {
+      "label": "No. The zone was invalidated, so it’s no longer an entry",
+      "correct": true,
+      "why": "Right. Once a 5M candle closed below the zone’s low, the setup was invalid. Price coming back doesn’t bring it back to life."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 3 · A supply zone fails",
+   "headline": "Now the mirror: <em>supply breaks upward.</em>",
+   "line": "For supply, the far edge is the zone’s high. Press the button and judge the latest candle.",
+   "scenario": "bear-invalid",
+   "tf": "5M",
+   "start": "bos3",
+   "toggle": false,
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2",
+    "zone",
+    "zoneCandle",
+    "bos3"
+   ],
+   "provisional": [
+    "zoneBounds"
+   ],
+   "steps": [
+    {
+     "until": "invalid",
+     "caption": "Watch the last candle. Where did it close?"
+    }
+   ],
+   "check": {
+    "prompt": "Where did the latest 5M candle close, and what does that mean?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Above the zone’s high. The setup is invalid",
+      "correct": true,
+      "why": "Yes. A 5M candle closed above the supply zone’s high, its far edge. Don’t keep treating this zone as an entry opportunity."
+     },
+     {
+      "label": "Inside the zone. This is the retest",
+      "correct": false,
+      "feedback": "Look again. That candle didn’t stop inside the zone. It closed above the zone’s high, so the setup is invalid."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 4 · The dead supply zone",
+   "headline": "Price comes back. <em>The zone stays dead.</em>",
+   "line": "Press the button to mark the close beyond, then play the rest of the chart.",
+   "scenario": "bear-invalid",
+   "tf": "5M",
+   "start": "invalid",
+   "toggle": false,
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2",
+    "zone",
+    "zoneCandle",
+    "bos3"
+   ],
+   "provisional": [
+    "zoneBounds",
+    "invalidation"
+   ],
+   "steps": [
+    {
+     "until": "invalid",
+     "show": [
+      "invalid"
+     ],
+     "caption": "<b>Closed beyond.</b> The zone turns grey. The setup is invalid.",
+     "next": "Play the rest →"
+    },
+    {
+     "until": "end",
+     "caption": "Price falls back toward the old zone. It looks tempting, but the setup is over. <b>No trade.</b>"
+    }
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 5 · BOS #2 never happens",
+   "headline": "No BOS #2 means <em>no sequence.</em>",
+   "line": "Bearish context. Press the button to play the 15M, then the 5M.",
+   "scenario": "bear-no-bos2",
+   "tf": "15M",
+   "start": "start",
+   "toggle": false,
+   "steps": [
+    {
+     "until": "bos1",
+     "show": [
+      "bos1"
+     ],
+     "caption": "<b>BOS #1 (break of structure).</b> A 15M candle closes below the 15M level.",
+     "next": "Switch to the 5M →"
+    },
+    {
+     "tf": "5M",
+     "until": "c1",
+     "show": [
+      "c1"
+     ],
+     "caption": "<b>Correction #1.</b> Price pulls back up on the 5M."
+    },
+    {
+     "until": "end",
+     "caption": "Price never closes below the low Correction #1 pulled back from. <b>BOS #2 never happens.</b>"
+    }
+   ],
+   "check": {
+    "prompt": "Is there a supply zone to trade here?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes. BOS #1 was bearish, so sell the pullback",
+      "correct": false,
+      "feedback": "Don’t enter simply because BOS #1 occurred. BOS #2 never happened, so there’s no Correction #2, no zone and no BOS #3."
+     },
+     {
+      "label": "No. Without BOS #2 there’s no Correction #2 and no zone",
+      "correct": true,
+      "why": "Right. The sequence stopped after Correction #1. Correction #2 creates the zone, and it never had the chance to form."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 6 · BOS #3 never happens",
+   "headline": "A potential zone <em>isn’t an active zone.</em>",
+   "line": "Bullish context. BOS #1, BOS #2 and Correction #2 all happened. Find the zone candle, then read what happens after it.",
+   "scenario": "bull-no-bos3",
+   "tf": "5M",
+   "until": "end",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2"
+   ],
+   "ask": "Tap the last bearish candle of Correction #2: the potential demand zone.",
+   "target": "zone",
+   "why": "That’s the potential demand zone. Now look to the right. Buyers never close above the high Correction #2 pulled back from, so <b>BOS #3 never happens</b> and the zone never activates.",
+   "after": {
+    "show": [
+     "zone",
+     "zoneCandle"
+    ],
+    "caption": "The zone stays <b>potential</b>. A zone is not activated just because the opposite-colour candle appeared. No BOS #3, no trade."
+   },
+   "provisional": [
+    "zoneBounds"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 7 · Check yourself",
+   "headline": "Price touched a potential zone. <em>Is that a retest?</em>",
+   "line": "Correction #2 left a bearish candle. BOS #3 hasn’t happened, and price trades back into that candle’s range.",
+   "visual": {
+    "versus": [
+     {
+      "label": "Active zone",
+      "tone": "teal",
+      "icon": "check",
+      "points": [
+       "BOS #3 closed through the level.",
+       "A return to the zone is a retest.",
+       "The entry model can apply."
+      ]
+     },
+     {
+      "label": "Potential zone",
+      "tone": "pink",
+      "icon": "stop",
+      "points": [
+       "BOS #3 hasn’t happened.",
+       "A return is not a retest.",
+       "No trade."
+      ]
+     }
+    ]
+   },
+   "check": {
+    "prompt": "Price trades into the potential demand zone before any BOS #3. What do you do?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Enter, price is in the zone",
+      "correct": false,
+      "feedback": "The zone isn’t active. A zone is not activated merely because the opposite-colour candle appeared. BOS #3 must occur first."
+     },
+     {
+      "label": "Nothing yet. Without BOS #3, there is no trade",
+      "correct": true,
+      "why": "Exactly. BOS #3 must occur before the retest-entry model applies."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "A dead zone doesn’t come back to life. <em>Let it go.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, what makes a setup invalid, and what makes it incomplete?",
+   "modelAnswer": "A setup is invalid when, after BOS #3, a 5M candle closes beyond the zone’s far edge: below a demand zone’s low or above a supply zone’s high. Even if price comes back later, it’s not an entry. A setup is incomplete when the sequence never finishes, for example when BOS #2 or BOS #3 never happens. Without the full sequence, there is no trade."
+  }
+ ]
+}

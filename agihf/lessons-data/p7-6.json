@@ -1,748 +1,718 @@
 {
- "phase": "p7",
- "section": "s18",
- "lessonNumber": 6,
- "title": "I Knew It",
- "videoUrl": null,
- "videoDuration": "",
- "xpValue": 85,
- "completeStyle": "v2",
- "passThreshold": 0.6,
- "hook": "You skipped it. It ran without you.",
- "format": "slides",
- "launchpad": {
-  "outcome": "Feel price leave without you and every candle start to look like an entry, and let the move go.",
-  "missionQuestion": "What is FOMO asking me to do right now?",
-  "estMinutes": 8
- },
- "watch": {
-  "markers": []
- },
- "slides": [
-  {
-   "type": "p7_scene",
-   "kicker": "I Knew It",
-   "title": "10:04",
-   "beats": [
+  "phase": "p7",
+  "section": "s18",
+  "lessonNumber": 6,
+  "title": "I Knew It",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 85,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "You skipped it. It ran without you.",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Feel price leave without you and every candle start to look like an entry, and let the move go.",
+    "missionQuestion": "What is FOMO asking me to do right now?",
+    "estMinutes": 8
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
     {
-     "chart": {
-      "bars": [
-       {
-        "o": 20982.25,
-        "h": 20986.75,
-        "l": 20981.25,
-        "c": 20985.75
-       },
-       {
-        "o": 20985.75,
-        "h": 20991.5,
-        "l": 20985.25,
-        "c": 20991.0
-       },
-       {
-        "o": 20991.0,
-        "h": 20993.75,
-        "l": 20989.75,
-        "c": 20993.25
-       },
-       {
-        "o": 20993.25,
-        "h": 20998.75,
-        "l": 20992.25,
-        "c": 20998.25
-       },
-       {
-        "o": 20998.25,
-        "h": 21004.25,
-        "l": 20997.75,
-        "c": 21001.75
-       },
-       {
-        "o": 21001.75,
-        "h": 21003.0,
-        "l": 20998.0,
-        "c": 20999.0
-       },
-       {
-        "o": 20999.0,
-        "h": 20999.5,
-        "l": 20994.75,
-        "c": 20995.25
-       },
-       {
-        "o": 20995.25,
-        "h": 20996.5,
-        "l": 20993.5,
-        "c": 20994.75
-       },
-       {
-        "o": 20994.75,
-        "h": 20996.0,
-        "l": 20990.0,
-        "c": 20991.25
-       },
-       {
-        "o": 20991.25,
-        "h": 20997.0,
-        "l": 20990.75,
-        "c": 20995.75
-       },
-       {
-        "o": 20995.75,
-        "h": 20999.5,
-        "l": 20994.5,
-        "c": 20998.75
-       },
-       {
-        "o": 20998.75,
-        "h": 21002.25,
-        "l": 20998.0,
-        "c": 21001.25
-       },
-       {
-        "o": 21001.25,
-        "h": 21007.75,
-        "l": 21001.25,
-        "c": 21007.0
-       },
-       {
-        "o": 21007.0,
-        "h": 21007.0,
-        "l": 21001.25,
-        "c": 21002.0
-       },
-       {
-        "o": 21002.0,
-        "h": 21008.5,
-        "l": 21002.0,
-        "c": 21007.25
-       },
-       {
-        "o": 21007.25,
-        "h": 21014.75,
-        "l": 21006.25,
-        "c": 21013.75
-       },
-       {
-        "o": 21013.75,
-        "h": 21018.75,
-        "l": 21012.75,
-        "c": 21018.25
-       },
-       {
-        "o": 21018.25,
-        "h": 21023.25,
-        "l": 21017.75,
-        "c": 21022.75
-       },
-       {
-        "o": 21022.75,
-        "h": 21029.25,
-        "l": 21022.25,
-        "c": 21028.25
-       },
-       {
-        "o": 21028.25,
-        "h": 21031.75,
-        "l": 21027.5,
-        "c": 21030.75
-       },
-       {
-        "o": 21030.75,
-        "h": 21033.5,
-        "l": 21030.25,
-        "c": 21032.75
-       },
-       {
-        "o": 21032.75,
-        "h": 21036.75,
-        "l": 21032.25,
-        "c": 21036.25
-       },
-       {
-        "o": 21036.25,
-        "h": 21039.25,
-        "l": 21035.25,
-        "c": 21038.0
-       },
-       {
-        "o": 21038.0,
-        "h": 21043.25,
-        "l": 21037.5,
-        "c": 21042.75
-       },
-       {
-        "o": 21042.75,
-        "h": 21045.5,
-        "l": 21041.75,
-        "c": 21044.25
-       },
-       {
-        "o": 21044.25,
-        "h": 21049.75,
-        "l": 21043.5,
-        "c": 21048.75
-       },
-       {
-        "o": 21048.75,
-        "h": 21055.5,
-        "l": 21048.25,
-        "c": 21055.0
-       },
-       {
-        "o": 21055.0,
-        "h": 21060.75,
-        "l": 21054.25,
-        "c": 21059.25
-       },
-       {
-        "o": 21059.25,
-        "h": 21064.5,
-        "l": 21058.25,
-        "c": 21063.25
-       },
-       {
-        "o": 21063.25,
-        "h": 21068.75,
-        "l": 21062.25,
-        "c": 21068.25
-       }
-      ],
-      "pil": 21004.25,
-      "pilAt": 4,
-      "head": {
-       "tf": "1M",
-       "label": "You’re waiting for the retest"
-      },
-      "play": {
-       "from": 10,
-       "to": 20,
-       "speed": 420
-      }
-     }
+      "type": "v2_hero",
+      "kicker": "Phase 7 · Lesson 6",
+      "headline": "Price never came back, and <em>you thought, “I knew it.”</em>",
+      "line": "You waited for your retest like the plan says, and price left without you.",
+      "pose": "think",
+      "cta": "Show me →"
     },
     {
-     "say": [
-      "Indication. Correction. Continuation.",
-      "You’re waiting for the retest your model requires.",
-      "<b>It never comes back.</b>"
-     ]
-    },
-    {
-     "thoughts": [
-      "“I KNEW it.”",
-      "“It’s leaving.”",
-      "“I should’ve just gotten in.”"
-     ]
-    },
-    {
-     "say": [
-      "Now every candle feels like an opportunity."
-     ]
-    },
-    {
-     "choice": {
-      "prompt": "Price is +25 from your level. What do you do?",
-      "options": [
-       {
-        "label": "Buy now before it’s gone",
-        "path": {
-         "chart": {
-          "bars": [
-           {
+      "type": "v2_moment",
+      "kicker": "10:04",
+      "headline": "There’s no retest, and <em>price is leaving.</em>",
+      "line": "You saw an Indication, a Correction, and a Continuation. Then price never came back to your level.",
+      "chart": {
+        "bars": [
+          {
             "o": 20982.25,
             "h": 20986.75,
             "l": 20981.25,
             "c": 20985.75
-           },
-           {
-            "o": 20985.75,
-            "h": 20991.5,
-            "l": 20985.25,
-            "c": 20991.0
-           },
-           {
-            "o": 20991.0,
-            "h": 20993.75,
-            "l": 20989.75,
-            "c": 20993.25
-           },
-           {
-            "o": 20993.25,
-            "h": 20998.75,
-            "l": 20992.25,
-            "c": 20998.25
-           },
-           {
-            "o": 20998.25,
-            "h": 21004.25,
-            "l": 20997.75,
-            "c": 21001.75
-           },
-           {
-            "o": 21001.75,
-            "h": 21003.0,
-            "l": 20998.0,
-            "c": 20999.0
-           },
-           {
-            "o": 20999.0,
-            "h": 20999.5,
-            "l": 20994.75,
-            "c": 20995.25
-           },
-           {
-            "o": 20995.25,
-            "h": 20996.5,
-            "l": 20993.5,
-            "c": 20994.75
-           },
-           {
-            "o": 20994.75,
-            "h": 20996.0,
-            "l": 20990.0,
-            "c": 20991.25
-           },
-           {
-            "o": 20991.25,
-            "h": 20997.0,
-            "l": 20990.75,
-            "c": 20995.75
-           },
-           {
-            "o": 20995.75,
-            "h": 20999.5,
-            "l": 20994.5,
-            "c": 20998.75
-           },
-           {
-            "o": 20998.75,
-            "h": 21002.25,
-            "l": 20998.0,
-            "c": 21001.25
-           },
-           {
-            "o": 21001.25,
-            "h": 21007.75,
-            "l": 21001.25,
-            "c": 21007.0
-           },
-           {
-            "o": 21007.0,
-            "h": 21007.0,
-            "l": 21001.25,
-            "c": 21002.0
-           },
-           {
-            "o": 21002.0,
-            "h": 21008.5,
-            "l": 21002.0,
-            "c": 21007.25
-           },
-           {
-            "o": 21007.25,
-            "h": 21014.75,
-            "l": 21006.25,
-            "c": 21013.75
-           },
-           {
-            "o": 21013.75,
-            "h": 21018.75,
-            "l": 21012.75,
-            "c": 21018.25
-           },
-           {
-            "o": 21018.25,
-            "h": 21023.25,
-            "l": 21017.75,
-            "c": 21022.75
-           },
-           {
-            "o": 21022.75,
-            "h": 21029.25,
-            "l": 21022.25,
-            "c": 21028.25
-           },
-           {
-            "o": 21028.25,
-            "h": 21031.75,
-            "l": 21027.5,
-            "c": 21030.75
-           },
-           {
-            "o": 21030.75,
-            "h": 21031.0,
-            "l": 21026.5,
-            "c": 21027.75
-           },
-           {
-            "o": 21027.75,
-            "h": 21029.25,
-            "l": 21021.25,
-            "c": 21021.5
-           },
-           {
-            "o": 21021.5,
-            "h": 21022.75,
-            "l": 21017.25,
-            "c": 21018.25
-           },
-           {
-            "o": 21018.25,
-            "h": 21019.75,
-            "l": 21014.75,
-            "c": 21015.25
-           },
-           {
-            "o": 21015.25,
-            "h": 21016.5,
-            "l": 21009.25,
-            "c": 21009.75
-           },
-           {
-            "o": 21009.75,
-            "h": 21010.25,
-            "l": 21005.75,
-            "c": 21006.25
-           },
-           {
-            "o": 21006.25,
-            "h": 21007.5,
-            "l": 21002.0,
-            "c": 21003.25
-           },
-           {
-            "o": 21003.25,
-            "h": 21003.75,
-            "l": 20996.75,
-            "c": 20998.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "tags": [
-           {
-            "at": 27,
-            "text": "−1R",
-            "tone": "warn"
-           }
-          ],
-          "head": {
-           "tf": "1M",
-           "label": "You chased"
           },
-          "play": {
-           "from": 20,
-           "to": 28,
-           "speed": 300
-          }
-         },
-         "say": [
-          "It came back to the level you were waiting for. Through your stop.",
-          "Some days it keeps going instead. <b>That’s how chasing becomes a habit.</b>"
-         ],
-         "tally": [
-          [
-           "ENTRY",
-           "+25 above your plan",
-           "mind"
-          ],
-          [
-           "RESULT",
-           "−1R",
-           "neutral"
-          ],
-          [
-           "RULES BROKEN",
-           "1 · chase",
-           "mind"
-          ]
-         ]
-        },
-        "track": [
-         "fomoDecisionCount",
-         "emotionalTradesTaken"
-        ]
-       },
-       {
-        "label": "Let it go",
-        "path": {
-         "chart": {
-          "bars": [
-           {
-            "o": 20982.25,
-            "h": 20986.75,
-            "l": 20981.25,
-            "c": 20985.75
-           },
-           {
+          {
             "o": 20985.75,
             "h": 20991.5,
             "l": 20985.25,
             "c": 20991.0
-           },
-           {
+          },
+          {
             "o": 20991.0,
             "h": 20993.75,
             "l": 20989.75,
             "c": 20993.25
-           },
-           {
+          },
+          {
             "o": 20993.25,
             "h": 20998.75,
             "l": 20992.25,
             "c": 20998.25
-           },
-           {
+          },
+          {
             "o": 20998.25,
             "h": 21004.25,
             "l": 20997.75,
             "c": 21001.75
-           },
-           {
+          },
+          {
             "o": 21001.75,
             "h": 21003.0,
             "l": 20998.0,
             "c": 20999.0
-           },
-           {
+          },
+          {
             "o": 20999.0,
             "h": 20999.5,
             "l": 20994.75,
             "c": 20995.25
-           },
-           {
+          },
+          {
             "o": 20995.25,
             "h": 20996.5,
             "l": 20993.5,
             "c": 20994.75
-           },
-           {
+          },
+          {
             "o": 20994.75,
             "h": 20996.0,
             "l": 20990.0,
             "c": 20991.25
-           },
-           {
+          },
+          {
             "o": 20991.25,
             "h": 20997.0,
             "l": 20990.75,
             "c": 20995.75
-           },
-           {
+          },
+          {
             "o": 20995.75,
             "h": 20999.5,
             "l": 20994.5,
             "c": 20998.75
-           },
-           {
+          },
+          {
             "o": 20998.75,
             "h": 21002.25,
             "l": 20998.0,
             "c": 21001.25
-           },
-           {
+          },
+          {
             "o": 21001.25,
             "h": 21007.75,
             "l": 21001.25,
             "c": 21007.0
-           },
-           {
+          },
+          {
             "o": 21007.0,
             "h": 21007.0,
             "l": 21001.25,
             "c": 21002.0
-           },
-           {
+          },
+          {
             "o": 21002.0,
             "h": 21008.5,
             "l": 21002.0,
             "c": 21007.25
-           },
-           {
+          },
+          {
             "o": 21007.25,
             "h": 21014.75,
             "l": 21006.25,
             "c": 21013.75
-           },
-           {
+          },
+          {
             "o": 21013.75,
             "h": 21018.75,
             "l": 21012.75,
             "c": 21018.25
-           },
-           {
+          },
+          {
             "o": 21018.25,
             "h": 21023.25,
             "l": 21017.75,
             "c": 21022.75
-           },
-           {
+          },
+          {
             "o": 21022.75,
             "h": 21029.25,
             "l": 21022.25,
             "c": 21028.25
-           },
-           {
+          },
+          {
             "o": 21028.25,
             "h": 21031.75,
             "l": 21027.5,
             "c": 21030.75
-           },
-           {
+          },
+          {
             "o": 21030.75,
             "h": 21033.5,
             "l": 21030.25,
             "c": 21032.75
-           },
-           {
+          },
+          {
             "o": 21032.75,
             "h": 21036.75,
             "l": 21032.25,
             "c": 21036.25
-           },
-           {
+          },
+          {
             "o": 21036.25,
             "h": 21039.25,
             "l": 21035.25,
             "c": 21038.0
-           },
-           {
+          },
+          {
             "o": 21038.0,
             "h": 21043.25,
             "l": 21037.5,
             "c": 21042.75
-           },
-           {
+          },
+          {
             "o": 21042.75,
             "h": 21045.5,
             "l": 21041.75,
             "c": 21044.25
-           },
-           {
+          },
+          {
             "o": 21044.25,
             "h": 21049.75,
             "l": 21043.5,
             "c": 21048.75
-           },
-           {
+          },
+          {
             "o": 21048.75,
             "h": 21055.5,
             "l": 21048.25,
             "c": 21055.0
-           },
-           {
+          },
+          {
             "o": 21055.0,
             "h": 21060.75,
             "l": 21054.25,
             "c": 21059.25
-           },
-           {
+          },
+          {
             "o": 21059.25,
             "h": 21064.5,
             "l": 21058.25,
             "c": 21063.25
-           },
-           {
+          },
+          {
             "o": 21063.25,
             "h": 21068.75,
             "l": 21062.25,
             "c": 21068.25
-           }
-          ],
-          "pil": 21004.25,
-          "pilAt": 4,
-          "head": {
-           "tf": "1M",
-           "label": "It ran"
-          },
-          "play": {
-           "from": 20,
-           "to": 30,
-           "speed": 300
           }
-         },
-         "say": [
-          "It ran all the way to where your target would have been.",
-          "Without you."
-         ],
-         "tally": [
-          [
-           "MISSED OPPORTUNITY",
-           "+$500 hypothetical",
-           "neutral"
-          ],
-          [
-           "ACCOUNT CHANGE",
-           "$0",
-           "ok"
-          ],
-          [
-           "RULES BROKEN",
-           "0",
-           "ok"
-          ]
-         ]
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "head": {
+          "tf": "1M",
+          "label": "You’re waiting for the retest"
         },
-        "track": "fomoRecognized"
-       }
-      ]
-     }
-    },
-    {
-     "say": [
-      "Missed profit is shown in gray on purpose. It isn’t red. <b>It isn’t a loss.</b>"
-     ]
-    },
-    {
-     "who": {
-      "before": {
-       "h": "THE TRADER",
-       "lines": [
-        "Waited for the retest the model requires."
-       ]
+        "play": {
+          "from": 10,
+          "to": 20,
+          "speed": 420
+        }
       },
-      "after": {
-       "h": "THE FEAR OF MISSING OUT",
-       "lines": [
-        "Sees an entry in every candle.",
-        "Calls it “I knew it”."
-       ]
+      "thoughts": [
+        "“I KNEW it.”",
+        "“It’s leaving.”",
+        "“I should’ve just gotten in.”"
+      ],
+      "check": {
+        "prompt": "Price is now 25 points above your level. What would you do?",
+        "options": [
+          {
+            "label": "Buy now before it’s gone",
+            "correct": false,
+            "feedback": "Every candle feels like a chance now. That’s FOMO, the fear of missing out, not a setup.",
+            "track": [
+              "fomoDecisionCount",
+              "emotionalTradesTaken"
+            ]
+          },
+          {
+            "label": "Let this one go",
+            "correct": true,
+            "feedback": "Yes. No retest, no entry. Your account stays exactly where it was.",
+            "track": "fomoRecognized"
+          }
+        ]
       }
-     }
     },
     {
-     "principle": "THE MARKET MOVING WITHOUT YOU ISN’T TAKING ANYTHING FROM YOU."
+      "type": "v2_moment",
+      "kicker": "If you had chased it",
+      "headline": "You chased it, and <em>price came back through your stop.</em>",
+      "line": "You entered 25 points above your plan and lost −1R, exactly the amount you planned to risk. That’s how chasing becomes a habit.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20986.75,
+            "l": 20981.25,
+            "c": 20985.75
+          },
+          {
+            "o": 20985.75,
+            "h": 20991.5,
+            "l": 20985.25,
+            "c": 20991.0
+          },
+          {
+            "o": 20991.0,
+            "h": 20993.75,
+            "l": 20989.75,
+            "c": 20993.25
+          },
+          {
+            "o": 20993.25,
+            "h": 20998.75,
+            "l": 20992.25,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.75,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21003.0,
+            "l": 20998.0,
+            "c": 20999.0
+          },
+          {
+            "o": 20999.0,
+            "h": 20999.5,
+            "l": 20994.75,
+            "c": 20995.25
+          },
+          {
+            "o": 20995.25,
+            "h": 20996.5,
+            "l": 20993.5,
+            "c": 20994.75
+          },
+          {
+            "o": 20994.75,
+            "h": 20996.0,
+            "l": 20990.0,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20997.0,
+            "l": 20990.75,
+            "c": 20995.75
+          },
+          {
+            "o": 20995.75,
+            "h": 20999.5,
+            "l": 20994.5,
+            "c": 20998.75
+          },
+          {
+            "o": 20998.75,
+            "h": 21002.25,
+            "l": 20998.0,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21008.5,
+            "l": 21002.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21014.75,
+            "l": 21006.25,
+            "c": 21013.75
+          },
+          {
+            "o": 21013.75,
+            "h": 21018.75,
+            "l": 21012.75,
+            "c": 21018.25
+          },
+          {
+            "o": 21018.25,
+            "h": 21023.25,
+            "l": 21017.75,
+            "c": 21022.75
+          },
+          {
+            "o": 21022.75,
+            "h": 21029.25,
+            "l": 21022.25,
+            "c": 21028.25
+          },
+          {
+            "o": 21028.25,
+            "h": 21031.75,
+            "l": 21027.5,
+            "c": 21030.75
+          },
+          {
+            "o": 21030.75,
+            "h": 21031.0,
+            "l": 21026.5,
+            "c": 21027.75
+          },
+          {
+            "o": 21027.75,
+            "h": 21029.25,
+            "l": 21021.25,
+            "c": 21021.5
+          },
+          {
+            "o": 21021.5,
+            "h": 21022.75,
+            "l": 21017.25,
+            "c": 21018.25
+          },
+          {
+            "o": 21018.25,
+            "h": 21019.75,
+            "l": 21014.75,
+            "c": 21015.25
+          },
+          {
+            "o": 21015.25,
+            "h": 21016.5,
+            "l": 21009.25,
+            "c": 21009.75
+          },
+          {
+            "o": 21009.75,
+            "h": 21010.25,
+            "l": 21005.75,
+            "c": 21006.25
+          },
+          {
+            "o": 21006.25,
+            "h": 21007.5,
+            "l": 21002.0,
+            "c": 21003.25
+          },
+          {
+            "o": 21003.25,
+            "h": 21003.75,
+            "l": 20996.75,
+            "c": 20998.25
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "tags": [
+          {
+            "at": 27,
+            "text": "−1R",
+            "tone": "warn"
+          }
+        ],
+        "head": {
+          "tf": "1M",
+          "label": "You chased"
+        },
+        "play": {
+          "from": 20,
+          "to": 28,
+          "speed": 300
+        }
+      }
+    },
+    {
+      "type": "v2_moment",
+      "kicker": "If you let it go",
+      "headline": "Price ran without you, and <em>you lost $0.</em>",
+      "line": "Missed profit is gray, not red. It was never in your account, so it isn’t a loss.",
+      "chart": {
+        "bars": [
+          {
+            "o": 20982.25,
+            "h": 20986.75,
+            "l": 20981.25,
+            "c": 20985.75
+          },
+          {
+            "o": 20985.75,
+            "h": 20991.5,
+            "l": 20985.25,
+            "c": 20991.0
+          },
+          {
+            "o": 20991.0,
+            "h": 20993.75,
+            "l": 20989.75,
+            "c": 20993.25
+          },
+          {
+            "o": 20993.25,
+            "h": 20998.75,
+            "l": 20992.25,
+            "c": 20998.25
+          },
+          {
+            "o": 20998.25,
+            "h": 21004.25,
+            "l": 20997.75,
+            "c": 21001.75
+          },
+          {
+            "o": 21001.75,
+            "h": 21003.0,
+            "l": 20998.0,
+            "c": 20999.0
+          },
+          {
+            "o": 20999.0,
+            "h": 20999.5,
+            "l": 20994.75,
+            "c": 20995.25
+          },
+          {
+            "o": 20995.25,
+            "h": 20996.5,
+            "l": 20993.5,
+            "c": 20994.75
+          },
+          {
+            "o": 20994.75,
+            "h": 20996.0,
+            "l": 20990.0,
+            "c": 20991.25
+          },
+          {
+            "o": 20991.25,
+            "h": 20997.0,
+            "l": 20990.75,
+            "c": 20995.75
+          },
+          {
+            "o": 20995.75,
+            "h": 20999.5,
+            "l": 20994.5,
+            "c": 20998.75
+          },
+          {
+            "o": 20998.75,
+            "h": 21002.25,
+            "l": 20998.0,
+            "c": 21001.25
+          },
+          {
+            "o": 21001.25,
+            "h": 21007.75,
+            "l": 21001.25,
+            "c": 21007.0
+          },
+          {
+            "o": 21007.0,
+            "h": 21007.0,
+            "l": 21001.25,
+            "c": 21002.0
+          },
+          {
+            "o": 21002.0,
+            "h": 21008.5,
+            "l": 21002.0,
+            "c": 21007.25
+          },
+          {
+            "o": 21007.25,
+            "h": 21014.75,
+            "l": 21006.25,
+            "c": 21013.75
+          },
+          {
+            "o": 21013.75,
+            "h": 21018.75,
+            "l": 21012.75,
+            "c": 21018.25
+          },
+          {
+            "o": 21018.25,
+            "h": 21023.25,
+            "l": 21017.75,
+            "c": 21022.75
+          },
+          {
+            "o": 21022.75,
+            "h": 21029.25,
+            "l": 21022.25,
+            "c": 21028.25
+          },
+          {
+            "o": 21028.25,
+            "h": 21031.75,
+            "l": 21027.5,
+            "c": 21030.75
+          },
+          {
+            "o": 21030.75,
+            "h": 21033.5,
+            "l": 21030.25,
+            "c": 21032.75
+          },
+          {
+            "o": 21032.75,
+            "h": 21036.75,
+            "l": 21032.25,
+            "c": 21036.25
+          },
+          {
+            "o": 21036.25,
+            "h": 21039.25,
+            "l": 21035.25,
+            "c": 21038.0
+          },
+          {
+            "o": 21038.0,
+            "h": 21043.25,
+            "l": 21037.5,
+            "c": 21042.75
+          },
+          {
+            "o": 21042.75,
+            "h": 21045.5,
+            "l": 21041.75,
+            "c": 21044.25
+          },
+          {
+            "o": 21044.25,
+            "h": 21049.75,
+            "l": 21043.5,
+            "c": 21048.75
+          },
+          {
+            "o": 21048.75,
+            "h": 21055.5,
+            "l": 21048.25,
+            "c": 21055.0
+          },
+          {
+            "o": 21055.0,
+            "h": 21060.75,
+            "l": 21054.25,
+            "c": 21059.25
+          },
+          {
+            "o": 21059.25,
+            "h": 21064.5,
+            "l": 21058.25,
+            "c": 21063.25
+          },
+          {
+            "o": 21063.25,
+            "h": 21068.75,
+            "l": 21062.25,
+            "c": 21068.25
+          }
+        ],
+        "pil": 21004.25,
+        "pilAt": 4,
+        "head": {
+          "tf": "1M",
+          "label": "It ran"
+        },
+        "play": {
+          "from": 20,
+          "to": 30,
+          "speed": 300
+        }
+      }
+    },
+    {
+      "type": "v2_compare",
+      "kicker": "Who’s trading now?",
+      "headline": "When price moves without you, <em>it takes nothing</em> from you.",
+      "cards": [
+        {
+          "label": "The trader",
+          "sub": "She waits for the retest her model requires.",
+          "spark": "slow",
+          "tag": "PLAN",
+          "tone": "purple"
+        },
+        {
+          "label": "FOMO",
+          "sub": "It sees an entry in every single candle.",
+          "spark": "up",
+          "tag": "“I KNEW IT”",
+          "tone": "pink"
+        }
+      ],
+      "check": {
+        "prompt": "Price ran all the way to your target. Is that a loss?",
+        "options": [
+          {
+            "label": "Yes, I just lost $500",
+            "correct": false,
+            "feedback": "That $500 was never in your account. Missing a profit isn’t the same as losing money."
+          },
+          {
+            "label": "No, my account didn’t change",
+            "correct": true,
+            "feedback": "Exactly. The market moved without your entry, and that’s all that happened."
+          }
+        ]
+      }
+    },
+    {
+      "type": "p7_seen",
+      "kicker": "Your practice history",
+      "fallback": {
+        "key": "chase",
+        "rule": "No retest, no chase",
+        "emotionHint": "fomo",
+        "line": "A very common one: entering after the planned retest is already gone."
+      }
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "“I knew it” is the most expensive sentence in trading. 😂 <em>Knowing isn’t the same as an entry.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "What does <em>FOMO</em> (fear of missing out) make you want to do?",
+      "modelAnswer": "Chase: buy after the retest is gone, invent a new entry, size up to catch up. The market moved without my entry. That’s all."
     }
-   ]
-  },
-  {
-   "type": "p7_seen",
-   "kicker": "Your practice history",
-   "fallback": {
-    "key": "chase",
-    "rule": "No retest, no chase",
-    "emotionHint": "fomo",
-    "line": "A very common one: entering after the planned retest is already gone."
-   }
-  },
-  {
-   "type": "v2_dayli",
-   "kicker": "Dayli says",
-   "quote": "“I knew it” is the most expensive sentence in trading. 😂 <em>Knowing isn’t the same as an entry.</em>",
-   "pose": "point"
-  },
-  {
-   "type": "reflect",
-   "kicker": "Tell me what you know",
-   "prompt": "What does FOMO make you want to do?",
-   "modelAnswer": "Chase: buy after the retest is gone, invent a new entry, size up to catch up. The market moved without my entry. That’s all."
-  }
- ],
- "takeaways": [
-  "“I knew it” isn’t an entry.",
-  "Missed profit isn’t lost money.",
-  "Let it go. The next setup is coming."
- ],
- "remember": "MISSED PROFIT IS NOT LOST MONEY."
+  ],
+  "takeaways": [
+    "“I knew it” isn’t an entry.",
+    "Missed profit isn’t lost money.",
+    "Let it go. The next setup is coming."
+  ],
+  "remember": "MISSED PROFIT IS NOT LOST MONEY."
 }

@@ -1,0 +1,275 @@
+{
+ "phase": "sl",
+ "section": "m1",
+ "lessonNumber": "m1-10",
+ "title": "Bringing the Full Sequence Together",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "Every part you’ve learned, in order, on one bearish chart.",
+ "launchpad": {
+  "outcome": "Walk the full sequence on a bearish chart and name the step each requirement belongs to.",
+  "missionQuestion": "What does each step of the sequence require before the next one counts?",
+  "estMinutes": 9
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "BOS #1: a 15M candle close through the 15M level, in the direction of the higher-timeframe story.",
+  "Correction #1 and BOS #2 happen on the 5M. You don’t enter on BOS #1 or BOS #2.",
+  "Correction #2 creates the zone. BOS #3 activates it.",
+  "After BOS #3, wait for price to return to the zone. Don’t chase."
+ ],
+ "remember": "3 BREAKS. 2 CORRECTIONS. 1 ZONE. 1 RETEST.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 1 · Lesson 10",
+   "headline": "Every step, <em>in one sequence.</em>",
+   "line": "You’ve learned each part. Now put them together on one bearish chart, from the first break to the retest.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_steps",
+   "kicker": "Step 1 · The full sequence",
+   "headline": "Six steps. <em>In this order.</em>",
+   "line": "Tap each step. Each one has its own requirement.",
+   "steps": [
+    {
+     "label": "BOS #1 · 15M",
+     "sub": "A 15M candle closes through the 15M level, in the direction of the higher-timeframe (HTF) story."
+    },
+    {
+     "label": "Correction #1 · 5M",
+     "sub": "A 5M pullback, preferably back toward the original 15M break."
+    },
+    {
+     "label": "BOS #2 · 5M",
+     "sub": "A 5M close through the swing Correction #1 pulled back from."
+    },
+    {
+     "label": "Correction #2 · 5M",
+     "sub": "The second pullback. It creates the zone."
+    },
+    {
+     "label": "BOS #3 · 5M",
+     "sub": "A 5M close through the swing Correction #2 pulled back from. It activates the zone."
+    },
+    {
+     "label": "Retest",
+     "sub": "Price returns to the zone. Don’t chase if it doesn’t."
+    }
+   ],
+   "cta": "Watch it build →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 2 · The full sequence on a chart",
+   "headline": "A bearish sequence, <em>start to finish.</em>",
+   "line": "Press the button to print each part. The higher-timeframe story is bearish, so you’re looking for supply.",
+   "scenario": "bear-valid",
+   "tf": "15M",
+   "start": "start",
+   "toggle": false,
+   "steps": [
+    {
+     "until": "bos1",
+     "show": [
+      "bos1"
+     ],
+     "caption": "<b>BOS #1.</b> A 15M candle closes below the 15M level, in the direction of the higher-timeframe story.",
+     "next": "Switch to the 5M →"
+    },
+    {
+     "tf": "5M",
+     "until": "c1",
+     "show": [
+      "c1"
+     ],
+     "caption": "<b>Correction #1.</b> On the 5M, price bounces up, preferably back toward the original 15M break."
+    },
+    {
+     "until": "bos2",
+     "show": [
+      "bos2"
+     ],
+     "caption": "<b>BOS #2.</b> A 5M candle closes below the low Correction #1 pulled back from. Still no entry."
+    },
+    {
+     "until": "c2",
+     "show": [
+      "c2",
+      "zone",
+      "zoneCandle"
+     ],
+     "caption": "<b>Correction #2</b> creates the zone: its last bullish candle. It’s only a <b>potential</b> supply zone for now.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    },
+    {
+     "until": "bos3",
+     "show": [
+      "bos3"
+     ],
+     "caption": "<b>BOS #3.</b> A 5M close below the low Correction #2 pulled back from. <b>Now the zone is active.</b>",
+     "provisional": [
+      "zoneBounds"
+     ]
+    },
+    {
+     "until": "retest",
+     "show": [
+      "retest",
+      "entry"
+     ],
+     "caption": "<b>The retest.</b> Price returns to the zone. The working model places a limit at the zone’s low. A bearish candle close out of the zone is the extra-confirmation option.",
+     "provisional": [
+      "zoneBounds",
+      "limitEntry"
+     ]
+    }
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 3 · Name the step",
+   "headline": "Each requirement <em>belongs to one step.</em>",
+   "line": "Tap each requirement to see which step it belongs to.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "clock",
+      "tone": "purple",
+      "label": "A 15M candle close through the 15M level",
+      "sub": "That’s BOS #1."
+     },
+     {
+      "icon": "swap",
+      "tone": "peach",
+      "label": "A 5M pullback after BOS #1",
+      "sub": "That’s Correction #1."
+     },
+     {
+      "icon": "layers",
+      "tone": "teal",
+      "label": "The last bullish candle before sellers produce BOS #3",
+      "sub": "That’s the zone-forming candle, from Correction #2."
+     },
+     {
+      "icon": "target",
+      "tone": "pink",
+      "label": "Price comes back to the active zone",
+      "sub": "That’s the retest."
+     }
+    ]
+   },
+   "check": {
+    "prompt": "Bearish model. A 5M candle closes below the low Correction #2 pulled back from. Which step is that?",
+    "stack": true,
+    "options": [
+     {
+      "label": "BOS #2",
+      "correct": false,
+      "feedback": "BOS #2 closes through the low Correction #1 pulled back from. This close comes after Correction #2."
+     },
+     {
+      "label": "BOS #3",
+      "correct": true,
+      "why": "Right. A 5M close through the swing Correction #2 pulled back from is BOS #3. It activates the zone."
+     },
+     {
+      "label": "The retest",
+      "correct": false,
+      "feedback": "The retest is price returning to the zone after BOS #3. This candle is the break that activates the zone."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 4 · Check yourself",
+   "headline": "Which step <em>creates the zone?</em>",
+   "line": "One step creates the zone. A different step activates it.",
+   "visual": {
+    "icon": "layers",
+    "tone": "teal",
+    "caption": "Created, then activated."
+   },
+   "check": {
+    "prompt": "Which step creates the zone?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Correction #1",
+      "correct": false,
+      "feedback": "Correction #1 comes after BOS #1. It doesn’t create the zone."
+     },
+     {
+      "label": "Correction #2",
+      "correct": true,
+      "why": "Right. Correction #2 creates the zone, and BOS #3 activates it."
+     },
+     {
+      "label": "BOS #3",
+      "correct": false,
+      "feedback": "BOS #3 activates the zone. The zone itself comes from Correction #2."
+     }
+    ]
+   },
+   "cta": "Your turn →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 5 · Your turn",
+   "headline": "Now the mirror. <em>Find the retest.</em>",
+   "line": "A bullish chart this time. BOS #3 has activated the demand zone.",
+   "scenario": "bull-valid",
+   "tf": "5M",
+   "until": "retest+2",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2",
+    "zoneCandle",
+    "bos3"
+   ],
+   "within": [
+    "bos3",
+    "retest+2"
+   ],
+   "ask": "Tap the first candle that comes back to the demand zone.",
+   "target": "retest",
+   "why": "That’s the first return to the active zone after BOS #3. That’s the retest.",
+   "after": {
+    "show": [
+     "retest"
+    ],
+    "caption": "<b>3 Breaks. 2 Corrections. 1 Zone. 1 Retest.</b> The full sequence is complete."
+   },
+   "provisional": [
+    "zoneBounds"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Every step earns the next one. <em>Skip one and there’s no trade.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, walk through the full bearish sequence and what each step needs.",
+   "modelAnswer": "The higher-timeframe ICC is bearish, so I look for supply. BOS #1 is a 15M candle close below the 15M level. Correction #1 is a 5M bounce, preferably back toward the 15M break. BOS #2 is a 5M close below the low Correction #1 pulled back from. Correction #2 creates the zone from its last bullish candle. BOS #3 is a 5M close below the low Correction #2 pulled back from, and it activates the zone. Then I wait for price to return to the zone, and I don’t chase if it doesn’t."
+  }
+ ]
+}

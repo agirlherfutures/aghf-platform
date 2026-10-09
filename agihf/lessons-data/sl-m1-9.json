@@ -1,0 +1,248 @@
+{
+ "phase": "sl",
+ "section": "m1",
+ "lessonNumber": "m1-9",
+ "title": "Supply vs. Demand",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "Same sequence, mirrored. Demand belongs to the bullish model, supply to the bearish one.",
+ "launchpad": {
+  "outcome": "Explain how demand and supply mirror each other: which candle forms each zone, and which boundary matters for invalidation.",
+  "missionQuestion": "How does the higher-timeframe direction decide whether you look for supply or demand?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "Demand is the bullish model. Its zone is the last bearish candle of Correction #2 before BOS #3.",
+  "Supply is the bearish model. Its zone is the last bullish candle of Correction #2 before BOS #3.",
+  "For demand, the lower boundary matters for invalidation. For supply, the upper boundary matters.",
+  "The higher-timeframe ICC direction tells you which one you’re looking for."
+ ],
+ "remember": "DEMAND: BULLISH. SUPPLY: BEARISH. SAME SEQUENCE.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 1 · Lesson 9",
+   "headline": "Same sequence. <em>Mirrored.</em>",
+   "line": "Demand belongs to the bullish model. Supply belongs to the bearish model. The steps don’t change, only the direction does.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · Side by side",
+   "headline": "Demand ≠ <em>supply.</em>",
+   "line": "The higher-timeframe ICC direction tells you which one you’re looking for.",
+   "visual": {
+    "versus": [
+     {
+      "label": "Demand · bullish",
+      "tone": "teal",
+      "icon": "up",
+      "points": [
+       "The bullish model.",
+       "Zone: the last bearish candle of Correction #2 before BOS #3.",
+       "The lower boundary matters for invalidation."
+      ]
+     },
+     {
+      "label": "Supply · bearish",
+      "tone": "pink",
+      "icon": "down",
+      "points": [
+       "The bearish model.",
+       "Zone: the last bullish candle of Correction #2 before BOS #3.",
+       "The upper boundary matters for invalidation."
+      ]
+     }
+    ]
+   },
+   "check": {
+    "prompt": "The higher-timeframe ICC is bearish. Which zone are you looking for?",
+    "stack": true,
+    "options": [
+     {
+      "label": "A demand zone",
+      "correct": false,
+      "feedback": "Demand belongs to the bullish model. A bearish higher-timeframe story means you look for supply."
+     },
+     {
+      "label": "A supply zone",
+      "correct": true,
+      "why": "Right. Bearish model, supply zone."
+     }
+    ]
+   },
+   "cta": "See demand →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 2 · Demand",
+   "headline": "Bullish model: <em>a demand zone.</em>",
+   "line": "On the 5M. BOS #1, Correction #1 and BOS #2 are already marked.",
+   "scenario": "bull-valid",
+   "tf": "5M",
+   "start": "bos2",
+   "toggle": false,
+   "show": [
+    "bos1",
+    "c1",
+    "bos2"
+   ],
+   "steps": [
+    {
+     "until": "c2",
+     "show": [
+      "c2",
+      "zoneCandle",
+      "zone"
+     ],
+     "caption": "<b>Correction #2</b> creates the demand zone: its <b>last bearish candle</b>. It’s potential for now.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    },
+    {
+     "until": "bos3",
+     "show": [
+      "bos3"
+     ],
+     "caption": "<b>BOS #3.</b> A 5M close above the high Correction #2 pulled back from. The demand zone is active.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    },
+    {
+     "until": "retest",
+     "show": [
+      "retest"
+     ],
+     "caption": "<b>The retest.</b> For demand, the <b>lower</b> boundary matters. A 5M close below it would invalidate the setup.",
+     "provisional": [
+      "zoneBounds",
+      "invalidation"
+     ]
+    }
+   ],
+   "check": {
+    "prompt": "Which boundary of a demand zone matters for invalidation?",
+    "stack": true,
+    "options": [
+     {
+      "label": "The upper boundary",
+      "correct": false,
+      "feedback": "The upper boundary is the near edge for demand. Invalidation concerns the opposite boundary: the lower one."
+     },
+     {
+      "label": "The lower boundary",
+      "correct": true,
+      "why": "Right. For demand, invalidation concerns the lower boundary."
+     }
+    ]
+   },
+   "cta": "See supply →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 3 · Supply",
+   "headline": "Bearish model: <em>a supply zone.</em>",
+   "line": "On the 5M. BOS #1, Correction #1 and BOS #2 are already marked.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "start": "bos2",
+   "toggle": false,
+   "show": [
+    "bos1",
+    "c1",
+    "bos2"
+   ],
+   "steps": [
+    {
+     "until": "c2",
+     "show": [
+      "c2"
+     ],
+     "caption": "<b>Correction #2.</b> In the bearish model it bounces up. Look for its bullish candles."
+    },
+    {
+     "show": [
+      "zoneCandle",
+      "zone"
+     ],
+     "caption": "The <b>last bullish candle</b> of Correction #2 creates the supply zone. It’s potential for now.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    },
+    {
+     "until": "bos3",
+     "show": [
+      "bos3"
+     ],
+     "caption": "<b>BOS #3.</b> A 5M close below the low Correction #2 pulled back from. The supply zone is active.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    },
+    {
+     "until": "retest",
+     "show": [
+      "retest"
+     ],
+     "caption": "<b>The retest.</b> For supply, the <b>upper</b> boundary matters. A 5M close above it would invalidate the setup.",
+     "provisional": [
+      "zoneBounds",
+      "invalidation"
+     ]
+    }
+   ],
+   "cta": "Your turn →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 4 · Your turn",
+   "headline": "Bearish model. <em>Tap the supply candle.</em>",
+   "line": "A new bearish chart. Correction #2 is marked, and the last candle is BOS #3.",
+   "scenario": "bear-invalid",
+   "tf": "5M",
+   "until": "bos3",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2"
+   ],
+   "ask": "Tap the candle that forms the supply zone.",
+   "target": "zone",
+   "why": "That’s the last bullish candle of Correction #2 before sellers produce BOS #3. It forms the supply zone.",
+   "after": {
+    "show": [
+     "zoneCandle",
+     "bos3"
+    ],
+    "caption": "<b>Supply zone.</b> The upper boundary is the one that matters for invalidation."
+   },
+   "provisional": [
+    "zoneBounds"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Read the story first. <em>Then you’ll know which zone you’re hunting.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, how are demand and supply different, and which boundary matters for each?",
+   "modelAnswer": "Demand belongs to the bullish model: the zone is the last bearish candle of Correction #2 before BOS #3, and the lower boundary matters for invalidation. Supply belongs to the bearish model: the zone is the last bullish candle of Correction #2 before BOS #3, and the upper boundary matters for invalidation. The higher-timeframe ICC direction tells me which one to look for."
+  }
+ ]
+}

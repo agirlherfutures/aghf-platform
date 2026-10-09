@@ -1,0 +1,3197 @@
+{
+  "phase": "p5",
+  "section": "s14",
+  "lessonNumber": 26,
+  "title": "1H: Build the Map",
+  "videoUrl": null,
+  "videoDuration": "",
+  "xpValue": 80,
+  "completeStyle": "v2",
+  "passThreshold": 0.6,
+  "hook": "What structure and swings are actually relevant?",
+  "format": "slides",
+  "launchpad": {
+    "outcome": "Carry your 4H read onto the 1H, mark the previous 1H swing high and low, name the 1H structure, and explain how it relates to the 4H.",
+    "missionQuestion": "What structure and swings are actually relevant?",
+    "estMinutes": 10
+  },
+  "watch": {
+    "markers": []
+  },
+  "slides": [
+    {
+      "type": "v2_hero",
+      "kicker": "Phase 5 · Lesson 26",
+      "headline": "Carry the 4H story down and <em>build the 1H map.</em>",
+      "line": "The 1-hour chart shows the detail inside the 4H range. Your job is to find which structure and swings actually matter.",
+      "pose": "wave",
+      "cta": "Let’s build it →"
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 1 · Carry the 4H read",
+      "headline": "Bring your 4H read onto the 1H. <em>Don’t start over.</em>",
+      "line": "The 1H sits inside the 4H range, so everything you found on the 4H comes with you.",
+      "visual": {
+        "chart": {
+          "swings": [
+            [
+              40,
+              50
+            ],
+            [
+              95,
+              112
+            ],
+            [
+              140,
+              84
+            ],
+            [
+              180,
+              124
+            ],
+            [
+              200,
+              112
+            ],
+            [
+              245,
+              160
+            ],
+            [
+              295,
+              130
+            ],
+            [
+              330,
+              162
+            ],
+            [
+              350,
+              150
+            ],
+            [
+              400,
+              204
+            ],
+            [
+              450,
+              170
+            ],
+            [
+              500,
+              192
+            ]
+          ],
+          "candles": false,
+          "hlines": [
+            {
+              "y": 38,
+              "label": "4H swing high · 21,040",
+              "tone": "purple",
+              "x1": 8,
+              "x2": 692,
+              "size": 12,
+              "below": true,
+              "labelX": 520,
+              "id": "h4"
+            },
+            {
+              "y": 296,
+              "label": "4H swing low · 20,610",
+              "tone": "purple",
+              "x1": 8,
+              "x2": 692,
+              "size": 12,
+              "labelX": 520,
+              "id": "l4"
+            },
+            {
+              "y": 170,
+              "label": "1H swing high · 20,820",
+              "tone": "gold",
+              "x1": 442,
+              "x2": 692,
+              "size": 12,
+              "labelX": 540,
+              "id": "rHl"
+            },
+            {
+              "y": 204,
+              "label": "1H swing low · 20,765",
+              "tone": "gold",
+              "x1": 392,
+              "x2": 692,
+              "size": 12,
+              "below": true,
+              "labelX": 540,
+              "id": "rLl"
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 8,
+              "y1": 38,
+              "x2": 692,
+              "y2": 296,
+              "tone": "purple",
+              "op": 0.18,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6,
+              "id": "room"
+            }
+          ],
+          "marks": [
+            {
+              "i": 3,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 4,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 7,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 8,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 3,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 4,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 7,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 8,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 10,
+              "label": "Swing high",
+              "tone": "gold",
+              "id": "rH"
+            },
+            {
+              "i": 9,
+              "label": "Swing low",
+              "tone": "gold",
+              "id": "rL"
+            }
+          ],
+          "notes": [
+            {
+              "x": 250,
+              "y": 250,
+              "text": "4H: bullish · lower area of the range · correcting",
+              "tone": "purple",
+              "size": 13,
+              "anchor": "middle",
+              "id": "ctx"
+            },
+            {
+              "x": 540,
+              "y": 188,
+              "text": "● now",
+              "tone": "dark",
+              "size": 13,
+              "anchor": "middle",
+              "id": "now"
+            }
+          ],
+          "bars": [
+            {
+              "x": 53.8,
+              "o": 50,
+              "c": 63.7,
+              "h": 48.4,
+              "l": 67.3,
+              "w": 9.6
+            },
+            {
+              "x": 67.5,
+              "o": 63.7,
+              "c": 76.7,
+              "h": 60.6,
+              "l": 79.2,
+              "w": 9.6
+            },
+            {
+              "x": 81.2,
+              "o": 76.7,
+              "c": 92.1,
+              "h": 73.7,
+              "l": 93.2,
+              "w": 9.6
+            },
+            {
+              "x": 95.0,
+              "o": 92.1,
+              "c": 108.6,
+              "h": 89.3,
+              "l": 112,
+              "w": 9.6
+            },
+            {
+              "x": 110.0,
+              "o": 108.6,
+              "c": 101.9,
+              "h": 97.6,
+              "l": 110.1,
+              "w": 9.6
+            },
+            {
+              "x": 125.0,
+              "o": 101.9,
+              "c": 90.6,
+              "h": 87.1,
+              "l": 106.7,
+              "w": 9.6
+            },
+            {
+              "x": 140.0,
+              "o": 90.6,
+              "c": 90.9,
+              "h": 84,
+              "l": 93.2,
+              "w": 9.6
+            },
+            {
+              "x": 153.3,
+              "o": 90.9,
+              "c": 92.8,
+              "h": 86.5,
+              "l": 95.0,
+              "w": 9.6
+            },
+            {
+              "x": 166.7,
+              "o": 92.8,
+              "c": 107.1,
+              "h": 91.3,
+              "l": 109.3,
+              "w": 9.6
+            },
+            {
+              "x": 180.0,
+              "o": 107.1,
+              "c": 118.7,
+              "h": 102.8,
+              "l": 124,
+              "w": 9.6
+            },
+            {
+              "x": 190.0,
+              "o": 118.7,
+              "c": 119.4,
+              "h": 116.2,
+              "l": 122.6,
+              "w": 9.6
+            },
+            {
+              "x": 200.0,
+              "o": 119.4,
+              "c": 115.8,
+              "h": 112,
+              "l": 120.6,
+              "w": 9.6
+            },
+            {
+              "x": 215.0,
+              "o": 115.8,
+              "c": 129.8,
+              "h": 113.1,
+              "l": 132.1,
+              "w": 9.6
+            },
+            {
+              "x": 230.0,
+              "o": 129.8,
+              "c": 144.9,
+              "h": 127.0,
+              "l": 147.1,
+              "w": 9.6
+            },
+            {
+              "x": 245.0,
+              "o": 144.9,
+              "c": 156.0,
+              "h": 140.7,
+              "l": 160,
+              "w": 9.6
+            },
+            {
+              "x": 257.5,
+              "o": 156.0,
+              "c": 153.2,
+              "h": 150.1,
+              "l": 160.5,
+              "w": 9.6
+            },
+            {
+              "x": 270.0,
+              "o": 153.2,
+              "c": 147.3,
+              "h": 145.1,
+              "l": 158.2,
+              "w": 9.6
+            },
+            {
+              "x": 282.5,
+              "o": 147.3,
+              "c": 133.7,
+              "h": 131.0,
+              "l": 151.3,
+              "w": 9.6
+            },
+            {
+              "x": 295.0,
+              "o": 133.7,
+              "c": 133.2,
+              "h": 130,
+              "l": 136.6,
+              "w": 9.6
+            },
+            {
+              "x": 312.5,
+              "o": 133.2,
+              "c": 147.7,
+              "h": 129.1,
+              "l": 151.0,
+              "w": 9.6
+            },
+            {
+              "x": 330.0,
+              "o": 147.7,
+              "c": 156.2,
+              "h": 143.2,
+              "l": 162,
+              "w": 9.6
+            },
+            {
+              "x": 340.0,
+              "o": 156.2,
+              "c": 156.9,
+              "h": 152.9,
+              "l": 159.8,
+              "w": 9.6
+            },
+            {
+              "x": 350.0,
+              "o": 156.9,
+              "c": 154.9,
+              "h": 150,
+              "l": 161.7,
+              "w": 9.6
+            },
+            {
+              "x": 362.5,
+              "o": 154.9,
+              "c": 165.1,
+              "h": 153.7,
+              "l": 168.9,
+              "w": 9.6
+            },
+            {
+              "x": 375.0,
+              "o": 165.1,
+              "c": 178.5,
+              "h": 160.2,
+              "l": 182.8,
+              "w": 9.6
+            },
+            {
+              "x": 387.5,
+              "o": 178.5,
+              "c": 188.3,
+              "h": 175.9,
+              "l": 192.0,
+              "w": 9.6
+            },
+            {
+              "x": 400.0,
+              "o": 188.3,
+              "c": 200.3,
+              "h": 187.3,
+              "l": 204,
+              "w": 9.6
+            },
+            {
+              "x": 412.5,
+              "o": 200.3,
+              "c": 191.7,
+              "h": 190.4,
+              "l": 204.4,
+              "w": 9.6
+            },
+            {
+              "x": 425.0,
+              "o": 191.7,
+              "c": 183.3,
+              "h": 181.3,
+              "l": 194.2,
+              "w": 9.6
+            },
+            {
+              "x": 437.5,
+              "o": 183.3,
+              "c": 182.2,
+              "h": 180.9,
+              "l": 186.1,
+              "w": 9.6
+            },
+            {
+              "x": 450.0,
+              "o": 182.2,
+              "c": 176.3,
+              "h": 170,
+              "l": 186.7,
+              "w": 9.6
+            },
+            {
+              "x": 462.5,
+              "o": 176.3,
+              "c": 179.1,
+              "h": 174.2,
+              "l": 181.8,
+              "w": 9.6
+            },
+            {
+              "x": 475.0,
+              "o": 179.1,
+              "c": 179.6,
+              "h": 174.6,
+              "l": 184.4,
+              "w": 9.6
+            },
+            {
+              "x": 487.5,
+              "o": 179.6,
+              "c": 183.0,
+              "h": 177.9,
+              "l": 184.9,
+              "w": 9.6
+            },
+            {
+              "x": 500.0,
+              "o": 183.0,
+              "c": 186.6,
+              "h": 181.1,
+              "l": 192,
+              "w": 9.6
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "h4",
+              "l4",
+              "room"
+            ],
+            "text": "The 4H swing high and 4H swing low come with you. They frame everything you see on the 1H.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "ctx"
+            ],
+            "text": "You also bring the current 4H structure, the important 4H levels and the current HTF (higher timeframe) ICC phase."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 2 · The previous 1H swings",
+      "headline": "Find the previous 1H swing high and <em>swing low.</em>",
+      "line": "Look for the major structural swings, not the smaller internal movements between them.",
+      "visual": {
+        "chart": {
+          "swings": [
+            [
+              40,
+              50
+            ],
+            [
+              95,
+              112
+            ],
+            [
+              140,
+              84
+            ],
+            [
+              180,
+              124
+            ],
+            [
+              200,
+              112
+            ],
+            [
+              245,
+              160
+            ],
+            [
+              295,
+              130
+            ],
+            [
+              330,
+              162
+            ],
+            [
+              350,
+              150
+            ],
+            [
+              400,
+              204
+            ],
+            [
+              450,
+              170
+            ],
+            [
+              500,
+              192
+            ]
+          ],
+          "candles": false,
+          "hlines": [
+            {
+              "y": 38,
+              "label": "4H swing high · 21,040",
+              "tone": "purple",
+              "x1": 8,
+              "x2": 692,
+              "size": 12,
+              "below": true,
+              "labelX": 520,
+              "id": "h4"
+            },
+            {
+              "y": 296,
+              "label": "4H swing low · 20,610",
+              "tone": "purple",
+              "x1": 8,
+              "x2": 692,
+              "size": 12,
+              "labelX": 520,
+              "id": "l4"
+            },
+            {
+              "y": 170,
+              "label": "1H swing high · 20,820",
+              "tone": "gold",
+              "x1": 442,
+              "x2": 692,
+              "size": 12,
+              "labelX": 540,
+              "id": "rHl"
+            },
+            {
+              "y": 204,
+              "label": "1H swing low · 20,765",
+              "tone": "gold",
+              "x1": 392,
+              "x2": 692,
+              "size": 12,
+              "below": true,
+              "labelX": 540,
+              "id": "rLl"
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 8,
+              "y1": 38,
+              "x2": 692,
+              "y2": 296,
+              "tone": "purple",
+              "op": 0.18,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6,
+              "id": "room"
+            }
+          ],
+          "marks": [
+            {
+              "i": 3,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 4,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 7,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 8,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 3,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 4,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 7,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 8,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 10,
+              "label": "Swing high",
+              "tone": "gold",
+              "id": "rH"
+            },
+            {
+              "i": 9,
+              "label": "Swing low",
+              "tone": "gold",
+              "id": "rL"
+            }
+          ],
+          "notes": [
+            {
+              "x": 250,
+              "y": 250,
+              "text": "4H: bullish · lower area of the range · correcting",
+              "tone": "purple",
+              "size": 13,
+              "anchor": "middle",
+              "id": "ctx"
+            },
+            {
+              "x": 540,
+              "y": 188,
+              "text": "● now",
+              "tone": "dark",
+              "size": 13,
+              "anchor": "middle",
+              "id": "now"
+            }
+          ],
+          "bars": [
+            {
+              "x": 53.8,
+              "o": 50,
+              "c": 63.7,
+              "h": 48.4,
+              "l": 67.3,
+              "w": 9.6
+            },
+            {
+              "x": 67.5,
+              "o": 63.7,
+              "c": 76.7,
+              "h": 60.6,
+              "l": 79.2,
+              "w": 9.6
+            },
+            {
+              "x": 81.2,
+              "o": 76.7,
+              "c": 92.1,
+              "h": 73.7,
+              "l": 93.2,
+              "w": 9.6
+            },
+            {
+              "x": 95.0,
+              "o": 92.1,
+              "c": 108.6,
+              "h": 89.3,
+              "l": 112,
+              "w": 9.6
+            },
+            {
+              "x": 110.0,
+              "o": 108.6,
+              "c": 101.9,
+              "h": 97.6,
+              "l": 110.1,
+              "w": 9.6
+            },
+            {
+              "x": 125.0,
+              "o": 101.9,
+              "c": 90.6,
+              "h": 87.1,
+              "l": 106.7,
+              "w": 9.6
+            },
+            {
+              "x": 140.0,
+              "o": 90.6,
+              "c": 90.9,
+              "h": 84,
+              "l": 93.2,
+              "w": 9.6
+            },
+            {
+              "x": 153.3,
+              "o": 90.9,
+              "c": 92.8,
+              "h": 86.5,
+              "l": 95.0,
+              "w": 9.6
+            },
+            {
+              "x": 166.7,
+              "o": 92.8,
+              "c": 107.1,
+              "h": 91.3,
+              "l": 109.3,
+              "w": 9.6
+            },
+            {
+              "x": 180.0,
+              "o": 107.1,
+              "c": 118.7,
+              "h": 102.8,
+              "l": 124,
+              "w": 9.6
+            },
+            {
+              "x": 190.0,
+              "o": 118.7,
+              "c": 119.4,
+              "h": 116.2,
+              "l": 122.6,
+              "w": 9.6
+            },
+            {
+              "x": 200.0,
+              "o": 119.4,
+              "c": 115.8,
+              "h": 112,
+              "l": 120.6,
+              "w": 9.6
+            },
+            {
+              "x": 215.0,
+              "o": 115.8,
+              "c": 129.8,
+              "h": 113.1,
+              "l": 132.1,
+              "w": 9.6
+            },
+            {
+              "x": 230.0,
+              "o": 129.8,
+              "c": 144.9,
+              "h": 127.0,
+              "l": 147.1,
+              "w": 9.6
+            },
+            {
+              "x": 245.0,
+              "o": 144.9,
+              "c": 156.0,
+              "h": 140.7,
+              "l": 160,
+              "w": 9.6
+            },
+            {
+              "x": 257.5,
+              "o": 156.0,
+              "c": 153.2,
+              "h": 150.1,
+              "l": 160.5,
+              "w": 9.6
+            },
+            {
+              "x": 270.0,
+              "o": 153.2,
+              "c": 147.3,
+              "h": 145.1,
+              "l": 158.2,
+              "w": 9.6
+            },
+            {
+              "x": 282.5,
+              "o": 147.3,
+              "c": 133.7,
+              "h": 131.0,
+              "l": 151.3,
+              "w": 9.6
+            },
+            {
+              "x": 295.0,
+              "o": 133.7,
+              "c": 133.2,
+              "h": 130,
+              "l": 136.6,
+              "w": 9.6
+            },
+            {
+              "x": 312.5,
+              "o": 133.2,
+              "c": 147.7,
+              "h": 129.1,
+              "l": 151.0,
+              "w": 9.6
+            },
+            {
+              "x": 330.0,
+              "o": 147.7,
+              "c": 156.2,
+              "h": 143.2,
+              "l": 162,
+              "w": 9.6
+            },
+            {
+              "x": 340.0,
+              "o": 156.2,
+              "c": 156.9,
+              "h": 152.9,
+              "l": 159.8,
+              "w": 9.6
+            },
+            {
+              "x": 350.0,
+              "o": 156.9,
+              "c": 154.9,
+              "h": 150,
+              "l": 161.7,
+              "w": 9.6
+            },
+            {
+              "x": 362.5,
+              "o": 154.9,
+              "c": 165.1,
+              "h": 153.7,
+              "l": 168.9,
+              "w": 9.6
+            },
+            {
+              "x": 375.0,
+              "o": 165.1,
+              "c": 178.5,
+              "h": 160.2,
+              "l": 182.8,
+              "w": 9.6
+            },
+            {
+              "x": 387.5,
+              "o": 178.5,
+              "c": 188.3,
+              "h": 175.9,
+              "l": 192.0,
+              "w": 9.6
+            },
+            {
+              "x": 400.0,
+              "o": 188.3,
+              "c": 200.3,
+              "h": 187.3,
+              "l": 204,
+              "w": 9.6
+            },
+            {
+              "x": 412.5,
+              "o": 200.3,
+              "c": 191.7,
+              "h": 190.4,
+              "l": 204.4,
+              "w": 9.6
+            },
+            {
+              "x": 425.0,
+              "o": 191.7,
+              "c": 183.3,
+              "h": 181.3,
+              "l": 194.2,
+              "w": 9.6
+            },
+            {
+              "x": 437.5,
+              "o": 183.3,
+              "c": 182.2,
+              "h": 180.9,
+              "l": 186.1,
+              "w": 9.6
+            },
+            {
+              "x": 450.0,
+              "o": 182.2,
+              "c": 176.3,
+              "h": 170,
+              "l": 186.7,
+              "w": 9.6
+            },
+            {
+              "x": 462.5,
+              "o": 176.3,
+              "c": 179.1,
+              "h": 174.2,
+              "l": 181.8,
+              "w": 9.6
+            },
+            {
+              "x": 475.0,
+              "o": 179.1,
+              "c": 179.6,
+              "h": 174.6,
+              "l": 184.4,
+              "w": 9.6
+            },
+            {
+              "x": 487.5,
+              "o": 179.6,
+              "c": 183.0,
+              "h": 177.9,
+              "l": 184.9,
+              "w": 9.6
+            },
+            {
+              "x": 500.0,
+              "o": 183.0,
+              "c": 186.6,
+              "h": 181.1,
+              "l": 192,
+              "w": 9.6
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "h4",
+              "l4",
+              "room",
+              "mi"
+            ],
+            "text": "These small wiggles are internal movements. They happen inside a bigger leg and don’t define the structure.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "rL"
+            ],
+            "text": "This is the previous 1H swing low. Price made a lower low here before bouncing.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "rH",
+              "now"
+            ],
+            "text": "This is the previous 1H swing high. Price turned lower from it, and it is trading between these two swings now."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 3 · The 1H structure",
+      "headline": "Is the 1H bullish, bearish, consolidating, <em>or transitioning?</em>",
+      "line": "Name the 1H structure from its swings. Remember, it can temporarily move against the 4H direction.",
+      "visual": {
+        "cards": [
+          {
+            "icon": "up",
+            "tone": "teal",
+            "label": "Bullish",
+            "sub": "Higher highs and higher lows."
+          },
+          {
+            "icon": "down",
+            "tone": "pink",
+            "label": "Bearish",
+            "sub": "Lower highs and lower lows."
+          },
+          {
+            "icon": "swap",
+            "tone": "purple",
+            "label": "Consolidating",
+            "sub": "Price moves inside a range with no clear progress."
+          },
+          {
+            "icon": "bolt",
+            "tone": "gold",
+            "label": "Transitioning",
+            "sub": "Structure is changing through a market structure shift (MSS)."
+          }
+        ]
+      },
+      "check": {
+        "prompt": "The 4H is bullish, but the 1H is making lower highs and lower lows. Can both be true?",
+        "stack": true,
+        "options": [
+          {
+            "label": "No, one of them must be wrong",
+            "correct": false,
+            "feedback": "Both can be true. The 1H can temporarily move against the broader 4H direction."
+          },
+          {
+            "label": "Yes, the 1H can move against the 4H for a while",
+            "correct": true,
+            "why": "Right. The 1H can temporarily move against the 4H, so you read each one for what it is."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 4 · The relevant levels",
+      "headline": "Mark only the levels that <em>actually matter.</em>",
+      "line": "Relevant levels are the previous 1H swing highs and lows, plus any nearby 4H levels.",
+      "visual": {
+        "chart": {
+          "swings": [
+            [
+              40,
+              50
+            ],
+            [
+              95,
+              112
+            ],
+            [
+              140,
+              84
+            ],
+            [
+              180,
+              124
+            ],
+            [
+              200,
+              112
+            ],
+            [
+              245,
+              160
+            ],
+            [
+              295,
+              130
+            ],
+            [
+              330,
+              162
+            ],
+            [
+              350,
+              150
+            ],
+            [
+              400,
+              204
+            ],
+            [
+              450,
+              170
+            ],
+            [
+              500,
+              192
+            ]
+          ],
+          "candles": false,
+          "hlines": [
+            {
+              "y": 38,
+              "label": "4H swing high · 21,040",
+              "tone": "purple",
+              "x1": 8,
+              "x2": 692,
+              "size": 12,
+              "below": true,
+              "labelX": 520,
+              "id": "h4"
+            },
+            {
+              "y": 296,
+              "label": "4H swing low · 20,610",
+              "tone": "purple",
+              "x1": 8,
+              "x2": 692,
+              "size": 12,
+              "labelX": 520,
+              "id": "l4"
+            },
+            {
+              "y": 170,
+              "label": "1H swing high · 20,820",
+              "tone": "gold",
+              "x1": 442,
+              "x2": 692,
+              "size": 12,
+              "labelX": 540,
+              "id": "rHl"
+            },
+            {
+              "y": 204,
+              "label": "1H swing low · 20,765",
+              "tone": "gold",
+              "x1": 392,
+              "x2": 692,
+              "size": 12,
+              "below": true,
+              "labelX": 540,
+              "id": "rLl"
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 8,
+              "y1": 38,
+              "x2": 692,
+              "y2": 296,
+              "tone": "purple",
+              "op": 0.18,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6,
+              "id": "room"
+            }
+          ],
+          "marks": [
+            {
+              "i": 3,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 4,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 7,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 8,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 3,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 4,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 7,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 8,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 10,
+              "label": "Swing high",
+              "tone": "gold",
+              "id": "rH"
+            },
+            {
+              "i": 9,
+              "label": "Swing low",
+              "tone": "gold",
+              "id": "rL"
+            }
+          ],
+          "notes": [
+            {
+              "x": 250,
+              "y": 250,
+              "text": "4H: bullish · lower area of the range · correcting",
+              "tone": "purple",
+              "size": 13,
+              "anchor": "middle",
+              "id": "ctx"
+            },
+            {
+              "x": 540,
+              "y": 188,
+              "text": "● now",
+              "tone": "dark",
+              "size": 13,
+              "anchor": "middle",
+              "id": "now"
+            }
+          ],
+          "bars": [
+            {
+              "x": 53.8,
+              "o": 50,
+              "c": 63.7,
+              "h": 48.4,
+              "l": 67.3,
+              "w": 9.6
+            },
+            {
+              "x": 67.5,
+              "o": 63.7,
+              "c": 76.7,
+              "h": 60.6,
+              "l": 79.2,
+              "w": 9.6
+            },
+            {
+              "x": 81.2,
+              "o": 76.7,
+              "c": 92.1,
+              "h": 73.7,
+              "l": 93.2,
+              "w": 9.6
+            },
+            {
+              "x": 95.0,
+              "o": 92.1,
+              "c": 108.6,
+              "h": 89.3,
+              "l": 112,
+              "w": 9.6
+            },
+            {
+              "x": 110.0,
+              "o": 108.6,
+              "c": 101.9,
+              "h": 97.6,
+              "l": 110.1,
+              "w": 9.6
+            },
+            {
+              "x": 125.0,
+              "o": 101.9,
+              "c": 90.6,
+              "h": 87.1,
+              "l": 106.7,
+              "w": 9.6
+            },
+            {
+              "x": 140.0,
+              "o": 90.6,
+              "c": 90.9,
+              "h": 84,
+              "l": 93.2,
+              "w": 9.6
+            },
+            {
+              "x": 153.3,
+              "o": 90.9,
+              "c": 92.8,
+              "h": 86.5,
+              "l": 95.0,
+              "w": 9.6
+            },
+            {
+              "x": 166.7,
+              "o": 92.8,
+              "c": 107.1,
+              "h": 91.3,
+              "l": 109.3,
+              "w": 9.6
+            },
+            {
+              "x": 180.0,
+              "o": 107.1,
+              "c": 118.7,
+              "h": 102.8,
+              "l": 124,
+              "w": 9.6
+            },
+            {
+              "x": 190.0,
+              "o": 118.7,
+              "c": 119.4,
+              "h": 116.2,
+              "l": 122.6,
+              "w": 9.6
+            },
+            {
+              "x": 200.0,
+              "o": 119.4,
+              "c": 115.8,
+              "h": 112,
+              "l": 120.6,
+              "w": 9.6
+            },
+            {
+              "x": 215.0,
+              "o": 115.8,
+              "c": 129.8,
+              "h": 113.1,
+              "l": 132.1,
+              "w": 9.6
+            },
+            {
+              "x": 230.0,
+              "o": 129.8,
+              "c": 144.9,
+              "h": 127.0,
+              "l": 147.1,
+              "w": 9.6
+            },
+            {
+              "x": 245.0,
+              "o": 144.9,
+              "c": 156.0,
+              "h": 140.7,
+              "l": 160,
+              "w": 9.6
+            },
+            {
+              "x": 257.5,
+              "o": 156.0,
+              "c": 153.2,
+              "h": 150.1,
+              "l": 160.5,
+              "w": 9.6
+            },
+            {
+              "x": 270.0,
+              "o": 153.2,
+              "c": 147.3,
+              "h": 145.1,
+              "l": 158.2,
+              "w": 9.6
+            },
+            {
+              "x": 282.5,
+              "o": 147.3,
+              "c": 133.7,
+              "h": 131.0,
+              "l": 151.3,
+              "w": 9.6
+            },
+            {
+              "x": 295.0,
+              "o": 133.7,
+              "c": 133.2,
+              "h": 130,
+              "l": 136.6,
+              "w": 9.6
+            },
+            {
+              "x": 312.5,
+              "o": 133.2,
+              "c": 147.7,
+              "h": 129.1,
+              "l": 151.0,
+              "w": 9.6
+            },
+            {
+              "x": 330.0,
+              "o": 147.7,
+              "c": 156.2,
+              "h": 143.2,
+              "l": 162,
+              "w": 9.6
+            },
+            {
+              "x": 340.0,
+              "o": 156.2,
+              "c": 156.9,
+              "h": 152.9,
+              "l": 159.8,
+              "w": 9.6
+            },
+            {
+              "x": 350.0,
+              "o": 156.9,
+              "c": 154.9,
+              "h": 150,
+              "l": 161.7,
+              "w": 9.6
+            },
+            {
+              "x": 362.5,
+              "o": 154.9,
+              "c": 165.1,
+              "h": 153.7,
+              "l": 168.9,
+              "w": 9.6
+            },
+            {
+              "x": 375.0,
+              "o": 165.1,
+              "c": 178.5,
+              "h": 160.2,
+              "l": 182.8,
+              "w": 9.6
+            },
+            {
+              "x": 387.5,
+              "o": 178.5,
+              "c": 188.3,
+              "h": 175.9,
+              "l": 192.0,
+              "w": 9.6
+            },
+            {
+              "x": 400.0,
+              "o": 188.3,
+              "c": 200.3,
+              "h": 187.3,
+              "l": 204,
+              "w": 9.6
+            },
+            {
+              "x": 412.5,
+              "o": 200.3,
+              "c": 191.7,
+              "h": 190.4,
+              "l": 204.4,
+              "w": 9.6
+            },
+            {
+              "x": 425.0,
+              "o": 191.7,
+              "c": 183.3,
+              "h": 181.3,
+              "l": 194.2,
+              "w": 9.6
+            },
+            {
+              "x": 437.5,
+              "o": 183.3,
+              "c": 182.2,
+              "h": 180.9,
+              "l": 186.1,
+              "w": 9.6
+            },
+            {
+              "x": 450.0,
+              "o": 182.2,
+              "c": 176.3,
+              "h": 170,
+              "l": 186.7,
+              "w": 9.6
+            },
+            {
+              "x": 462.5,
+              "o": 176.3,
+              "c": 179.1,
+              "h": 174.2,
+              "l": 181.8,
+              "w": 9.6
+            },
+            {
+              "x": 475.0,
+              "o": 179.1,
+              "c": 179.6,
+              "h": 174.6,
+              "l": 184.4,
+              "w": 9.6
+            },
+            {
+              "x": 487.5,
+              "o": 179.6,
+              "c": 183.0,
+              "h": 177.9,
+              "l": 184.9,
+              "w": 9.6
+            },
+            {
+              "x": 500.0,
+              "o": 183.0,
+              "c": 186.6,
+              "h": 181.1,
+              "l": 192,
+              "w": 9.6
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "rH",
+              "rL",
+              "rHl",
+              "rLl",
+              "now"
+            ],
+            "text": "The previous 1H swing high and swing low are relevant structural levels.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "h4",
+              "l4",
+              "room"
+            ],
+            "text": "The 4H swing high and swing low are higher timeframe levels, so they stay on your map too.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "mi",
+              "ms"
+            ],
+            "text": "Not every high or low automatically becomes a trading level. These small internal swings don’t make the map."
+          }
+        ]
+      },
+      "check": {
+        "prompt": "A tiny internal high just formed on the 1H. Does it automatically become a trading level?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Yes, every high is a level",
+            "correct": false,
+            "feedback": "Not every high or low automatically becomes a trading level. Relevant levels come from the structure."
+          },
+          {
+            "label": "No, not every high or low becomes a level",
+            "correct": true,
+            "why": "Exactly. You map the previous 1H swings and nearby 4H levels, not every small wiggle."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 5 · The 1H and the 4H",
+      "headline": "How does the 1H relate <em>to the 4H?</em>",
+      "line": "Tap each scenario. Interpret the relationship instead of trading whichever chart looks strongest.",
+      "visual": {
+        "cards": [
+          {
+            "icon": "up",
+            "tone": "teal",
+            "label": "Scenario A",
+            "sub": "4H bullish, 1H bullish. Both timeframes support bullish conditions."
+          },
+          {
+            "icon": "swap",
+            "tone": "gold",
+            "label": "Scenario B",
+            "sub": "4H bullish, 1H bearish. The 1H may be correcting, or structure may be changing."
+          },
+          {
+            "icon": "down",
+            "tone": "pink",
+            "label": "Scenario C",
+            "sub": "4H bearish, 1H bullish. The 1H may be a countertrend move."
+          }
+        ]
+      },
+      "check": {
+        "prompt": "The 4H is bearish, and the 1H just made a strong bullish move. What could the 1H be?",
+        "stack": true,
+        "options": [
+          {
+            "label": "A countertrend move inside the bearish 4H",
+            "correct": true,
+            "why": "That’s Scenario C. The 1H may be a countertrend move, so you interpret it before doing anything."
+          },
+          {
+            "label": "A buy signal, because it looks strongest",
+            "correct": false,
+            "feedback": "Don’t automatically trade whichever timeframe looks strongest. First interpret how the 1H relates to the 4H."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_screen",
+      "kicker": "Step 6 · The next level",
+      "headline": "If the first level breaks, <em>don’t chase price.</em>",
+      "line": "If price moves through the first relevant level and the next level is a 4H swing, you may keep observing that next level.",
+      "visual": {
+        "chart": {
+          "swings": [
+            [
+              40,
+              50
+            ],
+            [
+              95,
+              112
+            ],
+            [
+              140,
+              84
+            ],
+            [
+              180,
+              124
+            ],
+            [
+              200,
+              112
+            ],
+            [
+              245,
+              160
+            ],
+            [
+              295,
+              130
+            ],
+            [
+              330,
+              162
+            ],
+            [
+              350,
+              150
+            ],
+            [
+              400,
+              204
+            ],
+            [
+              450,
+              170
+            ],
+            [
+              500,
+              192
+            ]
+          ],
+          "candles": false,
+          "hlines": [
+            {
+              "y": 38,
+              "label": "4H swing high · 21,040",
+              "tone": "purple",
+              "x1": 8,
+              "x2": 692,
+              "size": 12,
+              "below": true,
+              "labelX": 520,
+              "id": "h4"
+            },
+            {
+              "y": 296,
+              "label": "NEXT LEVEL · 4H swing low",
+              "tone": "purple",
+              "x1": 8,
+              "x2": 692,
+              "size": 13,
+              "labelX": 40,
+              "id": "l4",
+              "below": true
+            },
+            {
+              "y": 170,
+              "label": "1H swing high · 20,820",
+              "tone": "gold",
+              "x1": 442,
+              "x2": 692,
+              "size": 12,
+              "labelX": 540,
+              "id": "rHl"
+            },
+            {
+              "y": 204,
+              "label": "FIRST LEVEL · 1H swing low",
+              "tone": "gold",
+              "x1": 8,
+              "x2": 692,
+              "size": 13,
+              "below": true,
+              "labelX": 40,
+              "id": "rLl"
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 8,
+              "y1": 38,
+              "x2": 692,
+              "y2": 296,
+              "tone": "purple",
+              "op": 0.18,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6,
+              "id": "room"
+            },
+            {
+              "x1": 440,
+              "y1": 284,
+              "x2": 692,
+              "y2": 308,
+              "tone": "purple",
+              "op": 0.55,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6,
+              "id": "watch"
+            }
+          ],
+          "marks": [
+            {
+              "i": 3,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 4,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 7,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 8,
+              "label": "internal",
+              "tone": "muted",
+              "size": "sm",
+              "id": "mi"
+            },
+            {
+              "i": 3,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 4,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 7,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 8,
+              "tone": "muted",
+              "size": "sm",
+              "strike": true,
+              "id": "ms"
+            },
+            {
+              "i": 10,
+              "label": "Swing high",
+              "tone": "gold",
+              "id": "rH"
+            },
+            {
+              "i": 9,
+              "label": "Swing low",
+              "tone": "gold",
+              "id": "rL"
+            }
+          ],
+          "notes": [
+            {
+              "x": 540,
+              "y": 188,
+              "text": "● now",
+              "tone": "dark",
+              "size": 13,
+              "anchor": "middle",
+              "id": "now"
+            },
+            {
+              "x": 640,
+              "y": 236,
+              "text": "✕ don’t chase",
+              "tone": "down",
+              "size": 15,
+              "anchor": "middle",
+              "id": "nochase"
+            },
+            {
+              "x": 566,
+              "y": 278,
+              "text": "keep observing this 4H swing",
+              "tone": "purple",
+              "size": 14,
+              "anchor": "middle",
+              "id": "watch"
+            }
+          ],
+          "bars": [
+            {
+              "x": 53.8,
+              "o": 50,
+              "c": 63.7,
+              "h": 48.4,
+              "l": 67.3,
+              "w": 9.6
+            },
+            {
+              "x": 67.5,
+              "o": 63.7,
+              "c": 76.7,
+              "h": 60.6,
+              "l": 79.2,
+              "w": 9.6
+            },
+            {
+              "x": 81.2,
+              "o": 76.7,
+              "c": 92.1,
+              "h": 73.7,
+              "l": 93.2,
+              "w": 9.6
+            },
+            {
+              "x": 95.0,
+              "o": 92.1,
+              "c": 108.6,
+              "h": 89.3,
+              "l": 112,
+              "w": 9.6
+            },
+            {
+              "x": 110.0,
+              "o": 108.6,
+              "c": 101.9,
+              "h": 97.6,
+              "l": 110.1,
+              "w": 9.6
+            },
+            {
+              "x": 125.0,
+              "o": 101.9,
+              "c": 90.6,
+              "h": 87.1,
+              "l": 106.7,
+              "w": 9.6
+            },
+            {
+              "x": 140.0,
+              "o": 90.6,
+              "c": 90.9,
+              "h": 84,
+              "l": 93.2,
+              "w": 9.6
+            },
+            {
+              "x": 153.3,
+              "o": 90.9,
+              "c": 92.8,
+              "h": 86.5,
+              "l": 95.0,
+              "w": 9.6
+            },
+            {
+              "x": 166.7,
+              "o": 92.8,
+              "c": 107.1,
+              "h": 91.3,
+              "l": 109.3,
+              "w": 9.6
+            },
+            {
+              "x": 180.0,
+              "o": 107.1,
+              "c": 118.7,
+              "h": 102.8,
+              "l": 124,
+              "w": 9.6
+            },
+            {
+              "x": 190.0,
+              "o": 118.7,
+              "c": 119.4,
+              "h": 116.2,
+              "l": 122.6,
+              "w": 9.6
+            },
+            {
+              "x": 200.0,
+              "o": 119.4,
+              "c": 115.8,
+              "h": 112,
+              "l": 120.6,
+              "w": 9.6
+            },
+            {
+              "x": 215.0,
+              "o": 115.8,
+              "c": 129.8,
+              "h": 113.1,
+              "l": 132.1,
+              "w": 9.6
+            },
+            {
+              "x": 230.0,
+              "o": 129.8,
+              "c": 144.9,
+              "h": 127.0,
+              "l": 147.1,
+              "w": 9.6
+            },
+            {
+              "x": 245.0,
+              "o": 144.9,
+              "c": 156.0,
+              "h": 140.7,
+              "l": 160,
+              "w": 9.6
+            },
+            {
+              "x": 257.5,
+              "o": 156.0,
+              "c": 153.2,
+              "h": 150.1,
+              "l": 160.5,
+              "w": 9.6
+            },
+            {
+              "x": 270.0,
+              "o": 153.2,
+              "c": 147.3,
+              "h": 145.1,
+              "l": 158.2,
+              "w": 9.6
+            },
+            {
+              "x": 282.5,
+              "o": 147.3,
+              "c": 133.7,
+              "h": 131.0,
+              "l": 151.3,
+              "w": 9.6
+            },
+            {
+              "x": 295.0,
+              "o": 133.7,
+              "c": 133.2,
+              "h": 130,
+              "l": 136.6,
+              "w": 9.6
+            },
+            {
+              "x": 312.5,
+              "o": 133.2,
+              "c": 147.7,
+              "h": 129.1,
+              "l": 151.0,
+              "w": 9.6
+            },
+            {
+              "x": 330.0,
+              "o": 147.7,
+              "c": 156.2,
+              "h": 143.2,
+              "l": 162,
+              "w": 9.6
+            },
+            {
+              "x": 340.0,
+              "o": 156.2,
+              "c": 156.9,
+              "h": 152.9,
+              "l": 159.8,
+              "w": 9.6
+            },
+            {
+              "x": 350.0,
+              "o": 156.9,
+              "c": 154.9,
+              "h": 150,
+              "l": 161.7,
+              "w": 9.6
+            },
+            {
+              "x": 362.5,
+              "o": 154.9,
+              "c": 165.1,
+              "h": 153.7,
+              "l": 168.9,
+              "w": 9.6
+            },
+            {
+              "x": 375.0,
+              "o": 165.1,
+              "c": 178.5,
+              "h": 160.2,
+              "l": 182.8,
+              "w": 9.6
+            },
+            {
+              "x": 387.5,
+              "o": 178.5,
+              "c": 188.3,
+              "h": 175.9,
+              "l": 192.0,
+              "w": 9.6
+            },
+            {
+              "x": 400.0,
+              "o": 188.3,
+              "c": 200.3,
+              "h": 187.3,
+              "l": 204,
+              "w": 9.6
+            },
+            {
+              "x": 412.5,
+              "o": 200.3,
+              "c": 191.7,
+              "h": 190.4,
+              "l": 204.4,
+              "w": 9.6
+            },
+            {
+              "x": 425.0,
+              "o": 191.7,
+              "c": 183.3,
+              "h": 181.3,
+              "l": 194.2,
+              "w": 9.6
+            },
+            {
+              "x": 437.5,
+              "o": 183.3,
+              "c": 182.2,
+              "h": 180.9,
+              "l": 186.1,
+              "w": 9.6
+            },
+            {
+              "x": 450.0,
+              "o": 182.2,
+              "c": 176.3,
+              "h": 170,
+              "l": 186.7,
+              "w": 9.6
+            },
+            {
+              "x": 462.5,
+              "o": 176.3,
+              "c": 179.1,
+              "h": 174.2,
+              "l": 181.8,
+              "w": 9.6
+            },
+            {
+              "x": 475.0,
+              "o": 179.1,
+              "c": 179.6,
+              "h": 174.6,
+              "l": 184.4,
+              "w": 9.6
+            },
+            {
+              "x": 487.5,
+              "o": 179.6,
+              "c": 183.0,
+              "h": 177.9,
+              "l": 184.9,
+              "w": 9.6
+            },
+            {
+              "x": 500.0,
+              "o": 183.0,
+              "c": 186.6,
+              "h": 181.1,
+              "l": 192,
+              "w": 9.6
+            }
+          ],
+          "paths": [
+            {
+              "swings": [
+                [
+                  500,
+                  192
+                ],
+                [
+                  525,
+                  182
+                ],
+                [
+                  600,
+                  252
+                ]
+              ],
+              "tone": "down",
+              "id": "brk",
+              "width": 4,
+              "dashed": true
+            }
+          ]
+        },
+        "steps": [
+          {
+            "show": [
+              "rLl",
+              "l4",
+              "room",
+              "now"
+            ],
+            "text": "The first relevant level is the 1H swing low. The next level below it is the 4H swing low.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "brk",
+              "nochase"
+            ],
+            "text": "Price moves through the first level. It has already been broken, so you don’t chase price.",
+            "next": "Next →"
+          },
+          {
+            "show": [
+              "watch"
+            ],
+            "text": "The next level is a 4H swing, so you may continue observing it for a qualified Dayli ICC setup."
+          }
+        ]
+      },
+      "check": {
+        "prompt": "Price just broke through the 1H swing low you were watching. The next level is a 4H swing. What do you do?",
+        "stack": true,
+        "options": [
+          {
+            "label": "Jump in now before price gets away",
+            "correct": false,
+            "feedback": "That’s chasing. Once the first level has already been broken, you don’t chase price."
+          },
+          {
+            "label": "Keep observing the 4H swing for a qualified setup",
+            "correct": true,
+            "why": "Yes. Because the next level is a 4H swing, you may keep observing it for a qualified Dayli ICC setup."
+          }
+        ]
+      }
+    },
+    {
+      "type": "v2_steps",
+      "kicker": "Step 7 · The final 1H map",
+      "headline": "Put it all together into one <em>complete 1H map.</em>",
+      "line": "Tap each piece. Your 1H map isn’t complete until it holds all five.",
+      "steps": [
+        {
+          "label": "4H context",
+          "sub": "The current 4H structure, swing high and low, and ICC phase."
+        },
+        {
+          "label": "1H structure",
+          "sub": "Bullish, bearish, consolidating, or transitioning."
+        },
+        {
+          "label": "Previous 1H swings",
+          "sub": "The relevant 1H swing high and swing low."
+        },
+        {
+          "label": "Nearby HTF levels",
+          "sub": "Any higher timeframe (4H) levels close to price."
+        },
+        {
+          "label": "Where price is",
+          "sub": "Where price is trading right now on your map."
+        }
+      ]
+    },
+    {
+      "type": "td_workspace",
+      "kicker": "Your turn",
+      "title": "Build this 1H map yourself.",
+      "flow": 1,
+      "charts": {
+        "4H": {
+          "swings": [
+            [
+              40,
+              122
+            ],
+            [
+              112.0,
+              44
+            ],
+            [
+              240.0,
+              292
+            ],
+            [
+              336.0,
+              160
+            ],
+            [
+              400.0,
+              236
+            ],
+            [
+              496.0,
+              92
+            ],
+            [
+              544.0,
+              152
+            ],
+            [
+              576.0,
+              132
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 48.0,
+              "o": 122,
+              "c": 102.7,
+              "h": 100.7,
+              "l": 125.5,
+              "w": 9.6
+            },
+            {
+              "x": 64.0,
+              "o": 102.7,
+              "c": 86.0,
+              "h": 84.1,
+              "l": 106.2,
+              "w": 9.6
+            },
+            {
+              "x": 80.0,
+              "o": 86.0,
+              "c": 81.1,
+              "h": 75.6,
+              "l": 91.3,
+              "w": 9.6
+            },
+            {
+              "x": 96.0,
+              "o": 81.1,
+              "c": 55.7,
+              "h": 51.5,
+              "l": 84.0,
+              "w": 9.6
+            },
+            {
+              "x": 112.0,
+              "o": 55.7,
+              "c": 50.7,
+              "h": 44,
+              "l": 58.1,
+              "w": 9.6
+            },
+            {
+              "x": 128.0,
+              "o": 50.7,
+              "c": 68.4,
+              "h": 44.6,
+              "l": 74.1,
+              "w": 9.6
+            },
+            {
+              "x": 144.0,
+              "o": 68.4,
+              "c": 124.3,
+              "h": 62.9,
+              "l": 126.8,
+              "w": 9.6
+            },
+            {
+              "x": 160.0,
+              "o": 124.3,
+              "c": 132.9,
+              "h": 119.7,
+              "l": 138.1,
+              "w": 9.6
+            },
+            {
+              "x": 176.0,
+              "o": 132.9,
+              "c": 186.7,
+              "h": 127.0,
+              "l": 188.7,
+              "w": 9.6
+            },
+            {
+              "x": 192.0,
+              "o": 186.7,
+              "c": 206.1,
+              "h": 181.9,
+              "l": 210.1,
+              "w": 9.6
+            },
+            {
+              "x": 208.0,
+              "o": 206.1,
+              "c": 217.7,
+              "h": 202.2,
+              "l": 219.6,
+              "w": 9.6
+            },
+            {
+              "x": 224.0,
+              "o": 217.7,
+              "c": 280.7,
+              "h": 211.8,
+              "l": 285.0,
+              "w": 9.6
+            },
+            {
+              "x": 240.0,
+              "o": 280.7,
+              "c": 284.8,
+              "h": 275.1,
+              "l": 292,
+              "w": 9.6
+            },
+            {
+              "x": 256.0,
+              "o": 284.8,
+              "c": 265.6,
+              "h": 259.7,
+              "l": 290.5,
+              "w": 9.6
+            },
+            {
+              "x": 272.0,
+              "o": 265.6,
+              "c": 243.4,
+              "h": 239.8,
+              "l": 270.1,
+              "w": 9.6
+            },
+            {
+              "x": 288.0,
+              "o": 243.4,
+              "c": 220.9,
+              "h": 218.5,
+              "l": 246.4,
+              "w": 9.6
+            },
+            {
+              "x": 304.0,
+              "o": 220.9,
+              "c": 208.6,
+              "h": 206.9,
+              "l": 222.6,
+              "w": 9.6
+            },
+            {
+              "x": 320.0,
+              "o": 208.6,
+              "c": 183.6,
+              "h": 180.7,
+              "l": 212.8,
+              "w": 9.6
+            },
+            {
+              "x": 336.0,
+              "o": 183.6,
+              "c": 167.9,
+              "h": 160,
+              "l": 187.0,
+              "w": 9.6
+            },
+            {
+              "x": 352.0,
+              "o": 167.9,
+              "c": 191.0,
+              "h": 165.4,
+              "l": 194.6,
+              "w": 9.6
+            },
+            {
+              "x": 368.0,
+              "o": 191.0,
+              "c": 198.3,
+              "h": 186.3,
+              "l": 201.2,
+              "w": 9.6
+            },
+            {
+              "x": 384.0,
+              "o": 198.3,
+              "c": 217.2,
+              "h": 193.1,
+              "l": 220.3,
+              "w": 9.6
+            },
+            {
+              "x": 400.0,
+              "o": 217.2,
+              "c": 227.8,
+              "h": 211.6,
+              "l": 236,
+              "w": 9.6
+            },
+            {
+              "x": 416.0,
+              "o": 227.8,
+              "c": 195.4,
+              "h": 193.6,
+              "l": 230.4,
+              "w": 9.6
+            },
+            {
+              "x": 432.0,
+              "o": 195.4,
+              "c": 189.0,
+              "h": 184.4,
+              "l": 198.1,
+              "w": 9.6
+            },
+            {
+              "x": 448.0,
+              "o": 189.0,
+              "c": 155.8,
+              "h": 153.4,
+              "l": 192.8,
+              "w": 9.6
+            },
+            {
+              "x": 464.0,
+              "o": 155.8,
+              "c": 126.1,
+              "h": 121.1,
+              "l": 161.7,
+              "w": 9.6
+            },
+            {
+              "x": 480.0,
+              "o": 126.1,
+              "c": 125.7,
+              "h": 120.6,
+              "l": 132.4,
+              "w": 9.6
+            },
+            {
+              "x": 496.0,
+              "o": 125.7,
+              "c": 98.1,
+              "h": 92,
+              "l": 128.9,
+              "w": 9.6
+            },
+            {
+              "x": 512.0,
+              "o": 98.1,
+              "c": 120.6,
+              "h": 92.7,
+              "l": 124.1,
+              "w": 9.6
+            },
+            {
+              "x": 528.0,
+              "o": 120.6,
+              "c": 138.3,
+              "h": 116.0,
+              "l": 143.9,
+              "w": 9.6
+            },
+            {
+              "x": 544.0,
+              "o": 138.3,
+              "c": 144.8,
+              "h": 135.6,
+              "l": 152,
+              "w": 9.6
+            },
+            {
+              "x": 560.0,
+              "o": 144.8,
+              "c": 138.3,
+              "h": 136.1,
+              "l": 148.2,
+              "w": 9.6
+            },
+            {
+              "x": 576.0,
+              "o": 138.3,
+              "c": 141.8,
+              "h": 132,
+              "l": 145.2,
+              "w": 9.6
+            },
+            {
+              "x": 592.0,
+              "o": 141.8,
+              "c": 150.2,
+              "h": 140.1,
+              "l": 152.6,
+              "w": 9.6
+            },
+            {
+              "x": 608.0,
+              "o": 150.2,
+              "c": 166.4,
+              "h": 146.9,
+              "l": 169.3,
+              "w": 9.6
+            },
+            {
+              "x": 624.0,
+              "o": 166.4,
+              "c": 176.0,
+              "h": 164.4,
+              "l": 182.4,
+              "w": 9.6
+            }
+          ],
+          "hlines": [
+            {
+              "y": 92,
+              "label": "EXTERNAL HIGH · 21,040",
+              "tone": "purple",
+              "x1": 392.0,
+              "x2": 692,
+              "size": 13,
+              "id": "doorH",
+              "labelX": 470,
+              "door": true
+            },
+            {
+              "y": 236,
+              "label": "EXTERNAL LOW · 20,610",
+              "tone": "purple",
+              "x1": 392.0,
+              "x2": 692,
+              "size": 13,
+              "id": "doorL",
+              "below": true,
+              "labelX": 470,
+              "door": true
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 392.0,
+              "y1": 92,
+              "x2": 692,
+              "y2": 236,
+              "tone": "purple",
+              "id": "room",
+              "op": 0.45,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6
+            }
+          ],
+          "notes": [
+            {
+              "x": 650.0,
+              "y": 180.0,
+              "text": "● now",
+              "tone": "dark",
+              "size": 13,
+              "anchor": "middle",
+              "id": "now"
+            }
+          ]
+        },
+        "1H": {
+          "swings": [
+            [
+              40,
+              54
+            ],
+            [
+              106.5,
+              116
+            ],
+            [
+              163.5,
+              92
+            ],
+            [
+              258.5,
+              166
+            ],
+            [
+              315.5,
+              136
+            ],
+            [
+              410.5,
+              204
+            ],
+            [
+              467.5,
+              172
+            ]
+          ],
+          "candles": false,
+          "bars": [
+            {
+              "x": 49.5,
+              "o": 54,
+              "c": 64.1,
+              "h": 51.9,
+              "l": 67.5,
+              "w": 11.4
+            },
+            {
+              "x": 68.5,
+              "o": 64.1,
+              "c": 87.1,
+              "h": 61.9,
+              "l": 89.1,
+              "w": 11.4
+            },
+            {
+              "x": 87.5,
+              "o": 87.1,
+              "c": 97.5,
+              "h": 81.8,
+              "l": 99.7,
+              "w": 11.4
+            },
+            {
+              "x": 106.5,
+              "o": 97.5,
+              "c": 107.0,
+              "h": 92.9,
+              "l": 116,
+              "w": 11.4
+            },
+            {
+              "x": 125.5,
+              "o": 107.0,
+              "c": 101.0,
+              "h": 96.9,
+              "l": 110.8,
+              "w": 11.4
+            },
+            {
+              "x": 144.5,
+              "o": 101.0,
+              "c": 96.8,
+              "h": 90.3,
+              "l": 103.0,
+              "w": 11.4
+            },
+            {
+              "x": 163.5,
+              "o": 96.8,
+              "c": 98.1,
+              "h": 92,
+              "l": 103.8,
+              "w": 11.4
+            },
+            {
+              "x": 182.5,
+              "o": 98.1,
+              "c": 110.5,
+              "h": 95.6,
+              "l": 113.6,
+              "w": 11.4
+            },
+            {
+              "x": 201.5,
+              "o": 110.5,
+              "c": 123.6,
+              "h": 104.2,
+              "l": 126.1,
+              "w": 11.4
+            },
+            {
+              "x": 220.5,
+              "o": 123.6,
+              "c": 135.4,
+              "h": 119.2,
+              "l": 139.6,
+              "w": 11.4
+            },
+            {
+              "x": 239.5,
+              "o": 135.4,
+              "c": 158.0,
+              "h": 129.7,
+              "l": 161.2,
+              "w": 11.4
+            },
+            {
+              "x": 258.5,
+              "o": 158.0,
+              "c": 159.2,
+              "h": 152.6,
+              "l": 166,
+              "w": 11.4
+            },
+            {
+              "x": 277.5,
+              "o": 159.2,
+              "c": 153.5,
+              "h": 151.8,
+              "l": 164.4,
+              "w": 11.4
+            },
+            {
+              "x": 296.5,
+              "o": 153.5,
+              "c": 145.3,
+              "h": 140.5,
+              "l": 156.1,
+              "w": 11.4
+            },
+            {
+              "x": 315.5,
+              "o": 145.3,
+              "c": 145.2,
+              "h": 136,
+              "l": 150.2,
+              "w": 11.4
+            },
+            {
+              "x": 334.5,
+              "o": 145.2,
+              "c": 153.7,
+              "h": 140.5,
+              "l": 156.3,
+              "w": 11.4
+            },
+            {
+              "x": 353.5,
+              "o": 153.7,
+              "c": 163.9,
+              "h": 150.5,
+              "l": 167.0,
+              "w": 11.4
+            },
+            {
+              "x": 372.5,
+              "o": 163.9,
+              "c": 179.4,
+              "h": 159.1,
+              "l": 185.1,
+              "w": 11.4
+            },
+            {
+              "x": 391.5,
+              "o": 179.4,
+              "c": 197.1,
+              "h": 173.0,
+              "l": 203.6,
+              "w": 11.4
+            },
+            {
+              "x": 410.5,
+              "o": 197.1,
+              "c": 194.8,
+              "h": 191.6,
+              "l": 204,
+              "w": 11.4
+            },
+            {
+              "x": 429.5,
+              "o": 194.8,
+              "c": 185.9,
+              "h": 181.3,
+              "l": 199.1,
+              "w": 11.4
+            },
+            {
+              "x": 448.5,
+              "o": 185.9,
+              "c": 180.3,
+              "h": 178.4,
+              "l": 188.4,
+              "w": 11.4
+            },
+            {
+              "x": 467.5,
+              "o": 180.3,
+              "c": 181.7,
+              "h": 172,
+              "l": 186.1,
+              "w": 11.4
+            },
+            {
+              "x": 486.5,
+              "o": 181.7,
+              "c": 187.0,
+              "h": 179.7,
+              "l": 190.5,
+              "w": 11.4
+            },
+            {
+              "x": 505.5,
+              "o": 187.0,
+              "c": 192.3,
+              "h": 182.2,
+              "l": 198.7,
+              "w": 11.4
+            },
+            {
+              "x": 524.5,
+              "o": 192.3,
+              "c": 196.0,
+              "h": 189.8,
+              "l": 199.8,
+              "w": 11.4
+            }
+          ],
+          "hlines": [
+            {
+              "y": 38,
+              "label": "4H swing high · 21,040",
+              "tone": "muted",
+              "x1": 8,
+              "x2": 692,
+              "size": 11,
+              "below": true,
+              "labelX": 540
+            },
+            {
+              "y": 296,
+              "label": "4H swing low · 20,610",
+              "tone": "muted",
+              "x1": 8,
+              "x2": 692,
+              "size": 11,
+              "labelX": 540
+            },
+            {
+              "y": 172,
+              "label": "1H SWING HIGH · 20,815",
+              "tone": "purple",
+              "x1": 460,
+              "x2": 692,
+              "size": 12,
+              "id": "h1",
+              "labelX": 548
+            },
+            {
+              "y": 204,
+              "label": "1H SWING LOW · 20,765",
+              "tone": "purple",
+              "x1": 402,
+              "x2": 692,
+              "size": 12,
+              "id": "l1",
+              "below": true,
+              "labelX": 548
+            }
+          ],
+          "boxes": [
+            {
+              "x1": 8,
+              "y1": 38,
+              "x2": 692,
+              "y2": 296,
+              "tone": "purple",
+              "op": 0.22,
+              "dashed": false,
+              "stroke": false,
+              "rx": 6
+            }
+          ],
+          "notes": [
+            {
+              "x": 600,
+              "y": 194,
+              "text": "● now",
+              "tone": "dark",
+              "size": 13,
+              "anchor": "middle",
+              "id": "now1"
+            }
+          ]
+        }
+      },
+      "board": [
+        "4h.high",
+        "4h.low",
+        "4h.structure",
+        "4h.icc",
+        "1h.swing",
+        "1h.structure",
+        "1h.relation"
+      ],
+      "given": {
+        "4h.high": "21,040",
+        "4h.low": "20,610",
+        "4h.structure": "Bullish",
+        "4h.icc": "Correction"
+      },
+      "tasks": [
+        {
+          "do": "say",
+          "tf": "4H",
+          "say": "This is your 4H read from the last lesson: bullish structure, lower area of the range, and price is correcting.",
+          "show": [
+            "doorH",
+            "doorL",
+            "room",
+            "now"
+          ]
+        },
+        {
+          "do": "tf",
+          "to": "1H",
+          "label": "BUILD THE MAP →",
+          "say": "Now carry it onto the 1H. You don’t start over: the 4H swing high and low stay on the chart."
+        },
+        {
+          "do": "pick",
+          "tf": "1H",
+          "prompt": "Tap the previous relevant 1H swing high.",
+          "only": [
+            0,
+            2,
+            4,
+            6
+          ],
+          "answer": 6,
+          "label": "SWING HIGH",
+          "concept": "1h-relevant-swing",
+          "notes": {
+            "0": "That high is older. Price has built a whole new leg since, so it isn’t the previous swing high.",
+            "2": "That’s an earlier lower high. Which high came most recently, before price turned lower again?",
+            "4": "Real swing, but older. Look for the most recent swing high price turned down from."
+          },
+          "mistakes": {
+            "0": "1h-relevant-swing",
+            "2": "1h-relevant-swing",
+            "4": "1h-relevant-swing"
+          },
+          "why": "That’s the most recent 1H swing high. Price turned lower from it.",
+          "show": [
+            "h1"
+          ],
+          "say": "Start with the swings. Find the most recent major 1H swing high, not an older one."
+        },
+        {
+          "do": "pick",
+          "tf": "1H",
+          "key": "1h.swing",
+          "prompt": "Now tap the previous relevant 1H swing low.",
+          "only": [
+            1,
+            3,
+            5
+          ],
+          "answer": 5,
+          "value": "High 20,815 · Low 20,765",
+          "label": "SWING LOW",
+          "concept": "1h-relevant-swing",
+          "notes": {
+            "1": "That low is older. Price has already traded below it, so it isn’t the previous swing low.",
+            "3": "Real swing, but price has already made a lower low since. Which low came last?"
+          },
+          "mistakes": {
+            "1": "1h-relevant-swing",
+            "3": "1h-relevant-swing"
+          },
+          "why": "That’s the most recent 1H swing low. Price is trading just above it.",
+          "show": [
+            "l1",
+            "now1"
+          ]
+        },
+        {
+          "do": "choose",
+          "key": "1h.structure",
+          "prompt": "What is the current 1H structure?",
+          "concept": "1h-map",
+          "stack": true,
+          "options": [
+            {
+              "label": "Bearish: lower highs and lower lows",
+              "correct": true,
+              "why": "Each 1H high and low is lower than the one before it."
+            },
+            {
+              "label": "Bullish: higher highs and higher lows",
+              "correct": false,
+              "feedback": "Follow the 1H swings from the left. Each high and each low is lower than the last."
+            },
+            {
+              "label": "Transitioning through an MSS",
+              "correct": false,
+              "feedback": "No lower high has been broken yet, so the 1H hasn’t shifted. It is still making lower highs and lower lows."
+            }
+          ],
+          "value": "Bearish (lower highs, lower lows)"
+        },
+        {
+          "do": "choose",
+          "key": "1h.relation",
+          "prompt": "The 4H is bullish and the 1H is bearish. How does the 1H relate to the 4H?",
+          "concept": "internal-vs-external",
+          "stack": true,
+          "options": [
+            {
+              "label": "The 1H may be correcting, or structure may be changing",
+              "correct": true,
+              "why": "That’s Scenario B. You interpret it and keep watching, without assuming either one."
+            },
+            {
+              "label": "The 4H is wrong now, so only the 1H matters",
+              "correct": false,
+              "feedback": "The 4H swings haven’t changed. The 1H can temporarily move against the 4H direction."
+            },
+            {
+              "label": "Trade whichever chart looks strongest",
+              "correct": false,
+              "feedback": "Don’t automatically trade whichever timeframe looks strongest. Interpret how they relate first."
+            }
+          ],
+          "value": "Scenario B: 1H may be correcting, or structure may be changing"
+        },
+        {
+          "do": "choose",
+          "prompt": "Which levels belong on your 1H map?",
+          "concept": "1h-map",
+          "stack": true,
+          "options": [
+            {
+              "label": "The previous 1H swing high and low, and nearby 4H levels",
+              "correct": true,
+              "why": "Right. Those are the relevant structural levels."
+            },
+            {
+              "label": "Every small high and low on the chart",
+              "correct": false,
+              "feedback": "Not every high or low automatically becomes a trading level. Map only the relevant structural levels."
+            }
+          ]
+        },
+        {
+          "do": "choose",
+          "prompt": "Where is price trading on your 1H map right now?",
+          "concept": "1h-map",
+          "stack": true,
+          "options": [
+            {
+              "label": "Just above the 1H swing low, inside the 4H range",
+              "correct": true,
+              "why": "Yes. Price sits between the 1H swing high and low, close to the low, and still inside the 4H range."
+            },
+            {
+              "label": "Above the 1H swing high",
+              "correct": false,
+              "feedback": "Look again. Price is below the 1H swing high line."
+            },
+            {
+              "label": "Below the 4H swing low",
+              "correct": false,
+              "feedback": "The 4H swing low is still well below price. Price is inside the 4H range."
+            }
+          ],
+          "after": "<strong>1H MAP BUILT ✓</strong> 4H context, 1H structure, the previous 1H swing high and low, nearby 4H levels, and where price is trading."
+        }
+      ],
+      "save": "p5-26-a",
+      "outro": "You built the map: what the 4H says, what the 1H is doing, and which levels actually matter."
+    },
+    {
+      "type": "v2_dayli",
+      "kicker": "Dayli says",
+      "quote": "Don’t start over on the 1H. <em>Carry the 4H story down and map only what’s relevant.</em>",
+      "pose": "point"
+    },
+    {
+      "type": "v2_reflect",
+      "kicker": "Tell me what you know",
+      "prompt": "In your own words, what goes on a <em>complete 1H map?</em>",
+      "modelAnswer": "I carry over the 4H context: the 4H swing high and low, its structure, the important levels and the HTF ICC phase. Then I mark the previous 1H swing high and low, name the 1H structure, add nearby 4H levels, explain how the 1H relates to the 4H, and note where price is trading. If the first level breaks, I don’t chase; if the next level is a 4H swing, I may keep observing it for a qualified Dayli ICC setup."
+    }
+  ],
+  "takeaways": [
+    "Carry the 4H read onto the 1H instead of starting over.",
+    "Mark the previous 1H swing high and low, not the small internal moves.",
+    "Name the 1H structure and interpret how it relates to the 4H.",
+    "If the first level breaks and the next is a 4H swing, observe it. Never chase."
+  ],
+  "remember": "CARRY THE 4H DOWN. MAP ONLY WHAT MATTERS."
+}
