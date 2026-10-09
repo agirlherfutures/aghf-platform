@@ -164,7 +164,7 @@ export function renderLoopWatch(slide, data, satisfy) {
       ${lp.outcome ? `<p class="dl-outcome"><strong>By the end, you'll be able to:</strong> ${lp.outcome}</p>` : ''}
       <div class="dl-launchpad-meta">
         ${lp.estMinutes ? `<span class="lw-pill dur">~${lp.estMinutes} min</span>` : ''}
-        <span class="lw-pill gp">+${data.xpValue} GP</span>
+        ${data.xpValue ? `<span class="lw-pill gp">+${data.xpValue} GP</span>` : ''}
       </div>
       ${lp.missionQuestion ? `<div class="dl-mission-q"><div class="dl-mission-q-label">Your mission question</div><div class="dl-mission-q-text">${lp.missionQuestion}</div></div>` : ''}
     </div>

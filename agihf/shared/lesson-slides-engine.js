@@ -53,6 +53,7 @@ import { P7_V2_RENDERERS } from './p7-v2.js';
 import { CASEFILE_RENDERERS } from './casefile.js';
 import { DESK_RENDERERS } from './desk-lessons.js';
 import { LEVEL_RENDERERS } from './level-tools.js';
+import { SD_RENDERERS } from './sd-slides.js';
 
 // Temporary: everything unlocked while the Academy is being built (see preview.js).
 const UNLOCK = isPreviewAll();
@@ -113,7 +114,7 @@ export function renderSlideWizard(data, opts) {
     if (wasLastBeforeComplete && !awarded) {
       awarded = true;
       burst();
-      showToast(`+${data.xpValue} GP earned!`, `${data.title} complete 🫧✨`);
+      showToast(data.xpValue ? `+${data.xpValue} GP earned!` : 'Lesson complete ✦', `${data.title} complete 🫧✨`);
       onAward();
     }
   }
@@ -966,6 +967,7 @@ export const SLIDE_RENDERERS = {
   ...V2_RENDERERS,
   ...PRICE_LAB_RENDERERS,
   ...LEVEL_RENDERERS,
+  ...SD_RENDERERS,
   ...PHASE3_RENDERERS,
   ...PRICE_REPLAY_RENDERERS,
   ...TOPDOWN_RENDERERS,
