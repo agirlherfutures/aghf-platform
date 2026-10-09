@@ -10,6 +10,8 @@ time. Voice only: no music is added. The video stream is copied, not re-encoded.
     python3 place-voiceover.py waitlist  <voice file> [--with-last-line]
 
 --with-last-line: the take includes the optional end-card line.
+--groups 1,2,2,...: how many spoken parts make up each line, when the longest
+  pauses don't fall between lines (print the parts with --parts to check).
 Output: ../out/<video>-voice.mp4
 """
 import json, os, re, subprocess, sys
@@ -54,7 +56,18 @@ def speech_spans(path, total):
         cur = e
     if cur < total - 0.05:
         spans.append([cur, total])
-    return spans
+    return [sp for sp in spans if sp[1] - sp[0] >= 0.1]  # drop clicks and breaths
+
+
+def group_by(spans, counts):
+    """Merge sound spans into lines with the given number of spans per line."""
+    if sum(counts) != len(spans):
+        sys.exit(f'--groups adds up to {sum(counts)} parts but the take has {len(spans)}.')
+    lines, i = [], 0
+    for c in counts:
+        lines.append([spans[i][0], spans[i + c - 1][1]])
+        i += c
+    return lines
 
 
 def group(spans, n):
@@ -78,7 +91,18 @@ def main():
     times = spot['times'] + ([spot['last']] if '--with-last-line' in sys.argv else [])
     video = os.path.join(OUT, spot['video'])
     vlen = duration(video)
-    lines = group(speech_spans(voice, duration(voice)), len(times))
+    spans = speech_spans(voice, duration(voice))
+    if '--parts' in sys.argv:
+        for i, (a, b) in enumerate(spans):
+            print(f'{i + 1:2d}  {a:6.2f}  {b:6.2f}')
+        return
+    if '--groups' in sys.argv:
+        counts = [int(x) for x in sys.argv[sys.argv.index('--groups') + 1].split(',')]
+        if len(counts) != len(times):
+            sys.exit(f'--groups lists {len(counts)} lines but the script has {len(times)}.')
+        lines = group_by(spans, counts)
+    else:
+        lines = group(spans, len(times))
 
     placed, prev_end, parts = [], 0.0, []
     for i, ((s, e), t) in enumerate(zip(lines, times)):
