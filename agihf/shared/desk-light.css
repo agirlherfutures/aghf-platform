@@ -1,0 +1,93 @@
+/* desk-light.css — My Trader Desk in the light lesson style (same look as the new Capstone).
+   New pieces are .dt-*; the existing desk tools (.dk-*, .p8-*) are re-themed by
+   swapping the --dk-* colour tokens inside .dk-light. */
+.dk-light{
+  --dk-bg:#FDF8F5; --dk-panel:#FFFFFF; --dk-panel2:#FFFFFF; --dk-line:#F1E7E1; --dk-text:#3D2B20; --dk-dim:#7A5C50;
+  --dk-pink:#C8455F; --dk-mint:#1F8A7E; --dk-peach:#C4741F; --dk-gold:#9A6B00; --dk-purple:#5E56B8;
+  color:var(--text); max-width:1180px;
+}
+body.p8-on .main.dk-light{padding-top:28px;}
+
+/* ── top bar: four rooms + strategy switch ── */
+.dt-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;max-width:1040px;margin:0 auto 10px;}
+.dt-rooms{display:flex;flex-wrap:wrap;gap:4px;background:#fff;border:1px solid var(--border);border-radius:999px;padding:5px;}
+.dt-rooms a{border-radius:999px;padding:9px 18px;font:800 .9rem var(--font-body);color:var(--muted);text-decoration:none;}
+.dt-rooms a.on{background:var(--dark);color:#fff;}
+.dt-switch{display:flex;gap:6px;align-items:center;font-size:.8rem;font-weight:700;color:var(--muted);flex-wrap:wrap;}
+.dt-chip{border:1.5px solid var(--border);background:#fff;border-radius:999px;padding:6px 12px;font:800 .8rem var(--font-body);color:var(--dark);cursor:pointer;}
+.dt-chip.on{background:var(--dark);border-color:var(--dark);color:#fff;}
+.dt-chip.is-locked{color:var(--muted);background:var(--cream);cursor:not-allowed;}
+.dt-sub{display:flex;flex-wrap:wrap;gap:6px;max-width:1040px;margin:0 auto 12px;}
+.dt-sub[hidden]{display:none;}
+.dt-sub a{border:1.5px solid var(--border);background:#fff;border-radius:999px;padding:6px 14px;font:800 .8rem var(--font-body);color:var(--dark);text-decoration:none;}
+.dt-sub a.on{border-color:var(--dark);box-shadow:inset 0 0 0 1px var(--dark);}
+.dt-rooms a:focus-visible,.dt-sub a:focus-visible,.dt-chip:focus-visible,.dt-btn:focus-visible,.dt-pick:focus-visible{outline:3px solid var(--pink);outline-offset:2px;}
+
+/* ── shared card ── */
+.dt{background:#fff;border:1px solid var(--border);border-radius:24px;padding:clamp(18px,3.6vw,36px);max-width:1040px;margin:0 auto 16px;box-shadow:0 10px 40px rgba(44,24,16,.06);display:flex;flex-direction:column;gap:16px;}
+.dt-eyebrow{font:800 .72rem var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--pink);}
+.dt-title{font:900 clamp(1.5rem,3.4vw,2.3rem)/1.08 var(--font-display);color:var(--dark);margin:-6px 0 0;text-wrap:balance;}
+.dt-lede{margin:0;color:var(--muted);max-width:64ch;}
+.dt-banner{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;background:var(--dark);color:#fff;border-radius:16px;padding:14px 18px;text-decoration:none;}
+.dt-banner span{color:#F9B8C6;}
+.dt-today{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;}
+@media (max-width:860px){.dt-today{grid-template-columns:1fr;}}
+.dt-plan{background:#FFF6DC;border:1.5px solid #F1D78A;border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0;}
+.dt-plan h3{margin:0;font:900 1.2rem var(--font-display);color:var(--dark);}
+.dt-plan ol{list-style:none;margin:0;padding:0;display:grid;gap:8px;}
+.dt-plan a{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:14px;padding:12px 14px;text-decoration:none;color:inherit;}
+.dt-plan a:hover{box-shadow:0 2px 10px rgba(44,24,16,.08);}
+.dt-plan .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--dark);color:#fff;display:grid;place-items:center;font-weight:800;font-size:.8rem;}
+.dt-plan li.done .n{background:var(--teal);}
+.dt-plan b{display:block;color:var(--dark);}
+.dt-plan em{font-style:normal;color:var(--muted);font-size:.88rem;}
+.dt-focus{border:1px solid var(--border);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0;}
+.dt-focus .k{font:800 .68rem var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.dt-focus .big{font:900 1.3rem/1.2 var(--font-display);color:var(--dark);}
+.dt-focus small{color:var(--muted);}
+.dt-bar{height:10px;border-radius:999px;background:var(--cream);overflow:hidden;}
+.dt-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),#E9B949);border-radius:999px;}
+.dt-link{color:var(--dark);font-weight:800;text-decoration:underline;text-underline-offset:3px;}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;}
+.dt-stat{background:var(--cream);border-radius:14px;padding:12px 14px;min-width:0;}
+.dt-stat small{display:block;color:var(--muted);font-weight:700;font-size:.78rem;}
+.dt-stat b{font:900 1.4rem var(--font-display);color:var(--dark);font-variant-numeric:tabular-nums;}
+.dt-stat em{display:block;font-style:normal;color:var(--muted);font-size:.8rem;}
+.dt-stat.is-empty b{font:700 .95rem var(--font-body);color:var(--muted);}
+.dt-act{display:flex;justify-content:flex-end;gap:10px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:16px;}
+.dt-hint{margin-right:auto;color:var(--muted);font-size:.86rem;}
+.dt-btn{border:none;border-radius:999px;padding:13px 24px;background:var(--dark);color:#fff;font:800 .95rem var(--font-body);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;}
+.dt-btn.ghost{background:#fff;color:var(--dark);border:1.5px solid var(--border);}
+@media (max-width:600px){.dt-act .dt-btn{width:100%;} .dt-hint{width:100%;}}
+.dt-picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;}
+.dt-pick{text-align:left;border:2px solid var(--border);border-radius:18px;padding:16px;background:#fff;display:flex;flex-direction:column;gap:6px;color:inherit;text-decoration:none;min-width:0;}
+a.dt-pick:hover{border-color:var(--dark);box-shadow:0 6px 18px rgba(44,24,16,.08);}
+.dt-pick.is-locked{background:var(--cream);}
+.dt-pick .tag{align-self:flex-start;font:800 .66rem var(--font-body);letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:3px 9px;background:var(--teal-pale);color:#1a6b63;}
+.dt-pick .tag.p{background:var(--purple-pale);color:#3f3a8a;} .dt-pick .tag.g{background:#FFF6DC;color:#8a6100;} .dt-pick .tag.k{background:#fff;color:var(--muted);}
+.dt-pick h3{margin:0;font:900 1.15rem var(--font-display);color:var(--dark);}
+.dt-pick p{margin:0;color:var(--muted);font-size:.88rem;}
+.dt-pick .meta{font-size:.78rem;font-weight:800;color:var(--dark);margin-top:auto;}
+.dt-bridge{background:var(--cream);border-radius:14px;padding:12px 14px;font-size:.9rem;color:var(--muted);}
+.dt-bridge b{color:var(--dark);}
+
+/* ── the existing tools, re-themed light ── */
+.dk-light :is(.dk-replay,.dk-journal,.dk-lib,.dk-perf,.dk-review,.dk-study,.dk-tplan,.dk-home,.dk-report,.dl){background:#fff;border:1px solid var(--border);border-radius:24px;padding:clamp(16px,3vw,28px);max-width:1040px;margin-left:auto;margin-right:auto;box-shadow:0 10px 40px rgba(44,24,16,.06);}
+.dk-light :is(.dk-m b,.dk-verdict b,.dk-hello h2,.dk-hc b,.dl-card b,.p8-h,.p8-say b,.p8-q,.p8-f-title,.p8-rp-t,.p8-card-f,.p8-cf-t,.p8-principle,.dk-studies .dk-card b){color:var(--dark);}
+.dk-light :is(.p8-tf.on,.p8-rv-g button.on){color:var(--dark);background:var(--cream);}
+.dk-light .p8-form input,.dk-light input,.dk-light select,.dk-light textarea{color:var(--dark);background:#fff;}
+.dk-light .p8-kicker{color:var(--pink);}
+.dk-light .p8-btn{background:#fff;color:var(--dark);border:1.5px solid var(--border);border-radius:999px;}
+.dk-light .p8-btn.is-primary,.dk-light .p8-btn.is-lock{background:var(--dark);color:#fff;border-color:var(--dark);letter-spacing:0;}
+.dk-light .dk-card{background:#fff;border:1px solid var(--border);}
+.dk-studies{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-bottom:10px;}
+.dk-studies .dk-card{margin:0;cursor:pointer;}
+.dk-studies .dk-card b{display:block;} .dk-studies .dk-card span{font-size:.76rem;color:var(--muted);}
+
+/* charts inside the old tools: light paper instead of the dark terminal */
+.dk-light .p8-bg{fill:#FFFFFF;}
+.dk-light .p8-grid-l{stroke:#F1E7E1;}
+.dk-light .p8-mini{background:#FDF8F5;}
+.dk-light svg rect[fill="#100E18"]{fill:#FDF8F5;}
+.dk-light .p8-replay .p8-play{color:#fff;}
+.dk-light svg [stroke="#221E33"]{stroke:#F1E7E1;}
