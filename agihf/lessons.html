@@ -212,7 +212,7 @@
     </div>`;
   }
 
-  /* ── Card view (preview: lessons.html?cards) ─────────────────────────
+  /* ── The Academy as cards ───────────────────────────────────────────────
    * The Academy as a grid of phase cards, each with a small graphic. The
    * phase you're on is highlighted. Clicking a card opens that phase's
    * intro and lesson list (the same view as the list layout).
@@ -313,6 +313,9 @@
     }
     function wireCards() { list.querySelectorAll('[data-open]').forEach((b) => b.addEventListener('click', () => openCard(b.dataset.open))); }
     showGrid();
+    // lessons.html?open=p5 (or s2) opens that card straight away, e.g. coming back from a lesson.
+    const want = new URLSearchParams(location.search).get('open');
+    if (want && list.querySelector(`[data-open="${want}"]`)) openCard(want);
   }
 
   function wireToggles() {
@@ -386,13 +389,7 @@
       const grad = !!ls('aghf_alumni');
       const capReady = grad || ls('aghf_section_clear:p8-s22') === 'true' || UNLOCK;
       const capCard = capReady ? `<a href="${grad ? 'certificate.html' : 'capstone.html'}" style="display:block;text-decoration:none;margin-top:14px;background:linear-gradient(135deg,#1C1929,#2A2240);color:#fff;border-radius:18px;padding:18px 22px;"><div style="font-size:.7rem;letter-spacing:.16em;color:#F7A8C8;font-weight:700">${grad ? 'ALUMNI ✦' : 'OUTSIDE THE 8 PHASES'}</div><div style="font-family:var(--font-display);font-size:1.25rem;margin:4px 0">🎓 She’s In Structure Capstone</div><div style="font-size:.86rem;color:#CFC8E3">${grad ? 'Passed. View your certificate →' : 'One full trading day, scored on process. Begin →'}</div></a>` : '';
-      // Strategy Lab: optional, outside the 8 phases, unlocks after Phase 5. Never part of graduation.
-      const p5 = PHASES.find((p) => p.key === 'p5');
-      const labOpen = UNLOCK || (p5 && phaseComplete(p5, completedIds));
-      const labCard = `<a href="strategy-lab.html" class="sl-acad-card" style="display:block;text-decoration:none;margin-top:14px;background:linear-gradient(135deg,#2C1810,#5E56B8);color:#fff;border-radius:18px;padding:18px 22px;${labOpen ? '' : 'opacity:.75;'}"><div style="font-size:.7rem;letter-spacing:.16em;color:#FFB8C8;font-weight:700">OPTIONAL · ${labOpen ? 'STRATEGY LAB' : 'UNLOCKS AFTER PHASE 5'}</div><div style="font-family:var(--font-display);font-size:1.25rem;margin:4px 0">⚗ Supply &amp; Demand, Powered by Higher-Timeframe ICC™</div><div style="font-size:.86rem;color:#E6DFF5">${labOpen ? '3 Breaks. 2 Corrections. 1 Zone. 1 Retest. Open the Strategy Lab →' : '🔒 Finish Phase 5 to unlock. It never blocks graduation.'}</div></a>`;
-      if (new URLSearchParams(location.search).has('cards')) { await renderCards(completedIds, unlockNote, capCard); return; }
-      document.getElementById('phaseList').innerHTML = unlockNote + PHASES.map((phase, i) => phaseHtml(phase, i, completedIds)).join('') + capCard + labCard;
-      wireToggles();
+      await renderCards(completedIds, unlockNote, capCard);
     } catch (err) {
       renderLoadError(err);
     }
