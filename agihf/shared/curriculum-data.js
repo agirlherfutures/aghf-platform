@@ -623,7 +623,7 @@ export const PHASES = [
         ],
         mission: 'Carry one story from the 4H down to the 1M, and act only when price proves it.',
       },
-      game: { title: 'ICC Sequence Game', quote: 'Level 1: spot Indication. Level 5: full HTF analysis into 1M execution.', xp: 100 } },
+      game: { title: 'ICC Sequence Game', quote: 'Level 1: spot Indication. Level 5: full HTF analysis into 1M execution.', xp: 0, href: 'section.html?phase=p5&section=s14&step=game' } },
     ],
   },
   {

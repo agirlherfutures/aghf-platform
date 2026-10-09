@@ -88,7 +88,7 @@
     }
 
     document.getElementById('lhCrumb').textContent = `Phase ${phase.n} · ${section.title}`;
-    document.getElementById('lhTitle').textContent = `${section.title} — Section Complete`;
+    document.getElementById('lhTitle').textContent = data.pageTitle || `${section.title} — Section Complete`;
     document.getElementById('lhHook').textContent = data.hook || 'Complete the Challenge, Knowledge Check, and Check-In to unlock what\'s next.';
 
     const lessonCount = section.lessons.filter((l) => l.n).length;
