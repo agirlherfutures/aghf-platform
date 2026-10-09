@@ -1,0 +1,212 @@
+{
+ "phase": "sl",
+ "section": "m2",
+ "lessonNumber": "m2-5",
+ "title": "Waiting for the Retest",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "BOS #3 activates the zone. The retest is where the entry lives.",
+ "launchpad": {
+  "outcome": "Wait for price to return to an active zone, spot the retest, and recognize a missed retest as a no-trade outcome.",
+  "missionQuestion": "What do you do when price never comes back?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "After BOS #3, wait for price to return to the zone.",
+  "The retest is the first return to the active zone after BOS #3.",
+  "Don’t chase. A missed retest is a missed trade, not a trade.",
+  "The entry options (a limit at the near edge, or a directional close out of the zone) still need Dayli’s confirmation."
+ ],
+ "remember": "AFTER BOS #3, WAIT. DON’T CHASE.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 2 · Lesson 5",
+   "headline": "BOS #3 printed. <em>Now you wait.</em>",
+   "line": "The zone is active. The next step is patience: price has to come back to it.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · After BOS #3",
+   "headline": "Three rules <em>after the zone activates.</em>",
+   "line": "Tap each card.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "clock",
+      "tone": "purple",
+      "label": "Wait",
+      "sub": "After BOS (break of structure) #3, wait for price to return to the zone."
+     },
+     {
+      "icon": "stop",
+      "tone": "pink",
+      "label": "Don’t chase",
+      "sub": "If price runs away without returning, you let it go."
+     },
+     {
+      "icon": "flag",
+      "tone": "teal",
+      "label": "Missed isn’t a trade",
+      "sub": "A missed retest is a missed trade. It’s a no-trade outcome."
+     }
+    ]
+   },
+   "cta": "Practise →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 2 · Find the retest",
+   "headline": "Where does price <em>come back?</em>",
+   "line": "Bullish example. The demand zone is active. Find the first candle that returns to it.",
+   "scenario": "bull-valid",
+   "tf": "5M",
+   "until": "retest+2",
+   "show": [
+    "c2",
+    "zone",
+    "bos3"
+   ],
+   "within": [
+    "bos3",
+    "retest+2"
+   ],
+   "ask": "Tap the retest candle.",
+   "target": "retest",
+   "why": "That’s the first candle after BOS #3 to trade back into the active zone.",
+   "after": {
+    "show": [
+     "retest"
+    ],
+    "caption": "<b>The retest.</b> Price returned to the active zone. Only now does the entry model apply."
+   },
+   "provisional": [
+    "zoneBounds"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 3 · Entry options",
+   "headline": "Two documented ways <em>to enter.</em>",
+   "line": "Both are part of the documented model. Neither is finalized yet.",
+   "scenario": "bull-valid",
+   "tf": "5M",
+   "start": "bos3",
+   "toggle": false,
+   "show": [
+    "c2",
+    "zone",
+    "bos3"
+   ],
+   "provisional": [
+    "zoneBounds",
+    "limitEntry"
+   ],
+   "steps": [
+    {
+     "until": "retest",
+     "show": [
+      "retest",
+      "entry"
+     ],
+     "caption": "<b>Limit entry.</b> A predetermined limit sits at the near edge of the zone: the high of this demand zone."
+    },
+    {
+     "until": "retest+1",
+     "caption": "<b>Close out of the zone.</b> The model also documents a directional candle close out of the zone as an extra-confirmation option. Here, a bullish candle closes back above the zone."
+    }
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 4 · Price never returns",
+   "headline": "Active zone. <em>Price never returns.</em>",
+   "line": "Bearish example. BOS #3 has activated the supply zone. Watch what price does.",
+   "scenario": "bear-missed",
+   "tf": "5M",
+   "start": "bos3",
+   "toggle": false,
+   "show": [
+    "c2",
+    "zone",
+    "bos3"
+   ],
+   "provisional": [
+    "zoneBounds"
+   ],
+   "steps": [
+    {
+     "until": "end",
+     "caption": "Sellers keep pushing lower. Price pulls back a little, but it <b>never returns to the supply zone.</b>"
+    }
+   ],
+   "check": {
+    "prompt": "Price is running away from the zone. What do you do?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Sell at market so you don’t miss it",
+      "correct": false,
+      "feedback": "Don’t chase price when it fails to return. A missed retest is not an executed trade."
+     },
+     {
+      "label": "Let it go. No retest, no trade.",
+      "correct": true,
+      "why": "Right. The sequence completed, but price never came back. That’s a missed trade, and a valid no-trade decision."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 5 · Check yourself",
+   "headline": "Which one is <em>a trade?</em>",
+   "line": "Both started with the same full sequence.",
+   "visual": {
+    "icon": "target",
+    "tone": "teal",
+    "caption": "The retest decides."
+   },
+   "check": {
+    "prompt": "Both charts printed BOS #3. Which one reaches the entry model?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Price ran away, so you entered late, far from the zone",
+      "correct": false,
+      "feedback": "That’s chasing. If price doesn’t return to the zone, there is no entry."
+     },
+     {
+      "label": "Price returned to the active zone",
+      "correct": true,
+      "why": "Right. After BOS #3, the entry model only applies when price returns to the zone."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "The zone waits for price. <em>You wait for the zone.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, what do you do after BOS #3, and what happens if price never returns?",
+   "modelAnswer": "After BOS #3 activates the zone, I wait for price to return to it. The retest is the first return to the active zone. The documented entry options are a limit at the near edge of the zone or a directional candle close out of the zone, and both still need Dayli’s confirmation. If price never comes back, I don’t chase it. A missed retest is a missed trade, not a trade."
+  }
+ ]
+}

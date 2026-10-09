@@ -11,7 +11,7 @@
  *
  * `until` / `start`: a 5M bar count, or a sequence point: 'start' | 'bos1' | 'c1' | 'bos2' | 'c2' |
  * 'bos3' | 'retest' | 'invalid' | 'end', optionally '+n' / '-n' (e.g. 'bos3+2').
- * `show`: overlays: 'bos1' 'c1' 'bos2' 'c2' 'zone' 'zoneCandle' 'bos3' 'retest' 'invalid' 'entry'.
+ * `show`: overlays: 'bos1' 'bos1Level' 'c1' 'bos2' 'c2' 'zone' 'zoneCandle' 'bos3' 'bos3Level' 'retest' 'invalid' 'entry'.
  * `provisional`: keys of PROVISIONAL in sd-core.js; each shows the RULE REQUIRES DAYLI CONFIRMATION label.
  */
 import { shell, nextBtn, check } from './lesson-v2.js';
@@ -57,6 +57,9 @@ export function overlay(ch, sc, a, keys = []) {
     ch.level('bos1', { price: P.bos1.level, label: '15M level', tone: 'purple', at: 0 });
     ch.tag('bos1', { at: P.bos1.at, text: 'BOS #1', tone: 'purple', where: bull ? 'above' : 'below' });
   }
+  // Level-only lines (no tag), for asking where a break happens without giving it away.
+  if (has('bos1Level') && P.bos1) ch.level('bos1', { price: P.bos1.level, label: '15M level', tone: 'purple', at: 0 });
+  if (has('bos3Level') && P.c2) ch.level('bos3', { price: P.c2.swing.price, label: 'BOS #3 level', tone: 'pink', at: P.c2.swing.at });
   if (has('c1') && P.c1) ch.band('c1', { from: P.c1.from, to: P.c1.to, label: 'Correction #1', tone: 'peach' });
   if (has('bos2') && P.bos2?.at >= 0) {
     ch.level('bos2', { price: P.bos2.level, label: 'BOS #2 level', tone: 'teal', at: P.c1.swing.at });
@@ -96,6 +99,7 @@ export function renderSdStory(el, slide, satisfy, helpers) {
   conf.innerHTML = confirmHtml(slide.provisional);
   const steps = slide.steps || [];
   let i = 0, shown = [...(slide.show || [])];
+  let stepProv = [];
   const finish = () => {
     btn.remove();
     if (slide.check) check(el.querySelector('.v2-check-slot'), slide.check, helpers, () => nextBtn(act, satisfy, slide.cta || 'Next →'));
@@ -111,7 +115,8 @@ export function renderSdStory(el, slide, satisfy, helpers) {
     shown = [...shown, ...(s.show || [])];
     overlay(ch, sc, a, shown);
     cap.innerHTML = s.caption || '';
-    conf.innerHTML = confirmHtml([...(slide.provisional || []), ...(s.provisional || [])]);
+    stepProv = [...new Set([...stepProv, ...(s.provisional || [])])]; // labels stay once shown
+    conf.innerHTML = confirmHtml([...(slide.provisional || []), ...stepProv]);
     i += 1;
     btn.disabled = false;
     if (i >= steps.length) finish();

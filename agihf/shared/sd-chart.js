@@ -103,8 +103,9 @@ export function mountSdChart(container, sc, opts = {}) {
       const inside = hgt >= 15;
       const lx = x0 + step * 1.6 + 4;
       const ly = inside ? Y(z.hi) + hgt / 2 + 3.5 : z.bull ? Y(z.lo) + 13 : Y(z.hi) - 5;
-      if (!inside) el('rect', { x: lx - 4, y: ly - 11, width: text.length * 6.6 + 8, height: 15, rx: 7, class: 'sd-zonelbl' }, g);
-      const t = el('text', { x: lx, y: ly, 'text-anchor': 'start' }, g);
+      const lg = el('g', { class: g.getAttribute('class') }, L.tags); // above the candles
+      el('rect', { x: lx - 4, y: ly - 11 * FS, width: text.length * 6.6 * FS + 8, height: 15 * FS, rx: 7, class: 'sd-zonelbl' }, lg);
+      const t = el('text', { x: lx, y: ly, 'text-anchor': 'start' }, lg);
       t.textContent = text;
     }
 

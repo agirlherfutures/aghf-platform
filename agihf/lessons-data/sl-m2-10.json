@@ -1,0 +1,354 @@
+{
+ "phase": "sl",
+ "section": "m2",
+ "lessonNumber": "m2-10",
+ "title": "Full Strategy Walkthrough",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "The whole model in one walk: the story, three breaks, two corrections, one zone, one retest, and your decision.",
+ "launchpad": {
+  "outcome": "Walk the complete strategy from the HTF story to the final entry or no-trade decision, and know where to keep practising.",
+  "missionQuestion": "Can you call every step of the sequence before the chart shows it?",
+  "estMinutes": 12
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "Higher-timeframe ICC sets the direction. The 15M gives BOS #1. The 5M builds the rest.",
+  "Correction #1 never creates the zone. Correction #2 does, and BOS #3 activates it.",
+  "The entry waits for the retest. No retest, no trade.",
+  "An invalidated zone or an incomplete sequence is a no-trade decision."
+ ],
+ "remember": "3 BREAKS. 2 CORRECTIONS. 1 ZONE. 1 RETEST.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 2 · Lesson 10",
+   "headline": "The whole model, <em>start to finish.</em>",
+   "line": "One last walk: the story, three breaks, two corrections, one zone, one retest. Then you decide.",
+   "pose": "wave",
+   "cta": "Let’s walk it →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · The higher-timeframe story",
+   "headline": "Every trade starts <em>with the story.</em>",
+   "line": "Tap each card. This is the HTF (higher timeframe) context for this chart.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "globe",
+      "tone": "purple",
+      "label": "4H context",
+      "sub": "Bearish. Price is in the upper half of the 4H range and correcting."
+     },
+     {
+      "icon": "layers",
+      "tone": "teal",
+      "label": "1H structure",
+      "sub": "Bearish 1H structure. Price is reacting from a 1H lower high."
+     },
+     {
+      "icon": "down",
+      "tone": "pink",
+      "label": "HTF ICC",
+      "sub": "HTF ICC: bearish Indication, Correction in progress."
+     }
+    ]
+   },
+   "check": {
+    "prompt": "What are you looking for on the lower timeframes?",
+    "stack": true,
+    "options": [
+     {
+      "label": "A bearish sequence and a supply zone",
+      "correct": true,
+      "why": "Right. Higher-timeframe ICC supplies the direction. Here it’s bearish, so you look for a bearish sequence and a supply zone."
+     },
+     {
+      "label": "A bullish sequence and a demand zone",
+      "correct": false,
+      "feedback": "Read the cards again. The 4H, the 1H and the HTF ICC are all bearish."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 2 · BOS #1 and Correction #1",
+   "headline": "Break on the 15M. <em>Correct on the 5M.</em>",
+   "line": "Press the button to print the 15M break, then switch to the 5M.",
+   "scenario": "bear-valid",
+   "tf": "15M",
+   "start": "start",
+   "toggle": false,
+   "steps": [
+    {
+     "until": "bos1",
+     "show": [
+      "bos1"
+     ],
+     "caption": "<b>BOS #1 (break of structure).</b> A 15M candle closes below the 15M level.",
+     "next": "Switch to the 5M →"
+    },
+    {
+     "tf": "5M",
+     "until": "c1",
+     "show": [
+      "c1"
+     ],
+     "caption": "<b>Correction #1.</b> Price pulls back up on the 5M, toward the original 15M break."
+    }
+   ],
+   "check": {
+    "prompt": "Can Correction #1 create the execution zone?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes. Its last bullish candle is the supply zone",
+      "correct": false,
+      "feedback": "Not this one. Correction #1 never creates the execution zone. You still need BOS #2 and then Correction #2."
+     },
+     {
+      "label": "No. The zone comes from Correction #2",
+      "correct": true,
+      "why": "Right. Correction #1 never creates the execution zone. Correction #2 does, after BOS #2."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 3 · Correction #2",
+   "headline": "BOS #2 printed. Now find <em>the second pullback.</em>",
+   "line": "BOS #2 is marked. Find Correction #2.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "until": "c2+1",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2"
+   ],
+   "ask": "Tap any candle in Correction #2.",
+   "target": "c2",
+   "why": "That’s inside Correction #2, the pullback after BOS #2. This is the correction that creates the zone.",
+   "after": {
+    "show": [
+     "c2"
+    ],
+    "caption": "<b>Correction #2.</b> Now find the one candle in it that forms the zone."
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 4 · The zone candle",
+   "headline": "One candle. <em>Not the whole correction.</em>",
+   "line": "For supply, the zone comes from the last bullish candle of Correction #2.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "until": "c2+1",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2"
+   ],
+   "ask": "Tap the last bullish candle of Correction #2.",
+   "target": "zone",
+   "why": "That’s the zone-forming candle. It creates a potential supply zone.",
+   "after": {
+    "show": [
+     "zone",
+     "zoneCandle"
+    ],
+    "caption": "A <b>potential</b> supply zone, using the candle’s full high-to-low range. It isn’t active until BOS #3."
+   },
+   "provisional": [
+    "zoneBounds"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 5 · BOS #3 and the retest",
+   "headline": "Activate the zone, <em>then wait.</em>",
+   "line": "Sellers need a 5M close below the low Correction #2 pulled back from.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "until": "bos3+2",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2",
+    "zone",
+    "zoneCandle"
+   ],
+   "ask": "Tap BOS #3: the first 5M candle that closes below that low.",
+   "target": "bos3",
+   "why": "That’s BOS #3. The supply zone is now active. You don’t chase. You wait for price to come back.",
+   "after": {
+    "show": [
+     "bos3",
+     "retest",
+     "entry"
+    ],
+    "until": "retest+1",
+    "caption": "Price comes back up to the zone: <b>the retest</b>. The working model’s limit sits at the zone’s low, its near edge."
+   },
+   "provisional": [
+    "zoneBounds",
+    "limitEntry"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 6 · Decide: chart A",
+   "headline": "Full sequence. <em>Now what happens?</em>",
+   "line": "Bullish chart. BOS #3 has activated the demand zone. Press the button.",
+   "scenario": "bull-missed",
+   "tf": "5M",
+   "start": "bos3",
+   "toggle": false,
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2",
+    "zone",
+    "zoneCandle",
+    "bos3"
+   ],
+   "provisional": [
+    "zoneBounds"
+   ],
+   "steps": [
+    {
+     "until": "end",
+     "caption": "Price keeps rising and never returns to the zone."
+    }
+   ],
+   "check": {
+    "prompt": "Entry or no trade?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Entry. The sequence was complete",
+      "correct": false,
+      "feedback": "The sequence completed, but the entry waits for the retest. Price never came back, so there’s no trade."
+     },
+     {
+      "label": "No trade. It’s a missed trade, so don’t chase",
+      "correct": true,
+      "why": "Right. No retest means no trade. A missed trade isn’t a trade, and you don’t chase price."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 7 · Decide: chart B",
+   "headline": "Same sequence. <em>A different ending.</em>",
+   "line": "Bullish chart. BOS #3 has activated the demand zone. Press the button.",
+   "scenario": "bull-invalid",
+   "tf": "5M",
+   "start": "bos3",
+   "toggle": false,
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2",
+    "zone",
+    "zoneCandle",
+    "bos3"
+   ],
+   "provisional": [
+    "zoneBounds"
+   ],
+   "steps": [
+    {
+     "until": "invalid",
+     "show": [
+      "invalid"
+     ],
+     "caption": "A 5M candle <b>closes below the zone’s low</b>. The setup is invalid.",
+     "provisional": [
+      "invalidation"
+     ],
+     "next": "Keep playing →"
+    },
+    {
+     "until": "end",
+     "caption": "Price drifts back into the old zone.",
+     "provisional": [
+      "invalidation"
+     ]
+    }
+   ],
+   "check": {
+    "prompt": "Price is back in the old zone. Entry or no trade?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Entry. That’s the retest",
+      "correct": false,
+      "feedback": "A retest only counts while the zone is valid. After a 5M close below its low, you don’t treat it as an entry."
+     },
+     {
+      "label": "No trade. The zone was invalidated",
+      "correct": true,
+      "why": "Right. A 5M candle closed beyond the zone’s far edge, so the setup is invalid. Price coming back doesn’t make it an entry."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 8 · Keep practising",
+   "headline": "Now practise it <em>until it’s automatic.</em>",
+   "line": "Two tools in the Strategy Lab let you rehearse everything from this module. Tap each one.",
+   "visual": {
+    "cards": [
+     {
+      "icon": "layers",
+      "tone": "teal",
+      "label": "The Zone Builder",
+      "sub": "Pick Correction #2, the zone candle and the boundaries, then judge if the zone is still valid."
+     },
+     {
+      "icon": "target",
+      "tone": "pink",
+      "label": "The Execution Lab",
+      "sub": "Read the HTF story, mark each step candle by candle, then choose entry or no trade."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "Three breaks. Two corrections. One zone. One retest. <em>Every time.</em>",
+   "line": "Head to the Zone Builder and the Execution Lab next. Practise until you can call every step before it prints.",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "Walk through the full strategy in your own words, from the 4H to the entry or no-trade decision.",
+   "modelAnswer": "I start with the 4H context, the 1H structure and location, and the HTF ICC to set the direction. Then I wait for BOS #1, a 15M candle close in that direction. On the 5M, Correction #1 pulls back and BOS #2 continues the move. Correction #2 follows, and its last opposite-colour candle forms the zone. BOS #3 activates the zone, and I wait for price to return to it. If price never returns, the zone is invalidated, or the sequence never completes, it’s no trade."
+  }
+ ]
+}

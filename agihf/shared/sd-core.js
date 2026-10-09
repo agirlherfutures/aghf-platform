@@ -29,6 +29,7 @@ export const PROVISIONAL = {
   invalidation: 'Price moving past the opposite zone boundary invalidates the setup. Whether a wick is enough, or a 5M candle has to close beyond it, has not been finalized.',
   mssAsBos1: 'A 15M MSS counts as BOS #1 only when it agrees with the higher-timeframe ICC direction.',
   limitEntry: 'The limit entry sits at the near edge of the zone: the high of a demand zone, the low of a supply zone.',
+  reclaim: 'A reclaim of the original 15M BOS/MSS level can add structural confirmation. It is a conditional rule still being tested, not a requirement.',
 };
 
 /** The core sequence: 3 Breaks. 2 Corrections. 1 Zone. 1 Retest. */

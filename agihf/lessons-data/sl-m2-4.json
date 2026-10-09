@@ -1,0 +1,243 @@
+{
+ "phase": "sl",
+ "section": "m2",
+ "lessonNumber": "m2-4",
+ "title": "BOS #3: Activating the Zone",
+ "videoUrl": null,
+ "videoDuration": "",
+ "xpValue": 0,
+ "completeStyle": "v2",
+ "format": "slides",
+ "hook": "A zone is only potential until BOS #3 closes through.",
+ "launchpad": {
+  "outcome": "Tell a potential zone from an active one, find BOS #3 on bullish and bearish charts, and recognize a zone that never activates.",
+  "missionQuestion": "What turns a potential zone into an active one?",
+  "estMinutes": 8
+ },
+ "watch": {
+  "markers": []
+ },
+ "takeaways": [
+  "Correction #2 creates a potential zone.",
+  "BOS #3 is a 5M candle close through the point Correction #2 pulled back from. It activates the zone.",
+  "An opposite-colour candle appearing is not activation. BOS #3 must occur.",
+  "BOS #3 isn’t an entry either. After it, you wait for the retest."
+ ],
+ "remember": "NO BOS #3, NO ACTIVE ZONE.",
+ "slides": [
+  {
+   "type": "v2_hero",
+   "kicker": "Strategy Lab · Module 2 · Lesson 4",
+   "headline": "No BOS #3, <em>no active zone.</em>",
+   "line": "Correction #2 creates the zone. BOS (break of structure) #3 is the 5M close that makes it count.",
+   "pose": "wave",
+   "cta": "Show me →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 1 · Potential vs active",
+   "headline": "Same box. <em>Different status.</em>",
+   "line": "A zone doesn’t activate just because the opposite-colour candle appeared.",
+   "visual": {
+    "versus": [
+     {
+      "label": "Potential zone",
+      "tone": "peach",
+      "icon": "clock",
+      "points": [
+       "Correction #2 has created it.",
+       "BOS #3 hasn’t happened yet.",
+       "The entry model doesn’t apply yet."
+      ]
+     },
+     {
+      "label": "Active zone",
+      "tone": "teal",
+      "icon": "check",
+      "points": [
+       "A 5M candle closed through the point Correction #2 pulled back from.",
+       "That close is BOS #3.",
+       "Now you wait for price to return."
+      ]
+     }
+    ]
+   },
+   "check": {
+    "prompt": "A bullish candle prints right after the last bearish candle of Correction #2. Is the demand zone active?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, buyers have stepped in",
+      "correct": false,
+      "feedback": "A zone isn’t activated just because the opposite-colour candle appeared. BOS #3 must occur."
+     },
+     {
+      "label": "Not until BOS #3 closes",
+      "correct": true,
+      "why": "Right. BOS #3 is a 5M close above the high Correction #2 pulled back from. That’s what activates the zone."
+     }
+    ]
+   },
+   "cta": "Practise →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 2 · Bullish",
+   "headline": "Find <em>BOS #3.</em>",
+   "line": "The potential demand zone is drawn. Find the first 5M close above the high Correction #2 pulled back from.",
+   "scenario": "bull-valid",
+   "tf": "5M",
+   "until": "bos3+2",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2",
+    "zone"
+   ],
+   "within": [
+    "c2",
+    "bos3+2"
+   ],
+   "ask": "Tap the candle that is BOS #3.",
+   "target": "bos3",
+   "why": "That’s the first 5M candle to close above the high Correction #2 pulled back from.",
+   "after": {
+    "show": [
+     "bos3"
+    ],
+    "caption": "<b>BOS #3.</b> The demand zone is now <b>active</b>. Next, you wait for price to return."
+   },
+   "provisional": [
+    "zoneBounds"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_pick",
+   "kicker": "Step 3 · Bearish",
+   "headline": "Now the <em>supply side.</em>",
+   "line": "Find the first 5M close below the low Correction #2 pulled back from.",
+   "scenario": "bear-valid",
+   "tf": "5M",
+   "until": "bos3+2",
+   "show": [
+    "bos1",
+    "c1",
+    "bos2",
+    "c2",
+    "zone"
+   ],
+   "within": [
+    "c2",
+    "bos3+2"
+   ],
+   "ask": "Tap the candle that is BOS #3.",
+   "target": "bos3",
+   "why": "That’s the first 5M candle to close below the low Correction #2 pulled back from.",
+   "after": {
+    "show": [
+     "bos3"
+    ],
+    "caption": "<b>BOS #3.</b> The supply zone is now <b>active</b>."
+   },
+   "provisional": [
+    "zoneBounds"
+   ],
+   "cta": "Next →"
+  },
+  {
+   "type": "sd_story",
+   "kicker": "Step 4 · A zone that never activates",
+   "headline": "Green candles. <em>No BOS #3.</em>",
+   "line": "Bullish example. Watch the potential zone, then what follows.",
+   "scenario": "bull-no-bos3",
+   "tf": "5M",
+   "start": "bos2",
+   "toggle": false,
+   "show": [
+    "bos1",
+    "c1",
+    "bos2"
+   ],
+   "steps": [
+    {
+     "until": "c2",
+     "show": [
+      "c2",
+      "zone",
+      "zoneCandle"
+     ],
+     "caption": "<b>Correction #2</b> creates a potential demand zone.",
+     "provisional": [
+      "zoneBounds"
+     ]
+    },
+    {
+     "until": "end",
+     "caption": "Bullish candles print, but none closes above the high Correction #2 pulled back from. <b>No BOS #3. The zone stays potential.</b>",
+     "provisional": [
+      "zoneBounds"
+     ]
+    }
+   ],
+   "check": {
+    "prompt": "Price keeps trading in the potential zone. Do you trade it?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Yes, it’s retesting the zone",
+      "correct": false,
+      "feedback": "It isn’t a retest. A retest only counts after BOS #3 has activated the zone, and BOS #3 never happened."
+     },
+     {
+      "label": "No, the zone was never activated",
+      "correct": true,
+      "why": "Right. Without BOS #3, the sequence is incomplete. No trade."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_screen",
+   "kicker": "Step 5 · Check yourself",
+   "headline": "BOS #3 just closed. <em>Now what?</em>",
+   "line": "The zone is active and price is moving away from it.",
+   "visual": {
+    "icon": "clock",
+    "tone": "purple",
+    "caption": "Wait for the retest."
+   },
+   "check": {
+    "prompt": "BOS #3 just closed. What do you do?",
+    "stack": true,
+    "options": [
+     {
+      "label": "Enter now, the sequence is complete",
+      "correct": false,
+      "feedback": "BOS #3 activates the zone. It isn’t an entry. The entry waits for price to return to the zone."
+     },
+     {
+      "label": "Wait for price to return to the zone",
+      "correct": true,
+      "why": "Right. After BOS #3, wait for the retest. Don’t chase."
+     }
+    ]
+   },
+   "cta": "Next →"
+  },
+  {
+   "type": "v2_dayli",
+   "kicker": "Dayli says",
+   "quote": "A zone without BOS #3 is <em>just a box on a chart.</em>",
+   "pose": "point"
+  },
+  {
+   "type": "v2_reflect",
+   "kicker": "Tell me what you know",
+   "prompt": "In your own words, what is the difference between a potential zone and an active zone?",
+   "modelAnswer": "A potential zone is created by Correction #2, from its last opposite-colour candle. It only becomes active when BOS #3 occurs: a 5M candle close through the point Correction #2 pulled back from. An opposite-colour candle appearing isn’t enough. If BOS #3 never happens, the zone never activates and there is no trade. Even after BOS #3, I wait for price to return to the zone."
+  }
+ ]
+}
