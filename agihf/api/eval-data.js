@@ -10,6 +10,7 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { isDbNotSetUp } from './_lib/db-error.js';
+import { handleWaitlist } from './_lib/waitlist.js';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
@@ -259,7 +260,16 @@ const RESOURCE_HANDLERS = {
   'eval-plans': handleEvalPlans,
 };
 
+// Public resources: no member token. Only the launch waitlist sign-up, which
+// shares this function to stay under the Hobby plan's 12-function cap.
+const PUBLIC_HANDLERS = {
+  waitlist: handleWaitlist,
+};
+
 export default async function handler(req, res) {
+  const publicHandler = PUBLIC_HANDLERS[req.query.resource];
+  if (publicHandler) return publicHandler(req, res, supabase);
+
   const authHeader = req.headers.authorization || '';
   const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
   if (!token) return res.status(401).json({ error: 'Missing bearer token' });

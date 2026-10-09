@@ -32,6 +32,7 @@
     { "source": "/api/challenge-winners", "destination": "/api/challenge-data?resource=winners" },
     { "source": "/api/challenge-prefs", "destination": "/api/challenge-data?resource=prefs" },
     { "source": "/api/notifications", "destination": "/api/challenge-data?resource=notifications" },
-    { "source": "/api/challenge-admin", "destination": "/api/challenge-data?resource=admin" }
+    { "source": "/api/challenge-admin", "destination": "/api/challenge-data?resource=admin" },
+    { "source": "/api/join-waitlist", "destination": "/api/eval-data?resource=waitlist" }
   ]
 }
