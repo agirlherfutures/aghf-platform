@@ -59,16 +59,21 @@
     return `<a class="${rowClass}" href="lesson.html?phase=${phase.key}&n=${lesson.n}">${inner}</a>`;
   }
 
-  function gameRowHtml(game, locked) {
-    return `<div class="lc lc-lk">
-      <div class="lc-n n-lk">▶</div>
+  // A section game. It links once built (game.href) and the section's lessons are done; it never gates progress.
+  function gameRowHtml(phase, section, state) {
+    const game = section.game;
+    let played = false;
+    try { played = !!localStorage.getItem(`aghf_game:${phase.key}-${section.key}`); } catch { /* storage blocked */ }
+    const st = state === 'locked' ? 'locked' : played ? 'done' : 'active';
+    const inner = `
+      <div class="lc-n ${st === 'done' ? 'n-dn' : st === 'active' ? 'n-act' : 'n-lk'}">${st === 'done' ? '✓' : '▶'}</div>
       <div class="lc-inf">
         <div class="lc-ttl">${game.title}</div>
         <div class="lc-qt">${game.quote}</div>
-        <div class="lc-tags"><span class="t-gm">Game</span><span class="t-xp">+${game.xp} GP</span></div>
+        <div class="lc-tags"><span class="t-gm">Game</span>${game.xp ? `<span class="t-xp">+${game.xp} GP</span>` : ''}</div>
       </div>
-      <div class="lc-st st-lk">🔒 ${locked ? 'Complete lessons first' : ''}</div>
-    </div>`;
+      ${st === 'done' ? '<div class="lc-st st-dn">Played ✓ · Play again →</div>' : st === 'active' ? '<div class="lc-st st-go">Play →</div>' : `<div class="lc-st st-lk">🔒 ${game.href ? 'Complete lessons first' : 'Coming soon'}</div>`}`;
+    return st === 'locked' ? `<div class="lc lc-lk">${inner}</div>` : `<a class="lc" href="${game.href}">${inner}</a>`;
   }
 
   function checkpointRowHtml(phase, section, state) {
@@ -109,7 +114,8 @@
       const cleared = phaseUnlocked && isSectionCleared(phase.key, section.key, completedIds);
       checkpointHtml = checkpointRowHtml(phase, section, cleared ? 'done' : (allLessonsDone || (UNLOCK && section.lessons.some((l) => l.n))) ? 'active' : 'locked');
     }
-    const gameHtml = section.game ? gameRowHtml(section.game, true) : '';
+    const gameOpen = !!section.game?.href && (UNLOCK || (phaseUnlocked && sectionGateOk && section.lessons.every((l) => !l.n || completedIds.has(`${phase.key}-${l.n}`))));
+    const gameHtml = section.game ? gameRowHtml(phase, section, gameOpen ? 'active' : 'locked') : '';
     const badgeClass = BADGE_SECTION_CLASS[section.badge] || 'sb-badge-p';
     const closed = sectionIdx > 0 ? ' sec-closed' : '';
     const chev = sectionIdx > 0 ? '▼' : '▲';

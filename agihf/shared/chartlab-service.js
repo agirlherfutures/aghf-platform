@@ -295,7 +295,7 @@ const demoDrills = [
     question: 'Arrange these events in the correct Dayli ICC order.', estimatedSeconds: 60, isSeedPlaceholder: true, version: 1,
     answerKeyPreview: { answerType: 'sequence', choices: [{ key: 'indication', label: 'Indication' }, { key: 'correction', label: 'Correction' }, { key: 'continuation', label: 'Continuation' }, { key: 'retest', label: 'Retest' }] },
     _correctSequence: ['indication', 'correction', 'continuation', 'retest'],
-    _explanation: 'Indication confirms the initial move, Correction is the pullback, Continuation confirms the resumption, and Retest offers the lower-risk entry.',
+    _explanation: 'Indication is a close through the PIL, Correction is a close back through it, Continuation is a close back in the original direction, and the first Retest of the PIL is where the entry is earned.',
     _commonMistake: 'Placing Retest before Continuation — a retest only makes sense once Continuation has confirmed.',
     _hints: ['Correction always comes right after Indication, never before it.'],
     _relatedRule: null,
