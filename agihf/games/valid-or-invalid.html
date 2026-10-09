@@ -109,8 +109,8 @@
       <div class="start-rules">
         <div class="rule"><div class="rule-dot"></div>A chart and setup description appear</div>
         <div class="rule"><div class="rule-dot"></div>Judge it: is this a valid ICC trade or not?</div>
-        <div class="rule"><div class="rule-dot"></div>Valid = Indication candle CLOSED past the level, correction was clean, structure is there</div>
-        <div class="rule"><div class="rule-dot"></div>Invalid = wick only, no real correction, wrong candle, structure missing</div>
+        <div class="rule"><div class="rule-dot"></div>Valid = a close past the PIL (Indication), a close back past it (Correction), a close back in the original direction (Continuation), then the first retest</div>
+        <div class="rule"><div class="rule-dot"></div>Invalid = a wick instead of a close, a missing step, or a chased entry</div>
         <div class="rule"><div class="rule-dot"></div>When in doubt — it's probably invalid. ICC has strict rules.</div>
       </div>
       <button class="start-btn" onclick="startGame()">✦ Judge the setups</button>
@@ -168,14 +168,14 @@
 const TOTAL=8;
 let round=0,score=0,streak=0,best=0,answered=false;
 const setups=[
-  {verdict:'valid',instrument:'MNQ · 1M',context:'Bullish ICC',desc:'Price broke above the swing high with a clean 1M candle close. Then corrected back to the level. Then showed a bullish reclaim. Limit order was placed at the broken swing high.',correctFeedback:'Valid trade. Indication = candle close above swing high. Correction = clean pullback to the level. Entry = limit at the level. This is textbook ICC.',wrongFeedback:'This was valid. The candle CLOSED above the pre-indication level, price corrected cleanly, and the entry zone was clear. All three phases present.'},
-  {verdict:'invalid',instrument:'MNQ · 1M',context:'Wick trap',desc:'Price sent a long wick above the swing high but the 1M candle CLOSED below it. Someone tried to enter thinking that was an indication.',correctFeedback:'Invalid — and you caught it. A wick through a level is NOT an indication. ICC requires a full candle CLOSE past the level. Wicks lie.',wrongFeedback:'This was invalid. The wick went above the level but the candle didn\'t close above it. ICC rule #1: Close beats wick. Always.'},
-  {verdict:'valid',instrument:'ES · 1M',context:'Bearish ICC',desc:'On a downtrend, price closed below the swing low with a clear bearish 1M candle. Corrected back up to the broken low. Showed weakness. Short entry at the level.',correctFeedback:'Valid bearish ICC. Indication = close below swing low. Correction = bounce back to the broken level. Entry = limit at the level from above. Clean setup.',wrongFeedback:'This was valid. The bearish indication was clear, the correction was a clean bounce to the level, and the entry zone was at the broken swing low.'},
-  {verdict:'invalid',instrument:'MNQ · 1M',context:'No correction',desc:'Price closed above the swing high (valid indication). Then immediately kept running without any pullback. Someone entered at market chasing the move.',correctFeedback:'Invalid entry. The indication was real but there was no correction. ICC = Indication → CORRECTION → Continuation. No correction = no entry. Wait.',wrongFeedback:'This was invalid. Even with a clean indication, without a correction you have no entry. Chasing the move after a strong indication is not ICC.'},
-  {verdict:'invalid',instrument:'NQ · 1M',context:'Wrong candle type',desc:'A doji candle formed at the swing high — closing barely above it. Someone called this an indication and entered.',correctFeedback:'Invalid. A doji at a level shows indecision, not commitment. ICC needs a STRONG candle close past the level — not hesitation. No conviction = no indication.',wrongFeedback:'This was invalid. A doji barely closing past the level doesn\'t show buyer conviction. You need a candle that commits, not one that hesitates.'},
-  {verdict:'valid',instrument:'MNQ · 1M',context:'Clean ICC setup',desc:'Strong bullish candle closed above the 1H swing high. Price pulled back for 3-4 candles to the level. Held the level with a bullish candle. Limit order triggered at the pre-indication level.',correctFeedback:'Valid trade. Strong indication candle, clean multi-candle correction to the exact level, and a hold. This is the setup you wait for.',wrongFeedback:'This was valid. Strong indication, clean correction, held the level. This is what a real ICC setup looks like.'},
-  {verdict:'invalid',instrument:'MNQ · 1M',context:'Correction went too deep',desc:'Price indicated above the swing high. Then corrected — but went all the way back below the pre-indication level and closed under it.',correctFeedback:'Invalid. When price corrects BELOW the pre-indication level, the setup is invalidated. The buyers didn\'t defend the level. Skip it.',wrongFeedback:'This was invalid. The correction broke back below the pre-indication level — that means the buyers couldn\'t hold it. Invalid setup, no trade.'},
-  {verdict:'invalid',instrument:'MGC · 1M',context:'Ranging market',desc:'Price has been ranging for the last hour. A candle closed above what looks like the top of the range. Someone called it an indication.',correctFeedback:'Invalid. In a range, the closes at the boundaries are not ICC indications — they\'re just the range playing out. Wait for a clean breakout of the entire range structure first.',wrongFeedback:'This was invalid. You can\'t call ICC inside a range. The pre-indication level needs to be a real swing high/low in a trending context, not a range boundary.'},
+  {verdict:'valid',instrument:'MNQ · 1M',shape:'valid',context:'Bullish ICC',desc:'A 1M candle closed above the PIL. Next, a candle closed back below the PIL. Then a candle closed back above it. Price came back to the PIL and the limit order filled on that first retest.',correctFeedback:'Valid. Indication = a close above the PIL. Correction = a close back below it. Continuation = a close back above it. Entry = the limit at the PIL on the first retest.',wrongFeedback:'This was valid. All three steps closed past the PIL: above, back below, back above. Then the entry came on the first retest.'},
+  {verdict:'invalid',instrument:'MNQ · 1M',shape:'wick',context:'Wick trap',desc:'Price sent a long wick above the PIL, but the 1M candle CLOSED below it. Someone tried to enter, thinking that was an indication.',correctFeedback:'Invalid, and you caught it. A wick through the PIL is NOT an indication. Indication needs a candle to CLOSE past the PIL.',wrongFeedback:'This was invalid. The wick went above the PIL but the candle didn\'t close above it. Close beats wick. Always.'},
+  {verdict:'valid',instrument:'ES · 1M',shape:'valid',bear:true,context:'Bearish ICC',desc:'A 1M candle closed below the PIL. Next, a candle closed back above the PIL. Then a candle closed back below it. Price came back up to the PIL and the short limit filled on that first retest.',correctFeedback:'Valid bearish ICC. Indication = a close below the PIL. Correction = a close back above it. Continuation = a close back below it. Entry = the limit at the PIL on the first retest.',wrongFeedback:'This was valid. Bearish mirrors bullish: close below, close back above, close back below, then the first retest of the PIL.'},
+  {verdict:'invalid',instrument:'MNQ · 1M',shape:'noCorrection',context:'No correction',desc:'A candle closed above the PIL (a valid indication). Then price kept running. No candle ever closed back below the PIL. Someone entered at market, chasing the move.',correctFeedback:'Invalid entry. The indication was real, but there was no correction: no candle closed back below the PIL. No correction, no entry. Wait.',wrongFeedback:'This was invalid. Without a candle closing back below the PIL, there is no correction, and chasing the move is not the model.'},
+  {verdict:'invalid',instrument:'NQ · 1M',shape:'corrWick',context:'Correction by wick',desc:'A candle closed above the PIL. Then a candle wicked back below the PIL but closed above it. Someone called that the correction and got ready to enter.',correctFeedback:'Invalid. Correction needs a candle to CLOSE back below the PIL. A wick back below doesn\'t count, so the correction hasn\'t happened yet.',wrongFeedback:'This was invalid. The candle only wicked below the PIL and closed back above it. A correction is a close, not a wick.'},
+  {verdict:'valid',instrument:'MNQ · 1M',shape:'valid',context:'Clean ICC setup',desc:'A strong candle closed above the PIL. Over the next few candles, one closed back below the PIL. Then a bullish candle closed back above it. The limit at the PIL filled on the first retest.',correctFeedback:'Valid. A close above, a close back below, a close back above, then the first retest at the PIL. This is the setup you wait for.',wrongFeedback:'This was valid. Every step was a candle close past the PIL, and the entry waited for the retest.'},
+  {verdict:'invalid',instrument:'MNQ · 1M',shape:'contWick',context:'Continuation by wick',desc:'A candle closed above the PIL, then a candle closed back below it. Next, a candle wicked back above the PIL but closed below it. Someone entered on that wick.',correctFeedback:'Invalid. Continuation needs a candle to CLOSE back above the PIL. A wick doesn\'t complete anything, so the model isn\'t complete.',wrongFeedback:'This was invalid. The continuation candle only wicked above the PIL. Wicks don\'t complete anything. Wait for the close.'},
+  {verdict:'invalid',instrument:'MGC · 1M',shape:'noRetest',context:'No retest',desc:'Indication, correction and continuation all closed past the PIL. Then price ran away and never came back to the PIL. Someone bought at market so they wouldn\'t miss it.',correctFeedback:'Invalid. The model completed, but the entry is the first retest of the PIL. No retest means a missed trade, not a trade. Don\'t chase.',wrongFeedback:'This was invalid. A complete ICC still needs price to come back to the PIL. Chasing rewrites the plan.'},
 ];
 function shuffle(a){return[...a].sort(()=>Math.random()-.5);}
 let sh;
@@ -233,118 +233,64 @@ function showFeedback(ok,title,body){
   document.getElementById('fbIcon').textContent=ok?'✦':'✕';
   document.getElementById('fbTitle').textContent=title;document.getElementById('fbBody').textContent=body;
 }
+// Each setup draws its own candles, so the chart always matches the description.
+// Prices are points relative to the PIL (0); bullish frame, mirrored for bearish setups.
+// [open, close, extra high, extra low] — the extras push a wick past the PIL where a trap needs one.
+const PRE=[[-30,-24],[-24,-20],[-20,-23],[-23,-15],[-15,-10],[-10,-14],[-14,-6],[-6,-3]];
+const SHAPES={
+  valid:{bars:[...PRE,[-3,6],[6,4],[4,-3],[-3,-1],[-1,5],[5,9],[9,7],[7,3,0,-3.5],[3,9],[9,14]],tags:{8:'I',10:'C',12:'C',15:'RETEST'}},
+  wick:{bars:[...PRE,[-3,-1,6],[-1,-6],[-6,-10],[-10,-8],[-8,-14],[-14,-12],[-12,-17]],note:{8:'wick only — no close'}},
+  noCorrection:{bars:[...PRE,[-3,6],[6,10],[10,15],[15,13],[13,19],[19,24],[24,28]],tags:{8:'I'},note:{11:'no close back below the PIL'}},
+  corrWick:{bars:[...PRE,[-3,6],[6,3,0,-7],[3,7],[7,9],[9,8],[8,12]],tags:{8:'I'},note:{9:['wick only — no close','below']}},
+  contWick:{bars:[...PRE,[-3,6],[6,4],[4,-3],[-3,-2,7],[-2,-6],[-6,-8],[-8,-12]],tags:{8:'I',10:'C'},note:{11:['wick only — no close','above',22]}},
+  noRetest:{bars:[...PRE,[-3,6],[6,4],[4,-3],[-3,-1],[-1,5],[5,12],[12,18],[18,22],[22,27],[27,31]],tags:{8:'I',10:'C',12:'C'},note:{15:'never comes back to the PIL'}},
+};
 function drawSetupChart(s){
   const canvas=document.getElementById('viCanvas');
   const ctx=canvas.getContext('2d');const W=canvas.width,H=canvas.height;
   ctx.clearRect(0,0,W,H);ctx.fillStyle='#FFFBF9';ctx.fillRect(0,0,W,H);
   ctx.strokeStyle='rgba(127,119,221,.07)';ctx.lineWidth=1;
   for(let i=1;i<5;i++){ctx.beginPath();ctx.moveTo(0,H*i/5);ctx.lineTo(W,H*i/5);ctx.stroke();}
-  const isValid=s.verdict==='valid';
-  const levelY=H*.35;
-
-  // Pre-indication level line — always visible
-  ctx.strokeStyle='rgba(127,119,221,.5)';ctx.lineWidth=1.5;ctx.setLineDash([5,4]);
+  const shape=SHAPES[s.shape]||SHAPES.valid;
+  const m=s.bear?-1:1;
+  const bars=shape.bars.map(([o,c,xh=0,xl=0])=>{o*=m;c*=m;const hi=Math.max(o,c)+1.4,lo=Math.min(o,c)-1.4;
+    const ex=[xh*m,xl*m];return{o,c,h:Math.max(hi,...ex.filter(v=>v)),l:Math.min(lo,...ex.filter(v=>v))};});
+  const lo=Math.min(...bars.map(b=>b.l)),hi=Math.max(...bars.map(b=>b.h));
+  const pad=(hi-lo)*.1,top=70,bot=H-24; // top clears the logo badge that sits over the chart
+  const Y=v=>top+(hi+pad-v)/((hi+pad)-(lo-pad))*(bot-top);
+  const n=bars.length,sp=(W-110)/n,cw=Math.min(16,sp*.56),X=i=>24+i*sp+sp/2;
+  const levelY=Y(0);
+  ctx.strokeStyle='rgba(127,119,221,.6)';ctx.lineWidth=1.5;ctx.setLineDash([5,4]);
   ctx.beginPath();ctx.moveTo(0,levelY);ctx.lineTo(W,levelY);ctx.stroke();ctx.setLineDash([]);
-  ctx.fillStyle='rgba(127,119,221,.18)';ctx.beginPath();ctx.roundRect(8,levelY-10,90,20,3);ctx.fill();
-  ctx.fillStyle='var(--purple)';ctx.font='600 9px DM Sans';ctx.fillText('Pre-Ind. Level',12,levelY+4);
-
-  // Build waypoints based on valid vs invalid scenario
-  // VALID: clear uptrend → strong candle CLOSES above level (indication) → clean pullback TO level (correction) → price pushes up (continuation)
-  // INVALID: price approaches level, only a wick above it (no close), then falls back — or correction goes too deep below level
-  let waypoints;
-  if(isValid){
-    waypoints=[
-      {x:0.00,y:H*.88},          // start low
-      {x:0.10,y:H*.68},          // SH1
-      {x:0.18,y:H*.78},          // SL1 — higher low
-      {x:0.30,y:H*.52},          // SH2 — higher high
-      {x:0.40,y:H*.64},          // SL2 — higher low
-      {x:0.50,y:levelY-8},       // INDICATION — strong close above the level
-      {x:0.62,y:levelY+H*.14},   // CORRECTION — clean pullback TO the level (not below)
-      {x:0.72,y:levelY-H*.01},   // CONTINUATION — first close back above the level
-      {x:0.84,y:levelY-H*.18},   // price continues up after continuation
-      {x:1.00,y:levelY-H*.28},   // continuation running
-    ];
-  }else{
-    // Invalid: price approaches, wick pokes above but CLOSES below, then falls
-    waypoints=[
-      {x:0.00,y:H*.88},          // start low
-      {x:0.10,y:H*.68},          // SH1
-      {x:0.18,y:H*.78},          // SL1
-      {x:0.30,y:H*.54},          // SH2
-      {x:0.40,y:H*.66},          // SL2
-      {x:0.50,y:levelY+H*.04},   // price approaches level — wick goes above but CLOSES BELOW it
-      {x:0.62,y:levelY+H*.22},   // price falls back — no real indication
-      {x:0.74,y:levelY+H*.14},   // weak bounce — no structure
-      {x:0.88,y:levelY+H*.30},   // price dropping further — invalid
-      {x:1.00,y:levelY+H*.38},   // continues lower — setup failed
-    ];
-  }
-
-  function getY(normX){
-    for(let i=0;i<waypoints.length-1;i++){
-      const a=waypoints[i],b=waypoints[i+1];
-      if(normX>=a.x&&normX<=b.x){
-        const t=(normX-a.x)/(b.x-a.x);
-        const smooth=t*t*(3-2*t);
-        return a.y+(b.y-a.y)*smooth;
-      }
-    }
-    return waypoints[waypoints.length-1].y;
-  }
-
-  const n=24,sp=(W-40)/n,cw=sp*.52;
-  for(let i=0;i<n;i++){
-    const normX=i/(n-1);
-    const normXnext=Math.min(1,(i+0.5)/(n-1));
-    const midY=getY(normX)+(Math.random()-.5)*3;
-    const nextMidY=getY(normXnext);
-    const bh=7+Math.random()*14;
-    const isBull=nextMidY<midY;
-    const cx=20+i*sp+sp/2;
-    const topY=midY-bh/2,botY=midY+bh/2;
-
-    // For invalid setup, draw a prominent wick above level at indication zone but body stays below
-    let wickUp=topY-3-Math.random()*7;
-    if(!isValid && normX>0.46 && normX<0.54){
-      wickUp=levelY-H*.08; // wick pokes above the level
-    }
-
-    ctx.strokeStyle=isBull?'#5BB5AA':'#D4607A';ctx.lineWidth=1.5;
-    ctx.beginPath();ctx.moveTo(cx,wickUp);ctx.lineTo(cx,topY);ctx.stroke();
-    ctx.beginPath();ctx.moveTo(cx,botY);ctx.lineTo(cx,botY+3+Math.random()*7);ctx.stroke();
-    ctx.fillStyle=isBull?'#7ECEC4':'#F4829A';
-    ctx.beginPath();ctx.roundRect(cx-cw/2,topY,cw,bh,2);ctx.fill();ctx.stroke();
-  }
-
-  // Label the ICC phases on valid setups — float them ABOVE or BELOW candles so they're clearly visible
-  if(isValid){
-    const labels=[
-      {x:W*0.50, y:levelY-H*0.22, text:'I', color:'#F4829A'},  // I — floats well ABOVE the indication candle
-      {x:W*0.64, y:levelY+H*0.32, text:'C', color:'#7ECEC4'},  // C correction — floats well BELOW the pullback
-      {x:W*0.74, y:levelY-H*0.22, text:'C', color:'#F5A857'},  // C continuation — floats well ABOVE the continuation candle
-    ];
-    labels.forEach(l=>{
-      // Draw a line connecting label to the price zone
-      ctx.strokeStyle=l.color+'66';ctx.lineWidth=1;ctx.setLineDash([3,3]);
-      const lineEndY=l.text==='C'&&l.color==='#7ECEC4'?l.y-22:l.y+22;
-      ctx.beginPath();ctx.moveTo(l.x,l.y);ctx.lineTo(l.x,lineEndY);ctx.stroke();
-      ctx.setLineDash([]);
-      // Draw circle label
-      ctx.fillStyle=l.color+'44';
-      ctx.beginPath();ctx.arc(l.x,l.y,18,0,Math.PI*2);ctx.fill();
-      ctx.strokeStyle=l.color;ctx.lineWidth=1.5;
-      ctx.beginPath();ctx.arc(l.x,l.y,18,0,Math.PI*2);ctx.stroke();
-      ctx.fillStyle=l.color;ctx.font='bold 14px Playfair Display';ctx.textAlign='center';
-      ctx.fillText(l.text,l.x,l.y+5);
-    });
-    ctx.textAlign='left';
-  }else{
-    ctx.fillStyle='rgba(244,130,154,.8)';ctx.font='bold 9px DM Sans';ctx.textAlign='center';
-    ctx.fillText('wick only — no close',W*.5,levelY-H*.12);
-    ctx.textAlign='left';
-  }
-
+  ctx.fillStyle='rgba(127,119,221,.18)';ctx.beginPath();ctx.roundRect(W-58,levelY-10,48,20,10);ctx.fill();
+  ctx.fillStyle='#7F77DD';ctx.font='700 10px DM Sans';ctx.textAlign='center';ctx.fillText('PIL',W-34,levelY+4);
+  bars.forEach((b,i)=>{
+    const up=b.c>=b.o,cx=X(i);
+    ctx.strokeStyle=up?'#5BB5AA':'#D4607A';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(cx,Y(b.h));ctx.lineTo(cx,Y(b.l));ctx.stroke();
+    ctx.fillStyle=up?'#7ECEC4':'#F4829A';
+    const y1=Y(Math.max(b.o,b.c)),y2=Y(Math.min(b.o,b.c));
+    ctx.beginPath();ctx.roundRect(cx-cw/2,y1,cw,Math.max(2,y2-y1),2);ctx.fill();
+  });
+  // Step tags: above the candle when price is above the PIL, below when it's under.
+  const colors={I:'#F4829A',C:'#5BB5AA',RETEST:'#C9962E'};
+  let cCount=0;
+  Object.entries(shape.tags||{}).forEach(([i,t])=>{
+    const b=bars[i],above=(b.o+b.c)/2>=0;
+    const y=above?Y(b.h)-16:Y(b.l)+18;
+    const col=t==='C'?(cCount++?'#F5A857':colors.C):colors[t];
+    const w=t.length*8+14;
+    ctx.fillStyle=col;ctx.beginPath();ctx.roundRect(X(i)-w/2,y-10,w,20,10);ctx.fill();
+    ctx.fillStyle='#fff';ctx.font='800 11px DM Sans';ctx.textAlign='center';ctx.fillText(t,X(i),y+4);
+  });
+  // note: 'text' or ['text', 'above'|'below', extra lift in px]
+  Object.entries(shape.note||{}).forEach(([i,n])=>{
+    const [t,where,lift=0]=Array.isArray(n)?n:[n];
+    const b=bars[i],above=where?(where==='above')!==!!s.bear:b.h>0&&!(s.bear&&b.l<0);
+    ctx.fillStyle='rgba(212,96,122,.95)';ctx.font='bold 10px DM Sans';ctx.textAlign='center';
+    ctx.fillText(t,Math.min(Math.max(X(i),80),W-120),above?Y(b.h)-14-lift:Y(b.l)+20+lift);
+  });
+  ctx.textAlign='left';
   ctx.fillStyle='rgba(244,130,154,.2)';ctx.font='italic 11px Playfair Display';ctx.textAlign='right';
   ctx.fillText('A Girl & Her Futures™',W-10,H-8);ctx.textAlign='left';
 }
