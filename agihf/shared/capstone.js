@@ -2,11 +2,10 @@
  * capstone.js — A Girl & Her Futures™
  *
  * The graduation gate. Sits outside the 8 phases and 22 sections.
- * One continuous trading day in 7 parts, no hints, no indicator.
+ * One trading day in 6 steps (shared/desk-walk.js), no hints, no indicator.
  * Scored on process, not profit: a valid loser passes, a lucky rule break doesn't.
  */
-import { renderCase } from './casefile.js';
-import { reasoningDiff, compareChoice, riskOf, tolerance } from './case-core.js';
+import { runDeskWalk, renderDeskReport, MAX_RISK } from './desk-walk.js';
 import {
   scoreCapstone, saveCapstoneAttempt, capstoneAttempts, graduate, graduated, alumni,
   saveReflections, currentPlan, curriculumComplete, METHOD_VERSION,
@@ -16,19 +15,20 @@ import { loadRiskProfile } from './risk-core.js';
 import { PHASES, inStructureTitle } from './curriculum-data.js';
 
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
-const MAX_RISK = 200;
 export const GRAD_BADGE = { id: 'p8-graduate', title: 'YOU’RE IN STRUCTURE', emoji: '🎓', phase: 'capstone' };
 export const GRAD_GP = 1500;
 
 export const PARTS = [
-  ['PART 1', 'Read the room', '4H'],
-  ['PART 2', 'Build the map', '1H'],
-  ['PART 3', 'Observe', '15M'],
-  ['PART 4', 'Execute', '1M'],
-  ['PART 5', 'Protect', 'Risk'],
-  ['PART 6', 'Manage + review', 'Outcome'],
-  ['PART 7', 'Reflect', 'You'],
+  ['STEP 1', 'Read the room', '4H'],
+  ['STEP 2', 'Find the level', '1H'],
+  ['STEP 3', 'Watch the open', '15M'],
+  ['STEP 4', 'Mark the ICC', '1M'],
+  ['STEP 5', 'Decide + risk', 'Your plan'],
+  ['STEP 6', 'Outcome', 'Last'],
 ];
+
+/** The days whose marks check out against the candles under the Phase 5 rules. */
+export const CAPSTONE_DAYS = ['VALID_LOSS', 'VALID_WIN', 'VALID_LOSS_SHORT', 'VALID_PASS', 'NO_RETEST'];
 
 const AREAS = {
   analysis: { label: 'Analysis', fix: [[1, 'How to Break Down a Trade'], [10, 'Full Top-to-Bottom Breakdown']] },
@@ -39,7 +39,7 @@ const AREAS = {
   review: { label: 'Review', fix: [[3, 'A Valid Losing Trade'], [4, 'An Invalid Winning Trade']] },
 };
 
-// ── which day she gets ────────────────────────────────────────────────────
+// ── which day you get ────────────────────────────────────────────────────
 /** First attempt is always the valid loser. Retries draw a different day at random. */
 export function pickVariant(pool, forced) {
   if (forced) { const f = pool.find((p) => p.variant === forced); if (f) return f; }
@@ -50,84 +50,25 @@ export function pickVariant(pool, forced) {
   return rest[Math.floor(Math.random() * rest.length)] || pool[0];
 }
 
-// ── scoring: process, not profit ──────────────────────────────────────────
-export function scoreRun(c, rec) {
-  const ex = c.expert || {};
-  const scores = {}; const notes = {}; const critical = [];
-  const d = rec.decision || {};
-  const took = d.choice === 'TAKE';
-
-  // Analysis: how much of her top-down read agreed with the chart.
-  const read = reasoningDiff(c, rec).filter((r) => ['4H', '1H', '15M', '1M'].includes(r.stage));
-  const ok = read.filter((r) => r.status === 'MATCHED' || r.status === 'NEEDS REVIEW').length;
-  const ratio = read.length ? ok / read.length : 1;
-  scores.analysis = ratio >= 0.75 ? 'STRONG' : ratio >= 0.5 ? 'SOLID' : 'REVIEW';
-  notes.analysis = `${ok} of ${read.length} reads lined up with the chart.`;
-
-  // Execution: the participation decision against what the sequence allowed.
-  const st = compareChoice({ expert: ex.idealDecision, alt: ex.altDecisions }, d.choice);
-  if (took && ex.idealDecision !== 'TAKE') {
-    scores.execution = 'REVIEW';
-    critical.push(`Entered without the plan’s permission. ${ex.decisionWhy || ''}`.trim());
-    notes.execution = `You took it. The plan said ${ex.idealDecision}.`;
-  } else if (st === 'MATCHED') {
-    scores.execution = 'STRONG'; notes.execution = `${d.choice}: the same call the sequence supported.`;
-  } else if (st === 'NEEDS REVIEW' || (d.choice === 'WAIT' && ex.idealDecision === 'TAKE')) {
-    scores.execution = 'SOLID'; notes.execution = `${d.choice} is defensible. ${ex.decisionWhy || ''}`.trim();
-  } else {
-    scores.execution = 'REVIEW'; notes.execution = `${d.choice || 'No decision'} on a complete sequence. ${ex.decisionWhy || ''}`.trim();
-  }
-
-  // Risk: inside the account constraint, stop on the right side and beyond the correction.
-  if (took) {
-    const r = riskOf(c, d);
-    const long = c.dir !== 'short';
-    const tol = tolerance(c, '1M');
-    if (!r.sane) { scores.risk = 'REVIEW'; critical.push('Stop or target on the wrong side of the entry.'); notes.risk = 'The stop has to sit on the losing side of the entry.'; }
-    else if (r.dollars > MAX_RISK) { scores.risk = 'REVIEW'; critical.push(`Risked $${r.dollars}. The account allows $${MAX_RISK} per trade.`); notes.risk = `$${r.dollars} at ${d.contracts} contract${d.contracts === 1 ? "" : "s"}: over the limit.`; }
-    else {
-      const ref = ex.risk?.stop;
-      const inside = ref != null && (long ? d.stop > ref + tol : d.stop < ref - tol);
-      if (inside) { scores.risk = 'SOLID'; notes.risk = `$${r.dollars} is inside the limit, but the stop sits inside the correction (${ref} protects the idea).`; }
-      else if (r.rr < 1) { scores.risk = 'SOLID'; notes.risk = `$${r.dollars} inside the limit. The target is under 1R.`; }
-      else { scores.risk = 'STRONG'; notes.risk = `$${r.dollars} at ${d.contracts} contract${d.contracts === 1 ? "" : "s"}, ${r.rr}R target. Inside the $${MAX_RISK} limit.`; }
-    }
-  } else { scores.risk = 'STRONG'; notes.risk = 'No position. Capital protected.'; }
-
-  // Management: when the trade tested her, did she follow the plan she set before?
-  if (took && rec.temptation) {
-    scores.management = rec.temptation.followedPlan ? 'STRONG' : 'REVIEW';
-    notes.management = rec.temptation.followedPlan ? 'Price pulled back and you kept the plan.' : `You chose “${rec.temptation.choice}” mid-trade. The plan said otherwise.`;
-  } else if (took) { scores.management = rec.mgmt ? 'STRONG' : 'SOLID'; notes.management = rec.mgmt ? `Plan set before entry: ${rec.mgmt}.` : 'No management plan set.'; }
-  else { scores.management = 'STRONG'; notes.management = 'Nothing to manage.'; }
-
-  // Rule adherence: anything that broke a hard rule.
-  scores.ruleAdherence = critical.length ? 'REVIEW' : (!took && !(d.reasons || []).length ? 'SOLID' : 'STRONG');
-  notes.ruleAdherence = critical.length ? 'A hard rule was broken.' : took ? 'Every rule held.' : (d.reasons || []).length ? `You named why: ${d.reasons.join(', ')}.` : 'You stood aside, but didn’t name the rule.';
-
-  // Review: did the outcome rewrite her grade?
-  const changed = /^Yes/.test(rec.asks?.changeGrade || '');
-  scores.review = changed ? 'REVIEW' : 'STRONG';
-  notes.review = changed ? 'You let the outcome change your grade.' : 'The outcome didn’t rewrite your grade.';
-
-  const verdict = scoreCapstone({ scores, critical });
-  return { scores, notes, critical, ...verdict, outcome: c.outcome?.type, rResult: c.outcome?.r };
-}
-
 // ── screens ───────────────────────────────────────────────────────────────
-export function renderIntro(el, { name, onBegin, attempts = 0 }) {
+export function renderIntro(el, { name, onBegin, attempts = 0, practice = false }) {
   el.innerHTML = `<div class="cap-intro">
-    <div class="cap-kicker">THE GRADUATION GATE 🎓</div>
-    <h1 class="cap-h">${name ? `${esc(name)}, show` : 'Show'} me how you think<br>without the training wheels.</h1>
-    <p class="cap-lead">One continuous trading day. No hints. No indicator. No Dayli before you decide.</p>
+    <div class="cap-kicker">${practice ? 'PRACTICE DAY' : 'YOU’RE IN STRUCTURE CAPSTONE 🎓'}</div>
+    <h1 class="cap-h">${name ? `${esc(name)}, break` : 'Break'} down one real trading day, the way Dayli does.</h1>
+    <p class="cap-lead">You’ll go top-down, one timeframe at a time. The outcome stays hidden until the end, because this tests your process, not your luck.</p>
+    <div class="cap-how">
+      <div><i>1</i><b>Mark it</b><span>Each step tells you exactly what to tap on the chart.</span></div>
+      <div><i>2</i><b>Answer one question</b><span>One at a time, about what you just marked.</span></div>
+      <div><i>3</i><b>${practice ? 'See Dayli’s read' : 'Get your report'}</b><span>${practice ? 'After every step, your marks sit next to Dayli’s, with why.' : 'At the end, every mark you made sits next to Dayli’s, step by step.'}</span></div>
+    </div>
     <div class="cap-parts">${PARTS.map(([p, t, tf]) => `<div class="cap-part"><span>${p}</span><b>${t}</b><em>${tf}</em></div>`).join('')}</div>
     <div class="cap-rules">
-      <div><b>Allowed</b>Your Trading Plan, your Rulebook and your Risk Profile.</div>
-      <div><b>The account</b>$50,000 evaluation · $${MAX_RISK} max risk per trade · $600 daily loss limit.</div>
-      <div><b>The standard</b>Scored on process, not profit. A valid loss can pass. A lucky rule break can’t.</div>
+      <div><b>To pass</b>Follow your process. A valid loss passes. A lucky rule break doesn’t.</div>
+      <div><b>The account</b>$50,000 evaluation · $${MAX_RISK} max risk per trade · MNQ is $2 per point.</div>
+      <div><b>Allowed</b>Your Trading Plan, Rulebook and Risk Profile. They stay one tap away above the desk.</div>
     </div>
-    ${attempts ? `<p class="cap-dim">Attempt ${attempts + 1}. This is a different day from the last one.</p>` : ''}
-    <button type="button" class="p8-btn is-lock cap-go">BEGIN CAPSTONE →</button>
+    ${attempts && !practice ? `<p class="cap-dim">Attempt ${attempts + 1}. This is a different day from the last one.</p>` : ''}
+    <div class="cap-actions is-end"><button type="button" class="cap-btn cap-go">${practice ? 'Start the practice day →' : 'Begin the Capstone →'}</button></div>
   </div>`;
   el.querySelector('.cap-go').addEventListener('click', onBegin);
 }
@@ -144,9 +85,9 @@ export function renderRefs(el) {
   el.querySelector('.cap-rp').addEventListener('click', () => { const b = el.querySelector('.cap-rp-box'); b.hidden = !b.hidden; });
 }
 
-export function runCapstone(el, item, onDone) {
-  const slide = { case: JSON.parse(JSON.stringify(item.case)), steps: item.steps };
-  renderCase(el, slide, null, {}, { fresh: true, source: 'CAPSTONE', onDone: (rec) => onDone(scoreRun(slide.case, rec), slide.case, rec) });
+export function runCapstone(el, item, onDone, { feedback = 'end' } = {}) {
+  const it = { ...item, case: JSON.parse(JSON.stringify(item.case)) };
+  runDeskWalk(el, it, { feedback, onDone: (res, c, rec, D) => onDone(res, c, rec, D) });
 }
 
 const TONE = { STRONG: 'is-strong', SOLID: 'is-solid', REVIEW: 'is-review' };
@@ -155,18 +96,33 @@ function scoreRows(res) {
 }
 const OUT = { WIN: 'The trade won', LOSS: 'The trade lost', WOULD_HAVE_WON: 'It would have won', WOULD_HAVE_LOST: 'It would have lost', CHOP: 'Price chopped' };
 
-export function renderResult(el, res, c, { onContinue, onRetry }) {
+export function renderResult(el, res, c, { onContinue, onRetry, rec, D, practice = false }) {
   const lossPass = res.pass && res.outcome === 'LOSS';
+  const rows = Object.entries(res.rows || {}).flatMap(([step, rs]) => rs.map((r, i) => ({ step: i ? '' : step, ...r })));
+  const matched = rows.filter((r) => r.ok).length;
   el.innerHTML = `<div class="cap-result">
-    <div class="cap-kicker">${res.pass ? 'CAPSTONE PASSED ✓' : 'CAPSTONE REVIEW NEEDED'}</div>
-    <h2 class="cap-h2">${res.pass ? (lossPass ? 'Your trade lost. You passed.' : 'You traded your plan.') : 'Not yet. Here’s exactly what to sharpen.'}</h2>
-    <p class="cap-lead">${res.pass ? (lossPass ? 'That’s the whole point. The process was right, so the loss was a cost of doing business, not a verdict on you.' : 'The result is information. The process is what passed.') : 'This isn’t a fail. It’s a review. Your strengths stay yours, and the retry is a different day.'}</p>
-    <div class="cap-outcome"><span>OUTCOME · INFORMATIONAL ONLY</span><b>${esc(OUT[res.outcome] || res.outcome || '·')}</b></div>
+    <div class="cap-kicker">${res.pass ? (practice ? 'PRACTICE DAY · PASSED ✓' : 'CAPSTONE PASSED ✓') : 'NOT YET · REVIEW NEEDED'}</div>
+    <h2 class="cap-h2">${res.pass ? (lossPass ? 'Passed. Your process held, even though the trade lost.' : 'Passed. You traded your plan.') : 'Not yet. Here’s exactly what to sharpen.'}</h2>
+    <p class="cap-lead">${res.pass ? 'The result is information. The process is what passed.' : 'This isn’t a fail. It’s a review. Your strengths stay yours, and the retry is a different day.'}</p>
+    <div class="cap-score">
+      <div><small>Reads matched</small><b>${matched} of ${rows.length}</b></div>
+      <div><small>Rules</small><b>${res.crit.length ? 'Broken' : 'All held'}</b></div>
+      <div><small>Decision</small><b>${esc(rec?.decision?.choice || '·')}</b></div>
+      <div><small>Outcome</small><b>${esc(OUT[res.outcome] || res.outcome || '·')}</b></div>
+    </div>
+    <h3 class="cap-sub">STEP BY STEP · YOU VS DAYLI</h3>
+    <div class="cap-tablewrap"><table class="cap-table"><thead><tr><th>Step</th><th>What</th><th>You</th><th>Dayli</th><th></th></tr></thead><tbody>
+      ${rows.map((r) => `<tr><td>${esc(r.step)}</td><td>${esc(r.label)}</td><td>${esc(r.you)}</td><td>${r.ok ? 'Same' : esc(r.dayli)}${!r.ok && r.why ? `<em>${esc(r.why)}</em>` : ''}</td><td class="${r.ok ? 'ok' : 'no'}">${r.ok ? '✓ Match' : 'Review'}</td></tr>`).join('')}
+    </tbody></table></div>
+    <h3 class="cap-sub">YOUR MARKS ON THE CHARTS</h3>
+    <div class="cap-charts"></div>
+    <h3 class="cap-sub">HOW YOU WERE SCORED</h3>
     <div class="cap-rows">${scoreRows(res)}</div>
     ${res.crit.length ? `<div class="cap-crit"><div class="cap-sub">CRITICAL</div>${res.crit.map((x) => `<div>✕ ${esc(x)}</div>`).join('')}</div>` : ''}
     ${res.pass ? '' : reviewPlan(res)}
-    <div class="cap-actions">${res.pass ? '<button type="button" class="p8-btn is-lock cap-next">PART 7 · REFLECT →</button>' : '<button type="button" class="p8-btn is-lock cap-retry">RETRY CAPSTONE →</button><a class="p8-btn" href="desk.html">Practice on My Trader Desk</a>'}</div>
+    <div class="cap-actions is-end">${res.pass ? (practice ? '<a class="cap-btn" href="desk.html">Back to My Trader Desk →</a>' : '<button type="button" class="cap-btn cap-next">Last step: reflect →</button>') : '<a class="cap-btn ghost" href="desk.html">Practice on My Trader Desk</a><button type="button" class="cap-btn cap-retry">Retry with a new day →</button>'}</div>
   </div>`;
+  if (rec && D) renderDeskReport(el.querySelector('.cap-charts'), c, rec, D);
   el.querySelector('.cap-next')?.addEventListener('click', onContinue);
   el.querySelector('.cap-retry')?.addEventListener('click', onRetry);
 }
@@ -191,10 +147,10 @@ export const REFLECT_QS = [
 ];
 export function renderReflect(el, onSave) {
   el.innerHTML = `<div class="cap-result">
-    <div class="cap-kicker">PART 7 · REFLECT</div><h2 class="cap-h2">Before you walk out the door.</h2>
+    <div class="cap-kicker">REFLECT</div><h2 class="cap-h2">Before you walk out the door.</h2>
     <p class="cap-lead">Three answers. They go on your alumni profile, so future you can read them.</p>
     ${REFLECT_QS.map(([k, q]) => `<label class="cap-q">${q}<textarea rows="3" data-k="${k}" placeholder="In your own words…"></textarea></label>`).join('')}
-    <div class="cap-actions"><button type="button" class="p8-btn is-lock cap-save" disabled>SAVE + GRADUATE 🎓</button></div>
+    <div class="cap-actions is-end"><button type="button" class="cap-btn cap-save" disabled>Save + graduate 🎓</button></div>
   </div>`;
   const tas = [...el.querySelectorAll('textarea')]; const b = el.querySelector('.cap-save');
   tas.forEach((t) => t.addEventListener('input', () => { b.disabled = !tas.every((x) => x.value.trim().length >= 6); }));
@@ -239,7 +195,7 @@ export function renderAlreadyGraduated(el, { onPractice }) {
   el.innerHTML = `<div class="cap-intro">
     <div class="cap-kicker">ALUMNI ✦</div><h1 class="cap-h">You already graduated.</h1>
     <p class="cap-lead">Graduated ${new Date(a.graduatedAt).toLocaleDateString()}. Your desk keeps going.</p>
-    <div class="cap-actions"><a class="p8-btn is-lock" href="certificate.html">View my certificate →</a><a class="p8-btn" href="desk.html">My Trader Desk →</a><button type="button" class="p8-btn cap-again">Run another capstone day (practice)</button></div>
+    <div class="cap-actions is-end"><button type="button" class="cap-btn ghost cap-again">Run a practice day</button><a class="cap-btn ghost" href="desk.html">My Trader Desk</a><a class="cap-btn" href="certificate.html">View my certificate →</a></div>
   </div>`;
   el.querySelector('.cap-again').addEventListener('click', onPractice);
 }

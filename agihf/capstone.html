@@ -10,7 +10,9 @@
 <link rel="stylesheet" href="shared/lesson-engine.css">
 <link rel="stylesheet" href="shared/casefile.css">
 <link rel="stylesheet" href="shared/desk.css">
+<link rel="stylesheet" href="shared/strategy-lab.css">
 <link rel="stylesheet" href="shared/capstone.css">
+<link rel="stylesheet" href="shared/desk-walk.css">
 </head>
 <body class="p8-on">
 <script src="shared/auth-guard.js"></script>
@@ -20,12 +22,15 @@
   <div id="capView"></div>
 </main>
 <script type="module">
-  import { pickVariant, renderIntro, renderRefs, runCapstone, renderResult, renderReflect, completeGraduation, renderGraduation, renderAlreadyGraduated, graduated, curriculumComplete, capstoneAttempts, saveCapstoneAttempt } from './shared/capstone.js';
+  import { pickVariant, renderIntro, renderRefs, runCapstone, renderResult, renderReflect, completeGraduation, renderGraduation, renderAlreadyGraduated, graduated, curriculumComplete, capstoneAttempts, saveCapstoneAttempt, CAPSTONE_DAYS } from './shared/capstone.js';
   import { UNLOCK_ALL } from './shared/preview.js';
   import { firstNameOf } from './shared/curriculum-data.js';
   const view = document.getElementById('capView');
   const refs = document.getElementById('capRefs');
-  const forced = UNLOCK_ALL ? new URLSearchParams(location.search).get('variant') : null;
+  const qs = new URLSearchParams(location.search);
+  const forced = UNLOCK_ALL ? qs.get('variant') : null;
+  // Preview only: ?feedback=now shows Dayli's read after every step.
+  const forceNow = UNLOCK_ALL && qs.get('feedback') === 'now';
   let name = '';
   let pool = [];
   const top = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -33,38 +38,37 @@
   function locked() {
     view.innerHTML = `<div class="cap-intro"><div class="cap-kicker">THE GRADUATION GATE 🎓</div><h1 class="cap-h">Almost there.</h1>
       <p class="cap-lead">The capstone opens when all 8 phases and 22 sections are complete. Finish Phase 8, Section 22: Practice Like a Pro.</p>
-      <div class="cap-actions"><a class="p8-btn is-lock" href="lessons.html">Back to the curriculum →</a></div></div>`;
+      <div class="cap-actions"><a class="cap-btn" href="lessons.html">Back to the curriculum →</a></div></div>`;
   }
 
   function intro(practice = false) {
     refs.innerHTML = '';
-    renderIntro(view, { name, attempts: capstoneAttempts().length, onBegin: () => begin(practice) });
+    renderIntro(view, { name, practice, attempts: capstoneAttempts().length, onBegin: () => begin(practice) });
   }
 
   function begin(practice) {
     const item = pickVariant(pool, forced);
     renderRefs(refs);
-    runCapstone(view, item, (res, c, rec) => {
+    runCapstone(view, item, (res, c, rec, D) => {
       const attempt = saveCapstoneAttempt({ variant: item.variant, caseId: c.id, scores: res.scores, notes: res.notes, critical: res.critical, pass: res.pass, outcome: res.outcome, decision: rec.decision?.choice || null, practice });
       refs.innerHTML = '';
       renderResult(view, res, c, {
+        rec, D, practice,
         onRetry: () => { intro(practice); top(); },
         onContinue: () => {
-          if (practice) { view.querySelector('.cap-next')?.remove(); return; }
           renderReflect(view, (answers) => { const a = completeGraduation({ name, attempt, answers }); renderGraduation(view, a); });
           top();
         },
       });
-      if (practice && res.pass) { const n = view.querySelector('.cap-next'); if (n) n.outerHTML = '<a class="p8-btn is-lock" href="desk.html">Back to My Trader Desk →</a>'; }
       top();
-    });
+    }, { feedback: practice || forceNow ? 'now' : 'end' });
     top();
   }
 
   async function boot() {
     try { name = firstNameOf(await window.AGHF_FETCH_PROFILE?.()); } catch { /* no profile */ }
     try {
-      pool = (await (await fetch('lessons-data/p8-capstone.json')).json()).pool;
+      pool = (await (await fetch('lessons-data/p8-capstone.json')).json()).pool.filter((p) => CAPSTONE_DAYS.includes(p.variant));
       if (graduated()) renderAlreadyGraduated(view, { onPractice: () => intro(true) });
       else if (!curriculumComplete() && !UNLOCK_ALL) locked();
       else intro();
