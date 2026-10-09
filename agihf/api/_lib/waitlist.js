@@ -1,19 +1,19 @@
-// api/join-waitlist.js
-// Public endpoint behind waitlist.html: adds one person to the launch waitlist.
+// api/_lib/waitlist.js
+// Public handler behind waitlist.html: adds one person to the launch waitlist.
 // No auth (she isn't a member yet). Writes with the service key; the table has
 // RLS on with no policies (supabase/migrations/0013_waitlist.sql).
+// Lives in _lib (not a deployed function) and is served through eval-data.js's
+// public route, because the Vercel Hobby plan caps a deployment at 12 functions.
+// vercel.json rewrites /api/join-waitlist to /api/eval-data?resource=waitlist.
 
-import { createClient } from '@supabase/supabase-js';
-import { isDbNotSetUp } from './_lib/db-error.js';
-
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+import { isDbNotSetUp } from './db-error.js';
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const JOURNEY = ['brand-new', 'curious', 'a-few-trades', 'trading'];
 const HEARD = ['tiktok', 'instagram', 'youtube', 'friend', 'other'];
 const clean = (v, max) => String(v ?? '').trim().slice(0, max);
 
-export default async function handler(req, res) {
+export async function handleWaitlist(req, res, supabase) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const body = req.body || {};
