@@ -7,6 +7,7 @@
  *   node commercial/render-waitlist.cjs --stills 3.5,20     → out/waitlist-3.5s.png, … (quick look at single frames)
  *   node commercial/render-waitlist.cjs --stills 5 --guides → same, with the TikTok safe zone overlaid
  *   node commercial/render-waitlist.cjs --cast              → out/waitlist-cast.png (character sheet)
+ *   node commercial/render-waitlist.cjs --sheet --center → contact sheet with the x = 540 centre line (layout check)
  *   node commercial/render-waitlist.cjs --sheet             → stills every 1.5 s tiled into out/aghf-waitlist-contact.png
  *
  * Steps commercial/waitlist.html frame by frame with window.render(t) and pipes the
@@ -20,6 +21,7 @@ const { chromium } = require('playwright');
 
 const args = process.argv.slice(2);
 const guides = args.includes('--guides');
+const center = args.includes('--center'); // layout check: red line at x = 540 on stills / sheet
 const cast = args.includes('--cast');
 const sheet = args.includes('--sheet');
 let stillsArg = args.includes('--stills') ? args[args.indexOf('--stills') + 1] : null;
@@ -33,7 +35,7 @@ fs.mkdirSync(outDir, { recursive: true });
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
   page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
-  const url = 'file://' + path.join(__dirname, 'waitlist.html') + `?render=1${guides ? '&guides=1' : ''}${cast ? '&cast=1' : ''}`;
+  const url = 'file://' + path.join(__dirname, 'waitlist.html') + `?render=1${guides ? '&guides=1' : ''}${center ? '&center=1' : ''}${cast ? '&cast=1' : ''}`;
   await page.goto(url, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
   await page.evaluate(() => Promise.all([...document.images].map(i => i.decode().catch(() => {}))));
@@ -50,6 +52,7 @@ fs.mkdirSync(outDir, { recursive: true });
     return;
   }
 
+  if (center && !stillsArg && !sheet) throw new Error('--center is for --stills / --sheet only');
   if (sheet) {
     const ts = [];
     for (let t = 0.75; t < duration; t += 1.5) ts.push(+t.toFixed(2));
@@ -67,7 +70,7 @@ fs.mkdirSync(outDir, { recursive: true });
     if (errors.length) console.log('ERRORS:\n' + errors.join('\n'));
     await browser.close();
     if (sheet) {
-      const outFile = path.join(outDir, 'aghf-waitlist-contact.png');
+      const outFile = path.join(outDir, center ? 'waitlist-center-check.png' : 'aghf-waitlist-contact.png');
       const inputs = files.flatMap(f => ['-i', f]);
       const n = files.length;
       const filt = files.map((_, i) => `[${i}]scale=216:384,drawtext=text='${(0.75 + i * 1.5).toFixed(2)}s':x=8:y=8:fontsize=20:fontcolor=white:box=1:boxcolor=black@0.5[v${i}]`).join(';') +

@@ -22,7 +22,7 @@
   const hash = i => { const x = Math.sin(i * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
   const rad = d => d * Math.PI / 180;
   const deg = r => r * 180 / Math.PI;
-  const CX = 470;
+  const CX = 540; // true frame centre: every centred title, panel and group sits on this axis
   const PF = 'Playfair Display', DM = 'DM Sans';
 
   // Brand
@@ -1131,13 +1131,14 @@
     const fly = io(sendK), op = 1 - clamp((sendK - 0.45) / 0.55);
     if (op <= 0) return '';
     const yy = y - fly * 380, sc = 1 - 0.3 * fly;
-    let s = `<rect x="${f1(-w)}" y="${-h / 2 + 10}" width="${f1(w)}" height="${h}" rx="44" fill="${P.dark}" opacity=".18" filter="url(#fB8)"/>`;
-    s += `<rect x="${f1(-w)}" y="${-h / 2}" width="${f1(w)}" height="${h}" rx="44" fill="${P.pink}"/><path d="M-30,${h / 2 - 2} L6,${h / 2 + 18} L-8,${h / 2 - 12} Z" fill="${P.pink}"/>`;
-    s += `<rect x="${f1(-w + 14)}" y="${-h / 2 + 8}" width="${f1(w - 28)}" height="26" rx="13" fill="#fff" opacity=".16"/>`;
-    s += txt(-w + 40, 15, emo(shown), size, '#FFFFFF', { a: 'start', w: 500 });
-    if (caret) s += `<rect x="${f1(-40 + (k < 1 ? 0 : 0))}" y="-24" width="5" height="48" rx="2.5" fill="#fff"/>`;
+    const L0 = -w / 2;
+    let s = `<rect x="${f1(L0)}" y="${-h / 2 + 10}" width="${f1(w)}" height="${h}" rx="44" fill="${P.dark}" opacity=".18" filter="url(#fB8)"/>`;
+    s += `<rect x="${f1(L0)}" y="${-h / 2}" width="${f1(w)}" height="${h}" rx="44" fill="${P.pink}"/><path d="M-14,${h / 2 - 2} L0,${h / 2 + 22} L14,${h / 2 - 2} Z" fill="${P.pink}"/>`;
+    s += `<rect x="${f1(L0 + 14)}" y="${-h / 2 + 8}" width="${f1(w - 28)}" height="26" rx="13" fill="#fff" opacity=".16"/>`;
+    s += txt(L0 + 40, 15, emo(shown), size, '#FFFFFF', { a: 'start', w: 500 });
+    if (caret) s += `<rect x="${f1(w / 2 - 40)}" y="-24" width="5" height="48" rx="2.5" fill="#fff"/>`;
     let trail = '';
-    if (fly > 0) for (let i = 0; i < 5; i++) trail += heart(-w / 2 + (i - 2) * 40 + Math.sin(i * 2 + t * 6) * 10, 60 + i * 16 + fly * 120, 0.5 + 0.1 * i, i % 2 ? P.pinkL : P.peachL, f3(op * 0.9));
+    if (fly > 0) for (let i = 0; i < 5; i++) trail += heart((i - 2) * 40 + Math.sin(i * 2 + t * 6) * 10, 60 + i * 16 + fly * 120, 0.5 + 0.1 * i, i % 2 ? P.pinkL : P.peachL, f3(op * 0.9));
     return `<g transform="translate(${f1(x)},${f1(yy)}) scale(${f3(sc * back(clamp(k * 4)))})" opacity="${f3(op)}">${trail}${s}</g>`;
   }
 
@@ -1388,28 +1389,28 @@
       let g = '';
       let ax, ay;
       if (m.card) {
-        const w = 660, x = 900 - w;
+        const w = 640, x = 940 - w;
         const C = linkCard(x, ry, w, tc);
         g += C.s;
-        ax = 900; ay = ry + C.h;
+        ax = 940; ay = ry + C.h;
         // reactions from the brunch table
         const rk = back(seg(tc, 14.2, 14.55));
         if (rk > 0) g += `<g transform="translate(${x + 40},${ry + C.h + 4}) scale(${f3(rk)})"><rect x="-6" y="-24" width="176" height="56" rx="28" fill="#fff" filter="url(#fSoft)"/><rect x="-6" y="-24" width="176" height="56" rx="28" fill="none" stroke="${P.pinkP}" stroke-width="3"/>${txt(18, 16, emo('💖😍'), 34, P.dark, { a: 'start' })}${txt(126, 15, '2', 28, P.muted, { a: 'start', w: 700 })}</g>`;
       } else {
-        const size = 46, tw = measure(plain(m.text), size, DM, 500) + 72, bh = 112;
+        const size = 42, tw = measure(plain(m.text), size, DM, 500) + 72, bh = 108;
         if (me) {
-          const x = 900 - tw;
+          const x = 940 - tw;
           g += `<rect x="${f1(x)}" y="${ry + 8}" width="${f1(tw)}" height="${bh}" rx="40" fill="${P.dark}" opacity=".1" filter="url(#fB8)"/>`;
-          g += `<rect x="${f1(x)}" y="${ry}" width="${f1(tw)}" height="${bh}" rx="40" fill="${P.pink}"/><path d="M880,${ry + bh - 26} L912,${ry + bh + 6} L860,${ry + bh - 6} Z" fill="${P.pink}"/>`;
-          g += txt(x + 36, ry + 72, emo(m.text), size, '#FFFFFF', { a: 'start', w: 500 });
-          ax = 900; ay = ry + bh;
+          g += `<rect x="${f1(x)}" y="${ry}" width="${f1(tw)}" height="${bh}" rx="40" fill="${P.pink}"/><path d="M920,${ry + bh - 26} L944,${ry + bh + 6} L900,${ry + bh - 6} Z" fill="${P.pink}"/>`;
+          g += txt(x + 36, ry + 69, emo(m.text), size, '#FFFFFF', { a: 'start', w: 500 });
+          ax = 940; ay = ry + bh;
         } else {
-          const x = 158, by = ry + 44;
+          const x = 236, by = ry + 44;
           g += txt(x + 12, ry + 30, NAMES[m.who], 30, col, { a: 'start', w: 700 });
           g += `<rect x="${x}" y="${by + 8}" width="${f1(tw)}" height="${bh}" rx="40" fill="${P.dark}" opacity=".1" filter="url(#fB8)"/>`;
           g += `<rect x="${x}" y="${by}" width="${f1(tw)}" height="${bh}" rx="40" fill="#FFFFFF"/><rect x="${x}" y="${by}" width="${f1(tw)}" height="${bh}" rx="40" fill="none" stroke="${CHAT_BG[m.who]}" stroke-width="4"/>`;
-          g += txt(x + 36, by + 72, emo(m.text), size, P.dark, { a: 'start', w: 500 });
-          g += avatar(tc, m.who, 96, by + bh - 46, 46);
+          g += txt(x + 36, by + 69, emo(m.text), size, P.dark, { a: 'start', w: 500 });
+          g += avatar(tc, m.who, 184, by + bh - 44, 42);
           ax = x; ay = by + bh;
         }
       }
@@ -1419,7 +1420,7 @@
         m.fx.forEach((e, j) => {
           const p = seg(tc, m.at + 0.15 + j * 0.09, m.at + 1.5 + j * 0.09);
           if (p <= 0 || p >= 1) return;
-          const ex = 640 + j * 70 + Math.sin(p * 6 + j) * 30, ey = ry + 90 - ease(p) * 420;
+          const ex = 660 + j * 70 + Math.sin(p * 6 + j) * 30, ey = ry + 90 - ease(p) * 420;
           fxl += `<text x="${f1(ex)}" y="${f1(ey)}" font-size="${f1(64 * (0.6 + 0.4 * back(clamp(p * 3))))}" text-anchor="middle" font-family="Noto Color Emoji" opacity="${f3(1 - clamp((p - 0.6) / 0.4))}" transform="rotate(${f1((j % 2 ? 1 : -1) * 14 * p)} ${f1(ex)} ${f1(ey)})">${e}</text>`;
         });
       }
@@ -1429,25 +1430,25 @@
       if (card) ['💖', '😍', '✨'].forEach((e, j) => {
         const p = seg(tc, 14.25 + j * 0.1, 15.4 + j * 0.1);
         if (p <= 0 || p >= 1) return;
-        const ex = 150 + j * 70 + Math.sin(p * 5 + j) * 24, ey = card.y + 420 - ease(p) * 360;
+        const ex = 220 + j * 70 + Math.sin(p * 5 + j) * 24, ey = card.y + 420 - ease(p) * 360;
         body += `<text x="${f1(ex)}" y="${f1(ey)}" font-size="58" text-anchor="middle" font-family="Noto Color Emoji" opacity="${f3(1 - clamp((p - 0.6) / 0.4))}">${e}</text>`;
       });
     }
     if (typing) {
       const by = typing.y + 44;
-      let g = txt(170, typing.y + 30, `${NAMES[typing.who]} is typing…`, 30, CHAT_C[typing.who], { a: 'start', w: 500 });
-      g += `<rect x="158" y="${by}" width="170" height="112" rx="44" fill="#FFFFFF"/>`;
-      for (let d = 0; d < 3; d++) g += `<circle cx="${202 + d * 40}" cy="${f1(by + 56 - Math.max(0, Math.sin(tc * 9 - d * 0.9)) * 12)}" r="12" fill="${CHAT_C[typing.who]}" opacity=".7"/>`;
-      g += avatar(tc, typing.who, 96, by + 66, 46);
+      let g = txt(248, typing.y + 30, `${NAMES[typing.who]} is typing…`, 30, CHAT_C[typing.who], { a: 'start', w: 500 });
+      g += `<rect x="236" y="${by}" width="170" height="112" rx="44" fill="#FFFFFF"/>`;
+      for (let d = 0; d < 3; d++) g += `<circle cx="${280 + d * 40}" cy="${f1(by + 56 - Math.max(0, Math.sin(tc * 9 - d * 0.9)) * 12)}" r="12" fill="${CHAT_C[typing.who]}" opacity=".7"/>`;
+      g += avatar(tc, typing.who, 184, by + 68, 42);
       body += `<g opacity="${f3(typing.a)}">${g}</g>`;
     }
     s += `<g transform="translate(0,${f1(-scroll)})">${fxl}${body}</g>`;
     // header
     s += `<rect x="0" y="0" width="1080" height="${o.mini ? 330 : 336}" fill="#FFFFFF" opacity=".97"/><rect x="0" y="330" width="1080" height="8" fill="${P.pinkP}"/>`;
-    s += `<path d="M76,214 L56,240 L76,266" stroke="${P.pink}" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
-    s += avatar(tc, 'layla', 222, 222, 36) + avatar(tc, 'mei', 178, 252, 36) + avatar(tc, 'amara', 140, 216, 36);
-    s += txt(282, 236, emo('Girls Who Brunch 💖'), 50, P.dark, { f: PF, a: 'start' });
-    s += txt(284, 284, 'Amara, Sofia, Mei, Priya, Layla, Emma', 26, P.muted, { a: 'start', w: 500 });
+    s += `<path d="M176,214 L156,240 L176,266" stroke="${P.pink}" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+    s += avatar(tc, 'mei', 590, 52 + 140, 30) + avatar(tc, 'layla', 490, 192, 30) + avatar(tc, 'amara', 540, 186, 32);
+    s += txt(540, 264, emo('Girls Who Brunch 💖'), 48, P.dark, { f: PF });
+    s += txt(540, 306, 'Amara, Sofia, Mei, Priya, Layla, Emma', 25, P.muted, { w: 500 });
     return s;
   }
 
@@ -1492,13 +1493,13 @@
     s += `<path d="M-40,1118 Q540,1084 1120,1118" stroke="#FFFFFF" stroke-width="10" fill="none"/>`;
     s += `<path d="M60,1180 Q200,1150 330,1196 M600,1160 Q760,1130 920,1180 M200,1240 Q420,1214 560,1250" stroke="#F1D6D6" stroke-width="3" fill="none" opacity=".8"/>`;
     s += `<rect x="-40" y="1262" width="1120" height="30" fill="#E9D3C8"/><rect x="-40" y="1292" width="1120" height="700" fill="#E3B9A4"/>`;
-    s += vase(612, 1128, 0.78, t);
+    s += vase(672, 1128, 0.78, t);
     if (!o.noCups) {
-      if (!o.amaraCupUp) s += latte(370, 1150, 0.62, P.tealL, t);
-      if (!o.emmaCupUp) s += latte(860, 1158, 0.62, P.peachL, t);
-      if (!o.sofiaCupUp) s += latte(520, 1150, 0.58, P.pinkP, t);
+      if (!o.amaraCupUp) s += latte(430, 1150, 0.62, P.tealL, t);
+      if (!o.emmaCupUp) s += latte(905, 1158, 0.62, P.peachL, t);
+      if (!o.sofiaCupUp) s += latte(580, 1150, 0.58, P.pinkP, t);
     }
-    s += pancakes(196, 1222, 1.0) + pancakes(470, 1250, 0.95) + pancakes(760, 1222, 1.0);
+    s += pancakes(270, 1222, 1.0) + pancakes(540, 1250, 0.95) + pancakes(810, 1222, 1.0);
     return s;
   }
   // A cup held up in a hand (mid layer: the hand grips it).
@@ -1507,7 +1508,7 @@
   // Brunch frame. st: per-woman overrides + table flags.
   function brunchScene(t, st) {
     let w = blurG(st.bgBlur ?? 3, cafeBG(t));
-    const F = { sofia: [480, 772, 0.76], amara: [228, 800, 0.78], emma: [732, 800, 0.78] };
+    const F = BF;
     ['sofia', 'amara', 'emma'].forEach((k, i) => {
       const [x, y, s] = F[k];
       const o = Object.assign({ x, y, s, seed: i + 2, cut: 600, mood: 'smile', rim: '#FFE3BD', lightSide: 1, hL: [-120, 470], hR: [120, 470] }, st[k] || {});
@@ -1515,22 +1516,22 @@
     });
     w += brunchTable(t, st.table || {});
     if (st.over) w += st.over;
-    w += blurG(10, latte(80, 1430, 1.5, P.pinkL, t, false) + pancakes(930, 1460, 1.5));
+    w += blurG(10, latte(110, 1430, 1.5, P.pinkL, t, false) + pancakes(970, 1460, 1.5));
     return w;
   }
-  const BF = { sofia: [480, 772, 0.76], amara: [228, 800, 0.78], emma: [732, 800, 0.78] };
+  const BF = { sofia: [540, 772, 0.76], amara: [288, 800, 0.78], emma: [792, 800, 0.78] };
   const toLoc = (k, g) => loc(BF[k][0], BF[k][1], BF[k][2], g[0], g[1]);
 
   // 0:04-0:09.4  Wide, laughing, cups clink; push in on Sofia's sigh; the friends trade a look.
   function shotBrunch(t) {
     const lt = t - 4;
-    const C = [480, 978];
+    const C = [540, 978];
     // clink: cups rise, touch at lt 1.35, come back down
     const up = io(seg(lt, 0.85, 1.25)) * (1 - io(seg(lt, 1.75, 2.2)));
     const tap = Math.sin(Math.PI * seg(lt, 1.25, 1.45)) * 10;
-    const cupA = [lerp(370, C[0] - 70, up) - tap * 0.3, lerp(1110, C[1], up)];
-    const cupE = [lerp(860, C[0] + 70, up) + tap * 0.3, lerp(1118, C[1], up)];
-    const cupS = [lerp(620, C[0], up), lerp(1110, C[1] - 40, up)];
+    const cupA = [lerp(430, C[0] - 70, up) - tap * 0.3, lerp(1110, C[1], up)];
+    const cupE = [lerp(905, C[0] + 70, up) + tap * 0.3, lerp(1118, C[1], up)];
+    const cupS = [lerp(580, C[0], up), lerp(1110, C[1] - 40, up)];
     const laughA = lt < 1.0 || (lt > 1.4 && lt < 2.3), laughE = (lt > 0.2 && lt < 1.1) || (lt > 1.45 && lt < 2.4), laughS = lt < 1.2 || (lt > 1.5 && lt < 2.2);
     const sigh = seg(lt, 2.75, 3.45);
     const dream = lt > 3.45;
@@ -1563,12 +1564,12 @@
     // camera: wide drift, then a smooth push to Sofia
     const pk = io(seg(lt, 2.45, 3.15));
     const z = 1.17 + 0.07 * io(lt / 2.45) + 0.2 * pk + 0.07 * seg(lt, 3.15, 5.4);
-    const Cm = { cx: 476, cy: lerp(1010, 900, pk), z, dx: Math.sin(lt * 0.6) * 8, dy: -40 };
+    const Cm = { cx: 540, cy: lerp(1010, 900, pk), z, dx: Math.sin(lt * 0.6) * 8, dy: -40 };
     let s = camAt(Cm, w) + warm(0.12) + vignette(0.6);
     s += flare(860, 330, 0.5 + 0.1 * Math.sin(t * 1.3));
     // Sofia's line
     const tail = camP(Cm, [BF.sofia[0] + 40, BF.sofia[1] - 120]);
-    s += say(t, 6.9, 470, 350, ['I’ve always wanted to learn', 'trading… it just feels', 'so intimidating.'], { tail, size: 42, out: 9.35 });
+    s += say(t, 6.9, 540, 350, ['I’ve always wanted to learn', 'trading… it just feels', 'so intimidating.'], { tail, size: 42, out: 9.35 });
     return s;
   }
 
@@ -1601,10 +1602,10 @@
     // camera: on Amara and the phone, then a push straight into the screen
     const phG = gl(BF.amara[0], BF.amara[1], BF.amara[2], [ph.x, ph.y]);
     const pz = io(seg(lt, 2.75, 3.6));
-    const Cm = { cx: lerp(360, phG[0], pz), cy: lerp(950, phG[1], pz), z: 1.3 + 0.12 * io(lt / 2.75) + pz * pz * 5.2, dx: (1 - pz) * Math.sin(lt * 0.7) * 6 + pz * (540 - phG[0]), dy: -30 * (1 - pz) + pz * (900 - phG[1]) };
+    const Cm = { cx: lerp(540, phG[0], pz), cy: lerp(950, phG[1], pz), z: 1.18 + 0.08 * io(lt / 2.75) + pz * pz * 5.3, dx: (1 - pz) * Math.sin(lt * 0.7) * 6 + pz * (540 - phG[0]), dy: -30 * (1 - pz) + pz * (900 - phG[1]) };
     let s = camAt(Cm, w) + warm(0.12) + vignette(0.6 * (1 - pz));
     const tail = camP(Cm, [BF.amara[0] + 30, BF.amara[1] - 150]);
-    s += say(t, 9.95, 330, 420, ['Wait. Look at this 👀'], { tail, size: 46, out: 12.05, w: 700 });
+    s += say(t, 9.95, 440, 430, ['Wait. Look at this 👀'], { tail, size: 46, out: 12.05, w: 700 });
     if (lt > 1.2 && lt < 2.4) { const pg = camP(Cm, phG); s += A.sparkle(pg[0] + 60, pg[1] - 120, 10.6, t, P.pinkL); }
     return s;
   }
@@ -1625,7 +1626,7 @@
   // One friend reacting in her own day, typing her reply. lt 0..1.25.
   function friendTyping(t, lt, key, bg, o) {
     const L = CAST[key];
-    const fx = o.fx || 470, fy = o.fy || 770, fs = o.fs || 1.0;
+    const fx = o.fx || 540, fy = o.fy || 770, fs = o.fs || 1.0;
     const typeK = seg(lt, o.typeA ?? 0.42, o.typeB ?? 0.98);
     const typing = typeK > 0 && typeK < 1;
     const KEYS = [14, 15, 16, 17, 18, 21, 22, 23, 24, 25];
@@ -1640,10 +1641,10 @@
     w += fig(t, L, fo);
     if (o.fore) w += o.fore(t, lt);
     const z = 1.12 + 0.1 * io(lt / 1.25);
-    const Cm = { cx: 470, cy: 900, z, dx: (o.dir || 1) * 14 * io(lt / 1.25) };
+    const Cm = { cx: 540, cy: 900, z, dx: (o.dir || 1) * 10 * (1 - io(lt / 0.8)) };
     let s = camAt(Cm, w) + warm(0.1) + vignette(0.65);
     // her reply, typed above her head, then sent
-    const bx = o.bx || 900, by = o.by || 400;
+    const bx = 540, by = o.by || 400;
     s += typeBubble(t, bx, by, o.text, typeK, seg(lt, (o.typeB ?? 0.98) + 0.04, (o.typeB ?? 0.98) + 0.32));
     return s;
   }
@@ -1669,7 +1670,7 @@
     [140, 760, 980].forEach((x, i) => { const a = Math.sin(t * 2.6 + i) * 8; w += `<g transform="rotate(${f1(a)} ${x} 208)"><rect x="${x - 8}" y="208" width="16" height="90" fill="${P.purple}"/><path d="M${x - 30},290 Q${x},350 ${x + 30},290 Z" fill="none" stroke="${P.purple}" stroke-width="10"/></g>`; });
     const sweep = (t * 0.9) % 1;
     w += screenBlend(`<path d="M${f1(-400 + sweep * 2200)},200 L${f1(-200 + sweep * 2200)},200 L${f1(-700 + sweep * 2200)},1900 L${f1(-900 + sweep * 2200)},1900 Z" fill="#FFF4E0" opacity=".3" filter="url(#fB16)"/>`);
-    w += `<rect x="240" y="880" width="460" height="700" rx="70" fill="${P.teal}"/><rect x="270" y="900" width="400" height="80" rx="36" fill="${P.tealL}"/>`;
+    w += `<rect x="310" y="880" width="460" height="700" rx="70" fill="${P.teal}"/><rect x="340" y="900" width="400" height="80" rx="36" fill="${P.tealL}"/>`;
     return w;
   }
   function busFore(t) {
@@ -1680,7 +1681,7 @@
     const lt = t - 14.7;
     const sway = Math.sin(t * 2.3) * 6;
     return friendTyping(t, lt, 'mei', (tt) => busBG(tt), {
-      fx: 470 + sway, seed: 3, rim: '#FFF0DC', ls: -1, text: 'omg yes 😭', bx: 880, by: 420, dir: -1,
+      fx: 540 + sway, seed: 3, rim: '#FFF0DC', ls: -1, text: 'omg yes 😭', bx: 880, by: 420, dir: -1,
       fig: l => ({
         mood: l < 0.5 ? 'laugh' : 'grin', look: l < 0.5 ? [0, 2] : [3, 9], tilt: l < 0.5 ? -6 + Math.sin(t * 9) * 2 : -3, head: [0, l < 0.5 ? -4 : 4], earbuds: true,
         hL: [-150, -112], bL: -1, kL: 'rest',
@@ -1688,7 +1689,7 @@
       }),
       fore: (tt) => {
         // her raised hand holds a strap from the rail
-        const hx = 470 + sway - 150, hy = 770 - 112;
+        const hx = 540 + sway - 150, hy = 770 - 112;
         return `<path d="M${f1(hx + 14)},216 L${f1(hx + 10)},${f1(hy - 30)}" stroke="${P.purple}" stroke-width="16"/><path d="M${f1(hx - 22)},${f1(hy - 36)} Q${f1(hx + 10)},${f1(hy + 30)} ${f1(hx + 42)},${f1(hy - 36)}" fill="none" stroke="${P.purple}" stroke-width="10"/>` + busFore(tt);
       },
     });
@@ -1770,8 +1771,8 @@
     return w;
   }
   const LV = {
-    sofia: [258, 702, 0.6], priya: [470, 676, 0.6], mei: [682, 702, 0.6],
-    amara: [205, 985, 0.7], layla: [470, 972, 0.7], emma: [740, 985, 0.7],
+    sofia: [328, 702, 0.6], priya: [540, 676, 0.6], mei: [752, 702, 0.6],
+    amara: [278, 985, 0.7], layla: [540, 972, 0.7], emma: [802, 985, 0.7],
   };
   const LV_ORDER = ['sofia', 'priya', 'mei', 'amara', 'emma', 'layla'];
   function livingScene(t, poses, o = {}) {
@@ -1779,13 +1780,13 @@
     w += `<rect x="-10" y="1060" width="1100" height="900" fill="#E7C2AD"/>`;
     LV_ORDER.forEach((k, i) => {
       const [x, y, s] = LV[k];
-      const p = Object.assign({ x, y, s, seed: i + 2, cut: 600, mood: 'smile', rim: '#FFD8A8', lightSide: x < 470 ? -1 : 1, glow: '#E9FBF8', glowK: 0.9, hL: [-110, 470], hR: [110, 470] }, poses[k] || {});
+      const p = Object.assign({ x, y, s, seed: i + 2, cut: 600, mood: 'smile', rim: '#FFD8A8', lightSide: x < 540 ? -1 : 1, glow: '#E9FBF8', glowK: 0.9, hL: [-110, 470], hR: [110, 470] }, poses[k] || {});
       w += fig(t, CAST[k], p);
     });
     // coffee table, laptop seen from behind, snacks
     w += `<path d="M60,1330 L1020,1330 L1060,1400 L20,1400 Z" fill="#C99D78"/><rect x="20" y="1400" width="1040" height="30" fill="#B07F5E"/><rect x="20" y="1430" width="1040" height="500" fill="#E3B9A4"/>`;
-    w += laptopBack(470, 1340, 400, { open: 1, on: 1 });
-    w += popcorn(150, 1320, 0.85) + fruitBowl(800, 1330, 0.85) + mug(960, 1340, 0.6, P.teal, { dark: '#5DB3A8', steam: true, t });
+    w += laptopBack(540, 1340, 400, { open: 1, on: 1 });
+    w += popcorn(195, 1320, 0.85) + fruitBowl(885, 1330, 0.85) + mug(1010, 1340, 0.6, P.teal, { dark: '#5DB3A8', steam: true, t });
     if (o.over) w += o.over;
     return w;
   }
@@ -1825,7 +1826,7 @@
   function shotLiving(t) {
     const lt = t - 21;
     const w = livingScene(t, lookPoses(t, lt));
-    const Cm = { cx: 470, cy: 960, z: 1.0 + 0.08 * io(lt / 2.0), dx: -10 * lt };
+    const Cm = { cx: 540, cy: 960, z: 1.0 + 0.08 * io(lt / 2.0), dx: 8 * (1 - io(lt / 2.0)) };
     return camAt(Cm, w) + warm(0.14) + vignette(0.65) + peekHead(t);
   }
   // Over the shoulders: the laptop and the real Academy screens.
@@ -1842,26 +1843,26 @@
       if (o.inner) g += o.inner(sw, sh);
       return g;
     };
-    const LX = 470, LY = 1250, LW = 760;
+    const LX = 540, LY = 1250, LW = 760;
     w += blurG(6 * (1 - io(seg(lt, 0, 0.5))), laptop(LX, LY, LW, { screen: k0, on: 1, inner, zoom: 1 + 0.03 * lt, pan: [0.3, 0.2], glowC: '#FFF3E6' }));
     if (o.after) w += o.after(LX, LY, LW);
-    w += blurG(8, figBack(t, CAST.amara, { x: 120, y: 1290, s: 1.3, seed: 1, tilt: 6 }));
-    w += blurG(8, figBack(t, CAST.emma, { x: 870, y: 1320, s: 1.25, seed: 6, tilt: -6 }));
-    w += blurG(10, popcorn(560, 1700, 1.6));
+    w += blurG(8, figBack(t, CAST.amara, { x: 150, y: 1300, s: 1.28, seed: 1, tilt: 6 }));
+    w += blurG(8, figBack(t, CAST.emma, { x: 930, y: 1300, s: 1.28, seed: 6, tilt: -6 }));
+    w += blurG(10, popcorn(540, 1720, 1.6));
     return w;
   }
   function shotOTS1(t) {
     const lt = t - 23;
     const w = otsScene(t, lt, [['curriculum', 0], ['dots', 1.25]]);
-    const Cm = { cx: 470, cy: 1010, z: 1.0 + 0.12 * io(lt / 2.4), dx: 6 * lt };
+    const Cm = { cx: 540, cy: 1010, z: 1.0 + 0.12 * io(lt / 2.4) };
     let s = camAt(Cm, w) + warm(0.1) + vignette(0.7);
-    const tag = camP(Cm, [470 - 380 + 150, 1250 - 520]);
+    const tag = camP(Cm, [540 - 380 + 150, 1250 - 520]);
     s += peekTag(Math.max(220, tag[0]), tag[1], seg(lt, 0.35, 0.7), t);
     return s + peekHead(t);
   }
   function shotOTS2(t) {
     const lt = t - 27;
-    const LX = 470, LW = 760, sh = LW * 0.625;
+    const LX = 540, LW = 760, sh = LW * 0.625;
     const pop = back(seg(lt, 0.35, 0.75)), chk = back(seg(lt, 0.6, 0.9));
     const w = otsScene(t, lt, [['complete', 0]], {
       after: (lx, ly, lw) => {
@@ -1873,9 +1874,9 @@
         return g;
       },
     });
-    const Cm = { cx: 470, cy: 1010, z: 1.06 + 0.1 * io(lt / 1.6), dx: -6 * lt };
+    const Cm = { cx: 540, cy: 1010, z: 1.06 + 0.1 * io(lt / 1.6) };
     let s = camAt(Cm, w) + warm(0.1) + vignette(0.7);
-    const tag = camP(Cm, [470 - 380 + 150, 1250 - 520]);
+    const tag = camP(Cm, [540 - 380 + 150, 1250 - 520]);
     s += peekTag(Math.max(220, tag[0]), tag[1], seg(lt, 0.1, 0.4), t);
     void LX;
     return s + peekHead(t);
@@ -1888,7 +1889,7 @@
     const clap = Math.abs(Math.sin(t * 9));
     const point = io(seg(lt, 0.7, 1.0)) * (final ? 0 : 1);
     // high five between Amara and Layla, hands meet above and between them
-    const HF = [340, 878 - hit];
+    const HF = [410, 878 - hit];
     const aL = loc(LV.amara[0], LV.amara[1], LV.amara[2], HF[0] - 18, HF[1]);
     const lL = loc(LV.layla[0], LV.layla[1], LV.layla[2], HF[0] + 18, HF[1]);
     return {
@@ -1911,7 +1912,7 @@
     let over = '';
     if (lt > 0.5 && lt < 1.4) over += A.sparkle(R._HF[0], R._HF[1] - 20, 25.4 + 0.5, t, P.peachL) + star(R._HF[0], R._HF[1] - 30, 30 * Math.sin(Math.PI * seg(lt, 0.5, 0.9)), '#fff', 0.95, t * 120);
     const w = livingScene(t, R, { over });
-    const Cm = { cx: 470, cy: 950, z: 1.12 + 0.06 * io(lt / 1.6), dx: 8 * lt };
+    const Cm = { cx: 540, cy: 950, z: 1.12 + 0.06 * io(lt / 1.6), dx: -8 * (1 - io(lt / 1.2)) };
     return camAt(Cm, w) + warm(0.14) + vignette(0.65) + peekHead(t);
   }
   function shotCheer(t) {
@@ -1921,7 +1922,7 @@
     R.priya.mood = 'laugh';
     R.layla = Object.assign({}, R.layla, { mood: 'laugh', tilt: 8, hL: [-110, 470], hR: [110, 470], kL: 'rest', kR: 'rest' });
     const w = livingScene(t, R, { over: twinkles(t, 10, 77, [80, 600, 800, 600], [P.pinkL, P.peachL, '#fff'], { sp: 60, r: 12 }) });
-    const Cm = { cx: 470, cy: 930, z: 1.04 + 0.08 * io(lt / 1.4), dx: -12 * lt };
+    const Cm = { cx: 540, cy: 930, z: 1.04 + 0.08 * io(lt / 1.4), dx: 8 * (1 - io(lt / 1.2)) };
     return camAt(Cm, w) + warm(0.14) + vignette(0.65) + peekHead(t);
   }
 
@@ -1949,8 +1950,8 @@
     return w;
   }
   const RF = {
-    mei: [258, 702, 0.6], priya: [470, 676, 0.6], emma: [682, 702, 0.6],
-    amara: [205, 990, 0.7], sofia: [470, 978, 0.7], layla: [738, 990, 0.7],
+    mei: [328, 702, 0.6], priya: [540, 676, 0.6], emma: [752, 702, 0.6],
+    amara: [270, 990, 0.7], sofia: [540, 978, 0.7], layla: [810, 990, 0.7],
   };
   const RF_ORDER = ['mei', 'priya', 'emma', 'amara', 'layla', 'sofia'];
   function roofScene(t, poses, o = {}) {
@@ -1966,8 +1967,8 @@
     let bl = `<path d="M-40,1350 L1120,1350 L1120,1960 L-40,1960 Z" fill="${P.pinkL}"/>`;
     for (let i = 0; i < 12; i++) bl += `<rect x="${-40 + i * 100}" y="1350" width="50" height="620" fill="#fff" opacity=".35"/>`;
     for (let j = 0; j < 7; j++) bl += `<rect x="-40" y="${1360 + j * 90}" width="1160" height="40" fill="#fff" opacity=".25"/>`;
-    w += bl + `<g transform="translate(900,1360)"><path d="M-90,-80 Q0,-160 90,-80" stroke="#A0704C" stroke-width="12" fill="none"/><path d="M-100,-80 L100,-80 L84,30 L-84,30 Z" fill="#C99D78"/><path d="M-96,-50 L96,-50 M-92,-20 L92,-20" stroke="#A0704C" stroke-width="5"/></g>`;
-    w += latte(130, 1390, 0.6, P.peachL, t, false);
+    w += bl + `<g transform="translate(150,1440) scale(.9)"><path d="M-90,-80 Q0,-160 90,-80" stroke="#A0704C" stroke-width="12" fill="none"/><path d="M-100,-80 L100,-80 L84,30 L-84,30 Z" fill="#C99D78"/><path d="M-96,-50 L96,-50 M-92,-20 L92,-20" stroke="#A0704C" stroke-width="5"/></g>`;
+    w += latte(950, 1420, 0.6, P.peachL, t, false);
     if (o.over) w += o.over;
     return w;
   }
@@ -1981,7 +1982,7 @@
     };
     [['amara', 0], ['sofia', 1], ['layla', 2]].forEach(([k, i]) => {
       const done = o.done ? o.done(i) : 0;
-      const ph = { x: 70, y: 300, rot: -6 + i * 4 + Math.sin(t * 1.2 + i) * 1.5, sc: 1.18, side: 1, glow: 0.6 + 0.3 * done, screen: scrJoin({ t, done }) };
+      const ph = { x: [80, 60, 40][i], y: 300, rot: -6 + i * 4 + Math.sin(t * 1.2 + i) * 1.5, sc: 1.18, side: 1, glow: 0.6 + 0.3 * done, screen: scrJoin({ t, done }) };
       const PH = phoneHand(t, CAST[k], ph, [170, 480]);
       poses[k] = { look: done > 0.5 ? [0, 0] : [3, 9], tilt: done > 0.5 ? 5 : -2 + n(4 + i), head: [0, done > 0.5 ? 0 : 6], mood: done > 0.5 ? 'laugh' : 'smile', hR: PH.hR, kR: 'none', eR: PH.eR, front: PH.phone, hL: [-110, 470] };
     });
@@ -1990,7 +1991,7 @@
   function shotRoof(t) {
     const lt = t - 30;
     const w = roofScene(t, roofPoses(t, lt));
-    const Cm = { cx: 470, cy: 960, z: 1.0 + 0.07 * io(lt / 1.5), dx: 10 * lt };
+    const Cm = { cx: 540, cy: 960, z: 1.0 + 0.07 * io(lt / 1.5), dx: -8 * (1 - io(lt / 1.5)) };
     return camAt(Cm, w) + warm(0.16, '#FFB070') + vignette(0.6) + flare(1010, 560, 0.4 + 0.08 * Math.sin(t * 1.2));
   }
 
@@ -2023,13 +2024,13 @@
   function shotTaps(t, a, keys) {
     const lt = t - a;
     const cols = ['#F6C8A8', '#F3B7C2', '#E9C4E0'];
-    const xs = [0, 360, 720], cxs = [178, 528, 830];
+    const xs = [0, 360, 720], cxs = [252, 540, 828];
     let s = '';
     keys.forEach((k, i) => {
       const id = uid('pn');
       const z = 1 + 0.06 * io(lt / 0.9);
       let p = panelBG(t, xs[i], 360, cols[i], 120 + i * 7);
-      p += tapInsert(t, k, cxs[i], 800 + (i % 2 ? 30 : -10), 1.95, a + 0.38 + i * 0.16, [-4, 3, -2][i], cols[i]);
+      p += tapInsert(t, k, cxs[i], 800 + (i % 2 ? 30 : -10), 1.68, a + 0.38 + i * 0.16, [-4, 3, -2][i], cols[i]);
       s += `<clipPath id="${id}"><rect x="${xs[i]}" y="0" width="360" height="1920"/></clipPath><g clip-path="url(#${id})">${cam(cxs[i], 900, z, p)}</g>`;
     });
     s += `<rect x="357" y="0" width="6" height="1920" fill="${P.cream}"/><rect x="717" y="0" width="6" height="1920" fill="${P.cream}"/>`;
@@ -2054,7 +2055,7 @@
       over += A.sparkle(bx, by, at, t, P.pinkL);
     });
     const w = roofScene(t, poses, { over });
-    const Cm = { cx: 470, cy: 940, z: 1.06 + 0.1 * io(lt / 1.0), dx: -8 * lt };
+    const Cm = { cx: 540, cy: 940, z: 1.06 + 0.1 * io(lt / 1.0) };
     return camAt(Cm, w) + warm(0.16, '#FFB070') + vignette(0.6) + flare(1010, 560, 0.45);
   }
 
@@ -2066,10 +2067,10 @@
     let w = blurG(10, roofBG(tf));
     w += bokeh(tf, 10, 55, ['#FFE9C4', '#FFF6E2', '#F9B8C6'], [0, 150, 1080, 900], { r0: 30, r1: 60, op: 0.5, blur: 'fB16', dx: 6 });
     const S = {
-      mei: [270, 700, 0.7, 7], priya: [470, 672, 0.7, 0], emma: [670, 700, 0.7, -7],
-      amara: [215, 1000, 0.8, 6], sofia: [470, 1014, 0.8, 0], layla: [722, 1000, 0.8, -6],
+      mei: [340, 700, 0.7, 7], priya: [540, 672, 0.7, 0], emma: [740, 700, 0.7, -7],
+      amara: [285, 1000, 0.8, 6], sofia: [540, 1014, 0.8, 0], layla: [795, 1000, 0.8, -6],
     };
-    const spread = k => (k - 470) * 0.12 * (1 - sq);
+    const spread = k => (k - 540) * 0.12 * (1 - sq);
     const order = ['mei', 'priya', 'emma', 'sofia', 'layla', 'amara'];
     order.forEach((k, i) => {
       const [x, y, s, tl] = S[k];
@@ -2078,7 +2079,7 @@
         // her arm reaches toward the lens and out of frame (she is holding the camera)
         Object.assign(o, { hL: [-420, 760], eL: [-300, 440], kL: 'none', mood: tf > 34.9 ? 'laugh' : 'grin' });
       }
-      if (k === 'layla') Object.assign(o, { hR: [218, 70], kR: 'open', bR: 1 });
+      if (k === 'layla') Object.assign(o, { hR: [190, 60], kR: 'open', bR: 1 });
       if (k === 'mei') Object.assign(o, { hL: [-200, 40], kL: 'open', bL: -1 });
       w += fig(tf, CAST[k], o);
     });
@@ -2092,7 +2093,7 @@
       s += `<path d="M${x},${y + sy * 70} L${x},${y} L${x + sx * 70},${y}" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" opacity=".9"/>`;
     });
     s += `<g transform="translate(540,1660) scale(${f3(1 - 0.12 * press)})"><circle r="78" fill="none" stroke="#fff" stroke-width="10"/><circle r="62" fill="#fff"/></g>`;
-    s += `<rect x="760" y="1626" width="70" height="70" rx="20" fill="#fff" opacity=".35"/><circle cx="300" cy="1660" r="34" fill="#fff" opacity=".35"/>`;
+    s += `<rect x="745" y="1626" width="70" height="70" rx="20" fill="#fff" opacity=".35"/><circle cx="300" cy="1660" r="34" fill="#fff" opacity=".35"/>`;
     s += `<path d="M120,236 l20,-34 l-4,22 l16,0 l-20,34 l4,-22 Z" fill="#fff" opacity=".9"/>`;
     return `<g opacity="${f3(k)}">${s}</g>`;
   }
@@ -2115,14 +2116,14 @@
     const lt = t - 34.3;
     const k = io(seg(t, 35.45, 36.2));
     const settle = Math.sin(Math.PI * seg(t, 36.1, 36.5)) * 0.03;
-    const crop = [90, 500, 760, 700];
+    const crop = [160, 500, 760, 700];
     const clip = [lerp(0, crop[0], k), lerp(0, crop[1], k), lerp(1080, crop[2], k), lerp(1920, crop[3], k)];
     const scl = lerp(1, 640 / 760, k) * (1 + settle);
     const ccx = clip[0] + clip[2] / 2, ccy = clip[1] + clip[3] / 2;
-    const tx = lerp(540, 470, k), ty = lerp(960, 800, k), rot = lerp(0, -4, k);
+    const tx = 540, ty = lerp(960, 820, k), rot = lerp(0, -4, k);
     // backdrop behind the polaroid
     let s = '';
-    if (k > 0) s += blurG(16, roofBG(t)) + `<rect width="1080" height="1920" fill="${P.pink}" opacity="${f3(0.35 * k)}"/>` + glowC(470, 820, 700, 'gWhite', 0.4 * k);
+    if (k > 0) s += blurG(16, roofBG(t)) + `<rect width="1080" height="1920" fill="${P.pink}" opacity="${f3(0.35 * k)}"/>` + glowC(540, 840, 700, 'gWhite', 0.4 * k);
     const zoomIn = 1.04 - 0.04 * io(lt / 1.0);
     let photo = cam(540, 900, zoomIn + 0.02 * io(seg(t, 34.3, SNAP)), selfieScene(t));
     const id = uid('pol');
@@ -2143,14 +2144,14 @@
     const stk = seg(t, 36.3, 36.62);
     if (stk > 0) {
       const sc = lerp(1.7, 1, back(stk));
-      s += `<g transform="translate(700,560) rotate(${f1(9 + 4 * (1 - stk))}) scale(${f3(sc)})" opacity="${f3(clamp(stk * 3))}">
+      s += `<g transform="translate(770,580) rotate(${f1(9 + 4 * (1 - stk))}) scale(${f3(sc)})" opacity="${f3(clamp(stk * 3))}">
         <rect x="-170" y="-46" width="340" height="92" rx="46" fill="${P.dark}" opacity=".2" filter="url(#fB8)"/>
         <rect x="-168" y="-48" width="336" height="92" rx="46" fill="${P.pink}"/><rect x="-158" y="-38" width="316" height="72" rx="36" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="8 8"/>
-        ${txt(-18, 14, 'On the list', 40, '#FFFFFF', { f: PF })}${star(118, -2, 16, '#FFFFFF', 1, t * 40)}${star(138, 18, 8, P.peachL, 1, -t * 60)}</g>`;
-      s += confetti(t, 36.32, 620, 600, 46, 7) + confetti(t, 36.4, 300, 700, 30, 19);
-      s += A.sparkle(860, 520, 36.4, t, P.peachL) + A.sparkle(560, 600, 36.5, t, P.pinkL);
+        ${txt(-30, 14, 'On the list', 38, '#FFFFFF', { f: PF })}${star(124, -4, 15, '#FFFFFF', 1, t * 40)}${star(146, 18, 7, P.peachL, 1, -t * 60)}</g>`;
+      s += confetti(t, 36.32, 700, 620, 46, 7) + confetti(t, 36.4, 380, 700, 30, 19);
+      s += A.sparkle(900, 540, 36.4, t, P.peachL) + A.sparkle(620, 620, 36.5, t, P.pinkL);
     }
-    if (t > 36.4) s += twinkles(t, 12, 88, [60, 300, 860, 1100], [P.cream, P.peachL, '#fff'], { sp: 50, r: 12 });
+    if (t > 36.4) s += twinkles(t, 12, 88, [110, 300, 860, 1100], [P.cream, P.peachL, '#fff'], { sp: 50, r: 12 });
     // headline
     if (t > 36.5) {
       s += `<rect width="1080" height="500" fill="url(#gTopScrim)" opacity="${f3(seg(t, 36.5, 37))}"/>`;
