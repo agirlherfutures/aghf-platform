@@ -10510,7 +10510,7 @@
       },
       {
         "kind": "written",
-        "prompt": "Bullish 4H structure. Price in 4H discount. 1H still bearish, no bullish shift. Plenty of room to the external high. Your friend says “BUY.” What do you tell her?",
+        "prompt": "Bullish 4H structure. Price in 4H discount. 1H still bearish, no bullish shift. Plenty of room to the external high. Your friend says “BUY.” What do you tell them?",
         "min": 25,
         "model": "The higher-timeframe location may be favorable for a bullish idea, but location alone isn’t an entry. I still need the structural story to develop and later the actual execution model."
       }

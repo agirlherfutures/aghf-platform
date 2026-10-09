@@ -111,7 +111,7 @@
         ]
       },
       "check": {
-        "prompt": "She says they’re interchangeable, since both “get you into a trade.” Is she right?",
+        "prompt": "You think they’re interchangeable, since both “get you into a trade.” Are you right?",
         "stack": true,
         "options": [
           {
@@ -231,7 +231,7 @@
       "type": "v2_screen",
       "kicker": "Pick the order for the job",
       "headline": "Protect the long <em>automatically.</em>",
-      "line": "Exit only if price falls to a level below her entry.",
+      "line": "Exit only if price falls to a level below your entry.",
       "visual": {
         "chart": {
           "swings": [
@@ -281,7 +281,7 @@
             {
               "x": 670,
               "y": 205,
-              "text": "Her entry",
+              "text": "Your entry",
               "tone": "up",
               "anchor": "end",
               "size": 22

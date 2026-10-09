@@ -132,7 +132,7 @@
         "caption": "Futures contracts expire. Shares don’t."
       },
       "check": {
-        "prompt": "She wants to profit from a short-term move and doesn’t care about owning the company. Which is built for that?",
+        "prompt": "You want to profit from a short-term move and don’t care about owning the company. Which is built for that?",
         "stack": true,
         "options": [
           {

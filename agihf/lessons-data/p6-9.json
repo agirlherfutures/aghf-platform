@@ -96,11 +96,11 @@
     }
    ],
    "ask": {
-    "prompt": "Another trader enters with an EMPTY management plan: “I’ll see how it feels.” What does she have?",
+    "prompt": "Another trader enters with an EMPTY management plan: “I’ll see how it feels.” What do they have?",
     "options": [
      {
       "label": "A trade plan",
-      "feedback": "She has an entry. Nothing for after it."
+      "feedback": "They have an entry. Nothing for after it."
      },
      {
       "label": "An entry plan, not a trade plan",

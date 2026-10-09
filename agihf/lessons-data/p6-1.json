@@ -363,20 +363,20 @@
     }
    },
    "ask": {
-    "prompt": "WHAT DID SHE DO WRONG?",
+    "prompt": "WHAT DID THEY DO WRONG?",
     "options": [
      {
-      "label": "She built the analysis backwards",
+      "label": "They built the analysis backwards",
       "correct": true,
-      "why": "She decided on the 1M, then went shopping on the 4H for permission."
+      "why": "They decided on the 1M, then went shopping on the 4H for permission."
      },
      {
-      "label": "Her 1M ICC wasn’t clean enough",
+      "label": "Their 1M ICC wasn’t clean enough",
       "feedback": "The 1M looked great. That’s not the problem. The order is."
      },
      {
-      "label": "She should have checked the 15M first",
-      "feedback": "Closer, but the problem started before any of that: she started at 1M."
+      "label": "They should have checked the 15M first",
+      "feedback": "Closer, but the problem started before any of that: they started at 1M."
      },
      {
       "label": "Nothing. Confluence is confluence",

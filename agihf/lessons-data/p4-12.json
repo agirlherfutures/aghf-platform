@@ -466,7 +466,7 @@
             "mistake": "thesis-vs-stop"
           },
           {
-            "label": "She should be bearish instead",
+            "label": "You should be bearish instead",
             "correct": false,
             "feedback": "The issue isn’t the direction. It’s what defines being wrong."
           }

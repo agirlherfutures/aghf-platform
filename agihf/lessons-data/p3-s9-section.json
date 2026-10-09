@@ -2431,7 +2431,7 @@
         "rows": 4,
         "min": 15,
         "placeholder": "Type it how YOU understand it...",
-        "label": "💭 Explain it to an AGHF girl: your friend says, “This is definitely institutional accumulation. I can tell from the candles.” What would you tell her?"
+        "label": "💭 Explain it to an AGHF girl: your friend says, “This is definitely institutional accumulation. I can tell from the candles.” What would you tell them?"
       }
     ],
     "saveLabel": "Save to My Academy Notes →",
@@ -4678,9 +4678,9 @@
       },
       {
         "kind": "written",
-        "prompt": "Your friend says: “Price swept liquidity and left an FVG, so I’m entering.” What would you ask her?",
+        "prompt": "Your friend says: “Price swept liquidity and left an FVG, so I’m entering.” What would you ask them?",
         "min": 25,
-        "model": "Whether the Dayli ICC sequence has actually formed. A sweep and an FVG are context. What is the structure doing, and where would she be wrong? Liquidity and FVGs are never required, and they never replace the entry model."
+        "model": "Whether the Dayli ICC sequence has actually formed. A sweep and an FVG are context. What is the structure doing, and where would they be wrong? Liquidity and FVGs are never required, and they never replace the entry model."
       },
       {
         "kind": "written",

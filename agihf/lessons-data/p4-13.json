@@ -573,7 +573,7 @@
     {
       "type": "reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Your friend says: “I said I was bullish this morning, so I’m staying bullish all day.” What do you tell her?",
+      "prompt": "Your friend says: “I said I was bullish this morning, so I’m staying bullish all day.” What do you tell them?",
       "modelAnswer": "Bias isn’t a promise. If the structure supporting the bullish thesis changes, the analysis should change too."
     }
   ],

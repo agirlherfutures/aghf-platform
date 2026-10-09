@@ -274,8 +274,8 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Her friend made 50 points today. Is that a lot of money?",
-      "modelAnswer": "Points alone don't tell you anything, you need to know the instrument's point value and how many contracts she was holding. 50 points on MNQ with 1 contract is $100. 50 points on MNQ with 10 contracts is $1,000. Same 50 points, completely different amount of money."
+      "prompt": "Your friend made 50 points today. Is that a lot of money?",
+      "modelAnswer": "Points alone don't tell you anything, you need to know the instrument's point value and how many contracts they were holding. 50 points on MNQ with 1 contract is $100. 50 points on MNQ with 10 contracts is $1,000. Same 50 points, completely different amount of money."
     }
   ],
   "takeaways": [

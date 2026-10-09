@@ -2082,7 +2082,7 @@
         "options": [
           "Resistance is an area of interest, not a guaranteed reversal",
           "Nothing, resistance means down",
-          "She needs a fourth touch",
+          "They need a fourth touch",
           "Resistance only works on the 4H"
         ],
         "correctIndex": 0,
@@ -2328,7 +2328,7 @@
         "rows": 4,
         "min": 15,
         "placeholder": "Type it how YOU understand it...",
-        "label": "💭 Explain it to an AGHF girl: your friend sends you a chart covered in 15 lines and says, “Look at all this confluence.” What would you tell her to ask herself first?"
+        "label": "💭 Explain it to an AGHF girl: your friend sends you a chart covered in 15 lines and says, “Look at all this confluence.” What would you tell them to ask themselves first?"
       }
     ],
     "saveLabel": "Save to My Academy Notes →",
@@ -5559,7 +5559,7 @@
       {
         "kind": "mcq",
         "skill": "levels",
-        "prompt": "Your friend’s chart has 15 lines and she says, “Look at all this confluence.” What should she ask herself first?",
+        "prompt": "Your friend’s chart has 15 lines and they say, “Look at all this confluence.” What should they ask themselves first?",
         "options": [
           {
             "label": "What structural job does each line have?",

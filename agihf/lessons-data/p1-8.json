@@ -11,7 +11,7 @@
   "format": "slides",
   "launchpad": {
     "outcome": "Explain what a broker account, a prop firm evaluation, and a simulated account each actually test.",
-    "missionQuestion": "If a trader wants to prove she's consistent before risking real money, which account type actually answers that?",
+    "missionQuestion": "If you want to prove you're consistent before risking real money, which account type actually answers that?",
     "estMinutes": 7
   },
   "watch": {
@@ -115,7 +115,7 @@
       "type": "v2_screen",
       "kicker": "Match the account to the goal",
       "headline": "Prove it <em>before real money.</em>",
-      "line": "She wants to test whether her execution is consistent before risking real money.",
+      "line": "You want to test whether your execution is consistent before risking real money.",
       "visual": {
         "icon": "flask",
         "tone": "peach",
@@ -147,7 +147,7 @@
     {
       "type": "v2_screen",
       "kicker": "Whose money, whose rules",
-      "headline": "She passed. <em>She’s funded.</em>",
+      "headline": "They passed. <em>They’re funded.</em>",
       "line": "A trader passes a prop firm’s evaluation and gets funded.",
       "visual": {
         "icon": "bank",
@@ -155,13 +155,13 @@
         "caption": "New money. New rules."
       },
       "check": {
-        "prompt": "Whose capital is she trading now?",
+        "prompt": "Whose capital are they trading now?",
         "stack": true,
         "options": [
           {
-            "label": "Her own, the eval was a formality",
+            "label": "Their own, the eval was a formality",
             "correct": false,
-            "feedback": "The whole point of an evaluation is that it isn’t a formality. It decides whether she trades her own money or the firm’s."
+            "feedback": "The whole point of an evaluation is that it isn’t a formality. It decides whether they trade their own money or the firm’s."
           },
           {
             "label": "Nobody’s, funded accounts are simulated",
@@ -171,7 +171,7 @@
           {
             "label": "The firm’s, inside the firm’s rules",
             "correct": true,
-            "why": "Her personal money isn’t directly at risk, but she now trades inside the firm’s rules. Funded status shifts whose money is at risk, and adds real rule constraints in exchange."
+            "why": "Their personal money isn’t directly at risk, but they now trade inside the firm’s rules. Funded status shifts whose money is at risk, and adds real rule constraints in exchange."
           }
         ]
       }

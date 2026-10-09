@@ -93,8 +93,8 @@
     {
       "type": "v2_screen",
       "kicker": "What’s actually happening here?",
-      "headline": "After a loss, she <em>doubles her size.</em>",
-      "line": "She wants to “win it back faster.”",
+      "headline": "After a loss, you <em>double your size.</em>",
+      "line": "You want to “win it back faster.”",
       "visual": {
         "icon": "bolt",
         "tone": "pink",
@@ -110,7 +110,7 @@
             "feedback": "Increasing size to chase back a loss usually increases risk at the worst possible moment."
           },
           {
-            "label": "Emotion is driving her size, not her risk plan",
+            "label": "Emotion is driving your size, not your risk plan",
             "correct": true,
             "why": "Exactly. That’s revenge sizing, and it compounds risk right when discipline matters most."
           }

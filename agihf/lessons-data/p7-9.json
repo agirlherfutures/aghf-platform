@@ -447,7 +447,7 @@
       "cards": [
         {
           "label": "The trader",
-          "sub": "She planned two trades and took two.",
+          "sub": "You planned two trades and took two.",
           "spark": "up",
           "tag": "THE TRADER",
           "tone": "teal"

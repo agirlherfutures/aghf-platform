@@ -195,7 +195,7 @@
       {
        "at": 9,
        "tag": "·",
-       "text": "+31: nothing in a fixed plan triggers. She holds."
+       "text": "+31: nothing in a fixed plan triggers. They hold."
       },
       {
        "at": 14,
@@ -227,7 +227,7 @@
       {
        "at": 11,
        "tag": "◆",
-       "text": "+19 after a push to +31: a new 1M higher low. Her rule: trail the stop to 20,018."
+       "text": "+19 after a push to +31: a new 1M higher low. Their rule: trail the stop to 20,018."
       },
       {
        "at": 14,
@@ -243,14 +243,14 @@
     "options": [
      {
       "label": "Yes, the fixed trader ignored new structure",
-      "feedback": "Her plan never said to use structure. She followed it."
+      "feedback": "Their plan never said to use structure. They followed it."
      },
      {
-      "label": "Yes, the structure trader touched her stop",
-      "feedback": "Her plan said to trail after a new HL. Rule-based."
+      "label": "Yes, the structure trader touched their stop",
+      "feedback": "Their plan said to trail after a new HL. Rule-based."
      },
      {
-      "label": "No: each action matched her predefined model",
+      "label": "No: each action matched their predefined model",
       "correct": true,
       "why": "Different plans can make different legitimate decisions."
      }
@@ -262,7 +262,7 @@
   {
    "type": "v2_dayli",
    "kicker": "Dayli says",
-   "quote": "Different action doesn’t mean somebody’s wrong. <em>Ask whether it matched the plan she started with.</em>",
+   "quote": "Different action doesn’t mean somebody’s wrong. <em>Ask whether it matched the plan they started with.</em>",
    "pose": "point"
   },
   {

@@ -62,8 +62,8 @@
       {
         "type": "mc",
         "heading": "Spot the problem",
-        "prompt": "A friend tells you she made \"50 points today.\"",
-        "question": "Do you know how much money she made?",
+        "prompt": "A friend tells you they made \"50 points today.\"",
+        "question": "Do you know how much money they made?",
         "options": [
           {
             "label": "Yes, 50 points is 50 points",
@@ -76,9 +76,9 @@
             "feedback": "Right. Points alone don't tell you anything about dollars without the instrument and size."
           },
           {
-            "label": "Yes, if she's trading MNQ",
+            "label": "Yes, if they're trading MNQ",
             "correct": false,
-            "feedback": "Even on MNQ, you'd still need to know her contract count."
+            "feedback": "Even on MNQ, you'd still need to know their contract count."
           }
         ]
       },
@@ -245,7 +245,7 @@
         "concept": "Futures vs. stocks"
       },
       {
-        "question": "Maya trades 10 shares of a stock, then decides to trade 10 MNQ contracts because \"10 is her normal size.\" What's wrong?",
+        "question": "Maya trades 10 shares of a stock, then decides to trade 10 MNQ contracts because \"10 is their normal size.\" What's wrong?",
         "options": [
           "Nothing, 10 is always 10",
           "MNQ contracts are always smaller risk than shares",
@@ -282,7 +282,7 @@
         "options": [
           "Nothing, the statement is complete",
           "The number of contracts and the contract's point value",
-          "Her broker's name"
+          "Their broker's name"
         ],
         "correctIndex": 1,
         "why": "Points alone don't establish dollar risk without contract count and point value.",
@@ -311,10 +311,10 @@
         "concept": "Points, ticks & P&L"
       },
       {
-        "question": "A trader's thesis supports higher prices, but price moves against her. What's the AGHF mindset?",
+        "question": "A trader's thesis supports higher prices, but price moves against them. What's the AGHF mindset?",
         "options": [
           "The analysis must eventually become correct",
-          "She should add to the position to average in",
+          "They should add to the position to average in",
           "A thesis can be reasonable and still be wrong, risk defines what happens next"
         ],
         "correctIndex": 2,
@@ -335,7 +335,7 @@
       },
       {
         "concept": "Instruments",
-        "question": "A trader switches from 1 MNQ to 1 NQ and keeps the same stop in points. What happens to her dollar risk?",
+        "question": "A trader switches from 1 MNQ to 1 NQ and keeps the same stop in points. What happens to their dollar risk?",
         "options": [
           "It stays the same",
           "It becomes about 10 times larger",
@@ -371,7 +371,7 @@
       },
       {
         "concept": "Instruments",
-        "question": "A trader switches from 1 MNQ to 1 NQ and keeps the same stop in points. What happens to her dollar risk?",
+        "question": "A trader switches from 1 MNQ to 1 NQ and keeps the same stop in points. What happens to their dollar risk?",
         "options": [
           "It stays the same",
           "It becomes about 10 times larger",
@@ -429,7 +429,7 @@
         "rows": 4,
         "min": 15,
         "placeholder": "Type it how YOU understand it...",
-        "label": "💭 Explain it to an AGHF girl: your friend asks, “Okay… but what exactly am I buying when I trade MNQ?” Explain it to her in your own words."
+        "label": "💭 Explain it to an AGHF girl: your friend asks, “Okay… but what exactly am I buying when I trade MNQ?” Explain it to them in your own words."
       }
     ]
   },

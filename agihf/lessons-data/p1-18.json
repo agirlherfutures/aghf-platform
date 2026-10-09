@@ -122,7 +122,7 @@
     {
       "type": "v2_screen",
       "kicker": "Spot the risk",
-      "headline": "She wants every timeframe to give <em>the same answer.</em>",
+      "headline": "You want every timeframe to give <em>the same answer.</em>",
       "small": true,
       "visual": {
         "icon": "layers",
@@ -130,7 +130,7 @@
         "caption": "Detail and big picture, side by side."
       },
       "check": {
-        "prompt": "What’s the risk in her thinking?",
+        "prompt": "What’s the risk in your thinking?",
         "stack": true,
         "options": [
           {
@@ -139,7 +139,7 @@
             "feedback": "Timeframes don’t have to agree perfectly at every moment."
           },
           {
-            "label": "She’ll get confused when views naturally differ",
+            "label": "You’ll get confused when views naturally differ",
             "correct": true,
             "why": "Exactly. A detailed view and a big-picture view naturally look different. Expecting every timeframe to answer the same question leads to unnecessary confusion."
           }

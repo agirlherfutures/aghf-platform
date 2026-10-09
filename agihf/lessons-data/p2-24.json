@@ -739,8 +739,8 @@
     {
       "type": "reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Your friend’s chart has support, demand, an FVG, fibs and an order block all on one area. What would you ask her?",
-      "modelAnswer": "I’d ask: why does this area matter to the structure she’s reading? If it’s the higher low supporting the current structure, that’s the reason. Stacking more labels on the same area doesn’t make the analysis better, and knowing a concept doesn’t make it part of her entry model."
+      "prompt": "Your friend’s chart has support, demand, an FVG, fibs and an order block all on one area. What would you ask them?",
+      "modelAnswer": "I’d ask: why does this area matter to the structure they’re reading? If it’s the higher low supporting the current structure, that’s the reason. Stacking more labels on the same area doesn’t make the analysis better, and knowing a concept doesn’t make it part of their entry model."
     }
   ],
   "takeaways": [

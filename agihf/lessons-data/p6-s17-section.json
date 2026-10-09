@@ -434,7 +434,7 @@
       "options": [
        {
         "label": "Smart recovery",
-        "feedback": "The account didn’t change. Her feelings did."
+        "feedback": "The account didn’t change. Their feelings did."
        },
        {
         "label": "REVENGE SIZING / RISK VIOLATION",
@@ -448,7 +448,7 @@
     ],
     "name": "Size-up after loss",
     "concept": "Revenge sizing",
-    "brief": "Loss: −1R. “I just need one winner.” She doubles size."
+    "brief": "Loss: −1R. “I just need one winner.” They double size."
    },
    {
     "type": "account_compare",
@@ -701,7 +701,7 @@
    },
    {
     "concept": "Risk ceiling",
-    "question": "A+ setup. She quadruples normal risk.",
+    "question": "A+ setup. You quadruple normal risk.",
     "options": [
      "Fine for A+",
      "Setup quality doesn’t override the risk ceiling",
@@ -713,7 +713,7 @@
    },
    {
     "concept": "Revenge sizing",
-    "question": "After −1R she doubles size to “get it back”.",
+    "question": "After −1R you double size to “get it back”.",
     "options": [
      "Recovery plan",
      "Revenge sizing / risk violation",
@@ -967,7 +967,7 @@
    {
     "kind": "mcq",
     "skill": "management",
-    "prompt": "Plan says trail after a new 1M HL. It forms. She trails.",
+    "prompt": "Plan says trail after a new 1M HL. It forms. You trail.",
     "options": [
      {
       "label": "Violation",
@@ -1087,7 +1087,7 @@
    {
     "kind": "mcq",
     "skill": "risk",
-    "prompt": "After a loss she doubles size to get it back.",
+    "prompt": "After a loss you double size to get it back.",
     "options": [
      {
       "label": "Recovery",

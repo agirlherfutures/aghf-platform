@@ -282,14 +282,14 @@
       "items": [
         {
           "text": "A strong displacement candle",
-          "answer": "SHE HAS IT",
+          "answer": "THEY HAVE IT",
           "why": "Yes, that part is real.",
           "concept": "displacement"
         },
         {
           "text": "The structural context",
           "answer": "MISSING",
-          "why": "What is the structure doing? She hasn’t said.",
+          "why": "What is the structure doing? They haven’t said.",
           "mistake": "displacement-as-entry",
           "concept": "structure-first"
         },
@@ -301,7 +301,7 @@
           "concept": "entry-criteria"
         },
         {
-          "text": "A plan for where her idea is wrong",
+          "text": "A plan for where their idea is wrong",
           "answer": "MISSING",
           "why": "No risk plan, no trade plan.",
           "mistake": "displacement-as-entry",
@@ -310,7 +310,7 @@
       ],
       "prompt": "Your friend has one thing. What’s missing?",
       "choices": [
-        "SHE HAS IT",
+        "THEY HAVE IT",
         "MISSING"
       ],
       "footer": "<strong>MOMENTUM IS INFORMATION. NOT A COMPLETE TRADE PLAN.</strong>"

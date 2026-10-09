@@ -80,7 +80,7 @@
         ]
       },
       "check": {
-        "prompt": "She moves from MNQ to NQ, same contract count, because “the chart looks the same.”",
+        "prompt": "You move from MNQ to NQ, same contract count, because “the chart looks the same.”",
         "stack": true,
         "options": [
           {
@@ -330,7 +330,7 @@
             ]
           }
         ],
-        "goodFeedback": "Clean logic. MNQ gives Nasdaq exposure with lighter point value, and a smaller contract count keeps a trader more teachable while she's still learning.",
+        "goodFeedback": "Clean logic. MNQ gives Nasdaq exposure with lighter point value, and a smaller contract count keeps a trader more teachable while they're still learning.",
         "badFeedback": "Almost. The deeper point here is choosing a lighter instrument or lighter size when you're still learning to read the market."
       }
     },
