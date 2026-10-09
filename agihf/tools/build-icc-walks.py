@@ -76,7 +76,7 @@ def derive_icc(bars, pil, start, bull):
 
 
 # ── The story ───────────────────────────────────────────────────────────────
-def build(seed, rhythm, bull=True):
+def build(seed, rhythm, bull=True, outcome='valid'):
     rnd = random.Random(seed)
     # 4H: rally to a swing high (the 4H PIL), pull back, indication through it, now correcting.
     h4 = [bar(20900, 20918, vol=10)]
@@ -108,77 +108,125 @@ def build(seed, rhythm, bull=True):
     hi1 = max(range(0, 6), key=lambda i: h1[i]['h'])
     # 1M: pullback from a 1M swing high (the PIL), then I · C · C, then the retest.
     m = [bar(21073, 21070, vol=1.5)]
-    leg(m, 21081, 5, rnd, 2.2, counter=1, wick=0.25)  # up into the 1M swing high
+    leg(m, 21081, 4 + rnd.randint(0, 3), rnd, 2.2, counter=1, wick=0.25)  # up into the 1M swing high
     sw = len(m) - 1
     m[sw]['h'] = q(m[sw]['c'] + 1.25)
     pil = m[sw]['h']
-    leg(m, 21072, 5, rnd, 2.2, counter=1, wick=0.25)  # pullback below the PIL
+    leg(m, 21072, 4 + rnd.randint(0, 3), rnd, 2.2, counter=1, wick=0.25)  # pullback below the PIL
     leg(m, pil - 1.5, 3, rnd, 2.2, counter=0, wick=0.2)
     start = len(m)
     o = m[-1]['c']
-    if rhythm == 'tight':
-        m += [bar(o, pil + 3, hi=pil + 3.75, lo=o - .5),                 # I: closes above
-              bar(pil + 3, pil - 1.75, hi=pil + 3.5, lo=pil - 2.25),     # C: closes back below
-              bar(pil - 1.75, pil + 4, hi=pil + 4.5, lo=pil - 2)]        # C: closes back above
-    else:
-        m += [bar(o, pil + 2.5, hi=pil + 3.25, lo=o - .5)]               # I
-        leg(m, pil + 5.5, 2, rnd, 1.6, wick=0.2)
-        leg(m, pil + 1.25, 2, rnd, 1.6, wick=0.2)                        # drifts back, stays above
-        m += [bar(m[-1]['c'], pil - 2, hi=m[-1]['c'] + .5, lo=pil - 2.5)]  # C
+    if outcome == 'no-ind':
+        # Price pokes above the PIL on wicks, never closes above, then rolls over.
+        m += [bar(o, pil - .75, hi=pil + 1.5, lo=o - .5)]
         leg(m, pil - 4, 2, rnd, 1.6, wick=0.2)
-        leg(m, pil - 1, 2, rnd, 1.6, wick=0.2)                           # back up, still below
-        m += [bar(m[-1]['c'], pil + 3, hi=pil + 3.5, lo=m[-1]['c'] - .5)]  # C
-    leg(m, pil + 8, 3, rnd, 1.8, wick=0.2)
-    leg(m, pil + 1.5, 3, rnd, 1.8, wick=0.15)
-    m += [bar(pil + 1.5, pil + 3.5, hi=pil + 4, lo=pil - .25)]           # first retest: touches, holds
-    leg(m, pil + 12, 5, rnd, 2, wick=0.2)
+        m += [bar(m[-1]['c'], pil - 1, hi=pil + 1.25, lo=m[-1]['c'] - .5)]
+        leg(m, pil - 9, 4, rnd, 1.8, wick=0.2)
+        leg(m, pil - 6, 2, rnd, 1.6, wick=0.2)
+        leg(m, pil - 13, 3, rnd, 1.8, wick=0.2)
+        decide = len(m)
+    else:
+        if rhythm == 'tight':
+            m += [bar(o, pil + 3, hi=pil + 3.75, lo=o - .5),                 # I: closes above
+                  bar(pil + 3, pil - 1.75, hi=pil + 3.5, lo=pil - 2.25)]     # C: closes back below
+        else:
+            m += [bar(o, pil + 2.5, hi=pil + 3.25, lo=o - .5)]               # I
+            leg(m, pil + 5.5, 2, rnd, 1.6, wick=0.2)
+            leg(m, pil + 1.25, 2, rnd, 1.6, wick=0.2)                        # drifts back, stays above
+            m += [bar(m[-1]['c'], pil - 2, hi=m[-1]['c'] + .5, lo=pil - 2.5)]  # C
+            leg(m, pil - 4, 2, rnd, 1.6, wick=0.2)
+            leg(m, pil - 1, 2, rnd, 1.6, wick=0.2)                           # back up, still below
+        if outcome == 'no-cont':
+            # The almost-trap: a wick back above the PIL that closes below, then a lower low.
+            m += [bar(m[-1]['c'], pil - .5, hi=pil + 2, lo=m[-1]['c'] - .5)]
+            leg(m, pil - 6, 3, rnd, 1.8, wick=0.2)
+            leg(m, pil - 3, 2, rnd, 1.6, wick=0.2)
+            leg(m, pil - 12, 4, rnd, 1.8, wick=0.2)
+            decide = len(m)
+        else:
+            m += [bar(m[-1]['c'], pil + (3 if rhythm == 'spread' else 4), hi=pil + 4.5, lo=m[-1]['c'] - .5)]  # C: closes back above
+            if outcome == 'missed':
+                leg(m, pil + 9, 3, rnd, 1.8, wick=0.15)
+                leg(m, pil + 6.5, 2, rnd, 1.6, wick=0.15)               # dips, nowhere near the PIL
+                leg(m, pil + 16, 4, rnd, 2, wick=0.2)
+                leg(m, pil + 13, 2, rnd, 1.6, wick=0.15)
+                leg(m, pil + 22, 3, rnd, 2, wick=0.2)
+                decide = len(m)
+            else:
+                leg(m, pil + 8, 3, rnd, 1.8, wick=0.2)
+                leg(m, pil + 1.5, 3, rnd, 1.8, wick=0.15)
+                m += [bar(pil + 1.5, pil + 3.5, hi=pil + 4, lo=pil - .25)]   # first retest: touches, holds
+                leg(m, pil + 12, 5, rnd, 2, wick=0.2)
+                decide = None
     pre_hi = max(range(1, sw), key=lambda i: m[i]['h'])
     if not bull:
         h4, h1, m = mirror(h4, 21000), mirror(h1, 21000), mirror(m, 21000)
         pil4, lvl1, pil = q(42000 - pil4), q(42000 - lvl1), q(42000 - pil)
+    # Move each story to its own price area so no two charts read the same.
+    shift = ((seed * 37) % 9 - 4) * 55
+    if shift:
+        sh = lambda bars: [{k: q(v + shift) for k, v in b.items()} for b in bars]
+        h4, h1, m = sh(h4), sh(h1), sh(m)
+        pil4, lvl1, pil = q(pil4 + shift), q(lvl1 + shift), q(pil + shift)
     icc = derive_icc(m, pil, start, bull)
     return {
-        'dir': 'bullish' if bull else 'bearish', 'rhythm': rhythm,
+        'dir': 'bullish' if bull else 'bearish', 'rhythm': rhythm, 'outcome': outcome,
         'tfs': {
             '4H': {'bars': h4, 'pil': pil4, 'pilAt': pil4_at, 'candidates': [pil4_at, minor4, top4]},
             '1H': {'bars': h1, 'level': lvl1, 'levelAt': lvl_at, 'candidates': [lvl_at, mid1, hi1]},
-            '1M': {'bars': m, 'pil': pil, 'pilAt': sw, 'candidates': [sw, pre_hi], 'start': start, 'icc': icc},
+            '1M': {'bars': m, 'pil': pil, 'pilAt': sw, 'candidates': [sw, pre_hi], 'start': start, 'icc': icc, 'decide': decide},
         },
     }
 
 
 def check(sc):
-    tf = sc['tfs']; bull = sc['dir'] == 'bullish'
+    tf = sc['tfs']; bull = sc['dir'] == 'bullish'; out = sc['outcome']
     icc = tf['1M']['icc']
-    assert all(k in icc for k in ('I', 'C', 'C2', 'R')), f'incomplete ICC {icc}'
-    assert 'broke' not in icc
-    if sc['rhythm'] == 'tight':
-        assert icc['C'] == icc['I'] + 1 and icc['C2'] == icc['C'] + 1, f'tight rhythm broken {icc}'
-    else:
-        assert icc['C'] - icc['I'] >= 3 and icc['C2'] - icc['C'] >= 3, f'spread rhythm too tight {icc}'
     m = tf['1M']['bars']; pil = tf['1M']['pil']
-    # Nothing before the start may have closed through the PIL.
+    if out == 'valid':
+        assert all(k in icc for k in ('I', 'C', 'C2', 'R')) and 'broke' not in icc, f'incomplete ICC {icc}'
+    elif out == 'missed':
+        assert all(k in icc for k in ('I', 'C', 'C2')) and 'R' not in icc and 'broke' not in icc, f'missed: {icc}'
+    elif out == 'no-cont':
+        assert 'I' in icc and 'C' in icc and 'C2' not in icc, f'no-cont: {icc}'
+        assert any((b['h'] > pil and b['c'] < pil) if bull else (b['l'] < pil and b['c'] > pil) for b in m[icc['C'] + 1:]), 'no wick trap'
+    elif out == 'no-ind':
+        assert 'I' not in icc, f'no-ind: {icc}'
+        assert any((b['h'] > pil) if bull else (b['l'] < pil) for b in m[tf['1M']['start']:]), 'no wick through the PIL'
+    if out in ('valid', 'missed'):
+        if sc['rhythm'] == 'tight':
+            assert icc['C'] == icc['I'] + 1 and icc['C2'] == icc['C'] + 1, f'tight rhythm broken {icc}'
+        else:
+            assert icc['C'] - icc['I'] >= 3 and icc['C2'] - icc['C'] >= 3, f'spread rhythm too tight {icc}'
     assert not any(side(b['c'], pil, bull) for b in m[tf['1M']['pilAt'] + 1:tf['1M']['start']]), 'early close through PIL'
-    # The 4H indication really closed through the 4H PIL after it formed.
     h4 = tf['4H']['bars']; p4 = tf['4H']['pil']
     assert any(side(b['c'], p4, bull) for b in h4[tf['4H']['pilAt'] + 1:]), 'no 4H indication'
     assert len(set(tf['4H']['candidates'])) == 3 and len(set(tf['1H']['candidates'])) == 3
     return True
 
 
-SPECS = [('bull-tight', 11, 'tight', True), ('bull-spread', 23, 'spread', True), ('bear-tight', 37, 'tight', False), ('bear-spread', 41, 'spread', False)]
+# name, seed, rhythm, bullish, outcome. Two shapes of each valid story so practice doesn't repeat one chart.
+SPECS = [
+    ('bull-tight', 11, 'tight', True, 'valid'), ('bull-spread', 23, 'spread', True, 'valid'),
+    ('bear-tight', 37, 'tight', False, 'valid'), ('bear-spread', 41, 'spread', False, 'valid'),
+    ('bull-tight-2', 113, 'tight', True, 'valid'), ('bull-spread-2', 127, 'spread', True, 'valid'),
+    ('bear-tight-2', 139, 'tight', False, 'valid'), ('bear-spread-2', 151, 'spread', False, 'valid'),
+    ('bull-missed', 211, 'tight', True, 'missed'), ('bear-missed', 223, 'spread', False, 'missed'),
+    ('bull-no-cont', 307, 'spread', True, 'no-cont'), ('bear-no-cont', 311, 'tight', False, 'no-cont'),
+    ('bull-no-ind', 401, 'tight', True, 'no-ind'), ('bear-no-ind', 409, 'tight', False, 'no-ind'),
+]
 out = {}
-for name, seed, rhythm, bull in SPECS:
+for name, seed, rhythm, bull, outcome in SPECS:
     for s in range(seed, seed + 500):
         try:
-            sc = build(s, rhythm, bull); check(sc); break
+            sc = build(s, rhythm, bull, outcome); check(sc); break
         except AssertionError as e:
             last = e
     else:
         raise SystemExit(f'{name}: no valid seed ({last})')
     out[name] = sc
     i = sc['tfs']['1M']['icc']
-    print(f"{name:12} seed {s}  4H PIL {sc['tfs']['4H']['pil']}  1H level {sc['tfs']['1H']['level']}  1M PIL {sc['tfs']['1M']['pil']}  I {i['I']} C {i['C']} C {i['C2']} retest {i['R']}  bars 4H {len(sc['tfs']['4H']['bars'])} 1H {len(sc['tfs']['1H']['bars'])} 1M {len(sc['tfs']['1M']['bars'])}")
+    print(f"{name:14} {outcome:8} seed {s}  1M PIL {sc['tfs']['1M']['pil']}  ICC {i}  1M bars {len(sc['tfs']['1M']['bars'])}")
 
 path = os.path.join(os.path.dirname(__file__), '..', 'shared', 'icc-walk-scenarios.js')
 with open(path, 'w') as f:

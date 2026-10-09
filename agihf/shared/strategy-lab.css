@@ -153,3 +153,9 @@ a.sl-row:hover{background:var(--pink-pale);}
 .iw .lw-feedback{margin-top:12px;}
 .iw .lw-feedback.show:not(.good):not(.bad){background:var(--purple-pale);border:1px solid #DCD6F7;color:var(--dark);}
 .iw-go{display:block;margin-top:10px;}
+
+/* Next-step buttons on the right (full width on phones), like the lesson Next button. */
+.iw-go,.sd-next{display:block;margin-left:auto;}
+@media (max-width:600px){ .iw-go,.sd-next{width:100%;} }
+.iw-play{flex-direction:row-reverse;justify-content:flex-start;}
+@media (max-width:600px){ .iw-play{flex-direction:column-reverse;align-items:stretch;} .iw-next{width:100%;} .iw-count{text-align:center;} }

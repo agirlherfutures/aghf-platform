@@ -3,7 +3,11 @@
  * Phase 5: the Dayli ICC walk-through, one clear step at a time.
  *
  *   { type: 'icc_walk', kicker, headline, line, scenario: 'bull-tight' | 'bull-spread' | 'bear-tight' | 'bear-spread',
- *     steps?: ['pil4', 'level1', 'pil1', 'I', 'C', 'C2', 'R'], cta }
+ *     steps?: ['pil4', 'level1', 'pil1', 'I', 'C', 'C2', 'R' | 'PASS'], cta }
+ *
+ * Scenarios with outcome 'missed' (no retest), 'no-cont' (the Continuation
+ * only wicks, then price breaks the other way) or 'no-ind' (no 1M
+ * Indication) end on a PASS step: play the candles, then Enter or Skip it.
  *
  * 4H: mark the 4H PIL.  1H: mark the level price keeps reacting at.
  * 1M: mark the PIL, then press Next candle and tap each step the moment its
@@ -19,9 +23,9 @@ import { mountSdChart } from './sd-chart.js';
 import { ICC_WALKS } from './icc-walk-scenarios.js';
 
 const fmt = (p) => Number(p).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-const ALL = ['pil4', 'level1', 'pil1', 'I', 'C', 'C2', 'R'];
-const LABEL = { pil4: '4H PIL', level1: '1H level', pil1: '1M PIL', I: 'Indication', C: 'Correction', C2: 'Continuation', R: 'Retest' };
-const TF_OF = { pil4: '4H', level1: '1H', pil1: '1M', I: '1M', C: '1M', C2: '1M', R: '1M' };
+const ALL = ['pil4', 'level1', 'pil1', 'I', 'C', 'C2', 'R', 'PASS'];
+const LABEL = { pil4: '4H PIL', level1: '1H level', pil1: '1M PIL', I: 'Indication', C: 'Correction', C2: 'Continuation', R: 'Retest', PASS: 'Decision' };
+const TF_OF = { pil4: '4H', level1: '1H', pil1: '1M', I: '1M', C: '1M', C2: '1M', R: '1M', PASS: '1M' };
 
 export function renderIccWalk(el, slide, satisfy, helpers) {
   const sc = ICC_WALKS[slide.scenario || 'bull-tight'];
@@ -35,7 +39,7 @@ export function renderIccWalk(el, slide, satisfy, helpers) {
   const M = sc.tfs['1M'], icc = M.icc;
 
   const { act, right } = shell(el, slide, `
-    <div class="iw">
+    <div class="iw" data-scenario="${slide.scenario || 'bull-tight'}" data-steps="${steps.join(',')}">
       <div class="iw-track">${steps.map((s, i) => `<span class="iw-step" data-s="${s}"><b>${i + 1}</b>${LABEL[s]}</span>`).join('')}</div>
       <div class="iw-tabs" role="tablist">${tfs.map((t) => `<button type="button" class="iw-tab" data-tf="${t}" disabled>${t}</button>`).join('')}</div>
       <div class="iw-prompt"></div>
@@ -54,7 +58,9 @@ export function renderIccWalk(el, slide, satisfy, helpers) {
     const data = sc.tfs[t];
     const box = right.querySelector(`.iw-chart[data-tf="${t}"]`);
     box.hidden = false;
-    const k = t === '1M' ? (steps.includes('pil1') || steps.includes('I') ? M.start : M.bars.length) : data.bars.length;
+    // The 1M starts where the pullback ends whenever the student has candle steps to play; otherwise it shows in full.
+    const playing = steps.some((x) => ['I', 'C', 'C2', 'R', 'PASS'].includes(x));
+    const k = t === '1M' ? (playing ? M.start : M.bars.length) : data.bars.length;
     charts[t] = mountSdChart(box, { bars: data.bars, dir: sc.dir }, { tf: t, k, toggle: false, minSlots: data.bars.length, maxBody: 14, symbol: 'MNQ' });
     return charts[t];
   }
@@ -76,6 +82,7 @@ export function renderIccWalk(el, slide, satisfy, helpers) {
   const TAG = { I: ['I', 'purple'], C: ['C', 'pink'], C2: ['C', 'teal'], R: ['RETEST · ENTRY', 'gold'] };
   function placeTag(key) {
     const at = { I: icc.I, C: icc.C, C2: icc.C2, R: icc.R }[key];
+    if (at == null) return;
     const [text, tone] = TAG[key];
     const ch = chartFor('1M');
     if (ch.k <= at) ch.show(at + 1);
@@ -124,6 +131,11 @@ export function renderIccWalk(el, slide, satisfy, helpers) {
     C: () => `Keep going. When a candle <b>closes back ${W.below}</b> the PIL, tap it. That’s the <b>Correction</b>.`,
     C2: () => `When a candle <b>closes back ${W.above}</b> the PIL, tap it. That’s the <b>Continuation</b>.`,
     R: () => `Now wait for price to come back. Tap the <b>first candle that returns to the PIL</b>. That’s the retest, where the planned entry is.`,
+    PASS: () => ({
+      missed: `The full I·C·C is in. Keep pressing <b>Next candle</b>. Does price come back to the PIL? When you’ve seen enough, decide.`,
+      'no-cont': `Indication ✓ Correction ✓. Keep pressing <b>Next candle</b>. Does a candle <b>close back ${W.above}</b> the PIL? When you’ve seen enough, decide.`,
+      'no-ind': `Press <b>Next candle</b>. Does any candle <b>close ${W.above}</b> the PIL? When you’ve seen enough, decide.`,
+    })[sc.outcome] || '',
   };
   const YES = {
     pil4: `That’s the 4H swing price broke through. It stays on your 4H chart.`,
@@ -139,6 +151,38 @@ export function renderIccWalk(el, slide, satisfy, helpers) {
     level1: (j) => (j === 1 ? `That’s a bounce ${bull ? 'high' : 'low'}, not where price keeps reacting.` : 'That’s where this pullback started. Price isn’t reacting there now.'),
     pil1: () => `That’s an earlier, smaller ${W.hl}. The PIL is the swing the current pullback came from.`,
   };
+
+  const CHOICES = {
+    missed: [
+      { label: 'Enter: price came back to the PIL', ok: false, why: 'Look again: price never came back to the PIL. No retest means no entry. Don’t chase it.' },
+      { label: 'Skip it: no retest, missed trade', ok: true, why: 'Right. The model completed, but the entry is the first retest of the PIL, and it never came. A missed retest is a missed trade, not a trade.' },
+    ],
+    'no-cont': [
+      { label: 'Continuation: wait for the retest', ok: false, why: `That candle only wicked back ${W.above} the PIL and closed ${W.below} it. Wicks don’t complete anything, and then price broke the other way.` },
+      { label: 'Skip it: no Continuation', ok: true, why: `Right. Without a close back ${W.above} the PIL there’s no Continuation, so there’s no setup and no entry.` },
+    ],
+    'no-ind': [
+      { label: 'Indication: start the sequence', ok: false, why: `Those candles only wicked ${W.above} the PIL. No close ${W.above} it means no Indication.` },
+      { label: 'Skip it: no 1M ICC', ok: true, why: 'Right. The higher timeframes can tell a beautiful story, but without a 1M Indication there’s no model and no trade.' },
+    ],
+  };
+  function decision(ch) {
+    ch.tappable(null);
+    const box = document.createElement('div');
+    box.className = 'v2-chips v2-chips-col iw-decide';
+    box.innerHTML = (CHOICES[sc.outcome] || []).map((c, i) => `<button type="button" class="v2-chip" data-i="${i}">${c.label}</button>`).join('');
+    $('.iw-play').after(box);
+    box.querySelectorAll('.v2-chip').forEach((b) => b.addEventListener('click', () => {
+      const c = CHOICES[sc.outcome][+b.dataset.i];
+      if (ch.k < (M.decide || M.bars.length)) { say('It’s too early to call. Keep pressing <b>Next candle</b> and watch what price does.', ''); return; }
+      helpers.handleStreak?.(c.ok);
+      if (!c.ok) { b.classList.add('wrong'); b.disabled = true; say(c.why, 'bad'); return; }
+      b.classList.add('correct');
+      box.querySelectorAll('.v2-chip').forEach((x) => { x.disabled = true; });
+      YES.PASS = c.why.replace(/^Right\. /, '');
+      done('PASS');
+    }));
+  }
 
   function track() {
     right.querySelectorAll('.iw-step').forEach((e) => {
@@ -158,7 +202,7 @@ export function renderIccWalk(el, slide, satisfy, helpers) {
     const ch = chartFor(t);
     $('.iw-prompt').innerHTML = `<span class="iw-n">Step ${cur + 1} of ${steps.length}</span>${PROMPT[key]()}`;
     fb.className = 'lw-feedback'; fb.innerHTML = '';
-    $('.iw-play').hidden = !['I', 'C', 'C2', 'R'].includes(key);
+    $('.iw-play').hidden = !['I', 'C', 'C2', 'R', 'PASS'].includes(key);
     count();
     if (['pil4', 'level1', 'pil1'].includes(key)) {
       const d = sc.tfs[t];
@@ -177,6 +221,7 @@ export function renderIccWalk(el, slide, satisfy, helpers) {
       }, (i) => cands.includes(i));
       return;
     }
+    if (key === 'PASS') return decision(ch);
     // 1M candle steps: tap any printed candle after the PIL.
     const answer = { I: icc.I, C: icc.C, C2: icc.C2, R: icc.R }[key];
     ch.tappable((i) => {
@@ -207,10 +252,11 @@ export function renderIccWalk(el, slide, satisfy, helpers) {
   }
 
   function finish() {
-    $('.iw-prompt').innerHTML = `<span class="iw-n">Done</span>Every mark is still on its own timeframe. Tap <b>${tfs.join('</b>, <b>')}</b> to look back.`;
+    $('.iw-prompt').innerHTML = tfs.length > 1 ? `<span class="iw-n">Done</span>Every mark is still on its own timeframe. Tap <b>${tfs.join('</b>, <b>')}</b> to look back.` : '<span class="iw-n">Done</span>Here’s the full read on the 1M.';
     $('.iw-play').hidden = true;
     fb.className = 'lw-feedback show good';
-    fb.innerHTML = `<strong>✦ The full read.</strong> ${steps.includes('pil4') ? 'The 4H PIL gave the story, ' : ''}${steps.includes('level1') ? `the 1H showed where price reacts, ` : ''}and on the 1M every step was a <b>close</b> past the PIL${sc.rhythm === 'tight' ? ', here on three back-to-back candles' : ', with room between each step'}.`;
+    const htf = [steps.includes('pil4') && 'the 4H PIL gave the story', steps.includes('level1') && 'the 1H showed where price reacts'].filter(Boolean);
+    fb.innerHTML = `<strong>✦ The full read.</strong> ${htf.length ? `${htf.join(', ')}, and on` : 'On'} the 1M ${sc.outcome && sc.outcome !== 'valid' ? 'the right call was to <b>skip it</b>. Every step has to be a <b>close</b> past the PIL, followed by a retest, or there’s no trade' : `every step was a <b>close</b> past the PIL${sc.rhythm === 'tight' ? ', here on three back-to-back candles' : ', with room between each step'}`}.`;
     helpers.burst?.();
     nextBtn(act, satisfy, slide.cta || 'Next →');
   }

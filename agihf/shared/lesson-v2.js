@@ -97,9 +97,9 @@ export function shell(el, slide, rightHtml, extraLeft = '', opts = {}) {
         ${slide.line ? `<p class="v2-line">${slide.line}</p>` : ''}
         ${extraLeft}
         <div class="v2-spacer"></div>
-        <div class="v2-act"></div>
       </div>
       <div class="v2-r">${rightHtml}</div>
+      <div class="v2-act"></div>
     </div>`;
   return { card: el.querySelector('.v2'), act: el.querySelector('.v2-act'), right: el.querySelector('.v2-r') };
 }
