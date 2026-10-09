@@ -161,11 +161,13 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
     showSrc.forEach((src) => marksFor(src).forEach((m) => {
       const def = MARKS[m.type]; if (!def) return;
       if (def.kind === 'level') {
-        const ownTf = def.tf === tf || (tf === '1M' && ['ENTRY', 'STOP', 'TARGET'].includes(m.type));
-        // A level only shows on the timeframe it was marked on.
-        if (!ownTf) return;
-        hi = Math.max(hi, m.price); lo = Math.min(lo, m.price);
-        levels.push({ ...m, src, own: true });
+        const markTf = m.tf || def.tf;
+        const ownTf = markTf === tf || (tf === '1M' && ['ENTRY', 'STOP', 'TARGET'].includes(m.type));
+        // A level shows on the timeframe it was marked on. A PIL also carries down to every lower timeframe.
+        const carried = !ownTf && def.carries && TF_LIST.indexOf(tf) > TF_LIST.indexOf(markTf);
+        if (!ownTf && !carried) return;
+        if (ownTf || (carried && Math.abs(m.price - all[all.length - 1].c) <= 80)) { hi = Math.max(hi, m.price); lo = Math.min(lo, m.price); }
+        levels.push({ ...m, src, own: ownTf, carried: carried ? markTf : null });
       } else if (tf === '1M') cmarks.push({ ...m, src });
     }));
     const pos = S.rec.decision?.choice === 'TAKE' && tf === '1M' ? S.rec.decision : null;
@@ -211,7 +213,9 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
       const yy = y(m.price); if (yy < 0 || yy > H) return;
       const col = m.match ? TONE.match : m.src === 'mine' ? LEVEL_TONE[m.type] || TONE.mine : TONE[m.src];
       const dash = m.match ? '' : m.src === 'dayli' ? '9 6' : m.src === 'ind' ? '2 5' : m.src === 'trader' ? '4 3' : '';
-      const tag = m.match ? `✓ ${MARKS[m.type].short}` : `${m.src === 'dayli' ? 'Dayli · ' : m.src === 'ind' ? 'IND · ' : m.src === 'trader' ? 'TRADER · ' : ''}${MARKS[m.type].short}`;
+      const mtf = m.tf || MARKS[m.type].tf;
+      const short = MARKS[m.type].tfs && m.type !== 'PIL' ? `${mtf} ${MARKS[m.type].short}` : m.type === 'PIL' && m.src === 'mine' && mtf !== '1M' ? `${mtf} PIL` : MARKS[m.type].short;
+      const tag = m.match ? `✓ ${short}` : `${m.src === 'dayli' ? 'Dayli · ' : m.src === 'ind' ? 'IND · ' : m.src === 'trader' ? 'TRADER · ' : ''}${short}`;
       const from = m.from != null && tf === '1M' ? x(m.from) : 0;
       lv += `<g class="p8-lv src-${m.src}"><line x1="${px(from)}" x2="${W - AX}" y1="${px(yy)}" y2="${px(yy)}" stroke="${col}" stroke-dasharray="${dash}"/><rect x="${W - AX - 8 - tag.length * 6.6}" y="${px(yy - 9)}" width="${tag.length * 6.6 + 8}" height="18" rx="9" fill="${col}"/><text x="${W - AX - 4}" y="${px(yy + 4)}" text-anchor="end" style="fill:${INK(col)}">${esc(tag)}</text></g>`;
     });
@@ -250,8 +254,9 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
     const pt = svg.createSVGPoint(); pt.x = ev.clientX; pt.y = ev.clientY;
     const loc = pt.matrixTransform(svg.getScreenCTM().inverse());
     const def = MARKS[S.tool];
-    if (def.tf !== S.tf && !(S.tf === '1M' && ['ENTRY', 'STOP', 'TARGET'].includes(S.tool)) && !(def.kind === 'level' && S.tf === '1M' && S.tool === 'PIL')) {
-      return flash(`${def.label} goes on the ${def.tf} chart.`);
+    const okTfs = def.tfs || [def.tf];
+    if (!okTfs.includes(S.tf) && !(S.tf === '1M' && ['ENTRY', 'STOP', 'TARGET'].includes(S.tool))) {
+      return flash(`${def.label} goes on the ${okTfs.join(' or ')} chart.`);
     }
     if (def.kind === 'level') {
       const price = Math.round(S.geo.yinv(loc.y) * 4) / 4;
@@ -265,7 +270,8 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
 
   function placeMark(m) {
     const multi = ['SWING_HIGH', 'SWING_LOW'].includes(m.type);
-    if (!multi) S.rec.marks = S.rec.marks.filter((x) => x.type !== m.type);
+    if (m.type === 'PIL') S.rec.marks = S.rec.marks.filter((x) => !(x.type === 'PIL' && (x.tf || '1M') === m.tf));
+    else if (!multi) S.rec.marks = S.rec.marks.filter((x) => x.type !== m.type);
     else if (S.rec.marks.filter((x) => x.type === m.type).length >= 3) S.rec.marks.splice(S.rec.marks.findIndex((x) => x.type === m.type), 1);
     m.at = S.lock.cursor;
     S.rec.marks.push(m);
@@ -284,9 +290,10 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
       S.tool = S.tool === b.dataset.t ? null : b.dataset.t;
       if (S.tool) $('.p8-panel').classList.remove('is-open');
       const def = MARKS[S.tool];
-      if (def && def.tf !== S.tf && !(S.tool === 'PIL' && S.tf === '1M')) S.tf = def.kind === 'candle' ? '1M' : def.tf;
+      const okTfs = def ? def.tfs || [def.tf] : [];
+      if (def && !okTfs.includes(S.tf)) S.tf = def.kind === 'candle' ? '1M' : okTfs.includes('1H') ? '1H' : okTfs[0];
       draw();
-      if (S.tool) flash(MARKS[S.tool].kind === 'level' ? `Click the chart at the ${MARKS[S.tool].label.toLowerCase()} price.` : `Click the ${MARKS[S.tool].label.toLowerCase()} candle.`, 1600);
+      if (S.tool) flash(MARKS[S.tool].kind === 'level' ? `Click the chart at the ${MARKS[S.tool].label.toLowerCase()} price${MARKS[S.tool].tfs ? ` (on the ${MARKS[S.tool].tfs.filter((t) => t !== '1M').join(' or ')})` : ''}.` : `Click the ${MARKS[S.tool].label.toLowerCase()} candle.`, 1900);
     }));
     toolsEl.querySelector('.p8-undo')?.addEventListener('click', () => {
       const i = [...S.rec.marks].reverse().findIndex((m) => S.allowed.includes(m.type));
@@ -466,7 +473,7 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
       });
       S.onMarks = refresh;
       function refresh() {
-        if (need) need.innerHTML = `<div class="p8-need-h">MARK ON THE ${st.tf} CHART</div>${S.allowed.map((t) => `<div class="p8-need-i ${S.rec.marks.some((m) => m.type === t) ? 'ok' : ''}">${S.rec.marks.some((m) => m.type === t) ? '✓' : '○'} ${esc(MARKS[t].label)}${(st.optional || []).includes(t) ? ' <em>(if you see one)</em>' : ''}</div>`).join('')}`;
+        if (need) need.innerHTML = `<div class="p8-need-h">MARK ON THE ${st.tf} CHART</div>${S.allowed.map((t) => `<div class="p8-need-i ${S.rec.marks.some((m) => m.type === t) ? 'ok' : ''}">${S.rec.marks.some((m) => m.type === t) ? '✓' : '○'} ${esc(MARKS[t].label)}${MARKS[t].tfs ? ` <em>(${MARKS[t].tfs.filter((x) => x !== '1M').join(' or ')})</em>` : ''}${(st.optional || []).includes(t) ? ' <em>(if you see one)</em>' : ''}</div>`).join('')}`;
         const marksOk = demo || S.allowed.every((t) => (st.optional || []).includes(t) || S.rec.marks.some((m) => m.type === t));
         const asksOk = asks.every((a) => S.rec.asks[a.key] != null);
         const noteOk = !st.noteRequired || (ta && ta.value.trim().length >= 4);
@@ -517,7 +524,7 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
       };
       S.onMarks = refresh;
       function refresh() {
-        if (need) need.innerHTML = `<div class="p8-need-h">MARK ON THE 1M</div>${S.allowed.map((t) => `<div class="p8-need-i ${S.rec.marks.some((m) => m.type === t) ? 'ok' : ''}">${S.rec.marks.some((m) => m.type === t) ? '✓' : '○'} ${esc(MARKS[t].label)}${(st.optional || []).includes(t) ? ' <em>(if it forms)</em>' : ''}</div>`).join('')}`;
+        if (need) need.innerHTML = `<div class="p8-need-h">MARK IT</div>${S.allowed.map((t) => `<div class="p8-need-i ${S.rec.marks.some((m) => m.type === t) ? 'ok' : ''}">${S.rec.marks.some((m) => m.type === t) ? '✓' : '○'} ${esc(MARKS[t].label)}${MARKS[t].tfs ? ` <em>(on the ${MARKS[t].tfs.filter((x) => x !== '1M').join(' or ')})</em>` : ''}${(st.optional || []).includes(t) ? ' <em>(if it forms)</em>' : ''}</div>`).join('')}`;
         const marksOk = demo || S.allowed.every((t) => (st.optional || []).includes(t) || S.rec.marks.some((m) => m.type === t));
         lockBtn.disabled = !(S.lock.atDecision && marksOk);
         lockBtn.textContent = !S.lock.atDecision ? 'Replay to the decision point first' : (st.lockLabel || 'Lock my 1M read');
