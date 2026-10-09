@@ -591,7 +591,7 @@ export const PHASES = [
       },
       checkpoint: { title: 'ICC Execution Lab 🎯', xp: 0, firstStep: 'game', desc: 'ICC Execution Lab + Knowledge Check + Check-In. Clear this to unlock Section 14.' } },
       { key: 's14', n: 14, badge: 't', title: 'Making the Timeframes Work Together', lessons: [
-        { title: '4H: Read the Room', quote: 'Where is price within the larger structure?', xp: 80 },
+        { n: 25, title: '4H: Read the Room', quote: 'Where is price within the larger structure?', xp: 80 },
         { title: '1H: Build the Map', quote: 'What structure and swings are actually relevant?', xp: 80 },
         { title: 'The 15M Checkpoint', quote: 'The bridge between the higher-timeframe story and execution.', xp: 80 },
         { title: '1M: Execute Dayli ICC', quote: 'Is the entry model actually present? Then, and only then, you act.', xp: 80 },
