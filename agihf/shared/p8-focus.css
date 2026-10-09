@@ -111,3 +111,13 @@ button.pf-opt:focus-visible,button.pf-tick:focus-visible,.pf-bucket:focus-visibl
   .pf-hint{width:100%;}
 }
 @media (prefers-reduced-motion:reduce){.pf-bucket.shake{animation:none;}}
+
+/* the trade playing out */
+.pf-after{display:flex;flex-direction:column;gap:14px;}
+.pf-after[hidden]{display:none;}
+.pf-in{animation:pfin .45s ease both;}
+@keyframes pfin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pf-replay{margin-top:-6px;}
+.pf-btn.pf-ghost{background:#fff;color:var(--dark);border:1.5px solid var(--border);padding:8px 16px;font-size:.85rem;}
+@media (max-width:600px){.pf-btn.pf-ghost{width:auto;}}
+@media (prefers-reduced-motion:reduce){.pf-in{animation:none;}}
