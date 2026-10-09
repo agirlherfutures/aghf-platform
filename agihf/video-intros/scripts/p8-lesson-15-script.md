@@ -13,7 +13,7 @@
 | 0:13 | Frame 1 develops: BEFORE · 4H / 1H context | Before: the 4H and 1H context at the decision. |
 | 0:16 | Frame 2: ENTRY · 1M execution | Entry: the 1M execution. |
 | 0:18 | Frame 3: AFTER · outcome + structure | After: the outcome, and the structure it left. |
-| 0:21 | Strip clipped · REP 12 · STUDY v1 · NQ · 1M · auto-labeled | Replay shots are labeled for you: date, instrument, timeframe, rep. |
+| 0:21 | Strip clipped · REP 12 · STUDY v1 · MNQ · 1M · auto-labeled | Replay shots are labeled for you: date, instrument, timeframe, rep. |
 | 0:25 | A dog trots in with a TV upload and clips it: + attached to REP 12 | Shots from TradingView or live trading? Upload them and attach them to the rep. |
 | 0:31 |  | The rep keeps its pictures. |
 | 0:35 | A scrapbook of chart photos; a tagger with a sticker gun; a cat; an owl with a monocle | Now open your screenshot library. |

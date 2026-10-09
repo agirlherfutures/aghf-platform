@@ -37,7 +37,7 @@ window.LESSON_VIDEO = {
         { "at": 13.2, "text": "Before: the 4H and 1H context at the decision.", "screen": "Frame 1 develops: BEFORE · 4H / 1H context" },
         { "at": 16.6, "text": "Entry: the 1M execution.", "screen": "Frame 2: ENTRY · 1M execution" },
         { "at": 18.4, "text": "After: the outcome, and the structure it left.", "screen": "Frame 3: AFTER · outcome + structure" },
-        { "at": 21.6, "text": "Replay shots are labeled for you: date, instrument, timeframe, rep.", "screen": "Strip clipped · REP 12 · STUDY v1 · NQ · 1M · auto-labeled" },
+        { "at": 21.6, "text": "Replay shots are labeled for you: date, instrument, timeframe, rep.", "screen": "Strip clipped · REP 12 · STUDY v1 · MNQ · 1M · auto-labeled" },
         { "at": 25.6, "text": "Shots from TradingView or live trading? Upload them and attach them to the rep.", "screen": "A dog trots in with a TV upload and clips it: + attached to REP 12" },
         { "at": 31.4, "text": "The rep keeps its pictures." }
       ]

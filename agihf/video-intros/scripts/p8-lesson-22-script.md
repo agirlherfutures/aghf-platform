@@ -21,7 +21,7 @@
 | 0:44 | Shirts fly into RULES FOLLOWED and RULES BROKEN | Into the baskets: rules followed, or rules broken. |
 | 0:48 | Counts climb: 11 and 9 | Watch the pink shirts pile up on the stained side. |
 | 0:52 | 9 of 14 losses · early entry · chased | Nine of fourteen losses broke a rule. |
-| 0:55 | N = 11 · too few to judge | And eleven clean reps? Too few to judge the strategy yet. |
+| 0:55 | N = 11 · too few to judge | And eleven clean reps? Too few to judge yet. |
 | 0:59 | points to: execution first | Look at execution first. |
 | 1:02 | Aristella thinks | Here's the big takeaway. |
 | 1:03 | Aristella points | Don't change the strategy to solve a behavior problem. |

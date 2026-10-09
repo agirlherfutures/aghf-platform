@@ -37,7 +37,7 @@ window.LESSON_VIDEO = {
         { "at": 15.8, "text": "Out the window, a price sign flickers up and down.", "screen": "A roadside P&L sign with jumping numbers" },
         { "at": 19.4, "text": "The cat can’t stop staring. Eyes up here.", "screen": "Cat: \"Ooh, the number!\" · Instructor: \"Eyes up here 👆\"" },
         { "at": 23.4, "text": "P and L is still on the dashboard. It just sits underneath.", "screen": "A small P&L strip below the gauges" },
-        { "at": 27.6, "text": "And every gauge carries its N. Twenty-four is an early sample.", "screen": "N = 24 badges · early sample" },
+        { "at": 27.9, "text": "And every gauge carries its N. Twenty-four is an early sample.", "screen": "N = 24 badges · early sample" },
         { "at": 31.8, "text": "Process first. Then performance. Then behavior." }
       ]
     },
@@ -55,7 +55,7 @@ window.LESSON_VIDEO = {
         { "at": 35.4, "text": "Quick quiz. Sixty percent win rate. Is it profitable?", "screen": "Two water tanks with a duck each, a parrot: \"60%! Amazing!\"" },
         { "at": 39.6, "text": "Watch two tanks run ten trades each.", "screen": "Trade chips light up; water pours in or drains out" },
         { "at": 42.4, "text": "Tank one wins often, but small: half an R. Each loss costs a full R.", "screen": "Tank one: win rate 60%, +0.5R in, −1R out" },
-        { "at": 47.6, "text": "Tank two wins less, but each win pays two R.", "screen": "Tank two: win rate 40%, +2R in, −1R out" },
+        { "at": 47.9, "text": "Tank two wins less, but each win pays two R.", "screen": "Tank two: win rate 40%, +2R in, −1R out" },
         { "at": 51.6, "text": "Sixty percent drains. Forty percent fills.", "screen": "−0.1R per trade · +0.2R per trade · parrot: \"Wait... what?\"" },
         { "at": 54.4, "text": "That’s expectancy: what the average trade produces in R, before trading costs.", "screen": "before trading costs" },
         { "at": 59.2, "text": "Win rate alone can’t tell you." }

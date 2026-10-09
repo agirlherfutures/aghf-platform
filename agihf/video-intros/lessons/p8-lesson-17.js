@@ -34,11 +34,11 @@ window.LESSON_VIDEO = {
       "lines": [
         { "at": 8.4, "text": "Picture a pottery studio where every pot gets two tags.", "screen": "A kiln, a potter, an owl grader with a monocle, a shop counter" },
         { "at": 12.4, "text": "The grade tag: this vase is a valid A setup.", "screen": "Purple tag: A" },
-        { "at": 15.6, "text": "Today it didn’t sell. The outcome tag says LOSS.", "screen": "A customer passes: \"Not today\" · tag: LOSS" },
-        { "at": 19, "text": "Downgrade it? No. It stays A plus LOSS.", "screen": "A mouse sneaks in a C tag; the owl: \"No downgrades!\" · A + LOSS" },
+        { "at": 16, "text": "Today it didn’t sell. The outcome tag says LOSS.", "screen": "A customer passes: \"Not today\" · tag: LOSS" },
+        { "at": 19.3, "text": "Downgrade it? No. It stays A plus LOSS.", "screen": "A mouse sneaks in a C tag; the owl: \"No downgrades!\" · A + LOSS" },
         { "at": 22.2, "text": "Now a lumpy bowl: a C setup, with a rule violation.", "screen": "Tag: C · violation sticker on the crack" },
-        { "at": 25.8, "text": "It sells. Plus two R, a win.", "screen": "\"Sold! +2R\" · tag: WIN" },
-        { "at": 28, "text": "Upgrade it? Nope. C, violation, win.", "screen": "The mouse tries a B tag; the owl: \"No upgrades!\" · C · violation · WIN" },
+        { "at": 26.4, "text": "It sells. Plus two R, a win.", "screen": "\"Sold! +2R\" · tag: WIN" },
+        { "at": 28.8, "text": "Upgrade it? Nope. C, violation, win.", "screen": "The mouse tries a B tag; the owl: \"No upgrades!\" · C · violation · WIN" },
         { "at": 31.4, "text": "Three facts, stored separately, every time." }
       ]
     },

@@ -53,7 +53,7 @@ window.LESSON_VIDEO = {
       "lines": [
         { "at": 35.4, "text": "Here’s the best part. Finish a rep in replay…", "screen": "AGHF REPLAY monitor: REP SAVED; a journal page; a sleepy typewriter; a pigeon" },
         { "at": 38.6, "text": "and it lands in your journal by itself.", "screen": "Paper planes fly from the monitor into the journal fields" },
-        { "at": 41.8, "text": "Instrument, direction, entry, stop, target, screenshots: already filled in.", "screen": "Fields fill: NQ, Long, 1M retest, set, set, 3 attached" },
+        { "at": 41.8, "text": "Instrument, direction, entry, stop, target, screenshots: already filled in.", "screen": "Fields fill: MNQ, Long, 1M retest, set, set, 3 attached" },
         { "at": 45.4, "text": "You review. You don’t retype.", "screen": "Trader with a mug: \"Review. Don’t retype.\" · REVIEWED" },
         { "at": 47.6, "text": "Never type the same trade twice.", "screen": "The typewriter snores" },
         { "at": 50.2, "text": "Academy cases, backtests, replay, paper, live, manual: every source in one journal.", "screen": "Six source tags launch planes into the journal · every source, one journal" },

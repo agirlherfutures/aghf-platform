@@ -10,10 +10,10 @@
 | 0:04 |  | Grade the setup. Record the outcome. Separately. |
 | 0:08 | A kiln, a potter, an owl grader with a monocle, a shop counter | Picture a pottery studio where every pot gets two tags. |
 | 0:12 | Purple tag: A | The grade tag: this vase is a valid A setup. |
-| 0:15 | A customer passes: "Not today" · tag: LOSS | Today it didn't sell. The outcome tag says LOSS. |
+| 0:16 | A customer passes: "Not today" · tag: LOSS | Today it didn't sell. The outcome tag says LOSS. |
 | 0:19 | A mouse sneaks in a C tag; the owl: "No downgrades!" · A + LOSS | Downgrade it? No. It stays A plus LOSS. |
 | 0:22 | Tag: C · violation sticker on the crack | Now a lumpy bowl: a C setup, with a rule violation. |
-| 0:25 | "Sold! +2R" · tag: WIN | It sells. Plus two R, a win. |
+| 0:26 | "Sold! +2R" · tag: WIN | It sells. Plus two R, a win. |
 | 0:28 | The mouse tries a B tag; the owl: "No upgrades!" · C · violation · WIN | Upgrade it? Nope. C, violation, win. |
 | 0:31 |  | Three facts, stored separately, every time. |
 | 0:35 | Night hill, telescope, a parrot on a post; two teal stars in the eyepiece; A SETUPS 2/2 | Now, sample size. An astronomer logs two A setups. Both win. |

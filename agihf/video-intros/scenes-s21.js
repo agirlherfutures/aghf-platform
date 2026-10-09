@@ -506,7 +506,7 @@
       });
       out += pill(694 + 104 / 2 + 52, 450, 'taped shut', C.pink, between(t, T.room + 1.2, T.snip), 20);
       // Desk, editor, a spinning reel on the desk.
-      const ed = { x: 500, y: 1000, scale: 0.86, look: A.LOOKS.e, seed: 4, at: T.room + 0.5, hat: 'headset', talk: ctx.talking && t > T.scold && t < T.scold + 3 };
+      const ed = { x: 500, y: 935, scale: 0.9, look: A.LOOKS.e, seed: 4, at: T.room + 0.5, hat: 'headset', talk: ctx.talking && t > T.scold && t < T.scold + 3 };
       ed.frontArm = t > T.scold && t < T.scold + 2.4 ? { a1: -40 + Math.sin(t * 8) * 10, a2: -60 } : t > T.snip - 0.4 && t < T.snip + 0.8 ? aim(ed, 790, 610) : { a1: 40 + Math.sin(t * 3) * 10, a2: 10 };
       out += who(t, ed);
       out += fade(shk, `<rect x="300" y="820" width="580" height="22" rx="8" fill="#B8743C"/><rect x="346" y="842" width="488" height="96" fill="#C98A4E"/><rect x="330" y="842" width="16" height="158" fill="#9B6A45"/><rect x="834" y="842" width="16" height="158" fill="#9B6A45"/>`);
@@ -779,7 +779,7 @@
       out += bst(t, 'snail', { x: 1700, y: 900, scale: 0.9, seed: 2, at: T.snail - 0.6, talk: ctx.talking && t > T.snail && t < T.calm, flip: true });
       out += bub(1600, 640, 'Change everything!', between(t, T.snail, T.calm), { size: 28, tail: 'right' });
       out += bub(600, 480, 'Based on what?', between(t, T.calm, T.row - 0.2), { size: 28 });
-      const bx = 1100 + Math.sin(t * 1.3) * 300, by = 600 + Math.sin(t * 2.6) * 60;
+      const bx = 1100 + Math.sin(t * 1.3) * 300, by = 520 + Math.sin(t * 2.6) * 50;
       if (t < T.cloud || t > T.flat + 3) out += beast(t, 'bee', { x: bx, y: by, scale: 1.1, seed: 1, flip: Math.cos(t * 1.3) < 0 });
       return out;
     },
@@ -830,7 +830,7 @@
       if (t > T.cover) out += `<path d="M${BX - 90},${f1(782 - (1 - cov) * 300)} L${BX - 90},${f1(700 - (1 - cov) * 300)} Q${BX},${f1(630 - (1 - cov) * 300)} ${BX + 90},${f1(700 - (1 - cov) * 300)} L${BX + 90},${f1(782 - (1 - cov) * 300)} Z" fill="#E8F8F6" opacity=".55" stroke="#9FC2D0" stroke-width="5"/>`;
       out += pill(BX, 590, 'not on one valid loss', DK.teal, pop(t, T.cover + 0.6, 0.5), 22);
       // Raccoon dashes in from the right; sulks after the cover.
-      const rx = t < T.raccoon ? 2060 : lerp(2060, BX + 110, ease(seg(t, T.raccoon, T.raccoon + 0.9))) + ease(seg(t, T.cover + 1.2, T.cover + 2.2)) * 120;
+      const rx = t < T.raccoon ? 2060 : lerp(2060, BX + 180, ease(seg(t, T.raccoon, T.raccoon + 0.9))) + ease(seg(t, T.cover + 1.2, T.cover + 2.2)) * 120;
       out += beast(t, 'raccoon', { x: rx, y: 960, scale: 1.0, seed: 3, flip: true, hop: t > T.raccoon && t < T.raccoon + 0.9 ? 14 : 0, hopH: 14, mood: t > T.cover ? 'sad' : undefined, talk: ctx.talking && t > T.raccoon && t < T.cover });
       out += bub(1700, 560, 'One loss! Rewrite it!', between(t, T.raccoon + 0.8, T.cover), { size: 26, tail: 'right' });
       // Scientist.
@@ -954,14 +954,14 @@
         const vx = -(160 + (i * 53) % 900), vy = -(420 + (i * 37) % 260);
         let x = px - 190 + vx * p, y = 880 + vy * p + 1400 * p * p * 0.5;
         y = Math.min(y, 974 - (i % 4) * 3);
-        const swept = t > T.sweep && x < lerp(-100, 1700, seg(t, T.sweep, T.sweep + 3.2)) - 40;
+        const swept = t > T.sweep && x < lerp(-100, 1480, seg(t, T.sweep, T.sweep + 3.2)) - 40;
         if (swept) continue;
         out += `<rect x="${f1(x)}" y="${f1(y)}" width="12" height="7" fill="${cols[i % 5]}" transform="rotate(${f1((t * 300 + i * 40) % 360 * (y < 970 ? 1 : 0))} ${f1(x + 6)} ${f1(y + 3)})"/>`;
       }
       out += bstamp(1240, 520, 'NO PARTY', DK.pink, between(t, T.stop, T.sweep + 1), -12, 70, 22);
       // Mouse janitor with a broom.
       if (t > T.sweep) {
-        const mx = lerp(-100, 1700, seg(t, T.sweep, T.sweep + 3.2));
+        const mx = lerp(-100, 1480, seg(t, T.sweep, T.sweep + 3.2));
         out += critter(t, 'mouse', { x: mx, y: 980, scale: 1.0, seed: 2, hop: 10, hopH: 8 }) + `<g transform="translate(${f1(mx - 30)},940) rotate(${f1(-30 + Math.sin(t * 14) * 14)})"><rect x="-4" y="-70" width="8" height="80" fill="#9B6A45"/><path d="M-20,10 L20,10 L26,40 L-26,40 Z" fill="${C.gold}"/></g>`;
       }
       // The plaque above.

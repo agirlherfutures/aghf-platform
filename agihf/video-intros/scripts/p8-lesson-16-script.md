@@ -16,7 +16,7 @@
 | 0:28 | trade · pass · missed opportunity | And it's not just trades: passes and missed opportunities belong too. |
 | 0:35 | AGHF REPLAY monitor: REP SAVED; a journal page; a sleepy typewriter; a pigeon | Here's the best part. Finish a rep in replay… |
 | 0:38 | Paper planes fly from the monitor into the journal fields | and it lands in your journal by itself. |
-| 0:41 | Fields fill: NQ, Long, 1M retest, set, set, 3 attached | Instrument, direction, entry, stop, target, screenshots: already filled in. |
+| 0:41 | Fields fill: MNQ, Long, 1M retest, set, set, 3 attached | Instrument, direction, entry, stop, target, screenshots: already filled in. |
 | 0:45 | Trader with a mug: "Review. Don’t retype." · REVIEWED | You review. You don't retype. |
 | 0:47 | The typewriter snores | Never type the same trade twice. |
 | 0:50 | Six source tags launch planes into the journal · every source, one journal | Academy cases, backtests, replay, paper, live, manual: every source in one journal. |

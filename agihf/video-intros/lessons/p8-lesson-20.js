@@ -34,7 +34,7 @@ window.LESSON_VIDEO = {
       "lines": [
         { "at": 8.4, "text": "Your week review shows weeds in seven garden beds.", "screen": "A garden with seven beds, each tagged: chased, oversized, early entry, moved stop, hesitation, extra trade, fear exit" },
         { "at": 12.2, "text": "So you sprint between all of them, pulling one weed here, one weed there.", "screen": "The gardener dashes from bed to bed; weeds pop right back" },
-        { "at": 17, "text": "And nothing actually changes.", "screen": "\"Too many! 😵\"" },
+        { "at": 17.4, "text": "And nothing actually changes.", "screen": "\"Too many! 😵\"" },
         { "at": 20.4, "text": "Instead, pick one bed for this week.", "screen": "A THIS WEEK sign on the early entry bed; the other beds fade" },
         { "at": 23.2, "text": "Weed it properly, root by root.", "screen": "Weeds fly out one by one" },
         { "at": 27.4, "text": "And that one bed actually blooms.", "screen": "Flowers bloom; the squirrel cheers" },

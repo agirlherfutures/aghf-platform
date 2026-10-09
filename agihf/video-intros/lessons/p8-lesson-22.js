@@ -15,7 +15,7 @@ window.LESSON_VIDEO = {
       "nameTag": true,
       "phase": "Section 22: Practice Like a Pro",
       "title": "Strategy Problem or Trader Problem?",
-      "quote": "“Dayli ICC stopped working.” Did it? 😂",
+      "quote": "‘Dayli ICC stopped working.’ Did it? 😂",
       "lines": [
         { "at": 0.6, "text": "Welcome to Lesson Twenty-Two: Strategy Problem or Trader Problem?", "screen": "Aristella waves; title *Strategy Problem or Trader Problem?*" },
         { "at": 5.2, "text": "Dayli ICC stopped working. Did it?" }
@@ -58,7 +58,7 @@ window.LESSON_VIDEO = {
         { "at": 44, "text": "Into the baskets: rules followed, or rules broken.", "screen": "Shirts fly into RULES FOLLOWED and RULES BROKEN" },
         { "at": 48, "text": "Watch the pink shirts pile up on the stained side.", "screen": "Counts climb: 11 and 9" },
         { "at": 52.6, "text": "Nine of fourteen losses broke a rule.", "screen": "9 of 14 losses · early entry · chased" },
-        { "at": 55.6, "text": "And eleven clean reps? Too few to judge the strategy yet.", "screen": "N = 11 · too few to judge" },
+        { "at": 55.6, "text": "And eleven clean reps? Too few to judge yet.", "screen": "N = 11 · too few to judge" },
         { "at": 59.2, "text": "Look at execution first.", "screen": "points to: execution first" }
       ]
     },

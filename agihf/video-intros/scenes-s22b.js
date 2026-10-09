@@ -445,7 +445,7 @@
       const nightK = seg(t, T.montage, T.montageEnd);
       const nights = Math.floor(nightK * 7);
       const mp = t < T.montage ? 0.35 : t > T.montageEnd ? 0.5 : (nightK * 7) % 1;
-      const mx = lerp(120, 1800, mp), my = 560 - Math.sin(mp * Math.PI) * 140;
+      const mx = lerp(120, 1060, mp), my = 560 - Math.sin(mp * Math.PI) * 140;
       out += fade(bk, `<circle cx="${f1(mx)}" cy="${f1(my)}" r="54" fill="#FFF3D6"/><circle cx="${f1(mx + 18)}" cy="${f1(my - 14)}" r="10" fill="#F2E2BC"/>` + face(t, mx - 6, my + 6, 1.1, 8, { talk: ctx.talking && t > T.montage && t < T.montageEnd }));
       // Telescope on a tripod + astronomer.
       const tk = pop(t, T.set + 0.4, 0.7);
@@ -484,7 +484,7 @@
       out += scaleAt(1700, 640, sk, `<rect x="1580" y="470" width="240" height="190" rx="24" fill="#fff"/>${txt(1700, 530, 'A SETUPS', 26, C.muted)}${txt(1700, 600, `${wins}/${N}`, 64, C.dark, { f: 'Playfair Display' })}${txt(1700, 642, `N = ${N}`, 26, DK.purple)}`);
       // Calendar flipping pages during the montage.
       const ck2 = pop(t, T.montage - 0.4, 0.6);
-      out += scaleAt(1700, 820, ck2, `<rect x="1610" y="720" width="180" height="170" rx="16" fill="#fff"/><rect x="1610" y="720" width="180" height="46" rx="16" fill="${C.pink}"/><rect x="1610" y="750" width="180" height="16" fill="${C.pink}"/>${txt(1700, 752, 'NIGHT', 24, '#fff')}${txt(1700, 852, String(Math.min(30, 2 + Math.max(0, nights * 4 + (t > T.montageEnd ? 28 : 0)))), 66, C.dark, { f: 'Playfair Display' })}`);
+      out += scaleAt(1700, 820, ck2, `<rect x="1610" y="720" width="180" height="170" rx="16" fill="#fff"/><rect x="1610" y="720" width="180" height="46" rx="16" fill="${C.pink}"/><rect x="1610" y="750" width="180" height="16" fill="${C.pink}"/>${txt(1700, 752, 'NIGHT', 24, '#fff')}${txt(1700, 852, String(N), 66, C.dark, { f: 'Playfair Display' })}`);
       // Stamps.
       out += pill(1280, 935, '2/2 · EARLY SAMPLE', DK.peach, between(t, T.stamp, T.montage - 0.2), 30);
       out += pill(1280, 935, `N = ${N} · bigger sample`, DK.teal, pop(t, T.montageEnd + 0.4), 30);

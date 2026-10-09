@@ -1024,7 +1024,7 @@
       // Clip + auto label.
       const ck = pop(t, T.strip, 0.5);
       out += scaleAt(1350, 440, ck, `<rect x="1320" y="410" width="60" height="44" rx="8" fill="${C.gold}"/><rect x="1336" y="400" width="28" height="14" rx="4" fill="#C98A1F"/>`);
-      out += pill(1250, 836, 'REP 12 · STUDY v1 · NQ · 1M · auto-labeled', C.purple, pop(t, T.label, 0.5), 24);
+      out += pill(1250, 836, 'REP 12 · STUDY v1 · MNQ · 1M · auto-labeled', C.purple, pop(t, T.label, 0.5), 24);
       // Dog brings an uploaded shot and clips it to the rep.
       const dk = t > T.dog;
       if (dk) {
@@ -1202,7 +1202,7 @@
       out += scaleAt(370, 800, mk, m);
       // Journal page with fields.
       const jk = pop(t, T.monitor + 0.5, 0.7);
-      const F = [['Instrument', 'NQ'], ['Direction', 'Long'], ['Entry', '1M retest'], ['Stop', 'set'], ['Target', 'set'], ['Screenshots', '3 attached']];
+      const F = [['Instrument', 'MNQ'], ['Direction', 'Long'], ['Entry', '1M retest'], ['Stop', 'set'], ['Target', 'set'], ['Screenshots', '3 attached']];
       let j = `<rect x="1180" y="420" width="640" height="530" rx="26" fill="#fff" stroke="${C.purpleL}" stroke-width="5"/><rect x="1180" y="420" width="640" height="70" rx="26" fill="${C.purple}"/>${txt(1500, 468, 'JOURNAL ENTRY · REP 12', 28, '#fff')}`;
       F.forEach(([k, v], i) => {
         const y = 540 + i * 66, land = T.planes[i] + 1.1;

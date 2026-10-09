@@ -36,8 +36,8 @@ window.LESSON_VIDEO = {
         { "at": 8.4, "text": "Meet the warden. Her ticket book never says bad driver.", "screen": "A street of shops, three parking bays with lights, a warden with a ticket book, a pigeon on a lamppost" },
         { "at": 12.2, "text": "It names the exact thing: early entry.", "screen": "The pink car rolls in before green: \"Too early!\" · VIOLATION: EARLY ENTRY" },
         { "at": 15.4, "text": "This car feels FOMO, like a big storm cloud.", "screen": "The teal car under a FOMO cloud" },
-        { "at": 18.2, "text": "But it waits for green and parks by the rules.", "screen": "Light turns green; the car parks" },
-        { "at": 21, "text": "Trigger noted. No ticket.", "screen": "TRIGGER: FOMO note · no violation ✓" },
+        { "at": 18.8, "text": "But it waits for green, and parks.", "screen": "Light turns green; the car parks" },
+        { "at": 21.4, "text": "Trigger noted. No ticket.", "screen": "TRIGGER: FOMO note · no violation ✓" },
         { "at": 23, "text": "This one feels FOMO too, and chases after the window closed.", "screen": "The purple car speeds into a red bay: \"Window closed!\"" },
         { "at": 27.2, "text": "Two slips: trigger, FOMO. Violation, chased.", "screen": "TRIGGER: FOMO and VIOLATION: CHASED" },
         { "at": 30.6, "text": "What you felt, and what you did, logged separately.", "screen": "felt = trigger · did = violation" }

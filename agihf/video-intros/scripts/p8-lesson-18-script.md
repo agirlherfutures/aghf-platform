@@ -11,7 +11,7 @@
 | 0:08 | A street of shops, three parking bays with lights, a warden with a ticket book, a pigeon on a lamppost | Meet the warden. Her ticket book never says bad driver. |
 | 0:12 | The pink car rolls in before green: "Too early!" · VIOLATION: EARLY ENTRY | It names the exact thing: early entry. |
 | 0:15 | The teal car under a FOMO cloud | This car feels FOMO, like a big storm cloud. |
-| 0:18 | Light turns green; the car parks | But it waits for green and parks by the rules. |
+| 0:18 | Light turns green; the car parks | But it waits for green, and parks. |
 | 0:21 | TRIGGER: FOMO note · no violation ✓ | Trigger noted. No ticket. |
 | 0:23 | The purple car speeds into a red bay: "Window closed!" | This one feels FOMO too, and chases after the window closed. |
 | 0:27 | TRIGGER: FOMO and VIOLATION: CHASED | Two slips: trigger, FOMO. Violation, chased. |
