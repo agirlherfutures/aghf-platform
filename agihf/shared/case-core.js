@@ -35,11 +35,13 @@ export const ENTRY_SOURCES = ['ACADEMY_CASE', 'BACKTEST', 'REPLAY', 'PAPER', 'LI
 export const MARKS = {
   EXTERNAL_HIGH: { label: 'External high', short: 'EXT H', kind: 'level', tf: '4H' },
   EXTERNAL_LOW: { label: 'External low', short: 'EXT L', kind: 'level', tf: '4H' },
-  SWING_HIGH: { label: '1H swing high', short: '1H SH', kind: 'level', tf: '1H' },
-  SWING_LOW: { label: '1H swing low', short: '1H SL', kind: 'level', tf: '1H' },
+  // Swing highs/lows go on the 4H (Dayli ICC) or the 1H (Supply & Demand): either one.
+  SWING_HIGH: { label: 'Swing high', short: 'SH', kind: 'level', tf: '1H', tfs: ['4H', '1H'] },
+  SWING_LOW: { label: 'Swing low', short: 'SL', kind: 'level', tf: '1H', tfs: ['4H', '1H'] },
   MSS: { label: 'MSS', short: 'MSS', kind: 'level', tf: '1H' },
   OBJECTIVE: { label: 'Objective', short: 'OBJ', kind: 'level', tf: '1H' },
-  PIL: { label: 'PIL', short: 'PIL', kind: 'level', tf: '1M' },
+  // The PIL is marked on the 4H, the 1H, or both, and carries down to every lower timeframe.
+  PIL: { label: 'PIL', short: 'PIL', kind: 'level', tf: '1M', tfs: ['4H', '1H'], carries: true },
   INDICATION: { label: 'Indication', short: 'I', kind: 'candle', tf: '1M' },
   CORRECTION: { label: 'Correction', short: 'C', kind: 'candle', tf: '1M' },
   CONTINUATION: { label: 'Continuation', short: 'C', kind: 'candle', tf: '1M' },
@@ -117,12 +119,13 @@ export function compareMarks(c, student, expert, types) {
     const def = MARKS[type];
     const mine = student.filter((m) => m.type === type);
     const theirs = expert.filter((m) => m.type === type);
-    const tol = tolerance(c, def.tf);
+    // A mark is judged at the precision of the chart it was drawn on.
+    const tolOf = (m) => Math.max(tolerance(c, def.tf), tolerance(c, m.tf || def.tf) || 0);
     if (!theirs.length && !mine.length) return;
     if (!theirs.length) { mine.forEach((m) => out.push({ type, status: 'EXTRA', mine: m })); return; }
     theirs.forEach((e) => {
       if (!mine.length) { out.push({ type, status: 'MISSED', expert: e }); return; }
-      const near = (m, ref) => (def.kind === 'level' ? Math.abs(m.price - ref.price) <= tol : Math.abs(m.index - ref.index) <= 1);
+      const near = (m, ref) => (def.kind === 'level' ? Math.abs(m.price - ref.price) <= tolOf(m) : Math.abs(m.index - ref.index) <= 1);
       const hit = mine.find((m) => near(m, e));
       if (hit) { out.push({ type, status: 'MATCHED', mine: hit, expert: e }); return; }
       const alt = (e.alt || []).map((a) => ({ ...e, ...a })).find((a) => mine.some((m) => near(m, a)));

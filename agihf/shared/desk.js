@@ -103,7 +103,13 @@ export async function renderReplay(el, opts = {}) {
   const chartEl = $('.dk-rp-chart'), side = $('.dk-rp-side'), flashEl = $('.p8-flash'), scrub = $('.dk-scrub input');
   const flash = (t) => { flashEl.textContent = t; flashEl.hidden = false; clearTimeout(st.ft); st.ft = setTimeout(() => { flashEl.hidden = true; }, 2200); };
   el.querySelectorAll('.p8-tf').forEach((b) => b.addEventListener('click', () => { st.tf = b.dataset.tf; draw(); }));
-  el.querySelectorAll('.p8-tool').forEach((b) => b.addEventListener('click', () => { st.tool = st.tool === b.dataset.t ? null : b.dataset.t; if (st.tool) { st.tf = '1M'; flash(MARKS[st.tool].kind === 'level' ? 'Click the PIL price.' : `Click the ${MARKS[st.tool].label.toLowerCase()} candle.`); } draw(); }));
+  // The PIL goes on the 4H or the 1H (either, or both); the ICC candles go on the 1M.
+  el.querySelectorAll('.p8-tool').forEach((b) => b.addEventListener('click', () => {
+    st.tool = st.tool === b.dataset.t ? null : b.dataset.t;
+    if (st.tool === 'PIL') { if (!['4H', '1H'].includes(st.tf)) st.tf = '1H'; flash('Click the PIL price on the 4H or 1H.'); }
+    else if (st.tool) { st.tf = '1M'; flash(`Click the ${MARKS[st.tool].label.toLowerCase()} candle.`); }
+    draw();
+  }));
   scrub.addEventListener('input', () => {
     const v = +scrub.value;
     if (v > max()) { scrub.value = max(); flash(opts.backtest !== false ? 'FUTURE DATA IS LOCKED DURING A BACKTEST.' : 'FUTURE DATA IS LOCKED.'); opts.onScrubBlocked?.(); return; }
@@ -118,8 +124,12 @@ export async function renderReplay(el, opts = {}) {
     const shown = st.tf === '1M' ? bars : bars.slice(-70);
     const W = Math.max(320, chartEl.clientWidth || 900), H = Math.round(Math.min(520, Math.max(280, W * (W < 640 ? 0.75 : 0.5))));
     const levels = [];
-    if (st.pil != null && st.tf !== '4H') levels.push({ price: st.pil, col: '#F4829A', label: 'MY PIL' });
-    if (st.pos && st.tf === '1M') levels.push({ price: st.pos.entry, col: '#E9E4F6', label: 'ENTRY', from: st.pos.at, fit: true }, { price: st.pos.stop, col: '#E8657F', label: 'STOP', from: st.pos.at, fit: true }, { price: st.pos.target, col: '#7ECEC4', label: 'TARGET', from: st.pos.at, fit: true });
+    // Your PIL shows on the timeframe you marked it on and carries down to every lower one.
+    const TFS = ['4H', '1H', '15M', '1M'];
+    // On a lower timeframe the chart stretches to keep a nearby PIL in view (one that is far away stays off-screen).
+    const lastC = bars.length ? bars[bars.length - 1].c : null;
+    if (st.pil != null && TFS.indexOf(st.tf) >= TFS.indexOf(st.pilTf || '1H')) levels.push({ price: st.pil, col: '#F4829A', label: `MY ${st.pilTf || '1H'} PIL`, fit: lastC != null && Math.abs(st.pil - lastC) <= 80 });
+    if (st.pos && st.tf === '1M') levels.push({ price: st.pos.entry, col: '#2C1810', label: 'ENTRY', from: st.pos.at, fit: true }, { price: st.pos.stop, col: '#E8657F', label: 'STOP', from: st.pos.at, fit: true }, { price: st.pos.target, col: '#7ECEC4', label: 'TARGET', from: st.pos.at, fit: true });
     if (opts.reviewMode && opts.showExpert) (s.expert?.marks || []).filter((m) => m.type === 'PIL').forEach((m) => levels.push({ price: m.price, col: '#E9B949', label: 'DAYLI PIL', dash: '9 6' }));
     const cm = st.tf === '1M' ? st.cm.map((m) => ({ ...m, label: MARKS[m.type].short })) : [];
     const ch = chartSvg(shown, { W, H, slots: st.tf === '1M' ? s.m1.length + 4 : 74, levels, cmarks: cm, curtainAt: st.tf === '1M' && !opts.reviewMode ? upto : null, curtainLabel: 'FUTURE LOCKED', vline: st.pos && st.tf === '1M' ? st.pos.at : null });
@@ -131,10 +141,12 @@ export async function renderReplay(el, opts = {}) {
     drawCtrl(); drawSide();
   }
   function onClick(ev) {
-    if (!st.tool || st.tf !== '1M') return;
+    if (!st.tool) return;
+    if (st.tool === 'PIL' && !['4H', '1H'].includes(st.tf)) return flash('Mark the PIL on the 4H or 1H.');
+    if (st.tool !== 'PIL' && st.tf !== '1M') return flash('Mark the ICC candles on the 1M.');
     const svg = chartEl.querySelector('svg'); const pt = svg.createSVGPoint(); pt.x = ev.clientX; pt.y = ev.clientY;
     const loc = pt.matrixTransform(svg.getScreenCTM().inverse());
-    if (st.tool === 'PIL') st.pil = q4(st.geo.yinv(loc.y));
+    if (st.tool === 'PIL') { st.pil = q4(st.geo.yinv(loc.y)); st.pilTf = st.tf; }
     else { const i = Math.floor(loc.x / st.geo.sw); if (i >= max()) return flash('Mark a candle that has closed.'); st.cm = st.cm.filter((m) => m.type !== st.tool); st.cm.push({ type: st.tool, index: i }); }
     st.tool = null; draw();
   }
@@ -195,7 +207,7 @@ export async function renderReplay(el, opts = {}) {
     }
     const last = s.m1[st.cursor - 1].c;
     side.innerHTML = `<div class="p8-kicker">${opts.drillLabel ? esc(opts.drillLabel) : 'YOUR DECISION'}</div><h3 class="p8-h">Read · wait · decide</h3>
-      <p class="p8-dim">Read the 4H and 1H, mark your PIL on the 1M, then replay candle by candle. Decide only with what has printed.</p>
+      <p class="p8-dim">Read the 4H and 1H, mark your PIL on the 4H or 1H, then replay the 1M candle by candle. Decide only with what has printed.</p>
       ${opts.study ? `<div class="dk-rules"><b>Study rules (locked)</b><div>${esc(opts.study.entryRule)} · ${esc(opts.study.stopRule)} · ${esc(opts.study.targetRule)}</div></div>` : ''}
       <div class="dk-decide">${btn('TAKE', 'is-primary dk-take')}${btn('WAIT', 'dk-wait')}${btn('PASS', 'dk-pass')}</div>
       <div class="dk-takeform" hidden><div class="p8-form">
@@ -238,7 +250,7 @@ export async function renderReplay(el, opts = {}) {
       if (cap && st.pos.risk * 2 * st.pos.contracts > cap) viol.push({ tag: 'OVERSIZED', category: 'RISK', auto: true, why: 'Risk above the saved profile.' });
       st.mgmtEvents.forEach((e) => viol.push({ tag: e.type, category: 'MANAGEMENT', auto: true, why: 'Outside the study’s management model.' }));
     }
-    const pilOk = st.pil != null && s.levels?.pil != null ? Math.abs(st.pil - s.levels.pil) <= 0.8 * u : null;
+    const pilOk = st.pil != null && s.levels?.pil != null ? Math.abs(st.pil - s.levels.pil) <= ({ '4H': 6, '1H': 2.5 }[st.pilTf] || 0.8) * u : null;
     if (pilOk === false && st.decision === 'TAKE' && !viol.some((v) => v.tag === 'WRONG PIL')) viol.push({ tag: 'WRONG PIL', category: 'ENTRY', auto: true, why: 'Your PIL wasn’t the level from the 1H map.' });
     const validPass = st.decision === 'PASS' && ['NONE', 'MESSY', 'INCOMPLETE'].includes(s.setupState);
     const draft = {
