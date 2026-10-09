@@ -314,7 +314,7 @@ export function renderV2Screen(el, slide, satisfy, helpers) {
       ${v.schedule.note ? `<div class="v2-sched-note">${v.schedule.note}</div>` : ''}
     </div>`;
 
-  const { act, card } = shell(el, slide, right, slide.check ? '<div class="v2-check-slot"></div>' : '', { cls: right ? '' : 'v2-solo' });
+  const { act, card } = shell(el, slide, right, slide.check ? '<div class="v2-check-slot"></div>' : '', { cls: !right ? 'v2-solo' : v.chart ? 'v2-wide' : '' });
   const gates = [];
   const ready = () => { if (gates.every((g) => g.done)) nextBtn(act, satisfy, slide.cta || 'Next →', !!slide.ctaPink); };
 
