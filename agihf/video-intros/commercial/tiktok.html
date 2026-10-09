@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AGHF TikTok Commercial</title>
+<link href="../fonts/fonts.css" rel="stylesheet">
+<!--
+  48-second vertical TikTok commercial for A Girl & Her Futures™ (1080x1920, 30 fps, silent).
+
+  Same deterministic approach as ../player.html: window.render(t) draws the exact
+  frame for time t (a pure function of t), so render-tiktok.cjs can step through
+  it frame by frame. Open in a browser to preview in real time (space = pause).
+    ?guides=1  overlays the TikTok safe zone (top 150, bottom 400, right 140)
+    ?t=12.5    opens paused on that frame
+  Art comes from ../illustrations.js (window.ART) and scenes-tiktok.js (window.TT).
+-->
+<style>
+:root{
+  --pink:#F4829A;--teal:#7ECEC4;--peach:#F5A857;--purple:#7F77DD;
+  --cream:#FFFBF9;--dark:#2C1810;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--pink);}
+body{font-family:'DM Sans',sans-serif;font-variant-numeric:lining-nums;}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--pink);}
+#art{position:absolute;left:0;top:0;width:1080px;height:1920px;}
+#logo{position:absolute;left:0;top:0;width:400px;height:400px;opacity:0;transform-origin:200px 200px;will-change:transform;}
+#cap{position:absolute;left:50px;width:880px;display:flex;justify-content:center;align-items:flex-end;z-index:10;pointer-events:none;}
+#capBox{background:rgba(44,24,16,.9);border-radius:30px;padding:18px 34px 22px;text-align:center;
+  font-weight:700;font-size:50px;line-height:1.28;color:var(--cream);box-shadow:0 14px 40px rgba(44,24,16,.25);
+  transform-origin:50% 100%;}
+#capBox .w{display:inline-block;transform-origin:50% 80%;}
+#capBox .hl{color:#FAD09A;}
+#guides{position:absolute;inset:0;z-index:20;pointer-events:none;display:none;}
+body.guides #guides{display:block;}
+#guides div{position:absolute;background:rgba(0,120,255,.18);border:2px dashed rgba(0,90,220,.7);}
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="art" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+  <img id="logo" src="../../shared/img/aghf-logo.png" alt="">
+  <div id="cap"><div id="capBox"></div></div>
+  <div id="guides">
+    <div style="left:0;top:0;width:1080px;height:150px"></div>
+    <div style="left:0;top:1520px;width:1080px;height:400px"></div>
+    <div style="left:940px;top:150px;width:140px;height:1370px"></div>
+  </div>
+</div>
+<script src="../illustrations.js"></script>
+<script src="scenes-tiktok.js"></script>
+<script>
+const params = new URLSearchParams(location.search);
+if (params.get('guides') === '1') document.body.classList.add('guides');
+const TT = window.TT;
+const clamp = x => Math.max(0, Math.min(1, x));
+const ease = x => 1 - Math.pow(1 - clamp(x), 3);
+const back = x => { x = clamp(x); const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+
+const art = document.getElementById('art');
+const logo = document.getElementById('logo');
+const cap = document.getElementById('cap');
+const capBox = document.getElementById('capBox');
+
+// Captions: each chunk pops in word by word at its start time and holds until the next chunk.
+const CAPS = TT.CAPTIONS;
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+let builtIdx = -2;
+function buildCap(i) {
+  if (i === builtIdx) return;
+  builtIdx = i;
+  if (i < 0) { capBox.innerHTML = ''; return; }
+  const words = CAPS[i].text.split(' ');
+  capBox.innerHTML = words.map(w => {
+    const hl = w.startsWith('*');
+    return `<span class="w${hl ? ' hl' : ''}">${esc(hl ? w.slice(1) : w)}</span>`;
+  }).join(' ');
+}
+
+window.render = function (t) {
+  art.innerHTML = TT.draw(t);
+
+  // Logo layer (an <img>, so it never re-decodes between frames).
+  const L = TT.logo(t);
+  if (L && L.op > 0) {
+    logo.style.opacity = L.op;
+    logo.style.transform = `translate(${L.x - 200}px, ${L.y - 200}px) scale(${L.size / 400}) rotate(${L.rot || 0}deg)`;
+  } else logo.style.opacity = 0;
+
+  // Captions.
+  let idx = -1;
+  CAPS.forEach((c, i) => { if (t >= c.at) idx = i; });
+  const c = CAPS[idx];
+  if (c && t > c.end) idx = -1;
+  buildCap(idx);
+  if (idx >= 0) {
+    const n = CAPS[idx];
+    cap.style.bottom = (1920 - TT.capBottom(t)) + 'px';
+    const k = back((t - n.at) / 0.35), out = 1 - ease((t - (n.end - 0.15)) / 0.15);
+    capBox.style.opacity = clamp((t - n.at) / 0.15) * out;
+    capBox.style.transform = `scale(${0.85 + 0.15 * k})`;
+    const words = capBox.querySelectorAll('.w');
+    const step = Math.min(0.26, (n.end - n.at) * 0.6 / Math.max(1, words.length));
+    words.forEach((w, i) => {
+      const p = (t - n.at - i * step) / 0.28;
+      w.style.opacity = clamp(p * 2.5);
+      w.style.transform = `translateY(${(1 - ease(p)) * 18}px) scale(${0.7 + 0.3 * back(p)})`;
+    });
+  } else capBox.style.opacity = 0;
+};
+
+window.VIDEO_DURATION = TT.DURATION;
+
+if (params.get('render') !== '1') {
+  const start = params.get('t') != null ? +params.get('t') : null;
+  if (start != null) window.render(start);
+  else {
+    let t0 = performance.now(), paused = false, held = 0;
+    document.addEventListener('keydown', e => {
+      if (e.code !== 'Space') return;
+      paused = !paused;
+      if (paused) held = (performance.now() - t0) / 1000; else t0 = performance.now() - held * 1000;
+    });
+    const tick = () => {
+      if (!paused) window.render(((performance.now() - t0) / 1000) % TT.DURATION);
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+} else window.render(0);
+</script>
+</body>
+</html>
