@@ -420,6 +420,8 @@
     bliss: { eye: 'happy', brow: -4, mouth: 'grin' },
     kiss: { eye: 'closed', brow: -2, mouth: 'pucker' },
     talk: { eye: 1, brow: -2, mouth: 'talk' },
+    gasp: { eye: 1.14, brow: -11, mouth: 'o' },
+    wow: { eye: 1.1, brow: -9, mouth: 'grin' },
   };
 
   function eye(ex, sx, L, o, open, mode, lx, ly, kid) {
@@ -569,6 +571,7 @@
   /* ---------------- hands ---------------- */
   function hand(x, y, ang, L, kind = 'rest', flipY = 1, sc = 1) {
     const sk = L.skin, sh = L.shade;
+    if (kind === 'none') return '';
     if (kind === 'open') {
       return `<g transform="translate(${f1(x)},${f1(y)}) scale(${sc})">
         ${[-16, -5, 6, 16].map((fx, i) => `<rect x="${fx - 5.5}" y="${-54 + Math.abs(i - 1.5) * 6}" width="11" height="${40 - Math.abs(i - 1.5) * 4}" rx="5.5" fill="${sk}" transform="rotate(${(i - 1.5) * 7} ${fx} -14)"/>`).join('')}
@@ -719,9 +722,10 @@
   }
 
   /* ---------------- arms ---------------- */
-  function armSVG(L, B, sd, target, bend, kind, sc, W, shortSleeve) {
+  function armSVG(L, B, sd, target, bend, kind, sc, W, shortSleeve, elbow) {
     const sx = sd * (W - 20), sy = B.shY - 4;
-    const a = reach(sx, sy, target[0], target[1], B.l1, B.l2, bend);
+    // explicit elbow (foreshortened poses, phone grips) or two-bone IK
+    const a = elbow ? { ex: elbow[0], ey: elbow[1], hx: target[0], hy: target[1] } : reach(sx, sy, target[0], target[1], B.l1, B.l2, bend);
     const sw = B.armW + (L.top === 'sweater' ? 12 : 0);
     let s = '';
     const ang = deg(Math.atan2(a.hy - a.ey, a.hx - a.ex));
@@ -816,8 +820,8 @@
     if (P2) out += `<g transform="${headT}">${headSVG(t, L, o)}</g>`;
     if (P3) {
       if (o.mid) out += o.mid;
-      if (o.armL !== false) out += armSVG(L, B, -1, hL, o.bL ?? 1, o.kL || 'rest', o.hs || 1, W, shortS);
-      if (o.armR !== false) out += armSVG(L, B, 1, hR, o.bR ?? -1, o.kR || 'rest', o.hs || 1, W, shortS);
+      if (o.armL !== false) out += armSVG(L, B, -1, hL, o.bL ?? 1, o.kL || 'rest', o.hs || 1, W, shortS, o.eL);
+      if (o.armR !== false) out += armSVG(L, B, 1, hR, o.bR ?? -1, o.kR || 'rest', o.hs || 1, W, shortS, o.eR);
       if (o.front) out += o.front;
     }
     out += '</g></g></g>';
@@ -1079,192 +1083,578 @@
     return s;
   }
 
-  /* ---------------- phones ---------------- */
-  // Small handheld phone (local coords of whatever group it sits in).
-  // state: 'off' | 'notif' | 'join' | 'done'; k: glow / progress 0..1
-  function handPhone(x, y, rot, sc, state, k, t) {
-    const w = 118, h = 236, id = uid('hp');
-    let scr = '';
-    if (state === 'off' || state === 'notif') {
-      scr = `<rect x="-${w / 2}" y="-${h / 2}" width="${w}" height="${h}" fill="#3A2532"/>
-        <rect x="-${w / 2}" y="-${h / 2}" width="${w}" height="${h}" fill="url(#gHome)" opacity="${f3(0.35 + 0.65 * k)}"/>
-        <circle cx="-30" cy="-70" r="40" fill="${P.cream}" opacity="${f3(0.25 * k)}"/>`;
-      if (k > 0) {
-        const by = -60 + (1 - ease(k)) * -40;
-        scr += `<g opacity="${f3(clamp(k * 2))}"><rect x="-50" y="${f1(by)}" width="100" height="44" rx="14" fill="#FFFFFF"/>
-          <circle cx="-30" cy="${f1(by + 22)}" r="13" fill="${P.pink}"/>${heart(-30, by + 24, 0.42, '#fff')}
-          <rect x="-12" y="${f1(by + 12)}" width="50" height="7" rx="3.5" fill="${P.dark}" opacity=".7"/><rect x="-12" y="${f1(by + 25)}" width="36" height="6" rx="3" fill="${P.muted}" opacity=".45"/></g>`;
-      }
-    } else if (state === 'join' || state === 'done') {
-      scr = `<rect x="-${w / 2}" y="-${h / 2}" width="${w}" height="${h}" fill="${P.cream}"/>${glowC(0, -90, 110, 'gPk', 0.8)}
-        <image href="${LOGO_SRC}" x="-22" y="-92" width="44" height="44"/>
-        <rect x="-36" y="-36" width="72" height="8" rx="4" fill="${P.dark}" opacity=".7"/><rect x="-26" y="-22" width="52" height="6" rx="3" fill="${P.muted}" opacity=".4"/>`;
-      const dk = state === 'done' ? k : 0;
-      scr += `<g opacity="${f3(1 - dk)}"><rect x="-42" y="12" width="84" height="30" rx="15" fill="${P.pink}"/><rect x="-24" y="24" width="48" height="6" rx="3" fill="#fff"/></g>`;
-      if (dk > 0) scr += `<g transform="translate(0,27) scale(${f3(back(dk))})"><circle r="22" fill="${P.teal}"/><path d="M-10,0 L-3,8 L11,-8" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
-    }
-    const gl = state === 'notif' ? k : state === 'done' ? k : 0;
-    return `<g transform="translate(${f1(x)},${f1(y)}) rotate(${f1(rot)}) scale(${f3(sc)})">
-      ${gl > 0 ? screenBlend(glowC(0, 0, 250, 'gPk', 0.8 * gl) + glowC(0, 0, 120, 'gWhite', 0.35 * gl)) : ''}
-      <rect x="${-w / 2 - 9}" y="${-h / 2 - 9}" width="${w + 18}" height="${h + 18}" rx="24" fill="#2A211E"/>
-      <clipPath id="${id}"><rect x="-${w / 2}" y="-${h / 2}" width="${w}" height="${h}" rx="16"/></clipPath>
-      <g clip-path="url(#${id})">${scr}<rect x="-${w / 2}" y="-${h / 2}" width="${w}" height="${h}" fill="url(#gShine)"/></g>
-      <rect x="-16" y="${-h / 2 + 6}" width="32" height="8" rx="4" fill="#2A211E"/>
-      ${state === 'notif' && k > 0.2 ? `<circle r="${f1(40 + ((t * 1.4) % 1) * 160)}" fill="none" stroke="${P.pinkL}" stroke-width="5" opacity="${f3((1 - ((t * 1.4) % 1)) * 0.8 * k)}"/>` : ''}
-    </g>`;
-  }
+  /* ================================================================== *
+   * EMOJI, BUBBLES, CAMERA HELPERS
+   * ================================================================== */
+  const EMO = /(\p{Extended_Pictographic}️?)/gu;
+  const emo = s => s.replace(EMO, '<tspan font-family="Noto Color Emoji">$1</tspan>');
+  // Where a scene point lands on screen under cam(cx, cy, z, inner, dx, dy).
+  const camPt = (cx, cy, z, dx, dy, p) => [cx + dx + (p[0] - cx) * z, cy + dy + (p[1] - cy) * z];
+  const camAt = (C, inner) => cam(C.cx, C.cy, C.z, inner, C.dx || 0, C.dy || 0);
+  const camP = (C, p) => camPt(C.cx, C.cy, C.z, C.dx || 0, C.dy || 0, p);
+  // A figure-local point to global.
+  const gl = (fx, fy, fs, p) => [fx + p[0] * fs, fy + p[1] * fs];
 
   /**
-   * One of the six, holding her phone. pose.mode:
-   *   'notify' (pose.lt): phone lights up pink, she glances down, then smiles up
-   *   'tap' (pose.k): taps "Join the waitlist" with her other hand
-   *   'wave': phone away, waving hello
-   * o: x, y, s, seed, phone [gx, gy] global, extra fig options (mid, front, hL...)
+   * Speech bubble that pops out of its tail point. (x, y) = bubble centre,
+   * o.tail = [x, y] tip of the tail (below the bubble). Drawn in screen space.
    */
-  function heroFig(t, key, o, pose) {
-    const L = CAST[key];
-    const fx = o.x, fy = o.y, fs = o.s;
-    const ph = o.phone || [610, 1130];
-    let mood = o.mood0 || 'soft', look = o.look0 || [0, 4], head = [0, 0], tilt = o.tilt0 || 0;
-    let hL = o.hL, kL = o.kL || 'rest', bL = o.bL, hR, kR = 'rest', bR = o.bR ?? 1;
-    let phoneSVG = '', front = o.front || '', mid = o.mid || '';
-    if (pose.mode === 'notify') {
-      const lt = pose.lt;
-      const nk = seg(lt, 0.3, 0.55);
-      if (lt > 0.42 && lt < 1.08) { look = [2, 10]; head = [0, 8]; tilt = (o.tilt0 || 0) - 3; mood = 'soft'; }
-      else if (lt >= 1.08) { mood = lt > 1.45 ? 'grin' : 'smile'; look = [0, 0]; tilt = (o.tilt0 || 0) + 5 * io(seg(lt, 1.08, 1.4)); }
-      const lift = 34 * io(seg(lt, 1.05, 1.5));
-      const lp = loc(fx, fy, fs, ph[0], ph[1] - lift);
-      phoneSVG = handPhone(lp[0], lp[1], -8 + 4 * io(seg(lt, 1.05, 1.5)), 1 / fs * (o.ps || 1), 'notif', nk, t);
-      hR = [lp[0] + 26, lp[1] + 72 / fs];
-    } else if (pose.mode === 'tap') {
-      const k = pose.k;
-      const lp = [40, 330];
-      const app = io(seg(k, 0.05, 0.42)), press = Math.sin(Math.PI * seg(k, 0.42, 0.56)), away = io(seg(k, 0.6, 0.95));
-      const done = seg(k, 0.5, 0.75);
-      phoneSVG = handPhone(lp[0], lp[1], -6, 1.25, done > 0 ? 'done' : 'join', done, t);
-      hR = [lp[0] + 30, lp[1] + 100]; bR = 1;
-      const tgt = [lp[0] - 56 + press * 8, lp[1] + 34];
-      hL = [lerp(-150, tgt[0], app * (1 - away)), lerp(470, tgt[1], app * (1 - away))]; kL = 'point'; bL = 1;
-      mood = done > 0.4 ? 'grin' : 'smile'; look = done > 0.6 ? [0, 0] : [3, 9]; head = done > 0.6 ? [0, 0] : [0, 6]; tilt = done > 0.6 ? 6 : -2;
-      if (done > 0.2 && done < 1) front += A.sparkle(lp[0], lp[1] - 40, 0, done * 0.9, P.pinkL);
-    } else if (pose.mode === 'wave') {
-      const sd = o.seed || 1;
-      hR = [235 + Math.sin(t * 8 + sd) * 22, -30 + Math.cos(t * 8 + sd) * 6]; kR = 'open'; bR = 1;
-      hL = o.hLwave || [-150, 470]; kL = 'rest';
-      mood = pose.mood || 'laugh'; look = [0, 0]; tilt = (o.tilt0 || 0) + Math.sin(t * 2 + sd) * 3;
-      mid = o.midWave || '';
-      front = o.frontWave || '';
-    }
-    return fig(t, L, Object.assign({}, o.fig || {}, {
-      x: fx, y: fy, s: fs, seed: o.seed || 1, cut: o.cut || 560, mood, look, head, tilt,
-      hL, kL, bL, hR, kR, bR, mid: mid + (pose.mode === 'wave' ? '' : phoneSVG), front,
-    }));
+  function say(t, at, x, y, lines, o = {}) {
+    const k = back(seg(t, at, at + 0.38));
+    const out = o.out != null ? 1 - io(seg(t, o.out, o.out + 0.22)) : 1;
+    if (k <= 0 || out <= 0) return '';
+    const size = o.size || 42, lh = size * 1.3;
+    const wmax = Math.max(...lines.map(l => measure(plain(l), size, DM, 500)));
+    const bw = wmax + 76, bh = lines.length * lh + 42;
+    const bx = x - bw / 2, by = y - bh / 2;
+    const [tx, ty] = o.tail || [x, by + bh + 50];
+    const baseX = bx + 60 + clamp((tx - bx - 60) / Math.max(1, bw - 120)) * (bw - 120);
+    const fill = o.fill || '#FFFFFF', col = o.col || P.dark;
+    let s = `<rect x="${f1(bx)}" y="${f1(by + 10)}" width="${f1(bw)}" height="${f1(bh)}" rx="${f1(Math.min(44, bh / 2))}" fill="${P.dark}" opacity=".16" filter="url(#fB8)"/>`;
+    s += `<path d="M${f1(baseX - 30)},${f1(by + bh - 6)} Q${f1(baseX - 6)},${f1(by + bh + 14)} ${f1(tx)},${f1(ty)} Q${f1(baseX + 4)},${f1(by + bh + 4)} ${f1(baseX + 26)},${f1(by + bh - 6)} Z" fill="${fill}"/>`;
+    s += `<rect x="${f1(bx)}" y="${f1(by)}" width="${f1(bw)}" height="${f1(bh)}" rx="${f1(Math.min(44, bh / 2))}" fill="${fill}"/>`;
+    if (o.ring) s += `<rect x="${f1(bx + 8)}" y="${f1(by + 8)}" width="${f1(bw - 16)}" height="${f1(bh - 16)}" rx="${f1(Math.min(36, bh / 2 - 8))}" fill="none" stroke="${o.ring}" stroke-width="3" stroke-dasharray="7 9"/>`;
+    lines.forEach((l, i) => { s += txt(x, by + 21 + lh * (i + 0.76), emo(l), size, col, { w: o.w || 500, f: o.f }); });
+    const wob = Math.sin(t * 3 + x) * 1.2;
+    return `<g opacity="${f3(clamp((t - at) / 0.1) * out)}" transform="translate(${f1(tx)},${f1(ty)}) rotate(${f1(wob)}) scale(${f3(k * out)}) translate(${f1(-tx)},${f1(-ty)})">${s}</g>`;
+  }
+
+  // Outgoing chat bubble being typed (pink, white text, caret), then sent up and away.
+  function typeBubble(t, x, y, text, k, sendK) {
+    if (k <= 0) return '';
+    const n = Math.round(text.length * clamp(k));
+    const chars = Array.from(text);
+    const shown = chars.slice(0, Math.round(chars.length * clamp(k))).join('');
+    void n;
+    const size = 44, w = Math.max(120, measure(shown, size, DM, 500) + 80 + (k < 1 ? 26 : 0)), h = 96;
+    const caret = k < 1 && Math.floor(t * 6) % 2 === 0;
+    const fly = io(sendK), op = 1 - clamp((sendK - 0.45) / 0.55);
+    if (op <= 0) return '';
+    const yy = y - fly * 380, sc = 1 - 0.3 * fly;
+    let s = `<rect x="${f1(-w)}" y="${-h / 2 + 10}" width="${f1(w)}" height="${h}" rx="44" fill="${P.dark}" opacity=".18" filter="url(#fB8)"/>`;
+    s += `<rect x="${f1(-w)}" y="${-h / 2}" width="${f1(w)}" height="${h}" rx="44" fill="${P.pink}"/><path d="M-30,${h / 2 - 2} L6,${h / 2 + 18} L-8,${h / 2 - 12} Z" fill="${P.pink}"/>`;
+    s += `<rect x="${f1(-w + 14)}" y="${-h / 2 + 8}" width="${f1(w - 28)}" height="26" rx="13" fill="#fff" opacity=".16"/>`;
+    s += txt(-w + 40, 15, emo(shown), size, '#FFFFFF', { a: 'start', w: 500 });
+    if (caret) s += `<rect x="${f1(-40 + (k < 1 ? 0 : 0))}" y="-24" width="5" height="48" rx="2.5" fill="#fff"/>`;
+    let trail = '';
+    if (fly > 0) for (let i = 0; i < 5; i++) trail += heart(-w / 2 + (i - 2) * 40 + Math.sin(i * 2 + t * 6) * 10, 60 + i * 16 + fly * 120, 0.5 + 0.1 * i, i % 2 ? P.pinkL : P.peachL, f3(op * 0.9));
+    return `<g transform="translate(${f1(x)},${f1(yy)}) scale(${f3(sc * back(clamp(k * 4)))})" opacity="${f3(op)}">${trail}${s}</g>`;
   }
 
   /* ================================================================== *
-   * THE SIX VIGNETTES (each a full frame; pose decides the action)
+   * PHONES HELD THE RIGHT WAY
    * ================================================================== */
-  // 1. Amara, balcony with plants and morning coffee.
-  function vigAmara(t, pose) {
-    const lt = pose.lt || 0;
-    let w = `<rect width="1080" height="1920" fill="url(#gDawn)"/>` + glowC(780, 560, 520, 'gSun', 1) + glowC(780, 560, 120, 'gWhite', 0.9);
-    // drifting clouds
-    for (let i = 0; i < 4; i++) {
-      const x = ((hash(i + 2) * 1400 + t * (10 + i * 4)) % 1500) - 300, y = 260 + i * 120;
-      w += `<g opacity=".7" filter="url(#fB8)"><ellipse cx="${f1(x)}" cy="${y}" rx="${140 + i * 20}" ry="34" fill="#FFF6EE"/><ellipse cx="${f1(x + 70)}" cy="${y - 22}" rx="80" ry="34" fill="#FFF6EE"/></g>`;
+  // Small phone screens are drawn in a 118 x 236 box.
+  const SW = 118, SH = 236;
+
+  // The waitlist screen. press 0..1 squashes the button, done 0..1 swaps it for the check.
+  function scrJoin(o = {}) {
+    const d = o.done || 0, pr = o.press || 0;
+    let s = `<rect width="${SW}" height="${SH}" fill="${P.cream}"/>${glowC(20, 18, 96, 'gPk', 0.75)}${glowC(118, 150, 80, 'gTl', 0.4)}${glowC(30, 236, 90, 'gPc', 0.5)}`;
+    s += `<image href="${LOGO_SRC}" x="35" y="22" width="48" height="48"/>`;
+    s += txt(59, 90, 'A Girl &amp; Her Futures', 9.8, P.dark, { f: PF });
+    s += txt(59, 103, 'Academy™', 9, P.pink, { f: PF, it: true, w: 400 });
+    s += `<path d="M47,110 Q59,114 71,110" stroke="${P.peach}" stroke-width="1.6" fill="none" stroke-linecap="round"/>`;
+    s += txt(59, 128, 'Doors open soon.', 8, P.muted, { w: 500 });
+    if (d < 1) {
+      const pulse = 1 + 0.03 * Math.sin((o.t || 0) * 6);
+      s += `<g opacity="${f3(1 - d)}" transform="translate(59,190) scale(${f3((1 - 0.08 * pr) * pulse)})">
+        <rect x="-50" y="-17" width="100" height="34" rx="17" fill="${P.pink}" opacity=".3" filter="url(#fB3)"/>
+        <rect x="-48" y="-15" width="96" height="30" rx="15" fill="${P.pink}"/><rect x="-44" y="-12" width="88" height="10" rx="5" fill="#fff" opacity=".2"/>
+        ${txt(0, 3.6, 'Join the waitlist', 9.6, '#FFFFFF', { w: 700 })}</g>`;
+      if (pr > 0) s += `<circle cx="66" cy="190" r="${f1(8 + pr * 40)}" fill="#fff" opacity="${f3(0.5 * (1 - pr))}"/>`;
     }
-    // far city
-    const par = -t * 3;
-    let city = '';
-    for (let i = 0; i < 11; i++) {
-      const bw = 70 + hash(i + 31) * 70, bx = -60 + i * 110 + par % 110, bh = 140 + hash(i + 7) * 260;
-      city += `<rect x="${f1(bx)}" y="${f1(1060 - bh)}" width="${f1(bw)}" height="${f1(bh)}" fill="#E7B3B0" opacity=".75"/>`;
-      for (let r = 0; r < Math.floor(bh / 50); r++) city += `<rect x="${f1(bx + 14)}" y="${f1(1060 - bh + 20 + r * 50)}" width="${f1(bw - 28)}" height="10" rx="5" fill="#FFF0E2" opacity=".5"/>`;
+    if (d > 0) {
+      const ck = clamp(d * 1.6 - 0.2);
+      s += `<g opacity="${f3(clamp(d * 2.5))}"><g transform="translate(59,158) scale(${f3(back(clamp(d * 1.4)))})"><circle r="21" fill="${P.teal}" opacity=".3"/><circle r="16" fill="${P.teal}"/>
+        <path d="M-7,0 L-2,5 L8,-6" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="${f1(26 * (1 - ck))}"/></g>
+        ${txt(59, 196, emo('You’re on the list ✨'), 9, P.dark, { f: PF })}</g>`;
+      for (let i = 0; i < 8; i++) {
+        const a = rad(i * 45 + 20), dd = 22 + ease(d) * 26;
+        s += star(59 + Math.cos(a) * dd, 158 + Math.sin(a) * dd, 3 + (i % 3), [P.pink, P.peach, P.teal][i % 3], f3(clamp(1.3 - d)), i * 30);
+      }
     }
-    w += `<g filter="url(#fB3)">${city}</g><rect x="-10" y="1050" width="1100" height="300" fill="#EBB9AE" opacity=".6"/>`;
-    // hanging pothos swaying from the top left
-    for (let v = 0; v < 3; v++) {
-      const vx = 70 + v * 70, sw = Math.sin(t * 1.2 + v) * 10;
-      let d = `M${vx},150`;
-      for (let j = 1; j <= 6; j++) d += ` Q${f1(vx + (j % 2 ? 26 : -26) + sw * j / 6)},${150 + j * 70 - 35} ${f1(vx + sw * j / 6)},${150 + j * 70}`;
-      w += `<path d="${d}" stroke="#6E9E78" stroke-width="5" fill="none"/>`;
-      for (let j = 1; j <= 6; j++) w += `<ellipse cx="${f1(vx + sw * j / 6 + (j % 2 ? 18 : -18))}" cy="${150 + j * 70 - 20}" rx="20" ry="13" transform="rotate(${j % 2 ? 30 : -30} ${f1(vx + sw * j / 6)} ${150 + j * 70})" fill="${j % 2 ? '#86B596' : '#7FAF8A'}"/>`;
-    }
-    w += `<path d="M30,150 L340,150" stroke="#C99D78" stroke-width="10" stroke-linecap="round"/><path d="M50,150 Q120,90 180,150 M200,150 Q260,90 320,150" stroke="#C99D78" stroke-width="4" fill="none"/>`;
-    w += plant(900, 1060, 1.2, '#86B596', P.peach) + plant(110, 1120, 0.9, '#7FAF8A', P.pinkL);
-    w += screenBlend(`<path d="M700,300 L1100,200 L1100,1300 L300,1500 Z" fill="url(#gBeam)" opacity=".35"/>`) + motes(t, 14, 5, [300, 500, 700, 800]);
-    // Amara with coffee in her left hand
-    const fx = 470, fy = 760, fs = 1.05;
-    const mugL = [-100, 380 + Math.sin(t * 1.9) * 3];
-    const sip = pose.mode === 'notify' ? 0 : 0;
-    w += heroFig(t, 'amara', {
-      x: fx, y: fy, s: fs, seed: 1, mood0: 'soft', look0: [-4, 2], tilt0: -2,
-      hL: [mugL[0] - 48, mugL[1] + 20], bL: 1,
-      front: mug(mugL[0], mugL[1] + 70 + sip, 0.95, P.teal, { dark: '#5DB3A8', drink: '#7A4A30' }),
-      fig: { rim: '#FFE3BD', lightSide: 1 },
-    }, pose);
-    w += steam(t, fx + mugL[0] * fs, fy + (mugL[1] - 10) * fs, 1.0, 0.6);
-    // railing foreground
-    w += `<rect x="-10" y="1250" width="1100" height="26" rx="8" fill="#B88C6A"/><rect x="-10" y="1250" width="1100" height="7" fill="#D9B08C"/>`;
-    for (let x = 10; x < 1100; x += 64) w += `<rect x="${x}" y="1276" width="12" height="660" fill="#9E7558"/>`;
-    w += `<rect x="-10" y="1276" width="1100" height="660" fill="#F7D9CC" opacity=".35"/>`;
-    w += plant(980, 1330, 1.3, '#7FAF8A', P.teal);
-    return w + flare(780, 560, 0.55 + 0.1 * Math.sin(t * 1.2));
+    return s;
   }
 
-  // 2. Sofia, family kitchen, packing a lunchbox.
-  function lunchbox(x, y, sc, appleIn) {
-    return `<g transform="translate(${f1(x)},${f1(y)}) scale(${sc})">
-      <path d="M-120,-70 L120,-70 L130,-170 L-110,-170 Z" fill="${P.tealL}"/><path d="M-120,-70 L120,-70" stroke="${P.teal}" stroke-width="8"/>
-      <rect x="-130" y="-74" width="260" height="120" rx="22" fill="${P.pink}"/><rect x="-116" y="-60" width="232" height="92" rx="14" fill="#F9C7D2"/>
-      <rect x="-100" y="-56" width="110" height="64" rx="10" fill="#FFF3DC"/><path d="M-100,-24 L10,-24" stroke="#E7B36A" stroke-width="8"/><path d="M-96,-36 Q-45,-48 6,-36" stroke="#9BC48A" stroke-width="6" fill="none"/>
-      ${appleIn ? `<circle cx="64" cy="-30" r="30" fill="#E9606E"/><path d="M64,-60 q4,-12 12,-14" stroke="#7A4A30" stroke-width="5" fill="none"/><ellipse cx="78" cy="-70" rx="12" ry="6" fill="#86B596"/><ellipse cx="54" cy="-40" rx="8" ry="5" fill="#fff" opacity=".4"/>` : ''}
-      ${heart(-100, 20, 0.5, '#fff')}</g>`;
+  // The group chat squeezed into a small phone screen (a true miniature of chatUI).
+  function scrChat(tc, o = {}) {
+    const k = SH / 1920;
+    let s = `<g transform="translate(${f1(SW / 2 - 540 * k)},0) scale(${k.toFixed(5)})">${chatUI(tc, { mini: true })}</g>`;
+    if (o.kb) s += keyboard(o.kb, o.key);
+    return s;
   }
-  function apple(x, y, sc = 1) {
-    return `<g transform="translate(${f1(x)},${f1(y)}) scale(${sc})"><circle r="30" fill="#E9606E"/><path d="M0,-30 q4,-12 12,-14" stroke="#7A4A30" stroke-width="5" fill="none"/><ellipse cx="14" cy="-40" rx="12" ry="6" fill="#86B596"/><ellipse cx="-10" cy="-10" rx="8" ry="5" fill="#fff" opacity=".4"/></g>`;
+  // Phone keyboard over the lower screen; key = index of the key being pressed (or -1).
+  function keyboard(k, key) {
+    const y0 = SH - 74 * k;
+    let s = `<rect x="0" y="${f1(y0 - 18)}" width="${SW}" height="20" fill="#FFFFFF"/><rect x="6" y="${f1(y0 - 15)}" width="${SW - 30}" height="14" rx="7" fill="#F4EDE9"/><circle cx="${SW - 12}" cy="${f1(y0 - 8)}" r="7" fill="${P.pink}"/>`;
+    s += `<rect x="0" y="${f1(y0)}" width="${SW}" height="80" fill="#EFE6E2"/>`;
+    const rows = [10, 9, 7];
+    let idx = 0;
+    rows.forEach((n, r) => {
+      const kw = 10, gap = 1.6, tw = n * kw + (n - 1) * gap, x0 = (SW - tw) / 2;
+      for (let i = 0; i < n; i++, idx++) {
+        const on = idx === key;
+        s += `<rect x="${f1(x0 + i * (kw + gap))}" y="${f1(y0 + 5 + r * 17)}" width="${kw}" height="14" rx="2.5" fill="${on ? P.pinkL : '#FFFFFF'}"/>`;
+      }
+    });
+    s += `<rect x="30" y="${f1(y0 + 57)}" width="58" height="12" rx="3" fill="#FFFFFF"/>`;
+    return s;
   }
-  function vigSofia(t, pose) {
-    const lt = pose.lt || 0;
-    let w = `<rect width="1080" height="1920" fill="#F7E6D8"/>`;
-    const view = `<rect x="560" y="300" width="460" height="560" fill="url(#gDawn)"/>` + glowC(820, 700, 300, 'gSun', 1) + `<circle cx="660" cy="760" r="90" fill="#C9E0B0"/><circle cx="900" cy="780" r="110" fill="#B9D8A8"/>`;
-    w += windowFrame(600, 330, 400, 500, view, { frame: '#FFF8F2', sw: 20 });
-    // shelf with jars and a child's drawings on the cabinet
-    w += `<rect x="40" y="250" width="420" height="380" rx="10" fill="#FBF1E8"/><path d="M250,250 L250,630" stroke="#EAD9C9" stroke-width="6"/><rect x="226" y="560" width="10" height="46" rx="5" fill="${P.gold}"/><rect x="264" y="560" width="10" height="46" rx="5" fill="${P.gold}"/>`;
-    w += `<g transform="rotate(-4 140 400)"><rect x="80" y="320" width="130" height="150" fill="#fff"/><circle cx="145" cy="370" r="26" fill="${P.peach}"/>${[0, 1, 2, 3, 4, 5, 6, 7].map(i => `<path d="M${145 + Math.cos(i * 0.785) * 34},${370 + Math.sin(i * 0.785) * 34} l${Math.cos(i * 0.785) * 12},${Math.sin(i * 0.785) * 12}" stroke="${P.peach}" stroke-width="5" stroke-linecap="round"/>`).join('')}<path d="M90,450 Q145,420 200,450" stroke="#86B596" stroke-width="8" fill="none"/></g>`;
-    w += `<g transform="rotate(5 360 420)"><rect x="300" y="340" width="120" height="140" fill="#fff"/>${heart(360, 420, 1.6, P.pink)}<rect x="350" y="318" width="20" height="30" rx="4" fill="${P.tealL}" opacity=".9"/></g>`;
-    w += `<rect x="560" y="900" width="500" height="16" rx="6" fill="#E8CDB4"/><rect x="600" y="840" width="50" height="60" rx="12" fill="${P.tealL}"/><rect x="670" y="820" width="56" height="80" rx="14" fill="${P.peachL}"/>`;
-    w += screenBlend(`<path d="M600,340 L1000,340 L700,1700 L120,1500 Z" fill="url(#gBeam)" opacity=".4"/>` + glowC(800, 600, 600, 'gWarm', 0.3)) + motes(t, 12, 8, [300, 500, 600, 700]);
-    // Sofia: left hand drops an apple into the lunchbox, then the phone lights up
-    const fx = 460, fy = 760, fs = 1.05;
-    const box = [300, 1290];
-    const drop = io(seg(lt, 0.0, 0.32));
-    const released = pose.mode !== 'notify' || lt > 0.32;
-    const appleG = [lerp(250, box[0] + 64 * 1.0, drop), lerp(1130, box[1] - 30, drop)];
-    const hLg = released ? [lerp(appleG[0], 230, io(seg(lt, 0.32, 0.7))), lerp(appleG[1] + 10, 1260, io(seg(lt, 0.32, 0.7)))] : [appleG[0] - 10, appleG[1] + 20];
-    const hLl = loc(fx, fy, fs, hLg[0], hLg[1]);
-    w += heroFig(t, 'sofia', {
-      x: fx, y: fy, s: fs, seed: 2, mood0: 'smile', look0: [-6, 8], tilt0: 3,
-      hL: hLl, bL: 1, fig: { rim: '#FFE3BD', lightSide: 1 },
-    }, pose);
-    w += `<rect x="-10" y="1270" width="1100" height="40" fill="#EBD5BE"/><rect x="-10" y="1270" width="1100" height="9" fill="#FFF4E8"/><rect x="-10" y="1310" width="1100" height="640" fill="#F2DFCF"/>`;
-    w += `<rect x="30" y="1360" width="320" height="600" rx="14" fill="none" stroke="#E6CDB8" stroke-width="6"/><rect x="380" y="1360" width="320" height="600" rx="14" fill="none" stroke="#E6CDB8" stroke-width="6"/><rect x="730" y="1360" width="320" height="600" rx="14" fill="none" stroke="#E6CDB8" stroke-width="6"/>`;
-    w += lunchbox(box[0], box[1], 1, released && pose.mode === 'notify');
-    if (pose.mode === 'notify' && !released) w += apple(appleG[0], appleG[1]);
-    w += `<g transform="translate(860,1280)"><rect x="-50" y="-150" width="100" height="150" rx="20" fill="${P.peachL}"/><rect x="-40" y="-176" width="80" height="34" rx="12" fill="${P.peach}"/><path d="M-30,-100 L30,-100" stroke="#fff" stroke-width="6" opacity=".6"/></g>`;
-    w += apple(720, 1250, 0.9);
+  // Screen-local centre of keyboard key i (for the thumb).
+  function keyPos(i) {
+    const rows = [10, 9, 7];
+    let r = 0;
+    while (i >= rows[r]) { i -= rows[r]; r = (r + 1) % 3; }
+    const kw = 10, gap = 1.6, tw = rows[r] * kw + (rows[r] - 1) * gap, x0 = (SW - tw) / 2;
+    return [x0 + i * (kw + gap) + kw / 2, SH - 74 + 12 + r * 17];
+  }
+
+  /**
+   * A phone held from below. The palm cradles the bottom edge, three fingertips
+   * curl round one side edge and the thumb rests low on the other edge; only
+   * those tips touch the bezel, so the screen stays clear. The arm ends at the
+   * returned wrist point, below the phone, and is drawn under it.
+   *   o: x, y (centre, parent coords), rot, sc, side (+1 right hand, -1 left),
+   *      screen (svg in a 118x236 box), glow 0..1,
+   *      thumb: null | [sx, sy] screen-local point the thumb tip reaches (taps and typing)
+   */
+  function heldPhone(t, L, o) {
+    const w = SW, h = SH, b = 9, rot = o.rot || 0, sc = o.sc || 1, side = o.side || 1;
+    const R = rad(rot), id = uid('ph');
+    const toP = (px, py) => [o.x + (px * Math.cos(R) - py * Math.sin(R)) * sc, o.y + (px * Math.sin(R) + py * Math.cos(R)) * sc];
+    const wrist = toP(side * 4, h / 2 + b + 46);
+    const sk = L.skin, sh = L.shade;
+    let g = '';
+    if (o.glow) g += screenBlend(glowC(0, -10, 250, 'gPk', 0.5 * o.glow) + glowC(0, -10, 130, 'gWhite', 0.32 * o.glow));
+    // palm cupping the bottom edge (mostly hidden behind the phone)
+    g += `<path d="M-52,${h / 2 - 20} C-64,${h / 2 + 40} -34,${h / 2 + 76} ${side * 4},${h / 2 + 72} C38,${h / 2 + 76} 64,${h / 2 + 40} 52,${h / 2 - 20} Z" fill="${sk}"/>`;
+    g += `<path d="M-30,${h / 2 + 52} Q0,${h / 2 + 64} 30,${h / 2 + 52}" stroke="${sh}" stroke-width="3" fill="none" opacity=".45"/>`;
+    // body + screen
+    g += `<rect x="${-w / 2 - b}" y="${-h / 2 - b + 5}" width="${w + 2 * b}" height="${h + 2 * b}" rx="25" fill="${P.dark}" opacity=".25" filter="url(#fB3)"/>`;
+    g += `<rect x="${-w / 2 - b}" y="${-h / 2 - b}" width="${w + 2 * b}" height="${h + 2 * b}" rx="25" fill="${o.case || '#2A211E'}"/>`;
+    g += `<rect x="${-w / 2 - b + 2}" y="${-h / 2 - b + 2}" width="${w + 2 * b - 4}" height="${h + 2 * b - 4}" rx="23" fill="none" stroke="#5A4036" stroke-width="2"/>`;
+    g += `<clipPath id="${id}"><rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="16"/></clipPath><g clip-path="url(#${id})"><g transform="translate(${-w / 2},${-h / 2})">${o.screen || scrJoin()}</g><rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" fill="url(#gShine)"/></g>`;
+    g += `<rect x="-16" y="${-h / 2 + 5}" width="32" height="9" rx="4.5" fill="#2A211E"/>`;
+    // fingertips curled round the far edge: they sit on the bezel, outside the screen
+    const fe = -side;
+    [h / 2 - 98, h / 2 - 66, h / 2 - 34].forEach((fy, i) => {
+      const x0 = fe > 0 ? w / 2 + 1 : -w / 2 - 26;
+      g += `<rect x="${x0}" y="${f1(fy - 10)}" width="25" height="20" rx="10" fill="${sk}"/>`;
+      g += `<path d="M${fe > 0 ? w / 2 + 9 : -w / 2 - 9},${f1(fy - 6)} l0,12" stroke="${sh}" stroke-width="2.2" opacity=".4" stroke-linecap="round"/>`;
+      void i;
+    });
+    // thumb: resting low on the near edge, or reaching up from below to tap
+    const base = [side * (w / 2 + 16), h / 2 + 26];
+    let tip = o.thumb ? [o.thumb[0] - w / 2, o.thumb[1] - h / 2] : [side * (w / 2 + 1), h / 2 - 30];
+    const tw = 22;
+    g += `<path d="M${f1(base[0])},${f1(base[1])} L${f1(tip[0])},${f1(tip[1])}" stroke="${sh}" stroke-width="${tw + 3}" stroke-linecap="round" opacity=".5"/>`;
+    g += `<path d="M${f1(base[0])},${f1(base[1])} L${f1(tip[0])},${f1(tip[1])}" stroke="${sk}" stroke-width="${tw}" stroke-linecap="round"/>`;
+    const na = Math.atan2(tip[1] - base[1], tip[0] - base[0]);
+    g += `<ellipse cx="${f1(tip[0] - Math.cos(na) * 4)}" cy="${f1(tip[1] - Math.sin(na) * 4)}" rx="6" ry="4.5" transform="rotate(${f1(deg(na))} ${f1(tip[0] - Math.cos(na) * 4)} ${f1(tip[1] - Math.sin(na) * 4)})" fill="#fff" opacity=".35"/>`;
+    if (o.ripple != null && o.ripple > 0 && o.ripple < 1) g += `<circle cx="${f1(tip[0])}" cy="${f1(tip[1])}" r="${f1(10 + o.ripple * 34)}" fill="none" stroke="#fff" stroke-width="${f1(5 * (1 - o.ripple))}" opacity="${f3(1 - o.ripple)}"/>`;
+    return { wrist, svg: `<g transform="translate(${f1(o.x)},${f1(o.y)}) rotate(${f1(rot)}) scale(${f3(sc)})">${g}</g>`, toP };
+  }
+  // Fig options for a woman holding a phone with one hand (elbow tucked low, wrist below the phone).
+  function phoneHand(t, L, ph, elbow) {
+    const H = heldPhone(t, L, ph);
+    const sd = ph.side || 1;
+    return sd > 0 ? { hR: H.wrist, kR: 'none', eR: elbow, phone: H.svg, toP: H.toP } : { hL: H.wrist, kL: 'none', eL: elbow, phone: H.svg, toP: H.toP };
+  }
+
+  /* ================================================================== *
+   * PROPS FOR THE NEW SCENES
+   * ================================================================== */
+  function pancakes(x, y, sc) {
+    let s = `<g transform="translate(${f1(x)},${f1(y)}) scale(${f3(sc)})">`;
+    s += `<ellipse cx="0" cy="26" rx="128" ry="32" fill="#2C1810" opacity=".1" filter="url(#fB3)"/><ellipse cx="0" cy="16" rx="122" ry="31" fill="#FFFFFF"/><ellipse cx="0" cy="14" rx="98" ry="22" fill="#F6ECE6"/>`;
+    for (let i = 0; i < 3; i++) { const yy = 6 - i * 22; s += `<ellipse cx="0" cy="${yy + 7}" rx="78" ry="21" fill="#D08A3A"/><ellipse cx="0" cy="${yy}" rx="78" ry="20" fill="#F2C27A"/>`; }
+    s += `<path d="M-62,-44 Q-30,-60 2,-58 Q42,-60 66,-42 Q68,-30 54,-26 L52,-4 Q48,4 44,-4 L42,-22 Q12,-18 -18,-22 L-22,2 Q-26,10 -30,2 L-32,-24 Q-64,-28 -62,-44 Z" fill="#B5652A" opacity=".88"/>`;
+    s += `<path d="M-40,-50 Q-10,-58 20,-54" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".45"/>`;
+    s += `<rect x="-16" y="-70" width="32" height="20" rx="5" fill="#FFF0B8"/><rect x="-16" y="-70" width="32" height="7" rx="3" fill="#fff" opacity=".6"/>`;
+    [[88, 2, 1], [-94, 8, 1], [100, 20, 0], [-80, 24, 0], [70, 22, 0]].forEach(([bx, by, st]) => {
+      s += st ? `<path d="M${bx - 14},${by - 8} Q${bx},${by - 16} ${bx + 14},${by - 8} Q${bx + 10},${by + 14} ${bx},${by + 18} Q${bx - 10},${by + 14} ${bx - 14},${by - 8} Z" fill="#E9606E"/><path d="M${bx - 8},${by - 12} L${bx},${by - 6} L${bx + 8},${by - 12}" stroke="#7FAF8A" stroke-width="5" fill="none" stroke-linecap="round"/>`
+        : `<circle cx="${bx}" cy="${by}" r="9" fill="#5B5FA8"/><circle cx="${bx - 3}" cy="${by - 3}" r="2.5" fill="#fff" opacity=".5"/>`;
+    });
+    return s + '</g>';
+  }
+  function latte(x, y, sc, col = P.cream, t = 0, st = true) {
+    let s = `<g transform="translate(${f1(x)},${f1(y)}) scale(${f3(sc)})">
+      <ellipse cx="0" cy="6" rx="78" ry="16" fill="#FFFFFF"/><ellipse cx="0" cy="4" rx="58" ry="10" fill="#EFE3DA"/>
+      <path d="M44,-56 C78,-56 78,-16 40,-18" stroke="${col}" stroke-width="12" fill="none"/>
+      <path d="M-50,-70 L50,-70 L42,-6 Q38,6 24,6 L-24,6 Q-38,6 -42,-6 Z" fill="${col}"/>
+      <path d="M-34,-60 L-30,-10" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".35"/>
+      <ellipse cx="0" cy="-70" rx="50" ry="12" fill="#C69468"/>
+      <path d="M0,-62 C-14,-70 -14,-80 -4,-78 C-1,-77 0,-75 0,-74 C0,-75 1,-77 4,-78 C14,-80 14,-70 0,-62 Z" fill="#FBEBDD"/></g>`;
+    if (st) s += steam(t, x, y - 80 * sc, sc * 0.8, 0.5);
+    return s;
+  }
+  function vase(x, y, sc, t) {
+    let s = `<g transform="translate(${f1(x)},${f1(y)}) scale(${f3(sc)})">`;
+    [[-24, -150, P.pink], [0, -176, P.pinkL], [26, -146, P.peach], [-6, -128, '#fff']].forEach(([fx, fy, c], i) => {
+      const sw = Math.sin(t * 1.4 + i) * 4;
+      s += `<path d="M0,-30 Q${f1(fx * 0.5)},${f1(fy * 0.5)} ${f1(fx + sw)},${fy}" stroke="#7FAF8A" stroke-width="5" fill="none"/>`;
+      s += `<g transform="translate(${f1(fx + sw)},${fy})"><ellipse rx="16" ry="20" fill="${c}"/><path d="M-14,-6 L-6,-22 L0,-8 L6,-22 L14,-6" fill="${c}"/></g>`;
+    });
+    s += `<path d="M-26,-40 L26,-40 L22,10 Q20,20 10,20 L-10,20 Q-20,20 -22,10 Z" fill="#DFF3F0" opacity=".85"/><path d="M-26,-40 L26,-40" stroke="#fff" stroke-width="4"/><path d="M-14,-30 L-12,10" stroke="#fff" stroke-width="5" opacity=".6" stroke-linecap="round"/>`;
+    return s + '</g>';
+  }
+  function popcorn(x, y, sc) {
+    let s = `<g transform="translate(${f1(x)},${f1(y)}) scale(${f3(sc)})">`;
+    for (let i = 0; i < 18; i++) s += `<circle cx="${f1(-70 + hash(i + 3) * 140)}" cy="${f1(-34 - hash(i + 8) * 40)}" r="${f1(14 + hash(i) * 8)}" fill="${i % 4 ? '#FFF6DE' : '#F7DCA0'}"/>`;
+    s += `<path d="M-92,-30 L92,-30 L74,60 Q70,74 56,74 L-56,74 Q-70,74 -74,60 Z" fill="#fff"/>`;
+    for (let i = 0; i < 5; i++) s += `<path d="M${-74 + i * 37},-30 L${-60 + i * 30},74" stroke="${P.pink}" stroke-width="14"/>`;
+    return s + '</g>';
+  }
+  function fruitBowl(x, y, sc) {
+    let s = `<g transform="translate(${f1(x)},${f1(y)}) scale(${f3(sc)})">`;
+    [[-40, -30, '#E9606E'], [0, -40, '#F5A857'], [38, -28, '#E9606E'], [-14, -18, '#86B596'], [20, -16, '#5B5FA8']].forEach(([fx, fy, c]) => { s += `<circle cx="${fx}" cy="${fy}" r="24" fill="${c}"/><circle cx="${fx - 7}" cy="${fy - 7}" r="6" fill="#fff" opacity=".35"/>`; });
+    s += `<path d="M-80,-14 Q0,-4 80,-14 Q72,52 0,56 Q-72,52 -80,-14 Z" fill="${P.tealL}"/><path d="M-80,-14 Q0,-4 80,-14" stroke="${P.teal}" stroke-width="6" fill="none"/>`;
+    return s + '</g>';
+  }
+  function cushion(x, y, sc, col, rot = 0) {
+    return `<g transform="translate(${f1(x)},${f1(y)}) rotate(${rot}) scale(${f3(sc)})"><path d="M-90,-70 Q0,-90 90,-70 Q104,0 90,70 Q0,88 -90,70 Q-104,0 -90,-70 Z" fill="${col}"/><circle r="10" fill="#fff" opacity=".5"/><path d="M-60,-50 Q0,-62 60,-50" stroke="#fff" stroke-width="5" fill="none" opacity=".35"/></g>`;
+  }
+
+  /* ================================================================== *
+   * THE GROUP CHAT ("Girls Who Brunch 💖")
+   * ================================================================== */
+  const CHAT_C = { amara: '#C5832A', sofia: '#DC6E5C', mei: '#7F77DD', priya: '#3E9C90', layla: '#D9687F', emma: '#5C7FAA' };
+  const CHAT_BG = { amara: '#FCE3C0', sofia: '#FDE0D8', mei: '#E8E6FB', priya: '#DDF2EF', layla: '#FDE3E8', emma: '#E1EAF5' };
+  const CHAT = [
+    { at: 13.2, who: 'amara', text: 'Girls!! Look 👀' },
+    { at: 13.55, who: 'amara', card: true },
+    { at: 15.95, who: 'mei', text: 'omg yes 😭', fx: ['😭', '😂', '💖', '✨'] },
+    { at: 17.95, who: 'priya', text: 'structure, not signals?? I’m in', fx: ['🙌', '✨', '💜', '🙌'] },
+    { at: 19.95, who: 'layla', text: 'finally something for us 🫶', fx: ['🫶', '💖', '✨', '🌸'] },
+  ];
+  // A character's face in a circle (chat avatars).
+  function avatar(t, key, x, y, r, o = {}) {
+    const id = uid('av'), L = CAST[key];
+    const s = r / 150;
+    const hy = y + r * 0.2 + (L.style === 'curls' ? r * 0.12 : 0);
+    const f = fig(t, L, { x, y: hy, s: L.style === 'curls' ? s * 0.86 : s, seed: ORDER.indexOf(key) + 3, cut: 330, mood: o.mood || 'smile', bob: 0, armL: false, armR: false });
+    return `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(r + 4)}" fill="#fff"/><clipPath id="${id}"><circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(r)}"/></clipPath><g clip-path="url(#${id})"><circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(r)}" fill="${CHAT_BG[key]}"/>${f}</g>`;
+  }
+  function linkCard(x, y, w, t) {
+    const h = 340;
+    let s = `<rect x="${x}" y="${y + 10}" width="${w}" height="${h}" rx="34" fill="${P.dark}" opacity=".14" filter="url(#fB8)"/>`;
+    const id = uid('lc');
+    s += `<clipPath id="${id}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="34"/></clipPath><g clip-path="url(#${id})">`;
+    s += `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#FFFFFF"/>`;
+    s += `<rect x="${x}" y="${y}" width="${w}" height="168" fill="${P.pink}"/>${glowC(x + w, y, 260, 'gPc', 0.8)}${glowC(x, y + 168, 220, 'gPu', 0.5)}${glowC(x + w * 0.5, y + 84, 160, 'gWhite', 0.35)}`;
+    for (let i = 0; i < 6; i++) s += star(x + 40 + hash(i + 2) * (w - 80), y + 22 + hash(i + 6) * 120, 6 + hash(i) * 6, P.cream, f3(0.4 + 0.5 * Math.abs(Math.sin(t * 2 + i))), t * 40 + i * 20);
+    s += `<circle cx="${x + w / 2}" cy="${y + 84}" r="64" fill="#fff" opacity=".9"/><image href="${LOGO_SRC}" x="${x + w / 2 - 60}" y="${y + 24}" width="120" height="120"/>`;
+    s += txt(x + 32, y + 216, 'A Girl &amp; Her Futures Academy', fitSize('A Girl & Her Futures Academy', 33, w - 64, PF, 700), P.dark, { f: PF, a: 'start' });
+    s += txt(x + 32, y + 252, 'Trading education, reimagined around HER.', fitSize('Trading education, reimagined around HER.', 23, w - 64, DM, 500), P.muted, { a: 'start', w: 500 });
+    s += `<rect x="${x + 32}" y="${y + 274}" width="${w - 64}" height="46" rx="23" fill="${P.pinkP}"/>`;
+    s += txt(x + w / 2, y + 305, 'Join the waitlist →', 25, P.pink, { w: 700 });
+    s += '</g>';
+    return { s, h };
+  }
+  /**
+   * The full-frame chat at time tc. Messages pop in at their times, the list
+   * scrolls to keep the newest one in view (above the caption band).
+   */
+  function chatUI(tc, o = {}) {
+    let s = `<rect width="1080" height="1920" fill="#FFF5F3"/>${glowC(100 + Math.sin(tc * 0.4) * 40, 600, 700, 'gPk', 0.35)}${glowC(1000, 1300 + Math.cos(tc * 0.5) * 50, 700, 'gPc', 0.3)}${glowC(300, 1800, 600, 'gPu', 0.25)}`;
+    for (let i = 0; i < 14; i++) s += heart(60 + hash(i + 40) * 960, 380 + hash(i + 50) * 1500, 0.7 + hash(i) * 0.6, P.pinkL, 0.18);
+    // messages
+    const top = 372, maxBottom = 1300;
+    const rows = [];
+    let y = top;
+    CHAT.forEach((m, i) => {
+      const a = io(seg(tc, m.at, m.at + 0.38));
+      if (a <= 0) return;
+      const me = m.who === 'amara';
+      let h;
+      if (m.card) h = 340 + 56 + 22; else h = (me ? 0 : 38) + 98 + 22;
+      rows.push({ m, i, y, a, h, me });
+      y += h * a;
+    });
+    // typing indicator for the next message (after the card has landed)
+    const nextI = CHAT.findIndex(m => m.at > tc);
+    let typing = null;
+    if (nextI >= 2) {
+      const prevAt = CHAT[nextI - 1].at;
+      const ta = io(seg(tc, prevAt + 0.55, prevAt + 0.85));
+      if (ta > 0) { typing = { who: CHAT[nextI].who, y, a: ta }; y += (38 + 98 + 22) * ta; }
+    }
+    const scroll = Math.max(0, y - maxBottom);
+    let body = '';
+    rows.forEach(({ m, i, y: ry, a, me }) => {
+      const pop = back(seg(tc, m.at, m.at + 0.42));
+      const col = CHAT_C[m.who];
+      let g = '';
+      let ax, ay;
+      if (m.card) {
+        const w = 600, x = 900 - w;
+        const C = linkCard(x, ry, w, tc);
+        g += C.s;
+        ax = 900; ay = ry + C.h;
+        // reactions from the brunch table
+        const rk = back(seg(tc, 14.2, 14.55));
+        if (rk > 0) g += `<g transform="translate(${x + 40},${ry + C.h + 4}) scale(${f3(rk)})"><rect x="-6" y="-24" width="176" height="56" rx="28" fill="#fff" filter="url(#fSoft)"/><rect x="-6" y="-24" width="176" height="56" rx="28" fill="none" stroke="${P.pinkP}" stroke-width="3"/>${txt(18, 16, emo('💖😍'), 34, P.dark, { a: 'start' })}${txt(126, 15, '2', 28, P.muted, { a: 'start', w: 700 })}</g>`;
+      } else {
+        const size = 40, tw = measure(plain(m.text), size, DM, 500) + 64, bh = 98;
+        if (me) {
+          const x = 900 - tw;
+          g += `<rect x="${f1(x)}" y="${ry + 8}" width="${f1(tw)}" height="${bh}" rx="40" fill="${P.dark}" opacity=".1" filter="url(#fB8)"/>`;
+          g += `<rect x="${f1(x)}" y="${ry}" width="${f1(tw)}" height="${bh}" rx="40" fill="${P.pink}"/><path d="M880,${ry + bh - 26} L912,${ry + bh + 6} L860,${ry + bh - 6} Z" fill="${P.pink}"/>`;
+          g += txt(x + 32, ry + 63, emo(m.text), size, '#FFFFFF', { a: 'start', w: 500 });
+          ax = 900; ay = ry + bh;
+        } else {
+          const x = 150, by = ry + 38;
+          g += txt(x + 10, ry + 26, NAMES[m.who], 26, col, { a: 'start', w: 700 });
+          g += `<rect x="${x}" y="${by + 8}" width="${f1(tw)}" height="${bh}" rx="40" fill="${P.dark}" opacity=".1" filter="url(#fB8)"/>`;
+          g += `<rect x="${x}" y="${by}" width="${f1(tw)}" height="${bh}" rx="40" fill="#FFFFFF"/><rect x="${x}" y="${by}" width="${f1(tw)}" height="${bh}" rx="40" fill="none" stroke="${CHAT_BG[m.who]}" stroke-width="4"/>`;
+          g += txt(x + 32, by + 63, emo(m.text), size, P.dark, { a: 'start', w: 500 });
+          g += avatar(tc, m.who, 92, by + bh - 40, 40);
+          ax = x; ay = by + bh;
+        }
+      }
+      body += `<g transform="translate(${f1(ax)},${f1(ay)}) scale(${f3(pop)}) translate(${f1(-ax)},${f1(-ay)})" opacity="${f3(clamp(a * 3))}">${g}</g>`;
+      // emoji reactions float up from new replies
+      if (m.fx && !o.mini) {
+        m.fx.forEach((e, j) => {
+          const p = seg(tc, m.at + 0.15 + j * 0.09, m.at + 1.5 + j * 0.09);
+          if (p <= 0 || p >= 1) return;
+          const ex = 200 + j * 150 + Math.sin(p * 6 + j) * 30, ey = ry + 60 - ease(p) * 520;
+          body += `<text x="${f1(ex)}" y="${f1(ey)}" font-size="${f1(64 * (0.6 + 0.4 * back(clamp(p * 3))))}" text-anchor="middle" font-family="Noto Color Emoji" opacity="${f3(1 - clamp((p - 0.6) / 0.4))}" transform="rotate(${f1((j % 2 ? 1 : -1) * 14 * p)} ${f1(ex)} ${f1(ey)})">${e}</text>`;
+        });
+      }
+    });
+    if (rows.length && !o.mini) {
+      const card = rows.find(r => r.m.card);
+      if (card) ['💖', '😍', '✨'].forEach((e, j) => {
+        const p = seg(tc, 14.25 + j * 0.1, 15.4 + j * 0.1);
+        if (p <= 0 || p >= 1) return;
+        const ex = 420 + j * 90 + Math.sin(p * 5 + j) * 24, ey = card.y + 380 - ease(p) * 460;
+        body += `<text x="${f1(ex)}" y="${f1(ey)}" font-size="58" text-anchor="middle" font-family="Noto Color Emoji" opacity="${f3(1 - clamp((p - 0.6) / 0.4))}">${e}</text>`;
+      });
+    }
+    if (typing) {
+      const by = typing.y + 38;
+      let g = txt(160, typing.y + 26, `${NAMES[typing.who]} is typing…`, 26, CHAT_C[typing.who], { a: 'start', w: 500 });
+      g += `<rect x="150" y="${by}" width="150" height="98" rx="40" fill="#FFFFFF"/>`;
+      for (let d = 0; d < 3; d++) g += `<circle cx="${190 + d * 34}" cy="${f1(by + 49 - Math.max(0, Math.sin(tc * 9 - d * 0.9)) * 10)}" r="10" fill="${CHAT_C[typing.who]}" opacity=".7"/>`;
+      g += avatar(tc, typing.who, 92, by + 58, 40);
+      body += `<g opacity="${f3(typing.a)}">${g}</g>`;
+    }
+    s += `<g transform="translate(0,${f1(-scroll)})">${body}</g>`;
+    // header
+    s += `<rect x="0" y="0" width="1080" height="${o.mini ? 330 : 336}" fill="#FFFFFF" opacity=".97"/><rect x="0" y="330" width="1080" height="8" fill="${P.pinkP}"/>`;
+    s += `<path d="M76,214 L56,240 L76,266" stroke="${P.pink}" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+    s += avatar(tc, 'layla', 222, 222, 36) + avatar(tc, 'mei', 178, 252, 36) + avatar(tc, 'amara', 140, 216, 36);
+    s += txt(282, 236, emo('Girls Who Brunch 💖'), 50, P.dark, { f: PF, a: 'start' });
+    s += txt(284, 284, 'Amara, Sofia, Mei, Priya, Layla, Emma', 26, P.muted, { a: 'start', w: 500 });
+    return s;
+  }
+
+  /* ================================================================== *
+   * BRUNCH (0:04-0:13)
+   * ================================================================== */
+  function cafeBG(t) {
+    let w = `<rect width="1080" height="1920" fill="#F8DDCC"/>`;
+    [[50, 440, 0], [590, 440, 1]].forEach(([x, wW, i]) => {
+      const y = 200, hW = 900, id = uid('cw');
+      const arch = `M${x},${y + hW} L${x},${y + wW / 2} A${wW / 2},${wW / 2} 0 0,1 ${x + wW},${y + wW / 2} L${x + wW},${y + hW} Z`;
+      let view = `<rect x="${x}" y="${y}" width="${wW}" height="${hW}" fill="url(#gGolden)"/>` + glowC(x + wW * (i ? 0.4 : 0.9), y + 300, 420, 'gSun', 1);
+      view += `<rect x="${x}" y="${y + hW - 260}" width="${wW}" height="260" fill="#EBC7AE"/>`;
+      view += tree(x + (i ? 300 : 120), y + hW - 200, 0.75, ['#A9C48A', '#8FB27C', '#D1DC9E', '#F2C27E'], t, i + 1);
+      for (let k = 0; k < 3; k++) {
+        const px = ((t * (60 + k * 25) * (k % 2 ? -1 : 1) + k * 300 + i * 150) % 700 + 700) % 700 + x - 120;
+        view += `<g filter="url(#fB8)" opacity=".55"><circle cx="${f1(px)}" cy="${y + hW - 330}" r="34" fill="#8A6A5A"/><rect x="${f1(px - 46)}" y="${y + hW - 296}" width="92" height="200" rx="40" fill="${[P.purpleL, P.tealL, P.peachL][k]}"/></g>`;
+      }
+      view += bokeh(t, 9, 70 + i * 13, ['#FFE9C4', '#FFF6E2', '#F9B8C6', '#B2E4DF'], [x, y + 260, wW, hW - 300], { r0: 18, r1: 34, op: 0.5, blur: 'fB8', dx: 14 });
+      w += `<clipPath id="${id}"><path d="${arch}"/></clipPath><g clip-path="url(#${id})">${view}</g>`;
+      w += `<path d="${arch}" fill="none" stroke="#FFF8F2" stroke-width="24"/><path d="M${x + wW / 2},${y + 30} L${x + wW / 2},${y + hW}" stroke="#FFF8F2" stroke-width="12"/><path d="M${x},${y + 500} L${x + wW},${y + 500}" stroke="#FFF8F2" stroke-width="12"/>`;
+    });
+    // pendant lamps
+    [300, 780].forEach((x, i) => {
+      const sw = Math.sin(t * 0.9 + i) * 2.5;
+      w += `<g transform="rotate(${f1(sw)} ${x} 0)"><path d="M${x},0 L${x},150" stroke="#5A4036" stroke-width="4"/><path d="M${x - 64},214 Q${x},126 ${x + 64},214 Z" fill="${i ? P.teal : P.pink}"/>${glowC(x, 222, 180, 'gLamp', 0.7)}<circle cx="${x}" cy="218" r="12" fill="#FFF0C8"/></g>`;
+    });
+    // trailing plant on the sill line
+    for (let v = 0; v < 4; v++) {
+      const vx = 470 + v * 40, sw = Math.sin(t * 1.2 + v) * 8;
+      let d = `M${vx},120`;
+      for (let j = 1; j <= 5; j++) d += ` Q${f1(vx + (j % 2 ? 22 : -22) + sw * j / 5)},${120 + j * 60 - 30} ${f1(vx + sw * j / 5)},${120 + j * 60}`;
+      w += `<path d="${d}" stroke="#6E9E78" stroke-width="5" fill="none"/>`;
+      for (let j = 1; j <= 5; j++) w += `<ellipse cx="${f1(vx + sw * j / 5 + (j % 2 ? 16 : -16))}" cy="${120 + j * 60 - 18}" rx="18" ry="11" fill="${j % 2 ? '#86B596' : '#7FAF8A'}"/>`;
+    }
+    w += `<rect x="-10" y="1060" width="1100" height="60" fill="#EBC1AC"/>`;
+    w += screenBlend(`<path d="M600,180 L1100,120 L1100,900 L240,1500 Z" fill="url(#gBeam)" opacity=".5"/>`) + motes(t, 16, 9, [120, 380, 860, 800]);
     return w;
   }
+  function brunchTable(t, o = {}) {
+    let s = `<path d="M-40,1118 Q540,1084 1120,1118 L1120,1270 L-40,1270 Z" fill="#FFF8F4"/>`;
+    s += `<path d="M-40,1118 Q540,1084 1120,1118" stroke="#FFFFFF" stroke-width="10" fill="none"/>`;
+    s += `<path d="M60,1180 Q200,1150 330,1196 M600,1160 Q760,1130 920,1180 M200,1240 Q420,1214 560,1250" stroke="#F1D6D6" stroke-width="3" fill="none" opacity=".8"/>`;
+    s += `<rect x="-40" y="1262" width="1120" height="30" fill="#E9D3C8"/><rect x="-40" y="1292" width="1120" height="700" fill="#E3B9A4"/>`;
+    s += vase(480, 1132, 0.8, t);
+    if (!o.noCups) {
+      if (!o.amaraCupUp) s += latte(370, 1150, 0.62, P.tealL, t);
+      if (!o.emmaCupUp) s += latte(860, 1158, 0.62, P.peachL, t);
+      if (!o.sofiaCupUp) s += latte(620, 1150, 0.58, P.pinkP, t);
+    }
+    s += pancakes(200, 1206, 0.85) + pancakes(480, 1222, 0.8) + pancakes(752, 1206, 0.85);
+    return s;
+  }
+  // A cup held up in a hand (mid layer: the hand grips it).
+  const heldCup = (p, col, t, sc = 0.72) => mug(p[0] - 6, p[1] + 34, sc, col, { dark: P.peach, drink: '#C69468', heart: true });
 
-  // 3. Mei, on the bus with earbuds, city passing.
-  function vigMei(t, pose) {
+  // Brunch frame. st: per-woman overrides + table flags.
+  function brunchScene(t, st) {
+    let w = blurG(st.bgBlur ?? 3, cafeBG(t));
+    const F = { sofia: [480, 772, 0.76], amara: [228, 800, 0.78], emma: [732, 800, 0.78] };
+    ['sofia', 'amara', 'emma'].forEach((k, i) => {
+      const [x, y, s] = F[k];
+      const o = Object.assign({ x, y, s, seed: i + 2, cut: 600, mood: 'smile', rim: '#FFE3BD', lightSide: 1, hL: [-120, 470], hR: [120, 470] }, st[k] || {});
+      w += fig(t, CAST[k], o);
+    });
+    w += brunchTable(t, st.table || {});
+    if (st.over) w += st.over;
+    return w;
+  }
+  const BF = { sofia: [480, 772, 0.76], amara: [228, 800, 0.78], emma: [732, 800, 0.78] };
+  const toLoc = (k, g) => loc(BF[k][0], BF[k][1], BF[k][2], g[0], g[1]);
+
+  // 0:04-0:09.4  Wide, laughing, cups clink; push in on Sofia's sigh; the friends trade a look.
+  function shotBrunch(t) {
+    const lt = t - 4;
+    const C = [480, 978];
+    // clink: cups rise, touch at lt 1.35, come back down
+    const up = io(seg(lt, 0.85, 1.25)) * (1 - io(seg(lt, 1.75, 2.2)));
+    const tap = Math.sin(Math.PI * seg(lt, 1.25, 1.45)) * 10;
+    const cupA = [lerp(370, C[0] - 70, up) - tap * 0.3, lerp(1110, C[1], up)];
+    const cupE = [lerp(860, C[0] + 70, up) + tap * 0.3, lerp(1118, C[1], up)];
+    const cupS = [lerp(620, C[0], up), lerp(1110, C[1] - 40, up)];
+    const laughA = lt < 1.0 || (lt > 1.4 && lt < 2.3), laughE = (lt > 0.2 && lt < 1.1) || (lt > 1.45 && lt < 2.4), laughS = lt < 1.2 || (lt > 1.5 && lt < 2.2);
+    const sigh = seg(lt, 2.75, 3.45);
+    const dream = lt > 3.45;
+    const look = lt > 4.45;
+    const st = {
+      amara: {
+        mood: look ? 'grin' : laughA ? 'laugh' : 'smile', look: look ? [9, -1] : lt > 2.5 ? [7, 2] : [4, 2], turn: look ? 0.35 : 0.15, browLift: look ? -6 : 0,
+        tilt: laughA ? 6 + Math.sin(t * 7) * 2 : look ? 6 : 2, head: [0, laughA ? -4 : 0],
+        hR: toLoc('amara', [cupA[0] + 30, cupA[1] + 20]), bR: 1, hL: [-90, 440], mid: '',
+      },
+      emma: {
+        mood: look ? 'grin' : laughE ? 'laugh' : 'smile', look: look ? [-9, -1] : lt > 2.5 ? [-7, 2] : [-4, 2], turn: look ? -0.35 : -0.15, browLift: look ? -6 : 0,
+        tilt: laughE ? -6 - Math.sin(t * 7) * 2 : look ? -6 : -2,
+        hL: toLoc('emma', [cupE[0] - 30, cupE[1] + 20]), bL: -1, hR: [100, 450],
+      },
+      sofia: {
+        mood: sigh > 0 && sigh < 1 ? 'exhale' : dream ? 'soft' : laughS ? 'laugh' : 'smile', look: dream ? [-3, -3] : [0, 2],
+        tilt: dream ? -7 : laughS ? 4 : 0, head: [0, sigh > 0 ? 8 * Math.sin(Math.PI * Math.min(1, sigh * 1.2)) + (dream ? 4 : 0) : 0],
+        hR: up > 0.01 ? toLoc('sofia', [cupS[0] + 28, cupS[1] + 22]) : [110, 470], bR: 1,
+        hL: lt > 3.2 ? [lerp(-110, -24, io(seg(lt, 3.2, 3.6))), lerp(470, 150, io(seg(lt, 3.2, 3.6)))] : [-110, 470], bL: 1,
+      },
+      table: { amaraCupUp: true, emmaCupUp: true, sofiaCupUp: up > 0.01 },
+    };
+    // cups in the hands (screen order: they sit in front of the bodies, hands over them)
+    let cups = heldCup(cupA, P.tealL, t) + heldCup(cupE, P.peachL, t);
+    if (up > 0.01) cups += heldCup(cupS, P.pinkP, t, 0.66);
+    st.over = cups;
+    if (lt > 1.3 && lt < 2.2) st.over += A.sparkle(C[0], C[1] - 40, 1.3 + 4, t, P.peachL) + star(C[0], C[1] - 60, 26 * Math.sin(Math.PI * seg(lt, 1.3, 1.8)), '#fff', 0.95, t * 90);
+    let w = brunchScene(t, st);
+    // camera: wide drift, then a smooth push to Sofia
+    const pk = io(seg(lt, 2.45, 3.15));
+    const z = 1.0 + 0.06 * io(lt / 2.45) + 0.28 * pk + 0.07 * seg(lt, 3.15, 5.4);
+    const Cm = { cx: 480, cy: lerp(940, 880, pk), z, dx: Math.sin(lt * 0.6) * 8 };
+    let s = camAt(Cm, w) + warm(0.12) + vignette(0.6);
+    s += flare(860, 330, 0.5 + 0.1 * Math.sin(t * 1.3));
+    // Sofia's line
+    const tail = camP(Cm, [BF.sofia[0] + 40, BF.sofia[1] - 120]);
+    s += say(t, 6.9, 470, 350, ['I’ve always wanted to learn', 'trading… it just feels', 'so intimidating.'], { tail, size: 42, out: 9.35 });
+    if (look) {
+      const pA = camP(Cm, [BF.amara[0] + 20, BF.amara[1] - 170]), pE = camP(Cm, [BF.emma[0] - 20, BF.emma[1] - 170]);
+      s += A.sparkle(pA[0], pA[1], 8.5, t, P.peachL) + A.sparkle(pE[0], pE[1], 8.6, t, P.pinkL);
+    }
+    return s;
+  }
+
+  // 0:09.4-0:13  Amara grins, pulls out her phone; the friends lean in; push into the screen.
+  function shotShow(t) {
+    const lt = t - 9.4;
+    const reach = io(seg(lt, 0.3, 0.75)), rise = io(seg(lt, 0.75, 1.3));
+    const lean = io(seg(lt, 1.0, 1.6));
+    // phone in Amara's right hand (figure-local)
+    const ph = { x: lerp(170, 196, rise), y: lerp(560, 262, rise), rot: lerp(-26, -7, rise) + Math.sin(t * 1.6) * 1.2, sc: 1.3, side: 1, glow: io(seg(lt, 1.1, 1.6)) * (0.8 + 0.2 * Math.sin(t * 4)), screen: scrChat(14.3) };
+    const PH = phoneHand(t, CAST.amara, ph, [lerp(150, 150, rise), lerp(480, 470, rise)]);
+    const handDown = lt < 0.75;
+    const st = {
+      amara: Object.assign({
+        mood: lt < 1.4 ? 'grin' : 'laugh', browLift: lt < 1.6 ? -7 : -2, look: lt < 0.75 ? [7, 0] : lt < 1.5 ? [3, 8] : [6, 0], turn: 0.25, tilt: lt < 1.5 ? 4 : 7,
+        hL: [-90, 440],
+      }, handDown ? { hR: [lerp(120, 160, reach), lerp(470, 520, reach)], bR: 1 } : { hR: PH.hR, kR: 'none', eR: PH.eR, front: PH.phone }),
+      sofia: {
+        lean: -6 * lean, head: [-14 * lean, 6 * lean], look: lean > 0.3 ? [-8, 7] : [-6, 1], turn: -0.25 * lean,
+        mood: lt > 1.75 && lt < 2.5 ? 'gasp' : lt >= 2.5 ? 'wow' : lt > 0.4 ? 'curious' : 'soft', tilt: -4, hL: [-110, 470], hR: [110, 470],
+      },
+      emma: {
+        lean: -8 * lean, head: [-20 * lean, 4 * lean], look: lean > 0.3 ? [-9, 6] : [-7, 0], turn: -0.35 * lean,
+        mood: lt > 1.85 ? 'grin' : lt > 0.6 ? 'curious' : 'smile', browLift: lt > 1.85 ? -5 : 0, tilt: -6, hL: [-100, 450], hR: [100, 450],
+      },
+      table: { amaraCupUp: false },
+    };
+    let w = brunchScene(t, st);
+    if (handDown && reach > 0.5) void 0;
+    // camera: on Amara and the phone, then a push straight into the screen
+    const phG = gl(BF.amara[0], BF.amara[1], BF.amara[2], [ph.x, ph.y]);
+    const pz = io(seg(lt, 2.75, 3.6));
+    const Cm = { cx: lerp(360, phG[0], pz), cy: lerp(930, phG[1], pz), z: 1.28 + 0.12 * io(lt / 2.75) + pz * pz * 5.2, dx: (1 - pz) * Math.sin(lt * 0.7) * 6 };
+    let s = camAt(Cm, w) + warm(0.12) + vignette(0.6 * (1 - pz));
+    const tail = camP(Cm, [BF.amara[0] + 30, BF.amara[1] - 150]);
+    s += say(t, 9.95, 330, 420, ['Wait. Look at this 👀'], { tail, size: 46, out: 12.05, w: 700 });
+    if (lt > 1.2 && lt < 2.4) { const pg = camP(Cm, phG); s += A.sparkle(pg[0] + 60, pg[1] - 120, 10.6, t, P.pinkL); }
+    return s;
+  }
+
+  /* ================================================================== *
+   * THE GROUP CHAT AND THE CUTAWAYS (0:13-0:21)
+   * ================================================================== */
+  function shotChat(t) {
+    // gentle drift that changes each time we come back
+    const segI = t < 14.9 ? 0 : t < 16.9 ? 1 : t < 18.9 ? 2 : 3;
+    const a = [13, 15.9, 17.9, 19.9][segI];
+    const lt = t - a;
+    const z = 1.0 + 0.035 * io(lt / 1.6) + (segI % 2 ? 0.02 : 0);
+    const dy = (segI % 2 ? 1 : -1) * 10 * io(lt / 1.5);
+    return cam(540, 900, z, chatUI(t), 0, dy) + bokeh(t, 8, 91, [P.pinkL, P.peachL, '#FFFFFF'], [0, 1350, 1080, 560], { r0: 20, r1: 40, op: 0.4, blur: 'fB16', dx: 18 });
+  }
+
+  // One friend reacting in her own day, typing her reply. lt 0..1.25.
+  function friendTyping(t, lt, key, bg, o) {
+    const L = CAST[key];
+    const fx = o.fx || 470, fy = o.fy || 770, fs = o.fs || 1.0;
+    const typeK = seg(lt, o.typeA ?? 0.42, o.typeB ?? 0.98);
+    const typing = typeK > 0 && typeK < 1;
+    const keyI = typing ? Math.floor(hash(Math.floor(t * 11)) * 26) : -1;
+    const thumb = typing ? keyPos(keyI) : null;
+    const ph = { x: o.px ?? 92, y: o.py ?? 300, rot: o.prot ?? -8, sc: o.psc ?? 1.22, side: 1, glow: 0.7 + 0.2 * Math.sin(t * 5), screen: scrChat(t - 0.6, { kb: io(seg(lt, 0.25, 0.45)), key: keyI }), thumb };
+    const PH = phoneHand(t, L, ph, o.elbow || [176, 476]);
+    const fo = Object.assign({ x: fx, y: fy, s: fs, seed: o.seed || 3, cut: 560, rim: o.rim || '#FFE3BD', lightSide: o.ls || 1, glow: '#FFE6EE', glowK: 0.6 },
+      o.fig(lt), { hR: PH.hR, kR: 'none', eR: PH.eR });
+    fo.front = (fo.front || '') + PH.phone;
+    let w = bg(t, lt);
+    w += fig(t, L, fo);
+    if (o.fore) w += o.fore(t, lt);
+    const z = 1.12 + 0.1 * io(lt / 1.25);
+    const Cm = { cx: 470, cy: 900, z, dx: (o.dir || 1) * 14 * io(lt / 1.25) };
+    let s = camAt(Cm, w) + warm(0.1) + vignette(0.65);
+    // her reply, typed above her head, then sent
+    const bx = o.bx || 900, by = o.by || 400;
+    s += typeBubble(t, bx, by, o.text, typeK, seg(lt, (o.typeB ?? 0.98) + 0.04, (o.typeB ?? 0.98) + 0.32));
+    return s;
+  }
+
+  function busBG(t) {
     let w = `<rect width="1080" height="1920" fill="#E8E2F4"/>`;
-    // window band with the city sliding past
-    const wy = 300, wh = 760;
-    const id = uid('bus');
+    const wy = 300, wh = 760, id = uid('bus');
     let city = `<rect x="0" y="${wy}" width="1080" height="${wh}" fill="url(#gDawn)"/>` + glowC(300, 520, 360, 'gSun', 0.9);
-    const sp = t * 260;
+    const sp = t * 300;
     for (let i = 0; i < 14; i++) {
       const bw = 140 + hash(i + 3) * 120, total = 14 * 200;
       const bx = ((i * 200 - sp * 0.5) % total + total) % total - 300, bh = 200 + hash(i + 11) * 380;
@@ -1273,152 +1663,507 @@
     }
     for (let i = 0; i < 8; i++) {
       const total = 8 * 300, tx = ((i * 300 - sp) % total + total) % total - 200;
-      city += `<g filter="url(#fB8)"><rect x="${f1(tx + 70)}" y="${wy + wh - 160}" width="22" height="160" fill="#8A6248"/><circle cx="${f1(tx + 80)}" cy="${wy + wh - 190}" r="80" fill="${i % 2 ? '#9DBE84' : '#B5CE8E'}"/><circle cx="${f1(tx + 40)}" cy="${wy + wh - 150}" r="56" fill="${i % 2 ? '#B5CE8E' : '#9DBE84'}"/></g>`;
+      city += `<g filter="url(#fB8)"><rect x="${f1(tx + 70)}" y="${wy + wh - 160}" width="22" height="160" fill="#8A6248"/><circle cx="${f1(tx + 80)}" cy="${wy + wh - 190}" r="80" fill="${i % 2 ? '#9DBE84' : '#B5CE8E'}"/></g>`;
     }
-    city += `<rect x="0" y="${wy + wh - 70}" width="1080" height="70" fill="#C9B6C8"/>`;
-    w += `<clipPath id="${id}"><rect x="0" y="${wy}" width="1080" height="${wh}" rx="30"/></clipPath><g clip-path="url(#${id})">${city}</g>`;
+    w += `<clipPath id="${id}"><rect x="0" y="${wy}" width="1080" height="${wh}" rx="30"/></clipPath><g clip-path="url(#${id})">${blurG(4, city)}</g>`;
     w += `<rect x="-10" y="${wy - 30}" width="1100" height="40" fill="#CFC6E4"/><rect x="-10" y="${wy + wh - 10}" width="1100" height="60" fill="#CFC6E4"/><rect x="520" y="${wy}" width="24" height="${wh}" fill="#CFC6E4"/>`;
-    // grab handles swinging
-    w += `<rect x="-10" y="210" width="1100" height="16" rx="8" fill="#B8AFCF"/>`;
-    [140, 360, 760, 980].forEach((x, i) => {
-      const a = Math.sin(t * 2.6 + i) * 8;
-      w += `<g transform="rotate(${f1(a)} ${x} 218)"><rect x="${x - 8}" y="218" width="16" height="90" fill="${P.purple}"/><path d="M${x - 30},300 Q${x},360 ${x + 30},300 Z" fill="none" stroke="${P.purple}" stroke-width="10"/></g>`;
-    });
-    // passing light sweeps
-    const sweep = ((t * 0.9) % 1);
-    w += screenBlend(`<path d="M${f1(-400 + sweep * 2200)},200 L${f1(-200 + sweep * 2200)},200 L${f1(-700 + sweep * 2200)},1900 L${f1(-900 + sweep * 2200)},1900 Z" fill="#FFF4E0" opacity=".28" filter="url(#fB16)"/>`);
-    // seat back behind her
+    w += `<rect x="-10" y="200" width="1100" height="16" rx="8" fill="#B8AFCF"/>`;
+    [140, 760, 980].forEach((x, i) => { const a = Math.sin(t * 2.6 + i) * 8; w += `<g transform="rotate(${f1(a)} ${x} 208)"><rect x="${x - 8}" y="208" width="16" height="90" fill="${P.purple}"/><path d="M${x - 30},290 Q${x},350 ${x + 30},290 Z" fill="none" stroke="${P.purple}" stroke-width="10"/></g>`; });
+    const sweep = (t * 0.9) % 1;
+    w += screenBlend(`<path d="M${f1(-400 + sweep * 2200)},200 L${f1(-200 + sweep * 2200)},200 L${f1(-700 + sweep * 2200)},1900 L${f1(-900 + sweep * 2200)},1900 Z" fill="#FFF4E0" opacity=".3" filter="url(#fB16)"/>`);
     w += `<rect x="240" y="880" width="460" height="700" rx="70" fill="${P.teal}"/><rect x="270" y="900" width="400" height="80" rx="36" fill="${P.tealL}"/>`;
+    return w;
+  }
+  function busFore(t) {
+    return `<rect x="-10" y="1330" width="1100" height="620" fill="#9E95C2"/><rect x="-10" y="1330" width="1100" height="14" fill="#B8AFCF"/>` +
+      `<rect x="40" y="1300" width="300" height="220" rx="50" fill="${P.teal}" opacity=".9"/><rect x="740" y="1300" width="300" height="220" rx="50" fill="${P.teal}" opacity=".9"/>`;
+  }
+  function shotMei(t) {
+    const lt = t - 14.7;
     const sway = Math.sin(t * 2.3) * 6;
-    w += heroFig(t, 'mei', {
-      x: 470 + sway, y: 780, s: 1.05, seed: 3, mood0: 'soft', look0: [-8, 2], tilt0: -2,
-      hL: [-140, 470], bL: 1, fig: { earbuds: true, rim: '#FFF0DC', lightSide: -1 },
-    }, pose);
-    w += `<rect x="-10" y="1330" width="1100" height="620" fill="#9E95C2"/><rect x="-10" y="1330" width="1100" height="14" fill="#B8AFCF"/>`;
-    w += `<rect x="40" y="1300" width="300" height="220" rx="50" fill="${P.teal}" opacity=".9"/><rect x="740" y="1300" width="300" height="220" rx="50" fill="${P.teal}" opacity=".9"/>`;
+    return friendTyping(t, lt, 'mei', (tt) => busBG(tt), {
+      fx: 470 + sway, seed: 3, rim: '#FFF0DC', ls: -1, text: 'omg yes 😭', bx: 880, by: 420, dir: -1,
+      fig: l => ({
+        mood: l < 0.5 ? 'laugh' : 'grin', look: l < 0.5 ? [0, 2] : [3, 9], tilt: l < 0.5 ? -6 + Math.sin(t * 9) * 2 : -3, head: [0, l < 0.5 ? -4 : 4], earbuds: true,
+        hL: [-150, -112], bL: -1, kL: 'rest',
+        under: '',
+      }),
+      fore: (tt) => {
+        // her raised hand holds a strap from the rail
+        const hx = 470 + sway - 150, hy = 770 - 112;
+        return `<path d="M${f1(hx + 14)},216 L${f1(hx + 10)},${f1(hy - 30)}" stroke="${P.purple}" stroke-width="16"/><path d="M${f1(hx - 22)},${f1(hy - 36)} Q${f1(hx + 10)},${f1(hy + 30)} ${f1(hx + 42)},${f1(hy - 36)}" fill="none" stroke="${P.purple}" stroke-width="10"/>` + busFore(tt);
+      },
+    });
+  }
+  function officeBG(t) {
+    let w = `<rect width="1080" height="1920" fill="#EEF2EA"/>`;
+    // window with blinds and the city by day
+    const id = uid('of');
+    let view = `<rect x="80" y="180" width="920" height="760" fill="#CFE8EC"/>` + glowC(760, 380, 420, 'gSun', 0.8);
+    for (let i = 0; i < 9; i++) { const bh = 220 + hash(i + 21) * 300, bx = 80 + i * 108; view += `<rect x="${bx}" y="${940 - bh}" width="92" height="${f1(bh)}" fill="${['#BFD3DA', '#D7E2E4', '#C9D9D2'][i % 3]}"/>`; }
+    w += `<clipPath id="${id}"><rect x="80" y="180" width="920" height="760" rx="12"/></clipPath><g clip-path="url(#${id})">${blurG(5, view)}`;
+    for (let y = 190; y < 940; y += 44) w += `<rect x="80" y="${y}" width="920" height="14" fill="#FFFFFF" opacity=".75"/>`;
+    w += `</g><rect x="80" y="180" width="920" height="760" rx="12" fill="none" stroke="#FFFFFF" stroke-width="22"/>`;
+    // pinboard with sticky notes
+    w += `<rect x="40" y="980" width="330" height="240" rx="12" fill="#E6CDB0"/>${[[80, 1010, P.pinkL, -5], [190, 1020, P.peachL, 4], [270, 1090, P.tealL, -3], [110, 1110, P.purpleL, 6]].map(([x, y, c, r]) => `<rect x="${x}" y="${y}" width="80" height="80" fill="${c}" transform="rotate(${r} ${x + 40} ${y + 40})"/>`).join('')}`;
+    // monitor at the side, plant
+    w += `<rect x="700" y="900" width="320" height="220" rx="16" fill="#3A302C"/><rect x="714" y="914" width="292" height="192" rx="8" fill="#F7F1EE"/>${[0, 1, 2, 3].map(i => `<rect x="734" y="${934 + i * 38}" width="${200 - i * 30}" height="14" rx="7" fill="${[P.pinkL, P.tealL, P.peachL, P.purpleL][i]}"/>`).join('')}<rect x="845" y="1120" width="30" height="60" fill="#3A302C"/>`;
+    w += plant(980, 1250, 1.0, '#7FAF8A', P.peach);
+    w += screenBlend(`<path d="M1000,200 L1100,200 L600,1700 L200,1700 Z" fill="url(#gBeam)" opacity=".35"/>`);
     return w;
   }
-
-  // 4. Priya, garden bench at lunch break, tote beside her.
-  function vigPriya(t, pose) {
-    let w = `<rect width="1080" height="1920" fill="url(#gGolden)"/>` + glowC(820, 420, 520, 'gSun', 0.9);
-    w += tree(120, 1000, 1.0, ['#A9C48A', '#8FB27C', '#D1DC9E', '#F2C27E'], t, 1) + tree(980, 980, 1.15, ['#9DBE84', '#B5CE8E', '#C6D69A', '#F5B472'], t, 2);
-    w += `<rect x="-10" y="960" width="1100" height="980" fill="#BCCB8A"/>`;
-    // flower beds
-    for (let i = 0; i < 26; i++) {
-      const x = hash(i + 4) * 1080, y = 980 + hash(i + 9) * 120, r = 12 + hash(i) * 10;
-      const sw = Math.sin(t * 1.8 + i) * 3;
-      w += `<path d="M${f1(x)},${f1(y + 40)} L${f1(x + sw)},${f1(y)}" stroke="#7FAF8A" stroke-width="4"/><circle cx="${f1(x + sw)}" cy="${f1(y)}" r="${f1(r)}" fill="${[P.pinkL, P.peachL, '#fff', P.pink, P.purpleL][i % 5]}"/><circle cx="${f1(x + sw)}" cy="${f1(y)}" r="${f1(r * 0.35)}" fill="${P.gold}"/>`;
-    }
-    w += bokeh(t, 12, 41, ['#FFE9C4', '#FFF6E2', '#FDE8ED'], [0, 300, 1080, 700], { r0: 16, r1: 34, op: 0.35, blur: 'fB8' });
-    // bench back
-    w += `<rect x="60" y="1000" width="820" height="40" rx="10" fill="#C99D78"/><rect x="60" y="1060" width="820" height="40" rx="10" fill="#C99D78"/><rect x="60" y="1120" width="820" height="40" rx="10" fill="#B88C66"/><rect x="90" y="990" width="22" height="300" fill="#6A4A3A"/><rect x="828" y="990" width="22" height="300" fill="#6A4A3A"/>`;
-    // tote on the bench beside her
-    const tote = `<g transform="translate(790,1180) rotate(6)"><path d="M-40,-60 C-40,-150 40,-150 40,-60" stroke="#D9C6A6" stroke-width="14" fill="none"/><path d="M-95,-60 L95,-60 L110,170 L-110,170 Z" fill="#EADBC2"/><path d="M-60,30 L60,30" stroke="${P.pink}" stroke-width="10" stroke-linecap="round"/>${heart(0, 100, 1.4, P.pink)}</g>`;
-    w += tote;
-    // sandwich in her left hand during the glance
-    w += heroFig(t, 'priya', {
-      x: 440, y: 760, s: 1.05, seed: 4, mood0: 'smile', look0: [-6, 4], tilt0: 2,
-      hL: [-110, 480], bL: 1, fig: { rim: '#FFE0B0', lightSide: 1 },
-    }, pose);
-    w += `<rect x="40" y="1290" width="880" height="36" rx="10" fill="#D9B08C"/><rect x="40" y="1326" width="880" height="24" fill="#B88C66"/><rect x="90" y="1350" width="26" height="300" fill="#6A4A3A"/><rect x="820" y="1350" width="26" height="300" fill="#6A4A3A"/>`;
-    w += `<rect x="-10" y="1600" width="1100" height="340" fill="#A9BC7A"/>`;
-    w += leaves(t, 7, 3, [-40, 200, 1160, 1400], ['#F5A857', '#E9A93B', '#FAD09A', '#C6D69A']);
-    // dappled light
-    for (let i = 0; i < 6; i++) w += screenBlend(glowC(200 + i * 150 + Math.sin(t + i) * 20, 600 + hash(i) * 600, 120, 'gSun', 0.25));
-    return w;
+  function shotPriya(t) {
+    const lt = t - 16.7;
+    return friendTyping(t, lt, 'priya', officeBG, {
+      seed: 4, rim: '#FFE0B0', ls: 1, text: 'structure, not signals?? I’m in', bx: 905, by: 400, dir: 1, typeA: 0.45, typeB: 1.0,
+      fig: l => ({
+        mood: l < 0.5 ? 'gasp' : 'grin', look: l < 0.5 ? [0, 4] : [3, 9], tilt: l < 0.5 ? 3 : -2, head: [0, l < 0.5 ? -8 * Math.sin(Math.PI * clamp(l / 0.5)) : 4],
+        hL: l < 0.55 ? [-30, 300] : [-110, 470], kL: l < 0.55 ? 'open' : 'rest', bL: 1,
+      }),
+      fore: () => `<rect x="-10" y="1270" width="1100" height="40" fill="#D9B08C"/><rect x="-10" y="1270" width="1100" height="9" fill="#F0D2B2"/><rect x="-10" y="1310" width="1100" height="640" fill="#C99D78"/>` + mug(170, 1270, 0.9, P.teal, { dark: '#5DB3A8' }),
+    });
   }
-
-  // 5. Layla, cozy café window with a notebook.
-  function vigLayla(t, pose) {
-    const lt = pose.lt || 0;
+  function laylaCafeBG(t) {
     let w = `<rect width="1080" height="1920" fill="#E9C9B4"/>`;
-    // window with the street outside
     const view = `<rect x="40" y="260" width="1000" height="900" fill="#F8D9B4"/>` + glowC(700, 500, 500, 'gSun', 0.9)
       + `<rect x="40" y="820" width="1000" height="340" fill="#D9B8A6"/>`
       + bokeh(t, 18, 61, ['#FFE9C4', '#F9B8C6', '#FFF6E2', '#B2E4DF'], [40, 400, 1000, 500], { r0: 20, r1: 46, op: 0.5, blur: 'fB16', dx: 20 });
-    let walkers = '';
-    for (let i = 0; i < 3; i++) {
-      const x = ((t * 70 * (i % 2 ? 1 : -0.8) + i * 400) % 1300 + 1300) % 1300 - 100;
-      walkers += `<g filter="url(#fB16)" opacity=".5"><circle cx="${f1(x)}" cy="700" r="40" fill="#8A6A5A"/><rect x="${f1(x - 55)}" y="740" width="110" height="260" rx="50" fill="${[P.purpleL, P.tealL, P.peachL][i]}"/></g>`;
-    }
-    w += windowFrame(60, 280, 960, 860, view + walkers, { frame: '#7A5444', sw: 26, cross: false, sill: false });
+    w += windowFrame(60, 280, 960, 860, view, { frame: '#7A5444', sw: 26, cross: false, sill: false });
     w += `<path d="M540,280 L540,1140" stroke="#7A5444" stroke-width="16"/>`;
-    // pendant lamps
     [200, 820].forEach((x, i) => {
       const sw = Math.sin(t * 0.9 + i) * 3;
       w += `<g transform="rotate(${f1(sw)} ${x} 0)"><path d="M${x},0 L${x},170" stroke="#5A4036" stroke-width="4"/><path d="M${x - 70},240 Q${x},150 ${x + 70},240 Z" fill="${P.peach}"/>${glowC(x, 250, 200, 'gLamp', 0.8)}<circle cx="${x}" cy="244" r="14" fill="#FFF0C8"/></g>`;
     });
-    // Layla writes in her notebook, stops when the phone glows
-    const writing = pose.mode === 'notify' && lt < 0.4;
-    const pen = writing ? [Math.sin(t * 16) * 12, Math.cos(t * 8) * 4] : [0, 0];
-    w += heroFig(t, 'layla', {
-      x: 470, y: 760, s: 1.05, seed: 5, mood0: 'soft', look0: [-4, 10], tilt0: -2,
-      hL: [-90 + pen[0], 440 + pen[1]], bL: 1, fig: { rim: '#FFD39A', lightSide: 1 },
-    }, pose);
-    w += `<rect x="-10" y="1250" width="1100" height="50" fill="#B98861"/><rect x="-10" y="1250" width="1100" height="10" fill="#D7A980"/><rect x="-10" y="1300" width="1100" height="650" fill="#9C6E50"/>`;
-    // notebook and latte
-    w += `<g transform="translate(250,1248) scale(1,0.5)"><rect x="-150" y="-120" width="300" height="200" rx="10" fill="#fff"/><path d="M0,-120 L0,80" stroke="#E9D9CC" stroke-width="5"/>${[0, 1, 2, 3].map(i => `<path d="M-130,${-90 + i * 40} L-20,${-90 + i * 40}" stroke="${P.purpleL}" stroke-width="5"/><path d="M20,${-90 + i * 40} L${110 - i * 20},${-90 + i * 40}" stroke="${P.purpleL}" stroke-width="5"/>`).join('')}${heart(70, 40, 1, P.pink)}</g>`;
-    w += `<g transform="translate(790,1230)"><path d="M-70,-10 L70,-10 L60,70 Q56,90 36,90 L-36,90 Q-56,90 -60,70 Z" fill="${P.cream}"/><ellipse cx="0" cy="-10" rx="70" ry="18" fill="#C69468"/>${heart(0, -4, 0.7, '#FBEBDD')}<path d="M70,10 C104,10 104,50 66,52" stroke="${P.cream}" stroke-width="10" fill="none"/><ellipse cx="0" cy="96" rx="96" ry="14" fill="${P.cream}"/></g>`;
-    w += steam(t, 790, 1200, 0.9, 0.5);
     return w;
   }
-
-  // 6. Emma, front porch at golden hour with her dog.
-  function dog(t, x, y, sc) {
-    const wag = Math.sin(t * 11) * 22, tilt = Math.sin(t * 1.4) * 6, pant = Math.abs(Math.sin(t * 7)) * 4;
-    const fur = '#E3A866', furD = '#C98B4A', furL = '#F2C68E';
-    return `<g transform="translate(${f1(x)},${f1(y)}) scale(${sc})">
-      <g transform="rotate(${f1(wag)} 90 60)"><path d="M90,60 C150,40 170,-20 160,-60" stroke="${fur}" stroke-width="26" fill="none" stroke-linecap="round"/></g>
-      <ellipse cx="20" cy="90" rx="120" ry="90" fill="${fur}"/><ellipse cx="-40" cy="60" rx="70" ry="90" fill="${furL}"/>
-      <rect x="-70" y="120" width="44" height="90" rx="20" fill="${fur}"/><rect x="-10" y="130" width="44" height="84" rx="20" fill="${furD}"/>
-      <g transform="rotate(${f1(tilt)} -40 -40)">
-        <ellipse cx="-110" cy="-60" rx="34" ry="62" transform="rotate(20 -110 -60)" fill="${furD}"/><ellipse cx="30" cy="-60" rx="34" ry="62" transform="rotate(-20 30 -60)" fill="${furD}"/>
-        <ellipse cx="-40" cy="-70" rx="78" ry="74" fill="${fur}"/><ellipse cx="-40" cy="-30" rx="46" ry="34" fill="${furL}"/>
-        <circle cx="-70" cy="-86" r="9" fill="#2C1810"/><circle cx="-10" cy="-86" r="9" fill="#2C1810"/><circle cx="-67" cy="-89" r="3" fill="#fff"/><circle cx="-7" cy="-89" r="3" fill="#fff"/>
-        <ellipse cx="-40" cy="-46" rx="14" ry="10" fill="#2C1810"/><path d="M-40,-36 L-40,-26 M-56,-24 Q-40,-14 -24,-24" stroke="#2C1810" stroke-width="4" fill="none" stroke-linecap="round"/>
-        <path d="M-50,-22 Q-40,${f1(6 + pant)} -30,-22 Z" fill="#E87B8E"/>
-      </g>
-      <path d="M-100,-6 Q-40,20 20,-6" stroke="${P.pink}" stroke-width="12" fill="none" stroke-linecap="round"/><circle cx="-40" cy="14" r="9" fill="${P.gold}"/>
-    </g>`;
+  function notebook(x, y, rot, sc) {
+    return `<g transform="translate(${f1(x)},${f1(y)}) rotate(${f1(rot)}) scale(${f3(sc)})"><rect x="-80" y="-104" width="160" height="208" rx="12" fill="${P.purple}"/><rect x="-72" y="-96" width="144" height="192" rx="8" fill="${P.purpleL}"/><rect x="-80" y="-104" width="20" height="208" rx="8" fill="#6A62C8"/>${heart(14, -10, 1.3, P.pink)}<rect x="-30" y="40" width="90" height="10" rx="5" fill="#fff" opacity=".7"/></g>`;
   }
-  function vigEmma(t, pose) {
-    let w = `<rect width="1080" height="1920" fill="#F6DEC0"/>`;
-    // house siding
-    for (let y = 120; y < 1300; y += 54) w += `<rect x="-10" y="${y}" width="1100" height="50" fill="#FBEBD8"/><rect x="-10" y="${y + 44}" width="1100" height="6" fill="#E9D2B8"/>`;
-    // window with warm interior and a door frame
-    w += `<rect x="560" y="300" width="380" height="480" rx="8" fill="#FFE3B8"/>${glowC(750, 540, 260, 'gLamp', 0.8)}<rect x="560" y="300" width="380" height="480" rx="8" fill="none" stroke="#fff" stroke-width="22"/><path d="M750,300 L750,780 M560,540 L940,540" stroke="#fff" stroke-width="12"/>`;
-    w += `<rect x="-60" y="260" width="300" height="900" fill="#E5AC9E"/><rect x="-40" y="290" width="240" height="380" rx="8" fill="none" stroke="#D49486" stroke-width="6"/><circle cx="200" cy="740" r="12" fill="${P.gold}"/>`;
-    // porch posts and string lights
-    w += `<rect x="900" y="80" width="60" height="1300" fill="#FFF8F0"/><rect x="890" y="80" width="80" height="30" fill="#EADBC9"/>`;
-    w += stringLights(t, -40, 1120, 170, 90, 5, 2);
-    // sun from the right, through the posts
-    w += screenBlend(`<path d="M1100,200 L1100,600 L200,1500 L-100,1300 Z" fill="url(#gBeam)" opacity=".55"/>` + glowC(1060, 500, 600, 'gSun', 0.8));
-    // potted flowers
-    w += plant(110, 1200, 1.0, '#86B596', P.pink);
-    for (let i = 0; i < 5; i++) w += `<circle cx="${80 + i * 16}" cy="${1060 - (i % 2) * 20}" r="14" fill="${[P.pinkL, P.peachL, '#fff'][i % 3]}"/>`;
-    // Emma on the top step, petting the dog with her left hand
-    const fx = 560, fy = 780, fs = 1.02;
-    const pet = Math.sin(t * 4) * 12;
-    const dogX = 230, dogY = 1110;
-    const hL = loc(fx, fy, fs, dogX + 10 + pet, dogY - 120);
-    w += heroFig(t, 'emma', {
-      x: fx, y: fy, s: fs, seed: 6, mood0: 'smile', look0: [-8, 6], tilt0: -3, phone: [700, 1140],
-      hL, bL: -1, kL: 'rest', fig: { rim: '#FFD39A', lightSide: 1 },
-    }, pose);
-    w += dog(t, dogX, dogY, 1.0);
-    // steps
-    w += `<rect x="-10" y="1300" width="1100" height="40" fill="#D9B08C"/><rect x="-10" y="1300" width="1100" height="10" fill="#F0D2B2"/><rect x="-10" y="1340" width="1100" height="200" fill="#C99D78"/><rect x="-10" y="1540" width="1100" height="40" fill="#D9B08C"/><rect x="-10" y="1580" width="1100" height="400" fill="#B88C66"/>`;
-    w += leaves(t, 5, 7, [-40, 200, 1160, 1300], ['#F5A857', '#E9A93B', '#FAD09A']);
-    return w + flare(1000, 420, 0.75 + 0.1 * Math.sin(t * 1.3));
+  function shotLayla(t) {
+    const lt = t - 18.7;
+    const hug = 1 + 0.03 * Math.sin(t * 5);
+    return friendTyping(t, lt, 'layla', laylaCafeBG, {
+      seed: 5, rim: '#FFD39A', ls: 1, text: 'finally something for us 🫶', bx: 900, by: 400, dir: -1, typeA: 0.45, typeB: 1.0,
+      fig: l => ({
+        mood: l < 0.5 ? 'bliss' : 'smile', look: l < 0.5 ? [0, 0] : [3, 9], tilt: l < 0.5 ? 6 + Math.sin(t * 4) * 2 : -2, head: [0, l < 0.5 ? 0 : 4],
+        mid: notebook(-58, 360, 10, 1.05 * hug), hL: [24, 380], bL: 1, kL: 'rest',
+      }),
+      fore: (tt) => `<rect x="-10" y="1250" width="1100" height="50" fill="#B98861"/><rect x="-10" y="1250" width="1100" height="10" fill="#D7A980"/><rect x="-10" y="1300" width="1100" height="650" fill="#9C6E50"/>` + latte(820, 1262, 0.9, P.cream, tt),
+    });
   }
-
-  const VIG = { amara: vigAmara, sofia: vigSofia, mei: vigMei, priya: vigPriya, layla: vigLayla, emma: vigEmma };
 
   /* ================================================================== *
-   * SHOTS
+   * SNEAK PEEK TOGETHER (0:21-0:30)
    * ================================================================== */
+  function livingBG(t) {
+    let w = `<rect width="1080" height="1920" fill="#F3D5C6"/>${glowC(900, 600, 600, 'gLamp', 0.55)}${glowC(140, 500, 500, 'gPk', 0.35)}`;
+    // night window
+    w += windowFrame(70, 250, 330, 440, `<rect x="70" y="250" width="330" height="440" fill="url(#gNightWin)"/>${twinkles(t, 8, 31, [80, 260, 310, 400], ['#FFF6E2'], { sp: 4, r: 6, op: 0.8 })}<circle cx="320" cy="330" r="30" fill="#FFF3D6"/><circle cx="334" cy="322" r="28" fill="#3A3770"/>`, { frame: '#FFF8F2', sw: 18 });
+    // framed art and a shelf
+    w += `<rect x="560" y="300" width="200" height="250" rx="6" fill="#fff"/><rect x="576" y="316" width="168" height="218" fill="${P.pinkP}"/><circle cx="660" cy="400" r="50" fill="${P.peachL}"/><path d="M580,520 Q640,450 740,520" fill="${P.tealL}"/>`;
+    w += `<rect x="800" y="430" width="230" height="16" rx="6" fill="#C99D78"/><rect x="820" y="370" width="26" height="60" fill="${P.purple}"/><rect x="850" y="380" width="22" height="50" fill="${P.teal}"/><rect x="876" y="360" width="26" height="70" fill="${P.peach}"/>` + plant(960, 430, 0.5, '#7FAF8A', P.pink);
+    w += stringLights(t, -40, 1120, 170, 70, 6, 4);
+    // the couch
+    w += `<path d="M30,800 Q540,760 1050,800 L1060,1080 L20,1080 Z" fill="#E59CAD"/><path d="M60,820 Q540,786 1020,820" stroke="#F2B9C5" stroke-width="12" fill="none"/>`;
+    w += `<rect x="-20" y="900" width="120" height="300" rx="50" fill="#D98799"/><rect x="980" y="900" width="120" height="300" rx="50" fill="#D98799"/>`;
+    w += cushion(130, 900, 0.9, P.tealL, -10) + cushion(950, 900, 0.9, P.peachL, 10);
+    // floor lamp glow
+    w += `<path d="M1010,300 L1010,1100" stroke="#5A4036" stroke-width="8"/><path d="M950,300 L1070,300 L1040,220 L980,220 Z" fill="${P.peachL}"/>${screenBlend(glowC(1010, 300, 260, 'gLamp', 0.7))}`;
+    return w;
+  }
+  const LV = {
+    sofia: [258, 702, 0.6], priya: [470, 676, 0.6], mei: [682, 702, 0.6],
+    amara: [205, 985, 0.7], layla: [470, 972, 0.7], emma: [740, 985, 0.7],
+  };
+  const LV_ORDER = ['sofia', 'priya', 'mei', 'amara', 'emma', 'layla'];
+  function livingScene(t, poses, o = {}) {
+    let w = livingBG(t);
+    w += `<rect x="-10" y="1060" width="1100" height="900" fill="#E7C2AD"/>`;
+    LV_ORDER.forEach((k, i) => {
+      const [x, y, s] = LV[k];
+      const p = Object.assign({ x, y, s, seed: i + 2, cut: 600, mood: 'smile', rim: '#FFD8A8', lightSide: x < 470 ? -1 : 1, glow: '#E9FBF8', glowK: 0.9, hL: [-110, 470], hR: [110, 470] }, poses[k] || {});
+      w += fig(t, CAST[k], p);
+    });
+    // coffee table, laptop seen from behind, snacks
+    w += `<path d="M60,1330 L1020,1330 L1060,1400 L20,1400 Z" fill="#C99D78"/><rect x="20" y="1400" width="1040" height="30" fill="#B07F5E"/><rect x="20" y="1430" width="1040" height="500" fill="#E3B9A4"/>`;
+    w += laptopBack(470, 1340, 400, { open: 1, on: 1 });
+    w += popcorn(150, 1320, 0.85) + fruitBowl(800, 1330, 0.85) + mug(960, 1340, 0.6, P.teal, { dark: '#5DB3A8', steam: true, t });
+    if (o.over) w += o.over;
+    return w;
+  }
+  function peekTag(x, y, k, t) {
+    if (k <= 0) return '';
+    const wob = Math.sin(t * 4) * 2;
+    return `<g transform="translate(${f1(x)},${f1(y)}) rotate(${f1(-7 + wob)}) scale(${f3(back(k))})">
+      <rect x="-176" y="-38" width="352" height="76" rx="38" fill="${P.peach}" filter="url(#fSoft)"/>
+      <rect x="-168" y="-30" width="336" height="60" rx="30" fill="none" stroke="${P.cream}" stroke-width="3" stroke-dasharray="8 8"/>
+      ${txt(26, 13, 'SNEAK PEEK', 32, P.cream, { w: 700, ls: 3 })}
+      <g transform="translate(-136,0)"><ellipse rx="20" ry="13" fill="${P.cream}"/><circle r="8" fill="${P.dark}"/><circle cx="3" cy="-3" r="2.5" fill="#fff"/></g>
+      ${star(176, -40, 14, P.cream, 0.9 + 0.1 * Math.sin(t * 5), t * 60)}${star(-176, 34, 9, P.cream, 0.8, -t * 50)}</g>`;
+  }
+  // Brand headline on a soft cream scrim at the top.
+  function peekHead(t) {
+    let s = `<rect width="1080" height="560" fill="url(#gTopScrim)" opacity=".92"/>`;
+    s += head(t, 21.3, CX, 372, `A Girl &amp; Her Futures <tspan font-style="italic" fill="${P.pink}">Academy™</tspan>`, 62, P.dark, { max: 840, out: 25.25 });
+    if (t > 25.3) {
+      const act = t < 26.9 ? 0 : t < 28.3 ? 1 : 2;
+      const words = ['Structured', 'Visual', 'Self-paced'].map((wd, i) => `<tspan fill="${i === act ? P.pink : P.dark}"${i === act ? ' font-style="italic"' : ''}>${wd}</tspan>`);
+      s += head(t, 25.45, CX, 372, words.join(`<tspan fill="${P.muted}"> · </tspan>`), 62, P.dark, { max: 840 });
+    }
+    return s;
+  }
+  // Everyone leaning in to look, small idle motion.
+  function lookPoses(t, lt) {
+    const n = k => Math.sin(t * 1.3 + k) * 2;
+    return {
+      sofia: { look: [6, 8], turn: 0.25, tilt: 8 + n(1), lean: 4, mood: 'curious' },
+      priya: { look: [0, 9], tilt: -3 + n(2), head: [0, 6], mood: 'smile' },
+      mei: { look: [-6, 8], turn: -0.25, tilt: -8 + n(3), lean: -4, mood: 'curious', hL: [-60, 300], kL: 'rest' },
+      amara: { look: [6, 9], turn: 0.3, tilt: 5 + n(4), mood: 'smile' },
+      layla: { look: [0, 10], tilt: 2 + n(5), head: [0, 6], mood: 'soft' },
+      emma: { look: [-6, 9], turn: -0.3, tilt: -5 + n(6), mood: 'curious', hL: [-20, 420], hR: [40, 430] },
+    };
+  }
+  function shotLiving(t) {
+    const lt = t - 21;
+    const w = livingScene(t, lookPoses(t, lt));
+    const Cm = { cx: 470, cy: 960, z: 1.0 + 0.08 * io(lt / 2.0), dx: -10 * lt };
+    return camAt(Cm, w) + warm(0.14) + vignette(0.65) + peekHead(t);
+  }
+  // Over the shoulders: the laptop and the real Academy screens.
+  function otsScene(t, lt, screens, o = {}) {
+    let w = blurG(14, livingBG(t)) + `<rect x="-10" y="1240" width="1100" height="700" fill="#D9AE96"/>`;
+    // which screen, crossfading
+    const cur = screens.findIndex((sc, i) => i === screens.length - 1 || lt < screens[i + 1][1]);
+    const [k0] = screens[Math.max(0, cur)];
+    const nx = screens[cur + 1];
+    const xf = nx ? io(seg(lt, nx[1] - 0.25, nx[1] + 0.15)) : 0;
+    const inner = (sw, sh) => {
+      let g = '';
+      if (nx && xf > 0) g += `<g opacity="${f3(xf)}">${img(SCR[nx[0]], 0, 0, sw, sh)}</g>`;
+      if (o.inner) g += o.inner(sw, sh);
+      return g;
+    };
+    const LX = 470, LY = 1250, LW = 760;
+    w += blurG(6 * (1 - io(seg(lt, 0, 0.5))), laptop(LX, LY, LW, { screen: k0, on: 1, inner, zoom: 1 + 0.03 * lt, pan: [0.3, 0.2], glowC: '#FFF3E6' }));
+    if (o.after) w += o.after(LX, LY, LW);
+    w += blurG(8, figBack(t, CAST.amara, { x: 120, y: 1290, s: 1.3, seed: 1, tilt: 6 }));
+    w += blurG(8, figBack(t, CAST.emma, { x: 870, y: 1320, s: 1.25, seed: 6, tilt: -6 }));
+    w += blurG(10, popcorn(560, 1700, 1.6));
+    return w;
+  }
+  function shotOTS1(t) {
+    const lt = t - 23;
+    const w = otsScene(t, lt, [['curriculum', 0], ['dots', 1.25]]);
+    const Cm = { cx: 470, cy: 1010, z: 1.0 + 0.12 * io(lt / 2.4), dx: 6 * lt };
+    let s = camAt(Cm, w) + warm(0.1) + vignette(0.7);
+    const tag = camP(Cm, [470 - 380 + 150, 1250 - 520]);
+    s += peekTag(Math.max(220, tag[0]), tag[1], seg(lt, 0.35, 0.7), t);
+    return s + peekHead(t);
+  }
+  function shotOTS2(t) {
+    const lt = t - 27;
+    const LX = 470, LW = 760, sh = LW * 0.625;
+    const pop = back(seg(lt, 0.35, 0.75)), chk = back(seg(lt, 0.6, 0.9));
+    const w = otsScene(t, lt, [['complete', 0]], {
+      after: (lx, ly, lw) => {
+        const sTop = ly - (sh + lw * 0.028 * 2.6) + lw * 0.028 * 1.4;
+        const cx = lx + lw * 0.34, cy = sTop + sh * 0.37;
+        let g = '';
+        if (pop > 0) g += scaleAt(cx, cy, pop, `<circle cx="${f1(cx)}" cy="${f1(cy)}" r="86" fill="#fff" filter="url(#fSoft)"/>${chk > 0 ? `<g transform="translate(${f1(cx)},${f1(cy)}) scale(${f3(chk)})"><circle r="60" fill="${P.teal}"/><path d="M-26,2 L-8,20 L28,-18" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></g>` : ''}`);
+        g += A.sparkle(cx, cy, 27.7, t, P.peachL) + A.sparkle(cx + 40, cy - 20, 27.85, t, P.pinkL);
+        return g;
+      },
+    });
+    const Cm = { cx: 470, cy: 1010, z: 1.06 + 0.1 * io(lt / 1.6), dx: -6 * lt };
+    let s = camAt(Cm, w) + warm(0.1) + vignette(0.7);
+    const tag = camP(Cm, [470 - 380 + 150, 1250 - 520]);
+    s += peekTag(Math.max(220, tag[0]), tag[1], seg(lt, 0.1, 0.4), t);
+    void LX;
+    return s + peekHead(t);
+  }
+  // Reactions: gasps, a high five, Layla points at the screen, Emma claps.
+  function reactPoses(t, lt, final) {
+    const P0 = lookPoses(t, lt);
+    const hf = io(seg(lt, 0.2, 0.5)) * (1 - io(seg(lt, 0.95, 1.25)));
+    const hit = Math.sin(Math.PI * seg(lt, 0.45, 0.6)) * 6;
+    const clap = Math.abs(Math.sin(t * 9));
+    const point = io(seg(lt, 0.7, 1.0)) * (final ? 0 : 1);
+    // high five between Amara and Layla, hands meet above and between them
+    const HF = [340, 878 - hit];
+    const aL = loc(LV.amara[0], LV.amara[1], LV.amara[2], HF[0] - 18, HF[1]);
+    const lL = loc(LV.layla[0], LV.layla[1], LV.layla[2], HF[0] + 18, HF[1]);
+    return {
+      sofia: Object.assign({}, P0.sofia, { mood: lt < 0.8 ? 'gasp' : 'laugh', look: [4, 4], hL: lt < 1.0 ? [-30, 190] : [-110, 470], kL: lt < 1.0 ? 'open' : 'rest', bL: 1, hR: lt < 1.0 ? [40, 190] : [110, 470], kR: lt < 1.0 ? 'open' : 'rest', bR: -1 }),
+      priya: Object.assign({}, P0.priya, { mood: lt < 0.7 ? 'gasp' : 'grin', look: [0, 4], tilt: lt < 0.7 ? 0 : 6 }),
+      mei: Object.assign({}, P0.mei, { mood: lt < 0.5 ? 'wow' : 'laugh', hL: [-110, 470] }),
+      amara: Object.assign({}, P0.amara, { mood: hf > 0.3 || final ? 'laugh' : 'grin', look: [5, -2], tilt: 8, hR: hf > 0 ? [lerp(110, aL[0], hf), lerp(470, aL[1], hf)] : [110, 470], kR: hf > 0.5 ? 'open' : 'rest', bR: -1 }),
+      layla: Object.assign({}, P0.layla, {
+        mood: final ? 'laugh' : hf > 0.3 ? 'laugh' : point > 0.3 ? 'grin' : 'wow', look: point > 0.3 ? [0, 10] : [-5, -2], tilt: -4,
+        hL: hf > 0 ? [lerp(-110, lL[0], hf), lerp(470, lL[1], hf)] : [-110, 470], kL: hf > 0.5 ? 'open' : 'rest', bL: 1,
+        hR: point > 0 ? [lerp(110, 60, point), lerp(470, 330, point)] : [110, 470], kR: point > 0.4 ? 'point' : 'rest', bR: 1,
+      }),
+      emma: Object.assign({}, P0.emma, { mood: 'laugh', look: [-3, 0], tilt: -6, hL: [-26 - clap * 26, 300], hR: [26 + clap * 26, 300], kL: 'open', kR: 'open', bL: 1, bR: -1, hs: 0.95 }),
+      _hf: hf, _HF: HF,
+    };
+  }
+  function shotReact(t) {
+    const lt = t - 25.4;
+    const R = reactPoses(t, lt, false);
+    let over = '';
+    if (lt > 0.5 && lt < 1.4) over += A.sparkle(R._HF[0], R._HF[1] - 20, 25.4 + 0.5, t, P.peachL) + star(R._HF[0], R._HF[1] - 30, 30 * Math.sin(Math.PI * seg(lt, 0.5, 0.9)), '#fff', 0.95, t * 120);
+    const w = livingScene(t, R, { over });
+    const Cm = { cx: 470, cy: 950, z: 1.12 + 0.06 * io(lt / 1.6), dx: 8 * lt };
+    return camAt(Cm, w) + warm(0.14) + vignette(0.65) + peekHead(t);
+  }
+  function shotCheer(t) {
+    const lt = t - 28.6;
+    const R = reactPoses(t, 1.6 + lt, true);
+    R.sofia = Object.assign({}, R.sofia, { mood: 'laugh', hL: [-110, 470], hR: [110, 470], kL: 'rest', kR: 'rest' });
+    R.priya.mood = 'laugh';
+    R.layla = Object.assign({}, R.layla, { mood: 'laugh', tilt: 8, hL: [-110, 470], hR: [110, 470], kL: 'rest', kR: 'rest' });
+    const w = livingScene(t, R, { over: twinkles(t, 10, 77, [80, 600, 800, 600], [P.pinkL, P.peachL, '#fff'], { sp: 60, r: 12 }) });
+    const Cm = { cx: 470, cy: 930, z: 1.04 + 0.08 * io(lt / 1.4), dx: -12 * lt };
+    return camAt(Cm, w) + warm(0.14) + vignette(0.65) + peekHead(t);
+  }
 
+  /* ================================================================== *
+   * GOLDEN-HOUR ROOFTOP (0:30-0:38)
+   * ================================================================== */
+  function roofBG(t) {
+    let w = `<rect width="1080" height="1920" fill="url(#gDusk)"/><rect width="1080" height="1920" fill="#FFC890" opacity=".35"/>`;
+    w += glowC(780, 980, 700, 'gSun', 1) + glowC(780, 980, 150, 'gWhite', 0.95);
+    for (let i = 0; i < 4; i++) {
+      const x = ((hash(i + 2) * 1400 + t * (12 + i * 5)) % 1500) - 300, y = 300 + i * 110;
+      w += `<g opacity=".55" filter="url(#fB8)"><ellipse cx="${f1(x)}" cy="${y}" rx="${150 + i * 20}" ry="28" fill="#FFE2D0"/></g>`;
+    }
+    let city = '';
+    for (let i = 0; i < 12; i++) {
+      const bw = 70 + hash(i + 31) * 80, bx = -40 + i * 96 - t * 4, bh = 160 + hash(i + 7) * 300;
+      city += `<rect x="${f1(bx)}" y="${f1(1080 - bh)}" width="${f1(bw)}" height="${f1(bh)}" fill="#A07AA8" opacity=".8"/>`;
+      for (let r = 0; r < Math.floor(bh / 46); r++) city += `<rect x="${f1(bx + 12)}" y="${f1(1080 - bh + 18 + r * 46)}" width="${f1(bw - 24)}" height="9" rx="4.5" fill="#FFE0B5" opacity="${f3(0.35 + 0.35 * hash(i * 9 + r))}"/>`;
+    }
+    w += blurG(2, city);
+    w += stringLights(t, -40, 1120, 150, 120, 5, 7) + stringLights(t + 1, -40, 1120, 330, 80, 4, 9);
+    w += `<rect x="-10" y="1060" width="1100" height="70" fill="#C98E7C"/><rect x="-10" y="1060" width="1100" height="12" fill="#E8B4A0"/><rect x="-10" y="1130" width="1100" height="900" fill="#D9A48E"/>`;
+    w += plant(70, 1070, 1.1, '#7FAF8A', P.peach) + plant(1010, 1070, 1.1, '#86B596', P.pink);
+    w += screenBlend(`<path d="M780,980 L1100,700 L1100,1300 Z" fill="url(#gBeam)" opacity=".4"/>`) + motes(t, 14, 13, [100, 500, 900, 900], '#FFF1D6');
+    return w;
+  }
+  const RF = {
+    mei: [258, 702, 0.6], priya: [470, 676, 0.6], emma: [682, 702, 0.6],
+    amara: [205, 990, 0.7], sofia: [470, 978, 0.7], layla: [738, 990, 0.7],
+  };
+  const RF_ORDER = ['mei', 'priya', 'emma', 'amara', 'layla', 'sofia'];
+  function roofScene(t, poses, o = {}) {
+    let w = roofBG(t);
+    // bench back behind the back row
+    w += `<rect x="40" y="880" width="1000" height="40" rx="14" fill="#B88C66"/><rect x="40" y="940" width="1000" height="40" rx="14" fill="#B88C66"/>`;
+    RF_ORDER.forEach((k, i) => {
+      const [x, y, s] = RF[k];
+      const p = Object.assign({ x, y, s, seed: i + 1, cut: 600, mood: 'smile', rim: '#FFD08A', lightSide: 1, hL: [-110, 470], hR: [110, 470], wind: 0.4 }, poses[k] || {});
+      w += fig(t, CAST[k], p);
+    });
+    // picnic blanket and basket in front
+    let bl = `<path d="M-40,1350 L1120,1350 L1120,1960 L-40,1960 Z" fill="${P.pinkL}"/>`;
+    for (let i = 0; i < 12; i++) bl += `<rect x="${-40 + i * 100}" y="1350" width="50" height="620" fill="#fff" opacity=".35"/>`;
+    for (let j = 0; j < 7; j++) bl += `<rect x="-40" y="${1360 + j * 90}" width="1160" height="40" fill="#fff" opacity=".25"/>`;
+    w += bl + `<g transform="translate(900,1360)"><path d="M-90,-80 Q0,-160 90,-80" stroke="#A0704C" stroke-width="12" fill="none"/><path d="M-100,-80 L100,-80 L84,30 L-84,30 Z" fill="#C99D78"/><path d="M-96,-50 L96,-50 M-92,-20 L92,-20" stroke="#A0704C" stroke-width="5"/></g>`;
+    w += latte(130, 1390, 0.6, P.peachL, t, false);
+    if (o.over) w += o.over;
+    return w;
+  }
+  // Each of the front three holds her phone; the back row peeks over their shoulders.
+  function roofPoses(t, lt, o = {}) {
+    const n = k => Math.sin(t * 1.3 + k) * 2;
+    const poses = {
+      mei: { look: [3, 9], turn: 0.2, tilt: 6 + n(1), lean: 3, head: [10, 6], mood: 'smile' },
+      priya: { look: [0, 9], tilt: n(2), head: [0, 8], mood: 'smile' },
+      emma: { look: [-3, 9], turn: -0.2, tilt: -6 + n(3), lean: -3, head: [-10, 6], mood: 'smile' },
+    };
+    [['amara', 0], ['sofia', 1], ['layla', 2]].forEach(([k, i]) => {
+      const done = o.done ? o.done(i) : 0;
+      const ph = { x: 70, y: 300, rot: -6 + i * 4 + Math.sin(t * 1.2 + i) * 1.5, sc: 1.18, side: 1, glow: 0.6 + 0.3 * done, screen: scrJoin({ t, done }) };
+      const PH = phoneHand(t, CAST[k], ph, [170, 480]);
+      poses[k] = { look: done > 0.5 ? [0, 0] : [3, 9], tilt: done > 0.5 ? 5 : -2 + n(4 + i), head: [0, done > 0.5 ? 0 : 6], mood: done > 0.5 ? 'laugh' : 'smile', hR: PH.hR, kR: 'none', eR: PH.eR, front: PH.phone, hL: [-110, 470] };
+    });
+    return poses;
+  }
+  function shotRoof(t) {
+    const lt = t - 30;
+    const w = roofScene(t, roofPoses(t, lt));
+    const Cm = { cx: 470, cy: 960, z: 1.0 + 0.07 * io(lt / 1.5), dx: 10 * lt };
+    return camAt(Cm, w) + warm(0.16, '#FFB070') + vignette(0.6) + flare(780, 980, 0.55 + 0.1 * Math.sin(t * 1.2));
+  }
+
+  // Inserts: thumbs tap the pink button, the checks pop. Three panels at a time.
+  function tapInsert(t, key, cx, cy, sc, tapAt, rot, bgCol) {
+    const L = CAST[key];
+    const lt = t - tapAt;
+    const arrive = io(seg(lt, -0.42, -0.08));
+    const press = Math.sin(Math.PI * seg(lt, -0.06, 0.12));
+    const done = seg(lt, 0.05, 0.5);
+    const btn = [59 + 12, 190];
+    const rest = [SW + 2, SH - 34];
+    const thumb = [lerp(rest[0], btn[0], arrive), lerp(rest[1], btn[1], arrive) + press * 2];
+    const H = heldPhone(t, L, { x: cx, y: cy, rot, sc, side: 1, glow: 0.35 + 0.5 * done, screen: scrJoin({ t, done, press }), thumb, ripple: seg(lt, -0.02, 0.4) });
+    // sleeve: from the wrist straight down out of frame (never across the screen)
+    const sw = 64 * sc;
+    const [wx, wy] = H.wrist;
+    const top = L.top === 'sweater' ? 12 : 0;
+    let s = `<path d="M${f1(wx)},${f1(wy)} L${f1(wx + 40 * sc)},2100" stroke="${L.topD}" stroke-width="${f1(sw + top + 6)}" stroke-linecap="round"/>`;
+    s += `<path d="M${f1(wx)},${f1(wy)} L${f1(wx + 40 * sc)},2100" stroke="${L.topC}" stroke-width="${f1(sw + top)}" stroke-linecap="round"/>`;
+    s += `<path d="M${f1(wx + 4 * sc)},${f1(wy + 30 * sc)} L${f1(wx + 8 * sc)},${f1(wy + 50 * sc)}" stroke="${L.topD}" stroke-width="${f1(sw + top - 4)}" stroke-linecap="round" opacity=".7"/>`;
+    s += H.svg;
+    if (done > 0 && done < 1) s += A.sparkle(...H.toP(59, 150), tapAt + 0.1, t, P.pinkL);
+    void bgCol;
+    return s;
+  }
+  function panelBG(t, x, w, col, seed) {
+    return `<rect x="${x}" y="0" width="${w}" height="1920" fill="${col}"/>` + glowC(x + w * 0.6, 500, 520, 'gSun', 0.7) + bokeh(t, 7, seed, ['#FFE9C4', '#FFF6E2', '#F9B8C6'], [x, 200, w, 1200], { r0: 22, r1: 40, op: 0.55, blur: 'fB16', dx: 16 });
+  }
+  function shotTaps(t, a, keys) {
+    const lt = t - a;
+    const cols = ['#F6C8A8', '#F3B7C2', '#E9C4E0'];
+    const xs = [0, 360, 720], cxs = [178, 528, 830];
+    let s = '';
+    keys.forEach((k, i) => {
+      const id = uid('pn');
+      const z = 1 + 0.06 * io(lt / 0.9);
+      let p = panelBG(t, xs[i], 360, cols[i], 120 + i * 7);
+      p += tapInsert(t, k, cxs[i], 800 + (i % 2 ? 30 : -10), 1.95, a + 0.38 + i * 0.16, [-4, 3, -2][i], cols[i]);
+      s += `<clipPath id="${id}"><rect x="${xs[i]}" y="0" width="360" height="1920"/></clipPath><g clip-path="url(#${id})">${cam(cxs[i], 900, z, p)}</g>`;
+    });
+    s += `<rect x="357" y="0" width="6" height="1920" fill="${P.cream}"/><rect x="717" y="0" width="6" height="1920" fill="${P.cream}"/>`;
+    return s + warm(0.1) + vignette(0.4);
+  }
+  const shotTapsA = t => shotTaps(t, 31.5, ['amara', 'sofia', 'layla']);
+  const shotTapsB = t => shotTaps(t, 32.4, ['mei', 'priya', 'emma']);
+
+  // Back to the group: checks pop over everyone, they cheer and squeeze in for a selfie.
+  function shotChecks(t) {
+    const lt = t - 33.3;
+    const poses = roofPoses(t, lt, { done: i => 1 });
+    ['mei', 'priya', 'emma'].forEach((k, i) => { poses[k] = Object.assign({}, poses[k], { mood: 'laugh', look: [0, 0], head: [0, 0], tilt: [8, -4, -8][i] + Math.sin(t * 8 + i) * 2 }); });
+    let over = '';
+    Object.keys(RF).forEach((k, i) => {
+      const [x, y, s] = RF[k];
+      const at = 33.38 + i * 0.09;
+      const pk = back(seg(t, at, at + 0.35));
+      if (pk <= 0) return;
+      const bx = x + (k === 'amara' ? 110 : 90) * s, by = y - 170 * s - (k === 'amara' ? 30 : 0);
+      over += `<g transform="translate(${f1(bx)},${f1(by)}) scale(${f3(pk)})"><circle r="34" fill="#fff" filter="url(#fSoft)"/><circle r="27" fill="${P.teal}"/><path d="M-12,1 L-3,10 L13,-9" stroke="#fff" stroke-width="6.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+      over += A.sparkle(bx, by, at, t, P.pinkL);
+    });
+    const w = roofScene(t, poses, { over });
+    const Cm = { cx: 470, cy: 940, z: 1.06 + 0.1 * io(lt / 1.0), dx: -8 * lt };
+    return camAt(Cm, w) + warm(0.16, '#FFB070') + vignette(0.6) + flare(780, 980, 0.6);
+  }
+
+  // The selfie: what Amara's front camera sees. tf freezes the moment of the shutter.
+  const SNAP = 35.3;
+  function selfieScene(t) {
+    const tf = Math.min(t, SNAP);
+    const sq = io(seg(tf, 34.25, 34.85));
+    let w = blurG(10, roofBG(tf));
+    w += bokeh(tf, 10, 55, ['#FFE9C4', '#FFF6E2', '#F9B8C6'], [0, 150, 1080, 900], { r0: 30, r1: 60, op: 0.5, blur: 'fB16', dx: 6 });
+    const S = {
+      mei: [270, 700, 0.7, 7], priya: [470, 672, 0.7, 0], emma: [670, 700, 0.7, -7],
+      amara: [215, 1000, 0.8, 6], sofia: [470, 1014, 0.8, 0], layla: [722, 1000, 0.8, -6],
+    };
+    const spread = k => (k - 470) * 0.12 * (1 - sq);
+    const order = ['mei', 'priya', 'emma', 'sofia', 'layla', 'amara'];
+    order.forEach((k, i) => {
+      const [x, y, s, tl] = S[k];
+      const o = { x: x + spread(x), y, s, seed: i + 3, cut: 600, rim: '#FFD08A', lightSide: 1, wind: 0.3, tilt: tl * sq, look: [0, 0], mood: tf > 34.9 ? (i % 2 ? 'laugh' : 'grin') : 'smile', hL: [-110, 470], hR: [110, 470] };
+      if (k === 'amara') {
+        // her arm reaches toward the lens and out of frame (she is holding the camera)
+        Object.assign(o, { hL: [-420, 760], eL: [-300, 440], kL: 'none', mood: tf > 34.9 ? 'laugh' : 'grin' });
+      }
+      if (k === 'layla') Object.assign(o, { hR: [218, 70], kR: 'open', bR: 1 });
+      if (k === 'mei') Object.assign(o, { hL: [-200, 40], kL: 'open', bL: -1 });
+      w += fig(tf, CAST[k], o);
+    });
+    return w;
+  }
+  function cameraUI(t, k) {
+    if (k <= 0) return '';
+    const press = Math.sin(Math.PI * seg(t, SNAP - 0.12, SNAP + 0.08));
+    let s = '';
+    [[110, 190, 1, 1], [970, 190, -1, 1], [110, 1450, 1, -1], [970, 1450, -1, -1]].forEach(([x, y, sx, sy]) => {
+      s += `<path d="M${x},${y + sy * 70} L${x},${y} L${x + sx * 70},${y}" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" opacity=".9"/>`;
+    });
+    s += `<g transform="translate(540,1660) scale(${f3(1 - 0.12 * press)})"><circle r="78" fill="none" stroke="#fff" stroke-width="10"/><circle r="62" fill="#fff"/></g>`;
+    s += `<rect x="760" y="1626" width="70" height="70" rx="20" fill="#fff" opacity=".35"/><circle cx="300" cy="1660" r="34" fill="#fff" opacity=".35"/>`;
+    s += `<path d="M120,236 l20,-34 l-4,22 l16,0 l-20,34 l4,-22 Z" fill="#fff" opacity=".9"/>`;
+    return `<g opacity="${f3(k)}">${s}</g>`;
+  }
+  function confetti(t, at, cx, cy, n, seed) {
+    const p0 = t - at;
+    if (p0 <= 0 || p0 > 2.6) return '';
+    let s = '';
+    for (let i = 0; i < n; i++) {
+      const a = rad(-90 + (hash(i + seed) - 0.5) * 220), v = 700 + hash(i * 3 + seed) * 900;
+      const x = cx + Math.cos(a) * v * p0 * 0.75, y = cy + Math.sin(a) * v * p0 * 0.75 + 900 * p0 * p0;
+      const r = p0 * (300 + hash(i + 4) * 400) * (i % 2 ? 1 : -1);
+      const c = [P.pink, P.peach, P.teal, P.purpleL, '#fff', P.pinkL][i % 6];
+      const op = 1 - clamp((p0 - 1.8) / 0.8);
+      s += i % 3 === 0 ? star(x, y, 10 + hash(i) * 8, c, f3(op), r) : `<rect x="${f1(x - 8)}" y="${f1(y - 4)}" width="16" height="${f1(8 + 6 * Math.abs(Math.sin(p0 * 8 + i)))}" rx="2" fill="${c}" opacity="${f3(op)}" transform="rotate(${f1(r)} ${f1(x)} ${f1(y)})"/>`;
+    }
+    return s;
+  }
+  // 0:34.3-0:38  The selfie, the flash, the polaroid with its sticker.
+  function shotSelfie(t) {
+    const lt = t - 34.3;
+    const k = io(seg(t, 35.45, 36.2));
+    const settle = Math.sin(Math.PI * seg(t, 36.1, 36.5)) * 0.03;
+    const crop = [90, 500, 760, 700];
+    const clip = [lerp(0, crop[0], k), lerp(0, crop[1], k), lerp(1080, crop[2], k), lerp(1920, crop[3], k)];
+    const scl = lerp(1, 640 / 760, k) * (1 + settle);
+    const ccx = clip[0] + clip[2] / 2, ccy = clip[1] + clip[3] / 2;
+    const tx = lerp(540, 470, k), ty = lerp(960, 800, k), rot = lerp(0, -4, k);
+    // backdrop behind the polaroid
+    let s = '';
+    if (k > 0) s += blurG(16, roofBG(t)) + `<rect width="1080" height="1920" fill="${P.pink}" opacity="${f3(0.35 * k)}"/>` + glowC(470, 820, 700, 'gWhite', 0.4 * k);
+    const zoomIn = 1.04 - 0.04 * io(lt / 1.0);
+    let photo = cam(540, 900, zoomIn + 0.02 * io(seg(t, 34.3, SNAP)), selfieScene(t));
+    const id = uid('pol');
+    const bd = 24 / scl, bb = 132 / scl;
+    let g = '';
+    if (k > 0) {
+      g += `<rect x="${f1(clip[0] - bd)}" y="${f1(clip[1] - bd + 14 / scl)}" width="${f1(clip[2] + 2 * bd)}" height="${f1(clip[3] + bd + bb)}" rx="${f1(8 / scl)}" fill="${P.dark}" opacity="${f3(0.3 * k)}" filter="url(#fB16)"/>`;
+      g += `<rect x="${f1(clip[0] - bd)}" y="${f1(clip[1] - bd)}" width="${f1(clip[2] + 2 * bd)}" height="${f1(clip[3] + bd + bb)}" rx="${f1(8 / scl)}" fill="#FFFDF9" opacity="${f3(clamp(k * 2))}"/>`;
+    }
+    g += `<clipPath id="${id}"><rect x="${f1(clip[0])}" y="${f1(clip[1])}" width="${f1(clip[2])}" height="${f1(clip[3])}"/></clipPath><g clip-path="url(#${id})">${photo}</g>`;
+    if (k > 0.6) g += `<text x="${f1(ccx)}" y="${f1(clip[1] + clip[3] + bb * 0.62)}" font-size="${f1(44 / scl)}" font-family="${PF}" font-style="italic" text-anchor="middle" fill="${P.dark}" opacity="${f3(seg(k, 0.6, 1))}">${emo('Girls Who Brunch 💖')}</text>`;
+    s += `<g transform="translate(${f1(tx)},${f1(ty)}) rotate(${f1(rot)}) scale(${f3(scl)}) translate(${f1(-ccx)},${f1(-ccy)})">${g}</g>`;
+    s += cameraUI(t, (1 - io(seg(t, 35.35, 35.6))) * io(seg(t, 34.3, 34.55)));
+    // shutter flash
+    const fl = seg(t, SNAP, SNAP + 0.35);
+    if (fl > 0 && fl < 1) s += `<rect width="1080" height="1920" fill="#FFFFFF" opacity="${f3(Math.pow(1 - fl, 1.6))}"/>`;
+    // sticker slaps on, confetti, sparkles
+    const stk = seg(t, 36.3, 36.62);
+    if (stk > 0) {
+      const sc = lerp(1.7, 1, back(stk));
+      s += `<g transform="translate(700,560) rotate(${f1(9 + 4 * (1 - stk))}) scale(${f3(sc)})" opacity="${f3(clamp(stk * 3))}">
+        <rect x="-170" y="-46" width="340" height="92" rx="46" fill="${P.dark}" opacity=".2" filter="url(#fB8)"/>
+        <rect x="-168" y="-48" width="336" height="92" rx="46" fill="${P.pink}"/><rect x="-158" y="-38" width="316" height="72" rx="36" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="8 8"/>
+        ${txt(0, 14, emo('On the list ✨'), 40, '#FFFFFF', { f: PF })}</g>`;
+      s += confetti(t, 36.32, 620, 600, 46, 7) + confetti(t, 36.4, 300, 700, 30, 19);
+      s += A.sparkle(860, 520, 36.4, t, P.peachL) + A.sparkle(560, 600, 36.5, t, P.pinkL);
+    }
+    if (t > 36.4) s += twinkles(t, 12, 88, [60, 300, 860, 1100], [P.cream, P.peachL, '#fff'], { sp: 50, r: 12 });
+    // headline
+    if (t > 36.5) {
+      s += `<rect width="1080" height="470" fill="url(#gTopScrim)" opacity="${f3(0.75 * seg(t, 36.5, 37))}"/>`;
+      s += head(t, 36.55, CX, 330, `<tspan font-style="italic" fill="${P.pink}">HER</tspan> future. <tspan font-style="italic" fill="${P.pink}">HER</tspan> way.`, 84, P.dark, { max: 840 });
+    }
+    return s + vignette(0.35);
+  }
+
+  /* ================================================================== *
+   * SPLASH AND END CARD (approved, unchanged)
+   * ================================================================== */
   // 0:00-0:04  Pink splash, the glowing door, logo glints in.
   function shotSplash(t) {
     let s = pinkMesh(t, { grow: true });
@@ -1428,198 +2173,6 @@
     s += head(t, 0.45, CX, 300, 'Something’s coming', 78, P.cream, { max: 820 });
     s += head(t, 0.8, CX, 398, `for <tspan font-style="italic" fill="${P.dark}">HER.</tspan>`, 86, P.cream, { max: 820 });
     return s + vignette(0.35);
-  }
-
-  // 0:04-0:16  Six vignettes, about 2 s each.
-  const VIGS = [['amara', 4], ['sofia', 6], ['mei', 8], ['priya', 10], ['layla', 12], ['emma', 14]];
-  function vigShot(key, a) {
-    return t => {
-      const lt = t - a;
-      const z = 1.26 + 0.08 * io((lt + 0.3) / 2.6);
-      const dx = (VIGS.findIndex(v => v[0] === key) % 2 ? -1 : 1) * 16 * io((lt + 0.3) / 2.6);
-      return cam(CX, 900, z, VIG[key](t, { mode: 'notify', lt }), dx, 0) + warm(0.12) + vignette(0.7);
-    };
-  }
-
-  // 0:16-0:28  Sneak peek: the door opens a little; real screens float out.
-  function deviceFrame(cx, cy, w, screen, rot, sc, op, blur, t) {
-    const h = w * 0.625, b = 18;
-    const id = uid('df');
-    const inner = `<rect x="${-w / 2 - b}" y="${-h / 2 - b}" width="${w + 2 * b}" height="${h + 2 * b}" rx="34" fill="#2A211E" filter="url(#fSoft)"/>
-      <clipPath id="${id}"><rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="16"/></clipPath>
-      <g clip-path="url(#${id})">${img(SCR[screen], -w / 2, -h / 2, w, h)}
-      <rect x="${f1(-w / 2 - w + ((t * 0.35) % 1) * w * 3)}" y="${-h / 2}" width="${f1(w * 0.5)}" height="${h}" fill="url(#gShine)" transform="skewX(-20)"/></g>`;
-    return `<g opacity="${f3(op)}" transform="translate(${f1(cx)},${f1(cy)}) rotate(${f1(rot)}) scale(${sc.toFixed(4)})">${blurG(blur, inner)}</g>`;
-  }
-  function peekTag(x, y, k, t) {
-    if (k <= 0) return '';
-    const wob = Math.sin(t * 4) * 2;
-    const sc = back(k);
-    return `<g transform="translate(${f1(x)},${f1(y)}) rotate(${f1(-7 + wob)}) scale(${f3(sc)})">
-      <rect x="-176" y="-38" width="352" height="76" rx="38" fill="${P.peach}" filter="url(#fSoft)"/>
-      <rect x="-168" y="-30" width="336" height="60" rx="30" fill="none" stroke="${P.cream}" stroke-width="3" stroke-dasharray="8 8"/>
-      ${txt(26, 13, 'SNEAK PEEK', 32, P.cream, { w: 700, ls: 3 })}
-      <g transform="translate(-136,0)"><ellipse rx="20" ry="13" fill="${P.cream}"/><circle r="8" fill="${P.dark}"/><circle cx="3" cy="-3" r="2.5" fill="#fff"/></g>
-      ${star(176, -40, 14, P.cream, 0.9 + 0.1 * Math.sin(t * 5), t * 60)}${star(-176, 34, 9, P.cream, 0.8, -t * 50)}</g>`;
-  }
-  function shotPeek(t) {
-    const lt = t - 16;
-    let s = pinkMesh(t);
-    const open = 0.08 + 0.3 * io(seg(lt, 0.2, 1.4)) + 0.03 * Math.sin(t * 1.5);
-    const z = 1.0 + 0.05 * io(lt / 12);
-    s += cam(CX, 1000, z, door(t, CX, 1440, 520, 860, open, 1));
-    // screens: emerge from the doorway, blur to sharp, float, then lift away
-    const screens = [['curriculum', 0.8, 4.5], ['dots', 4.4, 8.3], ['complete', 8.2, 12.4]];
-    screens.forEach(([key, a, b], i) => {
-      if (lt < a || lt > b + 0.6) return;
-      const kin = io(seg(lt, a, a + 1.0)), kout = io(seg(lt, b - 0.1, b + 0.5));
-      const x = lerp(CX + 60, CX, kin) - kout * 260, y = lerp(1060, 940, kin) + Math.sin(t * 1.3 + i) * 10 - kout * 420;
-      const sc = lerp(0.25, 1, kin) * (1 + 0.04 * seg(lt, a + 1, b)) * lerp(1, 0.7, kout);
-      const blur = 16 * (1 - kin) + 10 * kout;
-      s += deviceFrame(x, y, 800, key, lerp(4, -2, kin) - 10 * kout, sc, clamp(kin * 1.6) * (1 - kout), blur, t);
-      s += peekTag(Math.max(215, x - 220 * sc), y - 285 * sc, seg(lt, a + 0.75, a + 1.15) * (1 - kout), t);
-      if (kin > 0.8 && kin < 1) s += A.sparkle(x + 360, y - 240, a + 0.8, lt, P.cream);
-    });
-    s += `<rect width="1080" height="560" fill="url(#gTopDark)" opacity=".35"/>`;
-    s += head(t, 16.35, CX, 420, `A Girl &amp; Her Futures <tspan font-style="italic" fill="${P.dark}">Academy™</tspan>`, 64, P.cream, { max: 840, out: 21.9 });
-    if (t > 22.1) {
-      const act = lt < 7.6 ? 0 : lt < 9.0 ? 1 : 2;
-      const words = ['Structured', 'Visual', 'Self-paced'].map((wd, i) => `<tspan fill="${i === act ? P.dark : P.cream}"${i === act ? ' font-style="italic"' : ''}>${wd}</tspan>`);
-      s += head(t, 22.3, CX, 420, words.join(`<tspan fill="${P.cream}"> · </tspan>`), 62, P.cream, { max: 840 });
-    }
-    return s + vignette(0.35);
-  }
-
-  // 0:28-0:30.5  The waitlist phone: tap "Join the waitlist", confirmation.
-  function bigPhone(t, x, y, w, h, tapT) {
-    const b = 22, sw = w - b * 2, sh = h - b * 2, id = uid('bp');
-    const press = Math.sin(Math.PI * seg(t, tapT - 0.05, tapT + 0.12));
-    const done = io(seg(t, tapT + 0.1, tapT + 0.35));
-    let ui = `<rect width="${sw}" height="${sh}" fill="${P.cream}"/>${glowC(sw * 0.2, 80, 380, 'gPk', 0.7)}${glowC(sw, sh * 0.6, 340, 'gTl', 0.45)}${glowC(sw * 0.3, sh, 360, 'gPc', 0.5)}`;
-    ui += `<image href="${LOGO_SRC}" x="${sw / 2 - 80}" y="80" width="160" height="160"/>`;
-    ui += txt(sw / 2, 300, 'A Girl &amp; Her Futures', 38, P.dark, { f: PF });
-    ui += txt(sw / 2, 346, 'Academy™', 36, P.pink, { f: PF, it: true, w: 400 });
-    ui += `<path d="M${sw / 2 - 60},376 Q${sw / 2},392 ${sw / 2 + 60},376" stroke="${P.peach}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
-    // before: the button
-    const bw = sw - 70, by = 520;
-    const pulse = 1 + 0.03 * Math.sin(t * 6);
-    let pre = txt(sw / 2, 450, 'Doors open soon.', 30, P.muted, { w: 500 });
-    pre += `<g transform="translate(${sw / 2},${by + 48}) scale(${f3((1 - 0.06 * press) * (done > 0 ? 1 : pulse))})">
-      <rect x="${-bw / 2 - 10}" y="-58" width="${bw + 20}" height="116" rx="58" fill="${P.pink}" opacity="${f3(0.25 + 0.15 * Math.sin(t * 6))}" filter="url(#fB8)"/>
-      <rect x="${-bw / 2}" y="-48" width="${bw}" height="96" rx="48" fill="${P.pink}"/>
-      <rect x="${-bw / 2 + 10}" y="-42" width="${bw - 20}" height="34" rx="17" fill="#fff" opacity=".18"/>
-      ${txt(0, 12, 'Join the waitlist', 36, '#FFFFFF', { w: 700 })}</g>`;
-    pre += txt(sw / 2, 690, 'Be the first to know.', 28, P.muted, { w: 500 });
-    if (press > 0) pre += `<circle cx="${sw / 2 + 40}" cy="${by + 48}" r="${f1(30 + press * 120)}" fill="#fff" opacity="${f3(0.45 * (1 - seg(t, tapT, tapT + 0.3)))}"/>`;
-    ui += fade(1 - done, pre);
-    if (done > 0) {
-      const ck = seg(t, tapT + 0.25, tapT + 0.6);
-      let post = `<g transform="translate(${sw / 2},540) scale(${f3(back(done))})"><circle r="110" fill="${P.teal}" opacity=".25"/><circle r="84" fill="${P.teal}"/>
-        <path d="M-38,0 L-12,28 L40,-30" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="130" stroke-dashoffset="${f1(130 * (1 - ck))}"/></g>`;
-      post += `<text x="${sw / 2}" y="740" font-size="42" font-family="${PF}" font-weight="700" text-anchor="middle" fill="${P.dark}">You’re on the list <tspan font-family="Noto Color Emoji" font-size="36">✨</tspan></text>`;
-      post += txt(sw / 2, 796, 'Be the first to know.', 28, P.muted, { w: 500 });
-      for (let i = 0; i < 12; i++) {
-        const a = rad(i * 30 + 10), d = 120 + ease(ck) * 140;
-        post += star(sw / 2 + Math.cos(a) * d, 540 + Math.sin(a) * d, 10 + (i % 3) * 4, [P.pink, P.peach, P.teal][i % 3], f3(clamp(1.4 - ck)), i * 30);
-      }
-      ui += fade(done, post);
-    }
-    return `<g transform="translate(${f1(x - w / 2)},${f1(y - h / 2)})">
-      <rect x="-8" y="18" width="${w + 16}" height="${h}" rx="84" fill="${P.dark}" opacity=".18" filter="url(#fB16)"/>
-      <rect width="${w}" height="${h}" rx="80" fill="#2A211E"/>
-      <rect x="4" y="4" width="${w - 8}" height="${h - 8}" rx="76" fill="none" stroke="#5A4036" stroke-width="3"/>
-      <clipPath id="${id}"><rect x="${b}" y="${b}" width="${sw}" height="${sh}" rx="58"/></clipPath>
-      <g clip-path="url(#${id})"><g transform="translate(${b},${b})">${ui}</g></g>
-      <rect x="${w / 2 - 70}" y="${b + 14}" width="140" height="34" rx="17" fill="#2A211E"/></g>`;
-  }
-  function tapHand(L, tipX, tipY, k) {
-    // pointing hand coming in from the lower right, index fingertip at (tipX, tipY)
-    const ang = -128, sc = 2.6;
-    const fx = 66 * sc, fy = -11 * sc;
-    const ca = Math.cos(rad(ang)), sa = Math.sin(rad(ang));
-    const hx = tipX - (fx * ca - fy * sa), hy = tipY - (fx * sa + fy * ca);
-    const off = (1 - k) * 700;
-    const ox = hx + off * 0.62, oy = hy + off * 0.78;
-    const wrist = [ox - ca * 20 * sc, oy - sa * 20 * sc];
-    return `<path d="M${f1(wrist[0] + 600 * 0.62)},${f1(wrist[1] + 600 * 0.78)} L${f1(wrist[0])},${f1(wrist[1])}" stroke="${L.topD}" stroke-width="150" stroke-linecap="round"/>
-      <path d="M${f1(wrist[0] + 600 * 0.62)},${f1(wrist[1] + 600 * 0.78)} L${f1(wrist[0])},${f1(wrist[1])}" stroke="${L.topC}" stroke-width="136" stroke-linecap="round"/>
-      <path d="M${f1(wrist[0] + 40)},${f1(wrist[1] + 50)} L${f1(wrist[0] - 10)},${f1(wrist[1] - 12)}" stroke="${L.topD}" stroke-width="126" stroke-dasharray="4 7"/>
-      ${hand(ox, oy, ang, L, 'point', 1, sc)}`;
-  }
-  function shotPhone(t) {
-    const lt = t - 28;
-    let s = creamMesh(t) + twinkles(t, 12, 5, [40, 200, 900, 1300], [P.pinkL, P.peachL, P.tealL], { sp: 30, r: 10, op: 0.8 });
-    const tapT = 29.05;
-    const enter = io(seg(lt, 0, 0.6));
-    const py = lerp(1100, 870, enter) + Math.sin(t * 1.4) * 6;
-    const z = 1 + 0.05 * io(lt / 2.6);
-    let ph = bigPhone(t, CX, py, 500, 1000, tapT);
-    const hk = io(seg(t, 28.45, 28.95)) * (1 - io(seg(t, 29.45, 29.95)));
-    const press = Math.sin(Math.PI * seg(t, tapT - 0.05, tapT + 0.12));
-    if (hk > 0) ph += tapHand(CAST.amara, CX + 130, py - 500 + 22 + 520 + 48 + press * 6, hk);
-    s += cam(CX, 900, z, ph);
-    s += head(t, 28.15, CX, 280, `Doors open <tspan font-style="italic" fill="${P.pink}">soon.</tspan>`, 80, P.dark, { max: 820 });
-    return s;
-  }
-
-  // 0:30.5-0:38  Six women: each taps in, then they wave; names pop onto the list card.
-  const CELL_BG = { amara: '#FBD3C0', sofia: '#F7E6D8', mei: '#E8E2F4', priya: '#E4ECCB', layla: '#EDD3C2', emma: '#F8DFC2' };
-  function gridLayout(t) {
-    const k = io(seg(t, 33.2, 33.9));
-    const top = lerp(330, 330, k), rowH = lerp(530, 420, k), gap = 14;
-    const cells = [];
-    ORDER.forEach((key, i) => {
-      const c = i % 3, r = Math.floor(i / 3);
-      cells.push({ key, i, x: 24 + c * 300, y: top + r * rowH, w: 300 - gap, h: rowH - gap });
-    });
-    return { cells, k };
-  }
-  function cellScene(t, key, i, cell, mode) {
-    const id = uid('cl');
-    const z = cell.w / 640;
-    const focusY = mode === 'wave' ? 800 : 870;
-    const pose = mode === 'wave' ? { mode: 'wave', mood: i % 2 ? 'laugh' : 'grin' } : { mode: 'tap', k: seg(t, 30.75 + i * 0.32, 30.75 + i * 0.32 + 1.3) };
-    const inner = VIG[key](t, pose) + warm(0.1);
-    const ccx = cell.x + cell.w / 2, ccy = cell.y + cell.h / 2;
-    const pop = back(seg(t, 30.35 + i * 0.08, 30.85 + i * 0.08));
-    return `<g transform="translate(${f1(ccx)},${f1(ccy)}) scale(${f3(pop)}) translate(${f1(-ccx)},${f1(-ccy)})">
-      <rect x="${cell.x - 4}" y="${cell.y + 8}" width="${cell.w + 8}" height="${cell.h}" rx="34" fill="${P.dark}" opacity=".18" filter="url(#fB8)"/>
-      <clipPath id="${id}"><rect x="${cell.x}" y="${cell.y}" width="${cell.w}" height="${cell.h}" rx="30"/></clipPath>
-      <g clip-path="url(#${id})"><rect x="${cell.x}" y="${cell.y}" width="${cell.w}" height="${cell.h}" fill="${CELL_BG[key]}"/>
-        <g transform="translate(${f1(ccx)},${f1(ccy)}) scale(${f3(z * (1 + 0.03 * Math.sin(t * 0.8 + i)))}) translate(${-CX},${-focusY})">${inner}</g></g>
-      <rect x="${cell.x}" y="${cell.y}" width="${cell.w}" height="${cell.h}" rx="30" fill="none" stroke="${P.cream}" stroke-width="6"/></g>`;
-  }
-  function listCard(t) {
-    const k = io(seg(t, 33.6, 34.2));
-    if (k <= 0) return '';
-    const x = 60, w = 820, y = lerp(1500, 1190, k), h = 210;
-    let s = `<g opacity="${f3(k)}">`;
-    s += screenBlend(glowE(x + w / 2, y + h / 2, w * 0.7, h * 1.1, 'gPk', 0.7 + 0.2 * Math.sin(t * 3)));
-    s += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="36" fill="${P.cream}" filter="url(#fSoft)"/>
-      <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="36" fill="none" stroke="${P.pink}" stroke-width="6"/>
-      <rect x="${x + 10}" y="${y + 10}" width="${w - 20}" height="${h - 20}" rx="28" fill="none" stroke="${P.pinkL}" stroke-width="2" stroke-dasharray="6 8"/>`;
-    s += `<text x="${x + w / 2}" y="${y + 56}" font-size="34" font-family="${PF}" font-weight="700" text-anchor="middle" fill="${P.pink}">On the list <tspan font-family="Noto Color Emoji" font-size="28">✨</tspan></text>`;
-    ORDER.forEach((key, i) => {
-      const c = i % 3, r = Math.floor(i / 3);
-      const nx = x + 150 + c * 260, ny = y + 112 + r * 62;
-      const at = 34.0 + i * 0.32;
-      const pk = back(seg(t, at, at + 0.4));
-      if (pk <= 0) return;
-      s += `<g transform="translate(${nx},${ny}) scale(${f3(pk)})"><circle cx="-62" cy="-11" r="17" fill="${P.teal}"/><path d="M-70,-11 L-64,-4 L-53,-18" stroke="#fff" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>${txt(-36, 0, NAMES[key], 36, P.dark, { a: 'start', w: 700 })}</g>`;
-      s += A.sparkle(nx, ny - 12, at, t, P.pinkL);
-    });
-    return s + '</g>';
-  }
-  function shotGrid(t) {
-    let s = pinkMesh(t);
-    const { cells } = gridLayout(t);
-    const mode = t < 33.25 ? 'tap' : 'wave';
-    cells.forEach(c => { s += cellScene(t, c.key, c.i, c, mode); });
-    s += listCard(t);
-    s += `<rect width="1080" height="330" fill="url(#gTopDark)" opacity=".25"/>`;
-    s += head(t, 30.6, CX, 268, `Join the <tspan font-style="italic" fill="${P.dark}">waitlist.</tspan>`, 74, P.cream, { max: 820, out: 33.4 });
-    s += head(t, 33.75, CX, 268, `<tspan font-style="italic" fill="${P.dark}">HER</tspan> future. <tspan font-style="italic" fill="${P.dark}">HER</tspan> way.`, 80, P.cream, { max: 840 });
-    return s;
   }
 
   // 0:38-0:45  End card.
@@ -1652,19 +2205,27 @@
    * ================================================================== */
   const SHOTS = [
     { a: 0, f: shotSplash },
-    { a: 4, f: vigShot('amara', 4), tr: 'leak', d: 0.8 },
-    { a: 6, f: vigShot('sofia', 6), tr: 'glow', d: 0.5 },
-    { a: 8, f: vigShot('mei', 8), tr: 'glow', d: 0.5 },
-    { a: 10, f: vigShot('priya', 10), tr: 'glow', d: 0.5 },
-    { a: 12, f: vigShot('layla', 12), tr: 'glow', d: 0.5 },
-    { a: 14, f: vigShot('emma', 14), tr: 'glow', d: 0.5 },
-    { a: 16, f: shotPeek, tr: 'leak', d: 0.9 },
-    { a: 28, f: shotPhone, tr: 'pink', d: 0.9 },
-    { a: 30.5, f: shotGrid, tr: 'dissolve', d: 0.5 },
+    { a: 4, f: shotBrunch, tr: 'leak', d: 0.8 },
+    { a: 9.4, f: shotShow, tr: 'whip', d: 0.42, dir: -1 },
+    { a: 13, f: shotChat, tr: 'zoomglow', d: 0.5 },
+    { a: 14.7, f: shotMei, tr: 'whip', d: 0.4, dir: 1 },
+    { a: 15.9, f: shotChat, tr: 'whip', d: 0.4, dir: -1 },
+    { a: 16.7, f: shotPriya, tr: 'whip', d: 0.4, dir: 1 },
+    { a: 17.9, f: shotChat, tr: 'whip', d: 0.4, dir: -1 },
+    { a: 18.7, f: shotLayla, tr: 'whip', d: 0.4, dir: 1 },
+    { a: 19.9, f: shotChat, tr: 'whip', d: 0.4, dir: -1 },
+    { a: 21, f: shotLiving, tr: 'leak', d: 0.8 },
+    { a: 23, f: shotOTS1, tr: 'dissolve', d: 0.4 },
+    { a: 25.4, f: shotReact, tr: 'whip', d: 0.36, dir: -1 },
+    { a: 27, f: shotOTS2, tr: 'whip', d: 0.36, dir: 1 },
+    { a: 28.6, f: shotCheer, tr: 'dissolve', d: 0.35 },
+    { a: 30, f: shotRoof, tr: 'leak', d: 0.8 },
+    { a: 31.5, f: shotTapsA, tr: 'split', d: 0.42 },
+    { a: 32.4, f: shotTapsB, tr: 'split', d: 0.4 },
+    { a: 33.3, f: shotChecks, tr: 'flash', d: 0.3 },
+    { a: 34.3, f: shotSelfie, tr: 'flash', d: 0.3 },
     { a: 38, f: shotEnd, tr: 'pink', d: 0.9 },
   ];
-  // Phone positions in each vignette (for the match cut on the glow).
-  const PHONE_AT = [CX + 180, 1180];
 
   function leakOverlay(k) {
     const e = Math.sin(Math.PI * k);
@@ -1676,11 +2237,33 @@
     const prev = () => prevS.f(t), next = () => S.f(t);
     switch (S.tr) {
       case 'dissolve': return prev() + fade(io(k), next());
-      case 'glow': {
-        const e = Math.sin(Math.PI * k);
-        return prev() + fade(io(k), next()) + screenBlend(glowC(PHONE_AT[0], PHONE_AT[1], 200 + 900 * e, 'gPk', e) + glowC(PHONE_AT[0], PHONE_AT[1], 120 + 300 * e, 'gWhite', e * 0.8));
-      }
       case 'leak': return (k < 0.5 ? prev() + fade(clamp((k - 0.38) / 0.12), next()) : next() + fade(clamp((0.62 - k) / 0.12), prev())) + leakOverlay(k);
+      case 'whip': {
+        // whip pan with motion blur and a pink phone-glow streak
+        const e = io(k), sd = 70 * Math.sin(Math.PI * k), dir = S.dir || 1;
+        const id = uid('wp');
+        const g = Math.sin(Math.PI * k);
+        return `<filter id="${id}" filterUnits="userSpaceOnUse" x="-400" y="0" width="1880" height="1920"><feGaussianBlur stdDeviation="${f1(sd)} 0"/></filter>
+          <g filter="url(#${id})"><g transform="translate(${f1(-dir * 1150 * e)},0)">${prev()}</g><g transform="translate(${f1(dir * 1150 * (1 - e))},0)">${next()}</g></g>` +
+          screenBlend(glowE(540, 960, 300 + 700 * g, 900, 'gPk', 0.75 * g) + glowE(540, 960, 160 + 300 * g, 600, 'gWhite', 0.45 * g));
+      }
+      case 'zoomglow': {
+        const g = Math.sin(Math.PI * k);
+        return prev() + fade(io(clamp((k - 0.2) / 0.6)), next()) + screenBlend(glowC(540, 960, 300 + 1100 * g, 'gPk', g) + glowC(540, 960, 200 + 600 * g, 'gWhite', 0.9 * g));
+      }
+      case 'flash': {
+        const g = Math.sin(Math.PI * k);
+        return (k < 0.5 ? prev() : next()) + `<rect width="1080" height="1920" fill="#FFF8F0" opacity="${f3(g * 0.95)}"/>` + screenBlend(glowC(540, 900, 900, 'gPc', g));
+      }
+      case 'split': {
+        const offs = [0, 1, 2].map(i => { const e = io(clamp((k - i * 0.12) / 0.76)); return (i % 2 ? 1 : -1) * 1920 * (1 - e); });
+        let s = prev();
+        [[0, 360], [360, 360], [720, 360]].forEach(([x, w], i) => {
+          const id = uid('sp');
+          s += `<clipPath id="${id}"><rect x="${x}" y="${f1(offs[i])}" width="${w}" height="1920"/></clipPath><g clip-path="url(#${id})">${S.f(t)}</g>`;
+        });
+        return s;
+      }
       case 'pink': {
         const y = 1920 - k * (1920 + 2300);
         const id1 = uid('pk1'), id2 = uid('pk2');
@@ -1706,9 +2289,8 @@
     if (i > 0 && S.d && t < S.a + S.d / 2) body = compose(S, SHOTS[i - 1], t, (t - (S.a - S.d / 2)) / S.d);
     else if (N && N.d && t > N.a - N.d / 2) body = compose(N, S, t, (t - (N.a - N.d / 2)) / N.d);
     else body = S.f(t);
-    return DEFS + EXTRA_DEFS + body;
+    return DEFS + body;
   }
-  const EXTRA_DEFS = `<defs><linearGradient id="gHome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F9B8C6"/><stop offset="1" stop-color="#FAD09A"/></linearGradient></defs>`;
 
   // Logo layer (drawn as an <img> by waitlist.html).
   function logo(t) {
@@ -1716,9 +2298,9 @@
       const k = back(seg(t, 0.95, 1.55)), out = 1 - ease(seg(t, 3.75, 4.1));
       return { x: CX, y: 560, size: 190 * k * (1 + 0.02 * Math.sin(t * 2.4)), op: clamp((t - 0.95) / 0.2) * out, rot: (1 - clamp(k)) * -18 + Math.sin(t * 1.8) * 1.5 };
     }
-    if (t >= 16.3 && t < 28.0) {
-      const k = back(seg(t, 16.4, 16.95)), out = 1 - ease(seg(t, 27.5, 27.85));
-      return { x: CX, y: 262, size: 150 * k, op: clamp((t - 16.4) / 0.2) * out, rot: Math.sin(t * 2) * 2 };
+    if (t >= 21.2 && t < 30.2) {
+      const k = back(seg(t, 21.25, 21.8)), out = 1 - ease(seg(t, 29.7, 30.1));
+      return { x: CX, y: 240, size: 136 * k * (1 + 0.02 * Math.sin(t * 2.2)), op: clamp((t - 21.25) / 0.2) * out, rot: Math.sin(t * 2) * 2 };
     }
     if (t >= 38.3) {
       const k = back(seg(t, 38.35, 38.95));
@@ -1735,7 +2317,7 @@
   }
   function fx(t) {
     let s = `<defs><filter id="fxb" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="8"/></filter></defs>`;
-    s += glint(CX + 60, 500, 46, t, 1.45) + glint(CX - 70, 610, 30, t, 2.5) + glint(CX + 40, 210, 30, t, 17.0);
+    s += glint(CX + 60, 500, 46, t, 1.45) + glint(CX - 70, 610, 30, t, 2.5) + glint(CX + 44, 200, 30, t, 21.9);
     s += glint(CX + 100, 400, 60, t, 39.1) + glint(CX - 110, 590, 40, t, 41.4) + glint(CX + 90, 420, 50, t, 43.4);
     return s;
   }
@@ -1746,17 +2328,16 @@
     { at: 0.15, end: 1.95, text: 'Something new is coming.' },
     { at: 2.0, end: 3.95, text: 'And it was built around her.' },
     { at: 4.0, end: 6.95, text: 'For the woman who’s curious about trading,' },
-    { at: 7.0, end: 8.95, text: 'but tired of the hype.' },
-    { at: 9.0, end: 11.95, text: 'For the one who wants structure, not signals.' },
-    { at: 12.0, end: 13.95, text: 'For the one who has a life,' },
-    { at: 14.0, end: 15.95, text: 'and wants to keep it.' },
-    { at: 16.0, end: 18.95, text: 'A Girl & Her Futures Academy.' },
-    { at: 19.0, end: 21.95, text: 'Structured, visual lessons' },
-    { at: 22.0, end: 24.95, text: 'you learn at your own pace.' },
-    { at: 25.0, end: 27.95, text: 'Take a peek.' },
-    { at: 28.0, end: 30.95, text: 'Doors open soon.' },
-    { at: 31.0, end: 32.95, text: 'Join the waitlist' },
-    { at: 33.0, end: 37.9, text: 'and be the first to know.' },
+    { at: 7.0, end: 9.95, text: 'but tired of the hype.' },
+    { at: 10.0, end: 13.95, text: 'For the one who wants structure, not signals.' },
+    { at: 14.0, end: 17.95, text: 'For the friends who want to learn it together,' },
+    { at: 18.0, end: 20.95, text: 'without putting their lives on hold.' },
+    { at: 21.0, end: 23.95, text: 'A Girl & Her Futures Academy.' },
+    { at: 24.0, end: 26.95, text: 'Structured, visual lessons' },
+    { at: 27.0, end: 29.95, text: 'you learn at your own pace.' },
+    { at: 30.0, end: 32.95, text: 'Doors open soon.' },
+    { at: 33.0, end: 34.95, text: 'Join the waitlist' },
+    { at: 35.0, end: 37.9, text: 'and be the first to know.' },
   ];
 
   window.WL = { DURATION, CAP_BOTTOM, CAPTIONS, draw, logo, fx, castSheet, SHOTS };
