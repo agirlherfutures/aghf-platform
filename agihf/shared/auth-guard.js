@@ -25,7 +25,7 @@
   const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90eGZ6YWxjdWpodGZ3cHJtcHRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NTYyOTMsImV4cCI6MjA5MzMzMjI5M30.iRxaKgD6ut9urNK67dyvj_6K2lfyw8peBpfJx3oU9A4';
 
   const DEMO_PROFILE = {
-    profile: { full_name: 'Demo Trader', email: 'demo@preview.local', level: 1, level_name: "She's Brand New", gp: 0, day_streak: 0 },
+    profile: { full_name: 'Demo Trader', email: 'demo@preview.local', level: 1, level_name: "You're Brand New", gp: 0, day_streak: 0 },
     lessons_completed: [],
     lessons_count: 0,
     subscription: { status: 'demo' },

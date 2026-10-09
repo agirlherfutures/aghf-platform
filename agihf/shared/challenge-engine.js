@@ -26,6 +26,7 @@ import {
   PREVIOUS_WINNERS_EMPTY_STATE, PRIZE_EMPTY_STATE, WEEKLY_MOMENTUM_LABELS, NOTIFICATION_TYPE_META,
 } from './challenge-copy.js';
 import { renderAvatar } from './avatar.js';
+import { displayLevelName } from './curriculum-data.js';
 
 function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -226,7 +227,7 @@ export function renderLeaderboardTable(container, result) {
   const { category, rows, yourPosition, optedIn } = result || {};
   const rowHtml = (r, isSelf) => `<div class="chal-lb-row ${isSelf ? 'is-self' : ''}">
     <span class="chal-lb-rank">${r.rank ?? '—'}</span>
-    <span class="chal-lb-name">${r.showAvatar === false ? '' : renderAvatar(r.displayName)}${escapeHtml(r.displayName || 'A Member')}${r.level ? ` <span class="chal-lb-level">${escapeHtml(r.level)}</span>` : ''}</span>
+    <span class="chal-lb-name">${r.showAvatar === false ? '' : renderAvatar(r.displayName)}${escapeHtml(r.displayName || 'A Member')}${r.level ? ` <span class="chal-lb-level">${escapeHtml(displayLevelName(r.level).replace(/^You[’']re\s+/i, ''))}</span>` : ''}</span>
     <span class="chal-lb-points">${r.points}</span>
   </div>`;
 

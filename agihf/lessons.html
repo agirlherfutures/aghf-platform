@@ -388,7 +388,7 @@
       const ls = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
       const grad = !!ls('aghf_alumni');
       const capReady = grad || ls('aghf_section_clear:p8-s22') === 'true' || UNLOCK;
-      const capCard = capReady ? `<a href="${grad ? 'certificate.html' : 'capstone.html'}" style="display:block;text-decoration:none;margin-top:14px;background:linear-gradient(135deg,#1C1929,#2A2240);color:#fff;border-radius:18px;padding:18px 22px;"><div style="font-size:.7rem;letter-spacing:.16em;color:#F7A8C8;font-weight:700">${grad ? 'ALUMNI ✦' : 'OUTSIDE THE 8 PHASES'}</div><div style="font-family:var(--font-display);font-size:1.25rem;margin:4px 0">🎓 She’s In Structure Capstone</div><div style="font-size:.86rem;color:#CFC8E3">${grad ? 'Passed. View your certificate →' : 'One full trading day, scored on process. Begin →'}</div></a>` : '';
+      const capCard = capReady ? `<a href="${grad ? 'certificate.html' : 'capstone.html'}" style="display:block;text-decoration:none;margin-top:14px;background:linear-gradient(135deg,#1C1929,#2A2240);color:#fff;border-radius:18px;padding:18px 22px;"><div style="font-size:.7rem;letter-spacing:.16em;color:#F7A8C8;font-weight:700">${grad ? 'ALUMNI ✦' : 'OUTSIDE THE 8 PHASES'}</div><div style="font-family:var(--font-display);font-size:1.25rem;margin:4px 0">🎓 You’re In Structure Capstone</div><div style="font-size:.86rem;color:#CFC8E3">${grad ? 'Passed. View your certificate →' : 'One full trading day, scored on process. Begin →'}</div></a>` : '';
       await renderCards(completedIds, unlockNote, capCard);
     } catch (err) {
       renderLoadError(err);

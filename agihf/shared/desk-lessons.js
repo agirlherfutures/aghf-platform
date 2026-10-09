@@ -193,7 +193,7 @@ function renderProject(el, s, satisfy) {
 
 /* p8_eight: all eight phase icons illuminate ───────────────────────────── */
 function renderEight(el, s) {
-  const names = ['She’s Brand New', 'Before the Chart', 'Reading Structure', 'Finding Direction', 'The ICC Method', 'Pulling the Trigger', 'The Mindset', 'She’s In Structure ✦'];
+  const names = ['You’re Brand New', 'Before the Chart', 'Reading Structure', 'Finding Direction', 'The ICC Method', 'Pulling the Trigger', 'The Mindset', 'You’re In Structure ✦'];
   el.innerHTML = `<div class="p8-eight">${names.map((n, i) => `<div class="p8-e" style="animation-delay:${0.4 + i * 0.45}s"><b>${i + 1}</b><span>PHASE ${i + 1} ✓</span><em>${n}</em></div>`).join('')}
     <div class="p8-eight-t" style="animation-delay:${0.4 + 8 * 0.45}s">${esc(s.line || '✦ ALL 8 PHASES COMPLETE.')}</div></div>`;
 }

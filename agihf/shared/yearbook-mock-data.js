@@ -14,7 +14,7 @@ export const ENTRY_DATA = {
   p5: { key: 'p5', title: 'The Dayli ICC Method ✦', status: 'locked' },
   p6: { key: 'p6', title: 'Pulling the Trigger', status: 'locked' },
   p7: { key: 'p7', title: 'The Mindset Behind the Model', status: 'locked' },
-  p8: { key: 'p8', title: "She's In Structure ✦", status: 'locked' },
+  p8: { key: 'p8', title: "You're In Structure ✦", status: 'locked' },
 };
 
 export const PORTFOLIO_ITEMS = [

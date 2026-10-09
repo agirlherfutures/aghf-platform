@@ -159,7 +159,7 @@
     // Preserve the existing user info if present
     const existingUser = sidebar.querySelector('.sb-user');
     const userName = existingUser?.querySelector('.sb-nm')?.textContent || 'Trader';
-    const userLevel = existingUser?.querySelector('.sb-lv')?.textContent || 'Level 1 · She\'s Brand New';
+    const userLevel = existingUser?.querySelector('.sb-lv')?.textContent || 'Level 1 · You\'re Brand New';
     const userInitial = userName.charAt(0).toUpperCase();
 
     sidebar.innerHTML = `

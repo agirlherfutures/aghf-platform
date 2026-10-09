@@ -83,7 +83,7 @@
           <div class="sb-av" id="sbAvatar">D</div>
           <div>
             <div class="sb-nm" id="sbName">Trader</div>
-            <div class="sb-lv" id="sbLevel">Level 1 · She's Brand New</div>
+            <div class="sb-lv" id="sbLevel">Level 1 · You're Brand New</div>
           </div>
           <div class="sb-notif-wrap" id="sbNotifWrap"></div>
         </div>
@@ -176,7 +176,8 @@
       const p = data.profile || {};
       const name = p.full_name || (user && user.email && user.email.split('@')[0]) || 'Trader';
       const level = p.level || 1;
-      const levelName = p.level_name || "She's Brand New";
+      // Older profiles stored "She's …" level names; show them as "You're …".
+      const levelName = String(p.level_name || "You're Brand New").replace(/^(she)(['’])s\b/i, (m, she, apos) => (she === 'SHE' ? `YOU${apos}RE` : `You${apos}re`));
       const gp = p.gp || 0;
       const nextLevelGp = level * 1000;
       document.getElementById('sbName').textContent = name;

@@ -951,7 +951,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
     els.thread.scrollTop = els.thread.scrollHeight;
     el.querySelector('#agcConnectBtn').addEventListener('click', (e) => {
       e.target.remove();
-      runSingleAICall(originalText, [], `Concept already explained for free from the knowledge library: "${entry.title}" — ${entry.content}. Connect this specifically to what she described, don't re-explain the concept from scratch.`);
+      runSingleAICall(originalText, [], `Concept already explained for free from the knowledge library: "${entry.title}" — ${entry.content}. Connect this specifically to what they described, don't re-explain the concept from scratch.`);
     });
   }
 
