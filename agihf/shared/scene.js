@@ -148,4 +148,69 @@ export function renderScene(el, slide, satisfy, helpers = {}) {
   run();
 }
 
-export const SCENE_RENDERERS = { p7_scene: renderScene };
+
+/* ── Stage mode: one chart, one line, nothing piles up ────────────────── */
+export function renderStage(el, slide, satisfy, helpers = {}) {
+  el.innerHTML = `<div class="lw-card p7-card p7-stg">${slide.kicker ? `<div class="lw-eyebrow">${slide.kicker}</div>` : ''}
+    <div class="p7-stg-view"></div><div class="p7-stg-cap" aria-live="polite"></div><div class="p7-stg-ctl"></div></div>`;
+  const card = el.querySelector('.p7-stg');
+  const view = card.querySelector('.p7-stg-view');
+  const cap = card.querySelector('.p7-stg-cap');
+  const ctl = card.querySelector('.p7-stg-ctl');
+  let chartBox = null;
+  const setCap = (t, big) => { cap.innerHTML = t ? `<span class="${big ? 'is-big' : ''}">${t}</span>` : ''; cap.classList.remove('go'); void cap.offsetWidth; cap.classList.add('go'); };
+  const showChart = async (c) => { view.innerHTML = ''; chartBox = chartBlock(view, c); await chartBox.played; };
+  const panel = (html) => { view.innerHTML = `<div class="p7-stg-panel">${html}</div>`; chartBox = null; };
+  const tap = (label = 'Next') => new Promise((res) => {
+    ctl.innerHTML = `<button type="button" class="p7-tap">${label} <span>▸</span></button>`;
+    ctl.querySelector('button').addEventListener('click', () => { ctl.innerHTML = ''; res(); });
+  });
+  async function path(o) {
+    const p = o.path || {};
+    if (chartBox) mindOff(chartBox);
+    setCap('');
+    if (p.chart) await showChart(p.chart);
+    else if (p.tally) panel(`${p.stamp ? `<div class="p7-stamp">${p.stamp}</div>` : ''}<div class="p7-tally">${p.tally.map(([k, v, tone]) => `<div class="p7-tr is-${tone || 'ink'}" style="--d:0s"><span>${k}</span><b>${v}</b></div>`).join('')}</div>`);
+    setCap([].concat(p.say || [])[0] || '', true);
+  }
+  async function choice(c) {
+    ctl.innerHTML = `<div class="p7-stg-q">${c.prompt || 'What do you do?'}</div><div class="p7-stg-opts">${c.options.map((o, i) => `<button type="button" class="p7-opt" data-i="${i}">${o.label}</button>`).join('')}</div>`;
+    const first = await new Promise((res) => ctl.querySelectorAll('.p7-opt').forEach((b) => b.addEventListener('click', () => res(+b.dataset.i), { once: true })));
+    const o0 = c.options[first];
+    if (o0.track) trackAll(o0.track);
+    helpers.onPick?.({ prompt: c.prompt, concept: slide.concept }, { label: o0.label }, true, 0);
+    const seen = new Set([first]);
+    ctl.innerHTML = '';
+    await path(o0);
+    for (;;) {
+      const rest = c.options.map((o, i) => i).filter((i) => !seen.has(i));
+      ctl.innerHTML = `${rest.map((i) => `<button type="button" class="p7-alt" data-i="${i}">↺ ${c.options[i].label}</button>`).join('')}<button type="button" class="p7-tap">Next <span>▸</span></button>`;
+      const n = await new Promise((res) => { ctl.querySelectorAll('.p7-alt').forEach((b) => b.addEventListener('click', () => res(+b.dataset.i))); ctl.querySelector('.p7-tap').addEventListener('click', () => res(-1)); });
+      ctl.innerHTML = '';
+      if (n < 0) break;
+      seen.add(n);
+      await path(c.options[n]);
+    }
+  }
+  async function run() {
+    const beats = slide.beats || [];
+    for (let i = 0; i < beats.length; i++) {
+      const b = beats[i];
+      if (b.chart) { if (chartBox) mindOff(chartBox); setCap(b.caption || ''); await showChart(b.chart); }
+      else if (b.say) { setCap([].concat(b.say).join(' '), true); }
+      else if (b.thoughts) { if (chartBox) { mindOn(chartBox, b.thoughts, { gap: 0.7 }); await wait(700 * b.thoughts.length + 300); } }
+      else if (b.choice) { await choice(b.choice); continue; }
+      else if (b.who) {
+        setCap('');
+        panel(`<div class="p7-who-t">${b.who.title || 'WHO’S TRADING NOW?'}</div><div class="p7-stg-who"><div class="is-ok"><small>${b.who.beforeLabel || 'BEFORE'}</small><b>${b.who.before.h}</b></div><div class="is-mind"><small>${b.who.afterLabel || 'AFTER'}</small><b>${b.who.after.h}</b></div></div>`);
+      } else if (b.principle) { setCap(''); panel(`<div class="p7-stg-pr">${b.principle}</div>`); }
+      else if (b.tally) { setCap(''); panel(`${b.stamp ? `<div class="p7-stamp">${b.stamp}</div>` : ''}<div class="p7-tally">${b.tally.map(([k, v, tone]) => `<div class="p7-tr is-${tone || 'ink'}" style="--d:0s"><span>${k}</span><b>${v}</b></div>`).join('')}</div>`); }
+      if (i < beats.length - 1) await tap();
+    }
+    ctl.innerHTML = '';
+    continueBtn(card, satisfy, slide.cta || 'Continue →');
+  }
+  run();
+}
+
+export const SCENE_RENDERERS = { p7_scene: (el, s, sat, h) => (s.stage ? renderStage : renderScene)(el, s, sat, h) };

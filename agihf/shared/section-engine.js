@@ -35,7 +35,7 @@ export function renderSectionWizard(data, opts) {
 
   // A section can list its own steps (e.g. a game instead of a Challenge,
   // or no Welcome here because it's shown before the lessons instead).
-  const STEP_LABELS = { welcome: 'Welcome', challenge: 'Challenge', game: (data.game && data.game.title) || 'Game', knowledge: 'Knowledge Check', checkin: 'Check-In', final: (data.final && data.final.stepLabel) || 'Phase Final', reflection: 'Phase Reflection', 'phase-complete': 'Phase Complete', complete: 'Complete' };
+  const STEP_LABELS = { welcome: 'Welcome', challenge: 'Challenge', game: (data.game && data.game.title) || 'Game', knowledge: 'Knowledge Check', checkin: 'Check-In', final: (data.final && data.final.stepLabel) || 'Phase Final', reflection: 'Phase Reflection', 'phase-complete': 'Phase Complete', project: (data.project && data.project.stepLabel) || 'Final Project', complete: 'Complete' };
   const steps = (data.steps || ['welcome', 'challenge', 'knowledge', 'checkin', 'complete']).map((type) => ({ type, label: STEP_LABELS[type] }));
 
   const startIdx = Math.max(0, steps.findIndex((s) => s.type === (initialStep || steps[0].type)));
@@ -129,6 +129,7 @@ export function renderSectionWizard(data, opts) {
     else if (step.type === 'checkin') renderCheckin(slide, data.checkin, sectionId, () => completeStepAndAdvance(i));
     else if (step.type === 'final') renderPhaseFinal(slide, data.final, (pct) => { results.finalPct = pct; completeStepAndAdvance(i); }, { handleStreak, burst, sectionId });
     else if (step.type === 'reflection') renderCheckin(slide, data.reflection, `${phaseKey}-reflection`, () => completeStepAndAdvance(i));
+    else if (step.type === 'project') SLIDE_RENDERERS[data.project.type](slide, data.project, () => completeStepAndAdvance(i), { handleStreak, burst, sectionId });
     else if (step.type === 'phase-complete') renderPhaseComplete(slide, data, { flagKey, backHref, results });
     else if (step.type === 'complete') renderComplete(slide, data, { flagKey, backHref, nextSectionHref, nextSectionLabel, lessonsLabel, lessonGpTotal, results, data });
   }
