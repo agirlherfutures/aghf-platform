@@ -325,7 +325,7 @@
     {
       "type": "chart_check",
       "kicker": "Catch the mistake",
-      "title": "What mistake is she making?",
+      "title": "What mistake are they making?",
       "chart": {
         "swings": [
           [
@@ -393,12 +393,12 @@
           }
         ]
       },
-      "scenario": "A trader sees <strong>LL → LH → LL</strong>. Then three bullish candles form. She says: “The trend is bullish now.”",
+      "scenario": "A trader sees <strong>LL → LH → LL</strong>. Then three bullish candles form. They say: “The trend is bullish now.”",
       "check": {
-        "prompt": "What mistake is she making?",
+        "prompt": "What mistake are they making?",
         "options": [
           {
-            "label": "She’s confusing short-term candle direction with structural change",
+            "label": "They’re confusing short-term candle direction with structural change",
             "correct": true,
             "why": "Exactly. Three green candles are short-term direction. Nothing in the structure has changed yet."
           },
@@ -408,7 +408,7 @@
             "feedback": "Candle color doesn’t override structure. What changed in the swings?"
           },
           {
-            "label": "She should have waited for four green candles",
+            "label": "They should have waited for four green candles",
             "correct": false,
             "feedback": "It’s not about the number of candles. It’s about the structure."
           }

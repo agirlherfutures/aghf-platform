@@ -779,7 +779,7 @@ export const PHASES = [
         ],
       welcome: {
         eyebrow: 'Phase 7 · Section 1 · Your Mind Is the Market 🪞',
-        heading: 'She Already Knows the Chart. Now the Lesson Is Her.',
+        heading: 'You Already Know the Chart. Now the Lesson Is You.',
         hook: 'You already know how to read the chart, so now you learn to read yourself while you trade.',
         learn: [
           { icon: 'heart', tone: 'pink', label: 'The moment before you act' },
@@ -892,7 +892,7 @@ export const PHASES = [
     ],
   },
   {
-    key: 'p8', n: 8, badge: 'd', title: "She's In Structure ✦", mode: 'desk', finalGate: 's22',
+    key: 'p8', n: 8, badge: 'd', title: "You're In Structure ✦", mode: 'desk', finalGate: 's22',
     sections: [
       { key: 's21', n: 21, badge: 'u', title: 'Real Trade Breakdown Lab 📊',
         dayliNote: 'Seven phases of learning. Now you apply it. Every trade gets reconstructed in the same order, and the outcome stays locked until your read is done.',
@@ -969,9 +969,30 @@ export const PHASES = [
 // GP-tier "Level" progression (separate from Phase position) — matches the
 // levelNames map already used by agihf/api/get-profile.js.
 export const LEVEL_NAMES = {
-  1: "She's Brand New", 2: 'Before the Chart', 3: 'Reading Structure', 4: 'Finding Direction',
-  5: 'The ICC Method', 6: 'Pulling the Trigger', 7: 'The Mindset', 8: "She's In Structure ✦",
+  1: "You're Brand New", 2: 'Before the Chart', 3: 'Reading Structure', 4: 'Finding Direction',
+  5: 'The ICC Method', 6: 'Pulling the Trigger', 7: 'The Mindset', 8: "You're In Structure ✦",
 };
+
+/**
+ * Older profiles stored level names in the "She's …" form (profiles.level_name,
+ * badge titles in localStorage). Show them in the current "You're …" wording
+ * without touching the stored value. Keeps ALL-CAPS text in caps.
+ */
+export function displayLevelName(name) {
+  return String(name ?? '').replace(/^(she)(['’])s\b/i, (m, she, apos) => (she === 'SHE' ? `YOU${apos}RE` : `You${apos}re`));
+}
+
+/** First name from a get-profile / AGHF_FETCH_PROFILE result (or its `profile`), or '' when none is known. */
+export function firstNameOf(p) {
+  const pr = (p && p.profile) || p || {};
+  const raw = pr.first_name || pr.full_name || pr.display_name || pr.name || '';
+  return String(raw).trim().split(/\s+/)[0] || '';
+}
+
+/** "Dayli’s In Structure" when the first name is known, otherwise "You’re In Structure". Plain text: escape before putting it in HTML. */
+export function inStructureTitle(firstName, apos = '’') {
+  return firstName ? `${firstName}${apos}s In Structure` : `You${apos}re In Structure`;
+}
 
 export function phaseByKey(key) {
   return PHASES.find((p) => p.key === key);

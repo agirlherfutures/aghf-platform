@@ -22,6 +22,7 @@
 <script type="module">
   import { pickVariant, renderIntro, renderRefs, runCapstone, renderResult, renderReflect, completeGraduation, renderGraduation, renderAlreadyGraduated, graduated, curriculumComplete, capstoneAttempts, saveCapstoneAttempt } from './shared/capstone.js';
   import { UNLOCK_ALL } from './shared/preview.js';
+  import { firstNameOf } from './shared/curriculum-data.js';
   const view = document.getElementById('capView');
   const refs = document.getElementById('capRefs');
   const forced = UNLOCK_ALL ? new URLSearchParams(location.search).get('variant') : null;
@@ -61,7 +62,7 @@
   }
 
   async function boot() {
-    try { const p = await window.AGHF_FETCH_PROFILE?.(); const pr = p?.profile || p || {}; name = (pr.display_name || pr.first_name || pr.full_name || pr.name || '').split(' ')[0]; } catch { /* no profile */ }
+    try { name = firstNameOf(await window.AGHF_FETCH_PROFILE?.()); } catch { /* no profile */ }
     try {
       pool = (await (await fetch('lessons-data/p8-capstone.json')).json()).pool;
       if (graduated()) renderAlreadyGraduated(view, { onPractice: () => intro(true) });

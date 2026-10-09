@@ -41,14 +41,14 @@ export default async function handler(req, res) {
       .single();
 
     const levelNames = {
-      1: "She's Brand New",
+      1: "You're Brand New",
       2: 'Before the Chart',
       3: 'Reading Structure',
       4: 'Finding Direction',
       5: 'The ICC Method',
       6: 'Pulling the Trigger',
       7: 'The Mindset',
-      8: "She's In Structure ✦"
+      8: "You're In Structure ✦"
     };
 
     res.status(200).json({

@@ -1557,11 +1557,11 @@
       "blind": true,
       "track": true,
       "ask": {
-       "prompt": "She entered here: correction closed, continuation hadn’t. GRADE?",
+       "prompt": "They entered here: correction closed, continuation hadn’t. GRADE?",
        "options": [
         {
          "label": "Good execution",
-         "feedback": "Continuation never closed before she clicked.",
+         "feedback": "Continuation never closed before they clicked.",
          "bias": true
         },
         {
@@ -1830,7 +1830,7 @@
       "blind": true,
       "track": true,
       "ask": {
-       "prompt": "She waited for every close and entered at the first retest. GRADE?",
+       "prompt": "They waited for every close and entered at the first retest. GRADE?",
        "options": [
         {
          "label": "Valid execution",
@@ -2553,12 +2553,12 @@
    },
    {
     "concept": "1M role",
-    "question": "She found a beautiful 1M ICC, then opened the 4H to find support for it. What happened?",
+    "question": "You found a beautiful 1M ICC, then opened the 4H to find support for it. What happened?",
     "options": [
      "Good confluence",
-     "She built the analysis backwards",
+     "You built the analysis backwards",
      "Nothing wrong",
-     "She should have used the 15M"
+     "You should have used the 15M"
     ],
     "correctIndex": 1,
     "why": "HTF used to justify a 1M decision is backwards."
@@ -2661,7 +2661,7 @@
    },
    {
     "concept": "Process vs outcome",
-    "question": "She entered before continuation and the trade won. How is it journaled?",
+    "question": "You entered before continuation and the trade won. How is it journaled?",
     "options": [
      "A+ trade",
      "Winning outcome + execution violation",
@@ -2685,7 +2685,7 @@
    },
    {
     "concept": "No trade",
-    "question": "The setup failed and she keeps looking for new reasons to enter. Correct call?",
+    "question": "The setup failed and you keep looking for new reasons to enter. Correct call?",
     "options": [
      "Find another level",
      "Pass / no trade",
@@ -2697,11 +2697,11 @@
    },
    {
     "concept": "No trade",
-    "question": "She sat through a whole session and took zero trades because none met the model. Verdict?",
+    "question": "You sat through a whole session and took zero trades because none met the model. Verdict?",
     "options": [
      "Try again",
      "Perfect execution",
-     "She was too scared",
+     "You were too scared",
      "Wasted session"
     ],
     "correctIndex": 1,
@@ -2815,7 +2815,7 @@
     "rows": 4,
     "min": 15,
     "placeholder": "Type it how YOU understand it...",
-    "label": "💭 Explain it to an AGHF girl: your friend says, “I know I’m supposed to wait for Continuation, but every time I wait, I feel like I’m going to miss the move.” What do you tell her?",
+    "label": "💭 Explain it to an AGHF girl: your friend says, “I know I’m supposed to wait for Continuation, but every time I wait, I feel like I’m going to miss the move.” What do you tell them?",
     "concepts": [
      {
       "label": "The model isn’t built to catch every move",
@@ -2828,7 +2828,7 @@
       ]
      },
      {
-      "label": "It defines which moves she participates in",
+      "label": "It defines which moves they participate in",
       "any": [
        "which",
        "defines",
@@ -2839,7 +2839,7 @@
       ]
      },
      {
-      "label": "If price leaves without her rules, she misses it",
+      "label": "If price leaves without their rules, they miss it",
       "any": [
        "miss",
        "leave",
@@ -3061,7 +3061,7 @@
    "checkpoints": [
     {
      "at": 12,
-     "text": "She waits."
+     "text": "You wait."
     },
     {
      "at": 13,
@@ -3070,21 +3070,21 @@
     {
      "at": 14,
      "intrabar": 0.55,
-     "text": "Continuation candle forming. <b>She still waits for the close.</b>",
+     "text": "Continuation candle forming. <b>You still wait for the close.</b>",
      "expect": "wait"
     },
     {
      "at": 14,
-     "text": "Close confirms. <b>She prepares.</b>"
+     "text": "Close confirms. <b>You prepare.</b>"
     },
     {
      "at": 23,
-     "text": "Price runs away. No retest. <b>She passes.</b>"
+     "text": "Price runs away. No retest. <b>You pass.</b>"
     },
     {
      "at": 24,
      "kind": "note",
-     "text": "The trade goes to target without her.",
+     "text": "The trade goes to target without you.",
      "hold": 1800
     }
    ],

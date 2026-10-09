@@ -657,7 +657,7 @@
       "cards": [
         {
           "label": "The trader",
-          "sub": "She waits for the retest her model requires.",
+          "sub": "You wait for the retest your model requires.",
           "spark": "slow",
           "tag": "PLAN",
           "tone": "purple"

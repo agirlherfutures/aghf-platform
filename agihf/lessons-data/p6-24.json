@@ -30,10 +30,10 @@
      "options": [
       {
        "label": "Per day",
-       "feedback": "She said per trade. Ten trades is up to 10%."
+       "feedback": "They said per trade. Ten trades is up to 10%."
       },
       {
-       "label": "Per trade, so the day depends on how many she takes",
+       "label": "Per trade, so the day depends on how many they take",
        "correct": true,
        "why": "1% per trade alone doesn’t describe session exposure."
       }

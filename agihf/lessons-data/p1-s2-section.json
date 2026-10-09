@@ -40,7 +40,7 @@
       {
         "type": "mc",
         "heading": "Which account?",
-        "prompt": "A trader wants to prove she’s consistent before risking any real money.",
+        "prompt": "A trader wants to prove they’re consistent before risking any real money.",
         "question": "Which account actually answers that?",
         "options": [
           {
@@ -405,7 +405,7 @@
         "rows": 4,
         "min": 15,
         "placeholder": "Type it how YOU understand it...",
-        "label": "💭 Explain it to an AGHF girl: your friend says, “I just move my stop a little further when price gets close. It gives the trade room.” What would you tell her?"
+        "label": "💭 Explain it to an AGHF girl: your friend says, “I just move my stop a little further when price gets close. It gives the trade room.” What would you tell them?"
       }
     ]
   },

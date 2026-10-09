@@ -1121,7 +1121,7 @@
           "text": "Bearish structure. Price wicks above the minor high and closes back below.<br>Your friend: <strong>“Price took liquidity, so that’s MSS.”</strong>",
           "asks": [
             {
-              "prompt": "What’s missing from her read?",
+              "prompt": "What’s missing from their read?",
               "options": [
                 {
                   "label": "A close through the relevant lower high that defines the bearish structure",

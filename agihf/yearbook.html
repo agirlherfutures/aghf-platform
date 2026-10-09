@@ -26,7 +26,7 @@
 <div class="grad-callout" id="gradCallout">
   <div class="grad-callout-icon">🎓</div>
   <div class="grad-callout-title">Your graduation reflection is waiting</div>
-  <div class="grad-callout-sub">"If you could talk to the trader who started Phase 1, what would you tell her now?"</div>
+  <div class="grad-callout-sub">"If you could talk to the trader who started Phase 1, what would you tell them now?"</div>
   <div class="grad-callout-tag">Preview the capstone moment</div>
 </div>
 </main>
@@ -87,7 +87,7 @@
       <div class="cap-sub">Your portfolio, your live read, every report card — it all led here.</div>
       <div class="cap-prompt-card">
         <div class="cap-prompt-label">Final reflection</div>
-        <div class="cap-prompt-question">If you could talk to the trader who started Phase 1, what would you tell her now?</div>
+        <div class="cap-prompt-question">If you could talk to the trader who started Phase 1, what would you tell them now?</div>
         <textarea class="cap-input" rows="4" placeholder="Type your response..." id="capAnswer"></textarea>
         <div class="cap-error" id="capError">Take a moment to answer before continuing — this one's worth it.</div>
       </div>
@@ -127,6 +127,10 @@
 <script type="module">
   let PHASES;
   let ENTRY_DATA, PORTFOLIO_ITEMS;
+  let STRUCT_TITLE = '';
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  // Personal spot: Phase 8 reads "Dayli’s In Structure ✦" when the first name is known, else "You’re In Structure ✦".
+  const phaseTitle = (phase) => (phase.key === 'p8' && STRUCT_TITLE ? `${STRUCT_TITLE} ✦` : phase.title);
 
   function starString(n) {
     let s = '';
@@ -140,14 +144,14 @@
     if (d.status === 'locked') {
       return `<div class="entry-card locked">
         <div class="entry-top"><span class="entry-grade">${label}</span></div>
-        <div class="entry-title">${phase.title}</div>
+        <div class="entry-title">${esc(phaseTitle(phase))}</div>
         <div class="entry-locked-label">${phase.comingSoon ? 'Coming soon' : 'Locked'}</div>
       </div>`;
     }
     const gradeLabel = d.status === 'current' ? `${label} — current` : label;
     return `<div class="entry-card ${d.status === 'current' ? 'current' : ''}" data-phase="${phase.key}">
       <div class="entry-top"><span class="entry-grade">${gradeLabel}</span><span class="entry-stars">${starString(d.stars)}</span></div>
-      <div class="entry-title">${phase.title}</div>
+      <div class="entry-title">${esc(phaseTitle(phase))}</div>
       <div class="entry-quote">"${d.answer}"</div>
     </div>`;
   }
@@ -186,7 +190,7 @@
     const phase = PHASES.find((p) => p.key === key);
     if (!d || d.status === 'locked') return;
     document.getElementById('modalEyebrow').textContent = `phase ${phase.n} report card`;
-    document.getElementById('modalTitle').textContent = phase.title;
+    document.getElementById('modalTitle').textContent = phaseTitle(phase);
     document.getElementById('modalStars').textContent = starString(d.stars);
     document.getElementById('modalAnswer').textContent = d.answer;
     document.getElementById('modalOverlay').classList.add('open');
@@ -249,7 +253,14 @@
 
   (async function boot() {
     try {
-      ({ PHASES } = await import('./shared/curriculum-data.js'));
+      const curriculum = await import('./shared/curriculum-data.js');
+      ({ PHASES } = curriculum);
+      let first = '';
+      try {
+        if (!window.AGHF_USER) await new Promise((r) => { document.addEventListener('aghf-auth-ready', r, { once: true }); setTimeout(r, 8000); });
+        first = curriculum.firstNameOf(await Promise.race([window.AGHF_FETCH_PROFILE?.(), new Promise((r) => setTimeout(r, 8000))]));
+      } catch { /* no profile: fall back to "You’re In Structure" */ }
+      STRUCT_TITLE = curriculum.inStructureTitle(first);
       ({ ENTRY_DATA, PORTFOLIO_ITEMS } = await import('./shared/yearbook-mock-data.js'));
     } catch (err) {
       console.error('Yearbook failed to load:', err);

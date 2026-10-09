@@ -1283,12 +1283,12 @@
         "concept": "HH / HL / LH / LL"
       },
       {
-        "question": "A trader sees four consecutive bearish candles during a pullback inside bullish structure and immediately changes her structural bias to bearish. What’s the flaw?",
+        "question": "A trader sees four consecutive bearish candles during a pullback inside bullish structure and immediately changes their structural bias to bearish. What’s the flaw?",
         "options": [
           "Nothing, four red candles is enough",
-          "She’s using candle direction rather than structural progression to decide whether the larger structure changed",
-          "She should have waited for five red candles",
-          "She should only use green candles"
+          "They’re using candle direction rather than structural progression to decide whether the larger structure changed",
+          "They should have waited for five red candles",
+          "They should only use green candles"
         ],
         "correctIndex": 1,
         "why": "Candle direction isn’t structural progression. A pullback can happen inside bullish structure.",
@@ -1550,7 +1550,7 @@
         "rows": 4,
         "min": 15,
         "placeholder": "Type it how YOU understand it...",
-        "label": "💭 Explain it to an AGHF girl: your friend says, “The market was bullish, but now I see red candles, so it’s bearish.” What question would you tell her to ask instead?"
+        "label": "💭 Explain it to an AGHF girl: your friend says, “The market was bullish, but now I see red candles, so it’s bearish.” What question would you tell them to ask instead?"
       }
     ],
     "saveLabel": "Save to My Academy Notes →",

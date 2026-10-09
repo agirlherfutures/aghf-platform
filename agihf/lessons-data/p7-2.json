@@ -501,7 +501,7 @@
       "cards": [
         {
           "label": "The trader",
-          "sub": "She waited for confirmation, then executed.",
+          "sub": "You waited for confirmation, then executed.",
           "spark": "slow",
           "tag": "BEFORE THE WIN",
           "tone": "purple"

@@ -105,7 +105,7 @@ export const PSYCHOLOGY_KNOWLEDGE = [
   entry('distrusting-valid-strategy', 'Distrusting a Statistically Valid Strategy', ['distrusting strategy'],
     'After a short losing stretch, doubting a strategy that has a real, larger-sample edge — the doubt is proportional to recent emotion, not to the actual evidence about the strategy’s performance.'),
   entry('emotional-risk-tolerance', 'Emotional Risk Tolerance', ['emotional risk tolerance', 'position size fit'],
-    'The size a trader can hold without her decision-making changing — distinct from the size her account could technically support. A position that is "psychologically incompatible" with a trader will distort her behavior around it even if the math says it’s a reasonable risk.',
+    'The size a trader can hold without their decision-making changing — distinct from the size their account could technically support. A position that is "psychologically incompatible" with a trader will distort their behavior around it even if the math says it’s a reasonable risk.',
     { relatedLessonId: 'p1-11' }),
   entry('process-based-confidence', 'Process-Based Confidence', ['process confidence'],
     'Confidence built from trusting a repeatable process rather than from a recent string of outcomes — this kind of confidence survives a losing trade because the trade following the process was still "correct" regardless of result.'),

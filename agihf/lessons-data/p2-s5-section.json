@@ -4693,7 +4693,7 @@
       },
       {
         "concept": "What actually broke",
-        "question": "Your friend says, “Price broke a low, so it’s bearish now.” What should she ask first?",
+        "question": "Your friend says, “Price broke a low, so it’s bearish now.” What should they ask first?",
         "options": [
           "Which low broke, and did price close through it?",
           "How red were the candles?",
@@ -4745,7 +4745,7 @@
         "options": [
           "MSS is change information that the structure may be transitioning, not an entry signal",
           "Nothing, MSS means enter",
-          "She should wait for two MSS",
+          "They should wait for two MSS",
           "MSS only counts on the 4H"
         ],
         "correctIndex": 0,
@@ -4948,7 +4948,7 @@
         "rows": 4,
         "min": 15,
         "placeholder": "Type it how YOU understand it...",
-        "label": "💭 Explain it to an AGHF girl: your friend says, “Price broke a low, so it’s bearish now.” What would you ask her before agreeing?"
+        "label": "💭 Explain it to an AGHF girl: your friend says, “Price broke a low, so it’s bearish now.” What would you ask them before agreeing?"
       }
     ],
     "saveLabel": "Save to My Academy Notes →",

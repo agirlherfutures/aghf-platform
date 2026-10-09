@@ -185,7 +185,7 @@
         ]
       },
       "check": {
-        "prompt": "She adds ten drawing tools, hoping for a clearer read. What happens?",
+        "prompt": "You add ten drawing tools, hoping for a clearer read. What happens?",
         "stack": true,
         "options": [
           {
@@ -241,7 +241,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "A member asks why her chart looks so messy. What do you tell her?",
+      "prompt": "A member asks why their chart looks so messy. What do you tell them?",
       "modelAnswer": "More drawing tools doesn’t mean more clarity, usually it means more clutter. A clean chart uses a few tools clearly, like a couple of horizontal levels marking areas price has reacted to before, so your eyes can find the story instead of fighting through noise."
     }
   ],

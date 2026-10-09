@@ -560,7 +560,7 @@
       "cards": [
         {
           "label": "The trader",
-          "sub": "She judges the model over many trades.",
+          "sub": "You judge the model over many trades.",
           "spark": "slow",
           "tag": "SAMPLE",
           "tone": "purple"

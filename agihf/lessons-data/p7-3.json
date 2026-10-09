@@ -769,7 +769,7 @@
       "cards": [
         {
           "label": "The trader",
-          "sub": "She sizes from the risk plan she wrote while calm.",
+          "sub": "You size from the risk plan you wrote while calm.",
           "spark": "slow",
           "tag": "PLAN",
           "tone": "purple"
@@ -828,7 +828,7 @@
     {
       "type": "v2_dayli",
       "kicker": "Dayli says",
-      "quote": "Trade like the version of you who wrote the plan. <em>Not the version who just read her P&amp;L.</em>",
+      "quote": "Trade like the version of you who wrote the plan. <em>Not the version who just read your P&amp;L.</em>",
       "pose": "point"
     },
     {

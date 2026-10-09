@@ -6922,8 +6922,8 @@
         "options": [
           "Nothing",
           "Trade outcome alone doesn’t define structural invalidation",
-          "She should be bearish",
-          "She needs a bigger stop"
+          "You should be bearish",
+          "You need a bigger stop"
         ],
         "correctIndex": 1,
         "why": "Thesis invalidation changes the analysis. A stop exits a position."
@@ -7104,7 +7104,7 @@
         "rows": 4,
         "min": 15,
         "placeholder": "Type it how YOU understand it...",
-        "label": "💭 Explain it to an AGHF girl: your friend says, “I said I was bullish this morning, so I’m staying bullish until the end of the day.” What do you tell her?"
+        "label": "💭 Explain it to an AGHF girl: your friend says, “I said I was bullish this morning, so I’m staying bullish until the end of the day.” What do you tell them?"
       }
     ],
     "saveLabel": "Save to My Academy Notes →",

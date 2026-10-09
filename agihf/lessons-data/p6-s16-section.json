@@ -864,16 +864,16 @@
       "at": 7,
       "expect": "close",
       "unplanned": true,
-      "text": "+10. She panics and closes the whole thing."
+      "text": "+10. They panic and close the whole thing."
      }
     ],
     "mode": "watch",
     "playAfterExit": true,
     "afterResult": {
-     "prompt": "She made +$80. The original plan would have made +$480. GRADE?",
+     "prompt": "They made +$80. The original plan would have made +$480. GRADE?",
      "options": [
       {
-       "label": "Good trade, she made money",
+       "label": "Good trade, they made money",
        "feedback": "Profit isn’t a management grade.",
        "bias": true
       },
@@ -887,7 +887,7 @@
     },
     "name": "Winning plan violation",
     "concept": "Process vs outcome",
-    "brief": "Watch her fear-exit."
+    "brief": "Watch their fear-exit."
    },
    {
     "type": "manage_sim",
@@ -1182,7 +1182,7 @@
     "punch": "BIGGEST ISSUE: THE TRADE NO LONGER RESEMBLES THE PREDEFINED PLAN.",
     "name": "Stop moving everything 😭",
     "concept": "Over-management",
-    "brief": "Review her replay."
+    "brief": "Review their replay."
    },
    {
     "type": "manage_sim",
@@ -1661,7 +1661,7 @@
    },
    {
     "concept": "Pre-trade management",
-    "question": "“I’ll see how it feels.” What does she have?",
+    "question": "“I’ll see how it feels.” What do you have?",
     "options": [
      "A trade plan",
      "An entry plan, not a trade plan",
@@ -1721,7 +1721,7 @@
    },
    {
     "concept": "Partials",
-    "question": "No partial rule. She takes half because she sees green. Classification?",
+    "question": "No partial rule. You take half because you see green. Classification?",
     "options": [
      "Rule-based",
      "Management violation",
@@ -1733,7 +1733,7 @@
    },
    {
     "concept": "Partials",
-    "question": "Her plan says close 2 at +30. Price hits +30 and she does. Classification?",
+    "question": "Your plan says close 2 at +30. Price hits +30 and you do. Classification?",
     "options": [
      "Violation",
      "Rule-based management",
@@ -1745,7 +1745,7 @@
    },
    {
     "concept": "Break even",
-    "question": "No BE rule. Price moves favorably. She moves to BE because she’s nervous.",
+    "question": "No BE rule. Price moves favorably. You move to BE because you’re nervous.",
     "options": [
      "Rule-based",
      "Unplanned management change",
@@ -1817,7 +1817,7 @@
    },
    {
     "concept": "Process vs outcome",
-    "question": "She fear-exited at +$80. The target later hit. Grade?",
+    "question": "You fear-exited at +$80. The target later hit. Grade?",
     "options": [
      "Good trade",
      "Profitable outcome + management violation",
@@ -1931,7 +1931,7 @@
     "rows": 4,
     "min": 15,
     "placeholder": "Type it how YOU understand it...",
-    "label": "💭 Explain it to an AGHF girl: your friend says, “My trade was up $200 and came all the way back to stop me out. I should’ve just taken the money.” What do you ask her first?",
+    "label": "💭 Explain it to an AGHF girl: your friend says, “My trade was up $200 and came all the way back to stop me out. I should’ve just taken the money.” What do you ask them first?",
     "concepts": [
      {
       "label": "Ask: what was the management plan before entry?",
@@ -2103,7 +2103,7 @@
      "checkpoints": [
       {
        "at": 8,
-       "text": "+$160. She does nothing. The plan says nothing has changed."
+       "text": "+$160. You do nothing. The plan says nothing has changed."
       },
       {
        "at": 9,

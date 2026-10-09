@@ -3397,7 +3397,7 @@
     },
     "intro": "Read the 1M. Mark the PIL. Then make price prove every step. No hindsight: candles print one at a time.",
     "end": {
-     "card": "SHE KNOWS THE DAYLI ICC 1-MINUTE ENTRY MODEL™."
+     "card": "YOU KNOW THE DAYLI ICC 1-MINUTE ENTRY MODEL™."
     },
     "debrief": {
      "good": "Executed ✦",
@@ -4336,7 +4336,7 @@
     "rows": 4,
     "min": 15,
     "placeholder": "Type it how YOU understand it...",
-    "label": "💭 Explain it to an AGHF girl: your friend says, “Price wicked through my PIL, pulled back, then started running. That’s basically ICC, right?” What do you tell her?",
+    "label": "💭 Explain it to an AGHF girl: your friend says, “Price wicked through my PIL, pulled back, then started running. That’s basically ICC, right?” What do you tell them?",
     "concepts": [
      {
       "label": "No: it wasn’t ICC",

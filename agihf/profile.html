@@ -22,8 +22,8 @@
       <div class="prof-av" id="profAvatar">D</div>
       <div>
         <div class="prof-nm" id="profName">Trader</div>
-        <div class="prof-lv" id="profLevel">Level 1 · She's Brand New</div>
-        <div class="prof-bdg" id="profBadge">✦ She's Brand New</div>
+        <div class="prof-lv" id="profLevel">Level 1 · You're Brand New</div>
+        <div class="prof-bdg" id="profBadge">✦ You're Brand New</div>
       </div>
     </div>
     <div class="prof-stats">
@@ -52,6 +52,8 @@
 </main>
 
 <script type="module">
+  // Older profiles and badges stored "She's …" names; show them in the "You're …" wording.
+  const displayLevelName = (n) => String(n ?? '').replace(/^(she)(['’])s\b/i, (m, she, apos) => (she === 'SHE' ? `YOU${apos}RE` : `You${apos}re`));
   async function load() {
     let data;
     try {
@@ -63,7 +65,7 @@
     const p = data.profile || {};
     const name = p.full_name || window.AGHF_USER?.email?.split('@')[0] || 'Trader';
     const level = p.level || 1;
-    const levelName = p.level_name || "She's Brand New";
+    const levelName = displayLevelName(p.level_name || "You're Brand New");
     const gp = p.gp || 0;
     const nextLevelGp = level * 1000;
 
@@ -91,7 +93,7 @@
     try { list = JSON.parse(localStorage.getItem('aghf_badges') || '[]'); } catch (e) { /* storage blocked */ }
     if (!list.length) return;
     document.getElementById('badgeCard').style.display = '';
-    document.getElementById('badgeList').innerHTML = list.map((b) => `<div style="display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--pink-pale),var(--purple-pale));border-radius:999px;padding:8px 14px;font-weight:700;font-size:.85rem;color:var(--dark);"><span>${b.emoji || '🏆'}</span>${b.title}<span style="font-weight:400;color:var(--muted);font-size:.75rem;">${new Date(b.at).toLocaleDateString()}</span></div>`).join('');
+    document.getElementById('badgeList').innerHTML = list.map((b) => `<div style="display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--pink-pale),var(--purple-pale));border-radius:999px;padding:8px 14px;font-weight:700;font-size:.85rem;color:var(--dark);"><span>${b.emoji || '🏆'}</span>${displayLevelName(b.title)}<span style="font-weight:400;color:var(--muted);font-size:.75rem;">${new Date(b.at).toLocaleDateString()}</span></div>`).join('');
   }
   renderBadges();
 

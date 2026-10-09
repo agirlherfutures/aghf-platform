@@ -33,7 +33,7 @@ async function previewWrite({ supabase, userId, conversationId }, actionType, pr
     .select('*').single();
   if (error) return { forModel: { error: 'Could not create a preview.' }, forClient: null };
   return {
-    forModel: { message: 'A preview card was shown to the member. Do not claim this was saved — it only saves if she approves it.' },
+    forModel: { message: 'A preview card was shown to the member. Do not claim this was saved — it only saves if they approve it.' },
     forClient: { kind: 'write_preview', actionId: data.id, actionType, previewPayload },
   };
 }

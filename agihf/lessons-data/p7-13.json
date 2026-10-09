@@ -174,7 +174,7 @@
     {
       "type": "v2_reflect",
       "kicker": "Tell me what you know",
-      "prompt": "Which version of you <em>shows up most</em>, and when does she show up?",
+      "prompt": "Which version of you <em>shows up most</em>, and when does it show up?",
       "modelAnswer": "I notice which feeling shows up and when: after a loss, after a win, when I’m bored, when money is tight. Before every trade I ask who is trading right now."
     }
   ],

@@ -62,11 +62,13 @@
 <script type="module">
   import { alumni } from './shared/desk-core.js';
   import { UNLOCK_ALL } from './shared/preview.js';
+  import { firstNameOf, inStructureTitle } from './shared/curriculum-data.js';
   const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const view = document.getElementById('certView');
   async function boot() {
     let full = '';
-    try { const p = await window.AGHF_FETCH_PROFILE?.(); const pr = p?.profile || p || {}; full = pr.display_name || pr.full_name || [pr.first_name, pr.last_name].filter(Boolean).join(' ') || pr.name || ''; } catch { /* no profile */ }
+    let first = '';
+    try { const p = await window.AGHF_FETCH_PROFILE?.(); first = firstNameOf(p); const pr = p?.profile || p || {}; full = pr.display_name || pr.full_name || [pr.first_name, pr.last_name].filter(Boolean).join(' ') || pr.name || ''; } catch { /* no profile */ }
     try {
       let a = alumni();
       if (!a && UNLOCK_ALL && new URLSearchParams(location.search).has('preview')) a = { graduatedAt: Date.now(), attemptId: 'PREVIEW', name: full };
@@ -75,6 +77,8 @@
         return;
       }
       const name = full || a.name || 'AGHF Graduate';
+      // Personal spot: "Dayli’s In Structure" when the first name is known, else "You’re In Structure".
+      const struct = inStructureTitle(first || String(a.name || '').trim().split(/\s+/)[0] || '');
       const date = new Date(a.graduatedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
       document.title = `Certificate of Completion · ${name}`;
       view.innerHTML = `
@@ -87,9 +91,9 @@
           <div class="cert-title2">OF COMPLETION</div>
           <p class="cert-sub">This recognizes that</p>
           <div class="cert-name">${esc(name)}</div>
-          <p class="cert-body">completed every phase and section of the AGHF Academy, from reading her first candle to building, testing and locking her own trading plan, and passed the <b>She’s In Structure</b> capstone: one full trading day, scored on process, not profit.</p>
+          <p class="cert-body">completed every phase and section of the AGHF Academy, from reading their first candle to building, testing and locking their own trading plan, and passed the <b>In Structure</b> capstone: one full trading day, scored on process, not profit.</p>
           <div class="cert-pills"><span class="p1">8 PHASES</span><span class="p2">22 SECTIONS</span><span class="p3">CAPSTONE PASSED</span>${a.planVersion ? `<span class="p4">TRADING PLAN v${esc(a.planVersion)}</span>` : ''}</div>
-          <div class="cert-tag">✦ SHE’S IN STRUCTURE ✦</div>
+          <div class="cert-tag">✦ ${esc(struct.toUpperCase())} ✦</div>
           <div class="cert-foot">
             <div class="cert-sig"><b>${esc(date)}</b>Date of completion</div>
             <div class="cert-heart" aria-hidden="true">🎓</div>

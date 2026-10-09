@@ -13,11 +13,11 @@ import {
 } from './desk-core.js';
 import { awardBadge, badges } from './phase-final.js';
 import { loadRiskProfile } from './risk-core.js';
-import { PHASES } from './curriculum-data.js';
+import { PHASES, inStructureTitle } from './curriculum-data.js';
 
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
 const MAX_RISK = 200;
-export const GRAD_BADGE = { id: 'p8-graduate', title: 'SHE’S IN STRUCTURE', emoji: '🎓', phase: 'capstone' };
+export const GRAD_BADGE = { id: 'p8-graduate', title: 'YOU’RE IN STRUCTURE', emoji: '🎓', phase: 'capstone' };
 export const GRAD_GP = 1500;
 
 export const PARTS = [
@@ -213,18 +213,22 @@ export function renderGraduation(el, a) {
   const phases = PHASES.slice(0, 8);
   const n = (a.badges || []).length;
   const t0 = phases.length * 0.45 + 0.6;
+  // Personal spot: "Dayli’s In Structure" when the first name is known, else "You’re In Structure".
+  const first = String(a.name || '').trim().split(/\s+/)[0] || '';
+  const struct = inStructureTitle(first);
+  const phaseTitle = (p) => (p.key === 'p8' ? `${struct} ✦` : p.title);
   el.innerHTML = '';
   document.querySelector('.cap-cine')?.remove();
   const host = document.createElement('div');
   document.body.appendChild(host);
   host.innerHTML = `<div class="cap-cine" role="dialog" aria-label="Graduation">
     <div class="cap-cine-in">
-      <div class="cap-ph">${phases.map((p, i) => `<div class="cap-ph-i" style="animation-delay:${0.4 + i * 0.45}s"><i>${p.n}</i><span>${esc(p.title)}</span></div>`).join('')}</div>
+      <div class="cap-ph">${phases.map((p, i) => `<div class="cap-ph-i" style="animation-delay:${0.4 + i * 0.45}s"><i>${p.n}</i><span>${esc(phaseTitle(p))}</span></div>`).join('')}</div>
       <div class="cap-stats" style="animation-delay:${t0}s">
         <div><b>8</b>phases</div><div><b>22</b>sections</div><div><b>${n}</b>badges</div><div><b>+${GRAD_GP}</b>GP</div><div><b>${a.planVersion ? `v${esc(a.planVersion)}` : '✓'}</b>trading plan</div><div><b>PASSED</b>capstone</div>
       </div>
-      <div class="cap-grad" style="animation-delay:${t0 + 1}s">🎓 SHE GRADUATED</div>
-      <div class="cap-struct" style="animation-delay:${t0 + 1.8}s">✦ SHE’S IN STRUCTURE.</div>
+      <div class="cap-grad" style="animation-delay:${t0 + 1}s">🎓 ${first ? esc(first.toUpperCase()) : 'YOU'} GRADUATED</div>
+      <div class="cap-struct" style="animation-delay:${t0 + 1.8}s">✦ ${esc(struct.toUpperCase())}.</div>
       <p class="cap-quote" style="animation-delay:${t0 + 2.6}s">You came here to learn a strategy.<br>You leave knowing how to think like a trader.</p>
       <div class="cap-cine-go" style="animation-delay:${t0 + 3.4}s"><a class="p8-btn is-lock" href="certificate.html">View my certificate →</a><a class="p8-btn" href="desk.html">Go to My Trader Desk →</a></div>
     </div></div>`;

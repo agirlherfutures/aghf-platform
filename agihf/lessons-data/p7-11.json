@@ -493,7 +493,7 @@
       "cards": [
         {
           "label": "The trader",
-          "sub": "She sized the trade for her account.",
+          "sub": "You sized the trade for your account.",
           "spark": "slow",
           "tag": "THE TRADER",
           "tone": "teal"

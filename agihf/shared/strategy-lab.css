@@ -133,3 +133,23 @@ a.sl-row:hover{background:var(--pink-pale);}
 /* Compact (phone) charts are drawn on a 440-wide canvas and scaled down, so their text is drawn larger. */
 .sd-chart.is-compact .sd-tag text,.sd-chart.is-compact .sd-level text{font-size:12.5px;}
 .sd-chart.is-compact .sd-band text,.sd-chart.is-compact .sd-zonebox text{font-size:12px;}
+
+/* ── Phase 5 ICC walk-through (shared/icc-walk.js) ─────────────────────── */
+.iw{width:100%;}
+.iw-track{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.iw-step{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:800;color:var(--muted);background:var(--cream);border-radius:999px;padding:5px 11px 5px 5px;}
+.iw-step b{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#fff;color:var(--muted);font-size:.68rem;}
+.iw-step.is-now{background:var(--dark);color:#fff;} .iw-step.is-now b{color:var(--dark);}
+.iw-step.is-done{background:var(--teal-pale);color:#1a6b63;} .iw-step.is-done b{background:var(--teal);color:#fff;}
+.iw-tabs{display:flex;gap:6px;margin-bottom:10px;}
+.iw-tab{border:2px solid var(--border);background:#fff;border-radius:12px;padding:7px 16px;font:900 .86rem var(--font-body);color:var(--dark);cursor:pointer;}
+.iw-tab.on{background:var(--dark);border-color:var(--dark);color:#fff;}
+.iw-tab:disabled{opacity:.35;cursor:default;}
+.iw-prompt{background:#FFF6E0;border:1.5px solid #F0D48E;border-radius:16px;padding:12px 16px;font-size:1.02rem;line-height:1.5;color:var(--dark);margin-bottom:12px;}
+.iw-n{display:block;font-size:.68rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#A0700F;margin-bottom:2px;}
+.iw-play{display:flex;align-items:center;gap:12px;margin-top:10px;}
+.iw-next{border:none;border-radius:999px;padding:12px 22px;background:var(--dark);color:#fff;font:800 .95rem var(--font-body);cursor:pointer;}
+.iw-count{font-size:.8rem;font-weight:700;color:var(--muted);}
+.iw .lw-feedback{margin-top:12px;}
+.iw .lw-feedback.show:not(.good):not(.bad){background:var(--purple-pale);border:1px solid #DCD6F7;color:var(--dark);}
+.iw-go{display:block;margin-top:10px;}

@@ -358,7 +358,7 @@ export function renderCatchMistake(el, block, satisfy, helpers) {
   el.innerHTML = `
     <div class="lw-card">
       <div class="lw-eyebrow">Catch the Mistake</div>
-      <h2>${block.heading || 'What did she get wrong?'}</h2>
+      <h2>${block.heading || 'What did they get wrong?'}</h2>
       <p class="lw-scenario">${block.scenario}</p>
       <div class="${(block.options || []).length >= 3 ? 'lw-grid3' : 'lw-grid2'}" id="lwCmOpts">
         ${block.options.map((o, i) => `<button type="button" class="lw-tap" data-i="${i}"><h3>${o.label}</h3></button>`).join('')}

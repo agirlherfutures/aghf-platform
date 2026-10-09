@@ -215,7 +215,7 @@ export function renderManageSim(el0, slide, satisfy, helpers = {}) {
       if (open && (hitStop || hitTarget)) { exitAll(hitStop ? stop : target, hitStop ? MEVENT.STOP_REACHED : MEVENT.TARGET_REACHED); if (!exited) return; }
       // After an exit, keep printing (playAfterExit) to show what the ORIGINAL plan would have met.
       if (exited) {
-        if (!origHit && (long ? b.h >= plan.targetPrice : b.l <= plan.targetPrice)) { origHit = true; chart.tag(k - 1, 'ORIGINAL TP', 'ok', 'above', 'orig-tp'); say(sc.origTpSay || 'Price reached the <b>original target</b>, without her.'); }
+        if (!origHit && (long ? b.h >= plan.targetPrice : b.l <= plan.targetPrice)) { origHit = true; chart.tag(k - 1, 'ORIGINAL TP', 'ok', 'above', 'orig-tp'); say(sc.origTpSay || 'Price reached the <b>original target</b>, without you.'); }
         if (k >= total || origHit) { finishRun(exited); return; }
         timer = setTimeout(next, reduced() ? 0 : 260); return;
       }
@@ -489,7 +489,7 @@ export function renderPnlBlind(el, slide, satisfy, helpers = {}) {
   const reveal = () => {
     card.classList.add('is-open');
     n.innerHTML = '<div class="mg-bub"><b>+$100</b><span>“DON’T LOSE IT!”</span></div><div class="mg-bub neg"><b>−$100</b><span>“IT’LL COME BACK!”</span></div>';
-    asks.innerHTML = `<div class="mg-notice">NOTICE SOMETHING? 😂<small>She wants green to stop moving and red to keep moving.</small></div>
+    asks.innerHTML = `<div class="mg-notice">NOTICE SOMETHING? 😂<small>You want green to stop moving and red to keep moving.</small></div>
       <div class="mg-views"><div class="mg-view mg-view-money"><div class="tx-h">View A · Money view</div><div class="mg-vm-n">+$184</div><div class="mg-vm-c"></div><small>Chart tiny. Plan hidden.</small></div>
       <div class="mg-view mg-view-process"><div class="tx-h">View B · Process view</div><div class="mg-vp-c"></div><div class="mg-vp-plan">SL 19,970 · TP 20,060 · fixed · no partials</div><small>P&amp;L +$184</small></div></div>`;
     askQuestion(asks, slide.ask || { prompt: 'WHICH INTERFACE BETTER SUPPORTS RULE-BASED MANAGEMENT?', options: [
@@ -528,7 +528,7 @@ export function renderMicromanage(el, slide, satisfy, helpers = {}) {
     qEl.innerHTML = '';
     out.innerHTML = `${mine >= 2 ? '' : `<p class="mg-note">You barely touched it. 👏 Here’s what a micromanaging trader did with the same plan:</p>`}
       <div class="mg-cmp2"><div><div class="tx-h">Original plan</div><div class="mg-row"><span>SL</span><b>−30</b></div><div class="mg-row"><span>TP</span><b>+60</b></div><div class="mg-row"><span>Size</span><b>4 MNQ</b></div><div class="mg-row"><span>Management</span><b>Fixed</b></div></div>
-      <div><div class="tx-h">What ${mine >= 2 ? 'you' : 'she'} actually did</div>${Object.entries(actual).map(([k, v]) => `<div class="mg-row ${v ? 'is-no' : ''}"><span>${k}</span><b>${v}</b></div>`).join('')}</div></div>
+      <div><div class="tx-h">What ${mine >= 2 ? 'you' : 'they'} actually did</div>${Object.entries(actual).map(([k, v]) => `<div class="mg-row ${v ? 'is-no' : ''}"><span>${k}</span><b>${v}</b></div>`).join('')}</div></div>
       <div class="mg-girl">GIRL. WHAT PLAN ARE WE TRADING NOW? 😭</div>`;
     principle(out, slide.punch || 'ACTIVITY IS NOT THE SAME AS MANAGEMENT.');
     continueBtn(card, satisfy);

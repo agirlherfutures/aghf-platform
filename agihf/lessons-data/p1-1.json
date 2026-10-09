@@ -139,12 +139,12 @@
         }
       ],
       "check": {
-        "prompt": "She expects MNQ to fall. Which side?",
+        "prompt": "You expect MNQ to fall. Which side?",
         "options": [
           {
             "label": "Long",
             "correct": false,
-            "feedback": "Long profits when price rises. She expects it to fall."
+            "feedback": "Long profits when price rises. You expect it to fall."
           },
           {
             "label": "Short",
@@ -208,7 +208,7 @@
           "label": "Outcome"
         }
       ],
-      "presentNote": "Direction is the one piece she <em>does</em> have. Look for what’s missing.",
+      "presentNote": "Direction is the one piece they <em>do</em> have. Look for what’s missing.",
       "why": "Direction alone isn’t a plan. A trade needs all four: market, direction, risk and outcome."
     },
     {
