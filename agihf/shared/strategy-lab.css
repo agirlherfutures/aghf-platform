@@ -129,3 +129,7 @@ a.sl-row:hover{background:var(--pink-pale);}
 .sl-acad-card .k{font-size:.66rem;letter-spacing:.14em;font-weight:800;color:#FFB8C8;text-transform:uppercase;}
 .sl-acad-card b{display:block;font-family:var(--font-display);font-size:1.3rem;margin:4px 0;}
 .sl-acad-card span{font-size:.86rem;color:rgba(255,255,255,.8);}
+
+/* Compact (phone) charts are drawn on a 440-wide canvas and scaled down, so their text is drawn larger. */
+.sd-chart.is-compact .sd-tag text,.sd-chart.is-compact .sd-level text{font-size:12.5px;}
+.sd-chart.is-compact .sd-band text,.sd-chart.is-compact .sd-zonebox text{font-size:12px;}

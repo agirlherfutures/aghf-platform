@@ -31,13 +31,14 @@ function el(name, attrs = {}, parent) {
 export function mountSdChart(container, sc, opts = {}) {
   const compact = opts.compact ?? (container.clientWidth > 0 && container.clientWidth < 560);
   const W = compact ? 440 : 760;
-  const PAD_L = 12, PAD_R = compact ? 74 : 96, TOP = 26, BOT = 22;
+  const PAD_L = 12, PAD_R = compact ? 92 : 96, TOP = compact ? 34 : 26, BOT = 22;
+  const FS = compact ? 1.3 : 1; // text scale: compact charts are drawn small, so their labels are drawn bigger
   const bars5 = sc.bars;
   const total5 = opts.total || bars5.length;
   const st = { tf: opts.tf || '5M', k: opts.k ?? 0, levels: {}, bands: {}, tags: {}, zone: null, marks: {}, tap: null };
 
   const wrap = document.createElement('div');
-  wrap.className = 'sd-chart';
+  wrap.className = `sd-chart${compact ? ' is-compact' : ''}`;
   wrap.innerHTML = `<div class="sd-chart-top"><span class="sd-tf"></span><span class="sd-sym">${opts.symbol || 'MNQ'}</span>${opts.toggle !== false ? '<div class="sd-tfsw" role="group" aria-label="Timeframe"><button type="button" data-tf="15M">15M</button><button type="button" data-tf="5M">5M</button></div>' : ''}</div>`;
   const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, class: 'sd-svg', role: 'img', 'aria-label': opts.label || 'Price chart' }, wrap);
   container.innerHTML = '';
@@ -109,13 +110,13 @@ export function mountSdChart(container, sc, opts = {}) {
 
     // Levels: BOS lines, entries, the 1H boundaries. Price pills are nudged apart so they never overlap.
     const lv = Object.values(st.levels).filter((l) => l.at == null || l.at < st.k).map((l) => ({ ...l, y: Y(l.price) })).sort((p1, p2) => p1.y - p2.y);
-    lv.forEach((l, i) => { l.py = i && l.y - lv[i - 1].py < 24 ? lv[i - 1].py + 24 : l.y; });
+    lv.forEach((l, i) => { l.py = i && l.y - lv[i - 1].py < 24 * FS ? lv[i - 1].py + 24 * FS : l.y; });
     lv.forEach((l) => {
       const g = el('g', { class: `sd-level sd-t-${l.tone || 'ink'}` }, L.levels);
       el('line', { x1: l.at != null ? X(slotOf(l.at)) : PAD_L, x2: W - PAD_R + 4, y1: l.y, y2: l.y }, g);
       if (Math.abs(l.py - l.y) > 1) el('line', { x1: W - PAD_R + 4, x2: W - PAD_R + 8, y1: l.y, y2: l.py, class: 'sd-level-elbow' }, g);
-      el('rect', { x: W - PAD_R + 6, y: l.py - 11, width: PAD_R - 8, height: 22, rx: 11 }, g);
-      const t = el('text', { x: W - PAD_R / 2 + 3, y: l.py + 4, 'text-anchor': 'middle' }, g);
+      el('rect', { x: W - PAD_R + 6, y: l.py - 11 * FS, width: PAD_R - 8, height: 22 * FS, rx: 11 * FS }, g);
+      const t = el('text', { x: W - PAD_R / 2 + 3, y: l.py + 4 * FS, 'text-anchor': 'middle' }, g);
       t.textContent = l.label || fmt(l.price);
     });
 
@@ -148,12 +149,12 @@ export function mountSdChart(container, sc, opts = {}) {
       const above = t.where !== 'below';
       const key = `${slot}:${above}`;
       const stack = (used[key] = (used[key] || 0) + 1) - 1;
-      const y = above ? Y(src.h) - 14 - stack * 22 : Y(src.l) + 16 + stack * 22;
+      const y = above ? Y(src.h) - 14 * FS - stack * 22 * FS : Y(src.l) + 16 * FS + stack * 22 * FS;
       const g = el('g', { class: `sd-tag sd-t-${t.tone || 'ink'}` }, L.tags);
-      const tw = Math.max(20, t.text.length * 6.4 + 14);
+      const tw = Math.max(20, t.text.length * 6.4 * FS + 14);
       const x = Math.min(Math.max(X(slot), PAD_L + tw / 2), W - PAD_R - tw / 2);
-      el('rect', { x: x - tw / 2, y: y - 9.5, width: tw, height: 19, rx: 9.5 }, g);
-      const tx = el('text', { x, y: y + 3.6, 'text-anchor': 'middle' }, g);
+      el('rect', { x: x - tw / 2, y: y - 9.5 * FS, width: tw, height: 19 * FS, rx: 9.5 * FS }, g);
+      const tx = el('text', { x, y: y + 3.6 * FS, 'text-anchor': 'middle' }, g);
       tx.textContent = t.text;
     });
   }
