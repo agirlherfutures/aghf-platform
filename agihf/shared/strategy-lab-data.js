@@ -1,7 +1,7 @@
 /**
  * strategy-lab-data.js — A Girl & Her Futures™
- * AGHF Strategy Lab: Supply & Demand, Powered by Higher-Timeframe ICC™.
- * Optional. Unlocks after Phase 5. Not part of the 8 phases or 22 sections,
+ * Strategy 2: Supply & Demand, Powered by Higher-Timeframe ICC™.
+ * Optional. Shown in the Academy right after Phase 5 (Strategy 1). Unlocks after Phase 5. Not part of the 8 phases or 22 sections,
  * and never counts toward graduation.
  *
  * Lesson titles are the proposed titles from strategy-lab/BRIEF.md (the
@@ -9,7 +9,7 @@
  * lessons-data/sl-<id>.json.
  */
 export const STRATEGY_LAB = {
-  title: 'AGHF Strategy Lab',
+  title: 'Strategy 2: Supply & Demand',
   subtitle: 'Supply & Demand, Powered by Higher-Timeframe ICC™',
   modules: [
     { key: 'm1', n: 1, title: 'Understanding the Strategy', lessons: [

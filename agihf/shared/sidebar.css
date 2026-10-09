@@ -326,3 +326,37 @@
 .chal-notif-row:last-child{border-bottom:none;}
 .chal-notif-row.is-unread{background:var(--pink-pale);}
 .chal-notif-text{font-size:.78rem;line-height:1.35;}
+
+/* ── Academy card view ─────────────────────────────────────────────────── */
+.pc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;}
+.pc{all:unset;box-sizing:border-box;display:flex;flex-direction:column;background:#fff;border:1px solid rgba(244,130,154,.14);border-radius:22px;overflow:hidden;cursor:pointer;box-shadow:0 10px 26px rgba(44,24,16,.06);transition:transform .15s,box-shadow .15s;position:relative;}
+.pc:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(44,24,16,.1);}
+.pc:focus-visible{outline:3px solid var(--purple);outline-offset:3px;}
+.pc-art{display:block;width:100%;height:auto;padding:10px 10px 0;box-sizing:border-box;}
+.pc-body{padding:12px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1;}
+.pc-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.pc-badge{font-size:.66rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;}
+.pc-p .pc-badge{background:var(--pink-pale);color:var(--pink);} .pc-t .pc-badge{background:var(--teal-pale);color:var(--teal);}
+.pc-u .pc-badge{background:var(--purple-pale);color:var(--purple);} .pc-d .pc-badge{background:#FFE6D3;color:#C26A2E;}
+.pc-title{font-family:var(--font-display);font-weight:800;font-size:1.2rem;color:var(--dark);line-height:1.2;}
+.pc .pc-subtitle{font-size:.76rem;font-weight:700;color:var(--purple);margin-top:-4px;letter-spacing:0;text-transform:none;}
+.pc-line{font-size:.85rem;line-height:1.5;color:var(--text);flex:1;}
+.pc-prog{display:flex;align-items:center;gap:10px;font-size:.72rem;font-weight:700;color:var(--muted);margin-top:4px;}
+.pc-bar{flex:1;height:6px;border-radius:999px;background:var(--cream);overflow:hidden;}
+.pc-bar i{display:block;height:100%;background:var(--pink);border-radius:999px;}
+.pc-chip{font-size:.64rem;font-weight:800;letter-spacing:.06em;padding:4px 9px;border-radius:999px;white-space:nowrap;}
+.pc-here{background:var(--dark);color:#fff;} .pc-done{background:var(--teal-pale);color:#1a6b63;} .pc-lock{background:var(--cream);color:var(--muted);}
+/* The phase you're on: a gold frame and a glow, so it's obvious where you are. */
+.pc.is-current{border:2.5px solid #E2B34F;box-shadow:0 0 0 6px rgba(226,179,79,.18),0 16px 34px rgba(44,24,16,.1);}
+.pc.is-current .pc-bar i{background:#E2B34F;}
+.pc.is-locked{opacity:.62;}
+.pc-back{all:unset;cursor:pointer;display:inline-block;margin:0 0 14px;padding:8px 16px;border-radius:999px;background:#fff;border:1px solid var(--border);font-weight:700;font-size:.85rem;color:var(--dark);}
+.pc-back:hover{background:var(--cream);}
+@media (max-width:600px){
+  .pc-grid{grid-template-columns:1fr;gap:12px;}
+  .pc{flex-direction:row;align-items:stretch;}
+  .pc-art{width:38%;flex:none;padding:10px 0 10px 10px;align-self:center;}
+  .pc-body{padding:12px 14px;gap:4px;}
+  .pc-title{font-size:1.02rem;}
+  .pc-line{font-size:.78rem;}
+}

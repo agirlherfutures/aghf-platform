@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Strategy Lab — A Girl & Her Futures</title>
+<title>Strategy 2: Supply &amp; Demand — A Girl & Her Futures</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/tokens.css">
 <link rel="stylesheet" href="shared/sidebar.css">
@@ -23,15 +23,15 @@
 <body>
 
 <script src="shared/auth-guard.js"></script>
-<script src="shared/sidebar.js" data-active="strategy-lab"></script>
+<script src="shared/sidebar.js" data-active="lessons"></script>
 
 <main class="main">
   <div class="lh-header">
     <div class="lh-crumb-row">
-      <div class="lh-crumb" id="lhCrumb">Strategy Lab</div>
-      <a class="lh-map-toggle" href="strategy-lab.html">☰ Strategy Lab</a>
+      <div class="lh-crumb" id="lhCrumb">Strategy 2 · Supply &amp; Demand</div>
+      <a class="lh-map-toggle" href="lessons.html?open=s2">☰ Academy Map</a>
     </div>
-    <h1 class="lh-title" id="lhTitle">Strategy Lab</h1>
+    <h1 class="lh-title" id="lhTitle">Supply &amp; Demand</h1>
     <div class="lh-meta-row">
       <span class="lh-count" id="lhCount"></span>
       <span class="lh-pill dur">Optional</span>
@@ -97,14 +97,14 @@
     const tool = STRATEGY_LAB.tools.find((t) => t.id === id);
     const idx = lessons.findIndex((l) => l.id === id);
     const item = tool || lessons[idx];
-    if (!item) { location.href = 'strategy-lab.html'; return; }
+    if (!item) { location.href = 'lessons.html?open=s2'; return; }
 
     let completed = new Set();
     try {
       const profile = await window.AGHF_FETCH_PROFILE();
       completed = new Set((profile.lessons_completed || []).map((l) => l.lesson_id));
     } catch (err) { console.error('Profile load error:', err); }
-    if (!UNLOCK_ALL && !phase5Complete(completed, PHASES)) { location.href = 'strategy-lab.html'; return; }
+    if (!UNLOCK_ALL && !phase5Complete(completed, PHASES)) { location.href = 'lessons.html?open=s2'; return; }
 
     let data;
     try {
@@ -112,17 +112,17 @@
       if (!res.ok) throw new Error('missing');
       data = await res.json();
     } catch {
-      fail('This Strategy Lab lesson isn’t available yet.');
+      fail('This lesson isn’t available yet.');
       return;
     }
 
     // Header.
-    document.getElementById('lhCrumb').textContent = tool ? 'Strategy Lab · Practice' : `Strategy Lab · Module ${item.module.n} · ${item.module.title}`;
+    document.getElementById('lhCrumb').textContent = tool ? 'Strategy 2 · Practice' : `Strategy 2 · Module ${item.module.n} · ${item.module.title}`;
     document.getElementById('lhTitle').textContent = item.title;
     const prev = document.getElementById('lhPrevLink'), next = document.getElementById('lhNextLink');
     const nextItem = tool ? null : lessons[idx + 1];
     if (!tool && idx > 0) prev.href = `strategy-lab-lesson.html?id=${lessons[idx - 1].id}`; else { prev.classList.add('disabled'); prev.removeAttribute('href'); }
-    if (nextItem) next.href = `strategy-lab-lesson.html?id=${nextItem.id}`; else { next.textContent = 'Strategy Lab →'; next.href = 'strategy-lab.html'; }
+    if (nextItem) next.href = `strategy-lab-lesson.html?id=${nextItem.id}`; else { next.textContent = 'Strategy 2 →'; next.href = 'lessons.html?open=s2'; }
     if (tool) {
       document.getElementById('lhCount').textContent = tool.title;
       document.querySelector('.lh-section-progress').hidden = true;
@@ -135,11 +135,11 @@
       document.getElementById('lhSectionFill').style.width = `${done / ml.length * 100}%`;
     }
 
-    renderSlideWizard({ ...data, xpValue: 0, backLabel: '← Back to the Strategy Lab' }, {
-      nextHref: nextItem ? `strategy-lab-lesson.html?id=${nextItem.id}` : 'strategy-lab.html',
-      backHref: 'strategy-lab.html',
+    renderSlideWizard({ ...data, xpValue: 0, backLabel: '← Back to Strategy 2' }, {
+      nextHref: nextItem ? `strategy-lab-lesson.html?id=${nextItem.id}` : 'lessons.html?open=s2',
+      backHref: 'lessons.html?open=s2',
       nextTitle: nextItem ? nextItem.title : null,
-      nextCtaLabel: 'Back to the Strategy Lab →',
+      nextCtaLabel: 'Back to Strategy 2 →',
       onAward: async () => { if (!tool) recordLesson(id); },
     });
   }

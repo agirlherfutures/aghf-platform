@@ -212,6 +212,112 @@
     </div>`;
   }
 
+  /* ── The Academy as cards ───────────────────────────────────────────────
+   * The Academy as a grid of phase cards, each with a small graphic. The
+   * phase you're on is highlighted. Clicking a card opens that phase's
+   * intro and lesson list (the same view as the list layout).
+   */
+  const ART_TONE = { p: ['#F4829A', '#FCE1E8'], t: ['#5BB5AA', '#E3F4F1'], u: ['#7F77DD', '#ECE9FB'], d: ['#C26A2E', '#FFE6D3'] };
+  function phaseArt(key, tone) {
+    const [c, bg] = ART_TONE[tone] || ART_TONE.p;
+    const cand = (x, o, cl, h, l, up) => `<line x1="${x}" x2="${x}" y1="${h}" y2="${l}" stroke="${up ? '#5BB5AA' : '#E0607C'}" stroke-width="2"/><rect x="${x - 5}" y="${Math.min(o, cl)}" width="10" height="${Math.max(3, Math.abs(o - cl))}" rx="2" fill="${up ? '#7ECEC4' : '#F4829A'}"/>`;
+    const svg = (inner) => `<svg viewBox="0 0 200 110" class="pc-art" aria-hidden="true"><rect width="200" height="110" rx="16" fill="${bg}"/>${inner}</svg>`;
+    const A = {
+      p1: svg(cand(50, 78, 64, 58, 84, 1) + cand(78, 66, 72, 60, 80, 0) + cand(106, 70, 50, 44, 74, 1) + cand(134, 52, 40, 32, 58, 1) + cand(162, 42, 48, 36, 54, 0)),
+      p2: svg(`<polyline points="20,88 55,52 75,70 110,34 130,52 170,18" fill="none" stroke="${c}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>${[[55, 52, 'HH'], [75, 70, 'HL'], [110, 34, 'HH'], [130, 52, 'HL']].map(([x, y, t]) => `<circle cx="${x}" cy="${y}" r="5" fill="#fff" stroke="${c}" stroke-width="2.5"/><text x="${x}" y="${t === 'HH' ? y - 10 : y + 18}" text-anchor="middle" font-size="10" font-weight="800" fill="${c}" font-family="DM Sans">${t}</text>`).join('')}`),
+      p3: svg(`<line x1="20" x2="180" y1="30" y2="30" stroke="${c}" stroke-width="2" stroke-dasharray="6 5"/><polyline points="20,90 50,32 75,70 105,31 130,75 160,28 180,60" fill="none" stroke="#2C1810" stroke-width="3" stroke-linejoin="round"/><text x="100" y="20" text-anchor="middle" font-size="10" font-weight="800" fill="${c}" font-family="DM Sans">EQUAL HIGHS</text>`),
+      p4: svg(`<rect x="30" y="22" width="140" height="66" rx="10" fill="#fff" stroke="${c}" stroke-width="2" stroke-dasharray="6 5"/><line x1="30" x2="170" y1="55" y2="55" stroke="${c}" stroke-width="1.5" opacity=".5"/><path d="M60 80 L100 40 L140 66" fill="none" stroke="#2C1810" stroke-width="3" stroke-linecap="round"/><path d="M100 26 l10 14 h-20 z" fill="${c}"/>`),
+      p5: svg(`<line x1="15" x2="185" y1="56" y2="56" stroke="#C9962E" stroke-width="2.5" stroke-dasharray="7 5"/><text x="182" y="50" text-anchor="end" font-size="10" font-weight="800" fill="#C9962E" font-family="DM Sans">PIL</text>` + cand(40, 80, 70, 66, 86, 1) + cand(66, 70, 44, 40, 74, 1) + cand(92, 46, 66, 42, 70, 0) + cand(118, 66, 42, 38, 70, 1) + cand(144, 44, 30, 24, 50, 1) + `${[[66, 'I'], [92, 'C'], [118, 'C']].map(([x, t]) => `<circle cx="${x}" cy="98" r="9" fill="${c}"/><text x="${x}" y="102" text-anchor="middle" font-size="11" font-weight="900" fill="#fff" font-family="DM Sans">${t}</text>`).join('')}`),
+      s2: svg(`<rect x="70" y="58" width="115" height="16" rx="4" fill="rgba(126,206,196,.35)" stroke="#4FA99E" stroke-width="2"/><polyline points="15,90 45,62 60,74 90,40 110,64 140,22 160,60 175,44" fill="none" stroke="#2C1810" stroke-width="3" stroke-linejoin="round"/><text x="128" y="70" text-anchor="middle" font-size="9" font-weight="900" fill="#1F8A7E" font-family="DM Sans">ZONE</text>${[[45, 62], [90, 40], [140, 22]].map(([x, y], i) => `<text x="${x}" y="${y - 7}" text-anchor="middle" font-size="9" font-weight="900" fill="${c}" font-family="DM Sans">BOS${i + 1}</text>`).join('')}`),
+      p6: svg(`<line x1="20" x2="180" y1="28" y2="28" stroke="#5BB5AA" stroke-width="2.5"/><line x1="20" x2="180" y1="62" y2="62" stroke="#C9962E" stroke-width="2.5" stroke-dasharray="6 4"/><line x1="20" x2="180" y1="84" y2="84" stroke="#E0607C" stroke-width="2.5"/>${[['TARGET', 28, '#5BB5AA'], ['ENTRY', 62, '#C9962E'], ['STOP', 84, '#E0607C']].map(([t, y, col]) => `<text x="24" y="${y - 5}" font-size="9" font-weight="900" fill="${col}" font-family="DM Sans">${t}</text>`).join('')}<circle cx="130" cy="62" r="13" fill="none" stroke="#2C1810" stroke-width="2.5"/><line x1="130" x2="130" y1="44" y2="80" stroke="#2C1810" stroke-width="2"/><line x1="112" x2="148" y1="62" y2="62" stroke="#2C1810" stroke-width="2"/>`),
+      p7: svg(`<path d="M100 88 C60 62 52 40 66 30 C78 22 92 28 100 40 C108 28 122 22 134 30 C148 40 140 62 100 88 Z" fill="${c}" opacity=".9"/><path d="M30 60 q12 -12 24 0 t24 0" fill="none" stroke="#fff" stroke-width="0"/><path d="M68 56 h14 l6 -10 l8 20 l6 -10 h20" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`),
+      p8: svg(`<path d="M100 22 L160 44 L100 66 L40 44 Z" fill="#2C1810"/><path d="M68 54 V74 C68 84 132 84 132 74 V54 L100 66 Z" fill="#2C1810" opacity=".85"/><line x1="160" x2="160" y1="44" y2="74" stroke="${c}" stroke-width="2.5"/><circle cx="160" cy="78" r="5" fill="${c}"/><text x="100" y="100" text-anchor="middle" font-size="10" font-weight="900" fill="${c}" font-family="DM Sans" letter-spacing="1.5">GRADUATE</text>`),
+    };
+    return A[key] || svg('');
+  }
+  const PHASE_LINE = {
+    p1: 'Learn the language of trading, before the chart.',
+    p2: 'Read how markets move: swings, breaks and key levels.',
+    p3: 'Liquidity, imbalances and who’s really moving price.',
+    p4: 'Find your bias and where price sits in the range.',
+    p5: 'Your first strategy, from the 4H story to the 1M entry.',
+    s2: '3 Breaks. 2 Corrections. 1 Zone. 1 Retest.',
+    p6: 'Enter, manage and protect the trade.',
+    p7: 'The mindset that keeps the model working.',
+    p8: 'Put it all together and prove it.',
+  };
+
+  function cardHtml({ key, badge, tone, title, line, done, total, state, extra }) {
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    const chip = state === 'current' ? '<span class="pc-chip pc-here">You’re here</span>'
+      : state === 'done' ? '<span class="pc-chip pc-done">Complete ✓</span>'
+        : state === 'locked' ? '<span class="pc-chip pc-lock">🔒 Locked</span>' : '';
+    return `<button type="button" class="pc pc-${tone}${state === 'current' ? ' is-current' : ''}${state === 'locked' ? ' is-locked' : ''}" data-open="${key}">
+      ${phaseArt(key, tone)}
+      <div class="pc-body">
+        <div class="pc-top"><span class="pc-badge">${badge}</span>${chip}</div>
+        <div class="pc-title">${title}</div>
+        <div class="pc-line">${line}</div>
+        ${extra || ''}
+        <div class="pc-prog"><div class="pc-bar"><i style="width:${pct}%"></i></div><span>${done}/${total} lessons</span></div>
+      </div>
+    </button>`;
+  }
+
+  async function strategyTwoDetail(open) {
+    const { STRATEGY_LAB } = await import('./shared/strategy-lab-data.js');
+    const { lessonDone, toolDone } = await import('./shared/sd-progress.js');
+    const row = (href, n, title, done, tag) => `<${open ? `a class="lc" href="${href}"` : 'div class="lc lc-lk"'}>
+        <div class="lc-n ${done ? 'n-dn' : open ? 'n-act' : 'n-lk'}">${done ? '✓' : n}</div>
+        <div class="lc-inf"><div class="lc-ttl">${tag === 'Game' ? '' : `Lesson ${n} `}${title}</div><div class="lc-tags"><span class="${tag === 'Game' ? 't-gm' : 't-ls'}">${tag}</span></div></div>
+        <div class="lc-st ${done ? 'st-dn' : open ? 'st-go' : 'st-lk'}">${done ? 'Complete ✓' : open ? 'Start →' : '🔒'}</div></${open ? 'a' : 'div'}>`;
+    const mods = STRATEGY_LAB.modules.map((m) => `<div class="sec-blk"><div class="sec-hdr"><span class="sec-badge sb-badge-u">Module ${m.n}</span><div class="sec-title">${m.title}</div></div>
+      <div class="sec-body">${m.lessons.map((l, i) => row(`strategy-lab-lesson.html?id=${l.id}`, i + 1, l.title, lessonDone(l.id), 'Lesson')).join('')}</div></div>`).join('');
+    const games = `<div class="sec-blk"><div class="sec-hdr"><span class="sec-badge sb-badge-t">Practice</span><div class="sec-title">Labs</div></div><div class="sec-body">${STRATEGY_LAB.tools.map((t) => row(`strategy-lab-lesson.html?id=${t.id}`, '▶', t.title, toolDone(t.key), 'Game')).join('')}</div></div>`;
+    return `<div class="phase-blk"><div class="phase-hdr"><div class="phase-hdr-left"><span class="phase-badge pb-u">Strategy 2 · Optional</span><div><div class="phase-title">Supply &amp; Demand, Powered by Higher-Timeframe ICC™</div><div class="phase-sub">${open ? 'Built on the same higher-timeframe ICC as the Dayli ICC Method · never blocks graduation' : '🔒 Complete Phase 5 to unlock · optional'}</div></div></div></div>
+      <div class="phase-body"><div class="phase-intro-note">✦ <strong>A second strategy for your tool belt.</strong> The higher-timeframe ICC tells the story, the 15M sets the direction, and the 5M builds the sequence: 3 Breaks, 2 Corrections, 1 Zone, 1 Retest.</div>${mods}${games}</div></div>`;
+  }
+
+  async function renderCards(completedIds, extraHtml, afterHtml = '') {
+    const list = document.getElementById('phaseList');
+    const { lessonDone } = await import('./shared/sd-progress.js');
+    const { allLabLessons } = await import('./shared/strategy-lab-data.js');
+    const total = (ph) => ph.sections.reduce((n, s) => n + s.lessons.filter((l) => l.n).length, 0);
+    const done = (ph) => ph.sections.reduce((n, s) => n + s.lessons.filter((l) => l.n && completedIds.has(`${ph.key}-${l.n}`)).length, 0);
+    const currentIdx = PHASES.findIndex((ph, i) => !phaseComplete(ph, completedIds));
+    const unlocked = (i) => UNLOCK || i === 0 || phaseComplete(PHASES[i - 1], completedIds);
+    const p5i = PHASES.findIndex((ph) => ph.key === 'p5');
+    const sdOpen = UNLOCK || phaseComplete(PHASES[p5i], completedIds);
+    const sdLessons = allLabLessons();
+    const cards = [];
+    PHASES.forEach((ph, i) => {
+      cards.push(cardHtml({ key: ph.key, tone: ph.badge, badge: ph.key === 'p5' ? `Phase ${ph.n} · Strategy 1` : `Phase ${ph.n}`, title: ph.title.replace(/\s*✦\s*$/, ''), line: PHASE_LINE[ph.key] || '',
+        done: done(ph), total: total(ph), state: i === currentIdx ? 'current' : phaseComplete(ph, completedIds) ? 'done' : unlocked(i) ? 'open' : 'locked' }));
+      if (i === p5i) cards.push(cardHtml({ key: 's2', tone: 'u', badge: 'Strategy 2 · Optional', title: 'Supply &amp; Demand', line: PHASE_LINE.s2,
+        done: sdLessons.filter((l) => lessonDone(l.id)).length, total: sdLessons.length, state: sdOpen ? 'open' : 'locked',
+        extra: '<div class="pc-subtitle">Powered by Higher-Timeframe ICC™</div>' }));
+    });
+    const grid = `${extraHtml}<div class="pc-grid">${cards.join('')}</div>${afterHtml}`;
+    const showGrid = () => { list.innerHTML = grid; wireCards(); };
+    async function openCard(key) {
+      const back = '<button type="button" class="pc-back">← All phases</button>';
+      if (key === 's2') list.innerHTML = back + await strategyTwoDetail(sdOpen);
+      else {
+        const i = PHASES.findIndex((ph) => ph.key === key);
+        list.innerHTML = back + phaseHtml(PHASES[i], i, completedIds);
+        list.querySelector('.phase-body')?.classList.remove('phase-closed'); // opened from its card
+        wireToggles();
+      }
+      list.querySelector('.pc-back').addEventListener('click', () => { showGrid(); window.scrollTo({ top: list.offsetTop - 20, behavior: 'smooth' }); });
+      window.scrollTo({ top: list.offsetTop - 20, behavior: 'smooth' });
+    }
+    function wireCards() { list.querySelectorAll('[data-open]').forEach((b) => b.addEventListener('click', () => openCard(b.dataset.open))); }
+    showGrid();
+    // lessons.html?open=p5 (or s2) opens that card straight away, e.g. coming back from a lesson.
+    const want = new URLSearchParams(location.search).get('open');
+    if (want && list.querySelector(`[data-open="${want}"]`)) openCard(want);
+  }
+
   function wireToggles() {
     document.querySelectorAll('[data-toggle-phase]').forEach((hdr) => {
       hdr.addEventListener('click', () => {
@@ -283,12 +389,7 @@
       const grad = !!ls('aghf_alumni');
       const capReady = grad || ls('aghf_section_clear:p8-s22') === 'true' || UNLOCK;
       const capCard = capReady ? `<a href="${grad ? 'certificate.html' : 'capstone.html'}" style="display:block;text-decoration:none;margin-top:14px;background:linear-gradient(135deg,#1C1929,#2A2240);color:#fff;border-radius:18px;padding:18px 22px;"><div style="font-size:.7rem;letter-spacing:.16em;color:#F7A8C8;font-weight:700">${grad ? 'ALUMNI ✦' : 'OUTSIDE THE 8 PHASES'}</div><div style="font-family:var(--font-display);font-size:1.25rem;margin:4px 0">🎓 She’s In Structure Capstone</div><div style="font-size:.86rem;color:#CFC8E3">${grad ? 'Passed. View your certificate →' : 'One full trading day, scored on process. Begin →'}</div></a>` : '';
-      // Strategy Lab: optional, outside the 8 phases, unlocks after Phase 5. Never part of graduation.
-      const p5 = PHASES.find((p) => p.key === 'p5');
-      const labOpen = UNLOCK || (p5 && phaseComplete(p5, completedIds));
-      const labCard = `<a href="strategy-lab.html" class="sl-acad-card" style="display:block;text-decoration:none;margin-top:14px;background:linear-gradient(135deg,#2C1810,#5E56B8);color:#fff;border-radius:18px;padding:18px 22px;${labOpen ? '' : 'opacity:.75;'}"><div style="font-size:.7rem;letter-spacing:.16em;color:#FFB8C8;font-weight:700">OPTIONAL · ${labOpen ? 'STRATEGY LAB' : 'UNLOCKS AFTER PHASE 5'}</div><div style="font-family:var(--font-display);font-size:1.25rem;margin:4px 0">⚗ Supply &amp; Demand, Powered by Higher-Timeframe ICC™</div><div style="font-size:.86rem;color:#E6DFF5">${labOpen ? '3 Breaks. 2 Corrections. 1 Zone. 1 Retest. Open the Strategy Lab →' : '🔒 Finish Phase 5 to unlock. It never blocks graduation.'}</div></a>`;
-      document.getElementById('phaseList').innerHTML = unlockNote + PHASES.map((phase, i) => phaseHtml(phase, i, completedIds)).join('') + capCard + labCard;
-      wireToggles();
+      await renderCards(completedIds, unlockNote, capCard);
     } catch (err) {
       renderLoadError(err);
     }
