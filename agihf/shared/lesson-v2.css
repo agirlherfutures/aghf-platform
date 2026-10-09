@@ -236,3 +236,16 @@
 @media (max-width:420px){.v2-sched{padding:6px 12px 12px;}.v2-sched-row{font-size:.8rem;gap:6px;}}
 .v2-sched-t{white-space:nowrap;line-height:1.25;}
 .v2-sched-t small{display:block;font-size:.78em;font-weight:600;color:var(--muted);}
+
+/* Next buttons sit on the right, where a right hand moves next; on phones they're a full-width bar.
+ * The button row is its own row along the bottom of the card, under both panels. */
+.v2-act{justify-content:flex-end;}
+@media (min-width:900px){
+  .v2:not(.v2-wide):not(.v2-toolwrap){flex-wrap:wrap;}
+  .v2:not(.v2-wide):not(.v2-toolwrap) > .v2-l,.v2:not(.v2-wide):not(.v2-toolwrap) > .v2-r{flex:1 1 0;min-width:0;}
+  .v2:not(.v2-wide):not(.v2-toolwrap) > .v2-act{flex-basis:100%;margin:0;padding:18px 40px 26px;border-top:1px solid var(--border);background:#fff;}
+}
+.v2-stepbtn{display:block;margin-left:auto;}
+@media (max-width:600px){
+  .v2-act .v2-btn,.v2-stepbtn{width:100%;}
+}

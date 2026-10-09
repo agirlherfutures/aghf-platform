@@ -289,3 +289,8 @@
 .lw-streak.show{transform:translateX(-50%) translateY(0);opacity:1;}
 .lw-confetti{position:fixed;border-radius:2px;pointer-events:none;z-index:1000;}
 @media(max-width:900px){.lw-toast{right:16px;bottom:90px;}}
+
+/* Continue buttons sit on the right, where a right hand moves next; on phones they're a full-width bar. */
+.lw-continue-btn{display:block;margin-left:auto;margin-right:0;align-self:flex-end;}
+.dl-playbook-actions .lw-continue-btn{margin-left:0;}
+@media (max-width:600px){ .lw-continue-btn{width:100%;} }
