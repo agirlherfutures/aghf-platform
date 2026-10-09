@@ -28,6 +28,21 @@ let W = 1000, H = 470;
 const TONE = { mine: '#C8455F', dayli: '#B9861F', ind: '#5E56B8', trader: '#C4741F', pos: '#1F8A7E' };
 const LEVEL_TONE = { EXTERNAL_HIGH: '#C4741F', EXTERNAL_LOW: '#C4741F', SWING_HIGH: '#1F8A7E', SWING_LOW: '#1F8A7E', MSS: '#5E56B8', OBJECTIVE: '#9A6B00', PIL: '#C8455F', ENTRY: '#1F8A7E', STOP: '#C8455F', TARGET: '#1F8A7E' };
 
+/** "4H · READ THE ROOM" → "4H · Read the room" (trading terms stay upper-case). */
+const KEEP_UPPER = /^(\d+[HM]|ICC|PIL|MSS|AGHF|NY|AM|PM|MNQ|NQ|R|[ABC])$/;
+function niceTitle(t) {
+  const s = String(t || '');
+  if (s !== s.toUpperCase()) return s;
+  let first = true;
+  return s.split(/(\s+)/).map((w) => {
+    if (!w.trim()) return w;
+    const bare = w.replace(/[^A-Z0-9]/g, '');
+    if (KEEP_UPPER.test(bare) || !bare) return w;
+    const out = first ? w[0] + w.slice(1).toLowerCase() : w.toLowerCase();
+    first = false; return out;
+  }).join('');
+}
+
 function stageIndex(k) { return STAGES.findIndex((s) => s.key === k); }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -244,9 +259,9 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
 
   function drawTools() {
     if (!S.allowed.length) { toolsEl.innerHTML = ''; return; }
-    toolsEl.innerHTML = `<span class="p8-tools-l">MARK</span>${S.allowed.map((t) => {
+    toolsEl.innerHTML = `<span class="p8-tools-l">✎ Mark on the chart</span>${S.allowed.map((t) => {
       const has = S.rec.marks.some((m) => m.type === t);
-      return `<button type="button" class="p8-tool ${S.tool === t ? 'on' : ''} ${has ? 'has' : ''}" data-t="${t}" title="${esc(MARKS[t].label)}">${has ? '✓ ' : ''}${esc(MARKS[t].label)}</button>`;
+      return `<button type="button" class="p8-tool ${S.tool === t ? 'on' : ''} ${has ? 'has' : ''}" data-t="${t}" title="${esc(MARKS[t].label)}">${has ? '✓ ' : S.tool === t ? '' : '+ '}${esc(MARKS[t].label)}</button>`;
     }).join('')}${S.rec.marks.some((m) => S.allowed.includes(m.type)) ? '<button type="button" class="p8-tool p8-undo">↶ Undo</button>' : ''}`;
     toolsEl.querySelectorAll('.p8-tool[data-t]').forEach((b) => b.addEventListener('click', () => {
       S.tool = S.tool === b.dataset.t ? null : b.dataset.t;
@@ -391,7 +406,7 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
       const stg = STAGES.find((s) => s.key === (st.stage || st.tf));
       box.innerHTML = `
         <div class="p8-kicker">STEP ${stageIndex(stg.key) + 1} · ${stg.key}</div>
-        <h3 class="p8-h">${esc(st.title || `${stg.key} · ${stg.verb}`)}</h3>
+        <h3 class="p8-h">${esc(niceTitle(st.title || `${stg.key} · ${stg.verb}`))}</h3>
         ${demo ? `<div class="p8-demo"><div class="p8-dayli">DAYLI MARKS IT</div><div class="p8-demo-lines"></div>${btn('Watch Dayli mark it ▶', 'p8-demo-go')}</div>` : ''}
         ${S.allowed.length && !demo ? `<div class="p8-need"></div>` : ''}
         <div class="p8-asks">${asks.map((a, i) => `<div class="p8-ask${i && S.rec.asks[asks[i - 1].key] == null ? ' is-later' : ''}" data-k="${a.key}"><div class="p8-q">${a.q}</div>${chips(a.key, a.options, S.rec.asks[a.key])}<div class="p8-fb"></div></div>`).join('')}</div>
@@ -469,7 +484,7 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
       S.view.dayliUpTo = S.lock.cursor;
       const pauses = [...(st.pauses || [])];
       box.innerHTML = `
-        <div class="p8-kicker">STEP 4 · 1M</div><h3 class="p8-h">${esc(st.title || '1M · EXECUTE')}</h3>
+        <div class="p8-kicker">STEP 4 · 1M</div><h3 class="p8-h">${esc(niceTitle(st.title || '1M · EXECUTE'))}</h3>
         <div class="p8-replay-hint">${demo ? 'Press <b>Play</b>. Dayli labels each event as it closes.' : 'Press <b>Play</b> or <b>Next</b> to advance. Mark each event once its candle has <b>closed</b>.'}</div>
         <div class="p8-pausebox"></div>
         ${demo ? '' : '<div class="p8-need"></div>'}

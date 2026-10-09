@@ -93,3 +93,45 @@ body.p8-on .p8-curtain{fill:rgba(233,185,73,.06);stroke:rgba(185,134,31,.35);}
 body.p8-on .p8-replay button{background:#fff;border:1.5px solid var(--border);color:var(--dark);}
 body.p8-on .p8-replay .p8-play{background:var(--dark);border-color:var(--dark);color:#fff;}
 body.p8-on .p8-flash{background:var(--dark);color:#fff;}
+
+/* ── "Mark on the chart": its own bright strip above the chart ── */
+body.p8-on .p8-chartbar{flex-wrap:wrap;gap:10px;}
+body.p8-on .p8-tools:not(:empty){flex-basis:100%;order:-1;background:linear-gradient(135deg,#FDE8ED,#FFF6DC);border:1.5px solid #F7C2CE;border-radius:16px;padding:10px 12px;gap:8px;}
+body.p8-on .p8-tools-l{font-size:.8rem;letter-spacing:.02em;font-weight:800;color:#B0425C;margin-right:4px;}
+body.p8-on .p8-tool{background:#C8455F;border:1.5px solid #C8455F;color:#fff;font-size:.86rem;font-weight:800;padding:8px 16px;box-shadow:0 4px 12px rgba(200,69,95,.25);}
+body.p8-on .p8-tool:hover{background:#B0425C;border-color:#B0425C;}
+body.p8-on .p8-tool:not(.has):not(.on):not(.p8-undo){animation:p8pulse 2.2s ease-in-out infinite;}
+body.p8-on .p8-tool.on{background:var(--dark);border-color:var(--dark);color:#fff;box-shadow:0 0 0 3px rgba(44,24,16,.15);animation:none;}
+body.p8-on .p8-tool.has{background:#fff;border-color:#9fd9d1;color:#1a6b63;box-shadow:none;}
+body.p8-on .p8-tool.p8-undo{background:transparent;border-color:transparent;color:var(--muted);box-shadow:none;text-decoration:underline;text-underline-offset:3px;margin-left:auto;}
+@keyframes p8pulse{0%,100%{box-shadow:0 4px 12px rgba(200,69,95,.25);}50%{box-shadow:0 0 0 6px rgba(200,69,95,.18);}}
+@media (prefers-reduced-motion:reduce){body.p8-on .p8-tool{animation:none!important;}}
+
+/* ── the question panel under the chart ── */
+body.p8-on .p8-panel{background:#fff;border:1px solid var(--border);border-top:0;border-radius:20px;padding:0;overflow:hidden;box-shadow:0 12px 34px rgba(44,24,16,.08);}
+body.p8-on .p8-panel-body{padding:22px 24px 24px;}
+body.p8-on .p8-panel::before{content:"";display:block;height:5px;background:linear-gradient(90deg,var(--pink),#F5A857,#E9B949);}
+body.p8-on .p8-prog{height:6px;border-radius:999px;background:var(--cream);margin-bottom:16px;}
+body.p8-on .p8-prog span{background:linear-gradient(90deg,var(--pink),#E9B949);border-radius:999px;}
+body.p8-on .p8-kicker{font-size:.7rem;letter-spacing:.16em;color:var(--pink);}
+body.p8-on .p8-h{font-size:1.7rem;line-height:1.15;margin:2px 0 14px;font-weight:900;}
+/* what to mark: a row of pills instead of a list */
+body.p8-on .p8-need{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:none;padding:0;margin:0 0 16px;}
+body.p8-on .p8-need-h{flex-basis:100%;font-size:.7rem;letter-spacing:.14em;color:var(--muted);margin:0;}
+body.p8-on .p8-need-i{background:#fff;border:1.5px dashed #F2A3B4;color:#B0425C;border-radius:999px;padding:6px 14px;font-size:.88rem;font-weight:700;}
+body.p8-on .p8-need-i.ok{background:var(--teal-pale);border:1.5px solid #9fd9d1;color:#1a6b63;}
+/* each question as a soft card with big answers */
+body.p8-on .p8-ask{background:var(--cream);border-radius:18px;padding:16px 16px 14px;margin:0 0 12px;}
+body.p8-on .p8-q{font-size:1.08rem;font-weight:800;color:var(--dark);margin:0 0 12px;}
+body.p8-on .p8-ask .p8-chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
+body.p8-on .p8-chips button{min-height:52px;background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:12px 14px;font-size:.93rem;font-weight:700;color:var(--dark);text-align:left;box-shadow:0 2px 6px rgba(44,24,16,.04);transition:border-color .15s,transform .15s;}
+body.p8-on .p8-chips button:hover:not(:disabled){border-color:var(--dark);transform:translateY(-1px);}
+body.p8-on .p8-chips button.on{background:#fff;border-color:var(--dark);box-shadow:inset 0 0 0 1.5px var(--dark);}
+body.p8-on .p8-chips button.on::before{content:"✓ ";color:#1a6b63;}
+body.p8-on .p8-fbi{background:#fff;font-size:.88rem;border-radius:12px;padding:10px 12px;margin-top:10px;}
+/* Dayli demo box */
+body.p8-on .p8-demo{background:#FFF6DC;border:1.5px solid #F1D78A;border-radius:18px;padding:14px;}
+body.p8-on .p8-demo .p8-btn{background:var(--dark);color:#fff;border-color:var(--dark);}
+body.p8-on .p8-dayli{background:linear-gradient(135deg,var(--pink),#F5A857);}
+/* the lock button: soft while waiting, dark when ready */
+body.p8-on .p8-panel .p8-btn.is-primary:disabled{background:var(--cream);color:var(--muted);border:1.5px dashed #D9C7BC;opacity:1;}
