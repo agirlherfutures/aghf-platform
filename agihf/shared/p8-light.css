@@ -79,13 +79,8 @@ body.p8-on .p8-tl.is-cur.is-done{background:var(--dark);color:#fff;}
 
 /* mark tools (1H swing high, MSS, Undo…) and chart labels, made for the light chart */
 body.p8-on .p8-tools-l{color:var(--muted);}
-body.p8-on .p8-tool{background:#fff;border:1.5px solid var(--border);color:var(--dark);font-weight:700;font-size:.78rem;padding:6px 12px;}
-body.p8-on .p8-tool:hover{border-color:var(--dark);}
-body.p8-on .p8-tool.has{background:var(--teal-pale);border-color:#9fd9d1;color:#1a6b63;}
-body.p8-on .p8-tool.on{background:var(--dark);border-color:var(--dark);color:#fff;}
 body.p8-on .p8-tfs{background:var(--cream);}
 body.p8-on .p8-tf{color:var(--muted);}
-body.p8-on .p8-lv text, body.p8-on .p8-cm text{fill:#fff;}
 body.p8-on .p8-wm{fill:#B9A79C;}
 body.p8-on .p8-c.up line{stroke:#7ECEC4;} body.p8-on .p8-c.up rect{fill:#7ECEC4;}
 body.p8-on .p8-c.dn line{stroke:#F4829A;} body.p8-on .p8-c.dn rect{fill:#F4829A;}
@@ -96,15 +91,15 @@ body.p8-on .p8-flash{background:var(--dark);color:#fff;}
 
 /* ── "Mark on the chart": its own bright strip above the chart ── */
 body.p8-on .p8-chartbar{flex-wrap:wrap;gap:10px;}
-body.p8-on .p8-tools:not(:empty){flex-basis:100%;order:-1;background:linear-gradient(135deg,#FDE8ED,#FFF6DC);border:1.5px solid #F7C2CE;border-radius:16px;padding:10px 12px;gap:8px;}
-body.p8-on .p8-tools-l{font-size:.8rem;letter-spacing:.02em;font-weight:800;color:#B0425C;margin-right:4px;}
-body.p8-on .p8-tool{background:#C8455F;border:1.5px solid #C8455F;color:#fff;font-size:.86rem;font-weight:800;padding:8px 16px;box-shadow:0 4px 12px rgba(200,69,95,.25);}
-body.p8-on .p8-tool:hover{background:#B0425C;border-color:#B0425C;}
+body.p8-on .p8-tools:not(:empty){flex-basis:100%;order:-1;background:#FDE8ED;border:1.5px solid #F9B8C6;border-radius:16px;padding:10px 12px;gap:8px;}
+body.p8-on .p8-tools-l{font-size:.8rem;letter-spacing:.02em;font-weight:800;color:var(--dark);margin-right:4px;}
+body.p8-on .p8-tool{background:#F4829A;border:1.5px solid #F4829A;color:var(--dark);font-size:.86rem;font-weight:800;padding:8px 16px;box-shadow:0 4px 12px rgba(244,130,154,.3);}
+body.p8-on .p8-tool:hover{background:#F27390;border-color:#F27390;}
 body.p8-on .p8-tool:not(.has):not(.on):not(.p8-undo){animation:p8pulse 2.2s ease-in-out infinite;}
 body.p8-on .p8-tool.on{background:var(--dark);border-color:var(--dark);color:#fff;box-shadow:0 0 0 3px rgba(44,24,16,.15);animation:none;}
-body.p8-on .p8-tool.has{background:#fff;border-color:#9fd9d1;color:#1a6b63;box-shadow:none;}
+body.p8-on .p8-tool.has{background:#E8F8F6;border-color:#7ECEC4;color:var(--dark);box-shadow:none;}
 body.p8-on .p8-tool.p8-undo{background:transparent;border-color:transparent;color:var(--muted);box-shadow:none;text-decoration:underline;text-underline-offset:3px;margin-left:auto;}
-@keyframes p8pulse{0%,100%{box-shadow:0 4px 12px rgba(200,69,95,.25);}50%{box-shadow:0 0 0 6px rgba(200,69,95,.18);}}
+@keyframes p8pulse{0%,100%{box-shadow:0 4px 12px rgba(244,130,154,.3);}50%{box-shadow:0 0 0 6px rgba(244,130,154,.25);}}
 @media (prefers-reduced-motion:reduce){body.p8-on .p8-tool{animation:none!important;}}
 
 /* ── the question panel under the chart ── */
@@ -118,8 +113,8 @@ body.p8-on .p8-h{font-size:1.7rem;line-height:1.15;margin:2px 0 14px;font-weight
 /* what to mark: a row of pills instead of a list */
 body.p8-on .p8-need{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:none;padding:0;margin:0 0 16px;}
 body.p8-on .p8-need-h{flex-basis:100%;font-size:.7rem;letter-spacing:.14em;color:var(--muted);margin:0;}
-body.p8-on .p8-need-i{background:#fff;border:1.5px dashed #F2A3B4;color:#B0425C;border-radius:999px;padding:6px 14px;font-size:.88rem;font-weight:700;}
-body.p8-on .p8-need-i.ok{background:var(--teal-pale);border:1.5px solid #9fd9d1;color:#1a6b63;}
+body.p8-on .p8-need-i{background:#fff;border:1.5px dashed #F4829A;color:var(--dark);border-radius:999px;padding:6px 14px;font-size:.88rem;font-weight:700;}
+body.p8-on .p8-need-i.ok{background:#E8F8F6;border:1.5px solid #7ECEC4;color:var(--dark);}
 /* each question as a soft card with big answers */
 body.p8-on .p8-ask{background:var(--cream);border-radius:18px;padding:16px 16px 14px;margin:0 0 12px;}
 body.p8-on .p8-q{font-size:1.08rem;font-weight:800;color:var(--dark);margin:0 0 12px;}

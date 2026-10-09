@@ -14,7 +14,7 @@
 import {
   TF_LIST, STAGES, MARKS, OutcomeLock, visibleBars, clock, compareMarks, compareChoice, reasoningDiff, reportCard,
   journalEntry, savePracticeEntry, caseRecord, saveCaseRecord, trackCase, trackP8, recommendedCases, riskOf,
-  DIFF_TONE, DIFF_LABEL, CASE_TYPES, indicatorAssist, setIndicatorAssist, GRADES, VALIDITY, QUALITY, CONFIDENCE,
+  DIFF_TONE, DIFF_LABEL, CASE_TYPES, indicatorAssist, setIndicatorAssist, GRADES, VALIDITY, QUALITY, CONFIDENCE, tolerance,
 } from './case-core.js';
 import { loadRiskProfile } from './risk-core.js';
 
@@ -24,9 +24,13 @@ const px = (v) => Math.round(v * 10) / 10;
 const fmtP = (v) => (v == null || Number.isNaN(+v) ? '·' : (+v).toFixed(2));
 const AX = 72, PT = 16, PB = 26;
 let W = 1000, H = 470;
-// Mark colours, strong enough to read on the light chart (labels are white text on these).
-const TONE = { mine: '#C8455F', dayli: '#B9861F', ind: '#5E56B8', trader: '#C4741F', pos: '#1F8A7E' };
-const LEVEL_TONE = { EXTERNAL_HIGH: '#C4741F', EXTERNAL_LOW: '#C4741F', SWING_HIGH: '#1F8A7E', SWING_LOW: '#1F8A7E', MSS: '#5E56B8', OBJECTIVE: '#9A6B00', PIL: '#C8455F', ENTRY: '#1F8A7E', STOP: '#C8455F', TARGET: '#1F8A7E' };
+// Mark colours from the AGHF brand. Pink = you, purple = Dayli, teal = you matched Dayli,
+// peach = the room and the PIL. Labels use dark text, except on purple.
+const TONE = { mine: '#F4829A', dayli: '#7F77DD', ind: '#F5A857', trader: '#F9B8C6', pos: '#7ECEC4', match: '#7ECEC4' };
+const LEVEL_TONE = { EXTERNAL_HIGH: '#F5A857', EXTERNAL_LOW: '#F5A857', SWING_HIGH: '#7ECEC4', SWING_LOW: '#7ECEC4', MSS: '#F4829A', OBJECTIVE: '#F5A857', PIL: '#F5A857', ENTRY: '#7ECEC4', STOP: '#F4829A', TARGET: '#7ECEC4' };
+const INK = (col) => (col === TONE.dayli ? '#FFFFFF' : '#2C1810');
+// Correction and Continuation both start with C, so the chart tags spell them out.
+const TAG = { INDICATION: 'I', CORRECTION: 'Corr', CONTINUATION: 'Cont', RETEST: 'Retest' };
 
 /** "4H · READ THE ROOM" → "4H · Read the room" (trading terms stay upper-case). */
 const KEEP_UPPER = /^(\d+[HM]|ICC|PIL|MSS|AGHF|NY|AM|PM|MNQ|NQ|R|[ABC])$/;
@@ -191,18 +195,29 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
       const fut = tf === '1M' && !S.lock.outcomeHidden && i > c.decisionIndex;
       candles += `<g class="p8-c ${up ? 'up' : 'dn'}${b.forming ? ' forming' : ''}${fut ? ' fut' : ''}"><line x1="${px(cx)}" x2="${px(cx)}" y1="${px(y(b.h))}" y2="${px(y(b.l))}"/><rect x="${px(cx - bw / 2)}" y="${px(top)}" width="${px(bw)}" height="${px(Math.max(1, bot - top))}"/></g>`;
     });
+    // Where your mark and Dayli's are the same, draw one teal ✓ instead of two.
+    const tol = tolerance(c, tf);
+    levels.filter((m) => m.src === 'mine').forEach((m) => {
+      const d = levels.find((x2) => x2.src === 'dayli' && x2.type === m.type && !x2.skip && Math.abs(x2.price - m.price) <= tol);
+      if (d) { m.match = true; d.skip = true; }
+    });
+    cmarks.filter((m) => m.src === 'mine').forEach((m) => {
+      const d = cmarks.find((x2) => x2.src === 'dayli' && x2.type === m.type && x2.index === m.index && !x2.skip);
+      if (d) { m.match = true; d.skip = true; }
+    });
     let lv = '';
     levels.forEach((m) => {
+      if (m.skip) return;
       const yy = y(m.price); if (yy < 0 || yy > H) return;
-      const col = m.src === 'mine' ? LEVEL_TONE[m.type] || TONE.mine : TONE[m.src];
-      const dash = m.src === 'dayli' ? '9 6' : m.src === 'ind' ? '2 5' : m.src === 'trader' ? '4 3' : '';
-      const tag = `${m.src === 'dayli' ? 'DAYLI · ' : m.src === 'ind' ? 'IND · ' : m.src === 'trader' ? 'TRADER · ' : ''}${MARKS[m.type].short}`;
+      const col = m.match ? TONE.match : m.src === 'mine' ? LEVEL_TONE[m.type] || TONE.mine : TONE[m.src];
+      const dash = m.match ? '' : m.src === 'dayli' ? '9 6' : m.src === 'ind' ? '2 5' : m.src === 'trader' ? '4 3' : '';
+      const tag = m.match ? `✓ ${MARKS[m.type].short}` : `${m.src === 'dayli' ? 'Dayli · ' : m.src === 'ind' ? 'IND · ' : m.src === 'trader' ? 'TRADER · ' : ''}${MARKS[m.type].short}`;
       const from = m.from != null && tf === '1M' ? x(m.from) : 0;
-      lv += `<g class="p8-lv src-${m.src}"><line x1="${px(from)}" x2="${W - AX}" y1="${px(yy)}" y2="${px(yy)}" stroke="${col}" stroke-dasharray="${dash}"/><rect x="${W - AX - 8 - tag.length * 6.6}" y="${px(yy - 9)}" width="${tag.length * 6.6 + 8}" height="18" rx="4" fill="${col}"/><text x="${W - AX - 4}" y="${px(yy + 4)}" text-anchor="end">${esc(tag)}</text></g>`;
+      lv += `<g class="p8-lv src-${m.src}"><line x1="${px(from)}" x2="${W - AX}" y1="${px(yy)}" y2="${px(yy)}" stroke="${col}" stroke-dasharray="${dash}"/><rect x="${W - AX - 8 - tag.length * 6.6}" y="${px(yy - 9)}" width="${tag.length * 6.6 + 8}" height="18" rx="9" fill="${col}"/><text x="${W - AX - 4}" y="${px(yy + 4)}" text-anchor="end" style="fill:${INK(col)}">${esc(tag)}</text></g>`;
     });
     if (pos) {
       const from = x(c.decisionIndex);
-      [['ENTRY', pos.entry, '#E9E4F6'], ['STOP', pos.stop, '#E8657F'], ['TARGET', pos.target, '#7ECEC4']].forEach(([lab, p, col]) => {
+      [['ENTRY', pos.entry, '#2C1810'], ['STOP', pos.stop, '#E0607A'], ['TARGET', pos.target, '#2E9C8F']].forEach(([lab, p, col]) => {
         if (p == null || !Number.isFinite(+p) || y(+p) < -20 || y(+p) > H + 20) return;
         lv += `<g class="p8-pos"><line x1="${px(from)}" x2="${W - AX}" y1="${px(y(p))}" y2="${px(y(p))}" stroke="${col}"/><text x="${px(from + 4)}" y="${px(y(p) - 5)}" fill="${col}">MY ${lab} ${fmtP(p)}</text></g>`;
       });
@@ -210,15 +225,17 @@ export function renderCase(el, slide, satisfy, helpers = {}, opts = {}) {
     let cm = '';
     const stack = {};
     cmarks.forEach((m) => {
+      if (m.skip) return;
       if (m.index >= off + all.length || m.index < off) return;
       const b = bars[m.index]; if (!b) return;
       const below = m.src === 'mine' || m.src === 'trader';
       const key = `${m.index}:${below}`;
       const k = (stack[key] = (stack[key] || 0) + 1);
       const yy = below ? y(b.l) + 18 + (k - 1) * 18 : y(b.h) - 8 - (k - 1) * 18;
-      const col = m.src === 'mine' ? TONE.mine : TONE[m.src];
-      const lab = (m.src === 'dayli' ? 'D·' : m.src === 'ind' ? 'IND·' : m.src === 'trader' ? '' : '') + (m.label || MARKS[m.type].short);
-      cm += `<g class="p8-cm"><rect x="${px(x(m.index) - (lab.length * 3.6 + 6))}" y="${px(yy - 12)}" width="${lab.length * 7.2 + 12}" height="16" rx="8" fill="${col}"/><text x="${px(x(m.index))}" y="${px(yy)}" text-anchor="middle">${esc(lab)}</text></g>`;
+      const col = m.match ? TONE.match : m.src === 'mine' ? TONE.mine : TONE[m.src];
+      const short = m.label || TAG[m.type] || MARKS[m.type].short;
+      const lab = m.match ? `✓ ${short}` : (m.src === 'dayli' ? 'Dayli · ' : m.src === 'mine' ? 'You · ' : m.src === 'ind' ? 'IND · ' : '') + short;
+      cm += `<g class="p8-cm"><rect x="${px(x(m.index) - (lab.length * 3.4 + 7))}" y="${px(yy - 12)}" width="${lab.length * 6.8 + 14}" height="17" rx="8.5" fill="${col}"/><text x="${px(x(m.index))}" y="${px(yy)}" text-anchor="middle" style="fill:${INK(col)}">${esc(lab)}</text></g>`;
     });
     chartEl.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" class="p8-svg ${S.tool ? 'is-tool' : ''}">
       <rect width="${W}" height="${H}" class="p8-bg"/>${grid}${candles}${curtain}${lv}${cm}
