@@ -50,14 +50,16 @@ export function mountSdChart(container, sc, opts = {}) {
 
   function series() {
     const shown = bars5.slice(0, st.k);
-    if (st.tf === '5M') return shown.map((b, i) => ({ ...b, i5: i, from: i, to: i }));
+    if (raw()) return shown.map((b, i) => ({ ...b, i5: i, from: i, to: i }));
     return to15(shown).map((b, j) => ({ ...b, i5: b.to, j, forming: b.to - b.from < 2 && b.to === st.k - 1 }));
   }
-  const slotOf = (i5) => (st.tf === '5M' ? i5 : bar15Of(i5));
+  // Only '15M' is built by grouping the 5M bars. Any other label (5M, 4H, 1H, 1M…) draws the bars as given.
+  const raw = () => st.tf !== '15M';
+  const slotOf = (i5) => (raw() ? i5 : bar15Of(i5));
 
   function layout(list) {
-    n = st.tf === '5M' ? total5 : Math.ceil(total5 / 3);
-    n = Math.max(n, st.tf === '5M' ? 24 : 10);
+    n = raw() ? total5 : Math.ceil(total5 / 3);
+    n = Math.max(n, raw() ? (opts.minSlots ?? 24) : 10);
     step = (W - PAD_L - PAD_R) / n;
     X = (slot) => PAD_L + step * (slot + 0.5);
     const ps = list.flatMap((b) => [b.h, b.l]);
@@ -122,11 +124,11 @@ export function mountSdChart(container, sc, opts = {}) {
     });
 
     // Candles.
-    const w = Math.max(3, Math.min(st.tf === '5M' ? 11 : 22, step * 0.62));
+    const w = Math.max(3, Math.min(raw() ? (opts.maxBody ?? 11) : 22, step * 0.62));
     list.forEach((b) => {
-      const slot = st.tf === '5M' ? b.i5 : b.j;
+      const slot = raw() ? b.i5 : b.j;
       const upC = b.c >= b.o;
-      const mk = st.marks[st.tf === '5M' ? b.i5 : `g${b.j}`] || (st.tf === '5M' ? null : st.marks[b.to]);
+      const mk = st.marks[raw() ? b.i5 : `g${b.j}`] || (raw() ? null : st.marks[b.to]);
       const g = el('g', { class: `sd-c ${upC ? 'up' : 'dn'}${b.forming ? ' forming' : ''}${mk ? ` is-${mk}` : ''}`, 'data-i5': b.i5 }, L.cands);
       el('line', { x1: X(slot), x2: X(slot), y1: Y(b.h), y2: Y(b.l), class: 'sd-wick' }, g);
       const top = Y(Math.max(b.o, b.c)), bot = Y(Math.min(b.o, b.c));
@@ -145,7 +147,7 @@ export function mountSdChart(container, sc, opts = {}) {
     Object.values(st.tags).forEach((t) => {
       if (t.at >= st.k) return;
       const slot = slotOf(t.at);
-      const src = st.tf === '5M' ? bars5[t.at] : list.find((b) => b.j === slot);
+      const src = raw() ? bars5[t.at] : list.find((b) => b.j === slot);
       if (!src) return;
       const above = t.where !== 'below';
       const key = `${slot}:${above}`;

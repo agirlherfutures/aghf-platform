@@ -54,6 +54,7 @@ import { CASEFILE_RENDERERS } from './casefile.js';
 import { DESK_RENDERERS } from './desk-lessons.js';
 import { LEVEL_RENDERERS } from './level-tools.js';
 import { SD_RENDERERS, confirmHtml } from './sd-slides.js';
+import { ICC_WALK_RENDERERS } from './icc-walk.js';
 
 // Temporary: everything unlocked while the Academy is being built (see preview.js).
 const UNLOCK = isPreviewAll();
@@ -975,6 +976,7 @@ export const SLIDE_RENDERERS = {
   ...PRICE_LAB_RENDERERS,
   ...LEVEL_RENDERERS,
   ...SD_RENDERERS,
+  ...ICC_WALK_RENDERERS,
   ...PHASE3_RENDERERS,
   ...PRICE_REPLAY_RENDERERS,
   ...TOPDOWN_RENDERERS,
