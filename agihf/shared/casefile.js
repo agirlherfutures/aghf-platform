@@ -24,8 +24,9 @@ const px = (v) => Math.round(v * 10) / 10;
 const fmtP = (v) => (v == null || Number.isNaN(+v) ? '·' : (+v).toFixed(2));
 const AX = 72, PT = 16, PB = 26;
 let W = 1000, H = 470;
-const TONE = { mine: '#F4829A', dayli: '#E9B949', ind: '#9C93F2', trader: '#F5A857', pos: '#7ECEC4' };
-const LEVEL_TONE = { EXTERNAL_HIGH: '#F5A857', EXTERNAL_LOW: '#F5A857', SWING_HIGH: '#B2E4DF', SWING_LOW: '#B2E4DF', MSS: '#CECBF6', OBJECTIVE: '#FAD09A', PIL: '#F4829A', ENTRY: '#7ECEC4', STOP: '#E8657F', TARGET: '#7ECEC4' };
+// Mark colours, strong enough to read on the light chart (labels are white text on these).
+const TONE = { mine: '#C8455F', dayli: '#B9861F', ind: '#5E56B8', trader: '#C4741F', pos: '#1F8A7E' };
+const LEVEL_TONE = { EXTERNAL_HIGH: '#C4741F', EXTERNAL_LOW: '#C4741F', SWING_HIGH: '#1F8A7E', SWING_LOW: '#1F8A7E', MSS: '#5E56B8', OBJECTIVE: '#9A6B00', PIL: '#C8455F', ENTRY: '#1F8A7E', STOP: '#C8455F', TARGET: '#1F8A7E' };
 
 function stageIndex(k) { return STAGES.findIndex((s) => s.key === k); }
 

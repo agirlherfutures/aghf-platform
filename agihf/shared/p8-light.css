@@ -76,3 +76,20 @@ body.p8-on .p8-replay .p8-play{color:#fff;}
 body.p8-on .p8-panel .p8-btn.is-primary, body.p8-on .p8-panel .p8-btn.is-lock{width:fit-content;min-width:220px;margin-left:auto;display:block;padding:13px 24px;}
 @media (max-width:600px){ body.p8-on .p8-panel .p8-btn.is-primary, body.p8-on .p8-panel .p8-btn.is-lock{width:100%;} }
 body.p8-on .p8-tl.is-cur.is-done{background:var(--dark);color:#fff;}
+
+/* mark tools (1H swing high, MSS, Undo…) and chart labels, made for the light chart */
+body.p8-on .p8-tools-l{color:var(--muted);}
+body.p8-on .p8-tool{background:#fff;border:1.5px solid var(--border);color:var(--dark);font-weight:700;font-size:.78rem;padding:6px 12px;}
+body.p8-on .p8-tool:hover{border-color:var(--dark);}
+body.p8-on .p8-tool.has{background:var(--teal-pale);border-color:#9fd9d1;color:#1a6b63;}
+body.p8-on .p8-tool.on{background:var(--dark);border-color:var(--dark);color:#fff;}
+body.p8-on .p8-tfs{background:var(--cream);}
+body.p8-on .p8-tf{color:var(--muted);}
+body.p8-on .p8-lv text, body.p8-on .p8-cm text{fill:#fff;}
+body.p8-on .p8-wm{fill:#B9A79C;}
+body.p8-on .p8-c.up line{stroke:#7ECEC4;} body.p8-on .p8-c.up rect{fill:#7ECEC4;}
+body.p8-on .p8-c.dn line{stroke:#F4829A;} body.p8-on .p8-c.dn rect{fill:#F4829A;}
+body.p8-on .p8-curtain{fill:rgba(233,185,73,.06);stroke:rgba(185,134,31,.35);}
+body.p8-on .p8-replay button{background:#fff;border:1.5px solid var(--border);color:var(--dark);}
+body.p8-on .p8-replay .p8-play{background:var(--dark);border-color:var(--dark);color:#fff;}
+body.p8-on .p8-flash{background:var(--dark);color:#fff;}
