@@ -29,7 +29,7 @@ OUT = os.path.join(HERE, '..', 'out')
 SPOTS = {
     'her-own': {
         'video': 'aghf-a-life-of-her-own-60s.mp4',
-        'duration': 60,
+        'duration': 63,
         'phrases': [
             (0.3, 1), (2.3, 1), (4.1, 1), (5.6, 1), (8.2, 1),   # mother, shots 1A-1C
             (10.3, 1), (13.1, 1), (16.1, 1),                   # student, shots 2A-2C

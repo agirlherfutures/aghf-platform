@@ -2185,16 +2185,16 @@
     // underline swash
     const u = ease(seg(t, 38.8, 39.4));
     if (u > 0) s += `<path d="M${f1(CX - 210 * u)},930 Q${CX},956 ${f1(CX + 210 * u)},930" stroke="${P.peachL}" stroke-width="7" fill="none" stroke-linecap="round"/>`;
-    s += k(38.75, `<text x="${CX}" y="1004" font-size="42" font-family="${PF}" font-style="italic" font-weight="400" text-anchor="middle" fill="${P.cream}">Trading education, reimagined around <tspan fill="${P.dark}">HER.</tspan></text>`);
-    s += k(38.9, txt(CX, 1100, 'THE WAITLIST IS OPEN', 40, P.cream, { w: 700, ls: 6 }));
+    s += k(38.75, txt(CX, 1010, 'A GIRL &amp; HER FUTURES ACADEMY™', fitSize('A GIRL & HER FUTURES ACADEMY™', 36, 900, DM, 700), P.cream, { w: 700, ls: 5 }));
     // pulsing pill button
-    const pulse = 1 + 0.035 * Math.sin((t - 39.05) * 4.2);
-    const ring = ((t - 39.05) * 0.8) % 1;
-    s += k(39.05, `<g transform="translate(${CX},1212) scale(${f3(pulse)})">
-      <rect x="${f1(-350 - ring * 40)}" y="${f1(-52 - ring * 22)}" width="${f1(700 + ring * 80)}" height="${f1(104 + ring * 44)}" rx="${f1(52 + ring * 22)}" fill="none" stroke="${P.cream}" stroke-width="4" opacity="${f3((1 - ring) * 0.7)}"/>
-      <rect x="-340" y="-30" width="680" height="104" rx="52" fill="${P.dark}" opacity=".16" filter="url(#fB16)"/><rect x="-350" y="-52" width="700" height="104" rx="52" fill="${P.cream}"/>
-      <rect x="-338" y="-44" width="676" height="36" rx="18" fill="#fff" opacity=".6"/>
-      ${txt(0, 13, 'Join the waitlist · Link in bio', 38, P.pink, { w: 700 })}</g>`);
+    const pulse = 1 + 0.035 * Math.sin((t - 38.9) * 4.2);
+    const ring = Math.max(0, (t - 38.9) * 0.8) % 1;
+    s += k(38.9, `<g transform="translate(${CX},1140) scale(${f3(pulse)})">
+      <rect x="${f1(-300 - ring * 40)}" y="${f1(-52 - ring * 22)}" width="${f1(600 + ring * 80)}" height="${f1(104 + ring * 44)}" rx="${f1(52 + ring * 22)}" fill="none" stroke="${P.cream}" stroke-width="4" opacity="${f3((1 - ring) * 0.7)}"/>
+      <rect x="-290" y="-30" width="580" height="104" rx="52" fill="${P.dark}" opacity=".16" filter="url(#fB16)"/><rect x="-300" y="-52" width="600" height="104" rx="52" fill="${P.cream}"/>
+      <rect x="-288" y="-44" width="576" height="36" rx="18" fill="#fff" opacity=".6"/>
+      ${txt(0, 14, 'Join the waitlist', 42, P.pink, { w: 700 })}</g>`);
+    s += k(39.05, `<text x="${CX}" y="1290" font-size="58" font-family="${PF}" font-style="italic" font-weight="700" text-anchor="middle" fill="${P.cream}">Link in bio <tspan font-family="${DM}" font-style="normal" font-size="46">✦</tspan></text>`);
     s += k(39.2, txt(CX, 1430, 'Trading involves risk.', 26, P.cream, { w: 500, op: 0.9 }));
     return s;
   }

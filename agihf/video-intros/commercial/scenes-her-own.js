@@ -1,5 +1,5 @@
 /**
- * scenes-her-own.js: "A Life of HER Own", the 60s vertical lifestyle commercial
+ * scenes-her-own.js: "A Life of HER Own", the 63s vertical lifestyle commercial
  * for A Girl & Her Futures Academy™ (1080x1920, 30 fps).
  *
  * window.HO.draw(t) returns the SVG markup for the frame at time t. Everything
@@ -8,7 +8,10 @@
  * the hero cast (Maya and her daughter, Zuri, Simone, friends) is drawn here at
  * large scale with blinking, breathing and moving hair.
  *
- * TikTok safe zone: text and faces stay inside x 0..940, y 150..1520.
+ * Scenes are drawn around world x = CX (470) and draw() frames them onto the
+ * true centre of the screen (SX = 540) with a slight zoom (FRAME_Z), so every
+ * shot sits centred. Overlays (headlines over 6A/6B, end card text, logo) are
+ * drawn in screen space around SX.
  * On-screen headlines sit at the top (y 200..460); the caption band sits at the
  * bottom of the safe zone (bottom edge y CAP_BOTTOM).
  *
@@ -25,7 +28,8 @@
   const hash = i => { const x = Math.sin(i * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
   const rad = d => d * Math.PI / 180;
   const deg = r => r * 180 / Math.PI;
-  const CX = 470;
+  const CX = 470;            // scene (world) centre
+  const SX = 540, FRAME_Z = 1.125;  // screen centre; zoom that maps world CX onto it with no bare edge
   const PF = 'Playfair Display', DM = 'DM Sans';
 
   // Brand
@@ -1888,12 +1892,27 @@
     return s;
   }
   function shot6C(t) {
-    let s = endBG(t);
-    const k = (at, y, inner) => { const e = ease((t - at) / 0.6); return e <= 0 ? '' : `<g transform="translate(0,${f1((1 - e) * 24)})" opacity="${f3(e)}">${inner}</g>`; };
-    s += k(58.35, 0, txt(CX, 950, 'A GIRL &amp; HER FUTURES ACADEMY™', fitSize('A GIRL & HER FUTURES ACADEMY™', 38, 820, DM, 700), P.cream, { w: 700, ls: 4 }));
-    s += k(58.6, 0, `<text x="${CX}" y="1062" font-size="64" font-family="${PF}" font-style="italic" font-weight="400" text-anchor="middle" fill="${P.cream}">Go live your life, girl. <tspan font-family="Noto Color Emoji" font-style="normal" font-size="54">🫧✨</tspan></text>`);
-    s += k(58.85, 0, txt(CX, 1160, 'Join the AGHF community.', 34, P.cream, { w: 500 }) + txt(CX, 1208, 'Start learning at your pace.', 34, P.cream, { w: 500 }));
-    s += k(59.0, 0, txt(CX, 1452, 'Trading involves risk.', 22, P.cream, { w: 500, op: 0.85 }));
+    return endBG(t);
+  }
+  // End card text (screen space, centred on SX). 0:58 to 1:03.
+  function endText(t) {
+    if (t < 58) return '';
+    const k = (at, inner) => { const e = ease((t - at) / 0.6); return e <= 0 ? '' : `<g transform="translate(0,${f1((1 - e) * 24)})" opacity="${f3(e)}">${inner}</g>`; };
+    let s = '';
+    s += k(58.35, `<text x="${SX}" y="842" font-size="62" font-family="${PF}" font-style="italic" font-weight="400" text-anchor="middle" fill="${P.cream}">Join</text>`);
+    const name = 'A Girl &amp; Her Futures Academy';
+    s += k(58.5, `<text x="${SX}" y="936" font-size="${f1(fitSize('A Girl & Her Futures Academy', 74, 940, PF, 900))}" font-family="${PF}" font-weight="900" text-anchor="middle" fill="${P.cream}">${name}</text>`);
+    s += k(58.65, `<text x="${SX}" y="1018" font-size="${f1(fitSize('Trading education, reimagined around HER.', 42, 900, PF, 400, true))}" font-family="${PF}" font-style="italic" font-weight="400" text-anchor="middle" fill="${P.cream}">Trading education, reimagined around <tspan fill="${P.dark}" font-weight="700">HER.</tspan></text>`);
+    // pulsing "Link in bio" pill
+    const pulse = 1 + 0.035 * Math.sin((t - 58.8) * 4.2);
+    const ring = Math.max(0, (t - 58.8) * 0.8) % 1;
+    s += k(58.8, `<g transform="translate(${SX},1150) scale(${f3(pulse)})">
+      <rect x="${f1(-250 - ring * 40)}" y="${f1(-50 - ring * 22)}" width="${f1(500 + ring * 80)}" height="${f1(100 + ring * 44)}" rx="${f1(50 + ring * 22)}" fill="none" stroke="${P.cream}" stroke-width="4" opacity="${f3((1 - ring) * 0.7)}"/>
+      <rect x="-240" y="-28" width="480" height="100" rx="50" fill="${P.dark}" opacity=".16" filter="url(#fB16)"/><rect x="-250" y="-50" width="500" height="100" rx="50" fill="${P.cream}"/>
+      <rect x="-238" y="-42" width="476" height="34" rx="17" fill="#fff" opacity=".6"/>
+      ${txt(0, 14, 'Link in bio ✦', 42, P.pink, { w: 700 })}</g>`);
+    s += k(59.0, `<text x="${SX}" y="1300" font-size="46" font-family="${PF}" font-style="italic" font-weight="400" text-anchor="middle" fill="${P.cream}">Go live your life, girl. <tspan font-family="Noto Color Emoji" font-style="normal" font-size="40">🫧✨</tspan></text>`);
+    s += k(59.2, txt(SX, 1452, 'Trading involves risk.', 24, P.cream, { w: 500, op: 0.85 }));
     return s;
   }
 
@@ -1975,31 +1994,32 @@
     if (i > 0 && S.d && t < S.a + S.d / 2) body = compose(S, SHOTS[i - 1], t, (t - (S.a - S.d / 2)) / S.d);
     else if (N && N.d && t > N.a - N.d / 2) body = compose(N, S, t, (t - (N.a - N.d / 2)) / N.d);
     else body = S.f(t);
+    body = `<g transform="translate(${SX},960) scale(${FRAME_Z}) translate(${-CX},-960)">${body}</g>`;
     // headline spanning 6A and 6B
     let over = '';
     if (t > 53.2 && t < 57.9) {
       const o = 1 - io(seg(t, 57.2, 57.8));
       over += `<g opacity="${f3(o)}"><rect width="1080" height="640" fill="url(#gTopDark)"/>` +
-        head(t, 53.35, CX, 300, 'Trading education,', 68, P.cream, { max: 820 }) +
-        head(t, 53.7, CX, 392, `reimagined around <tspan fill="${P.peachL}" font-style="italic">HER.</tspan>`, 68, P.cream, { max: 840 }) + '</g>';
+        head(t, 53.35, SX, 300, 'Trading education,', 68, P.cream, { max: 820 }) +
+        head(t, 53.7, SX, 392, `reimagined around <tspan fill="${P.peachL}" font-style="italic">HER.</tspan>`, 68, P.cream, { max: 840 }) + '</g>';
     }
-    return DEFS + body + over;
+    return DEFS + body + over + endText(t);
   }
 
   // Logo layer (drawn as an <img> by her-own.html).
   function logo(t) {
     if (t >= 42.2 && t < 45.1) {
       const k = back(seg(t, 42.45, 43.0)), out = 1 - ease(seg(t, 44.7, 45.0));
-      return { x: CX, y: 220, size: 132 * k, op: clamp((t - 42.45) / 0.2) * out, rot: Math.sin(t * 2) * 2 };
+      return { x: SX, y: 128, size: 148 * k, op: clamp((t - 42.45) / 0.2) * out, rot: Math.sin(t * 2) * 2 };
     }
     if (t >= 58.0) {
       const k = back(seg(t, 58.05, 58.7));
-      return { x: CX, y: 640, size: 390 * k * (1 + 0.02 * Math.sin(t * 2.4)), op: clamp((t - 58.05) / 0.2), rot: (1 - clamp(k)) * -16 + Math.sin(t * 1.8) * 1.5 };
+      return { x: SX, y: 560, size: 330 * k * (1 + 0.02 * Math.sin(t * 2.4)), op: clamp((t - 58.05) / 0.2), rot: (1 - clamp(k)) * -16 + Math.sin(t * 1.8) * 1.5 };
     }
     return null;
   }
 
-  const DURATION = 60;
+  const DURATION = 63;
   const CAP_BOTTOM = 1490;
   const CAPTIONS = [
     { at: 0.2, end: 2.95, text: 'She’s a mother.' },
