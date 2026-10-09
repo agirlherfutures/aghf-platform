@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capstone — A Girl & Her Futures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/sidebar.css">
+<link rel="stylesheet" href="shared/lesson-engine.css">
+<link rel="stylesheet" href="shared/casefile.css">
+<link rel="stylesheet" href="shared/desk.css">
+<link rel="stylesheet" href="shared/capstone.css">
+</head>
+<body class="p8-on">
+<script src="shared/auth-guard.js"></script>
+<script src="shared/sidebar.js" data-active="desk"></script>
+<main class="main cap-wrap">
+  <div id="capRefs"></div>
+  <div id="capView"></div>
+</main>
+<script type="module">
+  import { pickVariant, renderIntro, renderRefs, runCapstone, renderResult, renderReflect, completeGraduation, renderGraduation, renderAlreadyGraduated, graduated, curriculumComplete, capstoneAttempts, saveCapstoneAttempt } from './shared/capstone.js';
+  import { UNLOCK_ALL } from './shared/preview.js';
+  const view = document.getElementById('capView');
+  const refs = document.getElementById('capRefs');
+  const forced = UNLOCK_ALL ? new URLSearchParams(location.search).get('variant') : null;
+  let name = '';
+  let pool = [];
+  const top = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  function locked() {
+    view.innerHTML = `<div class="cap-intro"><div class="cap-kicker">THE GRADUATION GATE 🎓</div><h1 class="cap-h">Almost there.</h1>
+      <p class="cap-lead">The capstone opens when all 8 phases and 22 sections are complete. Finish Phase 8, Section 22: Practice Like a Pro.</p>
+      <div class="cap-actions"><a class="p8-btn is-lock" href="lessons.html">Back to the curriculum →</a></div></div>`;
+  }
+
+  function intro(practice = false) {
+    refs.innerHTML = '';
+    renderIntro(view, { name, attempts: capstoneAttempts().length, onBegin: () => begin(practice) });
+  }
+
+  function begin(practice) {
+    const item = pickVariant(pool, forced);
+    renderRefs(refs);
+    runCapstone(view, item, (res, c, rec) => {
+      const attempt = saveCapstoneAttempt({ variant: item.variant, caseId: c.id, scores: res.scores, notes: res.notes, critical: res.critical, pass: res.pass, outcome: res.outcome, decision: rec.decision?.choice || null, practice });
+      refs.innerHTML = '';
+      renderResult(view, res, c, {
+        onRetry: () => { intro(practice); top(); },
+        onContinue: () => {
+          if (practice) { view.querySelector('.cap-next')?.remove(); return; }
+          renderReflect(view, (answers) => { const a = completeGraduation({ name, attempt, answers }); renderGraduation(view, a); });
+          top();
+        },
+      });
+      if (practice && res.pass) { const n = view.querySelector('.cap-next'); if (n) n.outerHTML = '<a class="p8-btn is-lock" href="desk.html">Back to My Trader Desk →</a>'; }
+      top();
+    });
+    top();
+  }
+
+  async function boot() {
+    try { const p = await window.AGHF_FETCH_PROFILE?.(); const pr = p?.profile || p || {}; name = (pr.display_name || pr.first_name || pr.full_name || pr.name || '').split(' ')[0]; } catch { /* no profile */ }
+    try {
+      pool = (await (await fetch('lessons-data/p8-capstone.json')).json()).pool;
+      if (graduated()) renderAlreadyGraduated(view, { onPractice: () => intro(true) });
+      else if (!curriculumComplete() && !UNLOCK_ALL) locked();
+      else intro();
+    } catch (e) {
+      console.error(e);
+      view.innerHTML = '<div class="cap-intro"><p class="cap-lead">The capstone couldn’t load. Refresh to try again.</p></div>';
+    } finally { window.AGHF_HIDE_LOADER?.(); }
+  }
+  if (window.AGHF_USER) boot(); else document.addEventListener('aghf-auth-ready', boot, { once: true });
+</script>
+</body>
+</html>
