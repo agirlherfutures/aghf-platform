@@ -69,7 +69,7 @@ window.LESSON_VIDEO = {
         {
           "at": 27.2,
           "text": "Preferably, it pulls back toward the original 15M break, back toward base camp.",
-          "screen": "An arrow down toward the line: toward the 15M break; “Back toward camp ⛺”"
+          "screen": "An arrow points down to the original 15M break line; “Back toward camp ⛺”"
         }
       ]
     },

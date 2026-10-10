@@ -430,8 +430,7 @@
         if (zk > 0) {
           const act = seg(t, T.bos3, T.bos3 + 0.5);
           const x0 = q.X(8) - q.bw / 2 - 8;
-          out += '';
-          g += `<rect x="${f1(x0)}" y="${f1(q.vy(0.58))}" width="${f1((q.x + q.w - x0) * ease(zk))}" height="${f1(q.vy(0.50) - q.vy(0.58))}" fill="${C.teal}" opacity="${(0.16 + act * 0.16).toFixed(2)}"${act < 1 ? ' stroke="' + DK.teal + '" stroke-width="2" stroke-dasharray="8 8"' : ''}/>`;
+          g += `<rect x="${f1(x0)}" y="${f1(q.vy(0.58))}" width="${f1((q.x + q.w - x0) * ease(zk))}" height="${f1(q.vy(0.50) - q.vy(0.58))}" fill="${C.teal}" opacity="${(0.12 + act * 0.16).toFixed(2)}"/>`;
         }
         g += hline(q.X(1), q.X(5) + 22, q.vy(0.50), DK.teal, seg(t, T.bos2 - 0.8, T.bos2 - 0.2), { w: 4 });
         g += hline(q.X(6), q.X(10) + 22, q.vy(0.64), DK.teal, seg(t, T.bos3 - 0.8, T.bos3 - 0.2), { w: 4 });
@@ -773,13 +772,12 @@
         const q = mk({ raw: B15W, lo: 0.22, hi: 0.8, x: 150, y: 450, w: 760, h: 460, n: 7, maxBody: 44 });
         let g = txt(130, 432, '15M', 30, DK.peach, { a: 'start' }) + pill(840, 422, 'HTF story: bullish', DK.teal, pop(t, T.chart + 0.6, 0.5), 20);
         g += hline(q.X(1) - 20, q.x + q.w, q.vy(0.57), C.purple, seg(t, T.level, T.level + 0.8));
-        g += pill(q.x + q.w - 70, q.vy(0.57) + 34, '15M level', C.purple, pop(t, T.level + 0.6, 0.5), 20);
+        g += pill(205, q.vy(0.57), '15M level', C.purple, pop(t, T.level + 0.6, 0.5), 20);
         g += chart(t, Object.assign({}, q, { panel: false, times: [0, 1, 2, 3].map(i => T.chart + 0.4 + i * 0.4).concat([null, null]),
           tags: [{ i: 4, text: 'wick only ✗', col: C.pink, at: T.wick + 2.2, off: 34, fs: 20 }, { i: 5, text: '15M close above · BOS #1 ✓', col: DK.teal, at: T.body + 1.6, off: 40, fs: 20 }] }));
         // Live-forming candles (bar 4: poke above, close back below; bar 5: closes above).
         const formed = (i, t0, t1, path) => chart(t, Object.assign({}, q, { panel: false, bars: q.bars.map((b, j) => j === i ? b : [0, 0, 0, 0]), times: q.bars.map(() => null), form: { i, t0, t1, path: path.map(v => (v - 0.22) / 0.58) } }));
         g += formed(4, T.wick, T.wick + 2, [.40, .50, .66, .58, .52]) + formed(5, T.body, T.body + 1.4, [.52, .60, .70]);
-        if (t > T.wick + 2.1) g += cross(q.X(4) + 46, q.vy(0.66) - 4, between(t, T.wick + 2.1, T.body - 0.3), C.pink, 20);
         out += g;
       }
       // Pitch + goal.
@@ -847,12 +845,12 @@
         // Hurdles: what the 5M still has to build.
         const H = [['Correction #1', DK.peach], ['BOS #2', DK.teal], ['Correction #2', DK.peach], ['BOS #3', DK.teal]];
         H.forEach(([lab, col], i) => {
-          const x = 700 + i * 250, k = pop(t, T.hurdles[i], 0.6);
+          const x = 770 + i * 240, k = pop(t, T.hurdles[i], 0.6);
           if (k <= 0) return;
           out += scaleAt(x, 960, k, `<rect x="${x - 50}" y="880" width="10" height="80" fill="${C.muted}"/><rect x="${x + 40}" y="880" width="10" height="80" fill="${C.muted}"/><rect x="${x - 56}" y="870" width="112" height="20" rx="6" fill="${col}"/><rect x="${x - 20}" y="870" width="40" height="20" fill="#fff" opacity=".6"/>`);
           out += pill(x, 820, lab, col, k, 20);
         });
-        out += pill(1075, 740, 'the 5M builds the rest', DK.pink, pop(t, T.hurdles[0] - 0.8, 0.6), 24);
+        out += pill(1130, 740, 'the 5M builds the rest', DK.pink, pop(t, T.hurdles[0] - 0.8, 0.6), 24);
         // Starter with the pistol.
         const st = { x: 170, y: 1000, scale: 0.85, look: A.LOOKS.a, seed: 4, at: T.gun, talk: false };
         st.frontArm = { a1: -70, a2: -80 };
@@ -867,7 +865,7 @@
         const cnd = { x: rx, y: 975, h: 110, w: 64, col: C.teal, wu: 16, seed: 5, at: T.gun + 0.3, walking: t > T.bang, lean: t < T.bang ? 16 : 6, arms: t > T.bang + 2 && t < T.enter ? 'cheer' : undefined };
         out += candy(t, cnd);
         out += bub(560, 660, 'Is that the finish? 🏁', between(t, T.enter + 0.2, T.hurdles[0] - 1), { size: 24 });
-        out += pill(1300, 470, 'not an entry ✗', C.pink, pop(t, T.enter + 0.4, 0.5), 26);
+        out += pill(260, 532, 'not an entry ✗', C.pink, pop(t, T.enter + 0.4, 0.5), 24);
       }
       return out;
     },
@@ -894,12 +892,11 @@
         // Correction #1 bracket under bars 4-6.
         const bk = ease(seg(t, T.pull + 3, T.pull + 3.6));
         if (bk > 0) {
-          const x0 = q.X(4) - 24, x1 = q.X(6) + 24, y = q.vy(0.32) + 36;
+          const x0 = q.X(4) - 24, x1 = q.X(6) + 24, y = q.vy(0.32) + 22;
           g += `<path d="M${f1(x0)},${f1(y - 14)} L${f1(x0)},${f1(y)} L${f1(lerp(x0, x1, bk))},${f1(y)}${bk >= 1 ? ` L${f1(x1)},${f1(y - 14)}` : ''}" fill="none" stroke="${DK.peach}" stroke-width="5" stroke-linejoin="round"/>`;
-          g += pill((x0 + x1) / 2, y - 120, 'Correction #1', DK.peach, pop(t, T.pull + 3.4, 0.5), 22);
+          g += pill((x0 + x1) / 2, y + 32, 'Correction #1', DK.peach, pop(t, T.pull + 3.4, 0.5), 22);
         }
-        g += arrowTo(q.X(3) + 30, q.vy(0.62) + 10, q.X(6) + 50, q.vy(0.26), C.purple, 5, seg(t, T.camp + 0.8, T.camp + 1.8));
-        g += pill(q.X(5) + 30, q.vy(0.22) - 30, 'toward the 15M break', C.purple, pop(t, T.camp + 1.6, 0.5), 18);
+        g += arrowTo(q.X(7), q.vy(0.44), q.X(7), q.vy(0.22) - 22, C.purple, 6, seg(t, T.camp + 0.8, T.camp + 1.8));
         out += g;
       }
       // Mountain.
@@ -909,6 +906,7 @@
           <path d="M980,1000 L1520,400 L1440,1000 Z" fill="#B9B3EE" opacity=".5"/>
           <rect x="1090" y="868" width="160" height="12" rx="6" fill="#D4AE84"/>
           <path d="M1120,868 L1150,820 L1180,868 Z" fill="${C.peach}"/><rect x="1216" y="790" width="6" height="80" fill="${C.dark}"/><path d="M1222,792 L1270,804 L1222,816 Z" fill="${C.purple}"/>`);
+        out += fade(mtk, poly([[1210, 868], [1470, 488]], '#fff', 6, { dash: '4 14', op: 0.9 }));
         out += pill(1176, 940, 'BASE CAMP · 15M BREAK', C.purple, pop(t, T.chart + 1.2, 0.5), 20);
         // The climber walks along the slope from camp (1200, 868) toward the peak (1520, 400).
         const along = u => [lerp(1210, 1470, u), lerp(868, 488, u)];
@@ -937,7 +935,7 @@
       out += who(t, ch);
       // Counter and stove.
       const ck = pop(t, T.kitchen, 0.7);
-      out += scaleAt(960, 1000, ck, `<rect x="160" y="830" width="1600" height="30" rx="8" fill="#D4AE84"/><rect x="180" y="860" width="1560" height="140" fill="#EAD3A8"/>
+      out += scaleAt(960, 1000, ck, `<rect x="160" y="830" width="1600" height="30" rx="8" fill="#D4AE84"/><rect x="180" y="860" width="1560" height="152" fill="#EAD3A8"/>
         ${[0, 1, 2, 3, 4].map(i => `<rect x="${220 + i * 310}" y="880" width="270" height="100" rx="10" fill="#F3E3C8" stroke="#D9BE90" stroke-width="3"/>`).join('')}
         <rect x="400" y="806" width="320" height="26" rx="8" fill="${C.dark}"/>`);
       const flame = t < T.nobos + 1 ? 1 : 1 - seg(t, T.nobos + 1, T.nobos + 1.6);
@@ -956,26 +954,26 @@
       // Serving plate reserved for the zone.
       const sp = pop(t, T.zone2, 0.6);
       if (sp > 0) {
-        out += scaleAt(1120, 830, sp, `<rect x="1110" y="760" width="20" height="70" fill="${C.muted}"/><ellipse cx="1120" cy="760" rx="130" ry="20" fill="#fff" stroke="${C.gold}" stroke-width="5"/>
-          <rect x="1210" y="690" width="170" height="60" rx="8" fill="#fff" stroke="${DK.teal}" stroke-width="3"/>${txt(1295, 716, 'RESERVED', 16, DK.teal, { ls: 2 })}${txt(1295, 740, 'for the zone', 18, C.text, { w: 700 })}`);
-        out += pill(1120, 900, 'the zone comes from Correction #2', DK.teal, pop(t, T.zone2 + 0.4, 0.5), 20);
+        out += scaleAt(1250, 830, sp, `<rect x="1240" y="770" width="20" height="60" fill="${C.muted}"/><ellipse cx="1250" cy="770" rx="130" ry="20" fill="#fff" stroke="${C.gold}" stroke-width="5"/>
+          <rect x="1400" y="700" width="170" height="60" rx="8" fill="#fff" stroke="${DK.teal}" stroke-width="3"/>${txt(1485, 726, 'RESERVED', 16, DK.teal, { ls: 2 })}${txt(1485, 750, 'for the zone', 18, C.text, { w: 700 })}`);
+        out += pill(1250, 900, 'the zone comes from Correction #2', DK.teal, between(t, T.zone2 + 0.4, T.nobos + 2.6, 0.5), 20);
       }
       // Wall chart: Correction #1's last bearish candle is not demand. Then BOS #2 never happens.
       const ik = pop(t, T.inset, 0.7);
       if (ik > 0) {
-        const raw = B5C1.concat([[.36, .48, .50, .35], [.48, .58, .60, .47], [.58, .50, .61, .48], [.50, .55, .57, .49]]);
-        const q = mk({ raw, lo: 0.18, hi: 0.68, x: 1100, y: 430, w: 700, h: 250, n: 11, maxBody: 30 });
-        let g = `<rect x="1060" y="380" width="780" height="330" rx="22" fill="#fff" stroke="#F1E7E1" stroke-width="3"/>${txt(1080, 418, '5M', 24, DK.pink, { a: 'start' })}`;
+        const raw = B5C1.concat([[.36, .48, .50, .35], [.48, .57, .59, .47], [.57, .50, .59, .48], [.50, .55, .57, .49]]);
+        const q = mk({ raw, lo: 0.18, hi: 0.68, x: 1100, y: 420, w: 700, h: 190, n: 11, maxBody: 30 });
+        let g = `<rect x="1060" y="370" width="780" height="272" rx="22" fill="#fff" stroke="#F1E7E1" stroke-width="3"/>${txt(1080, 406, '5M', 24, DK.pink, { a: 'start' })}`;
         g += hline(q.x, q.x + q.w, q.vy(0.22), C.purple, 1, { w: 3, op: 0.6 });
-        out += scaleAt(1450, 710, ik, g);
+        out += scaleAt(1450, 642, ik, g);
         if (ik >= 0.5) {
           const times = raw.map((b, i) => i < 7 ? -1 : T.nobos + 0.2 + (i - 7) * 0.5);
           out += chart(t, Object.assign({}, q, { panel: false, wick: 4, times }));
           out += ring(q, 6, C.pink, between(t, T.inset + 0.6, T.nobos - 0.4, 0.5));
-          out += pill(q.X(6) - 20, q.vy(0.32) + 40, 'last bearish candle: not demand ✗', C.pink, between(t, T.inset + 1, T.nobos - 0.4, 0.5), 18);
+          out += pill(1450, 624, 'last bearish candle: not demand ✗', C.pink, between(t, T.inset + 1, T.nobos - 0.4, 0.5), 18);
           out += hline(q.X(3), q.x + q.w, q.vy(0.62), DK.teal, seg(t, T.nobos, T.nobos + 0.6), { w: 4 });
           out += txt(q.X(3) - 10, q.vy(0.62) - 12, 'high Correction #1 pulled back from', 16, DK.teal, { a: 'start', op: clamp(seg(t, T.nobos + 0.4, T.nobos + 1)) });
-          out += pill(1500, 742, 'no 5M close above · BOS #2 never happens ✗', C.pink, pop(t, T.nobos + 2.4, 0.5), 18);
+          out += pill(1450, 624, 'no 5M close above · BOS #2 never happens ✗', C.pink, pop(t, T.nobos + 2.4, 0.5), 18);
         }
       }
       // Sequence incomplete sign.

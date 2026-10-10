@@ -6,7 +6,7 @@ window.LESSON_VIDEO = {
   "slug": "sl-m2-5",
   "eyebrow": "Strategy 2 · Module 2 · Lesson 5",
   "duration": 84,
-  "sources": "From Strategy 2, Module 2, Lesson 5 (\"Waiting for the Retest\"): after BOS #3, wait for price to return to the zone; the retest is the first return to the active zone after BOS #3, and only then does the entry model apply; the entry options (a limit at the near edge, or a directional close out of the zone) still need Dayli’s confirmation, so the video doesn’t show where an order sits; bearish example: price pulls back a little but never returns to the supply zone; don’t chase; a missed retest is a missed trade, not a trade, and a valid no-trade decision; \"The zone waits for price. You wait for the zone.\" Per SUPPLY_DEMAND_MASTER.md §4 and RULES_STATUS.md #5 (limit entry placement: needs confirmation).",
+  "sources": "From Strategy 2, Module 2, Lesson 5 (\"Waiting for the Retest\"): after BOS #3, wait for price to return to the zone; the retest is the first return to the active zone after BOS #3, and only then does the entry model apply; the entry options still need Dayli’s confirmation, so the video doesn’t show how or where an order is placed; bearish example: price pulls back a little but never returns to the supply zone; don’t chase; a missed retest is a missed trade, not a trade, and a valid no-trade decision; \"The zone waits for price. You wait for the zone.\" Per SUPPLY_DEMAND_MASTER.md §4 and RULES_STATUS.md #5 (limit entry placement: needs confirmation).",
   "scenes": [
     {
       "type": "host-title",
@@ -74,8 +74,8 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 27.6,
-          "text": "Only then does the entry model apply, and the exact entry still needs Dayli’s confirmation.",
-          "screen": "\"now the entry model applies\"; \"exact entry: needs Dayli’s confirmation\" (no entry price or order position shown)"
+          "text": "Only then does the entry model apply. Follow your plan for the exact entry.",
+          "screen": "\"now the entry model applies\"; \"exact entry: follow your plan\" (no entry price or order position shown)"
         }
       ]
     },

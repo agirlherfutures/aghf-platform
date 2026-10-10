@@ -761,7 +761,7 @@
         out += pill(600, 950, 'wait for price to return to the zone', DK.purple, between(t, T.wait, T.retest + 2), 24);
         out += pill(600, 950, 'first return after BOS #3 = the retest', DK.teal, between(t, T.retest + 2.6, T.model - 0.2), 24);
         out += pill(600, 950, 'now the entry model applies', DK.purple, pop(t, T.model, 0.5), 24);
-        out += pill(600, 1040, 'exact entry: needs Dayli’s confirmation', DK.peach, pop(t, T.model + 2.4, 0.5), 22);
+        out += pill(600, 1040, 'exact entry: follow your plan', DK.peach, pop(t, T.model + 2.4, 0.5), 22);
         bite = seg(t, T.retest + 1.4, T.retest + 1.8) * (1 - seg(t, T.retest + 4, T.retest + 4.6));
       }
       // Water and dock.
