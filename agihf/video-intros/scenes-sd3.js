@@ -800,7 +800,7 @@
         c += pill(g.X(11.5), g.Y(.36), 'BOS #3', DK.teal, pop(t, T.chart + 1.4, 0.5), 18);
         c += pill(g.X(14), g.Y(.53) - 26, 'active supply zone', DK.teal, pop(t, T.chart + 1.6, 0.5), 20);
         c += arrow(g.X(15) + 30, g.Y(.36), g.X(15) + 30, g.Y(.45), C.pink, seg(t, T.run + 3.4, T.run + 4), 4);
-        c += pill(g.X(18), g.Y(.495), 'never returns', C.pink, pop(t, T.run + 4, 0.5), 18);
+        c += pill(g.X(18), g.Y(.40), 'never returns', C.pink, pop(t, T.run + 4, 0.5), 18);
         out += scaleAt(590, 660, ck, c);
         out += pill(590, 960, 'don’t chase ✋', C.pink, between(t, T.chase, T.missed - 0.2), 26);
         out += pill(590, 960, 'missed ≠ trade', C.pink, between(t, T.missed + 0.4, T.valid - 0.2), 26);
@@ -808,7 +808,7 @@
         out += stamp(900, 500, 'MISSED', C.pink, pop(t, T.missed, 0.5), -12, 76, 26);
       }
       // The ball (price) rolls away to the right.
-      const rl = ease(seg(t, T.run + 0.4, T.chase + 1.6));
+      const rl = ease(seg(t, T.chase - 2, T.chase + 2.6));
       const bx = lerp(1620, 2000, rl);
       if (t > T.chart + 0.6) out += `<g transform="translate(${f1(bx)},968) rotate(${f1(rl * 540)})"><circle r="32" fill="${C.peach}"/><path d="M-32,0 Q0,-18 32,0 M-32,0 Q0,18 32,0" stroke="#fff" stroke-width="4" fill="none"/></g>`;
       // The dog: leans toward the ball, then sits.

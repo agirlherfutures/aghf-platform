@@ -669,7 +669,7 @@
         // Internal wiggles.
         const ik = pop(t, T.map + 2.6, 0.5);
         [[3, 4], [7, 8]].forEach(([a, b]) => {
-          const x = (SW1H[a][0] + SW1H[b][0]) / 2, y = Math.min(SW1H[a][1], SW1H[b][1]) - 46;
+          const x = (SW1H[a][0] + SW1H[b][0]) / 2 + 30, y = Math.min(SW1H[a][1], SW1H[b][1]) - 62;
           out += pill(x, y, 'internal ✗', C.muted, ik, 18);
         });
         // Previous swing low, then swing high.
@@ -710,8 +710,8 @@
         let g = `<rect x="${SX0}" y="380" width="${SX1 - SX0}" height="620" fill="#EEE6F3"/>
           <rect x="${SX0 - 16}" y="380" width="16" height="620" fill="${C.muted}"/><rect x="${SX1}" y="380" width="16" height="620" fill="${C.muted}"/>
           <line x1="${SX0 + 40}" x2="${SX0 + 40}" y1="380" y2="1000" stroke="#D3C6DC" stroke-width="4"/><line x1="${SX1 - 40}" x2="${SX1 - 40}" y1="380" y2="1000" stroke="#D3C6DC" stroke-width="4"/>
-          <rect x="${SX0 - 220}" y="${TOPF}" width="${SX1 - SX0 + 440}" height="24" rx="6" fill="${C.gold}"/>
-          <rect x="${SX0 - 220}" y="${BOTF}" width="${SX1 - SX0 + 440}" height="24" rx="6" fill="${C.gold}"/>`;
+          <rect x="${SX0 - 140}" y="${TOPF}" width="${SX1 - SX0 + 280}" height="24" rx="6" fill="${C.gold}"/>
+          <rect x="${SX0 - 140}" y="${BOTF}" width="${SX1 - SX0 + 280}" height="24" rx="6" fill="${C.gold}"/>`;
         out += scaleAt(900, 1000, shk, g);
         out += pill(430, TOPF - 34, 'PREVIOUS 1H SWING HIGH', DK.peach, pop(t, T.shaft + 0.6, 0.5), 22);
         out += pill(430, BOTF - 34, 'PREVIOUS 1H SWING LOW', DK.peach, pop(t, T.shaft + 0.8, 0.5), 22);
@@ -751,7 +751,7 @@
       // The trader: reaches with a crowbar, then waits; later watches the 15M with binoculars.
       const pr = { x: 1300, y: 1000, scale: 0.9, look: A.LOOKS.b, seed: 2, flip: t < T.watch, at: T.shaft + 0.6, talk: ctx.talking && t > T.between };
       if (t > T.force && t < T.stamp + 0.6) { pr.frontArm = aim(pr, 1080, 760); pr.hold = `<g transform="rotate(-30)"><rect x="-8" y="-70" width="16" height="120" rx="6" fill="${C.muted}"/><path d="M-8,-70 Q-30,-80 -24,-96" stroke="${C.muted}" stroke-width="14" fill="none" stroke-linecap="round"/></g>`; }
-      if (t > T.watch + 0.2) { pr.frontArm = { a1: -110, a2: -170 }; pr.hold = `<g transform="translate(-6,-4)"><rect x="-26" y="-14" width="22" height="26" rx="8" fill="${C.dark}"/><rect x="4" y="-14" width="22" height="26" rx="8" fill="${C.dark}"/><rect x="-6" y="-8" width="12" height="10" fill="${C.dark}"/></g>`; }
+      if (t > T.watch + 0.2) { pr.frontArm = { a1: -70, a2: -10 }; pr.hold = `<g transform="translate(-6,-4)"><rect x="-26" y="-14" width="22" height="26" rx="8" fill="${C.dark}"/><rect x="4" y="-14" width="22" height="26" rx="8" fill="${C.dark}"/><rect x="-6" y="-8" width="12" height="10" fill="${C.dark}"/></g>`; }
       out += who(t, pr);
       out += bub(1380, 580, 'Pry it open? 🤔', between(t, T.force + 0.2, T.stamp - 0.1), { size: 26 });
       out += bub(1380, 580, 'OK. I’ll wait. ☕', between(t, T.stamp + 0.8, T.dir - 0.4), { size: 26 });
