@@ -36,6 +36,9 @@
   <div class="lw-wrap" id="rbWrap"></div>
 </main>
 <script type="module">
+  // Load the lesson engine first, in the same order lesson pages do: rules.js and mind.js
+  // import each other through it, and the other order breaks before the page can draw.
+  import './shared/lesson-slides-engine.js';
   import { renderRulebookView, renderRuleQueue } from './shared/rules.js';
   import { hasRulebook, ruleQueue } from './shared/rules-core.js';
   const wrap = document.getElementById('rbWrap');
@@ -55,6 +58,10 @@
   document.getElementById('rbReview').addEventListener('click', () => show('review'));
   document.getElementById('rbSession').addEventListener('click', () => show('session'));
   show(new URLSearchParams(location.search).get('mode') === 'session' ? 'session' : 'review');
+</script>
+<script type="module">
+  // This page draws without waiting on data, so lift the loading screen as soon as sign-in is confirmed.
+  document.addEventListener('aghf-auth-ready', () => window.AGHF_HIDE_LOADER?.(), { once: true });
 </script>
 </body>
 </html>
