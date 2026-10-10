@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to AGHF University: Start Here</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,900;1,500;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#F4829A; --pink-light:#F9B8C6; --pink-pale:#FDE8ED;
+    --teal:#7ECEC4; --teal-light:#B2E4DF; --teal-pale:#E8F8F6;
+    --peach:#F5A857; --peach-light:#FAD09A; --peach-pale:#FEF3E4;
+    --purple:#7F77DD; --purple-light:#C9C6F0; --purple-pale:#EDEBFB;
+    --cream:#FDF8F5; --warm:#FFFBF9;
+    --dark:#2C1810; --text:#3D2B20; --muted:#7A5C50;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{ margin:0; background:var(--cream); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,.logo{ font-family:'Playfair Display',serif; font-style:italic; color:var(--dark); margin:0; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+  a{ color:inherit; }
+
+  .mesh{
+    position:relative; overflow:hidden;
+    background:
+      radial-gradient(60% 50% at 15% 10%, var(--peach-pale) 0%, transparent 70%),
+      radial-gradient(50% 45% at 90% 20%, var(--pink-pale) 0%, transparent 70%),
+      radial-gradient(55% 50% at 50% 100%, var(--peach-pale) 0%, transparent 70%),
+      var(--warm);
+  }
+
+  nav{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; row-gap:12px; padding:22px 24px; max-width:1080px; margin:0 auto; }
+  .logo-img{ display:block; height:44px; width:auto; }
+  .nav-cta{
+    background:#fff; color:var(--dark); text-decoration:none; font-weight:700; font-size:.85rem;
+    padding:10px 20px; border-radius:100px; white-space:nowrap; border:1.5px solid #EEE0D8;
+  }
+
+  .hero{ padding:20px 24px 44px; text-align:center; }
+  .eyebrow{
+    display:inline-block; background:#fff; border:1px solid var(--peach-light);
+    color:var(--peach); font-weight:700; font-size:.72rem; letter-spacing:.08em;
+    text-transform:uppercase; padding:7px 16px; border-radius:100px; margin-bottom:20px;
+    box-shadow:0 4px 14px rgba(245,168,87,.15);
+  }
+  .hero h1{ font-size:clamp(2rem, 4.4vw, 3.1rem); font-weight:600; line-height:1.18; max-width:680px; margin:0 auto; }
+  .hero h1 em{ font-style:italic; background:linear-gradient(100deg, var(--peach), var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p{ max-width:540px; margin:20px auto 0; color:var(--muted); font-size:1.05rem; }
+
+  .btn-primary{
+    background:linear-gradient(100deg, var(--peach), #E8934A); color:#fff;
+    font-weight:700; font-size:1rem; padding:16px 34px; border-radius:100px;
+    text-decoration:none; box-shadow:0 10px 30px rgba(245,168,87,.4);
+    border:none; cursor:pointer; display:inline-block;
+  }
+  .btn-primary.big{ padding:19px 42px; font-size:1.08rem; }
+  .btn-secondary{
+    background:#fff; color:var(--dark); font-weight:700; font-size:.9rem;
+    padding:13px 26px; border-radius:100px; text-decoration:none;
+    border:1.5px solid var(--peach-light); display:inline-block;
+  }
+
+  .js-reveal .reveal{ opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+  .js-reveal .reveal.visible{ opacity:1; transform:translateY(0); }
+
+  .section-head{ text-align:center; margin-bottom:36px; }
+  .section-head h2{ font-size:clamp(1.5rem,4vw,2.1rem); margin-top:10px; }
+  .section-head h2 em{ font-style:italic; color:var(--peach); }
+  .section-head p{ color:var(--muted); margin-top:10px; max-width:520px; margin-left:auto; margin-right:auto; }
+
+  /* ── three-part preview boxes, right under the hero ── */
+  .parts-preview{ padding:0 24px 44px; }
+  .parts-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; max-width:720px; margin:0 auto; }
+  @media (max-width:680px){ .parts-grid{ grid-template-columns:1fr; } }
+  .parts-box{ background:#fff; border-radius:18px; padding:22px 18px; text-align:center; border:1.5px solid #F3E9E2; box-shadow:0 10px 24px rgba(44,24,16,.05); }
+  .parts-box.university{ border-color:var(--peach-light); }
+  .parts-box.live{ border-color:var(--peach-light); }
+  .parts-box.discord{ border-color:var(--pink-light); }
+  .parts-icon{ font-size:1.7rem; margin-bottom:8px; }
+  .parts-label{ font-weight:700; color:var(--dark); font-size:.92rem; margin-bottom:3px; }
+  .parts-desc{ font-size:.78rem; color:var(--muted); }
+
+  /* ── shared screenshot frame ── */
+  .shot-wrap{ margin:22px auto 26px; max-width:480px; }
+  .shot-wrap img{ display:block; width:100%; border-radius:16px; box-shadow:0 14px 34px rgba(44,24,16,.16); border:1px solid #F3E9E2; }
+  .shot-caption{ font-size:.76rem; color:var(--muted); margin-top:10px; text-align:center; }
+
+  /* ── numbered flow labels, shared by 01/02/03 cards ── */
+  .flow-start-tag{
+    position:absolute; top:-15px; left:50%; transform:translateX(-50%);
+    background:var(--peach); color:#fff; font-size:.72rem; font-weight:700;
+    letter-spacing:.09em; text-transform:uppercase; padding:7px 20px;
+    border-radius:100px; box-shadow:0 8px 18px rgba(245,168,87,.45); white-space:nowrap;
+  }
+  .flow-num-row{ display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:4px; }
+  .flow-num{ font-family:'Playfair Display',serif; font-weight:700; font-size:.95rem; color:var(--peach); letter-spacing:.06em; }
+  .flow-kicker{ font-size:.74rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--peach); margin:6px 0 6px; }
+  .flow-icon{ font-size:2.2rem; margin-bottom:10px; }
+
+  /* ── 02: university (dominant) ── */
+  .step-one{ padding:6px 24px 54px; }
+  .step-card{ position:relative; max-width:760px; margin:0 auto; background:#fff; border-radius:32px; padding:44px 40px 40px; box-shadow:0 26px 60px rgba(245,168,87,.24); border:2.5px solid var(--peach); text-align:center; }
+  .step-card > p{ color:var(--text); font-size:1rem; max-width:560px; margin:0 auto 22px; }
+  .step-includes{ display:grid; grid-template-columns:1fr 1fr; gap:10px; max-width:480px; margin:26px auto 28px; text-align:left; }
+  @media (max-width:520px){ .step-includes{ grid-template-columns:1fr; } }
+  .step-include{ font-size:.88rem; color:var(--text); font-weight:600; }
+  .step-include span{ color:var(--peach); margin-right:6px; }
+
+  /* ── 01: get the apps ── */
+  .app-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:460px; margin:24px auto 8px; }
+  @media (max-width:480px){ .app-grid{ grid-template-columns:1fr; } }
+  .app-card{ background:var(--cream); border-radius:16px; padding:20px 16px; text-align:center; border:1px solid #F3E9E2; }
+  .app-icon-tile{ width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; font-family:'DM Sans',sans-serif; font-weight:800; font-size:1.15rem; color:#fff; }
+  img.app-icon-tile{ display:block; object-fit:contain; }
+  .app-name{ font-weight:700; color:var(--dark); font-size:.95rem; margin-bottom:4px; }
+  .app-desc{ font-size:.78rem; color:var(--muted); margin-bottom:14px; line-height:1.4; }
+  .app-links{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+  .app-btn{
+    background:#fff; color:var(--dark); font-weight:700; font-size:.76rem;
+    padding:9px 14px; border-radius:100px; text-decoration:none; white-space:nowrap;
+    border:1.5px solid var(--peach-light); flex:1 1 auto;
+  }
+
+  /* ── 02: live sessions (secondary) ── */
+  .live-section{ padding:0 24px 54px; }
+  .live-card{ position:relative; max-width:640px; margin:0 auto; background:#fff; border-radius:24px; padding:32px 34px; box-shadow:0 12px 28px rgba(44,24,16,.05); border:1.5px solid var(--peach-light); text-align:center; }
+  .live-card h2{ font-size:1.2rem; margin-bottom:10px; }
+  .live-card > p{ color:var(--text); font-size:.92rem; max-width:480px; margin:0 auto 20px; }
+  .live-note{ color:var(--muted); font-size:.84rem; max-width:440px; margin:0 auto 22px; }
+
+  /* ── 04: discord (last) ── */
+  .discord-section{ padding:0 24px 54px; }
+  .discord-card{ max-width:680px; margin:0 auto; background:#fff; border-radius:28px; padding:36px; box-shadow:0 18px 42px rgba(244,130,154,.1); border:1.5px solid var(--pink-light); text-align:center; }
+  .discord-card h2{ font-size:1.4rem; margin-bottom:14px; }
+  .discord-card > p{ color:var(--text); max-width:520px; margin:0 auto 24px; }
+  .reminder-note{ margin-top:20px; font-size:.86rem; color:var(--muted); background:var(--peach-pale); border-radius:14px; padding:12px 18px; display:inline-block; }
+  .reminder-note strong{ color:var(--dark); }
+
+  /* ── discord connect steps ── */
+  .connect-steps{ max-width:520px; margin:22px auto 26px; text-align:left; }
+  .connect-step{ display:flex; gap:14px; padding:14px 0; border-bottom:1px solid #F3E9E2; text-decoration:none; }
+  .connect-step:last-child{ border-bottom:none; }
+  .connect-num{ flex-shrink:0; width:28px; height:28px; border-radius:50%; background:var(--pink-pale); color:var(--pink); font-weight:700; font-size:.85rem; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .connect-title{ font-weight:700; font-size:.92rem; color:var(--dark); margin-bottom:2px; }
+  .connect-desc{ font-weight:500; font-size:.84rem; color:var(--muted); }
+
+  /* ── roadmap (top-of-page quick sequence) ── */
+  .roadmap-section{ padding:0 24px 44px; }
+  .roadmap-card{ max-width:620px; margin:0 auto; background:#fff; border-radius:28px; padding:32px 36px; box-shadow:0 18px 42px rgba(44,24,16,.08); border:1.5px solid var(--peach-light); }
+  .roadmap-card .connect-steps{ margin:0; max-width:none; }
+  .roadmap-card .connect-num{ background:var(--peach-pale); color:var(--peach); }
+  a.connect-step:hover .connect-title{ color:var(--peach); }
+  .trouble-note{ margin-top:16px; font-size:.84rem; color:var(--muted); background:var(--peach-pale); border-radius:14px; padding:14px 18px; text-align:left; }
+  .trouble-note strong{ color:var(--dark); }
+
+  /* ── discord tour channel grid ── */
+  .channel-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:600px; margin:26px auto 8px; text-align:left; }
+  @media (max-width:520px){ .channel-grid{ grid-template-columns:1fr; } }
+  .channel-card{ background:var(--cream); border-radius:16px; padding:16px 18px; border:1.5px solid var(--pink-light); }
+  .channel-title{ font-weight:700; font-size:.9rem; color:var(--dark); margin-bottom:4px; }
+  .channel-desc{ font-size:.8rem; color:var(--muted); line-height:1.5; }
+
+  /* ── where do i go table ── */
+  .where-section{ padding:20px 24px 60px; }
+  .where-table{ max-width:640px; margin:0 auto; width:100%; border-collapse:collapse; background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 14px 34px rgba(44,24,16,.06); }
+  .where-table th{ background:var(--cream); text-align:left; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); padding:14px 20px; }
+  .where-table td{ padding:14px 20px; border-top:1px solid #F3E9E2; font-size:.92rem; }
+  .where-table td:first-child{ color:var(--text); }
+  .where-tag{ font-weight:700; white-space:nowrap; }
+  .where-tag.university{ color:var(--peach); }
+  .where-tag.live{ color:var(--purple); }
+  .where-tag.discord{ color:var(--pink); }
+
+  /* ── tagline banner ── */
+  .tagline-section{ padding:10px 24px 70px; text-align:center; }
+  .tagline-banner{ font-family:'Playfair Display',serif; font-style:italic; font-weight:700; font-size:clamp(1.2rem,3.4vw,1.7rem); color:var(--dark); max-width:600px; margin:0 auto; }
+  .tagline-banner em{ font-style:italic; color:var(--peach); }
+  .tagline-banner .accent-pink{ color:var(--pink); }
+
+  /* ── have a question ── */
+  .help-section{ padding:10px 24px 60px; }
+  .help-card{ max-width:560px; margin:0 auto; text-align:center; background:#fff; border-radius:22px; padding:30px 32px; box-shadow:0 14px 34px rgba(44,24,16,.06); border:1.5px solid #F3E9E2; }
+  .help-icon{ font-size:1.8rem; margin-bottom:8px; }
+  .help-title{ font-family:'Playfair Display',serif; font-style:italic; font-weight:700; font-size:1.15rem; color:var(--dark); margin-bottom:8px; }
+  .help-card p{ color:var(--muted); font-size:.92rem; margin:0; }
+
+  /* ── ready for the bundle teaser ── */
+  .grow-section{ padding:20px 24px 70px; }
+  .grow-card{ max-width:680px; margin:0 auto; text-align:center; background:linear-gradient(135deg,var(--peach-pale),var(--pink-pale)); border-radius:28px; padding:38px; }
+  .grow-kicker{ font-weight:700; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--pink); margin-bottom:10px; }
+  .grow-card h2{ font-size:clamp(1.3rem,3.4vw,1.7rem); margin-bottom:12px; }
+  .grow-card p{ color:var(--text); max-width:480px; margin:0 auto 24px; }
+
+  footer{ padding:30px 24px 60px; text-align:center; }
+  footer .wrap p{ font-size:.82rem; color:var(--muted); margin:6px 0; }
+  footer .wrap p.legal{ font-size:.72rem; color:#B7A59A; max-width:520px; margin:14px auto 0; }
+  .founder{ display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:20px; flex-wrap:wrap; }
+  .founder-avatar{ width:54px; height:54px; border-radius:50%; object-fit:cover; flex-shrink:0; }
+  .founder-text{ text-align:left; }
+  .founder-name{ font-weight:700; color:var(--dark); font-size:.9rem; }
+  .founder-role{ font-size:.78rem; color:var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="mesh">
+  <nav>
+    <img src="logo.png" alt="A Girl & Her Futures" class="logo-img">
+    <a href="/university-bundle" class="nav-cta">Explore the Bundle →</a>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">University Student Experience</span>
+      <h1>Welcome to<br><em>AGHF University</em> 🎓💕</h1>
+      <p>You're officially enrolled. Here's exactly what to do next, in order.</p>
+    </div>
+  </section>
+</div>
+
+<section class="roadmap-section">
+  <div class="wrap">
+    <div class="roadmap-card reveal">
+      <div class="connect-steps">
+        <a class="connect-step" href="#learn">
+          <div class="connect-num">1</div>
+          <div>
+            <div class="connect-title">Begin Your Courses</div>
+            <div class="connect-desc">Start with your appropriate learning path.</div>
+          </div>
+        </a>
+        <a class="connect-step" href="#connect">
+          <div class="connect-num">2</div>
+          <div>
+            <div class="connect-title">Connect Discord</div>
+            <div class="connect-desc">Unlock your University Student channels.</div>
+          </div>
+        </a>
+        <a class="connect-step" href="#connect">
+          <div class="connect-num">3</div>
+          <div>
+            <div class="connect-title">Join the Community</div>
+            <div class="connect-desc">Introduce yourself.</div>
+          </div>
+        </a>
+        <a class="connect-step" href="#attend">
+          <div class="connect-num">4</div>
+          <div>
+            <div class="connect-title">Attend</div>
+            <div class="connect-desc">Chart Clarity, study sessions, and live sessions.</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="parts-preview">
+  <div class="wrap">
+    <div class="parts-grid">
+      <div class="parts-box university reveal">
+        <div class="parts-icon">🎓</div>
+        <div class="parts-label">AGHF University</div>
+        <div class="parts-desc">Where you learn</div>
+      </div>
+      <div class="parts-box live reveal">
+        <div class="parts-icon">🎥</div>
+        <div class="parts-label">Live Sessions</div>
+        <div class="parts-desc">Where you watch &amp; practice</div>
+      </div>
+      <div class="parts-box discord reveal">
+        <div class="parts-icon">💬</div>
+        <div class="parts-label">Discord Access</div>
+        <div class="parts-desc">Where you connect</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 01: GET THE APPS (new first step) ═══════════════════ -->
+<section class="step-one" id="get-apps">
+  <div class="wrap">
+    <div class="step-card reveal">
+      <span class="flow-start-tag">Start Here</span>
+      <div class="flow-num-row"><span class="flow-num">01</span></div>
+      <div class="flow-icon">📲</div>
+      <div class="flow-kicker">Get Set Up</div>
+      <h2>Grab both apps first.</h2>
+      <p>AGHF University lives across two apps: Whop for your courses and content, Discord for the community. Download both now (if you don't have them already) so nothing gets missed.</p>
+      <div class="app-grid">
+        <div class="app-card">
+          <img src="whop-logo.webp" alt="Whop" class="app-icon-tile whop">
+          <div class="app-name">Whop</div>
+          <div class="app-desc">Your courses, resources &amp; account</div>
+          <div class="app-links">
+            <a href="https://apps.apple.com/us/app/whop/id1600181492" class="app-btn">App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.whop.whopapp&hl=en_US" class="app-btn">Google Play</a>
+          </div>
+        </div>
+        <div class="app-card">
+          <img src="discord-logo.webp" alt="Discord" class="app-icon-tile discord">
+          <div class="app-name">Discord</div>
+          <div class="app-desc">The community, live chat &amp; support</div>
+          <div class="app-links">
+            <a href="https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746" class="app-btn">App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.discord&hl=en_US&pli=1" class="app-btn">Google Play</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 02: AGHF UNIVERSITY (dominant) ═══════════════════ -->
+<section class="step-one" id="learn">
+  <div class="wrap">
+    <div class="step-card reveal">
+      <div class="flow-num-row"><span class="flow-num">02</span></div>
+      <div class="flow-icon">🎓</div>
+      <div class="flow-kicker">AGHF University</div>
+      <h2>This is your learning path.</h2>
+      <p>AGHF University is where the full Dayli Method lives, the same step-by-step curriculum included in the Bundle. Work through it in order, start to finish.</p>
+      <div class="shot-wrap">
+        <img src="proof/university-lesson.jpg" alt="Inside AGHF University: the lesson library and video player where your full curriculum lives" loading="lazy">
+        <div class="shot-caption">A peek inside AGHF University, where your full curriculum lives.</div>
+      </div>
+      <div class="step-includes">
+        <div class="step-include"><span>✓</span>Full Dayli ICC Method curriculum</div>
+        <div class="step-include"><span>✓</span>Step-by-step lesson phases</div>
+        <div class="step-include"><span>✓</span>Getting Started Roadmap</div>
+        <div class="step-include"><span>✓</span>Free Resources &amp; setup guides</div>
+      </div>
+      <a href="https://whop.com/agirlherfutures/exp_mYGEajHXcAMNqA/app/" class="btn-primary big">Start AGHF University →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 03: LIVE TRADING SESSIONS + REPLAYS (secondary) ═══════════════════ -->
+<section class="live-section" id="attend">
+  <div class="wrap">
+    <div class="live-card reveal">
+      <div class="flow-num-row"><span class="flow-num">03</span></div>
+      <div class="flow-icon" style="font-size:1.8rem;">🎥</div>
+      <div class="flow-kicker">Live Sessions + Replays</div>
+      <h2>This is where you watch it happen live.</h2>
+      <p>Live trading sessions every week with Dayli, plus replays if you can't make it live. Come watch the method applied in real time on real charts.</p>
+      <div class="shot-wrap">
+        <img src="proof/premium-live-session.png" alt="A live AGHF trading session with Dayli marking up a chart with the Dayli ICC Method in real time" loading="lazy">
+        <div class="shot-caption">A real live trading breakdown with Dayli.</div>
+      </div>
+      <p class="live-note">Can't make it live? Replays are always available afterward, so you never miss a session.</p>
+      <a href="https://discord.com/channels/1475623879287247021/1485686981882023946" class="btn-secondary">See Live Sessions &amp; Replays →</a>
+      <p class="live-note" style="margin-top:14px;">Replays live inside Discord, so you'll need to join the AGHF Discord first to open this link.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 04: AGHF DISCORD (community, comes last) ═══════════════════ -->
+<section class="discord-section" id="connect">
+  <div class="wrap">
+    <div class="discord-card reveal">
+      <div class="flow-num-row"><span class="flow-num">04</span></div>
+      <div class="flow-icon">💬</div>
+      <div class="flow-kicker" style="color:var(--pink);">Discord Access</div>
+      <h2>This is your community.</h2>
+      <p>As a University student, you get full access to the Discord: daily breakdowns, direct access to Dayli, and a community that's actually active. Ask questions, talk charts, and stay in the loop.</p>
+      <div class="shot-wrap">
+        <img src="proof/discord-channel.jpg" alt="AGHF Discord showing a real daily breakdown post from Dayli" loading="lazy">
+        <div class="shot-caption">A peek inside the Discord: daily breakdowns, straight from Dayli.</div>
+      </div>
+
+      <div class="connect-steps">
+        <div class="connect-step">
+          <div class="connect-num">1</div>
+          <div>
+            <div class="connect-title">Check Your Whop Sidebar</div>
+            <div class="connect-desc">Look for the ✨ AG&amp;HF Premium Membership ✨ Discord experience in your sidebar.</div>
+          </div>
+        </div>
+        <div class="connect-step">
+          <div class="connect-num">2</div>
+          <div>
+            <div class="connect-title">Connect Your Discord</div>
+            <div class="connect-desc">If your Discord isn't connected yet, Whop will prompt you to link it and authorize access.</div>
+          </div>
+        </div>
+        <div class="connect-step">
+          <div class="connect-num">3</div>
+          <div>
+            <div class="connect-title">Enter the Paid Channels</div>
+            <div class="connect-desc">Once connected, you'll automatically receive the paid member role and unlock the University channels, plus everything already included in the Free Community.</div>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://whop.com/agirlherfutures/exp_ebMLcs1G5y4KXX/app/" class="btn-primary" style="background:linear-gradient(100deg, var(--pink), var(--peach)); box-shadow:0 10px 30px rgba(244,130,154,.35);">Join the AGHF Discord →</a>
+      <div class="trouble-note"><strong>Having trouble?</strong> Try disconnecting and reconnecting your Discord through Whop first. Still no paid channels? Head to the Member Help chat and we'll get you taken care of.</div>
+
+      <div class="section-head" style="margin-top:40px;margin-bottom:8px;">
+        <h2 style="font-size:1.15rem;">AGHF Discord Tour</h2>
+      </div>
+      <div class="channel-grid">
+        <div class="channel-card">
+          <div class="channel-title">🎓 AGHF University</div>
+          <div class="channel-desc">The full Dayli Method, step by step.</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-title">🗺️ University Roadmap</div>
+          <div class="channel-desc">Your University getting-started guide.</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-title">🎥 ICC Live Replays</div>
+          <div class="channel-desc">Missed a session? Watch it here anytime.</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-title">📊 Daily ICC Breakdowns</div>
+          <div class="channel-desc">Real ICC trade examples &amp; structure shifts.</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-title">💬 Daily ICC Only Chat</div>
+          <div class="channel-desc">University-only chat for ICC talk.</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-title">📌 Common Questions</div>
+          <div class="channel-desc">A growing library of frequent answers.</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-title">🧠 Trader Mindset</div>
+          <div class="channel-desc">Psychology, discipline &amp; mindset work.</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-title">🫧 Consolidation Zone</div>
+          <div class="channel-desc">Our chill weekend &amp; after-session chat.</div>
+        </div>
+        <div class="channel-card" style="grid-column:1 / -1;text-align:center;">
+          <div class="channel-title">✨ Chart Clarity</div>
+          <div class="channel-desc">Charts, feedback &amp; structure conversations.</div>
+        </div>
+      </div>
+      <p style="text-align:center;font-weight:700;color:var(--dark);font-size:.9rem;margin:18px 0 10px;">Plus everything included in the Free Community ✓</p>
+      <p style="text-align:center;color:var(--muted);font-size:.82rem;max-width:520px;margin:0 auto;">Introduce Yourself, AGHF Announcements, AGHF University, Trade Preview, Chart Talk, Q&amp;A, Upgrade Your Access, AGHF Wins, Bible Study &amp; Study Lounge.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ WHERE DO I GO ═══════════════════ -->
+<section class="where-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Quick reference</span>
+      <h2>Where do <em>I go?</em></h2>
+    </div>
+    <table class="where-table">
+      <thead>
+        <tr><th>If you want to...</th><th>Go here</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Learn the full Dayli Method</td><td><span class="where-tag university">🎓 AGHF University</span></td></tr>
+        <tr><td>Take a course or lesson</td><td><span class="where-tag university">🎓 AGHF University</span></td></tr>
+        <tr><td>Find a setup guide or resource</td><td><span class="where-tag university">🎓 AGHF University</span></td></tr>
+        <tr><td>Watch a live session</td><td><span class="where-tag live">🎥 Live Sessions</span></td></tr>
+        <tr><td>Catch a replay you missed</td><td><span class="where-tag live">🎥 Live Sessions</span></td></tr>
+        <tr><td>Ask the community a question</td><td><span class="where-tag discord">💬 Discord</span></td></tr>
+        <tr><td>Talk charts with other members</td><td><span class="where-tag discord">💬 Discord</span></td></tr>
+        <tr><td>Get direct access to Dayli</td><td><span class="where-tag discord">💬 Discord</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════ TAGLINE ═══════════════════ -->
+<section class="tagline-section">
+  <div class="wrap">
+    <p class="tagline-banner">Learn in <em>University</em>. Watch <em>Live</em>. Connect in <span class="accent-pink">Discord</span>. That's AGHF University. ✨</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ HAVE A QUESTION ═══════════════════ -->
+<section class="help-section">
+  <div class="wrap">
+    <div class="help-card reveal">
+      <div class="help-icon">💌</div>
+      <div class="help-title">Have a question along the way?</div>
+      <p>Send Dayli a message right inside AGHF University, or drop it in Discord. Either way, a real person reads it and answers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ READY FOR THE BUNDLE ═══════════════════ -->
+<div class="mesh">
+  <section class="grow-section">
+    <div class="grow-card reveal">
+      <div class="grow-kicker">✦ When you're ready ✦</div>
+      <h2>Ready to go <em style="font-style:italic;color:var(--pink);">even deeper?</em></h2>
+      <p>The Bundle adds the Dayli ICC Indicator marking up your charts live, plus AG&amp;HF Academy access the moment it launches, on top of everything you already have in AGHF University.</p>
+      <a href="/university-bundle" class="btn-primary" style="background:linear-gradient(100deg, var(--pink), var(--peach)); box-shadow:0 10px 30px rgba(244,130,154,.35);">Explore the Bundle →</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="founder">
+        <img src="proof/dayli-scott.jpg" alt="Dayli Scott" class="founder-avatar">
+        <div class="founder-text">
+          <div class="founder-name">Dayli Scott</div>
+          <div class="founder-role">Founder, A Girl &amp; Her Futures</div>
+        </div>
+      </div>
+      <p>a girl & her futures · @dayliscott · @agirlherfutures</p>
+      <p class="legal">Trading involves risk. Results are not guaranteed. Educational purposes only.</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+  if('IntersectionObserver' in window){
+    document.documentElement.classList.add('js-reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold:.12 });
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  }
+</script>
+</body>
+</html>

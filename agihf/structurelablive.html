@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Girl & Her Futures: Structure Lab LIVE™ Replay</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,900;1,500;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#F4829A; --pink-light:#F9B8C6; --pink-pale:#FDE8ED;
+    --teal:#7ECEC4; --teal-light:#B2E4DF; --teal-pale:#E8F8F6;
+    --peach:#F5A857; --peach-light:#FAD09A; --peach-pale:#FEF3E4;
+    --cream:#FDF8F5; --warm:#FFFBF9;
+    --dark:#2C1810; --text:#3D2B20; --muted:#7A5C50;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:90px;}
+  body{ margin:0; background:var(--cream); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,.logo{ font-family:'Playfair Display',serif; font-style:italic; color:var(--dark); margin:0; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+  a{ color:inherit; }
+
+  .mesh{
+    position:relative; overflow:hidden;
+    background:
+      radial-gradient(60% 50% at 15% 10%, var(--peach-pale) 0%, transparent 70%),
+      radial-gradient(50% 45% at 90% 20%, var(--pink-pale) 0%, transparent 70%),
+      radial-gradient(55% 50% at 50% 100%, var(--teal-pale) 0%, transparent 70%),
+      var(--warm);
+  }
+
+  .nav-bar{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,251,249,.9); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    box-shadow:0 1px 0 rgba(44,24,16,.06);
+  }
+  nav{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; row-gap:12px; padding:22px 24px; max-width:1080px; margin:0 auto; }
+  .logo-img{ display:block; height:44px; width:auto; }
+  .nav-links{ display:flex; align-items:center; gap:22px; min-width:0; }
+  .nav-scroll{ display:flex; align-items:center; gap:22px; }
+  .nav-scroll a{ text-decoration:none; font-weight:600; font-size:.88rem; color:var(--text); white-space:nowrap; }
+  .nav-cta{
+    background:#fff; color:var(--dark); text-decoration:none; font-weight:700; font-size:.85rem;
+    padding:10px 20px; border-radius:100px; white-space:nowrap; border:1.5px solid #EEE0D8;
+  }
+  .nav-toggle{
+    display:none; flex-direction:column; justify-content:center; align-items:center; gap:5px;
+    width:40px; height:40px; padding:0; border:1.5px solid #EEE0D8; border-radius:10px;
+    background:#fff; cursor:pointer; flex-shrink:0;
+  }
+  .nav-toggle span{ display:block; width:18px; height:2px; background:var(--dark); border-radius:2px; transition:transform .2s ease, opacity .2s ease; }
+  .nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2){ opacity:0; }
+  .nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  @media (max-width:840px){
+    nav{ flex-wrap:nowrap; padding:16px 18px; position:relative; }
+    .logo-img{ height:34px; }
+    .nav-toggle{ display:flex; }
+    .nav-links{
+      display:none; position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; align-items:stretch; gap:0;
+      background:#fff; padding:8px 18px 18px; margin:0;
+      box-shadow:0 16px 34px rgba(44,24,16,.14); border-top:1px solid #F3E9E2;
+    }
+    .nav-links.open{ display:flex; }
+    .nav-scroll{
+      flex-direction:column; align-items:stretch; gap:0;
+      overflow-x:visible; margin:0; padding:0;
+    }
+    .nav-scroll a{
+      flex-shrink:0; font-size:.92rem; background:none;
+      border:none; border-bottom:1px solid #F6ECE6; border-radius:0; padding:14px 4px;
+    }
+    .nav-scroll a:last-child{ border-bottom:none; }
+    .nav-cta{ margin-top:14px; text-align:center; }
+  }
+
+  .hero{ padding:20px 24px 50px; text-align:center; }
+  .eyebrow{
+    display:inline-block; background:#fff; border:1px solid var(--peach-light);
+    color:var(--peach); font-weight:700; font-size:.72rem; letter-spacing:.08em;
+    text-transform:uppercase; padding:7px 16px; border-radius:100px; margin-bottom:20px;
+    box-shadow:0 4px 14px rgba(245,168,87,.15);
+  }
+  .hero h1{ font-size:clamp(2rem, 4.4vw, 3.1rem); font-weight:600; line-height:1.18; max-width:700px; margin:0 auto; }
+  .hero h1 em{ font-style:italic; background:linear-gradient(100deg, var(--peach), var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p{ max-width:520px; margin:20px auto 0; color:var(--muted); font-size:1.05rem; }
+  .hero-price{ font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:700; color:var(--dark); margin-top:22px; }
+  .hero-price span{ font-size:1rem; font-weight:500; color:var(--muted); font-family:'DM Sans',sans-serif; font-style:normal; }
+  .hero-ctas{ display:flex; gap:14px; margin-top:22px; flex-wrap:wrap; justify-content:center; }
+  .btn-primary{
+    background:linear-gradient(100deg, var(--peach), #E8934A); color:#fff;
+    font-weight:700; font-size:1rem; padding:16px 34px; border-radius:100px;
+    text-decoration:none; box-shadow:0 10px 30px rgba(245,168,87,.35);
+    border:none; cursor:pointer; display:inline-block;
+  }
+  .btn-ghost{
+    background:#fff; color:var(--text); font-weight:600; font-size:1rem;
+    padding:16px 30px; border-radius:100px; text-decoration:none; border:1px solid #EEE0D8;
+  }
+  .microcopy{ margin-top:16px; font-size:.82rem; color:var(--muted); }
+
+  .js-reveal .reveal{ opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+  .js-reveal .reveal.visible{ opacity:1; transform:translateY(0); }
+
+  .section-head{ text-align:center; margin-bottom:36px; }
+  .section-head h2{ font-size:clamp(1.5rem,4vw,2.1rem); }
+  .section-head p{ color:var(--muted); margin-top:10px; }
+
+  /* topics covered */
+  .topics{ padding:20px 24px 56px; }
+  .topic-grid{ display:flex; flex-wrap:wrap; justify-content:center; gap:12px; max-width:780px; margin:0 auto; }
+  .topic-pill{
+    background:#fff; border:1.5px solid var(--peach-light); border-radius:100px;
+    padding:11px 20px; font-size:.88rem; font-weight:600; color:var(--text);
+    display:flex; align-items:center; gap:8px; box-shadow:0 6px 16px rgba(44,24,16,.05);
+  }
+
+  /* included */
+  .included{ padding:20px 24px 60px; background:linear-gradient(180deg,var(--peach-pale) 0%, var(--cream) 100%); }
+  .inc-grid{ display:flex; flex-wrap:wrap; justify-content:center; gap:18px; max-width:820px; margin:0 auto; }
+  .inc-card{ background:#fff; border-radius:20px; padding:22px; box-shadow:0 12px 28px rgba(44,24,16,.06); border:1.5px solid var(--pink-light); text-align:center; flex:0 1 220px; }
+  .inc-card:nth-child(2){ border-color:var(--teal-light); }
+  .inc-card:nth-child(3){ border-color:var(--peach-light); }
+  .inc-card:nth-child(4){ border-color:var(--pink-light); }
+  .inc-card:nth-child(5){ border-color:var(--teal-light); }
+  .inc-card .ic{ font-size:1.6rem; margin-bottom:10px; }
+  .inc-card h3{ font-size:.96rem; font-style:normal; font-weight:700; font-family:'DM Sans',sans-serif; color:var(--dark); }
+
+  /* class preview gallery */
+  .gallery{ padding:56px 24px 60px; }
+  .gallery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; max-width:980px; margin:0 auto; }
+  .gallery-card{ background:#fff; border-radius:20px; padding:12px; box-shadow:0 14px 34px rgba(44,24,16,.08); border:1.5px solid var(--peach-light); }
+  .gallery-card:nth-child(2){ border-color:var(--pink-light); }
+  .gallery-card:nth-child(3){ border-color:var(--teal-light); }
+  .gallery-img{ width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:12px; display:block; }
+  .gallery-cap{ text-align:center; font-size:.8rem; font-weight:600; color:var(--muted); margin-top:10px; }
+  @media (max-width:760px){ .gallery-grid{ grid-template-columns:1fr; max-width:420px; } }
+
+  /* pull quote */
+  .goal{ padding:10px 24px 70px; text-align:center; }
+  .goal-quote{ max-width:640px; margin:0 auto; font-family:'Playfair Display',serif; font-style:italic; font-size:1.3rem; color:var(--dark); line-height:1.55; }
+
+  /* proof */
+  .proof{ background:linear-gradient(180deg,var(--pink-pale) 0%, var(--cream) 100%); padding:48px 24px; }
+  .proof-stats{ display:flex; justify-content:center; gap:60px; flex-wrap:wrap; margin-bottom:36px; text-align:center; }
+  .proof-stat .num{ font-family:'Playfair Display',serif; font-size:2.1rem; font-weight:700; color:var(--dark); }
+  .proof-stat .label{ font-size:.8rem; color:var(--muted); margin-top:2px; }
+  .testimonials{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .testimonial{ background:#fff; border-radius:20px; padding:24px; box-shadow:0 12px 30px rgba(44,24,16,.06); border:1.5px solid var(--pink-light); }
+  .testimonial:nth-child(2){ border-color:var(--teal-light); }
+  .testimonial:nth-child(3){ border-color:var(--peach-light); }
+  .testimonial .stars{ color:#EFB81C; letter-spacing:2px; font-size:.8rem; margin-bottom:10px; }
+  .testimonial p{ font-size:.88rem; color:var(--text); margin:0 0 18px; }
+  .t-author{ display:flex; align-items:center; gap:10px; }
+  .t-avatar{ width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.75rem; color:#fff; flex-shrink:0; }
+  .t-name{ font-weight:700; font-size:.84rem; color:var(--dark); }
+  .t-handle{ font-size:.76rem; color:var(--muted); }
+  @media (max-width:760px){ .testimonials{ grid-template-columns:1fr; } .proof-stats{ gap:34px; } }
+
+  /* investment / purchase */
+  .invest{ padding:20px 24px 70px; }
+  .invest-card{
+    max-width:600px; margin:0 auto; background:#fff; border-radius:28px; padding:44px 40px;
+    box-shadow:0 20px 50px rgba(44,24,16,.08); text-align:center; border:1.5px solid var(--peach-light);
+  }
+  .invest-kicker{ font-weight:700; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--peach); margin-bottom:10px; }
+  .invest-price{ font-family:'Playfair Display',serif; font-size:2.8rem; font-weight:700; color:var(--dark); margin:6px 0 20px; }
+  .invest-note{
+    margin-top:24px; padding:16px 18px; background:var(--warm); border-radius:14px;
+    font-size:.76rem; color:var(--muted); line-height:1.6; text-align:left;
+  }
+  .invest-note strong{ color:var(--text); }
+
+  /* founder */
+  .about-founder{ background:var(--cream); padding:56px 24px; }
+  .about-founder-inner{ max-width:740px; margin:0 auto; display:flex; align-items:center; gap:34px; }
+  .about-founder-photo{ width:110px; height:110px; border-radius:50%; object-fit:cover; flex-shrink:0; border:3px solid #fff; box-shadow:0 12px 28px rgba(44,24,16,.14); }
+  .about-founder-kicker{ font-weight:700; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--peach); margin:0 0 8px; }
+  .about-founder-bio{ font-size:1rem; color:var(--text); line-height:1.65; margin:0 0 8px; }
+  .about-founder-handle{ font-size:.82rem; color:var(--muted); margin:0; }
+  @media (max-width:600px){ .about-founder-inner{ flex-direction:column; text-align:center; gap:18px; } }
+
+  /* faq */
+  .faq{ padding:20px 24px 70px; }
+  .faq-list{ max-width:680px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
+  .faq-item{ background:#fff; border-radius:16px; padding:18px 22px; border:1px solid #F3E9E2; }
+  .faq-item summary{ cursor:pointer; font-weight:700; font-size:.96rem; list-style:none; display:flex; justify-content:space-between; align-items:center; }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary::after{ content:"+"; font-size:1.3rem; color:var(--peach); font-weight:400; margin-left:12px; }
+  .faq-item[open] summary::after{ content:"−"; }
+  .faq-item p{ margin:14px 0 0; color:var(--muted); font-size:.9rem; }
+
+  /* final cta + footer */
+  .final-cta{ padding:70px 24px 30px; text-align:center; }
+  .fc-inner{ max-width:620px; margin:0 auto; }
+  .final-cta h2{ font-size:clamp(1.8rem,5vw,2.6rem); margin-bottom:16px; }
+  .final-cta h2 em{ font-style:italic; color:var(--peach); }
+  .final-cta p{ color:var(--muted); max-width:480px; margin:0 auto 32px; }
+  .final-cta .cta-buttons{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  footer{ padding:30px 24px 60px; text-align:center; }
+  footer .wrap p{ font-size:.82rem; color:var(--muted); margin:6px 0; }
+  footer .wrap p.legal{ font-size:.72rem; color:#B7A59A; max-width:560px; margin:14px auto 0; }
+  .founder{ display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:20px; flex-wrap:wrap; }
+  .founder-avatar{ width:54px; height:54px; border-radius:50%; object-fit:cover; flex-shrink:0; }
+  .founder-text{ text-align:left; }
+  .founder-name{ font-weight:700; color:var(--dark); font-size:.9rem; }
+  .founder-role{ font-size:.78rem; color:var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+  <nav>
+    <img src="logo.png" alt="A Girl & Her Futures" class="logo-img">
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <div class="nav-scroll">
+        <a href="#included">What's Included</a>
+        <a href="#gallery">Class Preview</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a href="/university-bundle" class="nav-cta">See the Bundle →</a>
+    </div>
+  </nav>
+</div>
+
+<div class="mesh">
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">👑 Structure Lab LIVE™ Replay</span>
+      <h1>Ready to finally <em>understand the charts</em> the Dayli way?</h1>
+      <p>Get instant access to all three Structure Lab LIVE™ sessions and learn the Dayli ICC Method™ at your own pace.</p>
+      <div class="hero-price">$99<span> one-time</span></div>
+      <div class="hero-ctas">
+        <a href="https://whop.com/agirlherfutures/ag-hf-structure-lab-copy/" class="btn-primary">Get Instant Access →</a>
+        <a href="#included" class="btn-ghost">See what's inside</a>
+      </div>
+      <p class="microcopy">Lifetime replay access. Watch at your own pace, no login required to any other AGHF product.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════ TOPICS COVERED ═══════════════════ -->
+<section class="topics">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Inside, we'll <em>cover</em></h2>
+    </div>
+    <div class="topic-grid">
+      <div class="topic-pill reveal">🫧 Market Structure</div>
+      <div class="topic-pill reveal">🫧 Higher Time Frame Bias</div>
+      <div class="topic-pill reveal">🫧 Liquidity</div>
+      <div class="topic-pill reveal">🫧 Dayli ICC Method™ (Indication, Correction & Continuation)</div>
+      <div class="topic-pill reveal">🫧 Entries & Execution</div>
+      <div class="topic-pill reveal">🫧 Risk Management</div>
+      <div class="topic-pill reveal">🫧 Trading Psychology</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ WHAT'S INCLUDED ═══════════════════ -->
+<section class="included" id="included">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What's <em>included</em></h2>
+    </div>
+    <div class="inc-grid">
+      <div class="inc-card reveal"><div class="ic">✨</div><h3>3 Full Session Recordings</h3></div>
+      <div class="inc-card reveal"><div class="ic">✨</div><h3>Session Worksheets</h3></div>
+      <div class="inc-card reveal"><div class="ic">✨</div><h3>Real Chart Breakdowns</h3></div>
+      <div class="inc-card reveal"><div class="ic">✨</div><h3>Trading Psychology Lessons</h3></div>
+      <div class="inc-card reveal"><div class="ic">✨</div><h3>Lifetime Replay Access</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CLASS PREVIEW ═══════════════════ -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>A peek <em>inside</em></h2>
+      <p>Real slides and real chart breakdowns from the actual sessions.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-card reveal">
+        <img src="proof/sll-liquidity.jpg" alt="Structure Lab LIVE slide explaining what liquidity is" class="gallery-img">
+        <p class="gallery-cap">Concept breakdowns, slide by slide</p>
+      </div>
+      <div class="gallery-card reveal">
+        <img src="proof/sll-chart.jpg" alt="Live TradingView chart breakdown during Structure Lab LIVE" class="gallery-img">
+        <p class="gallery-cap">Real charts, marked up live</p>
+      </div>
+      <div class="gallery-card reveal">
+        <img src="proof/sll-live.jpg" alt="Dayli teaching live during a Structure Lab LIVE session" class="gallery-img" style="object-position:50% 20%;">
+        <p class="gallery-cap">Recorded from a real live class with Dayli</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ GOAL ═══════════════════ -->
+<section class="goal">
+  <p class="goal-quote reveal">"The goal is to help you understand what you're looking at, build confidence in your analysis trading the Dayli ICC Method, and make market structure finally click."</p>
+</section>
+
+<!-- ═══════════════════ PROOF ═══════════════════ -->
+<section class="proof" id="reviews">
+  <div class="wrap">
+    <div class="proof-stats">
+      <div class="proof-stat reveal">
+        <div class="num">2,300+</div>
+        <div class="label">traders in the community</div>
+      </div>
+      <div class="proof-stat reveal">
+        <div class="num">3</div>
+        <div class="label">full sessions, lifetime access</div>
+      </div>
+      <div class="proof-stat reveal">
+        <div class="num">4.93★</div>
+        <div class="label">average rating (41 Whop reviews)</div>
+      </div>
+    </div>
+    <div class="testimonials">
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p>"I wasn't new to trading, but I was new to consistently profiting and taking payouts thanks to the Dayli ICC strategy."</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:linear-gradient(135deg,var(--pink),var(--peach));">A</div>
+          <div>
+            <div class="t-name">Angel</div>
+            <div class="t-handle">@mrsaharrison2016 · Whop review</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p>"I am on my way to passing my eval using her method and discord. I highly recommend everyone to try the membership at least for a month to see if you'd enjoy it."</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:linear-gradient(135deg,var(--teal),var(--teal-light));">H</div>
+          <div>
+            <div class="t-name">Hailey</div>
+            <div class="t-handle">@haileysinchi · Whop review</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Since joining, I finally feel like I have structure and confidence in my trading. I've had more consistency, more profitable days, and more discipline than I've had since I started trading over a year ago."</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:linear-gradient(135deg,var(--peach),var(--peach-light));">BC</div>
+          <div>
+            <div class="t-name">Bella Coleman</div>
+            <div class="t-handle">@bellanicol · Whop review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="https://www.whop.com/agirlherfutures/reviews/" class="btn-ghost" style="display:block; width:fit-content; margin:34px auto 0; padding:12px 22px; font-size:.88rem;">Check out our reviews on Whop →</a>
+  </div>
+</section>
+
+<!-- ═══════════════════ INVESTMENT / PURCHASE ═══════════════════ -->
+<section class="invest">
+  <div class="invest-card reveal">
+    <div class="invest-kicker">💗 Investment</div>
+    <div class="invest-price">$99</div>
+    <a href="https://whop.com/agirlherfutures/ag-hf-structure-lab-copy/" class="btn-primary">Get Instant Access →</a>
+    <div class="invest-note">
+      <strong>⚠️ Disclaimer:</strong> The information provided within A Girl & Her Futures™ is intended for educational purposes only and does not provide financial, investment, or trading advice. All trading involves risk, and you are solely responsible for your own trading decisions and results.
+      <br><br>
+      Due to the nature of this digital product, all sales are final.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ABOUT THE FOUNDER ═══════════════════ -->
+<section class="about-founder">
+  <div class="about-founder-inner">
+    <img src="proof/dayli-scott.jpg" alt="Dayli Scott, founder of A Girl & Her Futures" class="about-founder-photo reveal">
+    <div class="reveal">
+      <p class="about-founder-kicker">✦ Who's behind this ✦</p>
+      <p class="about-founder-bio"><strong>I'm Dayli</strong>, the trader behind the Dayli Method &amp; creator of AGHF. Structure Lab LIVE was recorded to do one thing: make market structure finally click, at your own pace.</p>
+      <p class="about-founder-handle">@dayliscott · @agirlherfutures</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Quick <em>questions?</em></h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Do I need to already be an AGHF University or Bundle member?</summary>
+        <p>No. Structure Lab LIVE™ Replay Access is a standalone, one-time purchase, open to anyone. No other membership required.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is this a subscription?</summary>
+        <p>No, it's a one-time $99 payment for lifetime access to all three session recordings and materials.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How long do I have access?</summary>
+        <p>Lifetime. Watch the sessions as many times as you want, whenever you want.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I get a refund?</summary>
+        <p>Due to the nature of this digital product, all sales are final.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FINAL CTA + FOOTER ═══════════════════ -->
+<div class="mesh">
+  <section class="final-cta">
+    <div class="wrap fc-inner">
+      <h2>Make market structure <em>finally click.</em> ✦</h2>
+      <p>Three full sessions, real chart breakdowns, and lifetime access, for a one-time $99.</p>
+      <div class="cta-buttons reveal">
+        <a href="https://whop.com/agirlherfutures/ag-hf-structure-lab-copy/" class="btn-primary">Get Instant Access →</a>
+        <a href="/university-bundle" class="btn-ghost">See the Bundle instead</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="founder">
+        <img src="proof/dayli-scott.jpg" alt="Dayli Scott" class="founder-avatar">
+        <div class="founder-text">
+          <div class="founder-name">Dayli Scott</div>
+          <div class="founder-role">Founder, A Girl &amp; Her Futures</div>
+        </div>
+      </div>
+      <p>a girl & her futures · @dayliscott · @agirlherfutures</p>
+      <p class="legal">Trading involves risk. Results are not guaranteed. Educational purposes only. Due to the nature of this digital product, all sales are final.</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    const btn = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    if(!btn || !links) return;
+    btn.addEventListener('click', () => {
+      const isOpen = links.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      links.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }));
+  })();
+
+  if('IntersectionObserver' in window){
+    document.documentElement.classList.add('js-reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold:.12 });
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  }
+</script>
+</body>
+</html>
