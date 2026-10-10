@@ -311,7 +311,31 @@
       // run() succeeds or fails). processLock is Supabase's own in-memory,
       // single-tab lock — this app never needs cross-tab coordination, so
       // it removes the hang entirely instead of working around it.
+      // Arriving from a one-time sign-in link (Whop login → Supabase magic link): the new
+      // session's tokens are in the URL hash. If this browser was already signed in as someone
+      // else, the library keeps that older session and drops the new one, so take the tokens
+      // ourselves, clear them from the address bar, and install the new session explicitly.
+      const fromLink = new URLSearchParams(location.hash.slice(1));
+      const linkTokens = fromLink.get('access_token') && fromLink.get('refresh_token')
+        ? { access_token: fromLink.get('access_token'), refresh_token: fromLink.get('refresh_token') }
+        : null;
+      const linkError = fromLink.get('error_description') || fromLink.get('error');
+      if (linkTokens || linkError) history.replaceState(null, '', location.pathname + location.search);
+
       const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { lock: processLock } });
+      if (linkError) {
+        // e.g. the sign-in link expired or was already used: start the sign-in again.
+        window.location.href = `${ROOT}login.html?whop=expired`;
+        return;
+      }
+      if (linkTokens) {
+        logStep('Signing in from link…');
+        const { error: linkErr } = await withTimeout(supabaseClient.auth.setSession(linkTokens), 10000, 'Timed out finishing sign-in');
+        if (linkErr) {
+          window.location.href = `${ROOT}login.html?whop=expired`;
+          return;
+        }
+      }
       logStep('Calling getSession()…');
       const { data: { session }, error } = await withTimeout(
         supabaseClient.auth.getSession(),
