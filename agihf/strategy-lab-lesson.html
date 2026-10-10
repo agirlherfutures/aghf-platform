@@ -117,6 +117,9 @@
       return;
     }
 
+    // Hosted intro video (shared/lesson-videos.js), unless the lesson sets its own.
+    if (!tool) { try { const { videoFor } = await import('./shared/lesson-videos.js'); data.videoUrl = data.videoUrl || videoFor(`sl-${id}`); } catch { /* no video: keep the coming-soon card */ } }
+
     // Header.
     document.getElementById('lhCrumb').textContent = tool ? 'Strategy 2 · Practice' : `Strategy 2 · Module ${item.module.n} · ${item.module.title}`;
     document.getElementById('lhTitle').textContent = item.title;
