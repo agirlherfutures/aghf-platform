@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign In — A Girl & Her Futures</title>
+<script>
+  // Preview link: login.html?preview=1 opens the platform in Preview Mode (sample data,
+  // nothing saved) for this tab. login.html?preview=off turns it back off.
+  (function () {
+    var p = new URLSearchParams(location.search).get('preview');
+    try {
+      if (p === '1') { sessionStorage.setItem('aghf_demo', '1'); location.replace('dashboard.html'); }
+      else if (p === 'off') { sessionStorage.removeItem('aghf_demo'); }
+    } catch (e) { /* storage blocked: stay on the sign-in page */ }
+  })();
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/tokens.css">
 <style>
