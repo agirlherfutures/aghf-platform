@@ -9,6 +9,11 @@
  * video picks it up.
  */
 import { videoPlayerHtml, wireVideoPlayer } from './loop-engine.js';
+import { VIDEO_BASE } from './lesson-videos.js';
+
+// Videos uploaded to the lesson-videos bucket (<slug>.mp4). A video's own `url` below always wins.
+const HOSTED = new Set([]);
+const hosted = (slug) => (HOSTED.has(slug) ? `${VIDEO_BASE}${slug}.mp4` : null);
 
 export const PSYCH_VIDEOS = {
   1: { title: 'Why Trading Psychology Matters', tagline: 'Why am I doing things I know I shouldn’t do?', rule: 'My emotions are information, not instructions.', url: null },
@@ -26,6 +31,13 @@ export const PSYCH_VIDEOS = {
   13: { title: 'Building Confidence Through Data', tagline: '“Do I Actually Trust My Setup?”', rule: 'I build confidence through evidence, not emotion.', url: null },
   14: { title: 'Your Trading Routine', tagline: '“What Happens Before, During & After I Trade?”', rule: 'I follow a process before, during, and after every trading session.', url: null },
   15: { title: 'Build Your Trading Rules', tagline: '“What Kind of Trader Am I Going to Be?”', rule: 'I don’t rely on how I feel to decide how I trade. I rely on the rules I created when I was thinking clearly.', url: null },
+};
+
+for (const [n, v] of Object.entries(PSYCH_VIDEOS)) v.url = v.url || hosted(`p7-psych-${n}`);
+
+// A lesson's own video, shown first with the lesson's psychology video beside it.
+export const P7_LESSON_VIDEOS = {
+  1: { title: 'The Moment Between', url: hosted('p7-lesson-1') },
 };
 
 // Phase 7 is one journey in three parts.
@@ -123,7 +135,15 @@ export function renderP7Learn(slide, data, satisfy) {
 
   let body = '';
   let cta = 'Continue';
-  if (learn.mode === 'video') {
+  const lead = learn.mode === 'video' && P7_LESSON_VIDEOS[data.lessonNumber]?.url ? P7_LESSON_VIDEOS[data.lessonNumber] : null;
+  if (lead) {
+    body = `<div class="p7-videos is-pair">
+      <div class="p7-video">
+        <div class="lw-video-block p7-video-frame">${videoPlayerHtml(lead.url).replace('id="dlVideo"', 'id="p7Lead"')}</div>
+        <div class="p7-video-cap"><span class="p7-chip">Lesson ${data.lessonNumber}</span> ${esc(lead.title)}</div>
+      </div>${videoCardHtml(learn.video, 'p7Video', { supporting: true })}</div>`;
+    cta = '✓ Watched, Continue';
+  } else if (learn.mode === 'video') {
     body = `<div class="p7-videos${learn.also ? ' is-pair' : ''}">${videoCardHtml(learn.video, 'p7Video')}${learn.also ? videoCardHtml(learn.also, 'p7VideoAlso', { supporting: true }) : ''}</div>`;
     if (PSYCH_VIDEOS[learn.video].url) cta = '✓ Watched, Continue';
   } else if (learn.mode === 'recap') {
@@ -165,7 +185,8 @@ export function renderP7Learn(slide, data, satisfy) {
     <button type="button" class="lw-continue-btn lw-watched-btn" id="lwWatchedBtn">${cta}</button>
   `;
   slide.querySelector('#lwWatchedBtn').addEventListener('click', satisfy);
-  for (const [id, n] of [['p7Video', learn.video], ['p7VideoAlso', learn.also]]) {
+  if (lead) wireVideoPlayer(slide, lead.url, [], 'p7Lead');
+  for (const [id, n] of [['p7Video', learn.video], ['p7VideoAlso', lead ? null : learn.also]]) {
     const url = n && PSYCH_VIDEOS[n].url;
     if (url && learn.mode === 'video') wireVideoPlayer(slide, url, [], id);
   }
