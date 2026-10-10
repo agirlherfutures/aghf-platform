@@ -37,16 +37,29 @@ function setCookie(res, value, maxAge) {
   res.setHeader('Set-Cookie', `${COOKIE}=${encodeURIComponent(value)}; Path=/api/whop; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAge}`);
 }
 function go(res, url) { res.statusCode = 302; res.setHeader('Location', url); res.end(); }
-const back = (res, reason) => go(res, `${site()}/login.html?whop=${reason}`);
+// `step` says which part failed (e.g. token-400, access-403) so a screenshot of the login page
+// is enough to diagnose it. It never contains anything secret.
+const back = (res, reason, step) => go(res, `${site()}/login.html?whop=${reason}${step ? `&step=${encodeURIComponent(step)}` : ''}`);
 
 // Which plan the Whop user holds right now: 'indicator', 'academy' or null.
-async function planFor(whopUserId) {
+// Asks with the app's API key; if Whop refuses that (e.g. the app lacks permission), asks with
+// the member's own sign-in token, which Whop also accepts for checking her own access.
+async function planFor(whopUserId, userToken) {
+  const ask = (resource, token) => fetch(`${WHOP}/api/v1/users/${encodeURIComponent(whopUserId)}/access/${encodeURIComponent(resource)}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   const has = async (resource) => {
     if (!resource) return false;
-    const r = await fetch(`${WHOP}/api/v1/users/${encodeURIComponent(whopUserId)}/access/${encodeURIComponent(resource)}`, {
-      headers: { Authorization: `Bearer ${process.env.WHOP_API_KEY}` },
-    });
-    if (!r.ok) throw new Error(`Whop access check failed (${r.status})`);
+    let r = await ask(resource, process.env.WHOP_API_KEY);
+    if (!r.ok && userToken) {
+      console.error('Whop access check with API key failed', r.status, (await r.text()).slice(0, 300));
+      r = await ask(resource, userToken);
+    }
+    if (!r.ok) {
+      const err = new Error(`Whop access check failed (${r.status}): ${(await r.text()).slice(0, 300)}`);
+      err.status = r.status;
+      throw err;
+    }
     const j = await r.json();
     return !!j.has_access;
   };
@@ -75,16 +88,21 @@ async function callback(req, res) {
   if (req.query.error) return back(res, 'cancelled');
   if (!saved || !req.query.code || req.query.state !== saved.state) return back(res, 'expired');
 
-  // Code → tokens.
-  const tr = await fetch(`${WHOP}/oauth/token`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      grant_type: 'authorization_code', code: req.query.code, redirect_uri: redirectUri(),
-      client_id: process.env.WHOP_CLIENT_ID, client_secret: process.env.WHOP_CLIENT_SECRET, code_verifier: saved.verifier,
-    }),
+  // Code → tokens. Whop's examples send JSON; a form-encoded body is the OAuth standard, so try both.
+  const fields = {
+    grant_type: 'authorization_code', code: req.query.code, redirect_uri: redirectUri(),
+    client_id: process.env.WHOP_CLIENT_ID, client_secret: process.env.WHOP_CLIENT_SECRET, code_verifier: saved.verifier,
+  };
+  let tr = await fetch(`${WHOP}/oauth/token`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(fields),
   });
-  if (!tr.ok) { console.error('Whop token exchange', tr.status, await tr.text()); return back(res, 'error'); }
+  if (!tr.ok) {
+    console.error('Whop token exchange (JSON)', tr.status, (await tr.text()).slice(0, 500));
+    tr = await fetch(`${WHOP}/oauth/token`, {
+      method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' }, body: new URLSearchParams(fields),
+    });
+  }
+  if (!tr.ok) { console.error('Whop token exchange (form)', tr.status, (await tr.text()).slice(0, 500)); return back(res, 'error', `token-${tr.status}`); }
   const tokens = await tr.json();
 
   // Who is this? The ID token comes straight from Whop over TLS; the nonce ties it to this sign-in.
@@ -95,9 +113,10 @@ async function callback(req, res) {
     const ur = await fetch(`${WHOP}/oauth/userinfo`, { headers: { Authorization: `Bearer ${tokens.access_token}` } });
     if (ur.ok) who = { ...who, ...(await ur.json()) };
   }
-  if (!who.sub || !who.email) return back(res, 'error');
+  if (!who.sub || !who.email) { console.error('Whop identity missing', { hasSub: !!who.sub, hasEmail: !!who.email }); return back(res, 'error', 'identity'); }
 
-  const plan = await planFor(who.sub);
+  let plan;
+  try { plan = await planFor(who.sub, tokens.access_token); } catch (e) { console.error(e.message); return back(res, 'error', `access-${e.status || 'x'}`); }
   if (!plan) return back(res, 'no_membership');
 
   // Find or create the site account for this email, then sign them in with a one-time link.
@@ -105,11 +124,11 @@ async function callback(req, res) {
   const { error: createErr } = await supabase.auth.admin.createUser({
     email, email_confirm: true, user_metadata: { full_name: who.name || who.preferred_username || '' },
   });
-  if (createErr && !/already|registered|exists/i.test(createErr.message)) { console.error(createErr); return back(res, 'error'); }
+  if (createErr && !/already|registered|exists/i.test(createErr.message)) { console.error(createErr); return back(res, 'error', 'account'); }
   const { data: link, error: linkErr } = await supabase.auth.admin.generateLink({
     type: 'magiclink', email, options: { redirectTo: `${site()}${saved.redirect}` },
   });
-  if (linkErr || !link?.properties?.action_link) { console.error(linkErr); return back(res, 'error'); }
+  if (linkErr || !link?.properties?.action_link) { console.error(linkErr); return back(res, 'error', 'signin-link'); }
   const userId = link.user?.id;
   if (userId) {
     await supabase.auth.admin.updateUserById(userId, { app_metadata: { whop_user_id: who.sub, plan, whop_checked_at: new Date().toISOString() } });
@@ -146,6 +165,6 @@ export default async function handler(req, res) {
   } catch (err) {
     console.error('Whop auth error:', err);
     if (req.query.action === 'check') return res.status(200).json({ active: true, unverified: true });
-    back(res, 'error');
+    back(res, 'error', 'unexpected');
   }
 }
