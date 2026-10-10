@@ -51,7 +51,8 @@
     return {
       name: 'New Eval Plan', status: 'draft', isActive: false,
       accountSize: 50000, isCustomAccount: false, startingBalance: 50000,
-      profitTargetType: 'fixed_amount', drawdownType: 'static', riskMode: 'points',
+      profitTargetType: 'fixed_amount', drawdownType: 'static', riskMode: 'dollars',
+      maxTradesPerDay: 2, contractsPlanned: 1,
       stopAfterWin: false, reduceSizeAfterLoss: false, tradingDaysElapsed: 0,
     };
   }

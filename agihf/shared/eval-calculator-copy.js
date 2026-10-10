@@ -1,7 +1,7 @@
 /**
  * eval-calculator-copy.js — A Girl & Her Futures™
  *
- * Copy specific to the 3-step Eval Calculator wizard shell (step titles,
+ * Copy specific to the Eval Calculator (guided questions, presets,
  * welcome-back strings, result-card sentence templates, "See the Math"
  * plain-language labels). Kept separate from eval-copy.js — that file's
  * exports are read directly by journal.html/performance.html/
@@ -11,15 +11,33 @@
  * language list.
  */
 
-export const STEP_TITLES = {
-  step1: { eyebrow: 'Step 1 of 3 · My Evaluation', title: 'Tell us about your evaluation.' },
-  step2: { eyebrow: 'Step 2 of 3 · My Trade Plan', title: 'How do you plan to trade?' },
-  step3: { eyebrow: 'Step 3 of 3 · My Plan', title: 'Here’s your plan.' },
+/** Example starting points for the account-size picker. Every firm sets
+ * its own numbers, so these only pre-fill fields she can change. */
+export const EVAL_PRESETS = [
+  { label: '$25K', size: 25000, target: 1500, drawdown: 1500 },
+  { label: '$50K', size: 50000, target: 3000, drawdown: 2000 },
+  { label: '$100K', size: 100000, target: 6000, drawdown: 3000 },
+  { label: '$150K', size: 150000, target: 9000, drawdown: 4500 },
+];
+
+/** The guided first-visit questions, one per screen. */
+export const GUIDED = {
+  account: { title: 'Which account are you trying to pass?', sub: 'We’ll fill in the usual numbers for that size. You can change them next.' },
+  target: { title: 'What do you need to make to pass?', sub: 'This is your profit target. You’ll find it on your prop firm’s rules page.' },
+  drawdown: { title: 'How much can you lose before the eval ends?', sub: 'This is your max drawdown: the cushion you protect.' },
+  risk: { title: 'How much are you okay losing on one trade?', sub: 'Pick the number that feels calm, not exciting.', rewardTitle: 'And when you win, you aim to make…' },
+  days: { title: 'How many days do you want to give it?', sub: 'No rush. More days means a smaller goal each day.', tradesTitle: 'Most trades you’ll take in a day' },
+};
+
+export const PLAN_COPY = {
+  writeEyebrow: 'Pass Your Eval',
+  writeTitle: 'Your <em>pass plan.</em>',
+  writeSub: 'Tap any colored word to change it. Your plan updates as you type.',
+  cardEyebrow: 'Your pass plan',
 };
 
 export const SECTION_LABELS = {
-  addMoreEvalRules: 'Add More Evaluation Rules',
-  customizeMyPlan: 'Customize My Plan',
+  moreSettings: 'More Rules & Settings',
   seeTheMath: 'See the Math',
   exploreWhatIf: 'Explore What-If Scenarios',
 };
