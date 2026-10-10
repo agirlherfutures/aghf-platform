@@ -1,6 +1,6 @@
 // api/whop.js
-// Sign in with Whop. Members buy on Whop; the site only lets them in while their Whop
-// membership is active, and remembers which plan they're on.
+// Sign in with Whop. Plans are sold on Whop. Only people who hold one of the two Academy
+// products get in (free and Discord-only Whop members don't), and only while it's active.
 //
 //   GET  /api/whop?action=login[&redirect=/dashboard.html]  → Whop sign-in (OAuth 2.1 + PKCE)
 //   GET  /api/whop?action=callback&code&state                → checks access, signs the member in

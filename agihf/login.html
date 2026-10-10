@@ -106,7 +106,7 @@
     <!-- MEMBERS SIGN IN WITH WHOP -->
     <div id="panel-whop">
       <div class="form-title">Welcome back.</div>
-      <div class="form-sub">Sign in with the Whop account you joined with.</div>
+      <div class="form-sub">Academy members sign in with the Whop account they joined with.</div>
       <div class="form-error" id="whopError"></div>
       <a class="submit-btn whop-btn" id="whopBtn" href="/api/whop?action=login">Connect your Whop →</a>
       <div class="plan-note">
@@ -153,8 +153,8 @@
   if (safe) document.getElementById('whopBtn').href = '/api/whop?action=login&redirect=' + encodeURIComponent(safe.startsWith('/') ? safe : '/' + safe);
 
   const WHOP_MESSAGES = {
-    no_membership: 'We couldn’t find an active A Girl & Her Futures membership on that Whop account. Choose a plan to join, or connect the Whop account you paid with.',
-    inactive: 'Your Whop membership isn’t active right now. Renew it on Whop, then connect again.',
+    no_membership: 'That Whop account doesn’t have Academy access yet. The Academy comes with The Academy or Academy + Indicator plan. Choose a plan, or connect the Whop account you joined with.',
+    inactive: 'Your Academy access isn’t active right now. Renew your plan on Whop, then connect again.',
     cancelled: 'Whop sign-in was cancelled. Connect again whenever you’re ready.',
     expired: 'That sign-in link expired. Please connect again.',
     error: 'Something went wrong connecting to Whop. Please try again.',
