@@ -313,7 +313,7 @@
       const T = s.beats;
       let out = ground(1000);
       const dk = pop(t, T.door, 0.8);
-      const LX = [820, 1080, 1340], LY = 640;
+      const LX = [820, 1080, 1340], LY = 660;
       let d = `<rect x="640" y="410" width="880" height="590" rx="36" fill="${DK.purple}"/>
         <rect x="668" y="438" width="824" height="562" rx="26" fill="#9C96D9"/>
         <rect x="690" y="460" width="780" height="540" rx="20" fill="none" stroke="#B9B4E6" stroke-width="6"/>`;
@@ -326,21 +326,21 @@
         let l = `<circle cx="${x}" cy="${LY}" r="86" fill="${u > 0.5 ? C.tealL : '#fff'}" stroke="${u > 0.5 ? DK.teal : DK.purple}" stroke-width="8"/>`;
         for (let a = 0; a < 12; a++) l += `<line x1="${f1(x + Math.cos(rad(a * 30)) * 62)}" y1="${f1(LY + Math.sin(rad(a * 30)) * 62)}" x2="${f1(x + Math.cos(rad(a * 30)) * 74)}" y2="${f1(LY + Math.sin(rad(a * 30)) * 74)}" stroke="${C.muted}" stroke-width="4"/>`;
         l += rotAt(x, LY, u * 90, `<rect x="${x - 12}" y="${LY - 58}" width="24" height="116" rx="12" fill="${u > 0.5 ? DK.teal : DK.purple}"/>`) + `<circle cx="${x}" cy="${LY}" r="16" fill="${C.gold}"/>`;
-        l += txt(x, LY - 104, i + 1, 34, '#fff');
+        l += txt(x, LY - 98, i + 1, 32, '#fff');
         out += scaleAt(x, LY, lk, l);
         out += check(x + 66, LY - 66, pop(t, at + 0.7, 0.5), C.teal, 26);
         const pk = pop(t, at + 0.2, 0.6);
-        if (pk > 0) out += scaleAt(x, 800, pk, `<rect x="${x - 118}" y="740" width="236" height="132" rx="18" fill="#fff"/>
-          ${txt(x, 784, jobs[i][0], 32, DK.purple)}${txt(x, 818, jobs[i][1], 24, C.muted, { w: 700 })}${txt(x, 856, jobs[i][2], i === 2 ? 23 : 26, [DK.teal, DK.teal, C.pink][i])}`);
+        if (pk > 0) out += scaleAt(x, 830, pk, `<rect x="${x - 118}" y="768" width="236" height="128" rx="18" fill="#fff"/>
+          ${txt(x, 810, jobs[i][0], 32, DK.purple)}${txt(x, 843, jobs[i][1], 24, C.muted, { w: 700 })}${txt(x, 880, jobs[i][2], i === 2 ? 23 : 26, [DK.teal, DK.teal, C.pink][i])}`);
         if (t > at + 0.7) out += A.sparkle(x, LY, at + 0.7, t);
       });
       // The zone lamp above the locks: lights when BOS #3 turns the last lock.
       const zk = ease(seg(t, T.locks[2] + 0.8, T.locks[2] + 1.4));
-      if (dk > 0) out += scaleAt(1080, 500, pop(t, T.door + 0.9, 0.5), `<rect x="900" y="470" width="360" height="62" rx="31" fill="${zk > 0.5 ? C.gold : '#7C76B8'}"/>${zk > 0.5 ? `<rect x="880" y="452" width="400" height="98" rx="49" fill="${C.gold}" opacity="${f1(0.25 * zk)}"/>` : ''}${txt(1080, 512, zk > 0.5 ? 'ZONE · ACTIVE' : 'ZONE · not active', 28, zk > 0.5 ? C.dark : '#E4E1F7', { ls: 2 })}`);
+      if (dk > 0) out += scaleAt(1080, 474, pop(t, T.door + 0.9, 0.5), `${zk > 0.5 ? `<rect x="880" y="428" width="400" height="92" rx="46" fill="${C.gold}" opacity="${f1(0.25 * zk)}"/>` : ''}<rect x="900" y="446" width="360" height="56" rx="28" fill="${zk > 0.5 ? C.gold : '#7C76B8'}"/>${txt(1080, 484, zk > 0.5 ? 'ZONE · ACTIVE' : 'ZONE · not active', 28, zk > 0.5 ? C.dark : '#E4E1F7', { ls: 2 })}`);
       // Progress counter on the door.
-      out += pill(1080, 940, '1 of 3 · not yet', C.muted, between(t, T.locks[0] + 1.2, T.locks[1] - 0.3), 26);
-      out += pill(1080, 940, '2 of 3 · not yet', C.muted, between(t, T.locks[1] + 1.2, T.locks[2] - 0.3), 26);
-      out += pill(1080, 940, '3 breaks · 3 jobs ✓', DK.teal, pop(t, T.locks[2] + 1.6, 0.6), 26);
+      out += pill(1080, 948, '1 of 3 · not yet', C.muted, between(t, T.locks[0] + 1.2, T.locks[1] - 0.3), 26);
+      out += pill(1080, 948, '2 of 3 · not yet', C.muted, between(t, T.locks[1] + 1.2, T.locks[2] - 0.3), 26);
+      out += pill(1080, 948, '3 breaks · 3 jobs ✓', DK.teal, pop(t, T.locks[2] + 1.6, 0.6), 26);
       // Someone tries the door.
       const p = { x: 380, y: 1000, scale: 0.95, look: A.LOOKS.b, seed: 3, at: T.door + 0.3, talk: ctx.talking && t > T.door + 0.5 && t < T.locks[0] };
       if (t > T.locks[0] + 2 && t < T.locks[1]) p.frontArm = aim(p, 520, 760);
@@ -363,12 +363,13 @@
         o.form = t < T.close ? { i: 6, t0: T.wick, t1: T.wick + 1.6, path: [.49, .48, .56, .61, .53] } : null;
         if (t >= T.close) o.times[6] = -10;
         const g = G(o);
-        let c = cc(t, o);
+        let c = cc(t, Object.assign({}, o, { bars: [], form: null }));
+        c += hline(g, .55, g.X(3) - 30, box.x + box.w, C.purple, ease(seg(t, T.chart + 1.4, T.chart + 2.2)));
+        c += cc(t, Object.assign({}, o, { panel: false, tf: null }));
         if (t >= T.close) c += cc(t, Object.assign({}, o, { panel: false, tf: null, times: [], form: { i: 7, t0: T.close, t1: T.close + 1.4, path: [.53, .52, .60, .65, .63] } }));
-        c = hline(g, .55, g.X(3), box.x + box.w, C.purple, ease(seg(t, T.chart + 1.4, T.chart + 2.2))) + c;
-        c += pill(box.x + box.w - 70, g.Y(.55) + 34, '15M level', C.purple, pop(t, T.chart + 2, 0.5), 20);
+        c += pill(g.X(1.3), g.Y(.55), '15M level', C.purple, pop(t, T.chart + 2, 0.5), 20);
         c += pill(g.X(6), g.Y(.61) - 40, 'wick ✗ doesn’t count', C.pink, between(t, T.wick + 1.7, T.close + 1.6), 22);
-        c += pill(g.X(7) - 60, g.Y(.65) - 40, 'BOS #1 · 15M close ✓', DK.teal, pop(t, T.close + 1.5, 0.5), 22);
+        c += pill(g.X(7) - 130, g.Y(.65) - 40, 'BOS #1 · 15M close ✓', DK.teal, pop(t, T.close + 1.5, 0.5), 22);
         out += fade(k15, scaleAt(570, 670, Math.min(1, k15 * 1.2), c));
       }
       // 5M chart: Correction #1, BOS #2, Correction #2 (zone), BOS #3.
@@ -376,7 +377,7 @@
       if (k5 > 0) {
         const times = span([], 0, 4, T.five + 0.2, 0.1);
         span(times, 5, 8, T.bos2 - 0.4, 0.14); span(times, 9, 11, T.c2, 0.18); times[12] = T.bos3 - 0.3;
-        const o = Object.assign({}, box, { n: 15, bars: BULL.slice(0, 14), tf: '5M', lo: 0.16, hi: 0.76, times, form: { i: 13, t0: T.bos3, t1: T.bos3 + 1.2, path: [.56, .55, .62, .67, .66] } });
+        const o = Object.assign({}, box, { n: 15, bars: BULL.slice(0, 14), tf: '5M', lo: 0.18, hi: 0.70, times, form: { i: 13, t0: T.bos3, t1: T.bos3 + 1.2, path: [.56, .55, .62, .67, .66] } });
         const g = G(o);
         let c = cc(t, Object.assign({}, o, { bars: [], form: null }));
         c += hline(g, .30, box.x, box.x + box.w, C.purple, ease(seg(t, T.five + 0.2, T.five + 0.8)), 3);
@@ -385,13 +386,13 @@
         c += hline(g, .62, g.X(8), g.X(13) + 20, C.muted, ease(seg(t, T.bos3 - 0.6, T.bos3)), 3);
         c += zone(g, ZB, 11, box.x + box.w, seg(t, T.zone, T.zone + 0.8), t > T.bos3 + 1.2 ? 1 : 0);
         c += cc(t, Object.assign({}, o, { panel: false, tf: null }));
-        c += pill(box.x + 110, g.Y(.30) + 30, '15M level', C.purple, pop(t, T.five + 0.6, 0.5), 18);
+        c += pill(box.x + box.w - 80, g.Y(.30) + 28, '15M level', C.purple, pop(t, T.five + 0.6, 0.5), 18);
         c += bracket(g, 3, 4, g.Y(.28), 'Correction #1', DK.peach, pop(t, T.c1, 0.5), 18);
         c += pill(g.X(7), g.Y(.54) - 36, 'BOS #2', DK.teal, pop(t, T.bos2 + 0.2, 0.5), 20);
-        c += bracket(g, 9, 11, g.Y(.43), 'Correction #2', C.pink, pop(t, T.c2 + 0.5, 0.5), 18);
-        c += pill(g.X(11) + 40, g.Y(.47) + 74, 'creates the zone', DK.peach, between(t, T.zone + 0.2, T.bos3 + 1), 18);
+        c += bracket(g, 9, 11, g.Y(.43), 'Correction #2', C.pink, between(t, T.c2 + 0.5, T.zone), 18);
+        c += pill(g.X(10), g.Y(.43) + 30, 'creates the zone', DK.peach, between(t, T.zone + 0.4, T.bos3 + 1), 18);
         c += pill(g.X(13), g.Y(.67) - 36, 'BOS #3', DK.teal, pop(t, T.bos3 + 1.2, 0.5), 20);
-        c += pill(g.X(11) + 70, g.Y(.47) + 74, 'zone active ✓', DK.teal, pop(t, T.bos3 + 1.4, 0.5), 18);
+        c += pill(g.X(10), g.Y(.43) + 30, 'zone active ✓', DK.teal, pop(t, T.bos3 + 1.4, 0.5), 18);
         out += scaleAt(570, 670, k5, c);
         out += pill(570, 960, 'now wait for the retest ⏳', DK.purple, pop(t, T.wait, 0.6), 26);
       }
@@ -414,8 +415,8 @@
         talk: ctx.talking && t > T.jump && t < T.jump + 3 };
       if (t > T.jump && t < T.five) r.frontArm = { a1: -60, a2: -80 };
       out += who(t, r);
-      out += bub(rx + 40, 620, 'Go! 🏃', between(t, T.jump, T.jump + 1.6), { size: 28 });
-      out += stamp(1600, 680, 'FALSE START', C.pink, between(t, T.jump + 1, T.five + 0.2, 0.4), -10, 120, 30);
+      out += bub(rx - 20, 600, 'Go! 🏃', between(t, T.jump, T.jump + 1.6), { size: 28 });
+      out += stamp(1340, 800, 'FALSE START', C.pink, between(t, T.jump + 1, T.five + 0.2, 0.4), -10, 120, 30);
       out += bub(1480, 640, 'OK. All three first 😅', between(t, T.five + 2.4, T.wait - 0.2), { size: 26 });
       out += bub(1480, 640, 'Now I wait ⏳', between(t, T.wait + 0.3, s.end), { size: 26 });
       return out;
@@ -443,16 +444,15 @@
         const sp = between(t, T.c1 + 0.2, T.never + 0.8, 0.6);
         if (sp > 0) c += `<path d="M${f1(g.X(3.5) - 30)},${box.y - 30} L${f1(g.X(3.5) + 30)},${box.y - 30} L${f1(g.X(3.5) + 110)},${box.y + box.h + 30} L${f1(g.X(3.5) - 110)},${box.y + box.h + 30} Z" fill="${C.gold}" opacity="${f1(0.22 * sp)}"/>`;
         c += hline(g, .30, box.x, box.x + box.w, C.purple, ease(seg(t, T.curtain + 0.8, T.curtain + 1.6)));
-        c += pill(box.x + 300, g.Y(.30) + 32, '15M level · BOS #1 closed above', C.purple, pop(t, T.curtain + 1.4, 0.5), 20);
+        c += pill(g.X(9), g.Y(.30) + 32, '15M level · BOS #1 closed above', C.purple, pop(t, T.curtain + 1.4, 0.5), 20);
         c += zone(g, ZB, 11, box.x + box.w, seg(t, T.never + 1.6, T.never + 2.4), 0);
         c += cc(t, Object.assign({}, o, { panel: false, tf: null }));
-        c += arrow(g.X(2.4), g.Y(.50), g.X(4.2), g.Y(.36), DK.peach, seg(t, T.c1 + 0.4, T.c1 + 1.2));
+        if (t < T.never + 0.4) c += arrow(g.X(3) + 46, g.Y(.49), g.X(4) + 50, g.Y(.37), DK.peach, seg(t, T.c1 + 0.4, T.c1 + 1.2));
         c += bracket(g, 3, 4, g.Y(.56), 'Correction #1', DK.peach, pop(t, T.c1 + 0.6, 0.5), 20, true);
-        c += arrow(g.X(4), g.Y(.32) + 12, g.X(4), g.Y(.30) - 8, C.purple, seg(t, T.toward, T.toward + 0.6), 4);
-        c += pill(g.X(4) + 20, g.Y(.24) + 10, 'toward the 15M break · preferred', C.purple, between(t, T.toward + 0.4, T.never - 0.2), 20);
+        c += pill(g.X(4) + 40, g.Y(.30) + 74, 'toward the 15M break · preferred', C.purple, between(t, T.toward + 0.4, T.never - 0.2), 20);
         c += pill(g.X(7), g.Y(.54) - 34, 'BOS #2', DK.teal, pop(t, T.never + 0.8, 0.5), 18);
-        c += pill(g.X(11) + 40, g.Y(.47) + 34, 'zone · from Correction #2', DK.teal, pop(t, T.never + 2.2, 0.5), 20);
-        c += pill(g.X(3.5), g.Y(.24) + 10, 'never the zone ✗', C.pink, pop(t, T.never + 3, 0.5), 22);
+        c += pill(g.X(9.5), g.Y(.47) + 44, 'zone · from Correction #2', DK.teal, pop(t, T.never + 2.2, 0.5), 20);
+        c += pill(g.X(3.5), g.Y(.56) - 80, 'never the zone ✗', C.pink, pop(t, T.never + 3, 0.5), 22);
         out += scaleAt(960, 1000, sk, c);
       }
       // Curtains opening.
@@ -467,8 +467,8 @@
       // The stagehand.
       const h = { x: 1760, y: 1000, scale: 0.85, look: A.LOOKS.e, seed: 4, at: T.curtain + 0.6, flip: true, hat: 'hard', talk: ctx.talking && t > T.never + 3 };
       out += who(t, h);
-      out += bub(1720, 640, 'Setting the stage 🎭', between(t, T.c1 + 1, T.never - 0.2), { size: 26, tail: 'right' });
-      out += bub(1720, 640, 'The zone comes later', between(t, T.never + 3.4, s.end), { size: 24, tail: 'right' });
+      out += bub(1680, 640, 'Setting the stage 🎭', between(t, T.c1 + 1, T.never - 0.2), { size: 26, tail: 'right' });
+      out += bub(1680, 640, 'The zone comes later', between(t, T.never + 3.4, s.end), { size: 24, tail: 'right' });
       return out;
     },
 
@@ -479,16 +479,16 @@
       // Left: the bullish card.
       const lk = pop(t, T.mirror, 0.6);
       if (lk > 0) {
-        const o = { x: 150, y: 470, w: 440, h: 200, n: 6, bars: BULL.slice(0, 5), times: [-9, -9, -9, -9, -9], lo: 0.2, hi: 0.54, maxBody: 34 };
+        const o = { x: 150, y: 490, w: 440, h: 170, n: 6, bars: BULL.slice(0, 5), times: [-9, -9, -9, -9, -9], lo: 0.2, hi: 0.54, maxBody: 34 };
         const g = G(o);
         let c = cc(t, o) + hline(g, .30, o.x, o.x + o.w, C.purple, 1, 3);
-        c += txt(370, 448, 'BULLISH', 24, DK.teal, { ls: 3 }) + pill(370, 730, 'Correction #1 pulls down', DK.peach, 1, 20);
+        c += txt(370, 440, 'BULLISH', 24, DK.teal, { ls: 3 }) + pill(370, 728, 'Correction #1 pulls down', DK.peach, 1, 20);
         out += scaleAt(370, 600, lk, c);
       }
-      const p = { x: 360, y: 1000, scale: 0.8, look: A.LOOKS.d, seed: 6, at: T.mirror + 0.3, talk: ctx.talking && t > T.rest };
+      const p = { x: 330, y: 1000, scale: 0.68, look: A.LOOKS.d, seed: 6, at: T.mirror + 0.3, talk: ctx.talking && t > T.rest };
       if (t > T.bear && t < T.follow) p.frontArm = aim(p, 520, 800);
       out += who(t, p);
-      out += bub(470, 760, 'Same job, flipped ✓', between(t, T.bear + 1.6, T.follow - 0.2), { size: 24 });
+      out += bub(560, 840, 'Same job, flipped ✓', between(t, T.bear + 1.6, T.follow - 0.2), { size: 24 });
       // The mirror with the bearish chart.
       const mk = pop(t, T.mirror + 0.3, 0.8);
       if (mk > 0) {
@@ -498,18 +498,18 @@
         m += txt(1280, 482, 'BEARISH', 24, C.pink, { ls: 3 });
         const times = span([], 0, 2, T.bear, 0.15);
         span(times, 3, 4, T.bear + 1.6, 0.35); span(times, 5, 10, T.follow + 0.6, 0.6);
-        const o = { x: 860, y: 520, w: 840, h: 360, n: 12, bars: mir(NO_BOS2), times, lo: 0.38, hi: 0.84, panel: false };
+        const o = { x: 860, y: 540, w: 840, h: 340, n: 12, bars: mir(NO_BOS2), times, lo: 0.47, hi: 0.81, panel: false };
         const g = G(o);
         m += hline(g, .70, o.x - 20, o.x + o.w, C.purple, ease(seg(t, T.bear - 0.2, T.bear + 0.6)));
-        m += pill(o.x + 250, g.Y(.70) - 30, '15M level · BOS #1 closed below', C.purple, pop(t, T.bear + 0.6, 0.5), 20);
+        m += pill(o.x + o.w - 220, g.Y(.70) - 30, '15M level · BOS #1 closed below', C.purple, pop(t, T.bear + 0.6, 0.5), 20);
         m += hline(g, .52, g.X(2), o.x + o.w, C.muted, ease(seg(t, T.follow, T.follow + 0.8)), 3);
         m += cc(t, o);
-        m += arrow(g.X(2.4), g.Y(.50), g.X(4.2), g.Y(.64), DK.peach, seg(t, T.bear + 2.2, T.bear + 3));
-        m += bracket(g, 3, 4, g.Y(.72), 'Correction #1 pulls up', DK.peach, pop(t, T.bear + 2.6, 0.5), 20, true);
-        m += pill(g.X(8), g.Y(.52) + 40, 'no 5M close below ✗', C.pink, pop(t, T.none - 1.2, 0.5), 20);
+        if (t < T.follow + 0.6) m += arrow(g.X(3) + 46, g.Y(.53), g.X(4) + 50, g.Y(.65), DK.peach, seg(t, T.bear + 2.2, T.bear + 3));
+        m += bracket(g, 3, 4, g.Y(.505), 'Correction #1 pulls up', DK.peach, pop(t, T.bear + 2.6, 0.5), 20);
+        m += pill(g.X(9), g.Y(.52) + 40, 'no 5M close below ✗', C.pink, pop(t, T.none - 1.2, 0.5), 20);
         m += pill(1280, 960, 'no BOS #2 · sequence incomplete', C.pink, pop(t, T.none, 0.5), 24);
         out += scaleAt(1280, 1000, mk, m);
-        out += stamp(1560, 640, 'NO TRADE', C.pink, pop(t, T.none + 0.6, 0.5), -12, 100, 30);
+        out += stamp(1070, 545, 'NO TRADE', C.pink, pop(t, T.none + 0.6, 0.5), -12, 96, 30);
       }
       out += pill(960, 1046, 'Correction #1 sets the stage. The rest has to follow.', DK.purple, pop(t, T.rest, 0.6), 24);
       return out;
@@ -549,7 +549,7 @@
       if (ck > 0) {
         const times = span([], 0, 4, T.s1, 0.2);
         span(times, 5, 11, T.s2, 0.2); span(times, 12, 13, T.count + 0.8, 0.3);
-        const o = { x: 300, y: 720, w: 1160, h: 230, n: 15, bars: BULL.slice(0, 14), times, lo: 0.2, hi: 0.7, maxBody: 30 };
+        const o = { x: 300, y: 710, w: 1160, h: 240, n: 15, bars: BULL.slice(0, 14), times, lo: 0.25, hi: 0.68, maxBody: 30 };
         const g = G(o);
         let c = cc(t, Object.assign({}, o, { bars: [] }));
         c += shade(g, 3, 4, .30, .50, C.peach, seg(t, T.s1 + 1, T.s1 + 1.6)) + shade(g, 9, 11, .45, .64, C.pink, seg(t, T.s2 + 1.6, T.s2 + 2.2));
@@ -590,7 +590,7 @@
         c += hline(g, .62, g.X(8), box.x + box.w, C.muted, ease(seg(t, T.nob, T.nob + 0.8)), 3);
         c += cc(t, Object.assign({}, o, { panel: false, tf: null }));
         c += glow(g, ZB, 11, pop(t, T.pick, 0.5) * (t < T.pot ? 1 : 0));
-        c += pill(g.X(2), g.Y(.48) - 34, 'BOS #1 → C1', C.muted, pop(t, T.chart + 0.8, 0.5), 18);
+        c += pill(g.X(3.5), g.Y(.32) + 36, 'Correction #1', DK.peach, pop(t, T.chart + 0.8, 0.5), 18);
         c += pill(g.X(7), g.Y(.54) - 34, 'BOS #2', DK.teal, pop(t, T.chart + 1.2, 0.5), 18);
         c += bracket(g, 9, 11, g.Y(.65), 'Correction #2', C.pink, between(t, T.chart + 1.6, T.pot - 0.2), 18, true);
         c += pill(g.X(11) - 10, g.Y(.47) + 40, 'last bearish candle', DK.peach, between(t, T.pick + 0.4, T.pot - 0.2), 20);
@@ -599,7 +599,7 @@
         out += scaleAt(590, 670, ck, c);
         out += pill(590, 950, 'supply: the last bullish candle', C.pink, between(t, T.pick + 2.6, T.whole - 0.2), 24);
         out += pill(590, 950, 'one candle ✓ not the whole correction', DK.teal, between(t, T.whole + 1.6, T.pot - 0.2), 24);
-        out += stamp(820, 610, 'NO TRADE', C.pink, pop(t, T.nob + 2.8, 0.5), -12, 92, 28);
+        out += stamp(820, 800, 'NO TRADE', C.pink, pop(t, T.nob + 2.8, 0.5), -12, 86, 28);
       }
       // Table, tray and the three "candle" cookies of Correction #2.
       const tk = pop(t, T.chart + 0.6, 0.6);
@@ -658,7 +658,7 @@
         c += pill(g.X(10), g.Y(.47) + 36, act ? 'active zone' : 'potential zone', act ? DK.teal : DK.peach, 1, 20);
         c += pill(g.X(12), g.Y(.57) - 34, 'not BOS #3', C.pink, between(t, T.not, T.bos3 - 0.2), 18);
         c += pill(g.X(4) + 30, g.Y(.62) - 28, 'high Correction #2 pulled back from', C.purple, pop(t, T.bos3 + 0.6, 0.5), 18);
-        c += pill(g.X(13) - 20, g.Y(.67) - 70, 'BOS #3 · 5M close ✓', DK.teal, pop(t, T.bos3 + 3.1, 0.5), 20);
+        c += pill(g.X(13) - 60, g.Y(.67) - 36, 'BOS #3 · 5M close ✓', DK.teal, pop(t, T.bos3 + 3.1, 0.5), 20);
         out += scaleAt(760, 700, sk, c);
         out += pill(760, 960, 'opposite-colour candle ≠ activation', C.pink, between(t, T.not + 0.2, T.bos3 - 0.2), 24);
         out += pill(760, 960, 'BOS #3 switches it on ✓', DK.teal, pop(t, T.active + 0.2, 0.5), 24);
@@ -675,12 +675,12 @@
         if (t > T.active) out += A.sparkle(1345, 560, T.active, t, C.teal);
       }
       // The customer knocks on the opposite-colour candle.
-      const c2 = { x: 1720, y: 1000, scale: 0.9, look: A.LOOKS.buyer, seed: 8, at: T.shop + 0.8, flip: true, talk: ctx.talking && t > T.green && t < T.not };
-      if (t > T.green && t < T.not) c2.frontArm = { a1: -160, a2: -150 + Math.abs(Math.sin(t * 9)) * 30 };
+      const c2 = { x: 1590, y: 1000, scale: 0.9, look: A.LOOKS.buyer, seed: 8, at: T.shop + 0.8, flip: true, talk: ctx.talking && t > T.green && t < T.not };
+      if (t > T.green && t < T.not) c2.frontArm = aim(c2, 1468 + Math.abs(Math.sin(t * 9)) * 14, 790);
       out += who(t, c2);
-      out += bub(1700, 630, 'Open? 🛎️', between(t, T.green + 0.4, T.not - 0.2), { size: 28, tail: 'right' });
-      out += bub(1700, 630, 'Not yet…', between(t, T.not, T.bos3 + 2), { size: 28, tail: 'right' });
-      out += bub(1700, 630, 'Active ✓', between(t, T.active + 0.6, s.end), { size: 28, tail: 'right' });
+      out += bub(1680, 620, 'Open? 🛎️', between(t, T.green + 0.4, T.not - 0.2), { size: 28, tail: 'right' });
+      out += bub(1680, 620, 'Not yet…', between(t, T.not, T.bos3 + 2), { size: 28, tail: 'right' });
+      out += bub(1680, 620, 'Active ✓', between(t, T.active + 0.6, s.end), { size: 28, tail: 'right' });
       return out;
     },
 
@@ -700,7 +700,7 @@
         c += zone(g, mir([ZB])[0], 11, o.x + o.w, 1, t > T.bear + 3.6 ? 1 : 0);
         c += hline(g, .38, g.X(8), o.x + o.w, C.purple, ease(seg(t, T.bear + 1.4, T.bear + 2)), 3);
         c += cc(t, Object.assign({}, o, { panel: false }));
-        c += pill(g.X(13) - 40, g.Y(.33) + 40, 'BOS #3 · close below ✓', DK.teal, pop(t, T.bear + 3.6, 0.5), 18);
+        c += pill(g.X(13) - 90, g.Y(.33) + 40, 'BOS #3 · close below ✓', DK.teal, pop(t, T.bear + 3.6, 0.5), 18);
         out += scaleAt(450, 660, bk, c);
       }
       // Bullish panel that never activates.
@@ -719,7 +719,6 @@
           c += `<rect x="${f1(xa)}" y="${f1(y0)}" width="${f1(xb - xa)}" height="${f1(y1 - y0)}" rx="6" fill="${C.pinkL}" opacity=".45"/>
             <rect x="${f1(mx - 7)}" y="${f1(y0)}" width="14" height="${f1(y1 - y0)}" fill="${C.purple}" opacity=".55"/>
             <rect x="${f1(xa)}" y="${f1(y0)}" width="${f1(xb - xa)}" height="${f1(y1 - y0)}" rx="6" fill="none" stroke="${DK.peach}" stroke-width="4" stroke-dasharray="10 7"/>`;
-          if (zk >= 1) c += `<path d="M${f1(mx)},${f1(y0)} q-30,-30 -40,-6 q10,14 40,6 q30,-30 40,-6 q-10,14 -40,6 Z" fill="${C.purple}"/>`;
           const tp = ease(seg(t, T.tape, T.tape + 0.6));
           if (tp > 0) c += `<g opacity="${f1(tp)}"><rect x="${f1(mx - 70)}" y="${f1((y0 + y1) / 2 - 9)}" width="140" height="18" fill="#E8D9A8" transform="rotate(-18 ${f1(mx)} ${f1((y0 + y1) / 2)})"/><rect x="${f1(mx - 70)}" y="${f1((y0 + y1) / 2 - 9)}" width="140" height="18" fill="#E8D9A8" transform="rotate(18 ${f1(mx)} ${f1((y0 + y1) / 2)})"/></g>`;
         }
@@ -728,10 +727,10 @@
         c += pill(g.X(12) + 40, g.Y(.47) + 40, 'potential zone', DK.peach, pop(t, T.nb + 2.2, 0.5), 18);
         c += pill(g.X(15), g.Y(.62) - 30, 'no close above ✗', C.pink, pop(t, T.green + 3.8, 0.5), 18);
         out += scaleAt(1340, 660, rk, c);
-        out += stamp(1600, 560, 'NO TRADE', C.pink, pop(t, T.tape + 0.6, 0.5), -12, 86, 26);
+        out += stamp(1600, 770, 'NO TRADE', C.pink, pop(t, T.tape + 0.6, 0.5), -12, 80, 26);
       }
       out += pill(960, 930, 'BOS #3 isn’t an entry · wait for price to come back', DK.purple, pop(t, T.wait + 1, 0.6), 26);
-      out += clock(330, 930, 40, t, pop(t, T.wait + 1.4, 0.5));
+      out += clock(1450, 930, 40, t, pop(t, T.wait + 1.4, 0.5));
       return out;
     },
   });
@@ -754,9 +753,9 @@
         let c = cc(t, Object.assign({}, o, { bars: [], form: null }));
         c += zone(g, ZB, 11, box.x + box.w, 1, 1);
         c += cc(t, Object.assign({}, o, { panel: false, tf: null }));
-        c += pill(g.X(13), g.Y(.67) - 34, 'BOS #3', DK.teal, pop(t, T.chart + 1.4, 0.5), 18);
-        c += pill(g.X(8), g.Y(.47) + 40, 'active zone', DK.teal, pop(t, T.chart + 1.6, 0.5), 20);
-        c += arrow(g.X(14.6), g.Y(.70), g.X(16.4), g.Y(.58), C.muted, seg(t, T.wait + 0.4, T.wait + 1.2), 4);
+        c += pill(g.X(13) - 54, g.Y(.67) - 20, 'BOS #3', DK.teal, pop(t, T.chart + 1.4, 0.5), 18);
+        c += pill(g.X(11) + 30, g.Y(.47) + 36, 'active zone', DK.teal, pop(t, T.chart + 1.6, 0.5), 20);
+        c += arrow(g.X(14.6) + 36, g.Y(.71), g.X(16.4) + 36, g.Y(.59), C.muted, seg(t, T.wait + 0.4, T.wait + 1.2), 4);
         c += pill(g.X(17), g.Y(.51) + 44, 'the retest ✓', DK.teal, pop(t, T.retest + 2.2, 0.5), 22);
         out += scaleAt(600, 670, ck, c);
         out += pill(600, 950, 'wait for price to return to the zone', DK.purple, between(t, T.wait, T.retest + 2), 24);

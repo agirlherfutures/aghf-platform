@@ -70,7 +70,7 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 11.8,
-          "text": "The 4H is bullish. The 1H is bullish. The higher timeframe, or HTF, ICC is bullish and correcting.",
+          "text": "The 4H and 1H are bullish. The higher timeframe, or HTF, ICC is bullish and correcting.",
           "screen": "Cards light up with each stone: 4H · 1H · HTF ICC, all bullish"
         },
         {
@@ -121,7 +121,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 34.4,
-          "text": "On the 5M, Correction number one pulls back. A close above the high it pulled back from is BOS number two.",
+          "text": "On the 5M, Correction one pulls back. A close above the high it pulled back from is BOS number two.",
           "screen": "5M chart: Correction #1 shaded; dashed level; BOS #2 tag"
         },
         {

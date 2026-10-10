@@ -300,7 +300,7 @@
   const BASE = [[.10, .18, .20, .08], [.18, .28, .30, .17], [.28, .36, .38, .27], [.36, .31, .37, .29], [.31, .26, .32, .24], [.26, .33, .34, .25],
     [.33, .45, .47, .32], [.45, .52, .54, .44], [.52, .47, .53, .45], [.47, .42, .48, .40], [.42, .49, .50, .41], [.49, .60, .62, .48]];
   const ENDS = {
-    valid: [[.60, .66, .68, .59], [.66, .58, .67, .57], [.58, .51, .59, .50], [.51, .47, .52, .45], [.47, .56, .57, .46], [.56, .63, .65, .55]],
+    valid: [[.60, .66, .68, .59], [.66, .58, .67, .57], [.58, .51, .59, .50], [.51, .45, .52, .43], [.45, .56, .57, .44], [.56, .63, .65, .55]],
     invalid: [[.60, .63, .65, .58], [.63, .53, .64, .51], [.53, .34, .54, .32], [.34, .31, .37, .29], [.31, .39, .40, .30], [.39, .45, .47, .38]],
     missed: [[.60, .66, .68, .59], [.66, .63, .67, .61], [.63, .72, .74, .62], [.72, .79, .81, .71], [.79, .76, .80, .74], [.76, .86, .88, .75]],
   };
@@ -331,7 +331,8 @@
   function seq(t, o) {
     const bars = barsOf(o.dir, o.kind), bull = o.dir !== 'bear';
     const n = o.n || 18, step = o.w / n, bw = Math.min(step * 0.6, o.maxBody || 30);
-    const X = i => o.x + step * i + step / 2, Y = v => o.y + o.h - v * o.h;
+    const [lo, hi] = o.dom || (bull ? [0.04, 0.92] : [0.08, 0.96]);
+    const X = i => o.x + step * i + step / 2, Y = v => o.y + o.h - (v - lo) / (hi - lo) * o.h;
     const at = revealTimes(o.sched, o.per || 0.18), A_ = o.ann || {}, fs = o.fs || 22;
     const seen = i => at[i] != null && t >= at[i];
     const lab = o.lab || (o.x + o.w + 110);
@@ -379,7 +380,7 @@
       const [bo, bc, bh, bl] = b, up = bc >= bo, col = up ? C.teal : C.pink;
       const cc = lerp(bo, bc, p), x = X(i);
       let op = 1;
-      if (o.dimFrom != null && i >= o.dimFrom && o.dimAt != null) op = 1 - seg(t, o.dimAt, o.dimAt + 0.6) * 0.82;
+      if (o.dimFrom != null && i >= o.dimFrom && o.dimAt != null) op = 1 - seg(t, o.dimAt, o.dimAt + 0.6);
       if (o.dimBefore != null && i < o.dimBefore) op = 0.35;
       out += `<g opacity="${op.toFixed(2)}"><line x1="${f1(x)}" x2="${f1(x)}" y1="${f1(Y(lerp(Math.max(bo, bc), bh, p)))}" y2="${f1(Y(lerp(Math.min(bo, bc), bl, p)))}" stroke="${col}" stroke-width="${o.wick || 4}" stroke-linecap="round"/>
         <rect x="${f1(x - bw / 2)}" y="${f1(Y(Math.max(bo, cc)))}" width="${f1(bw)}" height="${f1(Math.max(3, Math.abs(Y(bo) - Y(cc))))}" rx="3" fill="${col}"/></g>`;
@@ -401,8 +402,12 @@
       const x0 = X(sw), x1 = lerp(x0, X(bi) + step * 0.5, ease(clamp(k)));
       const b = bars[bi];
       return `<line x1="${f1(x0)}" x2="${f1(x1)}" y1="${f1(Y(lv))}" y2="${f1(Y(lv))}" stroke="${C.purple}" stroke-width="4" stroke-dasharray="10 7"/>` +
-        pill(X(bi), bull ? Y(b[2]) - 32 : Y(b[3]) + 32, label, C.purple, k, fs - 2);
+        pill(X(bi), bull ? Y(Math.max(b[2], (bars[bi + 1] || b)[2])) - 32 : Y(Math.min(b[3], (bars[bi + 1] || b)[3])) + 32, label, C.purple, k, fs - 2);
     };
+    if (A_.lvl2 != null && bars[IDX.sw2]) {
+      const lk = ease(seg(t, A_.lvl2, A_.lvl2 + 0.8)), lv = bull ? bars[IDX.sw2][2] : bars[IDX.sw2][3];
+      if (lk > 0) out += `<line x1="${f1(X(IDX.sw2))}" x2="${f1(lerp(X(IDX.sw2), o.x + o.w, lk))}" y1="${f1(Y(lv))}" y2="${f1(Y(lv))}" stroke="${C.purple}" stroke-width="4" stroke-dasharray="10 7"/>`;
+    }
     out += bos(IDX.sw2, IDX.bos2, kA(A_.bos2), 'BOS #2');
     out += bos(IDX.sw3, IDX.bos3, kA(A_.bos3), 'BOS #3');
     // Retest ring.
@@ -423,9 +428,9 @@
   }
 
   // A small 15M chart: price closes beyond the 15M level for BOS #1.
-  const M15 = [[.40, .48, .50, .38], [.48, .56, .59, .46], [.56, .50, .58, .48], [.50, .44, .51, .42], [.44, .53, .55, .43], [.53, .70, .72, .52]];
+  const M15 = [[.10, .30, .34, .06], [.30, .50, .58, .26], [.50, .36, .56, .32], [.36, .22, .40, .18], [.22, .44, .48, .20], [.44, .88, .92, .42]];
   function m15(t, o) {
-    const bull = o.dir !== 'bear', bars = bull ? M15 : M15.map(mirror), lv = bull ? 0.6 : 0.4;
+    const bull = o.dir !== 'bear', bars = bull ? M15 : M15.map(mirror), lv = bull ? 0.65 : 0.35;
     const Y = v => o.y + o.h - v * o.h;
     let out = '';
     if (o.panel) out += `<rect x="${o.panel.x}" y="${o.panel.y}" width="${o.panel.w}" height="${o.panel.h}" rx="26" fill="#fff" stroke="#F1E7E1" stroke-width="3"/>${txt(o.panel.x + 30, o.panel.y + 46, '15M', 30, DK.peach, { a: 'start' })}`;
@@ -501,7 +506,7 @@
       if (hp.moving) hk.frontArm = { a1: -40, a2: -60 };
       out += who(t, hk);
       out += bub(330, 640, 'Story first 📖', between(t, T.river + 0.6, T.stones[0] - 0.2), { size: 28 });
-      out += bub(1240, 670, 'Not yet! 5M next.', between(t, T.notEntry + 0.6, T.switch + 0.2), { size: 26 });
+      out += bub(880, 780, 'Not yet! 5M next.', between(t, T.notEntry + 0.6, T.switch + 0.2), { size: 26 });
       return out;
     },
 
@@ -546,7 +551,7 @@
           const yb = Yc(v);
           out += `<line x1="${CX}" y1="${TOP + 20}" x2="${CX}" y2="${f1(yb - 110)}" stroke="${C.muted}" stroke-width="4"/>
             <rect x="${CX - 66}" y="${f1(yb - 110)}" width="132" height="104" rx="12" fill="${C.purple}" stroke="${DK.purple}" stroke-width="4"/>
-            <rect x="${CX - 52}" y="${f1(yb - 92)}" width="104" height="66" rx="6" fill="#E9E6FB"/><line x1="${CX}" x2="${CX}" y1="${f1(yb - 92)}" y2="${f1(yb - 26)}" stroke="${C.purple}" stroke-width="3"/>
+            <rect x="${CX - 52}" y="${f1(yb - 96)}" width="104" height="58" rx="6" fill="#E9E6FB"/><line x1="${CX}" x2="${CX}" y1="${f1(yb - 96)}" y2="${f1(yb - 38)}" stroke="${C.purple}" stroke-width="3"/>
             ${txt(CX, yb - 14, 'PRICE', 16, '#fff', { ls: 2 })}`;
         }
         if (t > T.retest + 0.4) out += flash(CX, Yc(0.47) - 60, T.retest + 0.4, t);
@@ -609,7 +614,7 @@
       // Observer on the shore.
       const ob = { x: 1000, y: 1000, scale: 0.55, look: A.LOOKS.e, seed: 4, flip: true, at: T.lake + 0.3, talk: ctx.talking && t < T.cards[0] };
       out += who(t, ob);
-      out += bub(800, 560, 'Same steps, mirrored 🪞', between(t, T.lake + 3.2, T.cards[0] + 1), { size: 26, tail: 'right' });
+      out += bub(1260, 640, 'Same steps, mirrored 🪞', between(t, T.lake + 3.2, T.cards[0] + 1), { size: 26 });
       return out;
     },
 
@@ -645,7 +650,7 @@
         out += fade(zk, `<line x1="${f1(a[0])}" y1="${f1(a[1])}" x2="${f1(b[0])}" y2="${f1(b[1])}" stroke="${C.pink}" stroke-width="${act > 0 ? 22 : 14}" stroke-linecap="round" opacity="${(0.45 + 0.4 * act).toFixed(2)}" ${act < 1 ? 'stroke-dasharray="14 10"' : ''}/>`);
         out += pill(1500, 560, act > 0 ? 'supply zone · active' : 'supply zone', DK.pink, zk, 22);
       }
-      if (mk >= 1) {
+      if (mk >= 1 && t > T.c2 - 0.4) {
         const v = priceAt(o, t);
         if (v != null) {
           const [cx, cy] = at(sOf(v));
@@ -655,10 +660,10 @@
         }
         if (t > T.retest + 0.4) out += flash(at(sOf(0.55))[0], at(sOf(0.55))[1] + 60, T.retest + 0.4, t);
       }
-      const tr = { x: 1500, y: 1000, scale: 0.56, look: A.LOOKS.a, seed: 7, at: T.chart + 0.6, talk: ctx.talking && t > T.wait };
+      const tr = { x: 1250, y: 1000, scale: 0.56, look: A.LOOKS.a, seed: 7, flip: true, at: T.chart + 0.6, talk: ctx.talking && t > T.wait };
       if (t > T.wait && t < T.retest) tr.frontArm = aim(tr, 1640, 690);
       out += who(t, tr);
-      out += bub(1660, 720, 'I’ll wait for it ⏳', between(t, T.wait + 0.2, T.retest), { size: 24 });
+      out += bub(1330, 700, 'I’ll wait for it ⏳', between(t, T.wait + 0.2, T.retest), { size: 24 });
       return out;
     },
   });
@@ -742,7 +747,7 @@
         out += `<rect x="${f1(x0)}" y="920" width="${f1(PW - 12)}" height="38" rx="6" fill="none" stroke="#B9A89E" stroke-width="3" stroke-dasharray="10 8"/>`;
         if (k > 0) {
           const pot = i === 3;
-          out += scaleAt(x0 + PW / 2, 939, k, `<rect x="${f1(x0)}" y="920" width="${f1(PW - 12)}" height="38" rx="6" fill="${pot ? C.peach : '#B8835A'}" stroke="#9B6A45" stroke-width="3"/>${txt(x0 + PW / 2 - 6, 946, pot ? 'CORR. #2 · potential zone' : nm, 18, '#fff', { ls: 1 })}`);
+          out += scaleAt(x0 + PW / 2, 939, k, `<rect x="${f1(x0)}" y="920" width="${f1(PW - 12)}" height="38" rx="6" fill="${pot ? C.peach : '#B8835A'}" stroke="#9B6A45" stroke-width="3"/>${txt(x0 + PW / 2 - 6, 946, nm, 18, '#fff', { ls: 1 })}`);
         } else out += txt(x0 + PW / 2 - 6, 946, nm, 18, '#B9A89E', { ls: 1, op: pop(t, T.intro + 0.4, 0.5) });
       });
       // Walker.
@@ -756,18 +761,18 @@
       const P1 = { x: 300, y: 440, w: 980, h: 270, n: 18, lab: 1460, per: 0.22, panel: { x: 240, y: 380, w: 1440, h: 370 } };
       const c1k = between(t, T.case1 - 0.2, T.case2 - 0.4, 0.6);
       if (c1k > 0) {
-        out += fade(c1k, seq(t, Object.assign({}, P1, { dir: 'bear', kind: 'nobos2', ctxTag: 'bearish · BOS #1 on the 15M ✓', sched: [[T.case1, 4], [T.case1 + 1.6, 10]], ann: { c1: T.case1 + 1.2 } })));
+        out += fade(c1k, seq(t, Object.assign({}, P1, { dir: 'bear', kind: 'nobos2', dom: [0.6, 0.97], ctxTag: 'bearish · BOS #1 on the 15M ✓', sched: [[T.case1, 4], [T.case1 + 1.6, 10]], ann: { c1: T.case1 + 1.2, lvl2: T.case1 + 1.4 } })));
         out += fade(c1k, pill(1460, 560, 'no close below → no BOS #2', C.pink, pop(t, T.stop1 - 0.4, 0.5), 20));
       }
       const c2k = pop(t, T.case2 - 0.2, 0.6);
       if (c2k > 0) {
-        out += fade(c2k, seq(t, Object.assign({}, P1, { dir: 'bull', kind: 'nobos3', ctxTag: 'bullish context', per: 0.1, sched: [[T.case2, 9], [T.case2 + 2.2, 15, 0.4]],
+        out += fade(c2k, seq(t, Object.assign({}, P1, { dir: 'bull', kind: 'nobos3', dom: [0.04, 0.6], ctxTag: 'bullish context', per: 0.1, sched: [[T.case2, 9], [T.case2 + 2.2, 15, 0.4]],
           ann: { c1: T.case2 + 0.3, bos2: T.case2 + 0.6, c2: T.case2 + 0.9, c2Out: T.case2 + 2, zone: T.case2 + 1.2, zoneOut: T.case2 + 2 }, noCandleTag: true })));
         out += fade(c2k, pill(1460, 470, 'no close above → no BOS #3', C.pink, pop(t, T.stop2 - 0.6, 0.5), 20));
         out += fade(c2k, pill(1020, 700, 'back in the zone ≠ a retest ✗', C.pink, pop(t, T.notRetest, 0.5), 20));
       }
-      out += stamp(960, 1010, 'NO TRADE', C.pink, pop(t, T.stamp, 0.6), -6, 66, 22);
-      out += pill(960, 1062, 'invalid or incomplete = no trade', DK.pink, pop(t, T.stamp + 0.6, 0.5), 18);
+      out += stamp(1480, 640, 'NO TRADE', C.pink, pop(t, T.stamp, 0.6), -8, 70, 24);
+      out += pill(960, 1010, 'invalid or incomplete = no trade', DK.pink, pop(t, T.stamp + 0.6, 0.5), 24);
       return out;
     },
   });
@@ -792,22 +797,23 @@
       let bx, by, held = false, rot = t * 900;
       const u1 = seg(t, T.throw1, T.ret + 0.4), u2 = seg(t, T.throw2, T.throw2 + 2.6);
       if (t < T.throw1 || (t > T.ret + 0.4 && t < T.throw2)) { bx = hx; by = hy; held = true; rot = -20; }
-      else if (t < T.throw2) { bx = hx + Math.sin(Math.PI * u1) * 300 + Math.sin(2 * Math.PI * u1) * 60; by = hy - Math.sin(Math.PI * u1) * 300; }
+      else if (t < T.throw2) { bx = hx + Math.sin(Math.PI * u1) * 190 + Math.sin(2 * Math.PI * u1) * 40; by = hy - Math.sin(Math.PI * u1) * 300; }
       else { bx = hx + u2 * 700; by = hy - u2 * 520 - Math.sin(Math.PI * u2) * 60; }
       if (held) P.frontArm = aim(P, hx, hy + 10);
       else if (t < T.throw2 + 0.5 || (t > T.throw1 && t < T.throw1 + 0.5)) P.frontArm = { a1: -50, a2: -40 };
-      if (t > T.missed) { P.frontArm = aim(P, 1330, 900); P.mood = undefined; }
+      if (t > T.missed) { P.frontArm = aim(P, hx - 30, hy + 70); P.mood = undefined; }
       out += who(t, P);
       if (bx < 1960 && by > -80 && t > T.chart + 0.4) out += rotAt(bx, by, rot, `<path d="M${bx - 40},${by + 8} L${bx},${by - 26} L${bx + 40},${by + 8} L${bx + 28},${by + 16} L${bx},${by - 6} L${bx - 28},${by + 16} Z" fill="${C.peach}" stroke="${DK.peach}" stroke-width="4" stroke-linejoin="round"/>`);
-      out += pill(1690, 520, 'BOS #3: off it goes', C.purple, between(t, T.throw1, T.ret - 0.4), 22);
+      out += pill(1500, 1046, 'BOS #3: off it goes', C.purple, between(t, T.throw1, T.ret - 0.4), 24);
       // The dog that wants to chase, held back.
       const dk = pop(t, T.missed - 0.2, 0.6);
       if (dk > 0) {
         const lean = seg(t, T.missed, T.missed + 0.5);
-        out += scaleAt(1270, 1000, dk, critter(t, 'dog', { x: 1270, y: 1000, scale: 0.75, seed: 3, flip: false, tongue: true }));
-        out += `<path d="M1335,905 Q${1310 + lean * 10},960 1350,${f1(930)}" fill="none" stroke="${C.purple}" stroke-width="4" opacity="${dk.toFixed(2)}"/>`;
+        const dx = 1640 + lean * 30;
+        out += scaleAt(dx, 1000, dk, critter(t, 'dog', { x: dx, y: 1000, scale: 0.75, seed: 3, tongue: true }));
+        out += `<path d="M${hx - 30},${hy + 70} Q${f1(dx - 20)},${f1(940 - lean * 20)} ${f1(dx + 40)},${f1(930)}" fill="none" stroke="${C.purple}" stroke-width="4" opacity="${dk.toFixed(2)}"/>`;
       }
-      out += bub(1700, 600, 'Let it go 🐾', between(t, T.missed + 0.4, s.end), { size: 28 });
+      out += bub(1640, 600, 'Let it go 🐾', between(t, T.missed + 0.4, s.end), { size: 28 });
       out += pill(1500, 1046, 'DON’T CHASE', C.pink, pop(t, T.missed + 1, 0.5), 26);
       return out;
     },
@@ -822,6 +828,13 @@
         let g = `<rect x="100" y="390" width="900" height="600" rx="26" fill="#fff" stroke="#F1E7E1" stroke-width="3"/>${txt(134, 438, '1H', 30, DK.teal, { a: 'start' })}`;
         out += scaleAt(550, 690, ck, g);
         const pts = [[160, 900], [260, 720], [330, 800], [450, 600], [520, 700], [610, 560], [680, 790], [740, 690], [800, 760], [850, 650], [900, 720]];
+        // Fog between the swings (behind the path).
+        const fk = seg(t, T.fog, T.fog + 1.2);
+        if (fk > 0) {
+          let fg = `<rect x="610" y="566" width="370" height="218" rx="12" fill="#CFC6C1" opacity=".35"/>`;
+          [0, 1, 2].forEach(i => fg += `<g opacity=".55" transform="translate(${f1(700 + i * 110 + Math.sin(t * 0.8 + i) * 16)},${640 + (i % 2) * 70}) scale(.7)"><ellipse rx="70" ry="30" fill="#BDB2C9"/><ellipse cx="-40" cy="8" rx="44" ry="24" fill="#BDB2C9"/><ellipse cx="44" cy="6" rx="48" ry="26" fill="#BDB2C9"/></g>`);
+          out += fade(fk, fg);
+        }
         const pk = ease(seg(t, T.chart + 0.3, T.chart + 2));
         if (pk > 0) out += poly(partial(pts, pk), '#A08B80', 6);
         const lk = ease(seg(t, T.lines, T.lines + 0.8));
@@ -830,9 +843,6 @@
           out += txt(980, 540, 'previous 1H swing high', 22, DK.teal, { a: 'end', op: lk }) + txt(980, 826, 'previous 1H swing low', 22, DK.pink, { a: 'end', op: lk });
         }
         if (pk >= 1) out += dot(900, 720, 12, C.purple, pop(t, T.chart + 2, 0.5)) + pill(900, 670, 'now', C.purple, pop(t, T.chart + 2.2, 0.5), 20);
-        // Fog between the swings.
-        const fk = seg(t, T.fog, T.fog + 1.2);
-        if (fk > 0) out += fade(fk * 0.85, [0, 1, 2, 3].map(i => cloud(640 + i * 95 + Math.sin(t * 0.8 + i) * 18, 640 + (i % 2) * 70, 0.9)).join(''));
         out += pill(550, 900, 'no meaningful directional confirmation', C.muted, pop(t, T.fog + 1.2, 0.5), 22);
         out += pill(550, 952, 'don’t force a trade', C.pink, pop(t, T.fog + 2.4, 0.5), 24);
       }
@@ -868,6 +878,9 @@
       let out = ground(1000);
       // Track.
       out += `<rect x="0" y="900" width="1920" height="100" fill="#F2C9B4"/>` + [925, 950, 975].map(y => `<line x1="0" x2="1920" y1="${y}" y2="${y}" stroke="#fff" stroke-width="3" opacity=".7"/>`).join('');
+      // The HTF story (before the 15M takes over).
+      [['4H', 'Bearish · upper half · correcting'], ['1H', 'Bearish · reacting from a lower high'], ['HTF ICC', 'Bearish Indication · correcting']]
+        .forEach(([a, b], i) => out += card(400, 420 + i * 100, 1120, 80, a, b, [C.purple, DK.pink, DK.purple][i], between(t, T.story + 0.6 + i * 0.6, T.r15 - 0.5, 0.6)));
       // 15M panel.
       const p15 = pop(t, T.r15, 0.6);
       if (p15 > 0) out += scaleAt(380, 570, p15, m15(t, { dir: 'bear', x: 170, y: 460, w: 380, h: 250, t0: T.r15 - 0.2, per: 0.12, bosAt: T.bos1, panel: { x: 120, y: 380, w: 520, h: 400 } }));
@@ -909,13 +922,13 @@
       let out = ground(1000);
       const ck = between(t, T.charts, T.gym - 0.4, 0.6);
       if (ck > 0) {
-        const mk = (x, kind, at, title) => seq(t, { x: x + 40, y: 470, w: 600, h: 360, n: 18, dir: 'bull', kind, lab: x + 735, per: 0.06, noCandleTag: true, fs: 20,
+        const mk = (x, kind, at, title) => seq(t, { x: x + 40, y: 470, w: 500, h: 360, n: 18, dir: 'bull', kind, lab: x + 650, per: 0.06, noCandleTag: true, fs: 20,
           sched: [[T.charts, 12], [at, 17, 0.5]], ann: { zone: T.charts + 0.6, bos3: T.charts + 0.9, active: T.charts + 1.1, invalid: kind === 'invalid' ? at + 1.5 : null, invalidOut: at + 4 },
           panel: { x, y: 390, w: 820, h: 520 }, title });
         let g = mk(110, 'missed', T.a, 'Chart A · 5M') + mk(990, 'invalid', T.b, 'Chart B · 5M');
         g += pill(520, 960, 'never came back · missed', C.pink, pop(t, T.a + 2.6, 0.5), 22);
         g += pill(1400, 960, 'closed below the zone · invalid', C.pink, pop(t, T.b + 2.2, 0.5), 22);
-        g += stamp(520, 640, 'NO TRADE', C.pink, pop(t, T.both, 0.6), -8, 80, 26) + stamp(1400, 640, 'NO TRADE', C.pink, pop(t, T.both + 0.4, 0.6), 8, 80, 26);
+        g += stamp(740, 800, 'NO TRADE', C.pink, pop(t, T.both, 0.6), -8, 80, 26) + stamp(1620, 800, 'NO TRADE', C.pink, pop(t, T.both + 0.4, 0.6), 8, 80, 26);
         out += fade(ck, g);
       }
       // The practice gym.
@@ -937,7 +950,7 @@
           <rect x="1160" y="580" width="400" height="230" rx="16" fill="#fff" stroke="${C.purple}" stroke-width="5"/>
           <path d="M1190,760 L1250,700 L1290,730 L1360,640 L1400,680 L1460,620" fill="none" stroke="${DK.teal}" stroke-width="6" stroke-linejoin="round"/>
           <rect x="1190" y="770" width="140" height="30" rx="15" fill="${DK.teal}"/>${txt(1260, 791, 'ENTRY', 18, '#fff')}<rect x="1360" y="770" width="170" height="30" rx="15" fill="${C.pink}"/>${txt(1445, 791, 'NO TRADE', 18, '#fff')}
-          <rect x="1220" y="820" width="280" height="80" rx="10" fill="#B8835A"/><path d="M1240,820 L1250,780 L1270,780 L1280,820 Z" fill="${C.purpleL}"/>`);
+          <rect x="1220" y="820" width="280" height="80" rx="10" fill="#B8835A"/>`);
         // Students.
         const s1 = { x: 230, y: 1000, scale: 0.62, look: A.LOOKS.e, seed: 2, at: T.zb + 0.3, hat: 'cap', talk: ctx.talking && t > T.zb && t < T.el };
         s1.frontArm = aim(s1, 400, 760);

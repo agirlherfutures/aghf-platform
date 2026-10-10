@@ -23,7 +23,7 @@ window.LESSON_VIDEO = {
           "screen": "Aristella waves; title *Missed Trades and No-Trade Decisions*"
         },
         {
-          "at": 5,
+          "at": 5.6,
           "text": "No trade is a decision."
         }
       ]
@@ -69,7 +69,7 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 26.6,
-          "text": "That’s a missed trade, not a trade. Don’t chase it.",
+          "text": "That’s a missed trade, not a trade. BOS number three alone isn’t an entry, so don’t chase.",
           "screen": "\"never came back: a missed trade\"; the dog strains on the leash: \"Let it go 🐾\"; DON’T CHASE"
         }
       ]
@@ -121,7 +121,7 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 53.8,
-          "text": "Each one is a confident no-trade decision.",
+          "text": "Each one is a confident no-trade decision, and missing a trade is part of the strategy.",
           "screen": "Tea and a sleeping cat: \"no trade = a decision ✓\""
         }
       ]

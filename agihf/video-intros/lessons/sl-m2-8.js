@@ -125,6 +125,11 @@ window.LESSON_VIDEO = {
           "at": 51.8,
           "text": "Price trading back into it isn’t a retest. Invalid or incomplete means no trade.",
           "screen": "\"back in the zone ≠ a retest ✗\"; stamp: NO TRADE"
+        },
+        {
+          "at": 57.8,
+          "text": "Knowing when to walk away is part of the strategy.",
+          "screen": "\"invalid or incomplete = no trade\""
         }
       ]
     },

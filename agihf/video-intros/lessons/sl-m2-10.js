@@ -90,18 +90,18 @@ window.LESSON_VIDEO = {
         "a": 38.2,
         "b": 41.6,
         "both": 46,
-        "gym": 48.4,
-        "zb": 53,
-        "el": 55.4
+        "gym": 50.4,
+        "zb": 51.2,
+        "el": 52.4
       },
       "headlines": [
         {
           "at": 34.4,
           "html": "Two endings, <span class=\"mark\">both no trade.</span>",
-          "out": 48.2
+          "out": 50.2
         },
         {
-          "at": 48.4,
+          "at": 50.4,
           "html": "Now practise <span class=\"mark\">until it’s automatic.</span>"
         }
       ],
@@ -118,16 +118,16 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 46,
-          "text": "Both are no-trade decisions.",
+          "text": "Both are no-trade decisions, and an incomplete sequence is too.",
           "screen": "Two stamps: NO TRADE"
         },
         {
-          "at": 48.4,
+          "at": 50.4,
           "text": "That’s the whole model. Now practise it until it’s automatic.",
           "screen": "A practice gym"
         },
         {
-          "at": 53,
+          "at": 54.8,
           "text": "Use the Zone Builder for zones, and the Execution Lab for full setups.",
           "screen": "Stations: THE ZONE BUILDER (Correction #2 · zone candle · still valid?) and THE EXECUTION LAB (HTF story → every step → entry or no trade)"
         }

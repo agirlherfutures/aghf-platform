@@ -361,6 +361,10 @@
           out += pill(440, 900, 'the story comes first', C.purple, Math.min(lk, pop(t, T.story + 0.4, 0.5)), 26);
           out += arrowTo(660, 700, 770, 660, C.purple, 6, Math.min(lk, seg(t, T.story + 0.6, T.story + 1.2)));
         }
+        const rd = { x: 1680, y: 1000, scale: 0.9, look: A.LOOKS.d, seed: 5, flip: true, at: T.lone + 0.3, talk: ctx.talking };
+        out += fade(lk, who(t, rd));
+        out += bub(1640, 600, 'Is a zone enough? 🤔', Math.min(lk, between(t, T.lone + 0.8, T.story - 0.2)), { size: 26, tail: 'right' });
+        out += bub(1640, 600, 'Story first 📖', Math.min(lk, between(t, T.story + 0.6, T.team)), { size: 26, tail: 'right' });
       }
       // Phase 2: the relay team.
       const tk = ease(seg(t, T.team - 0.3, T.team + 0.5));
@@ -373,7 +377,7 @@
         const has = fly ? -1 : holder;
         RX.forEach((x, i) => {
           const o = { x, y: 1000, scale: 0.72, look: A.LOOKS[RLOOK[i]], seed: i + 2, at: T.team + i * 0.2, walking: i === has };
-          if (i === has) { o.frontArm = { a1: -40, a2: -60 }; o.hold = BATON; }
+          if (i === has) { o.frontArm = { a1: -40, a2: -60 }; o.hold = `<g transform="translate(46,-16)">${BATON}</g>`; }
           else if (fly && i === fly.to) o.frontArm = { a1: -150, a2: -170 };
           else if (t > T.jobs[3] + 1.6 && i === 3) o.frontArm = { a1: -100, a2: -110 };
           out += who(t, o);
@@ -464,10 +468,10 @@
       // ---- The rocket ----
       const rk = pop(t, T.board + 0.6, 0.7);
       if (rk > 0) {
-        const lift = ease(seg(t, T.retest + 0.4, T.retest + 1.6)) * 40;
+        const lift = ease(seg(t, T.retest + 0.4, T.retest + 1.6)) * 24;
         const fl = t > T.retest + 0.2 ? 1 : 0;
         let r = `<rect x="1330" y="975" width="250" height="20" rx="8" fill="${C.muted}"/><rect x="1345" y="930" width="16" height="50" fill="${C.muted}"/><rect x="1549" y="930" width="16" height="50" fill="${C.muted}"/>`;
-        let body = `<g transform="translate(0,${f1(-lift)})">
+        let body = `<g transform="translate(0,${f1(-lift)}) translate(1455,975) scale(.82) translate(-1455,-975)">
           ${fl ? `<path d="M1430,955 Q1455,${f1(1010 + Math.sin(t * 30) * 10)} 1480,955 Z" fill="${C.gold}"/><path d="M1440,955 Q1455,${f1(990 + Math.sin(t * 24) * 6)} 1470,955 Z" fill="#fff" opacity=".8"/>` : ''}
           <path d="M1400,950 L1380,975 L1420,955 Z M1510,950 L1530,975 L1490,955 Z" fill="${C.pink}"/>
           <path d="M1410,955 L1410,820 Q1410,750 1455,730 Q1500,750 1500,820 L1500,955 Z" fill="#fff" stroke="${C.purple}" stroke-width="6"/>
@@ -500,10 +504,8 @@
       const sk = pop(t, T.screen, 0.8);
       out += scaleAt(960, 870, sk, `<rect x="330" y="356" width="1260" height="528" rx="18" fill="${C.dark}"/><rect x="350" y="376" width="1220" height="488" rx="8" fill="#FFFDF9"/>`);
       if (sk > 0) {
-        out += txt(380, 420, '4H', 32, C.purple, { a: 'start', op: clamp(sk) });
+        out += txt(430, 430, '4H', 34, C.purple, { a: 'start', op: clamp(sk) });
         // Projector beam.
-        const bm = ease(seg(t, T.play, T.play + 0.8));
-        if (bm > 0) out += `<path d="M940,930 L380,400 L1540,400 L980,930 Z" fill="#FFF3C4" opacity="${(0.22 * bm).toFixed(2)}"/>`;
         // Story path.
         const PL = [470, 820], PH = [650, 560], HL = [820, 730], AP = [1000, 590], HH = [1180, 450], NOW = [1390, 640];
         const k1 = ease(seg(t, T.play + 0.6, T.play + 2.6)), k2 = ease(seg(t, T.hl, T.hl + 2)), k3 = ease(seg(t, T.hh, T.hh + 1.4)), k4 = ease(seg(t, T.now, T.now + 1.4));
@@ -514,7 +516,7 @@
         if (k3 > 0) out += poly(partial([AP, HH], k3), C.teal, 9);
         if (k4 > 0) out += poly(partial([HH, NOW], k4), C.gold, 8, { dash: '16 12' });
         out += pill(820, 780, 'higher low', DK.teal, pop(t, T.hl + 0.4, 0.5), 22);
-        out += pill(1050, 512, 'broke the prior high', DK.teal, pop(t, T.hh + 1.2, 0.5), 20);
+        out += pill(1110, 668, 'broke the prior high', DK.teal, pop(t, T.hh + 1.2, 0.5), 20);
         out += pill(1180, 410, 'higher high', DK.teal, pop(t, T.hh + 1.6, 0.5), 22);
         out += pill(800, 440, 'BULLISH STORY', DK.teal, pop(t, T.hh + 3, 0.6), 30);
         if (t > T.hh + 3) out += A.sparkle(800, 440, T.hh + 3, t);
@@ -564,8 +566,8 @@
       }
       // Station signs.
       const sign = (x, y, top, sub, col, k, op) => k <= 0 ? '' : fade(op, scaleAt(x, y, k, `<rect x="${x - 170}" y="${y - 44}" width="340" height="88" rx="16" fill="${col}"/>${txt(x, y - 4, top, 32, '#fff', { ls: 3 })}${txt(x, y + 30, sub, 22, '#fff', { w: 700 })}`));
-      out += sign(1640, 548, 'SUPPLY', 'look here when bearish', C.pink, pop(t, T.tracks + 0.8, 0.6), 1 - boardK * 0.8);
-      out += sign(1640, 790, 'DEMAND', 'look here when bullish', DK.teal, pop(t, T.tracks + 1, 0.6), 1 - boardK * 0.8);
+      out += sign(1640, 548, 'SUPPLY', 'look here when bearish', C.pink, pop(t, T.tracks + 0.8, 0.6), 1 - boardK);
+      out += sign(1640, 790, 'DEMAND', 'look here when bullish', DK.teal, pop(t, T.tracks + 1, 0.6), 1 - boardK);
       // Train waiting on the main line.
       const trk = pop(t, T.tracks + 0.4, 0.6);
       if (trk > 0) {
@@ -604,25 +606,26 @@
       const bdk = pop(t, T.ctx, 0.7);
       if (bdk > 0) {
         let b = `<rect x="1040" y="380" width="800" height="400" rx="26" fill="#fff" stroke="${C.purpleL}" stroke-width="5"/>
-          <line x1="1440" y1="410" x2="1440" y2="${t > T.wait ? 640 : 750}" stroke="#EFE3DA" stroke-width="3"/>`;
+          <line x1="1440" y1="410" x2="1440" y2="${t > T.wait ? 636 : 750}" stroke="#EFE3DA" stroke-width="3"/>`;
         b += txt(1240, 432, 'THE 4H GIVES YOU', 22, DK.teal, { ls: 2 });
-        ['the story', 'the direction', 'which side to look for'].forEach((w, i) => b += txt(1070, 492 + i * 52, '✓ ' + w, 28, C.text, { a: 'start', w: 700 }));
+        ['the story', 'the direction', 'which side to look for'].forEach((w, i) => b += txt(1070, 486 + i * 48, '✓ ' + w, 28, C.text, { a: 'start', w: 700 }));
         out += scaleAt(1440, 780, bdk, b);
         const nk = pop(t, T.not, 0.6);
         if (nk > 0) {
           let g = txt(1640, 432, 'IT DOESN’T GIVE YOU', 22, C.pink, { ls: 2 });
-          ['an entry', 'a zone', 'a way to skip', 'the sequence'].forEach((w, i) => g += txt(1468, 492 + i * 52, (i < 3 ? '✗ ' : '   ') + w, 28, C.text, { a: 'start', w: 700 }));
+          ['an entry', 'a zone', 'a reason to skip'].forEach((w, i) => g += txt(1468, 486 + i * 48, '✗ ' + w, 28, C.text, { a: 'start', w: 700 }));
+          g += txt(1500, 618, 'the sequence', 28, C.text, { a: 'start', w: 700 });
           out += fade(nk, g);
         }
         const wk = pop(t, T.wait + 0.4, 0.6);
         if (wk > 0) {
-          let g = `<line x1="1070" x2="1810" y1="660" y2="660" stroke="#EFE3DA" stroke-width="3"/>${txt(1440, 700, 'CARRY THE STORY DOWN, THEN WAIT FOR', 20, C.muted, { ls: 2 })}`;
+          let g = `<line x1="1070" x2="1810" y1="648" y2="648" stroke="#EFE3DA" stroke-width="3"/>${txt(1440, 700, 'CARRY THE STORY DOWN, THEN WAIT FOR', 20, C.muted, { ls: 2 })}`;
           [['1H read', 1150], ['15M BOS #1', 1330], ['5M sequence', 1540], ['retest', 1730]].forEach(([w, x], i) => g += pill(x, 742, w, i % 2 ? C.purple : DK.peach, pop(t, T.wait + 0.8 + i * 0.4, 0.5), 20));
           out += fade(wk, g);
         }
       }
-      out += bub(380, 470, 'Which track? 🤔', between(t, T.tracks + 1.2, T.bull - 0.2), { size: 26 });
-      out += bub(380, 470, 'Carry it down ⬇️', between(t, T.wait + 0.6, s.end), { size: 26 });
+      out += bub(790, 600, 'Which track? 🤔', between(t, T.tracks + 1.2, T.bull - 0.2), { size: 26 });
+      out += bub(790, 600, 'Carry it down ⬇️', between(t, T.wait + 0.6, s.end), { size: 26 });
       return out;
     },
   });
