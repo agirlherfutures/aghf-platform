@@ -187,7 +187,7 @@ function trailingExample(plan) {
   }
   if (plan.drawdownType === 'eod_trailing' || plan.drawdownType === 'intraday_trailing') {
     const intraday = plan.drawdownType === 'intraday_trailing';
-    return `<div class="lab-explain"><b>What trailing means for you</b>
+    return `<div class="lab-explain"><b>What ${intraday ? 'trailing (intraday)' : 'end-of-day trailing'} means for you</b>
       <ol>
         <li>You start at <b>${money(start)}</b>. Your floor is <b>${money(start - dd)}</b>, so you have ${money(dd)} of room.</li>
         <li>${intraday ? 'Your balance touches' : 'You close a day at'} <b>${money(start + up)}</b>. Your floor moves up to <b>${money(start + up - dd)}</b>.</li>

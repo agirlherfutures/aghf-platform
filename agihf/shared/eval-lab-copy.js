@@ -40,8 +40,8 @@ export const PROFILE_NOTE = 'These are the numbers you enter, not verified rules
 
 export const DRAWDOWN_METHODS = [
   { key: 'static', label: 'Static', help: 'Your floor stays at your starting balance minus your drawdown. It never moves, no matter how much you make.' },
-  { key: 'eod_trailing', label: 'End-of-day trailing', help: 'Your floor follows your highest closing balance. A good day raises the floor, and it never moves back down.' },
-  { key: 'intraday_trailing', label: 'Intraday trailing', help: 'Your floor follows your highest balance at any moment, even unrealized profit in an open trade. A trade that goes your way and comes back can still raise your floor.' },
+  { key: 'intraday_trailing', label: 'Trailing (intraday)', help: 'Usually just called trailing. Your floor follows your highest balance at any moment, even unrealized profit in an open trade. A trade that goes your way and comes back can still raise your floor.' },
+  { key: 'eod_trailing', label: 'End-of-day trailing', help: 'Your floor follows your highest closing balance only. A good day raises the floor, and it never moves back down, but open trades don’t move it.' },
   { key: 'other', label: 'Other', help: 'Describe how your provider measures it in the note below, so the numbers here stay honest.' },
   { key: 'unknown', label: 'Not sure', help: 'Find out before you trade it. How your drawdown is measured decides how your account can fail. Until then, the Lab leaves your room-left numbers blank instead of guessing.' },
 ];
