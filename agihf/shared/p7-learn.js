@@ -12,7 +12,7 @@ import { videoPlayerHtml, wireVideoPlayer } from './loop-engine.js';
 import { VIDEO_BASE } from './lesson-videos.js';
 
 // Videos uploaded to the lesson-videos bucket (<slug>.mp4). A video's own `url` below always wins.
-const HOSTED = new Set([]);
+const HOSTED = new Set(['p7-lesson-1', ...Array.from({ length: 15 }, (_, i) => i + 1).map((n) => `p7-psych-${n}`)]);
 const hosted = (slug) => (HOSTED.has(slug) ? `${VIDEO_BASE}${slug}.mp4` : null);
 
 export const PSYCH_VIDEOS = {

@@ -4,7 +4,7 @@
  * Pure calculation layer for the Pass Your Eval Calculator — zero DOM, zero
  * fetch, matching this codebase's established journal-insights.js-feeds-
  * journal-engine.js split. Every function here is a plain function of its
- * inputs so it can be unit-tested and so eval-calculator-wizard-engine.js
+ * inputs so it can be unit-tested and so eval-lab-engine.js
  * never needs to duplicate a formula.
  *
  * Educational framing only — nothing here ever produces or should be

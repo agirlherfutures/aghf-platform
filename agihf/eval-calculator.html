@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pass Your Eval Calculator — A Girl & Her Futures</title>
+<title>Pass Your Eval™ · The Evaluation Lab · A Girl & Her Futures</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/tokens.css">
 <link rel="stylesheet" href="shared/sidebar.css">
@@ -16,9 +16,9 @@
 <script src="shared/sidebar.js" data-active="eval-calculator"></script>
 
 <main class="main">
-  <div class="pg-eye">✦ Planning Tool</div>
-  <div class="pg-title">Pass Your Eval Calculator</div>
-  <div class="small-help" style="margin:-8px 0 18px;max-width:640px;">Educational planning tool only — not financial advice, not a guarantee of results, a pass date, or profit. Your actual results will vary.</div>
+  <div class="pg-eye">✦ Pass Your Eval™</div>
+  <div class="pg-title">The Evaluation Lab</div>
+  <div class="small-help" style="margin:-8px 0 18px;max-width:640px;">Your plan. Your discipline. Your progress.</div>
 
   <div id="evalPlanBar" style="margin-bottom:14px;"></div>
   <div id="evalRoot"></div>
@@ -41,7 +41,7 @@
     console.error('Eval calculator page failed to load:', err);
     root.innerHTML = `
       <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
-        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading the Eval Calculator</div>
+        <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading the Evaluation Lab</div>
         <div style="font-size:.88rem;color:#7A5C50;margin-bottom:18px;word-break:break-word;">${(err && err.message) ? err.message : 'An unexpected error occurred.'}</div>
         <button type="button" onclick="location.reload()" style="padding:10px 22px;border-radius:999px;border:none;background:#F4829A;color:#fff;font-weight:600;cursor:pointer;">Reload</button>
       </div>`;
@@ -49,9 +49,9 @@
 
   function freshPlan() {
     return {
-      name: 'New Eval Plan', status: 'draft', isActive: false,
+      name: 'My Evaluation', status: 'draft', isActive: false,
       accountSize: 50000, isCustomAccount: false, startingBalance: 50000,
-      profitTargetType: 'fixed_amount', drawdownType: 'static', riskMode: 'points',
+      profitTargetType: 'fixed_amount', drawdownType: 'static', riskMode: 'dollars',
       stopAfterWin: false, reduceSizeAfterLoss: false, tradingDaysElapsed: 0,
     };
   }
@@ -61,7 +61,7 @@
    * risk/reward, rules, current balance/days-elapsed progress) genuinely
    * goes back to blank rather than lingering from the old object. */
   function buildResetPlan(plan) {
-    return { ...freshPlan(), id: plan.id, name: plan.name, isActive: plan.isActive };
+    return { ...freshPlan(), id: plan.id, name: plan.name, isActive: plan.isActive, lab: null };
   }
 
   let plans = [];
@@ -72,7 +72,7 @@
     try {
       const [evalService, evalWizardEngine, dayliDeskEngine, evalCalculatorMath] = await Promise.all([
         import('./shared/eval-service.js'),
-        import('./shared/eval-calculator-wizard-engine.js'),
+        import('./shared/eval-lab-engine.js'),
         import('./shared/dayli-desk-engine.js'),
         import('./shared/eval-calculator-math.js'),
       ]);
@@ -96,7 +96,7 @@
       startPage();
     } catch (err) {
       console.error('Eval calculator load error:', err);
-      renderErrorState(root, err.message || "Couldn't load your eval plans.", boot);
+      renderErrorState(root, err.message || "Couldn’t load your eval plans.", boot);
     }
   }
 
@@ -112,7 +112,7 @@
 
   function paintPlanBar() {
     planBar.innerHTML = `
-      <button type="button" class="eval-planbar-toggle" id="evalPlansToggle">My Eval Plans ▾</button>
+      <button type="button" class="eval-planbar-toggle" id="evalPlansToggle">My Evaluations ▾</button>
       <div class="eval-planbar-panel" id="evalPlansPanel" ${plansPanelOpen ? '' : 'hidden'}>
         <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
           <select class="field-input" id="evalPlanSelect" style="max-width:280px;">
@@ -149,7 +149,7 @@
         startPage();
       } catch (err) {
         console.error('Duplicate plan error:', err);
-        alert("Couldn't duplicate this plan — try again in a moment.");
+        alert("Couldn’t duplicate this plan Try again in a moment.");
       }
     });
     planBar.querySelector('#evalArchiveBtn').addEventListener('click', async () => {
@@ -163,11 +163,11 @@
         startPage();
       } catch (err) {
         console.error('Archive plan error:', err);
-        alert("Couldn't archive this plan — try again in a moment.");
+        alert("Couldn’t archive this plan Try again in a moment.");
       }
     });
     planBar.querySelector('#evalDeleteBtn').addEventListener('click', async () => {
-      if (!confirm(`Permanently delete "${currentPlan.name}"? This can't be undone.`)) return;
+      if (!confirm(`Permanently delete "${currentPlan.name}"? This can’t be undone.`)) return;
       try {
         await deleteEvalPlan(currentPlan.id);
         plans = plans.filter((p) => p.id !== currentPlan.id);
@@ -177,7 +177,7 @@
         startPage();
       } catch (err) {
         console.error('Delete plan error:', err);
-        alert("Couldn't delete this plan — try again in a moment.");
+        alert("Couldn’t delete this plan Try again in a moment.");
       }
     });
   }
@@ -188,17 +188,17 @@
     handle = renderEvalCalculatorPage(root, currentPlan, {
       onChange: (next) => { currentPlan = next; autosave(next); },
       onReset: async () => {
-        if (!confirm(`Reset all fields on "${currentPlan.name}"? This clears your inputs back to blank — it won't delete this plan or create a new one.`)) return;
+        if (!confirm(`Reset all fields on "${currentPlan.name}"? This clears everything on it, including logged sessions and check-ins. It won’t delete the plan.`)) return;
         try {
           const saved = await saveEvalPlan(buildResetPlan(currentPlan));
           currentPlan = saved;
           const idx = plans.findIndex((p) => p.id === saved.id);
           if (idx >= 0) plans[idx] = saved;
-          showDeskToast('Plan reset ✦');
+          showDeskToast('Plan cleared ✦');
           startPage();
         } catch (err) {
           console.error('Reset plan error:', err);
-          alert("Couldn't reset this plan — try again in a moment.");
+          alert("Couldn’t reset this plan Try again in a moment.");
         }
       },
       onSaveExplicit: async (plan) => {
