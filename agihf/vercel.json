@@ -1,38 +1,227 @@
 {
   "functions": {
-    "api/agent-chat.js": { "maxDuration": 60 }
+    "api/agent-chat.js": {
+      "maxDuration": 60
+    }
   },
+  "redirects": [
+    {
+      "source": "/university",
+      "destination": "/#sec-pricing",
+      "permanent": false
+    },
+    {
+      "source": "/university-bundle",
+      "destination": "/#sec-pricing",
+      "permanent": false
+    },
+    {
+      "source": "/bundle",
+      "destination": "/#sec-pricing",
+      "permanent": false
+    },
+    {
+      "source": "/premium",
+      "destination": "/#sec-pricing",
+      "permanent": false
+    },
+    {
+      "source": "/join",
+      "destination": "/#sec-pricing",
+      "permanent": false
+    },
+    {
+      "source": "/structurelablive",
+      "destination": "/#sec-pricing",
+      "permanent": false
+    },
+    {
+      "source": "/dayli-icc-method",
+      "destination": "/#sec-pricing",
+      "permanent": false
+    },
+    {
+      "source": "/welcome-premium",
+      "destination": "/welcome-university",
+      "permanent": false
+    },
+    {
+      "source": "/welcome-bundle",
+      "destination": "/welcome-university",
+      "permanent": false
+    },
+    {
+      "source": "/welcome-university-bundle",
+      "destination": "/welcome-university",
+      "permanent": false
+    },
+    {
+      "source": "/before-you-go-bundle",
+      "destination": "/before-you-go-premium",
+      "permanent": false
+    },
+    {
+      "source": "/before-you-go-free",
+      "destination": "/free",
+      "permanent": false
+    }
+  ],
   "rewrites": [
-    { "source": "/api/agent-conversations", "destination": "/api/agent-data?resource=conversations" },
-    { "source": "/api/agent-messages", "destination": "/api/agent-data?resource=messages" },
-    { "source": "/api/agent-memory", "destination": "/api/agent-data?resource=memory" },
-    { "source": "/api/agent-actions", "destination": "/api/agent-data?resource=actions" },
-    { "source": "/api/agent-attachment", "destination": "/api/agent-data?resource=attachment" },
-    { "source": "/api/psychology-profile", "destination": "/api/psychology-data?resource=profile" },
-    { "source": "/api/psychology-sessions", "destination": "/api/psychology-data?resource=sessions" },
-    { "source": "/api/psychology-playbook", "destination": "/api/psychology-data?resource=playbook" },
-    { "source": "/api/psychology-scenario-attempts", "destination": "/api/psychology-data?resource=scenario-attempts" },
-    { "source": "/api/wins-submissions", "destination": "/api/wins-data?resource=submissions" },
-    { "source": "/api/wins-media", "destination": "/api/wins-data?resource=media" },
-    { "source": "/api/wins-reactions", "destination": "/api/wins-data?resource=reactions" },
-    { "source": "/api/wins-moderation", "destination": "/api/wins-data?resource=moderation" },
-    { "source": "/api/journal-screenshot", "destination": "/api/journal-entries?resource=screenshot" },
-    { "source": "/api/checklists", "destination": "/api/journal-entries?resource=checklist" },
-    { "source": "/api/chartlab-image", "destination": "/api/chartlab-data?resource=chart-image" },
-    { "source": "/api/chartlab-attempt", "destination": "/api/chartlab-data?resource=attempt" },
-    { "source": "/api/chartlab-session", "destination": "/api/chartlab-data?resource=session" },
-    { "source": "/api/chartlab-mastery", "destination": "/api/chartlab-data?resource=mastery" },
-    { "source": "/api/chartlab-mistakes", "destination": "/api/chartlab-data?resource=mistakes" },
-    { "source": "/api/chartlab-report", "destination": "/api/chartlab-data?resource=report" },
-    { "source": "/api/chartlab-admin", "destination": "/api/chartlab-data?resource=admin" },
-    { "source": "/api/challenge-current", "destination": "/api/challenge-data?resource=current" },
-    { "source": "/api/challenge-progress", "destination": "/api/challenge-data?resource=progress" },
-    { "source": "/api/challenge-entries", "destination": "/api/challenge-data?resource=entries" },
-    { "source": "/api/challenge-leaderboard", "destination": "/api/challenge-data?resource=leaderboard" },
-    { "source": "/api/challenge-winners", "destination": "/api/challenge-data?resource=winners" },
-    { "source": "/api/challenge-prefs", "destination": "/api/challenge-data?resource=prefs" },
-    { "source": "/api/notifications", "destination": "/api/challenge-data?resource=notifications" },
-    { "source": "/api/challenge-admin", "destination": "/api/challenge-data?resource=admin" },
-    { "source": "/api/join-waitlist", "destination": "/api/eval-data?resource=waitlist" }
+    {
+      "source": "/login",
+      "destination": "/login.html"
+    },
+    {
+      "source": "/free",
+      "destination": "/free.html"
+    },
+    {
+      "source": "/community",
+      "destination": "/free.html"
+    },
+    {
+      "source": "/resources",
+      "destination": "/resources.html"
+    },
+    {
+      "source": "/getting-started",
+      "destination": "/getting-started.html"
+    },
+    {
+      "source": "/welcome-free",
+      "destination": "/welcome-free.html"
+    },
+    {
+      "source": "/welcome-university",
+      "destination": "/welcome-premium.html"
+    },
+    {
+      "source": "/before-you-go-premium",
+      "destination": "/before-you-go-premium.html"
+    },
+    {
+      "source": "/api/agent-conversations",
+      "destination": "/api/agent-data?resource=conversations"
+    },
+    {
+      "source": "/api/agent-messages",
+      "destination": "/api/agent-data?resource=messages"
+    },
+    {
+      "source": "/api/agent-memory",
+      "destination": "/api/agent-data?resource=memory"
+    },
+    {
+      "source": "/api/agent-actions",
+      "destination": "/api/agent-data?resource=actions"
+    },
+    {
+      "source": "/api/agent-attachment",
+      "destination": "/api/agent-data?resource=attachment"
+    },
+    {
+      "source": "/api/psychology-profile",
+      "destination": "/api/psychology-data?resource=profile"
+    },
+    {
+      "source": "/api/psychology-sessions",
+      "destination": "/api/psychology-data?resource=sessions"
+    },
+    {
+      "source": "/api/psychology-playbook",
+      "destination": "/api/psychology-data?resource=playbook"
+    },
+    {
+      "source": "/api/psychology-scenario-attempts",
+      "destination": "/api/psychology-data?resource=scenario-attempts"
+    },
+    {
+      "source": "/api/wins-submissions",
+      "destination": "/api/wins-data?resource=submissions"
+    },
+    {
+      "source": "/api/wins-media",
+      "destination": "/api/wins-data?resource=media"
+    },
+    {
+      "source": "/api/wins-reactions",
+      "destination": "/api/wins-data?resource=reactions"
+    },
+    {
+      "source": "/api/wins-moderation",
+      "destination": "/api/wins-data?resource=moderation"
+    },
+    {
+      "source": "/api/journal-screenshot",
+      "destination": "/api/journal-entries?resource=screenshot"
+    },
+    {
+      "source": "/api/checklists",
+      "destination": "/api/journal-entries?resource=checklist"
+    },
+    {
+      "source": "/api/chartlab-image",
+      "destination": "/api/chartlab-data?resource=chart-image"
+    },
+    {
+      "source": "/api/chartlab-attempt",
+      "destination": "/api/chartlab-data?resource=attempt"
+    },
+    {
+      "source": "/api/chartlab-session",
+      "destination": "/api/chartlab-data?resource=session"
+    },
+    {
+      "source": "/api/chartlab-mastery",
+      "destination": "/api/chartlab-data?resource=mastery"
+    },
+    {
+      "source": "/api/chartlab-mistakes",
+      "destination": "/api/chartlab-data?resource=mistakes"
+    },
+    {
+      "source": "/api/chartlab-report",
+      "destination": "/api/chartlab-data?resource=report"
+    },
+    {
+      "source": "/api/chartlab-admin",
+      "destination": "/api/chartlab-data?resource=admin"
+    },
+    {
+      "source": "/api/challenge-current",
+      "destination": "/api/challenge-data?resource=current"
+    },
+    {
+      "source": "/api/challenge-progress",
+      "destination": "/api/challenge-data?resource=progress"
+    },
+    {
+      "source": "/api/challenge-entries",
+      "destination": "/api/challenge-data?resource=entries"
+    },
+    {
+      "source": "/api/challenge-leaderboard",
+      "destination": "/api/challenge-data?resource=leaderboard"
+    },
+    {
+      "source": "/api/challenge-winners",
+      "destination": "/api/challenge-data?resource=winners"
+    },
+    {
+      "source": "/api/challenge-prefs",
+      "destination": "/api/challenge-data?resource=prefs"
+    },
+    {
+      "source": "/api/notifications",
+      "destination": "/api/challenge-data?resource=notifications"
+    },
+    {
+      "source": "/api/challenge-admin",
+      "destination": "/api/challenge-data?resource=admin"
+    },
+    {
+      "source": "/api/join-waitlist",
+      "destination": "/api/eval-data?resource=waitlist"
+    }
   ]
 }
