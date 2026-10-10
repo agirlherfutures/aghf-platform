@@ -55,6 +55,14 @@
   @media (max-width:1000px){.float{display:none}}
   @media (max-width:480px){.card{padding:32px 22px}.logo{height:58px}}
 
+  /* Already signed in on this device */
+  .signedin{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:20;width:min(560px,calc(100% - 24px));background:#fff;border:1px solid var(--border);
+    border-radius:18px;box-shadow:0 16px 40px rgba(44,24,16,.14);padding:12px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;font-size:.9rem;color:var(--text)}
+  .signedin b{color:var(--dark);word-break:break-all}
+  .signedin .pill{border:0;border-radius:999px;padding:9px 14px;font:800 .82rem var(--font-body);cursor:pointer;text-decoration:none}
+  .signedin .go{background:linear-gradient(90deg,var(--pink),var(--peach));color:#fff}
+  .signedin .out{background:var(--cream);color:var(--dark);border:1px solid var(--border)}
+
   /* First visit: photo split */
   .first{min-height:100vh;display:grid;grid-template-columns:1.05fr 1fr}
   .first-photo{position:relative;background:url(assets/home/her-mom.jpg) center/cover}
@@ -107,6 +115,13 @@
 </style>
 </head>
 <body>
+
+<!-- Shown when this browser is already signed in to an Academy account -->
+<div class="signedin" id="signedIn" role="status" hidden>
+  <span>You’re signed in as <b id="signedInEmail"></b></span>
+  <a class="pill go" id="signedInGo" href="dashboard.html">Continue to my Desk</a>
+  <button type="button" class="pill out" id="signedInSwitch">Use a different account</button>
+</div>
 
 <!-- FIRST VISIT ON THIS DEVICE -->
 <main class="first" id="viewFirst" hidden>
@@ -249,9 +264,6 @@
   const params = new URLSearchParams(window.location.search);
   const redirectTo = params.get('redirect');
 
-  function goPostLogin() {
-    window.location.href = redirectTo || 'dashboard.html';
-  }
 
   // Send members back to the page they wanted after Whop sign-in.
   const safe = redirectTo && /^\/?[A-Za-z0-9._\-/?=&%]*$/.test(redirectTo) && !redirectTo.startsWith('//') ? redirectTo : null;
@@ -260,9 +272,30 @@
     document.querySelectorAll('[data-whop-login]').forEach((a) => { a.href = href; });
   }
 
-  // Already signed in? Skip straight through instead of showing the form.
+  // Already signed in on this browser? Say which account, instead of jumping straight in,
+  // so someone can switch to a different Whop account.
   const { data: { session } } = await supabase.auth.getSession();
-  if (session?.user) goPostLogin();
+  if (session?.user) {
+    const bar = document.getElementById('signedIn');
+    document.getElementById('signedInEmail').textContent = session.user.email || 'your account';
+    document.getElementById('signedInGo').href = redirectTo || 'dashboard.html';
+    bar.hidden = false;
+    document.getElementById('signedInSwitch').addEventListener('click', async () => {
+      await supabase.auth.signOut({ scope: 'local' }).catch(() => {});
+      bar.hidden = true;
+    });
+  }
+  // Connecting a Whop account always starts fresh, so the new account can't be mixed up with
+  // whoever was signed in on this browser before.
+  document.querySelectorAll('[data-whop-login]').forEach((a) => {
+    a.addEventListener('click', async (e) => {
+      const { data: { session: current } } = await supabase.auth.getSession();
+      if (!current) return;
+      e.preventDefault();
+      await supabase.auth.signOut({ scope: 'local' }).catch(() => {});
+      window.location.href = a.href;
+    });
+  });
 </script>
 
 </body>
