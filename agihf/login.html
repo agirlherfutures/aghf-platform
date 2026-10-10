@@ -161,7 +161,8 @@
 
       <div class="plan-note">
         <div class="plan-note-icon">✨</div>
-        <div class="plan-note-text"><strong>All-access membership</strong> unlocks the full K–12 Academy, the ICC Structure Lab Discord, and the Dayli ICC indicator — one login, one price.</div>
+        <div class="plan-note-text" id="planNoteText"><strong>The Academy</strong> ($49.99/mo) or <strong>Academy + Dayli ICC Indicator</strong> ($64.99/mo). Both include Academy access in the Discord. You’ll confirm your plan on the next step.</div>
+        <script>(function(){var p=new URLSearchParams(location.search).get('plan');try{if(p)localStorage.setItem('aghf_plan',p);else p=localStorage.getItem('aghf_plan');}catch(e){}var t=document.getElementById('planNoteText');if(!t)return;if(p==='indicator')t.innerHTML='<strong>Academy + Dayli ICC Indicator</strong>, $64.99/mo. Includes Academy access in the Discord. Only 100 spots. You’ll confirm on the next step.';else if(p==='academy')t.innerHTML='<strong>The Academy</strong>, $49.99/mo. Includes Academy access in the Discord. You’ll confirm on the next step.';})();</script>
       </div>
     </div>
 
@@ -247,7 +248,9 @@
         const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
         if (signInError) throw new Error('Account may already exist. Try signing in instead.');
       }
-      window.location.href = 'index.html?screen=payment';
+      let plan = new URLSearchParams(location.search).get('plan');
+      if (!plan) { try { plan = localStorage.getItem('aghf_plan'); } catch {} }
+      window.location.href = 'index.html?screen=payment' + (plan === 'indicator' || plan === 'academy' ? `&plan=${plan}` : '');
     } catch (err) {
       showError('signupError', err.message);
       btn.disabled = false; btn.textContent = 'Create my account';
