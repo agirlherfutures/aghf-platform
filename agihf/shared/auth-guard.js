@@ -297,6 +297,8 @@
       }
 
       window.AGHF_USER = { id: session.user.id, email: session.user.email };
+      // Remember that this device has signed in, so login.html shows "Welcome back" next time.
+      try { localStorage.setItem('aghf_signed_in_before', '1'); } catch { /* storage blocked */ }
       window.AGHF_SESSION_TOKEN = session.access_token;
       window.AGHF_SUPABASE = supabaseClient;
 
