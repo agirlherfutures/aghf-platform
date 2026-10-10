@@ -10,8 +10,8 @@
 | 0:04 |  | Same sequence, mirrored. |
 | 0:08 | A bullish 5M sequence on the bank ("DEMAND · the bullish model"); its reflection in the lake ("SUPPLY · the bearish model") | Demand belongs to the bullish model. Supply belongs to the bearish model. |
 | 0:13 | "BOS #2" and "BOS #3" tagged on both charts | The steps don't change. Only the direction does, like a reflection in a lake. |
-| 0:19 | Top chart: the last bearish candle ringed, its zone drawn: "zone: last bearish candle" | Demand: the last bearish candle of Correction #2 before BOS #3, the third break of structure. |
-| 0:26 | Reflection: the last bullish candle ringed: "zone: last bullish candle" | Supply: the last bullish candle of Correction #2 before BOS #3. |
+| 0:19 | Top chart: the last bearish candle ringed, its zone drawn: "zone: last bearish candle" | Demand: the last bearish candle of Correction two before BOS three, the third break of structure. |
+| 0:26 | Reflection: the last bullish candle ringed: "zone: last bullish candle" | Supply: the last bullish candle of Correction two before BOS three. |
 | 0:31 | "Same sequence. Mirrored." | Same sequence. Mirrored. |
 | 0:34 | A house with an "HTF ICC" sign and a weathervane; a DEMAND room and a SUPPLY room | So which one are you hunting? Read the story first. |
 | 0:38 | The vane spins, points up: "bullish → hunt demand", then down: "bearish → hunt supply" | The higher-timeframe ICC direction, or HTF ICC, tells you. Bullish means demand. Bearish means supply. |

@@ -120,22 +120,22 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 34.4,
-          "text": "BOS #1: a 15M candle closes below the 15M level.",
+          "text": "BOS one: a 15M candle closes below the 15M level.",
           "screen": "15M chart: \"15M level\"; a candle closes below it: \"BOS #1 · 15M close\"; card: first BREAK stamped"
         },
         {
           "at": 38.8,
-          "text": "Correction #1 bounces up on the 5M. Then BOS #2: a 5M close below the low it pulled back from.",
+          "text": "Correction one bounces up on the 5M. Then BOS two: a 5M close below the low it pulled back from.",
           "screen": "5M chart: \"Correction #1\" bounce, then \"BOS #2\"; card stamps"
         },
         {
           "at": 47.2,
-          "text": "Correction #2 creates the zone, from its last bullish candle.",
+          "text": "Correction two creates the zone, from its last bullish candle.",
           "screen": "\"Correction #2\"; its last bullish candle ringed: \"potential supply zone\""
         },
         {
           "at": 51.6,
-          "text": "BOS #3, a 5M close below the low Correction #2 pulled back from, activates it.",
+          "text": "BOS three, a 5M close below the low Correction two pulled back from, activates it.",
           "screen": "\"BOS #3\"; \"active supply zone ✓\""
         },
         {

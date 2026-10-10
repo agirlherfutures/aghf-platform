@@ -65,12 +65,12 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 19.6,
-          "text": "Demand: the last bearish candle of Correction #2 before BOS #3, the third break of structure.",
+          "text": "Demand: the last bearish candle of Correction two before BOS three, the third break of structure.",
           "screen": "Top chart: the last bearish candle ringed, its zone drawn: \"zone: last bearish candle\""
         },
         {
           "at": 26.4,
-          "text": "Supply: the last bullish candle of Correction #2 before BOS #3.",
+          "text": "Supply: the last bullish candle of Correction two before BOS three.",
           "screen": "Reflection: the last bullish candle ringed: \"zone: last bullish candle\""
         },
         {

@@ -52,17 +52,17 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 8.4,
-          "text": "Correction #2 creates the zone. Inside it, you’re looking for one candle.",
+          "text": "Correction two creates the zone. Inside it, you’re looking for one candle.",
           "screen": "Correction #2’s candles line up on a stage; the same candles shaded on a 5M chart"
         },
         {
           "at": 13.6,
-          "text": "In a bullish model, find the bearish candles in Correction #2.",
+          "text": "In a bullish model, find the bearish candles in Correction two.",
           "screen": "Two candles tagged \"bearish\"; a spotlight comes on"
         },
         {
           "at": 18.4,
-          "text": "There’s more than one. Take the last one before BOS #3, the third break of structure.",
+          "text": "There’s more than one. Take the last one before BOS three, the third break of structure.",
           "screen": "The spotlight sweeps to the last bearish candle; a tall \"BOS #3\" candle jumps on stage"
         },
         {
@@ -116,17 +116,17 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 42.4,
-          "text": "Correction #2 is where the zone comes from. The zone itself is one candle.",
+          "text": "Correction two is where the zone comes from. The zone itself is one candle.",
           "screen": "Chart: the zone candle ringed, \"the zone candle ✓\", its zone drawn"
         },
         {
           "at": 48.4,
-          "text": "For supply, it mirrors: the last bullish candle of Correction #2 before sellers produce BOS #3.",
+          "text": "For supply, it mirrors: the last bullish candle of Correction two before sellers produce BOS three.",
           "screen": "Pages flip colour; the chart flips to SUPPLY · BEARISH: \"last bullish candle before BOS #3\""
         },
         {
           "at": 55.2,
-          "text": "One candle. The last one. Before BOS #3.",
+          "text": "One candle. The last one. Before BOS three.",
           "screen": "\"ONE CANDLE. THE LAST ONE. BEFORE BOS #3.\""
         }
       ]

@@ -19,7 +19,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Module One, Lesson Six: The 5M, BOS #2.",
+          "text": "Welcome to Module One, Lesson Six: The 5M, BOS two.",
           "screen": "Aristella waves; title *The 5M: BOS #2*"
         },
         {
@@ -59,7 +59,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 8.4,
-          "text": "After BOS #1 on the 15M, the 5M pulls back. That’s Correction #1.",
+          "text": "After BOS one on the 15M, the 5M pulls back. That’s Correction one.",
           "screen": "5M chart; \"BOS #1 (15M) done ✓\"; the pullback bracketed \"Correction #1\""
         },
         {
@@ -74,12 +74,12 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 24.4,
-          "text": "Then a 5M candle closes above it. That’s BOS #2.",
+          "text": "Then a 5M candle closes above it. That’s BOS two.",
           "screen": "Next candle closes above the high: \"BOS #2 · 5M close ✓\""
         },
         {
           "at": 28.8,
-          "text": "On the 5M, through the Correction #1 swing, with a candle close.",
+          "text": "On the 5M, through the Correction one swing, with a candle close.",
           "screen": "Chips: On the 5M ✓ · Through the Correction #1 swing ✓ · A candle close ✓"
         }
       ]
@@ -116,7 +116,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 34.4,
-          "text": "So is BOS #2 your entry? Not yet.",
+          "text": "So is BOS two your entry? Not yet.",
           "screen": "A baker by the oven: \"Can I eat it yet? 🍰\""
         },
         {
@@ -126,17 +126,17 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 44.4,
-          "text": "Correction #2, BOS #3 and the retest come next. No zone yet.",
+          "text": "Correction two, BOS three and the retest come next. No zone yet.",
           "screen": "Correction #2 · BOS #3 · Retest: \"still to come\"; \"no zone yet · no entry yet\""
         },
         {
           "at": 50,
-          "text": "And if BOS #2 never comes? Then the sequence is incomplete.",
+          "text": "And if BOS two never comes? Then the sequence is incomplete.",
           "screen": "Bearish 5M chart: Correction #1 bounces up from a low"
         },
         {
           "at": 54.8,
-          "text": "No 5M close through the level means no BOS #2, and no trade.",
+          "text": "No 5M close through the level means no BOS two, and no trade.",
           "screen": "\"no 5M close below it = no BOS #2\"; NO TRADE stamp"
         }
       ]
@@ -151,7 +151,7 @@ window.LESSON_VIDEO = {
       "parts": [
         {
           "at": 63.4,
-          "text": "BOS #2 tells you the story is still going."
+          "text": "BOS two tells you the story is still going."
         },
         {
           "at": 66.2,
@@ -166,7 +166,7 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 64.2,
-          "text": "BOS #2 tells you the story is still going. It doesn’t tell you to trade.",
+          "text": "BOS two tells you the story is still going. It doesn’t tell you to trade.",
           "screen": "Aristella points"
         }
       ]
@@ -178,7 +178,7 @@ window.LESSON_VIDEO = {
       "kicker": "Your mission",
       "question": {
         "at": 74.4,
-        "text": "Why is BOS #2 a step in the sequence, not a signal to trade?"
+        "text": "Why is BOS two a step in the sequence, not a signal to trade?"
       },
       "cta": {
         "at": 81.4,
@@ -192,7 +192,7 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 74.4,
-          "text": "Ask yourself: why is BOS #2 a step in the sequence, not a signal to trade?",
+          "text": "Ask yourself: why is BOS two a step in the sequence, not a signal to trade?",
           "screen": "Mission question"
         },
         {

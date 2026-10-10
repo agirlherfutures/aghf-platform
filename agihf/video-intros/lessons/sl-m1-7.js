@@ -19,7 +19,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Module One, Lesson Seven: Correction #2, Where Zones Begin.",
+          "text": "Welcome to Module One, Lesson Seven: Correction two, Where Zones Begin.",
           "screen": "Aristella waves; title *Correction #2: Where Zones Begin*"
         },
         {
@@ -60,12 +60,12 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 14.4,
-          "text": "Correction #1 comes after BOS #1, the first break of structure. It doesn’t create the zone.",
+          "text": "Correction one comes after BOS one, the first break of structure. It doesn’t create the zone.",
           "screen": "First pullback bracketed \"Correction #1\" (\"no zone\"); wave 1 washes in and out"
         },
         {
           "at": 21.2,
-          "text": "Correction #2 comes after BOS #2. That second pullback is where the zone begins.",
+          "text": "Correction two comes after BOS two. That second pullback is where the zone begins.",
           "screen": "\"BOS #2\", then the second pullback: \"Correction #2\", \"the zone begins here ✓\"; wave 2"
         },
         {
@@ -104,27 +104,27 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 34.4,
-          "text": "But a zone from Correction #2 is only potential.",
+          "text": "But a zone from Correction two is only potential.",
           "screen": "The zone candle ringed; a dashed \"potential zone\""
         },
         {
           "at": 38.4,
-          "text": "It’s a seed. It needs BOS #3 to grow.",
+          "text": "It’s a seed. It needs BOS three to grow.",
           "screen": "A seed drops into a pot: \"needs BOS #3 to grow\""
         },
         {
           "at": 42.4,
-          "text": "BOS #3, a 5M close above the high Correction #2 pulled back from, makes it active.",
+          "text": "BOS three, a 5M close above the high Correction two pulled back from, makes it active.",
           "screen": "\"Correction #2 high\"; a 5M candle closes above it: \"BOS #3 ✓\"; the sun comes out, the sprout flowers; \"active zone ✓\""
         },
         {
           "at": 50,
-          "text": "If BOS #3 never happens, the zone never activates. No trade.",
+          "text": "If BOS three never happens, the zone never activates. No trade.",
           "screen": "A second pot under a rain cloud: \"if BOS #3 never comes\"; NO TRADE stamp"
         },
         {
           "at": 54.8,
-          "text": "Correction #2 creates the zone. BOS #3 activates it.",
+          "text": "Correction two creates the zone. BOS three activates it.",
           "screen": "\"Correction #2 creates it\" · \"BOS #3 activates it\""
         }
       ]
@@ -166,7 +166,7 @@ window.LESSON_VIDEO = {
       "kicker": "Your mission",
       "question": {
         "at": 74.4,
-        "text": "Why does the zone come from Correction #2 and not Correction #1?"
+        "text": "Why does the zone come from Correction two and not Correction one?"
       },
       "cta": {
         "at": 81.2,
@@ -180,7 +180,7 @@ window.LESSON_VIDEO = {
         },
         {
           "at": 74.4,
-          "text": "Here’s your question: why does the zone come from Correction #2 and not Correction #1?",
+          "text": "Here’s your question: why does the zone come from Correction two and not Correction one?",
           "screen": "Mission question"
         },
         {
