@@ -55,6 +55,35 @@
   @media (max-width:1000px){.float{display:none}}
   @media (max-width:480px){.card{padding:32px 22px}.logo{height:58px}}
 
+  /* First visit: photo split */
+  .first{min-height:100vh;display:grid;grid-template-columns:1.05fr 1fr}
+  .first-photo{position:relative;background:url(assets/home/her-mom.jpg) center/cover}
+  .first-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(44,24,16,0) 45%,rgba(44,24,16,.72))}
+  .first-quote{position:absolute;left:40px;right:40px;bottom:40px;color:#fff;z-index:1}
+  .first-quote q{display:block;font:italic 700 clamp(1.4rem,2.4vw,1.9rem)/1.25 var(--font-display);quotes:none}
+  .first-quote span{display:block;margin-top:10px;opacity:.9;font-size:.92rem}
+  .first-form{display:flex;flex-direction:column;justify-content:center;padding:48px clamp(24px,5vw,72px);background:linear-gradient(160deg,#fff,var(--pink-pale) 140%)}
+  .first-logo{align-self:flex-start}
+  .first-form .logo{margin:0 0 28px;height:84px}
+  .first-form .lead{margin-left:0}
+  .steps{display:flex;gap:10px;margin:22px 0}
+  .step{flex:1;background:#fff;border:1px solid var(--border);border-radius:14px;padding:10px 12px;font-size:.8rem;color:var(--muted);line-height:1.4}
+  .step b{display:block;color:var(--dark);font-size:.86rem}
+  .first-form .small{text-align:center;margin-top:16px}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+  .pills span{background:#fff;border:1px solid var(--border);border-radius:999px;padding:6px 12px;font-size:.78rem;font-weight:700;color:var(--text)}
+  @media (max-width:860px){
+    .first{grid-template-columns:1fr}
+    .first-photo{min-height:300px}
+    .first-quote{left:22px;right:22px;bottom:22px}
+    .first-form{padding:32px 22px 40px}
+    .first-logo{align-self:center}
+    .first-form .logo{height:70px}
+    .first-form .h,.first-form .lead{text-align:center}
+    .first-form .lead{margin-left:auto}
+  }
+  @media (max-width:480px){.steps{flex-direction:column}}
+
   /* You're almost in */
   .almost{min-height:100vh;padding:44px 16px 56px;text-align:center}
   .switch{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;background:#fff;border:1px solid var(--border);border-radius:999px;padding:8px 16px;margin-top:18px;font-size:.86rem;color:var(--text)}
@@ -79,8 +108,29 @@
 </head>
 <body>
 
-<!-- SIGN IN -->
-<main class="login" id="viewLogin">
+<!-- FIRST VISIT ON THIS DEVICE -->
+<main class="first" id="viewFirst" hidden>
+  <div class="first-photo" role="img" aria-label="A mother and daughter hugging">
+    <div class="first-quote"><q>“You made room for this. Now let’s build on it.”</q><span>2,300+ traders learning around the life they already have.</span></div>
+  </div>
+  <div class="first-form">
+    <a class="first-logo" href="/"><img class="logo" src="logo.png" alt="A Girl &amp; Her Futures"></a>
+    <h1 class="h">Welcome to the <em>Academy.</em></h1>
+    <p class="lead">Your first step starts here. Sign in with the Whop account you joined with and we’ll set everything up for you.</p>
+    <div class="steps">
+      <div class="step"><b>1. Connect</b>Tap the button below</div>
+      <div class="step"><b>2. Approve</b>Whop asks you once</div>
+      <div class="step"><b>3. You’re in</b>Straight to your Dayli Desk</div>
+    </div>
+    <p class="err" data-whop-error role="alert" hidden></p>
+    <a class="btn" data-whop-login href="/api/whop?action=login"><span class="w">W</span> Connect your Whop</a>
+    <p class="small">Don’t have a plan yet? <a class="link" href="/#sec-pricing">See the Academy plans →</a></p>
+    <div class="pills"><span>🎓 8 phases</span><span>📓 Trade journal</span><span>💬 AGHF Agent</span></div>
+  </div>
+</main>
+
+<!-- SIGN IN (returning on this device) -->
+<main class="login" id="viewLogin" hidden>
   <div class="float f1" aria-hidden="true"><img src="assets/home/her-lift.jpg" alt=""></div>
   <div class="float f2" aria-hidden="true"><img src="assets/home/her-cheer.jpg" alt=""></div>
   <div class="float f3" aria-hidden="true"><img src="assets/home/her-picnic.jpg" alt=""></div>
@@ -89,7 +139,7 @@
     <a href="/"><img class="logo" src="logo.png" alt="A Girl &amp; Her Futures"></a>
     <h1 class="h">Welcome <em>back.</em></h1>
     <p class="lead">Your lessons, journal and Dayli Desk are right where you left them.</p>
-    <p class="err" id="whopError" role="alert" hidden></p>
+    <p class="err" data-whop-error role="alert" hidden></p>
     <a class="btn" id="whopBtn" data-whop-login href="/api/whop?action=login"><span class="w">W</span> Connect your Whop</a>
     <p class="small">Use the Whop account you joined with. Whop asks you to approve once.</p>
     <hr class="rule">
@@ -138,6 +188,41 @@
 </main>
 
 <script src="shared/whop-checkout.js"></script>
+<script>
+  // Pick the screen right away (before the sign-in library loads), so the page never flashes blank.
+  (function () {
+  const params = new URLSearchParams(window.location.search);
+  const WHOP_MESSAGES = {
+    inactive: 'Your Academy access isn’t active right now. Renew your plan on Whop, then connect again.',
+    cancelled: 'Whop sign-in was cancelled. Connect again whenever you’re ready.',
+    expired: 'That sign-in link expired. Please connect again.',
+    error: 'Something went wrong connecting to Whop. Please try again.',
+  };
+  const reason = params.get('whop');
+  // First time on this device: the photo welcome. After a sign-in here: "Welcome back".
+  let returning = false;
+  try { returning = localStorage.getItem('aghf_signed_in_before') === '1'; } catch { /* storage blocked */ }
+  document.getElementById(returning ? 'viewLogin' : 'viewFirst').hidden = false;
+  if (reason === 'no_membership' || reason === 'inactive') {
+    // Connected to Whop, but no Academy plan (free or Discord-only, or it ended): show the plans.
+    document.getElementById('viewFirst').hidden = true;
+    document.getElementById('viewLogin').hidden = true;
+    document.getElementById('viewAlmost').hidden = false;
+    if (reason === 'inactive') {
+      document.getElementById('almostTitle').innerHTML = 'Let’s get you <em>back in.</em>';
+      document.getElementById('almostLead').textContent = 'Your Academy plan isn’t active right now. Pick a plan below (or renew on Whop) and you’ll be back at your Dayli Desk in minutes. Everything you saved is still here.';
+    }
+    document.title = 'You’re almost in · A Girl & Her Futures';
+  } else if (reason && WHOP_MESSAGES[reason]) {
+    const step = (params.get('step') || '').replace(/[^a-z0-9-]/gi, '').slice(0, 24);
+    document.querySelectorAll('[data-whop-error]').forEach((el) => {
+      el.textContent = WHOP_MESSAGES[reason] + (step ? ` (Code: ${step})` : '');
+      el.hidden = false;
+    });
+  }
+
+  })();
+</script>
 <script type="module">
   const SUPABASE_URL = 'https://otxfzalcujhtfwprmptr.supabase.co';
   const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90eGZ6YWxjdWpodGZ3cHJtcHRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NTYyOTMsImV4cCI6MjA5MzMzMjI5M30.iRxaKgD6ut9urNK67dyvj_6K2lfyw8peBpfJx3oU9A4';
@@ -173,29 +258,6 @@
   if (safe) {
     const href = '/api/whop?action=login&redirect=' + encodeURIComponent(safe.startsWith('/') ? safe : '/' + safe);
     document.querySelectorAll('[data-whop-login]').forEach((a) => { a.href = href; });
-  }
-
-  const WHOP_MESSAGES = {
-    inactive: 'Your Academy access isn’t active right now. Renew your plan on Whop, then connect again.',
-    cancelled: 'Whop sign-in was cancelled. Connect again whenever you’re ready.',
-    expired: 'That sign-in link expired. Please connect again.',
-    error: 'Something went wrong connecting to Whop. Please try again.',
-  };
-  const reason = params.get('whop');
-  if (reason === 'no_membership' || reason === 'inactive') {
-    // Connected to Whop, but no Academy plan (free or Discord-only, or it ended): show the plans.
-    document.getElementById('viewLogin').hidden = true;
-    document.getElementById('viewAlmost').hidden = false;
-    if (reason === 'inactive') {
-      document.getElementById('almostTitle').innerHTML = 'Let’s get you <em>back in.</em>';
-      document.getElementById('almostLead').textContent = 'Your Academy plan isn’t active right now. Pick a plan below (or renew on Whop) and you’ll be back at your Dayli Desk in minutes. Everything you saved is still here.';
-    }
-    document.title = 'You’re almost in · A Girl & Her Futures';
-  } else if (reason && WHOP_MESSAGES[reason]) {
-    const el = document.getElementById('whopError');
-    const step = (params.get('step') || '').replace(/[^a-z0-9-]/gi, '').slice(0, 24);
-    el.textContent = WHOP_MESSAGES[reason] + (step ? ` (Code: ${step})` : '');
-    el.hidden = false;
   }
 
   // Already signed in? Skip straight through instead of showing the form.
