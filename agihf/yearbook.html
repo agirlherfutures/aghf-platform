@@ -276,5 +276,9 @@
   })();
 </script>
 
+<script type="module">
+  // This page draws without waiting on data, so lift the loading screen as soon as sign-in is confirmed.
+  document.addEventListener('aghf-auth-ready', () => window.AGHF_HIDE_LOADER?.(), { once: true });
+</script>
 </body>
 </html>
