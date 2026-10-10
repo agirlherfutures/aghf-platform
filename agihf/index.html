@@ -739,14 +739,9 @@ footer.hp-foot{background:none;border:0;color:var(--hp-muted)}
 </div>
 
 
+<script src="shared/whop-checkout.js"></script>
 <script>
-// ── WHOP CHECKOUT ────────────────────────────────────────────
-// Paste each plan's Whop checkout link here. Until then the buttons open the Whop store.
-const WHOP_CHECKOUT = {
-  academy: null,   // The Academy, $49.99/mo
-  indicator: null, // Academy + Dayli ICC Indicator, $64.99/mo
-};
-document.querySelectorAll('[data-whop]').forEach((a) => { const url = WHOP_CHECKOUT[a.dataset.whop]; if (url) a.href = url; });
+// Whop checkout links for the plan buttons live in shared/whop-checkout.js.
 
 // ── HOMEPAGE FILM ────────────────────────────────────────────
 // Set FILM_URL to the hosted "A Life of HER Own" video to show the Watch the film button.
