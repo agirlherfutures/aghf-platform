@@ -744,7 +744,7 @@ footer.hp-foot{background:none;border:0;color:var(--hp-muted)}
 </footer>
 
 <div class="hp-film" id="hpFilm" hidden onclick="if(event.target===this)hpFilm(false)">
-  <div class="hp-film-box"><button type="button" class="hp-film-x" onclick="hpFilm(false)" aria-label="Close">✕</button><video id="hpFilmVideo" controls playsinline preload="none"></video></div>
+  <div class="hp-film-box"><button type="button" class="hp-film-x" onclick="hpFilm(false)" aria-label="Close">✕</button><video id="hpFilmVideo" controls playsinline preload="none" poster="assets/home/film-poster.jpg"></video></div>
 </div>
 </div>
 </div>
@@ -761,7 +761,7 @@ document.querySelectorAll('[data-whop]').forEach((a) => { const url = WHOP_CHECK
 
 // ── HOMEPAGE FILM ────────────────────────────────────────────
 // Set FILM_URL to the hosted "A Life of HER Own" video to show the Watch the film button.
-const FILM_URL = null;
+const FILM_URL = 'https://otxfzalcujhtfwprmptr.supabase.co/storage/v1/object/public/lesson-videos/film-a-life-of-her-own.mp4';
 if (FILM_URL) { document.querySelectorAll('[data-film]').forEach((el) => { el.hidden = false; }); }
 function hpFilm(open) {
   const m = document.getElementById('hpFilm'), v = document.getElementById('hpFilmVideo');
