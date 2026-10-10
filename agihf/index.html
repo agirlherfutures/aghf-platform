@@ -612,8 +612,7 @@ footer.hp-foot{background:none;border:0;color:var(--hp-muted)}
     <p class="hp-lead">A structured, visual, self-paced way to learn futures trading, designed to fit into the life you already have.</p>
     <div class="hp-ctas">
       <a class="hp-btn hp-grad" href="#" onclick="navScroll('sec-pricing');return false;">✦ Choose your plan</a>
-      <button class="hp-btn hp-ghost" id="hpFilmBtn" type="button" hidden onclick="hpFilm(true)">▶ Watch the film</button>
-      <a class="hp-btn hp-ghost" href="#" onclick="navScroll('sec-inside');return false;" id="hpInsideBtn">See what’s inside</a>
+            <a class="hp-btn hp-ghost" href="#" onclick="navScroll('sec-inside');return false;" id="hpInsideBtn">See what’s inside</a>
     </div>
     <div class="hp-pills"><span>199 lessons</span><span>2 strategies</span><span>2,300+ traders</span></div>
   </div>
@@ -633,6 +632,7 @@ footer.hp-foot{background:none;border:0;color:var(--hp-muted)}
     <div class="hp-slot"><img src="assets/home/her-student.jpg" alt="A student studying with a friend" loading="lazy"><div><span class="t teal">Afternoon</span><b>Between classes</b>A quick chart game on your break.</div></div>
     <div class="hp-slot"><img src="assets/home/her-career.jpg" alt="A woman leaving work in the evening" loading="lazy"><div><span class="t purple">Evening</span><b>After work</b>Practice on a chart, at your own pace.</div></div>
   </div>
+  <div class="hp-mid" data-film hidden><button type="button" class="hp-btn hp-ghost" onclick="hpFilm(true)">▶ Watch the film</button></div>
 </div></section>
 
 <section class="hp-sec hp-white" id="sec-learn"><div class="hp-wrap">
@@ -762,7 +762,7 @@ document.querySelectorAll('[data-whop]').forEach((a) => { const url = WHOP_CHECK
 // ── HOMEPAGE FILM ────────────────────────────────────────────
 // Set FILM_URL to the hosted "A Life of HER Own" video to show the Watch the film button.
 const FILM_URL = null;
-if (FILM_URL) { const b = document.getElementById('hpFilmBtn'); if (b) b.hidden = false; const i = document.getElementById('hpInsideBtn'); if (i) i.hidden = true; }
+if (FILM_URL) { document.querySelectorAll('[data-film]').forEach((el) => { el.hidden = false; }); }
 function hpFilm(open) {
   const m = document.getElementById('hpFilm'), v = document.getElementById('hpFilmVideo');
   if (!m || !v || !FILM_URL) return;
