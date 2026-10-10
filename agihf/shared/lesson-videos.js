@@ -26,7 +26,7 @@ export const UPLOADED = new Set([
   'p8-1', 'p8-2', 'p8-3', 'p8-4', 'p8-5', 'p8-6', 'p8-7', 'p8-8', 'p8-9', 'p8-10', 'p8-11', 'p8-12', 'p8-13', 'p8-14', 'p8-15', 'p8-16', 'p8-17', 'p8-18', 'p8-19', 'p8-20', 'p8-21', 'p8-22',
   // Strategy 2 (Supply & Demand) intro videos.
   'sl-m1-1', 'sl-m1-2', 'sl-m1-3', 'sl-m1-4', 'sl-m1-5', 'sl-m1-6', 'sl-m1-7', 'sl-m1-8', 'sl-m1-9', 'sl-m1-10',
-  'sl-m2-1', 'sl-m2-2', 'sl-m2-3', 'sl-m2-4', 'sl-m2-5',
+  'sl-m2-1', 'sl-m2-2', 'sl-m2-3', 'sl-m2-4', 'sl-m2-5', 'sl-m2-6', 'sl-m2-7', 'sl-m2-8', 'sl-m2-9', 'sl-m2-10',
 ]);
 
 /** The hosted video for lesson `id` ("p3-5"), or null. */
