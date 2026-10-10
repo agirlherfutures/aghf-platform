@@ -80,7 +80,7 @@ window.LESSON_VIDEO = {
         {
           "at": 31.6,
           "text": "Right now, price sits between them.",
-          "screen": "YOU ARE HERE · between; “Stuck in between 🤔”"
+          "screen": "YOU ARE HERE, between the two swings; “Stuck in between 🤔”"
         }
       ]
     },

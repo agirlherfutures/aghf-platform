@@ -675,24 +675,24 @@
         // Previous swing low, then swing high.
         const lw = SW1H[9], hi = SW1H[10], now = SW1H[11];
         const pin = (x, y, col, k, up) => k <= 0 ? '' : scaleAt(x, y, k, `<line x1="${x}" y1="${y}" x2="${x}" y2="${y + (up ? -44 : 44)}" stroke="${C.dark}" stroke-width="4"/><circle cx="${x}" cy="${y + (up ? -52 : 52)}" r="14" fill="${col}" stroke="#fff" stroke-width="4"/>`);
-        out += hline(lw[0], 1400, lw[1], C.gold, seg(t, T.low, T.low + 0.6), { w: 5, dash: false });
+        out += hline(lw[0], 1262, lw[1], C.gold, seg(t, T.low, T.low + 0.6), { w: 5, dash: false });
         out += pin(lw[0], lw[1], C.gold, pop(t, T.low, 0.5), false);
-        out += pill(1560, lw[1], 'PREVIOUS 1H SWING LOW', DK.peach, pop(t, T.low + 0.3, 0.5), 20);
-        out += hline(hi[0], 1400, hi[1], C.gold, seg(t, T.high, T.high + 0.6), { w: 5, dash: false });
+        out += pill(810, lw[1], 'PREVIOUS 1H SWING LOW', DK.peach, pop(t, T.low + 0.3, 0.5), 18);
+        out += hline(hi[0], 1262, hi[1], C.gold, seg(t, T.high, T.high + 0.6), { w: 5, dash: false });
         out += pin(hi[0], hi[1], C.gold, pop(t, T.high, 0.5), true);
-        out += pill(1560, hi[1], 'PREVIOUS 1H SWING HIGH', DK.peach, pop(t, T.high + 0.3, 0.5), 20);
+        out += pill(1142, hi[1] - 92, 'PREVIOUS 1H SWING HIGH', DK.peach, pop(t, T.high + 0.3, 0.5), 18);
         // You are here.
         const nk = pop(t, T.now, 0.6);
         if (nk > 0) {
           const pulse = 1 + Math.sin(t * 5) * 0.12;
           out += `<circle cx="${now[0]}" cy="${now[1]}" r="${f1(28 * pulse * nk)}" fill="${C.pink}" opacity=".25"/>` + dot(now[0], now[1], 14, C.pink, nk);
-          out += pill(now[0] - 30, 916, 'YOU ARE HERE · between', C.pink, pop(t, T.now + 0.3, 0.5), 20);
+          out += pill(1190, 912, 'YOU ARE HERE', C.pink, pop(t, T.now + 0.3, 0.5), 18);
         }
       }
       // Shopper.
       const sh = { x: 1700, y: 1000, scale: 0.9, look: A.LOOKS.d, seed: 4, flip: true, at: T.board + 0.4, talk: ctx.talking && (t < T.jobs[0] || t > T.now) };
       if (t > T.jobs[0] && t < T.map) sh.frontArm = aim(sh, 1310, 640);
-      if (t > T.low && t < T.now + 1.5) sh.frontArm = aim(sh, 1620, 760);
+      if (t > T.low && t < T.now + 1.5) sh.frontArm = aim(sh, 1310, 800);
       out += who(t, sh);
       out += bub(1620, 560, 'Where am I? 🗺️', between(t, T.board + 0.8, T.jobs[0] - 0.3), { size: 26, tail: 'right' });
       out += bub(1620, 560, 'Main swings only.', between(t, T.map + 0.6, T.low - 0.3), { size: 26, tail: 'right' });

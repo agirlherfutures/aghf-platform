@@ -792,21 +792,20 @@
       if (ck > 0) {
         const times = span([], 0, 13, T.chart + 0.2, 0.08);
         span(times, 14, 19, T.run, 0.7);
-        const o = Object.assign({}, box, { n: 21, bars: mir(MISSED), times, tf: '5M', lo: 0.08, hi: 0.82, maxBody: 28 });
+        const o = Object.assign({}, box, { n: 21, bars: mir(MISSED), times, tf: '5M', lo: 0.06, hi: 0.9, maxBody: 28 });
         const g = G(o);
         let c = cc(t, Object.assign({}, o, { bars: [] }));
         c += zone(g, mir([ZB])[0], 11, box.x + box.w, 1, 1);
         c += cc(t, Object.assign({}, o, { panel: false, tf: null }));
-        c += pill(g.X(13), g.Y(.33) + 34, 'BOS #3', DK.teal, pop(t, T.chart + 1.4, 0.5), 18);
-        c += pill(g.X(7), g.Y(.53) - 40, 'active supply zone', DK.teal, pop(t, T.chart + 1.6, 0.5), 20);
-        c += pill(g.X(15), g.Y(.33) - 30, 'pulls back a little', C.muted, pop(t, T.run + 1.8, 0.5), 18);
-        c += arrow(g.X(17), g.Y(.40), g.X(17), g.Y(.46) + 10, C.pink, seg(t, T.run + 3.4, T.run + 4), 4);
-        c += pill(g.X(17), g.Y(.49) - 26, 'never returns', C.pink, pop(t, T.run + 4, 0.5), 18);
+        c += pill(g.X(11.5), g.Y(.36), 'BOS #3', DK.teal, pop(t, T.chart + 1.4, 0.5), 18);
+        c += pill(g.X(14), g.Y(.53) - 26, 'active supply zone', DK.teal, pop(t, T.chart + 1.6, 0.5), 20);
+        c += arrow(g.X(15) + 30, g.Y(.36), g.X(15) + 30, g.Y(.45), C.pink, seg(t, T.run + 3.4, T.run + 4), 4);
+        c += pill(g.X(18), g.Y(.495), 'never returns', C.pink, pop(t, T.run + 4, 0.5), 18);
         out += scaleAt(590, 660, ck, c);
         out += pill(590, 960, 'don’t chase ✋', C.pink, between(t, T.chase, T.missed - 0.2), 26);
+        out += pill(590, 960, 'missed ≠ trade', C.pink, between(t, T.missed + 0.4, T.valid - 0.2), 26);
         out += pill(590, 960, 'valid no-trade decision ✓', DK.teal, pop(t, T.valid, 0.5), 26);
-        out += stamp(860, 760, 'MISSED', C.pink, pop(t, T.missed, 0.5), -12, 90, 28);
-        out += pill(860, 860, 'missed ≠ trade', C.pink, pop(t, T.missed + 0.5, 0.5), 22);
+        out += stamp(900, 500, 'MISSED', C.pink, pop(t, T.missed, 0.5), -12, 76, 26);
       }
       // The ball (price) rolls away to the right.
       const rl = ease(seg(t, T.run + 0.4, T.chase + 1.6));

@@ -750,7 +750,7 @@
       out += fade(pop(t, T.floor + 0.8, 0.5), txt(980, 912, 'matters for invalidation', 24, C.muted, { w: 700 }));
       const clk = ease(seg(t, T.ceil, T.ceil + 0.6));
       if (clk > 0) out += `<line x1="1352" x2="${f1(lerp(1352, 1808, clk))}" y1="560" y2="560" stroke="${DK.pink}" stroke-width="12" stroke-linecap="round"/>`;
-      out += pill(1550, 520, 'upper boundary · the ceiling', DK.pink, pop(t, T.ceil + 0.4, 0.5), 22);
+      out += pill(1535, 520, 'upper boundary · the ceiling', DK.pink, pop(t, T.ceil + 0.4, 0.5), 22);
       out += fade(pop(t, T.ceil + 0.8, 0.5), txt(1580, 924, 'matters for invalidation', 24, C.muted, { w: 700 }));
       // Price moves past the ceiling: the supply setup is invalid.
       const ik = ease(seg(t, T.inval, T.inval + 1.2));
@@ -758,7 +758,7 @@
         const pp = partial([[1460, 880], [1530, 810], [1580, 850], [1660, 640], [1700, 690], [1770, 490]], ik), e = pp[pp.length - 1];
         out += poly(pp, DK.pink, 7) + dot(e[0], e[1], 12, DK.pink);
       }
-      out += vstamp(1730, 830, 'INVALID', C.pink, ease(seg(t, T.inval + 1.2, T.inval + 1.7)), -12, 72, 24);
+      out += vstamp(1745, 785, 'INVALID', C.pink, ease(seg(t, T.inval + 1.2, T.inval + 1.7)), -12, 64, 22);
       return out;
     },
   });
