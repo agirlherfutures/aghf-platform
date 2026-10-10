@@ -1,10 +1,10 @@
 /**
- * Strategy 2 · Module 2 · Lesson NaN intro video: "Recognizing the First Correction"
+ * Strategy 2 · Module 2 · Lesson 2 intro video: "Recognizing the First Correction"
  * Scenes: sd3-stage-crew, sd3-mirror-check (see scenes-sd3.js).
  */
 window.LESSON_VIDEO = {
   "slug": "sl-m2-2",
-  "eyebrow": "Strategy 2 · Module 2 · Lesson NaN",
+  "eyebrow": "Strategy 2 · Module 2 · Lesson 2",
   "duration": 84,
   "sources": "From Strategy 2, Module 2, Lesson 2 (\"Recognizing the First Correction\"): Correction #1 is the 5M pullback right after BOS #1; preferably back toward the original 15M break; in a bullish setup it pulls down, in a bearish setup it pulls up; it never creates the execution zone (Correction #2 does); the bear-no-bos2 example: Correction #1 forms but no 5M candle closes below the low it pulled back from, so the sequence is incomplete and there is no trade; \"Correction #1 sets the stage. It never holds the zone.\" The 15M reclaim rule (shown in the lesson with RULE REQUIRES DAYLI CONFIRMATION) is left out of the video.",
   "scenes": [
@@ -19,7 +19,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Module Two, Lesson undefined: Recognizing the First Correction.",
+          "text": "Welcome to Module Two, Lesson Two: Recognizing the First Correction.",
           "screen": "Aristella waves; title *Recognizing the First Correction*"
         },
         {

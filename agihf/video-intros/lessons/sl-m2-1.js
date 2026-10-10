@@ -1,10 +1,10 @@
 /**
- * Strategy 2 · Module 2 · Lesson NaN intro video: "The Three-BOS Execution Sequence"
+ * Strategy 2 · Module 2 · Lesson 1 intro video: "The Three-BOS Execution Sequence"
  * Scenes: sd3-vault-locks, sd3-false-start (see scenes-sd3.js).
  */
 window.LESSON_VIDEO = {
   "slug": "sl-m2-1",
-  "eyebrow": "Strategy 2 · Module 2 · Lesson NaN",
+  "eyebrow": "Strategy 2 · Module 2 · Lesson 1",
   "duration": 84,
   "sources": "From Strategy 2, Module 2, Lesson 1 (\"The Three-BOS Execution Sequence\"): BOS (break of structure) #1 is a 15M candle close that confirms direction in line with the higher-timeframe story; BOS #2 is a 5M candle close after Correction #1 that confirms continuation; BOS #3 is a 5M candle close after Correction #2 that activates the zone; a wick through a level doesn’t count; don’t enter simply because BOS #1 or BOS #2 occurred; after BOS #3 you wait for price to come back; \"One break is a clue. Three breaks are the plan.\" Rules per SUPPLY_DEMAND_MASTER.md §2 and RULES_STATUS.md #6 (candle closes, Established).",
   "scenes": [
@@ -19,7 +19,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Module Two, Lesson undefined: The Three-BOS Execution Sequence.",
+          "text": "Welcome to Module Two, Lesson One: The Three-BOS Execution Sequence.",
           "screen": "Aristella waves; title *The Three-BOS Execution Sequence*"
         },
         {

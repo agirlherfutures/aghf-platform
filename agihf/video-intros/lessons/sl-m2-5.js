@@ -1,10 +1,10 @@
 /**
- * Strategy 2 · Module 2 · Lesson NaN intro video: "Waiting for the Retest"
+ * Strategy 2 · Module 2 · Lesson 5 intro video: "Waiting for the Retest"
  * Scenes: sd3-fishing-dock, sd3-stay-dog (see scenes-sd3.js).
  */
 window.LESSON_VIDEO = {
   "slug": "sl-m2-5",
-  "eyebrow": "Strategy 2 · Module 2 · Lesson NaN",
+  "eyebrow": "Strategy 2 · Module 2 · Lesson 5",
   "duration": 84,
   "sources": "From Strategy 2, Module 2, Lesson 5 (\"Waiting for the Retest\"): after BOS #3, wait for price to return to the zone; the retest is the first return to the active zone after BOS #3, and only then does the entry model apply; the entry options (a limit at the near edge, or a directional close out of the zone) still need Dayli’s confirmation, so the video doesn’t show where an order sits; bearish example: price pulls back a little but never returns to the supply zone; don’t chase; a missed retest is a missed trade, not a trade, and a valid no-trade decision; \"The zone waits for price. You wait for the zone.\" Per SUPPLY_DEMAND_MASTER.md §4 and RULES_STATUS.md #5 (limit entry placement: needs confirmation).",
   "scenes": [
@@ -19,7 +19,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Module Two, Lesson undefined: Waiting for the Retest.",
+          "text": "Welcome to Module Two, Lesson Five: Waiting for the Retest.",
           "screen": "Aristella waves; title *Waiting for the Retest*"
         },
         {

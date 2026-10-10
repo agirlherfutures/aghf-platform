@@ -1,10 +1,10 @@
 /**
- * Strategy 2 · Module 2 · Lesson NaN intro video: "BOS #3: Activating the Zone"
+ * Strategy 2 · Module 2 · Lesson 4 intro video: "BOS #3: Activating the Zone"
  * Scenes: sd3-open-sign, sd3-gift-box (see scenes-sd3.js).
  */
 window.LESSON_VIDEO = {
   "slug": "sl-m2-4",
-  "eyebrow": "Strategy 2 · Module 2 · Lesson NaN",
+  "eyebrow": "Strategy 2 · Module 2 · Lesson 4",
   "duration": 84,
   "sources": "From Strategy 2, Module 2, Lesson 4 (\"BOS #3: Activating the Zone\"): Correction #2 creates a potential zone; an opposite-colour candle appearing is not activation; BOS #3 is a 5M candle close through the point Correction #2 pulled back from (above the high for demand, below the low for supply) and activates the zone; a zone that never gets BOS #3 never activates, so there is no trade; BOS #3 isn’t an entry either: after it, you wait for price to return; \"A zone without BOS #3 is just a box on a chart.\" Zone boundaries (a working rule) are drawn without prices and not stated.",
   "scenes": [
@@ -19,7 +19,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Module Two, Lesson undefined: BOS Three, Activating the Zone.",
+          "text": "Welcome to Module Two, Lesson Four: BOS Three, Activating the Zone.",
           "screen": "Aristella waves; title *BOS #3: Activating the Zone*"
         },
         {

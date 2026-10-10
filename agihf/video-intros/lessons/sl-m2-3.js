@@ -1,10 +1,10 @@
 /**
- * Strategy 2 · Module 2 · Lesson NaN intro video: "Recognizing the Second Correction"
+ * Strategy 2 · Module 2 · Lesson 3 intro video: "Recognizing the Second Correction"
  * Scenes: sd3-metro-line, sd3-cookie-cutter (see scenes-sd3.js).
  */
 window.LESSON_VIDEO = {
   "slug": "sl-m2-3",
-  "eyebrow": "Strategy 2 · Module 2 · Lesson NaN",
+  "eyebrow": "Strategy 2 · Module 2 · Lesson 3",
   "duration": 84,
   "sources": "From Strategy 2, Module 2, Lesson 3 (\"Recognizing the Second Correction\"): the order of the breaks tells you which correction you’re looking at; Correction #1 comes right after BOS #1 and never creates the execution zone; Correction #2 comes after BOS #2 and creates the zone; the zone comes from its last bearish candle (demand) or last bullish candle (supply) before BOS #3; don’t mark the whole correction; until BOS #3 occurs the zone is only potential, and a potential zone without BOS #3 is not a trade; \"Correction #2 creates the zone. BOS #3 decides if it counts.\" Zone boundaries (a working rule) are drawn without prices and not stated.",
   "scenes": [
@@ -19,7 +19,7 @@ window.LESSON_VIDEO = {
       "lines": [
         {
           "at": 0.6,
-          "text": "Welcome to Module Two, Lesson undefined: Recognizing the Second Correction.",
+          "text": "Welcome to Module Two, Lesson Three: Recognizing the Second Correction.",
           "screen": "Aristella waves; title *Recognizing the Second Correction*"
         },
         {
