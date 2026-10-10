@@ -178,6 +178,11 @@ async function callback(req, res) {
   });
   if (linkErr || !link?.properties?.action_link) { console.error(linkErr); return back(res, 'error', 'signin-link'); }
   const userId = link.user?.id;
+  // Which Whop account came back and which Academy account it was matched to (emails masked).
+  const mask = (e) => (e ? String(e).replace(/^(.{2}).*(@.*)$/, '$1***$2') : null);
+  console.log('Whop sign-in', {
+    whopUser: who.sub, whopEmail: mask(email), idTokenEmail: mask(who.email), academyUser: userId, academyEmail: mask(link.user?.email), plan,
+  });
   if (userId) {
     await supabase.auth.admin.updateUserById(userId, { app_metadata: { whop_user_id: who.sub, plan, whop_checked_at: new Date().toISOString() } });
     await supabase.from('subscriptions').upsert({ user_id: userId, status: 'active' }, { onConflict: 'user_id' });
