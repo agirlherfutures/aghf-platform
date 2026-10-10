@@ -221,6 +221,23 @@
       window.AGHF_SESSION_TOKEN = session.access_token;
       window.AGHF_SUPABASE = supabaseClient;
 
+      // Members sign in with Whop. About twice a day, re-check with Whop that the membership is
+      // still active (api/whop.js). Never blocks the page; a network or server problem keeps
+      // the member in, and a confirmed inactive membership signs them out.
+      try {
+        const key = 'aghf_whop_ok:' + session.user.id;
+        if (Date.now() - (+localStorage.getItem(key) || 0) > 12 * 3600 * 1000) {
+          fetch(`${ROOT}api/whop?action=check`, { method: 'POST', headers: { Authorization: 'Bearer ' + session.access_token } })
+            .then((r) => (r.ok ? r.json() : null))
+            .then((j) => {
+              if (!j) return;
+              if (j.active) { localStorage.setItem(key, String(Date.now())); return; }
+              supabaseClient.auth.signOut().finally(() => { window.location.href = `${ROOT}login.html?whop=inactive`; });
+            })
+            .catch(() => {});
+        }
+      } catch { /* storage blocked: skip the check this time */ }
+
       // If the session drops mid-lesson (sign out in another tab), bounce
       // back to login rather than leaving stale content on screen. Only
       // an explicit SIGNED_OUT event counts as that — a merely-falsy

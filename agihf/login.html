@@ -68,6 +68,8 @@
   .form-error{font-size:12px;color:var(--pink);margin:-8px 0 14px;display:none;}
   .form-error.show{display:block;}
 
+.whop-btn{display:block;text-align:center;text-decoration:none;box-sizing:border-box;}
+.plan-note-text a{color:#F4829A;font-weight:700;text-decoration:none;}
 </style>
 </head>
 <body>
@@ -78,16 +80,16 @@
     <div>
       <div class="side-mark">GF</div>
       <div class="side-quote">"Look at the trader you became."</div>
-      <div class="side-sub">Everything lives in one place now — the Academy, the Discord community, and the Dayli ICC indicator, all under one login.</div>
+      <div class="side-sub">Everything lives in one place: the Academy, your journal, your daily tools and the Discord community, all under one login.</div>
     </div>
     <div class="side-stats">
       <div>
-        <div class="side-stat-val">700+</div>
+        <div class="side-stat-val">2,300+</div>
         <div class="side-stat-label">Traders inside</div>
       </div>
       <div>
-        <div class="side-stat-val">13</div>
-        <div class="side-stat-label">Grades to graduate</div>
+        <div class="side-stat-val">8</div>
+        <div class="side-stat-label">Phases to graduate</div>
       </div>
     </div>
   </div>
@@ -101,68 +103,15 @@
       </div>
     </div>
 
-    <div class="tab-row">
-      <button class="tab-btn active" id="tab-signin" onclick="setTab('signin')">Sign In</button>
-      <button class="tab-btn" id="tab-signup" onclick="setTab('signup')">Create Account</button>
-    </div>
-
-    <!-- SIGN IN -->
-    <div id="panel-signin">
-      <div class="form-title">Welcome back.</div>
-      <div class="form-sub">Pick up right where you left off.</div>
-
-      <div class="form-error" id="signinError"></div>
-      <div class="field-group">
-        <label class="field-label">Email</label>
-        <input class="field-input" type="email" id="signinEmail" placeholder="you@email.com">
-      </div>
-      <div class="field-group">
-        <label class="field-label">Password</label>
-        <input class="field-input" type="password" id="signinPassword" placeholder="••••••••">
-      </div>
-      <div class="field-row-between">
-        <label class="remember-me"><input type="checkbox"> Remember me</label>
-        <a class="forgot-link" href="#">Forgot password?</a>
-      </div>
-      <button class="submit-btn" id="signinBtn" onclick="handleSignIn()">Sign in</button>
-
-      <div class="divider"><div class="divider-line"></div><div class="divider-text">or continue with</div><div class="divider-line"></div></div>
-      <button class="oauth-btn" disabled title="Coming soon"><span class="oauth-icon">🌐</span> Continue with Google</button>
-      <button class="oauth-btn" disabled title="Coming soon"><span class="oauth-icon">💬</span> Continue with Discord</button>
-
-      <div class="switch-line">New here? <a onclick="setTab('signup')">Create an account</a></div>
-    </div>
-
-    <!-- SIGN UP -->
-    <div id="panel-signup" style="display:none">
-      <div class="form-title">Start your journey.</div>
-      <div class="form-sub">One account, one price — the Academy, Discord, and indicator together.</div>
-
-      <div class="form-error" id="signupError"></div>
-      <div class="field-group">
-        <label class="field-label">First name</label>
-        <input class="field-input" type="text" id="signupName" placeholder="Your name">
-      </div>
-      <div class="field-group">
-        <label class="field-label">Email</label>
-        <input class="field-input" type="email" id="signupEmail" placeholder="you@email.com">
-      </div>
-      <div class="field-group">
-        <label class="field-label">Password</label>
-        <input class="field-input" type="password" id="signupPassword" placeholder="Create a password">
-      </div>
-      <button class="submit-btn" id="signupBtn" onclick="handleSignUp()">Create my account</button>
-
-      <div class="divider"><div class="divider-line"></div><div class="divider-text">or continue with</div><div class="divider-line"></div></div>
-      <button class="oauth-btn" disabled title="Coming soon"><span class="oauth-icon">🌐</span> Continue with Google</button>
-      <button class="oauth-btn" disabled title="Coming soon"><span class="oauth-icon">💬</span> Continue with Discord</button>
-
-      <div class="switch-line">Already have an account? <a onclick="setTab('signin')">Sign in</a></div>
-
+    <!-- MEMBERS SIGN IN WITH WHOP -->
+    <div id="panel-whop">
+      <div class="form-title">Welcome.</div>
+      <div class="form-sub">Members sign in with their Whop account.</div>
+      <div class="form-error" id="whopError"></div>
+      <a class="submit-btn whop-btn" id="whopBtn" href="/api/whop?action=login">Connect your Whop →</a>
       <div class="plan-note">
         <div class="plan-note-icon">✨</div>
-        <div class="plan-note-text" id="planNoteText"><strong>The Academy</strong> ($49.99/mo) or <strong>Academy + Dayli ICC Indicator</strong> ($64.99/mo). Both include Academy access in the Discord. You’ll confirm your plan on the next step.</div>
-        <script>(function(){var p=new URLSearchParams(location.search).get('plan');try{if(p)localStorage.setItem('aghf_plan',p);else p=localStorage.getItem('aghf_plan');}catch(e){}var t=document.getElementById('planNoteText');if(!t)return;if(p==='indicator')t.innerHTML='<strong>Academy + Dayli ICC Indicator</strong>, $64.99/mo. Includes Academy access in the Discord. Only 100 spots. You’ll confirm on the next step.';else if(p==='academy')t.innerHTML='<strong>The Academy</strong>, $49.99/mo. Includes Academy access in the Discord. You’ll confirm on the next step.';})();</script>
+        <div class="plan-note-text"><strong>Not a member yet?</strong> Join on Whop: <strong>The Academy</strong> ($49.99/mo) or <strong>Academy + Dayli ICC Indicator</strong> ($64.99/mo). Both include Academy access in the Discord. <a href="index.html#sec-pricing">See the plans →</a></div>
       </div>
     </div>
 
@@ -195,69 +144,23 @@
   const params = new URLSearchParams(window.location.search);
   const redirectTo = params.get('redirect');
 
-  window.setTab = function (t) {
-    document.getElementById('tab-signin').classList.toggle('active', t === 'signin');
-    document.getElementById('tab-signup').classList.toggle('active', t === 'signup');
-    document.getElementById('panel-signin').style.display = t === 'signin' ? 'block' : 'none';
-    document.getElementById('panel-signup').style.display = t === 'signup' ? 'block' : 'none';
-  };
-
-  function showError(id, message) {
-    const el = document.getElementById(id);
-    el.textContent = message;
-    el.classList.add('show');
-  }
-  function clearError(id) {
-    document.getElementById(id).classList.remove('show');
-  }
-
   function goPostLogin() {
     window.location.href = redirectTo || 'dashboard.html';
   }
 
-  window.handleSignIn = async function () {
-    clearError('signinError');
-    const email = document.getElementById('signinEmail').value.trim();
-    const password = document.getElementById('signinPassword').value;
-    if (!email || !password) { showError('signinError', 'Enter your email and password.'); return; }
-    const btn = document.getElementById('signinBtn');
-    btn.disabled = true; btn.textContent = 'Signing in…';
-    try {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) throw error;
-      goPostLogin();
-    } catch (err) {
-      showError('signinError', err.message);
-      btn.disabled = false; btn.textContent = 'Sign in';
-    }
-  };
+  // Send members back to the page they wanted after Whop sign-in.
+  const safe = redirectTo && /^\/?[A-Za-z0-9._\-/?=&%]*$/.test(redirectTo) && !redirectTo.startsWith('//') ? redirectTo : null;
+  if (safe) document.getElementById('whopBtn').href = '/api/whop?action=login&redirect=' + encodeURIComponent(safe.startsWith('/') ? safe : '/' + safe);
 
-  window.handleSignUp = async function () {
-    clearError('signupError');
-    const name = document.getElementById('signupName').value.trim();
-    const email = document.getElementById('signupEmail').value.trim();
-    const password = document.getElementById('signupPassword').value;
-    if (!name || !email || !password) { showError('signupError', 'Please fill in all fields.'); return; }
-    if (password.length < 6) { showError('signupError', 'Use at least 6 characters.'); return; }
-    const btn = document.getElementById('signupBtn');
-    btn.disabled = true; btn.textContent = 'Creating account…';
-    try {
-      const { data, error } = await supabase.auth.signUp({ email, password, options: { data: { full_name: name } } });
-      if (error && !error.message.includes('rate limit') && !error.message.includes('email')) throw error;
-      if (!data?.user) {
-        const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
-        if (signInError) throw new Error('Account may already exist. Try signing in instead.');
-      }
-      let plan = new URLSearchParams(location.search).get('plan');
-      if (!plan) { try { plan = localStorage.getItem('aghf_plan'); } catch {} }
-      window.location.href = 'index.html?screen=payment' + (plan === 'indicator' || plan === 'academy' ? `&plan=${plan}` : '');
-    } catch (err) {
-      showError('signupError', err.message);
-      btn.disabled = false; btn.textContent = 'Create my account';
-    }
+  const WHOP_MESSAGES = {
+    no_membership: 'We couldn’t find an active A Girl & Her Futures membership on that Whop account. Choose a plan to join, or connect the Whop account you paid with.',
+    inactive: 'Your Whop membership isn’t active right now. Renew it on Whop, then connect again.',
+    cancelled: 'Whop sign-in was cancelled. Connect again whenever you’re ready.',
+    expired: 'That sign-in link expired. Please connect again.',
+    error: 'Something went wrong connecting to Whop. Please try again.',
   };
-
-  if (params.get('tab') === 'signup') setTab('signup');
+  const reason = params.get('whop');
+  if (reason && WHOP_MESSAGES[reason]) { const el = document.getElementById('whopError'); el.textContent = WHOP_MESSAGES[reason]; el.classList.add('show'); }
 
   // Already signed in? Skip straight through instead of showing the form.
   const { data: { session } } = await supabase.auth.getSession();
