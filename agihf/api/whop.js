@@ -23,7 +23,9 @@ import { createClient } from '@supabase/supabase-js';
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 const WHOP = 'https://api.whop.com';
 const COOKIE = 'whop_oauth';
-const site = () => (process.env.SITE_URL || '').replace(/\/$/, '');
+// Env values with any copy-paste spaces or line breaks removed.
+const env = (k) => (process.env[k] || '').trim();
+const site = () => env('SITE_URL').replace(/\/$/, '');
 const redirectUri = () => `${site()}/api/whop?action=callback`;
 const b64url = (buf) => Buffer.from(buf).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 // Only same-site paths may be used as the post-login destination.
@@ -50,7 +52,7 @@ async function planFor(whopUserId, userToken) {
   });
   const has = async (resource) => {
     if (!resource) return false;
-    let r = await ask(resource, process.env.WHOP_API_KEY);
+    let r = await ask(resource, env('WHOP_API_KEY'));
     if (!r.ok && userToken) {
       console.error('Whop access check with API key failed', r.status, (await r.text()).slice(0, 300));
       r = await ask(resource, userToken);
@@ -63,8 +65,8 @@ async function planFor(whopUserId, userToken) {
     const j = await r.json();
     return !!j.has_access;
   };
-  if (await has(process.env.WHOP_INDICATOR_PRODUCT_ID)) return 'indicator';
-  if (await has(process.env.WHOP_ACADEMY_PRODUCT_ID)) return 'academy';
+  if (await has(env('WHOP_INDICATOR_PRODUCT_ID'))) return 'indicator';
+  if (await has(env('WHOP_ACADEMY_PRODUCT_ID'))) return 'academy';
   return null;
 }
 
@@ -75,7 +77,7 @@ async function login(req, res) {
   const challenge = b64url(crypto.createHash('sha256').update(verifier).digest());
   setCookie(res, JSON.stringify({ verifier, state, nonce, redirect: safePath(req.query.redirect) }), 600);
   const q = new URLSearchParams({
-    response_type: 'code', client_id: process.env.WHOP_CLIENT_ID, redirect_uri: redirectUri(),
+    response_type: 'code', client_id: env('WHOP_CLIENT_ID'), redirect_uri: redirectUri(),
     scope: 'openid profile email', state, nonce, code_challenge: challenge, code_challenge_method: 'S256',
   });
   go(res, `${WHOP}/oauth/authorize?${q}`);
@@ -91,7 +93,7 @@ async function callback(req, res) {
   // Code → tokens. Whop's examples send JSON; a form-encoded body is the OAuth standard, so try both.
   const fields = {
     grant_type: 'authorization_code', code: req.query.code, redirect_uri: redirectUri(),
-    client_id: process.env.WHOP_CLIENT_ID, client_secret: process.env.WHOP_CLIENT_SECRET, code_verifier: saved.verifier,
+    client_id: env('WHOP_CLIENT_ID'), client_secret: env('WHOP_CLIENT_SECRET'), code_verifier: saved.verifier,
   };
   let tr = await fetch(`${WHOP}/oauth/token`, {
     method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(fields),
@@ -102,7 +104,24 @@ async function callback(req, res) {
       method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' }, body: new URLSearchParams(fields),
     });
   }
-  if (!tr.ok) { console.error('Whop token exchange (form)', tr.status, (await tr.text()).slice(0, 500)); return back(res, 'error', `token-${tr.status}`); }
+  if (!tr.ok) {
+    console.error('Whop token exchange (form)', tr.status, (await tr.text()).slice(0, 500));
+    // Some OAuth servers only accept the client secret in an HTTP Basic header.
+    const { client_secret, ...rest } = fields;
+    const basic = Buffer.from(`${encodeURIComponent(fields.client_id)}:${encodeURIComponent(client_secret || '')}`).toString('base64');
+    tr = await fetch(`${WHOP}/oauth/token`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json', Authorization: `Basic ${basic}` },
+      body: new URLSearchParams(rest),
+    });
+  }
+  if (!tr.ok) {
+    console.error('Whop token exchange (basic)', tr.status, (await tr.text()).slice(0, 500));
+    const secret = process.env.WHOP_CLIENT_SECRET || '';
+    // Safe hints only (never the secret): whether it is set, its length, and stray spaces.
+    console.error('Whop client config', { clientId: process.env.WHOP_CLIENT_ID, secretSet: !!secret, secretLength: secret.length, secretHasSpaces: /\s/.test(secret) });
+    return back(res, 'error', `token-${tr.status}${secret ? '' : '-nosecret'}`);
+  }
   const tokens = await tr.json();
 
   // Who is this? The ID token comes straight from Whop over TLS; the nonce ties it to this sign-in.
