@@ -487,7 +487,9 @@ function renderAside(plan) {
  */
 export function renderEvalCalculatorPage(container, initialPlan, helpers) {
   let plan = withLab(initialPlan);
-  let needsSave = false;
+  // Lab data kept in this browser before 0014_eval_lab.sql was applied moves
+  // to the account on the first save.
+  let needsSave = initialPlan.lab == null && !!(initialPlan.id && readLocalLab(initialPlan.id));
   const converted = toDollarPlan(plan);
   if (converted) { plan = converted; needsSave = true; }
 
