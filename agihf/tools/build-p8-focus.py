@@ -55,14 +55,15 @@ def icc(bars, pil, long):
 
 
 def first_hit(bars, frm, long, stop, target):
-    """Which level price reaches first after `frm`: 'target', 'stop' or None."""
-    for b in bars[frm + 1:]:
+    """Which level price reaches first after `frm`, and on which candle: ('target' | 'stop' | None, index)."""
+    for i in range(frm + 1, len(bars)):
+        b = bars[i]
         hit_stop = b['l'] <= stop if long else b['h'] >= stop
         hit_tgt = b['h'] >= target if long else b['l'] <= target
-        if hit_stop and hit_tgt: return 'both'
-        if hit_stop: return 'stop'
-        if hit_tgt: return 'target'
-    return None
+        if hit_stop and hit_tgt: return 'both', i
+        if hit_stop: return 'stop', i
+        if hit_tgt: return 'target', i
+    return None, None
 
 
 def need(cond, msg):
@@ -76,7 +77,8 @@ def trade(sc, entry_at, stop_rel, rr=2.0):
     stop = q(sc['pil'] + stop_rel)
     risk = abs(e - stop)
     tgt = q(e + rr * risk if long else e - rr * risk)
-    return {'at': entry_at, 'entry': e, 'stop': stop, 'target': tgt, 'risk': risk, 'first': first_hit(sc['bars'], entry_at, long, stop, tgt)}
+    first, hit = first_hit(sc['bars'], entry_at, long, stop, tgt)
+    return {'at': entry_at, 'entry': e, 'stop': stop, 'target': tgt, 'risk': risk, 'first': first, 'hit': hit}
 
 
 def make(name, dir_, pil, closes, over=None, start=None):

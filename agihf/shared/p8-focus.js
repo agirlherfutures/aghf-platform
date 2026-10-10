@@ -15,7 +15,7 @@
  *   sort     sort several small charts (clean / messy)
  *   grades   grade separate parts (analysis, execution, risk…)
  *   minis    a row of small charts to compare (no answer)
- *   reveal   the result, as tiles, with Dayli's point
+ *   reveal   the result, as tiles, with Dayli's point (chart.play: the trade plays out candle by candle first)
  *   note     2-4 illustrated cards
  * Colours follow the brand: pink = you, purple = Dayli, teal = matched / right,
  * peach = the PIL and the room.
@@ -96,6 +96,11 @@ function drawChart(host, spec, extra = {}) {
     g += `<rect x="${x(i) - bw}" y="${y(b.h) - 6}" width="${bw * 2}" height="${y(b.l) - y(b.h) + 12}" rx="6" fill="none" stroke="${TONE[s.ring.tone] || C.teal}" stroke-width="2.5"/>`;
   }
   const tags = [...(s.marks || []).map((k) => ({ at: k, text: `Dayli · ${TAG[k]}`, tone: 'dayli', below: (k === 'C') === long })), ...s.tags];
+  // Where the trade was decided: the candle that reached the target or the stop.
+  if (s.hit && sc.trade?.hit != null && sc.trade.hit < upto) {
+    const win = sc.trade.first === 'target';
+    tags.push({ at: sc.trade.hit, text: win ? 'Target hit ✓' : 'Stop hit', tone: win ? 'match' : 'you', below: win !== long });
+  }
   const stack = {};
   tags.forEach((t) => {
     const i = at(sc, t.at); if (i == null || i >= upto) return;
@@ -109,6 +114,35 @@ function drawChart(host, spec, extra = {}) {
   });
   host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(sc.tf || '1M')} chart" class="pf-svg">${g}</svg>`;
   return { svg: host.querySelector('svg'), x, yinv, n, W, H, R, upto };
+}
+
+/**
+ * Plays the chart forward candle by candle, from spec.playFrom (default: the trade's entry,
+ * else the Retest) up to spec.upto (default: the end). Calls done() when it finishes;
+ * adds a Replay button under the chart.
+ */
+function play(host, spec, done) {
+  const sc = P8_FOCUS[spec.scenario];
+  const fromRef = spec.playFrom ?? (sc.trade ? 'entry' : 'R');
+  const start = (at(sc, fromRef) ?? 0) + 1;
+  const end = spec.upto == null ? sc.bars.length : typeof spec.upto === 'number' ? spec.upto : at(sc, spec.upto) + 1;
+  const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  let k = start, timer = null, finished = false;
+  const finish = () => {
+    clearTimeout(timer);
+    drawChart(host, { ...spec, upto: end });
+    if (!host.parentElement.querySelector('.pf-replay')) {
+      host.insertAdjacentHTML('afterend', '<div class="pf-row pf-replay"><button type="button" class="pf-btn pf-ghost">↻ Replay</button></div>');
+      host.parentElement.querySelector('.pf-replay button').addEventListener('click', () => { k = start; tick(); });
+    }
+    if (!finished) { finished = true; done?.(); }
+  };
+  const tick = () => {
+    drawChart(host, { ...spec, upto: k, curtain: false });
+    if (k >= end) return finish();
+    k += 1; timer = setTimeout(tick, spec.speed || 220);
+  };
+  if (reduced) finish(); else { drawChart(host, { ...spec, upto: start, curtain: false }); timer = setTimeout(tick, 600); }
 }
 
 // ── pieces ──────────────────────────────────────────────────────────────
@@ -127,8 +161,8 @@ function frame(el, slide, inner, cls = '') {
 const KINDS = {
   chart(el, s, satisfy) {
     const { act, box } = frame(el, s, `${ins(s.do)}<div class="pf-chart"></div>${s.legend ? legend() : ''}${dayli(s.dayli)}`);
-    drawChart(box.querySelector('.pf-chart'), s.chart);
-    nextBtn(act, satisfy, s.cta || 'Next →');
+    if (s.chart.play) play(box.querySelector('.pf-chart'), s.chart, () => nextBtn(act, satisfy, s.cta || 'Next →'));
+    else { drawChart(box.querySelector('.pf-chart'), s.chart); nextBtn(act, satisfy, s.cta || 'Next →'); }
   },
 
   tick(el, s, satisfy, h) {
@@ -153,7 +187,7 @@ const KINDS = {
 
   pick(el, s, satisfy, h) {
     const { act, box } = frame(el, s, `${ins(s.do)}${s.chart ? '<div class="pf-chart"></div>' : ''}${s.q ? `<p class="pf-q">${s.q}</p>` : ''}<div class="pf-opts${s.options.length === 2 ? ' is-two' : ''}">${s.options.map((o, i) => `<button type="button" class="pf-opt" data-i="${i}">${optIcon(o)}<span class="t"><b>${o.label}</b>${o.sub ? `<small>${o.sub}</small>` : ''}</span></button>`).join('')}</div><div class="pf-fb" hidden></div>${dayli('')}`);
-    if (s.chart) drawChart(box.querySelector('.pf-chart'), s.chart);
+    if (s.chart?.play) play(box.querySelector('.pf-chart'), s.chart); else if (s.chart) drawChart(box.querySelector('.pf-chart'), s.chart);
     const opts = [...box.querySelectorAll('.pf-opt')], fb = box.querySelector('.pf-fb');
     let solved = false, first = true;
     opts.forEach((b) => b.addEventListener('click', () => {
@@ -294,14 +328,20 @@ const KINDS = {
 
   minis(el, s, satisfy) {
     const { act, box } = frame(el, s, `${ins(s.do)}<div class="pf-minis is-${s.minis.length}">${s.minis.map((m) => `<div class="pf-mini ${m.tone ? `is-${m.tone}` : ''}"><h4>${esc(m.title)}</h4>${m.ctx ? `<span class="ctx">${esc(m.ctx)}</span>` : ''}<div class="pf-mchart"></div>${m.note ? `<div class="why">${m.note}</div>` : ''}</div>`).join('')}</div>${dayli(s.dayli)}`);
-    box.querySelectorAll('.pf-mchart').forEach((c, k) => drawChart(c, { pil: 'PIL', w: 440, h: 200, ...s.minis[k].chart }));
-    nextBtn(act, satisfy, s.cta || 'Next →');
+    let left = s.minis.length;
+    const one = () => { left -= 1; if (left <= 0) nextBtn(act, satisfy, s.cta || 'Next →'); };
+    box.querySelectorAll('.pf-mchart').forEach((c, k) => {
+      const spec = { pil: 'PIL', w: 440, h: 200, ...s.minis[k].chart };
+      if (spec.play) play(c, spec, one); else { drawChart(c, spec); one(); }
+    });
   },
 
   reveal(el, s, satisfy) {
-    const { act, box } = frame(el, s, `${s.chart ? '<div class="pf-chart"></div>' : ''}<div class="pf-tiles">${(s.tiles || []).map((t) => `<div class="pf-tile ${t.tone ? `is-${t.tone}` : ''}"><small>${esc(t.label)}</small><b>${esc(t.value)}</b></div>`).join('')}</div>${dayli(s.dayli)}`);
-    if (s.chart) drawChart(box.querySelector('.pf-chart'), s.chart);
-    nextBtn(act, satisfy, s.cta || 'Next →');
+    const { act, box } = frame(el, s, `${s.chart ? '<div class="pf-chart"></div>' : ''}<div class="pf-after"><div class="pf-tiles">${(s.tiles || []).map((t) => `<div class="pf-tile ${t.tone ? `is-${t.tone}` : ''}"><small>${esc(t.label)}</small><b>${esc(t.value)}</b></div>`).join('')}</div>${dayli(s.dayli)}</div>`);
+    const after = box.querySelector('.pf-after');
+    const show = () => { after.hidden = false; after.classList.add('pf-in'); nextBtn(act, satisfy, s.cta || 'Next →'); };
+    if (s.chart?.play) { after.hidden = true; play(box.querySelector('.pf-chart'), s.chart, show); }
+    else { if (s.chart) drawChart(box.querySelector('.pf-chart'), s.chart); show(); }
   },
 
   note(el, s, satisfy) {
