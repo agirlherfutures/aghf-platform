@@ -228,12 +228,41 @@
     writeSyncMeta(meta);
     pushMemberKey(key, now);
   };
+  // Device-level keys that are not one member's data.
+  const KEEP_ON_SWITCH = ['aghf_signed_in_before', SYNC_META];
+  const STASH = 'aghf_stash:'; // aghf_stash:<uid> holds a member's browser data while someone else is signed in
+  const isMemberKey = (k) => !!k && k.startsWith('aghf') && !k.startsWith(STASH) && !k.startsWith('aghf_whop_ok:') && !KEEP_ON_SWITCH.includes(k);
+  function switchMemberData(fromUid, toUid) {
+    try {
+      const keys = [];
+      for (let i = 0; i < localStorage.length; i += 1) keys.push(localStorage.key(i));
+      // Set the previous member's data aside (not deleted), so it is back when she signs in again.
+      const stash = {};
+      keys.filter(isMemberKey).forEach((k) => { stash[k] = localStorage.getItem(k); localStorage.removeItem(k); });
+      if (fromUid && Object.keys(stash).length) {
+        try { localStorage.setItem(STASH + fromUid, JSON.stringify(stash)); } catch { /* full: dropped rather than shown to someone else */ }
+      }
+      // Bring back this member's own data, if she used this browser before.
+      const mine = localStorage.getItem(STASH + toUid);
+      if (mine) {
+        Object.entries(JSON.parse(mine)).forEach(([k, v]) => { try { localStorage.setItem(k, v); } catch { /* ignore */ } });
+        localStorage.removeItem(STASH + toUid);
+      }
+    } catch { /* storage blocked */ }
+    try {
+      const keys = [];
+      for (let i = 0; i < sessionStorage.length; i += 1) keys.push(sessionStorage.key(i));
+      keys.filter((k) => k && k.startsWith('aghf') && k !== 'aghf_demo').forEach((k) => sessionStorage.removeItem(k));
+    } catch { /* storage blocked */ }
+  }
   async function pullMemberData(uid, token) {
     syncToken = token;
     let meta = readSyncMeta();
     if (meta.uid && meta.uid !== uid) {
-      // A different member used this browser: never mix her data into this account.
-      SYNC_KEYS.forEach((k) => { try { localStorage.removeItem(k); } catch { /* ignore */ } });
+      // A different member signed in on this browser. Everything the pages keep in this
+      // browser (progress, notes, badges, games, rulebook...) belongs to the previous member:
+      // set it aside rather than show it to, or upload it into, this account.
+      switchMemberData(meta.uid, uid);
       meta = { uid, keys: {} };
     }
     meta.uid = uid;
