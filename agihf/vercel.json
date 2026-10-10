@@ -221,6 +221,10 @@
     {
       "source": "/api/join-waitlist",
       "destination": "/api/eval-data?resource=waitlist"
+    },
+    {
+      "source": "/api/member-data",
+      "destination": "/api/psychology-data?resource=member-data"
     }
   ]
 }

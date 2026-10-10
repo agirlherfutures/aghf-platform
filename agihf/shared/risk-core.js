@@ -114,6 +114,7 @@ export function loadRiskProfile() {
 export function saveRiskProfile(p) {
   const prof = { ...p, contractSizing: 'determined-from-risk', savedAt: Date.now(), version: 1 };
   try { localStorage.setItem(PROFILE_KEY, JSON.stringify(prof)); } catch { /* storage blocked */ }
+  window.AGHF_MEMBER_SYNC?.(PROFILE_KEY); // also save to her account (auth-guard.js)
   return prof;
 }
 

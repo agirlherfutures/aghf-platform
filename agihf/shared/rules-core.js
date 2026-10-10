@@ -22,14 +22,18 @@
  *
  * Nothing here invents a student's personal rules, prescribes a universal number of
  * trades, daily loss, news blackout or consolidation rule, or hardcodes prop-firm rules.
- * The student's rulebook is private, student-owned data (this browser only).
+ * The student's rulebook is private, student-owned data. It is kept in this browser and
+ * copied to her account (auth-guard.js member data sync), so it follows her across devices.
  *
  * Stores: aghf_rulebook · aghf_rule_queue · aghf_rule_history · aghf_rule_violations ·
  *         aghf_trigger_responses · sessionStorage aghf_rulebook_mode · aghf_p7r_session
  */
 
 const read = (k, fb) => { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? fb; } catch { return fb; } };
-const write = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* storage blocked */ } };
+const write = (k, v) => {
+  try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* storage blocked */ }
+  window.AGHF_MEMBER_SYNC?.(k); // also save to her account (auth-guard.js)
+};
 
 export const CATEGORIES = [
   { key: 'method', label: 'MY DAYLI ICC RULES', short: 'Dayli ICC' },

@@ -272,6 +272,49 @@ async function handleScenarioAttempts(req, res, userId) {
   }
 }
 
+/* ── member data (saved data that used to live only in the browser) ── */
+
+// Only these keys can be stored, each capped in size, so this can't become
+// a general-purpose bucket. Values are the same JSON the pages keep in
+// localStorage (see shared/member-sync.js).
+const MEMBER_DATA_KEYS = new Set([
+  'aghf_rulebook', 'aghf_rule_queue', 'aghf_rule_history', 'aghf_rule_violations',
+  'aghf_trigger_responses', 'aghf_risk_profile',
+]);
+const MEMBER_DATA_MAX_BYTES = 200 * 1024;
+
+async function handleMemberData(req, res, userId) {
+  try {
+    if (req.method === 'GET') {
+      const { data, error } = await supabase.from('member_data').select('key, value, updated_at').eq('user_id', userId);
+      if (error) throw error;
+      const items = {};
+      (data || []).forEach((r) => { items[r.key] = { value: r.value, updatedAt: new Date(r.updated_at).getTime() }; });
+      return res.status(200).json({ items });
+    }
+
+    if (req.method === 'PUT') {
+      const { key, value, updatedAt } = req.body || {};
+      if (!MEMBER_DATA_KEYS.has(key)) return res.status(400).json({ error: 'Unknown key' });
+      if (JSON.stringify(value ?? null).length > MEMBER_DATA_MAX_BYTES) return res.status(413).json({ error: 'Too large' });
+      const at = Number.isFinite(Number(updatedAt)) ? new Date(Math.min(Number(updatedAt), Date.now())) : new Date();
+      const { error } = await supabase.from('member_data')
+        .upsert({ user_id: userId, key, value: value ?? null, updated_at: at.toISOString() }, { onConflict: 'user_id,key' });
+      if (error) throw error;
+      return res.status(200).json({ ok: true, updatedAt: at.getTime() });
+    }
+
+    return res.status(405).json({ error: 'Method not allowed' });
+  } catch (err) {
+    console.error('Member data API error:', err);
+    const notSetUp = isDbNotSetUp(err);
+    return res.status(notSetUp ? 503 : 500).json({
+      error: notSetUp ? 'The member_data table hasn’t been set up yet. See supabase/migrations/0015_member_data.sql.' : err.message,
+      setupRequired: notSetUp,
+    });
+  }
+}
+
 /* ── dispatch ─────────────────────────────────────────────────────── */
 
 const RESOURCE_HANDLERS = {
@@ -279,6 +322,7 @@ const RESOURCE_HANDLERS = {
   sessions: handleSessions,
   playbook: handlePlaybook,
   'scenario-attempts': handleScenarioAttempts,
+  'member-data': handleMemberData,
 };
 
 export default async function handler(req, res) {

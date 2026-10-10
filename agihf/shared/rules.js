@@ -522,7 +522,7 @@ export function renderRuleQueue(el, slide, satisfy, helpers = {}) {
       const ta = ed.querySelector('textarea'), ev = ed.querySelector('input'), sb = ed.querySelector('button');
       const upd = () => { sb.disabled = ev.value.trim().length < 6 || ta.value.trim() === c.text; };
       ta.addEventListener('input', upd); ev.addEventListener('input', upd);
-      sb.addEventListener('click', () => { applyRuleText(it.ruleId, ta.value.trim(), c.text, it.reason); const h = JSON.parse(localStorage.getItem('aghf_rule_history') || '[]'); if (h.length) { h[h.length - 1].evidence = ev.value.trim(); localStorage.setItem('aghf_rule_history', JSON.stringify(h)); } sb.disabled = true; ed.insertAdjacentHTML('beforeend', '<div class="lw-reflect-saved">✓ Changed in review, with evidence. Logged in your rule history.</div>'); show(i + 1); });
+      sb.addEventListener('click', () => { applyRuleText(it.ruleId, ta.value.trim(), c.text, it.reason); const h = JSON.parse(localStorage.getItem('aghf_rule_history') || '[]'); if (h.length) { h[h.length - 1].evidence = ev.value.trim(); localStorage.setItem('aghf_rule_history', JSON.stringify(h)); window.AGHF_MEMBER_SYNC?.('aghf_rule_history'); } sb.disabled = true; ed.insertAdjacentHTML('beforeend', '<div class="lw-reflect-saved">✓ Changed in review, with evidence. Logged in your rule history.</div>'); show(i + 1); });
     }));
   };
   show(0);

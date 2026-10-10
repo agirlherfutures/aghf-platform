@@ -187,6 +187,85 @@
     ]);
   }
 
+  /* ── Member data sync ─────────────────────────────────────────────
+   * Some saved data (My AGHF Rulebook, its rule queue/history, trigger
+   * responses and the Phase 6 risk profile) is read and written by the pages
+   * in localStorage. This keeps an account copy (api/psychology-data.js
+   * ?resource=member-data, table member_data) so it follows her across
+   * devices:
+   *   - before a page draws, pull the account copy; the newer side wins
+   *   - when a page saves one of these keys, AGHF_MEMBER_SYNC(key) pushes it
+   *   - data already in this browser with no account copy is uploaded once
+   * Any failure (offline, migration not applied) leaves the browser copy as is.
+   */
+  const SYNC_KEYS = ['aghf_rulebook', 'aghf_rule_queue', 'aghf_rule_history', 'aghf_rule_violations', 'aghf_trigger_responses', 'aghf_risk_profile'];
+  const SYNC_META = 'aghf_sync_meta'; // { uid, keys: { [key]: updatedAt (ms) } }
+  let syncToken = null;
+  function readSyncMeta() {
+    try { const m = JSON.parse(localStorage.getItem(SYNC_META)); if (m && typeof m === 'object') return { uid: m.uid || null, keys: m.keys || {} }; } catch { /* fall through */ }
+    return { uid: null, keys: {} };
+  }
+  function writeSyncMeta(m) { try { localStorage.setItem(SYNC_META, JSON.stringify(m)); } catch { /* storage blocked */ } }
+  function pushMemberKey(key, updatedAt) {
+    if (!syncToken) return;
+    let raw = null;
+    try { raw = localStorage.getItem(key); } catch { return; }
+    let value = null;
+    try { value = raw == null ? null : JSON.parse(raw); } catch { return; }
+    const body = JSON.stringify({ key, value, updatedAt });
+    fetch(`${ROOT}api/member-data`, {
+      method: 'PUT', keepalive: body.length < 60000,
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + syncToken },
+      body,
+    }).catch(() => {});
+  }
+  // Called by the pages right after they save one of SYNC_KEYS.
+  window.AGHF_MEMBER_SYNC = function (key) {
+    if (!SYNC_KEYS.includes(key) || window.AGHF_DEMO) return;
+    const meta = readSyncMeta();
+    const now = Date.now();
+    meta.keys[key] = now;
+    writeSyncMeta(meta);
+    pushMemberKey(key, now);
+  };
+  async function pullMemberData(uid, token) {
+    syncToken = token;
+    let meta = readSyncMeta();
+    if (meta.uid && meta.uid !== uid) {
+      // A different member used this browser: never mix her data into this account.
+      SYNC_KEYS.forEach((k) => { try { localStorage.removeItem(k); } catch { /* ignore */ } });
+      meta = { uid, keys: {} };
+    }
+    meta.uid = uid;
+    // Moving between pages: one pull every 30 seconds per tab is plenty.
+    try {
+      const last = JSON.parse(sessionStorage.getItem('aghf_sync_pulled') || 'null');
+      if (last && last.uid === uid && Date.now() - last.at < 30000) { writeSyncMeta(meta); return; }
+    } catch { /* ignore */ }
+    try {
+      const r = await withTimeout(fetch(`${ROOT}api/member-data`, { headers: { Authorization: 'Bearer ' + token } }), 4000, 'member data timeout');
+      if (!r.ok) { writeSyncMeta(meta); return; }
+      const { items = {} } = await r.json();
+      SYNC_KEYS.forEach((k) => {
+        const server = items[k];
+        let local = null;
+        try { local = localStorage.getItem(k); } catch { /* ignore */ }
+        const localAt = meta.keys[k] || 0;
+        if (server && server.updatedAt > localAt) {
+          try {
+            if (server.value == null) localStorage.removeItem(k); else localStorage.setItem(k, JSON.stringify(server.value));
+          } catch { /* ignore */ }
+          meta.keys[k] = server.updatedAt;
+        } else if (local != null && (!server || localAt > server.updatedAt)) {
+          meta.keys[k] = localAt || Date.now();
+          pushMemberKey(k, meta.keys[k]);
+        }
+      });
+      try { sessionStorage.setItem('aghf_sync_pulled', JSON.stringify({ uid, at: Date.now() })); } catch { /* ignore */ }
+    } catch { /* offline or not migrated: keep the browser copy */ }
+    writeSyncMeta(meta);
+  }
+
   async function run() {
     try {
       logStep('Loading Supabase library…');
@@ -253,8 +332,10 @@
           bounceToLogin('onAuthStateChange fired SIGNED_OUT');
           return;
         }
-        if (newSession) window.AGHF_SESSION_TOKEN = newSession.access_token;
+        if (newSession) { window.AGHF_SESSION_TOKEN = newSession.access_token; syncToken = newSession.access_token; }
       });
+
+      await pullMemberData(session.user.id, session.access_token);
 
       logStep('Auth OK — showing page');
       if (diagBox) setTimeout(() => diagBox.remove(), 4000);
