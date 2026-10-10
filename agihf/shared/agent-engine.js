@@ -366,6 +366,20 @@ export function renderAgentWorkspace(container, helpers = {}) {
     } catch { /* a malformed handoff payload is silently ignored, never breaks the workspace */ }
   }
 
+  /**
+   * Other pages (e.g. the Evaluation Lab) can hand over a question to start
+   * with. It only fills the message box; she still chooses to send it.
+   */
+  function consumePendingPrompt() {
+    try {
+      const text = sessionStorage.getItem('aghf_pending_agent_prompt');
+      if (!text) return;
+      sessionStorage.removeItem('aghf_pending_agent_prompt');
+      const box = getTextarea();
+      if (box) { box.value = text.slice(0, 2000); box.focus(); }
+    } catch { /* storage unavailable: start with an empty box */ }
+  }
+
   /* ── Thread ── */
   function paintWelcome() {
     els.thread.innerHTML = `
@@ -1189,6 +1203,7 @@ export function renderAgentWorkspace(container, helpers = {}) {
   els.sidebar.classList.toggle('open', state.sidebarOpen);
   consumePendingDayAttachment();
   paintComposer();
+  consumePendingPrompt();
   paintThread();
   loadSidebar();
   loadInsights();

@@ -6,7 +6,7 @@
  * reactions, the win-detail drawer, "My Wins," and the admin moderation
  * console. Presentation only — copy lives in wins-copy.js, data access in
  * wins-service.js. Reuses the exact wizard-shell + accordion pattern
- * already proven in eval-calculator-wizard-engine.js (one continuous
+ * already proven in eval-lab-engine.js (one continuous
  * draft object in closure, update(next) -> full paint()), the
  * variant-driven single-card-function pattern from journal-engine.js's
  * renderTradeSummaryCard, the pill-filter pattern from
@@ -25,7 +25,7 @@ import {
 } from './wins-copy.js';
 
 /* ── small generic helpers, matching the exact patterns already proven
-   in eval-calculator-wizard-engine.js / journal-engine.js ────────────── */
+   in eval-lab-engine.js / journal-engine.js ────────────── */
 
 function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));

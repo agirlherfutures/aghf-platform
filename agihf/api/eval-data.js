@@ -120,7 +120,7 @@ function planShape(row) {
     reduceSizeAfterLossPct: row.reduce_size_after_loss_pct, secondTradeContractSize: row.second_trade_contract_size,
     tradingDaysPerWeek: row.trading_days_per_week,
     currentBalance: row.current_balance, tradingDaysElapsed: row.trading_days_elapsed,
-    notes: row.notes, archivedAt: row.archived_at, createdAt: row.created_at, updatedAt: row.updated_at,
+    notes: row.notes, lab: row.lab ?? null, archivedAt: row.archived_at, createdAt: row.created_at, updatedAt: row.updated_at,
   };
 }
 
@@ -137,7 +137,7 @@ const PLAN_FIELD_MAP = {
   feesPerTrade: 'fees_per_trade', maxTradesPerDay: 'max_trades_per_day', maxLossesPerDay: 'max_losses_per_day',
   stopAfterWin: 'stop_after_win', reduceSizeAfterLoss: 'reduce_size_after_loss',
   reduceSizeAfterLossPct: 'reduce_size_after_loss_pct', secondTradeContractSize: 'second_trade_contract_size',
-  tradingDaysPerWeek: 'trading_days_per_week', notes: 'notes',
+  tradingDaysPerWeek: 'trading_days_per_week', notes: 'notes', lab: 'lab',
 };
 
 // current_balance/trading_days_elapsed deliberately excluded from the
@@ -150,6 +150,22 @@ function bodyToPlanRow(body, userId) {
     if (body[clientKey] !== undefined) row[column] = body[clientKey];
   }
   return row;
+}
+
+// The Evaluation Lab's `lab` column comes from 0014_eval_lab.sql. Until that
+// migration is applied, writes retry without it (the page keeps a copy in
+// the browser), so saving a plan never breaks on an older database.
+function isMissingLabColumn(err) {
+  return !!err && /\blab\b/.test(err.message || '') && /column|schema cache/i.test(err.message || '');
+}
+
+async function writePlan(run, row) {
+  let result = await run(row);
+  if (result.error && row.lab !== undefined && isMissingLabColumn(result.error)) {
+    const { lab, ...rest } = row;
+    result = await run(rest);
+  }
+  return result;
 }
 
 async function handleEvalPlans(req, res, userId) {
@@ -183,6 +199,8 @@ async function handleEvalPlans(req, res, userId) {
         clone.is_active = false;
         clone.current_balance = null;
         clone.trading_days_elapsed = 0;
+        // A copy keeps the profile and regimen, but starts with no sessions or check-ins.
+        if (clone.lab) clone.lab = { ...clone.lab, sessions: [], checkIns: [], readiness: {} };
         const { data, error } = await supabase.from('eval_plans').insert(clone).select('*').single();
         if (error) throw error;
         return res.status(200).json({ plan: planShape(data) });
@@ -193,7 +211,7 @@ async function handleEvalPlans(req, res, userId) {
       if (row.account_size == null) row.account_size = body.accountSize ?? 50000;
       if (row.starting_balance == null) row.starting_balance = body.startingBalance ?? row.account_size;
       if (row.is_active) await supabase.from('eval_plans').update({ is_active: false }).eq('user_id', userId);
-      const { data, error } = await supabase.from('eval_plans').insert(row).select('*').single();
+      const { data, error } = await writePlan((r) => supabase.from('eval_plans').insert(r).select('*').single(), row);
       if (error) throw error;
       return res.status(200).json({ plan: planShape(data) });
     }
@@ -233,7 +251,7 @@ async function handleEvalPlans(req, res, userId) {
 
       const patch = { ...bodyToPlanRow(body, userId), updated_at: new Date().toISOString() };
       delete patch.user_id;
-      const { data, error } = await supabase.from('eval_plans').update(patch).eq('id', id).eq('user_id', userId).select('*').single();
+      const { data, error } = await writePlan((r) => supabase.from('eval_plans').update(r).eq('id', id).eq('user_id', userId).select('*').single(), patch);
       if (error) throw error;
       return res.status(200).json({ plan: planShape(data) });
     }
