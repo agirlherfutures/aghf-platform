@@ -31,11 +31,6 @@
       "permanent": false
     },
     {
-      "source": "/structurelablive",
-      "destination": "/#sec-pricing",
-      "permanent": false
-    },
-    {
       "source": "/dayli-icc-method",
       "destination": "/#sec-pricing",
       "permanent": false
@@ -94,6 +89,10 @@
     {
       "source": "/welcome-university",
       "destination": "/welcome-premium.html"
+    },
+    {
+      "source": "/structurelablive",
+      "destination": "/structurelablive.html"
     },
     {
       "source": "/before-you-go-premium",
