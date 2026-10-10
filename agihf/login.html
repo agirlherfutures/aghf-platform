@@ -171,7 +171,12 @@
     error: 'Something went wrong connecting to Whop. Please try again.',
   };
   const reason = params.get('whop');
-  if (reason && WHOP_MESSAGES[reason]) { const el = document.getElementById('whopError'); el.textContent = WHOP_MESSAGES[reason]; el.classList.add('show'); }
+  if (reason && WHOP_MESSAGES[reason]) {
+    const el = document.getElementById('whopError');
+    const step = (params.get('step') || '').replace(/[^a-z0-9-]/gi, '').slice(0, 24);
+    el.textContent = WHOP_MESSAGES[reason] + (step ? ` (Code: ${step})` : '');
+    el.classList.add('show');
+  }
 
   // Already signed in? Skip straight through instead of showing the form.
   const { data: { session } } = await supabase.auth.getSession();
