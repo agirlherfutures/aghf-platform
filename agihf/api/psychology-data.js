@@ -18,6 +18,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { creditChallengeActivity } from './_lib/challenge-credit.js';
 import { isDbNotSetUp } from './_lib/db-error.js';
+import { handlePublicFeed } from './_lib/market-feed.js';
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
@@ -326,6 +327,10 @@ const RESOURCE_HANDLERS = {
 };
 
 export default async function handler(req, res) {
+  // Market structure and the news calendar are public and identical for
+  // every member, so they skip sign-in and get cached at the edge.
+  if (req.query.resource === 'market' || req.query.resource === 'news') return handlePublicFeed(req, res, req.query.resource);
+
   const authHeader = req.headers.authorization || '';
   const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
   if (!token) return res.status(401).json({ error: 'Missing bearer token' });
