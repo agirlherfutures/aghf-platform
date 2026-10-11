@@ -64,6 +64,7 @@ export function toClientShape(row) {
     iccPhase: row.icc_phase,
     entryTags: row.entry_tags || [],
     iccChecklist: row.icc_checklist,
+    entryModel: row.entry_model ?? null,
     exitTags: row.exit_tags || [],
     agreeWithEarlyExit: row.agree_with_early_exit,
     methodQualityTags: row.method_quality_tags || [],
@@ -191,6 +192,9 @@ async function handleEntries(req, res, userId) {
       // for lesson/check-in reflections, so trade entries keep saving on a
       // database that doesn't have the column yet.
       if (body.lessonId) row.lesson_id = body.lessonId;
+      // entry_model (the chosen setup and its entry rules) arrives with
+      // migration 0016. Until it's applied, the write is retried without it.
+      if (body.entryModel !== undefined) row.entry_model = body.entryModel ?? null;
 
       // GP/streak award: a one-time side effect the first time a trade entry
       // goes from draft to final. Eligibility is checked against the row's
@@ -212,11 +216,18 @@ async function handleEntries(req, res, userId) {
         row.gp_awarded_at = new Date().toISOString();
       }
 
+      const missingEntryModel = (error) => error && 'entry_model' in row && /entry_model/.test(`${error.message || ''} ${error.details || ''}`);
       let result;
       if (body.id) {
-        const { data, error } = await supabase
+        let { data, error } = await supabase
           .from('journal_entries').update(row).eq('id', body.id).eq('user_id', userId)
           .select('*').single();
+        if (missingEntryModel(error)) {
+          delete row.entry_model;
+          ({ data, error } = await supabase
+            .from('journal_entries').update(row).eq('id', body.id).eq('user_id', userId)
+            .select('*').single());
+        }
         if (error) throw error;
         result = data;
       } else {
@@ -226,8 +237,12 @@ async function handleEntries(req, res, userId) {
             .eq('user_id', userId).eq('entry_type', 'trade');
           row.trade_number = (count || 0) + 1;
         }
-        const { data, error } = await supabase
+        let { data, error } = await supabase
           .from('journal_entries').insert(row).select('*').single();
+        if (missingEntryModel(error)) {
+          delete row.entry_model;
+          ({ data, error } = await supabase.from('journal_entries').insert(row).select('*').single());
+        }
         if (error) throw error;
         result = data;
       }

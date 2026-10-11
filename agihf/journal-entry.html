@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/components.css">
 <link rel="stylesheet" href="shared/dayli-desk.css">
+<link rel="stylesheet" href="shared/dayli-desk-v2.css">
 <link rel="stylesheet" href="shared/journal-v2.css">
 <link rel="stylesheet" href="shared/lesson-engine.css">
 </head>
@@ -17,9 +18,10 @@
 <script src="shared/auth-guard.js"></script>
 <script src="shared/sidebar.js" data-active="journal"></script>
 
-<main class="main">
-  <div class="pg-eye">✦ AG&amp;HF Trade Log</div>
-  <div class="pg-title" id="jePageTitle">New Trade</div>
+<main class="main dz jv">
+  <div class="dz-glow a"></div><div class="dz-glow b"></div><div class="dz-glow c"></div>
+  <span class="jv-eyebrow pg-eye">✦ Your trade journal</span>
+  <h1 class="je-title" id="jePageTitle">New trade</h1>
   <div id="jeRoot"></div>
 </main>
 
@@ -190,17 +192,23 @@
             // requirement to do so.
             const isShareableWin = (saved.ruleCheck === 'yes' && saved.outcome === 'win')
               || (saved.exitTags || []).some((t) => ['Trade Invalidated', 'Rule-Based Exit'].includes(t));
-            const body = openModal(renderTradeSummaryCard(entryToSummaryCardProps(saved), { variant: 'celebration' }) + `
-              ${isShareableWin ? `<div style="margin-top:14px;text-align:center;"><a class="dd-secondary-btn" href="share-win-flow.html?fromJournalEntryId=${saved.id}">✦ Share This Win</a></div>` : ''}
-              <div style="margin-top:16px;text-align:center;"><button type="button" class="dd-primary-btn" id="tscCloseBtn">Nice ✦</button></div>`);
+            const head = saved.ruleCheck === 'yes' ? 'Logged, <em class="jv-t">by the plan.</em>' : saved.ruleCheck === 'no' ? 'Logged. <em class="jv-p">Lesson learned.</em>' : 'Logged, <em class="jv-p">nice work.</em>';
+            const body = openModal(`<div class="je-done"><span class="jv-kicker">${saved.tradeNumber ? `Trade #${saved.tradeNumber} saved` : 'Trade saved'}</span><h2 class="je-h">${head}</h2></div>`
+              + renderTradeSummaryCard(entryToSummaryCardProps(saved), { variant: 'celebration' }) + `
+              <div class="je-done-actions">
+                <a class="jv-btn" href="journal-entry.html?id=${encodeURIComponent(saved.id)}">See the full trade story</a>
+                ${isShareableWin ? `<a class="jv-btn ghost" href="share-win-flow.html?fromJournalEntryId=${encodeURIComponent(saved.id)}">✦ Share this win</a>` : ''}
+                <a class="jv-btn ghost purple" href="journal-entry.html">Log another trade</a>
+                <button type="button" class="jv-btn ghost plain" id="tscCloseBtn">Back to journal</button>
+              </div>`);
             if (saved.screenshots?.length) hydrateTscShots(body, apiFetch);
             body.querySelector('#tscCloseBtn').addEventListener('click', () => {
               closeModal();
-              window.location.href = 'journal-history.html';
+              window.location.href = 'journal.html';
             });
           } else {
             showDeskToast('Entry saved ✦');
-            window.location.href = 'journal-history.html';
+            window.location.href = 'journal.html';
           }
         } catch (err) {
           console.error('Save final error:', err);

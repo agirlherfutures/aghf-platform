@@ -11,6 +11,7 @@
  */
 
 import { computeTradeTotals, computeExecutionScore } from './journal-engine.js';
+import { ENTRY_MODELS, entrySetup, entrySteps, setupName } from './entry-models.js';
 
 const ICC_STEPS = [
   ['validPil', 'PIL', 'Valid PIL'],
@@ -95,12 +96,14 @@ function rBar(r) {
   </div><div class="jv-rbar-l"><span>Stop −1R</span><span>Entry</span><span>+2R</span></div>`;
 }
 
-export function iccSteps(icc, { compact = false } = {}) {
-  if (!icc) return '';
-  const on = ICC_STEPS.map(([k]) => !!icc[k]);
-  if (compact) return `<div class="jv-icc-dots" title="Dayli ICC steps seen">${on.map((v) => `<i class="${v ? '' : 'off'}"></i>`).join('')}</div>`;
-  return `<div class="jv-icc">${ICC_STEPS.map(([, short, full], i) => `${i ? `<div class="jv-icc-ln ${on[i] && on[i - 1] ? 'on' : ''}"></div>` : ''}<div class="jv-icc-n ${on[i] ? 'on' : ''}" title="${full}">${on[i] ? '✓' : i + 1}</div>`).join('')}</div>
-    <div class="jv-icc-l">${ICC_STEPS.map(([, short]) => `<span>${short}</span>`).join('')}</div>`;
+/** The entry rules of the trade's setup (Dayli ICC, Supply & Demand, ...) as a step line or dots. */
+export function setupSteps(entry, { compact = false } = {}) {
+  const steps = entrySteps(entry);
+  if (!steps.length) return '';
+  const title = `${setupName(entry)} steps`;
+  if (compact) return `<div class="jv-icc-dots" title="${esc(title)}">${steps.map((s) => `<i class="${s.on ? '' : 'off'}"></i>`).join('')}</div>`;
+  return `<div class="jv-icc" aria-label="${esc(title)}">${steps.map((s, i) => `${i ? `<div class="jv-icc-ln ${s.on && steps[i - 1].on ? 'on' : ''}"></div>` : ''}<div class="jv-icc-n ${s.on ? 'on' : ''}" title="${esc(s.label)}">${s.on ? '✓' : i + 1}</div>`).join('')}</div>
+    <div class="jv-icc-l">${steps.map((s) => `<span>${esc(s.short)}</span>`).join('')}</div>`;
 }
 
 function feelingChips(emotions) {
@@ -138,8 +141,9 @@ export function tradeCardHtml(entry, { variant = 'list' } = {}) {
   const f = tradeFacts(entry);
   const badge = planBadge(entry.ruleCheck);
   const lesson = (entry.lessons || []).filter(Boolean)[0] || entry.wentWell || '';
-  const Tag = variant === 'celebration' ? 'div' : 'a';
-  const href = variant === 'celebration' ? '' : ` href="journal-entry.html?id=${encodeURIComponent(entry.id)}"`;
+  const still = variant === 'celebration' || variant === 'preview';
+  const Tag = still ? 'div' : 'a';
+  const href = still ? '' : ` href="journal-entry.html?id=${encodeURIComponent(entry.id)}"`;
   return `<${Tag} class="jv-card jv-card-${variant}"${href}>
     ${cardArt(entry)}
     <div class="jv-card-top">
@@ -150,7 +154,7 @@ export function tradeCardHtml(entry, { variant = 'list' } = {}) {
     <div class="jv-card-mid">
       ${riskReward(f)}
       ${rBar(f.r)}
-      ${iccSteps(entry.iccChecklist)}
+      ${setupSteps(entry)}
       ${badge || entry.emotions ? `<div class="jv-card-tags">${badge ? `<span class="jv-tag ${badge.cls}">${badge.label}</span>` : ''}${feelingChips(entry.emotions)}</div>` : ''}
     </div>
     ${lesson || entry.executionGrade ? `<div class="jv-card-foot">
@@ -178,7 +182,7 @@ export function timelineHtml(entries) {
         return `<a class="jv-row" href="journal-entry.html?id=${encodeURIComponent(t.id)}">
           <div class="jv-sym ${symCls(t.instrument)}">${esc(t.instrument || '–')}</div>
           <div class="jv-row-main"><h4>${dirWord(t.direction)}${timeLabel(t) ? ` · ${esc(timeLabel(t))}` : ''}</h4><p>${esc(lesson) || '&nbsp;'}</p></div>
-          <div class="jv-row-meta">${iccSteps(t.iccChecklist, { compact: true })}${badge ? `<span class="jv-tag ${badge.cls}">${badge.label}</span>` : ''}</div>
+          <div class="jv-row-meta">${setupSteps(t, { compact: true })}${badge ? `<span class="jv-tag ${badge.cls}">${badge.label}</span>` : ''}</div>
           ${t.executionGrade ? `<div class="jv-grade ${gradeCls(t.executionGrade)}">${esc(t.executionGrade)}</div>` : '<div></div>'}
           <div class="jv-pnl ${tone(f.net)}"><b class="${blur()}">${money(f.net)}</b>${fmtR(f.r) ? `<small>${fmtR(f.r)}</small>` : ''}</div>
         </a>`;
@@ -244,7 +248,7 @@ function storyHeadline(entry) {
 }
 
 /** Stop, entry and target zones with an arrow to the exit. Only real, saved prices: no invented path. */
-function ladderSvg(entry, exitPrice) {
+export function ladderSvg(entry, exitPrice) {
   const entryP = Number(entry.entryPrice);
   const stop = Number(entry.stopLossPoints);
   const tgt = Number(entry.takeProfitPoints);
@@ -333,9 +337,9 @@ export function tradeStoryHtml(entry) {
 
     <section class="jv-s-grid">
       ${ladder ? `<div class="jv-panel"><span class="jv-kicker">The trade</span><h3>Entry to <em class="jv-p">exit.</em></h3><div class="jv-ladder">${ladder}</div></div>` : ''}
-      <div class="jv-panel"><span class="jv-kicker">Dayli ICC</span><h3>Did I wait for <em class="jv-u">all five?</em></h3>
-        ${entry.iccChecklist ? iccSteps(entry.iccChecklist) : '<p class="jv-muted">The ICC steps weren’t checked for this trade.</p>'}
-        ${entry.iccChecklist ? `<div class="jv-chips soft">${entry.iccChecklist.bias4hAligned ? '<span>✓ 4H bias aligned</span>' : ''}${entry.iccChecklist.structure1hAligned ? '<span>✓ 1H structure aligned</span>' : ''}</div>` : ''}
+      <div class="jv-panel"><span class="jv-kicker">${esc(setupName(entry) || 'Setup')}</span><h3>${entrySetup(entry) ? ENTRY_MODELS[entrySetup(entry)].question : 'Your <em class="jv-u">setup.</em>'}</h3>
+        ${entrySteps(entry).length ? setupSteps(entry) : entrySetup(entry) === 'other' ? '' : '<p class="jv-muted">No setup rules were checked for this trade.</p>'}
+        ${(() => { const setup = entrySetup(entry); if (!setup) return ''; const on = ENTRY_MODELS[setup].extras().filter((x) => (setup === 'icc' ? entry.iccChecklist?.[x.key] : entry.entryModel?.steps?.[x.key])); return on.length ? `<div class="jv-chips soft">${on.map((x) => `<span>✓ ${esc(x.label.replace(/ \(optional\)/, ''))}</span>`).join('')}</div>` : ''; })()}
         ${shots.length ? `<div class="jv-shots">${shots.map((s) => `<div class="jv-shot" data-shot-bg-path="${esc(s.path)}"></div>`).join('')}</div>` : ''}
       </div>
     </section>
