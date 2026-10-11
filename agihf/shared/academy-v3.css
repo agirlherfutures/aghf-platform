@@ -3,6 +3,8 @@
  * adds body.aca-v3. Each phase brings its own accent (--acc). */
 
 body.aca-v3{--acc:#F4829A;--acc-ink:#E0607C;--acc-bg:#FDE8ED;--acc-grad:linear-gradient(135deg,#F4829A,#F5A857);--v3-good:#3E9E93;--v3-good-bg:#E8F8F6;--v3-hard:#E0607C;--v3-hard-bg:#FDE8ED;--v3-gold:#C9962E;--v3-gold-bg:#FBF5E8;--v3-purple:#7F77DD;--v3-purple-bg:#EEEDFE}
+body.aca-p3{--acc:#3E9E93;--acc-ink:#2F8A7F;--acc-bg:#E8F8F6;--acc-grad:linear-gradient(135deg,#7ECEC4,#7F77DD)}
+body.aca-p4{--acc:#E08E2E;--acc-ink:#C4741F;--acc-bg:#FEF3E4;--acc-grad:linear-gradient(135deg,#F5A857,#F4829A)}
 body.aca-p2{--acc:#7F77DD;--acc-ink:#5E56B8;--acc-bg:#EEEDFE;--acc-grad:linear-gradient(135deg,#7F77DD,#F4829A)}
 body.aca-v3{background:radial-gradient(60% 40% at 20% 0%,rgba(249,201,212,.5),transparent 70%),radial-gradient(50% 40% at 100% 0%,rgba(191,230,225,.5),transparent 70%),radial-gradient(50% 40% at 100% 100%,rgba(251,221,184,.35),transparent 70%),var(--cream,#FDF8F5);background-attachment:fixed}
 body.aca-p2{background:radial-gradient(60% 40% at 20% 0%,rgba(206,203,246,.5),transparent 70%),radial-gradient(50% 40% at 100% 0%,rgba(191,230,225,.5),transparent 70%),radial-gradient(50% 40% at 100% 100%,rgba(249,201,212,.35),transparent 70%),var(--cream,#FDF8F5);background-attachment:fixed}
@@ -192,3 +194,10 @@ body.aca-p2{background:radial-gradient(60% 40% at 20% 0%,rgba(206,203,246,.5),tr
   .aca-v3 .v3-say{padding-left:64px!important}
 }
 .aca-v3 .v3-outcome{margin:0 0 12px;font-size:15px;line-height:1.5;color:var(--text)}
+
+body.aca-p3{background:radial-gradient(60% 40% at 20% 0%,rgba(191,230,225,.6),transparent 70%),radial-gradient(50% 40% at 100% 0%,rgba(206,203,246,.45),transparent 70%),radial-gradient(50% 40% at 100% 100%,rgba(249,201,212,.35),transparent 70%),var(--cream,#FDF8F5);background-attachment:fixed}
+body.aca-p4{background:radial-gradient(60% 40% at 20% 0%,rgba(251,221,184,.6),transparent 70%),radial-gradient(50% 40% at 100% 0%,rgba(249,201,212,.45),transparent 70%),radial-gradient(50% 40% at 100% 100%,rgba(191,230,225,.4),transparent 70%),var(--cream,#FDF8F5);background-attachment:fixed}
+.aca-p3 .v3-eyebrow{border-color:#B2E4DF}.aca-p4 .v3-eyebrow{border-color:#FAD09A}
+.aca-p3 .v3-mission{background:linear-gradient(120deg,#F1FBF9,#F7F6FF)}.aca-p4 .v3-mission{background:linear-gradient(120deg,#FFF8EE,#FFF6F5)}
+.aca-p3 .v3-video{background:linear-gradient(120deg,#7ECEC4,#7F77DD,#F4829A)}.aca-p4 .v3-video{background:linear-gradient(120deg,#F5A857,#F4829A,#7ECEC4)}
+.aca-p3 .v3-lcard.now{box-shadow:0 0 0 6px rgba(62,158,147,.14),0 16px 34px rgba(44,24,16,.1)}.aca-p4 .v3-lcard.now{box-shadow:0 0 0 6px rgba(224,142,46,.15),0 16px 34px rgba(44,24,16,.1)}

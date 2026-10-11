@@ -10,7 +10,7 @@
 
 import { icon } from './icons.js';
 
-export const V3_PHASES = new Set(['p1', 'p2']);
+export const V3_PHASES = new Set(['p1', 'p2', 'p3', 'p4']);
 export const isV3 = (phaseKey) => V3_PHASES.has(phaseKey);
 
 /** Turn the look on for this page. */
@@ -110,8 +110,8 @@ export function accent(title, tone = 'acc') {
 export const STAGES = [
   ['watch', 'Watch'], ['learn', 'Learn'], ['practice', 'Practice'], ['check', 'Check'], ['reflect', 'Reflect'],
 ];
-const PRACTICE = new Set(['swing_tap', 'label_swings', 'flash_sort', 'chart_tap', 'chart_direction', 'calculator', 'pnl_lab', 'instrument_explorer', 'sequence_build', 'decision_path', 'compare_cards', 'v2_tool', 'v2_missing', 'v2_ticket', 'candle_reveal']);
-const CHECK = new Set(['chart_check', 'v2_scenario', 'lab_checkpoint']);
+const PRACTICE = new Set(['td_workspace', 'explore', 'evidence_board', 'scenario_builder', 'range_stand', 'range_toggle', 'literacy_entry', 'swing_tap', 'label_swings', 'flash_sort', 'chart_tap', 'chart_direction', 'calculator', 'pnl_lab', 'instrument_explorer', 'sequence_build', 'decision_path', 'compare_cards', 'v2_tool', 'v2_missing', 'v2_ticket', 'candle_reveal']);
+const CHECK = new Set(['verdicts', 'chart_check', 'v2_scenario', 'lab_checkpoint']);
 const REFLECT = new Set(['reflect', 'v2_reflect']);
 
 /** Which stage a wizard step belongs to. */
@@ -224,6 +224,17 @@ const C = (x, o, c, h, l) => {
 };
 const pill = (x, y, t, col) => `<rect x="${x - 15}" y="${y - 9}" width="30" height="18" rx="9" fill="${col}"/><text x="${x}" y="${y + 4}" text-anchor="middle" font-family="DM Sans" font-weight="700" font-size="10" fill="#fff">${t}</text>`;
 const DOODLES = [
+  [/liquidity pool|stops cluster|buy-side|sell-side|what is liquidity|liquidity in/i, `<path d="M8 22h104" stroke="#7F77DD" stroke-width="2.5" stroke-dasharray="6 5"/>${[20, 34, 48, 62, 76, 90].map((x) => `<circle cx="${x}" cy="14" r="4" fill="#F4829A"/>`).join('')}<path d="M10 62 L34 40 L50 50 L76 30 L110 44" fill="none" stroke="#2C1810" stroke-width="3" stroke-linejoin="round"/>`],
+  [/equal highs/i, `<path d="M8 18h104" stroke="#C9962E" stroke-width="2.5" stroke-dasharray="6 5"/><path d="M10 62 L30 20 L46 46 L64 20 L82 48 L100 20 L112 34" fill="none" stroke="#2C1810" stroke-width="3" stroke-linejoin="round"/>`],
+  [/sweep/i, `<path d="M8 26h104" stroke="#C9962E" stroke-width="2.5" stroke-dasharray="6 5"/><path d="M10 56 L40 34 L60 46 L78 12 L86 42 L110 64" fill="none" stroke="#2C1810" stroke-width="3.5" stroke-linejoin="round"/><circle cx="78" cy="12" r="6" fill="#F4829A"/>`],
+  [/fvg|fair value|imbalance|gap|inefficient/i, `${C(30, 58, 40, 36, 62)}${C(60, 40, 12, 8, 44)}${C(90, 16, 6, 2, 20)}<rect x="40" y="20" width="62" height="16" rx="3" fill="rgba(127,119,221,.22)" stroke="#7F77DD" stroke-width="2" stroke-dasharray="4 3"/>`],
+  [/displacement|delivery/i, `<path d="M10 60 L30 52 L40 56 L100 8" fill="none" stroke="#3E9E93" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M90 6l12 0 0 12" fill="none" stroke="#3E9E93" stroke-width="4" stroke-linecap="round"/>`],
+  [/accumulation|distribution/i, `<rect x="10" y="30" width="56" height="26" rx="6" fill="#FEF3E4" stroke="#F5A857" stroke-width="2" stroke-dasharray="5 4"/><path d="M14 46 L24 38 L34 48 L44 38 L56 46 L66 36 L110 8" fill="none" stroke="#2C1810" stroke-width="3" stroke-linejoin="round"/>`],
+  [/order flow|participation|pressure|aggressive|price can|cannot prove/i, `<rect x="16" y="34" width="14" height="28" rx="3" fill="#7ECEC4"/><rect x="36" y="20" width="14" height="42" rx="3" fill="#3E9E93"/><rect x="70" y="40" width="14" height="22" rx="3" fill="#F4829A"/><rect x="90" y="28" width="14" height="34" rx="3" fill="#E0607C"/>`],
+  [/premium|discount|equilibrium|buying lower/i, `<rect x="10" y="8" width="100" height="27" fill="#FDE8ED"/><rect x="10" y="35" width="100" height="27" fill="#E8F8F6"/><path d="M10 35h100" stroke="#C9962E" stroke-width="2.5" stroke-dasharray="6 5"/><text x="60" y="26" text-anchor="middle" font-family="DM Sans" font-weight="700" font-size="10" fill="#E0607C">PREMIUM</text><text x="60" y="53" text-anchor="middle" font-family="DM Sans" font-weight="700" font-size="10" fill="#3E9E93">DISCOUNT</text>`],
+  [/range|room/i, `<rect x="10" y="10" width="100" height="50" rx="8" fill="none" stroke="#F5A857" stroke-width="3"/><path d="M16 50 L36 22 L52 42 L72 20 L90 46 L104 28" fill="none" stroke="#2C1810" stroke-width="3" stroke-linejoin="round"/>`],
+  [/bias|direction|4h|thesis|scenario|objective|target/i, `<circle cx="60" cy="35" r="27" fill="#fff" stroke="#E08E2E" stroke-width="3"/><path d="M60 14 L68 38 L60 34 L52 38 Z" fill="#E08E2E"/><path d="M60 56 L52 32 L60 36 L68 32 Z" fill="#E2D6CE"/>`],
+  [/updating|invalidation|changes the map/i, `<path d="M84 18a28 28 0 1 0 6 26" fill="none" stroke="#7F77DD" stroke-width="4" stroke-linecap="round"/><path d="M80 8l6 12-13 2" fill="none" stroke="#7F77DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`],
   [/trading|trade\b/i, `<path d="M8 58 L34 38 L50 46 L76 20 L112 10" fill="none" stroke="#3E9E93" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 12 L34 30 L50 24 L76 46 L112 58" fill="none" stroke="#E0607C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>`],
   [/markets? exist|why do markets/i, `<circle cx="40" cy="36" r="20" fill="#fff" stroke="#7F77DD" stroke-width="4"/><circle cx="80" cy="36" r="20" fill="#fff" stroke="#F4829A" stroke-width="4"/><path d="M52 30h16l-5-5M68 42H52l5 5" fill="none" stroke="#2C1810" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`],
   [/buyers|sellers|aggress|control/i, C(30, 54, 22, 14, 60) + C(60, 30, 48, 24, 56) + C(90, 46, 12, 6, 52)],
