@@ -14,7 +14,7 @@
  */
 
 import { classifyDayBadge, classifyDayVsPlan } from './journal-calendar-math.js';
-import { renderTradeSummaryCard, entryToSummaryCardProps } from './journal-engine.js';
+import { dayPanelHtml } from './journal-v2.js';
 import {
   computeProfitTargetDollar, computeRemainingProfitTarget, computeDrawdownLimitDollar,
   computeRemainingDrawdown, computeConsistencyRuleStatus, classifyPlanRiskStatus,
@@ -61,43 +61,17 @@ export function renderViewSwitcher(container, activeView, onSwitch) {
 
 /* ── Calendar view ────────────────────────────────────────────────── */
 
-function renderDayCell(cell) {
-  const badge = classifyDayBadge(cell.aggregate);
-  const meta = BADGE_META[badge];
-  const agg = cell.aggregate;
-  const classes = ['jh-day-cell', meta.cellClass];
-  if (!cell.isCurrentMonth) classes.push('jh-day-filler');
-  if (cell.isToday) classes.push('jh-day-today');
-
-  const markers = [];
-  if (agg?.cleanExecution === true) markers.push('<span class="jh-day-marker jh-day-marker-clean" title="Clean Execution">★</span>');
-  if (agg?.ruleAdherenceStatus === 'violated') markers.push('<span class="jh-day-marker jh-day-marker-violation" title="Rule violation">!</span>');
-  if (agg?.hasScreenshot) markers.push('<span class="jh-day-marker" title="Has screenshot">📷</span>');
-  if (agg?.missedSetup) markers.push('<span class="jh-day-marker" title="Missed/passed setup">◌</span>');
-
-  return `
-    <button type="button" class="${classes.join(' ')}" data-cell-date="${cell.date}" aria-label="${cell.date}${agg?.tradeCount ? `, ${agg.tradeCount} trade${agg.tradeCount === 1 ? '' : 's'}, ${meta.label}` : ', no trades'}">
-      <div class="jh-day-num">${cell.dayOfMonth}</div>
-      ${agg?.tradeCount ? `
-        <div class="jh-day-pnl">${meta.icon} ${pnlSpan(agg.netPnl)}</div>
-        <div class="jh-day-count">${agg.tradeCount} trade${agg.tradeCount === 1 ? '' : 's'}</div>
-      ` : agg?.missedSetup ? `<div class="jh-day-count">${meta.label}</div>` : ''}
-      ${markers.length ? `<div class="jh-day-markers">${markers.join('')}</div>` : ''}
-    </button>`;
-}
-
 const WEEKDAY_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const TONE = { profit: 'win', loss: 'loss', breakeven: 'even', missed_setup: 'missed', no_trades: '' };
 
-/** Sums a week's 7 cells — filler cells from an adjacent month always carry
- * a null aggregate (never computed outside the displayed month, matching
- * how every other month-level stat here already excludes them), so this
- * only ever tallies the current month's days that fall in that week. */
+/** Sums a week's 7 cells. Filler cells from an adjacent month always carry a
+ * null aggregate, so only the displayed month's days are tallied. */
 function weekNetPnl(weekCells) {
   return weekCells.reduce((s, c) => s + (c.aggregate?.netPnl || 0), 0);
 }
 
-function pnlClass(n) {
-  return n > 0 ? 'dd-pnl-pos' : n < 0 ? 'dd-pnl-neg' : 'dd-pnl-flat';
+function toneOf(n) {
+  return n > 0 ? 'win' : n < 0 ? 'loss' : 'even';
 }
 
 /** Null (never a misleading $0) when nothing has been logged this month yet. */
@@ -107,54 +81,60 @@ function monthNetPnl(grid) {
   return currentMonthCells.reduce((s, c) => s + (c.aggregate?.netPnl || 0), 0);
 }
 
+function renderDayCell(cell, trades, selected) {
+  const badge = classifyDayBadge(cell.aggregate);
+  const meta = BADGE_META[badge];
+  const agg = cell.aggregate;
+  const classes = ['jv-d', TONE[badge] || ''];
+  if (!cell.isCurrentMonth) classes.push('out');
+  if (cell.isToday) classes.push('today');
+  if (selected) classes.push('sel');
+  const marks = [];
+  if (agg?.cleanExecution === true) marks.push('<i class="star" title="Clean execution">★</i>');
+  if (agg?.ruleAdherenceStatus === 'violated') marks.push('<i class="bang" title="Rule broken">!</i>');
+  const dots = (trades || []).map((t) => `<i class="${t.ruleCheck === 'yes' ? '' : t.ruleCheck === 'mostly' ? 'mid' : t.ruleCheck === 'no' ? 'no' : 'none'}"></i>`).join('');
+  return `<button type="button" class="${classes.join(' ')}" data-cell-date="${cell.date}" aria-pressed="${selected ? 'true' : 'false'}" aria-label="${cell.date}${agg?.tradeCount ? `, ${agg.tradeCount} trade${agg.tradeCount === 1 ? '' : 's'}, ${meta.label}` : agg?.missedSetup ? ', passed on a setup' : ', no trades'}">
+    <span class="n">${cell.dayOfMonth}</span>
+    ${marks.length ? `<span class="marks">${marks.join('')}</span>` : ''}
+    ${agg?.tradeCount ? `<b>${pnlSpan(agg.netPnl)}</b><small>${agg.tradeCount} trade${agg.tradeCount === 1 ? '' : 's'}</small>` : agg?.missedSetup ? '<small>Passed</small>' : ''}
+    ${dots ? `<span class="dots">${dots}</span>` : ''}
+  </button>`;
+}
+
 /**
- * @param {{year:number, month:number, grid:object[], monthLabel:string}} data
- * @param {{onPrev:Function, onNext:Function, onToday:Function, onSelectDay:Function, onCreateEntryForDate:Function}} handlers
+ * @param {{year:number, month:number, grid:object[], monthLabel:string, tradesByDate?:Map, selectedDate?:string}} data
+ * @param {{onPrev:Function, onNext:Function, onToday:Function, onSelectDay:Function}} handlers
  */
 export function renderCalendarView(container, data, handlers) {
   const weeks = [];
   for (let i = 0; i < data.grid.length; i += 7) weeks.push(data.grid.slice(i, i + 7));
-  const daysHtml = weeks.map((week) => {
+  // Drop a trailing all-filler week so a 5-week month doesn't show a dead row.
+  while (weeks.length && weeks[weeks.length - 1].every((c) => !c.isCurrentMonth)) weeks.pop();
+  const days = weeks.map((week) => {
     const hasTrades = week.some((c) => c.aggregate?.tradeCount);
     const total = weekNetPnl(week);
-    return week.map(renderDayCell).join('')
-      + `<div class="jh-week-total">Week total: ${hasTrades ? pnlSpan(total, pnlClass(total)) : '—'}</div>`;
+    return week.map((c) => renderDayCell(c, data.tradesByDate?.get(c.date), c.date === data.selectedDate)).join('')
+      + `<div class="jv-wk"><b class="${hasTrades ? toneOf(total) : 'none'}">${hasTrades ? pnlSpan(total) : '–'}</b></div>`;
   }).join('');
   const monthTotal = monthNetPnl(data.grid);
+  const [mName, mYear] = data.monthLabel.split(' ');
 
-  container.innerHTML = `
-    <div class="dd-card">
-      <div class="jh-cal-nav">
-        <button type="button" class="dd-icon-btn" id="jhCalPrev" aria-label="Previous month">←</button>
-        <div class="jh-cal-month-label">${data.monthLabel}</div>
-        <button type="button" class="dd-icon-btn" id="jhCalNext" aria-label="Next month">→</button>
-        <button type="button" class="dd-secondary-btn" id="jhCalToday" style="margin-left:auto;">Today</button>
-      </div>
-      <div class="jh-cal-grid jh-cal-weekdays">${WEEKDAY_LABELS.map((d) => `<div class="jh-cal-weekday">${d}</div>`).join('')}</div>
-      <div class="jh-cal-grid jh-cal-days">${daysHtml}</div>
-      <div class="jh-cal-month-total jh-cal-month-total-grid">Month total: ${monthTotal == null ? 'No trades logged this month yet' : pnlSpan(monthTotal, pnlClass(monthTotal))}</div>
-      <div class="jh-cal-legend">
-        <span><span class="jh-legend-swatch jh-day-profit"></span> Profit</span>
-        <span><span class="jh-legend-swatch jh-day-loss"></span> Loss</span>
-        <span><span class="jh-legend-swatch jh-day-breakeven"></span> Breakeven</span>
-        <span>★ Clean Execution</span>
-        <span>! Rule violation</span>
-        <span>◌ Missed setup</span>
-      </div>
+  container.innerHTML = `<div class="jv-cal">
+    <div class="jv-cal-head">
+      <button type="button" class="jv-arr" id="jhCalPrev" aria-label="Previous month">←</button>
+      <h3>${mName} <em class="jv-p">${mYear || ''}</em></h3>
+      <button type="button" class="jv-arr" id="jhCalNext" aria-label="Next month">→</button>
+      <button type="button" class="jv-today" id="jhCalToday">Today</button>
     </div>
-    <!-- Mobile agenda-list fallback, matching .jh-stats-row's existing max-900px breakpoint convention -->
-    <div class="jh-cal-agenda">
-      ${data.grid.filter((c) => c.isCurrentMonth && (c.aggregate?.tradeCount || c.aggregate?.missedSetup)).map((c) => {
-        const badge = classifyDayBadge(c.aggregate);
-        const meta = BADGE_META[badge];
-        return `<button type="button" class="jh-agenda-row ${meta.cellClass}" data-cell-date="${c.date}">
-          <span class="jh-agenda-date">${c.date}</span>
-          <span class="jh-agenda-pnl">${c.aggregate.tradeCount ? pnlSpan(c.aggregate.netPnl) : meta.label}</span>
-          ${c.aggregate.cleanExecution === true ? '<span class="jh-day-marker jh-day-marker-clean">★</span>' : ''}
-        </button>`;
-      }).join('') || '<div class="small-help">Nothing logged this month yet.</div>'}
-      <div class="jh-cal-month-total">Month total: ${monthTotal == null ? 'No trades logged this month yet' : pnlSpan(monthTotal, pnlClass(monthTotal))}</div>
-    </div>`;
+    <div class="jv-grid">${WEEKDAY_LABELS.map((d) => `<div class="jv-dow">${d}</div>`).join('')}<div class="jv-dow wk">Week</div>${days}</div>
+    <div class="jv-cal-foot">
+      <div class="jv-legend">
+        <span><i class="sw win"></i>Green day</span><span><i class="sw loss"></i>Red day</span><span><i class="sw even"></i>Breakeven</span>
+        <span><i class="dot"></i>One dot per trade, by plan</span><span><i class="star">★</i>Clean execution</span><span><i class="bang">!</i>Rule broken</span>
+      </div>
+      <div class="jv-month-total">Month: ${monthTotal == null ? '<span class="none">no trades yet</span>' : `<b class="${toneOf(monthTotal)}">${pnlSpan(monthTotal)}</b>`}</div>
+    </div>
+  </div>`;
 
   container.querySelector('#jhCalPrev').addEventListener('click', handlers.onPrev);
   container.querySelector('#jhCalNext').addEventListener('click', handlers.onNext);
@@ -164,52 +144,33 @@ export function renderCalendarView(container, data, handlers) {
   });
 }
 
-/* ── Trade Day Drawer ─────────────────────────────────────────────── */
-
-/**
- * A slide-over from the right, replicating agent-engine.js's `.agc-panel`
- * full-height technique (not literally reused — that one is scoped to the
- * agent workspace's own closure).
- * @param {{date:string, aggregate:object, trades:object[], checklists:object[]}} data
- * @param {{onClose:Function, apiFetch:Function}} handlers
- */
-export function renderTradeDayDrawer(container, data, handlers) {
-  const { date, aggregate, trades, plan } = data;
-  const badge = classifyDayBadge(aggregate);
-  const meta = BADGE_META[badge];
-
-  container.innerHTML = `
-    <div class="jh-day-drawer-host" id="jhDrawerHost">
-      <div class="jh-day-drawer">
-        <button type="button" class="jh-day-drawer-close" id="jhDrawerClose" aria-label="Close">✕</button>
-        <div class="jh-day-drawer-header">
-          <div class="pg-eye" style="margin-bottom:2px;">${date}</div>
-          <div class="jh-day-drawer-pnl">${meta.icon} ${aggregate.tradeCount ? pnlSpan(aggregate.netPnl) : meta.label}</div>
-        </div>
-        <div class="jh-stats-row" style="margin:14px 0;">
-          <div class="jh-stat-tile"><div class="jh-stat-label">Trades</div><div class="jh-stat-value">${aggregate.tradeCount}</div></div>
-          <div class="jh-stat-tile"><div class="jh-stat-label">Win / Loss / BE</div><div class="jh-stat-value" style="font-size:1rem;">${aggregate.wins}W · ${aggregate.losses}L · ${aggregate.breakeven}BE</div></div>
-          <div class="jh-stat-tile ${aggregate.cleanExecution === true ? '' : 'muted'}"><div class="jh-stat-label">Clean Execution</div><div class="jh-stat-value" style="font-size:1rem;">${aggregate.cleanExecution === true ? '★ Yes' : aggregate.cleanExecution === false ? 'No' : 'Not enough data'}</div></div>
-          <div class="jh-stat-tile muted"><div class="jh-stat-label">Journal Complete</div><div class="jh-stat-value" style="font-size:1rem;">${aggregate.journalComplete == null ? '—' : aggregate.journalComplete ? 'Yes' : 'Incomplete'}</div></div>
-        </div>
-        ${aggregate.missedSetup ? `<div class="small-help" style="margin-bottom:14px;">A setup was reviewed and passed on this day — tracked separately, not counted as a trade.</div>` : ''}
-        ${plan ? renderDayVsPlanNote(aggregate, plan) : ''}
-        <div id="jhDrawerTrades">
-          ${trades.length ? trades.map((t) => renderTradeSummaryCard(entryToSummaryCardProps(t), { variant: 'list' })).join('') : '<div class="small-help">No trades logged this day.</div>'}
-        </div>
-        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
-          <a class="dd-primary-btn" href="journal-entry.html?tradeDate=${date}">Add Entry for This Day</a>
-          <button type="button" class="dd-secondary-btn" id="jhDrawerAskAgent">Ask AGHF Agent About This Day</button>
-          ${aggregate.cleanExecution === true ? `<a class="dd-secondary-btn" href="share-win-flow.html?fromDate=${date}">✦ Share This Day as a Win</a>` : ''}
-        </div>
-      </div>
-    </div>`;
-
-  container.querySelector('#jhDrawerAskAgent').addEventListener('click', () => {
+/** Wires the day panel's Ask-the-Agent button (shared by the inline panel and the drawer). */
+export function wireDayPanel(container) {
+  container.querySelector('[data-ask-day]')?.addEventListener('click', (e) => {
+    const date = e.currentTarget.dataset.askDay;
     sessionStorage.setItem('aghf_pending_agent_attachment', JSON.stringify({ type: 'day', metadata: { date }, label: `Day: ${date}` }));
     window.location.href = 'psychology.html';
   });
+}
 
+/* ── Trade Day Drawer (Journal History's full calendar) ──────────────── */
+
+/**
+ * A slide-over from the right with the same day panel the Journal page
+ * shows inline.
+ * @param {{date:string, aggregate:object, trades:object[], plan?:object, reflections?:object[]}} data
+ * @param {{onClose:Function}} handlers
+ */
+export function renderTradeDayDrawer(container, data, handlers) {
+  const { date, aggregate, trades, plan, reflections } = data;
+  container.innerHTML = `
+    <div class="jh-day-drawer-host" id="jhDrawerHost">
+      <div class="jh-day-drawer jv-day">
+        <button type="button" class="jh-day-drawer-close" id="jhDrawerClose" aria-label="Close">✕</button>
+        ${dayPanelHtml({ date, aggregate, trades, reflections, planNote: plan ? renderDayVsPlanNote(aggregate, plan) : '' })}
+      </div>
+    </div>`;
+  wireDayPanel(container);
   const close = () => handlers.onClose();
   container.querySelector('#jhDrawerClose').addEventListener('click', close);
   container.querySelector('#jhDrawerHost').addEventListener('click', (e) => { if (e.target.id === 'jhDrawerHost') close(); });
@@ -238,8 +199,8 @@ export function renderDayVsPlanNote(aggregate, plan) {
   if (status.riskStatus === 'risk_exceeded') notes.push('This day\'s loss was larger than your plan\'s daily loss limit.');
   if (status.tradeCountStatus === 'trade_limit_exceeded') notes.push('More trades were taken than your plan\'s daily max.');
   if (status.journalStatus === 'incomplete') notes.push('Journal reflection wasn\'t completed for every trade this day.');
-  if (!notes.length) return `<div class="small-help" style="margin-top:10px;">✓ Within Plan — this day matched your active plan's daily rules.</div>`;
-  return `<div class="small-help" style="margin-top:10px;">${notes.join(' ')}</div>`;
+  if (!notes.length) return `<div class="jv-plan-note good">✓ Within your evaluation plan’s daily rules.</div>`;
+  return `<div class="jv-plan-note">${notes.join(' ')}</div>`;
 }
 
 /**

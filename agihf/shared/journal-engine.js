@@ -24,6 +24,7 @@
 
 import { getInstrument, INSTRUMENT_SYMBOLS } from './instrument-data.js';
 import { showDeskToast } from './dayli-desk-engine.js';
+import { tradeCardHtml, tradeStoryHtml } from './journal-v2.js';
 import { JOURNAL_ENTRY_TAGS, EXIT_TAGS, RULE_BREAK_TAGS, EMOTION_OPTIONS_V2, ICC_MINI_CHECKLIST_ITEMS, todayKey } from './dashboard-models.js';
 
 const STAGES = ['trade', 'execution', 'entered', 'exited', 'mindset', 'lesson', 'review'];
@@ -715,79 +716,15 @@ export function renderJournalEntryPage(container, entry, helpers) {
 
 /* ── Read-only Trade Case File (a finalized entry, per journal-entry.html's isDraft branch) ── */
 
-function caseFieldRow(label, value) {
-  if (value == null || value === '') return '';
-  return `<div class="jl-case-row"><span class="jl-case-label">${label}</span><span class="jl-case-value">${value}</span></div>`;
-}
-
 export function renderTradeCaseFile(container, entry, { onEdit, apiFetch }) {
-  const totals = computeTradeTotals(entry);
-  const exec = computeExecutionScore(entry);
-  const lastExit = entry.exits && entry.exits[entry.exits.length - 1];
-  container.innerHTML = `
-    <div class="cl-stage-topbar">
-      <div class="tsc-case-heading">💎 TRADE #${entry.tradeNumber || '—'} <span class="jl-case-sub">${entry.instrument || '—'} • ${entry.direction ? entry.direction.toUpperCase() : '—'} • ${entry.tradeDate || ''}</span></div>
-      <button type="button" class="dd-primary-btn" id="clEditBtn">✎ Edit This Entry</button>
-    </div>
-    ${entry.screenshots?.length ? `<div class="tsc-hero-shot" data-shot-bg-path="${entry.screenshots[0].path}"></div>` : ''}
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-pink">🧾</div><div><div class="section-title">Trade Details</div></div></div>
-      <div class="section-body">
-        ${caseFieldRow('Date', entry.tradeDate)}
-        ${caseFieldRow('Time', (entry.entryTime || '').slice(11, 16))}
-        ${caseFieldRow('Instrument', entry.instrument)}
-        ${caseFieldRow('Position', entry.direction)}
-        ${caseFieldRow('Contracts', entry.contracts)}
-        ${caseFieldRow('Trade Style', entry.setupType)}
-        ${caseFieldRow('Execution Grade', entry.executionGrade)}
-      </div>
-    </div>
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-teal">📈</div><div><div class="section-title">Execution</div></div></div>
-      <div class="section-body">
-        ${caseFieldRow('Entry', entry.entryPrice)}
-        ${caseFieldRow('Exit', lastExit?.exitPrice)}
-        ${caseFieldRow('Stop Loss (pts)', entry.stopLossPoints)}
-        ${caseFieldRow('Take Profit (pts)', entry.takeProfitPoints)}
-        ${caseFieldRow('Points', totals.avgPoints ? fmt(totals.avgPoints) : null)}
-        ${caseFieldRow('P&L', entry.netPnl != null ? fmtMoney(entry.netPnl) : null)}
-        ${caseFieldRow('Risk-to-Reward', totals.riskRewardRatio != null ? '1 : ' + totals.riskRewardRatio.toFixed(2) : null)}
-        ${caseFieldRow('Target Hit?', entry.targetHit)}
-      </div>
-    </div>
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-peach">📍</div><div><div class="section-title">Why I Entered</div></div></div>
-      <div class="section-body"><p>${entry.entryReasoning || '—'}</p></div>
-    </div>
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-pink">📤</div><div><div class="section-title">Why I Exited</div></div></div>
-      <div class="section-body"><p>${entry.exitReasoning || '—'}</p></div>
-    </div>
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-indigo">💎</div><div><div class="section-title">Lessons Logged</div></div></div>
-      <div class="section-body">${(entry.lessons || []).filter(Boolean).length ? `<ul class="jl-lesson-readlist">${entry.lessons.filter(Boolean).map((l) => `<li>→ ${l}</li>`).join('')}</ul>` : '<p>—</p>'}</div>
-    </div>
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-pink">🧠</div><div><div class="section-title">Emotional Check-In</div></div></div>
-      <div class="section-body">
-        ${caseFieldRow('Before', (entry.emotions?.entering || []).join(', '))}
-        ${caseFieldRow('During', (entry.emotions?.during || []).join(', '))}
-        ${caseFieldRow('After', (entry.emotions?.exiting || []).join(', '))}
-      </div>
-    </div>
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-dark">🪞</div><div><div class="section-title">Bonus Reflection</div></div></div>
-      <div class="section-body">
-        ${caseFieldRow('Bias Accuracy', entry.biasAccuracy)}
-        ${caseFieldRow('Followed Rules?', entry.ruleCheck)}
-        ${(entry.ruleViolations || []).length ? caseFieldRow('Mistakes', entry.ruleViolations.join(', ')) : ''}
-        ${caseFieldRow('What Went Well', entry.wentWell)}
-        ${caseFieldRow('What To Improve', entry.wouldImprove)}
-        ${exec.score != null ? caseFieldRow('Execution Score', exec.score + ' / 100') : ''}
-      </div>
-    </div>`;
+  // The "trade story" layout lives in journal-v2.js.
+  container.innerHTML = tradeStoryHtml(entry);
   if (entry.screenshots?.length && apiFetch) hydrateTscShots(container, apiFetch);
-  container.querySelector('#clEditBtn').addEventListener('click', onEdit);
+  container.querySelector('#jvEdit').addEventListener('click', onEdit);
+  container.querySelector('#jvAsk').addEventListener('click', () => {
+    sessionStorage.setItem('aghf_pending_agent_attachment', JSON.stringify({ type: 'trade', id: entry.id, label: `Trade ${entry.tradeDate}` }));
+    window.location.href = 'psychology.html';
+  });
 }
 
 /* ── Trade Summary Card — shared by the post-save celebration and the Journal History grid ── */
@@ -811,38 +748,14 @@ export function entryToSummaryCardProps(entry) {
     ruleCheck: entry.ruleCheck,
     biggestLesson: (entry.lessons || []).filter(Boolean)[0] || '',
     screenshotPath: entry.screenshots?.[0]?.path || null,
+    entry,
   };
 }
 
 /** @param {ReturnType<typeof entryToSummaryCardProps>} props */
 export function renderTradeSummaryCard(props, opts = {}) {
-  const variant = opts.variant || 'list';
-  const isCelebration = variant === 'celebration';
-  const pnlClass = props.netPnl > 0 ? 'dd-pnl-pos' : props.netPnl < 0 ? 'dd-pnl-neg' : 'dd-pnl-flat';
-  const setupFlow = props.entryTags.filter((t) => t !== 'Other').join(' → ');
-  const ruleIcon = props.ruleCheck === 'yes' ? '✅' : props.ruleCheck === 'mostly' ? '➰' : props.ruleCheck === 'no' ? '⚠️' : '';
-  const emotionChips = ['entering', 'during', 'exiting'].flatMap((s) => props.emotions?.[s] || []).join(' • ');
-  const Tag = isCelebration ? 'div' : 'a';
-  return `
-    <${Tag} class="tsc-card tsc-card-${variant}" ${isCelebration ? '' : `href="journal-entry.html?id=${props.id}"`}>
-      ${props.screenshotPath ? `<div class="tsc-hero-shot" data-shot-bg-path="${props.screenshotPath}"></div>` : ''}
-      <div class="tsc-body">
-        <div class="tsc-top">
-          <span class="tsc-trade-num">${props.tradeNumber ? `TRADE #${props.tradeNumber}` : 'New Trade'}</span>
-          ${ruleIcon ? `<span class="tsc-rule-icon">${ruleIcon}</span>` : ''}
-        </div>
-        <div class="tsc-ticker">${props.instrument || '—'} • ${props.direction ? props.direction.toUpperCase() : '—'}</div>
-        <div class="tsc-date">${props.tradeDate || ''}</div>
-        <div class="tsc-pnl ${pnlClass}">${props.netPnl != null ? fmtMoney(props.netPnl) : '—'}</div>
-        ${props.points ? `<div class="tsc-points">${fmt(props.points)} pts</div>` : ''}
-        ${props.executionGrade ? `<div class="tsc-grade">${props.executionGrade} Execution</div>` : ''}
-        ${setupFlow ? `<div class="tsc-setup-flow">${setupFlow}</div>` : ''}
-        ${isCelebration && props.entryReasoningShort ? `<div class="tsc-section"><strong>Why I Entered</strong><p>${props.entryReasoningShort}</p></div>` : ''}
-        ${isCelebration && props.exitReasoningShort ? `<div class="tsc-section"><strong>Why I Exited</strong><p>${props.exitReasoningShort}</p></div>` : ''}
-        ${emotionChips ? `<div class="tsc-emotions">${emotionChips}</div>` : ''}
-        ${props.biggestLesson ? `<div class="tsc-lesson">💎 ${props.biggestLesson}</div>` : ''}
-      </div>
-    </${Tag}>`;
+  // The illustrated card lives in journal-v2.js; props.entry carries the full record.
+  return tradeCardHtml(props.entry || props, { variant: opts.variant || 'list' });
 }
 
 /* ── Journal History page helpers ───────────────────────────────────── */

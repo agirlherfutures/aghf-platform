@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/components.css">
 <link rel="stylesheet" href="shared/dayli-desk.css">
+<link rel="stylesheet" href="shared/journal-v2.css">
 <link rel="stylesheet" href="shared/lesson-engine.css">
 </head>
 <body>
@@ -118,7 +119,10 @@
     document.getElementById('jePageTitle').textContent = entry.tradeNumber ? `Trade #${entry.tradeNumber}` : entryId ? 'Edit Trade' : 'New Trade';
 
     if (entry.isDraft === false && entry.id) {
-      renderTradeCaseFile(root, entry, { apiFetch, onEdit: () => startWizard(entry) });
+      // The trade story has its own headline, so the page title steps aside.
+      document.querySelector('.pg-eye').style.display = 'none';
+      document.getElementById('jePageTitle').style.display = 'none';
+      renderTradeCaseFile(root, entry, { apiFetch, onEdit: () => { document.querySelector('.pg-eye').style.display = ''; document.getElementById('jePageTitle').style.display = ''; startWizard(entry); } });
       return;
     }
     startWizard(entry);
