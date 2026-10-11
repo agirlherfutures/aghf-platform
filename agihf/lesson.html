@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="shared/lesson-slides.css">
 <link rel="stylesheet" href="shared/lesson-v2.css">
 <link rel="stylesheet" href="shared/strategy-lab.css">
+<link rel="stylesheet" href="shared/academy-v3.css">
 </head>
 <body>
 
@@ -105,8 +106,9 @@
   // this entire script before it ever ran, leaving #lwWrap permanently
   // empty with no error shown at all.
   let UNLOCK = false;
-  let PHASES, phaseByKey, isSectionCleared, renderLessonWizard, renderLoopWizard, renderSlideWizard;
+  let PHASES, phaseByKey, isSectionCleared, renderLessonWizard, renderLoopWizard, renderSlideWizard, V3;
   try {
+    V3 = await import('./shared/academy-v3.js');
     ({ PHASES, phaseByKey, isSectionCleared } = await import('./shared/curriculum-data.js'));
     ({ UNLOCK_ALL: UNLOCK } = await import('./shared/preview.js'));
     ({ renderLessonWizard } = await import('./shared/lesson-engine.js'));
@@ -125,6 +127,8 @@
   const allLessons = phase.sections.flatMap((s) => s.lessons.map((l) => ({ ...l, section: s })));
   const total = allLessons.length;
   const current = allLessons.find((l) => l.n === n);
+  const v3 = !!current && V3.isV3(phaseKey);
+  if (v3) V3.enableV3(phaseKey);
 
   /** Is `lesson`'s section still locked behind an earlier section's uncleared checkpoint? */
   let gateIds = null;
@@ -143,16 +147,18 @@
 
   function renderHeader(completedIds) {
     const isDone = (l) => l.n && completedIds.has(`${phaseKey}-${l.n}`);
-    document.getElementById('lhCrumb').textContent = `Phase ${phase.n} · ${phase.title}`;
-    document.getElementById('lhTitle').textContent = current.title;
-    document.getElementById('lhCount').textContent = `Lesson ${n} of ${total}`;
-    document.getElementById('lhGp').textContent = `+${current.xp} GP`;
+    const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+    set('lhCrumb', `Phase ${phase.n} · ${phase.title}`);
+    if (!v3) set('lhTitle', current.title);
+    set('lhCount', `Lesson ${n} of ${total}`);
+    set('lhGp', `+${current.xp} GP`);
 
     const sectionLessons = current.section.lessons.filter((l) => l.n);
     const sectionDone = sectionLessons.filter(isDone).length;
-    document.getElementById('lhSectionName').textContent = current.section.title;
-    document.getElementById('lhSectionPct').textContent = `${Math.round((sectionDone / sectionLessons.length) * 100)}%`;
-    document.getElementById('lhSectionFill').style.width = `${(sectionDone / sectionLessons.length) * 100}%`;
+    set('lhSectionName', current.section.title);
+    set('lhSectionPct', `${Math.round((sectionDone / sectionLessons.length) * 100)}%`);
+    const fill = document.getElementById('lhSectionFill');
+    if (fill) fill.style.width = `${(sectionDone / sectionLessons.length) * 100}%`;
 
     const prevLink = document.getElementById('lhPrevLink');
     const nextLink = document.getElementById('lhNextLink');
@@ -177,12 +183,13 @@
       nextLink.classList.remove('locked');
     } else if (n < total && (thisDone || n === 1 || (n > 1 && isDone(allLessons[n - 2]))) && !isLessonGated(allLessons[n])) {
       nextLink.href = `lesson.html?phase=${phaseKey}&n=${n + 1}`;
-      if (!thisDone) { nextLink.textContent = 'Next Lesson 🔒'; nextLink.classList.add('locked'); }
+      if (!thisDone && !v3) { nextLink.textContent = 'Next Lesson 🔒'; nextLink.classList.add('locked'); }
     } else {
       nextLink.classList.add('disabled');
       nextLink.removeAttribute('href');
-      nextLink.textContent = 'Next Lesson 🔒';
+      if (!v3) nextLink.textContent = 'Next Lesson 🔒';
     }
+    if (v3) { nextLink.textContent = '→'; nextLink.title = 'Next lesson'; prevLink.title = 'Previous lesson'; }
 
     const mapEl = document.getElementById('lhMap');
     mapEl.innerHTML = phase.sections.map((sec) => `
@@ -198,9 +205,12 @@
       </div>`).join('');
   }
 
-  document.getElementById('lhMapToggle').addEventListener('click', () => {
-    document.getElementById('lhMap').classList.toggle('open');
-  });
+  function wireMapToggle() {
+    document.getElementById('lhMapToggle').addEventListener('click', () => {
+      document.getElementById('lhMap').classList.toggle('open');
+    });
+  }
+  if (!v3) wireMapToggle();
 
   async function loadLesson() {
     let completedIds = new Set();
@@ -230,6 +240,16 @@
     }
 
     try {
+      if (v3) {
+        const sectionLessons = current.section.lessons.filter((l) => l.n);
+        document.querySelector('.lh-header').innerHTML = V3.lessonHeaderHtml({
+          phase, section: current.section, lesson: current, n, total,
+          inSection: sectionLessons.findIndex((l) => l.n === n) + 1, sectionCount: sectionLessons.length,
+          minutes: data.launchpad?.estMinutes,
+        });
+        wireMapToggle();
+        V3.watchFeedback(document.getElementById('lwWrap'));
+      }
       renderHeader(completedIds);
     } catch (err) {
       renderFallbackError(err);
@@ -252,6 +272,9 @@
       nextHook = nextData ? nextData.quote : null;
       backHref = nextLesson ? 'lessons.html' : 'dashboard.html';
     }
+    if (v3) backHref = `lessons.html?open=${phaseKey}&section=${current.section.key}`;
+    const sectionBuilt = current.section.lessons.filter((l) => l.n);
+    const sectionDoneAfter = sectionBuilt.filter((l) => l.n === n || completedIds.has(`${phaseKey}-${l.n}`)).length;
 
     const wizardOpts = {
       nextHref,
@@ -259,6 +282,7 @@
       nextTitle,
       nextHook,
       nextCtaLabel,
+      v3: { sectionDone: sectionDoneAfter, sectionTotal: sectionBuilt.length },
       onAward: async () => {
         if (window.AGHF_DEMO) return;
         try {

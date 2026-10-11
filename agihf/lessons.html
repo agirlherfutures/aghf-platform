@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="shared/tokens.css">
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/structure-charts.css">
+<link rel="stylesheet" href="shared/academy-v3.css">
 </head>
 <body>
 
@@ -35,7 +36,7 @@
   // would silently kill this entire script before any of it (including
   // this file's own error-handling code) ever ran, exactly the bug
   // already fixed on this page's sibling pages this session.
-  let PHASES, isSectionCleared, icon, UNLOCK = false;
+  let PHASES, isSectionCleared, icon, UNLOCK = false, V3 = null;
 
   const BADGE_PHASE_CLASS = { p: 'pb-p', t: 'pb-t', u: 'pb-u', d: 'pb-d' };
   const BADGE_SECTION_CLASS = { p: 'sb-badge-p', t: 'sb-badge-t', c: 'sb-badge-c', u: 'sb-badge-u' };
@@ -298,10 +299,28 @@
         extra: '<div class="pc-subtitle">Powered by Higher-Timeframe ICC™</div>' }));
     });
     const grid = `${extraHtml}<div class="pc-grid">${cards.join('')}</div>${afterHtml}`;
-    const showGrid = () => { list.innerHTML = grid; wireCards(); };
+    const showGrid = () => { document.body.classList.remove('aca-v3', 'aca-p1', 'aca-p2'); list.innerHTML = grid; wireCards(); };
     async function openCard(key) {
       const back = '<button type="button" class="pc-back">← All phases</button>';
       if (key === 's2') list.innerHTML = back + await strategyTwoDetail(sdOpen);
+      else if (V3 && V3.isV3(key)) {
+        const i = PHASES.findIndex((ph) => ph.key === key);
+        const phase = PHASES[i];
+        const prevPhase = PHASES[i - 1];
+        const phaseUnlocked = UNLOCK || (!phase.locked && (!prevPhase || phaseComplete(prevPhase, completedIds)));
+        const wantSec = new URLSearchParams(location.search).get('section');
+        let selected = wantSec ? Math.max(0, phase.sections.findIndex((x) => x.key === wantSec)) : null;
+        const paint = () => {
+          list.innerHTML = back + `<div class="v3-phase-head"><span class="v3-eyebrow">✦ Phase ${phase.n}</span><h2>${V3.accent(phase.title.replace(/\s*✦\s*$/, ''))}</h2></div>`
+            + V3.phaseHomeHtml({ phase, completedIds, UNLOCK, isSectionCleared, phaseUnlocked, selected });
+          V3.wirePhaseHome(list, (idx) => { selected = idx; paint(); });
+          list.querySelector('.pc-back').addEventListener('click', () => { showGrid(); window.scrollTo({ top: list.offsetTop - 20, behavior: 'smooth' }); });
+        };
+        document.body.classList.add('aca-v3', `aca-${key}`);
+        paint();
+        window.scrollTo({ top: list.offsetTop - 20, behavior: 'smooth' });
+        return;
+      }
       else {
         const i = PHASES.findIndex((ph) => ph.key === key);
         list.innerHTML = back + phaseHtml(PHASES[i], i, completedIds);
@@ -357,6 +376,7 @@
       ({ PHASES, isSectionCleared } = await import('./shared/curriculum-data.js'));
       ({ UNLOCK_ALL: UNLOCK } = await import('./shared/preview.js'));
       ({ icon } = await import('./shared/icons.js'));
+      try { V3 = await import('./shared/academy-v3.js'); } catch (err) { console.error('Academy look failed to load:', err); }
     } catch (err) {
       renderLoadError(err);
       return;

@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="shared/desk.css">
 <link rel="stylesheet" href="shared/lesson-v2.css">
 <link rel="stylesheet" href="shared/strategy-lab.css">
+<link rel="stylesheet" href="shared/academy-v3.css">
 </head>
 <body>
 
@@ -68,7 +69,7 @@
   const sectionKey = params.get('section') || 's1';
   const step = params.get('step') || 'welcome';
 
-  let phase, secIdx, section, nextSection, PHASES;
+  let phase, secIdx, section, nextSection, PHASES, V3;
 
   function renderFallbackError(err) {
     console.error('Section page failed to load:', err);
@@ -93,6 +94,12 @@
 
     document.getElementById('lhCrumb').textContent = `Phase ${phase.n} · ${section.title}`;
     document.getElementById('lhTitle').textContent = data.pageTitle || `${section.title} — Section Complete`;
+    if (V3 && V3.isV3(phaseKey)) {
+      V3.enableV3(phaseKey);
+      document.getElementById('lhCrumb').innerHTML = `<a href="lessons.html?open=${phaseKey}">Phase ${phase.n}</a><a href="lessons.html?open=${phaseKey}&section=${sectionKey}">Section ${section.n} · ${section.title}</a><span class="on">Section challenge</span>`;
+      document.getElementById('lhTitle').innerHTML = V3.accent((data.pageTitle || `${section.title}, the challenge`).replace(/\s*—\s*/g, ', '));
+      V3.watchFeedback(document.getElementById('lwWrap'));
+    }
     document.getElementById('lhHook').textContent = data.hook || 'Complete the Challenge, Knowledge Check, and Check-In to unlock what\'s next.';
 
     const lessonCount = section.lessons.filter((l) => l.n).length;
@@ -124,6 +131,7 @@
     try {
       ({ phaseByKey, PHASES } = await import('./shared/curriculum-data.js'));
       ({ renderSectionWizard } = await import('./shared/section-engine.js'));
+      try { V3 = await import('./shared/academy-v3.js'); } catch { V3 = null; }
     } catch (err) {
       renderFallbackError(err);
       return;
