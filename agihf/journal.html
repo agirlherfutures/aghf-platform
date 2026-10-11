@@ -9,46 +9,69 @@
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/components.css">
 <link rel="stylesheet" href="shared/dayli-desk.css">
+<link rel="stylesheet" href="shared/dayli-desk-v2.css">
+<link rel="stylesheet" href="shared/journal-v2.css">
 </head>
 <body>
 
 <script src="shared/auth-guard.js"></script>
 <script src="shared/sidebar.js" data-active="journal"></script>
 
-<main class="main">
-  <div class="pg-eye">✦ AG&amp;HF Trade Log</div>
-  <div class="pg-title">Journal</div>
+<main class="main dz jv">
+  <div class="dz-glow a"></div><div class="dz-glow b"></div><div class="dz-glow c"></div>
 
-  <div class="dd-card" style="margin-bottom:16px;">
-    <div class="dd-journal-actions">
-      <a class="dd-secondary-btn" href="journal-entry.html">📊 Log a Trade</a>
-      <button type="button" class="dd-secondary-btn" id="ddNewPre">📝 Pre-Market Reflection</button>
-      <button type="button" class="dd-secondary-btn" id="ddNewPost">🌙 Post-Market Reflection</button>
+  <div class="jv-head">
+    <div><span class="jv-eyebrow">✦ Your trade journal</span><h1>Your month <em class="jv-p">at a glance.</em></h1></div>
+    <div class="jv-head-actions">
+      <a class="jv-btn" href="journal-entry.html">✦ Log a trade</a>
+      <button type="button" class="jv-btn ghost" id="ddNewPre">Pre-market note</button>
+      <button type="button" class="jv-btn ghost purple" id="ddNewPost">Post-market note</button>
+      <button type="button" class="jv-btn ghost plain" id="jvPrivacy" aria-pressed="false">Hide P&amp;L</button>
     </div>
   </div>
 
-  <div class="dd-snapshot-stats" style="margin-bottom:16px;" id="jhStats"></div>
+  <section class="jv-stats" id="jvStats">
+    <div class="jv-st" style="--c:#3E9E93"><small id="jvStMonth">This month</small><b id="jvStNet">…</b><span>net P&amp;L</span></div>
+    <div class="jv-st" style="--c:#7F77DD"><small>Green days</small><b id="jvStGreen">…</b><span id="jvStGreenSub">days traded</span></div>
+    <div class="jv-st" style="--c:#F5A857"><small>Followed plan</small><b id="jvStPlan">…</b><span>of trades</span></div>
+    <div class="jv-st" style="--c:#F4829A"><small>Best day</small><b id="jvStBest">…</b><span id="jvStBestSub"></span></div>
+  </section>
 
-  <div id="jhCalCard" style="margin-bottom:16px;"></div>
+  <section class="jv-cal-wrap">
+    <div id="jhCalCard"></div>
+    <aside class="jv-day" id="jvDay" aria-live="polite"></aside>
+  </section>
 
-  <div class="dd-section-head">
-    <div class="dd-section-title">Recent Entries</div>
-    <a class="dd-section-link" href="journal-history.html">View Journal History →</a>
+  <div class="jv-sec">
+    <div><span class="jv-kicker">Your trades</span><h2 id="jvListTitle">This month’s <em class="jv-t">trades.</em></h2></div>
+    <div class="jv-switch" role="group" aria-label="List style">
+      <button type="button" data-view="cards" class="on">Cards</button>
+      <button type="button" data-view="timeline">Timeline</button>
+    </div>
   </div>
-  <div class="dd-card" id="jhRecent"></div>
+  <div class="jv-filters" id="jvFilters"></div>
+  <div id="jhRecent"></div>
+  <div class="jv-more"><a href="journal-history.html">Full history, filters and insights →</a></div>
 
   <div id="jhDrawerRoot"></div>
 </main>
 
 <script type="module">
-  let getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS;
-  let openJournalModal, renderRecentTrades, renderSkeleton, renderErrorState;
-  let listEntries, listChecklists, listEvalPlans, hydrateTscShots;
-  let groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid;
-  let renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer;
+  const $ = (id) => document.getElementById(id);
+  let mods = {};
+  let allTrades = [];
+  let allReflections = [];
+  let allChecklists = [];
+  let activePlan = null;
+  const today = new Date();
+  let calYear = today.getFullYear();
+  let calMonth = today.getMonth();
+  let selectedDate = null;
+  let filter = 'all';
+  let view = (() => { try { return localStorage.getItem('aghf_journal_view') || 'cards'; } catch { return 'cards'; } })();
 
   function renderFallbackError(err) {
-    console.error('Journal hub failed to load:', err);
+    console.error('Journal failed to load:', err);
     document.querySelector('.main').innerHTML = `
       <div style="max-width:520px;margin:40px auto;padding:28px;background:#fff;border-radius:16px;border:1px solid #F1E7E1;text-align:center;">
         <div style="font-size:1.1rem;font-weight:700;color:#3D2B20;margin-bottom:8px;">Something went wrong loading your journal</div>
@@ -57,146 +80,191 @@
       </div>`;
   }
 
-  async function load() {
-    const statsEl = document.getElementById('jhStats');
-    const recentEl = document.getElementById('jhRecent');
-    renderSkeleton(statsEl, 1);
-    renderSkeleton(recentEl, 2);
-    try {
-      const [snapshot, recent] = await Promise.all([getTodaysSnapshot(), getRecentEntries(3)]);
-      const pnlClass = snapshot.netPnl > 0 ? 'dd-pnl-pos' : snapshot.netPnl < 0 ? 'dd-pnl-neg' : 'dd-pnl-flat';
-      statsEl.innerHTML = `
-        <div class="dd-mini-stat"><div class="dd-mini-stat-l">Trades Today</div><div class="dd-mini-stat-v">${snapshot.tradeCount}</div></div>
-        <div class="dd-mini-stat"><div class="dd-mini-stat-l">Net P&amp;L Today</div><div class="dd-mini-stat-v ${pnlClass}">${snapshot.tradeCount ? (snapshot.netPnl > 0 ? '+' : snapshot.netPnl < 0 ? '−' : '') + '$' + Math.abs(Math.round(snapshot.netPnl)) : '—'}</div></div>
-        <div class="dd-mini-stat"><div class="dd-mini-stat-l">Win Rate</div><div class="dd-mini-stat-v">${snapshot.winRate != null ? snapshot.winRate + '%' : '—'}</div></div>
-        <div class="dd-mini-stat"><div class="dd-mini-stat-l">Most Recent</div><div class="dd-mini-stat-v" style="font-size:.85rem;">${recent[0] ? recent[0].tradeDate : 'None yet'}</div></div>`;
-      renderRecentTrades(recentEl, recent, { tradeTrackerHref: 'journal-entry.html' });
-    } catch (err) {
-      console.error('Journal hub load error:', err);
-      renderErrorState(recentEl, err.message || "Couldn't load your journal.", load);
+  const ymd = (y, m, d) => `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+  const monthPrefix = () => `${calYear}-${String(calMonth + 1).padStart(2, '0')}`;
+  const monthTrades = () => allTrades.filter((t) => t.tradeDate?.startsWith(monthPrefix()));
+
+  function monthAggregates() {
+    const { groupEntriesByDay, groupChecklistsByDay, computeDayAggregate } = mods.math;
+    const byDay = groupEntriesByDay(allTrades);
+    const checklistsByDay = groupChecklistsByDay(allChecklists);
+    const prefix = monthPrefix();
+    const out = new Map();
+    for (const [date, trades] of byDay.entries()) {
+      if (date.startsWith(prefix)) out.set(date, computeDayAggregate(date, trades, checklistsByDay.get(date) || []));
     }
+    for (const [date, list] of checklistsByDay.entries()) {
+      if (date.startsWith(prefix) && !out.has(date)) out.set(date, computeDayAggregate(date, [], list));
+    }
+    return out;
   }
 
-  document.addEventListener('aghf-auth-ready', async () => {
-    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
-  });
+  function paintStats(aggs) {
+    const { money } = mods.v2;
+    const days = [...aggs.values()].filter((a) => a.tradeCount);
+    const trades = monthTrades();
+    const hide = localStorage.getItem('aghf_snapshot_private') === '1';
+    const net = days.reduce((s, a) => s + (a.netPnl || 0), 0);
+    $('jvStMonth').textContent = new Date(calYear, calMonth, 1).toLocaleDateString('en-US', { month: 'long' });
+    $('jvStNet').textContent = days.length ? money(net) : '–';
+    $('jvStNet').classList.toggle('dd-blurred', hide && days.length > 0);
+    $('jvStGreen').textContent = days.length ? `${days.filter((a) => a.netPnl > 0).length} of ${days.length}` : '–';
+    $('jvStGreenSub').textContent = days.length === 1 ? 'day traded' : 'days traded';
+    const rated = trades.filter((t) => t.ruleCheck);
+    $('jvStPlan').textContent = rated.length ? `${Math.round((rated.filter((t) => t.ruleCheck === 'yes').length / rated.length) * 100)}%` : '–';
+    const best = days.filter((a) => a.netPnl > 0).sort((a, b) => b.netPnl - a.netPnl)[0];
+    $('jvStBest').textContent = best ? money(best.netPnl) : '–';
+    $('jvStBest').classList.toggle('dd-blurred', hide && !!best);
+    $('jvStBestSub').textContent = best ? new Date(`${best.date}T12:00:00`).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : 'no green days yet';
+  }
+
+  function defaultSelected(aggs) {
+    const t = ymd(today.getFullYear(), today.getMonth(), today.getDate());
+    if (t.startsWith(monthPrefix()) && aggs.get(t)?.tradeCount) return t;
+    const traded = [...aggs.values()].filter((a) => a.tradeCount).map((a) => a.date).sort();
+    if (traded.length) return traded[traded.length - 1];
+    return t.startsWith(monthPrefix()) ? t : ymd(calYear, calMonth, 1);
+  }
+
+  function paintDay(aggs) {
+    const el = $('jvDay');
+    const date = selectedDate;
+    const trades = allTrades.filter((t) => t.tradeDate === date);
+    const reflections = allReflections.filter((r) => r.tradeDate === date);
+    el.innerHTML = mods.v2.dayPanelHtml({
+      date, aggregate: aggs.get(date) || null, trades, reflections,
+      planNote: activePlan && aggs.get(date)?.tradeCount ? mods.cal.renderDayVsPlanNote(aggs.get(date), activePlan) : '',
+    });
+    mods.cal.wireDayPanel(el);
+  }
+
+  function paintCalendar() {
+    const aggs = monthAggregates();
+    if (!selectedDate || !selectedDate.startsWith(monthPrefix())) selectedDate = defaultSelected(aggs);
+    const grid = mods.math.computeMonthGrid(calYear, calMonth, aggs);
+    const tradesByDate = mods.math.groupEntriesByDay(monthTrades());
+    const monthLabel = new Date(calYear, calMonth, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    const move = (delta) => { calMonth += delta; if (calMonth < 0) { calMonth = 11; calYear -= 1; } if (calMonth > 11) { calMonth = 0; calYear += 1; } selectedDate = null; paintAll(); };
+    mods.cal.renderCalendarView($('jhCalCard'), { year: calYear, month: calMonth, grid, monthLabel, tradesByDate, selectedDate }, {
+      onPrev: () => move(-1),
+      onNext: () => move(1),
+      onToday: () => { calYear = today.getFullYear(); calMonth = today.getMonth(); selectedDate = null; paintAll(); },
+      onSelectDay: (date) => {
+        if (!date.startsWith(monthPrefix())) { [calYear, calMonth] = [Number(date.slice(0, 4)), Number(date.slice(5, 7)) - 1]; }
+        selectedDate = date;
+        paintAll();
+        if (window.matchMedia('(max-width:1100px)').matches) $('jvDay').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      },
+    });
+    paintStats(aggs);
+    paintDay(aggs);
+  }
+
+  const FILTERS = [
+    ['all', 'All', () => true],
+    ['wins', 'Wins', (t) => t.outcome === 'win' || (t.netPnl ?? 0) > 0],
+    ['losses', 'Losses', (t) => t.outcome === 'loss' || (t.netPnl ?? 0) < 0],
+    ['plan', 'Followed plan', (t) => t.ruleCheck === 'yes'],
+    ['broke', 'Broke a rule', (t) => t.ruleCheck === 'no' || t.ruleCheck === 'mostly'],
+  ];
+
+  function paintList() {
+    const trades = monthTrades();
+    const instruments = [...new Set(trades.map((t) => t.instrument).filter(Boolean))];
+    const all = [...FILTERS, ...(instruments.length > 1 ? instruments.map((i) => [`i:${i}`, i, (t) => t.instrument === i]) : [])];
+    if (!all.some(([k]) => k === filter)) filter = 'all';
+    $('jvFilters').innerHTML = trades.length ? all.map(([k, label]) => `<button type="button" class="jv-chipbtn${k === filter ? ' on' : ''}" data-filter="${mods.v2.esc(k)}">${mods.v2.esc(label)}</button>`).join('') : '';
+    $('jvFilters').querySelectorAll('[data-filter]').forEach((b) => b.addEventListener('click', () => { filter = b.dataset.filter; paintList(); }));
+    document.querySelectorAll('.jv-switch [data-view]').forEach((b) => b.classList.toggle('on', b.dataset.view === view));
+    const monthName = new Date(calYear, calMonth, 1).toLocaleDateString('en-US', { month: 'long' });
+    $('jvListTitle').innerHTML = `${monthName}’s <em class="jv-t">trades.</em>`;
+    const pick = all.find(([k]) => k === filter)[2];
+    const shown = trades.filter(pick).sort((a, b) => (b.tradeDate + (b.entryTime || '')).localeCompare(a.tradeDate + (a.entryTime || '')));
+    const el = $('jhRecent');
+    if (!trades.length) {
+      el.innerHTML = `<div class="jv-empty"><h3>No trades in ${monthName} <em class="jv-p">yet.</em></h3><p>Every trade you log shows up here and on the calendar.</p><a class="jv-btn" href="journal-entry.html">✦ Log a trade</a></div>`;
+      return;
+    }
+    if (!shown.length) { el.innerHTML = '<div class="jv-empty"><p>No trades match this filter.</p></div>'; return; }
+    el.innerHTML = view === 'timeline' ? mods.v2.timelineHtml(shown) : `<div class="jv-cards">${shown.map((t) => mods.v2.tradeCardHtml(t)).join('')}</div>`;
+  }
+
+  function paintPrivacy() {
+    const hidden = localStorage.getItem('aghf_snapshot_private') === '1';
+    $('jvPrivacy').textContent = hidden ? 'Show P&L' : 'Hide P&L';
+    $('jvPrivacy').setAttribute('aria-pressed', String(hidden));
+  }
+
+  function paintAll() { paintCalendar(); paintList(); paintPrivacy(); }
+
+  async function loadData() {
+    const { listEntries } = mods.journal;
+    const [trades, pre, post, checklists, plans] = await Promise.all([
+      listEntries({ entryType: 'trade', limit: 500 }),
+      listEntries({ entryType: 'premarket_reflection', limit: 200 }).catch(() => ({ entries: [] })),
+      listEntries({ entryType: 'postmarket_reflection', limit: 200 }).catch(() => ({ entries: [] })),
+      mods.checklist.listChecklists(500),
+      mods.evalService.listEvalPlans().catch(() => []),
+    ]);
+    allTrades = trades.entries;
+    allReflections = [...pre.entries, ...post.entries];
+    allChecklists = checklists;
+    activePlan = plans.find((p) => p.isActive) || null;
+  }
 
   async function boot() {
     try {
-      const [journalService, dayliDeskEngine, checklistService, evalService, journalEngine, journalCalendarMath, journalCalendarEngine] = await Promise.all([
+      const [journal, desk, checklist, evalService, v2, math, cal] = await Promise.all([
         import('./shared/journal-service.js'),
         import('./shared/dayli-desk-engine.js'),
         import('./shared/checklist-service.js'),
         import('./shared/eval-service.js'),
-        import('./shared/journal-engine.js'),
+        import('./shared/journal-v2.js'),
         import('./shared/journal-calendar-math.js'),
         import('./shared/journal-calendar-engine.js'),
       ]);
-      ({ getTodaysSnapshot, getRecentEntries, saveReflection, QUICK_JOURNAL_PROMPTS, listEntries } = journalService);
-      ({ openJournalModal, renderRecentTrades, renderSkeleton, renderErrorState } = dayliDeskEngine);
-      ({ listChecklists } = checklistService);
-      ({ listEvalPlans } = evalService);
-      ({ hydrateTscShots } = journalEngine);
-      ({ groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid } = journalCalendarMath);
-      ({ renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer } = journalCalendarEngine);
+      mods = { journal, desk, checklist, evalService, v2, math, cal };
     } catch (err) {
       renderFallbackError(err);
       return;
     }
 
-    document.getElementById('ddNewPre').addEventListener('click', () => {
-      const p = QUICK_JOURNAL_PROMPTS.premarket[Math.floor(Math.random() * QUICK_JOURNAL_PROMPTS.premarket.length)];
-      openJournalModal('premarket', p, async (entry) => { await saveReflection('premarket_reflection', entry.prompt, entry.text); load(); });
-    });
-    document.getElementById('ddNewPost').addEventListener('click', () => {
-      const p = QUICK_JOURNAL_PROMPTS.postmarket[Math.floor(Math.random() * QUICK_JOURNAL_PROMPTS.postmarket.length)];
-      openJournalModal('postmarket', p, async (entry) => { await saveReflection('postmarket_reflection', entry.prompt, entry.text); load(); });
-    });
-
-    load();
-    paintCalCard(); // independent — a slower fetch (500 entries/checklists/plans) shouldn't hold up the rest of the hub
-  }
-
-  /* ── Compact current-month calendar, above Recent Entries ──────────
-   * Reuses the exact same aggregation/render functions as journal-history.html's
-   * full Calendar view — no account/instrument filters or eval-plan strip here,
-   * just a quick-glance month grid; "View Journal History" is still the way to
-   * reach the full filterable version. */
-  const today = new Date();
-  let calYear = today.getFullYear();
-  let calMonth = today.getMonth();
-  let calAllEntries = null;
-  let calAllChecklists = null;
-  let calActivePlan = null;
-
-  async function apiFetch(path, opts = {}) {
-    const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
-    if (window.AGHF_SESSION_TOKEN) headers.Authorization = `Bearer ${window.AGHF_SESSION_TOKEN}`;
-    const res = await fetch(path, { ...opts, headers });
-    const body = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(body.error || `Request failed (${res.status})`);
-    return body;
-  }
-
-  async function ensureCalData() {
-    if (calAllEntries && calAllChecklists) return;
-    const [{ entries }, checklists, plans] = await Promise.all([
-      listEntries({ entryType: 'trade', limit: 500 }),
-      listChecklists(500),
-      listEvalPlans().catch(() => []),
-    ]);
-    calAllEntries = entries;
-    calAllChecklists = checklists;
-    calActivePlan = plans.find((p) => p.isActive) || null;
-  }
-
-  function monthAggregates(year, month) {
-    const byDay = groupEntriesByDay(calAllEntries);
-    const checklistsByDay = groupChecklistsByDay(calAllChecklists);
-    const prefix = `${year}-${String(month + 1).padStart(2, '0')}`;
-    const aggregatesByDate = new Map();
-    for (const [date, trades] of byDay.entries()) {
-      if (!date.startsWith(prefix)) continue;
-      aggregatesByDate.set(date, computeDayAggregate(date, trades, checklistsByDay.get(date) || []));
-    }
-    for (const [date, checklistsForDay] of checklistsByDay.entries()) {
-      if (!date.startsWith(prefix) || aggregatesByDate.has(date)) continue;
-      aggregatesByDate.set(date, computeDayAggregate(date, [], checklistsForDay));
-    }
-    return aggregatesByDate;
-  }
-
-  async function paintCalCard() {
-    const calEl = document.getElementById('jhCalCard');
-    renderSkeleton(calEl, 1);
-    try {
-      await ensureCalData();
-      const aggregatesByDate = monthAggregates(calYear, calMonth);
-      const grid = computeMonthGrid(calYear, calMonth, aggregatesByDate);
-      const monthLabel = new Date(calYear, calMonth, 1).toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
-      renderCalendarView(calEl, { year: calYear, month: calMonth, grid, monthLabel }, {
-        onPrev: () => { calMonth -= 1; if (calMonth < 0) { calMonth = 11; calYear -= 1; } paintCalCard(); },
-        onNext: () => { calMonth += 1; if (calMonth > 11) { calMonth = 0; calYear += 1; } paintCalCard(); },
-        onToday: () => { const t = new Date(); calYear = t.getFullYear(); calMonth = t.getMonth(); paintCalCard(); },
-        onSelectDay: (date) => openDayDrawer(date, aggregatesByDate),
-        onCreateEntryForDate: () => {},
+    const { QUICK_JOURNAL_PROMPTS, saveReflection } = mods.journal;
+    const reflect = (kind) => {
+      const list = QUICK_JOURNAL_PROMPTS[kind];
+      const prompt = list[Math.floor(Math.random() * list.length)];
+      mods.desk.openJournalModal(kind, prompt, async (entry) => {
+        await saveReflection(`${kind}_reflection`, entry.prompt, entry.text);
+        await loadData();
+        paintAll();
       });
+    };
+    $('ddNewPre').addEventListener('click', () => reflect('premarket'));
+    $('ddNewPost').addEventListener('click', () => reflect('postmarket'));
+    $('jvPrivacy').addEventListener('click', () => {
+      const hidden = localStorage.getItem('aghf_snapshot_private') === '1';
+      try { localStorage.setItem('aghf_snapshot_private', hidden ? '0' : '1'); } catch { /* private window */ }
+      paintAll();
+    });
+    document.querySelectorAll('.jv-switch [data-view]').forEach((b) => b.addEventListener('click', () => {
+      view = b.dataset.view;
+      try { localStorage.setItem('aghf_journal_view', view); } catch { /* private window */ }
+      paintList();
+    }));
+
+    mods.desk.renderSkeleton($('jhCalCard'), 4);
+    try {
+      await loadData();
+      paintAll();
     } catch (err) {
-      console.error('Journal hub calendar load error:', err);
-      renderErrorState(calEl, err.message || "Couldn't load your calendar.", paintCalCard);
+      console.error('Journal load error:', err);
+      mods.desk.renderErrorState($('jhCalCard'), err.message || "Couldn't load your journal.", boot);
     }
   }
 
-  function openDayDrawer(date, aggregatesByDate) {
-    const aggregate = aggregatesByDate.get(date) || { date, tradeCount: 0, netPnl: null, wins: 0, losses: 0, breakeven: 0, cleanExecution: null, journalComplete: null, missedSetup: false };
-    const trades = calAllEntries.filter((e) => e.tradeDate === date);
-    const drawerRoot = document.getElementById('jhDrawerRoot');
-    renderTradeDayDrawer(drawerRoot, { date, aggregate, trades, plan: calActivePlan }, {
-      onClose: () => closeTradeDayDrawer(drawerRoot),
-      apiFetch,
-    });
-    hydrateTscShots(drawerRoot, apiFetch);
-  }
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  }, { once: true });
 </script>
 
 </body>
