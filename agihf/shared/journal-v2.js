@@ -11,6 +11,7 @@
  */
 
 import { computeTradeTotals, computeExecutionScore } from './journal-engine.js';
+import { ENTRY_MODELS, entrySetup, entrySteps, setupName } from './entry-models.js';
 
 const ICC_STEPS = [
   ['validPil', 'PIL', 'Valid PIL'],
@@ -95,12 +96,14 @@ function rBar(r) {
   </div><div class="jv-rbar-l"><span>Stop −1R</span><span>Entry</span><span>+2R</span></div>`;
 }
 
-export function iccSteps(icc, { compact = false } = {}) {
-  if (!icc) return '';
-  const on = ICC_STEPS.map(([k]) => !!icc[k]);
-  if (compact) return `<div class="jv-icc-dots" title="Dayli ICC steps seen">${on.map((v) => `<i class="${v ? '' : 'off'}"></i>`).join('')}</div>`;
-  return `<div class="jv-icc">${ICC_STEPS.map(([, short, full], i) => `${i ? `<div class="jv-icc-ln ${on[i] && on[i - 1] ? 'on' : ''}"></div>` : ''}<div class="jv-icc-n ${on[i] ? 'on' : ''}" title="${full}">${on[i] ? '✓' : i + 1}</div>`).join('')}</div>
-    <div class="jv-icc-l">${ICC_STEPS.map(([, short]) => `<span>${short}</span>`).join('')}</div>`;
+/** The entry rules of the trade's setup (Dayli ICC, Supply & Demand, ...) as a step line or dots. */
+export function setupSteps(entry, { compact = false } = {}) {
+  const steps = entrySteps(entry);
+  if (!steps.length) return '';
+  const title = `${setupName(entry)} steps`;
+  if (compact) return `<div class="jv-icc-dots" title="${esc(title)}">${steps.map((s) => `<i class="${s.on ? '' : 'off'}"></i>`).join('')}</div>`;
+  return `<div class="jv-icc" aria-label="${esc(title)}">${steps.map((s, i) => `${i ? `<div class="jv-icc-ln ${s.on && steps[i - 1].on ? 'on' : ''}"></div>` : ''}<div class="jv-icc-n ${s.on ? 'on' : ''}" title="${esc(s.label)}">${s.on ? '✓' : i + 1}</div>`).join('')}</div>
+    <div class="jv-icc-l">${steps.map((s) => `<span>${esc(s.short)}</span>`).join('')}</div>`;
 }
 
 function feelingChips(emotions) {
@@ -111,25 +114,48 @@ function feelingChips(emotions) {
 
 /* ── Trade card (list, day panel, celebration) ───────────────────── */
 
+function cardArt(entry) {
+  const shot = entry.screenshots?.[0]?.path;
+  const dir = entry.direction === 'short' ? 'short' : entry.direction === 'long' ? 'long' : '';
+  const pill = dir ? `<span class="jv-dir ${dir}">${dir === 'long' ? '↗ Long' : '↘ Short'}</span>` : '';
+  if (shot) return `<div class="jv-card-shot" data-shot-bg-path="${esc(shot)}" role="img" aria-label="Chart screenshot">${pill}</div>`;
+  // No chart yet: a soft drawing in the trade's direction, so every card has a picture.
+  const path = dir === 'short' ? 'M14 18 L46 34 L70 26 L104 52 L132 44 L166 70' : 'M14 70 L46 50 L70 58 L104 32 L132 40 L166 16';
+  return `<div class="jv-card-art ${dir || 'none'}">${pill}
+    <svg viewBox="0 0 180 86" aria-hidden="true"><path d="${path}" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="166" cy="${dir === 'short' ? 70 : 16}" r="6" fill="#F4829A" stroke="#fff" stroke-width="2.5"/></svg>
+    <small>No chart added</small></div>`;
+}
+
+function riskReward(f) {
+  const { plannedRisk, plannedReward, riskRewardRatio } = f.totals;
+  if (!plannedRisk && !plannedReward) return '';
+  const cell = (label, value, cls = '') => `<div><small>${label}</small><b class="${cls}">${value}</b></div>`;
+  return `<div class="jv-rr">
+    ${cell('Risk', plannedRisk ? `<span class="${blur()}">$${Math.round(plannedRisk).toLocaleString('en-US')}</span>` : '–', 'hard')}
+    ${cell('Reward', plannedReward ? `<span class="${blur()}">$${Math.round(plannedReward).toLocaleString('en-US')}</span>` : '–', 'good')}
+    ${cell('R:R', riskRewardRatio ? `1 : ${Number(riskRewardRatio.toFixed(2))}` : '–')}
+  </div>`;
+}
+
 export function tradeCardHtml(entry, { variant = 'list' } = {}) {
   const f = tradeFacts(entry);
   const badge = planBadge(entry.ruleCheck);
   const lesson = (entry.lessons || []).filter(Boolean)[0] || entry.wentWell || '';
-  const Tag = variant === 'celebration' ? 'div' : 'a';
-  const href = variant === 'celebration' ? '' : ` href="journal-entry.html?id=${encodeURIComponent(entry.id)}"`;
-  const shot = entry.screenshots?.[0]?.path;
+  const still = variant === 'celebration' || variant === 'preview';
+  const Tag = still ? 'div' : 'a';
+  const href = still ? '' : ` href="journal-entry.html?id=${encodeURIComponent(entry.id)}"`;
   return `<${Tag} class="jv-card jv-card-${variant}"${href}>
-    ${shot && variant === 'celebration' ? `<div class="jv-card-shot" data-shot-bg-path="${esc(shot)}"></div>` : ''}
+    ${cardArt(entry)}
     <div class="jv-card-top">
       <div class="jv-sym ${symCls(entry.instrument)}">${esc(entry.instrument || '–')}</div>
       <div class="jv-card-title"><h3>${dirWord(entry.direction)}${entry.tradeNumber ? ` <span>#${entry.tradeNumber}</span>` : ''}</h3><small>${esc(dayLabel(entry.tradeDate))}${timeLabel(entry) ? ` · ${esc(timeLabel(entry))}` : ''}</small></div>
       <div class="jv-pnl ${tone(f.net)}"><b class="${blur()}">${money(f.net)}</b>${fmtR(f.r) ? `<small>${fmtR(f.r)}</small>` : ''}</div>
     </div>
     <div class="jv-card-mid">
+      ${riskReward(f)}
       ${rBar(f.r)}
-      ${iccSteps(entry.iccChecklist)}
-      ${badge ? `<span class="jv-tag ${badge.cls}">${badge.label}</span>` : ''}
-      ${feelingChips(entry.emotions)}
+      ${setupSteps(entry)}
+      ${badge || entry.emotions ? `<div class="jv-card-tags">${badge ? `<span class="jv-tag ${badge.cls}">${badge.label}</span>` : ''}${feelingChips(entry.emotions)}</div>` : ''}
     </div>
     ${lesson || entry.executionGrade ? `<div class="jv-card-foot">
       ${entry.executionGrade ? `<div class="jv-grade ${gradeCls(entry.executionGrade)}" title="Execution grade">${esc(entry.executionGrade)}</div>` : ''}
@@ -156,7 +182,7 @@ export function timelineHtml(entries) {
         return `<a class="jv-row" href="journal-entry.html?id=${encodeURIComponent(t.id)}">
           <div class="jv-sym ${symCls(t.instrument)}">${esc(t.instrument || '–')}</div>
           <div class="jv-row-main"><h4>${dirWord(t.direction)}${timeLabel(t) ? ` · ${esc(timeLabel(t))}` : ''}</h4><p>${esc(lesson) || '&nbsp;'}</p></div>
-          <div class="jv-row-meta">${iccSteps(t.iccChecklist, { compact: true })}${badge ? `<span class="jv-tag ${badge.cls}">${badge.label}</span>` : ''}</div>
+          <div class="jv-row-meta">${setupSteps(t, { compact: true })}${badge ? `<span class="jv-tag ${badge.cls}">${badge.label}</span>` : ''}</div>
           ${t.executionGrade ? `<div class="jv-grade ${gradeCls(t.executionGrade)}">${esc(t.executionGrade)}</div>` : '<div></div>'}
           <div class="jv-pnl ${tone(f.net)}"><b class="${blur()}">${money(f.net)}</b>${fmtR(f.r) ? `<small>${fmtR(f.r)}</small>` : ''}</div>
         </a>`;
@@ -222,7 +248,7 @@ function storyHeadline(entry) {
 }
 
 /** Stop, entry and target zones with an arrow to the exit. Only real, saved prices: no invented path. */
-function ladderSvg(entry, exitPrice) {
+export function ladderSvg(entry, exitPrice) {
   const entryP = Number(entry.entryPrice);
   const stop = Number(entry.stopLossPoints);
   const tgt = Number(entry.takeProfitPoints);
@@ -311,9 +337,9 @@ export function tradeStoryHtml(entry) {
 
     <section class="jv-s-grid">
       ${ladder ? `<div class="jv-panel"><span class="jv-kicker">The trade</span><h3>Entry to <em class="jv-p">exit.</em></h3><div class="jv-ladder">${ladder}</div></div>` : ''}
-      <div class="jv-panel"><span class="jv-kicker">Dayli ICC</span><h3>Did I wait for <em class="jv-u">all five?</em></h3>
-        ${entry.iccChecklist ? iccSteps(entry.iccChecklist) : '<p class="jv-muted">The ICC steps weren’t checked for this trade.</p>'}
-        ${entry.iccChecklist ? `<div class="jv-chips soft">${entry.iccChecklist.bias4hAligned ? '<span>✓ 4H bias aligned</span>' : ''}${entry.iccChecklist.structure1hAligned ? '<span>✓ 1H structure aligned</span>' : ''}</div>` : ''}
+      <div class="jv-panel"><span class="jv-kicker">${esc(setupName(entry) || 'Setup')}</span><h3>${entrySetup(entry) ? ENTRY_MODELS[entrySetup(entry)].question : 'Your <em class="jv-u">setup.</em>'}</h3>
+        ${entrySteps(entry).length ? setupSteps(entry) : entrySetup(entry) === 'other' ? '' : '<p class="jv-muted">No setup rules were checked for this trade.</p>'}
+        ${(() => { const setup = entrySetup(entry); if (!setup) return ''; const on = ENTRY_MODELS[setup].extras().filter((x) => (setup === 'icc' ? entry.iccChecklist?.[x.key] : entry.entryModel?.steps?.[x.key])); return on.length ? `<div class="jv-chips soft">${on.map((x) => `<span>✓ ${esc(x.label.replace(/ \(optional\)/, ''))}</span>`).join('')}</div>` : ''; })()}
         ${shots.length ? `<div class="jv-shots">${shots.map((s) => `<div class="jv-shot" data-shot-bg-path="${esc(s.path)}"></div>`).join('')}</div>` : ''}
       </div>
     </section>
@@ -345,4 +371,56 @@ export function tradeStoryHtml(entry) {
       <a class="jv-btn ghost plain" href="journal.html">Back to journal</a>
     </div>
   </div>`;
+}
+
+/* ── Journal History: overview and insights ─────────────────────── */
+
+/**
+ * Three illustrated cards instead of a wall of tiles: process first
+ * (followed plan), then results, then habits.
+ * @param {ReturnType<import('./journal-service.js').getJournalStats>} stats
+ */
+export function historyOverviewHtml(stats, trades) {
+  const pct = (v) => (v == null ? '–' : `${v}%`);
+  const followed = stats.ruleFollowRate;
+  const cleanCount = trades.filter((t) => t.ruleCheck === 'yes').length;
+  const words = followed == null ? 'Log a few trades with the plan check to see this.'
+    : followed >= 80 ? 'You trade your plan. Keep protecting that.'
+    : followed >= 50 ? 'Most trades follow your plan. Keep tightening it.'
+    : 'Your plan is the work right now. One clean trade at a time.';
+  return `<div class="jv-over">
+    <div class="jv-over-card process">
+      <div class="jv-ring ${followed == null ? '' : followed >= 80 ? '' : followed >= 50 ? 'mixed' : 'hard'}" style="--p:${followed ?? 0}"><div><b>${pct(followed)}</b><small>FOLLOWED</small></div></div>
+      <div><span class="jv-kicker">Process</span><h3>Your <em class="jv-t">plan.</em></h3><p>${words}</p><small class="jv-muted">${cleanCount} of ${trades.filter((t) => t.ruleCheck).length} rated trades fully followed it.</small></div>
+    </div>
+    <div class="jv-over-card">
+      <span class="jv-kicker">Results</span><h3>Your <em class="jv-p">numbers.</em></h3>
+      <div class="jv-over-grid">
+        <div><small>Win rate</small><b>${pct(stats.winRate)}</b></div>
+        <div><small>Avg R</small><b>${stats.avgR != null ? fmtR(stats.avgR) : '–'}</b></div>
+        <div><small>Avg winner</small><b class="good ${blur()}">${stats.avgWinner != null ? money(stats.avgWinner) : '–'}</b></div>
+        <div><small>Avg loser</small><b class="hard ${blur()}">${stats.avgLoser != null ? money(stats.avgLoser) : '–'}</b></div>
+      </div>
+    </div>
+    <div class="jv-over-card">
+      <span class="jv-kicker">Habits</span><h3>Your <em class="jv-g">routine.</em></h3>
+      <div class="jv-over-grid">
+        <div><small>Trades logged</small><b>${stats.tradesLogged}</b></div>
+        <div><small>Bias right</small><b>${pct(stats.biasAccuracyRate)}</b></div>
+        <div class="wide"><small>Journal streak</small><b>${stats.journalingStreak || 0} <span>day${stats.journalingStreak === 1 ? '' : 's'}</span></b></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+const INSIGHT_ICON = {
+  positive: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  neutral: '<circle cx="12" cy="12" r="8"/><path d="M12 8v5M12 16h.01"/>',
+  watch: '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>',
+};
+export function insightsHtml(insights) {
+  if (!insights?.length) return '';
+  return `<div class="jv-insights">${insights.map((i) => `<div class="jv-insight ${esc(i.kind)}">
+    <span class="jv-insight-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${INSIGHT_ICON[i.kind] || INSIGHT_ICON.neutral}</svg></span>
+    <p>${esc(i.text)}</p></div>`).join('')}</div>`;
 }

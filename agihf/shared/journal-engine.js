@@ -24,20 +24,13 @@
 
 import { getInstrument, INSTRUMENT_SYMBOLS } from './instrument-data.js';
 import { showDeskToast } from './dayli-desk-engine.js';
-import { tradeCardHtml, tradeStoryHtml } from './journal-v2.js';
-import { JOURNAL_ENTRY_TAGS, EXIT_TAGS, RULE_BREAK_TAGS, EMOTION_OPTIONS_V2, ICC_MINI_CHECKLIST_ITEMS, todayKey } from './dashboard-models.js';
+import { tradeCardHtml, tradeStoryHtml, ladderSvg } from './journal-v2.js';
+import { ENTRY_MODELS, entrySetup, ruleChecked, setupCompletion } from './entry-models.js';
+import { JOURNAL_ENTRY_TAGS, EXIT_TAGS, RULE_BREAK_TAGS, EMOTION_OPTIONS_V2, todayKey } from './dashboard-models.js';
 
 const STAGES = ['trade', 'execution', 'entered', 'exited', 'mindset', 'lesson', 'review'];
 const STAGE_LABELS = { trade: 'Trade', execution: 'Execution', entered: 'Entered', exited: 'Exited', mindset: 'Mindset', lesson: 'Lesson', review: 'Review' };
 const SESSIONS = ['Asia', 'London', 'NY AM', 'NY Lunch', 'NY PM'];
-
-const COMING_SOON_BADGES = [
-  { icon: '📓', label: 'Trade Historian' },
-  { icon: '🎯', label: 'Sniper Discipline' },
-  { icon: '🧠', label: 'Mind Over Market' },
-  { icon: '🔥', label: '7-Day Journal Streak' },
-  { icon: '💎', label: 'Process Over Profit' },
-];
 
 /** Negative-signal emotions that dock the emotional-discipline execution-score component. */
 const NEGATIVE_DURING = ['Anxious', 'Watching Every Tick', 'Second Guessing', 'Tempted to Exit', 'Tempted to Move Stop', 'Overconfident'];
@@ -56,8 +49,10 @@ export function computeOutcome(netPnl) {
 /** @param {import('./dashboard-models.js').JournalEntryRecord} entry */
 export function computeTradeTotals(entry) {
   const instrument = getInstrument(entry.instrument);
-  const pointValue = entry.manualPointValue != null && entry.manualPointValue !== ''
-    ? Number(entry.manualPointValue)
+  // A typed-in market keeps its point value in entryModel; a listed market never uses it.
+  const manual = entry.manualPointValue ?? (instrument ? null : entry.entryModel?.pointValue);
+  const pointValue = manual != null && manual !== ''
+    ? Number(manual)
     : (instrument ? instrument.pointValue : null);
   const entryPrice = entry.entryPrice;
   const direction = entry.direction;
@@ -137,7 +132,7 @@ export function computeExecutionScore(entry) {
   const totals = computeTradeTotals(entry);
   const parts = {
     ruleAdherence: entry.ruleCheck === 'yes' ? 20 : entry.ruleCheck === 'mostly' ? 10 : entry.ruleCheck === 'no' ? 0 : null,
-    iccCompletion: entry.iccChecklist ? Math.round((Object.values(entry.iccChecklist).filter(Boolean).length / 7) * 20) : null,
+    iccCompletion: setupCompletion(entry) != null ? Math.round(setupCompletion(entry) * 20) : null,
     riskManagement: scoreRiskManagement(entry, totals),
     emotionalDiscipline: scoreEmotionalDiscipline(entry),
     setupAlignment: entry.entryTags?.length ? (entry.entryTags.some((t) => t !== 'Other') ? 20 : 0) : null,
@@ -155,7 +150,7 @@ export function computeCompletionPct(entry) {
     !!entry.direction,
     entry.entryPrice != null,
     (entry.exits || []).some((ex) => ex.exitPrice != null) || !!entry.outcomeOverride,
-    !!(entry.entryTags && entry.entryTags.length),
+    !!(entrySetup(entry) || (entry.entryTags && entry.entryTags.length)),
     !!entry.ruleCheck,
   ];
   return Math.round((checks.filter(Boolean).length / checks.length) * 100);
@@ -164,78 +159,106 @@ export function computeCompletionPct(entry) {
 function firstIncompleteStage(entry) {
   if (!entry.tradeDate || !entry.instrument || !entry.direction) return 'trade';
   if (entry.entryPrice == null) return 'execution';
-  if (!(entry.entryTags && entry.entryTags.length)) return 'entered';
+  if (!entrySetup(entry) && !(entry.entryTags && entry.entryTags.length)) return 'entered';
   if (!(entry.exitTags && entry.exitTags.length)) return 'exited';
   if (!entry.emotions || !entry.emotions.entering?.length) return 'mindset';
   if (!(entry.lessons && entry.lessons.length)) return 'lesson';
   return 'review';
 }
 
+/* ── Shared bits for the 7 steps ─────────────────────────────────────── */
+
+const escHtml = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const STAGE_INFO = {
+  trade: ['The trade', 'Market, side, chart'],
+  execution: ['Execution', 'Entry, exit, risk'],
+  entered: ['Entered', 'Your setup and why'],
+  exited: ['Exited', 'Why you closed'],
+  mindset: ['Mindset', 'How it felt'],
+  lesson: ['Lesson', 'For future you'],
+  review: ['Review', 'Plan, grade, notes'],
+};
+const FACE_KIND = (label) => (['Calm', 'Prepared', 'Confident', 'Aligned', 'Focused', 'At Ease', 'Proud', 'Grateful', 'Protective', 'Relieved'].includes(label) ? 'good'
+  : ['Nervous', 'Impatient', 'FOMO', 'Anxious', 'Watching Every Tick', 'Second Guessing', 'Tempted to Exit', 'Tempted to Move Stop', 'Overconfident', 'Frustrated', 'Regretful', 'Disappointed'].includes(label) ? 'hard' : 'mixed');
+const FACE_SVG = (kind) => {
+  const [ink, mouth] = { good: ['#3E9E93', 'M8 13.5q4 3.5 8 0'], mixed: ['#C4741F', 'M8.5 14.5h7'], hard: ['#E0607C', 'M8 15.5q4-3.5 8 0'] }[kind];
+  return `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#fff" stroke="${ink}" stroke-width="1.6"/><circle cx="8.8" cy="10" r="1.3" fill="${ink}"/><circle cx="15.2" cy="10" r="1.3" fill="${ink}"/><path d="${mouth}" stroke="${ink}" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg>`;
+};
+const SYM_STYLE = (s) => (/^M?GC$/.test(s) ? 'gold' : /^M?ES$/.test(s) ? 'teal' : /^(M2K|RTY)$/.test(s) ? 'peach' : /^M?YM$/.test(s) ? 'pink' : 'purple');
+
 /** Normalizes plain-string options (value===label) or explicit {value,label} pairs. */
 function chipGroupHtml({ mode, field, options, value }) {
   const opts = options.map((o) => (typeof o === 'string' ? { value: o, label: o } : o));
   const selected = mode === 'multi' ? (value || []) : null;
-  return `<div class="chip-group" data-chip-${mode}="${field}">
+  return `<div class="je-chips" data-chip-${mode}="${field}">
     ${opts.map((o) => {
       const active = mode === 'multi' ? selected.includes(o.value) : value === o.value;
-      return `<button type="button" class="chip ${active ? 'active' : ''}" data-chip-value="${o.value}">${o.label}</button>`;
+      return `<button type="button" class="je-chip ${active ? 'on' : ''}" data-chip-value="${escHtml(o.value)}" aria-pressed="${active}">${escHtml(o.label)}</button>`;
     }).join('')}
   </div>`;
 }
 
-/* ── Step 1: Trade Details ─────────────────────────────────────────── */
+const head = (n, title, sub) => `<span class="jv-kicker">Step ${n} of 7</span><h2 class="je-h">${title}</h2>${sub ? `<p class="je-sub">${sub}</p>` : ''}`;
+const q = (text) => `<div class="je-q">${text}</div>`;
+
+/* ── Step 1: The trade ─────────────────────────────────────────────── */
 
 function renderScreenshotUploader(entry) {
-  return `
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-teal">📸</div><div><div class="section-title">Chart Screenshot</div><div class="section-sub">Upload the chart you traded so you can review exactly what you saw.</div></div></div>
-      <div class="section-body">
-        <div class="cl-shot-grid" id="clShotGrid">
-          ${(entry.screenshots || []).map((s, i) => `
-            <div class="cl-shot-thumb" data-shot-index="${i}">
-              <img data-shot-path="${s.path}" alt="Chart screenshot ${i + 1}" src="">
-              <button type="button" class="cl-shot-remove" data-remove-shot="${i}" aria-label="Remove screenshot ${i + 1}">✕</button>
-            </div>`).join('')}
-          <label class="cl-shot-upload">
-            <input type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple id="clShotInput" style="display:none;">
-            <span class="upload-icon">📊</span><span class="upload-text">Add screenshot</span><span class="upload-sub">JPEG, PNG, WEBP, or GIF — up to 5MB</span>
-          </label>
-        </div>
-        <div id="clUploadStatus" class="small-help" role="status" aria-live="polite"></div>
-      </div>
-    </div>`;
+  const shots = entry.screenshots || [];
+  return `${q('Your chart')}
+    <div class="je-shots" id="clShotGrid">
+      ${shots.map((s, i) => `
+        <div class="cl-shot-thumb je-shot" data-shot-index="${i}">
+          <img data-shot-path="${escHtml(s.path)}" alt="Chart screenshot ${i + 1}" src="">
+          <button type="button" class="cl-shot-remove" data-remove-shot="${i}" aria-label="Remove screenshot ${i + 1}">✕</button>
+        </div>`).join('')}
+      <label class="je-drop">
+        <input type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple id="clShotInput" hidden>
+        <svg viewBox="0 0 96 60" aria-hidden="true"><rect x="2" y="2" width="92" height="56" rx="10" fill="#fff"/><path d="M12 46 L30 32 L42 38 L60 20 L84 12" fill="none" stroke="#3E9E93" stroke-width="3.5" stroke-linecap="round"/><circle cx="84" cy="12" r="5" fill="#F4829A"/></svg>
+        <span><b>${shots.length ? 'Add another chart' : 'Add your chart'}</b><small>Tap to upload a screenshot (JPEG, PNG, WEBP or GIF, up to 5MB). The first one becomes the picture on your trade card.</small></span>
+      </label>
+    </div>
+    <div id="clUploadStatus" class="je-status" role="status" aria-live="polite"></div>`;
 }
 
 function renderTradeDetailsStep(entry) {
-  return `
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-pink">🎯</div><div><div class="section-title">Log Your Trade</div><div class="section-sub">Start with the facts. No judgment — just data.</div></div></div>
-      <div class="section-body">
-        <div class="field-row cols-4">
-          <div class="field-group"><label class="field-label">Trade #</label><input class="field-input" value="${entry.tradeNumber || '— assigned on save'}" readonly></div>
-          <div class="field-group"><label class="field-label">Date</label><input class="field-input" type="date" data-field="tradeDate" value="${entry.tradeDate || ''}"></div>
-          <div class="field-group"><label class="field-label">Time Entered</label><input class="field-input" type="time" data-field="entryTimeOnly" value="${(entry.entryTime || '').slice(11, 16)}"></div>
-          <div class="field-group"><label class="field-label">Session</label>
-            <select class="field-input" data-field="session"><option value="">—</option>${SESSIONS.map((s) => `<option ${entry.session === s ? 'selected' : ''}>${s}</option>`).join('')}</select>
-          </div>
-        </div>
-        <div class="field-row cols-4">
-          <div class="field-group"><label class="field-label">Instrument</label>
-            <select class="field-input" data-field="instrument"><option value="">—</option>${INSTRUMENT_SYMBOLS.map((s) => `<option value="${s}" ${entry.instrument === s ? 'selected' : ''}>${s} — ${getInstrument(s).label}</option>`).join('')}</select>
-          </div>
-          <div class="field-group"><label class="field-label">Contracts</label><input class="field-input" type="number" min="1" data-field="contracts" value="${entry.contracts ?? ''}"></div>
-          <div class="field-group"><label class="field-label">Account / Prop Firm</label><input class="field-input" data-field="accountId" value="${entry.accountId || ''}" placeholder="Optional"></div>
-          <div class="field-group"><label class="field-label">Trade Setup / Style</label><input class="field-input" data-field="setupType" value="${entry.setupType || ''}" placeholder="e.g. Dayli ICC"></div>
-        </div>
-        <div class="field-row">
-          <div class="field-group"><label class="field-label">Long or Short</label>
-            <div class="position-toggle">
-              <button type="button" class="position-btn long ${entry.direction === 'long' ? 'active' : ''}" data-direction="long">📈 Long</button>
-              <button type="button" class="position-btn short ${entry.direction === 'short' ? 'active' : ''}" data-direction="short">📉 Short</button>
-            </div>
-          </div>
-        </div>
+  const known = INSTRUMENT_SYMBOLS.includes(entry.instrument);
+  const custom = !!entry.instrument && !known;
+  const showCustom = custom || entry._customInstrument;
+  const today = todayKey();
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  const yesterday = `${y.getFullYear()}-${String(y.getMonth() + 1).padStart(2, '0')}-${String(y.getDate()).padStart(2, '0')}`;
+  return `${head(1, 'What did you <em class="jv-p">trade?</em>', 'Just the facts. No judgment.')}
+    ${q('Market')}
+    <div class="je-markets">
+      ${INSTRUMENT_SYMBOLS.map((s) => `<button type="button" class="je-market ${entry.instrument === s ? 'on' : ''}" data-instrument="${s}" aria-pressed="${entry.instrument === s}"><span class="jv-sym ${SYM_STYLE(s)}">${s}</span><span>${escHtml(getInstrument(s).label)}</span></button>`).join('')}
+      <button type="button" class="je-market ${showCustom ? 'on' : ''}" data-instrument="__custom" aria-pressed="${!!showCustom}"><span class="jv-sym">+</span><span>Something else</span></button>
+    </div>
+    ${showCustom ? `<div class="je-row je-custom">
+      <label class="je-field"><small>Your market</small><input data-field="instrument" value="${custom ? escHtml(entry.instrument) : ''}" placeholder="e.g. CL, 6E, BTC" maxlength="12"></label>
+      <label class="je-field"><small>$ per point, per contract</small><input type="number" step="0.01" min="0" data-field="manualPointValue" value="${entry.manualPointValue ?? entry.entryModel?.pointValue ?? ''}" placeholder="e.g. 10"></label>
+      <p class="je-help">So we can work out your P&amp;L. CL is $1,000 a point, 6E is $125,000.</p>
+    </div>` : ''}
+    ${q('Long or short?')}
+    <div class="je-row">
+      <button type="button" class="je-dir long ${entry.direction === 'long' ? 'on' : ''}" data-direction="long" aria-pressed="${entry.direction === 'long'}"><svg viewBox="0 0 58 40" aria-hidden="true"><path d="M4 34 L18 22 L26 27 L40 12 L54 4" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Long</b><small>I bought, expecting up</small></span></button>
+      <button type="button" class="je-dir short ${entry.direction === 'short' ? 'on' : ''}" data-direction="short" aria-pressed="${entry.direction === 'short'}"><svg viewBox="0 0 58 40" aria-hidden="true"><path d="M4 6 L18 18 L26 13 L40 28 L54 36" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Short</b><small>I sold, expecting down</small></span></button>
+    </div>
+    ${q('When')}
+    <div class="je-row je-when">
+      <div class="je-chips">
+        <button type="button" class="je-chip ${entry.tradeDate === today ? 'on' : ''}" data-date="${today}">Today</button>
+        <button type="button" class="je-chip ${entry.tradeDate === yesterday ? 'on' : ''}" data-date="${yesterday}">Yesterday</button>
       </div>
+      <label class="je-field sm"><small>Date</small><input type="date" data-field="tradeDate" value="${entry.tradeDate || ''}"></label>
+      <label class="je-field sm"><small>Time in</small><input type="time" data-field="entryTimeOnly" value="${(entry.entryTime || '').slice(11, 16)}"></label>
+    </div>
+    ${chipGroupHtml({ mode: 'single', field: 'session', options: SESSIONS, value: entry.session })}
+    <div class="je-row je-two">
+      <div>${q('Contracts')}
+        <div class="je-stepper"><button type="button" data-step-contracts="-1" aria-label="One fewer contract">−</button><input type="number" min="1" data-field="contracts" value="${entry.contracts ?? ''}" placeholder="1" aria-label="Contracts"><button type="button" data-step-contracts="1" aria-label="One more contract">+</button></div>
+      </div>
+      <div>${q('Account or prop firm (optional)')}<label class="je-field"><input data-field="accountId" value="${escHtml(entry.accountId || '')}" placeholder="e.g. Apex 50K #2"></label></div>
     </div>
     ${renderScreenshotUploader(entry)}`;
 }
@@ -248,198 +271,158 @@ function renderExecutionStep(entry) {
   const instrument = getInstrument(entry.instrument);
   const computed = totals.computedExits[0] || {};
   const outcome = entry.outcomeOverride || computeOutcome(totals.netPnl);
-  return `
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-teal">📈</div><div><div class="section-title">How Did You Execute?</div></div></div>
-      <div class="section-body">
-        <div class="field-row cols-3">
-          <div class="field-group"><label class="field-label">Entry Price</label><input class="field-input" type="number" step="0.01" data-field="entryPrice" value="${entry.entryPrice ?? ''}"></div>
-          <div class="field-group"><label class="field-label">Stop Loss (points)</label><input class="field-input" type="number" min="0" step="0.01" data-field="stopLossPoints" value="${entry.stopLossPoints ?? ''}"></div>
-          <div class="field-group"><label class="field-label">Take Profit (points)</label><input class="field-input" type="number" min="0" step="0.01" data-field="takeProfitPoints" value="${entry.takeProfitPoints ?? ''}"></div>
-        </div>
-        <div class="small-help" style="margin:-6px 0 6px;">Enter Stop Loss and Take Profit as points away from your entry, not the price level (e.g. 20, not 19980).</div>
-        <div class="field-row cols-3">
-          <div class="field-group"><label class="field-label">Exit Price</label><input class="field-input" type="number" step="0.01" data-exit-field="exitPrice" data-exit-index="0" value="${exit.exitPrice ?? ''}"></div>
-          <div class="field-group"><label class="field-label">Exit Contracts</label><input class="field-input" type="number" min="0" step="1" data-exit-field="contracts" data-exit-index="0" value="${exit.contracts ?? entry.contracts ?? ''}"></div>
-          <div class="field-group"><label class="field-label">Point Value${instrument ? ' (auto)' : ''}</label><input class="field-input" type="number" step="0.01" data-field="manualPointValue" value="${entry.manualPointValue ?? (instrument ? instrument.pointValue : '')}"></div>
-        </div>
-        <div class="field-row cols-4" style="margin-top:6px;">
-          <div class="field-group"><label class="field-label">Total Points</label><input class="field-input" value="${computed.points != null ? fmt(computed.points) : ''}" placeholder="auto" readonly></div>
-          <div class="field-group"><label class="field-label">Profit / Loss</label><input class="field-input" value="${totals.netPnl != null && computed.points != null ? fmtMoney(totals.netPnl) : ''}" placeholder="auto" readonly></div>
-          <div class="field-group"><label class="field-label">Planned Risk</label><input class="field-input" value="${totals.plannedRisk != null ? fmtMoney(totals.plannedRisk) : ''}" placeholder="auto" readonly></div>
-          <div class="field-group"><label class="field-label">Planned Reward</label><input class="field-input" value="${totals.plannedReward != null ? fmtMoney(totals.plannedReward) : ''}" placeholder="auto" readonly></div>
-        </div>
-        <div class="field-row cols-2" style="margin-top:6px;">
-          <div class="field-group"><label class="field-label">Risk-to-Reward</label><input class="field-input" value="${totals.riskRewardRatio != null ? '1 : ' + totals.riskRewardRatio.toFixed(2) : ''}" placeholder="auto" readonly></div>
-          <div class="field-group"><label class="field-label">Outcome</label>
-            <div class="outcome-toggle">
-              ${['win', 'loss', 'breakeven'].map((o) => `<button type="button" class="outcome-btn outcome-${o === 'breakeven' ? 'be' : o} ${outcome === o ? 'active' : ''}" data-outcome="${o}">${o === 'win' ? '✓ Win' : o === 'loss' ? '✕ Loss' : '≈ Breakeven'}</button>`).join('')}
-            </div>
-          </div>
-        </div>
-        <div class="field-row" style="margin-top:10px;">
-          <div class="field-group"><label class="field-label">Did price hit your original target?</label>
-            ${chipGroupHtml({ mode: 'single', field: 'targetHit', value: entry.targetHit, options: [
-              { value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' },
-              { value: 'still_running', label: 'Still Running' }, { value: 'not_sure', label: 'Not Sure' },
-            ] })}
-          </div>
-        </div>
+  const ladder = ladderSvg({ ...entry }, exit.exitPrice === '' ? null : exit.exitPrice);
+  const tile = (label, value, bg) => `<div style="--c:${bg}"><small>${label}</small><b>${value}</b></div>`;
+  return `${head(2, 'The <em class="jv-t">numbers.</em>', 'Type your prices. We do the math.')}
+    <div class="je-fields">
+      <label class="je-field"><small>Entry price</small><input type="number" step="0.01" data-field="entryPrice" value="${entry.entryPrice ?? ''}" placeholder="21480.25"></label>
+      <label class="je-field"><small>Exit price</small><input type="number" step="0.01" data-exit-field="exitPrice" data-exit-index="0" value="${exit.exitPrice ?? ''}" placeholder="21520.25"></label>
+      <label class="je-field"><small>Stop (points away)</small><input type="number" min="0" step="0.01" data-field="stopLossPoints" value="${entry.stopLossPoints ?? ''}" placeholder="20"></label>
+      <label class="je-field"><small>Target (points away)</small><input type="number" min="0" step="0.01" data-field="takeProfitPoints" value="${entry.takeProfitPoints ?? ''}" placeholder="40"></label>
+    </div>
+    <p class="je-help">Stop and target are points away from your entry (20, not 19980).</p>
+    ${ladder ? `<div class="je-ladder">${ladder}</div>` : '<div class="je-ladder empty">Your stop, entry and target picture draws here once you add an entry, stop and target.</div>'}
+    <div class="je-auto">
+      ${tile('P&amp;L', totals.netPnl != null && computed.points != null ? fmtMoney(totals.netPnl) : '–', '#E8F8F6')}
+      ${tile('Result', totals.rMultiple != null && computed.points != null ? `${totals.rMultiple > 0 ? '+' : ''}${totals.rMultiple.toFixed(2)}R` : '–', '#EEEDFE')}
+      ${tile('You risked', totals.plannedRisk != null ? fmtMoney(totals.plannedRisk) : '–', '#FDE8ED')}
+      ${tile('Planned', totals.riskRewardRatio != null ? `1 : ${Number(totals.riskRewardRatio.toFixed(2))}` : '–', '#FEF3E4')}
+    </div>
+    <details class="je-more" ${entry.exits?.[0]?.contracts && entry.exits[0].contracts !== entry.contracts ? 'open' : ''}>
+      <summary>Partial exit or different point value?</summary>
+      <div class="je-fields three">
+        <label class="je-field"><small>Exit contracts</small><input type="number" min="0" step="1" data-exit-field="contracts" data-exit-index="0" value="${exit.contracts ?? entry.contracts ?? ''}"></label>
+        <label class="je-field"><small>$ per point${instrument ? ' (auto)' : ''}</small><input type="number" step="0.01" data-field="manualPointValue" value="${entry.manualPointValue ?? entry.entryModel?.pointValue ?? (instrument ? instrument.pointValue : '')}"></label>
+        <label class="je-field"><small>Points</small><input value="${computed.points != null ? fmt(computed.points) : ''}" placeholder="auto" readonly></label>
       </div>
-    </div>`;
+    </details>
+    ${q('Outcome')}
+    <div class="je-chips je-outcome">
+      ${['win', 'loss', 'breakeven'].map((o) => `<button type="button" class="je-chip ${o} ${outcome === o ? 'on' : ''} outcome-btn" data-outcome="${o}" aria-pressed="${outcome === o}">${o === 'win' ? 'Win' : o === 'loss' ? 'Loss' : 'Breakeven'}</button>`).join('')}
+    </div>
+    ${q('Did price reach your original target?')}
+    ${chipGroupHtml({ mode: 'single', field: 'targetHit', value: entry.targetHit, options: [
+      { value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' },
+      { value: 'still_running', label: 'Still running' }, { value: 'not_sure', label: 'Not sure' },
+    ] })}`;
 }
 
-/* ── Step 3: Why I Entered ──────────────────────────────────────────── */
+/* ── Step 3: Why I entered (setup picker + that setup's rules) ─────── */
 
-function renderIccMiniChecklist(entry) {
-  const state = entry.iccChecklist || {};
-  const done = ICC_MINI_CHECKLIST_ITEMS.filter(([key]) => state[key]).length;
-  return `
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-pink">✦</div><div><div class="section-title">Dayli ICC Checklist</div><div class="section-sub">ICC Alignment: ${done} / ${ICC_MINI_CHECKLIST_ITEMS.length}</div></div></div>
-      <div class="section-body">
-        <div class="chip-group">
-          ${ICC_MINI_CHECKLIST_ITEMS.map(([key, label]) => `<button type="button" class="chip ${state[key] ? 'active' : ''}" data-icc-key="${key}">${state[key] ? '☑' : '☐'} ${label}</button>`).join('')}
-        </div>
-      </div>
-    </div>`;
+function renderSetupRules(entry, setup) {
+  const model = ENTRY_MODELS[setup];
+  const steps = model.steps(entry.direction);
+  const on = (key) => ruleChecked(entry, setup, key);
+  if (setup === 'other') {
+    return `<label class="je-field"><small>Name your setup</small><input data-model-name value="${escHtml(entry.entryModel?.name || '')}" placeholder="e.g. Opening range breakout"></label>`;
+  }
+  return `<h3 class="je-h3">${model.question}</h3><p class="je-sub">Tap each step you actually saw before you entered.</p>
+    <div class="je-rules" style="--n:${steps.length}">
+      ${steps.map((s, i) => `${i ? `<i class="je-rule-ln ${on(s.key) && on(steps[i - 1].key) ? 'on' : ''}"></i>` : ''}<button type="button" class="je-rule ${on(s.key) ? 'on' : ''}" data-rule="${s.key}" aria-pressed="${on(s.key)}"><span>${on(s.key) ? '✓' : i + 1}</span><small>${escHtml(s.label)}</small></button>`).join('')}
+    </div>
+    <div class="je-chips soft">${model.extras().map((x) => `<button type="button" class="je-chip pu ${on(x.key) ? 'on' : ''}" data-rule="${x.key}" aria-pressed="${on(x.key)}">${on(x.key) ? '✓ ' : ''}${escHtml(x.label)}</button>`).join('')}</div>`;
 }
 
 function renderWhyEnteredStep(entry) {
-  const hasIcc = (entry.entryTags || []).includes('Dayli ICC Setup');
-  return `
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-peach">👀</div><div><div class="section-title">Why Did You Enter?</div></div></div>
-      <div class="section-body">
-        <div class="field-group"><label class="field-label">What did you see?</label>
-          ${chipGroupHtml({ mode: 'multi', field: 'entryTags', options: JOURNAL_ENTRY_TAGS, value: entry.entryTags })}
-        </div>
-        <div class="field-group" style="margin-top:16px;"><label class="field-label">Why did you enter this trade?</label>
-          <textarea class="field-textarea short" data-field="entryReasoning" placeholder="Example: Price formed a lower high, consolidated, broke structure and retested my level.">${entry.entryReasoning || ''}</textarea>
-        </div>
-      </div>
+  const setup = entrySetup(entry);
+  return `${head(3, 'Why did you <em class="jv-p">enter?</em>', 'Pick the setup you traded. Its entry rules show up for you to check.')}
+    <div class="je-setups">
+      ${Object.entries(ENTRY_MODELS).map(([key, m]) => `<button type="button" class="je-setup ${setup === key ? 'on' : ''}" data-setup="${key}" aria-pressed="${setup === key}"><b>${m.label}</b><small>${m.sub}</small></button>`).join('')}
     </div>
-    ${hasIcc ? renderIccMiniChecklist(entry) : ''}`;
+    ${setup ? `<div class="je-setup-body">${renderSetupRules(entry, setup)}</div>` : ''}
+    ${q(setup === 'other' ? 'What did you see?' : 'Anything else you saw? (optional)')}
+    ${chipGroupHtml({ mode: 'multi', field: 'entryTags', options: JOURNAL_ENTRY_TAGS.filter((t) => t !== 'Dayli ICC Setup'), value: entry.entryTags })}
+    ${q('In one line, why did you enter?')}
+    <textarea class="je-bubble in" data-field="entryReasoning" rows="2" placeholder="e.g. PIL held on the 1H and price came back to it.">${escHtml(entry.entryReasoning || '')}</textarea>`;
 }
 
-/* ── Step 4: Why I Exited ───────────────────────────────────────────── */
+/* ── Step 4: Why I exited ───────────────────────────────────────────── */
 
 function renderWhyExitedStep(entry) {
   const hasEarlyExit = (entry.exitTags || []).includes('Took Profit Early');
-  return `
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-pink">📤</div><div><div class="section-title">Why Did You Exit?</div></div></div>
-      <div class="section-body">
-        <div class="field-group"><label class="field-label">What happened?</label>
-          ${chipGroupHtml({ mode: 'multi', field: 'exitTags', options: EXIT_TAGS, value: entry.exitTags })}
-        </div>
-        <div class="field-group" style="margin-top:16px;"><label class="field-label">What made you close the trade?</label>
-          <textarea class="field-textarea short" data-field="exitReasoning" placeholder="Example: Price started bouncing around my zone and I wanted to protect the profit I had already built.">${entry.exitReasoning || ''}</textarea>
-        </div>
-        ${hasEarlyExit ? `
-        <div class="field-group" style="margin-top:16px;"><label class="field-label">Looking back, do you still agree with that exit?</label>
-          ${chipGroupHtml({ mode: 'single', field: 'agreeWithEarlyExit', value: entry.agreeWithEarlyExit, options: [
-            { value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }, { value: 'unsure', label: 'Unsure' },
-          ] })}
-        </div>` : ''}
-      </div>
-    </div>`;
+  return `${head(4, 'Why did you <em class="jv-t">exit?</em>', 'What happened, in a tap or two.')}
+    ${chipGroupHtml({ mode: 'multi', field: 'exitTags', options: EXIT_TAGS, value: entry.exitTags })}
+    ${hasEarlyExit ? `${q('Looking back, do you still agree with that exit?')}
+      ${chipGroupHtml({ mode: 'single', field: 'agreeWithEarlyExit', value: entry.agreeWithEarlyExit, options: [
+        { value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }, { value: 'unsure', label: 'Unsure' },
+      ] })}` : ''}
+    ${q('In one line, what made you close it?')}
+    <textarea class="je-bubble out" data-field="exitReasoning" rows="2" placeholder="e.g. Hit my 2R target.">${escHtml(entry.exitReasoning || '')}</textarea>`;
 }
 
 /* ── Step 5: Mindset ────────────────────────────────────────────────── */
 
 function renderMindsetStep(entry) {
   const emotions = entry.emotions || {};
-  const stageInfo = [
-    ['entering', 'BEFORE THE TRADE', 'How did you feel entering?'],
-    ['during', 'DURING THE TRADE', 'How did you feel while the trade was running?'],
-    ['exiting', 'AFTER THE TRADE', 'How did you feel when you exited?'],
-  ];
-  return `
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-pink">🧠</div><div><div class="section-title">How Were You Feeling?</div></div></div>
-      <div class="section-body">
-        ${stageInfo.map(([stage, heading, question]) => `
-          <div class="jl-mindset-group">
-            <div class="jl-mindset-heading">${heading}</div>
-            <div class="field-label" style="margin:6px 0 8px;">${question}</div>
-            <div class="chip-group" data-emotion-stage="${stage}">
-              ${EMOTION_OPTIONS_V2[stage].map((o) => `<button type="button" class="chip ${(emotions[stage] || []).includes(o) ? 'active' : ''}" data-chip-value="${o}">${o}</button>`).join('')}
-            </div>
-          </div>`).join('')}
-      </div>
+  const cols = [['entering', 'Before', 'Entering'], ['during', 'During', 'In the trade'], ['exiting', 'After', 'Exiting']];
+  return `${head(5, 'How did it <em class="jv-p">feel?</em>', 'Honest beats perfect. Tap as many as fit.')}
+    <div class="je-faces">
+      ${cols.map(([stage, title, sub]) => `<div class="je-fcol" data-emotion-stage="${stage}"><h4>${title}<small>${sub}</small></h4>
+        ${EMOTION_OPTIONS_V2[stage].map((o) => {
+          const on = (emotions[stage] || []).includes(o);
+          const kind = FACE_KIND(o);
+          return `<button type="button" class="je-face ${kind} ${on ? 'on' : ''}" data-chip-value="${escHtml(o)}" aria-pressed="${on}">${FACE_SVG(kind)}${escHtml(o)}</button>`;
+        }).join('')}</div>`).join('')}
     </div>`;
 }
 
-/* ── Step 6: Lesson Logged ──────────────────────────────────────────── */
+/* ── Step 6: Lesson ─────────────────────────────────────────────────── */
 
 function renderLessonStep(entry) {
   const lessons = entry.lessons && entry.lessons.length ? entry.lessons : [''];
-  return `
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-indigo">💎</div><div><div class="section-title">Lesson Logged</div><div class="section-sub">What do you want Future You to remember from this trade?</div></div></div>
-      <div class="section-body">
-        <div class="jl-lesson-list">
-          ${lessons.map((text, i) => `
-            <div class="jl-lesson-row">
-              <span class="jl-lesson-arrow">→</span>
-              <input class="field-input" data-lesson-index="${i}" value="${text || ''}" placeholder="Example: Wait for the break + retest.">
-              ${lessons.length > 1 ? `<button type="button" class="cl-shot-remove" data-remove-lesson="${i}" aria-label="Remove lesson ${i + 1}">✕</button>` : ''}
-            </div>`).join('')}
-        </div>
-        <button type="button" class="dd-secondary-btn" id="clAddLesson" style="margin-top:10px;">+ Add another lesson</button>
-      </div>
-    </div>`;
+  return `${head(6, 'A lesson for <em class="jv-g">future you.</em>', 'What do you want to remember from this trade?')}
+    <div class="je-lessons">
+      ${lessons.map((text, i) => `<div class="je-lesson"><span>✦</span><input data-lesson-index="${i}" value="${escHtml(text || '')}" placeholder="e.g. Wait for the break and the retest." aria-label="Lesson ${i + 1}">
+        ${lessons.length > 1 ? `<button type="button" data-remove-lesson="${i}" aria-label="Remove lesson ${i + 1}">✕</button>` : ''}</div>`).join('')}
+    </div>
+    <button type="button" class="je-add" id="clAddLesson">+ Add another lesson</button>`;
 }
 
-/* ── Step 7: Final Review ───────────────────────────────────────────── */
+/* ── Step 7: Review ─────────────────────────────────────────────────── */
 
 function renderFinalReviewStep(entry) {
   const showRuleBreak = entry.ruleCheck === 'mostly' || entry.ruleCheck === 'no';
-  const exec = computeExecutionScore(entry);
-  return `
-    <div class="section-card">
-      <div class="section-header"><div class="section-icon icon-dark">🪞</div><div><div class="section-title">Final Trade Review</div></div></div>
-      <div class="section-body">
-        <div class="field-group"><label class="field-label">Was your directional bias correct?</label>
-          ${chipGroupHtml({ mode: 'single', field: 'biasAccuracy', value: entry.biasAccuracy, options: [
-            { value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }, { value: 'mixed', label: 'Mixed' }, { value: 'unsure', label: 'Unsure' },
-          ] })}
-        </div>
-        <div class="field-group" style="margin-top:16px;"><label class="field-label">Did you follow your rules?</label>
-          ${chipGroupHtml({ mode: 'single', field: 'ruleCheck', value: entry.ruleCheck, options: [
-            { value: 'yes', label: 'Yes' }, { value: 'mostly', label: 'Mostly' }, { value: 'no', label: 'No' },
-          ] })}
-        </div>
-        ${showRuleBreak ? `
-        <div class="field-group" style="margin-top:16px;"><label class="field-label">What rule did you break?</label>
-          ${chipGroupHtml({ mode: 'multi', field: 'ruleViolations', options: RULE_BREAK_TAGS, value: entry.ruleViolations })}
-        </div>` : ''}
-        <div class="field-group" style="margin-top:16px;"><label class="field-label">How would you grade your execution?</label>
-          ${chipGroupHtml({ mode: 'single', field: 'executionGrade', value: entry.executionGrade, options: ['A+', 'A', 'A-', 'B', 'C', 'D'] })}
-          <div class="small-help" style="margin-top:6px;">Grade your process — not your P&amp;L.</div>
-        </div>
-        <div class="field-row cols-2" style="margin-top:16px;">
-          <div class="field-group"><label class="field-label">What did you do well?</label><textarea class="field-textarea short" data-field="wentWell">${entry.wentWell || ''}</textarea></div>
-          <div class="field-group"><label class="field-label">What would you improve next time?</label><textarea class="field-textarea short" data-field="wouldImprove">${entry.wouldImprove || ''}</textarea></div>
-        </div>
-        ${exec.score != null ? `<div class="jl-exec-score"><span class="jl-exec-score-label">Execution Score</span><span class="jl-exec-score-value">${exec.score} / 100</span></div>` : ''}
-      </div>
+  const plan = [
+    ['yes', 'Yes', 'Every rule', '<path d="M7.5 12.5l3 3 6-6"/>', '#3E9E93'],
+    ['mostly', 'Mostly', 'One small slip', '<path d="M8 12h8"/>', '#C4741F'],
+    ['no', 'No', 'I broke a rule', '<path d="M9 9l6 6M15 9l-6 6"/>', '#E0607C'],
+  ];
+  return `${head(7, 'Your <em class="jv-p">review.</em>', 'Grade the process, not the P&amp;L.')}
+    ${q('Did you follow your plan?')}
+    <div class="je-plan" data-chip-single="ruleCheck">
+      ${plan.map(([v, label, sub, path, ink]) => `<button type="button" class="je-chip je-plan-card ${v} ${entry.ruleCheck === v ? 'on' : ''}" data-chip-value="${v}" aria-pressed="${entry.ruleCheck === v}"><svg viewBox="0 0 24 24" fill="none" stroke="${ink}" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/>${path}</svg><b>${label}</b><small>${sub}</small></button>`).join('')}
+    </div>
+    ${showRuleBreak ? `${q('Which rule?')}${chipGroupHtml({ mode: 'multi', field: 'ruleViolations', options: RULE_BREAK_TAGS, value: entry.ruleViolations })}` : ''}
+    ${q('Was your directional bias right?')}
+    ${chipGroupHtml({ mode: 'single', field: 'biasAccuracy', value: entry.biasAccuracy, options: [
+      { value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }, { value: 'mixed', label: 'Mixed' }, { value: 'unsure', label: 'Unsure' },
+    ] })}
+    ${q('Grade your execution')}
+    <div class="je-grades" data-chip-single="executionGrade">
+      ${['A+', 'A', 'A-', 'B', 'C', 'D'].map((g) => `<button type="button" class="je-chip je-grade ${entry.executionGrade === g ? 'on' : ''}" data-chip-value="${g}" aria-pressed="${entry.executionGrade === g}">${g.replace('-', '−')}</button>`).join('')}
+    </div>
+    ${q('Your notes')}
+    <div class="je-notes">
+      <label class="je-note good"><small>What went well</small><textarea data-field="wentWell" rows="3" placeholder="Tap to write…">${escHtml(entry.wentWell || '')}</textarea></label>
+      <label class="je-note mixed"><small>What I’d improve</small><textarea data-field="wouldImprove" rows="3" placeholder="Tap to write…">${escHtml(entry.wouldImprove || '')}</textarea></label>
     </div>`;
 }
 
-/* ── Top bar / wizard nav ───────────────────────────────────────────── */
+/* ── Step bar / wizard nav ──────────────────────────────────────────── */
 
 function stageTopBarHtml(entry, active) {
-  const pct = computeCompletionPct(entry);
-  return `
-    <div class="cl-stage-topbar">
-      <div class="cl-stage-pills">${STAGES.map((s) => `<button type="button" class="dd-tab ${s === active ? 'active' : ''}" data-stage="${s}">${STAGE_LABELS[s]}</button>`).join('')}</div>
-      <button type="button" class="cl-delete-link" id="clDeleteBtn">Delete Entry</button>
-    </div>
-    <div class="jl-completion-row">
-      <div class="progress-shell"><div class="progress-fill" style="width:${pct}%"></div></div>
-      <span class="jl-completion-text">Trade Journal ${pct}% Complete</span>
+  const done = {
+    trade: !!(entry.tradeDate && entry.instrument && entry.direction),
+    execution: entry.entryPrice != null && (entry.exits || []).some((ex) => ex.exitPrice != null && ex.exitPrice !== ''),
+    entered: !!(entrySetup(entry) || entry.entryTags?.length),
+    exited: !!entry.exitTags?.length,
+    mindset: !!entry.emotions?.entering?.length,
+    lesson: !!(entry.lessons || []).filter(Boolean).length,
+    review: !!entry.ruleCheck,
+  };
+  return `<div class="je-top">
+      <div class="je-steps">${STAGES.map((s, i) => `<button type="button" class="je-step ${s === active ? 'now' : done[s] ? 'done' : ''}" data-stage="${s}" aria-current="${s === active ? 'step' : 'false'}"><i>${done[s] && s !== active ? '✓' : i + 1}</i><span><b>${STAGE_INFO[s][0]}</b><small>${STAGE_INFO[s][1]}</small></span></button>`).join('')}</div>
+      <button type="button" class="je-delete" id="clDeleteBtn">Delete entry</button>
     </div>`;
 }
 
@@ -447,16 +430,16 @@ function renderWizardNav(container, { activeStage, status, onBack, onNext, onSav
   const idx = STAGES.indexOf(activeStage);
   const isFirst = idx === 0;
   const isLast = idx === STAGES.length - 1;
-  const statusText = status === 'saving' ? 'Saving…' : status === 'error' ? '⚠ Couldn’t save — retrying' : 'Saved ✓';
+  const statusText = status === 'saving' ? 'Saving…' : status === 'error' ? 'Couldn’t save, retrying' : 'Saved · finish later anytime';
   container.innerHTML = `
-    <div class="cl-wizard-nav">
-      <div style="display:flex;align-items:center;gap:14px;">
-        <button type="button" class="cl-delete-link" id="clSaveLaterBtn">Save &amp; Finish Later</button>
-        <span class="cl-nav-status">${statusText}</span>
+    <div class="je-nav">
+      <div class="je-nav-left">
+        <span class="je-saved ${status === 'error' ? 'err' : ''}"><i></i>${statusText}</span>
+        <button type="button" class="je-later" id="clSaveLaterBtn">Save &amp; finish later</button>
       </div>
-      <div style="display:flex;align-items:center;gap:10px;">
-        ${!isFirst ? '<button type="button" class="dd-secondary-btn" id="clBackBtn">← Back</button>' : ''}
-        ${isLast ? '<button type="button" class="dd-primary-btn" id="clSaveEntryBtn">✦ Save Entry</button>' : '<button type="button" class="dd-primary-btn" id="clNextBtn">Next →</button>'}
+      <div class="je-nav-right">
+        ${!isFirst ? '<button type="button" class="jv-btn ghost plain" id="clBackBtn">Back</button>' : ''}
+        ${isLast ? '<button type="button" class="jv-btn" id="clSaveEntryBtn">✦ Save my trade</button>' : '<button type="button" class="jv-btn" id="clNextBtn">Next →</button>'}
       </div>
     </div>`;
   container.querySelector('#clSaveLaterBtn').addEventListener('click', onSaveDraft);
@@ -471,8 +454,8 @@ function renderWizardNav(container, { activeStage, status, onBack, onNext, onSav
       } catch (err) {
         console.error('Save entry error:', err);
         btn.disabled = false;
-        btn.textContent = '✦ Save Entry';
-        alert("Couldn't save this entry — try again in a moment.");
+        btn.textContent = '✦ Save my trade';
+        alert("Couldn't save this entry. Try again in a moment.");
       }
     });
   } else {
@@ -503,7 +486,7 @@ export async function hydrateTscShots(container, apiFetch) {
       el.style.backgroundImage = `url(${url})`;
     } catch (err) {
       console.error('Summary card screenshot load error:', err);
-      el.classList.add('tsc-hero-shot-error');
+      el.classList.add('tsc-hero-shot-error', 'jv-card-shot-error');
       el.textContent = "Couldn't load screenshot";
     }
   }
@@ -517,6 +500,15 @@ export function renderJournalEntryPage(container, entry, helpers) {
   let activeStage = firstIncompleteStage(entry);
 
   function update(next) {
+    // The exit's contracts follow the trade's contracts unless she split the exit herself.
+    const ex0 = next.exits?.[0];
+    if (ex0 && next.contracts != null && (ex0.contracts == null || ex0.contracts === '' || ex0.contracts === entry.contracts)) {
+      next = { ...next, exits: [{ ...ex0, contracts: next.contracts }, ...next.exits.slice(1)] };
+    }
+    // A market she typed herself has no built-in point value, so keep hers with the entry.
+    if (next.instrument && !getInstrument(next.instrument) && next.manualPointValue != null && next.manualPointValue !== '') {
+      next = { ...next, entryModel: { ...(next.entryModel || {}), pointValue: Number(next.manualPointValue) } };
+    }
     // Every field commit flows through here — fold in the freshly computed
     // totals so what's actually persisted (and scored) matches what the
     // readonly fields show, instead of leaving netPnl/outcome permanently
@@ -537,30 +529,60 @@ export function renderJournalEntryPage(container, entry, helpers) {
   function navHandlers() {
     return {
       activeStage, status: helpers.saveStatus || 'saved',
-      onBack: () => { activeStage = STAGES[STAGES.indexOf(activeStage) - 1]; paint(); },
-      onNext: () => { activeStage = STAGES[STAGES.indexOf(activeStage) + 1]; paint(); },
+      onBack: () => { activeStage = STAGES[STAGES.indexOf(activeStage) - 1]; paint(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      onNext: () => { activeStage = STAGES[STAGES.indexOf(activeStage) + 1]; paint(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
       onSaveFinal: helpers.onSaveFinal,
       onSaveDraft: helpers.onSaveDraft,
     };
   }
 
+  const shotUrls = new Map();
+  const cachedFetch = async (path, opts) => {
+    if (!shotUrls.has(path)) shotUrls.set(path, helpers.apiFetch(path, opts));
+    try { return await shotUrls.get(path); } catch (err) { shotUrls.delete(path); throw err; }
+  };
+
+  // Every commit repaints the step, so remember where focus was heading
+  // (the field she tabbed or tapped into) and put it back afterwards.
+  let pendingFocus = null;
+  const focusKey = (el) => {
+    if (!el || !container.contains(el)) return null;
+    for (const attr of ['data-field', 'data-exit-field', 'data-lesson-index', 'data-model-name']) {
+      if (el.hasAttribute?.(attr)) return `[${attr}="${el.getAttribute(attr)}"]${attr === 'data-exit-field' ? `[data-exit-index="${el.dataset.exitIndex}"]` : ''}`;
+    }
+    return null;
+  };
+  // Capture phase, so this runs before the field's own blur handler repaints.
+  container.addEventListener('blur', (e) => { pendingFocus = focusKey(e.relatedTarget); }, true);
+
   function paint() {
-    container.innerHTML = `${stageTopBarHtml(entry, activeStage)}<div id="clStageBody"></div><div id="clNavBar"></div>`;
+    const restore = pendingFocus;
+    pendingFocus = null;
+    container.innerHTML = `<div class="je">${stageTopBarHtml(entry, activeStage)}
+      <div class="je-wrap">
+        <div class="je-panel"><div id="clStageBody"></div><div id="clNavBar"></div></div>
+        <aside class="je-live"><span class="jv-kicker">Your trade card · live</span>${tradeCardHtml(entry, { variant: 'preview' })}<p>This is how it shows in your journal.</p></aside>
+      </div></div>`;
     const body = container.querySelector('#clStageBody');
-    if (activeStage === 'trade') { body.innerHTML = renderTradeDetailsStep(entry); hydrateScreenshotThumbs(body, helpers.apiFetch); }
+    if (activeStage === 'trade') { body.innerHTML = renderTradeDetailsStep(entry); hydrateScreenshotThumbs(body, cachedFetch); }
     else if (activeStage === 'execution') body.innerHTML = renderExecutionStep(entry);
     else if (activeStage === 'entered') body.innerHTML = renderWhyEnteredStep(entry);
     else if (activeStage === 'exited') body.innerHTML = renderWhyExitedStep(entry);
     else if (activeStage === 'mindset') body.innerHTML = renderMindsetStep(entry);
     else if (activeStage === 'lesson') body.innerHTML = renderLessonStep(entry);
     else body.innerHTML = renderFinalReviewStep(entry);
+    if (entry.screenshots?.length && helpers.apiFetch) hydrateTscShots(container.querySelector('.je-live'), cachedFetch);
 
     wireStage(body);
     renderWizardNav(container.querySelector('#clNavBar'), navHandlers());
+    if (restore) {
+      const el = body.querySelector(restore);
+      if (el) { el.focus({ preventScroll: true }); if (el.select && el.type !== 'date' && el.type !== 'time') el.select(); }
+    }
 
     container.querySelector('#clDeleteBtn').addEventListener('click', helpers.onDelete);
     container.querySelectorAll('[data-stage]').forEach((btn) => {
-      btn.addEventListener('click', () => { activeStage = btn.dataset.stage; paint(); });
+      btn.addEventListener('click', () => { activeStage = btn.dataset.stage; paint(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
     });
   }
 
@@ -572,6 +594,7 @@ export function renderJournalEntryPage(container, entry, helpers) {
         if (['contracts', 'entryPrice', 'stopLossPoints', 'takeProfitPoints', 'manualPointValue'].includes(field)) {
           value = value === '' ? null : Number(value);
         }
+        if (field === 'instrument') value = value.trim().toUpperCase().slice(0, 12);
         if (field === 'entryTimeOnly') {
           update({ ...entry, entryTime: `${entry.tradeDate || todayKey()}T${value}:00` });
           return;
@@ -581,8 +604,75 @@ export function renderJournalEntryPage(container, entry, helpers) {
       el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'blur', commit);
     });
 
-    body.querySelectorAll('.position-btn').forEach((btn) => {
+    body.querySelectorAll('[data-direction]').forEach((btn) => {
       btn.addEventListener('click', () => update({ ...entry, direction: btn.dataset.direction }));
+    });
+
+    body.querySelectorAll('[data-instrument]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const pick = btn.dataset.instrument;
+        if (pick === '__custom') {
+          update({ ...entry, _customInstrument: true, instrument: getInstrument(entry.instrument) ? '' : entry.instrument });
+          body.querySelector('[data-field="instrument"]')?.focus();
+          return;
+        }
+        const { pointValue, ...model } = entry.entryModel || {};
+        update({
+          ...entry, instrument: pick, _customInstrument: false,
+          manualPointValue: getInstrument(entry.instrument) ? entry.manualPointValue : null,
+          entryModel: entry.entryModel ? model : entry.entryModel,
+        });
+      });
+    });
+
+    body.querySelectorAll('[data-date]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const time = (entry.entryTime || '').slice(11, 16);
+        update({ ...entry, tradeDate: btn.dataset.date, ...(time ? { entryTime: `${btn.dataset.date}T${time}:00` } : {}) });
+      });
+    });
+
+    body.querySelectorAll('[data-step-contracts]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const next = Math.max(1, (Number(entry.contracts) || 0) + Number(btn.dataset.stepContracts));
+        update({ ...entry, contracts: next });
+      });
+    });
+
+    body.querySelectorAll('[data-setup]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.setup;
+        const same = entrySetup(entry) === key;
+        const name = key === 'other' ? (entry.entryModel?.name || 'My own setup') : ENTRY_MODELS[key].label;
+        const tags = (entry.entryTags || []).filter((t) => t !== 'Dayli ICC Setup');
+        update({
+          ...entry,
+          entryModel: { ...(entry.entryModel || {}), setup: key, steps: same ? (entry.entryModel?.steps || {}) : {} },
+          iccChecklist: key === 'icc' ? (entry.iccChecklist || {}) : null,
+          // The ICC tag keeps the setup-based insights counting Dayli ICC trades.
+          entryTags: key === 'icc' ? [...tags, 'Dayli ICC Setup'] : tags,
+          setupType: name,
+        });
+      });
+    });
+
+    body.querySelectorAll('[data-rule]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.rule;
+        const setup = entrySetup(entry);
+        if (setup === 'icc') {
+          update({ ...entry, iccChecklist: { ...(entry.iccChecklist || {}), [key]: !entry.iccChecklist?.[key] } });
+        } else {
+          const steps = { ...(entry.entryModel?.steps || {}), [key]: !entry.entryModel?.steps?.[key] };
+          update({ ...entry, entryModel: { ...(entry.entryModel || {}), steps } });
+        }
+      });
+    });
+
+    const modelName = body.querySelector('[data-model-name]');
+    if (modelName) modelName.addEventListener('blur', () => {
+      const name = modelName.value.trim().slice(0, 60);
+      update({ ...entry, entryModel: { ...(entry.entryModel || {}), name }, setupType: name || 'My own setup' });
     });
 
     body.querySelectorAll('[data-exit-field]').forEach((input) => {
@@ -601,7 +691,7 @@ export function renderJournalEntryPage(container, entry, helpers) {
 
     body.querySelectorAll('[data-chip-single]').forEach((group) => {
       const field = group.dataset.chipSingle;
-      group.querySelectorAll('.chip').forEach((btn) => {
+      group.querySelectorAll('.je-chip').forEach((btn) => {
         btn.addEventListener('click', () => {
           const value = btn.dataset.chipValue;
           const patch = { [field]: entry[field] === value ? null : value };
@@ -613,30 +703,22 @@ export function renderJournalEntryPage(container, entry, helpers) {
 
     body.querySelectorAll('[data-chip-multi]').forEach((group) => {
       const field = group.dataset.chipMulti;
-      group.querySelectorAll('.chip').forEach((btn) => {
+      group.querySelectorAll('.je-chip').forEach((btn) => {
         btn.addEventListener('click', () => {
           const current = entry[field] || [];
           const value = btn.dataset.chipValue;
           const next = current.includes(value) ? current.filter((v) => v !== value) : [...current, value];
           const patch = { [field]: next };
-          if (field === 'entryTags') patch.iccChecklist = next.includes('Dayli ICC Setup') ? (entry.iccChecklist || {}) : null;
           if (field === 'exitTags' && !next.includes('Took Profit Early')) patch.agreeWithEarlyExit = null;
           update({ ...entry, ...patch });
         });
       });
     });
 
-    body.querySelectorAll('[data-icc-key]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const key = btn.dataset.iccKey;
-        const iccChecklist = { ...(entry.iccChecklist || {}), [key]: !entry.iccChecklist?.[key] };
-        update({ ...entry, iccChecklist });
-      });
-    });
 
     body.querySelectorAll('[data-emotion-stage]').forEach((group) => {
       const stage = group.dataset.emotionStage;
-      group.querySelectorAll('.chip').forEach((btn) => {
+      group.querySelectorAll('.je-face').forEach((btn) => {
         btn.addEventListener('click', () => {
           const current = entry.emotions?.[stage] || [];
           const value = btn.dataset.chipValue;
@@ -756,41 +838,4 @@ export function entryToSummaryCardProps(entry) {
 export function renderTradeSummaryCard(props, opts = {}) {
   // The illustrated card lives in journal-v2.js; props.entry carries the full record.
   return tradeCardHtml(props.entry || props, { variant: opts.variant || 'list' });
-}
-
-/* ── Journal History page helpers ───────────────────────────────────── */
-
-export function renderJournalStatsRow(container, stats) {
-  const tiles = [
-    { label: 'Trades Logged', value: stats.tradesLogged, hero: false, muted: false },
-    { label: 'Win Rate', value: stats.winRate != null ? stats.winRate + '%' : '—', hero: false, muted: false },
-    { label: 'Avg Winner', value: stats.avgWinner != null ? fmtMoney(stats.avgWinner) : '—', hero: false, muted: true },
-    { label: 'Avg Loser', value: stats.avgLoser != null ? fmtMoney(stats.avgLoser) : '—', hero: false, muted: true },
-    { label: 'Avg R', value: stats.avgR != null ? stats.avgR.toFixed(2) + 'R' : '—', hero: false, muted: false },
-    { label: 'Rule Follow Rate', value: stats.ruleFollowRate != null ? stats.ruleFollowRate + '%' : '—', hero: true, muted: false },
-    { label: 'Bias Accuracy', value: stats.biasAccuracyRate != null ? stats.biasAccuracyRate + '%' : '—', hero: true, muted: false },
-    { label: 'Journaling Streak', value: stats.journalingStreak ? `${stats.journalingStreak} 🔥` : '0', hero: true, muted: false },
-  ];
-  container.innerHTML = tiles.map((t) => `
-    <div class="jh-stat-tile ${t.hero ? 'hero' : ''} ${t.muted ? 'muted' : ''}">
-      <div class="jh-stat-label">${t.label}</div>
-      <div class="jh-stat-value">${t.value}</div>
-    </div>`).join('');
-}
-
-export function renderBadgesStrip(container) {
-  container.innerHTML = COMING_SOON_BADGES.map((b) => `
-    <div class="jh-badge-tile locked" title="Badges are coming soon">
-      <span class="jh-badge-icon">${b.icon}</span>
-      <span class="jh-badge-label">${b.label}</span>
-    </div>`).join('');
-}
-
-export function renderInsightCards(container, insights) {
-  if (!insights.length) { container.innerHTML = ''; return; }
-  container.innerHTML = insights.map((i) => `
-    <div class="jh-insight-card ${i.kind}">
-      <span class="jh-insight-icon">${i.icon}</span>
-      <span class="jh-insight-text">${i.text}</span>
-    </div>`).join('');
 }

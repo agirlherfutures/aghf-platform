@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Journal History — A Girl & Her Futures</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700,900;1,400,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/tokens.css">
 <link rel="stylesheet" href="shared/sidebar.css">
 <link rel="stylesheet" href="shared/components.css">
 <link rel="stylesheet" href="shared/dayli-desk.css">
+<link rel="stylesheet" href="shared/dayli-desk-v2.css">
 <link rel="stylesheet" href="shared/journal-v2.css">
 </head>
 <body>
@@ -16,77 +17,81 @@
 <script src="shared/auth-guard.js"></script>
 <script src="shared/sidebar.js" data-active="journal"></script>
 
-<main class="main">
-  <div class="pg-eye">✦ Your Trading Journal</div>
-  <div class="pg-title">Study your patterns. Refine your edge.</div>
+<main class="main dz jv">
+  <div class="dz-glow a"></div><div class="dz-glow b"></div><div class="dz-glow c"></div>
 
-  <div class="jh-stats-row" id="jhStats"></div>
-  <div class="jh-badges-row" id="jhBadges"></div>
-  <div id="jhInsights" class="jh-insights-col" style="margin-bottom:16px;"></div>
+  <div class="jv-head">
+    <div><span class="jv-eyebrow">✦ Journal history</span><h1>Study your <em class="jv-p">patterns.</em></h1></div>
+    <div class="jv-head-actions">
+      <a class="jv-btn" href="journal-entry.html">✦ Log a trade</a>
+      <a class="jv-btn ghost" href="journal.html">This month</a>
+      <button type="button" class="jv-btn ghost plain" id="jvPrivacy" aria-pressed="false">Hide P&amp;L</button>
+    </div>
+  </div>
 
-  <div id="jhViewSwitch" style="margin-bottom:16px;"></div>
+  <section id="jhOverview"></section>
+  <section id="jhInsights"></section>
+
+  <div class="jv-sec">
+    <div><span class="jv-kicker">Every trade</span><h2 id="jhViewTitle">All your <em class="jv-t">trades.</em></h2></div>
+    <div class="jv-switch" role="group" aria-label="View">
+      <button type="button" data-view="cards" class="on">Cards</button>
+      <button type="button" data-view="timeline">Timeline</button>
+      <button type="button" data-view="calendar">Calendar</button>
+      <button type="button" data-view="performance">Performance</button>
+    </div>
+  </div>
 
   <div id="jhListView">
-    <div class="dd-card" style="margin-bottom:16px;">
-      <div class="field-row cols-4">
-        <div class="field-group"><label class="field-label">Search</label><input class="field-input" type="text" id="fSearch" placeholder="Search reasoning &amp; lessons…"></div>
-        <div class="field-group"><label class="field-label">From</label><input class="field-input" type="date" id="fFrom"></div>
-        <div class="field-group"><label class="field-label">To</label><input class="field-input" type="date" id="fTo"></div>
-        <div class="field-group"><label class="field-label">Instrument</label><select class="field-input" id="fInstrument"><option value="">All</option></select></div>
-      </div>
-      <div class="field-row cols-4">
-        <div class="field-group"><label class="field-label">Direction</label><select class="field-input" id="fDirection"><option value="">All</option><option value="long">Long</option><option value="short">Short</option></select></div>
-        <div class="field-group"><label class="field-label">Outcome</label><select class="field-input" id="fOutcome"><option value="">All</option><option value="win">Win</option><option value="loss">Loss</option><option value="breakeven">Breakeven</option></select></div>
-        <div class="field-group"><label class="field-label">Setup</label><select class="field-input" id="fSetup"><option value="">All</option></select></div>
-        <div class="field-group"><label class="field-label">Dayli ICC</label><select class="field-input" id="fIcc"><option value="">All</option><option value="true">Has ICC Setup</option></select></div>
-      </div>
-      <div class="field-row cols-4">
-        <div class="field-group"><label class="field-label">Execution Grade</label><select class="field-input" id="fGrade"><option value="">All</option><option>A+</option><option>A</option><option>A-</option><option>B</option><option>C</option><option>D</option></select></div>
-        <div class="field-group"><label class="field-label">Rule Check</label><select class="field-input" id="fRuleCheck"><option value="">All</option><option value="yes">Yes</option><option value="mostly">Mostly</option><option value="no">No</option></select></div>
-        <div class="field-group"><label class="field-label">Emotion</label><select class="field-input" id="fEmotion"><option value="">All</option></select></div>
-        <div class="field-group" style="justify-content:flex-end;"><button type="button" class="dd-secondary-btn" id="fClear">Clear filters</button></div>
-      </div>
+    <div class="jv-filterbar">
+      <label class="jv-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="search" id="fSearch" placeholder="Search your reasons and lessons" aria-label="Search"></label>
+      <button type="button" class="jv-chipbtn" id="fMoreBtn" aria-expanded="false">More filters</button>
     </div>
-
-    <div id="jhCards" class="jh-cards-grid"></div>
+    <div class="jv-filters" id="fChips"></div>
+    <div class="jv-more-filters" id="fMore" hidden>
+      <label>From<input type="date" id="fFrom"></label>
+      <label>To<input type="date" id="fTo"></label>
+      <label>Market<select id="fInstrument"><option value="">All</option></select></label>
+      <label>Setup<select id="fSetup"><option value="">All</option></select></label>
+      <label>Grade<select id="fGrade"><option value="">All</option><option>A+</option><option>A</option><option>A-</option><option>B</option><option>C</option><option>D</option></select></label>
+      <label>Feeling<select id="fEmotion"><option value="">All</option></select></label>
+      <button type="button" class="jv-chipbtn" id="fClear">Clear all</button>
+    </div>
+    <div class="jv-count" id="fCount"></div>
+    <div id="jhCards"></div>
   </div>
 
   <div id="jhCalendarView" hidden>
-    <div class="dd-card" style="margin-bottom:16px;">
-      <div class="field-row cols-4">
-        <div class="field-group"><label class="field-label">Instrument</label><select class="field-input" id="cInstrument"><option value="">All</option></select></div>
-        <div class="field-group"><label class="field-label">Account</label><select class="field-input" id="cAccount"><option value="">All</option></select></div>
-        <div class="field-group"><label class="field-label">Hide $ values</label><button type="button" class="dd-secondary-btn" id="cPrivacyToggle" style="width:100%;">👁️ Toggle</button></div>
-        <div class="field-group" style="justify-content:flex-end;"><button type="button" class="dd-secondary-btn" id="cClear">Reset Filters</button></div>
-      </div>
-      <div class="small-help" id="cFilterStatus"></div>
+    <div class="jv-filterbar">
+      <label class="jv-select">Market<select id="cInstrument"><option value="">All</option></select></label>
+      <label class="jv-select">Account<select id="cAccount"><option value="">All</option></select></label>
     </div>
     <div id="jhEvalPlanStrip"></div>
-    <div id="jhCalendarBody"></div>
+    <section class="jv-cal-wrap">
+      <div id="jhCalendarBody"></div>
+      <aside class="jv-day" id="jhDay" aria-live="polite"></aside>
+    </section>
   </div>
 
-  <div id="jhSummaryView" hidden>
-    <div id="jhSummaryBody"></div>
-  </div>
-
-  <div id="jhDrawerRoot"></div>
+  <div id="jhSummaryView" hidden><div id="jhSummaryBody"></div></div>
 </main>
 
 <script type="module">
-  // Loaded dynamically rather than as static top-level imports — see the
-  // same fix already applied on this page's sibling pages this session:
-  // a failure in any one of these would previously kill this entire
-  // script before it ever ran, leaving the page permanently empty.
-  let listEntries, getJournalStats;
-  let listChecklists;
-  let INSTRUMENT_SYMBOLS;
-  let EMOTION_OPTIONS_V2;
-  let renderTradeSummaryCard, entryToSummaryCardProps, hydrateTscShots, renderJournalStatsRow, renderBadgesStrip, renderInsightCards;
-  let computeInsights;
-  let renderSkeleton, renderErrorState;
-  let groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid, computeMonthSummary, filterByAccount;
-  let renderViewSwitcher, renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer, renderPerformanceSummaryView, isPnlHidden, renderEvalPlanProgressStrip;
-  let listEvalPlans;
+  const $ = (id) => document.getElementById(id);
+  let m = {};
+  let trades = [];
+  let reflections = [];
+  let checklists = [];
+  let activePlan = null;
+  let stats = null;
+  let view = (() => { try { return localStorage.getItem('aghf_history_view') || 'cards'; } catch { return 'cards'; } })();
+  const chips = new Set();
+  const today = new Date();
+  let calYear = today.getFullYear();
+  let calMonth = today.getMonth();
+  let calInstrument = '';
+  let calAccount = '';
+  let selectedDate = null;
 
   function renderFallbackError(err) {
     console.error('Journal history failed to load:', err);
@@ -98,188 +103,166 @@
       </div>`;
   }
 
-  const cardsEl = document.getElementById('jhCards');
-  const statsEl = document.getElementById('jhStats');
-  const badgesEl = document.getElementById('jhBadges');
-  const insightsEl = document.getElementById('jhInsights');
-  const filterIds = ['fSearch', 'fFrom', 'fTo', 'fInstrument', 'fDirection', 'fOutcome', 'fSetup', 'fIcc', 'fGrade', 'fRuleCheck', 'fEmotion'];
+  const CHIPS = [
+    ['win', 'Wins', (t) => (t.netPnl ?? 0) > 0],
+    ['loss', 'Losses', (t) => (t.netPnl ?? 0) < 0],
+    ['long', 'Long', (t) => t.direction === 'long'],
+    ['short', 'Short', (t) => t.direction === 'short'],
+    ['plan', 'Followed plan', (t) => t.ruleCheck === 'yes'],
+    ['broke', 'Broke a rule', (t) => t.ruleCheck === 'no' || t.ruleCheck === 'mostly'],
+    ['icc', 'Has ICC steps', (t) => !!t.iccChecklist],
+    ['shot', 'Has a chart', (t) => !!t.screenshots?.length],
+  ];
+  // Chips in the same pair (win/loss, long/short) are either-or; different pairs narrow together.
+  const GROUP = { win: 'out', loss: 'out', long: 'dir', short: 'dir', plan: 'rule', broke: 'rule', icc: 'icc', shot: 'shot' };
 
-  function debounce(fn, ms) {
-    let t;
-    return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+  function filteredTrades() {
+    const v = (id) => $(id).value;
+    const search = v('fSearch').trim().toLowerCase();
+    const groups = {};
+    for (const k of chips) (groups[GROUP[k]] ||= []).push(CHIPS.find((c) => c[0] === k)[2]);
+    return trades.filter((t) => {
+      if (!Object.values(groups).every((fns) => fns.some((fn) => fn(t)))) return false;
+      if (v('fFrom') && t.tradeDate < v('fFrom')) return false;
+      if (v('fTo') && t.tradeDate > v('fTo')) return false;
+      if (v('fInstrument') && t.instrument !== v('fInstrument')) return false;
+      if (v('fSetup') && t.setupType !== v('fSetup')) return false;
+      if (v('fGrade') && t.executionGrade !== v('fGrade')) return false;
+      if (v('fEmotion') && !['entering', 'during', 'exiting'].some((s) => (t.emotions?.[s] || []).includes(v('fEmotion')))) return false;
+      if (search && !`${t.entryReasoning || ''} ${t.exitReasoning || ''} ${(t.lessons || []).join(' ')} ${t.wentWell || ''} ${t.wouldImprove || ''}`.toLowerCase().includes(search)) return false;
+      return true;
+    }).sort((a, b) => (b.tradeDate + (b.entryTime || '')).localeCompare(a.tradeDate + (a.entryTime || '')));
   }
 
-  function populateSetupOptions(entries) {
-    const select = document.getElementById('fSetup');
-    const current = select.value;
-    const setups = [...new Set(entries.map((e) => e.setupType).filter(Boolean))].sort();
-    select.innerHTML = `<option value="">All</option>${setups.map((s) => `<option ${s === current ? 'selected' : ''}>${s}</option>`).join('')}`;
+  function paintChips() {
+    $('fChips').innerHTML = CHIPS.map(([k, label]) => `<button type="button" class="jv-chipbtn${chips.has(k) ? ' on' : ''}" data-chip="${k}" aria-pressed="${chips.has(k)}">${label}</button>`).join('');
+    $('fChips').querySelectorAll('[data-chip]').forEach((b) => b.addEventListener('click', () => {
+      const k = b.dataset.chip;
+      if (chips.has(k)) chips.delete(k); else chips.add(k);
+      paintChips();
+      paintList();
+    }));
   }
 
-  async function load() {
-    renderSkeleton(cardsEl, 4);
-    try {
-      const filters = {
-        entryType: 'trade',
-        from: document.getElementById('fFrom').value || undefined,
-        to: document.getElementById('fTo').value || undefined,
-        instrument: document.getElementById('fInstrument').value || undefined,
-        direction: document.getElementById('fDirection').value || undefined,
-        outcome: document.getElementById('fOutcome').value || undefined,
-        setupType: document.getElementById('fSetup').value || undefined,
-        executionGrade: document.getElementById('fGrade').value || undefined,
-        ruleCheck: document.getElementById('fRuleCheck').value || undefined,
-        hasIccSetup: document.getElementById('fIcc').value || undefined,
-        limit: 100,
-      };
-      const [{ entries }, stats] = await Promise.all([listEntries(filters), getJournalStats()]);
-      populateSetupOptions(entries);
-      renderJournalStatsRow(statsEl, stats);
-      renderBadgesStrip(badgesEl);
-      renderInsightCards(insightsEl, computeInsights(entries));
-
-      const emotion = document.getElementById('fEmotion').value;
-      const search = document.getElementById('fSearch').value.trim().toLowerCase();
-      let filtered = entries;
-      if (emotion) {
-        filtered = filtered.filter((e) => ['entering', 'during', 'exiting'].some((s) => e.emotions?.[s]?.primary === emotion));
-      }
-      if (search) {
-        filtered = filtered.filter((e) => `${e.entryReasoning || ''} ${e.exitReasoning || ''} ${(e.lessons || []).join(' ')}`.toLowerCase().includes(search));
-      }
-
-      if (!filtered.length) {
-        cardsEl.innerHTML = `<div class="dd-card dd-empty"><div class="dd-empty-icon">🗂️</div><div class="dd-empty-text">${entries.length ? 'No entries match these filters.' : 'No trades journaled yet.'}</div><a class="dd-primary-btn" href="journal-entry.html">Log Your First Trade</a></div>`;
-        return;
-      }
-      cardsEl.innerHTML = filtered.map((e) => renderTradeSummaryCard(entryToSummaryCardProps(e), { variant: 'list' })).join('');
-      hydrateTscShots(cardsEl, apiFetch);
-    } catch (err) {
-      console.error('Journal history load error:', err);
-      renderErrorState(cardsEl, err.message || "Couldn't load your journal history.", load);
+  function paintList() {
+    const list = filteredTrades();
+    const el = $('jhCards');
+    const anyFilter = chips.size || ['fSearch', 'fFrom', 'fTo', 'fInstrument', 'fSetup', 'fGrade', 'fEmotion'].some((id) => $(id).value);
+    $('fCount').textContent = trades.length ? `${list.length} of ${trades.length} trade${trades.length === 1 ? '' : 's'}` : '';
+    if (!trades.length) {
+      el.innerHTML = '<div class="jv-empty"><h3>Your history starts <em class="jv-p">here.</em></h3><p>Every trade you journal lands on this page.</p><a class="jv-btn" href="journal-entry.html">✦ Log your first trade</a></div>';
+      return;
     }
+    if (!list.length) {
+      el.innerHTML = `<div class="jv-empty"><h3>Nothing <em class="jv-p">matches.</em></h3><p>Try fewer filters.</p>${anyFilter ? '<button type="button" class="jv-btn ghost" id="fClear2">Clear all filters</button>' : ''}</div>`;
+      $('fClear2')?.addEventListener('click', clearFilters);
+      return;
+    }
+    el.innerHTML = view === 'timeline' ? m.v2.timelineHtml(list) : `<div class="jv-cards">${list.map((t) => m.v2.tradeCardHtml(t)).join('')}</div>`;
+    m.engine.hydrateTscShots(el, m.authFetch);
   }
 
-  async function apiFetch(path, opts = {}) {
-    const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
-    if (window.AGHF_SESSION_TOKEN) headers.Authorization = `Bearer ${window.AGHF_SESSION_TOKEN}`;
-    const res = await fetch(path, { ...opts, headers });
-    const body = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(body.error || `Request failed (${res.status})`);
-    return body;
+  function clearFilters() {
+    chips.clear();
+    ['fSearch', 'fFrom', 'fTo', 'fInstrument', 'fSetup', 'fGrade', 'fEmotion'].forEach((id) => { $(id).value = ''; });
+    paintChips();
+    paintList();
   }
 
-  document.addEventListener('aghf-auth-ready', async () => {
-    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
-  });
-
-  /* ── Calendar / Summary views (independent of the List view's own filters) ── */
-
-  let activeView = 'list';
-  let calYear, calMonth; // 0-indexed month
-  let calInstrument = '', calAccount = '';
-  let calAllEntries = null; // lazy-loaded once, shared by Calendar + Summary
-  let calAllChecklists = null;
-  let calActivePlan = null;
-
-  async function ensureCalendarData() {
-    if (calAllEntries && calAllChecklists) return;
-    const [{ entries }, checklists, plans] = await Promise.all([
-      listEntries({ entryType: 'trade', limit: 500 }),
-      listChecklists(500),
-      listEvalPlans().catch(() => []), // eval plans are optional context here — never blocks the calendar from loading
-    ]);
-    calAllEntries = entries;
-    calAllChecklists = checklists;
-    calActivePlan = plans.find((p) => p.isActive) || null;
-    const accSelect = document.getElementById('cAccount');
-    const accounts = [...new Set(entries.map((e) => e.accountId).filter(Boolean))].sort();
-    accSelect.innerHTML = `<option value="">All</option>${accounts.map((a) => `<option value="${a}">${a}</option>`).join('')}`;
-    document.getElementById('cInstrument').insertAdjacentHTML('beforeend', INSTRUMENT_SYMBOLS.map((s) => `<option value="${s}">${s}</option>`).join(''));
-  }
-
-  function filteredCalendarEntries() {
-    let rows = filterByAccount(calAllEntries, calAccount || null);
-    if (calInstrument) rows = rows.filter((e) => e.instrument === calInstrument);
+  /* ── Calendar ── */
+  const monthPrefix = () => `${calYear}-${String(calMonth + 1).padStart(2, '0')}`;
+  function calTrades() {
+    let rows = m.math.filterByAccount(trades, calAccount || null);
+    if (calInstrument) rows = rows.filter((t) => t.instrument === calInstrument);
     return rows;
   }
-  function filteredCalendarChecklists() {
-    return calAccount ? calAllChecklists.filter((c) => c.accountId === calAccount) : calAllChecklists;
+  function monthAggregates() {
+    const rows = calTrades();
+    const lists = calAccount ? checklists.filter((c) => c.accountId === calAccount) : checklists;
+    const byDay = m.math.groupEntriesByDay(rows);
+    const checklistsByDay = m.math.groupChecklistsByDay(lists);
+    const out = new Map();
+    for (const [date, dayTrades] of byDay.entries()) if (date.startsWith(monthPrefix())) out.set(date, m.math.computeDayAggregate(date, dayTrades, checklistsByDay.get(date) || []));
+    for (const [date, list] of checklistsByDay.entries()) if (date.startsWith(monthPrefix()) && !out.has(date)) out.set(date, m.math.computeDayAggregate(date, [], list));
+    return out;
+  }
+  const move = (delta, paint) => { calMonth += delta; if (calMonth < 0) { calMonth = 11; calYear -= 1; } if (calMonth > 11) { calMonth = 0; calYear += 1; } selectedDate = null; paint(); };
+
+  function paintCalendar() {
+    const aggs = monthAggregates();
+    if (!selectedDate || !selectedDate.startsWith(monthPrefix())) {
+      const traded = [...aggs.values()].filter((a) => a.tradeCount).map((a) => a.date).sort();
+      selectedDate = traded[traded.length - 1] || `${monthPrefix()}-01`;
+    }
+    const monthTrades = calTrades().filter((t) => t.tradeDate?.startsWith(monthPrefix()));
+    m.cal.renderEvalPlanProgressStrip($('jhEvalPlanStrip'), activePlan, [...aggs.values()]);
+    m.cal.renderCalendarView($('jhCalendarBody'), {
+      year: calYear, month: calMonth, grid: m.math.computeMonthGrid(calYear, calMonth, aggs),
+      monthLabel: new Date(calYear, calMonth, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+      tradesByDate: m.math.groupEntriesByDay(monthTrades), selectedDate,
+    }, {
+      onPrev: () => move(-1, paintCalendar),
+      onNext: () => move(1, paintCalendar),
+      onToday: () => { calYear = today.getFullYear(); calMonth = today.getMonth(); selectedDate = null; paintCalendar(); },
+      onSelectDay: (date) => {
+        if (!date.startsWith(monthPrefix())) { calYear = Number(date.slice(0, 4)); calMonth = Number(date.slice(5, 7)) - 1; }
+        selectedDate = date;
+        paintCalendar();
+        if (window.matchMedia('(max-width:1100px)').matches) $('jhDay').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      },
+    });
+    const day = $('jhDay');
+    const agg = aggs.get(selectedDate) || null;
+    day.innerHTML = m.v2.dayPanelHtml({
+      date: selectedDate, aggregate: agg,
+      trades: calTrades().filter((t) => t.tradeDate === selectedDate),
+      reflections: reflections.filter((r) => r.tradeDate === selectedDate),
+      planNote: activePlan && agg?.tradeCount ? m.cal.renderDayVsPlanNote(agg, activePlan) : '',
+    });
+    m.cal.wireDayPanel(day);
   }
 
-  function monthAggregates(year, month) {
-    const entries = filteredCalendarEntries();
-    const checklists = filteredCalendarChecklists();
-    const byDay = groupEntriesByDay(entries);
-    const checklistsByDay = groupChecklistsByDay(checklists);
-    const prefix = `${year}-${String(month + 1).padStart(2, '0')}`;
-    const aggregatesByDate = new Map();
-    for (const [date, trades] of byDay.entries()) {
-      if (!date.startsWith(prefix)) continue;
-      aggregatesByDate.set(date, computeDayAggregate(date, trades, checklistsByDay.get(date) || []));
-    }
-    for (const [date, checklistsForDay] of checklistsByDay.entries()) {
-      if (!date.startsWith(prefix) || aggregatesByDate.has(date)) continue;
-      aggregatesByDate.set(date, computeDayAggregate(date, [], checklistsForDay));
-    }
-    return aggregatesByDate;
-  }
-
-  async function paintCalendarView() {
-    await ensureCalendarData();
-    document.getElementById('cFilterStatus').textContent = (calInstrument || calAccount)
-      ? `Showing filtered results${calInstrument ? ` — ${calInstrument}` : ''}${calAccount ? ` — ${calAccount}` : ''}`
-      : '';
-    const aggregatesByDate = monthAggregates(calYear, calMonth);
-    const grid = computeMonthGrid(calYear, calMonth, aggregatesByDate);
-    const monthLabel = new Date(calYear, calMonth, 1).toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
-    renderEvalPlanProgressStrip(document.getElementById('jhEvalPlanStrip'), calActivePlan, [...aggregatesByDate.values()]);
-    renderCalendarView(document.getElementById('jhCalendarBody'), { year: calYear, month: calMonth, grid, monthLabel }, {
-      onPrev: () => { calMonth -= 1; if (calMonth < 0) { calMonth = 11; calYear -= 1; } paintCalendarView(); },
-      onNext: () => { calMonth += 1; if (calMonth > 11) { calMonth = 0; calYear += 1; } paintCalendarView(); },
-      onToday: () => { const t = new Date(); calYear = t.getFullYear(); calMonth = t.getMonth(); paintCalendarView(); },
-      onSelectDay: (date) => openDayDrawer(date, aggregatesByDate),
-      onCreateEntryForDate: () => {},
+  function paintPerformance() {
+    const aggs = monthAggregates();
+    const days = [...aggs.values()];
+    const summary = m.math.computeMonthSummary(days, { journalingStreak: stats?.journalingStreak ?? null });
+    m.cal.renderPerformanceSummaryView($('jhSummaryBody'), summary, {
+      monthLabel: new Date(calYear, calMonth, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }),
+      days,
+      onPrev: () => move(-1, paintPerformance),
+      onNext: () => move(1, paintPerformance),
     });
   }
 
-  function openDayDrawer(date, aggregatesByDate) {
-    const aggregate = aggregatesByDate.get(date) || { date, tradeCount: 0, netPnl: null, wins: 0, losses: 0, breakeven: 0, cleanExecution: null, journalComplete: null, missedSetup: false };
-    const trades = filteredCalendarEntries().filter((e) => e.tradeDate === date);
-    renderTradeDayDrawer(document.getElementById('jhDrawerRoot'), { date, aggregate, trades, plan: calActivePlan }, {
-      onClose: () => closeTradeDayDrawer(document.getElementById('jhDrawerRoot')),
-      apiFetch,
-    });
-    hydrateTscShots(document.getElementById('jhDrawerRoot'), apiFetch);
+  const TITLES = {
+    cards: 'All your <em class="jv-t">trades.</em>',
+    timeline: 'Day by <em class="jv-t">day.</em>',
+    calendar: 'Month by <em class="jv-t">month.</em>',
+    performance: 'How the month <em class="jv-t">went.</em>',
+  };
+
+  function paintView() {
+    document.querySelectorAll('.jv-switch [data-view]').forEach((b) => b.classList.toggle('on', b.dataset.view === view));
+    $('jhViewTitle').innerHTML = TITLES[view];
+    $('jhListView').hidden = !(view === 'cards' || view === 'timeline');
+    $('jhCalendarView').hidden = view !== 'calendar';
+    $('jhSummaryView').hidden = view !== 'performance';
+    if (view === 'calendar') paintCalendar();
+    else if (view === 'performance') paintPerformance();
+    else paintList();
   }
 
-  async function paintSummaryView() {
-    await ensureCalendarData();
-    const aggregatesByDate = monthAggregates(calYear, calMonth);
-    const summary = computeMonthSummary([...aggregatesByDate.values()]);
-    const monthLabel = new Date(calYear, calMonth, 1).toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
-    let journalingStreak = null;
-    try { journalingStreak = (await window.AGHF_FETCH_PROFILE?.())?.profile?.journal_streak ?? null; } catch { /* streak just omitted if unavailable */ }
-    renderPerformanceSummaryView(document.getElementById('jhSummaryBody'), { ...summary, journalingStreak }, { monthLabel });
-  }
-
-  function switchView(view) {
-    activeView = view;
-    document.getElementById('jhListView').hidden = view !== 'list';
-    document.getElementById('jhCalendarView').hidden = view !== 'calendar';
-    document.getElementById('jhSummaryView').hidden = view !== 'summary';
-    closeTradeDayDrawer(document.getElementById('jhDrawerRoot'));
-    renderViewSwitcher(document.getElementById('jhViewSwitch'), activeView, switchView);
-    if (view === 'calendar') paintCalendarView();
-    else if (view === 'summary') paintSummaryView();
+  function paintTop() {
+    $('jhOverview').innerHTML = m.v2.historyOverviewHtml(stats, trades);
+    $('jhInsights').innerHTML = m.v2.insightsHtml(m.insights.computeInsights(trades));
+    const hidden = localStorage.getItem('aghf_snapshot_private') === '1';
+    $('jvPrivacy').textContent = hidden ? 'Show P&L' : 'Hide P&L';
+    $('jvPrivacy').setAttribute('aria-pressed', String(hidden));
   }
 
   async function boot() {
     try {
-      const [
-        journalService, checklistService, instrumentData, dashboardModels, journalEngine,
-        journalInsights, dayliDeskEngine, journalCalendarMath, journalCalendarEngine, evalService,
-      ] = await Promise.all([
+      const [journal, checklist, instruments, models, engine, insights, desk, math, cal, evalService, v2, af] = await Promise.all([
         import('./shared/journal-service.js'),
         import('./shared/checklist-service.js'),
         import('./shared/instrument-data.js'),
@@ -290,57 +273,77 @@
         import('./shared/journal-calendar-math.js'),
         import('./shared/journal-calendar-engine.js'),
         import('./shared/eval-service.js'),
+        import('./shared/journal-v2.js'),
+        import('./shared/auth-fetch.js'),
       ]);
-      ({ listEntries, getJournalStats } = journalService);
-      ({ listChecklists } = checklistService);
-      ({ INSTRUMENT_SYMBOLS } = instrumentData);
-      ({ EMOTION_OPTIONS_V2 } = dashboardModels);
-      ({ renderTradeSummaryCard, entryToSummaryCardProps, hydrateTscShots, renderJournalStatsRow, renderBadgesStrip, renderInsightCards } = journalEngine);
-      ({ computeInsights } = journalInsights);
-      ({ renderSkeleton, renderErrorState } = dayliDeskEngine);
-      ({ groupEntriesByDay, groupChecklistsByDay, computeDayAggregate, computeMonthGrid, computeMonthSummary, filterByAccount } = journalCalendarMath);
-      ({ renderViewSwitcher, renderCalendarView, renderTradeDayDrawer, closeTradeDayDrawer, renderPerformanceSummaryView, isPnlHidden, renderEvalPlanProgressStrip } = journalCalendarEngine);
-      ({ listEvalPlans } = evalService);
+      m = { journal, checklist, instruments, models, engine, insights, desk, math, cal, evalService, v2, authFetch: af.authFetch };
     } catch (err) {
       renderFallbackError(err);
       return;
     }
 
-    const today = new Date();
-    calYear = today.getFullYear();
-    calMonth = today.getMonth();
+    m.desk.renderSkeleton($('jhCards'), 4);
+    try {
+      const [t, pre, post, lists, plans, st] = await Promise.all([
+        m.journal.listEntries({ entryType: 'trade', limit: 500 }),
+        m.journal.listEntries({ entryType: 'premarket_reflection', limit: 300 }).catch(() => ({ entries: [] })),
+        m.journal.listEntries({ entryType: 'postmarket_reflection', limit: 300 }).catch(() => ({ entries: [] })),
+        m.checklist.listChecklists(500),
+        m.evalService.listEvalPlans().catch(() => []),
+        m.journal.getJournalStats(),
+      ]);
+      trades = t.entries;
+      reflections = [...pre.entries, ...post.entries];
+      checklists = lists;
+      activePlan = plans.find((p) => p.isActive) || null;
+      stats = st;
+    } catch (err) {
+      console.error('Journal history load error:', err);
+      m.desk.renderErrorState($('jhCards'), err.message || "Couldn't load your journal history.", boot);
+      return;
+    }
 
-    document.getElementById('fInstrument').insertAdjacentHTML('beforeend', INSTRUMENT_SYMBOLS.map((s) => `<option value="${s}">${s}</option>`).join(''));
-    const allEmotions = [...new Set([...EMOTION_OPTIONS_V2.entering, ...EMOTION_OPTIONS_V2.during, ...EMOTION_OPTIONS_V2.exiting])].sort();
-    document.getElementById('fEmotion').insertAdjacentHTML('beforeend', allEmotions.map((e) => `<option value="${e}">${e}</option>`).join(''));
+    const opts = (list) => list.map((x) => `<option value="${m.v2.esc(x)}">${m.v2.esc(x)}</option>`).join('');
+    const markets = [...new Set([...m.instruments.INSTRUMENT_SYMBOLS, ...trades.map((t) => t.instrument).filter(Boolean)])];
+    $('fInstrument').insertAdjacentHTML('beforeend', opts(markets));
+    $('cInstrument').insertAdjacentHTML('beforeend', opts(markets));
+    $('fSetup').insertAdjacentHTML('beforeend', opts([...new Set(trades.map((t) => t.setupType).filter(Boolean))].sort()));
+    const E = m.models.EMOTION_OPTIONS_V2;
+    $('fEmotion').insertAdjacentHTML('beforeend', opts([...new Set([...E.entering, ...E.during, ...E.exiting])].sort()));
+    $('cAccount').insertAdjacentHTML('beforeend', opts([...new Set(trades.map((t) => t.accountId).filter(Boolean))].sort()));
 
-    filterIds.forEach((id) => document.getElementById(id).addEventListener('change', load));
-    document.getElementById('fSearch').addEventListener('input', debounce(load, 300));
-    document.getElementById('fClear').addEventListener('click', () => {
-      filterIds.forEach((id) => { document.getElementById(id).value = ''; });
-      load();
+    let searchTimer;
+    $('fSearch').addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(paintList, 250); });
+    ['fFrom', 'fTo', 'fInstrument', 'fSetup', 'fGrade', 'fEmotion'].forEach((id) => $(id).addEventListener('change', paintList));
+    $('fClear').addEventListener('click', clearFilters);
+    $('fMoreBtn').addEventListener('click', () => {
+      const open = $('fMore').hidden;
+      $('fMore').hidden = !open;
+      $('fMoreBtn').setAttribute('aria-expanded', String(open));
+      $('fMoreBtn').classList.toggle('on', open);
     });
-
-    document.getElementById('cInstrument').addEventListener('change', (e) => { calInstrument = e.target.value; paintCalendarView(); });
-    document.getElementById('cAccount').addEventListener('change', (e) => { calAccount = e.target.value; paintCalendarView(); });
-    document.getElementById('cClear').addEventListener('click', () => {
-      calInstrument = ''; calAccount = '';
-      document.getElementById('cInstrument').value = ''; document.getElementById('cAccount').value = '';
-      paintCalendarView();
+    $('cInstrument').addEventListener('change', (e) => { calInstrument = e.target.value; selectedDate = null; paintCalendar(); });
+    $('cAccount').addEventListener('change', (e) => { calAccount = e.target.value; selectedDate = null; paintCalendar(); });
+    $('jvPrivacy').addEventListener('click', () => {
+      const hidden = localStorage.getItem('aghf_snapshot_private') === '1';
+      try { localStorage.setItem('aghf_snapshot_private', hidden ? '0' : '1'); } catch { /* private window */ }
+      paintTop();
+      paintView();
     });
-    document.getElementById('cPrivacyToggle').addEventListener('click', () => {
-      localStorage.setItem('aghf_snapshot_private', isPnlHidden() ? '0' : '1');
-      if (activeView === 'calendar') paintCalendarView(); else if (activeView === 'summary') paintSummaryView();
-    });
+    document.querySelectorAll('.jv-switch [data-view]').forEach((b) => b.addEventListener('click', () => {
+      view = b.dataset.view;
+      try { localStorage.setItem('aghf_history_view', view); } catch { /* private window */ }
+      paintView();
+    }));
 
-    renderViewSwitcher(document.getElementById('jhViewSwitch'), activeView, switchView);
-
-    // Deep-link support for "View Full Calendar"-style cards elsewhere (e.g. performance.html).
-    const initialView = new URLSearchParams(window.location.search).get('view');
-    if (initialView === 'calendar' || initialView === 'summary') switchView(initialView);
-
-    load();
+    paintChips();
+    paintTop();
+    paintView();
   }
+
+  document.addEventListener('aghf-auth-ready', async () => {
+    try { await boot(); } finally { window.AGHF_HIDE_LOADER?.(); }
+  }, { once: true });
 </script>
 
 </body>
