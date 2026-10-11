@@ -24,6 +24,7 @@ import {
 } from './lesson-engine.js';
 import { isPreviewAll } from './preview.js';
 import { saveLessonReflection } from './journal-service.js';
+import { paintAristella } from './academy-v3.js';
 
 // Temporary: everything unlocked while the Academy is being built (see preview.js).
 const UNLOCK = isPreviewAll();
@@ -157,7 +158,37 @@ export function renderLoopWatch(slide, data, satisfy) {
   const lp = data.launchpad || {};
   const markers = (data.watch && data.watch.markers) || [];
   const preview = data.watch && data.watch.preview;
-  slide.innerHTML = `
+  if (document.body.classList.contains('aca-v3')) {
+    slide.innerHTML = `
+    <div class="v3-mission">
+      <div class="v3-mission-face" data-ari="idle" data-face></div>
+      <div class="v3-mission-t">
+        <span class="v3-kick">Your mission</span>
+        <h3>By the end, you’ll be <em class="v3-t">able to…</em></h3>
+        ${lp.outcome ? `<p class="v3-outcome">${lp.outcome}</p>` : ''}
+        ${lp.missionQuestion ? `<div class="v3-mq"><small>Your mission question</small>${lp.missionQuestion}</div>` : ''}
+      </div>
+    </div>
+    <div class="dl-watch-block v3-video" id="dlWatchBlock">
+      <button type="button" class="dl-focus-toggle" id="dlFocusToggle">⛶ Focus mode</button>
+      <div class="lw-video-block">
+        ${data.videoUrl ? videoPlayerHtml(data.videoUrl) : preview ? `
+          <canvas class="dl-watch-preview-canvas" id="dlWatchPreview" width="780" height="320"></canvas>
+          <div class="dl-watch-preview-caption" id="dlWatchPreviewCaption"></div>
+          <div class="lw-video-soon">Preview, full video coming soon</div>
+        ` : `
+          <div class="v3-video-soon"><div class="v3-video-ari" data-ari="point"></div><div><span class="v3-kick">Lesson video</span><h2>${data.title}</h2><small>Video coming soon</small></div></div>
+        `}
+      </div>
+      ${markers.length ? `
+      <div class="dl-marker-rail" id="dlMarkerRail">
+        ${markers.map((m) => `<button type="button" class="dl-marker"><span class="dl-marker-t">${m.t}</span><span class="dl-marker-label">${m.label}</span></button>`).join('')}
+      </div>` : ''}
+    </div>
+    <div class="v3-watch-bar"><small>${data.videoDuration ? `${data.videoDuration} · ` : ''}With Aristella</small><button type="button" class="lw-continue-btn lw-watched-btn" id="lwWatchedBtn">✓ Watched, continue</button></div>
+  `;
+    paintAristella(slide);
+  } else slide.innerHTML = `
     <div class="dl-launchpad">
       <div class="lw-eyebrow">Lesson Launchpad</div>
       <h2>${data.title}</h2>

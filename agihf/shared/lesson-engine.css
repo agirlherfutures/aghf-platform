@@ -222,7 +222,7 @@
 
 /* ── Bottom nav bar ───────────────────────────────────────────────── */
 .lw-bottom{position:fixed;left:230px;right:0;bottom:0;background:rgba(253,248,245,.96);backdrop-filter:blur(16px);border-top:1px solid var(--border);padding:13px 44px;display:flex;justify-content:space-between;align-items:center;z-index:50;}
-@media(max-width:900px){.lw-bottom{left:0;padding:13px 18px;}}
+@media(max-width:900px){.lw-bottom{left:0;padding:10px 14px;bottom:calc(68px + env(safe-area-inset-bottom));}.lw-wrap{padding-bottom:170px;}}
 .lw-dots{display:flex;gap:5px;}
 .lw-dot{width:8px;height:8px;border-radius:50%;cursor:pointer;background:var(--border);border:1.5px solid var(--border);}
 .lw-dot.done{background:var(--teal);border-color:var(--teal);}
@@ -283,8 +283,8 @@
 
 /* ── Streak toast + completion toast + confetti ──────────────────── */
 .lw-toast,.lw-streak{position:fixed;background:var(--dark);color:#fff;border-radius:14px;box-shadow:0 16px 46px rgba(44,24,16,.3);z-index:999;}
-.lw-toast{bottom:84px;right:26px;padding:13px 18px;display:flex;gap:11px;align-items:center;transform:translateY(18px);opacity:0;transition:.35s;}
-.lw-toast.show{transform:translateY(0);opacity:1;}
+.lw-toast{bottom:84px;right:26px;padding:13px 18px;display:flex;gap:11px;align-items:center;transform:translateY(18px);opacity:0;transition:.35s;pointer-events:none;}
+.lw-toast.show{transform:translateY(0);opacity:1;pointer-events:auto;}
 .lw-streak{top:80px;left:50%;transform:translateX(-50%) translateY(-20px);padding:12px 22px;display:flex;gap:10px;align-items:center;opacity:0;transition:.35s;pointer-events:none;}
 .lw-streak.show{transform:translateX(-50%) translateY(0);opacity:1;}
 .lw-confetti{position:fixed;border-radius:2px;pointer-events:none;z-index:1000;}
@@ -294,3 +294,4 @@
 .lw-continue-btn{display:block;margin-left:auto;margin-right:0;align-self:flex-end;}
 .dl-playbook-actions .lw-continue-btn{margin-left:0;}
 @media (max-width:600px){ .lw-continue-btn{width:100%;} }
+@media(max-width:900px){.lw-toast{bottom:150px;right:14px;left:14px}}

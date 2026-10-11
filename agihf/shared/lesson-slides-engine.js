@@ -55,6 +55,7 @@ import { DESK_RENDERERS } from './desk-lessons.js';
 import { LEVEL_RENDERERS } from './level-tools.js';
 import { SD_RENDERERS, confirmHtml } from './sd-slides.js';
 import { ICC_WALK_RENDERERS } from './icc-walk.js';
+import { renderStageBar, renderV3Complete } from './academy-v3.js';
 
 // Temporary: everything unlocked while the Academy is being built (see preview.js).
 const UNLOCK = isPreviewAll();
@@ -150,6 +151,10 @@ export function renderSlideWizard(data, opts) {
     nextBtn.disabled = !done[cur] && !UNLOCK;
     nextBtn.textContent = cur === steps.length - 1 ? 'Done ✦' : done[cur] ? 'Next →' : UNLOCK ? 'Skip →' : stepPrompt(cur);
     buildDots();
+    const stagesEl = document.getElementById('lhStages');
+    if (stagesEl && document.body.classList.contains('aca-v3')) {
+      renderStageBar(stagesEl, steps, cur, done, data, goTo, (j) => UNLOCK || j <= cur || done[j] || (j > 0 && done[j - 1]));
+    }
   }
 
   function goTo(i) {
@@ -174,6 +179,7 @@ export function renderSlideWizard(data, opts) {
       const ctx = steps.slice(0, i).reverse().find((st) => st.type === 'slide' && st.slide.chart);
       renderSlideBlock(slideEl, step.slide, () => completeStepAndAdvance(i), { ...helpers, contextChart: ctx?.slide.chart });
     }
+    else if (step.type === 'complete' && document.body.classList.contains('aca-v3')) renderV3Complete(slideEl, data, opts);
     else if (step.type === 'complete' && data.completeStyle === 'v2') renderV2Complete(slideEl, data, { nextHref, backHref, nextTitle, nextCtaLabel });
     else if (step.type === 'complete') renderSlideComplete(slideEl, data, { nextHref, backHref, nextTitle, nextHook, nextCtaLabel });
   }
