@@ -187,6 +187,7 @@
     }
     if (!shown.length) { el.innerHTML = '<div class="jv-empty"><p>No trades match this filter.</p></div>'; return; }
     el.innerHTML = view === 'timeline' ? mods.v2.timelineHtml(shown) : `<div class="jv-cards">${shown.map((t) => mods.v2.tradeCardHtml(t)).join('')}</div>`;
+    mods.engine.hydrateTscShots(el, mods.authFetch);
   }
 
   function paintPrivacy() {
@@ -214,7 +215,7 @@
 
   async function boot() {
     try {
-      const [journal, desk, checklist, evalService, v2, math, cal] = await Promise.all([
+      const [journal, desk, checklist, evalService, v2, math, cal, engine, af] = await Promise.all([
         import('./shared/journal-service.js'),
         import('./shared/dayli-desk-engine.js'),
         import('./shared/checklist-service.js'),
@@ -222,8 +223,10 @@
         import('./shared/journal-v2.js'),
         import('./shared/journal-calendar-math.js'),
         import('./shared/journal-calendar-engine.js'),
+        import('./shared/journal-engine.js'),
+        import('./shared/auth-fetch.js'),
       ]);
-      mods = { journal, desk, checklist, evalService, v2, math, cal };
+      mods = { journal, desk, checklist, evalService, v2, math, cal, engine, authFetch: af.authFetch };
     } catch (err) {
       renderFallbackError(err);
       return;

@@ -31,14 +31,6 @@ const STAGES = ['trade', 'execution', 'entered', 'exited', 'mindset', 'lesson', 
 const STAGE_LABELS = { trade: 'Trade', execution: 'Execution', entered: 'Entered', exited: 'Exited', mindset: 'Mindset', lesson: 'Lesson', review: 'Review' };
 const SESSIONS = ['Asia', 'London', 'NY AM', 'NY Lunch', 'NY PM'];
 
-const COMING_SOON_BADGES = [
-  { icon: '📓', label: 'Trade Historian' },
-  { icon: '🎯', label: 'Sniper Discipline' },
-  { icon: '🧠', label: 'Mind Over Market' },
-  { icon: '🔥', label: '7-Day Journal Streak' },
-  { icon: '💎', label: 'Process Over Profit' },
-];
-
 /** Negative-signal emotions that dock the emotional-discipline execution-score component. */
 const NEGATIVE_DURING = ['Anxious', 'Watching Every Tick', 'Second Guessing', 'Tempted to Exit', 'Tempted to Move Stop', 'Overconfident'];
 const NEGATIVE_AFTER = ['Frustrated', 'Regretful', 'Disappointed'];
@@ -503,7 +495,7 @@ export async function hydrateTscShots(container, apiFetch) {
       el.style.backgroundImage = `url(${url})`;
     } catch (err) {
       console.error('Summary card screenshot load error:', err);
-      el.classList.add('tsc-hero-shot-error');
+      el.classList.add('tsc-hero-shot-error', 'jv-card-shot-error');
       el.textContent = "Couldn't load screenshot";
     }
   }
@@ -756,41 +748,4 @@ export function entryToSummaryCardProps(entry) {
 export function renderTradeSummaryCard(props, opts = {}) {
   // The illustrated card lives in journal-v2.js; props.entry carries the full record.
   return tradeCardHtml(props.entry || props, { variant: opts.variant || 'list' });
-}
-
-/* ── Journal History page helpers ───────────────────────────────────── */
-
-export function renderJournalStatsRow(container, stats) {
-  const tiles = [
-    { label: 'Trades Logged', value: stats.tradesLogged, hero: false, muted: false },
-    { label: 'Win Rate', value: stats.winRate != null ? stats.winRate + '%' : '—', hero: false, muted: false },
-    { label: 'Avg Winner', value: stats.avgWinner != null ? fmtMoney(stats.avgWinner) : '—', hero: false, muted: true },
-    { label: 'Avg Loser', value: stats.avgLoser != null ? fmtMoney(stats.avgLoser) : '—', hero: false, muted: true },
-    { label: 'Avg R', value: stats.avgR != null ? stats.avgR.toFixed(2) + 'R' : '—', hero: false, muted: false },
-    { label: 'Rule Follow Rate', value: stats.ruleFollowRate != null ? stats.ruleFollowRate + '%' : '—', hero: true, muted: false },
-    { label: 'Bias Accuracy', value: stats.biasAccuracyRate != null ? stats.biasAccuracyRate + '%' : '—', hero: true, muted: false },
-    { label: 'Journaling Streak', value: stats.journalingStreak ? `${stats.journalingStreak} 🔥` : '0', hero: true, muted: false },
-  ];
-  container.innerHTML = tiles.map((t) => `
-    <div class="jh-stat-tile ${t.hero ? 'hero' : ''} ${t.muted ? 'muted' : ''}">
-      <div class="jh-stat-label">${t.label}</div>
-      <div class="jh-stat-value">${t.value}</div>
-    </div>`).join('');
-}
-
-export function renderBadgesStrip(container) {
-  container.innerHTML = COMING_SOON_BADGES.map((b) => `
-    <div class="jh-badge-tile locked" title="Badges are coming soon">
-      <span class="jh-badge-icon">${b.icon}</span>
-      <span class="jh-badge-label">${b.label}</span>
-    </div>`).join('');
-}
-
-export function renderInsightCards(container, insights) {
-  if (!insights.length) { container.innerHTML = ''; return; }
-  container.innerHTML = insights.map((i) => `
-    <div class="jh-insight-card ${i.kind}">
-      <span class="jh-insight-icon">${i.icon}</span>
-      <span class="jh-insight-text">${i.text}</span>
-    </div>`).join('');
 }

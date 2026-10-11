@@ -14,7 +14,6 @@
  */
 
 import { classifyDayBadge, classifyDayVsPlan } from './journal-calendar-math.js';
-import { dayPanelHtml } from './journal-v2.js';
 import {
   computeProfitTargetDollar, computeRemainingProfitTarget, computeDrawdownLimitDollar,
   computeRemainingDrawdown, computeConsistencyRuleStatus, classifyPlanRiskStatus,
@@ -41,22 +40,6 @@ function fmtPnl(n) {
 
 function pnlSpan(n, extraClass = '') {
   return `<span class="${extraClass} ${isPnlHidden() ? 'dd-blurred' : ''}">${fmtPnl(n)}</span>`;
-}
-
-/* ── View switcher (List / Calendar / Performance Summary) ─────────── */
-
-export function renderViewSwitcher(container, activeView, onSwitch) {
-  const views = [
-    { key: 'list', label: 'List' },
-    { key: 'calendar', label: 'Calendar' },
-    { key: 'summary', label: 'Performance Summary' },
-  ];
-  container.innerHTML = `<div class="chip-group jh-view-switch">
-    ${views.map((v) => `<button type="button" class="chip ${v.key === activeView ? 'active' : ''}" data-view="${v.key}">${v.label}</button>`).join('')}
-  </div>`;
-  container.querySelectorAll('[data-view]').forEach((btn) => {
-    btn.addEventListener('click', () => onSwitch(btn.dataset.view));
-  });
 }
 
 /* ── Calendar view ────────────────────────────────────────────────── */
@@ -153,36 +136,6 @@ export function wireDayPanel(container) {
   });
 }
 
-/* ── Trade Day Drawer (Journal History's full calendar) ──────────────── */
-
-/**
- * A slide-over from the right with the same day panel the Journal page
- * shows inline.
- * @param {{date:string, aggregate:object, trades:object[], plan?:object, reflections?:object[]}} data
- * @param {{onClose:Function}} handlers
- */
-export function renderTradeDayDrawer(container, data, handlers) {
-  const { date, aggregate, trades, plan, reflections } = data;
-  container.innerHTML = `
-    <div class="jh-day-drawer-host" id="jhDrawerHost">
-      <div class="jh-day-drawer jv-day">
-        <button type="button" class="jh-day-drawer-close" id="jhDrawerClose" aria-label="Close">✕</button>
-        ${dayPanelHtml({ date, aggregate, trades, reflections, planNote: plan ? renderDayVsPlanNote(aggregate, plan) : '' })}
-      </div>
-    </div>`;
-  wireDayPanel(container);
-  const close = () => handlers.onClose();
-  container.querySelector('#jhDrawerClose').addEventListener('click', close);
-  container.querySelector('#jhDrawerHost').addEventListener('click', (e) => { if (e.target.id === 'jhDrawerHost') close(); });
-  document.addEventListener('keydown', function escHandler(e) {
-    if (e.key === 'Escape') { close(); document.removeEventListener('keydown', escHandler); }
-  });
-}
-
-export function closeTradeDayDrawer(container) {
-  container.innerHTML = '';
-}
-
 /* ── Evaluation Plan Integration ──────────────────────────────────── */
 
 const DAY_VS_PLAN_COPY = {
@@ -211,12 +164,10 @@ export function renderDayVsPlanNote(aggregate, plan) {
  */
 export function renderEvalPlanProgressStrip(container, plan, dayAggregates) {
   if (!plan) {
-    container.innerHTML = `
-      <div class="dd-card" style="margin-bottom:16px;">
-        <div class="section-title" style="margin-bottom:6px;">Your Eval Plan</div>
-        <div class="small-help" style="margin-bottom:14px;">No active plan yet — set one as active in the Pass Your Eval Calculator to track your progress here.</div>
-        <a class="dd-primary-btn" href="eval-calculator.html">Open Eval Calculator</a>
-      </div>`;
+    container.innerHTML = `<div class="jv-plan-card empty">
+      <div><span class="jv-kicker">Pass Your Eval</span><h3>Track an evaluation <em class="jv-p">here.</em></h3>
+      <p>Set a plan as active in the Evaluation Lab and its target, drawdown and days show up next to your calendar.</p></div>
+      <a class="jv-btn ghost" href="eval-calculator.html">Open the Evaluation Lab</a></div>`;
     return;
   }
   const target = computeProfitTargetDollar(plan);
@@ -229,47 +180,64 @@ export function renderEvalPlanProgressStrip(container, plan, dayAggregates) {
   const consistency = computeConsistencyRuleStatus(plan, tradingDays);
   const { status: riskStatusKey } = classifyPlanRiskStatus(plan);
   const riskCopy = PLAN_RISK_STATUS_COPY[riskStatusKey];
+  const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-  container.innerHTML = `
-    <div class="dd-card" style="margin-bottom:16px;">
-      <div class="section-title" style="margin-bottom:10px;">Active Plan: ${plan.name}</div>
-      <div class="jh-stats-row">
-        <div class="jh-stat-tile hero"><div class="jh-stat-label">Remaining Target</div><div class="jh-stat-value">${target != null ? pnlSpan(remainingTarget) : '—'}</div></div>
-        <div class="jh-stat-tile ${ddLimit != null ? '' : 'muted'}"><div class="jh-stat-label">Remaining Drawdown</div><div class="jh-stat-value">${ddLimit != null ? pnlSpan(remainingDd) : 'Not Sure'}</div></div>
-        <div class="jh-stat-tile"><div class="jh-stat-label">Trading Days</div><div class="jh-stat-value">${daysElapsed}${minDays ? ` / ${minDays} min` : ''}</div></div>
-        <div class="jh-stat-tile"><div class="jh-stat-label">Plan Risk Status</div><div class="jh-stat-value" style="font-size:1rem;">${riskCopy.label}</div></div>
-      </div>
-      ${consistency.applicable && consistency.status !== 'not_enough_data' ? `<div class="small-help" style="margin-top:10px;">Consistency rule: ${consistency.status === 'violated' ? `your best day was ${consistency.bestDayPct.toFixed(0)}% of total profit, above your ${plan.consistencyRulePct}% rule.` : 'within your consistency rule so far.'}</div>` : ''}
-    </div>`;
+  container.innerHTML = `<div class="jv-plan-card">
+    <div class="jv-plan-head"><span class="jv-kicker">Active evaluation</span><h3>${esc(plan.name)}</h3></div>
+    <div class="jv-plan-tiles">
+      <div class="jv-st" style="--c:#3E9E93"><small>Target left</small><b>${target != null ? pnlSpan(remainingTarget) : '–'}</b></div>
+      <div class="jv-st" style="--c:#E0607C"><small>Drawdown left</small><b>${ddLimit != null ? pnlSpan(remainingDd) : 'Not sure'}</b></div>
+      <div class="jv-st" style="--c:#7F77DD"><small>Trading days</small><b>${daysElapsed}${minDays ? ` <span>of ${minDays}</span>` : ''}</b></div>
+      <div class="jv-st" style="--c:#F5A857"><small>Plan risk</small><b style="font-size:17px">${esc(riskCopy.label)}</b></div>
+    </div>
+    ${consistency.applicable && consistency.status !== 'not_enough_data' ? `<p class="jv-plan-foot">Consistency rule: ${consistency.status === 'violated' ? `your best day was ${consistency.bestDayPct.toFixed(0)}% of total profit, above your ${plan.consistencyRulePct}% rule.` : 'within your rule so far.'}</p>` : ''}
+  </div>`;
 }
 
-/* ── Performance Summary view ─────────────────────────────────────── */
+/* ── Performance view ────────────────────────────────────────────── */
 
+/**
+ * @param {object} summary from computeMonthSummary()
+ * @param {{monthLabel?:string, days?:object[], onPrev?:Function, onNext?:Function}} opts days = that month's day aggregates, for the bar chart
+ */
 export function renderPerformanceSummaryView(container, summary, opts = {}) {
+  const [mName, mYear] = (opts.monthLabel || 'This month').split(' ');
+  const nav = `<div class="jv-cal-head"><button type="button" class="jv-arr" data-perf="prev" aria-label="Previous month">←</button><h3>${mName} <em class="jv-p">${mYear || ''}</em></h3><button type="button" class="jv-arr" data-perf="next" aria-label="Next month">→</button></div>`;
+  const wire = () => {
+    container.querySelector('[data-perf="prev"]')?.addEventListener('click', () => opts.onPrev?.());
+    container.querySelector('[data-perf="next"]')?.addEventListener('click', () => opts.onNext?.());
+  };
   if (summary.insufficientData) {
-    container.innerHTML = `
-      <div class="dd-card dd-empty">
-        <div class="dd-empty-icon">📊</div>
-        <div class="dd-empty-text">Not enough data yet — journal at least 3 trading days this month to see a performance summary.</div>
-      </div>`;
+    container.innerHTML = `<div class="jv-perf">${nav}<div class="jv-empty"><h3>A few more days <em class="jv-p">to go.</em></h3>
+      <p>Journal at least 3 trading days in a month to see its performance. ${summary.tradingDaysCount ? `You have ${summary.tradingDaysCount} so far.` : ''}</p></div></div>`;
+    wire();
     return;
   }
-  container.innerHTML = `
-    <div class="dd-card">
-      <div class="section-title" style="margin-bottom:14px;">${opts.monthLabel || 'This Month'}</div>
-      <div class="jh-stats-row">
-        <div class="jh-stat-tile hero"><div class="jh-stat-label">Net P&amp;L</div><div class="jh-stat-value">${pnlSpan(summary.netPnl)}</div></div>
-        <div class="jh-stat-tile"><div class="jh-stat-label">Trading Days</div><div class="jh-stat-value">${summary.tradingDaysCount}</div></div>
-        <div class="jh-stat-tile"><div class="jh-stat-label">Win Rate</div><div class="jh-stat-value">${summary.winRate != null ? summary.winRate + '%' : '—'}</div></div>
-        <div class="jh-stat-tile muted"><div class="jh-stat-label">Total Trades</div><div class="jh-stat-value">${summary.totalTrades}</div></div>
-      </div>
-      <div class="jh-stats-row" style="margin-top:12px;">
-        <div class="jh-stat-tile"><div class="jh-stat-label">Best Day</div><div class="jh-stat-value">${pnlSpan(summary.bestDay?.netPnl)}</div></div>
-        <div class="jh-stat-tile muted"><div class="jh-stat-label">Worst Day</div><div class="jh-stat-value">${pnlSpan(summary.worstDay?.netPnl)}</div></div>
-        <div class="jh-stat-tile"><div class="jh-stat-label">Clean Execution Days</div><div class="jh-stat-value">★ ${summary.cleanExecutionDays}</div></div>
-        <div class="jh-stat-tile ${summary.ruleViolationDays ? '' : 'muted'}"><div class="jh-stat-label">Rule Violation Days</div><div class="jh-stat-value">${summary.ruleViolationDays}</div></div>
-      </div>
-      ${summary.missedSetupDays ? `<div class="small-help" style="margin-top:12px;">${summary.missedSetupDays} day${summary.missedSetupDays === 1 ? '' : 's'} this month had a reviewed-and-passed setup with no trade taken.</div>` : ''}
-      ${summary.journalingStreak != null ? `<div class="small-help" style="margin-top:6px;">Current journaling streak: ${summary.journalingStreak} day${summary.journalingStreak === 1 ? '' : 's'}.</div>` : ''}
-    </div>`;
+  const traded = (opts.days || []).filter((d) => d.tradeCount > 0).sort((a, b) => a.date.localeCompare(b.date));
+  const max = Math.max(1, ...traded.map((d) => Math.abs(d.netPnl || 0)));
+  const bars = traded.map((d) => {
+    const h = Math.max(4, Math.round((Math.abs(d.netPnl || 0) / max) * 70));
+    const cls = d.netPnl > 0 ? 'win' : d.netPnl < 0 ? 'loss' : 'even';
+    return `<div class="jv-bar ${cls}" title="${d.date}: ${fmtPnl(d.netPnl)}"><i style="height:${h}px"></i>${d.cleanExecution === true ? '<em>★</em>' : ''}<small>${Number(d.date.slice(8))}</small></div>`;
+  }).join('');
+  const tone = summary.netPnl > 0 ? 'win' : summary.netPnl < 0 ? 'loss' : 'even';
+  container.innerHTML = `<div class="jv-perf">${nav}
+    <div class="jv-stats">
+      <div class="jv-st" style="--c:${summary.netPnl >= 0 ? '#3E9E93' : '#E0607C'}"><small>Net P&amp;L</small><b>${pnlSpan(summary.netPnl)}</b><span>${summary.totalTrades} trades</span></div>
+      <div class="jv-st" style="--c:#7F77DD"><small>Win rate</small><b>${summary.winRate != null ? `${summary.winRate}%` : '–'}</b><span>${summary.wins} wins · ${summary.losses} losses</span></div>
+      <div class="jv-st" style="--c:#F5A857"><small>Best day</small><b>${pnlSpan(summary.bestDay?.netPnl)}</b><span>${summary.bestDay ? new Date(`${summary.bestDay.date}T12:00:00`).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : ''}</span></div>
+      <div class="jv-st" style="--c:#F4829A"><small>Toughest day</small><b>${pnlSpan(summary.worstDay?.netPnl)}</b><span>${summary.worstDay ? new Date(`${summary.worstDay.date}T12:00:00`).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : ''}</span></div>
+    </div>
+    <div class="jv-panel"><span class="jv-kicker">Day by day</span><h3>How the month <em class="jv-t">${tone === 'win' ? 'grew.' : 'moved.'}</em></h3>
+      <div class="jv-bars">${bars}</div><div class="jv-bars-base"></div>
+      <div class="jv-legend"><span><i class="sw win"></i>Green day</span><span><i class="sw loss"></i>Red day</span><span><i class="star">★</i>Clean execution</span></div>
+    </div>
+    <div class="jv-process">
+      <div class="good"><b>★ ${summary.cleanExecutionDays}</b><small>clean execution day${summary.cleanExecutionDays === 1 ? '' : 's'}</small></div>
+      <div class="${summary.ruleViolationDays ? 'hard' : 'good'}"><b>${summary.ruleViolationDays}</b><small>day${summary.ruleViolationDays === 1 ? '' : 's'} with a broken rule</small></div>
+      <div class="purple"><b>${summary.missedSetupDays}</b><small>setup${summary.missedSetupDays === 1 ? '' : 's'} you passed on</small></div>
+      <div class="mixed"><b>${summary.journalingStreak ?? 0}</b><small>day journal streak</small></div>
+    </div>
+  </div>`;
+  wire();
 }
