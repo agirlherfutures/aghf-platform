@@ -299,7 +299,7 @@
         extra: '<div class="pc-subtitle">Powered by Higher-Timeframe ICC™</div>' }));
     });
     const grid = `${extraHtml}<div class="pc-grid">${cards.join('')}</div>${afterHtml}`;
-    const showGrid = () => { document.body.classList.remove('aca-v3', 'aca-p1', 'aca-p2'); list.innerHTML = grid; wireCards(); };
+    const showGrid = () => { document.body.classList.remove('aca-v3', 'aca-p1', 'aca-p2', 'aca-p3', 'aca-p4'); list.innerHTML = grid; wireCards(); };
     async function openCard(key) {
       const back = '<button type="button" class="pc-back">← All phases</button>';
       if (key === 's2') list.innerHTML = back + await strategyTwoDetail(sdOpen);
