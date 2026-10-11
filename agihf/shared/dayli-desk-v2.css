@@ -1,0 +1,129 @@
+/* dayli-desk-v2.css: A Girl & Her Futures™
+ * The Dayli Desk (dashboard.html) and the live market and news pieces
+ * from desk-live.js. Brand look: pastel glows, Playfair headlines with an
+ * italic accent word, eyebrow pills, illustrated cards. Everything is
+ * prefixed dz- so it can't collide with dayli-desk.css. */
+
+.dz{position:relative;--dz-red:#D9534F;--dz-red-pale:#FCEBEA;--dz-teal-ink:#3E9E93;--dz-gold:#C9962E;--dz-gold-pale:#FBF5E8}
+.dz-glow{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
+.dz-glow.a{width:520px;height:420px;left:120px;top:-160px;background:#F9C9D4;opacity:.6}
+.dz-glow.b{width:520px;height:420px;right:-160px;top:-140px;background:#BFE6E1;opacity:.55}
+.dz-glow.c{width:600px;height:460px;right:-220px;bottom:-160px;background:#FBDDB8;opacity:.45}
+.dz>*:not(.dz-glow){position:relative;z-index:1}
+.dz h1,.dz h2,.dz h3,.dz h4{font-family:var(--font-display);color:var(--dark);margin:0;font-weight:900;letter-spacing:-.01em}
+.dz-p{font-style:italic;color:var(--pink)}.dz-t{font-style:italic;color:var(--teal)}.dz-g{font-style:italic;color:var(--peach)}
+.dz-eyebrow{display:inline-flex;align-items:center;gap:6px;border:1.5px solid #F7C2CE;color:var(--pink);background:#fff;border-radius:999px;padding:7px 15px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.dz-kicker{display:block;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pink)}
+.dz-btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:14px 26px;font:700 15px var(--font-body);color:#fff;background:linear-gradient(90deg,var(--pink),var(--peach));box-shadow:0 10px 26px rgba(244,130,154,.35);text-decoration:none;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.dz-btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(244,130,154,.42)}
+.dz-btn.ghost{background:#fff;color:var(--dz-teal-ink);border:2px solid var(--teal);box-shadow:none;padding:12px 22px}
+.dz-btn:focus-visible,.dz-dot:focus-visible,.dz-tile:focus-visible,.dz-link:focus-visible{outline:2.5px solid var(--pink);outline-offset:3px}
+
+/* hero */
+.dz-hero{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:stretch;margin-bottom:24px}
+.dz-hero h1{font-size:52px;line-height:1.02;margin:14px 0 10px}
+.dz-hero p{font-size:16px;color:var(--muted);margin:0 0 20px;max-width:440px;line-height:1.5}
+.dz-actions{display:flex;gap:12px;flex-wrap:wrap}
+.dz-note{position:relative;border-radius:24px;overflow:hidden;min-height:240px;box-shadow:0 18px 40px rgba(44,24,16,.12);border:6px solid #fff;margin:0}
+.dz-note img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%}
+.dz-note:after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(44,24,16,.74))}
+.dz-note figcaption{position:absolute;left:20px;right:20px;bottom:16px;z-index:1;color:#fff}
+.dz-note small{font-size:11px;opacity:.9;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.dz-note q{display:block;font-family:var(--font-display);font-style:italic;font-weight:700;font-size:20px;line-height:1.28;margin-top:4px}
+
+/* stats */
+.dz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:46px}
+.dz-stat{background:#fff;border-radius:16px;padding:14px 16px;border-top:4px solid var(--c);box-shadow:0 6px 20px rgba(44,24,16,.05);min-width:0}
+.dz-stat small{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.dz-stat b{display:block;font-family:var(--font-display);font-weight:900;font-size:26px;color:var(--c);margin:4px 0 0;line-height:1.15}
+.dz-stat span{font-size:12px;color:var(--muted)}
+
+/* section heads */
+.dz-sec{text-align:center;margin:0 0 22px}
+.dz-sec h2{font-size:38px;margin:8px 0 6px}.dz-sec p{margin:0;color:var(--muted)}
+.dz-foot{text-align:center;font-size:12.5px;color:var(--muted);margin:10px auto 48px;max-width:620px;line-height:1.5}
+
+/* market cards */
+.dz-mkts{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.dz-mkts.dz-loading{min-height:420px;border-radius:24px;background:linear-gradient(90deg,#fff 0%,#FBF3EE 50%,#fff 100%);background-size:200% 100%;animation:dz-shimmer 1.4s linear infinite}
+@keyframes dz-shimmer{to{background-position:-200% 0}}
+.dz-mkt{background:#fff;border-radius:24px;padding:14px;box-shadow:0 10px 30px rgba(44,24,16,.06);border:1px solid var(--border);min-width:0}
+.dz-panels{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dz-panel{border-radius:16px;overflow:hidden}
+.dz-panel svg{display:block;width:100%;height:auto}
+.dz-line{stroke-dasharray:1;stroke-dashoffset:1;animation:dz-draw 1.4s ease-out .15s forwards}
+.dz-now{transform-box:fill-box;transform-origin:center;animation:dz-pulse 2.2s ease-in-out infinite}
+@keyframes dz-draw{to{stroke-dashoffset:0}}
+@keyframes dz-pulse{50%{transform:scale(1.7);opacity:.08}}
+@media (prefers-reduced-motion:reduce){.dz-line{animation:none;stroke-dashoffset:0}.dz-now{animation:none}.dz-mkts.dz-loading{animation:none}}
+.dz-mkt-body{padding:14px 6px 4px}
+.dz-mkt-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.dz-tag{display:inline-block;border-radius:999px;padding:4px 11px;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.dz-asof{font-size:11.5px;color:var(--muted)}
+.dz-pil{display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px 14px;border-radius:14px;background:var(--dz-gold-pale);border:1.5px dashed #E2C48A}
+.dz-pil svg{flex:none}
+.dz-pil b{font-family:var(--font-display);font-size:20px;color:var(--dark)}
+.dz-pil small{display:block;color:var(--muted);font-size:12px;line-height:1.4}
+.dz-pil-l{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--dz-gold);text-transform:uppercase}
+.dz-icc{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.dz-icc-l{font-size:13px;color:var(--muted)}
+.dz-dot{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:700 15px var(--font-display);border:2px dashed #C5C0F0;color:var(--purple);background:#fff;cursor:pointer;padding:0;transition:transform .15s ease}
+.dz-dot:hover{transform:translateY(-2px)}
+.dz-dot.on{background:var(--purple);color:#fff;border:2px solid var(--purple)}
+.dz-icc-said{font-size:12px;color:var(--muted)}
+.dz-mkt-off{padding:38px 10px 30px;text-align:center}
+.dz-mkt-off h3{font-size:22px;margin:0 0 6px}.dz-mkt-off p{margin:0;color:var(--muted);font-size:14px}
+
+/* red folder */
+.dz-news{display:grid;grid-template-columns:1fr 1.5fr;gap:22px;align-items:start;margin-bottom:50px}
+.dz-handsoff{background:var(--peach-pale);border-radius:24px;padding:22px;text-align:center;border:1px solid #F8DDBB}
+.dz-handsoff.calm{background:#E8F8F6;border-color:#CDEDE9}
+.dz-handsoff.live{box-shadow:0 0 0 3px rgba(232,106,100,.35)}
+.dz-handsoff svg{width:120px;height:auto;margin:0 auto 6px;display:block}
+.dz-handsoff h3{font-size:24px;margin:4px 0 6px}
+.dz-handsoff p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+.dz-win{display:inline-block;margin-top:12px;background:#fff;border-radius:999px;padding:8px 16px;font-weight:700;color:var(--dark);font-size:14px}
+.dz-events{display:grid;gap:12px}
+.dz-ev{display:grid;grid-template-columns:auto 46px 1fr auto;gap:14px;align-items:center;background:#fff;border-radius:18px;padding:14px 18px;border:1px solid var(--border);box-shadow:0 6px 18px rgba(44,24,16,.04)}
+.dz-ev.past{opacity:.6}
+.dz-ev-time{font-family:var(--font-display);font-weight:900;font-size:22px;color:var(--dark);min-width:70px}
+.dz-ev-time small{display:block;font:700 10px var(--font-body);letter-spacing:.14em;color:var(--muted)}
+.dz-ev h4{font-size:18px}.dz-ev p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.dz-cd{background:var(--dz-red-pale);color:var(--dz-red);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;white-space:nowrap}
+.dz-ev.past .dz-cd{background:#F2ECE8;color:var(--muted)}
+.dz-ev-off{background:#fff;border-radius:18px;padding:20px;border:1px dashed var(--border);text-align:center}
+.dz-ev-off h4{font-size:18px}.dz-ev-off p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.dz-ev-off a{color:var(--pink);font-weight:700}
+.dz-news-foot{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12px;color:var(--muted)}
+.dz-link{background:none;border:0;padding:0;color:var(--pink);font:700 12px var(--font-body);cursor:pointer}
+
+/* tiles */
+.dz-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:50px}
+.dz-tile{display:block;background:#fff;border-radius:22px;padding:10px;border:1px solid var(--border);box-shadow:0 8px 24px rgba(44,24,16,.05);text-decoration:none;color:inherit;transition:transform .15s ease,box-shadow .15s ease;min-width:0}
+.dz-tile:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(44,24,16,.09)}
+.dz-art{border-radius:16px;height:130px;display:grid;place-items:center;overflow:hidden}
+.dz-art svg{width:74%;height:auto}
+.dz-art img{width:100%;height:100%;object-fit:cover}
+.dz-tile-body{padding:12px 8px 6px}
+.dz-tile h3{font-size:19px;margin:8px 0 3px}.dz-tile p{margin:0;font-size:13px;color:var(--muted)}
+.dz-bar{height:6px;border-radius:9px;background:#F3ECE7;margin-top:10px;overflow:hidden}.dz-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--peach))}
+
+/* journey */
+.dz-journey{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:center;background:#fff;border-radius:28px;padding:16px;border:1px solid var(--border)}
+.dz-journey img{width:100%;height:250px;object-fit:cover;border-radius:20px;display:block}
+.dz-jstats{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:8px 12px}
+.dz-jstats div{border-left:3px solid var(--c);padding-left:12px}
+.dz-jstats b{display:block;font-family:var(--font-display);font-weight:900;font-size:32px;color:var(--dark)}
+.dz-jstats small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+
+@media (max-width:1100px){.dz-hero h1{font-size:44px}.dz-tiles{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){
+  .dz-hero,.dz-mkts,.dz-news,.dz-journey{grid-template-columns:1fr}
+  .dz-hero h1{font-size:38px}.dz-stats{grid-template-columns:1fr 1fr}.dz-sec h2{font-size:30px}
+  .dz-ev{grid-template-columns:auto 40px 1fr;padding:12px 14px;gap:10px}.dz-ev .dz-cd{grid-column:2/4;justify-self:start}.dz-ev-time{font-size:19px;min-width:58px}
+  .dz-art{height:104px}.dz-journey img{height:190px}.dz-glow.a{left:-160px}
+}
+@media (max-width:420px){.dz-panels{gap:6px}.dz-tile h3{font-size:17px}.dz-jstats b{font-size:26px}}
+.dz-day{font-size:20px;margin:22px 0 10px}
+.dz-news.dz-news-off{grid-template-columns:1fr}
+.dz-day:first-child{margin-top:0}

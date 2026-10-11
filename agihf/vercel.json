@@ -225,6 +225,14 @@
     {
       "source": "/api/member-data",
       "destination": "/api/psychology-data?resource=member-data"
+    },
+    {
+      "source": "/api/market",
+      "destination": "/api/psychology-data?resource=market"
+    },
+    {
+      "source": "/api/news",
+      "destination": "/api/psychology-data?resource=news"
     }
   ]
 }

@@ -16,34 +16,43 @@
  * scrolling area, so on a short viewport where the nav list scrolls,
  * the gradient banner stays pinned at the top instead of scrolling up
  * and letting nav items scroll into/underneath it. */
-.sb{width:230px;flex-shrink:0;background:var(--dark);border-right:none;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto;}
-.sb-top{position:sticky;top:0;z-index:2;background:linear-gradient(155deg,var(--pink),var(--peach));flex-shrink:0;}
-/* .sb-logo is currently unused — no logo image wired in — but left
- * defined so dropping a new `<a class="sb-logo" href="..."><img
- * src="..."></a>` back in as .sb-top's first child (see sidebar.js)
- * needs no CSS changes. */
-.sb-logo{padding:20px 22px 12px;border-bottom:none;cursor:pointer;display:block;}
-.sb-logo img{height:52px;width:auto;display:block;filter:drop-shadow(0 3px 10px rgba(44,24,16,.28));}
-.sb-user{padding:22px 18px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.14);margin-bottom:6px;}
-.sb-av{width:36px;height:36px;border-radius:50%;background:#fff;border:2px solid rgba(255,255,255,.6);box-shadow:0 4px 14px rgba(44,24,16,.18);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.85rem;font-weight:700;color:var(--pink);flex-shrink:0;}
-.sb-nm{font-size:.84rem;font-weight:700;color:#fff;text-shadow:0 1px 8px rgba(44,24,16,.15);}
-.sb-lv{font-size:.68rem;color:rgba(255,255,255,.85);}
-.sb-sec{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);padding:12px 18px 5px;}
-.sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;font-size:.85rem;color:rgba(255,255,255,.55);cursor:pointer;transition:all .2s;border-left:3px solid transparent;border-radius:0;text-decoration:none;}
-.sb-item:hover{color:white;background:rgba(255,255,255,.07);}
-.sb-item.active{color:var(--pink);background:rgba(244,130,154,.12);border-left-color:var(--pink);font-weight:500;}
-.sb-ico{width:16px;text-align:center;font-size:12px;flex-shrink:0;}
-.sb-bot{margin-top:auto;padding:14px 18px;border-top:1px solid rgba(255,255,255,.08);}
-.xp-box{background:rgba(255,255,255,.06);border-radius:12px;padding:12px 14px;}
-.xp-top{display:flex;justify-content:space-between;margin-bottom:7px;}
-.xp-lbl{font-size:.68rem;color:rgba(255,255,255,.4);font-weight:500;}
-.xp-val{font-size:.72rem;color:var(--peach);font-weight:600;}
-.xp-track{height:5px;background:rgba(255,255,255,.1);border-radius:100px;overflow:hidden;}
+.sb{width:230px;flex-shrink:0;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#F1D9DF transparent;
+  background:radial-gradient(120% 40% at 0% 0%,rgba(249,201,212,.55),transparent 70%),radial-gradient(90% 30% at 100% 100%,rgba(191,230,225,.45),transparent 70%),#FFFBF9;
+  border-right:1px solid #F3E6E0;box-shadow:6px 0 30px rgba(44,24,16,.05);}
+.sb-top{position:sticky;top:0;z-index:2;flex-shrink:0;padding:18px 14px 10px;background:linear-gradient(#FFF6F5 75%,rgba(255,246,245,0));}
+.sb-logo{display:block;padding:2px 6px 14px;}
+.sb-logo img{height:50px;width:auto;display:block;}
+.sb-user{display:flex;align-items:center;gap:10px;padding:10px 10px 10px 10px;background:#fff;border:1px solid #F6E4E6;border-radius:18px;box-shadow:0 8px 22px rgba(244,130,154,.12);}
+.sb-av{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:.95rem;font-weight:900;color:#fff;background:linear-gradient(135deg,var(--pink),var(--peach));box-shadow:0 0 0 3px #fff,0 0 0 5px #FBD5DD;}
+.sb-user>div:nth-child(2){min-width:0;}
+.sb-nm{font-family:"Playfair Display",serif;font-size:.92rem;font-weight:900;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sb-lv{font-size:.66rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sb-sec{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);padding:16px 22px 6px;}
+.sb-item{display:flex;align-items:center;gap:11px;margin:1px 10px;padding:6px 10px 6px 7px;font-size:.86rem;font-weight:500;color:var(--text);cursor:pointer;border-radius:14px;text-decoration:none;transition:background .18s ease,box-shadow .18s ease,color .18s ease;}
+.sb-ico{width:30px;height:30px;flex-shrink:0;border-radius:10px;display:grid;place-items:center;background:var(--chip,#FDE8ED);color:var(--chip-ink,#E0607C);transition:transform .18s ease,background .18s ease,color .18s ease;}
+.sb-svg{width:17px;height:17px;display:block;}
+.sb-trade{--chip:#E8F8F6;--chip-ink:#3E9E93;}
+.sb-mindset{--chip:#EEEDFE;--chip-ink:#6E64C8;}
+.sb-learn{--chip:#FDE8ED;--chip-ink:#E0607C;}
+.sb-community{--chip:#FEF3E4;--chip-ink:#C4741F;}
+.sb-account{--chip:#FBF5E8;--chip-ink:#B0821F;}
+.sb-item:hover{background:rgba(255,255,255,.85);box-shadow:0 4px 14px rgba(44,24,16,.05);}
+.sb-item:hover .sb-ico{transform:translateY(-1px) rotate(-4deg);}
+.sb-item.active{background:#fff;color:var(--dark);font-weight:700;box-shadow:0 8px 22px rgba(244,130,154,.18),inset 0 0 0 1px #F9D3DB;}
+.sb-item.active .sb-ico{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;box-shadow:0 6px 14px rgba(244,130,154,.35);}
+.sb-item:focus-visible,.sb-logout:focus-visible,.sb-logo:focus-visible{outline:2.5px solid var(--pink);outline-offset:2px;}
+.sb-bot{margin-top:auto;padding:16px 14px 18px;}
+.xp-box{background:#fff;border:1px solid #F6E4E6;border-radius:16px;padding:12px 14px;box-shadow:0 6px 18px rgba(44,24,16,.05);}
+.xp-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
+.xp-lbl{font-size:.62rem;color:var(--muted);font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
+.xp-val{font-family:"Playfair Display",serif;font-size:.82rem;color:var(--dark);font-weight:900;}
+.xp-track{height:7px;background:#F6ECE8;border-radius:100px;overflow:hidden;}
 .xp-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--peach));border-radius:100px;width:0%;transition:width .6s ease;}
-.sb-logout{width:100%;margin-top:10px;padding:9px;border-radius:100px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.4);font-family:"DM Sans",sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s;}
-.sb-logout:hover{background:rgba(244,130,154,.15);color:var(--pink);border-color:var(--pink);}
+.sb-logout{width:100%;margin-top:10px;padding:9px;border-radius:100px;border:1.5px solid #F3E2DC;background:transparent;color:var(--muted);font-family:"DM Sans",sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.sb-logout .sb-svg{width:15px;height:15px;}
+.sb-logout:hover{background:#fff;color:var(--pink);border-color:#F7C2CE;}
 
-.demo-banner{background:var(--peach);color:var(--dark);font-size:12px;font-weight:700;text-align:center;padding:8px 16px 8px 246px;}
+.demo-banner{position:relative;z-index:2;background:var(--peach);color:var(--dark);font-size:12px;font-weight:700;text-align:center;padding:8px 16px 8px 246px;}
 @media(max-width:900px){.demo-banner{padding-left:16px;}}
 
 /* MAIN
@@ -67,24 +76,28 @@
 /* MOBILE BOTTOM NAV (replaces the vanishing sidebar below 900px) */
 .mb-bar{display:none;}
 @media(max-width:900px){
-  .mb-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:110;background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding:6px 4px calc(6px + env(safe-area-inset-bottom));box-shadow:0 -6px 20px rgba(44,24,16,.18);}
-  .mb-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border:none;background:none;color:rgba(255,255,255,.5);text-decoration:none;font-family:"DM Sans",sans-serif;cursor:pointer;border-radius:10px;}
-  .mb-item.active{color:var(--pink);}
-  .mb-ico{font-size:16px;line-height:1;}
-  .mb-lbl{font-size:.6rem;font-weight:600;}
+  .mb-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:110;background:rgba(255,251,249,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid #F3E6E0;border-radius:22px 22px 0 0;padding:6px 6px calc(6px + env(safe-area-inset-bottom));box-shadow:0 -8px 26px rgba(44,24,16,.08);}
+  .mb-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 2px;border:none;background:none;color:var(--muted);text-decoration:none;font-family:"DM Sans",sans-serif;cursor:pointer;border-radius:12px;}
+  .mb-item .mb-ico{width:40px;height:30px;border-radius:999px;display:grid;place-items:center;transition:background .18s ease,color .18s ease;}
+  .mb-item.active{color:var(--dark);}
+  .mb-item.active .mb-ico{background:linear-gradient(135deg,var(--pink),var(--peach));color:#fff;box-shadow:0 6px 14px rgba(244,130,154,.35);}
+  .mb-ico .sb-svg{width:20px;height:20px;}
+  .mb-lbl{font-size:.62rem;font-weight:700;}
 }
 .mb-sheet{display:none;}
 @media(max-width:900px){
-  .mb-sheet{display:block;position:fixed;inset:0;z-index:120;background:rgba(44,24,16,.5);opacity:0;pointer-events:none;transition:opacity .2s ease;}
+  .mb-sheet{display:block;position:fixed;inset:0;z-index:120;background:rgba(44,24,16,.45);opacity:0;pointer-events:none;transition:opacity .2s ease;}
   .mb-sheet.open{opacity:1;pointer-events:auto;}
-  .mb-sheet-card{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:22px 22px 0 0;padding:10px 14px calc(16px + env(safe-area-inset-bottom));max-height:70vh;overflow-y:auto;transform:translateY(12px);transition:transform .2s ease;}
+  .mb-sheet-card{position:absolute;left:0;right:0;bottom:0;background:radial-gradient(120% 30% at 0% 0%,rgba(249,201,212,.45),transparent 70%),#FFFBF9;border-radius:24px 24px 0 0;padding:10px 14px calc(16px + env(safe-area-inset-bottom));max-height:72vh;overflow-y:auto;transform:translateY(12px);transition:transform .2s ease;}
   .mb-sheet.open .mb-sheet-card{transform:translateY(0);}
-  .mb-sheet-handle{width:36px;height:4px;border-radius:100px;background:var(--border);margin:6px auto 10px;}
-  .mb-sheet-item{display:flex;align-items:center;gap:12px;padding:12px 10px;font-size:.88rem;color:var(--text);text-decoration:none;border-radius:12px;border:none;background:none;width:100%;text-align:left;font-family:"DM Sans",sans-serif;cursor:pointer;}
-  .mb-sheet-item:hover{background:var(--cream);}
-  .mb-sheet-item.active{color:var(--pink);font-weight:600;}
-  .mb-sheet-item .mb-ico{width:20px;text-align:center;font-size:14px;}
-  .mb-sheet-logout{color:var(--muted);border-top:1px solid var(--border);margin-top:6px;padding-top:14px;}
+  .mb-sheet-handle{width:40px;height:4px;border-radius:100px;background:#EBD9D3;margin:6px auto 10px;}
+  .mb-sheet-item{display:flex;align-items:center;gap:12px;padding:9px 10px;font-size:.9rem;font-weight:500;color:var(--text);text-decoration:none;border-radius:14px;border:none;background:none;width:100%;text-align:left;font-family:"DM Sans",sans-serif;cursor:pointer;}
+  .mb-sheet-item:hover{background:#fff;}
+  .mb-sheet-item.active{background:#fff;color:var(--dark);font-weight:700;box-shadow:0 6px 18px rgba(244,130,154,.15);}
+  .mb-sheet-item .mb-ico{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:var(--chip,#FDE8ED);color:var(--chip-ink,#E0607C);flex-shrink:0;}
+  .mb-sheet-item .mb-ico .sb-svg{width:17px;height:17px;}
+  .mb-sheet-logout{color:var(--muted);border-top:1px solid #F3E6E0;border-radius:0;margin-top:6px;padding-top:14px;}
+  .mb-sheet-logout .mb-ico{background:#F6ECE8;color:var(--muted);}
 }
 @media (prefers-reduced-motion: reduce){.mb-sheet, .mb-sheet-card{transition:none;}}
 
@@ -316,7 +329,15 @@
    every page, so its styles live here (loaded everywhere) rather than in
    challenge.css (only loaded on the challenge pages themselves). Kept
    byte-identical to challenge.css's copy where both load on the same page. */
-.sb-notif-wrap{margin-left:auto;position:relative;}
+.sb-notif-wrap{margin-left:auto;position:relative;flex-shrink:0;}
+.sb .chal-notif-bell{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;padding:0;background:#FDE8ED;color:#E0607C;transition:transform .15s ease;}
+.sb .chal-notif-bell:hover{transform:rotate(-10deg);}
+.sb .chal-notif-bell .sb-svg{width:17px;height:17px;}
+.sb .chal-notif-badge{top:-3px;right:-3px;box-shadow:0 0 0 2px #fff;}
+/* The sidebar scrolls and is only 230px wide, so the panel opens beside
+   it (fixed) instead of inside it, where it was getting cut off. */
+.sb .chal-notif-panel{position:fixed;top:18px;left:242px;right:auto;width:340px;max-width:calc(100vw - 260px);max-height:min(460px,calc(100vh - 36px));border:1px solid #F6E4E6;border-radius:20px;box-shadow:0 18px 44px rgba(44,24,16,.18);z-index:300;}
+.sb .chal-notif-panel-head{font-family:"Playfair Display",serif;font-size:1rem;font-weight:900;padding:14px 16px;}
 .chal-notif-bell-wrap{position:relative;}
 .chal-notif-bell{position:relative;background:none;border:none;font-size:1.05rem;cursor:pointer;padding:4px;color:inherit;}
 .chal-notif-badge{position:absolute;top:-2px;right:-2px;background:var(--pink);color:#fff;font-size:.6rem;font-weight:800;border-radius:100px;min-width:15px;height:15px;display:flex;align-items:center;justify-content:center;padding:0 3px;}

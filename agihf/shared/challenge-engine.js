@@ -341,7 +341,7 @@ export function renderPrefsPanel(container, prefs, handlers) {
 export function renderNotificationBell(container, { notifications, unreadCount }, handlers) {
   container.innerHTML = `<div class="chal-notif-bell-wrap">
     <button type="button" class="chal-notif-bell" id="chalNotifBellBtn" aria-label="Notifications">
-      🔔${unreadCount ? `<span class="chal-notif-badge">${unreadCount > 9 ? '9+' : unreadCount}</span>` : ''}
+      ${window.AGHF_ICON ? window.AGHF_ICON('bell') : '🔔'}${unreadCount ? `<span class="chal-notif-badge">${unreadCount > 9 ? '9+' : unreadCount}</span>` : ''}
     </button>
     <div class="chal-notif-panel" id="chalNotifPanel" hidden>
       <div class="chal-notif-panel-head">
@@ -362,8 +362,11 @@ export function renderNotificationBell(container, { notifications, unreadCount }
   </div>`;
 
   const panel = container.querySelector('#chalNotifPanel');
-  container.querySelector('#chalNotifBellBtn').addEventListener('click', () => {
+  const bellBtn = container.querySelector('#chalNotifBellBtn');
+  bellBtn.setAttribute('aria-expanded', 'false');
+  bellBtn.addEventListener('click', () => {
     panel.hidden = !panel.hidden;
+    bellBtn.setAttribute('aria-expanded', String(!panel.hidden));
     if (!panel.hidden) handlers.onOpen?.();
   });
   container.querySelector('#chalNotifMarkAll')?.addEventListener('click', (e) => {
@@ -373,7 +376,19 @@ export function renderNotificationBell(container, { notifications, unreadCount }
   container.querySelectorAll('[data-notif-id]').forEach((row) => {
     row.addEventListener('click', () => handlers.onOpenNotification(row.dataset.notifId));
   });
-  document.addEventListener('click', function outsideHandler(e) {
-    if (!container.contains(e.target)) { panel.hidden = true; document.removeEventListener('click', outsideHandler); }
-  });
+  // One outside-click listener per container (the bell repaints after
+  // every read), closing whichever panel is currently inside it.
+  if (!container.dataset.bellOutside) {
+    container.dataset.bellOutside = '1';
+    document.addEventListener('click', (e) => {
+      const open = container.querySelector('.chal-notif-panel');
+      if (open && !container.contains(e.target)) {
+        open.hidden = true;
+        container.querySelector('.chal-notif-bell')?.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') container.querySelector('.chal-notif-panel')?.setAttribute('hidden', '');
+    });
+  }
 }

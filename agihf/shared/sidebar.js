@@ -19,24 +19,50 @@
   const active = script.getAttribute('data-active') || '';
   const ROOT = new URL('../', script.src).href;
 
+
+  // Line icons (24px grid, drawn with currentColor) so the menu matches the
+  // illustrated look instead of mixed text glyphs.
+  const ICON_PATHS = {
+    desk: '<path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-5h-6v5H5a1 1 0 0 1-1-1z"/>',
+    outlook: '<path d="M4 19h16"/><path d="M5 15l4-5 3 3 4-6 3 4"/>',
+    checklist: '<rect x="5" y="4" width="14" height="16" rx="2"/><path d="M8.5 9l1.5 1.5L13 7.5"/><path d="M8.5 15l1.5 1.5 3-3"/><path d="M15 9.5h1M15 15.5h1"/>',
+    journal: '<path d="M6 4h10a2 2 0 0 1 2 2v14H8a2 2 0 0 1-2-2z"/><path d="M6 18a2 2 0 0 1 2-2h10"/><path d="M10 8h5"/>',
+    eval: '<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/>',
+    agent: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+    academy: '<path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v4c0 1.5 2.2 3 5 3s5-1.5 5-3v-4"/><path d="M21 9v5"/>',
+    mydesk: '<rect x="3" y="5" width="18" height="12" rx="2"/><path d="M9 21h6M12 17v4"/><path d="M7 13l3-3 2 2 4-4"/>',
+    games: '<rect x="3" y="8" width="18" height="10" rx="5"/><path d="M8 11v4M6 13h4"/><circle cx="15.5" cy="12" r=".8"/><circle cx="17.5" cy="14.5" r=".8"/>',
+    notes: '<path d="M7 3h10a1 1 0 0 1 1 1v17l-6-4-6 4V4a1 1 0 0 1 1-1z"/>',
+    win: '<path d="M12 3l2.5 5.2 5.5.8-4 3.9 1 5.6-5-2.7-5 2.7 1-5.6-4-3.9 5.5-.8z"/>',
+    challenge: '<path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M16 6h3a2 2 0 0 1-2 4h-1M8 6H5a2 2 0 0 0 2 4h1"/><path d="M12 13v4M8.5 20h7"/>',
+    discord: '<path d="M5 6.5C7 5 9 4.6 10 4.6l.5 1h3l.5-1c1 0 3 .4 5 1.9 1.4 2.6 2 5.5 1.8 9-1.7 1.4-3.4 2.2-5 2.5l-1-1.7M5 6.5C3.6 9 3 12 3.2 15.5c1.7 1.4 3.4 2.2 5 2.5l1-1.7"/><path d="M8 15.5c2.6 1.2 5.4 1.2 8 0"/><circle cx="9.3" cy="11.5" r="1"/><circle cx="14.7" cy="11.5" r="1"/>',
+    performance: '<path d="M4 20h16"/><rect x="6" y="11" width="3" height="6" rx="1"/><rect x="11" y="7" width="3" height="10" rx="1"/><rect x="16" y="13" width="3" height="4" rx="1"/>',
+    profile: '<circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.5 3.6-5.5 7-5.5s6.2 2 7 5.5"/>',
+    more: '<circle cx="6" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18" cy="12" r="1.3"/>',
+    logout: '<path d="M14 5h4a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-4"/><path d="M10 8l-4 4 4 4M6 12h9"/>',
+    bell: '<path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/>',
+  };
+  const icon = (name) => `<svg class="sb-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[name] || ''}</svg>`;
+  window.AGHF_ICON = icon;
+
   const items = [
-    { section: 'Trade', key: 'dashboard', icon: '⌂', label: 'Dayli Desk', href: 'dashboard.html', mobileIcon: '⌂', mobileLabel: 'Desk' },
-    { section: 'Trade', key: 'market-outlook', icon: '◐', label: 'Market Outlook', href: 'market-outlook.html' },
-    { section: 'Trade', key: 'checklist', icon: '▤', label: 'ICC Checklist', href: 'checklist.html', mobileIcon: '▤', mobileLabel: 'Checklist' },
-    { section: 'Trade', key: 'journal', icon: '✎', label: 'Journal', href: 'journal.html', mobileIcon: '✎', mobileLabel: 'Journal' },
-    { section: 'Trade', key: 'eval-calculator', icon: '✓', label: 'Pass Your Eval', href: 'eval-calculator.html' },
-    { section: 'Mindset', key: 'agent', icon: '♡', label: 'AGHF Agent', href: 'psychology.html' },
-    { section: 'Learn', key: 'lessons', icon: '✦', label: 'Academy', href: 'lessons.html', mobileIcon: '✦', mobileLabel: 'Academy' },
-    { section: 'Learn', key: 'desk', icon: '▣', label: 'My Trader Desk', href: 'desk.html' },
-    { section: 'Learn', key: 'games', icon: '◈', label: 'Games', href: 'games.html' },
+    { section: 'Trade', key: 'dashboard', icon: 'desk', label: 'Dayli Desk', href: 'dashboard.html', mobileLabel: 'Desk' },
+    { section: 'Trade', key: 'market-outlook', icon: 'outlook', label: 'Market Outlook', href: 'market-outlook.html' },
+    { section: 'Trade', key: 'checklist', icon: 'checklist', label: 'ICC Checklist', href: 'checklist.html', mobileLabel: 'Checklist' },
+    { section: 'Trade', key: 'journal', icon: 'journal', label: 'Journal', href: 'journal.html', mobileLabel: 'Journal' },
+    { section: 'Trade', key: 'eval-calculator', icon: 'eval', label: 'Pass Your Eval', href: 'eval-calculator.html' },
+    { section: 'Mindset', key: 'agent', icon: 'agent', label: 'AGHF Agent', href: 'psychology.html' },
+    { section: 'Learn', key: 'lessons', icon: 'academy', label: 'Academy', href: 'lessons.html', mobileLabel: 'Academy' },
+    { section: 'Learn', key: 'desk', icon: 'mydesk', label: 'My Trader Desk', href: 'desk.html' },
+    { section: 'Learn', key: 'games', icon: 'games', label: 'Games', href: 'games.html' },
     // Chart Lab nav entry temporarily removed — the feature isn't working
     // correctly and is hidden from members until it's fixed.
-    { section: 'Learn', key: 'playbook', icon: '❦', label: 'Lesson Notes', href: 'playbook.html' },
-    { section: 'Community', key: 'leaderboard', icon: '✦', label: 'Share My Win', href: 'share-win.html' },
-    { section: 'Community', key: 'monthly-challenge', icon: '🏆', label: 'Monthly Challenge', href: 'monthly-challenge.html' },
-    { section: 'Community', key: 'store', icon: '◈', label: 'Join Discord', href: 'store.html' },
-    { section: 'Account', key: 'performance', icon: '◔', label: 'Performance', href: 'performance.html' },
-    { section: 'Account', key: 'profile', icon: '○', label: 'My Profile', href: 'profile.html' },
+    { section: 'Learn', key: 'playbook', icon: 'notes', label: 'Lesson Notes', href: 'playbook.html' },
+    { section: 'Community', key: 'leaderboard', icon: 'win', label: 'Share My Win', href: 'share-win.html' },
+    { section: 'Community', key: 'monthly-challenge', icon: 'challenge', label: 'Monthly Challenge', href: 'monthly-challenge.html' },
+    { section: 'Community', key: 'store', icon: 'discord', label: 'Join Discord', href: 'store.html' },
+    { section: 'Account', key: 'performance', icon: 'performance', label: 'Performance', href: 'performance.html' },
+    { section: 'Account', key: 'profile', icon: 'profile', label: 'My Profile', href: 'profile.html' },
   ];
 
   // The 4 items shown directly in the mobile bottom bar; everything else
@@ -48,10 +74,10 @@
   let lastSection = null;
   items.forEach((item) => {
     if (item.section !== lastSection) {
-      sectionsHtml += `<div class="sb-sec">${item.section}</div>`;
+      sectionsHtml += `<div class="sb-sec">✦ ${item.section}</div>`;
       lastSection = item.section;
     }
-    sectionsHtml += `<a class="sb-item${item.key === active ? ' active' : ''}" href="${ROOT}${item.href}"><span class="sb-ico">${item.icon}</span> ${item.label}</a>`;
+    sectionsHtml += `<a class="sb-item sb-${item.section.toLowerCase()}${item.key === active ? ' active' : ''}" href="${ROOT}${item.href}"${item.key === active ? ' aria-current="page"' : ''}><span class="sb-ico">${icon(item.icon)}</span><span>${item.label}</span></a>`;
   });
 
   const demoBanner = window.AGHF_DEMO
@@ -63,14 +89,14 @@
 
   const mobileBarHtml = `
     <nav class="mb-bar" id="mbBar">
-      ${primaryItems.map((item) => `<a class="mb-item${item.key === active ? ' active' : ''}" href="${ROOT}${item.href}"><span class="mb-ico">${item.mobileIcon || item.icon}</span><span class="mb-lbl">${item.mobileLabel || item.label}</span></a>`).join('')}
-      <button type="button" class="mb-item mb-more" id="mbMoreBtn" aria-haspopup="true" aria-expanded="false"><span class="mb-ico">⋯</span><span class="mb-lbl">More</span></button>
+      ${primaryItems.map((item) => `<a class="mb-item${item.key === active ? ' active' : ''}" href="${ROOT}${item.href}"><span class="mb-ico">${icon(item.icon)}</span><span class="mb-lbl">${item.mobileLabel || item.label}</span></a>`).join('')}
+      <button type="button" class="mb-item mb-more" id="mbMoreBtn" aria-haspopup="true" aria-expanded="false"><span class="mb-ico">${icon('more')}</span><span class="mb-lbl">More</span></button>
     </nav>
     <div class="mb-sheet" id="mbSheet">
       <div class="mb-sheet-card">
         <div class="mb-sheet-handle"></div>
-        ${moreItems.map((item) => `<a class="mb-sheet-item${item.key === active ? ' active' : ''}" href="${ROOT}${item.href}"><span class="mb-ico">${item.icon}</span> ${item.label}</a>`).join('')}
-        <button class="mb-sheet-item mb-sheet-logout" id="mbLogout"><span class="mb-ico">←</span> Log out</button>
+        ${moreItems.map((item) => `<a class="mb-sheet-item sb-${item.section.toLowerCase()}${item.key === active ? ' active' : ''}" href="${ROOT}${item.href}"><span class="mb-ico">${icon(item.icon)}</span> ${item.label}</a>`).join('')}
+        <button class="mb-sheet-item mb-sheet-logout" id="mbLogout"><span class="mb-ico">${icon('logout')}</span> Log out</button>
       </div>
     </div>
   `;
@@ -79,11 +105,12 @@
     ${demoBanner}
     <aside class="sb">
       <div class="sb-top">
+        <a class="sb-logo" href="${ROOT}dashboard.html" aria-label="A Girl &amp; Her Futures Academy home"><img src="${ROOT}logo.png" alt="A Girl &amp; Her Futures"></a>
         <div class="sb-user">
           <div class="sb-av" id="sbAvatar">D</div>
           <div>
             <div class="sb-nm" id="sbName">Trader</div>
-            <div class="sb-lv" id="sbLevel">Level 1 · You're Brand New</div>
+            <div class="sb-lv" id="sbLevel">You're Brand New</div>
           </div>
           <div class="sb-notif-wrap" id="sbNotifWrap"></div>
         </div>
@@ -91,10 +118,10 @@
       ${sectionsHtml}
       <div class="sb-bot">
         <div class="xp-box">
-          <div class="xp-top"><span class="xp-lbl">GP</span><span class="xp-val" id="sbXpVal">0 / 1000</span></div>
+          <div class="xp-top"><span class="xp-lbl" id="sbXpLbl">Level 1 · GP</span><span class="xp-val" id="sbXpVal">0 / 1000</span></div>
           <div class="xp-track"><div class="xp-fill" id="sbXpFill" style="width:0%"></div></div>
         </div>
-        <button class="sb-logout" id="sbLogout">← Log out</button>
+        <button class="sb-logout" id="sbLogout">${icon('logout')} Log out</button>
       </div>
     </aside>
     ${mobileBarHtml}
@@ -181,8 +208,9 @@
       const gp = p.gp || 0;
       const nextLevelGp = level * 1000;
       document.getElementById('sbName').textContent = name;
-      document.getElementById('sbLevel').textContent = `Level ${level} · ${levelName}`;
-      document.getElementById('sbXpVal').textContent = `${gp} / ${nextLevelGp}`;
+      document.getElementById('sbLevel').textContent = levelName;
+      document.getElementById('sbXpLbl').textContent = `Level ${level} · GP`;
+      document.getElementById('sbXpVal').textContent = `${gp.toLocaleString('en-US')} / ${nextLevelGp.toLocaleString('en-US')}`;
       document.getElementById('sbXpFill').style.width = Math.min((gp / nextLevelGp) * 100, 100) + '%';
       document.getElementById('sbAvatar').textContent = name.trim().charAt(0).toUpperCase();
     } catch (err) {
